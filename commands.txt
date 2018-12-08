@@ -1,0 +1,48 @@
+MIUI Frameworks
+J:\ROOT\GitHub\ANXMiuiCamera>java  -jar .\tools\apktool.jar if -p .\tools\MiuiFrameworks .\orig\MiuiFrameworks\framework-res.apk
+
+J:\ROOT\GitHub\ANXMiuiCamera>java  -jar .\tools\apktool.jar if -p .\tools\MiuiFrameworks .\orig\MiuiFrameworks\miui.apk
+
+J:\ROOT\GitHub\ANXMiuiCamera>java  -jar .\tools\apktool.jar if -p .\tools\MiuiFrameworks .\orig\MiuiFrameworks\framework-ext-res.apk
+
+J:\ROOT\GitHub\ANXMiuiCamera>java  -jar .\tools\apktool.jar if -p .\tools\MiuiFrameworks .\orig\MiuiFrameworks\miuisystem.apk
+
+
+Resurrection Remix Frameworks
+J:\ROOT\GitHub\ANXMiuiCamera>java  -jar .\tools\apktool.jar if -p .\tools\RROFrameworks .\orig\RROFrameworks\framework-res.apk
+
+J:\ROOT\GitHub\ANXMiuiCamera>java  -jar .\tools\apktool.jar if -p .\tools\RROFrameworks .\orig\RROFrameworks\org.lineageos.platform-res.apk
+
+
+Decompile
+java  -jar .\tools\apktool.jar d -p .\tools\MiuiFrameworks -f -o .\src\ANXCamera .\orig\MiuiCamera.ddx.apk
+
+
+Recompile
+java  -jar .\tools\apktool.jar b -p .\tools\MiuiFrameworks -o .\out\ANXCamera-Unsigned.apk .\src\ANXCamera
+
+
+Sign
+java  -jar .\tools\SignApk.jar .\tools\testkey.x509.pem .\tools\testkey.pk8 .\out\ANXCamera-Unsigned.apk .\out\ANXCamera.apk
+
+
+Jadx
+.\tools\jadx\bin\jadx -d .\src\ANXCamera -r .\out\ANXCamera.apk
+
+
+Install
+adb install -g .\out\ANXCamera.apk
+adb shell pm grant com.android.camera android.permission.PACKAGE_USAGE_STATS
+
+Reinstall
+adb uninstall com.aeonax.camera
+adb install -g .\out\ANXCamera.apk
+adb shell pm grant com.android.camera android.permission.PACKAGE_USAGE_STATS
+
+Logcat
+adb logcat -s System.err
+
+
+Magisk
+"C:\Program Files\7-Zip\7z.exe" a -tzip .\out\ANXCameraLibs.zip .\src\ANXCameraMagisk\*
+adb push .\out\ANXCameraLibs.zip  /sdcard/zips
