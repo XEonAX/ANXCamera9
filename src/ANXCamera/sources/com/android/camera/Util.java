@@ -56,6 +56,7 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.support.v4.view.InputDeviceCompat;
 import android.support.v4.view.ViewCompat;
 import android.telephony.TelephonyManager;
 import android.text.SpannableStringBuilder;
@@ -89,7 +90,6 @@ import com.android.camera.module.loader.camera2.Camera2DataContainer;
 import com.android.camera.permission.PermissionManager;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.storage.Storage;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.AECFrameControl;
 import com.android.camera2.AFFrameControl;
 import com.android.camera2.CameraCapabilities;
@@ -377,9 +377,9 @@ public final class Util {
             matrix.postScale(-1.0f, 1.0f);
             i = (i + 360) % 360;
             if (i == 0 || i == 180) {
-                matrix.postTranslate((float) bitmap.getWidth(), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                matrix.postTranslate((float) bitmap.getWidth(), 0.0f);
             } else if (i == 90 || i == 270) {
-                matrix.postTranslate((float) bitmap.getHeight(), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                matrix.postTranslate((float) bitmap.getHeight(), 0.0f);
             } else {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("Invalid degrees=");
@@ -756,7 +756,7 @@ public final class Util {
 
     public static float getShootRotation(Activity activity, float f) {
         f -= (float) getDisplayRotation(activity);
-        while (f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+        while (f < 0.0f) {
             f += 360.0f;
         }
         while (f > 360.0f) {
@@ -1365,7 +1365,7 @@ public final class Util {
     public static void fadeIn(View view, int i) {
         if (view != null && view.getVisibility() != 0) {
             view.setVisibility(0);
-            Animation alphaAnimation = new AlphaAnimation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
+            Animation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
             alphaAnimation.setDuration((long) i);
             view.clearAnimation();
             view.startAnimation(alphaAnimation);
@@ -1378,7 +1378,7 @@ public final class Util {
 
     public static void fadeOut(View view, int i) {
         if (view != null && view.getVisibility() == 0) {
-            Animation alphaAnimation = new AlphaAnimation(1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            Animation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
             alphaAnimation.setDuration((long) i);
             view.clearAnimation();
             view.startAnimation(alphaAnimation);
@@ -2281,11 +2281,11 @@ public final class Util {
 
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0040  */
     /* JADX WARNING: Removed duplicated region for block: B:28:0x007c A:{Catch:{ XmlPullParserException -> 0x0123, IOException -> 0x011a, all -> 0x010c }} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0035 A:{Splitter: B:6:0x001c, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0035 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:6:0x001c} */
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0040  */
     /* JADX WARNING: Removed duplicated region for block: B:28:0x007c A:{Catch:{ XmlPullParserException -> 0x0123, IOException -> 0x011a, all -> 0x010c }} */
-    /* JADX WARNING: Removed duplicated region for block: B:13:0x0032 A:{Splitter: B:8:0x0021, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:12:0x0030 A:{Splitter: B:10:0x002c, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:13:0x0032 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:8:0x0021} */
+    /* JADX WARNING: Removed duplicated region for block: B:12:0x0030 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:10:0x002c} */
     /* JADX WARNING: Missing block: B:12:0x0030, code:
             r4 = e;
      */
@@ -2796,7 +2796,7 @@ public final class Util {
         return bitmap2;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:7:0x0028 A:{Splitter: B:4:0x001f, ExcHandler: java.lang.OutOfMemoryError (r1_2 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:7:0x0028 A:{ExcHandler: java.lang.OutOfMemoryError (r1_2 'e' java.lang.Throwable), Splitter: B:4:0x001f} */
     /* JADX WARNING: Missing block: B:7:0x0028, code:
             r1 = move-exception;
      */
@@ -3162,7 +3162,7 @@ public final class Util {
     }
 
     public static void startScreenSlideAlphaInAnimation(View view) {
-        ViewCompat.setAlpha(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        ViewCompat.setAlpha(view, 0.0f);
         ViewCompat.animate(view).alpha(1.0f).setDuration(350).setStartDelay(400).setInterpolator(new SineEaseInOutInterpolator()).start();
     }
 
@@ -3803,7 +3803,7 @@ public final class Util {
             for (byte b : digest) {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append(str2);
-                stringBuilder.append(Integer.toHexString((255 & b) | -256).substring(6));
+                stringBuilder.append(Integer.toHexString((255 & b) | InputDeviceCompat.SOURCE_ANY).substring(6));
                 str2 = stringBuilder.toString();
             }
             return str2;

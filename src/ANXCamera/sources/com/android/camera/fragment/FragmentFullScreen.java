@@ -32,7 +32,6 @@ import com.android.camera.protocol.ModeProtocol.LiveConfigChanges;
 import com.android.camera.protocol.ModeProtocol.LiveVideoEditor;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.ui.CameraSnapView;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.vesdk.VECommonCallback;
 import com.ss.android.vesdk.VECommonCallbackInfo;
 import io.reactivex.Completable;
@@ -345,9 +344,9 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
     }
 
     private void setProgressBarVisible() {
-        this.mSaveProgress.setAlpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.mSaveProgress.setAlpha(0.0f);
         this.mSaveProgress.setVisibility(0);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
         ofFloat.setDuration(300);
         ofFloat.setStartDelay(160);
         ofFloat.setInterpolator(new PathInterpolator(0.25f, 0.1f, 0.25f, 1.0f));

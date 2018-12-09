@@ -2,7 +2,6 @@ package com.bumptech.glide.util;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -21,7 +20,7 @@ public class f<T, Y> {
     }
 
     public synchronized void b(float f) {
-        if (f >= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+        if (f >= 0.0f) {
             this.maxSize = (long) Math.round(((float) this.gM) * f);
             bl();
         } else {

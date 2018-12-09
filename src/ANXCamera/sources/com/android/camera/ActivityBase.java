@@ -38,7 +38,6 @@ import com.android.camera.ui.PopupManager;
 import com.android.camera.ui.ScreenHint;
 import com.android.camera.ui.V6CameraGLSurfaceView;
 import com.android.camera.ui.V9EdgeShutterView;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.Camera2Proxy;
 import com.mi.config.b;
 import com.ss.android.ttve.common.TEDefine;
@@ -546,7 +545,7 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
                     if (ActivityBase.this.mGLCoverView != null) {
                         ActivityBase.this.mGLCoverView.post(new Runnable() {
                             public void run() {
-                                ActivityBase.this.mGLCoverView.animate().alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).withEndAction(new Runnable() {
+                                ActivityBase.this.mGLCoverView.animate().alpha(0.0f).withEndAction(new Runnable() {
                                     public void run() {
                                         ActivityBase.this.mGLCoverView.setVisibility(8);
                                     }

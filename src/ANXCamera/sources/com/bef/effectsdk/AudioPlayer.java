@@ -7,7 +7,6 @@ import android.media.MediaPlayer.OnInfoListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.support.annotation.Keep;
 import android.util.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 @Keep
 public class AudioPlayer {
@@ -300,7 +299,7 @@ public class AudioPlayer {
             return ((float) this.mMediaPlayer.getCurrentPosition()) / 1000.0f;
         }
         Log.e(TAG, "MediaPlayer is null!");
-        return PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        return 0.0f;
     }
 
     @Keep
@@ -309,6 +308,6 @@ public class AudioPlayer {
             return ((float) this.mMediaPlayer.getDuration()) / 1000.0f;
         }
         Log.e(TAG, "MediaPlayer is null!");
-        return PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        return 0.0f;
     }
 }

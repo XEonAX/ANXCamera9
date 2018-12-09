@@ -13,7 +13,6 @@ import android.widget.Scroller;
 import com.android.camera.Util;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.CameraAction;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class HorizontalSlideView extends View {
     private HorizontalDrawAdapter mDrawAdapter;
@@ -32,10 +31,10 @@ public class HorizontalSlideView extends View {
 
         public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
             HorizontalSlideView.this.mIsScrollingPerformed = true;
-            if (HorizontalSlideView.this.mPositionX == HorizontalSlideView.this.mMinX && f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+            if (HorizontalSlideView.this.mPositionX == HorizontalSlideView.this.mMinX && f < 0.0f) {
                 return false;
             }
-            if (HorizontalSlideView.this.mPositionX == HorizontalSlideView.this.mMaxX && f > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+            if (HorizontalSlideView.this.mPositionX == HorizontalSlideView.this.mMaxX && f > 0.0f) {
                 return false;
             }
             HorizontalSlideView.this.setPositionX((int) (((float) HorizontalSlideView.this.mPositionX) + f));
@@ -116,9 +115,8 @@ public class HorizontalSlideView extends View {
     private float calculateLength(int i, int i2) {
         float f;
         float f2 = this.mOriginX;
-        HorizontalDrawAdapter horizontalDrawAdapter = this.mDrawAdapter;
-        float f3 = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        if (horizontalDrawAdapter != null) {
+        float f3 = 0.0f;
+        if (this.mDrawAdapter != null) {
             int count;
             int i3;
             int i4;
@@ -138,7 +136,7 @@ public class HorizontalSlideView extends View {
             } else {
                 i4 = 1;
             }
-            f = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            f = 0.0f;
             float f4 = f;
             float f5 = f4;
             for (int i5 = 0; i5 < this.mDrawAdapter.getCount(); i5++) {
@@ -156,7 +154,7 @@ public class HorizontalSlideView extends View {
                 } else {
                     f6 = f5 + f7;
                 }
-                f5 += i8 != 0 ? PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO : getItemGap(i5) + itemWidth;
+                f5 += i8 != 0 ? 0.0f : getItemGap(i5) + itemWidth;
                 if (i6 == i) {
                     int i9 = i2;
                     f = f6;
@@ -166,7 +164,7 @@ public class HorizontalSlideView extends View {
             }
             f3 = f4;
         } else {
-            f = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            f = 0.0f;
         }
         return Math.abs(f3 - f);
     }
@@ -314,9 +312,8 @@ public class HorizontalSlideView extends View {
         float f2 = this.mOriginX - ((float) this.mPositionX);
         float f3 = 2.0f;
         float height = ((float) getHeight()) / 2.0f;
-        HorizontalDrawAdapter horizontalDrawAdapter = this.mDrawAdapter;
-        float f4 = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        if (horizontalDrawAdapter != null) {
+        float f4 = 0.0f;
+        if (this.mDrawAdapter != null) {
             int count;
             int i;
             int i2;
@@ -338,79 +335,84 @@ public class HorizontalSlideView extends View {
             }
             float f5 = f2;
             int i3 = 0;
-            float f6 = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            float f6 = 0.0f;
             float f7 = f6;
             float f8 = f7;
             int i4 = 1;
             while (i3 < this.mDrawAdapter.getCount()) {
+                float f9;
                 int i5 = (i3 * i2) + count;
                 boolean z2 = i5 == count ? true : z;
                 boolean z3 = i5 == i ? true : z;
                 float itemWidth = getItemWidth(i5);
-                float f9 = itemWidth / f3;
+                float f10 = itemWidth / f3;
                 if (z2) {
-                    f6 = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+                    f6 = 0.0f;
                 }
-                float itemGap = z3 ? PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO : getItemGap(i5) / f3;
+                if (z3) {
+                    f9 = 0.0f;
+                } else {
+                    f9 = getItemGap(i5) / f3;
+                }
                 if (z2) {
-                    f7 = f2 - f9;
+                    f7 = f2 - f10;
                 }
                 if (z2) {
                     f5 = f2;
                 } else {
-                    f5 = f7 + f9;
+                    f5 = f7 + f10;
                 }
                 if (i4 != 0) {
-                    float f10 = f5 - this.mOriginX;
-                    if ((f10 <= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO && (-f10) <= f9 + itemGap) || (f10 > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO && f10 <= f9 + r13)) {
+                    float f11 = f5 - this.mOriginX;
+                    if ((f11 <= 0.0f && (-f11) <= f10 + f9) || (f11 > 0.0f && f11 <= f10 + r13)) {
                         select(i5);
-                        f8 = f10;
+                        f8 = f11;
                         i4 = 0;
                     }
                 }
-                f7 += z3 ? PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO : itemWidth + getItemGap(i5);
+                f7 += z3 ? 0.0f : itemWidth + getItemGap(i5);
                 i3++;
-                f6 = itemGap;
+                f6 = f9;
                 z = false;
                 f3 = 2.0f;
             }
             this.mMaxX = (int) (f5 - f2);
             int i6 = 0;
             while (i6 < this.mDrawAdapter.getCount()) {
-                float f11;
+                float f12;
                 int i7 = (i6 * i2) + count;
                 Object obj = i7 == count ? 1 : null;
                 Object obj2 = i7 == i ? 1 : null;
                 f5 = getItemWidth(i7);
-                float f12 = f5 / 2.0f;
+                float f13 = f5 / 2.0f;
                 if (obj != null) {
-                    f7 = f2 - f12;
+                    f7 = f2 - f13;
                 }
                 if (obj != null) {
-                    f11 = f2;
+                    f12 = f2;
                 } else {
-                    f11 = f7 + f12;
+                    f12 = f7 + f13;
                 }
-                f12 = f7 + f5;
-                if (f12 >= f4 && f7 <= ((float) getWidth())) {
+                f13 = f7 + f5;
+                if (f13 >= f4 && f7 <= ((float) getWidth())) {
                     canvas.save();
                     if (this.mDrawAdapter.getAlign(i7) == Align.LEFT) {
                         canvas2.translate(f7, height);
                     } else if (this.mDrawAdapter.getAlign(i7) == Align.CENTER) {
-                        canvas2.translate(f11, height);
-                    } else {
                         canvas2.translate(f12, height);
+                    } else {
+                        canvas2.translate(f13, height);
                     }
                     this.mDrawAdapter.draw(i7, canvas2, this.mSelectedItemIndex == i7);
                     canvas.restore();
                 }
-                f7 += obj2 != null ? PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO : f5 + getItemGap(i7);
+                f7 += obj2 != null ? 0.0f : f5 + getItemGap(i7);
                 i6++;
-                f4 = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+                f4 = 0.0f;
             }
             f = f8;
         } else {
-            f = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            f = 0.0f;
         }
         if (this.mJustifyEnabled && this.mNeedJustify && this.mScroller.isFinished()) {
             this.mNeedJustify = false;

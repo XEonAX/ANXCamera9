@@ -2,7 +2,6 @@ package com.android.camera.effect.renders;
 
 import android.opengl.GLES20;
 import com.android.camera.log.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.BasicTexture;
 import com.android.gallery3d.ui.GLCanvas;
 import com.miui.filtersdk.filter.NewBeautificationFilter;
@@ -54,7 +53,7 @@ public class BeautificationWrapperRender extends WrapperRender {
     private void drawToFrameBuffer(int i, float f, float f2, float f3, float f4) {
         if (this.mParentFrameBufferId != 0) {
             GLES20.glBindFramebuffer(36160, this.mParentFrameBufferId);
-            GLES20.glClearColor(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         }
         this.mSimpleRender.drawTexture(i, f, f2, f3, f4, false);
     }

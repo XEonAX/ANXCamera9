@@ -324,7 +324,7 @@ public class l implements Callback {
                     supportRequestManagerFragment.cR().onStart();
                 }
                 this.pendingSupportRequestManagerFragments.put(fragmentManager, supportRequestManagerFragment);
-                fragmentManager.beginTransaction().add(supportRequestManagerFragment, FRAGMENT_TAG).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().add((android.support.v4.app.Fragment) supportRequestManagerFragment, FRAGMENT_TAG).commitAllowingStateLoss();
                 this.handler.obtainMessage(2, fragmentManager).sendToTarget();
             }
         }

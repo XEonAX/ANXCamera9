@@ -9,7 +9,6 @@ import com.android.camera.CameraAppImpl;
 import com.android.camera.Util;
 import com.android.camera.lib.compatibility.util.CompatibilityUtils;
 import com.android.camera.log.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -67,7 +66,7 @@ public class MixStringTexture extends CanvasTexture {
 
     protected void onDraw(Canvas canvas, Bitmap bitmap) {
         long nanoTime = System.nanoTime();
-        canvas.translate(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) (-this.mMetrics.ascent));
+        canvas.translate(0.0f, (float) (-this.mMetrics.ascent));
         Matcher matcher = Pattern.compile("([\\sa-zA-Z0-9]+)|([^\\sa-zA-Z0-9]+)").matcher(this.mText);
         int i = 0;
         while (matcher.find()) {
@@ -76,11 +75,11 @@ public class MixStringTexture extends CanvasTexture {
             String group = matcher.group();
             if (group.matches("[\\sa-zA-Z0-9]+")) {
                 f = (float) i;
-                canvas.drawText(group, f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mENPaint);
+                canvas.drawText(group, f, 0.0f, this.mENPaint);
                 measureText = this.mENPaint.measureText(group);
             } else {
                 f = (float) i;
-                canvas.drawText(group, f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mCNPaint);
+                canvas.drawText(group, f, 0.0f, this.mCNPaint);
                 measureText = this.mCNPaint.measureText(group);
             }
             i = (int) (f + measureText);

@@ -6,14 +6,13 @@ import com.android.camera.effect.draw_mode.DrawAttribute;
 import com.android.camera.effect.draw_mode.DrawBasicTexAttribute;
 import com.android.camera.effect.draw_mode.DrawIntTexAttribute;
 import com.android.camera.log.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.BasicTexture;
 import com.android.gallery3d.ui.GLCanvas;
 
 public abstract class PixelEffectRender extends ShaderRender {
     private static final String TAG = "PixelEffectRender";
-    private static final float[] TEXTURES = new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO};
-    private static final float[] VERTICES = new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO};
+    private static final float[] TEXTURES = new float[]{0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f};
+    private static final float[] VERTICES = new float[]{0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f};
 
     public PixelEffectRender(GLCanvas gLCanvas) {
         super(gLCanvas);
@@ -96,7 +95,7 @@ public abstract class PixelEffectRender extends ShaderRender {
             updateViewport();
             setBlendEnabled(false);
             this.mGLCanvas.getState().pushState();
-            this.mGLCanvas.getState().translate(f, f2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            this.mGLCanvas.getState().translate(f, f2, 0.0f);
             this.mGLCanvas.getState().scale(f3, f4, 1.0f);
             initShaderValue(z);
             GLES20.glDrawArrays(5, 0, 4);
@@ -111,7 +110,7 @@ public abstract class PixelEffectRender extends ShaderRender {
         updateViewport();
         setBlendEnabled(false);
         this.mGLCanvas.getState().pushState();
-        this.mGLCanvas.getState().translate(f, f2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.mGLCanvas.getState().translate(f, f2, 0.0f);
         this.mGLCanvas.getState().scale(f3, f4, 1.0f);
         initShaderValue(z);
         GLES20.glDrawArrays(5, 0, 4);

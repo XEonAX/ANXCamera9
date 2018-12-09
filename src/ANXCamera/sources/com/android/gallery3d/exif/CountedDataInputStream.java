@@ -1,5 +1,6 @@
 package com.android.gallery3d.exif;
 
+import android.support.v4.internal.view.SupportMenu;
 import java.io.EOFException;
 import java.io.FilterInputStream;
 import java.io.IOException;
@@ -81,7 +82,7 @@ class CountedDataInputStream extends FilterInputStream {
     }
 
     public int readUnsignedShort() throws IOException {
-        return readShort() & 65535;
+        return readShort() & SupportMenu.USER_MASK;
     }
 
     public int readInt() throws IOException {

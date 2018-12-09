@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class RotateLayout extends ViewGroup implements Rotatable {
     private static final String TAG = "RotateLayout";
@@ -18,8 +17,8 @@ public class RotateLayout extends ViewGroup implements Rotatable {
 
     protected void onFinishInflate() {
         this.mChild = getChildAt(0);
-        this.mChild.setPivotX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-        this.mChild.setPivotY(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.mChild.setPivotX(0.0f);
+        this.mChild.setPivotY(0.0f);
     }
 
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {

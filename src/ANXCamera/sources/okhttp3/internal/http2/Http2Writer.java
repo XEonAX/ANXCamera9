@@ -1,6 +1,5 @@
 package okhttp3.internal.http2;
 
-import com.sensetime.stmobile.STMobileHumanActionNative;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.List;
@@ -16,7 +15,7 @@ final class Http2Writer implements Closeable {
     private boolean closed;
     private final Buffer hpackBuffer = new Buffer();
     final Writer hpackWriter = new Writer(this.hpackBuffer);
-    private int maxFrameSize = STMobileHumanActionNative.ST_MOBILE_HAND_LOVE;
+    private int maxFrameSize = 16384;
     private final BufferedSink sink;
 
     Http2Writer(BufferedSink bufferedSink, boolean z) {

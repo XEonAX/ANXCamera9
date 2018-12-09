@@ -1,5 +1,6 @@
 package okio;
 
+import android.support.v4.media.session.PlaybackStateCompat;
 import javax.annotation.Nullable;
 
 final class SegmentPool {
@@ -17,7 +18,7 @@ final class SegmentPool {
                 Segment segment = next;
                 next = segment.next;
                 segment.next = null;
-                byteCount -= 8192;
+                byteCount -= PlaybackStateCompat.ACTION_PLAY_FROM_URI;
                 return segment;
             }
             return new Segment();
@@ -29,10 +30,10 @@ final class SegmentPool {
             throw new IllegalArgumentException();
         } else if (!segment.shared) {
             synchronized (SegmentPool.class) {
-                if (byteCount + 8192 > MAX_SIZE) {
+                if (byteCount + PlaybackStateCompat.ACTION_PLAY_FROM_URI > MAX_SIZE) {
                     return;
                 }
-                byteCount += 8192;
+                byteCount += PlaybackStateCompat.ACTION_PLAY_FROM_URI;
                 segment.next = next;
                 segment.limit = 0;
                 segment.pos = 0;

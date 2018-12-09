@@ -10,7 +10,6 @@ import com.android.camera.effect.draw_mode.DrawAttribute;
 import com.android.camera.effect.draw_mode.DrawExtTexAttribute;
 import com.android.camera.effect.draw_mode.FillRectAttribute;
 import com.android.camera.log.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.GLCanvas;
 
 public class EffectRenderGroup extends RenderGroup implements EffectChangedListener {
@@ -113,7 +112,7 @@ public class EffectRenderGroup extends RenderGroup implements EffectChangedListe
         int blurAnimationValue = EffectController.getInstance().getBlurAnimationValue();
         if (blurAnimationValue > 0) {
             DrawExtTexAttribute drawExtTexAttribute = (DrawExtTexAttribute) drawAttribute;
-            this.mGLCanvas.draw(new FillRectAttribute(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) drawExtTexAttribute.mWidth, (float) drawExtTexAttribute.mHeight, Color.argb(blurAnimationValue, 0, 0, 0)));
+            this.mGLCanvas.draw(new FillRectAttribute(0.0f, 0.0f, (float) drawExtTexAttribute.mWidth, (float) drawExtTexAttribute.mHeight, Color.argb(blurAnimationValue, 0, 0, 0)));
         }
     }
 

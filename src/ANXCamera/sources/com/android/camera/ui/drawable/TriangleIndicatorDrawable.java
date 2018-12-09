@@ -39,9 +39,9 @@ public class TriangleIndicatorDrawable extends Drawable {
         int i = this.mWidth;
         int i2 = this.mHeight;
         this.mPath.reset();
-        this.mPath.moveTo(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) ((-i2) / 2));
-        this.mPath.lineTo((float) i, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-        this.mPath.lineTo(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) (i2 / 2));
+        this.mPath.moveTo(0.0f, (float) ((-i2) / 2));
+        this.mPath.lineTo((float) i, 0.0f);
+        this.mPath.lineTo(0.0f, (float) (i2 / 2));
         this.mPath.close();
         canvas.drawPath(this.mPath, this.mPaint);
     }

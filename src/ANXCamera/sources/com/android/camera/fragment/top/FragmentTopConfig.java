@@ -7,6 +7,8 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RotateDrawable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -46,7 +48,6 @@ import com.android.camera.protocol.ModeProtocol.HandleBeautyRecording;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.protocol.ModeProtocol.TopAlert;
 import com.android.camera.statistic.CameraStatUtil;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import io.reactivex.Completable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -169,7 +170,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
         LayoutParams layoutParams = (LayoutParams) topImage.getLayoutParams();
         layoutParams.gravity = 0;
         int i2 = 8388611;
-        int i3 = 8388613;
+        int i3 = GravityCompat.END;
         switch (configsSize) {
             case 1:
                 layoutParams.leftMargin = 0;
@@ -207,7 +208,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                     return (((this.mTotalWidth - (this.mViewPadding * 2)) / configsSize) * findConfigPositionFromType) + this.mViewPadding;
                 }
                 layoutParams.leftMargin = 0;
-                layoutParams.gravity = 8388613;
+                layoutParams.gravity = GravityCompat.END;
                 topImage.setLayoutParams(layoutParams);
                 return 0;
         }
@@ -297,7 +298,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                                     break;
                             }
                         } else if (FragmentUtils.getFragmentByTag(getChildFragmentManager(), FragmentLiveMusic.TAG) == null) {
-                            FragmentLiveMusic fragmentLiveMusic = new FragmentLiveMusic();
+                            Fragment fragmentLiveMusic = new FragmentLiveMusic();
                             fragmentLiveMusic.setStyle(2, R.style.LensDirtyDetectDialogFragment);
                             getChildFragmentManager().beginTransaction().add(fragmentLiveMusic, FragmentLiveMusic.TAG).commitAllowingStateLoss();
                         }
@@ -1363,7 +1364,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                 imageView.clearAnimation();
                 imageView.setVisibility(0);
                 if (topImageResource) {
-                    ViewCompat.setAlpha(imageView, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                    ViewCompat.setAlpha(imageView, 0.0f);
                     ViewCompat.animate(imageView).alpha(1.0f).setDuration(150).setStartDelay(150).start();
                 } else {
                     imageView.setVisibility(4);
@@ -1578,7 +1579,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
 
     public void onBeautyRecordingStart() {
         onBackEvent(5);
-        ViewCompat.animate(this.mTopConfigMenu).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).start();
+        ViewCompat.animate(this.mTopConfigMenu).alpha(0.0f).start();
     }
 
     public void onBeautyRecordingStop() {

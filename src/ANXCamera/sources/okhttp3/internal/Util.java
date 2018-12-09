@@ -1,5 +1,6 @@
 package okhttp3.internal;
 
+import android.support.v4.media.session.PlaybackStateCompat;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -122,7 +123,7 @@ public final class Util {
         source.timeout().deadlineNanoTime(Math.min(deadlineNanoTime, timeUnit.toNanos((long) i)) + nanoTime);
         try {
             Buffer buffer = new Buffer();
-            while (source.read(buffer, 8192) != -1) {
+            while (source.read(buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI) != -1) {
                 buffer.clear();
             }
             if (deadlineNanoTime == Long.MAX_VALUE) {

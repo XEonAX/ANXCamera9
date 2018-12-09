@@ -7,7 +7,6 @@ import android.graphics.Paint.Align;
 import android.graphics.Paint.Style;
 import com.android.camera.R;
 import com.android.camera.ui.drawable.CameraPaintBase;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.Locale;
 
 public class CameraFocusPaintEvText extends CameraPaintBase {
@@ -44,8 +43,8 @@ public class CameraFocusPaintEvText extends CameraPaintBase {
     }
 
     protected void draw(Canvas canvas) {
-        if (this.mEvValue != PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
-            String format = String.format(Locale.ENGLISH, "%s %.1f", new Object[]{this.mEvValue < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO ? "-" : "+", Float.valueOf(Math.abs(this.mEvValue))});
+        if (this.mEvValue != 0.0f) {
+            String format = String.format(Locale.ENGLISH, "%s %.1f", new Object[]{this.mEvValue < 0.0f ? "-" : "+", Float.valueOf(Math.abs(this.mEvValue))});
             canvas.drawText(format, (this.mMiddleX - (this.mPaint.measureText(format) / 2.0f)) - (this.mPaint.measureText(r0) / 2.0f), (this.mMiddleY - ((float) CameraFocusAnimateDrawable.BIG_RADIUS)) - ((float) this.mEvTextMargin), this.mPaint);
         }
     }

@@ -15,7 +15,6 @@ import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.HorizontalSlideView;
 import com.android.camera.ui.HorizontalSlideView.HorizontalDrawAdapter;
 import com.android.camera.ui.HorizontalSlideView.OnItemSelectListener;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class ExtraSlideFocusAdapter extends HorizontalDrawAdapter implements OnItemSelectListener {
     private static final int ENTRY_GAP = 10;
@@ -85,7 +84,7 @@ public class ExtraSlideFocusAdapter extends HorizontalDrawAdapter implements OnI
     }
 
     private void drawText(int i, Canvas canvas) {
-        canvas.drawText(this.mEntries[i].toString(), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, ((-(this.mPaint.ascent() + this.mPaint.descent())) / 2.0f) + 1.0f, this.mPaint);
+        canvas.drawText(this.mEntries[i].toString(), 0.0f, ((-(this.mPaint.ascent() + this.mPaint.descent())) / 2.0f) + 1.0f, this.mPaint);
     }
 
     public void draw(int i, Canvas canvas, boolean z) {
@@ -108,7 +107,7 @@ public class ExtraSlideFocusAdapter extends HorizontalDrawAdapter implements OnI
             colorForState = this.mLineColorDefault;
         }
         paint2.setColor(colorForState);
-        canvas.drawLine(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, -this.mLineHalfHeight, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mLineHalfHeight, this.mPaint);
+        canvas.drawLine(0.0f, -this.mLineHalfHeight, 0.0f, this.mLineHalfHeight, this.mPaint);
     }
 
     public float measureWidth(int i) {

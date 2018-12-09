@@ -48,7 +48,6 @@ import com.android.camera.protocol.ModeProtocol.MiBeautyProtocol;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.snap.SnapService;
 import com.android.camera.statistic.CameraStat;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import io.reactivex.Completable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -165,7 +164,7 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
     private void initBeautyIntroAnimator() {
         ValueAnimator ofInt = ValueAnimator.ofInt(new int[]{this.mBeautyIntroWidth, this.mBeautyIntroRadius * 2});
         ofInt.setDuration(300);
-        ObjectAnimator.ofFloat(this.mBeautyIntroText, "alpha", new float[]{1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}).setDuration(250);
+        ObjectAnimator.ofFloat(this.mBeautyIntroText, "alpha", new float[]{1.0f, 0.0f}).setDuration(250);
         ofInt.addUpdateListener(new AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                 FragmentBottomPopupTips.this.setBeautyIntroButtonWidth(((Integer) valueAnimator.getAnimatedValue()).intValue());

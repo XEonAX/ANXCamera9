@@ -3,7 +3,6 @@ package com.android.camera.animation.type;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.view.View;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class SlideInOnSubscribe extends BaseOnSubScribe {
     private int mGravity;
@@ -26,19 +25,19 @@ public class SlideInOnSubscribe extends BaseOnSubScribe {
             ViewCompat.setTranslationX(this.mAniView, (float) i);
             ViewCompat.setTranslationY(this.mAniView, (float) max);
             ViewCompat.setAlpha(this.mAniView, 1.0f);
-            return ViewCompat.animate(this.mAniView).translationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).translationY(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            return ViewCompat.animate(this.mAniView).translationX(0.0f).translationY(0.0f);
         }
         i = max;
         max = 0;
         ViewCompat.setTranslationX(this.mAniView, (float) i);
         ViewCompat.setTranslationY(this.mAniView, (float) max);
         ViewCompat.setAlpha(this.mAniView, 1.0f);
-        return ViewCompat.animate(this.mAniView).translationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).translationY(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        return ViewCompat.animate(this.mAniView).translationX(0.0f).translationY(0.0f);
     }
 
     public static void directSetResult(View view, int i) {
-        ViewCompat.setTranslationX(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-        ViewCompat.setTranslationY(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        ViewCompat.setTranslationX(view, 0.0f);
+        ViewCompat.setTranslationY(view, 0.0f);
         ViewCompat.setAlpha(view, 1.0f);
         BaseOnSubScribe.setAnimateViewVisible(view, 0);
     }

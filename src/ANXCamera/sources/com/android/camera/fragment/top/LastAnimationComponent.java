@@ -7,7 +7,6 @@ import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import com.android.camera.animation.type.AlphaInOnSubscribe;
 import com.android.camera.animation.type.TranslateXOnSubscribe;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.vesdk.VEResult;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,11 +45,11 @@ public class LastAnimationComponent {
         if (this.mHidedViews != null) {
             for (View view : this.mHidedViews) {
                 if (z) {
-                    ViewCompat.setAlpha(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-                    ViewCompat.animate(view).setStartDelay(0).setDuration(280).alpha(1.0f).translationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setInterpolator(this.mQuartEaseOut).start();
+                    ViewCompat.setAlpha(view, 0.0f);
+                    ViewCompat.animate(view).setStartDelay(0).setDuration(280).alpha(1.0f).translationX(0.0f).setInterpolator(this.mQuartEaseOut).start();
                     view.setEnabled(true);
                 } else {
-                    ViewCompat.setTranslationX(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                    ViewCompat.setTranslationX(view, 0.0f);
                     AlphaInOnSubscribe.directSetResult(view);
                 }
             }
@@ -66,14 +65,14 @@ public class LastAnimationComponent {
             this.mAnchorView = null;
         }
         if (z) {
-            ViewCompat.animate(this.mRecyclerView).setStartDelay(0).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).translationX((float) (this.mReverseRecyclerViewLeft - this.mRecyclerView.getLeft())).setDuration(280).setInterpolator(this.mQuartEaseOut).withEndAction(new Runnable() {
+            ViewCompat.animate(this.mRecyclerView).setStartDelay(0).alpha(0.0f).translationX((float) (this.mReverseRecyclerViewLeft - this.mRecyclerView.getLeft())).setDuration(280).setInterpolator(this.mQuartEaseOut).withEndAction(new Runnable() {
                 public void run() {
                     LastAnimationComponent.this.mRecyclerView.setVisibility(4);
                     LastAnimationComponent.this.mRecyclerView = null;
                 }
             }).start();
         } else {
-            ViewCompat.setAlpha(this.mRecyclerView, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            ViewCompat.setAlpha(this.mRecyclerView, 0.0f);
             ViewCompat.setTranslationX(this.mRecyclerView, (float) (this.mReverseRecyclerViewLeft - this.mRecyclerView.getLeft()));
             this.mRecyclerView.setVisibility(4);
             this.mRecyclerView = null;
@@ -86,7 +85,7 @@ public class LastAnimationComponent {
     }
 
     public void showExtraView(int i, int i2) {
-        ViewCompat.setAlpha(this.mRecyclerView, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        ViewCompat.setAlpha(this.mRecyclerView, 0.0f);
         ViewCompat.setTranslationX(this.mRecyclerView, (float) i);
         ViewCompat.animate(this.mRecyclerView).setStartDelay((long) this.mShowDelay).alpha(1.0f).translationX((float) i2).setDuration(280).setInterpolator(this.mQuartEaseOut).start();
     }
@@ -102,10 +101,10 @@ public class LastAnimationComponent {
             for (View view : list) {
                 if (((Integer) view.getTag()).intValue() != i) {
                     if (view.getVisibility() == 0) {
-                        if (view.getAlpha() != PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+                        if (view.getAlpha() != 0.0f) {
                             this.mHidedViews.add(view);
                             ViewCompat.setAlpha(view, 1.0f);
-                            ViewCompat.animate(view).setStartDelay(0).setDuration(this.mShowDelay > 0 ? 140 : 280).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).translationXBy((float) this.mExpandOffset).setInterpolator(this.mShowDelay > 0 ? this.mQuartEaseIn : this.mQuartEaseOut).start();
+                            ViewCompat.animate(view).setStartDelay(0).setDuration(this.mShowDelay > 0 ? 140 : 280).alpha(0.0f).translationXBy((float) this.mExpandOffset).setInterpolator(this.mShowDelay > 0 ? this.mQuartEaseIn : this.mQuartEaseOut).start();
                             view.setEnabled(false);
                         }
                     }

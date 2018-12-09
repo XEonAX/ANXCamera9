@@ -14,7 +14,7 @@ final class Segment {
     boolean shared;
 
     Segment() {
-        this.data = new byte[SIZE];
+        this.data = new byte[8192];
         this.owner = true;
         this.shared = false;
     }
@@ -87,10 +87,10 @@ final class Segment {
 
     public void writeTo(Segment segment, int i) {
         if (segment.owner) {
-            if (segment.limit + i > SIZE) {
+            if (segment.limit + i > 8192) {
                 if (segment.shared) {
                     throw new IllegalArgumentException();
-                } else if ((segment.limit + i) - segment.pos <= SIZE) {
+                } else if ((segment.limit + i) - segment.pos <= 8192) {
                     System.arraycopy(segment.data, segment.pos, segment.data, 0, segment.limit - segment.pos);
                     segment.limit -= segment.pos;
                     segment.pos = 0;

@@ -15,7 +15,6 @@ import com.android.camera.module.BaseModule;
 import com.android.camera.ui.HorizontalSlideView;
 import com.android.camera.ui.HorizontalSlideView.HorizontalDrawAdapter;
 import com.android.camera.ui.HorizontalSlideView.OnPositionSelectListener;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -76,10 +75,10 @@ public class ExtraSlideFNumberAdapter extends HorizontalDrawAdapter implements O
         }
         if (i == 6 && !z) {
             this.mPaint.setColor(this.mLineColorDefaultCircle);
-            canvas.drawCircle(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) (-this.mLineDefaultCircleGap), (float) this.mLineCircleRadius, this.mPaint);
+            canvas.drawCircle(0.0f, (float) (-this.mLineDefaultCircleGap), (float) this.mLineCircleRadius, this.mPaint);
         }
         this.mPaint.setColor(i2);
-        canvas.drawLine(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, -this.mLineHalfHeight, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mLineHalfHeight, this.mPaint);
+        canvas.drawLine(0.0f, -this.mLineHalfHeight, 0.0f, this.mLineHalfHeight, this.mPaint);
     }
 
     public float measureWidth(int i) {

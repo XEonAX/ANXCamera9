@@ -98,7 +98,6 @@ import com.android.camera.statistic.ScenarioTrackUtil;
 import com.android.camera.storage.Storage;
 import com.android.camera.ui.ObjectView.ObjectViewListener;
 import com.android.camera.ui.RotateTextToast;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.Camera2Proxy.CameraMetaDataCallback;
 import com.android.camera2.Camera2Proxy.CameraPreviewCallback;
 import com.android.camera2.Camera2Proxy.FaceDetectionCallback;
@@ -4217,7 +4216,7 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
         String focusMode = this.mFocusManager.setFocusMode("manual");
         setFocusMode(focusMode);
         if (focusMode.equals("manual")) {
-            this.mCamera2Device.setFocusDistance(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            this.mCamera2Device.setFocusDistance(0.0f);
         }
         this.mCurrentAiScene = 35;
         resumePreviewInWorkThread();

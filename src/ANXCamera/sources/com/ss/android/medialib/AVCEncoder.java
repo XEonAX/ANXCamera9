@@ -16,7 +16,6 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.Surface;
 import com.android.camera.snap.SnapService;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.medialib.common.TextureDrawer;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
@@ -638,7 +637,7 @@ public class AVCEncoder {
             return false;
         }
         this.mTextureDrawer = TextureDrawer.create();
-        this.mTextureDrawer.setRotation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.mTextureDrawer.setRotation(0.0f);
         this.mTextureDrawer.setFlipScale(1.0f, -1.0f);
         return true;
     }

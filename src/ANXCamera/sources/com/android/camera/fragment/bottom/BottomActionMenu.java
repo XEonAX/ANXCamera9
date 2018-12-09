@@ -12,7 +12,6 @@ import com.android.camera.R;
 import com.android.camera.fragment.beauty.MenuItem;
 import com.android.camera.ui.EdgeHorizonScrollView;
 import com.android.camera.ui.ModeSelectView;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import miui.view.animation.QuinticEaseInInterpolator;
@@ -131,13 +130,13 @@ public class BottomActionMenu {
 
     private void enterAnim(@NonNull View view) {
         view.clearAnimation();
-        view.setAlpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        view.setAlpha(0.0f);
         ViewCompat.animate(view).alpha(1.0f).setStartDelay(140).setInterpolator(new QuinticEaseOutInterpolator()).setDuration(300).start();
     }
 
     private void exitAnim(@NonNull View view) {
         view.clearAnimation();
-        ViewCompat.animate(view).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setInterpolator(new QuinticEaseInInterpolator()).setDuration(140).start();
+        ViewCompat.animate(view).alpha(0.0f).setInterpolator(new QuinticEaseInInterpolator()).setDuration(140).start();
     }
 
     public void bottomMenuAnimate(int i, int i2) {

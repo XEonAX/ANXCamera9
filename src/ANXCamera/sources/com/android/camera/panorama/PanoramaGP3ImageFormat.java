@@ -7,7 +7,7 @@ public class PanoramaGP3ImageFormat {
     public static final String YUV420_SEMIPLANAR = "YUV420_SEMIPLANAR";
     public static final String YVU420_SEMIPLANAR = "YVU420_SEMIPLANAR";
 
-    /* JADX WARNING: Removed duplicated region for block: B:3:0x0011 A:{Splitter: B:0:0x0000, ExcHandler: java.lang.NoSuchFieldException (e java.lang.NoSuchFieldException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:3:0x0011 A:{ExcHandler: java.lang.NoSuchFieldException (e java.lang.NoSuchFieldException), Splitter: B:0:0x0000} */
     /* JADX WARNING: Missing block: B:5:0x0016, code:
             return com.android.camera.panorama.NativeMemoryAllocator.getAddress(r2);
      */

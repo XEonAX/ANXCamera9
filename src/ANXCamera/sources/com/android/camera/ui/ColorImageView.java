@@ -10,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class ColorImageView extends ImageView {
     private boolean isNeedTransparent = true;
@@ -55,7 +54,7 @@ public class ColorImageView extends ImageView {
             super.onDraw(canvas);
             return;
         }
-        int saveLayer = canvas.saveLayer(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) getWidth(), (float) getHeight(), null, 31);
+        int saveLayer = canvas.saveLayer(0.0f, 0.0f, (float) getWidth(), (float) getHeight(), null, 31);
         super.onDraw(canvas);
         canvas.drawPaint(this.mPaint);
         canvas.restoreToCount(saveLayer);

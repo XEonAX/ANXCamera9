@@ -1,6 +1,8 @@
 package com.bumptech.glide.load.resource.bitmap;
 
 import android.support.annotation.NonNull;
+import android.support.v4.internal.view.SupportMenu;
+import android.support.v4.view.MotionEventCompat;
 import android.util.Log;
 import com.bumptech.glide.load.ImageHeaderParser;
 import com.bumptech.glide.load.ImageHeaderParser.ImageType;
@@ -60,7 +62,7 @@ public final class m implements ImageHeaderParser {
         }
 
         public int ck() {
-            return ((getByte() << 8) & 65280) | (getByte() & 255);
+            return ((getByte() << 8) & MotionEventCompat.ACTION_POINTER_INDEX_MASK) | (getByte() & 255);
         }
 
         public short cl() {
@@ -128,7 +130,7 @@ public final class m implements ImageHeaderParser {
         }
 
         public int ck() throws IOException {
-            return ((this.is.read() << 8) & 65280) | (this.is.read() & 255);
+            return ((this.is.read() << 8) & MotionEventCompat.ACTION_POINTER_INDEX_MASK) | (this.is.read() & 255);
         }
 
         public short cl() throws IOException {
@@ -194,7 +196,7 @@ public final class m implements ImageHeaderParser {
         if (ck == jZ) {
             return ImageType.JPEG;
         }
-        ck = ((ck << 16) & -65536) | (cVar.ck() & 65535);
+        ck = ((ck << 16) & SupportMenu.CATEGORY_MASK) | (cVar.ck() & SupportMenu.USER_MASK);
         if (ck == jY) {
             cVar.skip(21);
             return cVar.getByte() >= 3 ? ImageType.PNG_A : ImageType.PNG;
@@ -205,11 +207,11 @@ public final class m implements ImageHeaderParser {
                 return ImageType.UNKNOWN;
             }
             cVar.skip(4);
-            if ((((cVar.ck() << 16) & -65536) | (cVar.ck() & 65535)) != kl) {
+            if ((((cVar.ck() << 16) & SupportMenu.CATEGORY_MASK) | (cVar.ck() & SupportMenu.USER_MASK)) != kl) {
                 return ImageType.UNKNOWN;
             }
-            ck = ((cVar.ck() << 16) & -65536) | (cVar.ck() & 65535);
-            if ((ck & kn) != km) {
+            ck = ((cVar.ck() << 16) & SupportMenu.CATEGORY_MASK) | (cVar.ck() & SupportMenu.USER_MASK);
+            if ((ck & -256) != km) {
                 return ImageType.UNKNOWN;
             }
             ck &= 255;

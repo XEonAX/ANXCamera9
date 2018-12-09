@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
 import android.support.annotation.NonNull;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.vesdk.runtime.cloudconfig.PerformanceConfig;
 
 public class VEVideoEncodeSettings implements Parcelable {
@@ -51,8 +50,8 @@ public class VEVideoEncodeSettings implements Parcelable {
         private boolean mIsUseCloudConfig = false;
         private VESize outputSize = new VESize(576, 1024);
         private int resizeMode = 0;
-        private float resizeX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        private float resizeY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        private float resizeX = 0.0f;
+        private float resizeY = 0.0f;
         private int rotate = 0;
         private float speed = 1.0f;
         private int swCRF = 15;
@@ -300,8 +299,8 @@ public class VEVideoEncodeSettings implements Parcelable {
     public VEVideoEncodeSettings(VESize vESize, boolean z) {
         this.rotate = 0;
         this.resizeMode = 2;
-        this.resizeX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        this.resizeY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        this.resizeX = 0.0f;
+        this.resizeY = 0.0f;
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
@@ -325,8 +324,8 @@ public class VEVideoEncodeSettings implements Parcelable {
     public VEVideoEncodeSettings(VESize vESize, boolean z, int i, int i2) {
         this.rotate = 0;
         this.resizeMode = 2;
-        this.resizeX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        this.resizeY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        this.resizeX = 0.0f;
+        this.resizeY = 0.0f;
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
@@ -352,8 +351,8 @@ public class VEVideoEncodeSettings implements Parcelable {
     public VEVideoEncodeSettings(VESize vESize, boolean z, int i, int i2, int i3, int i4, boolean z2) {
         this.rotate = 0;
         this.resizeMode = 2;
-        this.resizeX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        this.resizeY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        this.resizeX = 0.0f;
+        this.resizeY = 0.0f;
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
@@ -382,8 +381,8 @@ public class VEVideoEncodeSettings implements Parcelable {
     public VEVideoEncodeSettings() {
         this.rotate = 0;
         this.resizeMode = 2;
-        this.resizeX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        this.resizeY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        this.resizeX = 0.0f;
+        this.resizeY = 0.0f;
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
@@ -409,8 +408,8 @@ public class VEVideoEncodeSettings implements Parcelable {
     private VEVideoEncodeSettings(Builder builder) {
         this.rotate = 0;
         this.resizeMode = 2;
-        this.resizeX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        this.resizeY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        this.resizeX = 0.0f;
+        this.resizeY = 0.0f;
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
@@ -451,8 +450,8 @@ public class VEVideoEncodeSettings implements Parcelable {
         boolean z = false;
         this.rotate = 0;
         this.resizeMode = 2;
-        this.resizeX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        this.resizeY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        this.resizeX = 0.0f;
+        this.resizeY = 0.0f;
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;

@@ -1,5 +1,6 @@
 package org.jcodec.common.model;
 
+import android.support.v4.view.InputDeviceCompat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -25,7 +26,7 @@ public final class Label {
     public static final Label Discrete_15 = new Label(65551);
     public static final Label Discrete_2 = new Label(65538);
     public static final Label Discrete_3 = new Label(65539);
-    public static final Label Discrete_4 = new Label(65540);
+    public static final Label Discrete_4 = new Label(InputDeviceCompat.SOURCE_TRACKBALL);
     public static final Label Discrete_5 = new Label(65541);
     public static final Label Discrete_6 = new Label(65542);
     public static final Label Discrete_65535 = new Label(131071);

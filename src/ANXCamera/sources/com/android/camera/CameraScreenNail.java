@@ -12,7 +12,6 @@ import com.android.camera.effect.draw_mode.DrawBasicTexAttribute;
 import com.android.camera.effect.draw_mode.DrawBlurTexAttribute;
 import com.android.camera.effect.draw_mode.DrawExtTexAttribute;
 import com.android.camera.log.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.BitmapTexture;
 import com.android.gallery3d.ui.GLCanvas;
 import com.android.gallery3d.ui.RawTexture;
@@ -924,9 +923,9 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
             extScaleY = extScaleX;
         }
         if (extScaleX != 1.0f || extScaleY != 1.0f) {
-            Matrix.translateM(fArr, 0, 0.5f, 0.5f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            Matrix.translateM(fArr, 0, 0.5f, 0.5f, 0.0f);
             Matrix.scaleM(fArr, 0, extScaleX, extScaleY, 1.0f);
-            Matrix.translateM(fArr, 0, -0.5f, -0.5f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            Matrix.translateM(fArr, 0, -0.5f, -0.5f, 0.0f);
         }
     }
 

@@ -9,7 +9,6 @@ import android.os.Build.VERSION;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.ImageHeaderParser;
 import com.bumptech.glide.load.ImageHeaderParser.ImageType;
@@ -231,7 +230,7 @@ public final class n {
         } else {
             a = downsampleStrategy2.a(i7, i8, i9, i10);
         }
-        if (a > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+        if (a > 0.0f) {
             SampleSizeRounding b = downsampleStrategy2.b(i7, i8, i9, i10);
             if (b != null) {
                 int i11;

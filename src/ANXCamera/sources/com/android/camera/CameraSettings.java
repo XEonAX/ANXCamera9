@@ -33,7 +33,6 @@ import com.android.camera.module.ModuleManager;
 import com.android.camera.module.loader.camera2.Camera2DataContainer;
 import com.android.camera.preferences.CameraSettingPreferences;
 import com.android.camera.preferences.ListPreference;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.CameraCapabilities;
 import com.android.camera2.MiCustomFpsRange;
 import com.mi.config.b;
@@ -675,7 +674,7 @@ public class CameraSettings {
             stringBuilder.append("Invalid zoom: ");
             stringBuilder.append(string);
             Log.e(str, stringBuilder.toString());
-            return PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            return 0.0f;
         }
     }
 

@@ -7,10 +7,10 @@ import android.graphics.Paint.Style;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
+import android.support.v4.view.ViewCompat;
 import com.android.camera.Util;
 import com.android.camera.constant.ColorConstant;
 import com.android.camera.ui.drawable.CameraPaintBase;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class CameraSnapPaintCircle extends CameraPaintBase {
         this.mOffsetPaint.setAntiAlias(true);
         this.mOffsetPaint.setStyle(Style.STROKE);
         this.mOffsetPaint.setStrokeWidth((float) Util.dpToPixel(1.0f));
-        this.mOffsetPaint.setColor(-16777216);
+        this.mOffsetPaint.setColor(ViewCompat.MEASURED_STATE_MASK);
         this.mOffsetPaint.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
     }
 
@@ -54,7 +54,7 @@ public class CameraSnapPaintCircle extends CameraPaintBase {
 
     public void setNeedSplit(boolean z) {
         this.mNoNeedArc = z ^ 1;
-        this.mSpaceAngle = z ? 1.5f : PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        this.mSpaceAngle = z ? 1.5f : 0.0f;
     }
 
     public void updateValue(float f) {
@@ -79,10 +79,10 @@ public class CameraSnapPaintCircle extends CameraPaintBase {
             if (this.isInBeautyMode) {
                 this.mPaint.setColor(this.mBeautyColor);
             }
-            canvas.drawArc(this.mArcRectF, -90.0f + (this.isClockwise ? PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO : this.timeAngle), Math.max(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.isClockwise ? this.timeAngle : 360.0f - this.timeAngle), false, this.mPaint);
+            canvas.drawArc(this.mArcRectF, -90.0f + (this.isClockwise ? 0.0f : this.timeAngle), Math.max(0.0f, this.isClockwise ? this.timeAngle : 360.0f - this.timeAngle), false, this.mPaint);
             this.mPaint.setColor(this.mCurrentColor);
             this.mOffsetPaint.setStrokeWidth(this.mCurrentStrokeWidth * 2.0f);
-            drawOffset(canvas, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            drawOffset(canvas, 0.0f);
             drawOffset(canvas, this.timeAngle);
             if (this.mSegmentRatios != null) {
                 for (Float floatValue : this.mSegmentRatios) {
@@ -130,7 +130,7 @@ public class CameraSnapPaintCircle extends CameraPaintBase {
         this.mSegmentRatios.remove(this.mSegmentRatios.size() - 1);
         this.mSegmentTimes.remove(this.mSegmentTimes.size() - 1);
         if (this.mSegmentRatios.isEmpty()) {
-            this.timeAngle = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            this.timeAngle = 0.0f;
             return 0;
         }
         this.timeAngle = ((Float) this.mSegmentRatios.get(this.mSegmentRatios.size() - 1)).floatValue();

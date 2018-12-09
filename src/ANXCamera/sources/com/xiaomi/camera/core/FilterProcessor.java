@@ -8,7 +8,6 @@ import com.android.camera.effect.FilterInfo;
 import com.android.camera.effect.draw_mode.DrawYuvAttribute;
 import com.android.camera.effect.renders.DualWatermarkParam;
 import com.android.camera.effect.renders.SnapshotRender;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.xiaomi.camera.imagecodec.MiImage;
 import com.xiaomi.camera.imagecodec.MiImage.Plane;
 import java.nio.ByteBuffer;
@@ -42,7 +41,7 @@ public class FilterProcessor {
     private void prepareEffectProcessor(int i, int i2, int i3) {
         Log.d(TAG, String.format("prepareEffectProcessor: %x", new Object[]{Integer.valueOf(i)}));
         if (!(this.mYuvSnapshotRender != null && this.mWidth == i2 && this.mHeight == i3)) {
-            this.mYuvSnapshotRender = new SnapshotRender(new DualWatermarkParam(CameraSettings.getDualCameraWaterMarkFilePathVendor(), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_size_ratio, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_padding_x_ratio, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_padding_y_ratio, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO)), i2, i3);
+            this.mYuvSnapshotRender = new SnapshotRender(new DualWatermarkParam(CameraSettings.getDualCameraWaterMarkFilePathVendor(), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_size_ratio, 0.0f), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_padding_x_ratio, 0.0f), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_padding_y_ratio, 0.0f)), i2, i3);
             this.mWidth = i2;
             this.mHeight = i3;
         }

@@ -2,6 +2,7 @@ package com.android.zxing;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+import android.support.v4.view.ViewCompat;
 import com.google.zxing.LuminanceSource;
 
 final class YUVLuminanceSource extends LuminanceSource {
@@ -82,7 +83,7 @@ final class YUVLuminanceSource extends LuminanceSource {
         for (int i2 = 0; i2 < height; i2++) {
             int i3 = i2 * width;
             for (int i4 = 0; i4 < width; i4++) {
-                iArr[i3 + i4] = ((bArr[i + i4] & 255) * 65793) | -16777216;
+                iArr[i3 + i4] = ((bArr[i + i4] & 255) * 65793) | ViewCompat.MEASURED_STATE_MASK;
             }
             i += this.mDataWidth;
         }

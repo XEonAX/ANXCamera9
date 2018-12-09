@@ -1,5 +1,7 @@
 package com.android.camera;
 
+import android.support.v4.view.MotionEventCompat;
+import android.support.v4.view.ViewCompat;
 import com.android.camera.panorama.NativeMemoryAllocator;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -67,7 +69,7 @@ public class PanoUtil {
                 } else if (i14 > 262143) {
                     i14 = 262143;
                 }
-                iArr[i11] = ((((i12 << 6) & 16711680) | -16777216) | ((i15 >> 2) & 65280)) | (255 & (i14 >> 10));
+                iArr[i11] = ((((i12 << 6) & 16711680) | ViewCompat.MEASURED_STATE_MASK) | ((i15 >> 2) & MotionEventCompat.ACTION_POINTER_INDEX_MASK)) | (255 & (i14 >> 10));
                 i7 += 4;
                 i11++;
             }

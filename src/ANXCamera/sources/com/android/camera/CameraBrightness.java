@@ -11,7 +11,6 @@ import android.text.TextUtils;
 import android.util.Spline;
 import android.view.WindowManager.LayoutParams;
 import com.android.camera.log.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.internal.R.array;
 import com.android.internal.R.bool;
 import com.android.internal.R.integer;
@@ -79,7 +78,7 @@ public class CameraBrightness implements CameraBrightnessCallback {
                 return null;
             }
             createSpline();
-            if (layoutParams.screenBrightness > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+            if (layoutParams.screenBrightness > 0.0f) {
                 int round;
                 float f = layoutParams.screenBrightness * 255.0f;
                 if (this.mPositiveScreenManualBrightnessSpline != null) {
@@ -109,7 +108,7 @@ public class CameraBrightness implements CameraBrightnessCallback {
                 stringBuilder.append(i2);
                 Log.d(str, stringBuilder.toString());
                 float toEnLargeBrightness = (float) toEnLargeBrightness((int) Math.ceil((double) (((float) (i2 * 256)) / ((float) (i + 1)))));
-                if (layoutParams.screenBrightness <= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || toEnLargeBrightness != ((float) ((int) (layoutParams.screenBrightness * 255.0f)))) {
+                if (layoutParams.screenBrightness <= 0.0f || toEnLargeBrightness != ((float) ((int) (layoutParams.screenBrightness * 255.0f)))) {
                     return Integer.valueOf((int) toEnLargeBrightness);
                 }
                 Log.v(CameraBrightness.TAG, "android P -> doInBackground brightness unchanged");
@@ -375,7 +374,7 @@ public class CameraBrightness implements CameraBrightnessCallback {
             while (i3 < i) {
                 int i4 = i3 + 1;
                 f = fArr[i4] - fArr[i3];
-                if (f > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+                if (f > 0.0f) {
                     fArr3[i3] = (fArr2[i4] - fArr2[i3]) / f;
                     i3 = i4;
                 } else {
@@ -388,14 +387,14 @@ public class CameraBrightness implements CameraBrightnessCallback {
             }
             fArr4[i] = fArr3[length - 2];
             while (i2 < i) {
-                if (fArr3[i2] == PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
-                    fArr4[i2] = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-                    fArr4[i2 + 1] = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+                if (fArr3[i2] == 0.0f) {
+                    fArr4[i2] = 0.0f;
+                    fArr4[i2 + 1] = 0.0f;
                 } else {
                     float f2 = fArr4[i2] / fArr3[i2];
                     int i5 = i2 + 1;
                     float f3 = fArr4[i5] / fArr3[i2];
-                    if (f2 < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || f3 < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+                    if (f2 < 0.0f || f3 < 0.0f) {
                         throw new IllegalArgumentException("The control points must have monotonic Y values.");
                     }
                     float hypot = (float) Math.hypot((double) f2, (double) f3);

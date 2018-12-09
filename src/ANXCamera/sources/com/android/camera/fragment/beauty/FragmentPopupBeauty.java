@@ -19,7 +19,6 @@ import com.android.camera.fragment.BaseFragment;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BaseDelegate;
 import com.android.camera.protocol.ModeProtocol.HandleBeautyRecording;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import io.reactivex.Completable;
 import java.util.List;
 import miui.view.animation.CubicEaseOutInterpolator;
@@ -101,7 +100,7 @@ public class FragmentPopupBeauty extends BaseFragment implements OnClickListener
     }
 
     public void onBeautyRecordingStart() {
-        ViewCompat.animate(getView()).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).start();
+        ViewCompat.animate(getView()).alpha(0.0f).start();
     }
 
     public void onBeautyRecordingStop() {
@@ -109,8 +108,8 @@ public class FragmentPopupBeauty extends BaseFragment implements OnClickListener
     }
 
     private void disappear() {
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this.mIconSticker, "alpha", new float[]{1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO});
-        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this.mIconBeauty, "alpha", new float[]{1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO});
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this.mIconSticker, "alpha", new float[]{1.0f, 0.0f});
+        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this.mIconBeauty, "alpha", new float[]{1.0f, 0.0f});
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(new Animator[]{ofFloat, ofFloat2});
         animatorSet.setInterpolator(new CubicEaseOutInterpolator());

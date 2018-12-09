@@ -1,7 +1,5 @@
 package com.android.camera.panorama;
 
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
-
 public class GyroscopeRoundDetector extends RoundDetector {
     private static final float NS2S = 1.0E-9f;
     private float mLastTimestamp;
@@ -14,9 +12,9 @@ public class GyroscopeRoundDetector extends RoundDetector {
         boolean z2 = i == 0 || i == 180;
         this.isLandscape = z2;
         synchronized (SynchronizedObject) {
-            this.mLastTimestamp = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-            this.mRadianLandscape = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-            this.mRadianPortrait = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            this.mLastTimestamp = 0.0f;
+            this.mRadianLandscape = 0.0f;
+            this.mRadianPortrait = 0.0f;
             this.mCurrentDegreeLandscape = 0;
             this.mCurrentDegreePortrait = 0;
             this.mDirection = i2;

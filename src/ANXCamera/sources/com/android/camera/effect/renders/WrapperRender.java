@@ -6,14 +6,13 @@ import com.android.camera.effect.draw_mode.DrawAttribute;
 import com.android.camera.effect.draw_mode.DrawBasicTexAttribute;
 import com.android.camera.effect.draw_mode.DrawIntTexAttribute;
 import com.android.camera.log.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.BasicTexture;
 import com.android.gallery3d.ui.GLCanvas;
 import com.miui.filtersdk.filter.base.GPUImageFilter;
 
 public class WrapperRender extends ShaderRender {
     private static final String TAG = WrapperRender.class.getSimpleName();
-    private static final float[] VERTICES = new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f};
+    private static final float[] VERTICES = new float[]{0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f};
     private float[] mConvertedVertex = new float[16];
     protected GPUImageFilter mFilter;
     private float mRenderHeight;
@@ -41,8 +40,8 @@ public class WrapperRender extends ShaderRender {
 
     public void setViewportSize(int i, int i2) {
         super.setViewportSize(i, i2);
-        this.mRenderWidth = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        this.mRenderHeight = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        this.mRenderWidth = 0.0f;
+        this.mRenderHeight = 0.0f;
         if (this.mFilter != null) {
             this.mFilter.onDisplaySizeChanged(i, i2);
         }
@@ -134,7 +133,7 @@ public class WrapperRender extends ShaderRender {
         int i;
         int i2;
         this.mGLCanvas.getState().pushState();
-        this.mGLCanvas.getState().translate(f, f2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.mGLCanvas.getState().translate(f, f2, 0.0f);
         this.mGLCanvas.getState().scale(f3, f4, 1.0f);
         Matrix.multiplyMM(this.mConvertedVertex, 0, this.mGLCanvas.getState().getFinalMatrix(), 0, VERTICES, 0);
         for (i = 0; i < 4; i++) {

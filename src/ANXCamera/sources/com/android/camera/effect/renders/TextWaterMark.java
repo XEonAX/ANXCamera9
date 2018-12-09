@@ -2,7 +2,6 @@ package com.android.camera.effect.renders;
 
 import com.android.camera.Util;
 import com.android.camera.log.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.BasicTexture;
 import com.android.gallery3d.ui.StringTexture;
 
@@ -28,7 +27,7 @@ class TextWaterMark extends WaterMark {
         int i5 = i2;
         super(i4, i5, i3);
         this.mWaterText = str;
-        this.mWaterTexture = StringTexture.newInstance(this.mWaterText, 144.0f, TEXT_COLOR, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, false, 1);
+        this.mWaterTexture = StringTexture.newInstance(this.mWaterText, 144.0f, TEXT_COLOR, 0.0f, false, 1);
         this.mFontIndex = getFontIndex(i4, i5);
         this.mWaterWidth = getWaterMarkWidth(this.mWaterText, this.mFontIndex);
         this.mWaterHeight = (int) (((float) this.WATERMARK_FONT_SIZES[this.mFontIndex][0]) / RATIO);

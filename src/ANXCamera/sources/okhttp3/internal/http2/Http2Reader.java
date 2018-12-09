@@ -1,6 +1,6 @@
 package okhttp3.internal.http2;
 
-import com.sensetime.stmobile.STMobileHumanActionNative;
+import android.support.v4.view.ViewCompat;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.List;
@@ -122,7 +122,7 @@ final class Http2Reader implements Closeable {
         try {
             this.source.require(9);
             int readMedium = readMedium(this.source);
-            if (readMedium < 0 || readMedium > STMobileHumanActionNative.ST_MOBILE_HAND_LOVE) {
+            if (readMedium < 0 || readMedium > 16384) {
                 throw Http2.ioException("FRAME_SIZE_ERROR: %s", Integer.valueOf(readMedium));
             }
             byte readByte = (byte) (this.source.readByte() & 255);
@@ -286,7 +286,7 @@ final class Http2Reader implements Closeable {
                         }
                         throw Http2.ioException("PROTOCOL_ERROR SETTINGS_INITIAL_WINDOW_SIZE > 2^31 - 1", new Object[0]);
                     case 5:
-                        if (readInt >= STMobileHumanActionNative.ST_MOBILE_HAND_LOVE && readInt <= 16777215) {
+                        if (readInt >= 16384 && readInt <= ViewCompat.MEASURED_SIZE_MASK) {
                             break;
                         }
                         throw Http2.ioException("PROTOCOL_ERROR SETTINGS_MAX_FRAME_SIZE: %s", Integer.valueOf(readInt));

@@ -1,5 +1,6 @@
 package com.android.gallery3d.exif;
 
+import android.support.v4.internal.view.SupportMenu;
 import com.android.camera.log.Log;
 import java.io.IOException;
 import java.io.InputStream;
@@ -648,7 +649,7 @@ class ExifParser {
     }
 
     protected int readUnsignedShort() throws IOException {
-        return this.mTiffStream.readShort() & 65535;
+        return this.mTiffStream.readShort() & SupportMenu.USER_MASK;
     }
 
     protected long readUnsignedLong() throws IOException {

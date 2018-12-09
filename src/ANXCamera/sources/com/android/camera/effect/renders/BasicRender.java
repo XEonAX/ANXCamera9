@@ -12,7 +12,6 @@ import com.android.camera.effect.draw_mode.DrawMixedAttribute;
 import com.android.camera.effect.draw_mode.DrawRectAttribute;
 import com.android.camera.effect.draw_mode.DrawRectFTexAttribute;
 import com.android.camera.effect.draw_mode.FillRectAttribute;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.BasicTexture;
 import com.android.gallery3d.ui.GLCanvas;
 import com.android.gallery3d.ui.GLPaint;
@@ -23,8 +22,8 @@ public class BasicRender extends ShaderRender {
     private static final int OFFSET_DRAW_LINE = 4;
     private static final int OFFSET_DRAW_RECT = 6;
     private static final int OFFSET_FILL_RECT = 0;
-    private static final float[] TEXTURES = new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO};
-    private static final float[] VERTICES = new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO};
+    private static final float[] TEXTURES = new float[]{0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f};
+    private static final float[] VERTICES = new float[]{0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f};
     private int mUniformBlendFactorH;
     private int mUniformPaintColorH;
 
@@ -120,13 +119,13 @@ public class BasicRender extends ShaderRender {
         updateViewport();
         initGLPaint(gLPaint);
         this.mGLCanvas.getState().pushState();
-        this.mGLCanvas.getState().translate(f, f2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.mGLCanvas.getState().translate(f, f2, 0.0f);
         this.mGLCanvas.getState().scale(f3, f4, 1.0f);
         GLES20.glUniformMatrix4fv(this.mUniformMVPMatrixH, 1, false, this.mGLCanvas.getState().getFinalMatrix(), 0);
         GLES20.glUniformMatrix4fv(this.mUniformSTMatrixH, 1, false, this.mGLCanvas.getState().getTexMatrix(), 0);
         GLES20.glUniform1f(this.mUniformAlphaH, this.mGLCanvas.getState().getAlpha());
         GLES20.glUniform1f(this.mUniformBlendAlphaH, this.mGLCanvas.getState().getBlendAlpha());
-        GLES20.glUniform4f(this.mUniformBlendFactorH, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
+        GLES20.glUniform4f(this.mUniformBlendFactorH, 0.0f, 0.0f, 0.0f, 1.0f);
         GLES20.glDrawArrays(2, 6, 4);
         this.mGLCanvas.getState().popState();
     }
@@ -137,13 +136,13 @@ public class BasicRender extends ShaderRender {
         updateViewport();
         initGLPaint(i);
         this.mGLCanvas.getState().pushState();
-        this.mGLCanvas.getState().translate(f, f2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.mGLCanvas.getState().translate(f, f2, 0.0f);
         this.mGLCanvas.getState().scale(f3, f4, 1.0f);
         GLES20.glUniformMatrix4fv(this.mUniformMVPMatrixH, 1, false, this.mGLCanvas.getState().getFinalMatrix(), 0);
         GLES20.glUniformMatrix4fv(this.mUniformSTMatrixH, 1, false, this.mGLCanvas.getState().getTexMatrix(), 0);
         GLES20.glUniform1f(this.mUniformAlphaH, this.mGLCanvas.getState().getAlpha());
         GLES20.glUniform1f(this.mUniformBlendAlphaH, this.mGLCanvas.getState().getBlendAlpha());
-        GLES20.glUniform4f(this.mUniformBlendFactorH, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
+        GLES20.glUniform4f(this.mUniformBlendFactorH, 0.0f, 0.0f, 0.0f, 1.0f);
         GLES20.glDrawArrays(5, 0, 4);
         this.mGLCanvas.getState().popState();
     }
@@ -154,13 +153,13 @@ public class BasicRender extends ShaderRender {
         updateViewport();
         initGLPaint(gLPaint);
         this.mGLCanvas.getState().pushState();
-        this.mGLCanvas.getState().translate(f, f2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.mGLCanvas.getState().translate(f, f2, 0.0f);
         this.mGLCanvas.getState().scale(f3 - f, f4 - f2, 1.0f);
         GLES20.glUniformMatrix4fv(this.mUniformMVPMatrixH, 1, false, this.mGLCanvas.getState().getFinalMatrix(), 0);
         GLES20.glUniformMatrix4fv(this.mUniformSTMatrixH, 1, false, this.mGLCanvas.getState().getTexMatrix(), 0);
         GLES20.glUniform1f(this.mUniformAlphaH, this.mGLCanvas.getState().getAlpha());
         GLES20.glUniform1f(this.mUniformBlendAlphaH, this.mGLCanvas.getState().getBlendAlpha());
-        GLES20.glUniform4f(this.mUniformBlendFactorH, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
+        GLES20.glUniform4f(this.mUniformBlendFactorH, 0.0f, 0.0f, 0.0f, 1.0f);
         GLES20.glDrawArrays(3, 4, 2);
         this.mGLCanvas.getState().popState();
     }
@@ -224,11 +223,11 @@ public class BasicRender extends ShaderRender {
     }
 
     private void drawTextureInternal(BasicTexture basicTexture, float f, float f2, float f3, float f4) {
-        if (f3 > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO && f4 > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+        if (f3 > 0.0f && f4 > 0.0f) {
             GLES20.glUseProgram(this.mProgram);
             if (bindTexture(basicTexture, 33984)) {
                 boolean isPremultiplied;
-                GLES20.glUniform4f(this.mUniformBlendFactorH, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                GLES20.glUniform4f(this.mUniformBlendFactorH, 1.0f, 0.0f, 0.0f, 0.0f);
                 GLES20.glUniform1i(this.mUniformTextureH, 0);
                 initAttribPointer();
                 updateViewport();
@@ -239,9 +238,9 @@ public class BasicRender extends ShaderRender {
                 } else {
                     isPremultiplied = false;
                 }
-                boolean z = this.mBlendEnabled && (!basicTexture.isOpaque() || alpha < 0.95f || blendAlpha >= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                boolean z = this.mBlendEnabled && (!basicTexture.isOpaque() || alpha < 0.95f || blendAlpha >= 0.0f);
                 setBlendEnabled(z, isPremultiplied);
-                this.mGLCanvas.getState().translate(f, f2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                this.mGLCanvas.getState().translate(f, f2, 0.0f);
                 this.mGLCanvas.getState().scale(f3, f4, 1.0f);
                 GLES20.glUniformMatrix4fv(this.mUniformMVPMatrixH, 1, false, this.mGLCanvas.getState().getFinalMatrix(), 0);
                 GLES20.glUniformMatrix4fv(this.mUniformSTMatrixH, 1, false, this.mGLCanvas.getState().getTexMatrix(), 0);
@@ -261,12 +260,12 @@ public class BasicRender extends ShaderRender {
             boolean z = this.mBlendEnabled && (!basicTexture.isOpaque() || this.mGLCanvas.getState().getAlpha() < 0.95f);
             setBlendEnabled(z);
             this.mGLCanvas.getState().pushState();
-            this.mGLCanvas.getState().translate(f2, f3, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            this.mGLCanvas.getState().translate(f2, f3, 0.0f);
             this.mGLCanvas.getState().scale(f4, f5, 1.0f);
             GLES20.glUniformMatrix4fv(this.mUniformMVPMatrixH, 1, false, this.mGLCanvas.getState().getFinalMatrix(), 0);
             GLES20.glUniformMatrix4fv(this.mUniformSTMatrixH, 1, false, this.mGLCanvas.getState().getTexMatrix(), 0);
             GLES20.glUniform1f(this.mUniformAlphaH, this.mGLCanvas.getState().getAlpha());
-            GLES20.glUniform4f(this.mUniformBlendFactorH, 1.0f - f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, f);
+            GLES20.glUniform4f(this.mUniformBlendFactorH, 1.0f - f, 0.0f, 0.0f, f);
             GLES20.glUniform1i(this.mUniformTextureH, 0);
             GLES20.glUniform1f(this.mUniformBlendAlphaH, this.mGLCanvas.getState().getBlendAlpha());
             GLES20.glDrawArrays(5, 0, 4);
@@ -286,12 +285,12 @@ public class BasicRender extends ShaderRender {
             GLES20.glVertexAttribPointer(this.mAttributeTexCoorH, 2, 5126, false, 0, 0);
             GLES20.glEnableVertexAttribArray(this.mAttributeTexCoorH);
             this.mGLCanvas.getState().pushState();
-            this.mGLCanvas.getState().translate(f, f2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            this.mGLCanvas.getState().translate(f, f2, 0.0f);
             GLES20.glUniformMatrix4fv(this.mUniformMVPMatrixH, 1, false, this.mGLCanvas.getState().getFinalMatrix(), 0);
             GLES20.glUniformMatrix4fv(this.mUniformSTMatrixH, 1, false, this.mGLCanvas.getState().getTexMatrix(), 0);
             GLES20.glUniform1f(this.mUniformAlphaH, this.mGLCanvas.getState().getAlpha());
             GLES20.glUniform1f(this.mUniformBlendAlphaH, this.mGLCanvas.getState().getBlendAlpha());
-            GLES20.glUniform4f(this.mUniformBlendFactorH, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            GLES20.glUniform4f(this.mUniformBlendFactorH, 1.0f, 0.0f, 0.0f, 0.0f);
             GLES20.glUniform1i(this.mUniformTextureH, 0);
             GLES20.glBindBuffer(34963, i3);
             GLES20.glDrawElements(5, i4, 5121, 0);

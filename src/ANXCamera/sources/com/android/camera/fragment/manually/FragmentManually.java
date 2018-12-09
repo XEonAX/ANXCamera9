@@ -39,7 +39,6 @@ import com.android.camera.protocol.ModeProtocol.HandleBackTrace;
 import com.android.camera.protocol.ModeProtocol.ManuallyAdjust;
 import com.android.camera.protocol.ModeProtocol.ManuallyValueChanged;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.mi.config.b;
 import io.reactivex.Completable;
 import java.util.ArrayList;
@@ -105,8 +104,8 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
             }
         }).start();
         this.mIndicatorButton.setVisibility(0);
-        ViewCompat.setTranslationY(this.mIndicatorButton, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-        ViewCompat.setAlpha(this.mIndicatorButton, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        ViewCompat.setTranslationY(this.mIndicatorButton, 0.0f);
+        ViewCompat.setAlpha(this.mIndicatorButton, 0.0f);
         ViewCompat.animate(this.mIndicatorButton).setStartDelay(0).translationY(height).setDuration(300).setInterpolator(new OvershootInterpolator()).alpha(1.0f).start();
         return true;
     }
@@ -142,10 +141,10 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
                 } else {
                     hideTips();
                     this.mManuallyParent.setVisibility(0);
-                    ViewCompat.animate(this.mManuallyParent).setStartDelay(100).translationY(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setInterpolator(new DecelerateInterpolator()).start();
-                    ViewCompat.animate(this.mIndicatorButton).setInterpolator(new DecelerateInterpolator()).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(100).withEndAction(new Runnable() {
+                    ViewCompat.animate(this.mManuallyParent).setStartDelay(100).translationY(0.0f).setInterpolator(new DecelerateInterpolator()).start();
+                    ViewCompat.animate(this.mIndicatorButton).setInterpolator(new DecelerateInterpolator()).alpha(0.0f).setDuration(100).withEndAction(new Runnable() {
                         public void run() {
-                            ViewCompat.setTranslationY(FragmentManually.this.mIndicatorButton, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                            ViewCompat.setTranslationY(FragmentManually.this.mIndicatorButton, 0.0f);
                             FragmentManually.this.mIndicatorButton.setVisibility(4);
                         }
                     }).start();

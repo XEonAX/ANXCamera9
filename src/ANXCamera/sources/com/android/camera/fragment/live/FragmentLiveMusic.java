@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -176,7 +177,7 @@ public class FragmentLiveMusic extends BaseDialogFragment implements OnClickList
                     if (this.mCurrentItemIndex == 0) {
                         this.mCurrentItemIndex = 1;
                         this.mAdapter.setData(this.mOnlineMusicInfoList);
-                        this.mLocalMusicText.setTextColor(-16777216);
+                        this.mLocalMusicText.setTextColor(ViewCompat.MEASURED_STATE_MASK);
                         this.mLocalMusicText.setAlpha(0.15f);
                         this.mHotMusicText.setAlpha(1.0f);
                         this.mHotMusicText.setTextColor(color);
@@ -193,7 +194,7 @@ public class FragmentLiveMusic extends BaseDialogFragment implements OnClickList
                         this.mLocalMusicText.setTextColor(color);
                         this.mLocalMusicText.setAlpha(1.0f);
                         this.mHotMusicText.setAlpha(0.15f);
-                        this.mHotMusicText.setTextColor(-16777216);
+                        this.mHotMusicText.setTextColor(ViewCompat.MEASURED_STATE_MASK);
                         return;
                     }
                     return;
