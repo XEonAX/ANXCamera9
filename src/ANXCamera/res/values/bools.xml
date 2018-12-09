@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="priority_storage">false</bool>
+    <bool name="pref_camera_long_pressing_shutter_default">false</bool>
+    <bool name="pref_camera_AEAF_lock_support">true</bool>
+    <bool name="pref_camera_auto_chroma_flash_default">true</bool>
+    <bool name="pref_camera_auto_chroma_flash_virgo_default">false</bool>
+    <bool name="pref_camera_asd_night_default">true</bool>
+    <bool name="pref_camera_facedetection_default">true</bool>
+    <bool name="pref_camera_facedetection_auto_hidden_default">true</bool>
+    <bool name="pref_camera_portrait_with_facebeauty_default">true</bool>
+    <bool name="pref_camera_dual_enable_default">true</bool>
+    <bool name="pref_camera_dual_sat_enable_default">true</bool>
+    <bool name="pref_camera_statistic_default">true</bool>
+    <bool name="pref_camera_statistic_counter_event_default">true</bool>
+    <bool name="pref_camera_parallel_process_enable_default">true</bool>
+    <bool name="pref_camera_mfnr_sat_enable_default">true</bool>
+    <bool name="pref_camera_optimized_flash_enable_default">true</bool>
+    <bool name="pref_camera_sr_enable_default">true</bool>
+    <bool name="pref_ai_detect_enable">true</bool>
+    <bool name="pref_dualcamera_watermark_default">true</bool>
+    <bool name="pref_groupshot_with_primitive_default">false</bool>
+    <bool name="pref_camera_ultra_wide_ldc_default">true</bool>
+    <bool name="pref_camera_normal_wide_ldc_default">false</bool>
+</resources>

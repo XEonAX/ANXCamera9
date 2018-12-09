@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="hide_priority_in_system_settings">0</integer>
+    <integer name="target_sdk_version">23</integer>
+    <integer name="high_jpeg_quality">100</integer>
+    <integer name="beauty_params_level_seekbar_progress">50</integer>
+    <integer name="capture_progress_delay_time">400</integer>
+    <integer name="record_progress_delay_time">500</integer>
+    <integer name="camera_skip_frame_num">1</integer>
+    <integer name="music_thumbnail_radius">16</integer>
+</resources>

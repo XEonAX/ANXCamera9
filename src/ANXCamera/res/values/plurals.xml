@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">Focused. %d faces detected</item>
+        <item quantity="one">Focused. %d face detected</item>
+    </plurals>
+    <item type="plurals" name="APKTOOL_DUMMY_2">false</item>
+</resources>

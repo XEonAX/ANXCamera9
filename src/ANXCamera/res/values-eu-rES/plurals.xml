@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">Fokuratuta: %d aurpegi detektatuta</item>
+        <item quantity="one">Fokuratuta: Aurpegi %d detektatuta</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">Kliskatze-sorta eginda, %1$s argazki atera dira</item>
+        <item quantity="one">Kliskatze-sorta eginda, argazki %1$s bat atera da</item>
+    </plurals>
+</resources>

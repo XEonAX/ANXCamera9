@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">Đã lấy nét. Phát hiện %d khuôn mặt</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">Hoàn tất chụp liên tiếp, đã chụp %1$s ảnh</item>
+    </plurals>
+</resources>

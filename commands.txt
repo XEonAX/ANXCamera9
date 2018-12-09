@@ -15,7 +15,7 @@ J:\ROOT\GitHub\ANXMiuiCamera>java  -jar .\tools\apktool.jar if -p .\tools\RROFra
 
 
 Decompile
-java  -jar .\tools\apktool.jar d -p .\tools\MiuiFrameworks -f -o .\src\ANXCamera .\orig\MiuiCamera.ddx.apk
+java  -jar .\tools\apktool.jar d -p .\tools\MiuiFrameworks -f -o .\src\ANXCamera .\orig\MiuiCamera.apk
 
 
 Recompile

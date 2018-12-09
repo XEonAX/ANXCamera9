@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bottom_control_height">199.84dip</dimen>
+    <dimen name="top_control_panel_height">40.0dip</dimen>
+    <dimen name="top_expanded_selected_padding_bottom">1.1999817dip</dimen>
+    <dimen name="beautycamera_makeup_radiogroup_item_margin_horizontal">27.349976dip</dimen>
+    <dimen name="beautycamera_remodeling_radiogroup_item_margin_horizontal">23.25998dip</dimen>
+    <dimen name="beautycamera_beauty_level_item_size">38.97998dip</dimen>
+    <dimen name="beautycamera_beauty_level_item_margin">8.419983dip</dimen>
+    <dimen name="legacy_makeup_radiogroup_item_margin_horizontal">36.859985dip</dimen>
+    <dimen name="legacy_beauty_level_item_margin">16.709991dip</dimen>
+    <dimen name="grid_text_only_setting_item_textSize">11.0sp</dimen>
+    <dimen name="config_extra_item_text_size">11.0sp</dimen>
+    <dimen name="bottom_margin_bottom">14.859985dip</dimen>
+    <dimen name="bottom_snap_width">84.56dip</dimen>
+    <dimen name="bottom_picker_width">42.939972dip</dimen>
+    <dimen name="bottom_picker_margin">54.179993dip</dimen>
+    <dimen name="bottom_recording_snap_margin">7.9299927dip</dimen>
+    <dimen name="mode_select_layout_height">45.589996dip</dimen>
+    <dimen name="manually_title_text_size">12.0sp</dimen>
+    <dimen name="beauty_item_margin">0.93000007dip</dimen>
+    <dimen name="beauty_padding_right">7.25dip</dimen>
+    <dimen name="beauty_padding_left">5.5999756dip</dimen>
+    <dimen name="beautycamera_noscroll_makeup_item_width">60.599976dip</dimen>
+</resources>

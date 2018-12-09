@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">Enfocat. %d cares detectada</item>
+        <item quantity="one">Enfocat. %d de cara detectada</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">"Ràfega de captures feta, s'han fet %1$s fotos"</item>
+        <item quantity="one">"Ràfega de captures feta, s'ha fet %1$s foto"</item>
+    </plurals>
+</resources>

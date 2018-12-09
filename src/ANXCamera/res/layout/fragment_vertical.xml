@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:gravity="center_vertical" android:id="@id/vertical_view_menu" android:layout_width="fill_parent" android:layout_height="@dimen/lighting_view_height">
+        <TextView android:textStyle="normal" android:id="@id/alert_status_value_left" android:layout_width="@dimen/lighting_alert_status_width" android:layout_height="wrap_content" android:layout_marginTop="@dimen/lighting_view_margin_top" android:layout_marginEnd="@dimen/lighting_alert_status_margin" android:layout_alignParentEnd="true" style="@style/SettingStatusBarText" />
+        <TextView android:id="@id/lighting_pattern_left" android:background="@drawable/portrait_hint_text_background" android:paddingLeft="@dimen/portrait_hint_left_right_padding" android:paddingRight="@dimen/portrait_hint_left_right_padding" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="@dimen/portrait_hint_height" android:layout_marginEnd="@dimen/lighting_pattern_margin" android:layout_alignParentStart="true" style="@style/PortraitHintTextStyle" />
+        <TextView android:textStyle="normal" android:id="@id/alert_status_value_right" android:layout_width="@dimen/lighting_alert_status_width" android:layout_height="wrap_content" android:layout_marginTop="@dimen/lighting_view_margin_top" android:layout_marginStart="@dimen/lighting_alert_status_margin" android:layout_alignParentStart="true" style="@style/SettingStatusBarText" />
+        <TextView android:id="@id/lighting_pattern_right" android:background="@drawable/portrait_hint_text_background" android:paddingLeft="@dimen/portrait_hint_left_right_padding" android:paddingRight="@dimen/portrait_hint_left_right_padding" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="@dimen/portrait_hint_height" android:layout_marginEnd="@dimen/lighting_pattern_margin" android:layout_alignParentEnd="true" style="@style/PortraitHintTextStyle" />
+    </RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="28" android:compileSdkVersionCodename="9" package="com.android.camera" platformBuildVersionCode="28" platformBuildVersionName="9">
+    <original-package android:name="com.android.camera"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"/>
+    <uses-permission android:name="com.android.settings.permission.CLOUD_SETTINGS_PROVIDER"/>
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="com.fingerprints.service.ACCESS_FINGERPRINT_MANAGER"/>
+    <uses-permission android:name="com.miui.gallery.permission.BIND_SERVICE"/>
+    <uses-permission android:name="com.android.SystemUI.permission.TIGGER_TOGGLE"/>
+    <uses-permission android:name="com.xiaomi.permission.CLOUD_MANAGER"/>
+    <uses-permission android:name="android.permission.DEVICE_POWER"/>
+    <uses-permission android:name="com.xiaomi.scanner.receiver.RECEIVER"/>
+    <uses-permission android:name="com.miui.powerkeeper.permission.KILL_CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <application android:allowBackup="true" android:backupAgent="miui.app.backup.FullBackupAgent" android:hardwareAccelerated="true" android:icon="@mipmap/ic_launcher_camera" android:label="@string/camera_label" android:name="com.android.camera.CameraAppImpl" android:networkSecurityConfig="@xml/network_security_config" android:supportsRtl="true" android:theme="@style/ThemeCamera">
+        <meta-data android:name="android.max_aspect" android:value="2.2"/>
+        <uses-library android:name="zxing.jar" android:required="false"/>
+        <uses-library android:name="miui-stat.jar"/>
+        <uses-library android:name="android-support-v13.jar"/>
+        <uses-library android:name="android-support-v7-recyclerview.jar"/>
+        <uses-library android:name="cloud-common.jar"/>
+        <uses-library android:name="volley.jar"/>
+        <service android:exported="false" android:name="com.android.camera.snap.SnapService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <receiver android:name="com.android.camera.snap.SnapKeyReceiver">
+            <intent-filter>
+                <action android:name="miui.intent.action.CAMERA_KEY_BUTTON"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.android.camera.CameraButtonIntentReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.CAMERA_BUTTON"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:enabled="@bool/priority_storage" android:name="com.android.camera.storage.PriorityStorageBroadcastReceiver">
+            <intent-filter>
+                <action android:name="miui.intent.action.PRIORITY_STORAGE"/>
+            </intent-filter>
+            <meta-data android:name="miui.intent.extra.PRIORITY_STORAGE_KILL_APP" android:value="1"/>
+            <meta-data android:name="miui.intent.extra.PRIORITY_STORAGE_HIDE" android:value="@integer/hide_priority_in_system_settings"/>
+        </receiver>
+        <activity android:clearTaskOnLaunch="true" android:configChanges="keyboardHidden|mcc|mnc|orientation|screenSize" android:launchMode="singleTop" android:name="com.android.camera.Camera" android:screenOrientation="portrait" android:uiOptions="splitActionBarWhenNarrow" android:visibleToInstantApps="true" android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA_SECURE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE_SECURE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.VOICE_COMMAND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.VOICE"/>
+            </intent-filter>
+        </activity>
+        <activity-alias android:label="@string/video_camera_label" android:name="com.android.camera.VideoCamera" android:screenOrientation="portrait" android:targetActivity="com.android.camera.Camera">
+            <intent-filter>
+                <action android:name="android.media.action.VIDEO_CAPTURE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.VIDEO_CAMERA"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity-alias>
+        <activity android:configChanges="keyboardHidden|mcc|mnc|orientation|screenSize" android:label="@string/camera_settings_label" android:name="com.android.camera.CameraPreferenceActivity" android:screenOrientation="behind" android:theme="@style/ThemeCameraSettings">
+            <intent-filter android:priority="60">
+                <action android:name="miui.intent.action.APP_SETTINGS"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data android:name="functionindex" android:resource="@xml/functionindex"/>
+        </activity>
+        <activity android:label="@string/custom_watermark_words" android:launchMode="singleTop" android:name="com.android.camera.UserDefineWatermarkActivity" android:theme="@miui:style/Theme.Light"/>
+        <service android:exported="true" android:name="com.android.camera.backup.CameraSettingsBackupService" android:permission="com.xiaomi.permission.CLOUD_MANAGER">
+            <intent-filter>
+                <action android:name="miui.action.CLOUD_BACKUP_SETTINGS"/>
+                <action android:name="miui.action.CLOUD_RESTORE_SETTINGS"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.android.camera.EmptyService">
+            <intent-filter>
+                <action android:name="miui.action.CAMERA_EMPTY_SERVICE"/>
+            </intent-filter>
+        </service>
+        <provider android:authorities="@string/provider_authority" android:exported="true" android:grantUriPermissions="true" android:name="com.xiaomi.camera.parallelservice.provider.ParallelProcessProvider" android:syncable="false"/>
+        <service android:enabled="true" android:exported="true" android:name="com.android.camera.LocalParallelService"/>
+        <meta-data android:name="aia-compat-api-min-version" android:value="1"/>
+    </application>
+</manifest>

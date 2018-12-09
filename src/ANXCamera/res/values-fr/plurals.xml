@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">Focus. %d visages détectés</item>
+        <item quantity="one">Focalisé. %d visage détecté</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">Prise en rafale effectuée, %1$s photos prises</item>
+        <item quantity="one">Prise en rafale effectuée, %1$s photo prise</item>
+    </plurals>
+</resources>

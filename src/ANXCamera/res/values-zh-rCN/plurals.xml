@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">对焦完成，检测到%d张人脸</item>
+        <item quantity="one">对焦完成，检测到%d张人脸</item>
+    </plurals>
+</resources>

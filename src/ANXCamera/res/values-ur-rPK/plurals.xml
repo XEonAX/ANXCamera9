@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">فوکس کیا گیا۔ %d چہرے ملے</item>
+        <item quantity="one">فوکس کیا گیا۔ %d چہرہ ملا</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">برسٹ شاٹ پورا ہوا, %1$s تصاویر لی گئیں</item>
+        <item quantity="one">برسٹ شاٹ پورا ہوا, %1$s تصویر لی گئی</item>
+    </plurals>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="@dimen/manual_popup_layout_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:background="@color/effect_divider_color" android:layout_width="fill_parent" android:layout_height="1.0px" />
+    <android.support.v7.widget.RecyclerView android:id="@id/manually_extra_list" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <com.android.camera.ui.HorizontalListView android:id="@id/manually_extra_list_horizon" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <com.android.camera.ui.HorizontalSlideView android:id="@id/manually_extra_horizon_slideview" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+</LinearLayout>

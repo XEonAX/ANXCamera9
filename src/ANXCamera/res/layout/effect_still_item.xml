@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="@dimen/filter_item_width" android:layout_height="@dimen/filter_item_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/effect_item_image" android:layout_width="wrap_content" android:layout_height="wrap_content" android:contentDescription="@null" />
+    <TextView android:textSize="@dimen/filter_item_text_size" android:textColor="#b2ffffff" android:gravity="center_horizontal" android:id="@id/effect_item_text" android:paddingBottom="@dimen/effect_item_padding_horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" />
+    <ImageView android:id="@id/effect_item_selected_indicator" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/filter_item_selected_bg" android:contentDescription="@null" />
+</RelativeLayout>

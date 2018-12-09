@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset android:inset="@dimen/manually_indicator_background_margin"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <layer-list
+      xmlns:android="http://schemas.android.com/apk/res/android">
+        <item>
+            <shape android:shape="oval">
+                <solid android:color="@color/zoom_button_background_color" />
+            </shape>
+        </item>
+        <item>
+            <shape android:shape="oval">
+                <stroke android:width="@dimen/zoom_button_background_stroke_width" android:color="#b3ffffff" />
+            </shape>
+        </item>
+    </layer-list>
+</inset>

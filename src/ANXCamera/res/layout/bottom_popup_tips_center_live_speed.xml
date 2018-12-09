@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/bg_popup_indicator_live_speed" android:focusable="false" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_live_speed" android:scaleType="center" />
+    <TextView android:textSize="@dimen/popup_tip_live_speed_textSize" android:textColor="#ffffffff" android:id="@id/live_speed_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="0.33000004dip" android:layout_marginStart="@dimen/popup_tip_live_speed_text_margin_start" />
+</LinearLayout>

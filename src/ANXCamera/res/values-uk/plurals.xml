@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">Сфокусовано. Знайдено %d облич</item>
+        <item quantity="one">Сфокусовано. Знайдено %d обличчя</item>
+        <item quantity="few">Сфокусовано. Знайдено %d обличчя</item>
+        <item quantity="many">Сфокусовано. Знайдено %d облич</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">Серійна зйомка готова, було зроблено %1$s фото</item>
+        <item quantity="one">Серійна зйомка готова, було зроблено %1$s фото</item>
+        <item quantity="few">Серійна зйомка готова, було зроблено %1$s фото</item>
+        <item quantity="many">Серійна зйомка готова, було зроблено %1$s фото</item>
+    </plurals>
+</resources>
