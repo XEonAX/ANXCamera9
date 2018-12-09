@@ -11,7 +11,7 @@
     <bool name="pref_camera_portrait_with_facebeauty_default">true</bool>
     <bool name="pref_camera_dual_enable_default">true</bool>
     <bool name="pref_camera_dual_sat_enable_default">true</bool>
-    <bool name="pref_camera_statistic_default">true</bool>
+    <bool name="pref_camera_statistic_default">false</bool>
     <bool name="pref_camera_statistic_counter_event_default">true</bool>
     <bool name="pref_camera_parallel_process_enable_default">true</bool>
     <bool name="pref_camera_mfnr_sat_enable_default">true</bool>

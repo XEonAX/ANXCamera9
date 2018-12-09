@@ -10036,17 +10036,9 @@
     .locals 1
 
     .line 1888
-    invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+	const/4 v0, 0x1
 
-    move-result-object p0
-
-    const-string v0, "force_fsg_nav_bar"
-
-    invoke-static {p0, v0}, Landroid/provider/MiuiSettings$Global;->getBoolean(Landroid/content/ContentResolver;Ljava/lang/String;)Z
-
-    move-result p0
-
-    return p0
+    return v0
 .end method
 
 .method public static isGlobalVersion()Z
