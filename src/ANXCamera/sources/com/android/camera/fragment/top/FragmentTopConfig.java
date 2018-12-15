@@ -12,6 +12,8 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.Adapter;
+import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -110,7 +112,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
         }
         initTopView();
         this.mExpandView = (RecyclerView) view.findViewById(R.id.top_config_expand_view);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(0);
         this.mExpandView.setLayoutManager(linearLayoutManager);
         this.mViewPadding = getResources().getDimensionPixelSize(R.dimen.panel_imageview_button_padding_width);
@@ -386,7 +388,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
         int i2 = 1;
         if (!this.mLastAnimationComponent.reverse(true)) {
             int i3;
-            ExpandAdapter expandAdapter = new ExpandAdapter(componentData, this);
+            Adapter expandAdapter = new ExpandAdapter(componentData, this);
             int dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.expanded_text_item_width) * componentData.getItems().size();
             this.mExpandView.getLayoutParams().width = dimensionPixelSize;
             this.mExpandView.setAdapter(expandAdapter);

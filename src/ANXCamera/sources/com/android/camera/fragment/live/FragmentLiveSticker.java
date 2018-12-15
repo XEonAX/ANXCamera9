@@ -7,6 +7,7 @@ import android.os.statistics.E2EScenario;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
+import android.support.v7.widget.RecyclerView.ItemAnimator;
 import android.support.v7.widget.RecyclerView.ItemDecoration;
 import android.support.v7.widget.RecyclerView.State;
 import android.view.LayoutInflater;
@@ -248,7 +249,7 @@ public class FragmentLiveSticker extends FragmentLiveBase {
                 }
             }
         });
-        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        ItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setChangeDuration(150);
         defaultItemAnimator.setMoveDuration(150);
         defaultItemAnimator.setAddDuration(150);

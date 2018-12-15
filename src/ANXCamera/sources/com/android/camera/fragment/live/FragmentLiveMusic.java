@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -73,7 +74,7 @@ public class FragmentLiveMusic extends BaseDialogFragment implements OnClickList
 
     protected void initView(View view) {
         this.mRecyclerView = (RecyclerView) view.findViewById(R.id.music_recycler_view);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(1);
         this.mRecyclerView.setLayoutManager(linearLayoutManager);
         this.mRecyclerView.setItemAnimator(new DefaultItemAnimator());

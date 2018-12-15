@@ -16,6 +16,7 @@ import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
+import android.support.v7.widget.RecyclerView.ItemAnimator;
 import android.support.v7.widget.RecyclerView.ItemDecoration;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.support.v7.widget.RecyclerView.State;
@@ -73,7 +74,7 @@ public class FragmentFilter extends BaseFragment implements OnClickListener {
 
         public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View inflate = this.mLayoutInflater.inflate(R.layout.effect_still_item, viewGroup, false);
-            EffectStillItemHolder effectStillItemHolder = new EffectStillItemHolder(inflate);
+            ViewHolder effectStillItemHolder = new EffectStillItemHolder(inflate);
             inflate.setOnClickListener(FragmentFilter.this);
             return effectStillItemHolder;
         }
@@ -221,7 +222,7 @@ public class FragmentFilter extends BaseFragment implements OnClickListener {
                 FragmentFilter.this.isAnimation = false;
             }
         });
-        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        ItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setChangeDuration(150);
         defaultItemAnimator.setMoveDuration(150);
         defaultItemAnimator.setAddDuration(150);

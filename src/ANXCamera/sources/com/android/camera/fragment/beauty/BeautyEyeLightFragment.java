@@ -8,6 +8,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.ItemAnimator;
 import android.support.v7.widget.RecyclerView.ItemDecoration;
 import android.support.v7.widget.RecyclerView.State;
 import android.view.LayoutInflater;
@@ -77,7 +78,7 @@ public class BeautyEyeLightFragment extends BaseBeautyFragment implements OnClic
         final boolean isLayoutRTL = Util.isLayoutRTL(getContext());
         this.mRecyclerView.setLayoutManager(this.mLayoutManager);
         this.mRecyclerView.setAdapter(this.mAdapter);
-        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        ItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setChangeDuration(150);
         defaultItemAnimator.setMoveDuration(150);
         defaultItemAnimator.setAddDuration(150);

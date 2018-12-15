@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
+import android.support.v7.widget.RecyclerView.ItemAnimator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -119,7 +120,7 @@ public class FragmentLighting extends BaseFragment implements OnClickListener {
         this.mLayoutManager = new LinearLayoutManager(getContext(), 0, false);
         this.mRecyclerView.setLayoutManager(this.mLayoutManager);
         this.mRecyclerView.setAdapter(this.mLightingAdapter);
-        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        ItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setChangeDuration(150);
         defaultItemAnimator.setMoveDuration(150);
         defaultItemAnimator.setAddDuration(150);

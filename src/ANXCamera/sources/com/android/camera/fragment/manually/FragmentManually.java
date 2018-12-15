@@ -5,6 +5,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
+import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -64,7 +65,7 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
         this.mRecyclerViewLayout = (ViewGroup) this.mManuallyParent.findViewById(R.id.manually_recycler_view_layout);
         this.mRecyclerView = (RecyclerView) this.mRecyclerViewLayout.findViewById(R.id.manually_recycler_view);
         this.mDecoration = new ManuallyDecoration(1, getResources().getColor(R.color.effect_divider_color));
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(0);
         this.mRecyclerView.setLayoutManager(linearLayoutManager);
         adjustViewBackground(this.mCurrentMode);
@@ -350,7 +351,7 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
         this.mRecyclerView.removeItemDecoration(this.mDecoration);
         this.mDecoration.setStyle(this.mManuallyComponents.size());
         this.mRecyclerView.addItemDecoration(this.mDecoration);
-        ManuallyAdapter manuallyAdapter = new ManuallyAdapter(this.mCurrentMode, this, this.mManuallyComponents);
+        Adapter manuallyAdapter = new ManuallyAdapter(this.mCurrentMode, this, this.mManuallyComponents);
         this.mRecyclerView.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.settings_screen_height);
         FragmentManuallyExtra extraFragment = getExtraFragment();
         if (extraFragment != null) {
@@ -362,7 +363,7 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
 
     private void initScene(ManuallyListener manuallyListener) {
         this.mRecyclerView.removeItemDecoration(this.mDecoration);
-        ExtraRecyclerViewAdapter extraRecyclerViewAdapter = new ExtraRecyclerViewAdapter(DataRepository.dataItemRunning().getComponentRunningSceneValue(), this.mCurrentMode, manuallyListener, (int) (((float) getResources().getDisplayMetrics().widthPixels) / 5.5f));
+        Adapter extraRecyclerViewAdapter = new ExtraRecyclerViewAdapter(DataRepository.dataItemRunning().getComponentRunningSceneValue(), this.mCurrentMode, manuallyListener, (int) (((float) getResources().getDisplayMetrics().widthPixels) / 5.5f));
         this.mRecyclerView.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.manual_popup_layout_height);
         this.mAdapter = extraRecyclerViewAdapter;
     }
@@ -372,7 +373,7 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
         this.mRecyclerView.removeItemDecoration(this.mDecoration);
         this.mDecoration.setStyle(componentRunningTiltValue.getItems().size());
         this.mRecyclerView.addItemDecoration(this.mDecoration);
-        ManuallySingleAdapter manuallySingleAdapter = new ManuallySingleAdapter(componentRunningTiltValue, this.mCurrentMode, manuallyListener, getResources().getDisplayMetrics().widthPixels / componentRunningTiltValue.getItems().size());
+        Adapter manuallySingleAdapter = new ManuallySingleAdapter(componentRunningTiltValue, this.mCurrentMode, manuallyListener, getResources().getDisplayMetrics().widthPixels / componentRunningTiltValue.getItems().size());
         this.mRecyclerView.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.settings_screen_height);
         this.mAdapter = manuallySingleAdapter;
     }
