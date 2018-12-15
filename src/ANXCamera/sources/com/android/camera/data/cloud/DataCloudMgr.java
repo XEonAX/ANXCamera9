@@ -217,7 +217,8 @@ public class DataCloudMgr implements CloudManager {
     }
 
     private static final String getCloudDataString(String str, String str2, String str3) {
-        return SettingsCloudData.getCloudDataString(CameraAppImpl.getAndroidContext().getContentResolver(), str, str2, str3);
+        Log.w("getCloudDataString", str2);
+        return str3;
     }
 
     private static final int getCloudDataInt(String str, String str2, int i) {
