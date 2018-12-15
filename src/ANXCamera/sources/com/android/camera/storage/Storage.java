@@ -148,7 +148,7 @@ public class Storage {
             Class[] clsArr = new Class[]{StorageStatsManager.class};
             Method method = Util.getMethod(clsArr, "isQuotaSupported", "(Ljava/util/UUID;)Z");
             if (method != null) {
-                sQuotaSupported = method.invokeBoolean(clsArr[0], storageStatsManager, new Object[]{StorageManager.UUID_DEFAULT});
+                sQuotaSupported = method.invokeBoolean(clsArr[0], storageStatsManager, StorageManager.UUID_DEFAULT);
                 if (sQuotaSupported) {
                     long totalBytes = new StatFs(PRIMARY_STORAGE_PATH).getTotalBytes();
                     sQuotaBytes = (long) (0.9f * ((float) totalBytes));
@@ -177,7 +177,7 @@ public class Storage {
         return addImage(context, str, j, location, i, bArr, i2, i3, z, z2, z3, false, false, str2, pictureInfo);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:74:0x0110 A:{Splitter: B:3:0x005d, ExcHandler: all (r0_23 'th' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:74:0x0110 A:{ExcHandler: all (r0_23 'th' java.lang.Throwable), Splitter: B:3:0x005d} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:72:0x010d, code:
             r0 = th;

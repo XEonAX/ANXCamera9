@@ -630,7 +630,7 @@ public class ExifInterface {
         throw new IllegalArgumentException(NULL_ARGUMENT_STRING);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:25:0x0060 A:{Splitter: B:1:0x0003, ExcHandler: all (th java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:25:0x0060 A:{ExcHandler: all (th java.lang.Throwable), Splitter: B:1:0x0003} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:25:0x0060, code:
             r11 = th;
@@ -1311,7 +1311,7 @@ public class ExifInterface {
     public static double convertLatOrLongToDouble(Rational[] rationalArr, String str) {
         try {
             double toDouble = (rationalArr[0].toDouble() + (rationalArr[1].toDouble() / 60.0d)) + (rationalArr[2].toDouble() / 3600.0d);
-            if (str.equals(GpsLatitudeRef.SOUTH) || str.equals(GpsLongitudeRef.WEST)) {
+            if (str.equals("S") || str.equals(GpsLongitudeRef.WEST)) {
                 return -toDouble;
             }
             return toDouble;
@@ -1362,7 +1362,7 @@ public class ExifInterface {
         if (d >= 0.0d) {
             obj = "N";
         } else {
-            obj = GpsLatitudeRef.SOUTH;
+            obj = "S";
         }
         ExifTag buildTag3 = buildTag(i, obj);
         int i2 = TAG_GPS_LONGITUDE_REF;

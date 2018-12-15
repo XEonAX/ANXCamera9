@@ -129,8 +129,6 @@ import miui.hardware.display.DisplayFeatureManager;
 import miui.os.Build;
 import miui.reflect.Field;
 import miui.reflect.Method;
-import miui.reflect.NoSuchClassException;
-import miui.reflect.NoSuchFieldException;
 import miui.reflect.NoSuchMethodException;
 import miui.security.SecurityManager;
 import miui.util.IOUtils;
@@ -1850,14 +1848,14 @@ public final class Util {
     public static int getIntField(String str, Object obj, String str2, String str3) {
         try {
             return Field.of(str, str2, str3).getInt(obj);
-        } catch (NoSuchClassException e) {
+        } catch (Throwable e) {
             str2 = TAG;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("no class ");
             stringBuilder.append(str);
             Log.e(str2, stringBuilder.toString(), e);
             return Integer.MIN_VALUE;
-        } catch (NoSuchFieldException e2) {
+        } catch (Throwable e2) {
             Log.e(TAG, "no field ", e2);
             return Integer.MIN_VALUE;
         }
@@ -2099,7 +2097,7 @@ public final class Util {
             Class cls = Class.forName("miui.content.pm.PreloadedAppPolicy");
             Method of = Method.of(cls, "installPreloadedDataApp", CompatibilityUtils.getInstallMethodDescription());
             int i = z ? 1 : z2 ? 2 : 0;
-            boolean invokeBoolean = of.invokeBoolean(cls, null, new Object[]{context, str, packageInstallObserver, Integer.valueOf(i)});
+            boolean invokeBoolean = of.invokeBoolean(cls, null, context, str, packageInstallObserver, Integer.valueOf(i));
             String str3 = TAG;
             StringBuilder stringBuilder2 = new StringBuilder();
             stringBuilder2.append("installPackage: result=");
@@ -2280,11 +2278,11 @@ public final class Util {
 
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0040  */
     /* JADX WARNING: Removed duplicated region for block: B:28:0x007c A:{Catch:{ XmlPullParserException -> 0x0123, IOException -> 0x011a, all -> 0x010c }} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0035 A:{Splitter: B:6:0x001c, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0035 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:6:0x001c} */
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0040  */
     /* JADX WARNING: Removed duplicated region for block: B:28:0x007c A:{Catch:{ XmlPullParserException -> 0x0123, IOException -> 0x011a, all -> 0x010c }} */
-    /* JADX WARNING: Removed duplicated region for block: B:13:0x0032 A:{Splitter: B:8:0x0021, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:12:0x0030 A:{Splitter: B:10:0x002c, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:13:0x0032 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:8:0x0021} */
+    /* JADX WARNING: Removed duplicated region for block: B:12:0x0030 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:10:0x002c} */
     /* JADX WARNING: Missing block: B:12:0x0030, code:
             r4 = e;
      */
@@ -2795,7 +2793,7 @@ public final class Util {
         return bitmap2;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:7:0x0028 A:{Splitter: B:4:0x001f, ExcHandler: java.lang.OutOfMemoryError (r1_2 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:7:0x0028 A:{ExcHandler: java.lang.OutOfMemoryError (r1_2 'e' java.lang.Throwable), Splitter: B:4:0x001f} */
     /* JADX WARNING: Missing block: B:7:0x0028, code:
             r1 = move-exception;
      */

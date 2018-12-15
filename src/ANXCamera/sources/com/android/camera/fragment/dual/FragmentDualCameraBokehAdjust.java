@@ -49,6 +49,7 @@ import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.ui.HorizontalSlideView;
 import io.reactivex.Completable;
 import java.util.List;
+import miui.reflect.Field;
 import miui.view.animation.BackEaseOutInterpolator;
 import miui.view.animation.QuadraticEaseInOutInterpolator;
 import miui.view.animation.QuadraticEaseOutInterpolator;
@@ -176,7 +177,7 @@ public class FragmentDualCameraBokehAdjust extends BaseFragment implements OnCli
     @TargetApi(21)
     private void setFNumberText() {
         this.mStringBuilder.clear();
-        Util.appendInApi26(this.mStringBuilder, "F", this.mXTextStyle, 33);
+        Util.appendInApi26(this.mStringBuilder, Field.FLOAT_SIGNATURE_PRIMITIVE, this.mXTextStyle, 33);
         Util.appendInApi26(this.mStringBuilder, CameraSettings.readFNumber(), this.mDigitsTextStyle, 33);
         if (Util.isAccessible()) {
             this.mDualBokehFButton.setContentDescription(getString(R.string.accessibility_bokeh_level, r0));
