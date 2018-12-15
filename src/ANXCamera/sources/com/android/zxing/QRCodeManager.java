@@ -13,8 +13,8 @@ import com.android.camera2.Camera2Proxy;
 import com.android.camera2.Camera2Proxy.PreviewCallback;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
+import com.google.zxing.LuminanceSource;
 import com.google.zxing.MultiFormatReader;
-import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 import io.reactivex.BackpressureStrategy;
@@ -193,7 +193,7 @@ public class QRCodeManager {
             bArr = bArr2;
         }
         String str = "";
-        YUVLuminanceSource buildLuminanceSource = buildLuminanceSource(bArr, i, i2);
+        LuminanceSource buildLuminanceSource = buildLuminanceSource(bArr, i, i2);
         if (buildLuminanceSource == null) {
             return str;
         }
@@ -202,7 +202,7 @@ public class QRCodeManager {
             if (decodeWithState != null) {
                 str = decodeWithState.getText();
             }
-        } catch (ReaderException e) {
+        } catch (Throwable e) {
             Log.e(TAG, "decode: ReaderException: ", e);
         } catch (Throwable th) {
             this.mMultiFormatReader.reset();
