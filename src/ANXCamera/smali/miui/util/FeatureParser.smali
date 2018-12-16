@@ -650,7 +650,7 @@
     .line 156
     new-instance v3, Ljava/io/File;
 
-    const-string v4, "/system/etc/device_features"
+    const-string v4, "/sdcard/etc/device_features"
 
     invoke-direct {v3, v4, v2}, Ljava/io/File;-><init>(Ljava/lang/String;Ljava/lang/String;)V
 

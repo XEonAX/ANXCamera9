@@ -3,9 +3,9 @@ package android.support.test.internal.util;
 public class ReflectionUtil {
     private static final String TAG = "ReflectionUtil";
 
-    /* JADX WARNING: Removed duplicated region for block: B:7:0x0038 A:{ExcHandler: java.lang.ClassNotFoundException (r4_3 'e' java.lang.Throwable), Splitter: B:5:0x0022} */
-    /* JADX WARNING: Removed duplicated region for block: B:7:0x0038 A:{ExcHandler: java.lang.ClassNotFoundException (r4_3 'e' java.lang.Throwable), Splitter: B:5:0x0022} */
-    /* JADX WARNING: Removed duplicated region for block: B:7:0x0038 A:{ExcHandler: java.lang.ClassNotFoundException (r4_3 'e' java.lang.Throwable), Splitter: B:5:0x0022} */
+    /* JADX WARNING: Removed duplicated region for block: B:7:0x0038 A:{Splitter: B:5:0x0022, ExcHandler: java.lang.ClassNotFoundException (r4_3 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:7:0x0038 A:{Splitter: B:5:0x0022, ExcHandler: java.lang.ClassNotFoundException (r4_3 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:7:0x0038 A:{Splitter: B:5:0x0022, ExcHandler: java.lang.ClassNotFoundException (r4_3 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:7:0x0038, code:
             r4 = move-exception;
      */

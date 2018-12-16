@@ -96,8 +96,8 @@ public class FeatureParser {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:78:0x01bc A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:1:0x0003, PHI: r1 } */
-    /* JADX WARNING: Removed duplicated region for block: B:72:0x01b3 A:{ExcHandler: all (th java.lang.Throwable), Splitter: B:12:0x003d, PHI: r1 } */
+    /* JADX WARNING: Removed duplicated region for block: B:78:0x01bc A:{Splitter: B:1:0x0003, PHI: r1 , ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:72:0x01b3 A:{Splitter: B:12:0x003d, PHI: r1 , ExcHandler: all (th java.lang.Throwable)} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:73:0x01b4, code:
             if (r1 != null) goto L_0x01b6;
@@ -187,7 +187,7 @@ public class FeatureParser {
         if (r1 != 0) goto L_0x00bb;
     L_0x0089:
         r3 = new java.io.File;	 Catch:{ IOException -> 0x01c3, XmlPullParserException -> 0x01bc, all -> 0x01b3 }
-        r4 = "/system/etc/device_features";
+        r4 = "/sdcard/etc/device_features";
         r3.<init>(r4, r2);	 Catch:{ IOException -> 0x01c3, XmlPullParserException -> 0x01bc, all -> 0x01b3 }
         r4 = r3.exists();	 Catch:{ IOException -> 0x01c3, XmlPullParserException -> 0x01bc, all -> 0x01b3 }
         if (r4 == 0) goto L_0x009d;

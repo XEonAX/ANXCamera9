@@ -122,10 +122,10 @@ public class ICustomCaptureResult implements Parcelable {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:3:0x0019 A:{ExcHandler: java.lang.ClassNotFoundException (r4_3 'e' java.lang.Throwable), Splitter: B:0:0x0000} */
-    /* JADX WARNING: Removed duplicated region for block: B:3:0x0019 A:{ExcHandler: java.lang.ClassNotFoundException (r4_3 'e' java.lang.Throwable), Splitter: B:0:0x0000} */
-    /* JADX WARNING: Removed duplicated region for block: B:3:0x0019 A:{ExcHandler: java.lang.ClassNotFoundException (r4_3 'e' java.lang.Throwable), Splitter: B:0:0x0000} */
-    /* JADX WARNING: Removed duplicated region for block: B:3:0x0019 A:{ExcHandler: java.lang.ClassNotFoundException (r4_3 'e' java.lang.Throwable), Splitter: B:0:0x0000} */
+    /* JADX WARNING: Removed duplicated region for block: B:3:0x0019 A:{Splitter: B:0:0x0000, ExcHandler: java.lang.ClassNotFoundException (r4_3 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:3:0x0019 A:{Splitter: B:0:0x0000, ExcHandler: java.lang.ClassNotFoundException (r4_3 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:3:0x0019 A:{Splitter: B:0:0x0000, ExcHandler: java.lang.ClassNotFoundException (r4_3 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:3:0x0019 A:{Splitter: B:0:0x0000, ExcHandler: java.lang.ClassNotFoundException (r4_3 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:3:0x0019, code:
             r4 = move-exception;
      */
