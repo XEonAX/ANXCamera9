@@ -2,7 +2,7 @@ package com.android.camera2;
 
 import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.CaptureResult.Key;
-import android.hardware.camera2.marshal.MarshalRegistry;
+import android.hardware.camera2.marshal.MarshalRegistryANX;
 import com.android.camera.Util;
 import com.android.camera.log.Log;
 import com.android.camera2.AECFrameControl.MarshalQueryableAECFrameControl;
@@ -33,10 +33,10 @@ public class CaptureResultParser {
     public static final String VENDOR_TAG_HDR_CHECKER = "xiaomi.hdr.hdrChecker";
 
     static {
-        MarshalRegistry.registerMarshalQueryable(new MarshalQueryableAWBFrameControl());
+        MarshalRegistryANX.registerMarshalQueryable(new MarshalQueryableAWBFrameControl());
         if (Util.isShowPreviewDebugInfo()) {
-            MarshalRegistry.registerMarshalQueryable(new MarshalQueryableAECFrameControl());
-            MarshalRegistry.registerMarshalQueryable(new MarshalQueryableAFFrameControl());
+            MarshalRegistryANX.registerMarshalQueryable(new MarshalQueryableAECFrameControl());
+            MarshalRegistryANX.registerMarshalQueryable(new MarshalQueryableAFFrameControl());
         }
     }
 
