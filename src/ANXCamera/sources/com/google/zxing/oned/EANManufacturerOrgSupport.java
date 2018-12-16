@@ -1,5 +1,6 @@
 package com.google.zxing.oned;
 
+import android.provider.MiuiSettings.System;
 import com.android.camera.Util;
 import com.google.zxing.client.result.ExpandedProductParsedResult;
 import com.ss.android.ugc.effectmanager.common.EffectTypeConstants;
@@ -66,7 +67,7 @@ final class EANManufacturerOrgSupport {
             add(new int[]{487}, "KZ");
             add(new int[]{489}, "HK");
             add(new int[]{490, 499}, "JP");
-            add(new int[]{500, 509}, "GB");
+            add(new int[]{System.SCREEN_KEY_LONG_PRESS_TIMEOUT_DEFAULT, 509}, "GB");
             add(new int[]{520}, "GR");
             add(new int[]{528}, ExpandedProductParsedResult.POUND);
             add(new int[]{529}, "CY");

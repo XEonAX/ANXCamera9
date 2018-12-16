@@ -14,6 +14,7 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.provider.MediaStore.Images;
 import android.provider.MediaStore.Video.Thumbnails;
+import android.provider.MiuiSettings.ScreenEffect;
 import com.android.camera.log.Log;
 import com.android.camera.storage.Storage;
 import java.io.BufferedOutputStream;
@@ -930,7 +931,7 @@ public class Thumbnail {
         options.inSampleSize = i2;
         options.inPurgeable = true;
         Bitmap decodeByteArray = BitmapFactory.decodeByteArray(bArr, 0, bArr.length, options);
-        i %= 360;
+        i %= ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         if (decodeByteArray != null && (i != 0 || z)) {
             Matrix matrix = new Matrix();
             Matrix matrix2 = new Matrix();

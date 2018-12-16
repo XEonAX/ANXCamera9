@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.os.SystemClock;
+import android.provider.MiuiSettings.ScreenEffect;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.view.KeyEvent;
@@ -803,7 +804,7 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
     }
 
     protected int getCameraRotation() {
-        return ((this.mOrientationCompensation - this.mDisplayRotation) + 360) % 360;
+        return ((this.mOrientationCompensation - this.mDisplayRotation) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
     }
 
     protected ContentValues genContentValues(int i, int i2) {

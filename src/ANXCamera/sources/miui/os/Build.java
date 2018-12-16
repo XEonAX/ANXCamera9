@@ -7,6 +7,7 @@ import android.os.IPowerManager.Stub;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemProperties;
+import android.provider.MiuiSettings.System;
 import android.text.TextUtils;
 import com.miui.internal.cust.PrivateConfig;
 import com.miui.internal.cust.PrivateWaterMarkerConfig;
@@ -27,7 +28,7 @@ public class Build extends android.os.Build {
     public static final boolean IS_CU_CUSTOMIZATION_TEST = "cu".equals(SystemProperties.get("ro.cust.test"));
     public static final boolean IS_DEBUGGABLE = (SystemProperties.getInt("ro.debuggable", 0) == 1);
     public static final boolean IS_DEVELOPMENT_VERSION;
-    public static final boolean IS_FUNCTION_LIMITED = "1".equals(SystemProperties.get("persist.sys.func_limit_switch"));
+    public static final boolean IS_FUNCTION_LIMITED = "1".equals(SystemProperties.get(System.KEY_FUNCTION_LIMIT_SWITCH));
     public static final boolean IS_GLOBAL_BUILD = SystemProperties.get("ro.product.mod_device", "").endsWith("_global");
     public static final boolean IS_HONGMI;
     public static final boolean IS_HONGMI2_TDSCDMA = "HM2013022".equals(DEVICE);

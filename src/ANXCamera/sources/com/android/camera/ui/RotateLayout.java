@@ -1,6 +1,7 @@
 package com.android.camera.ui;
 
 import android.content.Context;
+import android.provider.MiuiSettings.ScreenEffect;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -132,7 +133,7 @@ public class RotateLayout extends ViewGroup implements Rotatable {
     }
 
     public void setOrientation(int i, boolean z) {
-        i %= 360;
+        i %= ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         if (this.mOrientation != i) {
             this.mOrientation = i;
             requestLayout();

@@ -48,6 +48,8 @@ import android.os.ParcelFileDescriptor;
 import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.SystemProperties;
+import android.provider.MiuiSettings;
+import android.provider.MiuiSettings.ScreenEffect;
 import android.provider.Settings.Secure;
 import android.provider.Settings.SettingNotFoundException;
 import android.provider.Settings.System;
@@ -184,7 +186,7 @@ public final class Util {
     public static final String REVIEW_ACTIVITY_PACKAGE = "com.miui.gallery";
     public static final String REVIEW_SCAN_RESULT_PACKAGE = "com.xiaomi.scanner";
     public static final int SCREEN_EFFECT_CAMERA_STATE = 14;
-    public static final Uri SCREEN_SLIDE_STATUS_SETTING_URI = System.getUriFor("sc_status");
+    public static final Uri SCREEN_SLIDE_STATUS_SETTING_URI = System.getUriFor(MiuiSettings.System.MIUI_SLIDER_COVER_STATUS);
     private static final String SCREEN_VENDOR = SystemProperties.get("sys.panel.display");
     private static final String TAG = "CameraUtil";
     private static final String TEMP_SUFFIX = ".tmp";
@@ -209,7 +211,7 @@ public final class Util {
     private static float sPixelDensity = 1.0f;
     public static int sStatusBarHeight;
     private static HashMap<String, Typeface> sTypefaces = new HashMap();
-    public static int sWindowHeight = 1080;
+    public static int sWindowHeight = ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT;
     private static IWindowManager sWindowManager;
     public static int sWindowWidth = LIMIT_SURFACE_WIDTH;
 
@@ -372,7 +374,7 @@ public final class Util {
         Matrix matrix = new Matrix();
         if (z) {
             matrix.postScale(-1.0f, 1.0f);
-            i = (i + 360) % 360;
+            i = (i + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
             if (i == 0 || i == 180) {
                 matrix.postTranslate((float) bitmap.getWidth(), 0.0f);
             } else if (i == 90 || i == 270) {
@@ -748,7 +750,7 @@ public final class Util {
     }
 
     public static int getShootOrientation(Activity activity, int i) {
-        return ((i - getDisplayRotation(activity)) + 360) % 360;
+        return ((i - getDisplayRotation(activity)) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
     }
 
     public static float getShootRotation(Activity activity, float f) {
@@ -796,9 +798,9 @@ public final class Util {
         }
         int sensorOrientation = capabilities.getSensorOrientation();
         if (capabilities.getFacing() == 0) {
-            i = (360 - ((sensorOrientation + i) % 360)) % 360;
+            i = (360 - ((sensorOrientation + i) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT)) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         } else {
-            i = ((sensorOrientation - i) + 360) % 360;
+            i = ((sensorOrientation - i) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         }
         return i;
     }
@@ -827,7 +829,7 @@ public final class Util {
             }
         }
         if (obj != null) {
-            return (((i + 45) / 90) * 90) % 360;
+            return (((i + 45) / 90) * 90) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         }
         return i2;
     }
@@ -1394,9 +1396,9 @@ public final class Util {
             return sensorOrientation;
         }
         if (capabilities.getFacing() == 0) {
-            return ((sensorOrientation - i2) + 360) % 360;
+            return ((sensorOrientation - i2) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         }
-        return (sensorOrientation + i2) % 360;
+        return (sensorOrientation + i2) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
     }
 
     public static void enterLightsOutMode(Window window) {
@@ -2126,7 +2128,7 @@ public final class Util {
 
     public static final boolean isAppLocked(Context context, String str) {
         boolean z = false;
-        if (!(Secure.getInt(context.getContentResolver(), "access_control_lock_enabled", -1) == 1)) {
+        if (!(Secure.getInt(context.getContentResolver(), MiuiSettings.Secure.ACCESS_CONTROL_LOCK_ENABLED, -1) == 1)) {
             return false;
         }
         SecurityManager securityManager = (SecurityManager) context.getSystemService("security");
@@ -2711,7 +2713,7 @@ public final class Util {
             i = cameraSize.height;
             i2 = cameraSize.width;
         }
-        if (i == 1920 && i2 == 1080) {
+        if (i == 1920 && i2 == ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT) {
             return 6;
         }
         if (i == 3840 && i2 == 2160) {
@@ -3640,7 +3642,7 @@ public final class Util {
     }
 
     public static boolean isScreenSlideOff(Context context) {
-        return System.getInt(context.getContentResolver(), "sc_status", -1) == 1;
+        return System.getInt(context.getContentResolver(), MiuiSettings.System.MIUI_SLIDER_COVER_STATUS, -1) == 1;
     }
 
     public static boolean isEqualsZero(double d) {

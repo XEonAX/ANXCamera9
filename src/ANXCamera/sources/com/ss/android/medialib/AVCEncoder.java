@@ -15,7 +15,6 @@ import android.os.Build.VERSION;
 import android.util.Log;
 import android.util.Pair;
 import android.view.Surface;
-import com.android.camera.snap.SnapService;
 import com.ss.android.medialib.common.TextureDrawer;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
@@ -32,7 +31,7 @@ public class AVCEncoder {
     private static final String[] BITRATE_MODES = new String[]{"BITRATE_MODE_CQ", "BITRATE_MODE_VBR", "BITRATE_MODE_CBR"};
     private static final boolean DEBUG = true;
     private static final String TAG = "AVCEncoder";
-    private static int TIMEOUT_USEC = SnapService.MAX_DELAY;
+    private static int TIMEOUT_USEC = 5000;
     static AVCEncoderInterface mEncoderCaller = null;
     private byte[] codec_config;
     BufferedOutputStream fileWriter = null;
@@ -177,7 +176,7 @@ public class AVCEncoder {
         return initAVCEncoder(i, i2, i3, 1, 1, i4, z);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:57:0x0177 A:{LOOP_END, Catch:{ Exception -> 0x0346 }, LOOP:1: B:42:0x0119->B:57:0x0177} */
+    /* JADX WARNING: Removed duplicated region for block: B:57:0x0177 A:{LOOP_END, LOOP:1: B:42:0x0119->B:57:0x0177, Catch:{ Exception -> 0x0346 }} */
     /* JADX WARNING: Removed duplicated region for block: B:105:0x017a A:{SYNTHETIC, EDGE_INSN: B:105:0x017a->B:58:0x017a ?: BREAK  } */
     /* JADX WARNING: Missing block: B:49:0x015a, code:
             if (r11.profile < 2) goto L_0x0171;

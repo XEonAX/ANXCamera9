@@ -1,6 +1,5 @@
 package com.android.volley.toolbox;
 
-import com.android.camera.snap.SnapService;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import java.io.IOException;
@@ -71,7 +70,7 @@ public class HttpClientStack implements HttpStack {
         onPrepareRequest(createHttpRequest);
         HttpParams params = createHttpRequest.getParams();
         int timeoutMs = request.getTimeoutMs();
-        HttpConnectionParams.setConnectionTimeout(params, SnapService.MAX_DELAY);
+        HttpConnectionParams.setConnectionTimeout(params, 5000);
         HttpConnectionParams.setSoTimeout(params, timeoutMs);
         return this.mClient.execute(createHttpRequest);
     }

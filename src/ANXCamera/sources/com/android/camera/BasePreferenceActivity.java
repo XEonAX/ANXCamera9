@@ -13,6 +13,8 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
+import android.provider.MiuiSettings;
+import android.provider.MiuiSettings.Key;
 import android.provider.Settings.Secure;
 import android.provider.Settings.System;
 import android.text.TextUtils;
@@ -439,9 +441,9 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
     }
 
     private void resetSnapSetting() {
-        String string = Secure.getString(getContentResolver(), "key_long_press_volume_down");
-        if ("Street-snap-picture".equals(string) || "Street-snap-movie".equals(string)) {
-            Secure.putString(getContentResolver(), "key_long_press_volume_down", "none");
+        String string = Secure.getString(getContentResolver(), Key.LONG_PRESS_VOLUME_DOWN);
+        if (Key.LONG_PRESS_VOLUME_DOWN_STREET_SNAP_PICTURE.equals(string) || Key.LONG_PRESS_VOLUME_DOWN_STREET_SNAP_MOVIE.equals(string)) {
+            Secure.putString(getContentResolver(), Key.LONG_PRESS_VOLUME_DOWN, "none");
         }
     }
 
@@ -525,19 +527,19 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
             string = getString(R.string.pref_camera_snap_default);
             previewListPreference4.setDefaultValue(string);
             previewListPreference4.setValue(string);
-            string = Secure.getString(getContentResolver(), "key_long_press_volume_down");
-            if (System.getInt(getContentResolver(), "volumekey_wake_screen", 0) == 1 || "public_transportation_shortcuts".equals(string) || "none".equals(string)) {
+            string = Secure.getString(getContentResolver(), Key.LONG_PRESS_VOLUME_DOWN);
+            if (System.getInt(getContentResolver(), MiuiSettings.System.VOLUMEKEY_WAKE_SCREEN, 0) == 1 || Key.LONG_PRESS_VOLUME_DOWN_PAY.equals(string) || "none".equals(string)) {
                 previewListPreference4.setValue(getString(R.string.pref_camera_snap_value_off));
                 return;
             }
             String string2 = DataRepository.dataItemGlobal().getString(CameraSettings.KEY_CAMERA_SNAP, null);
             if (string2 != null) {
-                Secure.putString(getContentResolver(), "key_long_press_volume_down", CameraSettings.getMiuiSettingsKeyForStreetSnap(string2));
+                Secure.putString(getContentResolver(), Key.LONG_PRESS_VOLUME_DOWN, CameraSettings.getMiuiSettingsKeyForStreetSnap(string2));
                 DataRepository.dataItemGlobal().editor().remove(CameraSettings.KEY_CAMERA_SNAP).apply();
                 previewListPreference4.setValue(string2);
-            } else if ("Street-snap-picture".equals(string)) {
+            } else if (Key.LONG_PRESS_VOLUME_DOWN_STREET_SNAP_PICTURE.equals(string)) {
                 previewListPreference4.setValue(getString(R.string.pref_camera_snap_value_take_picture));
-            } else if ("Street-snap-movie".equals(string)) {
+            } else if (Key.LONG_PRESS_VOLUME_DOWN_STREET_SNAP_MOVIE.equals(string)) {
                 previewListPreference4.setValue(getString(R.string.pref_camera_snap_value_take_movie));
             }
         }

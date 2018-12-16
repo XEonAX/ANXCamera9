@@ -1,5 +1,6 @@
 package com.android.camera.effect.renders;
 
+import android.provider.MiuiSettings.System;
 import com.android.camera.Util;
 import com.android.camera.log.Log;
 import com.android.gallery3d.ui.BasicTexture;
@@ -10,7 +11,7 @@ class TextWaterMark extends WaterMark {
     private static final String TAG = TextWaterMark.class.getSimpleName();
     private static final int TEXT_COLOR = -262152;
     private static final int TEXT_PIXEL_SIZE = 144;
-    private final int[][] PIC_WIDTHS = new int[][]{new int[]{0, 149}, new int[]{150, 239}, new int[]{240, 279}, new int[]{280, 400}, new int[]{401, 1439}, new int[]{1440, 1511}, new int[]{1512, 1799}, new int[]{1800, 1899}, new int[]{1900, 2299}, new int[]{2300, 3120}, new int[]{3121, 4000}};
+    private final int[][] PIC_WIDTHS = new int[][]{new int[]{0, 149}, new int[]{150, 239}, new int[]{240, 279}, new int[]{280, 400}, new int[]{401, 1439}, new int[]{1440, 1511}, new int[]{1512, 1799}, new int[]{1800, 1899}, new int[]{1900, 2299}, new int[]{2300, 3120}, new int[]{3121, System.STATUS_BAR_UPDATE_NETWORK_SPEED_INTERVAL_DEFAULT}};
     private final int[][] WATERMARK_FONT_SIZES = new int[][]{new int[]{5, 4, 2, 4, 3, 7}, new int[]{8, 6, 2, 6, 3, 7}, new int[]{11, 6, 5, 6, 5, 12}, new int[]{12, 7, 5, 7, 5, 12}, new int[]{50, 32, 11, 31, 20, 47}, new int[]{58, 36, 19, 38, 24, 55}, new int[]{65, 41, 24, 42, 27, 63}, new int[]{80, 50, 24, 50, 32, 75}, new int[]{83, 52, 25, 52, 33, 78}, new int[]{104, 65, 33, 65, 42, 98}, new int[]{128, 80, 40, 80, 48, 132}};
     private int mCenterX;
     private int mCenterY;
