@@ -172,30 +172,7 @@
     .line 61
     invoke-super {p0, p1}, Lcom/android/camera/BasePreferenceActivity;->onCreate(Landroid/os/Bundle;)V
 
-    .line 62
-    invoke-virtual {p0}, Lcom/android/camera/CameraPreferenceActivity;->getIntent()Landroid/content/Intent;
-
-    move-result-object p1
-
-    const-string v0, ":miui:starting_window_label"
-
-    invoke-virtual {p1, v0}, Landroid/content/Intent;->getCharSequenceExtra(Ljava/lang/String;)Ljava/lang/CharSequence;
-
-    move-result-object p1
-
-    if-eqz p1, :cond_0
-
-    .line 63
-    invoke-virtual {p0}, Lcom/android/camera/CameraPreferenceActivity;->getActionBar()Lmiui/app/ActionBar;
-
-    move-result-object p1
-
-    const v0, 0x7f0b0044
-
-    invoke-virtual {p1, v0}, Lmiui/app/ActionBar;->setTitle(I)V
-
     .line 66
-    :cond_0
     invoke-virtual {p0}, Lcom/android/camera/CameraPreferenceActivity;->changeRequestOrientation()V
 
     .line 67
