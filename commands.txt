@@ -42,7 +42,9 @@ adb shell pm grant com.android.camera android.permission.PACKAGE_USAGE_STATS
 Logcat
 adb logcat -s System.err
 
+Copy apk 
+xcopy /s .\out\ANXCamera.apk .\src\ANXCameraMagisk\system\priv-app\ANXCamera
 
 Magisk
-"C:\Program Files\7-Zip\7z.exe" a -tzip .\out\ANXCameraLibs.zip .\src\ANXCameraMagisk\*
-adb push .\out\ANXCameraLibs.zip  /sdcard/zips
+& "C:\Program Files\7-Zip\7z.exe" a -tzip .\out\ANXCameraMagisk.zip .\src\ANXCameraMagisk\*
+adb push .\out\ANXCameraMagisk.zip  /sdcard/zips

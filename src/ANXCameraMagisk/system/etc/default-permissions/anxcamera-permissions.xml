@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<exceptions>
+    <exception package="com.android.camera">
+        <permission name="android.permission.RECORD_AUDIO" fixed="false"/>
+        <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false"/>
+        <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false"/>
+        <permission name="android.permission.WAKE_LOCK" fixed="false"/>
+        <permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="false"/>
+        <permission name="android.permission.WRITE_MEDIA_STORAGE" fixed="false"/>
+        <permission name="android.permission.MODIFY_AUDIO_SETTINGS" fixed="false"/>
+        <permission name="android.permission.WRITE_SECURE_SETTINGS" fixed="false"/>
+        <permission name="com.android.settings.permission.CLOUD_SETTINGS_PROVIDER" fixed="false"/>
+        <permission name="android.permission.INTERACT_ACROSS_USERS" fixed="false"/>
+        <permission name="android.permission.ACCESS_NETWORK_STATE" fixed="false"/>
+        <permission name="android.permission.ACCESS_WIFI_STATE" fixed="false"/>
+        <permission name="android.permission.INTERNET" fixed="false"/>
+        <permission name="android.permission.VIBRATE" fixed="false"/>
+        <permission name="android.permission.WRITE_SETTINGS" fixed="false"/>
+        <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+        <permission name="com.fingerprints.service.ACCESS_FINGERPRINT_MANAGER" fixed="false"/>
+        <permission name="com.miui.gallery.permission.BIND_SERVICE" fixed="false"/>
+        <permission name="com.android.SystemUI.permission.TIGGER_TOGGLE" fixed="false"/>
+        <permission name="com.xiaomi.permission.CLOUD_MANAGER" fixed="false"/>
+        <permission name="android.permission.DEVICE_POWER" fixed="false"/>
+        <permission name="android.permission.PACKAGE_USAGE_STATS" fixed="false"/>
+
+    </exception>
+
+</exceptions>
