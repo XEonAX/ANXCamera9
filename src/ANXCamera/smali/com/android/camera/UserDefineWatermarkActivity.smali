@@ -1,5 +1,5 @@
 .class public Lcom/android/camera/UserDefineWatermarkActivity;
-.super Lmiui/app/Activity;
+.super Landroid/app/Activity;
 .source "UserDefineWatermarkActivity.java"
 
 # interfaces
@@ -47,7 +47,7 @@
     .locals 0
 
     .line 22
-    invoke-direct {p0}, Lmiui/app/Activity;-><init>()V
+    invoke-direct {p0}, Landroid/app/Activity;-><init>()V
 
     return-void
 .end method
@@ -399,7 +399,7 @@
     .locals 4
 
     .line 60
-    invoke-virtual {p0}, Lcom/android/camera/UserDefineWatermarkActivity;->getActionBar()Lmiui/app/ActionBar;
+    invoke-virtual {p0}, Lcom/android/camera/UserDefineWatermarkActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
@@ -794,7 +794,7 @@
     .end param
 
     .line 37
-    invoke-super {p0, p1}, Lmiui/app/Activity;->onCreate(Landroid/os/Bundle;)V
+    invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
 
     .line 38
     const p1, 0x7f040032
@@ -903,7 +903,7 @@
     .locals 2
 
     .line 110
-    invoke-super {p0}, Lmiui/app/Activity;->onDestroy()V
+    invoke-super {p0}, Landroid/app/Activity;->onDestroy()V
 
     .line 111
     iget-object v0, p0, Lcom/android/camera/UserDefineWatermarkActivity;->mBackgroundHandler:Lcom/android/camera/UserDefineWatermarkActivity$BackgroundHandler;
@@ -948,7 +948,7 @@
     .locals 0
 
     .line 105
-    invoke-super {p0}, Lmiui/app/Activity;->onPause()V
+    invoke-super {p0}, Landroid/app/Activity;->onPause()V
 
     .line 106
     return-void
@@ -958,7 +958,7 @@
     .locals 0
 
     .line 55
-    invoke-super {p0}, Lmiui/app/Activity;->onStart()V
+    invoke-super {p0}, Landroid/app/Activity;->onStart()V
 
     .line 56
     invoke-direct {p0}, Lcom/android/camera/UserDefineWatermarkActivity;->initTitle()V

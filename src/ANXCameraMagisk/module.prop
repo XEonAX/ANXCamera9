@@ -3,5 +3,5 @@ name=ANXMiuiCamera
 version=v0.1
 versionCode=1
 author=AEonAX
-description=ANXCamera Magisk Module for Libs
+description=ANXCamera Magisk Module
 minMagisk=17000
