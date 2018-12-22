@@ -6,7 +6,7 @@
 # static fields
 .field private static final ASSET_DIR:Ljava/lang/String; = "device_features/"
 
-.field private static final SYSTEM_DIR:Ljava/lang/String; = "/sdcard/etc/device_features"
+.field private static final SYSTEM_DIR:Ljava/lang/String; = "/system/etc/device_features"
 
 .field private static final TAG:Ljava/lang/String; = "FeatureParser"
 
@@ -650,7 +650,7 @@
     .line 156
     new-instance v3, Ljava/io/File;
 
-    const-string v4, "/sdcard/etc/device_features"
+    const-string v4, "/system/etc/device_features"
 
     invoke-direct {v3, v4, v2}, Ljava/io/File;-><init>(Ljava/lang/String;Ljava/lang/String;)V
 

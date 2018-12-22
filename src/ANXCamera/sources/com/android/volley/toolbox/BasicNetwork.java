@@ -50,24 +50,24 @@ public class BasicNetwork implements Network {
         this.mPool = byteArrayPool;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:78:0x0162 A:{ExcHandler: java.net.SocketTimeoutException (e java.net.SocketTimeoutException), Splitter: B:2:0x0011} */
-    /* JADX WARNING: Removed duplicated region for block: B:75:0x0146 A:{ExcHandler: java.net.MalformedURLException (r0_32 'e' java.lang.Throwable), Splitter: B:2:0x0011} */
+    /* JADX WARNING: Removed duplicated region for block: B:78:0x0162 A:{Splitter: B:2:0x0011, ExcHandler: java.net.SocketTimeoutException (e java.net.SocketTimeoutException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:75:0x0146 A:{Splitter: B:2:0x0011, ExcHandler: java.net.MalformedURLException (r0_32 'e' java.lang.Throwable)} */
     /* JADX WARNING: Removed duplicated region for block: B:91:0x0140 A:{SYNTHETIC} */
     /* JADX WARNING: Removed duplicated region for block: B:48:0x00c3  */
-    /* JADX WARNING: Removed duplicated region for block: B:78:0x0162 A:{ExcHandler: java.net.SocketTimeoutException (e java.net.SocketTimeoutException), Splitter: B:2:0x0011} */
-    /* JADX WARNING: Removed duplicated region for block: B:75:0x0146 A:{ExcHandler: java.net.MalformedURLException (r0_32 'e' java.lang.Throwable), Splitter: B:2:0x0011} */
+    /* JADX WARNING: Removed duplicated region for block: B:78:0x0162 A:{Splitter: B:2:0x0011, ExcHandler: java.net.SocketTimeoutException (e java.net.SocketTimeoutException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:75:0x0146 A:{Splitter: B:2:0x0011, ExcHandler: java.net.MalformedURLException (r0_32 'e' java.lang.Throwable)} */
     /* JADX WARNING: Removed duplicated region for block: B:48:0x00c3  */
     /* JADX WARNING: Removed duplicated region for block: B:91:0x0140 A:{SYNTHETIC} */
-    /* JADX WARNING: Removed duplicated region for block: B:78:0x0162 A:{ExcHandler: java.net.SocketTimeoutException (e java.net.SocketTimeoutException), Splitter: B:2:0x0011} */
-    /* JADX WARNING: Removed duplicated region for block: B:75:0x0146 A:{ExcHandler: java.net.MalformedURLException (r0_32 'e' java.lang.Throwable), Splitter: B:2:0x0011} */
+    /* JADX WARNING: Removed duplicated region for block: B:78:0x0162 A:{Splitter: B:2:0x0011, ExcHandler: java.net.SocketTimeoutException (e java.net.SocketTimeoutException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:75:0x0146 A:{Splitter: B:2:0x0011, ExcHandler: java.net.MalformedURLException (r0_32 'e' java.lang.Throwable)} */
     /* JADX WARNING: Removed duplicated region for block: B:91:0x0140 A:{SYNTHETIC} */
     /* JADX WARNING: Removed duplicated region for block: B:48:0x00c3  */
-    /* JADX WARNING: Removed duplicated region for block: B:78:0x0162 A:{ExcHandler: java.net.SocketTimeoutException (e java.net.SocketTimeoutException), Splitter: B:2:0x0011} */
-    /* JADX WARNING: Removed duplicated region for block: B:75:0x0146 A:{ExcHandler: java.net.MalformedURLException (r0_32 'e' java.lang.Throwable), Splitter: B:2:0x0011} */
+    /* JADX WARNING: Removed duplicated region for block: B:78:0x0162 A:{Splitter: B:2:0x0011, ExcHandler: java.net.SocketTimeoutException (e java.net.SocketTimeoutException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:75:0x0146 A:{Splitter: B:2:0x0011, ExcHandler: java.net.MalformedURLException (r0_32 'e' java.lang.Throwable)} */
     /* JADX WARNING: Removed duplicated region for block: B:48:0x00c3  */
     /* JADX WARNING: Removed duplicated region for block: B:91:0x0140 A:{SYNTHETIC} */
-    /* JADX WARNING: Removed duplicated region for block: B:78:0x0162 A:{ExcHandler: java.net.SocketTimeoutException (e java.net.SocketTimeoutException), Splitter: B:2:0x0011} */
-    /* JADX WARNING: Removed duplicated region for block: B:75:0x0146 A:{ExcHandler: java.net.MalformedURLException (r0_32 'e' java.lang.Throwable), Splitter: B:2:0x0011} */
+    /* JADX WARNING: Removed duplicated region for block: B:78:0x0162 A:{Splitter: B:2:0x0011, ExcHandler: java.net.SocketTimeoutException (e java.net.SocketTimeoutException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:75:0x0146 A:{Splitter: B:2:0x0011, ExcHandler: java.net.MalformedURLException (r0_32 'e' java.lang.Throwable)} */
     /* JADX WARNING: Removed duplicated region for block: B:91:0x0140 A:{SYNTHETIC} */
     /* JADX WARNING: Removed duplicated region for block: B:48:0x00c3  */
     /* JADX WARNING: Failed to process nested try/catch */
