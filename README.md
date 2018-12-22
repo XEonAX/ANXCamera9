@@ -21,9 +21,9 @@ Instructions for Development:
   
 Instructions for Testing:
 
- 1. Download the `apk` and `etc` folder from https://github.com/XEonAX/ANXMiuiCamera10/tree/master/out
- 2. Copy the `etc` folder to internal storage, so that `/sdcard/etc/device_features/beryllium.xml` becomes a valid path.
- 3. Install the `apk`
+ 1. Download the `zip` from https://github.com/XEonAX/ANXMiuiCamera10/tree/master/out
+ 2. Copy the https://raw.githubusercontent.com/XEonAX/ANXMiuiCamera10/master/out/etc/device_features/beryllium.xml to internal storage at `/sdcard/etc/device_features/`, so that `/sdcard/etc/device_features/beryllium.xml` becomes a valid path.
+ 3. Install the `zip` with Magisk
  4. Grant All Permissions
  5. Grant Usage Access Permission. 
 	 - Generally From Settings>Apps>Advanced>Special App Access>Usage Access>Camera>Allowed
