@@ -256,7 +256,7 @@
 
     invoke-direct {v0}, Lcom/android/camera2/AWBFrameControl$MarshalQueryableAWBFrameControl;-><init>()V
 
-    invoke-static {v0}, Landroid/hardware/camera2/marshal/MarshalRegistryANX;->registerMarshalQueryable(Landroid/hardware/camera2/marshal/MarshalQueryable;)V
+    invoke-static {v0}, Landroid/hardware/camera2/marshal/MarshalRegistry;->registerMarshalQueryable(Landroid/hardware/camera2/marshal/MarshalQueryable;)V
 
     .line 84
     invoke-static {}, Lcom/android/camera/Util;->isShowPreviewDebugInfo()Z
@@ -270,14 +270,14 @@
 
     invoke-direct {v0}, Lcom/android/camera2/AECFrameControl$MarshalQueryableAECFrameControl;-><init>()V
 
-    invoke-static {v0}, Landroid/hardware/camera2/marshal/MarshalRegistryANX;->registerMarshalQueryable(Landroid/hardware/camera2/marshal/MarshalQueryable;)V
+    invoke-static {v0}, Landroid/hardware/camera2/marshal/MarshalRegistry;->registerMarshalQueryable(Landroid/hardware/camera2/marshal/MarshalQueryable;)V
 
     .line 86
     new-instance v0, Lcom/android/camera2/AFFrameControl$MarshalQueryableAFFrameControl;
 
     invoke-direct {v0}, Lcom/android/camera2/AFFrameControl$MarshalQueryableAFFrameControl;-><init>()V
 
-    invoke-static {v0}, Landroid/hardware/camera2/marshal/MarshalRegistryANX;->registerMarshalQueryable(Landroid/hardware/camera2/marshal/MarshalQueryable;)V
+    invoke-static {v0}, Landroid/hardware/camera2/marshal/MarshalRegistry;->registerMarshalQueryable(Landroid/hardware/camera2/marshal/MarshalQueryable;)V
 
     .line 88
     :cond_0
