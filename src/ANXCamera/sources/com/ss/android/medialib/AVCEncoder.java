@@ -176,7 +176,7 @@ public class AVCEncoder {
         return initAVCEncoder(i, i2, i3, 1, 1, i4, z);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:57:0x0177 A:{LOOP_END, Catch:{ Exception -> 0x0346 }, LOOP:1: B:42:0x0119->B:57:0x0177} */
+    /* JADX WARNING: Removed duplicated region for block: B:57:0x0177 A:{LOOP_END, LOOP:1: B:42:0x0119->B:57:0x0177, Catch:{ Exception -> 0x0346 }} */
     /* JADX WARNING: Removed duplicated region for block: B:105:0x017a A:{SYNTHETIC, EDGE_INSN: B:105:0x017a->B:58:0x017a ?: BREAK  } */
     /* JADX WARNING: Missing block: B:49:0x015a, code:
             if (r11.profile < 2) goto L_0x0171;
