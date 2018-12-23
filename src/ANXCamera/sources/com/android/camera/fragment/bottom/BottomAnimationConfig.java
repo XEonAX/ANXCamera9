@@ -29,7 +29,7 @@ public class BottomAnimationConfig {
         if (this.mIsFPS960) {
             this.mDuration = 2000;
         } else if (this.mCurrentMode == 173) {
-            this.mDuration = 2000;
+            this.mDuration = 7000;
         } else if (this.mCurrentMode == 162 && this.mIsVideoBokeh) {
             this.mDuration = 30000;
         } else if (this.mCurrentMode == 161) {

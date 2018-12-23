@@ -225,7 +225,7 @@ public class CameraBackupHelper {
         throw new UnsupportedOperationException("Method not decompiled: com.android.camera.backup.CameraBackupHelper.restoreSettings(android.content.SharedPreferences, com.xiaomi.settingsdk.backup.data.DataPackage, com.xiaomi.settingsdk.backup.data.PrefsBackupHelper$PrefEntry[], boolean):void");
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0039 A:{Splitter: B:1:0x0013, ExcHandler: org.xmlpull.v1.XmlPullParserException (r2_7 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0039 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (r2_7 'e' java.lang.Throwable), Splitter: B:1:0x0013} */
     /* JADX WARNING: Missing block: B:15:0x0039, code:
             r2 = move-exception;
      */

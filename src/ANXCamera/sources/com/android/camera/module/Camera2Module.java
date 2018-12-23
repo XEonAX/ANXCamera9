@@ -1211,7 +1211,7 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
     private void prepareSuperNight() {
         if (this.mModuleIndex == 173) {
             ((ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162)).processingStart();
-            this.mSuperNightDisposable = Observable.just(Integer.valueOf(300), Integer.valueOf(2000)).flatMap(new Function<Integer, ObservableSource<Integer>>() {
+            this.mSuperNightDisposable = Observable.just(Integer.valueOf(300), Integer.valueOf(7000)).flatMap(new Function<Integer, ObservableSource<Integer>>() {
                 public ObservableSource<Integer> apply(Integer num) throws Exception {
                     return Observable.just(num).delaySubscription((long) num.intValue(), TimeUnit.MILLISECONDS);
                 }
@@ -1291,7 +1291,7 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
     public void onShutterButtonLongClickCancel(boolean z) {
         this.mPendingMultiCapture = false;
         if (this.mMultiSnapStatus) {
-            this.mHandler.sendEmptyMessageDelayed(49, FragmentTopAlert.HINT_DELAY_TIME);
+            this.mHandler.sendEmptyMessageDelayed(49, 7000);
         }
         this.mMultiSnapStopRequest = true;
         if (!this.mLongPressedAutoFocus) {
