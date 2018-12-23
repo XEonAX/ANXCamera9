@@ -104,7 +104,7 @@
             </intent-filter>
             <meta-data android:name="functionindex" android:resource="@xml/functionindex"/>
         </activity>
-        <activity android:label="@string/custom_watermark_words" android:launchMode="singleTop" android:name="com.android.camera.UserDefineWatermarkActivity" android:theme="@android:style/Theme.Light"/>
+        <activity android:label="@string/custom_watermark_words" android:launchMode="singleTop" android:name="com.android.camera.UserDefineWatermarkActivity" android:theme="@android:style/Theme.Material.Light"/>
         <service android:exported="true" android:name="com.android.camera.backup.CameraSettingsBackupService" android:permission="com.xiaomi.permission.CLOUD_MANAGER">
             <intent-filter>
                 <action android:name="miui.action.CLOUD_BACKUP_SETTINGS"/>
