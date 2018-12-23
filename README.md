@@ -22,10 +22,10 @@ Instructions for Development:
 Instructions for Testing:
 
  1. Download the `zip` from https://github.com/XEonAX/ANXMiuiCamera10/tree/master/out
- 2. Copy the https://raw.githubusercontent.com/XEonAX/ANXMiuiCamera10/master/out/etc/device_features/beryllium.xml to internal storage at `/sdcard/etc/device_features/`, so that `/sdcard/etc/device_features/beryllium.xml` becomes a valid path.
- 3. Install the `zip` with Magisk
- 4. Grant All Permissions
- 5. Grant Usage Access Permission. 
-	 - Generally From Settings>Apps>Advanced>Special App Access>Usage Access>Camera>Allowed
- 6. Start Testing
+ 2. Install the `zip` with Magisk
+ 3. Grant All Permissions
+ 4. Start Testing
+
+
+Special Thanks to Abhishek Aggarwal (https://github.com/TheScarastic) for bringing this up to Beta version
 
