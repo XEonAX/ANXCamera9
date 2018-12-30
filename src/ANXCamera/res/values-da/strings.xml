@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Kan ikke tilslutte til kamera.</string>
     <string name="cannot_connect_camera_twice">Kan stadig ikke tilslutte til kamera. Prøv at genstarte din enhed.</string>
     <string name="camera_disabled">Kamera er blevet deaktiveret.</string>
-    <string name="camera_label">Kamera</string>
+    <string name="camera_label">AnX Kamera</string>
     <string name="video_camera_label">Videokamera</string>
     <string name="no_storage">Indsæt SD-kort inden brug af kameraet</string>
     <string name="not_enough_space">SD-kort er fyldt.</string>

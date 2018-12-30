@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">क्यामेरामा जडान गर्न सक्दैन</string>
     <string name="cannot_connect_camera_twice">अझै पनि क्यामेरामा जडान गर्न सक्दैन। आफ्नो यन्त्र फेरि सुरु गर्ने प्रयास गर्नुहोस्।</string>
     <string name="camera_disabled">क्यामेरालाई असक्षम गरिएको छ</string>
-    <string name="camera_label">क्यामेरा</string>
+    <string name="camera_label">AnX क्यामेरा</string>
     <string name="video_camera_label">क्यामकोर्डर</string>
     <string name="no_storage">क्यामेरा प्रयोग गर्नु अघि SD कार्ड घुसाउनुहोस्</string>
     <string name="not_enough_space">SD कार्ड भरिएको छ</string>

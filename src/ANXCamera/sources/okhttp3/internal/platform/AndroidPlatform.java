@@ -261,9 +261,9 @@ class AndroidPlatform extends Platform {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:6:0x0023 A:{ExcHandler: java.lang.ClassNotFoundException (e java.lang.ClassNotFoundException), Splitter: B:0:0x0000} */
-    /* JADX WARNING: Removed duplicated region for block: B:3:0x001b A:{ExcHandler: java.lang.IllegalAccessException (r5_1 'e' java.lang.Exception), Splitter: B:0:0x0000} */
-    /* JADX WARNING: Removed duplicated region for block: B:3:0x001b A:{ExcHandler: java.lang.IllegalAccessException (r5_1 'e' java.lang.Exception), Splitter: B:0:0x0000} */
+    /* JADX WARNING: Removed duplicated region for block: B:6:0x0023 A:{Splitter: B:0:0x0000, ExcHandler: java.lang.ClassNotFoundException (e java.lang.ClassNotFoundException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:3:0x001b A:{Splitter: B:0:0x0000, ExcHandler: java.lang.IllegalAccessException (r5_1 'e' java.lang.Exception)} */
+    /* JADX WARNING: Removed duplicated region for block: B:3:0x001b A:{Splitter: B:0:0x0000, ExcHandler: java.lang.IllegalAccessException (r5_1 'e' java.lang.Exception)} */
     /* JADX WARNING: Missing block: B:3:0x001b, code:
             r5 = move-exception;
      */

@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Nu se poate conecta la camera foto</string>
     <string name="cannot_connect_camera_twice">Încă nu se poate conecta la camera foto. Încercați să reporniți dispozitivul.</string>
     <string name="camera_disabled">Aparatul foto a fost dezactivat</string>
-    <string name="camera_label">Aparat foto</string>
+    <string name="camera_label">AnX Aparat foto</string>
     <string name="video_camera_label">Cameră video</string>
     <string name="no_storage">Introduceți cardul SD înainte de a utiliza aparatul foto</string>
     <string name="not_enough_space">Cardul SD este plin</string>

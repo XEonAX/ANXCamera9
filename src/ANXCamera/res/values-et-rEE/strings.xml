@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Ei saanud ühendust kaameraga</string>
     <string name="cannot_connect_camera_twice">Ikka ei saanud ühendust kaameraga. Proovi seadet taaskäivitada.</string>
     <string name="camera_disabled">Kaamera on keelatud</string>
-    <string name="camera_label">Kaamera</string>
+    <string name="camera_label">AnX Kaamera</string>
     <string name="video_camera_label">Videokaamera</string>
     <string name="no_storage">Sisesta SD kaart enne kaamera kasutamist</string>
     <string name="not_enough_space">SD kaart on täis</string>

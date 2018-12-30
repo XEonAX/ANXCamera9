@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Không thể kết nối với máy ảnh</string>
     <string name="cannot_connect_camera_twice">Vẫn không thể kết nối với máy ảnh. Thử khởi động lại thiết bị của bạn.</string>
     <string name="camera_disabled">Máy ảnh đã bị vô hiệu hóa</string>
-    <string name="camera_label">Máy ảnh</string>
+    <string name="camera_label">AnX Máy ảnh</string>
     <string name="video_camera_label">Máy quay</string>
     <string name="no_storage">Lắp thẻ SD trước khi sử dụng máy ảnh</string>
     <string name="not_enough_space">Thẻ SD đã đầy</string>

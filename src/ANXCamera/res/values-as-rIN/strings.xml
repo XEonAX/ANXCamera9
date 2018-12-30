@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">কেমেৰাৰ সৈতে সংযোগ কৰিব নোৱাৰি</string>
     <string name="cannot_connect_camera_twice">এতিয়াও কেমেৰাৰ সৈতে সংযোগ কৰিব নোৱাৰি। আপোনাৰ ডিভাইচটো পুনৰাৰম্ভ কৰি চেষ্টা কৰক।</string>
     <string name="camera_disabled">কেমেৰা অক্ষম কৰা হৈছে</string>
-    <string name="camera_label">কেমেৰা</string>
+    <string name="camera_label">AnX কেমেৰা</string>
     <string name="video_camera_label">কেমকৰ্ডাৰ</string>
     <string name="no_storage">কেমেৰা ব্যৱহাৰ কৰাৰ আগতে এছডি কাৰ্ড আন্তঃসংযোগ কৰক</string>
     <string name="not_enough_space">এছডি কাৰ্ড পূৰ্ণ হৈছে</string>

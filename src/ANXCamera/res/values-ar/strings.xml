@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">لا يمكن الاتصال بالكاميرا</string>
     <string name="cannot_connect_camera_twice">لا يزال يتعذر الاتصال بالكاميرا. حاول إعادة تشغيل جهازك.</string>
     <string name="camera_disabled">تم تعطيل الكاميرا</string>
-    <string name="camera_label">الكاميرا</string>
+    <string name="camera_label">AnX الكاميرا</string>
     <string name="video_camera_label">كاميرا الفيديو</string>
     <string name="no_storage">أدخل بطاقة SD قبل استخدام بالكاميرا</string>
     <string name="not_enough_space">بطاقة الذاكرة SD ممتلئة</string>

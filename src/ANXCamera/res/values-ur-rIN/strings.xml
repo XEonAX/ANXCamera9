@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">کیمرے سے نہیں جڑ سکتا</string>
     <string name="cannot_connect_camera_twice">ابھی بھی کیمرے سے نہیں جڑ سکتا۔ اپنے ڈیوائس کو دوبارہ اسٹارٹ کرنے کی کوشش کریں۔</string>
     <string name="camera_disabled">کیمرا غیر فعال کردیا گیا ہے</string>
-    <string name="camera_label">کیمرا</string>
+    <string name="camera_label">AnX کیمرا</string>
     <string name="video_camera_label">ڈیجیٹل کیمرا</string>
     <string name="no_storage">کیمرا استعمال کرنے سے پہلے SD کارڈ داخل کریں</string>
     <string name="not_enough_space">SD کارڈ بھر گیا ہے</string>
