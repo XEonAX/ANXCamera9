@@ -12,10 +12,10 @@ public class CameraDeviceUtil {
     private CameraDeviceUtil() {
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0057 A:{Splitter: B:10:0x0025, ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable)} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0057 A:{Splitter: B:10:0x0025, ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable)} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0057 A:{Splitter: B:10:0x0025, ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable)} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0057 A:{Splitter: B:10:0x0025, ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0057 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0025} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0057 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0025} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0057 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0025} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0057 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0025} */
     /* JADX WARNING: Missing block: B:15:0x0057, code:
             r7 = move-exception;
      */
