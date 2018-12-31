@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="@android:style/Theme.Light" />
+    <style name="ThemeCamera" parent="@miui:style/Theme.Light">
+        <item name="android:colorBackground">@android:color/black</item>
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:listChoiceIndicatorMultiple">@drawable/btn_checkbox_light</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="miui:windowActionBar">false</item>
+    </style>
+    <style name="ThemeCameraSettings" parent="@miui:style/Theme.Light.Settings" />
+    <style name="OnScreenHintTextAppearance">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@android:color/primary_text_dark</item>
+        <item name="android:textColorHighlight">#ffff9200</item>
+        <item name="android:textColorHint">#ff808080</item>
+        <item name="android:textColorLink">#ff5c5cff</item>
+    </style>
+    <style name="OnScreenHintTextAppearance.Small" parent="@style/OnScreenHintTextAppearance">
+        <item name="android:textSize">14.0sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@android:color/secondary_text_dark</item>
+    </style>
+    <style name="ReviewControlIcon">
+        <item name="android:gravity">center</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <style name="PopupTitleSeperator">
+        <item name="android:background">@color/popup_title_color</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/popup_seperator_height</item>
+        <item name="android:layout_marginLeft">@dimen/popup_listview_left_padding</item>
+        <item name="android:layout_marginTop">4.0dip</item>
+        <item name="android:layout_marginRight">@dimen/popup_listview_left_padding</item>
+        <item name="android:layout_marginBottom">20.0dip</item>
+    </style>
+    <style name="SettingColumn">
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="SettingStatusBarText">
+        <item name="android:textSize">@dimen/v6_setting_status_bar_textSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:focusable">false</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_width">@dimen/v6_setting_status_bar_textWidth</item>
+        <item name="android:layout_height">@dimen/v6_setting_status_bar_textWidth</item>
+        <item name="android:layout_marginTop">@dimen/v6_setting_status_bar_margin_top</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:shadowColor">#c0000000</item>
+        <item name="android:shadowRadius">4.0</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
+    <style name="PanelButtonStyle">
+        <item name="android:paddingLeft">@dimen/panel_imageview_button_padding_width</item>
+        <item name="android:paddingRight">@dimen/panel_imageview_button_padding_width</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <style name="PanelRotateImageViewStyle" parent="@style/PanelButtonStyle">
+        <item name="android:scaleType">center</item>
+    </style>
+    <style name="PanelTextButtonStyle" parent="@style/PanelButtonStyle">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="RotateImageViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <style name="EffectItemText">
+        <item name="android:textSize">@dimen/effect_item_text_size</item>
+        <item name="android:textColor">@color/effect_item_text_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="GridSettingItemText">
+        <item name="android:textSize">@dimen/grid_setting_item_textSize</item>
+        <item name="android:textColor">@color/grid_setting_item_text_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+    <style name="SingeTextItemTextStyle">
+        <item name="android:textSize">@dimen/grid_text_only_setting_item_textSize</item>
+        <item name="android:textColor">@color/text_item_text_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="GridExpandedTextSettingItem" parent="@style/GridSettingItemText">
+        <item name="android:textSize">@dimen/expanded_text_item_textSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="RecordingTimeStyle">
+        <item name="android:textSize">@dimen/v6_recording_time_textSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:shadowColor">#ff000000</item>
+        <item name="android:shadowRadius">4.0</item>
+        <item name="android:drawableLeft">@drawable/v6_ic_video_recordtime_indicator</item>
+        <item name="android:drawablePadding">5.0dip</item>
+    </style>
+    <style name="DebugTextStyle">
+        <item name="android:textSize">15.0sp</item>
+        <item name="android:textColor">#ffff0000</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_marginTop">50.0dip</item>
+        <item name="android:shadowColor">#ff000000</item>
+        <item name="android:shadowDx">2.0</item>
+        <item name="android:shadowDy">2.0</item>
+        <item name="android:shadowRadius">1.0</item>
+    </style>
+    <style name="SnapTipTextStyle">
+        <item name="android:textSize">@dimen/snap_tip_text_size</item>
+        <item name="android:textColor">@color/white_alpha_cc</item>
+    </style>
+    <style name="ZoomButtonDigitsTextStyle">
+        <item name="android:textSize">@dimen/zoom_button_digits_textSize</item>
+        <item name="android:textColor">@color/white_alpha_cc</item>
+    </style>
+    <style name="ZoomButtonXTextStyle">
+        <item name="android:textSize">@dimen/zoom_button_x_textSize</item>
+        <item name="android:textColor">@color/white_alpha_cc</item>
+    </style>
+    <style name="ZoomPopupDigitsTextStyle">
+        <item name="android:textSize">@dimen/zoom_popup_digits_textSize</item>
+        <item name="android:textColor">@color/zoom_popup_text_item_text_color</item>
+    </style>
+    <style name="ZoomPopupXTextStyle">
+        <item name="android:textSize">@dimen/zoom_popup_x_textSize</item>
+        <item name="android:textColor">@color/zoom_popup_text_item_text_color</item>
+    </style>
+    <style name="PortraitHintTextStyle">
+        <item name="android:textSize">@dimen/portrait_hint_textSize</item>
+        <item name="android:textColor">@color/portrait_hint_text_color</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="BeautyCameraEffectRadioButton">
+        <item name="android:textSize">@dimen/beautycamera_tab_size</item>
+        <item name="android:textColor">@color/beauty_tab_selector_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@null</item>
+        <item name="android:paddingLeft">@dimen/beautycamera_effect_tab_margin</item>
+        <item name="android:paddingRight">@dimen/beautycamera_effect_tab_margin</item>
+        <item name="android:button">@null</item>
+        <item name="android:minWidth">@dimen/beautycamera_effect_tab_width</item>
+    </style>
+    <style name="PopupButtonIndicator">
+        <item name="android:background">@drawable/bg_popup_indicator</item>
+        <item name="android:layout_width">@dimen/manually_indicator_layout_size</item>
+        <item name="android:layout_height">@dimen/manually_indicator_layout_size</item>
+    </style>
+    <style name="PopupButtonIndicatorNoStroke">
+        <item name="android:background">@drawable/bg_popup_indicator_no_stroke</item>
+        <item name="android:layout_width">@dimen/manually_indicator_layout_size</item>
+        <item name="android:layout_height">@dimen/manually_indicator_layout_size</item>
+    </style>
+    <style name="PortraitUseHintTitleStyle">
+        <item name="android:textSize">@dimen/portrait_use_hint_title_textSize</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="PortraitUseHintContentStyle">
+        <item name="android:textSize">@dimen/portrait_use_hint_content_textSize</item>
+        <item name="android:textColor">#99ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:lineSpacingExtra">@dimen/portrait_use_hint_content_text_spacing</item>
+    </style>
+    <style name="DialogFragmentFullScreen" parent="@android:style/Theme.DeviceDefault.Dialog">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="LensDirtyDetectDialogFragment" parent="@style/DialogFragmentFullScreen">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="miui:windowActionBar">false</item>
+    </style>
+    <style name="TTMusicDialogFragment" parent="@style/DialogFragmentFullScreen">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="miui:windowActionBar">false</item>
+    </style>
+</resources>

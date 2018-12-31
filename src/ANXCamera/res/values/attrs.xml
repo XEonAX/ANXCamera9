@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="layoutManager" format="string" />
+    <attr name="spanCount" format="integer" />
+    <attr name="reverseLayout" format="boolean" />
+    <attr name="stackFromEnd" format="boolean" />
+    <attr name="cameraTitle" format="string" />
+    <attr name="key" format="string" />
+    <attr name="defaultValue" format="reference|string" />
+    <attr name="entryValues" format="reference" />
+    <attr name="entries" format="reference" />
+    <attr name="hasPopup" format="string" />
+    <attr name="icons" format="reference" />
+    <attr name="modes" format="reference" />
+    <attr name="singleIcon" format="reference" />
+    <attr name="largeIcons" format="reference" />
+    <attr name="images" format="reference" />
+    <attr name="labelList" format="reference" />
+    <attr name="backgroundColor" format="reference|color" />
+    <attr name="backgroundStrokeColor" format="reference|color" />
+    <attr name="backgroundStrokeWidth" format="reference|dimension" />
+    <attr name="thumbPadding" format="reference|dimension" />
+    <attr name="thumbColor" format="reference|color" />
+    <attr name="thumbShadowColor" format="reference|color" />
+    <attr name="thumbShadowRadius" format="reference|dimension" />
+    <attr name="textOn" format="reference|string" />
+    <attr name="textOnColor" format="reference|color" />
+    <attr name="textOff" format="reference|string" />
+    <attr name="textOffColor" format="reference|color" />
+    <attr name="textOffShadowColor" format="reference|color" />
+    <attr name="textSize" format="reference|dimension" />
+    <attr name="textOffShadowRadius" format="reference|dimension" />
+    <attr name="duration" format="reference|integer|dimension" />
+    <attr name="checked" format="reference|boolean" />
+</resources>

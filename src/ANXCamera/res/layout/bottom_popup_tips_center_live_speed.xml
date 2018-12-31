@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:paddingLeft="@dimen/manually_indicator_background_margin" android:paddingRight="@dimen/manually_indicator_background_margin" android:focusable="false" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/icon" android:background="@drawable/bgindicator_no_stroke" android:layout_width="@dimen/bottom_popu_speed_image_width" android:layout_height="@dimen/bottom_popu_speed_image_height" android:src="@drawable/ic_live_speed" android:scaleType="center" />
+    <TextView android:textSize="@dimen/popup_tip_live_speed_textSize" android:textColor="#ffffffff" android:id="@id/live_speed_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/bottom_popu_speed_title_top" android:layout_below="@id/icon" android:layout_centerHorizontal="true" />
+</RelativeLayout>

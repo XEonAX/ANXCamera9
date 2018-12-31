@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/portrait_use_hint_cover" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/portrait_use_hint_layout" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <ImageView android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/ic_portrait_use_hint_logo" android:contentDescription="@null" />
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/portrait_use_hint_title_margin_top" android:text="@string/pref_camera_portrait_mode_title" style="@style/PortraitUseHintTitleStyle" />
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/portrait_use_hint_content_margin_top" android:text="@string/portrait_mode_use_hint" style="@style/PortraitUseHintContentStyle" />
+    </LinearLayout>
+</LinearLayout>

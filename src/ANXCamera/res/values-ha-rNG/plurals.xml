@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">Ya ƙura ido. Ya gano fuskoki %d</item>
+        <item quantity="one">Ya ƙura ido. Ya gano fuska %d</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">An gama yin batsewa, ya dauki hotuna %1$s</item>
+        <item quantity="one">An gama yin batsewa, ya dauki hoto %1$s</item>
+    </plurals>
+</resources>

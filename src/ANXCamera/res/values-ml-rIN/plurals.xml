@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">ഫോക്കസ് ചെയ്തു. %d മുഖങ്ങൾ കണ്ടെത്തി</item>
+        <item quantity="one">ഫോക്കസ് ചെയ്തു. %d മുഖം കണ്ടെത്തി</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">ബഴ്സ്റ്റ് ഷോട്ട് പൂർത്തിയാക്കി, %1$s ഫോട്ടോകൾ എടുത്തു</item>
+        <item quantity="one">ബഴ്സ്റ്റ് ഷോട്ട് പൂർത്തിയാക്കി, %1$s ഫോട്ടോ എടുത്തു</item>
+    </plurals>
+</resources>

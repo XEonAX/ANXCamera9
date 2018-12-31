@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/pano_preview_hint_frame" android:background="@color/pano_preview_background" android:focusable="false" android:layout_width="fill_parent" android:layout_height="@dimen/pano_preview_hint_frame_height" android:layout_marginTop="@dimen/pano_preview_hint_frame_margin_top">
+        <View android:id="@id/pano_move_reference_line" android:background="@color/pano_move_reference_line_color" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="@dimen/pano_move_reference_line_height" android:layout_centerVertical="true" />
+        <ImageView android:id="@id/panorama_image_preview" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" android:layout_centerVertical="true" android:contentDescription="@null" />
+        <RelativeLayout android:id="@id/pano_still_preview_hint_area" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <com.android.camera.ui.GLTextureView android:id="@id/panorama_still_preview" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_alignParentLeft="true" />
+            <ImageView android:id="@id/pano_arrow" android:visibility="invisible" android:layout_width="@dimen/pano_arrow_width" android:layout_height="@dimen/pano_arrow_height" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:contentDescription="@null" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="horizontal" android:id="@id/pano_use_hint_area" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/pano_use_hint_area_top_margin" android:layout_below="@id/pano_preview_hint_frame">
+        <TextView android:textSize="@dimen/pano_review_saving_indication_size" android:textColor="#ffffffff" android:gravity="center" android:layout_gravity="center" android:id="@id/pano_use_hint" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/pano_how_to_use_prompt_start" android:shadowColor="#c0000000" android:shadowRadius="4.0" />
+    </LinearLayout>
+    <com.android.camera.ui.PanoMovingIndicatorView android:id="@id/pano_move_direction_view" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+</RelativeLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">Zaostrené. Rozpoznaných %d tvárí</item>
+        <item quantity="one">Zaostrené. Rozpoznaná %d tvár</item>
+        <item quantity="few">Zaostrené. Rozpoznané %d tváre</item>
+        <item quantity="many">Zaostrené. Rozpoznanej %d tváre</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">Dávkové snímanie dokončené, vytvorených %1$s snímok</item>
+        <item quantity="one">Dávkové snímanie dokončené, vytvorená %1$s snímka</item>
+        <item quantity="few">Dávkové snímanie dokončené, vytvorené %1$s snímky</item>
+        <item quantity="many">Dávkové snímanie dokončené, vytvorenej %1$s snímky</item>
+    </plurals>
+</resources>

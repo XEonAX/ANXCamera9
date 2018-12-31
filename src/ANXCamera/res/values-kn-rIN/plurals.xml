@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">ಫೋಕಸ್‌ ಆಗಿದೆ. %d ಮುಖಗಳನ್ನು ಗುರುತಿಸಲಾಗಿದೆ</item>
+        <item quantity="one">ಫೋಕಸ್‌ ಆಗಿದೆ. %d ಮುಖ ಗುರುತಿಸಲಾಗಿದೆ</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">ಬರ್ಸ್ಟ್‌ ಶಾಟ್‌ ಪೂರ್ಣಗೊಂಡಿದೆ, %1$s ಫೋಟೋಗಳನ್ನು ತೆಗೆಯಲಾಗಿದೆ</item>
+        <item quantity="one">ಬರ್ಸ್ಟ್‌ ಶಾಟ್‌ ಪೂರ್ಣಗೊಂಡಿದೆ, %1$s ಫೋಟೋ ತೆಗೆಯಲಾಗಿದೆ</item>
+    </plurals>
+</resources>

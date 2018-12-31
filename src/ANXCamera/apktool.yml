@@ -1,0 +1,73 @@
+!!brut.androlib.meta.MetaInfo
+apkFileName: MiuiCamera.apk
+compressionType: false
+doNotCompress:
+- dex
+- arsc
+- ogg
+- mp3
+- png
+- res/drawable-440dpi-v4/bg_top_extra.9.png
+- res/drawable-440dpi-v4/camera_preview.9.png
+- res/drawable-440dpi-v4/camera_preview_notch_nvirtualkey.9.png
+- res/drawable-440dpi-v4/camera_preview_nvirtualkey.9.png
+- res/drawable-440dpi-v4/camera_preview_virtualkey.9.png
+- res/drawable-440dpi-v4/female_age_info_pop.9.png
+- res/drawable-440dpi-v4/ic_ai_hint_bg.9.png
+- res/drawable-440dpi-v4/ic_ai_hint_bg2.9.png
+- res/drawable-440dpi-v4/ic_camera_mode_exit_button.9.png
+- res/drawable-440dpi-v4/ic_camera_mode_exit_button_full.9.png
+- res/drawable-440dpi-v4/ic_camera_mode_exit_button_full_pressed.9.png
+- res/drawable-440dpi-v4/ic_camera_mode_exit_button_pressed.9.png
+- res/drawable-440dpi-v4/ic_object_tracking.9.png
+- res/drawable-440dpi-v4/ic_object_tracking_succeed.9.png
+- res/drawable-440dpi-v4/magic_mirror_info_pop.9.png
+- res/drawable-440dpi-v4/male_age_info_pop.9.png
+- res/drawable-440dpi-v4/portrait_hint_text_background.9.png
+- res/drawable-440dpi-v4/screen_on_proximity_sensor_hint.9.png
+- res/drawable-440dpi-v4/screen_on_proximity_sensor_hint_fg.9.png
+- res/drawable-440dpi-v4/v6_ic_toast_frame.9.png
+- res/drawable-nodpi-v4/list_divider.9.png
+- res/drawable-nodpi-v4/on_screen_hint_frame.9.png
+- res/drawable-nodpi-v4/seekbar_progress_primary.9.png
+- res/drawable-xhdpi-v4/ic_ai_hint_recommend_bg.9.png
+- res/drawable-xxhdpi-v4/bg_top_extra.9.png
+- res/drawable-xxhdpi-v4/camera_preview.9.png
+- res/drawable-xxhdpi-v4/female_age_info_pop.9.png
+- res/drawable-xxhdpi-v4/ic_ai_backlight_pop_selected.9.png
+- res/drawable-xxhdpi-v4/ic_ai_backlight_pop_unselected.9.png
+- res/drawable-xxhdpi-v4/ic_ai_hint_bg.9.png
+- res/drawable-xxhdpi-v4/ic_ai_hint_bg2.9.png
+- res/drawable-xxhdpi-v4/ic_camera_mode_exit_button.9.png
+- res/drawable-xxhdpi-v4/ic_camera_mode_exit_button_full.9.png
+- res/drawable-xxhdpi-v4/ic_camera_mode_exit_button_full_pressed.9.png
+- res/drawable-xxhdpi-v4/ic_camera_mode_exit_button_pressed.9.png
+- res/drawable-xxhdpi-v4/ic_object_tracking.9.png
+- res/drawable-xxhdpi-v4/ic_object_tracking_succeed.9.png
+- res/drawable-xxhdpi-v4/magic_mirror_info_pop.9.png
+- res/drawable-xxhdpi-v4/male_age_info_pop.9.png
+- res/drawable-xxhdpi-v4/portrait_hint_text_background.9.png
+- res/drawable-xxhdpi-v4/screen_on_proximity_sensor_hint.9.png
+- res/drawable-xxhdpi-v4/screen_on_proximity_sensor_hint_fg.9.png
+- res/drawable-xxhdpi-v4/v6_ic_toast_frame.9.png
+- jpg
+isFrameworkApk: false
+packageInfo:
+  forcedPackageId: '127'
+  renameManifestPackage: null
+sdkInfo: null
+sharedLibrary: false
+sparseResources: false
+unknownFiles:
+  MODULE_LICENSE_BSD: '0'
+  NOTICE: '8'
+  okhttp3/internal/publicsuffix/publicsuffixes.gz: '8'
+usesFramework:
+  ids:
+  - 1
+  - 16
+  tag: null
+version: 2.3.4
+versionInfo:
+  versionCode: '3'
+  versionName: '3.0'

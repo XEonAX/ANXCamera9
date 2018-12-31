@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.android.camera.ui.ColorActivateTextView android:textSize="@dimen/mode_select_text_size" android:textColor="#b2ffffff" android:id="@id/text_item_title" android:paddingLeft="@dimen/mode_select_text_padding" android:paddingRight="@dimen/mode_select_padding_right" android:focusable="false" android:layout_marginLeft="@dimen/mode_select_text_margin" style="@style/SingeTextItemTextStyle" />
+    <View android:id="@id/mode_select_red_dot" android:background="@drawable/ic_dot_hint" android:visibility="invisible" android:layout_width="@dimen/mode_select_red_dot_width" android:layout_height="@dimen/mode_select_red_dot_width" android:layout_marginTop="@dimen/mode_select_dot_margin_top" android:layout_marginRight="@dimen/mode_select_margin_right" />
+</LinearLayout>

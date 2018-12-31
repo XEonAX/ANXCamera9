@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">フォーカスしました。%d個の顔を認識しました。</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">バースト撮影完了、写真が%1$s枚撮影されました</item>
+    </plurals>
+</resources>

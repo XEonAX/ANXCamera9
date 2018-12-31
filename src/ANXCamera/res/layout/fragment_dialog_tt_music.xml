@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <ImageView android:id="@id/music_item_close" android:background="@drawable/ic_live_music_back_normal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/music_back_margin_top" android:layout_marginStart="@dimen/music_back_margin_left" />
+        <TextView android:textSize="@dimen/music_select_text_size" android:textColor="@color/black" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/music_title_margin_top" android:text="@string/change_bgm" />
+    </RelativeLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/music_item_margin_top">
+        <TextView android:textSize="@dimen/music_select_title_size" android:textColor="@color/beautycamera_beauty_advanced_item_backgroud_pressed" android:gravity="center" android:id="@id/music_hotmusic" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@string/hot_music" android:layout_weight="1.0" />
+        <TextView android:textSize="@dimen/music_select_title_size" android:textColor="@color/black" android:gravity="center" android:id="@id/music_localmusic" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@string/local_music" android:layout_weight="1.0" android:alpha="0.5" />
+    </LinearLayout>
+    <View android:background="@color/white" android:layout_width="fill_parent" android:layout_height="@dimen/music_item_split_margin_top" />
+    <FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:gravity="center" android:id="@id/music_updating_layout" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <ProgressBar android:layout_width="@dimen/music_hint_height" android:layout_height="@dimen/music_hint_height" android:indeterminateDrawable="@drawable/waiting_progress" style="?android:attr/progressBarStyleLarge" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="更新中..." />
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView android:id="@id/music_recycler_view" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </FrameLayout>
+</LinearLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/lens_dirty_detected_cover" android:background="@color/lens_dirty_detected_background_color" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/lens_dirty_detected_icon_margin_bottom" android:src="@drawable/ic_lens_dirty_detected" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" />
+        <TextView android:textSize="@dimen/lens_dirty_detected_title_textSize" android:textColor="#ffffffff" android:id="@id/lens_dirty_detected_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/lens_dirty_detected_title_margin_bottom" android:text="@string/lens_dirty_detected_title_back" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" />
+        <TextView android:textSize="@dimen/lens_dirty_detected_content_textSize" android:textColor="#99ffffff" android:gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/lens_dirty_detected_content_margin_bottom" android:text="@string/lens_dirty_detected_content" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:lineSpacingExtra="@dimen/lens_dirty_detected_content_textLineSpacingExtra" />
+    </RelativeLayout>
+</LinearLayout>

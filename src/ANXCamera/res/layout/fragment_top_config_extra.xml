@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/config_extra_margin" android:layout_marginTop="@dimen/config_extra_margin" android:layout_marginRight="@dimen/config_extra_margin"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:id="@id/top_config_extra_background" android:background="@drawable/bg_top_extra" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <android.support.v7.widget.RecyclerView android:id="@id/top_config_extra_recyclerview" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/config_extra_recycler_margin" android:layout_marginTop="@dimen/config_extra_recycler_margin_vertical" android:layout_marginRight="@dimen/config_extra_recycler_margin" android:layout_marginBottom="@dimen/config_extra_recycler_margin_vertical" />
+</FrameLayout>

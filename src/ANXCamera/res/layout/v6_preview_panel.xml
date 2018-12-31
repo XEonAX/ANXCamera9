@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.camera.ui.V6PreviewPanel android:id="@id/v6_preview_panel" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:id="@id/preview_cover" android:background="@android:color/black" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <com.android.camera.ui.V6PreviewFrame android:id="@id/v6_frame_layout" android:clipChildren="false" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_centerInParent="true">
+        <com.android.camera.ui.SplitLineDrawer android:id="@id/v6_reference_grid" android:visibility="gone" android:clickable="false" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        <com.android.camera.ui.FaceView android:id="@id/v6_face_view" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        <com.android.camera.ui.ObjectView android:id="@id/object_view" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        <com.android.camera.ui.FocusView android:id="@id/v6_focus_view" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layoutDirection="locale" />
+        <com.android.camera.ui.LightingView android:id="@id/lighting_view" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layoutDirection="locale" />
+        <com.android.camera.ui.AfRegionsView android:id="@id/afregions_view" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layoutDirection="locale" />
+        <ImageView android:id="@id/v6_video_review_image" android:background="@android:color/black" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" android:contentDescription="@null" />
+        <ImageView android:id="@id/v6_video_btn_play" android:background="@drawable/bg_thumbnail_play" android:visibility="gone" android:layout_width="@dimen/video_preview_icon_width" android:layout_height="@dimen/video_preview_icon_width" android:src="@drawable/ic_live_record_play" android:scaleType="centerInside" android:layout_centerInParent="true" android:contentDescription="@null" style="@style/ReviewControlIcon" />
+        <com.android.camera.ui.V6EffectCropView android:id="@id/v6_effect_crop_view" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </com.android.camera.ui.V6PreviewFrame>
+</com.android.camera.ui.V6PreviewPanel>

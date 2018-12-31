@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="@dimen/live_filter_item_sel_size" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.android.camera.ui.RoundImageView android:id="@id/effect_item_image" android:layout_width="@dimen/live_filter_item_size" android:layout_height="@dimen/live_filter_item_size" android:scaleType="fitXY" android:layout_centerInParent="true" android:contentDescription="@null" />
+    <TextView android:textSize="@dimen/filter_item_text_size" android:textColor="@color/white" android:id="@id/effect_item_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignBottom="@id/effect_item_image" android:layout_centerHorizontal="true" />
+    <ImageView android:id="@id/effect_item_selected_inner_indicator" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/live_filter_item_inner_sel" android:layout_centerInParent="true" android:contentDescription="@null" />
+    <ImageView android:id="@id/effect_item_selected_indicator" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/live_filter_item_sel" android:layout_centerInParent="true" android:contentDescription="@null" />
+</RelativeLayout>

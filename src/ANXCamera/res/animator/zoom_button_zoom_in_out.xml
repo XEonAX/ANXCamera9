@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set android:ordering="sequentially"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <set android:ordering="together">
+        <objectAnimator android:duration="80" android:valueFrom="1" android:valueTo="1.25" android:valueType="floatType" android:propertyName="scaleX" />
+        <objectAnimator android:duration="80" android:valueFrom="1" android:valueTo="1.25" android:valueType="floatType" android:propertyName="scaleY" />
+    </set>
+    <set android:ordering="together">
+        <objectAnimator android:duration="180" android:valueFrom="1.25" android:valueTo="1" android:valueType="floatType" android:propertyName="scaleX" />
+        <objectAnimator android:duration="180" android:valueFrom="1.25" android:valueTo="1" android:valueType="floatType" android:propertyName="scaleY" />
+    </set>
+</set>

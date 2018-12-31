@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<functionindex
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <items>
+        <item>
+            <id>1</id>
+            <resource_name>camera_setting</resource_name>
+            <package>com.android.camera</package>
+            <class>com.android.camera.CameraPreferenceActivity</class>
+            <keywords>search_settings</keywords>
+            <drawable>android.resource://com.android.settings/drawable/com_android_camera</drawable>
+            <path>path_settings</path>
+            <is_setting>true</is_setting>
+        </item>
+    </items>
+</functionindex>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:shape="rectangle"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="@dimen/live_sticker_selected_corner_radius" />
+    <size android:height="@dimen/live_sticker_selected_size" android:width="@dimen/live_sticker_selected_size" />
+    <stroke android:width="@dimen/live_sticker_selected_stroke_width" android:color="@color/white" />
+</shape>

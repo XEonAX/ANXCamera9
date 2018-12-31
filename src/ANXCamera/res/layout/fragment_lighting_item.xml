@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="wrap_content" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.android.camera.ui.ColorImageView android:layout_gravity="center" android:id="@id/lighting_item_base" android:padding="@dimen/lighting_item_image_padding" android:layout_width="@dimen/lighting_item_image_width" android:layout_height="@dimen/lighting_item_image_width" android:scaleType="fitCenter" />
+    <com.android.camera.ui.ColorImageView android:layout_gravity="center" android:id="@id/lighting_item_image" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+</FrameLayout>

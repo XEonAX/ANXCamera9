@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="bottom" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/item_root" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/sticker_item_left_margin">
+        <ImageView android:id="@id/item_iv" android:background="@drawable/sticker_iv_bg" android:duplicateParentState="true" android:layout_width="@dimen/effect_item_width" android:layout_height="@dimen/effect_item_width" android:scaleType="centerInside" android:layout_centerInParent="true" android:contentDescription="@null" />
+        <View android:id="@id/iv_selected" android:background="@drawable/sticker_item_selected_bg" android:layout_width="@dimen/effect_item_width" android:layout_height="@dimen/effect_item_width" android:layout_centerInParent="true" />
+        <com.android.camera.fragment.sticker.download.DownloadView android:id="@id/item_download" android:background="@drawable/sticker_download_bg" android:layout_width="@dimen/sticker_download_size" android:layout_height="@dimen/sticker_download_size" android:layout_alignRight="@id/item_iv" android:layout_alignBottom="@id/item_iv" />
+    </RelativeLayout>
+</LinearLayout>

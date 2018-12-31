@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="screen_on_proximity_sensor_hint_height">388.0dip</dimen>
+</resources>

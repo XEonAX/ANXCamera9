@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">Fokuseeritud. %d nägu tuvastatud</item>
+        <item quantity="one">Fokuseeritud. %d nägu tuvastatud</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">Kiirtõmmis on valmis, tehtud %1$s fotot</item>
+        <item quantity="one">Kiirtõmmis on valmis, tehtud %1$s foto</item>
+    </plurals>
+</resources>

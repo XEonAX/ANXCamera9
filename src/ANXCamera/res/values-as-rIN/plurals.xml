@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">"ফ'কাছ হৈছে। %d খন মুখ চিনাক্ত হৈছে"</item>
+        <item quantity="one">"ফ'কাছ হৈছে। %d খন মুখ চিনাক্ত হৈছে"</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">"বাৰ্ষ্ট শ্বট লোৱা হ'ল, %1$s খন ফটো তোলা হ'ল"</item>
+        <item quantity="one">"বাৰ্ষ্ট শ্বট লোৱা হ'ল, %1$s খন ফটো তোলা হ'ল"</item>
+    </plurals>
+</resources>

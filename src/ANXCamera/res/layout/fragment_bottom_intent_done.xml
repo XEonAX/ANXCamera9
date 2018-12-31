@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="center" android:id="@id/intent_done_retry" android:layout_width="@dimen/bottom_picker_width" android:layout_height="@dimen/bottom_picker_width" android:layout_marginTop="50.0dip" android:layout_marginBottom="15.0dip" android:src="@drawable/v6_ic_image_capture_cancel_normal" android:scaleType="center" android:layout_centerVertical="true" android:contentDescription="@null" android:layout_marginStart="@dimen/bottom_control_lower_panel_padding_width" />
+    <ImageView android:layout_gravity="center" android:id="@id/intent_done_apply" android:layout_width="@dimen/bottom_picker_width" android:layout_height="@dimen/bottom_picker_width" android:layout_marginTop="50.0dip" android:layout_marginBottom="15.0dip" android:src="@drawable/v6_ic_image_capture_done_normal" android:scaleType="center" android:layout_centerVertical="true" android:contentDescription="@string/accessibility_intent_done_apply" android:layout_marginEnd="@dimen/bottom_control_lower_panel_padding_width" android:layout_alignParentEnd="true" />
+</RelativeLayout>

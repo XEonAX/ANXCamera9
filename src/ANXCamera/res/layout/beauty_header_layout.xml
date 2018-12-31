@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/makeup_item" android:focusable="false" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="@dimen/beauty_model_header_margin_left">
+        <ImageView android:id="@id/makeup_item_icon" android:layout_width="@dimen/beauty_header_width" android:layout_height="@dimen/beauty_header_height" android:scaleType="center" />
+        <TextView android:textSize="@dimen/beautycamera_image_editor_radio_button_text_size" android:textColor="@color/beautycamera_beauty_advanced_item_text_normal" android:id="@id/makeup_item_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/beautycamera_makeup_radiogroup_item_drawable_padding" />
+    </LinearLayout>
+    <TextView android:background="@color/beauty_divider_line" android:layout_width="@dimen/beauty_divider_stroke" android:layout_height="@dimen/beauty_divider_height" android:includeFontPadding="false" android:layout_toRightOf="@id/makeup_item" android:layout_centerVertical="true" />
+</RelativeLayout>
