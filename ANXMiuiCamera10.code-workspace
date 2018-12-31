@@ -5,6 +5,7 @@
 		}
 	],
 	"settings": {
-		"terminal.integrated.scrollback": 999999
+		"terminal.integrated.scrollback": 999999,
+		"xmlTools.splitAttributesOnFormat": true
 	}
 }
