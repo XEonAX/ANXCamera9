@@ -404,6 +404,7 @@ Portret rejimida foydalanishingiz mumkin"</string>
     <string name="edit_pupil_line">Ko‘z ruchkasi</string>
     <string name="edit_jelly_lips">Yaltiroq lablar</string>
     <string name="edit_blusher">Qizil</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="wait">Bir soniya…</string>
     <string name="pref_camera_recordlocation_entry_off">O‘chiq</string>
     <string name="pref_camera_recordlocation_entry_on">Yoniq</string>

@@ -404,6 +404,7 @@ Pre lepší výsledok očistite objektív."</string>
     <string name="edit_pupil_line">Očné linky</string>
     <string name="edit_jelly_lips">Lesk na pery</string>
     <string name="edit_blusher">Rúž</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="wait">Sekundu…</string>
     <string name="pref_camera_recordlocation_entry_off">Vypnúť</string>
     <string name="pref_camera_recordlocation_entry_on">Zapnúť</string>

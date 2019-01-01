@@ -404,6 +404,7 @@ a և առաջ բերում մարդկանց։"</string>
     <string name="edit_pupil_line">Աչքի մատիտ</string>
     <string name="edit_jelly_lips">Շրթունքների փայլ</string>
     <string name="edit_blusher">Կարմրաներկ</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="wait">Մեկ վայրկյան…</string>
     <string name="pref_camera_recordlocation_entry_off">Անջատված</string>
     <string name="pref_camera_recordlocation_entry_on">Միացված</string>

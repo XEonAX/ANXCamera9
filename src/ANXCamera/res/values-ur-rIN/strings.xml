@@ -404,6 +404,7 @@
     <string name="edit_pupil_line">آئی لائنر</string>
     <string name="edit_jelly_lips">لپ گلاس</string>
     <string name="edit_blusher">روگ</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="wait">ایک سیکنڈ…</string>
     <string name="pref_camera_recordlocation_entry_off">آف</string>
     <string name="pref_camera_recordlocation_entry_on">آن</string>

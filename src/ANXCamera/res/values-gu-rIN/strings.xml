@@ -404,6 +404,7 @@
     <string name="edit_pupil_line">આઈલાઇનર</string>
     <string name="edit_jelly_lips">લીપગ્લોસ</string>
     <string name="edit_blusher">રફ</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="wait">બસ એક સેકન્ડ…</string>
     <string name="pref_camera_recordlocation_entry_off">બંધ કરો</string>
     <string name="pref_camera_recordlocation_entry_on">ચાલુ કરો</string>

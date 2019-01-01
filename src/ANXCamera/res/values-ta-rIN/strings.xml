@@ -406,6 +406,7 @@
     <string name="edit_pupil_line">கண் லைனர்</string>
     <string name="edit_jelly_lips">இதழ் பொலிவு</string>
     <string name="edit_blusher">ரூஜ்</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="wait">சற்று காத்திருங்கள்…</string>
     <string name="pref_camera_recordlocation_entry_off">நிறுத்து</string>
     <string name="pref_camera_recordlocation_entry_on">இயக்கு</string>

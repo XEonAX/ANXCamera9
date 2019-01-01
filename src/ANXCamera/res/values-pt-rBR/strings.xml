@@ -404,6 +404,7 @@ no Modo Retrato"</string>
     <string name="edit_pupil_line">Delineador</string>
     <string name="edit_jelly_lips">Brilho labial</string>
     <string name="edit_blusher">Blush</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="wait">Aguarde…</string>
     <string name="pref_camera_recordlocation_entry_off">Desligado</string>
     <string name="pref_camera_recordlocation_entry_on">Ligado</string>

@@ -888,4 +888,5 @@ in Portrait mode"</string>
     <item type="string" name="APKTOOL_DUMMY_424">false</item>
     <item type="string" name="APKTOOL_DUMMY_425">false</item>
     <item type="string" name="APKTOOL_DUMMY_426">false</item>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
 </resources>

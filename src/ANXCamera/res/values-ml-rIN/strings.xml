@@ -404,6 +404,7 @@
     <string name="edit_pupil_line">ഐ‌ലൈനർ</string>
     <string name="edit_jelly_lips">ലിപ് ഗ്ലോസ്</string>
     <string name="edit_blusher">റൂഷ്</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="wait">ഒരു നിമിഷം കാത്തിരിക്കൂ…</string>
     <string name="pref_camera_recordlocation_entry_off">ഓഫ് ചെയ്യുക</string>
     <string name="pref_camera_recordlocation_entry_on">ഓൺ ചെയ്യുക</string>

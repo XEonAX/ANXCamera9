@@ -406,6 +406,7 @@
     <string name="edit_pupil_line">आईलाइनर</string>
     <string name="edit_jelly_lips">लिप ग्लॉस</string>
     <string name="edit_blusher">रॉग</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="wait">बस एक सेकंड…</string>
     <string name="pref_camera_recordlocation_entry_off">बंद</string>
     <string name="pref_camera_recordlocation_entry_on">चालू</string>

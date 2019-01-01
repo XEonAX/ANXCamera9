@@ -404,6 +404,7 @@ en modo retrato"</string>
     <string name="edit_pupil_line">Delineador de ojos</string>
     <string name="edit_jelly_lips">Brillo labial</string>
     <string name="edit_blusher">Rubor</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="wait">Un momento…</string>
     <string name="pref_camera_recordlocation_entry_off">Desactivar</string>
     <string name="pref_camera_recordlocation_entry_on">Activar</string>

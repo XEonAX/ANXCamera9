@@ -21,6 +21,8 @@ java  -jar .\tools\apktool.jar d -p .\tools\MiuiFrameworks -f -o .\src\ANXCamera
 Recompile
 java  -jar .\tools\apktool.jar b -p .\tools\MiuiFrameworks -o .\out\ANXCamera-Unsigned.apk .\src\ANXCamera
 
+ReDecompile
+java  -jar .\tools\apktool.jar d -p .\tools\MiuiFrameworks -f -o .\src\ANXCamera .\out\ANXCamera.apk
 
 Sign
 java  -jar .\tools\SignApk.jar .\tools\testkey.x509.pem .\tools\testkey.pk8 .\out\ANXCamera-Unsigned.apk .\out\ANXCamera.apk

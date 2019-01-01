@@ -1847,6 +1847,7 @@
     <public type="string" name="APKTOOL_DUMMY_424" id="0x7f0b0424" />
     <public type="string" name="APKTOOL_DUMMY_425" id="0x7f0b0425" />
     <public type="string" name="APKTOOL_DUMMY_426" id="0x7f0b0426" />
+    <public type="string" name="pref_camera_exposuretime_entry_64s" id="0x7f0b0430" />
     <public type="string" name="wait" id="0x7f0b025c" />
     <public type="string" name="pref_camera_recordlocation_entry_off" id="0x7f0b025d" />
     <public type="string" name="pref_camera_recordlocation_entry_on" id="0x7f0b025e" />

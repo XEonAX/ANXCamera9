@@ -404,6 +404,7 @@ Nuvalykite jei reikalinga geresnė kokybė."</string>
     <string name="edit_pupil_line">Akių kontūras</string>
     <string name="edit_jelly_lips">Lupų blizgesys</string>
     <string name="edit_blusher">Skaistalai</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="wait">Sekundėlę…</string>
     <string name="pref_camera_recordlocation_entry_off">Išjungta</string>
     <string name="pref_camera_recordlocation_entry_on">Įjungta</string>

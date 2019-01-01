@@ -404,6 +404,7 @@
     <string name="edit_pupil_line">ಕಾಡಿಗೆ</string>
     <string name="edit_jelly_lips">ಲಿಪ್‌ ಗ್ಲೋಸ್‌</string>
     <string name="edit_blusher">ರೋಫ್</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="wait">ಒಂದು ಸೆಕೆಂಡ್…</string>
     <string name="pref_camera_recordlocation_entry_off">ಆಫ್‌</string>
     <string name="pref_camera_recordlocation_entry_on">ಆನ್</string>

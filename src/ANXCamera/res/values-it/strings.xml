@@ -404,6 +404,7 @@ in modalità Portrait"</string>
     <string name="edit_pupil_line">Eyeliner</string>
     <string name="edit_jelly_lips">Lucidalabbra</string>
     <string name="edit_blusher">Rossetto</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="wait">Solo un secondo…</string>
     <string name="pref_camera_recordlocation_entry_off">Disattivato</string>
     <string name="pref_camera_recordlocation_entry_on">Attivato</string>

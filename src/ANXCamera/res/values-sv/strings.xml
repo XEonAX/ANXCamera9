@@ -404,6 +404,7 @@ i Porträtt läge"</string>
     <string name="edit_pupil_line">Eyeliner</string>
     <string name="edit_jelly_lips">Läppglans</string>
     <string name="edit_blusher">Rouge</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="wait">Vänta lite…</string>
     <string name="pref_camera_recordlocation_entry_off">Av</string>
     <string name="pref_camera_recordlocation_entry_on">På</string>

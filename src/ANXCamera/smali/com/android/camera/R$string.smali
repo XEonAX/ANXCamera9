@@ -661,6 +661,8 @@
 
 .field public static final pref_camera_exposuretime_entry_30:I = 0x7f0b013b
 
+.field public static final pref_camera_exposuretime_entry_64s:I = 0x7f0b0430
+
 .field public static final pref_camera_exposuretime_entry_32s:I = 0x7f0b0131
 
 .field public static final pref_camera_exposuretime_entry_4:I = 0x7f0b0138

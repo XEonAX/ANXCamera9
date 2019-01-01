@@ -1641,6 +1641,7 @@ public final class R {
         public static final int pref_camera_exposuretime_entry_4s = 2131427636;
         public static final int pref_camera_exposuretime_entry_500 = 2131427647;
         public static final int pref_camera_exposuretime_entry_60 = 2131427644;
+        public static final int pref_camera_exposuretime_entry_64s = 2131428400;
         public static final int pref_camera_exposuretime_entry_8 = 2131427641;
         public static final int pref_camera_exposuretime_entry_8s = 2131427635;
         public static final int pref_camera_exposuretime_entry_auto = 2131427632;

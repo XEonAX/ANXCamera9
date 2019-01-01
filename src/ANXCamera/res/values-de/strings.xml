@@ -404,6 +404,7 @@ im Porträtmodus verwenden"</string>
     <string name="edit_pupil_line">Eyeliner</string>
     <string name="edit_jelly_lips">Lipgloss</string>
     <string name="edit_blusher">Rouge</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="wait">Einen Moment…</string>
     <string name="pref_camera_recordlocation_entry_off">Aus</string>
     <string name="pref_camera_recordlocation_entry_on">An</string>

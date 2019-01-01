@@ -52,7 +52,7 @@
 
     .line 140
     :cond_0
-    const/16 v0, 0x11
+    const/16 v0, 0x12
 
     new-array v0, v0, [Lcom/android/camera/data/data/ComponentDataItem;
 
@@ -257,6 +257,18 @@
     const v3, 0x7f0b0131
 
     const-string v4, "32000000000"
+
+    invoke-direct {v2, v5, v5, v3, v4}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
+
+    aput-object v2, v0, v1
+
+    const/16 v1, 0x11
+
+    new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
+
+    const v3, 0x7f0b0430
+
+    const-string v4, "64000000000"
 
     invoke-direct {v2, v5, v5, v3, v4}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 

@@ -850,7 +850,7 @@ Name: res/drawable-xxhdpi-v4/ic_new_config_hdr_off.png
 SHA1-Digest: DRbfzyOmAt+esMdwzCi6UrvJB8w=
 
 Name: AndroidManifest.xml
-SHA1-Digest: TfQqH4TIe9PRCOyz2f3gZUwxMm4=
+SHA1-Digest: Sszl2KHDc556NVzniNLUiyh9TCo=
 
 Name: res/drawable-xxhdpi-v4/ic_ai_scene_dog.png
 SHA1-Digest: g0U5BWzQdKZWiMHlecD7lOjvGcM=
@@ -1521,7 +1521,7 @@ Name: res/drawable-xxhdpi-v4/portrait_india_effect_image_pink.png
 SHA1-Digest: KHeUixb5j6Z994zrf/dM70W4UEU=
 
 Name: classes.dex
-SHA1-Digest: RY2B2KLdnHWY+jIE9ga9fLUP3cY=
+SHA1-Digest: XAlkfp7t0c9InzHrvdW/OGdz7jw=
 
 Name: res/drawable-440dpi-v4/front_camera_hint_animation_0011.png
 SHA1-Digest: xtNI2Wu95MYnN2B0MnIoHcJKnls=
@@ -1609,7 +1609,7 @@ Name: res/drawable-xxhdpi-v4/icon_nose_n.png
 SHA1-Digest: 1qyICY3KB/BkohDI5c/k/u/HptI=
 
 Name: resources.arsc
-SHA1-Digest: nxvAbsAihcv8WR3lgkrC3ARWJsM=
+SHA1-Digest: gdgDc+KWb+wzeS8jAWB61kLkUIk=
 
 Name: res/drawable-440dpi-v4/front_camera_hint_animation_0130.png
 SHA1-Digest: l2du19g/aOcTN9oac+iKCiQJyJ4=
