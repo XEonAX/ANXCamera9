@@ -4,7 +4,6 @@ import android.location.Location;
 import android.media.ExifInterface;
 import android.os.Build;
 import com.android.camera.log.Log;
-import com.android.gallery3d.exif.ExifInterface.GpsLatitudeRef;
 import com.android.gallery3d.exif.ExifInterface.GpsLongitudeRef;
 import com.mi.config.b;
 import java.io.File;
@@ -52,7 +51,7 @@ public class ExifHelper {
                 if (latitude > 0.0d) {
                     exifInterface.setAttribute("GPSLatitudeRef", "N");
                 } else {
-                    exifInterface.setAttribute("GPSLatitudeRef", GpsLatitudeRef.SOUTH);
+                    exifInterface.setAttribute("GPSLatitudeRef", "S");
                 }
                 if (longitude > 0.0d) {
                     exifInterface.setAttribute("GPSLongitudeRef", GpsLongitudeRef.EAST);

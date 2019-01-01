@@ -1288,7 +1288,7 @@ public class ExifInterface {
     public static double convertLatOrLongToDouble(Rational[] rationalArr, String str) {
         try {
             double toDouble = (rationalArr[0].toDouble() + (rationalArr[1].toDouble() / 60.0d)) + (rationalArr[2].toDouble() / 3600.0d);
-            if (str.equals(GpsLatitudeRef.SOUTH) || str.equals(GpsLongitudeRef.WEST)) {
+            if (str.equals("S") || str.equals(GpsLongitudeRef.WEST)) {
                 return -toDouble;
             }
             return toDouble;
@@ -1339,7 +1339,7 @@ public class ExifInterface {
         if (d >= 0.0d) {
             obj = "N";
         } else {
-            obj = GpsLatitudeRef.SOUTH;
+            obj = "S";
         }
         ExifTag buildTag3 = buildTag(i, obj);
         int i2 = TAG_GPS_LONGITUDE_REF;

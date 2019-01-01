@@ -1027,7 +1027,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
         Class[] clsArr = new Class[]{MediaRecorder.class};
         Method method = Util.getMethod(clsArr, "setParameter", "(Ljava/lang/String;)V");
         if (method != null) {
-            method.invoke(clsArr[0], mediaRecorder, new Object[]{str});
+            method.invoke(clsArr[0], mediaRecorder, str);
         }
     }
 

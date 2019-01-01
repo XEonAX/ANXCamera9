@@ -135,8 +135,6 @@ import miui.hardware.display.DisplayFeatureManager;
 import miui.os.Build;
 import miui.reflect.Field;
 import miui.reflect.Method;
-import miui.reflect.NoSuchClassException;
-import miui.reflect.NoSuchFieldException;
 import miui.reflect.NoSuchMethodException;
 import miui.security.SecurityManager;
 import miui.util.IOUtils;
@@ -1728,14 +1726,14 @@ public final class Util {
     public static int getIntField(String str, Object obj, String str2, String str3) {
         try {
             return Field.of(str, str2, str3).getInt(obj);
-        } catch (NoSuchClassException e) {
+        } catch (Throwable e) {
             str2 = TAG;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("no class ");
             stringBuilder.append(str);
             Log.e(str2, stringBuilder.toString(), e);
             return Integer.MIN_VALUE;
-        } catch (NoSuchFieldException e2) {
+        } catch (Throwable e2) {
             Log.e(TAG, "no field ", e2);
             return Integer.MIN_VALUE;
         }
@@ -1977,7 +1975,7 @@ public final class Util {
             Class cls = Class.forName("miui.content.pm.PreloadedAppPolicy");
             Method of = Method.of(cls, "installPreloadedDataApp", CompatibilityUtils.getInstallMethodDescription());
             int i = z ? 1 : z2 ? 2 : 0;
-            boolean invokeBoolean = of.invokeBoolean(cls, null, new Object[]{context, str, packageInstallObserver, Integer.valueOf(i)});
+            boolean invokeBoolean = of.invokeBoolean(cls, null, context, str, packageInstallObserver, Integer.valueOf(i));
             String str3 = TAG;
             StringBuilder stringBuilder2 = new StringBuilder();
             stringBuilder2.append("installPackage: result=");
@@ -2250,7 +2248,7 @@ public final class Util {
                                     int attributeIntValue = getAttributeIntValue(newPullParser, "CCT", 0);
                                     int attributeIntValue2 = getAttributeIntValue(newPullParser, "R", 0);
                                     int attributeIntValue3 = getAttributeIntValue(newPullParser, "G", 0);
-                                    int attributeIntValue4 = getAttributeIntValue(newPullParser, "B", 0);
+                                    int attributeIntValue4 = getAttributeIntValue(newPullParser, Field.BYTE_SIGNATURE_PRIMITIVE, 0);
                                     COLOR_TEMPERATURE_LIST.add(Integer.valueOf(attributeIntValue));
                                     COLOR_TEMPERATURE_MAP.add(Integer.valueOf(Color.rgb(attributeIntValue2, attributeIntValue3, attributeIntValue4)));
                                 }

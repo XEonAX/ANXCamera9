@@ -4,6 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.android.gallery3d.exif.ExifInterface.GpsTrackRef;
 import java.util.ArrayList;
 import java.util.List;
+import miui.reflect.Field;
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.DaoLog;
@@ -113,7 +114,7 @@ public class QueryBuilder<T> {
 
     private <J> Join<T, J> addJoin(String str, Property property, AbstractDao<J, ?> abstractDao, Property property2) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("J");
+        stringBuilder.append(Field.LONG_SIGNATURE_PRIMITIVE);
         stringBuilder.append(this.joins.size() + 1);
         Join<T, J> join = new Join(str, property, abstractDao, property2, stringBuilder.toString());
         this.joins.add(join);
