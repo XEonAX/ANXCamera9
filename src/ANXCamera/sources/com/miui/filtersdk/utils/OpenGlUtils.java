@@ -2,9 +2,13 @@ package com.miui.filtersdk.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 import android.util.Log;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.Buffer;
 
 public class OpenGlUtils {
@@ -108,146 +112,46 @@ public class OpenGlUtils {
     /* JADX WARNING: Missing block: B:16:0x00e5, code:
             return;
      */
-    public static void loadYuvToTextures(java.nio.Buffer r17, java.nio.Buffer r18, int r19, int r20, int[] r21) {
-        /*
-        r9 = r21;
-        if (r17 == 0) goto L_0x00e5;
-    L_0x0004:
-        if (r18 != 0) goto L_0x0008;
-    L_0x0006:
-        goto L_0x00e5;
-    L_0x0008:
-        if (r9 == 0) goto L_0x00e4;
-    L_0x000a:
-        r0 = r9.length;
-        r10 = 2;
-        if (r0 >= r10) goto L_0x0010;
-    L_0x000e:
-        goto L_0x00e4;
-    L_0x0010:
-        r0 = 0;
-        r1 = r9[r0];
-        r7 = 10241; // 0x2801 float:1.435E-41 double:5.0597E-320;
-        r6 = 10240; // 0x2800 float:1.4349E-41 double:5.059E-320;
-        r2 = 33984; // 0x84c0 float:4.7622E-41 double:1.67903E-319;
-        r5 = -1;
-        r4 = 1191259904; // 0x47012f00 float:33071.0 double:5.88560594E-315;
-        r3 = 1175979008; // 0x46180400 float:9729.0 double:5.81010828E-315;
-        r10 = 1;
-        r11 = 3553; // 0xde1 float:4.979E-42 double:1.7554E-320;
-        if (r1 != r5) goto L_0x0060;
-    L_0x0026:
-        android.opengl.GLES20.glGenTextures(r10, r9, r0);
-        android.opengl.GLES20.glActiveTexture(r2);
-        r0 = r9[r0];
-        android.opengl.GLES20.glBindTexture(r11, r0);
-        r0 = 3553; // 0xde1 float:4.979E-42 double:1.7554E-320;
-        r1 = 0;
-        r2 = 6409; // 0x1909 float:8.981E-42 double:3.1665E-320;
-        r13 = 0;
-        r14 = 6409; // 0x1909 float:8.981E-42 double:3.1665E-320;
-        r15 = 5121; // 0x1401 float:7.176E-42 double:2.53E-320;
-        r10 = r3;
-        r3 = r19;
-        r12 = r4;
-        r4 = r20;
-        r5 = r13;
-        r12 = r6;
-        r6 = r14;
-        r7 = r15;
-        r8 = r17;
-        android.opengl.GLES20.glTexImage2D(r0, r1, r2, r3, r4, r5, r6, r7, r8);
-        android.opengl.GLES20.glTexParameterf(r11, r12, r10);
-        r7 = 10241; // 0x2801 float:1.435E-41 double:5.0597E-320;
-        android.opengl.GLES20.glTexParameterf(r11, r7, r10);
-        r0 = 1191259904; // 0x47012f00 float:33071.0 double:5.88560594E-315;
-        r1 = 10242; // 0x2802 float:1.4352E-41 double:5.06E-320;
-        android.opengl.GLES20.glTexParameterf(r11, r1, r0);
-        r1 = 10243; // 0x2803 float:1.4354E-41 double:5.0607E-320;
-        android.opengl.GLES20.glTexParameterf(r11, r1, r0);
-        goto L_0x007e;
-    L_0x0060:
-        r10 = r3;
-        r12 = r6;
-        android.opengl.GLES20.glActiveTexture(r2);
-        r0 = r9[r0];
-        android.opengl.GLES20.glBindTexture(r11, r0);
-        r0 = 3553; // 0xde1 float:4.979E-42 double:1.7554E-320;
-        r1 = 0;
-        r2 = 6409; // 0x1909 float:8.981E-42 double:3.1665E-320;
-        r5 = 0;
-        r6 = 6409; // 0x1909 float:8.981E-42 double:3.1665E-320;
-        r13 = 5121; // 0x1401 float:7.176E-42 double:2.53E-320;
-        r3 = r19;
-        r4 = r20;
-        r7 = r13;
-        r8 = r17;
-        android.opengl.GLES20.glTexImage2D(r0, r1, r2, r3, r4, r5, r6, r7, r8);
-    L_0x007e:
-        r0 = 1;
-        r1 = r9[r0];
-        r2 = 33985; // 0x84c1 float:4.7623E-41 double:1.6791E-319;
-        r3 = -1;
-        if (r1 != r3) goto L_0x00c1;
-    L_0x0087:
-        android.opengl.GLES20.glGenTextures(r0, r9, r0);
-        android.opengl.GLES20.glActiveTexture(r2);
-        r0 = r9[r0];
-        android.opengl.GLES20.glBindTexture(r11, r0);
-        r0 = 3553; // 0xde1 float:4.979E-42 double:1.7554E-320;
-        r1 = 0;
-        r2 = 6410; // 0x190a float:8.982E-42 double:3.167E-320;
-        r3 = 2;
-        r4 = r19 / 2;
-        r5 = r20 / 2;
-        r6 = 0;
-        r7 = 6410; // 0x190a float:8.982E-42 double:3.167E-320;
-        r8 = 5121; // 0x1401 float:7.176E-42 double:2.53E-320;
-        r3 = r4;
-        r4 = r5;
-        r5 = r6;
-        r6 = r7;
-        r7 = r8;
-        r8 = r18;
-        android.opengl.GLES20.glTexImage2D(r0, r1, r2, r3, r4, r5, r6, r7, r8);
-        android.opengl.GLES20.glTexParameterf(r11, r12, r10);
-        r0 = 10241; // 0x2801 float:1.435E-41 double:5.0597E-320;
-        android.opengl.GLES20.glTexParameterf(r11, r0, r10);
-        r0 = 1191259904; // 0x47012f00 float:33071.0 double:5.88560594E-315;
-        r1 = 10242; // 0x2802 float:1.4352E-41 double:5.06E-320;
-        android.opengl.GLES20.glTexParameterf(r11, r1, r0);
-        r1 = 10243; // 0x2803 float:1.4354E-41 double:5.0607E-320;
-        android.opengl.GLES20.glTexParameterf(r11, r1, r0);
-        goto L_0x00e3;
-    L_0x00c1:
-        android.opengl.GLES20.glActiveTexture(r2);
-        r0 = 1;
-        r0 = r9[r0];
-        android.opengl.GLES20.glBindTexture(r11, r0);
-        r0 = 3553; // 0xde1 float:4.979E-42 double:1.7554E-320;
-        r1 = 0;
-        r2 = 6410; // 0x190a float:8.982E-42 double:3.167E-320;
-        r3 = 2;
-        r4 = r19 / 2;
-        r5 = r20 / 2;
-        r6 = 0;
-        r7 = 6410; // 0x190a float:8.982E-42 double:3.167E-320;
-        r8 = 5121; // 0x1401 float:7.176E-42 double:2.53E-320;
-        r3 = r4;
-        r4 = r5;
-        r5 = r6;
-        r6 = r7;
-        r7 = r8;
-        r8 = r18;
-        android.opengl.GLES20.glTexImage2D(r0, r1, r2, r3, r4, r5, r6, r7, r8);
-    L_0x00e3:
-        return;
-    L_0x00e4:
-        return;
-    L_0x00e5:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.filtersdk.utils.OpenGlUtils.loadYuvToTextures(java.nio.Buffer, java.nio.Buffer, int, int, int[]):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static void loadYuvToTextures(Buffer buffer, Buffer buffer2, int i, int i2, int[] iArr) {
+        int[] iArr2 = iArr;
+        if (buffer != null && buffer2 != null && iArr2 != null && iArr2.length >= 2) {
+            float f;
+            int i3;
+            if (iArr2[0] == -1) {
+                GLES20.glGenTextures(1, iArr2, 0);
+                GLES20.glActiveTexture(33984);
+                GLES20.glBindTexture(3553, iArr2[0]);
+                f = 9729.0f;
+                i3 = 1191259904;
+                i3 = 10240;
+                GLES20.glTexImage2D(3553, 0, 6409, i, i2, 0, 6409, 5121, buffer);
+                GLES20.glTexParameterf(3553, i3, f);
+                GLES20.glTexParameterf(3553, 10241, f);
+                GLES20.glTexParameterf(3553, 10242, 33071.0f);
+                GLES20.glTexParameterf(3553, 10243, 33071.0f);
+            } else {
+                f = 9729.0f;
+                i3 = 10240;
+                GLES20.glActiveTexture(33984);
+                GLES20.glBindTexture(3553, iArr2[0]);
+                GLES20.glTexImage2D(3553, 0, 6409, i, i2, 0, 6409, 5121, buffer);
+            }
+            if (iArr2[1] == -1) {
+                GLES20.glGenTextures(1, iArr2, 1);
+                GLES20.glActiveTexture(33985);
+                GLES20.glBindTexture(3553, iArr2[1]);
+                GLES20.glTexImage2D(3553, 0, 6410, i / 2, i2 / 2, 0, 6410, 5121, buffer2);
+                GLES20.glTexParameterf(3553, i3, f);
+                GLES20.glTexParameterf(3553, 10241, f);
+                GLES20.glTexParameterf(3553, 10242, 33071.0f);
+                GLES20.glTexParameterf(3553, 10243, 33071.0f);
+            } else {
+                GLES20.glActiveTexture(33985);
+                GLES20.glBindTexture(3553, iArr2[1]);
+                GLES20.glTexImage2D(3553, 0, 6410, i / 2, i2 / 2, 0, 6410, 5121, buffer2);
+            }
+        }
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:24:0x0038 A:{SYNTHETIC, Splitter: B:24:0x0038} */
@@ -278,66 +182,50 @@ public class OpenGlUtils {
     /* JADX WARNING: Missing block: B:31:0x0044, code:
             r2.printStackTrace();
      */
-    public static android.graphics.Bitmap getImageFromAssetsFile(android.content.Context r2, java.lang.String r3) {
-        /*
-        r2 = r2.getResources();
-        r2 = r2.getAssets();
-        r0 = 0;
-        r2 = r2.open(r3);	 Catch:{ IOException -> 0x0031 }
-        r3 = android.graphics.BitmapFactory.decodeStream(r2);	 Catch:{ IOException -> 0x0028, all -> 0x0026 }
-        r2.close();	 Catch:{ IOException -> 0x0021, all -> 0x0026 }
-        if (r2 == 0) goto L_0x003c;
-    L_0x0018:
-        r2.close();	 Catch:{ IOException -> 0x001c }
-    L_0x001b:
-        goto L_0x003c;
-    L_0x001c:
-        r2 = move-exception;
-        r2.printStackTrace();
-        goto L_0x001b;
-    L_0x0021:
-        r0 = move-exception;
-        r1 = r0;
-        r0 = r2;
-        r2 = r1;
-        goto L_0x0033;
-    L_0x0026:
-        r3 = move-exception;
-        goto L_0x003d;
-    L_0x0028:
-        r3 = move-exception;
-        r1 = r0;
-        r0 = r2;
-        r2 = r3;
-        r3 = r1;
-        goto L_0x0033;
-    L_0x002e:
-        r3 = move-exception;
-        r2 = r0;
-        goto L_0x003d;
-    L_0x0031:
-        r2 = move-exception;
-        r3 = r0;
-    L_0x0033:
-        r2.printStackTrace();	 Catch:{ all -> 0x002e }
-        if (r0 == 0) goto L_0x003c;
-    L_0x0038:
-        r0.close();	 Catch:{ IOException -> 0x001c }
-        goto L_0x001b;
-    L_0x003c:
-        return r3;
-    L_0x003d:
-        if (r2 == 0) goto L_0x0047;
-    L_0x003f:
-        r2.close();	 Catch:{ IOException -> 0x0043 }
-        goto L_0x0047;
-    L_0x0043:
-        r2 = move-exception;
-        r2.printStackTrace();
-    L_0x0047:
-        throw r3;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.filtersdk.utils.OpenGlUtils.getImageFromAssetsFile(android.content.Context, java.lang.String):android.graphics.Bitmap");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static Bitmap getImageFromAssetsFile(Context context, String str) {
+        Bitmap decodeStream;
+        IOException e;
+        InputStream inputStream = null;
+        try {
+            InputStream open = context.getResources().getAssets().open(str);
+            try {
+                decodeStream = BitmapFactory.decodeStream(open);
+                open.close();
+                if (open != null) {
+                    try {
+                        open.close();
+                    } catch (IOException e2) {
+                        e2.printStackTrace();
+                    }
+                }
+            } catch (IOException e3) {
+                inputStream = open;
+                e2 = e3;
+                decodeStream = null;
+                try {
+                    e2.printStackTrace();
+                    if (inputStream != null) {
+                    }
+                    return decodeStream;
+                } catch (Throwable th) {
+                    Throwable th2 = th;
+                    open = inputStream;
+                    if (open != null) {
+                    }
+                    throw th2;
+                }
+            } catch (Throwable th3) {
+            }
+        } catch (IOException e4) {
+            e2 = e4;
+            decodeStream = null;
+            e2.printStackTrace();
+            if (inputStream != null) {
+            }
+            return decodeStream;
+        }
+        return decodeStream;
     }
 
     public static int loadProgram(String str, String str2) {
@@ -434,57 +322,56 @@ public class OpenGlUtils {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:24:0x0030 A:{SYNTHETIC, Splitter: B:24:0x0030} */
-    public static android.graphics.Bitmap getImageFromPath(java.lang.String r2) {
-        /*
-        r0 = 0;
-        r1 = new java.io.FileInputStream;	 Catch:{ IOException -> 0x001a, all -> 0x0018 }
-        r1.<init>(r2);	 Catch:{ IOException -> 0x001a, all -> 0x0018 }
-        r2 = android.graphics.BitmapFactory.decodeStream(r1);	 Catch:{ IOException -> 0x0016 }
-        r1.close();	 Catch:{ IOException -> 0x0011 }
-    L_0x0010:
-        goto L_0x002b;
-    L_0x0011:
-        r0 = move-exception;
-        r0.printStackTrace();
-        goto L_0x0010;
-    L_0x0016:
-        r2 = move-exception;
-        goto L_0x001c;
-    L_0x0018:
-        r2 = move-exception;
-        goto L_0x002e;
-    L_0x001a:
-        r2 = move-exception;
-        r1 = r0;
-    L_0x001c:
-        r2.printStackTrace();	 Catch:{ all -> 0x002c }
-        if (r1 == 0) goto L_0x002a;
-    L_0x0021:
-        r1.close();	 Catch:{ IOException -> 0x0025 }
-    L_0x0024:
-        goto L_0x002a;
-    L_0x0025:
-        r2 = move-exception;
-        r2.printStackTrace();
-        goto L_0x0024;
-    L_0x002a:
-        r2 = r0;
-    L_0x002b:
-        return r2;
-    L_0x002c:
-        r2 = move-exception;
-        r0 = r1;
-    L_0x002e:
-        if (r0 == 0) goto L_0x0038;
-    L_0x0030:
-        r0.close();	 Catch:{ IOException -> 0x0034 }
-        goto L_0x0038;
-    L_0x0034:
-        r0 = move-exception;
-        r0.printStackTrace();
-    L_0x0038:
-        throw r2;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.filtersdk.utils.OpenGlUtils.getImageFromPath(java.lang.String):android.graphics.Bitmap");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static Bitmap getImageFromPath(String str) {
+        IOException e;
+        Throwable th;
+        InputStream inputStream = null;
+        InputStream fileInputStream;
+        try {
+            fileInputStream = new FileInputStream(str);
+            try {
+                Bitmap decodeStream = BitmapFactory.decodeStream(fileInputStream);
+                try {
+                    fileInputStream.close();
+                    return decodeStream;
+                } catch (IOException e2) {
+                    e2.printStackTrace();
+                    return decodeStream;
+                }
+            } catch (IOException e3) {
+                e = e3;
+            }
+        } catch (IOException e4) {
+            e = e4;
+            fileInputStream = null;
+            try {
+                e.printStackTrace();
+                if (fileInputStream != null) {
+                    try {
+                        fileInputStream.close();
+                    } catch (IOException e5) {
+                        e5.printStackTrace();
+                    }
+                }
+                return null;
+            } catch (Throwable th2) {
+                th = th2;
+                inputStream = fileInputStream;
+                if (inputStream != null) {
+                }
+                throw th;
+            }
+        } catch (Throwable th3) {
+            th = th3;
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e22) {
+                    e22.printStackTrace();
+                }
+            }
+            throw th;
+        }
     }
 }

@@ -1,6 +1,9 @@
 package com.android.camera.panorama;
 
 import android.media.Image;
+import java.lang.reflect.Field;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
 
 public class PanoramaGP3ImageFormat {
     public static final String YUV420_PLANAR = "YUV420_PLANAR";
@@ -11,21 +14,14 @@ public class PanoramaGP3ImageFormat {
     /* JADX WARNING: Missing block: B:5:0x0016, code:
             return com.android.camera.panorama.NativeMemoryAllocator.getAddress(r2);
      */
-    private static long getByteBufferAddress(java.nio.ByteBuffer r2) {
-        /*
-        r0 = java.nio.Buffer.class;
-        r1 = "effectiveDirectAddress";
-        r0 = r0.getDeclaredField(r1);	 Catch:{ NoSuchFieldException -> 0x0011, NoSuchFieldException -> 0x0011 }
-        r1 = 1;
-        r0.setAccessible(r1);	 Catch:{ NoSuchFieldException -> 0x0011, NoSuchFieldException -> 0x0011 }
-        r0 = r0.getLong(r2);	 Catch:{ NoSuchFieldException -> 0x0011, NoSuchFieldException -> 0x0011 }
-        return r0;
-    L_0x0011:
-        r0 = move-exception;
-        r0 = com.android.camera.panorama.NativeMemoryAllocator.getAddress(r2);
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.panorama.PanoramaGP3ImageFormat.getByteBufferAddress(java.nio.ByteBuffer):long");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static long getByteBufferAddress(ByteBuffer byteBuffer) {
+        try {
+            Field declaredField = Buffer.class.getDeclaredField("effectiveDirectAddress");
+            declaredField.setAccessible(true);
+            return declaredField.getLong(byteBuffer);
+        } catch (NoSuchFieldException e) {
+        }
     }
 
     private static String getImageFormat(long j, long j2) {

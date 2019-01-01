@@ -6,6 +6,8 @@ import com.android.camera.network.net.base.HTTP;
 import com.ss.android.vesdk.runtime.cloudconfig.HttpRequest;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.security.MessageDigest;
@@ -157,224 +159,192 @@ class DownloadTask {
     /* JADX WARNING: Removed duplicated region for block: B:85:0x0139 A:{SYNTHETIC, Splitter: B:85:0x0139} */
     /* JADX WARNING: Removed duplicated region for block: B:94:0x014b A:{SYNTHETIC, Splitter: B:94:0x014b} */
     /* JADX WARNING: Removed duplicated region for block: B:99:0x0157 A:{SYNTHETIC, Splitter: B:99:0x0157} */
-    private int process(com.android.camera.network.download.Request r8) {
-        /*
-        r7 = this;
-        r0 = r8.getUri();
-        r1 = r8.getNetworkType();
-        r0 = com.android.camera.network.download.ConnectionHelper.open(r0, r1);
-        r1 = r0.value;
-        r1 = (java.net.HttpURLConnection) r1;
-        r2 = 0;
-        if (r1 != 0) goto L_0x0027;
-    L_0x0013:
-        r8 = "DownloadTask";
-        r1 = "open connection failed";
-        r2 = new java.lang.Object[r2];
-        r1 = java.lang.String.format(r1, r2);
-        com.android.camera.log.Log.d(r8, r1);
-        r8 = r0.reason;
-        r8 = translateErrorCode(r8);
-        return r8;
-        r0 = 0;
-        r7.configure(r1);	 Catch:{ IOException -> 0x011f, all -> 0x011b }
-        r1.connect();	 Catch:{ IOException -> 0x011f, all -> 0x011b }
-        r3 = r1.getResponseCode();	 Catch:{ IOException -> 0x011f, all -> 0x011b }
-        r3 = translateResponseCode(r3);	 Catch:{ IOException -> 0x011f, all -> 0x011b }
-        if (r3 == 0) goto L_0x004e;
-    L_0x003a:
-        r8 = "DownloadTask";
-        r4 = "response code not valid";
-        r2 = new java.lang.Object[r2];	 Catch:{ IOException -> 0x011f, all -> 0x011b }
-        r2 = java.lang.String.format(r4, r2);	 Catch:{ IOException -> 0x011f, all -> 0x011b }
-        com.android.camera.log.Log.d(r8, r2);	 Catch:{ IOException -> 0x011f, all -> 0x011b }
-        r1.disconnect();
-        return r3;
-    L_0x004e:
-        r7.processHeader(r1);	 Catch:{ IOException -> 0x011f, all -> 0x011b }
-        r3 = r1.getInputStream();	 Catch:{ IOException -> 0x011f, all -> 0x011b }
-        r4 = r8.getDestination();	 Catch:{ IOException -> 0x0117, all -> 0x0114 }
-        r4 = openOutputStream(r4);	 Catch:{ IOException -> 0x0117, all -> 0x0114 }
-        if (r4 != 0) goto L_0x008f;
-    L_0x005f:
-        r8 = "DownloadTask";
-        r0 = "open output stream failed";
-        r2 = new java.lang.Object[r2];	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        r0 = java.lang.String.format(r0, r2);	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        com.android.camera.log.Log.d(r8, r0);	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        r8 = 4;
-        r1.disconnect();
-        if (r3 == 0) goto L_0x007c;
-    L_0x0072:
-        r3.close();	 Catch:{ IOException -> 0x0076 }
-        goto L_0x007c;
-    L_0x0076:
-        r0 = move-exception;
-        r1 = "DownloadTask";
-        com.android.camera.log.Log.w(r1, r0);
-    L_0x007c:
-        if (r4 == 0) goto L_0x0088;
-    L_0x007e:
-        r4.close();	 Catch:{ IOException -> 0x0082 }
-        goto L_0x0088;
-    L_0x0082:
-        r0 = move-exception;
-        r1 = "DownloadTask";
-        com.android.camera.log.Log.w(r1, r0);
-    L_0x0088:
-        return r8;
-    L_0x0089:
-        r8 = move-exception;
-        goto L_0x0146;
-    L_0x008c:
-        r8 = move-exception;
-        goto L_0x0119;
-    L_0x008f:
-        r7.preDownload(r8);	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        r8 = "DownloadTask";
-        r0 = "start to transfer data";
-        r5 = new java.lang.Object[r2];	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        r0 = java.lang.String.format(r0, r5);	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        com.android.camera.log.Log.d(r8, r0);	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        r8 = 8192; // 0x2000 float:1.14794E-41 double:4.0474E-320;
-        r8 = new byte[r8];	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        r0 = r2;
-    L_0x00a5:
-        r5 = r7.mCoreTask;	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        r5 = r5.isCancelled();	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        r6 = -1;
-        if (r5 != 0) goto L_0x00bb;
-    L_0x00ae:
-        r0 = r3.read(r8);	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        if (r0 == r6) goto L_0x00bb;
-    L_0x00b4:
-        r4.write(r8, r2, r0);	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        r7.performProgressUpdate(r8, r0);	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        goto L_0x00a5;
-    L_0x00bb:
-        if (r0 != r6) goto L_0x00ea;
-    L_0x00bd:
-        r8 = "DownloadTask";
-        r0 = "download success";
-        r2 = new java.lang.Object[r2];	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        r0 = java.lang.String.format(r0, r2);	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        com.android.camera.log.Log.d(r8, r0);	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        r8 = r7.postDownload();	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        r1.disconnect();
-        if (r3 == 0) goto L_0x00dd;
-    L_0x00d3:
-        r3.close();	 Catch:{ IOException -> 0x00d7 }
-        goto L_0x00dd;
-    L_0x00d7:
-        r0 = move-exception;
-        r1 = "DownloadTask";
-        com.android.camera.log.Log.w(r1, r0);
-    L_0x00dd:
-        if (r4 == 0) goto L_0x00e9;
-    L_0x00df:
-        r4.close();	 Catch:{ IOException -> 0x00e3 }
-        goto L_0x00e9;
-    L_0x00e3:
-        r0 = move-exception;
-        r1 = "DownloadTask";
-        com.android.camera.log.Log.w(r1, r0);
-    L_0x00e9:
-        return r8;
-    L_0x00ea:
-        r8 = "DownloadTask";
-        r0 = "cancelled, during download";
-        r2 = new java.lang.Object[r2];	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        r0 = java.lang.String.format(r0, r2);	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        com.android.camera.log.Log.d(r8, r0);	 Catch:{ IOException -> 0x008c, all -> 0x0089 }
-        r8 = 5;
-        r1.disconnect();
-        if (r3 == 0) goto L_0x0107;
-    L_0x00fd:
-        r3.close();	 Catch:{ IOException -> 0x0101 }
-        goto L_0x0107;
-    L_0x0101:
-        r0 = move-exception;
-        r1 = "DownloadTask";
-        com.android.camera.log.Log.w(r1, r0);
-    L_0x0107:
-        if (r4 == 0) goto L_0x0113;
-    L_0x0109:
-        r4.close();	 Catch:{ IOException -> 0x010d }
-        goto L_0x0113;
-    L_0x010d:
-        r0 = move-exception;
-        r1 = "DownloadTask";
-        com.android.camera.log.Log.w(r1, r0);
-    L_0x0113:
-        return r8;
-    L_0x0114:
-        r8 = move-exception;
-        r4 = r0;
-        goto L_0x0146;
-    L_0x0117:
-        r8 = move-exception;
-        r4 = r0;
-    L_0x0119:
-        r0 = r3;
-        goto L_0x0121;
-    L_0x011b:
-        r8 = move-exception;
-        r3 = r0;
-        r4 = r3;
-        goto L_0x0146;
-    L_0x011f:
-        r8 = move-exception;
-        r4 = r0;
-    L_0x0121:
-        r2 = "DownloadTask";
-        com.android.camera.log.Log.w(r2, r8);	 Catch:{ all -> 0x0144 }
-        r8 = 11;
-        r1.disconnect();
-        if (r0 == 0) goto L_0x0137;
-    L_0x012d:
-        r0.close();	 Catch:{ IOException -> 0x0131 }
-        goto L_0x0137;
-    L_0x0131:
-        r0 = move-exception;
-        r1 = "DownloadTask";
-        com.android.camera.log.Log.w(r1, r0);
-    L_0x0137:
-        if (r4 == 0) goto L_0x0143;
-    L_0x0139:
-        r4.close();	 Catch:{ IOException -> 0x013d }
-        goto L_0x0143;
-    L_0x013d:
-        r0 = move-exception;
-        r1 = "DownloadTask";
-        com.android.camera.log.Log.w(r1, r0);
-    L_0x0143:
-        return r8;
-    L_0x0144:
-        r8 = move-exception;
-        r3 = r0;
-    L_0x0146:
-        r1.disconnect();
-        if (r3 == 0) goto L_0x0155;
-    L_0x014b:
-        r3.close();	 Catch:{ IOException -> 0x014f }
-        goto L_0x0155;
-    L_0x014f:
-        r0 = move-exception;
-        r1 = "DownloadTask";
-        com.android.camera.log.Log.w(r1, r0);
-    L_0x0155:
-        if (r4 == 0) goto L_0x0161;
-    L_0x0157:
-        r4.close();	 Catch:{ IOException -> 0x015b }
-        goto L_0x0161;
-    L_0x015b:
-        r0 = move-exception;
-        r1 = "DownloadTask";
-        com.android.camera.log.Log.w(r1, r0);
-    L_0x0161:
-        throw r8;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.network.download.DownloadTask.process(com.android.camera.network.download.Request):int");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private int process(Request request) {
+        Throwable e;
+        Holder open = ConnectionHelper.open(request.getUri(), request.getNetworkType());
+        HttpURLConnection httpURLConnection = (HttpURLConnection) open.value;
+        if (httpURLConnection == null) {
+            Log.d(TAG, String.format("open connection failed", new Object[0]));
+            return translateErrorCode(open.reason);
+        }
+        InputStream inputStream = null;
+        InputStream inputStream2;
+        OutputStream openOutputStream;
+        try {
+            configure(httpURLConnection);
+            httpURLConnection.connect();
+            int translateResponseCode = translateResponseCode(httpURLConnection.getResponseCode());
+            if (translateResponseCode != 0) {
+                Log.d(TAG, String.format("response code not valid", new Object[0]));
+                httpURLConnection.disconnect();
+                return translateResponseCode;
+            }
+            processHeader(httpURLConnection);
+            inputStream2 = httpURLConnection.getInputStream();
+            try {
+                openOutputStream = openOutputStream(request.getDestination());
+                if (openOutputStream == null) {
+                    try {
+                        Log.d(TAG, String.format("open output stream failed", new Object[0]));
+                        httpURLConnection.disconnect();
+                        if (inputStream2 != null) {
+                            try {
+                                inputStream2.close();
+                            } catch (Throwable e2) {
+                                Log.w(TAG, e2);
+                            }
+                        }
+                        if (openOutputStream != null) {
+                            try {
+                                openOutputStream.close();
+                            } catch (Throwable e22) {
+                                Log.w(TAG, e22);
+                            }
+                        }
+                        return 4;
+                    } catch (IOException e3) {
+                        e = e3;
+                        inputStream = inputStream2;
+                        try {
+                            Log.w(TAG, e);
+                            httpURLConnection.disconnect();
+                            if (inputStream != null) {
+                            }
+                            if (openOutputStream != null) {
+                            }
+                            return 11;
+                        } catch (Throwable th) {
+                            e = th;
+                            inputStream2 = inputStream;
+                            httpURLConnection.disconnect();
+                            if (inputStream2 != null) {
+                                try {
+                                    inputStream2.close();
+                                } catch (Throwable e222) {
+                                    Log.w(TAG, e222);
+                                }
+                            }
+                            if (openOutputStream != null) {
+                                try {
+                                    openOutputStream.close();
+                                } catch (Throwable e2222) {
+                                    Log.w(TAG, e2222);
+                                }
+                            }
+                            throw e;
+                        }
+                    } catch (Throwable th2) {
+                        e = th2;
+                        httpURLConnection.disconnect();
+                        if (inputStream2 != null) {
+                        }
+                        if (openOutputStream != null) {
+                        }
+                        throw e;
+                    }
+                }
+                preDownload(request);
+                Log.d(TAG, String.format("start to transfer data", new Object[0]));
+                byte[] bArr = new byte[8192];
+                int i = 0;
+                while (!this.mCoreTask.isCancelled()) {
+                    i = inputStream2.read(bArr);
+                    if (i == -1) {
+                        break;
+                    }
+                    openOutputStream.write(bArr, 0, i);
+                    performProgressUpdate(bArr, i);
+                }
+                if (i == -1) {
+                    Log.d(TAG, String.format("download success", new Object[0]));
+                    int postDownload = postDownload();
+                    httpURLConnection.disconnect();
+                    if (inputStream2 != null) {
+                        try {
+                            inputStream2.close();
+                        } catch (Throwable e22222) {
+                            Log.w(TAG, e22222);
+                        }
+                    }
+                    if (openOutputStream != null) {
+                        try {
+                            openOutputStream.close();
+                        } catch (Throwable e222222) {
+                            Log.w(TAG, e222222);
+                        }
+                    }
+                    return postDownload;
+                }
+                Log.d(TAG, String.format("cancelled, during download", new Object[0]));
+                httpURLConnection.disconnect();
+                if (inputStream2 != null) {
+                    try {
+                        inputStream2.close();
+                    } catch (Throwable e2222222) {
+                        Log.w(TAG, e2222222);
+                    }
+                }
+                if (openOutputStream != null) {
+                    try {
+                        openOutputStream.close();
+                    } catch (Throwable e22222222) {
+                        Log.w(TAG, e22222222);
+                    }
+                }
+                return 5;
+            } catch (IOException e4) {
+                e = e4;
+                openOutputStream = null;
+                inputStream = inputStream2;
+                Log.w(TAG, e);
+                httpURLConnection.disconnect();
+                if (inputStream != null) {
+                }
+                if (openOutputStream != null) {
+                }
+                return 11;
+            } catch (Throwable th3) {
+                e = th3;
+                openOutputStream = null;
+                httpURLConnection.disconnect();
+                if (inputStream2 != null) {
+                }
+                if (openOutputStream != null) {
+                }
+                throw e;
+            }
+        } catch (IOException e5) {
+            e = e5;
+            openOutputStream = null;
+            Log.w(TAG, e);
+            httpURLConnection.disconnect();
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (Throwable e222222222) {
+                    Log.w(TAG, e222222222);
+                }
+            }
+            if (openOutputStream != null) {
+                try {
+                    openOutputStream.close();
+                } catch (Throwable e2222222222) {
+                    Log.w(TAG, e2222222222);
+                }
+            }
+            return 11;
+        } catch (Throwable th4) {
+            e = th4;
+            inputStream2 = null;
+            openOutputStream = inputStream2;
+            httpURLConnection.disconnect();
+            if (inputStream2 != null) {
+            }
+            if (openOutputStream != null) {
+            }
+            throw e;
+        }
     }
 
     private void preRequest() {

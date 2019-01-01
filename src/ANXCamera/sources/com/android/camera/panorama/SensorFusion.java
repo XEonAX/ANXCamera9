@@ -252,136 +252,53 @@ public class SensorFusion implements SensorEventListener {
     /* JADX WARNING: Missing block: B:61:0x00aa, code:
             return r2;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private boolean isUpdateSensorMatrix() {
-        /*
-        r4 = this;
-        r0 = SensorSynchronizedObject;
-        monitor-enter(r0);
-        r1 = r4.mMode;	 Catch:{ all -> 0x00ac }
-        r2 = 0;
-        r3 = 1;
-        switch(r1) {
-            case 0: goto L_0x008f;
-            case 1: goto L_0x0079;
-            case 2: goto L_0x004d;
-            case 3: goto L_0x0039;
-            case 4: goto L_0x000d;
-            default: goto L_0x000a;
-        };	 Catch:{ all -> 0x00ac }
-    L_0x000a:
-        monitor-exit(r0);	 Catch:{ all -> 0x00ac }
-        goto L_0x00ab;
-    L_0x000d:
-        r1 = r4.mGyroCalibratedMode;	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x0025;
-    L_0x0011:
-        r1 = r4.mPartOfGyroscopeList;	 Catch:{ all -> 0x00ac }
-        r1 = r1.isEmpty();	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x0023;
-    L_0x0019:
-        r1 = r4.mPartOfRotationVectorList;	 Catch:{ all -> 0x00ac }
-        r1 = r1.isEmpty();	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x0023;
-    L_0x0021:
-        r2 = r3;
-    L_0x0023:
-        monitor-exit(r0);	 Catch:{ all -> 0x00ac }
-        return r2;
-    L_0x0025:
-        r1 = r4.mPartOfGyroscopeUncalibratedList;	 Catch:{ all -> 0x00ac }
-        r1 = r1.isEmpty();	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x0037;
-    L_0x002d:
-        r1 = r4.mPartOfRotationVectorList;	 Catch:{ all -> 0x00ac }
-        r1 = r1.isEmpty();	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x0037;
-    L_0x0035:
-        r2 = r3;
-    L_0x0037:
-        monitor-exit(r0);	 Catch:{ all -> 0x00ac }
-        return r2;
-    L_0x0039:
-        r1 = r4.mPartOfAccelerometerList;	 Catch:{ all -> 0x00ac }
-        r1 = r1.isEmpty();	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x004b;
-    L_0x0041:
-        r1 = r4.mPartOfMagneticFieldList;	 Catch:{ all -> 0x00ac }
-        r1 = r1.isEmpty();	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x004b;
-    L_0x0049:
-        r2 = r3;
-    L_0x004b:
-        monitor-exit(r0);	 Catch:{ all -> 0x00ac }
-        return r2;
-    L_0x004d:
-        r1 = r4.mGyroCalibratedMode;	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x0065;
-    L_0x0051:
-        r1 = r4.mPartOfGyroscopeList;	 Catch:{ all -> 0x00ac }
-        r1 = r1.isEmpty();	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x0063;
-    L_0x0059:
-        r1 = r4.mPartOfAccelerometerList;	 Catch:{ all -> 0x00ac }
-        r1 = r1.isEmpty();	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x0063;
-    L_0x0061:
-        r2 = r3;
-    L_0x0063:
-        monitor-exit(r0);	 Catch:{ all -> 0x00ac }
-        return r2;
-    L_0x0065:
-        r1 = r4.mPartOfGyroscopeUncalibratedList;	 Catch:{ all -> 0x00ac }
-        r1 = r1.isEmpty();	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x0077;
-    L_0x006d:
-        r1 = r4.mPartOfAccelerometerList;	 Catch:{ all -> 0x00ac }
-        r1 = r1.isEmpty();	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x0077;
-    L_0x0075:
-        r2 = r3;
-    L_0x0077:
-        monitor-exit(r0);	 Catch:{ all -> 0x00ac }
-        return r2;
-    L_0x0079:
-        r1 = r4.mGyroCalibratedMode;	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x0086;
-    L_0x007d:
-        r1 = r4.mPartOfGyroscopeList;	 Catch:{ all -> 0x00ac }
-        r1 = r1.isEmpty();	 Catch:{ all -> 0x00ac }
-        r1 = r1 ^ r3;
-        monitor-exit(r0);	 Catch:{ all -> 0x00ac }
-        return r1;
-    L_0x0086:
-        r1 = r4.mPartOfGyroscopeUncalibratedList;	 Catch:{ all -> 0x00ac }
-        r1 = r1.isEmpty();	 Catch:{ all -> 0x00ac }
-        r1 = r1 ^ r3;
-        monitor-exit(r0);	 Catch:{ all -> 0x00ac }
-        return r1;
-    L_0x008f:
-        r1 = r4.mPartOfGyroscopeList;	 Catch:{ all -> 0x00ac }
-        r1 = r1.isEmpty();	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x00a9;
-    L_0x0097:
-        r1 = r4.mPartOfAccelerometerList;	 Catch:{ all -> 0x00ac }
-        r1 = r1.isEmpty();	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x00a9;
-    L_0x009f:
-        r1 = r4.mPartOfMagneticFieldList;	 Catch:{ all -> 0x00ac }
-        r1 = r1.isEmpty();	 Catch:{ all -> 0x00ac }
-        if (r1 != 0) goto L_0x00a9;
-    L_0x00a7:
-        r2 = r3;
-    L_0x00a9:
-        monitor-exit(r0);	 Catch:{ all -> 0x00ac }
-        return r2;
-    L_0x00ab:
-        return r2;
-    L_0x00ac:
-        r1 = move-exception;
-        monitor-exit(r0);	 Catch:{ all -> 0x00ac }
-        throw r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.panorama.SensorFusion.isUpdateSensorMatrix():boolean");
+        synchronized (SensorSynchronizedObject) {
+            boolean z = false;
+            switch (this.mMode) {
+                case 0:
+                    if (!(this.mPartOfGyroscopeList.isEmpty() || this.mPartOfAccelerometerList.isEmpty() || this.mPartOfMagneticFieldList.isEmpty())) {
+                        z = true;
+                        break;
+                    }
+                case 1:
+                    boolean isEmpty;
+                    if (this.mGyroCalibratedMode == 0) {
+                        isEmpty = this.mPartOfGyroscopeList.isEmpty() ^ true;
+                        return isEmpty;
+                    }
+                    isEmpty = this.mPartOfGyroscopeUncalibratedList.isEmpty() ^ true;
+                    return isEmpty;
+                case 2:
+                    if (this.mGyroCalibratedMode != 0) {
+                        if (!(this.mPartOfGyroscopeUncalibratedList.isEmpty() || this.mPartOfAccelerometerList.isEmpty())) {
+                            z = true;
+                            break;
+                        }
+                    } else if (!(this.mPartOfGyroscopeList.isEmpty() || this.mPartOfAccelerometerList.isEmpty())) {
+                        z = true;
+                        break;
+                    }
+                case 3:
+                    if (!(this.mPartOfAccelerometerList.isEmpty() || this.mPartOfMagneticFieldList.isEmpty())) {
+                        z = true;
+                        break;
+                    }
+                case 4:
+                    if (this.mGyroCalibratedMode != 0) {
+                        if (!(this.mPartOfGyroscopeUncalibratedList.isEmpty() || this.mPartOfRotationVectorList.isEmpty())) {
+                            z = true;
+                            break;
+                        }
+                    } else if (!(this.mPartOfGyroscopeList.isEmpty() || this.mPartOfRotationVectorList.isEmpty())) {
+                        z = true;
+                        break;
+                    }
+                default:
+                    return false;
+            }
+        }
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:27:0x00e1  */
@@ -390,183 +307,83 @@ public class SensorFusion implements SensorEventListener {
     /* JADX WARNING: Removed duplicated region for block: B:27:0x00e1  */
     /* JADX WARNING: Removed duplicated region for block: B:32:0x0106  */
     /* JADX WARNING: Removed duplicated region for block: B:37:0x012b  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private int updateSensorMatrix() {
-        /*
-        r13 = this;
-        r0 = SensorSynchronizedObject;
-        monitor-enter(r0);
-        r1 = r13.mPartOfGyroscopeList;	 Catch:{ all -> 0x0173 }
-        r1 = r1.clone();	 Catch:{ all -> 0x0173 }
-        r1 = (java.util.ArrayList) r1;	 Catch:{ all -> 0x0173 }
-        r2 = r13.mPartOfGyroscopeUncalibratedList;	 Catch:{ all -> 0x0173 }
-        r2 = r2.clone();	 Catch:{ all -> 0x0173 }
-        r2 = (java.util.ArrayList) r2;	 Catch:{ all -> 0x0173 }
-        r3 = r13.mPartOfAccelerometerList;	 Catch:{ all -> 0x0173 }
-        r3 = r3.clone();	 Catch:{ all -> 0x0173 }
-        r3 = (java.util.ArrayList) r3;	 Catch:{ all -> 0x0173 }
-        r4 = r13.mPartOfMagneticFieldList;	 Catch:{ all -> 0x0173 }
-        r4 = r4.clone();	 Catch:{ all -> 0x0173 }
-        r4 = (java.util.ArrayList) r4;	 Catch:{ all -> 0x0173 }
-        r5 = r13.mPartOfRotationVectorList;	 Catch:{ all -> 0x0173 }
-        r5 = r5.clone();	 Catch:{ all -> 0x0173 }
-        r5 = (java.util.ArrayList) r5;	 Catch:{ all -> 0x0173 }
-        r6 = r13.mPartOfGyroscopeList;	 Catch:{ all -> 0x0173 }
-        r6.clear();	 Catch:{ all -> 0x0173 }
-        r6 = r13.mPartOfGyroscopeUncalibratedList;	 Catch:{ all -> 0x0173 }
-        r6.clear();	 Catch:{ all -> 0x0173 }
-        r6 = r13.mPartOfAccelerometerList;	 Catch:{ all -> 0x0173 }
-        r6.clear();	 Catch:{ all -> 0x0173 }
-        r6 = r13.mPartOfMagneticFieldList;	 Catch:{ all -> 0x0173 }
-        r6.clear();	 Catch:{ all -> 0x0173 }
-        r6 = r13.mPartOfRotationVectorList;	 Catch:{ all -> 0x0173 }
-        r6.clear();	 Catch:{ all -> 0x0173 }
-        monitor-exit(r0);	 Catch:{ all -> 0x0173 }
-        r0 = r13.mStock;
-        r6 = 2;
-        r7 = 3;
-        r8 = 1;
-        r9 = 0;
-        if (r0 == 0) goto L_0x008a;
-    L_0x004e:
-        r0 = r13.mGyroCalibratedMode;
-        if (r0 != 0) goto L_0x005e;
-    L_0x0052:
-        r0 = r13.mAllValueList;
-        r0 = r0.get(r9);
-        r0 = (java.util.ArrayList) r0;
-        r0.addAll(r1);
-        goto L_0x0069;
-    L_0x005e:
-        r0 = r13.mAllValueList;
-        r0 = r0.get(r9);
-        r0 = (java.util.ArrayList) r0;
-        r0.addAll(r2);
-    L_0x0069:
-        r0 = r13.mAllValueList;
-        r0 = r0.get(r8);
-        r0 = (java.util.ArrayList) r0;
-        r0.addAll(r3);
-        r0 = r13.mAllValueList;
-        r0 = r0.get(r6);
-        r0 = (java.util.ArrayList) r0;
-        r0.addAll(r4);
-        r0 = r13.mAllValueList;
-        r0 = r0.get(r7);
-        r0 = (java.util.ArrayList) r0;
-        r0.addAll(r5);
-    L_0x008a:
-        r0 = r13.mGyroCalibratedMode;
-        if (r0 != 0) goto L_0x00b4;
-    L_0x008e:
-        r0 = r1.isEmpty();
-        if (r0 != 0) goto L_0x00da;
-    L_0x0094:
-        r0 = r13.getSensorDataArray(r1);
-        r0 = r13.setInputSensorData(r0, r9);
-        if (r0 == 0) goto L_0x00db;
-    L_0x009e:
-        r1 = "SensorFusion";
-        r2 = java.util.Locale.US;
-        r10 = "SensorFusion.setSensorData(SENSOR_TYPE_GYROSCOPE) error ret:0x%08X";
-        r11 = new java.lang.Object[r8];
-        r12 = java.lang.Integer.valueOf(r0);
-        r11[r9] = r12;
-        r2 = java.lang.String.format(r2, r10, r11);
-        com.android.camera.log.Log.e(r1, r2);
-        goto L_0x00db;
-    L_0x00b4:
-        r0 = r2.isEmpty();
-        if (r0 != 0) goto L_0x00da;
-    L_0x00ba:
-        r0 = r13.getSensorDataArray(r2);
-        r0 = r13.setInputSensorData(r0, r9);
-        if (r0 == 0) goto L_0x00db;
-    L_0x00c4:
-        r1 = "SensorFusion";
-        r2 = java.util.Locale.US;
-        r10 = "SensorFusion.setSensorData(SENSOR_TYPE_GYROSCOPE) error ret:0x%08X";
-        r11 = new java.lang.Object[r8];
-        r12 = java.lang.Integer.valueOf(r0);
-        r11[r9] = r12;
-        r2 = java.lang.String.format(r2, r10, r11);
-        com.android.camera.log.Log.e(r1, r2);
-        goto L_0x00db;
-    L_0x00da:
-        r0 = r9;
-    L_0x00db:
-        r1 = r3.isEmpty();
-        if (r1 != 0) goto L_0x0100;
-    L_0x00e1:
-        r0 = r13.getSensorDataArray(r3);
-        r0 = r13.setInputSensorData(r0, r8);
-        if (r0 == 0) goto L_0x0100;
-    L_0x00eb:
-        r1 = "SensorFusion";
-        r2 = java.util.Locale.US;
-        r3 = "SensorFusion.setSensorData(SENSOR_TYPE_ACCELEROMETER) error ret:0x%08X";
-        r10 = new java.lang.Object[r8];
-        r11 = java.lang.Integer.valueOf(r0);
-        r10[r9] = r11;
-        r2 = java.lang.String.format(r2, r3, r10);
-        com.android.camera.log.Log.e(r1, r2);
-    L_0x0100:
-        r1 = r4.isEmpty();
-        if (r1 != 0) goto L_0x0125;
-    L_0x0106:
-        r0 = r13.getSensorDataArray(r4);
-        r0 = r13.setInputSensorData(r0, r6);
-        if (r0 == 0) goto L_0x0125;
-    L_0x0110:
-        r1 = "SensorFusion";
-        r2 = java.util.Locale.US;
-        r3 = "SensorFusion.setSensorData(SENSOR_TYPE_MAGNETIC_FIELD) error ret:0x%08X";
-        r4 = new java.lang.Object[r8];
-        r6 = java.lang.Integer.valueOf(r0);
-        r4[r9] = r6;
-        r2 = java.lang.String.format(r2, r3, r4);
-        com.android.camera.log.Log.e(r1, r2);
-    L_0x0125:
-        r1 = r5.isEmpty();
-        if (r1 != 0) goto L_0x014a;
-    L_0x012b:
-        r0 = r13.getSensorDataArray(r5);
-        r0 = r13.setInputSensorData(r0, r7);
-        if (r0 == 0) goto L_0x014a;
-    L_0x0135:
-        r1 = "SensorFusion";
-        r2 = java.util.Locale.US;
-        r3 = "SensorFusion.setSensorData(SENSOR_TYPE_ROTATION_VECTOR) error ret:0x%08X";
-        r4 = new java.lang.Object[r8];
-        r5 = java.lang.Integer.valueOf(r0);
-        r4[r9] = r5;
-        r2 = java.lang.String.format(r2, r3, r4);
-        com.android.camera.log.Log.e(r1, r2);
-    L_0x014a:
-        r1 = r13.mMorphoSensorFusion;
-        r1 = r1.calc();
-        r0 = r0 | r1;
-        r1 = r13.mMorphoSensorFusion;
-        r2 = r13.mSensorMatrix;
-        r2 = r2[r8];
-        r1 = r1.outputRotationMatrix3x3(r8, r2);
-        r0 = r0 | r1;
-        r1 = r13.mMorphoSensorFusion;
-        r2 = r13.mSensorMatrix;
-        r2 = r2[r9];
-        r1 = r1.outputRotationMatrix3x3(r9, r2);
-        r0 = r0 | r1;
-        r1 = r13.mMorphoSensorFusion;
-        r2 = r13.mSensorMatrix;
-        r2 = r2[r7];
-        r1 = r1.outputRotationMatrix3x3(r7, r2);
-        r0 = r0 | r1;
-        return r0;
-    L_0x0173:
-        r1 = move-exception;
-        monitor-exit(r0);	 Catch:{ all -> 0x0173 }
-        throw r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.panorama.SensorFusion.updateSensorMatrix():int");
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        ArrayList arrayList3;
+        ArrayList arrayList4;
+        ArrayList arrayList5;
+        int inputSensorData;
+        synchronized (SensorSynchronizedObject) {
+            arrayList = (ArrayList) this.mPartOfGyroscopeList.clone();
+            arrayList2 = (ArrayList) this.mPartOfGyroscopeUncalibratedList.clone();
+            arrayList3 = (ArrayList) this.mPartOfAccelerometerList.clone();
+            arrayList4 = (ArrayList) this.mPartOfMagneticFieldList.clone();
+            arrayList5 = (ArrayList) this.mPartOfRotationVectorList.clone();
+            this.mPartOfGyroscopeList.clear();
+            this.mPartOfGyroscopeUncalibratedList.clear();
+            this.mPartOfAccelerometerList.clear();
+            this.mPartOfMagneticFieldList.clear();
+            this.mPartOfRotationVectorList.clear();
+        }
+        if (this.mStock) {
+            if (this.mGyroCalibratedMode == 0) {
+                ((ArrayList) this.mAllValueList.get(0)).addAll(arrayList);
+            } else {
+                ((ArrayList) this.mAllValueList.get(0)).addAll(arrayList2);
+            }
+            ((ArrayList) this.mAllValueList.get(1)).addAll(arrayList3);
+            ((ArrayList) this.mAllValueList.get(2)).addAll(arrayList4);
+            ((ArrayList) this.mAllValueList.get(3)).addAll(arrayList5);
+        }
+        if (this.mGyroCalibratedMode == 0) {
+            if (!arrayList.isEmpty()) {
+                inputSensorData = setInputSensorData(getSensorDataArray(arrayList), 0);
+                if (inputSensorData != 0) {
+                    Log.e(LOG_TAG, String.format(Locale.US, "SensorFusion.setSensorData(SENSOR_TYPE_GYROSCOPE) error ret:0x%08X", new Object[]{Integer.valueOf(inputSensorData)}));
+                }
+                if (!arrayList3.isEmpty()) {
+                    inputSensorData = setInputSensorData(getSensorDataArray(arrayList3), 1);
+                    if (inputSensorData != 0) {
+                        Log.e(LOG_TAG, String.format(Locale.US, "SensorFusion.setSensorData(SENSOR_TYPE_ACCELEROMETER) error ret:0x%08X", new Object[]{Integer.valueOf(inputSensorData)}));
+                    }
+                }
+                if (!arrayList4.isEmpty()) {
+                    inputSensorData = setInputSensorData(getSensorDataArray(arrayList4), 2);
+                    if (inputSensorData != 0) {
+                        Log.e(LOG_TAG, String.format(Locale.US, "SensorFusion.setSensorData(SENSOR_TYPE_MAGNETIC_FIELD) error ret:0x%08X", new Object[]{Integer.valueOf(inputSensorData)}));
+                    }
+                }
+                if (!arrayList5.isEmpty()) {
+                    inputSensorData = setInputSensorData(getSensorDataArray(arrayList5), 3);
+                    if (inputSensorData != 0) {
+                        Log.e(LOG_TAG, String.format(Locale.US, "SensorFusion.setSensorData(SENSOR_TYPE_ROTATION_VECTOR) error ret:0x%08X", new Object[]{Integer.valueOf(inputSensorData)}));
+                    }
+                }
+                return (((inputSensorData | this.mMorphoSensorFusion.calc()) | this.mMorphoSensorFusion.outputRotationMatrix3x3(1, this.mSensorMatrix[1])) | this.mMorphoSensorFusion.outputRotationMatrix3x3(0, this.mSensorMatrix[0])) | this.mMorphoSensorFusion.outputRotationMatrix3x3(3, this.mSensorMatrix[3]);
+            }
+        } else if (!arrayList2.isEmpty()) {
+            inputSensorData = setInputSensorData(getSensorDataArray(arrayList2), 0);
+            if (inputSensorData != 0) {
+                Log.e(LOG_TAG, String.format(Locale.US, "SensorFusion.setSensorData(SENSOR_TYPE_GYROSCOPE) error ret:0x%08X", new Object[]{Integer.valueOf(inputSensorData)}));
+            }
+            if (arrayList3.isEmpty()) {
+            }
+            if (arrayList4.isEmpty()) {
+            }
+            if (arrayList5.isEmpty()) {
+            }
+            return (((inputSensorData | this.mMorphoSensorFusion.calc()) | this.mMorphoSensorFusion.outputRotationMatrix3x3(1, this.mSensorMatrix[1])) | this.mMorphoSensorFusion.outputRotationMatrix3x3(0, this.mSensorMatrix[0])) | this.mMorphoSensorFusion.outputRotationMatrix3x3(3, this.mSensorMatrix[3]);
+        }
+        inputSensorData = 0;
+        if (arrayList3.isEmpty()) {
+        }
+        if (arrayList4.isEmpty()) {
+        }
+        if (arrayList5.isEmpty()) {
+        }
+        return (((inputSensorData | this.mMorphoSensorFusion.calc()) | this.mMorphoSensorFusion.outputRotationMatrix3x3(1, this.mSensorMatrix[1])) | this.mMorphoSensorFusion.outputRotationMatrix3x3(0, this.mSensorMatrix[0])) | this.mMorphoSensorFusion.outputRotationMatrix3x3(3, this.mSensorMatrix[3]);
     }
 
     private Object[] getSensorDataArray(ArrayList<SensorData> arrayList) {

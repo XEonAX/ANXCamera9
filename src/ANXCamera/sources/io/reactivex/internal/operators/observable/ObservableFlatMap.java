@@ -319,217 +319,131 @@ public final class ObservableFlatMap<T, U> extends AbstractObservableWithUpstrea
         /* JADX WARNING: Missing block: B:57:0x00ab, code:
             if (r11 != null) goto L_0x00cf;
      */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         void drainLoop() {
-            /*
-            r12 = this;
-            r0 = r12.actual;
-            r1 = 1;
-            r2 = r1;
-        L_0x0005:
-            r3 = r12.checkTerminate();
-            if (r3 == 0) goto L_0x000c;
-        L_0x000b:
-            return;
-        L_0x000c:
-            r3 = r12.queue;
-            if (r3 == 0) goto L_0x0026;
-        L_0x0010:
-            r4 = r12.checkTerminate();
-            if (r4 == 0) goto L_0x0017;
-        L_0x0016:
-            return;
-        L_0x0017:
-            r4 = r3.poll();
-            if (r4 != 0) goto L_0x0022;
-            if (r4 != 0) goto L_0x0021;
-        L_0x0020:
-            goto L_0x0026;
-        L_0x0021:
-            goto L_0x0010;
-        L_0x0022:
-            r0.onNext(r4);
-            goto L_0x0010;
-        L_0x0026:
-            r3 = r12.done;
-            r4 = r12.queue;
-            r5 = r12.observers;
-            r5 = r5.get();
-            r5 = (io.reactivex.internal.operators.observable.ObservableFlatMap.InnerObserver[]) r5;
-            r6 = r5.length;
-            if (r3 == 0) goto L_0x0053;
-        L_0x0035:
-            if (r4 == 0) goto L_0x003d;
-        L_0x0037:
-            r3 = r4.isEmpty();
-            if (r3 == 0) goto L_0x0053;
-        L_0x003d:
-            if (r6 != 0) goto L_0x0053;
-        L_0x003f:
-            r1 = r12.errors;
-            r1 = r1.terminate();
-            r2 = io.reactivex.internal.util.ExceptionHelper.TERMINATED;
-            if (r1 == r2) goto L_0x0052;
-        L_0x0049:
-            if (r1 != 0) goto L_0x004f;
-        L_0x004b:
-            r0.onComplete();
-            goto L_0x0052;
-        L_0x004f:
-            r0.onError(r1);
-        L_0x0052:
-            return;
-            r3 = 0;
-            if (r6 == 0) goto L_0x0100;
-        L_0x0057:
-            r7 = r12.lastId;
-            r4 = r12.lastIndex;
-            if (r6 <= r4) goto L_0x0065;
-        L_0x005d:
-            r9 = r5[r4];
-            r9 = r9.id;
-            r9 = (r9 > r7 ? 1 : (r9 == r7 ? 0 : -1));
-            if (r9 == 0) goto L_0x0089;
-        L_0x0065:
-            if (r6 > r4) goto L_0x0069;
-            r4 = r3;
-        L_0x0069:
-            r9 = r4;
-            r4 = r3;
-        L_0x006b:
-            if (r4 >= r6) goto L_0x007f;
-        L_0x006d:
-            r10 = r5[r9];
-            r10 = r10.id;
-            r10 = (r10 > r7 ? 1 : (r10 == r7 ? 0 : -1));
-            if (r10 != 0) goto L_0x0076;
-        L_0x0075:
-            goto L_0x007f;
-        L_0x0076:
-            r9 = r9 + 1;
-            if (r9 != r6) goto L_0x007c;
-            r9 = r3;
-        L_0x007c:
-            r4 = r4 + 1;
-            goto L_0x006b;
-            r12.lastIndex = r9;
-            r4 = r5[r9];
-            r7 = r4.id;
-            r12.lastId = r7;
-            r4 = r9;
-        L_0x0089:
-            r8 = r3;
-            r7 = r4;
-            r4 = r8;
-        L_0x008c:
-            if (r4 >= r6) goto L_0x00f7;
-        L_0x008e:
-            r9 = r12.checkTerminate();
-            if (r9 == 0) goto L_0x0095;
-        L_0x0094:
-            return;
-        L_0x0095:
-            r9 = r5[r7];
-        L_0x0097:
-            r10 = r12.checkTerminate();
-            if (r10 == 0) goto L_0x009e;
-        L_0x009d:
-            return;
-        L_0x009e:
-            r10 = r9.queue;
-            if (r10 != 0) goto L_0x00a3;
-        L_0x00a2:
-            goto L_0x00ae;
-        L_0x00a3:
-            r11 = r10.poll();	 Catch:{ Throwable -> 0x00da }
-            if (r11 != 0) goto L_0x00d0;
-            if (r11 != 0) goto L_0x00cf;
-        L_0x00ae:
-            r10 = r9.done;
-            r11 = r9.queue;
-            if (r10 == 0) goto L_0x00c8;
-        L_0x00b4:
-            if (r11 == 0) goto L_0x00bc;
-        L_0x00b6:
-            r10 = r11.isEmpty();
-            if (r10 == 0) goto L_0x00c8;
-        L_0x00bc:
-            r12.removeInner(r9);
-            r8 = r12.checkTerminate();
-            if (r8 == 0) goto L_0x00c6;
-        L_0x00c5:
-            return;
-            r8 = r1;
-        L_0x00c8:
-            r7 = r7 + 1;
-            if (r7 != r6) goto L_0x00f5;
-            r7 = r3;
-            goto L_0x00f5;
-        L_0x00cf:
-            goto L_0x0097;
-        L_0x00d0:
-            r0.onNext(r11);
-            r11 = r12.checkTerminate();
-            if (r11 == 0) goto L_0x00a3;
-        L_0x00d9:
-            return;
-        L_0x00da:
-            r8 = move-exception;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r8);
-            r9.dispose();
-            r10 = r12.errors;
-            r10.addThrowable(r8);
-            r8 = r12.checkTerminate();
-            if (r8 == 0) goto L_0x00ed;
-        L_0x00ec:
-            return;
-        L_0x00ed:
-            r12.removeInner(r9);
-            r4 = r4 + 1;
-            r8 = r1;
-        L_0x00f5:
-            r4 = r4 + r1;
-            goto L_0x008c;
-        L_0x00f7:
-            r12.lastIndex = r7;
-            r3 = r5[r7];
-            r3 = r3.id;
-            r12.lastId = r3;
-            r3 = r8;
-        L_0x0100:
-            if (r3 == 0) goto L_0x0125;
-        L_0x0102:
-            r3 = r12.maxConcurrency;
-            r4 = 2147483647; // 0x7fffffff float:NaN double:1.060997895E-314;
-            if (r3 == r4) goto L_0x0005;
-        L_0x0109:
-            monitor-enter(r12);
-            r3 = r12.sources;	 Catch:{ all -> 0x0122 }
-            r3 = r3.poll();	 Catch:{ all -> 0x0122 }
-            r3 = (io.reactivex.ObservableSource) r3;	 Catch:{ all -> 0x0122 }
-            if (r3 != 0) goto L_0x011c;
-        L_0x0114:
-            r3 = r12.wip;	 Catch:{ all -> 0x0122 }
-            r3 = r3 - r1;
-            r12.wip = r3;	 Catch:{ all -> 0x0122 }
-            monitor-exit(r12);	 Catch:{ all -> 0x0122 }
-            goto L_0x0005;
-        L_0x011c:
-            monitor-exit(r12);	 Catch:{ all -> 0x0122 }
-            r12.subscribeInner(r3);
-            goto L_0x0005;
-        L_0x0122:
-            r0 = move-exception;
-            monitor-exit(r12);	 Catch:{ all -> 0x0122 }
-            throw r0;
-        L_0x0125:
-            r2 = -r2;
-            r2 = r12.addAndGet(r2);
-            if (r2 != 0) goto L_0x012e;
-            return;
-        L_0x012e:
-            goto L_0x0005;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.observable.ObservableFlatMap.MergeObserver.drainLoop():void");
+            Observer observer = this.actual;
+            int i = 1;
+            while (!checkTerminate()) {
+                SimplePlainQueue simplePlainQueue = this.queue;
+                if (simplePlainQueue != null) {
+                    while (!checkTerminate()) {
+                        Object poll = simplePlainQueue.poll();
+                        if (poll != null) {
+                            observer.onNext(poll);
+                        } else if (poll == null) {
+                        }
+                    }
+                    return;
+                }
+                boolean z = this.done;
+                SimplePlainQueue simplePlainQueue2 = this.queue;
+                InnerObserver[] innerObserverArr = (InnerObserver[]) this.observers.get();
+                int length = innerObserverArr.length;
+                if (z && ((simplePlainQueue2 == null || simplePlainQueue2.isEmpty()) && length == 0)) {
+                    Throwable terminate = this.errors.terminate();
+                    if (terminate != ExceptionHelper.TERMINATED) {
+                        if (terminate == null) {
+                            observer.onComplete();
+                        } else {
+                            observer.onError(terminate);
+                        }
+                    }
+                    return;
+                }
+                int i2 = 0;
+                if (length != 0) {
+                    long j = this.lastId;
+                    int i3 = this.lastIndex;
+                    if (length <= i3 || innerObserverArr[i3].id != j) {
+                        if (length <= i3) {
+                            i3 = 0;
+                        }
+                        int i4 = i3;
+                        for (i3 = 0; i3 < length && innerObserverArr[i4].id != j; i3++) {
+                            i4++;
+                            if (i4 == length) {
+                                i4 = 0;
+                            }
+                        }
+                        this.lastIndex = i4;
+                        this.lastId = innerObserverArr[i4].id;
+                        i3 = i4;
+                    }
+                    int i5 = 0;
+                    int i6 = i3;
+                    i3 = i5;
+                    while (i3 < length) {
+                        if (!checkTerminate()) {
+                            InnerObserver innerObserver = innerObserverArr[i6];
+                            while (!checkTerminate()) {
+                                SimpleQueue simpleQueue = innerObserver.queue;
+                                if (simpleQueue != null) {
+                                    while (true) {
+                                        try {
+                                            Object poll2 = simpleQueue.poll();
+                                            if (poll2 == null) {
+                                                break;
+                                            }
+                                            observer.onNext(poll2);
+                                            if (checkTerminate()) {
+                                                return;
+                                            }
+                                        } catch (Throwable th) {
+                                            Exceptions.throwIfFatal(th);
+                                            innerObserver.dispose();
+                                            this.errors.addThrowable(th);
+                                            if (!checkTerminate()) {
+                                                removeInner(innerObserver);
+                                                i3++;
+                                                i5 = 1;
+                                            } else {
+                                                return;
+                                            }
+                                        }
+                                    }
+                                }
+                                boolean z2 = innerObserver.done;
+                                SimpleQueue simpleQueue2 = innerObserver.queue;
+                                if (z2 && (simpleQueue2 == null || simpleQueue2.isEmpty())) {
+                                    removeInner(innerObserver);
+                                    if (!checkTerminate()) {
+                                        i5 = 1;
+                                    } else {
+                                        return;
+                                    }
+                                }
+                                i6++;
+                                if (i6 == length) {
+                                    i6 = 0;
+                                }
+                                i3++;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    this.lastIndex = i6;
+                    this.lastId = innerObserverArr[i6].id;
+                    i2 = i5;
+                }
+                if (i2 == 0) {
+                    i = addAndGet(-i);
+                    if (i == 0) {
+                        return;
+                    }
+                } else if (this.maxConcurrency != Integer.MAX_VALUE) {
+                    synchronized (this) {
+                        ObservableSource observableSource = (ObservableSource) this.sources.poll();
+                        if (observableSource == null) {
+                            this.wip--;
+                        } else {
+                            subscribeInner(observableSource);
+                        }
+                    }
+                } else {
+                    continue;
+                }
+            }
         }
 
         boolean checkTerminate() {

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
+import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -182,64 +183,20 @@ public class MonitoringInstrumentation extends ExposedInstrumentationApi {
     /* JADX WARNING: Missing block: B:21:?, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     protected void installMultidex() {
-        /*
-        r7 = this;
-        r0 = android.os.Build.VERSION.SDK_INT;
-        r1 = 21;
-        if (r0 >= r1) goto L_0x005b;
-    L_0x0006:
-        r0 = "android.support.multidex.MultiDex";
-        r0 = java.lang.Class.forName(r0);	 Catch:{ ClassNotFoundException -> 0x0052, NoSuchMethodException -> 0x0049, InvocationTargetException -> 0x0040, IllegalAccessException -> 0x0037 }
-        r1 = "installInstrumentation";
-        r2 = 2;
-        r3 = new java.lang.Class[r2];	 Catch:{ NoSuchMethodException -> 0x0032, ClassNotFoundException -> 0x0052, InvocationTargetException -> 0x0040, IllegalAccessException -> 0x0037 }
-        r4 = android.content.Context.class;
-        r5 = 0;
-        r3[r5] = r4;	 Catch:{ NoSuchMethodException -> 0x0032, ClassNotFoundException -> 0x0052, InvocationTargetException -> 0x0040, IllegalAccessException -> 0x0037 }
-        r4 = android.content.Context.class;
-        r6 = 1;
-        r3[r6] = r4;	 Catch:{ NoSuchMethodException -> 0x0032, ClassNotFoundException -> 0x0052, InvocationTargetException -> 0x0040, IllegalAccessException -> 0x0037 }
-        r1 = r0.getDeclaredMethod(r1, r3);	 Catch:{ NoSuchMethodException -> 0x0032, ClassNotFoundException -> 0x0052, InvocationTargetException -> 0x0040, IllegalAccessException -> 0x0037 }
-        r3 = 0;
-        r2 = new java.lang.Object[r2];	 Catch:{ NoSuchMethodException -> 0x0032, ClassNotFoundException -> 0x0052, InvocationTargetException -> 0x0040, IllegalAccessException -> 0x0037 }
-        r4 = r7.getContext();	 Catch:{ NoSuchMethodException -> 0x0032, ClassNotFoundException -> 0x0052, InvocationTargetException -> 0x0040, IllegalAccessException -> 0x0037 }
-        r2[r5] = r4;	 Catch:{ NoSuchMethodException -> 0x0032, ClassNotFoundException -> 0x0052, InvocationTargetException -> 0x0040, IllegalAccessException -> 0x0037 }
-        r4 = r7.getTargetContext();	 Catch:{ NoSuchMethodException -> 0x0032, ClassNotFoundException -> 0x0052, InvocationTargetException -> 0x0040, IllegalAccessException -> 0x0037 }
-        r2[r6] = r4;	 Catch:{ NoSuchMethodException -> 0x0032, ClassNotFoundException -> 0x0052, InvocationTargetException -> 0x0040, IllegalAccessException -> 0x0037 }
-        r1.invoke(r3, r2);	 Catch:{ NoSuchMethodException -> 0x0032, ClassNotFoundException -> 0x0052, InvocationTargetException -> 0x0040, IllegalAccessException -> 0x0037 }
-        goto L_0x005a;
-    L_0x0032:
-        r1 = move-exception;
-        r7.installOldMultiDex(r0);	 Catch:{ ClassNotFoundException -> 0x0052, NoSuchMethodException -> 0x0049, InvocationTargetException -> 0x0040, IllegalAccessException -> 0x0037 }
-        goto L_0x005a;
-    L_0x0037:
-        r0 = move-exception;
-        r1 = new java.lang.RuntimeException;
-        r2 = "multidex is available at runtime, but calling it failed.";
-        r1.<init>(r2, r0);
-        throw r1;
-    L_0x0040:
-        r0 = move-exception;
-        r1 = new java.lang.RuntimeException;
-        r2 = "multidex is available at runtime, but calling it failed.";
-        r1.<init>(r2, r0);
-        throw r1;
-    L_0x0049:
-        r0 = move-exception;
-        r1 = "MonitoringInstr";
-        r2 = "No multidex.";
-        android.util.Log.i(r1, r2, r0);
-        goto L_0x005a;
-    L_0x0052:
-        r0 = move-exception;
-        r0 = "MonitoringInstr";
-        r1 = "No multidex.";
-        android.util.Log.i(r0, r1);
-    L_0x005b:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.test.runner.MonitoringInstrumentation.installMultidex():void");
+        if (VERSION.SDK_INT < 21) {
+            Class cls;
+            try {
+                cls = Class.forName("android.support.multidex.MultiDex");
+                cls.getDeclaredMethod("installInstrumentation", new Class[]{Context.class, Context.class}).invoke(null, new Object[]{getContext(), getTargetContext()});
+            } catch (NoSuchMethodException e) {
+                installOldMultiDex(cls);
+            } catch (ClassNotFoundException e2) {
+            } catch (Throwable e3) {
+            } catch (Throwable e4) {
+            }
+        }
     }
 
     protected void installOldMultiDex(Class<?> cls) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
@@ -573,37 +530,14 @@ public class MonitoringInstrumentation extends ExposedInstrumentationApi {
                 /* JADX WARNING: Missing block: B:7:?, code:
             return;
      */
+                /* Code decompiled incorrectly, please refer to instructions dump. */
                 public void run() {
-                    /*
-                    r4 = this;
-                    r0 = r2;	 Catch:{ ClassNotFoundException -> 0x0029, ClassNotFoundException -> 0x0029, InvocationTargetException -> 0x0020, InvocationTargetException -> 0x0020 }
-                    r0 = java.lang.Class.forName(r0);	 Catch:{ ClassNotFoundException -> 0x0029, ClassNotFoundException -> 0x0029, InvocationTargetException -> 0x0020, InvocationTargetException -> 0x0020 }
-                    r1 = "installBridge";
-                    r2 = 0;
-                    r3 = new java.lang.Class[r2];	 Catch:{ ClassNotFoundException -> 0x0029, ClassNotFoundException -> 0x0029, InvocationTargetException -> 0x0020, InvocationTargetException -> 0x0020 }
-                    r0 = r0.getDeclaredMethod(r1, r3);	 Catch:{ ClassNotFoundException -> 0x0029, ClassNotFoundException -> 0x0029, InvocationTargetException -> 0x0020, InvocationTargetException -> 0x0020 }
-                    r1 = 0;
-                    r2 = new java.lang.Object[r2];	 Catch:{ ClassNotFoundException -> 0x0029, ClassNotFoundException -> 0x0029, InvocationTargetException -> 0x0020, InvocationTargetException -> 0x0020 }
-                    r0.invoke(r1, r2);	 Catch:{ ClassNotFoundException -> 0x0029, ClassNotFoundException -> 0x0029, InvocationTargetException -> 0x0020, InvocationTargetException -> 0x0020 }
-                    r0 = android.support.test.runner.MonitoringInstrumentation.this;	 Catch:{ ClassNotFoundException -> 0x0029, ClassNotFoundException -> 0x0029, InvocationTargetException -> 0x0020, InvocationTargetException -> 0x0020 }
-                    r0 = r0.mIsJsBridgeLoaded;	 Catch:{ ClassNotFoundException -> 0x0029, ClassNotFoundException -> 0x0029, InvocationTargetException -> 0x0020, InvocationTargetException -> 0x0020 }
-                    r1 = 1;
-                    r0.set(r1);	 Catch:{ ClassNotFoundException -> 0x0029, ClassNotFoundException -> 0x0029, InvocationTargetException -> 0x0020, InvocationTargetException -> 0x0020 }
-                    goto L_0x0031;
-                L_0x0020:
-                    r0 = move-exception;
-                    r1 = new java.lang.RuntimeException;
-                    r2 = "JSbridge is available at runtime, but calling it failed.";
-                    r1.<init>(r2, r0);
-                    throw r1;
-                L_0x0029:
-                    r0 = move-exception;
-                    r0 = "MonitoringInstr";
-                    r1 = "No JSBridge.";
-                    android.util.Log.i(r0, r1);
-                    return;
-                    */
-                    throw new UnsupportedOperationException("Method not decompiled: android.support.test.runner.MonitoringInstrumentation.5.run():void");
+                    try {
+                        Class.forName(str).getDeclaredMethod("installBridge", new Class[0]).invoke(null, new Object[0]);
+                        MonitoringInstrumentation.this.mIsJsBridgeLoaded.set(true);
+                    } catch (ClassNotFoundException e) {
+                    } catch (Throwable e2) {
+                    }
                 }
             });
             return;

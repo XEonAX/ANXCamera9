@@ -159,45 +159,20 @@ public class RoundDetector implements SensorEventListener {
     /* JADX WARNING: Missing block: B:18:0x0026, code:
             return r2;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public boolean detect() {
-        /*
-        r5 = this;
-        r0 = SynchronizedObject;
-        monitor-enter(r0);
-        r1 = r5.mIsEndOk;	 Catch:{ all -> 0x0027 }
-        r2 = 0;
-        if (r1 != 0) goto L_0x000a;
-    L_0x0008:
-        monitor-exit(r0);	 Catch:{ all -> 0x0027 }
-        return r2;
-    L_0x000a:
-        r1 = r5.mDirection;	 Catch:{ all -> 0x0027 }
-        r3 = 1;
-        if (r1 != 0) goto L_0x001b;
-    L_0x000f:
-        r1 = r5.mStartDegree;	 Catch:{ all -> 0x0027 }
-        r4 = r5.currentDegree();	 Catch:{ all -> 0x0027 }
-        if (r1 < r4) goto L_0x0019;
-    L_0x0017:
-        r2 = r3;
-    L_0x0019:
-        monitor-exit(r0);	 Catch:{ all -> 0x0027 }
-        return r2;
-    L_0x001b:
-        r1 = r5.mStartDegree;	 Catch:{ all -> 0x0027 }
-        r4 = r5.currentDegree();	 Catch:{ all -> 0x0027 }
-        if (r1 > r4) goto L_0x0025;
-    L_0x0023:
-        r2 = r3;
-    L_0x0025:
-        monitor-exit(r0);	 Catch:{ all -> 0x0027 }
-        return r2;
-    L_0x0027:
-        r1 = move-exception;
-        monitor-exit(r0);	 Catch:{ all -> 0x0027 }
-        throw r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.panorama.RoundDetector.detect():boolean");
+        synchronized (SynchronizedObject) {
+            boolean z = false;
+            if (!this.mIsEndOk) {
+                return false;
+            } else if (this.mDirection == 0) {
+                if (this.mStartDegree >= currentDegree()) {
+                    z = true;
+                }
+            } else if (this.mStartDegree <= currentDegree()) {
+                z = true;
+            }
+        }
     }
 
     public void stop() {

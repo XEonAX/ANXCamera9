@@ -6,6 +6,7 @@ import io.reactivex.exceptions.Exceptions;
 import io.reactivex.exceptions.MissingBackpressureException;
 import io.reactivex.functions.Function;
 import io.reactivex.internal.functions.ObjectHelper;
+import io.reactivex.internal.fuseable.SimpleQueue;
 import io.reactivex.internal.queue.SpscLinkedArrayQueue;
 import io.reactivex.internal.subscribers.InnerQueuedSubscriber;
 import io.reactivex.internal.subscribers.InnerQueuedSubscriberSupport;
@@ -157,206 +158,138 @@ public final class FlowableConcatMapEager<T, R> extends AbstractFlowableWithUpst
         /* JADX WARNING: Removed duplicated region for block: B:78:0x0139  */
         /* JADX WARNING: Removed duplicated region for block: B:78:0x0139  */
         /* JADX WARNING: Removed duplicated region for block: B:79:0x013e  */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         public void drain() {
-            /*
-            r19 = this;
-            r1 = r19;
-            r0 = r19.getAndIncrement();
-            if (r0 == 0) goto L_0x0009;
-        L_0x0008:
-            return;
-            r0 = r1.current;
-            r2 = r1.actual;
-            r3 = r1.errorMode;
-            r5 = 1;
-        L_0x0011:
-            r6 = r1.requested;
-            r6 = r6.get();
-            if (r0 != 0) goto L_0x0058;
-        L_0x001a:
-            r0 = io.reactivex.internal.util.ErrorMode.END;
-            if (r3 == r0) goto L_0x0035;
-        L_0x001e:
-            r0 = r1.errors;
-            r0 = r0.get();
-            r0 = (java.lang.Throwable) r0;
-            if (r0 == 0) goto L_0x0035;
-        L_0x0028:
-            r19.cancelAll();
-            r0 = r1.errors;
-            r0 = r0.terminate();
-            r2.onError(r0);
-            return;
-        L_0x0035:
-            r0 = r1.done;
-            r8 = r1.subscribers;
-            r8 = r8.poll();
-            r8 = (io.reactivex.internal.subscribers.InnerQueuedSubscriber) r8;
-            if (r0 == 0) goto L_0x0053;
-        L_0x0041:
-            if (r8 != 0) goto L_0x0053;
-        L_0x0043:
-            r0 = r1.errors;
-            r0 = r0.terminate();
-            if (r0 == 0) goto L_0x004f;
-        L_0x004b:
-            r2.onError(r0);
-            goto L_0x0052;
-        L_0x004f:
-            r2.onComplete();
-        L_0x0052:
-            return;
-        L_0x0053:
-            if (r8 == 0) goto L_0x0059;
-        L_0x0055:
-            r1.current = r8;
-            goto L_0x0059;
-        L_0x0058:
-            r8 = r0;
-        L_0x0059:
-            r11 = 0;
-            if (r8 == 0) goto L_0x011b;
-        L_0x005c:
-            r12 = r8.queue();
-            if (r12 == 0) goto L_0x011b;
-        L_0x0062:
-            r13 = 0;
-        L_0x0064:
-            r15 = (r13 > r6 ? 1 : (r13 == r6 ? 0 : -1));
-            r16 = r5;
-            r4 = 1;
-            if (r15 == 0) goto L_0x00d4;
-        L_0x006c:
-            r0 = r1.cancelled;
-            if (r0 == 0) goto L_0x0074;
-        L_0x0070:
-            r19.cancelAll();
-            return;
-        L_0x0074:
-            r0 = io.reactivex.internal.util.ErrorMode.IMMEDIATE;
-            if (r3 != r0) goto L_0x0094;
-        L_0x0078:
-            r0 = r1.errors;
-            r0 = r0.get();
-            r0 = (java.lang.Throwable) r0;
-            if (r0 == 0) goto L_0x0094;
-        L_0x0082:
-            r1.current = r11;
-            r8.cancel();
-            r19.cancelAll();
-            r0 = r1.errors;
-            r0 = r0.terminate();
-            r2.onError(r0);
-            return;
-        L_0x0094:
-            r0 = r8.isDone();
-            r9 = r12.poll();	 Catch:{ Throwable -> 0x00c3 }
-            if (r9 != 0) goto L_0x00a1;
-        L_0x009f:
-            r10 = 1;
-            goto L_0x00a3;
-            r10 = 0;
-        L_0x00a3:
-            if (r0 == 0) goto L_0x00b5;
-        L_0x00a5:
-            if (r10 == 0) goto L_0x00b5;
-            r1.current = r11;
-            r0 = r1.s;
-            r0.request(r4);
-            r8 = r11;
-            r17 = 1;
-            goto L_0x00d6;
-        L_0x00b5:
-            if (r10 == 0) goto L_0x00b8;
-        L_0x00b7:
-            goto L_0x00d4;
-        L_0x00b8:
-            r2.onNext(r9);
-            r13 = r13 + r4;
-            r8.requestOne();
-            r5 = r16;
-            goto L_0x0064;
-        L_0x00c3:
-            r0 = move-exception;
-            r3 = r0;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r3);
-            r1.current = r11;
-            r8.cancel();
-            r19.cancelAll();
-            r2.onError(r3);
-            return;
-        L_0x00d4:
-            r17 = 0;
-        L_0x00d6:
-            if (r15 != 0) goto L_0x0119;
-        L_0x00d8:
-            r0 = r1.cancelled;
-            if (r0 == 0) goto L_0x00e0;
-        L_0x00dc:
-            r19.cancelAll();
-            return;
-        L_0x00e0:
-            r0 = io.reactivex.internal.util.ErrorMode.IMMEDIATE;
-            if (r3 != r0) goto L_0x0100;
-        L_0x00e4:
-            r0 = r1.errors;
-            r0 = r0.get();
-            r0 = (java.lang.Throwable) r0;
-            if (r0 == 0) goto L_0x0100;
-        L_0x00ee:
-            r1.current = r11;
-            r8.cancel();
-            r19.cancelAll();
-            r0 = r1.errors;
-            r0 = r0.terminate();
-            r2.onError(r0);
-            return;
-        L_0x0100:
-            r0 = r8.isDone();
-            r9 = r12.isEmpty();
-            if (r0 == 0) goto L_0x0119;
-        L_0x010a:
-            if (r9 == 0) goto L_0x0119;
-            r1.current = r11;
-            r0 = r1.s;
-            r0.request(r4);
-            r0 = r11;
-            r17 = 1;
-            goto L_0x0122;
-        L_0x0119:
-            r0 = r8;
-            goto L_0x0122;
-        L_0x011b:
-            r16 = r5;
-            r0 = r8;
-            r13 = 0;
-            r17 = 0;
-        L_0x0122:
-            r4 = 0;
-            r4 = (r13 > r4 ? 1 : (r13 == r4 ? 0 : -1));
-            if (r4 == 0) goto L_0x0137;
-        L_0x0128:
-            r4 = 9223372036854775807; // 0x7fffffffffffffff float:NaN double:NaN;
-            r4 = (r6 > r4 ? 1 : (r6 == r4 ? 0 : -1));
-            if (r4 == 0) goto L_0x0137;
-        L_0x0131:
-            r4 = r1.requested;
-            r5 = -r13;
-            r4.addAndGet(r5);
-        L_0x0137:
-            if (r17 == 0) goto L_0x013e;
-            r5 = r16;
-            goto L_0x0011;
-        L_0x013e:
-            r4 = r16;
-            r4 = -r4;
-            r5 = r1.addAndGet(r4);
-            if (r5 != 0) goto L_0x0149;
-            return;
-        L_0x0149:
-            goto L_0x0011;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowableConcatMapEager.ConcatMapEagerDelayErrorSubscriber.drain():void");
+            if (getAndIncrement() == 0) {
+                InnerQueuedSubscriber innerQueuedSubscriber = this.current;
+                Subscriber subscriber = this.actual;
+                ErrorMode errorMode = this.errorMode;
+                int i = 1;
+                while (true) {
+                    InnerQueuedSubscriber innerQueuedSubscriber2;
+                    Throwable terminate;
+                    long j;
+                    int i2;
+                    Object obj;
+                    long j2 = this.requested.get();
+                    if (innerQueuedSubscriber != null) {
+                        innerQueuedSubscriber2 = innerQueuedSubscriber;
+                    } else if (errorMode == ErrorMode.END || ((Throwable) this.errors.get()) == null) {
+                        innerQueuedSubscriber2 = (InnerQueuedSubscriber) this.subscribers.poll();
+                        if (this.done && innerQueuedSubscriber2 == null) {
+                            terminate = this.errors.terminate();
+                            if (terminate != null) {
+                                subscriber.onError(terminate);
+                            } else {
+                                subscriber.onComplete();
+                            }
+                            return;
+                        } else if (innerQueuedSubscriber2 != null) {
+                            this.current = innerQueuedSubscriber2;
+                        }
+                    } else {
+                        cancelAll();
+                        subscriber.onError(this.errors.terminate());
+                        return;
+                    }
+                    if (innerQueuedSubscriber2 != null) {
+                        SimpleQueue queue = innerQueuedSubscriber2.queue();
+                        if (queue != null) {
+                            int i3;
+                            boolean isDone;
+                            j = 0;
+                            while (true) {
+                                i3 = (j > j2 ? 1 : (j == j2 ? 0 : -1));
+                                i2 = i;
+                                if (i3 == 0) {
+                                    break;
+                                } else if (this.cancelled) {
+                                    cancelAll();
+                                    return;
+                                } else if (errorMode != ErrorMode.IMMEDIATE || ((Throwable) this.errors.get()) == null) {
+                                    isDone = innerQueuedSubscriber2.isDone();
+                                    try {
+                                        Object poll = queue.poll();
+                                        Object obj2 = poll == null ? 1 : null;
+                                        if (isDone && obj2 != null) {
+                                            this.current = null;
+                                            this.s.request(1);
+                                            innerQueuedSubscriber2 = null;
+                                            obj = 1;
+                                            break;
+                                        } else if (obj2 != null) {
+                                            break;
+                                        } else {
+                                            subscriber.onNext(poll);
+                                            j++;
+                                            innerQueuedSubscriber2.requestOne();
+                                            i = i2;
+                                        }
+                                    } catch (Throwable terminate2) {
+                                        Throwable th = terminate2;
+                                        Exceptions.throwIfFatal(th);
+                                        this.current = null;
+                                        innerQueuedSubscriber2.cancel();
+                                        cancelAll();
+                                        subscriber.onError(th);
+                                        return;
+                                    }
+                                } else {
+                                    this.current = null;
+                                    innerQueuedSubscriber2.cancel();
+                                    cancelAll();
+                                    subscriber.onError(this.errors.terminate());
+                                    return;
+                                }
+                            }
+                            obj = null;
+                            if (i3 == 0) {
+                                if (this.cancelled) {
+                                    cancelAll();
+                                    return;
+                                } else if (errorMode != ErrorMode.IMMEDIATE || ((Throwable) this.errors.get()) == null) {
+                                    isDone = innerQueuedSubscriber2.isDone();
+                                    boolean isEmpty = queue.isEmpty();
+                                    if (isDone && isEmpty) {
+                                        this.current = null;
+                                        this.s.request(1);
+                                        innerQueuedSubscriber = null;
+                                        obj = 1;
+                                        if (!(j == 0 || j2 == Long.MAX_VALUE)) {
+                                            this.requested.addAndGet(-j);
+                                        }
+                                        if (obj != null) {
+                                            i = i2;
+                                        } else {
+                                            i = addAndGet(-i2);
+                                            if (i == 0) {
+                                                return;
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    this.current = null;
+                                    innerQueuedSubscriber2.cancel();
+                                    cancelAll();
+                                    subscriber.onError(this.errors.terminate());
+                                    return;
+                                }
+                            }
+                            innerQueuedSubscriber = innerQueuedSubscriber2;
+                            this.requested.addAndGet(-j);
+                            if (obj != null) {
+                            }
+                        }
+                    }
+                    i2 = i;
+                    innerQueuedSubscriber = innerQueuedSubscriber2;
+                    j = 0;
+                    obj = null;
+                    this.requested.addAndGet(-j);
+                    if (obj != null) {
+                    }
+                }
+            }
         }
     }
 

@@ -44,88 +44,51 @@ public class RotateLayout extends ViewGroup implements Rotatable {
     /* JADX WARNING: Removed duplicated region for block: B:10:0x0040  */
     /* JADX WARNING: Removed duplicated region for block: B:10:0x0040  */
     /* JADX WARNING: Removed duplicated region for block: B:16:0x006c  */
-    protected void onMeasure(int r6, int r7) {
-        /*
-        r5 = this;
-        r0 = r5.mOrientation;
-        r1 = 270; // 0x10e float:3.78E-43 double:1.334E-321;
-        r2 = 180; // 0xb4 float:2.52E-43 double:8.9E-322;
-        r3 = 90;
-        r4 = 0;
-        if (r0 == 0) goto L_0x0026;
-    L_0x000c:
-        if (r0 == r3) goto L_0x0014;
-    L_0x000e:
-        if (r0 == r2) goto L_0x0026;
-    L_0x0010:
-        if (r0 == r1) goto L_0x0014;
-    L_0x0012:
-        r6 = r4;
-        goto L_0x0038;
-    L_0x0014:
-        r0 = r5.mChild;
-        r5.measureChild(r0, r7, r6);
-        r6 = r5.mChild;
-        r4 = r6.getMeasuredHeight();
-        r6 = r5.mChild;
-        r6 = r6.getMeasuredWidth();
-        goto L_0x0038;
-    L_0x0026:
-        r0 = r5.mChild;
-        r5.measureChild(r0, r6, r7);
-        r6 = r5.mChild;
-        r4 = r6.getMeasuredWidth();
-        r6 = r5.mChild;
-        r6 = r6.getMeasuredHeight();
-    L_0x0038:
-        r5.setMeasuredDimension(r4, r6);
-        r7 = r5.mOrientation;
-        r0 = 0;
-        if (r7 == 0) goto L_0x006c;
-    L_0x0040:
-        if (r7 == r3) goto L_0x0060;
-    L_0x0042:
-        if (r7 == r2) goto L_0x0053;
-    L_0x0044:
-        if (r7 == r1) goto L_0x0047;
-    L_0x0046:
-        goto L_0x0077;
-    L_0x0047:
-        r6 = r5.mChild;
-        r7 = (float) r4;
-        r6.setTranslationX(r7);
-        r6 = r5.mChild;
-        r6.setTranslationY(r0);
-        goto L_0x0077;
-    L_0x0053:
-        r7 = r5.mChild;
-        r0 = (float) r4;
-        r7.setTranslationX(r0);
-        r7 = r5.mChild;
-        r6 = (float) r6;
-        r7.setTranslationY(r6);
-        goto L_0x0077;
-    L_0x0060:
-        r7 = r5.mChild;
-        r7.setTranslationX(r0);
-        r7 = r5.mChild;
-        r6 = (float) r6;
-        r7.setTranslationY(r6);
-        goto L_0x0077;
-    L_0x006c:
-        r6 = r5.mChild;
-        r6.setTranslationX(r0);
-        r6 = r5.mChild;
-        r6.setTranslationY(r0);
-    L_0x0077:
-        r6 = r5.mChild;
-        r7 = r5.mOrientation;
-        r7 = -r7;
-        r7 = (float) r7;
-        r6.setRotation(r7);
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.ui.RotateLayout.onMeasure(int, int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    protected void onMeasure(int i, int i2) {
+        int i3 = this.mOrientation;
+        int i4 = 0;
+        if (i3 != 0) {
+            if (i3 != 90) {
+                if (i3 != 180) {
+                    if (i3 != 270) {
+                        i = 0;
+                        setMeasuredDimension(i4, i);
+                        i2 = this.mOrientation;
+                        if (i2 == 0) {
+                            this.mChild.setTranslationX(0.0f);
+                            this.mChild.setTranslationY(0.0f);
+                        } else if (i2 == 90) {
+                            this.mChild.setTranslationX(0.0f);
+                            this.mChild.setTranslationY((float) i);
+                        } else if (i2 == 180) {
+                            this.mChild.setTranslationX((float) i4);
+                            this.mChild.setTranslationY((float) i);
+                        } else if (i2 == 270) {
+                            this.mChild.setTranslationX((float) i4);
+                            this.mChild.setTranslationY(0.0f);
+                        }
+                        this.mChild.setRotation((float) (-this.mOrientation));
+                    }
+                }
+            }
+            measureChild(this.mChild, i2, i);
+            i4 = this.mChild.getMeasuredHeight();
+            i = this.mChild.getMeasuredWidth();
+            setMeasuredDimension(i4, i);
+            i2 = this.mOrientation;
+            if (i2 == 0) {
+            }
+            this.mChild.setRotation((float) (-this.mOrientation));
+        }
+        measureChild(this.mChild, i, i2);
+        i4 = this.mChild.getMeasuredWidth();
+        i = this.mChild.getMeasuredHeight();
+        setMeasuredDimension(i4, i);
+        i2 = this.mOrientation;
+        if (i2 == 0) {
+        }
+        this.mChild.setRotation((float) (-this.mOrientation));
     }
 
     public boolean shouldDelayChildPressedState() {

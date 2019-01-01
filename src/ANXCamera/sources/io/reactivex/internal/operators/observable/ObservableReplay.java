@@ -492,50 +492,29 @@ public final class ObservableReplay<T> extends ConnectableObservable<T> implemen
 
         /* JADX WARNING: Removed duplicated region for block: B:14:? A:{SYNTHETIC, RETURN} */
         /* JADX WARNING: Removed duplicated region for block: B:9:0x0040  */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         void truncateFinal() {
-            /*
-            r10 = this;
-            r0 = r10.scheduler;
-            r1 = r10.unit;
-            r0 = r0.now(r1);
-            r2 = r10.maxAge;
-            r0 = r0 - r2;
-            r2 = r10.get();
-            r2 = (io.reactivex.internal.operators.observable.ObservableReplay.Node) r2;
-            r3 = r2.get();
-            r3 = (io.reactivex.internal.operators.observable.ObservableReplay.Node) r3;
-            r4 = 0;
-        L_0x0019:
-            r9 = r3;
-            r3 = r2;
-            r2 = r9;
-            if (r2 == 0) goto L_0x003e;
-        L_0x001e:
-            r5 = r10.size;
-            r6 = 1;
-            if (r5 <= r6) goto L_0x003e;
-        L_0x0023:
-            r5 = r2.value;
-            r5 = (io.reactivex.schedulers.Timed) r5;
-            r7 = r5.time();
-            r5 = (r7 > r0 ? 1 : (r7 == r0 ? 0 : -1));
-            if (r5 > 0) goto L_0x003e;
-        L_0x002f:
-            r4 = r4 + 1;
-            r3 = r10.size;
-            r3 = r3 - r6;
-            r10.size = r3;
-            r3 = r2.get();
-            r3 = (io.reactivex.internal.operators.observable.ObservableReplay.Node) r3;
-            goto L_0x0019;
-        L_0x003e:
-            if (r4 == 0) goto L_0x0043;
-        L_0x0040:
-            r10.setFirst(r3);
-        L_0x0043:
-            return;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.observable.ObservableReplay.SizeAndTimeBoundReplayBuffer.truncateFinal():void");
+            long now = this.scheduler.now(this.unit) - this.maxAge;
+            Node node = (Node) get();
+            Node node2 = (Node) node.get();
+            int i = 0;
+            while (true) {
+                Node node3 = node2;
+                node2 = node;
+                node = node3;
+                if (node != null && this.size > 1 && ((Timed) node.value).time() <= now) {
+                    i++;
+                    this.size--;
+                    node2 = (Node) node.get();
+                } else if (i == 0) {
+                    setFirst(node2);
+                    return;
+                } else {
+                    return;
+                }
+            }
+            if (i == 0) {
+            }
         }
 
         Node getHead() {

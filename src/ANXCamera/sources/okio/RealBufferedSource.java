@@ -294,57 +294,25 @@ final class RealBufferedSource implements BufferedSource {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:12:0x002b  */
-    public long readDecimalLong() throws java.io.IOException {
-        /*
-        r6 = this;
-        r0 = 1;
-        r6.require(r0);
-        r0 = 0;
-        r1 = r0;
-    L_0x0007:
-        r2 = r1 + 1;
-        r3 = (long) r2;
-        r3 = r6.request(r3);
-        if (r3 == 0) goto L_0x0040;
-    L_0x0010:
-        r3 = r6.buffer;
-        r4 = (long) r1;
-        r3 = r3.getByte(r4);
-        r4 = 48;
-        if (r3 < r4) goto L_0x001f;
-    L_0x001b:
-        r4 = 57;
-        if (r3 <= r4) goto L_0x0026;
-    L_0x001f:
-        if (r1 != 0) goto L_0x0028;
-    L_0x0021:
-        r4 = 45;
-        if (r3 == r4) goto L_0x0026;
-    L_0x0025:
-        goto L_0x0028;
-    L_0x0026:
-        r1 = r2;
-        goto L_0x0007;
-    L_0x0028:
-        if (r1 == 0) goto L_0x002b;
-    L_0x002a:
-        goto L_0x0040;
-    L_0x002b:
-        r1 = new java.lang.NumberFormatException;
-        r2 = 1;
-        r2 = new java.lang.Object[r2];
-        r3 = java.lang.Byte.valueOf(r3);
-        r2[r0] = r3;
-        r0 = "Expected leading [0-9] or '-' character but was %#x";
-        r0 = java.lang.String.format(r0, r2);
-        r1.<init>(r0);
-        throw r1;
-    L_0x0040:
-        r0 = r6.buffer;
-        r0 = r0.readDecimalLong();
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okio.RealBufferedSource.readDecimalLong():long");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public long readDecimalLong() throws IOException {
+        require(1);
+        int i = 0;
+        while (true) {
+            int i2 = i + 1;
+            if (!request((long) i2)) {
+                break;
+            }
+            byte b = this.buffer.getByte((long) i);
+            if ((b >= (byte) 48 && b <= (byte) 57) || (i == 0 && b == (byte) 45)) {
+                i = i2;
+            } else if (i == 0) {
+                throw new NumberFormatException(String.format("Expected leading [0-9] or '-' character but was %#x", new Object[]{Byte.valueOf(b)}));
+            }
+        }
+        if (i == 0) {
+        }
+        return this.buffer.readDecimalLong();
     }
 
     public long readHexadecimalUnsignedLong() throws IOException {

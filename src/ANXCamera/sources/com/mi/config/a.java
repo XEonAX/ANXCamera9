@@ -1,10 +1,17 @@
 package com.mi.config;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build.VERSION;
 import android.os.SystemProperties;
 import android.support.v4.util.SimpleArrayMap;
+import com.android.camera.CameraAppImpl;
 import com.android.camera.Util;
 import com.android.camera.data.data.DataItemBase;
+import com.android.camera.log.Log;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Iterator;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,98 +36,83 @@ public class a extends DataItemBase implements c {
     /* JADX WARNING: Removed duplicated region for block: B:31:0x0076 A:{SYNTHETIC, Splitter: B:31:0x0076} */
     /* JADX WARNING: Removed duplicated region for block: B:25:0x006c A:{SYNTHETIC, Splitter: B:25:0x006c} */
     /* JADX WARNING: Removed duplicated region for block: B:37:0x0082 A:{SYNTHETIC, Splitter: B:37:0x0082} */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public void eO() {
-        /*
-        r6 = this;
-        r0 = com.android.camera.CameraAppImpl.getAndroidContext();
-        r1 = r0.getResources();
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "feature_";
-        r2.append(r3);
-        r3 = com.mi.config.b.pF;
-        r2.append(r3);
-        r2 = r2.toString();
-        r3 = "raw";
-        r4 = "com.android.camera";
-        r1 = r1.getIdentifier(r2, r3, r4);
-        if (r1 > 0) goto L_0x002d;
-    L_0x0025:
-        r0 = "DataFeature";
-        r1 = "feature list default";
-        com.android.camera.log.Log.e(r0, r1);
-        return;
-    L_0x002d:
-        r2 = 0;
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r4 = new java.io.BufferedReader;	 Catch:{ IOException -> 0x0070, JSONException -> 0x0066 }
-        r5 = new java.io.InputStreamReader;	 Catch:{ IOException -> 0x0070, JSONException -> 0x0066 }
-        r0 = r0.getResources();	 Catch:{ IOException -> 0x0070, JSONException -> 0x0066 }
-        r0 = r0.openRawResource(r1);	 Catch:{ IOException -> 0x0070, JSONException -> 0x0066 }
-        r5.<init>(r0);	 Catch:{ IOException -> 0x0070, JSONException -> 0x0066 }
-        r4.<init>(r5);	 Catch:{ IOException -> 0x0070, JSONException -> 0x0066 }
-    L_0x0045:
-        r0 = r4.readLine();	 Catch:{ IOException -> 0x0061, JSONException -> 0x005e, all -> 0x005b }
-        if (r0 == 0) goto L_0x004f;
-    L_0x004b:
-        r3.append(r0);	 Catch:{ IOException -> 0x0061, JSONException -> 0x005e, all -> 0x005b }
-        goto L_0x0045;
-    L_0x004f:
-        r0 = r3.toString();	 Catch:{ IOException -> 0x0061, JSONException -> 0x005e, all -> 0x005b }
-        r6.A(r0);	 Catch:{ IOException -> 0x0061, JSONException -> 0x005e, all -> 0x005b }
-        r4.close();	 Catch:{ IOException -> 0x007a }
-        goto L_0x0079;
-    L_0x005b:
-        r0 = move-exception;
-        r2 = r4;
-        goto L_0x0080;
-    L_0x005e:
-        r0 = move-exception;
-        r2 = r4;
-        goto L_0x0067;
-    L_0x0061:
-        r0 = move-exception;
-        r2 = r4;
-        goto L_0x0071;
-    L_0x0064:
-        r0 = move-exception;
-        goto L_0x0080;
-    L_0x0066:
-        r0 = move-exception;
-    L_0x0067:
-        r0.printStackTrace();	 Catch:{ all -> 0x0064 }
-        if (r2 == 0) goto L_0x007f;
-    L_0x006c:
-        r2.close();	 Catch:{ IOException -> 0x007a }
-        goto L_0x0079;
-    L_0x0070:
-        r0 = move-exception;
-    L_0x0071:
-        r0.printStackTrace();	 Catch:{ all -> 0x0064 }
-        if (r2 == 0) goto L_0x007f;
-    L_0x0076:
-        r2.close();	 Catch:{ IOException -> 0x007a }
-    L_0x0079:
-        goto L_0x007f;
-    L_0x007a:
-        r0 = move-exception;
-        r0.printStackTrace();
-        goto L_0x0079;
-    L_0x007f:
-        return;
-    L_0x0080:
-        if (r2 == 0) goto L_0x008a;
-    L_0x0082:
-        r2.close();	 Catch:{ IOException -> 0x0086 }
-        goto L_0x008a;
-    L_0x0086:
-        r1 = move-exception;
-        r1.printStackTrace();
-    L_0x008a:
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.mi.config.a.eO():void");
+        IOException e;
+        JSONException e2;
+        Throwable th;
+        Context androidContext = CameraAppImpl.getAndroidContext();
+        Resources resources = androidContext.getResources();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("feature_");
+        stringBuilder.append(b.pF);
+        int identifier = resources.getIdentifier(stringBuilder.toString(), "raw", "com.android.camera");
+        if (identifier <= 0) {
+            Log.e(TAG, "feature list default");
+            return;
+        }
+        BufferedReader bufferedReader = null;
+        StringBuilder stringBuilder2 = new StringBuilder();
+        try {
+            BufferedReader bufferedReader2 = new BufferedReader(new InputStreamReader(androidContext.getResources().openRawResource(identifier)));
+            while (true) {
+                try {
+                    String readLine = bufferedReader2.readLine();
+                    if (readLine == null) {
+                        break;
+                    }
+                    stringBuilder2.append(readLine);
+                } catch (IOException e3) {
+                    e = e3;
+                    bufferedReader = bufferedReader2;
+                    e.printStackTrace();
+                    if (bufferedReader != null) {
+                    }
+                } catch (JSONException e4) {
+                    e2 = e4;
+                    bufferedReader = bufferedReader2;
+                    try {
+                        e2.printStackTrace();
+                        if (bufferedReader != null) {
+                        }
+                    } catch (Throwable th2) {
+                        th = th2;
+                        if (bufferedReader != null) {
+                            try {
+                                bufferedReader.close();
+                            } catch (IOException e5) {
+                                e5.printStackTrace();
+                            }
+                        }
+                        throw th;
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                    bufferedReader = bufferedReader2;
+                    if (bufferedReader != null) {
+                    }
+                    throw th;
+                }
+            }
+            A(stringBuilder2.toString());
+            try {
+                bufferedReader2.close();
+            } catch (IOException e6) {
+                e6.printStackTrace();
+            }
+        } catch (IOException e7) {
+            e6 = e7;
+            e6.printStackTrace();
+            if (bufferedReader != null) {
+                bufferedReader.close();
+            }
+        } catch (JSONException e8) {
+            e2 = e8;
+            e2.printStackTrace();
+            if (bufferedReader != null) {
+                bufferedReader.close();
+            }
+        }
     }
 
     private void A(String str) throws JSONException {

@@ -212,62 +212,32 @@ public final class CacheStrategy {
     /* JADX WARNING: Missing block: B:16:0x0049, code:
             return false;
      */
-    public static boolean isCacheable(okhttp3.Response r3, okhttp3.Request r4) {
-        /*
-        r0 = r3.code();
-        r1 = 0;
-        switch(r0) {
-            case 200: goto L_0x0031;
-            case 203: goto L_0x0031;
-            case 204: goto L_0x0031;
-            case 300: goto L_0x0031;
-            case 301: goto L_0x0031;
-            case 302: goto L_0x0009;
-            case 307: goto L_0x0009;
-            case 308: goto L_0x0031;
-            case 404: goto L_0x0031;
-            case 405: goto L_0x0031;
-            case 410: goto L_0x0031;
-            case 414: goto L_0x0031;
-            case 501: goto L_0x0031;
-            default: goto L_0x0008;
-        };
-    L_0x0008:
-        goto L_0x0049;
-    L_0x0009:
-        r0 = "Expires";
-        r0 = r3.header(r0);
-        if (r0 != 0) goto L_0x0032;
-    L_0x0011:
-        r0 = r3.cacheControl();
-        r0 = r0.maxAgeSeconds();
-        r2 = -1;
-        if (r0 != r2) goto L_0x0032;
-    L_0x001c:
-        r0 = r3.cacheControl();
-        r0 = r0.isPublic();
-        if (r0 != 0) goto L_0x0032;
-    L_0x0026:
-        r0 = r3.cacheControl();
-        r0 = r0.isPrivate();
-        if (r0 == 0) goto L_0x0049;
-    L_0x0030:
-        goto L_0x0032;
-    L_0x0032:
-        r3 = r3.cacheControl();
-        r3 = r3.noStore();
-        if (r3 != 0) goto L_0x0048;
-    L_0x003c:
-        r3 = r4.cacheControl();
-        r3 = r3.noStore();
-        if (r3 != 0) goto L_0x0048;
-    L_0x0046:
-        r1 = 1;
-    L_0x0048:
-        return r1;
-    L_0x0049:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.cache.CacheStrategy.isCacheable(okhttp3.Response, okhttp3.Request):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static boolean isCacheable(Response response, Request request) {
+        boolean z = false;
+        switch (response.code()) {
+            case 200:
+            case 203:
+            case 204:
+            case 300:
+            case 301:
+            case 308:
+            case 404:
+            case 405:
+            case 410:
+            case 414:
+            case 501:
+                break;
+            case 302:
+            case 307:
+                if (response.header(HttpRequest.HEADER_EXPIRES) == null) {
+                    if (response.cacheControl().maxAgeSeconds() == -1) {
+                        if (!response.cacheControl().isPublic()) {
+                            break;
+                        }
+                    }
+                }
+                break;
+        }
     }
 }

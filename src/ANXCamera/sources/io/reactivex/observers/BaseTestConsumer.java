@@ -13,6 +13,7 @@ import io.reactivex.internal.util.VolatileSizeArrayList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -433,76 +434,49 @@ public abstract class BaseTestConsumer<T, U extends BaseTestConsumer<T, U>> impl
 
     /* JADX WARNING: Removed duplicated region for block: B:14:0x0078  */
     /* JADX WARNING: Removed duplicated region for block: B:10:0x005a  */
-    public final U assertValueSequence(java.lang.Iterable<? extends T> r6) {
-        /*
-        r5 = this;
-        r0 = r5.values;
-        r0 = r0.iterator();
-        r6 = r6.iterator();
-        r1 = 0;
-    L_0x000c:
-        r2 = r6.hasNext();
-        r3 = r0.hasNext();
-        if (r3 == 0) goto L_0x0058;
-    L_0x0016:
-        if (r2 != 0) goto L_0x0019;
-    L_0x0018:
-        goto L_0x0058;
-    L_0x0019:
-        r2 = r6.next();
-        r3 = r0.next();
-        r4 = io.reactivex.internal.functions.ObjectHelper.equals(r2, r3);
-        if (r4 == 0) goto L_0x002a;
-    L_0x0027:
-        r1 = r1 + 1;
-        goto L_0x000c;
-    L_0x002a:
-        r6 = new java.lang.StringBuilder;
-        r6.<init>();
-        r0 = "Values at position ";
-        r6.append(r0);
-        r6.append(r1);
-        r0 = " differ; Expected: ";
-        r6.append(r0);
-        r0 = valueAndClass(r2);
-        r6.append(r0);
-        r0 = ", Actual: ";
-        r6.append(r0);
-        r0 = valueAndClass(r3);
-        r6.append(r0);
-        r6 = r6.toString();
-        r6 = r5.fail(r6);
-        throw r6;
-    L_0x0058:
-        if (r3 != 0) goto L_0x0078;
-    L_0x005a:
-        if (r2 != 0) goto L_0x005d;
-    L_0x005c:
-        return r5;
-    L_0x005d:
-        r6 = new java.lang.StringBuilder;
-        r6.<init>();
-        r0 = "Fewer values received than expected (";
-        r6.append(r0);
-        r6.append(r1);
-        r0 = ")";
-        r6.append(r0);
-        r6 = r6.toString();
-        r6 = r5.fail(r6);
-        throw r6;
-    L_0x0078:
-        r6 = new java.lang.StringBuilder;
-        r6.<init>();
-        r0 = "More values received than expected (";
-        r6.append(r0);
-        r6.append(r1);
-        r0 = ")";
-        r6.append(r0);
-        r6 = r6.toString();
-        r6 = r5.fail(r6);
-        throw r6;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: io.reactivex.observers.BaseTestConsumer.assertValueSequence(java.lang.Iterable):U");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public final U assertValueSequence(Iterable<? extends T> iterable) {
+        boolean hasNext;
+        Iterator it = this.values.iterator();
+        Iterator it2 = iterable.iterator();
+        int i = 0;
+        while (true) {
+            boolean hasNext2 = it2.hasNext();
+            hasNext = it.hasNext();
+            StringBuilder stringBuilder;
+            if (hasNext && hasNext2) {
+                Object next = it2.next();
+                Object next2 = it.next();
+                if (ObjectHelper.equals(next, next2)) {
+                    i++;
+                } else {
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("Values at position ");
+                    stringBuilder.append(i);
+                    stringBuilder.append(" differ; Expected: ");
+                    stringBuilder.append(valueAndClass(next));
+                    stringBuilder.append(", Actual: ");
+                    stringBuilder.append(valueAndClass(next2));
+                    throw fail(stringBuilder.toString());
+                }
+            } else if (!hasNext) {
+                stringBuilder = new StringBuilder();
+                stringBuilder.append("More values received than expected (");
+                stringBuilder.append(i);
+                stringBuilder.append(")");
+                throw fail(stringBuilder.toString());
+            } else if (!hasNext2) {
+                return this;
+            } else {
+                stringBuilder = new StringBuilder();
+                stringBuilder.append("Fewer values received than expected (");
+                stringBuilder.append(i);
+                stringBuilder.append(")");
+                throw fail(stringBuilder.toString());
+            }
+        }
+        if (!hasNext) {
+        }
     }
 
     public final U assertTerminated() {

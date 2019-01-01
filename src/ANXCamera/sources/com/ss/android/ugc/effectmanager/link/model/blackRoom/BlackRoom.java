@@ -53,49 +53,22 @@ public class BlackRoom {
     /* JADX WARNING: Missing block: B:9:0x004b, code:
             return;
      */
-    public synchronized void lock(com.ss.android.ugc.effectmanager.link.model.blackRoom.BlackRoomItem r7) {
-        /*
-        r6 = this;
-        monitor-enter(r6);
-        if (r7 != 0) goto L_0x0005;
-    L_0x0003:
-        monitor-exit(r6);
-        return;
-    L_0x0005:
-        r0 = r7.lockToBlackRoom();	 Catch:{ all -> 0x004c }
-        if (r0 == 0) goto L_0x004a;
-    L_0x000b:
-        r0 = "BlackRoom";
-        r1 = new java.lang.StringBuilder;	 Catch:{ all -> 0x004c }
-        r1.<init>();	 Catch:{ all -> 0x004c }
-        r2 = "lock ";
-        r1.append(r2);	 Catch:{ all -> 0x004c }
-        r2 = r7.getItemName();	 Catch:{ all -> 0x004c }
-        r1.append(r2);	 Catch:{ all -> 0x004c }
-        r2 = " ";
-        r1.append(r2);	 Catch:{ all -> 0x004c }
-        r2 = r7.getLockedCount();	 Catch:{ all -> 0x004c }
-        r1.append(r2);	 Catch:{ all -> 0x004c }
-        r2 = " time for ";
-        r1.append(r2);	 Catch:{ all -> 0x004c }
-        r7 = r7.getLockedCount();	 Catch:{ all -> 0x004c }
-        r2 = r6.getLockedTime(r7);	 Catch:{ all -> 0x004c }
-        r4 = 60000; // 0xea60 float:8.4078E-41 double:2.9644E-319;
-        r2 = r2 / r4;
-        r1.append(r2);	 Catch:{ all -> 0x004c }
-        r7 = " min";
-        r1.append(r7);	 Catch:{ all -> 0x004c }
-        r7 = r1.toString();	 Catch:{ all -> 0x004c }
-        com.ss.android.ugc.effectmanager.common.utils.LogUtils.e(r0, r7);	 Catch:{ all -> 0x004c }
-    L_0x004a:
-        monitor-exit(r6);
-        return;
-    L_0x004c:
-        r7 = move-exception;
-        monitor-exit(r6);
-        throw r7;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.ss.android.ugc.effectmanager.link.model.blackRoom.BlackRoom.lock(com.ss.android.ugc.effectmanager.link.model.blackRoom.BlackRoomItem):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public synchronized void lock(BlackRoomItem blackRoomItem) {
+        if (blackRoomItem != null) {
+            if (blackRoomItem.lockToBlackRoom()) {
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("lock ");
+                stringBuilder.append(blackRoomItem.getItemName());
+                stringBuilder.append(" ");
+                stringBuilder.append(blackRoomItem.getLockedCount());
+                stringBuilder.append(" time for ");
+                stringBuilder.append(getLockedTime(blackRoomItem.getLockedCount()) / 60000);
+                stringBuilder.append(" min");
+                LogUtils.e(str, stringBuilder.toString());
+            }
+        }
     }
 
     private long getLockedTime(int i) {

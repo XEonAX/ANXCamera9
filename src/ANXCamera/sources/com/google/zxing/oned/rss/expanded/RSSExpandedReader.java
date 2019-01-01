@@ -205,59 +205,25 @@ public final class RSSExpandedReader extends AbstractRSSReader {
     /* JADX WARNING: Missing block: B:13:0x0045, code:
             return;
      */
-    private void storeRow(int r7, boolean r8) {
-        /*
-        r6 = this;
-        r0 = 0;
-        r1 = 0;
-        r2 = 0;
-    L_0x0003:
-        r3 = r6.rows;
-        r3 = r3.size();
-        if (r0 < r3) goto L_0x000c;
-    L_0x000b:
-        goto L_0x0021;
-    L_0x000c:
-        r3 = r6.rows;
-        r3 = r3.get(r0);
-        r3 = (com.google.zxing.oned.rss.expanded.ExpandedRow) r3;
-        r4 = r3.getRowNumber();
-        if (r4 <= r7) goto L_0x0046;
-    L_0x001a:
-        r4 = r6.pairs;
-        r2 = r3.isEquivalent(r4);
-    L_0x0021:
-        if (r2 != 0) goto L_0x0045;
-    L_0x0023:
-        if (r1 == 0) goto L_0x0026;
-    L_0x0025:
-        goto L_0x0045;
-    L_0x0026:
-        r3 = r6.pairs;
-        r4 = r6.rows;
-        r3 = isPartialRow(r3, r4);
-        if (r3 == 0) goto L_0x0031;
-    L_0x0030:
-        return;
-    L_0x0031:
-        r3 = r6.rows;
-        r4 = new com.google.zxing.oned.rss.expanded.ExpandedRow;
-        r5 = r6.pairs;
-        r4.<init>(r5, r7, r8);
-        r3.add(r0, r4);
-        r3 = r6.pairs;
-        r4 = r6.rows;
-        removePartialRows(r3, r4);
-        return;
-    L_0x0045:
-        return;
-    L_0x0046:
-        r4 = r6.pairs;
-        r1 = r3.isEquivalent(r4);
-        r0 = r0 + 1;
-        goto L_0x0003;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.zxing.oned.rss.expanded.RSSExpandedReader.storeRow(int, boolean):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void storeRow(int rowNumber, boolean wasReversed) {
+        int insertPos = 0;
+        boolean prevIsSame = false;
+        boolean nextIsSame = false;
+        while (insertPos < this.rows.size()) {
+            ExpandedRow erow = (ExpandedRow) this.rows.get(insertPos);
+            if (erow.getRowNumber() > rowNumber) {
+                nextIsSame = erow.isEquivalent(this.pairs);
+                break;
+            } else {
+                prevIsSame = erow.isEquivalent(this.pairs);
+                insertPos++;
+            }
+        }
+        if (!nextIsSame && !prevIsSame && !isPartialRow(this.pairs, this.rows)) {
+            this.rows.add(insertPos, new ExpandedRow(this.pairs, rowNumber, wasReversed));
+            removePartialRows(this.pairs, this.rows);
+        }
     }
 
     private static void removePartialRows(List<ExpandedPair> pairs, List<ExpandedRow> rows) {
@@ -393,144 +359,85 @@ public final class RSSExpandedReader extends AbstractRSSReader {
     /* JADX WARNING: Removed duplicated region for block: B:14:0x004d  */
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0057  */
     /* JADX WARNING: Removed duplicated region for block: B:24:0x0065  */
-    private void findNextPair(com.google.zxing.common.BitArray r18, java.util.List<com.google.zxing.oned.rss.expanded.ExpandedPair> r19, int r20) throws com.google.zxing.NotFoundException {
-        /*
-        r17 = this;
-        r0 = r17;
-        r1 = r18;
-        r2 = r17.getDecodeFinderCounters();
-        r3 = 0;
-        r2[r3] = r3;
-        r4 = 1;
-        r2[r4] = r3;
-        r5 = 2;
-        r2[r5] = r3;
-        r6 = 3;
-        r2[r6] = r3;
-        r7 = r18.getSize();
-        if (r20 < 0) goto L_0x0020;
-    L_0x001a:
-        r8 = r20;
-    L_0x001d:
-        r9 = r19;
-        goto L_0x003f;
-    L_0x0020:
-        r8 = r19.isEmpty();
-        if (r8 == 0) goto L_0x0028;
-    L_0x0026:
-        r8 = 0;
-        goto L_0x001d;
-    L_0x0028:
-        r8 = r19.size();
-        r8 = r8 - r4;
-        r9 = r19;
-        r8 = r9.get(r8);
-        r8 = (com.google.zxing.oned.rss.expanded.ExpandedPair) r8;
-        r10 = r8.getFinderPattern();
-        r10 = r10.getStartEnd();
-        r8 = r10[r4];
-    L_0x003f:
-        r10 = r19.size();
-        r10 = r10 % r5;
-        if (r10 == 0) goto L_0x0048;
-    L_0x0046:
-        r10 = r4;
-        goto L_0x0049;
-    L_0x0048:
-        r10 = r3;
-    L_0x0049:
-        r11 = r0.startFromEven;
-        if (r11 == 0) goto L_0x0053;
-    L_0x004d:
-        if (r10 == 0) goto L_0x0051;
-    L_0x004f:
-        r11 = r3;
-        goto L_0x0052;
-    L_0x0051:
-        r11 = r4;
-    L_0x0052:
-        r10 = r11;
-    L_0x0053:
-        r11 = 0;
-    L_0x0054:
-        if (r8 < r7) goto L_0x0057;
-    L_0x0056:
-        goto L_0x0060;
-    L_0x0057:
-        r12 = r1.get(r8);
-        r12 = r12 ^ r4;
-        r11 = r12;
-        if (r11 != 0) goto L_0x00b5;
-    L_0x0060:
-        r12 = 0;
-        r13 = r8;
-        r14 = r8;
-    L_0x0063:
-        if (r14 >= r7) goto L_0x00b0;
-    L_0x0065:
-        r15 = r1.get(r14);
-        r15 = r15 ^ r11;
-        if (r15 == 0) goto L_0x0072;
-    L_0x006c:
-        r15 = r2[r12];
-        r15 = r15 + r4;
-        r2[r12] = r15;
-        goto L_0x00ad;
-    L_0x0072:
-        if (r12 != r6) goto L_0x00a3;
-    L_0x0074:
-        if (r10 == 0) goto L_0x0079;
-    L_0x0076:
-        reverseCounters(r2);
-    L_0x0079:
-        r15 = com.google.zxing.oned.rss.AbstractRSSReader.isFinderPattern(r2);
-        if (r15 == 0) goto L_0x0088;
-    L_0x007f:
-        r5 = r0.startEnd;
-        r5[r3] = r13;
-        r3 = r0.startEnd;
-        r3[r4] = r14;
-        return;
-    L_0x0088:
-        if (r10 == 0) goto L_0x008d;
-    L_0x008a:
-        reverseCounters(r2);
-    L_0x008d:
-        r15 = r2[r3];
-        r16 = r2[r4];
-        r15 = r15 + r16;
-        r13 = r13 + r15;
-        r15 = r2[r5];
-        r2[r3] = r15;
-        r15 = r2[r6];
-        r2[r4] = r15;
-        r2[r5] = r3;
-        r2[r6] = r3;
-        r12 = r12 + -1;
-        goto L_0x00a5;
-    L_0x00a3:
-        r12 = r12 + 1;
-    L_0x00a5:
-        r2[r12] = r4;
-        if (r11 == 0) goto L_0x00ab;
-    L_0x00a9:
-        r15 = r3;
-        goto L_0x00ac;
-    L_0x00ab:
-        r15 = r4;
-    L_0x00ac:
-        r11 = r15;
-    L_0x00ad:
-        r14 = r14 + 1;
-        goto L_0x0063;
-    L_0x00b0:
-        r3 = com.google.zxing.NotFoundException.getNotFoundInstance();
-        throw r3;
-    L_0x00b5:
-        r8 = r8 + 1;
-        goto L_0x0054;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.zxing.oned.rss.expanded.RSSExpandedReader.findNextPair(com.google.zxing.common.BitArray, java.util.List, int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void findNextPair(BitArray row, List<ExpandedPair> previousPairs, int forcedOffset) throws NotFoundException {
+        int rowOffset;
+        boolean searchingEvenPair;
+        boolean isWhite;
+        int counterPosition;
+        int patternStart;
+        int x;
+        BitArray bitArray = row;
+        int[] counters = getDecodeFinderCounters();
+        counters[0] = 0;
+        counters[1] = 0;
+        counters[2] = 0;
+        counters[3] = 0;
+        int width = row.getSize();
+        if (forcedOffset >= 0) {
+            rowOffset = forcedOffset;
+        } else if (previousPairs.isEmpty()) {
+            rowOffset = 0;
+        } else {
+            rowOffset = ((ExpandedPair) previousPairs.get(previousPairs.size() - 1)).getFinderPattern().getStartEnd()[1];
+            searchingEvenPair = previousPairs.size() % 2 == 0;
+            if (this.startFromEven) {
+                searchingEvenPair = !searchingEvenPair;
+            }
+            isWhite = false;
+            while (rowOffset < width) {
+                isWhite = bitArray.get(rowOffset) ^ 1;
+                if (!isWhite) {
+                    break;
+                }
+                rowOffset++;
+            }
+            counterPosition = 0;
+            patternStart = rowOffset;
+            for (x = rowOffset; x < width; x++) {
+                if ((bitArray.get(x) ^ isWhite) != 0) {
+                    counters[counterPosition] = counters[counterPosition] + 1;
+                } else {
+                    if (counterPosition == 3) {
+                        if (searchingEvenPair) {
+                            reverseCounters(counters);
+                        }
+                        if (AbstractRSSReader.isFinderPattern(counters)) {
+                            this.startEnd[0] = patternStart;
+                            this.startEnd[1] = x;
+                            return;
+                        }
+                        if (searchingEvenPair) {
+                            reverseCounters(counters);
+                        }
+                        patternStart += counters[0] + counters[1];
+                        counters[0] = counters[2];
+                        counters[1] = counters[3];
+                        counters[2] = 0;
+                        counters[3] = 0;
+                        counterPosition--;
+                    } else {
+                        counterPosition++;
+                    }
+                    counters[counterPosition] = 1;
+                    isWhite = !isWhite;
+                }
+            }
+            throw NotFoundException.getNotFoundInstance();
+        }
+        List<ExpandedPair> list = previousPairs;
+        if (previousPairs.size() % 2 == 0) {
+        }
+        if (this.startFromEven) {
+        }
+        isWhite = false;
+        while (rowOffset < width) {
+        }
+        counterPosition = 0;
+        patternStart = rowOffset;
+        while (x < width) {
+        }
+        throw NotFoundException.getNotFoundInstance();
     }
 
     private static void reverseCounters(int[] counters) {

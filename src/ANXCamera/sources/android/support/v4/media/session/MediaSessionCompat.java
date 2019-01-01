@@ -1162,105 +1162,26 @@ public class MediaSessionCompat {
         /* JADX WARNING: Missing block: B:43:?, code:
             return r5;
      */
-        private android.support.v4.media.session.PlaybackStateCompat getStateWithUpdatedPosition() {
-            /*
-            r19 = this;
-            r1 = r19;
-            r2 = -1;
-            r4 = r1.mLock;
-            monitor-enter(r4);
-            r0 = r1.mState;	 Catch:{ all -> 0x008b }
-            r5 = r0;
-            r0 = r1.mMetadata;	 Catch:{ all -> 0x0089 }
-            if (r0 == 0) goto L_0x0021;
-        L_0x000e:
-            r0 = r1.mMetadata;	 Catch:{ all -> 0x0089 }
-            r6 = "android.media.metadata.DURATION";
-            r0 = r0.containsKey(r6);	 Catch:{ all -> 0x0089 }
-            if (r0 == 0) goto L_0x0021;
-        L_0x0018:
-            r0 = r1.mMetadata;	 Catch:{ all -> 0x0089 }
-            r6 = "android.media.metadata.DURATION";
-            r6 = r0.getLong(r6);	 Catch:{ all -> 0x0089 }
-            r2 = r6;
-        L_0x0021:
-            monitor-exit(r4);	 Catch:{ all -> 0x0089 }
-            r0 = 0;
-            if (r5 == 0) goto L_0x0083;
-        L_0x0025:
-            r4 = r5.getState();
-            r6 = 3;
-            if (r4 == r6) goto L_0x003a;
-        L_0x002c:
-            r4 = r5.getState();
-            r6 = 4;
-            if (r4 == r6) goto L_0x003a;
-        L_0x0033:
-            r4 = r5.getState();
-            r6 = 5;
-            if (r4 != r6) goto L_0x0083;
-        L_0x003a:
-            r6 = r5.getLastPositionUpdateTime();
-            r15 = android.os.SystemClock.elapsedRealtime();
-            r8 = 0;
-            r4 = (r6 > r8 ? 1 : (r6 == r8 ? 0 : -1));
-            if (r4 <= 0) goto L_0x0083;
-        L_0x0048:
-            r4 = r5.getPlaybackSpeed();
-            r10 = r15 - r6;
-            r10 = (float) r10;
-            r4 = r4 * r10;
-            r10 = (long) r4;
-            r12 = r5.getPosition();
-            r10 = r10 + r12;
-            r4 = (r2 > r8 ? 1 : (r2 == r8 ? 0 : -1));
-            if (r4 < 0) goto L_0x0062;
-        L_0x005a:
-            r4 = (r10 > r2 ? 1 : (r10 == r2 ? 0 : -1));
-            if (r4 <= 0) goto L_0x0062;
-        L_0x005e:
-            r8 = r2;
-        L_0x005f:
-            r17 = r8;
-            goto L_0x006b;
-        L_0x0062:
-            r4 = (r10 > r8 ? 1 : (r10 == r8 ? 0 : -1));
-            if (r4 >= 0) goto L_0x0069;
-        L_0x0066:
-            r8 = 0;
-            goto L_0x005f;
-        L_0x0069:
-            r17 = r10;
-        L_0x006b:
-            r4 = new android.support.v4.media.session.PlaybackStateCompat$Builder;
-            r4.<init>(r5);
-            r9 = r5.getState();
-            r12 = r5.getPlaybackSpeed();
-            r8 = r4;
-            r10 = r17;
-            r13 = r15;
-            r8.setState(r9, r10, r12, r13);
-            r0 = r4.build();
-        L_0x0083:
-            if (r0 != 0) goto L_0x0087;
-        L_0x0085:
-            r4 = r5;
-            goto L_0x0088;
-        L_0x0087:
-            r4 = r0;
-        L_0x0088:
-            return r4;
-        L_0x0089:
-            r0 = move-exception;
-            goto L_0x008d;
-        L_0x008b:
-            r0 = move-exception;
-            r5 = 0;
-        L_0x008d:
-            monitor-exit(r4);	 Catch:{ all -> 0x0089 }
-            throw r0;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: android.support.v4.media.session.MediaSessionCompat.MediaSessionImplBase.getStateWithUpdatedPosition():android.support.v4.media.session.PlaybackStateCompat");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        private PlaybackStateCompat getStateWithUpdatedPosition() {
+            Throwable th;
+            long duration = -1;
+            synchronized (this.mLock) {
+                try {
+                    PlaybackStateCompat state = this.mState;
+                    try {
+                        if (this.mMetadata != null && this.mMetadata.containsKey(MediaMetadataCompat.METADATA_KEY_DURATION)) {
+                            duration = this.mMetadata.getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
+                        }
+                    } catch (Throwable th2) {
+                        th = th2;
+                        throw th;
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                    throw th;
+                }
+            }
         }
 
         private void sendVolumeInfoChanged(ParcelableVolumeInfo info) {

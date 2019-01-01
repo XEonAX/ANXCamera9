@@ -83,45 +83,17 @@ public final class CertificatePinner {
         /* JADX WARNING: Missing block: B:5:0x0030, code:
             if (r11.regionMatches(false, r0 + 1, r10.canonicalHostname, 0, r10.canonicalHostname.length()) != false) goto L_0x0034;
      */
-        boolean matches(java.lang.String r11) {
-            /*
-            r10 = this;
-            r0 = r10.pattern;
-            r1 = "*.";
-            r0 = r0.startsWith(r1);
-            if (r0 == 0) goto L_0x0035;
-        L_0x000a:
-            r0 = 46;
-            r0 = r11.indexOf(r0);
-            r1 = r11.length();
-            r1 = r1 - r0;
-            r2 = 1;
-            r1 = r1 - r2;
-            r3 = r10.canonicalHostname;
-            r3 = r3.length();
-            if (r1 != r3) goto L_0x0033;
-        L_0x001f:
-            r5 = 0;
-            r6 = r0 + 1;
-            r7 = r10.canonicalHostname;
-            r8 = 0;
-            r0 = r10.canonicalHostname;
-            r9 = r0.length();
-            r4 = r11;
-            r11 = r4.regionMatches(r5, r6, r7, r8, r9);
-            if (r11 == 0) goto L_0x0033;
-        L_0x0032:
-            goto L_0x0034;
-        L_0x0033:
-            r2 = 0;
-        L_0x0034:
-            return r2;
-        L_0x0035:
-            r0 = r10.canonicalHostname;
-            r11 = r11.equals(r0);
-            return r11;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: okhttp3.CertificatePinner.Pin.matches(java.lang.String):boolean");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        boolean matches(String str) {
+            if (!this.pattern.startsWith(WILDCARD)) {
+                return str.equals(this.canonicalHostname);
+            }
+            int indexOf = str.indexOf(46);
+            boolean z = true;
+            if ((str.length() - indexOf) - 1 == this.canonicalHostname.length()) {
+            }
+            z = false;
+            return z;
         }
 
         public boolean equals(Object obj) {
@@ -154,35 +126,19 @@ public final class CertificatePinner {
     /* JADX WARNING: Missing block: B:8:0x001c, code:
             if (r3.pins.equals(r4.pins) != false) goto L_0x0020;
      */
-    public boolean equals(@javax.annotation.Nullable java.lang.Object r4) {
-        /*
-        r3 = this;
-        r0 = 1;
-        if (r4 != r3) goto L_0x0004;
-    L_0x0003:
-        return r0;
-    L_0x0004:
-        r1 = r4 instanceof okhttp3.CertificatePinner;
-        if (r1 == 0) goto L_0x001f;
-    L_0x0008:
-        r1 = r3.certificateChainCleaner;
-        r4 = (okhttp3.CertificatePinner) r4;
-        r2 = r4.certificateChainCleaner;
-        r1 = okhttp3.internal.Util.equal(r1, r2);
-        if (r1 == 0) goto L_0x001f;
-    L_0x0014:
-        r1 = r3.pins;
-        r4 = r4.pins;
-        r4 = r1.equals(r4);
-        if (r4 == 0) goto L_0x001f;
-    L_0x001e:
-        goto L_0x0020;
-    L_0x001f:
-        r0 = 0;
-    L_0x0020:
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okhttp3.CertificatePinner.equals(java.lang.Object):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean equals(@Nullable Object obj) {
+        boolean z = true;
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof CertificatePinner) {
+            CertificatePinner certificatePinner = (CertificatePinner) obj;
+            if (Util.equal(this.certificateChainCleaner, certificatePinner.certificateChainCleaner)) {
+            }
+        }
+        z = false;
+        return z;
     }
 
     public int hashCode() {

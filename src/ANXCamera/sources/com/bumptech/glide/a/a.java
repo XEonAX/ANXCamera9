@@ -43,39 +43,18 @@ public final class a implements Closeable {
         /* JADX WARNING: Missing block: B:11:0x0027, code:
             return null;
      */
-        public java.lang.Void call() throws java.lang.Exception {
-            /*
-            r4 = this;
-            r0 = com.bumptech.glide.a.a.this;
-            monitor-enter(r0);
-            r1 = com.bumptech.glide.a.a.this;	 Catch:{ all -> 0x0028 }
-            r1 = r1.bh;	 Catch:{ all -> 0x0028 }
-            r2 = 0;
-            if (r1 != 0) goto L_0x000e;
-        L_0x000c:
-            monitor-exit(r0);	 Catch:{ all -> 0x0028 }
-            return r2;
-        L_0x000e:
-            r1 = com.bumptech.glide.a.a.this;	 Catch:{ all -> 0x0028 }
-            r1.trimToSize();	 Catch:{ all -> 0x0028 }
-            r1 = com.bumptech.glide.a.a.this;	 Catch:{ all -> 0x0028 }
-            r1 = r1.journalRebuildRequired();	 Catch:{ all -> 0x0028 }
-            if (r1 == 0) goto L_0x0026;
-        L_0x001b:
-            r1 = com.bumptech.glide.a.a.this;	 Catch:{ all -> 0x0028 }
-            r1.rebuildJournal();	 Catch:{ all -> 0x0028 }
-            r1 = com.bumptech.glide.a.a.this;	 Catch:{ all -> 0x0028 }
-            r3 = 0;
-            r1.redundantOpCount = r3;	 Catch:{ all -> 0x0028 }
-        L_0x0026:
-            monitor-exit(r0);	 Catch:{ all -> 0x0028 }
-            return r2;
-        L_0x0028:
-            r1 = move-exception;
-            monitor-exit(r0);	 Catch:{ all -> 0x0028 }
-            throw r1;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.bumptech.glide.a.a.1.call():java.lang.Void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public Void call() throws Exception {
+            synchronized (a.this) {
+                if (a.this.bh == null) {
+                    return null;
+                }
+                a.this.trimToSize();
+                if (a.this.journalRebuildRequired()) {
+                    a.this.rebuildJournal();
+                    a.this.redundantOpCount = 0;
+                }
+            }
         }
     };
     private final File directory;
@@ -554,66 +533,26 @@ public final class a implements Closeable {
     /* JADX WARNING: Missing block: B:9:0x001e, code:
             return null;
      */
-    private synchronized com.bumptech.glide.a.a.b a(java.lang.String r6, long r7) throws java.io.IOException {
-        /*
-        r5 = this;
-        monitor-enter(r5);
-        r5.checkNotClosed();	 Catch:{ all -> 0x005d }
-        r0 = r5.lruEntries;	 Catch:{ all -> 0x005d }
-        r0 = r0.get(r6);	 Catch:{ all -> 0x005d }
-        r0 = (com.bumptech.glide.a.a.c) r0;	 Catch:{ all -> 0x005d }
-        r1 = -1;
-        r1 = (r7 > r1 ? 1 : (r7 == r1 ? 0 : -1));
-        r2 = 0;
-        if (r1 == 0) goto L_0x001f;
-    L_0x0013:
-        if (r0 == 0) goto L_0x001d;
-    L_0x0015:
-        r3 = r0.sequenceNumber;	 Catch:{ all -> 0x005d }
-        r7 = (r3 > r7 ? 1 : (r3 == r7 ? 0 : -1));
-        if (r7 == 0) goto L_0x001f;
-    L_0x001d:
-        monitor-exit(r5);
-        return r2;
-    L_0x001f:
-        if (r0 != 0) goto L_0x002c;
-    L_0x0021:
-        r0 = new com.bumptech.glide.a.a$c;	 Catch:{ all -> 0x005d }
-        r0.<init>(r5, r6, r2);	 Catch:{ all -> 0x005d }
-        r7 = r5.lruEntries;	 Catch:{ all -> 0x005d }
-        r7.put(r6, r0);	 Catch:{ all -> 0x005d }
-        goto L_0x0034;
-    L_0x002c:
-        r7 = r0.bn;	 Catch:{ all -> 0x005d }
-        if (r7 == 0) goto L_0x0034;
-    L_0x0032:
-        monitor-exit(r5);
-        return r2;
-    L_0x0034:
-        r7 = new com.bumptech.glide.a.a$b;	 Catch:{ all -> 0x005d }
-        r7.<init>(r5, r0, r2);	 Catch:{ all -> 0x005d }
-        r0.bn = r7;	 Catch:{ all -> 0x005d }
-        r8 = r5.bh;	 Catch:{ all -> 0x005d }
-        r0 = "DIRTY";
-        r8.append(r0);	 Catch:{ all -> 0x005d }
-        r8 = r5.bh;	 Catch:{ all -> 0x005d }
-        r0 = 32;
-        r8.append(r0);	 Catch:{ all -> 0x005d }
-        r8 = r5.bh;	 Catch:{ all -> 0x005d }
-        r8.append(r6);	 Catch:{ all -> 0x005d }
-        r6 = r5.bh;	 Catch:{ all -> 0x005d }
-        r8 = 10;
-        r6.append(r8);	 Catch:{ all -> 0x005d }
-        r6 = r5.bh;	 Catch:{ all -> 0x005d }
-        r6.flush();	 Catch:{ all -> 0x005d }
-        monitor-exit(r5);
-        return r7;
-    L_0x005d:
-        r6 = move-exception;
-        monitor-exit(r5);
-        throw r6;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.bumptech.glide.a.a.a(java.lang.String, long):com.bumptech.glide.a.a$b");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private synchronized b a(String str, long j) throws IOException {
+        checkNotClosed();
+        c cVar = (c) this.lruEntries.get(str);
+        if (j == -1 || (cVar != null && cVar.sequenceNumber == j)) {
+            if (cVar == null) {
+                cVar = new c(this, str, null);
+                this.lruEntries.put(str, cVar);
+            } else if (cVar.bn != null) {
+                return null;
+            }
+            b bVar = new b(this, cVar, null);
+            cVar.bn = bVar;
+            this.bh.append(DIRTY);
+            this.bh.append(' ');
+            this.bh.append(str);
+            this.bh.append(10);
+            this.bh.flush();
+            return bVar;
+        }
     }
 
     public File getDirectory() {
@@ -636,153 +575,70 @@ public final class a implements Closeable {
     /* JADX WARNING: Missing block: B:43:0x0107, code:
             return;
      */
-    private synchronized void a(com.bumptech.glide.a.a.b r10, boolean r11) throws java.io.IOException {
-        /*
-        r9 = this;
-        monitor-enter(r9);
-        r0 = r10.bl;	 Catch:{ all -> 0x010e }
-        r1 = r0.bn;	 Catch:{ all -> 0x010e }
-        if (r1 != r10) goto L_0x0108;
-    L_0x000b:
-        r1 = 0;
-        if (r11 == 0) goto L_0x004d;
-    L_0x000e:
-        r2 = r0.readable;	 Catch:{ all -> 0x010e }
-        if (r2 != 0) goto L_0x004d;
-    L_0x0014:
-        r2 = r1;
-    L_0x0015:
-        r3 = r9.valueCount;	 Catch:{ all -> 0x010e }
-        if (r2 >= r3) goto L_0x004d;
-    L_0x0019:
-        r3 = r10.written;	 Catch:{ all -> 0x010e }
-        r3 = r3[r2];	 Catch:{ all -> 0x010e }
-        if (r3 == 0) goto L_0x0033;
-    L_0x0021:
-        r3 = r0.h(r2);	 Catch:{ all -> 0x010e }
-        r3 = r3.exists();	 Catch:{ all -> 0x010e }
-        if (r3 != 0) goto L_0x0030;
-    L_0x002b:
-        r10.abort();	 Catch:{ all -> 0x010e }
-        monitor-exit(r9);
-        return;
-    L_0x0030:
-        r2 = r2 + 1;
-        goto L_0x0015;
-    L_0x0033:
-        r10.abort();	 Catch:{ all -> 0x010e }
-        r10 = new java.lang.IllegalStateException;	 Catch:{ all -> 0x010e }
-        r11 = new java.lang.StringBuilder;	 Catch:{ all -> 0x010e }
-        r11.<init>();	 Catch:{ all -> 0x010e }
-        r0 = "Newly created entry didn't create value for index ";
-        r11.append(r0);	 Catch:{ all -> 0x010e }
-        r11.append(r2);	 Catch:{ all -> 0x010e }
-        r11 = r11.toString();	 Catch:{ all -> 0x010e }
-        r10.<init>(r11);	 Catch:{ all -> 0x010e }
-        throw r10;	 Catch:{ all -> 0x010e }
-    L_0x004d:
-        r10 = r9.valueCount;	 Catch:{ all -> 0x010e }
-        if (r1 >= r10) goto L_0x0081;
-    L_0x0051:
-        r10 = r0.h(r1);	 Catch:{ all -> 0x010e }
-        if (r11 == 0) goto L_0x007b;
-    L_0x0057:
-        r2 = r10.exists();	 Catch:{ all -> 0x010e }
-        if (r2 == 0) goto L_0x007e;
-    L_0x005d:
-        r2 = r0.g(r1);	 Catch:{ all -> 0x010e }
-        r10.renameTo(r2);	 Catch:{ all -> 0x010e }
-        r10 = r0.lengths;	 Catch:{ all -> 0x010e }
-        r3 = r10[r1];	 Catch:{ all -> 0x010e }
-        r5 = r2.length();	 Catch:{ all -> 0x010e }
-        r10 = r0.lengths;	 Catch:{ all -> 0x010e }
-        r10[r1] = r5;	 Catch:{ all -> 0x010e }
-        r7 = r9.size;	 Catch:{ all -> 0x010e }
-        r7 = r7 - r3;
-        r7 = r7 + r5;
-        r9.size = r7;	 Catch:{ all -> 0x010e }
-        goto L_0x007e;
-    L_0x007b:
-        c(r10);	 Catch:{ all -> 0x010e }
-    L_0x007e:
-        r1 = r1 + 1;
-        goto L_0x004d;
-    L_0x0081:
-        r10 = r9.redundantOpCount;	 Catch:{ all -> 0x010e }
-        r1 = 1;
-        r10 = r10 + r1;
-        r9.redundantOpCount = r10;	 Catch:{ all -> 0x010e }
-        r10 = 0;
-        r0.bn = r10;	 Catch:{ all -> 0x010e }
-        r10 = r0.readable;	 Catch:{ all -> 0x010e }
-        r10 = r10 | r11;
-        r2 = 10;
-        r3 = 32;
-        if (r10 == 0) goto L_0x00c9;
-    L_0x0096:
-        r0.readable = r1;	 Catch:{ all -> 0x010e }
-        r10 = r9.bh;	 Catch:{ all -> 0x010e }
-        r1 = "CLEAN";
-        r10.append(r1);	 Catch:{ all -> 0x010e }
-        r10 = r9.bh;	 Catch:{ all -> 0x010e }
-        r10.append(r3);	 Catch:{ all -> 0x010e }
-        r10 = r9.bh;	 Catch:{ all -> 0x010e }
-        r1 = r0.key;	 Catch:{ all -> 0x010e }
-        r10.append(r1);	 Catch:{ all -> 0x010e }
-        r10 = r9.bh;	 Catch:{ all -> 0x010e }
-        r1 = r0.K();	 Catch:{ all -> 0x010e }
-        r10.append(r1);	 Catch:{ all -> 0x010e }
-        r10 = r9.bh;	 Catch:{ all -> 0x010e }
-        r10.append(r2);	 Catch:{ all -> 0x010e }
-        if (r11 == 0) goto L_0x00ec;
-    L_0x00be:
-        r10 = r9.nextSequenceNumber;	 Catch:{ all -> 0x010e }
-        r1 = 1;
-        r1 = r1 + r10;
-        r9.nextSequenceNumber = r1;	 Catch:{ all -> 0x010e }
-        r0.sequenceNumber = r10;	 Catch:{ all -> 0x010e }
-        goto L_0x00ec;
-    L_0x00c9:
-        r10 = r9.lruEntries;	 Catch:{ all -> 0x010e }
-        r11 = r0.key;	 Catch:{ all -> 0x010e }
-        r10.remove(r11);	 Catch:{ all -> 0x010e }
-        r10 = r9.bh;	 Catch:{ all -> 0x010e }
-        r11 = "REMOVE";
-        r10.append(r11);	 Catch:{ all -> 0x010e }
-        r10 = r9.bh;	 Catch:{ all -> 0x010e }
-        r10.append(r3);	 Catch:{ all -> 0x010e }
-        r10 = r9.bh;	 Catch:{ all -> 0x010e }
-        r11 = r0.key;	 Catch:{ all -> 0x010e }
-        r10.append(r11);	 Catch:{ all -> 0x010e }
-        r10 = r9.bh;	 Catch:{ all -> 0x010e }
-        r10.append(r2);	 Catch:{ all -> 0x010e }
-    L_0x00ec:
-        r10 = r9.bh;	 Catch:{ all -> 0x010e }
-        r10.flush();	 Catch:{ all -> 0x010e }
-        r10 = r9.size;	 Catch:{ all -> 0x010e }
-        r0 = r9.maxSize;	 Catch:{ all -> 0x010e }
-        r10 = (r10 > r0 ? 1 : (r10 == r0 ? 0 : -1));
-        if (r10 > 0) goto L_0x00ff;
-    L_0x00f9:
-        r10 = r9.journalRebuildRequired();	 Catch:{ all -> 0x010e }
-        if (r10 == 0) goto L_0x0106;
-    L_0x00ff:
-        r10 = r9.bi;	 Catch:{ all -> 0x010e }
-        r11 = r9.bj;	 Catch:{ all -> 0x010e }
-        r10.submit(r11);	 Catch:{ all -> 0x010e }
-    L_0x0106:
-        monitor-exit(r9);
-        return;
-    L_0x0108:
-        r10 = new java.lang.IllegalStateException;	 Catch:{ all -> 0x010e }
-        r10.<init>();	 Catch:{ all -> 0x010e }
-        throw r10;	 Catch:{ all -> 0x010e }
-    L_0x010e:
-        r10 = move-exception;
-        monitor-exit(r9);
-        throw r10;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.bumptech.glide.a.a.a(com.bumptech.glide.a.a$b, boolean):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private synchronized void a(b bVar, boolean z) throws IOException {
+        c a = bVar.bl;
+        if (a.bn == bVar) {
+            int i = 0;
+            if (z && !a.readable) {
+                int i2 = 0;
+                while (i2 < this.valueCount) {
+                    if (!bVar.written[i2]) {
+                        bVar.abort();
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append("Newly created entry didn't create value for index ");
+                        stringBuilder.append(i2);
+                        throw new IllegalStateException(stringBuilder.toString());
+                    } else if (a.h(i2).exists()) {
+                        i2++;
+                    } else {
+                        bVar.abort();
+                        return;
+                    }
+                }
+            }
+            while (i < this.valueCount) {
+                File h = a.h(i);
+                if (!z) {
+                    c(h);
+                } else if (h.exists()) {
+                    File g = a.g(i);
+                    h.renameTo(g);
+                    long j = a.lengths[i];
+                    long length = g.length();
+                    a.lengths[i] = length;
+                    this.size = (this.size - j) + length;
+                }
+                i++;
+            }
+            this.redundantOpCount++;
+            a.bn = null;
+            if ((a.readable | z) != 0) {
+                a.readable = true;
+                this.bh.append(CLEAN);
+                this.bh.append(' ');
+                this.bh.append(a.key);
+                this.bh.append(a.K());
+                this.bh.append(10);
+                if (z) {
+                    long j2 = this.nextSequenceNumber;
+                    this.nextSequenceNumber = 1 + j2;
+                    a.sequenceNumber = j2;
+                }
+            } else {
+                this.lruEntries.remove(a.key);
+                this.bh.append(REMOVE);
+                this.bh.append(' ');
+                this.bh.append(a.key);
+                this.bh.append(10);
+            }
+            this.bh.flush();
+            if (this.size > this.maxSize || journalRebuildRequired()) {
+                this.bi.submit(this.bj);
+            }
+        } else {
+            throw new IllegalStateException();
+        }
     }
 
     private boolean journalRebuildRequired() {
@@ -795,90 +651,35 @@ public final class a implements Closeable {
     /* JADX WARNING: Missing block: B:21:0x008e, code:
             return false;
      */
-    public synchronized boolean remove(java.lang.String r7) throws java.io.IOException {
-        /*
-        r6 = this;
-        monitor-enter(r6);
-        r6.checkNotClosed();	 Catch:{ all -> 0x008f }
-        r0 = r6.lruEntries;	 Catch:{ all -> 0x008f }
-        r0 = r0.get(r7);	 Catch:{ all -> 0x008f }
-        r0 = (com.bumptech.glide.a.a.c) r0;	 Catch:{ all -> 0x008f }
-        r1 = 0;
-        if (r0 == 0) goto L_0x008d;
-    L_0x000f:
-        r2 = r0.bn;	 Catch:{ all -> 0x008f }
-        if (r2 == 0) goto L_0x0017;
-    L_0x0015:
-        goto L_0x008d;
-    L_0x0017:
-        r2 = r6.valueCount;	 Catch:{ all -> 0x008f }
-        if (r1 >= r2) goto L_0x0059;
-    L_0x001b:
-        r2 = r0.g(r1);	 Catch:{ all -> 0x008f }
-        r3 = r2.exists();	 Catch:{ all -> 0x008f }
-        if (r3 == 0) goto L_0x0043;
-    L_0x0025:
-        r3 = r2.delete();	 Catch:{ all -> 0x008f }
-        if (r3 == 0) goto L_0x002c;
-    L_0x002b:
-        goto L_0x0043;
-    L_0x002c:
-        r7 = new java.io.IOException;	 Catch:{ all -> 0x008f }
-        r0 = new java.lang.StringBuilder;	 Catch:{ all -> 0x008f }
-        r0.<init>();	 Catch:{ all -> 0x008f }
-        r1 = "failed to delete ";
-        r0.append(r1);	 Catch:{ all -> 0x008f }
-        r0.append(r2);	 Catch:{ all -> 0x008f }
-        r0 = r0.toString();	 Catch:{ all -> 0x008f }
-        r7.<init>(r0);	 Catch:{ all -> 0x008f }
-        throw r7;	 Catch:{ all -> 0x008f }
-    L_0x0043:
-        r2 = r6.size;	 Catch:{ all -> 0x008f }
-        r4 = r0.lengths;	 Catch:{ all -> 0x008f }
-        r4 = r4[r1];	 Catch:{ all -> 0x008f }
-        r2 = r2 - r4;
-        r6.size = r2;	 Catch:{ all -> 0x008f }
-        r2 = r0.lengths;	 Catch:{ all -> 0x008f }
-        r3 = 0;
-        r2[r1] = r3;	 Catch:{ all -> 0x008f }
-        r1 = r1 + 1;
-        goto L_0x0017;
-    L_0x0059:
-        r0 = r6.redundantOpCount;	 Catch:{ all -> 0x008f }
-        r1 = 1;
-        r0 = r0 + r1;
-        r6.redundantOpCount = r0;	 Catch:{ all -> 0x008f }
-        r0 = r6.bh;	 Catch:{ all -> 0x008f }
-        r2 = "REMOVE";
-        r0.append(r2);	 Catch:{ all -> 0x008f }
-        r0 = r6.bh;	 Catch:{ all -> 0x008f }
-        r2 = 32;
-        r0.append(r2);	 Catch:{ all -> 0x008f }
-        r0 = r6.bh;	 Catch:{ all -> 0x008f }
-        r0.append(r7);	 Catch:{ all -> 0x008f }
-        r0 = r6.bh;	 Catch:{ all -> 0x008f }
-        r2 = 10;
-        r0.append(r2);	 Catch:{ all -> 0x008f }
-        r0 = r6.lruEntries;	 Catch:{ all -> 0x008f }
-        r0.remove(r7);	 Catch:{ all -> 0x008f }
-        r7 = r6.journalRebuildRequired();	 Catch:{ all -> 0x008f }
-        if (r7 == 0) goto L_0x008b;
-    L_0x0084:
-        r7 = r6.bi;	 Catch:{ all -> 0x008f }
-        r0 = r6.bj;	 Catch:{ all -> 0x008f }
-        r7.submit(r0);	 Catch:{ all -> 0x008f }
-    L_0x008b:
-        monitor-exit(r6);
-        return r1;
-    L_0x008d:
-        monitor-exit(r6);
-        return r1;
-    L_0x008f:
-        r7 = move-exception;
-        monitor-exit(r6);
-        throw r7;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.bumptech.glide.a.a.remove(java.lang.String):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public synchronized boolean remove(String str) throws IOException {
+        checkNotClosed();
+        c cVar = (c) this.lruEntries.get(str);
+        int i = 0;
+        if (cVar != null && cVar.bn == null) {
+            while (i < this.valueCount) {
+                File g = cVar.g(i);
+                if (!g.exists() || g.delete()) {
+                    this.size -= cVar.lengths[i];
+                    cVar.lengths[i] = 0;
+                    i++;
+                } else {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("failed to delete ");
+                    stringBuilder.append(g);
+                    throw new IOException(stringBuilder.toString());
+                }
+            }
+            this.redundantOpCount++;
+            this.bh.append(REMOVE);
+            this.bh.append(' ');
+            this.bh.append(str);
+            this.bh.append(10);
+            this.lruEntries.remove(str);
+            if (journalRebuildRequired()) {
+                this.bi.submit(this.bj);
+            }
+        }
     }
 
     public synchronized boolean isClosed() {

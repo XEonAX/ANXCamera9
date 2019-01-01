@@ -111,79 +111,20 @@ public final class ObservableBufferTimed<T, U extends Collection<? super T>> ext
         /* JADX WARNING: Missing block: B:32:0x0067, code:
             return;
      */
-        public void onNext(T r8) {
-            /*
-            r7 = this;
-            monitor-enter(r7);
-            r0 = r7.buffer;	 Catch:{ all -> 0x0068 }
-            if (r0 != 0) goto L_0x0007;
-        L_0x0005:
-            monitor-exit(r7);	 Catch:{ all -> 0x0068 }
-            return;
-        L_0x0007:
-            r0.add(r8);	 Catch:{ all -> 0x0068 }
-            r8 = r0.size();	 Catch:{ all -> 0x0068 }
-            r1 = r7.maxSize;	 Catch:{ all -> 0x0068 }
-            if (r8 >= r1) goto L_0x0014;
-        L_0x0012:
-            monitor-exit(r7);	 Catch:{ all -> 0x0068 }
-            return;
-        L_0x0014:
-            r8 = 0;
-            r7.buffer = r8;	 Catch:{ all -> 0x0068 }
-            r1 = r7.producerIndex;	 Catch:{ all -> 0x0068 }
-            r3 = 1;
-            r1 = r1 + r3;
-            r7.producerIndex = r1;	 Catch:{ all -> 0x0068 }
-            monitor-exit(r7);	 Catch:{ all -> 0x0068 }
-            r8 = r7.restartTimerOnMaxSize;
-            if (r8 == 0) goto L_0x0028;
-        L_0x0023:
-            r8 = r7.timer;
-            r8.dispose();
-        L_0x0028:
-            r8 = 0;
-            r7.fastPathOrderedEmit(r0, r8, r7);
-            r8 = r7.bufferSupplier;	 Catch:{ Throwable -> 0x005b }
-            r8 = r8.call();	 Catch:{ Throwable -> 0x005b }
-            r0 = "The buffer supplied is null";
-            r8 = io.reactivex.internal.functions.ObjectHelper.requireNonNull(r8, r0);	 Catch:{ Throwable -> 0x005b }
-            r8 = (java.util.Collection) r8;	 Catch:{ Throwable -> 0x005b }
-            monitor-enter(r7);
-            r7.buffer = r8;	 Catch:{ all -> 0x0058 }
-            r0 = r7.consumerIndex;	 Catch:{ all -> 0x0058 }
-            r0 = r0 + r3;
-            r7.consumerIndex = r0;	 Catch:{ all -> 0x0058 }
-            monitor-exit(r7);	 Catch:{ all -> 0x0058 }
-            r8 = r7.restartTimerOnMaxSize;
-            if (r8 == 0) goto L_0x0057;
-        L_0x0048:
-            r0 = r7.w;
-            r2 = r7.timespan;
-            r4 = r7.timespan;
-            r6 = r7.unit;
-            r1 = r7;
-            r8 = r0.schedulePeriodically(r1, r2, r4, r6);
-            r7.timer = r8;
-        L_0x0057:
-            return;
-        L_0x0058:
-            r8 = move-exception;
-            monitor-exit(r7);	 Catch:{ all -> 0x0058 }
-            throw r8;
-        L_0x005b:
-            r8 = move-exception;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r8);
-            r0 = r7.actual;
-            r0.onError(r8);
-            r7.dispose();
-            return;
-        L_0x0068:
-            r8 = move-exception;
-            monitor-exit(r7);	 Catch:{ all -> 0x0068 }
-            throw r8;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.observable.ObservableBufferTimed.BufferExactBoundedObserver.onNext(java.lang.Object):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public void onNext(T t) {
+            synchronized (this) {
+                Collection collection = this.buffer;
+                if (collection == null) {
+                    return;
+                }
+                collection.add(t);
+                if (collection.size() < this.maxSize) {
+                } else {
+                    this.buffer = null;
+                    this.producerIndex++;
+                }
+            }
         }
 
         public void onError(Throwable th) {

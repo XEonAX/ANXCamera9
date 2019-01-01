@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Parcelable;
 import android.support.annotation.CallSuper;
 import android.support.v4.app.BackStackRecord.TransitionState;
@@ -563,27 +564,11 @@ final class FragmentManagerImpl extends FragmentManager implements LayoutInflate
     /* JADX WARNING: Missing block: B:6:0x0014, code:
             return;
      */
-    private void setHWLayerAnimListenerIfAlpha(android.view.View r2, android.view.animation.Animation r3) {
-        /*
-        r1 = this;
-        if (r2 == 0) goto L_0x0014;
-    L_0x0002:
-        if (r3 != 0) goto L_0x0005;
-    L_0x0004:
-        goto L_0x0014;
-    L_0x0005:
-        r0 = shouldRunOnHWLayer(r2, r3);
-        if (r0 == 0) goto L_0x0013;
-    L_0x000b:
-        r0 = new android.support.v4.app.FragmentManagerImpl$AnimateOnHWLayerIfNeededListener;
-        r0.<init>(r2, r3);
-        r3.setAnimationListener(r0);
-    L_0x0013:
-        return;
-    L_0x0014:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.app.FragmentManagerImpl.setHWLayerAnimListenerIfAlpha(android.view.View, android.view.animation.Animation):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void setHWLayerAnimListenerIfAlpha(View v, Animation anim) {
+        if (!(v == null || anim == null || !shouldRunOnHWLayer(v, anim))) {
+            anim.setAnimationListener(new AnimateOnHWLayerIfNeededListener(v, anim));
+        }
     }
 
     /* JADX WARNING: Missing block: B:69:0x0139, code:
@@ -885,570 +870,135 @@ final class FragmentManagerImpl extends FragmentManager implements LayoutInflate
     /* JADX WARNING: Missing block: B:184:0x03b9, code:
             throw new android.support.v4.app.SuperNotCalledException(r2.toString());
      */
-    void moveToState(android.support.v4.app.Fragment r18, int r19, int r20, int r21, boolean r22) {
-        /*
-        r17 = this;
-        r6 = r17;
-        r7 = r18;
-        r8 = r20;
-        r9 = r21;
-        r0 = r7.mAdded;
-        r10 = 1;
-        if (r0 == 0) goto L_0x0015;
-    L_0x000d:
-        r0 = r7.mDetached;
-        if (r0 == 0) goto L_0x0012;
-    L_0x0011:
-        goto L_0x0015;
-    L_0x0012:
-        r0 = r19;
-        goto L_0x001a;
-    L_0x0015:
-        r0 = r19;
-        if (r0 <= r10) goto L_0x001a;
-    L_0x0019:
-        r0 = 1;
-    L_0x001a:
-        r1 = r7.mRemoving;
-        if (r1 == 0) goto L_0x0024;
-    L_0x001e:
-        r1 = r7.mState;
-        if (r0 <= r1) goto L_0x0024;
-    L_0x0022:
-        r0 = r7.mState;
-    L_0x0024:
-        r1 = r7.mDeferStart;
-        r11 = 4;
-        r12 = 3;
-        if (r1 == 0) goto L_0x0031;
-    L_0x002a:
-        r1 = r7.mState;
-        if (r1 >= r11) goto L_0x0031;
-    L_0x002e:
-        if (r0 <= r12) goto L_0x0031;
-    L_0x0030:
-        r0 = 3;
-    L_0x0031:
-        r13 = r0;
-        r0 = r7.mState;
-        r14 = 0;
-        r15 = 0;
-        if (r0 >= r13) goto L_0x026f;
-    L_0x0038:
-        r0 = r7.mFromLayout;
-        if (r0 == 0) goto L_0x0041;
-    L_0x003c:
-        r0 = r7.mInLayout;
-        if (r0 != 0) goto L_0x0041;
-    L_0x0040:
-        return;
-    L_0x0041:
-        r0 = r7.mAnimatingAway;
-        if (r0 == 0) goto L_0x0051;
-    L_0x0045:
-        r7.mAnimatingAway = r15;
-        r2 = r7.mStateAfterAnimating;
-        r3 = 0;
-        r4 = 0;
-        r5 = 1;
-        r0 = r6;
-        r1 = r7;
-        r0.moveToState(r1, r2, r3, r4, r5);
-    L_0x0051:
-        r0 = r7.mState;
-        r1 = 8;
-        r2 = 11;
-        switch(r0) {
-            case 0: goto L_0x005c;
-            case 1: goto L_0x0139;
-            case 2: goto L_0x020c;
-            case 3: goto L_0x020c;
-            case 4: goto L_0x022b;
-            default: goto L_0x005a;
-        };
-    L_0x005a:
-        goto L_0x03ba;
-    L_0x005c:
-        r0 = DEBUG;
-        if (r0 == 0) goto L_0x0076;
-    L_0x0060:
-        r0 = "FragmentManager";
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r4 = "moveto CREATED: ";
-        r3.append(r4);
-        r3.append(r7);
-        r3 = r3.toString();
-        android.util.Log.v(r0, r3);
-    L_0x0076:
-        r0 = r7.mSavedFragmentState;
-        if (r0 == 0) goto L_0x00be;
-    L_0x007a:
-        r0 = r7.mSavedFragmentState;
-        r3 = r6.mHost;
-        r3 = r3.getContext();
-        r3 = r3.getClassLoader();
-        r0.setClassLoader(r3);
-        r0 = r7.mSavedFragmentState;
-        r3 = "android:view_state";
-        r0 = r0.getSparseParcelableArray(r3);
-        r7.mSavedViewState = r0;
-        r0 = r7.mSavedFragmentState;
-        r3 = "android:target_state";
-        r0 = r6.getFragment(r0, r3);
-        r7.mTarget = r0;
-        r0 = r7.mTarget;
-        if (r0 == 0) goto L_0x00ab;
-    L_0x00a1:
-        r0 = r7.mSavedFragmentState;
-        r3 = "android:target_req_state";
-        r0 = r0.getInt(r3, r14);
-        r7.mTargetRequestCode = r0;
-    L_0x00ab:
-        r0 = r7.mSavedFragmentState;
-        r3 = "android:user_visible_hint";
-        r0 = r0.getBoolean(r3, r10);
-        r7.mUserVisibleHint = r0;
-        r0 = r7.mUserVisibleHint;
-        if (r0 != 0) goto L_0x00be;
-    L_0x00b9:
-        r7.mDeferStart = r10;
-        if (r13 <= r12) goto L_0x00be;
-    L_0x00bd:
-        r13 = 3;
-    L_0x00be:
-        r0 = r6.mHost;
-        r7.mHost = r0;
-        r0 = r6.mParent;
-        r7.mParentFragment = r0;
-        r0 = r6.mParent;
-        if (r0 == 0) goto L_0x00cf;
-    L_0x00ca:
-        r0 = r6.mParent;
-        r0 = r0.mChildFragmentManager;
-        goto L_0x00d5;
-    L_0x00cf:
-        r0 = r6.mHost;
-        r0 = r0.getFragmentManagerImpl();
-    L_0x00d5:
-        r7.mFragmentManager = r0;
-        r7.mCalled = r14;
-        r0 = r6.mHost;
-        r0 = r0.getContext();
-        r7.onAttach(r0);
-        r0 = r7.mCalled;
-        if (r0 == 0) goto L_0x0253;
-    L_0x00e6:
-        r0 = r7.mParentFragment;
-        if (r0 != 0) goto L_0x00ef;
-    L_0x00ea:
-        r0 = r6.mHost;
-        r0.onAttachFragment(r7);
-    L_0x00ef:
-        r0 = r7.mRetaining;
-        if (r0 != 0) goto L_0x00f8;
-    L_0x00f3:
-        r0 = r7.mSavedFragmentState;
-        r7.performCreate(r0);
-    L_0x00f8:
-        r7.mRetaining = r14;
-        r0 = r7.mFromLayout;
-        if (r0 == 0) goto L_0x0139;
-    L_0x00fe:
-        r0 = r7.mSavedFragmentState;
-        r0 = r7.getLayoutInflater(r0);
-        r3 = r7.mSavedFragmentState;
-        r0 = r7.performCreateView(r0, r15, r3);
-        r7.mView = r0;
-        r0 = r7.mView;
-        if (r0 == 0) goto L_0x0137;
-    L_0x0110:
-        r0 = r7.mView;
-        r7.mInnerView = r0;
-        r0 = android.os.Build.VERSION.SDK_INT;
-        if (r0 < r2) goto L_0x011e;
-    L_0x0118:
-        r0 = r7.mView;
-        android.support.v4.view.ViewCompat.setSaveFromParentEnabled(r0, r14);
-        goto L_0x0126;
-    L_0x011e:
-        r0 = r7.mView;
-        r0 = android.support.v4.app.NoSaveStateFrameLayout.wrap(r0);
-        r7.mView = r0;
-    L_0x0126:
-        r0 = r7.mHidden;
-        if (r0 == 0) goto L_0x012f;
-    L_0x012a:
-        r0 = r7.mView;
-        r0.setVisibility(r1);
-    L_0x012f:
-        r0 = r7.mView;
-        r3 = r7.mSavedFragmentState;
-        r7.onViewCreated(r0, r3);
-        goto L_0x0139;
-    L_0x0137:
-        r7.mInnerView = r15;
-    L_0x0139:
-        if (r13 <= r10) goto L_0x020c;
-    L_0x013b:
-        r0 = DEBUG;
-        if (r0 == 0) goto L_0x0155;
-    L_0x013f:
-        r0 = "FragmentManager";
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r4 = "moveto ACTIVITY_CREATED: ";
-        r3.append(r4);
-        r3.append(r7);
-        r3 = r3.toString();
-        android.util.Log.v(r0, r3);
-    L_0x0155:
-        r0 = r7.mFromLayout;
-        if (r0 != 0) goto L_0x01fc;
-    L_0x0159:
-        r0 = 0;
-        r3 = r7.mContainerId;
-        if (r3 == 0) goto L_0x01a8;
-    L_0x015e:
-        r3 = r6.mContainer;
-        r4 = r7.mContainerId;
-        r3 = r3.onFindViewById(r4);
-        r0 = r3;
-        r0 = (android.view.ViewGroup) r0;
-        if (r0 != 0) goto L_0x01a8;
-    L_0x016b:
-        r3 = r7.mRestored;
-        if (r3 != 0) goto L_0x01a8;
-    L_0x016f:
-        r3 = new java.lang.IllegalArgumentException;
-        r4 = new java.lang.StringBuilder;
-        r4.<init>();
-        r5 = "No view found for id 0x";
-        r4.append(r5);
-        r5 = r7.mContainerId;
-        r5 = java.lang.Integer.toHexString(r5);
-        r4.append(r5);
-        r5 = " (";
-        r4.append(r5);
-        r5 = r18.getResources();
-        r11 = r7.mContainerId;
-        r5 = r5.getResourceName(r11);
-        r4.append(r5);
-        r5 = ") for fragment ";
-        r4.append(r5);
-        r4.append(r7);
-        r4 = r4.toString();
-        r3.<init>(r4);
-        r6.throwException(r3);
-    L_0x01a8:
-        r7.mContainer = r0;
-        r3 = r7.mSavedFragmentState;
-        r3 = r7.getLayoutInflater(r3);
-        r4 = r7.mSavedFragmentState;
-        r3 = r7.performCreateView(r3, r0, r4);
-        r7.mView = r3;
-        r3 = r7.mView;
-        if (r3 == 0) goto L_0x01fa;
-    L_0x01bc:
-        r3 = r7.mView;
-        r7.mInnerView = r3;
-        r3 = android.os.Build.VERSION.SDK_INT;
-        if (r3 < r2) goto L_0x01ca;
-    L_0x01c4:
-        r2 = r7.mView;
-        android.support.v4.view.ViewCompat.setSaveFromParentEnabled(r2, r14);
-        goto L_0x01d2;
-    L_0x01ca:
-        r2 = r7.mView;
-        r2 = android.support.v4.app.NoSaveStateFrameLayout.wrap(r2);
-        r7.mView = r2;
-    L_0x01d2:
-        if (r0 == 0) goto L_0x01e9;
-    L_0x01d4:
-        r2 = r6.loadAnimation(r7, r8, r10, r9);
-        if (r2 == 0) goto L_0x01e4;
-    L_0x01da:
-        r3 = r7.mView;
-        r6.setHWLayerAnimListenerIfAlpha(r3, r2);
-        r3 = r7.mView;
-        r3.startAnimation(r2);
-    L_0x01e4:
-        r3 = r7.mView;
-        r0.addView(r3);
-    L_0x01e9:
-        r2 = r7.mHidden;
-        if (r2 == 0) goto L_0x01f2;
-    L_0x01ed:
-        r2 = r7.mView;
-        r2.setVisibility(r1);
-    L_0x01f2:
-        r1 = r7.mView;
-        r2 = r7.mSavedFragmentState;
-        r7.onViewCreated(r1, r2);
-        goto L_0x01fc;
-    L_0x01fa:
-        r7.mInnerView = r15;
-    L_0x01fc:
-        r0 = r7.mSavedFragmentState;
-        r7.performActivityCreated(r0);
-        r0 = r7.mView;
-        if (r0 == 0) goto L_0x020a;
-    L_0x0205:
-        r0 = r7.mSavedFragmentState;
-        r7.restoreViewState(r0);
-    L_0x020a:
-        r7.mSavedFragmentState = r15;
-    L_0x020c:
-        if (r13 <= r12) goto L_0x022b;
-    L_0x020e:
-        r0 = DEBUG;
-        if (r0 == 0) goto L_0x0228;
-    L_0x0212:
-        r0 = "FragmentManager";
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "moveto STARTED: ";
-        r1.append(r2);
-        r1.append(r7);
-        r1 = r1.toString();
-        android.util.Log.v(r0, r1);
-    L_0x0228:
-        r18.performStart();
-    L_0x022b:
-        r0 = 4;
-        if (r13 <= r0) goto L_0x03ba;
-    L_0x022e:
-        r0 = DEBUG;
-        if (r0 == 0) goto L_0x0248;
-    L_0x0232:
-        r0 = "FragmentManager";
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "moveto RESUMED: ";
-        r1.append(r2);
-        r1.append(r7);
-        r1 = r1.toString();
-        android.util.Log.v(r0, r1);
-    L_0x0248:
-        r7.mResumed = r10;
-        r18.performResume();
-        r7.mSavedFragmentState = r15;
-        r7.mSavedViewState = r15;
-        goto L_0x03ba;
-    L_0x0253:
-        r0 = new android.support.v4.app.SuperNotCalledException;
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "Fragment ";
-        r1.append(r2);
-        r1.append(r7);
-        r2 = " did not call through to super.onAttach()";
-        r1.append(r2);
-        r1 = r1.toString();
-        r0.<init>(r1);
-        throw r0;
-    L_0x026f:
-        r0 = r7.mState;
-        if (r0 <= r13) goto L_0x03ba;
-    L_0x0273:
-        r0 = r7.mState;
-        switch(r0) {
-            case 1: goto L_0x0348;
-            case 2: goto L_0x02db;
-            case 3: goto L_0x02bc;
-            case 4: goto L_0x029c;
-            case 5: goto L_0x027a;
-            default: goto L_0x0278;
-        };
-    L_0x0278:
-        goto L_0x03ba;
-    L_0x027a:
-        r0 = 5;
-        if (r13 >= r0) goto L_0x029c;
-    L_0x027d:
-        r0 = DEBUG;
-        if (r0 == 0) goto L_0x0297;
-    L_0x0281:
-        r0 = "FragmentManager";
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "movefrom RESUMED: ";
-        r1.append(r2);
-        r1.append(r7);
-        r1 = r1.toString();
-        android.util.Log.v(r0, r1);
-    L_0x0297:
-        r18.performPause();
-        r7.mResumed = r14;
-    L_0x029c:
-        r0 = 4;
-        if (r13 >= r0) goto L_0x02bc;
-    L_0x029f:
-        r0 = DEBUG;
-        if (r0 == 0) goto L_0x02b9;
-    L_0x02a3:
-        r0 = "FragmentManager";
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "movefrom STARTED: ";
-        r1.append(r2);
-        r1.append(r7);
-        r1 = r1.toString();
-        android.util.Log.v(r0, r1);
-    L_0x02b9:
-        r18.performStop();
-    L_0x02bc:
-        if (r13 >= r12) goto L_0x02db;
-    L_0x02be:
-        r0 = DEBUG;
-        if (r0 == 0) goto L_0x02d8;
-    L_0x02c2:
-        r0 = "FragmentManager";
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "movefrom STOPPED: ";
-        r1.append(r2);
-        r1.append(r7);
-        r1 = r1.toString();
-        android.util.Log.v(r0, r1);
-    L_0x02d8:
-        r18.performReallyStop();
-    L_0x02db:
-        r0 = 2;
-        if (r13 >= r0) goto L_0x0348;
-    L_0x02de:
-        r0 = DEBUG;
-        if (r0 == 0) goto L_0x02f8;
-    L_0x02e2:
-        r0 = "FragmentManager";
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "movefrom ACTIVITY_CREATED: ";
-        r1.append(r2);
-        r1.append(r7);
-        r1 = r1.toString();
-        android.util.Log.v(r0, r1);
-    L_0x02f8:
-        r0 = r7.mView;
-        if (r0 == 0) goto L_0x030b;
-    L_0x02fc:
-        r0 = r6.mHost;
-        r0 = r0.onShouldSaveFragmentState(r7);
-        if (r0 == 0) goto L_0x030b;
-    L_0x0304:
-        r0 = r7.mSavedViewState;
-        if (r0 != 0) goto L_0x030b;
-    L_0x0308:
-        r17.saveFragmentViewState(r18);
-    L_0x030b:
-        r18.performDestroyView();
-        r0 = r7.mView;
-        if (r0 == 0) goto L_0x0342;
-    L_0x0312:
-        r0 = r7.mContainer;
-        if (r0 == 0) goto L_0x0342;
-    L_0x0316:
-        r0 = 0;
-        r1 = r6.mCurState;
-        if (r1 <= 0) goto L_0x0323;
-    L_0x031b:
-        r1 = r6.mDestroyed;
-        if (r1 != 0) goto L_0x0323;
-    L_0x031f:
-        r0 = r6.loadAnimation(r7, r8, r14, r9);
-    L_0x0323:
-        if (r0 == 0) goto L_0x033b;
-    L_0x0325:
-        r1 = r7;
-        r2 = r7.mView;
-        r7.mAnimatingAway = r2;
-        r7.mStateAfterAnimating = r13;
-        r2 = r7.mView;
-        r3 = new android.support.v4.app.FragmentManagerImpl$5;
-        r3.<init>(r2, r0, r1);
-        r0.setAnimationListener(r3);
-        r3 = r7.mView;
-        r3.startAnimation(r0);
-    L_0x033b:
-        r1 = r7.mContainer;
-        r2 = r7.mView;
-        r1.removeView(r2);
-    L_0x0342:
-        r7.mContainer = r15;
-        r7.mView = r15;
-        r7.mInnerView = r15;
-    L_0x0348:
-        if (r13 >= r10) goto L_0x03ba;
-    L_0x034a:
-        r0 = r6.mDestroyed;
-        if (r0 == 0) goto L_0x0359;
-    L_0x034e:
-        r0 = r7.mAnimatingAway;
-        if (r0 == 0) goto L_0x0359;
-    L_0x0352:
-        r0 = r7.mAnimatingAway;
-        r7.mAnimatingAway = r15;
-        r0.clearAnimation();
-    L_0x0359:
-        r0 = r7.mAnimatingAway;
-        if (r0 == 0) goto L_0x0361;
-    L_0x035d:
-        r7.mStateAfterAnimating = r13;
-        r13 = 1;
-        goto L_0x03ba;
-    L_0x0361:
-        r0 = DEBUG;
-        if (r0 == 0) goto L_0x037b;
-    L_0x0365:
-        r0 = "FragmentManager";
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "movefrom CREATED: ";
-        r1.append(r2);
-        r1.append(r7);
-        r1 = r1.toString();
-        android.util.Log.v(r0, r1);
-    L_0x037b:
-        r0 = r7.mRetaining;
-        if (r0 != 0) goto L_0x0382;
-    L_0x037f:
-        r18.performDestroy();
-    L_0x0382:
-        r7.mCalled = r14;
-        r18.onDetach();
-        r0 = r7.mCalled;
-        if (r0 == 0) goto L_0x039e;
-    L_0x038b:
-        if (r22 != 0) goto L_0x03ba;
-    L_0x038d:
-        r1 = r7.mRetaining;
-        if (r1 != 0) goto L_0x0395;
-    L_0x0391:
-        r17.makeInactive(r18);
-        goto L_0x03ba;
-    L_0x0395:
-        r7.mHost = r15;
-        r7.mParentFragment = r15;
-        r7.mFragmentManager = r15;
-        r7.mChildFragmentManager = r15;
-        goto L_0x03ba;
-    L_0x039e:
-        r1 = new android.support.v4.app.SuperNotCalledException;
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "Fragment ";
-        r2.append(r3);
-        r2.append(r7);
-        r3 = " did not call through to super.onDetach()";
-        r2.append(r3);
-        r2 = r2.toString();
-        r1.<init>(r2);
-        throw r1;
-    L_0x03ba:
-        r7.mState = r13;
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.app.FragmentManagerImpl.moveToState(android.support.v4.app.Fragment, int, int, int, boolean):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    void moveToState(Fragment f, int newState, int transit, int transitionStyle, boolean keepActive) {
+        int newState2;
+        Fragment fragment = f;
+        int i = transit;
+        int i2 = transitionStyle;
+        if (!fragment.mAdded || fragment.mDetached) {
+            newState2 = newState;
+            if (newState2 > 1) {
+                newState2 = 1;
+            }
+        } else {
+            newState2 = newState;
+        }
+        if (fragment.mRemoving && newState > fragment.mState) {
+            newState2 = fragment.mState;
+        }
+        if (fragment.mDeferStart && fragment.mState < 4 && newState > 3) {
+            newState2 = 3;
+        }
+        int newState3 = newState2;
+        String str;
+        StringBuilder stringBuilder;
+        if (fragment.mState >= newState3) {
+            if (fragment.mState > newState3) {
+                switch (fragment.mState) {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        if (newState3 < 5) {
+                            if (DEBUG) {
+                                str = TAG;
+                                stringBuilder = new StringBuilder();
+                                stringBuilder.append("movefrom RESUMED: ");
+                                stringBuilder.append(fragment);
+                                Log.v(str, stringBuilder.toString());
+                            }
+                            f.performPause();
+                            fragment.mResumed = false;
+                            break;
+                        }
+                        break;
+                }
+            }
+        } else if (!fragment.mFromLayout || fragment.mInLayout) {
+            if (fragment.mAnimatingAway != null) {
+                fragment.mAnimatingAway = null;
+                moveToState(fragment, fragment.mStateAfterAnimating, 0, 0, true);
+            }
+            switch (fragment.mState) {
+                case 0:
+                    if (DEBUG) {
+                        str = TAG;
+                        StringBuilder stringBuilder2 = new StringBuilder();
+                        stringBuilder2.append("moveto CREATED: ");
+                        stringBuilder2.append(fragment);
+                        Log.v(str, stringBuilder2.toString());
+                    }
+                    if (fragment.mSavedFragmentState != null) {
+                        fragment.mSavedFragmentState.setClassLoader(this.mHost.getContext().getClassLoader());
+                        fragment.mSavedViewState = fragment.mSavedFragmentState.getSparseParcelableArray(VIEW_STATE_TAG);
+                        fragment.mTarget = getFragment(fragment.mSavedFragmentState, TARGET_STATE_TAG);
+                        if (fragment.mTarget != null) {
+                            fragment.mTargetRequestCode = fragment.mSavedFragmentState.getInt(TARGET_REQUEST_CODE_STATE_TAG, 0);
+                        }
+                        fragment.mUserVisibleHint = fragment.mSavedFragmentState.getBoolean(USER_VISIBLE_HINT_TAG, true);
+                        if (!fragment.mUserVisibleHint) {
+                            fragment.mDeferStart = true;
+                            if (newState3 > 3) {
+                                newState3 = 3;
+                            }
+                        }
+                    }
+                    fragment.mHost = this.mHost;
+                    fragment.mParentFragment = this.mParent;
+                    fragment.mFragmentManager = this.mParent != null ? this.mParent.mChildFragmentManager : this.mHost.getFragmentManagerImpl();
+                    fragment.mCalled = false;
+                    fragment.onAttach(this.mHost.getContext());
+                    if (fragment.mCalled) {
+                        if (fragment.mParentFragment == null) {
+                            this.mHost.onAttachFragment(fragment);
+                        }
+                        if (!fragment.mRetaining) {
+                            fragment.performCreate(fragment.mSavedFragmentState);
+                        }
+                        fragment.mRetaining = false;
+                        if (fragment.mFromLayout) {
+                            fragment.mView = fragment.performCreateView(fragment.getLayoutInflater(fragment.mSavedFragmentState), null, fragment.mSavedFragmentState);
+                            if (fragment.mView == null) {
+                                fragment.mInnerView = null;
+                                break;
+                            }
+                            fragment.mInnerView = fragment.mView;
+                            if (VERSION.SDK_INT >= 11) {
+                                ViewCompat.setSaveFromParentEnabled(fragment.mView, false);
+                            } else {
+                                fragment.mView = NoSaveStateFrameLayout.wrap(fragment.mView);
+                            }
+                            if (fragment.mHidden) {
+                                fragment.mView.setVisibility(8);
+                            }
+                            fragment.onViewCreated(fragment.mView, fragment.mSavedFragmentState);
+                            break;
+                        }
+                    }
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("Fragment ");
+                    stringBuilder.append(fragment);
+                    stringBuilder.append(" did not call through to super.onAttach()");
+                    throw new SuperNotCalledException(stringBuilder.toString());
+                    break;
+                case 1:
+                    break;
+                case 2:
+                case 3:
+                    break;
+                case 4:
+                    break;
+            }
+        } else {
+            return;
+        }
+        fragment.mState = newState3;
     }
 
     void moveToState(Fragment f) {
@@ -1953,123 +1503,34 @@ final class FragmentManagerImpl extends FragmentManager implements LayoutInflate
     /* JADX WARNING: Missing block: B:37:0x0099, code:
             return r1;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public boolean execPendingActions() {
-        /*
-        r6 = this;
-        r0 = r6.mExecutingActions;
-        if (r0 != 0) goto L_0x00a5;
-    L_0x0004:
-        r0 = android.os.Looper.myLooper();
-        r1 = r6.mHost;
-        r1 = r1.getHandler();
-        r1 = r1.getLooper();
-        if (r0 != r1) goto L_0x009d;
-    L_0x0014:
-        r0 = 0;
-        r1 = r0;
-        r2 = r1;
-    L_0x0017:
-        monitor-enter(r6);
-        r3 = r6.mPendingActions;	 Catch:{ all -> 0x009a }
-        if (r3 == 0) goto L_0x006a;
-    L_0x001c:
-        r3 = r6.mPendingActions;	 Catch:{ all -> 0x009a }
-        r3 = r3.size();	 Catch:{ all -> 0x009a }
-        if (r3 != 0) goto L_0x0025;
-    L_0x0024:
-        goto L_0x006a;
-    L_0x0025:
-        r3 = r6.mPendingActions;	 Catch:{ all -> 0x009a }
-        r3 = r3.size();	 Catch:{ all -> 0x009a }
-        r2 = r3;
-        r3 = r6.mTmpActions;	 Catch:{ all -> 0x009a }
-        if (r3 == 0) goto L_0x0035;
-    L_0x0030:
-        r3 = r6.mTmpActions;	 Catch:{ all -> 0x009a }
-        r3 = r3.length;	 Catch:{ all -> 0x009a }
-        if (r3 >= r2) goto L_0x0039;
-    L_0x0035:
-        r3 = new java.lang.Runnable[r2];	 Catch:{ all -> 0x009a }
-        r6.mTmpActions = r3;	 Catch:{ all -> 0x009a }
-    L_0x0039:
-        r3 = r6.mPendingActions;	 Catch:{ all -> 0x009a }
-        r4 = r6.mTmpActions;	 Catch:{ all -> 0x009a }
-        r3.toArray(r4);	 Catch:{ all -> 0x009a }
-        r3 = r6.mPendingActions;	 Catch:{ all -> 0x009a }
-        r3.clear();	 Catch:{ all -> 0x009a }
-        r3 = r6.mHost;	 Catch:{ all -> 0x009a }
-        r3 = r3.getHandler();	 Catch:{ all -> 0x009a }
-        r4 = r6.mExecCommit;	 Catch:{ all -> 0x009a }
-        r3.removeCallbacks(r4);	 Catch:{ all -> 0x009a }
-        monitor-exit(r6);	 Catch:{ all -> 0x009a }
-        r3 = 1;
-        r6.mExecutingActions = r3;
-        r3 = r0;
-    L_0x0055:
-        if (r3 >= r2) goto L_0x0066;
-    L_0x0057:
-        r4 = r6.mTmpActions;
-        r4 = r4[r3];
-        r4.run();
-        r4 = r6.mTmpActions;
-        r5 = 0;
-        r4[r3] = r5;
-        r3 = r3 + 1;
-        goto L_0x0055;
-    L_0x0066:
-        r6.mExecutingActions = r0;
-        r1 = 1;
-        goto L_0x0017;
-    L_0x006a:
-        monitor-exit(r6);	 Catch:{ all -> 0x009a }
-        r2 = r6.mHavePendingDeferredStart;
-        if (r2 == 0) goto L_0x0099;
-    L_0x006f:
-        r2 = 0;
-        r3 = r2;
-        r2 = r0;
-    L_0x0072:
-        r4 = r6.mActive;
-        r4 = r4.size();
-        if (r2 >= r4) goto L_0x0092;
-    L_0x007a:
-        r4 = r6.mActive;
-        r4 = r4.get(r2);
-        r4 = (android.support.v4.app.Fragment) r4;
-        if (r4 == 0) goto L_0x008f;
-    L_0x0084:
-        r5 = r4.mLoaderManager;
-        if (r5 == 0) goto L_0x008f;
-    L_0x0088:
-        r5 = r4.mLoaderManager;
-        r5 = r5.hasRunningLoaders();
-        r3 = r3 | r5;
-    L_0x008f:
-        r2 = r2 + 1;
-        goto L_0x0072;
-    L_0x0092:
-        if (r3 != 0) goto L_0x0099;
-    L_0x0094:
-        r6.mHavePendingDeferredStart = r0;
-        r6.startPendingDeferredFragments();
-    L_0x0099:
-        return r1;
-    L_0x009a:
-        r0 = move-exception;
-        monitor-exit(r6);	 Catch:{ all -> 0x009a }
-        throw r0;
-    L_0x009d:
-        r0 = new java.lang.IllegalStateException;
-        r1 = "Must be called from main thread of process";
-        r0.<init>(r1);
-        throw r0;
-    L_0x00a5:
-        r0 = new java.lang.IllegalStateException;
-        r1 = "Recursive entry to executePendingTransactions";
-        r0.<init>(r1);
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.app.FragmentManagerImpl.execPendingActions():boolean");
+        if (this.mExecutingActions) {
+            throw new IllegalStateException("Recursive entry to executePendingTransactions");
+        } else if (Looper.myLooper() == this.mHost.getHandler().getLooper()) {
+            boolean didSomething = false;
+            boolean numActions = didSomething;
+            while (true) {
+                synchronized (this) {
+                    if (this.mPendingActions == null || this.mPendingActions.size() == 0) {
+                        break;
+                    }
+                    int numActions2 = this.mPendingActions.size();
+                    if (this.mTmpActions == null || this.mTmpActions.length < numActions2) {
+                        this.mTmpActions = new Runnable[numActions2];
+                    }
+                    this.mPendingActions.toArray(this.mTmpActions);
+                    this.mPendingActions.clear();
+                    this.mHost.getHandler().removeCallbacks(this.mExecCommit);
+                }
+                this.mExecutingActions = false;
+                didSomething = true;
+            }
+            while (true) {
+            }
+        } else {
+            throw new IllegalStateException("Must be called from main thread of process");
+        }
     }
 
     void reportBackStackChanged() {

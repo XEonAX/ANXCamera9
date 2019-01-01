@@ -3,12 +3,14 @@ package com.android.camera.snap;
 import android.annotation.TargetApi;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCaptureSession.CaptureCallback;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraDevice.StateCallback;
+import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CaptureFailure;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.CaptureRequest.Builder;
@@ -28,9 +30,11 @@ import android.os.HandlerThread;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.os.Process;
+import android.provider.MediaStore.Video.Media;
 import android.provider.MiuiSettings.Key;
 import android.provider.MiuiSettings.ScreenEffect;
 import android.provider.Settings.Secure;
+import android.provider.Settings.System;
 import android.support.annotation.NonNull;
 import android.view.OrientationEventListener;
 import android.view.Surface;
@@ -39,17 +43,21 @@ import com.android.camera.CameraSize;
 import com.android.camera.Exif;
 import com.android.camera.FileCompat;
 import com.android.camera.LocationManager;
+import com.android.camera.PictureSizeManager;
 import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
 import com.android.camera.log.Log;
+import com.android.camera.module.ModuleManager;
 import com.android.camera.module.VideoModule;
 import com.android.camera.module.loader.camera2.Camera2DataContainer;
+import com.android.camera.storage.MediaProviderUtil;
 import com.android.camera.storage.Storage;
 import com.android.camera2.CameraCapabilities;
 import com.mi.config.b;
 import com.xiaomi.camera.core.PictureInfo;
 import java.io.Closeable;
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -272,129 +280,49 @@ public class SnapCamera implements OnErrorListener, OnInfoListener {
     /* JADX WARNING: Missing block: B:17:0x0112, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void initCamera() {
-        /*
-        r7 = this;
-        r0 = 0;
-        r7.mCameraId = r0;
-        r1 = com.android.camera.data.DataRepository.dataItemGlobal();
-        r2 = new android.content.Intent;
-        r2.<init>();
-        r3 = java.lang.Boolean.valueOf(r0);
-        r4 = 1;
-        r5 = 0;
-        r6 = 1;
-        r1.parseIntent(r2, r3, r4, r5, r6);
-        r1 = r7.mContext;
-        r1 = r1.getContentResolver();
-        r2 = "persist.camera.snap.auto_switch";
-        r1 = android.provider.Settings.System.getInt(r1, r2, r0);
-        r2 = 1;
-        if (r1 != r2) goto L_0x002c;
-    L_0x0025:
-        r1 = com.android.camera.CameraSettings.readPreferredCameraId();
-        r7.mCameraId = r1;
-        goto L_0x0035;
-    L_0x002c:
-        r1 = com.android.camera.data.DataRepository.dataItemGlobal();
-        r2 = r7.mCameraId;
-        r1.setCameraId(r2);
-    L_0x0035:
-        r1 = r7.mContext;
-        r2 = "camera";
-        r1 = r1.getSystemService(r2);
-        r1 = (android.hardware.camera2.CameraManager) r1;
-        r2 = r7.mCameraId;	 Catch:{ CameraAccessException -> 0x00f7, CameraAccessException -> 0x00f7 }
-        r2 = java.lang.String.valueOf(r2);	 Catch:{ CameraAccessException -> 0x00f7, CameraAccessException -> 0x00f7 }
-        r3 = r7.mCameraStateCallback;	 Catch:{ CameraAccessException -> 0x00f7, CameraAccessException -> 0x00f7 }
-        r4 = r7.mMainHandler;	 Catch:{ CameraAccessException -> 0x00f7, CameraAccessException -> 0x00f7 }
-        r1.openCamera(r2, r3, r4);	 Catch:{ CameraAccessException -> 0x00f7, CameraAccessException -> 0x00f7 }
-        r1 = r1.getCameraCharacteristics(r2);	 Catch:{ CameraAccessException -> 0x00f7, CameraAccessException -> 0x00f7 }
-        r2 = new com.android.camera2.CameraCapabilities;	 Catch:{ CameraAccessException -> 0x00f7, CameraAccessException -> 0x00f7 }
-        r2.<init>(r1);	 Catch:{ CameraAccessException -> 0x00f7, CameraAccessException -> 0x00f7 }
-        r7.mCameraCapabilities = r2;	 Catch:{ CameraAccessException -> 0x00f7, CameraAccessException -> 0x00f7 }
-        r1 = r7.isCamcorder();
-        if (r1 == 0) goto L_0x00a0;
-    L_0x005f:
-        r0 = com.android.camera.data.DataRepository.dataItemGlobal();
-        r1 = 162; // 0xa2 float:2.27E-43 double:8.0E-322;
-        r0.setCurrentMode(r1);
-        com.android.camera.module.ModuleManager.setActiveModuleIndex(r1);
-        r0 = com.android.camera.CameraSettings.getPreferVideoQuality();
-        r1 = r7.mCameraId;
-        r1 = android.media.CamcorderProfile.hasProfile(r1, r0);
-        if (r1 == 0) goto L_0x0080;
-    L_0x0077:
-        r1 = r7.mCameraId;
-        r0 = android.media.CamcorderProfile.get(r1, r0);
-        r7.mProfile = r0;
-        goto L_0x009f;
-    L_0x0080:
-        r1 = TAG;
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "invalid camcorder profile ";
-        r2.append(r3);
-        r2.append(r0);
-        r0 = r2.toString();
-        com.android.camera.log.Log.w(r1, r0);
-        r0 = r7.mCameraId;
-        r1 = 5;
-        r0 = android.media.CamcorderProfile.get(r0, r1);
-        r7.mProfile = r0;
-    L_0x009f:
-        goto L_0x00f6;
-    L_0x00a0:
-        r1 = com.android.camera.data.DataRepository.dataItemGlobal();
-        r2 = 163; // 0xa3 float:2.28E-43 double:8.05E-322;
-        r1.setCurrentMode(r2);
-        com.android.camera.module.ModuleManager.setActiveModuleIndex(r2);
-        r1 = r7.mCameraCapabilities;
-        r3 = 256; // 0x100 float:3.59E-43 double:1.265E-321;
-        r1 = r1.getSupportedOutputSize(r3);
-        com.android.camera.PictureSizeManager.initialize(r1, r0);
-        r1 = com.android.camera.PictureSizeManager.getBestPictureSize();
-        r3 = r7.mCameraCapabilities;
-        r4 = android.graphics.SurfaceTexture.class;
-        r3 = r3.getSupportedOutputSize(r4);
-        r4 = r7.mCameraId;
-        r5 = r1.width;
-        r6 = r1.height;
-        r5 = com.android.camera.CameraSettings.getPreviewAspectRatio(r5, r6);
-        r5 = (double) r5;
-        r2 = com.android.camera.Util.getOptimalPreviewSize(r2, r4, r3, r5);
-        r3 = new android.graphics.SurfaceTexture;
-        r3.<init>(r0);
-        r7.mSurfaceTexture = r3;
-        r0 = r7.mSurfaceTexture;
-        r3 = r2.width;
-        r2 = r2.height;
-        r0.setDefaultBufferSize(r3, r2);
-        r0 = new android.view.Surface;
-        r2 = r7.mSurfaceTexture;
-        r0.<init>(r2);
-        r7.mPreviewSurface = r0;
-        r7.preparePhotoImageReader(r1);
-        r0 = r1.width;
-        r7.mWidth = r0;
-        r0 = r1.height;
-        r7.mHeight = r0;
-    L_0x00f6:
-        return;
-    L_0x00f7:
-        r0 = move-exception;
-        r1 = TAG;
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "initCamera: ";
-        r2.append(r3);
-        r3 = r0.getMessage();
-        r2.append(r3);
-        r2 = r2.toString();
-        com.android.camera.log.Log.e(r1, r2, r0);
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.snap.SnapCamera.initCamera():void");
+        this.mCameraId = 0;
+        DataRepository.dataItemGlobal().parseIntent(new Intent(), Boolean.valueOf(false), true, false, true);
+        if (System.getInt(this.mContext.getContentResolver(), "persist.camera.snap.auto_switch", 0) == 1) {
+            this.mCameraId = CameraSettings.readPreferredCameraId();
+        } else {
+            DataRepository.dataItemGlobal().setCameraId(this.mCameraId);
+        }
+        CameraManager cameraManager = (CameraManager) this.mContext.getSystemService("camera");
+        try {
+            String valueOf = String.valueOf(this.mCameraId);
+            cameraManager.openCamera(valueOf, this.mCameraStateCallback, this.mMainHandler);
+            this.mCameraCapabilities = new CameraCapabilities(cameraManager.getCameraCharacteristics(valueOf));
+            if (isCamcorder()) {
+                DataRepository.dataItemGlobal().setCurrentMode(162);
+                ModuleManager.setActiveModuleIndex(162);
+                int preferVideoQuality = CameraSettings.getPreferVideoQuality();
+                if (CamcorderProfile.hasProfile(this.mCameraId, preferVideoQuality)) {
+                    this.mProfile = CamcorderProfile.get(this.mCameraId, preferVideoQuality);
+                } else {
+                    String str = TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("invalid camcorder profile ");
+                    stringBuilder.append(preferVideoQuality);
+                    Log.w(str, stringBuilder.toString());
+                    this.mProfile = CamcorderProfile.get(this.mCameraId, 5);
+                }
+            } else {
+                DataRepository.dataItemGlobal().setCurrentMode(163);
+                ModuleManager.setActiveModuleIndex(163);
+                PictureSizeManager.initialize(this.mCameraCapabilities.getSupportedOutputSize(256), 0);
+                CameraSize bestPictureSize = PictureSizeManager.getBestPictureSize();
+                CameraSize optimalPreviewSize = Util.getOptimalPreviewSize(163, this.mCameraId, this.mCameraCapabilities.getSupportedOutputSize(SurfaceTexture.class), (double) CameraSettings.getPreviewAspectRatio(bestPictureSize.width, bestPictureSize.height));
+                this.mSurfaceTexture = new SurfaceTexture(false);
+                this.mSurfaceTexture.setDefaultBufferSize(optimalPreviewSize.width, optimalPreviewSize.height);
+                this.mPreviewSurface = new Surface(this.mSurfaceTexture);
+                preparePhotoImageReader(bestPictureSize);
+                this.mWidth = bestPictureSize.width;
+                this.mHeight = bestPictureSize.height;
+            }
+        } catch (Throwable e) {
+        }
     }
 
     private void initOrientationListener() {
@@ -766,165 +694,127 @@ public class SnapCamera implements OnErrorListener, OnInfoListener {
     /* JADX WARNING: Removed duplicated region for block: B:58:0x00f5 A:{Catch:{ Exception -> 0x0012 }} */
     /* JADX WARNING: Removed duplicated region for block: B:58:0x00f5 A:{Catch:{ Exception -> 0x0012 }} */
     /* JADX WARNING: Removed duplicated region for block: B:58:0x00f5 A:{Catch:{ Exception -> 0x0012 }} */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private synchronized void stopCamcorder() {
-        /*
-        r13 = this;
-        monitor-enter(r13);
-        r0 = r13.mMediaRecorder;	 Catch:{ all -> 0x0104 }
-        if (r0 != 0) goto L_0x0007;
-    L_0x0005:
-        monitor-exit(r13);
-        return;
-    L_0x0007:
-        r0 = r13.mRecording;	 Catch:{ all -> 0x0104 }
-        r1 = 0;
-        if (r0 == 0) goto L_0x001c;
-    L_0x000c:
-        r0 = r13.mMediaRecorder;	 Catch:{ Exception -> 0x0012 }
-        r0.stop();	 Catch:{ Exception -> 0x0012 }
-        goto L_0x001c;
-    L_0x0012:
-        r0 = move-exception;
-        r13.mRecording = r1;	 Catch:{ all -> 0x0104 }
-        r2 = TAG;	 Catch:{ all -> 0x0104 }
-        r3 = "mMediaRecorder stop failed";
-        com.android.camera.log.Log.w(r2, r3, r0);	 Catch:{ all -> 0x0104 }
-    L_0x001c:
-        r0 = r13.mMediaRecorder;	 Catch:{ all -> 0x0104 }
-        r0.reset();	 Catch:{ all -> 0x0104 }
-        r0 = r13.mMediaRecorder;	 Catch:{ all -> 0x0104 }
-        r0.release();	 Catch:{ all -> 0x0104 }
-        r0 = 0;
-        r13.mMediaRecorder = r0;	 Catch:{ all -> 0x0104 }
-        r13.stopBackgroundThread();	 Catch:{ all -> 0x0104 }
-        r2 = r13.mRecording;	 Catch:{ all -> 0x0104 }
-        if (r2 == 0) goto L_0x0100;
-    L_0x0030:
-        r2 = r13.mContentValues;	 Catch:{ all -> 0x0104 }
-        r3 = "_data";
-        r2 = r2.get(r3);	 Catch:{ all -> 0x0104 }
-        r2 = (java.lang.String) r2;	 Catch:{ all -> 0x0104 }
-        r3 = new java.io.File;	 Catch:{ Exception -> 0x00d4, all -> 0x00d1 }
-        r3.<init>(r2);	 Catch:{ Exception -> 0x00d4, all -> 0x00d1 }
-        r3 = r3.length();	 Catch:{ Exception -> 0x00d4, all -> 0x00d1 }
-        r5 = 0;
-        r7 = (r3 > r5 ? 1 : (r3 == r5 ? 0 : -1));
-        if (r7 <= 0) goto L_0x00cc;
-    L_0x004c:
-        r7 = com.android.camera.storage.Storage.isUseDocumentMode();	 Catch:{ Exception -> 0x00d4, all -> 0x00d1 }
-        if (r7 != 0) goto L_0x0064;
-    L_0x0052:
-        r7 = com.android.camera.Util.getDuration(r2);	 Catch:{ Exception -> 0x00d4, all -> 0x00d1 }
-        r9 = (r7 > r5 ? 1 : (r7 == r5 ? 0 : -1));
-        if (r9 != 0) goto L_0x0062;
-    L_0x005a:
-        r9 = new java.io.File;	 Catch:{ Exception -> 0x00d4, all -> 0x00d1 }
-        r9.<init>(r2);	 Catch:{ Exception -> 0x00d4, all -> 0x00d1 }
-        r9.delete();	 Catch:{ Exception -> 0x00d4, all -> 0x00d1 }
-    L_0x0062:
-        r9 = r0;
-        goto L_0x007a;
-    L_0x0064:
-        r7 = com.android.camera.FileCompat.getParcelFileDescriptor(r2, r1);	 Catch:{ Exception -> 0x00d4, all -> 0x00d1 }
-        r8 = r7.getFileDescriptor();	 Catch:{ Exception -> 0x00c9, all -> 0x00c6 }
-        r8 = com.android.camera.Util.getDuration(r8);	 Catch:{ Exception -> 0x00c9, all -> 0x00c6 }
-        r10 = (r5 > r8 ? 1 : (r5 == r8 ? 0 : -1));
-        if (r10 != 0) goto L_0x0077;
-    L_0x0074:
-        com.android.camera.FileCompat.deleteFile(r2);	 Catch:{ Exception -> 0x00c9, all -> 0x00c6 }
-    L_0x0077:
-        r11 = r8;
-        r9 = r7;
-        r7 = r11;
-    L_0x007a:
-        r5 = (r7 > r5 ? 1 : (r7 == r5 ? 0 : -1));
-        if (r5 <= 0) goto L_0x00cd;
-    L_0x007e:
-        r5 = r13.mContentValues;	 Catch:{ Exception -> 0x00c4 }
-        r6 = "_size";
-        r3 = java.lang.Long.valueOf(r3);	 Catch:{ Exception -> 0x00c4 }
-        r5.put(r6, r3);	 Catch:{ Exception -> 0x00c4 }
-        r3 = r13.mContentValues;	 Catch:{ Exception -> 0x00c4 }
-        r4 = "duration";
-        r5 = java.lang.Long.valueOf(r7);	 Catch:{ Exception -> 0x00c4 }
-        r3.put(r4, r5);	 Catch:{ Exception -> 0x00c4 }
-        r3 = r13.mContext;	 Catch:{ Exception -> 0x00c4 }
-        r3 = r3.getContentResolver();	 Catch:{ Exception -> 0x00c4 }
-        r4 = android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI;	 Catch:{ Exception -> 0x00c4 }
-        r5 = r13.mContentValues;	 Catch:{ Exception -> 0x00c4 }
-        r3 = r3.insert(r4, r5);	 Catch:{ Exception -> 0x00c4 }
-        if (r3 != 0) goto L_0x00c2;
-    L_0x00a4:
-        r3 = TAG;	 Catch:{ Exception -> 0x00c4 }
-        r4 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x00c4 }
-        r4.<init>();	 Catch:{ Exception -> 0x00c4 }
-        r5 = "insert MediaProvider failed, attempt to find uri by path, ";
-        r4.append(r5);	 Catch:{ Exception -> 0x00c4 }
-        r4.append(r2);	 Catch:{ Exception -> 0x00c4 }
-        r4 = r4.toString();	 Catch:{ Exception -> 0x00c4 }
-        com.android.camera.log.Log.d(r3, r4);	 Catch:{ Exception -> 0x00c4 }
-        r3 = r13.mContext;	 Catch:{ Exception -> 0x00c4 }
-        r2 = com.android.camera.storage.MediaProviderUtil.getContentUriFromPath(r3, r2);	 Catch:{ Exception -> 0x00c4 }
-        r0 = r2;
-        goto L_0x00cd;
-    L_0x00c2:
-        r0 = r3;
-        goto L_0x00cd;
-    L_0x00c4:
-        r2 = move-exception;
-        goto L_0x00d6;
-    L_0x00c6:
-        r1 = move-exception;
-        r9 = r7;
-        goto L_0x00fc;
-    L_0x00c9:
-        r2 = move-exception;
-        r9 = r7;
-        goto L_0x00d6;
-    L_0x00cc:
-        r9 = r0;
-    L_0x00cd:
-        com.android.camera.Util.closeSilently(r9);	 Catch:{ all -> 0x0104 }
-        goto L_0x00f1;
-    L_0x00d1:
-        r1 = move-exception;
-        r9 = r0;
-        goto L_0x00fc;
-    L_0x00d4:
-        r2 = move-exception;
-        r9 = r0;
-    L_0x00d6:
-        r2.printStackTrace();	 Catch:{ all -> 0x00fb }
-        r3 = TAG;	 Catch:{ all -> 0x00fb }
-        r4 = new java.lang.StringBuilder;	 Catch:{ all -> 0x00fb }
-        r4.<init>();	 Catch:{ all -> 0x00fb }
-        r5 = "Failed to write MediaStore ";
-        r4.append(r5);	 Catch:{ all -> 0x00fb }
-        r4.append(r2);	 Catch:{ all -> 0x00fb }
-        r2 = r4.toString();	 Catch:{ all -> 0x00fb }
-        com.android.camera.log.Log.e(r3, r2);	 Catch:{ all -> 0x00fb }
-        goto L_0x00cd;
-    L_0x00f1:
-        r2 = r13.mStatusListener;	 Catch:{ all -> 0x0104 }
-        if (r2 == 0) goto L_0x0100;
-    L_0x00f5:
-        r2 = r13.mStatusListener;	 Catch:{ all -> 0x0104 }
-        r2.onDone(r0);	 Catch:{ all -> 0x0104 }
-        goto L_0x0100;
-    L_0x00fb:
-        r1 = move-exception;
-    L_0x00fc:
-        com.android.camera.Util.closeSilently(r9);	 Catch:{ all -> 0x0104 }
-        throw r1;	 Catch:{ all -> 0x0104 }
-    L_0x0100:
-        r13.mRecording = r1;	 Catch:{ all -> 0x0104 }
-        monitor-exit(r13);
-        return;
-    L_0x0104:
-        r0 = move-exception;
-        monitor-exit(r13);
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.snap.SnapCamera.stopCamcorder():void");
+        Closeable closeable;
+        Exception e;
+        String str;
+        StringBuilder stringBuilder;
+        Throwable th;
+        if (this.mMediaRecorder != null) {
+            if (this.mRecording) {
+                try {
+                    this.mMediaRecorder.stop();
+                } catch (Throwable e2) {
+                    this.mRecording = false;
+                    Log.w(TAG, "mMediaRecorder stop failed", e2);
+                }
+            }
+            this.mMediaRecorder.reset();
+            this.mMediaRecorder.release();
+            Uri uri = null;
+            this.mMediaRecorder = null;
+            stopBackgroundThread();
+            if (this.mRecording) {
+                String str2 = (String) this.mContentValues.get("_data");
+                try {
+                    long length = new File(str2).length();
+                    if (length > 0) {
+                        long j;
+                        if (Storage.isUseDocumentMode()) {
+                            ParcelFileDescriptor parcelFileDescriptor = FileCompat.getParcelFileDescriptor(str2, false);
+                            try {
+                                long duration = Util.getDuration(parcelFileDescriptor.getFileDescriptor());
+                                if (0 == duration) {
+                                    FileCompat.deleteFile(str2);
+                                }
+                                closeable = parcelFileDescriptor;
+                                j = duration;
+                            } catch (Exception e3) {
+                                e = e3;
+                                closeable = parcelFileDescriptor;
+                                try {
+                                    e.printStackTrace();
+                                    str = TAG;
+                                    stringBuilder = new StringBuilder();
+                                    stringBuilder.append("Failed to write MediaStore ");
+                                    stringBuilder.append(e);
+                                    Log.e(str, stringBuilder.toString());
+                                    Util.closeSilently(closeable);
+                                    if (this.mStatusListener != null) {
+                                    }
+                                    this.mRecording = false;
+                                } catch (Throwable th2) {
+                                    th = th2;
+                                }
+                            } catch (Throwable th3) {
+                                th = th3;
+                                closeable = parcelFileDescriptor;
+                                Util.closeSilently(closeable);
+                                throw th;
+                            }
+                        }
+                        j = Util.getDuration(str2);
+                        if (j == 0) {
+                            new File(str2).delete();
+                        }
+                        closeable = null;
+                        if (j > 0) {
+                            try {
+                                this.mContentValues.put("_size", Long.valueOf(length));
+                                this.mContentValues.put("duration", Long.valueOf(j));
+                                Uri insert = this.mContext.getContentResolver().insert(Media.EXTERNAL_CONTENT_URI, this.mContentValues);
+                                if (insert == null) {
+                                    str = TAG;
+                                    stringBuilder = new StringBuilder();
+                                    stringBuilder.append("insert MediaProvider failed, attempt to find uri by path, ");
+                                    stringBuilder.append(str2);
+                                    Log.d(str, stringBuilder.toString());
+                                    uri = MediaProviderUtil.getContentUriFromPath(this.mContext, str2);
+                                } else {
+                                    uri = insert;
+                                }
+                            } catch (Exception e4) {
+                                e = e4;
+                                e.printStackTrace();
+                                str = TAG;
+                                stringBuilder = new StringBuilder();
+                                stringBuilder.append("Failed to write MediaStore ");
+                                stringBuilder.append(e);
+                                Log.e(str, stringBuilder.toString());
+                                Util.closeSilently(closeable);
+                                if (this.mStatusListener != null) {
+                                }
+                                this.mRecording = false;
+                            }
+                        }
+                    }
+                    closeable = null;
+                } catch (Exception e5) {
+                    e = e5;
+                    closeable = null;
+                    e.printStackTrace();
+                    str = TAG;
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("Failed to write MediaStore ");
+                    stringBuilder.append(e);
+                    Log.e(str, stringBuilder.toString());
+                    Util.closeSilently(closeable);
+                    if (this.mStatusListener != null) {
+                    }
+                    this.mRecording = false;
+                } catch (Throwable th4) {
+                    th = th4;
+                    closeable = null;
+                    Util.closeSilently(closeable);
+                    throw th;
+                }
+                Util.closeSilently(closeable);
+                if (this.mStatusListener != null) {
+                    this.mStatusListener.onDone(uri);
+                }
+            }
+            this.mRecording = false;
+        }
     }
 }

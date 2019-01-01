@@ -1,7 +1,16 @@
 package com.google.zxing.oned;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.ChecksumException;
+import com.google.zxing.DecodeHintType;
+import com.google.zxing.FormatException;
 import com.google.zxing.NotFoundException;
+import com.google.zxing.Result;
+import com.google.zxing.ResultPoint;
 import com.google.zxing.common.BitArray;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public final class Code128Reader extends OneDReader {
     private static final int CODE_CODE_A = 101;
@@ -140,569 +149,319 @@ public final class Code128Reader extends OneDReader {
             r18 = r6;
             r6 = r29;
      */
-    public com.google.zxing.Result decodeRow(int r38, com.google.zxing.common.BitArray r39, java.util.Map<com.google.zxing.DecodeHintType, ?> r40) throws com.google.zxing.NotFoundException, com.google.zxing.FormatException, com.google.zxing.ChecksumException {
-        /*
-        r37 = this;
-        r0 = r38;
-        r1 = r39;
-        r2 = r40;
-        r3 = 0;
-        r4 = 1;
-        if (r2 == 0) goto L_0x0014;
-    L_0x000a:
-        r5 = com.google.zxing.DecodeHintType.ASSUME_GS1;
-        r5 = r2.containsKey(r5);
-        if (r5 == 0) goto L_0x0014;
-    L_0x0012:
-        r5 = r4;
-        goto L_0x0015;
-    L_0x0014:
-        r5 = r3;
-    L_0x0015:
-        r6 = findStartPattern(r39);
-        r7 = 2;
-        r8 = r6[r7];
-        r9 = new java.util.ArrayList;
-        r10 = 20;
-        r9.<init>(r10);
-        r11 = (byte) r8;
-        r11 = java.lang.Byte.valueOf(r11);
-        r9.add(r11);
-        switch(r8) {
-            case 103: goto L_0x003d;
-            case 104: goto L_0x003a;
-            case 105: goto L_0x0037;
-            default: goto L_0x002e;
-        };
-    L_0x002e:
-        r29 = r6;
-        r27 = r8;
-        r2 = com.google.zxing.FormatException.getFormatInstance();
-        throw r2;
-    L_0x0037:
-        r11 = 99;
-        goto L_0x0040;
-    L_0x003a:
-        r11 = 100;
-        goto L_0x0040;
-    L_0x003d:
-        r11 = 101; // 0x65 float:1.42E-43 double:5.0E-322;
-        r12 = 0;
-        r13 = 0;
-        r14 = new java.lang.StringBuilder;
-        r14.<init>(r10);
-        r10 = r14;
-        r14 = r6[r3];
-        r15 = r6[r4];
-        r4 = 6;
-        r4 = new int[r4];
-        r17 = 0;
-        r18 = 0;
-        r19 = r8;
-        r20 = 0;
-        r21 = 1;
-        r22 = 0;
-        r23 = 0;
-        r24 = r11;
-        r11 = r17;
-        r25 = r22;
-        r26 = r23;
-    L_0x0066:
-        if (r12 == 0) goto L_0x0162;
-    L_0x0068:
-        r3 = r15 - r14;
-        r15 = r1.getNextUnset(r15);
-        r2 = r39.getSize();
-        r17 = r15 - r14;
-        r17 = r17 / 2;
-        r7 = r15 + r17;
-        r2 = java.lang.Math.min(r2, r7);
-        r7 = 0;
-        r2 = r1.isRange(r15, r2, r7);
-        if (r2 == 0) goto L_0x014d;
-    L_0x0085:
-        r2 = r20 * r11;
-        r19 = r19 - r2;
-        r2 = r19 % 103;
-        if (r2 != r11) goto L_0x0138;
-    L_0x008d:
-        r2 = r10.length();
-        if (r2 == 0) goto L_0x0121;
-    L_0x0093:
-        if (r2 <= 0) goto L_0x00ab;
-    L_0x0095:
-        if (r21 == 0) goto L_0x00ab;
-    L_0x0097:
-        r7 = 99;
-        r27 = r8;
-        r8 = r24;
-        if (r8 != r7) goto L_0x00a5;
-    L_0x009f:
-        r7 = r2 + -2;
-        r10.delete(r7, r2);
-        goto L_0x00af;
-    L_0x00a5:
-        r7 = r2 + -1;
-        r10.delete(r7, r2);
-        goto L_0x00af;
-    L_0x00ab:
-        r27 = r8;
-        r8 = r24;
-    L_0x00af:
-        r7 = 1;
-        r17 = r6[r7];
-        r7 = 0;
-        r22 = r6[r7];
-        r7 = r17 + r22;
-        r7 = (float) r7;
-        r17 = 1073741824; // 0x40000000 float:2.0 double:5.304989477E-315;
-        r7 = r7 / r17;
-        r28 = r2;
-        r2 = (float) r14;
-        r29 = r6;
-        r6 = (float) r3;
-        r6 = r6 / r17;
-        r2 = r2 + r6;
-        r6 = r9.size();
-        r30 = r3;
-        r3 = new byte[r6];
-        r17 = 0;
-        r31 = r11;
-        r11 = r17;
-    L_0x00d3:
-        if (r11 < r6) goto L_0x0101;
-    L_0x00d5:
-        r11 = new com.google.zxing.Result;
-        r32 = r6;
-        r6 = r10.toString();
-        r33 = r12;
-        r12 = 2;
-        r12 = new com.google.zxing.ResultPoint[r12];
-        r34 = r14;
-        r14 = new com.google.zxing.ResultPoint;
-        r35 = r15;
-        r15 = (float) r0;
-        r14.<init>(r7, r15);
-        r17 = 0;
-        r12[r17] = r14;
-        r14 = new com.google.zxing.ResultPoint;
-        r15 = (float) r0;
-        r14.<init>(r2, r15);
-        r16 = 1;
-        r12[r16] = r14;
-        r14 = com.google.zxing.BarcodeFormat.CODE_128;
-        r11.<init>(r6, r3, r12, r14);
-        return r11;
-    L_0x0101:
-        r32 = r6;
-        r33 = r12;
-        r34 = r14;
-        r35 = r15;
-        r12 = 2;
-        r16 = 1;
-        r17 = 0;
-        r6 = r9.get(r11);
-        r6 = (java.lang.Byte) r6;
-        r6 = r6.byteValue();
-        r3[r11] = r6;
-        r11 = r11 + 1;
-        r6 = r32;
-        r12 = r33;
-        goto L_0x00d3;
-    L_0x0121:
-        r28 = r2;
-        r30 = r3;
-        r29 = r6;
-        r27 = r8;
-        r31 = r11;
-        r33 = r12;
-        r34 = r14;
-        r35 = r15;
-        r8 = r24;
-        r2 = com.google.zxing.NotFoundException.getNotFoundInstance();
-        throw r2;
-    L_0x0138:
-        r30 = r3;
-        r29 = r6;
-        r27 = r8;
-        r31 = r11;
-        r33 = r12;
-        r34 = r14;
-        r35 = r15;
-        r8 = r24;
-        r2 = com.google.zxing.ChecksumException.getChecksumInstance();
-        throw r2;
-    L_0x014d:
-        r30 = r3;
-        r29 = r6;
-        r27 = r8;
-        r31 = r11;
-        r33 = r12;
-        r34 = r14;
-        r35 = r15;
-        r8 = r24;
-        r2 = com.google.zxing.NotFoundException.getNotFoundInstance();
-        throw r2;
-    L_0x0162:
-        r17 = r3;
-        r29 = r6;
-        r27 = r8;
-        r31 = r11;
-        r33 = r12;
-        r34 = r14;
-        r8 = r24;
-        r16 = 1;
-        r12 = r7;
-        r2 = r13;
-        r3 = 0;
-        r11 = r18;
-        r6 = decodeCode(r1, r4, r15);
-        r7 = (byte) r6;
-        r7 = java.lang.Byte.valueOf(r7);
-        r9.add(r7);
-        r7 = 106; // 0x6a float:1.49E-43 double:5.24E-322;
-        if (r6 == r7) goto L_0x0189;
-    L_0x0187:
-        r21 = 1;
-    L_0x0189:
-        if (r6 == r7) goto L_0x0191;
-    L_0x018b:
-        r20 = r20 + 1;
-        r13 = r20 * r6;
-        r19 = r19 + r13;
-    L_0x0191:
-        r14 = r15;
-        r13 = r4.length;
-        r18 = r15;
-        r15 = r17;
-    L_0x0197:
-        if (r15 < r13) goto L_0x02fe;
-    L_0x0199:
-        switch(r6) {
-            case 103: goto L_0x01ab;
-            case 104: goto L_0x01ab;
-            case 105: goto L_0x01ab;
-            default: goto L_0x019c;
-        };
-    L_0x019c:
-        r15 = 96;
-        r22 = 32;
-        switch(r8) {
-            case 99: goto L_0x0298;
-            case 100: goto L_0x0229;
-            case 101: goto L_0x01b0;
-            default: goto L_0x01a3;
-        };
-    L_0x01a3:
-        r13 = r25;
-        r12 = r26;
-        r15 = 100;
-        goto L_0x02db;
-    L_0x01ab:
-        r7 = com.google.zxing.FormatException.getFormatInstance();
-        throw r7;
-    L_0x01b0:
-        r13 = 64;
-        if (r6 >= r13) goto L_0x01cc;
-    L_0x01b4:
-        r13 = r25;
-        r7 = r26;
-        if (r7 != r13) goto L_0x01c1;
-    L_0x01ba:
-        r12 = r22 + r6;
-        r12 = (char) r12;
-        r10.append(r12);
-        goto L_0x01c9;
-    L_0x01c1:
-        r12 = r22 + r6;
-        r12 = r12 + 128;
-        r12 = (char) r12;
-        r10.append(r12);
-    L_0x01c9:
-        r7 = 0;
-        goto L_0x0242;
-    L_0x01cc:
-        r13 = r25;
-        r12 = r26;
-        if (r6 >= r15) goto L_0x01e3;
-    L_0x01d2:
-        if (r12 != r13) goto L_0x01db;
-    L_0x01d4:
-        r7 = r6 + -64;
-        r7 = (char) r7;
-        r10.append(r7);
-        goto L_0x01e1;
-    L_0x01db:
-        r7 = r6 + 64;
-        r7 = (char) r7;
-        r10.append(r7);
-    L_0x01e1:
-        r7 = 0;
-        goto L_0x0242;
-    L_0x01e3:
-        if (r6 == r7) goto L_0x01e7;
-    L_0x01e5:
-        r21 = 0;
-    L_0x01e7:
-        if (r6 == r7) goto L_0x0224;
-    L_0x01e9:
-        switch(r6) {
-            case 96: goto L_0x0222;
-            case 97: goto L_0x0222;
-            case 98: goto L_0x021d;
-            case 99: goto L_0x0219;
-            case 100: goto L_0x0215;
-            case 101: goto L_0x0203;
-            case 102: goto L_0x01ed;
-            default: goto L_0x01ec;
-        };
-    L_0x01ec:
-        goto L_0x0227;
-    L_0x01ed:
-        if (r5 == 0) goto L_0x0295;
-    L_0x01ef:
-        r7 = r10.length();
-        if (r7 != 0) goto L_0x01fc;
-    L_0x01f5:
-        r7 = "]C1";
-        r10.append(r7);
-        goto L_0x0295;
-    L_0x01fc:
-        r7 = 29;
-        r10.append(r7);
-        goto L_0x0295;
-    L_0x0203:
-        if (r13 != 0) goto L_0x020b;
-    L_0x0205:
-        if (r12 == 0) goto L_0x020b;
-    L_0x0207:
-        r7 = 1;
-        r12 = 0;
-        goto L_0x0274;
-    L_0x020b:
-        if (r13 == 0) goto L_0x0213;
-    L_0x020d:
-        if (r12 == 0) goto L_0x0213;
-    L_0x020f:
-        r7 = 0;
-        r12 = 0;
-        goto L_0x0274;
-    L_0x0213:
-        r7 = 1;
-        goto L_0x0242;
-    L_0x0215:
-        r7 = 100;
-        goto L_0x028f;
-    L_0x0219:
-        r7 = 99;
-        goto L_0x028f;
-    L_0x021d:
-        r3 = 1;
-        r7 = 100;
-        goto L_0x028f;
-    L_0x0222:
-        goto L_0x0295;
-    L_0x0224:
-        r7 = 1;
-        r33 = r7;
-    L_0x0227:
-        goto L_0x0295;
-    L_0x0229:
-        r13 = r25;
-        r12 = r26;
-        if (r6 >= r15) goto L_0x024c;
-    L_0x022f:
-        if (r12 != r13) goto L_0x0238;
-    L_0x0231:
-        r7 = r22 + r6;
-        r7 = (char) r7;
-        r10.append(r7);
-        goto L_0x0240;
-    L_0x0238:
-        r7 = r22 + r6;
-        r7 = r7 + 128;
-        r7 = (char) r7;
-        r10.append(r7);
-    L_0x0240:
-        r7 = 0;
-    L_0x0242:
-        r26 = r7;
-    L_0x0244:
-        r25 = r13;
-        r12 = r33;
-        r15 = 100;
-        goto L_0x02e1;
-    L_0x024c:
-        if (r6 == r7) goto L_0x0250;
-    L_0x024e:
-        r21 = 0;
-    L_0x0250:
-        if (r6 == r7) goto L_0x0292;
-    L_0x0252:
-        switch(r6) {
-            case 96: goto L_0x0291;
-            case 97: goto L_0x0291;
-            case 98: goto L_0x028b;
-            case 99: goto L_0x0288;
-            case 100: goto L_0x026d;
-            case 101: goto L_0x026a;
-            case 102: goto L_0x0256;
-            default: goto L_0x0255;
-        };
-    L_0x0255:
-        goto L_0x0295;
-    L_0x0256:
-        if (r5 == 0) goto L_0x0295;
-    L_0x0258:
-        r7 = r10.length();
-        if (r7 != 0) goto L_0x0264;
-    L_0x025e:
-        r7 = "]C1";
-        r10.append(r7);
-        goto L_0x0295;
-    L_0x0264:
-        r7 = 29;
-        r10.append(r7);
-        goto L_0x0295;
-    L_0x026a:
-        r7 = 101; // 0x65 float:1.42E-43 double:5.0E-322;
-        goto L_0x028f;
-    L_0x026d:
-        if (r13 != 0) goto L_0x027f;
-    L_0x026f:
-        if (r12 == 0) goto L_0x027f;
-    L_0x0271:
-        r7 = 1;
-        r12 = 0;
-    L_0x0274:
-        r13 = r3;
-        r25 = r7;
-        r26 = r12;
-        r12 = r33;
-        r15 = 100;
-        goto L_0x02e2;
-    L_0x027f:
-        if (r13 == 0) goto L_0x0286;
-    L_0x0281:
-        if (r12 == 0) goto L_0x0286;
-    L_0x0283:
-        r7 = 0;
-        r12 = 0;
-        goto L_0x0274;
-    L_0x0286:
-        r7 = 1;
-        goto L_0x0242;
-    L_0x0288:
-        r7 = 99;
-        goto L_0x028f;
-    L_0x028b:
-        r3 = 1;
-        r7 = 101; // 0x65 float:1.42E-43 double:5.0E-322;
-    L_0x028f:
-        r8 = r7;
-        goto L_0x0295;
-    L_0x0291:
-        goto L_0x0295;
-    L_0x0292:
-        r7 = 1;
-        r33 = r7;
-    L_0x0295:
-        r26 = r12;
-        goto L_0x0244;
-    L_0x0298:
-        r13 = r25;
-        r12 = r26;
-        r15 = 100;
-        if (r6 >= r15) goto L_0x02ad;
-    L_0x02a0:
-        r7 = 10;
-        if (r6 >= r7) goto L_0x02a9;
-    L_0x02a4:
-        r7 = 48;
-        r10.append(r7);
-    L_0x02a9:
-        r10.append(r6);
-        goto L_0x02db;
-    L_0x02ad:
-        if (r6 == r7) goto L_0x02b1;
-    L_0x02af:
-        r21 = 0;
-    L_0x02b1:
-        if (r6 == r7) goto L_0x02d3;
-    L_0x02b3:
-        switch(r6) {
-            case 100: goto L_0x02ce;
-            case 101: goto L_0x02cb;
-            case 102: goto L_0x02b7;
-            default: goto L_0x02b6;
-        };
-    L_0x02b6:
-        goto L_0x02db;
-    L_0x02b7:
-        if (r5 == 0) goto L_0x02db;
-    L_0x02b9:
-        r7 = r10.length();
-        if (r7 != 0) goto L_0x02c5;
-    L_0x02bf:
-        r7 = "]C1";
-        r10.append(r7);
-        goto L_0x02db;
-    L_0x02c5:
-        r7 = 29;
-        r10.append(r7);
-        goto L_0x02db;
-    L_0x02cb:
-        r7 = 101; // 0x65 float:1.42E-43 double:5.0E-322;
-        goto L_0x02d1;
-    L_0x02ce:
-        r7 = 100;
-    L_0x02d1:
-        r8 = r7;
-        goto L_0x02db;
-    L_0x02d3:
-        r7 = 1;
-        r26 = r12;
-        r25 = r13;
-        r13 = r3;
-        r12 = r7;
-        goto L_0x02e2;
-    L_0x02db:
-        r26 = r12;
-        r25 = r13;
-        r12 = r33;
-    L_0x02e1:
-        r13 = r3;
-    L_0x02e2:
-        if (r2 == 0) goto L_0x02ed;
-    L_0x02e4:
-        r3 = 101; // 0x65 float:1.42E-43 double:5.0E-322;
-        if (r8 != r3) goto L_0x02e9;
-    L_0x02e8:
-        goto L_0x02ea;
-    L_0x02e9:
-        r15 = r3;
-    L_0x02ea:
-        r24 = r15;
-        goto L_0x02ef;
-    L_0x02ed:
-        r24 = r8;
-    L_0x02ef:
-        r3 = r17;
-        r15 = r18;
-        r8 = r27;
-        r2 = r40;
-        r7 = 2;
-        r18 = r6;
-        r6 = r29;
-        goto L_0x0066;
-    L_0x02fe:
-        r12 = r26;
-        r22 = r4[r15];
-        r18 = r18 + r22;
-        r15 = r15 + 1;
-        r12 = 2;
-        goto L_0x0197;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.zxing.oned.Code128Reader.decodeRow(int, com.google.zxing.common.BitArray, java.util.Map):com.google.zxing.Result");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public Result decodeRow(int rowNumber, BitArray row, Map<DecodeHintType, ?> hints) throws NotFoundException, FormatException, ChecksumException {
+        int codeSet;
+        int[] iArr;
+        int i;
+        int i2;
+        boolean z;
+        int i3;
+        int i4 = rowNumber;
+        BitArray bitArray = row;
+        Map<DecodeHintType, ?> map = hints;
+        int i5 = 0;
+        boolean convertFNC1 = map != null && map.containsKey(DecodeHintType.ASSUME_GS1);
+        int[] startPatternInfo = findStartPattern(row);
+        boolean z2 = true;
+        int startCode = startPatternInfo[2];
+        List<Byte> rawCodes = new ArrayList(20);
+        rawCodes.add(Byte.valueOf((byte) startCode));
+        switch (startCode) {
+            case 103:
+                codeSet = 101;
+                break;
+            case 104:
+                codeSet = 100;
+                break;
+            case 105:
+                codeSet = 99;
+                break;
+            default:
+                throw FormatException.getFormatInstance();
+        }
+        boolean done = false;
+        boolean isNextShifted = false;
+        StringBuilder result = new StringBuilder(20);
+        int lastStart = startPatternInfo[0];
+        int nextStart = startPatternInfo[1];
+        int[] counters = new int[6];
+        int code = 0;
+        int checksumTotal = startCode;
+        int multiplier = 0;
+        boolean lastCharacterWasPrintable = true;
+        int codeSet2 = codeSet;
+        codeSet = 0;
+        boolean upperMode = false;
+        boolean shiftUpperMode = false;
+        while (!done) {
+            int i6 = i5;
+            iArr = startPatternInfo;
+            i = startCode;
+            i2 = codeSet;
+            z = done;
+            i3 = lastStart;
+            startCode = codeSet2;
+            done = z2;
+            boolean unshift = isNextShifted;
+            boolean isNextShifted2 = false;
+            codeSet = code;
+            startPatternInfo = decodeCode(bitArray, counters, nextStart);
+            rawCodes.add(Byte.valueOf((byte) startPatternInfo));
+            if (startPatternInfo != 106) {
+                lastCharacterWasPrintable = true;
+            }
+            if (startPatternInfo != 106) {
+                multiplier++;
+                checksumTotal += multiplier * startPatternInfo;
+            }
+            lastStart = nextStart;
+            code = nextStart;
+            for (nextStart = i6; nextStart < counters.length; nextStart++) {
+                code += counters[nextStart];
+            }
+            switch (startPatternInfo) {
+                case 103:
+                case 104:
+                case 105:
+                    throw FormatException.getFormatInstance();
+                default:
+                    int codeSet3;
+                    switch (startCode) {
+                        case 99:
+                            isNextShifted = upperMode;
+                            done = shiftUpperMode;
+                            nextStart = 100;
+                            if (startPatternInfo >= 100) {
+                                if (startPatternInfo != 106) {
+                                    lastCharacterWasPrintable = false;
+                                }
+                                if (startPatternInfo == 106) {
+                                    shiftUpperMode = done;
+                                    upperMode = isNextShifted;
+                                    isNextShifted = false;
+                                    done = true;
+                                    break;
+                                }
+                                switch (startPatternInfo) {
+                                    case 100:
+                                        codeSet3 = 100;
+                                        break;
+                                    case 101:
+                                        codeSet3 = 101;
+                                        break;
+                                    case 102:
+                                        if (convertFNC1) {
+                                            if (result.length() != 0) {
+                                                result.append(29);
+                                                break;
+                                            }
+                                            result.append("]C1");
+                                            break;
+                                        }
+                                        break;
+                                }
+                            }
+                            if (startPatternInfo < 10) {
+                                result.append('0');
+                            }
+                            result.append(startPatternInfo);
+                            break;
+                            break;
+                        case 100:
+                            isNextShifted = upperMode;
+                            done = shiftUpperMode;
+                            if (startPatternInfo >= 96) {
+                                if (startPatternInfo != 106) {
+                                    lastCharacterWasPrintable = false;
+                                }
+                                if (startPatternInfo == 106) {
+                                    z = true;
+                                    break;
+                                }
+                                switch (startPatternInfo) {
+                                    case 98:
+                                        isNextShifted2 = true;
+                                        codeSet3 = 101;
+                                        break;
+                                    case 99:
+                                        codeSet3 = 99;
+                                        break;
+                                    case 100:
+                                        if (isNextShifted || !done) {
+                                            if (!isNextShifted || !done) {
+                                                z2 = true;
+                                                break;
+                                            }
+                                            z2 = false;
+                                            done = false;
+                                            break;
+                                        }
+                                        z2 = true;
+                                        done = false;
+                                        break;
+                                    case 101:
+                                        codeSet3 = 101;
+                                        break;
+                                    case 102:
+                                        if (convertFNC1) {
+                                            if (result.length() != 0) {
+                                                result.append(29);
+                                                break;
+                                            }
+                                            result.append("]C1");
+                                            break;
+                                        }
+                                        break;
+                                }
+                            }
+                            if (done == isNextShifted) {
+                                result.append((char) (32 + startPatternInfo));
+                            } else {
+                                result.append((char) ((32 + startPatternInfo) + 128));
+                            }
+                            z2 = false;
+                            break;
+                            break;
+                        case 101:
+                            if (startPatternInfo >= 64) {
+                                isNextShifted = upperMode;
+                                done = shiftUpperMode;
+                                if (startPatternInfo >= 96) {
+                                    if (startPatternInfo != 106) {
+                                        lastCharacterWasPrintable = false;
+                                    }
+                                    if (startPatternInfo == 106) {
+                                        z = true;
+                                        break;
+                                    }
+                                    switch (startPatternInfo) {
+                                        case 98:
+                                            isNextShifted2 = true;
+                                            codeSet3 = 100;
+                                            break;
+                                        case 99:
+                                            codeSet3 = 99;
+                                            break;
+                                        case 100:
+                                            codeSet3 = 100;
+                                            break;
+                                        case 101:
+                                            if (isNextShifted || !done) {
+                                                if (!isNextShifted || !done) {
+                                                    z2 = true;
+                                                    break;
+                                                }
+                                                z2 = false;
+                                                done = false;
+                                                break;
+                                            }
+                                            z2 = true;
+                                            done = false;
+                                            break;
+                                            break;
+                                        case 102:
+                                            if (convertFNC1) {
+                                                if (result.length() != 0) {
+                                                    result.append(29);
+                                                    break;
+                                                }
+                                                result.append("]C1");
+                                                break;
+                                            }
+                                            break;
+                                    }
+                                }
+                                if (done == isNextShifted) {
+                                    result.append((char) (startPatternInfo - 64));
+                                } else {
+                                    result.append((char) (startPatternInfo + 64));
+                                }
+                                z2 = false;
+                                break;
+                            }
+                            isNextShifted = upperMode;
+                            if (shiftUpperMode == isNextShifted) {
+                                result.append((char) (32 + startPatternInfo));
+                            } else {
+                                result.append((char) ((32 + startPatternInfo) + 128));
+                            }
+                            z2 = false;
+                            break;
+                            break;
+                        default:
+                            isNextShifted = upperMode;
+                            done = shiftUpperMode;
+                            nextStart = 100;
+                            break;
+                    }
+            }
+        }
+        i5 = nextStart - lastStart;
+        nextStart = bitArray.getNextUnset(nextStart);
+        int i7;
+        if (!bitArray.isRange(nextStart, Math.min(row.getSize(), nextStart + ((nextStart - lastStart) / 2)), false)) {
+            iArr = startPatternInfo;
+            i = startCode;
+            i2 = codeSet;
+            z = done;
+            i3 = lastStart;
+            i7 = nextStart;
+            startCode = codeSet2;
+            throw NotFoundException.getNotFoundInstance();
+        } else if ((checksumTotal - (multiplier * codeSet)) % 103 == codeSet) {
+            int resultLength = result.length();
+            if (resultLength != 0) {
+                if (resultLength <= 0 || !lastCharacterWasPrintable) {
+                    startCode = codeSet2;
+                } else {
+                    i = startCode;
+                    if (codeSet2 == 99) {
+                        result.delete(resultLength - 2, resultLength);
+                    } else {
+                        result.delete(resultLength - 1, resultLength);
+                    }
+                }
+                float left = ((float) (startPatternInfo[1] + startPatternInfo[0])) / 2.0f;
+                iArr = startPatternInfo;
+                resultLength = ((float) lastStart) + (((float) i5) / 2.0f);
+                int rawCodesSize = rawCodes.size();
+                i5 = new byte[rawCodesSize];
+                codeSet = 0;
+                while (codeSet < rawCodesSize) {
+                    int rawCodesSize2 = rawCodesSize;
+                    z = done;
+                    i3 = lastStart;
+                    i7 = nextStart;
+                    i5[codeSet] = ((Byte) rawCodes.get(codeSet)).byteValue();
+                    codeSet++;
+                    rawCodesSize = rawCodesSize2;
+                    done = z;
+                }
+                String stringBuilder = result.toString();
+                ResultPoint[] resultPointArr = new ResultPoint[true];
+                resultPointArr[0] = new ResultPoint(left, (float) i4);
+                resultPointArr[1] = new ResultPoint(resultLength, (float) i4);
+                return new Result(stringBuilder, i5, resultPointArr, BarcodeFormat.CODE_128);
+            }
+            int i8 = i5;
+            iArr = startPatternInfo;
+            i = startCode;
+            i2 = codeSet;
+            z = done;
+            i3 = lastStart;
+            i7 = nextStart;
+            startCode = codeSet2;
+            throw NotFoundException.getNotFoundInstance();
+        } else {
+            iArr = startPatternInfo;
+            i = startCode;
+            i2 = codeSet;
+            z = done;
+            i3 = lastStart;
+            i7 = nextStart;
+            startCode = codeSet2;
+            throw ChecksumException.getChecksumInstance();
+        }
     }
 }

@@ -211,222 +211,117 @@ public final class FlowableSwitchMap<T, R> extends AbstractFlowableWithUpstream<
         /* JADX WARNING: Missing block: B:62:0x00ef, code:
             r14 = 1;
      */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         void drain() {
-            /*
-            r18 = this;
-            r1 = r18;
-            r0 = r18.getAndIncrement();
-            if (r0 == 0) goto L_0x0009;
-        L_0x0008:
-            return;
-        L_0x0009:
-            r2 = r1.actual;
-            r4 = 1;
-        L_0x000d:
-            r0 = r1.cancelled;
-            r5 = 0;
-            if (r0 == 0) goto L_0x0018;
-        L_0x0012:
-            r0 = r1.active;
-            r0.lazySet(r5);
-            return;
-        L_0x0018:
-            r0 = r1.done;
-            if (r0 == 0) goto L_0x0063;
-        L_0x001c:
-            r0 = r1.delayErrors;
-            if (r0 == 0) goto L_0x0040;
-        L_0x0020:
-            r0 = r1.active;
-            r0 = r0.get();
-            if (r0 != 0) goto L_0x0063;
-        L_0x0028:
-            r0 = r1.error;
-            r0 = r0.get();
-            r0 = (java.lang.Throwable) r0;
-            if (r0 == 0) goto L_0x003c;
-        L_0x0032:
-            r0 = r1.error;
-            r0 = r0.terminate();
-            r2.onError(r0);
-            goto L_0x003f;
-        L_0x003c:
-            r2.onComplete();
-        L_0x003f:
-            return;
-        L_0x0040:
-            r0 = r1.error;
-            r0 = r0.get();
-            r0 = (java.lang.Throwable) r0;
-            if (r0 == 0) goto L_0x0057;
-        L_0x004a:
-            r18.disposeInner();
-            r0 = r1.error;
-            r0 = r0.terminate();
-            r2.onError(r0);
-            return;
-        L_0x0057:
-            r0 = r1.active;
-            r0 = r0.get();
-            if (r0 != 0) goto L_0x0063;
-        L_0x005f:
-            r2.onComplete();
-            return;
-        L_0x0063:
-            r0 = r1.active;
-            r0 = r0.get();
-            r6 = r0;
-            r6 = (io.reactivex.internal.operators.flowable.FlowableSwitchMap.SwitchMapInnerSubscriber) r6;
-            if (r6 == 0) goto L_0x0072;
-        L_0x006e:
-            r0 = r6.queue;
-            r7 = r0;
-            goto L_0x0074;
-            r7 = r5;
-        L_0x0074:
-            if (r7 == 0) goto L_0x014c;
-        L_0x0076:
-            r0 = r6.done;
-            if (r0 == 0) goto L_0x00b0;
-        L_0x007a:
-            r0 = r1.delayErrors;
-            if (r0 != 0) goto L_0x00a3;
-        L_0x007e:
-            r0 = r1.error;
-            r0 = r0.get();
-            r0 = (java.lang.Throwable) r0;
-            if (r0 == 0) goto L_0x0095;
-        L_0x0088:
-            r18.disposeInner();
-            r0 = r1.error;
-            r0 = r0.terminate();
-            r2.onError(r0);
-            return;
-        L_0x0095:
-            r0 = r7.isEmpty();
-            if (r0 == 0) goto L_0x00a2;
-        L_0x009b:
-            r0 = r1.active;
-            r0.compareAndSet(r6, r5);
-            goto L_0x000d;
-        L_0x00a2:
-            goto L_0x00b0;
-        L_0x00a3:
-            r0 = r7.isEmpty();
-            if (r0 == 0) goto L_0x00b0;
-        L_0x00a9:
-            r0 = r1.active;
-            r0.compareAndSet(r6, r5);
-            goto L_0x000d;
-        L_0x00b0:
-            r0 = r1.requested;
-            r8 = r0.get();
-            r10 = 0;
-            r12 = r10;
-        L_0x00bb:
-            r0 = (r12 > r8 ? 1 : (r12 == r8 ? 0 : -1));
-            r14 = 0;
-            if (r0 == 0) goto L_0x0128;
-        L_0x00c0:
-            r0 = r1.cancelled;
-            if (r0 == 0) goto L_0x00c5;
-        L_0x00c4:
-            return;
-        L_0x00c5:
-            r0 = r6.done;
-            r15 = r7.poll();	 Catch:{ Throwable -> 0x00cc }
-            goto L_0x00dd;
-        L_0x00cc:
-            r0 = move-exception;
-            r15 = r0;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r15);
-            r6.cancel();
-            r0 = r1.error;
-            r0.addThrowable(r15);
-            r15 = r5;
-            r0 = 1;
-        L_0x00dd:
-            if (r15 != 0) goto L_0x00e2;
-        L_0x00df:
-            r16 = 1;
-            goto L_0x00e5;
-            r16 = r14;
-        L_0x00e5:
-            r3 = r1.active;
-            r3 = r3.get();
-            if (r6 == r3) goto L_0x00f1;
-        L_0x00ef:
-            r14 = 1;
-            goto L_0x0128;
-        L_0x00f1:
-            if (r0 == 0) goto L_0x011e;
-        L_0x00f3:
-            r0 = r1.delayErrors;
-            if (r0 != 0) goto L_0x0115;
-        L_0x00f7:
-            r0 = r1.error;
-            r0 = r0.get();
-            r0 = (java.lang.Throwable) r0;
-            if (r0 == 0) goto L_0x010b;
-        L_0x0101:
-            r0 = r1.error;
-            r0 = r0.terminate();
-            r2.onError(r0);
-            return;
-        L_0x010b:
-            if (r16 == 0) goto L_0x0114;
-        L_0x010d:
-            r0 = r1.active;
-            r0.compareAndSet(r6, r5);
-            goto L_0x00ef;
-        L_0x0114:
-            goto L_0x011e;
-        L_0x0115:
-            if (r16 == 0) goto L_0x011e;
-        L_0x0117:
-            r0 = r1.active;
-            r0.compareAndSet(r6, r5);
-            goto L_0x00ef;
-        L_0x011e:
-            if (r16 == 0) goto L_0x0121;
-        L_0x0120:
-            goto L_0x0128;
-        L_0x0121:
-            r2.onNext(r15);
-            r14 = 1;
-            r12 = r12 + r14;
-            goto L_0x00bb;
-        L_0x0128:
-            r0 = (r12 > r10 ? 1 : (r12 == r10 ? 0 : -1));
-            if (r0 == 0) goto L_0x0148;
-        L_0x012c:
-            r0 = r1.cancelled;
-            if (r0 != 0) goto L_0x0148;
-        L_0x0130:
-            r10 = 9223372036854775807; // 0x7fffffffffffffff float:NaN double:NaN;
-            r0 = (r8 > r10 ? 1 : (r8 == r10 ? 0 : -1));
-            if (r0 == 0) goto L_0x013f;
-        L_0x0139:
-            r0 = r1.requested;
-            r7 = -r12;
-            r0.addAndGet(r7);
-        L_0x013f:
-            r0 = r6.get();
-            r0 = (org.reactivestreams.Subscription) r0;
-            r0.request(r12);
-        L_0x0148:
-            if (r14 == 0) goto L_0x014c;
-        L_0x014a:
-            goto L_0x000d;
-        L_0x014c:
-            r0 = -r4;
-            r4 = r1.addAndGet(r0);
-            if (r4 != 0) goto L_0x0155;
-            return;
-        L_0x0155:
-            goto L_0x000d;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowableSwitchMap.SwitchMapSubscriber.drain():void");
+            if (getAndIncrement() == 0) {
+                Subscriber subscriber = this.actual;
+                int i = 1;
+                while (!this.cancelled) {
+                    SimpleQueue simpleQueue;
+                    if (this.done) {
+                        if (this.delayErrors) {
+                            if (this.active.get() == null) {
+                                if (((Throwable) this.error.get()) != null) {
+                                    subscriber.onError(this.error.terminate());
+                                } else {
+                                    subscriber.onComplete();
+                                }
+                                return;
+                            }
+                        } else if (((Throwable) this.error.get()) != null) {
+                            disposeInner();
+                            subscriber.onError(this.error.terminate());
+                            return;
+                        } else if (this.active.get() == null) {
+                            subscriber.onComplete();
+                            return;
+                        }
+                    }
+                    SwitchMapInnerSubscriber switchMapInnerSubscriber = (SwitchMapInnerSubscriber) this.active.get();
+                    if (switchMapInnerSubscriber != null) {
+                        simpleQueue = switchMapInnerSubscriber.queue;
+                    } else {
+                        simpleQueue = null;
+                    }
+                    if (simpleQueue != null) {
+                        Object obj;
+                        if (switchMapInnerSubscriber.done) {
+                            if (this.delayErrors) {
+                                if (simpleQueue.isEmpty()) {
+                                    this.active.compareAndSet(switchMapInnerSubscriber, null);
+                                }
+                            } else if (((Throwable) this.error.get()) != null) {
+                                disposeInner();
+                                subscriber.onError(this.error.terminate());
+                                return;
+                            } else if (simpleQueue.isEmpty()) {
+                                this.active.compareAndSet(switchMapInnerSubscriber, null);
+                            }
+                        }
+                        long j = this.requested.get();
+                        long j2 = 0;
+                        while (true) {
+                            obj = null;
+                            if (j2 != j) {
+                                if (!this.cancelled) {
+                                    Object poll;
+                                    boolean z = switchMapInnerSubscriber.done;
+                                    try {
+                                        poll = simpleQueue.poll();
+                                    } catch (Throwable th) {
+                                        Throwable th2 = th;
+                                        Exceptions.throwIfFatal(th2);
+                                        switchMapInnerSubscriber.cancel();
+                                        this.error.addThrowable(th2);
+                                        poll = null;
+                                        z = true;
+                                    }
+                                    Object obj2 = poll == null ? 1 : null;
+                                    if (switchMapInnerSubscriber != this.active.get()) {
+                                        break;
+                                    }
+                                    if (z) {
+                                        if (!this.delayErrors) {
+                                            if (((Throwable) this.error.get()) == null) {
+                                                if (obj2 != null) {
+                                                    this.active.compareAndSet(switchMapInnerSubscriber, null);
+                                                    break;
+                                                }
+                                            }
+                                            subscriber.onError(this.error.terminate());
+                                            return;
+                                        } else if (obj2 != null) {
+                                            this.active.compareAndSet(switchMapInnerSubscriber, null);
+                                            break;
+                                        }
+                                    }
+                                    if (obj2 != null) {
+                                        break;
+                                    }
+                                    subscriber.onNext(poll);
+                                    j2++;
+                                } else {
+                                    return;
+                                }
+                            }
+                            break;
+                        }
+                        if (!(j2 == 0 || this.cancelled)) {
+                            if (j != Long.MAX_VALUE) {
+                                this.requested.addAndGet(-j2);
+                            }
+                            ((Subscription) switchMapInnerSubscriber.get()).request(j2);
+                        }
+                        if (obj != null) {
+                        }
+                    }
+                    i = addAndGet(-i);
+                    if (i == 0) {
+                        return;
+                    }
+                }
+                this.active.lazySet(null);
+            }
         }
     }
 

@@ -1,6 +1,7 @@
 package com.google.protobuf.nano;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public abstract class MessageNano {
     public static final int UNSET_ENUM_VALUE = Integer.MIN_VALUE;
@@ -83,42 +84,23 @@ public abstract class MessageNano {
     /* JADX WARNING: Missing block: B:14:0x002f, code:
             return false;
      */
-    public static final boolean messageNanoEquals(com.google.protobuf.nano.MessageNano r4, com.google.protobuf.nano.MessageNano r5) {
-        /*
-        if (r4 != r5) goto L_0x0004;
-    L_0x0002:
-        r4 = 1;
-        return r4;
-    L_0x0004:
-        r0 = 0;
-        if (r4 == 0) goto L_0x002f;
-    L_0x0007:
-        if (r5 != 0) goto L_0x000a;
-    L_0x0009:
-        goto L_0x002f;
-    L_0x000a:
-        r1 = r4.getClass();
-        r2 = r5.getClass();
-        if (r1 == r2) goto L_0x0015;
-    L_0x0014:
-        return r0;
-    L_0x0015:
-        r1 = r4.getSerializedSize();
-        r2 = r5.getSerializedSize();
-        if (r2 == r1) goto L_0x0020;
-    L_0x001f:
-        return r0;
-    L_0x0020:
-        r2 = new byte[r1];
-        r3 = new byte[r1];
-        toByteArray(r4, r2, r0, r1);
-        toByteArray(r5, r3, r0, r1);
-        r4 = java.util.Arrays.equals(r2, r3);
-        return r4;
-    L_0x002f:
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.protobuf.nano.MessageNano.messageNanoEquals(com.google.protobuf.nano.MessageNano, com.google.protobuf.nano.MessageNano):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static final boolean messageNanoEquals(MessageNano messageNano, MessageNano messageNano2) {
+        if (messageNano == messageNano2) {
+            return true;
+        }
+        if (messageNano == null || messageNano2 == null || messageNano.getClass() != messageNano2.getClass()) {
+            return false;
+        }
+        int serializedSize = messageNano.getSerializedSize();
+        if (messageNano2.getSerializedSize() != serializedSize) {
+            return false;
+        }
+        byte[] bArr = new byte[serializedSize];
+        byte[] bArr2 = new byte[serializedSize];
+        toByteArray(messageNano, bArr, 0, serializedSize);
+        toByteArray(messageNano2, bArr2, 0, serializedSize);
+        return Arrays.equals(bArr, bArr2);
     }
 
     public String toString() {

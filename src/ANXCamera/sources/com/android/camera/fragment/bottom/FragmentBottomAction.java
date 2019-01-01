@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.support.v4.view.ViewPropertyAnimatorListener;
@@ -36,6 +37,7 @@ import com.android.camera.animation.FragmentAnimationFactory;
 import com.android.camera.animation.type.AlphaInOnSubscribe;
 import com.android.camera.animation.type.AlphaOutOnSubscribe;
 import com.android.camera.data.DataRepository;
+import com.android.camera.data.backup.DataBackUp;
 import com.android.camera.data.data.global.ComponentModuleList;
 import com.android.camera.data.data.global.DataItemGlobal;
 import com.android.camera.fragment.BaseFragment;
@@ -44,8 +46,10 @@ import com.android.camera.fragment.FragmentLighting;
 import com.android.camera.fragment.FragmentUtils;
 import com.android.camera.fragment.beauty.MenuItem;
 import com.android.camera.log.Log;
+import com.android.camera.module.LiveModule;
 import com.android.camera.module.Module;
 import com.android.camera.module.VideoModule;
+import com.android.camera.module.loader.StartControl;
 import com.android.camera.permission.PermissionManager;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.ActionProcessing;
@@ -716,268 +720,124 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:83:0x017a  */
-    public void onClick(android.view.View r6) {
-        /*
-        r5 = this;
-        r0 = r5.isEnableClick();
-        if (r0 != 0) goto L_0x0007;
-    L_0x0006:
-        return;
-    L_0x0007:
-        r0 = com.android.camera.protocol.ModeCoordinatorImpl.getInstance();
-        r1 = 161; // 0xa1 float:2.26E-43 double:7.95E-322;
-        r0 = r0.getAttachProtocol(r1);
-        r0 = (com.android.camera.protocol.ModeProtocol.CameraAction) r0;
-        if (r0 != 0) goto L_0x0016;
-    L_0x0015:
-        return;
-    L_0x0016:
-        r1 = r5.getContext();
-        r1 = (com.android.camera.ActivityBase) r1;
-        r1 = r1.getCurrentModule();
-        r1 = r1.isIgnoreTouchEvent();
-        if (r1 == 0) goto L_0x002e;
-    L_0x0026:
-        r6 = "FragmentBottomAction";
-        r0 = "onClick: ignore click event, because module isn't ready";
-        com.android.camera.log.Log.w(r6, r0);
-        return;
-    L_0x002e:
-        r1 = r6.getId();
-        r2 = 2131558434; // 0x7f0d0022 float:1.8742184E38 double:1.0531297943E-314;
-        r3 = 0;
-        r4 = 162; // 0xa2 float:2.27E-43 double:8.0E-322;
-        if (r1 == r2) goto L_0x010d;
-    L_0x003a:
-        r2 = 2131558436; // 0x7f0d0024 float:1.8742188E38 double:1.0531297953E-314;
-        if (r1 == r2) goto L_0x00f1;
-    L_0x003f:
-        r2 = 2131558438; // 0x7f0d0026 float:1.8742192E38 double:1.0531297963E-314;
-        if (r1 == r2) goto L_0x0097;
-    L_0x0044:
-        switch(r1) {
-            case 2131558442: goto L_0x0084;
-            case 2131558443: goto L_0x0069;
-            case 2131558444: goto L_0x0049;
-            default: goto L_0x0047;
-        };
-    L_0x0047:
-        goto L_0x01b0;
-    L_0x0049:
-        r6 = r5.mVideoReverseEnable;
-        if (r6 == 0) goto L_0x0068;
-    L_0x004d:
-        r6 = r5.mVideoRecordingStarted;
-        if (r6 != 0) goto L_0x0052;
-    L_0x0051:
-        goto L_0x0068;
-    L_0x0052:
-        r6 = r5.getContext();
-        r6 = (com.android.camera.ActivityBase) r6;
-        r6 = r6.getCurrentModule();
-        r6 = (com.android.camera.module.LiveModule) r6;
-        r6.doReverse();
-        r6 = r5.mShutterButton;
-        r6.removeLastSegment();
-        goto L_0x01b0;
-    L_0x0068:
-        return;
-    L_0x0069:
-        r6 = r5.mVideoCaptureEnable;
-        if (r6 == 0) goto L_0x0083;
-    L_0x006d:
-        r6 = r5.mVideoRecordingStarted;
-        if (r6 != 0) goto L_0x0072;
-    L_0x0071:
-        goto L_0x0083;
-    L_0x0072:
-        r6 = r5.getContext();
-        r6 = (com.android.camera.ActivityBase) r6;
-        r6 = r6.getCurrentModule();
-        r6 = (com.android.camera.module.VideoModule) r6;
-        r6.takeVideoSnapShoot();
-        goto L_0x01b0;
-    L_0x0083:
-        return;
-    L_0x0084:
-        r0 = r0.isDoingAction();
-        if (r0 == 0) goto L_0x008b;
-    L_0x008a:
-        return;
-    L_0x008b:
-        r0 = r5.isThumbLoading();
-        if (r0 == 0) goto L_0x0092;
-    L_0x0091:
-        return;
-    L_0x0092:
-        r5.hideExtra();
-        goto L_0x010d;
-    L_0x0097:
-        r6 = r5.mVideoPauseSupported;
-        if (r6 == 0) goto L_0x00f0;
-    L_0x009b:
-        r6 = r5.mVideoRecordingStarted;
-        if (r6 != 0) goto L_0x00a0;
-    L_0x009f:
-        goto L_0x00f0;
-    L_0x00a0:
-        r6 = r5.mCurrentMode;
-        if (r6 == r4) goto L_0x00de;
-    L_0x00a4:
-        r0 = 174; // 0xae float:2.44E-43 double:8.6E-322;
-        if (r6 == r0) goto L_0x00ac;
-    L_0x00a8:
-        switch(r6) {
-            case 168: goto L_0x00de;
-            case 169: goto L_0x00de;
-            case 170: goto L_0x00de;
-            default: goto L_0x00ab;
-        };
-    L_0x00ab:
-        return;
-    L_0x00ac:
-        r6 = r5.getContext();
-        r6 = (com.android.camera.ActivityBase) r6;
-        r6 = r6.getCurrentModule();
-        r6 = (com.android.camera.module.LiveModule) r6;
-        r6.onPauseButtonClick();
-        r6 = r5.mRecordingReverse;
-        r6 = r6.getVisibility();
-        r0 = 8;
-        if (r6 != r0) goto L_0x00ca;
-    L_0x00c5:
-        r1 = r5.mShutterButton;
-        r1.addSegmentNow();
-    L_0x00ca:
-        r1 = r5.mRecordingReverse;
-        if (r6 != 0) goto L_0x00d0;
-    L_0x00ce:
-        r2 = r0;
-        goto L_0x00d1;
-    L_0x00d0:
-        r2 = r3;
-    L_0x00d1:
-        r1.setVisibility(r2);
-        r1 = r5.mBottomRecordingCameraPicker;
-        if (r6 != 0) goto L_0x00d9;
-    L_0x00d8:
-        goto L_0x00da;
-    L_0x00d9:
-        r0 = r3;
-    L_0x00da:
-        r1.setVisibility(r0);
-        goto L_0x00ee;
-    L_0x00de:
-        r6 = r5.getContext();
-        r6 = (com.android.camera.ActivityBase) r6;
-        r6 = r6.getCurrentModule();
-        r6 = (com.android.camera.module.VideoModule) r6;
-        r6.onPauseButtonClick();
-    L_0x00ee:
-        goto L_0x01b0;
-    L_0x00f0:
-        return;
-    L_0x00f1:
-        r6 = r5.isThumbLoading();
-        if (r6 == 0) goto L_0x00f8;
-    L_0x00f7:
-        return;
-    L_0x00f8:
-        r6 = com.android.camera.data.DataRepository.dataItemGlobal();
-        r6 = r6.isIntentAction();
-        if (r6 != 0) goto L_0x0108;
-    L_0x0102:
-        r6 = 0;
-        r0.onThumbnailClicked(r6);
-        goto L_0x01b0;
-    L_0x0108:
-        r0.onReviewCancelClicked();
-        goto L_0x01b0;
-    L_0x010d:
-        r6 = r5.changeCamera(r6);
-        r0 = com.android.camera.protocol.ModeCoordinatorImpl.getInstance();
-        r1 = 172; // 0xac float:2.41E-43 double:8.5E-322;
-        r0 = r0.getAttachProtocol(r1);
-        r0 = (com.android.camera.protocol.ModeProtocol.TopAlert) r0;
-        r1 = 4;
-        r0.removeExtraMenu(r1);
-        r0 = r5.mCurrentMode;
-        r1 = 2;
-        r2 = 1;
-        if (r0 == r4) goto L_0x0151;
-    L_0x0127:
-        switch(r0) {
-            case 168: goto L_0x0134;
-            case 169: goto L_0x0134;
-            case 170: goto L_0x0134;
-            default: goto L_0x012a;
-        };
-    L_0x012a:
-        r6 = r5.mCurrentMode;
-        r0 = 160; // 0xa0 float:2.24E-43 double:7.9E-322;
-        r5.mCurrentMode = r0;
-        r5.changeMode(r6, r3);
-        goto L_0x0196;
-    L_0x0134:
-        r6 = com.android.camera.data.DataRepository.dataItemGlobal();
-        r6.setCurrentMode(r4);
-        r6 = r5.getContext();
-        r6 = (com.android.camera.Camera) r6;
-        r0 = com.android.camera.module.loader.StartControl.create(r4);
-        r0 = r0.setNeedBlurAnimation(r2);
-        r0 = r0.setViewConfigType(r1);
-        r6.onModeSelected(r0);
-        goto L_0x0196;
-        if (r6 != 0) goto L_0x0177;
-    L_0x0154:
-        r6 = com.android.camera.data.DataRepository.getInstance();
-        r6 = r6.backUp();
-        r0 = r6.isLastVideoFastMotion();
-        if (r0 == 0) goto L_0x0165;
-    L_0x0162:
-        r6 = 169; // 0xa9 float:2.37E-43 double:8.35E-322;
-        goto L_0x0178;
-    L_0x0165:
-        r0 = r6.isLastVideoSlowMotion();
-        if (r0 == 0) goto L_0x016e;
-    L_0x016b:
-        r6 = 168; // 0xa8 float:2.35E-43 double:8.3E-322;
-        goto L_0x0178;
-    L_0x016e:
-        r6 = r6.isLastVideoHFRMode();
-        if (r6 == 0) goto L_0x0177;
-    L_0x0174:
-        r6 = 170; // 0xaa float:2.38E-43 double:8.4E-322;
-        goto L_0x0178;
-    L_0x0177:
-        r6 = r4;
-    L_0x0178:
-        if (r6 == r4) goto L_0x0181;
-    L_0x017a:
-        r0 = com.android.camera.data.DataRepository.dataItemGlobal();
-        r0.setCurrentMode(r6);
-    L_0x0181:
-        r0 = r5.getContext();
-        r0 = (com.android.camera.Camera) r0;
-        r6 = com.android.camera.module.loader.StartControl.create(r6);
-        r6 = r6.setNeedBlurAnimation(r2);
-        r6 = r6.setViewConfigType(r1);
-        r0.onModeSelected(r6);
-    L_0x0196:
-        r6 = com.android.camera.Util.isAccessible();
-        if (r6 == 0) goto L_0x01b0;
-    L_0x019c:
-        r6 = r5.mEdgeHorizonScrollView;
-        r0 = 2131427572; // 0x7f0b00f4 float:1.8476764E38 double:1.05306514E-314;
-        r0 = r5.getString(r0);
-        r6.setContentDescription(r0);
-        r6 = r5.mEdgeHorizonScrollView;
-        r0 = 32768; // 0x8000 float:4.5918E-41 double:1.61895E-319;
-        r6.sendAccessibilityEvent(r0);
-    L_0x01b0:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.bottom.FragmentBottomAction.onClick(android.view.View):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void onClick(View view) {
+        if (isEnableClick()) {
+            CameraAction cameraAction = (CameraAction) ModeCoordinatorImpl.getInstance().getAttachProtocol(161);
+            if (cameraAction != null) {
+                if (((ActivityBase) getContext()).getCurrentModule().isIgnoreTouchEvent()) {
+                    Log.w(TAG, "onClick: ignore click event, because module isn't ready");
+                    return;
+                }
+                int i;
+                int i2;
+                int id = view.getId();
+                if (id != R.id.bottom_recording_camera_picker) {
+                    if (id != R.id.v9_thumbnail_layout) {
+                        if (id != R.id.v9_recording_pause) {
+                            switch (id) {
+                                case R.id.v9_camera_picker /*2131558442*/:
+                                    if (!cameraAction.isDoingAction() && !isThumbLoading()) {
+                                        hideExtra();
+                                        break;
+                                    }
+                                    return;
+                                case R.id.v9_recording_snap /*2131558443*/:
+                                    if (this.mVideoCaptureEnable && this.mVideoRecordingStarted) {
+                                        ((VideoModule) ((ActivityBase) getContext()).getCurrentModule()).takeVideoSnapShoot();
+                                        break;
+                                    }
+                                    return;
+                                case R.id.v9_recording_reverse /*2131558444*/:
+                                    if (this.mVideoReverseEnable && this.mVideoRecordingStarted) {
+                                        ((LiveModule) ((ActivityBase) getContext()).getCurrentModule()).doReverse();
+                                        this.mShutterButton.removeLastSegment();
+                                        break;
+                                    }
+                                    return;
+                            }
+                        } else if (this.mVideoPauseSupported && this.mVideoRecordingStarted) {
+                            i = this.mCurrentMode;
+                            if (i != 162) {
+                                if (i != 174) {
+                                    switch (i) {
+                                        case 168:
+                                        case 169:
+                                        case 170:
+                                            break;
+                                        default:
+                                            return;
+                                    }
+                                }
+                                ((LiveModule) ((ActivityBase) getContext()).getCurrentModule()).onPauseButtonClick();
+                                i = this.mRecordingReverse.getVisibility();
+                                i2 = 8;
+                                if (i == 8) {
+                                    this.mShutterButton.addSegmentNow();
+                                }
+                                this.mRecordingReverse.setVisibility(i == 0 ? 8 : 0);
+                                ImageView imageView = this.mBottomRecordingCameraPicker;
+                                if (i != 0) {
+                                    i2 = 0;
+                                }
+                                imageView.setVisibility(i2);
+                            }
+                            ((VideoModule) ((ActivityBase) getContext()).getCurrentModule()).onPauseButtonClick();
+                        } else {
+                            return;
+                        }
+                    } else if (!isThumbLoading()) {
+                        if (DataRepository.dataItemGlobal().isIntentAction()) {
+                            cameraAction.onReviewCancelClicked();
+                        } else {
+                            cameraAction.onThumbnailClicked(null);
+                        }
+                    } else {
+                        return;
+                    }
+                }
+                i = changeCamera(view);
+                ((TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172)).removeExtraMenu(4);
+                i2 = this.mCurrentMode;
+                if (i2 != 162) {
+                    switch (i2) {
+                        case 168:
+                        case 169:
+                        case 170:
+                            DataRepository.dataItemGlobal().setCurrentMode(162);
+                            ((Camera) getContext()).onModeSelected(StartControl.create(162).setNeedBlurAnimation(true).setViewConfigType(2));
+                            break;
+                        default:
+                            i = this.mCurrentMode;
+                            this.mCurrentMode = 160;
+                            changeMode(i, 0);
+                            break;
+                    }
+                }
+                if (i == 0) {
+                    DataBackUp backUp = DataRepository.getInstance().backUp();
+                    if (backUp.isLastVideoFastMotion()) {
+                        i = 169;
+                    } else if (backUp.isLastVideoSlowMotion()) {
+                        i = 168;
+                    } else if (backUp.isLastVideoHFRMode()) {
+                        i = 170;
+                    }
+                    if (i != 162) {
+                        DataRepository.dataItemGlobal().setCurrentMode(i);
+                    }
+                    ((Camera) getContext()).onModeSelected(StartControl.create(i).setNeedBlurAnimation(true).setViewConfigType(2));
+                }
+                i = 162;
+                if (i != 162) {
+                }
+                ((Camera) getContext()).onModeSelected(StartControl.create(i).setNeedBlurAnimation(true).setViewConfigType(2));
+                if (Util.isAccessible()) {
+                    this.mEdgeHorizonScrollView.setContentDescription(getString(R.string.accessibility_camera_picker_finish));
+                    this.mEdgeHorizonScrollView.sendAccessibilityEvent(32768);
+                }
+            }
+        }
     }
 
     private int changeCamera(View view) {
@@ -1197,73 +1057,27 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
     /* JADX WARNING: Missing block: B:17:0x005f, code:
             return;
      */
-    public void changeMode(int r3, int r4) {
-        /*
-        r2 = this;
-        r0 = r2.mCurrentMode;
-        if (r3 != r0) goto L_0x0005;
-    L_0x0004:
-        return;
-    L_0x0005:
-        r0 = r2.mCurrentMode;
-        r1 = 162; // 0xa2 float:2.27E-43 double:8.0E-322;
-        if (r0 == r1) goto L_0x000f;
-    L_0x000b:
-        switch(r0) {
-            case 168: goto L_0x000f;
-            case 169: goto L_0x000f;
-            case 170: goto L_0x000f;
-            default: goto L_0x000e;
-        };
-    L_0x000e:
-        goto L_0x0014;
-    L_0x000f:
-        if (r3 == r1) goto L_0x0060;
-    L_0x0011:
-        switch(r3) {
-            case 168: goto L_0x0060;
-            case 169: goto L_0x0060;
-            case 170: goto L_0x0060;
-            default: goto L_0x0014;
-        };
-    L_0x0014:
-        r0 = r2.isThumbLoading();
-        if (r0 == 0) goto L_0x001b;
-    L_0x001a:
-        return;
-    L_0x001b:
-        r0 = com.android.camera.protocol.ModeCoordinatorImpl.getInstance();
-        r1 = 161; // 0xa1 float:2.26E-43 double:7.95E-322;
-        r0 = r0.getAttachProtocol(r1);
-        r0 = (com.android.camera.protocol.ModeProtocol.CameraAction) r0;
-        if (r0 == 0) goto L_0x0030;
-    L_0x0029:
-        r0 = r0.isDoingAction();
-        if (r0 == 0) goto L_0x0030;
-    L_0x002f:
-        return;
-    L_0x0030:
-        r2.mCurrentMode = r3;
-        r0 = com.android.camera.data.DataRepository.provider();
-        r0 = r0.dataGlobal();
-        r0 = (com.android.camera.data.data.global.DataItemGlobal) r0;
-        r0.setCurrentMode(r3);
-        r0 = r2.getContext();
-        r0 = (com.android.camera.Camera) r0;
-        r3 = com.android.camera.module.loader.StartControl.create(r3);
-        r3 = r3.setStartDelay(r4);
-        r4 = 3;
-        r3 = r3.setResetType(r4);
-        r4 = 2;
-        r3 = r3.setViewConfigType(r4);
-        r4 = 1;
-        r3 = r3.setNeedBlurAnimation(r4);
-        r0.onModeSelected(r3);
-        return;
-    L_0x0060:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.bottom.FragmentBottomAction.changeMode(int, int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void changeMode(int i, int i2) {
+        if (i != this.mCurrentMode) {
+            int i3 = this.mCurrentMode;
+            if (i3 != 162) {
+                switch (i3) {
+                    case 168:
+                    case 169:
+                    case 170:
+                        break;
+                }
+            }
+            if (i != 162) {
+                switch (i) {
+                    case 168:
+                    case 169:
+                    case 170:
+                        break;
+                }
+            }
+        }
     }
 
     public boolean canSwipeChangeMode() {
@@ -1279,93 +1093,50 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
     /* JADX WARNING: Missing block: B:10:0x0023, code:
             if (r8 == 5) goto L_0x0019;
      */
-    public void selectMode(int r8, int r9) {
-        /*
-        r7 = this;
-        r0 = -1;
-        if (r8 != r0) goto L_0x0004;
-    L_0x0003:
-        return;
-    L_0x0004:
-        r0 = r7.getContext();
-        r0 = com.android.camera.Util.isLayoutRTL(r0);
-        r1 = 5;
-        r2 = 3;
-        r3 = 8388611; // 0x800003 float:1.1754948E-38 double:4.1445245E-317;
-        r4 = 8388613; // 0x800005 float:1.175495E-38 double:4.1445255E-317;
-        if (r0 == 0) goto L_0x001e;
-    L_0x0016:
-        if (r8 != r2) goto L_0x001b;
-    L_0x0019:
-        r8 = r4;
-        goto L_0x0026;
-    L_0x001b:
-        if (r8 != r1) goto L_0x0026;
-    L_0x001d:
-        goto L_0x0021;
-    L_0x001e:
-        if (r8 != r2) goto L_0x0023;
-    L_0x0021:
-        r8 = r3;
-        goto L_0x0026;
-    L_0x0023:
-        if (r8 != r1) goto L_0x0026;
-    L_0x0025:
-        goto L_0x0019;
-    L_0x0026:
-        r0 = r7.mCurrentMode;
-        r1 = r7.mCurrentMode;
-        r2 = 169; // 0xa9 float:2.37E-43 double:8.35E-322;
-        if (r1 == r2) goto L_0x003a;
-    L_0x002e:
-        r1 = r7.mCurrentMode;
-        r2 = 168; // 0xa8 float:2.35E-43 double:8.3E-322;
-        if (r1 == r2) goto L_0x003a;
-    L_0x0034:
-        r1 = r7.mCurrentMode;
-        r2 = 170; // 0xaa float:2.38E-43 double:8.4E-322;
-        if (r1 != r2) goto L_0x003c;
-    L_0x003a:
-        r0 = 162; // 0xa2 float:2.27E-43 double:8.0E-322;
-        r1 = r7.mComponentModuleList;
-        r1 = r1.getItems();
-        r1 = r1.size();
-        r2 = 0;
-        r5 = r2;
-    L_0x0049:
-        if (r5 >= r1) goto L_0x005a;
-    L_0x004b:
-        r6 = r7.mComponentModuleList;
-        r6 = r6.getMode(r5);
-        if (r6 != r0) goto L_0x0057;
-        r2 = r5;
-        goto L_0x005a;
-    L_0x0057:
-        r5 = r5 + 1;
-        goto L_0x0049;
-    L_0x005a:
-        if (r8 == r3) goto L_0x0066;
-    L_0x005c:
-        if (r8 == r4) goto L_0x005f;
-    L_0x005e:
-        goto L_0x006a;
-    L_0x005f:
-        r1 = r1 + -1;
-        if (r2 >= r1) goto L_0x006a;
-    L_0x0063:
-        r2 = r2 + 1;
-        goto L_0x006a;
-    L_0x0066:
-        if (r2 <= 0) goto L_0x006a;
-    L_0x0068:
-        r2 = r2 + -1;
-    L_0x006a:
-        r8 = r7.mComponentModuleList;
-        r8 = r8.getMode(r2);
-        r7.changeMode(r8, r9);
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.bottom.FragmentBottomAction.selectMode(int, int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void selectMode(int i, int i2) {
+        if (i != -1) {
+            int i3;
+            int size;
+            int i4;
+            int i5;
+            if (!Util.isLayoutRTL(getContext())) {
+                if (i != 3) {
+                }
+                i = 8388611;
+                i3 = this.mCurrentMode;
+                if (this.mCurrentMode == 169 || this.mCurrentMode == 168 || this.mCurrentMode == 170) {
+                    i3 = 162;
+                }
+                size = this.mComponentModuleList.getItems().size();
+                i4 = 0;
+                for (i5 = 0; i5 < size; i5++) {
+                    if (this.mComponentModuleList.getMode(i5) == i3) {
+                        i4 = i5;
+                        break;
+                    }
+                }
+                if (i == 8388611) {
+                    if (i == GravityCompat.END && i4 < size - 1) {
+                        i4++;
+                    }
+                } else if (i4 > 0) {
+                    i4--;
+                }
+                changeMode(this.mComponentModuleList.getMode(i4), i2);
+            } else if (i != 3) {
+            }
+            i = GravityCompat.END;
+            i3 = this.mCurrentMode;
+            i3 = 162;
+            size = this.mComponentModuleList.getItems().size();
+            i4 = 0;
+            while (i5 < size) {
+            }
+            if (i == 8388611) {
+            }
+            changeMode(this.mComponentModuleList.getMode(i4), i2);
+        }
     }
 
     protected int getLayoutResourceId() {
@@ -1376,114 +1147,53 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
         return 241;
     }
 
-    public void provideAnimateElement(int r5, java.util.List<io.reactivex.Completable> r6, boolean r7) {
-        /*
-        r4 = this;
-        if (r7 != 0) goto L_0x0006;
-    L_0x0002:
-        r0 = r4.mCurrentMode;
-        if (r0 == r5) goto L_0x0015;
-    L_0x0006:
-        r0 = r4.mIsShowFilter;
-        if (r0 == 0) goto L_0x000e;
-    L_0x000a:
-        r4.showOrHideFilterView();
-        goto L_0x0015;
-    L_0x000e:
-        r0 = r4.mIsShowLighting;
-        if (r0 == 0) goto L_0x0015;
-    L_0x0012:
-        r4.showOrHideLightingView();
-    L_0x0015:
-        super.provideAnimateElement(r5, r6, r7);
-        r0 = r4.mCurrentMode;
-        r1 = 174; // 0xae float:2.44E-43 double:8.6E-322;
-        if (r0 != r1) goto L_0x0028;
-    L_0x001e:
-        r0 = r4.mVideoRecordingStarted;
-        if (r0 == 0) goto L_0x0028;
-    L_0x0022:
-        if (r7 != 0) goto L_0x0025;
-    L_0x0024:
-        return;
-    L_0x0025:
-        r4.processingFinish();
-    L_0x0028:
-        r7 = r4.mFragmentFilter;
-        if (r7 == 0) goto L_0x0031;
-    L_0x002c:
-        r7 = r4.mFragmentFilter;
-        r7.isShowAnimation(r6);
-    L_0x0031:
-        r7 = 165; // 0xa5 float:2.31E-43 double:8.15E-322;
-        if (r5 == r7) goto L_0x0036;
-    L_0x0035:
-        goto L_0x0042;
-    L_0x0036:
-        r7 = r4.mModeSelectLayout;
-        r7 = r7.getView();
-        r0 = 2131361854; // 0x7f0a003e float:1.8343472E38 double:1.053032671E-314;
-        r7.setBackgroundResource(r0);
-    L_0x0042:
-        r7 = r4.mShutterButton;
-        r0 = 0;
-        r1 = 1;
-        if (r6 == 0) goto L_0x004a;
-    L_0x0048:
-        r2 = r1;
-        goto L_0x004b;
-    L_0x004a:
-        r2 = r0;
-    L_0x004b:
-        r3 = r4.isFPS960();
-        r7.setParameters(r5, r2, r3);
-        r7 = r4.mModeSelectView;
-        r7.judgePosition(r5, r6);
-        r7 = -1;
-        switch(r5) {
-            case 166: goto L_0x006f;
-            case 167: goto L_0x006f;
-            case 168: goto L_0x005b;
-            case 169: goto L_0x005b;
-            case 170: goto L_0x005b;
-            case 171: goto L_0x0061;
-            case 172: goto L_0x006f;
-            case 173: goto L_0x006f;
-            default: goto L_0x005b;
-        };
-        r4.mCameraPickEnable = r1;
-    L_0x005f:
-        r7 = r1;
-        goto L_0x0072;
-    L_0x0061:
-        r5 = com.mi.config.b.hb();
-        if (r5 == 0) goto L_0x006b;
-        r4.mCameraPickEnable = r1;
-        goto L_0x005f;
-        r4.mCameraPickEnable = r0;
-        goto L_0x0072;
-        r4.mCameraPickEnable = r0;
-    L_0x0072:
-        r5 = r4.mCameraPicker;
-        r5 = r5.getTag();
-        if (r5 == 0) goto L_0x0089;
-    L_0x007a:
-        r5 = r4.mCameraPicker;
-        r5 = r5.getTag();
-        r5 = (java.lang.Integer) r5;
-        r5 = r5.intValue();
-        if (r5 != r7) goto L_0x0089;
-    L_0x0088:
-        return;
-    L_0x0089:
-        r5 = r4.mCameraPicker;
-        r0 = java.lang.Integer.valueOf(r7);
-        r5.setTag(r0);
-        r5 = r4.mCameraPicker;
-        r4.animateViews(r7, r6, r5);
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.bottom.FragmentBottomAction.provideAnimateElement(int, java.util.List, boolean):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
+        if (z || this.mCurrentMode != i) {
+            if (this.mIsShowFilter) {
+                showOrHideFilterView();
+            } else if (this.mIsShowLighting) {
+                showOrHideLightingView();
+            }
+        }
+        super.provideAnimateElement(i, list, z);
+        if (this.mCurrentMode == 174 && this.mVideoRecordingStarted) {
+            if (z) {
+                processingFinish();
+            } else {
+                return;
+            }
+        }
+        if (this.mFragmentFilter != null) {
+            this.mFragmentFilter.isShowAnimation(list);
+        }
+        if (i == 165) {
+            this.mModeSelectLayout.getView().setBackgroundResource(R.color.black);
+        }
+        this.mShutterButton.setParameters(i, list != null, isFPS960());
+        this.mModeSelectView.judgePosition(i, list);
+        int i2 = -1;
+        switch (i) {
+            case 166:
+            case 167:
+            case 172:
+            case 173:
+                this.mCameraPickEnable = false;
+                break;
+            case 171:
+                if (!b.hb()) {
+                    this.mCameraPickEnable = false;
+                    break;
+                }
+                this.mCameraPickEnable = true;
+            default:
+                this.mCameraPickEnable = true;
+        }
+        i2 = 1;
+        if (this.mCameraPicker.getTag() == null || ((Integer) this.mCameraPicker.getTag()).intValue() != i2) {
+            this.mCameraPicker.setTag(Integer.valueOf(i2));
+            animateViews(i2, list, this.mCameraPicker);
+        }
     }
 
     private void animateViews(int i, List<Completable> list, View view) {

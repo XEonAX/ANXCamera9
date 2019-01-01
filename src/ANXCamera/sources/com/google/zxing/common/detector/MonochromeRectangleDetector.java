@@ -106,127 +106,85 @@ public final class MonochromeRectangleDetector {
     /* JADX WARNING: Removed duplicated region for block: B:11:0x0023  */
     /* JADX WARNING: Removed duplicated region for block: B:67:0x0074 A:{SYNTHETIC, EDGE_INSN: B:67:0x0074->B:37:0x0074 ?: BREAK  , EDGE_INSN: B:67:0x0074->B:37:0x0074 ?: BREAK  } */
     /* JADX WARNING: Removed duplicated region for block: B:32:0x0061  */
-    private int[] blackWhiteRange(int r8, int r9, int r10, int r11, boolean r12) {
-        /*
-        r7 = this;
-        r0 = r10 + r11;
-        r1 = 2;
-        r0 = r0 / r1;
-        r2 = r0;
-    L_0x0005:
-        if (r2 >= r10) goto L_0x0008;
-    L_0x0007:
-        goto L_0x0041;
-    L_0x0008:
-        if (r12 == 0) goto L_0x0013;
-    L_0x000a:
-        r3 = r7.image;
-        r3 = r3.get(r2, r8);
-        if (r3 == 0) goto L_0x001e;
-    L_0x0012:
-        goto L_0x001b;
-    L_0x0013:
-        r3 = r7.image;
-        r3 = r3.get(r8, r2);
-        if (r3 == 0) goto L_0x001e;
-    L_0x001b:
-        r2 = r2 + -1;
-        goto L_0x0005;
-    L_0x001e:
-        r3 = r2;
-    L_0x001f:
-        r3 = r3 + -1;
-        if (r3 < r10) goto L_0x0036;
-    L_0x0023:
-        if (r12 == 0) goto L_0x002e;
-    L_0x0025:
-        r4 = r7.image;
-        r4 = r4.get(r3, r8);
-        if (r4 == 0) goto L_0x001f;
-    L_0x002d:
-        goto L_0x0036;
-    L_0x002e:
-        r4 = r7.image;
-        r4 = r4.get(r8, r3);
-        if (r4 == 0) goto L_0x001f;
-    L_0x0036:
-        r4 = r2 - r3;
-        if (r3 < r10) goto L_0x003f;
-    L_0x003a:
-        if (r4 <= r9) goto L_0x003d;
-    L_0x003c:
-        goto L_0x003f;
-    L_0x003d:
-        r2 = r3;
-        goto L_0x0005;
-    L_0x003f:
-        r3 = r2;
-    L_0x0041:
-        r3 = 1;
-        r2 = r2 + r3;
-        r4 = r0;
-    L_0x0044:
-        if (r4 < r11) goto L_0x0047;
-    L_0x0046:
-        goto L_0x007f;
-    L_0x0047:
-        if (r12 == 0) goto L_0x0052;
-    L_0x0049:
-        r5 = r7.image;
-        r5 = r5.get(r4, r8);
-        if (r5 == 0) goto L_0x005d;
-    L_0x0051:
-        goto L_0x005a;
-    L_0x0052:
-        r5 = r7.image;
-        r5 = r5.get(r8, r4);
-        if (r5 == 0) goto L_0x005d;
-    L_0x005a:
-        r4 = r4 + 1;
-        goto L_0x0044;
-    L_0x005d:
-        r5 = r4;
-    L_0x005e:
-        r5 = r5 + r3;
-        if (r5 >= r11) goto L_0x0074;
-    L_0x0061:
-        if (r12 == 0) goto L_0x006c;
-    L_0x0063:
-        r6 = r7.image;
-        r6 = r6.get(r5, r8);
-        if (r6 == 0) goto L_0x005e;
-    L_0x006b:
-        goto L_0x0074;
-    L_0x006c:
-        r6 = r7.image;
-        r6 = r6.get(r8, r5);
-        if (r6 == 0) goto L_0x005e;
-    L_0x0074:
-        r6 = r5 - r4;
-        if (r5 >= r11) goto L_0x007d;
-    L_0x0078:
-        if (r6 <= r9) goto L_0x007b;
-    L_0x007a:
-        goto L_0x007d;
-    L_0x007b:
-        r4 = r5;
-        goto L_0x0044;
-    L_0x007d:
-        r5 = r4;
-    L_0x007f:
-        r4 = r4 + -1;
-        if (r4 <= r2) goto L_0x008b;
-    L_0x0083:
-        r1 = new int[r1];
-        r5 = 0;
-        r1[r5] = r2;
-        r1[r3] = r4;
-        goto L_0x008c;
-    L_0x008b:
-        r1 = 0;
-    L_0x008c:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.zxing.common.detector.MonochromeRectangleDetector.blackWhiteRange(int, int, int, int, boolean):int[]");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private int[] blackWhiteRange(int fixedDimension, int maxWhiteRun, int minDim, int maxDim, boolean horizontal) {
+        int whiteRunSize;
+        int center = (minDim + maxDim) / 2;
+        int start = center;
+        while (start >= minDim) {
+            int start2;
+            if (!horizontal) {
+                start2 = start;
+                while (true) {
+                    start2--;
+                    if (start2 < minDim) {
+                    }
+                }
+                whiteRunSize = start - start2;
+                if (start2 >= minDim) {
+                }
+                break;
+            }
+            start2 = start;
+            while (true) {
+                start2--;
+                if (start2 < minDim) {
+                    break;
+                } else if (horizontal) {
+                    if (this.image.get(start2, fixedDimension)) {
+                        break;
+                    }
+                } else if (this.image.get(fixedDimension, start2)) {
+                    break;
+                }
+            }
+            whiteRunSize = start - start2;
+            if (start2 >= minDim || whiteRunSize > maxWhiteRun) {
+                break;
+            }
+            start = start2;
+            start--;
+        }
+        start++;
+        whiteRunSize = center;
+        while (whiteRunSize < maxDim) {
+            int end;
+            int whiteRunSize2;
+            if (!horizontal) {
+                end = whiteRunSize;
+                while (true) {
+                    end++;
+                    if (end >= maxDim) {
+                    }
+                }
+                whiteRunSize2 = end - whiteRunSize;
+                if (end < maxDim) {
+                }
+                break;
+            }
+            end = whiteRunSize;
+            while (true) {
+                end++;
+                if (end >= maxDim) {
+                    break;
+                } else if (horizontal) {
+                    if (this.image.get(end, fixedDimension)) {
+                        break;
+                    }
+                } else if (this.image.get(fixedDimension, end)) {
+                    break;
+                }
+            }
+            whiteRunSize2 = end - whiteRunSize;
+            if (end < maxDim || whiteRunSize2 > maxWhiteRun) {
+                break;
+            }
+            whiteRunSize = end;
+            whiteRunSize++;
+        }
+        if (whiteRunSize - 1 <= start) {
+            return null;
+        }
+        return new int[]{start, whiteRunSize - 1};
     }
 }

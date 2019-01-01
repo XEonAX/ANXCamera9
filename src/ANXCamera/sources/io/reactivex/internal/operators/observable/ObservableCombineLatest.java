@@ -11,6 +11,7 @@ import io.reactivex.internal.disposables.EmptyDisposable;
 import io.reactivex.internal.functions.ObjectHelper;
 import io.reactivex.internal.queue.SpscLinkedArrayQueue;
 import io.reactivex.internal.util.AtomicThrowable;
+import io.reactivex.plugins.RxJavaPlugins;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -176,108 +177,64 @@ public final class ObservableCombineLatest<T, R> extends Observable<R> {
         /* JADX WARNING: Missing block: B:17:0x002a, code:
             return;
      */
-        void innerNext(int r4, T r5) {
-            /*
-            r3 = this;
-            monitor-enter(r3);
-            r0 = r3.latest;	 Catch:{ all -> 0x002b }
-            if (r0 != 0) goto L_0x0008;
-        L_0x0006:
-            monitor-exit(r3);	 Catch:{ all -> 0x002b }
-            return;
-        L_0x0008:
-            r1 = r0[r4];	 Catch:{ all -> 0x002b }
-            r2 = r3.active;	 Catch:{ all -> 0x002b }
-            if (r1 != 0) goto L_0x0012;
-        L_0x000e:
-            r2 = r2 + 1;
-            r3.active = r2;	 Catch:{ all -> 0x002b }
-        L_0x0012:
-            r0[r4] = r5;	 Catch:{ all -> 0x002b }
-            r4 = r0.length;	 Catch:{ all -> 0x002b }
-            if (r2 != r4) goto L_0x0023;
-        L_0x0017:
-            r4 = r3.queue;	 Catch:{ all -> 0x002b }
-            r5 = r0.clone();	 Catch:{ all -> 0x002b }
-            r4.offer(r5);	 Catch:{ all -> 0x002b }
-            r4 = 1;
-            goto L_0x0024;
-        L_0x0023:
-            r4 = 0;
-        L_0x0024:
-            monitor-exit(r3);	 Catch:{ all -> 0x002b }
-            if (r4 == 0) goto L_0x002a;
-        L_0x0027:
-            r3.drain();
-        L_0x002a:
-            return;
-        L_0x002b:
-            r4 = move-exception;
-            monitor-exit(r3);	 Catch:{ all -> 0x002b }
-            throw r4;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.observable.ObservableCombineLatest.LatestCoordinator.innerNext(int, java.lang.Object):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        void innerNext(int i, T t) {
+            synchronized (this) {
+                Object obj = this.latest;
+                if (obj == null) {
+                    return;
+                }
+                Object obj2 = obj[i];
+                int i2 = this.active;
+                if (obj2 == null) {
+                    i2++;
+                    this.active = i2;
+                }
+                obj[i] = t;
+                Object obj3;
+                if (i2 == obj.length) {
+                    this.queue.offer(obj.clone());
+                    obj3 = 1;
+                } else {
+                    obj3 = null;
+                }
+            }
         }
 
         /* JADX WARNING: Missing block: B:16:0x0024, code:
             if (r1 == r4.length) goto L_0x0026;
      */
-        void innerError(int r3, java.lang.Throwable r4) {
-            /*
-            r2 = this;
-            r0 = r2.errors;
-            r0 = r0.addThrowable(r4);
-            if (r0 == 0) goto L_0x0037;
-            r4 = r2.delayError;
-            r0 = 1;
-            if (r4 == 0) goto L_0x002d;
-        L_0x000e:
-            monitor-enter(r2);
-            r4 = r2.latest;	 Catch:{ all -> 0x002a }
-            if (r4 != 0) goto L_0x0015;
-        L_0x0013:
-            monitor-exit(r2);	 Catch:{ all -> 0x002a }
-            return;
-        L_0x0015:
-            r3 = r4[r3];	 Catch:{ all -> 0x002a }
-            if (r3 != 0) goto L_0x001b;
-        L_0x0019:
-            r3 = r0;
-            goto L_0x001c;
-        L_0x001b:
-            r3 = 0;
-        L_0x001c:
-            if (r3 != 0) goto L_0x0026;
-        L_0x001e:
-            r1 = r2.complete;	 Catch:{ all -> 0x002a }
-            r1 = r1 + r0;
-            r2.complete = r1;	 Catch:{ all -> 0x002a }
-            r4 = r4.length;	 Catch:{ all -> 0x002a }
-            if (r1 != r4) goto L_0x0028;
-        L_0x0026:
-            r2.done = r0;	 Catch:{ all -> 0x002a }
-        L_0x0028:
-            monitor-exit(r2);	 Catch:{ all -> 0x002a }
-            goto L_0x002e;
-        L_0x002a:
-            r3 = move-exception;
-            monitor-exit(r2);	 Catch:{ all -> 0x002a }
-            throw r3;
-        L_0x002d:
-            r3 = r0;
-        L_0x002e:
-            if (r3 == 0) goto L_0x0033;
-        L_0x0030:
-            r2.cancelSources();
-        L_0x0033:
-            r2.drain();
-            goto L_0x003a;
-        L_0x0037:
-            io.reactivex.plugins.RxJavaPlugins.onError(r4);
-        L_0x003a:
-            return;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.observable.ObservableCombineLatest.LatestCoordinator.innerError(int, java.lang.Throwable):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        void innerError(int i, Throwable th) {
+            if (this.errors.addThrowable(th)) {
+                boolean z;
+                if (this.delayError) {
+                    synchronized (this) {
+                        Object[] objArr = this.latest;
+                        if (objArr == null) {
+                            return;
+                        }
+                        if (objArr[i] == null) {
+                            z = true;
+                        } else {
+                            z = false;
+                        }
+                        if (!z) {
+                            int i2 = this.complete + 1;
+                            this.complete = i2;
+                        }
+                        this.done = true;
+                    }
+                } else {
+                    z = true;
+                }
+                if (z) {
+                    cancelSources();
+                }
+                drain();
+            } else {
+                RxJavaPlugins.onError(th);
+            }
         }
 
         /* JADX WARNING: Missing block: B:13:0x0018, code:
@@ -295,48 +252,25 @@ public final class ObservableCombineLatest<T, R> extends Observable<R> {
         /* JADX WARNING: Missing block: B:19:0x0025, code:
             return;
      */
-        void innerComplete(int r4) {
-            /*
-            r3 = this;
-            monitor-enter(r3);
-            r0 = r3.latest;	 Catch:{ all -> 0x0026 }
-            if (r0 != 0) goto L_0x0008;
-        L_0x0006:
-            monitor-exit(r3);	 Catch:{ all -> 0x0026 }
-            return;
-        L_0x0008:
-            r4 = r0[r4];	 Catch:{ all -> 0x0026 }
-            r1 = 1;
-            if (r4 != 0) goto L_0x000f;
-        L_0x000d:
-            r4 = r1;
-            goto L_0x0010;
-        L_0x000f:
-            r4 = 0;
-        L_0x0010:
-            if (r4 != 0) goto L_0x001a;
-        L_0x0012:
-            r2 = r3.complete;	 Catch:{ all -> 0x0026 }
-            r2 = r2 + r1;
-            r3.complete = r2;	 Catch:{ all -> 0x0026 }
-            r0 = r0.length;	 Catch:{ all -> 0x0026 }
-            if (r2 != r0) goto L_0x001c;
-        L_0x001a:
-            r3.done = r1;	 Catch:{ all -> 0x0026 }
-        L_0x001c:
-            monitor-exit(r3);	 Catch:{ all -> 0x0026 }
-            if (r4 == 0) goto L_0x0022;
-        L_0x001f:
-            r3.cancelSources();
-        L_0x0022:
-            r3.drain();
-            return;
-        L_0x0026:
-            r4 = move-exception;
-            monitor-exit(r3);	 Catch:{ all -> 0x0026 }
-            throw r4;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.observable.ObservableCombineLatest.LatestCoordinator.innerComplete(int):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        void innerComplete(int i) {
+            synchronized (this) {
+                Object[] objArr = this.latest;
+                if (objArr == null) {
+                    return;
+                }
+                boolean z;
+                if (objArr[i] == null) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                if (!z) {
+                    int i2 = this.complete + 1;
+                    this.complete = i2;
+                }
+                this.done = true;
+            }
         }
     }
 

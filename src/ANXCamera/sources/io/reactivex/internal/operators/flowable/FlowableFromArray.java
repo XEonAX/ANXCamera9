@@ -108,70 +108,42 @@ public final class FlowableFromArray<T> extends Flowable<T> {
         /* JADX WARNING: Missing block: B:25:0x004f, code:
             return;
      */
-        void slowPath(long r11) {
-            /*
-            r10 = this;
-            r0 = r10.array;
-            r1 = r0.length;
-            r2 = r10.index;
-            r3 = r10.actual;
-            r4 = 0;
-            r6 = r11;
-        L_0x000b:
-            r11 = r4;
-        L_0x000c:
-            r8 = (r11 > r6 ? 1 : (r11 == r6 ? 0 : -1));
-            if (r8 == 0) goto L_0x0032;
-        L_0x0010:
-            if (r2 == r1) goto L_0x0032;
-        L_0x0012:
-            r8 = r10.cancelled;
-            if (r8 == 0) goto L_0x0017;
-        L_0x0016:
-            return;
-        L_0x0017:
-            r8 = r0[r2];
-            if (r8 != 0) goto L_0x0026;
-        L_0x001b:
-            r11 = new java.lang.NullPointerException;
-            r12 = "array element is null";
-            r11.<init>(r12);
-            r3.onError(r11);
-            return;
-        L_0x0026:
-            r8 = r3.tryOnNext(r8);
-            if (r8 == 0) goto L_0x002f;
-        L_0x002c:
-            r8 = 1;
-            r11 = r11 + r8;
-        L_0x002f:
-            r2 = r2 + 1;
-            goto L_0x000c;
-        L_0x0032:
-            if (r2 != r1) goto L_0x003c;
-        L_0x0034:
-            r11 = r10.cancelled;
-            if (r11 != 0) goto L_0x003b;
-        L_0x0038:
-            r3.onComplete();
-        L_0x003b:
-            return;
-        L_0x003c:
-            r6 = r10.get();
-            r8 = (r11 > r6 ? 1 : (r11 == r6 ? 0 : -1));
-            if (r8 != 0) goto L_0x000c;
-        L_0x0044:
-            r10.index = r2;
-            r11 = -r11;
-            r6 = r10.addAndGet(r11);
-            r11 = (r6 > r4 ? 1 : (r6 == r4 ? 0 : -1));
-            if (r11 != 0) goto L_0x0050;
-        L_0x004f:
-            return;
-        L_0x0050:
-            goto L_0x000b;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowableFromArray.ArrayConditionalSubscription.slowPath(long):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        void slowPath(long j) {
+            Object[] objArr = this.array;
+            int length = objArr.length;
+            int i = this.index;
+            ConditionalSubscriber conditionalSubscriber = this.actual;
+            long j2 = j;
+            while (true) {
+                j = 0;
+                while (true) {
+                    if (j == j2 || i == length) {
+                        if (i == length) {
+                            if (!this.cancelled) {
+                                conditionalSubscriber.onComplete();
+                            }
+                            return;
+                        }
+                        j2 = get();
+                        if (j == j2) {
+                            break;
+                        }
+                    } else if (!this.cancelled) {
+                        Object obj = objArr[i];
+                        if (obj == null) {
+                            conditionalSubscriber.onError(new NullPointerException("array element is null"));
+                            return;
+                        }
+                        if (conditionalSubscriber.tryOnNext(obj)) {
+                            j++;
+                        }
+                        i++;
+                    } else {
+                        return;
+                    }
+                }
+            }
         }
     }
 
@@ -218,67 +190,41 @@ public final class FlowableFromArray<T> extends Flowable<T> {
         /* JADX WARNING: Missing block: B:22:0x004c, code:
             return;
      */
-        void slowPath(long r11) {
-            /*
-            r10 = this;
-            r0 = r10.array;
-            r1 = r0.length;
-            r2 = r10.index;
-            r3 = r10.actual;
-            r4 = 0;
-            r6 = r11;
-        L_0x000b:
-            r11 = r4;
-        L_0x000c:
-            r8 = (r11 > r6 ? 1 : (r11 == r6 ? 0 : -1));
-            if (r8 == 0) goto L_0x002f;
-        L_0x0010:
-            if (r2 == r1) goto L_0x002f;
-        L_0x0012:
-            r8 = r10.cancelled;
-            if (r8 == 0) goto L_0x0017;
-        L_0x0016:
-            return;
-        L_0x0017:
-            r8 = r0[r2];
-            if (r8 != 0) goto L_0x0026;
-        L_0x001b:
-            r11 = new java.lang.NullPointerException;
-            r12 = "array element is null";
-            r11.<init>(r12);
-            r3.onError(r11);
-            return;
-        L_0x0026:
-            r3.onNext(r8);
-            r8 = 1;
-            r11 = r11 + r8;
-            r2 = r2 + 1;
-            goto L_0x000c;
-        L_0x002f:
-            if (r2 != r1) goto L_0x0039;
-        L_0x0031:
-            r11 = r10.cancelled;
-            if (r11 != 0) goto L_0x0038;
-        L_0x0035:
-            r3.onComplete();
-        L_0x0038:
-            return;
-        L_0x0039:
-            r6 = r10.get();
-            r8 = (r11 > r6 ? 1 : (r11 == r6 ? 0 : -1));
-            if (r8 != 0) goto L_0x000c;
-        L_0x0041:
-            r10.index = r2;
-            r11 = -r11;
-            r6 = r10.addAndGet(r11);
-            r11 = (r6 > r4 ? 1 : (r6 == r4 ? 0 : -1));
-            if (r11 != 0) goto L_0x004d;
-        L_0x004c:
-            return;
-        L_0x004d:
-            goto L_0x000b;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowableFromArray.ArraySubscription.slowPath(long):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        void slowPath(long j) {
+            Object[] objArr = this.array;
+            int length = objArr.length;
+            int i = this.index;
+            Subscriber subscriber = this.actual;
+            long j2 = j;
+            while (true) {
+                j = 0;
+                while (true) {
+                    if (j == j2 || i == length) {
+                        if (i == length) {
+                            if (!this.cancelled) {
+                                subscriber.onComplete();
+                            }
+                            return;
+                        }
+                        j2 = get();
+                        if (j == j2) {
+                            break;
+                        }
+                    } else if (!this.cancelled) {
+                        Object obj = objArr[i];
+                        if (obj == null) {
+                            subscriber.onError(new NullPointerException("array element is null"));
+                            return;
+                        }
+                        subscriber.onNext(obj);
+                        j++;
+                        i++;
+                    } else {
+                        return;
+                    }
+                }
+            }
         }
     }
 

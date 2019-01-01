@@ -13,9 +13,13 @@ import com.google.android.apps.gsa.publicsearch.IPublicSearchService;
 import com.google.android.apps.gsa.publicsearch.IPublicSearchServiceSession;
 import com.google.android.apps.gsa.publicsearch.IPublicSearchServiceSessionCallback.Stub;
 import com.google.android.apps.gsa.publicsearch.SystemParcelableWrapper;
+import com.google.android.apps.gsa.search.shared.service.proto.nano.ClientEventProto;
+import com.google.android.apps.gsa.search.shared.service.proto.nano.LensServiceClientEvent;
+import com.google.android.apps.gsa.search.shared.service.proto.nano.LensServiceClientEventData;
 import com.google.android.apps.gsa.search.shared.service.proto.nano.LensServiceEvent;
 import com.google.android.apps.gsa.search.shared.service.proto.nano.LensServiceEventData;
 import com.google.android.apps.gsa.search.shared.service.proto.nano.ServiceEventProto;
+import com.google.protobuf.nano.MessageNano;
 
 public class LensServiceBridge extends Stub implements ServiceConnection {
     private static final String BIND_INTENT_ACTION = "com.google.android.apps.gsa.publicsearch.IPublicSearchService";
@@ -93,36 +97,19 @@ public class LensServiceBridge extends Stub implements ServiceConnection {
     /* JADX WARNING: Missing block: B:11:0x0031, code:
             return false;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public boolean prewarmLensActivity() {
-        /*
-        r4 = this;
-        r4.ensureOnMainThread();
-        r0 = r4.isLensSessionReady();
-        r1 = 0;
-        if (r0 != 0) goto L_0x0012;
-    L_0x000a:
-        r0 = "LensServiceBridge";
-        r2 = "Lens session is not ready for prewarm.";
-        android.util.Log.i(r0, r2);
-        return r1;
-    L_0x0012:
-        r0 = new com.google.android.apps.gsa.search.shared.service.proto.nano.ClientEventProto;
-        r0.<init>();
-        r2 = 347; // 0x15b float:4.86E-43 double:1.714E-321;
-        r0 = r0.setEventId(r2);
-        r2 = r4.lensServiceSession;	 Catch:{ RemoteException -> 0x0029, RemoteException -> 0x0029 }
-        r0 = com.google.protobuf.nano.MessageNano.toByteArray(r0);	 Catch:{ RemoteException -> 0x0029, RemoteException -> 0x0029 }
-        r2.onGenericClientEvent(r0);	 Catch:{ RemoteException -> 0x0029, RemoteException -> 0x0029 }
-        r0 = 1;
-        return r0;
-    L_0x0029:
-        r0 = move-exception;
-        r2 = "LensServiceBridge";
-        r3 = "Unable to send prewarm signal.";
-        android.util.Log.e(r2, r3, r0);
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.android.apps.lens.library.base.LensServiceBridge.prewarmLensActivity():boolean");
+        ensureOnMainThread();
+        if (isLensSessionReady()) {
+            try {
+                this.lensServiceSession.onGenericClientEvent(MessageNano.toByteArray(new ClientEventProto().setEventId(347)));
+                return true;
+            } catch (Throwable e) {
+            }
+        } else {
+            Log.i(TAG, "Lens session is not ready for prewarm.");
+            return false;
+        }
     }
 
     private boolean isLensSessionReady() {
@@ -136,39 +123,16 @@ public class LensServiceBridge extends Stub implements ServiceConnection {
     /* JADX WARNING: Missing block: B:7:0x002f, code:
             android.util.Log.e(TAG, "Unable to begin Lens service session.", r0);
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void beginLensSession() {
-        /*
-        r4 = this;
-        r0 = r4.lensService;
-        if (r0 != 0) goto L_0x0005;
-    L_0x0004:
-        return;
-    L_0x0005:
-        r0 = new com.google.android.apps.gsa.search.shared.service.proto.nano.ClientEventProto;
-        r0.<init>();
-        r1 = 348; // 0x15c float:4.88E-43 double:1.72E-321;
-        r0 = r0.setEventId(r1);
-        r1 = com.google.android.apps.gsa.search.shared.service.proto.nano.LensServiceClientEvent.lensServiceClientEventData;
-        r2 = new com.google.android.apps.gsa.search.shared.service.proto.nano.LensServiceClientEventData;
-        r2.<init>();
-        r3 = 1;
-        r2 = r2.setTargetServiceApiVersion(r3);
-        r0.setExtension(r1, r2);
-        r1 = r4.lensService;	 Catch:{ RemoteException -> 0x002e, RemoteException -> 0x002e }
-        r2 = "LENS_SERVICE_SESSION";
-        r0 = com.google.protobuf.nano.MessageNano.toByteArray(r0);	 Catch:{ RemoteException -> 0x002e, RemoteException -> 0x002e }
-        r0 = r1.beginSession(r2, r4, r0);	 Catch:{ RemoteException -> 0x002e, RemoteException -> 0x002e }
-        r4.lensServiceSession = r0;	 Catch:{ RemoteException -> 0x002e, RemoteException -> 0x002e }
-        goto L_0x0036;
-    L_0x002e:
-        r0 = move-exception;
-        r1 = "LensServiceBridge";
-        r2 = "Unable to begin Lens service session.";
-        android.util.Log.e(r1, r2, r0);
-    L_0x0036:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.android.apps.lens.library.base.LensServiceBridge.beginLensSession():void");
+        if (this.lensService != null) {
+            MessageNano eventId = new ClientEventProto().setEventId(348);
+            eventId.setExtension(LensServiceClientEvent.lensServiceClientEventData, new LensServiceClientEventData().setTargetServiceApiVersion(1));
+            try {
+                this.lensServiceSession = this.lensService.beginSession(LENS_CLIENT_SESSION_TYPE, this, MessageNano.toByteArray(eventId));
+            } catch (Throwable e) {
+            }
+        }
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:7:0x001e A:{ExcHandler: android.os.RemoteException (r0_5 'e' java.lang.Throwable), Splitter: B:5:0x0014} */
@@ -178,36 +142,14 @@ public class LensServiceBridge extends Stub implements ServiceConnection {
     /* JADX WARNING: Missing block: B:8:0x001f, code:
             android.util.Log.e(TAG, "Unable to end Lens service session.", r0);
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void endLensSession() {
-        /*
-        r3 = this;
-        r0 = r3.lensService;
-        if (r0 == 0) goto L_0x0027;
-    L_0x0004:
-        r0 = r3.lensServiceSession;
-        if (r0 != 0) goto L_0x0009;
-    L_0x0008:
-        goto L_0x0027;
-    L_0x0009:
-        r0 = new com.google.android.apps.gsa.search.shared.service.proto.nano.ClientEventProto;
-        r0.<init>();
-        r1 = 345; // 0x159 float:4.83E-43 double:1.705E-321;
-        r0 = r0.setEventId(r1);
-        r1 = r3.lensServiceSession;	 Catch:{ RemoteException -> 0x001e, RemoteException -> 0x001e }
-        r0 = com.google.protobuf.nano.MessageNano.toByteArray(r0);	 Catch:{ RemoteException -> 0x001e, RemoteException -> 0x001e }
-        r1.onGenericClientEvent(r0);	 Catch:{ RemoteException -> 0x001e, RemoteException -> 0x001e }
-        goto L_0x0026;
-    L_0x001e:
-        r0 = move-exception;
-        r1 = "LensServiceBridge";
-        r2 = "Unable to end Lens service session.";
-        android.util.Log.e(r1, r2, r0);
-    L_0x0026:
-        return;
-    L_0x0027:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.android.apps.lens.library.base.LensServiceBridge.endLensSession():void");
+        if (this.lensService != null && this.lensServiceSession != null) {
+            try {
+                this.lensServiceSession.onGenericClientEvent(MessageNano.toByteArray(new ClientEventProto().setEventId(345)));
+            } catch (Throwable e) {
+            }
+        }
     }
 
     private void ensureOnMainThread() {

@@ -101,61 +101,36 @@ public final class FlowableRange extends Flowable<Integer> {
         /* JADX WARNING: Missing block: B:21:0x0043, code:
             return;
      */
-        void slowPath(long r10) {
-            /*
-            r9 = this;
-            r0 = r9.end;
-            r1 = r9.index;
-            r2 = r9.actual;
-            r3 = 0;
-            r5 = r10;
-        L_0x000a:
-            r10 = r3;
-        L_0x000b:
-            r7 = (r10 > r5 ? 1 : (r10 == r5 ? 0 : -1));
-            if (r7 == 0) goto L_0x0026;
-        L_0x000f:
-            if (r1 == r0) goto L_0x0026;
-        L_0x0011:
-            r7 = r9.cancelled;
-            if (r7 == 0) goto L_0x0016;
-        L_0x0015:
-            return;
-        L_0x0016:
-            r7 = java.lang.Integer.valueOf(r1);
-            r7 = r2.tryOnNext(r7);
-            if (r7 == 0) goto L_0x0023;
-        L_0x0020:
-            r7 = 1;
-            r10 = r10 + r7;
-        L_0x0023:
-            r1 = r1 + 1;
-            goto L_0x000b;
-        L_0x0026:
-            if (r1 != r0) goto L_0x0030;
-        L_0x0028:
-            r10 = r9.cancelled;
-            if (r10 != 0) goto L_0x002f;
-        L_0x002c:
-            r2.onComplete();
-        L_0x002f:
-            return;
-        L_0x0030:
-            r5 = r9.get();
-            r7 = (r10 > r5 ? 1 : (r10 == r5 ? 0 : -1));
-            if (r7 != 0) goto L_0x000b;
-        L_0x0038:
-            r9.index = r1;
-            r10 = -r10;
-            r5 = r9.addAndGet(r10);
-            r10 = (r5 > r3 ? 1 : (r5 == r3 ? 0 : -1));
-            if (r10 != 0) goto L_0x0044;
-        L_0x0043:
-            return;
-        L_0x0044:
-            goto L_0x000a;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowableRange.RangeConditionalSubscription.slowPath(long):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        void slowPath(long j) {
+            int i = this.end;
+            int i2 = this.index;
+            ConditionalSubscriber conditionalSubscriber = this.actual;
+            long j2 = j;
+            while (true) {
+                j = 0;
+                while (true) {
+                    if (j == j2 || i2 == i) {
+                        if (i2 == i) {
+                            if (!this.cancelled) {
+                                conditionalSubscriber.onComplete();
+                            }
+                            return;
+                        }
+                        j2 = get();
+                        if (j == j2) {
+                            break;
+                        }
+                    } else if (!this.cancelled) {
+                        if (conditionalSubscriber.tryOnNext(Integer.valueOf(i2))) {
+                            j++;
+                        }
+                        i2++;
+                    } else {
+                        return;
+                    }
+                }
+            }
         }
     }
 
@@ -195,58 +170,35 @@ public final class FlowableRange extends Flowable<Integer> {
         /* JADX WARNING: Missing block: B:18:0x0040, code:
             return;
      */
-        void slowPath(long r10) {
-            /*
-            r9 = this;
-            r0 = r9.end;
-            r1 = r9.index;
-            r2 = r9.actual;
-            r3 = 0;
-            r5 = r10;
-        L_0x000a:
-            r10 = r3;
-        L_0x000b:
-            r7 = (r10 > r5 ? 1 : (r10 == r5 ? 0 : -1));
-            if (r7 == 0) goto L_0x0023;
-        L_0x000f:
-            if (r1 == r0) goto L_0x0023;
-        L_0x0011:
-            r7 = r9.cancelled;
-            if (r7 == 0) goto L_0x0016;
-        L_0x0015:
-            return;
-        L_0x0016:
-            r7 = java.lang.Integer.valueOf(r1);
-            r2.onNext(r7);
-            r7 = 1;
-            r10 = r10 + r7;
-            r1 = r1 + 1;
-            goto L_0x000b;
-        L_0x0023:
-            if (r1 != r0) goto L_0x002d;
-        L_0x0025:
-            r10 = r9.cancelled;
-            if (r10 != 0) goto L_0x002c;
-        L_0x0029:
-            r2.onComplete();
-        L_0x002c:
-            return;
-        L_0x002d:
-            r5 = r9.get();
-            r7 = (r10 > r5 ? 1 : (r10 == r5 ? 0 : -1));
-            if (r7 != 0) goto L_0x000b;
-        L_0x0035:
-            r9.index = r1;
-            r10 = -r10;
-            r5 = r9.addAndGet(r10);
-            r10 = (r5 > r3 ? 1 : (r5 == r3 ? 0 : -1));
-            if (r10 != 0) goto L_0x0041;
-        L_0x0040:
-            return;
-        L_0x0041:
-            goto L_0x000a;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowableRange.RangeSubscription.slowPath(long):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        void slowPath(long j) {
+            int i = this.end;
+            int i2 = this.index;
+            Subscriber subscriber = this.actual;
+            long j2 = j;
+            while (true) {
+                j = 0;
+                while (true) {
+                    if (j == j2 || i2 == i) {
+                        if (i2 == i) {
+                            if (!this.cancelled) {
+                                subscriber.onComplete();
+                            }
+                            return;
+                        }
+                        j2 = get();
+                        if (j == j2) {
+                            break;
+                        }
+                    } else if (!this.cancelled) {
+                        subscriber.onNext(Integer.valueOf(i2));
+                        j++;
+                        i2++;
+                    } else {
+                        return;
+                    }
+                }
+            }
         }
     }
 

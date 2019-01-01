@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import com.android.camera.log.Log;
 import com.android.camera.storage.Storage;
 import java.lang.ref.WeakReference;
@@ -43,36 +44,15 @@ public class SnapService extends JobService {
         /* JADX WARNING: Missing block: B:7:0x0027, code:
             return;
      */
-        public void handleMessage(android.os.Message r3) {
-            /*
-            r2 = this;
-            r0 = r2.mService;
-            r0 = r0.get();
-            r0 = (com.android.camera.snap.SnapService) r0;
-            if (r3 == 0) goto L_0x0027;
-        L_0x000a:
-            if (r0 != 0) goto L_0x000d;
-        L_0x000c:
-            goto L_0x0027;
-        L_0x000d:
-            r3 = r3.what;
-            r1 = 101; // 0x65 float:1.42E-43 double:5.0E-322;
-            if (r3 == r1) goto L_0x0014;
-        L_0x0013:
-            goto L_0x0026;
-        L_0x0014:
-            r3 = com.android.camera.snap.SnapService.TAG;
-            r1 = "stop service";
-            com.android.camera.log.Log.d(r3, r1);
-            r0.jobFinished();
-            r0.destroy();
-            r0.stopSelf();
-        L_0x0026:
-            return;
-        L_0x0027:
-            return;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.android.camera.snap.SnapService.InnerHandler.handleMessage(android.os.Message):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public void handleMessage(Message message) {
+            SnapService snapService = (SnapService) this.mService.get();
+            if (!(message == null || snapService == null || message.what != 101)) {
+                Log.d(SnapService.TAG, "stop service");
+                snapService.jobFinished();
+                snapService.destroy();
+                snapService.stopSelf();
+            }
         }
     }
 

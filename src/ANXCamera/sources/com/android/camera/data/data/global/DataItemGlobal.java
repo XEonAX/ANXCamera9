@@ -1,6 +1,12 @@
 package com.android.camera.data.data.global;
 
+import android.content.Intent;
+import android.support.v4.util.Pair;
+import com.android.camera.CameraAppImpl;
+import com.android.camera.CameraIntentManager;
 import com.android.camera.CameraSettings;
+import com.android.camera.Util;
+import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.DataItemBase;
 import com.android.camera.data.provider.DataProvider.ProviderEditor;
 import com.mi.config.b;
@@ -392,276 +398,74 @@ public class DataItemGlobal extends DataItemBase {
     /* JADX WARNING: Missing block: B:102:0x01ab, code:
             return new android.support.v4.util.Pair(java.lang.Integer.valueOf(r13), java.lang.Integer.valueOf(r9));
      */
-    public android.support.v4.util.Pair<java.lang.Integer, java.lang.Integer> parseIntent(android.content.Intent r9, java.lang.Boolean r10, boolean r11, boolean r12, boolean r13) {
-        /*
-        r8 = this;
-        r0 = com.android.camera.data.DataRepository.dataItemFeature();
-        r0 = r0.fj();
-        r1 = 0;
-        if (r0 == 0) goto L_0x0018;
-    L_0x000b:
-        r0 = com.android.camera.CameraAppImpl.getAndroidContext();
-        r0 = com.android.camera.Util.isScreenSlideOff(r0);
-        if (r0 == 0) goto L_0x0018;
-    L_0x0015:
-        r8.setCameraId(r1);
-    L_0x0018:
-        r0 = r9.getAction();
-        if (r0 != 0) goto L_0x0020;
-    L_0x001e:
-        r0 = "<unknown>";
-    L_0x0020:
-        r2 = r0.hashCode();
-        r3 = 3;
-        r4 = 2;
-        r5 = -1;
-        r6 = 1;
-        switch(r2) {
-            case -1960745709: goto L_0x0068;
-            case -1528697361: goto L_0x005e;
-            case -1449841107: goto L_0x0054;
-            case 464109999: goto L_0x004a;
-            case 701083699: goto L_0x0040;
-            case 1130890360: goto L_0x0036;
-            case 1280056183: goto L_0x002c;
-            default: goto L_0x002b;
-        };
-    L_0x002b:
-        goto L_0x0072;
-    L_0x002c:
-        r2 = "com.android.camera.action.QR_CODE_CAPTURE";
-        r2 = r0.equals(r2);
-        if (r2 == 0) goto L_0x0072;
-    L_0x0034:
-        r2 = r4;
-        goto L_0x0073;
-    L_0x0036:
-        r2 = "android.media.action.VIDEO_CAMERA";
-        r2 = r0.equals(r2);
-        if (r2 == 0) goto L_0x0072;
-    L_0x003e:
-        r2 = 5;
-        goto L_0x0073;
-    L_0x0040:
-        r2 = "android.media.action.VIDEO_CAPTURE";
-        r2 = r0.equals(r2);
-        if (r2 == 0) goto L_0x0072;
-    L_0x0048:
-        r2 = r6;
-        goto L_0x0073;
-    L_0x004a:
-        r2 = "android.media.action.STILL_IMAGE_CAMERA";
-        r2 = r0.equals(r2);
-        if (r2 == 0) goto L_0x0072;
-    L_0x0052:
-        r2 = 4;
-        goto L_0x0073;
-    L_0x0054:
-        r2 = "com.google.zxing.client.android.SCAN";
-        r2 = r0.equals(r2);
-        if (r2 == 0) goto L_0x0072;
-    L_0x005c:
-        r2 = r3;
-        goto L_0x0073;
-    L_0x005e:
-        r2 = "android.media.action.VOICE_COMMAND";
-        r2 = r0.equals(r2);
-        if (r2 == 0) goto L_0x0072;
-    L_0x0066:
-        r2 = 6;
-        goto L_0x0073;
-    L_0x0068:
-        r2 = "android.media.action.IMAGE_CAPTURE";
-        r2 = r0.equals(r2);
-        if (r2 == 0) goto L_0x0072;
-    L_0x0070:
-        r2 = r1;
-        goto L_0x0073;
-    L_0x0072:
-        r2 = r5;
-    L_0x0073:
-        switch(r2) {
-            case 0: goto L_0x0105;
-            case 1: goto L_0x0101;
-            case 2: goto L_0x00ff;
-            case 3: goto L_0x00ff;
-            case 4: goto L_0x007a;
-            case 5: goto L_0x007a;
-            case 6: goto L_0x0082;
-            default: goto L_0x0076;
-        };
-    L_0x0077:
-        r3 = r1;
-        goto L_0x0108;
-    L_0x007a:
-        r10 = r10.booleanValue();
-        if (r10 != 0) goto L_0x0082;
-        goto L_0x0077;
-        r9 = com.android.camera.CameraIntentManager.getInstance(r9);
-        r10 = r9.getCameraModeId();
-        r12 = 160; // 0xa0 float:2.24E-43 double:7.9E-322;
-        if (r10 != r12) goto L_0x009e;
-    L_0x008f:
-        r10 = r8.determineTimeOut();
-        if (r10 == 0) goto L_0x009a;
-    L_0x0095:
-        r10 = r8.getDefaultMode(r1);
-        goto L_0x009e;
-    L_0x009a:
-        r10 = r8.getCurrentMode(r1);
-    L_0x009e:
-        r9 = r9.isUseFrontCamera();	 Catch:{ Exception -> 0x00a3 }
-        goto L_0x00b3;
-    L_0x00a3:
-        r9 = move-exception;
-        r9 = r8.determineTimeOut();
-        if (r9 == 0) goto L_0x00af;
-    L_0x00aa:
-        r9 = r8.getDefaultCameraId(r10);
-        goto L_0x00b3;
-    L_0x00af:
-        r9 = r8.getCurrentCameraId(r10);
-    L_0x00b3:
-        r12 = "DataItemGlobal";
-        r13 = new java.lang.StringBuilder;
-        r13.<init>();
-        r0 = "intent from voice control assist : pendingOpenId = ";
-        r13.append(r0);
-        r13.append(r9);
-        r0 = ";pendingOpenModule = ";
-        r13.append(r0);
-        r13.append(r10);
-        r13 = r13.toString();
-        com.android.camera.log.Log.d(r12, r13);
-        r8.mIntentType = r1;
-        r8.mStartFromKeyguard = r11;
-        r11 = r8.mModuleList;
-        r12 = r8.mIntentType;
-        r11.setIntentType(r12);
-        r11 = r8.getCurrentMode();
-        if (r10 == r11) goto L_0x00e8;
-    L_0x00e2:
-        r8.setCurrentMode(r10);
-        com.android.camera.module.ModuleManager.setActiveModuleIndex(r10);
-    L_0x00e8:
-        r11 = r8.getCurrentCameraId();
-        if (r9 == r11) goto L_0x00f1;
-    L_0x00ee:
-        r8.setCameraId(r9);
-    L_0x00f1:
-        r11 = new android.support.v4.util.Pair;
-        r9 = java.lang.Integer.valueOf(r9);
-        r10 = java.lang.Integer.valueOf(r10);
-        r11.<init>(r9, r10);
-        return r11;
-        goto L_0x0108;
-        r3 = r4;
-        goto L_0x0108;
-        r3 = r6;
-    L_0x0108:
-        r9 = com.android.camera.CameraIntentManager.getInstance(r9);
-        r9 = r9.getCameraFacing();
-        if (r9 == r5) goto L_0x0115;
-    L_0x0112:
-        r8.setCameraIdTransient(r9);
-    L_0x0115:
-        if (r13 == 0) goto L_0x0121;
-    L_0x0117:
-        if (r3 != 0) goto L_0x0121;
-    L_0x0119:
-        r10 = r8.determineTimeOut();
-        if (r10 == 0) goto L_0x0121;
-    L_0x011f:
-        r10 = r6;
-        goto L_0x0123;
-        r10 = r1;
-    L_0x0123:
-        r13 = r8.mIntentType;
-        if (r13 != r3) goto L_0x012d;
-    L_0x0127:
-        r13 = r8.mStartFromKeyguard;
-        if (r13 == r11) goto L_0x012c;
-    L_0x012b:
-        goto L_0x012d;
-    L_0x012c:
-        goto L_0x012e;
-    L_0x012d:
-        r1 = r6;
-    L_0x012e:
-        if (r1 == 0) goto L_0x013f;
-    L_0x0130:
-        r13 = "android.media.action.STILL_IMAGE_CAMERA";
-        r13 = r13.equals(r0);
-        if (r13 == 0) goto L_0x013f;
-    L_0x0138:
-        r9 = 163; // 0xa3 float:2.28E-43 double:8.05E-322;
-        r13 = r8.getCurrentCameraId(r9);
-        goto L_0x0174;
-    L_0x013f:
-        if (r1 == 0) goto L_0x0150;
-    L_0x0141:
-        r13 = "android.media.action.VIDEO_CAMERA";
-        r13 = r13.equals(r0);
-        if (r13 == 0) goto L_0x0150;
-    L_0x0149:
-        r9 = 162; // 0xa2 float:2.27E-43 double:8.0E-322;
-        r13 = r8.getCurrentCameraId(r9);
-        goto L_0x0174;
-    L_0x0150:
-        if (r10 == 0) goto L_0x0165;
-    L_0x0152:
-        r13 = r8.getDefaultMode(r3);
-        if (r9 >= 0) goto L_0x015d;
-    L_0x0158:
-        r9 = r8.getDefaultCameraId(r13);
-        goto L_0x0161;
-    L_0x015d:
-        r9 = r8.getCurrentCameraId(r13);
-    L_0x0161:
-        r7 = r13;
-        r13 = r9;
-        r9 = r7;
-        goto L_0x0174;
-    L_0x0165:
-        if (r9 == r6) goto L_0x016c;
-    L_0x0167:
-        r9 = r8.getCurrentMode(r3);
-        goto L_0x0170;
-    L_0x016c:
-        r9 = r8.getCurrentModeForFrontCamera(r3);
-    L_0x0170:
-        r13 = r8.getCurrentCameraId(r9);
-    L_0x0174:
-        if (r12 != 0) goto L_0x019e;
-    L_0x0176:
-        r10 = java.lang.Boolean.valueOf(r10);
-        r8.mIsTimeOut = r10;
-        if (r1 == 0) goto L_0x0189;
-    L_0x017e:
-        r8.mIntentType = r3;
-        r8.mStartFromKeyguard = r11;
-        r10 = r8.mModuleList;
-        r11 = r8.mIntentType;
-        r10.setIntentType(r11);
-    L_0x0189:
-        r10 = r8.getCurrentMode();
-        if (r9 == r10) goto L_0x0195;
-    L_0x018f:
-        r8.setCurrentMode(r9);
-        com.android.camera.module.ModuleManager.setActiveModuleIndex(r9);
-    L_0x0195:
-        r10 = r8.getCurrentCameraId();
-        if (r13 == r10) goto L_0x019e;
-    L_0x019b:
-        r8.setCameraId(r13);
-    L_0x019e:
-        r10 = new android.support.v4.util.Pair;
-        r11 = java.lang.Integer.valueOf(r13);
-        r9 = java.lang.Integer.valueOf(r9);
-        r10.<init>(r11, r9);
-        return r10;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.data.data.global.DataItemGlobal.parseIntent(android.content.Intent, java.lang.Boolean, boolean, boolean, boolean):android.support.v4.util.Pair<java.lang.Integer, java.lang.Integer>");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public Pair<Integer, Integer> parseIntent(Intent intent, Boolean bool, boolean z, boolean z2, boolean z3) {
+        int i;
+        int i2 = 0;
+        if (DataRepository.dataItemFeature().fj() && Util.isScreenSlideOff(CameraAppImpl.getAndroidContext())) {
+            setCameraId(0);
+        }
+        String action = intent.getAction();
+        if (action == null) {
+            action = "<unknown>";
+        }
+        int i3 = 3;
+        switch (action.hashCode()) {
+            case -1960745709:
+                if (action.equals("android.media.action.IMAGE_CAPTURE")) {
+                    i = 0;
+                    break;
+                }
+            case -1528697361:
+                if (action.equals(CameraIntentManager.ACTION_VOICE_CONTROL)) {
+                    i = 6;
+                    break;
+                }
+            case -1449841107:
+                if (action.equals(CameraIntentManager.ACTION_QR_CODE_ZXING)) {
+                    i = 3;
+                    break;
+                }
+            case 464109999:
+                if (action.equals("android.media.action.STILL_IMAGE_CAMERA")) {
+                    i = 4;
+                    break;
+                }
+            case 701083699:
+                if (action.equals("android.media.action.VIDEO_CAPTURE")) {
+                    i = 1;
+                    break;
+                }
+            case 1130890360:
+                if (action.equals("android.media.action.VIDEO_CAMERA")) {
+                    i = 5;
+                    break;
+                }
+            case 1280056183:
+                if (action.equals(CameraIntentManager.ACTION_QR_CODE_CAPTURE)) {
+                    i = 2;
+                    break;
+                }
+            default:
+                i = -1;
+                break;
+        }
+        switch (i) {
+            case 0:
+                i3 = 1;
+                break;
+            case 1:
+                i3 = 2;
+                break;
+            case 2:
+            case 3:
+                break;
+            case 4:
+            case 5:
+                break;
+            case 6:
+                break;
+        }
     }
 
     public int getDataBackUpKey(int i) {

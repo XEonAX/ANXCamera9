@@ -1,6 +1,7 @@
 package okhttp3.internal.connection;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public final class RouteException extends RuntimeException {
@@ -35,24 +36,13 @@ public final class RouteException extends RuntimeException {
     /* JADX WARNING: Missing block: B:5:?, code:
             return;
      */
-    private void addSuppressedIfPossible(java.io.IOException r4, java.io.IOException r5) {
-        /*
-        r3 = this;
-        r0 = addSuppressedExceptionMethod;
-        if (r0 == 0) goto L_0x0011;
-    L_0x0004:
-        r0 = addSuppressedExceptionMethod;	 Catch:{ InvocationTargetException -> 0x0010, InvocationTargetException -> 0x0010 }
-        r1 = 1;
-        r1 = new java.lang.Object[r1];	 Catch:{ InvocationTargetException -> 0x0010, InvocationTargetException -> 0x0010 }
-        r2 = 0;
-        r1[r2] = r5;	 Catch:{ InvocationTargetException -> 0x0010, InvocationTargetException -> 0x0010 }
-        r0.invoke(r4, r1);	 Catch:{ InvocationTargetException -> 0x0010, InvocationTargetException -> 0x0010 }
-        goto L_0x0011;
-    L_0x0010:
-        r4 = move-exception;
-    L_0x0011:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.connection.RouteException.addSuppressedIfPossible(java.io.IOException, java.io.IOException):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void addSuppressedIfPossible(IOException iOException, IOException iOException2) {
+        if (addSuppressedExceptionMethod != null) {
+            try {
+                addSuppressedExceptionMethod.invoke(iOException, new Object[]{iOException2});
+            } catch (InvocationTargetException e) {
+            }
+        }
     }
 }

@@ -3,19 +3,23 @@ package com.android.camera.animation;
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.provider.MiuiSettings.ScreenEffect;
+import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import com.android.camera.animation.AnimationDelegate.AnimationResource;
 import com.android.camera.data.DataRepository;
+import com.android.camera.module.loader.StartControl;
 import com.ss.android.vesdk.VEResult;
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,117 +47,54 @@ public class AnimationComposite implements Consumer<Integer> {
         this.mResourceSparseArray.remove(i);
     }
 
-    public io.reactivex.disposables.Disposable dispose(@android.support.annotation.Nullable io.reactivex.Completable r6, @android.support.annotation.Nullable io.reactivex.functions.Action r7, com.android.camera.module.loader.StartControl r8) {
-        /*
-        r5 = this;
-        r0 = new java.util.ArrayList;
-        r0.<init>();
-        if (r6 == 0) goto L_0x000a;
-    L_0x0007:
-        r0.add(r6);
-    L_0x000a:
-        r6 = r8.mTargetMode;
-        r1 = r8.mResetType;
-        r2 = 2;
-        r3 = 0;
-        if (r1 != r2) goto L_0x0014;
-    L_0x0012:
-        r1 = 1;
-        goto L_0x0016;
-        r1 = r3;
-    L_0x0016:
-        r8 = r8.mViewConfigType;
-        r2 = 0;
-        switch(r8) {
-            case 1: goto L_0x005e;
-            case 2: goto L_0x0040;
-            case 3: goto L_0x001d;
-            default: goto L_0x001c;
-        };
-    L_0x001c:
-        goto L_0x007c;
-    L_0x001d:
-        r8 = r5.mResourceSparseArray;
-        r8 = r8.size();
-        if (r3 >= r8) goto L_0x007c;
-    L_0x0025:
-        r8 = r5.mResourceSparseArray;
-        r8 = r8.valueAt(r3);
-        r8 = (com.android.camera.animation.AnimationDelegate.AnimationResource) r8;
-        r4 = r8.canProvide();
-        if (r4 == 0) goto L_0x003d;
-    L_0x0033:
-        r4 = r8.needViewClear();
-        if (r4 != 0) goto L_0x003a;
-    L_0x0039:
-        goto L_0x003d;
-    L_0x003a:
-        r8.provideAnimateElement(r6, r2, r1);
-    L_0x003d:
-        r3 = r3 + 1;
-        goto L_0x001d;
-    L_0x0040:
-        r8 = r5.mResourceSparseArray;
-        r8 = r8.size();
-        if (r3 >= r8) goto L_0x005d;
-    L_0x0048:
-        r8 = r5.mResourceSparseArray;
-        r8 = r8.valueAt(r3);
-        r8 = (com.android.camera.animation.AnimationDelegate.AnimationResource) r8;
-        r2 = r8.canProvide();
-        if (r2 != 0) goto L_0x0057;
-    L_0x0056:
-        goto L_0x005a;
-    L_0x0057:
-        r8.provideAnimateElement(r6, r0, r1);
-    L_0x005a:
-        r3 = r3 + 1;
-        goto L_0x0040;
-    L_0x005d:
-        goto L_0x007c;
-    L_0x005e:
-        r8 = r5.mResourceSparseArray;
-        r8 = r8.size();
-        if (r3 >= r8) goto L_0x007b;
-    L_0x0066:
-        r8 = r5.mResourceSparseArray;
-        r8 = r8.valueAt(r3);
-        r8 = (com.android.camera.animation.AnimationDelegate.AnimationResource) r8;
-        r4 = r8.canProvide();
-        if (r4 != 0) goto L_0x0075;
-    L_0x0074:
-        goto L_0x0078;
-    L_0x0075:
-        r8.provideAnimateElement(r6, r2, r1);
-    L_0x0078:
-        r3 = r3 + 1;
-        goto L_0x005e;
-    L_0x007c:
-        r6 = r5.mAnimationDisposable;
-        if (r6 == 0) goto L_0x008d;
-    L_0x0080:
-        r6 = r5.mAnimationDisposable;
-        r6 = r6.isDisposed();
-        if (r6 != 0) goto L_0x008d;
-    L_0x0088:
-        r6 = r5.mAnimationDisposable;
-        r6.dispose();
-    L_0x008d:
-        if (r7 == 0) goto L_0x009a;
-    L_0x008f:
-        r6 = io.reactivex.Completable.merge(r0);
-        r6 = r6.subscribe(r7);
-        r5.mAnimationDisposable = r6;
-        goto L_0x00a4;
-    L_0x009a:
-        r6 = io.reactivex.Completable.merge(r0);
-        r6 = r6.subscribe();
-        r5.mAnimationDisposable = r6;
-    L_0x00a4:
-        r6 = r5.mAnimationDisposable;
-        return r6;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.animation.AnimationComposite.dispose(io.reactivex.Completable, io.reactivex.functions.Action, com.android.camera.module.loader.StartControl):io.reactivex.disposables.Disposable");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public Disposable dispose(@Nullable Completable completable, @Nullable Action action, StartControl startControl) {
+        Iterable arrayList = new ArrayList();
+        if (completable != null) {
+            arrayList.add(completable);
+        }
+        int i = startControl.mTargetMode;
+        int i2 = 0;
+        boolean z = startControl.mResetType == 2;
+        AnimationResource animationResource;
+        switch (startControl.mViewConfigType) {
+            case 1:
+                while (i2 < this.mResourceSparseArray.size()) {
+                    animationResource = (AnimationResource) this.mResourceSparseArray.valueAt(i2);
+                    if (animationResource.canProvide()) {
+                        animationResource.provideAnimateElement(i, null, z);
+                    }
+                    i2++;
+                }
+                break;
+            case 2:
+                while (i2 < this.mResourceSparseArray.size()) {
+                    animationResource = (AnimationResource) this.mResourceSparseArray.valueAt(i2);
+                    if (animationResource.canProvide()) {
+                        animationResource.provideAnimateElement(i, arrayList, z);
+                    }
+                    i2++;
+                }
+                break;
+            case 3:
+                while (i2 < this.mResourceSparseArray.size()) {
+                    animationResource = (AnimationResource) this.mResourceSparseArray.valueAt(i2);
+                    if (animationResource.canProvide() && animationResource.needViewClear()) {
+                        animationResource.provideAnimateElement(i, null, z);
+                    }
+                    i2++;
+                }
+                break;
+        }
+        if (!(this.mAnimationDisposable == null || this.mAnimationDisposable.isDisposed())) {
+            this.mAnimationDisposable.dispose();
+        }
+        if (action != null) {
+            this.mAnimationDisposable = Completable.merge(arrayList).subscribe(action);
+        } else {
+            this.mAnimationDisposable = Completable.merge(arrayList).subscribe();
+        }
+        return this.mAnimationDisposable;
     }
 
     public void disposeRotation(int i) {

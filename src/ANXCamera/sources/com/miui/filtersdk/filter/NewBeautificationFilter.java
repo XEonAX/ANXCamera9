@@ -1,8 +1,18 @@
 package com.miui.filtersdk.filter;
 
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.Bitmap.Config;
 import android.opengl.GLES20;
+import android.os.Environment;
+import android.util.Log;
+import com.android.camera.storage.Storage;
 import com.miui.filtersdk.filter.base.BaseBeautyFilter;
 import com.miui.filtersdk.utils.OpenGlUtils;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 public class NewBeautificationFilter extends BaseBeautyFilter {
@@ -111,81 +121,65 @@ public class NewBeautificationFilter extends BaseBeautyFilter {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:23:0x0077 A:{SYNTHETIC, Splitter: B:23:0x0077} */
-    private static void dumpToBitmap(int r2, int r3, java.nio.ByteBuffer r4) {
-        /*
-        if (r4 == 0) goto L_0x0080;
-    L_0x0003:
-        r0 = android.graphics.Bitmap.Config.ARGB_8888;
-        r2 = android.graphics.Bitmap.createBitmap(r2, r3, r0);
-        r2.copyPixelsFromBuffer(r4);
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r4 = android.os.Environment.getExternalStorageDirectory();
-        r4 = r4.getPath();
-        r3.append(r4);
-        r4 = "/hehe/";
-        r3.append(r4);
-        r0 = java.lang.System.currentTimeMillis();
-        r3.append(r0);
-        r4 = ".jpg";
-        r3.append(r4);
-        r3 = r3.toString();
-        r4 = 0;
-        r0 = new java.io.FileOutputStream;	 Catch:{ FileNotFoundException -> 0x0066 }
-        r1 = new java.io.File;	 Catch:{ FileNotFoundException -> 0x0066 }
-        r1.<init>(r3);	 Catch:{ FileNotFoundException -> 0x0066 }
-        r0.<init>(r1);	 Catch:{ FileNotFoundException -> 0x0066 }
-        r4 = android.graphics.Bitmap.CompressFormat.JPEG;	 Catch:{ FileNotFoundException -> 0x0060, all -> 0x005e }
-        r1 = 100;
-        r2.compress(r4, r1, r0);	 Catch:{ FileNotFoundException -> 0x0060, all -> 0x005e }
-        r2 = "BeautificationFilter";
-        r4 = new java.lang.StringBuilder;	 Catch:{ FileNotFoundException -> 0x0060, all -> 0x005e }
-        r4.<init>();	 Catch:{ FileNotFoundException -> 0x0060, all -> 0x005e }
-        r1 = "dump to ";
-        r4.append(r1);	 Catch:{ FileNotFoundException -> 0x0060, all -> 0x005e }
-        r4.append(r3);	 Catch:{ FileNotFoundException -> 0x0060, all -> 0x005e }
-        r3 = r4.toString();	 Catch:{ FileNotFoundException -> 0x0060, all -> 0x005e }
-        android.util.Log.d(r2, r3);	 Catch:{ FileNotFoundException -> 0x0060, all -> 0x005e }
-        r0.close();	 Catch:{ Exception -> 0x0070 }
-        goto L_0x006f;
-    L_0x005e:
-        r2 = move-exception;
-        goto L_0x0075;
-    L_0x0060:
-        r2 = move-exception;
-        r4 = r0;
-        goto L_0x0067;
-    L_0x0063:
-        r2 = move-exception;
-        r0 = r4;
-        goto L_0x0075;
-    L_0x0066:
-        r2 = move-exception;
-    L_0x0067:
-        r2.printStackTrace();	 Catch:{ all -> 0x0063 }
-        if (r4 == 0) goto L_0x0080;
-    L_0x006c:
-        r4.close();	 Catch:{ Exception -> 0x0070 }
-    L_0x006f:
-        goto L_0x0080;
-    L_0x0070:
-        r2 = move-exception;
-        r2.printStackTrace();
-        goto L_0x006f;
-    L_0x0075:
-        if (r0 == 0) goto L_0x007f;
-    L_0x0077:
-        r0.close();	 Catch:{ Exception -> 0x007b }
-        goto L_0x007f;
-    L_0x007b:
-        r3 = move-exception;
-        r3.printStackTrace();
-    L_0x007f:
-        throw r2;
-    L_0x0080:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.miui.filtersdk.filter.NewBeautificationFilter.dumpToBitmap(int, int, java.nio.ByteBuffer):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static void dumpToBitmap(int i, int i2, ByteBuffer byteBuffer) {
+        FileNotFoundException e;
+        Throwable th;
+        if (byteBuffer != null) {
+            Bitmap createBitmap = Bitmap.createBitmap(i, i2, Config.ARGB_8888);
+            createBitmap.copyPixelsFromBuffer(byteBuffer);
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(Environment.getExternalStorageDirectory().getPath());
+            stringBuilder.append("/hehe/");
+            stringBuilder.append(System.currentTimeMillis());
+            stringBuilder.append(Storage.JPEG_SUFFIX);
+            String stringBuilder2 = stringBuilder.toString();
+            FileOutputStream fileOutputStream = null;
+            FileOutputStream fileOutputStream2;
+            try {
+                fileOutputStream2 = new FileOutputStream(new File(stringBuilder2));
+                try {
+                    createBitmap.compress(CompressFormat.JPEG, 100, fileOutputStream2);
+                    String str = TAG;
+                    StringBuilder stringBuilder3 = new StringBuilder();
+                    stringBuilder3.append("dump to ");
+                    stringBuilder3.append(stringBuilder2);
+                    Log.d(str, stringBuilder3.toString());
+                } catch (FileNotFoundException e2) {
+                    e = e2;
+                    fileOutputStream = fileOutputStream2;
+                } catch (Throwable th2) {
+                    th = th2;
+                    if (fileOutputStream2 != null) {
+                    }
+                    throw th;
+                }
+                try {
+                    fileOutputStream2.close();
+                } catch (Exception e3) {
+                    e3.printStackTrace();
+                }
+            } catch (FileNotFoundException e4) {
+                e = e4;
+                try {
+                    e.printStackTrace();
+                    if (fileOutputStream != null) {
+                        fileOutputStream.close();
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                    fileOutputStream2 = fileOutputStream;
+                    if (fileOutputStream2 != null) {
+                        try {
+                            fileOutputStream2.close();
+                        } catch (Exception e5) {
+                            e5.printStackTrace();
+                        }
+                    }
+                    throw th;
+                }
+            }
+        }
     }
 
     public void onDisplaySizeChanged(int i, int i2) {

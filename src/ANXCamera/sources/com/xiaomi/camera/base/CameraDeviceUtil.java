@@ -1,5 +1,9 @@
 package com.xiaomi.camera.base;
 
+import android.content.Context;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraCharacteristics.Key;
+import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CaptureResult;
 import android.os.Parcelable;
 import android.util.Log;
@@ -25,67 +29,24 @@ public class CameraDeviceUtil {
     /* JADX WARNING: Missing block: B:17:0x0066, code:
             throw new java.lang.RuntimeException("getCameraCharacteristics's dualCalibrationData failed");
      */
-    public static void prepareCalibrationDataForAlgo(android.content.Context r7, java.lang.String r8) {
-        /*
-        r0 = "camera";
-        r0 = r7.getSystemService(r0);
-        r0 = (android.hardware.camera2.CameraManager) r0;
-        r8 = r0.getCameraCharacteristics(r8);	 Catch:{ CameraAccessException -> 0x0067 }
-        r0 = android.hardware.camera2.CameraCharacteristics.LENS_FACING;
-        r0 = r8.get(r0);
-        r0 = (java.lang.Integer) r0;
-        if (r0 != 0) goto L_0x0018;
-    L_0x0017:
-        return;
-    L_0x0018:
-        r0 = r0.intValue();
-        r1 = 0;
-        r2 = 1;
-        if (r0 != 0) goto L_0x0022;
-    L_0x0020:
-        r0 = r2;
-        goto L_0x0024;
-        r0 = r1;
-        r3 = "android.hardware.camera2.CameraCharacteristics$Key";
-        r3 = java.lang.Class.forName(r3);	 Catch:{ ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057 }
-        r4 = 2;
-        r5 = new java.lang.Class[r4];	 Catch:{ ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057 }
-        r6 = java.lang.String.class;
-        r5[r1] = r6;	 Catch:{ ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057 }
-        r6 = java.lang.Class.class;
-        r5[r2] = r6;	 Catch:{ ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057 }
-        r4 = new java.lang.Object[r4];	 Catch:{ ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057 }
-        r6 = "com.xiaomi.camera.algoup.dualCalibrationData";
-        r4[r1] = r6;	 Catch:{ ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057 }
-        r1 = byte[].class;
-        r4[r2] = r1;	 Catch:{ ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057 }
-        r1 = r3.getDeclaredConstructor(r5);	 Catch:{ ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057 }
-        r1 = r1.newInstance(r4);	 Catch:{ ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057 }
-        r1 = (android.hardware.camera2.CameraCharacteristics.Key) r1;	 Catch:{ ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057 }
-        r8 = r8.get(r1);	 Catch:{ ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057 }
-        r8 = (byte[]) r8;	 Catch:{ ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057, ClassNotFoundException -> 0x0057 }
-        if (r8 == 0) goto L_0x0056;
-    L_0x0053:
-        com.xiaomi.camera.base.CommonUtil.saveCameraCalibrationToFile(r7, r8, r0);
-    L_0x0056:
-        return;
-    L_0x0057:
-        r7 = move-exception;
-        r8 = TAG;
-        r0 = "prepareCalibrationDataForAlgo: call reflect method failed!";
-        android.util.Log.e(r8, r0, r7);
-        r7 = new java.lang.RuntimeException;
-        r8 = "getCameraCharacteristics's dualCalibrationData failed";
-        r7.<init>(r8);
-        throw r7;
-    L_0x0067:
-        r7 = move-exception;
-        r8 = TAG;
-        r0 = "prepareCalibrationDataForAlgo: get getCameraCharacteristics failed!";
-        android.util.Log.e(r8, r0, r7);
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.camera.base.CameraDeviceUtil.prepareCalibrationDataForAlgo(android.content.Context, java.lang.String):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static void prepareCalibrationDataForAlgo(Context context, String str) {
+        try {
+            CameraCharacteristics cameraCharacteristics = ((CameraManager) context.getSystemService("camera")).getCameraCharacteristics(str);
+            Integer num = (Integer) cameraCharacteristics.get(CameraCharacteristics.LENS_FACING);
+            if (num != null) {
+                boolean z = num.intValue() == 0;
+                try {
+                    byte[] bArr = (byte[]) cameraCharacteristics.get((Key) Class.forName("android.hardware.camera2.CameraCharacteristics$Key").getDeclaredConstructor(new Class[]{String.class, Class.class}).newInstance(new Object[]{"com.xiaomi.camera.algoup.dualCalibrationData", byte[].class}));
+                    if (bArr != null) {
+                        CommonUtil.saveCameraCalibrationToFile(context, bArr, z);
+                    }
+                } catch (Throwable e) {
+                }
+            }
+        } catch (Throwable e2) {
+            Log.e(TAG, "prepareCalibrationDataForAlgo: get getCameraCharacteristics failed!", e2);
+        }
     }
 
     public static ICustomCaptureResult getCustomCaptureResult(CaptureResult captureResult) {

@@ -140,39 +140,17 @@ public abstract class MediaEncoder implements Runnable {
     /* JADX WARNING: Missing block: B:11:0x0021, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     void stopRecording() {
-        /*
-        r2 = this;
-        r0 = r2.TAG;
-        r1 = "stopRecording";
-        com.android.camera.log.Log.d(r0, r1);
-        r0 = r2.mSync;
-        monitor-enter(r0);
-        r1 = r2.mIsCapturing;	 Catch:{ all -> 0x0022 }
-        if (r1 == 0) goto L_0x0020;
-    L_0x000e:
-        r1 = r2.mRequestStop;	 Catch:{ all -> 0x0022 }
-        if (r1 == 0) goto L_0x0013;
-    L_0x0012:
-        goto L_0x0020;
-    L_0x0013:
-        r1 = 0;
-        r2.mSkipFrame = r1;	 Catch:{ all -> 0x0022 }
-        r1 = 1;
-        r2.mRequestStop = r1;	 Catch:{ all -> 0x0022 }
-        r1 = r2.mSync;	 Catch:{ all -> 0x0022 }
-        r1.notifyAll();	 Catch:{ all -> 0x0022 }
-        monitor-exit(r0);	 Catch:{ all -> 0x0022 }
-        return;
-    L_0x0020:
-        monitor-exit(r0);	 Catch:{ all -> 0x0022 }
-        return;
-    L_0x0022:
-        r1 = move-exception;
-        monitor-exit(r0);	 Catch:{ all -> 0x0022 }
-        throw r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.encoder.MediaEncoder.stopRecording():void");
+        Log.d(this.TAG, "stopRecording");
+        synchronized (this.mSync) {
+            if (!this.mIsCapturing || this.mRequestStop) {
+            } else {
+                this.mSkipFrame = false;
+                this.mRequestStop = true;
+                this.mSync.notifyAll();
+            }
+        }
     }
 
     void join() {
@@ -187,63 +165,44 @@ public abstract class MediaEncoder implements Runnable {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0046  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     protected void release() {
-        /*
-        r5 = this;
-        r0 = r5.mMediaCodec;
-        r1 = 0;
-        if (r0 == 0) goto L_0x001a;
-    L_0x0005:
-        r0 = r5.mMediaCodec;	 Catch:{ Exception -> 0x0012 }
-        r0.stop();	 Catch:{ Exception -> 0x0012 }
-        r0 = r5.mMediaCodec;	 Catch:{ Exception -> 0x0012 }
-        r0.release();	 Catch:{ Exception -> 0x0012 }
-        r5.mMediaCodec = r1;	 Catch:{ Exception -> 0x0012 }
-        goto L_0x001a;
-    L_0x0012:
-        r0 = move-exception;
-        r2 = r5.TAG;
-        r3 = "failed releasing MediaCodec";
-        com.android.camera.log.Log.e(r2, r3, r0);
-        r0 = r5.mMuxerStarted;
-        r2 = 0;
-        if (r0 == 0) goto L_0x003f;
-    L_0x0020:
-        r0 = r5.mWeakMuxer;
-        if (r0 == 0) goto L_0x002d;
-    L_0x0024:
-        r0 = r5.mWeakMuxer;
-        r0 = r0.get();
-        r0 = (com.android.camera.module.encoder.MediaMuxerWrapper) r0;
-        goto L_0x002e;
-    L_0x002d:
-        r0 = r1;
-    L_0x002e:
-        if (r0 == 0) goto L_0x003f;
-    L_0x0030:
-        r0 = r0.stop();	 Catch:{ Exception -> 0x0035 }
-        goto L_0x0040;
-    L_0x0035:
-        r0 = move-exception;
-        r3 = r5.TAG;
-        r4 = "failed stopping muxer";
-        com.android.camera.log.Log.e(r3, r4, r0);
-        r0 = 1;
-        goto L_0x0040;
-    L_0x003f:
-        r0 = r2;
-    L_0x0040:
-        r5.mIsCapturing = r2;
-        r2 = r5.mListener;
-        if (r2 == 0) goto L_0x004b;
-    L_0x0046:
-        r2 = r5.mListener;
-        r2.onStopped(r5, r0);
-    L_0x004b:
-        r5.mBufferInfo = r1;
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.encoder.MediaEncoder.release():void");
+        boolean stop;
+        if (this.mMediaCodec != null) {
+            try {
+                this.mMediaCodec.stop();
+                this.mMediaCodec.release();
+                this.mMediaCodec = null;
+            } catch (Throwable e) {
+                Log.e(this.TAG, "failed releasing MediaCodec", e);
+            }
+        }
+        if (this.mMuxerStarted) {
+            MediaMuxerWrapper mediaMuxerWrapper;
+            if (this.mWeakMuxer != null) {
+                mediaMuxerWrapper = (MediaMuxerWrapper) this.mWeakMuxer.get();
+            } else {
+                mediaMuxerWrapper = null;
+            }
+            if (mediaMuxerWrapper != null) {
+                try {
+                    stop = mediaMuxerWrapper.stop();
+                } catch (Throwable e2) {
+                    Log.e(this.TAG, "failed stopping muxer", e2);
+                    stop = true;
+                }
+                this.mIsCapturing = false;
+                if (this.mListener != null) {
+                    this.mListener.onStopped(this, stop);
+                }
+                this.mBufferInfo = null;
+            }
+        }
+        stop = false;
+        this.mIsCapturing = false;
+        if (this.mListener != null) {
+        }
+        this.mBufferInfo = null;
     }
 
     protected void signalEndOfInputStream() {

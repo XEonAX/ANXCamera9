@@ -208,68 +208,30 @@ public final class RatingCompat implements Parcelable {
     /* JADX WARNING: Missing block: B:13:0x0046, code:
             return null;
      */
-    public java.lang.Object getRating() {
-        /*
-        r2 = this;
-        r0 = r2.mRatingObj;
-        if (r0 != 0) goto L_0x0052;
-    L_0x0004:
-        r0 = android.os.Build.VERSION.SDK_INT;
-        r1 = 21;
-        if (r0 >= r1) goto L_0x000b;
-    L_0x000a:
-        goto L_0x0052;
-    L_0x000b:
-        r0 = r2.isRated();
-        if (r0 == 0) goto L_0x0047;
-    L_0x0011:
-        r0 = r2.mRatingStyle;
-        switch(r0) {
-            case 1: goto L_0x003a;
-            case 2: goto L_0x002f;
-            case 3: goto L_0x0022;
-            case 4: goto L_0x0022;
-            case 5: goto L_0x0022;
-            case 6: goto L_0x0017;
-            default: goto L_0x0016;
-        };
-    L_0x0016:
-        goto L_0x0045;
-    L_0x0017:
-        r0 = r2.getPercentRating();
-        r0 = android.support.v4.media.RatingCompatApi21.newPercentageRating(r0);
-        r2.mRatingObj = r0;
-        goto L_0x0045;
-    L_0x0022:
-        r0 = r2.mRatingStyle;
-        r1 = r2.getStarRating();
-        r0 = android.support.v4.media.RatingCompatApi21.newStarRating(r0, r1);
-        r2.mRatingObj = r0;
-        goto L_0x004f;
-    L_0x002f:
-        r0 = r2.isThumbUp();
-        r0 = android.support.v4.media.RatingCompatApi21.newThumbRating(r0);
-        r2.mRatingObj = r0;
-        goto L_0x004f;
-    L_0x003a:
-        r0 = r2.hasHeart();
-        r0 = android.support.v4.media.RatingCompatApi21.newHeartRating(r0);
-        r2.mRatingObj = r0;
-        goto L_0x004f;
-    L_0x0045:
-        r0 = 0;
-        return r0;
-    L_0x0047:
-        r0 = r2.mRatingStyle;
-        r0 = android.support.v4.media.RatingCompatApi21.newUnratedRating(r0);
-        r2.mRatingObj = r0;
-    L_0x004f:
-        r0 = r2.mRatingObj;
-        return r0;
-    L_0x0052:
-        r0 = r2.mRatingObj;
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.media.RatingCompat.getRating():java.lang.Object");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public Object getRating() {
+        if (this.mRatingObj != null || VERSION.SDK_INT < 21) {
+            return this.mRatingObj;
+        }
+        if (isRated()) {
+            switch (this.mRatingStyle) {
+                case 1:
+                    this.mRatingObj = RatingCompatApi21.newHeartRating(hasHeart());
+                    break;
+                case 2:
+                    this.mRatingObj = RatingCompatApi21.newThumbRating(isThumbUp());
+                    break;
+                case 3:
+                case 4:
+                case 5:
+                    this.mRatingObj = RatingCompatApi21.newStarRating(this.mRatingStyle, getStarRating());
+                    break;
+                case 6:
+                    this.mRatingObj = RatingCompatApi21.newPercentageRating(getPercentRating());
+                    break;
+            }
+        }
+        this.mRatingObj = RatingCompatApi21.newUnratedRating(this.mRatingStyle);
+        return this.mRatingObj;
     }
 }

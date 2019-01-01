@@ -1,6 +1,8 @@
 package com.android.camera.effect.renders;
 
 import android.graphics.Color;
+import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.runing.DataItemRunning;
 import com.android.camera.effect.EffectController;
@@ -133,156 +135,84 @@ public class EffectRenderGroup extends RenderGroup implements EffectChangedListe
     /* JADX WARNING: Removed duplicated region for block: B:48:0x00c9  */
     /* JADX WARNING: Removed duplicated region for block: B:51:0x00d6  */
     /* JADX WARNING: Removed duplicated region for block: B:50:0x00d0  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private boolean updatePreviewSecondRender() {
-        /*
-        r8 = this;
-        r0 = r8.mRenderChanged;
-        r0 = r0.booleanValue();
-        r1 = 0;
-        if (r0 != 0) goto L_0x000a;
-    L_0x0009:
-        return r1;
-    L_0x000a:
-        r0 = r8.mRenderChangedLock;
-        monitor-enter(r0);
-        r2 = r8.mPreviewSecondRender;	 Catch:{ all -> 0x00f7 }
-        r2.clearRenders();	 Catch:{ all -> 0x00f7 }
-        r2 = com.android.camera.effect.EffectController.getInstance();	 Catch:{ all -> 0x00f7 }
-        r2 = r2.needDestroyMakeup();	 Catch:{ all -> 0x00f7 }
-        if (r2 == 0) goto L_0x002e;
-    L_0x0022:
-        r2 = com.android.camera.effect.FilterInfo.RENDER_ID_MAKEUP;	 Catch:{ all -> 0x00f7 }
-        r8.removeCache(r2);	 Catch:{ all -> 0x00f7 }
-        r2 = com.android.camera.effect.EffectController.getInstance();	 Catch:{ all -> 0x00f7 }
-        r2.setDestroyMakeup(r1);	 Catch:{ all -> 0x00f7 }
-    L_0x002e:
-        r2 = r8.mIsStickerEnabled;	 Catch:{ all -> 0x00f7 }
-        if (r2 == 0) goto L_0x0054;
-    L_0x0032:
-        r2 = r8.mEffectId;	 Catch:{ all -> 0x00f7 }
-        r3 = com.android.camera.effect.FilterInfo.FILTER_ID_NONE;	 Catch:{ all -> 0x00f7 }
-        if (r2 == r3) goto L_0x0045;
-    L_0x0038:
-        r2 = r8.mEffectId;	 Catch:{ all -> 0x00f7 }
-        r2 = r8.fetchRender(r2);	 Catch:{ all -> 0x00f7 }
-        if (r2 == 0) goto L_0x0045;
-    L_0x0040:
-        r3 = r8.mPreviewSecondRender;	 Catch:{ all -> 0x00f7 }
-        r3.addRender(r2);	 Catch:{ all -> 0x00f7 }
-    L_0x0045:
-        r2 = com.android.camera.effect.FilterInfo.FILTER_ID_STICKER;	 Catch:{ all -> 0x00f7 }
-        r2 = r8.fetchRender(r2);	 Catch:{ all -> 0x00f7 }
-        if (r2 == 0) goto L_0x00e5;
-    L_0x004d:
-        r3 = r8.mPreviewSecondRender;	 Catch:{ all -> 0x00f7 }
-        r3.addRender(r2);	 Catch:{ all -> 0x00f7 }
-        goto L_0x00e5;
-    L_0x0054:
-        r2 = r8.mIsMakeupEnabled;	 Catch:{ all -> 0x00f7 }
-        r3 = 0;
-        if (r2 == 0) goto L_0x0060;
-    L_0x0059:
-        r2 = com.android.camera.effect.FilterInfo.RENDER_ID_MAKEUP;	 Catch:{ all -> 0x00f7 }
-        r2 = r8.fetchRender(r2);	 Catch:{ all -> 0x00f7 }
-        goto L_0x0061;
-    L_0x0060:
-        r2 = r3;
-    L_0x0061:
-        r4 = r8.mEffectId;	 Catch:{ all -> 0x00f7 }
-        r5 = com.android.camera.effect.FilterInfo.FILTER_ID_NONE;	 Catch:{ all -> 0x00f7 }
-        if (r4 == r5) goto L_0x006e;
-    L_0x0067:
-        r4 = r8.mEffectId;	 Catch:{ all -> 0x00f7 }
-        r4 = r8.fetchRender(r4);	 Catch:{ all -> 0x00f7 }
-        goto L_0x006f;
-    L_0x006e:
-        r4 = r3;
-    L_0x006f:
-        r5 = r8.mIsGradienterEnabled;	 Catch:{ all -> 0x00f7 }
-        if (r5 == 0) goto L_0x007a;
-    L_0x0073:
-        r5 = com.android.camera.effect.FilterInfo.FILTER_ID_GRADIENTER;	 Catch:{ all -> 0x00f7 }
-        r5 = r8.fetchRender(r5);	 Catch:{ all -> 0x00f7 }
-        goto L_0x007b;
-    L_0x007a:
-        r5 = r3;
-    L_0x007b:
-        r6 = r8.mTiltShiftMode;	 Catch:{ all -> 0x00f7 }
-        if (r6 == 0) goto L_0x00ab;
-    L_0x007f:
-        r6 = 2131427663; // 0x7f0b014f float:1.8476949E38 double:1.053065185E-314;
-        r6 = com.android.camera.CameraSettings.getString(r6);	 Catch:{ all -> 0x00f7 }
-        r7 = r8.mTiltShiftMode;	 Catch:{ all -> 0x00f7 }
-        r6 = r6.equals(r7);	 Catch:{ all -> 0x00f7 }
-        if (r6 == 0) goto L_0x0095;
-    L_0x008e:
-        r6 = com.android.camera.effect.FilterInfo.FILTER_ID_GAUSSIAN;	 Catch:{ all -> 0x00f7 }
-        r6 = r8.fetchRender(r6);	 Catch:{ all -> 0x00f7 }
-        goto L_0x00ac;
-    L_0x0095:
-        r6 = 2131427664; // 0x7f0b0150 float:1.847695E38 double:1.0530651854E-314;
-        r6 = com.android.camera.CameraSettings.getString(r6);	 Catch:{ all -> 0x00f7 }
-        r7 = r8.mTiltShiftMode;	 Catch:{ all -> 0x00f7 }
-        r6 = r6.equals(r7);	 Catch:{ all -> 0x00f7 }
-        if (r6 == 0) goto L_0x00ab;
-    L_0x00a4:
-        r6 = com.android.camera.effect.FilterInfo.FILTER_ID_TILTSHIFT;	 Catch:{ all -> 0x00f7 }
-        r6 = r8.fetchRender(r6);	 Catch:{ all -> 0x00f7 }
-        goto L_0x00ac;
-    L_0x00ab:
-        r6 = r3;
-    L_0x00ac:
-        r7 = r8.mIsFocusPeakEnabled;	 Catch:{ all -> 0x00f7 }
-        if (r7 == 0) goto L_0x00b6;
-    L_0x00b0:
-        r3 = com.android.camera.effect.FilterInfo.FILTER_ID_PEAKINGMF;	 Catch:{ all -> 0x00f7 }
-        r3 = r8.fetchRender(r3);	 Catch:{ all -> 0x00f7 }
-    L_0x00b6:
-        if (r2 == 0) goto L_0x00c7;
-    L_0x00b8:
-        r7 = com.android.camera.effect.EffectController.getInstance();	 Catch:{ all -> 0x00f7 }
-        r7 = r7.isBeautyFrameReady();	 Catch:{ all -> 0x00f7 }
-        if (r7 == 0) goto L_0x00c7;
-    L_0x00c2:
-        r7 = r8.mPreviewSecondRender;	 Catch:{ all -> 0x00f7 }
-        r7.addRender(r2);	 Catch:{ all -> 0x00f7 }
-    L_0x00c7:
-        if (r4 == 0) goto L_0x00ce;
-    L_0x00c9:
-        r2 = r8.mPreviewSecondRender;	 Catch:{ all -> 0x00f7 }
-        r2.addRender(r4);	 Catch:{ all -> 0x00f7 }
-    L_0x00ce:
-        if (r5 == 0) goto L_0x00d6;
-    L_0x00d0:
-        r2 = r8.mPreviewSecondRender;	 Catch:{ all -> 0x00f7 }
-        r2.addRender(r5);	 Catch:{ all -> 0x00f7 }
-        goto L_0x00e5;
-    L_0x00d6:
-        if (r6 == 0) goto L_0x00de;
-    L_0x00d8:
-        r2 = r8.mPreviewSecondRender;	 Catch:{ all -> 0x00f7 }
-        r2.addRender(r6);	 Catch:{ all -> 0x00f7 }
-        goto L_0x00e5;
-    L_0x00de:
-        if (r3 == 0) goto L_0x00e5;
-    L_0x00e0:
-        r2 = r8.mPreviewSecondRender;	 Catch:{ all -> 0x00f7 }
-        r2.addRender(r3);	 Catch:{ all -> 0x00f7 }
-    L_0x00e5:
-        r2 = r8.mPreviewSecondRender;	 Catch:{ all -> 0x00f7 }
-        r3 = r8.mPreviewWidth;	 Catch:{ all -> 0x00f7 }
-        r4 = r8.mPreviewHeight;	 Catch:{ all -> 0x00f7 }
-        r2.setFrameBufferSize(r3, r4);	 Catch:{ all -> 0x00f7 }
-        r1 = java.lang.Boolean.valueOf(r1);	 Catch:{ all -> 0x00f7 }
-        r8.mRenderChanged = r1;	 Catch:{ all -> 0x00f7 }
-        r1 = 1;
-        monitor-exit(r0);	 Catch:{ all -> 0x00f7 }
-        return r1;
-    L_0x00f7:
-        r1 = move-exception;
-        monitor-exit(r0);	 Catch:{ all -> 0x00f7 }
-        throw r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.effect.renders.EffectRenderGroup.updatePreviewSecondRender():boolean");
+        if (!this.mRenderChanged.booleanValue()) {
+            return false;
+        }
+        synchronized (this.mRenderChangedLock) {
+            this.mPreviewSecondRender.clearRenders();
+            if (EffectController.getInstance().needDestroyMakeup()) {
+                removeCache(FilterInfo.RENDER_ID_MAKEUP);
+                EffectController.getInstance().setDestroyMakeup(false);
+            }
+            Render fetchRender;
+            if (this.mIsStickerEnabled) {
+                if (this.mEffectId != FilterInfo.FILTER_ID_NONE) {
+                    fetchRender = fetchRender(this.mEffectId);
+                    if (fetchRender != null) {
+                        this.mPreviewSecondRender.addRender(fetchRender);
+                    }
+                }
+                fetchRender = fetchRender(FilterInfo.FILTER_ID_STICKER);
+                if (fetchRender != null) {
+                    this.mPreviewSecondRender.addRender(fetchRender);
+                }
+            } else {
+                Render fetchRender2;
+                Render fetchRender3;
+                Render fetchRender4;
+                Render render = null;
+                if (this.mIsMakeupEnabled) {
+                    fetchRender = fetchRender(FilterInfo.RENDER_ID_MAKEUP);
+                } else {
+                    fetchRender = null;
+                }
+                if (this.mEffectId != FilterInfo.FILTER_ID_NONE) {
+                    fetchRender2 = fetchRender(this.mEffectId);
+                } else {
+                    fetchRender2 = null;
+                }
+                if (this.mIsGradienterEnabled) {
+                    fetchRender3 = fetchRender(FilterInfo.FILTER_ID_GRADIENTER);
+                } else {
+                    fetchRender3 = null;
+                }
+                if (this.mTiltShiftMode != null) {
+                    if (CameraSettings.getString(R.string.pref_camera_tilt_shift_entryvalue_circle).equals(this.mTiltShiftMode)) {
+                        fetchRender4 = fetchRender(FilterInfo.FILTER_ID_GAUSSIAN);
+                    } else if (CameraSettings.getString(R.string.pref_camera_tilt_shift_entryvalue_parallel).equals(this.mTiltShiftMode)) {
+                        fetchRender4 = fetchRender(FilterInfo.FILTER_ID_TILTSHIFT);
+                    }
+                    if (this.mIsFocusPeakEnabled) {
+                        render = fetchRender(FilterInfo.FILTER_ID_PEAKINGMF);
+                    }
+                    if (fetchRender != null && EffectController.getInstance().isBeautyFrameReady()) {
+                        this.mPreviewSecondRender.addRender(fetchRender);
+                    }
+                    if (fetchRender2 != null) {
+                        this.mPreviewSecondRender.addRender(fetchRender2);
+                    }
+                    if (fetchRender3 == null) {
+                        this.mPreviewSecondRender.addRender(fetchRender3);
+                    } else if (fetchRender4 != null) {
+                        this.mPreviewSecondRender.addRender(fetchRender4);
+                    } else if (render != null) {
+                        this.mPreviewSecondRender.addRender(render);
+                    }
+                }
+                fetchRender4 = null;
+                if (this.mIsFocusPeakEnabled) {
+                }
+                this.mPreviewSecondRender.addRender(fetchRender);
+                if (fetchRender2 != null) {
+                }
+                if (fetchRender3 == null) {
+                }
+            }
+            this.mPreviewSecondRender.setFrameBufferSize(this.mPreviewWidth, this.mPreviewHeight);
+            this.mRenderChanged = Boolean.valueOf(false);
+        }
+        return true;
     }
 }

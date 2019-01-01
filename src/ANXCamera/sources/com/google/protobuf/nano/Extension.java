@@ -312,213 +312,76 @@ public class Extension<M extends ExtendableMessageNano<M>, T> {
         /* JADX WARNING: Missing block: B:74:?, code:
             return;
      */
-        protected void writeRepeatedData(java.lang.Object r6, com.google.protobuf.nano.CodedOutputByteBufferNano r7) {
-            /*
-            r5 = this;
-            r0 = r5.tag;
-            r1 = r5.nonPackedTag;
-            if (r0 != r1) goto L_0x000b;
-        L_0x0006:
-            super.writeRepeatedData(r6, r7);
-            goto L_0x0103;
-        L_0x000b:
-            r0 = r5.tag;
-            r1 = r5.packedTag;
-            if (r0 != r1) goto L_0x010b;
-        L_0x0011:
-            r0 = java.lang.reflect.Array.getLength(r6);
-            r1 = r5.computePackedDataSize(r6);
-            r2 = r5.tag;	 Catch:{ IOException -> 0x0104 }
-            r7.writeRawVarint32(r2);	 Catch:{ IOException -> 0x0104 }
-            r7.writeRawVarint32(r1);	 Catch:{ IOException -> 0x0104 }
-            r1 = r5.type;	 Catch:{ IOException -> 0x0104 }
-            r2 = 0;
-            switch(r1) {
-                case 1: goto L_0x00f4;
-                case 2: goto L_0x00e7;
-                case 3: goto L_0x00da;
-                case 4: goto L_0x00cd;
-                case 5: goto L_0x00c0;
-                case 6: goto L_0x00b3;
-                case 7: goto L_0x00a6;
-                case 8: goto L_0x0099;
-                default: goto L_0x0027;
-            };	 Catch:{ IOException -> 0x0104 }
-        L_0x0027:
-            switch(r1) {
-                case 13: goto L_0x008b;
-                case 14: goto L_0x007d;
-                case 15: goto L_0x006f;
-                case 16: goto L_0x0061;
-                case 17: goto L_0x0053;
-                case 18: goto L_0x0045;
-                default: goto L_0x002a;
-            };	 Catch:{ IOException -> 0x0104 }
-        L_0x002a:
-            r6 = new java.lang.IllegalArgumentException;	 Catch:{ IOException -> 0x0104 }
-            r7 = r5.type;	 Catch:{ IOException -> 0x0104 }
-            r0 = 27;
-            r1 = new java.lang.StringBuilder;	 Catch:{ IOException -> 0x0104 }
-            r1.<init>(r0);	 Catch:{ IOException -> 0x0104 }
-            r0 = "Unpackable type ";
-            r1.append(r0);	 Catch:{ IOException -> 0x0104 }
-            r1.append(r7);	 Catch:{ IOException -> 0x0104 }
-            r7 = r1.toString();	 Catch:{ IOException -> 0x0104 }
-            r6.<init>(r7);	 Catch:{ IOException -> 0x0104 }
-            throw r6;	 Catch:{ IOException -> 0x0104 }
-        L_0x0045:
-            if (r2 >= r0) goto L_0x0051;
-        L_0x0047:
-            r3 = java.lang.reflect.Array.getLong(r6, r2);	 Catch:{ IOException -> 0x0104 }
-            r7.writeSInt64NoTag(r3);	 Catch:{ IOException -> 0x0104 }
-            r2 = r2 + 1;
-            goto L_0x0045;
-        L_0x0051:
-            goto L_0x0101;
-        L_0x0053:
-            if (r2 >= r0) goto L_0x005f;
-        L_0x0055:
-            r1 = java.lang.reflect.Array.getInt(r6, r2);	 Catch:{ IOException -> 0x0104 }
-            r7.writeSInt32NoTag(r1);	 Catch:{ IOException -> 0x0104 }
-            r2 = r2 + 1;
-            goto L_0x0053;
-        L_0x005f:
-            goto L_0x0101;
-        L_0x0061:
-            if (r2 >= r0) goto L_0x006d;
-        L_0x0063:
-            r3 = java.lang.reflect.Array.getLong(r6, r2);	 Catch:{ IOException -> 0x0104 }
-            r7.writeSFixed64NoTag(r3);	 Catch:{ IOException -> 0x0104 }
-            r2 = r2 + 1;
-            goto L_0x0061;
-        L_0x006d:
-            goto L_0x0101;
-        L_0x006f:
-            if (r2 >= r0) goto L_0x007b;
-        L_0x0071:
-            r1 = java.lang.reflect.Array.getInt(r6, r2);	 Catch:{ IOException -> 0x0104 }
-            r7.writeSFixed32NoTag(r1);	 Catch:{ IOException -> 0x0104 }
-            r2 = r2 + 1;
-            goto L_0x006f;
-        L_0x007b:
-            goto L_0x0101;
-        L_0x007d:
-            if (r2 >= r0) goto L_0x0089;
-        L_0x007f:
-            r1 = java.lang.reflect.Array.getInt(r6, r2);	 Catch:{ IOException -> 0x0104 }
-            r7.writeEnumNoTag(r1);	 Catch:{ IOException -> 0x0104 }
-            r2 = r2 + 1;
-            goto L_0x007d;
-        L_0x0089:
-            goto L_0x0101;
-        L_0x008b:
-            if (r2 >= r0) goto L_0x0097;
-        L_0x008d:
-            r1 = java.lang.reflect.Array.getInt(r6, r2);	 Catch:{ IOException -> 0x0104 }
-            r7.writeUInt32NoTag(r1);	 Catch:{ IOException -> 0x0104 }
-            r2 = r2 + 1;
-            goto L_0x008b;
-        L_0x0097:
-            goto L_0x0101;
-        L_0x0099:
-            if (r2 >= r0) goto L_0x00a5;
-        L_0x009b:
-            r1 = java.lang.reflect.Array.getBoolean(r6, r2);	 Catch:{ IOException -> 0x0104 }
-            r7.writeBoolNoTag(r1);	 Catch:{ IOException -> 0x0104 }
-            r2 = r2 + 1;
-            goto L_0x0099;
-        L_0x00a5:
-            goto L_0x0101;
-        L_0x00a6:
-            if (r2 >= r0) goto L_0x00b2;
-        L_0x00a8:
-            r1 = java.lang.reflect.Array.getInt(r6, r2);	 Catch:{ IOException -> 0x0104 }
-            r7.writeFixed32NoTag(r1);	 Catch:{ IOException -> 0x0104 }
-            r2 = r2 + 1;
-            goto L_0x00a6;
-        L_0x00b2:
-            goto L_0x0101;
-        L_0x00b3:
-            if (r2 >= r0) goto L_0x00bf;
-        L_0x00b5:
-            r3 = java.lang.reflect.Array.getLong(r6, r2);	 Catch:{ IOException -> 0x0104 }
-            r7.writeFixed64NoTag(r3);	 Catch:{ IOException -> 0x0104 }
-            r2 = r2 + 1;
-            goto L_0x00b3;
-        L_0x00bf:
-            goto L_0x0101;
-        L_0x00c0:
-            if (r2 >= r0) goto L_0x00cc;
-        L_0x00c2:
-            r1 = java.lang.reflect.Array.getInt(r6, r2);	 Catch:{ IOException -> 0x0104 }
-            r7.writeInt32NoTag(r1);	 Catch:{ IOException -> 0x0104 }
-            r2 = r2 + 1;
-            goto L_0x00c0;
-        L_0x00cc:
-            goto L_0x0101;
-        L_0x00cd:
-            if (r2 >= r0) goto L_0x00d9;
-        L_0x00cf:
-            r3 = java.lang.reflect.Array.getLong(r6, r2);	 Catch:{ IOException -> 0x0104 }
-            r7.writeUInt64NoTag(r3);	 Catch:{ IOException -> 0x0104 }
-            r2 = r2 + 1;
-            goto L_0x00cd;
-        L_0x00d9:
-            goto L_0x0101;
-        L_0x00da:
-            if (r2 >= r0) goto L_0x00e6;
-        L_0x00dc:
-            r3 = java.lang.reflect.Array.getLong(r6, r2);	 Catch:{ IOException -> 0x0104 }
-            r7.writeInt64NoTag(r3);	 Catch:{ IOException -> 0x0104 }
-            r2 = r2 + 1;
-            goto L_0x00da;
-        L_0x00e6:
-            goto L_0x0101;
-        L_0x00e7:
-            if (r2 >= r0) goto L_0x00f3;
-        L_0x00e9:
-            r1 = java.lang.reflect.Array.getFloat(r6, r2);	 Catch:{ IOException -> 0x0104 }
-            r7.writeFloatNoTag(r1);	 Catch:{ IOException -> 0x0104 }
-            r2 = r2 + 1;
-            goto L_0x00e7;
-        L_0x00f3:
-            goto L_0x0101;
-        L_0x00f4:
-            if (r2 >= r0) goto L_0x0100;
-        L_0x00f6:
-            r3 = java.lang.reflect.Array.getDouble(r6, r2);	 Catch:{ IOException -> 0x0104 }
-            r7.writeDoubleNoTag(r3);	 Catch:{ IOException -> 0x0104 }
-            r2 = r2 + 1;
-            goto L_0x00f4;
-        L_0x0103:
-            return;
-        L_0x0104:
-            r6 = move-exception;
-            r7 = new java.lang.IllegalStateException;
-            r7.<init>(r6);
-            throw r7;
-        L_0x010b:
-            r6 = new java.lang.IllegalArgumentException;
-            r7 = r5.tag;
-            r0 = r5.nonPackedTag;
-            r1 = r5.packedTag;
-            r2 = 124; // 0x7c float:1.74E-43 double:6.13E-322;
-            r3 = new java.lang.StringBuilder;
-            r3.<init>(r2);
-            r2 = "Unexpected repeated extension tag ";
-            r3.append(r2);
-            r3.append(r7);
-            r7 = ", unequal to both non-packed variant ";
-            r3.append(r7);
-            r3.append(r0);
-            r7 = " and packed variant ";
-            r3.append(r7);
-            r3.append(r1);
-            r7 = r3.toString();
-            r6.<init>(r7);
-            throw r6;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.google.protobuf.nano.Extension.PrimitiveExtension.writeRepeatedData(java.lang.Object, com.google.protobuf.nano.CodedOutputByteBufferNano):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        protected void writeRepeatedData(Object obj, CodedOutputByteBufferNano codedOutputByteBufferNano) {
+            int length;
+            int computePackedDataSize;
+            int i;
+            if (this.tag == this.nonPackedTag) {
+                super.writeRepeatedData(obj, codedOutputByteBufferNano);
+            } else if (this.tag == this.packedTag) {
+                length = Array.getLength(obj);
+                computePackedDataSize = computePackedDataSize(obj);
+                try {
+                    codedOutputByteBufferNano.writeRawVarint32(this.tag);
+                    codedOutputByteBufferNano.writeRawVarint32(computePackedDataSize);
+                    computePackedDataSize = this.type;
+                    int i2 = 0;
+                    switch (computePackedDataSize) {
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+                        case 5:
+                            break;
+                        case 6:
+                            break;
+                        case 7:
+                            break;
+                        case 8:
+                            break;
+                        default:
+                            switch (computePackedDataSize) {
+                                case 13:
+                                    break;
+                                case 14:
+                                    break;
+                                case 15:
+                                    break;
+                                case 16:
+                                    break;
+                                case 17:
+                                    break;
+                                case 18:
+                                    break;
+                                default:
+                                    i = this.type;
+                                    StringBuilder stringBuilder = new StringBuilder(27);
+                                    stringBuilder.append("Unpackable type ");
+                                    stringBuilder.append(i);
+                                    throw new IllegalArgumentException(stringBuilder.toString());
+                            }
+                    }
+                } catch (Throwable e) {
+                    throw new IllegalStateException(e);
+                }
+            } else {
+                i = this.tag;
+                length = this.nonPackedTag;
+                computePackedDataSize = this.packedTag;
+                StringBuilder stringBuilder2 = new StringBuilder(124);
+                stringBuilder2.append("Unexpected repeated extension tag ");
+                stringBuilder2.append(i);
+                stringBuilder2.append(", unequal to both non-packed variant ");
+                stringBuilder2.append(length);
+                stringBuilder2.append(" and packed variant ");
+                stringBuilder2.append(computePackedDataSize);
+                throw new IllegalArgumentException(stringBuilder2.toString());
+            }
         }
 
         /* JADX WARNING: Missing block: B:26:0x009d, code:
@@ -530,141 +393,83 @@ public class Extension<M extends ExtendableMessageNano<M>, T> {
         /* JADX WARNING: Missing block: B:36:?, code:
             return r0;
      */
-        private int computePackedDataSize(java.lang.Object r6) {
-            /*
-            r5 = this;
-            r0 = java.lang.reflect.Array.getLength(r6);
-            r1 = r5.type;
-            r2 = 0;
-            switch(r1) {
-                case 1: goto L_0x00a0;
-                case 2: goto L_0x009d;
-                case 3: goto L_0x008d;
-                case 4: goto L_0x007d;
-                case 5: goto L_0x006d;
-                case 6: goto L_0x00a0;
-                case 7: goto L_0x009d;
-                case 8: goto L_0x006b;
-                default: goto L_0x000b;
-            };
-        L_0x000b:
-            switch(r1) {
-                case 13: goto L_0x005b;
-                case 14: goto L_0x004b;
-                case 15: goto L_0x009d;
-                case 16: goto L_0x00a0;
-                case 17: goto L_0x003a;
-                case 18: goto L_0x0029;
-                default: goto L_0x000e;
-            };
-        L_0x000e:
-            r6 = new java.lang.IllegalArgumentException;
-            r0 = r5.type;
-            r1 = 40;
-            r2 = new java.lang.StringBuilder;
-            r2.<init>(r1);
-            r1 = "Unexpected non-packable type ";
-            r2.append(r1);
-            r2.append(r0);
-            r0 = r2.toString();
-            r6.<init>(r0);
-            throw r6;
-        L_0x0029:
-            r1 = r2;
-        L_0x002a:
-            if (r2 >= r0) goto L_0x0038;
-        L_0x002c:
-            r3 = java.lang.reflect.Array.getLong(r6, r2);
-            r3 = com.google.protobuf.nano.CodedOutputByteBufferNano.computeSInt64SizeNoTag(r3);
-            r1 = r1 + r3;
-            r2 = r2 + 1;
-            goto L_0x002a;
-        L_0x0038:
-            goto L_0x00a4;
-        L_0x003a:
-            r1 = r2;
-        L_0x003b:
-            if (r2 >= r0) goto L_0x0049;
-        L_0x003d:
-            r3 = java.lang.reflect.Array.getInt(r6, r2);
-            r3 = com.google.protobuf.nano.CodedOutputByteBufferNano.computeSInt32SizeNoTag(r3);
-            r1 = r1 + r3;
-            r2 = r2 + 1;
-            goto L_0x003b;
-        L_0x0049:
-            goto L_0x00a4;
-        L_0x004b:
-            r1 = r2;
-        L_0x004c:
-            if (r2 >= r0) goto L_0x005a;
-        L_0x004e:
-            r3 = java.lang.reflect.Array.getInt(r6, r2);
-            r3 = com.google.protobuf.nano.CodedOutputByteBufferNano.computeEnumSizeNoTag(r3);
-            r1 = r1 + r3;
-            r2 = r2 + 1;
-            goto L_0x004c;
-        L_0x005a:
-            goto L_0x00a4;
-        L_0x005b:
-            r1 = r2;
-        L_0x005c:
-            if (r2 >= r0) goto L_0x006a;
-        L_0x005e:
-            r3 = java.lang.reflect.Array.getInt(r6, r2);
-            r3 = com.google.protobuf.nano.CodedOutputByteBufferNano.computeUInt32SizeNoTag(r3);
-            r1 = r1 + r3;
-            r2 = r2 + 1;
-            goto L_0x005c;
-        L_0x006a:
-            goto L_0x00a4;
-            goto L_0x00a3;
-        L_0x006d:
-            r1 = r2;
-        L_0x006e:
-            if (r2 >= r0) goto L_0x007c;
-        L_0x0070:
-            r3 = java.lang.reflect.Array.getInt(r6, r2);
-            r3 = com.google.protobuf.nano.CodedOutputByteBufferNano.computeInt32SizeNoTag(r3);
-            r1 = r1 + r3;
-            r2 = r2 + 1;
-            goto L_0x006e;
-        L_0x007c:
-            goto L_0x00a4;
-        L_0x007d:
-            r1 = r2;
-        L_0x007e:
-            if (r2 >= r0) goto L_0x008c;
-        L_0x0080:
-            r3 = java.lang.reflect.Array.getLong(r6, r2);
-            r3 = com.google.protobuf.nano.CodedOutputByteBufferNano.computeUInt64SizeNoTag(r3);
-            r1 = r1 + r3;
-            r2 = r2 + 1;
-            goto L_0x007e;
-        L_0x008c:
-            goto L_0x00a4;
-        L_0x008d:
-            r1 = r2;
-        L_0x008e:
-            if (r2 >= r0) goto L_0x009c;
-        L_0x0090:
-            r3 = java.lang.reflect.Array.getLong(r6, r2);
-            r3 = com.google.protobuf.nano.CodedOutputByteBufferNano.computeInt64SizeNoTag(r3);
-            r1 = r1 + r3;
-            r2 = r2 + 1;
-            goto L_0x008e;
-        L_0x009c:
-            goto L_0x00a4;
-        L_0x009d:
-            r0 = r0 * 4;
-            goto L_0x00a3;
-        L_0x00a0:
-            r0 = r0 * 8;
-        L_0x00a3:
-            r1 = r0;
-        L_0x00a4:
-            return r1;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.google.protobuf.nano.Extension.PrimitiveExtension.computePackedDataSize(java.lang.Object):int");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        private int computePackedDataSize(Object obj) {
+            int length = Array.getLength(obj);
+            int i = this.type;
+            int i2 = 0;
+            switch (i) {
+                case 1:
+                case 6:
+                    break;
+                case 2:
+                case 7:
+                    break;
+                case 3:
+                    i = 0;
+                    while (i2 < length) {
+                        i += CodedOutputByteBufferNano.computeInt64SizeNoTag(Array.getLong(obj, i2));
+                        i2++;
+                    }
+                    return i;
+                case 4:
+                    i = 0;
+                    while (i2 < length) {
+                        i += CodedOutputByteBufferNano.computeUInt64SizeNoTag(Array.getLong(obj, i2));
+                        i2++;
+                    }
+                    return i;
+                case 5:
+                    i = 0;
+                    while (i2 < length) {
+                        i += CodedOutputByteBufferNano.computeInt32SizeNoTag(Array.getInt(obj, i2));
+                        i2++;
+                    }
+                    return i;
+                case 8:
+                    break;
+                default:
+                    switch (i) {
+                        case 13:
+                            i = 0;
+                            while (i2 < length) {
+                                i += CodedOutputByteBufferNano.computeUInt32SizeNoTag(Array.getInt(obj, i2));
+                                i2++;
+                            }
+                            return i;
+                        case 14:
+                            i = 0;
+                            while (i2 < length) {
+                                i += CodedOutputByteBufferNano.computeEnumSizeNoTag(Array.getInt(obj, i2));
+                                i2++;
+                            }
+                            return i;
+                        case 15:
+                            break;
+                        case 16:
+                            break;
+                        case 17:
+                            i = 0;
+                            while (i2 < length) {
+                                i += CodedOutputByteBufferNano.computeSInt32SizeNoTag(Array.getInt(obj, i2));
+                                i2++;
+                            }
+                            return i;
+                        case 18:
+                            i = 0;
+                            while (i2 < length) {
+                                i += CodedOutputByteBufferNano.computeSInt64SizeNoTag(Array.getLong(obj, i2));
+                                i2++;
+                            }
+                            return i;
+                        default:
+                            length = this.type;
+                            StringBuilder stringBuilder = new StringBuilder(40);
+                            stringBuilder.append("Unexpected non-packable type ");
+                            stringBuilder.append(length);
+                            throw new IllegalArgumentException(stringBuilder.toString());
+                    }
+            }
         }
 
         protected int computeRepeatedSerializedSize(Object obj) {

@@ -3,10 +3,14 @@ package com.bumptech.glide.util;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileChannel.MapMode;
 import java.util.concurrent.atomic.AtomicReference;
 
 /* compiled from: ByteBufferUtil */
@@ -91,142 +95,137 @@ public final class a {
     /* JADX WARNING: Removed duplicated region for block: B:34:0x005c A:{SYNTHETIC, Splitter: B:34:0x005c} */
     /* JADX WARNING: Removed duplicated region for block: B:30:0x0055 A:{SYNTHETIC, Splitter: B:30:0x0055} */
     /* JADX WARNING: Removed duplicated region for block: B:34:0x005c A:{SYNTHETIC, Splitter: B:34:0x005c} */
-    @android.support.annotation.NonNull
-    public static java.nio.ByteBuffer l(@android.support.annotation.NonNull java.io.File r9) throws java.io.IOException {
-        /*
-        r0 = 0;
-        r5 = r9.length();	 Catch:{ all -> 0x0051 }
-        r1 = 2147483647; // 0x7fffffff float:NaN double:1.060997895E-314;
-        r1 = (r5 > r1 ? 1 : (r5 == r1 ? 0 : -1));
-        if (r1 > 0) goto L_0x0049;
-    L_0x000e:
-        r1 = 0;
-        r1 = (r5 > r1 ? 1 : (r5 == r1 ? 0 : -1));
-        if (r1 == 0) goto L_0x0041;
-    L_0x0014:
-        r7 = new java.io.RandomAccessFile;	 Catch:{ all -> 0x0051 }
-        r1 = "r";
-        r7.<init>(r9, r1);	 Catch:{ all -> 0x0051 }
-        r9 = r7.getChannel();	 Catch:{ all -> 0x003f }
-        r2 = java.nio.channels.FileChannel.MapMode.READ_ONLY;	 Catch:{ all -> 0x003a }
-        r3 = 0;
-        r1 = r9;
-        r0 = r1.map(r2, r3, r5);	 Catch:{ all -> 0x003a }
-        r0 = r0.load();	 Catch:{ all -> 0x003a }
-        if (r9 == 0) goto L_0x0033;
-    L_0x002e:
-        r9.close();	 Catch:{ IOException -> 0x0032 }
-        goto L_0x0033;
-    L_0x0032:
-        r9 = move-exception;
-        r7.close();	 Catch:{ IOException -> 0x0038 }
-        goto L_0x0039;
-    L_0x0038:
-        r9 = move-exception;
-    L_0x0039:
-        return r0;
-    L_0x003a:
-        r0 = move-exception;
-        r8 = r0;
-        r0 = r9;
-        r9 = r8;
-        goto L_0x0053;
-    L_0x003f:
-        r9 = move-exception;
-        goto L_0x0053;
-    L_0x0041:
-        r9 = new java.io.IOException;	 Catch:{ all -> 0x0051 }
-        r1 = "File unsuitable for memory mapping";
-        r9.<init>(r1);	 Catch:{ all -> 0x0051 }
-        throw r9;	 Catch:{ all -> 0x0051 }
-    L_0x0049:
-        r9 = new java.io.IOException;	 Catch:{ all -> 0x0051 }
-        r1 = "File too large to map into memory";
-        r9.<init>(r1);	 Catch:{ all -> 0x0051 }
-        throw r9;	 Catch:{ all -> 0x0051 }
-    L_0x0051:
-        r9 = move-exception;
-        r7 = r0;
-    L_0x0053:
-        if (r0 == 0) goto L_0x005a;
-    L_0x0055:
-        r0.close();	 Catch:{ IOException -> 0x0059 }
-        goto L_0x005a;
-    L_0x0059:
-        r0 = move-exception;
-    L_0x005a:
-        if (r7 == 0) goto L_0x0061;
-    L_0x005c:
-        r7.close();	 Catch:{ IOException -> 0x0060 }
-        goto L_0x0061;
-    L_0x0060:
-        r0 = move-exception;
-    L_0x0061:
-        throw r9;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.bumptech.glide.util.a.l(java.io.File):java.nio.ByteBuffer");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    @NonNull
+    public static ByteBuffer l(@NonNull File file) throws IOException {
+        Throwable th;
+        FileChannel fileChannel = null;
+        RandomAccessFile randomAccessFile;
+        try {
+            long length = file.length();
+            if (length > 2147483647L) {
+                throw new IOException("File too large to map into memory");
+            } else if (length != 0) {
+                randomAccessFile = new RandomAccessFile(file, "r");
+                try {
+                    FileChannel channel = randomAccessFile.getChannel();
+                    try {
+                        ByteBuffer load = channel.map(MapMode.READ_ONLY, 0, length).load();
+                        if (channel != null) {
+                            try {
+                                channel.close();
+                            } catch (IOException e) {
+                            }
+                        }
+                        try {
+                            randomAccessFile.close();
+                        } catch (IOException e2) {
+                        }
+                        return load;
+                    } catch (Throwable th2) {
+                        Throwable th3 = th2;
+                        fileChannel = channel;
+                        th = th3;
+                        if (fileChannel != null) {
+                        }
+                        if (randomAccessFile != null) {
+                        }
+                        throw th;
+                    }
+                } catch (Throwable th4) {
+                    th = th4;
+                    if (fileChannel != null) {
+                    }
+                    if (randomAccessFile != null) {
+                    }
+                    throw th;
+                }
+            } else {
+                throw new IOException("File unsuitable for memory mapping");
+            }
+        } catch (Throwable th5) {
+            th = th5;
+            randomAccessFile = null;
+            if (fileChannel != null) {
+                try {
+                    fileChannel.close();
+                } catch (IOException e3) {
+                }
+            }
+            if (randomAccessFile != null) {
+                try {
+                    randomAccessFile.close();
+                } catch (IOException e4) {
+                }
+            }
+            throw th;
+        }
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0037 A:{SYNTHETIC, Splitter: B:20:0x0037} */
     /* JADX WARNING: Removed duplicated region for block: B:24:0x003e A:{SYNTHETIC, Splitter: B:24:0x003e} */
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0037 A:{SYNTHETIC, Splitter: B:20:0x0037} */
     /* JADX WARNING: Removed duplicated region for block: B:24:0x003e A:{SYNTHETIC, Splitter: B:24:0x003e} */
-    public static void a(@android.support.annotation.NonNull java.nio.ByteBuffer r4, @android.support.annotation.NonNull java.io.File r5) throws java.io.IOException {
-        /*
-        r0 = 0;
-        r4.position(r0);
-        r1 = 0;
-        r2 = new java.io.RandomAccessFile;	 Catch:{ all -> 0x0032 }
-        r3 = "rw";
-        r2.<init>(r5, r3);	 Catch:{ all -> 0x0032 }
-        r5 = r2.getChannel();	 Catch:{ all -> 0x002f }
-        r5.write(r4);	 Catch:{ all -> 0x002d }
-        r5.force(r0);	 Catch:{ all -> 0x002d }
-        r5.close();	 Catch:{ all -> 0x002d }
-        r2.close();	 Catch:{ all -> 0x002d }
-        if (r5 == 0) goto L_0x0025;
-    L_0x0020:
-        r5.close();	 Catch:{ IOException -> 0x0024 }
-        goto L_0x0025;
-    L_0x0024:
-        r4 = move-exception;
-        r2.close();	 Catch:{ IOException -> 0x002a }
-    L_0x0029:
-        goto L_0x002c;
-    L_0x002a:
-        r4 = move-exception;
-        goto L_0x0029;
-    L_0x002c:
-        return;
-    L_0x002d:
-        r4 = move-exception;
-        goto L_0x0035;
-    L_0x002f:
-        r4 = move-exception;
-        r5 = r1;
-        goto L_0x0035;
-    L_0x0032:
-        r4 = move-exception;
-        r5 = r1;
-        r2 = r5;
-    L_0x0035:
-        if (r5 == 0) goto L_0x003c;
-    L_0x0037:
-        r5.close();	 Catch:{ IOException -> 0x003b }
-        goto L_0x003c;
-    L_0x003b:
-        r5 = move-exception;
-    L_0x003c:
-        if (r2 == 0) goto L_0x0043;
-    L_0x003e:
-        r2.close();	 Catch:{ IOException -> 0x0042 }
-        goto L_0x0043;
-    L_0x0042:
-        r5 = move-exception;
-    L_0x0043:
-        throw r4;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.bumptech.glide.util.a.a(java.nio.ByteBuffer, java.io.File):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static void a(@NonNull ByteBuffer byteBuffer, @NonNull File file) throws IOException {
+        FileChannel channel;
+        Throwable th;
+        byteBuffer.position(0);
+        RandomAccessFile randomAccessFile;
+        try {
+            randomAccessFile = new RandomAccessFile(file, "rw");
+            try {
+                channel = randomAccessFile.getChannel();
+            } catch (Throwable th2) {
+                th = th2;
+                channel = null;
+                if (channel != null) {
+                }
+                if (randomAccessFile != null) {
+                }
+                throw th;
+            }
+            try {
+                channel.write(byteBuffer);
+                channel.force(false);
+                channel.close();
+                randomAccessFile.close();
+                if (channel != null) {
+                    try {
+                        channel.close();
+                    } catch (IOException e) {
+                    }
+                }
+                try {
+                    randomAccessFile.close();
+                } catch (IOException e2) {
+                }
+            } catch (Throwable th3) {
+                th = th3;
+                if (channel != null) {
+                }
+                if (randomAccessFile != null) {
+                }
+                throw th;
+            }
+        } catch (Throwable th4) {
+            th = th4;
+            channel = null;
+            randomAccessFile = channel;
+            if (channel != null) {
+                try {
+                    channel.close();
+                } catch (IOException e3) {
+                }
+            }
+            if (randomAccessFile != null) {
+                try {
+                    randomAccessFile.close();
+                } catch (IOException e4) {
+                }
+            }
+            throw th;
+        }
     }
 
     public static void a(@NonNull ByteBuffer byteBuffer, @NonNull OutputStream outputStream) throws IOException {

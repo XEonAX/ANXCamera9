@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraCaptureSession;
@@ -56,6 +57,7 @@ import com.android.camera.data.data.runing.DataItemRunning;
 import com.android.camera.db.DbRepository;
 import com.android.camera.db.element.SaveTask;
 import com.android.camera.effect.EffectController;
+import com.android.camera.effect.FaceAnalyzeInfo;
 import com.android.camera.effect.FilterInfo;
 import com.android.camera.effect.draw_mode.DrawExtTexAttribute;
 import com.android.camera.effect.renders.SnapshotEffectRender;
@@ -89,6 +91,7 @@ import com.android.camera.protocol.ModeProtocol.DualController;
 import com.android.camera.protocol.ModeProtocol.FaceBeautyProtocol;
 import com.android.camera.protocol.ModeProtocol.FilterProtocol;
 import com.android.camera.protocol.ModeProtocol.FullScreenProtocol;
+import com.android.camera.protocol.ModeProtocol.MainContentProtocol;
 import com.android.camera.protocol.ModeProtocol.OnFaceBeautyChangedProtocol;
 import com.android.camera.protocol.ModeProtocol.SnapShotIndicator;
 import com.android.camera.protocol.ModeProtocol.TopAlert;
@@ -119,6 +122,7 @@ import com.ss.android.ttve.common.TEDefine;
 import com.xiaomi.camera.base.PerformanceTracker;
 import com.xiaomi.camera.core.ParallelTaskData;
 import com.xiaomi.camera.core.PictureInfo;
+import com.xiaomi.camera.core.ShotConstant;
 import com.xiaomi.camera.liveshot.CircularMediaRecorder;
 import com.xiaomi.engine.BufferFormat;
 import com.xiaomi.engine.GraphDescriptorBean;
@@ -142,6 +146,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -893,46 +898,14 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
     /* JADX WARNING: Missing block: B:16:0x0034, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public void startFaceDetection() {
-        /*
-        r2 = this;
-        r0 = r2.mFaceDetectionEnabled;
-        if (r0 == 0) goto L_0x0034;
-    L_0x0004:
-        r0 = r2.mFaceDetectionStarted;
-        if (r0 != 0) goto L_0x0034;
-    L_0x0008:
-        r0 = r2.mActivity;
-        if (r0 == 0) goto L_0x0034;
-    L_0x000c:
-        r0 = r2.mActivity;
-        r0 = r0.isActivityPaused();
-        if (r0 != 0) goto L_0x0034;
-    L_0x0014:
-        r0 = r2.isAlive();
-        if (r0 != 0) goto L_0x001b;
-    L_0x001a:
-        goto L_0x0034;
-    L_0x001b:
-        r0 = r2.mMaxFaceCount;
-        if (r0 <= 0) goto L_0x0033;
-    L_0x001f:
-        r0 = r2.mCamera2Device;
-        if (r0 == 0) goto L_0x0033;
-    L_0x0023:
-        r0 = 1;
-        r2.mFaceDetectionStarted = r0;
-        r1 = r2.mMainProtocol;
-        r1.setActiveIndicator(r0);
-        r1 = r2.mCamera2Device;
-        r1.startFaceDetection();
-        r2.updateFaceView(r0, r0);
-    L_0x0033:
-        return;
-    L_0x0034:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Camera2Module.startFaceDetection():void");
+        if (!(!this.mFaceDetectionEnabled || this.mFaceDetectionStarted || this.mActivity == null || this.mActivity.isActivityPaused() || !isAlive() || this.mMaxFaceCount <= 0 || this.mCamera2Device == null)) {
+            this.mFaceDetectionStarted = true;
+            this.mMainProtocol.setActiveIndicator(1);
+            this.mCamera2Device.startFaceDetection();
+            updateFaceView(true, true);
+        }
     }
 
     public void stopFaceDetection(boolean z) {
@@ -949,65 +922,17 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
     /* JADX WARNING: Missing block: B:22:0x0054, code:
             return;
      */
-    public void onFaceDetected(com.android.camera2.CameraHardwareFace[] r4, com.android.camera.effect.FaceAnalyzeInfo r5) {
-        /*
-        r3 = this;
-        r5 = r3.isAlive();
-        if (r5 == 0) goto L_0x0054;
-    L_0x0006:
-        r5 = r3.mActivity;
-        r5 = r5.getCameraScreenNail();
-        r5 = r5.getFrameAvailableFlag();
-        if (r5 != 0) goto L_0x0013;
-    L_0x0012:
-        goto L_0x0054;
-    L_0x0013:
-        if (r4 != 0) goto L_0x0016;
-    L_0x0015:
-        return;
-    L_0x0016:
-        r5 = com.mi.config.b.gg();
-        if (r5 == 0) goto L_0x003a;
-    L_0x001c:
-        r5 = r4.length;
-        if (r5 <= 0) goto L_0x003a;
-    L_0x001f:
-        r5 = 0;
-        r5 = r4[r5];
-        r5 = r5.faceType;
-        r0 = 64206; // 0xface float:8.9972E-41 double:3.1722E-319;
-        if (r5 != r0) goto L_0x003a;
-    L_0x0029:
-        r5 = r3.mObjectTrackingStarted;
-        if (r5 == 0) goto L_0x0053;
-    L_0x002d:
-        r5 = r3.mMainProtocol;
-        r0 = 3;
-        r1 = r3.getActiveArraySize();
-        r2 = r3.mZoomValue;
-        r5.setFaces(r0, r4, r1, r2);
-        goto L_0x0053;
-    L_0x003a:
-        r5 = r3.mMainProtocol;
-        r0 = 1;
-        r1 = r3.getActiveArraySize();
-        r2 = r3.mZoomValue;
-        r5 = r5.setFaces(r0, r4, r1, r2);
-        if (r5 != 0) goto L_0x004a;
-    L_0x0049:
-        return;
-    L_0x004a:
-        r5 = r3.mIsPortraitLightingOn;
-        if (r5 == 0) goto L_0x0053;
-    L_0x004e:
-        r5 = r3.mMainProtocol;
-        r5.lightingDetectFace(r4);
-    L_0x0053:
-        return;
-    L_0x0054:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Camera2Module.onFaceDetected(com.android.camera2.CameraHardwareFace[], com.android.camera.effect.FaceAnalyzeInfo):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void onFaceDetected(CameraHardwareFace[] cameraHardwareFaceArr, FaceAnalyzeInfo faceAnalyzeInfo) {
+        if (isAlive() && this.mActivity.getCameraScreenNail().getFrameAvailableFlag() && cameraHardwareFaceArr != null) {
+            if (b.gg() && cameraHardwareFaceArr.length > 0 && cameraHardwareFaceArr[0].faceType == CameraHardwareFace.CAMERA_META_DATA_T2T) {
+                if (this.mObjectTrackingStarted) {
+                    this.mMainProtocol.setFaces(3, cameraHardwareFaceArr, getActiveArraySize(), this.mZoomValue);
+                }
+            } else if (this.mMainProtocol.setFaces(1, cameraHardwareFaceArr, getActiveArraySize(), this.mZoomValue) && this.mIsPortraitLightingOn) {
+                this.mMainProtocol.lightingDetectFace(cameraHardwareFaceArr);
+            }
+        }
     }
 
     public boolean isFaceDetectStarted() {
@@ -1084,46 +1009,19 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
     /* JADX WARNING: Missing block: B:17:0x0037, code:
             return false;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private boolean checkShutterCondition() {
-        /*
-        r2 = this;
-        r0 = r2.isDoingAction();
-        r1 = 0;
-        if (r0 != 0) goto L_0x0037;
-    L_0x0007:
-        r0 = r2.isIgnoreTouchEvent();
-        if (r0 == 0) goto L_0x000e;
-    L_0x000d:
-        goto L_0x0037;
-    L_0x000e:
-        r0 = com.android.camera.storage.Storage.isLowStorageAtLastPoint();
-        if (r0 == 0) goto L_0x0015;
-    L_0x0014:
-        return r1;
-    L_0x0015:
-        r0 = r2.isFrontCamera();
-        if (r0 == 0) goto L_0x0024;
-    L_0x001b:
-        r0 = r2.mActivity;
-        r0 = r0.isScreenSlideOff();
-        if (r0 == 0) goto L_0x0024;
-    L_0x0023:
-        return r1;
-    L_0x0024:
-        r0 = com.android.camera.protocol.ModeCoordinatorImpl.getInstance();
-        r1 = 171; // 0xab float:2.4E-43 double:8.45E-322;
-        r0 = r0.getAttachProtocol(r1);
-        r0 = (com.android.camera.protocol.ModeProtocol.BackStack) r0;
-        if (r0 == 0) goto L_0x0035;
-    L_0x0032:
-        r0.handleBackStackFromShutter();
-    L_0x0035:
-        r0 = 1;
-        return r0;
-    L_0x0037:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Camera2Module.checkShutterCondition():boolean");
+        if (isDoingAction() || isIgnoreTouchEvent() || Storage.isLowStorageAtLastPoint()) {
+            return false;
+        }
+        if (isFrontCamera() && this.mActivity.isScreenSlideOff()) {
+            return false;
+        }
+        BackStack backStack = (BackStack) ModeCoordinatorImpl.getInstance().getAttachProtocol(171);
+        if (backStack != null) {
+            backStack.handleBackStackFromShutter();
+        }
+        return true;
     }
 
     public void onShutterButtonClick(int i) {
@@ -2034,141 +1932,86 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
     /* JADX WARNING: Removed duplicated region for block: B:34:0x00bf  */
     /* JADX WARNING: Removed duplicated region for block: B:32:0x00b8  */
     /* JADX WARNING: Removed duplicated region for block: B:37:0x00e8  */
-    public com.xiaomi.camera.core.ParallelTaskData onCaptureStart(long r31, int r33, java.lang.String r34) {
-        /*
-        r30 = this;
-        r0 = r30;
-        r1 = com.android.camera.CameraSettings.isLiveShotOn();
-        if (r1 == 0) goto L_0x000b;
-    L_0x0008:
-        r30.startLiveShotAnimation();
-    L_0x000b:
-        r30.onShutter();
-        r1 = com.android.camera.CameraSettings.isAgeGenderAndMagicMirrorWaterOpen();
-        r2 = 0;
-        if (r1 == 0) goto L_0x0036;
-    L_0x0016:
-        r1 = com.android.camera.protocol.ModeCoordinatorImpl.getInstance();
-        r3 = 166; // 0xa6 float:2.33E-43 double:8.2E-322;
-        r1 = r1.getAttachProtocol(r3);
-        r1 = (com.android.camera.protocol.ModeProtocol.MainContentProtocol) r1;
-        r1 = r1.getFaceWaterMarkInfos();
-        if (r1 == 0) goto L_0x0036;
-    L_0x0028:
-        r3 = r1.isEmpty();
-        if (r3 != 0) goto L_0x0036;
-    L_0x002e:
-        r3 = new java.util.ArrayList;
-        r3.<init>(r1);
-        r19 = r3;
-        goto L_0x0038;
-    L_0x0036:
-        r19 = r2;
-    L_0x0038:
-        r1 = new com.xiaomi.camera.core.ParallelTaskData;
-        r3 = r31;
-        r5 = r33;
-        r6 = r34;
-        r1.<init>(r3, r5, r6);
-        r5 = com.android.camera.CameraSettings.isDualCameraWaterMarkOpen();
-        r6 = r30.isFrontMirror();
-        r7 = com.android.camera.CameraSettings.getPortraitLightingPattern();
-        r3 = r0.mPreviewSize;
-        r8 = r3.width;
-        r3 = r0.mPreviewSize;
-        r9 = r3.height;
-        r3 = r0.mPictureSize;
-        r10 = r3.width;
-        r3 = r0.mPictureSize;
-        r11 = r3.height;
-        r3 = com.android.camera.effect.EffectController.getInstance();
-        r4 = 0;
-        r12 = r3.getEffectForSaving(r4);
-        r3 = -1;
-        r13 = r0.mOrientation;
-        if (r3 != r13) goto L_0x0070;
-    L_0x006e:
-        r13 = r4;
-        goto L_0x0073;
-    L_0x0070:
-        r3 = r0.mOrientation;
-        r13 = r3;
-    L_0x0073:
-        r14 = r0.mJpegRotation;
-        r3 = com.android.camera.CameraSettings.isGradienterOn();
-        if (r3 == 0) goto L_0x0085;
-    L_0x007b:
-        r3 = r0.mShootRotation;
-        r4 = -1082130432; // 0xffffffffbf800000 float:-1.0 double:NaN;
-        r3 = (r3 > r4 ? 1 : (r3 == r4 ? 0 : -1));
-        if (r3 != 0) goto L_0x0085;
-    L_0x0083:
-        r3 = 0;
-        goto L_0x0087;
-    L_0x0085:
-        r3 = r0.mShootRotation;
-    L_0x0087:
-        r15 = r3;
-        r3 = r0.mShootOrientation;
-        r4 = r0.mLocation;
-        r16 = com.android.camera.CameraSettings.isTimeWaterMarkOpen();
-        if (r16 == 0) goto L_0x0099;
-    L_0x0092:
-        r2 = com.android.camera.Util.getTimeWatermark();
-    L_0x0096:
-        r18 = r2;
-        goto L_0x009a;
-    L_0x0099:
-        goto L_0x0096;
-    L_0x009a:
-        r20 = com.android.camera.CameraSettings.isAgeGenderAndMagicMirrorWaterOpen();
-        r21 = r30.isFrontCamera();
-        r2 = r0.mOutPutSize;
-        if (r2 != 0) goto L_0x00ad;
-    L_0x00a6:
-        r2 = r0.mPictureSize;
-        r2 = r2.width;
-    L_0x00aa:
-        r22 = r2;
-        goto L_0x00b4;
-    L_0x00ad:
-        r2 = r0.mOutPutSize;
-        r2 = r2.getWidth();
-        goto L_0x00aa;
-    L_0x00b4:
-        r2 = r0.mOutPutSize;
-        if (r2 != 0) goto L_0x00bf;
-    L_0x00b8:
-        r2 = r0.mPictureSize;
-        r2 = r2.height;
-    L_0x00bc:
-        r23 = r2;
-        goto L_0x00c6;
-    L_0x00bf:
-        r2 = r0.mOutPutSize;
-        r2 = r2.getHeight();
-        goto L_0x00bc;
-    L_0x00c6:
-        r24 = r30.isBokehFrontCamera();
-        r2 = r0.mAlgorithmName;
-        r26 = r30.getPictureInfo();
-        r27 = r30.getSuffix();
-        r29 = r4;
-        r4 = r0.mEnabledPreviewThumbnail;
-        r28 = r4 ^ 1;
-        r17 = r29;
-        r4 = r1;
-        r16 = r3;
-        r25 = r2;
-        r4.fillParameter(r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16, r17, r18, r19, r20, r21, r22, r23, r24, r25, r26, r27, r28);
-        r2 = r0.mIsParallelProcess;
-        if (r2 == 0) goto L_0x00eb;
-    L_0x00e8:
-        r0.beginParallelProcess(r1);
-    L_0x00eb:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Camera2Module.onCaptureStart(long, int, java.lang.String):com.xiaomi.camera.core.ParallelTaskData");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public ParallelTaskData onCaptureStart(long j, int i, String str) {
+        List arrayList;
+        ParallelTaskData parallelTaskData;
+        boolean isDualCameraWaterMarkOpen;
+        boolean isFrontMirror;
+        int portraitLightingPattern;
+        int i2;
+        int i3;
+        int i4;
+        int i5;
+        int effectForSaving;
+        int i6;
+        int i7;
+        float f;
+        float f2;
+        int i8;
+        Location location;
+        if (CameraSettings.isLiveShotOn()) {
+            startLiveShotAnimation();
+        }
+        onShutter();
+        String str2 = null;
+        if (CameraSettings.isAgeGenderAndMagicMirrorWaterOpen()) {
+            Collection faceWaterMarkInfos = ((MainContentProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(166)).getFaceWaterMarkInfos();
+            if (!(faceWaterMarkInfos == null || faceWaterMarkInfos.isEmpty())) {
+                arrayList = new ArrayList(faceWaterMarkInfos);
+                parallelTaskData = new ParallelTaskData(j, i, str);
+                isDualCameraWaterMarkOpen = CameraSettings.isDualCameraWaterMarkOpen();
+                isFrontMirror = isFrontMirror();
+                portraitLightingPattern = CameraSettings.getPortraitLightingPattern();
+                i2 = this.mPreviewSize.width;
+                i3 = this.mPreviewSize.height;
+                i4 = this.mPictureSize.width;
+                i5 = this.mPictureSize.height;
+                effectForSaving = EffectController.getInstance().getEffectForSaving(false);
+                i6 = -1 != this.mOrientation ? 0 : this.mOrientation;
+                i7 = this.mJpegRotation;
+                f = (CameraSettings.isGradienterOn() || this.mShootRotation != -1.0f) ? this.mShootRotation : 0.0f;
+                f2 = f;
+                i8 = this.mShootOrientation;
+                location = this.mLocation;
+                if (CameraSettings.isTimeWaterMarkOpen()) {
+                    str2 = Util.getTimeWatermark();
+                }
+                parallelTaskData.fillParameter(isDualCameraWaterMarkOpen, isFrontMirror, portraitLightingPattern, i2, i3, i4, i5, effectForSaving, i6, i7, f2, i8, location, str2, arrayList, CameraSettings.isAgeGenderAndMagicMirrorWaterOpen(), isFrontCamera(), this.mOutPutSize != null ? this.mPictureSize.width : this.mOutPutSize.getWidth(), this.mOutPutSize != null ? this.mPictureSize.height : this.mOutPutSize.getHeight(), isBokehFrontCamera(), this.mAlgorithmName, getPictureInfo(), getSuffix(), this.mEnabledPreviewThumbnail ^ 1);
+                if (this.mIsParallelProcess) {
+                    beginParallelProcess(parallelTaskData);
+                }
+                return parallelTaskData;
+            }
+        }
+        arrayList = null;
+        parallelTaskData = new ParallelTaskData(j, i, str);
+        isDualCameraWaterMarkOpen = CameraSettings.isDualCameraWaterMarkOpen();
+        isFrontMirror = isFrontMirror();
+        portraitLightingPattern = CameraSettings.getPortraitLightingPattern();
+        i2 = this.mPreviewSize.width;
+        i3 = this.mPreviewSize.height;
+        i4 = this.mPictureSize.width;
+        i5 = this.mPictureSize.height;
+        effectForSaving = EffectController.getInstance().getEffectForSaving(false);
+        if (-1 != this.mOrientation) {
+        }
+        i7 = this.mJpegRotation;
+        if (CameraSettings.isGradienterOn()) {
+        }
+        f2 = f;
+        i8 = this.mShootOrientation;
+        location = this.mLocation;
+        if (CameraSettings.isTimeWaterMarkOpen()) {
+        }
+        if (this.mOutPutSize != null) {
+        }
+        if (this.mOutPutSize != null) {
+        }
+        parallelTaskData.fillParameter(isDualCameraWaterMarkOpen, isFrontMirror, portraitLightingPattern, i2, i3, i4, i5, effectForSaving, i6, i7, f2, i8, location, str2, arrayList, CameraSettings.isAgeGenderAndMagicMirrorWaterOpen(), isFrontCamera(), this.mOutPutSize != null ? this.mPictureSize.width : this.mOutPutSize.getWidth(), this.mOutPutSize != null ? this.mPictureSize.height : this.mOutPutSize.getHeight(), isBokehFrontCamera(), this.mAlgorithmName, getPictureInfo(), getSuffix(), this.mEnabledPreviewThumbnail ^ 1);
+        if (this.mIsParallelProcess) {
+        }
+        return parallelTaskData;
     }
 
     private void onShutter() {
@@ -2595,84 +2438,40 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
 
     /* JADX WARNING: Removed duplicated region for block: B:31:0x0066  */
     /* JADX WARNING: Removed duplicated region for block: B:31:0x0066  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void updateShotDetermine() {
-        /*
-        r5 = this;
-        r0 = r5.mIsImageCaptureIntent;
-        r1 = 1;
-        r2 = 0;
-        if (r0 == 0) goto L_0x0009;
-    L_0x0006:
-        r0 = -2;
-    L_0x0007:
-        r2 = r0;
-        goto L_0x005b;
-    L_0x0009:
-        r0 = com.android.camera.CameraSettings.isCameraParallelProcessEnable();
-        r3 = r5.mModuleIndex;
-        r4 = 163; // 0xa3 float:2.28E-43 double:8.05E-322;
-        if (r3 == r4) goto L_0x0049;
-    L_0x0013:
-        r4 = 165; // 0xa5 float:2.31E-43 double:8.15E-322;
-        if (r3 == r4) goto L_0x0049;
-    L_0x0017:
-        r4 = 171; // 0xab float:2.4E-43 double:8.45E-322;
-        if (r3 == r4) goto L_0x001c;
-    L_0x001b:
-        return;
-    L_0x001c:
-        r3 = r5.isBackCamera();
-        if (r3 == 0) goto L_0x0038;
-    L_0x0022:
-        r3 = com.mi.config.b.hv();
-        if (r3 != 0) goto L_0x0035;
-    L_0x0028:
-        r3 = com.android.camera.data.DataRepository.dataItemFeature();
-        r3 = r3.eX();
-        if (r3 == 0) goto L_0x0033;
-    L_0x0032:
-        goto L_0x0035;
-    L_0x0033:
-        r3 = r2;
-        goto L_0x0040;
-        r3 = r1;
-        goto L_0x0040;
-    L_0x0038:
-        r3 = com.android.camera.data.DataRepository.dataItemFeature();
-        r3 = r3.eY();
-    L_0x0040:
-        if (r3 == 0) goto L_0x0048;
-    L_0x0042:
-        if (r0 == 0) goto L_0x0046;
-    L_0x0044:
-        r0 = 6;
-        goto L_0x0007;
-    L_0x0046:
-        r0 = 2;
-        goto L_0x0007;
-    L_0x0048:
-        goto L_0x005b;
-    L_0x0049:
-        r0 = com.android.camera.CameraSettings.isLiveShotOn();
-        if (r0 == 0) goto L_0x0052;
-        r2 = r1;
-        goto L_0x005b;
-    L_0x0052:
-        r0 = com.android.camera.CameraSettings.isGroupShotOn();
-        if (r0 == 0) goto L_0x0059;
-    L_0x0058:
-        goto L_0x005b;
-    L_0x005b:
-        r0 = r5.mCamera2Device;
-        r0.setShotType(r2);
-        r0 = com.xiaomi.camera.core.ShotConstant.isParallelEnabled(r2);
-        if (r0 == 0) goto L_0x0068;
-    L_0x0066:
-        r5.mIsParallelProcess = r1;
-    L_0x0068:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Camera2Module.updateShotDetermine():void");
+        int i;
+        int i2 = 0;
+        if (this.mIsImageCaptureIntent) {
+            i = -2;
+        } else {
+            boolean isCameraParallelProcessEnable = CameraSettings.isCameraParallelProcessEnable();
+            int i3 = this.mModuleIndex;
+            if (i3 == 163 || i3 == 165) {
+                if (CameraSettings.isLiveShotOn()) {
+                    i2 = 1;
+                } else if (CameraSettings.isGroupShotOn()) {
+                }
+                this.mCamera2Device.setShotType(i2);
+                if (ShotConstant.isParallelEnabled(i2)) {
+                    this.mIsParallelProcess = true;
+                }
+            } else if (i3 == 171) {
+                boolean eY = isBackCamera() ? b.hv() || DataRepository.dataItemFeature().eX() : DataRepository.dataItemFeature().eY();
+                if (eY) {
+                    i = isCameraParallelProcessEnable ? 6 : 2;
+                }
+                this.mCamera2Device.setShotType(i2);
+                if (ShotConstant.isParallelEnabled(i2)) {
+                }
+            } else {
+                return;
+            }
+        }
+        i2 = i;
+        this.mCamera2Device.setShotType(i2);
+        if (ShotConstant.isParallelEnabled(i2)) {
+        }
     }
 
     private void updatePictureAndPreviewSize() {
@@ -3010,89 +2809,49 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
     /* JADX WARNING: Removed duplicated region for block: B:22:0x0058  */
     /* JADX WARNING: Removed duplicated region for block: B:29:0x0067  */
     /* JADX WARNING: Removed duplicated region for block: B:32:0x0071  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void updateFace() {
-        /*
-        r6 = this;
-        r0 = r6.mMultiSnapStatus;
-        r1 = 0;
-        r2 = 1;
-        if (r0 != 0) goto L_0x0051;
-    L_0x0007:
-        r0 = r6.mMutexModePicker;
-        r0 = r0.isUbiFocus();
-        if (r0 == 0) goto L_0x0010;
-    L_0x000f:
-        goto L_0x0051;
-    L_0x0010:
-        r0 = com.android.camera.CameraSettings.isMagicMirrorOn();
-        if (r0 != 0) goto L_0x004d;
-    L_0x0016:
-        r0 = com.android.camera.CameraSettings.isPortraitModeBackOn();
-        if (r0 != 0) goto L_0x004d;
-    L_0x001c:
-        r0 = com.android.camera.CameraSettings.isGroupShotOn();
-        if (r0 != 0) goto L_0x004d;
-    L_0x0022:
-        r0 = com.android.camera.CameraSettings.showGenderAge();
-        if (r0 == 0) goto L_0x0029;
-    L_0x0028:
-        goto L_0x004d;
-    L_0x0029:
-        r0 = com.android.camera.data.DataRepository.dataItemGlobal();
-        r3 = "pref_camera_facedetection_key";
-        r4 = r6.getResources();
-        r5 = 2131689478; // 0x7f0f0006 float:1.9007973E38 double:1.0531945387E-314;
-        r4 = r4.getBoolean(r5);
-        r0 = r0.getBoolean(r3, r4);
-        r3 = com.android.camera.CameraSettings.isGradienterOn();
-        if (r3 != 0) goto L_0x004a;
-    L_0x0044:
-        r3 = com.android.camera.CameraSettings.isTiltShiftOn();
-        if (r3 == 0) goto L_0x0053;
-        r3 = r1;
-        goto L_0x0054;
-        r0 = r2;
-        r3 = r0;
-        goto L_0x0054;
-        r0 = r1;
-    L_0x0053:
-        r3 = r2;
-    L_0x0054:
-        r4 = r6.mMainProtocol;
-        if (r4 == 0) goto L_0x0065;
-    L_0x0058:
-        r4 = r6.mMainProtocol;
-        if (r0 == 0) goto L_0x0061;
-    L_0x005c:
-        if (r3 != 0) goto L_0x005f;
-    L_0x005e:
-        goto L_0x0061;
-    L_0x005f:
-        r3 = r1;
-        goto L_0x0062;
-    L_0x0061:
-        r3 = r2;
-    L_0x0062:
-        r4.setSkipDrawFace(r3);
-    L_0x0065:
-        if (r0 == 0) goto L_0x0071;
-    L_0x0067:
-        r0 = r6.mFaceDetectionEnabled;
-        if (r0 != 0) goto L_0x007a;
-    L_0x006b:
-        r6.mFaceDetectionEnabled = r2;
-        r6.startFaceDetection();
-        goto L_0x007a;
-    L_0x0071:
-        r0 = r6.mFaceDetectionEnabled;
-        if (r0 == 0) goto L_0x007a;
-    L_0x0075:
-        r6.stopFaceDetection(r2);
-        r6.mFaceDetectionEnabled = r1;
-    L_0x007a:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Camera2Module.updateFace():void");
+        boolean z;
+        boolean z2;
+        if (this.mMultiSnapStatus || this.mMutexModePicker.isUbiFocus()) {
+            z = false;
+        } else if (CameraSettings.isMagicMirrorOn() || CameraSettings.isPortraitModeBackOn() || CameraSettings.isGroupShotOn() || CameraSettings.showGenderAge()) {
+            z = true;
+            z2 = z;
+            if (this.mMainProtocol != null) {
+                MainContentProtocol mainContentProtocol = this.mMainProtocol;
+                z2 = (z && z2) ? false : true;
+                mainContentProtocol.setSkipDrawFace(z2);
+            }
+            if (z) {
+                if (!this.mFaceDetectionEnabled) {
+                    this.mFaceDetectionEnabled = true;
+                    startFaceDetection();
+                    return;
+                }
+                return;
+            } else if (this.mFaceDetectionEnabled) {
+                stopFaceDetection(true);
+                this.mFaceDetectionEnabled = false;
+                return;
+            } else {
+                return;
+            }
+        } else {
+            z = DataRepository.dataItemGlobal().getBoolean(CameraSettings.KEY_FACE_DETECTION, getResources().getBoolean(R.bool.pref_camera_facedetection_default));
+            if (CameraSettings.isGradienterOn() || CameraSettings.isTiltShiftOn()) {
+                z2 = false;
+                if (this.mMainProtocol != null) {
+                }
+                if (z) {
+                }
+            }
+        }
+        z2 = true;
+        if (this.mMainProtocol != null) {
+        }
+        if (z) {
+        }
     }
 
     private void updateJpegQuality() {
@@ -3457,140 +3216,42 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
     /* JADX WARNING: Missing block: B:46:0x00f7, code:
             return;
      */
-    public void onSingleTapUp(int r4, int r5) {
-        /*
-        r3 = this;
-        r0 = TAG;
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "onSingleTapUp mPaused: ";
-        r1.append(r2);
-        r2 = r3.mPaused;
-        r1.append(r2);
-        r2 = "; mCamera2Device: ";
-        r1.append(r2);
-        r2 = r3.mCamera2Device;
-        r1.append(r2);
-        r2 = "; isInCountDown: ";
-        r1.append(r2);
-        r2 = r3.isInCountDown();
-        r1.append(r2);
-        r2 = "; getCameraState: ";
-        r1.append(r2);
-        r2 = r3.getCameraState();
-        r1.append(r2);
-        r2 = "; mMultiSnapStatus: ";
-        r1.append(r2);
-        r2 = r3.mMultiSnapStatus;
-        r1.append(r2);
-        r2 = "; Camera2Module: ";
-        r1.append(r2);
-        r1.append(r3);
-        r1 = r1.toString();
-        com.android.camera.log.Log.v(r0, r1);
-        r0 = r3.mPaused;
-        if (r0 != 0) goto L_0x00f7;
-    L_0x0050:
-        r0 = r3.mCamera2Device;
-        if (r0 == 0) goto L_0x00f7;
-    L_0x0054:
-        r0 = r3.mCamera2Device;
-        r0 = r0.isSessionReady();
-        if (r0 == 0) goto L_0x00f7;
-    L_0x005c:
-        r0 = r3.isInTapableRect(r4, r5);
-        if (r0 == 0) goto L_0x00f7;
-    L_0x0062:
-        r0 = r3.getCameraState();
-        r1 = 3;
-        if (r0 == r1) goto L_0x00f7;
-    L_0x0069:
-        r0 = r3.getCameraState();
-        r1 = 4;
-        if (r0 == r1) goto L_0x00f7;
-    L_0x0070:
-        r0 = r3.getCameraState();
-        if (r0 == 0) goto L_0x00f7;
-    L_0x0076:
-        r0 = r3.isInCountDown();
-        if (r0 != 0) goto L_0x00f7;
-    L_0x007c:
-        r0 = r3.mMultiSnapStatus;
-        if (r0 == 0) goto L_0x0082;
-    L_0x0080:
-        goto L_0x00f7;
-    L_0x0082:
-        r0 = r3.isFrameAvailable();
-        if (r0 != 0) goto L_0x0089;
-    L_0x0088:
-        return;
-    L_0x0089:
-        r0 = r3.isFrontCamera();
-        if (r0 == 0) goto L_0x0098;
-    L_0x008f:
-        r0 = r3.mActivity;
-        r0 = r0.isScreenSlideOff();
-        if (r0 == 0) goto L_0x0098;
-    L_0x0097:
-        return;
-    L_0x0098:
-        r0 = com.android.camera.protocol.ModeCoordinatorImpl.getInstance();
-        r1 = 171; // 0xab float:2.4E-43 double:8.45E-322;
-        r0 = r0.getAttachProtocol(r1);
-        r0 = (com.android.camera.protocol.ModeProtocol.BackStack) r0;
-        r0 = r0.handleBackStackFromTapDown(r4, r5);
-        if (r0 == 0) goto L_0x00ab;
-    L_0x00aa:
-        return;
-    L_0x00ab:
-        r3.tryRemoveCountDownMessage();
-        r0 = r3.mFocusAreaSupported;
-        if (r0 != 0) goto L_0x00b7;
-    L_0x00b2:
-        r0 = r3.mMeteringAreaSupported;
-        if (r0 != 0) goto L_0x00b7;
-    L_0x00b6:
-        return;
-    L_0x00b7:
-        r0 = r3.mMutexModePicker;
-        r0 = r0.isUbiFocus();
-        if (r0 == 0) goto L_0x00c0;
-    L_0x00bf:
-        return;
-    L_0x00c0:
-        r0 = r3.mObjectTrackingStarted;
-        r1 = 1;
-        if (r0 == 0) goto L_0x00c8;
-    L_0x00c5:
-        r3.stopObjectTracking(r1);
-    L_0x00c8:
-        r0 = r3.mMainProtocol;
-        r0.setFocusViewType(r1);
-        r0 = new android.graphics.Point;
-        r0.<init>(r4, r5);
-        r3.mapTapCoordinate(r0);
-        r3.unlockAEAF();
-        r4 = 2;
-        r3.setCameraState(r4);
-        r4 = r3.mFocusManager;
-        r5 = r0.x;
-        r0 = r0.y;
-        r4.onSingleTapUp(r5, r0);
-        r4 = r3.mFocusAreaSupported;
-        if (r4 != 0) goto L_0x00f6;
-    L_0x00e9:
-        r4 = r3.mMeteringAreaSupported;
-        if (r4 == 0) goto L_0x00f6;
-    L_0x00ed:
-        r4 = r3.mActivity;
-        r4 = r4.getSensorStateManager();
-        r4.reset();
-    L_0x00f6:
-        return;
-    L_0x00f7:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Camera2Module.onSingleTapUp(int, int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void onSingleTapUp(int i, int i2) {
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("onSingleTapUp mPaused: ");
+        stringBuilder.append(this.mPaused);
+        stringBuilder.append("; mCamera2Device: ");
+        stringBuilder.append(this.mCamera2Device);
+        stringBuilder.append("; isInCountDown: ");
+        stringBuilder.append(isInCountDown());
+        stringBuilder.append("; getCameraState: ");
+        stringBuilder.append(getCameraState());
+        stringBuilder.append("; mMultiSnapStatus: ");
+        stringBuilder.append(this.mMultiSnapStatus);
+        stringBuilder.append("; Camera2Module: ");
+        stringBuilder.append(this);
+        Log.v(str, stringBuilder.toString());
+        if (!this.mPaused && this.mCamera2Device != null && this.mCamera2Device.isSessionReady() && isInTapableRect(i, i2) && getCameraState() != 3 && getCameraState() != 4 && getCameraState() != 0 && !isInCountDown() && !this.mMultiSnapStatus && isFrameAvailable()) {
+            if ((!isFrontCamera() || !this.mActivity.isScreenSlideOff()) && !((BackStack) ModeCoordinatorImpl.getInstance().getAttachProtocol(171)).handleBackStackFromTapDown(i, i2)) {
+                tryRemoveCountDownMessage();
+                if ((this.mFocusAreaSupported || this.mMeteringAreaSupported) && !this.mMutexModePicker.isUbiFocus()) {
+                    if (this.mObjectTrackingStarted) {
+                        stopObjectTracking(true);
+                    }
+                    this.mMainProtocol.setFocusViewType(true);
+                    Point point = new Point(i, i2);
+                    mapTapCoordinate(point);
+                    unlockAEAF();
+                    setCameraState(2);
+                    this.mFocusManager.onSingleTapUp(point.x, point.y);
+                    if (!this.mFocusAreaSupported && this.mMeteringAreaSupported) {
+                        this.mActivity.getSensorStateManager().reset();
+                    }
+                }
+            }
+        }
     }
 
     private void unlockAEAF() {
@@ -4226,39 +3887,14 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
     /* JADX WARNING: Missing block: B:11:0x002a, code:
             return false;
      */
-    private boolean shouldChangeAiScene(int r7) {
-        /*
-        r6 = this;
-        r0 = r6.isDoingAction();
-        r1 = 0;
-        if (r0 != 0) goto L_0x002a;
-    L_0x0007:
-        r0 = r6.isAlive();
-        if (r0 != 0) goto L_0x000e;
-    L_0x000d:
-        goto L_0x002a;
-    L_0x000e:
-        r0 = r6.mCurrentDetectedScene;
-        if (r0 == r7) goto L_0x0029;
-    L_0x0012:
-        r2 = java.lang.System.currentTimeMillis();
-        r4 = r6.mLastChangeSceneTime;
-        r2 = r2 - r4;
-        r4 = 300; // 0x12c float:4.2E-43 double:1.48E-321;
-        r0 = (r2 > r4 ? 1 : (r2 == r4 ? 0 : -1));
-        if (r0 <= 0) goto L_0x0029;
-    L_0x001f:
-        r6.mCurrentDetectedScene = r7;
-        r0 = java.lang.System.currentTimeMillis();
-        r6.mLastChangeSceneTime = r0;
-        r7 = 1;
-        return r7;
-    L_0x0029:
-        return r1;
-    L_0x002a:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Camera2Module.shouldChangeAiScene(int):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private boolean shouldChangeAiScene(int i) {
+        if (isDoingAction() || !isAlive() || this.mCurrentDetectedScene == i || System.currentTimeMillis() - this.mLastChangeSceneTime <= 300) {
+            return false;
+        }
+        this.mCurrentDetectedScene = i;
+        this.mLastChangeSceneTime = System.currentTimeMillis();
+        return true;
     }
 
     private void resetAiSceneInHdrOrFlashOn() {
@@ -4277,35 +3913,15 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
     /* JADX WARNING: Missing block: B:10:0x0023, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void resetAsdSceneInHdrOrFlashChange() {
-        /*
-        r2 = this;
-        r0 = com.mi.config.b.hu();
-        if (r0 == 0) goto L_0x0023;
-    L_0x0006:
-        r0 = r2.isFrontCamera();
-        if (r0 == 0) goto L_0x0023;
-    L_0x000c:
-        r0 = r2.mCurrentAsdScene;
-        r1 = -1;
-        if (r0 != r1) goto L_0x0012;
-    L_0x0011:
-        goto L_0x0023;
-    L_0x0012:
-        r0 = r2.mCurrentAsdScene;
-        r1 = 9;
-        if (r0 != r1) goto L_0x0022;
-    L_0x0018:
-        r0 = r2.mHandler;
-        r1 = new com.android.camera.module.Camera2Module$29;
-        r1.<init>();
-        r0.post(r1);
-    L_0x0022:
-        return;
-    L_0x0023:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Camera2Module.resetAsdSceneInHdrOrFlashChange():void");
+        if (b.hu() && isFrontCamera() && this.mCurrentAsdScene != -1 && this.mCurrentAsdScene == 9) {
+            this.mHandler.post(new Runnable() {
+                public void run() {
+                    Camera2Module.this.consumeAsdSceneResult(-1);
+                }
+            });
+        }
     }
 
     private void trackAISceneChanged(int i, int i2) {

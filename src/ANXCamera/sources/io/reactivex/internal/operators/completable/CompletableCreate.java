@@ -27,36 +27,23 @@ public final class CompletableCreate extends Completable {
         /* JADX WARNING: Missing block: B:15:?, code:
             return;
      */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         public void onComplete() {
-            /*
-            r2 = this;
-            r0 = r2.get();
-            r1 = io.reactivex.internal.disposables.DisposableHelper.DISPOSED;
-            if (r0 == r1) goto L_0x0026;
-        L_0x0008:
-            r0 = io.reactivex.internal.disposables.DisposableHelper.DISPOSED;
-            r0 = r2.getAndSet(r0);
-            r0 = (io.reactivex.disposables.Disposable) r0;
-            r1 = io.reactivex.internal.disposables.DisposableHelper.DISPOSED;
-            if (r0 == r1) goto L_0x0026;
-        L_0x0014:
-            r1 = r2.actual;	 Catch:{ all -> 0x001f }
-            r1.onComplete();	 Catch:{ all -> 0x001f }
-            if (r0 == 0) goto L_0x0026;
-        L_0x001b:
-            r0.dispose();
-            goto L_0x0026;
-        L_0x001f:
-            r1 = move-exception;
-            if (r0 == 0) goto L_0x0025;
-        L_0x0022:
-            r0.dispose();
-        L_0x0025:
-            throw r1;
-        L_0x0026:
-            return;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.completable.CompletableCreate.Emitter.onComplete():void");
+            if (get() != DisposableHelper.DISPOSED) {
+                Disposable disposable = (Disposable) getAndSet(DisposableHelper.DISPOSED);
+                if (disposable != DisposableHelper.DISPOSED) {
+                    try {
+                        this.actual.onComplete();
+                        if (disposable != null) {
+                            disposable.dispose();
+                        }
+                    } catch (Throwable th) {
+                        if (disposable != null) {
+                            disposable.dispose();
+                        }
+                    }
+                }
+            }
         }
 
         public void onError(Throwable th) {

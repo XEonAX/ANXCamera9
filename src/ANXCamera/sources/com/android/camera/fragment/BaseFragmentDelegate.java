@@ -364,106 +364,33 @@ public class BaseFragmentDelegate implements BaseDelegate {
     /* JADX WARNING: Missing block: B:48:?, code:
             return;
      */
-    private void updateCurrentFragments(@android.support.annotation.IdRes int r2, int r3, int r4) {
-        /*
-        r1 = this;
-        r0 = r1.currentFragments;
-        r2 = r0.get(r2);
-        r2 = (java.util.List) r2;
-        r0 = 0;
-        switch(r4) {
-            case 1: goto L_0x0090;
-            case 2: goto L_0x0076;
-            case 3: goto L_0x005c;
-            case 4: goto L_0x0054;
-            case 5: goto L_0x0049;
-            case 6: goto L_0x0028;
-            case 7: goto L_0x000e;
-            default: goto L_0x000c;
-        };
-    L_0x000c:
-        goto L_0x009b;
-    L_0x000e:
-        r4 = r2.size();
-        if (r0 >= r4) goto L_0x009b;
-    L_0x0014:
-        r4 = r2.get(r0);
-        r4 = (java.lang.Integer) r4;
-        r4 = r4.intValue();
-        if (r4 != r3) goto L_0x0025;
-    L_0x0020:
-        r2.remove(r0);
-        goto L_0x009b;
-    L_0x0025:
-        r0 = r0 + 1;
-        goto L_0x000e;
-    L_0x0028:
-        r4 = r2.size();
-        if (r0 >= r4) goto L_0x0041;
-    L_0x002e:
-        r4 = r2.get(r0);
-        r4 = (java.lang.Integer) r4;
-        r4 = r4.intValue();
-        if (r4 != r3) goto L_0x003e;
-    L_0x003a:
-        r2.remove(r0);
-        goto L_0x0041;
-    L_0x003e:
-        r0 = r0 + 1;
-        goto L_0x0028;
-    L_0x0041:
-        r3 = java.lang.Integer.valueOf(r3);
-        r2.add(r3);
-        goto L_0x009b;
-    L_0x0049:
-        r2.clear();
-        r3 = java.lang.Integer.valueOf(r3);
-        r2.add(r3);
-        goto L_0x009b;
-    L_0x0054:
-        r3 = java.lang.Integer.valueOf(r3);
-        r2.add(r3);
-        goto L_0x009b;
-    L_0x005c:
-        r4 = r2.size();
-        if (r0 >= r4) goto L_0x0075;
-    L_0x0062:
-        r4 = r2.get(r0);
-        r4 = (java.lang.Integer) r4;
-        r4 = r4.intValue();
-        if (r4 != r3) goto L_0x0072;
-    L_0x006e:
-        r2.remove(r0);
-        goto L_0x0075;
-    L_0x0072:
-        r0 = r0 + 1;
-        goto L_0x005c;
-    L_0x0075:
-        goto L_0x009b;
-    L_0x0076:
-        r4 = r2.size();
-        if (r0 >= r4) goto L_0x008f;
-    L_0x007c:
-        r4 = r2.get(r0);
-        r4 = (java.lang.Integer) r4;
-        r4 = r4.intValue();
-        if (r4 != r3) goto L_0x008c;
-    L_0x0088:
-        r2.remove(r0);
-        goto L_0x008f;
-    L_0x008c:
-        r0 = r0 + 1;
-        goto L_0x0076;
-    L_0x008f:
-        goto L_0x009b;
-    L_0x0090:
-        r2.clear();
-        r3 = java.lang.Integer.valueOf(r3);
-        r2.add(r3);
-    L_0x009b:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.BaseFragmentDelegate.updateCurrentFragments(int, int, int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void updateCurrentFragments(@IdRes int i, int i2, int i3) {
+        List list = (List) this.currentFragments.get(i);
+        int i4 = 0;
+        switch (i3) {
+            case 1:
+                list.clear();
+                list.add(Integer.valueOf(i2));
+                return;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                list.add(Integer.valueOf(i2));
+                return;
+            case 5:
+                list.clear();
+                list.add(Integer.valueOf(i2));
+                return;
+            case 6:
+                break;
+            case 7:
+                break;
+            default:
+                return;
+        }
     }
 
     private BaseFragment constructFragment(boolean z, int i, int i2, BaseLifecycleListener baseLifecycleListener) {

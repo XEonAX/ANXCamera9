@@ -132,30 +132,12 @@ public abstract class CursorAdapter extends BaseAdapter implements Filterable, C
     /* JADX WARNING: Missing block: B:9:0x001c, code:
             return 0;
      */
-    public long getItemId(int r4) {
-        /*
-        r3 = this;
-        r0 = r3.mDataValid;
-        r1 = 0;
-        if (r0 == 0) goto L_0x001c;
-    L_0x0006:
-        r0 = r3.mCursor;
-        if (r0 == 0) goto L_0x001c;
-    L_0x000a:
-        r0 = r3.mCursor;
-        r0 = r0.moveToPosition(r4);
-        if (r0 == 0) goto L_0x001b;
-    L_0x0012:
-        r0 = r3.mCursor;
-        r1 = r3.mRowIDColumn;
-        r0 = r0.getLong(r1);
-        return r0;
-    L_0x001b:
-        return r1;
-    L_0x001c:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.widget.CursorAdapter.getItemId(int):long");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public long getItemId(int position) {
+        if (this.mDataValid && this.mCursor != null && this.mCursor.moveToPosition(position)) {
+            return this.mCursor.getLong(this.mRowIDColumn);
+        }
+        return 0;
     }
 
     public boolean hasStableIds() {

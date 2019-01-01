@@ -5,9 +5,11 @@ import android.media.MediaCodec;
 import android.media.MediaCodecInfo;
 import android.media.MediaCodecList;
 import android.media.MediaFormat;
+import android.os.Process;
 import com.android.camera.log.Log;
 import com.android.camera.module.encoder.MediaEncoder.MediaEncoderListener;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 
 public class MediaAudioEncoder extends MediaEncoder {
     private static final int[] AUDIO_SOURCES = new int[]{1, 0, 5};
@@ -60,88 +62,32 @@ public class MediaAudioEncoder extends MediaEncoder {
         /* JADX WARNING: Missing block: B:29:?, code:
             r7.this$0.frameAvailableSoon();
      */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         public void run() {
-            /*
-            r7 = this;
-            r0 = -19;
-            android.os.Process.setThreadPriority(r0);
-            r0 = com.android.camera.module.encoder.MediaAudioEncoder.this;	 Catch:{ all -> 0x007e }
-            r0 = r0.mIsCapturing;	 Catch:{ all -> 0x007e }
-            if (r0 == 0) goto L_0x006e;
-        L_0x000b:
-            r0 = com.android.camera.module.encoder.MediaAudioEncoder.TAG;	 Catch:{ all -> 0x007e }
-            r1 = "audioThread>>>";
-            com.android.camera.log.Log.d(r0, r1);	 Catch:{ all -> 0x007e }
-            r0 = 1024; // 0x400 float:1.435E-42 double:5.06E-321;
-            r1 = java.nio.ByteBuffer.allocateDirect(r0);	 Catch:{ all -> 0x007e }
-        L_0x001a:
-            r2 = com.android.camera.module.encoder.MediaAudioEncoder.this;	 Catch:{ all -> 0x0067 }
-            r2 = r2.mSync;	 Catch:{ all -> 0x0067 }
-            monitor-enter(r2);	 Catch:{ all -> 0x0067 }
-            r3 = com.android.camera.module.encoder.MediaAudioEncoder.this;	 Catch:{ all -> 0x0064 }
-            r3 = r3.mRequestStop;	 Catch:{ all -> 0x0064 }
-            if (r3 == 0) goto L_0x0031;
-        L_0x0025:
-            monitor-exit(r2);	 Catch:{ all -> 0x0064 }
-            r0 = com.android.camera.module.encoder.MediaAudioEncoder.this;	 Catch:{ all -> 0x0067 }
-            r0.frameAvailableSoon();	 Catch:{ all -> 0x0067 }
-            r0 = r7.audioRecord;	 Catch:{ all -> 0x007e }
-            r0.stop();	 Catch:{ all -> 0x007e }
-            goto L_0x006e;
-        L_0x0031:
-            monitor-exit(r2);	 Catch:{ all -> 0x0064 }
-            r1.clear();	 Catch:{ all -> 0x0067 }
-            r2 = r7.audioRecord;	 Catch:{ all -> 0x0067 }
-            r2 = r2.read(r1, r0);	 Catch:{ all -> 0x0067 }
-            if (r2 <= 0) goto L_0x0063;
-        L_0x003d:
-            r1.position(r2);	 Catch:{ all -> 0x0067 }
-            r1.flip();	 Catch:{ all -> 0x0067 }
-            r3 = com.android.camera.module.encoder.MediaAudioEncoder.this;	 Catch:{ all -> 0x0067 }
-            r3 = r3.mMediaCodecLock;	 Catch:{ all -> 0x0067 }
-            monitor-enter(r3);	 Catch:{ all -> 0x0067 }
-            r4 = com.android.camera.module.encoder.MediaAudioEncoder.this;	 Catch:{ all -> 0x0060 }
-            r4 = r4.mSkipFrame;	 Catch:{ all -> 0x0060 }
-            if (r4 != 0) goto L_0x0059;
-        L_0x004e:
-            r4 = com.android.camera.module.encoder.MediaAudioEncoder.this;	 Catch:{ all -> 0x0060 }
-            r5 = com.android.camera.module.encoder.MediaAudioEncoder.this;	 Catch:{ all -> 0x0060 }
-            r5 = r5.getPTSUs();	 Catch:{ all -> 0x0060 }
-            r4.encode(r1, r2, r5);	 Catch:{ all -> 0x0060 }
-        L_0x0059:
-            monitor-exit(r3);	 Catch:{ all -> 0x0060 }
-            r2 = com.android.camera.module.encoder.MediaAudioEncoder.this;	 Catch:{ all -> 0x0067 }
-            r2.frameAvailableSoon();	 Catch:{ all -> 0x0067 }
-            goto L_0x0063;
-        L_0x0060:
-            r0 = move-exception;
-            monitor-exit(r3);	 Catch:{ all -> 0x0060 }
-            throw r0;	 Catch:{ all -> 0x0067 }
-        L_0x0063:
-            goto L_0x001a;
-        L_0x0064:
-            r0 = move-exception;
-            monitor-exit(r2);	 Catch:{ all -> 0x0064 }
-            throw r0;	 Catch:{ all -> 0x0067 }
-        L_0x0067:
-            r0 = move-exception;
-            r1 = r7.audioRecord;	 Catch:{ all -> 0x007e }
-            r1.stop();	 Catch:{ all -> 0x007e }
-            throw r0;	 Catch:{ all -> 0x007e }
-        L_0x006e:
-            r0 = r7.audioRecord;
-            r0.release();
-            r0 = com.android.camera.module.encoder.MediaAudioEncoder.TAG;
-            r1 = "audioThread<<<";
-            com.android.camera.log.Log.d(r0, r1);
-            return;
-        L_0x007e:
-            r0 = move-exception;
-            r1 = r7.audioRecord;
-            r1.release();
-            throw r0;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.encoder.MediaAudioEncoder.AudioThread.run():void");
+            Process.setThreadPriority(-19);
+            try {
+                if (MediaAudioEncoder.this.mIsCapturing) {
+                    Log.d(MediaAudioEncoder.TAG, "audioThread>>>");
+                    ByteBuffer allocateDirect = ByteBuffer.allocateDirect(1024);
+                    while (true) {
+                        try {
+                            synchronized (MediaAudioEncoder.this.mSync) {
+                                if (MediaAudioEncoder.this.mRequestStop) {
+                                    break;
+                                }
+                            }
+                        } catch (Throwable th) {
+                            this.audioRecord.stop();
+                        }
+                    }
+                    while (true) {
+                    }
+                }
+                this.audioRecord.release();
+                Log.d(MediaAudioEncoder.TAG, "audioThread<<<");
+            } catch (Throwable th2) {
+                this.audioRecord.release();
+            }
         }
     }
 

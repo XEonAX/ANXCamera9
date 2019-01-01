@@ -1641,286 +1641,126 @@ public class StaggeredGridLayoutManager extends LayoutManager {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:80:0x017e  */
-    private int fill(android.support.v7.widget.RecyclerView.Recycler r24, android.support.v7.widget.LayoutState r25, android.support.v7.widget.RecyclerView.State r26) {
-        /*
-        r23 = this;
-        r6 = r23;
-        r7 = r24;
-        r8 = r25;
-        r0 = r6.mRemainingSpans;
-        r1 = r6.mSpanCount;
-        r9 = 0;
-        r10 = 1;
-        r0.set(r9, r1, r10);
-        r0 = r8.mLayoutDirection;
-        if (r0 != r10) goto L_0x0019;
-    L_0x0013:
-        r0 = r8.mEndLine;
-        r1 = r8.mAvailable;
-        r0 = r0 + r1;
-        goto L_0x001e;
-    L_0x0019:
-        r0 = r8.mStartLine;
-        r1 = r8.mAvailable;
-        r0 = r0 - r1;
-    L_0x001e:
-        r11 = r0;
-        r0 = r8.mLayoutDirection;
-        r6.updateAllRemainingSpans(r0, r11);
-        r0 = r6.mShouldReverseLayout;
-        if (r0 == 0) goto L_0x002f;
-    L_0x0028:
-        r0 = r6.mPrimaryOrientation;
-        r0 = r0.getEndAfterPadding();
-        goto L_0x0035;
-    L_0x002f:
-        r0 = r6.mPrimaryOrientation;
-        r0 = r0.getStartAfterPadding();
-    L_0x0035:
-        r12 = r0;
-        r0 = r9;
-    L_0x0037:
-        r13 = r0;
-        r0 = r25.hasMore(r26);
-        r1 = -1;
-        if (r0 == 0) goto L_0x017c;
-    L_0x003f:
-        r0 = r6.mRemainingSpans;
-        r0 = r0.isEmpty();
-        if (r0 != 0) goto L_0x017c;
-    L_0x0047:
-        r14 = r8.next(r7);
-        r0 = r14.getLayoutParams();
-        r15 = r0;
-        r15 = (android.support.v7.widget.StaggeredGridLayoutManager.LayoutParams) r15;
-        r5 = r15.getViewLayoutPosition();
-        r0 = r6.mLazySpanLookup;
-        r4 = r0.getSpan(r5);
-        if (r4 != r1) goto L_0x0060;
-    L_0x005e:
-        r0 = r10;
-        goto L_0x0061;
-    L_0x0060:
-        r0 = r9;
-    L_0x0061:
-        r16 = r0;
-        if (r16 == 0) goto L_0x0078;
-    L_0x0065:
-        r0 = r15.mFullSpan;
-        if (r0 == 0) goto L_0x006e;
-    L_0x0069:
-        r0 = r6.mSpans;
-        r0 = r0[r9];
-        goto L_0x0072;
-    L_0x006e:
-        r0 = r6.getNextSpan(r8);
-    L_0x0072:
-        r2 = r6.mLazySpanLookup;
-        r2.setSpan(r5, r0);
-        goto L_0x007c;
-    L_0x0078:
-        r0 = r6.mSpans;
-        r0 = r0[r4];
-    L_0x007c:
-        r3 = r0;
-        r15.mSpan = r3;
-        r0 = r8.mLayoutDirection;
-        if (r0 != r10) goto L_0x0087;
-    L_0x0083:
-        r6.addView(r14);
-        goto L_0x008a;
-    L_0x0087:
-        r6.addView(r14, r9);
-    L_0x008a:
-        r6.measureChildWithDecorationsAndMargin(r14, r15);
-        r0 = r8.mLayoutDirection;
-        if (r0 != r10) goto L_0x00bd;
-    L_0x0091:
-        r0 = r15.mFullSpan;
-        if (r0 == 0) goto L_0x009a;
-    L_0x0095:
-        r0 = r6.getMaxEnd(r12);
-        goto L_0x009e;
-    L_0x009a:
-        r0 = r3.getEndLine(r12);
-    L_0x009e:
-        r2 = r6.mPrimaryOrientation;
-        r2 = r2.getDecoratedMeasurement(r14);
-        r2 = r2 + r0;
-        if (r16 == 0) goto L_0x00b9;
-    L_0x00a7:
-        r9 = r15.mFullSpan;
-        if (r9 == 0) goto L_0x00b9;
-    L_0x00ab:
-        r9 = r6.createFullSpanItemFromEnd(r0);
-        r9.mGapDir = r1;
-        r9.mPosition = r5;
-        r1 = r6.mLazySpanLookup;
-        r1.addFullSpanItem(r9);
-    L_0x00b9:
-        r9 = r0;
-        r19 = r2;
-        goto L_0x00e8;
-    L_0x00bd:
-        r0 = r15.mFullSpan;
-        if (r0 == 0) goto L_0x00c6;
-    L_0x00c1:
-        r0 = r6.getMinStart(r12);
-        goto L_0x00ca;
-    L_0x00c6:
-        r0 = r3.getStartLine(r12);
-    L_0x00ca:
-        r1 = r6.mPrimaryOrientation;
-        r1 = r1.getDecoratedMeasurement(r14);
-        r1 = r0 - r1;
-        if (r16 == 0) goto L_0x00e5;
-    L_0x00d4:
-        r2 = r15.mFullSpan;
-        if (r2 == 0) goto L_0x00e5;
-    L_0x00d8:
-        r2 = r6.createFullSpanItemFromStart(r0);
-        r2.mGapDir = r10;
-        r2.mPosition = r5;
-        r9 = r6.mLazySpanLookup;
-        r9.addFullSpanItem(r2);
-    L_0x00e5:
-        r19 = r0;
-        r9 = r1;
-    L_0x00e8:
-        r0 = r15.mFullSpan;
-        if (r0 == 0) goto L_0x0113;
-    L_0x00ec:
-        r0 = r8.mItemDirection;
-        r1 = -1;
-        if (r0 != r1) goto L_0x0113;
-    L_0x00f1:
-        if (r16 == 0) goto L_0x00f6;
-    L_0x00f3:
-        r6.mLaidOutInvalidFullSpan = r10;
-        goto L_0x0113;
-    L_0x00f6:
-        r0 = r8.mLayoutDirection;
-        if (r0 != r10) goto L_0x0100;
-    L_0x00fa:
-        r0 = r23.areAllEndsEqual();
-        r0 = r0 ^ r10;
-        goto L_0x0105;
-    L_0x0100:
-        r0 = r23.areAllStartsEqual();
-        r0 = r0 ^ r10;
-    L_0x0105:
-        if (r0 == 0) goto L_0x0113;
-    L_0x0107:
-        r1 = r6.mLazySpanLookup;
-        r1 = r1.getFullSpanItem(r5);
-        if (r1 == 0) goto L_0x0111;
-    L_0x010f:
-        r1.mHasUnwantedGapAfter = r10;
-    L_0x0111:
-        r6.mLaidOutInvalidFullSpan = r10;
-    L_0x0113:
-        r6.attachViewToSpans(r14, r15, r8);
-        r0 = r15.mFullSpan;
-        if (r0 == 0) goto L_0x0121;
-    L_0x011a:
-        r0 = r6.mSecondaryOrientation;
-        r0 = r0.getStartAfterPadding();
-        goto L_0x012d;
-    L_0x0121:
-        r0 = r3.mIndex;
-        r1 = r6.mSizePerSpan;
-        r0 = r0 * r1;
-        r1 = r6.mSecondaryOrientation;
-        r1 = r1.getStartAfterPadding();
-        r0 = r0 + r1;
-    L_0x012d:
-        r18 = r0;
-        r0 = r6.mSecondaryOrientation;
-        r0 = r0.getDecoratedMeasurement(r14);
-        r20 = r18 + r0;
-        r0 = r6.mOrientation;
-        if (r0 != r10) goto L_0x014d;
-    L_0x013b:
-        r0 = r6;
-        r1 = r14;
-        r2 = r18;
-        r10 = r3;
-        r3 = r9;
-        r21 = r4;
-        r4 = r20;
-        r22 = r5;
-        r5 = r19;
-        r0.layoutDecoratedWithMargins(r1, r2, r3, r4, r5);
-        goto L_0x015e;
-    L_0x014d:
-        r10 = r3;
-        r21 = r4;
-        r22 = r5;
-        r0 = r6;
-        r1 = r14;
-        r2 = r9;
-        r3 = r18;
-        r4 = r19;
-        r5 = r20;
-        r0.layoutDecoratedWithMargins(r1, r2, r3, r4, r5);
-    L_0x015e:
-        r0 = r15.mFullSpan;
-        if (r0 == 0) goto L_0x016a;
-    L_0x0162:
-        r0 = r6.mLayoutState;
-        r0 = r0.mLayoutDirection;
-        r6.updateAllRemainingSpans(r0, r11);
-        goto L_0x0171;
-    L_0x016a:
-        r0 = r6.mLayoutState;
-        r0 = r0.mLayoutDirection;
-        r6.updateRemainingSpans(r10, r0, r11);
-    L_0x0171:
-        r0 = r6.mLayoutState;
-        r6.recycle(r7, r0);
-        r0 = 1;
-        r9 = 0;
-        r10 = 1;
-        goto L_0x0037;
-    L_0x017c:
-        if (r13 != 0) goto L_0x0183;
-    L_0x017e:
-        r0 = r6.mLayoutState;
-        r6.recycle(r7, r0);
-    L_0x0183:
-        r0 = r6.mLayoutState;
-        r0 = r0.mLayoutDirection;
-        r1 = -1;
-        if (r0 != r1) goto L_0x019c;
-    L_0x018a:
-        r0 = r6.mPrimaryOrientation;
-        r0 = r0.getStartAfterPadding();
-        r0 = r6.getMinStart(r0);
-        r1 = r6.mPrimaryOrientation;
-        r1 = r1.getStartAfterPadding();
-        r1 = r1 - r0;
-        goto L_0x01ae;
-    L_0x019c:
-        r0 = r6.mPrimaryOrientation;
-        r0 = r0.getEndAfterPadding();
-        r0 = r6.getMaxEnd(r0);
-        r1 = r6.mPrimaryOrientation;
-        r1 = r1.getEndAfterPadding();
-        r1 = r0 - r1;
-    L_0x01ae:
-        r0 = r1;
-        if (r0 <= 0) goto L_0x01ba;
-    L_0x01b1:
-        r1 = r8.mAvailable;
-        r9 = java.lang.Math.min(r1, r0);
-        r17 = r9;
-        goto L_0x01bc;
-    L_0x01ba:
-        r17 = 0;
-    L_0x01bc:
-        return r17;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v7.widget.StaggeredGridLayoutManager.fill(android.support.v7.widget.RecyclerView$Recycler, android.support.v7.widget.LayoutState, android.support.v7.widget.RecyclerView$State):int");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private int fill(Recycler recycler, LayoutState layoutState, State state) {
+        int targetLine;
+        boolean added;
+        int start;
+        Recycler recycler2 = recycler;
+        LayoutState layoutState2 = layoutState;
+        boolean z = false;
+        boolean z2 = true;
+        this.mRemainingSpans.set(0, this.mSpanCount, true);
+        if (layoutState2.mLayoutDirection == 1) {
+            targetLine = layoutState2.mEndLine + layoutState2.mAvailable;
+        } else {
+            targetLine = layoutState2.mStartLine - layoutState2.mAvailable;
+        }
+        int targetLine2 = targetLine;
+        updateAllRemainingSpans(layoutState2.mLayoutDirection, targetLine2);
+        int defaultNewViewLine = this.mShouldReverseLayout ? this.mPrimaryOrientation.getEndAfterPadding() : this.mPrimaryOrientation.getStartAfterPadding();
+        boolean added2 = false;
+        while (true) {
+            added = added2;
+            if (layoutState.hasMore(state) && !this.mRemainingSpans.isEmpty()) {
+                Span currentSpan;
+                int start2;
+                int end;
+                Span currentSpan2;
+                View view = layoutState2.next(recycler2);
+                LayoutParams lp = (LayoutParams) view.getLayoutParams();
+                int position = lp.getViewLayoutPosition();
+                int spanIndex = this.mLazySpanLookup.getSpan(position);
+                boolean assignSpan = spanIndex == -1 ? z2 : z;
+                if (assignSpan) {
+                    currentSpan = lp.mFullSpan ? this.mSpans[z] : getNextSpan(layoutState2);
+                    this.mLazySpanLookup.setSpan(position, currentSpan);
+                } else {
+                    currentSpan = this.mSpans[spanIndex];
+                }
+                Span currentSpan3 = currentSpan;
+                lp.mSpan = currentSpan3;
+                if (layoutState2.mLayoutDirection == z2) {
+                    addView(view);
+                } else {
+                    addView(view, z);
+                }
+                measureChildWithDecorationsAndMargin(view, lp);
+                if (layoutState2.mLayoutDirection == z2) {
+                    targetLine = lp.mFullSpan ? getMaxEnd(defaultNewViewLine) : currentSpan3.getEndLine(defaultNewViewLine);
+                    int end2 = this.mPrimaryOrientation.getDecoratedMeasurement(view) + targetLine;
+                    if (assignSpan && lp.mFullSpan) {
+                        FullSpanItem fullSpanItem = createFullSpanItemFromEnd(targetLine);
+                        fullSpanItem.mGapDir = -1;
+                        fullSpanItem.mPosition = position;
+                        this.mLazySpanLookup.addFullSpanItem(fullSpanItem);
+                    }
+                    start2 = targetLine;
+                    end = end2;
+                } else {
+                    targetLine = lp.mFullSpan ? getMinStart(defaultNewViewLine) : currentSpan3.getStartLine(defaultNewViewLine);
+                    start = targetLine - this.mPrimaryOrientation.getDecoratedMeasurement(view);
+                    if (assignSpan && lp.mFullSpan) {
+                        FullSpanItem fullSpanItem2 = createFullSpanItemFromStart(targetLine);
+                        fullSpanItem2.mGapDir = z2;
+                        fullSpanItem2.mPosition = position;
+                        this.mLazySpanLookup.addFullSpanItem(fullSpanItem2);
+                    }
+                    end = targetLine;
+                    start2 = start;
+                }
+                if (lp.mFullSpan && layoutState2.mItemDirection == -1) {
+                    if (assignSpan) {
+                        this.mLaidOutInvalidFullSpan = z2;
+                    } else {
+                        if (layoutState2.mLayoutDirection == z2) {
+                            added2 = areAllEndsEqual() ^ z2;
+                        } else {
+                            added2 = areAllStartsEqual() ^ z2;
+                        }
+                        if (added2) {
+                            FullSpanItem fullSpanItem3 = this.mLazySpanLookup.getFullSpanItem(position);
+                            if (fullSpanItem3 != null) {
+                                fullSpanItem3.mHasUnwantedGapAfter = z2;
+                            }
+                            this.mLaidOutInvalidFullSpan = z2;
+                        }
+                    }
+                }
+                attachViewToSpans(view, lp, layoutState2);
+                int otherStart = lp.mFullSpan ? this.mSecondaryOrientation.getStartAfterPadding() : (currentSpan3.mIndex * this.mSizePerSpan) + this.mSecondaryOrientation.getStartAfterPadding();
+                int otherEnd = otherStart + this.mSecondaryOrientation.getDecoratedMeasurement(view);
+                if (this.mOrientation == z2) {
+                    currentSpan2 = currentSpan3;
+                    layoutDecoratedWithMargins(view, otherStart, start2, otherEnd, end);
+                } else {
+                    currentSpan2 = currentSpan3;
+                    int i = spanIndex;
+                    int i2 = position;
+                    layoutDecoratedWithMargins(view, start2, otherStart, end, otherEnd);
+                }
+                if (lp.mFullSpan) {
+                    updateAllRemainingSpans(this.mLayoutState.mLayoutDirection, targetLine2);
+                } else {
+                    updateRemainingSpans(currentSpan2, this.mLayoutState.mLayoutDirection, targetLine2);
+                }
+                recycle(recycler2, this.mLayoutState);
+                added2 = true;
+                z = false;
+                z2 = true;
+            } else if (!added) {
+                recycle(recycler2, this.mLayoutState);
+            }
+        }
+        if (added) {
+        }
+        if (this.mLayoutState.mLayoutDirection == -1) {
+            start = this.mPrimaryOrientation.getStartAfterPadding() - getMinStart(this.mPrimaryOrientation.getStartAfterPadding());
+        } else {
+            start = getMaxEnd(this.mPrimaryOrientation.getEndAfterPadding()) - this.mPrimaryOrientation.getEndAfterPadding();
+        }
+        targetLine = start;
+        return targetLine > 0 ? Math.min(layoutState2.mAvailable, targetLine) : 0;
     }
 
     private FullSpanItem createFullSpanItemFromEnd(int newItemTop) {

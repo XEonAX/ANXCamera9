@@ -27,7 +27,7 @@ java  -jar .\tools\SignApk.jar .\tools\testkey.x509.pem .\tools\testkey.pk8 .\ou
 
 
 Jadx
-.\tools\jadx\bin\jadx -d .\src\ANXCamera -r .\out\ANXCamera.apk
+.\tools\jadx\bin\jadx -d .\src\ANXCamera -r .\out\ANXCamera.apk --show-bad-code
 
 
 Install

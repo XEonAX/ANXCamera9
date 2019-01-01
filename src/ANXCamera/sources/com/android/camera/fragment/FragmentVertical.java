@@ -9,6 +9,7 @@ import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.animation.type.AlphaInOnSubscribe;
 import com.android.camera.animation.type.AlphaOutOnSubscribe;
+import com.android.camera.constant.LightingConstant;
 import com.android.camera.data.DataRepository;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.protocol.ModeProtocol.VerticalProtocol;
@@ -75,158 +76,92 @@ public class FragmentVertical extends BaseFragment implements VerticalProtocol {
         }
     }
 
-    public void setLightingPattern(java.lang.String r2) {
-        /*
-        r1 = this;
-        r0 = r2.hashCode();
-        switch(r0) {
-            case 48: goto L_0x004e;
-            case 49: goto L_0x0044;
-            case 50: goto L_0x003a;
-            case 51: goto L_0x0030;
-            case 52: goto L_0x0026;
-            case 53: goto L_0x001c;
-            case 54: goto L_0x0012;
-            case 55: goto L_0x0008;
-            default: goto L_0x0007;
-        };
-    L_0x0007:
-        goto L_0x0058;
-    L_0x0008:
-        r0 = "7";
-        r2 = r2.equals(r0);
-        if (r2 == 0) goto L_0x0058;
-    L_0x0010:
-        r2 = 7;
-        goto L_0x0059;
-    L_0x0012:
-        r0 = "6";
-        r2 = r2.equals(r0);
-        if (r2 == 0) goto L_0x0058;
-    L_0x001a:
-        r2 = 6;
-        goto L_0x0059;
-    L_0x001c:
-        r0 = "5";
-        r2 = r2.equals(r0);
-        if (r2 == 0) goto L_0x0058;
-    L_0x0024:
-        r2 = 5;
-        goto L_0x0059;
-    L_0x0026:
-        r0 = "4";
-        r2 = r2.equals(r0);
-        if (r2 == 0) goto L_0x0058;
-    L_0x002e:
-        r2 = 4;
-        goto L_0x0059;
-    L_0x0030:
-        r0 = "3";
-        r2 = r2.equals(r0);
-        if (r2 == 0) goto L_0x0058;
-    L_0x0038:
-        r2 = 3;
-        goto L_0x0059;
-    L_0x003a:
-        r0 = "2";
-        r2 = r2.equals(r0);
-        if (r2 == 0) goto L_0x0058;
-    L_0x0042:
-        r2 = 2;
-        goto L_0x0059;
-    L_0x0044:
-        r0 = "1";
-        r2 = r2.equals(r0);
-        if (r2 == 0) goto L_0x0058;
-    L_0x004c:
-        r2 = 1;
-        goto L_0x0059;
-    L_0x004e:
-        r0 = "0";
-        r2 = r2.equals(r0);
-        if (r2 == 0) goto L_0x0058;
-    L_0x0056:
-        r2 = 0;
-        goto L_0x0059;
-    L_0x0058:
-        r2 = -1;
-    L_0x0059:
-        r0 = -2;
-        switch(r2) {
-            case 0: goto L_0x0088;
-            case 1: goto L_0x0082;
-            case 2: goto L_0x007c;
-            case 3: goto L_0x0076;
-            case 4: goto L_0x0070;
-            case 5: goto L_0x006a;
-            case 6: goto L_0x0064;
-            case 7: goto L_0x005e;
-            default: goto L_0x005d;
-        };
-    L_0x005d:
-        goto L_0x008b;
-    L_0x005e:
-        r2 = 2131427843; // 0x7f0b0203 float:1.8477314E38 double:1.053065274E-314;
-        r1.stringLightingRes = r2;
-        goto L_0x008b;
-    L_0x0064:
-        r2 = 2131427844; // 0x7f0b0204 float:1.8477316E38 double:1.0530652743E-314;
-        r1.stringLightingRes = r2;
-        goto L_0x008b;
-    L_0x006a:
-        r2 = 2131427845; // 0x7f0b0205 float:1.8477318E38 double:1.053065275E-314;
-        r1.stringLightingRes = r2;
-        goto L_0x008b;
-    L_0x0070:
-        r2 = 2131427842; // 0x7f0b0202 float:1.8477312E38 double:1.0530652733E-314;
-        r1.stringLightingRes = r2;
-        goto L_0x008b;
-    L_0x0076:
-        r2 = 2131427841; // 0x7f0b0201 float:1.847731E38 double:1.053065273E-314;
-        r1.stringLightingRes = r2;
-        goto L_0x008b;
-    L_0x007c:
-        r2 = 2131427840; // 0x7f0b0200 float:1.8477308E38 double:1.0530652723E-314;
-        r1.stringLightingRes = r2;
-        goto L_0x008b;
-    L_0x0082:
-        r2 = 2131427839; // 0x7f0b01ff float:1.8477306E38 double:1.053065272E-314;
-        r1.stringLightingRes = r2;
-        goto L_0x008b;
-    L_0x0088:
-        r1.stringLightingRes = r0;
-    L_0x008b:
-        r2 = r1.stringLightingRes;
-        if (r2 != r0) goto L_0x009a;
-    L_0x008f:
-        r2 = r1.mLeftLightingPattern;
-        com.android.camera.animation.type.AlphaOutOnSubscribe.directSetResult(r2);
-        r2 = r1.mRightLightingPattern;
-        com.android.camera.animation.type.AlphaOutOnSubscribe.directSetResult(r2);
-        goto L_0x00bf;
-    L_0x009a:
-        r2 = r1.mLeftLightingPattern;
-        r0 = r1.stringLightingRes;
-        r2.setText(r0);
-        r2 = r1.mRightLightingPattern;
-        r0 = r1.stringLightingRes;
-        r2.setText(r0);
-        r2 = r1.isLeftLandScape();
-        if (r2 == 0) goto L_0x00b4;
-    L_0x00ae:
-        r2 = r1.mLeftLightingPattern;
-        com.android.camera.animation.type.AlphaInOnSubscribe.directSetResult(r2);
-        goto L_0x00bf;
-    L_0x00b4:
-        r2 = r1.isRightLandScape();
-        if (r2 == 0) goto L_0x00bf;
-    L_0x00ba:
-        r2 = r1.mRightLightingPattern;
-        com.android.camera.animation.type.AlphaInOnSubscribe.directSetResult(r2);
-    L_0x00bf:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.FragmentVertical.setLightingPattern(java.lang.String):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void setLightingPattern(String str) {
+        Object obj;
+        switch (str.hashCode()) {
+            case 48:
+                if (str.equals("0")) {
+                    obj = null;
+                    break;
+                }
+            case 49:
+                if (str.equals("1")) {
+                    obj = 1;
+                    break;
+                }
+            case 50:
+                if (str.equals("2")) {
+                    obj = 2;
+                    break;
+                }
+            case 51:
+                if (str.equals("3")) {
+                    obj = 3;
+                    break;
+                }
+            case 52:
+                if (str.equals("4")) {
+                    obj = 4;
+                    break;
+                }
+            case 53:
+                if (str.equals("5")) {
+                    obj = 5;
+                    break;
+                }
+            case 54:
+                if (str.equals("6")) {
+                    obj = 6;
+                    break;
+                }
+            case 55:
+                if (str.equals(LightingConstant.LIGHTING_LEAF)) {
+                    obj = 7;
+                    break;
+                }
+            default:
+                obj = -1;
+                break;
+        }
+        switch (obj) {
+            case null:
+                this.stringLightingRes = -2;
+                break;
+            case 1:
+                this.stringLightingRes = R.string.lighting_pattern_nature;
+                break;
+            case 2:
+                this.stringLightingRes = R.string.lighting_pattern_stage;
+                break;
+            case 3:
+                this.stringLightingRes = R.string.lighting_pattern_movie;
+                break;
+            case 4:
+                this.stringLightingRes = R.string.lighting_pattern_rainbow;
+                break;
+            case 5:
+                this.stringLightingRes = R.string.lighting_pattern_shutter;
+                break;
+            case 6:
+                this.stringLightingRes = R.string.lighting_pattern_dot;
+                break;
+            case 7:
+                this.stringLightingRes = R.string.lighting_pattern_leaf;
+                break;
+        }
+        if (this.stringLightingRes == -2) {
+            AlphaOutOnSubscribe.directSetResult(this.mLeftLightingPattern);
+            AlphaOutOnSubscribe.directSetResult(this.mRightLightingPattern);
+            return;
+        }
+        this.mLeftLightingPattern.setText(this.stringLightingRes);
+        this.mRightLightingPattern.setText(this.stringLightingRes);
+        if (isLeftLandScape()) {
+            AlphaInOnSubscribe.directSetResult(this.mLeftLightingPattern);
+        } else if (isRightLandScape()) {
+            AlphaInOnSubscribe.directSetResult(this.mRightLightingPattern);
+        }
     }
 
     public void alertLightingHint(int i) {

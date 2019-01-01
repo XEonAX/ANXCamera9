@@ -22,6 +22,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class PerformanceConfig {
@@ -257,447 +258,282 @@ public class PerformanceConfig {
     /* JADX WARNING: Missing block: B:176:0x0200, code:
             r0 = null;
      */
-    public static java.lang.String doubtingFilter(com.ss.android.vesdk.runtime.cloudconfig.Config r17, org.json.JSONObject r18, boolean r19) {
-        /*
-        r1 = r17;
-        r0 = r18;
-        if (r0 == 0) goto L_0x0297;
-    L_0x0006:
-        r3 = r1.key;
-        r4 = r0.has(r3);
-        r5 = 0;
-        if (r4 != 0) goto L_0x002d;
-    L_0x000f:
-        r0 = "PerfConfig";
-        r4 = new java.lang.StringBuilder;
-        r4.<init>();
-        r6 = "fetched config do not contain config.key = ";
-        r4.append(r6);
-        r4.append(r3);
-        r3 = r4.toString();
-        android.util.Log.e(r0, r3);
-        if (r19 == 0) goto L_0x002c;
-    L_0x0027:
-        r0 = r17.toString();
-        return r0;
-    L_0x002c:
-        return r5;
-        r6 = -4616189618054758400; // 0xbff0000000000000 float:0.0 double:-1.0;
-        r4 = -1;
-        r8 = 0;
-        r9 = 1;
-        r10 = r3.hashCode();	 Catch:{ JSONException -> 0x0215 }
-        r11 = 9;
-        switch(r10) {
-            case -2004732869: goto L_0x00ef;
-            case -1815767918: goto L_0x00e5;
-            case -1694569666: goto L_0x00db;
-            case -1587999781: goto L_0x00d1;
-            case -1558016730: goto L_0x00c7;
-            case -1376521253: goto L_0x00bc;
-            case -1303806036: goto L_0x00b2;
-            case -1236656006: goto L_0x00a7;
-            case -1236652245: goto L_0x009c;
-            case -1136469343: goto L_0x0091;
-            case -457298194: goto L_0x0086;
-            case 80523290: goto L_0x007b;
-            case 681699503: goto L_0x0070;
-            case 1051236402: goto L_0x0064;
-            case 1075852647: goto L_0x0058;
-            case 1382653276: goto L_0x004c;
-            case 1399891293: goto L_0x0040;
-            default: goto L_0x003e;
-        };	 Catch:{ JSONException -> 0x0215 }
-    L_0x003e:
-        goto L_0x00fa;
-    L_0x0040:
-        r10 = "import_shorter_pixels";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x0048:
-        r10 = 8;
-        goto L_0x00fb;
-    L_0x004c:
-        r10 = "synthetic_video_sw_preset";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x0054:
-        r10 = 15;
-        goto L_0x00fb;
-    L_0x0058:
-        r10 = "synthetic_video_sw_maxrate";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x0060:
-        r10 = 14;
-        goto L_0x00fb;
-    L_0x0064:
-        r10 = "synthetic_encode_mode";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x006c:
-        r10 = 11;
-        goto L_0x00fb;
-    L_0x0070:
-        r10 = "record_video_hw_bitrate";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x0078:
-        r10 = 3;
-        goto L_0x00fb;
-    L_0x007b:
-        r10 = "import_video_sw_crf";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x0083:
-        r10 = r11;
-        goto L_0x00fb;
-    L_0x0086:
-        r10 = "record_video_sw_crf";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x008e:
-        r10 = 2;
-        goto L_0x00fb;
-    L_0x0091:
-        r10 = "record_resolution_width";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x0099:
-        r10 = 5;
-        goto L_0x00fb;
-    L_0x009c:
-        r10 = "synthetic_video_sw_gop";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x00a4:
-        r10 = 16;
-        goto L_0x00fb;
-    L_0x00a7:
-        r10 = "synthetic_video_sw_crf";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x00af:
-        r10 = 12;
-        goto L_0x00fb;
-    L_0x00b2:
-        r10 = "record_resolution_height";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x00ba:
-        r10 = 6;
-        goto L_0x00fb;
-    L_0x00bc:
-        r10 = "import_video_hw_bitrate";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x00c4:
-        r10 = 10;
-        goto L_0x00fb;
-    L_0x00c7:
-        r10 = "record_camera_type";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x00cf:
-        r10 = r9;
-        goto L_0x00fb;
-    L_0x00d1:
-        r10 = "use_opensl";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x00d9:
-        r10 = r8;
-        goto L_0x00fb;
-    L_0x00db:
-        r10 = "record_encode_mode";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x00e3:
-        r10 = 4;
-        goto L_0x00fb;
-    L_0x00e5:
-        r10 = "import_encode_mode";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x00ed:
-        r10 = 7;
-        goto L_0x00fb;
-    L_0x00ef:
-        r10 = "synthetic_video_hw_bitrate";
-        r10 = r3.equals(r10);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x00fa;
-    L_0x00f7:
-        r10 = 13;
-        goto L_0x00fb;
-    L_0x00fa:
-        r10 = r4;
-    L_0x00fb:
-        r12 = 2560; // 0xa00 float:3.587E-42 double:1.265E-320;
-        r13 = 160; // 0xa0 float:2.24E-43 double:7.9E-322;
-        r14 = 50;
-        r15 = 0;
-        switch(r10) {
-            case 0: goto L_0x0202;
-            case 1: goto L_0x01f5;
-            case 2: goto L_0x01e8;
-            case 3: goto L_0x01d4;
-            case 4: goto L_0x01c7;
-            case 5: goto L_0x01b4;
-            case 6: goto L_0x01a2;
-            case 7: goto L_0x0194;
-            case 8: goto L_0x0182;
-            case 9: goto L_0x0174;
-            case 10: goto L_0x0166;
-            case 11: goto L_0x0158;
-            case 12: goto L_0x014a;
-            case 13: goto L_0x013c;
-            case 14: goto L_0x0128;
-            case 15: goto L_0x011a;
-            case 16: goto L_0x010a;
-            default: goto L_0x0106;
-        };	 Catch:{ JSONException -> 0x0215 }
-    L_0x0106:
-        r0 = new java.lang.IllegalStateException;	 Catch:{ JSONException -> 0x0215 }
-        goto L_0x020f;
-    L_0x010a:
-        r10 = r0.getInt(r3);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 < 0) goto L_0x0200;
-    L_0x0110:
-        r0 = 1000; // 0x3e8 float:1.401E-42 double:4.94E-321;
-        if (r10 > r0) goto L_0x0200;
-    L_0x0114:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01c5 }
-        goto L_0x020e;
-    L_0x011a:
-        r10 = r0.getInt(r3);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 < 0) goto L_0x0200;
-    L_0x0120:
-        if (r10 > r11) goto L_0x0200;
-    L_0x0122:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01c5 }
-        goto L_0x020e;
-    L_0x0128:
-        r10 = r0.getInt(r3);	 Catch:{ JSONException -> 0x0215 }
-        r0 = 100000; // 0x186a0 float:1.4013E-40 double:4.94066E-319;
-        if (r10 < r0) goto L_0x0200;
-    L_0x0131:
-        r0 = 10000000; // 0x989680 float:1.4012985E-38 double:4.9406565E-317;
-        if (r10 > r0) goto L_0x0200;
-    L_0x0136:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01c5 }
-        goto L_0x020e;
-    L_0x013c:
-        r10 = r0.getDouble(r3);	 Catch:{ JSONException -> 0x0215 }
-        r0 = (r10 > r15 ? 1 : (r10 == r15 ? 0 : -1));
-        if (r0 <= 0) goto L_0x01e4;
-    L_0x0144:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01e1 }
-        goto L_0x01e5;
-    L_0x014a:
-        r10 = r0.getInt(r3);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 < r9) goto L_0x0200;
-    L_0x0150:
-        if (r10 > r14) goto L_0x0200;
-    L_0x0152:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01c5 }
-        goto L_0x020e;
-    L_0x0158:
-        r10 = r0.getInt(r3);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x0160;
-    L_0x015e:
-        if (r10 != r9) goto L_0x0200;
-    L_0x0160:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01c5 }
-        goto L_0x020e;
-    L_0x0166:
-        r10 = r0.getDouble(r3);	 Catch:{ JSONException -> 0x0215 }
-        r0 = (r10 > r15 ? 1 : (r10 == r15 ? 0 : -1));
-        if (r0 <= 0) goto L_0x01e4;
-    L_0x016e:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01e1 }
-        goto L_0x01e5;
-    L_0x0174:
-        r10 = r0.getInt(r3);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 < r9) goto L_0x0200;
-    L_0x017a:
-        if (r10 > r14) goto L_0x0200;
-    L_0x017c:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01c5 }
-        goto L_0x020e;
-    L_0x0182:
-        r10 = r0.getInt(r3);	 Catch:{ JSONException -> 0x0215 }
-        r0 = r10 % 16;
-        if (r0 != 0) goto L_0x0200;
-    L_0x018a:
-        if (r10 < r13) goto L_0x0200;
-    L_0x018c:
-        if (r10 > r12) goto L_0x0200;
-    L_0x018e:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01c5 }
-        goto L_0x020e;
-    L_0x0194:
-        r10 = r0.getInt(r3);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x019c;
-    L_0x019a:
-        if (r10 != r9) goto L_0x0200;
-    L_0x019c:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01c5 }
-        goto L_0x020e;
-    L_0x01a2:
-        r10 = r0.getInt(r3);	 Catch:{ JSONException -> 0x0215 }
-        r0 = r10 % 16;
-        if (r0 != 0) goto L_0x0200;
-    L_0x01aa:
-        if (r10 < r13) goto L_0x0200;
-    L_0x01ac:
-        if (r10 > r12) goto L_0x0200;
-    L_0x01ae:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01c5 }
-        goto L_0x020e;
-    L_0x01b4:
-        r10 = r0.getInt(r3);	 Catch:{ JSONException -> 0x0215 }
-        r0 = r10 % 16;
-        if (r0 != 0) goto L_0x0200;
-    L_0x01bc:
-        if (r10 < r13) goto L_0x0200;
-    L_0x01be:
-        if (r10 > r12) goto L_0x0200;
-    L_0x01c0:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01c5 }
-        goto L_0x020e;
-    L_0x01c5:
-        r0 = move-exception;
-        goto L_0x0217;
-    L_0x01c7:
-        r10 = r0.getInt(r3);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x01cf;
-    L_0x01cd:
-        if (r10 != r9) goto L_0x0200;
-    L_0x01cf:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01c5 }
-        goto L_0x020e;
-    L_0x01d4:
-        r10 = r0.getDouble(r3);	 Catch:{ JSONException -> 0x0215 }
-        r0 = (r10 > r15 ? 1 : (r10 == r15 ? 0 : -1));
-        if (r0 <= 0) goto L_0x01e4;
-    L_0x01dc:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01e1 }
-        goto L_0x01e5;
-    L_0x01e1:
-        r0 = move-exception;
-        r6 = r10;
-        goto L_0x0216;
-    L_0x01e4:
-        r0 = r5;
-    L_0x01e5:
-        r6 = r10;
-        r10 = r4;
-        goto L_0x020e;
-    L_0x01e8:
-        r10 = r0.getInt(r3);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 < r9) goto L_0x0200;
-    L_0x01ee:
-        if (r10 > r14) goto L_0x0200;
-    L_0x01f0:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01c5 }
-        goto L_0x020e;
-    L_0x01f5:
-        r10 = r0.getInt(r3);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 < r9) goto L_0x0200;
-    L_0x01fb:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01c5 }
-        goto L_0x020e;
-    L_0x0200:
-        r0 = r5;
-        goto L_0x020e;
-    L_0x0202:
-        r10 = r0.getInt(r3);	 Catch:{ JSONException -> 0x0215 }
-        if (r10 == 0) goto L_0x020a;
-    L_0x0208:
-        if (r10 != r9) goto L_0x0200;
-    L_0x020a:
-        r0 = java.lang.String.valueOf(r10);	 Catch:{ JSONException -> 0x01c5 }
-    L_0x020e:
-        goto L_0x0224;
-    L_0x020f:
-        r8 = "Shouldn't reach here. Unmatched config.key case";
-        r0.<init>(r8);	 Catch:{ JSONException -> 0x0215 }
-        throw r0;	 Catch:{ JSONException -> 0x0215 }
-    L_0x0215:
-        r0 = move-exception;
-    L_0x0216:
-        r10 = r4;
-    L_0x0217:
-        r4 = "PerfConfig";
-        r8 = "Parse json result failed! ";
-        android.util.Log.e(r4, r8, r0);
-        r0.printStackTrace();
-        r0 = r5;
-        r8 = r9;
-    L_0x0224:
-        if (r8 != 0) goto L_0x0271;
-    L_0x0226:
-        if (r0 != 0) goto L_0x0271;
-    L_0x0228:
-        r4 = r1.type;
-        if (r4 != 0) goto L_0x024d;
-    L_0x022c:
-        r4 = "doubtingFilter report: ";
-        r6 = new java.lang.StringBuilder;
-        r6.<init>();
-        r7 = "Checked config did not pass: key = ";
-        r6.append(r7);
-        r7 = r1.key;
-        r6.append(r7);
-        r7 = " value = ";
-        r6.append(r7);
-        r6.append(r10);
-        r6 = r6.toString();
-        android.util.Log.e(r4, r6);
-        goto L_0x0271;
-    L_0x024d:
-        r4 = r1.type;
-        if (r4 != r9) goto L_0x0271;
-    L_0x0251:
-        r4 = "doubtingFilter report: ";
-        r8 = new java.lang.StringBuilder;
-        r8.<init>();
-        r9 = "Checked config did not pass: key = ";
-        r8.append(r9);
-        r9 = r1.key;
-        r8.append(r9);
-        r9 = " value = ";
-        r8.append(r9);
-        r8.append(r6);
-        r6 = r8.toString();
-        android.util.Log.e(r4, r6);
-    L_0x0271:
-        if (r0 != 0) goto L_0x027d;
-    L_0x0273:
-        if (r19 == 0) goto L_0x027c;
-    L_0x0275:
-        r0 = r1.defaultValue;
-        r5 = r0.toString();
-    L_0x027c:
-        return r5;
-    L_0x027d:
-        r1 = "doubtingFilter report: ";
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r2.append(r3);
-        r3 = " == ";
-        r2.append(r3);
-        r2.append(r0);
-        r2 = r2.toString();
-        android.util.Log.d(r1, r2);
-        return r0;
-    L_0x0297:
-        r0 = new java.lang.IllegalArgumentException;
-        r1 = "fetchedConfigs == null";
-        r0.<init>(r1);
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.ss.android.vesdk.runtime.cloudconfig.PerformanceConfig.doubtingFilter(com.ss.android.vesdk.runtime.cloudconfig.Config, org.json.JSONObject, boolean):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static String doubtingFilter(Config config, JSONObject jSONObject, boolean z) {
+        String valueOf;
+        Throwable e;
+        Config config2 = config;
+        JSONObject jSONObject2 = jSONObject;
+        if (jSONObject2 != null) {
+            String str = config2.key;
+            String str2 = null;
+            if (jSONObject2.has(str)) {
+                double d = -1.0d;
+                Object obj = null;
+                int i;
+                try {
+                    Object obj2;
+                    switch (str.hashCode()) {
+                        case -2004732869:
+                            if (str.equals(KEY_F_SYNTHETIC_VIDEO_HW_BITRATE)) {
+                                obj2 = 13;
+                                break;
+                            }
+                        case -1815767918:
+                            if (str.equals(KEY_I_IMPORT_ENCODE_MODE)) {
+                                obj2 = 7;
+                                break;
+                            }
+                        case -1694569666:
+                            if (str.equals(KEY_I_RECORD_ENCODE_MODE)) {
+                                obj2 = 4;
+                                break;
+                            }
+                        case -1587999781:
+                            if (str.equals(KEY_I_USE_OPENSL)) {
+                                obj2 = null;
+                                break;
+                            }
+                        case -1558016730:
+                            if (str.equals(KEY_I_RECORD_CAMERA_TYPE)) {
+                                obj2 = 1;
+                                break;
+                            }
+                        case -1376521253:
+                            if (str.equals(KEY_F_IMPORT_VIDEO_HW_BITRATE)) {
+                                obj2 = 10;
+                                break;
+                            }
+                        case -1303806036:
+                            if (str.equals(KEY_I_RECORD_RESOLUTION_HEIGHT)) {
+                                obj2 = 6;
+                                break;
+                            }
+                        case -1236656006:
+                            if (str.equals(KEY_I_SYNTHETIC_VIDEO_SW_CRF)) {
+                                obj2 = 12;
+                                break;
+                            }
+                        case -1236652245:
+                            if (str.equals(KEY_I_SYNTHETIC_VIDEO_SW_GOP)) {
+                                obj2 = 16;
+                                break;
+                            }
+                        case -1136469343:
+                            if (str.equals(KEY_I_RECORD_RESOLUTION_WIDTH)) {
+                                obj2 = 5;
+                                break;
+                            }
+                        case -457298194:
+                            if (str.equals(KEY_I_RECORD_VIDEO_SW_CRF)) {
+                                obj2 = 2;
+                                break;
+                            }
+                        case 80523290:
+                            if (str.equals(KEY_I_IMPORT_VIDEO_SW_CRF)) {
+                                obj2 = 9;
+                                break;
+                            }
+                        case 681699503:
+                            if (str.equals(KEY_F_RECORD_VIDEO_HW_BITRATE)) {
+                                obj2 = 3;
+                                break;
+                            }
+                        case 1051236402:
+                            if (str.equals(KEY_I_SYNTHETIC_ENCODE_MODE)) {
+                                obj2 = 11;
+                                break;
+                            }
+                        case 1075852647:
+                            if (str.equals(KEY_I_SYNTHETIC_VIDEO_SW_MAXRATE)) {
+                                obj2 = 14;
+                                break;
+                            }
+                        case 1382653276:
+                            if (str.equals(KEY_I_SYNTHETIC_VIDEO_SW_PRESET)) {
+                                obj2 = 15;
+                                break;
+                            }
+                        case 1399891293:
+                            if (str.equals(KEY_I_IMPORT_SHORTER_PIXELS)) {
+                                obj2 = 8;
+                                break;
+                            }
+                        default:
+                            obj2 = -1;
+                            break;
+                    }
+                    double d2;
+                    switch (obj2) {
+                        case null:
+                            i = jSONObject2.getInt(str);
+                            if (i == 0 || i == 1) {
+                                valueOf = String.valueOf(i);
+                                break;
+                            }
+                        case 1:
+                            i = jSONObject2.getInt(str);
+                            if (i >= 1) {
+                                valueOf = String.valueOf(i);
+                                break;
+                            }
+                            break;
+                        case 2:
+                            i = jSONObject2.getInt(str);
+                            if (i >= 1 && i <= 50) {
+                                valueOf = String.valueOf(i);
+                                break;
+                            }
+                        case 3:
+                            d2 = jSONObject2.getDouble(str);
+                            if (d2 > 0.0d) {
+                                valueOf = String.valueOf(d2);
+                                break;
+                            }
+                            break;
+                        case 4:
+                            i = jSONObject2.getInt(str);
+                            if (i == 0 || i == 1) {
+                                valueOf = String.valueOf(i);
+                                break;
+                            }
+                        case 5:
+                            i = jSONObject2.getInt(str);
+                            if (i % 16 == 0 && i >= 160 && i <= 2560) {
+                                valueOf = String.valueOf(i);
+                                break;
+                            }
+                        case 6:
+                            i = jSONObject2.getInt(str);
+                            if (i % 16 == 0 && i >= 160 && i <= 2560) {
+                                valueOf = String.valueOf(i);
+                                break;
+                            }
+                        case 7:
+                            i = jSONObject2.getInt(str);
+                            if (i == 0 || i == 1) {
+                                valueOf = String.valueOf(i);
+                                break;
+                            }
+                        case 8:
+                            i = jSONObject2.getInt(str);
+                            if (i % 16 == 0 && i >= 160 && i <= 2560) {
+                                valueOf = String.valueOf(i);
+                                break;
+                            }
+                        case 9:
+                            i = jSONObject2.getInt(str);
+                            if (i >= 1 && i <= 50) {
+                                valueOf = String.valueOf(i);
+                                break;
+                            }
+                        case 10:
+                            d2 = jSONObject2.getDouble(str);
+                            if (d2 > 0.0d) {
+                                valueOf = String.valueOf(d2);
+                                break;
+                            }
+                            break;
+                        case 11:
+                            i = jSONObject2.getInt(str);
+                            if (i == 0 || i == 1) {
+                                valueOf = String.valueOf(i);
+                                break;
+                            }
+                        case 12:
+                            i = jSONObject2.getInt(str);
+                            if (i >= 1 && i <= 50) {
+                                valueOf = String.valueOf(i);
+                                break;
+                            }
+                        case 13:
+                            d2 = jSONObject2.getDouble(str);
+                            if (d2 > 0.0d) {
+                                try {
+                                    valueOf = String.valueOf(d2);
+                                    break;
+                                } catch (JSONException e2) {
+                                    e = e2;
+                                    d = d2;
+                                    break;
+                                }
+                            }
+                            break;
+                        case 14:
+                            i = jSONObject2.getInt(str);
+                            if (i >= 100000 && i <= 10000000) {
+                                valueOf = String.valueOf(i);
+                                break;
+                            }
+                        case 15:
+                            i = jSONObject2.getInt(str);
+                            if (i >= 0 && i <= 9) {
+                                valueOf = String.valueOf(i);
+                                break;
+                            }
+                        case 16:
+                            i = jSONObject2.getInt(str);
+                            if (i >= 0 && i <= 1000) {
+                                try {
+                                    valueOf = String.valueOf(i);
+                                    break;
+                                } catch (JSONException e3) {
+                                    e = e3;
+                                    break;
+                                }
+                            }
+                        default:
+                            throw new IllegalStateException("Shouldn't reach here. Unmatched config.key case");
+                    }
+                } catch (JSONException e4) {
+                    e = e4;
+                    i = -1;
+                    Log.e(TAG, "Parse json result failed! ", e);
+                    e.printStackTrace();
+                    valueOf = null;
+                    obj = 1;
+                    if (obj == null && valueOf == null) {
+                        if (config2.type == 0) {
+                            StringBuilder stringBuilder = new StringBuilder();
+                            stringBuilder.append("Checked config did not pass: key = ");
+                            stringBuilder.append(config2.key);
+                            stringBuilder.append(" value = ");
+                            stringBuilder.append(i);
+                            Log.e("doubtingFilter report: ", stringBuilder.toString());
+                        } else if (config2.type == 1) {
+                            StringBuilder stringBuilder2 = new StringBuilder();
+                            stringBuilder2.append("Checked config did not pass: key = ");
+                            stringBuilder2.append(config2.key);
+                            stringBuilder2.append(" value = ");
+                            stringBuilder2.append(d);
+                            Log.e("doubtingFilter report: ", stringBuilder2.toString());
+                        }
+                    }
+                    if (valueOf == null) {
+                        if (z) {
+                            str2 = config2.defaultValue.toString();
+                        }
+                        return str2;
+                    }
+                    StringBuilder stringBuilder3 = new StringBuilder();
+                    stringBuilder3.append(str);
+                    stringBuilder3.append(" == ");
+                    stringBuilder3.append(valueOf);
+                    Log.d("doubtingFilter report: ", stringBuilder3.toString());
+                    return valueOf;
+                }
+            }
+            valueOf = TAG;
+            StringBuilder stringBuilder4 = new StringBuilder();
+            stringBuilder4.append("fetched config do not contain config.key = ");
+            stringBuilder4.append(str);
+            Log.e(valueOf, stringBuilder4.toString());
+            if (z) {
+                return config.toString();
+            }
+            return null;
+        }
+        throw new IllegalArgumentException("fetchedConfigs == null");
     }
 
     public static void setPerformanceConfig(Context context, Map<String, String> map) {

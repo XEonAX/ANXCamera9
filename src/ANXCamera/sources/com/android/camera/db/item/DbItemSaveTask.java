@@ -1,8 +1,12 @@
 package com.android.camera.db.item;
 
+import android.content.Context;
+import com.android.camera.CameraAppImpl;
 import com.android.camera.db.element.SaveTask;
 import com.android.camera.db.greendao.SaveTaskDao;
 import com.android.camera.db.greendao.SaveTaskDao.Properties;
+import com.android.camera.log.Log;
+import com.xiaomi.camera.parallelservice.util.ParallelUtil;
 import java.util.List;
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.Property;
@@ -74,70 +78,33 @@ public class DbItemSaveTask extends DbItemBase<SaveTask, Long> {
     /* JADX WARNING: Missing block: B:20:0x0074, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public void markAllDepartedTask() {
-        /*
-        r9 = this;
-        r0 = r9.mLock;
-        monitor-enter(r0);
-        r1 = r9.getAllItems();	 Catch:{ all -> 0x0075 }
-        if (r1 == 0) goto L_0x0073;
-    L_0x0009:
-        r2 = r1.size();	 Catch:{ all -> 0x0075 }
-        if (r2 != 0) goto L_0x0010;
-    L_0x000f:
-        goto L_0x0073;
-    L_0x0010:
-        r2 = com.android.camera.CameraAppImpl.getAndroidContext();	 Catch:{ all -> 0x0075 }
-        r3 = java.lang.System.currentTimeMillis();	 Catch:{ all -> 0x0075 }
-        r1 = r1.iterator();	 Catch:{ all -> 0x0075 }
-    L_0x001c:
-        r5 = r1.hasNext();	 Catch:{ all -> 0x0075 }
-        if (r5 == 0) goto L_0x0071;
-    L_0x0022:
-        r5 = r1.next();	 Catch:{ all -> 0x0075 }
-        r5 = (com.android.camera.db.element.SaveTask) r5;	 Catch:{ all -> 0x0075 }
-        r6 = r5.isDeparted(r3);	 Catch:{ all -> 0x0075 }
-        if (r6 == 0) goto L_0x0070;
-    L_0x002e:
-        r6 = r5.isValid();	 Catch:{ all -> 0x0075 }
-        if (r6 != 0) goto L_0x0052;
-    L_0x0034:
-        r6 = "algo ";
-        r7 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0075 }
-        r7.<init>();	 Catch:{ all -> 0x0075 }
-        r8 = "not valid, remove:";
-        r7.append(r8);	 Catch:{ all -> 0x0075 }
-        r8 = r5.getPath();	 Catch:{ all -> 0x0075 }
-        r7.append(r8);	 Catch:{ all -> 0x0075 }
-        r7 = r7.toString();	 Catch:{ all -> 0x0075 }
-        com.android.camera.log.Log.e(r6, r7);	 Catch:{ all -> 0x0075 }
-        r9.removeItem(r5);	 Catch:{ all -> 0x0075 }
-        goto L_0x0070;
-    L_0x0052:
-        r6 = "algo ";
-        r7 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0075 }
-        r7.<init>();	 Catch:{ all -> 0x0075 }
-        r8 = "mark departed:";
-        r7.append(r8);	 Catch:{ all -> 0x0075 }
-        r8 = r5.getPath();	 Catch:{ all -> 0x0075 }
-        r7.append(r8);	 Catch:{ all -> 0x0075 }
-        r7 = r7.toString();	 Catch:{ all -> 0x0075 }
-        com.android.camera.log.Log.e(r6, r7);	 Catch:{ all -> 0x0075 }
-        r6 = 0;
-        com.xiaomi.camera.parallelservice.util.ParallelUtil.markTaskFinish(r2, r5, r6);	 Catch:{ all -> 0x0075 }
-    L_0x0070:
-        goto L_0x001c;
-    L_0x0071:
-        monitor-exit(r0);	 Catch:{ all -> 0x0075 }
-        return;
-    L_0x0073:
-        monitor-exit(r0);	 Catch:{ all -> 0x0075 }
-        return;
-    L_0x0075:
-        r1 = move-exception;
-        monitor-exit(r0);	 Catch:{ all -> 0x0075 }
-        throw r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.db.item.DbItemSaveTask.markAllDepartedTask():void");
+        synchronized (this.mLock) {
+            List<SaveTask> allItems = getAllItems();
+            if (allItems == null || allItems.size() == 0) {
+            } else {
+                Context androidContext = CameraAppImpl.getAndroidContext();
+                long currentTimeMillis = System.currentTimeMillis();
+                for (SaveTask saveTask : allItems) {
+                    if (saveTask.isDeparted(currentTimeMillis)) {
+                        StringBuilder stringBuilder;
+                        if (saveTask.isValid()) {
+                            stringBuilder = new StringBuilder();
+                            stringBuilder.append("mark departed:");
+                            stringBuilder.append(saveTask.getPath());
+                            Log.e("algo ", stringBuilder.toString());
+                            ParallelUtil.markTaskFinish(androidContext, saveTask, false);
+                        } else {
+                            stringBuilder = new StringBuilder();
+                            stringBuilder.append("not valid, remove:");
+                            stringBuilder.append(saveTask.getPath());
+                            Log.e("algo ", stringBuilder.toString());
+                            removeItem(saveTask);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

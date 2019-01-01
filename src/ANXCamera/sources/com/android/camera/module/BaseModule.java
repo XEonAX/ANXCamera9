@@ -691,29 +691,11 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
     /* JADX WARNING: Missing block: B:8:0x0019, code:
             return;
      */
-    protected void playCameraSound(int r2) {
-        /*
-        r1 = this;
-        r0 = r1.mActivity;
-        if (r0 == 0) goto L_0x0019;
-    L_0x0004:
-        r0 = r1.mActivity;
-        r0 = r0.isActivityPaused();
-        if (r0 == 0) goto L_0x000d;
-    L_0x000c:
-        goto L_0x0019;
-    L_0x000d:
-        r0 = com.android.camera.CameraSettings.isCameraSoundOpen();
-        if (r0 == 0) goto L_0x0018;
-    L_0x0013:
-        r0 = r1.mActivity;
-        r0.playCameraSound(r2);
-    L_0x0018:
-        return;
-    L_0x0019:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.BaseModule.playCameraSound(int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    protected void playCameraSound(int i) {
+        if (!(this.mActivity == null || this.mActivity.isActivityPaused() || !CameraSettings.isCameraSoundOpen())) {
+            this.mActivity.playCameraSound(i);
+        }
     }
 
     public static int getPreferencesLocalId(int i, int i2) {

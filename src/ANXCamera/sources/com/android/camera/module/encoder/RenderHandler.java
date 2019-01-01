@@ -140,110 +140,38 @@ public final class RenderHandler implements Runnable {
     /* JADX WARNING: Missing block: B:33:?, code:
             monitor-exit(r0);
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public final void run() {
-        /*
-        r5 = this;
-        r0 = TAG;
-        r1 = "renderHandlerThread>>>";
-        com.android.camera.log.Log.d(r0, r1);
-        r0 = r5.mSync;
-        monitor-enter(r0);
-        r1 = 0;
-        r5.mRequestSetEglContext = r1;	 Catch:{ all -> 0x0085 }
-        r5.mRequestRelease = r1;	 Catch:{ all -> 0x0085 }
-        r5.mRequestDraw = r1;	 Catch:{ all -> 0x0085 }
-        r2 = 1;
-        r5.mIsReady = r2;	 Catch:{ all -> 0x0085 }
-        r3 = r5.mSync;	 Catch:{ all -> 0x0085 }
-        r3.notifyAll();	 Catch:{ all -> 0x0085 }
-        monitor-exit(r0);	 Catch:{ all -> 0x0085 }
-    L_0x001a:
-        r3 = r5.mSync;
-        monitor-enter(r3);
-        r0 = r5.mRequestRelease;	 Catch:{ all -> 0x0082 }
-        if (r0 == 0) goto L_0x0023;
-    L_0x0021:
-        monitor-exit(r3);	 Catch:{ all -> 0x0082 }
-        goto L_0x0067;
-    L_0x0023:
-        r0 = r5.mRequestSetEglContext;	 Catch:{ all -> 0x0082 }
-        if (r0 == 0) goto L_0x002c;
-    L_0x0027:
-        r5.mRequestSetEglContext = r1;	 Catch:{ all -> 0x0082 }
-        r5.internalPrepare();	 Catch:{ all -> 0x0082 }
-    L_0x002c:
-        r0 = r5.mRequestDraw;	 Catch:{ all -> 0x0082 }
-        if (r0 <= 0) goto L_0x0032;
-    L_0x0030:
-        r0 = r2;
-        goto L_0x0034;
-        r0 = r1;
-    L_0x0034:
-        if (r0 == 0) goto L_0x003b;
-    L_0x0036:
-        r4 = r5.mRequestDraw;	 Catch:{ all -> 0x0082 }
-        r4 = r4 - r2;
-        r5.mRequestDraw = r4;	 Catch:{ all -> 0x0082 }
-    L_0x003b:
-        monitor-exit(r3);	 Catch:{ all -> 0x0082 }
-        if (r0 == 0) goto L_0x0058;
-    L_0x003e:
-        r0 = r5.mEgl;
-        if (r0 == 0) goto L_0x001a;
-    L_0x0042:
-        r0 = r5.mExtTexture;
-        if (r0 == 0) goto L_0x001a;
-    L_0x0046:
-        r0 = r5.mInputSurface;
-        r0.makeCurrent();
-        r0 = r5.mCanvas;
-        r3 = r5.mExtTexture;
-        r0.draw(r3);
-        r0 = r5.mInputSurface;
-        r0.swap();
-        goto L_0x001a;
-    L_0x0058:
-        r0 = r5.mSync;
-        monitor-enter(r0);
-        r3 = r5.mSync;	 Catch:{ InterruptedException -> 0x0065 }
-        r3.wait();	 Catch:{ InterruptedException -> 0x0065 }
-        monitor-exit(r0);	 Catch:{ all -> 0x0063 }
-        goto L_0x001a;
-    L_0x0063:
-        r1 = move-exception;
-        goto L_0x0080;
-    L_0x0065:
-        r1 = move-exception;
-        monitor-exit(r0);	 Catch:{ all -> 0x0063 }
-    L_0x0067:
-        r1 = r5.mSync;
-        monitor-enter(r1);
-        r5.mRequestRelease = r2;	 Catch:{ all -> 0x007d }
-        r5.internalRelease();	 Catch:{ all -> 0x007d }
-        r0 = r5.mSync;	 Catch:{ all -> 0x007d }
-        r0.notifyAll();	 Catch:{ all -> 0x007d }
-        monitor-exit(r1);	 Catch:{ all -> 0x007d }
-        r0 = TAG;
-        r1 = "renderHandlerThread<<<";
-        com.android.camera.log.Log.d(r0, r1);
-        return;
-    L_0x007d:
-        r0 = move-exception;
-        monitor-exit(r1);	 Catch:{ all -> 0x007d }
-        throw r0;
-    L_0x0080:
-        monitor-exit(r0);	 Catch:{ all -> 0x0063 }
-        throw r1;
-    L_0x0082:
-        r0 = move-exception;
-        monitor-exit(r3);	 Catch:{ all -> 0x0082 }
-        throw r0;
-    L_0x0085:
-        r1 = move-exception;
-        monitor-exit(r0);	 Catch:{ all -> 0x0085 }
-        throw r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.encoder.RenderHandler.run():void");
+        Log.d(TAG, "renderHandlerThread>>>");
+        synchronized (this.mSync) {
+            this.mRequestSetEglContext = false;
+            this.mRequestRelease = false;
+            this.mRequestDraw = 0;
+            this.mIsReady = true;
+            this.mSync.notifyAll();
+        }
+        while (true) {
+            synchronized (this.mSync) {
+                if (!this.mRequestRelease) {
+                    if (this.mRequestSetEglContext) {
+                        this.mRequestSetEglContext = false;
+                        internalPrepare();
+                    }
+                    boolean z = this.mRequestDraw > 0;
+                    if (z) {
+                        this.mRequestDraw--;
+                    }
+                }
+            }
+        }
+        while (true) {
+        }
+        synchronized (this.mSync) {
+            this.mRequestRelease = true;
+            internalRelease();
+            this.mSync.notifyAll();
+        }
+        Log.d(TAG, "renderHandlerThread<<<");
     }
 
     private final void internalPrepare() {

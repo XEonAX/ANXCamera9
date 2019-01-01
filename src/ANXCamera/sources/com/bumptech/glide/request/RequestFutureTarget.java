@@ -62,33 +62,16 @@ public class RequestFutureTarget<R> implements b<R>, e<R>, Runnable {
     /* JADX WARNING: Missing block: B:13:0x0018, code:
             return true;
      */
-    public synchronized boolean cancel(boolean r3) {
-        /*
-        r2 = this;
-        monitor-enter(r2);
-        r0 = r2.isDone();	 Catch:{ all -> 0x0019 }
-        if (r0 == 0) goto L_0x000a;
-    L_0x0007:
-        r3 = 0;
-        monitor-exit(r2);
-        return r3;
-    L_0x000a:
-        r0 = 1;
-        r2.dp = r0;	 Catch:{ all -> 0x0019 }
-        r1 = r2.nc;	 Catch:{ all -> 0x0019 }
-        r1.r(r2);	 Catch:{ all -> 0x0019 }
-        if (r3 == 0) goto L_0x0017;
-    L_0x0014:
-        r2.dk();	 Catch:{ all -> 0x0019 }
-    L_0x0017:
-        monitor-exit(r2);
-        return r0;
-    L_0x0019:
-        r3 = move-exception;
-        monitor-exit(r2);
-        throw r3;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.bumptech.glide.request.RequestFutureTarget.cancel(boolean):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public synchronized boolean cancel(boolean z) {
+        if (isDone()) {
+            return false;
+        }
+        this.dp = true;
+        this.nc.r(this);
+        if (z) {
+            dk();
+        }
     }
 
     public synchronized boolean isCancelled() {

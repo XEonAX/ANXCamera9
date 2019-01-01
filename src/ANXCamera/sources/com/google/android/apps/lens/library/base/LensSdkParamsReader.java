@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.support.annotation.NonNull;
@@ -38,80 +40,63 @@ public class LensSdkParamsReader {
 
         /* JADX WARNING: Removed duplicated region for block: B:31:0x0067  */
         /* JADX WARNING: Removed duplicated region for block: B:28:0x0061  */
-        protected java.lang.Integer doInBackground(java.lang.Void... r9) {
-            /*
-            r8 = this;
-            r9 = 4;
-            r0 = 0;
-            r1 = com.google.android.apps.lens.library.base.LensSdkParamsReader.this;	 Catch:{ Exception -> 0x005a }
-            r1 = r1.context;	 Catch:{ Exception -> 0x005a }
-            r2 = r1.getContentResolver();	 Catch:{ Exception -> 0x005a }
-            r1 = com.google.android.apps.lens.library.base.LensSdkParamsReader.LENS_AVAILABILITY_PROVIDER_URI;	 Catch:{ Exception -> 0x005a }
-            r3 = android.net.Uri.parse(r1);	 Catch:{ Exception -> 0x005a }
-            r4 = r0;
-            r4 = (java.lang.String[]) r4;	 Catch:{ Exception -> 0x005a }
-            r5 = r0;
-            r5 = (java.lang.String) r5;	 Catch:{ Exception -> 0x005a }
-            r6 = r0;
-            r6 = (java.lang.String[]) r6;	 Catch:{ Exception -> 0x005a }
-            r7 = r0;
-            r7 = (java.lang.String) r7;	 Catch:{ Exception -> 0x005a }
-            r1 = r2.query(r3, r4, r5, r6, r7);	 Catch:{ Exception -> 0x005a }
-            if (r1 == 0) goto L_0x004d;
-        L_0x0025:
-            r0 = r1.getCount();	 Catch:{ Exception -> 0x004a, all -> 0x0047 }
-            if (r0 == 0) goto L_0x004d;
-        L_0x002b:
-            r1.moveToFirst();	 Catch:{ Exception -> 0x004a, all -> 0x0047 }
-            r0 = 0;
-            r0 = r1.getString(r0);	 Catch:{ Exception -> 0x004a, all -> 0x0047 }
-            r0 = java.lang.Integer.parseInt(r0);	 Catch:{ Exception -> 0x004a, all -> 0x0047 }
-            r2 = 6;
-            if (r0 <= r2) goto L_0x003c;
-            r0 = r2;
-        L_0x003c:
-            r0 = java.lang.Integer.valueOf(r0);	 Catch:{ Exception -> 0x004a, all -> 0x0047 }
-            if (r1 == 0) goto L_0x0046;
-        L_0x0043:
-            r1.close();
-        L_0x0046:
-            return r0;
-        L_0x0047:
-            r9 = move-exception;
-            r0 = r1;
-            goto L_0x0065;
-        L_0x004a:
-            r0 = move-exception;
-            r0 = r1;
-            goto L_0x005b;
-        L_0x004d:
-            r0 = java.lang.Integer.valueOf(r9);	 Catch:{ Exception -> 0x004a, all -> 0x0047 }
-            if (r1 == 0) goto L_0x0056;
-        L_0x0053:
-            r1.close();
-        L_0x0056:
-            r9 = r0;
-            goto L_0x0064;
-        L_0x0058:
-            r9 = move-exception;
-            goto L_0x0065;
-        L_0x005a:
-            r1 = move-exception;
-        L_0x005b:
-            r9 = java.lang.Integer.valueOf(r9);	 Catch:{ all -> 0x0058 }
-            if (r0 == 0) goto L_0x0064;
-        L_0x0061:
-            r0.close();
-        L_0x0064:
-            return r9;
-        L_0x0065:
-            if (r0 == 0) goto L_0x006a;
-        L_0x0067:
-            r0.close();
-        L_0x006a:
-            throw r9;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.google.android.apps.lens.library.base.LensSdkParamsReader.QueryGsaTask.doInBackground(java.lang.Void[]):java.lang.Integer");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        protected Integer doInBackground(Void... voidArr) {
+            Integer valueOf;
+            Throwable th;
+            Cursor cursor = null;
+            try {
+                Integer valueOf2;
+                Cursor query = LensSdkParamsReader.this.context.getContentResolver().query(Uri.parse(LensSdkParamsReader.LENS_AVAILABILITY_PROVIDER_URI), (String[]) null, (String) null, (String[]) null, (String) null);
+                if (query != null) {
+                    try {
+                        if (query.getCount() != 0) {
+                            query.moveToFirst();
+                            int parseInt = Integer.parseInt(query.getString(0));
+                            if (parseInt > 6) {
+                                parseInt = 6;
+                            }
+                            valueOf2 = Integer.valueOf(parseInt);
+                            if (query != null) {
+                                query.close();
+                            }
+                            return valueOf2;
+                        }
+                    } catch (Exception e) {
+                        cursor = query;
+                        try {
+                            valueOf = Integer.valueOf(4);
+                            if (cursor != null) {
+                                cursor.close();
+                            }
+                            return valueOf;
+                        } catch (Throwable th2) {
+                            th = th2;
+                            if (cursor != null) {
+                                cursor.close();
+                            }
+                            throw th;
+                        }
+                    } catch (Throwable th3) {
+                        th = th3;
+                        cursor = query;
+                        if (cursor != null) {
+                        }
+                        throw th;
+                    }
+                }
+                valueOf2 = Integer.valueOf(4);
+                if (query != null) {
+                    query.close();
+                }
+                valueOf = valueOf2;
+            } catch (Exception e2) {
+                valueOf = Integer.valueOf(4);
+                if (cursor != null) {
+                }
+                return valueOf;
+            }
+            return valueOf;
         }
 
         protected void onPostExecute(Integer num) {

@@ -250,64 +250,23 @@ public abstract class ExploreByTouchHelper extends AccessibilityDelegateCompat {
     /* JADX WARNING: Missing block: B:23:0x004b, code:
             return false;
      */
-    private boolean intersectVisibleToUser(android.graphics.Rect r6) {
-        /*
-        r5 = this;
-        r0 = 0;
-        if (r6 == 0) goto L_0x004b;
-    L_0x0003:
-        r1 = r6.isEmpty();
-        if (r1 == 0) goto L_0x000a;
-    L_0x0009:
-        goto L_0x004b;
-    L_0x000a:
-        r1 = r5.mView;
-        r1 = r1.getWindowVisibility();
-        if (r1 == 0) goto L_0x0013;
-    L_0x0012:
-        return r0;
-    L_0x0013:
-        r1 = r5.mView;
-        r1 = r1.getParent();
-    L_0x0019:
-        r2 = r1 instanceof android.view.View;
-        if (r2 == 0) goto L_0x0036;
-    L_0x001d:
-        r2 = r1;
-        r2 = (android.view.View) r2;
-        r3 = android.support.v4.view.ViewCompat.getAlpha(r2);
-        r4 = 0;
-        r3 = (r3 > r4 ? 1 : (r3 == r4 ? 0 : -1));
-        if (r3 <= 0) goto L_0x0035;
-    L_0x0029:
-        r3 = r2.getVisibility();
-        if (r3 == 0) goto L_0x0030;
-    L_0x002f:
-        goto L_0x0035;
-    L_0x0030:
-        r1 = r2.getParent();
-        goto L_0x0019;
-    L_0x0035:
-        return r0;
-    L_0x0036:
-        if (r1 != 0) goto L_0x0039;
-    L_0x0038:
-        return r0;
-    L_0x0039:
-        r2 = r5.mView;
-        r3 = r5.mTempVisibleRect;
-        r2 = r2.getLocalVisibleRect(r3);
-        if (r2 != 0) goto L_0x0044;
-    L_0x0043:
-        return r0;
-    L_0x0044:
-        r0 = r5.mTempVisibleRect;
-        r0 = r6.intersect(r0);
-        return r0;
-    L_0x004b:
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.widget.ExploreByTouchHelper.intersectVisibleToUser(android.graphics.Rect):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private boolean intersectVisibleToUser(Rect localRect) {
+        if (localRect == null || localRect.isEmpty() || this.mView.getWindowVisibility() != 0) {
+            return false;
+        }
+        ViewParent viewParent = this.mView.getParent();
+        while (viewParent instanceof View) {
+            View view = (View) viewParent;
+            if (ViewCompat.getAlpha(view) <= 0.0f || view.getVisibility() != 0) {
+                return false;
+            }
+            viewParent = view.getParent();
+        }
+        if (viewParent != null && this.mView.getLocalVisibleRect(this.mTempVisibleRect)) {
+            return localRect.intersect(this.mTempVisibleRect);
+        }
+        return false;
     }
 
     private boolean isAccessibilityFocused(int virtualViewId) {
@@ -317,44 +276,18 @@ public abstract class ExploreByTouchHelper extends AccessibilityDelegateCompat {
     /* JADX WARNING: Missing block: B:12:0x0035, code:
             return false;
      */
-    private boolean requestAccessibilityFocus(int r3) {
-        /*
-        r2 = this;
-        r0 = r2.mManager;
-        r0 = r0.isEnabled();
-        r1 = 0;
-        if (r0 == 0) goto L_0x0035;
-    L_0x0009:
-        r0 = r2.mManager;
-        r0 = android.support.v4.view.accessibility.AccessibilityManagerCompat.isTouchExplorationEnabled(r0);
-        if (r0 != 0) goto L_0x0012;
-    L_0x0011:
-        goto L_0x0035;
-    L_0x0012:
-        r0 = r2.isAccessibilityFocused(r3);
-        if (r0 != 0) goto L_0x0034;
-    L_0x0018:
-        r0 = r2.mFocusedVirtualViewId;
-        r1 = -2147483648; // 0xffffffff80000000 float:-0.0 double:NaN;
-        if (r0 == r1) goto L_0x0025;
-    L_0x001e:
-        r0 = r2.mFocusedVirtualViewId;
-        r1 = 65536; // 0x10000 float:9.18355E-41 double:3.2379E-319;
-        r2.sendEventForVirtualView(r0, r1);
-    L_0x0025:
-        r2.mFocusedVirtualViewId = r3;
-        r0 = r2.mView;
-        r0.invalidate();
-        r0 = 32768; // 0x8000 float:4.5918E-41 double:1.61895E-319;
-        r2.sendEventForVirtualView(r3, r0);
-        r0 = 1;
-        return r0;
-    L_0x0034:
-        return r1;
-    L_0x0035:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.widget.ExploreByTouchHelper.requestAccessibilityFocus(int):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private boolean requestAccessibilityFocus(int virtualViewId) {
+        if (!this.mManager.isEnabled() || !AccessibilityManagerCompat.isTouchExplorationEnabled(this.mManager) || isAccessibilityFocused(virtualViewId)) {
+            return false;
+        }
+        if (this.mFocusedVirtualViewId != Integer.MIN_VALUE) {
+            sendEventForVirtualView(this.mFocusedVirtualViewId, 65536);
+        }
+        this.mFocusedVirtualViewId = virtualViewId;
+        this.mView.invalidate();
+        sendEventForVirtualView(virtualViewId, 32768);
+        return true;
     }
 
     private boolean clearAccessibilityFocus(int virtualViewId) {

@@ -52,205 +52,71 @@ final class Relay {
         /* JADX WARNING: Missing block: B:75:0x013a, code:
             return r2;
      */
-        public long read(okio.Buffer r22, long r23) throws java.io.IOException {
-            /*
-            r21 = this;
-            r1 = r21;
-            r2 = r23;
-            r0 = r1.fileOperator;
-            if (r0 == 0) goto L_0x013e;
-        L_0x0008:
-            r4 = okhttp3.internal.cache2.Relay.this;
-            monitor-enter(r4);
-        L_0x000b:
-            r5 = r1.sourcePos;	 Catch:{ all -> 0x013b }
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x013b }
-            r7 = r0.upstreamPos;	 Catch:{ all -> 0x013b }
-            r0 = (r5 > r7 ? 1 : (r5 == r7 ? 0 : -1));
-            r5 = 2;
-            r9 = -1;
-            if (r0 != 0) goto L_0x0039;
-        L_0x0018:
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x013b }
-            r0 = r0.complete;	 Catch:{ all -> 0x013b }
-            if (r0 == 0) goto L_0x0020;
-        L_0x001e:
-            monitor-exit(r4);	 Catch:{ all -> 0x013b }
-            return r9;
-        L_0x0020:
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x013b }
-            r0 = r0.upstreamReader;	 Catch:{ all -> 0x013b }
-            if (r0 == 0) goto L_0x002e;
-        L_0x0026:
-            r0 = r1.timeout;	 Catch:{ all -> 0x013b }
-            r5 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x013b }
-            r0.waitUntilNotified(r5);	 Catch:{ all -> 0x013b }
-            goto L_0x000b;
-        L_0x002e:
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x013b }
-            r6 = java.lang.Thread.currentThread();	 Catch:{ all -> 0x013b }
-            r0.upstreamReader = r6;	 Catch:{ all -> 0x013b }
-            r0 = 1;
-            monitor-exit(r4);	 Catch:{ all -> 0x013b }
-            goto L_0x004c;
-        L_0x0039:
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x013b }
-            r0 = r0.buffer;	 Catch:{ all -> 0x013b }
-            r11 = r0.size();	 Catch:{ all -> 0x013b }
-            r11 = r7 - r11;
-            r13 = r1.sourcePos;	 Catch:{ all -> 0x013b }
-            r0 = (r13 > r11 ? 1 : (r13 == r11 ? 0 : -1));
-            if (r0 >= 0) goto L_0x011e;
-            monitor-exit(r4);	 Catch:{ all -> 0x013b }
-            r0 = r5;
-        L_0x004c:
-            r11 = 32;
-            if (r0 != r5) goto L_0x006a;
-        L_0x0050:
-            r4 = r1.sourcePos;
-            r7 = r7 - r4;
-            r2 = java.lang.Math.min(r2, r7);
-            r13 = r1.fileOperator;
-            r4 = r1.sourcePos;
-            r14 = r11 + r4;
-            r16 = r22;
-            r17 = r2;
-            r13.read(r14, r16, r17);
-            r4 = r1.sourcePos;
-            r4 = r4 + r2;
-            r1.sourcePos = r4;
-            return r2;
-        L_0x006a:
-            r4 = 0;
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x010c }
-            r0 = r0.upstream;	 Catch:{ all -> 0x010c }
-            r5 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x010c }
-            r5 = r5.upstreamBuffer;	 Catch:{ all -> 0x010c }
-            r6 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x010c }
-            r13 = r6.bufferMaxSize;	 Catch:{ all -> 0x010c }
-            r5 = r0.read(r5, r13);	 Catch:{ all -> 0x010c }
-            r0 = (r5 > r9 ? 1 : (r5 == r9 ? 0 : -1));
-            if (r0 != 0) goto L_0x0096;
-        L_0x007f:
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x010c }
-            r0.commit(r7);	 Catch:{ all -> 0x010c }
-            r2 = okhttp3.internal.cache2.Relay.this;
-            monitor-enter(r2);
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x0093 }
-            r0.upstreamReader = r4;	 Catch:{ all -> 0x0093 }
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x0093 }
-            r0.notifyAll();	 Catch:{ all -> 0x0093 }
-            monitor-exit(r2);	 Catch:{ all -> 0x0093 }
-            return r9;
-        L_0x0093:
-            r0 = move-exception;
-            monitor-exit(r2);	 Catch:{ all -> 0x0093 }
-            throw r0;
-        L_0x0096:
-            r2 = java.lang.Math.min(r5, r2);	 Catch:{ all -> 0x010c }
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x010c }
-            r13 = r0.upstreamBuffer;	 Catch:{ all -> 0x010c }
-            r15 = 0;
-            r14 = r22;
-            r17 = r2;
-            r13.copyTo(r14, r15, r17);	 Catch:{ all -> 0x010c }
-            r9 = r1.sourcePos;	 Catch:{ all -> 0x010c }
-            r9 = r9 + r2;
-            r1.sourcePos = r9;	 Catch:{ all -> 0x010c }
-            r15 = r1.fileOperator;	 Catch:{ all -> 0x010c }
-            r16 = r11 + r7;
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x010c }
-            r0 = r0.upstreamBuffer;	 Catch:{ all -> 0x010c }
-            r18 = r0.clone();	 Catch:{ all -> 0x010c }
-            r19 = r5;
-            r15.write(r16, r18, r19);	 Catch:{ all -> 0x010c }
-            r7 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x010c }
-            monitor-enter(r7);	 Catch:{ all -> 0x010c }
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x0109 }
-            r0 = r0.buffer;	 Catch:{ all -> 0x0109 }
-            r8 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x0109 }
-            r8 = r8.upstreamBuffer;	 Catch:{ all -> 0x0109 }
-            r0.write(r8, r5);	 Catch:{ all -> 0x0109 }
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x0109 }
-            r0 = r0.buffer;	 Catch:{ all -> 0x0109 }
-            r8 = r0.size();	 Catch:{ all -> 0x0109 }
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x0109 }
-            r10 = r0.bufferMaxSize;	 Catch:{ all -> 0x0109 }
-            r0 = (r8 > r10 ? 1 : (r8 == r10 ? 0 : -1));
-            if (r0 <= 0) goto L_0x00ef;
-        L_0x00db:
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x0109 }
-            r0 = r0.buffer;	 Catch:{ all -> 0x0109 }
-            r8 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x0109 }
-            r8 = r8.buffer;	 Catch:{ all -> 0x0109 }
-            r8 = r8.size();	 Catch:{ all -> 0x0109 }
-            r10 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x0109 }
-            r10 = r10.bufferMaxSize;	 Catch:{ all -> 0x0109 }
-            r8 = r8 - r10;
-            r0.skip(r8);	 Catch:{ all -> 0x0109 }
-        L_0x00ef:
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x0109 }
-            r8 = r0.upstreamPos;	 Catch:{ all -> 0x0109 }
-            r8 = r8 + r5;
-            r0.upstreamPos = r8;	 Catch:{ all -> 0x0109 }
-            monitor-exit(r7);	 Catch:{ all -> 0x0109 }
-            r5 = okhttp3.internal.cache2.Relay.this;
-            monitor-enter(r5);
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x0106 }
-            r0.upstreamReader = r4;	 Catch:{ all -> 0x0106 }
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x0106 }
-            r0.notifyAll();	 Catch:{ all -> 0x0106 }
-            monitor-exit(r5);	 Catch:{ all -> 0x0106 }
-            return r2;
-        L_0x0106:
-            r0 = move-exception;
-            monitor-exit(r5);	 Catch:{ all -> 0x0106 }
-            throw r0;
-        L_0x0109:
-            r0 = move-exception;
-            monitor-exit(r7);	 Catch:{ all -> 0x0109 }
-            throw r0;	 Catch:{ all -> 0x010c }
-        L_0x010c:
-            r0 = move-exception;
-            r2 = okhttp3.internal.cache2.Relay.this;
-            monitor-enter(r2);
-            r3 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x011b }
-            r3.upstreamReader = r4;	 Catch:{ all -> 0x011b }
-            r1 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x011b }
-            r1.notifyAll();	 Catch:{ all -> 0x011b }
-            monitor-exit(r2);	 Catch:{ all -> 0x011b }
-            throw r0;
-        L_0x011b:
-            r0 = move-exception;
-            monitor-exit(r2);	 Catch:{ all -> 0x011b }
-            throw r0;
-        L_0x011e:
-            r5 = r1.sourcePos;	 Catch:{ all -> 0x013b }
-            r7 = r7 - r5;
-            r2 = java.lang.Math.min(r2, r7);	 Catch:{ all -> 0x013b }
-            r0 = okhttp3.internal.cache2.Relay.this;	 Catch:{ all -> 0x013b }
-            r13 = r0.buffer;	 Catch:{ all -> 0x013b }
-            r5 = r1.sourcePos;	 Catch:{ all -> 0x013b }
-            r15 = r5 - r11;
-            r14 = r22;
-            r17 = r2;
-            r13.copyTo(r14, r15, r17);	 Catch:{ all -> 0x013b }
-            r5 = r1.sourcePos;	 Catch:{ all -> 0x013b }
-            r5 = r5 + r2;
-            r1.sourcePos = r5;	 Catch:{ all -> 0x013b }
-            monitor-exit(r4);	 Catch:{ all -> 0x013b }
-            return r2;
-        L_0x013b:
-            r0 = move-exception;
-            monitor-exit(r4);	 Catch:{ all -> 0x013b }
-            throw r0;
-        L_0x013e:
-            r0 = new java.lang.IllegalStateException;
-            r1 = "closed";
-            r0.<init>(r1);
-            throw r0;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.cache2.Relay.RelaySource.read(okio.Buffer, long):long");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public long read(Buffer buffer, long j) throws IOException {
+            long j2 = j;
+            if (this.fileOperator != null) {
+                synchronized (Relay.this) {
+                    long j3;
+                    long j4;
+                    Object obj;
+                    while (true) {
+                        j3 = this.sourcePos;
+                        j4 = Relay.this.upstreamPos;
+                        if (j3 != j4) {
+                            break;
+                        } else if (Relay.this.complete) {
+                            return -1;
+                        } else if (Relay.this.upstreamReader != null) {
+                            this.timeout.waitUntilNotified(Relay.this);
+                        } else {
+                            Relay.this.upstreamReader = Thread.currentThread();
+                            obj = 1;
+                        }
+                    }
+                    if (obj == 2) {
+                        j2 = Math.min(j2, j4 - this.sourcePos);
+                        this.fileOperator.read(32 + this.sourcePos, buffer, j2);
+                        this.sourcePos += j2;
+                        return j2;
+                    }
+                    try {
+                        j3 = Relay.this.upstream.read(Relay.this.upstreamBuffer, Relay.this.bufferMaxSize);
+                        if (j3 == -1) {
+                            Relay.this.commit(j4);
+                            synchronized (Relay.this) {
+                                Relay.this.upstreamReader = null;
+                                Relay.this.notifyAll();
+                            }
+                            return -1;
+                        }
+                        j2 = Math.min(j3, j2);
+                        Relay.this.upstreamBuffer.copyTo(buffer, 0, j2);
+                        this.sourcePos += j2;
+                        this.fileOperator.write(32 + j4, Relay.this.upstreamBuffer.clone(), j3);
+                        synchronized (Relay.this) {
+                            Relay.this.buffer.write(Relay.this.upstreamBuffer, j3);
+                            if (Relay.this.buffer.size() > Relay.this.bufferMaxSize) {
+                                Relay.this.buffer.skip(Relay.this.buffer.size() - Relay.this.bufferMaxSize);
+                            }
+                            Relay relay = Relay.this;
+                            relay.upstreamPos += j3;
+                        }
+                        synchronized (Relay.this) {
+                            Relay.this.upstreamReader = null;
+                            Relay.this.notifyAll();
+                        }
+                        return j2;
+                    } catch (Throwable th) {
+                        synchronized (Relay.this) {
+                            Relay.this.upstreamReader = null;
+                            Relay.this.notifyAll();
+                        }
+                    }
+                }
+            } else {
+                throw new IllegalStateException("closed");
+            }
         }
 
         public Timeout timeout() {

@@ -144,145 +144,72 @@ public class RecyclableBufferedInputStream extends FilterInputStream {
     /* JADX WARNING: Missing block: B:42:0x005e, code:
             return r4;
      */
-    public synchronized int read(@android.support.annotation.NonNull byte[] r6, int r7, int r8) throws java.io.IOException {
-        /*
-        r5 = this;
-        monitor-enter(r5);
-        r0 = r5.buf;	 Catch:{ all -> 0x009f }
-        if (r0 == 0) goto L_0x009a;
-    L_0x0005:
-        if (r8 != 0) goto L_0x000a;
-    L_0x0007:
-        r6 = 0;
-        monitor-exit(r5);
-        return r6;
-    L_0x000a:
-        r1 = r5.in;	 Catch:{ all -> 0x009f }
-        if (r1 == 0) goto L_0x0095;
-    L_0x000e:
-        r2 = r5.pos;	 Catch:{ all -> 0x009f }
-        r3 = r5.count;	 Catch:{ all -> 0x009f }
-        if (r2 >= r3) goto L_0x003b;
-    L_0x0014:
-        r2 = r5.count;	 Catch:{ all -> 0x009f }
-        r3 = r5.pos;	 Catch:{ all -> 0x009f }
-        r2 = r2 - r3;
-        if (r2 < r8) goto L_0x001d;
-    L_0x001b:
-        r2 = r8;
-        goto L_0x0022;
-    L_0x001d:
-        r2 = r5.count;	 Catch:{ all -> 0x009f }
-        r3 = r5.pos;	 Catch:{ all -> 0x009f }
-        r2 = r2 - r3;
-    L_0x0022:
-        r3 = r5.pos;	 Catch:{ all -> 0x009f }
-        java.lang.System.arraycopy(r0, r3, r6, r7, r2);	 Catch:{ all -> 0x009f }
-        r3 = r5.pos;	 Catch:{ all -> 0x009f }
-        r3 = r3 + r2;
-        r5.pos = r3;	 Catch:{ all -> 0x009f }
-        if (r2 == r8) goto L_0x0039;
-    L_0x002e:
-        r3 = r1.available();	 Catch:{ all -> 0x009f }
-        if (r3 != 0) goto L_0x0035;
-    L_0x0034:
-        goto L_0x0039;
-    L_0x0035:
-        r7 = r7 + r2;
-        r2 = r8 - r2;
-        goto L_0x003d;
-    L_0x0039:
-        monitor-exit(r5);
-        return r2;
-        r2 = r8;
-    L_0x003d:
-        r3 = r5.markpos;	 Catch:{ all -> 0x009f }
-        r4 = -1;
-        if (r3 != r4) goto L_0x0052;
-    L_0x0042:
-        r3 = r0.length;	 Catch:{ all -> 0x009f }
-        if (r2 < r3) goto L_0x0052;
-    L_0x0045:
-        r3 = r1.read(r6, r7, r2);	 Catch:{ all -> 0x009f }
-        if (r3 != r4) goto L_0x0085;
-    L_0x004b:
-        if (r2 != r8) goto L_0x004e;
-    L_0x004d:
-        goto L_0x0050;
-    L_0x004e:
-        r4 = r8 - r2;
-    L_0x0050:
-        monitor-exit(r5);
-        return r4;
-    L_0x0052:
-        r3 = r5.a(r1, r0);	 Catch:{ all -> 0x009f }
-        if (r3 != r4) goto L_0x005f;
-    L_0x0058:
-        if (r2 != r8) goto L_0x005b;
-    L_0x005a:
-        goto L_0x005d;
-    L_0x005b:
-        r4 = r8 - r2;
-    L_0x005d:
-        monitor-exit(r5);
-        return r4;
-    L_0x005f:
-        r3 = r5.buf;	 Catch:{ all -> 0x009f }
-        if (r0 == r3) goto L_0x006d;
-    L_0x0063:
-        r0 = r5.buf;	 Catch:{ all -> 0x009f }
-        if (r0 == 0) goto L_0x0068;
-    L_0x0067:
-        goto L_0x006d;
-    L_0x0068:
-        r6 = cs();	 Catch:{ all -> 0x009f }
-        throw r6;	 Catch:{ all -> 0x009f }
-    L_0x006d:
-        r3 = r5.count;	 Catch:{ all -> 0x009f }
-        r4 = r5.pos;	 Catch:{ all -> 0x009f }
-        r3 = r3 - r4;
-        if (r3 < r2) goto L_0x0076;
-    L_0x0074:
-        r3 = r2;
-        goto L_0x007b;
-    L_0x0076:
-        r3 = r5.count;	 Catch:{ all -> 0x009f }
-        r4 = r5.pos;	 Catch:{ all -> 0x009f }
-        r3 = r3 - r4;
-    L_0x007b:
-        r4 = r5.pos;	 Catch:{ all -> 0x009f }
-        java.lang.System.arraycopy(r0, r4, r6, r7, r3);	 Catch:{ all -> 0x009f }
-        r4 = r5.pos;	 Catch:{ all -> 0x009f }
-        r4 = r4 + r3;
-        r5.pos = r4;	 Catch:{ all -> 0x009f }
-    L_0x0085:
-        r2 = r2 - r3;
-        if (r2 != 0) goto L_0x008a;
-    L_0x0088:
-        monitor-exit(r5);
-        return r8;
-    L_0x008a:
-        r4 = r1.available();	 Catch:{ all -> 0x009f }
-        if (r4 != 0) goto L_0x0093;
-    L_0x0090:
-        r8 = r8 - r2;
-        monitor-exit(r5);
-        return r8;
-    L_0x0093:
-        r7 = r7 + r3;
-        goto L_0x003d;
-    L_0x0095:
-        r6 = cs();	 Catch:{ all -> 0x009f }
-        throw r6;	 Catch:{ all -> 0x009f }
-    L_0x009a:
-        r6 = cs();	 Catch:{ all -> 0x009f }
-        throw r6;	 Catch:{ all -> 0x009f }
-    L_0x009f:
-        r6 = move-exception;
-        monitor-exit(r5);
-        throw r6;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.bumptech.glide.load.resource.bitmap.RecyclableBufferedInputStream.read(byte[], int, int):int");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public synchronized int read(@NonNull byte[] bArr, int i, int i2) throws IOException {
+        byte[] bArr2 = this.buf;
+        if (bArr2 == null) {
+            throw cs();
+        } else if (i2 == 0) {
+            return 0;
+        } else {
+            InputStream inputStream = this.in;
+            if (inputStream != null) {
+                int i3;
+                if (this.pos < this.count) {
+                    if (this.count - this.pos >= i2) {
+                        i3 = i2;
+                    } else {
+                        i3 = this.count - this.pos;
+                    }
+                    System.arraycopy(bArr2, this.pos, bArr, i, i3);
+                    this.pos += i3;
+                    if (i3 != i2 && inputStream.available() != 0) {
+                        i += i3;
+                        i3 = i2 - i3;
+                    }
+                } else {
+                    i3 = i2;
+                }
+                while (true) {
+                    int read;
+                    int i4 = -1;
+                    if (this.markpos == -1 && i3 >= bArr2.length) {
+                        read = inputStream.read(bArr, i, i3);
+                        if (read == -1) {
+                            if (i3 != i2) {
+                                i4 = i2 - i3;
+                            }
+                        }
+                    } else if (a(inputStream, bArr2) != -1) {
+                        if (bArr2 != this.buf) {
+                            bArr2 = this.buf;
+                            if (bArr2 == null) {
+                                throw cs();
+                            }
+                        }
+                        if (this.count - this.pos >= i3) {
+                            read = i3;
+                        } else {
+                            read = this.count - this.pos;
+                        }
+                        System.arraycopy(bArr2, this.pos, bArr, i, read);
+                        this.pos += read;
+                    } else if (i3 != i2) {
+                        i4 = i2 - i3;
+                    }
+                    i3 -= read;
+                    if (i3 == 0) {
+                        return i2;
+                    }
+                    if (inputStream.available() == 0) {
+                        return i2 - i3;
+                    }
+                    i += read;
+                }
+            } else {
+                throw cs();
+            }
+        }
     }
 
     public synchronized void reset() throws IOException {

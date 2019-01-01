@@ -174,52 +174,15 @@ public class BasicRender extends ShaderRender {
     /* JADX WARNING: Missing block: B:9:0x0053, code:
             return;
      */
-    private void drawTexture(com.android.gallery3d.ui.BasicTexture r11, android.graphics.RectF r12, android.graphics.RectF r13) {
-        /*
-        r10 = this;
-        r0 = r13.width();
-        r1 = 0;
-        r0 = (r0 > r1 ? 1 : (r0 == r1 ? 0 : -1));
-        if (r0 <= 0) goto L_0x0053;
-    L_0x0009:
-        r0 = r13.height();
-        r0 = (r0 > r1 ? 1 : (r0 == r1 ? 0 : -1));
-        if (r0 > 0) goto L_0x0012;
-    L_0x0011:
-        goto L_0x0053;
-    L_0x0012:
-        r0 = r10.mGLCanvas;
-        r0 = r11.onBind(r0);
-        if (r0 != 0) goto L_0x001b;
-    L_0x001a:
-        return;
-    L_0x001b:
-        r10.convertCoordinate(r12, r13, r11);
-        r0 = r10.mGLCanvas;
-        r0 = r0.getState();
-        r0.pushState();
-        r0 = r10.mGLCanvas;
-        r0 = r0.getState();
-        r1 = r12.left;
-        r2 = r12.top;
-        r3 = r12.right;
-        r12 = r12.bottom;
-        r0.setTexMatrix(r1, r2, r3, r12);
-        r6 = r13.left;
-        r7 = r13.top;
-        r8 = r13.width();
-        r9 = r13.height();
-        r4 = r10;
-        r5 = r11;
-        r4.drawTextureInternal(r5, r6, r7, r8, r9);
-        r11 = r10.mGLCanvas;
-        r11 = r11.getState();
-        r11.popState();
-        return;
-    L_0x0053:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.effect.renders.BasicRender.drawTexture(com.android.gallery3d.ui.BasicTexture, android.graphics.RectF, android.graphics.RectF):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void drawTexture(BasicTexture basicTexture, RectF rectF, RectF rectF2) {
+        if (rectF2.width() > 0.0f && rectF2.height() > 0.0f && basicTexture.onBind(this.mGLCanvas)) {
+            convertCoordinate(rectF, rectF2, basicTexture);
+            this.mGLCanvas.getState().pushState();
+            this.mGLCanvas.getState().setTexMatrix(rectF.left, rectF.top, rectF.right, rectF.bottom);
+            drawTextureInternal(basicTexture, rectF2.left, rectF2.top, rectF2.width(), rectF2.height());
+            this.mGLCanvas.getState().popState();
+        }
     }
 
     private void drawTextureInternal(BasicTexture basicTexture, float f, float f2, float f3, float f4) {

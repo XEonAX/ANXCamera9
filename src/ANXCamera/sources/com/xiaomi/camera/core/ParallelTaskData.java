@@ -122,120 +122,62 @@ public class ParallelTaskData {
     /* JADX WARNING: Missing block: B:29:0x00a4, code:
             return r1;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public synchronized boolean isJpegDataReady() {
-        /*
-        r4 = this;
-        monitor-enter(r4);
-        r0 = r4.mDeparted;	 Catch:{ all -> 0x00a5 }
-        r1 = 0;
-        if (r0 == 0) goto L_0x0009;
-    L_0x0007:
-        monitor-exit(r4);
-        return r1;
-    L_0x0009:
-        r0 = r4.mParallelType;	 Catch:{ all -> 0x00a5 }
-        r2 = 1;
-        switch(r0) {
-            case -2: goto L_0x002b;
-            case -1: goto L_0x002b;
-            case 0: goto L_0x002b;
-            case 1: goto L_0x001f;
-            case 2: goto L_0x0010;
-            case 3: goto L_0x000f;
-            case 4: goto L_0x000f;
-            case 5: goto L_0x002b;
-            case 6: goto L_0x0010;
-            default: goto L_0x000f;
-        };	 Catch:{ all -> 0x00a5 }
-    L_0x000f:
-        goto L_0x0033;
-    L_0x0010:
-        r0 = r4.mJpegImageData;	 Catch:{ all -> 0x00a5 }
-        if (r0 == 0) goto L_0x001e;
-    L_0x0014:
-        r0 = r4.mPortraitRawData;	 Catch:{ all -> 0x00a5 }
-        if (r0 == 0) goto L_0x001e;
-    L_0x0018:
-        r0 = r4.mPortraitDepthData;	 Catch:{ all -> 0x00a5 }
-        if (r0 == 0) goto L_0x001e;
-    L_0x001c:
-        r1 = r2;
-        goto L_0x0033;
-    L_0x001e:
-        goto L_0x0033;
-    L_0x001f:
-        r0 = r4.mJpegImageData;	 Catch:{ all -> 0x00a5 }
-        if (r0 == 0) goto L_0x0029;
-    L_0x0023:
-        r0 = r4.mVideoRawData;	 Catch:{ all -> 0x00a5 }
-        if (r0 == 0) goto L_0x0029;
-    L_0x0027:
-        r1 = r2;
-        goto L_0x002a;
-    L_0x002a:
-        goto L_0x0033;
-    L_0x002b:
-        r0 = r4.mJpegImageData;	 Catch:{ all -> 0x00a5 }
-        if (r0 == 0) goto L_0x0031;
-    L_0x002f:
-        r1 = r2;
-        goto L_0x0032;
-    L_0x0033:
-        if (r1 == 0) goto L_0x0056;
-    L_0x0035:
-        r0 = TAG;	 Catch:{ all -> 0x00a5 }
-        r2 = new java.lang.StringBuilder;	 Catch:{ all -> 0x00a5 }
-        r2.<init>();	 Catch:{ all -> 0x00a5 }
-        r3 = "isJpegDataReady: object = ";
-        r2.append(r3);	 Catch:{ all -> 0x00a5 }
-        r2.append(r4);	 Catch:{ all -> 0x00a5 }
-        r3 = "; mParallelType = ";
-        r2.append(r3);	 Catch:{ all -> 0x00a5 }
-        r3 = r4.mParallelType;	 Catch:{ all -> 0x00a5 }
-        r2.append(r3);	 Catch:{ all -> 0x00a5 }
-        r2 = r2.toString();	 Catch:{ all -> 0x00a5 }
-        android.util.Log.d(r0, r2);	 Catch:{ all -> 0x00a5 }
-        goto L_0x00a3;
-    L_0x0056:
-        r0 = TAG;	 Catch:{ all -> 0x00a5 }
-        r2 = new java.lang.StringBuilder;	 Catch:{ all -> 0x00a5 }
-        r2.<init>();	 Catch:{ all -> 0x00a5 }
-        r3 = "isJpegDataReady: object = ";
-        r2.append(r3);	 Catch:{ all -> 0x00a5 }
-        r2.append(r4);	 Catch:{ all -> 0x00a5 }
-        r3 = "; mParallelType = ";
-        r2.append(r3);	 Catch:{ all -> 0x00a5 }
-        r3 = r4.mParallelType;	 Catch:{ all -> 0x00a5 }
-        r2.append(r3);	 Catch:{ all -> 0x00a5 }
-        r3 = "; mJpegImageData = ";
-        r2.append(r3);	 Catch:{ all -> 0x00a5 }
-        r3 = r4.mJpegImageData;	 Catch:{ all -> 0x00a5 }
-        r2.append(r3);	 Catch:{ all -> 0x00a5 }
-        r3 = "; mPortraitRawData = ";
-        r2.append(r3);	 Catch:{ all -> 0x00a5 }
-        r3 = r4.mPortraitRawData;	 Catch:{ all -> 0x00a5 }
-        r2.append(r3);	 Catch:{ all -> 0x00a5 }
-        r3 = "; mPortraitDepthData = ";
-        r2.append(r3);	 Catch:{ all -> 0x00a5 }
-        r3 = r4.mPortraitDepthData;	 Catch:{ all -> 0x00a5 }
-        r2.append(r3);	 Catch:{ all -> 0x00a5 }
-        r3 = "; mVideoRawData = ";
-        r2.append(r3);	 Catch:{ all -> 0x00a5 }
-        r3 = r4.mVideoRawData;	 Catch:{ all -> 0x00a5 }
-        r2.append(r3);	 Catch:{ all -> 0x00a5 }
-        r3 = "; result = false";
-        r2.append(r3);	 Catch:{ all -> 0x00a5 }
-        r2 = r2.toString();	 Catch:{ all -> 0x00a5 }
-        android.util.Log.d(r0, r2);	 Catch:{ all -> 0x00a5 }
-    L_0x00a3:
-        monitor-exit(r4);
-        return r1;
-    L_0x00a5:
-        r0 = move-exception;
-        monitor-exit(r4);
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.camera.core.ParallelTaskData.isJpegDataReady():boolean");
+        boolean z = false;
+        if (this.mDeparted) {
+            return false;
+        }
+        switch (this.mParallelType) {
+            case -2:
+            case -1:
+            case 0:
+            case 5:
+                if (this.mJpegImageData != null) {
+                    z = true;
+                    break;
+                }
+                break;
+            case 1:
+                if (!(this.mJpegImageData == null || this.mVideoRawData == null)) {
+                    z = true;
+                    break;
+                }
+            case 2:
+            case 6:
+                if (!(this.mJpegImageData == null || this.mPortraitRawData == null || this.mPortraitDepthData == null)) {
+                    z = true;
+                    break;
+                }
+        }
+        String str;
+        StringBuilder stringBuilder;
+        if (z) {
+            str = TAG;
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("isJpegDataReady: object = ");
+            stringBuilder.append(this);
+            stringBuilder.append("; mParallelType = ");
+            stringBuilder.append(this.mParallelType);
+            Log.d(str, stringBuilder.toString());
+        } else {
+            str = TAG;
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("isJpegDataReady: object = ");
+            stringBuilder.append(this);
+            stringBuilder.append("; mParallelType = ");
+            stringBuilder.append(this.mParallelType);
+            stringBuilder.append("; mJpegImageData = ");
+            stringBuilder.append(this.mJpegImageData);
+            stringBuilder.append("; mPortraitRawData = ");
+            stringBuilder.append(this.mPortraitRawData);
+            stringBuilder.append("; mPortraitDepthData = ");
+            stringBuilder.append(this.mPortraitDepthData);
+            stringBuilder.append("; mVideoRawData = ");
+            stringBuilder.append(this.mVideoRawData);
+            stringBuilder.append("; result = false");
+            Log.d(str, stringBuilder.toString());
+        }
     }
 
     /* JADX WARNING: Missing block: B:19:0x001c, code:
@@ -244,52 +186,28 @@ public class ParallelTaskData {
     /* JADX WARNING: Missing block: B:25:0x0028, code:
             return r1;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public synchronized boolean isFrameDataReady() {
-        /*
-        r4 = this;
-        monitor-enter(r4);
-        r0 = r4.mDeparted;	 Catch:{ all -> 0x0029 }
-        r1 = 0;
-        if (r0 == 0) goto L_0x0008;
-    L_0x0006:
-        monitor-exit(r4);
-        return r1;
-    L_0x0008:
-        r0 = r4.mParallelType;	 Catch:{ all -> 0x0029 }
-        r2 = 1;
-        switch(r0) {
-            case 5: goto L_0x001d;
-            case 6: goto L_0x0010;
-            default: goto L_0x000e;
-        };
-    L_0x000e:
-        monitor-exit(r4);
-        return r1;
-    L_0x0010:
-        r0 = r4.mResultFrameDataList;	 Catch:{ all -> 0x0029 }
-        r0 = r0.size();	 Catch:{ all -> 0x0029 }
-        r3 = 2;
-        if (r0 != r3) goto L_0x001b;
-    L_0x0019:
-        r1 = r2;
-    L_0x001b:
-        monitor-exit(r4);
-        return r1;
-    L_0x001d:
-        r0 = r4.mResultFrameDataList;	 Catch:{ all -> 0x0029 }
-        r0 = r0.size();	 Catch:{ all -> 0x0029 }
-        if (r0 != r2) goto L_0x0027;
-    L_0x0025:
-        r1 = r2;
-    L_0x0027:
-        monitor-exit(r4);
-        return r1;
-    L_0x0029:
-        r0 = move-exception;
-        monitor-exit(r4);
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.camera.core.ParallelTaskData.isFrameDataReady():boolean");
+        boolean z = false;
+        if (this.mDeparted) {
+            return false;
+        }
+        switch (this.mParallelType) {
+            case 5:
+                if (this.mResultFrameDataList.size() == 1) {
+                    z = true;
+                    break;
+                }
+                break;
+            case 6:
+                if (this.mResultFrameDataList.size() == 2) {
+                    z = true;
+                    break;
+                }
+                break;
+            default:
+                return false;
+        }
     }
 
     public void fillParameter(boolean z, boolean z2, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, float f, int i9, Location location, String str, List<WaterMarkData> list, boolean z3, boolean z4, int i10, int i11, boolean z5, String str2, PictureInfo pictureInfo, String str3, boolean z6) {

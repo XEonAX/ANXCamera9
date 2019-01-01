@@ -231,268 +231,126 @@ public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListen
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:38:0x0106  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void computeRatio() {
-        /*
-        r10 = this;
-        r0 = r10.mRenderWidth;
-        r1 = r10.mRenderHeight;
-        r0 = com.android.camera.CameraSettings.getStrictAspectRatio(r0, r1);
-        r1 = 0;
-        r2 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r3 = 1;
-        r4 = -1;
-        if (r0 > r4) goto L_0x00a7;
-    L_0x000f:
-        r0 = r10.mCameraWidth;
-        r4 = r10.mCameraHeight;
-        r5 = r10.mRenderWidth;
-        r6 = r10.mRenderHeight;
-        r0 = com.android.camera.CameraSettings.isNearAspectRatio(r0, r4, r5, r6);
-        if (r0 != 0) goto L_0x001f;
-    L_0x001d:
-        goto L_0x00a7;
-    L_0x001f:
-        r0 = r10.mCameraWidth;
-        if (r0 == 0) goto L_0x016e;
-    L_0x0023:
-        r0 = r10.mCameraHeight;
-        if (r0 == 0) goto L_0x016e;
-    L_0x0027:
-        r0 = r10.mRenderWidth;
-        if (r0 == 0) goto L_0x007d;
-    L_0x002b:
-        r0 = r10.mRenderHeight;
-        if (r0 == 0) goto L_0x007d;
-    L_0x002f:
-        r0 = r10.mRenderWidth;
-        r4 = r10.mCameraHeight;
-        r0 = r0 * r4;
-        r4 = r10.mRenderHeight;
-        r5 = r10.mCameraWidth;
-        r4 = r4 * r5;
-        if (r0 == r4) goto L_0x007d;
-    L_0x003b:
-        r10.mNeedCropped = r3;
-        r0 = r10.mCameraWidth;
-        r4 = r10.mRenderHeight;
-        r0 = r0 * r4;
-        r4 = r10.mCameraHeight;
-        r5 = r10.mRenderWidth;
-        r4 = r4 * r5;
-        if (r0 <= r4) goto L_0x0063;
-    L_0x0049:
-        r0 = r10.mCameraHeight;
-        r10.mHeight = r0;
-        r0 = r10.mCameraHeight;
-        r4 = r10.mRenderWidth;
-        r0 = r0 * r4;
-        r4 = r10.mRenderHeight;
-        r0 = r0 / r4;
-        r10.mWidth = r0;
-        r0 = r10.mWidth;
-        r0 = (float) r0;
-        r4 = r10.mCameraWidth;
-        r4 = (float) r4;
-        r0 = r0 / r4;
-        r10.mScaleX = r0;
-        r10.mScaleY = r2;
-        goto L_0x008b;
-    L_0x0063:
-        r0 = r10.mCameraWidth;
-        r10.mWidth = r0;
-        r0 = r10.mCameraWidth;
-        r4 = r10.mRenderHeight;
-        r0 = r0 * r4;
-        r4 = r10.mRenderWidth;
-        r0 = r0 / r4;
-        r10.mHeight = r0;
-        r10.mScaleX = r2;
-        r0 = r10.mHeight;
-        r0 = (float) r0;
-        r2 = r10.mCameraHeight;
-        r2 = (float) r2;
-        r0 = r0 / r2;
-        r10.mScaleY = r0;
-        goto L_0x008b;
-    L_0x007d:
-        r10.mNeedCropped = r1;
-        r10.mScaleX = r2;
-        r10.mScaleY = r2;
-        r0 = r10.mCameraWidth;
-        r10.mWidth = r0;
-        r0 = r10.mCameraHeight;
-        r10.mHeight = r0;
-    L_0x008b:
-        r0 = r10.mRenderHeight;
-        r0 = (float) r0;
-        r2 = r10.mRenderWidth;
-        r2 = (float) r2;
-        r0 = r0 / r2;
-        r2 = com.android.camera.Util.sWindowHeight;
-        r2 = (float) r2;
-        r4 = com.android.camera.Util.sWindowWidth;
-        r4 = (float) r4;
-        r2 = r2 / r4;
-        r0 = r0 - r2;
-        r2 = 1036831949; // 0x3dcccccd float:0.1 double:5.122630465E-315;
-        r0 = (r0 > r2 ? 1 : (r0 == r2 ? 0 : -1));
-        if (r0 >= 0) goto L_0x00a3;
-    L_0x00a1:
-        r1 = r3;
-    L_0x00a3:
-        r10.mIsFullScreen = r1;
-        goto L_0x016e;
-    L_0x00a7:
-        r0 = r10.mCameraWidth;
-        r4 = r10.mCameraHeight;
-        r5 = r10.mTargetRatio;
-        r6 = 1098907648; // 0x41800000 float:16.0 double:5.42932517E-315;
-        r7 = 1091567616; // 0x41100000 float:9.0 double:5.39306059E-315;
-        r8 = 1061158912; // 0x3f400000 float:0.75 double:5.24282163E-315;
-        switch(r5) {
-            case 0: goto L_0x0115;
-            case 1: goto L_0x00cc;
-            case 2: goto L_0x00b8;
-            default: goto L_0x00b6;
-        };
-    L_0x00b6:
-        goto L_0x0168;
-    L_0x00b8:
-        r10.mIsFullScreen = r1;
-        r10.mIsRatio16_9 = r1;
-        r10.mNeedCropped = r3;
-        if (r0 == r4) goto L_0x0168;
-    L_0x00c0:
-        r10.mScaleX = r2;
-        r1 = (float) r0;
-        r2 = (float) r4;
-        r1 = r1 / r2;
-        r10.mScaleY = r1;
-        r1 = r0;
-        goto L_0x0169;
-    L_0x00cc:
-        r10.mIsRatio16_9 = r3;
-        r10.mIsFullScreen = r3;
-        r5 = com.android.camera.CameraSettings.isAspectRatio16_9(r0, r4);
-        if (r5 != 0) goto L_0x00f8;
-    L_0x00d6:
-        r10.mNeedCropped = r3;
-        r2 = r0 * 16;
-        r5 = r4 * 9;
-        if (r2 <= r5) goto L_0x00e9;
-        r2 = (float) r4;
-        r2 = r2 * r7;
-        r2 = r2 / r6;
-        r2 = (int) r2;
-        r5 = (float) r2;
-        r0 = (float) r0;
-        r5 = r5 / r0;
-        r10.mScaleX = r5;
-        goto L_0x00ff;
-        r2 = (float) r0;
-        r2 = r2 * r6;
-        r2 = r2 / r7;
-        r2 = (int) r2;
-        r5 = (float) r2;
-        r4 = (float) r4;
-        r5 = r5 / r4;
-        r10.mScaleY = r5;
-        r9 = r2;
-        r2 = r0;
-        r0 = r9;
-        goto L_0x0100;
-    L_0x00f8:
-        r10.mNeedCropped = r1;
-        r10.mScaleX = r2;
-        r10.mScaleY = r2;
-        r2 = r0;
-    L_0x00ff:
-        r0 = r4;
-    L_0x0100:
-        r4 = com.mi.config.b.isPad();
-        if (r4 == 0) goto L_0x0112;
-    L_0x0106:
-        r10.mIsRatio16_9 = r1;
-        r10.mNeedCropped = r3;
-        r0 = (float) r0;
-        r0 = r0 * r8;
-        r0 = (int) r0;
-        r1 = r10.mScaleY;
-        r1 = r1 * r8;
-        r10.mScaleY = r1;
-    L_0x0112:
-        r1 = r0;
-        r0 = r2;
-        goto L_0x0169;
-    L_0x0115:
-        r10.mIsFullScreen = r1;
-        r10.mIsRatio16_9 = r1;
-        r5 = com.android.camera.CameraSettings.isAspectRatio4_3(r0, r4);
-        if (r5 != 0) goto L_0x0144;
-    L_0x011f:
-        r10.mNeedCropped = r3;
-        r1 = r0 * 4;
-        r2 = r4 * 3;
-        if (r1 <= r2) goto L_0x0133;
-        r1 = (float) r4;
-        r1 = r1 * r8;
-        r1 = (int) r1;
-        r2 = (float) r1;
-        r0 = (float) r0;
-        r2 = r2 / r0;
-        r10.mScaleX = r2;
-        r0 = r1;
-        goto L_0x014a;
-        r1 = (float) r0;
-        r2 = 1082130432; // 0x40800000 float:4.0 double:5.34643471E-315;
-        r1 = r1 * r2;
-        r2 = 1077936128; // 0x40400000 float:3.0 double:5.325712093E-315;
-        r1 = r1 / r2;
-        r1 = (int) r1;
-        r2 = (float) r1;
-        r4 = (float) r4;
-        r2 = r2 / r4;
-        r10.mScaleY = r2;
-        r4 = r1;
-        goto L_0x014a;
-    L_0x0144:
-        r10.mNeedCropped = r1;
-        r10.mScaleX = r2;
-        r10.mScaleY = r2;
-    L_0x014a:
-        r1 = com.android.camera.CameraSettings.sCroppedIfNeeded;
-        if (r1 == 0) goto L_0x015e;
-    L_0x014e:
-        r10.mIsFullScreen = r3;
-        r10.mNeedCropped = r3;
-        r10.mIsRatio16_9 = r3;
-        r1 = (float) r0;
-        r1 = r1 * r6;
-        r1 = r1 / r7;
-        r1 = (int) r1;
-        r2 = r10.mScaleX;
-        r2 = r2 * r8;
-        r10.mScaleX = r2;
-        goto L_0x015f;
-    L_0x015e:
-        r1 = r4;
-    L_0x015f:
-        r2 = com.mi.config.b.isPad();
-        if (r2 == 0) goto L_0x0169;
-    L_0x0165:
-        r10.mIsFullScreen = r3;
-        goto L_0x0169;
-    L_0x0168:
-        r1 = r4;
-    L_0x0169:
-        r10.mWidth = r0;
-        r10.mHeight = r1;
-    L_0x016e:
-        r10.updateRenderSize();
-        r10.updateRenderRect();
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.SurfaceTextureScreenNail.computeRatio():void");
+        boolean z = false;
+        if (CameraSettings.getStrictAspectRatio(this.mRenderWidth, this.mRenderHeight) > -1 || !CameraSettings.isNearAspectRatio(this.mCameraWidth, this.mCameraHeight, this.mRenderWidth, this.mRenderHeight)) {
+            int i;
+            int i2 = this.mCameraWidth;
+            int i3 = this.mCameraHeight;
+            switch (this.mTargetRatio) {
+                case 0:
+                    this.mIsFullScreen = false;
+                    this.mIsRatio16_9 = false;
+                    if (CameraSettings.isAspectRatio4_3(i2, i3)) {
+                        this.mNeedCropped = false;
+                        this.mScaleX = 1.0f;
+                        this.mScaleY = 1.0f;
+                    } else {
+                        this.mNeedCropped = true;
+                        if (i2 * 4 > i3 * 3) {
+                            i = (int) (((float) i3) * 0.75f);
+                            this.mScaleX = ((float) i) / ((float) i2);
+                            i2 = i;
+                        } else {
+                            i = (int) ((((float) i2) * 4.0f) / 3.0f);
+                            this.mScaleY = ((float) i) / ((float) i3);
+                            i3 = i;
+                        }
+                    }
+                    if (CameraSettings.sCroppedIfNeeded) {
+                        this.mIsFullScreen = true;
+                        this.mNeedCropped = true;
+                        this.mIsRatio16_9 = true;
+                        i = (int) ((((float) i2) * 16.0f) / 9.0f);
+                        this.mScaleX *= 0.75f;
+                    } else {
+                        i = i3;
+                    }
+                    if (b.isPad()) {
+                        this.mIsFullScreen = true;
+                        break;
+                    }
+                    break;
+                case 1:
+                    int i4;
+                    this.mIsRatio16_9 = true;
+                    this.mIsFullScreen = true;
+                    if (!CameraSettings.isAspectRatio16_9(i2, i3)) {
+                        this.mNeedCropped = true;
+                        if (i2 * 16 <= i3 * 9) {
+                            i4 = (int) ((((float) i2) * 16.0f) / 9.0f);
+                            this.mScaleY = ((float) i4) / ((float) i3);
+                            int i5 = i4;
+                            i4 = i2;
+                            i2 = i5;
+                            if (b.isPad()) {
+                                this.mIsRatio16_9 = false;
+                                this.mNeedCropped = true;
+                                i2 = (int) (((float) i2) * 0.75f);
+                                this.mScaleY *= 0.75f;
+                            }
+                            i = i2;
+                            i2 = i4;
+                            break;
+                        }
+                        i4 = (int) ((((float) i3) * 9.0f) / 16.0f);
+                        this.mScaleX = ((float) i4) / ((float) i2);
+                    } else {
+                        this.mNeedCropped = false;
+                        this.mScaleX = 1.0f;
+                        this.mScaleY = 1.0f;
+                        i4 = i2;
+                    }
+                    i2 = i3;
+                    if (b.isPad()) {
+                    }
+                    i = i2;
+                    i2 = i4;
+                case 2:
+                    this.mIsFullScreen = false;
+                    this.mIsRatio16_9 = false;
+                    this.mNeedCropped = true;
+                    if (i2 != i3) {
+                        this.mScaleX = 1.0f;
+                        this.mScaleY = ((float) i2) / ((float) i3);
+                        i = i2;
+                        break;
+                    }
+                default:
+                    i = i3;
+                    break;
+            }
+            this.mWidth = i2;
+            this.mHeight = i;
+        } else if (!(this.mCameraWidth == 0 || this.mCameraHeight == 0)) {
+            if (this.mRenderWidth == 0 || this.mRenderHeight == 0 || this.mRenderWidth * this.mCameraHeight == this.mRenderHeight * this.mCameraWidth) {
+                this.mNeedCropped = false;
+                this.mScaleX = 1.0f;
+                this.mScaleY = 1.0f;
+                this.mWidth = this.mCameraWidth;
+                this.mHeight = this.mCameraHeight;
+            } else {
+                this.mNeedCropped = true;
+                if (this.mCameraWidth * this.mRenderHeight > this.mCameraHeight * this.mRenderWidth) {
+                    this.mHeight = this.mCameraHeight;
+                    this.mWidth = (this.mCameraHeight * this.mRenderWidth) / this.mRenderHeight;
+                    this.mScaleX = ((float) this.mWidth) / ((float) this.mCameraWidth);
+                    this.mScaleY = 1.0f;
+                } else {
+                    this.mWidth = this.mCameraWidth;
+                    this.mHeight = (this.mCameraWidth * this.mRenderHeight) / this.mRenderWidth;
+                    this.mScaleX = 1.0f;
+                    this.mScaleY = ((float) this.mHeight) / ((float) this.mCameraHeight);
+                }
+            }
+            if ((((float) this.mRenderHeight) / ((float) this.mRenderWidth)) - (((float) Util.sWindowHeight) / ((float) Util.sWindowWidth)) < 0.1f) {
+                z = true;
+            }
+            this.mIsFullScreen = z;
+        }
+        updateRenderSize();
+        updateRenderRect();
     }
 
     public void setRenderArea(Rect rect) {

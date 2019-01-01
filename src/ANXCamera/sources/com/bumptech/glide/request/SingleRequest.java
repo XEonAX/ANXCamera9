@@ -388,92 +388,41 @@ public final class SingleRequest<R> implements c, g, m, c {
     /* JADX WARNING: Missing block: B:12:0x0092, code:
             if (r7.nY.a(r9, r7.aK, r7.oa, r10, r6) == false) goto L_0x0094;
      */
-    private void a(com.bumptech.glide.load.engine.p<R> r8, R r9, com.bumptech.glide.load.DataSource r10) {
-        /*
-        r7 = this;
-        r6 = r7.ei();
-        r0 = com.bumptech.glide.request.SingleRequest.Status.COMPLETE;
-        r7.od = r0;
-        r7.dU = r8;
-        r8 = r7.o;
-        r8 = r8.getLogLevel();
-        r0 = 3;
-        if (r8 > r0) goto L_0x006a;
-    L_0x0013:
-        r8 = "Glide";
-        r0 = new java.lang.StringBuilder;
-        r0.<init>();
-        r1 = "Finished loading ";
-        r0.append(r1);
-        r1 = r9.getClass();
-        r1 = r1.getSimpleName();
-        r0.append(r1);
-        r1 = " from ";
-        r0.append(r1);
-        r0.append(r10);
-        r1 = " for ";
-        r0.append(r1);
-        r1 = r7.aK;
-        r0.append(r1);
-        r1 = " with size [";
-        r0.append(r1);
-        r1 = r7.width;
-        r0.append(r1);
-        r1 = "x";
-        r0.append(r1);
-        r1 = r7.height;
-        r0.append(r1);
-        r1 = "] in ";
-        r0.append(r1);
-        r1 = r7.startTime;
-        r1 = com.bumptech.glide.util.e.e(r1);
-        r0.append(r1);
-        r1 = " ms";
-        r0.append(r1);
-        r0 = r0.toString();
-        android.util.Log.d(r8, r0);
-    L_0x006a:
-        r8 = 1;
-        r7.nW = r8;
-        r8 = 0;
-        r0 = r7.aL;	 Catch:{ all -> 0x00a6 }
-        if (r0 == 0) goto L_0x0081;
-    L_0x0072:
-        r0 = r7.aL;	 Catch:{ all -> 0x00a6 }
-        r2 = r7.aK;	 Catch:{ all -> 0x00a6 }
-        r3 = r7.oa;	 Catch:{ all -> 0x00a6 }
-        r1 = r9;
-        r4 = r10;
-        r5 = r6;
-        r0 = r0.a(r1, r2, r3, r4, r5);	 Catch:{ all -> 0x00a6 }
-        if (r0 != 0) goto L_0x009f;
-    L_0x0081:
-        r0 = r7.nY;	 Catch:{ all -> 0x00a6 }
-        if (r0 == 0) goto L_0x0094;
-    L_0x0085:
-        r0 = r7.nY;	 Catch:{ all -> 0x00a6 }
-        r2 = r7.aK;	 Catch:{ all -> 0x00a6 }
-        r3 = r7.oa;	 Catch:{ all -> 0x00a6 }
-        r1 = r9;
-        r4 = r10;
-        r5 = r6;
-        r0 = r0.a(r1, r2, r3, r4, r5);	 Catch:{ all -> 0x00a6 }
-        if (r0 != 0) goto L_0x009f;
-    L_0x0094:
-        r0 = r7.ob;	 Catch:{ all -> 0x00a6 }
-        r10 = r0.a(r10, r6);	 Catch:{ all -> 0x00a6 }
-        r0 = r7.oa;	 Catch:{ all -> 0x00a6 }
-        r0.a(r9, r10);	 Catch:{ all -> 0x00a6 }
-    L_0x009f:
-        r7.nW = r8;
-        r7.ej();
-        return;
-    L_0x00a6:
-        r9 = move-exception;
-        r7.nW = r8;
-        throw r9;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.bumptech.glide.request.SingleRequest.a(com.bumptech.glide.load.engine.p, java.lang.Object, com.bumptech.glide.load.DataSource):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void a(p<R> pVar, R r, DataSource dataSource) {
+        boolean ei = ei();
+        this.od = Status.COMPLETE;
+        this.dU = pVar;
+        if (this.o.getLogLevel() <= 3) {
+            String str = nV;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Finished loading ");
+            stringBuilder.append(r.getClass().getSimpleName());
+            stringBuilder.append(" from ");
+            stringBuilder.append(dataSource);
+            stringBuilder.append(" for ");
+            stringBuilder.append(this.aK);
+            stringBuilder.append(" with size [");
+            stringBuilder.append(this.width);
+            stringBuilder.append("x");
+            stringBuilder.append(this.height);
+            stringBuilder.append("] in ");
+            stringBuilder.append(com.bumptech.glide.util.e.e(this.startTime));
+            stringBuilder.append(" ms");
+            Log.d(str, stringBuilder.toString());
+        }
+        this.nW = true;
+        try {
+            if (this.aL != null) {
+            }
+            if (this.nY != null) {
+            }
+            this.oa.a(r, this.ob.a(dataSource, ei));
+            this.nW = false;
+            ej();
+        } catch (Throwable th) {
+            this.nW = false;
+        }
     }
 
     public void a(GlideException glideException) {

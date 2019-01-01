@@ -280,126 +280,64 @@ public class HorizontalListView extends AdapterView<ListAdapter> {
     /* JADX WARNING: Missing block: B:40:0x00be, code:
             return;
      */
-    protected synchronized void onLayout(boolean r1, int r2, int r3, int r4, int r5) {
-        /*
-        r0 = this;
-        monitor-enter(r0);
-        super.onLayout(r1, r2, r3, r4, r5);	 Catch:{ all -> 0x00bf }
-        r1 = r0.mAdapter;	 Catch:{ all -> 0x00bf }
-        if (r1 != 0) goto L_0x000a;
-    L_0x0008:
-        monitor-exit(r0);
-        return;
-        r1 = r0.mDataChanged;	 Catch:{ all -> 0x00bf }
-        r2 = 1;
-        r3 = 0;
-        if (r1 == 0) goto L_0x0020;
-    L_0x0011:
-        r1 = r0.mCurrentX;	 Catch:{ all -> 0x00bf }
-        r0.initView();	 Catch:{ all -> 0x00bf }
-        r0.removeAllViewsInLayout();	 Catch:{ all -> 0x00bf }
-        r0.mNextX = r1;	 Catch:{ all -> 0x00bf }
-        r0.mDataChanged = r3;	 Catch:{ all -> 0x00bf }
-        r1 = r2;
-        goto L_0x0021;
-    L_0x0020:
-        r1 = r3;
-    L_0x0021:
-        r4 = r0.mScroller;	 Catch:{ all -> 0x00bf }
-        r4 = r4.computeScrollOffset();	 Catch:{ all -> 0x00bf }
-        if (r4 == 0) goto L_0x0031;
-    L_0x0029:
-        r4 = r0.mScroller;	 Catch:{ all -> 0x00bf }
-        r4 = r4.getCurrX();	 Catch:{ all -> 0x00bf }
-        r0.mNextX = r4;	 Catch:{ all -> 0x00bf }
-    L_0x0031:
-        r4 = r0.mNextX;	 Catch:{ all -> 0x00bf }
-        if (r4 > 0) goto L_0x003c;
-    L_0x0035:
-        r0.mNextX = r3;	 Catch:{ all -> 0x00bf }
-        r4 = r0.mScroller;	 Catch:{ all -> 0x00bf }
-        r4.forceFinished(r2);	 Catch:{ all -> 0x00bf }
-    L_0x003c:
-        r4 = r0.mNextX;	 Catch:{ all -> 0x00bf }
-        r5 = r0.mMaxX;	 Catch:{ all -> 0x00bf }
-        if (r4 < r5) goto L_0x004b;
-    L_0x0042:
-        r4 = r0.mMaxX;	 Catch:{ all -> 0x00bf }
-        r0.mNextX = r4;	 Catch:{ all -> 0x00bf }
-        r4 = r0.mScroller;	 Catch:{ all -> 0x00bf }
-        r4.forceFinished(r2);	 Catch:{ all -> 0x00bf }
-    L_0x004b:
-        r4 = r0.mCurrentX;	 Catch:{ all -> 0x00bf }
-        r5 = r0.mNextX;	 Catch:{ all -> 0x00bf }
-        r4 = r4 - r5;
-        r5 = r0.mNextX;	 Catch:{ all -> 0x00bf }
-        r0.mCurrentX = r5;	 Catch:{ all -> 0x00bf }
-        r0.removeNonVisibleItems(r4);	 Catch:{ all -> 0x00bf }
-        r0.fillList(r4);	 Catch:{ all -> 0x00bf }
-        r0.positionItems(r4);	 Catch:{ all -> 0x00bf }
-        r4 = r0.mScroller;	 Catch:{ all -> 0x00bf }
-        r4 = r4.isFinished();	 Catch:{ all -> 0x00bf }
-        if (r4 == 0) goto L_0x00b5;
-    L_0x0065:
-        if (r1 == 0) goto L_0x0068;
-    L_0x0067:
-        goto L_0x00b5;
-    L_0x0068:
-        r0.loadItems();	 Catch:{ all -> 0x00bf }
-        r1 = r0.mScroller;	 Catch:{ all -> 0x00bf }
-        r1 = r1.isFinished();	 Catch:{ all -> 0x00bf }
-        if (r1 == 0) goto L_0x00bd;
-    L_0x0073:
-        r1 = r0.mTouchDown;	 Catch:{ all -> 0x00bf }
-        if (r1 != 0) goto L_0x00bd;
-    L_0x0077:
-        r0.mIsScrollingPerformed = r3;	 Catch:{ all -> 0x00bf }
-        r1 = r0.mSelectCenter;	 Catch:{ all -> 0x00bf }
-        if (r1 == 0) goto L_0x0085;
-    L_0x007d:
-        r1 = new com.android.camera.ui.HorizontalListView$3;	 Catch:{ all -> 0x00bf }
-        r1.<init>();	 Catch:{ all -> 0x00bf }
-        r0.post(r1);	 Catch:{ all -> 0x00bf }
-    L_0x0085:
-        r1 = r0.mSelectViewIndex;	 Catch:{ all -> 0x00bf }
-        r3 = r0.mPreviousSelectViewIndex;	 Catch:{ all -> 0x00bf }
-        if (r1 == r3) goto L_0x00bd;
-    L_0x008b:
-        r1 = r0.mSelectViewIndex;	 Catch:{ all -> 0x00bf }
-        r3 = r0.mLeftViewIndex;	 Catch:{ all -> 0x00bf }
-        if (r1 <= r3) goto L_0x00b0;
-    L_0x0091:
-        r1 = r0.mSelectViewIndex;	 Catch:{ all -> 0x00bf }
-        r3 = r0.mRightViewIndex;	 Catch:{ all -> 0x00bf }
-        if (r1 > r3) goto L_0x00b0;
-    L_0x0097:
-        r1 = r0.mSelectViewIndex;	 Catch:{ all -> 0x00bf }
-        r1 = r0.toDataIndex(r1);	 Catch:{ all -> 0x00bf }
-        r3 = r0.mSelectViewIndex;	 Catch:{ all -> 0x00bf }
-        r4 = r0.mLeftViewIndex;	 Catch:{ all -> 0x00bf }
-        r3 = r3 - r4;
-        r3 = r3 - r2;
-        r2 = r0.getChildAt(r3);	 Catch:{ all -> 0x00bf }
-        r3 = r0.mAdapter;	 Catch:{ all -> 0x00bf }
-        r3 = r3.getItemId(r1);	 Catch:{ all -> 0x00bf }
-        r0.notifyItemSelect(r2, r1, r3);	 Catch:{ all -> 0x00bf }
-    L_0x00b0:
-        r1 = r0.mSelectViewIndex;	 Catch:{ all -> 0x00bf }
-        r0.mPreviousSelectViewIndex = r1;	 Catch:{ all -> 0x00bf }
-        goto L_0x00bd;
-    L_0x00b5:
-        r1 = new com.android.camera.ui.HorizontalListView$2;	 Catch:{ all -> 0x00bf }
-        r1.<init>();	 Catch:{ all -> 0x00bf }
-        r0.post(r1);	 Catch:{ all -> 0x00bf }
-    L_0x00bd:
-        monitor-exit(r0);
-        return;
-    L_0x00bf:
-        r1 = move-exception;
-        monitor-exit(r0);
-        throw r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.ui.HorizontalListView.onLayout(boolean, int, int, int, int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    protected synchronized void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        if (this.mAdapter != null) {
+            int i5;
+            if (this.mDataChanged) {
+                i5 = this.mCurrentX;
+                initView();
+                removeAllViewsInLayout();
+                this.mNextX = i5;
+                this.mDataChanged = false;
+                z = true;
+            } else {
+                z = false;
+            }
+            if (this.mScroller.computeScrollOffset()) {
+                this.mNextX = this.mScroller.getCurrX();
+            }
+            if (this.mNextX <= 0) {
+                this.mNextX = 0;
+                this.mScroller.forceFinished(true);
+            }
+            if (this.mNextX >= this.mMaxX) {
+                this.mNextX = this.mMaxX;
+                this.mScroller.forceFinished(true);
+            }
+            i3 = this.mCurrentX - this.mNextX;
+            this.mCurrentX = this.mNextX;
+            removeNonVisibleItems(i3);
+            fillList(i3);
+            positionItems(i3);
+            if (!this.mScroller.isFinished() || r1) {
+                post(new Runnable() {
+                    public void run() {
+                        HorizontalListView.this.requestLayout();
+                    }
+                });
+            } else {
+                loadItems();
+                if (this.mScroller.isFinished() && !this.mTouchDown) {
+                    this.mIsScrollingPerformed = false;
+                    if (this.mSelectCenter) {
+                        post(new Runnable() {
+                            public void run() {
+                                HorizontalListView.this.justify();
+                            }
+                        });
+                    }
+                    if (this.mSelectViewIndex != this.mPreviousSelectViewIndex) {
+                        if (this.mSelectViewIndex > this.mLeftViewIndex && this.mSelectViewIndex <= this.mRightViewIndex) {
+                            i5 = toDataIndex(this.mSelectViewIndex);
+                            notifyItemSelect(getChildAt((this.mSelectViewIndex - this.mLeftViewIndex) - 1), i5, this.mAdapter.getItemId(i5));
+                        }
+                        this.mPreviousSelectViewIndex = this.mSelectViewIndex;
+                    }
+                }
+            }
+        }
     }
 
     private void fillList(int i) {

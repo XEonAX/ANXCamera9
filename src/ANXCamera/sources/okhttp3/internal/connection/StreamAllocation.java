@@ -74,33 +74,19 @@ public final class StreamAllocation {
     /* JADX WARNING: Missing block: B:11:0x0018, code:
             return r0;
      */
-    private okhttp3.internal.connection.RealConnection findHealthyConnection(int r4, int r5, int r6, boolean r7, boolean r8) throws java.io.IOException {
-        /*
-        r3 = this;
-    L_0x0000:
-        r0 = r3.findConnection(r4, r5, r6, r7);
-        r1 = r3.connectionPool;
-        monitor-enter(r1);
-        r2 = r0.successCount;	 Catch:{ all -> 0x0019 }
-        if (r2 != 0) goto L_0x000d;
-    L_0x000b:
-        monitor-exit(r1);	 Catch:{ all -> 0x0019 }
-        return r0;
-    L_0x000d:
-        monitor-exit(r1);	 Catch:{ all -> 0x0019 }
-        r1 = r0.isHealthy(r8);
-        if (r1 != 0) goto L_0x0018;
-    L_0x0014:
-        r3.noNewStreams();
-        goto L_0x0000;
-    L_0x0018:
-        return r0;
-    L_0x0019:
-        r4 = move-exception;
-        monitor-exit(r1);	 Catch:{ all -> 0x0019 }
-        throw r4;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.connection.StreamAllocation.findHealthyConnection(int, int, int, boolean, boolean):okhttp3.internal.connection.RealConnection");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private RealConnection findHealthyConnection(int i, int i2, int i3, boolean z, boolean z2) throws IOException {
+        while (true) {
+            RealConnection findConnection = findConnection(i, i2, i3, z);
+            synchronized (this.connectionPool) {
+                if (findConnection.successCount == 0) {
+                    return findConnection;
+                }
+            }
+            noNewStreams();
+        }
+        while (true) {
+        }
     }
 
     private RealConnection findConnection(int i, int i2, int i3, boolean z) throws IOException {

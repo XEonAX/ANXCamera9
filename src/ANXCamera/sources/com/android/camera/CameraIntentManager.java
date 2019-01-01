@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.BadParcelableException;
 import android.os.Bundle;
+import com.android.camera.data.DataRepository;
 import com.android.camera.log.Log;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -223,172 +224,104 @@ public class CameraIntentManager {
         }
     }
 
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public int getCameraModeId() {
-        /*
-        r2 = this;
-        r0 = r2.getCameraMode();
-        r1 = r0.hashCode();
-        switch(r1) {
-            case -2028086330: goto L_0x0081;
-            case -1841345251: goto L_0x0077;
-            case 65911732: goto L_0x006c;
-            case 76699320: goto L_0x0062;
-            case 81665115: goto L_0x0057;
-            case 244777209: goto L_0x004c;
-            case 1270567718: goto L_0x0042;
-            case 1340413460: goto L_0x0037;
-            case 1511893915: goto L_0x002d;
-            case 1596340582: goto L_0x0023;
-            case 1852610165: goto L_0x0018;
-            case 1871805052: goto L_0x000d;
-            default: goto L_0x000b;
-        };
-    L_0x000b:
-        goto L_0x008b;
-    L_0x000d:
-        r1 = "MANUAL_MODE";
-        r0 = r0.equals(r1);
-        if (r0 == 0) goto L_0x008b;
-    L_0x0015:
-        r0 = 1;
-        goto L_0x008c;
-    L_0x0018:
-        r1 = "PANORAMA";
-        r0 = r0.equals(r1);
-        if (r0 == 0) goto L_0x008b;
-    L_0x0020:
-        r0 = 4;
-        goto L_0x008c;
-    L_0x0023:
-        r1 = "PANORAMIC";
-        r0 = r0.equals(r1);
-        if (r0 == 0) goto L_0x008b;
-    L_0x002b:
-        r0 = 3;
-        goto L_0x008c;
-    L_0x002d:
-        r1 = "PORTRAIT";
-        r0 = r0.equals(r1);
-        if (r0 == 0) goto L_0x008b;
-    L_0x0035:
-        r0 = 5;
-        goto L_0x008c;
-    L_0x0037:
-        r1 = "SUPER_NIGHT";
-        r0 = r0.equals(r1);
-        if (r0 == 0) goto L_0x008b;
-    L_0x003f:
-        r0 = 11;
-        goto L_0x008c;
-    L_0x0042:
-        r1 = "CAPTURE";
-        r0 = r0.equals(r1);
-        if (r0 == 0) goto L_0x008b;
-    L_0x004a:
-        r0 = 0;
-        goto L_0x008c;
-    L_0x004c:
-        r1 = "FAST_MOTION";
-        r0 = r0.equals(r1);
-        if (r0 == 0) goto L_0x008b;
-    L_0x0054:
-        r0 = 9;
-        goto L_0x008c;
-    L_0x0057:
-        r1 = "VIDEO";
-        r0 = r0.equals(r1);
-        if (r0 == 0) goto L_0x008b;
-    L_0x005f:
-        r0 = 8;
-        goto L_0x008c;
-    L_0x0062:
-        r1 = "SHORT_VIDEO";
-        r0 = r0.equals(r1);
-        if (r0 == 0) goto L_0x008b;
-    L_0x006a:
-        r0 = 7;
-        goto L_0x008c;
-    L_0x006c:
-        r1 = "SLOW_MOTION";
-        r0 = r0.equals(r1);
-        if (r0 == 0) goto L_0x008b;
-    L_0x0074:
-        r0 = 10;
-        goto L_0x008c;
-    L_0x0077:
-        r1 = "SQUARE";
-        r0 = r0.equals(r1);
-        if (r0 == 0) goto L_0x008b;
-    L_0x007f:
-        r0 = 6;
-        goto L_0x008c;
-    L_0x0081:
-        r1 = "MANUAL";
-        r0 = r0.equals(r1);
-        if (r0 == 0) goto L_0x008b;
-    L_0x0089:
-        r0 = 2;
-        goto L_0x008c;
-    L_0x008b:
-        r0 = -1;
-    L_0x008c:
-        switch(r0) {
-            case 0: goto L_0x00ba;
-            case 1: goto L_0x00b7;
-            case 2: goto L_0x00b7;
-            case 3: goto L_0x00b4;
-            case 4: goto L_0x00b4;
-            case 5: goto L_0x00b1;
-            case 6: goto L_0x00ae;
-            case 7: goto L_0x00ab;
-            case 8: goto L_0x00a8;
-            case 9: goto L_0x00a5;
-            case 10: goto L_0x0095;
-            case 11: goto L_0x0092;
-            default: goto L_0x008f;
-        };
-    L_0x008f:
-        r0 = 160; // 0xa0 float:2.24E-43 double:7.9E-322;
-        return r0;
-    L_0x0092:
-        r0 = 173; // 0xad float:2.42E-43 double:8.55E-322;
-        return r0;
-    L_0x0095:
-        r0 = com.android.camera.data.DataRepository.dataItemFeature();
-        r0 = r0.fp();
-        if (r0 == 0) goto L_0x00a2;
-    L_0x009f:
-        r0 = 172; // 0xac float:2.41E-43 double:8.5E-322;
-        return r0;
-    L_0x00a2:
-        r0 = 168; // 0xa8 float:2.35E-43 double:8.3E-322;
-        return r0;
-    L_0x00a5:
-        r0 = 169; // 0xa9 float:2.37E-43 double:8.35E-322;
-        return r0;
-    L_0x00a8:
-        r0 = 162; // 0xa2 float:2.27E-43 double:8.0E-322;
-        return r0;
-    L_0x00ab:
-        r0 = 161; // 0xa1 float:2.26E-43 double:7.95E-322;
-        return r0;
-    L_0x00ae:
-        r0 = 165; // 0xa5 float:2.31E-43 double:8.15E-322;
-        return r0;
-    L_0x00b1:
-        r0 = 171; // 0xab float:2.4E-43 double:8.45E-322;
-        return r0;
-    L_0x00b4:
-        r0 = 166; // 0xa6 float:2.33E-43 double:8.2E-322;
-        return r0;
-    L_0x00b7:
-        r0 = 167; // 0xa7 float:2.34E-43 double:8.25E-322;
-        return r0;
-    L_0x00ba:
-        r0 = 163; // 0xa3 float:2.28E-43 double:8.05E-322;
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.CameraIntentManager.getCameraModeId():int");
+        Object obj;
+        String cameraMode = getCameraMode();
+        switch (cameraMode.hashCode()) {
+            case -2028086330:
+                if (cameraMode.equals(CameraMode.MANUAL)) {
+                    obj = 2;
+                    break;
+                }
+            case -1841345251:
+                if (cameraMode.equals(CameraMode.SQUARE)) {
+                    obj = 6;
+                    break;
+                }
+            case 65911732:
+                if (cameraMode.equals(CameraMode.SLOW_MOTION)) {
+                    obj = 10;
+                    break;
+                }
+            case 76699320:
+                if (cameraMode.equals(CameraMode.SHORT_VIDEO)) {
+                    obj = 7;
+                    break;
+                }
+            case 81665115:
+                if (cameraMode.equals(CameraMode.VIDEO)) {
+                    obj = 8;
+                    break;
+                }
+            case 244777209:
+                if (cameraMode.equals(CameraMode.FAST_MOTION)) {
+                    obj = 9;
+                    break;
+                }
+            case 1270567718:
+                if (cameraMode.equals("CAPTURE")) {
+                    obj = null;
+                    break;
+                }
+            case 1340413460:
+                if (cameraMode.equals(CameraMode.SUPER_NIGHT)) {
+                    obj = 11;
+                    break;
+                }
+            case 1511893915:
+                if (cameraMode.equals(CameraMode.PORTRAIT)) {
+                    obj = 5;
+                    break;
+                }
+            case 1596340582:
+                if (cameraMode.equals(CameraMode.GOOGLE_PANORAMA)) {
+                    obj = 3;
+                    break;
+                }
+            case 1852610165:
+                if (cameraMode.equals(CameraMode.PANORAMA)) {
+                    obj = 4;
+                    break;
+                }
+            case 1871805052:
+                if (cameraMode.equals(CameraMode.GOOGLE_MANUAL)) {
+                    obj = 1;
+                    break;
+                }
+            default:
+                obj = -1;
+                break;
+        }
+        switch (obj) {
+            case null:
+                return 163;
+            case 1:
+            case 2:
+                return 167;
+            case 3:
+            case 4:
+                return 166;
+            case 5:
+                return 171;
+            case 6:
+                return 165;
+            case 7:
+                return 161;
+            case 8:
+                return 162;
+            case 9:
+                return 169;
+            case 10:
+                if (DataRepository.dataItemFeature().fp()) {
+                    return 172;
+                }
+                return 168;
+            case 11:
+                return 173;
+            default:
+                return 160;
+        }
     }
 
     public String getCameraSubMode() {

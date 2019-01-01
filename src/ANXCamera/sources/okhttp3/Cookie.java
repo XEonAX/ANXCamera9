@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import javax.annotation.Nullable;
 import okhttp3.internal.Util;
 import okhttp3.internal.http.HttpDate;
+import okhttp3.internal.publicsuffix.PublicSuffixDatabase;
 
 public final class Cookie {
     private static final Pattern DAY_OF_MONTH_PATTERN = Pattern.compile("(\\d{1,2})[^\\d]*");
@@ -234,217 +235,138 @@ public final class Cookie {
     /* JADX WARNING: Removed duplicated region for block: B:62:0x0112  */
     /* JADX WARNING: Removed duplicated region for block: B:81:0x0156  */
     /* JADX WARNING: Removed duplicated region for block: B:80:0x0151  */
-    @javax.annotation.Nullable
-    static okhttp3.Cookie parse(long r27, okhttp3.HttpUrl r29, java.lang.String r30) {
-        /*
-        r3 = r30;
-        r4 = r30.length();
-        r5 = 59;
-        r6 = 0;
-        r0 = okhttp3.internal.Util.delimiterOffset(r3, r6, r4, r5);
-        r7 = 61;
-        r8 = okhttp3.internal.Util.delimiterOffset(r3, r6, r0, r7);
-        r9 = 0;
-        if (r8 != r0) goto L_0x0017;
-    L_0x0016:
-        return r9;
-    L_0x0017:
-        r11 = okhttp3.internal.Util.trimSubstring(r3, r6, r8);
-        r10 = r11.isEmpty();
-        if (r10 != 0) goto L_0x016a;
-    L_0x0021:
-        r10 = okhttp3.internal.Util.indexOfControlOrNonAscii(r11);
-        r12 = -1;
-        if (r10 == r12) goto L_0x002a;
-    L_0x0028:
-        goto L_0x016a;
-    L_0x002a:
-        r10 = 1;
-        r8 = r8 + r10;
-        r8 = okhttp3.internal.Util.trimSubstring(r3, r8, r0);
-        r13 = okhttp3.internal.Util.indexOfControlOrNonAscii(r8);
-        if (r13 == r12) goto L_0x0037;
-    L_0x0036:
-        return r9;
-        r0 = r0 + r10;
-        r12 = -1;
-        r14 = 253402300799999; // 0xe677d21fdbff float:-1.71647681E11 double:1.251973714024093E-309;
-        r18 = r6;
-        r19 = r18;
-        r24 = r19;
-        r21 = r9;
-        r20 = r10;
-        r16 = r12;
-        r22 = r14;
-        r10 = r21;
-    L_0x0057:
-        if (r0 >= r4) goto L_0x00dd;
-    L_0x0059:
-        r9 = okhttp3.internal.Util.delimiterOffset(r3, r0, r4, r5);
-        r5 = okhttp3.internal.Util.delimiterOffset(r3, r0, r9, r7);
-        r0 = okhttp3.internal.Util.trimSubstring(r3, r0, r5);
-        if (r5 >= r9) goto L_0x006e;
-    L_0x0067:
-        r5 = r5 + 1;
-        r5 = okhttp3.internal.Util.trimSubstring(r3, r5, r9);
-        goto L_0x0070;
-    L_0x006e:
-        r5 = "";
-    L_0x0070:
-        r7 = "expires";
-        r7 = r0.equalsIgnoreCase(r7);
-        if (r7 == 0) goto L_0x0089;
-    L_0x0078:
-        r0 = r5.length();	 Catch:{ IllegalArgumentException -> 0x0087 }
-        r25 = parseExpires(r5, r6, r0);	 Catch:{ IllegalArgumentException -> 0x0087 }
-        r22 = r25;
-    L_0x0084:
-        r24 = 1;
-        goto L_0x00d3;
-    L_0x0087:
-        r0 = move-exception;
-        goto L_0x00d3;
-    L_0x0089:
-        r7 = "max-age";
-        r7 = r0.equalsIgnoreCase(r7);
-        if (r7 == 0) goto L_0x009c;
-    L_0x0091:
-        r25 = parseMaxAge(r5);	 Catch:{ NumberFormatException -> 0x009a }
-        r16 = r25;
-        goto L_0x0084;
-    L_0x009a:
-        r0 = move-exception;
-        goto L_0x00d3;
-    L_0x009c:
-        r7 = "domain";
-        r7 = r0.equalsIgnoreCase(r7);
-        if (r7 == 0) goto L_0x00b0;
-    L_0x00a4:
-        r0 = parseDomain(r5);	 Catch:{ IllegalArgumentException -> 0x00ae }
-        r10 = r0;
-        r20 = r6;
-        goto L_0x00d3;
-    L_0x00ae:
-        r0 = move-exception;
-        goto L_0x00d3;
-    L_0x00b0:
-        r7 = "path";
-        r7 = r0.equalsIgnoreCase(r7);
-        if (r7 == 0) goto L_0x00bc;
-        r21 = r5;
-        goto L_0x00d3;
-    L_0x00bc:
-        r5 = "secure";
-        r5 = r0.equalsIgnoreCase(r5);
-        if (r5 == 0) goto L_0x00c8;
-        r18 = 1;
-        goto L_0x00d3;
-    L_0x00c8:
-        r5 = "httponly";
-        r0 = r0.equalsIgnoreCase(r5);
-        if (r0 == 0) goto L_0x00d3;
-        r19 = 1;
-    L_0x00d3:
-        r0 = r9 + 1;
-        r5 = 59;
-        r7 = 61;
-        r9 = 0;
-        goto L_0x0057;
-    L_0x00dd:
-        r3 = -9223372036854775808;
-        r0 = (r16 > r3 ? 1 : (r16 == r3 ? 0 : -1));
-        if (r0 != 0) goto L_0x00e6;
-    L_0x00e4:
-        r13 = r3;
-        goto L_0x010c;
-    L_0x00e6:
-        r0 = (r16 > r12 ? 1 : (r16 == r12 ? 0 : -1));
-        if (r0 == 0) goto L_0x010a;
-    L_0x00ea:
-        r3 = 9223372036854775; // 0x20c49ba5e353f7 float:-3.943512E-16 double:4.663754807431093E-308;
-        r0 = (r16 > r3 ? 1 : (r16 == r3 ? 0 : -1));
-        if (r0 > 0) goto L_0x00f8;
-    L_0x00f3:
-        r3 = 1000; // 0x3e8 float:1.401E-42 double:4.94E-321;
-        r16 = r16 * r3;
-        goto L_0x00fd;
-    L_0x00f8:
-        r16 = 9223372036854775807; // 0x7fffffffffffffff float:NaN double:NaN;
-    L_0x00fd:
-        r3 = r27 + r16;
-        r0 = (r3 > r27 ? 1 : (r3 == r27 ? 0 : -1));
-        if (r0 < 0) goto L_0x0107;
-    L_0x0103:
-        r0 = (r3 > r14 ? 1 : (r3 == r14 ? 0 : -1));
-        if (r0 <= 0) goto L_0x00e4;
-        r13 = r14;
-        goto L_0x010c;
-    L_0x010a:
-        r13 = r22;
-    L_0x010c:
-        r0 = r29.host();
-        if (r10 != 0) goto L_0x0116;
-        r15 = r0;
-        r1 = 0;
-        goto L_0x0120;
-    L_0x0116:
-        r1 = domainMatch(r0, r10);
-        if (r1 != 0) goto L_0x011e;
-    L_0x011c:
-        r1 = 0;
-        return r1;
-    L_0x011e:
-        r1 = 0;
-        r15 = r10;
-    L_0x0120:
-        r0 = r0.length();
-        r2 = r15.length();
-        if (r0 == r2) goto L_0x0135;
-    L_0x012a:
-        r0 = okhttp3.internal.publicsuffix.PublicSuffixDatabase.get();
-        r0 = r0.getEffectiveTldPlusOne(r15);
-        if (r0 != 0) goto L_0x0135;
-    L_0x0134:
-        return r1;
-    L_0x0135:
-        r9 = r21;
-        if (r9 == 0) goto L_0x0145;
-    L_0x0139:
-        r0 = "/";
-        r0 = r9.startsWith(r0);
-        if (r0 != 0) goto L_0x0142;
-    L_0x0141:
-        goto L_0x0145;
-    L_0x0142:
-        r16 = r9;
-        goto L_0x015a;
-    L_0x0145:
-        r0 = r29.encodedPath();
-        r1 = 47;
-        r1 = r0.lastIndexOf(r1);
-        if (r1 == 0) goto L_0x0156;
-    L_0x0151:
-        r0 = r0.substring(r6, r1);
-        goto L_0x0158;
-    L_0x0156:
-        r0 = "/";
-    L_0x0158:
-        r16 = r0;
-    L_0x015a:
-        r0 = new okhttp3.Cookie;
-        r10 = r0;
-        r12 = r8;
-        r17 = r18;
-        r18 = r19;
-        r19 = r20;
-        r20 = r24;
-        r10.<init>(r11, r12, r13, r15, r16, r17, r18, r19, r20);
-        return r0;
-    L_0x016a:
-        r1 = 0;
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okhttp3.Cookie.parse(long, okhttp3.HttpUrl, java.lang.String):okhttp3.Cookie");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    @Nullable
+    static Cookie parse(long j, HttpUrl httpUrl, String str) {
+        String str2 = str;
+        int length = str.length();
+        char c = ';';
+        int delimiterOffset = Util.delimiterOffset(str2, 0, length, ';');
+        char c2 = '=';
+        int delimiterOffset2 = Util.delimiterOffset(str2, 0, delimiterOffset, '=');
+        if (delimiterOffset2 == delimiterOffset) {
+            return null;
+        }
+        String trimSubstring = Util.trimSubstring(str2, 0, delimiterOffset2);
+        if (trimSubstring.isEmpty() || Util.indexOfControlOrNonAscii(trimSubstring) != -1) {
+            return null;
+        }
+        String trimSubstring2 = Util.trimSubstring(str2, delimiterOffset2 + 1, delimiterOffset);
+        if (Util.indexOfControlOrNonAscii(trimSubstring2) != -1) {
+            return null;
+        }
+        String trimSubstring3;
+        long j2;
+        String str3;
+        String str4;
+        String str5;
+        int lastIndexOf;
+        delimiterOffset++;
+        boolean z = false;
+        boolean z2 = z;
+        boolean z3 = z2;
+        Cookie cookie = null;
+        boolean z4 = true;
+        long j3 = -1;
+        long j4 = HttpDate.MAX_DATE;
+        String str6 = cookie;
+        while (delimiterOffset < length) {
+            String trimSubstring4;
+            int delimiterOffset3 = Util.delimiterOffset(str2, delimiterOffset, length, c);
+            int delimiterOffset4 = Util.delimiterOffset(str2, delimiterOffset, delimiterOffset3, c2);
+            trimSubstring3 = Util.trimSubstring(str2, delimiterOffset, delimiterOffset4);
+            if (delimiterOffset4 < delimiterOffset3) {
+                trimSubstring4 = Util.trimSubstring(str2, delimiterOffset4 + 1, delimiterOffset3);
+            } else {
+                trimSubstring4 = "";
+            }
+            if (trimSubstring3.equalsIgnoreCase("expires")) {
+                try {
+                    j4 = parseExpires(trimSubstring4, 0, trimSubstring4.length());
+                } catch (IllegalArgumentException e) {
+                }
+            } else {
+                if (trimSubstring3.equalsIgnoreCase("max-age")) {
+                    try {
+                        j3 = parseMaxAge(trimSubstring4);
+                    } catch (NumberFormatException e2) {
+                    }
+                } else if (trimSubstring3.equalsIgnoreCase("domain")) {
+                    try {
+                        str6 = parseDomain(trimSubstring4);
+                        z4 = false;
+                    } catch (IllegalArgumentException e3) {
+                    }
+                } else if (trimSubstring3.equalsIgnoreCase("path")) {
+                    cookie = trimSubstring4;
+                } else if (trimSubstring3.equalsIgnoreCase("secure")) {
+                    z = true;
+                } else if (trimSubstring3.equalsIgnoreCase("httponly")) {
+                    z2 = true;
+                }
+                delimiterOffset = delimiterOffset3 + 1;
+                c = ';';
+                c2 = '=';
+            }
+            z3 = true;
+            delimiterOffset = delimiterOffset3 + 1;
+            c = ';';
+            c2 = '=';
+        }
+        long j5 = Long.MIN_VALUE;
+        if (j3 != Long.MIN_VALUE) {
+            Cookie cookie2;
+            if (j3 != -1) {
+                if (j3 <= 9223372036854775L) {
+                    j3 *= 1000;
+                } else {
+                    j3 = Long.MAX_VALUE;
+                }
+                j5 = j + j3;
+                if (j5 < j || j5 > HttpDate.MAX_DATE) {
+                    j2 = HttpDate.MAX_DATE;
+                }
+            } else {
+                j2 = j4;
+            }
+            trimSubstring3 = httpUrl.host();
+            if (str6 != null) {
+                str3 = trimSubstring3;
+                cookie2 = null;
+            } else if (!domainMatch(trimSubstring3, str6)) {
+                return null;
+            } else {
+                cookie2 = null;
+                str3 = str6;
+            }
+            if (trimSubstring3.length() == str3.length() && PublicSuffixDatabase.get().getEffectiveTldPlusOne(str3) == null) {
+                return cookie2;
+            }
+            str4 = cookie;
+            if (str4 == null && str4.startsWith("/")) {
+                str5 = str4;
+            } else {
+                trimSubstring3 = httpUrl.encodedPath();
+                lastIndexOf = trimSubstring3.lastIndexOf(47);
+                str5 = lastIndexOf == 0 ? trimSubstring3.substring(0, lastIndexOf) : "/";
+            }
+            return new Cookie(trimSubstring, trimSubstring2, j2, str3, str5, z, z2, z4, z3);
+        }
+        j2 = j5;
+        trimSubstring3 = httpUrl.host();
+        if (str6 != null) {
+        }
+        if (trimSubstring3.length() == str3.length()) {
+        }
+        str4 = cookie;
+        if (str4 == null) {
+        }
+        trimSubstring3 = httpUrl.encodedPath();
+        lastIndexOf = trimSubstring3.lastIndexOf(47);
+        if (lastIndexOf == 0) {
+        }
+        str5 = lastIndexOf == 0 ? trimSubstring3.substring(0, lastIndexOf) : "/";
+        return new Cookie(trimSubstring, trimSubstring2, j2, str3, str5, z, z2, z4, z3);
     }
 
     private static long parseExpires(String str, int i, int i2) {

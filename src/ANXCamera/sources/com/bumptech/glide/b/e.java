@@ -142,149 +142,61 @@ public class e implements a {
     /* JADX WARNING: Missing block: B:45:0x00ea, code:
             return null;
      */
-    @android.support.annotation.Nullable
-    public synchronized android.graphics.Bitmap U() {
-        /*
-        r7 = this;
-        monitor-enter(r7);
-        r0 = r7.bY;	 Catch:{ all -> 0x00eb }
-        r0 = r0.bB;	 Catch:{ all -> 0x00eb }
-        r1 = 3;
-        r2 = 1;
-        if (r0 <= 0) goto L_0x000d;
-    L_0x0009:
-        r0 = r7.cj;	 Catch:{ all -> 0x00eb }
-        if (r0 >= 0) goto L_0x003b;
-    L_0x000d:
-        r0 = TAG;	 Catch:{ all -> 0x00eb }
-        r0 = android.util.Log.isLoggable(r0, r1);	 Catch:{ all -> 0x00eb }
-        if (r0 == 0) goto L_0x0039;
-    L_0x0015:
-        r0 = TAG;	 Catch:{ all -> 0x00eb }
-        r3 = new java.lang.StringBuilder;	 Catch:{ all -> 0x00eb }
-        r3.<init>();	 Catch:{ all -> 0x00eb }
-        r4 = "Unable to decode frame, frameCount=";
-        r3.append(r4);	 Catch:{ all -> 0x00eb }
-        r4 = r7.bY;	 Catch:{ all -> 0x00eb }
-        r4 = r4.bB;	 Catch:{ all -> 0x00eb }
-        r3.append(r4);	 Catch:{ all -> 0x00eb }
-        r4 = ", framePointer=";
-        r3.append(r4);	 Catch:{ all -> 0x00eb }
-        r4 = r7.cj;	 Catch:{ all -> 0x00eb }
-        r3.append(r4);	 Catch:{ all -> 0x00eb }
-        r3 = r3.toString();	 Catch:{ all -> 0x00eb }
-        android.util.Log.d(r0, r3);	 Catch:{ all -> 0x00eb }
-    L_0x0039:
-        r7.status = r2;	 Catch:{ all -> 0x00eb }
-    L_0x003b:
-        r0 = r7.status;	 Catch:{ all -> 0x00eb }
-        r3 = 0;
-        if (r0 == r2) goto L_0x00c9;
-    L_0x0040:
-        r0 = r7.status;	 Catch:{ all -> 0x00eb }
-        r4 = 2;
-        if (r0 != r4) goto L_0x0047;
-    L_0x0045:
-        goto L_0x00c9;
-    L_0x0047:
-        r0 = 0;
-        r7.status = r0;	 Catch:{ all -> 0x00eb }
-        r4 = r7.block;	 Catch:{ all -> 0x00eb }
-        if (r4 != 0) goto L_0x0058;
-    L_0x004e:
-        r4 = r7.ce;	 Catch:{ all -> 0x00eb }
-        r5 = 255; // 0xff float:3.57E-43 double:1.26E-321;
-        r4 = r4.i(r5);	 Catch:{ all -> 0x00eb }
-        r7.block = r4;	 Catch:{ all -> 0x00eb }
-    L_0x0058:
-        r4 = r7.bY;	 Catch:{ all -> 0x00eb }
-        r4 = r4.bD;	 Catch:{ all -> 0x00eb }
-        r5 = r7.cj;	 Catch:{ all -> 0x00eb }
-        r4 = r4.get(r5);	 Catch:{ all -> 0x00eb }
-        r4 = (com.bumptech.glide.b.b) r4;	 Catch:{ all -> 0x00eb }
-        r5 = r7.cj;	 Catch:{ all -> 0x00eb }
-        r5 = r5 - r2;
-        if (r5 < 0) goto L_0x0075;
-    L_0x006a:
-        r6 = r7.bY;	 Catch:{ all -> 0x00eb }
-        r6 = r6.bD;	 Catch:{ all -> 0x00eb }
-        r5 = r6.get(r5);	 Catch:{ all -> 0x00eb }
-        r5 = (com.bumptech.glide.b.b) r5;	 Catch:{ all -> 0x00eb }
-        goto L_0x0076;
-    L_0x0075:
-        r5 = r3;
-    L_0x0076:
-        r6 = r4.lct;	 Catch:{ all -> 0x00eb }
-        if (r6 == 0) goto L_0x007d;
-    L_0x007a:
-        r6 = r4.lct;	 Catch:{ all -> 0x00eb }
-        goto L_0x0081;
-    L_0x007d:
-        r6 = r7.bY;	 Catch:{ all -> 0x00eb }
-        r6 = r6.gct;	 Catch:{ all -> 0x00eb }
-    L_0x0081:
-        r7.act = r6;	 Catch:{ all -> 0x00eb }
-        r6 = r7.act;	 Catch:{ all -> 0x00eb }
-        if (r6 != 0) goto L_0x00ab;
-    L_0x0087:
-        r0 = TAG;	 Catch:{ all -> 0x00eb }
-        r0 = android.util.Log.isLoggable(r0, r1);	 Catch:{ all -> 0x00eb }
-        if (r0 == 0) goto L_0x00a7;
-    L_0x008f:
-        r0 = TAG;	 Catch:{ all -> 0x00eb }
-        r1 = new java.lang.StringBuilder;	 Catch:{ all -> 0x00eb }
-        r1.<init>();	 Catch:{ all -> 0x00eb }
-        r4 = "No valid color table found for frame #";
-        r1.append(r4);	 Catch:{ all -> 0x00eb }
-        r4 = r7.cj;	 Catch:{ all -> 0x00eb }
-        r1.append(r4);	 Catch:{ all -> 0x00eb }
-        r1 = r1.toString();	 Catch:{ all -> 0x00eb }
-        android.util.Log.d(r0, r1);	 Catch:{ all -> 0x00eb }
-    L_0x00a7:
-        r7.status = r2;	 Catch:{ all -> 0x00eb }
-        monitor-exit(r7);
-        return r3;
-    L_0x00ab:
-        r1 = r4.transparency;	 Catch:{ all -> 0x00eb }
-        if (r1 == 0) goto L_0x00c3;
-    L_0x00af:
-        r1 = r7.act;	 Catch:{ all -> 0x00eb }
-        r2 = r7.cd;	 Catch:{ all -> 0x00eb }
-        r3 = r7.act;	 Catch:{ all -> 0x00eb }
-        r3 = r3.length;	 Catch:{ all -> 0x00eb }
-        java.lang.System.arraycopy(r1, r0, r2, r0, r3);	 Catch:{ all -> 0x00eb }
-        r1 = r7.cd;	 Catch:{ all -> 0x00eb }
-        r7.act = r1;	 Catch:{ all -> 0x00eb }
-        r1 = r7.act;	 Catch:{ all -> 0x00eb }
-        r2 = r4.transIndex;	 Catch:{ all -> 0x00eb }
-        r1[r2] = r0;	 Catch:{ all -> 0x00eb }
-    L_0x00c3:
-        r0 = r7.a(r4, r5);	 Catch:{ all -> 0x00eb }
-        monitor-exit(r7);
-        return r0;
-    L_0x00c9:
-        r0 = TAG;	 Catch:{ all -> 0x00eb }
-        r0 = android.util.Log.isLoggable(r0, r1);	 Catch:{ all -> 0x00eb }
-        if (r0 == 0) goto L_0x00e9;
-    L_0x00d1:
-        r0 = TAG;	 Catch:{ all -> 0x00eb }
-        r1 = new java.lang.StringBuilder;	 Catch:{ all -> 0x00eb }
-        r1.<init>();	 Catch:{ all -> 0x00eb }
-        r2 = "Unable to decode frame, status=";
-        r1.append(r2);	 Catch:{ all -> 0x00eb }
-        r2 = r7.status;	 Catch:{ all -> 0x00eb }
-        r1.append(r2);	 Catch:{ all -> 0x00eb }
-        r1 = r1.toString();	 Catch:{ all -> 0x00eb }
-        android.util.Log.d(r0, r1);	 Catch:{ all -> 0x00eb }
-    L_0x00e9:
-        monitor-exit(r7);
-        return r3;
-    L_0x00eb:
-        r0 = move-exception;
-        monitor-exit(r7);
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.bumptech.glide.b.e.U():android.graphics.Bitmap");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    @Nullable
+    public synchronized Bitmap U() {
+        String str;
+        if (this.bY.bB <= 0 || this.cj < 0) {
+            if (Log.isLoggable(TAG, 3)) {
+                str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Unable to decode frame, frameCount=");
+                stringBuilder.append(this.bY.bB);
+                stringBuilder.append(", framePointer=");
+                stringBuilder.append(this.cj);
+                Log.d(str, stringBuilder.toString());
+            }
+            this.status = 1;
+        }
+        StringBuilder stringBuilder2;
+        if (this.status != 1 && this.status != 2) {
+            b bVar;
+            this.status = 0;
+            if (this.block == null) {
+                this.block = this.ce.i(255);
+            }
+            b bVar2 = (b) this.bY.bD.get(this.cj);
+            int i = this.cj - 1;
+            if (i >= 0) {
+                bVar = (b) this.bY.bD.get(i);
+            } else {
+                bVar = null;
+            }
+            this.act = bVar2.lct != null ? bVar2.lct : this.bY.gct;
+            if (this.act == null) {
+                if (Log.isLoggable(TAG, 3)) {
+                    str = TAG;
+                    stringBuilder2 = new StringBuilder();
+                    stringBuilder2.append("No valid color table found for frame #");
+                    stringBuilder2.append(this.cj);
+                    Log.d(str, stringBuilder2.toString());
+                }
+                this.status = 1;
+                return null;
+            }
+            if (bVar2.transparency) {
+                System.arraycopy(this.act, 0, this.cd, 0, this.act.length);
+                this.act = this.cd;
+                this.act[bVar2.transIndex] = 0;
+            }
+            return a(bVar2, bVar);
+        } else if (Log.isLoggable(TAG, 3)) {
+            str = TAG;
+            stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("Unable to decode frame, status=");
+            stringBuilder2.append(this.status);
+            Log.d(str, stringBuilder2.toString());
+        }
     }
 
     public int a(@Nullable InputStream inputStream, int i) {

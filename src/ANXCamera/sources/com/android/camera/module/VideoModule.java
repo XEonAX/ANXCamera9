@@ -69,6 +69,7 @@ import com.android.camera2.Camera2Proxy.PictureCallbackWrapper;
 import com.android.camera2.Camera2Proxy.VideoRecordStateCallback;
 import com.android.camera2.CameraCapabilities;
 import com.mi.config.b;
+import com.miui.extravideo.interpolation.VideoInterpolator;
 import com.ss.android.medialib.Result.Error;
 import com.ss.android.ugc.effectmanager.link.model.configuration.LinkSelectorConfiguration;
 import io.reactivex.Single;
@@ -76,12 +77,15 @@ import io.reactivex.SingleEmitter;
 import io.reactivex.SingleOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
+import java.io.Closeable;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import miui.reflect.Method;
 
 public class VideoModule extends VideoBase implements OnErrorListener, OnInfoListener, ObjectViewListener, VideoRecordStateCallback {
@@ -341,68 +345,17 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     /* JADX WARNING: Missing block: B:13:0x0065, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public void onSharedPreferenceChanged() {
-        /*
-        r8 = this;
-        r0 = r8.mPaused;
-        if (r0 != 0) goto L_0x0065;
-    L_0x0004:
-        r0 = r8.mActivity;
-        r0 = r0.isActivityPaused();
-        if (r0 == 0) goto L_0x000d;
-    L_0x000c:
-        goto L_0x0065;
-    L_0x000d:
-        r0 = r8.mCamera2Device;
-        if (r0 != 0) goto L_0x0012;
-    L_0x0011:
-        return;
-    L_0x0012:
-        r0 = r8.mProfile;
-        r0 = r0.videoFrameWidth;
-        r1 = r8.mProfile;
-        r1 = r1.videoFrameHeight;
-        r8.readVideoPreferences();
-        r2 = r8.mProfile;
-        r2 = r2.videoFrameWidth;
-        if (r2 != r0) goto L_0x0029;
-    L_0x0023:
-        r2 = r8.mProfile;
-        r2 = r2.videoFrameHeight;
-        if (r2 == r1) goto L_0x0064;
-    L_0x0029:
-        r2 = TAG;
-        r3 = java.util.Locale.ENGLISH;
-        r4 = "profile size changed [%d %d]->[%d %d]";
-        r5 = 4;
-        r5 = new java.lang.Object[r5];
-        r0 = java.lang.Integer.valueOf(r0);
-        r6 = 0;
-        r5[r6] = r0;
-        r0 = java.lang.Integer.valueOf(r1);
-        r1 = 1;
-        r5[r1] = r0;
-        r0 = 2;
-        r7 = r8.mProfile;
-        r7 = r7.videoFrameWidth;
-        r7 = java.lang.Integer.valueOf(r7);
-        r5[r0] = r7;
-        r0 = 3;
-        r7 = r8.mProfile;
-        r7 = r7.videoFrameHeight;
-        r7 = java.lang.Integer.valueOf(r7);
-        r5[r0] = r7;
-        r0 = java.lang.String.format(r3, r4, r5);
-        com.android.camera.log.Log.d(r2, r0);
-        r0 = new int[r1];
-        r0[r6] = r1;
-        r8.updatePreferenceTrampoline(r0);
-    L_0x0064:
-        return;
-    L_0x0065:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.VideoModule.onSharedPreferenceChanged():void");
+        if (!this.mPaused && !this.mActivity.isActivityPaused() && this.mCamera2Device != null) {
+            int i = this.mProfile.videoFrameWidth;
+            int i2 = this.mProfile.videoFrameHeight;
+            readVideoPreferences();
+            if (!(this.mProfile.videoFrameWidth == i && this.mProfile.videoFrameHeight == i2)) {
+                Log.d(TAG, String.format(Locale.ENGLISH, "profile size changed [%d %d]->[%d %d]", new Object[]{Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(this.mProfile.videoFrameWidth), Integer.valueOf(this.mProfile.videoFrameHeight)}));
+                updatePreferenceTrampoline(1);
+            }
+        }
     }
 
     protected void readVideoPreferences() {
@@ -614,58 +567,46 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     /* JADX WARNING: Removed duplicated region for block: B:12:0x0028  */
     /* JADX WARNING: Removed duplicated region for block: B:16:0x0041  */
     /* JADX WARNING: Removed duplicated region for block: B:14:0x003f  */
-    private int convertSizeToQuality(java.lang.String r5) {
-        /*
-        r4 = this;
-        r0 = r5.hashCode();
-        r1 = -1719904874; // 0xffffffff997c5596 float:-1.30453786E-23 double:NaN;
-        r2 = -1;
-        if (r0 == r1) goto L_0x001a;
-    L_0x000a:
-        r1 = 802059049; // 0x2fce7329 float:3.7553008E-10 double:3.96269822E-315;
-        if (r0 == r1) goto L_0x0010;
-    L_0x000f:
-        goto L_0x0024;
-    L_0x0010:
-        r0 = "1920x1080";
-        r0 = r5.equals(r0);
-        if (r0 == 0) goto L_0x0024;
-    L_0x0018:
-        r0 = 0;
-        goto L_0x0025;
-    L_0x001a:
-        r0 = "1280x720";
-        r0 = r5.equals(r0);
-        if (r0 == 0) goto L_0x0024;
-    L_0x0022:
-        r0 = 1;
-        goto L_0x0025;
-    L_0x0024:
-        r0 = r2;
-    L_0x0025:
-        switch(r0) {
-            case 0: goto L_0x0041;
-            case 1: goto L_0x003f;
-            default: goto L_0x0028;
-        };
-    L_0x0028:
-        r0 = TAG;
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r3 = "unexpected hfr video size ";
-        r1.append(r3);
-        r1.append(r5);
-        r5 = r1.toString();
-        com.android.camera.log.Log.e(r0, r5);
-        return r2;
-    L_0x003f:
-        r5 = 5;
-        return r5;
-    L_0x0041:
-        r5 = 6;
-        return r5;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.VideoModule.convertSizeToQuality(java.lang.String):int");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private int convertSizeToQuality(String str) {
+        int hashCode = str.hashCode();
+        if (hashCode == -1719904874) {
+            if (str.equals("1280x720")) {
+                hashCode = 1;
+                switch (hashCode) {
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    default:
+                        break;
+                }
+            }
+        } else if (hashCode == 802059049 && str.equals("1920x1080")) {
+            hashCode = 0;
+            switch (hashCode) {
+                case 0:
+                    return 6;
+                case 1:
+                    return 5;
+                default:
+                    String str2 = TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("unexpected hfr video size ");
+                    stringBuilder.append(str);
+                    Log.e(str2, stringBuilder.toString());
+                    return -1;
+            }
+        }
+        hashCode = -1;
+        switch (hashCode) {
+            case 0:
+                break;
+            case 1:
+                break;
+            default:
+                break;
+        }
     }
 
     protected CamcorderProfile fetchProfile(int i, int i2) {
@@ -821,203 +762,143 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
 
     /* JADX WARNING: Removed duplicated region for block: B:56:0x0156  */
     /* JADX WARNING: Removed duplicated region for block: B:56:0x0156  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private boolean initializeRecorder() {
-        /*
-        r11 = this;
-        r0 = TAG;
-        r1 = "initializeRecorder>>";
-        com.android.camera.log.Log.d(r0, r1);
-        r0 = java.lang.System.currentTimeMillis();
-        r2 = r11.getActivity();
-        r3 = 0;
-        if (r2 != 0) goto L_0x001a;
-    L_0x0012:
-        r0 = TAG;
-        r1 = "initializeRecorder: null host";
-        com.android.camera.log.Log.w(r0, r1);
-        return r3;
-    L_0x001a:
-        r11.closeVideoFileDescriptor();
-        r11.cleanupEmptyFile();
-        r2 = r11.isCaptureIntent();
-        if (r2 == 0) goto L_0x002f;
-    L_0x0026:
-        r2 = r11.mActivity;
-        r2 = r2.getIntent();
-        r11.parseIntent(r2);
-    L_0x002f:
-        r2 = r11.mVideoFileDescriptor;
-        if (r2 != 0) goto L_0x004b;
-    L_0x0033:
-        r2 = r11.mOutputFormat;
-        r4 = r11.mCurrentFileNumber;
-        r5 = r11.isFPS960();
-        r2 = r11.genContentValues(r2, r4, r5);
-        r11.mCurrentVideoValues = r2;
-        r2 = r11.mCurrentVideoValues;
-        r4 = "_data";
-        r2 = r2.getAsString(r4);
-        r11.mCurrentVideoFilename = r2;
-    L_0x004b:
-        r2 = r11.mStopRecorderDone;
-        if (r2 == 0) goto L_0x007c;
-    L_0x004f:
-        r4 = java.lang.System.currentTimeMillis();
-        r2 = r11.mStopRecorderDone;	 Catch:{ InterruptedException -> 0x005d }
-        r6 = 1000; // 0x3e8 float:1.401E-42 double:4.94E-321;
-        r8 = java.util.concurrent.TimeUnit.MILLISECONDS;	 Catch:{ InterruptedException -> 0x005d }
-        r2.await(r6, r8);	 Catch:{ InterruptedException -> 0x005d }
-        goto L_0x0061;
-    L_0x005d:
-        r2 = move-exception;
-        r2.printStackTrace();
-    L_0x0061:
-        r2 = TAG;
-        r6 = new java.lang.StringBuilder;
-        r6.<init>();
-        r7 = "initializeRecorder: waitTime=";
-        r6.append(r7);
-        r7 = java.lang.System.currentTimeMillis();
-        r7 = r7 - r4;
-        r6.append(r7);
-        r4 = r6.toString();
-        com.android.camera.log.Log.d(r2, r4);
-    L_0x007c:
-        r4 = java.lang.System.currentTimeMillis();
-        r2 = r11.mLock;
-        monitor-enter(r2);
-        r6 = r11.mMediaRecorder;	 Catch:{ all -> 0x017b }
-        if (r6 != 0) goto L_0x0090;
-    L_0x0088:
-        r4 = new android.media.MediaRecorder;	 Catch:{ all -> 0x017b }
-        r4.<init>();	 Catch:{ all -> 0x017b }
-        r11.mMediaRecorder = r4;	 Catch:{ all -> 0x017b }
-        goto L_0x00b4;
-    L_0x0090:
-        r6 = r11.mMediaRecorder;	 Catch:{ all -> 0x017b }
-        r6.reset();	 Catch:{ all -> 0x017b }
-        r6 = DEBUG;	 Catch:{ all -> 0x017b }
-        if (r6 == 0) goto L_0x00b4;
-    L_0x0099:
-        r6 = TAG;	 Catch:{ all -> 0x017b }
-        r7 = new java.lang.StringBuilder;	 Catch:{ all -> 0x017b }
-        r7.<init>();	 Catch:{ all -> 0x017b }
-        r8 = "initializeRecorder: t1=";
-        r7.append(r8);	 Catch:{ all -> 0x017b }
-        r8 = java.lang.System.currentTimeMillis();	 Catch:{ all -> 0x017b }
-        r8 = r8 - r4;
-        r7.append(r8);	 Catch:{ all -> 0x017b }
-        r4 = r7.toString();	 Catch:{ all -> 0x017b }
-        com.android.camera.log.Log.v(r6, r4);	 Catch:{ all -> 0x017b }
-    L_0x00b4:
-        monitor-exit(r2);	 Catch:{ all -> 0x017b }
-        r2 = 0;
-        r4 = 1;
-        r5 = r11.mMediaRecorder;	 Catch:{ Exception -> 0x0131 }
-        r11.setupRecorder(r5);	 Catch:{ Exception -> 0x0131 }
-        r5 = r11.mVideoFileDescriptor;	 Catch:{ Exception -> 0x0131 }
-        if (r5 == 0) goto L_0x00cc;
-    L_0x00c0:
-        r5 = r11.mMediaRecorder;	 Catch:{ Exception -> 0x0131 }
-        r6 = r11.mVideoFileDescriptor;	 Catch:{ Exception -> 0x0131 }
-        r6 = r6.getFileDescriptor();	 Catch:{ Exception -> 0x0131 }
-        r5.setOutputFile(r6);	 Catch:{ Exception -> 0x0131 }
-        goto L_0x00ea;
-    L_0x00cc:
-        r5 = com.android.camera.storage.Storage.isUseDocumentMode();	 Catch:{ Exception -> 0x0131 }
-        if (r5 != 0) goto L_0x00da;
-    L_0x00d2:
-        r5 = r11.mMediaRecorder;	 Catch:{ Exception -> 0x0131 }
-        r6 = r11.mCurrentVideoFilename;	 Catch:{ Exception -> 0x0131 }
-        r5.setOutputFile(r6);	 Catch:{ Exception -> 0x0131 }
-        goto L_0x00ea;
-    L_0x00da:
-        r5 = r11.mCurrentVideoFilename;	 Catch:{ Exception -> 0x0131 }
-        r5 = com.android.camera.FileCompat.getParcelFileDescriptor(r5, r4);	 Catch:{ Exception -> 0x0131 }
-        r2 = r11.mMediaRecorder;	 Catch:{ Exception -> 0x012c, all -> 0x0129 }
-        r6 = r5.getFileDescriptor();	 Catch:{ Exception -> 0x012c, all -> 0x0129 }
-        r2.setOutputFile(r6);	 Catch:{ Exception -> 0x012c, all -> 0x0129 }
-        r2 = r5;
-    L_0x00ea:
-        r5 = r11.mMediaRecorder;	 Catch:{ Exception -> 0x0131 }
-        r6 = r11.mRecorderSurface;	 Catch:{ Exception -> 0x0131 }
-        r5.setInputSurface(r6);	 Catch:{ Exception -> 0x0131 }
-        r5 = java.lang.System.currentTimeMillis();	 Catch:{ Exception -> 0x0131 }
-        r7 = r11.mMediaRecorder;	 Catch:{ Exception -> 0x0131 }
-        r7.prepare();	 Catch:{ Exception -> 0x0131 }
-        r7 = r11.mMediaRecorder;	 Catch:{ Exception -> 0x0131 }
-        r7.setOnErrorListener(r11);	 Catch:{ Exception -> 0x0131 }
-        r7 = r11.mMediaRecorder;	 Catch:{ Exception -> 0x0131 }
-        r7.setOnInfoListener(r11);	 Catch:{ Exception -> 0x0131 }
-        r7 = DEBUG;	 Catch:{ Exception -> 0x0131 }
-        if (r7 == 0) goto L_0x0123;
-    L_0x0108:
-        r7 = TAG;	 Catch:{ Exception -> 0x0131 }
-        r8 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x0131 }
-        r8.<init>();	 Catch:{ Exception -> 0x0131 }
-        r9 = "initializeRecorder: t2=";
-        r8.append(r9);	 Catch:{ Exception -> 0x0131 }
-        r9 = java.lang.System.currentTimeMillis();	 Catch:{ Exception -> 0x0131 }
-        r9 = r9 - r5;
-        r8.append(r9);	 Catch:{ Exception -> 0x0131 }
-        r5 = r8.toString();	 Catch:{ Exception -> 0x0131 }
-        com.android.camera.log.Log.v(r7, r5);	 Catch:{ Exception -> 0x0131 }
-    L_0x0123:
-        com.android.camera.Util.closeSilently(r2);
-        r3 = r4;
-        goto L_0x0152;
-    L_0x0129:
-        r0 = move-exception;
-        r2 = r5;
-        goto L_0x0177;
-    L_0x012c:
-        r4 = move-exception;
-        r2 = r5;
-        goto L_0x0132;
-    L_0x012f:
-        r0 = move-exception;
-        goto L_0x0177;
-    L_0x0131:
-        r4 = move-exception;
-    L_0x0132:
-        r5 = TAG;	 Catch:{ all -> 0x012f }
-        r6 = new java.lang.StringBuilder;	 Catch:{ all -> 0x012f }
-        r6.<init>();	 Catch:{ all -> 0x012f }
-        r7 = "prepare failed for ";
-        r6.append(r7);	 Catch:{ all -> 0x012f }
-        r7 = r11.mCurrentVideoFilename;	 Catch:{ all -> 0x012f }
-        r6.append(r7);	 Catch:{ all -> 0x012f }
-        r6 = r6.toString();	 Catch:{ all -> 0x012f }
-        com.android.camera.log.Log.e(r5, r6, r4);	 Catch:{ all -> 0x012f }
-        r11.releaseMediaRecorder();	 Catch:{ all -> 0x012f }
-        com.android.camera.Util.closeSilently(r2);
-    L_0x0152:
-        r2 = DEBUG;
-        if (r2 == 0) goto L_0x015b;
-    L_0x0156:
-        r2 = r11.mRecorderSurface;
-        r11.showSurfaceInfo(r2);
-    L_0x015b:
-        r2 = TAG;
-        r4 = new java.lang.StringBuilder;
-        r4.<init>();
-        r5 = "initializeRecorder<<time=";
-        r4.append(r5);
-        r5 = java.lang.System.currentTimeMillis();
-        r5 = r5 - r0;
-        r4.append(r5);
-        r0 = r4.toString();
-        com.android.camera.log.Log.d(r2, r0);
-        return r3;
-    L_0x0177:
-        com.android.camera.Util.closeSilently(r2);
-        throw r0;
-    L_0x017b:
-        r0 = move-exception;
-        monitor-exit(r2);	 Catch:{ all -> 0x017b }
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.VideoModule.initializeRecorder():boolean");
+        Throwable e;
+        String str;
+        StringBuilder stringBuilder;
+        Throwable th;
+        Log.d(TAG, "initializeRecorder>>");
+        long currentTimeMillis = System.currentTimeMillis();
+        boolean z = false;
+        if (getActivity() == null) {
+            Log.w(TAG, "initializeRecorder: null host");
+            return false;
+        }
+        long currentTimeMillis2;
+        String str2;
+        StringBuilder stringBuilder2;
+        closeVideoFileDescriptor();
+        cleanupEmptyFile();
+        if (isCaptureIntent()) {
+            parseIntent(this.mActivity.getIntent());
+        }
+        if (this.mVideoFileDescriptor == null) {
+            this.mCurrentVideoValues = genContentValues(this.mOutputFormat, this.mCurrentFileNumber, isFPS960());
+            this.mCurrentVideoFilename = this.mCurrentVideoValues.getAsString("_data");
+        }
+        if (this.mStopRecorderDone != null) {
+            currentTimeMillis2 = System.currentTimeMillis();
+            try {
+                this.mStopRecorderDone.await(1000, TimeUnit.MILLISECONDS);
+            } catch (InterruptedException e2) {
+                e2.printStackTrace();
+            }
+            str2 = TAG;
+            stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("initializeRecorder: waitTime=");
+            stringBuilder2.append(System.currentTimeMillis() - currentTimeMillis2);
+            Log.d(str2, stringBuilder2.toString());
+        }
+        currentTimeMillis2 = System.currentTimeMillis();
+        synchronized (this.mLock) {
+            if (this.mMediaRecorder == null) {
+                this.mMediaRecorder = new MediaRecorder();
+            } else {
+                this.mMediaRecorder.reset();
+                if (DEBUG) {
+                    String str3 = TAG;
+                    StringBuilder stringBuilder3 = new StringBuilder();
+                    stringBuilder3.append("initializeRecorder: t1=");
+                    stringBuilder3.append(System.currentTimeMillis() - currentTimeMillis2);
+                    Log.v(str3, stringBuilder3.toString());
+                }
+            }
+        }
+        Closeable closeable = null;
+        try {
+            setupRecorder(this.mMediaRecorder);
+            if (this.mVideoFileDescriptor != null) {
+                this.mMediaRecorder.setOutputFile(this.mVideoFileDescriptor.getFileDescriptor());
+            } else if (Storage.isUseDocumentMode()) {
+                ParcelFileDescriptor parcelFileDescriptor = FileCompat.getParcelFileDescriptor(this.mCurrentVideoFilename, true);
+                try {
+                    this.mMediaRecorder.setOutputFile(parcelFileDescriptor.getFileDescriptor());
+                    closeable = parcelFileDescriptor;
+                } catch (Exception e3) {
+                    e = e3;
+                    closeable = parcelFileDescriptor;
+                    try {
+                        str = TAG;
+                        stringBuilder2 = new StringBuilder();
+                        stringBuilder2.append("prepare failed for ");
+                        stringBuilder2.append(this.mCurrentVideoFilename);
+                        Log.e(str, stringBuilder2.toString(), e);
+                        releaseMediaRecorder();
+                        Util.closeSilently(closeable);
+                        if (DEBUG) {
+                        }
+                        str2 = TAG;
+                        stringBuilder = new StringBuilder();
+                        stringBuilder.append("initializeRecorder<<time=");
+                        stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
+                        Log.d(str2, stringBuilder.toString());
+                        return z;
+                    } catch (Throwable th2) {
+                        th = th2;
+                        Util.closeSilently(closeable);
+                        throw th;
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                    closeable = parcelFileDescriptor;
+                    Util.closeSilently(closeable);
+                    throw th;
+                }
+            } else {
+                this.mMediaRecorder.setOutputFile(this.mCurrentVideoFilename);
+            }
+            this.mMediaRecorder.setInputSurface(this.mRecorderSurface);
+            long currentTimeMillis3 = System.currentTimeMillis();
+            this.mMediaRecorder.prepare();
+            this.mMediaRecorder.setOnErrorListener(this);
+            this.mMediaRecorder.setOnInfoListener(this);
+            if (DEBUG) {
+                String str4 = TAG;
+                StringBuilder stringBuilder4 = new StringBuilder();
+                stringBuilder4.append("initializeRecorder: t2=");
+                stringBuilder4.append(System.currentTimeMillis() - currentTimeMillis3);
+                Log.v(str4, stringBuilder4.toString());
+            }
+            Util.closeSilently(closeable);
+            z = true;
+        } catch (Exception e4) {
+            e = e4;
+            str = TAG;
+            stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("prepare failed for ");
+            stringBuilder2.append(this.mCurrentVideoFilename);
+            Log.e(str, stringBuilder2.toString(), e);
+            releaseMediaRecorder();
+            Util.closeSilently(closeable);
+            if (DEBUG) {
+            }
+            str2 = TAG;
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("initializeRecorder<<time=");
+            stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
+            Log.d(str2, stringBuilder.toString());
+            return z;
+        }
+        if (DEBUG) {
+            showSurfaceInfo(this.mRecorderSurface);
+        }
+        str2 = TAG;
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("initializeRecorder<<time=");
+        stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
+        Log.d(str2, stringBuilder.toString());
+        return z;
     }
 
     private void showSurfaceInfo(Surface surface) {
@@ -1683,72 +1564,39 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     /* JADX WARNING: Missing block: B:12:0x0048, code:
             if (r3 == null) goto L_0x004a;
      */
-    private java.lang.String postProcessVideo(java.lang.String r8) {
-        /*
-        r7 = this;
-        r0 = 0;
-        if (r8 != 0) goto L_0x0004;
-    L_0x0003:
-        return r0;
-        r1 = new java.io.File;
-        r1.<init>(r8);
-        r2 = new java.io.File;
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r3.append(r8);
-        r8 = ".bak";
-        r3.append(r8);
-        r8 = r3.toString();
-        r2.<init>(r8);
-        r8 = new java.io.File;
-        r3 = com.android.camera.storage.Storage.DIRECTORY;
-        r4 = r1.getName();
-        r8.<init>(r3, r4);
-        r3 = 0;
-        r4 = r1.getAbsolutePath();	 Catch:{ Throwable -> 0x005a }
-        r5 = r2.getAbsolutePath();	 Catch:{ Throwable -> 0x005a }
-        r4 = com.miui.extravideo.interpolation.VideoInterpolator.doDecodeAndEncodeSync(r4, r5);	 Catch:{ Throwable -> 0x005a }
-        if (r4 == 0) goto L_0x0048;
-    L_0x003a:
-        r4 = r1.delete();	 Catch:{ Throwable -> 0x005a }
-        if (r4 == 0) goto L_0x0048;
-    L_0x0040:
-        r4 = r2.renameTo(r8);	 Catch:{ Throwable -> 0x005a }
-        if (r4 == 0) goto L_0x0048;
-    L_0x0046:
-        r3 = 1;
-    L_0x0048:
-        if (r3 != 0) goto L_0x0063;
-    L_0x004a:
-        r4 = TAG;
-        r5 = "960fps processing failed. delete the files.";
-        com.android.camera.log.Log.e(r4, r5);
-        r1.delete();
-        r2.delete();
-        goto L_0x0063;
-    L_0x0058:
-        r8 = move-exception;
-        goto L_0x006b;
-    L_0x005a:
-        r4 = move-exception;
-        r5 = TAG;	 Catch:{ all -> 0x0058 }
-        r6 = "960fps processing failed.";
-        com.android.camera.log.Log.e(r5, r6, r4);	 Catch:{ all -> 0x0058 }
-        goto L_0x004a;
-    L_0x0063:
-        if (r3 == 0) goto L_0x006a;
-    L_0x0065:
-        r0 = r8.getAbsolutePath();
-    L_0x006a:
-        return r0;
-        r0 = TAG;
-        r3 = "960fps processing failed. delete the files.";
-        com.android.camera.log.Log.e(r0, r3);
-        r1.delete();
-        r2.delete();
-        throw r8;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.VideoModule.postProcessVideo(java.lang.String):java.lang.String");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private String postProcessVideo(String str) {
+        File file;
+        File file2;
+        File file3;
+        Object obj;
+        String str2 = null;
+        if (str == null) {
+            return null;
+        }
+        file = new File(str);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(str);
+        stringBuilder.append(".bak");
+        file2 = new File(stringBuilder.toString());
+        file3 = new File(Storage.DIRECTORY, file.getName());
+        obj = null;
+        try {
+            if (VideoInterpolator.doDecodeAndEncodeSync(file.getAbsolutePath(), file2.getAbsolutePath()) && file.delete() && file2.renameTo(file3)) {
+                obj = 1;
+            }
+        } catch (Throwable th) {
+            Log.e(TAG, "960fps processing failed. delete the files.");
+            file.delete();
+            file2.delete();
+        }
+        Log.e(TAG, "960fps processing failed. delete the files.");
+        file.delete();
+        file2.delete();
+        if (obj != null) {
+            str2 = file3.getAbsolutePath();
+        }
+        return str2;
     }
 
     protected void updateRecordingTime() {
@@ -1923,90 +1771,34 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     /* JADX WARNING: Missing block: B:24:0x00a0, code:
             return false;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public boolean takeVideoSnapShoot() {
-        /*
-        r4 = this;
-        r0 = r4.mPaused;
-        r1 = 0;
-        if (r0 != 0) goto L_0x00a0;
-    L_0x0005:
-        r0 = r4.mActivity;
-        r0 = r0.isActivityPaused();
-        if (r0 != 0) goto L_0x00a0;
-    L_0x000d:
-        r0 = r4.mSnapshotInProgress;
-        if (r0 != 0) goto L_0x00a0;
-    L_0x0011:
-        r0 = r4.mMediaRecorderRecording;
-        if (r0 != 0) goto L_0x0017;
-    L_0x0015:
-        goto L_0x00a0;
-    L_0x0017:
-        r0 = r4.isDeviceAlive();
-        if (r0 != 0) goto L_0x001e;
-    L_0x001d:
-        return r1;
-    L_0x001e:
-        r0 = com.android.camera.storage.Storage.isLowStorageAtLastPoint();
-        r2 = 1;
-        if (r0 == 0) goto L_0x0031;
-    L_0x0025:
-        r0 = TAG;
-        r3 = "capture: low storage";
-        com.android.camera.log.Log.w(r0, r3);
-        r4.stopVideoRecording(r2, r1);
-        return r1;
-    L_0x0031:
-        r0 = r4.mActivity;
-        r0 = r0.getImageSaver();
-        r0 = r0.isBusy();
-        if (r0 == 0) goto L_0x0051;
-    L_0x003d:
-        r0 = TAG;
-        r2 = "capture: ImageSaver is full";
-        com.android.camera.log.Log.w(r0, r2);
-        r0 = r4.mActivity;
-        r0 = com.android.camera.ui.RotateTextToast.getInstance(r0);
-        r2 = 2131427758; // 0x7f0b01ae float:1.8477141E38 double:1.053065232E-314;
-        r0.show(r2, r1);
-        return r1;
-    L_0x0051:
-        r0 = r4.mBogusCameraId;
-        r1 = r4.mOrientation;
-        r0 = com.android.camera.Util.getJpegRotation(r0, r1);
-        r1 = r4.mCamera2Device;
-        r1.setJpegRotation(r0);
-        r0 = com.android.camera.LocationManager.instance();
-        r0 = r0.getCurrentLocation();
-        r1 = r4.mCamera2Device;
-        r1.setGpsLocation(r0);
-        r4.setJpegQuality();
-        r4.updateFrontMirror();
-        r1 = com.mi.config.b.gK();
-        if (r1 == 0) goto L_0x0078;
-    L_0x0077:
-        goto L_0x0085;
-    L_0x0078:
-        r1 = r4.mActivity;
-        r1 = r1.getCameraScreenNail();
-        r3 = r4.getCameraRotation();
-        r1.animateCapture(r3);
-    L_0x0085:
-        r1 = TAG;
-        r3 = "capture: start";
-        com.android.camera.log.Log.v(r1, r3);
-        r1 = r4.mCamera2Device;
-        r3 = new com.android.camera.module.VideoModule$JpegPictureCallback;
-        r3.<init>(r0);
-        r1.captureVideoSnapshot(r3);
-        r4.mSnapshotInProgress = r2;
-        r0 = r4.isFrontCamera();
-        com.android.camera.statistic.CameraStatUtil.trackVideoSnapshot(r0);
-        return r2;
-    L_0x00a0:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.VideoModule.takeVideoSnapShoot():boolean");
+        if (this.mPaused || this.mActivity.isActivityPaused() || this.mSnapshotInProgress || !this.mMediaRecorderRecording || !isDeviceAlive()) {
+            return false;
+        }
+        if (Storage.isLowStorageAtLastPoint()) {
+            Log.w(TAG, "capture: low storage");
+            stopVideoRecording(true, false);
+            return false;
+        } else if (this.mActivity.getImageSaver().isBusy()) {
+            Log.w(TAG, "capture: ImageSaver is full");
+            RotateTextToast.getInstance(this.mActivity).show(R.string.toast_saving, 0);
+            return false;
+        } else {
+            this.mCamera2Device.setJpegRotation(Util.getJpegRotation(this.mBogusCameraId, this.mOrientation));
+            Location currentLocation = LocationManager.instance().getCurrentLocation();
+            this.mCamera2Device.setGpsLocation(currentLocation);
+            setJpegQuality();
+            updateFrontMirror();
+            if (!b.gK()) {
+                this.mActivity.getCameraScreenNail().animateCapture(getCameraRotation());
+            }
+            Log.v(TAG, "capture: start");
+            this.mCamera2Device.captureVideoSnapshot(new JpegPictureCallback(currentLocation));
+            this.mSnapshotInProgress = true;
+            CameraStatUtil.trackVideoSnapshot(isFrontCamera());
+            return true;
+        }
     }
 
     public void startObjectTracking() {

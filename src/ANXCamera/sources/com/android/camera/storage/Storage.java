@@ -24,15 +24,20 @@ import android.os.storage.StorageManager;
 import android.provider.MediaStore.Files;
 import android.provider.MediaStore.Images.Media;
 import android.text.TextUtils;
+import com.android.camera.ActivityBase;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraSettings;
+import com.android.camera.ExifHelper;
 import com.android.camera.FileCompat;
 import com.android.camera.LocationManager;
+import com.android.camera.R;
+import com.android.camera.ToastUtils;
 import com.android.camera.Util;
 import com.android.camera.lib.compatibility.util.CompatibilityUtils;
 import com.android.camera.log.Log;
 import com.android.gallery3d.exif.ExifInterface;
 import com.mi.config.b;
+import com.ss.android.ttve.common.TEDefine;
 import com.xiaomi.camera.core.PictureInfo;
 import com.xiaomi.camera.parallelservice.util.ParallelUtil;
 import java.io.BufferedInputStream;
@@ -40,10 +45,13 @@ import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.ref.WeakReference;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicLong;
@@ -197,421 +205,223 @@ public class Storage {
     /* JADX WARNING: Missing block: B:81:0x0117, code:
             throw r0;
      */
-    public static android.net.Uri addImage(android.content.Context r23, java.lang.String r24, long r25, android.location.Location r27, int r28, byte[] r29, int r30, int r31, boolean r32, boolean r33, boolean r34, boolean r35, boolean r36, java.lang.String r37, com.xiaomi.camera.core.PictureInfo r38) {
-        /*
-        r15 = r23;
-        r1 = r24;
-        r14 = r27;
-        r9 = r28;
-        r10 = r33;
-        r11 = r34;
-        r0 = "CameraStorage";
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "addImage: parallel=";
-        r2.append(r3);
-        r13 = r36;
-        r2.append(r13);
-        r2 = r2.toString();
-        com.android.camera.log.Log.d(r0, r2);
-        r2 = r29;
-        r3 = r13;
-        r4 = r37;
-        r5 = r38;
-        r6 = r9;
-        r7 = r30;
-        r8 = r31;
-        r12 = updateExif(r2, r3, r4, r5, r6, r7, r8);
-        r2 = generateFilepath(r1, r10, r11);
-        r0 = "algo append:";
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r4 = r35;
-        r3.append(r4);
-        r5 = "";
-        r3.append(r5);
-        r3 = r3.toString();
-        com.android.camera.log.Log.e(r0, r3);
-        r7 = 1;
-        r3 = new java.io.BufferedInputStream;	 Catch:{ Exception -> 0x0118 }
-        r0 = new java.io.ByteArrayInputStream;	 Catch:{ Exception -> 0x0118 }
-        r0.<init>(r12);	 Catch:{ Exception -> 0x0118 }
-        r3.<init>(r0);	 Catch:{ Exception -> 0x0118 }
-        r0 = isUseDocumentMode();	 Catch:{ Throwable -> 0x0110, all -> 0x010d }
-        if (r0 == 0) goto L_0x0069;
-    L_0x0063:
-        r0 = com.android.camera.FileCompat.getFileOutputStream(r2, r7);	 Catch:{ Throwable -> 0x0110, all -> 0x010d }
-    L_0x0067:
-        r5 = r0;
-        goto L_0x006f;
-    L_0x0069:
-        r0 = new java.io.FileOutputStream;	 Catch:{ Throwable -> 0x0110, all -> 0x010d }
-        r0.<init>(r2);	 Catch:{ Throwable -> 0x0110, all -> 0x010d }
-        goto L_0x0067;
-        r7 = new java.io.BufferedOutputStream;	 Catch:{ Throwable -> 0x0103, all -> 0x0100 }
-        r7.<init>(r5);	 Catch:{ Throwable -> 0x0103, all -> 0x0100 }
-        r8 = 4096; // 0x1000 float:5.74E-42 double:2.0237E-320;
-        if (r32 == 0) goto L_0x00c6;
-    L_0x007a:
-        r6 = r9 % 180;
-        if (r6 != 0) goto L_0x0080;
-    L_0x007e:
-        r6 = 1;
-        goto L_0x0082;
-        r6 = 0;
-    L_0x0082:
-        r0 = r6 ^ 1;
-        r0 = flipJpeg(r12, r6, r0);	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-        if (r0 == 0) goto L_0x00af;
-    L_0x008a:
-        r8 = com.android.camera.Util.getExif(r12);	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-        r4 = r8.getThumbnailBytes();	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-        if (r4 == 0) goto L_0x00a6;
-    L_0x0094:
-        r13 = r6 ^ 1;
-        r4 = flipJpeg(r4, r6, r13);	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-        if (r4 == 0) goto L_0x00a2;
-    L_0x009c:
-        r8.setCompressedThumbnail(r4);	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-        r4.recycle();	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-        r20 = 0;
-        goto L_0x00a8;
-    L_0x00a6:
-        r20 = r35;
-    L_0x00a8:
-        r8.writeExif(r0, r7);	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-        r0.recycle();	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-        goto L_0x00bf;
-    L_0x00af:
-        r0 = new byte[r8];	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-    L_0x00b1:
-        r4 = r3.read(r0);	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-        r6 = -1;
-        if (r4 == r6) goto L_0x00bd;
-    L_0x00b8:
-        r6 = 0;
-        r7.write(r0, r6, r4);	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-        goto L_0x00b1;
-    L_0x00bd:
-        r20 = r35;
-    L_0x00bf:
-        goto L_0x00d6;
-    L_0x00c0:
-        r0 = move-exception;
-        r8 = 0;
-        goto L_0x00fc;
-    L_0x00c3:
-        r0 = move-exception;
-        r8 = r0;
-        goto L_0x00fa;
-    L_0x00c6:
-        r0 = new byte[r8];	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-    L_0x00c8:
-        r4 = r3.read(r0);	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-        r6 = -1;
-        if (r4 == r6) goto L_0x00d4;
-    L_0x00cf:
-        r8 = 0;
-        r7.write(r0, r8, r4);	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-        goto L_0x00c8;
-    L_0x00d4:
-        r20 = r35;
-    L_0x00d6:
-        if (r20 == 0) goto L_0x00e2;
-    L_0x00d8:
-        r7.flush();	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-        r0 = java.lang.System.currentTimeMillis();	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-        com.android.camera.ExifHelper.writeExif(r2, r9, r14, r0);	 Catch:{ Throwable -> 0x00c3, all -> 0x00c0 }
-    L_0x00e2:
-        r1 = 0;
-        $closeResource(r1, r7);	 Catch:{ Throwable -> 0x0103, all -> 0x0100 }
-        if (r5 == 0) goto L_0x00ef;
-    L_0x00e8:
-        $closeResource(r1, r5);	 Catch:{ Throwable -> 0x0110, all -> 0x00ec }
-        goto L_0x00ef;
-    L_0x00ec:
-        r0 = move-exception;
-        r8 = r1;
-        goto L_0x0114;
-    L_0x00ef:
-        $closeResource(r1, r3);	 Catch:{ Exception -> 0x0118 }
-        r21 = r2;
-        r0 = 0;
-        r16 = 1;
-        goto L_0x01b6;
-    L_0x00fa:
-        throw r8;	 Catch:{ all -> 0x00fb }
-    L_0x00fb:
-        r0 = move-exception;
-    L_0x00fc:
-        $closeResource(r8, r7);	 Catch:{ Throwable -> 0x0103, all -> 0x0100 }
-        throw r0;	 Catch:{ Throwable -> 0x0103, all -> 0x0100 }
-    L_0x0100:
-        r0 = move-exception;
-        r8 = 0;
-        goto L_0x0107;
-    L_0x0103:
-        r0 = move-exception;
-        r8 = r0;
-        throw r8;	 Catch:{ all -> 0x0106 }
-    L_0x0106:
-        r0 = move-exception;
-    L_0x0107:
-        if (r5 == 0) goto L_0x010c;
-    L_0x0109:
-        $closeResource(r8, r5);	 Catch:{ Throwable -> 0x0110, all -> 0x010d }
-    L_0x010c:
-        throw r0;	 Catch:{ Throwable -> 0x0110, all -> 0x010d }
-    L_0x010d:
-        r0 = move-exception;
-        r8 = 0;
-        goto L_0x0114;
-    L_0x0110:
-        r0 = move-exception;
-        r8 = r0;
-        throw r8;	 Catch:{ all -> 0x0113 }
-    L_0x0113:
-        r0 = move-exception;
-    L_0x0114:
-        $closeResource(r8, r3);	 Catch:{ Exception -> 0x0118 }
-        throw r0;	 Catch:{ Exception -> 0x0118 }
-    L_0x0118:
-        r0 = move-exception;
-        r1 = r0 instanceof java.io.FileNotFoundException;
-        if (r1 == 0) goto L_0x018d;
-    L_0x011d:
-        r1 = java.lang.Runtime.getRuntime();
-        r3 = r1.maxMemory();
-        r1 = java.lang.Runtime.getRuntime();
-        r5 = r1.totalMemory();
-        r1 = java.lang.Runtime.getRuntime();
-        r7 = r1.freeMemory();
-        r1 = new java.io.File;
-        r1.<init>(r2);
-        r13 = "CameraStorage";
-        r21 = r2;
-        r2 = java.util.Locale.ENGLISH;
-        r14 = "Failed to write image, memory state(max:%d, total:%d, free:%d), file state(%s;%s;%s)";
-        r9 = 6;
-        r9 = new java.lang.Object[r9];
-        r3 = java.lang.Long.valueOf(r3);
-        r4 = 0;
-        r9[r4] = r3;
-        r3 = java.lang.Long.valueOf(r5);
-        r16 = 1;
-        r9[r16] = r3;
-        r3 = 2;
-        r4 = java.lang.Long.valueOf(r7);
-        r9[r3] = r4;
-        r3 = 3;
-        r4 = r1.exists();
-        if (r4 == 0) goto L_0x0165;
-    L_0x0162:
-        r4 = "exists";
-        goto L_0x0167;
-    L_0x0165:
-        r4 = "not exists";
-    L_0x0167:
-        r9[r3] = r4;
-        r3 = 4;
-        r4 = r1.isDirectory();
-        if (r4 == 0) goto L_0x0173;
-    L_0x0170:
-        r4 = "isDirectory";
-        goto L_0x0175;
-    L_0x0173:
-        r4 = "isNotDirectory";
-    L_0x0175:
-        r9[r3] = r4;
-        r3 = 5;
-        r1 = r1.canWrite();
-        if (r1 == 0) goto L_0x0181;
-    L_0x017e:
-        r1 = "canWrite";
-        goto L_0x0183;
-    L_0x0181:
-        r1 = "canNotWrite";
-    L_0x0183:
-        r9[r3] = r1;
-        r1 = java.lang.String.format(r2, r14, r9);
-        com.android.camera.log.Log.e(r13, r1, r0);
-        goto L_0x0191;
-    L_0x018d:
-        r21 = r2;
-        r16 = 1;
-    L_0x0191:
-        r1 = "CameraStorage";
-        r2 = "Failed to write image";
-        com.android.camera.log.Log.e(r1, r2, r0);
-        r0 = com.android.camera.Util.isQuotaExceeded(r0);
-        if (r0 == 0) goto L_0x01b4;
-    L_0x019f:
-        r0 = r15 instanceof com.android.camera.ActivityBase;
-        if (r0 == 0) goto L_0x01b4;
-    L_0x01a3:
-        r0 = r15;
-        r0 = (com.android.camera.ActivityBase) r0;
-        r1 = r0.isActivityPaused();
-        if (r1 != 0) goto L_0x01b4;
-    L_0x01ac:
-        r1 = new com.android.camera.storage.Storage$1;
-        r1.<init>(r15);
-        r0.runOnUiThread(r1);
-    L_0x01b4:
-        r0 = r16;
-    L_0x01b6:
-        if (r0 == 0) goto L_0x01ba;
-    L_0x01b8:
-        r1 = 0;
-        return r1;
-    L_0x01ba:
-        if (r11 == 0) goto L_0x0240;
-    L_0x01bc:
-        r0 = com.android.camera.Util.isProduceFocusInfoSuccess(r12);
-        r13 = r30;
-        r14 = r31;
-        r1 = com.android.camera.Util.getCenterFocusDepthIndex(r12, r13, r14);
-        if (r0 == 0) goto L_0x01d3;
-    L_0x01ca:
-        r2 = "_";
-        r3 = r24;
-    L_0x01ce:
-        r2 = r3.lastIndexOf(r2);
-        goto L_0x01d8;
-    L_0x01d3:
-        r3 = r24;
-        r2 = "_UBIFOCUS_";
-        goto L_0x01ce;
-    L_0x01d8:
-        r4 = 0;
-        r2 = r3.substring(r4, r2);
-        r3 = generateFilepath(r2, r4, r4);
-        r4 = new java.lang.StringBuilder;
-        r4.<init>();
-        r4.append(r2);
-        if (r0 == 0) goto L_0x01ee;
-    L_0x01eb:
-        r5 = "_";
-        goto L_0x01f0;
-    L_0x01ee:
-        r5 = "_UBIFOCUS_";
-    L_0x01f0:
-        r4.append(r5);
-        r4.append(r1);
-        r1 = r4.toString();
-        r6 = 0;
-        r1 = generateFilepath(r1, r10, r6);
-        if (r3 == 0) goto L_0x0211;
-    L_0x0201:
-        if (r1 == 0) goto L_0x0211;
-    L_0x0203:
-        r4 = new java.io.File;
-        r4.<init>(r1);
-        r1 = new java.io.File;
-        r1.<init>(r3);
-        r4.renameTo(r1);
-        goto L_0x0239;
-    L_0x0211:
-        r4 = "CameraStorage";
-        r5 = new java.lang.StringBuilder;
-        r5.<init>();
-        r7 = "oldPath: ";
-        r5.append(r7);
-        if (r1 != 0) goto L_0x0221;
-    L_0x021f:
-        r1 = "null";
-    L_0x0221:
-        r5.append(r1);
-        r1 = " newPath: ";
-        r5.append(r1);
-        if (r3 != 0) goto L_0x022e;
-    L_0x022b:
-        r1 = "null";
-        goto L_0x022f;
-    L_0x022e:
-        r1 = r3;
-    L_0x022f:
-        r5.append(r1);
-        r1 = r5.toString();
-        com.android.camera.log.Log.e(r4, r1);
-    L_0x0239:
-        if (r0 != 0) goto L_0x023e;
-    L_0x023b:
-        deleteImage(r2);
-    L_0x023e:
-        r0 = r3;
-        goto L_0x024a;
-    L_0x0240:
-        r13 = r30;
-        r14 = r31;
-        r3 = r24;
-        r6 = 0;
-        r2 = r3;
-        r0 = r21;
-    L_0x024a:
-        if (r10 == 0) goto L_0x0250;
-    L_0x024c:
-        if (r11 != 0) goto L_0x0250;
-    L_0x024e:
-        r8 = 0;
-        return r8;
-    L_0x0250:
-        r8 = 0;
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r1.append(r2);
-        r3 = ".jpg";
-        r1.append(r3);
-        r3 = r1.toString();
-        r7 = "image/jpeg";
-        r1 = new java.io.File;
-        r1.<init>(r0);
-        r9 = r1.length();
-        r1 = r15;
-        r4 = r25;
-        r17 = r6;
-        r6 = r7;
-        r7 = r28;
-        r18 = r8;
-        r8 = r0;
-        r11 = r13;
-        r13 = r12;
-        r12 = r14;
-        r14 = r13;
-        r13 = r27;
-        r19 = r27;
-        r15 = r14;
-        r14 = r36;
-        r9 = insertToMediaStore(r1, r2, r3, r4, r6, r7, r8, r9, r11, r12, r13, r14);
-        if (r9 != 0) goto L_0x02a0;
-    L_0x0289:
-        r1 = "CameraStorage";
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "failed to insert to DB: ";
-        r2.append(r3);
-        r2.append(r0);
-        r0 = r2.toString();
-        com.android.camera.log.Log.e(r1, r0);
-        return r18;
-    L_0x02a0:
-        r1 = r15.length;
-        r3 = (long) r1;
-        r6 = android.content.ContentUris.parseId(r9);
-        if (r19 != 0) goto L_0x02ab;
-    L_0x02a8:
-        r8 = r16;
-        goto L_0x02ad;
-    L_0x02ab:
-        r8 = r17;
-    L_0x02ad:
-        r1 = r23;
-        r2 = r0;
-        r5 = r36;
-        saveToCloudAlbum(r1, r2, r3, r5, r6, r8);
-        return r9;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.storage.Storage.addImage(android.content.Context, java.lang.String, long, android.location.Location, int, byte[], int, int, boolean, boolean, boolean, boolean, boolean, java.lang.String, com.xiaomi.camera.core.PictureInfo):android.net.Uri");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static Uri addImage(Context context, String str, long j, Location location, int i, byte[] bArr, int i2, int i3, boolean z, boolean z2, boolean z3, boolean z4, boolean z5, String str2, PictureInfo pictureInfo) {
+        Throwable th;
+        final Context context2 = context;
+        String str3 = str;
+        Location location2 = location;
+        int i4 = i;
+        boolean z6 = z2;
+        boolean z7 = z3;
+        String str4 = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("addImage: parallel=");
+        boolean z8 = z5;
+        stringBuilder.append(z8);
+        Log.d(str4, stringBuilder.toString());
+        byte[] updateExif = updateExif(bArr, z8, str2, pictureInfo, i4, i2, i3);
+        String generateFilepath = generateFilepath(str3, z6, z7);
+        StringBuilder stringBuilder2 = new StringBuilder();
+        stringBuilder2.append(z4);
+        stringBuilder2.append("");
+        Log.e("algo append:", stringBuilder2.toString());
+        String str5;
+        int i5;
+        boolean z9;
+        try {
+            AutoCloseable bufferedInputStream = new BufferedInputStream(new ByteArrayInputStream(updateExif));
+            Throwable th2;
+            try {
+                OutputStream fileOutputStream;
+                if (isUseDocumentMode()) {
+                    fileOutputStream = FileCompat.getFileOutputStream(generateFilepath, true);
+                } else {
+                    fileOutputStream = new FileOutputStream(generateFilepath);
+                }
+                OutputStream outputStream = fileOutputStream;
+                try {
+                    boolean z10;
+                    boolean z11;
+                    OutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
+                    byte[] bArr2;
+                    int read;
+                    if (z) {
+                        try {
+                            z10 = i4 % 180 == 0;
+                            Bitmap flipJpeg = flipJpeg(updateExif, z10, z10 ^ 1);
+                            if (flipJpeg != null) {
+                                ExifInterface exif = Util.getExif(updateExif);
+                                byte[] thumbnailBytes = exif.getThumbnailBytes();
+                                if (thumbnailBytes != null) {
+                                    Bitmap flipJpeg2 = flipJpeg(thumbnailBytes, z10, z10 ^ 1);
+                                    if (flipJpeg2 != null) {
+                                        exif.setCompressedThumbnail(flipJpeg2);
+                                        flipJpeg2.recycle();
+                                    }
+                                    z11 = false;
+                                } else {
+                                    z11 = z4;
+                                }
+                                exif.writeExif(flipJpeg, bufferedOutputStream);
+                                flipJpeg.recycle();
+                            } else {
+                                bArr2 = new byte[4096];
+                                while (true) {
+                                    read = bufferedInputStream.read(bArr2);
+                                    if (read == -1) {
+                                        break;
+                                    }
+                                    bufferedOutputStream.write(bArr2, 0, read);
+                                }
+                                z11 = z4;
+                            }
+                        } catch (Throwable th3) {
+                            th = th3;
+                        }
+                    } else {
+                        bArr2 = new byte[4096];
+                        while (true) {
+                            read = bufferedInputStream.read(bArr2);
+                            if (read == -1) {
+                                break;
+                            }
+                            bufferedOutputStream.write(bArr2, 0, read);
+                        }
+                        z11 = z4;
+                    }
+                    if (z11) {
+                        bufferedOutputStream.flush();
+                        ExifHelper.writeExif(generateFilepath, i4, location2, System.currentTimeMillis());
+                    }
+                    $closeResource(null, bufferedOutputStream);
+                    if (outputStream != null) {
+                        $closeResource(null, outputStream);
+                    }
+                    $closeResource(null, bufferedInputStream);
+                    str5 = generateFilepath;
+                    i5 = 0;
+                    z9 = true;
+                    if (i5 != 0) {
+                        return null;
+                    }
+                    int i6;
+                    int i7;
+                    if (z7) {
+                        String str6;
+                        boolean isProduceFocusInfoSuccess = Util.isProduceFocusInfoSuccess(updateExif);
+                        i6 = i2;
+                        i7 = i3;
+                        int centerFocusDepthIndex = Util.getCenterFocusDepthIndex(updateExif, i6, i7);
+                        if (isProduceFocusInfoSuccess) {
+                            generateFilepath = "_";
+                            str6 = str;
+                        } else {
+                            str6 = str;
+                            generateFilepath = UBIFOCUS_SUFFIX;
+                        }
+                        generateFilepath = str6.substring(0, str6.lastIndexOf(generateFilepath));
+                        str6 = generateFilepath(generateFilepath, false, false);
+                        StringBuilder stringBuilder3 = new StringBuilder();
+                        stringBuilder3.append(generateFilepath);
+                        stringBuilder3.append(isProduceFocusInfoSuccess ? "_" : UBIFOCUS_SUFFIX);
+                        stringBuilder3.append(centerFocusDepthIndex);
+                        z10 = false;
+                        str3 = generateFilepath(stringBuilder3.toString(), z6, false);
+                        if (str6 == null || str3 == null) {
+                            String str7 = TAG;
+                            StringBuilder stringBuilder4 = new StringBuilder();
+                            stringBuilder4.append("oldPath: ");
+                            if (str3 == null) {
+                                str3 = TEDefine.FACE_BEAUTY_NULL;
+                            }
+                            stringBuilder4.append(str3);
+                            stringBuilder4.append(" newPath: ");
+                            stringBuilder4.append(str6 == null ? TEDefine.FACE_BEAUTY_NULL : str6);
+                            Log.e(str7, stringBuilder4.toString());
+                        } else {
+                            new File(str3).renameTo(new File(str6));
+                        }
+                        if (!isProduceFocusInfoSuccess) {
+                            deleteImage(generateFilepath);
+                        }
+                        str4 = str6;
+                    } else {
+                        i6 = i2;
+                        i7 = i3;
+                        z10 = false;
+                        generateFilepath = str;
+                        str4 = str5;
+                    }
+                    if (z6 && !z7) {
+                        return null;
+                    }
+                    StringBuilder stringBuilder5 = new StringBuilder();
+                    stringBuilder5.append(generateFilepath);
+                    stringBuilder5.append(JPEG_SUFFIX);
+                    boolean z12 = z10;
+                    Uri uri = null;
+                    Location location3 = location;
+                    byte[] bArr3 = updateExif;
+                    Uri insertToMediaStore = insertToMediaStore(context2, generateFilepath, stringBuilder5.toString(), j, "image/jpeg", i, str4, new File(str4).length(), i6, i7, location, z5);
+                    if (insertToMediaStore == null) {
+                        str3 = TAG;
+                        stringBuilder = new StringBuilder();
+                        stringBuilder.append("failed to insert to DB: ");
+                        stringBuilder.append(str4);
+                        Log.e(str3, stringBuilder.toString());
+                        return uri;
+                    }
+                    saveToCloudAlbum(context, str4, (long) bArr3.length, z5, ContentUris.parseId(insertToMediaStore), location3 == null ? z9 : z12);
+                    return insertToMediaStore;
+                    if (outputStream != null) {
+                        $closeResource(th2, outputStream);
+                    }
+                    throw th;
+                    $closeResource(th2, bufferedOutputStream);
+                    throw th;
+                } catch (Throwable th4) {
+                    th = th4;
+                }
+            } catch (Throwable th5) {
+                th = th5;
+            }
+        } catch (Throwable th6) {
+            if (th6 instanceof FileNotFoundException) {
+                long maxMemory = Runtime.getRuntime().maxMemory();
+                long totalMemory = Runtime.getRuntime().totalMemory();
+                long freeMemory = Runtime.getRuntime().freeMemory();
+                File file = new File(generateFilepath);
+                String str8 = TAG;
+                str5 = generateFilepath;
+                Locale locale = Locale.ENGLISH;
+                String str9 = "Failed to write image, memory state(max:%d, total:%d, free:%d), file state(%s;%s;%s)";
+                Object[] objArr = new Object[6];
+                objArr[0] = Long.valueOf(maxMemory);
+                z9 = true;
+                objArr[1] = Long.valueOf(totalMemory);
+                objArr[2] = Long.valueOf(freeMemory);
+                objArr[3] = file.exists() ? "exists" : "not exists";
+                objArr[4] = file.isDirectory() ? "isDirectory" : "isNotDirectory";
+                objArr[5] = file.canWrite() ? "canWrite" : "canNotWrite";
+                Log.e(str8, String.format(locale, str9, objArr), th6);
+            } else {
+                str5 = generateFilepath;
+                z9 = true;
+            }
+            Log.e(TAG, "Failed to write image", th6);
+            if (Util.isQuotaExceeded(th6) && (context2 instanceof ActivityBase)) {
+                ActivityBase activityBase = (ActivityBase) context2;
+                if (!activityBase.isActivityPaused()) {
+                    activityBase.runOnUiThread(new Runnable() {
+                        public void run() {
+                            ToastUtils.showToast(context2, (int) R.string.spaceIsLow_content_primary_storage_priority);
+                        }
+                    });
+                }
+            }
+            i5 = z9;
+        }
     }
 
     private static /* synthetic */ void $closeResource(Throwable th, AutoCloseable autoCloseable) {
@@ -1277,182 +1087,145 @@ public class Storage {
     /* JADX WARNING: Removed duplicated region for block: B:27:0x009c A:{SYNTHETIC, Splitter: B:27:0x009c} */
     /* JADX WARNING: Removed duplicated region for block: B:33:? A:{SYNTHETIC, RETURN} */
     /* JADX WARNING: Removed duplicated region for block: B:24:0x0094 A:{SYNTHETIC, Splitter: B:24:0x0094} */
-    public static void saveMorphoPanoramaOriginalPic(java.nio.ByteBuffer r2, int r3, java.lang.String r4) {
-        /*
-        r0 = new java.lang.StringBuilder;
-        r0.<init>();
-        r1 = DIRECTORY;
-        r0.append(r1);
-        r1 = java.io.File.separator;
-        r0.append(r1);
-        r0.append(r4);
-        r1 = java.io.File.separator;
-        r0.append(r1);
-        r0 = r0.toString();
-        r1 = new java.io.File;
-        r1.<init>(r0);
-        r0 = r1.exists();
-        if (r0 != 0) goto L_0x002a;
-    L_0x0027:
-        r1.mkdirs();
-    L_0x002a:
-        r0 = new java.lang.StringBuilder;
-        r0.<init>();
-        r0.append(r4);
-        r1 = java.io.File.separator;
-        r0.append(r1);
-        r0.append(r4);
-        r4 = "_";
-        r0.append(r4);
-        r0.append(r3);
-        r3 = r0.toString();
-        r3 = generateFilepath(r3);
-        r4 = 0;
-        r0 = new java.io.File;	 Catch:{ Exception -> 0x0077 }
-        r0.<init>(r3);	 Catch:{ Exception -> 0x0077 }
-        r3 = r0.exists();	 Catch:{ Exception -> 0x0077 }
-        if (r3 != 0) goto L_0x0059;
-    L_0x0056:
-        r0.createNewFile();	 Catch:{ Exception -> 0x0077 }
-    L_0x0059:
-        r3 = new java.io.FileOutputStream;	 Catch:{ Exception -> 0x0077 }
-        r1 = 0;
-        r3.<init>(r0, r1);	 Catch:{ Exception -> 0x0077 }
-        r3 = r3.getChannel();	 Catch:{ Exception -> 0x0077 }
-        r3.write(r2);	 Catch:{ Exception -> 0x0072, all -> 0x006f }
-        if (r3 == 0) goto L_0x006e;
-    L_0x0068:
-        r3.close();	 Catch:{ Exception -> 0x006c }
-        goto L_0x006e;
-    L_0x006c:
-        r2 = move-exception;
-        goto L_0x0098;
-    L_0x006e:
-        goto L_0x0098;
-    L_0x006f:
-        r2 = move-exception;
-        r4 = r3;
-        goto L_0x0099;
-    L_0x0072:
-        r2 = move-exception;
-        r4 = r3;
-        goto L_0x0078;
-    L_0x0075:
-        r2 = move-exception;
-        goto L_0x0099;
-    L_0x0077:
-        r2 = move-exception;
-    L_0x0078:
-        r3 = "CameraStorage";
-        r0 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0075 }
-        r0.<init>();	 Catch:{ all -> 0x0075 }
-        r1 = "saveMorphoPanoramaOriginalPic  ";
-        r0.append(r1);	 Catch:{ all -> 0x0075 }
-        r2 = r2.toString();	 Catch:{ all -> 0x0075 }
-        r0.append(r2);	 Catch:{ all -> 0x0075 }
-        r2 = r0.toString();	 Catch:{ all -> 0x0075 }
-        com.android.camera.log.Log.e(r3, r2);	 Catch:{ all -> 0x0075 }
-        if (r4 == 0) goto L_0x006e;
-    L_0x0094:
-        r4.close();	 Catch:{ Exception -> 0x006c }
-        goto L_0x006e;
-    L_0x0098:
-        return;
-        if (r4 == 0) goto L_0x00a2;
-    L_0x009c:
-        r4.close();	 Catch:{ Exception -> 0x00a0 }
-        goto L_0x00a2;
-    L_0x00a0:
-        r3 = move-exception;
-    L_0x00a2:
-        throw r2;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.storage.Storage.saveMorphoPanoramaOriginalPic(java.nio.ByteBuffer, int, java.lang.String):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static void saveMorphoPanoramaOriginalPic(ByteBuffer byteBuffer, int i, String str) {
+        Exception e;
+        String str2;
+        Throwable th;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(DIRECTORY);
+        stringBuilder.append(File.separator);
+        stringBuilder.append(str);
+        stringBuilder.append(File.separator);
+        File file = new File(stringBuilder.toString());
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        stringBuilder = new StringBuilder();
+        stringBuilder.append(str);
+        stringBuilder.append(File.separator);
+        stringBuilder.append(str);
+        stringBuilder.append("_");
+        stringBuilder.append(i);
+        FileChannel fileChannel = null;
+        try {
+            File file2 = new File(generateFilepath(stringBuilder.toString()));
+            if (!file2.exists()) {
+                file2.createNewFile();
+            }
+            FileChannel channel = new FileOutputStream(file2, false).getChannel();
+            try {
+                channel.write(byteBuffer);
+                if (channel != null) {
+                    try {
+                        channel.close();
+                    } catch (Exception e2) {
+                    }
+                }
+            } catch (Exception e3) {
+                e = e3;
+                fileChannel = channel;
+                try {
+                    str2 = TAG;
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("saveMorphoPanoramaOriginalPic  ");
+                    stringBuilder.append(e.toString());
+                    Log.e(str2, stringBuilder.toString());
+                    if (fileChannel == null) {
+                        fileChannel.close();
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    if (fileChannel != null) {
+                        try {
+                            fileChannel.close();
+                        } catch (Exception e4) {
+                        }
+                    }
+                    throw th;
+                }
+            } catch (Throwable th3) {
+                th = th3;
+                fileChannel = channel;
+                if (fileChannel != null) {
+                }
+                throw th;
+            }
+        } catch (Exception e5) {
+            e = e5;
+            str2 = TAG;
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("saveMorphoPanoramaOriginalPic  ");
+            stringBuilder.append(e.toString());
+            Log.e(str2, stringBuilder.toString());
+            if (fileChannel == null) {
+            }
+        }
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:26:0x0089 A:{SYNTHETIC, Splitter: B:26:0x0089} */
-    public static void saveOriginalPic(byte[] r2, int r3, java.lang.String r4) {
-        /*
-        r0 = new java.lang.StringBuilder;
-        r0.<init>();
-        r1 = DIRECTORY;
-        r0.append(r1);
-        r1 = java.io.File.separator;
-        r0.append(r1);
-        r0.append(r4);
-        r1 = java.io.File.separator;
-        r0.append(r1);
-        r0 = r0.toString();
-        r1 = new java.io.File;
-        r1.<init>(r0);
-        r0 = r1.exists();
-        if (r0 != 0) goto L_0x002a;
-    L_0x0027:
-        r1.mkdirs();
-    L_0x002a:
-        r0 = new java.lang.StringBuilder;
-        r0.<init>();
-        r0.append(r4);
-        r1 = java.io.File.separator;
-        r0.append(r1);
-        r0.append(r4);
-        r4 = "_";
-        r0.append(r4);
-        r0.append(r3);
-        r3 = r0.toString();
-        r3 = generateFilepath(r3);
-        r4 = 0;
-        r0 = new java.io.File;	 Catch:{ Exception -> 0x0071 }
-        r0.<init>(r3);	 Catch:{ Exception -> 0x0071 }
-        r3 = r0.exists();	 Catch:{ Exception -> 0x0071 }
-        if (r3 != 0) goto L_0x0059;
-    L_0x0056:
-        r0.createNewFile();	 Catch:{ Exception -> 0x0071 }
-    L_0x0059:
-        r3 = new java.io.FileOutputStream;	 Catch:{ Exception -> 0x0071 }
-        r3.<init>(r0);	 Catch:{ Exception -> 0x0071 }
-        r3.write(r2);	 Catch:{ Exception -> 0x006c, all -> 0x0069 }
-        r3.flush();	 Catch:{ Exception -> 0x0082 }
-        r3.close();	 Catch:{ Exception -> 0x0082 }
-        goto L_0x0084;
-    L_0x0069:
-        r2 = move-exception;
-        r4 = r3;
-        goto L_0x0086;
-    L_0x006c:
-        r2 = move-exception;
-        r4 = r3;
-        goto L_0x0072;
-    L_0x006f:
-        r2 = move-exception;
-        goto L_0x0086;
-    L_0x0071:
-        r2 = move-exception;
-    L_0x0072:
-        r3 = "CameraStorage";
-        r0 = "saveMorphoPanoramaOriginalPic exception occurs";
-        com.android.camera.log.Log.e(r3, r0, r2);	 Catch:{ all -> 0x006f }
-        if (r4 == 0) goto L_0x0084;
-    L_0x007b:
-        r4.flush();	 Catch:{ Exception -> 0x0082 }
-        r4.close();	 Catch:{ Exception -> 0x0082 }
-        goto L_0x0084;
-    L_0x0082:
-        r2 = move-exception;
-        goto L_0x0085;
-    L_0x0085:
-        return;
-        if (r4 == 0) goto L_0x0092;
-    L_0x0089:
-        r4.flush();	 Catch:{ Exception -> 0x0090 }
-        r4.close();	 Catch:{ Exception -> 0x0090 }
-        goto L_0x0092;
-    L_0x0090:
-        r3 = move-exception;
-    L_0x0092:
-        throw r2;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.storage.Storage.saveOriginalPic(byte[], int, java.lang.String):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static void saveOriginalPic(byte[] bArr, int i, String str) {
+        Throwable e;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(DIRECTORY);
+        stringBuilder.append(File.separator);
+        stringBuilder.append(str);
+        stringBuilder.append(File.separator);
+        File file = new File(stringBuilder.toString());
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        stringBuilder = new StringBuilder();
+        stringBuilder.append(str);
+        stringBuilder.append(File.separator);
+        stringBuilder.append(str);
+        stringBuilder.append("_");
+        stringBuilder.append(i);
+        FileOutputStream fileOutputStream = null;
+        try {
+            File file2 = new File(generateFilepath(stringBuilder.toString()));
+            if (!file2.exists()) {
+                file2.createNewFile();
+            }
+            FileOutputStream fileOutputStream2 = new FileOutputStream(file2);
+            try {
+                fileOutputStream2.write(bArr);
+            } catch (Exception e2) {
+                e = e2;
+                fileOutputStream = fileOutputStream2;
+            } catch (Throwable th) {
+                e = th;
+                fileOutputStream = fileOutputStream2;
+                if (fileOutputStream != null) {
+                    try {
+                        fileOutputStream.flush();
+                        fileOutputStream.close();
+                    } catch (Exception e3) {
+                    }
+                }
+                throw e;
+            }
+            try {
+                fileOutputStream2.flush();
+                fileOutputStream2.close();
+            } catch (Exception e4) {
+            }
+        } catch (Exception e5) {
+            e = e5;
+            try {
+                Log.e(TAG, "saveMorphoPanoramaOriginalPic exception occurs", e);
+                if (fileOutputStream != null) {
+                    fileOutputStream.flush();
+                    fileOutputStream.close();
+                }
+            } catch (Throwable th2) {
+                e = th2;
+                if (fileOutputStream != null) {
+                }
+                throw e;
+            }
+        }
     }
 
     public static boolean isUseDocumentMode() {

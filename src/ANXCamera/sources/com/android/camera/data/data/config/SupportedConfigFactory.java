@@ -1,8 +1,10 @@
 package com.android.camera.data.data.config;
 
+import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraSettings;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
+import com.android.camera.data.cloud.DataCloud.CloudFeature;
 import com.android.camera2.CameraCapabilities;
 import com.mi.config.b;
 import java.lang.annotation.Retention;
@@ -301,203 +303,102 @@ public class SupportedConfigFactory {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:68:0x00f3  */
-    public static final com.android.camera.data.data.config.SupportedConfigs getSupportedExtraConfigs(int r6, int r7, com.android.camera.data.cloud.DataCloud.CloudFeature r8, com.android.camera2.CameraCapabilities r9, boolean r10) {
-        /*
-        r0 = new com.android.camera.data.data.config.SupportedConfigs;
-        r0.<init>();
-        r1 = 174; // 0xae float:2.44E-43 double:8.6E-322;
-        r2 = 239; // 0xef float:3.35E-43 double:1.18E-321;
-        r3 = 225; // 0xe1 float:3.15E-43 double:1.11E-321;
-        if (r6 == r1) goto L_0x0121;
-    L_0x000d:
-        switch(r6) {
-            case 161: goto L_0x0121;
-            case 162: goto L_0x00f0;
-            default: goto L_0x0010;
-        };
-    L_0x0010:
-        r1 = 236; // 0xec float:3.31E-43 double:1.166E-321;
-        r4 = 238; // 0xee float:3.34E-43 double:1.176E-321;
-        r5 = 226; // 0xe2 float:3.17E-43 double:1.117E-321;
-        switch(r6) {
-            case 167: goto L_0x00e8;
-            case 168: goto L_0x00f0;
-            case 169: goto L_0x00f0;
-            case 170: goto L_0x00f0;
-            case 171: goto L_0x00a7;
-            default: goto L_0x0019;
-        };
-    L_0x0019:
-        r9 = r0.add(r3);
-        r9.add(r5);
-        r9 = 163; // 0xa3 float:2.28E-43 double:8.05E-322;
-        r3 = 235; // 0xeb float:3.3E-43 double:1.16E-321;
-        r5 = 165; // 0xa5 float:2.31E-43 double:8.15E-322;
-        switch(r7) {
-            case 0: goto L_0x0053;
-            case 1: goto L_0x002b;
-            default: goto L_0x0029;
-        };
-    L_0x0029:
-        goto L_0x00a5;
-    L_0x002b:
-        r7 = com.mi.config.b.hg();
-        if (r7 == 0) goto L_0x0036;
-    L_0x0031:
-        if (r6 == r5) goto L_0x0036;
-    L_0x0033:
-        r0.add(r3);
-    L_0x0036:
-        if (r6 == r5) goto L_0x003a;
-    L_0x0038:
-        if (r6 != r9) goto L_0x00a5;
-    L_0x003a:
-        r6 = com.mi.config.b.fN();
-        if (r6 == 0) goto L_0x0049;
-    L_0x0040:
-        r6 = com.mi.config.b.fM();
-        if (r6 == 0) goto L_0x0049;
-    L_0x0046:
-        r0.add(r4);
-    L_0x0049:
-        r6 = com.mi.config.b.gS();
-        if (r6 == 0) goto L_0x00a5;
-    L_0x004f:
-        r0.add(r1);
-        goto L_0x00a5;
-    L_0x0053:
-        r7 = com.mi.config.b.gN();
-        if (r7 == 0) goto L_0x005e;
-    L_0x0059:
-        r7 = 228; // 0xe4 float:3.2E-43 double:1.126E-321;
-        r0.add(r7);
-    L_0x005e:
-        r7 = com.mi.config.b.gG();
-        if (r7 == 0) goto L_0x0069;
-    L_0x0064:
-        r7 = 229; // 0xe5 float:3.21E-43 double:1.13E-321;
-        r0.add(r7);
-    L_0x0069:
-        r7 = com.mi.config.b.gm();
-        if (r7 == 0) goto L_0x0074;
-    L_0x006f:
-        r7 = 234; // 0xea float:3.28E-43 double:1.156E-321;
-        r0.add(r7);
-    L_0x0074:
-        if (r6 == r5) goto L_0x0081;
-    L_0x0076:
-        if (r10 == 0) goto L_0x0081;
-    L_0x0078:
-        r7 = com.mi.config.b.hg();
-        if (r7 == 0) goto L_0x0081;
-    L_0x007e:
-        r0.add(r3);
-    L_0x0081:
-        r7 = com.android.camera.Util.UI_DEBUG();
-        if (r7 != 0) goto L_0x0094;
-    L_0x0087:
-        if (r6 == r5) goto L_0x008b;
-    L_0x0089:
-        if (r6 != r9) goto L_0x0094;
-    L_0x008b:
-        r6 = com.mi.config.b.fM();
-        if (r6 == 0) goto L_0x0094;
-    L_0x0091:
-        r0.add(r2);
-    L_0x0094:
-        if (r10 == 0) goto L_0x00a5;
-    L_0x0096:
-        r6 = com.android.camera.CameraAppImpl.getAndroidContext();
-        r6 = com.android.camera.CameraSettings.checkLensAvailability(r6);
-        if (r6 == 0) goto L_0x00a5;
-    L_0x00a0:
-        r6 = 242; // 0xf2 float:3.39E-43 double:1.196E-321;
-        r0.add(r6);
-    L_0x00a5:
-        goto L_0x0135;
-    L_0x00a7:
-        r6 = r0.add(r3);
-        r6.add(r5);
-        r6 = 1;
-        if (r7 != r6) goto L_0x00d0;
-    L_0x00b1:
-        r6 = com.mi.config.b.hb();
-        if (r6 == 0) goto L_0x00d0;
-    L_0x00b7:
-        r6 = com.mi.config.b.fN();
-        if (r6 == 0) goto L_0x00c6;
-    L_0x00bd:
-        r6 = com.mi.config.b.fM();
-        if (r6 == 0) goto L_0x00c6;
-    L_0x00c3:
-        r0.add(r4);
-    L_0x00c6:
-        r6 = com.mi.config.b.gS();
-        if (r6 == 0) goto L_0x0135;
-    L_0x00cc:
-        r0.add(r1);
-        goto L_0x0135;
-    L_0x00d0:
-        if (r7 != 0) goto L_0x0135;
-    L_0x00d2:
-        r6 = com.android.camera.Util.UI_DEBUG();
-        if (r6 != 0) goto L_0x0135;
-    L_0x00d8:
-        r6 = com.android.camera.CameraSettings.isCameraPortraitWithFaceBeauty();
-        if (r6 == 0) goto L_0x0135;
-    L_0x00de:
-        r6 = com.mi.config.b.fM();
-        if (r6 == 0) goto L_0x0135;
-    L_0x00e4:
-        r0.add(r2);
-        goto L_0x0135;
-    L_0x00e8:
-        r6 = r0.add(r3);
-        r6.add(r5);
-        goto L_0x0135;
-    L_0x00f0:
-        if (r7 == 0) goto L_0x00f3;
-    L_0x00f2:
-        goto L_0x0120;
-    L_0x00f3:
-        r6 = r0.add(r3);
-        r7 = 233; // 0xe9 float:3.27E-43 double:1.15E-321;
-        r6.add(r7);
-        r6 = com.mi.config.b.ge();
-        if (r6 == 0) goto L_0x0111;
-    L_0x0102:
-        r6 = com.android.camera.data.DataRepository.dataItemFeature();
-        r6 = r6.fp();
-        if (r6 != 0) goto L_0x0111;
-    L_0x010c:
-        r6 = 232; // 0xe8 float:3.25E-43 double:1.146E-321;
-        r0.add(r6);
-    L_0x0111:
-        r6 = com.android.camera.Util.UI_DEBUG();
-        if (r6 != 0) goto L_0x0120;
-    L_0x0117:
-        r6 = r9.isSupportVideoBeauty();
-        if (r6 == 0) goto L_0x0120;
-    L_0x011d:
-        r0.add(r2);
-    L_0x0120:
-        goto L_0x0135;
-    L_0x0121:
-        if (r7 != 0) goto L_0x0135;
-    L_0x0123:
-        r6 = r9.isSupportVideoBeauty();
-        if (r6 == 0) goto L_0x0135;
-    L_0x0129:
-        r0.add(r3);
-        r6 = com.android.camera.Util.UI_DEBUG();
-        if (r6 != 0) goto L_0x0135;
-    L_0x0132:
-        r0.add(r2);
-    L_0x0135:
-        r6 = r8.filterFeature(r0);
-        return r6;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.data.data.config.SupportedConfigFactory.getSupportedExtraConfigs(int, int, com.android.camera.data.cloud.DataCloud$CloudFeature, com.android.camera2.CameraCapabilities, boolean):com.android.camera.data.data.config.SupportedConfigs");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static final SupportedConfigs getSupportedExtraConfigs(int i, int i2, CloudFeature cloudFeature, CameraCapabilities cameraCapabilities, boolean z) {
+        SupportedConfigs supportedConfigs = new SupportedConfigs();
+        if (i != 174) {
+            switch (i) {
+                case 161:
+                    break;
+                case 162:
+                    if (i2 == 0) {
+                    }
+                    break;
+                default:
+                    switch (i) {
+                        case 167:
+                            supportedConfigs.add(225).add(226);
+                            break;
+                        case 168:
+                        case 169:
+                        case 170:
+                            break;
+                        case 171:
+                            supportedConfigs.add(225).add(226);
+                            if (i2 != 1 || !b.hb()) {
+                                if (i2 == 0 && !Util.UI_DEBUG() && CameraSettings.isCameraPortraitWithFaceBeauty() && b.fM()) {
+                                    supportedConfigs.add(239);
+                                    break;
+                                }
+                            }
+                            if (b.fN() && b.fM()) {
+                                supportedConfigs.add(238);
+                            }
+                            if (b.gS()) {
+                                supportedConfigs.add(236);
+                                break;
+                            }
+                            break;
+                        default:
+                            supportedConfigs.add(225).add(226);
+                            switch (i2) {
+                                case 0:
+                                    if (b.gN()) {
+                                        supportedConfigs.add(228);
+                                    }
+                                    if (b.gG()) {
+                                        supportedConfigs.add(229);
+                                    }
+                                    if (b.gm()) {
+                                        supportedConfigs.add(234);
+                                    }
+                                    if (i != 165 && z && b.hg()) {
+                                        supportedConfigs.add(235);
+                                    }
+                                    if (!Util.UI_DEBUG() && ((i == 165 || i == 163) && b.fM())) {
+                                        supportedConfigs.add(239);
+                                    }
+                                    if (z && CameraSettings.checkLensAvailability(CameraAppImpl.getAndroidContext())) {
+                                        supportedConfigs.add(242);
+                                        break;
+                                    }
+                                case 1:
+                                    if (b.hg() && i != 165) {
+                                        supportedConfigs.add(235);
+                                    }
+                                    if (i == 165 || i == 163) {
+                                        if (b.fN() && b.fM()) {
+                                            supportedConfigs.add(238);
+                                        }
+                                        if (b.gS()) {
+                                            supportedConfigs.add(236);
+                                            break;
+                                        }
+                                    }
+                                    break;
+                            }
+                            break;
+                    }
+                    if (i2 == 0) {
+                        supportedConfigs.add(225).add(233);
+                        if (b.ge() && !DataRepository.dataItemFeature().fp()) {
+                            supportedConfigs.add(232);
+                        }
+                        if (!Util.UI_DEBUG() && cameraCapabilities.isSupportVideoBeauty()) {
+                            supportedConfigs.add(239);
+                            break;
+                        }
+                    }
+                    break;
+            }
+        }
+        if (i2 == 0 && cameraCapabilities.isSupportVideoBeauty()) {
+            supportedConfigs.add(225);
+            if (!Util.UI_DEBUG()) {
+                supportedConfigs.add(239);
+            }
+        }
+        return cloudFeature.filterFeature(supportedConfigs);
     }
 
     public static int findViewPosition(int i) {

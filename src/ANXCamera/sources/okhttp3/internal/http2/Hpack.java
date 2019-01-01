@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import okhttp3.internal.Util;
 import okio.Buffer;
 import okio.BufferedSource;
 import okio.ByteString;
@@ -316,161 +317,77 @@ final class Hpack {
         /* JADX WARNING: Removed duplicated region for block: B:23:0x0076  */
         /* JADX WARNING: Removed duplicated region for block: B:34:0x00ad  */
         /* JADX WARNING: Removed duplicated region for block: B:35:0x00b5  */
-        void writeHeaders(java.util.List<okhttp3.internal.http2.Header> r14) throws java.io.IOException {
-            /*
-            r13 = this;
-            r0 = r13.emitDynamicTableSizeUpdate;
-            r1 = 0;
-            if (r0 == 0) goto L_0x0020;
-        L_0x0005:
-            r0 = r13.smallestHeaderTableSizeSetting;
-            r2 = r13.maxDynamicTableByteCount;
-            r3 = 32;
-            r4 = 31;
-            if (r0 >= r2) goto L_0x0014;
-        L_0x000f:
-            r0 = r13.smallestHeaderTableSizeSetting;
-            r13.writeInt(r0, r4, r3);
-        L_0x0014:
-            r13.emitDynamicTableSizeUpdate = r1;
-            r0 = 2147483647; // 0x7fffffff float:NaN double:1.060997895E-314;
-            r13.smallestHeaderTableSizeSetting = r0;
-            r0 = r13.maxDynamicTableByteCount;
-            r13.writeInt(r0, r4, r3);
-        L_0x0020:
-            r0 = r14.size();
-            r2 = r1;
-        L_0x0025:
-            if (r2 >= r0) goto L_0x00f0;
-        L_0x0027:
-            r3 = r14.get(r2);
-            r3 = (okhttp3.internal.http2.Header) r3;
-            r4 = r3.name;
-            r4 = r4.toAsciiLowercase();
-            r5 = r3.value;
-            r6 = okhttp3.internal.http2.Hpack.NAME_TO_FIRST_INDEX;
-            r6 = r6.get(r4);
-            r6 = (java.lang.Integer) r6;
-            r7 = -1;
-            r8 = 1;
-            if (r6 == 0) goto L_0x0072;
-        L_0x0043:
-            r6 = r6.intValue();
-            r6 = r6 + r8;
-            if (r6 <= r8) goto L_0x006f;
-        L_0x004a:
-            r9 = 8;
-            if (r6 >= r9) goto L_0x006f;
-        L_0x004e:
-            r9 = okhttp3.internal.http2.Hpack.STATIC_HEADER_TABLE;
-            r10 = r6 + -1;
-            r9 = r9[r10];
-            r9 = r9.value;
-            r9 = okhttp3.internal.Util.equal(r9, r5);
-            if (r9 == 0) goto L_0x005d;
-        L_0x005c:
-            goto L_0x0073;
-        L_0x005d:
-            r9 = okhttp3.internal.http2.Hpack.STATIC_HEADER_TABLE;
-            r9 = r9[r6];
-            r9 = r9.value;
-            r9 = okhttp3.internal.Util.equal(r9, r5);
-            if (r9 == 0) goto L_0x006f;
-        L_0x0069:
-            r9 = r6 + 1;
-            r12 = r9;
-            r9 = r6;
-            r6 = r12;
-            goto L_0x0074;
-        L_0x006f:
-            r9 = r6;
-            r6 = r7;
-            goto L_0x0074;
-        L_0x0072:
-            r6 = r7;
-        L_0x0073:
-            r9 = r6;
-        L_0x0074:
-            if (r6 != r7) goto L_0x00ab;
-        L_0x0076:
-            r10 = r13.nextHeaderIndex;
-            r10 = r10 + r8;
-            r8 = r13.dynamicTable;
-            r8 = r8.length;
-        L_0x007c:
-            if (r10 >= r8) goto L_0x00ab;
-        L_0x007e:
-            r11 = r13.dynamicTable;
-            r11 = r11[r10];
-            r11 = r11.name;
-            r11 = okhttp3.internal.Util.equal(r11, r4);
-            if (r11 == 0) goto L_0x00a8;
-        L_0x008a:
-            r11 = r13.dynamicTable;
-            r11 = r11[r10];
-            r11 = r11.value;
-            r11 = okhttp3.internal.Util.equal(r11, r5);
-            if (r11 == 0) goto L_0x009e;
-        L_0x0096:
-            r6 = r13.nextHeaderIndex;
-            r10 = r10 - r6;
-            r6 = okhttp3.internal.http2.Hpack.STATIC_HEADER_TABLE;
-            r6 = r6.length;
-            r6 = r6 + r10;
-            goto L_0x00ab;
-        L_0x009e:
-            if (r9 != r7) goto L_0x00a8;
-        L_0x00a0:
-            r9 = r13.nextHeaderIndex;
-            r9 = r10 - r9;
-            r11 = okhttp3.internal.http2.Hpack.STATIC_HEADER_TABLE;
-            r11 = r11.length;
-            r9 = r9 + r11;
-        L_0x00a8:
-            r10 = r10 + 1;
-            goto L_0x007c;
-        L_0x00ab:
-            if (r6 == r7) goto L_0x00b5;
-        L_0x00ad:
-            r3 = 127; // 0x7f float:1.78E-43 double:6.27E-322;
-            r4 = 128; // 0x80 float:1.794E-43 double:6.32E-322;
-            r13.writeInt(r6, r3, r4);
-            goto L_0x00ec;
-        L_0x00b5:
-            r6 = 64;
-            if (r9 != r7) goto L_0x00c8;
-        L_0x00b9:
-            r7 = r13.out;
-            r7.writeByte(r6);
-            r13.writeByteString(r4);
-            r13.writeByteString(r5);
-            r13.insertIntoDynamicTable(r3);
-            goto L_0x00ec;
-        L_0x00c8:
-            r7 = okhttp3.internal.http2.Header.PSEUDO_PREFIX;
-            r7 = r4.startsWith(r7);
-            if (r7 == 0) goto L_0x00e1;
-        L_0x00d0:
-            r7 = okhttp3.internal.http2.Header.TARGET_AUTHORITY;
-            r4 = r7.equals(r4);
-            if (r4 != 0) goto L_0x00e1;
-        L_0x00d8:
-            r3 = 15;
-            r13.writeInt(r9, r3, r1);
-            r13.writeByteString(r5);
-            goto L_0x00ec;
-        L_0x00e1:
-            r4 = 63;
-            r13.writeInt(r9, r4, r6);
-            r13.writeByteString(r5);
-            r13.insertIntoDynamicTable(r3);
-        L_0x00ec:
-            r2 = r2 + 1;
-            goto L_0x0025;
-        L_0x00f0:
-            return;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.http2.Hpack.Writer.writeHeaders(java.util.List):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        void writeHeaders(List<Header> list) throws IOException {
+            if (this.emitDynamicTableSizeUpdate) {
+                if (this.smallestHeaderTableSizeSetting < this.maxDynamicTableByteCount) {
+                    writeInt(this.smallestHeaderTableSizeSetting, 31, 32);
+                }
+                this.emitDynamicTableSizeUpdate = false;
+                this.smallestHeaderTableSizeSetting = Integer.MAX_VALUE;
+                writeInt(this.maxDynamicTableByteCount, 31, 32);
+            }
+            int size = list.size();
+            for (int i = 0; i < size; i++) {
+                int intValue;
+                int i2;
+                Header header = (Header) list.get(i);
+                ByteString toAsciiLowercase = header.name.toAsciiLowercase();
+                ByteString byteString = header.value;
+                Integer num = (Integer) Hpack.NAME_TO_FIRST_INDEX.get(toAsciiLowercase);
+                if (num != null) {
+                    intValue = num.intValue() + 1;
+                    if (intValue > 1 && intValue < 8) {
+                        if (!Util.equal(Hpack.STATIC_HEADER_TABLE[intValue - 1].value, byteString)) {
+                            if (Util.equal(Hpack.STATIC_HEADER_TABLE[intValue].value, byteString)) {
+                                i2 = intValue;
+                                intValue++;
+                                if (intValue == -1) {
+                                    int length = this.dynamicTable.length;
+                                    for (int i3 = this.nextHeaderIndex + 1; i3 < length; i3++) {
+                                        if (Util.equal(this.dynamicTable[i3].name, toAsciiLowercase)) {
+                                            if (Util.equal(this.dynamicTable[i3].value, byteString)) {
+                                                intValue = Hpack.STATIC_HEADER_TABLE.length + (i3 - this.nextHeaderIndex);
+                                                break;
+                                            } else if (i2 == -1) {
+                                                i2 = (i3 - this.nextHeaderIndex) + Hpack.STATIC_HEADER_TABLE.length;
+                                            }
+                                        }
+                                    }
+                                }
+                                if (intValue != -1) {
+                                    writeInt(intValue, 127, 128);
+                                } else if (i2 == -1) {
+                                    this.out.writeByte(64);
+                                    writeByteString(toAsciiLowercase);
+                                    writeByteString(byteString);
+                                    insertIntoDynamicTable(header);
+                                } else if (!toAsciiLowercase.startsWith(Header.PSEUDO_PREFIX) || Header.TARGET_AUTHORITY.equals(toAsciiLowercase)) {
+                                    writeInt(i2, 63, 64);
+                                    writeByteString(byteString);
+                                    insertIntoDynamicTable(header);
+                                } else {
+                                    writeInt(i2, 15, 0);
+                                    writeByteString(byteString);
+                                }
+                            }
+                        }
+                    }
+                    i2 = intValue;
+                    intValue = -1;
+                    if (intValue == -1) {
+                    }
+                    if (intValue != -1) {
+                    }
+                } else {
+                    intValue = -1;
+                }
+                i2 = intValue;
+                if (intValue == -1) {
+                }
+                if (intValue != -1) {
+                }
+            }
         }
 
         void writeInt(int i, int i2, int i3) {

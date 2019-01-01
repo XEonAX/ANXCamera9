@@ -14,6 +14,7 @@ import android.os.IPowerManager.Stub;
 import android.os.Looper;
 import android.os.Message;
 import android.os.ServiceManager;
+import android.os.UserHandle;
 import android.provider.MiuiSettings.ScreenEffect;
 import android.support.annotation.MainThread;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
@@ -29,6 +30,7 @@ import android.view.Window;
 import android.view.WindowManager.LayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.android.camera.LocalParallelService.LocalBinder;
 import com.android.camera.constant.GlobalConstant;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.global.DataItemGlobal;
@@ -61,6 +63,7 @@ import com.android.camera.module.loader.camera2.Camera2OpenManager;
 import com.android.camera.module.loader.camera2.Camera2OpenOnSubScribe;
 import com.android.camera.module.loader.camera2.Camera2Result;
 import com.android.camera.module.loader.camera2.CompletablePreFixCamera2Setup;
+import com.android.camera.parallel.AlgoConnector;
 import com.android.camera.permission.PermissionManager;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.ActionProcessing;
@@ -705,80 +708,18 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
     /* JADX WARNING: Missing block: B:19:0x007b, code:
             com.android.camera.log.Log.e(TAG, r0.getMessage(), r0);
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void boostParallelServiceAdj() {
-        /*
-        r9 = this;
-        r0 = com.android.camera.CameraSettings.isCameraParallelProcessEnable();
-        r1 = 1;
-        r2 = 0;
-        if (r0 == 0) goto L_0x0020;
-    L_0x0008:
-        r0 = r9.mCurrentModule;
-        if (r0 == 0) goto L_0x0020;
-    L_0x000c:
-        r0 = r9.mCurrentModule;
-        r0 = (com.android.camera.module.BaseModule) r0;
-        r0 = r0.isPortraitMode();
-        if (r0 == 0) goto L_0x0020;
-    L_0x0016:
-        r0 = r9.mCameraIntentManager;
-        r0 = r0.isImageCaptureIntent();
-        if (r0 != 0) goto L_0x0020;
-    L_0x001e:
-        r0 = r1;
-        goto L_0x0022;
-        r0 = r2;
-    L_0x0022:
-        if (r0 != 0) goto L_0x0025;
-    L_0x0024:
-        return;
-    L_0x0025:
-        r0 = com.android.camera.parallel.AlgoConnector.getInstance();
-        r0 = r0.getLocalBinder();
-        if (r0 == 0) goto L_0x0084;
-    L_0x002f:
-        r0 = r0.isIdle();
-        if (r0 != 0) goto L_0x0084;
-    L_0x0035:
-        r0 = "miui.process.ProcessManager";
-        r0 = java.lang.Class.forName(r0);	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r3 = "adjBoost";
-        r4 = 4;
-        r5 = new java.lang.Class[r4];	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r6 = java.lang.String.class;
-        r5[r2] = r6;	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r6 = java.lang.Integer.TYPE;	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r5[r1] = r6;	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r6 = java.lang.Long.TYPE;	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r7 = 2;
-        r5[r7] = r6;	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r6 = java.lang.Integer.TYPE;	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r8 = 3;
-        r5[r8] = r6;	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r0 = r0.getDeclaredMethod(r3, r5);	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r3 = 0;
-        r4 = new java.lang.Object[r4];	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r5 = "com.android.camera";
-        r4[r2] = r5;	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r2 = java.lang.Integer.valueOf(r2);	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r4[r1] = r2;	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r1 = 60000; // 0xea60 float:8.4078E-41 double:2.9644E-319;
-        r1 = java.lang.Long.valueOf(r1);	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r4[r7] = r1;	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r1 = android.os.UserHandle.myUserId();	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r1 = java.lang.Integer.valueOf(r1);	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r4[r8] = r1;	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        r0.invoke(r3, r4);	 Catch:{ ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a, ClassNotFoundException -> 0x007a }
-        goto L_0x0084;
-    L_0x007a:
-        r0 = move-exception;
-        r1 = TAG;
-        r2 = r0.getMessage();
-        com.android.camera.log.Log.e(r1, r2, r0);
-    L_0x0084:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.Camera.boostParallelServiceAdj():void");
+        int i = (!CameraSettings.isCameraParallelProcessEnable() || this.mCurrentModule == null || !((BaseModule) this.mCurrentModule).isPortraitMode() || this.mCameraIntentManager.isImageCaptureIntent()) ? 0 : 1;
+        if (i != 0) {
+            LocalBinder localBinder = AlgoConnector.getInstance().getLocalBinder();
+            if (!(localBinder == null || localBinder.isIdle())) {
+                try {
+                    Class.forName("miui.process.ProcessManager").getDeclaredMethod("adjBoost", new Class[]{String.class, Integer.TYPE, Long.TYPE, Integer.TYPE}).invoke(null, new Object[]{"com.android.camera", Integer.valueOf(0), Long.valueOf(60000), Integer.valueOf(UserHandle.myUserId())});
+                } catch (Throwable e) {
+                }
+            }
+        }
     }
 
     public void onDestroy() {

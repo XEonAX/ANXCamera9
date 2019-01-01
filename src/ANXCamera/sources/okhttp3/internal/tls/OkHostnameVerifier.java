@@ -111,119 +111,39 @@ public final class OkHostnameVerifier implements HostnameVerifier {
     /* JADX WARNING: Missing block: B:46:0x00c0, code:
             return false;
      */
-    public boolean verifyHostname(java.lang.String r7, java.lang.String r8) {
-        /*
-        r6 = this;
-        r0 = 0;
-        if (r7 == 0) goto L_0x00c0;
-    L_0x0003:
-        r1 = r7.length();
-        if (r1 == 0) goto L_0x00c0;
-    L_0x0009:
-        r1 = ".";
-        r1 = r7.startsWith(r1);
-        if (r1 != 0) goto L_0x00c0;
-    L_0x0011:
-        r1 = "..";
-        r1 = r7.endsWith(r1);
-        if (r1 == 0) goto L_0x001b;
-    L_0x0019:
-        goto L_0x00c0;
-    L_0x001b:
-        if (r8 == 0) goto L_0x00bf;
-    L_0x001d:
-        r1 = r8.length();
-        if (r1 == 0) goto L_0x00bf;
-    L_0x0023:
-        r1 = ".";
-        r1 = r8.startsWith(r1);
-        if (r1 != 0) goto L_0x00bf;
-    L_0x002b:
-        r1 = "..";
-        r1 = r8.endsWith(r1);
-        if (r1 == 0) goto L_0x0035;
-    L_0x0033:
-        goto L_0x00bf;
-    L_0x0035:
-        r1 = ".";
-        r1 = r7.endsWith(r1);
-        r2 = 46;
-        if (r1 != 0) goto L_0x004e;
-    L_0x003f:
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r1.append(r7);
-        r1.append(r2);
-        r7 = r1.toString();
-    L_0x004e:
-        r1 = ".";
-        r1 = r8.endsWith(r1);
-        if (r1 != 0) goto L_0x0065;
-    L_0x0056:
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r1.append(r8);
-        r1.append(r2);
-        r8 = r1.toString();
-    L_0x0065:
-        r1 = java.util.Locale.US;
-        r8 = r8.toLowerCase(r1);
-        r1 = "*";
-        r1 = r8.contains(r1);
-        if (r1 != 0) goto L_0x0078;
-    L_0x0073:
-        r7 = r7.equals(r8);
-        return r7;
-    L_0x0078:
-        r1 = "*.";
-        r1 = r8.startsWith(r1);
-        if (r1 == 0) goto L_0x00be;
-    L_0x0080:
-        r1 = 42;
-        r3 = 1;
-        r1 = r8.indexOf(r1, r3);
-        r4 = -1;
-        if (r1 == r4) goto L_0x008b;
-    L_0x008a:
-        goto L_0x00be;
-    L_0x008b:
-        r1 = r7.length();
-        r5 = r8.length();
-        if (r1 >= r5) goto L_0x0096;
-    L_0x0095:
-        return r0;
-    L_0x0096:
-        r1 = "*.";
-        r1 = r1.equals(r8);
-        if (r1 == 0) goto L_0x009f;
-    L_0x009e:
-        return r0;
-    L_0x009f:
-        r8 = r8.substring(r3);
-        r1 = r7.endsWith(r8);
-        if (r1 != 0) goto L_0x00aa;
-    L_0x00a9:
-        return r0;
-    L_0x00aa:
-        r1 = r7.length();
-        r8 = r8.length();
-        r1 = r1 - r8;
-        if (r1 <= 0) goto L_0x00bd;
-    L_0x00b5:
-        r1 = r1 - r3;
-        r7 = r7.lastIndexOf(r2, r1);
-        if (r7 == r4) goto L_0x00bd;
-    L_0x00bc:
-        return r0;
-    L_0x00bd:
-        return r3;
-    L_0x00be:
-        return r0;
-    L_0x00bf:
-        return r0;
-    L_0x00c0:
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.tls.OkHostnameVerifier.verifyHostname(java.lang.String, java.lang.String):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean verifyHostname(String str, String str2) {
+        if (str == null || str.length() == 0 || str.startsWith(".") || str.endsWith("..") || str2 == null || str2.length() == 0 || str2.startsWith(".") || str2.endsWith("..")) {
+            return false;
+        }
+        StringBuilder stringBuilder;
+        if (!str.endsWith(".")) {
+            stringBuilder = new StringBuilder();
+            stringBuilder.append(str);
+            stringBuilder.append('.');
+            str = stringBuilder.toString();
+        }
+        if (!str2.endsWith(".")) {
+            stringBuilder = new StringBuilder();
+            stringBuilder.append(str2);
+            stringBuilder.append('.');
+            str2 = stringBuilder.toString();
+        }
+        str2 = str2.toLowerCase(Locale.US);
+        if (!str2.contains("*")) {
+            return str.equals(str2);
+        }
+        if (!str2.startsWith("*.") || str2.indexOf(42, 1) != -1 || str.length() < str2.length() || "*.".equals(str2)) {
+            return false;
+        }
+        str2 = str2.substring(1);
+        if (!str.endsWith(str2)) {
+            return false;
+        }
+        int length = str.length() - str2.length();
+        if (length <= 0 || str.lastIndexOf(46, length - 1) == -1) {
+            return true;
+        }
+        return false;
     }
 }

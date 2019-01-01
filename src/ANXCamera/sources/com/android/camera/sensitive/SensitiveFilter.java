@@ -1,7 +1,23 @@
 package com.android.camera.sensitive;
 
+import android.util.Base64;
+import com.android.camera.log.Log;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.NavigableSet;
+import java.util.zip.ZipException;
+import miui.util.IOUtils;
 
 public class SensitiveFilter implements Serializable {
     public static final String CLOUD_FILE_PATH = "/data/data/com.android.camera/sensi_words";
@@ -51,184 +67,218 @@ public class SensitiveFilter implements Serializable {
     /* JADX WARNING: Removed duplicated region for block: B:60:0x00e8 A:{Catch:{ IOException -> 0x00e4 }} */
     /* JADX WARNING: Removed duplicated region for block: B:62:0x00ed A:{Catch:{ IOException -> 0x00e4 }} */
     /* JADX WARNING: Removed duplicated region for block: B:64:0x00f2 A:{Catch:{ IOException -> 0x00e4 }} */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private SensitiveFilter() {
-        /*
-        r8 = this;
-        r8.<init>();
-        r0 = 8388608; // 0x800000 float:1.17549435E-38 double:4.144523E-317;
-        r0 = new com.android.camera.sensitive.SensitiveNode[r0];
-        r8.nodes = r0;
-        r0 = 0;
-        r1 = new java.io.File;	 Catch:{ IOException -> 0x00af, all -> 0x00aa }
-        r2 = "/data/data/com.android.camera/sensi_words";
-        r1.<init>(r2);	 Catch:{ IOException -> 0x00af, all -> 0x00aa }
-        r2 = r1.exists();	 Catch:{ IOException -> 0x00af, all -> 0x00aa }
-        if (r2 == 0) goto L_0x0022;
-    L_0x001b:
-        r2 = new java.io.FileInputStream;	 Catch:{ IOException -> 0x00af, all -> 0x00aa }
-        r2.<init>(r1);	 Catch:{ IOException -> 0x00af, all -> 0x00aa }
-        r1 = r2;
-        goto L_0x002c;
-    L_0x0022:
-        r1 = r8.getClass();	 Catch:{ IOException -> 0x00af, all -> 0x00aa }
-        r2 = "/assets/sensi/sensi_words.txt";
-        r1 = r1.getResourceAsStream(r2);	 Catch:{ IOException -> 0x00af, all -> 0x00aa }
-    L_0x002c:
-        r2 = miui.util.IOUtils.toString(r1);	 Catch:{ IOException -> 0x00a4, all -> 0x009e }
-        r3 = new java.lang.String;	 Catch:{ IOException -> 0x00a4, all -> 0x009e }
-        r4 = 0;
-        r2 = android.util.Base64.decode(r2, r4);	 Catch:{ IOException -> 0x00a4, all -> 0x009e }
-        r3.<init>(r2);	 Catch:{ IOException -> 0x00a4, all -> 0x009e }
-        r2 = new java.io.ByteArrayInputStream;	 Catch:{ IOException -> 0x00a4, all -> 0x009e }
-        r3 = r3.getBytes();	 Catch:{ IOException -> 0x00a4, all -> 0x009e }
-        r2.<init>(r3);	 Catch:{ IOException -> 0x00a4, all -> 0x009e }
-        r3 = new java.io.InputStreamReader;	 Catch:{ IOException -> 0x0099, all -> 0x0094 }
-        r4 = java.nio.charset.StandardCharsets.UTF_8;	 Catch:{ IOException -> 0x0099, all -> 0x0094 }
-        r3.<init>(r2, r4);	 Catch:{ IOException -> 0x0099, all -> 0x0094 }
-        r4 = new java.io.BufferedReader;	 Catch:{ IOException -> 0x008f, all -> 0x0089 }
-        r4.<init>(r3);	 Catch:{ IOException -> 0x008f, all -> 0x0089 }
-        r0 = r4.readLine();	 Catch:{ IOException -> 0x0083, all -> 0x007c }
-    L_0x0053:
-        if (r0 == 0) goto L_0x005d;
-    L_0x0055:
-        r0 = r4.readLine();	 Catch:{ IOException -> 0x0083, all -> 0x007c }
-        r8.put(r0);	 Catch:{ IOException -> 0x0083, all -> 0x007c }
-        goto L_0x0053;
-    L_0x005d:
-        r4.close();	 Catch:{ IOException -> 0x0083, all -> 0x007c }
-        r3.close();	 Catch:{ IOException -> 0x0083, all -> 0x007c }
-        r2.close();	 Catch:{ IOException -> 0x0083, all -> 0x007c }
-        r1.close();	 Catch:{ IOException -> 0x0083, all -> 0x007c }
-        r4.close();	 Catch:{ IOException -> 0x00c0 }
-        r3.close();	 Catch:{ IOException -> 0x00c0 }
-        r2.close();	 Catch:{ IOException -> 0x00c0 }
-        if (r1 == 0) goto L_0x00db;
-    L_0x0077:
-        r1.close();	 Catch:{ IOException -> 0x00c0 }
-        goto L_0x00db;
-    L_0x007c:
-        r0 = move-exception;
-        r7 = r1;
-        r1 = r0;
-        r0 = r4;
-        r4 = r7;
-        goto L_0x00de;
-    L_0x0083:
-        r0 = move-exception;
-        r7 = r1;
-        r1 = r0;
-        r0 = r4;
-        r4 = r7;
-        goto L_0x00b3;
-    L_0x0089:
-        r4 = move-exception;
-        r7 = r4;
-        r4 = r1;
-        r1 = r7;
-        goto L_0x00de;
-    L_0x008f:
-        r4 = move-exception;
-        r7 = r4;
-        r4 = r1;
-        r1 = r7;
-        goto L_0x00b3;
-    L_0x0094:
-        r3 = move-exception;
-        r4 = r1;
-        r1 = r3;
-        r3 = r0;
-        goto L_0x00de;
-    L_0x0099:
-        r3 = move-exception;
-        r4 = r1;
-        r1 = r3;
-        r3 = r0;
-        goto L_0x00b3;
-    L_0x009e:
-        r2 = move-exception;
-        r3 = r0;
-        r4 = r1;
-        r1 = r2;
-        r2 = r3;
-        goto L_0x00de;
-    L_0x00a4:
-        r2 = move-exception;
-        r3 = r0;
-        r4 = r1;
-        r1 = r2;
-        r2 = r3;
-        goto L_0x00b3;
-    L_0x00aa:
-        r1 = move-exception;
-        r2 = r0;
-        r3 = r2;
-        r4 = r3;
-        goto L_0x00de;
-    L_0x00af:
-        r1 = move-exception;
-        r2 = r0;
-        r3 = r2;
-        r4 = r3;
-    L_0x00b3:
-        r5 = "SensitiveFilter";
-        r6 = "IOException in SensitiveFilter constructor";
-        com.android.camera.log.Log.e(r5, r6, r1);	 Catch:{ all -> 0x00dd }
-        if (r0 == 0) goto L_0x00c2;
-    L_0x00bc:
-        r0.close();	 Catch:{ IOException -> 0x00c0 }
-        goto L_0x00c2;
-    L_0x00c0:
-        r0 = move-exception;
-        goto L_0x00d2;
-    L_0x00c2:
-        if (r3 == 0) goto L_0x00c7;
-    L_0x00c4:
-        r3.close();	 Catch:{ IOException -> 0x00c0 }
-    L_0x00c7:
-        if (r2 == 0) goto L_0x00cc;
-    L_0x00c9:
-        r2.close();	 Catch:{ IOException -> 0x00c0 }
-    L_0x00cc:
-        if (r4 == 0) goto L_0x00db;
-    L_0x00ce:
-        r4.close();	 Catch:{ IOException -> 0x00c0 }
-        goto L_0x00db;
-        r1 = "SensitiveFilter";
-        r2 = "IOException in SensitiveFilter constructor finally";
-        com.android.camera.log.Log.e(r1, r2, r0);
-        goto L_0x00dc;
-    L_0x00dc:
-        return;
-    L_0x00dd:
-        r1 = move-exception;
-    L_0x00de:
-        if (r0 == 0) goto L_0x00e6;
-    L_0x00e0:
-        r0.close();	 Catch:{ IOException -> 0x00e4 }
-        goto L_0x00e6;
-    L_0x00e4:
-        r0 = move-exception;
-        goto L_0x00f6;
-    L_0x00e6:
-        if (r3 == 0) goto L_0x00eb;
-    L_0x00e8:
-        r3.close();	 Catch:{ IOException -> 0x00e4 }
-    L_0x00eb:
-        if (r2 == 0) goto L_0x00f0;
-    L_0x00ed:
-        r2.close();	 Catch:{ IOException -> 0x00e4 }
-    L_0x00f0:
-        if (r4 == 0) goto L_0x00ff;
-    L_0x00f2:
-        r4.close();	 Catch:{ IOException -> 0x00e4 }
-        goto L_0x00ff;
-        r2 = "SensitiveFilter";
-        r3 = "IOException in SensitiveFilter constructor finally";
-        com.android.camera.log.Log.e(r2, r3, r0);
-    L_0x00ff:
-        throw r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.sensitive.SensitiveFilter.<init>():void");
+        InputStream byteArrayInputStream;
+        InputStreamReader inputStreamReader;
+        InputStream inputStream;
+        Throwable e;
+        InputStream inputStream2;
+        Throwable th;
+        BufferedReader bufferedReader = null;
+        try {
+            InputStream fileInputStream;
+            File file = new File(CLOUD_FILE_PATH);
+            if (file.exists()) {
+                fileInputStream = new FileInputStream(file);
+            } else {
+                fileInputStream = getClass().getResourceAsStream("/assets/sensi/sensi_words.txt");
+            }
+            try {
+                byteArrayInputStream = new ByteArrayInputStream(new String(Base64.decode(IOUtils.toString(fileInputStream), 0)).getBytes());
+            } catch (Throwable e2) {
+                inputStreamReader = null;
+                inputStream = fileInputStream;
+                e = e2;
+                byteArrayInputStream = inputStreamReader;
+                try {
+                    Log.e("SensitiveFilter", "IOException in SensitiveFilter constructor", e);
+                    if (bufferedReader != null) {
+                    }
+                    if (inputStreamReader != null) {
+                    }
+                    if (byteArrayInputStream != null) {
+                    }
+                    if (inputStream != null) {
+                    }
+                } catch (Throwable th2) {
+                    e = th2;
+                    if (bufferedReader != null) {
+                    }
+                    if (inputStreamReader != null) {
+                    }
+                    if (byteArrayInputStream != null) {
+                    }
+                    if (inputStream != null) {
+                    }
+                    throw e;
+                }
+            } catch (Throwable e22) {
+                inputStreamReader = null;
+                inputStream = fileInputStream;
+                e = e22;
+                byteArrayInputStream = inputStreamReader;
+                if (bufferedReader != null) {
+                }
+                if (inputStreamReader != null) {
+                }
+                if (byteArrayInputStream != null) {
+                }
+                if (inputStream != null) {
+                }
+                throw e;
+            }
+            try {
+                inputStreamReader = new InputStreamReader(byteArrayInputStream, StandardCharsets.UTF_8);
+                try {
+                    BufferedReader bufferedReader2 = new BufferedReader(inputStreamReader);
+                    try {
+                        String readLine = bufferedReader2.readLine();
+                        while (readLine != null) {
+                            readLine = bufferedReader2.readLine();
+                            put(readLine);
+                        }
+                        bufferedReader2.close();
+                        inputStreamReader.close();
+                        byteArrayInputStream.close();
+                        fileInputStream.close();
+                    } catch (Throwable e3) {
+                        inputStream2 = fileInputStream;
+                        e = e3;
+                        bufferedReader = bufferedReader2;
+                        inputStream = inputStream2;
+                        Log.e("SensitiveFilter", "IOException in SensitiveFilter constructor", e);
+                        if (bufferedReader != null) {
+                            bufferedReader.close();
+                        }
+                        if (inputStreamReader != null) {
+                            inputStreamReader.close();
+                        }
+                        if (byteArrayInputStream != null) {
+                            byteArrayInputStream.close();
+                        }
+                        if (inputStream != null) {
+                            inputStream.close();
+                            return;
+                        }
+                        return;
+                    } catch (Throwable e32) {
+                        inputStream2 = fileInputStream;
+                        e = e32;
+                        bufferedReader = bufferedReader2;
+                        inputStream = inputStream2;
+                        if (bufferedReader != null) {
+                            try {
+                                bufferedReader.close();
+                            } catch (Throwable e322) {
+                                Log.e("SensitiveFilter", "IOException in SensitiveFilter constructor finally", e322);
+                                throw e;
+                            }
+                        }
+                        if (inputStreamReader != null) {
+                            inputStreamReader.close();
+                        }
+                        if (byteArrayInputStream != null) {
+                            byteArrayInputStream.close();
+                        }
+                        if (inputStream != null) {
+                            inputStream.close();
+                        }
+                        throw e;
+                    }
+                    try {
+                        bufferedReader2.close();
+                        inputStreamReader.close();
+                        byteArrayInputStream.close();
+                        if (fileInputStream != null) {
+                            fileInputStream.close();
+                        }
+                    } catch (Throwable e3222) {
+                        Log.e("SensitiveFilter", "IOException in SensitiveFilter constructor finally", e3222);
+                    }
+                } catch (Throwable e4) {
+                    th = e4;
+                    inputStream = fileInputStream;
+                    e = th;
+                    Log.e("SensitiveFilter", "IOException in SensitiveFilter constructor", e);
+                    if (bufferedReader != null) {
+                    }
+                    if (inputStreamReader != null) {
+                    }
+                    if (byteArrayInputStream != null) {
+                    }
+                    if (inputStream != null) {
+                    }
+                } catch (Throwable e42) {
+                    th = e42;
+                    inputStream = fileInputStream;
+                    e = th;
+                    if (bufferedReader != null) {
+                    }
+                    if (inputStreamReader != null) {
+                    }
+                    if (byteArrayInputStream != null) {
+                    }
+                    if (inputStream != null) {
+                    }
+                    throw e;
+                }
+            } catch (Throwable e5) {
+                inputStream = fileInputStream;
+                e = e5;
+                inputStreamReader = null;
+                Log.e("SensitiveFilter", "IOException in SensitiveFilter constructor", e);
+                if (bufferedReader != null) {
+                }
+                if (inputStreamReader != null) {
+                }
+                if (byteArrayInputStream != null) {
+                }
+                if (inputStream != null) {
+                }
+            } catch (Throwable e52) {
+                inputStream = fileInputStream;
+                e = e52;
+                inputStreamReader = null;
+                if (bufferedReader != null) {
+                }
+                if (inputStreamReader != null) {
+                }
+                if (byteArrayInputStream != null) {
+                }
+                if (inputStream != null) {
+                }
+                throw e;
+            }
+        } catch (IOException e6) {
+            e = e6;
+            byteArrayInputStream = null;
+            inputStreamReader = byteArrayInputStream;
+            inputStream = inputStreamReader;
+            Log.e("SensitiveFilter", "IOException in SensitiveFilter constructor", e);
+            if (bufferedReader != null) {
+            }
+            if (inputStreamReader != null) {
+            }
+            if (byteArrayInputStream != null) {
+            }
+            if (inputStream != null) {
+            }
+        } catch (Throwable th3) {
+            e = th3;
+            byteArrayInputStream = null;
+            inputStreamReader = byteArrayInputStream;
+            inputStream = inputStreamReader;
+            if (bufferedReader != null) {
+            }
+            if (inputStreamReader != null) {
+            }
+            if (byteArrayInputStream != null) {
+            }
+            if (inputStream != null) {
+            }
+            throw e;
+        }
     }
 
     public static synchronized SensitiveFilter getInstance() {
@@ -385,219 +435,248 @@ public class SensitiveFilter implements Serializable {
     /* JADX WARNING: Removed duplicated region for block: B:57:0x00a5  */
     /* JADX WARNING: Removed duplicated region for block: B:59:0x00aa A:{SYNTHETIC, Splitter: B:59:0x00aa} */
     /* JADX WARNING: Removed duplicated region for block: B:63:0x00b3 A:{SYNTHETIC, Splitter: B:63:0x00b3} */
-    public static boolean loadSensitiveWords(java.lang.String r6, java.lang.String r7) {
-        /*
-        r0 = 0;
-        r1 = 0;
-        r2 = new java.net.URL;	 Catch:{ MalformedURLException -> 0x00e8, ZipException -> 0x00d1, Exception -> 0x00ba, all -> 0x00a0 }
-        r2.<init>(r6);	 Catch:{ MalformedURLException -> 0x00e8, ZipException -> 0x00d1, Exception -> 0x00ba, all -> 0x00a0 }
-        r6 = r2.openConnection();	 Catch:{ MalformedURLException -> 0x00e8, ZipException -> 0x00d1, Exception -> 0x00ba, all -> 0x00a0 }
-        r6 = (java.net.HttpURLConnection) r6;	 Catch:{ MalformedURLException -> 0x00e8, ZipException -> 0x00d1, Exception -> 0x00ba, all -> 0x00a0 }
-        r2 = 20000; // 0x4e20 float:2.8026E-41 double:9.8813E-320;
-        r6.setConnectTimeout(r2);	 Catch:{ MalformedURLException -> 0x009d, ZipException -> 0x009a, Exception -> 0x0097, all -> 0x0094 }
-        r6.setReadTimeout(r2);	 Catch:{ MalformedURLException -> 0x009d, ZipException -> 0x009a, Exception -> 0x0097, all -> 0x0094 }
-        r2 = "GET";
-        r6.setRequestMethod(r2);	 Catch:{ MalformedURLException -> 0x009d, ZipException -> 0x009a, Exception -> 0x0097, all -> 0x0094 }
-        r6.setDoOutput(r0);	 Catch:{ MalformedURLException -> 0x009d, ZipException -> 0x009a, Exception -> 0x0097, all -> 0x0094 }
-        r6.connect();	 Catch:{ MalformedURLException -> 0x009d, ZipException -> 0x009a, Exception -> 0x0097, all -> 0x0094 }
-        r2 = r6.getResponseCode();	 Catch:{ MalformedURLException -> 0x009d, ZipException -> 0x009a, Exception -> 0x0097, all -> 0x0094 }
-        r3 = 200; // 0xc8 float:2.8E-43 double:9.9E-322;
-        if (r2 != r3) goto L_0x007a;
-    L_0x002c:
-        r2 = r6.getInputStream();	 Catch:{ MalformedURLException -> 0x009d, ZipException -> 0x009a, Exception -> 0x0097, all -> 0x0094 }
-        r3 = new java.io.File;	 Catch:{ MalformedURLException -> 0x0075, ZipException -> 0x0070, Exception -> 0x006b, all -> 0x0067 }
-        r4 = "sensi_words";
-        r3.<init>(r7, r4);	 Catch:{ MalformedURLException -> 0x0075, ZipException -> 0x0070, Exception -> 0x006b, all -> 0x0067 }
-        r7 = r3.exists();	 Catch:{ MalformedURLException -> 0x0075, ZipException -> 0x0070, Exception -> 0x006b, all -> 0x0067 }
-        if (r7 != 0) goto L_0x0040;
-    L_0x003d:
-        r3.createNewFile();	 Catch:{ MalformedURLException -> 0x0075, ZipException -> 0x0070, Exception -> 0x006b, all -> 0x0067 }
-    L_0x0040:
-        r7 = new java.io.FileOutputStream;	 Catch:{ MalformedURLException -> 0x0075, ZipException -> 0x0070, Exception -> 0x006b, all -> 0x0067 }
-        r7.<init>(r3);	 Catch:{ MalformedURLException -> 0x0075, ZipException -> 0x0070, Exception -> 0x006b, all -> 0x0067 }
-    L_0x0046:
-        r1 = r2.read();	 Catch:{ MalformedURLException -> 0x0065, ZipException -> 0x0063, Exception -> 0x0061, all -> 0x005a }
-        r3 = -1;
-        if (r1 == r3) goto L_0x0051;
-    L_0x004d:
-        r7.write(r1);	 Catch:{ MalformedURLException -> 0x0065, ZipException -> 0x0063, Exception -> 0x0061, all -> 0x005a }
-        goto L_0x0046;
-    L_0x0051:
-        r2.close();	 Catch:{ MalformedURLException -> 0x0065, ZipException -> 0x0063, Exception -> 0x0061, all -> 0x005a }
-        r7.close();	 Catch:{ MalformedURLException -> 0x0065, ZipException -> 0x0063, Exception -> 0x0061, all -> 0x005a }
-        r0 = 1;
-        r1 = r2;
-        goto L_0x007b;
-    L_0x005a:
-        r0 = move-exception;
-        r1 = r2;
-        r5 = r0;
-        r0 = r7;
-        r7 = r5;
-        goto L_0x00a3;
-    L_0x0061:
-        r1 = move-exception;
-        goto L_0x006d;
-    L_0x0063:
-        r1 = move-exception;
-        goto L_0x0072;
-    L_0x0065:
-        r1 = move-exception;
-        goto L_0x0077;
-    L_0x0067:
-        r7 = move-exception;
-        r0 = r1;
-        r1 = r2;
-        goto L_0x00a3;
-    L_0x006b:
-        r7 = move-exception;
-        r7 = r1;
-    L_0x006d:
-        r1 = r2;
-        goto L_0x00bd;
-    L_0x0070:
-        r7 = move-exception;
-        r7 = r1;
-    L_0x0072:
-        r1 = r2;
-        goto L_0x00d4;
-    L_0x0075:
-        r7 = move-exception;
-        r7 = r1;
-    L_0x0077:
-        r1 = r2;
-        goto L_0x00eb;
-    L_0x007a:
-        r7 = r1;
-    L_0x007b:
-        if (r6 == 0) goto L_0x0080;
-    L_0x007d:
-        r6.disconnect();
-    L_0x0080:
-        if (r1 == 0) goto L_0x0088;
-    L_0x0082:
-        r1.close();	 Catch:{ IOException -> 0x0086 }
-        goto L_0x0088;
-    L_0x0086:
-        r6 = move-exception;
-        goto L_0x0089;
-    L_0x0089:
-        if (r7 == 0) goto L_0x0092;
-    L_0x008b:
-        r7.close();	 Catch:{ IOException -> 0x008f }
-        goto L_0x0092;
-    L_0x008f:
-        r6 = move-exception;
-        goto L_0x00ff;
-    L_0x0092:
-        goto L_0x00ff;
-    L_0x0094:
-        r7 = move-exception;
-        r0 = r1;
-        goto L_0x00a3;
-    L_0x0097:
-        r7 = move-exception;
-        r7 = r1;
-        goto L_0x00bd;
-    L_0x009a:
-        r7 = move-exception;
-        r7 = r1;
-        goto L_0x00d4;
-    L_0x009d:
-        r7 = move-exception;
-        r7 = r1;
-        goto L_0x00eb;
-    L_0x00a0:
-        r7 = move-exception;
-        r6 = r1;
-        r0 = r6;
-    L_0x00a3:
-        if (r6 == 0) goto L_0x00a8;
-    L_0x00a5:
-        r6.disconnect();
-    L_0x00a8:
-        if (r1 == 0) goto L_0x00b0;
-    L_0x00aa:
-        r1.close();	 Catch:{ IOException -> 0x00ae }
-        goto L_0x00b0;
-    L_0x00ae:
-        r6 = move-exception;
-        goto L_0x00b1;
-    L_0x00b1:
-        if (r0 == 0) goto L_0x00b9;
-    L_0x00b3:
-        r0.close();	 Catch:{ IOException -> 0x00b7 }
-        goto L_0x00b9;
-    L_0x00b7:
-        r6 = move-exception;
-    L_0x00b9:
-        throw r7;
-    L_0x00ba:
-        r6 = move-exception;
-        r6 = r1;
-        r7 = r6;
-    L_0x00bd:
-        if (r6 == 0) goto L_0x00c2;
-    L_0x00bf:
-        r6.disconnect();
-    L_0x00c2:
-        if (r1 == 0) goto L_0x00ca;
-    L_0x00c4:
-        r1.close();	 Catch:{ IOException -> 0x00c8 }
-        goto L_0x00ca;
-    L_0x00c8:
-        r6 = move-exception;
-        goto L_0x00cb;
-    L_0x00cb:
-        if (r7 == 0) goto L_0x0092;
-    L_0x00cd:
-        r7.close();	 Catch:{ IOException -> 0x008f }
-        goto L_0x0092;
-    L_0x00d1:
-        r6 = move-exception;
-        r6 = r1;
-        r7 = r6;
-    L_0x00d4:
-        if (r6 == 0) goto L_0x00d9;
-    L_0x00d6:
-        r6.disconnect();
-    L_0x00d9:
-        if (r1 == 0) goto L_0x00e1;
-    L_0x00db:
-        r1.close();	 Catch:{ IOException -> 0x00df }
-        goto L_0x00e1;
-    L_0x00df:
-        r6 = move-exception;
-        goto L_0x00e2;
-    L_0x00e2:
-        if (r7 == 0) goto L_0x0092;
-    L_0x00e4:
-        r7.close();	 Catch:{ IOException -> 0x008f }
-        goto L_0x0092;
-    L_0x00e8:
-        r6 = move-exception;
-        r6 = r1;
-        r7 = r6;
-    L_0x00eb:
-        if (r6 == 0) goto L_0x00f0;
-    L_0x00ed:
-        r6.disconnect();
-    L_0x00f0:
-        if (r1 == 0) goto L_0x00f8;
-    L_0x00f2:
-        r1.close();	 Catch:{ IOException -> 0x00f6 }
-        goto L_0x00f8;
-    L_0x00f6:
-        r6 = move-exception;
-        goto L_0x00f9;
-    L_0x00f9:
-        if (r7 == 0) goto L_0x0092;
-    L_0x00fb:
-        r7.close();	 Catch:{ IOException -> 0x008f }
-        goto L_0x0092;
-    L_0x00ff:
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.sensitive.SensitiveFilter.loadSensitiveWords(java.lang.String, java.lang.String):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static boolean loadSensitiveWords(String str, String str2) {
+        FileOutputStream fileOutputStream;
+        Throwable th;
+        boolean z = false;
+        InputStream inputStream = null;
+        HttpURLConnection httpURLConnection;
+        FileOutputStream fileOutputStream2;
+        try {
+            httpURLConnection = (HttpURLConnection) new URL(str).openConnection();
+            try {
+                httpURLConnection.setConnectTimeout(20000);
+                httpURLConnection.setReadTimeout(20000);
+                httpURLConnection.setRequestMethod("GET");
+                httpURLConnection.setDoOutput(false);
+                httpURLConnection.connect();
+                if (httpURLConnection.getResponseCode() == 200) {
+                    InputStream inputStream2 = httpURLConnection.getInputStream();
+                    try {
+                        File file = new File(str2, "sensi_words");
+                        if (!file.exists()) {
+                            file.createNewFile();
+                        }
+                        fileOutputStream2 = new FileOutputStream(file);
+                        while (true) {
+                            try {
+                                int read = inputStream2.read();
+                                if (read == -1) {
+                                    break;
+                                }
+                                fileOutputStream2.write(read);
+                            } catch (MalformedURLException e) {
+                                inputStream = inputStream2;
+                                if (httpURLConnection != null) {
+                                    httpURLConnection.disconnect();
+                                }
+                                if (inputStream != null) {
+                                    try {
+                                        inputStream.close();
+                                    } catch (IOException e2) {
+                                    }
+                                }
+                                if (fileOutputStream2 != null) {
+                                    fileOutputStream2.close();
+                                }
+                                return z;
+                            } catch (ZipException e3) {
+                                inputStream = inputStream2;
+                                if (httpURLConnection != null) {
+                                    httpURLConnection.disconnect();
+                                }
+                                if (inputStream != null) {
+                                    try {
+                                        inputStream.close();
+                                    } catch (IOException e4) {
+                                    }
+                                }
+                                if (fileOutputStream2 != null) {
+                                    fileOutputStream2.close();
+                                }
+                                return z;
+                            } catch (Exception e5) {
+                                inputStream = inputStream2;
+                                if (httpURLConnection != null) {
+                                    httpURLConnection.disconnect();
+                                }
+                                if (inputStream != null) {
+                                    try {
+                                        inputStream.close();
+                                    } catch (IOException e6) {
+                                    }
+                                }
+                                if (fileOutputStream2 != null) {
+                                    fileOutputStream2.close();
+                                }
+                                return z;
+                            } catch (Throwable th2) {
+                                inputStream = inputStream2;
+                                Throwable th3 = th2;
+                                fileOutputStream = fileOutputStream2;
+                                th = th3;
+                                if (httpURLConnection != null) {
+                                    httpURLConnection.disconnect();
+                                }
+                                if (inputStream != null) {
+                                    try {
+                                        inputStream.close();
+                                    } catch (IOException e7) {
+                                    }
+                                }
+                                if (fileOutputStream != null) {
+                                    try {
+                                        fileOutputStream.close();
+                                    } catch (IOException e8) {
+                                    }
+                                }
+                                throw th;
+                            }
+                        }
+                        inputStream2.close();
+                        fileOutputStream2.close();
+                        z = true;
+                        inputStream = inputStream2;
+                    } catch (MalformedURLException e9) {
+                        fileOutputStream2 = null;
+                        inputStream = inputStream2;
+                        if (httpURLConnection != null) {
+                        }
+                        if (inputStream != null) {
+                        }
+                        if (fileOutputStream2 != null) {
+                        }
+                        return z;
+                    } catch (ZipException e10) {
+                        fileOutputStream2 = null;
+                        inputStream = inputStream2;
+                        if (httpURLConnection != null) {
+                        }
+                        if (inputStream != null) {
+                        }
+                        if (fileOutputStream2 != null) {
+                        }
+                        return z;
+                    } catch (Exception e11) {
+                        fileOutputStream2 = null;
+                        inputStream = inputStream2;
+                        if (httpURLConnection != null) {
+                        }
+                        if (inputStream != null) {
+                        }
+                        if (fileOutputStream2 != null) {
+                        }
+                        return z;
+                    } catch (Throwable th4) {
+                        th = th4;
+                        fileOutputStream = null;
+                        inputStream = inputStream2;
+                        if (httpURLConnection != null) {
+                        }
+                        if (inputStream != null) {
+                        }
+                        if (fileOutputStream != null) {
+                        }
+                        throw th;
+                    }
+                }
+                fileOutputStream2 = null;
+                if (httpURLConnection != null) {
+                    httpURLConnection.disconnect();
+                }
+                if (inputStream != null) {
+                    try {
+                        inputStream.close();
+                    } catch (IOException e12) {
+                    }
+                }
+                if (fileOutputStream2 != null) {
+                    try {
+                        fileOutputStream2.close();
+                    } catch (IOException e13) {
+                    }
+                }
+            } catch (MalformedURLException e14) {
+                fileOutputStream2 = null;
+                if (httpURLConnection != null) {
+                }
+                if (inputStream != null) {
+                }
+                if (fileOutputStream2 != null) {
+                }
+                return z;
+            } catch (ZipException e15) {
+                fileOutputStream2 = null;
+                if (httpURLConnection != null) {
+                }
+                if (inputStream != null) {
+                }
+                if (fileOutputStream2 != null) {
+                }
+                return z;
+            } catch (Exception e16) {
+                fileOutputStream2 = null;
+                if (httpURLConnection != null) {
+                }
+                if (inputStream != null) {
+                }
+                if (fileOutputStream2 != null) {
+                }
+                return z;
+            } catch (Throwable th5) {
+                th = th5;
+                fileOutputStream = null;
+                if (httpURLConnection != null) {
+                }
+                if (inputStream != null) {
+                }
+                if (fileOutputStream != null) {
+                }
+                throw th;
+            }
+        } catch (MalformedURLException e17) {
+            httpURLConnection = null;
+            fileOutputStream2 = httpURLConnection;
+            if (httpURLConnection != null) {
+            }
+            if (inputStream != null) {
+            }
+            if (fileOutputStream2 != null) {
+            }
+            return z;
+        } catch (ZipException e18) {
+            httpURLConnection = null;
+            fileOutputStream2 = httpURLConnection;
+            if (httpURLConnection != null) {
+            }
+            if (inputStream != null) {
+            }
+            if (fileOutputStream2 != null) {
+            }
+            return z;
+        } catch (Exception e19) {
+            httpURLConnection = null;
+            fileOutputStream2 = httpURLConnection;
+            if (httpURLConnection != null) {
+            }
+            if (inputStream != null) {
+            }
+            if (fileOutputStream2 != null) {
+            }
+            return z;
+        } catch (Throwable th6) {
+            th = th6;
+            httpURLConnection = null;
+            fileOutputStream = httpURLConnection;
+            if (httpURLConnection != null) {
+            }
+            if (inputStream != null) {
+            }
+            if (fileOutputStream != null) {
+            }
+            throw th;
+        }
+        return z;
     }
 }

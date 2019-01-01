@@ -122,190 +122,109 @@ public final class FlowableFlattenIterable<T, R> extends AbstractFlowableWithUps
         /* JADX WARNING: Missing block: B:69:0x012e, code:
             if (r6 == null) goto L_0x013a;
      */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         void drain() {
-            /*
-            r18 = this;
-            r1 = r18;
-            r0 = r18.getAndIncrement();
-            if (r0 == 0) goto L_0x0009;
-        L_0x0008:
-            return;
-        L_0x0009:
-            r2 = r1.actual;
-            r3 = r1.queue;
-            r0 = r1.fusionMode;
-            r4 = 0;
-            r5 = 1;
-            if (r0 == r5) goto L_0x0015;
-        L_0x0013:
-            r0 = r5;
-            goto L_0x0017;
-            r0 = r4;
-        L_0x0017:
-            r6 = r1.current;
-            r7 = 0;
-            r8 = r5;
-        L_0x001b:
-            if (r6 != 0) goto L_0x0086;
-        L_0x001d:
-            r9 = r1.done;
-            r10 = r3.poll();	 Catch:{ Throwable -> 0x0068 }
-            if (r10 != 0) goto L_0x0028;
-        L_0x0026:
-            r11 = r5;
-            goto L_0x002a;
-            r11 = r4;
-        L_0x002a:
-            r9 = r1.checkTerminated(r9, r11, r2, r3);
-            if (r9 == 0) goto L_0x0031;
-        L_0x0030:
-            return;
-        L_0x0031:
-            if (r10 == 0) goto L_0x0086;
-        L_0x0033:
-            r6 = r1.mapper;	 Catch:{ Throwable -> 0x0050 }
-            r6 = r6.apply(r10);	 Catch:{ Throwable -> 0x0050 }
-            r6 = (java.lang.Iterable) r6;	 Catch:{ Throwable -> 0x0050 }
-            r6 = r6.iterator();	 Catch:{ Throwable -> 0x0050 }
-            r9 = r6.hasNext();	 Catch:{ Throwable -> 0x0050 }
-            if (r9 != 0) goto L_0x004d;
-            r1.consumedOne(r0);
-            r6 = r7;
-            goto L_0x001b;
-        L_0x004d:
-            r1.current = r6;
-            goto L_0x0086;
-        L_0x0050:
-            r0 = move-exception;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r0);
-            r3 = r1.s;
-            r3.cancel();
-            r3 = r1.error;
-            io.reactivex.internal.util.ExceptionHelper.addThrowable(r3, r0);
-            r0 = r1.error;
-            r0 = io.reactivex.internal.util.ExceptionHelper.terminate(r0);
-            r2.onError(r0);
-            return;
-        L_0x0068:
-            r0 = move-exception;
-            r4 = r0;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r4);
-            r0 = r1.s;
-            r0.cancel();
-            r0 = r1.error;
-            io.reactivex.internal.util.ExceptionHelper.addThrowable(r0, r4);
-            r0 = r1.error;
-            r0 = io.reactivex.internal.util.ExceptionHelper.terminate(r0);
-            r1.current = r7;
-            r3.clear();
-            r2.onError(r0);
-            return;
-        L_0x0086:
-            if (r6 == 0) goto L_0x0131;
-        L_0x0088:
-            r9 = r1.requested;
-            r9 = r9.get();
-            r11 = 0;
-            r13 = r11;
-        L_0x0092:
-            r15 = (r13 > r9 ? 1 : (r13 == r9 ? 0 : -1));
-            if (r15 == 0) goto L_0x0102;
-        L_0x0096:
-            r15 = r1.done;
-            r15 = r1.checkTerminated(r15, r4, r2, r3);
-            if (r15 == 0) goto L_0x009f;
-        L_0x009e:
-            return;
-        L_0x009f:
-            r15 = r6.next();	 Catch:{ Throwable -> 0x00e8 }
-            r5 = "The iterator returned a null value";
-            r5 = io.reactivex.internal.functions.ObjectHelper.requireNonNull(r15, r5);	 Catch:{ Throwable -> 0x00e8 }
-            r2.onNext(r5);
-            r5 = r1.done;
-            r5 = r1.checkTerminated(r5, r4, r2, r3);
-            if (r5 == 0) goto L_0x00b6;
-        L_0x00b5:
-            return;
-        L_0x00b6:
-            r16 = 1;
-            r13 = r13 + r16;
-            r5 = r6.hasNext();	 Catch:{ Throwable -> 0x00cd }
-            if (r5 != 0) goto L_0x00ca;
-        L_0x00c1:
-            r1.consumedOne(r0);
-            r1.current = r7;
-            r6 = r7;
-            goto L_0x0102;
-            r5 = 1;
-            goto L_0x0092;
-        L_0x00cd:
-            r0 = move-exception;
-            r3 = r0;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r3);
-            r1.current = r7;
-            r0 = r1.s;
-            r0.cancel();
-            r0 = r1.error;
-            io.reactivex.internal.util.ExceptionHelper.addThrowable(r0, r3);
-            r0 = r1.error;
-            r0 = io.reactivex.internal.util.ExceptionHelper.terminate(r0);
-            r2.onError(r0);
-            return;
-        L_0x00e8:
-            r0 = move-exception;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r0);
-            r1.current = r7;
-            r3 = r1.s;
-            r3.cancel();
-            r3 = r1.error;
-            io.reactivex.internal.util.ExceptionHelper.addThrowable(r3, r0);
-            r0 = r1.error;
-            r0 = io.reactivex.internal.util.ExceptionHelper.terminate(r0);
-            r2.onError(r0);
-            return;
-        L_0x0102:
-            r5 = (r13 > r9 ? 1 : (r13 == r9 ? 0 : -1));
-            if (r5 != 0) goto L_0x011b;
-        L_0x0106:
-            r5 = r1.done;
-            r15 = r3.isEmpty();
-            if (r15 == 0) goto L_0x0112;
-        L_0x010e:
-            if (r6 != 0) goto L_0x0112;
-        L_0x0110:
-            r15 = 1;
-            goto L_0x0114;
-            r15 = r4;
-        L_0x0114:
-            r5 = r1.checkTerminated(r5, r15, r2, r3);
-            if (r5 == 0) goto L_0x011b;
-        L_0x011a:
-            return;
-        L_0x011b:
-            r5 = (r13 > r11 ? 1 : (r13 == r11 ? 0 : -1));
-            if (r5 == 0) goto L_0x012e;
-        L_0x011f:
-            r11 = 9223372036854775807; // 0x7fffffffffffffff float:NaN double:NaN;
-            r5 = (r9 > r11 ? 1 : (r9 == r11 ? 0 : -1));
-            if (r5 == 0) goto L_0x012e;
-        L_0x0128:
-            r5 = r1.requested;
-            r9 = -r13;
-            r5.addAndGet(r9);
-        L_0x012e:
-            if (r6 != 0) goto L_0x0131;
-        L_0x0130:
-            goto L_0x013a;
-        L_0x0131:
-            r5 = -r8;
-            r8 = r1.addAndGet(r5);
-            if (r8 != 0) goto L_0x013a;
-            return;
-        L_0x013a:
-            r5 = 1;
-            goto L_0x001b;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowableFlattenIterable.FlattenIterableSubscriber.drain():void");
+            Throwable th;
+            if (getAndIncrement() == 0) {
+                Subscriber subscriber = this.actual;
+                SimpleQueue simpleQueue = this.queue;
+                boolean z = true;
+                boolean z2 = this.fusionMode != 1;
+                Iterator it = this.current;
+                int i = 1;
+                while (true) {
+                    if (it == null) {
+                        boolean z3 = this.done;
+                        try {
+                            Object poll = simpleQueue.poll();
+                            if (!checkTerminated(z3, poll == null ? z : false, subscriber, simpleQueue)) {
+                                if (poll != null) {
+                                    try {
+                                        it = ((Iterable) this.mapper.apply(poll)).iterator();
+                                        if (it.hasNext()) {
+                                            this.current = it;
+                                        } else {
+                                            consumedOne(z2);
+                                            it = null;
+                                        }
+                                    } catch (Throwable th2) {
+                                        Exceptions.throwIfFatal(th2);
+                                        this.s.cancel();
+                                        ExceptionHelper.addThrowable(this.error, th2);
+                                        subscriber.onError(ExceptionHelper.terminate(this.error));
+                                        return;
+                                    }
+                                }
+                            }
+                            return;
+                        } catch (Throwable th22) {
+                            Throwable th3 = th22;
+                            Exceptions.throwIfFatal(th3);
+                            this.s.cancel();
+                            ExceptionHelper.addThrowable(this.error, th3);
+                            th22 = ExceptionHelper.terminate(this.error);
+                            this.current = null;
+                            simpleQueue.clear();
+                            subscriber.onError(th22);
+                            return;
+                        }
+                    }
+                    if (it != null) {
+                        long j = this.requested.get();
+                        long j2 = 0;
+                        while (j2 != j) {
+                            if (!checkTerminated(this.done, false, subscriber, simpleQueue)) {
+                                try {
+                                    subscriber.onNext(ObjectHelper.requireNonNull(it.next(), "The iterator returned a null value"));
+                                    if (!checkTerminated(this.done, false, subscriber, simpleQueue)) {
+                                        j2++;
+                                        try {
+                                            if (!it.hasNext()) {
+                                                consumedOne(z2);
+                                                this.current = null;
+                                                it = null;
+                                                break;
+                                            }
+                                        } catch (Throwable th222) {
+                                            Throwable th4 = th222;
+                                            Exceptions.throwIfFatal(th4);
+                                            this.current = null;
+                                            this.s.cancel();
+                                            ExceptionHelper.addThrowable(this.error, th4);
+                                            subscriber.onError(ExceptionHelper.terminate(this.error));
+                                            return;
+                                        }
+                                    }
+                                    return;
+                                } catch (Throwable th2222) {
+                                    Exceptions.throwIfFatal(th2222);
+                                    this.current = null;
+                                    this.s.cancel();
+                                    ExceptionHelper.addThrowable(this.error, th2222);
+                                    subscriber.onError(ExceptionHelper.terminate(this.error));
+                                    return;
+                                }
+                            }
+                            return;
+                        }
+                        if (j2 == j) {
+                            z = this.done;
+                            boolean z4 = simpleQueue.isEmpty() && it == null;
+                            if (checkTerminated(z, z4, subscriber, simpleQueue)) {
+                                return;
+                            }
+                        }
+                        if (!(j2 == 0 || j == Long.MAX_VALUE)) {
+                            this.requested.addAndGet(-j2);
+                        }
+                    }
+                    i = addAndGet(-i);
+                    if (i == 0) {
+                        return;
+                    }
+                    z = true;
+                }
+            }
         }
 
         void consumedOne(boolean z) {

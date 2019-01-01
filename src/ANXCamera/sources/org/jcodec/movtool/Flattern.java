@@ -21,6 +21,7 @@ import org.jcodec.containers.mp4.boxes.MovieBox;
 import org.jcodec.containers.mp4.boxes.NodeBox;
 import org.jcodec.containers.mp4.boxes.TrakBox;
 import org.jcodec.containers.mp4.boxes.UrlBox;
+import org.jcodec.platform.Platform;
 
 public class Flattern {
     public List<ProgressListener> listeners = new ArrayList();
@@ -30,52 +31,37 @@ public class Flattern {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:14:0x003f  */
-    public static void main1(java.lang.String[] r4) throws java.lang.Exception {
-        /*
-        r0 = r4.length;
-        r1 = 2;
-        if (r0 >= r1) goto L_0x000f;
-    L_0x0004:
-        r0 = java.lang.System.out;
-        r1 = "Syntax: self <ref movie> <out movie>";
-        r0.println(r1);
-        r0 = -1;
-        java.lang.System.exit(r0);
-    L_0x000f:
-        r0 = new java.io.File;
-        r1 = 1;
-        r1 = r4[r1];
-        r0.<init>(r1);
-        org.jcodec.platform.Platform.deleteFile(r0);
-        r1 = 0;
-        r2 = new java.io.File;	 Catch:{ all -> 0x003b }
-        r3 = 0;
-        r4 = r4[r3];	 Catch:{ all -> 0x003b }
-        r2.<init>(r4);	 Catch:{ all -> 0x003b }
-        r4 = org.jcodec.common.io.NIOUtils.readableChannel(r2);	 Catch:{ all -> 0x003b }
-        r1 = org.jcodec.containers.mp4.MP4Util.parseFullMovieChannel(r4);	 Catch:{ all -> 0x0039 }
-        r2 = new org.jcodec.movtool.Flattern;	 Catch:{ all -> 0x0039 }
-        r2.<init>();	 Catch:{ all -> 0x0039 }
-        r2.flattern(r1, r0);	 Catch:{ all -> 0x0039 }
-        if (r4 == 0) goto L_0x0038;
-    L_0x0035:
-        r4.close();
-    L_0x0038:
-        return;
-    L_0x0039:
-        r0 = move-exception;
-        goto L_0x003d;
-    L_0x003b:
-        r0 = move-exception;
-        r4 = r1;
-    L_0x003d:
-        if (r4 == 0) goto L_0x0042;
-    L_0x003f:
-        r4.close();
-    L_0x0042:
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.jcodec.movtool.Flattern.main1(java.lang.String[]):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static void main1(String[] strArr) throws Exception {
+        Throwable th;
+        if (strArr.length < 2) {
+            System.out.println("Syntax: self <ref movie> <out movie>");
+            System.exit(-1);
+        }
+        File file = new File(strArr[1]);
+        Platform.deleteFile(file);
+        SeekableByteChannel readableChannel;
+        try {
+            readableChannel = NIOUtils.readableChannel(new File(strArr[0]));
+            try {
+                new Flattern().flattern(MP4Util.parseFullMovieChannel(readableChannel), file);
+                if (readableChannel != null) {
+                    readableChannel.close();
+                }
+            } catch (Throwable th2) {
+                th = th2;
+                if (readableChannel != null) {
+                    readableChannel.close();
+                }
+                throw th;
+            }
+        } catch (Throwable th3) {
+            th = th3;
+            readableChannel = null;
+            if (readableChannel != null) {
+            }
+            throw th;
+        }
     }
 
     public void addProgressListener(ProgressListener progressListener) {
@@ -267,30 +253,31 @@ public class Flattern {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:11:0x0017  */
-    public void flattern(org.jcodec.containers.mp4.MP4Util.Movie r1, java.io.File r2) throws java.io.IOException {
-        /*
-        r0 = this;
-        org.jcodec.platform.Platform.deleteFile(r2);
-        r2 = org.jcodec.common.io.NIOUtils.writableChannel(r2);	 Catch:{ all -> 0x0013 }
-        r0.flatternChannel(r1, r2);	 Catch:{ all -> 0x0011 }
-        if (r2 == 0) goto L_0x0010;
-    L_0x000d:
-        r2.close();
-    L_0x0010:
-        return;
-    L_0x0011:
-        r1 = move-exception;
-        goto L_0x0015;
-    L_0x0013:
-        r1 = move-exception;
-        r2 = 0;
-    L_0x0015:
-        if (r2 == 0) goto L_0x001a;
-    L_0x0017:
-        r2.close();
-    L_0x001a:
-        throw r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.jcodec.movtool.Flattern.flattern(org.jcodec.containers.mp4.MP4Util$Movie, java.io.File):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void flattern(Movie movie, File file) throws IOException {
+        Throwable th;
+        Platform.deleteFile(file);
+        SeekableByteChannel writableChannel;
+        try {
+            writableChannel = NIOUtils.writableChannel(file);
+            try {
+                flatternChannel(movie, writableChannel);
+                if (writableChannel != null) {
+                    writableChannel.close();
+                }
+            } catch (Throwable th2) {
+                th = th2;
+                if (writableChannel != null) {
+                    writableChannel.close();
+                }
+                throw th;
+            }
+        } catch (Throwable th3) {
+            th = th3;
+            writableChannel = null;
+            if (writableChannel != null) {
+            }
+            throw th;
+        }
     }
 }

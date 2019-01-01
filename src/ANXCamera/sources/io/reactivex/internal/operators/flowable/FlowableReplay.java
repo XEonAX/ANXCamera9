@@ -226,119 +226,15 @@ public final class FlowableReplay<T> extends ConnectableFlowable<T> implements D
         /* JADX WARNING: Missing block: B:54:0x009d, code:
             monitor-exit(r14);
      */
-        public final void replay(io.reactivex.internal.operators.flowable.FlowableReplay.InnerSubscription<T> r14) {
-            /*
-            r13 = this;
-            monitor-enter(r14);
-            r0 = r14.emitting;	 Catch:{ all -> 0x00a3 }
-            r1 = 1;
-            if (r0 == 0) goto L_0x000a;
-        L_0x0006:
-            r14.missed = r1;	 Catch:{ all -> 0x00a3 }
-            monitor-exit(r14);	 Catch:{ all -> 0x00a3 }
-            return;
-        L_0x000a:
-            r14.emitting = r1;	 Catch:{ all -> 0x00a3 }
-            monitor-exit(r14);	 Catch:{ all -> 0x00a3 }
-        L_0x000d:
-            r0 = r14.isDisposed();
-            if (r0 == 0) goto L_0x0014;
-        L_0x0013:
-            return;
-        L_0x0014:
-            r2 = r14.get();
-            r4 = 9223372036854775807; // 0x7fffffffffffffff float:NaN double:NaN;
-            r0 = (r2 > r4 ? 1 : (r2 == r4 ? 0 : -1));
-            r4 = 0;
-            if (r0 != 0) goto L_0x0024;
-        L_0x0022:
-            r0 = r1;
-            goto L_0x0026;
-            r0 = r4;
-        L_0x0026:
-            r5 = r14.index();
-            r5 = (io.reactivex.internal.operators.flowable.FlowableReplay.Node) r5;
-            r6 = 0;
-            if (r5 != 0) goto L_0x003d;
-        L_0x0030:
-            r5 = r13.getHead();
-            r14.index = r5;
-            r8 = r14.totalRequested;
-            r9 = r5.index;
-            io.reactivex.internal.util.BackpressureHelper.add(r8, r9);
-        L_0x003d:
-            r8 = r6;
-        L_0x003e:
-            r10 = (r2 > r6 ? 1 : (r2 == r6 ? 0 : -1));
-            if (r10 == 0) goto L_0x0087;
-        L_0x0042:
-            r10 = r5.get();
-            r10 = (io.reactivex.internal.operators.flowable.FlowableReplay.Node) r10;
-            if (r10 == 0) goto L_0x0087;
-        L_0x004a:
-            r5 = r10.value;
-            r5 = r13.leaveTransform(r5);
-            r11 = 0;
-            r12 = r14.child;	 Catch:{ Throwable -> 0x006c }
-            r12 = io.reactivex.internal.util.NotificationLite.accept(r5, r12);	 Catch:{ Throwable -> 0x006c }
-            if (r12 == 0) goto L_0x005c;
-        L_0x0059:
-            r14.index = r11;	 Catch:{ Throwable -> 0x006c }
-            return;
-            r11 = 1;
-            r8 = r8 + r11;
-            r2 = r2 - r11;
-            r5 = r14.isDisposed();
-            if (r5 == 0) goto L_0x0069;
-        L_0x0068:
-            return;
-            r5 = r10;
-            goto L_0x003e;
-        L_0x006c:
-            r0 = move-exception;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r0);
-            r14.index = r11;
-            r14.dispose();
-            r1 = io.reactivex.internal.util.NotificationLite.isError(r5);
-            if (r1 != 0) goto L_0x0086;
-        L_0x007b:
-            r1 = io.reactivex.internal.util.NotificationLite.isComplete(r5);
-            if (r1 != 0) goto L_0x0086;
-        L_0x0081:
-            r14 = r14.child;
-            r14.onError(r0);
-        L_0x0086:
-            return;
-        L_0x0087:
-            r2 = (r8 > r6 ? 1 : (r8 == r6 ? 0 : -1));
-            if (r2 == 0) goto L_0x0092;
-        L_0x008b:
-            r14.index = r5;
-            if (r0 != 0) goto L_0x0092;
-        L_0x008f:
-            r14.produced(r8);
-        L_0x0092:
-            monitor-enter(r14);
-            r0 = r14.missed;	 Catch:{ all -> 0x00a0 }
-            if (r0 != 0) goto L_0x009b;
-        L_0x0097:
-            r14.emitting = r4;	 Catch:{ all -> 0x00a0 }
-            monitor-exit(r14);	 Catch:{ all -> 0x00a0 }
-            return;
-        L_0x009b:
-            r14.missed = r4;	 Catch:{ all -> 0x00a0 }
-            monitor-exit(r14);	 Catch:{ all -> 0x00a0 }
-            goto L_0x000d;
-        L_0x00a0:
-            r0 = move-exception;
-            monitor-exit(r14);	 Catch:{ all -> 0x00a0 }
-            throw r0;
-        L_0x00a3:
-            r0 = move-exception;
-            monitor-exit(r14);	 Catch:{ all -> 0x00a3 }
-            throw r0;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowableReplay.BoundedReplayBuffer.replay(io.reactivex.internal.operators.flowable.FlowableReplay$InnerSubscription):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public final void replay(InnerSubscription<T> innerSubscription) {
+            synchronized (innerSubscription) {
+                if (innerSubscription.emitting) {
+                    innerSubscription.missed = true;
+                    return;
+                }
+                innerSubscription.emitting = true;
+            }
         }
 
         Object enterTransform(Object obj) {
@@ -804,50 +700,29 @@ public final class FlowableReplay<T> extends ConnectableFlowable<T> implements D
 
         /* JADX WARNING: Removed duplicated region for block: B:14:? A:{SYNTHETIC, RETURN} */
         /* JADX WARNING: Removed duplicated region for block: B:9:0x0040  */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         void truncateFinal() {
-            /*
-            r10 = this;
-            r0 = r10.scheduler;
-            r1 = r10.unit;
-            r0 = r0.now(r1);
-            r2 = r10.maxAge;
-            r0 = r0 - r2;
-            r2 = r10.get();
-            r2 = (io.reactivex.internal.operators.flowable.FlowableReplay.Node) r2;
-            r3 = r2.get();
-            r3 = (io.reactivex.internal.operators.flowable.FlowableReplay.Node) r3;
-            r4 = 0;
-        L_0x0019:
-            r9 = r3;
-            r3 = r2;
-            r2 = r9;
-            if (r2 == 0) goto L_0x003e;
-        L_0x001e:
-            r5 = r10.size;
-            r6 = 1;
-            if (r5 <= r6) goto L_0x003e;
-        L_0x0023:
-            r5 = r2.value;
-            r5 = (io.reactivex.schedulers.Timed) r5;
-            r7 = r5.time();
-            r5 = (r7 > r0 ? 1 : (r7 == r0 ? 0 : -1));
-            if (r5 > 0) goto L_0x003e;
-        L_0x002f:
-            r4 = r4 + 1;
-            r3 = r10.size;
-            r3 = r3 - r6;
-            r10.size = r3;
-            r3 = r2.get();
-            r3 = (io.reactivex.internal.operators.flowable.FlowableReplay.Node) r3;
-            goto L_0x0019;
-        L_0x003e:
-            if (r4 == 0) goto L_0x0043;
-        L_0x0040:
-            r10.setFirst(r3);
-        L_0x0043:
-            return;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowableReplay.SizeAndTimeBoundReplayBuffer.truncateFinal():void");
+            long now = this.scheduler.now(this.unit) - this.maxAge;
+            Node node = (Node) get();
+            Node node2 = (Node) node.get();
+            int i = 0;
+            while (true) {
+                Node node3 = node2;
+                node2 = node;
+                node = node3;
+                if (node != null && this.size > 1 && ((Timed) node.value).time() <= now) {
+                    i++;
+                    this.size--;
+                    node2 = (Node) node.get();
+                } else if (i == 0) {
+                    setFirst(node2);
+                    return;
+                } else {
+                    return;
+                }
+            }
+            if (i == 0) {
+            }
         }
 
         Node getHead() {
@@ -1010,109 +885,15 @@ public final class FlowableReplay<T> extends ConnectableFlowable<T> implements D
         /* JADX WARNING: Missing block: B:50:0x0089, code:
             monitor-exit(r15);
      */
-        public void replay(io.reactivex.internal.operators.flowable.FlowableReplay.InnerSubscription<T> r15) {
-            /*
-            r14 = this;
-            monitor-enter(r15);
-            r0 = r15.emitting;	 Catch:{ all -> 0x008e }
-            r1 = 1;
-            if (r0 == 0) goto L_0x000a;
-        L_0x0006:
-            r15.missed = r1;	 Catch:{ all -> 0x008e }
-            monitor-exit(r15);	 Catch:{ all -> 0x008e }
-            return;
-        L_0x000a:
-            r15.emitting = r1;	 Catch:{ all -> 0x008e }
-            monitor-exit(r15);	 Catch:{ all -> 0x008e }
-            r0 = r15.child;
-        L_0x000f:
-            r1 = r15.isDisposed();
-            if (r1 == 0) goto L_0x0016;
-        L_0x0015:
-            return;
-        L_0x0016:
-            r1 = r14.size;
-            r2 = r15.index();
-            r2 = (java.lang.Integer) r2;
-            r3 = 0;
-            if (r2 == 0) goto L_0x0026;
-        L_0x0021:
-            r2 = r2.intValue();
-            goto L_0x0027;
-        L_0x0026:
-            r2 = r3;
-        L_0x0027:
-            r4 = r15.get();
-            r6 = 0;
-            r8 = r4;
-            r10 = r6;
-        L_0x0031:
-            r12 = (r8 > r6 ? 1 : (r8 == r6 ? 0 : -1));
-            if (r12 == 0) goto L_0x0068;
-        L_0x0035:
-            if (r2 >= r1) goto L_0x0068;
-        L_0x0037:
-            r12 = r14.get(r2);
-            r13 = io.reactivex.internal.util.NotificationLite.accept(r12, r0);	 Catch:{ Throwable -> 0x0051 }
-            if (r13 == 0) goto L_0x0042;
-        L_0x0041:
-            return;
-            r12 = r15.isDisposed();
-            if (r12 == 0) goto L_0x004a;
-        L_0x0049:
-            return;
-        L_0x004a:
-            r2 = r2 + 1;
-            r12 = 1;
-            r8 = r8 - r12;
-            r10 = r10 + r12;
-            goto L_0x0031;
-        L_0x0051:
-            r1 = move-exception;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r1);
-            r15.dispose();
-            r15 = io.reactivex.internal.util.NotificationLite.isError(r12);
-            if (r15 != 0) goto L_0x0067;
-        L_0x005e:
-            r15 = io.reactivex.internal.util.NotificationLite.isComplete(r12);
-            if (r15 != 0) goto L_0x0067;
-        L_0x0064:
-            r0.onError(r1);
-        L_0x0067:
-            return;
-        L_0x0068:
-            r1 = (r10 > r6 ? 1 : (r10 == r6 ? 0 : -1));
-            if (r1 == 0) goto L_0x007e;
-        L_0x006c:
-            r1 = java.lang.Integer.valueOf(r2);
-            r15.index = r1;
-            r1 = 9223372036854775807; // 0x7fffffffffffffff float:NaN double:NaN;
-            r1 = (r4 > r1 ? 1 : (r4 == r1 ? 0 : -1));
-            if (r1 == 0) goto L_0x007e;
-        L_0x007b:
-            r15.produced(r10);
-        L_0x007e:
-            monitor-enter(r15);
-            r1 = r15.missed;	 Catch:{ all -> 0x008b }
-            if (r1 != 0) goto L_0x0087;
-        L_0x0083:
-            r15.emitting = r3;	 Catch:{ all -> 0x008b }
-            monitor-exit(r15);	 Catch:{ all -> 0x008b }
-            return;
-        L_0x0087:
-            r15.missed = r3;	 Catch:{ all -> 0x008b }
-            monitor-exit(r15);	 Catch:{ all -> 0x008b }
-            goto L_0x000f;
-        L_0x008b:
-            r0 = move-exception;
-            monitor-exit(r15);	 Catch:{ all -> 0x008b }
-            throw r0;
-        L_0x008e:
-            r0 = move-exception;
-            monitor-exit(r15);	 Catch:{ all -> 0x008e }
-            throw r0;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowableReplay.UnboundedReplayBuffer.replay(io.reactivex.internal.operators.flowable.FlowableReplay$InnerSubscription):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public void replay(InnerSubscription<T> innerSubscription) {
+            synchronized (innerSubscription) {
+                if (innerSubscription.emitting) {
+                    innerSubscription.missed = true;
+                    return;
+                }
+                innerSubscription.emitting = true;
+            }
         }
     }
 

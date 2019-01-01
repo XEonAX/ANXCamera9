@@ -2,8 +2,11 @@ package com.google.zxing.datamatrix.decoder;
 
 import com.google.zxing.FormatException;
 import com.google.zxing.common.BitSource;
+import com.google.zxing.common.DecoderResult;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 final class DecodedBitStreamParser {
     private static /* synthetic */ int[] $SWITCH_TABLE$com$google$zxing$datamatrix$decoder$DecodedBitStreamParser$Mode;
@@ -66,84 +69,50 @@ final class DecodedBitStreamParser {
     /* JADX WARNING: Removed duplicated region for block: B:20:0x005b  */
     /* JADX WARNING: Removed duplicated region for block: B:24:0x006d  */
     /* JADX WARNING: Removed duplicated region for block: B:23:0x006b  */
-    static com.google.zxing.common.DecoderResult decode(byte[] r9) throws com.google.zxing.FormatException {
-        /*
-        r0 = new com.google.zxing.common.BitSource;
-        r0.<init>(r9);
-        r1 = new java.lang.StringBuilder;
-        r2 = 100;
-        r1.<init>(r2);
-        r2 = new java.lang.StringBuilder;
-        r3 = 0;
-        r2.<init>(r3);
-        r3 = new java.util.ArrayList;
-        r4 = 1;
-        r3.<init>(r4);
-        r4 = com.google.zxing.datamatrix.decoder.DecodedBitStreamParser.Mode.ASCII_ENCODE;
-    L_0x001a:
-        r5 = com.google.zxing.datamatrix.decoder.DecodedBitStreamParser.Mode.ASCII_ENCODE;
-        if (r4 != r5) goto L_0x0023;
-    L_0x001e:
-        r4 = decodeAsciiSegment(r0, r1, r2);
-        goto L_0x004b;
-    L_0x0023:
-        r5 = $SWITCH_TABLE$com$google$zxing$datamatrix$decoder$DecodedBitStreamParser$Mode();
-        r6 = r4.ordinal();
-        r5 = r5[r6];
-        switch(r5) {
-            case 3: goto L_0x0045;
-            case 4: goto L_0x0041;
-            case 5: goto L_0x003d;
-            case 6: goto L_0x0039;
-            case 7: goto L_0x0035;
-            default: goto L_0x0030;
-        };
-    L_0x0030:
-        r5 = com.google.zxing.FormatException.getFormatInstance();
-        throw r5;
-    L_0x0035:
-        decodeBase256Segment(r0, r1, r3);
-        goto L_0x0049;
-    L_0x0039:
-        decodeEdifactSegment(r0, r1);
-        goto L_0x0049;
-    L_0x003d:
-        decodeAnsiX12Segment(r0, r1);
-        goto L_0x0049;
-    L_0x0041:
-        decodeTextSegment(r0, r1);
-        goto L_0x0049;
-    L_0x0045:
-        decodeC40Segment(r0, r1);
-    L_0x0049:
-        r4 = com.google.zxing.datamatrix.decoder.DecodedBitStreamParser.Mode.ASCII_ENCODE;
-    L_0x004b:
-        r5 = com.google.zxing.datamatrix.decoder.DecodedBitStreamParser.Mode.PAD_ENCODE;
-        if (r4 == r5) goto L_0x0055;
-    L_0x004f:
-        r5 = r0.available();
-        if (r5 > 0) goto L_0x001a;
-    L_0x0055:
-        r5 = r2.length();
-        if (r5 <= 0) goto L_0x005e;
-    L_0x005b:
-        r1.append(r2);
-    L_0x005e:
-        r5 = new com.google.zxing.common.DecoderResult;
-        r6 = r1.toString();
-        r7 = r3.isEmpty();
-        r8 = 0;
-        if (r7 == 0) goto L_0x006d;
-    L_0x006b:
-        r7 = r8;
-        goto L_0x006e;
-    L_0x006d:
-        r7 = r3;
-    L_0x006e:
-        r5.<init>(r9, r6, r7, r8);
-        return r5;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.zxing.datamatrix.decoder.DecodedBitStreamParser.decode(byte[]):com.google.zxing.common.DecoderResult");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    static DecoderResult decode(byte[] bytes) throws FormatException {
+        BitSource bits = new BitSource(bytes);
+        StringBuilder result = new StringBuilder(100);
+        StringBuilder resultTrailer = new StringBuilder(0);
+        List<byte[]> byteSegments = new ArrayList(1);
+        Mode mode = Mode.ASCII_ENCODE;
+        do {
+            if (mode == Mode.ASCII_ENCODE) {
+                mode = decodeAsciiSegment(bits, result, resultTrailer);
+            } else {
+                switch ($SWITCH_TABLE$com$google$zxing$datamatrix$decoder$DecodedBitStreamParser$Mode()[mode.ordinal()]) {
+                    case 3:
+                        decodeC40Segment(bits, result);
+                        break;
+                    case 4:
+                        decodeTextSegment(bits, result);
+                        break;
+                    case 5:
+                        decodeAnsiX12Segment(bits, result);
+                        break;
+                    case 6:
+                        decodeEdifactSegment(bits, result);
+                        break;
+                    case 7:
+                        decodeBase256Segment(bits, result, byteSegments);
+                        break;
+                    default:
+                        throw FormatException.getFormatInstance();
+                }
+                mode = Mode.ASCII_ENCODE;
+            }
+            if (mode != Mode.PAD_ENCODE) {
+            }
+            if (resultTrailer.length() > 0) {
+                result.append(resultTrailer);
+            }
+            return new DecoderResult(bytes, result.toString(), byteSegments.isEmpty() ? null : byteSegments, null);
+        } while (bits.available() > 0);
+        if (resultTrailer.length() > 0) {
+        }
+        if (byteSegments.isEmpty()) {
+        }
+        return new DecoderResult(bytes, result.toString(), byteSegments.isEmpty() ? null : byteSegments, null);
     }
 
     private static Mode decodeAsciiSegment(BitSource bits, StringBuilder result, StringBuilder resultTrailer) throws FormatException {

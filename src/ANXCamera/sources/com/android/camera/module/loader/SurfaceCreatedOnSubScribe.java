@@ -1,5 +1,15 @@
 package com.android.camera.module.loader;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraDevice;
+import android.hardware.camera2.CameraDevice.StateCallback;
+import android.hardware.camera2.CameraManager;
+import android.support.annotation.NonNull;
+import com.android.camera.CameraAppImpl;
+import com.android.camera.log.Log;
+import com.android.camera.module.loader.camera2.Camera2OpenManager;
 import io.reactivex.SingleEmitter;
 import io.reactivex.SingleOnSubscribe;
 
@@ -33,52 +43,49 @@ public class SurfaceCreatedOnSubScribe implements SurfaceCreatedCallback, Single
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:11:0x0030 A:{LOOP_END, LOOP:0: B:10:0x002e->B:11:0x0030} */
-    @android.annotation.SuppressLint({"MissingPermission"})
-    @android.annotation.TargetApi(21)
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    @SuppressLint({"MissingPermission"})
+    @TargetApi(21)
     private void openCamera2() {
-        /*
-        r6 = this;
-        r0 = com.android.camera.CameraAppImpl.getAndroidContext();
-        r1 = "camera";
-        r0 = r0.getSystemService(r1);
-        r0 = (android.hardware.camera2.CameraManager) r0;
-        r1 = 0;
-        r2 = new java.lang.String[r1];
-        r3 = r0.getCameraIdList();	 Catch:{ CameraAccessException -> 0x0028 }
-        r2 = r3[r1];	 Catch:{ CameraAccessException -> 0x0026 }
-        r4 = new com.android.camera.module.loader.SurfaceCreatedOnSubScribe$1;	 Catch:{ CameraAccessException -> 0x0026 }
-        r4.<init>();	 Catch:{ CameraAccessException -> 0x0026 }
-        r5 = com.android.camera.module.loader.camera2.Camera2OpenManager.getInstance();	 Catch:{ CameraAccessException -> 0x0026 }
-        r5 = r5.getCameraHandler();	 Catch:{ CameraAccessException -> 0x0026 }
-        r0.openCamera(r2, r4, r5);	 Catch:{ CameraAccessException -> 0x0026 }
-        goto L_0x002d;
-    L_0x0026:
-        r0 = move-exception;
-        goto L_0x002a;
-    L_0x0028:
-        r0 = move-exception;
-        r3 = r2;
-    L_0x002a:
-        r0.printStackTrace();
-    L_0x002d:
-        r0 = r3.length;
-    L_0x002e:
-        if (r1 >= r0) goto L_0x004b;
-    L_0x0030:
-        r2 = r3[r1];
-        r4 = "ids:";
-        r5 = new java.lang.StringBuilder;
-        r5.<init>();
-        r5.append(r2);
-        r2 = "";
-        r5.append(r2);
-        r2 = r5.toString();
-        com.android.camera.log.Log.e(r4, r2);
-        r1 = r1 + 1;
-        goto L_0x002e;
-    L_0x004b:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.loader.SurfaceCreatedOnSubScribe.openCamera2():void");
+        String[] cameraIdList;
+        CameraAccessException e;
+        int length;
+        CameraManager cameraManager = (CameraManager) CameraAppImpl.getAndroidContext().getSystemService("camera");
+        int i = 0;
+        String[] strArr = new String[0];
+        try {
+            cameraIdList = cameraManager.getCameraIdList();
+            try {
+                cameraManager.openCamera(cameraIdList[0], new StateCallback() {
+                    public void onOpened(@NonNull CameraDevice cameraDevice) {
+                        SurfaceCreatedOnSubScribe.this.mSingleEmitter.onSuccess(Boolean.valueOf(true));
+                    }
+
+                    public void onDisconnected(@NonNull CameraDevice cameraDevice) {
+                    }
+
+                    public void onError(@NonNull CameraDevice cameraDevice, int i) {
+                    }
+                }, Camera2OpenManager.getInstance().getCameraHandler());
+            } catch (CameraAccessException e2) {
+                e = e2;
+            }
+        } catch (CameraAccessException e3) {
+            e = e3;
+            cameraIdList = strArr;
+            e.printStackTrace();
+            length = cameraIdList.length;
+            while (i < length) {
+            }
+        }
+        length = cameraIdList.length;
+        while (i < length) {
+            String str = cameraIdList[i];
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(str);
+            stringBuilder.append("");
+            Log.e("ids:", stringBuilder.toString());
+            i++;
+        }
     }
 }

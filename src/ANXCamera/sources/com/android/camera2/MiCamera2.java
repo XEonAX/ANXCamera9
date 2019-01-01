@@ -27,6 +27,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
+import android.os.SystemProperties;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Range;
@@ -2104,37 +2105,19 @@ public class MiCamera2 extends Camera2Proxy {
     /* JADX WARNING: Missing block: B:5:?, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void runPrecaptureSequence() {
-        /*
-        r3 = this;
-        r0 = TAG;
-        r1 = "runPrecaptureSequence";
-        com.android.camera.log.Log.v(r0, r1);
-        r0 = r3.mCameraDevice;	 Catch:{ CameraAccessException -> 0x002e, CameraAccessException -> 0x002e }
-        r1 = 1;
-        r0 = r0.createCaptureRequest(r1);	 Catch:{ CameraAccessException -> 0x002e, CameraAccessException -> 0x002e }
-        r1 = r3.mPreviewSurface;	 Catch:{ CameraAccessException -> 0x002e, CameraAccessException -> 0x002e }
-        r0.addTarget(r1);	 Catch:{ CameraAccessException -> 0x002e, CameraAccessException -> 0x002e }
-        r3.applySettingsForPrecapture(r0);	 Catch:{ CameraAccessException -> 0x002e, CameraAccessException -> 0x002e }
-        r0 = r0.build();	 Catch:{ CameraAccessException -> 0x002e, CameraAccessException -> 0x002e }
-        r1 = r0.hashCode();	 Catch:{ CameraAccessException -> 0x002e, CameraAccessException -> 0x002e }
-        r3.mPrecaptureRequestHashCode = r1;	 Catch:{ CameraAccessException -> 0x002e, CameraAccessException -> 0x002e }
-        r1 = r3.mCaptureCallback;	 Catch:{ CameraAccessException -> 0x002e, CameraAccessException -> 0x002e }
-        r2 = 4;
-        r1.setState(r2);	 Catch:{ CameraAccessException -> 0x002e, CameraAccessException -> 0x002e }
-        r1 = r3.mCaptureCallback;	 Catch:{ CameraAccessException -> 0x002e, CameraAccessException -> 0x002e }
-        r2 = r3.mCameraHandler;	 Catch:{ CameraAccessException -> 0x002e, CameraAccessException -> 0x002e }
-        r3.capture(r0, r1, r2);	 Catch:{ CameraAccessException -> 0x002e, CameraAccessException -> 0x002e }
-        goto L_0x0036;
-    L_0x002e:
-        r0 = move-exception;
-        r0.printStackTrace();
-        r0 = -1;
-        r3.notifyOnError(r0);
-    L_0x0036:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera2.MiCamera2.runPrecaptureSequence():void");
+        Log.v(TAG, "runPrecaptureSequence");
+        try {
+            Builder createCaptureRequest = this.mCameraDevice.createCaptureRequest(1);
+            createCaptureRequest.addTarget(this.mPreviewSurface);
+            applySettingsForPrecapture(createCaptureRequest);
+            CaptureRequest build = createCaptureRequest.build();
+            this.mPrecaptureRequestHashCode = build.hashCode();
+            this.mCaptureCallback.setState(4);
+            capture(build, this.mCaptureCallback, this.mCameraHandler);
+        } catch (Exception e) {
+        }
     }
 
     private void applySettingsForPrecapture(Builder builder) {
@@ -2202,55 +2185,27 @@ public class MiCamera2 extends Camera2Proxy {
             r0.printStackTrace();
             notifyOnError(-1);
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void lockFocus() {
-        /*
-        r4 = this;
-        r0 = "lockFocus";
-        r0 = r4.checkCaptureSession(r0);
-        if (r0 != 0) goto L_0x0009;
-    L_0x0008:
-        return;
-    L_0x0009:
-        r0 = TAG;
-        r1 = "lockFocus";
-        com.android.camera.log.Log.v(r0, r1);
-        r0 = r4.mCameraDevice;	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r1 = 1;
-        r0 = r0.createCaptureRequest(r1);	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r2 = r4.mPreviewSurface;	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r0.addTarget(r2);	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r4.applySettingsForLockFocus(r0);	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r0 = r0.build();	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r2 = r0.hashCode();	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r4.mLockRequestHashCode = r2;	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r2 = r4.mCaptureCallback;	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r3 = 2;
-        r2.setState(r3);	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r2 = r4.mCaptureCallback;	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r2.showAutoFocusStart();	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r2 = r4.mCaptureCallback;	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r3 = r4.mCameraHandler;	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r4.capture(r0, r2, r3);	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r4.setAFModeToPreview(r1);	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r0 = r4.mHelperHandler;	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        if (r0 == 0) goto L_0x004e;
-    L_0x0042:
-        r0 = r4.mHelperHandler;	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r0.removeMessages(r1);	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r0 = r4.mHelperHandler;	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-        r2 = 3000; // 0xbb8 float:4.204E-42 double:1.482E-320;
-        r0.sendEmptyMessageDelayed(r1, r2);	 Catch:{ CameraAccessException -> 0x004f, CameraAccessException -> 0x004f }
-    L_0x004e:
-        goto L_0x0057;
-    L_0x004f:
-        r0 = move-exception;
-        r0.printStackTrace();
-        r0 = -1;
-        r4.notifyOnError(r0);
-    L_0x0057:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera2.MiCamera2.lockFocus():void");
+        if (checkCaptureSession("lockFocus")) {
+            Log.v(TAG, "lockFocus");
+            try {
+                Builder createCaptureRequest = this.mCameraDevice.createCaptureRequest(1);
+                createCaptureRequest.addTarget(this.mPreviewSurface);
+                applySettingsForLockFocus(createCaptureRequest);
+                CaptureRequest build = createCaptureRequest.build();
+                this.mLockRequestHashCode = build.hashCode();
+                this.mCaptureCallback.setState(2);
+                this.mCaptureCallback.showAutoFocusStart();
+                capture(build, this.mCaptureCallback, this.mCameraHandler);
+                setAFModeToPreview(1);
+                if (this.mHelperHandler != null) {
+                    this.mHelperHandler.removeMessages(1);
+                    this.mHelperHandler.sendEmptyMessageDelayed(1, 3000);
+                }
+            } catch (Exception e) {
+            }
+        }
     }
 
     private void applySettingsForLockFocus(Builder builder) {
@@ -2422,220 +2377,124 @@ public class MiCamera2 extends Camera2Proxy {
     /* JADX WARNING: Missing block: B:19:0x0061, code:
             if (r0 == 3) goto L_0x0056;
      */
-    private void applyFlashMode(android.hardware.camera2.CaptureRequest.Builder r11, int r12) {
-        /*
-        r10 = this;
-        r0 = TAG;
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "applyFlashMode: request = ";
-        r1.append(r2);
-        r1.append(r11);
-        r2 = ", applyType = ";
-        r1.append(r2);
-        r1.append(r12);
-        r1 = r1.toString();
-        com.android.camera.log.Log.d(r0, r1);
-        if (r11 != 0) goto L_0x0021;
-    L_0x0020:
-        return;
-    L_0x0021:
-        r0 = r10.mConfigs;
-        r0 = r0.getFlashMode();
-        r1 = 6;
-        r2 = 2;
-        r3 = 3;
-        r4 = 0;
-        r5 = 1;
-        if (r12 == r3) goto L_0x0045;
-    L_0x002f:
-        if (r12 == r1) goto L_0x0032;
-    L_0x0031:
-        goto L_0x0064;
-    L_0x0032:
-        r6 = r10.needOptimizedFlash();
-        if (r6 == 0) goto L_0x0064;
-        r0 = com.android.camera.module.ModuleManager.isCapture();
-        if (r0 == 0) goto L_0x0043;
-    L_0x0040:
-        r0 = r2;
-        r6 = r5;
-        goto L_0x0065;
-    L_0x0043:
-        r0 = r2;
-        goto L_0x0064;
-    L_0x0045:
-        r6 = r10.needOptimizedFlash();
-        if (r6 == 0) goto L_0x0061;
-    L_0x004b:
-        r6 = r10.getExposureTime();
-        r8 = 0;
-        r0 = (r6 > r8 ? 1 : (r6 == r8 ? 0 : -1));
-        if (r0 <= 0) goto L_0x0059;
-    L_0x0056:
-        r0 = r4;
-        r6 = r0;
-        goto L_0x0065;
-        r0 = com.android.camera.module.ModuleManager.isCapture();
-        if (r0 == 0) goto L_0x0043;
-    L_0x0060:
-        goto L_0x0040;
-    L_0x0061:
-        if (r0 != r3) goto L_0x0064;
-    L_0x0063:
-        goto L_0x0056;
-    L_0x0064:
-        r6 = r4;
-    L_0x0065:
-        r7 = TAG;
-        r8 = new java.lang.StringBuilder;
-        r8.<init>();
-        r9 = "applyFlashMode: flashMode = ";
-        r8.append(r9);
-        r8.append(r0);
-        r9 = ", mScreenLightCallback = ";
-        r8.append(r9);
-        r9 = r10.mScreenLightCallback;
-        r8.append(r9);
-        r8 = r8.toString();
-        com.android.camera.log.Log.d(r7, r8);
-        r7 = 101; // 0x65 float:1.42E-43 double:5.0E-322;
-        if (r0 == r7) goto L_0x011a;
-    L_0x0089:
-        r1 = 103; // 0x67 float:1.44E-43 double:5.1E-322;
-        if (r0 == r1) goto L_0x00f9;
-    L_0x008d:
-        switch(r0) {
-            case 0: goto L_0x00e5;
-            case 1: goto L_0x00d1;
-            case 2: goto L_0x00b2;
-            case 3: goto L_0x009e;
-            case 4: goto L_0x0092;
-            default: goto L_0x0090;
-        };
-    L_0x0090:
-        goto L_0x0191;
-    L_0x0092:
-        r12 = android.hardware.camera2.CaptureRequest.CONTROL_AE_MODE;
-        r0 = 4;
-        r0 = java.lang.Integer.valueOf(r0);
-        r11.set(r12, r0);
-        goto L_0x0191;
-    L_0x009e:
-        r12 = android.hardware.camera2.CaptureRequest.CONTROL_AE_MODE;
-        r0 = java.lang.Integer.valueOf(r2);
-        r11.set(r12, r0);
-        r12 = android.hardware.camera2.CaptureRequest.FLASH_MODE;
-        r0 = java.lang.Integer.valueOf(r5);
-        r11.set(r12, r0);
-        goto L_0x0191;
-    L_0x00b2:
-        r12 = r10.mCapabilities;
-        r12 = r12.isSupportSnapShotTorch();
-        if (r12 == 0) goto L_0x00bd;
-    L_0x00ba:
-        com.android.camera2.compat.MiCameraCompat.applySnapshotTorch(r11, r6);
-    L_0x00bd:
-        r12 = android.hardware.camera2.CaptureRequest.CONTROL_AE_MODE;
-        r0 = java.lang.Integer.valueOf(r5);
-        r11.set(r12, r0);
-        r12 = android.hardware.camera2.CaptureRequest.FLASH_MODE;
-        r0 = java.lang.Integer.valueOf(r2);
-        r11.set(r12, r0);
-        goto L_0x0191;
-    L_0x00d1:
-        r12 = android.hardware.camera2.CaptureRequest.CONTROL_AE_MODE;
-        r0 = java.lang.Integer.valueOf(r3);
-        r11.set(r12, r0);
-        r12 = android.hardware.camera2.CaptureRequest.FLASH_MODE;
-        r0 = java.lang.Integer.valueOf(r5);
-        r11.set(r12, r0);
-        goto L_0x0191;
-    L_0x00e5:
-        r12 = android.hardware.camera2.CaptureRequest.CONTROL_AE_MODE;
-        r0 = java.lang.Integer.valueOf(r5);
-        r11.set(r12, r0);
-        r12 = android.hardware.camera2.CaptureRequest.FLASH_MODE;
-        r0 = java.lang.Integer.valueOf(r4);
-        r11.set(r12, r0);
-        goto L_0x0191;
-    L_0x00f9:
-        r11 = TAG;
-        r0 = new java.lang.StringBuilder;
-        r0.<init>();
-        r1 = "applyFlashMode: FLASH_MODE_SCREEN_LIGHT_AUTO applyType = ";
-        r0.append(r1);
-        r0.append(r12);
-        r12 = r0.toString();
-        com.android.camera.log.Log.d(r11, r12);
-        r11 = r10.mScreenLightCallback;
-        if (r11 == 0) goto L_0x0191;
-    L_0x0113:
-        r11 = r10.mScreenLightCallback;
-        r11.stopScreenLight();
-        goto L_0x0191;
-    L_0x011a:
-        r11 = r10.mScreenLightCallback;
-        if (r11 == 0) goto L_0x0191;
-    L_0x011e:
-        if (r12 != r1) goto L_0x0128;
-    L_0x0120:
-        r11 = r10.mCaptureCallback;
-        r11 = r11.getCurrentColorTemperature();
-        r10.mScreenLightColorTemperature = r11;
-    L_0x0128:
-        r11 = "camera_screen_light_wb";
-        r0 = r10.mScreenLightColorTemperature;
-        r11 = android.os.SystemProperties.getInt(r11, r0);
-        r11 = com.android.camera.Util.getScreenLightColor(r11);
-        r0 = "camera_screen_light_brightness";
-        r2 = 180; // 0xb4 float:2.52E-43 double:8.9E-322;
-        r0 = android.os.SystemProperties.getInt(r0, r2);
-        r2 = "camera_screen_light_delay";
-        r2 = android.os.SystemProperties.getInt(r2, r4);
-        r4 = TAG;
-        r5 = new java.lang.StringBuilder;
-        r5.<init>();
-        r6 = "applyFlashMode: FLASH_MODE_SCREEN_LIGHT_ON color = ";
-        r5.append(r6);
-        r5.append(r11);
-        r6 = ", brightness = ";
-        r5.append(r6);
-        r5.append(r0);
-        r6 = ", delay = ";
-        r5.append(r6);
-        r5.append(r2);
-        r6 = ", mCameraHandler = ";
-        r5.append(r6);
-        r6 = r10.mCameraHandler;
-        r5.append(r6);
-        r5 = r5.toString();
-        com.android.camera.log.Log.d(r4, r5);
-        if (r12 == r1) goto L_0x018b;
-    L_0x0174:
-        if (r12 != r3) goto L_0x0177;
-    L_0x0176:
-        goto L_0x018b;
-    L_0x0177:
-        if (r2 != 0) goto L_0x017f;
-    L_0x0179:
-        r11 = r10.mScreenLightCallback;
-        r11.stopScreenLight();
-        goto L_0x0190;
-    L_0x017f:
-        r11 = r10.mCameraHandler;
-        r12 = new com.android.camera2.MiCamera2$8;
-        r12.<init>();
-        r0 = (long) r2;
-        r11.postDelayed(r12, r0);
-        goto L_0x0190;
-    L_0x018b:
-        r12 = r10.mScreenLightCallback;
-        r12.startScreenLight(r11, r0);
-    L_0x0191:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera2.MiCamera2.applyFlashMode(android.hardware.camera2.CaptureRequest$Builder, int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void applyFlashMode(Builder builder, int i) {
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("applyFlashMode: request = ");
+        stringBuilder.append(builder);
+        stringBuilder.append(", applyType = ");
+        stringBuilder.append(i);
+        Log.d(str, stringBuilder.toString());
+        if (builder != null) {
+            boolean z;
+            String str2;
+            StringBuilder stringBuilder2;
+            int flashMode = this.mConfigs.getFlashMode();
+            if (i != 3) {
+                if (i == 6 && needOptimizedFlash()) {
+                }
+                z = false;
+                str2 = TAG;
+                stringBuilder2 = new StringBuilder();
+                stringBuilder2.append("applyFlashMode: flashMode = ");
+                stringBuilder2.append(flashMode);
+                stringBuilder2.append(", mScreenLightCallback = ");
+                stringBuilder2.append(this.mScreenLightCallback);
+                Log.d(str2, stringBuilder2.toString());
+                if (flashMode != 101) {
+                    if (flashMode != 103) {
+                        switch (flashMode) {
+                            case 0:
+                                builder.set(CaptureRequest.CONTROL_AE_MODE, Integer.valueOf(1));
+                                builder.set(CaptureRequest.FLASH_MODE, Integer.valueOf(0));
+                                break;
+                            case 1:
+                                builder.set(CaptureRequest.CONTROL_AE_MODE, Integer.valueOf(3));
+                                builder.set(CaptureRequest.FLASH_MODE, Integer.valueOf(1));
+                                break;
+                            case 2:
+                                if (this.mCapabilities.isSupportSnapShotTorch()) {
+                                    MiCameraCompat.applySnapshotTorch(builder, z);
+                                }
+                                builder.set(CaptureRequest.CONTROL_AE_MODE, Integer.valueOf(1));
+                                builder.set(CaptureRequest.FLASH_MODE, Integer.valueOf(2));
+                                break;
+                            case 3:
+                                builder.set(CaptureRequest.CONTROL_AE_MODE, Integer.valueOf(2));
+                                builder.set(CaptureRequest.FLASH_MODE, Integer.valueOf(1));
+                                break;
+                            case 4:
+                                builder.set(CaptureRequest.CONTROL_AE_MODE, Integer.valueOf(4));
+                                break;
+                        }
+                    }
+                    String str3 = TAG;
+                    StringBuilder stringBuilder3 = new StringBuilder();
+                    stringBuilder3.append("applyFlashMode: FLASH_MODE_SCREEN_LIGHT_AUTO applyType = ");
+                    stringBuilder3.append(i);
+                    Log.d(str3, stringBuilder3.toString());
+                    if (this.mScreenLightCallback != null) {
+                        this.mScreenLightCallback.stopScreenLight();
+                    }
+                } else if (this.mScreenLightCallback != null) {
+                    if (i == 6) {
+                        this.mScreenLightColorTemperature = this.mCaptureCallback.getCurrentColorTemperature();
+                    }
+                    int screenLightColor = Util.getScreenLightColor(SystemProperties.getInt("camera_screen_light_wb", this.mScreenLightColorTemperature));
+                    flashMode = SystemProperties.getInt("camera_screen_light_brightness", 180);
+                    int i2 = SystemProperties.getInt("camera_screen_light_delay", 0);
+                    String str4 = TAG;
+                    StringBuilder stringBuilder4 = new StringBuilder();
+                    stringBuilder4.append("applyFlashMode: FLASH_MODE_SCREEN_LIGHT_ON color = ");
+                    stringBuilder4.append(screenLightColor);
+                    stringBuilder4.append(", brightness = ");
+                    stringBuilder4.append(flashMode);
+                    stringBuilder4.append(", delay = ");
+                    stringBuilder4.append(i2);
+                    stringBuilder4.append(", mCameraHandler = ");
+                    stringBuilder4.append(this.mCameraHandler);
+                    Log.d(str4, stringBuilder4.toString());
+                    if (i == 6 || i == 3) {
+                        this.mScreenLightCallback.startScreenLight(screenLightColor, flashMode);
+                    } else if (i2 == 0) {
+                        this.mScreenLightCallback.stopScreenLight();
+                    } else {
+                        this.mCameraHandler.postDelayed(new Runnable() {
+                            public void run() {
+                                MiCamera2.this.mScreenLightCallback.stopScreenLight();
+                            }
+                        }, (long) i2);
+                    }
+                }
+            }
+            if (needOptimizedFlash()) {
+                if (getExposureTime() <= 0) {
+                }
+            }
+            flashMode = 0;
+            z = flashMode;
+            str2 = TAG;
+            stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("applyFlashMode: flashMode = ");
+            stringBuilder2.append(flashMode);
+            stringBuilder2.append(", mScreenLightCallback = ");
+            stringBuilder2.append(this.mScreenLightCallback);
+            Log.d(str2, stringBuilder2.toString());
+            if (flashMode != 101) {
+            }
+            flashMode = 2;
+            z = true;
+            str2 = TAG;
+            stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("applyFlashMode: flashMode = ");
+            stringBuilder2.append(flashMode);
+            stringBuilder2.append(", mScreenLightCallback = ");
+            stringBuilder2.append(this.mScreenLightCallback);
+            Log.d(str2, stringBuilder2.toString());
+            if (flashMode != 101) {
+            }
+        }
     }
 
     private void applyFocusMode(Builder builder) {

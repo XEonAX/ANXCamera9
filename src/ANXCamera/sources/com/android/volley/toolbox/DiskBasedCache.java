@@ -198,73 +198,34 @@ public class DiskBasedCache implements Cache {
     /* JADX WARNING: Missing block: B:8:0x0023, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public synchronized void initialize() {
-        /*
-        r9 = this;
-        monitor-enter(r9);
-        r0 = r9.mRootDirectory;	 Catch:{ all -> 0x0063 }
-        r0 = r0.exists();	 Catch:{ all -> 0x0063 }
-        r1 = 0;
-        if (r0 != 0) goto L_0x0024;
-    L_0x000a:
-        r0 = r9.mRootDirectory;	 Catch:{ all -> 0x0063 }
-        r0 = r0.mkdirs();	 Catch:{ all -> 0x0063 }
-        if (r0 != 0) goto L_0x0022;
-    L_0x0012:
-        r0 = "Unable to create cache dir %s";
-        r2 = 1;
-        r2 = new java.lang.Object[r2];	 Catch:{ all -> 0x0063 }
-        r3 = r9.mRootDirectory;	 Catch:{ all -> 0x0063 }
-        r3 = r3.getAbsolutePath();	 Catch:{ all -> 0x0063 }
-        r2[r1] = r3;	 Catch:{ all -> 0x0063 }
-        com.android.volley.VolleyLog.e(r0, r2);	 Catch:{ all -> 0x0063 }
-    L_0x0022:
-        monitor-exit(r9);
-        return;
-    L_0x0024:
-        r0 = r9.mRootDirectory;	 Catch:{ all -> 0x0063 }
-        r0 = r0.listFiles();	 Catch:{ all -> 0x0063 }
-        if (r0 != 0) goto L_0x002e;
-    L_0x002c:
-        monitor-exit(r9);
-        return;
-    L_0x002e:
-        r2 = r0.length;	 Catch:{ all -> 0x0063 }
-    L_0x002f:
-        if (r1 >= r2) goto L_0x0061;
-    L_0x0031:
-        r3 = r0[r1];	 Catch:{ all -> 0x0063 }
-        r4 = r3.length();	 Catch:{ IOException -> 0x005a }
-        r6 = new com.android.volley.toolbox.DiskBasedCache$CountingInputStream;	 Catch:{ IOException -> 0x005a }
-        r7 = new java.io.BufferedInputStream;	 Catch:{ IOException -> 0x005a }
-        r8 = r9.createInputStream(r3);	 Catch:{ IOException -> 0x005a }
-        r7.<init>(r8);	 Catch:{ IOException -> 0x005a }
-        r6.<init>(r7, r4);	 Catch:{ IOException -> 0x005a }
-        r7 = com.android.volley.toolbox.DiskBasedCache.CacheHeader.readHeader(r6);	 Catch:{ all -> 0x0055 }
-        r7.size = r4;	 Catch:{ all -> 0x0055 }
-        r4 = r7.key;	 Catch:{ all -> 0x0055 }
-        r9.putEntry(r4, r7);	 Catch:{ all -> 0x0055 }
-        r6.close();	 Catch:{ IOException -> 0x005a }
-        goto L_0x005e;
-    L_0x0055:
-        r4 = move-exception;
-        r6.close();	 Catch:{ IOException -> 0x005a }
-        throw r4;	 Catch:{ IOException -> 0x005a }
-    L_0x005a:
-        r4 = move-exception;
-        r3.delete();	 Catch:{ all -> 0x0063 }
-    L_0x005e:
-        r1 = r1 + 1;
-        goto L_0x002f;
-    L_0x0061:
-        monitor-exit(r9);
-        return;
-    L_0x0063:
-        r0 = move-exception;
-        monitor-exit(r9);
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.volley.toolbox.DiskBasedCache.initialize():void");
+        int i = 0;
+        if (this.mRootDirectory.exists()) {
+            File[] listFiles = this.mRootDirectory.listFiles();
+            if (listFiles != null) {
+                int length = listFiles.length;
+                while (i < length) {
+                    File file = listFiles[i];
+                    CountingInputStream countingInputStream;
+                    try {
+                        long length2 = file.length();
+                        countingInputStream = new CountingInputStream(new BufferedInputStream(createInputStream(file)), length2);
+                        CacheHeader readHeader = CacheHeader.readHeader(countingInputStream);
+                        readHeader.size = length2;
+                        putEntry(readHeader.key, readHeader);
+                        countingInputStream.close();
+                    } catch (IOException e) {
+                        file.delete();
+                    } catch (Throwable th) {
+                        countingInputStream.close();
+                    }
+                    i++;
+                }
+            }
+        } else if (!this.mRootDirectory.mkdirs()) {
+            VolleyLog.e("Unable to create cache dir %s", this.mRootDirectory.getAbsolutePath());
+        }
     }
 
     public synchronized void invalidate(String str, boolean z) {

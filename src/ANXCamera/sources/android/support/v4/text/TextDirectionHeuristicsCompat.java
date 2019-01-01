@@ -149,32 +149,25 @@ public class TextDirectionHeuristicsCompat {
     /* JADX WARNING: Missing block: B:7:0x000b, code:
             return 1;
      */
-    private static int isRtlTextOrFormat(int r1) {
-        /*
-        switch(r1) {
-            case 0: goto L_0x000a;
-            case 1: goto L_0x0008;
-            case 2: goto L_0x0008;
-            default: goto L_0x0003;
-        };
-    L_0x0003:
-        switch(r1) {
-            case 14: goto L_0x000a;
-            case 15: goto L_0x000a;
-            case 16: goto L_0x0008;
-            case 17: goto L_0x0008;
-            default: goto L_0x0006;
-        };
-    L_0x0006:
-        r0 = 2;
-        return r0;
-    L_0x0008:
-        r0 = 0;
-        return r0;
-    L_0x000a:
-        r0 = 1;
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.text.TextDirectionHeuristicsCompat.isRtlTextOrFormat(int):int");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static int isRtlTextOrFormat(int directionality) {
+        switch (directionality) {
+            case 0:
+                break;
+            case 1:
+            case 2:
+                break;
+            default:
+                switch (directionality) {
+                    case 14:
+                    case 15:
+                        break;
+                    case 16:
+                    case 17:
+                        break;
+                    default:
+                        return 2;
+                }
+        }
     }
 }

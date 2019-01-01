@@ -154,46 +154,18 @@ public final class Pools {
         /* JADX WARNING: Missing block: B:20:0x002f, code:
             return;
      */
-        public synchronized void resize(int r3) {
-            /*
-            r2 = this;
-            monitor-enter(r2);
-            r0 = r2.JC;	 Catch:{ all -> 0x0030 }
-            r0 = r0.getCapacity();	 Catch:{ all -> 0x0030 }
-            r3 = r3 + r0;
-            if (r3 > 0) goto L_0x0020;
-        L_0x000a:
-            r3 = miui.util.Pools.Jv;	 Catch:{ all -> 0x0030 }
-            monitor-enter(r3);	 Catch:{ all -> 0x0030 }
-            r0 = miui.util.Pools.Jv;	 Catch:{ all -> 0x001d }
-            r1 = r2.dD();	 Catch:{ all -> 0x001d }
-            r0.remove(r1);	 Catch:{ all -> 0x001d }
-            monitor-exit(r3);	 Catch:{ all -> 0x001d }
-            monitor-exit(r2);
-            return;
-        L_0x001d:
-            r0 = move-exception;
-            monitor-exit(r3);	 Catch:{ all -> 0x001d }
-            throw r0;	 Catch:{ all -> 0x0030 }
-        L_0x0020:
-            if (r3 <= 0) goto L_0x0028;
-        L_0x0022:
-            r0 = r2.JC;	 Catch:{ all -> 0x0030 }
-            r0.increaseCapacity(r3);	 Catch:{ all -> 0x0030 }
-            goto L_0x002e;
-        L_0x0028:
-            r0 = r2.JC;	 Catch:{ all -> 0x0030 }
-            r3 = -r3;
-            r0.decreaseCapacity(r3);	 Catch:{ all -> 0x0030 }
-        L_0x002e:
-            monitor-exit(r2);
-            return;
-        L_0x0030:
-            r3 = move-exception;
-            monitor-exit(r2);
-            throw r3;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: miui.util.Pools.InstanceHolder.resize(int):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public synchronized void resize(int i) {
+            i += this.JC.getCapacity();
+            if (i <= 0) {
+                synchronized (Pools.Jv) {
+                    Pools.Jv.remove(dD());
+                }
+            } else if (i > 0) {
+                this.JC.increaseCapacity(i);
+            } else {
+                this.JC.decreaseCapacity(-i);
+            }
         }
 
         public T get() {
@@ -242,46 +214,23 @@ public final class Pools {
         /* JADX WARNING: Missing block: B:20:0x002e, code:
             return;
      */
-        public synchronized void resize(int r4) {
-            /*
-            r3 = this;
-            monitor-enter(r3);
-            r0 = r3.Hf;	 Catch:{ all -> 0x002f }
-            r4 = r4 + r0;
-            if (r4 > 0) goto L_0x001c;
-        L_0x0006:
-            r4 = miui.util.Pools.Jw;	 Catch:{ all -> 0x002f }
-            monitor-enter(r4);	 Catch:{ all -> 0x002f }
-            r0 = miui.util.Pools.Jw;	 Catch:{ all -> 0x0019 }
-            r1 = r3.dD();	 Catch:{ all -> 0x0019 }
-            r0.remove(r1);	 Catch:{ all -> 0x0019 }
-            monitor-exit(r4);	 Catch:{ all -> 0x0019 }
-            monitor-exit(r3);
-            return;
-        L_0x0019:
-            r0 = move-exception;
-            monitor-exit(r4);	 Catch:{ all -> 0x0019 }
-            throw r0;	 Catch:{ all -> 0x002f }
-        L_0x001c:
-            r3.Hf = r4;	 Catch:{ all -> 0x002f }
-            r0 = r3.JD;	 Catch:{ all -> 0x002f }
-            r1 = r3.mIndex;	 Catch:{ all -> 0x002f }
-            r2 = r0.length;	 Catch:{ all -> 0x002f }
-            if (r4 <= r2) goto L_0x002d;
-        L_0x0025:
-            r4 = new java.lang.ref.SoftReference[r4];	 Catch:{ all -> 0x002f }
-            r2 = 0;
-            java.lang.System.arraycopy(r0, r2, r4, r2, r1);	 Catch:{ all -> 0x002f }
-            r3.JD = r4;	 Catch:{ all -> 0x002f }
-        L_0x002d:
-            monitor-exit(r3);
-            return;
-        L_0x002f:
-            r4 = move-exception;
-            monitor-exit(r3);
-            throw r4;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: miui.util.Pools.SoftReferenceInstanceHolder.resize(int):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public synchronized void resize(int i) {
+            i += this.Hf;
+            if (i <= 0) {
+                synchronized (Pools.Jw) {
+                    Pools.Jw.remove(dD());
+                }
+                return;
+            }
+            this.Hf = i;
+            Object obj = this.JD;
+            int i2 = this.mIndex;
+            if (i > obj.length) {
+                Object obj2 = new SoftReference[i];
+                System.arraycopy(obj, 0, obj2, 0, i2);
+                this.JD = obj2;
+            }
         }
 
         public synchronized T get() {

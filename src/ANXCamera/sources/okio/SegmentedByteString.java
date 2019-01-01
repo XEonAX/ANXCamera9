@@ -239,34 +239,19 @@ final class SegmentedByteString extends ByteString {
     /* JADX WARNING: Missing block: B:8:0x001d, code:
             if (rangeEquals(0, r5, 0, size()) != false) goto L_0x0021;
      */
-    public boolean equals(java.lang.Object r5) {
-        /*
-        r4 = this;
-        r0 = 1;
-        if (r5 != r4) goto L_0x0004;
-    L_0x0003:
-        return r0;
-    L_0x0004:
-        r1 = r5 instanceof okio.ByteString;
-        r2 = 0;
-        if (r1 == 0) goto L_0x0020;
-    L_0x0009:
-        r5 = (okio.ByteString) r5;
-        r1 = r5.size();
-        r3 = r4.size();
-        if (r1 != r3) goto L_0x0020;
-    L_0x0015:
-        r1 = r4.size();
-        r5 = r4.rangeEquals(r2, r5, r2, r1);
-        if (r5 == 0) goto L_0x0020;
-    L_0x001f:
-        goto L_0x0021;
-    L_0x0020:
-        r0 = r2;
-    L_0x0021:
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okio.SegmentedByteString.equals(java.lang.Object):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean equals(Object obj) {
+        boolean z = true;
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof ByteString) {
+            ByteString byteString = (ByteString) obj;
+            if (byteString.size() == size()) {
+            }
+        }
+        z = false;
+        return z;
     }
 
     public int hashCode() {

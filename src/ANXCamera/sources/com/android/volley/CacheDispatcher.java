@@ -3,6 +3,7 @@ package com.android.volley;
 import android.os.Process;
 import android.support.annotation.VisibleForTesting;
 import com.android.volley.Cache.Entry;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,61 +73,27 @@ public class CacheDispatcher extends Thread {
         /* JADX WARNING: Missing block: B:17:0x0051, code:
             return false;
      */
-        private synchronized boolean maybeAddToWaitingRequests(com.android.volley.Request<?> r6) {
-            /*
-            r5 = this;
-            monitor-enter(r5);
-            r0 = r6.getCacheKey();	 Catch:{ all -> 0x0052 }
-            r1 = r5.mWaitingRequests;	 Catch:{ all -> 0x0052 }
-            r1 = r1.containsKey(r0);	 Catch:{ all -> 0x0052 }
-            r2 = 0;
-            r3 = 1;
-            if (r1 == 0) goto L_0x003a;
-        L_0x000f:
-            r1 = r5.mWaitingRequests;	 Catch:{ all -> 0x0052 }
-            r1 = r1.get(r0);	 Catch:{ all -> 0x0052 }
-            r1 = (java.util.List) r1;	 Catch:{ all -> 0x0052 }
-            if (r1 != 0) goto L_0x001e;
-        L_0x0019:
-            r1 = new java.util.ArrayList;	 Catch:{ all -> 0x0052 }
-            r1.<init>();	 Catch:{ all -> 0x0052 }
-        L_0x001e:
-            r4 = "waiting-for-response";
-            r6.addMarker(r4);	 Catch:{ all -> 0x0052 }
-            r1.add(r6);	 Catch:{ all -> 0x0052 }
-            r6 = r5.mWaitingRequests;	 Catch:{ all -> 0x0052 }
-            r6.put(r0, r1);	 Catch:{ all -> 0x0052 }
-            r6 = com.android.volley.VolleyLog.DEBUG;	 Catch:{ all -> 0x0052 }
-            if (r6 == 0) goto L_0x0038;
-        L_0x002f:
-            r6 = "Request for cacheKey=%s is in flight, putting on hold.";
-            r1 = new java.lang.Object[r3];	 Catch:{ all -> 0x0052 }
-            r1[r2] = r0;	 Catch:{ all -> 0x0052 }
-            com.android.volley.VolleyLog.d(r6, r1);	 Catch:{ all -> 0x0052 }
-        L_0x0038:
-            monitor-exit(r5);
-            return r3;
-        L_0x003a:
-            r1 = r5.mWaitingRequests;	 Catch:{ all -> 0x0052 }
-            r4 = 0;
-            r1.put(r0, r4);	 Catch:{ all -> 0x0052 }
-            r6.setNetworkRequestCompleteListener(r5);	 Catch:{ all -> 0x0052 }
-            r6 = com.android.volley.VolleyLog.DEBUG;	 Catch:{ all -> 0x0052 }
-            if (r6 == 0) goto L_0x0050;
-        L_0x0047:
-            r6 = "new request, sending to network %s";
-            r1 = new java.lang.Object[r3];	 Catch:{ all -> 0x0052 }
-            r1[r2] = r0;	 Catch:{ all -> 0x0052 }
-            com.android.volley.VolleyLog.d(r6, r1);	 Catch:{ all -> 0x0052 }
-        L_0x0050:
-            monitor-exit(r5);
-            return r2;
-        L_0x0052:
-            r6 = move-exception;
-            monitor-exit(r5);
-            throw r6;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.android.volley.CacheDispatcher.WaitingRequestManager.maybeAddToWaitingRequests(com.android.volley.Request):boolean");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        private synchronized boolean maybeAddToWaitingRequests(Request<?> request) {
+            String cacheKey = request.getCacheKey();
+            if (this.mWaitingRequests.containsKey(cacheKey)) {
+                List list = (List) this.mWaitingRequests.get(cacheKey);
+                if (list == null) {
+                    list = new ArrayList();
+                }
+                request.addMarker("waiting-for-response");
+                list.add(request);
+                this.mWaitingRequests.put(cacheKey, list);
+                if (VolleyLog.DEBUG) {
+                    VolleyLog.d("Request for cacheKey=%s is in flight, putting on hold.", cacheKey);
+                }
+            } else {
+                this.mWaitingRequests.put(cacheKey, null);
+                request.setNetworkRequestCompleteListener(this);
+                if (VolleyLog.DEBUG) {
+                    VolleyLog.d("new request, sending to network %s", cacheKey);
+                }
+            }
         }
     }
 

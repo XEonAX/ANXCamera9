@@ -1150,34 +1150,15 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
     /* JADX WARNING: Missing block: B:7:0x0027, code:
             return;
      */
-    protected void onSizeChanged(int r3, int r4, int r5, int r6) {
-        /*
-        r2 = this;
-        super.onSizeChanged(r3, r4, r5, r6);
-        r0 = r2.findFocus();
-        if (r0 == 0) goto L_0x0027;
-    L_0x0009:
-        if (r2 != r0) goto L_0x000c;
-    L_0x000b:
-        goto L_0x0027;
-    L_0x000c:
-        r1 = 0;
-        r1 = r2.isWithinDeltaOfScreen(r0, r1, r6);
-        if (r1 == 0) goto L_0x0026;
-    L_0x0013:
-        r1 = r2.mTempRect;
-        r0.getDrawingRect(r1);
-        r1 = r2.mTempRect;
-        r2.offsetDescendantRectToMyCoords(r0, r1);
-        r1 = r2.mTempRect;
-        r1 = r2.computeScrollDeltaToGetChildRectOnScreen(r1);
-        r2.doScrollY(r1);
-    L_0x0026:
-        return;
-    L_0x0027:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.widget.NestedScrollView.onSizeChanged(int, int, int, int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        View currentFocused = findFocus();
+        if (!(currentFocused == null || this == currentFocused || !isWithinDeltaOfScreen(currentFocused, 0, oldh))) {
+            currentFocused.getDrawingRect(this.mTempRect);
+            offsetDescendantRectToMyCoords(currentFocused, this.mTempRect);
+            doScrollY(computeScrollDeltaToGetChildRectOnScreen(this.mTempRect));
+        }
     }
 
     private static boolean isViewDescendantOf(View child, View parent) {

@@ -229,54 +229,18 @@ public class PanoMovingIndicatorView extends View {
     /* JADX WARNING: Missing block: B:9:0x004b, code:
             return false;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public boolean isFar() {
-        /*
-        r4 = this;
-        r0 = r4.mCurrentFramePos;
-        r0 = r0.y;
-        r1 = 0;
-        r2 = -2147483648; // 0xffffffff80000000 float:-0.0 double:NaN;
-        if (r0 == r2) goto L_0x004b;
-    L_0x0009:
-        r0 = r4.mPreviewCenterY;
-        if (r0 != 0) goto L_0x000e;
-    L_0x000d:
-        goto L_0x004b;
-    L_0x000e:
-        r0 = r4.mCurrentFramePos;
-        r0 = r0.y;
-        r2 = r4.mPreviewCenterY;
-        r0 = r0 - r2;
-        r0 = java.lang.Math.abs(r0);
-        r0 = (float) r0;
-        r2 = 1048576000; // 0x3e800000 float:0.25 double:5.180653787E-315;
-        r3 = r4.mPreviewCenterY;
-        r3 = (float) r3;
-        r2 = r2 * r3;
-        r0 = (r0 > r2 ? 1 : (r0 == r2 ? 0 : -1));
-        if (r0 < 0) goto L_0x004a;
-    L_0x0024:
-        r0 = TAG;
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "too far current relative y is ";
-        r1.append(r2);
-        r2 = r4.mCurrentFramePos;
-        r2 = r2.y;
-        r1.append(r2);
-        r2 = " refy is ";
-        r1.append(r2);
-        r2 = r4.mPreviewCenterY;
-        r1.append(r2);
-        r1 = r1.toString();
-        com.android.camera.log.Log.e(r0, r1);
-        r0 = 1;
-        return r0;
-    L_0x004a:
-        return r1;
-    L_0x004b:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.ui.PanoMovingIndicatorView.isFar():boolean");
+        if (this.mCurrentFramePos.y == Integer.MIN_VALUE || this.mPreviewCenterY == 0 || ((float) Math.abs(this.mCurrentFramePos.y - this.mPreviewCenterY)) < SHOW_ALIGN_THRESHOLD * ((float) this.mPreviewCenterY)) {
+            return false;
+        }
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("too far current relative y is ");
+        stringBuilder.append(this.mCurrentFramePos.y);
+        stringBuilder.append(" refy is ");
+        stringBuilder.append(this.mPreviewCenterY);
+        Log.e(str, stringBuilder.toString());
+        return true;
     }
 }

@@ -12,6 +12,7 @@ import android.hardware.Camera.CameraInfo;
 import android.hardware.Camera.Parameters;
 import android.hardware.Camera.Size;
 import android.os.Build;
+import android.os.Build.VERSION;
 import android.provider.MiuiSettings.ScreenEffect;
 import android.support.annotation.Keep;
 import android.text.TextUtils;
@@ -152,106 +153,57 @@ public class CameraInstance {
     /* JADX WARNING: Missing block: B:33:0x0082, code:
             return true;
      */
-    public synchronized boolean tryOpenCamera(com.ss.android.ttve.utils.CameraInstance.CameraOpenCallback r7, int r8) {
-        /*
-        r6 = this;
-        monitor-enter(r6);
-        r0 = "CameraInstance";
-        r1 = "try open camera...";
-        com.ss.android.ttve.common.TELogUtil.i(r0, r1);	 Catch:{ all -> 0x009e }
-        r0 = 0;
-        r1 = 0;
-        r2 = android.os.Build.VERSION.SDK_INT;	 Catch:{ Exception -> 0x008f }
-        r3 = 8;
-        if (r2 <= r3) goto L_0x002a;
-    L_0x0010:
-        r2 = android.hardware.Camera.getNumberOfCameras();	 Catch:{ Exception -> 0x008f }
-        r3 = new android.hardware.Camera$CameraInfo;	 Catch:{ Exception -> 0x008f }
-        r3.<init>();	 Catch:{ Exception -> 0x008f }
-        r4 = r1;
-    L_0x001a:
-        if (r4 >= r2) goto L_0x002a;
-    L_0x001c:
-        android.hardware.Camera.getCameraInfo(r4, r3);	 Catch:{ Exception -> 0x008f }
-        r5 = r3.facing;	 Catch:{ Exception -> 0x008f }
-        if (r5 != r8) goto L_0x0027;
-    L_0x0023:
-        r6.mDefaultCameraID = r4;	 Catch:{ Exception -> 0x008f }
-        r6.mFacing = r8;	 Catch:{ Exception -> 0x008f }
-    L_0x0027:
-        r4 = r4 + 1;
-        goto L_0x001a;
-    L_0x002a:
-        r6.stopPreview();	 Catch:{ Exception -> 0x008f }
-        r8 = r6.mCameraDevice;	 Catch:{ Exception -> 0x008f }
-        if (r8 == 0) goto L_0x0036;
-    L_0x0031:
-        r8 = r6.mCameraDevice;	 Catch:{ Exception -> 0x008f }
-        r8.release();	 Catch:{ Exception -> 0x008f }
-    L_0x0036:
-        r8 = r6.mDefaultCameraID;	 Catch:{ Exception -> 0x008f }
-        if (r8 < 0) goto L_0x0043;
-    L_0x003a:
-        r8 = r6.mDefaultCameraID;	 Catch:{ Exception -> 0x008f }
-        r8 = android.hardware.Camera.open(r8);	 Catch:{ Exception -> 0x008f }
-        r6.mCameraDevice = r8;	 Catch:{ Exception -> 0x008f }
-        goto L_0x004b;
-    L_0x0043:
-        r8 = android.hardware.Camera.open();	 Catch:{ Exception -> 0x008f }
-        r6.mCameraDevice = r8;	 Catch:{ Exception -> 0x008f }
-        r6.mFacing = r1;	 Catch:{ Exception -> 0x008f }
-    L_0x004b:
-        r8 = r6.setOrientationDegrees(r1);	 Catch:{ Exception -> 0x008f }
-        r6.mRotation = r8;	 Catch:{ Exception -> 0x008f }
-        r8 = "CameraInstance";
-        r2 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x008f }
-        r2.<init>();	 Catch:{ Exception -> 0x008f }
-        r3 = "Camera rotation = ";
-        r2.append(r3);	 Catch:{ Exception -> 0x008f }
-        r3 = r6.mRotation;	 Catch:{ Exception -> 0x008f }
-        r2.append(r3);	 Catch:{ Exception -> 0x008f }
-        r2 = r2.toString();	 Catch:{ Exception -> 0x008f }
-        com.ss.android.ttve.common.TELogUtil.d(r8, r2);	 Catch:{ Exception -> 0x008f }
-        r8 = r6.mCameraDevice;	 Catch:{ all -> 0x009e }
-        if (r8 == 0) goto L_0x008d;
-    L_0x006e:
-        r8 = "CameraInstance";
-        r2 = "Camera opened!";
-        com.ss.android.ttve.common.TELogUtil.i(r8, r2);	 Catch:{ all -> 0x009e }
-        r8 = 30;
-        r6.initCamera(r8);	 Catch:{ Exception -> 0x0083 }
-        if (r7 == 0) goto L_0x0080;
-    L_0x007d:
-        r7.cameraReady();	 Catch:{ all -> 0x009e }
-    L_0x0080:
-        monitor-exit(r6);
-        r7 = 1;
-        return r7;
-    L_0x0083:
-        r7 = move-exception;
-        r7 = r6.mCameraDevice;	 Catch:{ all -> 0x009e }
-        r7.release();	 Catch:{ all -> 0x009e }
-        r6.mCameraDevice = r0;	 Catch:{ all -> 0x009e }
-        monitor-exit(r6);
-        return r1;
-    L_0x008d:
-        monitor-exit(r6);
-        return r1;
-    L_0x008f:
-        r7 = move-exception;
-        r8 = "CameraInstance";
-        r2 = "Open Camera Failed!";
-        com.ss.android.ttve.common.TELogUtil.e(r8, r2);	 Catch:{ all -> 0x009e }
-        r7.printStackTrace();	 Catch:{ all -> 0x009e }
-        r6.mCameraDevice = r0;	 Catch:{ all -> 0x009e }
-        monitor-exit(r6);
-        return r1;
-    L_0x009e:
-        r7 = move-exception;
-        monitor-exit(r6);
-        throw r7;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.ss.android.ttve.utils.CameraInstance.tryOpenCamera(com.ss.android.ttve.utils.CameraInstance$CameraOpenCallback, int):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public synchronized boolean tryOpenCamera(CameraOpenCallback cameraOpenCallback, int i) {
+        TELogUtil.i(TAG, "try open camera...");
+        try {
+            if (VERSION.SDK_INT > 8) {
+                int numberOfCameras = Camera.getNumberOfCameras();
+                CameraInfo cameraInfo = new CameraInfo();
+                for (int i2 = 0; i2 < numberOfCameras; i2++) {
+                    Camera.getCameraInfo(i2, cameraInfo);
+                    if (cameraInfo.facing == i) {
+                        this.mDefaultCameraID = i2;
+                        this.mFacing = i;
+                    }
+                }
+            }
+            stopPreview();
+            if (this.mCameraDevice != null) {
+                this.mCameraDevice.release();
+            }
+            if (this.mDefaultCameraID >= 0) {
+                this.mCameraDevice = Camera.open(this.mDefaultCameraID);
+            } else {
+                this.mCameraDevice = Camera.open();
+                this.mFacing = 0;
+            }
+            this.mRotation = setOrientationDegrees(0);
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Camera rotation = ");
+            stringBuilder.append(this.mRotation);
+            TELogUtil.d(str, stringBuilder.toString());
+            if (this.mCameraDevice == null) {
+                return false;
+            }
+            TELogUtil.i(TAG, "Camera opened!");
+            try {
+                initCamera(30);
+                if (cameraOpenCallback != null) {
+                    cameraOpenCallback.cameraReady();
+                }
+            } catch (Exception e) {
+                this.mCameraDevice.release();
+                this.mCameraDevice = null;
+                return false;
+            }
+        } catch (Exception e2) {
+            TELogUtil.e(TAG, "Open Camera Failed!");
+            e2.printStackTrace();
+            this.mCameraDevice = null;
+            return false;
+        }
     }
 
     public synchronized void stopCamera() {
@@ -419,35 +371,14 @@ public class CameraInstance {
     /* JADX WARNING: Missing block: B:11:0x0021, code:
             return;
      */
-    public synchronized void setFocusMode(java.lang.String r2) {
-        /*
-        r1 = this;
-        monitor-enter(r1);
-        r0 = r1.mCameraDevice;	 Catch:{ all -> 0x0022 }
-        if (r0 != 0) goto L_0x0007;
-    L_0x0005:
-        monitor-exit(r1);
-        return;
-    L_0x0007:
-        r0 = r1.mCameraDevice;	 Catch:{ all -> 0x0022 }
-        r0 = r0.getParameters();	 Catch:{ all -> 0x0022 }
-        r1.mParams = r0;	 Catch:{ all -> 0x0022 }
-        r0 = r1.mParams;	 Catch:{ all -> 0x0022 }
-        r0 = r0.getSupportedFocusModes();	 Catch:{ all -> 0x0022 }
-        r0 = r0.contains(r2);	 Catch:{ all -> 0x0022 }
-        if (r0 == 0) goto L_0x0020;
-    L_0x001b:
-        r0 = r1.mParams;	 Catch:{ all -> 0x0022 }
-        r0.setFocusMode(r2);	 Catch:{ all -> 0x0022 }
-    L_0x0020:
-        monitor-exit(r1);
-        return;
-    L_0x0022:
-        r2 = move-exception;
-        monitor-exit(r1);
-        throw r2;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.ss.android.ttve.utils.CameraInstance.setFocusMode(java.lang.String):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public synchronized void setFocusMode(String str) {
+        if (this.mCameraDevice != null) {
+            this.mParams = this.mCameraDevice.getParameters();
+            if (this.mParams.getSupportedFocusModes().contains(str)) {
+                this.mParams.setFocusMode(str);
+            }
+        }
     }
 
     public synchronized void setPictureSize(int i, int i2, boolean z) {

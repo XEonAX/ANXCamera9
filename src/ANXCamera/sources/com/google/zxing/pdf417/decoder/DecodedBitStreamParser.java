@@ -1,7 +1,10 @@
 package com.google.zxing.pdf417.decoder;
 
 import com.google.zxing.FormatException;
+import com.google.zxing.common.CharacterSetECI;
+import com.google.zxing.common.DecoderResult;
 import com.google.zxing.pdf417.PDF417ResultMetadata;
+import java.io.ByteArrayOutputStream;
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.util.Arrays;
@@ -91,108 +94,68 @@ final class DecodedBitStreamParser {
     /* JADX WARNING: Missing block: B:21:0x006a, code:
             r3 = byteCompaction(r2, r8, r1, r3, r0);
      */
-    static com.google.zxing.common.DecoderResult decode(int[] r8, java.lang.String r9) throws com.google.zxing.FormatException {
-        /*
-        r0 = new java.lang.StringBuilder;
-        r1 = r8.length;
-        r1 = r1 * 2;
-        r0.<init>(r1);
-        r1 = DEFAULT_ENCODING;
-        r2 = 1;
-        r3 = r2 + 1;
-        r2 = r8[r2];
-        r4 = new com.google.zxing.pdf417.PDF417ResultMetadata;
-        r4.<init>();
-    L_0x0014:
-        r5 = 0;
-        r5 = r8[r5];
-        if (r3 < r5) goto L_0x0032;
-    L_0x0019:
-        r5 = r0.length();
-        if (r5 == 0) goto L_0x002d;
-    L_0x001f:
-        r5 = new com.google.zxing.common.DecoderResult;
-        r6 = r0.toString();
-        r7 = 0;
-        r5.<init>(r7, r6, r7, r9);
-        r5.setOther(r4);
-        return r5;
-    L_0x002d:
-        r5 = com.google.zxing.FormatException.getFormatInstance();
-        throw r5;
-    L_0x0032:
-        r5 = 913; // 0x391 float:1.28E-42 double:4.51E-321;
-        if (r2 == r5) goto L_0x0074;
-    L_0x0036:
-        switch(r2) {
-            case 900: goto L_0x006f;
-            case 901: goto L_0x006a;
-            case 902: goto L_0x0065;
-            default: goto L_0x0039;
-        };
-    L_0x0039:
-        switch(r2) {
-            case 922: goto L_0x0060;
-            case 923: goto L_0x0060;
-            case 924: goto L_0x006a;
-            case 925: goto L_0x005d;
-            case 926: goto L_0x005a;
-            case 927: goto L_0x0048;
-            case 928: goto L_0x0043;
-            default: goto L_0x003c;
-        };
-    L_0x003c:
-        r3 = r3 + -1;
-        r3 = textCompaction(r8, r3, r0);
-        goto L_0x007e;
-    L_0x0043:
-        r3 = decodeMacroBlock(r8, r3, r4);
-        goto L_0x007e;
-    L_0x0048:
-        r5 = r3 + 1;
-        r3 = r8[r3];
-        r3 = com.google.zxing.common.CharacterSetECI.getCharacterSetECIByValue(r3);
-        r6 = r3.name();
-        r1 = java.nio.charset.Charset.forName(r6);
-        goto L_0x007d;
-    L_0x005a:
-        r3 = r3 + 2;
-        goto L_0x007e;
-    L_0x005d:
-        r3 = r3 + 1;
-        goto L_0x007e;
-    L_0x0060:
-        r5 = com.google.zxing.FormatException.getFormatInstance();
-        throw r5;
-    L_0x0065:
-        r3 = numericCompaction(r8, r3, r0);
-        goto L_0x007e;
-    L_0x006a:
-        r3 = byteCompaction(r2, r8, r1, r3, r0);
-        goto L_0x007e;
-    L_0x006f:
-        r3 = textCompaction(r8, r3, r0);
-        goto L_0x007e;
-    L_0x0074:
-        r5 = r3 + 1;
-        r3 = r8[r3];
-        r3 = (char) r3;
-        r0.append(r3);
-    L_0x007d:
-        r3 = r5;
-    L_0x007e:
-        r5 = r8.length;
-        if (r3 >= r5) goto L_0x0088;
-    L_0x0081:
-        r5 = r3 + 1;
-        r2 = r8[r3];
-        r3 = r5;
-        goto L_0x0014;
-    L_0x0088:
-        r5 = com.google.zxing.FormatException.getFormatInstance();
-        throw r5;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.zxing.pdf417.decoder.DecodedBitStreamParser.decode(int[], java.lang.String):com.google.zxing.common.DecoderResult");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    static DecoderResult decode(int[] codewords, String ecLevel) throws FormatException {
+        StringBuilder result = new StringBuilder(codewords.length * 2);
+        Charset encoding = DEFAULT_ENCODING;
+        int codeIndex = 1 + 1;
+        int code = codewords[1];
+        PDF417ResultMetadata resultMetadata = new PDF417ResultMetadata();
+        while (codeIndex < codewords[0]) {
+            int codeIndex2;
+            if (code != MODE_SHIFT_TO_BYTE_COMPACTION_MODE) {
+                switch (code) {
+                    case TEXT_COMPACTION_MODE_LATCH /*900*/:
+                        codeIndex = textCompaction(codewords, codeIndex, result);
+                        break;
+                    case BYTE_COMPACTION_MODE_LATCH /*901*/:
+                        break;
+                    case NUMERIC_COMPACTION_MODE_LATCH /*902*/:
+                        codeIndex = numericCompaction(codewords, codeIndex, result);
+                        break;
+                    default:
+                        switch (code) {
+                            case MACRO_PDF417_TERMINATOR /*922*/:
+                            case BEGIN_MACRO_PDF417_OPTIONAL_FIELD /*923*/:
+                                throw FormatException.getFormatInstance();
+                            case BYTE_COMPACTION_MODE_LATCH_6 /*924*/:
+                                break;
+                            case ECI_USER_DEFINED /*925*/:
+                                codeIndex++;
+                                break;
+                            case ECI_GENERAL_PURPOSE /*926*/:
+                                codeIndex += 2;
+                                break;
+                            case ECI_CHARSET /*927*/:
+                                codeIndex2 = codeIndex + 1;
+                                encoding = Charset.forName(CharacterSetECI.getCharacterSetECIByValue(codewords[codeIndex]).name());
+                                break;
+                            case 928:
+                                codeIndex = decodeMacroBlock(codewords, codeIndex, resultMetadata);
+                                break;
+                            default:
+                                codeIndex = textCompaction(codewords, codeIndex - 1, result);
+                                break;
+                        }
+                }
+            }
+            codeIndex2 = codeIndex + 1;
+            result.append((char) codewords[codeIndex]);
+            codeIndex = codeIndex2;
+            if (codeIndex < codewords.length) {
+                codeIndex2 = codeIndex + 1;
+                code = codewords[codeIndex];
+                codeIndex = codeIndex2;
+            } else {
+                throw FormatException.getFormatInstance();
+            }
+        }
+        if (result.length() != 0) {
+            DecoderResult decoderResult = new DecoderResult(null, result.toString(), null, ecLevel);
+            decoderResult.setOther(resultMetadata);
+            return decoderResult;
+        }
+        throw FormatException.getFormatInstance();
     }
 
     private static int decodeMacroBlock(int[] codewords, int codeIndex, PDF417ResultMetadata resultMetadata) throws FormatException {
@@ -459,232 +422,112 @@ final class DecodedBitStreamParser {
     /* JADX WARNING: Missing block: B:53:0x00d5, code:
             if (r1 == MACRO_PDF417_TERMINATOR) goto L_0x00de;
      */
-    private static int byteCompaction(int r24, int[] r25, java.nio.charset.Charset r26, int r27, java.lang.StringBuilder r28) {
-        /*
-        r0 = r24;
-        r2 = new java.io.ByteArrayOutputStream;
-        r2.<init>();
-        r5 = 923; // 0x39b float:1.293E-42 double:4.56E-321;
-        r6 = 928; // 0x3a0 float:1.3E-42 double:4.585E-321;
-        r7 = 902; // 0x386 float:1.264E-42 double:4.456E-321;
-        r8 = 900; // 0x384 float:1.261E-42 double:4.447E-321;
-        r10 = 924; // 0x39c float:1.295E-42 double:4.565E-321;
-        r11 = 0;
-        r12 = 6;
-        r13 = 901; // 0x385 float:1.263E-42 double:4.45E-321;
-        r14 = 900; // 0x384 float:1.261E-42 double:4.447E-321;
-        if (r0 != r13) goto L_0x0098;
-    L_0x0019:
-        r15 = 0;
-        r16 = 0;
-        r3 = new int[r12];
-        r19 = 0;
-        r20 = r27 + 1;
-        r1 = r25[r27];
-        r12 = r1;
-        r1 = r20;
-    L_0x0027:
-        r4 = r25[r11];
-        if (r1 >= r4) goto L_0x007e;
-    L_0x002b:
-        if (r19 == 0) goto L_0x002e;
-    L_0x002d:
-        goto L_0x007e;
-    L_0x002e:
-        r4 = r15 + 1;
-        r3[r15] = r12;
-        r21 = r8 * r16;
-        r8 = (long) r12;
-        r16 = r21 + r8;
-        r8 = r1 + 1;
-        r12 = r25[r1];
-        if (r12 == r14) goto L_0x0071;
-    L_0x003d:
-        if (r12 == r13) goto L_0x0071;
-    L_0x003f:
-        if (r12 == r7) goto L_0x0071;
-    L_0x0041:
-        if (r12 == r10) goto L_0x0071;
-    L_0x0043:
-        if (r12 == r6) goto L_0x0071;
-    L_0x0045:
-        if (r12 == r5) goto L_0x0071;
-    L_0x0047:
-        r1 = 922; // 0x39a float:1.292E-42 double:4.555E-321;
-        if (r12 != r1) goto L_0x004c;
-    L_0x004b:
-        goto L_0x0071;
-    L_0x004c:
-        r1 = r4 % 5;
-        if (r1 != 0) goto L_0x006e;
-    L_0x0050:
-        if (r4 <= 0) goto L_0x006e;
-    L_0x0052:
-        r1 = 0;
-    L_0x0053:
-        r9 = 6;
-        if (r1 < r9) goto L_0x005b;
-    L_0x0056:
-        r16 = 0;
-        r15 = 0;
-        r1 = r8;
-        goto L_0x007b;
-    L_0x005b:
-        r9 = 5 - r1;
-        r15 = 8;
-        r9 = r9 * r15;
-        r5 = r16 >> r9;
-        r5 = (int) r5;
-        r5 = (byte) r5;
-        r2.write(r5);
-        r1 = r1 + 1;
-        r5 = 923; // 0x39b float:1.293E-42 double:4.56E-321;
-        r6 = 928; // 0x3a0 float:1.3E-42 double:4.585E-321;
-        goto L_0x0053;
-    L_0x006e:
-        r15 = r4;
-        r1 = r8;
-        goto L_0x0077;
-    L_0x0071:
-        r1 = r8 + -1;
-        r19 = 1;
-        r15 = r4;
-    L_0x0077:
-        r5 = 923; // 0x39b float:1.293E-42 double:4.56E-321;
-        r6 = 928; // 0x3a0 float:1.3E-42 double:4.585E-321;
-    L_0x007b:
-        r8 = 900; // 0x384 float:1.261E-42 double:4.447E-321;
-        goto L_0x0027;
-    L_0x007e:
-        r4 = r25[r11];
-        if (r1 != r4) goto L_0x0089;
-    L_0x0082:
-        if (r12 >= r14) goto L_0x0089;
-    L_0x0084:
-        r4 = r15 + 1;
-        r3[r15] = r12;
-        goto L_0x008a;
-    L_0x0089:
-        r4 = r15;
-    L_0x008a:
-        r5 = 0;
-    L_0x008b:
-        if (r5 < r4) goto L_0x008f;
-    L_0x008d:
-        goto L_0x0114;
-    L_0x008f:
-        r6 = r3[r5];
-        r6 = (byte) r6;
-        r2.write(r6);
-        r5 = r5 + 1;
-        goto L_0x008b;
-    L_0x0098:
-        if (r0 != r10) goto L_0x0112;
-    L_0x009a:
-        r3 = 0;
-        r4 = 0;
-        r6 = 0;
-        r1 = r27;
-    L_0x00a0:
-        r8 = r25[r11];
-        if (r1 >= r8) goto L_0x0114;
-    L_0x00a4:
-        if (r6 == 0) goto L_0x00a8;
-    L_0x00a6:
-        goto L_0x0114;
-    L_0x00a8:
-        r8 = r1 + 1;
-        r1 = r25[r1];
-        if (r1 >= r14) goto L_0x00c1;
-    L_0x00ae:
-        r3 = r3 + 1;
-        r15 = 900; // 0x384 float:1.261E-42 double:4.447E-321;
-        r19 = r15 * r4;
-        r11 = (long) r1;
-        r19 = r19 + r11;
-        r4 = r19;
-        r9 = 928; // 0x3a0 float:1.3E-42 double:4.585E-321;
-        r11 = 923; // 0x39b float:1.293E-42 double:4.56E-321;
-        r12 = 922; // 0x39a float:1.292E-42 double:4.555E-321;
-        goto L_0x00e1;
-    L_0x00c1:
-        r15 = 900; // 0x384 float:1.261E-42 double:4.447E-321;
-        if (r1 == r14) goto L_0x00d8;
-    L_0x00c5:
-        if (r1 == r13) goto L_0x00d8;
-    L_0x00c7:
-        if (r1 == r7) goto L_0x00d8;
-    L_0x00c9:
-        if (r1 == r10) goto L_0x00d8;
-    L_0x00cb:
-        r9 = 928; // 0x3a0 float:1.3E-42 double:4.585E-321;
-        if (r1 == r9) goto L_0x00da;
-    L_0x00cf:
-        r11 = 923; // 0x39b float:1.293E-42 double:4.56E-321;
-        if (r1 == r11) goto L_0x00dc;
-    L_0x00d3:
-        r12 = 922; // 0x39a float:1.292E-42 double:4.555E-321;
-        if (r1 != r12) goto L_0x00e1;
-    L_0x00d7:
-        goto L_0x00de;
-    L_0x00d8:
-        r9 = 928; // 0x3a0 float:1.3E-42 double:4.585E-321;
-    L_0x00da:
-        r11 = 923; // 0x39b float:1.293E-42 double:4.56E-321;
-    L_0x00dc:
-        r12 = 922; // 0x39a float:1.292E-42 double:4.555E-321;
-    L_0x00de:
-        r8 = r8 + -1;
-        r6 = 1;
-    L_0x00e1:
-        r17 = r3 % 5;
-        if (r17 != 0) goto L_0x0109;
-    L_0x00e5:
-        if (r3 <= 0) goto L_0x0109;
-    L_0x00e7:
-        r17 = 0;
-        r7 = r17;
-    L_0x00eb:
-        r9 = 6;
-        if (r7 < r9) goto L_0x00f5;
-    L_0x00ee:
-        r4 = 0;
-        r3 = 0;
-        r1 = r8;
-        r7 = 902; // 0x386 float:1.264E-42 double:4.456E-321;
-        goto L_0x0110;
-    L_0x00f5:
-        r17 = 5 - r7;
-        r18 = 8;
-        r17 = r17 * r18;
-        r9 = r4 >> r17;
-        r9 = (int) r9;
-        r9 = (byte) r9;
-        r2.write(r9);
-        r7 = r7 + 1;
-        r9 = 928; // 0x3a0 float:1.3E-42 double:4.585E-321;
-        r10 = 924; // 0x39c float:1.295E-42 double:4.565E-321;
-        goto L_0x00eb;
-    L_0x0109:
-        r18 = 8;
-        r1 = r8;
-        r7 = 902; // 0x386 float:1.264E-42 double:4.456E-321;
-        r10 = 924; // 0x39c float:1.295E-42 double:4.565E-321;
-    L_0x0110:
-        r11 = 0;
-        goto L_0x00a0;
-    L_0x0112:
-        r1 = r27;
-    L_0x0114:
-        r3 = new java.lang.String;
-        r4 = r2.toByteArray();
-        r5 = r26;
-        r3.<init>(r4, r5);
-        r4 = r28;
-        r4.append(r3);
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.zxing.pdf417.decoder.DecodedBitStreamParser.byteCompaction(int, int[], java.nio.charset.Charset, int, java.lang.StringBuilder):int");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static int byteCompaction(int mode, int[] codewords, Charset encoding, int codeIndex, StringBuilder result) {
+        int codeIndex2;
+        int i = mode;
+        ByteArrayOutputStream decodedBytes = new ByteArrayOutputStream();
+        int i2 = BEGIN_MACRO_PDF417_OPTIONAL_FIELD;
+        int i3 = 928;
+        int i4 = NUMERIC_COMPACTION_MODE_LATCH;
+        long j = 900;
+        int i5 = BYTE_COMPACTION_MODE_LATCH_6;
+        int i6 = 0;
+        int codeIndex3;
+        if (i == BYTE_COMPACTION_MODE_LATCH) {
+            int count;
+            int count2 = 0;
+            long value = 0;
+            int[] byteCompactedCodewords = new int[6];
+            boolean end = false;
+            int codeIndex4 = codeIndex + 1;
+            int nextCode = codewords[codeIndex];
+            codeIndex2 = codeIndex4;
+            while (codeIndex2 < codewords[0] && !end) {
+                count = count2 + 1;
+                byteCompactedCodewords[count2] = nextCode;
+                value = (j * value) + ((long) nextCode);
+                codeIndex3 = codeIndex2 + 1;
+                nextCode = codewords[codeIndex2];
+                if (nextCode == TEXT_COMPACTION_MODE_LATCH || nextCode == BYTE_COMPACTION_MODE_LATCH || nextCode == NUMERIC_COMPACTION_MODE_LATCH || nextCode == BYTE_COMPACTION_MODE_LATCH_6 || nextCode == r6 || nextCode == r5 || nextCode == MACRO_PDF417_TERMINATOR) {
+                    codeIndex2 = codeIndex3 - 1;
+                    end = true;
+                    count2 = count;
+                } else if (count % 5 != 0 || count <= 0) {
+                    count2 = count;
+                    codeIndex2 = codeIndex3;
+                } else {
+                    codeIndex2 = 0;
+                    while (codeIndex2 < 6) {
+                        decodedBytes.write((byte) ((int) (value >> ((5 - codeIndex2) * 8))));
+                        codeIndex2++;
+                        i2 = BEGIN_MACRO_PDF417_OPTIONAL_FIELD;
+                        i3 = 928;
+                    }
+                    value = 0;
+                    count2 = 0;
+                    codeIndex2 = codeIndex3;
+                    j = 900;
+                }
+                i2 = BEGIN_MACRO_PDF417_OPTIONAL_FIELD;
+                i3 = 928;
+                j = 900;
+            }
+            if (codeIndex2 != codewords[0] || nextCode >= TEXT_COMPACTION_MODE_LATCH) {
+                count = count2;
+            } else {
+                count = count2 + 1;
+                byteCompactedCodewords[count2] = nextCode;
+            }
+            for (i2 = 0; i2 < count; i2++) {
+                decodedBytes.write((byte) byteCompactedCodewords[i2]);
+            }
+        } else if (i == BYTE_COMPACTION_MODE_LATCH_6) {
+            int count3 = 0;
+            long value2 = 0;
+            boolean end2 = false;
+            codeIndex2 = codeIndex;
+            while (codeIndex2 < codewords[i6] && !end2) {
+                codeIndex3 = codeIndex2 + 1;
+                codeIndex2 = codewords[codeIndex2];
+                if (codeIndex2 < TEXT_COMPACTION_MODE_LATCH) {
+                    count3++;
+                    value2 = (900 * value2) + ((long) codeIndex2);
+                } else {
+                    if (codeIndex2 != TEXT_COMPACTION_MODE_LATCH && codeIndex2 != BYTE_COMPACTION_MODE_LATCH && codeIndex2 != i4 && codeIndex2 != r10) {
+                        if (codeIndex2 != 928) {
+                            if (codeIndex2 != BEGIN_MACRO_PDF417_OPTIONAL_FIELD) {
+                            }
+                            codeIndex3--;
+                            end2 = true;
+                        }
+                    }
+                    codeIndex3--;
+                    end2 = true;
+                }
+                if (count3 % 5 != 0 || count3 <= 0) {
+                    codeIndex2 = codeIndex3;
+                    i4 = NUMERIC_COMPACTION_MODE_LATCH;
+                    i5 = BYTE_COMPACTION_MODE_LATCH_6;
+                } else {
+                    i4 = 0;
+                    while (i4 < 6) {
+                        decodedBytes.write((byte) ((int) (value2 >> ((5 - i4) * 8))));
+                        i4++;
+                        i5 = BYTE_COMPACTION_MODE_LATCH_6;
+                    }
+                    value2 = 0;
+                    count3 = 0;
+                    codeIndex2 = codeIndex3;
+                    i4 = NUMERIC_COMPACTION_MODE_LATCH;
+                }
+                i6 = 0;
+            }
+        } else {
+            codeIndex2 = codeIndex;
+        }
+        result.append(new String(decodedBytes.toByteArray(), encoding));
+        return codeIndex2;
     }
 
     private static int numericCompaction(int[] codewords, int codeIndex, StringBuilder result) throws FormatException {

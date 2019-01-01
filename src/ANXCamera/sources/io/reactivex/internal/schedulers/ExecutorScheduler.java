@@ -209,43 +209,24 @@ public final class ExecutorScheduler extends Scheduler {
         /* JADX WARNING: Missing block: B:13:0x0027, code:
             return;
      */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         public void run() {
-            /*
-            r3 = this;
-            r0 = r3.queue;
-            r1 = 1;
-        L_0x0004:
-            r2 = r3.disposed;
-            if (r2 == 0) goto L_0x000c;
-        L_0x0008:
-            r0.clear();
-            return;
-        L_0x000c:
-            r2 = r0.poll();
-            r2 = (java.lang.Runnable) r2;
-            if (r2 != 0) goto L_0x0028;
-            r2 = r3.disposed;
-            if (r2 == 0) goto L_0x001d;
-        L_0x0019:
-            r0.clear();
-            return;
-        L_0x001d:
-            r2 = r3.wip;
-            r1 = -r1;
-            r1 = r2.addAndGet(r1);
-            if (r1 != 0) goto L_0x0004;
-            return;
-        L_0x0028:
-            r2.run();
-            r2 = r3.disposed;
-            if (r2 == 0) goto L_0x0033;
-        L_0x002f:
-            r0.clear();
-            return;
-        L_0x0033:
-            goto L_0x000c;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.schedulers.ExecutorScheduler.ExecutorWorker.run():void");
+            MpscLinkedQueue mpscLinkedQueue = this.queue;
+            int i = 1;
+            while (!this.disposed) {
+                while (true) {
+                    Runnable runnable = (Runnable) mpscLinkedQueue.poll();
+                    if (runnable == null) {
+                        break;
+                    }
+                    runnable.run();
+                    if (this.disposed) {
+                        mpscLinkedQueue.clear();
+                        return;
+                    }
+                }
+            }
+            mpscLinkedQueue.clear();
         }
     }
 

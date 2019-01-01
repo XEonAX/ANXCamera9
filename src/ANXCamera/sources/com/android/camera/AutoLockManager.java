@@ -135,65 +135,26 @@ public class AutoLockManager {
     /* JADX WARNING: Missing block: B:16:0x0065, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public void hibernateDelayed() {
-        /*
-        r4 = this;
-        r0 = r4.mCameraAlwaysKeepScreenOn;
-        if (r0 != 0) goto L_0x0065;
-    L_0x0004:
-        r0 = r4.mPaused;
-        if (r0 == 0) goto L_0x0009;
-    L_0x0008:
-        goto L_0x0065;
-    L_0x0009:
-        r0 = r4.mHibernationTimeOut;
-        r2 = r4.mScreenOffTimeOut;
-        r0 = (r0 > r2 ? 1 : (r0 == r2 ? 0 : -1));
-        if (r0 < 0) goto L_0x0012;
-    L_0x0011:
-        return;
-    L_0x0012:
-        r4.initHandler();
-        r0 = r4.mHandler;
-        if (r0 == 0) goto L_0x0064;
-    L_0x0019:
-        r0 = r4.mHandler;
-        r1 = 1;
-        r0.removeMessages(r1);
-        r0 = r4.mContext;
-        r0 = (com.android.camera.Camera) r0;
-        r2 = r0.isVideoRecording();
-        if (r2 != 0) goto L_0x003e;
-    L_0x0029:
-        r2 = r0.isPanoramaRecording();
-        if (r2 != 0) goto L_0x003e;
-    L_0x002f:
-        r0 = r4.mHandler;
-        r2 = r4.mHibernationTimeOut;
-        r0.sendEmptyMessageDelayed(r1, r2);
-        r0 = TAG;
-        r1 = "send MSG_HIBERNATE";
-        com.android.camera.log.Log.v(r0, r1);
-        goto L_0x0064;
-    L_0x003e:
-        r1 = TAG;
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "isVideoRecording = ";
-        r2.append(r3);
-        r3 = r0.isVideoRecording();
-        r2.append(r3);
-        r3 = ", isPanoramaRecording = ";
-        r2.append(r3);
-        r0 = r0.isPanoramaRecording();
-        r2.append(r0);
-        r0 = r2.toString();
-        com.android.camera.log.Log.w(r1, r0);
-    L_0x0064:
-        return;
-    L_0x0065:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.AutoLockManager.hibernateDelayed():void");
+        if (!this.mCameraAlwaysKeepScreenOn && !this.mPaused && this.mHibernationTimeOut < this.mScreenOffTimeOut) {
+            initHandler();
+            if (this.mHandler != null) {
+                this.mHandler.removeMessages(1);
+                Camera camera = (Camera) this.mContext;
+                if (camera.isVideoRecording() || camera.isPanoramaRecording()) {
+                    String str = TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("isVideoRecording = ");
+                    stringBuilder.append(camera.isVideoRecording());
+                    stringBuilder.append(", isPanoramaRecording = ");
+                    stringBuilder.append(camera.isPanoramaRecording());
+                    Log.w(str, stringBuilder.toString());
+                } else {
+                    this.mHandler.sendEmptyMessageDelayed(1, this.mHibernationTimeOut);
+                    Log.v(TAG, "send MSG_HIBERNATE");
+                }
+            }
+        }
     }
 }

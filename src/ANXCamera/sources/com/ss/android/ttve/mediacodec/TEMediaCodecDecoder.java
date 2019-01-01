@@ -614,195 +614,122 @@ public class TEMediaCodecDecoder implements OnFrameAvailableListener {
     /* JADX WARNING: Removed duplicated region for block: B:29:0x00a1  */
     /* JADX WARNING: Removed duplicated region for block: B:38:0x00b2  */
     /* JADX WARNING: Removed duplicated region for block: B:35:0x00ae  */
-    private int DecodeFrame2Surface(byte[] r19, int r20, long r21) throws java.io.IOException {
-        /*
-        r18 = this;
-        r1 = r18;
-        r5 = r20;
-        r0 = r1.m_sawInputEOS;
-        r9 = 0;
-        r10 = 1;
-        if (r0 != 0) goto L_0x0082;
-    L_0x000e:
-        r0 = r1.m_decoder;
-        r2 = 30000; // 0x7530 float:4.2039E-41 double:1.4822E-319;
-        r0 = r0.dequeueInputBuffer(r2);
-        r4 = r9;
-    L_0x0018:
-        if (r0 >= 0) goto L_0x0047;
-    L_0x001a:
-        r6 = 5;
-        java.lang.Thread.sleep(r6, r9);	 Catch:{ InterruptedException -> 0x0020 }
-        goto L_0x0025;
-    L_0x0020:
-        r0 = move-exception;
-        r6 = r0;
-        r6.printStackTrace();
-    L_0x0025:
-        r0 = r1.m_decoder;
-        r0 = r0.dequeueInputBuffer(r2);
-        r4 = r4 + r10;
-        r6 = 20;
-        if (r4 < r6) goto L_0x0018;
-    L_0x0030:
-        r2 = "MediaCodecDecoder";
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r6 = "try dequeueInputBuffer timeout -- ";
-        r3.append(r6);
-        r3.append(r4);
-        r3 = r3.toString();
-        android.util.Log.e(r2, r3);
-    L_0x0047:
-        r12 = r0;
-        if (r12 < 0) goto L_0x0078;
-    L_0x004a:
-        r0 = r1.getInputBufferByIdx(r12);
-        if (r5 != 0) goto L_0x005e;
-    L_0x0050:
-        r11 = r1.m_decoder;
-        r13 = 0;
-        r14 = 0;
-        r15 = 0;
-        r17 = 4;
-        r11.queueInputBuffer(r12, r13, r14, r15, r17);
-        r1.m_sawInputEOS = r10;
-        goto L_0x0077;
-    L_0x005e:
-        r0.clear();
-        r2 = r19;
-        r0.put(r2, r9, r5);
-        r2 = r1.m_decoder;
-        r4 = 0;
-        r8 = 0;
-        r3 = r12;
-        r6 = r21;
-        r2.queueInputBuffer(r3, r4, r5, r6, r8);
-        r1.m_inputBufferQueued = r10;
-        r0 = r1.m_pendingInputFrameCount;
-        r0 = r0 + r10;
-        r1.m_pendingInputFrameCount = r0;
-    L_0x0077:
-        goto L_0x0082;
-        r0 = "MediaCodecDecoder";
-        r2 = "Input buffer not available";
-        android.util.Log.e(r0, r2);
-        r0 = r10;
-        goto L_0x0083;
-    L_0x0082:
-        r0 = r9;
-    L_0x0083:
-        r2 = r1.m_sawOutputEOS;
-        if (r2 == 0) goto L_0x008b;
-    L_0x0087:
-        r2 = 600000; // 0x927c0 float:8.40779E-40 double:2.964394E-318;
-        goto L_0x0095;
-    L_0x008b:
-        r2 = r1.m_pendingInputFrameCount;
-        r3 = 2;
-        if (r2 <= r3) goto L_0x0093;
-    L_0x0090:
-        r2 = 30000; // 0x7530 float:4.2039E-41 double:1.4822E-319;
-        goto L_0x0095;
-        r2 = r9;
-    L_0x0095:
-        r3 = r1.m_decoder;
-        r4 = r1.m_bufferInfo;
-        r5 = (long) r2;
-        r3 = r3.dequeueOutputBuffer(r4, r5);
-        r4 = -3;
-        if (r3 != r4) goto L_0x00a2;
-    L_0x00a1:
-        goto L_0x0095;
-    L_0x00a2:
-        r5 = -2;
-        if (r3 != r5) goto L_0x00ab;
-    L_0x00a5:
-        r3 = r1.m_decoder;
-        r3.getOutputFormat();
-        goto L_0x0095;
-    L_0x00ab:
-        r2 = -1;
-        if (r3 != r2) goto L_0x00b2;
-    L_0x00ae:
-        if (r0 == 0) goto L_0x00b1;
-    L_0x00b0:
-        return r4;
-    L_0x00b1:
-        return r5;
-    L_0x00b2:
-        if (r3 >= 0) goto L_0x00cb;
-    L_0x00b4:
-        r0 = "MediaCodecDecoder";
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "Unexpected result from decoder.dequeueOutputBuffer: ";
-        r1.append(r2);
-        r1.append(r3);
-        r1 = r1.toString();
-        android.util.Log.e(r0, r1);
-        return r5;
-    L_0x00cb:
-        r0 = r1.m_bufferInfo;
-        r0 = r0.flags;
-        r0 = r0 & 4;
-        if (r0 == 0) goto L_0x00d5;
-    L_0x00d3:
-        r1.m_sawOutputEOS = r10;
-        r0 = r1.m_sawOutputEOS;
-        if (r0 != 0) goto L_0x00e6;
-    L_0x00da:
-        r0 = r1.m_bufferInfo;
-        r6 = r0.presentationTimeUs;
-        r1.m_timestampOfLastDecodedFrame = r6;
-        r0 = r1.m_pendingInputFrameCount;
-        r0 = r0 - r10;
-        r1.m_pendingInputFrameCount = r0;
-        goto L_0x00e7;
-    L_0x00e6:
-        r10 = r9;
-    L_0x00e7:
-        r0 = r1.m_decoder;
-        r0.releaseOutputBuffer(r3, r10);
-        if (r10 == 0) goto L_0x0136;
-    L_0x00ee:
-        r0 = r18.AwaitNewImage();
-        if (r0 == 0) goto L_0x012e;
-    L_0x00f4:
-        r0 = r1.m_bufferInfo;
-        r2 = r0.presentationTimeUs;
-        r1.m_timestampOfCurTexFrame = r2;
-        r0 = android.opengl.GLES20.glGetError();
-        if (r0 != 0) goto L_0x0101;
-    L_0x0100:
-        return r9;
-    L_0x0101:
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = ": glError ";
-        r1.append(r2);
-        r1.append(r0);
-        r1 = r1.toString();
-        r2 = "MediaCodecDecoder";
-        android.util.Log.e(r2, r1);
-        r1 = new java.lang.RuntimeException;
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = ": glError ";
-        r2.append(r3);
-        r2.append(r0);
-        r0 = r2.toString();
-        r1.<init>(r0);
-        throw r1;
-    L_0x012e:
-        r0 = "MediaCodecDecoder";
-        r1 = "Render decoded frame to surface texture failed!";
-        android.util.Log.e(r0, r1);
-        return r5;
-    L_0x0136:
-        return r2;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.ss.android.ttve.mediacodec.TEMediaCodecDecoder.DecodeFrame2Surface(byte[], int, long):int");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private int DecodeFrame2Surface(byte[] bArr, int i, long j) throws IOException {
+        boolean z;
+        int i2;
+        int dequeueOutputBuffer;
+        int i3 = i;
+        boolean z2 = true;
+        if (!this.m_sawInputEOS) {
+            int dequeueInputBuffer = this.m_decoder.dequeueInputBuffer(30000);
+            int i4 = 0;
+            while (dequeueInputBuffer < 0) {
+                try {
+                    Thread.sleep(5, 0);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                dequeueInputBuffer = this.m_decoder.dequeueInputBuffer(30000);
+                i4++;
+                if (i4 >= 20) {
+                    String str = TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("try dequeueInputBuffer timeout -- ");
+                    stringBuilder.append(i4);
+                    Log.e(str, stringBuilder.toString());
+                    break;
+                }
+            }
+            int i5 = dequeueInputBuffer;
+            if (i5 >= 0) {
+                ByteBuffer inputBufferByIdx = getInputBufferByIdx(i5);
+                if (i3 == 0) {
+                    this.m_decoder.queueInputBuffer(i5, 0, 0, 0, 4);
+                    this.m_sawInputEOS = true;
+                } else {
+                    inputBufferByIdx.clear();
+                    inputBufferByIdx.put(bArr, 0, i3);
+                    this.m_decoder.queueInputBuffer(i5, 0, i3, j, 0);
+                    this.m_inputBufferQueued = true;
+                    this.m_pendingInputFrameCount++;
+                }
+            } else {
+                Log.e(TAG, "Input buffer not available");
+                z = true;
+                if (!this.m_sawOutputEOS) {
+                    i2 = 600000;
+                } else if (this.m_pendingInputFrameCount > 2) {
+                    i2 = 30000;
+                } else {
+                    i2 = 0;
+                }
+                while (true) {
+                    dequeueOutputBuffer = this.m_decoder.dequeueOutputBuffer(this.m_bufferInfo, (long) i2);
+                    if (dequeueOutputBuffer == -3) {
+                        if (dequeueOutputBuffer != -2) {
+                            break;
+                        }
+                        this.m_decoder.getOutputFormat();
+                    }
+                }
+                StringBuilder stringBuilder2;
+                if (dequeueOutputBuffer != -1) {
+                    if (z) {
+                        return -3;
+                    }
+                    return -2;
+                } else if (dequeueOutputBuffer < 0) {
+                    String str2 = TAG;
+                    stringBuilder2 = new StringBuilder();
+                    stringBuilder2.append("Unexpected result from decoder.dequeueOutputBuffer: ");
+                    stringBuilder2.append(dequeueOutputBuffer);
+                    Log.e(str2, stringBuilder2.toString());
+                    return -2;
+                } else {
+                    if ((this.m_bufferInfo.flags & 4) != 0) {
+                        this.m_sawOutputEOS = true;
+                    }
+                    if (this.m_sawOutputEOS) {
+                        z2 = false;
+                    } else {
+                        this.m_timestampOfLastDecodedFrame = this.m_bufferInfo.presentationTimeUs;
+                        this.m_pendingInputFrameCount--;
+                    }
+                    this.m_decoder.releaseOutputBuffer(dequeueOutputBuffer, z2);
+                    if (!z2) {
+                        return -1;
+                    }
+                    if (AwaitNewImage()) {
+                        this.m_timestampOfCurTexFrame = this.m_bufferInfo.presentationTimeUs;
+                        dequeueInputBuffer = GLES20.glGetError();
+                        if (dequeueInputBuffer == 0) {
+                            return 0;
+                        }
+                        stringBuilder2 = new StringBuilder();
+                        stringBuilder2.append(": glError ");
+                        stringBuilder2.append(dequeueInputBuffer);
+                        Log.e(TAG, stringBuilder2.toString());
+                        StringBuilder stringBuilder3 = new StringBuilder();
+                        stringBuilder3.append(": glError ");
+                        stringBuilder3.append(dequeueInputBuffer);
+                        throw new RuntimeException(stringBuilder3.toString());
+                    }
+                    Log.e(TAG, "Render decoded frame to surface texture failed!");
+                    return -2;
+                }
+            }
+        }
+        z = false;
+        if (!this.m_sawOutputEOS) {
+        }
+        while (true) {
+            dequeueOutputBuffer = this.m_decoder.dequeueOutputBuffer(this.m_bufferInfo, (long) i2);
+            if (dequeueOutputBuffer == -3) {
+            }
+        }
+        if (dequeueOutputBuffer != -1) {
+        }
     }
 
     public static boolean IsInAndriodHardwareBlacklist() {

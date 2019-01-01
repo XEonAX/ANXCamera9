@@ -336,166 +336,77 @@ public class XmpHelper {
             r8.read(r5.data, 0, r4);
             r1.add(r5);
      */
-    private static java.util.List<com.xiaomi.camera.liveshot.util.XmpHelper.Section> parse(java.io.InputStream r8, boolean r9) {
-        /*
-        r0 = 0;
-        r1 = r8.read();	 Catch:{ IOException -> 0x00be }
-        r2 = 255; // 0xff float:3.57E-43 double:1.26E-321;
-        if (r1 != r2) goto L_0x00b3;
-    L_0x0009:
-        r1 = r8.read();	 Catch:{ IOException -> 0x00be }
-        r3 = 216; // 0xd8 float:3.03E-43 double:1.067E-321;
-        if (r1 == r3) goto L_0x0013;
-    L_0x0011:
-        goto L_0x00b3;
-    L_0x0013:
-        r1 = new java.util.ArrayList;	 Catch:{ IOException -> 0x00be }
-        r1.<init>();	 Catch:{ IOException -> 0x00be }
-    L_0x0018:
-        r3 = r8.read();	 Catch:{ IOException -> 0x00be }
-        r4 = -1;
-        if (r3 == r4) goto L_0x00aa;
-    L_0x001f:
-        if (r3 == r2) goto L_0x002a;
-        if (r8 == 0) goto L_0x0029;
-    L_0x0024:
-        r8.close();	 Catch:{ IOException -> 0x0028 }
-        goto L_0x0029;
-    L_0x0028:
-        r8 = move-exception;
-    L_0x0029:
-        return r0;
-    L_0x002a:
-        r3 = r8.read();	 Catch:{ IOException -> 0x00be }
-        if (r3 != r2) goto L_0x0031;
-    L_0x0030:
-        goto L_0x002a;
-    L_0x0031:
-        if (r3 != r4) goto L_0x003c;
-        if (r8 == 0) goto L_0x003b;
-    L_0x0036:
-        r8.close();	 Catch:{ IOException -> 0x003a }
-        goto L_0x003b;
-    L_0x003a:
-        r8 = move-exception;
-    L_0x003b:
-        return r0;
-        r5 = 218; // 0xda float:3.05E-43 double:1.077E-321;
-        r6 = 0;
-        if (r3 != r5) goto L_0x0069;
-    L_0x0042:
-        if (r9 != 0) goto L_0x0060;
-    L_0x0044:
-        r9 = new com.xiaomi.camera.liveshot.util.XmpHelper$Section;	 Catch:{ IOException -> 0x00be }
-        r9.<init>();	 Catch:{ IOException -> 0x00be }
-        r9.marker = r3;	 Catch:{ IOException -> 0x00be }
-        r9.length = r4;	 Catch:{ IOException -> 0x00be }
-        r2 = r8.available();	 Catch:{ IOException -> 0x00be }
-        r2 = new byte[r2];	 Catch:{ IOException -> 0x00be }
-        r9.data = r2;	 Catch:{ IOException -> 0x00be }
-        r2 = r9.data;	 Catch:{ IOException -> 0x00be }
-        r3 = r9.data;	 Catch:{ IOException -> 0x00be }
-        r3 = r3.length;	 Catch:{ IOException -> 0x00be }
-        r8.read(r2, r6, r3);	 Catch:{ IOException -> 0x00be }
-        r1.add(r9);	 Catch:{ IOException -> 0x00be }
-        if (r8 == 0) goto L_0x0068;
-    L_0x0063:
-        r8.close();	 Catch:{ IOException -> 0x0067 }
-        goto L_0x0068;
-    L_0x0067:
-        r8 = move-exception;
-    L_0x0068:
-        return r1;
-    L_0x0069:
-        r5 = r8.read();	 Catch:{ IOException -> 0x00be }
-        r7 = r8.read();	 Catch:{ IOException -> 0x00be }
-        if (r5 == r4) goto L_0x00a1;
-    L_0x0073:
-        if (r7 != r4) goto L_0x0076;
-    L_0x0075:
-        goto L_0x00a1;
-    L_0x0076:
-        r4 = r5 << 8;
-        r4 = r4 | r7;
-        if (r9 == 0) goto L_0x0087;
-    L_0x007b:
-        r5 = 225; // 0xe1 float:3.15E-43 double:1.11E-321;
-        if (r3 != r5) goto L_0x0080;
-    L_0x007f:
-        goto L_0x0087;
-    L_0x0080:
-        r4 = r4 + -2;
-        r3 = (long) r4;	 Catch:{ IOException -> 0x00be }
-        r8.skip(r3);	 Catch:{ IOException -> 0x00be }
-        goto L_0x009f;
-    L_0x0087:
-        r5 = new com.xiaomi.camera.liveshot.util.XmpHelper$Section;	 Catch:{ IOException -> 0x00be }
-        r5.<init>();	 Catch:{ IOException -> 0x00be }
-        r5.marker = r3;	 Catch:{ IOException -> 0x00be }
-        r5.length = r4;	 Catch:{ IOException -> 0x00be }
-        r4 = r4 + -2;
-        r3 = new byte[r4];	 Catch:{ IOException -> 0x00be }
-        r5.data = r3;	 Catch:{ IOException -> 0x00be }
-        r3 = r5.data;	 Catch:{ IOException -> 0x00be }
-        r8.read(r3, r6, r4);	 Catch:{ IOException -> 0x00be }
-        r1.add(r5);	 Catch:{ IOException -> 0x00be }
-    L_0x009f:
-        goto L_0x0018;
-        if (r8 == 0) goto L_0x00a9;
-    L_0x00a4:
-        r8.close();	 Catch:{ IOException -> 0x00a8 }
-        goto L_0x00a9;
-    L_0x00a8:
-        r8 = move-exception;
-    L_0x00a9:
-        return r0;
-        if (r8 == 0) goto L_0x00b2;
-    L_0x00ad:
-        r8.close();	 Catch:{ IOException -> 0x00b1 }
-        goto L_0x00b2;
-    L_0x00b1:
-        r8 = move-exception;
-    L_0x00b2:
-        return r1;
-        if (r8 == 0) goto L_0x00bb;
-    L_0x00b6:
-        r8.close();	 Catch:{ IOException -> 0x00ba }
-        goto L_0x00bb;
-    L_0x00ba:
-        r8 = move-exception;
-    L_0x00bb:
-        return r0;
-    L_0x00bc:
-        r9 = move-exception;
-        goto L_0x00de;
-    L_0x00be:
-        r9 = move-exception;
-        r1 = TAG;	 Catch:{ all -> 0x00bc }
-        r2 = new java.lang.StringBuilder;	 Catch:{ all -> 0x00bc }
-        r2.<init>();	 Catch:{ all -> 0x00bc }
-        r3 = "Could not parse file: ";
-        r2.append(r3);	 Catch:{ all -> 0x00bc }
-        r2.append(r9);	 Catch:{ all -> 0x00bc }
-        r9 = r2.toString();	 Catch:{ all -> 0x00bc }
-        com.android.camera.log.Log.d(r1, r9);	 Catch:{ all -> 0x00bc }
-        if (r8 == 0) goto L_0x00dd;
-    L_0x00d8:
-        r8.close();	 Catch:{ IOException -> 0x00dc }
-        goto L_0x00dd;
-    L_0x00dc:
-        r8 = move-exception;
-    L_0x00dd:
-        return r0;
-    L_0x00de:
-        if (r8 == 0) goto L_0x00e5;
-    L_0x00e0:
-        r8.close();	 Catch:{ IOException -> 0x00e4 }
-        goto L_0x00e5;
-    L_0x00e4:
-        r8 = move-exception;
-    L_0x00e5:
-        throw r9;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.camera.liveshot.util.XmpHelper.parse(java.io.InputStream, boolean):java.util.List<com.xiaomi.camera.liveshot.util.XmpHelper$Section>");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static List<Section> parse(InputStream inputStream, boolean z) {
+        try {
+            List<Section> arrayList;
+            if (inputStream.read() == 255 && inputStream.read() == 216) {
+                arrayList = new ArrayList();
+                while (true) {
+                    int read = inputStream.read();
+                    if (read != -1) {
+                        if (read == 255) {
+                            while (true) {
+                                read = inputStream.read();
+                                if (read != 255) {
+                                    break;
+                                }
+                            }
+                        } else {
+                            if (inputStream != null) {
+                                try {
+                                    inputStream.close();
+                                } catch (IOException e) {
+                                }
+                            }
+                            return null;
+                        }
+                    }
+                    if (inputStream != null) {
+                        try {
+                            inputStream.close();
+                        } catch (IOException e2) {
+                        }
+                    }
+                    return arrayList;
+                }
+                if (inputStream != null) {
+                    try {
+                        inputStream.close();
+                    } catch (IOException e3) {
+                    }
+                }
+                return null;
+            }
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e4) {
+                }
+            }
+            return null;
+            return arrayList;
+            return null;
+        } catch (IOException e5) {
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Could not parse file: ");
+            stringBuilder.append(e5);
+            Log.d(str, stringBuilder.toString());
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e6) {
+                }
+            }
+            return null;
+        } catch (Throwable th) {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e7) {
+                }
+            }
+        }
     }
 }

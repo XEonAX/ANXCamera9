@@ -28,6 +28,7 @@ import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraSettings;
 import com.android.camera.CameraSize;
 import com.android.camera.R;
+import com.android.camera.Util;
 import com.android.camera.constant.ExceptionConstant;
 import com.android.camera.data.data.config.ComponentManuallyDualLens;
 import com.android.camera.log.Log;
@@ -169,52 +170,16 @@ public class CameraTestManager {
         /* JADX WARNING: Missing block: B:17:0x003f, code:
             r6.close();
      */
-        public void onImageAvailable(android.media.ImageReader r6) {
-            /*
-            r5 = this;
-            r6 = r6.acquireNextImage();
-            r0 = 0;
-            r1 = com.android.camera.Util.getFirstPlane(r6);	 Catch:{ Throwable -> 0x0030 }
-            if (r1 == 0) goto L_0x0028;
-        L_0x000b:
-            r2 = com.android.camera.module.loader.camera2.CameraTestManager.this;	 Catch:{ Throwable -> 0x0030 }
-            r2 = r2.mCameraCaptureCallback;	 Catch:{ Throwable -> 0x0030 }
-            r3 = com.android.camera.module.loader.camera2.CameraTestManager.this;	 Catch:{ Throwable -> 0x0030 }
-            r3 = r3.mCaptureImageReader;	 Catch:{ Throwable -> 0x0030 }
-            r3 = r3.getWidth();	 Catch:{ Throwable -> 0x0030 }
-            r4 = com.android.camera.module.loader.camera2.CameraTestManager.this;	 Catch:{ Throwable -> 0x0030 }
-            r4 = r4.mCaptureImageReader;	 Catch:{ Throwable -> 0x0030 }
-            r4 = r4.getHeight();	 Catch:{ Throwable -> 0x0030 }
-            r2.onPictureTaken(r1, r3, r4);	 Catch:{ Throwable -> 0x0030 }
-        L_0x0028:
-            if (r6 == 0) goto L_0x002d;
-        L_0x002a:
-            r6.close();
-        L_0x002d:
-            return;
-        L_0x002e:
-            r1 = move-exception;
-            goto L_0x0032;
-        L_0x0030:
-            r0 = move-exception;
-            throw r0;	 Catch:{ all -> 0x002e }
-        L_0x0032:
-            if (r6 == 0) goto L_0x0042;
-        L_0x0034:
-            if (r0 == 0) goto L_0x003f;
-        L_0x0036:
-            r6.close();	 Catch:{ Throwable -> 0x003a }
-            goto L_0x0042;
-        L_0x003a:
-            r6 = move-exception;
-            r0.addSuppressed(r6);
-            goto L_0x0042;
-        L_0x003f:
-            r6.close();
-        L_0x0042:
-            throw r1;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.loader.camera2.CameraTestManager.4.onImageAvailable(android.media.ImageReader):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public void onImageAvailable(ImageReader imageReader) {
+            Image acquireNextImage = imageReader.acquireNextImage();
+            byte[] firstPlane = Util.getFirstPlane(acquireNextImage);
+            if (firstPlane != null) {
+                CameraTestManager.this.mCameraCaptureCallback.onPictureTaken(firstPlane, CameraTestManager.this.mCaptureImageReader.getWidth(), CameraTestManager.this.mCaptureImageReader.getHeight());
+            }
+            if (acquireNextImage != null) {
+                acquireNextImage.close();
+            }
         }
     };
     private ImageReader mPreviewFrameImageReader;

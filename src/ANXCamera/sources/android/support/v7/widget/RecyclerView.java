@@ -2266,111 +2266,57 @@ public class RecyclerView extends ViewGroup implements ScrollingView, NestedScro
 
         /* JADX WARNING: Removed duplicated region for block: B:21:0x007d  */
         /* JADX WARNING: Removed duplicated region for block: B:26:0x009d  */
-        android.support.v7.widget.RecyclerView.ViewHolder getScrapViewForPosition(int r8, int r9, boolean r10) {
-            /*
-            r7 = this;
-            r0 = r7.mAttachedScrap;
-            r0 = r0.size();
-            r1 = 0;
-            r2 = r1;
-        L_0x0008:
-            if (r2 >= r0) goto L_0x007b;
-        L_0x000a:
-            r3 = r7.mAttachedScrap;
-            r3 = r3.get(r2);
-            r3 = (android.support.v7.widget.RecyclerView.ViewHolder) r3;
-            r4 = r3.wasReturnedFromScrap();
-            if (r4 != 0) goto L_0x0078;
-        L_0x0018:
-            r4 = r3.getLayoutPosition();
-            if (r4 != r8) goto L_0x0078;
-        L_0x001e:
-            r4 = r3.isInvalid();
-            if (r4 != 0) goto L_0x0078;
-        L_0x0024:
-            r4 = android.support.v7.widget.RecyclerView.this;
-            r4 = r4.mState;
-            r4 = r4.mInPreLayout;
-            if (r4 != 0) goto L_0x0034;
-        L_0x002e:
-            r4 = r3.isRemoved();
-            if (r4 != 0) goto L_0x0078;
-        L_0x0034:
-            r4 = -1;
-            if (r9 == r4) goto L_0x0072;
-        L_0x0037:
-            r4 = r3.getItemViewType();
-            if (r4 == r9) goto L_0x0072;
-        L_0x003d:
-            r4 = "RecyclerView";
-            r5 = new java.lang.StringBuilder;
-            r5.<init>();
-            r6 = "Scrap view for position ";
-            r5.append(r6);
-            r5.append(r8);
-            r6 = " isn't dirty but has";
-            r5.append(r6);
-            r6 = " wrong view type! (found ";
-            r5.append(r6);
-            r6 = r3.getItemViewType();
-            r5.append(r6);
-            r6 = " but expected ";
-            r5.append(r6);
-            r5.append(r9);
-            r6 = ")";
-            r5.append(r6);
-            r5 = r5.toString();
-            android.util.Log.e(r4, r5);
-            goto L_0x007b;
-        L_0x0072:
-            r1 = 32;
-            r3.addFlags(r1);
-            return r3;
-        L_0x0078:
-            r2 = r2 + 1;
-            goto L_0x0008;
-        L_0x007b:
-            if (r10 != 0) goto L_0x0094;
-        L_0x007d:
-            r2 = android.support.v7.widget.RecyclerView.this;
-            r2 = r2.mChildHelper;
-            r2 = r2.findHiddenNonRemovedView(r8, r9);
-            if (r2 == 0) goto L_0x0094;
-        L_0x0087:
-            r3 = android.support.v7.widget.RecyclerView.this;
-            r3 = r3.mItemAnimator;
-            r4 = android.support.v7.widget.RecyclerView.this;
-            r4 = r4.getChildViewHolder(r2);
-            r3.endAnimation(r4);
-        L_0x0094:
-            r2 = r7.mCachedViews;
-            r2 = r2.size();
-        L_0x009b:
-            if (r1 >= r2) goto L_0x00bc;
-        L_0x009d:
-            r3 = r7.mCachedViews;
-            r3 = r3.get(r1);
-            r3 = (android.support.v7.widget.RecyclerView.ViewHolder) r3;
-            r4 = r3.isInvalid();
-            if (r4 != 0) goto L_0x00b9;
-        L_0x00ab:
-            r4 = r3.getLayoutPosition();
-            if (r4 != r8) goto L_0x00b9;
-        L_0x00b1:
-            if (r10 != 0) goto L_0x00b8;
-        L_0x00b3:
-            r4 = r7.mCachedViews;
-            r4.remove(r1);
-        L_0x00b8:
-            return r3;
-        L_0x00b9:
-            r1 = r1 + 1;
-            goto L_0x009b;
-        L_0x00bc:
-            r1 = 0;
-            return r1;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: android.support.v7.widget.RecyclerView.Recycler.getScrapViewForPosition(int, int, boolean):android.support.v7.widget.RecyclerView$ViewHolder");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        ViewHolder getScrapViewForPosition(int position, int type, boolean dryRun) {
+            int scrapCount = this.mAttachedScrap.size();
+            int i = 0;
+            int i2 = 0;
+            while (i2 < scrapCount) {
+                ViewHolder holder = (ViewHolder) this.mAttachedScrap.get(i2);
+                if (holder.wasReturnedFromScrap() || holder.getLayoutPosition() != position || holder.isInvalid() || (!RecyclerView.this.mState.mInPreLayout && holder.isRemoved())) {
+                    i2++;
+                } else if (type == -1 || holder.getItemViewType() == type) {
+                    holder.addFlags(32);
+                    return holder;
+                } else {
+                    String str = RecyclerView.TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("Scrap view for position ");
+                    stringBuilder.append(position);
+                    stringBuilder.append(" isn't dirty but has");
+                    stringBuilder.append(" wrong view type! (found ");
+                    stringBuilder.append(holder.getItemViewType());
+                    stringBuilder.append(" but expected ");
+                    stringBuilder.append(type);
+                    stringBuilder.append(")");
+                    Log.e(str, stringBuilder.toString());
+                    if (!dryRun) {
+                        View view = RecyclerView.this.mChildHelper.findHiddenNonRemovedView(position, type);
+                        if (view != null) {
+                            RecyclerView.this.mItemAnimator.endAnimation(RecyclerView.this.getChildViewHolder(view));
+                        }
+                    }
+                    i2 = this.mCachedViews.size();
+                    while (i < i2) {
+                        holder = (ViewHolder) this.mCachedViews.get(i);
+                        if (holder.isInvalid() || holder.getLayoutPosition() != position) {
+                            i++;
+                        } else {
+                            if (!dryRun) {
+                                this.mCachedViews.remove(i);
+                            }
+                            return holder;
+                        }
+                    }
+                    return null;
+                }
+            }
+            if (dryRun) {
+            }
+            i2 = this.mCachedViews.size();
+            while (i < i2) {
+            }
+            return null;
         }
 
         ViewHolder getScrapViewForId(long id, int type, boolean dryRun) {
@@ -2830,324 +2776,144 @@ public class RecyclerView extends ViewGroup implements ScrollingView, NestedScro
         }
 
         /* JADX WARNING: Removed duplicated region for block: B:105:0x01eb  */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         public void run() {
-            /*
-            r21 = this;
-            r0 = r21;
-            r21.disableRunOnAnimationRequests();
-            r1 = android.support.v7.widget.RecyclerView.this;
-            r1.consumePendingUpdateOperations();
-            r1 = r0.mScroller;
-            r2 = android.support.v7.widget.RecyclerView.this;
-            r2 = r2.mLayout;
-            r2 = r2.mSmoothScroller;
-            r3 = r1.computeScrollOffset();
-            if (r3 == 0) goto L_0x01e8;
-        L_0x001a:
-            r3 = r1.getCurrX();
-            r5 = r1.getCurrY();
-            r6 = r0.mLastFlingX;
-            r6 = r3 - r6;
-            r7 = r0.mLastFlingY;
-            r7 = r5 - r7;
-            r8 = 0;
-            r9 = 0;
-            r0.mLastFlingX = r3;
-            r0.mLastFlingY = r5;
-            r10 = 0;
-            r11 = 0;
-            r12 = android.support.v7.widget.RecyclerView.this;
-            r12 = r12.mAdapter;
-            if (r12 == 0) goto L_0x0126;
-        L_0x003a:
-            r12 = android.support.v7.widget.RecyclerView.this;
-            r12.eatRequestLayout();
-            r12 = android.support.v7.widget.RecyclerView.this;
-            r12.onEnterLayoutOrScroll();
-            r12 = "RV Scroll";
-            android.support.v4.os.TraceCompat.beginSection(r12);
-            if (r6 == 0) goto L_0x005f;
-        L_0x004b:
-            r12 = android.support.v7.widget.RecyclerView.this;
-            r12 = r12.mLayout;
-            r13 = android.support.v7.widget.RecyclerView.this;
-            r13 = r13.mRecycler;
-            r14 = android.support.v7.widget.RecyclerView.this;
-            r14 = r14.mState;
-            r8 = r12.scrollHorizontallyBy(r6, r13, r14);
-            r10 = r6 - r8;
-        L_0x005f:
-            if (r7 == 0) goto L_0x0075;
-        L_0x0061:
-            r12 = android.support.v7.widget.RecyclerView.this;
-            r12 = r12.mLayout;
-            r13 = android.support.v7.widget.RecyclerView.this;
-            r13 = r13.mRecycler;
-            r14 = android.support.v7.widget.RecyclerView.this;
-            r14 = r14.mState;
-            r9 = r12.scrollVerticallyBy(r7, r13, r14);
-            r11 = r7 - r9;
-        L_0x0075:
-            android.support.v4.os.TraceCompat.endSection();
-            r12 = android.support.v7.widget.RecyclerView.this;
-            r12 = r12.supportsChangeAnimations();
-            if (r12 == 0) goto L_0x00dd;
-        L_0x0080:
-            r12 = android.support.v7.widget.RecyclerView.this;
-            r12 = r12.mChildHelper;
-            r12 = r12.getChildCount();
-            r13 = 0;
-        L_0x0089:
-            if (r13 >= r12) goto L_0x00dd;
-        L_0x008b:
-            r14 = android.support.v7.widget.RecyclerView.this;
-            r14 = r14.mChildHelper;
-            r14 = r14.getChildAt(r13);
-            r15 = android.support.v7.widget.RecyclerView.this;
-            r15 = r15.getChildViewHolder(r14);
-            if (r15 == 0) goto L_0x00ce;
-        L_0x009b:
-            r4 = r15.mShadowingHolder;
-            if (r4 == 0) goto L_0x00ce;
-        L_0x009f:
-            r4 = r15.mShadowingHolder;
-            r4 = r4.itemView;
-            r16 = r8;
-            r8 = r14.getLeft();
-            r17 = r9;
-            r9 = r14.getTop();
-            r18 = r12;
-            r12 = r4.getLeft();
-            if (r8 != r12) goto L_0x00bd;
-        L_0x00b7:
-            r12 = r4.getTop();
-            if (r9 == r12) goto L_0x00d4;
-        L_0x00bd:
-            r12 = r4.getWidth();
-            r12 = r12 + r8;
-            r19 = r4.getHeight();
-            r20 = r14;
-            r14 = r9 + r19;
-            r4.layout(r8, r9, r12, r14);
-            goto L_0x00d4;
-        L_0x00ce:
-            r16 = r8;
-            r17 = r9;
-            r18 = r12;
-        L_0x00d4:
-            r13 = r13 + 1;
-            r8 = r16;
-            r9 = r17;
-            r12 = r18;
-            goto L_0x0089;
-        L_0x00dd:
-            r16 = r8;
-            r17 = r9;
-            r4 = android.support.v7.widget.RecyclerView.this;
-            r4.onExitLayoutOrScroll();
-            r4 = android.support.v7.widget.RecyclerView.this;
-            r8 = 0;
-            r4.resumeRequestLayout(r8);
-            if (r2 == 0) goto L_0x0122;
-        L_0x00ee:
-            r4 = r2.isPendingInitialRun();
-            if (r4 != 0) goto L_0x0122;
-        L_0x00f4:
-            r4 = r2.isRunning();
-            if (r4 == 0) goto L_0x0122;
-        L_0x00fa:
-            r4 = android.support.v7.widget.RecyclerView.this;
-            r4 = r4.mState;
-            r4 = r4.getItemCount();
-            if (r4 != 0) goto L_0x0108;
-        L_0x0104:
-            r2.stop();
-            goto L_0x0122;
-        L_0x0108:
-            r8 = r2.getTargetPosition();
-            if (r8 < r4) goto L_0x011b;
-        L_0x010e:
-            r8 = r4 + -1;
-            r2.setTargetPosition(r8);
-            r8 = r6 - r10;
-            r9 = r7 - r11;
-            r2.onAnimation(r8, r9);
-            goto L_0x0122;
-        L_0x011b:
-            r8 = r6 - r10;
-            r9 = r7 - r11;
-            r2.onAnimation(r8, r9);
-        L_0x0122:
-            r8 = r16;
-            r9 = r17;
-        L_0x0126:
-            r4 = android.support.v7.widget.RecyclerView.this;
-            r4 = r4.mItemDecorations;
-            r4 = r4.isEmpty();
-            if (r4 != 0) goto L_0x0137;
-        L_0x0132:
-            r4 = android.support.v7.widget.RecyclerView.this;
-            r4.invalidate();
-        L_0x0137:
-            r4 = android.support.v7.widget.RecyclerView.this;
-            r4 = android.support.v4.view.ViewCompat.getOverScrollMode(r4);
-            r12 = 2;
-            if (r4 == r12) goto L_0x0145;
-        L_0x0140:
-            r4 = android.support.v7.widget.RecyclerView.this;
-            r4.considerReleasingGlowsOnScroll(r6, r7);
-        L_0x0145:
-            if (r10 != 0) goto L_0x0149;
-        L_0x0147:
-            if (r11 == 0) goto L_0x018c;
-        L_0x0149:
-            r4 = r1.getCurrVelocity();
-            r4 = (int) r4;
-            r13 = 0;
-            if (r10 == r3) goto L_0x015b;
-        L_0x0151:
-            if (r10 >= 0) goto L_0x0155;
-        L_0x0153:
-            r14 = -r4;
-            goto L_0x015a;
-        L_0x0155:
-            if (r10 <= 0) goto L_0x0159;
-        L_0x0157:
-            r14 = r4;
-            goto L_0x015a;
-        L_0x0159:
-            r14 = 0;
-        L_0x015a:
-            r13 = r14;
-        L_0x015b:
-            r14 = 0;
-            if (r11 == r5) goto L_0x0168;
-        L_0x015e:
-            if (r11 >= 0) goto L_0x0162;
-        L_0x0160:
-            r15 = -r4;
-            goto L_0x0167;
-        L_0x0162:
-            if (r11 <= 0) goto L_0x0166;
-        L_0x0164:
-            r15 = r4;
-            goto L_0x0167;
-        L_0x0166:
-            r15 = 0;
-        L_0x0167:
-            r14 = r15;
-        L_0x0168:
-            r15 = android.support.v7.widget.RecyclerView.this;
-            r15 = android.support.v4.view.ViewCompat.getOverScrollMode(r15);
-            if (r15 == r12) goto L_0x0175;
-        L_0x0170:
-            r12 = android.support.v7.widget.RecyclerView.this;
-            r12.absorbGlows(r13, r14);
-        L_0x0175:
-            if (r13 != 0) goto L_0x017f;
-        L_0x0177:
-            if (r10 == r3) goto L_0x017f;
-        L_0x0179:
-            r12 = r1.getFinalX();
-            if (r12 != 0) goto L_0x018c;
-        L_0x017f:
-            if (r14 != 0) goto L_0x0189;
-        L_0x0181:
-            if (r11 == r5) goto L_0x0189;
-        L_0x0183:
-            r12 = r1.getFinalY();
-            if (r12 != 0) goto L_0x018c;
-        L_0x0189:
-            r1.abortAnimation();
-        L_0x018c:
-            if (r8 != 0) goto L_0x0190;
-        L_0x018e:
-            if (r9 == 0) goto L_0x0195;
-        L_0x0190:
-            r4 = android.support.v7.widget.RecyclerView.this;
-            r4.dispatchOnScrolled(r8, r9);
-        L_0x0195:
-            r4 = android.support.v7.widget.RecyclerView.this;
-            r4 = r4.awakenScrollBars();
-            if (r4 != 0) goto L_0x01a2;
-        L_0x019d:
-            r4 = android.support.v7.widget.RecyclerView.this;
-            r4.invalidate();
-        L_0x01a2:
-            r4 = 1;
-            if (r7 == 0) goto L_0x01b5;
-        L_0x01a5:
-            r12 = android.support.v7.widget.RecyclerView.this;
-            r12 = r12.mLayout;
-            r12 = r12.canScrollVertically();
-            if (r12 == 0) goto L_0x01b5;
-        L_0x01b1:
-            if (r9 != r7) goto L_0x01b5;
-        L_0x01b3:
-            r12 = r4;
-            goto L_0x01b6;
-        L_0x01b5:
-            r12 = 0;
-        L_0x01b6:
-            if (r6 == 0) goto L_0x01c8;
-        L_0x01b8:
-            r13 = android.support.v7.widget.RecyclerView.this;
-            r13 = r13.mLayout;
-            r13 = r13.canScrollHorizontally();
-            if (r13 == 0) goto L_0x01c8;
-        L_0x01c4:
-            if (r8 != r6) goto L_0x01c8;
-        L_0x01c6:
-            r13 = r4;
-            goto L_0x01c9;
-        L_0x01c8:
-            r13 = 0;
-        L_0x01c9:
-            if (r6 != 0) goto L_0x01cd;
-        L_0x01cb:
-            if (r7 == 0) goto L_0x01d4;
-        L_0x01cd:
-            if (r13 != 0) goto L_0x01d4;
-        L_0x01cf:
-            if (r12 == 0) goto L_0x01d2;
-        L_0x01d1:
-            goto L_0x01d4;
-        L_0x01d2:
-            r4 = 0;
-        L_0x01d4:
-            r14 = r1.isFinished();
-            if (r14 != 0) goto L_0x01e1;
-        L_0x01da:
-            if (r4 != 0) goto L_0x01dd;
-        L_0x01dc:
-            goto L_0x01e1;
-        L_0x01dd:
-            r21.postOnAnimation();
-            goto L_0x01e8;
-        L_0x01e1:
-            r14 = android.support.v7.widget.RecyclerView.this;
-            r15 = 0;
-            r14.setScrollState(r15);
-            goto L_0x01e9;
-        L_0x01e8:
-            r15 = 0;
-        L_0x01e9:
-            if (r2 == 0) goto L_0x01fb;
-        L_0x01eb:
-            r3 = r2.isPendingInitialRun();
-            if (r3 == 0) goto L_0x01f4;
-        L_0x01f1:
-            r2.onAnimation(r15, r15);
-        L_0x01f4:
-            r3 = r0.mReSchedulePostAnimationCallback;
-            if (r3 != 0) goto L_0x01fb;
-        L_0x01f8:
-            r2.stop();
-        L_0x01fb:
-            r21.enableRunOnAnimationRequests();
-            return;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: android.support.v7.widget.RecyclerView.ViewFlinger.run():void");
+            int i;
+            disableRunOnAnimationRequests();
+            RecyclerView.this.consumePendingUpdateOperations();
+            ScrollerCompat scroller = this.mScroller;
+            SmoothScroller smoothScroller = RecyclerView.this.mLayout.mSmoothScroller;
+            if (scroller.computeScrollOffset()) {
+                int i2;
+                int adapterSize;
+                int x = scroller.getCurrX();
+                int y = scroller.getCurrY();
+                int dx = x - this.mLastFlingX;
+                int dy = y - this.mLastFlingY;
+                int hresult = 0;
+                int vresult = 0;
+                this.mLastFlingX = x;
+                this.mLastFlingY = y;
+                int overscrollX = 0;
+                int overscrollY = 0;
+                if (RecyclerView.this.mAdapter != null) {
+                    int hresult2;
+                    int vresult2;
+                    RecyclerView.this.eatRequestLayout();
+                    RecyclerView.this.onEnterLayoutOrScroll();
+                    TraceCompat.beginSection(RecyclerView.TRACE_SCROLL_TAG);
+                    if (dx != 0) {
+                        hresult = RecyclerView.this.mLayout.scrollHorizontallyBy(dx, RecyclerView.this.mRecycler, RecyclerView.this.mState);
+                        overscrollX = dx - hresult;
+                    }
+                    if (dy != 0) {
+                        vresult = RecyclerView.this.mLayout.scrollVerticallyBy(dy, RecyclerView.this.mRecycler, RecyclerView.this.mState);
+                        overscrollY = dy - vresult;
+                    }
+                    TraceCompat.endSection();
+                    if (RecyclerView.this.supportsChangeAnimations()) {
+                        int count = RecyclerView.this.mChildHelper.getChildCount();
+                        i2 = 0;
+                        while (i2 < count) {
+                            int count2;
+                            View view = RecyclerView.this.mChildHelper.getChildAt(i2);
+                            ViewHolder holder = RecyclerView.this.getChildViewHolder(view);
+                            if (holder == null || holder.mShadowingHolder == null) {
+                                hresult2 = hresult;
+                                vresult2 = vresult;
+                                count2 = count;
+                            } else {
+                                View shadowingView = holder.mShadowingHolder.itemView;
+                                hresult2 = hresult;
+                                hresult = view.getLeft();
+                                vresult2 = vresult;
+                                vresult = view.getTop();
+                                count2 = count;
+                                if (hresult != shadowingView.getLeft() || vresult != shadowingView.getTop()) {
+                                    shadowingView.layout(hresult, vresult, shadowingView.getWidth() + hresult, vresult + shadowingView.getHeight());
+                                }
+                            }
+                            i2++;
+                            hresult = hresult2;
+                            vresult = vresult2;
+                            count = count2;
+                        }
+                    }
+                    hresult2 = hresult;
+                    vresult2 = vresult;
+                    RecyclerView.this.onExitLayoutOrScroll();
+                    RecyclerView.this.resumeRequestLayout(false);
+                    if (!(smoothScroller == null || smoothScroller.isPendingInitialRun() || !smoothScroller.isRunning())) {
+                        adapterSize = RecyclerView.this.mState.getItemCount();
+                        if (adapterSize == 0) {
+                            smoothScroller.stop();
+                        } else if (smoothScroller.getTargetPosition() >= adapterSize) {
+                            smoothScroller.setTargetPosition(adapterSize - 1);
+                            smoothScroller.onAnimation(dx - overscrollX, dy - overscrollY);
+                        } else {
+                            smoothScroller.onAnimation(dx - overscrollX, dy - overscrollY);
+                        }
+                    }
+                    hresult = hresult2;
+                    vresult = vresult2;
+                }
+                if (!RecyclerView.this.mItemDecorations.isEmpty()) {
+                    RecyclerView.this.invalidate();
+                }
+                if (ViewCompat.getOverScrollMode(RecyclerView.this) != 2) {
+                    RecyclerView.this.considerReleasingGlowsOnScroll(dx, dy);
+                }
+                if (!(overscrollX == 0 && overscrollY == 0)) {
+                    int i3;
+                    adapterSize = (int) scroller.getCurrVelocity();
+                    i2 = 0;
+                    if (overscrollX != x) {
+                        i3 = overscrollX < 0 ? -adapterSize : overscrollX > 0 ? adapterSize : 0;
+                        i2 = i3;
+                    }
+                    i3 = 0;
+                    if (overscrollY != y) {
+                        i = overscrollY < 0 ? -adapterSize : overscrollY > 0 ? adapterSize : 0;
+                        i3 = i;
+                    }
+                    if (ViewCompat.getOverScrollMode(RecyclerView.this) != 2) {
+                        RecyclerView.this.absorbGlows(i2, i3);
+                    }
+                    if ((i2 != 0 || overscrollX == x || scroller.getFinalX() == 0) && (i3 != 0 || overscrollY == y || scroller.getFinalY() == 0)) {
+                        scroller.abortAnimation();
+                    }
+                }
+                if (!(hresult == 0 && vresult == 0)) {
+                    RecyclerView.this.dispatchOnScrolled(hresult, vresult);
+                }
+                if (!RecyclerView.this.awakenScrollBars()) {
+                    RecyclerView.this.invalidate();
+                }
+                boolean fullyConsumedAny = true;
+                boolean fullyConsumedVertical = dy != 0 && RecyclerView.this.mLayout.canScrollVertically() && vresult == dy;
+                boolean fullyConsumedHorizontal = dx != 0 && RecyclerView.this.mLayout.canScrollHorizontally() && hresult == dx;
+                if (!((dx == 0 && dy == 0) || fullyConsumedHorizontal || fullyConsumedVertical)) {
+                    fullyConsumedAny = false;
+                }
+                if (scroller.isFinished() || !fullyConsumedAny) {
+                    i = 0;
+                    RecyclerView.this.setScrollState(0);
+                    if (smoothScroller != null) {
+                        if (smoothScroller.isPendingInitialRun()) {
+                            smoothScroller.onAnimation(i, i);
+                        }
+                        if (!this.mReSchedulePostAnimationCallback) {
+                            smoothScroller.stop();
+                        }
+                    }
+                    enableRunOnAnimationRequests();
+                }
+                postOnAnimation();
+            }
+            i = 0;
+            if (smoothScroller != null) {
+            }
+            enableRunOnAnimationRequests();
         }
 
         private void disableRunOnAnimationRequests() {

@@ -15,6 +15,7 @@ import org.greenrobot.greendao.database.DatabaseStatement;
 import org.greenrobot.greendao.identityscope.IdentityScope;
 import org.greenrobot.greendao.identityscope.IdentityScopeLong;
 import org.greenrobot.greendao.internal.DaoConfig;
+import org.greenrobot.greendao.internal.FastCursor;
 import org.greenrobot.greendao.internal.TableStatements;
 import org.greenrobot.greendao.query.Query;
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -195,92 +196,44 @@ public abstract class AbstractDao<T, K> {
     /* JADX WARNING: Missing block: B:37:0x007e, code:
             r5.db.endTransaction();
      */
-    private void executeInsertInTx(org.greenrobot.greendao.database.DatabaseStatement r6, java.lang.Iterable<T> r7, boolean r8) {
-        /*
-        r5 = this;
-        r0 = r5.db;
-        r0.beginTransaction();
-        monitor-enter(r6);	 Catch:{ all -> 0x007d }
-        r0 = r5.identityScope;	 Catch:{ all -> 0x007a }
-        if (r0 == 0) goto L_0x000f;
-    L_0x000a:
-        r0 = r5.identityScope;	 Catch:{ all -> 0x007a }
-        r0.lock();	 Catch:{ all -> 0x007a }
-    L_0x000f:
-        r0 = r5.isStandardSQLite;	 Catch:{ all -> 0x006f }
-        r1 = 0;
-        if (r0 == 0) goto L_0x003a;
-    L_0x0014:
-        r0 = r6.getRawStatement();	 Catch:{ all -> 0x006f }
-        r0 = (android.database.sqlite.SQLiteStatement) r0;	 Catch:{ all -> 0x006f }
-        r7 = r7.iterator();	 Catch:{ all -> 0x006f }
-    L_0x001e:
-        r2 = r7.hasNext();	 Catch:{ all -> 0x006f }
-        if (r2 == 0) goto L_0x0039;
-    L_0x0024:
-        r2 = r7.next();	 Catch:{ all -> 0x006f }
-        r5.bindValues(r0, r2);	 Catch:{ all -> 0x006f }
-        if (r8 == 0) goto L_0x0035;
-    L_0x002d:
-        r3 = r0.executeInsert();	 Catch:{ all -> 0x006f }
-        r5.updateKeyAfterInsertAndAttach(r2, r3, r1);	 Catch:{ all -> 0x006f }
-        goto L_0x0038;
-    L_0x0035:
-        r0.execute();	 Catch:{ all -> 0x006f }
-    L_0x0038:
-        goto L_0x001e;
-    L_0x0039:
-        goto L_0x0059;
-    L_0x003a:
-        r7 = r7.iterator();	 Catch:{ all -> 0x006f }
-    L_0x003e:
-        r0 = r7.hasNext();	 Catch:{ all -> 0x006f }
-        if (r0 == 0) goto L_0x0059;
-    L_0x0044:
-        r0 = r7.next();	 Catch:{ all -> 0x006f }
-        r5.bindValues(r6, r0);	 Catch:{ all -> 0x006f }
-        if (r8 == 0) goto L_0x0055;
-    L_0x004d:
-        r2 = r6.executeInsert();	 Catch:{ all -> 0x006f }
-        r5.updateKeyAfterInsertAndAttach(r0, r2, r1);	 Catch:{ all -> 0x006f }
-        goto L_0x0058;
-    L_0x0055:
-        r6.execute();	 Catch:{ all -> 0x006f }
-    L_0x0058:
-        goto L_0x003e;
-    L_0x0059:
-        r7 = r5.identityScope;	 Catch:{ all -> 0x007a }
-        if (r7 == 0) goto L_0x0062;
-    L_0x005d:
-        r7 = r5.identityScope;	 Catch:{ all -> 0x007a }
-        r7.unlock();	 Catch:{ all -> 0x007a }
-    L_0x0062:
-        monitor-exit(r6);	 Catch:{ all -> 0x007a }
-        r6 = r5.db;	 Catch:{ all -> 0x007d }
-        r6.setTransactionSuccessful();	 Catch:{ all -> 0x007d }
-        r6 = r5.db;
-        r6.endTransaction();
-        return;
-    L_0x006f:
-        r7 = move-exception;
-        r8 = r5.identityScope;	 Catch:{ all -> 0x007a }
-        if (r8 == 0) goto L_0x0079;
-    L_0x0074:
-        r8 = r5.identityScope;	 Catch:{ all -> 0x007a }
-        r8.unlock();	 Catch:{ all -> 0x007a }
-    L_0x0079:
-        throw r7;	 Catch:{ all -> 0x007a }
-    L_0x007a:
-        r7 = move-exception;
-        monitor-exit(r6);	 Catch:{ all -> 0x007a }
-        throw r7;	 Catch:{ all -> 0x007d }
-    L_0x007d:
-        r6 = move-exception;
-        r7 = r5.db;
-        r7.endTransaction();
-        throw r6;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.greenrobot.greendao.AbstractDao.executeInsertInTx(org.greenrobot.greendao.database.DatabaseStatement, java.lang.Iterable, boolean):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void executeInsertInTx(DatabaseStatement databaseStatement, Iterable<T> iterable, boolean z) {
+        this.db.beginTransaction();
+        try {
+            synchronized (databaseStatement) {
+                if (this.identityScope != null) {
+                    this.identityScope.lock();
+                }
+                try {
+                    if (this.isStandardSQLite) {
+                        SQLiteStatement sQLiteStatement = (SQLiteStatement) databaseStatement.getRawStatement();
+                        for (Object next : iterable) {
+                            bindValues(sQLiteStatement, next);
+                            if (z) {
+                                updateKeyAfterInsertAndAttach(next, sQLiteStatement.executeInsert(), false);
+                            } else {
+                                sQLiteStatement.execute();
+                            }
+                        }
+                    } else {
+                        for (Object next2 : iterable) {
+                            bindValues(databaseStatement, next2);
+                            if (z) {
+                                updateKeyAfterInsertAndAttach(next2, databaseStatement.executeInsert(), false);
+                            } else {
+                                databaseStatement.execute();
+                            }
+                        }
+                    }
+                } finally {
+                    if (this.identityScope != null) {
+                        this.identityScope.unlock();
+                    }
+                }
+            }
+            this.db.setTransactionSuccessful();
+        } finally {
+        }
     }
 
     public long insert(T t) {
@@ -387,95 +340,60 @@ public abstract class AbstractDao<T, K> {
 
     /* JADX WARNING: Removed duplicated region for block: B:28:0x0080  */
     /* JADX WARNING: Removed duplicated region for block: B:15:0x0055  */
-    protected java.util.List<T> loadAllFromCursor(android.database.Cursor r7) {
-        /*
-        r6 = this;
-        r0 = r7.getCount();
-        if (r0 != 0) goto L_0x000c;
-    L_0x0006:
-        r7 = new java.util.ArrayList;
-        r7.<init>();
-        return r7;
-    L_0x000c:
-        r1 = new java.util.ArrayList;
-        r1.<init>(r0);
-        r2 = 0;
-        r3 = r7 instanceof android.database.CrossProcessCursor;
-        r4 = 0;
-        if (r3 == 0) goto L_0x004e;
-    L_0x0018:
-        r2 = r7;
-        r2 = (android.database.CrossProcessCursor) r2;
-        r2 = r2.getWindow();
-        if (r2 == 0) goto L_0x004e;
-    L_0x0021:
-        r3 = r2.getNumRows();
-        if (r3 != r0) goto L_0x002e;
-    L_0x0027:
-        r7 = new org.greenrobot.greendao.internal.FastCursor;
-        r7.<init>(r2);
-        r3 = 1;
-        goto L_0x004f;
-    L_0x002e:
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r5 = "Window vs. result size: ";
-        r3.append(r5);
-        r5 = r2.getNumRows();
-        r3.append(r5);
-        r5 = "/";
-        r3.append(r5);
-        r3.append(r0);
-        r3 = r3.toString();
-        org.greenrobot.greendao.DaoLog.d(r3);
-    L_0x004e:
-        r3 = r4;
-    L_0x004f:
-        r5 = r7.moveToFirst();
-        if (r5 == 0) goto L_0x0091;
-    L_0x0055:
-        r5 = r6.identityScope;
-        if (r5 == 0) goto L_0x0063;
-    L_0x0059:
-        r5 = r6.identityScope;
-        r5.lock();
-        r5 = r6.identityScope;
-        r5.reserveRoom(r0);
-    L_0x0063:
-        if (r3 != 0) goto L_0x006f;
-    L_0x0065:
-        if (r2 == 0) goto L_0x006f;
-    L_0x0067:
-        r0 = r6.identityScope;	 Catch:{ all -> 0x0086 }
-        if (r0 == 0) goto L_0x006f;
-    L_0x006b:
-        r6.loadAllUnlockOnWindowBounds(r7, r2, r1);	 Catch:{ all -> 0x0086 }
-        goto L_0x007c;
-    L_0x006f:
-        r0 = r6.loadCurrent(r7, r4, r4);	 Catch:{ all -> 0x0086 }
-        r1.add(r0);	 Catch:{ all -> 0x0086 }
-        r0 = r7.moveToNext();	 Catch:{ all -> 0x0086 }
-        if (r0 != 0) goto L_0x006f;
-    L_0x007c:
-        r7 = r6.identityScope;
-        if (r7 == 0) goto L_0x0091;
-    L_0x0080:
-        r7 = r6.identityScope;
-        r7.unlock();
-        goto L_0x0091;
-    L_0x0086:
-        r7 = move-exception;
-        r0 = r6.identityScope;
-        if (r0 == 0) goto L_0x0090;
-    L_0x008b:
-        r0 = r6.identityScope;
-        r0.unlock();
-    L_0x0090:
-        throw r7;
-    L_0x0091:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.greenrobot.greendao.AbstractDao.loadAllFromCursor(android.database.Cursor):java.util.List<T>");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    protected List<T> loadAllFromCursor(Cursor cursor) {
+        int count = cursor.getCount();
+        if (count == 0) {
+            return new ArrayList();
+        }
+        boolean z;
+        List<T> arrayList = new ArrayList(count);
+        CursorWindow cursorWindow = null;
+        if (cursor instanceof CrossProcessCursor) {
+            cursorWindow = ((CrossProcessCursor) cursor).getWindow();
+            if (cursorWindow != null) {
+                if (cursorWindow.getNumRows() == count) {
+                    cursor = new FastCursor(cursorWindow);
+                    z = true;
+                    if (cursor.moveToFirst()) {
+                        if (this.identityScope != null) {
+                            this.identityScope.lock();
+                            this.identityScope.reserveRoom(count);
+                        }
+                        if (!(z || cursorWindow == null)) {
+                            try {
+                                if (this.identityScope != null) {
+                                    loadAllUnlockOnWindowBounds(cursor, cursorWindow, arrayList);
+                                    if (this.identityScope != null) {
+                                        this.identityScope.unlock();
+                                    }
+                                }
+                            } catch (Throwable th) {
+                                if (this.identityScope != null) {
+                                    this.identityScope.unlock();
+                                }
+                            }
+                        }
+                        do {
+                            arrayList.add(loadCurrent(cursor, 0, false));
+                        } while (cursor.moveToNext());
+                        if (this.identityScope != null) {
+                        }
+                    }
+                    return arrayList;
+                }
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Window vs. result size: ");
+                stringBuilder.append(cursorWindow.getNumRows());
+                stringBuilder.append("/");
+                stringBuilder.append(count);
+                DaoLog.d(stringBuilder.toString());
+            }
+        }
+        z = false;
+        if (cursor.moveToFirst()) {
+        }
+        return arrayList;
     }
 
     private void loadAllUnlockOnWindowBounds(Cursor cursor, CursorWindow cursorWindow, List<T> list) {
@@ -796,100 +714,49 @@ public abstract class AbstractDao<T, K> {
 
     /* JADX WARNING: Removed duplicated region for block: B:40:0x0084  */
     /* JADX WARNING: Removed duplicated region for block: B:39:0x0083 A:{RETURN} */
-    public void updateInTx(java.lang.Iterable<T> r5) {
-        /*
-        r4 = this;
-        r0 = r4.statements;
-        r0 = r0.getUpdateStatement();
-        r1 = r4.db;
-        r1.beginTransaction();
-        monitor-enter(r0);	 Catch:{ RuntimeException -> 0x0079, all -> 0x006e }
-        r1 = r4.identityScope;	 Catch:{ all -> 0x006b }
-        if (r1 == 0) goto L_0x0016;
-    L_0x0011:
-        r1 = r4.identityScope;	 Catch:{ all -> 0x006b }
-        r1.lock();	 Catch:{ all -> 0x006b }
-    L_0x0016:
-        r1 = r4.isStandardSQLite;	 Catch:{ all -> 0x0060 }
-        r2 = 0;
-        if (r1 == 0) goto L_0x0034;
-    L_0x001b:
-        r1 = r0.getRawStatement();	 Catch:{ all -> 0x0060 }
-        r1 = (android.database.sqlite.SQLiteStatement) r1;	 Catch:{ all -> 0x0060 }
-        r5 = r5.iterator();	 Catch:{ all -> 0x0060 }
-    L_0x0025:
-        r3 = r5.hasNext();	 Catch:{ all -> 0x0060 }
-        if (r3 == 0) goto L_0x0033;
-    L_0x002b:
-        r3 = r5.next();	 Catch:{ all -> 0x0060 }
-        r4.updateInsideSynchronized(r3, r1, r2);	 Catch:{ all -> 0x0060 }
-        goto L_0x0025;
-    L_0x0033:
-        goto L_0x0046;
-    L_0x0034:
-        r5 = r5.iterator();	 Catch:{ all -> 0x0060 }
-    L_0x0038:
-        r1 = r5.hasNext();	 Catch:{ all -> 0x0060 }
-        if (r1 == 0) goto L_0x0046;
-    L_0x003e:
-        r1 = r5.next();	 Catch:{ all -> 0x0060 }
-        r4.updateInsideSynchronized(r1, r0, r2);	 Catch:{ all -> 0x0060 }
-        goto L_0x0038;
-    L_0x0046:
-        r5 = r4.identityScope;	 Catch:{ all -> 0x006b }
-        if (r5 == 0) goto L_0x004f;
-    L_0x004a:
-        r5 = r4.identityScope;	 Catch:{ all -> 0x006b }
-        r5.unlock();	 Catch:{ all -> 0x006b }
-    L_0x004f:
-        monitor-exit(r0);	 Catch:{ all -> 0x006b }
-        r5 = r4.db;	 Catch:{ RuntimeException -> 0x0079, all -> 0x006e }
-        r5.setTransactionSuccessful();	 Catch:{ RuntimeException -> 0x0079, all -> 0x006e }
-        r5 = r4.db;	 Catch:{ RuntimeException -> 0x005d }
-        r5.endTransaction();	 Catch:{ RuntimeException -> 0x005d }
-        r5 = 0;
-        goto L_0x0081;
-    L_0x005d:
-        r5 = move-exception;
-        throw r5;
-    L_0x0060:
-        r5 = move-exception;
-        r1 = r4.identityScope;	 Catch:{ all -> 0x006b }
-        if (r1 == 0) goto L_0x006a;
-    L_0x0065:
-        r1 = r4.identityScope;	 Catch:{ all -> 0x006b }
-        r1.unlock();	 Catch:{ all -> 0x006b }
-    L_0x006a:
-        throw r5;	 Catch:{ all -> 0x006b }
-    L_0x006b:
-        r5 = move-exception;
-        monitor-exit(r0);	 Catch:{ all -> 0x006b }
-        throw r5;	 Catch:{ RuntimeException -> 0x0079, all -> 0x006e }
-    L_0x006e:
-        r5 = move-exception;
-        r0 = r4.db;	 Catch:{ RuntimeException -> 0x0076 }
-        r0.endTransaction();	 Catch:{ RuntimeException -> 0x0076 }
-        throw r5;
-    L_0x0076:
-        r5 = move-exception;
-        throw r5;
-    L_0x0079:
-        r5 = move-exception;
-        r0 = r4.db;	 Catch:{ RuntimeException -> 0x0085 }
-        r0.endTransaction();	 Catch:{ RuntimeException -> 0x0085 }
-    L_0x0081:
-        if (r5 != 0) goto L_0x0084;
-    L_0x0083:
-        return;
-    L_0x0084:
-        throw r5;
-    L_0x0085:
-        r0 = move-exception;
-        r1 = "Could not end transaction (rethrowing initial exception)";
-        org.greenrobot.greendao.DaoLog.w(r1, r0);
-        throw r5;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.greenrobot.greendao.AbstractDao.updateInTx(java.lang.Iterable):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void updateInTx(Iterable<T> iterable) {
+        RuntimeException e;
+        DatabaseStatement updateStatement = this.statements.getUpdateStatement();
+        this.db.beginTransaction();
+        try {
+            synchronized (updateStatement) {
+                if (this.identityScope != null) {
+                    this.identityScope.lock();
+                }
+                try {
+                    if (this.isStandardSQLite) {
+                        SQLiteStatement sQLiteStatement = (SQLiteStatement) updateStatement.getRawStatement();
+                        for (T updateInsideSynchronized : iterable) {
+                            updateInsideSynchronized((Object) updateInsideSynchronized, sQLiteStatement, false);
+                        }
+                    } else {
+                        for (T updateInsideSynchronized2 : iterable) {
+                            updateInsideSynchronized((Object) updateInsideSynchronized2, updateStatement, false);
+                        }
+                    }
+                } finally {
+                    if (this.identityScope != null) {
+                        this.identityScope.unlock();
+                    }
+                }
+            }
+            this.db.setTransactionSuccessful();
+        } catch (RuntimeException e2) {
+            e = e2;
+        } finally {
+            try {
+                this.db.endTransaction();
+                if (e == null) {
+                }
+            } catch (RuntimeException e3) {
+                throw e3;
+            }
+        }
+        e3 = null;
+        if (e3 == null) {
+            throw e3;
+        }
     }
 
     public void updateInTx(T... tArr) {

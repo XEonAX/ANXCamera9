@@ -256,66 +256,43 @@ public class PositionDetector {
 
     /* JADX WARNING: Removed duplicated region for block: B:15:0x0043  */
     /* JADX WARNING: Removed duplicated region for block: B:18:0x0049  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private int checkSpeed() {
-        /*
-        r6 = this;
-        r0 = r6.direction;
-        switch(r0) {
-            case 2: goto L_0x000b;
-            case 3: goto L_0x000b;
-            default: goto L_0x0006;
-        };
-    L_0x0006:
-        r0 = r6.cur_x;
-        r2 = r6.prev_x;
-        goto L_0x000f;
-    L_0x000b:
-        r0 = r6.cur_y;
-        r2 = r6.prev_y;
-    L_0x000f:
-        r0 = r0 - r2;
-        r0 = java.lang.Math.abs(r0);
-        r2 = r6.mDiffManager;
-        r2.add(r0);
-        r0 = 15;
-        r2 = r6.count;
-        r0 = (r0 > r2 ? 1 : (r0 == r2 ? 0 : -1));
-        r1 = 0;
-        if (r0 >= 0) goto L_0x003e;
-    L_0x0022:
-        r0 = r6.mDiffManager;
-        r2 = r0.getDiff();
-        r4 = r6.too_slow_thres;
-        r0 = (r2 > r4 ? 1 : (r2 == r4 ? 0 : -1));
-        if (r0 >= 0) goto L_0x0030;
-    L_0x002e:
-        r0 = 3;
-        goto L_0x003f;
-    L_0x0030:
-        r0 = r6.mDiffManager;
-        r2 = r0.getDiff();
-        r4 = r6.too_fast_thres;
-        r0 = (r2 > r4 ? 1 : (r2 == r4 ? 0 : -1));
-        if (r0 <= 0) goto L_0x003e;
-    L_0x003c:
-        r0 = 2;
-        goto L_0x003f;
-    L_0x003e:
-        r0 = r1;
-    L_0x003f:
-        r2 = r6.too_slow_count;
-        if (r2 <= 0) goto L_0x0045;
-    L_0x0043:
-        r6.too_slow_count = r1;
-    L_0x0045:
-        r2 = r6.too_fast_count;
-        if (r2 <= 0) goto L_0x004b;
-    L_0x0049:
-        r6.too_fast_count = r1;
-    L_0x004b:
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.panorama.PositionDetector.checkSpeed():int");
+        double d;
+        double d2;
+        int i;
+        switch (this.direction) {
+            case 2:
+            case 3:
+                d = this.cur_y;
+                d2 = this.prev_y;
+                break;
+            default:
+                d = this.cur_x;
+                d2 = this.prev_x;
+                break;
+        }
+        this.mDiffManager.add(Math.abs(d - d2));
+        if (15 < this.count) {
+            if (this.mDiffManager.getDiff() < this.too_slow_thres) {
+                i = 3;
+            } else if (this.mDiffManager.getDiff() > this.too_fast_thres) {
+                i = 2;
+            }
+            if (this.too_slow_count > 0) {
+                this.too_slow_count = 0;
+            }
+            if (this.too_fast_count > 0) {
+                this.too_fast_count = 0;
+            }
+            return i;
+        }
+        i = 0;
+        if (this.too_slow_count > 0) {
+        }
+        if (this.too_fast_count > 0) {
+        }
+        return i;
     }
 
     private boolean isIdle() {

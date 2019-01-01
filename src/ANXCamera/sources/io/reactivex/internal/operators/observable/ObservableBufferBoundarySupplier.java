@@ -123,38 +123,15 @@ public final class ObservableBufferBoundarySupplier<T, U extends Collection<? su
         /* JADX WARNING: Missing block: B:11:0x0021, code:
             return;
      */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         public void onComplete() {
-            /*
-            r3 = this;
-            monitor-enter(r3);
-            r0 = r3.buffer;	 Catch:{ all -> 0x0022 }
-            if (r0 != 0) goto L_0x0007;
-        L_0x0005:
-            monitor-exit(r3);	 Catch:{ all -> 0x0022 }
-            return;
-        L_0x0007:
-            r1 = 0;
-            r3.buffer = r1;	 Catch:{ all -> 0x0022 }
-            monitor-exit(r3);	 Catch:{ all -> 0x0022 }
-            r1 = r3.queue;
-            r1.offer(r0);
-            r0 = 1;
-            r3.done = r0;
-            r0 = r3.enter();
-            if (r0 == 0) goto L_0x0021;
-        L_0x0019:
-            r0 = r3.queue;
-            r1 = r3.actual;
-            r2 = 0;
-            io.reactivex.internal.util.QueueDrainHelper.drainLoop(r0, r1, r2, r3, r3);
-        L_0x0021:
-            return;
-        L_0x0022:
-            r0 = move-exception;
-            monitor-exit(r3);	 Catch:{ all -> 0x0022 }
-            throw r0;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.observable.ObservableBufferBoundarySupplier.BufferBoundarySupplierObserver.onComplete():void");
+            synchronized (this) {
+                Collection collection = this.buffer;
+                if (collection == null) {
+                    return;
+                }
+                this.buffer = null;
+            }
         }
 
         public void dispose() {

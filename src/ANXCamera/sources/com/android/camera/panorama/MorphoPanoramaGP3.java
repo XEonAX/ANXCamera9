@@ -1,5 +1,6 @@
 package com.android.camera.panorama;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.media.Image;
@@ -7,6 +8,7 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import com.android.camera.panorama.MorphoSensorFusion.SensorData;
 import java.io.FileDescriptor;
+import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -303,189 +305,86 @@ public class MorphoPanoramaGP3 {
     /* JADX WARNING: Removed duplicated region for block: B:17:0x0112  */
     /* JADX WARNING: Removed duplicated region for block: B:16:0x00f3  */
     /* JADX WARNING: Removed duplicated region for block: B:23:0x015b  */
-    public int attach(java.nio.ByteBuffer r21, java.nio.ByteBuffer r22, java.nio.ByteBuffer r23, int r24, int r25, int r26, int r27, int r28, int r29, com.android.camera.panorama.SensorInfoManager r30, double[] r31, android.content.Context r32) {
-        /*
-        r20 = this;
-        r14 = r20;
-        r0 = r30;
-        r1 = r14.mNative;
-        r3 = 0;
-        r1 = (r1 > r3 ? 1 : (r1 == r3 ? 0 : -1));
-        if (r1 != 0) goto L_0x0010;
-    L_0x000c:
-        r0 = -2147483646; // 0xffffffff80000002 float:-2.8E-45 double:NaN;
-        return r0;
-    L_0x0010:
-        r1 = r14.mAttachCount;
-        r1 = (r1 > r3 ? 1 : (r1 == r3 ? 0 : -1));
-        if (r1 != 0) goto L_0x001c;
-    L_0x0016:
-        r1 = java.lang.System.nanoTime();
-        r14.mAttachFirstNanoTime = r1;
-        r15 = java.lang.System.nanoTime();
-        r1 = 0;
-        r2 = r14.mSaveInputImages;
-        r13 = 1;
-        r17 = 0;
-        if (r2 == 0) goto L_0x00ee;
-    L_0x0029:
-        r1 = 2;
-        if (r0 == 0) goto L_0x00ba;
-    L_0x002c:
-        r2 = r0.timeMillis;
-        r2 = createName(r2);
-        r3 = java.util.Locale.US;
-        r4 = "%s/%06d_";
-        r5 = new java.lang.Object[r1];
-        r6 = r14.mFolderPathInputImages;
-        r5[r17] = r6;
-        r6 = r14.mAttachCount;
-        r6 = java.lang.Long.valueOf(r6);
-        r5[r13] = r6;
-        r3 = java.lang.String.format(r3, r4, r5);
-        r4 = new java.lang.StringBuilder;
-        r4.<init>();
-        r4.append(r3);
-        r4.append(r2);
-        r2 = java.util.Locale.US;
-        r3 = "_sg%05d_sr%05d_sa%05d.yuv";
-        r5 = 3;
-        r6 = new java.lang.Object[r5];
-        r7 = r0.g_ix;
-        r8 = r14.mIndexBase;
-        r8 = r8[r17];
-        r7 = r7 + r8;
-        r7 = java.lang.Integer.valueOf(r7);
-        r6[r17] = r7;
-        r7 = r0.r_ix;
-        r8 = r14.mIndexBase;
-        r8 = r8[r5];
-        r7 = r7 + r8;
-        r7 = java.lang.Integer.valueOf(r7);
-        r6[r13] = r7;
-        r7 = r0.a_ix;
-        r8 = r14.mIndexBase;
-        r8 = r8[r13];
-        r7 = r7 + r8;
-        r7 = java.lang.Integer.valueOf(r7);
-        r6[r1] = r7;
-        r1 = java.lang.String.format(r2, r3, r6);
-        r4.append(r1);
-        r1 = r4.toString();
-        r2 = r14.mIndexBase;
-        r3 = r2[r17];
-        r4 = r0.sensorData;
-        r4 = r4[r17];
-        r4 = r4.size();
-        r3 = r3 + r4;
-        r2[r17] = r3;
-        r2 = r14.mIndexBase;
-        r3 = r2[r5];
-        r4 = r0.sensorData;
-        r4 = r4[r5];
-        r4 = r4.size();
-        r3 = r3 + r4;
-        r2[r5] = r3;
-        r2 = r14.mIndexBase;
-        r3 = r2[r13];
-        r0 = r0.sensorData;
-        r0 = r0[r13];
-        r0 = r0.size();
-        r3 = r3 + r0;
-        r2[r13] = r3;
-        goto L_0x00ee;
-    L_0x00ba:
-        r2 = java.lang.System.currentTimeMillis();
-        r0 = createName(r2);
-        r2 = java.util.Locale.US;
-        r3 = "%s/%06d_";
-        r1 = new java.lang.Object[r1];
-        r4 = r14.mFolderPathInputImages;
-        r1[r17] = r4;
-        r4 = r14.mAttachCount;
-        r4 = java.lang.Long.valueOf(r4);
-        r1[r13] = r4;
-        r1 = java.lang.String.format(r2, r3, r1);
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r2.append(r1);
-        r2.append(r0);
-        r0 = ".yuv";
-        r2.append(r0);
-        r0 = r2.toString();
-        r12 = r0;
-        goto L_0x00ef;
-    L_0x00ee:
-        r12 = r1;
-    L_0x00ef:
-        r0 = r14.mAttachEnabled;
-        if (r0 == 0) goto L_0x0112;
-    L_0x00f3:
-        r1 = r14.mNative;
-        r0 = r14;
-        r3 = r21;
-        r4 = r22;
-        r5 = r23;
-        r6 = r24;
-        r7 = r25;
-        r8 = r26;
-        r9 = r27;
-        r10 = r28;
-        r11 = r29;
-        r18 = r15;
-        r15 = r13;
-        r13 = r31;
-        r0 = r0.nativeAttachYuv(r1, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13);
-        goto L_0x0133;
-    L_0x0112:
-        r18 = r15;
-        r15 = r13;
-        if (r12 == 0) goto L_0x0131;
-    L_0x0117:
-        r1 = r14.mNative;
-        r0 = r14;
-        r3 = r21;
-        r4 = r22;
-        r5 = r23;
-        r6 = r24;
-        r7 = r25;
-        r8 = r26;
-        r9 = r27;
-        r10 = r28;
-        r11 = r29;
-        r0 = r0.nativeSaveYuv(r1, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12);
-        goto L_0x0133;
-    L_0x0131:
-        r0 = r17;
-    L_0x0133:
-        r1 = java.lang.System.nanoTime();
-        r3 = "MorphoPanoramaGP3";
-        r4 = java.util.Locale.US;
-        r5 = "Performance.JNI %1$,3d nsec";
-        r6 = new java.lang.Object[r15];
-        r7 = r1 - r18;
-        r7 = java.lang.Long.valueOf(r7);
-        r6[r17] = r7;
-        r4 = java.lang.String.format(r4, r5, r6);
-        com.android.camera.log.Log.v(r3, r4);
-        r3 = r14.mAttachCount;
-        r5 = 1;
-        r3 = r3 + r5;
-        r14.mAttachCount = r3;
-        r3 = r14.mAttachCount;
-        r3 = (r3 > r5 ? 1 : (r3 == r5 ? 0 : -1));
-        if (r3 <= 0) goto L_0x0168;
-    L_0x015b:
-        r3 = r14.mIntervalArray;
-        r4 = r14.mAttachLastNanoTime;
-        r4 = r1 - r4;
-        r4 = java.lang.Long.valueOf(r4);
-        r3.add(r4);
-    L_0x0168:
-        r14.mAttachLastNanoTime = r1;
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.panorama.MorphoPanoramaGP3.attach(java.nio.ByteBuffer, java.nio.ByteBuffer, java.nio.ByteBuffer, int, int, int, int, int, int, com.android.camera.panorama.SensorInfoManager, double[], android.content.Context):int");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public int attach(ByteBuffer byteBuffer, ByteBuffer byteBuffer2, ByteBuffer byteBuffer3, int i, int i2, int i3, int i4, int i5, int i6, SensorInfoManager sensorInfoManager, double[] dArr, Context context) {
+        SensorInfoManager sensorInfoManager2 = sensorInfoManager;
+        if (this.mNative == 0) {
+            return -2147483646;
+        }
+        String format;
+        String stringBuilder;
+        long j;
+        int i7;
+        int nativeSaveYuv;
+        long nanoTime;
+        Object[] objArr;
+        if (this.mAttachCount == 0) {
+            this.mAttachFirstNanoTime = System.nanoTime();
+        }
+        long nanoTime2 = System.nanoTime();
+        String str = null;
+        if (this.mSaveInputImages) {
+            if (sensorInfoManager2 != null) {
+                String createName = createName(sensorInfoManager2.timeMillis);
+                format = String.format(Locale.US, "%s/%06d_", new Object[]{this.mFolderPathInputImages, Long.valueOf(this.mAttachCount)});
+                StringBuilder stringBuilder2 = new StringBuilder();
+                stringBuilder2.append(format);
+                stringBuilder2.append(createName);
+                stringBuilder2.append(String.format(Locale.US, "_sg%05d_sr%05d_sa%05d.yuv", new Object[]{Integer.valueOf(sensorInfoManager2.g_ix + this.mIndexBase[0]), Integer.valueOf(sensorInfoManager2.r_ix + this.mIndexBase[3]), Integer.valueOf(sensorInfoManager2.a_ix + this.mIndexBase[1])}));
+                str = stringBuilder2.toString();
+                int[] iArr = this.mIndexBase;
+                iArr[0] = iArr[0] + sensorInfoManager2.sensorData[0].size();
+                iArr = this.mIndexBase;
+                iArr[3] = iArr[3] + sensorInfoManager2.sensorData[3].size();
+                iArr = this.mIndexBase;
+                iArr[1] = iArr[1] + sensorInfoManager2.sensorData[1].size();
+            } else {
+                String createName2 = createName(System.currentTimeMillis());
+                str = String.format(Locale.US, "%s/%06d_", new Object[]{this.mFolderPathInputImages, Long.valueOf(this.mAttachCount)});
+                StringBuilder stringBuilder3 = new StringBuilder();
+                stringBuilder3.append(str);
+                stringBuilder3.append(createName2);
+                stringBuilder3.append(".yuv");
+                stringBuilder = stringBuilder3.toString();
+                if (this.mAttachEnabled) {
+                    j = nanoTime2;
+                    i7 = 1;
+                    if (stringBuilder != null) {
+                        nativeSaveYuv = nativeSaveYuv(this.mNative, byteBuffer, byteBuffer2, byteBuffer3, i, i2, i3, i4, i5, i6, stringBuilder);
+                    } else {
+                        nativeSaveYuv = 0;
+                    }
+                } else {
+                    j = nanoTime2;
+                    i7 = 1;
+                    nativeSaveYuv = nativeAttachYuv(this.mNative, byteBuffer, byteBuffer2, byteBuffer3, i, i2, i3, i4, i5, i6, stringBuilder, dArr);
+                }
+                nanoTime = System.nanoTime();
+                format = TAG;
+                objArr = new Object[i7];
+                objArr[0] = Long.valueOf(nanoTime - j);
+                com.android.camera.log.Log.v(format, String.format(Locale.US, "Performance.JNI %1$,3d nsec", objArr));
+                this.mAttachCount++;
+                if (this.mAttachCount > 1) {
+                    this.mIntervalArray.add(Long.valueOf(nanoTime - this.mAttachLastNanoTime));
+                }
+                this.mAttachLastNanoTime = nanoTime;
+                return nativeSaveYuv;
+            }
+        }
+        stringBuilder = str;
+        if (this.mAttachEnabled) {
+        }
+        nanoTime = System.nanoTime();
+        format = TAG;
+        objArr = new Object[i7];
+        objArr[0] = Long.valueOf(nanoTime - j);
+        com.android.camera.log.Log.v(format, String.format(Locale.US, "Performance.JNI %1$,3d nsec", objArr));
+        this.mAttachCount++;
+        if (this.mAttachCount > 1) {
+        }
+        this.mAttachLastNanoTime = nanoTime;
+        return nativeSaveYuv;
     }
 
     private static String createName(long j) {
@@ -776,21 +675,14 @@ public class MorphoPanoramaGP3 {
     /* JADX WARNING: Missing block: B:5:0x0013, code:
             return -1;
      */
-    private static int getFD(java.io.FileDescriptor r2) {
-        /*
-        r0 = java.io.FileDescriptor.class;
-        r1 = "descriptor";
-        r0 = r0.getDeclaredField(r1);	 Catch:{ NoSuchFieldException -> 0x0011, NoSuchFieldException -> 0x0011 }
-        r1 = 1;
-        r0.setAccessible(r1);	 Catch:{ NoSuchFieldException -> 0x0011, NoSuchFieldException -> 0x0011 }
-        r2 = r0.getInt(r2);	 Catch:{ NoSuchFieldException -> 0x0011, NoSuchFieldException -> 0x0011 }
-        return r2;
-    L_0x0011:
-        r2 = move-exception;
-        r2 = -1;
-        return r2;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.panorama.MorphoPanoramaGP3.getFD(java.io.FileDescriptor):int");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static int getFD(FileDescriptor fileDescriptor) {
+        try {
+            Field declaredField = FileDescriptor.class.getDeclaredField("descriptor");
+            declaredField.setAccessible(true);
+            return declaredField.getInt(fileDescriptor);
+        } catch (NoSuchFieldException e) {
+        }
     }
 
     public int savePanorama360(int i, int i2, String str, String str2, String str3, boolean z, GalleryInfoData galleryInfoData, boolean z2) {

@@ -317,231 +317,105 @@ public class ParseRDF implements XMPConst, XMPError {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:57:0x00fe  */
-    private static void rdf_EmptyPropertyElement(com.adobe.xmp.impl.XMPMetaImpl r14, com.adobe.xmp.impl.XMPNode r15, org.w3c.dom.Node r16, boolean r17) throws com.adobe.xmp.XMPException {
-        /*
-        r0 = r14;
-        r1 = r16.hasChildNodes();
-        r2 = 202; // 0xca float:2.83E-43 double:1.0E-321;
-        if (r1 != 0) goto L_0x0177;
-    L_0x000e:
-        r1 = 0;
-        r3 = 0;
-        r4 = r1;
-        r5 = r4;
-        r7 = r5;
-        r8 = r7;
-        r6 = r3;
-        r3 = r8;
-    L_0x0016:
-        r9 = r16.getAttributes();
-        r9 = r9.getLength();
-        r10 = 2;
-        r11 = 1;
-        if (r3 >= r9) goto L_0x00c2;
-    L_0x0022:
-        r9 = r16.getAttributes();
-        r9 = r9.item(r3);
-        r12 = "xmlns";
-        r13 = r9.getPrefix();
-        r12 = r12.equals(r13);
-        if (r12 != 0) goto L_0x00be;
-    L_0x0036:
-        r12 = r9.getPrefix();
-        if (r12 != 0) goto L_0x004a;
-    L_0x003c:
-        r12 = "xmlns";
-        r13 = r9.getNodeName();
-        r12 = r12.equals(r13);
-        if (r12 == 0) goto L_0x004a;
-    L_0x0048:
-        goto L_0x00be;
-    L_0x004a:
-        r12 = getRDFTermKind(r9);
-        r13 = 203; // 0xcb float:2.84E-43 double:1.003E-321;
-        if (r12 == 0) goto L_0x0089;
-    L_0x0052:
-        if (r12 == r10) goto L_0x0088;
-    L_0x0054:
-        switch(r12) {
-            case 5: goto L_0x006d;
-            case 6: goto L_0x005f;
-            default: goto L_0x0057;
-        };
-    L_0x0057:
-        r0 = new com.adobe.xmp.XMPException;
-        r1 = "Unrecognized attribute of empty property element";
-        r0.<init>(r1, r2);
-        throw r0;
-    L_0x005f:
-        if (r5 != 0) goto L_0x0065;
-        r8 = r11;
-        goto L_0x00be;
-    L_0x0065:
-        r0 = new com.adobe.xmp.XMPException;
-        r1 = "Empty property element can't have both rdf:resource and rdf:nodeID";
-        r0.<init>(r1, r2);
-        throw r0;
-    L_0x006d:
-        if (r8 != 0) goto L_0x0080;
-    L_0x006f:
-        if (r4 != 0) goto L_0x0078;
-        if (r4 != 0) goto L_0x0076;
-        r6 = r9;
-    L_0x0076:
-        r5 = r11;
-        goto L_0x00be;
-    L_0x0078:
-        r0 = new com.adobe.xmp.XMPException;
-        r1 = "Empty property element can't have both rdf:value and rdf:resource";
-        r0.<init>(r1, r13);
-        throw r0;
-    L_0x0080:
-        r0 = new com.adobe.xmp.XMPException;
-        r1 = "Empty property element can't have both rdf:resource and rdf:nodeID";
-        r0.<init>(r1, r2);
-        throw r0;
-    L_0x0088:
-        goto L_0x00be;
-    L_0x0089:
-        r10 = "value";
-        r12 = r9.getLocalName();
-        r10 = r10.equals(r12);
-        if (r10 == 0) goto L_0x00b0;
-    L_0x0095:
-        r10 = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
-        r12 = r9.getNamespaceURI();
-        r10 = r10.equals(r12);
-        if (r10 == 0) goto L_0x00b0;
-    L_0x00a1:
-        if (r5 != 0) goto L_0x00a8;
-        r6 = r9;
-        r4 = r11;
-        goto L_0x00be;
-    L_0x00a8:
-        r0 = new com.adobe.xmp.XMPException;
-        r1 = "Empty property element can't have both rdf:value and rdf:resource";
-        r0.<init>(r1, r13);
-        throw r0;
-    L_0x00b0:
-        r10 = "xml:lang";
-        r9 = r9.getNodeName();
-        r9 = r10.equals(r9);
-        if (r9 != 0) goto L_0x00be;
-        r7 = r11;
-    L_0x00be:
-        r3 = r3 + 1;
-        goto L_0x0016;
-    L_0x00c2:
-        r3 = "";
-        r8 = r15;
-        r9 = r16;
-        r12 = r17;
-        r3 = addChildNode(r0, r8, r9, r3, r12);
-        if (r4 != 0) goto L_0x00dd;
-    L_0x00d0:
-        if (r5 == 0) goto L_0x00d3;
-    L_0x00d2:
-        goto L_0x00dd;
-    L_0x00d3:
-        if (r7 == 0) goto L_0x00f2;
-    L_0x00d5:
-        r4 = r3.getOptions();
-        r4.setStruct(r11);
-        goto L_0x00f3;
-    L_0x00dd:
-        if (r6 == 0) goto L_0x00e4;
-    L_0x00df:
-        r5 = r6.getNodeValue();
-        goto L_0x00e6;
-    L_0x00e4:
-        r5 = "";
-    L_0x00e6:
-        r3.setValue(r5);
-        if (r4 != 0) goto L_0x00f2;
-    L_0x00eb:
-        r4 = r3.getOptions();
-        r4.setURI(r11);
-    L_0x00f2:
-        r11 = r1;
-    L_0x00f3:
-        r4 = r1;
-    L_0x00f4:
-        r5 = r16.getAttributes();
-        r5 = r5.getLength();
-        if (r4 >= r5) goto L_0x0176;
-    L_0x00fe:
-        r5 = r16.getAttributes();
-        r5 = r5.item(r4);
-        if (r5 == r6) goto L_0x0172;
-    L_0x0108:
-        r7 = "xmlns";
-        r8 = r5.getPrefix();
-        r7 = r7.equals(r8);
-        if (r7 != 0) goto L_0x0172;
-    L_0x0114:
-        r7 = r5.getPrefix();
-        if (r7 != 0) goto L_0x0127;
-    L_0x011a:
-        r7 = "xmlns";
-        r8 = r5.getNodeName();
-        r7 = r7.equals(r8);
-        if (r7 == 0) goto L_0x0127;
-    L_0x0126:
-        goto L_0x0172;
-    L_0x0127:
-        r7 = getRDFTermKind(r5);
-        if (r7 == 0) goto L_0x0145;
-    L_0x012d:
-        if (r7 == r10) goto L_0x0144;
-    L_0x012f:
-        switch(r7) {
-            case 5: goto L_0x013a;
-            case 6: goto L_0x0144;
-            default: goto L_0x0132;
-        };
-    L_0x0132:
-        r0 = new com.adobe.xmp.XMPException;
-        r1 = "Unrecognized attribute of empty property element";
-        r0.<init>(r1, r2);
-        throw r0;
-    L_0x013a:
-        r7 = "rdf:resource";
-        r5 = r5.getNodeValue();
-        addQualifierNode(r3, r7, r5);
-        goto L_0x0172;
-    L_0x0144:
-        goto L_0x0172;
-    L_0x0145:
-        if (r11 != 0) goto L_0x0154;
-        r7 = r5.getNodeName();
-        r5 = r5.getNodeValue();
-        addQualifierNode(r3, r7, r5);
-        goto L_0x0172;
-    L_0x0154:
-        r7 = "xml:lang";
-        r8 = r5.getNodeName();
-        r7 = r7.equals(r8);
-        if (r7 == 0) goto L_0x016a;
-    L_0x0160:
-        r7 = "xml:lang";
-        r5 = r5.getNodeValue();
-        addQualifierNode(r3, r7, r5);
-        goto L_0x0172;
-    L_0x016a:
-        r7 = r5.getNodeValue();
-        addChildNode(r0, r3, r5, r7, r1);
-    L_0x0172:
-        r4 = r4 + 1;
-        goto L_0x00f4;
-    L_0x0176:
-        return;
-    L_0x0177:
-        r0 = new com.adobe.xmp.XMPException;
-        r1 = "Nested content not allowed with rdf:resource or property attributes";
-        r0.<init>(r1, r2);
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.adobe.xmp.impl.ParseRDF.rdf_EmptyPropertyElement(com.adobe.xmp.impl.XMPMetaImpl, com.adobe.xmp.impl.XMPNode, org.w3c.dom.Node, boolean):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static void rdf_EmptyPropertyElement(XMPMetaImpl xMPMetaImpl, XMPNode xMPNode, Node node, boolean z) throws XMPException {
+        XMPMetaImpl xMPMetaImpl2 = xMPMetaImpl;
+        if (node.hasChildNodes()) {
+            throw new XMPException("Nested content not allowed with rdf:resource or property attributes", 202);
+        }
+        boolean z2 = false;
+        boolean z3 = z2;
+        boolean z4 = z3;
+        boolean z5 = z4;
+        Node node2 = null;
+        int i = z5;
+        while (true) {
+            boolean z6 = true;
+            if (i < node.getAttributes().getLength()) {
+                Node item = node.getAttributes().item(i);
+                if (!("xmlns".equals(item.getPrefix()) || (item.getPrefix() == null && "xmlns".equals(item.getNodeName())))) {
+                    int rDFTermKind = getRDFTermKind(item);
+                    if (rDFTermKind != 0) {
+                        if (rDFTermKind != 2) {
+                            switch (rDFTermKind) {
+                                case 5:
+                                    if (z5) {
+                                        throw new XMPException("Empty property element can't have both rdf:resource and rdf:nodeID", 202);
+                                    } else if (!z2) {
+                                        if (!z2) {
+                                            node2 = item;
+                                        }
+                                        z3 = true;
+                                        break;
+                                    } else {
+                                        throw new XMPException("Empty property element can't have both rdf:value and rdf:resource", 203);
+                                    }
+                                case 6:
+                                    if (!z3) {
+                                        z5 = true;
+                                        break;
+                                    }
+                                    throw new XMPException("Empty property element can't have both rdf:resource and rdf:nodeID", 202);
+                                default:
+                                    throw new XMPException("Unrecognized attribute of empty property element", 202);
+                            }
+                        }
+                        continue;
+                    } else if ("value".equals(item.getLocalName()) && XMPConst.NS_RDF.equals(item.getNamespaceURI())) {
+                        if (z3) {
+                            throw new XMPException("Empty property element can't have both rdf:value and rdf:resource", 203);
+                        }
+                        node2 = item;
+                        z2 = true;
+                    } else if (!XMPConst.XML_LANG.equals(item.getNodeName())) {
+                        z4 = true;
+                    }
+                }
+                i++;
+            } else {
+                int i2;
+                XMPNode addChildNode = addChildNode(xMPMetaImpl2, xMPNode, node, "", z);
+                if (z2 || z3) {
+                    addChildNode.setValue(node2 != null ? node2.getNodeValue() : "");
+                    if (!z2) {
+                        addChildNode.getOptions().setURI(true);
+                    }
+                } else if (z4) {
+                    addChildNode.getOptions().setStruct(true);
+                    for (i2 = 0; i2 < node.getAttributes().getLength(); i2++) {
+                        Node item2 = node.getAttributes().item(i2);
+                        if (!(item2 == node2 || "xmlns".equals(item2.getPrefix()) || (item2.getPrefix() == null && "xmlns".equals(item2.getNodeName())))) {
+                            int rDFTermKind2 = getRDFTermKind(item2);
+                            if (rDFTermKind2 != 0) {
+                                if (rDFTermKind2 != 2) {
+                                    switch (rDFTermKind2) {
+                                        case 5:
+                                            addQualifierNode(addChildNode, "rdf:resource", item2.getNodeValue());
+                                            break;
+                                        case 6:
+                                            break;
+                                        default:
+                                            throw new XMPException("Unrecognized attribute of empty property element", 202);
+                                    }
+                                }
+                                continue;
+                            } else if (!z6) {
+                                addQualifierNode(addChildNode, item2.getNodeName(), item2.getNodeValue());
+                            } else if (XMPConst.XML_LANG.equals(item2.getNodeName())) {
+                                addQualifierNode(addChildNode, XMPConst.XML_LANG, item2.getNodeValue());
+                            } else {
+                                addChildNode(xMPMetaImpl2, addChildNode, item2, item2.getNodeValue(), false);
+                            }
+                        }
+                    }
+                    return;
+                }
+                z6 = false;
+                while (i2 < node.getAttributes().getLength()) {
+                }
+                return;
+            }
+        }
     }
 
     private static XMPNode addChildNode(XMPMetaImpl xMPMetaImpl, XMPNode xMPNode, Node node, String str, boolean z) throws XMPException {

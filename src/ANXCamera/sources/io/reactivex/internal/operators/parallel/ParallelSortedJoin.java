@@ -2,6 +2,7 @@ package io.reactivex.internal.operators.parallel;
 
 import io.reactivex.Flowable;
 import io.reactivex.FlowableSubscriber;
+import io.reactivex.exceptions.Exceptions;
 import io.reactivex.internal.subscriptions.SubscriptionHelper;
 import io.reactivex.internal.util.BackpressureHelper;
 import io.reactivex.parallel.ParallelFlowable;
@@ -197,177 +198,73 @@ public final class ParallelSortedJoin<T> extends Flowable<T> {
         /* JADX WARNING: Missing block: B:70:0x010c, code:
             r6 = r5;
      */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         void drain() {
-            /*
-            r19 = this;
-            r1 = r19;
-            r0 = r19.getAndIncrement();
-            if (r0 == 0) goto L_0x0009;
-        L_0x0008:
-            return;
-            r2 = r1.actual;
-            r3 = r1.lists;
-            r0 = r1.indexes;
-            r4 = r0.length;
-            r6 = 1;
-        L_0x0012:
-            r7 = r1.requested;
-            r7 = r7.get();
-            r11 = 0;
-        L_0x001b:
-            r13 = (r11 > r7 ? 1 : (r11 == r7 ? 0 : -1));
-            r15 = 0;
-            if (r13 == 0) goto L_0x00a8;
-        L_0x0020:
-            r13 = r1.cancelled;
-            if (r13 == 0) goto L_0x0028;
-        L_0x0024:
-            java.util.Arrays.fill(r3, r15);
-            return;
-        L_0x0028:
-            r13 = r1.error;
-            r13 = r13.get();
-            r13 = (java.lang.Throwable) r13;
-            if (r13 == 0) goto L_0x003c;
-        L_0x0032:
-            r19.cancelAll();
-            java.util.Arrays.fill(r3, r15);
-            r2.onError(r13);
-            return;
-            r13 = -1;
-            r17 = r13;
-            r14 = r15;
-            r13 = 0;
-        L_0x0042:
-            if (r13 >= r4) goto L_0x0091;
-        L_0x0044:
-            r9 = r3[r13];
-            r10 = r0[r13];
-            r5 = r9.size();
-            if (r5 == r10) goto L_0x008e;
-        L_0x004e:
-            if (r14 != 0) goto L_0x0059;
-        L_0x0050:
-            r5 = r9.get(r10);
-        L_0x0055:
-            r14 = r5;
-            r17 = r13;
-            goto L_0x008e;
-        L_0x0059:
-            r5 = r9.get(r10);
-            r9 = r1.comparator;	 Catch:{ Throwable -> 0x006d }
-            r9 = r9.compare(r14, r5);	 Catch:{ Throwable -> 0x006d }
-            if (r9 <= 0) goto L_0x0067;
-        L_0x0065:
-            r9 = 1;
-            goto L_0x0069;
-            r9 = 0;
-        L_0x0069:
-            if (r9 == 0) goto L_0x008e;
-            goto L_0x0055;
-        L_0x006d:
-            r0 = move-exception;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r0);
-            r19.cancelAll();
-            java.util.Arrays.fill(r3, r15);
-            r3 = r1.error;
-            r3 = r3.compareAndSet(r15, r0);
-            if (r3 != 0) goto L_0x0082;
-        L_0x007f:
-            io.reactivex.plugins.RxJavaPlugins.onError(r0);
-        L_0x0082:
-            r0 = r1.error;
-            r0 = r0.get();
-            r0 = (java.lang.Throwable) r0;
-            r2.onError(r0);
-            return;
-        L_0x008e:
-            r13 = r13 + 1;
-            goto L_0x0042;
-        L_0x0091:
-            if (r14 != 0) goto L_0x009a;
-        L_0x0093:
-            java.util.Arrays.fill(r3, r15);
-            r2.onComplete();
-            return;
-        L_0x009a:
-            r2.onNext(r14);
-            r5 = r0[r17];
-            r9 = 1;
-            r5 = r5 + r9;
-            r0[r17] = r5;
-            r13 = 1;
-            r11 = r11 + r13;
-            goto L_0x001b;
-        L_0x00a8:
-            r9 = 1;
-            if (r13 != 0) goto L_0x00e8;
-        L_0x00ab:
-            r5 = r1.cancelled;
-            if (r5 == 0) goto L_0x00b3;
-        L_0x00af:
-            java.util.Arrays.fill(r3, r15);
-            return;
-        L_0x00b3:
-            r5 = r1.error;
-            r5 = r5.get();
-            r5 = (java.lang.Throwable) r5;
-            if (r5 == 0) goto L_0x00c7;
-        L_0x00bd:
-            r19.cancelAll();
-            java.util.Arrays.fill(r3, r15);
-            r2.onError(r5);
-            return;
-            r5 = 0;
-        L_0x00c9:
-            if (r5 >= r4) goto L_0x00dd;
-        L_0x00cb:
-            r10 = r0[r5];
-            r13 = r3[r5];
-            r13 = r13.size();
-            if (r10 == r13) goto L_0x00da;
-            r16 = 0;
-            goto L_0x00df;
-        L_0x00da:
-            r5 = r5 + 1;
-            goto L_0x00c9;
-        L_0x00dd:
-            r16 = r9;
-        L_0x00df:
-            if (r16 == 0) goto L_0x00e8;
-        L_0x00e1:
-            java.util.Arrays.fill(r3, r15);
-            r2.onComplete();
-            return;
-        L_0x00e8:
-            r13 = 0;
-            r5 = (r11 > r13 ? 1 : (r11 == r13 ? 0 : -1));
-            if (r5 == 0) goto L_0x00fd;
-        L_0x00ee:
-            r13 = 9223372036854775807; // 0x7fffffffffffffff float:NaN double:NaN;
-            r5 = (r7 > r13 ? 1 : (r7 == r13 ? 0 : -1));
-            if (r5 == 0) goto L_0x00fd;
-        L_0x00f7:
-            r5 = r1.requested;
-            r7 = -r11;
-            r5.addAndGet(r7);
-        L_0x00fd:
-            r5 = r19.get();
-            if (r5 != r6) goto L_0x010e;
-        L_0x0103:
-            r5 = -r6;
-            r5 = r1.addAndGet(r5);
-            if (r5 != 0) goto L_0x010c;
-            return;
-        L_0x010c:
-            r6 = r5;
-            goto L_0x010f;
-        L_0x010e:
-            goto L_0x010c;
-        L_0x010f:
-            goto L_0x0012;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.parallel.ParallelSortedJoin.SortedJoinSubscription.drain():void");
+            if (getAndIncrement() == 0) {
+                Subscriber subscriber = this.actual;
+                List[] listArr = this.lists;
+                int[] iArr = this.indexes;
+                int length = iArr.length;
+                int i = 1;
+                while (true) {
+                    long j = this.requested.get();
+                    long j2 = 0;
+                    while (true) {
+                        int i2 = (j2 > j ? 1 : (j2 == j ? 0 : -1));
+                        if (i2 == 0) {
+                            break;
+                        } else if (this.cancelled) {
+                            Arrays.fill(listArr, null);
+                            return;
+                        } else {
+                            Throwable th = (Throwable) this.error.get();
+                            if (th != null) {
+                                cancelAll();
+                                Arrays.fill(listArr, null);
+                                subscriber.onError(th);
+                                return;
+                            }
+                            int i3 = -1;
+                            Object obj = null;
+                            for (i2 = 0; i2 < length; i2++) {
+                                List list = listArr[i2];
+                                int i4 = iArr[i2];
+                                if (list.size() != i4) {
+                                    Object obj2;
+                                    if (obj == null) {
+                                        obj2 = list.get(i4);
+                                    } else {
+                                        obj2 = list.get(i4);
+                                        try {
+                                            if ((this.comparator.compare(obj, obj2) > 0 ? 1 : null) == null) {
+                                            }
+                                        } catch (Throwable th2) {
+                                            Exceptions.throwIfFatal(th2);
+                                            cancelAll();
+                                            Arrays.fill(listArr, null);
+                                            if (!this.error.compareAndSet(null, th2)) {
+                                                RxJavaPlugins.onError(th2);
+                                            }
+                                            subscriber.onError((Throwable) this.error.get());
+                                            return;
+                                        }
+                                    }
+                                    obj = obj2;
+                                    i3 = i2;
+                                }
+                            }
+                            if (obj == null) {
+                                Arrays.fill(listArr, null);
+                                subscriber.onComplete();
+                                return;
+                            }
+                            subscriber.onNext(obj);
+                            iArr[i3] = iArr[i3] + 1;
+                            j2++;
+                        }
+                    }
+                }
+            }
         }
     }
 

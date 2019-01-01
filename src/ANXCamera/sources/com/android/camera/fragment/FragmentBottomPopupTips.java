@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.StringRes;
 import android.support.v4.view.ViewCompat;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -29,9 +30,12 @@ import com.android.camera.animation.FragmentAnimationFactory;
 import com.android.camera.animation.type.AlphaInOnSubscribe;
 import com.android.camera.animation.type.AlphaOutOnSubscribe;
 import com.android.camera.animation.type.TranslateYOnSubscribe;
+import com.android.camera.constant.LightingConstant;
 import com.android.camera.data.DataRepository;
+import com.android.camera.effect.FilterInfo;
 import com.android.camera.fragment.beauty.MiBeauty;
 import com.android.camera.fragment.top.FragmentTopAlert;
+import com.android.camera.module.loader.camera2.Camera2DataContainer;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.ActionProcessing;
 import com.android.camera.protocol.ModeProtocol.BaseDelegate;
@@ -47,6 +51,8 @@ import com.android.camera.protocol.ModeProtocol.ManuallyAdjust;
 import com.android.camera.protocol.ModeProtocol.MiBeautyProtocol;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.statistic.CameraStat;
+import com.android.camera2.CameraCapabilities;
+import com.mi.config.b;
 import io.reactivex.Completable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -513,157 +519,95 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
         return this.mLightingPattern.getVisibility() == 0;
     }
 
-    public void setLightingPattern(java.lang.String r3) {
-        /*
-        r2 = this;
-        r0 = -2;
-        r2.stringLightingRes = r0;
-        r1 = r3.hashCode();
-        switch(r1) {
-            case 48: goto L_0x0051;
-            case 49: goto L_0x0047;
-            case 50: goto L_0x003d;
-            case 51: goto L_0x0033;
-            case 52: goto L_0x0029;
-            case 53: goto L_0x001f;
-            case 54: goto L_0x0015;
-            case 55: goto L_0x000b;
-            default: goto L_0x000a;
-        };
-    L_0x000a:
-        goto L_0x005b;
-    L_0x000b:
-        r1 = "7";
-        r3 = r3.equals(r1);
-        if (r3 == 0) goto L_0x005b;
-    L_0x0013:
-        r3 = 7;
-        goto L_0x005c;
-    L_0x0015:
-        r1 = "6";
-        r3 = r3.equals(r1);
-        if (r3 == 0) goto L_0x005b;
-    L_0x001d:
-        r3 = 6;
-        goto L_0x005c;
-    L_0x001f:
-        r1 = "5";
-        r3 = r3.equals(r1);
-        if (r3 == 0) goto L_0x005b;
-    L_0x0027:
-        r3 = 5;
-        goto L_0x005c;
-    L_0x0029:
-        r1 = "4";
-        r3 = r3.equals(r1);
-        if (r3 == 0) goto L_0x005b;
-    L_0x0031:
-        r3 = 4;
-        goto L_0x005c;
-    L_0x0033:
-        r1 = "3";
-        r3 = r3.equals(r1);
-        if (r3 == 0) goto L_0x005b;
-    L_0x003b:
-        r3 = 3;
-        goto L_0x005c;
-    L_0x003d:
-        r1 = "2";
-        r3 = r3.equals(r1);
-        if (r3 == 0) goto L_0x005b;
-    L_0x0045:
-        r3 = 2;
-        goto L_0x005c;
-    L_0x0047:
-        r1 = "1";
-        r3 = r3.equals(r1);
-        if (r3 == 0) goto L_0x005b;
-    L_0x004f:
-        r3 = 1;
-        goto L_0x005c;
-    L_0x0051:
-        r1 = "0";
-        r3 = r3.equals(r1);
-        if (r3 == 0) goto L_0x005b;
-    L_0x0059:
-        r3 = 0;
-        goto L_0x005c;
-    L_0x005b:
-        r3 = -1;
-    L_0x005c:
-        switch(r3) {
-            case 0: goto L_0x008a;
-            case 1: goto L_0x0084;
-            case 2: goto L_0x007e;
-            case 3: goto L_0x0078;
-            case 4: goto L_0x0072;
-            case 5: goto L_0x006c;
-            case 6: goto L_0x0066;
-            case 7: goto L_0x0060;
-            default: goto L_0x005f;
-        };
-    L_0x005f:
-        goto L_0x008d;
-    L_0x0060:
-        r3 = 2131427843; // 0x7f0b0203 float:1.8477314E38 double:1.053065274E-314;
-        r2.stringLightingRes = r3;
-        goto L_0x008d;
-    L_0x0066:
-        r3 = 2131427844; // 0x7f0b0204 float:1.8477316E38 double:1.0530652743E-314;
-        r2.stringLightingRes = r3;
-        goto L_0x008d;
-    L_0x006c:
-        r3 = 2131427845; // 0x7f0b0205 float:1.8477318E38 double:1.053065275E-314;
-        r2.stringLightingRes = r3;
-        goto L_0x008d;
-    L_0x0072:
-        r3 = 2131427842; // 0x7f0b0202 float:1.8477312E38 double:1.0530652733E-314;
-        r2.stringLightingRes = r3;
-        goto L_0x008d;
-    L_0x0078:
-        r3 = 2131427841; // 0x7f0b0201 float:1.847731E38 double:1.053065273E-314;
-        r2.stringLightingRes = r3;
-        goto L_0x008d;
-    L_0x007e:
-        r3 = 2131427840; // 0x7f0b0200 float:1.8477308E38 double:1.0530652723E-314;
-        r2.stringLightingRes = r3;
-        goto L_0x008d;
-    L_0x0084:
-        r3 = 2131427839; // 0x7f0b01ff float:1.8477306E38 double:1.053065272E-314;
-        r2.stringLightingRes = r3;
-        goto L_0x008d;
-    L_0x008a:
-        r2.stringLightingRes = r0;
-    L_0x008d:
-        r3 = r2.stringLightingRes;
-        if (r3 != r0) goto L_0x0097;
-    L_0x0091:
-        r3 = r2.mLightingPattern;
-        com.android.camera.animation.type.AlphaOutOnSubscribe.directSetResult(r3);
-        goto L_0x00c2;
-    L_0x0097:
-        r3 = 12;
-        r2.mCurrentTipType = r3;
-        r3 = r2.mTipMessage;
-        r2.hideTip(r3);
-        r3 = r2.mPortraitSuccessHint;
-        r2.hideTip(r3);
-        r2.directHideTipImage();
-        r2.hideTipBeautyIntro();
-        r3 = r2.mLightingPattern;
-        r2.reIntTipViewMarginBottom(r3);
-        r3 = r2.mLightingPattern;
-        r0 = r2.stringLightingRes;
-        r3.setText(r0);
-        r3 = r2.isLandScape();
-        if (r3 != 0) goto L_0x00c2;
-    L_0x00bd:
-        r3 = r2.mLightingPattern;
-        com.android.camera.animation.type.AlphaInOnSubscribe.directSetResult(r3);
-    L_0x00c2:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.FragmentBottomPopupTips.setLightingPattern(java.lang.String):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void setLightingPattern(String str) {
+        Object obj;
+        this.stringLightingRes = -2;
+        switch (str.hashCode()) {
+            case 48:
+                if (str.equals("0")) {
+                    obj = null;
+                    break;
+                }
+            case 49:
+                if (str.equals("1")) {
+                    obj = 1;
+                    break;
+                }
+            case 50:
+                if (str.equals("2")) {
+                    obj = 2;
+                    break;
+                }
+            case 51:
+                if (str.equals("3")) {
+                    obj = 3;
+                    break;
+                }
+            case 52:
+                if (str.equals("4")) {
+                    obj = 4;
+                    break;
+                }
+            case 53:
+                if (str.equals("5")) {
+                    obj = 5;
+                    break;
+                }
+            case 54:
+                if (str.equals("6")) {
+                    obj = 6;
+                    break;
+                }
+            case 55:
+                if (str.equals(LightingConstant.LIGHTING_LEAF)) {
+                    obj = 7;
+                    break;
+                }
+            default:
+                obj = -1;
+                break;
+        }
+        switch (obj) {
+            case null:
+                this.stringLightingRes = -2;
+                break;
+            case 1:
+                this.stringLightingRes = R.string.lighting_pattern_nature;
+                break;
+            case 2:
+                this.stringLightingRes = R.string.lighting_pattern_stage;
+                break;
+            case 3:
+                this.stringLightingRes = R.string.lighting_pattern_movie;
+                break;
+            case 4:
+                this.stringLightingRes = R.string.lighting_pattern_rainbow;
+                break;
+            case 5:
+                this.stringLightingRes = R.string.lighting_pattern_shutter;
+                break;
+            case 6:
+                this.stringLightingRes = R.string.lighting_pattern_dot;
+                break;
+            case 7:
+                this.stringLightingRes = R.string.lighting_pattern_leaf;
+                break;
+        }
+        if (this.stringLightingRes == -2) {
+            AlphaOutOnSubscribe.directSetResult(this.mLightingPattern);
+            return;
+        }
+        this.mCurrentTipType = 12;
+        hideTip(this.mTipMessage);
+        hideTip(this.mPortraitSuccessHint);
+        directHideTipImage();
+        hideTipBeautyIntro();
+        reIntTipViewMarginBottom(this.mLightingPattern);
+        this.mLightingPattern.setText(this.stringLightingRes);
+        if (!isLandScape()) {
+            AlphaInOnSubscribe.directSetResult(this.mLightingPattern);
+        }
     }
 
     public void showQrCodeTip() {
@@ -703,61 +647,18 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
     /* JADX WARNING: Missing block: B:17:0x0042, code:
             return false;
      */
-    public boolean onBackEvent(int r4) {
-        /*
-        r3 = this;
-        r0 = 9;
-        r1 = 0;
-        switch(r4) {
-            case 1: goto L_0x0022;
-            case 2: goto L_0x0042;
-            case 3: goto L_0x0007;
-            default: goto L_0x0006;
-        };
-    L_0x0006:
-        goto L_0x0027;
-    L_0x0007:
-        r4 = r3.mCurrentTipType;
-        r2 = 6;
-        if (r4 == r2) goto L_0x0021;
-    L_0x000c:
-        r4 = r3.mCurrentTipType;
-        r2 = 7;
-        if (r4 == r2) goto L_0x0021;
-    L_0x0011:
-        r4 = r3.mCurrentTipType;
-        r2 = 11;
-        if (r4 == r2) goto L_0x0021;
-    L_0x0017:
-        r4 = r3.mCurrentTipType;
-        if (r4 == r0) goto L_0x0021;
-    L_0x001b:
-        r4 = r3.mCurrentTipType;
-        r2 = 12;
-        if (r4 != r2) goto L_0x0022;
-    L_0x0021:
-        return r1;
-    L_0x0022:
-        r4 = r3.mCurrentTipType;
-        if (r4 != r0) goto L_0x0027;
-    L_0x0026:
-        return r1;
-    L_0x0027:
-        r4 = r3.mTipMessage;
-        r3.hideTip(r4);
-        r4 = r3.mPortraitSuccessHint;
-        r3.hideTip(r4);
-        r4 = r3.mQrCodeButton;
-        r3.hideTip(r4);
-        r4 = r3.mLightingPattern;
-        r3.hideTip(r4);
-        r4 = r3.mHandler;
-        r0 = 0;
-        r4.removeCallbacksAndMessages(r0);
-    L_0x0042:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.FragmentBottomPopupTips.onBackEvent(int):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean onBackEvent(int i) {
+        switch (i) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                if (this.mCurrentTipType == 6 || this.mCurrentTipType == 7 || this.mCurrentTipType == 11 || this.mCurrentTipType == 9 || this.mCurrentTipType == 12) {
+                    return false;
+                }
+        }
     }
 
     private boolean hideTip(View view) {
@@ -826,300 +727,155 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
     /* JADX WARNING: Missing block: B:25:0x0056, code:
             r3 = -1;
      */
-    private void updateTipImage(int r11, int r12, java.util.List<io.reactivex.Completable> r13) {
-        /*
-        r10 = this;
-        r0 = -1;
-        r1 = 165; // 0xa5 float:2.31E-43 double:8.15E-322;
-        r2 = 3;
-        if (r11 == r1) goto L_0x0049;
-    L_0x0007:
-        r3 = 171; // 0xab float:2.4E-43 double:8.45E-322;
-        if (r11 == r3) goto L_0x0036;
-    L_0x000b:
-        switch(r11) {
-            case 161: goto L_0x000f;
-            case 162: goto L_0x000f;
-            case 163: goto L_0x0049;
-            default: goto L_0x000e;
-        };
-    L_0x000e:
-        goto L_0x0056;
-    L_0x000f:
-        r3 = com.android.camera.CameraSettings.isFrontCamera();
-        if (r3 != 0) goto L_0x001b;
-    L_0x0015:
-        r3 = com.android.camera.Util.UI_DEBUG();
-        if (r3 == 0) goto L_0x0056;
-    L_0x001b:
-        r3 = com.android.camera.module.loader.camera2.Camera2DataContainer.getInstance();
-        r4 = com.android.camera.CameraSettings.getCameraId();
-        r3 = r3.getCapabilitiesByBogusCameraId(r4, r11);
-        if (r3 == 0) goto L_0x002f;
-    L_0x0029:
-        r3 = r3.isSupportVideoBeauty();
-        if (r3 != 0) goto L_0x0035;
-    L_0x002f:
-        r3 = com.android.camera.Util.UI_DEBUG();
-        if (r3 == 0) goto L_0x0056;
-    L_0x0035:
-        goto L_0x0059;
-    L_0x0036:
-        r3 = com.android.camera.CameraSettings.isFrontCamera();
-        if (r3 == 0) goto L_0x0042;
-    L_0x003c:
-        r3 = com.mi.config.b.hb();
-        if (r3 != 0) goto L_0x0048;
-    L_0x0042:
-        r3 = com.android.camera.Util.UI_DEBUG();
-        if (r3 == 0) goto L_0x0056;
-    L_0x0048:
-        goto L_0x0059;
-    L_0x0049:
-        r3 = com.android.camera.CameraSettings.isFrontCamera();
-        if (r3 != 0) goto L_0x0058;
-    L_0x004f:
-        r3 = com.android.camera.Util.UI_DEBUG();
-        if (r3 == 0) goto L_0x0056;
-    L_0x0055:
-        goto L_0x0058;
-    L_0x0056:
-        r3 = r0;
-        goto L_0x005a;
-    L_0x0059:
-        r3 = r2;
-        r4 = 1;
-        r5 = 0;
-        if (r3 == r0) goto L_0x008e;
-    L_0x0060:
-        switch(r3) {
-            case 2: goto L_0x0087;
-            case 3: goto L_0x0067;
-            default: goto L_0x0063;
-        };
-    L_0x0063:
-        r8 = r4;
-        r6 = r5;
-        r7 = r6;
-        goto L_0x0093;
-    L_0x0067:
-        r6 = com.android.camera.Util.UI_DEBUG();
-        if (r6 != 0) goto L_0x0071;
-    L_0x006d:
-        r6 = 2130837679; // 0x7f0200af float:1.7280319E38 double:1.052773694E-314;
-        goto L_0x0082;
-    L_0x0071:
-        r6 = com.android.camera.CameraSettings.getFaceBeautifyValue();
-        r6 = com.android.camera.CameraSettings.isFaceBeautyOn(r6);
-        if (r6 == 0) goto L_0x007f;
-    L_0x007b:
-        r6 = 2130837681; // 0x7f0200b1 float:1.7280323E38 double:1.052773695E-314;
-        goto L_0x0082;
-    L_0x007f:
-        r6 = 2130837680; // 0x7f0200b0 float:1.728032E38 double:1.0527736946E-314;
-    L_0x0082:
-        r7 = 2131427567; // 0x7f0b00ef float:1.8476754E38 double:1.0530651375E-314;
-        r8 = r4;
-        goto L_0x0093;
-    L_0x0087:
-        r6 = 2130837683; // 0x7f0200b3 float:1.7280327E38 double:1.052773696E-314;
-        r8 = r4;
-        r7 = r5;
-        goto L_0x0093;
-        r6 = r5;
-        r7 = r6;
-        r8 = r7;
-    L_0x0093:
-        if (r6 <= 0) goto L_0x009a;
-    L_0x0095:
-        r9 = r10.mTipImage;
-        r9.setImageResource(r6);
-    L_0x009a:
-        if (r7 <= 0) goto L_0x00ab;
-    L_0x009c:
-        r6 = com.android.camera.Util.isAccessible();
-        if (r6 == 0) goto L_0x00ab;
-    L_0x00a2:
-        r6 = r10.mTipImage;
-        r7 = r10.getString(r7);
-        r6.setContentDescription(r7);
-    L_0x00ab:
-        r6 = r10.mTipImage;
-        r10.updateImageBgColor(r11, r6);
-        r6 = r10.mTipImage;
-        r6 = r6.getTag();
-        if (r6 == 0) goto L_0x00c7;
-    L_0x00b8:
-        r6 = r10.mTipImage;
-        r6 = r6.getTag();
-        r6 = (java.lang.Integer) r6;
-        r6 = r6.intValue();
-        if (r6 != r3) goto L_0x00c7;
-    L_0x00c6:
-        return;
-    L_0x00c7:
-        if (r8 == 0) goto L_0x00d1;
-    L_0x00c9:
-        r6 = r10.mTipImage;
-        r7 = r10.mDegree;
-        r7 = (float) r7;
-        android.support.v4.view.ViewCompat.setRotation(r6, r7);
-    L_0x00d1:
-        r6 = r10.mTipImage;
-        r7 = java.lang.Integer.valueOf(r3);
-        r6.setTag(r7);
-        r10.mShowBeautyIntro = r5;
-        r6 = 162; // 0xa2 float:2.27E-43 double:8.0E-322;
-        if (r13 != 0) goto L_0x00e8;
-    L_0x00e0:
-        if (r8 == 0) goto L_0x00e5;
-        r11 = r5;
-        goto L_0x0118;
-    L_0x00e6:
-        r11 = r4;
-        goto L_0x0118;
-    L_0x00e8:
-        if (r8 == 0) goto L_0x010e;
-    L_0x00ea:
-        if (r12 != r1) goto L_0x00f8;
-    L_0x00ec:
-        r12 = com.mi.config.b.isSupportedOpticalZoom();
-        if (r12 == 0) goto L_0x00f5;
-        r12 = r5;
-        goto L_0x00f9;
-        r12 = r2;
-        goto L_0x00f9;
-    L_0x00f8:
-        r12 = 2;
-    L_0x00f9:
-        if (r3 != r2) goto L_0x0109;
-    L_0x00fb:
-        r1 = com.android.camera.CameraSettings.isPopupTipBeautyIntroEnable();
-        if (r1 == 0) goto L_0x0109;
-    L_0x0101:
-        if (r11 == r6) goto L_0x0109;
-    L_0x0103:
-        r1 = 161; // 0xa1 float:2.26E-43 double:7.95E-322;
-        if (r11 == r1) goto L_0x0109;
-    L_0x0107:
-        r11 = r4;
-        goto L_0x010a;
-    L_0x0109:
-        r11 = r5;
-    L_0x010a:
-        r10.mShowBeautyIntro = r11;
-        r11 = r12;
-        goto L_0x0118;
-    L_0x010e:
-        if (r12 == r1) goto L_0x0117;
-    L_0x0110:
-        r11 = r10.mCurrentMode;
-        if (r11 != r1) goto L_0x0115;
-    L_0x0114:
-        goto L_0x0117;
-    L_0x0115:
-        r11 = 4;
-        goto L_0x0118;
-    L_0x0117:
-        goto L_0x00e6;
-    L_0x0118:
-        switch(r11) {
-            case 0: goto L_0x0193;
-            case 1: goto L_0x017a;
-            case 2: goto L_0x0167;
-            case 3: goto L_0x014a;
-            case 4: goto L_0x011d;
-            default: goto L_0x011b;
-        };
-    L_0x011b:
-        goto L_0x01bd;
-    L_0x011d:
-        r11 = r10.mBeautyIntroButton;
-        r11 = r11.isShown();
-        if (r11 == 0) goto L_0x013a;
-    L_0x0125:
-        r11 = r10.mBeautyIntroShowAnimator;
-        r11.pause();
-        r11 = new com.android.camera.animation.type.AlphaOutOnSubscribe;
-        r12 = r10.mBeautyIntroButton;
-        r11.<init>(r12);
-        r11 = io.reactivex.Completable.create(r11);
-        r13.add(r11);
-        goto L_0x01bd;
-    L_0x013a:
-        r11 = new com.android.camera.animation.type.AlphaOutOnSubscribe;
-        r12 = r10.mTipImage;
-        r11.<init>(r12);
-        r11 = io.reactivex.Completable.create(r11);
-        r13.add(r11);
-        goto L_0x01bd;
-    L_0x014a:
-        r11 = r10.mShowBeautyIntro;
-        if (r11 != 0) goto L_0x01bd;
-    L_0x014e:
-        r11 = new com.android.camera.animation.type.AlphaInOnSubscribe;
-        r12 = r10.mTipImage;
-        r11.<init>(r12);
-        r12 = 150; // 0x96 float:2.1E-43 double:7.4E-322;
-        r11 = r11.setStartDelayTime(r12);
-        r11 = r11.setDurationTime(r12);
-        r11 = io.reactivex.Completable.create(r11);
-        r13.add(r11);
-        goto L_0x01bd;
-    L_0x0167:
-        r11 = r10.mShowBeautyIntro;
-        if (r11 != 0) goto L_0x01bd;
-    L_0x016b:
-        r11 = new com.android.camera.animation.type.AlphaInOnSubscribe;
-        r12 = r10.mTipImage;
-        r11.<init>(r12);
-        r11 = io.reactivex.Completable.create(r11);
-        r13.add(r11);
-        goto L_0x01bd;
-    L_0x017a:
-        r11 = r10.mBeautyIntroButton;
-        r11 = r11.isShown();
-        if (r11 == 0) goto L_0x018d;
-    L_0x0182:
-        r11 = r10.mBeautyIntroShowAnimator;
-        r11.pause();
-        r11 = r10.mBeautyIntroButton;
-        com.android.camera.animation.type.AlphaOutOnSubscribe.directSetResult(r11);
-        goto L_0x01bd;
-    L_0x018d:
-        r11 = r10.mTipImage;
-        com.android.camera.animation.type.AlphaOutOnSubscribe.directSetResult(r11);
-        goto L_0x01bd;
-    L_0x0193:
-        r11 = com.android.camera.protocol.ModeCoordinatorImpl.getInstance();
-        r11 = r11.getAttachProtocol(r6);
-        r11 = (com.android.camera.protocol.ModeProtocol.ActionProcessing) r11;
-        if (r11 == 0) goto L_0x01a6;
-    L_0x019f:
-        r11 = r11.isShowLightingView();
-        if (r11 == 0) goto L_0x01a6;
-    L_0x01a5:
-        goto L_0x01a7;
-    L_0x01a6:
-        r4 = r5;
-    L_0x01a7:
-        if (r4 == 0) goto L_0x01b2;
-    L_0x01a9:
-        r11 = r10.mTipImage;
-        r12 = java.lang.Integer.valueOf(r0);
-        r11.setTag(r12);
-    L_0x01b2:
-        r11 = r10.mShowBeautyIntro;
-        if (r11 != 0) goto L_0x01bd;
-    L_0x01b6:
-        if (r4 != 0) goto L_0x01bd;
-    L_0x01b8:
-        r11 = r10.mTipImage;
-        com.android.camera.animation.type.AlphaInOnSubscribe.directSetResult(r11);
-    L_0x01bd:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.FragmentBottomPopupTips.updateTipImage(int, int, java.util.List):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void updateTipImage(int i, int i2, List<Completable> list) {
+        int i3;
+        int i4;
+        int i5;
+        if (i != 165) {
+            if (i != 171) {
+                switch (i) {
+                    case 161:
+                    case 162:
+                        if (CameraSettings.isFrontCamera() || Util.UI_DEBUG()) {
+                            CameraCapabilities capabilitiesByBogusCameraId = Camera2DataContainer.getInstance().getCapabilitiesByBogusCameraId(CameraSettings.getCameraId(), i);
+                            if (capabilitiesByBogusCameraId != null) {
+                                break;
+                            }
+                            break;
+                        }
+                    case 163:
+                        break;
+                }
+            } else if (CameraSettings.isFrontCamera()) {
+            }
+        }
+        if (!CameraSettings.isFrontCamera()) {
+        }
+        int i6 = 3;
+        boolean z = true;
+        if (i6 != -1) {
+            switch (i6) {
+                case 2:
+                    i3 = R.drawable.ic_beauty_sticker;
+                    i4 = 1;
+                    i5 = 0;
+                    break;
+                case 3:
+                    if (!Util.UI_DEBUG()) {
+                        i3 = R.drawable.ic_beauty_magic;
+                    } else if (CameraSettings.isFaceBeautyOn(CameraSettings.getFaceBeautifyValue())) {
+                        i3 = R.drawable.ic_beauty_on;
+                    } else {
+                        i3 = R.drawable.ic_beauty_normal;
+                    }
+                    i5 = R.string.accessibility_beauty_panel_open;
+                    i4 = 1;
+                    break;
+                default:
+                    i4 = 1;
+                    i3 = 0;
+                    i5 = i3;
+                    break;
+            }
+        }
+        i3 = 0;
+        i5 = i3;
+        i4 = i5;
+        if (i3 > 0) {
+            this.mTipImage.setImageResource(i3);
+        }
+        if (i5 > 0 && Util.isAccessible()) {
+            this.mTipImage.setContentDescription(getString(i5));
+        }
+        updateImageBgColor(i, this.mTipImage);
+        if (this.mTipImage.getTag() == null || ((Integer) this.mTipImage.getTag()).intValue() != i6) {
+            boolean z2;
+            if (i4 != 0) {
+                ViewCompat.setRotation(this.mTipImage, (float) this.mDegree);
+            }
+            this.mTipImage.setTag(Integer.valueOf(i6));
+            this.mShowBeautyIntro = false;
+            if (list != null) {
+                if (i4 != 0) {
+                    boolean z3 = i2 == 165 ? b.isSupportedOpticalZoom() ? false : true : true;
+                    z2 = i6 == 3 && CameraSettings.isPopupTipBeautyIntroEnable() && i != 162 && i != 161;
+                    this.mShowBeautyIntro = z2;
+                    z2 = z3;
+                } else if (!(i2 == 165 || this.mCurrentMode == 165)) {
+                    z2 = true;
+                }
+                switch (z2) {
+                    case false:
+                        break;
+                    case true:
+                        break;
+                    case true:
+                        break;
+                    case true:
+                        break;
+                    case true:
+                        break;
+                }
+            } else if (i4 != 0) {
+                z2 = false;
+                switch (z2) {
+                    case false:
+                        ActionProcessing actionProcessing = (ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162);
+                        if (actionProcessing == null || !actionProcessing.isShowLightingView()) {
+                            z = false;
+                        }
+                        if (z) {
+                            this.mTipImage.setTag(Integer.valueOf(-1));
+                        }
+                        if (!(this.mShowBeautyIntro || z)) {
+                            AlphaInOnSubscribe.directSetResult(this.mTipImage);
+                            break;
+                        }
+                    case true:
+                        if (!this.mBeautyIntroButton.isShown()) {
+                            AlphaOutOnSubscribe.directSetResult(this.mTipImage);
+                            break;
+                        }
+                        this.mBeautyIntroShowAnimator.pause();
+                        AlphaOutOnSubscribe.directSetResult(this.mBeautyIntroButton);
+                        break;
+                    case true:
+                        if (!this.mShowBeautyIntro) {
+                            list.add(Completable.create(new AlphaInOnSubscribe(this.mTipImage)));
+                            break;
+                        }
+                        break;
+                    case true:
+                        if (!this.mShowBeautyIntro) {
+                            list.add(Completable.create(new AlphaInOnSubscribe(this.mTipImage).setStartDelayTime(150).setDurationTime(150)));
+                            break;
+                        }
+                        break;
+                    case true:
+                        if (!this.mBeautyIntroButton.isShown()) {
+                            list.add(Completable.create(new AlphaOutOnSubscribe(this.mTipImage)));
+                            break;
+                        }
+                        this.mBeautyIntroShowAnimator.pause();
+                        list.add(Completable.create(new AlphaOutOnSubscribe(this.mBeautyIntroButton)));
+                        break;
+                }
+            }
+            z2 = true;
+            switch (z2) {
+                case false:
+                    break;
+                case true:
+                    break;
+                case true:
+                    break;
+                case true:
+                    break;
+                case true:
+                    break;
+            }
+        }
     }
 
     private void updateImageBgColor(int i, View view) {
@@ -1138,188 +894,96 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
     /* JADX WARNING: Missing block: B:37:0x00a0, code:
             if (r5 != 0) goto L_0x00a3;
      */
-    private void updateLeftTipImage(int r8, int r9, java.util.List<io.reactivex.Completable> r10) {
-        /*
-        r7 = this;
-        r0 = 161; // 0xa1 float:2.26E-43 double:7.95E-322;
-        r1 = -1;
-        r2 = 17;
-        r3 = 165; // 0xa5 float:2.31E-43 double:8.15E-322;
-        if (r8 == r0) goto L_0x0022;
-    L_0x000a:
-        r0 = 163; // 0xa3 float:2.28E-43 double:8.05E-322;
-        if (r8 == r0) goto L_0x0020;
-    L_0x000e:
-        if (r8 == r3) goto L_0x0020;
-    L_0x0010:
-        r0 = 171; // 0xab float:2.4E-43 double:8.45E-322;
-        if (r8 == r0) goto L_0x001e;
-    L_0x0014:
-        r0 = 174; // 0xae float:2.44E-43 double:8.6E-322;
-        if (r8 == r0) goto L_0x001a;
-    L_0x0018:
-        r2 = r1;
-        goto L_0x0024;
-    L_0x001a:
-        r0 = 18;
-        r2 = r0;
-        goto L_0x0024;
-        goto L_0x0024;
-        goto L_0x0024;
-        r0 = 1;
-        r4 = 0;
-        if (r2 == r1) goto L_0x0064;
-    L_0x002a:
-        switch(r2) {
-            case 17: goto L_0x0044;
-            case 18: goto L_0x0030;
-            default: goto L_0x002d;
-        };
-    L_0x002d:
-        r5 = r0;
-        r1 = r4;
-        goto L_0x0068;
-    L_0x0030:
-        r1 = com.android.camera.CameraSettings.getCurrentLiveSticker();
-        r5 = "";
-        r1 = r5.equals(r1);
-        if (r1 == 0) goto L_0x0040;
-    L_0x003c:
-        r1 = 2130837760; // 0x7f020100 float:1.7280483E38 double:1.052773734E-314;
-        goto L_0x0062;
-    L_0x0040:
-        r1 = 2130837761; // 0x7f020101 float:1.7280485E38 double:1.0527737346E-314;
-        goto L_0x0062;
-    L_0x0044:
-        r1 = com.android.camera.data.DataRepository.dataItemRunning();
-        r1 = r1.getComponentConfigFilter();
-        r1 = r1.getComponentValue(r8);
-        r1 = java.lang.Integer.parseInt(r1);
-        r5 = com.android.camera.effect.FilterInfo.FILTER_ID_NONE;
-        if (r1 == r5) goto L_0x005f;
-    L_0x0058:
-        if (r1 > 0) goto L_0x005b;
-    L_0x005a:
-        goto L_0x005f;
-    L_0x005b:
-        r1 = 2130837729; // 0x7f0200e1 float:1.728042E38 double:1.052773719E-314;
-        goto L_0x0062;
-    L_0x005f:
-        r1 = 2130837728; // 0x7f0200e0 float:1.7280418E38 double:1.0527737183E-314;
-    L_0x0062:
-        r5 = r0;
-        goto L_0x0068;
-        r1 = r4;
-        r5 = r1;
-    L_0x0068:
-        if (r1 <= 0) goto L_0x006f;
-    L_0x006a:
-        r6 = r7.mLeftTipImage;
-        r6.setImageResource(r1);
-    L_0x006f:
-        r1 = r7.mLeftTipImage;
-        r7.updateImageBgColor(r8, r1);
-        r8 = r7.mLeftTipImage;
-        r8 = r8.getTag();
-        if (r8 == 0) goto L_0x008b;
-    L_0x007c:
-        r8 = r7.mLeftTipImage;
-        r8 = r8.getTag();
-        r8 = (java.lang.Integer) r8;
-        r8 = r8.intValue();
-        if (r8 != r2) goto L_0x008b;
-    L_0x008a:
-        return;
-    L_0x008b:
-        if (r5 == 0) goto L_0x0095;
-    L_0x008d:
-        r8 = r7.mLeftTipImage;
-        r1 = r7.mDegree;
-        r1 = (float) r1;
-        android.support.v4.view.ViewCompat.setRotation(r8, r1);
-    L_0x0095:
-        r8 = r7.mLeftTipImage;
-        r1 = java.lang.Integer.valueOf(r2);
-        r8.setTag(r1);
-        if (r10 != 0) goto L_0x00a6;
-    L_0x00a0:
-        if (r5 == 0) goto L_0x00a5;
-    L_0x00a3:
-        r0 = r4;
-        goto L_0x00bf;
-    L_0x00a5:
-        goto L_0x00bf;
-    L_0x00a6:
-        if (r5 == 0) goto L_0x00b5;
-    L_0x00a8:
-        if (r9 != r3) goto L_0x00b3;
-    L_0x00aa:
-        r8 = com.mi.config.b.isSupportedOpticalZoom();
-        if (r8 == 0) goto L_0x00b1;
-    L_0x00b0:
-        goto L_0x00a3;
-    L_0x00b1:
-        r0 = 3;
-        goto L_0x00bf;
-    L_0x00b3:
-        r0 = 2;
-        goto L_0x00bf;
-    L_0x00b5:
-        if (r9 == r3) goto L_0x00be;
-    L_0x00b7:
-        r8 = r7.mCurrentMode;
-        if (r8 != r3) goto L_0x00bc;
-    L_0x00bb:
-        goto L_0x00be;
-    L_0x00bc:
-        r0 = 4;
-        goto L_0x00bf;
-    L_0x00bf:
-        switch(r0) {
-            case 0: goto L_0x0100;
-            case 1: goto L_0x00fa;
-            case 2: goto L_0x00eb;
-            case 3: goto L_0x00d2;
-            case 4: goto L_0x00c3;
-            default: goto L_0x00c2;
-        };
-    L_0x00c2:
-        goto L_0x0106;
-    L_0x00c3:
-        r8 = new com.android.camera.animation.type.AlphaOutOnSubscribe;
-        r9 = r7.mLeftTipImage;
-        r8.<init>(r9);
-        r8 = io.reactivex.Completable.create(r8);
-        r10.add(r8);
-        goto L_0x0106;
-    L_0x00d2:
-        r8 = new com.android.camera.animation.type.AlphaInOnSubscribe;
-        r9 = r7.mLeftTipImage;
-        r8.<init>(r9);
-        r9 = 150; // 0x96 float:2.1E-43 double:7.4E-322;
-        r8 = r8.setStartDelayTime(r9);
-        r8 = r8.setDurationTime(r9);
-        r8 = io.reactivex.Completable.create(r8);
-        r10.add(r8);
-        goto L_0x0106;
-    L_0x00eb:
-        r8 = new com.android.camera.animation.type.AlphaInOnSubscribe;
-        r9 = r7.mLeftTipImage;
-        r8.<init>(r9);
-        r8 = io.reactivex.Completable.create(r8);
-        r10.add(r8);
-        goto L_0x0106;
-    L_0x00fa:
-        r8 = r7.mLeftTipImage;
-        com.android.camera.animation.type.AlphaOutOnSubscribe.directSetResult(r8);
-        goto L_0x0106;
-    L_0x0100:
-        r8 = r7.mLeftTipImage;
-        com.android.camera.animation.type.AlphaInOnSubscribe.directSetResult(r8);
-    L_0x0106:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.FragmentBottomPopupTips.updateLeftTipImage(int, int, java.util.List):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void updateLeftTipImage(int i, int i2, List<Completable> list) {
+        int parseInt;
+        int i3;
+        int i4 = 17;
+        if (!(i == 161 || i == 163 || i == 165 || i == 171)) {
+            i4 = i != 174 ? -1 : 18;
+        }
+        Object obj = 1;
+        if (i4 != -1) {
+            switch (i4) {
+                case 17:
+                    parseInt = Integer.parseInt(DataRepository.dataItemRunning().getComponentConfigFilter().getComponentValue(i));
+                    if (parseInt != FilterInfo.FILTER_ID_NONE && parseInt > 0) {
+                        parseInt = R.drawable.ic_filter_on;
+                        break;
+                    } else {
+                        parseInt = R.drawable.ic_filter_normal;
+                        break;
+                    }
+                    break;
+                case 18:
+                    if (!"".equals(CameraSettings.getCurrentLiveSticker())) {
+                        parseInt = R.drawable.ic_live_sticker_on;
+                        break;
+                    } else {
+                        parseInt = R.drawable.ic_live_sticker_normal;
+                        break;
+                    }
+                default:
+                    i3 = 1;
+                    parseInt = 0;
+                    break;
+            }
+            i3 = 1;
+        } else {
+            parseInt = 0;
+            i3 = parseInt;
+        }
+        if (parseInt > 0) {
+            this.mLeftTipImage.setImageResource(parseInt);
+        }
+        updateImageBgColor(i, this.mLeftTipImage);
+        if (this.mLeftTipImage.getTag() == null || ((Integer) this.mLeftTipImage.getTag()).intValue() != i4) {
+            if (i3 != 0) {
+                ViewCompat.setRotation(this.mLeftTipImage, (float) this.mDegree);
+            }
+            this.mLeftTipImage.setTag(Integer.valueOf(i4));
+            if (list != null) {
+                if (i3 != 0) {
+                    if (i2 != 165) {
+                        obj = 2;
+                    } else if (!b.isSupportedOpticalZoom()) {
+                        obj = 3;
+                    }
+                } else if (!(i2 == 165 || this.mCurrentMode == 165)) {
+                    obj = 4;
+                }
+                switch (obj) {
+                    case null:
+                        AlphaInOnSubscribe.directSetResult(this.mLeftTipImage);
+                        break;
+                    case 1:
+                        AlphaOutOnSubscribe.directSetResult(this.mLeftTipImage);
+                        break;
+                    case 2:
+                        list.add(Completable.create(new AlphaInOnSubscribe(this.mLeftTipImage)));
+                        break;
+                    case 3:
+                        list.add(Completable.create(new AlphaInOnSubscribe(this.mLeftTipImage).setStartDelayTime(150).setDurationTime(150)));
+                        break;
+                    case 4:
+                        list.add(Completable.create(new AlphaOutOnSubscribe(this.mLeftTipImage)));
+                        break;
+                }
+            }
+            obj = null;
+            switch (obj) {
+                case null:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+            }
+        }
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:43:0x00d9  */
@@ -1330,155 +994,77 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
     /* JADX WARNING: Missing block: B:28:0x0080, code:
             if (r4 != 0) goto L_0x0083;
      */
-    private void updateCenterTipImage(int r10, int r11, java.util.List<io.reactivex.Completable> r12) {
-        /*
-        r9 = this;
-        r0 = -1;
-        r1 = 33;
-        r2 = 174; // 0xae float:2.44E-43 double:8.6E-322;
-        if (r10 == r2) goto L_0x000a;
-    L_0x0008:
-        r10 = r0;
-        goto L_0x000c;
-        r10 = r1;
-        r2 = 1;
-        r3 = 0;
-        if (r10 == r0) goto L_0x001b;
-    L_0x0011:
-        if (r10 == r1) goto L_0x0016;
-    L_0x0013:
-        r4 = r2;
-        r0 = r3;
-        goto L_0x001f;
-    L_0x0016:
-        r0 = 2130968579; // 0x7f040003 float:1.7545816E38 double:1.0528383673E-314;
-        r4 = r2;
-        goto L_0x001f;
-        r0 = r3;
-        r4 = r0;
-    L_0x001f:
-        r5 = r9.mCenterTipImage;
-        r5 = r5.getTag();
-        if (r5 == 0) goto L_0x0038;
-    L_0x0027:
-        r5 = r9.mCenterTipImage;
-        r5 = r5.getTag();
-        r5 = (java.lang.Integer) r5;
-        r5 = r5.intValue();
-        if (r5 != r10) goto L_0x0038;
-        r5 = r3;
-        goto L_0x0039;
-    L_0x0038:
-        r5 = r2;
-    L_0x0039:
-        if (r5 == 0) goto L_0x0054;
-    L_0x003b:
-        r6 = r9.mCenterTipImage;
-        r6.removeAllViews();
-        if (r0 <= 0) goto L_0x0054;
-    L_0x0042:
-        r6 = r9.mCenterTipImage;
-        r7 = r9.getContext();
-        r7 = android.view.LayoutInflater.from(r7);
-        r8 = 0;
-        r0 = r7.inflate(r0, r8);
-        r6.addView(r0);
-    L_0x0054:
-        if (r10 != r1) goto L_0x0068;
-    L_0x0056:
-        r0 = com.android.camera.CameraSettings.getCurrentLiveSpeedText();
-        r1 = r9.mCenterTipImage;
-        r6 = 2131558414; // 0x7f0d000e float:1.8742143E38 double:1.0531297845E-314;
-        r1 = r1.findViewById(r6);
-        r1 = (android.widget.TextView) r1;
-        r1.setText(r0);
-    L_0x0068:
-        if (r5 != 0) goto L_0x006b;
-    L_0x006a:
-        return;
-    L_0x006b:
-        if (r4 == 0) goto L_0x0075;
-    L_0x006d:
-        r0 = r9.mCenterTipImage;
-        r1 = r9.mDegree;
-        r1 = (float) r1;
-        android.support.v4.view.ViewCompat.setRotation(r0, r1);
-    L_0x0075:
-        r0 = r9.mCenterTipImage;
-        r10 = java.lang.Integer.valueOf(r10);
-        r0.setTag(r10);
-        if (r12 != 0) goto L_0x0086;
-    L_0x0080:
-        if (r4 == 0) goto L_0x0085;
-    L_0x0083:
-        r2 = r3;
-        goto L_0x0098;
-    L_0x0085:
-        goto L_0x0098;
-    L_0x0086:
-        if (r4 == 0) goto L_0x0097;
-    L_0x0088:
-        r10 = 163; // 0xa3 float:2.28E-43 double:8.05E-322;
-        if (r11 != r10) goto L_0x0095;
-    L_0x008c:
-        r10 = com.mi.config.b.isSupportedOpticalZoom();
-        if (r10 == 0) goto L_0x0093;
-    L_0x0092:
-        goto L_0x0083;
-    L_0x0093:
-        r2 = 3;
-        goto L_0x0098;
-    L_0x0095:
-        r2 = 2;
-        goto L_0x0098;
-    L_0x0097:
-        r2 = 4;
-    L_0x0098:
-        switch(r2) {
-            case 0: goto L_0x00d9;
-            case 1: goto L_0x00d3;
-            case 2: goto L_0x00c4;
-            case 3: goto L_0x00ab;
-            case 4: goto L_0x009c;
-            default: goto L_0x009b;
-        };
-    L_0x009b:
-        goto L_0x00df;
-    L_0x009c:
-        r10 = new com.android.camera.animation.type.AlphaOutOnSubscribe;
-        r11 = r9.mCenterTipImage;
-        r10.<init>(r11);
-        r10 = io.reactivex.Completable.create(r10);
-        r12.add(r10);
-        goto L_0x00df;
-    L_0x00ab:
-        r10 = new com.android.camera.animation.type.AlphaInOnSubscribe;
-        r11 = r9.mCenterTipImage;
-        r10.<init>(r11);
-        r11 = 150; // 0x96 float:2.1E-43 double:7.4E-322;
-        r10 = r10.setStartDelayTime(r11);
-        r10 = r10.setDurationTime(r11);
-        r10 = io.reactivex.Completable.create(r10);
-        r12.add(r10);
-        goto L_0x00df;
-    L_0x00c4:
-        r10 = new com.android.camera.animation.type.AlphaInOnSubscribe;
-        r11 = r9.mCenterTipImage;
-        r10.<init>(r11);
-        r10 = io.reactivex.Completable.create(r10);
-        r12.add(r10);
-        goto L_0x00df;
-    L_0x00d3:
-        r10 = r9.mCenterTipImage;
-        com.android.camera.animation.type.AlphaOutOnSubscribe.directSetResult(r10);
-        goto L_0x00df;
-    L_0x00d9:
-        r10 = r9.mCenterTipImage;
-        com.android.camera.animation.type.AlphaInOnSubscribe.directSetResult(r10);
-    L_0x00df:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.FragmentBottomPopupTips.updateCenterTipImage(int, int, java.util.List):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void updateCenterTipImage(int i, int i2, List<Completable> list) {
+        int i3;
+        int i4;
+        i = i != 174 ? -1 : 33;
+        Object obj = 1;
+        if (i == -1) {
+            i3 = 0;
+            i4 = i3;
+        } else if (i != 33) {
+            i4 = 1;
+            i3 = 0;
+        } else {
+            i3 = R.layout.bottom_popup_tips_center_live_speed;
+            i4 = 1;
+        }
+        Object obj2 = (this.mCenterTipImage.getTag() == null || ((Integer) this.mCenterTipImage.getTag()).intValue() != i) ? 1 : null;
+        if (obj2 != null) {
+            this.mCenterTipImage.removeAllViews();
+            if (i3 > 0) {
+                this.mCenterTipImage.addView(LayoutInflater.from(getContext()).inflate(i3, null));
+            }
+        }
+        if (i == 33) {
+            ((TextView) this.mCenterTipImage.findViewById(R.id.live_speed_text)).setText(CameraSettings.getCurrentLiveSpeedText());
+        }
+        if (obj2 != null) {
+            if (i4 != 0) {
+                ViewCompat.setRotation(this.mCenterTipImage, (float) this.mDegree);
+            }
+            this.mCenterTipImage.setTag(Integer.valueOf(i));
+            if (list != null) {
+                if (i4 == 0) {
+                    obj = 4;
+                } else if (i2 != 163) {
+                    obj = 2;
+                } else if (!b.isSupportedOpticalZoom()) {
+                    obj = 3;
+                }
+                switch (obj) {
+                    case null:
+                        AlphaInOnSubscribe.directSetResult(this.mCenterTipImage);
+                        break;
+                    case 1:
+                        AlphaOutOnSubscribe.directSetResult(this.mCenterTipImage);
+                        break;
+                    case 2:
+                        list.add(Completable.create(new AlphaInOnSubscribe(this.mCenterTipImage)));
+                        break;
+                    case 3:
+                        list.add(Completable.create(new AlphaInOnSubscribe(this.mCenterTipImage).setStartDelayTime(150).setDurationTime(150)));
+                        break;
+                    case 4:
+                        list.add(Completable.create(new AlphaOutOnSubscribe(this.mCenterTipImage)));
+                        break;
+                }
+            }
+            obj = null;
+            switch (obj) {
+                case null:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+            }
+        }
     }
 
     private boolean tipShowIntercept(int i) {

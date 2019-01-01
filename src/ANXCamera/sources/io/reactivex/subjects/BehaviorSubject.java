@@ -68,121 +68,53 @@ public final class BehaviorSubject<T> extends Subject<T> {
         /* JADX WARNING: Missing block: B:24:0x003d, code:
             return;
      */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         void emitFirst() {
-            /*
-            r4 = this;
-            r0 = r4.cancelled;
-            if (r0 == 0) goto L_0x0005;
-        L_0x0004:
-            return;
-        L_0x0005:
-            monitor-enter(r4);
-            r0 = r4.cancelled;	 Catch:{ all -> 0x003e }
-            if (r0 == 0) goto L_0x000c;
-        L_0x000a:
-            monitor-exit(r4);	 Catch:{ all -> 0x003e }
-            return;
-        L_0x000c:
-            r0 = r4.next;	 Catch:{ all -> 0x003e }
-            if (r0 == 0) goto L_0x0012;
-        L_0x0010:
-            monitor-exit(r4);	 Catch:{ all -> 0x003e }
-            return;
-        L_0x0012:
-            r0 = r4.state;	 Catch:{ all -> 0x003e }
-            r1 = r0.readLock;	 Catch:{ all -> 0x003e }
-            r1.lock();	 Catch:{ all -> 0x003e }
-            r2 = r0.index;	 Catch:{ all -> 0x003e }
-            r4.index = r2;	 Catch:{ all -> 0x003e }
-            r0 = r0.value;	 Catch:{ all -> 0x003e }
-            r0 = r0.get();	 Catch:{ all -> 0x003e }
-            r1.unlock();	 Catch:{ all -> 0x003e }
-            r1 = 1;
-            if (r0 == 0) goto L_0x002b;
-        L_0x0029:
-            r2 = r1;
-            goto L_0x002c;
-        L_0x002b:
-            r2 = 0;
-        L_0x002c:
-            r4.emitting = r2;	 Catch:{ all -> 0x003e }
-            r4.next = r1;	 Catch:{ all -> 0x003e }
-            monitor-exit(r4);	 Catch:{ all -> 0x003e }
-            if (r0 == 0) goto L_0x003d;
-        L_0x0033:
-            r0 = r4.test(r0);
-            if (r0 == 0) goto L_0x003a;
-        L_0x0039:
-            return;
-        L_0x003a:
-            r4.emitLoop();
-        L_0x003d:
-            return;
-        L_0x003e:
-            r0 = move-exception;
-            monitor-exit(r4);	 Catch:{ all -> 0x003e }
-            throw r0;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.subjects.BehaviorSubject.BehaviorDisposable.emitFirst():void");
+            if (!this.cancelled) {
+                synchronized (this) {
+                    if (this.cancelled) {
+                    } else if (this.next) {
+                    } else {
+                        BehaviorSubject behaviorSubject = this.state;
+                        Lock lock = behaviorSubject.readLock;
+                        lock.lock();
+                        this.index = behaviorSubject.index;
+                        Object obj = behaviorSubject.value.get();
+                        lock.unlock();
+                        this.emitting = obj != null;
+                        this.next = true;
+                    }
+                }
+            }
         }
 
         /* JADX WARNING: Missing block: B:25:0x0031, code:
             r2.fastPath = true;
      */
-        void emitNext(java.lang.Object r3, long r4) {
-            /*
-            r2 = this;
-            r0 = r2.cancelled;
-            if (r0 == 0) goto L_0x0005;
-        L_0x0004:
-            return;
-        L_0x0005:
-            r0 = r2.fastPath;
-            if (r0 != 0) goto L_0x0037;
-        L_0x0009:
-            monitor-enter(r2);
-            r0 = r2.cancelled;	 Catch:{ all -> 0x0034 }
-            if (r0 == 0) goto L_0x0010;
-        L_0x000e:
-            monitor-exit(r2);	 Catch:{ all -> 0x0034 }
-            return;
-        L_0x0010:
-            r0 = r2.index;	 Catch:{ all -> 0x0034 }
-            r4 = (r0 > r4 ? 1 : (r0 == r4 ? 0 : -1));
-            if (r4 != 0) goto L_0x0018;
-        L_0x0016:
-            monitor-exit(r2);	 Catch:{ all -> 0x0034 }
-            return;
-        L_0x0018:
-            r4 = r2.emitting;	 Catch:{ all -> 0x0034 }
-            if (r4 == 0) goto L_0x002d;
-        L_0x001c:
-            r4 = r2.queue;	 Catch:{ all -> 0x0034 }
-            if (r4 != 0) goto L_0x0028;
-        L_0x0020:
-            r4 = new io.reactivex.internal.util.AppendOnlyLinkedArrayList;	 Catch:{ all -> 0x0034 }
-            r5 = 4;
-            r4.<init>(r5);	 Catch:{ all -> 0x0034 }
-            r2.queue = r4;	 Catch:{ all -> 0x0034 }
-        L_0x0028:
-            r4.add(r3);	 Catch:{ all -> 0x0034 }
-            monitor-exit(r2);	 Catch:{ all -> 0x0034 }
-            return;
-        L_0x002d:
-            r4 = 1;
-            r2.next = r4;	 Catch:{ all -> 0x0034 }
-            monitor-exit(r2);	 Catch:{ all -> 0x0034 }
-            r2.fastPath = r4;
-            goto L_0x0037;
-        L_0x0034:
-            r3 = move-exception;
-            monitor-exit(r2);	 Catch:{ all -> 0x0034 }
-            throw r3;
-        L_0x0037:
-            r2.test(r3);
-            return;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.subjects.BehaviorSubject.BehaviorDisposable.emitNext(java.lang.Object, long):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        void emitNext(Object obj, long j) {
+            if (!this.cancelled) {
+                if (!this.fastPath) {
+                    synchronized (this) {
+                        if (this.cancelled) {
+                            return;
+                        } else if (this.index == j) {
+                            return;
+                        } else if (this.emitting) {
+                            AppendOnlyLinkedArrayList appendOnlyLinkedArrayList = this.queue;
+                            if (appendOnlyLinkedArrayList == null) {
+                                appendOnlyLinkedArrayList = new AppendOnlyLinkedArrayList(4);
+                                this.queue = appendOnlyLinkedArrayList;
+                            }
+                            appendOnlyLinkedArrayList.add(obj);
+                            return;
+                        } else {
+                            this.next = true;
+                        }
+                    }
+                }
+                test(obj);
+            }
         }
 
         public boolean test(Object obj) {
@@ -192,35 +124,18 @@ public final class BehaviorSubject<T> extends Subject<T> {
         /* JADX WARNING: Missing block: B:12:0x0013, code:
             r0.forEachWhile(r2);
      */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         void emitLoop() {
-            /*
-            r2 = this;
-        L_0x0000:
-            r0 = r2.cancelled;
-            if (r0 == 0) goto L_0x0005;
-        L_0x0004:
-            return;
-        L_0x0005:
-            monitor-enter(r2);
-            r0 = r2.queue;	 Catch:{ all -> 0x0017 }
-            if (r0 != 0) goto L_0x000f;
-        L_0x000a:
-            r0 = 0;
-            r2.emitting = r0;	 Catch:{ all -> 0x0017 }
-            monitor-exit(r2);	 Catch:{ all -> 0x0017 }
-            return;
-        L_0x000f:
-            r1 = 0;
-            r2.queue = r1;	 Catch:{ all -> 0x0017 }
-            monitor-exit(r2);	 Catch:{ all -> 0x0017 }
-            r0.forEachWhile(r2);
-            goto L_0x0000;
-        L_0x0017:
-            r0 = move-exception;
-            monitor-exit(r2);	 Catch:{ all -> 0x0017 }
-            throw r0;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.subjects.BehaviorSubject.BehaviorDisposable.emitLoop():void");
+            while (!this.cancelled) {
+                synchronized (this) {
+                    AppendOnlyLinkedArrayList appendOnlyLinkedArrayList = this.queue;
+                    if (appendOnlyLinkedArrayList == null) {
+                        this.emitting = false;
+                        return;
+                    }
+                    this.queue = null;
+                }
+            }
         }
     }
 

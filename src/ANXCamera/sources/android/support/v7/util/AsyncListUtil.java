@@ -303,120 +303,25 @@ public class AsyncListUtil<T> {
     /* JADX WARNING: Missing block: B:23:0x00bb, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void updateRange() {
-        /*
-        r10 = this;
-        r0 = r10.mViewCallback;
-        r1 = r10.mTmpRange;
-        r0.getItemRangeInto(r1);
-        r0 = r10.mTmpRange;
-        r1 = 0;
-        r0 = r0[r1];
-        r2 = r10.mTmpRange;
-        r3 = 1;
-        r2 = r2[r3];
-        if (r0 > r2) goto L_0x00bb;
-    L_0x0013:
-        r0 = r10.mTmpRange;
-        r0 = r0[r1];
-        if (r0 >= 0) goto L_0x001b;
-    L_0x0019:
-        goto L_0x00bb;
-    L_0x001b:
-        r0 = r10.mTmpRange;
-        r0 = r0[r3];
-        r2 = r10.mItemCount;
-        if (r0 < r2) goto L_0x0024;
-    L_0x0023:
-        return;
-    L_0x0024:
-        r0 = r10.mAllowScrollHints;
-        if (r0 != 0) goto L_0x002b;
-    L_0x0028:
-        r10.mScrollHint = r1;
-        goto L_0x005d;
-    L_0x002b:
-        r0 = r10.mTmpRange;
-        r0 = r0[r1];
-        r2 = r10.mPrevRange;
-        r2 = r2[r3];
-        if (r0 > r2) goto L_0x005b;
-    L_0x0035:
-        r0 = r10.mPrevRange;
-        r0 = r0[r1];
-        r2 = r10.mTmpRange;
-        r2 = r2[r3];
-        if (r0 <= r2) goto L_0x0040;
-    L_0x003f:
-        goto L_0x005b;
-    L_0x0040:
-        r0 = r10.mTmpRange;
-        r0 = r0[r1];
-        r2 = r10.mPrevRange;
-        r2 = r2[r1];
-        if (r0 >= r2) goto L_0x004d;
-    L_0x004a:
-        r10.mScrollHint = r3;
-        goto L_0x005d;
-    L_0x004d:
-        r0 = r10.mTmpRange;
-        r0 = r0[r1];
-        r2 = r10.mPrevRange;
-        r2 = r2[r1];
-        if (r0 <= r2) goto L_0x005d;
-    L_0x0057:
-        r0 = 2;
-        r10.mScrollHint = r0;
-        goto L_0x005d;
-    L_0x005b:
-        r10.mScrollHint = r1;
-    L_0x005d:
-        r0 = r10.mPrevRange;
-        r2 = r10.mTmpRange;
-        r2 = r2[r1];
-        r0[r1] = r2;
-        r0 = r10.mPrevRange;
-        r2 = r10.mTmpRange;
-        r2 = r2[r3];
-        r0[r3] = r2;
-        r0 = r10.mViewCallback;
-        r2 = r10.mTmpRange;
-        r4 = r10.mTmpRangeExtended;
-        r5 = r10.mScrollHint;
-        r0.extendRangeInto(r2, r4, r5);
-        r0 = r10.mTmpRangeExtended;
-        r2 = r10.mTmpRange;
-        r2 = r2[r1];
-        r4 = r10.mTmpRangeExtended;
-        r4 = r4[r1];
-        r4 = java.lang.Math.max(r4, r1);
-        r2 = java.lang.Math.min(r2, r4);
-        r0[r1] = r2;
-        r0 = r10.mTmpRangeExtended;
-        r2 = r10.mTmpRange;
-        r2 = r2[r3];
-        r4 = r10.mTmpRangeExtended;
-        r4 = r4[r3];
-        r5 = r10.mItemCount;
-        r5 = r5 - r3;
-        r4 = java.lang.Math.min(r4, r5);
-        r2 = java.lang.Math.max(r2, r4);
-        r0[r3] = r2;
-        r4 = r10.mBackgroundProxy;
-        r0 = r10.mTmpRange;
-        r5 = r0[r1];
-        r0 = r10.mTmpRange;
-        r6 = r0[r3];
-        r0 = r10.mTmpRangeExtended;
-        r7 = r0[r1];
-        r0 = r10.mTmpRangeExtended;
-        r8 = r0[r3];
-        r9 = r10.mScrollHint;
-        r4.updateRange(r5, r6, r7, r8, r9);
-        return;
-    L_0x00bb:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v7.util.AsyncListUtil.updateRange():void");
+        this.mViewCallback.getItemRangeInto(this.mTmpRange);
+        if (this.mTmpRange[0] <= this.mTmpRange[1] && this.mTmpRange[0] >= 0 && this.mTmpRange[1] < this.mItemCount) {
+            if (!this.mAllowScrollHints) {
+                this.mScrollHint = 0;
+            } else if (this.mTmpRange[0] > this.mPrevRange[1] || this.mPrevRange[0] > this.mTmpRange[1]) {
+                this.mScrollHint = 0;
+            } else if (this.mTmpRange[0] < this.mPrevRange[0]) {
+                this.mScrollHint = 1;
+            } else if (this.mTmpRange[0] > this.mPrevRange[0]) {
+                this.mScrollHint = 2;
+            }
+            this.mPrevRange[0] = this.mTmpRange[0];
+            this.mPrevRange[1] = this.mTmpRange[1];
+            this.mViewCallback.extendRangeInto(this.mTmpRange, this.mTmpRangeExtended, this.mScrollHint);
+            this.mTmpRangeExtended[0] = Math.min(this.mTmpRange[0], Math.max(this.mTmpRangeExtended[0], 0));
+            this.mTmpRangeExtended[1] = Math.max(this.mTmpRange[1], Math.min(this.mTmpRangeExtended[1], this.mItemCount - 1));
+            this.mBackgroundProxy.updateRange(this.mTmpRange[0], this.mTmpRange[1], this.mTmpRangeExtended[0], this.mTmpRangeExtended[1], this.mScrollHint);
+        }
     }
 }

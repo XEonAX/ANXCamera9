@@ -567,388 +567,158 @@ public class GLTextureView extends TextureView implements SurfaceTextureListener
         /* JADX WARNING: Missing block: B:155:0x0236, code:
             r3 = r0;
      */
-        private void guardedRun() throws java.lang.InterruptedException {
-            /*
-            r17 = this;
-            r1 = r17;
-            r0 = new com.android.camera.ui.GLTextureView$EglHelper;
-            r2 = r1.mGLTextureViewWeakRef;
-            r0.<init>(r2);
-            r1.mEglHelper = r0;
-            r0 = 0;
-            r1.mHaveEglContext = r0;
-            r1.mHaveEglSurface = r0;
-            r3 = r0;
-            r4 = r3;
-            r5 = r4;
-            r6 = r5;
-            r8 = r6;
-            r9 = r8;
-            r11 = r9;
-            r12 = r11;
-            r13 = r12;
-            r14 = r13;
-            r7 = 0;
-        L_0x0027:
-            r10 = 0;
-        L_0x0028:
-            r15 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ RuntimeException -> 0x024c }
-            monitor-enter(r15);	 Catch:{ RuntimeException -> 0x024c }
-        L_0x002d:
-            r2 = r1.mShouldExit;	 Catch:{ all -> 0x0247 }
-            if (r2 == 0) goto L_0x0042;
-        L_0x0031:
-            monitor-exit(r15);	 Catch:{ all -> 0x0247 }
-            r2 = com.android.camera.ui.GLTextureView.sGLThreadManager;
-            monitor-enter(r2);
-            r17.stopEglSurfaceLocked();	 Catch:{ all -> 0x003f }
-            r17.stopEglContextLocked();	 Catch:{ all -> 0x003f }
-            monitor-exit(r2);	 Catch:{ all -> 0x003f }
-            return;
-        L_0x003f:
-            r0 = move-exception;
-            monitor-exit(r2);	 Catch:{ all -> 0x003f }
-            throw r0;
-        L_0x0042:
-            r2 = r1.mEventQueue;	 Catch:{ all -> 0x0247 }
-            r2 = r2.isEmpty();	 Catch:{ all -> 0x0247 }
-            if (r2 != 0) goto L_0x0058;
-        L_0x004a:
-            r2 = r1.mEventQueue;	 Catch:{ all -> 0x0247 }
-            r10 = 0;
-            r2 = r2.remove(r10);	 Catch:{ all -> 0x0247 }
-            r2 = (java.lang.Runnable) r2;	 Catch:{ all -> 0x0247 }
-            r10 = r2;
-            r2 = 0;
-            goto L_0x016f;
-            r2 = r1.mPaused;	 Catch:{ all -> 0x0247 }
-            r0 = r1.mRequestPaused;	 Catch:{ all -> 0x0247 }
-            if (r2 == r0) goto L_0x006d;
-        L_0x005f:
-            r0 = r1.mRequestPaused;	 Catch:{ all -> 0x0247 }
-            r2 = r1.mRequestPaused;	 Catch:{ all -> 0x0247 }
-            r1.mPaused = r2;	 Catch:{ all -> 0x0247 }
-            r2 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ all -> 0x0247 }
-            r2.notifyAll();	 Catch:{ all -> 0x0247 }
-            goto L_0x006e;
-        L_0x006d:
-            r0 = 0;
-        L_0x006e:
-            r2 = r1.mShouldReleaseEglContext;	 Catch:{ all -> 0x0247 }
-            if (r2 == 0) goto L_0x007d;
-        L_0x0072:
-            r17.stopEglSurfaceLocked();	 Catch:{ all -> 0x0247 }
-            r17.stopEglContextLocked();	 Catch:{ all -> 0x0247 }
-            r2 = 0;
-            r1.mShouldReleaseEglContext = r2;	 Catch:{ all -> 0x0247 }
-            r4 = 1;
-        L_0x007d:
-            if (r5 == 0) goto L_0x0087;
-        L_0x007f:
-            r17.stopEglSurfaceLocked();	 Catch:{ all -> 0x0247 }
-            r17.stopEglContextLocked();	 Catch:{ all -> 0x0247 }
-            r5 = 0;
-        L_0x0087:
-            if (r0 == 0) goto L_0x0090;
-        L_0x0089:
-            r2 = r1.mHaveEglSurface;	 Catch:{ all -> 0x0247 }
-            if (r2 == 0) goto L_0x0090;
-        L_0x008d:
-            r17.stopEglSurfaceLocked();	 Catch:{ all -> 0x0247 }
-        L_0x0090:
-            if (r0 == 0) goto L_0x00b6;
-        L_0x0092:
-            r2 = r1.mHaveEglContext;	 Catch:{ all -> 0x0247 }
-            if (r2 == 0) goto L_0x00b6;
-        L_0x0096:
-            r2 = r1.mGLTextureViewWeakRef;	 Catch:{ all -> 0x0247 }
-            r2 = r2.get();	 Catch:{ all -> 0x0247 }
-            r2 = (com.android.camera.ui.GLTextureView) r2;	 Catch:{ all -> 0x0247 }
-            if (r2 != 0) goto L_0x00a3;
-            r2 = 0;
-            goto L_0x00a7;
-        L_0x00a3:
-            r2 = r2.mPreserveEGLContextOnPause;	 Catch:{ all -> 0x0247 }
-        L_0x00a7:
-            if (r2 == 0) goto L_0x00b3;
-        L_0x00a9:
-            r2 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ all -> 0x0247 }
-            r2 = r2.shouldReleaseEGLContextWhenPausing();	 Catch:{ all -> 0x0247 }
-            if (r2 == 0) goto L_0x00b6;
-        L_0x00b3:
-            r17.stopEglContextLocked();	 Catch:{ all -> 0x0247 }
-        L_0x00b6:
-            if (r0 == 0) goto L_0x00c7;
-        L_0x00b8:
-            r0 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ all -> 0x0247 }
-            r0 = r0.shouldTerminateEGLWhenPausing();	 Catch:{ all -> 0x0247 }
-            if (r0 == 0) goto L_0x00c7;
-        L_0x00c2:
-            r0 = r1.mEglHelper;	 Catch:{ all -> 0x0247 }
-            r0.finish();	 Catch:{ all -> 0x0247 }
-        L_0x00c7:
-            r0 = r1.mHasSurface;	 Catch:{ all -> 0x0247 }
-            if (r0 != 0) goto L_0x00e3;
-        L_0x00cb:
-            r0 = r1.mWaitingForSurface;	 Catch:{ all -> 0x0247 }
-            if (r0 != 0) goto L_0x00e3;
-        L_0x00cf:
-            r0 = r1.mHaveEglSurface;	 Catch:{ all -> 0x0247 }
-            if (r0 == 0) goto L_0x00d6;
-        L_0x00d3:
-            r17.stopEglSurfaceLocked();	 Catch:{ all -> 0x0247 }
-        L_0x00d6:
-            r0 = 1;
-            r1.mWaitingForSurface = r0;	 Catch:{ all -> 0x0247 }
-            r0 = 0;
-            r1.mSurfaceIsBad = r0;	 Catch:{ all -> 0x0247 }
-            r0 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ all -> 0x0247 }
-            r0.notifyAll();	 Catch:{ all -> 0x0247 }
-        L_0x00e3:
-            r0 = r1.mHasSurface;	 Catch:{ all -> 0x0247 }
-            if (r0 == 0) goto L_0x00f5;
-        L_0x00e7:
-            r0 = r1.mWaitingForSurface;	 Catch:{ all -> 0x0247 }
-            if (r0 == 0) goto L_0x00f5;
-        L_0x00eb:
-            r0 = 0;
-            r1.mWaitingForSurface = r0;	 Catch:{ all -> 0x0247 }
-            r0 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ all -> 0x0247 }
-            r0.notifyAll();	 Catch:{ all -> 0x0247 }
-        L_0x00f5:
-            if (r3 == 0) goto L_0x0105;
-            r0 = 1;
-            r1.mRenderComplete = r0;	 Catch:{ all -> 0x0247 }
-            r0 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ all -> 0x0247 }
-            r0.notifyAll();	 Catch:{ all -> 0x0247 }
-            r3 = 0;
-            r6 = 0;
-        L_0x0105:
-            r0 = r17.readyToDraw();	 Catch:{ all -> 0x0247 }
-            if (r0 == 0) goto L_0x023c;
-        L_0x010b:
-            r0 = r1.mHaveEglContext;	 Catch:{ all -> 0x0247 }
-            if (r0 != 0) goto L_0x013a;
-        L_0x010f:
-            if (r4 == 0) goto L_0x0114;
-            r4 = 0;
-            goto L_0x013a;
-        L_0x0114:
-            r0 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ all -> 0x0247 }
-            r0 = r0.tryAcquireEglContextLocked(r1);	 Catch:{ all -> 0x0247 }
-            if (r0 == 0) goto L_0x013a;
-        L_0x011e:
-            r0 = r1.mEglHelper;	 Catch:{ RuntimeException -> 0x0131 }
-            r0.start();	 Catch:{ RuntimeException -> 0x0131 }
-            r0 = 1;
-            r1.mHaveEglContext = r0;	 Catch:{ all -> 0x0247 }
-            r0 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ all -> 0x0247 }
-            r0.notifyAll();	 Catch:{ all -> 0x0247 }
-            r11 = 1;
-            goto L_0x013a;
-        L_0x0131:
-            r0 = move-exception;
-            r2 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ all -> 0x0247 }
-            r2.releaseEglContextLocked(r1);	 Catch:{ all -> 0x0247 }
-            throw r0;	 Catch:{ all -> 0x0247 }
-        L_0x013a:
-            r0 = r1.mHaveEglContext;	 Catch:{ all -> 0x0247 }
-            if (r0 == 0) goto L_0x014c;
-        L_0x013e:
-            r0 = r1.mHaveEglSurface;	 Catch:{ all -> 0x0247 }
-            if (r0 != 0) goto L_0x014c;
-        L_0x0142:
-            r0 = 1;
-            r1.mHaveEglSurface = r0;	 Catch:{ all -> 0x0247 }
-            r0 = 1;
-            r13 = 1;
-            r14 = 1;
-            goto L_0x014d;
-        L_0x014c:
-            r0 = r12;
-        L_0x014d:
-            r2 = r1.mHaveEglSurface;	 Catch:{ all -> 0x0247 }
-            if (r2 == 0) goto L_0x023b;
-        L_0x0151:
-            r2 = r1.mSizeChanged;	 Catch:{ all -> 0x0247 }
-            if (r2 == 0) goto L_0x0163;
-            r8 = r1.mWidth;	 Catch:{ all -> 0x0247 }
-            r9 = r1.mHeight;	 Catch:{ all -> 0x0247 }
-            r2 = 0;
-            r1.mSizeChanged = r2;	 Catch:{ all -> 0x0247 }
-            r0 = 1;
-            r6 = 1;
-            r14 = 1;
-            goto L_0x0164;
-        L_0x0163:
-            r2 = 0;
-        L_0x0164:
-            r1.mRequestRender = r2;	 Catch:{ all -> 0x0247 }
-            r12 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ all -> 0x0247 }
-            r12.notifyAll();	 Catch:{ all -> 0x0247 }
-            r12 = r0;
-        L_0x016f:
-            monitor-exit(r15);	 Catch:{ all -> 0x0247 }
-            if (r10 == 0) goto L_0x017a;
-        L_0x0172:
-            r10.run();	 Catch:{ RuntimeException -> 0x024c }
-            r0 = r2;
-            goto L_0x0027;
-        L_0x017a:
-            if (r12 == 0) goto L_0x01b3;
-        L_0x017c:
-            r0 = r1.mEglHelper;	 Catch:{ RuntimeException -> 0x024c }
-            r0 = r0.createSurface();	 Catch:{ RuntimeException -> 0x024c }
-            if (r0 == 0) goto L_0x019a;
-        L_0x0184:
-            r12 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ RuntimeException -> 0x024c }
-            monitor-enter(r12);	 Catch:{ RuntimeException -> 0x024c }
-            r0 = 1;
-            r1.mFinishedCreatingEglSurface = r0;	 Catch:{ all -> 0x0197 }
-            r0 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ all -> 0x0197 }
-            r0.notifyAll();	 Catch:{ all -> 0x0197 }
-            monitor-exit(r12);	 Catch:{ all -> 0x0197 }
-            r12 = r2;
-            goto L_0x01b3;
-        L_0x0197:
-            r0 = move-exception;
-            monitor-exit(r12);	 Catch:{ all -> 0x0197 }
-            throw r0;	 Catch:{ RuntimeException -> 0x024c }
-        L_0x019a:
-            r15 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ RuntimeException -> 0x024c }
-            monitor-enter(r15);	 Catch:{ RuntimeException -> 0x024c }
-            r0 = 1;
-            r1.mFinishedCreatingEglSurface = r0;	 Catch:{ all -> 0x01b0 }
-            r1.mSurfaceIsBad = r0;	 Catch:{ all -> 0x01b0 }
-            r0 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ all -> 0x01b0 }
-            r0.notifyAll();	 Catch:{ all -> 0x01b0 }
-            monitor-exit(r15);	 Catch:{ all -> 0x01b0 }
-            r0 = r2;
-            goto L_0x0028;
-        L_0x01b0:
-            r0 = move-exception;
-            monitor-exit(r15);	 Catch:{ all -> 0x01b0 }
-            throw r0;	 Catch:{ RuntimeException -> 0x024c }
-        L_0x01b3:
-            if (r13 == 0) goto L_0x01c7;
-        L_0x01b5:
-            r0 = r1.mEglHelper;	 Catch:{ RuntimeException -> 0x024c }
-            r0 = r0.createGL();	 Catch:{ RuntimeException -> 0x024c }
-            r0 = (javax.microedition.khronos.opengles.GL10) r0;	 Catch:{ RuntimeException -> 0x024c }
-            r7 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ RuntimeException -> 0x024c }
-            r7.checkGLDriver(r0);	 Catch:{ RuntimeException -> 0x024c }
-            r7 = r0;
-            r13 = r2;
-        L_0x01c7:
-            if (r11 == 0) goto L_0x01e0;
-        L_0x01c9:
-            r0 = r1.mGLTextureViewWeakRef;	 Catch:{ RuntimeException -> 0x024c }
-            r0 = r0.get();	 Catch:{ RuntimeException -> 0x024c }
-            r0 = (com.android.camera.ui.GLTextureView) r0;	 Catch:{ RuntimeException -> 0x024c }
-            if (r0 == 0) goto L_0x01de;
-        L_0x01d3:
-            r0 = r0.mRenderer;	 Catch:{ RuntimeException -> 0x024c }
-            r11 = r1.mEglHelper;	 Catch:{ RuntimeException -> 0x024c }
-            r11 = r11.mEglConfig;	 Catch:{ RuntimeException -> 0x024c }
-            r0.onSurfaceCreated(r7, r11);	 Catch:{ RuntimeException -> 0x024c }
-            r11 = r2;
-        L_0x01e0:
-            if (r14 == 0) goto L_0x01f5;
-        L_0x01e2:
-            r0 = r1.mGLTextureViewWeakRef;	 Catch:{ RuntimeException -> 0x024c }
-            r0 = r0.get();	 Catch:{ RuntimeException -> 0x024c }
-            r0 = (com.android.camera.ui.GLTextureView) r0;	 Catch:{ RuntimeException -> 0x024c }
-            if (r0 == 0) goto L_0x01f3;
-        L_0x01ec:
-            r0 = r0.mRenderer;	 Catch:{ RuntimeException -> 0x024c }
-            r0.onSurfaceChanged(r7, r8, r9);	 Catch:{ RuntimeException -> 0x024c }
-            r14 = r2;
-        L_0x01f5:
-            r0 = r1.mGLTextureViewWeakRef;	 Catch:{ RuntimeException -> 0x024c }
-            r0 = r0.get();	 Catch:{ RuntimeException -> 0x024c }
-            r0 = (com.android.camera.ui.GLTextureView) r0;	 Catch:{ RuntimeException -> 0x024c }
-            if (r0 == 0) goto L_0x0206;
-        L_0x01ff:
-            r0 = r0.mRenderer;	 Catch:{ RuntimeException -> 0x024c }
-            r0.onDrawFrame(r7);	 Catch:{ RuntimeException -> 0x024c }
-        L_0x0206:
-            r0 = r1.mEglHelper;	 Catch:{ RuntimeException -> 0x024c }
-            r0 = r0.swap();	 Catch:{ RuntimeException -> 0x024c }
-            r15 = 12288; // 0x3000 float:1.7219E-41 double:6.071E-320;
-            if (r0 == r15) goto L_0x0233;
-        L_0x0210:
-            r15 = 12302; // 0x300e float:1.7239E-41 double:6.078E-320;
-            if (r0 == r15) goto L_0x022f;
-        L_0x0214:
-            r15 = "GLThread";
-            r2 = "eglSwapBuffers";
-            com.android.camera.ui.GLTextureView.EglHelper.logEglErrorAsWarning(r15, r2, r0);	 Catch:{ RuntimeException -> 0x024c }
-            r2 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ RuntimeException -> 0x024c }
-            monitor-enter(r2);	 Catch:{ RuntimeException -> 0x024c }
-            r0 = 1;
-            r1.mSurfaceIsBad = r0;	 Catch:{ all -> 0x022c }
-            r15 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ all -> 0x022c }
-            r15.notifyAll();	 Catch:{ all -> 0x022c }
-            monitor-exit(r2);	 Catch:{ all -> 0x022c }
-            goto L_0x0234;
-        L_0x022c:
-            r0 = move-exception;
-            monitor-exit(r2);	 Catch:{ all -> 0x022c }
-            throw r0;	 Catch:{ RuntimeException -> 0x024c }
-        L_0x022f:
-            r0 = 1;
-            r5 = r0;
-            goto L_0x0234;
-        L_0x0233:
-            r0 = 1;
-        L_0x0234:
-            if (r6 == 0) goto L_0x0238;
-            r3 = r0;
-        L_0x0238:
-            r0 = 0;
-            goto L_0x0028;
-        L_0x023b:
-            r12 = r0;
-        L_0x023c:
-            r0 = com.android.camera.ui.GLTextureView.sGLThreadManager;	 Catch:{ all -> 0x0247 }
-            r0.wait();	 Catch:{ all -> 0x0247 }
-            r0 = 0;
-            goto L_0x002d;
-        L_0x0247:
-            r0 = move-exception;
-            monitor-exit(r15);	 Catch:{ all -> 0x0247 }
-            throw r0;	 Catch:{ RuntimeException -> 0x024c }
-        L_0x024a:
-            r0 = move-exception;
-            goto L_0x0265;
-        L_0x024c:
-            r0 = move-exception;
-            r2 = "GLThread";
-            r3 = "got exception";
-            com.android.camera.log.Log.d(r2, r3, r0);	 Catch:{ all -> 0x024a }
-            r2 = com.android.camera.ui.GLTextureView.sGLThreadManager;
-            monitor-enter(r2);
-            r17.stopEglSurfaceLocked();	 Catch:{ all -> 0x0262 }
-            r17.stopEglContextLocked();	 Catch:{ all -> 0x0262 }
-            monitor-exit(r2);	 Catch:{ all -> 0x0262 }
-            return;
-        L_0x0262:
-            r0 = move-exception;
-            monitor-exit(r2);	 Catch:{ all -> 0x0262 }
-            throw r0;
-        L_0x0265:
-            r2 = com.android.camera.ui.GLTextureView.sGLThreadManager;
-            monitor-enter(r2);
-            r17.stopEglSurfaceLocked();	 Catch:{ all -> 0x0272 }
-            r17.stopEglContextLocked();	 Catch:{ all -> 0x0272 }
-            monitor-exit(r2);	 Catch:{ all -> 0x0272 }
-            throw r0;
-        L_0x0272:
-            r0 = move-exception;
-            monitor-exit(r2);	 Catch:{ all -> 0x0272 }
-            throw r0;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.android.camera.ui.GLTextureView.GLThread.guardedRun():void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        private void guardedRun() throws InterruptedException {
+            this.mEglHelper = new EglHelper(this.mGLTextureViewWeakRef);
+            this.mHaveEglContext = false;
+            this.mHaveEglSurface = false;
+            boolean z = false;
+            boolean z2 = z;
+            boolean z3 = z2;
+            boolean z4 = z3;
+            int i = z4;
+            int i2 = i;
+            boolean z5 = i2;
+            boolean z6 = z5;
+            boolean z7 = z6;
+            boolean z8 = z7;
+            GL10 gl10 = null;
+            while (true) {
+                boolean z9;
+                boolean z10;
+                Runnable runnable = null;
+                while (true) {
+                    try {
+                        synchronized (GLTextureView.sGLThreadManager) {
+                            while (!this.mShouldExit) {
+                                if (this.mEventQueue.isEmpty()) {
+                                    if (this.mPaused != this.mRequestPaused) {
+                                        z9 = this.mRequestPaused;
+                                        this.mPaused = this.mRequestPaused;
+                                        GLTextureView.sGLThreadManager.notifyAll();
+                                    } else {
+                                        z9 = false;
+                                    }
+                                    if (this.mShouldReleaseEglContext) {
+                                        stopEglSurfaceLocked();
+                                        stopEglContextLocked();
+                                        this.mShouldReleaseEglContext = false;
+                                        z2 = true;
+                                    }
+                                    if (z3) {
+                                        stopEglSurfaceLocked();
+                                        stopEglContextLocked();
+                                        z3 = false;
+                                    }
+                                    if (z9 && this.mHaveEglSurface) {
+                                        stopEglSurfaceLocked();
+                                    }
+                                    if (z9 && this.mHaveEglContext) {
+                                        GLTextureView gLTextureView = (GLTextureView) this.mGLTextureViewWeakRef.get();
+                                        if (gLTextureView == null) {
+                                            z10 = false;
+                                        } else {
+                                            z10 = gLTextureView.mPreserveEGLContextOnPause;
+                                        }
+                                        if (!z10 || GLTextureView.sGLThreadManager.shouldReleaseEGLContextWhenPausing()) {
+                                            stopEglContextLocked();
+                                        }
+                                    }
+                                    if (z9 && GLTextureView.sGLThreadManager.shouldTerminateEGLWhenPausing()) {
+                                        this.mEglHelper.finish();
+                                    }
+                                    if (!(this.mHasSurface || this.mWaitingForSurface)) {
+                                        if (this.mHaveEglSurface) {
+                                            stopEglSurfaceLocked();
+                                        }
+                                        this.mWaitingForSurface = true;
+                                        this.mSurfaceIsBad = false;
+                                        GLTextureView.sGLThreadManager.notifyAll();
+                                    }
+                                    if (this.mHasSurface && this.mWaitingForSurface) {
+                                        this.mWaitingForSurface = false;
+                                        GLTextureView.sGLThreadManager.notifyAll();
+                                    }
+                                    if (z) {
+                                        this.mRenderComplete = true;
+                                        GLTextureView.sGLThreadManager.notifyAll();
+                                        z = false;
+                                        z4 = false;
+                                    }
+                                    if (readyToDraw()) {
+                                        if (!this.mHaveEglContext) {
+                                            if (z2) {
+                                                z2 = false;
+                                            } else if (GLTextureView.sGLThreadManager.tryAcquireEglContextLocked(this)) {
+                                                try {
+                                                    this.mEglHelper.start();
+                                                    this.mHaveEglContext = true;
+                                                    GLTextureView.sGLThreadManager.notifyAll();
+                                                    z5 = true;
+                                                } catch (RuntimeException e) {
+                                                    GLTextureView.sGLThreadManager.releaseEglContextLocked(this);
+                                                    throw e;
+                                                }
+                                            }
+                                        }
+                                        if (!this.mHaveEglContext || this.mHaveEglSurface) {
+                                            z9 = z6;
+                                        } else {
+                                            this.mHaveEglSurface = true;
+                                            z9 = true;
+                                            z7 = true;
+                                            z8 = true;
+                                        }
+                                        if (this.mHaveEglSurface) {
+                                            if (this.mSizeChanged) {
+                                                i = this.mWidth;
+                                                i2 = this.mHeight;
+                                                z10 = false;
+                                                this.mSizeChanged = false;
+                                                z9 = true;
+                                                z4 = true;
+                                                z8 = true;
+                                            } else {
+                                                z10 = false;
+                                            }
+                                            this.mRequestRender = z10;
+                                            GLTextureView.sGLThreadManager.notifyAll();
+                                            z6 = z9;
+                                        } else {
+                                            z6 = z9;
+                                        }
+                                    }
+                                    GLTextureView.sGLThreadManager.wait();
+                                } else {
+                                    runnable = (Runnable) this.mEventQueue.remove(0);
+                                    z10 = false;
+                                }
+                            }
+                            synchronized (GLTextureView.sGLThreadManager) {
+                                stopEglSurfaceLocked();
+                                stopEglContextLocked();
+                            }
+                            return;
+                        }
+                    } catch (Throwable e2) {
+                        try {
+                            Log.d(TAG, "got exception", e2);
+                            synchronized (GLTextureView.sGLThreadManager) {
+                                stopEglSurfaceLocked();
+                                stopEglContextLocked();
+                                return;
+                            }
+                        } catch (Throwable th) {
+                            synchronized (GLTextureView.sGLThreadManager) {
+                                stopEglSurfaceLocked();
+                                stopEglContextLocked();
+                            }
+                        }
+                    }
+                }
+                runnable.run();
+                z9 = z10;
+            }
         }
 
         public boolean ableToDraw() {

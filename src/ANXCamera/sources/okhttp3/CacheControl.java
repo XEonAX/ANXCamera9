@@ -1,7 +1,9 @@
 package okhttp3;
 
+import com.ss.android.vesdk.runtime.cloudconfig.HttpRequest;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nullable;
+import okhttp3.internal.http.HttpHeaders;
 
 public final class CacheControl {
     public static final CacheControl FORCE_CACHE = new Builder().onlyIfCached().maxStale(Integer.MAX_VALUE, TimeUnit.SECONDS).build();
@@ -192,204 +194,92 @@ public final class CacheControl {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:12:0x0053  */
-    public static okhttp3.CacheControl parse(okhttp3.Headers r24) {
-        /*
-        r0 = r24;
-        r1 = r24.size();
-        r6 = 0;
-        r7 = 1;
-        r8 = 0;
-        r10 = 0;
-        r11 = 0;
-        r12 = -1;
-        r13 = -1;
-        r14 = 0;
-        r15 = 0;
-        r16 = 0;
-        r17 = -1;
-        r18 = -1;
-        r19 = 0;
-        r20 = 0;
-        r21 = 0;
-    L_0x0028:
-        if (r6 >= r1) goto L_0x0167;
-    L_0x002a:
-        r9 = r0.name(r6);
-        r2 = r0.value(r6);
-        r4 = "Cache-Control";
-        r4 = r9.equalsIgnoreCase(r4);
-        if (r4 == 0) goto L_0x0042;
-    L_0x003a:
-        if (r8 == 0) goto L_0x003f;
-    L_0x003d:
-        r7 = 0;
-        goto L_0x004b;
-        r8 = r2;
-        goto L_0x004b;
-    L_0x0042:
-        r4 = "Pragma";
-        r4 = r9.equalsIgnoreCase(r4);
-        if (r4 == 0) goto L_0x0160;
-    L_0x004a:
-        goto L_0x003d;
-        r4 = 0;
-    L_0x004d:
-        r9 = r2.length();
-        if (r4 >= r9) goto L_0x0160;
-        r9 = "=,;";
-        r9 = okhttp3.internal.http.HttpHeaders.skipUntil(r2, r4, r9);
-        r4 = r2.substring(r4, r9);
-        r4 = r4.trim();
-        r3 = r2.length();
-        if (r9 == r3) goto L_0x00b0;
-    L_0x0068:
-        r3 = r2.charAt(r9);
-        r5 = 44;
-        if (r3 == r5) goto L_0x00b0;
-    L_0x0070:
-        r3 = r2.charAt(r9);
-        r5 = 59;
-        if (r3 != r5) goto L_0x0079;
-    L_0x0078:
-        goto L_0x00b0;
-    L_0x0079:
-        r9 = r9 + 1;
-        r3 = okhttp3.internal.http.HttpHeaders.skipWhitespace(r2, r9);
-        r5 = r2.length();
-        if (r3 >= r5) goto L_0x009f;
-    L_0x0085:
-        r5 = r2.charAt(r3);
-        r9 = 34;
-        if (r5 != r9) goto L_0x009f;
-    L_0x008d:
-        r3 = r3 + 1;
-        r5 = "\"";
-        r5 = okhttp3.internal.http.HttpHeaders.skipUntil(r2, r3, r5);
-        r3 = r2.substring(r3, r5);
-        r22 = 1;
-        r5 = r5 + 1;
-        goto L_0x00b7;
-    L_0x009f:
-        r22 = 1;
-        r5 = ",;";
-        r5 = okhttp3.internal.http.HttpHeaders.skipUntil(r2, r3, r5);
-        r3 = r2.substring(r3, r5);
-        r3 = r3.trim();
-        goto L_0x00b7;
-    L_0x00b0:
-        r22 = 1;
-        r9 = r9 + 1;
-        r5 = r9;
-        r3 = 0;
-    L_0x00b7:
-        r9 = "no-cache";
-        r9 = r9.equalsIgnoreCase(r4);
-        if (r9 == 0) goto L_0x00c5;
-        r10 = r22;
-    L_0x00c2:
-        r9 = -1;
-        goto L_0x015d;
-    L_0x00c5:
-        r9 = "no-store";
-        r9 = r9.equalsIgnoreCase(r4);
-        if (r9 == 0) goto L_0x00d1;
-        r11 = r22;
-        goto L_0x00c2;
-    L_0x00d1:
-        r9 = "max-age";
-        r9 = r9.equalsIgnoreCase(r4);
-        if (r9 == 0) goto L_0x00e1;
-    L_0x00d9:
-        r9 = -1;
-        r3 = okhttp3.internal.http.HttpHeaders.parseSeconds(r3, r9);
-        r12 = r3;
-        goto L_0x015d;
-    L_0x00e1:
-        r9 = -1;
-        r9 = "s-maxage";
-        r9 = r9.equalsIgnoreCase(r4);
-        if (r9 == 0) goto L_0x00f3;
-    L_0x00ea:
-        r4 = -1;
-        r3 = okhttp3.internal.http.HttpHeaders.parseSeconds(r3, r4);
-        r13 = r3;
-        r9 = r4;
-        goto L_0x015d;
-    L_0x00f3:
-        r9 = "private";
-        r9 = r9.equalsIgnoreCase(r4);
-        if (r9 == 0) goto L_0x00ff;
-        r14 = r22;
-        goto L_0x00c2;
-    L_0x00ff:
-        r9 = "public";
-        r9 = r9.equalsIgnoreCase(r4);
-        if (r9 == 0) goto L_0x010b;
-        r15 = r22;
-        goto L_0x00c2;
-    L_0x010b:
-        r9 = "must-revalidate";
-        r9 = r9.equalsIgnoreCase(r4);
-        if (r9 == 0) goto L_0x0117;
-        r16 = r22;
-        goto L_0x00c2;
-    L_0x0117:
-        r9 = "max-stale";
-        r9 = r9.equalsIgnoreCase(r4);
-        if (r9 == 0) goto L_0x0129;
-    L_0x011f:
-        r4 = 2147483647; // 0x7fffffff float:NaN double:1.060997895E-314;
-        r3 = okhttp3.internal.http.HttpHeaders.parseSeconds(r3, r4);
-        r17 = r3;
-        goto L_0x00c2;
-    L_0x0129:
-        r9 = "min-fresh";
-        r9 = r9.equalsIgnoreCase(r4);
-        if (r9 == 0) goto L_0x0139;
-    L_0x0131:
-        r9 = -1;
-        r3 = okhttp3.internal.http.HttpHeaders.parseSeconds(r3, r9);
-        r18 = r3;
-        goto L_0x015d;
-    L_0x0139:
-        r9 = -1;
-        r3 = "only-if-cached";
-        r3 = r3.equalsIgnoreCase(r4);
-        if (r3 == 0) goto L_0x0146;
-        r19 = r22;
-        goto L_0x015d;
-    L_0x0146:
-        r3 = "no-transform";
-        r3 = r3.equalsIgnoreCase(r4);
-        if (r3 == 0) goto L_0x0152;
-        r20 = r22;
-        goto L_0x015d;
-    L_0x0152:
-        r3 = "immutable";
-        r3 = r3.equalsIgnoreCase(r4);
-        if (r3 == 0) goto L_0x015d;
-        r21 = r22;
-    L_0x015d:
-        r4 = r5;
-        goto L_0x004d;
-    L_0x0160:
-        r9 = -1;
-        r22 = 1;
-        r6 = r6 + 1;
-        goto L_0x0028;
-    L_0x0167:
-        if (r7 != 0) goto L_0x016d;
-        r22 = 0;
-        goto L_0x016f;
-    L_0x016d:
-        r22 = r8;
-    L_0x016f:
-        r0 = new okhttp3.CacheControl;
-        r9 = r0;
-        r9.<init>(r10, r11, r12, r13, r14, r15, r16, r17, r18, r19, r20, r21, r22);
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okhttp3.CacheControl.parse(okhttp3.Headers):okhttp3.CacheControl");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static CacheControl parse(Headers headers) {
+        Headers headers2 = headers;
+        int size = headers.size();
+        Object obj = 1;
+        String str = null;
+        boolean z = false;
+        boolean z2 = false;
+        int i = -1;
+        int i2 = -1;
+        boolean z3 = false;
+        boolean z4 = false;
+        boolean z5 = false;
+        int i3 = -1;
+        int i4 = -1;
+        boolean z6 = false;
+        boolean z7 = false;
+        boolean z8 = false;
+        for (int i5 = 0; i5 < size; i5++) {
+            int i6;
+            String name = headers2.name(i5);
+            String value = headers2.value(i5);
+            if (name.equalsIgnoreCase(HttpRequest.HEADER_CACHE_CONTROL)) {
+                if (str == null) {
+                    str = value;
+                    int i7;
+                    for (i6 = 0; i6 < value.length(); i6 = i7) {
+                        boolean z9;
+                        String str2;
+                        int skipUntil = HttpHeaders.skipUntil(value, i6, "=,;");
+                        String trim = value.substring(i6, skipUntil).trim();
+                        if (skipUntil == value.length() || value.charAt(skipUntil) == ',' || value.charAt(skipUntil) == ';') {
+                            z9 = true;
+                            i7 = skipUntil + 1;
+                            str2 = null;
+                        } else {
+                            int skipWhitespace = HttpHeaders.skipWhitespace(value, skipUntil + 1);
+                            if (skipWhitespace >= value.length() || value.charAt(skipWhitespace) != '\"') {
+                                z9 = true;
+                                i7 = HttpHeaders.skipUntil(value, skipWhitespace, ",;");
+                                str2 = value.substring(skipWhitespace, i7).trim();
+                            } else {
+                                skipWhitespace++;
+                                i7 = HttpHeaders.skipUntil(value, skipWhitespace, "\"");
+                                str2 = value.substring(skipWhitespace, i7);
+                                z9 = true;
+                                i7++;
+                            }
+                        }
+                        if ("no-cache".equalsIgnoreCase(trim)) {
+                            z = z9;
+                        } else if ("no-store".equalsIgnoreCase(trim)) {
+                            z2 = z9;
+                        } else {
+                            if ("max-age".equalsIgnoreCase(trim)) {
+                                i = HttpHeaders.parseSeconds(str2, -1);
+                            } else if ("s-maxage".equalsIgnoreCase(trim)) {
+                                i2 = HttpHeaders.parseSeconds(str2, -1);
+                                skipUntil = -1;
+                            } else if ("private".equalsIgnoreCase(trim)) {
+                                z3 = z9;
+                            } else if ("public".equalsIgnoreCase(trim)) {
+                                z4 = z9;
+                            } else if ("must-revalidate".equalsIgnoreCase(trim)) {
+                                z5 = z9;
+                            } else if ("max-stale".equalsIgnoreCase(trim)) {
+                                i3 = HttpHeaders.parseSeconds(str2, Integer.MAX_VALUE);
+                            } else if ("min-fresh".equalsIgnoreCase(trim)) {
+                                i4 = HttpHeaders.parseSeconds(str2, -1);
+                            } else if ("only-if-cached".equalsIgnoreCase(trim)) {
+                                z6 = z9;
+                            } else if ("no-transform".equalsIgnoreCase(trim)) {
+                                z7 = z9;
+                            } else if ("immutable".equalsIgnoreCase(trim)) {
+                                z8 = z9;
+                            }
+                        }
+                    }
+                }
+            } else if (!name.equalsIgnoreCase("Pragma")) {
+            }
+            obj = null;
+            while (i6 < value.length()) {
+            }
+        }
+        return new CacheControl(z, z2, i, i2, z3, z4, z5, i3, i4, z6, z7, z8, obj == null ? null : str);
     }
 
     public String toString() {

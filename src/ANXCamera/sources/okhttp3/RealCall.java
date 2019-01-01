@@ -43,78 +43,43 @@ final class RealCall implements Call {
 
         /* JADX WARNING: Removed duplicated region for block: B:15:0x0061 A:{Catch:{ all -> 0x0039 }} */
         /* JADX WARNING: Removed duplicated region for block: B:13:0x0041 A:{SYNTHETIC, Splitter: B:13:0x0041} */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         protected void execute() {
-            /*
-            r6 = this;
-            r0 = 1;
-            r1 = 0;
-            r2 = okhttp3.RealCall.this;	 Catch:{ IOException -> 0x003b }
-            r2 = r2.getResponseWithInterceptorChain();	 Catch:{ IOException -> 0x003b }
-            r3 = okhttp3.RealCall.this;	 Catch:{ IOException -> 0x003b }
-            r3 = r3.retryAndFollowUpInterceptor;	 Catch:{ IOException -> 0x003b }
-            r3 = r3.isCanceled();	 Catch:{ IOException -> 0x003b }
-            if (r3 == 0) goto L_0x0025;
-            r1 = r6.responseCallback;	 Catch:{ IOException -> 0x0023 }
-            r2 = okhttp3.RealCall.this;	 Catch:{ IOException -> 0x0023 }
-            r3 = new java.io.IOException;	 Catch:{ IOException -> 0x0023 }
-            r4 = "Canceled";
-            r3.<init>(r4);	 Catch:{ IOException -> 0x0023 }
-            r1.onFailure(r2, r3);	 Catch:{ IOException -> 0x0023 }
-            goto L_0x002d;
-        L_0x0023:
-            r1 = move-exception;
-            goto L_0x003f;
-            r1 = r6.responseCallback;	 Catch:{ IOException -> 0x0023 }
-            r3 = okhttp3.RealCall.this;	 Catch:{ IOException -> 0x0023 }
-            r1.onResponse(r3, r2);	 Catch:{ IOException -> 0x0023 }
-        L_0x002d:
-            r0 = okhttp3.RealCall.this;
-            r0 = r0.client;
-            r0 = r0.dispatcher();
-            r0.finished(r6);
-            goto L_0x0074;
-        L_0x0039:
-            r0 = move-exception;
-            goto L_0x0075;
-        L_0x003b:
-            r0 = move-exception;
-            r5 = r1;
-            r1 = r0;
-            r0 = r5;
-        L_0x003f:
-            if (r0 == 0) goto L_0x0061;
-        L_0x0041:
-            r0 = okhttp3.internal.platform.Platform.get();	 Catch:{ all -> 0x0039 }
-            r2 = 4;
-            r3 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0039 }
-            r3.<init>();	 Catch:{ all -> 0x0039 }
-            r4 = "Callback failure for ";
-            r3.append(r4);	 Catch:{ all -> 0x0039 }
-            r4 = okhttp3.RealCall.this;	 Catch:{ all -> 0x0039 }
-            r4 = r4.toLoggableString();	 Catch:{ all -> 0x0039 }
-            r3.append(r4);	 Catch:{ all -> 0x0039 }
-            r3 = r3.toString();	 Catch:{ all -> 0x0039 }
-            r0.log(r2, r3, r1);	 Catch:{ all -> 0x0039 }
-            goto L_0x002d;
-        L_0x0061:
-            r0 = okhttp3.RealCall.this;	 Catch:{ all -> 0x0039 }
-            r0 = r0.eventListener;	 Catch:{ all -> 0x0039 }
-            r2 = okhttp3.RealCall.this;	 Catch:{ all -> 0x0039 }
-            r0.callFailed(r2, r1);	 Catch:{ all -> 0x0039 }
-            r0 = r6.responseCallback;	 Catch:{ all -> 0x0039 }
-            r2 = okhttp3.RealCall.this;	 Catch:{ all -> 0x0039 }
-            r0.onFailure(r2, r1);	 Catch:{ all -> 0x0039 }
-            goto L_0x002d;
-        L_0x0074:
-            return;
-        L_0x0075:
-            r1 = okhttp3.RealCall.this;
-            r1 = r1.client;
-            r1 = r1.dispatcher();
-            r1.finished(r6);
-            throw r0;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: okhttp3.RealCall.AsyncCall.execute():void");
+            Throwable e;
+            Object obj = 1;
+            try {
+                Response responseWithInterceptorChain = RealCall.this.getResponseWithInterceptorChain();
+                if (RealCall.this.retryAndFollowUpInterceptor.isCanceled()) {
+                    try {
+                        this.responseCallback.onFailure(RealCall.this, new IOException("Canceled"));
+                    } catch (IOException e2) {
+                        e = e2;
+                        if (obj == null) {
+                        }
+                        RealCall.this.client.dispatcher().finished(this);
+                    }
+                }
+                this.responseCallback.onResponse(RealCall.this, responseWithInterceptorChain);
+            } catch (Throwable e3) {
+                e = e3;
+                obj = null;
+                if (obj == null) {
+                    try {
+                        Platform platform = Platform.get();
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append("Callback failure for ");
+                        stringBuilder.append(RealCall.this.toLoggableString());
+                        platform.log(4, stringBuilder.toString(), e);
+                    } catch (Throwable th) {
+                        RealCall.this.client.dispatcher().finished(this);
+                    }
+                } else {
+                    RealCall.this.eventListener.callFailed(RealCall.this, e);
+                    this.responseCallback.onFailure(RealCall.this, e);
+                }
+                RealCall.this.client.dispatcher().finished(this);
+            }
+            RealCall.this.client.dispatcher().finished(this);
         }
     }
 

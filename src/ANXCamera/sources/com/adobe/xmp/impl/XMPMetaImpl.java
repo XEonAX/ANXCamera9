@@ -14,6 +14,7 @@ import com.adobe.xmp.options.ParseOptions;
 import com.adobe.xmp.options.PropertyOptions;
 import com.adobe.xmp.properties.XMPProperty;
 import java.util.Calendar;
+import java.util.Iterator;
 
 public class XMPMetaImpl implements XMPConst, XMPMeta {
     static final /* synthetic */ boolean $assertionsDisabled = false;
@@ -231,224 +232,111 @@ public class XMPMetaImpl implements XMPConst, XMPMeta {
     /* JADX WARNING: Missing block: B:45:0x00ea, code:
             if (r3 != false) goto L_0x0161;
      */
-    public void setLocalizedText(java.lang.String r7, java.lang.String r8, java.lang.String r9, java.lang.String r10, java.lang.String r11, com.adobe.xmp.options.PropertyOptions r12) throws com.adobe.xmp.XMPException {
-        /*
-        r6 = this;
-        com.adobe.xmp.impl.ParameterAsserts.assertSchemaNS(r7);
-        com.adobe.xmp.impl.ParameterAsserts.assertArrayName(r8);
-        com.adobe.xmp.impl.ParameterAsserts.assertSpecificLang(r10);
-        r12 = 0;
-        if (r9 == 0) goto L_0x0011;
-    L_0x000c:
-        r9 = com.adobe.xmp.impl.Utils.normalizeLangValue(r9);
-        goto L_0x0012;
-    L_0x0011:
-        r9 = r12;
-    L_0x0012:
-        r10 = com.adobe.xmp.impl.Utils.normalizeLangValue(r10);
-        r7 = com.adobe.xmp.impl.xpath.XMPPathParser.expandXPath(r7, r8);
-        r8 = r6.tree;
-        r0 = new com.adobe.xmp.options.PropertyOptions;
-        r1 = 7680; // 0x1e00 float:1.0762E-41 double:3.7944E-320;
-        r0.<init>(r1);
-        r1 = 1;
-        r7 = com.adobe.xmp.impl.XMPNodeUtils.findNode(r8, r7, r1, r0);
-        r8 = 102; // 0x66 float:1.43E-43 double:5.04E-322;
-        if (r7 == 0) goto L_0x0170;
-    L_0x002c:
-        r0 = r7.getOptions();
-        r0 = r0.isArrayAltText();
-        if (r0 != 0) goto L_0x0056;
-    L_0x0036:
-        r0 = r7.hasChildren();
-        if (r0 != 0) goto L_0x004e;
-    L_0x003c:
-        r0 = r7.getOptions();
-        r0 = r0.isArrayAlternate();
-        if (r0 == 0) goto L_0x004e;
-    L_0x0046:
-        r0 = r7.getOptions();
-        r0.setArrayAltText(r1);
-        goto L_0x0056;
-    L_0x004e:
-        r7 = new com.adobe.xmp.XMPException;
-        r9 = "Specified property is no alt-text array";
-        r7.<init>(r9, r8);
-        throw r7;
-        r0 = r7.iterateChildren();
-    L_0x005c:
-        r2 = r0.hasNext();
-        r3 = 0;
-        if (r2 == 0) goto L_0x009d;
-    L_0x0063:
-        r2 = r0.next();
-        r2 = (com.adobe.xmp.impl.XMPNode) r2;
-        r4 = r2.hasQualifier();
-        if (r4 == 0) goto L_0x0095;
-    L_0x006f:
-        r4 = "xml:lang";
-        r5 = r2.getQualifier(r1);
-        r5 = r5.getName();
-        r4 = r4.equals(r5);
-        if (r4 == 0) goto L_0x0095;
-    L_0x007f:
-        r4 = "x-default";
-        r5 = r2.getQualifier(r1);
-        r5 = r5.getValue();
-        r4 = r4.equals(r5);
-        if (r4 == 0) goto L_0x0094;
-        r8 = r1;
-        goto L_0x009f;
-    L_0x0094:
-        goto L_0x005c;
-    L_0x0095:
-        r7 = new com.adobe.xmp.XMPException;
-        r9 = "Language qualifier must be first";
-        r7.<init>(r9, r8);
-        throw r7;
-    L_0x009d:
-        r2 = r12;
-        r8 = r3;
-    L_0x009f:
-        if (r2 == 0) goto L_0x00ad;
-    L_0x00a1:
-        r0 = r7.getChildrenLength();
-        if (r0 <= r1) goto L_0x00ad;
-    L_0x00a7:
-        r7.removeChild(r2);
-        r7.addChild(r1, r2);
-    L_0x00ad:
-        r9 = com.adobe.xmp.impl.XMPNodeUtils.chooseLocalizedText(r7, r9, r10);
-        r0 = r9[r3];
-        r0 = (java.lang.Integer) r0;
-        r0 = r0.intValue();
-        r9 = r9[r1];
-        r9 = (com.adobe.xmp.impl.XMPNode) r9;
-        r3 = "x-default";
-        r3 = r3.equals(r10);
-        switch(r0) {
-            case 0: goto L_0x0156;
-            case 1: goto L_0x0109;
-            case 2: goto L_0x00ee;
-            case 3: goto L_0x00e7;
-            case 4: goto L_0x00d7;
-            case 5: goto L_0x00d0;
-            default: goto L_0x00c6;
-        };
-    L_0x00c6:
-        r7 = new com.adobe.xmp.XMPException;
-        r8 = 9;
-        r9 = "Unexpected result from ChooseLocalizedText";
-        r7.<init>(r9, r8);
-        throw r7;
-    L_0x00d0:
-        com.adobe.xmp.impl.XMPNodeUtils.appendLangItem(r7, r10, r11);
-        if (r3 == 0) goto L_0x0162;
-    L_0x00d5:
-        goto L_0x0161;
-    L_0x00d7:
-        if (r2 == 0) goto L_0x00e2;
-    L_0x00d9:
-        r9 = r7.getChildrenLength();
-        if (r9 != r1) goto L_0x00e2;
-    L_0x00df:
-        r2.setValue(r11);
-    L_0x00e2:
-        com.adobe.xmp.impl.XMPNodeUtils.appendLangItem(r7, r10, r11);
-        goto L_0x0162;
-    L_0x00e7:
-        com.adobe.xmp.impl.XMPNodeUtils.appendLangItem(r7, r10, r11);
-        if (r3 == 0) goto L_0x0162;
-    L_0x00ec:
-        goto L_0x0161;
-    L_0x00ee:
-        if (r8 == 0) goto L_0x0105;
-    L_0x00f0:
-        if (r2 == r9) goto L_0x0105;
-    L_0x00f2:
-        if (r2 == 0) goto L_0x0105;
-    L_0x00f4:
-        r10 = r2.getValue();
-        r12 = r9.getValue();
-        r10 = r10.equals(r12);
-        if (r10 == 0) goto L_0x0105;
-    L_0x0102:
-        r2.setValue(r11);
-    L_0x0105:
-        r9.setValue(r11);
-        goto L_0x0162;
-    L_0x0109:
-        if (r3 != 0) goto L_0x0126;
-    L_0x010b:
-        if (r8 == 0) goto L_0x0122;
-    L_0x010d:
-        if (r2 == r9) goto L_0x0122;
-    L_0x010f:
-        if (r2 == 0) goto L_0x0122;
-    L_0x0111:
-        r10 = r2.getValue();
-        r12 = r9.getValue();
-        r10 = r10.equals(r12);
-        if (r10 == 0) goto L_0x0122;
-    L_0x011f:
-        r2.setValue(r11);
-    L_0x0122:
-        r9.setValue(r11);
-        goto L_0x0162;
-        r9 = r7.iterateChildren();
-    L_0x012b:
-        r10 = r9.hasNext();
-        if (r10 == 0) goto L_0x0150;
-    L_0x0131:
-        r10 = r9.next();
-        r10 = (com.adobe.xmp.impl.XMPNode) r10;
-        if (r10 == r2) goto L_0x012b;
-    L_0x0139:
-        r0 = r10.getValue();
-        if (r2 == 0) goto L_0x0144;
-    L_0x013f:
-        r3 = r2.getValue();
-        goto L_0x0145;
-    L_0x0144:
-        r3 = r12;
-    L_0x0145:
-        r0 = r0.equals(r3);
-        if (r0 != 0) goto L_0x014c;
-    L_0x014b:
-        goto L_0x012b;
-    L_0x014c:
-        r10.setValue(r11);
-        goto L_0x012b;
-    L_0x0150:
-        if (r2 == 0) goto L_0x0162;
-    L_0x0152:
-        r2.setValue(r11);
-        goto L_0x0162;
-    L_0x0156:
-        r8 = "x-default";
-        com.adobe.xmp.impl.XMPNodeUtils.appendLangItem(r7, r8, r11);
-        if (r3 != 0) goto L_0x0161;
-    L_0x015e:
-        com.adobe.xmp.impl.XMPNodeUtils.appendLangItem(r7, r10, r11);
-    L_0x0161:
-        r8 = r1;
-    L_0x0162:
-        if (r8 != 0) goto L_0x016f;
-    L_0x0164:
-        r8 = r7.getChildrenLength();
-        if (r8 != r1) goto L_0x016f;
-    L_0x016a:
-        r8 = "x-default";
-        com.adobe.xmp.impl.XMPNodeUtils.appendLangItem(r7, r8, r11);
-    L_0x016f:
-        return;
-    L_0x0170:
-        r7 = new com.adobe.xmp.XMPException;
-        r9 = "Failed to find or create array node";
-        r7.<init>(r9, r8);
-        throw r7;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.adobe.xmp.impl.XMPMetaImpl.setLocalizedText(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.adobe.xmp.options.PropertyOptions):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void setLocalizedText(String str, String str2, String str3, String str4, String str5, PropertyOptions propertyOptions) throws XMPException {
+        ParameterAsserts.assertSchemaNS(str);
+        ParameterAsserts.assertArrayName(str2);
+        ParameterAsserts.assertSpecificLang(str4);
+        if (str3 != null) {
+            str3 = Utils.normalizeLangValue(str3);
+        } else {
+            str3 = null;
+        }
+        str4 = Utils.normalizeLangValue(str4);
+        XMPNode findNode = XMPNodeUtils.findNode(this.tree, XMPPathParser.expandXPath(str, str2), true, new PropertyOptions(7680));
+        if (findNode != null) {
+            XMPNode xMPNode;
+            boolean z;
+            if (!findNode.getOptions().isArrayAltText()) {
+                if (findNode.hasChildren() || !findNode.getOptions().isArrayAlternate()) {
+                    throw new XMPException("Specified property is no alt-text array", 102);
+                }
+                findNode.getOptions().setArrayAltText(true);
+            }
+            Iterator iterateChildren = findNode.iterateChildren();
+            while (iterateChildren.hasNext()) {
+                xMPNode = (XMPNode) iterateChildren.next();
+                if (!xMPNode.hasQualifier() || !XMPConst.XML_LANG.equals(xMPNode.getQualifier(1).getName())) {
+                    throw new XMPException("Language qualifier must be first", 102);
+                } else if (XMPConst.X_DEFAULT.equals(xMPNode.getQualifier(1).getValue())) {
+                    z = true;
+                    break;
+                }
+            }
+            xMPNode = null;
+            z = false;
+            if (xMPNode != null && findNode.getChildrenLength() > 1) {
+                findNode.removeChild(xMPNode);
+                findNode.addChild(1, xMPNode);
+            }
+            Object[] chooseLocalizedText = XMPNodeUtils.chooseLocalizedText(findNode, str3, str4);
+            int intValue = ((Integer) chooseLocalizedText[0]).intValue();
+            XMPNode xMPNode2 = (XMPNode) chooseLocalizedText[1];
+            boolean equals = XMPConst.X_DEFAULT.equals(str4);
+            switch (intValue) {
+                case 0:
+                    XMPNodeUtils.appendLangItem(findNode, XMPConst.X_DEFAULT, str5);
+                    if (!equals) {
+                        XMPNodeUtils.appendLangItem(findNode, str4, str5);
+                    }
+                case 1:
+                    if (!equals) {
+                        if (z && xMPNode != xMPNode2 && xMPNode != null && xMPNode.getValue().equals(xMPNode2.getValue())) {
+                            xMPNode.setValue(str5);
+                        }
+                        xMPNode2.setValue(str5);
+                        break;
+                    }
+                    Iterator iterateChildren2 = findNode.iterateChildren();
+                    while (iterateChildren2.hasNext()) {
+                        XMPNode xMPNode3 = (XMPNode) iterateChildren2.next();
+                        if (xMPNode3 != xMPNode) {
+                            Object value;
+                            String value2 = xMPNode3.getValue();
+                            if (xMPNode != null) {
+                                value = xMPNode.getValue();
+                            } else {
+                                value = null;
+                            }
+                            if (value2.equals(value)) {
+                                xMPNode3.setValue(str5);
+                            }
+                        }
+                    }
+                    if (xMPNode != null) {
+                        xMPNode.setValue(str5);
+                        break;
+                    }
+                    break;
+                case 2:
+                    if (z && xMPNode != xMPNode2 && xMPNode != null && xMPNode.getValue().equals(xMPNode2.getValue())) {
+                        xMPNode.setValue(str5);
+                    }
+                    xMPNode2.setValue(str5);
+                    break;
+                case 3:
+                    XMPNodeUtils.appendLangItem(findNode, str4, str5);
+                    break;
+                case 4:
+                    if (xMPNode != null && findNode.getChildrenLength() == 1) {
+                        xMPNode.setValue(str5);
+                    }
+                    XMPNodeUtils.appendLangItem(findNode, str4, str5);
+                    break;
+                case 5:
+                    XMPNodeUtils.appendLangItem(findNode, str4, str5);
+                    break;
+                default:
+                    throw new XMPException("Unexpected result from ChooseLocalizedText", 9);
+            }
+            z = true;
+            if (!z && findNode.getChildrenLength() == 1) {
+                XMPNodeUtils.appendLangItem(findNode, XMPConst.X_DEFAULT, str5);
+                return;
+            }
+            return;
+        }
+        throw new XMPException("Failed to find or create array node", 102);
     }
 
     public void setLocalizedText(String str, String str2, String str3, String str4, String str5) throws XMPException {

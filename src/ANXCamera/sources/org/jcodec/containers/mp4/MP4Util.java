@@ -155,62 +155,64 @@ public class MP4Util {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:12:0x0015  */
-    public static org.jcodec.containers.mp4.boxes.MovieBox parseMovie(java.io.File r1) throws java.io.IOException {
-        /*
-        r1 = org.jcodec.common.io.NIOUtils.readableChannel(r1);	 Catch:{ all -> 0x0011 }
-        r0 = parseMovieChannel(r1);	 Catch:{ all -> 0x000f }
-        if (r1 == 0) goto L_0x000e;
-    L_0x000b:
-        r1.close();
-    L_0x000e:
-        return r0;
-    L_0x000f:
-        r0 = move-exception;
-        goto L_0x0013;
-    L_0x0011:
-        r0 = move-exception;
-        r1 = 0;
-    L_0x0013:
-        if (r1 == 0) goto L_0x0018;
-    L_0x0015:
-        r1.close();
-    L_0x0018:
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.jcodec.containers.mp4.MP4Util.parseMovie(java.io.File):org.jcodec.containers.mp4.boxes.MovieBox");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static MovieBox parseMovie(File file) throws IOException {
+        Throwable th;
+        SeekableByteChannel readableChannel;
+        try {
+            readableChannel = NIOUtils.readableChannel(file);
+            try {
+                MovieBox parseMovieChannel = parseMovieChannel(readableChannel);
+                if (readableChannel != null) {
+                    readableChannel.close();
+                }
+                return parseMovieChannel;
+            } catch (Throwable th2) {
+                th = th2;
+                if (readableChannel != null) {
+                }
+                throw th;
+            }
+        } catch (Throwable th3) {
+            th = th3;
+            readableChannel = null;
+            if (readableChannel != null) {
+                readableChannel.close();
+            }
+            throw th;
+        }
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:12:0x002a  */
-    public static org.jcodec.containers.mp4.boxes.MovieBox createRefMovieFromFile(java.io.File r3) throws java.io.IOException {
-        /*
-        r0 = org.jcodec.common.io.NIOUtils.readableChannel(r3);	 Catch:{ all -> 0x0026 }
-        r1 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0024 }
-        r1.<init>();	 Catch:{ all -> 0x0024 }
-        r2 = "file://";
-        r1.append(r2);	 Catch:{ all -> 0x0024 }
-        r3 = r3.getCanonicalPath();	 Catch:{ all -> 0x0024 }
-        r1.append(r3);	 Catch:{ all -> 0x0024 }
-        r3 = r1.toString();	 Catch:{ all -> 0x0024 }
-        r3 = createRefMovie(r0, r3);	 Catch:{ all -> 0x0024 }
-        if (r0 == 0) goto L_0x0023;
-    L_0x0020:
-        r0.close();
-    L_0x0023:
-        return r3;
-    L_0x0024:
-        r3 = move-exception;
-        goto L_0x0028;
-    L_0x0026:
-        r3 = move-exception;
-        r0 = 0;
-    L_0x0028:
-        if (r0 == 0) goto L_0x002d;
-    L_0x002a:
-        r0.close();
-    L_0x002d:
-        throw r3;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.jcodec.containers.mp4.MP4Util.createRefMovieFromFile(java.io.File):org.jcodec.containers.mp4.boxes.MovieBox");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static MovieBox createRefMovieFromFile(File file) throws IOException {
+        Throwable th;
+        SeekableByteChannel readableChannel;
+        try {
+            readableChannel = NIOUtils.readableChannel(file);
+            try {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("file://");
+                stringBuilder.append(file.getCanonicalPath());
+                MovieBox createRefMovie = createRefMovie(readableChannel, stringBuilder.toString());
+                if (readableChannel != null) {
+                    readableChannel.close();
+                }
+                return createRefMovie;
+            } catch (Throwable th2) {
+                th = th2;
+                if (readableChannel != null) {
+                    readableChannel.close();
+                }
+                throw th;
+            }
+        } catch (Throwable th3) {
+            th = th3;
+            readableChannel = null;
+            if (readableChannel != null) {
+            }
+            throw th;
+        }
     }
 
     public static void writeMovieToFile(File file, MovieBox movieBox) throws IOException {
@@ -246,62 +248,64 @@ public class MP4Util {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:12:0x0015  */
-    public static org.jcodec.containers.mp4.MP4Util.Movie parseFullMovie(java.io.File r1) throws java.io.IOException {
-        /*
-        r1 = org.jcodec.common.io.NIOUtils.readableChannel(r1);	 Catch:{ all -> 0x0011 }
-        r0 = parseFullMovieChannel(r1);	 Catch:{ all -> 0x000f }
-        if (r1 == 0) goto L_0x000e;
-    L_0x000b:
-        r1.close();
-    L_0x000e:
-        return r0;
-    L_0x000f:
-        r0 = move-exception;
-        goto L_0x0013;
-    L_0x0011:
-        r0 = move-exception;
-        r1 = 0;
-    L_0x0013:
-        if (r1 == 0) goto L_0x0018;
-    L_0x0015:
-        r1.close();
-    L_0x0018:
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.jcodec.containers.mp4.MP4Util.parseFullMovie(java.io.File):org.jcodec.containers.mp4.MP4Util$Movie");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static Movie parseFullMovie(File file) throws IOException {
+        Throwable th;
+        SeekableByteChannel readableChannel;
+        try {
+            readableChannel = NIOUtils.readableChannel(file);
+            try {
+                Movie parseFullMovieChannel = parseFullMovieChannel(readableChannel);
+                if (readableChannel != null) {
+                    readableChannel.close();
+                }
+                return parseFullMovieChannel;
+            } catch (Throwable th2) {
+                th = th2;
+                if (readableChannel != null) {
+                }
+                throw th;
+            }
+        } catch (Throwable th3) {
+            th = th3;
+            readableChannel = null;
+            if (readableChannel != null) {
+                readableChannel.close();
+            }
+            throw th;
+        }
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:12:0x002a  */
-    public static org.jcodec.containers.mp4.MP4Util.Movie createRefFullMovieFromFile(java.io.File r3) throws java.io.IOException {
-        /*
-        r0 = org.jcodec.common.io.NIOUtils.readableChannel(r3);	 Catch:{ all -> 0x0026 }
-        r1 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0024 }
-        r1.<init>();	 Catch:{ all -> 0x0024 }
-        r2 = "file://";
-        r1.append(r2);	 Catch:{ all -> 0x0024 }
-        r3 = r3.getCanonicalPath();	 Catch:{ all -> 0x0024 }
-        r1.append(r3);	 Catch:{ all -> 0x0024 }
-        r3 = r1.toString();	 Catch:{ all -> 0x0024 }
-        r3 = createRefFullMovie(r0, r3);	 Catch:{ all -> 0x0024 }
-        if (r0 == 0) goto L_0x0023;
-    L_0x0020:
-        r0.close();
-    L_0x0023:
-        return r3;
-    L_0x0024:
-        r3 = move-exception;
-        goto L_0x0028;
-    L_0x0026:
-        r3 = move-exception;
-        r0 = 0;
-    L_0x0028:
-        if (r0 == 0) goto L_0x002d;
-    L_0x002a:
-        r0.close();
-    L_0x002d:
-        throw r3;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.jcodec.containers.mp4.MP4Util.createRefFullMovieFromFile(java.io.File):org.jcodec.containers.mp4.MP4Util$Movie");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static Movie createRefFullMovieFromFile(File file) throws IOException {
+        Throwable th;
+        SeekableByteChannel readableChannel;
+        try {
+            readableChannel = NIOUtils.readableChannel(file);
+            try {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("file://");
+                stringBuilder.append(file.getCanonicalPath());
+                Movie createRefFullMovie = createRefFullMovie(readableChannel, stringBuilder.toString());
+                if (readableChannel != null) {
+                    readableChannel.close();
+                }
+                return createRefFullMovie;
+            } catch (Throwable th2) {
+                th = th2;
+                if (readableChannel != null) {
+                    readableChannel.close();
+                }
+                throw th;
+            }
+        } catch (Throwable th3) {
+            th = th3;
+            readableChannel = null;
+            if (readableChannel != null) {
+            }
+            throw th;
+        }
     }
 
     public static void writeFullMovieToFile(File file, Movie movie) throws IOException {

@@ -411,104 +411,30 @@ public class CameraSnapAnimateDrawable extends Drawable implements Animatable {
     /* JADX WARNING: Missing block: B:13:0x00a9, code:
             return;
      */
-    public void stopRecord(final com.android.camera.fragment.bottom.BottomAnimationConfig r6) {
-        /*
-        r5 = this;
-        r0 = r5.mRecordingPaint;
-        if (r0 != 0) goto L_0x0005;
-    L_0x0004:
-        return;
-    L_0x0005:
-        r0 = r5.mRecordingPaint;
-        r1 = 1;
-        r0.isRecording = r1;
-        r5.cancelAnimation();
-        r0 = r6.mCurrentMode;
-        r1 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        switch(r0) {
-            case 161: goto L_0x004a;
-            case 162: goto L_0x002b;
-            default: goto L_0x0014;
-        };
-    L_0x0014:
-        switch(r0) {
-            case 172: goto L_0x002b;
-            case 173: goto L_0x002b;
-            case 174: goto L_0x004a;
-            default: goto L_0x0017;
-        };
-    L_0x0017:
-        r0 = r5.mRecordingPaint;
-        r1 = r5.mRecordingPaint;
-        r1 = r1.mCurrentWidthPercent;
-        r2 = r5.mRecordingPaint;
-        r2 = r2.mCurrentColor;
-        r3 = com.android.camera.ui.drawable.CameraPaintBase.ALPHA_OUTSTANDING;
-        r4 = r5.mRecordingPaint;
-        r4 = r4.mCurrentStrokeWidth;
-        r0.setTargetValues(r1, r2, r3, r4);
-        goto L_0x005f;
-    L_0x002b:
-        r0 = r6.mIsPostProcessing;
-        if (r0 == 0) goto L_0x0035;
-    L_0x002f:
-        r0 = r5.mRoundPaintItem;
-        r2 = 0;
-        r0.setTargetAlpha(r2);
-    L_0x0035:
-        r0 = r5.mRecordingPaint;
-        r2 = r5.mRecordingPaint;
-        r2 = r2.mCurrentWidthPercent;
-        r3 = r5.mRecordingPaint;
-        r3 = r3.mCurrentColor;
-        r4 = com.android.camera.ui.drawable.CameraPaintBase.ALPHA_OPAQUE;
-        r1 = com.android.camera.Util.dpToPixel(r1);
-        r1 = (float) r1;
-        r0.setTargetValues(r2, r3, r4, r1);
-        goto L_0x005f;
-    L_0x004a:
-        r0 = r5.mRecordingPaint;
-        r2 = r5.mRecordingPaint;
-        r2 = r2.mCurrentWidthPercent;
-        r3 = r5.mRecordingPaint;
-        r3 = r3.mCurrentColor;
-        r4 = com.android.camera.ui.drawable.CameraPaintBase.ALPHA_OPAQUE;
-        r1 = com.android.camera.Util.dpToPixel(r1);
-        r1 = (float) r1;
-        r0.setTargetValues(r2, r3, r4, r1);
-    L_0x005f:
-        r0 = 2;
-        r1 = new float[r0];
-        r1 = {0, 1065353216};
-        r1 = android.animation.ValueAnimator.ofFloat(r1);
-        r5.mTimeAnimator = r1;
-        r1 = r5.mTimeAnimator;
-        r2 = 300; // 0x12c float:4.2E-43 double:1.48E-321;
-        r1.setDuration(r2);
-        r1 = r5.mTimeAnimator;
-        r2 = new com.android.camera.ui.drawable.snap.CameraSnapAnimateDrawable$9;
-        r2.<init>(r6);
-        r1.setInterpolator(r2);
-        r6 = r5.mTimeAnimator;
-        r6.removeAllListeners();
-        r6 = r5.mTimeAnimator;
-        r1 = new com.android.camera.ui.drawable.snap.CameraSnapAnimateDrawable$10;
-        r1.<init>();
-        r6.addListener(r1);
-        r6 = r5.mTimeAnimator;
-        r6.start();
-        r6 = new float[r0];
-        r6 = {0, 1065353216};
-        r6 = android.animation.ValueAnimator.ofFloat(r6);
-        r0 = 400; // 0x190 float:5.6E-43 double:1.976E-321;
-        r6.setDuration(r0);
-        r0 = new com.android.camera.ui.drawable.snap.CameraSnapAnimateDrawable$11;
-        r0.<init>();
-        r6.setInterpolator(r0);
-        r6.start();
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.ui.drawable.snap.CameraSnapAnimateDrawable.stopRecord(com.android.camera.fragment.bottom.BottomAnimationConfig):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void stopRecord(final BottomAnimationConfig bottomAnimationConfig) {
+        if (this.mRecordingPaint != null) {
+            this.mRecordingPaint.isRecording = true;
+            cancelAnimation();
+            int i = bottomAnimationConfig.mCurrentMode;
+            switch (i) {
+                case 161:
+                    break;
+                case 162:
+                    break;
+                default:
+                    switch (i) {
+                        case 172:
+                        case 173:
+                            break;
+                        case 174:
+                            break;
+                        default:
+                            this.mRecordingPaint.setTargetValues(this.mRecordingPaint.mCurrentWidthPercent, this.mRecordingPaint.mCurrentColor, CameraPaintBase.ALPHA_OUTSTANDING, this.mRecordingPaint.mCurrentStrokeWidth);
+                            break;
+                    }
+            }
+        }
     }
 
     public void finishRecord(BottomAnimationConfig bottomAnimationConfig) {

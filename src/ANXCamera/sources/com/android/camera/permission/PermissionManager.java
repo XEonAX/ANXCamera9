@@ -109,30 +109,12 @@ public class PermissionManager {
     /* JADX WARNING: Missing block: B:9:0x0017, code:
             return true;
      */
-    public static boolean checkPhoneStatePermission(android.app.Activity r3) {
-        /*
-        r0 = android.os.Build.VERSION.SDK_INT;
-        r1 = 1;
-        r2 = 23;
-        if (r0 < r2) goto L_0x0017;
-    L_0x0007:
-        r0 = miui.os.Build.IS_INTERNATIONAL_BUILD;
-        if (r0 != 0) goto L_0x000c;
-    L_0x000b:
-        goto L_0x0017;
-    L_0x000c:
-        r0 = "android.permission.READ_PHONE_STATE";
-        r3 = android.support.v4.content.ContextCompat.checkSelfPermission(r3, r0);
-        if (r3 == 0) goto L_0x0016;
-    L_0x0014:
-        r3 = 0;
-        return r3;
-    L_0x0016:
-        return r1;
-    L_0x0017:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.permission.PermissionManager.checkPhoneStatePermission(android.app.Activity):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static boolean checkPhoneStatePermission(Activity activity) {
+        if (VERSION.SDK_INT < 23 || !Build.IS_INTERNATIONAL_BUILD || ContextCompat.checkSelfPermission(activity, "android.permission.READ_PHONE_STATE") == 0) {
+            return true;
+        }
+        return false;
     }
 
     public static int getCameraRuntimePermissionRequestCode() {

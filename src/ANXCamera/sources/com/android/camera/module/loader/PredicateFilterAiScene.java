@@ -17,45 +17,14 @@ public class PredicateFilterAiScene implements Predicate<Integer> {
     /* JADX WARNING: Missing block: B:12:0x003b, code:
             return false;
      */
-    public boolean test(java.lang.Integer r7) {
-        /*
-        r6 = this;
-        r0 = r6.mModuleWeakReference;
-        r0 = r0.get();
-        r0 = (com.android.camera.module.Camera2Module) r0;
-        r1 = 0;
-        if (r0 == 0) goto L_0x003c;
-    L_0x000b:
-        r2 = r0.isDoingAction();
-        if (r2 != 0) goto L_0x003b;
-    L_0x0011:
-        r0 = r0.isAlive();
-        if (r0 != 0) goto L_0x0018;
-    L_0x0017:
-        goto L_0x003b;
-    L_0x0018:
-        r0 = r6.mCurrentDetectedScene;
-        r2 = r7.intValue();
-        if (r0 == r2) goto L_0x003c;
-    L_0x0020:
-        r2 = java.lang.System.currentTimeMillis();
-        r4 = r6.mLastChangeSceneTime;
-        r2 = r2 - r4;
-        r4 = 300; // 0x12c float:4.2E-43 double:1.48E-321;
-        r0 = (r2 > r4 ? 1 : (r2 == r4 ? 0 : -1));
-        if (r0 <= 0) goto L_0x003c;
-    L_0x002d:
-        r7 = r7.intValue();
-        r6.mCurrentDetectedScene = r7;
-        r0 = java.lang.System.currentTimeMillis();
-        r6.mLastChangeSceneTime = r0;
-        r7 = 1;
-        return r7;
-    L_0x003b:
-        return r1;
-    L_0x003c:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.loader.PredicateFilterAiScene.test(java.lang.Integer):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean test(Integer num) {
+        Camera2Module camera2Module = (Camera2Module) this.mModuleWeakReference.get();
+        if (camera2Module == null || camera2Module.isDoingAction() || !camera2Module.isAlive() || this.mCurrentDetectedScene == num.intValue() || System.currentTimeMillis() - this.mLastChangeSceneTime <= 300) {
+            return false;
+        }
+        this.mCurrentDetectedScene = num.intValue();
+        this.mLastChangeSceneTime = System.currentTimeMillis();
+        return true;
     }
 }

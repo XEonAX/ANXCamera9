@@ -253,26 +253,17 @@ public class Log {
     /* JADX WARNING: Missing block: B:4:0x0007, code:
             if (r3.isEmpty() == false) goto L_0x0014;
      */
-    private static boolean hasExtras(android.os.Bundle r3) {
-        /*
-        r0 = 1;
-        if (r3 == 0) goto L_0x0013;
-    L_0x0003:
-        r3 = r3.isEmpty();	 Catch:{ BadParcelableException -> 0x000a }
-        if (r3 != 0) goto L_0x0013;
-    L_0x0009:
-        goto L_0x0014;
-    L_0x000a:
-        r3 = move-exception;
-        r1 = "IntentLogger";
-        r2 = "Extra contains unknown class instance: ";
-        android.util.Log.w(r1, r2, r3);
-        return r0;
-    L_0x0013:
-        r0 = 0;
-    L_0x0014:
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.log.Log.hasExtras(android.os.Bundle):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static boolean hasExtras(Bundle bundle) {
+        boolean z = true;
+        if (bundle != null) {
+            try {
+            } catch (Throwable e) {
+                android.util.Log.w("IntentLogger", "Extra contains unknown class instance: ", e);
+                return true;
+            }
+        }
+        z = false;
+        return z;
     }
 }

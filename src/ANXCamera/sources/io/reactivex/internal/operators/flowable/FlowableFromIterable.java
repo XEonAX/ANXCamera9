@@ -125,85 +125,57 @@ public final class FlowableFromIterable<T> extends Flowable<T> {
         /* JADX WARNING: Missing block: B:38:0x0068, code:
             return;
      */
-        void slowPath(long r9) {
-            /*
-            r8 = this;
-            r0 = r8.it;
-            r1 = r8.actual;
-            r2 = 0;
-            r4 = r9;
-        L_0x0008:
-            r9 = r2;
-        L_0x0009:
-            r6 = (r9 > r4 ? 1 : (r9 == r4 ? 0 : -1));
-            if (r6 == 0) goto L_0x0057;
-        L_0x000d:
-            r6 = r8.cancelled;
-            if (r6 == 0) goto L_0x0012;
-        L_0x0011:
-            return;
-        L_0x0012:
-            r6 = r0.next();	 Catch:{ Throwable -> 0x004f }
-            r7 = r8.cancelled;
-            if (r7 == 0) goto L_0x001c;
-        L_0x001b:
-            return;
-        L_0x001c:
-            if (r6 != 0) goto L_0x0029;
-        L_0x001e:
-            r9 = new java.lang.NullPointerException;
-            r10 = "Iterator.next() returned a null value";
-            r9.<init>(r10);
-            r1.onError(r9);
-            return;
-        L_0x0029:
-            r6 = r1.tryOnNext(r6);
-            r7 = r8.cancelled;
-            if (r7 == 0) goto L_0x0032;
-        L_0x0031:
-            return;
-        L_0x0032:
-            r7 = r0.hasNext();	 Catch:{ Throwable -> 0x0047 }
-            if (r7 != 0) goto L_0x0041;
-        L_0x0039:
-            r9 = r8.cancelled;
-            if (r9 != 0) goto L_0x0040;
-        L_0x003d:
-            r1.onComplete();
-        L_0x0040:
-            return;
-        L_0x0041:
-            if (r6 == 0) goto L_0x0046;
-        L_0x0043:
-            r6 = 1;
-            r9 = r9 + r6;
-        L_0x0046:
-            goto L_0x0009;
-        L_0x0047:
-            r9 = move-exception;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r9);
-            r1.onError(r9);
-            return;
-        L_0x004f:
-            r9 = move-exception;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r9);
-            r1.onError(r9);
-            return;
-        L_0x0057:
-            r4 = r8.get();
-            r6 = (r9 > r4 ? 1 : (r9 == r4 ? 0 : -1));
-            if (r6 != 0) goto L_0x0009;
-        L_0x005f:
-            r9 = -r9;
-            r4 = r8.addAndGet(r9);
-            r9 = (r4 > r2 ? 1 : (r4 == r2 ? 0 : -1));
-            if (r9 != 0) goto L_0x0069;
-        L_0x0068:
-            return;
-        L_0x0069:
-            goto L_0x0008;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowableFromIterable.IteratorConditionalSubscription.slowPath(long):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        void slowPath(long j) {
+            Iterator it = this.it;
+            ConditionalSubscriber conditionalSubscriber = this.actual;
+            long j2 = j;
+            while (true) {
+                j = 0;
+                while (true) {
+                    if (j == j2) {
+                        j2 = get();
+                        if (j == j2) {
+                            break;
+                        }
+                    } else if (!this.cancelled) {
+                        try {
+                            Object next = it.next();
+                            if (!this.cancelled) {
+                                if (next == null) {
+                                    conditionalSubscriber.onError(new NullPointerException("Iterator.next() returned a null value"));
+                                    return;
+                                }
+                                boolean tryOnNext = conditionalSubscriber.tryOnNext(next);
+                                if (!this.cancelled) {
+                                    try {
+                                        if (!it.hasNext()) {
+                                            if (!this.cancelled) {
+                                                conditionalSubscriber.onComplete();
+                                            }
+                                            return;
+                                        } else if (tryOnNext) {
+                                            j++;
+                                        }
+                                    } catch (Throwable th) {
+                                        Exceptions.throwIfFatal(th);
+                                        conditionalSubscriber.onError(th);
+                                        return;
+                                    }
+                                }
+                                return;
+                            }
+                            return;
+                        } catch (Throwable th2) {
+                            Exceptions.throwIfFatal(th2);
+                            conditionalSubscriber.onError(th2);
+                            return;
+                        }
+                    } else {
+                        return;
+                    }
+                }
+            }
         }
     }
 
@@ -262,82 +234,57 @@ public final class FlowableFromIterable<T> extends Flowable<T> {
         /* JADX WARNING: Missing block: B:36:0x0065, code:
             return;
      */
-        void slowPath(long r9) {
-            /*
-            r8 = this;
-            r0 = r8.it;
-            r1 = r8.actual;
-            r2 = 0;
-            r4 = r9;
-        L_0x0008:
-            r9 = r2;
-        L_0x0009:
-            r6 = (r9 > r4 ? 1 : (r9 == r4 ? 0 : -1));
-            if (r6 == 0) goto L_0x0054;
-        L_0x000d:
-            r6 = r8.cancelled;
-            if (r6 == 0) goto L_0x0012;
-        L_0x0011:
-            return;
-        L_0x0012:
-            r6 = r0.next();	 Catch:{ Throwable -> 0x004c }
-            r7 = r8.cancelled;
-            if (r7 == 0) goto L_0x001c;
-        L_0x001b:
-            return;
-        L_0x001c:
-            if (r6 != 0) goto L_0x0029;
-        L_0x001e:
-            r9 = new java.lang.NullPointerException;
-            r10 = "Iterator.next() returned a null value";
-            r9.<init>(r10);
-            r1.onError(r9);
-            return;
-        L_0x0029:
-            r1.onNext(r6);
-            r6 = r8.cancelled;
-            if (r6 == 0) goto L_0x0031;
-        L_0x0030:
-            return;
-        L_0x0031:
-            r6 = r0.hasNext();	 Catch:{ Throwable -> 0x0044 }
-            if (r6 != 0) goto L_0x0040;
-        L_0x0038:
-            r9 = r8.cancelled;
-            if (r9 != 0) goto L_0x003f;
-        L_0x003c:
-            r1.onComplete();
-        L_0x003f:
-            return;
-        L_0x0040:
-            r6 = 1;
-            r9 = r9 + r6;
-            goto L_0x0009;
-        L_0x0044:
-            r9 = move-exception;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r9);
-            r1.onError(r9);
-            return;
-        L_0x004c:
-            r9 = move-exception;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r9);
-            r1.onError(r9);
-            return;
-        L_0x0054:
-            r4 = r8.get();
-            r6 = (r9 > r4 ? 1 : (r9 == r4 ? 0 : -1));
-            if (r6 != 0) goto L_0x0009;
-        L_0x005c:
-            r9 = -r9;
-            r4 = r8.addAndGet(r9);
-            r9 = (r4 > r2 ? 1 : (r4 == r2 ? 0 : -1));
-            if (r9 != 0) goto L_0x0066;
-        L_0x0065:
-            return;
-        L_0x0066:
-            goto L_0x0008;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowableFromIterable.IteratorSubscription.slowPath(long):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        void slowPath(long j) {
+            Iterator it = this.it;
+            Subscriber subscriber = this.actual;
+            long j2 = j;
+            while (true) {
+                j = 0;
+                while (true) {
+                    if (j == j2) {
+                        j2 = get();
+                        if (j == j2) {
+                            break;
+                        }
+                    } else if (!this.cancelled) {
+                        try {
+                            Object next = it.next();
+                            if (!this.cancelled) {
+                                if (next == null) {
+                                    subscriber.onError(new NullPointerException("Iterator.next() returned a null value"));
+                                    return;
+                                }
+                                subscriber.onNext(next);
+                                if (!this.cancelled) {
+                                    try {
+                                        if (it.hasNext()) {
+                                            j++;
+                                        } else {
+                                            if (!this.cancelled) {
+                                                subscriber.onComplete();
+                                            }
+                                            return;
+                                        }
+                                    } catch (Throwable th) {
+                                        Exceptions.throwIfFatal(th);
+                                        subscriber.onError(th);
+                                        return;
+                                    }
+                                }
+                                return;
+                            }
+                            return;
+                        } catch (Throwable th2) {
+                            Exceptions.throwIfFatal(th2);
+                            subscriber.onError(th2);
+                            return;
+                        }
+                    } else {
+                        return;
+                    }
+                }
+            }
         }
     }
 

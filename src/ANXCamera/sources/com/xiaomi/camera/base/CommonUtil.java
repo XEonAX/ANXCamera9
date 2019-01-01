@@ -28,121 +28,88 @@ public class CommonUtil {
 
     /* JADX WARNING: Removed duplicated region for block: B:23:0x00cd A:{SYNTHETIC, Splitter: B:23:0x00cd} */
     /* JADX WARNING: Removed duplicated region for block: B:27:0x00d8 A:{SYNTHETIC, Splitter: B:27:0x00d8} */
-    public static boolean dumpYuvImage(android.media.Image r9, java.lang.String r10) {
-        /*
-        r0 = "CommonUtil";
-        r1 = "dumpYuvImage start";
-        android.util.Log.d(r0, r1);
-        r0 = new java.lang.StringBuilder;
-        r0.<init>();
-        r1 = "sdcard/DCIM/Camera/";
-        r0.append(r1);
-        r0.append(r10);
-        r10 = r0.toString();
-        r0 = r9.getFormat();
-        r1 = 17;
-        r2 = 0;
-        if (r0 == r1) goto L_0x0029;
-    L_0x0023:
-        r1 = 35;
-        if (r0 == r1) goto L_0x0029;
-    L_0x0027:
-        goto L_0x00d4;
-    L_0x0029:
-        r0 = 0;
-        r1 = new java.io.FileOutputStream;	 Catch:{ Exception -> 0x00c3 }
-        r3 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x00c3 }
-        r3.<init>();	 Catch:{ Exception -> 0x00c3 }
-        r3.append(r10);	 Catch:{ Exception -> 0x00c3 }
-        r10 = ".yuv";
-        r3.append(r10);	 Catch:{ Exception -> 0x00c3 }
-        r10 = r3.toString();	 Catch:{ Exception -> 0x00c3 }
-        r1.<init>(r10);	 Catch:{ Exception -> 0x00c3 }
-        r10 = r9.getPlanes();	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r10 = r10[r2];	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r10 = r10.getBuffer();	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r0 = r9.getPlanes();	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r3 = 2;
-        r0 = r0[r3];	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r0 = r0.getBuffer();	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r4 = r10.limit();	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r5 = r0.limit();	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r6 = "CommonUtil";
-        r7 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r7.<init>();	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r8 = "dumpingYuvImage: size=";
-        r7.append(r8);	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r8 = r9.getWidth();	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r7.append(r8);	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r8 = "x";
-        r7.append(r8);	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r8 = r9.getHeight();	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r7.append(r8);	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r8 = " stride=";
-        r7.append(r8);	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r9 = r9.getPlanes();	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r9 = r9[r3];	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r9 = r9.getRowStride();	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r7.append(r9);	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r9 = r7.toString();	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        android.util.Log.d(r6, r9);	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r9 = r4 + r5;
-        r9 = new byte[r9];	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r10.get(r9, r2, r4);	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r0.get(r9, r4, r5);	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r1.write(r9);	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r10.rewind();	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r0.rewind();	 Catch:{ Exception -> 0x00bd, all -> 0x00bb }
-        r2 = 1;
-        r1.flush();	 Catch:{ Exception -> 0x00b1 }
-        r1.close();	 Catch:{ Exception -> 0x00b1 }
-        goto L_0x00ba;
-    L_0x00b1:
-        r9 = move-exception;
-        r10 = "CommonUtil";
-        r0 = "Failed to flush/close stream";
-        android.util.Log.e(r10, r0, r9);
-        goto L_0x00d4;
-    L_0x00ba:
-        goto L_0x00d4;
-    L_0x00bb:
-        r9 = move-exception;
-        goto L_0x00d5;
-    L_0x00bd:
-        r9 = move-exception;
-        r0 = r1;
-        goto L_0x00c4;
-    L_0x00c0:
-        r9 = move-exception;
-        r1 = r0;
-        goto L_0x00d5;
-    L_0x00c3:
-        r9 = move-exception;
-    L_0x00c4:
-        r10 = "CommonUtil";
-        r1 = "Failed to write image";
-        android.util.Log.e(r10, r1, r9);	 Catch:{ all -> 0x00c0 }
-        if (r0 == 0) goto L_0x00ba;
-    L_0x00cd:
-        r0.flush();	 Catch:{ Exception -> 0x00b1 }
-        r0.close();	 Catch:{ Exception -> 0x00b1 }
-        goto L_0x00ba;
-    L_0x00d4:
-        return r2;
-        if (r1 == 0) goto L_0x00e8;
-    L_0x00d8:
-        r1.flush();	 Catch:{ Exception -> 0x00df }
-        r1.close();	 Catch:{ Exception -> 0x00df }
-        goto L_0x00e8;
-    L_0x00df:
-        r10 = move-exception;
-        r0 = "CommonUtil";
-        r1 = "Failed to flush/close stream";
-        android.util.Log.e(r0, r1, r10);
-    L_0x00e8:
-        throw r9;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.camera.base.CommonUtil.dumpYuvImage(android.media.Image, java.lang.String):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static boolean dumpYuvImage(Image image, String str) {
+        Throwable e;
+        Log.d(TAG, "dumpYuvImage start");
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("sdcard/DCIM/Camera/");
+        stringBuilder.append(str);
+        str = stringBuilder.toString();
+        int format = image.getFormat();
+        boolean z = false;
+        if (format == 17 || format == 35) {
+            FileOutputStream fileOutputStream = null;
+            try {
+                StringBuilder stringBuilder2 = new StringBuilder();
+                stringBuilder2.append(str);
+                stringBuilder2.append(".yuv");
+                FileOutputStream fileOutputStream2 = new FileOutputStream(stringBuilder2.toString());
+                try {
+                    ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+                    ByteBuffer buffer2 = image.getPlanes()[2].getBuffer();
+                    int limit = buffer.limit();
+                    int limit2 = buffer2.limit();
+                    String str2 = TAG;
+                    StringBuilder stringBuilder3 = new StringBuilder();
+                    stringBuilder3.append("dumpingYuvImage: size=");
+                    stringBuilder3.append(image.getWidth());
+                    stringBuilder3.append("x");
+                    stringBuilder3.append(image.getHeight());
+                    stringBuilder3.append(" stride=");
+                    stringBuilder3.append(image.getPlanes()[2].getRowStride());
+                    Log.d(str2, stringBuilder3.toString());
+                    byte[] bArr = new byte[(limit + limit2)];
+                    buffer.get(bArr, 0, limit);
+                    buffer2.get(bArr, limit, limit2);
+                    fileOutputStream2.write(bArr);
+                    buffer.rewind();
+                    buffer2.rewind();
+                    z = true;
+                    try {
+                        fileOutputStream2.flush();
+                        fileOutputStream2.close();
+                    } catch (Throwable e2) {
+                        Log.e(TAG, "Failed to flush/close stream", e2);
+                    }
+                } catch (Exception e3) {
+                    e2 = e3;
+                    fileOutputStream = fileOutputStream2;
+                    try {
+                        Log.e(TAG, "Failed to write image", e2);
+                        if (fileOutputStream != null) {
+                        }
+                        return z;
+                    } catch (Throwable th) {
+                        e2 = th;
+                        fileOutputStream2 = fileOutputStream;
+                        if (fileOutputStream2 != null) {
+                        }
+                        throw e2;
+                    }
+                } catch (Throwable th2) {
+                    e2 = th2;
+                    if (fileOutputStream2 != null) {
+                        try {
+                            fileOutputStream2.flush();
+                            fileOutputStream2.close();
+                        } catch (Throwable e4) {
+                            Log.e(TAG, "Failed to flush/close stream", e4);
+                        }
+                    }
+                    throw e2;
+                }
+            } catch (Exception e5) {
+                e2 = e5;
+                Log.e(TAG, "Failed to write image", e2);
+                if (fileOutputStream != null) {
+                    fileOutputStream.flush();
+                    fileOutputStream.close();
+                }
+                return z;
+            }
+        }
+        return z;
     }
 
     public static boolean saveCameraCalibrationToFile(Context context, byte[] bArr, boolean z) {

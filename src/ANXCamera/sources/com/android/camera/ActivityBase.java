@@ -768,53 +768,27 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
     /* JADX WARNING: Missing block: B:20:0x0034, code:
             return false;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public synchronized boolean hasSurface() {
-        /*
-        r3 = this;
-        monitor-enter(r3);
-        r0 = r3.mCurrentSurfaceState;	 Catch:{ all -> 0x0035 }
-        r1 = 2;
-        r2 = 0;
-        if (r0 == r1) goto L_0x001f;
-    L_0x0007:
-        r1 = 4;
-        if (r0 == r1) goto L_0x000b;
-    L_0x000a:
-        goto L_0x0033;
-    L_0x000b:
-        r0 = r3.getCameraScreenNail();	 Catch:{ all -> 0x0035 }
-        r0 = r0.getSurfaceTexture();	 Catch:{ all -> 0x0035 }
-        if (r0 != 0) goto L_0x001c;
-    L_0x0015:
-        r0 = r3.mGLView;	 Catch:{ all -> 0x0035 }
-        r0.onResume();	 Catch:{ all -> 0x0035 }
-        monitor-exit(r3);
-        return r2;
-    L_0x001c:
-        r0 = 1;
-        monitor-exit(r3);
-        return r0;
-    L_0x001f:
-        r0 = com.android.camera.Util.sIsFullScreenNavBarHidden;	 Catch:{ all -> 0x0035 }
-        if (r0 == 0) goto L_0x002e;
-    L_0x0023:
-        r0 = r3.mHandler;	 Catch:{ all -> 0x0035 }
-        r1 = new com.android.camera.ActivityBase$9;	 Catch:{ all -> 0x0035 }
-        r1.<init>();	 Catch:{ all -> 0x0035 }
-        r0.post(r1);	 Catch:{ all -> 0x0035 }
-        goto L_0x0033;
-    L_0x002e:
-        r0 = r3.mGLView;	 Catch:{ all -> 0x0035 }
-        r0.onResume();	 Catch:{ all -> 0x0035 }
-    L_0x0033:
-        monitor-exit(r3);
-        return r2;
-    L_0x0035:
-        r0 = move-exception;
-        monitor-exit(r3);
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.ActivityBase.hasSurface():boolean");
+        int i = this.mCurrentSurfaceState;
+        if (i != 2) {
+            if (i == 4) {
+                if (getCameraScreenNail().getSurfaceTexture() != null) {
+                    return true;
+                }
+                this.mGLView.onResume();
+                return false;
+            }
+        } else if (Util.sIsFullScreenNavBarHidden) {
+            this.mHandler.post(new Runnable() {
+                public void run() {
+                    ActivityBase.this.mGLView.setVisibility(4);
+                    ActivityBase.this.mGLView.setVisibility(0);
+                }
+            });
+        } else {
+            this.mGLView.onResume();
+        }
     }
 
     public synchronized void updateSurfaceState(int i) {

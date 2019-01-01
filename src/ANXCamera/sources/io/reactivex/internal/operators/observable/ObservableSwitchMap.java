@@ -157,161 +157,79 @@ public final class ObservableSwitchMap<T, R> extends AbstractObservableWithUpstr
         }
 
         /* JADX WARNING: Removed duplicated region for block: B:63:0x00d8  */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         void drain() {
-            /*
-            r10 = this;
-            r0 = r10.getAndIncrement();
-            if (r0 == 0) goto L_0x0007;
-        L_0x0006:
-            return;
-        L_0x0007:
-            r0 = r10.actual;
-            r1 = 1;
-            r2 = r1;
-        L_0x000c:
-            r3 = r10.cancelled;
-            if (r3 == 0) goto L_0x0011;
-        L_0x0010:
-            return;
-        L_0x0011:
-            r3 = r10.done;
-            r4 = 0;
-            if (r3 == 0) goto L_0x0054;
-        L_0x0016:
-            r3 = r10.active;
-            r3 = r3.get();
-            if (r3 != 0) goto L_0x0020;
-        L_0x001e:
-            r3 = r1;
-            goto L_0x0022;
-            r3 = r4;
-        L_0x0022:
-            r5 = r10.delayErrors;
-            if (r5 == 0) goto L_0x003a;
-        L_0x0026:
-            if (r3 == 0) goto L_0x0054;
-        L_0x0028:
-            r1 = r10.errors;
-            r1 = r1.get();
-            r1 = (java.lang.Throwable) r1;
-            if (r1 == 0) goto L_0x0036;
-        L_0x0032:
-            r0.onError(r1);
-            goto L_0x0039;
-        L_0x0036:
-            r0.onComplete();
-        L_0x0039:
-            return;
-        L_0x003a:
-            r5 = r10.errors;
-            r5 = r5.get();
-            r5 = (java.lang.Throwable) r5;
-            if (r5 == 0) goto L_0x004e;
-        L_0x0044:
-            r1 = r10.errors;
-            r1 = r1.terminate();
-            r0.onError(r1);
-            return;
-        L_0x004e:
-            if (r3 == 0) goto L_0x0054;
-        L_0x0050:
-            r0.onComplete();
-            return;
-        L_0x0054:
-            r3 = r10.active;
-            r3 = r3.get();
-            r3 = (io.reactivex.internal.operators.observable.ObservableSwitchMap.SwitchMapInnerObserver) r3;
-            if (r3 == 0) goto L_0x00de;
-        L_0x005e:
-            r5 = r3.queue;
-            r6 = r3.done;
-            r7 = 0;
-            if (r6 == 0) goto L_0x0092;
-        L_0x0065:
-            r6 = r5.isEmpty();
-            r8 = r10.delayErrors;
-            if (r8 == 0) goto L_0x0075;
-        L_0x006d:
-            if (r6 == 0) goto L_0x0092;
-        L_0x006f:
-            r4 = r10.active;
-            r4.compareAndSet(r3, r7);
-            goto L_0x000c;
-        L_0x0075:
-            r8 = r10.errors;
-            r8 = r8.get();
-            r8 = (java.lang.Throwable) r8;
-            if (r8 == 0) goto L_0x0089;
-        L_0x007f:
-            r1 = r10.errors;
-            r1 = r1.terminate();
-            r0.onError(r1);
-            return;
-        L_0x0089:
-            if (r6 == 0) goto L_0x0092;
-        L_0x008b:
-            r4 = r10.active;
-            r4.compareAndSet(r3, r7);
-            goto L_0x000c;
-        L_0x0093:
-            r6 = r10.cancelled;
-            if (r6 == 0) goto L_0x0098;
-        L_0x0097:
-            return;
-        L_0x0098:
-            r6 = r10.active;
-            r6 = r6.get();
-            if (r3 == r6) goto L_0x00a4;
-        L_0x00a2:
-            r4 = r1;
-            goto L_0x00d6;
-        L_0x00a4:
-            r6 = r10.delayErrors;
-            if (r6 != 0) goto L_0x00bc;
-        L_0x00a8:
-            r6 = r10.errors;
-            r6 = r6.get();
-            r6 = (java.lang.Throwable) r6;
-            if (r6 == 0) goto L_0x00bc;
-        L_0x00b2:
-            r1 = r10.errors;
-            r1 = r1.terminate();
-            r0.onError(r1);
-            return;
-        L_0x00bc:
-            r6 = r3.done;
-            r8 = r5.poll();
-            if (r8 != 0) goto L_0x00c6;
-        L_0x00c4:
-            r9 = r1;
-            goto L_0x00c8;
-            r9 = r4;
-        L_0x00c8:
-            if (r6 == 0) goto L_0x00d3;
-        L_0x00ca:
-            if (r9 == 0) goto L_0x00d3;
-        L_0x00cc:
-            r4 = r10.active;
-            r4.compareAndSet(r3, r7);
-            goto L_0x00a2;
-        L_0x00d3:
-            if (r9 == 0) goto L_0x00da;
-        L_0x00d6:
-            if (r4 == 0) goto L_0x00de;
-        L_0x00d8:
-            goto L_0x000c;
-        L_0x00da:
-            r0.onNext(r8);
-            goto L_0x0093;
-        L_0x00de:
-            r2 = -r2;
-            r2 = r10.addAndGet(r2);
-            if (r2 != 0) goto L_0x00e7;
-            return;
-        L_0x00e7:
-            goto L_0x000c;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.observable.ObservableSwitchMap.SwitchMapObserver.drain():void");
+            if (getAndIncrement() == 0) {
+                Observer observer = this.actual;
+                int i = 1;
+                while (!this.cancelled) {
+                    Object obj = null;
+                    if (this.done) {
+                        Object obj2 = this.active.get() == null ? 1 : null;
+                        if (this.delayErrors) {
+                            if (obj2 != null) {
+                                Throwable th = (Throwable) this.errors.get();
+                                if (th != null) {
+                                    observer.onError(th);
+                                } else {
+                                    observer.onComplete();
+                                }
+                                return;
+                            }
+                        } else if (((Throwable) this.errors.get()) != null) {
+                            observer.onError(this.errors.terminate());
+                            return;
+                        } else if (obj2 != null) {
+                            observer.onComplete();
+                            return;
+                        }
+                    }
+                    SwitchMapInnerObserver switchMapInnerObserver = (SwitchMapInnerObserver) this.active.get();
+                    if (switchMapInnerObserver != null) {
+                        boolean isEmpty;
+                        SpscLinkedArrayQueue spscLinkedArrayQueue = switchMapInnerObserver.queue;
+                        if (switchMapInnerObserver.done) {
+                            isEmpty = spscLinkedArrayQueue.isEmpty();
+                            if (this.delayErrors) {
+                                if (isEmpty) {
+                                    this.active.compareAndSet(switchMapInnerObserver, null);
+                                }
+                            } else if (((Throwable) this.errors.get()) != null) {
+                                observer.onError(this.errors.terminate());
+                                return;
+                            } else if (isEmpty) {
+                                this.active.compareAndSet(switchMapInnerObserver, null);
+                            }
+                        }
+                        while (!this.cancelled) {
+                            if (switchMapInnerObserver == this.active.get()) {
+                                if (this.delayErrors || ((Throwable) this.errors.get()) == null) {
+                                    isEmpty = switchMapInnerObserver.done;
+                                    Object poll = spscLinkedArrayQueue.poll();
+                                    Object obj3 = poll == null ? 1 : null;
+                                    if (isEmpty && obj3 != null) {
+                                        this.active.compareAndSet(switchMapInnerObserver, null);
+                                    } else if (obj3 == null) {
+                                        observer.onNext(poll);
+                                    } else if (obj != null) {
+                                    }
+                                } else {
+                                    observer.onError(this.errors.terminate());
+                                    return;
+                                }
+                            }
+                            obj = 1;
+                            if (obj != null) {
+                            }
+                        }
+                        return;
+                    }
+                    i = addAndGet(-i);
+                    if (i == 0) {
+                        return;
+                    }
+                }
+            }
         }
 
         void innerError(SwitchMapInnerObserver<T, R> switchMapInnerObserver, Throwable th) {

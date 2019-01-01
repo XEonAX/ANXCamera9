@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -25,6 +28,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
+import android.os.ParcelFileDescriptor;
 import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.provider.MiuiSettings.ScreenEffect;
@@ -41,6 +45,7 @@ import com.android.camera.CameraScreenNail;
 import com.android.camera.CameraSettings;
 import com.android.camera.CameraSize;
 import com.android.camera.ExifHelper;
+import com.android.camera.FileCompat;
 import com.android.camera.LocationManager;
 import com.android.camera.OnClickAttr;
 import com.android.camera.PictureSizeManager;
@@ -64,6 +69,7 @@ import com.android.camera.panorama.GyroscopeRoundDetector;
 import com.android.camera.panorama.InputSave;
 import com.android.camera.panorama.LeftDirectionFunction;
 import com.android.camera.panorama.MorphoPanoramaGP3;
+import com.android.camera.panorama.MorphoPanoramaGP3.GalleryInfoData;
 import com.android.camera.panorama.MorphoPanoramaGP3.InitParam;
 import com.android.camera.panorama.MorphoSensorFusion.SensorData;
 import com.android.camera.panorama.PanoramaGP3ImageFormat;
@@ -86,6 +92,7 @@ import com.android.camera.storage.MediaProviderUtil;
 import com.android.camera.storage.Storage;
 import com.android.camera2.Camera2Proxy.CameraPreviewCallback;
 import com.android.camera2.Camera2Proxy.PictureCallbackWrapper;
+import java.io.FileDescriptor;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -233,247 +240,73 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
             /* JADX WARNING: Missing block: B:54:0x01d5, code:
             if (com.android.camera.module.Panorama3Module.access$4200(r1.this$1.this$0).enabled() == false) goto L_0x01d8;
      */
+            /* Code decompiled incorrectly, please refer to instructions dump. */
             public void run() {
-                /*
-                r19 = this;
-                r1 = r19;
-            L_0x0002:
-                r0 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ InterruptedException -> 0x01e3 }
-                r0 = com.android.camera.module.Panorama3Module.this;	 Catch:{ InterruptedException -> 0x01e3 }
-                r0 = r0.mAttachImageQueue;	 Catch:{ InterruptedException -> 0x01e3 }
-                r0 = r0.take();	 Catch:{ InterruptedException -> 0x01e3 }
-                r0 = (com.android.camera.panorama.CaptureImage) r0;	 Catch:{ InterruptedException -> 0x01e3 }
-                r2 = com.android.camera.module.Panorama3Module.sAttachExit;	 Catch:{ InterruptedException -> 0x01e3 }
-                if (r0 == r2) goto L_0x01e2;
-            L_0x0016:
-                r1.setImage(r0);	 Catch:{ all -> 0x01dd }
-                r2 = com.android.camera.module.Panorama3Module.mEngineLock;	 Catch:{ all -> 0x01dd }
-                monitor-enter(r2);	 Catch:{ all -> 0x01dd }
-                r3 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r3 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r3 = r3.mMorphoPanoramaGP3;	 Catch:{ all -> 0x01da }
-                r3 = r3.getAttachCount();	 Catch:{ all -> 0x01da }
-                r5 = 5;
-                r3 = r3 % r5;
-                r5 = 0;
-                r3 = (r3 > r5 ? 1 : (r3 == r5 ? 0 : -1));
-                r4 = 1;
-                if (r3 != 0) goto L_0x0040;
-            L_0x0032:
-                r3 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r3 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r3.setInitialRotationByGravity();	 Catch:{ all -> 0x01da }
-                r3 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r3 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r3.mIsSensorAverage = r4;	 Catch:{ all -> 0x01da }
-            L_0x0040:
-                r3 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r3 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r3.setSensorFusionValue(r0);	 Catch:{ all -> 0x01da }
-                r0 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r0 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r0 = r0.mRequestStop;	 Catch:{ all -> 0x01da }
-                if (r0 == 0) goto L_0x005f;
-            L_0x0051:
-                r0 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x01da }
-                r3 = "DecideDirectionAttach request stop";
-                com.android.camera.log.Log.e(r0, r3);	 Catch:{ all -> 0x01da }
-                monitor-exit(r2);	 Catch:{ all -> 0x01da }
-                r19.closeSrc();	 Catch:{ InterruptedException -> 0x01e3 }
-                return;
-            L_0x005f:
-                r0 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x01da }
-                r3 = "DecideDirectionAttach attach start";
-                com.android.camera.log.Log.d(r0, r3);	 Catch:{ all -> 0x01da }
-                r0 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r0 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r5 = r0.mMorphoPanoramaGP3;	 Catch:{ all -> 0x01da }
-                r0 = r1.byteBuffer;	 Catch:{ all -> 0x01da }
-                r3 = 0;
-                r6 = r0[r3];	 Catch:{ all -> 0x01da }
-                r0 = r1.byteBuffer;	 Catch:{ all -> 0x01da }
-                r7 = r0[r4];	 Catch:{ all -> 0x01da }
-                r0 = r1.byteBuffer;	 Catch:{ all -> 0x01da }
-                r15 = 2;
-                r8 = r0[r15];	 Catch:{ all -> 0x01da }
-                r0 = r1.rowStride;	 Catch:{ all -> 0x01da }
-                r9 = r0[r3];	 Catch:{ all -> 0x01da }
-                r0 = r1.rowStride;	 Catch:{ all -> 0x01da }
-                r10 = r0[r4];	 Catch:{ all -> 0x01da }
-                r0 = r1.rowStride;	 Catch:{ all -> 0x01da }
-                r11 = r0[r15];	 Catch:{ all -> 0x01da }
-                r0 = r1.pixelStride;	 Catch:{ all -> 0x01da }
-                r12 = r0[r3];	 Catch:{ all -> 0x01da }
-                r0 = r1.pixelStride;	 Catch:{ all -> 0x01da }
-                r13 = r0[r4];	 Catch:{ all -> 0x01da }
-                r0 = r1.pixelStride;	 Catch:{ all -> 0x01da }
-                r14 = r0[r15];	 Catch:{ all -> 0x01da }
-                r0 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r0 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r0 = r0.mCurrentSensorInfoManager;	 Catch:{ all -> 0x01da }
-                r16 = 0;
-                r15 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r15 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r15 = r15.getActivity();	 Catch:{ all -> 0x01da }
-                r17 = r15.getApplicationContext();	 Catch:{ all -> 0x01da }
-                r15 = r0;
-                r0 = r5.attach(r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16, r17);	 Catch:{ all -> 0x01da }
-                r5 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x01da }
-                r6 = "DecideDirectionAttach attach end";
-                com.android.camera.log.Log.d(r5, r6);	 Catch:{ all -> 0x01da }
-                r5 = -1073741823; // 0xffffffffc0000001 float:-2.0000002 double:NaN;
-                if (r0 != r5) goto L_0x00c1;
-            L_0x00bf:
-                r5 = r4;
-                goto L_0x00c3;
-                r5 = r3;
-            L_0x00c3:
-                if (r0 == 0) goto L_0x00fb;
-            L_0x00c5:
-                if (r5 != 0) goto L_0x00df;
-            L_0x00c7:
-                r5 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x01da }
-                r6 = new java.lang.StringBuilder;	 Catch:{ all -> 0x01da }
-                r6.<init>();	 Catch:{ all -> 0x01da }
-                r7 = "DecideDirectionAttach error ret:";
-                r6.append(r7);	 Catch:{ all -> 0x01da }
-                r6.append(r0);	 Catch:{ all -> 0x01da }
-                r6 = r6.toString();	 Catch:{ all -> 0x01da }
-                com.android.camera.log.Log.e(r5, r6);	 Catch:{ all -> 0x01da }
-            L_0x00df:
-                r5 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x01da }
-                r6 = java.util.Locale.US;	 Catch:{ all -> 0x01da }
-                r7 = "attach error ret:0x%08X";
-                r4 = new java.lang.Object[r4];	 Catch:{ all -> 0x01da }
-                r0 = java.lang.Integer.valueOf(r0);	 Catch:{ all -> 0x01da }
-                r4[r3] = r0;	 Catch:{ all -> 0x01da }
-                r0 = java.lang.String.format(r6, r7, r4);	 Catch:{ all -> 0x01da }
-                com.android.camera.log.Log.e(r5, r0);	 Catch:{ all -> 0x01da }
-                monitor-exit(r2);	 Catch:{ all -> 0x01da }
-                r19.closeSrc();	 Catch:{ InterruptedException -> 0x01e3 }
-                return;
-            L_0x00fb:
-                r0 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r0 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r0 = r0.mInitParam;	 Catch:{ all -> 0x01da }
-                r0 = r0.direction;	 Catch:{ all -> 0x01da }
-                r0 = r1.isUnDecideDirection(r0);	 Catch:{ all -> 0x01da }
-                if (r0 == 0) goto L_0x0129;
-            L_0x010b:
-                r0 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r0 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r0 = r0.mMorphoPanoramaGP3;	 Catch:{ all -> 0x01da }
-                r0 = r0.getDirection();	 Catch:{ all -> 0x01da }
-                r5 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r5 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r5 = r5.mInitParam;	 Catch:{ all -> 0x01da }
-                r5 = r5.direction;	 Catch:{ all -> 0x01da }
-                if (r0 != r5) goto L_0x0133;
-            L_0x0123:
-                monitor-exit(r2);	 Catch:{ all -> 0x01da }
-                r19.closeSrc();	 Catch:{ InterruptedException -> 0x01e3 }
-                goto L_0x0002;
-            L_0x0129:
-                r0 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r0 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r0 = r0.mInitParam;	 Catch:{ all -> 0x01da }
-                r0 = r0.direction;	 Catch:{ all -> 0x01da }
-            L_0x0133:
-                r5 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x01da }
-                r6 = new java.lang.StringBuilder;	 Catch:{ all -> 0x01da }
-                r6.<init>();	 Catch:{ all -> 0x01da }
-                r7 = "getDirection = ";
-                r6.append(r7);	 Catch:{ all -> 0x01da }
-                r6.append(r0);	 Catch:{ all -> 0x01da }
-                r6 = r6.toString();	 Catch:{ all -> 0x01da }
-                com.android.camera.log.Log.d(r5, r6);	 Catch:{ all -> 0x01da }
-                r5 = 2;
-                r5 = new int[r5];	 Catch:{ all -> 0x01da }
-                r6 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r6 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r6 = r6.mMorphoPanoramaGP3;	 Catch:{ all -> 0x01da }
-                r6 = r6.getOutputImageSize(r5);	 Catch:{ all -> 0x01da }
-                if (r6 == 0) goto L_0x0178;
-            L_0x015c:
-                r0 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x01da }
-                r5 = java.util.Locale.US;	 Catch:{ all -> 0x01da }
-                r7 = "getOutputImageSize error ret:0x%08X";
-                r4 = new java.lang.Object[r4];	 Catch:{ all -> 0x01da }
-                r6 = java.lang.Integer.valueOf(r6);	 Catch:{ all -> 0x01da }
-                r4[r3] = r6;	 Catch:{ all -> 0x01da }
-                r3 = java.lang.String.format(r5, r7, r4);	 Catch:{ all -> 0x01da }
-                com.android.camera.log.Log.e(r0, r3);	 Catch:{ all -> 0x01da }
-                monitor-exit(r2);	 Catch:{ all -> 0x01da }
-                r19.closeSrc();	 Catch:{ InterruptedException -> 0x01e3 }
-                return;
-            L_0x0178:
-                r6 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r6 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r3 = r5[r3];	 Catch:{ all -> 0x01da }
-                r6.mMaxWidth = r3;	 Catch:{ all -> 0x01da }
-                r3 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r3 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r4 = r5[r4];	 Catch:{ all -> 0x01da }
-                r3.mMaxHeight = r4;	 Catch:{ all -> 0x01da }
-                r3 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x01da }
-                r4 = new java.lang.StringBuilder;	 Catch:{ all -> 0x01da }
-                r4.<init>();	 Catch:{ all -> 0x01da }
-                r5 = "mMaxWidth = ";
-                r4.append(r5);	 Catch:{ all -> 0x01da }
-                r5 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r5 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r5 = r5.mMaxWidth;	 Catch:{ all -> 0x01da }
-                r4.append(r5);	 Catch:{ all -> 0x01da }
-                r5 = ", mMaxHeight = ";
-                r4.append(r5);	 Catch:{ all -> 0x01da }
-                r5 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ all -> 0x01da }
-                r5 = com.android.camera.module.Panorama3Module.this;	 Catch:{ all -> 0x01da }
-                r5 = r5.mMaxHeight;	 Catch:{ all -> 0x01da }
-                r4.append(r5);	 Catch:{ all -> 0x01da }
-                r4 = r4.toString();	 Catch:{ all -> 0x01da }
-                com.android.camera.log.Log.d(r3, r4);	 Catch:{ all -> 0x01da }
-                monitor-exit(r2);	 Catch:{ all -> 0x01da }
-                r19.closeSrc();	 Catch:{ InterruptedException -> 0x01e3 }
-                r2 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ InterruptedException -> 0x01e3 }
-                r2 = com.android.camera.module.Panorama3Module.this;	 Catch:{ InterruptedException -> 0x01e3 }
-                r2.mDirection = r0;	 Catch:{ InterruptedException -> 0x01e3 }
-                r1.createDirection(r0);	 Catch:{ InterruptedException -> 0x01e3 }
-                r0 = com.android.camera.module.Panorama3Module.DecideDirection.this;	 Catch:{ InterruptedException -> 0x01e3 }
-                r0 = com.android.camera.module.Panorama3Module.this;	 Catch:{ InterruptedException -> 0x01e3 }
-                r0 = r0.mDirectionFunction;	 Catch:{ InterruptedException -> 0x01e3 }
-                r0 = r0.enabled();	 Catch:{ InterruptedException -> 0x01e3 }
-                if (r0 == 0) goto L_0x01d8;
-            L_0x01d7:
-                goto L_0x01e2;
-            L_0x01d8:
-                goto L_0x0002;
-            L_0x01da:
-                r0 = move-exception;
-                monitor-exit(r2);	 Catch:{ all -> 0x01da }
-                throw r0;	 Catch:{ all -> 0x01dd }
-            L_0x01dd:
-                r0 = move-exception;
-                r19.closeSrc();	 Catch:{ InterruptedException -> 0x01e3 }
-                throw r0;	 Catch:{ InterruptedException -> 0x01e3 }
-            L_0x01e2:
-                goto L_0x01e7;
-            L_0x01e3:
-                r0 = move-exception;
-                r0.printStackTrace();
-            L_0x01e7:
-                r0 = com.android.camera.module.Panorama3Module.DecideDirection.this;
-                r0 = com.android.camera.module.Panorama3Module.this;
-                r0 = r0.getActivity();
-                r2 = new com.android.camera.module.Panorama3Module$DecideDirection$DecideDirectionAttach$DecideRunnable;
-                r3 = 0;
-                r2.<init>(r1, r3);
-                r0.runOnUiThread(r2);
-                r0 = com.android.camera.module.Panorama3Module.TAG;
-                r1 = "DecideDirectionAttach end";
-                com.android.camera.log.Log.d(r0, r1);
-                return;
-                */
-                throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Panorama3Module.DecideDirection.DecideDirectionAttach.run():void");
+                while (true) {
+                    try {
+                        CaptureImage captureImage = (CaptureImage) Panorama3Module.this.mAttachImageQueue.take();
+                        if (captureImage == Panorama3Module.sAttachExit) {
+                            break;
+                        }
+                        try {
+                            setImage(captureImage);
+                            synchronized (Panorama3Module.mEngineLock) {
+                                if (Panorama3Module.this.mMorphoPanoramaGP3.getAttachCount() % 5 == 0) {
+                                    Panorama3Module.this.setInitialRotationByGravity();
+                                    Panorama3Module.this.mIsSensorAverage = true;
+                                }
+                                Panorama3Module.this.setSensorFusionValue(captureImage);
+                                if (Panorama3Module.this.mRequestStop) {
+                                    Log.e(Panorama3Module.TAG, "DecideDirectionAttach request stop");
+                                    closeSrc();
+                                    return;
+                                }
+                                Log.d(Panorama3Module.TAG, "DecideDirectionAttach attach start");
+                                int attach = Panorama3Module.this.mMorphoPanoramaGP3.attach(this.byteBuffer[0], this.byteBuffer[1], this.byteBuffer[2], this.rowStride[0], this.rowStride[1], this.rowStride[2], this.pixelStride[0], this.pixelStride[1], this.pixelStride[2], Panorama3Module.this.mCurrentSensorInfoManager, null, Panorama3Module.this.getActivity().getApplicationContext());
+                                Log.d(Panorama3Module.TAG, "DecideDirectionAttach attach end");
+                                boolean z = attach == MorphoPanoramaGP3.ERROR_INVALID_DIR;
+                                if (attach != 0) {
+                                    break;
+                                }
+                                if (isUnDecideDirection(Panorama3Module.this.mInitParam.direction)) {
+                                    attach = Panorama3Module.this.mMorphoPanoramaGP3.getDirection();
+                                    if (attach == Panorama3Module.this.mInitParam.direction) {
+                                    }
+                                } else {
+                                    attach = Panorama3Module.this.mInitParam.direction;
+                                }
+                                String access$100 = Panorama3Module.TAG;
+                                StringBuilder stringBuilder = new StringBuilder();
+                                stringBuilder.append("getDirection = ");
+                                stringBuilder.append(attach);
+                                Log.d(access$100, stringBuilder.toString());
+                                int[] iArr = new int[2];
+                                if (Panorama3Module.this.mMorphoPanoramaGP3.getOutputImageSize(iArr) != 0) {
+                                    Log.e(Panorama3Module.TAG, String.format(Locale.US, "getOutputImageSize error ret:0x%08X", new Object[]{Integer.valueOf(Panorama3Module.this.mMorphoPanoramaGP3.getOutputImageSize(iArr))}));
+                                    closeSrc();
+                                    return;
+                                }
+                                Panorama3Module.this.mMaxWidth = iArr[0];
+                                Panorama3Module.this.mMaxHeight = iArr[1];
+                                String access$1002 = Panorama3Module.TAG;
+                                StringBuilder stringBuilder2 = new StringBuilder();
+                                stringBuilder2.append("mMaxWidth = ");
+                                stringBuilder2.append(Panorama3Module.this.mMaxWidth);
+                                stringBuilder2.append(", mMaxHeight = ");
+                                stringBuilder2.append(Panorama3Module.this.mMaxHeight);
+                                Log.d(access$1002, stringBuilder2.toString());
+                            }
+                        } catch (Throwable th) {
+                            closeSrc();
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                while (true) {
+                }
+                Panorama3Module.this.getActivity().runOnUiThread(new DecideRunnable(this, null));
+                Log.d(Panorama3Module.TAG, "DecideDirectionAttach end");
             }
 
             private boolean isUnDecideDirection(int i) {
@@ -761,437 +594,179 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
             /* JADX WARNING: Missing block: B:45:0x0123, code:
             r0 = th;
      */
+            /* Code decompiled incorrectly, please refer to instructions dump. */
             public void run() {
-                /*
-                r19 = this;
-                r1 = r19;
-                r0 = com.android.camera.module.Panorama3Module.TAG;
-                r2 = "PreviewAttach.run start";
-                com.android.camera.log.Log.d(r0, r2);
-                r0 = 2;
-                r15 = new double[r0];
-            L_0x000f:
-                r14 = -1;
-                r2 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ InterruptedException -> 0x0130 }
-                r2 = r2.this$0;	 Catch:{ InterruptedException -> 0x0130 }
-                r2 = r2.mAttachImageQueue;	 Catch:{ InterruptedException -> 0x0130 }
-                r2 = r2.take();	 Catch:{ InterruptedException -> 0x0130 }
-                r2 = (com.android.camera.panorama.CaptureImage) r2;	 Catch:{ InterruptedException -> 0x0130 }
-                r3 = com.android.camera.module.Panorama3Module.sAttachExit;	 Catch:{ InterruptedException -> 0x0130 }
-                if (r2 == r3) goto L_0x012f;
-            L_0x0024:
-                r1.setImage(r2);	 Catch:{ all -> 0x0127 }
-                r3 = r1.DUMP_YUV;	 Catch:{ all -> 0x0127 }
-                if (r3 == 0) goto L_0x0038;
-            L_0x002b:
-                r3 = r1.mInputSave;	 Catch:{ all -> 0x0127 }
-                r4 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x0127 }
-                r4 = r4.this$0;	 Catch:{ all -> 0x0127 }
-                r4 = r4.mImageFormat;	 Catch:{ all -> 0x0127 }
-                r3.onSaveImage(r2, r4);	 Catch:{ all -> 0x0127 }
-            L_0x0038:
-                r16 = com.android.camera.module.Panorama3Module.mEngineLock;	 Catch:{ all -> 0x0127 }
-                monitor-enter(r16);	 Catch:{ all -> 0x0127 }
-                r3 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x011f }
-                r3 = r3.this$0;	 Catch:{ all -> 0x011f }
-                r3 = r3.mRequestStop;	 Catch:{ all -> 0x011f }
-                if (r3 == 0) goto L_0x0053;
-            L_0x0045:
-                r0 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x011f }
-                r2 = "PreviewAttach request stop";
-                com.android.camera.log.Log.w(r0, r2);	 Catch:{ all -> 0x011f }
-                monitor-exit(r16);	 Catch:{ all -> 0x011f }
-                r19.closeSrc();	 Catch:{ InterruptedException -> 0x0130 }
+                int i;
+                Throwable th;
+                Log.d(Panorama3Module.TAG, "PreviewAttach.run start");
+                int i2 = 2;
+                double[] dArr = new double[2];
+                while (true) {
+                    try {
+                        CaptureImage captureImage = (CaptureImage) PanoramaPreview.this.this$0.mAttachImageQueue.take();
+                        if (captureImage == Panorama3Module.sAttachExit) {
+                            break;
+                        }
+                        try {
+                            setImage(captureImage);
+                            if (this.DUMP_YUV) {
+                                this.mInputSave.onSaveImage(captureImage, PanoramaPreview.this.this$0.mImageFormat);
+                            }
+                            synchronized (Panorama3Module.mEngineLock) {
+                                try {
+                                    if (PanoramaPreview.this.this$0.mRequestStop) {
+                                        Log.w(Panorama3Module.TAG, "PreviewAttach request stop");
+                                        closeSrc();
+                                        return;
+                                    }
+                                    Log.v(Panorama3Module.TAG, "PreviewAttach attach start");
+                                    PanoramaPreview.this.this$0.setSensorFusionValue(captureImage);
+                                    double[] dArr2 = dArr;
+                                    double[] dArr3 = dArr;
+                                    i = -1;
+                                    try {
+                                        if (PanoramaPreview.this.this$0.mMorphoPanoramaGP3.attach(this.byteBuffer[0], this.byteBuffer[1], this.byteBuffer[i2], this.rowStride[0], this.rowStride[1], this.rowStride[i2], this.pixelStride[0], this.pixelStride[1], this.pixelStride[i2], PanoramaPreview.this.this$0.mCurrentSensorInfoManager, dArr2, PanoramaPreview.this.this$0.getActivity()) != 0) {
+                                            Log.e(Panorama3Module.TAG, "PreviewAttach attach error.");
+                                            this.mResultCode = i;
+                                        } else {
+                                            Log.v(Panorama3Module.TAG, "PreviewAttach attach end");
+                                            PanoramaPreview.this.this$0.mCanSavePanorama = true;
+                                            updatePreviewImage();
+                                            String access$100 = Panorama3Module.TAG;
+                                            StringBuilder stringBuilder = new StringBuilder();
+                                            stringBuilder.append("mCenter = ");
+                                            stringBuilder.append(dArr3[0]);
+                                            stringBuilder.append(", ");
+                                            stringBuilder.append(dArr3[1]);
+                                            Log.v(access$100, stringBuilder.toString());
+                                        }
+                                    } catch (Throwable th2) {
+                                        th = th2;
+                                        throw th;
+                                    }
+                                } catch (Throwable th3) {
+                                    th = th3;
+                                    i = -1;
+                                }
+                            }
+                        } catch (Throwable th4) {
+                            th = th4;
+                            i = -1;
+                            closeSrc();
+                            throw th;
+                        }
+                        dArr = r0;
+                        i2 = 2;
+                    } catch (InterruptedException e) {
+                        th = e;
+                        i = -1;
+                    }
+                }
+                try {
+                    closeSrc();
+                } catch (InterruptedException e2) {
+                    th = e2;
+                }
+                if (PanoramaPreview.this.this$0.mRequestStop) {
+                    i2 = this.mResultCode;
+                    PanoramaPreview.this.this$0.getActivity().runOnUiThread(new Runnable() {
+                        public void run() {
+                            PanoramaPreview.this.attachEnd(i2);
+                        }
+                    });
+                    Log.d(Panorama3Module.TAG, "PreviewAttach exit.");
+                    return;
+                }
+                PanoramaPreview.this.this$0.getActivity().runOnUiThread(new Runnable() {
+                    public void run() {
+                        PanoramaPreview.this.this$0.registerGravitySensorListener();
+                    }
+                });
+                Log.d(Panorama3Module.TAG, "PreviewAttach exit. (request exit)");
                 return;
-            L_0x0053:
-                r3 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x011f }
-                r4 = "PreviewAttach attach start";
-                com.android.camera.log.Log.v(r3, r4);	 Catch:{ all -> 0x011f }
-                r3 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x011f }
-                r3 = r3.this$0;	 Catch:{ all -> 0x011f }
-                r3.setSensorFusionValue(r2);	 Catch:{ all -> 0x011f }
-                r2 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x011f }
-                r2 = r2.this$0;	 Catch:{ all -> 0x011f }
-                r2 = r2.mMorphoPanoramaGP3;	 Catch:{ all -> 0x011f }
-                r3 = r1.byteBuffer;	 Catch:{ all -> 0x011f }
-                r17 = 0;
-                r3 = r3[r17];	 Catch:{ all -> 0x011f }
-                r4 = r1.byteBuffer;	 Catch:{ all -> 0x011f }
-                r13 = 1;
-                r4 = r4[r13];	 Catch:{ all -> 0x011f }
-                r5 = r1.byteBuffer;	 Catch:{ all -> 0x011f }
-                r5 = r5[r0];	 Catch:{ all -> 0x011f }
-                r6 = r1.rowStride;	 Catch:{ all -> 0x011f }
-                r6 = r6[r17];	 Catch:{ all -> 0x011f }
-                r7 = r1.rowStride;	 Catch:{ all -> 0x011f }
-                r7 = r7[r13];	 Catch:{ all -> 0x011f }
-                r8 = r1.rowStride;	 Catch:{ all -> 0x011f }
-                r8 = r8[r0];	 Catch:{ all -> 0x011f }
-                r9 = r1.pixelStride;	 Catch:{ all -> 0x011f }
-                r9 = r9[r17];	 Catch:{ all -> 0x011f }
-                r10 = r1.pixelStride;	 Catch:{ all -> 0x011f }
-                r10 = r10[r13];	 Catch:{ all -> 0x011f }
-                r11 = r1.pixelStride;	 Catch:{ all -> 0x011f }
-                r11 = r11[r0];	 Catch:{ all -> 0x011f }
-                r12 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x011f }
-                r12 = r12.this$0;	 Catch:{ all -> 0x011f }
-                r12 = r12.mCurrentSensorInfoManager;	 Catch:{ all -> 0x011f }
-                r0 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x011f }
-                r0 = r0.this$0;	 Catch:{ all -> 0x011f }
-                r0 = r0.getActivity();	 Catch:{ all -> 0x011f }
-                r13 = r15;
-                r18 = r15;
-                r15 = r14;
-                r14 = r0;
-                r0 = r2.attach(r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14);	 Catch:{ all -> 0x0125 }
-                if (r0 == 0) goto L_0x00be;
-            L_0x00ad:
-                r0 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x0125 }
-                r2 = "PreviewAttach attach error.";
-                com.android.camera.log.Log.e(r0, r2);	 Catch:{ all -> 0x0125 }
-                r1.mResultCode = r15;	 Catch:{ all -> 0x0125 }
-                monitor-exit(r16);	 Catch:{ all -> 0x0125 }
-            L_0x00b9:
-                r19.closeSrc();	 Catch:{ InterruptedException -> 0x012d }
-                goto L_0x012f;
-            L_0x00be:
-                r0 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x0125 }
-                r2 = "PreviewAttach attach end";
-                com.android.camera.log.Log.v(r0, r2);	 Catch:{ all -> 0x0125 }
-                r0 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x0125 }
-                r0 = r0.this$0;	 Catch:{ all -> 0x0125 }
-                r2 = 1;
-                r0.mCanSavePanorama = r2;	 Catch:{ all -> 0x0125 }
-                r19.updatePreviewImage();	 Catch:{ all -> 0x0125 }
-                r0 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x0125 }
-                r3 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0125 }
-                r3.<init>();	 Catch:{ all -> 0x0125 }
-                r4 = "mCenter = ";
-                r3.append(r4);	 Catch:{ all -> 0x0125 }
-                r4 = r18[r17];	 Catch:{ all -> 0x0125 }
-                r3.append(r4);	 Catch:{ all -> 0x0125 }
-                r4 = ", ";
-                r3.append(r4);	 Catch:{ all -> 0x0125 }
-                r4 = r18[r2];	 Catch:{ all -> 0x0125 }
-                r3.append(r4);	 Catch:{ all -> 0x0125 }
-                r2 = r3.toString();	 Catch:{ all -> 0x0125 }
-                com.android.camera.log.Log.v(r0, r2);	 Catch:{ all -> 0x0125 }
-                monitor-exit(r16);	 Catch:{ all -> 0x0125 }
-                r0 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x0123 }
-                r0 = r0.this$0;	 Catch:{ all -> 0x0123 }
-                r0 = r0.getActivity();	 Catch:{ all -> 0x0123 }
-                r2 = r1.mPostAttachRunnable;	 Catch:{ all -> 0x0123 }
-                r0.runOnUiThread(r2);	 Catch:{ all -> 0x0123 }
-                r0 = r18;
-                r1.checkAttachEnd(r0);	 Catch:{ all -> 0x0123 }
-                r2 = r1.mIsAttachEnd;	 Catch:{ all -> 0x0123 }
-                if (r2 == 0) goto L_0x0117;
-            L_0x010d:
-                r0 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x0123 }
-                r2 = "preview attach end";
-                com.android.camera.log.Log.d(r0, r2);	 Catch:{ all -> 0x0123 }
-                goto L_0x00b9;
-            L_0x0117:
-                r19.closeSrc();	 Catch:{ InterruptedException -> 0x012d }
-                r15 = r0;
-                r0 = 2;
-                goto L_0x000f;
-            L_0x011f:
-                r0 = move-exception;
-                r15 = r14;
-            L_0x0121:
-                monitor-exit(r16);	 Catch:{ all -> 0x0125 }
-                throw r0;	 Catch:{ all -> 0x0123 }
-            L_0x0123:
-                r0 = move-exception;
-                goto L_0x0129;
-            L_0x0125:
-                r0 = move-exception;
-                goto L_0x0121;
-            L_0x0127:
-                r0 = move-exception;
-                r15 = r14;
-            L_0x0129:
-                r19.closeSrc();	 Catch:{ InterruptedException -> 0x012d }
-                throw r0;	 Catch:{ InterruptedException -> 0x012d }
-            L_0x012d:
-                r0 = move-exception;
-                goto L_0x0132;
-            L_0x012f:
-                goto L_0x013d;
-            L_0x0130:
-                r0 = move-exception;
-                r15 = r14;
-            L_0x0132:
-                r2 = com.android.camera.module.Panorama3Module.TAG;
-                r3 = "PreviewAttach interrupted";
-                com.android.camera.log.Log.w(r2, r3, r0);
-                r1.mResultCode = r15;
-            L_0x013d:
-                r0 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;
-                r0 = r0.this$0;
-                r0 = r0.mRequestStop;
-                if (r0 == 0) goto L_0x0161;
-            L_0x0147:
-                r0 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;
-                r0 = r0.this$0;
-                r0 = r0.getActivity();
-                r2 = new com.android.camera.module.Panorama3Module$PanoramaPreview$PreviewAttach$1;
-                r2.<init>();
-                r0.runOnUiThread(r2);
-                r0 = com.android.camera.module.Panorama3Module.TAG;
-                r1 = "PreviewAttach exit. (request exit)";
-                com.android.camera.log.Log.d(r0, r1);
-                return;
-            L_0x0161:
-                r0 = r1.mResultCode;
-                r2 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;
-                r2 = r2.this$0;
-                r2 = r2.getActivity();
-                r3 = new com.android.camera.module.Panorama3Module$PanoramaPreview$PreviewAttach$2;
-                r3.<init>(r0);
-                r2.runOnUiThread(r3);
-                r0 = com.android.camera.module.Panorama3Module.TAG;
-                r1 = "PreviewAttach exit.";
-                com.android.camera.log.Log.d(r0, r1);
-                return;
-                */
-                throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Panorama3Module.PanoramaPreview.PreviewAttach.run():void");
+                Log.w(Panorama3Module.TAG, "PreviewAttach interrupted", th);
+                this.mResultCode = i;
+                if (PanoramaPreview.this.this$0.mRequestStop) {
+                }
             }
 
             /* JADX WARNING: Missing block: B:25:0x01fb, code:
             return;
      */
+            /* Code decompiled incorrectly, please refer to instructions dump. */
             private void updatePreviewImage() {
-                /*
-                r14 = this;
-                r0 = com.android.camera.module.Panorama3Module.mPreviewImageLock;
-                monitor-enter(r0);
-                r1 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r1 = r1.this$0;	 Catch:{ all -> 0x01fc }
-                r1 = r1.mMorphoPanoramaGP3;	 Catch:{ all -> 0x01fc }
-                r2 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r2 = r2.this$0;	 Catch:{ all -> 0x01fc }
-                r2 = r2.mPreviewImage;	 Catch:{ all -> 0x01fc }
-                r1 = r1.updatePreviewImage(r2);	 Catch:{ all -> 0x01fc }
-                if (r1 == 0) goto L_0x0035;
-            L_0x001b:
-                r2 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x01fc }
-                r3 = new java.lang.StringBuilder;	 Catch:{ all -> 0x01fc }
-                r3.<init>();	 Catch:{ all -> 0x01fc }
-                r4 = "updatePreviewImage error ret:";
-                r3.append(r4);	 Catch:{ all -> 0x01fc }
-                r3.append(r1);	 Catch:{ all -> 0x01fc }
-                r1 = r3.toString();	 Catch:{ all -> 0x01fc }
-                com.android.camera.log.Log.e(r2, r1);	 Catch:{ all -> 0x01fc }
-                monitor-exit(r0);	 Catch:{ all -> 0x01fc }
-                return;
-            L_0x0035:
-                r1 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r1 = r1.this$0;	 Catch:{ all -> 0x01fc }
-                r1 = r1.mPreviewImage;	 Catch:{ all -> 0x01fc }
-                if (r1 != 0) goto L_0x004a;
-            L_0x003f:
-                r1 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x01fc }
-                r2 = "mPreviewImage is null when updatePreviewImage";
-                com.android.camera.log.Log.w(r1, r2);	 Catch:{ all -> 0x01fc }
-                monitor-exit(r0);	 Catch:{ all -> 0x01fc }
-                return;
-            L_0x004a:
-                r1 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r1 = r1.this$0;	 Catch:{ all -> 0x01fc }
-                r1 = r1.mInitParam;	 Catch:{ all -> 0x01fc }
-                r1 = r1.output_rotation;	 Catch:{ all -> 0x01fc }
-                r2 = 180; // 0xb4 float:2.52E-43 double:8.9E-322;
-                r1 = r1 % r2;
-                r3 = 1073741824; // 0x40000000 float:2.0 double:5.304989477E-315;
-                r4 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-                r5 = 90;
-                r6 = 0;
-                if (r1 != r5) goto L_0x0133;
-            L_0x0060:
-                r1 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r1 = r1.this$0;	 Catch:{ all -> 0x01fc }
-                r1 = r1.mInitParam;	 Catch:{ all -> 0x01fc }
-                r1 = r1.output_rotation;	 Catch:{ all -> 0x01fc }
-                r5 = 270; // 0x10e float:3.78E-43 double:1.334E-321;
-                if (r1 != r5) goto L_0x00a1;
-                r12 = new android.graphics.Matrix;	 Catch:{ all -> 0x01fc }
-                r12.<init>();	 Catch:{ all -> 0x01fc }
-                r1 = (float) r2;	 Catch:{ all -> 0x01fc }
-                r12.postRotate(r1);	 Catch:{ all -> 0x01fc }
-                r1 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r1 = r1.this$0;	 Catch:{ all -> 0x01fc }
-                r7 = r1.mPreviewImage;	 Catch:{ all -> 0x01fc }
-                r8 = 0;
-                r9 = 0;
-                r1 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r1 = r1.this$0;	 Catch:{ all -> 0x01fc }
-                r1 = r1.mPreviewImage;	 Catch:{ all -> 0x01fc }
-                r10 = r1.getWidth();	 Catch:{ all -> 0x01fc }
-                r1 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r1 = r1.this$0;	 Catch:{ all -> 0x01fc }
-                r1 = r1.mPreviewImage;	 Catch:{ all -> 0x01fc }
-                r11 = r1.getHeight();	 Catch:{ all -> 0x01fc }
-                r13 = 1;
-                r1 = android.graphics.Bitmap.createBitmap(r7, r8, r9, r10, r11, r12, r13);	 Catch:{ all -> 0x01fc }
-                goto L_0x00a9;
-            L_0x00a1:
-                r1 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r1 = r1.this$0;	 Catch:{ all -> 0x01fc }
-                r1 = r1.mPreviewImage;	 Catch:{ all -> 0x01fc }
-            L_0x00a9:
-                r2 = r1.getWidth();	 Catch:{ all -> 0x01fc }
-                r5 = r1.getHeight();	 Catch:{ all -> 0x01fc }
-                r5 = (float) r5;	 Catch:{ all -> 0x01fc }
-                r7 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r7 = r7.this$0;	 Catch:{ all -> 0x01fc }
-                r7 = r7.mLongSideCropRatio;	 Catch:{ all -> 0x01fc }
-                r5 = r5 * r7;
-                r5 = java.lang.Math.round(r5);	 Catch:{ all -> 0x01fc }
-                r7 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r7 = r7.this$0;	 Catch:{ all -> 0x01fc }
-                r7 = r7.mDispPreviewImage;	 Catch:{ all -> 0x01fc }
-                r7 = r7.getWidth();	 Catch:{ all -> 0x01fc }
-                r8 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r8 = r8.this$0;	 Catch:{ all -> 0x01fc }
-                r8 = r8.mDispPreviewImage;	 Catch:{ all -> 0x01fc }
-                r8 = r8.getHeight();	 Catch:{ all -> 0x01fc }
-                r9 = new android.graphics.Rect;	 Catch:{ all -> 0x01fc }
-                r9.<init>(r6, r6, r7, r8);	 Catch:{ all -> 0x01fc }
-                r7 = (float) r7;	 Catch:{ all -> 0x01fc }
-                r8 = (float) r8;	 Catch:{ all -> 0x01fc }
-                r7 = r7 / r8;
-                r8 = (float) r2;	 Catch:{ all -> 0x01fc }
-                r8 = r8 / r7;
-                r7 = (int) r8;	 Catch:{ all -> 0x01fc }
-                r8 = r1.getHeight();	 Catch:{ all -> 0x01fc }
-                r8 = (float) r8;	 Catch:{ all -> 0x01fc }
-                r10 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r10 = r10.this$0;	 Catch:{ all -> 0x01fc }
-                r10 = r10.mLongSideCropRatio;	 Catch:{ all -> 0x01fc }
-                r4 = r4 - r10;
-                r8 = r8 * r4;
-                r8 = r8 / r3;
-                r3 = (int) r8;	 Catch:{ all -> 0x01fc }
-                r4 = r7 - r5;
-                r4 = r4 / 2;
-                r3 = r3 + r4;
-                r4 = new android.graphics.Rect;	 Catch:{ all -> 0x01fc }
-                r7 = r7 + r3;
-                r4.<init>(r6, r3, r2, r7);	 Catch:{ all -> 0x01fc }
-                r2 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x01fc }
-                r3 = new java.lang.StringBuilder;	 Catch:{ all -> 0x01fc }
-                r3.<init>();	 Catch:{ all -> 0x01fc }
-                r5 = "src ";
-                r3.append(r5);	 Catch:{ all -> 0x01fc }
-                r3.append(r4);	 Catch:{ all -> 0x01fc }
-                r5 = ", dst = ";
-                r3.append(r5);	 Catch:{ all -> 0x01fc }
-                r3.append(r9);	 Catch:{ all -> 0x01fc }
-                r3 = r3.toString();	 Catch:{ all -> 0x01fc }
-                com.android.camera.log.Log.v(r2, r3);	 Catch:{ all -> 0x01fc }
-                r2 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r2 = r2.this$0;	 Catch:{ all -> 0x01fc }
-                r2 = r2.mDispPreviewImageCanvas;	 Catch:{ all -> 0x01fc }
-                r3 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r3 = r3.this$0;	 Catch:{ all -> 0x01fc }
-                r3 = r3.mDispPreviewImagePaint;	 Catch:{ all -> 0x01fc }
-                r2.drawBitmap(r1, r4, r9, r3);	 Catch:{ all -> 0x01fc }
-                goto L_0x01fa;
-                r1 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r1 = r1.this$0;	 Catch:{ all -> 0x01fc }
-                r1 = r1.mInitParam;	 Catch:{ all -> 0x01fc }
-                r1 = r1.output_rotation;	 Catch:{ all -> 0x01fc }
-                if (r1 != r2) goto L_0x0142;
-            L_0x0140:
-                r5 = -90;
-            L_0x0142:
-                r12 = new android.graphics.Matrix;	 Catch:{ all -> 0x01fc }
-                r12.<init>();	 Catch:{ all -> 0x01fc }
-                r1 = (float) r5;	 Catch:{ all -> 0x01fc }
-                r12.postRotate(r1);	 Catch:{ all -> 0x01fc }
-                r1 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r1 = r1.this$0;	 Catch:{ all -> 0x01fc }
-                r7 = r1.mPreviewImage;	 Catch:{ all -> 0x01fc }
-                r8 = 0;
-                r9 = 0;
-                r1 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r1 = r1.this$0;	 Catch:{ all -> 0x01fc }
-                r1 = r1.mPreviewImage;	 Catch:{ all -> 0x01fc }
-                r10 = r1.getWidth();	 Catch:{ all -> 0x01fc }
-                r1 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r1 = r1.this$0;	 Catch:{ all -> 0x01fc }
-                r1 = r1.mPreviewImage;	 Catch:{ all -> 0x01fc }
-                r11 = r1.getHeight();	 Catch:{ all -> 0x01fc }
-                r13 = 1;
-                r1 = android.graphics.Bitmap.createBitmap(r7, r8, r9, r10, r11, r12, r13);	 Catch:{ all -> 0x01fc }
-                r2 = r1.getWidth();	 Catch:{ all -> 0x01fc }
-                r5 = r1.getHeight();	 Catch:{ all -> 0x01fc }
-                r5 = (float) r5;	 Catch:{ all -> 0x01fc }
-                r7 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r7 = r7.this$0;	 Catch:{ all -> 0x01fc }
-                r7 = r7.mLongSideCropRatio;	 Catch:{ all -> 0x01fc }
-                r5 = r5 * r7;
-                r5 = java.lang.Math.round(r5);	 Catch:{ all -> 0x01fc }
-                r7 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r7 = r7.this$0;	 Catch:{ all -> 0x01fc }
-                r7 = r7.mDispPreviewImage;	 Catch:{ all -> 0x01fc }
-                r7 = r7.getWidth();	 Catch:{ all -> 0x01fc }
-                r8 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r8 = r8.this$0;	 Catch:{ all -> 0x01fc }
-                r8 = r8.mDispPreviewImage;	 Catch:{ all -> 0x01fc }
-                r8 = r8.getHeight();	 Catch:{ all -> 0x01fc }
-                r9 = new android.graphics.Rect;	 Catch:{ all -> 0x01fc }
-                r9.<init>(r6, r6, r7, r8);	 Catch:{ all -> 0x01fc }
-                r7 = (float) r7;	 Catch:{ all -> 0x01fc }
-                r8 = (float) r8;	 Catch:{ all -> 0x01fc }
-                r7 = r7 / r8;
-                r8 = (float) r2;	 Catch:{ all -> 0x01fc }
-                r8 = r8 / r7;
-                r7 = (int) r8;	 Catch:{ all -> 0x01fc }
-                r8 = r1.getHeight();	 Catch:{ all -> 0x01fc }
-                r8 = (float) r8;	 Catch:{ all -> 0x01fc }
-                r10 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r10 = r10.this$0;	 Catch:{ all -> 0x01fc }
-                r10 = r10.mLongSideCropRatio;	 Catch:{ all -> 0x01fc }
-                r4 = r4 - r10;
-                r8 = r8 * r4;
-                r8 = r8 / r3;
-                r3 = (int) r8;	 Catch:{ all -> 0x01fc }
-                r4 = r7 - r5;
-                r4 = r4 / 2;
-                r3 = r3 + r4;
-                r4 = new android.graphics.Rect;	 Catch:{ all -> 0x01fc }
-                r7 = r7 + r3;
-                r4.<init>(r6, r3, r2, r7);	 Catch:{ all -> 0x01fc }
-                r2 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x01fc }
-                r3 = new java.lang.StringBuilder;	 Catch:{ all -> 0x01fc }
-                r3.<init>();	 Catch:{ all -> 0x01fc }
-                r5 = "src ";
-                r3.append(r5);	 Catch:{ all -> 0x01fc }
-                r3.append(r4);	 Catch:{ all -> 0x01fc }
-                r5 = ", dst = ";
-                r3.append(r5);	 Catch:{ all -> 0x01fc }
-                r3.append(r9);	 Catch:{ all -> 0x01fc }
-                r3 = r3.toString();	 Catch:{ all -> 0x01fc }
-                com.android.camera.log.Log.v(r2, r3);	 Catch:{ all -> 0x01fc }
-                r2 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r2 = r2.this$0;	 Catch:{ all -> 0x01fc }
-                r2 = r2.mDispPreviewImageCanvas;	 Catch:{ all -> 0x01fc }
-                r3 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x01fc }
-                r3 = r3.this$0;	 Catch:{ all -> 0x01fc }
-                r3 = r3.mDispPreviewImagePaint;	 Catch:{ all -> 0x01fc }
-                r2.drawBitmap(r1, r4, r9, r3);	 Catch:{ all -> 0x01fc }
-            L_0x01fa:
-                monitor-exit(r0);	 Catch:{ all -> 0x01fc }
-                return;
-            L_0x01fc:
-                r1 = move-exception;
-                monitor-exit(r0);	 Catch:{ all -> 0x01fc }
-                throw r1;
-                */
-                throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Panorama3Module.PanoramaPreview.PreviewAttach.updatePreviewImage():void");
+                synchronized (Panorama3Module.mPreviewImageLock) {
+                    int updatePreviewImage = PanoramaPreview.this.this$0.mMorphoPanoramaGP3.updatePreviewImage(PanoramaPreview.this.this$0.mPreviewImage);
+                    String access$100;
+                    StringBuilder stringBuilder;
+                    if (updatePreviewImage != 0) {
+                        access$100 = Panorama3Module.TAG;
+                        stringBuilder = new StringBuilder();
+                        stringBuilder.append("updatePreviewImage error ret:");
+                        stringBuilder.append(updatePreviewImage);
+                        Log.e(access$100, stringBuilder.toString());
+                    } else if (PanoramaPreview.this.this$0.mPreviewImage == null) {
+                        Log.w(Panorama3Module.TAG, "mPreviewImage is null when updatePreviewImage");
+                    } else {
+                        int i = 90;
+                        Matrix matrix;
+                        Bitmap createBitmap;
+                        int width;
+                        int width2;
+                        int height;
+                        Rect rect;
+                        int height2;
+                        Rect rect2;
+                        if (PanoramaPreview.this.this$0.mInitParam.output_rotation % 180 == 90) {
+                            if (PanoramaPreview.this.this$0.mInitParam.output_rotation == 270) {
+                                matrix = new Matrix();
+                                matrix.postRotate((float) 180);
+                                createBitmap = Bitmap.createBitmap(PanoramaPreview.this.this$0.mPreviewImage, 0, 0, PanoramaPreview.this.this$0.mPreviewImage.getWidth(), PanoramaPreview.this.this$0.mPreviewImage.getHeight(), matrix, true);
+                            } else {
+                                createBitmap = PanoramaPreview.this.this$0.mPreviewImage;
+                            }
+                            width = createBitmap.getWidth();
+                            i = Math.round(((float) createBitmap.getHeight()) * PanoramaPreview.this.this$0.mLongSideCropRatio);
+                            width2 = PanoramaPreview.this.this$0.mDispPreviewImage.getWidth();
+                            height = PanoramaPreview.this.this$0.mDispPreviewImage.getHeight();
+                            rect = new Rect(0, 0, width2, height);
+                            width2 = (int) (((float) width) / (((float) width2) / ((float) height)));
+                            height2 = ((int) ((((float) createBitmap.getHeight()) * (1.0f - PanoramaPreview.this.this$0.mLongSideCropRatio)) / 2.0f)) + ((width2 - i) / 2);
+                            rect2 = new Rect(0, height2, width, width2 + height2);
+                            access$100 = Panorama3Module.TAG;
+                            stringBuilder = new StringBuilder();
+                            stringBuilder.append("src ");
+                            stringBuilder.append(rect2);
+                            stringBuilder.append(", dst = ");
+                            stringBuilder.append(rect);
+                            Log.v(access$100, stringBuilder.toString());
+                            PanoramaPreview.this.this$0.mDispPreviewImageCanvas.drawBitmap(createBitmap, rect2, rect, PanoramaPreview.this.this$0.mDispPreviewImagePaint);
+                        } else {
+                            if (PanoramaPreview.this.this$0.mInitParam.output_rotation == 180) {
+                                i = -90;
+                            }
+                            matrix = new Matrix();
+                            matrix.postRotate((float) i);
+                            createBitmap = Bitmap.createBitmap(PanoramaPreview.this.this$0.mPreviewImage, 0, 0, PanoramaPreview.this.this$0.mPreviewImage.getWidth(), PanoramaPreview.this.this$0.mPreviewImage.getHeight(), matrix, true);
+                            width = createBitmap.getWidth();
+                            i = Math.round(((float) createBitmap.getHeight()) * PanoramaPreview.this.this$0.mLongSideCropRatio);
+                            width2 = PanoramaPreview.this.this$0.mDispPreviewImage.getWidth();
+                            height = PanoramaPreview.this.this$0.mDispPreviewImage.getHeight();
+                            rect = new Rect(0, 0, width2, height);
+                            width2 = (int) (((float) width) / (((float) width2) / ((float) height)));
+                            height2 = ((int) ((((float) createBitmap.getHeight()) * (1.0f - PanoramaPreview.this.this$0.mLongSideCropRatio)) / 2.0f)) + ((width2 - i) / 2);
+                            rect2 = new Rect(0, height2, width, width2 + height2);
+                            access$100 = Panorama3Module.TAG;
+                            stringBuilder = new StringBuilder();
+                            stringBuilder.append("src ");
+                            stringBuilder.append(rect2);
+                            stringBuilder.append(", dst = ");
+                            stringBuilder.append(rect);
+                            Log.v(access$100, stringBuilder.toString());
+                            PanoramaPreview.this.this$0.mDispPreviewImageCanvas.drawBitmap(createBitmap, rect2, rect, PanoramaPreview.this.this$0.mDispPreviewImagePaint);
+                        }
+                    }
+                }
             }
 
             private void checkAttachEnd(double[] dArr) {
@@ -1253,127 +828,40 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
             /* JADX WARNING: Missing block: B:26:0x00bd, code:
             return;
      */
+            /* Code decompiled incorrectly, please refer to instructions dump. */
             public void run() {
-                /*
-                r5 = this;
-                r0 = r5.mDetectResult;
-                r1 = 1;
-                r2 = -2;
-                if (r0 == r2) goto L_0x00c1;
-            L_0x0006:
-                r0 = r5.mDetectResult;
-                r2 = -1;
-                if (r0 == r2) goto L_0x00c1;
-            L_0x000b:
-                r0 = r5.mDetectResult;
-                if (r0 != r1) goto L_0x0011;
-            L_0x000f:
-                goto L_0x00c1;
-            L_0x0011:
-                r0 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;
-                r0 = r0.mDetector;
-                r0 = r0.getFrameRect();
-                r2 = com.android.camera.module.Panorama3Module.TAG;
-                r3 = new java.lang.StringBuilder;
-                r3.<init>();
-                r4 = "frame_rect = ";
-                r3.append(r4);
-                r3.append(r0);
-                r3 = r3.toString();
-                com.android.camera.log.Log.v(r2, r3);
-                r2 = new android.graphics.Point;
-                r2.<init>();
-                r3 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;
-                r3 = r3.this$0;
-                r3 = r3.mDirection;
-                r4 = 3;
-                if (r3 != r4) goto L_0x0049;
-            L_0x0043:
-                r3 = r0.right;
-                r3 = (int) r3;
-                r2.x = r3;
-                goto L_0x004e;
-            L_0x0049:
-                r3 = r0.left;
-                r3 = (int) r3;
-                r2.x = r3;
-            L_0x004e:
-                r0 = r0.centerY();
-                r0 = (int) r0;
-                r2.y = r0;
-                r0 = com.android.camera.module.Panorama3Module.mPreviewImageLock;
-                monitor-enter(r0);
-                r3 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x00be }
-                r3 = r3.this$0;	 Catch:{ all -> 0x00be }
-                r3 = r3.mDispPreviewImage;	 Catch:{ all -> 0x00be }
-                if (r3 != 0) goto L_0x006f;
-            L_0x0064:
-                r1 = com.android.camera.module.Panorama3Module.TAG;	 Catch:{ all -> 0x00be }
-                r2 = "mPreviewImage is null in UiUpdateRunnable";
-                com.android.camera.log.Log.w(r1, r2);	 Catch:{ all -> 0x00be }
-                monitor-exit(r0);	 Catch:{ all -> 0x00be }
-                return;
-            L_0x006f:
-                r3 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x00be }
-                r3 = r3.this$0;	 Catch:{ all -> 0x00be }
-                r3 = r3.mDispPreviewImage;	 Catch:{ all -> 0x00be }
-                r3 = r3.getWidth();	 Catch:{ all -> 0x00be }
-                r4 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;	 Catch:{ all -> 0x00be }
-                r4 = r4.this$0;	 Catch:{ all -> 0x00be }
-                r4 = r4.mDispPreviewImage;	 Catch:{ all -> 0x00be }
-                r4 = r4.getHeight();	 Catch:{ all -> 0x00be }
-                monitor-exit(r0);	 Catch:{ all -> 0x00be }
-                r0 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;
-                r0 = r0.this$0;
-                r3 = java.lang.Math.min(r3, r4);
-                r4 = 2;
-                r3 = r3 / r4;
-                r0.mPreviewRefY = r3;
-                r0 = com.android.camera.protocol.ModeCoordinatorImpl.getInstance();
-                r3 = 176; // 0xb0 float:2.47E-43 double:8.7E-322;
-                r0 = r0.getAttachProtocol(r3);
-                r0 = (com.android.camera.protocol.ModeProtocol.PanoramaProtocol) r0;
-                if (r0 == 0) goto L_0x00bd;
-            L_0x00a3:
-                r3 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;
-                r3 = r3.this$0;
-                r3 = r3.mPreviewRefY;
-                r0.setDirectionPosition(r2, r3);
-                r2 = r5.mDetectResult;
-                if (r2 == r4) goto L_0x00b7;
-            L_0x00b2:
-                r1 = 0;
-                r0.setDirectionTooFast(r1, r1);
-                goto L_0x00bd;
-            L_0x00b7:
-                r2 = 6000; // 0x1770 float:8.408E-42 double:2.9644E-320;
-                r0.setDirectionTooFast(r1, r2);
-            L_0x00bd:
-                return;
-            L_0x00be:
-                r1 = move-exception;
-                monitor-exit(r0);	 Catch:{ all -> 0x00be }
-                throw r1;
-            L_0x00c1:
-                r0 = r5.mDetectResult;
-                if (r0 == r1) goto L_0x00df;
-            L_0x00c5:
-                r0 = com.android.camera.module.Panorama3Module.TAG;
-                r2 = new java.lang.StringBuilder;
-                r2.<init>();
-                r3 = "stopPanoramaShooting due to detect result ";
-                r2.append(r3);
-                r3 = r5.mDetectResult;
-                r2.append(r3);
-                r2 = r2.toString();
-                com.android.camera.log.Log.w(r0, r2);
-            L_0x00df:
-                r0 = com.android.camera.module.Panorama3Module.PanoramaPreview.this;
-                r0 = r0.this$0;
-                r0.stopPanoramaShooting(r1);
-                return;
-                */
-                throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Panorama3Module.PanoramaPreview.UiUpdateRunnable.run():void");
+                if (this.mDetectResult == -2 || this.mDetectResult == -1 || this.mDetectResult == 1) {
+                    if (this.mDetectResult != 1) {
+                        String access$100 = Panorama3Module.TAG;
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append("stopPanoramaShooting due to detect result ");
+                        stringBuilder.append(this.mDetectResult);
+                        Log.w(access$100, stringBuilder.toString());
+                    }
+                    PanoramaPreview.this.this$0.stopPanoramaShooting(true);
+                    return;
+                }
+                RectF frameRect = PanoramaPreview.this.mDetector.getFrameRect();
+                String access$1002 = Panorama3Module.TAG;
+                StringBuilder stringBuilder2 = new StringBuilder();
+                stringBuilder2.append("frame_rect = ");
+                stringBuilder2.append(frameRect);
+                Log.v(access$1002, stringBuilder2.toString());
+                Point point = new Point();
+                if (PanoramaPreview.this.this$0.mDirection == 3) {
+                    point.x = (int) frameRect.right;
+                } else {
+                    point.x = (int) frameRect.left;
+                }
+                point.y = (int) frameRect.centerY();
+                synchronized (Panorama3Module.mPreviewImageLock) {
+                    if (PanoramaPreview.this.this$0.mDispPreviewImage == null) {
+                        Log.w(Panorama3Module.TAG, "mPreviewImage is null in UiUpdateRunnable");
+                        return;
+                    }
+                    int width = PanoramaPreview.this.this$0.mDispPreviewImage.getWidth();
+                    int height = PanoramaPreview.this.this$0.mDispPreviewImage.getHeight();
+                }
             }
         }
 
@@ -1592,67 +1080,47 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:27:0x004d  */
-    private void addAttachQueue(com.android.camera.panorama.CaptureImage r5) {
-        /*
-        r4 = this;
-        if (r5 != 0) goto L_0x000a;
-    L_0x0002:
-        r5 = TAG;
-        r0 = "addAttachQueue failed due to image is null";
-        com.android.camera.log.Log.w(r5, r0);
-        return;
-    L_0x000a:
-        r0 = 0;
-        r1 = r4.mRequestStop;	 Catch:{ all -> 0x0047 }
-        if (r1 == 0) goto L_0x001b;
-    L_0x000f:
-        r1 = TAG;	 Catch:{ all -> 0x0047 }
-        r2 = "addAttachQueue failed due to request stop";
-        com.android.camera.log.Log.w(r1, r2);	 Catch:{ all -> 0x0047 }
-        r5.close();
-        return;
-    L_0x001b:
-        r1 = r4.mAttachImageQueue;	 Catch:{ all -> 0x0047 }
-        r1 = r1.offer(r5);	 Catch:{ all -> 0x0047 }
-    L_0x0021:
-        r0 = r4.mAttachImageQueue;	 Catch:{ all -> 0x0045 }
-        r0 = r0.size();	 Catch:{ all -> 0x0045 }
-        r2 = 1;
-        if (r0 <= r2) goto L_0x0038;
-    L_0x002a:
-        r0 = r4.mAttachImageQueue;	 Catch:{ all -> 0x0045 }
-        r0 = r0.poll();	 Catch:{ all -> 0x0045 }
-        r0 = (com.android.camera.panorama.CaptureImage) r0;	 Catch:{ all -> 0x0045 }
-        if (r0 == 0) goto L_0x0037;
-    L_0x0034:
-        r0.close();	 Catch:{ all -> 0x0045 }
-    L_0x0037:
-        goto L_0x0021;
-    L_0x0038:
-        if (r1 != 0) goto L_0x003d;
-    L_0x003a:
-        r5.close();
-    L_0x003d:
-        r5 = TAG;
-        r0 = "addAttachQueue";
-        com.android.camera.log.Log.v(r5, r0);
-        return;
-    L_0x0045:
-        r0 = move-exception;
-        goto L_0x004b;
-    L_0x0047:
-        r1 = move-exception;
-        r3 = r1;
-        r1 = r0;
-        r0 = r3;
-    L_0x004b:
-        if (r1 != 0) goto L_0x0050;
-    L_0x004d:
-        r5.close();
-    L_0x0050:
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Panorama3Module.addAttachQueue(com.android.camera.panorama.CaptureImage):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void addAttachQueue(CaptureImage captureImage) {
+        boolean offer;
+        Throwable th;
+        if (captureImage == null) {
+            Log.w(TAG, "addAttachQueue failed due to image is null");
+            return;
+        }
+        try {
+            if (this.mRequestStop) {
+                Log.w(TAG, "addAttachQueue failed due to request stop");
+                captureImage.close();
+                return;
+            }
+            offer = this.mAttachImageQueue.offer(captureImage);
+            while (this.mAttachImageQueue.size() > 1) {
+                try {
+                    CaptureImage captureImage2 = (CaptureImage) this.mAttachImageQueue.poll();
+                    if (captureImage2 != null) {
+                        captureImage2.close();
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    if (!offer) {
+                        captureImage.close();
+                    }
+                    throw th;
+                }
+            }
+            if (!offer) {
+                captureImage.close();
+            }
+            Log.v(TAG, "addAttachQueue");
+        } catch (Throwable th3) {
+            Throwable th4 = th3;
+            offer = false;
+            th = th4;
+            if (offer) {
+            }
+            throw th;
+        }
     }
 
     private void requestStopShoot() {
@@ -1874,93 +1342,53 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:19:0x002f A:{RETURN} */
-    public boolean onKeyDown(int r4, android.view.KeyEvent r5) {
-        /*
-        r3 = this;
-        r0 = r3.mPaused;
-        r1 = 1;
-        if (r0 == 0) goto L_0x0006;
-    L_0x0005:
-        return r1;
-    L_0x0006:
-        r0 = 27;
-        if (r4 == r0) goto L_0x0044;
-    L_0x000a:
-        r0 = 66;
-        if (r4 == r0) goto L_0x0044;
-    L_0x000e:
-        r0 = 700; // 0x2bc float:9.81E-43 double:3.46E-321;
-        if (r4 == r0) goto L_0x003c;
-    L_0x0012:
-        switch(r4) {
-            case 23: goto L_0x0030;
-            case 24: goto L_0x0019;
-            case 25: goto L_0x0019;
-            default: goto L_0x0015;
-        };
-    L_0x0015:
-        switch(r4) {
-            case 87: goto L_0x0019;
-            case 88: goto L_0x0019;
-            default: goto L_0x0018;
-        };
-    L_0x0018:
-        goto L_0x0062;
-    L_0x0019:
-        r0 = 24;
-        if (r4 == r0) goto L_0x0024;
-    L_0x001d:
-        r0 = 88;
-        if (r4 != r0) goto L_0x0022;
-    L_0x0021:
-        goto L_0x0024;
-    L_0x0022:
-        r0 = 0;
-        goto L_0x0025;
-    L_0x0024:
-        r0 = r1;
-    L_0x0025:
-        r2 = r5.getRepeatCount();
-        r0 = r3.handleVolumeKeyEvent(r0, r1, r2);
-        if (r0 == 0) goto L_0x0062;
-    L_0x002f:
-        return r1;
-    L_0x0030:
-        r0 = r5.getRepeatCount();
-        if (r0 != 0) goto L_0x0062;
-    L_0x0036:
-        r4 = 50;
-        r3.onShutterButtonClick(r4);
-        return r1;
-    L_0x003c:
-        r0 = r3.mIsShooting;
-        if (r0 == 0) goto L_0x0062;
-    L_0x0040:
-        r3.stopPanoramaShooting(r1);
-        goto L_0x0062;
-    L_0x0044:
-        r0 = r5.getRepeatCount();
-        if (r0 != 0) goto L_0x0062;
-    L_0x004a:
-        r4 = com.android.camera.Util.isFingerPrintKeyEvent(r5);
-        if (r4 == 0) goto L_0x005c;
-    L_0x0050:
-        r4 = com.android.camera.CameraSettings.isFingerprintCaptureEnable();
-        if (r4 == 0) goto L_0x0061;
-    L_0x0056:
-        r4 = 30;
-        r3.onShutterButtonClick(r4);
-        goto L_0x0061;
-    L_0x005c:
-        r4 = 40;
-        r3.onShutterButtonClick(r4);
-    L_0x0061:
-        return r1;
-    L_0x0062:
-        r4 = super.onKeyDown(r4, r5);
-        return r4;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Panorama3Module.onKeyDown(int, android.view.KeyEvent):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean onKeyDown(int i, KeyEvent keyEvent) {
+        if (this.mPaused) {
+            return true;
+        }
+        if (i == 27 || i == 66) {
+            if (keyEvent.getRepeatCount() == 0) {
+                if (!Util.isFingerPrintKeyEvent(keyEvent)) {
+                    onShutterButtonClick(40);
+                } else if (CameraSettings.isFingerprintCaptureEnable()) {
+                    onShutterButtonClick(30);
+                }
+                return true;
+            }
+        } else if (i != Util.KEYCODE_SLIDE_ON) {
+            boolean z;
+            switch (i) {
+                case 23:
+                    if (keyEvent.getRepeatCount() == 0) {
+                        onShutterButtonClick(50);
+                        return true;
+                    }
+                    break;
+                case 24:
+                case 25:
+                    if (i != 24) {
+                        break;
+                    }
+                    if (handleVolumeKeyEvent(z, true, keyEvent.getRepeatCount())) {
+                    }
+                    break;
+                default:
+                    switch (i) {
+                        case 87:
+                        case 88:
+                            break;
+                    }
+                    z = i != 24 || i == 88;
+                    if (handleVolumeKeyEvent(z, true, keyEvent.getRepeatCount())) {
+                        return true;
+                    }
+                    break;
+            }
+        } else if (this.mIsShooting) {
+            stopPanoramaShooting(true);
+        }
+        return super.onKeyDown(i, keyEvent);
     }
 
     public boolean onKeyUp(int i, KeyEvent keyEvent) {
@@ -2486,106 +1914,80 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
 
     /* JADX WARNING: Removed duplicated region for block: B:32:0x0083  */
     /* JADX WARNING: Removed duplicated region for block: B:30:0x0079  */
-    private boolean savePanoramaFile(java.lang.String r17, int r18, int r19) {
-        /*
-        r16 = this;
-        r0 = r16;
-        r3 = r17;
-        r13 = new com.android.camera.panorama.MorphoPanoramaGP3$GalleryInfoData;
-        r13.<init>();
-        r1 = com.android.camera.storage.Storage.isUseDocumentMode();
-        r14 = 1;
-        if (r1 == 0) goto L_0x0065;
-    L_0x0011:
-        r1 = -1;
-        r2 = com.android.camera.FileCompat.getParcelFileDescriptor(r3, r14);	 Catch:{ Exception -> 0x004c }
-        r15 = 0;
-        r4 = r0.mMorphoPanoramaGP3;	 Catch:{ Throwable -> 0x0037 }
-        r7 = r2.getFileDescriptor();	 Catch:{ Throwable -> 0x0037 }
-        r8 = r0.mShutterStartTime;	 Catch:{ Throwable -> 0x0037 }
-        r9 = r0.mShutterEndTime;	 Catch:{ Throwable -> 0x0037 }
-        r10 = 0;
-        r12 = 0;
-        r5 = r18;
-        r6 = r19;
-        r11 = r13;
-        r4 = r4.savePanorama360(r5, r6, r7, r8, r9, r10, r11, r12);	 Catch:{ Throwable -> 0x0037 }
-        if (r2 == 0) goto L_0x0064;
-    L_0x002e:
-        r2.close();	 Catch:{ Exception -> 0x0032 }
-        goto L_0x0064;
-    L_0x0032:
-        r0 = move-exception;
-        goto L_0x004e;
-    L_0x0034:
-        r0 = move-exception;
-        r4 = r0;
-        goto L_0x003a;
-    L_0x0037:
-        r0 = move-exception;
-        r15 = r0;
-        throw r15;	 Catch:{ all -> 0x0034 }
-    L_0x003a:
-        if (r2 == 0) goto L_0x004b;
-    L_0x003c:
-        if (r15 == 0) goto L_0x0048;
-    L_0x003e:
-        r2.close();	 Catch:{ Throwable -> 0x0042 }
-        goto L_0x004b;
-    L_0x0042:
-        r0 = move-exception;
-        r2 = r0;
-        r15.addSuppressed(r2);	 Catch:{ Exception -> 0x004c }
-        goto L_0x004b;
-    L_0x0048:
-        r2.close();	 Catch:{ Exception -> 0x004c }
-    L_0x004b:
-        throw r4;	 Catch:{ Exception -> 0x004c }
-    L_0x004c:
-        r0 = move-exception;
-        r4 = r1;
-    L_0x004e:
-        r1 = TAG;
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r5 = "open file failed, filePath ";
-        r2.append(r5);
-        r2.append(r3);
-        r2 = r2.toString();
-        com.android.camera.log.Log.e(r1, r2, r0);
-    L_0x0064:
-        goto L_0x0077;
-    L_0x0065:
-        r1 = r0.mMorphoPanoramaGP3;
-        r4 = r0.mShutterStartTime;
-        r5 = r0.mShutterEndTime;
-        r6 = 0;
-        r8 = 0;
-        r0 = r1;
-        r1 = r18;
-        r2 = r19;
-        r7 = r13;
-        r4 = r0.savePanorama360(r1, r2, r3, r4, r5, r6, r7, r8);
-    L_0x0077:
-        if (r4 != 0) goto L_0x0083;
-    L_0x0079:
-        r0 = TAG;
-        r1 = r13.toString();
-        com.android.camera.log.Log.d(r0, r1);
-        return r14;
-    L_0x0083:
-        r0 = TAG;
-        r1 = "savePanorama360() -> 0x%x";
-        r2 = new java.lang.Object[r14];
-        r3 = java.lang.Integer.valueOf(r4);
-        r4 = 0;
-        r2[r4] = r3;
-        r1 = java.lang.String.format(r1, r2);
-        com.android.camera.log.Log.e(r0, r1);
-        return r4;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.Panorama3Module.savePanoramaFile(java.lang.String, int, int):boolean");
-    }
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private boolean savePanoramaFile(String str, int i, int i2) {
+        int i3;
+        Throwable th;
+        Throwable th2 = this;
+        String str2 = str;
+        GalleryInfoData galleryInfoData = new GalleryInfoData();
+        if (Storage.isUseDocumentMode()) {
+            ParcelFileDescriptor parcelFileDescriptor;
+            th2 = -1;
+            try {
+                parcelFileDescriptor = FileCompat.getParcelFileDescriptor(str2, true);
+                i3 = th2.mMorphoPanoramaGP3;
+                FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+                String str3 = th2.mShutterStartTime;
+                String str4 = th2.mShutterEndTime;
+            } catch (Exception e) {
+                th2 = e;
+                String str5 = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("open file failed, filePath ");
+                stringBuilder.append(str2);
+                Log.e(str5, stringBuilder.toString(), th2);
+                if (i3 != 0) {
+                }
+            } catch (Throwable th3) {
+                th2 = th3;
+                continue;
+                th.addSuppressed(parcelFileDescriptor);
+            } finally {
+                while (true) {
+                    th2 = 
+/*
+Method generation error in method: com.android.camera.module.Panorama3Module.savePanoramaFile(java.lang.String, int, int):boolean, dex: classes.dex
+jadx.core.utils.exceptions.CodegenException: Error generate insn: ?: MERGE  (r0_4 'th2' java.lang.Throwable) = (r0_3 'th2' java.lang.Throwable), (r18_0 'i' int) in method: com.android.camera.module.Panorama3Module.savePanoramaFile(java.lang.String, int, int):boolean, dex: classes.dex
+	at jadx.core.codegen.InsnGen.makeInsn(InsnGen.java:228)
+	at jadx.core.codegen.InsnGen.makeInsn(InsnGen.java:205)
+	at jadx.core.codegen.RegionGen.makeSimpleBlock(RegionGen.java:100)
+	at jadx.core.codegen.RegionGen.makeRegion(RegionGen.java:50)
+	at jadx.core.codegen.RegionGen.makeSimpleRegion(RegionGen.java:87)
+	at jadx.core.codegen.RegionGen.makeRegion(RegionGen.java:53)
+	at jadx.core.codegen.RegionGen.makeRegionIndent(RegionGen.java:93)
+	at jadx.core.codegen.RegionGen.makeLoop(RegionGen.java:173)
+	at jadx.core.codegen.RegionGen.makeRegion(RegionGen.java:61)
+	at jadx.core.codegen.RegionGen.makeSimpleRegion(RegionGen.java:87)
+	at jadx.core.codegen.RegionGen.makeRegion(RegionGen.java:53)
+	at jadx.core.codegen.RegionGen.makeRegionIndent(RegionGen.java:93)
+	at jadx.core.codegen.RegionGen.makeTryCatch(RegionGen.java:298)
+	at jadx.core.codegen.RegionGen.makeRegion(RegionGen.java:63)
+	at jadx.core.codegen.RegionGen.makeSimpleRegion(RegionGen.java:87)
+	at jadx.core.codegen.RegionGen.makeRegion(RegionGen.java:53)
+	at jadx.core.codegen.RegionGen.makeRegionIndent(RegionGen.java:93)
+	at jadx.core.codegen.RegionGen.makeIf(RegionGen.java:118)
+	at jadx.core.codegen.RegionGen.makeRegion(RegionGen.java:57)
+	at jadx.core.codegen.RegionGen.makeSimpleRegion(RegionGen.java:87)
+	at jadx.core.codegen.RegionGen.makeRegion(RegionGen.java:53)
+	at jadx.core.codegen.MethodGen.addInstructions(MethodGen.java:173)
+	at jadx.core.codegen.ClassGen.addMethod(ClassGen.java:321)
+	at jadx.core.codegen.ClassGen.addMethods(ClassGen.java:259)
+	at jadx.core.codegen.ClassGen.addClassBody(ClassGen.java:221)
+	at jadx.core.codegen.ClassGen.addClassCode(ClassGen.java:111)
+	at jadx.core.codegen.ClassGen.makeClass(ClassGen.java:77)
+	at jadx.core.codegen.CodeGen.visit(CodeGen.java:10)
+	at jadx.core.ProcessClass.process(ProcessClass.java:38)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:292)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler.lambda$appendSourcesSave$0(JadxDecompiler.java:200)
+Caused by: jadx.core.utils.exceptions.CodegenException: MERGE can be used only in fallback mode
+	at jadx.core.codegen.InsnGen.fallbackOnlyInsn(InsnGen.java:539)
+	at jadx.core.codegen.InsnGen.makeInsnBody(InsnGen.java:511)
+	at jadx.core.codegen.InsnGen.makeInsn(InsnGen.java:222)
+	... 31 more
+
+*/
 
     private int calibrateRotation(int i) {
         if (!(i == 0 || i == 90 || i == 180 || i == 270)) {

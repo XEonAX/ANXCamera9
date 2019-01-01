@@ -350,39 +350,15 @@ public final class Util {
     /* JADX WARNING: Missing block: B:11:0x0023, code:
             return true;
      */
-    private static boolean containsInvalidHostnameAsciiCodes(java.lang.String r5) {
-        /*
-        r0 = 0;
-        r1 = r0;
-    L_0x0002:
-        r2 = r5.length();
-        if (r1 >= r2) goto L_0x0024;
-    L_0x0008:
-        r2 = r5.charAt(r1);
-        r3 = 31;
-        r4 = 1;
-        if (r2 <= r3) goto L_0x0023;
-    L_0x0011:
-        r3 = 127; // 0x7f float:1.78E-43 double:6.27E-322;
-        if (r2 < r3) goto L_0x0016;
-    L_0x0015:
-        goto L_0x0023;
-    L_0x0016:
-        r3 = " #%/:?@[\\]";
-        r2 = r3.indexOf(r2);
-        r3 = -1;
-        if (r2 == r3) goto L_0x0020;
-    L_0x001f:
-        return r4;
-    L_0x0020:
-        r1 = r1 + 1;
-        goto L_0x0002;
-    L_0x0023:
-        return r4;
-    L_0x0024:
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.Util.containsInvalidHostnameAsciiCodes(java.lang.String):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static boolean containsInvalidHostnameAsciiCodes(String str) {
+        for (int i = 0; i < str.length(); i++) {
+            char charAt = str.charAt(i);
+            if (charAt <= 31 || charAt >= 127 || " #%/:?@[\\]".indexOf(charAt) != -1) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static int indexOfControlOrNonAscii(String str) {

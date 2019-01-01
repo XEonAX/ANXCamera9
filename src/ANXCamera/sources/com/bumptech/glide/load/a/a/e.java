@@ -10,6 +10,7 @@ import com.bumptech.glide.load.ImageHeaderParser;
 import com.bumptech.glide.load.engine.bitmap_recycle.b;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -70,74 +71,35 @@ class e {
     /* JADX WARNING: Missing block: B:25:0x004a, code:
             r7 = th;
      */
-    int h(android.net.Uri r7) {
-        /*
-        r6 = this;
-        r0 = 0;
-        r1 = r6.dv;	 Catch:{ IOException -> 0x001d, IOException -> 0x001d, all -> 0x001a }
-        r1 = r1.openInputStream(r7);	 Catch:{ IOException -> 0x001d, IOException -> 0x001d, all -> 0x001a }
-        r0 = r6.dL;	 Catch:{ IOException -> 0x0018, IOException -> 0x0018 }
-        r2 = r6.du;	 Catch:{ IOException -> 0x0018, IOException -> 0x0018 }
-        r0 = com.bumptech.glide.load.b.b(r0, r1, r2);	 Catch:{ IOException -> 0x0018, IOException -> 0x0018 }
-        if (r1 == 0) goto L_0x0017;
-    L_0x0012:
-        r1.close();	 Catch:{ IOException -> 0x0016 }
-        goto L_0x0017;
-    L_0x0016:
-        r7 = move-exception;
-    L_0x0017:
-        return r0;
-    L_0x0018:
-        r0 = move-exception;
-        goto L_0x0021;
-    L_0x001a:
-        r7 = move-exception;
-        r1 = r0;
-        goto L_0x004b;
-    L_0x001d:
-        r1 = move-exception;
-        r5 = r1;
-        r1 = r0;
-        r0 = r5;
-    L_0x0021:
-        r2 = "ThumbStreamOpener";
-        r3 = 3;
-        r2 = android.util.Log.isLoggable(r2, r3);	 Catch:{ all -> 0x004a }
-        if (r2 == 0) goto L_0x0040;
-    L_0x002a:
-        r2 = "ThumbStreamOpener";
-        r3 = new java.lang.StringBuilder;	 Catch:{ all -> 0x004a }
-        r3.<init>();	 Catch:{ all -> 0x004a }
-        r4 = "Failed to open uri: ";
-        r3.append(r4);	 Catch:{ all -> 0x004a }
-        r3.append(r7);	 Catch:{ all -> 0x004a }
-        r7 = r3.toString();	 Catch:{ all -> 0x004a }
-        android.util.Log.d(r2, r7, r0);	 Catch:{ all -> 0x004a }
-    L_0x0040:
-        if (r1 == 0) goto L_0x0048;
-    L_0x0042:
-        r1.close();	 Catch:{ IOException -> 0x0046 }
-    L_0x0045:
-        goto L_0x0048;
-    L_0x0046:
-        r7 = move-exception;
-        goto L_0x0045;
-    L_0x0048:
-        r7 = -1;
-        return r7;
-    L_0x004a:
-        r7 = move-exception;
-    L_0x004b:
-        if (r1 == 0) goto L_0x0052;
-    L_0x004d:
-        r1.close();	 Catch:{ IOException -> 0x0051 }
-        goto L_0x0052;
-    L_0x0051:
-        r0 = move-exception;
-    L_0x0052:
-        throw r7;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.bumptech.glide.load.a.a.e.h(android.net.Uri):int");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    int h(Uri uri) {
+        InputStream openInputStream;
+        try {
+            openInputStream = this.dv.openInputStream(uri);
+            try {
+                int b = com.bumptech.glide.load.b.b(this.dL, openInputStream, this.du);
+                if (openInputStream != null) {
+                    try {
+                        openInputStream.close();
+                    } catch (IOException e) {
+                    }
+                }
+                return b;
+            } catch (IOException e2) {
+            }
+        } catch (Throwable e3) {
+        } catch (Throwable th) {
+            Throwable th2 = th;
+            openInputStream = null;
+            if (openInputStream != null) {
+                try {
+                    openInputStream.close();
+                } catch (IOException e4) {
+                }
+            }
+            throw th2;
+        }
+        return -1;
     }
 
     public InputStream i(Uri uri) throws FileNotFoundException {

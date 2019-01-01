@@ -27,6 +27,7 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewParent;
 import android.view.animation.Interpolator;
 import java.util.ArrayList;
 import java.util.List;
@@ -718,226 +719,138 @@ public class ItemTouchHelper extends ItemDecoration implements OnChildAttachStat
 
     /* JADX WARNING: Removed duplicated region for block: B:42:0x0137  */
     /* JADX WARNING: Removed duplicated region for block: B:47:0x0142  */
-    private void select(android.support.v7.widget.RecyclerView.ViewHolder r29, int r30) {
-        /*
-        r28 = this;
-        r11 = r28;
-        r12 = r29;
-        r13 = r30;
-        r0 = r11.mSelected;
-        if (r12 != r0) goto L_0x000f;
-    L_0x000a:
-        r0 = r11.mActionState;
-        if (r13 != r0) goto L_0x000f;
-    L_0x000e:
-        return;
-    L_0x000f:
-        r0 = -9223372036854775808;
-        r11.mDragScrollStartTimeInMs = r0;
-        r14 = r11.mActionState;
-        r15 = 1;
-        r11.endRecoverAnimation(r12, r15);
-        r11.mActionState = r13;
-        r10 = 2;
-        if (r13 != r10) goto L_0x0025;
-    L_0x001e:
-        r0 = r12.itemView;
-        r11.mOverdrawChild = r0;
-        r28.addChildDrawingOrderCallback();
-    L_0x0025:
-        r9 = 8;
-        r0 = r9 * r13;
-        r0 = r0 + r9;
-        r0 = r15 << r0;
-        r16 = r0 + -1;
-        r17 = 0;
-        r0 = r11.mSelected;
-        r8 = 0;
-        if (r0 == 0) goto L_0x00f7;
-    L_0x0035:
-        r7 = r11.mSelected;
-        r0 = r7.itemView;
-        r0 = r0.getParent();
-        if (r0 == 0) goto L_0x00de;
-    L_0x003f:
-        if (r14 != r10) goto L_0x0043;
-    L_0x0041:
-        r0 = r8;
-        goto L_0x0047;
-    L_0x0043:
-        r0 = r11.swipeIfNecessary(r7);
-    L_0x0047:
-        r6 = r0;
-        r28.releaseVelocityTracker();
-        r0 = 4;
-        if (r6 == r0) goto L_0x0072;
-    L_0x004e:
-        if (r6 == r9) goto L_0x0072;
-    L_0x0050:
-        r1 = 16;
-        if (r6 == r1) goto L_0x0072;
-    L_0x0054:
-        r1 = 32;
-        if (r6 == r1) goto L_0x0072;
-    L_0x0058:
-        switch(r6) {
-            case 1: goto L_0x0062;
-            case 2: goto L_0x0062;
-            default: goto L_0x005b;
-        };
-    L_0x005b:
-        r1 = 0;
-        r2 = 0;
-    L_0x005d:
-        r18 = r1;
-        r19 = r2;
-        goto L_0x0086;
-    L_0x0062:
-        r1 = 0;
-        r2 = r11.mDy;
-        r2 = java.lang.Math.signum(r2);
-        r3 = r11.mRecyclerView;
-        r3 = r3.getHeight();
-        r3 = (float) r3;
-        r2 = r2 * r3;
-        goto L_0x005d;
-    L_0x0072:
-        r1 = 0;
-        r2 = r11.mDx;
-        r2 = java.lang.Math.signum(r2);
-        r3 = r11.mRecyclerView;
-        r3 = r3.getWidth();
-        r3 = (float) r3;
-        r2 = r2 * r3;
-        r19 = r1;
-        r18 = r2;
-    L_0x0086:
-        if (r14 != r10) goto L_0x008b;
-    L_0x0088:
-        r0 = 8;
-    L_0x008a:
-        goto L_0x0090;
-    L_0x008b:
-        if (r6 <= 0) goto L_0x008f;
-    L_0x008d:
-        r0 = 2;
-        goto L_0x008a;
-    L_0x0090:
-        r5 = r0;
-        r0 = r11.mTmpPosition;
-        r11.getSelectedDxDy(r0);
-        r0 = r11.mTmpPosition;
-        r20 = r0[r8];
-        r0 = r11.mTmpPosition;
-        r21 = r0[r15];
-        r22 = new android.support.v7.widget.helper.ItemTouchHelper$3;
-        r0 = r22;
-        r1 = r11;
-        r2 = r7;
-        r3 = r5;
-        r4 = r14;
-        r15 = r5;
-        r5 = r20;
-        r23 = r6;
-        r6 = r21;
-        r24 = r7;
-        r7 = r18;
-        r25 = r14;
-        r14 = r8;
-        r8 = r19;
-        r26 = r9;
-        r9 = r23;
-        r14 = r10;
-        r10 = r24;
-        r0.<init>(r2, r3, r4, r5, r6, r7, r8, r9, r10);
-        r1 = r11.mCallback;
-        r2 = r11.mRecyclerView;
-        r3 = r18 - r20;
-        r4 = r19 - r21;
-        r1 = r1.getAnimationDuration(r2, r15, r3, r4);
-        r0.setDuration(r1);
-        r3 = r11.mRecoverAnimations;
-        r3.add(r0);
-        r0.start();
-        r0 = 1;
-        r17 = r0;
-        r0 = r24;
-        goto L_0x00f3;
-    L_0x00de:
-        r24 = r7;
-        r26 = r9;
-        r25 = r14;
-        r14 = r10;
-        r0 = r24;
-        r1 = r0.itemView;
-        r11.removeChildDrawingOrderCallbackIfNecessary(r1);
-        r1 = r11.mCallback;
-        r2 = r11.mRecyclerView;
-        r1.clearView(r2, r0);
-    L_0x00f3:
-        r1 = 0;
-        r11.mSelected = r1;
-        goto L_0x00fc;
-    L_0x00f7:
-        r26 = r9;
-        r25 = r14;
-        r14 = r10;
-    L_0x00fc:
-        if (r12 == 0) goto L_0x012e;
-    L_0x00fe:
-        r0 = r11.mCallback;
-        r1 = r11.mRecyclerView;
-        r0 = r0.getAbsoluteMovementFlags(r1, r12);
-        r0 = r0 & r16;
-        r1 = r11.mActionState;
-        r1 = r1 * 8;
-        r0 = r0 >> r1;
-        r11.mSelectedFlags = r0;
-        r0 = r12.itemView;
-        r0 = r0.getLeft();
-        r0 = (float) r0;
-        r11.mSelectedStartX = r0;
-        r0 = r12.itemView;
-        r0 = r0.getTop();
-        r0 = (float) r0;
-        r11.mSelectedStartY = r0;
-        r11.mSelected = r12;
-        if (r13 != r14) goto L_0x012e;
-    L_0x0125:
-        r0 = r11.mSelected;
-        r0 = r0.itemView;
-        r1 = 0;
-        r0.performHapticFeedback(r1);
-        goto L_0x012f;
-    L_0x012e:
-        r1 = 0;
-    L_0x012f:
-        r0 = r11.mRecyclerView;
-        r0 = r0.getParent();
-        if (r0 == 0) goto L_0x0140;
-    L_0x0137:
-        r2 = r11.mSelected;
-        if (r2 == 0) goto L_0x013d;
-    L_0x013b:
-        r1 = 1;
-    L_0x013d:
-        r0.requestDisallowInterceptTouchEvent(r1);
-    L_0x0140:
-        if (r17 != 0) goto L_0x014b;
-    L_0x0142:
-        r1 = r11.mRecyclerView;
-        r1 = r1.getLayoutManager();
-        r1.requestSimpleAnimationsInNextLayout();
-    L_0x014b:
-        r1 = r11.mCallback;
-        r2 = r11.mSelected;
-        r3 = r11.mActionState;
-        r1.onSelectedChanged(r2, r3);
-        r1 = r11.mRecyclerView;
-        r1.invalidate();
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v7.widget.helper.ItemTouchHelper.select(android.support.v7.widget.RecyclerView$ViewHolder, int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void select(ViewHolder selected, int actionState) {
+        ViewHolder viewHolder = selected;
+        int i = actionState;
+        if (viewHolder != this.mSelected || i != this.mActionState) {
+            boolean z;
+            ViewParent rvParent;
+            this.mDragScrollStartTimeInMs = Long.MIN_VALUE;
+            int prevActionState = this.mActionState;
+            endRecoverAnimation(viewHolder, true);
+            this.mActionState = i;
+            if (i == 2) {
+                this.mOverdrawChild = viewHolder.itemView;
+                addChildDrawingOrderCallback();
+            }
+            int actionStateMask = (1 << ((8 * i) + 8)) - 1;
+            boolean preventLayout = false;
+            int i2;
+            int i3;
+            if (this.mSelected != null) {
+                ViewHolder prevSelected = this.mSelected;
+                if (prevSelected.itemView.getParent() != null) {
+                    float targetTranslateY;
+                    float targetTranslateX;
+                    int swipeDir = prevActionState == 2 ? 0 : swipeIfNecessary(prevSelected);
+                    releaseVelocityTracker();
+                    int animationType = 4;
+                    if (swipeDir == 4 || swipeDir == 8 || swipeDir == 16 || swipeDir == 32) {
+                        targetTranslateY = 0.0f;
+                        targetTranslateX = Math.signum(this.mDx) * ((float) this.mRecyclerView.getWidth());
+                    } else {
+                        float targetTranslateX2;
+                        float targetTranslateY2;
+                        switch (swipeDir) {
+                            case 1:
+                            case 2:
+                                targetTranslateX2 = 0.0f;
+                                targetTranslateY2 = Math.signum(this.mDy) * ((float) this.mRecyclerView.getHeight());
+                                break;
+                            default:
+                                targetTranslateX2 = 0.0f;
+                                targetTranslateY2 = 0.0f;
+                                break;
+                        }
+                        targetTranslateX = targetTranslateX2;
+                        targetTranslateY = targetTranslateY2;
+                    }
+                    if (prevActionState == 2) {
+                        animationType = 8;
+                    } else if (swipeDir > 0) {
+                        animationType = 2;
+                    }
+                    int animationType2 = animationType;
+                    getSelectedDxDy(this.mTmpPosition);
+                    float currentTranslateX = this.mTmpPosition[0];
+                    float currentTranslateY = this.mTmpPosition[1];
+                    int animationType3 = animationType2;
+                    ViewHolder prevSelected2 = prevSelected;
+                    prevActionState = 0;
+                    i2 = 8;
+                    final int i4 = swipeDir;
+                    prevActionState = 2;
+                    final ViewHolder viewHolder2 = prevSelected2;
+                    RecoverAnimation rv = new RecoverAnimation(prevSelected, animationType2, prevActionState, currentTranslateX, currentTranslateY, targetTranslateX, targetTranslateY) {
+                        public void onAnimationEnd(ValueAnimatorCompat animation) {
+                            super.onAnimationEnd(animation);
+                            if (!this.mOverridden) {
+                                if (i4 <= 0) {
+                                    ItemTouchHelper.this.mCallback.clearView(ItemTouchHelper.this.mRecyclerView, viewHolder2);
+                                } else {
+                                    ItemTouchHelper.this.mPendingCleanup.add(viewHolder2.itemView);
+                                    this.mIsPendingCleanup = true;
+                                    if (i4 > 0) {
+                                        ItemTouchHelper.this.postDispatchSwipe(this, i4);
+                                    }
+                                }
+                                if (ItemTouchHelper.this.mOverdrawChild == viewHolder2.itemView) {
+                                    ItemTouchHelper.this.removeChildDrawingOrderCallbackIfNecessary(viewHolder2.itemView);
+                                }
+                            }
+                        }
+                    };
+                    rv.setDuration(this.mCallback.getAnimationDuration(this.mRecyclerView, animationType3, targetTranslateX - currentTranslateX, targetTranslateY - currentTranslateY));
+                    this.mRecoverAnimations.add(rv);
+                    rv.start();
+                    preventLayout = true;
+                    boolean preventLayout2 = prevSelected2;
+                } else {
+                    i2 = 8;
+                    i3 = prevActionState;
+                    prevActionState = 2;
+                    ViewHolder prevSelected3 = prevSelected;
+                    removeChildDrawingOrderCallbackIfNecessary(prevSelected3.itemView);
+                    this.mCallback.clearView(this.mRecyclerView, prevSelected3);
+                }
+                this.mSelected = null;
+            } else {
+                i2 = 8;
+                i3 = prevActionState;
+                prevActionState = 2;
+            }
+            if (viewHolder != null) {
+                this.mSelectedFlags = (this.mCallback.getAbsoluteMovementFlags(this.mRecyclerView, viewHolder) & actionStateMask) >> (this.mActionState * 8);
+                this.mSelectedStartX = (float) viewHolder.itemView.getLeft();
+                this.mSelectedStartY = (float) viewHolder.itemView.getTop();
+                this.mSelected = viewHolder;
+                if (i == prevActionState) {
+                    z = false;
+                    this.mSelected.itemView.performHapticFeedback(0);
+                    rvParent = this.mRecyclerView.getParent();
+                    if (rvParent != null) {
+                        if (this.mSelected != null) {
+                            z = true;
+                        }
+                        rvParent.requestDisallowInterceptTouchEvent(z);
+                    }
+                    if (!preventLayout) {
+                        this.mRecyclerView.getLayoutManager().requestSimpleAnimationsInNextLayout();
+                    }
+                    this.mCallback.onSelectedChanged(this.mSelected, this.mActionState);
+                    this.mRecyclerView.invalidate();
+                }
+            }
+            z = false;
+            rvParent = this.mRecyclerView.getParent();
+            if (rvParent != null) {
+            }
+            if (preventLayout) {
+            }
+            this.mCallback.onSelectedChanged(this.mSelected, this.mActionState);
+            this.mRecyclerView.invalidate();
+        }
     }
 
     private void postDispatchSwipe(final RecoverAnimation anim, final int swipeDir) {

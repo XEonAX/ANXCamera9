@@ -242,113 +242,69 @@ public class XMPSerializerRDF {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:28:0x00bb  */
-    private void serializeCompactRDFElementProps(com.adobe.xmp.impl.XMPNode r11, int r12) throws java.io.IOException, com.adobe.xmp.XMPException {
-        /*
-        r10 = this;
-        r11 = r11.iterateChildren();
-    L_0x0004:
-        r0 = r11.hasNext();
-        if (r0 == 0) goto L_0x00d2;
-    L_0x000a:
-        r0 = r11.next();
-        r0 = (com.adobe.xmp.impl.XMPNode) r0;
-        r1 = r10.canBeRDFAttrProp(r0);
-        if (r1 == 0) goto L_0x0017;
-    L_0x0016:
-        goto L_0x0004;
-        r1 = r0.getName();
-        r2 = "[]";
-        r2 = r2.equals(r1);
-        if (r2 == 0) goto L_0x0027;
-    L_0x0025:
-        r1 = "rdf:li";
-    L_0x0027:
-        r10.writeIndent(r12);
-        r2 = 60;
-        r10.write(r2);
-        r10.write(r1);
-        r2 = r0.iterateQualifier();
-        r3 = 0;
-        r4 = r3;
-        r5 = r4;
-    L_0x003b:
-        r6 = r2.hasNext();
-        r7 = 1;
-        if (r6 == 0) goto L_0x007f;
-    L_0x0042:
-        r6 = r2.next();
-        r6 = (com.adobe.xmp.impl.XMPNode) r6;
-        r8 = RDF_ATTR_QUALIFIER;
-        r9 = r6.getName();
-        r8 = r8.contains(r9);
-        if (r8 != 0) goto L_0x0057;
-        r4 = r7;
-        goto L_0x007e;
-    L_0x0057:
-        r5 = "rdf:resource";
-        r8 = r6.getName();
-        r5 = r5.equals(r8);
-        r8 = 32;
-        r10.write(r8);
-        r8 = r6.getName();
-        r10.write(r8);
-        r8 = "=\"";
-        r10.write(r8);
-        r6 = r6.getValue();
-        r10.appendNodeValue(r6, r7);
-        r6 = 34;
-        r10.write(r6);
-    L_0x007e:
-        goto L_0x003b;
-    L_0x007f:
-        if (r4 == 0) goto L_0x0085;
-    L_0x0081:
-        r10.serializeCompactRDFGeneralQualifier(r12, r0);
-        goto L_0x00b3;
-    L_0x0085:
-        r2 = r0.getOptions();
-        r2 = r2.isCompositeProperty();
-        if (r2 != 0) goto L_0x00a6;
-    L_0x008f:
-        r0 = r10.serializeCompactRDFSimpleProp(r0);
-        r2 = r0[r3];
-        r2 = (java.lang.Boolean) r2;
-        r2 = r2.booleanValue();
-        r0 = r0[r7];
-        r0 = (java.lang.Boolean) r0;
-        r7 = r0.booleanValue();
-        r0 = r2;
-        goto L_0x00b9;
-    L_0x00a6:
-        r2 = r0.getOptions();
-        r2 = r2.isArray();
-        if (r2 == 0) goto L_0x00b5;
-    L_0x00b0:
-        r10.serializeCompactRDFArrayProp(r0, r12);
-    L_0x00b3:
-        r0 = r7;
-        goto L_0x00b9;
-    L_0x00b5:
-        r0 = r10.serializeCompactRDFStructProp(r0, r12, r5);
-    L_0x00b9:
-        if (r0 == 0) goto L_0x00d0;
-    L_0x00bb:
-        if (r7 == 0) goto L_0x00c0;
-    L_0x00bd:
-        r10.writeIndent(r12);
-    L_0x00c0:
-        r0 = "</";
-        r10.write(r0);
-        r10.write(r1);
-        r0 = 62;
-        r10.write(r0);
-        r10.writeNewline();
-    L_0x00d0:
-        goto L_0x0004;
-    L_0x00d2:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.adobe.xmp.impl.XMPSerializerRDF.serializeCompactRDFElementProps(com.adobe.xmp.impl.XMPNode, int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void serializeCompactRDFElementProps(XMPNode xMPNode, int i) throws IOException, XMPException {
+        Iterator iterateChildren = xMPNode.iterateChildren();
+        while (iterateChildren.hasNext()) {
+            XMPNode xMPNode2 = (XMPNode) iterateChildren.next();
+            if (!canBeRDFAttrProp(xMPNode2)) {
+                boolean z;
+                boolean z2;
+                String name = xMPNode2.getName();
+                if (XMPConst.ARRAY_ITEM_NAME.equals(name)) {
+                    name = "rdf:li";
+                }
+                writeIndent(i);
+                write(60);
+                write(name);
+                Iterator iterateQualifier = xMPNode2.iterateQualifier();
+                boolean z3 = false;
+                boolean z4 = z3;
+                while (true) {
+                    z = true;
+                    if (!iterateQualifier.hasNext()) {
+                        break;
+                    }
+                    XMPNode xMPNode3 = (XMPNode) iterateQualifier.next();
+                    if (RDF_ATTR_QUALIFIER.contains(xMPNode3.getName())) {
+                        z4 = "rdf:resource".equals(xMPNode3.getName());
+                        write(32);
+                        write(xMPNode3.getName());
+                        write("=\"");
+                        appendNodeValue(xMPNode3.getValue(), true);
+                        write(34);
+                    } else {
+                        z3 = true;
+                    }
+                }
+                if (z3) {
+                    serializeCompactRDFGeneralQualifier(i, xMPNode2);
+                } else {
+                    if (!xMPNode2.getOptions().isCompositeProperty()) {
+                        Object[] serializeCompactRDFSimpleProp = serializeCompactRDFSimpleProp(xMPNode2);
+                        boolean booleanValue = ((Boolean) serializeCompactRDFSimpleProp[0]).booleanValue();
+                        z = ((Boolean) serializeCompactRDFSimpleProp[1]).booleanValue();
+                        z2 = booleanValue;
+                    } else if (xMPNode2.getOptions().isArray()) {
+                        serializeCompactRDFArrayProp(xMPNode2, i);
+                    } else {
+                        z2 = serializeCompactRDFStructProp(xMPNode2, i, z4);
+                    }
+                    if (z2) {
+                        if (z) {
+                            writeIndent(i);
+                        }
+                        write("</");
+                        write(name);
+                        write(62);
+                        writeNewline();
+                    }
+                }
+                z2 = true;
+                if (z2) {
+                }
+            }
+        }
     }
 
     private Object[] serializeCompactRDFSimpleProp(XMPNode xMPNode) throws IOException {
@@ -513,237 +469,130 @@ public class XMPSerializerRDF {
 
     /* JADX WARNING: Removed duplicated region for block: B:84:? A:{SYNTHETIC, RETURN} */
     /* JADX WARNING: Removed duplicated region for block: B:69:0x01bd  */
-    private void serializePrettyRDFProperty(com.adobe.xmp.impl.XMPNode r13, boolean r14, int r15) throws java.io.IOException, com.adobe.xmp.XMPException {
-        /*
-        r12 = this;
-        r0 = r13.getName();
-        if (r14 == 0) goto L_0x000b;
-    L_0x0008:
-        r0 = "rdf:value";
-        goto L_0x0015;
-    L_0x000b:
-        r1 = "[]";
-        r1 = r1.equals(r0);
-        if (r1 == 0) goto L_0x0015;
-    L_0x0013:
-        r0 = "rdf:li";
-    L_0x0015:
-        r12.writeIndent(r15);
-        r1 = 60;
-        r12.write(r1);
-        r12.write(r0);
-        r1 = r13.iterateQualifier();
-        r2 = 0;
-        r3 = r2;
-        r4 = r3;
-    L_0x0029:
-        r5 = r1.hasNext();
-        r6 = 34;
-        r7 = 32;
-        r8 = 1;
-        if (r5 == 0) goto L_0x006f;
-    L_0x0034:
-        r5 = r1.next();
-        r5 = (com.adobe.xmp.impl.XMPNode) r5;
-        r9 = RDF_ATTR_QUALIFIER;
-        r10 = r5.getName();
-        r9 = r9.contains(r10);
-        if (r9 != 0) goto L_0x0049;
-        r3 = r8;
-        goto L_0x006e;
-    L_0x0049:
-        r4 = "rdf:resource";
-        r9 = r5.getName();
-        r4 = r4.equals(r9);
-        if (r14 != 0) goto L_0x006e;
-    L_0x0055:
-        r12.write(r7);
-        r7 = r5.getName();
-        r12.write(r7);
-        r7 = "=\"";
-        r12.write(r7);
-        r5 = r5.getValue();
-        r12.appendNodeValue(r5, r8);
-        r12.write(r6);
-    L_0x006e:
-        goto L_0x0029;
-    L_0x006f:
-        r1 = 202; // 0xca float:2.83E-43 double:1.0E-321;
-        r5 = 62;
-        if (r3 == 0) goto L_0x00ae;
-    L_0x0075:
-        if (r14 != 0) goto L_0x00ae;
-    L_0x0077:
-        if (r4 != 0) goto L_0x00a6;
-    L_0x0079:
-        r14 = " rdf:parseType=\"Resource\">";
-        r12.write(r14);
-        r12.writeNewline();
-        r14 = r15 + 1;
-        r12.serializePrettyRDFProperty(r13, r8, r14);
-        r13 = r13.iterateQualifier();
-    L_0x008a:
-        r1 = r13.hasNext();
-        if (r1 == 0) goto L_0x0170;
-    L_0x0090:
-        r1 = r13.next();
-        r1 = (com.adobe.xmp.impl.XMPNode) r1;
-        r3 = RDF_ATTR_QUALIFIER;
-        r4 = r1.getName();
-        r3 = r3.contains(r4);
-        if (r3 != 0) goto L_0x00a5;
-    L_0x00a2:
-        r12.serializePrettyRDFProperty(r1, r2, r14);
-    L_0x00a5:
-        goto L_0x008a;
-    L_0x00a6:
-        r13 = new com.adobe.xmp.XMPException;
-        r14 = "Can't mix rdf:resource and general qualifiers";
-        r13.<init>(r14, r1);
-        throw r13;
-    L_0x00ae:
-        r14 = r13.getOptions();
-        r14 = r14.isCompositeProperty();
-        if (r14 != 0) goto L_0x0105;
-    L_0x00b8:
-        r14 = r13.getOptions();
-        r14 = r14.isURI();
-        if (r14 == 0) goto L_0x00d8;
-    L_0x00c2:
-        r14 = " rdf:resource=\"";
-        r12.write(r14);
-        r13 = r13.getValue();
-        r12.appendNodeValue(r13, r8);
-        r13 = "\"/>";
-        r12.write(r13);
-        r12.writeNewline();
-        goto L_0x01bb;
-    L_0x00d8:
-        r14 = r13.getValue();
-        if (r14 == 0) goto L_0x00fb;
-    L_0x00de:
-        r14 = "";
-        r1 = r13.getValue();
-        r14 = r14.equals(r1);
-        if (r14 == 0) goto L_0x00eb;
-    L_0x00ea:
-        goto L_0x00fb;
-    L_0x00eb:
-        r12.write(r5);
-        r13 = r13.getValue();
-        r12.appendNodeValue(r13, r2);
-        r11 = r8;
-        r8 = r2;
-        r2 = r11;
-        goto L_0x01bb;
-    L_0x00fb:
-        r13 = "/>";
-        r12.write(r13);
-        r12.writeNewline();
-        goto L_0x01bb;
-    L_0x0105:
-        r14 = r13.getOptions();
-        r14 = r14.isArray();
-        if (r14 == 0) goto L_0x0141;
-    L_0x010f:
-        r12.write(r5);
-        r12.writeNewline();
-        r14 = r15 + 1;
-        r12.emitRDFArrayTag(r13, r8, r14);
-        r1 = r13.getOptions();
-        r1 = r1.isArrayAltText();
-        if (r1 == 0) goto L_0x0127;
-    L_0x0124:
-        com.adobe.xmp.impl.XMPNodeUtils.normalizeLangArray(r13);
-    L_0x0127:
-        r1 = r13.iterateChildren();
-    L_0x012b:
-        r3 = r1.hasNext();
-        if (r3 == 0) goto L_0x013d;
-    L_0x0131:
-        r3 = r1.next();
-        r3 = (com.adobe.xmp.impl.XMPNode) r3;
-        r4 = r15 + 2;
-        r12.serializePrettyRDFProperty(r3, r2, r4);
-        goto L_0x012b;
-    L_0x013d:
-        r12.emitRDFArrayTag(r13, r2, r14);
-        goto L_0x0170;
-    L_0x0141:
-        if (r4 != 0) goto L_0x0172;
-    L_0x0143:
-        r14 = r13.hasChildren();
-        if (r14 != 0) goto L_0x0152;
-    L_0x0149:
-        r13 = " rdf:parseType=\"Resource\"/>";
-        r12.write(r13);
-        r12.writeNewline();
-        goto L_0x01bb;
-    L_0x0152:
-        r14 = " rdf:parseType=\"Resource\">";
-        r12.write(r14);
-        r12.writeNewline();
-        r13 = r13.iterateChildren();
-    L_0x015e:
-        r14 = r13.hasNext();
-        if (r14 == 0) goto L_0x0170;
-    L_0x0164:
-        r14 = r13.next();
-        r14 = (com.adobe.xmp.impl.XMPNode) r14;
-        r1 = r15 + 1;
-        r12.serializePrettyRDFProperty(r14, r2, r1);
-        goto L_0x015e;
-    L_0x0170:
-        r2 = r8;
-        goto L_0x01bb;
-    L_0x0172:
-        r13 = r13.iterateChildren();
-    L_0x0176:
-        r14 = r13.hasNext();
-        if (r14 == 0) goto L_0x01b2;
-    L_0x017c:
-        r14 = r13.next();
-        r14 = (com.adobe.xmp.impl.XMPNode) r14;
-        r3 = r12.canBeRDFAttrProp(r14);
-        if (r3 == 0) goto L_0x01aa;
-    L_0x0188:
-        r12.writeNewline();
-        r3 = r15 + 1;
-        r12.writeIndent(r3);
-        r12.write(r7);
-        r3 = r14.getName();
-        r12.write(r3);
-        r3 = "=\"";
-        r12.write(r3);
-        r14 = r14.getValue();
-        r12.appendNodeValue(r14, r8);
-        r12.write(r6);
-        goto L_0x0176;
-    L_0x01aa:
-        r13 = new com.adobe.xmp.XMPException;
-        r14 = "Can't mix rdf:resource and complex fields";
-        r13.<init>(r14, r1);
-        throw r13;
-    L_0x01b2:
-        r13 = "/>";
-        r12.write(r13);
-        r12.writeNewline();
-    L_0x01bb:
-        if (r2 == 0) goto L_0x01d0;
-    L_0x01bd:
-        if (r8 == 0) goto L_0x01c2;
-    L_0x01bf:
-        r12.writeIndent(r15);
-    L_0x01c2:
-        r13 = "</";
-        r12.write(r13);
-        r12.write(r0);
-        r12.write(r5);
-        r12.writeNewline();
-    L_0x01d0:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.adobe.xmp.impl.XMPSerializerRDF.serializePrettyRDFProperty(com.adobe.xmp.impl.XMPNode, boolean, int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void serializePrettyRDFProperty(XMPNode xMPNode, boolean z, int i) throws IOException, XMPException {
+        boolean z2;
+        String name = xMPNode.getName();
+        if (z) {
+            name = "rdf:value";
+        } else if (XMPConst.ARRAY_ITEM_NAME.equals(name)) {
+            name = "rdf:li";
+        }
+        writeIndent(i);
+        write(60);
+        write(name);
+        Iterator iterateQualifier = xMPNode.iterateQualifier();
+        boolean z3 = false;
+        boolean z4 = false;
+        boolean z5 = z4;
+        while (true) {
+            z2 = true;
+            if (!iterateQualifier.hasNext()) {
+                break;
+            }
+            XMPNode xMPNode2 = (XMPNode) iterateQualifier.next();
+            if (RDF_ATTR_QUALIFIER.contains(xMPNode2.getName())) {
+                z5 = "rdf:resource".equals(xMPNode2.getName());
+                if (!z) {
+                    write(32);
+                    write(xMPNode2.getName());
+                    write("=\"");
+                    appendNodeValue(xMPNode2.getValue(), true);
+                    write(34);
+                }
+            } else {
+                z4 = true;
+            }
+        }
+        int i2;
+        Iterator iterateChildren;
+        if (!z4 || z) {
+            if (xMPNode.getOptions().isCompositeProperty()) {
+                if (xMPNode.getOptions().isArray()) {
+                    write(62);
+                    writeNewline();
+                    i2 = i + 1;
+                    emitRDFArrayTag(xMPNode, true, i2);
+                    if (xMPNode.getOptions().isArrayAltText()) {
+                        XMPNodeUtils.normalizeLangArray(xMPNode);
+                    }
+                    iterateQualifier = xMPNode.iterateChildren();
+                    while (iterateQualifier.hasNext()) {
+                        serializePrettyRDFProperty((XMPNode) iterateQualifier.next(), false, i + 2);
+                    }
+                    emitRDFArrayTag(xMPNode, false, i2);
+                } else if (z5) {
+                    iterateChildren = xMPNode.iterateChildren();
+                    while (iterateChildren.hasNext()) {
+                        XMPNode xMPNode3 = (XMPNode) iterateChildren.next();
+                        if (canBeRDFAttrProp(xMPNode3)) {
+                            writeNewline();
+                            writeIndent(i + 1);
+                            write(32);
+                            write(xMPNode3.getName());
+                            write("=\"");
+                            appendNodeValue(xMPNode3.getValue(), true);
+                            write(34);
+                        } else {
+                            throw new XMPException("Can't mix rdf:resource and complex fields", 202);
+                        }
+                    }
+                    write("/>");
+                    writeNewline();
+                } else if (xMPNode.hasChildren()) {
+                    write(" rdf:parseType=\"Resource\">");
+                    writeNewline();
+                    iterateChildren = xMPNode.iterateChildren();
+                    while (iterateChildren.hasNext()) {
+                        serializePrettyRDFProperty((XMPNode) iterateChildren.next(), false, i + 1);
+                    }
+                } else {
+                    write(" rdf:parseType=\"Resource\"/>");
+                    writeNewline();
+                }
+            } else if (xMPNode.getOptions().isURI()) {
+                write(" rdf:resource=\"");
+                appendNodeValue(xMPNode.getValue(), true);
+                write("\"/>");
+                writeNewline();
+            } else if (xMPNode.getValue() == null || "".equals(xMPNode.getValue())) {
+                write("/>");
+                writeNewline();
+            } else {
+                write(62);
+                appendNodeValue(xMPNode.getValue(), false);
+                z2 = false;
+                z3 = true;
+            }
+            if (!z3) {
+                if (z2) {
+                    writeIndent(i);
+                }
+                write("</");
+                write(name);
+                write(62);
+                writeNewline();
+                return;
+            }
+            return;
+        } else if (z5) {
+            throw new XMPException("Can't mix rdf:resource and general qualifiers", 202);
+        } else {
+            write(" rdf:parseType=\"Resource\">");
+            writeNewline();
+            i2 = i + 1;
+            serializePrettyRDFProperty(xMPNode, true, i2);
+            iterateChildren = xMPNode.iterateQualifier();
+            while (iterateChildren.hasNext()) {
+                XMPNode xMPNode4 = (XMPNode) iterateChildren.next();
+                if (!RDF_ATTR_QUALIFIER.contains(xMPNode4.getName())) {
+                    serializePrettyRDFProperty(xMPNode4, false, i2);
+                }
+            }
+        }
+        z3 = true;
+        if (!z3) {
+        }
     }
 
     private void emitRDFArrayTag(XMPNode xMPNode, boolean z, int i) throws IOException {

@@ -1,6 +1,7 @@
 package com.android.volley.toolbox;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -35,46 +36,20 @@ public class ByteArrayPool {
     /* JADX WARNING: Missing block: B:15:0x002f, code:
             return;
      */
-    public synchronized void returnBuf(byte[] r3) {
-        /*
-        r2 = this;
-        monitor-enter(r2);
-        if (r3 == 0) goto L_0x002e;
-    L_0x0003:
-        r0 = r3.length;	 Catch:{ all -> 0x002b }
-        r1 = r2.mSizeLimit;	 Catch:{ all -> 0x002b }
-        if (r0 <= r1) goto L_0x0009;
-    L_0x0008:
-        goto L_0x002e;
-    L_0x0009:
-        r0 = r2.mBuffersByLastUse;	 Catch:{ all -> 0x002b }
-        r0.add(r3);	 Catch:{ all -> 0x002b }
-        r0 = r2.mBuffersBySize;	 Catch:{ all -> 0x002b }
-        r1 = BUF_COMPARATOR;	 Catch:{ all -> 0x002b }
-        r0 = java.util.Collections.binarySearch(r0, r3, r1);	 Catch:{ all -> 0x002b }
-        if (r0 >= 0) goto L_0x001b;
-    L_0x0018:
-        r0 = -r0;
-        r0 = r0 + -1;
-    L_0x001b:
-        r1 = r2.mBuffersBySize;	 Catch:{ all -> 0x002b }
-        r1.add(r0, r3);	 Catch:{ all -> 0x002b }
-        r0 = r2.mCurrentSize;	 Catch:{ all -> 0x002b }
-        r3 = r3.length;	 Catch:{ all -> 0x002b }
-        r0 = r0 + r3;
-        r2.mCurrentSize = r0;	 Catch:{ all -> 0x002b }
-        r2.trim();	 Catch:{ all -> 0x002b }
-        monitor-exit(r2);
-        return;
-    L_0x002b:
-        r3 = move-exception;
-        monitor-exit(r2);
-        throw r3;
-    L_0x002e:
-        monitor-exit(r2);
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.volley.toolbox.ByteArrayPool.returnBuf(byte[]):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public synchronized void returnBuf(byte[] bArr) {
+        if (bArr != null) {
+            if (bArr.length <= this.mSizeLimit) {
+                this.mBuffersByLastUse.add(bArr);
+                int binarySearch = Collections.binarySearch(this.mBuffersBySize, bArr, BUF_COMPARATOR);
+                if (binarySearch < 0) {
+                    binarySearch = (-binarySearch) - 1;
+                }
+                this.mBuffersBySize.add(binarySearch, bArr);
+                this.mCurrentSize += bArr.length;
+                trim();
+            }
+        }
     }
 
     private synchronized void trim() {

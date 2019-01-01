@@ -266,38 +266,15 @@ public class ProximitySensorLock implements SensorEventListener {
     /* JADX WARNING: Missing block: B:12:0x0026, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void show() {
-        /*
-        r2 = this;
-        r0 = enabled();
-        if (r0 == 0) goto L_0x0026;
-    L_0x0006:
-        r0 = r2.mFromVolumeKey;
-        if (r0 == 0) goto L_0x000b;
-    L_0x000a:
-        goto L_0x0026;
-    L_0x000b:
-        r0 = r2.mWorkerHandler;
-        if (r0 == 0) goto L_0x0025;
-    L_0x000f:
-        r0 = r2.mContext;
-        if (r0 == 0) goto L_0x0025;
-    L_0x0013:
-        r0 = r2.mContext;
-        r0 = r0 instanceof android.app.Activity;
-        if (r0 == 0) goto L_0x0025;
-    L_0x0019:
-        r0 = r2.mContext;
-        r0 = (android.app.Activity) r0;
-        r1 = new com.android.camera.ProximitySensorLock$2;
-        r1.<init>();
-        r0.runOnUiThread(r1);
-    L_0x0025:
-        return;
-    L_0x0026:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.ProximitySensorLock.show():void");
+        if (!(!enabled() || this.mFromVolumeKey || this.mWorkerHandler == null || this.mContext == null || !(this.mContext instanceof Activity))) {
+            ((Activity) this.mContext).runOnUiThread(new Runnable() {
+                public void run() {
+                    ProximitySensorLock.this.doShow();
+                }
+            });
+        }
     }
 
     private void doShow() {

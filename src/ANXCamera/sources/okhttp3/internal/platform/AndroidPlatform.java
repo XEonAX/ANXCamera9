@@ -273,31 +273,14 @@ class AndroidPlatform extends Platform {
     /* JADX WARNING: Missing block: B:8:0x0028, code:
             return super.isCleartextTrafficPermitted(r5);
      */
-    public boolean isCleartextTrafficPermitted(java.lang.String r5) {
-        /*
-        r4 = this;
-        r0 = "android.security.NetworkSecurityPolicy";
-        r0 = java.lang.Class.forName(r0);	 Catch:{ ClassNotFoundException -> 0x0023, ClassNotFoundException -> 0x0023, IllegalAccessException -> 0x001b, IllegalAccessException -> 0x001b, IllegalAccessException -> 0x001b }
-        r1 = "getInstance";
-        r2 = 0;
-        r3 = new java.lang.Class[r2];	 Catch:{ ClassNotFoundException -> 0x0023, ClassNotFoundException -> 0x0023, IllegalAccessException -> 0x001b, IllegalAccessException -> 0x001b, IllegalAccessException -> 0x001b }
-        r1 = r0.getMethod(r1, r3);	 Catch:{ ClassNotFoundException -> 0x0023, ClassNotFoundException -> 0x0023, IllegalAccessException -> 0x001b, IllegalAccessException -> 0x001b, IllegalAccessException -> 0x001b }
-        r3 = 0;
-        r2 = new java.lang.Object[r2];	 Catch:{ ClassNotFoundException -> 0x0023, ClassNotFoundException -> 0x0023, IllegalAccessException -> 0x001b, IllegalAccessException -> 0x001b, IllegalAccessException -> 0x001b }
-        r1 = r1.invoke(r3, r2);	 Catch:{ ClassNotFoundException -> 0x0023, ClassNotFoundException -> 0x0023, IllegalAccessException -> 0x001b, IllegalAccessException -> 0x001b, IllegalAccessException -> 0x001b }
-        r0 = r4.api24IsCleartextTrafficPermitted(r5, r0, r1);	 Catch:{ ClassNotFoundException -> 0x0023, ClassNotFoundException -> 0x0023, IllegalAccessException -> 0x001b, IllegalAccessException -> 0x001b, IllegalAccessException -> 0x001b }
-        return r0;
-    L_0x001b:
-        r5 = move-exception;
-        r0 = "unable to determine cleartext support";
-        r5 = okhttp3.internal.Util.assertionError(r0, r5);
-        throw r5;
-    L_0x0023:
-        r0 = move-exception;
-        r5 = super.isCleartextTrafficPermitted(r5);
-        return r5;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.platform.AndroidPlatform.isCleartextTrafficPermitted(java.lang.String):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean isCleartextTrafficPermitted(String str) {
+        try {
+            Class cls = Class.forName("android.security.NetworkSecurityPolicy");
+            return api24IsCleartextTrafficPermitted(str, cls, cls.getMethod("getInstance", new Class[0]).invoke(null, new Object[0]));
+        } catch (ClassNotFoundException e) {
+        } catch (Exception e2) {
+        }
     }
 
     private boolean api24IsCleartextTrafficPermitted(String str, Class<?> cls, Object obj) throws InvocationTargetException, IllegalAccessException {

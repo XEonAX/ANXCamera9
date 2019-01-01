@@ -6,10 +6,14 @@ import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
 import android.util.SparseArray;
 import com.android.camera.CameraAppImpl;
+import com.android.camera.CameraSettings;
 import com.android.camera.data.DataRepository;
+import com.android.camera.data.data.config.ComponentManuallyDualLens;
 import com.android.camera.log.Log;
 import com.android.camera2.CameraCapabilities;
+import com.mi.config.b;
 import java.util.Arrays;
+import java.util.Locale;
 
 @SuppressLint({"MissingPermission"})
 @TargetApi(21)
@@ -193,36 +197,15 @@ public class Camera2DataContainer {
     /* JADX WARNING: Missing block: B:13:0x001c, code:
             return r1;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public synchronized boolean hasMuxCamera() {
-        /*
-        r3 = this;
-        monitor-enter(r3);
-        r0 = r3.isInitialized();	 Catch:{ all -> 0x001d }
-        r1 = 0;
-        if (r0 != 0) goto L_0x0011;
-    L_0x0008:
-        r0 = TAG;	 Catch:{ all -> 0x001d }
-        r2 = "Warning: hasMuxCamera(): #init() failed.";
-        com.android.camera.log.Log.d(r0, r2);	 Catch:{ all -> 0x001d }
-        monitor-exit(r3);
-        return r1;
-    L_0x0011:
-        r0 = r3.mOrderedCameraIds;	 Catch:{ all -> 0x001d }
-        r2 = 2;
-        r0 = r0[r2];	 Catch:{ all -> 0x001d }
-        r2 = -1;
-        if (r0 == r2) goto L_0x001b;
-    L_0x0019:
-        r1 = 1;
-    L_0x001b:
-        monitor-exit(r3);
-        return r1;
-    L_0x001d:
-        r0 = move-exception;
-        monitor-exit(r3);
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.loader.camera2.Camera2DataContainer.hasMuxCamera():boolean");
+        boolean z = false;
+        if (!isInitialized()) {
+            Log.d(TAG, "Warning: hasMuxCamera(): #init() failed.");
+            return false;
+        } else if (this.mOrderedCameraIds[2] != -1) {
+            z = true;
+        }
     }
 
     public synchronized int getFrontCameraId() {
@@ -260,74 +243,36 @@ public class Camera2DataContainer {
     /* JADX WARNING: Missing block: B:12:0x001a, code:
             return r0;
      */
-    public synchronized boolean isFrontCameraId(int r3) {
-        /*
-        r2 = this;
-        monitor-enter(r2);
-        r3 = r2.getCapabilities(r3);	 Catch:{ all -> 0x001b }
-        r0 = 0;
-        if (r3 != 0) goto L_0x0011;
-    L_0x0008:
-        r3 = TAG;	 Catch:{ all -> 0x001b }
-        r1 = "Warning: isFrontCameraId(): #init() failed.";
-        com.android.camera.log.Log.d(r3, r1);	 Catch:{ all -> 0x001b }
-        monitor-exit(r2);
-        return r0;
-    L_0x0011:
-        r3 = r3.getFacing();	 Catch:{ all -> 0x001b }
-        if (r3 != 0) goto L_0x0019;
-    L_0x0017:
-        r0 = 1;
-    L_0x0019:
-        monitor-exit(r2);
-        return r0;
-    L_0x001b:
-        r3 = move-exception;
-        monitor-exit(r2);
-        throw r3;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.loader.camera2.Camera2DataContainer.isFrontCameraId(int):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public synchronized boolean isFrontCameraId(int i) {
+        CameraCapabilities capabilities = getCapabilities(i);
+        boolean z = false;
+        if (capabilities == null) {
+            Log.d(TAG, "Warning: isFrontCameraId(): #init() failed.");
+            return false;
+        } else if (capabilities.getFacing() == 0) {
+            z = true;
+        }
     }
 
     /* JADX WARNING: Missing block: B:13:0x0032, code:
             return r0;
      */
-    public synchronized com.android.camera2.CameraCapabilities getCapabilities(int r5) {
-        /*
-        r4 = this;
-        monitor-enter(r4);
-        r0 = r4.isInitialized();	 Catch:{ all -> 0x0033 }
-        if (r0 != 0) goto L_0x0011;
-    L_0x0007:
-        r5 = TAG;	 Catch:{ all -> 0x0033 }
-        r0 = "Warning: getCapabilities(): #init() failed.";
-        com.android.camera.log.Log.d(r5, r0);	 Catch:{ all -> 0x0033 }
-        r5 = 0;
-        monitor-exit(r4);
-        return r5;
-    L_0x0011:
-        r0 = r4.mCapabilities;	 Catch:{ all -> 0x0033 }
-        r0 = r0.get(r5);	 Catch:{ all -> 0x0033 }
-        r0 = (com.android.camera2.CameraCapabilities) r0;	 Catch:{ all -> 0x0033 }
-        if (r0 != 0) goto L_0x0031;
-    L_0x001b:
-        r1 = TAG;	 Catch:{ all -> 0x0033 }
-        r2 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0033 }
-        r2.<init>();	 Catch:{ all -> 0x0033 }
-        r3 = "Warning: getCapabilities(): return null for camera: ";
-        r2.append(r3);	 Catch:{ all -> 0x0033 }
-        r2.append(r5);	 Catch:{ all -> 0x0033 }
-        r5 = r2.toString();	 Catch:{ all -> 0x0033 }
-        com.android.camera.log.Log.d(r1, r5);	 Catch:{ all -> 0x0033 }
-    L_0x0031:
-        monitor-exit(r4);
-        return r0;
-    L_0x0033:
-        r5 = move-exception;
-        monitor-exit(r4);
-        throw r5;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.loader.camera2.Camera2DataContainer.getCapabilities(int):com.android.camera2.CameraCapabilities");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public synchronized CameraCapabilities getCapabilities(int i) {
+        if (isInitialized()) {
+            CameraCapabilities cameraCapabilities = (CameraCapabilities) this.mCapabilities.get(i);
+            if (cameraCapabilities == null) {
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Warning: getCapabilities(): return null for camera: ");
+                stringBuilder.append(i);
+                Log.d(str, stringBuilder.toString());
+            }
+        } else {
+            Log.d(TAG, "Warning: getCapabilities(): #init() failed.");
+            return null;
+        }
     }
 
     public synchronized CameraCapabilities getCurrentCameraCapabilities() {
@@ -341,201 +286,94 @@ public class Camera2DataContainer {
         return getCapabilities(getActualOpenCameraId(i, i2));
     }
 
-    public synchronized int getActualOpenCameraId(int r8, int r9) {
-        /*
-        r7 = this;
-        monitor-enter(r7);
-        r0 = r7.isInitialized();	 Catch:{ all -> 0x0126 }
-        if (r0 != 0) goto L_0x0010;
-    L_0x0007:
-        r9 = TAG;	 Catch:{ all -> 0x0126 }
-        r0 = "Warning: getActualOpenCameraId(): #init() failed.";
-        com.android.camera.log.Log.d(r9, r0);	 Catch:{ all -> 0x0126 }
-        monitor-exit(r7);
-        return r8;
-        r0 = 0;
-        r1 = 1;
-        r2 = -1;
-        if (r8 != 0) goto L_0x00da;
-    L_0x0016:
-        r3 = com.android.camera.CameraSettings.isDualCameraEnable();	 Catch:{ all -> 0x0126 }
-        if (r3 == 0) goto L_0x002a;
-    L_0x001c:
-        r3 = com.android.camera.CameraSettings.isSupportedOpticalZoom();	 Catch:{ all -> 0x0126 }
-        if (r3 != 0) goto L_0x0028;
-    L_0x0022:
-        r3 = com.android.camera.CameraSettings.isSupportedPortrait();	 Catch:{ all -> 0x0126 }
-        if (r3 == 0) goto L_0x002a;
-    L_0x0028:
-        r3 = r1;
-        goto L_0x002c;
-        r3 = r0;
-    L_0x002c:
-        if (r3 != 0) goto L_0x0030;
-    L_0x002e:
-        monitor-exit(r7);
-        return r8;
-    L_0x0030:
-        switch(r9) {
-            case 161: goto L_0x00c3;
-            case 162: goto L_0x00c3;
-            case 163: goto L_0x008c;
-            case 164: goto L_0x0033;
-            case 165: goto L_0x008c;
-            case 166: goto L_0x0059;
-            case 167: goto L_0x0059;
-            case 168: goto L_0x0033;
-            case 169: goto L_0x0033;
-            case 170: goto L_0x0033;
-            case 171: goto L_0x0035;
-            case 172: goto L_0x0033;
-            case 173: goto L_0x00c3;
-            default: goto L_0x0033;
-        };
-    L_0x0033:
-        goto L_0x00d8;
-    L_0x0035:
-        r3 = com.android.camera.CameraSettings.isUltraWideBokehOn();	 Catch:{ all -> 0x0126 }
-        if (r3 == 0) goto L_0x0047;
-    L_0x003b:
-        r3 = r7.getUltraWideBokehCameraId();	 Catch:{ all -> 0x0126 }
-        if (r3 == r2) goto L_0x0047;
-    L_0x0041:
-        r2 = r7.getUltraWideBokehCameraId();	 Catch:{ all -> 0x0126 }
-        goto L_0x00d9;
-    L_0x0047:
-        r3 = r7.getBokehCameraId();	 Catch:{ all -> 0x0126 }
-        if (r3 == r2) goto L_0x0053;
-    L_0x004d:
-        r2 = r7.getBokehCameraId();	 Catch:{ all -> 0x0126 }
-        goto L_0x00d9;
-    L_0x0053:
-        r2 = r7.getMuxCameraId();	 Catch:{ all -> 0x0126 }
-        goto L_0x00d9;
-    L_0x0059:
-        r2 = com.android.camera.CameraSettings.isSwitchCameraZoomMode();	 Catch:{ all -> 0x0126 }
-        if (r2 == 0) goto L_0x00d8;
-    L_0x005f:
-        r2 = com.android.camera.CameraSettings.getCameraZoomMode(r9);	 Catch:{ all -> 0x0126 }
-        r3 = "wide";
-        r3 = r3.equals(r2);	 Catch:{ all -> 0x0126 }
-        if (r3 == 0) goto L_0x0070;
-    L_0x006b:
-        r2 = r7.getMainBackCameraId();	 Catch:{ all -> 0x0126 }
-        goto L_0x008b;
-    L_0x0070:
-        r3 = "tele";
-        r3 = r3.equals(r2);	 Catch:{ all -> 0x0126 }
-        if (r3 == 0) goto L_0x007d;
-    L_0x0078:
-        r2 = r7.getAuxCameraId();	 Catch:{ all -> 0x0126 }
-        goto L_0x008b;
-    L_0x007d:
-        r3 = "ultra";
-        r2 = r3.equals(r2);	 Catch:{ all -> 0x0126 }
-        if (r2 == 0) goto L_0x008a;
-    L_0x0085:
-        r2 = r7.getUltraWideCameraId();	 Catch:{ all -> 0x0126 }
-        goto L_0x008b;
-    L_0x008a:
-        r2 = r8;
-    L_0x008b:
-        goto L_0x00d9;
-    L_0x008c:
-        r2 = com.android.camera.CameraSettings.isDualCameraSatEnable();	 Catch:{ all -> 0x0126 }
-        if (r2 == 0) goto L_0x00ae;
-    L_0x0092:
-        r2 = com.mi.config.b.isSupportedOpticalZoom();	 Catch:{ all -> 0x0126 }
-        if (r2 == 0) goto L_0x00ae;
-    L_0x0098:
-        r2 = com.mi.config.b.fu();	 Catch:{ all -> 0x0126 }
-        if (r2 == 0) goto L_0x00a9;
-    L_0x009e:
-        r2 = com.android.camera.CameraSettings.isUltraWideConfigOpen();	 Catch:{ all -> 0x0126 }
-        if (r2 == 0) goto L_0x00a9;
-    L_0x00a4:
-        r2 = r7.getUltraWideCameraId();	 Catch:{ all -> 0x0126 }
-        goto L_0x00d9;
-    L_0x00a9:
-        r2 = r7.getMuxCameraId();	 Catch:{ all -> 0x0126 }
-        goto L_0x00d9;
-    L_0x00ae:
-        r2 = com.android.camera.data.DataRepository.dataItemFeature();	 Catch:{ all -> 0x0126 }
-        r2 = r2.fu();	 Catch:{ all -> 0x0126 }
-        if (r2 == 0) goto L_0x00d8;
-    L_0x00b8:
-        r2 = com.android.camera.CameraSettings.isUltraWideConfigOpen();	 Catch:{ all -> 0x0126 }
-        if (r2 == 0) goto L_0x00d8;
-    L_0x00be:
-        r2 = r7.getUltraWideCameraId();	 Catch:{ all -> 0x0126 }
-        goto L_0x00d9;
-    L_0x00c3:
-        r2 = com.android.camera.data.DataRepository.dataItemFeature();	 Catch:{ all -> 0x0126 }
-        r2 = r2.fu();	 Catch:{ all -> 0x0126 }
-        if (r2 == 0) goto L_0x00d8;
-    L_0x00cd:
-        r2 = com.android.camera.CameraSettings.isUltraWideConfigOpen();	 Catch:{ all -> 0x0126 }
-        if (r2 == 0) goto L_0x00d8;
-    L_0x00d3:
-        r2 = r7.getUltraWideCameraId();	 Catch:{ all -> 0x0126 }
-        goto L_0x00d9;
-    L_0x00d8:
-        r2 = r8;
-    L_0x00d9:
-        goto L_0x0101;
-    L_0x00da:
-        if (r8 != r1) goto L_0x0100;
-    L_0x00dc:
-        r3 = 171; // 0xab float:2.4E-43 double:8.45E-322;
-        if (r9 == r3) goto L_0x00f5;
-    L_0x00e0:
-        switch(r9) {
-            case 161: goto L_0x00e4;
-            case 162: goto L_0x00e4;
-            default: goto L_0x00e3;
-        };	 Catch:{ all -> 0x0126 }
-    L_0x00e3:
-        goto L_0x0100;
-    L_0x00e4:
-        r3 = com.android.camera.CameraSettings.isVideoBokehOn();	 Catch:{ all -> 0x0126 }
-        if (r3 == 0) goto L_0x0100;
-    L_0x00ea:
-        r3 = r7.getBokehFrontCameraId();	 Catch:{ all -> 0x0126 }
-        if (r3 == r2) goto L_0x0100;
-    L_0x00f0:
-        r2 = r7.getBokehFrontCameraId();	 Catch:{ all -> 0x0126 }
-        goto L_0x0101;
-    L_0x00f5:
-        r3 = r7.getBokehFrontCameraId();	 Catch:{ all -> 0x0126 }
-        if (r3 == r2) goto L_0x0100;
-    L_0x00fb:
-        r2 = r7.getBokehFrontCameraId();	 Catch:{ all -> 0x0126 }
-        goto L_0x0101;
-    L_0x0100:
-        r2 = r8;
-    L_0x0101:
-        r3 = TAG;	 Catch:{ all -> 0x0126 }
-        r4 = java.util.Locale.US;	 Catch:{ all -> 0x0126 }
-        r5 = "getActualOpenCameraId: mode=%x, id=%d->%d";
-        r6 = 3;
-        r6 = new java.lang.Object[r6];	 Catch:{ all -> 0x0126 }
-        r9 = java.lang.Integer.valueOf(r9);	 Catch:{ all -> 0x0126 }
-        r6[r0] = r9;	 Catch:{ all -> 0x0126 }
-        r8 = java.lang.Integer.valueOf(r8);	 Catch:{ all -> 0x0126 }
-        r6[r1] = r8;	 Catch:{ all -> 0x0126 }
-        r8 = 2;
-        r9 = java.lang.Integer.valueOf(r2);	 Catch:{ all -> 0x0126 }
-        r6[r8] = r9;	 Catch:{ all -> 0x0126 }
-        r8 = java.lang.String.format(r4, r5, r6);	 Catch:{ all -> 0x0126 }
-        com.android.camera.log.Log.d(r3, r8);	 Catch:{ all -> 0x0126 }
-        monitor-exit(r7);
-        return r2;
-    L_0x0126:
-        r8 = move-exception;
-        monitor-exit(r7);
-        throw r8;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.loader.camera2.Camera2DataContainer.getActualOpenCameraId(int, int):int");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public synchronized int getActualOpenCameraId(int i, int i2) {
+        if (isInitialized()) {
+            int ultraWideCameraId;
+            if (i == 0) {
+                int i3 = (CameraSettings.isDualCameraEnable() && (CameraSettings.isSupportedOpticalZoom() || CameraSettings.isSupportedPortrait())) ? 1 : 0;
+                if (i3 != 0) {
+                    switch (i2) {
+                        case 161:
+                        case 162:
+                        case 173:
+                            if (DataRepository.dataItemFeature().fu() && CameraSettings.isUltraWideConfigOpen()) {
+                                ultraWideCameraId = getUltraWideCameraId();
+                                break;
+                            }
+                        case 163:
+                        case 165:
+                            if (!CameraSettings.isDualCameraSatEnable() || !b.isSupportedOpticalZoom()) {
+                                if (DataRepository.dataItemFeature().fu() && CameraSettings.isUltraWideConfigOpen()) {
+                                    ultraWideCameraId = getUltraWideCameraId();
+                                    break;
+                                }
+                            } else if (!b.fu() || !CameraSettings.isUltraWideConfigOpen()) {
+                                ultraWideCameraId = getMuxCameraId();
+                                break;
+                            } else {
+                                ultraWideCameraId = getUltraWideCameraId();
+                                break;
+                            }
+                            break;
+                        case 166:
+                        case 167:
+                            if (CameraSettings.isSwitchCameraZoomMode()) {
+                                String cameraZoomMode = CameraSettings.getCameraZoomMode(i2);
+                                if (!ComponentManuallyDualLens.LENS_WIDE.equals(cameraZoomMode)) {
+                                    if (!ComponentManuallyDualLens.LENS_TELE.equals(cameraZoomMode)) {
+                                        if (!ComponentManuallyDualLens.LENS_ULTRA.equals(cameraZoomMode)) {
+                                            ultraWideCameraId = i;
+                                            break;
+                                        }
+                                        ultraWideCameraId = getUltraWideCameraId();
+                                        break;
+                                    }
+                                    ultraWideCameraId = getAuxCameraId();
+                                    break;
+                                }
+                                ultraWideCameraId = getMainBackCameraId();
+                                break;
+                            }
+                        case 171:
+                            if (!CameraSettings.isUltraWideBokehOn() || getUltraWideBokehCameraId() == -1) {
+                                if (getBokehCameraId() == -1) {
+                                    ultraWideCameraId = getMuxCameraId();
+                                    break;
+                                }
+                                ultraWideCameraId = getBokehCameraId();
+                                break;
+                            }
+                            ultraWideCameraId = getUltraWideBokehCameraId();
+                            break;
+                            break;
+                        default:
+                            ultraWideCameraId = i;
+                            break;
+                    }
+                }
+                return i;
+            }
+            if (i == 1) {
+                if (i2 != 171) {
+                    switch (i2) {
+                        case 161:
+                        case 162:
+                            if (CameraSettings.isVideoBokehOn() && getBokehFrontCameraId() != -1) {
+                                ultraWideCameraId = getBokehFrontCameraId();
+                                break;
+                            }
+                    }
+                } else if (getBokehFrontCameraId() != -1) {
+                    ultraWideCameraId = getBokehFrontCameraId();
+                }
+            }
+            ultraWideCameraId = i;
+            Log.d(TAG, String.format(Locale.US, "getActualOpenCameraId: mode=%x, id=%d->%d", new Object[]{Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(ultraWideCameraId)}));
+            return ultraWideCameraId;
+        }
+        Log.d(TAG, "Warning: getActualOpenCameraId(): #init() failed.");
+        return i;
     }
 
     public synchronized int getUltraWideCameraId() {

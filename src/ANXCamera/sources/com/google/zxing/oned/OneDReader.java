@@ -7,11 +7,13 @@ import com.google.zxing.DecodeHintType;
 import com.google.zxing.FormatException;
 import com.google.zxing.NotFoundException;
 import com.google.zxing.Reader;
+import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
 import com.google.zxing.ResultMetadataType;
 import com.google.zxing.ResultPoint;
 import com.google.zxing.common.BitArray;
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.Map;
 
 public abstract class OneDReader implements Reader {
@@ -53,234 +55,164 @@ public abstract class OneDReader implements Reader {
 
     /* JADX WARNING: Removed duplicated region for block: B:78:0x0104 A:{SYNTHETIC} */
     /* JADX WARNING: Removed duplicated region for block: B:44:0x0099 A:{SYNTHETIC, Splitter: B:44:0x0099} */
-    private com.google.zxing.Result doDecode(com.google.zxing.BinaryBitmap r23, java.util.Map<com.google.zxing.DecodeHintType, ?> r24) throws com.google.zxing.NotFoundException {
-        /*
-        r22 = this;
-        r0 = r24;
-        r1 = r23.getWidth();
-        r2 = r23.getHeight();
-        r3 = new com.google.zxing.common.BitArray;
-        r3.<init>(r1);
-        r4 = r2 >> 1;
-        r6 = 1;
-        if (r0 == 0) goto L_0x001e;
-    L_0x0014:
-        r7 = com.google.zxing.DecodeHintType.TRY_HARDER;
-        r7 = r0.containsKey(r7);
-        if (r7 == 0) goto L_0x001e;
-    L_0x001c:
-        r7 = r6;
-        goto L_0x001f;
-    L_0x001e:
-        r7 = 0;
-    L_0x001f:
-        if (r7 == 0) goto L_0x0024;
-    L_0x0021:
-        r8 = 8;
-        goto L_0x0025;
-    L_0x0024:
-        r8 = 5;
-    L_0x0025:
-        r8 = r2 >> r8;
-        r8 = java.lang.Math.max(r6, r8);
-        if (r7 == 0) goto L_0x002f;
-    L_0x002d:
-        r9 = r2;
-        goto L_0x0031;
-    L_0x002f:
-        r9 = 15;
-    L_0x0031:
-        r10 = 0;
-        r11 = r3;
-        r3 = r0;
-    L_0x0034:
-        if (r10 >= r9) goto L_0x0146;
-    L_0x0036:
-        r0 = r10 + 1;
-        r12 = 2;
-        r13 = r0 / 2;
-        r0 = r10 & 1;
-        if (r0 != 0) goto L_0x0041;
-    L_0x003f:
-        r0 = r6;
-        goto L_0x0042;
-    L_0x0041:
-        r0 = 0;
-    L_0x0042:
-        r14 = r0;
-        if (r14 == 0) goto L_0x0047;
-    L_0x0045:
-        r0 = r13;
-        goto L_0x0048;
-    L_0x0047:
-        r0 = -r13;
-    L_0x0048:
-        r0 = r0 * r8;
-        r15 = r4 + r0;
-        if (r15 < 0) goto L_0x0146;
-    L_0x004d:
-        if (r15 >= r2) goto L_0x013d;
-    L_0x004f:
-        r5 = r23;
-        r0 = r5.getBlackRow(r15, r11);	 Catch:{ NotFoundException -> 0x0126 }
-        r11 = r0;
-        r0 = 0;
-        r21 = r3;
-        r3 = r0;
-        r0 = r21;
-    L_0x005d:
-        if (r3 < r12) goto L_0x006c;
-    L_0x005f:
-        r12 = r22;
-        r3 = r0;
-        r20 = r1;
-        r17 = r2;
-        r18 = r4;
-        r16 = 0;
-        goto L_0x0133;
-    L_0x006c:
-        if (r3 != r6) goto L_0x008d;
-    L_0x006e:
-        r11.reverse();
-        if (r0 == 0) goto L_0x008d;
-    L_0x0073:
-        r12 = com.google.zxing.DecodeHintType.NEED_RESULT_POINT_CALLBACK;
-        r12 = r0.containsKey(r12);
-        if (r12 == 0) goto L_0x008d;
-    L_0x007b:
-        r12 = new java.util.EnumMap;
-        r6 = com.google.zxing.DecodeHintType.class;
-        r12.<init>(r6);
-        r6 = r12;
-        r6.putAll(r0);
-        r12 = com.google.zxing.DecodeHintType.NEED_RESULT_POINT_CALLBACK;
-        r6.remove(r12);
-        r0 = r6;
-        goto L_0x008e;
-    L_0x008d:
-        r6 = r0;
-    L_0x008e:
-        r12 = r22;
-        r0 = r12.decodeRow(r15, r11, r6);	 Catch:{ ReaderException -> 0x010b }
-        r17 = r2;
-        r2 = 1;
-        if (r3 != r2) goto L_0x0104;
-    L_0x0099:
-        r2 = com.google.zxing.ResultMetadataType.ORIENTATION;	 Catch:{ ReaderException -> 0x00f9 }
-        r18 = r4;
-        r4 = 180; // 0xb4 float:2.52E-43 double:8.9E-322;
-        r4 = java.lang.Integer.valueOf(r4);	 Catch:{ ReaderException -> 0x00f0 }
-        r0.putMetadata(r2, r4);	 Catch:{ ReaderException -> 0x00f0 }
-        r2 = r0.getResultPoints();	 Catch:{ ReaderException -> 0x00f0 }
-        if (r2 == 0) goto L_0x00eb;
-    L_0x00ac:
-        r4 = new com.google.zxing.ResultPoint;	 Catch:{ ReaderException -> 0x00f0 }
-        r5 = (float) r1;
-        r19 = r6;
-        r16 = 0;
-        r6 = r2[r16];	 Catch:{ ReaderException -> 0x00e6 }
-        r6 = r6.getX();	 Catch:{ ReaderException -> 0x00e6 }
-        r5 = r5 - r6;
-        r6 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r5 = r5 - r6;
-        r6 = r2[r16];	 Catch:{ ReaderException -> 0x00e6 }
-        r6 = r6.getY();	 Catch:{ ReaderException -> 0x00e6 }
-        r4.<init>(r5, r6);	 Catch:{ ReaderException -> 0x00e6 }
-        r2[r16] = r4;	 Catch:{ ReaderException -> 0x00e6 }
-        r4 = new com.google.zxing.ResultPoint;	 Catch:{ ReaderException -> 0x00e6 }
-        r5 = (float) r1;
-        r20 = r1;
-        r6 = 1;
-        r1 = r2[r6];	 Catch:{ ReaderException -> 0x00e4 }
-        r1 = r1.getX();	 Catch:{ ReaderException -> 0x00e4 }
-        r5 = r5 - r1;
-        r1 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r5 = r5 - r1;
-        r1 = r2[r6];	 Catch:{ ReaderException -> 0x00e4 }
-        r1 = r1.getY();	 Catch:{ ReaderException -> 0x00e4 }
-        r4.<init>(r5, r1);	 Catch:{ ReaderException -> 0x00e4 }
-        r2[r6] = r4;	 Catch:{ ReaderException -> 0x00e4 }
-        goto L_0x010a;
-    L_0x00e4:
-        r0 = move-exception;
-        goto L_0x0117;
-    L_0x00e6:
-        r0 = move-exception;
-        r20 = r1;
-        r6 = 1;
-        goto L_0x0117;
-    L_0x00eb:
-        r20 = r1;
-        r19 = r6;
-        goto L_0x010a;
-    L_0x00f0:
-        r0 = move-exception;
-        r20 = r1;
-        r19 = r6;
-        r6 = 1;
-        r16 = 0;
-        goto L_0x0117;
-    L_0x00f9:
-        r0 = move-exception;
-        r20 = r1;
-        r18 = r4;
-        r19 = r6;
-        r6 = 1;
-        r16 = 0;
-        goto L_0x0117;
-    L_0x0104:
-        r20 = r1;
-        r18 = r4;
-        r19 = r6;
-    L_0x010a:
-        return r0;
-    L_0x010b:
-        r0 = move-exception;
-        r20 = r1;
-        r17 = r2;
-        r18 = r4;
-        r19 = r6;
-        r6 = 1;
-        r16 = 0;
-    L_0x0117:
-        r3 = r3 + 1;
-        r2 = r17;
-        r4 = r18;
-        r0 = r19;
-        r1 = r20;
-        r5 = r23;
-        r12 = 2;
-        goto L_0x005d;
-    L_0x0126:
-        r0 = move-exception;
-        r12 = r22;
-        r20 = r1;
-        r17 = r2;
-        r18 = r4;
-        r16 = 0;
-        r1 = r0;
-    L_0x0133:
-        r10 = r10 + 1;
-        r2 = r17;
-        r4 = r18;
-        r1 = r20;
-        goto L_0x0034;
-    L_0x013d:
-        r12 = r22;
-        r20 = r1;
-        r17 = r2;
-        r18 = r4;
-        goto L_0x014e;
-    L_0x0146:
-        r12 = r22;
-        r20 = r1;
-        r17 = r2;
-        r18 = r4;
-    L_0x014e:
-        r0 = com.google.zxing.NotFoundException.getNotFoundInstance();
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.zxing.oned.OneDReader.doDecode(com.google.zxing.BinaryBitmap, java.util.Map):com.google.zxing.Result");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private Result doDecode(BinaryBitmap image, Map<DecodeHintType, ?> hints) throws NotFoundException {
+        int maxLines;
+        int i;
+        int i2;
+        int i3;
+        Map<DecodeHintType, ?> hints2;
+        BinaryBitmap binaryBitmap;
+        int i4;
+        Map<DecodeHintType, ?> map = hints;
+        int width = image.getWidth();
+        int height = image.getHeight();
+        BitArray row = new BitArray(width);
+        int middle = height >> 1;
+        int hints3 = 1;
+        boolean tryHarder = map != null && map.containsKey(DecodeHintType.TRY_HARDER);
+        int rowStep = Math.max(1, height >> (tryHarder ? 8 : 5));
+        if (tryHarder) {
+            maxLines = height;
+        } else {
+            maxLines = 15;
+        }
+        int x = 0;
+        BitArray row2 = row;
+        Map<DecodeHintType, ?> hints4 = map;
+        while (x < maxLines) {
+            Map<DecodeHintType, ?> i42 = 2;
+            int rowStepsAboveOrBelow = (x + 1) / 2;
+            int rowNumber = middle + (((x & 1) == 0 ? hints3 : false ? rowStepsAboveOrBelow : -rowStepsAboveOrBelow) * rowStep);
+            if (rowNumber >= 0) {
+                if (rowNumber >= height) {
+                    i = width;
+                    i2 = height;
+                    i3 = middle;
+                    break;
+                }
+                try {
+                    row2 = image.getBlackRow(rowNumber, row2);
+                    Map<DecodeHintType, ?> map2 = hints4;
+                    hints4 = 0;
+                    map = map2;
+                    while (hints4 < i42) {
+                        Map<DecodeHintType, ?> hints5;
+                        Result result;
+                        if (hints4 == hints3) {
+                            row2.reverse();
+                            if (map != null && map.containsKey(DecodeHintType.NEED_RESULT_POINT_CALLBACK)) {
+                                hints5 = new EnumMap(DecodeHintType.class);
+                                hints5.putAll(map);
+                                hints5.remove(DecodeHintType.NEED_RESULT_POINT_CALLBACK);
+                                result = decodeRow(rowNumber, row2, hints5);
+                                i2 = height;
+                                if (hints4 != 1) {
+                                    try {
+                                        i3 = middle;
+                                        try {
+                                            result.putMetadata(ResultMetadataType.ORIENTATION, Integer.valueOf(180));
+                                            height = result.getResultPoints();
+                                            if (height != 0) {
+                                                hints2 = hints5;
+                                                try {
+                                                    height[0] = new ResultPoint((((float) width) - height[0].getX()) - 1.0f, height[0].getY());
+                                                    i = width;
+                                                    hints3 = 1;
+                                                    try {
+                                                        height[1] = new ResultPoint((((float) width) - height[1].getX()) - 1.0f, height[1].getY());
+                                                    } catch (ReaderException e) {
+                                                    }
+                                                } catch (ReaderException e2) {
+                                                    i = width;
+                                                    hints3 = 1;
+                                                    hints4++;
+                                                    height = i2;
+                                                    middle = i3;
+                                                    map = hints2;
+                                                    width = i;
+                                                    binaryBitmap = image;
+                                                    i42 = 2;
+                                                }
+                                            } else {
+                                                hints2 = hints5;
+                                            }
+                                        } catch (ReaderException e3) {
+                                            i = width;
+                                            hints2 = hints5;
+                                            hints3 = 1;
+                                            hints4++;
+                                            height = i2;
+                                            middle = i3;
+                                            map = hints2;
+                                            width = i;
+                                            binaryBitmap = image;
+                                            i42 = 2;
+                                        }
+                                    } catch (ReaderException e4) {
+                                        i = width;
+                                        i3 = middle;
+                                        hints2 = hints5;
+                                        hints3 = 1;
+                                        hints4++;
+                                        height = i2;
+                                        middle = i3;
+                                        map = hints2;
+                                        width = i;
+                                        binaryBitmap = image;
+                                        i42 = 2;
+                                    }
+                                } else {
+                                    i3 = middle;
+                                    hints2 = hints5;
+                                }
+                                return result;
+                            }
+                        }
+                        hints5 = map;
+                        try {
+                            result = decodeRow(rowNumber, row2, hints5);
+                            i2 = height;
+                            if (hints4 != 1) {
+                            }
+                            return result;
+                        } catch (ReaderException e5) {
+                            i = width;
+                            i2 = height;
+                            i3 = middle;
+                            hints2 = hints5;
+                            hints3 = 1;
+                            hints4++;
+                            height = i2;
+                            middle = i3;
+                            map = hints2;
+                            width = i;
+                            binaryBitmap = image;
+                            i42 = 2;
+                        }
+                    }
+                    hints4 = map;
+                    i = width;
+                    i2 = height;
+                    i3 = middle;
+                } catch (NotFoundException ignored) {
+                    i = width;
+                    i2 = height;
+                    i3 = middle;
+                    width = ignored;
+                }
+                x++;
+                height = i2;
+                middle = i3;
+                width = i;
+            } else {
+                break;
+            }
+        }
+        i = width;
+        i2 = height;
+        i3 = middle;
+        throw NotFoundException.getNotFoundInstance();
     }
 
     protected static void recordPattern(BitArray row, int start, int[] counters) throws NotFoundException {

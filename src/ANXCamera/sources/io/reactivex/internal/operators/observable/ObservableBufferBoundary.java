@@ -191,47 +191,22 @@ public final class ObservableBufferBoundary<T, U extends Collection<? super T>, 
         /* JADX WARNING: Missing block: B:15:0x0036, code:
             return;
      */
-        void close(io.reactivex.internal.operators.observable.ObservableBufferBoundary.BufferCloseObserver<T, C> r4, long r5) {
-            /*
-            r3 = this;
-            r0 = r3.observers;
-            r0.delete(r4);
-            r4 = r3.observers;
-            r4 = r4.size();
-            r0 = 1;
-            if (r4 != 0) goto L_0x0017;
-            r4 = r3.upstream;
-            io.reactivex.internal.disposables.DisposableHelper.dispose(r4);
-            r4 = r0;
-            goto L_0x0018;
-        L_0x0017:
-            r4 = 0;
-        L_0x0018:
-            monitor-enter(r3);
-            r1 = r3.buffers;	 Catch:{ all -> 0x0037 }
-            if (r1 != 0) goto L_0x001f;
-        L_0x001d:
-            monitor-exit(r3);	 Catch:{ all -> 0x0037 }
-            return;
-        L_0x001f:
-            r1 = r3.queue;	 Catch:{ all -> 0x0037 }
-            r2 = r3.buffers;	 Catch:{ all -> 0x0037 }
-            r5 = java.lang.Long.valueOf(r5);	 Catch:{ all -> 0x0037 }
-            r5 = r2.remove(r5);	 Catch:{ all -> 0x0037 }
-            r1.offer(r5);	 Catch:{ all -> 0x0037 }
-            monitor-exit(r3);	 Catch:{ all -> 0x0037 }
-            if (r4 == 0) goto L_0x0033;
-        L_0x0031:
-            r3.done = r0;
-        L_0x0033:
-            r3.drain();
-            return;
-        L_0x0037:
-            r4 = move-exception;
-            monitor-exit(r3);	 Catch:{ all -> 0x0037 }
-            throw r4;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.observable.ObservableBufferBoundary.BufferBoundaryObserver.close(io.reactivex.internal.operators.observable.ObservableBufferBoundary$BufferCloseObserver, long):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        void close(BufferCloseObserver<T, C> bufferCloseObserver, long j) {
+            this.observers.delete(bufferCloseObserver);
+            boolean z;
+            if (this.observers.size() == 0) {
+                DisposableHelper.dispose(this.upstream);
+                z = true;
+            } else {
+                z = false;
+            }
+            synchronized (this) {
+                if (this.buffers == null) {
+                    return;
+                }
+                this.queue.offer(this.buffers.remove(Long.valueOf(j)));
+            }
         }
 
         void boundaryError(Disposable disposable, Throwable th) {

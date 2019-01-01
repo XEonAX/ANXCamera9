@@ -181,46 +181,25 @@ public class FragmentLighting extends BaseFragment implements OnClickListener {
     /* JADX WARNING: Removed duplicated region for block: B:12:0x002a  */
     /* JADX WARNING: Removed duplicated region for block: B:12:0x002a  */
     /* JADX WARNING: Removed duplicated region for block: B:14:? A:{SYNTHETIC, RETURN} */
-    public void switchLighting(int r3) {
-        /*
-        r2 = this;
-        r0 = 3;
-        r1 = -1;
-        if (r3 == r0) goto L_0x001e;
-    L_0x0005:
-        r0 = 5;
-        if (r3 == r0) goto L_0x0009;
-    L_0x0008:
-        goto L_0x0027;
-    L_0x0009:
-        r3 = r2.mCurrentIndex;
-        r0 = r2.mComponentRunningLighting;
-        r0 = r0.getItems();
-        r0 = r0.size();
-        r0 = r0 + -1;
-        if (r3 >= r0) goto L_0x0027;
-    L_0x0019:
-        r3 = r2.mCurrentIndex;
-        r3 = r3 + 1;
-        goto L_0x0028;
-    L_0x001e:
-        r3 = r2.mCurrentIndex;
-        if (r3 <= 0) goto L_0x0027;
-    L_0x0022:
-        r3 = r2.mCurrentIndex;
-        r3 = r3 + -1;
-        goto L_0x0028;
-    L_0x0027:
-        r3 = r1;
-    L_0x0028:
-        if (r3 <= r1) goto L_0x002e;
-    L_0x002a:
-        r0 = 0;
-        r2.onItemSelected(r3, r0);
-    L_0x002e:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.FragmentLighting.switchLighting(int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void switchLighting(int i) {
+        if (i != 3) {
+            if (i == 5 && this.mCurrentIndex < this.mComponentRunningLighting.getItems().size() - 1) {
+                i = this.mCurrentIndex + 1;
+                if (i > -1) {
+                    onItemSelected(i, false);
+                    return;
+                }
+                return;
+            }
+        } else if (this.mCurrentIndex > 0) {
+            i = this.mCurrentIndex - 1;
+            if (i > -1) {
+            }
+        }
+        i = -1;
+        if (i > -1) {
+        }
     }
 
     private void onItemSelected(int i, boolean z) {

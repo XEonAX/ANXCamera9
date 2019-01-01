@@ -36,6 +36,7 @@ import com.android.camera.data.data.config.DataItemConfig;
 import com.android.camera.data.data.config.SupportedConfigFactory;
 import com.android.camera.data.data.config.SupportedConfigs;
 import com.android.camera.data.data.config.TopConfigItem;
+import com.android.camera.effect.FilterInfo;
 import com.android.camera.fragment.BaseFragment;
 import com.android.camera.fragment.FragmentUtils;
 import com.android.camera.fragment.live.FragmentLiveMusic;
@@ -43,6 +44,7 @@ import com.android.camera.fragment.top.ExpandAdapter.ExpandListener;
 import com.android.camera.log.Log;
 import com.android.camera.module.loader.camera2.Camera2DataContainer;
 import com.android.camera.protocol.ModeCoordinatorImpl;
+import com.android.camera.protocol.ModeProtocol.ActionProcessing;
 import com.android.camera.protocol.ModeProtocol.CameraAction;
 import com.android.camera.protocol.ModeProtocol.ConfigChanges;
 import com.android.camera.protocol.ModeProtocol.HandleBackTrace;
@@ -514,429 +516,204 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
     /* JADX WARNING: Missing block: B:87:0x0189, code:
             r8 = 0;
      */
-    private boolean setTopImageResource(int r6, android.widget.ImageView r7, int r8, com.android.camera.data.data.config.DataItemConfig r9, int r10, boolean r11) {
-        /*
-        r5 = this;
-        r10 = com.android.camera.protocol.ModeCoordinatorImpl.getInstance();
-        r0 = 162; // 0xa2 float:2.27E-43 double:8.0E-322;
-        r10 = r10.getAttachProtocol(r0);
-        r10 = (com.android.camera.protocol.ModeProtocol.ActionProcessing) r10;
-        r0 = 209; // 0xd1 float:2.93E-43 double:1.033E-321;
-        r1 = 1;
-        r2 = 0;
-        if (r6 == r0) goto L_0x0228;
-    L_0x0014:
-        r0 = 225; // 0xe1 float:3.15E-43 double:1.11E-321;
-        if (r6 == r0) goto L_0x0220;
-    L_0x0018:
-        r0 = 243; // 0xf3 float:3.4E-43 double:1.2E-321;
-        if (r6 == r0) goto L_0x01ef;
-    L_0x001c:
-        r0 = 245; // 0xf5 float:3.43E-43 double:1.21E-321;
-        if (r6 == r0) goto L_0x01e7;
-    L_0x0020:
-        r0 = 8;
-        switch(r6) {
-            case 193: goto L_0x018c;
-            case 194: goto L_0x0148;
-            case 195: goto L_0x013f;
-            case 196: goto L_0x00f6;
-            case 197: goto L_0x00ed;
-            case 198: goto L_0x00ec;
-            case 199: goto L_0x00e3;
-            default: goto L_0x0025;
-        };
-    L_0x0025:
-        switch(r6) {
-            case 201: goto L_0x00c3;
-            case 202: goto L_0x00b9;
-            case 203: goto L_0x0090;
-            case 204: goto L_0x007e;
-            case 205: goto L_0x0062;
-            case 206: goto L_0x0046;
-            case 207: goto L_0x002a;
-            default: goto L_0x0028;
-        };
-    L_0x0028:
-        goto L_0x0189;
-    L_0x002a:
-        r8 = com.android.camera.CameraSettings.isUltraWideBokehOn();
-        if (r8 == 0) goto L_0x0036;
-    L_0x0030:
-        r9 = r5.mUltraWideBokehResources;
-        r9 = r9[r1];
-    L_0x0034:
-        r2 = r9;
-        goto L_0x003b;
-    L_0x0036:
-        r9 = r5.mUltraWideBokehResources;
-        r9 = r9[r2];
-        goto L_0x0034;
-    L_0x003b:
-        if (r8 == 0) goto L_0x0041;
-    L_0x003d:
-        r8 = 2131427907; // 0x7f0b0243 float:1.8477443E38 double:1.0530653054E-314;
-        goto L_0x0044;
-    L_0x0041:
-        r8 = 2131427908; // 0x7f0b0244 float:1.8477446E38 double:1.053065306E-314;
-    L_0x0044:
-        goto L_0x0243;
-    L_0x0046:
-        r8 = com.android.camera.CameraSettings.isLiveShotOn();
-        if (r8 == 0) goto L_0x0052;
-    L_0x004c:
-        r9 = r5.mLiveShotResource;
-        r9 = r9[r1];
-    L_0x0050:
-        r2 = r9;
-        goto L_0x0057;
-    L_0x0052:
-        r9 = r5.mLiveShotResource;
-        r9 = r9[r2];
-        goto L_0x0050;
-    L_0x0057:
-        if (r8 == 0) goto L_0x005d;
-    L_0x0059:
-        r8 = 2131427894; // 0x7f0b0236 float:1.8477417E38 double:1.053065299E-314;
-        goto L_0x0060;
-    L_0x005d:
-        r8 = 2131427895; // 0x7f0b0237 float:1.847742E38 double:1.0530652995E-314;
-    L_0x0060:
-        goto L_0x0243;
-    L_0x0062:
-        r8 = com.android.camera.CameraSettings.isUltraWideConfigOpen();
-        if (r8 == 0) goto L_0x006e;
-    L_0x0068:
-        r9 = r5.mUltraWideResource;
-        r9 = r9[r1];
-    L_0x006c:
-        r2 = r9;
-        goto L_0x0073;
-    L_0x006e:
-        r9 = r5.mUltraWideResource;
-        r9 = r9[r2];
-        goto L_0x006c;
-    L_0x0073:
-        if (r8 == 0) goto L_0x0079;
-    L_0x0075:
-        r8 = 2131427898; // 0x7f0b023a float:1.8477425E38 double:1.053065301E-314;
-        goto L_0x007c;
-    L_0x0079:
-        r8 = 2131427899; // 0x7f0b023b float:1.8477427E38 double:1.0530653015E-314;
-    L_0x007c:
-        goto L_0x0243;
-    L_0x007e:
-        r2 = r5.getFPS960ImageResource(r8);
-        r8 = com.android.camera.data.DataRepository.dataItemConfig();
-        r8 = r8.getComponentConfigSlowMotion();
-        r8 = r8.getContentDesc();
-        goto L_0x0243;
-    L_0x0090:
-        r9 = com.android.camera.data.DataRepository.dataItemRunning();
-        r9 = r9.getComponentRunningLighting();
-        r8 = r9.isSwitchOn(r8);
-        if (r8 == 0) goto L_0x00a3;
-    L_0x009e:
-        r8 = r5.mLightingResource;
-        r8 = r8[r1];
-        goto L_0x00a7;
-    L_0x00a3:
-        r8 = r5.mLightingResource;
-        r8 = r8[r2];
-    L_0x00a7:
-        if (r10 == 0) goto L_0x01eb;
-    L_0x00a9:
-        r9 = r10.isShowLightingView();
-        if (r9 == 0) goto L_0x00b4;
-    L_0x00af:
-        r2 = 2131427582; // 0x7f0b00fe float:1.8476784E38 double:1.053065145E-314;
-        goto L_0x01eb;
-    L_0x00b4:
-        r2 = 2131427581; // 0x7f0b00fd float:1.8476782E38 double:1.0530651444E-314;
-        goto L_0x01eb;
-    L_0x00b9:
-        r2 = r5.getHFRImageResource(r8);
-        r8 = r5.getHFRContentDesc(r8);
-        goto L_0x0243;
-    L_0x00c3:
-        r8 = com.android.camera.CameraSettings.getAiSceneOpen();
-        if (r8 == 0) goto L_0x00cf;
-    L_0x00c9:
-        r8 = r5.mAiSceneResources;
-        r8 = r8[r1];
-    L_0x00cd:
-        r2 = r8;
-        goto L_0x00d4;
-    L_0x00cf:
-        r8 = r5.mAiSceneResources;
-        r8 = r8[r2];
-        goto L_0x00cd;
-    L_0x00d4:
-        r8 = com.android.camera.CameraSettings.getAiSceneOpen();
-        if (r8 == 0) goto L_0x00de;
-    L_0x00da:
-        r8 = 2131427555; // 0x7f0b00e3 float:1.847673E38 double:1.0530651315E-314;
-        goto L_0x00e1;
-    L_0x00de:
-        r8 = 2131427556; // 0x7f0b00e4 float:1.8476732E38 double:1.053065132E-314;
-    L_0x00e1:
-        goto L_0x0243;
-    L_0x00e3:
-        r2 = r5.getFocusPeakImageResource();
-        r8 = 2131427560; // 0x7f0b00e8 float:1.847674E38 double:1.053065134E-314;
-        goto L_0x0243;
-    L_0x00ec:
-        return r2;
-    L_0x00ed:
-        r2 = r5.getMoreResources();
-        r8 = 2131427557; // 0x7f0b00e5 float:1.8476734E38 double:1.0530651325E-314;
-        goto L_0x0243;
-    L_0x00f6:
-        if (r11 == 0) goto L_0x010d;
-    L_0x00f8:
-        r9 = com.android.camera.data.DataRepository.getInstance();
-        r9 = r9.backUp();
-        r11 = com.android.camera.data.DataRepository.dataItemGlobal();
-        r11 = r11.getCurrentCameraId();
-        r8 = r9.getBackupFilter(r8, r11);
-        goto L_0x0119;
-    L_0x010d:
-        r9 = com.android.camera.data.DataRepository.dataItemRunning();
-        r9 = r9.getComponentConfigFilter();
-        r8 = r9.getComponentValue(r8);
-    L_0x0119:
-        r8 = java.lang.Integer.parseInt(r8);
-        r9 = com.android.camera.effect.FilterInfo.FILTER_ID_NONE;
-        if (r8 == r9) goto L_0x0129;
-    L_0x0121:
-        if (r8 > 0) goto L_0x0124;
-    L_0x0123:
-        goto L_0x0129;
-    L_0x0124:
-        r8 = r5.mFilterResources;
-        r8 = r8[r1];
-        goto L_0x012d;
-    L_0x0129:
-        r8 = r5.mFilterResources;
-        r8 = r8[r2];
-    L_0x012d:
-        if (r10 == 0) goto L_0x01eb;
-    L_0x012f:
-        r9 = r10.isShowFilterView();
-        if (r9 == 0) goto L_0x013a;
-    L_0x0135:
-        r2 = 2131427554; // 0x7f0b00e2 float:1.8476728E38 double:1.053065131E-314;
-        goto L_0x01eb;
-    L_0x013a:
-        r2 = 2131427553; // 0x7f0b00e1 float:1.8476725E38 double:1.0530651305E-314;
-        goto L_0x01eb;
-    L_0x013f:
-        r2 = r5.getPortraitResources();
-        r8 = 2131427559; // 0x7f0b00e7 float:1.8476738E38 double:1.0530651335E-314;
-        goto L_0x0243;
-    L_0x0148:
-        r9 = r9.getComponentHdr();
-        r10 = r9.isEmpty();
-        if (r10 != 0) goto L_0x0189;
-    L_0x0152:
-        r10 = r9.getValueSelectedDrawableIgnoreClose(r8);
-        r3 = r9.getValueSelectedStringIdIgnoreClose(r8);
-        if (r11 != 0) goto L_0x0185;
-    L_0x015c:
-        r8 = r9.getComponentValue(r8);
-        r9 = "on";
-        r9 = r9.equals(r8);
-        if (r9 != 0) goto L_0x0181;
-    L_0x0168:
-        r9 = "normal";
-        r9 = r9.equals(r8);
-        if (r9 == 0) goto L_0x0171;
-    L_0x0170:
-        goto L_0x0181;
-    L_0x0171:
-        r9 = "live";
-        r8 = r9.equals(r8);
-        if (r8 == 0) goto L_0x017d;
-    L_0x0179:
-        r5.alertHDR(r2, r1, r2);
-        goto L_0x0184;
-    L_0x017d:
-        r5.alertHDR(r0, r2, r2);
-        goto L_0x0184;
-    L_0x0181:
-        r5.alertHDR(r2, r2, r2);
-    L_0x0185:
-        r2 = r10;
-    L_0x0186:
-        r8 = r3;
-        goto L_0x0243;
-    L_0x0189:
-        r8 = r2;
-        goto L_0x0243;
-    L_0x018c:
-        r9 = r9.getComponentFlash();
-        r10 = r9.isEmpty();
-        if (r10 != 0) goto L_0x01ca;
-    L_0x0196:
-        r10 = r9.getValueSelectedDrawableIgnoreClose(r8);
-        r3 = r9.getValueSelectedStringIdIgnoreClose(r8);
-        if (r11 != 0) goto L_0x01c8;
-    L_0x01a0:
-        r8 = r9.getComponentValue(r8);
-        r9 = "1";
-        r9 = r9.equals(r8);
-        if (r9 != 0) goto L_0x01c5;
-    L_0x01ac:
-        r9 = "101";
-        r9 = r9.equals(r8);
-        if (r9 == 0) goto L_0x01b5;
-    L_0x01b4:
-        goto L_0x01c5;
-    L_0x01b5:
-        r9 = "2";
-        r8 = r9.equals(r8);
-        if (r8 == 0) goto L_0x01c1;
-    L_0x01bd:
-        r5.alertFlash(r2, r1, r2);
-        goto L_0x01c8;
-    L_0x01c1:
-        r5.alertFlash(r0, r2, r2);
-        goto L_0x01c8;
-    L_0x01c5:
-        r5.alertFlash(r2, r2, r2);
-    L_0x01c8:
-        r2 = r10;
-        goto L_0x01cb;
-    L_0x01ca:
-        r3 = r2;
-    L_0x01cb:
-        r8 = r5.mSupportedConfigs;
-        r8 = r8.findConfigItem(r6);
-        r9 = r8.enable;
-        r7.setEnabled(r9);
-        r8 = r8.enable;
-        if (r8 != 0) goto L_0x01e1;
-    L_0x01da:
-        r8 = 1058642330; // 0x3f19999a float:0.6 double:5.230388065E-315;
-        r7.setAlpha(r8);
-        goto L_0x0186;
-    L_0x01e1:
-        r8 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
-        r7.setAlpha(r8);
-        goto L_0x0186;
-    L_0x01e7:
-        r8 = r5.mLiveMusicSelectResources;
-        r8 = r8[r2];
-    L_0x01eb:
-        r4 = r2;
-        r2 = r8;
-        r8 = r4;
-        goto L_0x0243;
-    L_0x01ef:
-        r8 = com.android.camera.CameraSettings.isVideoBokehOn();
-        r9 = "FragmentTopConfig";
-        r10 = new java.lang.StringBuilder;
-        r10.<init>();
-        r11 = "setTopImageResource: VIDEO_BOKEH isSwitchOn = ";
-        r10.append(r11);
-        r10.append(r8);
-        r10 = r10.toString();
-        com.android.camera.log.Log.d(r9, r10);
-        if (r8 == 0) goto L_0x0211;
-    L_0x020b:
-        r9 = r5.mVideoBokehResource;
-        r9 = r9[r1];
-    L_0x020f:
-        r2 = r9;
-        goto L_0x0216;
-    L_0x0211:
-        r9 = r5.mVideoBokehResource;
-        r9 = r9[r2];
-        goto L_0x020f;
-    L_0x0216:
-        if (r8 == 0) goto L_0x021c;
-    L_0x0218:
-        r8 = 2131427846; // 0x7f0b0206 float:1.847732E38 double:1.0530652753E-314;
-        goto L_0x021f;
-    L_0x021c:
-        r8 = 2131427847; // 0x7f0b0207 float:1.8477322E38 double:1.053065276E-314;
-    L_0x021f:
-        goto L_0x0243;
-    L_0x0220:
-        r2 = r5.getSettingResources();
-        r8 = 2131427558; // 0x7f0b00e6 float:1.8476736E38 double:1.053065133E-314;
-        goto L_0x0243;
-    L_0x0228:
-        r8 = com.android.camera.CameraSettings.isUltraPixelPhotographyOn();
-        if (r8 == 0) goto L_0x0234;
-    L_0x022e:
-        r9 = r5.mUltraPixelPhotographyResources;
-        r9 = r9[r1];
-    L_0x0232:
-        r2 = r9;
-        goto L_0x0239;
-    L_0x0234:
-        r9 = r5.mUltraPixelPhotographyResources;
-        r9 = r9[r2];
-        goto L_0x0232;
-    L_0x0239:
-        if (r8 == 0) goto L_0x023f;
-    L_0x023b:
-        r8 = 2131427912; // 0x7f0b0248 float:1.8477454E38 double:1.053065308E-314;
-        goto L_0x0242;
-    L_0x023f:
-        r8 = 2131427913; // 0x7f0b0249 float:1.8477456E38 double:1.0530653084E-314;
-    L_0x0243:
-        if (r7 == 0) goto L_0x02a1;
-    L_0x0245:
-        if (r2 <= 0) goto L_0x02a1;
-    L_0x0247:
-        r9 = r5.getResources();
-        r9 = r9.getDrawable(r2);
-        r6 = r5.getInitialMargin(r6);
-        r10 = 2131558407; // 0x7f0d0007 float:1.8742129E38 double:1.053129781E-314;
-        r11 = java.lang.Integer.valueOf(r6);
-        r7.setTag(r10, r11);
-        if (r6 <= 0) goto L_0x0289;
-        r10 = r7.getLayoutParams();
-        r10 = (android.widget.FrameLayout.LayoutParams) r10;
-        r11 = r9.getIntrinsicWidth();
-        r11 = r11 / 2;
-        r0 = r5.mViewPadding;
-        r11 = r11 + r0;
-        r6 = r6 - r11;
-        r11 = r5.mIsRTL;
-        if (r11 == 0) goto L_0x0284;
-    L_0x0274:
-        r11 = r5.mTotalWidth;
-        r11 = r11 - r6;
-        r6 = r9.getIntrinsicWidth();
-        r11 = r11 - r6;
-        r6 = r5.mViewPadding;
-        r6 = r6 * 2;
-        r11 = r11 - r6;
-        r10.leftMargin = r11;
-        goto L_0x0286;
-    L_0x0284:
-        r10.leftMargin = r6;
-    L_0x0286:
-        r7.setLayoutParams(r10);
-    L_0x0289:
-        r7.setImageDrawable(r9);
-        if (r8 <= 0) goto L_0x02a1;
-    L_0x028e:
-        r6 = com.android.camera.Util.isAccessible();
-        if (r6 != 0) goto L_0x029a;
-    L_0x0294:
-        r6 = com.android.camera.Util.isSetContentDesc();
-        if (r6 == 0) goto L_0x02a1;
-    L_0x029a:
-        r6 = r5.getString(r8);
-        r7.setContentDescription(r6);
-    L_0x02a1:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.top.FragmentTopConfig.setTopImageResource(int, android.widget.ImageView, int, com.android.camera.data.data.config.DataItemConfig, int, boolean):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private boolean setTopImageResource(int i, ImageView imageView, int i2, DataItemConfig dataItemConfig, int i3, boolean z) {
+        ActionProcessing actionProcessing = (ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162);
+        int i4 = 0;
+        boolean isUltraPixelPhotographyOn;
+        if (i == 209) {
+            isUltraPixelPhotographyOn = CameraSettings.isUltraPixelPhotographyOn();
+            i4 = isUltraPixelPhotographyOn ? this.mUltraPixelPhotographyResources[1] : this.mUltraPixelPhotographyResources[0];
+            i2 = isUltraPixelPhotographyOn ? R.string.accessibility_ultra_pixel_photography_on : R.string.accessibility_ultra_pixel_photography_off;
+        } else if (i == 225) {
+            i4 = getSettingResources();
+            i2 = R.string.accessibility_setting;
+        } else if (i != 243) {
+            boolean z2;
+            if (i != 245) {
+                int i5;
+                String componentValue;
+                switch (i) {
+                    case 193:
+                        ComponentConfigFlash componentFlash = dataItemConfig.getComponentFlash();
+                        if (componentFlash.isEmpty()) {
+                            i5 = 0;
+                        } else {
+                            i3 = componentFlash.getValueSelectedDrawableIgnoreClose(i2);
+                            i5 = componentFlash.getValueSelectedStringIdIgnoreClose(i2);
+                            if (!z) {
+                                componentValue = componentFlash.getComponentValue(i2);
+                                if ("1".equals(componentValue) || ComponentConfigFlash.FLASH_VALUE_SCREEN_LIGHT_ON.equals(componentValue)) {
+                                    alertFlash(0, false, false);
+                                } else if ("2".equals(componentValue)) {
+                                    alertFlash(0, true, false);
+                                } else {
+                                    alertFlash(8, false, false);
+                                }
+                            }
+                            i4 = i3;
+                        }
+                        TopConfigItem findConfigItem = this.mSupportedConfigs.findConfigItem(i);
+                        imageView.setEnabled(findConfigItem.enable);
+                        if (!findConfigItem.enable) {
+                            imageView.setAlpha(0.6f);
+                            break;
+                        }
+                        imageView.setAlpha(1.0f);
+                        break;
+                        break;
+                    case 194:
+                        ComponentConfigHdr componentHdr = dataItemConfig.getComponentHdr();
+                        if (!componentHdr.isEmpty()) {
+                            i3 = componentHdr.getValueSelectedDrawableIgnoreClose(i2);
+                            i5 = componentHdr.getValueSelectedStringIdIgnoreClose(i2);
+                            if (!z) {
+                                componentValue = componentHdr.getComponentValue(i2);
+                                if ("on".equals(componentValue) || "normal".equals(componentValue)) {
+                                    alertHDR(0, false, false);
+                                } else if (ComponentConfigHdr.HDR_VALUE_LIVE.equals(componentValue)) {
+                                    alertHDR(0, true, false);
+                                } else {
+                                    alertHDR(8, false, false);
+                                }
+                            }
+                            i4 = i3;
+                            break;
+                        }
+                        break;
+                    case 195:
+                        i4 = getPortraitResources();
+                        i2 = R.string.accessibility_protrait;
+                        break;
+                    case 196:
+                        if (z) {
+                            componentValue = DataRepository.getInstance().backUp().getBackupFilter(i2, DataRepository.dataItemGlobal().getCurrentCameraId());
+                        } else {
+                            componentValue = DataRepository.dataItemRunning().getComponentConfigFilter().getComponentValue(i2);
+                        }
+                        i2 = Integer.parseInt(componentValue);
+                        if (i2 == FilterInfo.FILTER_ID_NONE || i2 <= 0) {
+                            i2 = this.mFilterResources[0];
+                        } else {
+                            i2 = this.mFilterResources[1];
+                        }
+                        if (actionProcessing != null) {
+                            if (!actionProcessing.isShowFilterView()) {
+                                z2 = true;
+                                break;
+                            }
+                            z2 = true;
+                            break;
+                        }
+                        break;
+                    case 197:
+                        i4 = getMoreResources();
+                        i2 = R.string.accessibility_more;
+                        break;
+                    case 198:
+                        return false;
+                    case 199:
+                        i4 = getFocusPeakImageResource();
+                        i2 = R.string.accessibility_foucs_peak;
+                        break;
+                    default:
+                        switch (i) {
+                            case 201:
+                                i4 = CameraSettings.getAiSceneOpen() ? this.mAiSceneResources[1] : this.mAiSceneResources[0];
+                                if (!CameraSettings.getAiSceneOpen()) {
+                                    i2 = R.string.accessibility_ai_scene_off;
+                                    break;
+                                }
+                                i2 = R.string.accessibility_ai_scene_on;
+                                break;
+                            case 202:
+                                i4 = getHFRImageResource(i2);
+                                i2 = getHFRContentDesc(i2);
+                                break;
+                            case 203:
+                                if (DataRepository.dataItemRunning().getComponentRunningLighting().isSwitchOn(i2)) {
+                                    i2 = this.mLightingResource[1];
+                                } else {
+                                    i2 = this.mLightingResource[0];
+                                }
+                                if (actionProcessing != null) {
+                                    if (!actionProcessing.isShowLightingView()) {
+                                        z2 = true;
+                                        break;
+                                    }
+                                    z2 = true;
+                                    break;
+                                }
+                                break;
+                            case 204:
+                                i4 = getFPS960ImageResource(i2);
+                                i2 = DataRepository.dataItemConfig().getComponentConfigSlowMotion().getContentDesc();
+                                break;
+                            case 205:
+                                isUltraPixelPhotographyOn = CameraSettings.isUltraWideConfigOpen();
+                                i4 = isUltraPixelPhotographyOn ? this.mUltraWideResource[1] : this.mUltraWideResource[0];
+                                if (!isUltraPixelPhotographyOn) {
+                                    i2 = R.string.accessibility_ultra_wide_off;
+                                    break;
+                                }
+                                i2 = R.string.accessibility_ultra_wide_on;
+                                break;
+                            case 206:
+                                isUltraPixelPhotographyOn = CameraSettings.isLiveShotOn();
+                                i4 = isUltraPixelPhotographyOn ? this.mLiveShotResource[1] : this.mLiveShotResource[0];
+                                if (!isUltraPixelPhotographyOn) {
+                                    i2 = R.string.accessibility_camera_liveshot_off;
+                                    break;
+                                }
+                                i2 = R.string.accessibility_camera_liveshot_on;
+                                break;
+                            case 207:
+                                isUltraPixelPhotographyOn = CameraSettings.isUltraWideBokehOn();
+                                i4 = isUltraPixelPhotographyOn ? this.mUltraWideBokehResources[1] : this.mUltraWideBokehResources[0];
+                                if (!isUltraPixelPhotographyOn) {
+                                    i2 = R.string.accessibility_camera_ultra_wide_bokeh_off;
+                                    break;
+                                }
+                                i2 = R.string.accessibility_camera_ultra_wide_bokeh_on;
+                                break;
+                        }
+                        break;
+                }
+            }
+            i2 = this.mLiveMusicSelectResources[0];
+            boolean z3 = z2;
+            i4 = i2;
+            i2 = z3;
+        } else {
+            isUltraPixelPhotographyOn = CameraSettings.isVideoBokehOn();
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("setTopImageResource: VIDEO_BOKEH isSwitchOn = ");
+            stringBuilder.append(isUltraPixelPhotographyOn);
+            Log.d(str, stringBuilder.toString());
+            i4 = isUltraPixelPhotographyOn ? this.mVideoBokehResource[1] : this.mVideoBokehResource[0];
+            i2 = isUltraPixelPhotographyOn ? R.string.pref_camera_video_bokeh_on : R.string.pref_camera_video_bokeh_off;
+        }
+        if (imageView != null && i4 > 0) {
+            Drawable drawable = getResources().getDrawable(i4);
+            i = getInitialMargin(i);
+            imageView.setTag(R.id.tag_config_view_margin_key, Integer.valueOf(i));
+            if (i > 0) {
+                LayoutParams layoutParams = (LayoutParams) imageView.getLayoutParams();
+                i -= (drawable.getIntrinsicWidth() / 2) + this.mViewPadding;
+                if (this.mIsRTL) {
+                    layoutParams.leftMargin = ((this.mTotalWidth - i) - drawable.getIntrinsicWidth()) - (this.mViewPadding * 2);
+                } else {
+                    layoutParams.leftMargin = i;
+                }
+                imageView.setLayoutParams(layoutParams);
+            }
+            imageView.setImageDrawable(drawable);
+            if (i2 > 0 && (Util.isAccessible() || Util.isSetContentDesc())) {
+                imageView.setContentDescription(getString(i2));
+            }
+        }
+        return true;
     }
 
     private int[] getFilterResources() {
@@ -1143,204 +920,34 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
     /* JADX WARNING: Missing block: B:61:0x012a, code:
             return;
      */
-    public void provideAnimateElement(int r20, java.util.List<io.reactivex.Completable> r21, boolean r22) {
-        /*
-        r19 = this;
-        r7 = r19;
-        r8 = r20;
-        r9 = r21;
-        r0 = r7.mCurrentMode;
-        if (r0 == r8) goto L_0x000e;
-    L_0x000a:
-        r0 = r7.mCurrentMode;
-        r7.mBeforeMode = r0;
-    L_0x000e:
-        r10 = r7.mCurrentMode;
-        super.provideAnimateElement(r20, r21, r22);
-        r11 = 1;
-        r12 = 0;
-        switch(r10) {
-            case 161: goto L_0x0029;
-            case 162: goto L_0x001d;
-            default: goto L_0x0019;
-        };
-    L_0x0019:
-        switch(r10) {
-            case 168: goto L_0x001d;
-            case 169: goto L_0x001d;
-            case 170: goto L_0x001d;
-            default: goto L_0x001c;
-        };
-    L_0x001c:
-        goto L_0x0030;
-    L_0x001d:
-        r0 = 162; // 0xa2 float:2.27E-43 double:8.0E-322;
-        if (r8 == r0) goto L_0x0026;
-    L_0x0021:
-        switch(r8) {
-            case 168: goto L_0x0026;
-            case 169: goto L_0x0026;
-            case 170: goto L_0x0026;
-            default: goto L_0x0024;
-        };
-    L_0x0024:
-        r0 = r11;
-        goto L_0x0028;
-        r0 = r12;
-    L_0x0028:
-        goto L_0x0031;
-    L_0x0029:
-        r0 = 161; // 0xa1 float:2.26E-43 double:7.95E-322;
-        if (r8 != r0) goto L_0x0030;
-        r0 = r12;
-        goto L_0x0031;
-    L_0x0030:
-        r0 = r11;
-    L_0x0031:
-        if (r0 == 0) goto L_0x0037;
-    L_0x0033:
-        r0 = 4;
-        r7.onBackEvent(r0);
-    L_0x0037:
-        r0 = r19.getTopAlert();
-        if (r0 == 0) goto L_0x0040;
-    L_0x003d:
-        r0.provideAnimateElement(r8, r9, r12);
-    L_0x0040:
-        r13 = com.android.camera.data.DataRepository.dataItemConfig();
-        r0 = com.android.camera.data.DataRepository.dataItemGlobal();
-        r0 = r0.getCurrentCameraId();
-        r1 = com.android.camera.module.loader.camera2.Camera2DataContainer.getInstance();
-        r2 = r7.mCurrentMode;
-        r1 = r1.getCapabilitiesByBogusCameraId(r0, r2);
-        if (r1 != 0) goto L_0x0059;
-    L_0x0058:
-        return;
-    L_0x0059:
-        r2 = r7.mCurrentMode;
-        r3 = com.android.camera.data.DataRepository.dataItemGlobal();
-        r3 = r3.isNormalIntent();
-        r0 = com.android.camera.data.data.config.SupportedConfigFactory.getSupportedTopConfigs(r2, r13, r0, r1, r3);
-        r7.mSupportedConfigs = r0;
-        r14 = r12;
-    L_0x006a:
-        r0 = r7.mConfigViews;
-        r0 = r0.size();
-        if (r14 >= r0) goto L_0x012a;
-    L_0x0072:
-        r0 = r7.mConfigViews;
-        r0 = r0.get(r14);
-        r15 = r0;
-        r15 = (android.widget.ImageView) r15;
-        r15.setEnabled(r11);
-        r6 = 2131558407; // 0x7f0d0007 float:1.8742129E38 double:1.053129781E-314;
-        r16 = r15.getTag(r6);
-        if (r16 == 0) goto L_0x0091;
-    L_0x0087:
-        r0 = r16;
-        r0 = (java.lang.Integer) r0;
-        r0 = r0.intValue();
-        r5 = r0;
-        goto L_0x0093;
-        r5 = r12;
-    L_0x0093:
-        r0 = r7.mSupportedConfigs;
-        r4 = r0.getConfigTypeForViewPosition(r14);
-        if (r9 == 0) goto L_0x009e;
-    L_0x009b:
-        r17 = r11;
-        goto L_0x00a0;
-    L_0x009e:
-        r17 = r12;
-    L_0x00a0:
-        r0 = r7;
-        r1 = r4;
-        r2 = r15;
-        r3 = r8;
-        r11 = r4;
-        r4 = r13;
-        r12 = r5;
-        r5 = r14;
-        r8 = r6;
-        r6 = r17;
-        r0 = r0.setTopImageResource(r1, r2, r3, r4, r5, r6);
-        if (r0 == 0) goto L_0x00c3;
-    L_0x00b2:
-        if (r16 == 0) goto L_0x00c3;
-    L_0x00b4:
-        r1 = r15.getTag(r8);
-        r1 = (java.lang.Integer) r1;
-        r1 = r1.intValue();
-        if (r12 != r1) goto L_0x00c1;
-    L_0x00c0:
-        goto L_0x00c3;
-    L_0x00c1:
-        r1 = 0;
-        goto L_0x00c4;
-    L_0x00c3:
-        r1 = 1;
-    L_0x00c4:
-        r2 = r15.getTag();
-        if (r2 == 0) goto L_0x00d9;
-    L_0x00ca:
-        r2 = r15.getTag();
-        r2 = (java.lang.Integer) r2;
-        r2 = r2.intValue();
-        if (r2 != r11) goto L_0x00d9;
-    L_0x00d6:
-        if (r1 == 0) goto L_0x00d9;
-    L_0x00d8:
-        goto L_0x0122;
-    L_0x00d9:
-        r1 = java.lang.Integer.valueOf(r11);
-        r15.setTag(r1);
-        if (r9 != 0) goto L_0x00ec;
-    L_0x00e2:
-        if (r0 == 0) goto L_0x00e8;
-    L_0x00e4:
-        com.android.camera.animation.type.AlphaInOnSubscribe.directSetResult(r15);
-        goto L_0x0122;
-    L_0x00e8:
-        com.android.camera.animation.type.AlphaOutOnSubscribe.directSetResult(r15);
-        goto L_0x0122;
-    L_0x00ec:
-        r1 = 150; // 0x96 float:2.1E-43 double:7.4E-322;
-        if (r0 == 0) goto L_0x0105;
-    L_0x00f0:
-        r0 = new com.android.camera.animation.type.AlphaInOnSubscribe;
-        r0.<init>(r15);
-        r2 = r0.setStartDelayTime(r1);
-        r2.setDurationTime(r1);
-        r0 = io.reactivex.Completable.create(r0);
-        r9.add(r0);
-        goto L_0x0122;
-    L_0x0105:
-        r0 = 165; // 0xa5 float:2.31E-43 double:8.15E-322;
-        if (r10 == r0) goto L_0x011f;
-    L_0x0109:
-        r2 = r7.mCurrentMode;
-        if (r2 != r0) goto L_0x010e;
-    L_0x010d:
-        goto L_0x011f;
-    L_0x010e:
-        r0 = new com.android.camera.animation.type.AlphaOutOnSubscribe;
-        r0.<init>(r15);
-        r0 = r0.setDurationTime(r1);
-        r0 = io.reactivex.Completable.create(r0);
-        r9.add(r0);
-        goto L_0x0122;
-    L_0x011f:
-        com.android.camera.animation.type.AlphaOutOnSubscribe.directSetResult(r15);
-    L_0x0122:
-        r14 = r14 + 1;
-        r8 = r20;
-        r11 = 1;
-        r12 = 0;
-        goto L_0x006a;
-    L_0x012a:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.top.FragmentTopConfig.provideAnimateElement(int, java.util.List, boolean):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
+        int i2 = i;
+        List<Completable> list2 = list;
+        if (this.mCurrentMode != i2) {
+            this.mBeforeMode = this.mCurrentMode;
+        }
+        int i3 = this.mCurrentMode;
+        super.provideAnimateElement(i, list, z);
+        boolean z2 = true;
+        boolean z3 = false;
+        switch (i3) {
+            case 161:
+                if (i2 == 161) {
+                    boolean z4 = false;
+                    break;
+                }
+            case 162:
+                break;
+            default:
+                switch (i3) {
+                    case 168:
+                    case 169:
+                    case 170:
+                        break;
+                }
+                break;
+        }
     }
 
     private void resetImages() {

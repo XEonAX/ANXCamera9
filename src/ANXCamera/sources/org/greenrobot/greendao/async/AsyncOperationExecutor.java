@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Looper;
 import android.os.Message;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -145,124 +147,69 @@ class AsyncOperationExecutor implements Callback, Runnable {
     /* JADX WARNING: Missing block: B:19:0x0063, code:
             r3 = false;
      */
-    private void mergeTxAndExecute(org.greenrobot.greendao.async.AsyncOperation r7, org.greenrobot.greendao.async.AsyncOperation r8) {
-        /*
-        r6 = this;
-        r0 = new java.util.ArrayList;
-        r0.<init>();
-        r0.add(r7);
-        r0.add(r8);
-        r7 = r7.getDatabase();
-        r7.beginTransaction();
-        r8 = 0;
-        r1 = r8;
-    L_0x0015:
-        r2 = r0.size();	 Catch:{ all -> 0x00bb }
-        r3 = 1;
-        if (r1 >= r2) goto L_0x0063;
-    L_0x001c:
-        r2 = r0.get(r1);	 Catch:{ all -> 0x00bb }
-        r2 = (org.greenrobot.greendao.async.AsyncOperation) r2;	 Catch:{ all -> 0x00bb }
-        r6.executeOperation(r2);	 Catch:{ all -> 0x00bb }
-        r4 = r2.isFailed();	 Catch:{ all -> 0x00bb }
-        if (r4 == 0) goto L_0x002c;
-    L_0x002b:
-        goto L_0x0063;
-    L_0x002c:
-        r4 = r0.size();	 Catch:{ all -> 0x00bb }
-        r4 = r4 - r3;
-        if (r1 != r4) goto L_0x0060;
-    L_0x0033:
-        r4 = r6.queue;	 Catch:{ all -> 0x00bb }
-        r4 = r4.peek();	 Catch:{ all -> 0x00bb }
-        r4 = (org.greenrobot.greendao.async.AsyncOperation) r4;	 Catch:{ all -> 0x00bb }
-        r5 = r6.maxOperationCountToMerge;	 Catch:{ all -> 0x00bb }
-        if (r1 >= r5) goto L_0x005b;
-    L_0x003f:
-        r2 = r2.isMergeableWith(r4);	 Catch:{ all -> 0x00bb }
-        if (r2 == 0) goto L_0x005b;
-    L_0x0045:
-        r2 = r6.queue;	 Catch:{ all -> 0x00bb }
-        r2 = r2.remove();	 Catch:{ all -> 0x00bb }
-        r2 = (org.greenrobot.greendao.async.AsyncOperation) r2;	 Catch:{ all -> 0x00bb }
-        if (r2 != r4) goto L_0x0053;
-    L_0x004f:
-        r0.add(r2);	 Catch:{ all -> 0x00bb }
-        goto L_0x0060;
-    L_0x0053:
-        r0 = new org.greenrobot.greendao.DaoException;	 Catch:{ all -> 0x00bb }
-        r1 = "Internal error: peeked op did not match removed op";
-        r0.<init>(r1);	 Catch:{ all -> 0x00bb }
-        throw r0;	 Catch:{ all -> 0x00bb }
-    L_0x005b:
-        r7.setTransactionSuccessful();	 Catch:{ all -> 0x00bb }
-        goto L_0x0064;
-    L_0x0060:
-        r1 = r1 + 1;
-        goto L_0x0015;
-    L_0x0063:
-        r3 = r8;
-    L_0x0064:
-        r7.endTransaction();	 Catch:{ RuntimeException -> 0x006a }
-        r8 = r3;
-        goto L_0x0081;
-    L_0x006a:
-        r7 = move-exception;
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "Async transaction could not be ended, success so far was: ";
-        r1.append(r2);
-        r1.append(r3);
-        r1 = r1.toString();
-        org.greenrobot.greendao.DaoLog.i(r1, r7);
-    L_0x0081:
-        if (r8 == 0) goto L_0x009e;
-    L_0x0083:
-        r7 = r0.size();
-        r8 = r0.iterator();
-    L_0x008b:
-        r0 = r8.hasNext();
-        if (r0 == 0) goto L_0x009d;
-    L_0x0091:
-        r0 = r8.next();
-        r0 = (org.greenrobot.greendao.async.AsyncOperation) r0;
-        r0.mergedOperationsCount = r7;
-        r6.handleOperationCompleted(r0);
-        goto L_0x008b;
-    L_0x009d:
-        goto L_0x00ba;
-    L_0x009e:
-        r7 = "Reverted merged transaction because one of the operations failed. Executing operations one by one instead...";
-        org.greenrobot.greendao.DaoLog.i(r7);
-        r7 = r0.iterator();
-    L_0x00a7:
-        r8 = r7.hasNext();
-        if (r8 == 0) goto L_0x00ba;
-    L_0x00ad:
-        r8 = r7.next();
-        r8 = (org.greenrobot.greendao.async.AsyncOperation) r8;
-        r8.reset();
-        r6.executeOperationAndPostCompleted(r8);
-        goto L_0x00a7;
-    L_0x00ba:
-        return;
-    L_0x00bb:
-        r0 = move-exception;
-        r7.endTransaction();	 Catch:{ RuntimeException -> 0x00c0 }
-        goto L_0x00d6;
-    L_0x00c0:
-        r7 = move-exception;
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "Async transaction could not be ended, success so far was: ";
-        r1.append(r2);
-        r1.append(r8);
-        r8 = r1.toString();
-        org.greenrobot.greendao.DaoLog.i(r8, r7);
-    L_0x00d6:
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.greenrobot.greendao.async.AsyncOperationExecutor.mergeTxAndExecute(org.greenrobot.greendao.async.AsyncOperation, org.greenrobot.greendao.async.AsyncOperation):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void mergeTxAndExecute(AsyncOperation asyncOperation, AsyncOperation asyncOperation2) {
+        boolean z;
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(asyncOperation);
+        arrayList.add(asyncOperation2);
+        Database database = asyncOperation.getDatabase();
+        database.beginTransaction();
+        int i = 0;
+        while (true) {
+            try {
+                z = true;
+                if (i >= arrayList.size()) {
+                    break;
+                }
+                AsyncOperation asyncOperation3 = (AsyncOperation) arrayList.get(i);
+                executeOperation(asyncOperation3);
+                if (asyncOperation3.isFailed()) {
+                    break;
+                }
+                if (i == arrayList.size() - 1) {
+                    AsyncOperation asyncOperation4 = (AsyncOperation) this.queue.peek();
+                    if (i >= this.maxOperationCountToMerge || !asyncOperation3.isMergeableWith(asyncOperation4)) {
+                        database.setTransactionSuccessful();
+                    } else {
+                        asyncOperation3 = (AsyncOperation) this.queue.remove();
+                        if (asyncOperation3 == asyncOperation4) {
+                            arrayList.add(asyncOperation3);
+                        } else {
+                            throw new DaoException("Internal error: peeked op did not match removed op");
+                        }
+                    }
+                }
+                i++;
+            } finally {
+                try {
+                    database.endTransaction();
+                } catch (Throwable e) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("Async transaction could not be ended, success so far was: ");
+                    stringBuilder.append(false);
+                    DaoLog.i(stringBuilder.toString(), e);
+                }
+            }
+        }
+        database.setTransactionSuccessful();
+        if (z) {
+            int size = arrayList.size();
+            Iterator it = arrayList.iterator();
+            while (it.hasNext()) {
+                AsyncOperation asyncOperation5 = (AsyncOperation) it.next();
+                asyncOperation5.mergedOperationsCount = size;
+                handleOperationCompleted(asyncOperation5);
+            }
+            return;
+        }
+        DaoLog.i("Reverted merged transaction because one of the operations failed. Executing operations one by one instead...");
+        Iterator it2 = arrayList.iterator();
+        while (it2.hasNext()) {
+            asyncOperation2 = (AsyncOperation) it2.next();
+            asyncOperation2.reset();
+            executeOperationAndPostCompleted(asyncOperation2);
+        }
     }
 
     private void handleOperationCompleted(AsyncOperation asyncOperation) {

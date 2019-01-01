@@ -259,211 +259,128 @@ public final class FlowablePublish<T> extends ConnectableFlowable<T> implements 
         /* JADX WARNING: Missing block: B:71:0x011a, code:
             if (r15 == false) goto L_0x011d;
      */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         void dispatch() {
-            /*
-            r21 = this;
-            r1 = r21;
-            r0 = r21.getAndIncrement();
-            if (r0 == 0) goto L_0x0009;
-        L_0x0008:
-            return;
-            r2 = 1;
-            r3 = r2;
-        L_0x000c:
-            r0 = r1.terminalEvent;
-            r4 = r1.queue;
-            if (r4 == 0) goto L_0x001b;
-        L_0x0012:
-            r6 = r4.isEmpty();
-            if (r6 == 0) goto L_0x0019;
-        L_0x0018:
-            goto L_0x001b;
-        L_0x0019:
-            r6 = 0;
-            goto L_0x001d;
-            r6 = r2;
-        L_0x001d:
-            r0 = r1.checkTerminated(r0, r6);
-            if (r0 == 0) goto L_0x0024;
-        L_0x0023:
-            return;
-        L_0x0024:
-            if (r6 != 0) goto L_0x0122;
-        L_0x0026:
-            r0 = r1.subscribers;
-            r0 = r0.get();
-            r7 = r0;
-            r7 = (io.reactivex.internal.operators.flowable.FlowablePublish.InnerSubscriber[]) r7;
-            r0 = r7.length;
-            r8 = 9223372036854775807; // 0x7fffffffffffffff float:NaN double:NaN;
-            r10 = r7.length;
-            r11 = r8;
-            r8 = 0;
-            r9 = 0;
-        L_0x003a:
-            r13 = 0;
-            if (r8 >= r10) goto L_0x005d;
-        L_0x003e:
-            r15 = r7[r8];
-            r16 = r6;
-            r5 = r15.get();
-            r13 = (r5 > r13 ? 1 : (r5 == r13 ? 0 : -1));
-            if (r13 < 0) goto L_0x0050;
-        L_0x004a:
-            r5 = java.lang.Math.min(r11, r5);
-            r11 = r5;
-            goto L_0x0058;
-        L_0x0050:
-            r13 = -9223372036854775808;
-            r5 = (r5 > r13 ? 1 : (r5 == r13 ? 0 : -1));
-            if (r5 != 0) goto L_0x0058;
-        L_0x0056:
-            r9 = r9 + 1;
-        L_0x0058:
-            r8 = r8 + 1;
-            r6 = r16;
-            goto L_0x003a;
-        L_0x005d:
-            r16 = r6;
-            r5 = 1;
-            if (r0 != r9) goto L_0x00a2;
-        L_0x0063:
-            r0 = r1.terminalEvent;
-            r4 = r4.poll();	 Catch:{ Throwable -> 0x006a }
-            goto L_0x0082;
-        L_0x006a:
-            r0 = move-exception;
-            r4 = r0;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r4);
-            r0 = r1.s;
-            r0 = r0.get();
-            r0 = (org.reactivestreams.Subscription) r0;
-            r0.cancel();
-            r0 = io.reactivex.internal.util.NotificationLite.error(r4);
-            r1.terminalEvent = r0;
-            r4 = 0;
-        L_0x0082:
-            if (r4 != 0) goto L_0x0086;
-        L_0x0084:
-            r4 = r2;
-            goto L_0x0087;
-        L_0x0086:
-            r4 = 0;
-        L_0x0087:
-            r0 = r1.checkTerminated(r0, r4);
-            if (r0 == 0) goto L_0x008e;
-        L_0x008d:
-            return;
-        L_0x008e:
-            r0 = r1.sourceMode;
-            if (r0 == r2) goto L_0x009d;
-        L_0x0092:
-            r0 = r1.s;
-            r0 = r0.get();
-            r0 = (org.reactivestreams.Subscription) r0;
-            r0.request(r5);
-        L_0x009d:
-            r4 = r2;
-            r17 = r3;
-            goto L_0x011d;
-            r9 = 0;
-        L_0x00a4:
-            r17 = r3;
-            r2 = (long) r9;
-            r0 = (r2 > r11 ? 1 : (r2 == r11 ? 0 : -1));
-            if (r0 >= 0) goto L_0x0100;
-        L_0x00ab:
-            r0 = r1.terminalEvent;
-            r10 = r4.poll();	 Catch:{ Throwable -> 0x00b2 }
-            goto L_0x00ca;
-        L_0x00b2:
-            r0 = move-exception;
-            r10 = r0;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r10);
-            r0 = r1.s;
-            r0 = r0.get();
-            r0 = (org.reactivestreams.Subscription) r0;
-            r0.cancel();
-            r0 = io.reactivex.internal.util.NotificationLite.error(r10);
-            r1.terminalEvent = r0;
-            r10 = 0;
-        L_0x00ca:
-            if (r10 != 0) goto L_0x00ce;
-        L_0x00cc:
-            r15 = 1;
-            goto L_0x00d0;
-            r15 = 0;
-        L_0x00d0:
-            r0 = r1.checkTerminated(r0, r15);
-            if (r0 == 0) goto L_0x00d7;
-        L_0x00d6:
-            return;
-        L_0x00d7:
-            if (r15 == 0) goto L_0x00da;
-        L_0x00d9:
-            goto L_0x0102;
-        L_0x00da:
-            r0 = io.reactivex.internal.util.NotificationLite.getValue(r10);
-            r2 = r7.length;
-            r3 = 0;
-        L_0x00e0:
-            if (r3 >= r2) goto L_0x00f7;
-        L_0x00e2:
-            r10 = r7[r3];
-            r18 = r10.get();
-            r16 = (r18 > r13 ? 1 : (r18 == r13 ? 0 : -1));
-            if (r16 <= 0) goto L_0x00f4;
-        L_0x00ec:
-            r8 = r10.child;
-            r8.onNext(r0);
-            r10.produced(r5);
-        L_0x00f4:
-            r3 = r3 + 1;
-            goto L_0x00e0;
-        L_0x00f7:
-            r9 = r9 + 1;
-            r16 = r15;
-            r3 = r17;
-            r2 = 1;
-            goto L_0x00a4;
-        L_0x0100:
-            r15 = r16;
-        L_0x0102:
-            if (r9 <= 0) goto L_0x0115;
-        L_0x0104:
-            r0 = r1.sourceMode;
-            r4 = 1;
-            if (r0 == r4) goto L_0x0116;
-        L_0x0109:
-            r0 = r1.s;
-            r0 = r0.get();
-            r0 = (org.reactivestreams.Subscription) r0;
-            r0.request(r2);
-            goto L_0x0116;
-        L_0x0115:
-            r4 = 1;
-        L_0x0116:
-            r0 = (r11 > r13 ? 1 : (r11 == r13 ? 0 : -1));
-            if (r0 == 0) goto L_0x0125;
-        L_0x011a:
-            if (r15 != 0) goto L_0x0125;
-        L_0x011d:
-            r2 = r4;
-            r3 = r17;
-            goto L_0x000c;
-        L_0x0122:
-            r4 = r2;
-            r17 = r3;
-        L_0x0125:
-            r2 = r17;
-            r0 = -r2;
-            r3 = r1.addAndGet(r0);
-            if (r3 != 0) goto L_0x0130;
-            return;
-            r2 = r4;
-            goto L_0x000c;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowablePublish.PublishSubscriber.dispatch():void");
+            if (getAndIncrement() == 0) {
+                boolean z = true;
+                int i = 1;
+                while (true) {
+                    Object obj = this.terminalEvent;
+                    SimpleQueue simpleQueue = this.queue;
+                    boolean z2 = (simpleQueue == null || simpleQueue.isEmpty()) ? z : false;
+                    if (!checkTerminated(obj, z2)) {
+                        boolean z3;
+                        int i2;
+                        if (z2) {
+                            z3 = z;
+                            i2 = i;
+                        } else {
+                            boolean z4;
+                            InnerSubscriber[] innerSubscriberArr = (InnerSubscriber[]) this.subscribers.get();
+                            int length = innerSubscriberArr.length;
+                            int length2 = innerSubscriberArr.length;
+                            long j = Long.MAX_VALUE;
+                            int i3 = 0;
+                            int i4 = 0;
+                            while (i3 < length2) {
+                                z4 = z2;
+                                long j2 = innerSubscriberArr[i3].get();
+                                if (j2 >= 0) {
+                                    j = Math.min(j, j2);
+                                } else if (j2 == FlowablePublish.CANCELLED) {
+                                    i4++;
+                                }
+                                i3++;
+                                z2 = z4;
+                            }
+                            z4 = z2;
+                            if (length == i4) {
+                                Object poll;
+                                obj = this.terminalEvent;
+                                try {
+                                    poll = simpleQueue.poll();
+                                } catch (Throwable th) {
+                                    Throwable th2 = th;
+                                    Exceptions.throwIfFatal(th2);
+                                    ((Subscription) this.s.get()).cancel();
+                                    obj = NotificationLite.error(th2);
+                                    this.terminalEvent = obj;
+                                    poll = null;
+                                }
+                                if (!checkTerminated(obj, poll == null ? z : false)) {
+                                    if (this.sourceMode != z) {
+                                        ((Subscription) this.s.get()).request(1);
+                                    }
+                                    z3 = z;
+                                    i2 = i;
+                                } else {
+                                    return;
+                                }
+                            }
+                            long j3;
+                            i4 = 0;
+                            while (true) {
+                                i2 = i;
+                                j3 = (long) i4;
+                                boolean z5;
+                                if (j3 >= j) {
+                                    z5 = z4;
+                                    break;
+                                }
+                                Object poll2;
+                                obj = this.terminalEvent;
+                                try {
+                                    poll2 = simpleQueue.poll();
+                                } catch (Throwable th3) {
+                                    Throwable th4 = th3;
+                                    Exceptions.throwIfFatal(th4);
+                                    ((Subscription) this.s.get()).cancel();
+                                    obj = NotificationLite.error(th4);
+                                    this.terminalEvent = obj;
+                                    poll2 = null;
+                                }
+                                z5 = poll2 == null;
+                                if (!checkTerminated(obj, z5)) {
+                                    if (z5) {
+                                        break;
+                                    }
+                                    obj = NotificationLite.getValue(poll2);
+                                    for (InnerSubscriber innerSubscriber : innerSubscriberArr) {
+                                        if (innerSubscriber.get() > 0) {
+                                            innerSubscriber.child.onNext(obj);
+                                            innerSubscriber.produced(1);
+                                        }
+                                    }
+                                    i4++;
+                                    z4 = z5;
+                                    i = i2;
+                                } else {
+                                    return;
+                                }
+                            }
+                            if (i4 > 0) {
+                                z3 = true;
+                                if (this.sourceMode != 1) {
+                                    ((Subscription) this.s.get()).request(j3);
+                                }
+                            } else {
+                                z3 = true;
+                            }
+                            if (j != 0) {
+                            }
+                            z = z3;
+                            i = i2;
+                        }
+                        i = addAndGet(-i2);
+                        if (i != 0) {
+                            z = z3;
+                        } else {
+                            return;
+                        }
+                    }
+                    return;
+                }
+            }
         }
     }
 

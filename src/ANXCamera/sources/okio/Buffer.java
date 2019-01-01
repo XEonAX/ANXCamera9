@@ -385,253 +385,133 @@ public final class Buffer implements Cloneable, BufferedSink, BufferedSource {
     /* JADX WARNING: Removed duplicated region for block: B:30:0x00a1  */
     /* JADX WARNING: Removed duplicated region for block: B:40:0x00b3 A:{SYNTHETIC, EDGE_INSN: B:40:0x00b3->B:35:0x00b3 ?: BREAK  } */
     /* JADX WARNING: Removed duplicated region for block: B:33:0x00af  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public long readDecimalLong() {
-        /*
-        r18 = this;
-        r0 = r18;
-        r1 = r0.size;
-        r3 = 0;
-        r1 = (r1 > r3 ? 1 : (r1 == r3 ? 0 : -1));
-        if (r1 == 0) goto L_0x00be;
-        r5 = -7;
-        r7 = 0;
-        r8 = r5;
-        r5 = r7;
-        r6 = r5;
-    L_0x0015:
-        r10 = r0.head;
-        r11 = r10.data;
-        r12 = r10.pos;
-        r13 = r10.limit;
-    L_0x001d:
-        if (r12 >= r13) goto L_0x009f;
-    L_0x001f:
-        r15 = r11[r12];
-        r14 = 48;
-        if (r15 < r14) goto L_0x006e;
-    L_0x0025:
-        r1 = 57;
-        if (r15 > r1) goto L_0x006e;
-    L_0x0029:
-        r14 = r14 - r15;
-        r1 = -922337203685477580; // 0xf333333333333334 float:4.1723254E-8 double:-8.390303882365713E246;
-        r16 = (r3 > r1 ? 1 : (r3 == r1 ? 0 : -1));
-        if (r16 < 0) goto L_0x0041;
-    L_0x0033:
-        if (r16 != 0) goto L_0x003b;
-    L_0x0035:
-        r1 = (long) r14;
-        r1 = (r1 > r8 ? 1 : (r1 == r8 ? 0 : -1));
-        if (r1 >= 0) goto L_0x003b;
-    L_0x003a:
-        goto L_0x0041;
-    L_0x003b:
-        r1 = 10;
-        r3 = r3 * r1;
-        r1 = (long) r14;
-        r3 = r3 + r1;
-        goto L_0x0079;
-    L_0x0041:
-        r0 = new okio.Buffer;
-        r0.<init>();
-        r0 = r0.writeDecimalLong(r3);
-        r0 = r0.writeByte(r15);
-        if (r5 != 0) goto L_0x0053;
-    L_0x0050:
-        r0.readByte();
-    L_0x0053:
-        r1 = new java.lang.NumberFormatException;
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "Number too large: ";
-        r2.append(r3);
-        r0 = r0.readUtf8();
-        r2.append(r0);
-        r0 = r2.toString();
-        r1.<init>(r0);
-        throw r1;
-    L_0x006e:
-        r1 = 45;
-        if (r15 != r1) goto L_0x007e;
-    L_0x0072:
-        if (r7 != 0) goto L_0x007e;
-        r1 = 1;
-        r8 = r8 - r1;
-        r5 = 1;
-    L_0x0079:
-        r12 = r12 + 1;
-        r7 = r7 + 1;
-        goto L_0x001d;
-    L_0x007e:
-        if (r7 == 0) goto L_0x0084;
-        r6 = 1;
-        goto L_0x009f;
-    L_0x0084:
-        r0 = new java.lang.NumberFormatException;
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "Expected leading [0-9] or '-' character but was 0x";
-        r1.append(r2);
-        r2 = java.lang.Integer.toHexString(r15);
-        r1.append(r2);
-        r1 = r1.toString();
-        r0.<init>(r1);
-        throw r0;
-    L_0x009f:
-        if (r12 != r13) goto L_0x00ab;
-    L_0x00a1:
-        r1 = r10.pop();
-        r0.head = r1;
-        okio.SegmentPool.recycle(r10);
-        goto L_0x00ad;
-    L_0x00ab:
-        r10.pos = r12;
-    L_0x00ad:
-        if (r6 != 0) goto L_0x00b3;
-    L_0x00af:
-        r1 = r0.head;
-        if (r1 != 0) goto L_0x0015;
-    L_0x00b3:
-        r1 = r0.size;
-        r6 = (long) r7;
-        r1 = r1 - r6;
-        r0.size = r1;
-        if (r5 == 0) goto L_0x00bc;
-    L_0x00bb:
-        goto L_0x00bd;
-    L_0x00bc:
-        r3 = -r3;
-    L_0x00bd:
-        return r3;
-    L_0x00be:
-        r0 = new java.lang.IllegalStateException;
-        r1 = "size == 0";
-        r0.<init>(r1);
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okio.Buffer.readDecimalLong():long");
+        long j = 0;
+        Buffer thisR;
+        if (this.size != 0) {
+            int i = 0;
+            long j2 = -7;
+            int i2 = 0;
+            int i3 = i2;
+            do {
+                Segment segment = this.head;
+                byte[] bArr = segment.data;
+                int i4 = segment.pos;
+                int i5 = segment.limit;
+                while (i4 < i5) {
+                    byte b = bArr[i4];
+                    if (b >= (byte) 48 && b <= (byte) 57) {
+                        int i6 = 48 - b;
+                        int i7 = (j > -922337203685477580L ? 1 : (j == -922337203685477580L ? 0 : -1));
+                        if (i7 < 0 || (i7 == 0 && ((long) i6) < j2)) {
+                            thisR = new Buffer().writeDecimalLong(j).writeByte((int) b);
+                            if (i2 == 0) {
+                                thisR.readByte();
+                            }
+                            StringBuilder stringBuilder = new StringBuilder();
+                            stringBuilder.append("Number too large: ");
+                            stringBuilder.append(thisR.readUtf8());
+                            throw new NumberFormatException(stringBuilder.toString());
+                        }
+                        j = (j * 10) + ((long) i6);
+                    } else if (b == (byte) 45 && i == 0) {
+                        j2--;
+                        i2 = 1;
+                    } else if (i != 0) {
+                        i3 = 1;
+                        if (i4 != i5) {
+                            this.head = segment.pop();
+                            SegmentPool.recycle(segment);
+                        } else {
+                            segment.pos = i4;
+                        }
+                        if (i3 == 0) {
+                            break;
+                        }
+                    } else {
+                        StringBuilder stringBuilder2 = new StringBuilder();
+                        stringBuilder2.append("Expected leading [0-9] or '-' character but was 0x");
+                        stringBuilder2.append(Integer.toHexString(b));
+                        throw new NumberFormatException(stringBuilder2.toString());
+                    }
+                    i4++;
+                    i++;
+                }
+                if (i4 != i5) {
+                }
+                if (i3 == 0) {
+                }
+            } while (this.head != null);
+            this.size -= (long) i;
+            return i2 != 0 ? j : -j;
+        } else {
+            throw new IllegalStateException("size == 0");
+        }
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:31:0x00a3  */
     /* JADX WARNING: Removed duplicated region for block: B:30:0x0099  */
     /* JADX WARNING: Removed duplicated region for block: B:40:0x00ab A:{SYNTHETIC, EDGE_INSN: B:40:0x00ab->B:35:0x00ab ?: BREAK  } */
     /* JADX WARNING: Removed duplicated region for block: B:33:0x00a7  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public long readHexadecimalUnsignedLong() {
-        /*
-        r14 = this;
-        r0 = r14.size;
-        r2 = 0;
-        r0 = (r0 > r2 ? 1 : (r0 == r2 ? 0 : -1));
-        if (r0 == 0) goto L_0x00b2;
-        r0 = 0;
-        r1 = r0;
-        r4 = r2;
-    L_0x000e:
-        r6 = r14.head;
-        r7 = r6.data;
-        r8 = r6.pos;
-        r9 = r6.limit;
-    L_0x0016:
-        if (r8 >= r9) goto L_0x0097;
-    L_0x0018:
-        r10 = r7[r8];
-        r11 = 48;
-        if (r10 < r11) goto L_0x0025;
-    L_0x001e:
-        r11 = 57;
-        if (r10 > r11) goto L_0x0025;
-    L_0x0022:
-        r11 = r10 + -48;
-        goto L_0x003e;
-    L_0x0025:
-        r11 = 97;
-        if (r10 < r11) goto L_0x0032;
-    L_0x0029:
-        r11 = 102; // 0x66 float:1.43E-43 double:5.04E-322;
-        if (r10 > r11) goto L_0x0032;
-    L_0x002d:
-        r11 = r10 + -97;
-        r11 = r11 + 10;
-        goto L_0x003e;
-    L_0x0032:
-        r11 = 65;
-        if (r10 < r11) goto L_0x0076;
-    L_0x0036:
-        r11 = 70;
-        if (r10 > r11) goto L_0x0076;
-    L_0x003a:
-        r11 = r10 + -65;
-        r11 = r11 + 10;
-    L_0x003e:
-        r12 = -1152921504606846976; // 0xf000000000000000 float:0.0 double:-3.105036184601418E231;
-        r12 = r12 & r4;
-        r12 = (r12 > r2 ? 1 : (r12 == r2 ? 0 : -1));
-        if (r12 != 0) goto L_0x004e;
-    L_0x0045:
-        r10 = 4;
-        r4 = r4 << r10;
-        r10 = (long) r11;
-        r4 = r4 | r10;
-        r8 = r8 + 1;
-        r0 = r0 + 1;
-        goto L_0x0016;
-    L_0x004e:
-        r0 = new okio.Buffer;
-        r0.<init>();
-        r0 = r0.writeHexadecimalUnsignedLong(r4);
-        r0 = r0.writeByte(r10);
-        r1 = new java.lang.NumberFormatException;
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "Number too large: ";
-        r2.append(r3);
-        r0 = r0.readUtf8();
-        r2.append(r0);
-        r0 = r2.toString();
-        r1.<init>(r0);
-        throw r1;
-    L_0x0076:
-        if (r0 == 0) goto L_0x007c;
-        r1 = 1;
-        goto L_0x0097;
-    L_0x007c:
-        r0 = new java.lang.NumberFormatException;
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "Expected leading [0-9a-fA-F] character but was 0x";
-        r1.append(r2);
-        r2 = java.lang.Integer.toHexString(r10);
-        r1.append(r2);
-        r1 = r1.toString();
-        r0.<init>(r1);
-        throw r0;
-    L_0x0097:
-        if (r8 != r9) goto L_0x00a3;
-    L_0x0099:
-        r7 = r6.pop();
-        r14.head = r7;
-        okio.SegmentPool.recycle(r6);
-        goto L_0x00a5;
-    L_0x00a3:
-        r6.pos = r8;
-    L_0x00a5:
-        if (r1 != 0) goto L_0x00ab;
-    L_0x00a7:
-        r6 = r14.head;
-        if (r6 != 0) goto L_0x000e;
-    L_0x00ab:
-        r1 = r14.size;
-        r6 = (long) r0;
-        r1 = r1 - r6;
-        r14.size = r1;
-        return r4;
-    L_0x00b2:
-        r0 = new java.lang.IllegalStateException;
-        r1 = "size == 0";
-        r0.<init>(r1);
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okio.Buffer.readHexadecimalUnsignedLong():long");
+        if (this.size != 0) {
+            int i = 0;
+            int i2 = 0;
+            long j = 0;
+            do {
+                Segment segment = this.head;
+                byte[] bArr = segment.data;
+                int i3 = segment.pos;
+                int i4 = segment.limit;
+                while (i3 < i4) {
+                    int i5;
+                    int i6 = bArr[i3];
+                    if (i6 >= (byte) 48 && i6 <= (byte) 57) {
+                        i5 = i6 - 48;
+                    } else if (i6 >= (byte) 97 && i6 <= (byte) 102) {
+                        i5 = (i6 - 97) + 10;
+                    } else if (i6 >= (byte) 65 && i6 <= (byte) 70) {
+                        i5 = (i6 - 65) + 10;
+                    } else if (i != 0) {
+                        i2 = 1;
+                        if (i3 != i4) {
+                            this.head = segment.pop();
+                            SegmentPool.recycle(segment);
+                        } else {
+                            segment.pos = i3;
+                        }
+                        if (i2 == 0) {
+                            break;
+                        }
+                    } else {
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append("Expected leading [0-9a-fA-F] character but was 0x");
+                        stringBuilder.append(Integer.toHexString(i6));
+                        throw new NumberFormatException(stringBuilder.toString());
+                    }
+                    if ((-1152921504606846976L & j) == 0) {
+                        j = (j << 4) | ((long) i5);
+                        i3++;
+                        i++;
+                    } else {
+                        Buffer writeByte = new Buffer().writeHexadecimalUnsignedLong(j).writeByte(i6);
+                        StringBuilder stringBuilder2 = new StringBuilder();
+                        stringBuilder2.append("Number too large: ");
+                        stringBuilder2.append(writeByte.readUtf8());
+                        throw new NumberFormatException(stringBuilder2.toString());
+                    }
+                }
+                if (i3 != i4) {
+                }
+                if (i2 == 0) {
+                }
+            } while (this.head != null);
+            this.size -= (long) i;
+            return j;
+        }
+        throw new IllegalStateException("size == 0");
     }
 
     public ByteString readByteString() {

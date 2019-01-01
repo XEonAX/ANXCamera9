@@ -5,6 +5,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.hardware.camera2.params.Face;
 import com.android.camera.effect.FaceAnalyzeInfo;
+import java.lang.reflect.Field;
 
 @TargetApi(21)
 public class CameraHardwareFace {
@@ -61,44 +62,21 @@ public class CameraHardwareFace {
     /* JADX WARNING: Missing block: B:6:0x0035, code:
             com.android.camera.log.Log.e(TAG, r3.getMessage());
      */
-    private static void copyExFace(com.android.camera2.CameraHardwareFace r6, android.hardware.camera2.params.Face r7, float r8, float r9, float r10, float r11) {
-        /*
-        r0 = r7.getBounds();
-        r6.rect = r0;
-        r0 = r7.getScore();
-        r6.score = r0;
-        r0 = r7.getId();
-        r6.id = r0;
-        r0 = r7.getClass();
-        r0 = r0.getFields();
-        r1 = r0.length;
-        r2 = 0;
-    L_0x001c:
-        if (r2 >= r1) goto L_0x0041;
-    L_0x001e:
-        r3 = r0[r2];
-        r4 = r6.getClass();	 Catch:{ IllegalArgumentException -> 0x0034, IllegalArgumentException -> 0x0034, IllegalArgumentException -> 0x0034 }
-        r5 = r3.getName();	 Catch:{ IllegalArgumentException -> 0x0034, IllegalArgumentException -> 0x0034, IllegalArgumentException -> 0x0034 }
-        r4 = r4.getField(r5);	 Catch:{ IllegalArgumentException -> 0x0034, IllegalArgumentException -> 0x0034, IllegalArgumentException -> 0x0034 }
-        r3 = r3.get(r7);	 Catch:{ IllegalArgumentException -> 0x0034, IllegalArgumentException -> 0x0034, IllegalArgumentException -> 0x0034 }
-        r4.set(r6, r3);	 Catch:{ IllegalArgumentException -> 0x0034, IllegalArgumentException -> 0x0034, IllegalArgumentException -> 0x0034 }
-        goto L_0x003e;
-    L_0x0034:
-        r3 = move-exception;
-        r4 = TAG;
-        r3 = r3.getMessage();
-        com.android.camera.log.Log.e(r4, r3);
-    L_0x003e:
-        r2 = r2 + 1;
-        goto L_0x001c;
-    L_0x0041:
-        r6.gender = r9;
-        r6.beautyscore = r10;
-        r6.ageMale = r8;
-        r6.ageFemale = r8;
-        r6.prob = r11;
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera2.CameraHardwareFace.copyExFace(com.android.camera2.CameraHardwareFace, android.hardware.camera2.params.Face, float, float, float, float):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static void copyExFace(CameraHardwareFace cameraHardwareFace, Face face, float f, float f2, float f3, float f4) {
+        cameraHardwareFace.rect = face.getBounds();
+        cameraHardwareFace.score = face.getScore();
+        cameraHardwareFace.id = face.getId();
+        for (Field field : face.getClass().getFields()) {
+            try {
+                cameraHardwareFace.getClass().getField(field.getName()).set(cameraHardwareFace, field.get(face));
+            } catch (Exception e) {
+            }
+        }
+        cameraHardwareFace.gender = f2;
+        cameraHardwareFace.beautyscore = f3;
+        cameraHardwareFace.ageMale = f;
+        cameraHardwareFace.ageFemale = f;
+        cameraHardwareFace.prob = f4;
     }
 }

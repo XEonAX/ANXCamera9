@@ -8,9 +8,11 @@ import com.ss.android.ugc.effectmanager.common.model.UrlModel;
 import com.ss.android.ugc.effectmanager.effect.model.Effect;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,75 +54,76 @@ public class EffectUtils {
 
     /* JADX WARNING: Removed duplicated region for block: B:30:0x0045 A:{SYNTHETIC, Splitter: B:30:0x0045} */
     /* JADX WARNING: Removed duplicated region for block: B:35:0x004f A:{SYNTHETIC, Splitter: B:35:0x004f} */
-    public static java.io.File convertStreamToFile(java.io.InputStream r5, java.lang.String r6) throws java.io.IOException {
-        /*
-        r0 = 0;
-        r1 = new java.io.File;	 Catch:{ IOException -> 0x003b }
-        r1.<init>(r6);	 Catch:{ IOException -> 0x003b }
-        r2 = new java.io.FileOutputStream;	 Catch:{ IOException -> 0x003b }
-        r2.<init>(r1);	 Catch:{ IOException -> 0x003b }
-        r0 = 4096; // 0x1000 float:5.74E-42 double:2.0237E-320;
-        r0 = new byte[r0];	 Catch:{ IOException -> 0x0035, all -> 0x0032 }
-    L_0x0011:
-        r3 = r5.read(r0);	 Catch:{ IOException -> 0x0035, all -> 0x0032 }
-        r4 = -1;
-        if (r3 == r4) goto L_0x001d;
-    L_0x0018:
-        r4 = 0;
-        r2.write(r0, r4, r3);	 Catch:{ IOException -> 0x0035, all -> 0x0032 }
-        goto L_0x0011;
-        if (r5 == 0) goto L_0x0028;
-    L_0x0020:
-        r5.close();	 Catch:{ IOException -> 0x0024 }
-        goto L_0x0028;
-    L_0x0024:
-        r5 = move-exception;
-        r5.printStackTrace();
-        r2.close();	 Catch:{ IOException -> 0x002d }
-        goto L_0x0031;
-    L_0x002d:
-        r5 = move-exception;
-        r5.printStackTrace();
-    L_0x0031:
-        return r1;
-    L_0x0032:
-        r6 = move-exception;
-        r0 = r2;
-        goto L_0x0043;
-    L_0x0035:
-        r0 = move-exception;
-        r1 = r0;
-        r0 = r2;
-        goto L_0x003c;
-    L_0x0039:
-        r6 = move-exception;
-        goto L_0x0043;
-    L_0x003b:
-        r1 = move-exception;
-    L_0x003c:
-        r1.printStackTrace();	 Catch:{ all -> 0x0039 }
-        com.ss.android.ugc.effectmanager.common.utils.FileUtils.removeFile(r6);	 Catch:{ all -> 0x0039 }
-        throw r1;	 Catch:{ all -> 0x0039 }
-    L_0x0043:
-        if (r5 == 0) goto L_0x004d;
-    L_0x0045:
-        r5.close();	 Catch:{ IOException -> 0x0049 }
-        goto L_0x004d;
-    L_0x0049:
-        r5 = move-exception;
-        r5.printStackTrace();
-    L_0x004d:
-        if (r0 == 0) goto L_0x0057;
-    L_0x004f:
-        r0.close();	 Catch:{ IOException -> 0x0053 }
-        goto L_0x0057;
-    L_0x0053:
-        r5 = move-exception;
-        r5.printStackTrace();
-    L_0x0057:
-        throw r6;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.ss.android.ugc.effectmanager.common.utils.EffectUtils.convertStreamToFile(java.io.InputStream, java.lang.String):java.io.File");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static File convertStreamToFile(InputStream inputStream, String str) throws IOException {
+        IOException e;
+        Throwable th;
+        OutputStream outputStream = null;
+        try {
+            File file = new File(str);
+            OutputStream fileOutputStream = new FileOutputStream(file);
+            try {
+                byte[] bArr = new byte[4096];
+                while (true) {
+                    int read = inputStream.read(bArr);
+                    if (read == -1) {
+                        break;
+                    }
+                    fileOutputStream.write(bArr, 0, read);
+                }
+                if (inputStream != null) {
+                    try {
+                        inputStream.close();
+                    } catch (IOException e2) {
+                        e2.printStackTrace();
+                    }
+                }
+                try {
+                    fileOutputStream.close();
+                } catch (IOException e22) {
+                    e22.printStackTrace();
+                }
+                return file;
+            } catch (IOException e3) {
+                e = e3;
+                outputStream = fileOutputStream;
+                try {
+                    e.printStackTrace();
+                    FileUtils.removeFile(str);
+                    throw e;
+                } catch (Throwable th2) {
+                    th = th2;
+                    if (inputStream != null) {
+                        try {
+                            inputStream.close();
+                        } catch (IOException e222) {
+                            e222.printStackTrace();
+                        }
+                    }
+                    if (outputStream != null) {
+                        try {
+                            outputStream.close();
+                        } catch (IOException e2222) {
+                            e2222.printStackTrace();
+                        }
+                    }
+                    throw th;
+                }
+            } catch (Throwable th3) {
+                th = th3;
+                outputStream = fileOutputStream;
+                if (inputStream != null) {
+                }
+                if (outputStream != null) {
+                }
+                throw th;
+            }
+        } catch (IOException e4) {
+            e = e4;
+            e.printStackTrace();
+            FileUtils.removeFile(str);
+            throw e;
+        }
     }
 
     public static void throwIllegalNullException(String str) {

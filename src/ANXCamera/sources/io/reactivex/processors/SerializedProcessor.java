@@ -2,6 +2,7 @@ package io.reactivex.processors;
 
 import io.reactivex.internal.util.AppendOnlyLinkedArrayList;
 import io.reactivex.internal.util.NotificationLite;
+import io.reactivex.plugins.RxJavaPlugins;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
@@ -81,57 +82,31 @@ final class SerializedProcessor<T> extends FlowableProcessor<T> {
     /* JADX WARNING: Missing block: B:23:0x003b, code:
             return;
      */
-    public void onError(java.lang.Throwable r3) {
-        /*
-        r2 = this;
-        r0 = r2.done;
-        if (r0 == 0) goto L_0x0008;
-    L_0x0004:
-        io.reactivex.plugins.RxJavaPlugins.onError(r3);
-        return;
-    L_0x0008:
-        monitor-enter(r2);
-        r0 = r2.done;	 Catch:{ all -> 0x003c }
-        r1 = 1;
-        if (r0 == 0) goto L_0x0011;
-        r0 = r1;
-        goto L_0x002f;
-    L_0x0011:
-        r2.done = r1;	 Catch:{ all -> 0x003c }
-        r0 = r2.emitting;	 Catch:{ all -> 0x003c }
-        if (r0 == 0) goto L_0x002c;
-    L_0x0017:
-        r0 = r2.queue;	 Catch:{ all -> 0x003c }
-        if (r0 != 0) goto L_0x0023;
-    L_0x001b:
-        r0 = new io.reactivex.internal.util.AppendOnlyLinkedArrayList;	 Catch:{ all -> 0x003c }
-        r1 = 4;
-        r0.<init>(r1);	 Catch:{ all -> 0x003c }
-        r2.queue = r0;	 Catch:{ all -> 0x003c }
-    L_0x0023:
-        r3 = io.reactivex.internal.util.NotificationLite.error(r3);	 Catch:{ all -> 0x003c }
-        r0.setFirst(r3);	 Catch:{ all -> 0x003c }
-        monitor-exit(r2);	 Catch:{ all -> 0x003c }
-        return;
-    L_0x002c:
-        r0 = 0;
-        r2.emitting = r1;	 Catch:{ all -> 0x003c }
-    L_0x002f:
-        monitor-exit(r2);	 Catch:{ all -> 0x003c }
-        if (r0 == 0) goto L_0x0036;
-    L_0x0032:
-        io.reactivex.plugins.RxJavaPlugins.onError(r3);
-        return;
-    L_0x0036:
-        r0 = r2.actual;
-        r0.onError(r3);
-        return;
-    L_0x003c:
-        r3 = move-exception;
-        monitor-exit(r2);	 Catch:{ all -> 0x003c }
-        throw r3;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: io.reactivex.processors.SerializedProcessor.onError(java.lang.Throwable):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void onError(Throwable th) {
+        if (this.done) {
+            RxJavaPlugins.onError(th);
+            return;
+        }
+        synchronized (this) {
+            boolean z;
+            if (this.done) {
+                z = true;
+            } else {
+                this.done = true;
+                if (this.emitting) {
+                    AppendOnlyLinkedArrayList appendOnlyLinkedArrayList = this.queue;
+                    if (appendOnlyLinkedArrayList == null) {
+                        appendOnlyLinkedArrayList = new AppendOnlyLinkedArrayList(4);
+                        this.queue = appendOnlyLinkedArrayList;
+                    }
+                    appendOnlyLinkedArrayList.setFirst(NotificationLite.error(th));
+                    return;
+                }
+                z = false;
+                this.emitting = true;
+            }
+        }
     }
 
     public void onComplete() {

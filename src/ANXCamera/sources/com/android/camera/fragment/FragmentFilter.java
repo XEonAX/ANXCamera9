@@ -393,54 +393,31 @@ public class FragmentFilter extends BaseFragment implements OnClickListener {
     /* JADX WARNING: Removed duplicated region for block: B:13:0x0040  */
     /* JADX WARNING: Removed duplicated region for block: B:13:0x0040  */
     /* JADX WARNING: Removed duplicated region for block: B:15:? A:{SYNTHETIC, RETURN} */
-    public void switchFilter(int r5) {
-        /*
-        r4 = this;
-        r0 = 3;
-        r1 = -1;
-        if (r5 == r0) goto L_0x0034;
-    L_0x0005:
-        r0 = 5;
-        if (r5 == r0) goto L_0x001f;
-    L_0x0008:
-        r0 = TAG;
-        r2 = new java.lang.StringBuilder;
-        r2.<init>();
-        r3 = "unexpected gravity ";
-        r2.append(r3);
-        r2.append(r5);
-        r5 = r2.toString();
-        com.android.camera.log.Log.e(r0, r5);
-        goto L_0x003d;
-    L_0x001f:
-        r5 = r4.mCurrentIndex;
-        r0 = r4.mComponentConfigFilter;
-        r0 = r0.getItems();
-        r0 = r0.size();
-        r0 = r0 + -1;
-        if (r5 >= r0) goto L_0x003d;
-    L_0x002f:
-        r5 = r4.mCurrentIndex;
-        r5 = r5 + 1;
-        goto L_0x003e;
-    L_0x0034:
-        r5 = r4.mCurrentIndex;
-        if (r5 <= 0) goto L_0x003d;
-    L_0x0038:
-        r5 = r4.mCurrentIndex;
-        r5 = r5 + -1;
-        goto L_0x003e;
-    L_0x003d:
-        r5 = r1;
-    L_0x003e:
-        if (r5 <= r1) goto L_0x0044;
-    L_0x0040:
-        r0 = 0;
-        r4.onItemSelected(r5, r0);
-    L_0x0044:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.FragmentFilter.switchFilter(int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void switchFilter(int i) {
+        if (i != 3) {
+            if (i != 5) {
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("unexpected gravity ");
+                stringBuilder.append(i);
+                Log.e(str, stringBuilder.toString());
+            } else if (this.mCurrentIndex < this.mComponentConfigFilter.getItems().size() - 1) {
+                i = this.mCurrentIndex + 1;
+                if (i > -1) {
+                    onItemSelected(i, false);
+                    return;
+                }
+                return;
+            }
+        } else if (this.mCurrentIndex > 0) {
+            i = this.mCurrentIndex - 1;
+            if (i > -1) {
+            }
+        }
+        i = -1;
+        if (i > -1) {
+        }
     }
 
     private void showSelected(ImageView imageView, int i) {

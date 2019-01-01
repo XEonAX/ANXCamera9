@@ -181,53 +181,15 @@ public class d {
     /* JADX WARNING: Missing block: B:14:0x003e, code:
             return;
      */
-    public void d(double r5) {
-        /*
-        r4 = this;
-        r0 = "BufferedAudioRecorder";
-        r1 = "audio startRecording";
-        android.util.Log.d(r0, r1);
-        monitor-enter(r4);
-        r0 = r4.isRecording;	 Catch:{ all -> 0x0041 }
-        if (r0 != 0) goto L_0x003f;
-    L_0x000c:
-        r0 = r4.audio;	 Catch:{ all -> 0x0041 }
-        if (r0 != 0) goto L_0x0011;
-    L_0x0010:
-        goto L_0x003f;
-    L_0x0011:
-        r0 = 1;
-        r4.isRecording = r0;	 Catch:{ all -> 0x0041 }
-        monitor-exit(r4);	 Catch:{ all -> 0x0041 }
-        r0 = r4.ud;
-        r1 = r4.sampleRateInHz;
-        r2 = channelConfigSuggested;
-        r3 = channelConfigOffset;
-        r2 = r2[r3];
-        r2 = r4.W(r2);
-        r5 = r0.initWavFile(r1, r2, r5);
-        if (r5 == 0) goto L_0x0031;
-    L_0x0029:
-        r5 = "BufferedAudioRecorder";
-        r6 = "init wav file failed";
-        android.util.Log.d(r5, r6);
-        return;
-    L_0x0031:
-        r5 = new java.lang.Thread;
-        r6 = new org.a.a.d$1;
-        r6.<init>();
-        r5.<init>(r6);
-        r5.start();
-        return;
-    L_0x003f:
-        monitor-exit(r4);	 Catch:{ all -> 0x0041 }
-        return;
-    L_0x0041:
-        r5 = move-exception;
-        monitor-exit(r4);	 Catch:{ all -> 0x0041 }
-        throw r5;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.a.a.d.d(double):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void d(double d) {
+        Log.d(TAG, "audio startRecording");
+        synchronized (this) {
+            if (this.isRecording || this.audio == null) {
+                return;
+            }
+            this.isRecording = true;
+        }
     }
 
     /* JADX WARNING: Missing block: B:9:0x0014, code:
@@ -245,49 +207,17 @@ public class d {
     /* JADX WARNING: Missing block: B:18:0x0033, code:
             return false;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public boolean stopRecording() {
-        /*
-        r3 = this;
-        monitor-enter(r3);
-        r0 = r3.isRecording;	 Catch:{ all -> 0x0034 }
-        r1 = 0;
-        if (r0 == 0) goto L_0x0022;
-    L_0x0006:
-        r0 = r3.audio;	 Catch:{ all -> 0x0034 }
-        if (r0 != 0) goto L_0x000b;
-    L_0x000a:
-        goto L_0x0022;
-    L_0x000b:
-        r3.isRecording = r1;	 Catch:{ all -> 0x0034 }
-        monitor-exit(r3);	 Catch:{ all -> 0x0034 }
-        r0 = r3.audio;
-        r0 = r0.getState();
-        if (r0 == 0) goto L_0x001b;
-    L_0x0016:
-        r0 = r3.audio;
-        r0.stop();
-    L_0x001b:
-        r0 = r3.ud;
-        r0.closeWavFile();
-        r0 = 1;
-        return r0;
-    L_0x0022:
-        r0 = "BufferedAudioRecorder";
-        r2 = "未启动音频模块但调用stopRecording";
-        android.util.Log.d(r0, r2);	 Catch:{ all -> 0x0034 }
-        r0 = r3.audio;	 Catch:{ all -> 0x0034 }
-        if (r0 == 0) goto L_0x0032;
-    L_0x002d:
-        r0 = r3.audio;	 Catch:{ all -> 0x0034 }
-        r0.release();	 Catch:{ all -> 0x0034 }
-    L_0x0032:
-        monitor-exit(r3);	 Catch:{ all -> 0x0034 }
-        return r1;
-    L_0x0034:
-        r0 = move-exception;
-        monitor-exit(r3);	 Catch:{ all -> 0x0034 }
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.a.a.d.stopRecording():boolean");
+        synchronized (this) {
+            if (!this.isRecording || this.audio == null) {
+                Log.d(TAG, "未启动音频模块但调用stopRecording");
+                if (this.audio != null) {
+                    this.audio.release();
+                }
+            } else {
+                this.isRecording = false;
+            }
+        }
     }
 }

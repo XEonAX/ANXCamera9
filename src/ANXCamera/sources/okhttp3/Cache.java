@@ -81,39 +81,16 @@ public final class Cache implements Closeable, Flushable {
         /* JADX WARNING: Missing block: B:11:?, code:
             r4.editor.abort();
      */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         public void abort() {
-            /*
-            r4 = this;
-            r0 = okhttp3.Cache.this;
-            monitor-enter(r0);
-            r1 = r4.done;	 Catch:{ all -> 0x0021 }
-            if (r1 == 0) goto L_0x0009;
-        L_0x0007:
-            monitor-exit(r0);	 Catch:{ all -> 0x0021 }
-            return;
-        L_0x0009:
-            r1 = 1;
-            r4.done = r1;	 Catch:{ all -> 0x0021 }
-            r2 = okhttp3.Cache.this;	 Catch:{ all -> 0x0021 }
-            r3 = r2.writeAbortCount;	 Catch:{ all -> 0x0021 }
-            r3 = r3 + r1;
-            r2.writeAbortCount = r3;	 Catch:{ all -> 0x0021 }
-            monitor-exit(r0);	 Catch:{ all -> 0x0021 }
-            r0 = r4.cacheOut;
-            okhttp3.internal.Util.closeQuietly(r0);
-            r0 = r4.editor;	 Catch:{ IOException -> 0x001f }
-            r0.abort();	 Catch:{ IOException -> 0x001f }
-            goto L_0x0020;
-        L_0x001f:
-            r0 = move-exception;
-        L_0x0020:
-            return;
-        L_0x0021:
-            r1 = move-exception;
-            monitor-exit(r0);	 Catch:{ all -> 0x0021 }
-            throw r1;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: okhttp3.Cache.CacheRequestImpl.abort():void");
+            synchronized (Cache.this) {
+                if (this.done) {
+                    return;
+                }
+                this.done = true;
+                Cache cache = Cache.this;
+                cache.writeAbortCount++;
+            }
         }
 
         public Sink body() {

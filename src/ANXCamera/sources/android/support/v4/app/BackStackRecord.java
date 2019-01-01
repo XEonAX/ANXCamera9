@@ -770,212 +770,119 @@ final class BackStackRecord extends FragmentTransaction implements BackStackEntr
     /* JADX WARNING: Removed duplicated region for block: B:24:0x0073  */
     /* JADX WARNING: Removed duplicated region for block: B:51:0x0126  */
     /* JADX WARNING: Removed duplicated region for block: B:54:0x0138  */
-    public android.support.v4.app.BackStackRecord.TransitionState popFromBackStack(boolean r17, android.support.v4.app.BackStackRecord.TransitionState r18, android.util.SparseArray<android.support.v4.app.Fragment> r19, android.util.SparseArray<android.support.v4.app.Fragment> r20) {
-        /*
-        r16 = this;
-        r0 = r16;
-        r1 = r18;
-        r2 = android.support.v4.app.FragmentManagerImpl.DEBUG;
-        if (r2 == 0) goto L_0x0030;
-    L_0x0008:
-        r2 = "FragmentManager";
-        r3 = new java.lang.StringBuilder;
-        r3.<init>();
-        r4 = "popFromBackStack: ";
-        r3.append(r4);
-        r3.append(r0);
-        r3 = r3.toString();
-        android.util.Log.v(r2, r3);
-        r2 = new android.support.v4.util.LogWriter;
-        r3 = "FragmentManager";
-        r2.<init>(r3);
-        r3 = new java.io.PrintWriter;
-        r3.<init>(r2);
-        r4 = "  ";
-        r5 = 0;
-        r0.dump(r4, r5, r3, r5);
-    L_0x0030:
-        r2 = SUPPORTS_TRANSITIONS;
-        r3 = 1;
-        if (r2 == 0) goto L_0x005a;
-    L_0x0035:
-        if (r1 != 0) goto L_0x004c;
-    L_0x0037:
-        r2 = r19.size();
-        if (r2 != 0) goto L_0x0043;
-    L_0x003d:
-        r2 = r20.size();
-        if (r2 == 0) goto L_0x005a;
-    L_0x0043:
-        r2 = r19;
-        r4 = r20;
-        r1 = r0.beginTransition(r2, r4, r3);
-        goto L_0x005e;
-    L_0x004c:
-        r2 = r19;
-        r4 = r20;
-        if (r17 != 0) goto L_0x005e;
-    L_0x0052:
-        r5 = r0.mSharedElementTargetNames;
-        r6 = r0.mSharedElementSourceNames;
-        setNameOverrides(r1, r5, r6);
-        goto L_0x005e;
-    L_0x005a:
-        r2 = r19;
-        r4 = r20;
-    L_0x005e:
-        r5 = -1;
-        r0.bumpBackStackNesting(r5);
-        r6 = 0;
-        if (r1 == 0) goto L_0x0067;
-    L_0x0065:
-        r7 = r6;
-        goto L_0x0069;
-    L_0x0067:
-        r7 = r0.mTransitionStyle;
-    L_0x0069:
-        if (r1 == 0) goto L_0x006d;
-    L_0x006b:
-        r8 = r6;
-        goto L_0x006f;
-    L_0x006d:
-        r8 = r0.mTransition;
-    L_0x006f:
-        r9 = r0.mTail;
-    L_0x0071:
-        if (r9 == 0) goto L_0x0124;
-    L_0x0073:
-        if (r1 == 0) goto L_0x0077;
-    L_0x0075:
-        r10 = r6;
-        goto L_0x0079;
-    L_0x0077:
-        r10 = r9.popEnterAnim;
-    L_0x0079:
-        if (r1 == 0) goto L_0x007d;
-    L_0x007b:
-        r11 = r6;
-        goto L_0x007f;
-    L_0x007d:
-        r11 = r9.popExitAnim;
-    L_0x007f:
-        r12 = r9.cmd;
-        switch(r12) {
-            case 1: goto L_0x0110;
-            case 2: goto L_0x00e0;
-            case 3: goto L_0x00d6;
-            case 4: goto L_0x00c8;
-            case 5: goto L_0x00ba;
-            case 6: goto L_0x00ac;
-            case 7: goto L_0x009d;
-            default: goto L_0x0084;
-        };
-    L_0x0084:
-        r3 = new java.lang.IllegalArgumentException;
-        r5 = new java.lang.StringBuilder;
-        r5.<init>();
-        r6 = "Unknown cmd: ";
-        r5.append(r6);
-        r6 = r9.cmd;
-        r5.append(r6);
-        r5 = r5.toString();
-        r3.<init>(r5);
-        throw r3;
-    L_0x009d:
-        r12 = r9.fragment;
-        r12.mNextAnim = r10;
-        r13 = r0.mManager;
-        r14 = android.support.v4.app.FragmentManagerImpl.reverseTransit(r8);
-        r13.detachFragment(r12, r14, r7);
-        goto L_0x011e;
-    L_0x00ac:
-        r12 = r9.fragment;
-        r12.mNextAnim = r10;
-        r13 = r0.mManager;
-        r14 = android.support.v4.app.FragmentManagerImpl.reverseTransit(r8);
-        r13.attachFragment(r12, r14, r7);
-        goto L_0x011e;
-    L_0x00ba:
-        r12 = r9.fragment;
-        r12.mNextAnim = r11;
-        r13 = r0.mManager;
-        r14 = android.support.v4.app.FragmentManagerImpl.reverseTransit(r8);
-        r13.hideFragment(r12, r14, r7);
-        goto L_0x011e;
-    L_0x00c8:
-        r12 = r9.fragment;
-        r12.mNextAnim = r10;
-        r13 = r0.mManager;
-        r14 = android.support.v4.app.FragmentManagerImpl.reverseTransit(r8);
-        r13.showFragment(r12, r14, r7);
-        goto L_0x011e;
-    L_0x00d6:
-        r12 = r9.fragment;
-        r12.mNextAnim = r10;
-        r13 = r0.mManager;
-        r13.addFragment(r12, r6);
-        goto L_0x011e;
-    L_0x00e0:
-        r12 = r9.fragment;
-        if (r12 == 0) goto L_0x00ef;
-    L_0x00e4:
-        r12.mNextAnim = r11;
-        r13 = r0.mManager;
-        r14 = android.support.v4.app.FragmentManagerImpl.reverseTransit(r8);
-        r13.removeFragment(r12, r14, r7);
-    L_0x00ef:
-        r13 = r9.removed;
-        if (r13 == 0) goto L_0x010f;
-    L_0x00f3:
-        r13 = r6;
-    L_0x00f4:
-        r14 = r9.removed;
-        r14 = r14.size();
-        if (r13 >= r14) goto L_0x010f;
-    L_0x00fc:
-        r14 = r9.removed;
-        r14 = r14.get(r13);
-        r14 = (android.support.v4.app.Fragment) r14;
-        r14.mNextAnim = r10;
-        r5 = r0.mManager;
-        r5.addFragment(r14, r6);
-        r13 = r13 + 1;
-        r5 = -1;
-        goto L_0x00f4;
-    L_0x010f:
-        goto L_0x011e;
-    L_0x0110:
-        r5 = r9.fragment;
-        r5.mNextAnim = r11;
-        r12 = r0.mManager;
-        r13 = android.support.v4.app.FragmentManagerImpl.reverseTransit(r8);
-        r12.removeFragment(r5, r13, r7);
-    L_0x011e:
-        r9 = r9.prev;
-        r5 = -1;
-        goto L_0x0071;
-    L_0x0124:
-        if (r17 == 0) goto L_0x0134;
-    L_0x0126:
-        r5 = r0.mManager;
-        r6 = r0.mManager;
-        r6 = r6.mCurState;
-        r10 = android.support.v4.app.FragmentManagerImpl.reverseTransit(r8);
-        r5.moveToState(r6, r10, r7, r3);
-        r1 = 0;
-    L_0x0134:
-        r3 = r0.mIndex;
-        if (r3 < 0) goto L_0x0142;
-    L_0x0138:
-        r3 = r0.mManager;
-        r5 = r0.mIndex;
-        r3.freeBackStackIndex(r5);
-        r3 = -1;
-        r0.mIndex = r3;
-    L_0x0142:
-        return r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.app.BackStackRecord.popFromBackStack(boolean, android.support.v4.app.BackStackRecord$TransitionState, android.util.SparseArray, android.util.SparseArray):android.support.v4.app.BackStackRecord$TransitionState");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public TransitionState popFromBackStack(boolean doStateMove, TransitionState state, SparseArray<Fragment> firstOutFragments, SparseArray<Fragment> lastInFragments) {
+        SparseArray<Fragment> sparseArray;
+        SparseArray<Fragment> sparseArray2;
+        int transitionStyle;
+        int transition;
+        Op op;
+        TransitionState state2 = state;
+        if (FragmentManagerImpl.DEBUG) {
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("popFromBackStack: ");
+            stringBuilder.append(this);
+            Log.v(str, stringBuilder.toString());
+            dump("  ", null, new PrintWriter(new LogWriter(TAG)), null);
+        }
+        if (SUPPORTS_TRANSITIONS) {
+            if (state2 != null) {
+                sparseArray = firstOutFragments;
+                sparseArray2 = lastInFragments;
+                if (!doStateMove) {
+                    setNameOverrides(state2, this.mSharedElementTargetNames, this.mSharedElementSourceNames);
+                }
+            } else if (!(firstOutFragments.size() == 0 && lastInFragments.size() == 0)) {
+                state2 = beginTransition(firstOutFragments, lastInFragments, true);
+            }
+            bumpBackStackNesting(-1);
+            transitionStyle = state2 == null ? 0 : this.mTransitionStyle;
+            transition = state2 == null ? 0 : this.mTransition;
+            op = this.mTail;
+            while (op != null) {
+                int popEnterAnim = state2 != null ? 0 : op.popEnterAnim;
+                int popExitAnim = state2 != null ? 0 : op.popExitAnim;
+                Fragment f;
+                switch (op.cmd) {
+                    case 1:
+                        Fragment f2 = op.fragment;
+                        f2.mNextAnim = popExitAnim;
+                        this.mManager.removeFragment(f2, FragmentManagerImpl.reverseTransit(transition), transitionStyle);
+                        break;
+                    case 2:
+                        f = op.fragment;
+                        if (f != null) {
+                            f.mNextAnim = popExitAnim;
+                            this.mManager.removeFragment(f, FragmentManagerImpl.reverseTransit(transition), transitionStyle);
+                        }
+                        if (op.removed == null) {
+                            break;
+                        }
+                        for (int i = 0; i < op.removed.size(); i++) {
+                            Fragment old = (Fragment) op.removed.get(i);
+                            old.mNextAnim = popEnterAnim;
+                            this.mManager.addFragment(old, false);
+                        }
+                        break;
+                    case 3:
+                        f = op.fragment;
+                        f.mNextAnim = popEnterAnim;
+                        this.mManager.addFragment(f, false);
+                        break;
+                    case 4:
+                        f = op.fragment;
+                        f.mNextAnim = popEnterAnim;
+                        this.mManager.showFragment(f, FragmentManagerImpl.reverseTransit(transition), transitionStyle);
+                        break;
+                    case 5:
+                        f = op.fragment;
+                        f.mNextAnim = popExitAnim;
+                        this.mManager.hideFragment(f, FragmentManagerImpl.reverseTransit(transition), transitionStyle);
+                        break;
+                    case 6:
+                        f = op.fragment;
+                        f.mNextAnim = popEnterAnim;
+                        this.mManager.attachFragment(f, FragmentManagerImpl.reverseTransit(transition), transitionStyle);
+                        break;
+                    case 7:
+                        f = op.fragment;
+                        f.mNextAnim = popEnterAnim;
+                        this.mManager.detachFragment(f, FragmentManagerImpl.reverseTransit(transition), transitionStyle);
+                        break;
+                    default:
+                        StringBuilder stringBuilder2 = new StringBuilder();
+                        stringBuilder2.append("Unknown cmd: ");
+                        stringBuilder2.append(op.cmd);
+                        throw new IllegalArgumentException(stringBuilder2.toString());
+                }
+                op = op.prev;
+            }
+            if (doStateMove) {
+                this.mManager.moveToState(this.mManager.mCurState, FragmentManagerImpl.reverseTransit(transition), transitionStyle, true);
+                state2 = null;
+            }
+            if (this.mIndex >= 0) {
+                this.mManager.freeBackStackIndex(this.mIndex);
+                this.mIndex = -1;
+            }
+            return state2;
+        }
+        sparseArray = firstOutFragments;
+        sparseArray2 = lastInFragments;
+        bumpBackStackNesting(-1);
+        if (state2 == null) {
+        }
+        if (state2 == null) {
+        }
+        op = this.mTail;
+        while (op != null) {
+        }
+        if (doStateMove) {
+        }
+        if (this.mIndex >= 0) {
+        }
+        return state2;
     }
 
     public String getName() {

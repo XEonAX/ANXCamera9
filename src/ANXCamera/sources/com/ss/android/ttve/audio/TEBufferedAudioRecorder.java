@@ -183,59 +183,15 @@ public class TEBufferedAudioRecorder {
     /* JADX WARNING: Missing block: B:14:0x0048, code:
             return;
      */
-    public void startRecording(java.lang.String r10, double r11, int r13, int r14) {
-        /*
-        r9 = this;
-        r0 = "TEBufferedAudioRecorder";
-        r1 = "audio startRecording";
-        android.util.Log.e(r0, r1);
-        monitor-enter(r9);
-        r0 = r9.isRecording;	 Catch:{ all -> 0x004b }
-        if (r0 != 0) goto L_0x0049;
-    L_0x000c:
-        r0 = r9.audio;	 Catch:{ all -> 0x004b }
-        if (r0 != 0) goto L_0x0011;
-    L_0x0010:
-        goto L_0x0049;
-    L_0x0011:
-        r0 = 1;
-        r9.isRecording = r0;	 Catch:{ all -> 0x004b }
-        monitor-exit(r9);	 Catch:{ all -> 0x004b }
-        r1 = r9.audioCaller;
-        r3 = r9.sampleRateInHz;
-        r4 = 2;
-        r2 = r10;
-        r5 = r11;
-        r7 = r13;
-        r8 = r14;
-        r10 = r1.initWavFile(r2, r3, r4, r5, r7, r8);
-        if (r10 == 0) goto L_0x003b;
-    L_0x0024:
-        r11 = "TEBufferedAudioRecorder";
-        r12 = new java.lang.StringBuilder;
-        r12.<init>();
-        r13 = "init wav file failed, ret = ";
-        r12.append(r13);
-        r12.append(r10);
-        r10 = r12.toString();
-        android.util.Log.e(r11, r10);
-        return;
-    L_0x003b:
-        r10 = new java.lang.Thread;
-        r11 = new com.ss.android.ttve.audio.TEBufferedAudioRecorder$1;
-        r11.<init>();
-        r10.<init>(r11);
-        r10.start();
-        return;
-    L_0x0049:
-        monitor-exit(r9);	 Catch:{ all -> 0x004b }
-        return;
-    L_0x004b:
-        r10 = move-exception;
-        monitor-exit(r9);	 Catch:{ all -> 0x004b }
-        throw r10;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.ss.android.ttve.audio.TEBufferedAudioRecorder.startRecording(java.lang.String, double, int, int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void startRecording(String str, double d, int i, int i2) {
+        Log.e(TAG, "audio startRecording");
+        synchronized (this) {
+            if (this.isRecording || this.audio == null) {
+                return;
+            }
+            this.isRecording = true;
+        }
     }
 
     /* JADX WARNING: Missing block: B:9:0x0014, code:
@@ -253,49 +209,17 @@ public class TEBufferedAudioRecorder {
     /* JADX WARNING: Missing block: B:18:0x0033, code:
             return false;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public boolean stopRecording() {
-        /*
-        r3 = this;
-        monitor-enter(r3);
-        r0 = r3.isRecording;	 Catch:{ all -> 0x0034 }
-        r1 = 0;
-        if (r0 == 0) goto L_0x0022;
-    L_0x0006:
-        r0 = r3.audio;	 Catch:{ all -> 0x0034 }
-        if (r0 != 0) goto L_0x000b;
-    L_0x000a:
-        goto L_0x0022;
-    L_0x000b:
-        r3.isRecording = r1;	 Catch:{ all -> 0x0034 }
-        monitor-exit(r3);	 Catch:{ all -> 0x0034 }
-        r0 = r3.audio;
-        r0 = r0.getState();
-        if (r0 == 0) goto L_0x001b;
-    L_0x0016:
-        r0 = r3.audio;
-        r0.stop();
-    L_0x001b:
-        r0 = r3.audioCaller;
-        r0.closeWavFile();
-        r0 = 1;
-        return r0;
-    L_0x0022:
-        r0 = "TEBufferedAudioRecorder";
-        r2 = "未启动音频模块但调用stopRecording";
-        android.util.Log.e(r0, r2);	 Catch:{ all -> 0x0034 }
-        r0 = r3.audio;	 Catch:{ all -> 0x0034 }
-        if (r0 == 0) goto L_0x0032;
-    L_0x002d:
-        r0 = r3.audio;	 Catch:{ all -> 0x0034 }
-        r0.release();	 Catch:{ all -> 0x0034 }
-    L_0x0032:
-        monitor-exit(r3);	 Catch:{ all -> 0x0034 }
-        return r1;
-    L_0x0034:
-        r0 = move-exception;
-        monitor-exit(r3);	 Catch:{ all -> 0x0034 }
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.ss.android.ttve.audio.TEBufferedAudioRecorder.stopRecording():boolean");
+        synchronized (this) {
+            if (!this.isRecording || this.audio == null) {
+                Log.e(TAG, "未启动音频模块但调用stopRecording");
+                if (this.audio != null) {
+                    this.audio.release();
+                }
+            } else {
+                this.isRecording = false;
+            }
+        }
     }
 }

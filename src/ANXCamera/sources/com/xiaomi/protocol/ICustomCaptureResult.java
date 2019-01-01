@@ -135,28 +135,12 @@ public class ICustomCaptureResult implements Parcelable {
     /* JADX WARNING: Missing block: B:5:0x0022, code:
             return null;
      */
-    public static java.lang.Object getCameraMetaDataCopy(java.lang.Object r4) {
-        /*
-        r0 = "android.hardware.camera2.impl.CameraMetadataNative";
-        r0 = java.lang.Class.forName(r0);	 Catch:{ ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019 }
-        r1 = 1;
-        r2 = new java.lang.Class[r1];	 Catch:{ ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019 }
-        r3 = 0;
-        r2[r3] = r0;	 Catch:{ ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019 }
-        r1 = new java.lang.Object[r1];	 Catch:{ ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019 }
-        r1[r3] = r4;	 Catch:{ ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019 }
-        r4 = r0.getDeclaredConstructor(r2);	 Catch:{ ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019 }
-        r4 = r4.newInstance(r1);	 Catch:{ ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019, ClassNotFoundException -> 0x0019 }
-        return r4;
-    L_0x0019:
-        r4 = move-exception;
-        r0 = TAG;
-        r1 = "getCameraMetaDataCopy: failed: ";
-        android.util.Log.e(r0, r1, r4);
-        r4 = 0;
-        return r4;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.protocol.ICustomCaptureResult.getCameraMetaDataCopy(java.lang.Object):java.lang.Object");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static Object getCameraMetaDataCopy(Object obj) {
+        try {
+            return Class.forName("android.hardware.camera2.impl.CameraMetadataNative").getDeclaredConstructor(new Class[]{Class.forName("android.hardware.camera2.impl.CameraMetadataNative")}).newInstance(new Object[]{obj});
+        } catch (Throwable e) {
+        }
     }
 
     public String toString() {

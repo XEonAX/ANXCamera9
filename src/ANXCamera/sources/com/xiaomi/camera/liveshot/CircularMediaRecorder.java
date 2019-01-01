@@ -5,6 +5,7 @@ import android.media.MediaCodec.BufferInfo;
 import android.media.MediaFormat;
 import android.media.MediaMuxer;
 import android.opengl.EGLContext;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import com.android.camera.CameraSettings;
 import com.android.camera.Util;
@@ -18,6 +19,7 @@ import com.xiaomi.camera.liveshot.util.BackgroundTaskScheduler;
 import com.xiaomi.camera.liveshot.util.BackgroundTaskScheduler.Cancellable;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -94,284 +96,218 @@ public class CircularMediaRecorder {
         /* JADX WARNING: Removed duplicated region for block: B:63:0x0156 A:{SYNTHETIC, Splitter: B:63:0x0156} */
         /* JADX WARNING: Removed duplicated region for block: B:69:0x0179  */
         /* JADX WARNING: Removed duplicated region for block: B:71:0x0192 A:{SKIP} */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         public void run() {
-            /*
-            r12 = this;
-            r0 = r12.isCancelled();
-            if (r0 == 0) goto L_0x0019;
-        L_0x0006:
-            r0 = com.xiaomi.camera.liveshot.CircularMediaRecorder.TAG;
-            r1 = "Saving request is requested to be cancelled before executing";
-            com.android.camera.log.Log.d(r0, r1);
-            r0 = r12.mVideoClipSavingCallback;
-            if (r0 == 0) goto L_0x0018;
-        L_0x0013:
-            r0 = r12.mVideoClipSavingCallback;
-            r0.onVideoClipSavingCancelled();
-        L_0x0018:
-            return;
-            r0 = 0;
-            r1 = com.xiaomi.camera.liveshot.CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD;	 Catch:{ Exception -> 0x012f, all -> 0x0129 }
-            if (r1 == 0) goto L_0x002e;
-        L_0x0022:
-            r1 = new java.io.File;	 Catch:{ Exception -> 0x012f, all -> 0x0129 }
-            r2 = android.os.Environment.getExternalStorageDirectory();	 Catch:{ Exception -> 0x012f, all -> 0x0129 }
-            r3 = "microvideo.mp4";
-            r1.<init>(r2, r3);	 Catch:{ Exception -> 0x012f, all -> 0x0129 }
-            goto L_0x0036;
-        L_0x002e:
-            r1 = "microvideo";
-            r2 = ".mp4";
-            r1 = java.io.File.createTempFile(r1, r2);	 Catch:{ Exception -> 0x012f, all -> 0x0129 }
-        L_0x0036:
-            r2 = new android.media.MediaMuxer;	 Catch:{ Exception -> 0x0124, all -> 0x011e }
-            r3 = r1.getPath();	 Catch:{ Exception -> 0x0124, all -> 0x011e }
-            r4 = 0;
-            r2.<init>(r3, r4);	 Catch:{ Exception -> 0x0124, all -> 0x011e }
-            r0 = r12.mOrientationHint;	 Catch:{ Exception -> 0x011c }
-            r2.setOrientationHint(r0);	 Catch:{ Exception -> 0x011c }
-            r0 = r12.mVideoSnapshot;	 Catch:{ Exception -> 0x011c }
-            r3 = -1;
-            if (r0 == 0) goto L_0x0054;
-        L_0x004b:
-            r0 = r12.mVideoSnapshot;	 Catch:{ Exception -> 0x011c }
-            r0 = r0.format;	 Catch:{ Exception -> 0x011c }
-            r0 = r2.addTrack(r0);	 Catch:{ Exception -> 0x011c }
-            goto L_0x0055;
-        L_0x0054:
-            r0 = r3;
-        L_0x0055:
-            r4 = r12.mAudioSnapshot;	 Catch:{ Exception -> 0x011c }
-            if (r4 == 0) goto L_0x0062;
-        L_0x0059:
-            r4 = r12.mAudioSnapshot;	 Catch:{ Exception -> 0x011c }
-            r4 = r4.format;	 Catch:{ Exception -> 0x011c }
-            r4 = r2.addTrack(r4);	 Catch:{ Exception -> 0x011c }
-            goto L_0x0063;
-        L_0x0062:
-            r4 = r3;
-        L_0x0063:
-            r2.start();	 Catch:{ Exception -> 0x011c }
-            r5 = r12.mVideoSnapshot;	 Catch:{ Exception -> 0x011c }
-            r6 = -1;
-            if (r5 == 0) goto L_0x0093;
-        L_0x006d:
-            if (r0 == r3) goto L_0x0093;
-        L_0x006f:
-            r5 = r12.mVideoSnapshot;	 Catch:{ Exception -> 0x011c }
-            r8 = writeVideoSamples(r2, r5, r0);	 Catch:{ Exception -> 0x011c }
-            r0 = com.xiaomi.camera.liveshot.CircularMediaRecorder.TAG;	 Catch:{ Exception -> 0x011c }
-            r5 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x011c }
-            r5.<init>();	 Catch:{ Exception -> 0x011c }
-            r10 = "VIDEO DURATION: ";
-            r5.append(r10);	 Catch:{ Exception -> 0x011c }
-            r5.append(r8);	 Catch:{ Exception -> 0x011c }
-            r10 = " Usec";
-            r5.append(r10);	 Catch:{ Exception -> 0x011c }
-            r5 = r5.toString();	 Catch:{ Exception -> 0x011c }
-            com.android.camera.log.Log.d(r0, r5);	 Catch:{ Exception -> 0x011c }
-            goto L_0x0094;
-        L_0x0093:
-            r8 = r6;
-        L_0x0094:
-            r0 = r12.mAudioSnapshot;	 Catch:{ Exception -> 0x011c }
-            if (r0 == 0) goto L_0x00bd;
-        L_0x0098:
-            if (r4 == r3) goto L_0x00bd;
-        L_0x009a:
-            r0 = r12.mAudioSnapshot;	 Catch:{ Exception -> 0x011c }
-            r3 = writeAudioSamples(r2, r0, r4, r8);	 Catch:{ Exception -> 0x011c }
-            r0 = com.xiaomi.camera.liveshot.CircularMediaRecorder.TAG;	 Catch:{ Exception -> 0x011c }
-            r5 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x011c }
-            r5.<init>();	 Catch:{ Exception -> 0x011c }
-            r8 = "AUDIO DURATION: ";
-            r5.append(r8);	 Catch:{ Exception -> 0x011c }
-            r5.append(r3);	 Catch:{ Exception -> 0x011c }
-            r3 = " Usec";
-            r5.append(r3);	 Catch:{ Exception -> 0x011c }
-            r3 = r5.toString();	 Catch:{ Exception -> 0x011c }
-            com.android.camera.log.Log.d(r0, r3);	 Catch:{ Exception -> 0x011c }
-        L_0x00bd:
-            r2.stop();	 Catch:{ Exception -> 0x011c }
-            r0 = r12.mVideoClipSavingCallback;	 Catch:{ Exception -> 0x011c }
-            if (r0 == 0) goto L_0x00da;
-        L_0x00c4:
-            r0 = r1.getPath();	 Catch:{ Exception -> 0x011c }
-            r0 = readFully(r0);	 Catch:{ Exception -> 0x011c }
-            r3 = r12.mVideoClipSavingCallback;	 Catch:{ Exception -> 0x011c }
-            r4 = r12.mVideoSnapshot;	 Catch:{ Exception -> 0x011c }
-            if (r4 != 0) goto L_0x00d3;
-        L_0x00d2:
-            goto L_0x00d7;
-        L_0x00d3:
-            r4 = r12.mVideoSnapshot;	 Catch:{ Exception -> 0x011c }
-            r6 = r4.curr;	 Catch:{ Exception -> 0x011c }
-        L_0x00d7:
-            r3.onVideoClipSavingCompleted(r0, r6);	 Catch:{ Exception -> 0x011c }
-            r2.release();	 Catch:{ Exception -> 0x00df }
-            goto L_0x00f8;
-        L_0x00df:
-            r0 = move-exception;
-            r0 = com.xiaomi.camera.liveshot.CircularMediaRecorder.TAG;
-            r3 = new java.lang.StringBuilder;
-            r3.<init>();
-            r4 = "Failed to release the media muxer: ";
-            r3.append(r4);
-            r3.append(r2);
-            r2 = r3.toString();
-            com.android.camera.log.Log.d(r0, r2);
-        L_0x00f8:
-            r0 = com.xiaomi.camera.liveshot.CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD;
-            if (r0 == 0) goto L_0x0109;
-        L_0x00fe:
-            r0 = com.xiaomi.camera.liveshot.CircularMediaRecorder.TAG;
-            r2 = new java.lang.StringBuilder;
-            r2.<init>();
-            goto L_0x0182;
-        L_0x0109:
-            if (r1 == 0) goto L_0x01b2;
-        L_0x010b:
-            r0 = r1.delete();
-            if (r0 != 0) goto L_0x01b2;
-        L_0x0111:
-            r0 = com.xiaomi.camera.liveshot.CircularMediaRecorder.TAG;
-            r2 = new java.lang.StringBuilder;
-            r2.<init>();
-            goto L_0x01a3;
-        L_0x011c:
-            r0 = move-exception;
-            goto L_0x0133;
-        L_0x011e:
-            r2 = move-exception;
-            r11 = r2;
-            r2 = r0;
-            r0 = r11;
-            goto L_0x01b4;
-        L_0x0124:
-            r2 = move-exception;
-            r11 = r2;
-            r2 = r0;
-            r0 = r11;
-            goto L_0x0133;
-        L_0x0129:
-            r1 = move-exception;
-            r2 = r0;
-            r0 = r1;
-            r1 = r2;
-            goto L_0x01b4;
-        L_0x012f:
-            r1 = move-exception;
-            r2 = r0;
-            r0 = r1;
-            r1 = r2;
-        L_0x0133:
-            r3 = com.xiaomi.camera.liveshot.CircularMediaRecorder.TAG;	 Catch:{ all -> 0x01b3 }
-            r4 = new java.lang.StringBuilder;	 Catch:{ all -> 0x01b3 }
-            r4.<init>();	 Catch:{ all -> 0x01b3 }
-            r5 = "Failed to save the videoclip as an mp4 file: ";
-            r4.append(r5);	 Catch:{ all -> 0x01b3 }
-            r4.append(r0);	 Catch:{ all -> 0x01b3 }
-            r4 = r4.toString();	 Catch:{ all -> 0x01b3 }
-            com.android.camera.log.Log.d(r3, r4);	 Catch:{ all -> 0x01b3 }
-            r3 = r12.mVideoClipSavingCallback;	 Catch:{ all -> 0x01b3 }
-            if (r3 == 0) goto L_0x0154;
-        L_0x014f:
-            r3 = r12.mVideoClipSavingCallback;	 Catch:{ all -> 0x01b3 }
-            r3.onVideoClipSavingException(r0);	 Catch:{ all -> 0x01b3 }
-        L_0x0154:
-            if (r2 == 0) goto L_0x0173;
-        L_0x0156:
-            r2.release();	 Catch:{ Exception -> 0x015a }
-            goto L_0x0173;
-        L_0x015a:
-            r0 = move-exception;
-            r0 = com.xiaomi.camera.liveshot.CircularMediaRecorder.TAG;
-            r3 = new java.lang.StringBuilder;
-            r3.<init>();
-            r4 = "Failed to release the media muxer: ";
-            r3.append(r4);
-            r3.append(r2);
-            r2 = r3.toString();
-            com.android.camera.log.Log.d(r0, r2);
-        L_0x0173:
-            r0 = com.xiaomi.camera.liveshot.CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD;
-            if (r0 == 0) goto L_0x0192;
-        L_0x0179:
-            r0 = com.xiaomi.camera.liveshot.CircularMediaRecorder.TAG;
-            r2 = new java.lang.StringBuilder;
-            r2.<init>();
-        L_0x0182:
-            r3 = "Ignore deleting the temporary mp4 file: ";
-            r2.append(r3);
-            r2.append(r1);
-            r1 = r2.toString();
-            com.android.camera.log.Log.d(r0, r1);
-            goto L_0x01b2;
-        L_0x0192:
-            if (r1 == 0) goto L_0x01b2;
-        L_0x0194:
-            r0 = r1.delete();
-            if (r0 != 0) goto L_0x01b2;
-        L_0x019a:
-            r0 = com.xiaomi.camera.liveshot.CircularMediaRecorder.TAG;
-            r2 = new java.lang.StringBuilder;
-            r2.<init>();
-        L_0x01a3:
-            r3 = "Failed to delete the temporary mp4 file: ";
-            r2.append(r3);
-            r2.append(r1);
-            r1 = r2.toString();
-            com.android.camera.log.Log.d(r0, r1);
-        L_0x01b2:
-            return;
-        L_0x01b3:
-            r0 = move-exception;
-        L_0x01b4:
-            if (r2 == 0) goto L_0x01d3;
-        L_0x01b6:
-            r2.release();	 Catch:{ Exception -> 0x01ba }
-            goto L_0x01d3;
-        L_0x01ba:
-            r3 = move-exception;
-            r3 = com.xiaomi.camera.liveshot.CircularMediaRecorder.TAG;
-            r4 = new java.lang.StringBuilder;
-            r4.<init>();
-            r5 = "Failed to release the media muxer: ";
-            r4.append(r5);
-            r4.append(r2);
-            r2 = r4.toString();
-            com.android.camera.log.Log.d(r3, r2);
-        L_0x01d3:
-            r2 = com.xiaomi.camera.liveshot.CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD;
-            if (r2 != 0) goto L_0x01fa;
-        L_0x01d9:
-            if (r1 == 0) goto L_0x0212;
-        L_0x01db:
-            r2 = r1.delete();
-            if (r2 != 0) goto L_0x0212;
-        L_0x01e1:
-            r2 = com.xiaomi.camera.liveshot.CircularMediaRecorder.TAG;
-            r3 = new java.lang.StringBuilder;
-            r3.<init>();
-            r4 = "Failed to delete the temporary mp4 file: ";
-            r3.append(r4);
-            r3.append(r1);
-            r1 = r3.toString();
-            com.android.camera.log.Log.d(r2, r1);
-            goto L_0x0212;
-        L_0x01fa:
-            r2 = com.xiaomi.camera.liveshot.CircularMediaRecorder.TAG;
-            r3 = new java.lang.StringBuilder;
-            r3.<init>();
-            r4 = "Ignore deleting the temporary mp4 file: ";
-            r3.append(r4);
-            r3.append(r1);
-            r1 = r3.toString();
-            com.android.camera.log.Log.d(r2, r1);
-        L_0x0212:
-            throw r0;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.xiaomi.camera.liveshot.CircularMediaRecorder.VideoClipSavingRequest.run():void");
+            MediaMuxer mediaMuxer;
+            Throwable th;
+            Throwable e;
+            String access$100;
+            StringBuilder stringBuilder;
+            StringBuilder stringBuilder2;
+            if (isCancelled()) {
+                Log.d(CircularMediaRecorder.TAG, "Saving request is requested to be cancelled before executing");
+                if (this.mVideoClipSavingCallback != null) {
+                    this.mVideoClipSavingCallback.onVideoClipSavingCancelled();
+                }
+                return;
+            }
+            File file;
+            String access$1002;
+            StringBuilder stringBuilder3;
+            try {
+                if (CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD) {
+                    file = new File(Environment.getExternalStorageDirectory(), "microvideo.mp4");
+                } else {
+                    file = File.createTempFile("microvideo", ".mp4");
+                }
+                try {
+                    mediaMuxer = new MediaMuxer(file.getPath(), 0);
+                } catch (Throwable e2) {
+                    th = e2;
+                    mediaMuxer = null;
+                    e = th;
+                    try {
+                        access$100 = CircularMediaRecorder.TAG;
+                        stringBuilder = new StringBuilder();
+                        stringBuilder.append("Failed to save the videoclip as an mp4 file: ");
+                        stringBuilder.append(e);
+                        Log.d(access$100, stringBuilder.toString());
+                        if (this.mVideoClipSavingCallback != null) {
+                        }
+                        if (mediaMuxer != null) {
+                        }
+                        if (CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD) {
+                        }
+                    } catch (Throwable th2) {
+                        e = th2;
+                        if (mediaMuxer != null) {
+                            try {
+                                mediaMuxer.release();
+                            } catch (Exception e3) {
+                                access$100 = CircularMediaRecorder.TAG;
+                                stringBuilder = new StringBuilder();
+                                stringBuilder.append("Failed to release the media muxer: ");
+                                stringBuilder.append(mediaMuxer);
+                                Log.d(access$100, stringBuilder.toString());
+                            }
+                        }
+                        String access$1003;
+                        if (CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD) {
+                            access$1003 = CircularMediaRecorder.TAG;
+                            stringBuilder2 = new StringBuilder();
+                            stringBuilder2.append("Ignore deleting the temporary mp4 file: ");
+                            stringBuilder2.append(file);
+                            Log.d(access$1003, stringBuilder2.toString());
+                        } else if (!(file == null || file.delete())) {
+                            access$1003 = CircularMediaRecorder.TAG;
+                            stringBuilder2 = new StringBuilder();
+                            stringBuilder2.append("Failed to delete the temporary mp4 file: ");
+                            stringBuilder2.append(file);
+                            Log.d(access$1003, stringBuilder2.toString());
+                        }
+                        throw e;
+                    }
+                } catch (Throwable e22) {
+                    th = e22;
+                    mediaMuxer = null;
+                    e = th;
+                    if (mediaMuxer != null) {
+                    }
+                    if (CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD) {
+                    }
+                    throw e;
+                }
+                try {
+                    int addTrack;
+                    int addTrack2;
+                    long j;
+                    StringBuilder stringBuilder4;
+                    mediaMuxer.setOrientationHint(this.mOrientationHint);
+                    if (this.mVideoSnapshot != null) {
+                        addTrack = mediaMuxer.addTrack(this.mVideoSnapshot.format);
+                    } else {
+                        addTrack = -1;
+                    }
+                    if (this.mAudioSnapshot != null) {
+                        addTrack2 = mediaMuxer.addTrack(this.mAudioSnapshot.format);
+                    } else {
+                        addTrack2 = -1;
+                    }
+                    mediaMuxer.start();
+                    long j2 = -1;
+                    if (this.mVideoSnapshot == null || addTrack == -1) {
+                        j = -1;
+                    } else {
+                        j = writeVideoSamples(mediaMuxer, this.mVideoSnapshot, addTrack);
+                        access$1002 = CircularMediaRecorder.TAG;
+                        stringBuilder4 = new StringBuilder();
+                        stringBuilder4.append("VIDEO DURATION: ");
+                        stringBuilder4.append(j);
+                        stringBuilder4.append(" Usec");
+                        Log.d(access$1002, stringBuilder4.toString());
+                    }
+                    if (!(this.mAudioSnapshot == null || addTrack2 == -1)) {
+                        long writeAudioSamples = writeAudioSamples(mediaMuxer, this.mAudioSnapshot, addTrack2, j);
+                        access$1002 = CircularMediaRecorder.TAG;
+                        stringBuilder4 = new StringBuilder();
+                        stringBuilder4.append("AUDIO DURATION: ");
+                        stringBuilder4.append(writeAudioSamples);
+                        stringBuilder4.append(" Usec");
+                        Log.d(access$1002, stringBuilder4.toString());
+                    }
+                    mediaMuxer.stop();
+                    if (this.mVideoClipSavingCallback != null) {
+                        byte[] readFully = readFully(file.getPath());
+                        VideoClipSavingCallback videoClipSavingCallback = this.mVideoClipSavingCallback;
+                        if (this.mVideoSnapshot != null) {
+                            j2 = this.mVideoSnapshot.curr;
+                        }
+                        videoClipSavingCallback.onVideoClipSavingCompleted(readFully, j2);
+                    }
+                    try {
+                        mediaMuxer.release();
+                    } catch (Exception e4) {
+                        access$1002 = CircularMediaRecorder.TAG;
+                        stringBuilder2 = new StringBuilder();
+                        stringBuilder2.append("Failed to release the media muxer: ");
+                        stringBuilder2.append(mediaMuxer);
+                        Log.d(access$1002, stringBuilder2.toString());
+                    }
+                    if (CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD) {
+                        access$1002 = CircularMediaRecorder.TAG;
+                        stringBuilder3 = new StringBuilder();
+                        stringBuilder3.append("Ignore deleting the temporary mp4 file: ");
+                        stringBuilder3.append(r1);
+                        Log.d(access$1002, stringBuilder3.toString());
+                    }
+                    if (!(file == null || file.delete())) {
+                        access$1002 = CircularMediaRecorder.TAG;
+                        stringBuilder3 = new StringBuilder();
+                        stringBuilder3.append("Failed to delete the temporary mp4 file: ");
+                        stringBuilder3.append(r1);
+                        Log.d(access$1002, stringBuilder3.toString());
+                    }
+                } catch (Exception e5) {
+                    e = e5;
+                    access$100 = CircularMediaRecorder.TAG;
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("Failed to save the videoclip as an mp4 file: ");
+                    stringBuilder.append(e);
+                    Log.d(access$100, stringBuilder.toString());
+                    if (this.mVideoClipSavingCallback != null) {
+                    }
+                    if (mediaMuxer != null) {
+                    }
+                    if (CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD) {
+                    }
+                }
+            } catch (Throwable e6) {
+                mediaMuxer = null;
+                e = e6;
+                file = mediaMuxer;
+                access$100 = CircularMediaRecorder.TAG;
+                stringBuilder = new StringBuilder();
+                stringBuilder.append("Failed to save the videoclip as an mp4 file: ");
+                stringBuilder.append(e);
+                Log.d(access$100, stringBuilder.toString());
+                if (this.mVideoClipSavingCallback != null) {
+                    this.mVideoClipSavingCallback.onVideoClipSavingException(e);
+                }
+                if (mediaMuxer != null) {
+                    try {
+                        mediaMuxer.release();
+                    } catch (Exception e7) {
+                        access$1002 = CircularMediaRecorder.TAG;
+                        stringBuilder2 = new StringBuilder();
+                        stringBuilder2.append("Failed to release the media muxer: ");
+                        stringBuilder2.append(mediaMuxer);
+                        Log.d(access$1002, stringBuilder2.toString());
+                    }
+                }
+                if (CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD) {
+                    access$1002 = CircularMediaRecorder.TAG;
+                    stringBuilder3 = new StringBuilder();
+                    stringBuilder3.append("Ignore deleting the temporary mp4 file: ");
+                    stringBuilder3.append(r1);
+                    Log.d(access$1002, stringBuilder3.toString());
+                }
+                if (!(file == null || file.delete())) {
+                    access$1002 = CircularMediaRecorder.TAG;
+                    stringBuilder3 = new StringBuilder();
+                    stringBuilder3.append("Failed to delete the temporary mp4 file: ");
+                    stringBuilder3.append(r1);
+                    Log.d(access$1002, stringBuilder3.toString());
+                }
+            } catch (Throwable e62) {
+                mediaMuxer = null;
+                e = e62;
+                file = mediaMuxer;
+                if (mediaMuxer != null) {
+                }
+                if (CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD) {
+                }
+                throw e;
+            }
         }
 
         private static long writeVideoSamples(MediaMuxer mediaMuxer, Snapshot snapshot, int i) {

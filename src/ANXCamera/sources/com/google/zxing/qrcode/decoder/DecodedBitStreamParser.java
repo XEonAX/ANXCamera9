@@ -4,9 +4,12 @@ import com.google.zxing.DecodeHintType;
 import com.google.zxing.FormatException;
 import com.google.zxing.common.BitSource;
 import com.google.zxing.common.CharacterSetECI;
+import com.google.zxing.common.DecoderResult;
 import com.google.zxing.common.StringUtils;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 final class DecodedBitStreamParser {
@@ -18,191 +21,110 @@ final class DecodedBitStreamParser {
 
     /* JADX WARNING: Removed duplicated region for block: B:64:0x0107 A:{LOOP_END, LOOP:0: B:1:0x0020->B:64:0x0107} */
     /* JADX WARNING: Removed duplicated region for block: B:70:0x00e4 A:{SYNTHETIC} */
-    static com.google.zxing.common.DecoderResult decode(byte[] r17, com.google.zxing.qrcode.decoder.Version r18, com.google.zxing.qrcode.decoder.ErrorCorrectionLevel r19, java.util.Map<com.google.zxing.DecodeHintType, ?> r20) throws com.google.zxing.FormatException {
-        /*
-        r1 = r18;
-        r0 = new com.google.zxing.common.BitSource;
-        r9 = r17;
-        r0.<init>(r9);
-        r10 = r0;
-        r0 = new java.lang.StringBuilder;
-        r2 = 50;
-        r0.<init>(r2);
-        r11 = r0;
-        r0 = new java.util.ArrayList;
-        r8 = 1;
-        r0.<init>(r8);
-        r12 = r0;
-        r0 = -1;
-        r2 = -1;
-        r3 = 0;
-        r4 = 0;
-        r13 = r0;
-        r14 = r2;
-        r0 = r3;
-    L_0x0020:
-        r15 = r4;
-        r2 = r10.available();	 Catch:{ IllegalArgumentException -> 0x010c }
-        r3 = 4;
-        if (r2 >= r3) goto L_0x002b;
-    L_0x0028:
-        r2 = com.google.zxing.qrcode.decoder.Mode.TERMINATOR;	 Catch:{ IllegalArgumentException -> 0x010c }
-        goto L_0x0033;
-    L_0x002b:
-        r2 = r10.readBits(r3);	 Catch:{ IllegalArgumentException -> 0x010c }
-        r2 = com.google.zxing.qrcode.decoder.Mode.forBits(r2);	 Catch:{ IllegalArgumentException -> 0x010c }
-    L_0x0033:
-        r7 = r2;
-        r2 = com.google.zxing.qrcode.decoder.Mode.TERMINATOR;	 Catch:{ IllegalArgumentException -> 0x010c }
-        if (r7 == r2) goto L_0x00dc;
-    L_0x0038:
-        r2 = com.google.zxing.qrcode.decoder.Mode.FNC1_FIRST_POSITION;	 Catch:{ IllegalArgumentException -> 0x010c }
-        if (r7 == r2) goto L_0x00d5;
-    L_0x003c:
-        r2 = com.google.zxing.qrcode.decoder.Mode.FNC1_SECOND_POSITION;	 Catch:{ IllegalArgumentException -> 0x010c }
-        if (r7 != r2) goto L_0x0045;
-    L_0x0040:
-        r16 = r0;
-        r0 = r7;
-        goto L_0x00d8;
-    L_0x0045:
-        r2 = com.google.zxing.qrcode.decoder.Mode.STRUCTURED_APPEND;	 Catch:{ IllegalArgumentException -> 0x010c }
-        if (r7 != r2) goto L_0x0068;
-    L_0x0049:
-        r2 = r10.available();	 Catch:{ IllegalArgumentException -> 0x010c }
-        r3 = 16;
-        if (r2 < r3) goto L_0x0063;
-    L_0x0051:
-        r2 = 8;
-        r3 = r10.readBits(r2);	 Catch:{ IllegalArgumentException -> 0x010c }
-        r13 = r3;
-        r2 = r10.readBits(r2);	 Catch:{ IllegalArgumentException -> 0x010c }
-        r16 = r0;
-        r14 = r2;
-    L_0x0060:
-        r0 = r7;
-        goto L_0x00df;
-    L_0x0063:
-        r2 = com.google.zxing.FormatException.getFormatInstance();	 Catch:{ IllegalArgumentException -> 0x010c }
-        throw r2;	 Catch:{ IllegalArgumentException -> 0x010c }
-    L_0x0068:
-        r2 = com.google.zxing.qrcode.decoder.Mode.ECI;	 Catch:{ IllegalArgumentException -> 0x010c }
-        if (r7 != r2) goto L_0x007f;
-    L_0x006c:
-        r2 = parseECIValue(r10);	 Catch:{ IllegalArgumentException -> 0x010c }
-        r3 = com.google.zxing.common.CharacterSetECI.getCharacterSetECIByValue(r2);	 Catch:{ IllegalArgumentException -> 0x010c }
-        r0 = r3;
-        if (r0 == 0) goto L_0x007a;
-    L_0x0077:
-        r16 = r0;
-        goto L_0x0060;
-    L_0x007a:
-        r3 = com.google.zxing.FormatException.getFormatInstance();	 Catch:{ IllegalArgumentException -> 0x010c }
-        throw r3;	 Catch:{ IllegalArgumentException -> 0x010c }
-    L_0x007f:
-        r2 = com.google.zxing.qrcode.decoder.Mode.HANZI;	 Catch:{ IllegalArgumentException -> 0x010c }
-        if (r7 != r2) goto L_0x0098;
-    L_0x0083:
-        r2 = r10.readBits(r3);	 Catch:{ IllegalArgumentException -> 0x010c }
-        r3 = r7.getCharacterCountBits(r1);	 Catch:{ IllegalArgumentException -> 0x010c }
-        r3 = r10.readBits(r3);	 Catch:{ IllegalArgumentException -> 0x010c }
-        if (r2 != r8) goto L_0x0095;
-    L_0x0091:
-        decodeHanziSegment(r10, r11, r3);	 Catch:{ IllegalArgumentException -> 0x010c }
-    L_0x0095:
-        r16 = r0;
-        goto L_0x0060;
-    L_0x0098:
-        r2 = r7.getCharacterCountBits(r1);	 Catch:{ IllegalArgumentException -> 0x010c }
-        r2 = r10.readBits(r2);	 Catch:{ IllegalArgumentException -> 0x010c }
-        r6 = r2;
-        r2 = com.google.zxing.qrcode.decoder.Mode.NUMERIC;	 Catch:{ IllegalArgumentException -> 0x010c }
-        if (r7 != r2) goto L_0x00a9;
-    L_0x00a5:
-        decodeNumericSegment(r10, r11, r6);	 Catch:{ IllegalArgumentException -> 0x010c }
-        goto L_0x0095;
-    L_0x00a9:
-        r2 = com.google.zxing.qrcode.decoder.Mode.ALPHANUMERIC;	 Catch:{ IllegalArgumentException -> 0x010c }
-        if (r7 != r2) goto L_0x00b1;
-    L_0x00ad:
-        decodeAlphanumericSegment(r10, r11, r6, r15);	 Catch:{ IllegalArgumentException -> 0x010c }
-        goto L_0x0095;
-    L_0x00b1:
-        r2 = com.google.zxing.qrcode.decoder.Mode.BYTE;	 Catch:{ IllegalArgumentException -> 0x010c }
-        if (r7 != r2) goto L_0x00c4;
-    L_0x00b5:
-        r2 = r10;
-        r3 = r11;
-        r4 = r6;
-        r5 = r0;
-        r8 = r6;
-        r6 = r12;
-        r16 = r0;
-        r0 = r7;
-        r7 = r20;
-        decodeByteSegment(r2, r3, r4, r5, r6, r7);	 Catch:{ IllegalArgumentException -> 0x010c }
-        goto L_0x00df;
-    L_0x00c4:
-        r16 = r0;
-        r8 = r6;
-        r0 = r7;
-        r2 = com.google.zxing.qrcode.decoder.Mode.KANJI;	 Catch:{ IllegalArgumentException -> 0x010c }
-        if (r0 != r2) goto L_0x00d0;
-    L_0x00cc:
-        decodeKanjiSegment(r10, r11, r8);	 Catch:{ IllegalArgumentException -> 0x010c }
-        goto L_0x00df;
-    L_0x00d0:
-        r2 = com.google.zxing.FormatException.getFormatInstance();	 Catch:{ IllegalArgumentException -> 0x010c }
-        throw r2;	 Catch:{ IllegalArgumentException -> 0x010c }
-    L_0x00d5:
-        r16 = r0;
-        r0 = r7;
-    L_0x00d8:
-        r2 = 1;
-        r4 = r2;
-        goto L_0x00e0;
-    L_0x00dc:
-        r16 = r0;
-        r0 = r7;
-    L_0x00df:
-        r4 = r15;
-    L_0x00e0:
-        r2 = com.google.zxing.qrcode.decoder.Mode.TERMINATOR;	 Catch:{ IllegalArgumentException -> 0x010c }
-        if (r0 != r2) goto L_0x0107;
-        r0 = new com.google.zxing.common.DecoderResult;
-        r4 = r11.toString();
-        r2 = r12.isEmpty();
-        r3 = 0;
-        if (r2 == 0) goto L_0x00f4;
-    L_0x00f2:
-        r5 = r3;
-        goto L_0x00f5;
-    L_0x00f4:
-        r5 = r12;
-    L_0x00f5:
-        if (r19 != 0) goto L_0x00f9;
-    L_0x00f7:
-        r6 = r3;
-        goto L_0x00fe;
-    L_0x00f9:
-        r2 = r19.toString();
-        r6 = r2;
-        r2 = r0;
-        r3 = r9;
-        r7 = r13;
-        r8 = r14;
-        r2.<init>(r3, r4, r5, r6, r7, r8);
-        return r0;
-    L_0x0107:
-        r0 = r16;
-        r8 = 1;
-        goto L_0x0020;
-    L_0x010c:
-        r0 = move-exception;
-        r2 = com.google.zxing.FormatException.getFormatInstance();
-        throw r2;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.zxing.qrcode.decoder.DecodedBitStreamParser.decode(byte[], com.google.zxing.qrcode.decoder.Version, com.google.zxing.qrcode.decoder.ErrorCorrectionLevel, java.util.Map):com.google.zxing.common.DecoderResult");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    static DecoderResult decode(byte[] bytes, Version version, ErrorCorrectionLevel ecLevel, Map<DecodeHintType, ?> hints) throws FormatException {
+        Version version2 = version;
+        byte[] bArr = bytes;
+        BitSource bits = new BitSource(bArr);
+        StringBuilder result = new StringBuilder(50);
+        int i = 1;
+        Collection byteSegments = new ArrayList(1);
+        boolean fc1InEffect = false;
+        int symbolSequence = -1;
+        int parityData = -1;
+        CharacterSetECI currentCharacterSetECI = null;
+        while (true) {
+            boolean fc1InEffect2 = fc1InEffect;
+            try {
+                Enum mode;
+                Mode mode2;
+                if (bits.available() < 4) {
+                    mode = Mode.TERMINATOR;
+                } else {
+                    mode = Mode.forBits(bits.readBits(4));
+                }
+                Enum mode3 = mode;
+                CharacterSetECI currentCharacterSetECI2;
+                if (mode3 != Mode.TERMINATOR) {
+                    if (mode3 == Mode.FNC1_FIRST_POSITION) {
+                        currentCharacterSetECI2 = currentCharacterSetECI;
+                        mode2 = mode3;
+                    } else if (mode3 == Mode.FNC1_SECOND_POSITION) {
+                        currentCharacterSetECI2 = currentCharacterSetECI;
+                        mode2 = mode3;
+                    } else {
+                        if (mode3 == Mode.STRUCTURED_APPEND) {
+                            if (bits.available() >= 16) {
+                                symbolSequence = bits.readBits(8);
+                                currentCharacterSetECI2 = currentCharacterSetECI;
+                                parityData = bits.readBits(8);
+                            } else {
+                                throw FormatException.getFormatInstance();
+                            }
+                        } else if (mode3 == Mode.ECI) {
+                            currentCharacterSetECI = CharacterSetECI.getCharacterSetECIByValue(parseECIValue(bits));
+                            if (currentCharacterSetECI != null) {
+                                currentCharacterSetECI2 = currentCharacterSetECI;
+                            } else {
+                                throw FormatException.getFormatInstance();
+                            }
+                        } else {
+                            if (mode3 == Mode.HANZI) {
+                                int subset = bits.readBits(4);
+                                int countHanzi = bits.readBits(mode3.getCharacterCountBits(version2));
+                                if (subset == i) {
+                                    decodeHanziSegment(bits, result, countHanzi);
+                                }
+                            } else {
+                                int count = bits.readBits(mode3.getCharacterCountBits(version2));
+                                if (mode3 == Mode.NUMERIC) {
+                                    decodeNumericSegment(bits, result, count);
+                                } else if (mode3 == Mode.ALPHANUMERIC) {
+                                    decodeAlphanumericSegment(bits, result, count, fc1InEffect2);
+                                } else if (mode3 == Mode.BYTE) {
+                                    currentCharacterSetECI2 = currentCharacterSetECI;
+                                    mode2 = mode3;
+                                    decodeByteSegment(bits, result, count, currentCharacterSetECI, byteSegments, hints);
+                                } else {
+                                    currentCharacterSetECI2 = currentCharacterSetECI;
+                                    i = count;
+                                    mode2 = mode3;
+                                    if (mode2 == Mode.KANJI) {
+                                        decodeKanjiSegment(bits, result, i);
+                                    } else {
+                                        throw FormatException.getFormatInstance();
+                                    }
+                                }
+                            }
+                            currentCharacterSetECI2 = currentCharacterSetECI;
+                        }
+                        mode2 = mode3;
+                    }
+                    fc1InEffect = true;
+                    if (mode2 != Mode.TERMINATOR) {
+                        String str;
+                        String stringBuilder = result.toString();
+                        List list = byteSegments.isEmpty() ? null : byteSegments;
+                        if (ecLevel == null) {
+                            str = null;
+                        } else {
+                            str = ecLevel.toString();
+                        }
+                        return new DecoderResult(bArr, stringBuilder, list, str, symbolSequence, parityData);
+                    }
+                    currentCharacterSetECI = currentCharacterSetECI2;
+                    i = 1;
+                } else {
+                    currentCharacterSetECI2 = currentCharacterSetECI;
+                    mode2 = mode3;
+                }
+                fc1InEffect = fc1InEffect2;
+                if (mode2 != Mode.TERMINATOR) {
+                }
+            } catch (IllegalArgumentException e) {
+                throw FormatException.getFormatInstance();
+            }
+        }
     }
 
     private static void decodeHanziSegment(BitSource bits, StringBuilder result, int count) throws FormatException {

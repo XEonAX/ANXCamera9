@@ -24,6 +24,7 @@ import com.android.camera.data.data.config.DataItemConfig;
 import com.android.camera.data.data.config.SupportedConfigFactory;
 import com.android.camera.data.data.global.DataItemGlobal;
 import com.android.camera.data.data.runing.ComponentRunningLiveShot;
+import com.android.camera.data.data.runing.ComponentRunningTiltValue;
 import com.android.camera.data.data.runing.ComponentRunningTimer;
 import com.android.camera.data.data.runing.DataItemRunning;
 import com.android.camera.effect.EffectController;
@@ -580,67 +581,35 @@ public class ConfigChangeImpl implements ConfigChanges {
         restoreAllMutexElement(SupportedConfigFactory.CLOSE_BY_SUPER_RESOLUTION);
     }
 
-    public void configTiltSwitch(int r7) {
-        /*
-        r6 = this;
-        r0 = com.android.camera.data.DataRepository.dataItemRunning();
-        r1 = "pref_camera_tilt_shift_mode";
-        r1 = r0.isSwitchOn(r1);
-        r2 = r0.getComponentRunningTiltValue();
-        r3 = 0;
-        switch(r7) {
-            case 1: goto L_0x001d;
-            case 2: goto L_0x001c;
-            case 3: goto L_0x0013;
-            default: goto L_0x0012;
-        };
-    L_0x0012:
-        goto L_0x0054;
-        r7 = "pref_camera_tilt_shift_mode";
-        r0.switchOff(r7);
-    L_0x001a:
-        r1 = r3;
-        goto L_0x0054;
-    L_0x001c:
-        goto L_0x0054;
-    L_0x001d:
-        r7 = 160; // 0xa0 float:2.24E-43 double:7.9E-322;
-        if (r1 != 0) goto L_0x0032;
-    L_0x0021:
-        r1 = 1;
-        r3 = "circle";
-        com.android.camera.statistic.CameraStatUtil.trackTiltShiftChanged(r3);
-        r3 = "pref_camera_tilt_shift_mode";
-        r0.switchOn(r3);
-        r0 = "circle";
-        r2.setComponentValue(r7, r0);
-        goto L_0x0054;
-    L_0x0032:
-        r4 = "circle";
-        r5 = r2.getComponentValue(r7);
-        r4 = r4.equals(r5);
-        if (r4 == 0) goto L_0x0049;
-    L_0x003e:
-        r0 = "parallel";
-        com.android.camera.statistic.CameraStatUtil.trackTiltShiftChanged(r0);
-        r0 = "parallel";
-        r2.setComponentValue(r7, r0);
-        goto L_0x0054;
-    L_0x0049:
-        r7 = "off";
-        com.android.camera.statistic.CameraStatUtil.trackTiltShiftChanged(r7);
-        r7 = "pref_camera_tilt_shift_mode";
-        r0.switchOff(r7);
-        goto L_0x001a;
-    L_0x0054:
-        r7 = r6.getBaseModule();
-        r7 = (com.android.camera.module.Camera2Module) r7;
-        r7.onTiltShiftSwitched(r1);
-        r7 = com.android.camera.effect.EffectController.getInstance();
-        r7.setDrawTilt(r1);
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.impl.component.ConfigChangeImpl.configTiltSwitch(int):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void configTiltSwitch(int i) {
+        DataItemRunning dataItemRunning = DataRepository.dataItemRunning();
+        boolean isSwitchOn = dataItemRunning.isSwitchOn("pref_camera_tilt_shift_mode");
+        ComponentRunningTiltValue componentRunningTiltValue = dataItemRunning.getComponentRunningTiltValue();
+        switch (i) {
+            case 1:
+                if (!isSwitchOn) {
+                    isSwitchOn = true;
+                    CameraStatUtil.trackTiltShiftChanged(ComponentRunningTiltValue.TILT_CIRCLE);
+                    dataItemRunning.switchOn("pref_camera_tilt_shift_mode");
+                    componentRunningTiltValue.setComponentValue(160, ComponentRunningTiltValue.TILT_CIRCLE);
+                    break;
+                } else if (ComponentRunningTiltValue.TILT_CIRCLE.equals(componentRunningTiltValue.getComponentValue(160))) {
+                    CameraStatUtil.trackTiltShiftChanged(ComponentRunningTiltValue.TILT_PARALLEL);
+                    componentRunningTiltValue.setComponentValue(160, ComponentRunningTiltValue.TILT_PARALLEL);
+                    break;
+                } else {
+                    CameraStatUtil.trackTiltShiftChanged("off");
+                    dataItemRunning.switchOff("pref_camera_tilt_shift_mode");
+                }
+            case 3:
+                dataItemRunning.switchOff("pref_camera_tilt_shift_mode");
+                isSwitchOn = false;
+                break;
+        }
+        isSwitchOn = false;
+        ((Camera2Module) getBaseModule()).onTiltShiftSwitched(isSwitchOn);
+        EffectController.getInstance().setDrawTilt(isSwitchOn);
     }
 
     public void configTimerSwitch() {

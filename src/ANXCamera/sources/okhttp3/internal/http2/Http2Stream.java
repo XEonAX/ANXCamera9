@@ -124,67 +124,12 @@ public final class Http2Stream {
         /* JADX WARNING: Missing block: B:22:0x004f, code:
             return;
      */
-        public void close() throws java.io.IOException {
-            /*
-            r8 = this;
-            r0 = okhttp3.internal.http2.Http2Stream.this;
-            monitor-enter(r0);
-            r1 = r8.closed;	 Catch:{ all -> 0x0053 }
-            if (r1 == 0) goto L_0x000a;
-        L_0x0008:
-            monitor-exit(r0);	 Catch:{ all -> 0x0053 }
-            return;
-        L_0x000a:
-            monitor-exit(r0);	 Catch:{ all -> 0x0053 }
-            r0 = okhttp3.internal.http2.Http2Stream.this;
-            r0 = r0.sink;
-            r0 = r0.finished;
-            r1 = 1;
-            if (r0 != 0) goto L_0x003d;
-        L_0x0014:
-            r0 = r8.sendBuffer;
-            r2 = r0.size();
-            r4 = 0;
-            r0 = (r2 > r4 ? 1 : (r2 == r4 ? 0 : -1));
-            if (r0 <= 0) goto L_0x002e;
-        L_0x0020:
-            r0 = r8.sendBuffer;
-            r2 = r0.size();
-            r0 = (r2 > r4 ? 1 : (r2 == r4 ? 0 : -1));
-            if (r0 <= 0) goto L_0x003d;
-        L_0x002a:
-            r8.emitFrame(r1);
-            goto L_0x0020;
-        L_0x002e:
-            r0 = okhttp3.internal.http2.Http2Stream.this;
-            r2 = r0.connection;
-            r0 = okhttp3.internal.http2.Http2Stream.this;
-            r3 = r0.id;
-            r4 = 1;
-            r5 = 0;
-            r6 = 0;
-            r2.writeData(r3, r4, r5, r6);
-        L_0x003d:
-            r2 = okhttp3.internal.http2.Http2Stream.this;
-            monitor-enter(r2);
-            r8.closed = r1;	 Catch:{ all -> 0x0050 }
-            monitor-exit(r2);	 Catch:{ all -> 0x0050 }
-            r0 = okhttp3.internal.http2.Http2Stream.this;
-            r0 = r0.connection;
-            r0.flush();
-            r0 = okhttp3.internal.http2.Http2Stream.this;
-            r0.cancelStreamIfNecessary();
-            return;
-        L_0x0050:
-            r0 = move-exception;
-            monitor-exit(r2);	 Catch:{ all -> 0x0050 }
-            throw r0;
-        L_0x0053:
-            r1 = move-exception;
-            monitor-exit(r0);	 Catch:{ all -> 0x0053 }
-            throw r1;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.http2.Http2Stream.FramingSink.close():void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public void close() throws IOException {
+            synchronized (Http2Stream.this) {
+                if (this.closed) {
+                }
+            }
         }
     }
 
@@ -227,110 +172,29 @@ public final class Http2Stream {
         /* JADX WARNING: Missing block: B:21:0x0097, code:
             return r8;
      */
-        public long read(okio.Buffer r8, long r9) throws java.io.IOException {
-            /*
-            r7 = this;
-            r0 = 0;
-            r2 = (r9 > r0 ? 1 : (r9 == r0 ? 0 : -1));
-            if (r2 < 0) goto L_0x009e;
-        L_0x0006:
-            r2 = okhttp3.internal.http2.Http2Stream.this;
-            monitor-enter(r2);
-            r7.waitUntilReadable();	 Catch:{ all -> 0x009b }
-            r7.checkNotClosed();	 Catch:{ all -> 0x009b }
-            r3 = r7.readBuffer;	 Catch:{ all -> 0x009b }
-            r3 = r3.size();	 Catch:{ all -> 0x009b }
-            r3 = (r3 > r0 ? 1 : (r3 == r0 ? 0 : -1));
-            if (r3 != 0) goto L_0x001d;
-        L_0x0019:
-            r8 = -1;
-            monitor-exit(r2);	 Catch:{ all -> 0x009b }
-            return r8;
-        L_0x001d:
-            r3 = r7.readBuffer;	 Catch:{ all -> 0x009b }
-            r4 = r7.readBuffer;	 Catch:{ all -> 0x009b }
-            r4 = r4.size();	 Catch:{ all -> 0x009b }
-            r9 = java.lang.Math.min(r9, r4);	 Catch:{ all -> 0x009b }
-            r8 = r3.read(r8, r9);	 Catch:{ all -> 0x009b }
-            r10 = okhttp3.internal.http2.Http2Stream.this;	 Catch:{ all -> 0x009b }
-            r3 = r10.unacknowledgedBytesRead;	 Catch:{ all -> 0x009b }
-            r3 = r3 + r8;
-            r10.unacknowledgedBytesRead = r3;	 Catch:{ all -> 0x009b }
-            r10 = okhttp3.internal.http2.Http2Stream.this;	 Catch:{ all -> 0x009b }
-            r3 = r10.unacknowledgedBytesRead;	 Catch:{ all -> 0x009b }
-            r10 = okhttp3.internal.http2.Http2Stream.this;	 Catch:{ all -> 0x009b }
-            r10 = r10.connection;	 Catch:{ all -> 0x009b }
-            r10 = r10.okHttpSettings;	 Catch:{ all -> 0x009b }
-            r10 = r10.getInitialWindowSize();	 Catch:{ all -> 0x009b }
-            r10 = r10 / 2;
-            r5 = (long) r10;	 Catch:{ all -> 0x009b }
-            r10 = (r3 > r5 ? 1 : (r3 == r5 ? 0 : -1));
-            if (r10 < 0) goto L_0x005c;
-        L_0x0049:
-            r10 = okhttp3.internal.http2.Http2Stream.this;	 Catch:{ all -> 0x009b }
-            r10 = r10.connection;	 Catch:{ all -> 0x009b }
-            r3 = okhttp3.internal.http2.Http2Stream.this;	 Catch:{ all -> 0x009b }
-            r3 = r3.id;	 Catch:{ all -> 0x009b }
-            r4 = okhttp3.internal.http2.Http2Stream.this;	 Catch:{ all -> 0x009b }
-            r4 = r4.unacknowledgedBytesRead;	 Catch:{ all -> 0x009b }
-            r10.writeWindowUpdateLater(r3, r4);	 Catch:{ all -> 0x009b }
-            r10 = okhttp3.internal.http2.Http2Stream.this;	 Catch:{ all -> 0x009b }
-            r10.unacknowledgedBytesRead = r0;	 Catch:{ all -> 0x009b }
-        L_0x005c:
-            monitor-exit(r2);	 Catch:{ all -> 0x009b }
-            r10 = okhttp3.internal.http2.Http2Stream.this;
-            r10 = r10.connection;
-            monitor-enter(r10);
-            r2 = okhttp3.internal.http2.Http2Stream.this;	 Catch:{ all -> 0x0098 }
-            r2 = r2.connection;	 Catch:{ all -> 0x0098 }
-            r3 = r2.unacknowledgedBytesRead;	 Catch:{ all -> 0x0098 }
-            r3 = r3 + r8;
-            r2.unacknowledgedBytesRead = r3;	 Catch:{ all -> 0x0098 }
-            r2 = okhttp3.internal.http2.Http2Stream.this;	 Catch:{ all -> 0x0098 }
-            r2 = r2.connection;	 Catch:{ all -> 0x0098 }
-            r2 = r2.unacknowledgedBytesRead;	 Catch:{ all -> 0x0098 }
-            r4 = okhttp3.internal.http2.Http2Stream.this;	 Catch:{ all -> 0x0098 }
-            r4 = r4.connection;	 Catch:{ all -> 0x0098 }
-            r4 = r4.okHttpSettings;	 Catch:{ all -> 0x0098 }
-            r4 = r4.getInitialWindowSize();	 Catch:{ all -> 0x0098 }
-            r4 = r4 / 2;
-            r4 = (long) r4;	 Catch:{ all -> 0x0098 }
-            r2 = (r2 > r4 ? 1 : (r2 == r4 ? 0 : -1));
-            if (r2 < 0) goto L_0x0096;
-        L_0x0082:
-            r2 = okhttp3.internal.http2.Http2Stream.this;	 Catch:{ all -> 0x0098 }
-            r2 = r2.connection;	 Catch:{ all -> 0x0098 }
-            r3 = 0;
-            r4 = okhttp3.internal.http2.Http2Stream.this;	 Catch:{ all -> 0x0098 }
-            r4 = r4.connection;	 Catch:{ all -> 0x0098 }
-            r4 = r4.unacknowledgedBytesRead;	 Catch:{ all -> 0x0098 }
-            r2.writeWindowUpdateLater(r3, r4);	 Catch:{ all -> 0x0098 }
-            r2 = okhttp3.internal.http2.Http2Stream.this;	 Catch:{ all -> 0x0098 }
-            r2 = r2.connection;	 Catch:{ all -> 0x0098 }
-            r2.unacknowledgedBytesRead = r0;	 Catch:{ all -> 0x0098 }
-        L_0x0096:
-            monitor-exit(r10);	 Catch:{ all -> 0x0098 }
-            return r8;
-        L_0x0098:
-            r8 = move-exception;
-            monitor-exit(r10);	 Catch:{ all -> 0x0098 }
-            throw r8;
-        L_0x009b:
-            r8 = move-exception;
-            monitor-exit(r2);	 Catch:{ all -> 0x009b }
-            throw r8;
-        L_0x009e:
-            r8 = new java.lang.IllegalArgumentException;
-            r0 = new java.lang.StringBuilder;
-            r0.<init>();
-            r1 = "byteCount < 0: ";
-            r0.append(r1);
-            r0.append(r9);
-            r9 = r0.toString();
-            r8.<init>(r9);
-            throw r8;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.http2.Http2Stream.FramingSource.read(okio.Buffer, long):long");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public long read(Buffer buffer, long j) throws IOException {
+            if (j >= 0) {
+                synchronized (Http2Stream.this) {
+                    waitUntilReadable();
+                    checkNotClosed();
+                    if (this.readBuffer.size() == 0) {
+                        return -1;
+                    }
+                    long read = this.readBuffer.read(buffer, Math.min(j, this.readBuffer.size()));
+                    Http2Stream http2Stream = Http2Stream.this;
+                    http2Stream.unacknowledgedBytesRead += read;
+                    if (Http2Stream.this.unacknowledgedBytesRead >= ((long) (Http2Stream.this.connection.okHttpSettings.getInitialWindowSize() / 2))) {
+                        Http2Stream.this.connection.writeWindowUpdateLater(Http2Stream.this.id, Http2Stream.this.unacknowledgedBytesRead);
+                        Http2Stream.this.unacknowledgedBytesRead = 0;
+                    }
+                }
+            } else {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("byteCount < 0: ");
+                stringBuilder.append(j);
+                throw new IllegalArgumentException(stringBuilder.toString());
+            }
         }
 
         private void waitUntilReadable() throws IOException {

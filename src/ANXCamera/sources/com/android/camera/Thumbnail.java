@@ -1,6 +1,8 @@
 package com.android.camera;
 
 import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Bitmap.Config;
@@ -10,18 +12,23 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
+import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.provider.MediaStore.Images;
 import android.provider.MediaStore.Video.Thumbnails;
 import android.provider.MiuiSettings.ScreenEffect;
+import android.text.TextUtils;
 import com.android.camera.log.Log;
 import com.android.camera.storage.Storage;
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.Closeable;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileDescriptor;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -270,106 +277,121 @@ public class Thumbnail {
     /* JADX WARNING: Missing block: B:25:0x005b, code:
             return r7;
      */
-    public static com.android.camera.Thumbnail getLastThumbnailFromFile(java.io.File r7, android.content.ContentResolver r8) {
-        /*
-        r0 = new java.io.File;
-        r1 = "last_thumb";
-        r0.<init>(r7, r1);
-        r7 = sLock;
-        monitor-enter(r7);
-        r1 = 0;
-        r2 = new java.io.FileInputStream;	 Catch:{ IOException -> 0x0071, all -> 0x006c }
-        r2.<init>(r0);	 Catch:{ IOException -> 0x0071, all -> 0x006c }
-        r0 = new java.io.BufferedInputStream;	 Catch:{ IOException -> 0x0068, all -> 0x0064 }
-        r3 = 4096; // 0x1000 float:5.74E-42 double:2.0237E-320;
-        r0.<init>(r2, r3);	 Catch:{ IOException -> 0x0068, all -> 0x0064 }
-        r3 = new java.io.DataInputStream;	 Catch:{ IOException -> 0x0061, all -> 0x005e }
-        r3.<init>(r0);	 Catch:{ IOException -> 0x0061, all -> 0x005e }
-        r4 = r3.readUTF();	 Catch:{ IOException -> 0x005c }
-        r4 = android.net.Uri.parse(r4);	 Catch:{ IOException -> 0x005c }
-        r8 = com.android.camera.Util.isUriValid(r4, r8);	 Catch:{ IOException -> 0x005c }
-        if (r8 != 0) goto L_0x003e;
-    L_0x002f:
-        r3.close();	 Catch:{ IOException -> 0x005c }
-        com.android.camera.Util.closeSilently(r2);	 Catch:{ all -> 0x00a2 }
-        com.android.camera.Util.closeSilently(r0);	 Catch:{ all -> 0x00a2 }
-        com.android.camera.Util.closeSilently(r3);	 Catch:{ all -> 0x00a2 }
-        monitor-exit(r7);	 Catch:{ all -> 0x00a2 }
-        return r1;
-    L_0x003e:
-        r8 = android.graphics.BitmapFactory.decodeStream(r3);	 Catch:{ IOException -> 0x005c }
-        r3.close();	 Catch:{ IOException -> 0x005c }
-        com.android.camera.Util.closeSilently(r2);	 Catch:{ all -> 0x00a2 }
-        com.android.camera.Util.closeSilently(r0);	 Catch:{ all -> 0x00a2 }
-        com.android.camera.Util.closeSilently(r3);	 Catch:{ all -> 0x00a2 }
-        monitor-exit(r7);	 Catch:{ all -> 0x00a2 }
-        r7 = 0;
-        r7 = createThumbnail(r4, r8, r7, r7);
-        if (r7 == 0) goto L_0x005b;
-    L_0x0057:
-        r8 = 1;
-        r7.setFromFile(r8);
-    L_0x005b:
-        return r7;
-    L_0x005c:
-        r8 = move-exception;
-        goto L_0x0075;
-    L_0x005e:
-        r8 = move-exception;
-        r3 = r1;
-        goto L_0x0098;
-    L_0x0061:
-        r8 = move-exception;
-        r3 = r1;
-        goto L_0x0075;
-    L_0x0064:
-        r8 = move-exception;
-        r0 = r1;
-        r3 = r0;
-        goto L_0x0098;
-    L_0x0068:
-        r8 = move-exception;
-        r0 = r1;
-        r3 = r0;
-        goto L_0x0075;
-    L_0x006c:
-        r8 = move-exception;
-        r0 = r1;
-        r2 = r0;
-        r3 = r2;
-        goto L_0x0098;
-    L_0x0071:
-        r8 = move-exception;
-        r0 = r1;
-        r2 = r0;
-        r3 = r2;
-    L_0x0075:
-        r4 = "Thumbnail";
-        r5 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0097 }
-        r5.<init>();	 Catch:{ all -> 0x0097 }
-        r6 = "Fail to load bitmap. ";
-        r5.append(r6);	 Catch:{ all -> 0x0097 }
-        r5.append(r8);	 Catch:{ all -> 0x0097 }
-        r8 = r5.toString();	 Catch:{ all -> 0x0097 }
-        com.android.camera.log.Log.i(r4, r8);	 Catch:{ all -> 0x0097 }
-        com.android.camera.Util.closeSilently(r2);	 Catch:{ all -> 0x00a2 }
-        com.android.camera.Util.closeSilently(r0);	 Catch:{ all -> 0x00a2 }
-        com.android.camera.Util.closeSilently(r3);	 Catch:{ all -> 0x00a2 }
-        monitor-exit(r7);	 Catch:{ all -> 0x00a2 }
-        return r1;
-    L_0x0097:
-        r8 = move-exception;
-    L_0x0098:
-        com.android.camera.Util.closeSilently(r2);	 Catch:{ all -> 0x00a2 }
-        com.android.camera.Util.closeSilently(r0);	 Catch:{ all -> 0x00a2 }
-        com.android.camera.Util.closeSilently(r3);	 Catch:{ all -> 0x00a2 }
-        throw r8;	 Catch:{ all -> 0x00a2 }
-    L_0x00a2:
-        r8 = move-exception;
-        monitor-exit(r7);	 Catch:{ all -> 0x00a2 }
-        throw r8;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.Thumbnail.getLastThumbnailFromFile(java.io.File, android.content.ContentResolver):com.android.camera.Thumbnail");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static Thumbnail getLastThumbnailFromFile(File file, ContentResolver contentResolver) {
+        Closeable bufferedInputStream;
+        Object e;
+        Closeable closeable;
+        String str;
+        StringBuilder stringBuilder;
+        Throwable th;
+        File file2 = new File(file, LAST_THUMB_FILENAME);
+        synchronized (sLock) {
+            Closeable fileInputStream;
+            try {
+                fileInputStream = new FileInputStream(file2);
+                try {
+                    bufferedInputStream = new BufferedInputStream(fileInputStream, 4096);
+                } catch (IOException e2) {
+                    e = e2;
+                    bufferedInputStream = null;
+                    closeable = bufferedInputStream;
+                    try {
+                        str = TAG;
+                        stringBuilder = new StringBuilder();
+                        stringBuilder.append("Fail to load bitmap. ");
+                        stringBuilder.append(e);
+                        Log.i(str, stringBuilder.toString());
+                        Util.closeSilently(fileInputStream);
+                        Util.closeSilently(bufferedInputStream);
+                        Util.closeSilently(closeable);
+                        return null;
+                    } catch (Throwable th2) {
+                        th = th2;
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                    bufferedInputStream = null;
+                    closeable = bufferedInputStream;
+                    Util.closeSilently(fileInputStream);
+                    Util.closeSilently(bufferedInputStream);
+                    Util.closeSilently(closeable);
+                    throw th;
+                }
+                try {
+                    closeable = new DataInputStream(bufferedInputStream);
+                } catch (IOException e3) {
+                    e = e3;
+                    closeable = null;
+                    str = TAG;
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("Fail to load bitmap. ");
+                    stringBuilder.append(e);
+                    Log.i(str, stringBuilder.toString());
+                    Util.closeSilently(fileInputStream);
+                    Util.closeSilently(bufferedInputStream);
+                    Util.closeSilently(closeable);
+                    return null;
+                } catch (Throwable th4) {
+                    th = th4;
+                    closeable = null;
+                    Util.closeSilently(fileInputStream);
+                    Util.closeSilently(bufferedInputStream);
+                    Util.closeSilently(closeable);
+                    throw th;
+                }
+                try {
+                    Uri parse = Uri.parse(closeable.readUTF());
+                    if (Util.isUriValid(parse, contentResolver)) {
+                        Bitmap decodeStream = BitmapFactory.decodeStream(closeable);
+                        closeable.close();
+                        Util.closeSilently(fileInputStream);
+                        Util.closeSilently(bufferedInputStream);
+                        Util.closeSilently(closeable);
+                    } else {
+                        closeable.close();
+                        Util.closeSilently(fileInputStream);
+                        Util.closeSilently(bufferedInputStream);
+                        Util.closeSilently(closeable);
+                        return null;
+                    }
+                } catch (IOException e4) {
+                    e = e4;
+                    str = TAG;
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("Fail to load bitmap. ");
+                    stringBuilder.append(e);
+                    Log.i(str, stringBuilder.toString());
+                    Util.closeSilently(fileInputStream);
+                    Util.closeSilently(bufferedInputStream);
+                    Util.closeSilently(closeable);
+                    return null;
+                }
+            } catch (IOException e5) {
+                e = e5;
+                bufferedInputStream = null;
+                fileInputStream = bufferedInputStream;
+                closeable = fileInputStream;
+                str = TAG;
+                stringBuilder = new StringBuilder();
+                stringBuilder.append("Fail to load bitmap. ");
+                stringBuilder.append(e);
+                Log.i(str, stringBuilder.toString());
+                Util.closeSilently(fileInputStream);
+                Util.closeSilently(bufferedInputStream);
+                Util.closeSilently(closeable);
+                return null;
+            } catch (Throwable th5) {
+                th = th5;
+                bufferedInputStream = null;
+                fileInputStream = bufferedInputStream;
+                closeable = fileInputStream;
+                Util.closeSilently(fileInputStream);
+                Util.closeSilently(bufferedInputStream);
+                Util.closeSilently(closeable);
+                throw th;
+            }
+        }
     }
 
     public static int getLastThumbnailFromContentResolver(ContentResolver contentResolver, Thumbnail[] thumbnailArr, Uri uri) {
@@ -478,191 +500,127 @@ public class Thumbnail {
     /* JADX WARNING: Missing block: B:56:0x0137, code:
             return null;
      */
-    private static com.android.camera.Thumbnail.Media getLastImageThumbnail(android.content.ContentResolver r24) {
-        /*
-        r0 = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-        r1 = r0.buildUpon();
-        r2 = "limit";
-        r3 = "1";
-        r1 = r1.appendQueryParameter(r2, r3);
-        r3 = r1.build();
-        r1 = "_id";
-        r2 = "orientation";
-        r4 = "datetaken";
-        r5 = "_data";
-        r8 = new java.lang.String[]{r1, r2, r4, r5};
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = "mime_type='image/jpeg' AND ";
-        r1.append(r2);
-        r2 = getImageBucketIds();
-        r1.append(r2);
-        r2 = " AND ";
-        r1.append(r2);
-        r2 = "_size";
-        r1.append(r2);
-        r2 = " > 0";
-        r1.append(r2);
-        r9 = r1.toString();
-        r10 = "datetaken DESC,_id DESC";
-        r6 = 0;
-        r11 = 0;
-        r2 = r24;
-        r4 = r8;
-        r5 = r9;
-        r7 = r10;
-        r7 = r2.query(r3, r4, r5, r6, r7);	 Catch:{ Exception -> 0x0125, all -> 0x0121 }
-        r12 = 2;
-        r13 = 3;
-        r14 = 1;
-        r15 = 0;
-        if (r7 == 0) goto L_0x00a7;
-    L_0x0058:
-        r1 = r7.moveToFirst();	 Catch:{ Exception -> 0x00a3, all -> 0x009f }
-        if (r1 == 0) goto L_0x00a7;
-    L_0x005e:
-        r1 = r7.getString(r13);	 Catch:{ Exception -> 0x00a3, all -> 0x009f }
-        r2 = android.text.TextUtils.isEmpty(r1);	 Catch:{ Exception -> 0x00a3, all -> 0x009f }
-        if (r2 != 0) goto L_0x0095;
-    L_0x0068:
-        r2 = new java.io.File;	 Catch:{ Exception -> 0x00a3, all -> 0x009f }
-        r2.<init>(r1);	 Catch:{ Exception -> 0x00a3, all -> 0x009f }
-        r2 = r2.exists();	 Catch:{ Exception -> 0x00a3, all -> 0x009f }
-        if (r2 == 0) goto L_0x0095;
-    L_0x0073:
-        r2 = r7.getLong(r15);	 Catch:{ Exception -> 0x00a3, all -> 0x009f }
-        r4 = new com.android.camera.Thumbnail$Media;	 Catch:{ Exception -> 0x00a3, all -> 0x009f }
-        r19 = r7.getInt(r14);	 Catch:{ Exception -> 0x00a3, all -> 0x009f }
-        r20 = r7.getLong(r12);	 Catch:{ Exception -> 0x00a3, all -> 0x009f }
-        r22 = android.content.ContentUris.withAppendedId(r0, r2);	 Catch:{ Exception -> 0x00a3, all -> 0x009f }
-        r16 = r4;
-        r17 = r2;
-        r23 = r1;
-        r16.<init>(r17, r19, r20, r22, r23);	 Catch:{ Exception -> 0x00a3, all -> 0x009f }
-        if (r7 == 0) goto L_0x0093;
-    L_0x0090:
-        r7.close();
-        return r4;
-    L_0x0095:
-        r1 = "Thumbnail";
-        r2 = "getLastImageThumbnail first file is deleted";
-        com.android.camera.log.Log.d(r1, r2);	 Catch:{ Exception -> 0x00a3, all -> 0x009f }
-        r1 = r14;
-        goto L_0x00a8;
-    L_0x009f:
-        r0 = move-exception;
-        r1 = r11;
-        goto L_0x0139;
-    L_0x00a3:
-        r0 = move-exception;
-        r1 = r11;
-        goto L_0x0128;
-    L_0x00a7:
-        r1 = r15;
-    L_0x00a8:
-        if (r1 == 0) goto L_0x0115;
-    L_0x00aa:
-        r5 = 0;
-        r1 = r24;
-        r2 = r0;
-        r3 = r8;
-        r4 = r9;
-        r6 = r10;
-        r1 = r1.query(r2, r3, r4, r5, r6);	 Catch:{ Exception -> 0x00a3, all -> 0x009f }
-        if (r1 == 0) goto L_0x0116;
-    L_0x00b7:
-        r2 = "Thumbnail";
-        r3 = new java.lang.StringBuilder;	 Catch:{ Exception -> 0x0113 }
-        r3.<init>();	 Catch:{ Exception -> 0x0113 }
-        r4 = "getLastImageThumbnail count=";
-        r3.append(r4);	 Catch:{ Exception -> 0x0113 }
-        r4 = r1.getCount();	 Catch:{ Exception -> 0x0113 }
-        r3.append(r4);	 Catch:{ Exception -> 0x0113 }
-        r3 = r3.toString();	 Catch:{ Exception -> 0x0113 }
-        com.android.camera.log.Log.d(r2, r3);	 Catch:{ Exception -> 0x0113 }
-    L_0x00d1:
-        r2 = r1.moveToNext();	 Catch:{ Exception -> 0x0113 }
-        if (r2 == 0) goto L_0x0116;
-    L_0x00d7:
-        r2 = r1.getString(r13);	 Catch:{ Exception -> 0x0113 }
-        r3 = android.text.TextUtils.isEmpty(r2);	 Catch:{ Exception -> 0x0113 }
-        if (r3 != 0) goto L_0x0112;
-    L_0x00e1:
-        r3 = new java.io.File;	 Catch:{ Exception -> 0x0113 }
-        r3.<init>(r2);	 Catch:{ Exception -> 0x0113 }
-        r3 = r3.exists();	 Catch:{ Exception -> 0x0113 }
-        if (r3 == 0) goto L_0x0112;
-    L_0x00ec:
-        r3 = r1.getLong(r15);	 Catch:{ Exception -> 0x0113 }
-        r5 = new com.android.camera.Thumbnail$Media;	 Catch:{ Exception -> 0x0113 }
-        r19 = r1.getInt(r14);	 Catch:{ Exception -> 0x0113 }
-        r20 = r1.getLong(r12);	 Catch:{ Exception -> 0x0113 }
-        r22 = android.content.ContentUris.withAppendedId(r0, r3);	 Catch:{ Exception -> 0x0113 }
-        r16 = r5;
-        r17 = r3;
-        r23 = r2;
-        r16.<init>(r17, r19, r20, r22, r23);	 Catch:{ Exception -> 0x0113 }
-        if (r7 == 0) goto L_0x010c;
-    L_0x0109:
-        r7.close();
-    L_0x010c:
-        if (r1 == 0) goto L_0x0111;
-    L_0x010e:
-        r1.close();
-    L_0x0111:
-        return r5;
-    L_0x0112:
-        goto L_0x00d1;
-    L_0x0113:
-        r0 = move-exception;
-        goto L_0x0128;
-    L_0x0115:
-        r1 = r11;
-    L_0x0116:
-        if (r7 == 0) goto L_0x011b;
-    L_0x0118:
-        r7.close();
-    L_0x011b:
-        if (r1 == 0) goto L_0x0137;
-    L_0x011d:
-        r1.close();
-        goto L_0x0137;
-    L_0x0121:
-        r0 = move-exception;
-        r1 = r11;
-        r7 = r1;
-        goto L_0x0139;
-    L_0x0125:
-        r0 = move-exception;
-        r1 = r11;
-        r7 = r1;
-    L_0x0128:
-        r2 = "Thumbnail";
-        r3 = "getLastImageThumbnail error";
-        com.android.camera.log.Log.w(r2, r3, r0);	 Catch:{ all -> 0x0138 }
-        if (r7 == 0) goto L_0x0134;
-    L_0x0131:
-        r7.close();
-    L_0x0134:
-        if (r1 == 0) goto L_0x0137;
-    L_0x0136:
-        goto L_0x011d;
-    L_0x0137:
-        return r11;
-    L_0x0138:
-        r0 = move-exception;
-    L_0x0139:
-        if (r7 == 0) goto L_0x013e;
-    L_0x013b:
-        r7.close();
-    L_0x013e:
-        if (r1 == 0) goto L_0x0143;
-    L_0x0140:
-        r1.close();
-    L_0x0143:
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.Thumbnail.getLastImageThumbnail(android.content.ContentResolver):com.android.camera.Thumbnail$Media");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static Media getLastImageThumbnail(ContentResolver contentResolver) {
+        Throwable e;
+        Uri uri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+        Uri build = uri.buildUpon().appendQueryParameter("limit", "1").build();
+        String[] strArr = new String[]{"_id", "orientation", "datetaken", "_data"};
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("mime_type='image/jpeg' AND ");
+        stringBuilder.append(getImageBucketIds());
+        stringBuilder.append(" AND ");
+        stringBuilder.append("_size");
+        stringBuilder.append(" > 0");
+        String stringBuilder2 = stringBuilder.toString();
+        String str = "datetaken DESC,_id DESC";
+        Cursor query;
+        Cursor query2;
+        try {
+            int i;
+            query = contentResolver.query(build, strArr, stringBuilder2, null, str);
+            if (query != null) {
+                try {
+                    if (query.moveToFirst()) {
+                        String string = query.getString(3);
+                        Media media;
+                        if (TextUtils.isEmpty(string) || !new File(string).exists()) {
+                            Log.d(TAG, "getLastImageThumbnail first file is deleted");
+                            i = 1;
+                            if (i == 0) {
+                                query2 = contentResolver.query(uri, strArr, stringBuilder2, null, str);
+                                if (query2 != null) {
+                                    try {
+                                        String str2 = TAG;
+                                        StringBuilder stringBuilder3 = new StringBuilder();
+                                        stringBuilder3.append("getLastImageThumbnail count=");
+                                        stringBuilder3.append(query2.getCount());
+                                        Log.d(str2, stringBuilder3.toString());
+                                        while (query2.moveToNext()) {
+                                            str2 = query2.getString(3);
+                                            if (!TextUtils.isEmpty(str2) && new File(str2).exists()) {
+                                                long j = query2.getLong(0);
+                                                media = new Media(j, query2.getInt(1), query2.getLong(2), ContentUris.withAppendedId(uri, j), str2);
+                                                if (query != null) {
+                                                    query.close();
+                                                }
+                                                if (query2 != null) {
+                                                    query2.close();
+                                                }
+                                                return media;
+                                            }
+                                        }
+                                    } catch (Exception e2) {
+                                        e = e2;
+                                        try {
+                                            Log.w(TAG, "getLastImageThumbnail error", e);
+                                            if (query != null) {
+                                                query.close();
+                                            }
+                                        } catch (Throwable th) {
+                                            e = th;
+                                            if (query != null) {
+                                                query.close();
+                                            }
+                                            if (query2 != null) {
+                                                query2.close();
+                                            }
+                                            throw e;
+                                        }
+                                    }
+                                }
+                            }
+                            query2 = null;
+                            if (query != null) {
+                                query.close();
+                            }
+                        } else {
+                            long j2 = query.getLong(0);
+                            media = new Media(j2, query.getInt(1), query.getLong(2), ContentUris.withAppendedId(uri, j2), string);
+                            if (query != null) {
+                                query.close();
+                            }
+                            return media;
+                        }
+                    }
+                } catch (Exception e3) {
+                    e = e3;
+                    query2 = null;
+                    Log.w(TAG, "getLastImageThumbnail error", e);
+                    if (query != null) {
+                    }
+                } catch (Throwable th2) {
+                    e = th2;
+                    query2 = null;
+                    if (query != null) {
+                    }
+                    if (query2 != null) {
+                    }
+                    throw e;
+                }
+            }
+            i = 0;
+            if (i == 0) {
+            }
+            if (query != null) {
+            }
+        } catch (Exception e4) {
+            e = e4;
+            query2 = null;
+            query = query2;
+            Log.w(TAG, "getLastImageThumbnail error", e);
+            if (query != null) {
+            }
+        } catch (Throwable th3) {
+            e = th3;
+            query2 = null;
+            query = query2;
+            if (query != null) {
+            }
+            if (query2 != null) {
+            }
+            throw e;
+        }
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:39:0x0106  */
@@ -673,161 +631,109 @@ public class Thumbnail {
     /* JADX WARNING: Removed duplicated region for block: B:50:0x011c  */
     /* JADX WARNING: Removed duplicated region for block: B:48:0x0117  */
     /* JADX WARNING: Removed duplicated region for block: B:50:0x011c  */
-    private static com.android.camera.Thumbnail.Media getLastVideoThumbnail(android.content.ContentResolver r23) {
-        /*
-        r0 = android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-        r1 = r0.buildUpon();
-        r2 = "limit";
-        r3 = "1";
-        r1 = r1.appendQueryParameter(r2, r3);
-        r3 = r1.build();
-        r1 = "_id";
-        r2 = "_data";
-        r4 = "datetaken";
-        r8 = new java.lang.String[]{r1, r2, r4};
-        r1 = new java.lang.StringBuilder;
-        r1.<init>();
-        r2 = getVideoBucketIds();
-        r1.append(r2);
-        r2 = " AND ";
-        r1.append(r2);
-        r2 = "_size";
-        r1.append(r2);
-        r2 = " > 0";
-        r1.append(r2);
-        r9 = r1.toString();
-        r10 = "datetaken DESC,_id DESC";
-        r6 = 0;
-        r11 = 0;
-        r2 = r23;
-        r4 = r8;
-        r5 = r9;
-        r7 = r10;
-        r7 = r2.query(r3, r4, r5, r6, r7);	 Catch:{ all -> 0x0112 }
-        r12 = 2;
-        r13 = 0;
-        r14 = 1;
-        if (r7 == 0) goto L_0x009a;
-    L_0x0050:
-        r1 = r7.moveToFirst();	 Catch:{ all -> 0x0096 }
-        if (r1 == 0) goto L_0x009a;
-    L_0x0056:
-        r1 = r7.getLong(r13);	 Catch:{ all -> 0x0096 }
-        r3 = r7.getString(r14);	 Catch:{ all -> 0x0096 }
-        if (r3 == 0) goto L_0x008c;
-    L_0x0060:
-        r3 = new java.io.File;	 Catch:{ all -> 0x0096 }
-        r4 = r7.getString(r14);	 Catch:{ all -> 0x0096 }
-        r3.<init>(r4);	 Catch:{ all -> 0x0096 }
-        r3 = r3.exists();	 Catch:{ all -> 0x0096 }
-        if (r3 == 0) goto L_0x008c;
-    L_0x006f:
-        r3 = new com.android.camera.Thumbnail$Media;	 Catch:{ all -> 0x0096 }
-        r18 = 0;
-        r19 = r7.getLong(r12);	 Catch:{ all -> 0x0096 }
-        r21 = android.content.ContentUris.withAppendedId(r0, r1);	 Catch:{ all -> 0x0096 }
-        r22 = r7.getString(r14);	 Catch:{ all -> 0x0096 }
-        r15 = r3;
-        r16 = r1;
-        r15.<init>(r16, r18, r19, r21, r22);	 Catch:{ all -> 0x0096 }
-        if (r7 == 0) goto L_0x008a;
-    L_0x0087:
-        r7.close();
-        return r3;
-    L_0x008c:
-        r1 = "Thumbnail";
-        r2 = "getLastVideoThumbnail first file is deleted";
-        com.android.camera.log.Log.d(r1, r2);	 Catch:{ all -> 0x0096 }
-        r1 = r14;
-        goto L_0x009b;
-    L_0x0096:
-        r0 = move-exception;
-        r1 = r11;
-        goto L_0x0115;
-    L_0x009a:
-        r1 = r13;
-    L_0x009b:
-        if (r1 == 0) goto L_0x0106;
-    L_0x009d:
-        r5 = 0;
-        r1 = r23;
-        r2 = r0;
-        r3 = r8;
-        r4 = r9;
-        r6 = r10;
-        r1 = r1.query(r2, r3, r4, r5, r6);	 Catch:{ all -> 0x0096 }
-        r2 = "Thumbnail";
-        r3 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0104 }
-        r3.<init>();	 Catch:{ all -> 0x0104 }
-        r4 = "getLastVideoThumbnail count=";
-        r3.append(r4);	 Catch:{ all -> 0x0104 }
-        r4 = r1.getCount();	 Catch:{ all -> 0x0104 }
-        r3.append(r4);	 Catch:{ all -> 0x0104 }
-        r3 = r3.toString();	 Catch:{ all -> 0x0104 }
-        com.android.camera.log.Log.d(r2, r3);	 Catch:{ all -> 0x0104 }
-        if (r1 == 0) goto L_0x0107;
-    L_0x00c4:
-        r2 = r1.moveToNext();	 Catch:{ all -> 0x0104 }
-        if (r2 == 0) goto L_0x0107;
-    L_0x00ca:
-        r2 = r1.getString(r14);	 Catch:{ all -> 0x0104 }
-        if (r2 == 0) goto L_0x00c4;
-    L_0x00d0:
-        r2 = new java.io.File;	 Catch:{ all -> 0x0104 }
-        r3 = r1.getString(r14);	 Catch:{ all -> 0x0104 }
-        r2.<init>(r3);	 Catch:{ all -> 0x0104 }
-        r2 = r2.exists();	 Catch:{ all -> 0x0104 }
-        if (r2 == 0) goto L_0x00c4;
-    L_0x00df:
-        r2 = r1.getLong(r13);	 Catch:{ all -> 0x0104 }
-        r4 = new com.android.camera.Thumbnail$Media;	 Catch:{ all -> 0x0104 }
-        r18 = 0;
-        r19 = r1.getLong(r12);	 Catch:{ all -> 0x0104 }
-        r21 = android.content.ContentUris.withAppendedId(r0, r2);	 Catch:{ all -> 0x0104 }
-        r22 = r1.getString(r14);	 Catch:{ all -> 0x0104 }
-        r15 = r4;
-        r16 = r2;
-        r15.<init>(r16, r18, r19, r21, r22);	 Catch:{ all -> 0x0104 }
-        if (r7 == 0) goto L_0x00fe;
-    L_0x00fb:
-        r7.close();
-    L_0x00fe:
-        if (r1 == 0) goto L_0x0103;
-    L_0x0100:
-        r1.close();
-    L_0x0103:
-        return r4;
-    L_0x0104:
-        r0 = move-exception;
-        goto L_0x0115;
-    L_0x0106:
-        r1 = r11;
-    L_0x0107:
-        if (r7 == 0) goto L_0x010c;
-    L_0x0109:
-        r7.close();
-    L_0x010c:
-        if (r1 == 0) goto L_0x0111;
-    L_0x010e:
-        r1.close();
-    L_0x0111:
-        return r11;
-    L_0x0112:
-        r0 = move-exception;
-        r1 = r11;
-        r7 = r1;
-    L_0x0115:
-        if (r7 == 0) goto L_0x011a;
-    L_0x0117:
-        r7.close();
-    L_0x011a:
-        if (r1 == 0) goto L_0x011f;
-    L_0x011c:
-        r1.close();
-    L_0x011f:
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.Thumbnail.getLastVideoThumbnail(android.content.ContentResolver):com.android.camera.Thumbnail$Media");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static Media getLastVideoThumbnail(ContentResolver contentResolver) {
+        Throwable th;
+        Uri uri = android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+        Uri build = uri.buildUpon().appendQueryParameter("limit", "1").build();
+        String[] strArr = new String[]{"_id", "_data", "datetaken"};
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(getVideoBucketIds());
+        stringBuilder.append(" AND ");
+        stringBuilder.append("_size");
+        stringBuilder.append(" > 0");
+        String stringBuilder2 = stringBuilder.toString();
+        String str = "datetaken DESC,_id DESC";
+        Cursor query;
+        Cursor query2;
+        try {
+            int i;
+            query = contentResolver.query(build, strArr, stringBuilder2, null, str);
+            if (query != null) {
+                try {
+                    if (query.moveToFirst()) {
+                        long j = query.getLong(0);
+                        Media media;
+                        if (query.getString(1) == null || !new File(query.getString(1)).exists()) {
+                            Log.d(TAG, "getLastVideoThumbnail first file is deleted");
+                            i = 1;
+                            if (i == 0) {
+                                query2 = contentResolver.query(uri, strArr, stringBuilder2, null, str);
+                                try {
+                                    String str2 = TAG;
+                                    StringBuilder stringBuilder3 = new StringBuilder();
+                                    stringBuilder3.append("getLastVideoThumbnail count=");
+                                    stringBuilder3.append(query2.getCount());
+                                    Log.d(str2, stringBuilder3.toString());
+                                    if (query2 != null) {
+                                        while (query2.moveToNext()) {
+                                            if (query2.getString(1) != null && new File(query2.getString(1)).exists()) {
+                                                long j2 = query2.getLong(0);
+                                                media = new Media(j2, 0, query2.getLong(2), ContentUris.withAppendedId(uri, j2), query2.getString(1));
+                                                if (query != null) {
+                                                    query.close();
+                                                }
+                                                if (query2 != null) {
+                                                    query2.close();
+                                                }
+                                                return media;
+                                            }
+                                        }
+                                    }
+                                } catch (Throwable th2) {
+                                    th = th2;
+                                    if (query != null) {
+                                    }
+                                    if (query2 != null) {
+                                    }
+                                    throw th;
+                                }
+                            }
+                            query2 = null;
+                            if (query != null) {
+                                query.close();
+                            }
+                            if (query2 != null) {
+                                query2.close();
+                            }
+                            return null;
+                        }
+                        media = new Media(j, 0, query.getLong(2), ContentUris.withAppendedId(uri, j), query.getString(1));
+                        if (query != null) {
+                            query.close();
+                        }
+                        return media;
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                    query2 = null;
+                    if (query != null) {
+                    }
+                    if (query2 != null) {
+                    }
+                    throw th;
+                }
+            }
+            i = 0;
+            if (i == 0) {
+            }
+            if (query != null) {
+            }
+            if (query2 != null) {
+            }
+            return null;
+        } catch (Throwable th4) {
+            th = th4;
+            query2 = null;
+            query = query2;
+            if (query != null) {
+                query.close();
+            }
+            if (query2 != null) {
+                query2.close();
+            }
+            throw th;
+        }
     }
 
     public static Thumbnail createThumbnail(byte[] bArr, int i, int i2, Uri uri, boolean z) {
@@ -839,91 +745,64 @@ public class Thumbnail {
 
     /* JADX WARNING: Removed duplicated region for block: B:24:0x0066  */
     /* JADX WARNING: Removed duplicated region for block: B:26:0x006d  */
-    public static com.android.camera.Thumbnail createThumbnailFromUri(android.content.ContentResolver r9, android.net.Uri r10, boolean r11) {
-        /*
-        r0 = 0;
-        if (r10 == 0) goto L_0x0089;
-    L_0x0003:
-        r1 = r10.getPath();
-        if (r1 == 0) goto L_0x0089;
-    L_0x0009:
-        r1 = r10.getPath();
-        r2 = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-        r2 = r2.getPath();
-        r1 = r1.contains(r2);
-        if (r1 == 0) goto L_0x0026;
-    L_0x001a:
-        r2 = "_id";
-        r3 = "_data";
-        r4 = "orientation";
-        r2 = new java.lang.String[]{r2, r3, r4};
-    L_0x0024:
-        r5 = r2;
-        goto L_0x002f;
-    L_0x0026:
-        r2 = "_id";
-        r3 = "_data";
-        r2 = new java.lang.String[]{r2, r3};
-        goto L_0x0024;
-    L_0x002f:
-        r6 = 0;
-        r7 = 0;
-        r8 = 0;
-        r3 = r9;
-        r4 = r10;
-        r2 = r3.query(r4, r5, r6, r7, r8);
-        r3 = -1;
-        r5 = 0;
-        r6 = 1;
-        if (r2 == 0) goto L_0x0062;
-    L_0x0041:
-        r7 = r2.moveToFirst();	 Catch:{ all -> 0x005b }
-        if (r7 == 0) goto L_0x0062;
-    L_0x0047:
-        r3 = r2.getLong(r5);	 Catch:{ all -> 0x005b }
-        r7 = r2.getString(r6);	 Catch:{ all -> 0x005b }
-        if (r1 == 0) goto L_0x0057;
-    L_0x0051:
-        r5 = 2;
-        r5 = r2.getInt(r5);	 Catch:{ all -> 0x005b }
-        r8 = r5;
-        r5 = r6;
-        goto L_0x0064;
-    L_0x005b:
-        r9 = move-exception;
-        if (r2 == 0) goto L_0x0061;
-    L_0x005e:
-        r2.close();
-    L_0x0061:
-        throw r9;
-    L_0x0062:
-        r7 = r0;
-        r8 = r5;
-    L_0x0064:
-        if (r2 == 0) goto L_0x006a;
-    L_0x0066:
-        r2.close();
-        if (r5 == 0) goto L_0x0089;
-    L_0x006d:
-        if (r1 == 0) goto L_0x007a;
-    L_0x006f:
-        r9 = android.provider.MediaStore.Images.Thumbnails.getThumbnail(r9, r3, r6, r0);
-        if (r9 != 0) goto L_0x0084;
-    L_0x0075:
-        r9 = android.media.ThumbnailUtils.createImageThumbnail(r7, r6);
-        goto L_0x0084;
-    L_0x007a:
-        r9 = android.provider.MediaStore.Video.Thumbnails.getThumbnail(r9, r3, r6, r0);
-        if (r9 != 0) goto L_0x0084;
-    L_0x0080:
-        r9 = android.media.ThumbnailUtils.createVideoThumbnail(r7, r6);
-    L_0x0084:
-        r9 = createThumbnail(r10, r9, r8, r11);
-        return r9;
-    L_0x0089:
-        return r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.Thumbnail.createThumbnailFromUri(android.content.ContentResolver, android.net.Uri, boolean):com.android.camera.Thumbnail");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static Thumbnail createThumbnailFromUri(ContentResolver contentResolver, Uri uri, boolean z) {
+        if (!(uri == null || uri.getPath() == null)) {
+            String[] strArr;
+            String string;
+            int i;
+            boolean contains = uri.getPath().contains(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI.getPath());
+            if (contains) {
+                strArr = new String[]{"_id", "_data", "orientation"};
+            } else {
+                strArr = new String[]{"_id", "_data"};
+            }
+            Cursor query = contentResolver.query(uri, strArr, null, null, null);
+            long j = -1;
+            int i2 = 0;
+            if (query != null) {
+                try {
+                    if (query.moveToFirst()) {
+                        j = query.getLong(0);
+                        string = query.getString(1);
+                        if (contains) {
+                            i2 = query.getInt(2);
+                        }
+                        i = i2;
+                        i2 = 1;
+                        if (query != null) {
+                            query.close();
+                        }
+                        if (i2 != 0) {
+                            Bitmap thumbnail;
+                            if (contains) {
+                                thumbnail = Images.Thumbnails.getThumbnail(contentResolver, j, 1, null);
+                                if (thumbnail == null) {
+                                    thumbnail = ThumbnailUtils.createImageThumbnail(string, 1);
+                                }
+                            } else {
+                                thumbnail = Thumbnails.getThumbnail(contentResolver, j, 1, null);
+                                if (thumbnail == null) {
+                                    thumbnail = ThumbnailUtils.createVideoThumbnail(string, 1);
+                                }
+                            }
+                            return createThumbnail(uri, thumbnail, i, z);
+                        }
+                    }
+                } catch (Throwable th) {
+                    if (query != null) {
+                        query.close();
+                    }
+                }
+            }
+            string = null;
+            i = 0;
+            if (query != null) {
+            }
+            if (i2 != 0) {
+            }
+        }
+        return null;
     }
 
     public static Bitmap createBitmap(byte[] bArr, int i, boolean z, int i2) {
@@ -967,95 +846,61 @@ public class Thumbnail {
     /* JADX WARNING: Removed duplicated region for block: B:25:0x0056  */
     /* JADX WARNING: Removed duplicated region for block: B:25:0x0056  */
     /* JADX WARNING: Removed duplicated region for block: B:27:0x006d  */
-    private static android.graphics.Bitmap createVideoThumbnailBitmap(java.lang.String r4, java.io.FileDescriptor r5, int r6) {
-        /*
-        r0 = new android.media.MediaMetadataRetriever;
-        r0.<init>();
-        r1 = 0;
-        if (r4 == 0) goto L_0x0014;
-    L_0x0009:
-        r0.setDataSource(r4);	 Catch:{ IllegalArgumentException -> 0x0012, RuntimeException -> 0x0010 }
-        goto L_0x0017;
-    L_0x000d:
-        r4 = move-exception;
-        goto L_0x008b;
-    L_0x0010:
-        r5 = move-exception;
-        goto L_0x002c;
-    L_0x0012:
-        r5 = move-exception;
-        goto L_0x003a;
-    L_0x0014:
-        r0.setDataSource(r5);	 Catch:{ IllegalArgumentException -> 0x0012, RuntimeException -> 0x0010 }
-    L_0x0017:
-        r2 = -1;
-        r5 = r0.getFrameAtTime(r2);	 Catch:{ IllegalArgumentException -> 0x0012, RuntimeException -> 0x0010 }
-        r0.release();	 Catch:{ RuntimeException -> 0x0021 }
-        goto L_0x0054;
-    L_0x0021:
-        r0 = move-exception;
-        r2 = "Thumbnail";
-        r3 = r0.getMessage();
-        com.android.camera.log.Log.e(r2, r3, r0);
-        goto L_0x0054;
-        r2 = "Thumbnail";
-        r3 = r5.getMessage();	 Catch:{ all -> 0x000d }
-        com.android.camera.log.Log.e(r2, r3, r5);	 Catch:{ all -> 0x000d }
-        r0.release();	 Catch:{ RuntimeException -> 0x0048 }
-        goto L_0x0047;
-        r2 = "Thumbnail";
-        r3 = r5.getMessage();	 Catch:{ all -> 0x000d }
-        com.android.camera.log.Log.e(r2, r3, r5);	 Catch:{ all -> 0x000d }
-        r0.release();	 Catch:{ RuntimeException -> 0x0048 }
-    L_0x0047:
-        goto L_0x0053;
-    L_0x0048:
-        r5 = move-exception;
-        r0 = "Thumbnail";
-        r2 = r5.getMessage();
-        com.android.camera.log.Log.e(r0, r2, r5);
-    L_0x0053:
-        r5 = r1;
-    L_0x0054:
-        if (r5 != 0) goto L_0x006d;
-    L_0x0056:
-        r5 = "Thumbnail";
-        r6 = new java.lang.StringBuilder;
-        r6.<init>();
-        r0 = "fail to get thumbnail for ";
-        r6.append(r0);
-        r6.append(r4);
-        r4 = r6.toString();
-        com.android.camera.log.Log.e(r5, r4);
-        return r1;
-    L_0x006d:
-        r4 = r5.getWidth();
-        r0 = r5.getHeight();
-        if (r4 <= r6) goto L_0x008a;
-    L_0x0077:
-        r6 = (float) r6;
-        r4 = (float) r4;
-        r6 = r6 / r4;
-        r4 = r4 * r6;
-        r4 = java.lang.Math.round(r4);
-        r0 = (float) r0;
-        r6 = r6 * r0;
-        r6 = java.lang.Math.round(r6);
-        r0 = 1;
-        r5 = android.graphics.Bitmap.createScaledBitmap(r5, r4, r6, r0);
-    L_0x008a:
-        return r5;
-        r0.release();	 Catch:{ RuntimeException -> 0x0090 }
-        goto L_0x009a;
-    L_0x0090:
-        r5 = move-exception;
-        r6 = r5.getMessage();
-        r0 = "Thumbnail";
-        com.android.camera.log.Log.e(r0, r6, r5);
-    L_0x009a:
-        throw r4;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.Thumbnail.createVideoThumbnailBitmap(java.lang.String, java.io.FileDescriptor, int):android.graphics.Bitmap");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static Bitmap createVideoThumbnailBitmap(String str, FileDescriptor fileDescriptor, int i) {
+        Bitmap bitmap;
+        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+        if (str != null) {
+            try {
+                mediaMetadataRetriever.setDataSource(str);
+            } catch (Throwable e) {
+                Log.e(TAG, e.getMessage(), e);
+                mediaMetadataRetriever.release();
+                bitmap = null;
+                if (bitmap == null) {
+                }
+            } catch (Throwable e2) {
+                Log.e(TAG, e2.getMessage(), e2);
+                try {
+                    mediaMetadataRetriever.release();
+                } catch (Throwable e22) {
+                    Log.e(TAG, e22.getMessage(), e22);
+                }
+                bitmap = null;
+                if (bitmap == null) {
+                }
+            } catch (Throwable th) {
+                try {
+                    mediaMetadataRetriever.release();
+                } catch (Throwable e222) {
+                    Log.e(TAG, e222.getMessage(), e222);
+                }
+                throw th;
+            }
+        }
+        mediaMetadataRetriever.setDataSource(fileDescriptor);
+        bitmap = mediaMetadataRetriever.getFrameAtTime(-1);
+        try {
+            mediaMetadataRetriever.release();
+        } catch (Throwable e3) {
+            Log.e(TAG, e3.getMessage(), e3);
+        }
+        if (bitmap == null) {
+            String str2 = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("fail to get thumbnail for ");
+            stringBuilder.append(str);
+            Log.e(str2, stringBuilder.toString());
+            return null;
+        }
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        if (width > i) {
+            float f = (float) width;
+            float f2 = ((float) i) / f;
+            bitmap = Bitmap.createScaledBitmap(bitmap, Math.round(f * f2), Math.round(f2 * ((float) height)), true);
+        }
+        return bitmap;
     }
 
     public static Thumbnail createThumbnail(Uri uri, Bitmap bitmap, int i, boolean z) {

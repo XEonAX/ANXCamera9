@@ -799,36 +799,12 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, Pl
     /* JADX WARNING: Missing block: B:12:0x0020, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public void startFaceDetection() {
-        /*
-        r1 = this;
-        r0 = r1.mFaceDetectionEnabled;
-        if (r0 == 0) goto L_0x0020;
-    L_0x0004:
-        r0 = r1.mFaceDetectionStarted;
-        if (r0 != 0) goto L_0x0020;
-    L_0x0008:
-        r0 = r1.isAlive();
-        if (r0 != 0) goto L_0x000f;
-    L_0x000e:
-        goto L_0x0020;
-    L_0x000f:
-        r0 = r1.mMaxFaceCount;
-        if (r0 <= 0) goto L_0x001f;
-    L_0x0013:
-        r0 = r1.mCamera2Device;
-        if (r0 == 0) goto L_0x001f;
-    L_0x0017:
-        r0 = 1;
-        r1.mFaceDetectionStarted = r0;
-        r0 = r1.mCamera2Device;
-        r0.startFaceDetection();
-    L_0x001f:
-        return;
-    L_0x0020:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.module.LiveModule.startFaceDetection():void");
+        if (this.mFaceDetectionEnabled && !this.mFaceDetectionStarted && isAlive() && this.mMaxFaceCount > 0 && this.mCamera2Device != null) {
+            this.mFaceDetectionStarted = true;
+            this.mCamera2Device.startFaceDetection();
+        }
     }
 
     public void stopFaceDetection(boolean z) {

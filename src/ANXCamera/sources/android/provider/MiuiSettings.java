@@ -16,6 +16,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.content.res.MiuiConfiguration;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build.VERSION;
@@ -531,53 +532,24 @@ public class MiuiSettings {
         /* JADX WARNING: Missing block: B:17:0x0033, code:
             return false;
      */
-        public static boolean isQuietModeEnableForCurrentUser(android.content.Context r7) {
-            /*
-            r0 = 0;
-            r1 = r7.getContentResolver();	 Catch:{ Exception -> 0x002b }
-            r2 = "content://antispamCommon/zenmode";
-            r2 = android.net.Uri.parse(r2);	 Catch:{ Exception -> 0x002b }
-            r3 = "1";
-            r2 = android.net.Uri.withAppendedPath(r2, r3);	 Catch:{ Exception -> 0x002b }
-            r3 = 0;
-            r4 = 0;
-            r5 = 0;
-            r6 = 0;
-            r1 = r1.query(r2, r3, r4, r5, r6);	 Catch:{ Exception -> 0x002b }
-            r0 = r1;
-            if (r0 == 0) goto L_0x0023;
-        L_0x001c:
-            r1 = 1;
-            if (r0 == 0) goto L_0x0022;
-        L_0x001f:
-            r0.close();
-        L_0x0022:
-            return r1;
-        L_0x0023:
-            if (r0 == 0) goto L_0x0032;
-        L_0x0025:
-            r0.close();
-            goto L_0x0032;
-        L_0x0029:
-            r1 = move-exception;
-            goto L_0x0034;
-        L_0x002b:
-            r1 = move-exception;
-            r1.printStackTrace();	 Catch:{ all -> 0x0029 }
-            if (r0 == 0) goto L_0x0032;
-        L_0x0031:
-            goto L_0x0025;
-        L_0x0032:
-            r1 = 0;
-            return r1;
-        L_0x0034:
-            if (r0 == 0) goto L_0x0039;
-        L_0x0036:
-            r0.close();
-        L_0x0039:
-            throw r1;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: android.provider.MiuiSettings.AntiSpam.isQuietModeEnableForCurrentUser(android.content.Context):boolean");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public static boolean isQuietModeEnableForCurrentUser(Context context) {
+            Cursor cursor = null;
+            try {
+                cursor = context.getContentResolver().query(Uri.withAppendedPath(Uri.parse("content://antispamCommon/zenmode"), "1"), null, null, null, null);
+                if (cursor != null) {
+                    if (cursor != null) {
+                        cursor.close();
+                    }
+                    return true;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } catch (Throwable th) {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
         }
 
         public static boolean isQuietWristband(Context context) {

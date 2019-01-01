@@ -266,82 +266,26 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
     /* JADX WARNING: Missing block: B:26:0x0068, code:
             return;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public void run() {
-        /*
-        r5 = this;
-        r0 = "DecodeJob#run(model=%s)";
-        r1 = r5.aK;
-        com.bumptech.glide.util.a.b.b(r0, r1);
-        r0 = r5.eI;
-        r1 = r5.dp;	 Catch:{ Throwable -> 0x0027 }
-        if (r1 == 0) goto L_0x0019;
-    L_0x000d:
-        r5.notifyFailed();	 Catch:{ Throwable -> 0x0027 }
-        if (r0 == 0) goto L_0x0015;
-    L_0x0012:
-        r0.cleanup();
-    L_0x0015:
-        com.bumptech.glide.util.a.b.endSection();
-        return;
-    L_0x0019:
-        r5.aF();	 Catch:{ Throwable -> 0x0027 }
-        if (r0 == 0) goto L_0x0021;
-    L_0x001e:
-        r0.cleanup();
-    L_0x0021:
-        com.bumptech.glide.util.a.b.endSection();
-        goto L_0x0068;
-    L_0x0025:
-        r1 = move-exception;
-        goto L_0x006a;
-    L_0x0027:
-        r1 = move-exception;
-        r2 = "DecodeJob";
-        r3 = 3;
-        r2 = android.util.Log.isLoggable(r2, r3);	 Catch:{ all -> 0x0025 }
-        if (r2 == 0) goto L_0x0053;
-    L_0x0031:
-        r2 = "DecodeJob";
-        r3 = new java.lang.StringBuilder;	 Catch:{ all -> 0x0025 }
-        r3.<init>();	 Catch:{ all -> 0x0025 }
-        r4 = "DecodeJob threw unexpectedly, isCancelled: ";
-        r3.append(r4);	 Catch:{ all -> 0x0025 }
-        r4 = r5.dp;	 Catch:{ all -> 0x0025 }
-        r3.append(r4);	 Catch:{ all -> 0x0025 }
-        r4 = ", stage: ";
-        r3.append(r4);	 Catch:{ all -> 0x0025 }
-        r4 = r5.ez;	 Catch:{ all -> 0x0025 }
-        r3.append(r4);	 Catch:{ all -> 0x0025 }
-        r3 = r3.toString();	 Catch:{ all -> 0x0025 }
-        android.util.Log.d(r2, r3, r1);	 Catch:{ all -> 0x0025 }
-    L_0x0053:
-        r2 = r5.ez;	 Catch:{ all -> 0x0025 }
-        r3 = com.bumptech.glide.load.engine.DecodeJob.Stage.ENCODE;	 Catch:{ all -> 0x0025 }
-        if (r2 == r3) goto L_0x0061;
-    L_0x0059:
-        r2 = r5.es;	 Catch:{ all -> 0x0025 }
-        r2.add(r1);	 Catch:{ all -> 0x0025 }
-        r5.notifyFailed();	 Catch:{ all -> 0x0025 }
-    L_0x0061:
-        r2 = r5.dp;	 Catch:{ all -> 0x0025 }
-        if (r2 == 0) goto L_0x0069;
-    L_0x0065:
-        if (r0 == 0) goto L_0x0021;
-    L_0x0067:
-        goto L_0x001e;
-    L_0x0068:
-        return;
-    L_0x0069:
-        throw r1;	 Catch:{ all -> 0x0025 }
-    L_0x006a:
-        if (r0 == 0) goto L_0x006f;
-    L_0x006c:
-        r0.cleanup();
-    L_0x006f:
-        com.bumptech.glide.util.a.b.endSection();
-        throw r1;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.bumptech.glide.load.engine.DecodeJob.run():void");
+        com.bumptech.glide.util.a.b.b("DecodeJob#run(model=%s)", this.aK);
+        com.bumptech.glide.load.a.d dVar = this.eI;
+        try {
+            if (this.dp) {
+                notifyFailed();
+                if (dVar != null) {
+                    dVar.cleanup();
+                }
+                com.bumptech.glide.util.a.b.endSection();
+                return;
+            }
+            aF();
+        } catch (Throwable th) {
+            if (dVar != null) {
+                dVar.cleanup();
+            }
+            com.bumptech.glide.util.a.b.endSection();
+        }
     }
 
     private void aF() {

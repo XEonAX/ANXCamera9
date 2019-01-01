@@ -3,6 +3,7 @@ package android.support.v4.widget;
 import android.content.Context;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.VelocityTrackerCompat;
+import android.support.v4.view.ViewCompat;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -469,87 +470,35 @@ public class ViewDragHelper {
     /* JADX WARNING: Missing block: B:20:0x0074, code:
             if (android.support.v4.view.ViewCompat.canScrollVertically(r0, -r20) != false) goto L_0x007f;
      */
-    protected boolean canScroll(android.view.View r17, boolean r18, int r19, int r20, int r21, int r22) {
-        /*
-        r16 = this;
-        r0 = r17;
-        r1 = r0 instanceof android.view.ViewGroup;
-        r2 = 1;
-        if (r1 == 0) goto L_0x0062;
-    L_0x0007:
-        r1 = r0;
-        r1 = (android.view.ViewGroup) r1;
-        r3 = r17.getScrollX();
-        r4 = r17.getScrollY();
-        r5 = r1.getChildCount();
-        r6 = r5 + -1;
-    L_0x0018:
-        if (r6 < 0) goto L_0x0062;
-    L_0x001a:
-        r13 = r1.getChildAt(r6);
-        r7 = r21 + r3;
-        r8 = r13.getLeft();
-        if (r7 < r8) goto L_0x005f;
-    L_0x0026:
-        r7 = r21 + r3;
-        r8 = r13.getRight();
-        if (r7 >= r8) goto L_0x005f;
-    L_0x002e:
-        r7 = r22 + r4;
-        r8 = r13.getTop();
-        if (r7 < r8) goto L_0x005f;
-    L_0x0036:
-        r7 = r22 + r4;
-        r8 = r13.getBottom();
-        if (r7 >= r8) goto L_0x005f;
-    L_0x003e:
-        r9 = 1;
-        r7 = r21 + r3;
-        r8 = r13.getLeft();
-        r12 = r7 - r8;
-        r7 = r22 + r4;
-        r8 = r13.getTop();
-        r14 = r7 - r8;
-        r7 = r16;
-        r8 = r13;
-        r10 = r19;
-        r11 = r20;
-        r15 = r13;
-        r13 = r14;
-        r7 = r7.canScroll(r8, r9, r10, r11, r12, r13);
-        if (r7 == 0) goto L_0x005f;
-    L_0x005e:
-        return r2;
-    L_0x005f:
-        r6 = r6 + -1;
-        goto L_0x0018;
-    L_0x0062:
-        if (r18 == 0) goto L_0x007a;
-    L_0x0064:
-        r3 = r19;
-        r4 = -r3;
-        r4 = android.support.v4.view.ViewCompat.canScrollHorizontally(r0, r4);
-        if (r4 != 0) goto L_0x0077;
-    L_0x006d:
-        r4 = r20;
-        r5 = -r4;
-        r5 = android.support.v4.view.ViewCompat.canScrollVertically(r0, r5);
-        if (r5 == 0) goto L_0x007e;
-    L_0x0076:
-        goto L_0x0079;
-    L_0x0077:
-        r4 = r20;
-    L_0x0079:
-        goto L_0x007f;
-    L_0x007a:
-        r3 = r19;
-        r4 = r20;
-    L_0x007e:
-        r2 = 0;
-    L_0x007f:
-        return r2;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.widget.ViewDragHelper.canScroll(android.view.View, boolean, int, int, int, int):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    protected boolean canScroll(View v, boolean checkV, int dx, int dy, int x, int y) {
+        int scrollX;
+        int scrollY;
+        View view = v;
+        boolean z = true;
+        if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
+            scrollX = v.getScrollX();
+            scrollY = v.getScrollY();
+            for (int i = group.getChildCount() - 1; i >= 0; i--) {
+                View child = group.getChildAt(i);
+                if (x + scrollX >= child.getLeft() && x + scrollX < child.getRight() && y + scrollY >= child.getTop() && y + scrollY < child.getBottom()) {
+                    if (canScroll(child, true, dx, dy, (x + scrollX) - child.getLeft(), (y + scrollY) - child.getTop())) {
+                        return true;
+                    }
+                }
+            }
+        }
+        if (checkV) {
+            if (ViewCompat.canScrollHorizontally(view, -dx)) {
+                scrollY = dy;
+            }
+            return z;
+        }
+        scrollX = dx;
+        scrollY = dy;
+        z = false;
+        return z;
     }
 
     /* JADX WARNING: Missing block: B:8:0x0024, code:
@@ -576,446 +525,245 @@ public class ViewDragHelper {
     /* JADX WARNING: Missing block: B:71:?, code:
             return true;
      */
-    public boolean shouldInterceptTouchEvent(android.view.MotionEvent r22) {
-        /*
-        r21 = this;
-        r0 = r21;
-        r1 = r22;
-        r2 = android.support.v4.view.MotionEventCompat.getActionMasked(r22);
-        r3 = android.support.v4.view.MotionEventCompat.getActionIndex(r22);
-        if (r2 != 0) goto L_0x0011;
-    L_0x000e:
-        r21.cancel();
-    L_0x0011:
-        r4 = r0.mVelocityTracker;
-        if (r4 != 0) goto L_0x001b;
-    L_0x0015:
-        r4 = android.view.VelocityTracker.obtain();
-        r0.mVelocityTracker = r4;
-    L_0x001b:
-        r4 = r0.mVelocityTracker;
-        r4.addMovement(r1);
-        r4 = 2;
-        switch(r2) {
-            case 0: goto L_0x011d;
-            case 1: goto L_0x0114;
-            case 2: goto L_0x0070;
-            case 3: goto L_0x0114;
-            case 4: goto L_0x0024;
-            case 5: goto L_0x0039;
-            case 6: goto L_0x002b;
-            default: goto L_0x0024;
-        };
-    L_0x0024:
-        r16 = r2;
-        r17 = r3;
-        r5 = 0;
-        goto L_0x0153;
-    L_0x002b:
-        r4 = android.support.v4.view.MotionEventCompat.getPointerId(r1, r3);
-        r0.clearMotionHistory(r4);
-    L_0x0033:
-        r16 = r2;
-        r17 = r3;
-        goto L_0x011b;
-    L_0x0039:
-        r7 = android.support.v4.view.MotionEventCompat.getPointerId(r1, r3);
-        r8 = android.support.v4.view.MotionEventCompat.getX(r1, r3);
-        r9 = android.support.v4.view.MotionEventCompat.getY(r1, r3);
-        r0.saveInitialMotion(r8, r9, r7);
-        r10 = r0.mDragState;
-        if (r10 != 0) goto L_0x005e;
-    L_0x004c:
-        r4 = r0.mInitialEdgesTouched;
-        r4 = r4[r7];
-        r10 = r0.mTrackingEdges;
-        r10 = r10 & r4;
-        if (r10 == 0) goto L_0x005d;
-    L_0x0055:
-        r10 = r0.mCallback;
-        r11 = r0.mTrackingEdges;
-        r11 = r11 & r4;
-        r10.onEdgeTouched(r11, r7);
-    L_0x005d:
-        goto L_0x0033;
-    L_0x005e:
-        r10 = r0.mDragState;
-        if (r10 != r4) goto L_0x0033;
-    L_0x0062:
-        r4 = (int) r8;
-        r10 = (int) r9;
-        r4 = r0.findTopChildUnder(r4, r10);
-        r10 = r0.mCapturedView;
-        if (r4 != r10) goto L_0x006f;
-    L_0x006c:
-        r0.tryCaptureViewForDrag(r4, r7);
-    L_0x006f:
-        goto L_0x0033;
-    L_0x0070:
-        r4 = r0.mInitialMotionX;
-        if (r4 == 0) goto L_0x0024;
-    L_0x0074:
-        r4 = r0.mInitialMotionY;
-        if (r4 != 0) goto L_0x0079;
-    L_0x0078:
-        goto L_0x0033;
-    L_0x0079:
-        r4 = android.support.v4.view.MotionEventCompat.getPointerCount(r22);
-        r7 = 0;
-    L_0x007e:
-        if (r7 >= r4) goto L_0x010a;
-    L_0x0080:
-        r8 = android.support.v4.view.MotionEventCompat.getPointerId(r1, r7);
-        r9 = android.support.v4.view.MotionEventCompat.getX(r1, r7);
-        r10 = android.support.v4.view.MotionEventCompat.getY(r1, r7);
-        r11 = r0.mInitialMotionX;
-        r11 = r11[r8];
-        r11 = r9 - r11;
-        r12 = r0.mInitialMotionY;
-        r12 = r12[r8];
-        r12 = r10 - r12;
-        r13 = (int) r9;
-        r14 = (int) r10;
-        r13 = r0.findTopChildUnder(r13, r14);
-        if (r13 == 0) goto L_0x00a8;
-    L_0x00a0:
-        r14 = r0.checkTouchSlop(r13, r11, r12);
-        if (r14 == 0) goto L_0x00a8;
-    L_0x00a6:
-        r14 = 1;
-        goto L_0x00a9;
-    L_0x00a8:
-        r14 = 0;
-    L_0x00a9:
-        if (r14 == 0) goto L_0x00e8;
-    L_0x00ab:
-        r15 = r13.getLeft();
-        r5 = (int) r11;
-        r5 = r5 + r15;
-        r6 = r0.mCallback;
-        r16 = r2;
-        r2 = (int) r11;
-        r2 = r6.clampViewPositionHorizontal(r13, r5, r2);
-        r6 = r13.getTop();
-        r17 = r3;
-        r3 = (int) r12;
-        r3 = r3 + r6;
-        r18 = r4;
-        r4 = r0.mCallback;
-        r19 = r5;
-        r5 = (int) r12;
-        r4 = r4.clampViewPositionVertical(r13, r3, r5);
-        r5 = r0.mCallback;
-        r5 = r5.getViewHorizontalDragRange(r13);
-        r20 = r3;
-        r3 = r0.mCallback;
-        r3 = r3.getViewVerticalDragRange(r13);
-        if (r5 == 0) goto L_0x00e1;
-    L_0x00dd:
-        if (r5 <= 0) goto L_0x00ee;
-    L_0x00df:
-        if (r2 != r15) goto L_0x00ee;
-    L_0x00e1:
-        if (r3 == 0) goto L_0x0110;
-    L_0x00e3:
-        if (r3 <= 0) goto L_0x00ee;
-    L_0x00e5:
-        if (r4 != r6) goto L_0x00ee;
-    L_0x00e7:
-        goto L_0x0110;
-    L_0x00e8:
-        r16 = r2;
-        r17 = r3;
-        r18 = r4;
-    L_0x00ee:
-        r0.reportNewEdgeDrags(r11, r12, r8);
-        r2 = r0.mDragState;
-        r3 = 1;
-        if (r2 != r3) goto L_0x00f7;
-    L_0x00f6:
-        goto L_0x0110;
-    L_0x00f7:
-        if (r14 == 0) goto L_0x0100;
-    L_0x00f9:
-        r2 = r0.tryCaptureViewForDrag(r13, r8);
-        if (r2 == 0) goto L_0x0100;
-    L_0x00ff:
-        goto L_0x0110;
-    L_0x0100:
-        r7 = r7 + 1;
-        r2 = r16;
-        r3 = r17;
-        r4 = r18;
-        goto L_0x007e;
-    L_0x010a:
-        r16 = r2;
-        r17 = r3;
-        r18 = r4;
-    L_0x0110:
-        r21.saveLastMotion(r22);
-        goto L_0x011b;
-    L_0x0114:
-        r16 = r2;
-        r17 = r3;
-        r21.cancel();
-    L_0x011b:
-        r5 = 0;
-        goto L_0x0153;
-    L_0x011d:
-        r16 = r2;
-        r17 = r3;
-        r2 = r22.getX();
-        r3 = r22.getY();
-        r5 = 0;
-        r6 = android.support.v4.view.MotionEventCompat.getPointerId(r1, r5);
-        r0.saveInitialMotion(r2, r3, r6);
-        r7 = (int) r2;
-        r8 = (int) r3;
-        r7 = r0.findTopChildUnder(r7, r8);
-        r8 = r0.mCapturedView;
-        if (r7 != r8) goto L_0x0142;
-    L_0x013b:
-        r8 = r0.mDragState;
-        if (r8 != r4) goto L_0x0142;
-    L_0x013f:
-        r0.tryCaptureViewForDrag(r7, r6);
-    L_0x0142:
-        r4 = r0.mInitialEdgesTouched;
-        r4 = r4[r6];
-        r8 = r0.mTrackingEdges;
-        r8 = r8 & r4;
-        if (r8 == 0) goto L_0x0153;
-    L_0x014b:
-        r8 = r0.mCallback;
-        r9 = r0.mTrackingEdges;
-        r9 = r9 & r4;
-        r8.onEdgeTouched(r9, r6);
-    L_0x0153:
-        r2 = r0.mDragState;
-        r3 = 1;
-        if (r2 != r3) goto L_0x0159;
-    L_0x0158:
-        goto L_0x015a;
-    L_0x0159:
-        r3 = r5;
-    L_0x015a:
-        return r3;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.widget.ViewDragHelper.shouldInterceptTouchEvent(android.view.MotionEvent):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean shouldInterceptTouchEvent(MotionEvent ev) {
+        MotionEvent motionEvent = ev;
+        int action = MotionEventCompat.getActionMasked(ev);
+        int actionIndex = MotionEventCompat.getActionIndex(ev);
+        if (action == 0) {
+            cancel();
+        }
+        if (this.mVelocityTracker == null) {
+            this.mVelocityTracker = VelocityTracker.obtain();
+        }
+        this.mVelocityTracker.addMovement(motionEvent);
+        int i;
+        int pointerId;
+        int edgesTouched;
+        int i2;
+        float x;
+        switch (action) {
+            case 0:
+                i = actionIndex;
+                float x2 = ev.getX();
+                float y = ev.getY();
+                boolean z = false;
+                pointerId = MotionEventCompat.getPointerId(motionEvent, 0);
+                saveInitialMotion(x2, y, pointerId);
+                View toCapture = findTopChildUnder((int) x2, (int) y);
+                if (toCapture == this.mCapturedView && this.mDragState == 2) {
+                    tryCaptureViewForDrag(toCapture, pointerId);
+                }
+                edgesTouched = this.mInitialEdgesTouched[pointerId];
+                if ((this.mTrackingEdges & edgesTouched) != 0) {
+                    this.mCallback.onEdgeTouched(this.mTrackingEdges & edgesTouched, pointerId);
+                    break;
+                }
+                break;
+            case 1:
+            case 3:
+                i = actionIndex;
+                cancel();
+                break;
+            case 2:
+                if (this.mInitialMotionX != null) {
+                    if (this.mInitialMotionY != null) {
+                        int pointerCount;
+                        edgesTouched = MotionEventCompat.getPointerCount(ev);
+                        i2 = 0;
+                        while (i2 < edgesTouched) {
+                            int action2;
+                            int pointerId2 = MotionEventCompat.getPointerId(motionEvent, i2);
+                            x = MotionEventCompat.getX(motionEvent, i2);
+                            float y2 = MotionEventCompat.getY(motionEvent, i2);
+                            float dx = x - this.mInitialMotionX[pointerId2];
+                            float dy = y2 - this.mInitialMotionY[pointerId2];
+                            View toCapture2 = findTopChildUnder((int) x, (int) y2);
+                            boolean pastSlop = toCapture2 != null && checkTouchSlop(toCapture2, dx, dy);
+                            if (pastSlop) {
+                                int oldLeft = toCapture2.getLeft();
+                                int targetLeft = ((int) dx) + oldLeft;
+                                action2 = action;
+                                action = this.mCallback.clampViewPositionHorizontal(toCapture2, targetLeft, (int) dx);
+                                pointerId = toCapture2.getTop();
+                                i = actionIndex;
+                                actionIndex = ((int) dy) + pointerId;
+                                pointerCount = edgesTouched;
+                                edgesTouched = this.mCallback.clampViewPositionVertical(toCapture2, actionIndex, (int) dy);
+                                targetLeft = this.mCallback.getViewHorizontalDragRange(toCapture2);
+                                actionIndex = this.mCallback.getViewVerticalDragRange(toCapture2);
+                                if (targetLeft != 0) {
+                                    if (targetLeft > 0) {
+                                    }
+                                }
+                                if (actionIndex != 0) {
+                                    if (actionIndex > 0 && edgesTouched == pointerId) {
+                                    }
+                                }
+                                saveLastMotion(ev);
+                                break;
+                            }
+                            action2 = action;
+                            i = actionIndex;
+                            pointerCount = edgesTouched;
+                            reportNewEdgeDrags(dx, dy, pointerId2);
+                            if (!(this.mDragState == 1 || (pastSlop && tryCaptureViewForDrag(toCapture2, pointerId2)))) {
+                                i2++;
+                                action = action2;
+                                actionIndex = i;
+                                edgesTouched = pointerCount;
+                            }
+                            saveLastMotion(ev);
+                        }
+                        i = actionIndex;
+                        pointerCount = edgesTouched;
+                        saveLastMotion(ev);
+                    }
+                }
+                break;
+            case 5:
+                i2 = MotionEventCompat.getPointerId(motionEvent, actionIndex);
+                float x3 = MotionEventCompat.getX(motionEvent, actionIndex);
+                x = MotionEventCompat.getY(motionEvent, actionIndex);
+                saveInitialMotion(x3, x, i2);
+                if (this.mDragState != 0) {
+                    if (this.mDragState == 2) {
+                        View toCapture3 = findTopChildUnder((int) x3, (int) x);
+                        if (toCapture3 == this.mCapturedView) {
+                            tryCaptureViewForDrag(toCapture3, i2);
+                            break;
+                        }
+                    }
+                }
+                edgesTouched = this.mInitialEdgesTouched[i2];
+                if ((this.mTrackingEdges & edgesTouched) != 0) {
+                    this.mCallback.onEdgeTouched(this.mTrackingEdges & edgesTouched, i2);
+                    break;
+                }
+                break;
+            case 6:
+                clearMotionHistory(MotionEventCompat.getPointerId(motionEvent, actionIndex));
+                break;
+        }
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:24:0x0063  */
-    public void processTouchEvent(android.view.MotionEvent r13) {
-        /*
-        r12 = this;
-        r0 = android.support.v4.view.MotionEventCompat.getActionMasked(r13);
-        r1 = android.support.v4.view.MotionEventCompat.getActionIndex(r13);
-        if (r0 != 0) goto L_0x000d;
-    L_0x000a:
-        r12.cancel();
-    L_0x000d:
-        r2 = r12.mVelocityTracker;
-        if (r2 != 0) goto L_0x0017;
-    L_0x0011:
-        r2 = android.view.VelocityTracker.obtain();
-        r12.mVelocityTracker = r2;
-    L_0x0017:
-        r2 = r12.mVelocityTracker;
-        r2.addMovement(r13);
-        r2 = 0;
-        r3 = 1;
-        switch(r0) {
-            case 0: goto L_0x013c;
-            case 1: goto L_0x0131;
-            case 2: goto L_0x00b6;
-            case 3: goto L_0x00a9;
-            case 4: goto L_0x0021;
-            case 5: goto L_0x006b;
-            case 6: goto L_0x0023;
-            default: goto L_0x0021;
-        };
-    L_0x0021:
-        goto L_0x0165;
-    L_0x0023:
-        r4 = android.support.v4.view.MotionEventCompat.getPointerId(r13, r1);
-        r5 = r12.mDragState;
-        if (r5 != r3) goto L_0x0066;
-    L_0x002b:
-        r3 = r12.mActivePointerId;
-        if (r4 != r3) goto L_0x0066;
-    L_0x002f:
-        r3 = -1;
-        r5 = android.support.v4.view.MotionEventCompat.getPointerCount(r13);
-    L_0x0035:
-        if (r2 >= r5) goto L_0x0060;
-    L_0x0037:
-        r6 = android.support.v4.view.MotionEventCompat.getPointerId(r13, r2);
-        r7 = r12.mActivePointerId;
-        if (r6 != r7) goto L_0x0040;
-    L_0x003f:
-        goto L_0x005d;
-    L_0x0040:
-        r7 = android.support.v4.view.MotionEventCompat.getX(r13, r2);
-        r8 = android.support.v4.view.MotionEventCompat.getY(r13, r2);
-        r9 = (int) r7;
-        r10 = (int) r8;
-        r9 = r12.findTopChildUnder(r9, r10);
-        r10 = r12.mCapturedView;
-        if (r9 != r10) goto L_0x005d;
-    L_0x0052:
-        r9 = r12.mCapturedView;
-        r9 = r12.tryCaptureViewForDrag(r9, r6);
-        if (r9 == 0) goto L_0x005d;
-    L_0x005a:
-        r3 = r12.mActivePointerId;
-        goto L_0x0060;
-    L_0x005d:
-        r2 = r2 + 1;
-        goto L_0x0035;
-    L_0x0060:
-        r2 = -1;
-        if (r3 != r2) goto L_0x0066;
-    L_0x0063:
-        r12.releaseViewForPointerUp();
-    L_0x0066:
-        r12.clearMotionHistory(r4);
-        goto L_0x0165;
-    L_0x006b:
-        r2 = android.support.v4.view.MotionEventCompat.getPointerId(r13, r1);
-        r3 = android.support.v4.view.MotionEventCompat.getX(r13, r1);
-        r4 = android.support.v4.view.MotionEventCompat.getY(r13, r1);
-        r12.saveInitialMotion(r3, r4, r2);
-        r5 = r12.mDragState;
-        if (r5 != 0) goto L_0x009a;
-    L_0x007e:
-        r5 = (int) r3;
-        r6 = (int) r4;
-        r5 = r12.findTopChildUnder(r5, r6);
-        r12.tryCaptureViewForDrag(r5, r2);
-        r6 = r12.mInitialEdgesTouched;
-        r6 = r6[r2];
-        r7 = r12.mTrackingEdges;
-        r7 = r7 & r6;
-        if (r7 == 0) goto L_0x0098;
-    L_0x0090:
-        r7 = r12.mCallback;
-        r8 = r12.mTrackingEdges;
-        r8 = r8 & r6;
-        r7.onEdgeTouched(r8, r2);
-    L_0x0098:
-        goto L_0x0165;
-    L_0x009a:
-        r5 = (int) r3;
-        r6 = (int) r4;
-        r5 = r12.isCapturedViewUnder(r5, r6);
-        if (r5 == 0) goto L_0x0165;
-    L_0x00a2:
-        r5 = r12.mCapturedView;
-        r12.tryCaptureViewForDrag(r5, r2);
-        goto L_0x0165;
-    L_0x00a9:
-        r2 = r12.mDragState;
-        if (r2 != r3) goto L_0x00b1;
-    L_0x00ad:
-        r2 = 0;
-        r12.dispatchViewReleased(r2, r2);
-    L_0x00b1:
-        r12.cancel();
-        goto L_0x0165;
-    L_0x00b6:
-        r4 = r12.mDragState;
-        if (r4 != r3) goto L_0x00f0;
-    L_0x00ba:
-        r2 = r12.mActivePointerId;
-        r2 = android.support.v4.view.MotionEventCompat.findPointerIndex(r13, r2);
-        r3 = android.support.v4.view.MotionEventCompat.getX(r13, r2);
-        r4 = android.support.v4.view.MotionEventCompat.getY(r13, r2);
-        r5 = r12.mLastMotionX;
-        r6 = r12.mActivePointerId;
-        r5 = r5[r6];
-        r5 = r3 - r5;
-        r5 = (int) r5;
-        r6 = r12.mLastMotionY;
-        r7 = r12.mActivePointerId;
-        r6 = r6[r7];
-        r6 = r4 - r6;
-        r6 = (int) r6;
-        r7 = r12.mCapturedView;
-        r7 = r7.getLeft();
-        r7 = r7 + r5;
-        r8 = r12.mCapturedView;
-        r8 = r8.getTop();
-        r8 = r8 + r6;
-        r12.dragTo(r7, r8, r5, r6);
-        r12.saveLastMotion(r13);
-        goto L_0x0165;
-    L_0x00f0:
-        r4 = android.support.v4.view.MotionEventCompat.getPointerCount(r13);
-    L_0x00f5:
-        if (r2 >= r4) goto L_0x012d;
-    L_0x00f7:
-        r5 = android.support.v4.view.MotionEventCompat.getPointerId(r13, r2);
-        r6 = android.support.v4.view.MotionEventCompat.getX(r13, r2);
-        r7 = android.support.v4.view.MotionEventCompat.getY(r13, r2);
-        r8 = r12.mInitialMotionX;
-        r8 = r8[r5];
-        r8 = r6 - r8;
-        r9 = r12.mInitialMotionY;
-        r9 = r9[r5];
-        r9 = r7 - r9;
-        r12.reportNewEdgeDrags(r8, r9, r5);
-        r10 = r12.mDragState;
-        if (r10 != r3) goto L_0x0117;
-    L_0x0116:
-        goto L_0x012d;
-    L_0x0117:
-        r10 = (int) r6;
-        r11 = (int) r7;
-        r10 = r12.findTopChildUnder(r10, r11);
-        r11 = r12.checkTouchSlop(r10, r8, r9);
-        if (r11 == 0) goto L_0x012a;
-    L_0x0123:
-        r11 = r12.tryCaptureViewForDrag(r10, r5);
-        if (r11 == 0) goto L_0x012a;
-    L_0x0129:
-        goto L_0x012d;
-    L_0x012a:
-        r2 = r2 + 1;
-        goto L_0x00f5;
-    L_0x012d:
-        r12.saveLastMotion(r13);
-        goto L_0x0165;
-    L_0x0131:
-        r2 = r12.mDragState;
-        if (r2 != r3) goto L_0x0138;
-    L_0x0135:
-        r12.releaseViewForPointerUp();
-    L_0x0138:
-        r12.cancel();
-        goto L_0x0165;
-    L_0x013c:
-        r3 = r13.getX();
-        r4 = r13.getY();
-        r2 = android.support.v4.view.MotionEventCompat.getPointerId(r13, r2);
-        r5 = (int) r3;
-        r6 = (int) r4;
-        r5 = r12.findTopChildUnder(r5, r6);
-        r12.saveInitialMotion(r3, r4, r2);
-        r12.tryCaptureViewForDrag(r5, r2);
-        r6 = r12.mInitialEdgesTouched;
-        r6 = r6[r2];
-        r7 = r12.mTrackingEdges;
-        r7 = r7 & r6;
-        if (r7 == 0) goto L_0x0165;
-    L_0x015d:
-        r7 = r12.mCallback;
-        r8 = r12.mTrackingEdges;
-        r8 = r8 & r6;
-        r7.onEdgeTouched(r8, r2);
-    L_0x0165:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.widget.ViewDragHelper.processTouchEvent(android.view.MotionEvent):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void processTouchEvent(MotionEvent ev) {
+        int action = MotionEventCompat.getActionMasked(ev);
+        int actionIndex = MotionEventCompat.getActionIndex(ev);
+        if (action == 0) {
+            cancel();
+        }
+        if (this.mVelocityTracker == null) {
+            this.mVelocityTracker = VelocityTracker.obtain();
+        }
+        this.mVelocityTracker.addMovement(ev);
+        int i = 0;
+        float x;
+        float y;
+        int edgesTouched;
+        int idx;
+        int pointerCount;
+        switch (action) {
+            case 0:
+                x = ev.getX();
+                y = ev.getY();
+                i = MotionEventCompat.getPointerId(ev, 0);
+                View toCapture = findTopChildUnder((int) x, (int) y);
+                saveInitialMotion(x, y, i);
+                tryCaptureViewForDrag(toCapture, i);
+                edgesTouched = this.mInitialEdgesTouched[i];
+                if ((this.mTrackingEdges & edgesTouched) != 0) {
+                    this.mCallback.onEdgeTouched(this.mTrackingEdges & edgesTouched, i);
+                    return;
+                }
+                return;
+            case 1:
+                if (this.mDragState == 1) {
+                    releaseViewForPointerUp();
+                }
+                cancel();
+                return;
+            case 2:
+                if (this.mDragState == 1) {
+                    i = MotionEventCompat.findPointerIndex(ev, this.mActivePointerId);
+                    x = MotionEventCompat.getX(ev, i);
+                    idx = (int) (x - this.mLastMotionX[this.mActivePointerId]);
+                    edgesTouched = (int) (MotionEventCompat.getY(ev, i) - this.mLastMotionY[this.mActivePointerId]);
+                    dragTo(this.mCapturedView.getLeft() + idx, this.mCapturedView.getTop() + edgesTouched, idx, edgesTouched);
+                    saveLastMotion(ev);
+                    return;
+                }
+                pointerCount = MotionEventCompat.getPointerCount(ev);
+                while (i < pointerCount) {
+                    idx = MotionEventCompat.getPointerId(ev, i);
+                    float x2 = MotionEventCompat.getX(ev, i);
+                    float y2 = MotionEventCompat.getY(ev, i);
+                    float dx = x2 - this.mInitialMotionX[idx];
+                    float dy = y2 - this.mInitialMotionY[idx];
+                    reportNewEdgeDrags(dx, dy, idx);
+                    if (this.mDragState != 1) {
+                        View toCapture2 = findTopChildUnder((int) x2, (int) y2);
+                        if (!checkTouchSlop(toCapture2, dx, dy) || !tryCaptureViewForDrag(toCapture2, idx)) {
+                            i++;
+                        }
+                    }
+                    saveLastMotion(ev);
+                    return;
+                }
+                saveLastMotion(ev);
+                return;
+            case 3:
+                if (this.mDragState == 1) {
+                    dispatchViewReleased(0.0f, 0.0f);
+                }
+                cancel();
+                return;
+            case 5:
+                i = MotionEventCompat.getPointerId(ev, actionIndex);
+                x = MotionEventCompat.getX(ev, actionIndex);
+                y = MotionEventCompat.getY(ev, actionIndex);
+                saveInitialMotion(x, y, i);
+                if (this.mDragState == 0) {
+                    tryCaptureViewForDrag(findTopChildUnder((int) x, (int) y), i);
+                    edgesTouched = this.mInitialEdgesTouched[i];
+                    if ((this.mTrackingEdges & edgesTouched) != 0) {
+                        this.mCallback.onEdgeTouched(this.mTrackingEdges & edgesTouched, i);
+                        return;
+                    }
+                    return;
+                } else if (isCapturedViewUnder((int) x, (int) y)) {
+                    tryCaptureViewForDrag(this.mCapturedView, i);
+                    return;
+                } else {
+                    return;
+                }
+            case 6:
+                pointerCount = MotionEventCompat.getPointerId(ev, actionIndex);
+                if (this.mDragState == 1 && pointerCount == this.mActivePointerId) {
+                    int newActivePointer = -1;
+                    idx = MotionEventCompat.getPointerCount(ev);
+                    while (i < idx) {
+                        edgesTouched = MotionEventCompat.getPointerId(ev, i);
+                        if (edgesTouched != this.mActivePointerId) {
+                            if (findTopChildUnder((int) MotionEventCompat.getX(ev, i), (int) MotionEventCompat.getY(ev, i)) == this.mCapturedView && tryCaptureViewForDrag(this.mCapturedView, edgesTouched)) {
+                                newActivePointer = this.mActivePointerId;
+                                if (newActivePointer == -1) {
+                                    releaseViewForPointerUp();
+                                }
+                            }
+                        }
+                        i++;
+                    }
+                    if (newActivePointer == -1) {
+                    }
+                }
+                clearMotionHistory(pointerCount);
+                return;
+            default:
+                return;
+        }
     }
 
     private void reportNewEdgeDrags(float dx, float dy, int pointerId) {

@@ -130,51 +130,28 @@ public final class FlowableRefCount<T> extends AbstractFlowableWithUpstream<T, T
 
     /* JADX WARNING: Failed to extract finally block: empty outs */
     /* JADX WARNING: Removed duplicated region for block: B:12:0x0034 A:{REMOVE} */
-    public void subscribeActual(org.reactivestreams.Subscriber<? super T> r3) {
-        /*
-        r2 = this;
-        r0 = r2.lock;
-        r0.lock();
-        r0 = r2.subscriptionCount;
-        r0 = r0.incrementAndGet();
-        r1 = 1;
-        if (r0 != r1) goto L_0x0035;
-    L_0x000e:
-        r0 = new java.util.concurrent.atomic.AtomicBoolean;
-        r0.<init>(r1);
-        r1 = r2.source;	 Catch:{ all -> 0x0028 }
-        r3 = r2.onSubscribe(r3, r0);	 Catch:{ all -> 0x0028 }
-        r1.connect(r3);	 Catch:{ all -> 0x0028 }
-        r3 = r0.get();
-        if (r3 == 0) goto L_0x0027;
-    L_0x0022:
-        r3 = r2.lock;
-        r3.unlock();
-    L_0x0027:
-        goto L_0x0040;
-    L_0x0028:
-        r3 = move-exception;
-        r0 = r0.get();
-        if (r0 == 0) goto L_0x0034;
-    L_0x002f:
-        r0 = r2.lock;
-        r0.unlock();
-    L_0x0034:
-        throw r3;
-    L_0x0035:
-        r0 = r2.baseDisposable;	 Catch:{ all -> 0x0041 }
-        r2.doSubscribe(r3, r0);	 Catch:{ all -> 0x0041 }
-        r3 = r2.lock;
-        r3.unlock();
-    L_0x0040:
-        return;
-    L_0x0041:
-        r3 = move-exception;
-        r0 = r2.lock;
-        r0.unlock();
-        throw r3;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowableRefCount.subscribeActual(org.reactivestreams.Subscriber):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void subscribeActual(Subscriber<? super T> subscriber) {
+        this.lock.lock();
+        if (this.subscriptionCount.incrementAndGet() == 1) {
+            AtomicBoolean atomicBoolean = new AtomicBoolean(true);
+            try {
+                this.source.connect(onSubscribe(subscriber, atomicBoolean));
+                if (atomicBoolean.get()) {
+                    this.lock.unlock();
+                }
+            } catch (Throwable th) {
+                if (atomicBoolean.get()) {
+                    this.lock.unlock();
+                }
+            }
+        } else {
+            try {
+                doSubscribe(subscriber, this.baseDisposable);
+            } finally {
+                this.lock.unlock();
+            }
+        }
     }
 
     private Consumer<Disposable> onSubscribe(Subscriber<? super T> subscriber, AtomicBoolean atomicBoolean) {

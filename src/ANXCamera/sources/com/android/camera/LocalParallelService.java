@@ -68,56 +68,25 @@ public class LocalParallelService extends Service {
         /* JADX WARNING: Missing block: B:21:0x0047, code:
             return false;
      */
-        private boolean isSetsEquals(java.util.List<com.xiaomi.protocol.IImageReaderParameterSets> r7, java.util.List<com.xiaomi.protocol.IImageReaderParameterSets> r8) {
-            /*
-            r6 = this;
-            r0 = 0;
-            if (r7 == 0) goto L_0x0047;
-        L_0x0003:
-            if (r8 != 0) goto L_0x0006;
-        L_0x0005:
-            goto L_0x0047;
-        L_0x0006:
-            r1 = r7.size();
-            r2 = r8.size();
-            if (r1 == r2) goto L_0x0011;
-        L_0x0010:
-            return r0;
-            r1 = r7.iterator();
-            r2 = r0;
-        L_0x0017:
-            r3 = r1.hasNext();
-            if (r3 == 0) goto L_0x003e;
-        L_0x001d:
-            r3 = r1.next();
-            r3 = (com.xiaomi.protocol.IImageReaderParameterSets) r3;
-            r4 = r8.iterator();
-        L_0x0027:
-            r5 = r4.hasNext();
-            if (r5 == 0) goto L_0x003d;
-        L_0x002d:
-            r5 = r4.next();
-            r5 = (com.xiaomi.protocol.IImageReaderParameterSets) r5;
-            r5 = r3.equals(r5);
-            if (r5 == 0) goto L_0x003c;
-        L_0x0039:
-            r2 = r2 + 1;
-            goto L_0x003d;
-        L_0x003c:
-            goto L_0x0027;
-        L_0x003d:
-            goto L_0x0017;
-        L_0x003e:
-            r7 = r7.size();
-            if (r7 != r2) goto L_0x0046;
-        L_0x0044:
-            r0 = 1;
-        L_0x0046:
-            return r0;
-        L_0x0047:
-            return r0;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.android.camera.LocalParallelService.LocalBinder.isSetsEquals(java.util.List, java.util.List):boolean");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        private boolean isSetsEquals(List<IImageReaderParameterSets> list, List<IImageReaderParameterSets> list2) {
+            boolean z = false;
+            if (list == null || list2 == null || list.size() != list2.size()) {
+                return false;
+            }
+            int i = 0;
+            for (IImageReaderParameterSets iImageReaderParameterSets : list) {
+                for (IImageReaderParameterSets equals : list2) {
+                    if (iImageReaderParameterSets.equals(equals)) {
+                        i++;
+                        break;
+                    }
+                }
+            }
+            if (list.size() == i) {
+                z = true;
+            }
+            return z;
         }
 
         public void configCaptureSession(@NonNull BufferFormat bufferFormat) {

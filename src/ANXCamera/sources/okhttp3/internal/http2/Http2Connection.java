@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.Protocol;
 import okhttp3.internal.NamedRunnable;
 import okhttp3.internal.Util;
+import okhttp3.internal.platform.Platform;
 import okio.Buffer;
 import okio.BufferedSink;
 import okio.BufferedSource;
@@ -191,90 +192,42 @@ public final class Http2Connection implements Closeable {
         /* JADX WARNING: Missing block: B:28:0x0077, code:
             return;
      */
-        public void headers(boolean r10, int r11, int r12, java.util.List<okhttp3.internal.http2.Header> r13) {
-            /*
-            r9 = this;
-            r12 = okhttp3.internal.http2.Http2Connection.this;
-            r12 = r12.pushedStream(r11);
-            if (r12 == 0) goto L_0x000e;
-        L_0x0008:
-            r12 = okhttp3.internal.http2.Http2Connection.this;
-            r12.pushHeadersLater(r11, r13, r10);
-            return;
-        L_0x000e:
-            r12 = okhttp3.internal.http2.Http2Connection.this;
-            monitor-enter(r12);
-            r0 = okhttp3.internal.http2.Http2Connection.this;	 Catch:{ all -> 0x0078 }
-            r0 = r0.getStream(r11);	 Catch:{ all -> 0x0078 }
-            if (r0 != 0) goto L_0x006e;
-        L_0x0019:
-            r0 = okhttp3.internal.http2.Http2Connection.this;	 Catch:{ all -> 0x0078 }
-            r0 = r0.shutdown;	 Catch:{ all -> 0x0078 }
-            if (r0 == 0) goto L_0x0021;
-        L_0x001f:
-            monitor-exit(r12);	 Catch:{ all -> 0x0078 }
-            return;
-        L_0x0021:
-            r0 = okhttp3.internal.http2.Http2Connection.this;	 Catch:{ all -> 0x0078 }
-            r0 = r0.lastGoodStreamId;	 Catch:{ all -> 0x0078 }
-            if (r11 > r0) goto L_0x0029;
-        L_0x0027:
-            monitor-exit(r12);	 Catch:{ all -> 0x0078 }
-            return;
-        L_0x0029:
-            r0 = r11 % 2;
-            r1 = okhttp3.internal.http2.Http2Connection.this;	 Catch:{ all -> 0x0078 }
-            r1 = r1.nextStreamId;	 Catch:{ all -> 0x0078 }
-            r2 = 2;
-            r1 = r1 % r2;
-            if (r0 != r1) goto L_0x0035;
-        L_0x0033:
-            monitor-exit(r12);	 Catch:{ all -> 0x0078 }
-            return;
-        L_0x0035:
-            r0 = new okhttp3.internal.http2.Http2Stream;	 Catch:{ all -> 0x0078 }
-            r5 = okhttp3.internal.http2.Http2Connection.this;	 Catch:{ all -> 0x0078 }
-            r6 = 0;
-            r3 = r0;
-            r4 = r11;
-            r7 = r10;
-            r8 = r13;
-            r3.<init>(r4, r5, r6, r7, r8);	 Catch:{ all -> 0x0078 }
-            r10 = okhttp3.internal.http2.Http2Connection.this;	 Catch:{ all -> 0x0078 }
-            r10.lastGoodStreamId = r11;	 Catch:{ all -> 0x0078 }
-            r10 = okhttp3.internal.http2.Http2Connection.this;	 Catch:{ all -> 0x0078 }
-            r10 = r10.streams;	 Catch:{ all -> 0x0078 }
-            r13 = java.lang.Integer.valueOf(r11);	 Catch:{ all -> 0x0078 }
-            r10.put(r13, r0);	 Catch:{ all -> 0x0078 }
-            r10 = okhttp3.internal.http2.Http2Connection.executor;	 Catch:{ all -> 0x0078 }
-            r13 = new okhttp3.internal.http2.Http2Connection$ReaderRunnable$1;	 Catch:{ all -> 0x0078 }
-            r1 = "OkHttp %s stream %d";
-            r2 = new java.lang.Object[r2];	 Catch:{ all -> 0x0078 }
-            r3 = 0;
-            r4 = okhttp3.internal.http2.Http2Connection.this;	 Catch:{ all -> 0x0078 }
-            r4 = r4.hostname;	 Catch:{ all -> 0x0078 }
-            r2[r3] = r4;	 Catch:{ all -> 0x0078 }
-            r3 = 1;
-            r11 = java.lang.Integer.valueOf(r11);	 Catch:{ all -> 0x0078 }
-            r2[r3] = r11;	 Catch:{ all -> 0x0078 }
-            r13.<init>(r1, r2, r0);	 Catch:{ all -> 0x0078 }
-            r10.execute(r13);	 Catch:{ all -> 0x0078 }
-            monitor-exit(r12);	 Catch:{ all -> 0x0078 }
-            return;
-        L_0x006e:
-            monitor-exit(r12);	 Catch:{ all -> 0x0078 }
-            r0.receiveHeaders(r13);
-            if (r10 == 0) goto L_0x0077;
-        L_0x0074:
-            r0.receiveFin();
-        L_0x0077:
-            return;
-        L_0x0078:
-            r10 = move-exception;
-            monitor-exit(r12);	 Catch:{ all -> 0x0078 }
-            throw r10;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.http2.Http2Connection.ReaderRunnable.headers(boolean, int, int, java.util.List):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public void headers(boolean z, int i, int i2, List<Header> list) {
+            if (Http2Connection.this.pushedStream(i)) {
+                Http2Connection.this.pushHeadersLater(i, list, z);
+                return;
+            }
+            synchronized (Http2Connection.this) {
+                Http2Stream stream = Http2Connection.this.getStream(i);
+                if (stream == null) {
+                    if (Http2Connection.this.shutdown) {
+                    } else if (i <= Http2Connection.this.lastGoodStreamId) {
+                    } else if (i % 2 == Http2Connection.this.nextStreamId % 2) {
+                    } else {
+                        final Http2Stream http2Stream = new Http2Stream(i, Http2Connection.this, false, z, list);
+                        Http2Connection.this.lastGoodStreamId = i;
+                        Http2Connection.this.streams.put(Integer.valueOf(i), http2Stream);
+                        Http2Connection.executor.execute(new NamedRunnable("OkHttp %s stream %d", new Object[]{Http2Connection.this.hostname, Integer.valueOf(i)}) {
+                            public void execute() {
+                                try {
+                                    Http2Connection.this.listener.onStream(http2Stream);
+                                } catch (Throwable e) {
+                                    Platform platform = Platform.get();
+                                    StringBuilder stringBuilder = new StringBuilder();
+                                    stringBuilder.append("Http2Connection.Listener failure for ");
+                                    stringBuilder.append(Http2Connection.this.hostname);
+                                    platform.log(4, stringBuilder.toString(), e);
+                                    try {
+                                        http2Stream.close(ErrorCode.PROTOCOL_ERROR);
+                                    } catch (IOException e2) {
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            }
         }
 
         public void rstStream(int i, ErrorCode errorCode) {

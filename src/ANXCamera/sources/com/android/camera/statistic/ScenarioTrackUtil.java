@@ -1,12 +1,18 @@
 package com.android.camera.statistic;
 
+import android.content.Context;
+import android.os.SystemClock;
 import android.os.statistics.E2EScenario;
 import android.os.statistics.E2EScenarioPayload;
 import android.os.statistics.E2EScenarioPerfTracer;
 import android.os.statistics.E2EScenarioSettings;
+import android.provider.MiuiSettings.System;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import com.android.camera.log.Log;
+import java.util.Iterator;
+import java.util.Map;
+import org.json.JSONObject;
 
 public class ScenarioTrackUtil {
     private static final String TAG = ScenarioTrackUtil.class.getSimpleName();
@@ -62,64 +68,48 @@ public class ScenarioTrackUtil {
 
     /* JADX WARNING: Removed duplicated region for block: B:15:0x0045  */
     /* JADX WARNING: Removed duplicated region for block: B:15:0x0045  */
-    public static void trackAppLunchTimeEnd(@android.support.annotation.Nullable java.util.Map r8, android.content.Context r9) {
-        /*
-        r9 = r9.getContentResolver();
-        r0 = "camera_boost";
-        r9 = android.provider.MiuiSettings.System.getString(r9, r0);
-        r0 = new android.os.statistics.E2EScenarioPayload;
-        r0.<init>();
-        if (r9 == 0) goto L_0x005d;
-        r1 = 0;
-        r2 = 0;
-        r3 = new org.json.JSONObject;	 Catch:{ Exception -> 0x003a }
-        r3.<init>(r9);	 Catch:{ Exception -> 0x003a }
-        r9 = "time";
-        r9 = r3.optString(r9);	 Catch:{ Exception -> 0x0038 }
-        r4 = android.os.SystemClock.uptimeMillis();	 Catch:{ Exception -> 0x0038 }
-        r6 = java.lang.Long.parseLong(r9);	 Catch:{ Exception -> 0x0038 }
-        r4 = r4 - r6;
-        r6 = 1000; // 0x3e8 float:1.401E-42 double:4.94E-321;
-        r9 = (r4 > r6 ? 1 : (r4 == r6 ? 0 : -1));
-        if (r9 >= 0) goto L_0x0031;
-    L_0x002e:
-        r9 = 1;
-        r2 = r9;
-        goto L_0x0032;
-    L_0x0032:
-        r9 = "time";
-        r3.remove(r9);	 Catch:{ Exception -> 0x0038 }
-        goto L_0x0043;
-    L_0x0038:
-        r9 = move-exception;
-        goto L_0x003c;
-    L_0x003a:
-        r9 = move-exception;
-        r3 = r1;
-    L_0x003c:
-        r1 = TAG;
-        r4 = "Exception";
-        com.android.camera.log.Log.w(r1, r4, r9);
-    L_0x0043:
-        if (r2 == 0) goto L_0x005d;
-    L_0x0045:
-        r9 = r3.keys();
-    L_0x0049:
-        r1 = r9.hasNext();
-        if (r1 == 0) goto L_0x005d;
-    L_0x004f:
-        r1 = r9.next();
-        r1 = (java.lang.String) r1;
-        r2 = r3.opt(r1);
-        r0.put(r1, r2);
-        goto L_0x0049;
-    L_0x005d:
-        r0.putAll(r8);
-        r8 = sLaunchTimeScenario;
-        finishScenario(r8, r0);
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.statistic.ScenarioTrackUtil.trackAppLunchTimeEnd(java.util.Map, android.content.Context):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static void trackAppLunchTimeEnd(@Nullable Map map, Context context) {
+        Throwable e;
+        String string = System.getString(context.getContentResolver(), "camera_boost");
+        E2EScenarioPayload e2EScenarioPayload = new E2EScenarioPayload();
+        if (string != null) {
+            JSONObject jSONObject;
+            Object obj = null;
+            try {
+                jSONObject = new JSONObject(string);
+                try {
+                    if (SystemClock.uptimeMillis() - Long.parseLong(jSONObject.optString("time")) < 1000) {
+                        obj = 1;
+                    }
+                    jSONObject.remove("time");
+                } catch (Exception e2) {
+                    e = e2;
+                    Log.w(TAG, "Exception", e);
+                    if (obj != null) {
+                    }
+                    e2EScenarioPayload.putAll(map);
+                    finishScenario(sLaunchTimeScenario, e2EScenarioPayload);
+                }
+            } catch (Exception e3) {
+                e = e3;
+                jSONObject = null;
+                Log.w(TAG, "Exception", e);
+                if (obj != null) {
+                }
+                e2EScenarioPayload.putAll(map);
+                finishScenario(sLaunchTimeScenario, e2EScenarioPayload);
+            }
+            if (obj != null) {
+                Iterator keys = jSONObject.keys();
+                while (keys.hasNext()) {
+                    String str = (String) keys.next();
+                    e2EScenarioPayload.put(str, jSONObject.opt(str));
+                }
+            }
+        }
+        e2EScenarioPayload.putAll(map);
+        finishScenario(sLaunchTimeScenario, e2EScenarioPayload);
     }
 
     public static void trackCaptureTimeStart(@NonNull boolean z, @NonNull int i) {

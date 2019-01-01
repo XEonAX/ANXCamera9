@@ -23,6 +23,8 @@ import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.animation.type.AlphaInOnSubscribe;
 import com.android.camera.animation.type.AlphaOutOnSubscribe;
+import com.android.camera.animation.type.SlideInOnSubscribe;
+import com.android.camera.animation.type.SlideOutOnSubscribe;
 import com.android.camera.data.DataRepository;
 import com.android.camera.log.Log;
 import com.android.camera.protocol.ModeCoordinatorImpl;
@@ -145,125 +147,61 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
         return true;
     }
 
-    public void provideAnimateElement(int r5, java.util.List<io.reactivex.Completable> r6, boolean r7) {
-        /*
-        r4 = this;
-        r0 = r4.mCurrentMode;
-        super.provideAnimateElement(r5, r6, r7);
-        r7 = 1;
-        r1 = 165; // 0xa5 float:2.31E-43 double:8.15E-322;
-        if (r5 == r1) goto L_0x000d;
-    L_0x000b:
-        r1 = -1;
-        goto L_0x0010;
-        r1 = r7;
-    L_0x0010:
-        r2 = 0;
-        r4.setSnapNumVisible(r2, r7);
-        r3 = r4.mPreviewFrame;
-        r3.hidePreviewGrid();
-        r3 = r4.mFaceView;
-        r3.clear();
-        r3 = r4.mFaceView;
-        r3.clearFaceFlags();
-        r3 = r4.mFocusView;
-        r3.clear();
-        r3 = r4.mLightingView;
-        r3.clear();
-        r3 = r4.mAfRegionsView;
-        r3.clear();
-        r3 = 162; // 0xa2 float:2.27E-43 double:8.0E-322;
-        if (r0 == r3) goto L_0x003b;
-    L_0x0037:
-        switch(r0) {
-            case 168: goto L_0x003b;
-            case 169: goto L_0x003b;
-            default: goto L_0x003a;
-        };
-    L_0x003a:
-        goto L_0x0040;
-    L_0x003b:
-        if (r5 == r3) goto L_0x0042;
-    L_0x003d:
-        switch(r5) {
-            case 168: goto L_0x0042;
-            case 169: goto L_0x0042;
-            default: goto L_0x0040;
-        };
-    L_0x0040:
-        r2 = r7;
-        goto L_0x0043;
-    L_0x0043:
-        if (r2 == 0) goto L_0x004a;
-    L_0x0045:
-        r5 = r4.mFocusView;
-        r5.releaseListener();
-    L_0x004a:
-        r4.destroyEffectCropView();
-        r5 = r4.mTopCover;
-        r5 = r5.getTag();
-        if (r5 == 0) goto L_0x0064;
-    L_0x0055:
-        r5 = r4.mTopCover;
-        r5 = r5.getTag();
-        r5 = (java.lang.Integer) r5;
-        r5 = r5.intValue();
-        if (r5 != r1) goto L_0x0064;
-    L_0x0063:
-        return;
-    L_0x0064:
-        r5 = r4.mTopCover;
-        r0 = java.lang.Integer.valueOf(r1);
-        r5.setTag(r0);
-        r5 = 80;
-        r0 = 48;
-        if (r1 != r7) goto L_0x009d;
-    L_0x0073:
-        if (r6 != 0) goto L_0x0080;
-    L_0x0075:
-        r6 = r4.mTopCover;
-        com.android.camera.animation.type.SlideInOnSubscribe.directSetResult(r6, r0);
-        r6 = r4.mBottomCover;
-        com.android.camera.animation.type.SlideInOnSubscribe.directSetResult(r6, r5);
-        goto L_0x00d0;
-    L_0x0080:
-        r7 = new com.android.camera.animation.type.SlideInOnSubscribe;
-        r1 = r4.mTopCover;
-        r7.<init>(r1, r0);
-        r7 = io.reactivex.Completable.create(r7);
-        r6.add(r7);
-        r7 = new com.android.camera.animation.type.SlideInOnSubscribe;
-        r0 = r4.mBottomCover;
-        r7.<init>(r0, r5);
-        r5 = io.reactivex.Completable.create(r7);
-        r6.add(r5);
-        goto L_0x00d0;
-    L_0x009d:
-        if (r6 != 0) goto L_0x00aa;
-    L_0x009f:
-        r6 = r4.mTopCover;
-        com.android.camera.animation.type.SlideOutOnSubscribe.directSetResult(r6, r0);
-        r6 = r4.mBottomCover;
-        com.android.camera.animation.type.SlideOutOnSubscribe.directSetResult(r6, r5);
-        goto L_0x00d0;
-    L_0x00aa:
-        r7 = new com.android.camera.animation.type.SlideOutOnSubscribe;
-        r1 = r4.mTopCover;
-        r7.<init>(r1, r0);
-        r0 = 200; // 0xc8 float:2.8E-43 double:9.9E-322;
-        r7 = r7.setDurationTime(r0);
-        r7 = io.reactivex.Completable.create(r7);
-        r6.add(r7);
-        r7 = new com.android.camera.animation.type.SlideOutOnSubscribe;
-        r1 = r4.mBottomCover;
-        r7.<init>(r1, r5);
-        r5 = r7.setDurationTime(r0);
-        r5 = io.reactivex.Completable.create(r5);
-        r6.add(r5);
-    L_0x00d0:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.android.camera.fragment.FragmentMainContent.provideAnimateElement(int, java.util.List, boolean):void");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
+        int i2;
+        int i3 = this.mCurrentMode;
+        super.provideAnimateElement(i, list, z);
+        if (i != 165) {
+            i2 = -1;
+        } else {
+            i2 = 1;
+        }
+        boolean z2 = false;
+        setSnapNumVisible(false, true);
+        this.mPreviewFrame.hidePreviewGrid();
+        this.mFaceView.clear();
+        this.mFaceView.clearFaceFlags();
+        this.mFocusView.clear();
+        this.mLightingView.clear();
+        this.mAfRegionsView.clear();
+        if (i3 != 162) {
+            switch (i3) {
+                case 168:
+                case 169:
+                    break;
+            }
+        }
+        if (i != 162) {
+            switch (i) {
+                case 168:
+                case 169:
+                    break;
+            }
+            z2 = true;
+        }
+        if (z2) {
+            this.mFocusView.releaseListener();
+        }
+        destroyEffectCropView();
+        if (this.mTopCover.getTag() == null || ((Integer) this.mTopCover.getTag()).intValue() != i2) {
+            this.mTopCover.setTag(Integer.valueOf(i2));
+            if (i2 == 1) {
+                if (list == null) {
+                    SlideInOnSubscribe.directSetResult(this.mTopCover, 48);
+                    SlideInOnSubscribe.directSetResult(this.mBottomCover, 80);
+                } else {
+                    list.add(Completable.create(new SlideInOnSubscribe(this.mTopCover, 48)));
+                    list.add(Completable.create(new SlideInOnSubscribe(this.mBottomCover, 80)));
+                }
+            } else if (list == null) {
+                SlideOutOnSubscribe.directSetResult(this.mTopCover, 48);
+                SlideOutOnSubscribe.directSetResult(this.mBottomCover, 80);
+            } else {
+                list.add(Completable.create(new SlideOutOnSubscribe(this.mTopCover, 48).setDurationTime(200)));
+                list.add(Completable.create(new SlideOutOnSubscribe(this.mBottomCover, 80).setDurationTime(200)));
+            }
+        }
     }
 
     protected void register(ModeCoordinator modeCoordinator) {

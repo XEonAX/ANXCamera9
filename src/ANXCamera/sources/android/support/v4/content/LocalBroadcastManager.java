@@ -4,10 +4,16 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
+import com.google.android.apps.photos.api.PhotosOemApi;
+import com.ss.android.ttve.utils.UIUtils;
+import com.ss.android.vesdk.VECameraSettings;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class LocalBroadcastManager {
     private static final boolean DEBUG = false;
@@ -132,226 +138,130 @@ public class LocalBroadcastManager {
     /* JADX WARNING: Missing block: B:56:0x016a, code:
             return false;
      */
-    public boolean sendBroadcast(android.content.Intent r20) {
-        /*
-        r19 = this;
-        r1 = r19;
-        r2 = r20;
-        r3 = r1.mReceivers;
-        monitor-enter(r3);
-        r5 = r20.getAction();	 Catch:{ all -> 0x016b }
-        r0 = r1.mAppContext;	 Catch:{ all -> 0x016b }
-        r0 = r0.getContentResolver();	 Catch:{ all -> 0x016b }
-        r0 = r2.resolveTypeIfNeeded(r0);	 Catch:{ all -> 0x016b }
-        r8 = r20.getData();	 Catch:{ all -> 0x016b }
-        r4 = r20.getScheme();	 Catch:{ all -> 0x016b }
-        r11 = r4;
-        r9 = r20.getCategories();	 Catch:{ all -> 0x016b }
-        r4 = r20.getFlags();	 Catch:{ all -> 0x016b }
-        r4 = r4 & 8;
-        if (r4 == 0) goto L_0x002c;
-    L_0x002a:
-        r4 = 1;
-        goto L_0x002d;
-    L_0x002c:
-        r4 = 0;
-    L_0x002d:
-        r14 = r4;
-        if (r14 == 0) goto L_0x0056;
-    L_0x0030:
-        r4 = "LocalBroadcastManager";
-        r6 = new java.lang.StringBuilder;	 Catch:{ all -> 0x016b }
-        r6.<init>();	 Catch:{ all -> 0x016b }
-        r7 = "Resolving type ";
-        r6.append(r7);	 Catch:{ all -> 0x016b }
-        r6.append(r0);	 Catch:{ all -> 0x016b }
-        r7 = " scheme ";
-        r6.append(r7);	 Catch:{ all -> 0x016b }
-        r6.append(r11);	 Catch:{ all -> 0x016b }
-        r7 = " of intent ";
-        r6.append(r7);	 Catch:{ all -> 0x016b }
-        r6.append(r2);	 Catch:{ all -> 0x016b }
-        r6 = r6.toString();	 Catch:{ all -> 0x016b }
-        android.util.Log.v(r4, r6);	 Catch:{ all -> 0x016b }
-    L_0x0056:
-        r4 = r1.mActions;	 Catch:{ all -> 0x016b }
-        r6 = r20.getAction();	 Catch:{ all -> 0x016b }
-        r4 = r4.get(r6);	 Catch:{ all -> 0x016b }
-        r4 = (java.util.ArrayList) r4;	 Catch:{ all -> 0x016b }
-        r15 = r4;
-        if (r15 == 0) goto L_0x0168;
-    L_0x0065:
-        if (r14 == 0) goto L_0x007d;
-    L_0x0067:
-        r4 = "LocalBroadcastManager";
-        r6 = new java.lang.StringBuilder;	 Catch:{ all -> 0x016b }
-        r6.<init>();	 Catch:{ all -> 0x016b }
-        r7 = "Action list: ";
-        r6.append(r7);	 Catch:{ all -> 0x016b }
-        r6.append(r15);	 Catch:{ all -> 0x016b }
-        r6 = r6.toString();	 Catch:{ all -> 0x016b }
-        android.util.Log.v(r4, r6);	 Catch:{ all -> 0x016b }
-    L_0x007d:
-        r4 = 0;
-        r6 = 0;
-        r10 = r4;
-        r16 = r6;
-        r4 = 0;
-    L_0x0083:
-        r7 = r4;
-        r4 = r15.size();	 Catch:{ all -> 0x016b }
-        if (r7 >= r4) goto L_0x0135;
-    L_0x008a:
-        r4 = r15.get(r7);	 Catch:{ all -> 0x016b }
-        r4 = (android.support.v4.content.LocalBroadcastManager.ReceiverRecord) r4;	 Catch:{ all -> 0x016b }
-        r6 = r4;
-        if (r14 == 0) goto L_0x00ab;
-    L_0x0093:
-        r4 = "LocalBroadcastManager";
-        r12 = new java.lang.StringBuilder;	 Catch:{ all -> 0x016b }
-        r12.<init>();	 Catch:{ all -> 0x016b }
-        r13 = "Matching against filter ";
-        r12.append(r13);	 Catch:{ all -> 0x016b }
-        r13 = r6.filter;	 Catch:{ all -> 0x016b }
-        r12.append(r13);	 Catch:{ all -> 0x016b }
-        r12 = r12.toString();	 Catch:{ all -> 0x016b }
-        android.util.Log.v(r4, r12);	 Catch:{ all -> 0x016b }
-    L_0x00ab:
-        r4 = r6.broadcasting;	 Catch:{ all -> 0x016b }
-        if (r4 == 0) goto L_0x00bf;
-    L_0x00af:
-        if (r14 == 0) goto L_0x00b8;
-    L_0x00b1:
-        r4 = "LocalBroadcastManager";
-        r12 = "  Filter's target already added";
-        android.util.Log.v(r4, r12);	 Catch:{ all -> 0x016b }
-    L_0x00b8:
-        r18 = r0;
-        r17 = r7;
-        r0 = r10;
-        goto L_0x012e;
-    L_0x00bf:
-        r4 = r6.filter;	 Catch:{ all -> 0x016b }
-        r12 = "LocalBroadcastManager";
-        r13 = r6;
-        r6 = r0;
-        r17 = r7;
-        r7 = r11;
-        r18 = r0;
-        r0 = r10;
-        r10 = r12;
-        r4 = r4.match(r5, r6, r7, r8, r9, r10);	 Catch:{ all -> 0x016b }
-        if (r4 < 0) goto L_0x00ff;
-    L_0x00d2:
-        if (r14 == 0) goto L_0x00ee;
-    L_0x00d4:
-        r6 = "LocalBroadcastManager";
-        r7 = new java.lang.StringBuilder;	 Catch:{ all -> 0x016b }
-        r7.<init>();	 Catch:{ all -> 0x016b }
-        r10 = "  Filter matched!  match=0x";
-        r7.append(r10);	 Catch:{ all -> 0x016b }
-        r10 = java.lang.Integer.toHexString(r4);	 Catch:{ all -> 0x016b }
-        r7.append(r10);	 Catch:{ all -> 0x016b }
-        r7 = r7.toString();	 Catch:{ all -> 0x016b }
-        android.util.Log.v(r6, r7);	 Catch:{ all -> 0x016b }
-    L_0x00ee:
-        if (r0 != 0) goto L_0x00f7;
-    L_0x00f0:
-        r6 = new java.util.ArrayList;	 Catch:{ all -> 0x016b }
-        r6.<init>();	 Catch:{ all -> 0x016b }
-        r10 = r6;
-        r0 = r10;
-    L_0x00f7:
-        r0.add(r13);	 Catch:{ all -> 0x016b }
-        r6 = 1;
-        r13.broadcasting = r6;	 Catch:{ all -> 0x016b }
-        r10 = r0;
-        goto L_0x012f;
-    L_0x00ff:
-        if (r14 == 0) goto L_0x012e;
-    L_0x0101:
-        switch(r4) {
-            case -4: goto L_0x0110;
-            case -3: goto L_0x010d;
-            case -2: goto L_0x010a;
-            case -1: goto L_0x0107;
-            default: goto L_0x0104;
-        };	 Catch:{ all -> 0x016b }
-    L_0x0104:
-        r6 = "unknown reason";
-        goto L_0x0113;
-    L_0x0107:
-        r6 = "type";
-        goto L_0x0114;
-    L_0x010a:
-        r6 = "data";
-        goto L_0x0114;
-    L_0x010d:
-        r6 = "action";
-        goto L_0x0114;
-    L_0x0110:
-        r6 = "category";
-        goto L_0x0114;
-    L_0x0114:
-        r7 = "LocalBroadcastManager";
-        r10 = new java.lang.StringBuilder;	 Catch:{ all -> 0x016b }
-        r10.<init>();	 Catch:{ all -> 0x016b }
-        r12 = "  Filter did not match: ";
-        r10.append(r12);	 Catch:{ all -> 0x016b }
-        r10.append(r6);	 Catch:{ all -> 0x016b }
-        r10 = r10.toString();	 Catch:{ all -> 0x016b }
-        android.util.Log.v(r7, r10);	 Catch:{ all -> 0x016b }
-        r10 = r0;
-        r16 = r6;
-        goto L_0x012f;
-    L_0x012e:
-        r10 = r0;
-    L_0x012f:
-        r4 = r17 + 1;
-        r0 = r18;
-        goto L_0x0083;
-    L_0x0135:
-        r18 = r0;
-        r0 = r10;
-        if (r0 == 0) goto L_0x0168;
-    L_0x013a:
-        r4 = 0;
-    L_0x013b:
-        r6 = r0.size();	 Catch:{ all -> 0x016b }
-        if (r4 >= r6) goto L_0x014d;
-    L_0x0141:
-        r6 = r0.get(r4);	 Catch:{ all -> 0x016b }
-        r6 = (android.support.v4.content.LocalBroadcastManager.ReceiverRecord) r6;	 Catch:{ all -> 0x016b }
-        r7 = 0;
-        r6.broadcasting = r7;	 Catch:{ all -> 0x016b }
-        r4 = r4 + 1;
-        goto L_0x013b;
-    L_0x014d:
-        r4 = r1.mPendingBroadcasts;	 Catch:{ all -> 0x016b }
-        r6 = new android.support.v4.content.LocalBroadcastManager$BroadcastRecord;	 Catch:{ all -> 0x016b }
-        r6.<init>(r2, r0);	 Catch:{ all -> 0x016b }
-        r4.add(r6);	 Catch:{ all -> 0x016b }
-        r4 = r1.mHandler;	 Catch:{ all -> 0x016b }
-        r6 = 1;
-        r4 = r4.hasMessages(r6);	 Catch:{ all -> 0x016b }
-        if (r4 != 0) goto L_0x0165;
-    L_0x0160:
-        r4 = r1.mHandler;	 Catch:{ all -> 0x016b }
-        r4.sendEmptyMessage(r6);	 Catch:{ all -> 0x016b }
-    L_0x0165:
-        monitor-exit(r3);	 Catch:{ all -> 0x016b }
-        r3 = 1;
-        return r3;
-    L_0x0168:
-        monitor-exit(r3);	 Catch:{ all -> 0x016b }
-        r0 = 0;
-        return r0;
-    L_0x016b:
-        r0 = move-exception;
-        monitor-exit(r3);	 Catch:{ all -> 0x016b }
-        throw r0;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.content.LocalBroadcastManager.sendBroadcast(android.content.Intent):boolean");
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public boolean sendBroadcast(Intent intent) {
+        Intent intent2 = intent;
+        synchronized (this.mReceivers) {
+            String str;
+            StringBuilder stringBuilder;
+            String action = intent.getAction();
+            String type = intent2.resolveTypeIfNeeded(this.mAppContext.getContentResolver());
+            Uri data = intent.getData();
+            String scheme = intent.getScheme();
+            Set<String> categories = intent.getCategories();
+            boolean debug = (intent.getFlags() & 8) != 0;
+            if (debug) {
+                str = TAG;
+                stringBuilder = new StringBuilder();
+                stringBuilder.append("Resolving type ");
+                stringBuilder.append(type);
+                stringBuilder.append(" scheme ");
+                stringBuilder.append(scheme);
+                stringBuilder.append(" of intent ");
+                stringBuilder.append(intent2);
+                Log.v(str, stringBuilder.toString());
+            }
+            ArrayList<ReceiverRecord> entries = (ArrayList) this.mActions.get(intent.getAction());
+            if (entries != null) {
+                if (debug) {
+                    str = TAG;
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("Action list: ");
+                    stringBuilder.append(entries);
+                    Log.v(str, stringBuilder.toString());
+                }
+                ArrayList<ReceiverRecord> receivers = null;
+                String reason = null;
+                int i = 0;
+                while (true) {
+                    int i2 = i;
+                    ArrayList<ReceiverRecord> receivers2;
+                    if (i2 < entries.size()) {
+                        String type2;
+                        int i3;
+                        ReceiverRecord receiver = (ReceiverRecord) entries.get(i2);
+                        if (debug) {
+                            str = TAG;
+                            StringBuilder stringBuilder2 = new StringBuilder();
+                            stringBuilder2.append("Matching against filter ");
+                            stringBuilder2.append(receiver.filter);
+                            Log.v(str, stringBuilder2.toString());
+                        }
+                        if (receiver.broadcasting) {
+                            if (debug) {
+                                Log.v(TAG, "  Filter's target already added");
+                            }
+                            type2 = type;
+                            i3 = i2;
+                            type = receivers;
+                        } else {
+                            ReceiverRecord receiver2 = receiver;
+                            i3 = i2;
+                            type2 = type;
+                            type = receivers;
+                            i = receiver.filter.match(action, type, scheme, data, categories, TAG);
+                            String str2;
+                            if (i >= 0) {
+                                if (debug) {
+                                    str2 = TAG;
+                                    StringBuilder stringBuilder3 = new StringBuilder();
+                                    stringBuilder3.append("  Filter matched!  match=0x");
+                                    stringBuilder3.append(Integer.toHexString(i));
+                                    Log.v(str2, stringBuilder3.toString());
+                                }
+                                if (type == null) {
+                                    receivers2 = new ArrayList();
+                                }
+                                receivers2.add(receiver2);
+                                receiver2.broadcasting = true;
+                                receivers = receivers2;
+                            } else if (debug) {
+                                switch (i) {
+                                    case -4:
+                                        str2 = "category";
+                                        break;
+                                    case UIUtils.LAYOUT_PARAMS_KEEP_OLD /*-3*/:
+                                        str2 = VECameraSettings.SCENE_MODE_ACTION;
+                                        break;
+                                    case -2:
+                                        str2 = PhotosOemApi.PATH_SPECIAL_TYPE_DATA;
+                                        break;
+                                    case -1:
+                                        str2 = "type";
+                                        break;
+                                    default:
+                                        str2 = "unknown reason";
+                                        break;
+                                }
+                                String str3 = TAG;
+                                StringBuilder stringBuilder4 = new StringBuilder();
+                                stringBuilder4.append("  Filter did not match: ");
+                                stringBuilder4.append(str2);
+                                Log.v(str3, stringBuilder4.toString());
+                                receivers = type;
+                                reason = str2;
+                            }
+                            i = i3 + 1;
+                            type = type2;
+                        }
+                        receivers = type;
+                        i = i3 + 1;
+                        type = type2;
+                    } else {
+                        receivers2 = receivers;
+                        if (receivers2 != null) {
+                            for (i = 0; i < receivers2.size(); i++) {
+                                ((ReceiverRecord) receivers2.get(i)).broadcasting = false;
+                            }
+                            this.mPendingBroadcasts.add(new BroadcastRecord(intent2, receivers2));
+                            if (!this.mHandler.hasMessages(1)) {
+                                this.mHandler.sendEmptyMessage(1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void sendBroadcastSync(Intent intent) {
@@ -380,59 +290,20 @@ public class LocalBroadcastManager {
     /* JADX WARNING: Missing block: B:16:0x0040, code:
             r2 = r2 + 1;
      */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void executePendingBroadcasts() {
-        /*
-        r8 = this;
-    L_0x0000:
-        r0 = 0;
-        r1 = r8.mReceivers;
-        monitor-enter(r1);
-        r2 = r8.mPendingBroadcasts;	 Catch:{ all -> 0x0044 }
-        r2 = r2.size();	 Catch:{ all -> 0x0044 }
-        if (r2 > 0) goto L_0x000e;
-    L_0x000c:
-        monitor-exit(r1);	 Catch:{ all -> 0x0044 }
-        return;
-    L_0x000e:
-        r3 = new android.support.v4.content.LocalBroadcastManager.BroadcastRecord[r2];	 Catch:{ all -> 0x0044 }
-        r0 = r3;
-        r3 = r8.mPendingBroadcasts;	 Catch:{ all -> 0x0044 }
-        r3.toArray(r0);	 Catch:{ all -> 0x0044 }
-        r3 = r8.mPendingBroadcasts;	 Catch:{ all -> 0x0044 }
-        r3.clear();	 Catch:{ all -> 0x0044 }
-        monitor-exit(r1);	 Catch:{ all -> 0x0044 }
-        r1 = 0;
-        r2 = r1;
-    L_0x001e:
-        r3 = r0.length;
-        if (r2 >= r3) goto L_0x0043;
-    L_0x0021:
-        r3 = r0[r2];
-        r4 = r1;
-    L_0x0024:
-        r5 = r3.receivers;
-        r5 = r5.size();
-        if (r4 >= r5) goto L_0x0040;
-    L_0x002c:
-        r5 = r3.receivers;
-        r5 = r5.get(r4);
-        r5 = (android.support.v4.content.LocalBroadcastManager.ReceiverRecord) r5;
-        r5 = r5.receiver;
-        r6 = r8.mAppContext;
-        r7 = r3.intent;
-        r5.onReceive(r6, r7);
-        r4 = r4 + 1;
-        goto L_0x0024;
-    L_0x0040:
-        r2 = r2 + 1;
-        goto L_0x001e;
-    L_0x0043:
-        goto L_0x0000;
-    L_0x0044:
-        r2 = move-exception;
-        monitor-exit(r1);	 Catch:{ all -> 0x0044 }
-        throw r2;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: android.support.v4.content.LocalBroadcastManager.executePendingBroadcasts():void");
+        while (true) {
+            synchronized (this.mReceivers) {
+                int N = this.mPendingBroadcasts.size();
+                if (N <= 0) {
+                    return;
+                }
+                BroadcastRecord[] brs = new BroadcastRecord[N];
+                this.mPendingBroadcasts.toArray(brs);
+                this.mPendingBroadcasts.clear();
+            }
+        }
+        while (true) {
+        }
     }
 }

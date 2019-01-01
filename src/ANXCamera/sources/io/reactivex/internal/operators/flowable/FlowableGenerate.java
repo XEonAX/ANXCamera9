@@ -6,6 +6,7 @@ import io.reactivex.exceptions.Exceptions;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.internal.subscriptions.EmptySubscription;
+import io.reactivex.internal.subscriptions.SubscriptionHelper;
 import io.reactivex.internal.util.BackpressureHelper;
 import io.reactivex.plugins.RxJavaPlugins;
 import java.util.concurrent.Callable;
@@ -45,76 +46,48 @@ public final class FlowableGenerate<T, S> extends Flowable<T> {
         /* JADX WARNING: Missing block: B:29:0x0065, code:
             return;
      */
-        public void request(long r10) {
-            /*
-            r9 = this;
-            r0 = io.reactivex.internal.subscriptions.SubscriptionHelper.validate(r10);
-            if (r0 != 0) goto L_0x0007;
-        L_0x0006:
-            return;
-        L_0x0007:
-            r0 = io.reactivex.internal.util.BackpressureHelper.add(r9, r10);
-            r2 = 0;
-            r0 = (r0 > r2 ? 1 : (r0 == r2 ? 0 : -1));
-            if (r0 == 0) goto L_0x0012;
-        L_0x0011:
-            return;
-            r0 = r9.state;
-            r1 = r9.generator;
-            r4 = r10;
-        L_0x0018:
-            r10 = r2;
-        L_0x0019:
-            r6 = (r10 > r4 ? 1 : (r10 == r4 ? 0 : -1));
-            if (r6 == 0) goto L_0x0051;
-        L_0x001d:
-            r6 = r9.cancelled;
-            r7 = 0;
-            if (r6 == 0) goto L_0x0028;
-        L_0x0022:
-            r9.state = r7;
-            r9.dispose(r0);
-            return;
-        L_0x0028:
-            r6 = 0;
-            r9.hasNext = r6;
-            r6 = 1;
-            r8 = r1.apply(r0, r9);	 Catch:{ Throwable -> 0x0042 }
-            r0 = r9.terminate;
-            if (r0 == 0) goto L_0x003d;
-        L_0x0035:
-            r9.cancelled = r6;
-            r9.state = r7;
-            r9.dispose(r8);
-            return;
-        L_0x003d:
-            r6 = 1;
-            r10 = r10 + r6;
-            r0 = r8;
-            goto L_0x0019;
-        L_0x0042:
-            r10 = move-exception;
-            io.reactivex.exceptions.Exceptions.throwIfFatal(r10);
-            r9.cancelled = r6;
-            r9.state = r7;
-            r9.onError(r10);
-            r9.dispose(r0);
-            return;
-        L_0x0051:
-            r4 = r9.get();
-            r6 = (r10 > r4 ? 1 : (r10 == r4 ? 0 : -1));
-            if (r6 != 0) goto L_0x0019;
-        L_0x0059:
-            r9.state = r0;
-            r10 = -r10;
-            r4 = r9.addAndGet(r10);
-            r10 = (r4 > r2 ? 1 : (r4 == r2 ? 0 : -1));
-            if (r10 != 0) goto L_0x0066;
-            return;
-        L_0x0066:
-            goto L_0x0018;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowableGenerate.GeneratorSubscription.request(long):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        public void request(long j) {
+            if (SubscriptionHelper.validate(j) && BackpressureHelper.add(this, j) == 0) {
+                Object obj = this.state;
+                BiFunction biFunction = this.generator;
+                long j2 = j;
+                while (true) {
+                    j = 0;
+                    while (true) {
+                        if (j == j2) {
+                            j2 = get();
+                            if (j == j2) {
+                                break;
+                            }
+                        } else if (this.cancelled) {
+                            this.state = null;
+                            dispose(obj);
+                            return;
+                        } else {
+                            this.hasNext = false;
+                            try {
+                                Object apply = biFunction.apply(obj, this);
+                                if (this.terminate) {
+                                    this.cancelled = true;
+                                    this.state = null;
+                                    dispose(apply);
+                                    return;
+                                }
+                                j++;
+                                obj = apply;
+                            } catch (Throwable th) {
+                                Exceptions.throwIfFatal(th);
+                                this.cancelled = true;
+                                this.state = null;
+                                onError(th);
+                                dispose(obj);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void dispose(S s) {

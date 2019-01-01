@@ -110,38 +110,21 @@ public final class FlowableCombineLatest<T, R> extends Flowable<R> {
         /* JADX WARNING: Missing block: B:13:0x001b, code:
             return;
      */
-        void innerComplete(int r3) {
-            /*
-            r2 = this;
-            monitor-enter(r2);
-            r0 = r2.latest;	 Catch:{ all -> 0x001c }
-            r3 = r0[r3];	 Catch:{ all -> 0x001c }
-            r1 = 1;
-            if (r3 == 0) goto L_0x0015;
-        L_0x0008:
-            r3 = r2.completedSources;	 Catch:{ all -> 0x001c }
-            r3 = r3 + r1;
-            r0 = r0.length;	 Catch:{ all -> 0x001c }
-            if (r3 != r0) goto L_0x0011;
-        L_0x000e:
-            r2.done = r1;	 Catch:{ all -> 0x001c }
-            goto L_0x0017;
-        L_0x0011:
-            r2.completedSources = r3;	 Catch:{ all -> 0x001c }
-            monitor-exit(r2);	 Catch:{ all -> 0x001c }
-            return;
-        L_0x0015:
-            r2.done = r1;	 Catch:{ all -> 0x001c }
-        L_0x0017:
-            monitor-exit(r2);	 Catch:{ all -> 0x001c }
-            r2.drain();
-            return;
-        L_0x001c:
-            r3 = move-exception;
-            monitor-exit(r2);	 Catch:{ all -> 0x001c }
-            throw r3;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: io.reactivex.internal.operators.flowable.FlowableCombineLatest.CombineLatestCoordinator.innerComplete(int):void");
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        void innerComplete(int i) {
+            synchronized (this) {
+                Object[] objArr = this.latest;
+                if (objArr[i] != null) {
+                    i = this.completedSources + 1;
+                    if (i == objArr.length) {
+                        this.done = true;
+                    } else {
+                        this.completedSources = i;
+                        return;
+                    }
+                }
+                this.done = true;
+            }
         }
 
         void innerError(int i, Throwable th) {
