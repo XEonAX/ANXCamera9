@@ -43,7 +43,6 @@ import com.android.camera.ui.ObjectView.ObjectViewListener;
 import com.android.camera.ui.V6EffectCropView;
 import com.android.camera.ui.V6PreviewFrame;
 import com.android.camera.ui.V6PreviewPanel;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera.watermark.WaterMarkData;
 import com.android.camera2.CameraHardwareFace;
 import com.mi.config.b;
@@ -60,7 +59,7 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
     private boolean lastFaceSuccess;
     private int mActiveIndicator = 2;
     private AfRegionsView mAfRegionsView;
-    private float mAspectRatio = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+    private float mAspectRatio = 0.0f;
     private View mBottomCover;
     private TextView mCaptureDelayNumber;
     private ViewGroup mCoverParent;
@@ -101,7 +100,7 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
         this.mPreviewPage = (ViewGroup) view.findViewById(R.id.v6_preview_page);
         this.mPreviewPanel = (V6PreviewPanel) this.mPreviewPage.findViewById(R.id.v6_preview_panel);
         this.mPreviewFrame = (V6PreviewFrame) this.mPreviewPanel.findViewById(R.id.v6_frame_layout);
-        if (this.mAspectRatio > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+        if (this.mAspectRatio > 0.0f) {
             this.mPreviewFrame.setAspectRatio(this.mAspectRatio);
         }
         this.mEffectCropView = (V6EffectCropView) this.mPreviewPanel.findViewById(R.id.v6_effect_crop_view);

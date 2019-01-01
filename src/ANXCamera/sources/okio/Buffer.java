@@ -1,5 +1,6 @@
 package okio;
 
+import android.support.v4.media.session.PlaybackStateCompat;
 import com.ss.android.ttve.utils.UIUtils;
 import java.io.EOFException;
 import java.io.IOException;
@@ -1011,7 +1012,7 @@ public final class Buffer implements Cloneable, BufferedSink, BufferedSource {
         if (source != null) {
             long j = 0;
             while (true) {
-                long read = source.read(this, 8192);
+                long read = source.read(this, PlaybackStateCompat.ACTION_PLAY_FROM_URI);
                 if (read == -1) {
                     return j;
                 }
@@ -1201,7 +1202,7 @@ public final class Buffer implements Cloneable, BufferedSink, BufferedSource {
                 if (j < ((long) (buffer.head.limit - buffer.head.pos))) {
                     segment = this.head != null ? this.head.prev : null;
                     if (segment != null && segment.owner) {
-                        if ((((long) segment.limit) + j) - ((long) (segment.shared ? 0 : segment.pos)) <= 8192) {
+                        if ((((long) segment.limit) + j) - ((long) (segment.shared ? 0 : segment.pos)) <= PlaybackStateCompat.ACTION_PLAY_FROM_URI) {
                             buffer.head.writeTo(segment, (int) j);
                             buffer.size -= j;
                             this.size += j;

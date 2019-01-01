@@ -1,5 +1,6 @@
 package org.jcodec.containers.mp4.boxes;
 
+import android.support.v4.internal.view.SupportMenu;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import org.jcodec.platform.Platform;
@@ -154,7 +155,7 @@ public class MetaValue {
     private int toInt24(byte[] bArr) {
         ByteBuffer wrap = ByteBuffer.wrap(bArr);
         wrap.order(ByteOrder.BIG_ENDIAN);
-        return (wrap.get() & 255) | ((wrap.getShort() & 65535) << 8);
+        return (wrap.get() & 255) | ((wrap.getShort() & SupportMenu.USER_MASK) << 8);
     }
 
     private int toInt32(byte[] bArr) {

@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.view.Surface;
 import com.android.camera.effect.draw_mode.DrawExtTexAttribute;
 import com.android.camera.log.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.xiaomi.camera.liveshot.encoder.CircularMediaEncoder.Snapshot;
 import com.xiaomi.camera.liveshot.gles.RenderThread;
 import java.io.IOException;
@@ -69,7 +68,7 @@ public class CircularVideoEncoder extends CircularMediaEncoder {
         stringBuilder.append("setFpsReduction: ");
         stringBuilder.append(f);
         Log.d(str, stringBuilder.toString());
-        if (f <= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+        if (f <= 0.0f) {
             this.mMinFrameRenderPeriodNs = Long.MAX_VALUE;
         } else {
             this.mMinFrameRenderPeriodNs = (long) (((float) TimeUnit.SECONDS.toNanos(1)) / f);

@@ -1,5 +1,6 @@
 package okhttp3.internal.ws;
 
+import android.support.v4.media.session.PlaybackStateCompat;
 import java.io.IOException;
 import java.util.Random;
 import okio.Buffer;
@@ -34,7 +35,7 @@ final class WebSocketWriter {
             }
             WebSocketWriter.this.buffer.write(buffer, j);
             boolean z;
-            if (!this.isFirstFrame || this.contentLength == -1 || WebSocketWriter.this.buffer.size() <= this.contentLength - 8192) {
+            if (!this.isFirstFrame || this.contentLength == -1 || WebSocketWriter.this.buffer.size() <= this.contentLength - PlaybackStateCompat.ACTION_PLAY_FROM_URI) {
                 z = false;
             } else {
                 z = true;

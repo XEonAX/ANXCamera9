@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import com.android.camera.R;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class HorizontalFNumberSlideView extends HorizontalSlideView {
     private int mLineColorSelected;
@@ -45,7 +44,7 @@ public class HorizontalFNumberSlideView extends HorizontalSlideView {
         float height = ((float) getHeight()) / 2.0f;
         canvas.save();
         canvas.translate(f, height);
-        canvas.drawLine(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, -this.mLineSelectedHalfHeight, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mLineSelectedHalfHeight, this.mPaint);
+        canvas.drawLine(0.0f, -this.mLineSelectedHalfHeight, 0.0f, this.mLineSelectedHalfHeight, this.mPaint);
         canvas.restore();
     }
 }

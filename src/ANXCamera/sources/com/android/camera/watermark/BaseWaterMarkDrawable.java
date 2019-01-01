@@ -14,7 +14,6 @@ import com.android.camera.CameraSettings;
 import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.log.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -116,7 +115,7 @@ public abstract class BaseWaterMarkDrawable {
             WaterMarkData waterMarkData = (WaterMarkData) it.next();
             canvas2.drawRoundRect(waterMarkData.getFaceRectF(), waterMarkData.getFaceRectF().width() * 0.015f, waterMarkData.getFaceRectF().height() * 0.015f, getFaceRectPaint(waterMarkData));
             Matcher matcher = this.mSplitFaceInfoPattern.matcher(waterMarkData.getInfo());
-            float f = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            float f = 0.0f;
             while (matcher.find()) {
                 float measureText;
                 String group = matcher.group();
@@ -142,7 +141,7 @@ public abstract class BaseWaterMarkDrawable {
             rect2.set(honPadding, (int) ((((float) this.mVerPadding) * 1.8f) - ((float) this.mCorrection)), getTopIndicatorDrawable(waterMarkData).getIntrinsicWidth() + honPadding, (int) (((((float) this.mVerPadding) * 1.8f) - ((float) this.mCorrection)) + ((float) getTopIndicatorDrawable(waterMarkData).getIntrinsicHeight())));
             getTopIndicatorDrawable(waterMarkData).setBounds(rect2);
             getTopIndicatorDrawable(waterMarkData).draw(canvas3);
-            if (f != PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+            if (f != 0.0f) {
                 FontMetricsInt fontMetricsInt = this.mFaceInfoTextPaint.getFontMetricsInt();
                 drawFaceInfoText(canvas3, waterMarkData.getInfo(), rect2.right + this.mGap, (((rect2.bottom + rect2.top) - fontMetricsInt.bottom) - fontMetricsInt.top) / 2);
             }

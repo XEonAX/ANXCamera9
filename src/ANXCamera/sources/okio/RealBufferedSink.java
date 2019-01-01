@@ -1,5 +1,6 @@
 package okio;
 
+import android.support.v4.media.session.PlaybackStateCompat;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -98,7 +99,7 @@ final class RealBufferedSink implements BufferedSink {
         if (source != null) {
             long j = 0;
             while (true) {
-                long read = source.read(this.buffer, 8192);
+                long read = source.read(this.buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI);
                 if (read == -1) {
                     return j;
                 }

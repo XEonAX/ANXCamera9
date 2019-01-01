@@ -1,5 +1,6 @@
 package com.android.camera.module;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -493,7 +494,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
                 if ((this.mOpenCameraFail || this.mCameraHardwareError) && ((!this.mActivity.isActivityPaused() || this.mOpenCameraFail) && this.mActivity.couldShowErrorDialog())) {
                     int i;
                     DataRepository.dataItemGlobal().setRetriedIfCameraError(false);
-                    Object obj = this.mActivity;
+                    Activity activity = this.mActivity;
                     if (Util.isInVideoCall(this.mActivity)) {
                         i = R.string.cannot_connect_camera_volte_call;
                     } else if (CameraSettings.updateOpenCameraFailTimes() > 1) {
@@ -501,7 +502,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
                     } else {
                         i = R.string.cannot_connect_camera_once;
                     }
-                    Util.showErrorAndFinish(obj, i);
+                    Util.showErrorAndFinish(activity, i);
                     this.mActivity.showErrorDialog();
                 }
                 if (this.mCameraDisabled && this.mActivity.couldShowErrorDialog()) {

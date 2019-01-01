@@ -12,7 +12,6 @@ import android.support.annotation.Keep;
 import android.util.Log;
 import android.view.Surface;
 import com.android.camera.Util;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.ttve.common.TEEglStateSaver;
 import com.ss.android.ttve.common.TELogUtil;
 import com.ss.android.ttve.common.TESharedContext;
@@ -183,7 +182,7 @@ public class TEAvcEncoder {
         if (this.m_textureDrawer == null) {
             return false;
         }
-        this.m_textureDrawer.setRotation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.m_textureDrawer.setRotation(0.0f);
         this.m_textureDrawer.setFlipScale(1.0f, -1.0f);
         return true;
     }

@@ -10,10 +10,10 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Xfermode;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import com.android.camera.R;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class RoundImageView extends ImageView {
     private final PaintFlagsDrawFilter mDrawFilter;
@@ -32,15 +32,15 @@ public class RoundImageView extends ImageView {
         super(context, attributeSet);
         this.mDrawFilter = new PaintFlagsDrawFilter(0, 3);
         this.mPaint = new Paint();
-        this.mPaint.setColor(-16777216);
+        this.mPaint.setColor(ViewCompat.MEASURED_STATE_MASK);
         this.mPaint.setAntiAlias(true);
         this.mSrcSize = getResources().getDimension(R.dimen.live_filter_item_size);
-        this.mSrcRectF = new RectF(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mSrcSize, this.mSrcSize);
+        this.mSrcRectF = new RectF(0.0f, 0.0f, this.mSrcSize, this.mSrcSize);
         this.mRadius = (float) getResources().getDimensionPixelSize(R.dimen.live_filter_item_corners_size);
         this.mXfermode = new PorterDuffXfermode(Mode.DST_IN);
         this.mMaskBitmap = Bitmap.createBitmap((int) this.mSrcSize, (int) this.mSrcSize, Config.ARGB_8888);
         Canvas canvas = new Canvas(this.mMaskBitmap);
-        new Paint().setColor(-16777216);
+        new Paint().setColor(ViewCompat.MEASURED_STATE_MASK);
         canvas.drawRoundRect(this.mSrcRectF, this.mRadius, this.mRadius, this.mPaint);
     }
 
@@ -53,7 +53,7 @@ public class RoundImageView extends ImageView {
         super.onDraw(canvas);
         canvas.setDrawFilter(this.mDrawFilter);
         this.mPaint.setXfermode(this.mXfermode);
-        canvas.drawBitmap(this.mMaskBitmap, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mPaint);
+        canvas.drawBitmap(this.mMaskBitmap, 0.0f, 0.0f, this.mPaint);
         this.mPaint.setXfermode(null);
         canvas.restoreToCount(saveLayer);
     }

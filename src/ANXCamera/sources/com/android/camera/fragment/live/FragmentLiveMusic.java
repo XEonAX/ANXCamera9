@@ -6,8 +6,10 @@ import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -99,7 +101,7 @@ public class FragmentLiveMusic extends BaseDialogFragment implements OnClickList
 
     protected void initView(View view) {
         this.mRecyclerView = (RecyclerView) view.findViewById(R.id.music_recycler_view);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(1);
         this.mRecyclerView.setLayoutManager(linearLayoutManager);
         this.mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -256,7 +258,7 @@ public class FragmentLiveMusic extends BaseDialogFragment implements OnClickList
                     if (this.mCurrentItemIndex == 0) {
                         this.mCurrentItemIndex = 1;
                         this.mAdapter.setData(this.mOnlineMusicInfoList);
-                        this.mLocalMusicText.setTextColor(-16777216);
+                        this.mLocalMusicText.setTextColor(ViewCompat.MEASURED_STATE_MASK);
                         this.mLocalMusicText.setAlpha(0.5f);
                         this.mHotMusicText.setAlpha(1.0f);
                         this.mHotMusicText.setTextColor(color);
@@ -273,7 +275,7 @@ public class FragmentLiveMusic extends BaseDialogFragment implements OnClickList
                         this.mLocalMusicText.setTextColor(color);
                         this.mLocalMusicText.setAlpha(1.0f);
                         this.mHotMusicText.setAlpha(0.5f);
-                        this.mHotMusicText.setTextColor(-16777216);
+                        this.mHotMusicText.setTextColor(ViewCompat.MEASURED_STATE_MASK);
                         return;
                     }
                     return;

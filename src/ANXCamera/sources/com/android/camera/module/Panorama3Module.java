@@ -1,6 +1,7 @@
 package com.android.camera.module;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -37,7 +38,6 @@ import android.view.Surface;
 import android.view.View;
 import com.android.camera.AutoLockManager;
 import com.android.camera.BasePreferenceActivity;
-import com.android.camera.Camera;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraPreferenceActivity;
 import com.android.camera.CameraScreenNail;
@@ -1998,14 +1998,14 @@ Caused by: jadx.core.utils.exceptions.CodegenException: MERGE can be used only i
         Log.d(str5, stringBuilder2.toString());
         trackGeneralInfo(1, false);
         trackPictureTaken(1, false, z);
-        Camera camera = this.mActivity;
-        if (isCreated() && camera != null) {
-            camera.getScreenHint().updateHint();
+        Context context = this.mActivity;
+        if (isCreated() && context != null) {
+            context.getScreenHint().updateHint();
             if (addImageForGroupOrPanorama != null) {
-                camera.onNewUriArrived(addImageForGroupOrPanorama, str2);
-                Thumbnail createThumbnailFromUri = Thumbnail.createThumbnailFromUri(camera.getContentResolver(), addImageForGroupOrPanorama, false);
-                Util.broadcastNewPicture(camera, addImageForGroupOrPanorama);
-                camera.getThumbnailUpdater().setThumbnail(createThumbnailFromUri, false, false);
+                context.onNewUriArrived(addImageForGroupOrPanorama, str2);
+                Thumbnail createThumbnailFromUri = Thumbnail.createThumbnailFromUri(context.getContentResolver(), addImageForGroupOrPanorama, false);
+                Util.broadcastNewPicture(context, addImageForGroupOrPanorama);
+                context.getThumbnailUpdater().setThumbnail(createThumbnailFromUri, false, false);
             }
         }
     }

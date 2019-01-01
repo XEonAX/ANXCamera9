@@ -3,7 +3,6 @@ package com.android.camera.animation.type;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.view.View;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class SlideOutOnSubscribe extends BaseOnSubScribe {
     private int mGravity;
@@ -23,15 +22,15 @@ public class SlideOutOnSubscribe extends BaseOnSubScribe {
             max = -max;
         } else if (i2 != 5) {
             max = i2 != 48 ? i2 != 80 ? 0 : max2 : -max2;
-            ViewCompat.setTranslationX(this.mAniView, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-            ViewCompat.setTranslationY(this.mAniView, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            ViewCompat.setTranslationX(this.mAniView, 0.0f);
+            ViewCompat.setTranslationY(this.mAniView, 0.0f);
             ViewCompat.setAlpha(this.mAniView, 1.0f);
             return ViewCompat.animate(this.mAniView).translationX((float) i).translationY((float) max);
         }
         i = max;
         max = 0;
-        ViewCompat.setTranslationX(this.mAniView, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-        ViewCompat.setTranslationY(this.mAniView, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        ViewCompat.setTranslationX(this.mAniView, 0.0f);
+        ViewCompat.setTranslationY(this.mAniView, 0.0f);
         ViewCompat.setAlpha(this.mAniView, 1.0f);
         return ViewCompat.animate(this.mAniView).translationX((float) i).translationY((float) max);
     }

@@ -24,7 +24,6 @@ import com.android.camera.protocol.ModeProtocol.ModeChangeController;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.EdgeGestureDetector.EdgeGestureListener;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class V6GestureRecognizer {
     public static final int GESTURE_EFFECT_CROP_VIEW = 6;
@@ -387,8 +386,8 @@ public class V6GestureRecognizer {
         if (motionEvent.getActionMasked() == 0 || motionEvent.getActionMasked() == 5) {
             this.mScrolled = false;
             this.mScrollDirection = 0;
-            this.mDistanceX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-            this.mDistanceY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            this.mDistanceX = 0.0f;
+            this.mDistanceY = 0.0f;
         }
         Log.v(TAG, "set to detector");
         if (this.mScaleDetectorEnable) {
@@ -408,8 +407,8 @@ public class V6GestureRecognizer {
             this.mInScaling = false;
             this.mScrolled = false;
             this.mScrollDirection = 0;
-            this.mDistanceX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-            this.mDistanceY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            this.mDistanceX = 0.0f;
+            this.mDistanceY = 0.0f;
         }
         return isGestureDetecting;
     }

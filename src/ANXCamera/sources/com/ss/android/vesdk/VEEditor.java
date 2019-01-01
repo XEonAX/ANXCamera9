@@ -10,6 +10,8 @@ import android.graphics.SurfaceTexture;
 import android.graphics.SurfaceTexture.OnFrameAvailableListener;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
+import android.support.v4.internal.view.SupportMenu;
+import android.support.v4.view.ViewCompat;
 import android.text.TextUtils;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -17,7 +19,6 @@ import android.view.SurfaceHolder.Callback2;
 import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.TextureView.SurfaceTextureListener;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.ttve.common.TECommonCallback;
 import com.ss.android.ttve.common.TELogUtil;
 import com.ss.android.ttve.model.FilterBean;
@@ -102,7 +103,7 @@ public class VEEditor implements LifecycleObserver, OnFrameAvailableListener {
     }
 
     public enum VEState {
-        ANY(65535),
+        ANY(SupportMenu.USER_MASK),
         ERROR(0),
         NOTHING(1048576),
         IDLE(1),
@@ -139,7 +140,7 @@ public class VEEditor implements LifecycleObserver, OnFrameAvailableListener {
             if (i == 128) {
                 return COMPLETED;
             }
-            if (i == 65535) {
+            if (i == SupportMenu.USER_MASK) {
                 return ANY;
             }
             if (i == 1048576) {
@@ -226,7 +227,7 @@ public class VEEditor implements LifecycleObserver, OnFrameAvailableListener {
         this.mOutputFile = null;
         this.mlCompileStartTime = 0;
         this.mBReversePlay = false;
-        this.mBackGroundColor = -16777216;
+        this.mBackGroundColor = ViewCompat.MEASURED_STATE_MASK;
         this.mTextureListener = new SurfaceTextureListener() {
             public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
                 if (VEEditor.this.mSurfaceTexture == surfaceTexture) {
@@ -354,7 +355,7 @@ public class VEEditor implements LifecycleObserver, OnFrameAvailableListener {
         this.mOutputFile = null;
         this.mlCompileStartTime = 0;
         this.mBReversePlay = false;
-        this.mBackGroundColor = -16777216;
+        this.mBackGroundColor = ViewCompat.MEASURED_STATE_MASK;
         this.mTextureListener = /* anonymous class already generated */;
         this.mSurfaceCallback = /* anonymous class already generated */;
         this.mOpenGLCallback = /* anonymous class already generated */;
@@ -397,7 +398,7 @@ public class VEEditor implements LifecycleObserver, OnFrameAvailableListener {
         this.mOutputFile = null;
         this.mlCompileStartTime = 0;
         this.mBReversePlay = false;
-        this.mBackGroundColor = -16777216;
+        this.mBackGroundColor = ViewCompat.MEASURED_STATE_MASK;
         this.mTextureListener = /* anonymous class already generated */;
         this.mSurfaceCallback = /* anonymous class already generated */;
         this.mOpenGLCallback = /* anonymous class already generated */;
@@ -455,7 +456,7 @@ public class VEEditor implements LifecycleObserver, OnFrameAvailableListener {
         stringBuilder.append(" ");
         stringBuilder.append(i4);
         TELogUtil.i(str, stringBuilder.toString());
-        setDisplayState(((float) i3) / ((float) this.mInitDisplayWidth), ((float) i4) / ((float) this.mInitDisplayHeight), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, -(((this.mSurfaceWidth / 2) - (i3 / 2)) - i), ((this.mSurfaceHeight / 2) - (i4 / 2)) - i2);
+        setDisplayState(((float) i3) / ((float) this.mInitDisplayWidth), ((float) i4) / ((float) this.mInitDisplayHeight), 0.0f, -(((this.mSurfaceWidth / 2) - (i3 / 2)) - i), ((this.mSurfaceHeight / 2) - (i4 / 2)) - i2);
     }
 
     public VESize getInitSize() {
@@ -476,7 +477,7 @@ public class VEEditor implements LifecycleObserver, OnFrameAvailableListener {
         stringBuilder.append(" ");
         stringBuilder.append(i2);
         TELogUtil.i(str, stringBuilder.toString());
-        this.mVideoEditor.setDisplayState(f, f2, f3, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, i, i2, false);
+        this.mVideoEditor.setDisplayState(f, f2, f3, 0.0f, i, i2, false);
     }
 
     public Bitmap getCurrDisplayImage() {
@@ -729,8 +730,8 @@ public class VEEditor implements LifecycleObserver, OnFrameAvailableListener {
         if (i < 0) {
             return -100;
         }
-        if (f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
-            f = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        if (f < 0.0f) {
+            f = 0.0f;
         }
         if (f > 1.0f) {
             f = 1.0f;
@@ -810,7 +811,7 @@ public class VEEditor implements LifecycleObserver, OnFrameAvailableListener {
         if (this.mColorFilterIndex < 0) {
             return VEResult.TER_INVALID_STAT;
         }
-        if (f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || str == null) {
+        if (f < 0.0f || str == null) {
             return -100;
         }
         if (f > 1.0f) {
@@ -843,7 +844,7 @@ public class VEEditor implements LifecycleObserver, OnFrameAvailableListener {
         if (this.mColorFilterIndex < 0) {
             return VEResult.TER_INVALID_STAT;
         }
-        if (f2 < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || TextUtils.isEmpty(str) || TextUtils.isEmpty(str2)) {
+        if (f2 < 0.0f || f < 0.0f || TextUtils.isEmpty(str) || TextUtils.isEmpty(str2)) {
             return -100;
         }
         if (f2 > 1.0f) {

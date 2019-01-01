@@ -246,7 +246,7 @@ class DownloadTask {
                 }
                 preDownload(request);
                 Log.d(TAG, String.format("start to transfer data", new Object[0]));
-                byte[] bArr = new byte[BUFFER_SIZE];
+                byte[] bArr = new byte[8192];
                 int i = 0;
                 while (!this.mCoreTask.isCancelled()) {
                     i = inputStream2.read(bArr);

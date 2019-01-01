@@ -23,7 +23,6 @@ import com.android.camera.constant.ColorConstant;
 import com.android.camera.data.data.config.ComponentConfigUltraWide;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.CameraAction;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import miui.view.animation.QuarticEaseInOutInterpolator;
 
 public class ToggleSwitch extends CompoundButton implements Checkable {
@@ -189,7 +188,7 @@ public class ToggleSwitch extends CompoundButton implements Checkable {
 
     private void drawSwitchOff(Canvas canvas) {
         drawRoundRect(canvas, this.mSwitchBackgroundColor, compBackgroundRoundRectAttr(), false);
-        float[] compThumbRoundRectAttr = compThumbRoundRectAttr(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        float[] compThumbRoundRectAttr = compThumbRoundRectAttr(0.0f);
         drawRoundRect(canvas, this.mThumbColor, compThumbRoundRectAttr, true);
         drawRoundRectStroke(canvas, this.mSwitchBackgroundStrokeColor);
         drawText(canvas, compThumbRoundRectAttr);
@@ -218,7 +217,7 @@ public class ToggleSwitch extends CompoundButton implements Checkable {
         RectF rectF = new RectF();
         paint.setColor(i);
         if (z) {
-            paint.setShadowLayer(this.mThumbShadowRadius, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mThumbShadowColor);
+            paint.setShadowLayer(this.mThumbShadowRadius, 0.0f, 0.0f, this.mThumbShadowColor);
         }
         rectF.set(fArr[0], fArr[1], fArr[2], fArr[3]);
         canvas.drawRoundRect(rectF, fArr[4], fArr[4], paint);
@@ -234,7 +233,7 @@ public class ToggleSwitch extends CompoundButton implements Checkable {
             int measuredHeight = (((getMeasuredHeight() - fontMetricsInt.bottom) + fontMetricsInt.top) / 2) - fontMetricsInt.top;
             if (this.mChecked) {
                 paint.setColor(this.mTextOffColor);
-                paint.setShadowLayer(this.mTextOffShadowRadius, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mTextOffShadowColor);
+                paint.setShadowLayer(this.mTextOffShadowRadius, 0.0f, 0.0f, this.mTextOffShadowColor);
             } else {
                 paint.setColor(this.mTextOnColor);
             }
@@ -250,7 +249,7 @@ public class ToggleSwitch extends CompoundButton implements Checkable {
                 paint.setColor(this.mTextOnColor);
             } else {
                 paint.setColor(this.mTextOffColor);
-                paint.setShadowLayer(this.mTextOffShadowRadius, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mTextOffShadowColor);
+                paint.setShadowLayer(this.mTextOffShadowRadius, 0.0f, 0.0f, this.mTextOffShadowColor);
             }
             canvas.drawText(this.mTextOn, (((((((float) getWidth()) * 3.0f) / 2.0f) - (((float) this.mThumbPadding) / 2.0f)) - ((float) this.mStrokeWidth)) - ((float) this.mTextOnWidth)) * 0.5f, (float) measuredHeight2, paint);
         }
@@ -275,9 +274,9 @@ public class ToggleSwitch extends CompoundButton implements Checkable {
     }
 
     private float[] compBackgroundRoundRectAttr() {
-        float width = ((float) getWidth()) - PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        float height = ((((float) getHeight()) - PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) - PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) * 0.5f;
-        return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, width, ((float) getHeight()) - PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, height};
+        float width = ((float) getWidth()) - 0.0f;
+        float height = ((((float) getHeight()) - 0.0f) - 0.0f) * 0.5f;
+        return new float[]{0.0f, 0.0f, width, ((float) getHeight()) - 0.0f, height};
     }
 
     private float[] compThumbRoundRectAttr(float f) {
@@ -318,7 +317,7 @@ public class ToggleSwitch extends CompoundButton implements Checkable {
                     animateToCheckedState();
                 } else {
                     cancelPositionAnimator();
-                    this.mCurrentPos = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+                    this.mCurrentPos = 0.0f;
                 }
             }
         }
@@ -331,7 +330,7 @@ public class ToggleSwitch extends CompoundButton implements Checkable {
     }
 
     private void animateToCheckedState() {
-        this.mValueAnimator = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
+        this.mValueAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
         this.mValueAnimator.setDuration((long) this.mAnimDuration);
         this.mValueAnimator.setInterpolator(new QuarticEaseInOutInterpolator());
         this.mValueAnimator.addUpdateListener(new AnimatorUpdateListener() {
@@ -353,7 +352,7 @@ public class ToggleSwitch extends CompoundButton implements Checkable {
         });
         if (!this.mValueAnimator.isRunning()) {
             this.mValueAnimator.start();
-            this.mCurrentPos = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            this.mCurrentPos = 0.0f;
         }
     }
 

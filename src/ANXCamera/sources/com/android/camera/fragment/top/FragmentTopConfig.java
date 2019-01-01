@@ -7,9 +7,13 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RotateDrawable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.Adapter;
+import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -51,7 +55,6 @@ import com.android.camera.protocol.ModeProtocol.HandleBeautyRecording;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.protocol.ModeProtocol.TopAlert;
 import com.android.camera.statistic.CameraStatUtil;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import io.reactivex.Completable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -114,7 +117,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
         }
         initTopView();
         this.mExpandView = (RecyclerView) view.findViewById(R.id.top_config_expand_view);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(0);
         this.mExpandView.setLayoutManager(linearLayoutManager);
         this.mViewPadding = getResources().getDimensionPixelSize(R.dimen.panel_imageview_button_padding_width);
@@ -174,7 +177,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
         LayoutParams layoutParams = (LayoutParams) topImage.getLayoutParams();
         layoutParams.gravity = 0;
         int i2 = 8388611;
-        int i3 = 8388613;
+        int i3 = GravityCompat.END;
         switch (configsSize) {
             case 1:
                 layoutParams.leftMargin = 0;
@@ -212,7 +215,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                     return (((this.mTotalWidth - (this.mViewPadding * 2)) / configsSize) * findConfigPositionFromType) + this.mViewPadding;
                 }
                 layoutParams.leftMargin = 0;
-                layoutParams.gravity = 8388613;
+                layoutParams.gravity = GravityCompat.END;
                 topImage.setLayoutParams(layoutParams);
                 return 0;
         }
@@ -311,7 +314,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                                     break;
                             }
                         } else if (FragmentUtils.getFragmentByTag(getChildFragmentManager(), FragmentLiveMusic.TAG) == null) {
-                            FragmentLiveMusic fragmentLiveMusic = new FragmentLiveMusic();
+                            Fragment fragmentLiveMusic = new FragmentLiveMusic();
                             fragmentLiveMusic.setStyle(2, R.style.TTMusicDialogFragment);
                             getChildFragmentManager().beginTransaction().add(fragmentLiveMusic, FragmentLiveMusic.TAG).commitAllowingStateLoss();
                         }
@@ -403,7 +406,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
         int i2 = 1;
         if (!this.mLastAnimationComponent.reverse(true)) {
             int i3;
-            ExpandAdapter expandAdapter = new ExpandAdapter(componentData, this);
+            Adapter expandAdapter = new ExpandAdapter(componentData, this);
             int dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.expanded_text_item_width) * componentData.getItems().size();
             this.mExpandView.getLayoutParams().width = dimensionPixelSize;
             this.mExpandView.setAdapter(expandAdapter);
@@ -1002,7 +1005,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                 imageView.clearAnimation();
                 imageView.setVisibility(0);
                 if (topImageResource) {
-                    ViewCompat.setAlpha(imageView, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                    ViewCompat.setAlpha(imageView, 0.0f);
                     ViewCompat.animate(imageView).alpha(1.0f).setDuration(150).setStartDelay(150).start();
                 } else {
                     imageView.setVisibility(4);
@@ -1234,7 +1237,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
 
     public void onBeautyRecordingStart() {
         onBackEvent(5);
-        ViewCompat.animate(this.mTopConfigMenu).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).start();
+        ViewCompat.animate(this.mTopConfigMenu).alpha(0.0f).start();
     }
 
     public void onBeautyRecordingStop() {

@@ -11,7 +11,6 @@ import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.e.b;
 import com.bumptech.glide.load.DecodeFormat;
@@ -301,7 +300,7 @@ public class f implements Cloneable {
         if (this.nT) {
             return clone().h(f);
         }
-        if (f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || f > 1.0f) {
+        if (f < 0.0f || f > 1.0f) {
             throw new IllegalArgumentException("sizeMultiplier must be between 0 and 1");
         }
         this.nI = f;
@@ -327,7 +326,7 @@ public class f implements Cloneable {
             return clone().i(z);
         }
         this.fQ = z;
-        this.nH |= ny;
+        this.nH |= 1048576;
         return dH();
     }
 
@@ -338,7 +337,7 @@ public class f implements Cloneable {
             return clone().j(z);
         }
         this.eC = z;
-        this.nH |= nx;
+        this.nH |= 524288;
         return dH();
     }
 
@@ -393,7 +392,7 @@ public class f implements Cloneable {
             return clone().j(drawable);
         }
         this.nQ = drawable;
-        this.nH |= nr;
+        this.nH |= 8192;
         return dH();
     }
 
@@ -756,7 +755,7 @@ public class f implements Cloneable {
         if (k(fVar.nH, 262144)) {
             this.nU = fVar.nU;
         }
-        if (k(fVar.nH, ny)) {
+        if (k(fVar.nH, 1048576)) {
             this.fQ = fVar.fQ;
         }
         if (k(fVar.nH, 4)) {
@@ -790,7 +789,7 @@ public class f implements Cloneable {
         if (k(fVar.nH, 4096)) {
             this.ei = fVar.ei;
         }
-        if (k(fVar.nH, nr)) {
+        if (k(fVar.nH, 8192)) {
             this.nQ = fVar.nQ;
         }
         if (k(fVar.nH, 16384)) {
@@ -809,7 +808,7 @@ public class f implements Cloneable {
             this.ek.putAll(fVar.ek);
             this.eq = fVar.eq;
         }
-        if (k(fVar.nH, nx)) {
+        if (k(fVar.nH, 524288)) {
             this.eC = fVar.eC;
         }
         if (!this.nP) {

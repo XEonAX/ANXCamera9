@@ -16,7 +16,6 @@ import android.os.Build.VERSION;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 import android.util.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.bumptech.glide.load.engine.bitmap_recycle.d;
 import com.bumptech.glide.util.i;
 import java.util.Arrays;
@@ -84,16 +83,14 @@ public final class w {
         float height;
         float width;
         Matrix matrix = new Matrix();
-        int width2 = bitmap.getWidth() * i2;
-        int height2 = bitmap.getHeight() * i;
-        float f = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        if (width2 > height2) {
+        float f = 0.0f;
+        if (bitmap.getWidth() * i2 > bitmap.getHeight() * i) {
             height = ((float) i2) / ((float) bitmap.getHeight());
             width = (((float) i) - (((float) bitmap.getWidth()) * height)) * 0.5f;
         } else {
             height = ((float) i) / ((float) bitmap.getWidth());
             f = (((float) i2) - (((float) bitmap.getHeight()) * height)) * 0.5f;
-            width = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            width = 0.0f;
         }
         matrix.setScale(height, height);
         matrix.postTranslate((float) ((int) (width + 0.5f)), (float) ((int) (f + 0.5f)));
@@ -211,7 +208,7 @@ public final class w {
         }
         Matrix matrix = new Matrix();
         initializeMatrixForRotation(i, matrix);
-        RectF rectF = new RectF(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) bitmap.getWidth(), (float) bitmap.getHeight());
+        RectF rectF = new RectF(0.0f, 0.0f, (float) bitmap.getWidth(), (float) bitmap.getHeight());
         matrix.mapRect(rectF);
         Bitmap b = dVar.b(Math.round(rectF.width()), Math.round(rectF.height()), m(bitmap));
         matrix.postTranslate(-rectF.left, -rectF.top);
@@ -272,7 +269,7 @@ public final class w {
             return bitmap;
         }
         Bitmap b = dVar.b(bitmap.getWidth(), bitmap.getHeight(), l);
-        new Canvas(b).drawBitmap(bitmap, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, null);
+        new Canvas(b).drawBitmap(bitmap, 0.0f, 0.0f, null);
         return b;
     }
 
@@ -299,7 +296,7 @@ public final class w {
         Paint paint = new Paint();
         paint.setAntiAlias(true);
         paint.setShader(bitmapShader);
-        RectF rectF = new RectF(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) b2.getWidth(), (float) b2.getHeight());
+        RectF rectF = new RectF(0.0f, 0.0f, (float) b2.getWidth(), (float) b2.getHeight());
         li.lock();
         Object bitmap2;
         try {

@@ -50,7 +50,6 @@ import com.android.camera.protocol.ModeProtocol.SnapShotIndicator;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.HorizontalSlideView;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.mi.config.b;
 import io.reactivex.Completable;
 import io.reactivex.functions.Action;
@@ -263,7 +262,7 @@ public class FragmentDualCameraAdjust extends BaseFragment implements OnClickLis
             Util.appendInApi26(spannableStringBuilder, stringBuilder.toString(), this.mDigitsTextStyle, 33);
         }
         if (Util.isAccessible()) {
-            this.mDualZoomButton.setContentDescription(getString(R.string.accessibility_focus_status, new Object[]{this.mStringBuilder}));
+            this.mDualZoomButton.setContentDescription(getString(R.string.accessibility_focus_status, this.mStringBuilder));
             this.mDualZoomButton.postDelayed(new Runnable() {
                 public void run() {
                     if (FragmentDualCameraAdjust.this.isAdded()) {
@@ -511,7 +510,7 @@ public class FragmentDualCameraAdjust extends BaseFragment implements OnClickLis
                 }
             });
             this.mCurrentState = -1;
-            ViewCompat.setTranslationY(this.mDualZoomButton, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            ViewCompat.setTranslationY(this.mDualZoomButton, 0.0f);
             Completable.create(new TranslateYAlphaOutOnSubscribe(this.mDualZoomButton, this.mSlideLayoutHeight).setInterpolator(new OvershootInterpolator())).subscribe();
         } else {
             hideZoomButton();
@@ -528,7 +527,7 @@ public class FragmentDualCameraAdjust extends BaseFragment implements OnClickLis
                 FragmentDualCameraAdjust.this.mHorizontalSlideLayout.setVisibility(4);
             }
         });
-        ViewCompat.setTranslationY(this.mDualZoomButton, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        ViewCompat.setTranslationY(this.mDualZoomButton, 0.0f);
         Completable.create(new TranslateYOnSubscribe(this.mDualZoomButton, this.mSlideLayoutHeight).setInterpolator(new OvershootInterpolator())).subscribe();
         BottomPopupTips bottomPopupTips = (BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175);
         if (bottomPopupTips != null) {

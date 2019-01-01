@@ -25,7 +25,7 @@ public class SensitiveFilter implements Serializable {
     public static final String LOCAL_FILE_PATH = "/data/data/com.android.camera/";
     private static SensitiveFilter sensitiveFilter = null;
     private static final long serialVersionUID = 1;
-    protected SensitiveNode[] nodes = new SensitiveNode[DEFAULT_INITIAL_CAPACITY];
+    protected SensitiveNode[] nodes = new SensitiveNode[8388608];
 
     /* JADX WARNING: Removed duplicated region for block: B:44:0x00bc A:{SYNTHETIC, Splitter: B:44:0x00bc} */
     /* JADX WARNING: Removed duplicated region for block: B:48:0x00c4 A:{Catch:{ IOException -> 0x00c0 }} */

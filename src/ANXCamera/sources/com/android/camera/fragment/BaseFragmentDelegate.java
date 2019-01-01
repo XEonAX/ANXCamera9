@@ -97,17 +97,17 @@ public class BaseFragmentDelegate implements BaseDelegate {
     }
 
     public void init(FragmentManager fragmentManager, int i, BaseLifecycleListener baseLifecycleListener) {
-        AnimationResource constructFragment;
+        Fragment constructFragment;
         BaseLifecycleListener baseLifecycleListener2 = baseLifecycleListener;
         registerProtocol();
-        AnimationResource constructFragment2 = constructFragment(true, 244, 240, baseLifecycleListener2);
-        AnimationResource constructFragment3 = constructFragment(true, 247, 240, baseLifecycleListener2);
-        AnimationResource constructFragment4 = constructFragment(true, 4081, 240, baseLifecycleListener2);
-        AnimationResource constructFragment5 = constructFragment(true, 241, 240, baseLifecycleListener2);
-        AnimationResource constructFragment6 = constructFragment(true, 243, 240, baseLifecycleListener2);
-        AnimationResource constructFragment7 = constructFragment(true, 4080, 240, baseLifecycleListener2);
-        AnimationResource constructFragment8 = constructFragment(true, 4086, 240, baseLifecycleListener2);
-        AnimationResource constructFragment9 = constructFragment(true, FRAGMENT_VERTICAL, 240, baseLifecycleListener2);
+        Object constructFragment2 = constructFragment(true, 244, 240, baseLifecycleListener2);
+        Object constructFragment3 = constructFragment(true, 247, 240, baseLifecycleListener2);
+        Object constructFragment4 = constructFragment(true, 4081, 240, baseLifecycleListener2);
+        Object constructFragment5 = constructFragment(true, 241, 240, baseLifecycleListener2);
+        Object constructFragment6 = constructFragment(true, 243, 240, baseLifecycleListener2);
+        Object constructFragment7 = constructFragment(true, 4080, 240, baseLifecycleListener2);
+        Object constructFragment8 = constructFragment(true, 4086, 240, baseLifecycleListener2);
+        Object constructFragment9 = constructFragment(true, FRAGMENT_VERTICAL, 240, baseLifecycleListener2);
         FragmentTransaction beginTransaction = fragmentManager.beginTransaction();
         beginTransaction.replace(R.id.bottom_popup_tips, constructFragment4, constructFragment4.getFragmentTag());
         beginTransaction.replace(R.id.bottom_action, constructFragment5, constructFragment5.getFragmentTag());
@@ -132,7 +132,7 @@ public class BaseFragmentDelegate implements BaseDelegate {
             this.originalFragments.put(R.id.bottom_popup_dual_camera_adjust, 240);
         }
         if (Util.UI_DEBUG()) {
-            AnimationResource constructFragment10 = constructFragment(true, 4091, 240, baseLifecycleListener2);
+            Fragment constructFragment10 = constructFragment(true, 4091, 240, baseLifecycleListener2);
             this.originalFragments.put(R.id.bottom_popup_dual_camera_bokeh_adjust, constructFragment10.getFragmentInto());
             this.animationComposite.put(constructFragment10.getFragmentInto(), constructFragment10);
             beginTransaction.replace(R.id.bottom_popup_dual_camera_bokeh_adjust, constructFragment10, constructFragment10.getFragmentTag());
@@ -200,7 +200,7 @@ public class BaseFragmentDelegate implements BaseDelegate {
                     case 1:
                         activeFragment = getActiveFragment(baseFragmentOperation.containerViewId);
                         this.animationComposite.remove(activeFragment);
-                        AnimationResource constructFragment = constructFragment(false, i, activeFragment, baseLifecycleListener);
+                        Object constructFragment = constructFragment(false, i, activeFragment, baseLifecycleListener);
                         beginTransaction.replace(baseFragmentOperation.containerViewId, constructFragment, constructFragment.getFragmentTag());
                         this.animationComposite.put(constructFragment.getFragmentInto(), constructFragment);
                         updateCurrentFragments(baseFragmentOperation.containerViewId, i, baseFragmentOperation.operateType);
@@ -615,7 +615,7 @@ public class BaseFragmentDelegate implements BaseDelegate {
     @Deprecated
     public static void bindLifeCircle(Fragment fragment) {
         FragmentManager childFragmentManager = fragment.getChildFragmentManager();
-        BaseLifeCircleBindFragment baseLifeCircleBindFragment = new BaseLifeCircleBindFragment();
+        Fragment baseLifeCircleBindFragment = new BaseLifeCircleBindFragment();
         baseLifeCircleBindFragment.getLifecycle().addListener(new BaseLifecycleListener() {
             public void setBlockingLifeCycles(List<String> list) {
             }

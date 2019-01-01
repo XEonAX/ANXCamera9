@@ -41,7 +41,6 @@ import com.android.camera.protocol.ModeProtocol.LiveConfigChanges;
 import com.android.camera.protocol.ModeProtocol.LiveVideoEditor;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.ui.CameraSnapView;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.vesdk.VECommonCallback;
 import com.ss.android.vesdk.VECommonCallbackInfo;
 import io.reactivex.Completable;
@@ -452,9 +451,9 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
         if (this.mCombineProgress.getVisibility() != i) {
             ValueAnimator ofFloat;
             if (i == 0) {
-                this.mCombineProgress.setAlpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                this.mCombineProgress.setAlpha(0.0f);
                 this.mCombineProgress.setVisibility(0);
-                ofFloat = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
+                ofFloat = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
                 ofFloat.setDuration(300);
                 ofFloat.setStartDelay(160);
                 ofFloat.setInterpolator(new PathInterpolator(0.25f, 0.1f, 0.25f, 1.0f));
@@ -468,7 +467,7 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
                 });
                 ofFloat.start();
             } else {
-                ofFloat = ValueAnimator.ofFloat(new float[]{1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO});
+                ofFloat = ValueAnimator.ofFloat(new float[]{1.0f, 0.0f});
                 ofFloat.setDuration(300);
                 ofFloat.setInterpolator(new CubicEaseInInterpolator());
                 ofFloat.addUpdateListener(new AnimatorUpdateListener() {

@@ -5,6 +5,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
+import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -39,7 +40,6 @@ import com.android.camera.protocol.ModeProtocol.HandleBackTrace;
 import com.android.camera.protocol.ModeProtocol.ManuallyAdjust;
 import com.android.camera.protocol.ModeProtocol.ManuallyValueChanged;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.mi.config.b;
 import io.reactivex.Completable;
 import java.util.ArrayList;
@@ -65,7 +65,7 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
         this.mRecyclerViewLayout = (ViewGroup) this.mManuallyParent.findViewById(R.id.manually_recycler_view_layout);
         this.mRecyclerView = (RecyclerView) this.mRecyclerViewLayout.findViewById(R.id.manually_recycler_view);
         this.mDecoration = new ManuallyDecoration(1, getResources().getColor(R.color.effect_divider_color));
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(0);
         this.mRecyclerView.setLayoutManager(linearLayoutManager);
         adjustViewBackground(this.mCurrentMode);
@@ -105,8 +105,8 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
             }
         }).start();
         this.mIndicatorButton.setVisibility(0);
-        ViewCompat.setTranslationY(this.mIndicatorButton, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-        ViewCompat.setAlpha(this.mIndicatorButton, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        ViewCompat.setTranslationY(this.mIndicatorButton, 0.0f);
+        ViewCompat.setAlpha(this.mIndicatorButton, 0.0f);
         ViewCompat.animate(this.mIndicatorButton).setStartDelay(0).translationY(height).setDuration(300).setInterpolator(new OvershootInterpolator()).alpha(1.0f).start();
         return true;
     }
@@ -142,10 +142,10 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
                 } else {
                     hideTips();
                     this.mManuallyParent.setVisibility(0);
-                    ViewCompat.animate(this.mManuallyParent).setStartDelay(100).translationY(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setInterpolator(new DecelerateInterpolator()).start();
-                    ViewCompat.animate(this.mIndicatorButton).setInterpolator(new DecelerateInterpolator()).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(100).withEndAction(new Runnable() {
+                    ViewCompat.animate(this.mManuallyParent).setStartDelay(100).translationY(0.0f).setInterpolator(new DecelerateInterpolator()).start();
+                    ViewCompat.animate(this.mIndicatorButton).setInterpolator(new DecelerateInterpolator()).alpha(0.0f).setDuration(100).withEndAction(new Runnable() {
                         public void run() {
-                            ViewCompat.setTranslationY(FragmentManually.this.mIndicatorButton, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                            ViewCompat.setTranslationY(FragmentManually.this.mIndicatorButton, 0.0f);
                             FragmentManually.this.mIndicatorButton.setVisibility(4);
                         }
                     }).start();
@@ -351,7 +351,7 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
         this.mRecyclerView.removeItemDecoration(this.mDecoration);
         this.mDecoration.setStyle(this.mManuallyComponents.size());
         this.mRecyclerView.addItemDecoration(this.mDecoration);
-        ManuallyAdapter manuallyAdapter = new ManuallyAdapter(this.mCurrentMode, this, this.mManuallyComponents);
+        Adapter manuallyAdapter = new ManuallyAdapter(this.mCurrentMode, this, this.mManuallyComponents);
         this.mRecyclerView.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.settings_screen_height);
         FragmentManuallyExtra extraFragment = getExtraFragment();
         if (extraFragment != null) {
@@ -363,7 +363,7 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
 
     private void initScene(ManuallyListener manuallyListener) {
         this.mRecyclerView.removeItemDecoration(this.mDecoration);
-        ExtraRecyclerViewAdapter extraRecyclerViewAdapter = new ExtraRecyclerViewAdapter(DataRepository.dataItemRunning().getComponentRunningSceneValue(), this.mCurrentMode, manuallyListener, (int) (((float) getResources().getDisplayMetrics().widthPixels) / 5.5f));
+        Adapter extraRecyclerViewAdapter = new ExtraRecyclerViewAdapter(DataRepository.dataItemRunning().getComponentRunningSceneValue(), this.mCurrentMode, manuallyListener, (int) (((float) getResources().getDisplayMetrics().widthPixels) / 5.5f));
         this.mRecyclerView.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.manual_popup_layout_height);
         this.mAdapter = extraRecyclerViewAdapter;
     }
@@ -373,7 +373,7 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
         this.mRecyclerView.removeItemDecoration(this.mDecoration);
         this.mDecoration.setStyle(componentRunningTiltValue.getItems().size());
         this.mRecyclerView.addItemDecoration(this.mDecoration);
-        ManuallySingleAdapter manuallySingleAdapter = new ManuallySingleAdapter(componentRunningTiltValue, this.mCurrentMode, manuallyListener, getResources().getDisplayMetrics().widthPixels / componentRunningTiltValue.getItems().size());
+        Adapter manuallySingleAdapter = new ManuallySingleAdapter(componentRunningTiltValue, this.mCurrentMode, manuallyListener, getResources().getDisplayMetrics().widthPixels / componentRunningTiltValue.getItems().size());
         this.mRecyclerView.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.settings_screen_height);
         this.mAdapter = manuallySingleAdapter;
     }

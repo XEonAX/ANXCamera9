@@ -5,7 +5,6 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class FragmentAnimationFactory {
     public static Animation wrapperAnimation(AnimationListener animationListener, int... iArr) {
@@ -19,16 +18,16 @@ public class FragmentAnimationFactory {
             Animation alphaAnimation;
             switch (iArr2[i]) {
                 case 161:
-                    alphaAnimation = new AlphaAnimation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
+                    alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
                     break;
                 case 162:
-                    alphaAnimation = new AlphaAnimation(1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                    alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
                     break;
                 case 167:
-                    Animation translateAnimation = new TranslateAnimation(1, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1, 1.0f, 1, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                    Animation translateAnimation = new TranslateAnimation(1, 0.0f, 1, 0.0f, 1, 1.0f, 1, 0.0f);
                     break;
                 case 168:
-                    Animation translateAnimation2 = new TranslateAnimation(1, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1, 1.0f);
+                    Animation translateAnimation2 = new TranslateAnimation(1, 0.0f, 1, 0.0f, 1, 0.0f, 1, 1.0f);
                     break;
                 default:
                     return null;

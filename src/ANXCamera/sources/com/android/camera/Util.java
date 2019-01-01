@@ -58,6 +58,7 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.support.v4.view.InputDeviceCompat;
 import android.support.v4.view.ViewCompat;
 import android.telephony.TelephonyManager;
 import android.text.SpannableStringBuilder;
@@ -91,7 +92,6 @@ import com.android.camera.module.loader.camera2.Camera2DataContainer;
 import com.android.camera.permission.PermissionManager;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.storage.Storage;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.AECFrameControl;
 import com.android.camera2.AFFrameControl;
 import com.android.camera2.ArcsoftDepthMap;
@@ -388,9 +388,9 @@ public final class Util {
             matrix.postScale(-1.0f, 1.0f);
             i = (i + 360) % 360;
             if (i == 0 || i == 180) {
-                matrix.postTranslate((float) bitmap.getWidth(), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                matrix.postTranslate((float) bitmap.getWidth(), 0.0f);
             } else if (i == 90 || i == 270) {
-                matrix.postTranslate((float) bitmap.getHeight(), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                matrix.postTranslate((float) bitmap.getHeight(), 0.0f);
             } else {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("Invalid degrees=");
@@ -760,7 +760,7 @@ public final class Util {
 
     public static float getShootRotation(Activity activity, float f) {
         f -= (float) getDisplayRotation(activity);
-        while (f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+        while (f < 0.0f) {
             f += 360.0f;
         }
         while (f > 360.0f) {
@@ -1241,7 +1241,7 @@ public final class Util {
     public static void fadeIn(View view, int i) {
         if (view != null && view.getVisibility() != 0) {
             view.setVisibility(0);
-            Animation alphaAnimation = new AlphaAnimation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
+            Animation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
             alphaAnimation.setDuration((long) i);
             view.clearAnimation();
             view.startAnimation(alphaAnimation);
@@ -1254,7 +1254,7 @@ public final class Util {
 
     public static void fadeOut(View view, int i) {
         if (view != null && view.getVisibility() == 0) {
-            Animation alphaAnimation = new AlphaAnimation(1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            Animation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
             alphaAnimation.setDuration((long) i);
             view.clearAnimation();
             view.startAnimation(alphaAnimation);
@@ -2940,7 +2940,7 @@ public final class Util {
     }
 
     public static void startScreenSlideAlphaInAnimation(View view) {
-        ViewCompat.setAlpha(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        ViewCompat.setAlpha(view, 0.0f);
         ViewCompat.animate(view).alpha(1.0f).setDuration(350).setStartDelay(400).setInterpolator(new SineEaseInOutInterpolator()).start();
     }
 
@@ -3431,7 +3431,7 @@ public final class Util {
             for (byte b : digest) {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append(str2);
-                stringBuilder.append(Integer.toHexString((255 & b) | -256).substring(6));
+                stringBuilder.append(Integer.toHexString((255 & b) | InputDeviceCompat.SOURCE_ANY).substring(6));
                 str2 = stringBuilder.toString();
             }
             return str2;

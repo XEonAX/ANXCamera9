@@ -5,7 +5,6 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class ExtraUIUtil {
     public static final float DEFAULT_SURFACE_SCALE_HEIGHT = 16.0f;
@@ -47,8 +46,8 @@ public class ExtraUIUtil {
             r4[2] = (9.0f * f4) / 16.0f;
             f4 = (float) i7;
             r4[0] = (f4 - r4[2]) / 2.0f;
-            if (r4[0] > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
-                r4[0] = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            if (r4[0] > 0.0f) {
+                r4[0] = 0.0f;
                 r4[2] = f4;
                 r4[3] = ((1.0f * f2) * f4) / f;
             }

@@ -1,6 +1,7 @@
 package com.android.camera.fragment.top;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -32,7 +33,6 @@ import com.android.camera.protocol.ModeProtocol.ConfigChanges;
 import com.android.camera.protocol.ModeProtocol.TopAlert;
 import com.android.camera.protocol.ModeProtocol.TopConfigProtocol;
 import com.android.camera.statistic.CameraStat;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import io.reactivex.Completable;
 import java.util.List;
 import miui.view.animation.CubicEaseOutInterpolator;
@@ -80,7 +80,7 @@ public class FragmentTopConfigExtra extends BaseFragment implements OnClickListe
 
     private void adjustViewBackground(int i) {
         if (DataRepository.dataItemRunning().getUiStyle() != 3) {
-            this.mBackgroundView.setBackgroundColor(-16777216);
+            this.mBackgroundView.setBackgroundColor(ViewCompat.MEASURED_STATE_MASK);
         } else {
             this.mBackgroundView.setBackgroundColor(R.color.halfscreen_background);
         }
@@ -129,11 +129,11 @@ public class FragmentTopConfigExtra extends BaseFragment implements OnClickListe
     public void animateIn() {
         Animation scaleAnimation;
         if (Util.isLongRatioScreen) {
-            scaleAnimation = new ScaleAnimation(1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
+            scaleAnimation = new ScaleAnimation(1.0f, 1.0f, 0.0f, 1.0f);
             scaleAnimation.setInterpolator(new QuarticEaseInOutInterpolator());
             scaleAnimation.setDuration(320);
             this.mBackgroundView.startAnimation(scaleAnimation);
-            scaleAnimation = new AlphaAnimation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
+            scaleAnimation = new AlphaAnimation(0.0f, 1.0f);
             scaleAnimation.setInterpolator(new QuarticEaseOutInterpolator());
             scaleAnimation.setStartOffset(120);
             scaleAnimation.setDuration(280);
@@ -141,8 +141,8 @@ public class FragmentTopConfigExtra extends BaseFragment implements OnClickListe
             return;
         }
         scaleAnimation = new AnimationSet(true);
-        Animation alphaAnimation = new AlphaAnimation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
-        Animation translateAnimation = new TranslateAnimation(1, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1, -0.1f, 1, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        Animation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
+        Animation translateAnimation = new TranslateAnimation(1, 0.0f, 1, 0.0f, 1, -0.1f, 1, 0.0f);
         scaleAnimation.addAnimation(alphaAnimation);
         scaleAnimation.addAnimation(translateAnimation);
         scaleAnimation.setInterpolator(new CubicEaseOutInterpolator());
@@ -169,12 +169,12 @@ public class FragmentTopConfigExtra extends BaseFragment implements OnClickListe
         };
         Animation scaleAnimation;
         if (Util.isLongRatioScreen) {
-            scaleAnimation = new ScaleAnimation(1.0f, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            scaleAnimation = new ScaleAnimation(1.0f, 1.0f, 1.0f, 0.0f);
             scaleAnimation.setInterpolator(new QuarticEaseInOutInterpolator());
             scaleAnimation.setDuration(320);
             scaleAnimation.setAnimationListener(anonymousClass1);
             this.mBackgroundView.startAnimation(scaleAnimation);
-            Animation alphaAnimation = new AlphaAnimation(1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            Animation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
             alphaAnimation.setInterpolator(new SineEaseInInterpolator());
             alphaAnimation.setDuration(120);
             alphaAnimation.setFillAfter(true);
@@ -182,8 +182,8 @@ public class FragmentTopConfigExtra extends BaseFragment implements OnClickListe
             return;
         }
         scaleAnimation = new AnimationSet(true);
-        Animation alphaAnimation2 = new AlphaAnimation(1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-        Animation translateAnimation = new TranslateAnimation(1, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1, -0.07f);
+        Animation alphaAnimation2 = new AlphaAnimation(1.0f, 0.0f);
+        Animation translateAnimation = new TranslateAnimation(1, 0.0f, 1, 0.0f, 1, 0.0f, 1, -0.07f);
         scaleAnimation.addAnimation(alphaAnimation2);
         scaleAnimation.addAnimation(translateAnimation);
         scaleAnimation.setInterpolator(new CubicEaseOutInterpolator());

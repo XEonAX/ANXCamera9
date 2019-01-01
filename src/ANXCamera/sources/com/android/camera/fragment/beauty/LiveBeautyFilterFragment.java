@@ -20,6 +20,7 @@ import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
+import android.support.v7.widget.RecyclerView.ItemAnimator;
 import android.support.v7.widget.RecyclerView.ItemDecoration;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.support.v7.widget.RecyclerView.State;
@@ -41,7 +42,6 @@ import com.android.camera.protocol.ModeProtocol.CameraAction;
 import com.android.camera.protocol.ModeProtocol.ConfigChanges;
 import com.android.camera.protocol.ModeProtocol.LiveConfigChanges;
 import com.android.camera.ui.RoundImageView;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.List;
 import miui.view.animation.CubicEaseOutInterpolator;
 
@@ -85,7 +85,7 @@ public class LiveBeautyFilterFragment extends Fragment implements OnClickListene
 
         public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View inflate = this.mLayoutInflater.inflate(R.layout.live_filter_item, viewGroup, false);
-            FilterStillItemHolder filterStillItemHolder = new FilterStillItemHolder(inflate);
+            ViewHolder filterStillItemHolder = new FilterStillItemHolder(inflate);
             inflate.setOnClickListener(LiveBeautyFilterFragment.this);
             return filterStillItemHolder;
         }
@@ -161,14 +161,14 @@ public class LiveBeautyFilterFragment extends Fragment implements OnClickListene
                 return;
             }
             this.mSelectedOuterIndicator.setVisibility(8);
-            this.mSelectedOuterIndicator.setAlpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            this.mSelectedOuterIndicator.setAlpha(0.0f);
             this.mSelectedInnerIndicator.setVisibility(8);
-            this.mSelectedInnerIndicator.setAlpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            this.mSelectedInnerIndicator.setAlpha(0.0f);
         }
 
         private void normalAnim(View view) {
             ViewCompat.setAlpha(view, 1.0f);
-            ViewCompat.animate(view).setDuration(500).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setInterpolator(LiveBeautyFilterFragment.this.mCubicEaseOut).setListener(new ViewPropertyAnimatorListener() {
+            ViewCompat.animate(view).setDuration(500).alpha(0.0f).setInterpolator(LiveBeautyFilterFragment.this.mCubicEaseOut).setListener(new ViewPropertyAnimatorListener() {
                 public void onAnimationStart(View view) {
                 }
 
@@ -182,7 +182,7 @@ public class LiveBeautyFilterFragment extends Fragment implements OnClickListene
         }
 
         private void selectAnim(View view) {
-            ViewCompat.setAlpha(this.mSelectedOuterIndicator, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            ViewCompat.setAlpha(this.mSelectedOuterIndicator, 0.0f);
             ViewCompat.animate(view).setDuration(500).alpha(1.0f).setInterpolator(LiveBeautyFilterFragment.this.mCubicEaseOut).setListener(new ViewPropertyAnimatorListener() {
                 public void onAnimationStart(View view) {
                     view.setVisibility(0);
@@ -230,7 +230,7 @@ public class LiveBeautyFilterFragment extends Fragment implements OnClickListene
                 LiveBeautyFilterFragment.this.isAnimation = false;
             }
         });
-        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        ItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setChangeDuration(150);
         defaultItemAnimator.setMoveDuration(150);
         defaultItemAnimator.setAddDuration(150);
@@ -343,15 +343,15 @@ public class LiveBeautyFilterFragment extends Fragment implements OnClickListene
         Bitmap createBitmap = Bitmap.createBitmap(i2, i2, Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         Paint paint = new Paint();
-        paint.setColor(-16777216);
+        paint.setColor(ViewCompat.MEASURED_STATE_MASK);
         canvas.drawRoundRect(new RectF(4.0f, 4.0f, dimension, dimension), dimension2, dimension2, paint);
         Bitmap decodeResource = BitmapFactory.decodeResource(getResources(), i);
         Bitmap createBitmap2 = Bitmap.createBitmap(createBitmap.getWidth(), createBitmap.getHeight(), Config.ARGB_8888);
         Canvas canvas2 = new Canvas(createBitmap2);
         Paint paint2 = new Paint();
-        canvas2.drawBitmap(createBitmap, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, paint2);
+        canvas2.drawBitmap(createBitmap, 0.0f, 0.0f, paint2);
         paint2.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
-        canvas2.drawBitmap(decodeResource, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, paint2);
+        canvas2.drawBitmap(decodeResource, 0.0f, 0.0f, paint2);
         paint2.setXfermode(null);
         imageView.setImageBitmap(createBitmap2);
     }

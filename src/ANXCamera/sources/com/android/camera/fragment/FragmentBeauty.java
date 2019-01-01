@@ -40,7 +40,6 @@ import com.android.camera.protocol.ModeProtocol.HandleBackTrace;
 import com.android.camera.protocol.ModeProtocol.MiBeautyProtocol;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.ui.NoScrollViewPager;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.mi.config.b;
 import com.miui.filtersdk.beauty.BeautyParameterType;
 import io.reactivex.Completable;
@@ -364,15 +363,15 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
     }
 
     private void extraEnterAnim() {
-        this.mViewPager.setTranslationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.mViewPager.setTranslationX(0.0f);
         this.mViewPager.setAlpha(1.0f);
-        ViewCompat.animate(this.mViewPager).translationX(-100.0f).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(120).setStartDelay(0).setInterpolator(new QuinticEaseInInterpolator()).start();
+        ViewCompat.animate(this.mViewPager).translationX(-100.0f).alpha(0.0f).setDuration(120).setStartDelay(0).setInterpolator(new QuinticEaseInInterpolator()).start();
     }
 
     private void extraExitAnim() {
         this.mViewPager.setTranslationX(-100.0f);
-        this.mViewPager.setAlpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-        ViewCompat.animate(this.mViewPager).translationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).alpha(1.0f).setDuration(280).setInterpolator(new QuinticEaseOutInterpolator()).setStartDelay(120).start();
+        this.mViewPager.setAlpha(0.0f);
+        ViewCompat.animate(this.mViewPager).translationX(0.0f).alpha(1.0f).setDuration(280).setInterpolator(new QuinticEaseOutInterpolator()).setStartDelay(120).start();
     }
 
     public void setClickEnable(boolean z) {

@@ -1,7 +1,5 @@
 package com.ss.android.ttve.model;
 
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
-
 public class FilterBean {
     private float mIntensity;
     private String mLeftResPath;
@@ -9,11 +7,11 @@ public class FilterBean {
     private String mRightResPath;
 
     public FilterBean() {
-        this("", PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this("", 0.0f);
     }
 
     public FilterBean(String str, float f) {
-        this(str, str, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, f);
+        this(str, str, 0.0f, f);
     }
 
     public FilterBean(String str, String str2, float f, float f2) {

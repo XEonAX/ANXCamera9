@@ -1,7 +1,6 @@
 package com.android.camera.effect;
 
 import android.opengl.Matrix;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.Utils;
 import java.util.Stack;
 
@@ -9,7 +8,7 @@ public class GLCanvasState {
     private float mAlpha = 1.0f;
     private float mBlendAlpha = -1.0f;
     private Stack<CanvasStateConfig> mCanvasStateStack = new Stack();
-    private final float[] mIdentityMatrix = new float[]{1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f};
+    private final float[] mIdentityMatrix = new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f};
     private float[] mMVPMatrix = new float[16];
     private float[] mModelMatrix = new float[16];
     private float[] mProjectionMatrix = new float[16];
@@ -99,11 +98,11 @@ public class GLCanvasState {
     }
 
     public void translate(float f, float f2) {
-        Matrix.translateM(this.mModelMatrix, 0, f, f2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        Matrix.translateM(this.mModelMatrix, 0, f, f2, 0.0f);
     }
 
     public void rotate(float f, float f2, float f3, float f4) {
-        if (f != PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+        if (f != 0.0f) {
             Matrix.rotateM(this.mModelMatrix, 0, f, f2, f3, f4);
         }
     }
@@ -119,8 +118,8 @@ public class GLCanvasState {
     }
 
     public void projection(float f, float f2, float f3, float f4, float f5, float f6, float f7) {
-        if (f != PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO && Math.abs(f7) >= Float.MIN_VALUE) {
-            multiplyMatrix(new float[]{1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (-f5) / f7, (-f6) / f7, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, -1.0f / f7, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f}, 0);
+        if (f != 0.0f && Math.abs(f7) >= Float.MIN_VALUE) {
+            multiplyMatrix(new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, (-f5) / f7, (-f6) / f7, 0.0f, -1.0f / f7, 0.0f, 0.0f, 0.0f, 1.0f}, 0);
             rotate(f, f2, f3, f4);
         }
     }
@@ -146,7 +145,7 @@ public class GLCanvasState {
     }
 
     public void setAlpha(float f) {
-        boolean z = f >= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO && f <= 1.0f;
+        boolean z = f >= 0.0f && f <= 1.0f;
         Utils.assertTrue(z);
         this.mAlpha = f;
     }
@@ -156,7 +155,7 @@ public class GLCanvasState {
     }
 
     public void setBlendAlpha(float f) {
-        boolean z = f >= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO && f <= 1.0f;
+        boolean z = f >= 0.0f && f <= 1.0f;
         Utils.assertTrue(z);
         this.mBlendAlpha = f;
     }
@@ -176,7 +175,7 @@ public class GLCanvasState {
     }
 
     public void multiplyAlpha(float f) {
-        boolean z = f >= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO && f <= 1.0f;
+        boolean z = f >= 0.0f && f <= 1.0f;
         Utils.assertTrue(z);
         this.mAlpha *= f;
     }

@@ -25,7 +25,6 @@ import com.android.camera.effect.draw_mode.DrawBasicTexAttribute;
 import com.android.camera.effect.draw_mode.DrawYuvAttribute;
 import com.android.camera.log.Log;
 import com.android.camera.module.ModuleManager;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera.watermark.WaterMarkBitmap;
 import com.android.camera.watermark.WaterMarkData;
 import com.ss.android.ttve.common.TEDefine;
@@ -151,7 +150,7 @@ public class SnapshotRender {
             this.mGLCanvas.getState().pushState();
             if (i3 != 0) {
                 this.mGLCanvas.getState().translate((float) (waterMark.getCenterX() + i), (float) (waterMark.getCenterY() + i2));
-                this.mGLCanvas.getState().rotate((float) (-i3), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
+                this.mGLCanvas.getState().rotate((float) (-i3), 0.0f, 0.0f, 1.0f);
                 this.mGLCanvas.getState().translate((float) ((-i) - waterMark.getCenterX()), (float) ((-i2) - waterMark.getCenterY()));
             }
             this.mGLCanvas.getBasicRender().draw(new DrawBasicTexAttribute(waterMark.getTexture(), i + waterMark.getLeft(), i2 + waterMark.getTop(), waterMark.getWidth(), waterMark.getHeight()));
@@ -191,7 +190,7 @@ public class SnapshotRender {
                 WaterMarkBitmap waterMarkBitmap = new WaterMarkBitmap(list);
                 WaterMarkData waterMarkData = waterMarkBitmap.getWaterMarkData();
                 if (waterMarkData != null) {
-                    drawWaterMark(new AgeGenderAndMagicMirrorWaterMark(waterMarkData.getImage(), size.getWidth(), size.getHeight(), i, size2.getWidth(), size2.getHeight(), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO), 0, 0, i - waterMarkData.getOrientation());
+                    drawWaterMark(new AgeGenderAndMagicMirrorWaterMark(waterMarkData.getImage(), size.getWidth(), size.getHeight(), i, size2.getWidth(), size2.getHeight(), 0.0f, 0.0f), 0, 0, i - waterMarkData.getOrientation());
                 }
                 waterMarkBitmap.releaseBitmap();
                 Log.d(WaterMarkBitmap.class.getSimpleName(), "Draw age_gender_and_magic_mirror water mark");
@@ -275,7 +274,7 @@ public class SnapshotRender {
                 RgbToYuvRender rgbToYuvRender = (RgbToYuvRender) fetchRender(FilterInfo.FILTER_ID_RGB2YUV);
                 updateRenderParameters(rgbToYuvRender, drawAttribute);
                 rgbToYuvRender.setParentFrameBufferId(this.mFrameBuffer.getId());
-                rgbToYuvRender.drawTexture(this.mFrameBuffer.getTexture().getId(), (float) PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) drawAttribute.mOriginalSize.getWidth(), (float) drawAttribute.mOriginalSize.getHeight(), true);
+                rgbToYuvRender.drawTexture(this.mFrameBuffer.getTexture().getId(), 0.0f, 0.0f, (float) drawAttribute.mOriginalSize.getWidth(), (float) drawAttribute.mOriginalSize.getHeight(), true);
                 access$600 = SnapshotRender.TAG;
                 stringBuilder = new StringBuilder();
                 stringBuilder.append("rgb2YuvTime=");
