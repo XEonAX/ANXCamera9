@@ -18,11 +18,11 @@ public class Field {
     }
 
     public static Field of(Class<?> cls, String str, String str2) throws NoSuchFieldException {
-        return Native.getField(cls, str, str2);
+        return Native.getField((Class) cls, str, str2);
     }
 
     public static Field of(Class<?> cls, String str, Class<?> cls2) throws NoSuchFieldException {
-        return Native.getField(cls, str, ReflectUtils.getSignature((Class) cls2));
+        return Native.getField((Class) cls, str, ReflectUtils.getSignature((Class) cls2));
     }
 
     public static Field of(String str, String str2, String str3) throws NoSuchFieldException, NoSuchClassException {

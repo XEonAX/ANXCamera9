@@ -9,11 +9,11 @@ public class Constructor {
     }
 
     public static Constructor of(Class<?> cls, String str) throws NoSuchMethodException {
-        return Native.getConstructor(cls, str);
+        return Native.getConstructor((Class) cls, str);
     }
 
     public static Constructor of(Class<?> cls, Class<?>... clsArr) throws NoSuchMethodException {
-        return Native.getConstructor(cls, ReflectUtils.getSignature(clsArr, Void.TYPE));
+        return Native.getConstructor((Class) cls, ReflectUtils.getSignature(clsArr, Void.TYPE));
     }
 
     public static Constructor of(String str, String str2) throws NoSuchMethodException, NoSuchClassException {

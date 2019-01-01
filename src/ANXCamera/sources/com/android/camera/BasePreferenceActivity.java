@@ -10,6 +10,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.provider.Settings.Secure;
@@ -32,7 +33,6 @@ import com.mi.config.b;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import miui.preference.PreferenceActivity;
 
 public abstract class BasePreferenceActivity extends PreferenceActivity implements OnPreferenceChangeListener, OnPreferenceClickListener {
     public static final String FROM_WHERE = "from_where";
@@ -631,19 +631,19 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
         filterGroupIfEmpty(CameraSettings.KEY_CATEGORY_ADVANCE_SETTING);
     }
 
-    private void filterGroupIfEmpty(String str) {
-        Preference findPreference = this.mPreferenceGroup.findPreference(str);
-        if (findPreference != null && (findPreference instanceof PreferenceGroup) && ((PreferenceGroup) findPreference).getPreferenceCount() == 0) {
-            removePreference(this.mPreferenceGroup, str);
-        }
-    }
-
     protected void onRestart() {
         super.onRestart();
         if (this.mGoToActivity) {
             this.mGoToActivity = false;
         } else {
             finish();
+        }
+    }
+
+    private void filterGroupIfEmpty(String str) {
+        Preference findPreference = this.mPreferenceGroup.findPreference(str);
+        if (findPreference != null && (findPreference instanceof PreferenceGroup) && ((PreferenceGroup) findPreference).getPreferenceCount() == 0) {
+            removePreference(this.mPreferenceGroup, str);
         }
     }
 

@@ -9,11 +9,11 @@ public class Method {
     }
 
     public static Method of(Class<?> cls, String str, String str2) throws NoSuchMethodException {
-        return Native.getMethod(cls, str, str2);
+        return Native.getMethod((Class) cls, str, str2);
     }
 
     public static Method of(Class<?> cls, String str, Class<?> cls2, Class<?>... clsArr) {
-        return Native.getMethod(cls, str, ReflectUtils.getSignature(clsArr, cls2));
+        return Native.getMethod((Class) cls, str, ReflectUtils.getSignature(clsArr, cls2));
     }
 
     public static Method of(String str, String str2, String str3) throws NoSuchClassException, NoSuchMethodException {
