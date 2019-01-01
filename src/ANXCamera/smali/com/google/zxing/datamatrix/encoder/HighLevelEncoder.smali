@@ -47,7 +47,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 111
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -57,7 +57,7 @@
 .end method
 
 .method public static determineConsecutiveDigitCount(Ljava/lang/CharSequence;I)I
-    .registers 7
+    .locals 5
     .param p0, "msg"    # Ljava/lang/CharSequence;
     .param p1, "startpos"    # I
 
@@ -76,7 +76,7 @@
 
     .line 429
     .local v2, "idx":I
-    if-ge v2, v1, :cond_20
+    if-ge v2, v1, :cond_2
 
     .line 430
     invoke-interface {p0, v2}, Ljava/lang/CharSequence;->charAt(I)C
@@ -85,46 +85,46 @@
 
     .line 431
     .local v3, "ch":C
-    :cond_c
-    :goto_c
+    :cond_0
+    :goto_0
     invoke-static {v3}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->isDigit(C)Z
 
     move-result v4
 
-    if-eqz v4, :cond_20
+    if-eqz v4, :cond_2
 
-    if-lt v2, v1, :cond_15
+    if-lt v2, v1, :cond_1
 
     .end local v3    # "ch":C
-    goto :goto_20
+    goto :goto_1
 
     .line 432
     .restart local v3    # "ch":C
-    :cond_15
+    :cond_1
     add-int/lit8 v0, v0, 0x1
 
     .line 433
     add-int/lit8 v2, v2, 0x1
 
     .line 434
-    if-ge v2, v1, :cond_c
+    if-ge v2, v1, :cond_0
 
     .line 435
     invoke-interface {p0, v2}, Ljava/lang/CharSequence;->charAt(I)C
 
     move-result v3
 
-    goto :goto_c
+    goto :goto_0
 
     .line 439
     .end local v3    # "ch":C
-    :cond_20
-    :goto_20
+    :cond_2
+    :goto_1
     return v0
 .end method
 
 .method public static encodeHighLevel(Ljava/lang/String;)Ljava/lang/String;
-    .registers 3
+    .locals 2
     .param p0, "msg"    # Ljava/lang/String;
 
     .line 142
@@ -140,7 +140,7 @@
 .end method
 
 .method public static encodeHighLevel(Ljava/lang/String;Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;Lcom/google/zxing/Dimension;Lcom/google/zxing/Dimension;)Ljava/lang/String;
-    .registers 13
+    .locals 9
     .param p0, "msg"    # Ljava/lang/String;
     .param p1, "shape"    # Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;
     .param p2, "minSize"    # Lcom/google/zxing/Dimension;
@@ -224,7 +224,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_63
+    if-eqz v5, :cond_0
 
     const-string v5, "\u001e\u0004"
 
@@ -232,7 +232,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_63
+    if-eqz v5, :cond_0
 
     .line 171
     const/16 v5, 0xec
@@ -256,16 +256,16 @@
     iput v3, v1, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->pos:I
 
     .line 174
-    goto :goto_86
+    goto :goto_0
 
-    :cond_63
+    :cond_0
     const-string v5, "[)>\u001e06\u001d"
 
     invoke-virtual {p0, v5}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
     move-result v5
 
-    if-eqz v5, :cond_86
+    if-eqz v5, :cond_1
 
     const-string v5, "\u001e\u0004"
 
@@ -273,7 +273,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_86
+    if-eqz v5, :cond_1
 
     .line 175
     const/16 v5, 0xed
@@ -297,19 +297,19 @@
     iput v3, v1, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->pos:I
 
     .line 180
-    :cond_86
-    :goto_86
+    :cond_1
+    :goto_0
     const/4 v3, 0x0
 
     .line 181
     .local v3, "encodingMode":I
-    :cond_87
-    :goto_87
+    :cond_2
+    :goto_1
     invoke-virtual {v1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->hasMoreCharacters()Z
 
     move-result v5
 
-    if-nez v5, :cond_d2
+    if-nez v5, :cond_6
 
     .line 188
     invoke-virtual {v1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->getCodewordCount()I
@@ -331,12 +331,12 @@
 
     .line 191
     .local v6, "capacity":I
-    if-ge v5, v6, :cond_a7
+    if-ge v5, v6, :cond_3
 
     .line 192
-    if-eqz v3, :cond_a7
+    if-eqz v3, :cond_3
 
-    if-eq v3, v4, :cond_a7
+    if-eq v3, v4, :cond_3
 
     .line 193
     const/16 v4, 0xfe
@@ -344,7 +344,7 @@
     invoke-virtual {v1, v4}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->writeCodeword(C)V
 
     .line 197
-    :cond_a7
+    :cond_3
     invoke-virtual {v1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->getCodewords()Ljava/lang/StringBuilder;
 
     move-result-object v7
@@ -357,19 +357,19 @@
 
     const/16 v8, 0x81
 
-    if-ge v4, v6, :cond_b6
+    if-ge v4, v6, :cond_4
 
     .line 199
     invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 201
-    :cond_b6
-    :goto_b6
+    :cond_4
+    :goto_2
     invoke-virtual {v7}, Ljava/lang/StringBuilder;->length()I
 
     move-result v4
 
-    if-lt v4, v6, :cond_c5
+    if-lt v4, v6, :cond_5
 
     .line 205
     invoke-virtual {v1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->getCodewords()Ljava/lang/StringBuilder;
@@ -383,7 +383,7 @@
     return-object v2
 
     .line 202
-    :cond_c5
+    :cond_5
     invoke-virtual {v7}, Ljava/lang/StringBuilder;->length()I
 
     move-result v4
@@ -396,13 +396,13 @@
 
     invoke-virtual {v7, v4}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    goto :goto_b6
+    goto :goto_2
 
     .line 182
     .end local v5    # "len":I
     .end local v6    # "capacity":I
     .end local v7    # "codewords":Ljava/lang/StringBuilder;
-    :cond_d2
+    :cond_6
     aget-object v5, v0, v3
 
     invoke-interface {v5, v1}, Lcom/google/zxing/datamatrix/encoder/Encoder;->encode(Lcom/google/zxing/datamatrix/encoder/EncoderContext;)V
@@ -412,7 +412,7 @@
 
     move-result v5
 
-    if-ltz v5, :cond_87
+    if-ltz v5, :cond_2
 
     .line 184
     invoke-virtual {v1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->getNewEncoding()I
@@ -422,11 +422,11 @@
     .line 185
     invoke-virtual {v1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->resetEncoderSignal()V
 
-    goto :goto_87
+    goto :goto_1
 .end method
 
 .method private static findMinimums([F[II[B)I
-    .registers 8
+    .locals 4
     .param p0, "charCounts"    # [F
     .param p1, "intCharCounts"    # [I
     .param p2, "min"    # I
@@ -441,10 +441,10 @@
     const/4 v1, 0x0
 
     .local v1, "i":I
-    :goto_5
+    :goto_0
     const/4 v2, 0x6
 
-    if-lt v1, v2, :cond_9
+    if-lt v1, v2, :cond_0
 
     .line 373
     .end local v1    # "i":I
@@ -452,7 +452,7 @@
 
     .line 362
     .restart local v1    # "i":I
-    :cond_9
+    :cond_0
     aget v2, p0, v1
 
     float-to-double v2, v2
@@ -470,7 +470,7 @@
 
     .line 364
     .local v2, "current":I
-    if-le p2, v2, :cond_1b
+    if-le p2, v2, :cond_1
 
     .line 365
     move p2, v2
@@ -479,8 +479,8 @@
     invoke-static {p3, v0}, Ljava/util/Arrays;->fill([BB)V
 
     .line 368
-    :cond_1b
-    if-ne p2, v2, :cond_24
+    :cond_1
+    if-ne p2, v2, :cond_2
 
     .line 369
     aget-byte v3, p3, v1
@@ -493,14 +493,14 @@
 
     .line 361
     .end local v2    # "current":I
-    :cond_24
+    :cond_2
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_5
+    goto :goto_0
 .end method
 
 .method private static getMinimumCount([B)I
-    .registers 4
+    .locals 3
     .param p0, "mins"    # [B
 
     .line 377
@@ -511,10 +511,10 @@
     const/4 v1, 0x0
 
     .local v1, "i":I
-    :goto_2
+    :goto_0
     const/4 v2, 0x6
 
-    if-lt v1, v2, :cond_6
+    if-lt v1, v2, :cond_0
 
     .line 381
     .end local v1    # "i":I
@@ -522,7 +522,7 @@
 
     .line 379
     .restart local v1    # "i":I
-    :cond_6
+    :cond_0
     aget-byte v2, p0, v1
 
     add-int/2addr v0, v2
@@ -530,11 +530,11 @@
     .line 378
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_2
+    goto :goto_0
 .end method
 
 .method static illegalCharacter(C)V
-    .registers 6
+    .locals 5
     .param p0, "c"    # C
 
     .line 443
@@ -603,150 +603,150 @@
 .end method
 
 .method static isDigit(C)Z
-    .registers 2
+    .locals 1
     .param p0, "ch"    # C
 
     .line 385
     const/16 v0, 0x30
 
-    if-lt p0, v0, :cond_a
+    if-lt p0, v0, :cond_0
 
     const/16 v0, 0x39
 
-    if-gt p0, v0, :cond_a
+    if-gt p0, v0, :cond_0
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_a
+    :cond_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method static isExtendedASCII(C)Z
-    .registers 2
+    .locals 1
     .param p0, "ch"    # C
 
     .line 389
     const/16 v0, 0x80
 
-    if-lt p0, v0, :cond_a
+    if-lt p0, v0, :cond_0
 
     const/16 v0, 0xff
 
-    if-gt p0, v0, :cond_a
+    if-gt p0, v0, :cond_0
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_a
+    :cond_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method private static isNativeC40(C)Z
-    .registers 2
+    .locals 1
     .param p0, "ch"    # C
 
     .line 393
     const/16 v0, 0x20
 
-    if-eq p0, v0, :cond_16
+    if-eq p0, v0, :cond_2
 
     const/16 v0, 0x30
 
-    if-lt p0, v0, :cond_c
+    if-lt p0, v0, :cond_0
 
     const/16 v0, 0x39
 
-    if-le p0, v0, :cond_16
+    if-le p0, v0, :cond_2
 
-    :cond_c
+    :cond_0
     const/16 v0, 0x41
 
-    if-lt p0, v0, :cond_14
+    if-lt p0, v0, :cond_1
 
     const/16 v0, 0x5a
 
-    if-le p0, v0, :cond_16
+    if-le p0, v0, :cond_2
 
-    :cond_14
+    :cond_1
     const/4 v0, 0x0
 
     return v0
 
-    :cond_16
+    :cond_2
     const/4 v0, 0x1
 
     return v0
 .end method
 
 .method private static isNativeEDIFACT(C)Z
-    .registers 2
+    .locals 1
     .param p0, "ch"    # C
 
     .line 411
     const/16 v0, 0x20
 
-    if-lt p0, v0, :cond_a
+    if-lt p0, v0, :cond_0
 
     const/16 v0, 0x5e
 
-    if-gt p0, v0, :cond_a
+    if-gt p0, v0, :cond_0
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_a
+    :cond_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method private static isNativeText(C)Z
-    .registers 2
+    .locals 1
     .param p0, "ch"    # C
 
     .line 397
     const/16 v0, 0x20
 
-    if-eq p0, v0, :cond_16
+    if-eq p0, v0, :cond_2
 
     const/16 v0, 0x30
 
-    if-lt p0, v0, :cond_c
+    if-lt p0, v0, :cond_0
 
     const/16 v0, 0x39
 
-    if-le p0, v0, :cond_16
+    if-le p0, v0, :cond_2
 
-    :cond_c
+    :cond_0
     const/16 v0, 0x61
 
-    if-lt p0, v0, :cond_14
+    if-lt p0, v0, :cond_1
 
     const/16 v0, 0x7a
 
-    if-le p0, v0, :cond_16
+    if-le p0, v0, :cond_2
 
-    :cond_14
+    :cond_1
     const/4 v0, 0x0
 
     return v0
 
-    :cond_16
+    :cond_2
     const/4 v0, 0x1
 
     return v0
 .end method
 
 .method private static isNativeX12(C)Z
-    .registers 2
+    .locals 1
     .param p0, "ch"    # C
 
     .line 401
@@ -754,42 +754,42 @@
 
     move-result v0
 
-    if-nez v0, :cond_1c
+    if-nez v0, :cond_2
 
     const/16 v0, 0x20
 
-    if-eq p0, v0, :cond_1c
+    if-eq p0, v0, :cond_2
 
     const/16 v0, 0x30
 
-    if-lt p0, v0, :cond_12
+    if-lt p0, v0, :cond_0
 
     const/16 v0, 0x39
 
-    if-le p0, v0, :cond_1c
+    if-le p0, v0, :cond_2
 
-    :cond_12
+    :cond_0
     const/16 v0, 0x41
 
-    if-lt p0, v0, :cond_1a
+    if-lt p0, v0, :cond_1
 
     const/16 v0, 0x5a
 
-    if-le p0, v0, :cond_1c
+    if-le p0, v0, :cond_2
 
-    :cond_1a
+    :cond_1
     const/4 v0, 0x0
 
     return v0
 
-    :cond_1c
+    :cond_2
     const/4 v0, 0x1
 
     return v0
 .end method
 
 .method private static isSpecialB256(C)Z
-    .registers 2
+    .locals 1
     .param p0, "ch"    # C
 
     .line 415
@@ -799,37 +799,37 @@
 .end method
 
 .method private static isX12TermSep(C)Z
-    .registers 2
+    .locals 1
     .param p0, "ch"    # C
 
     .line 405
     const/16 v0, 0xd
 
-    if-eq p0, v0, :cond_e
+    if-eq p0, v0, :cond_0
 
     .line 406
     const/16 v0, 0x2a
 
-    if-eq p0, v0, :cond_e
+    if-eq p0, v0, :cond_0
 
     .line 407
     const/16 v0, 0x3e
 
-    if-eq p0, v0, :cond_e
+    if-eq p0, v0, :cond_0
 
     .line 405
     const/4 v0, 0x0
 
     return v0
 
-    :cond_e
+    :cond_0
     const/4 v0, 0x1
 
     return v0
 .end method
 
 .method static lookAheadTest(Ljava/lang/CharSequence;II)I
-    .registers 21
+    .locals 18
     .param p0, "msg"    # Ljava/lang/CharSequence;
     .param p1, "startpos"    # I
     .param p2, "currentMode"    # I
@@ -843,32 +843,32 @@
 
     move-result v2
 
-    if-lt v1, v2, :cond_b
+    if-lt v1, v2, :cond_0
 
     .line 210
     return p2
 
     .line 214
-    :cond_b
+    :cond_0
     const/4 v2, 0x6
 
-    if-nez p2, :cond_14
+    if-nez p2, :cond_1
 
     .line 215
     new-array v3, v2, [F
 
-    fill-array-data v3, :array_1ee
+    fill-array-data v3, :array_0
 
     .line 216
     .local v3, "charCounts":[F
-    goto :goto_1c
+    goto :goto_0
 
     .line 217
     .end local v3    # "charCounts":[F
-    :cond_14
+    :cond_1
     new-array v3, v2, [F
 
-    fill-array-data v3, :array_1fe
+    fill-array-data v3, :array_1
 
     .line 218
     .restart local v3    # "charCounts":[F
@@ -877,14 +877,14 @@
     aput v4, v3, p2
 
     .line 221
-    :goto_1c
+    :goto_0
     const/4 v4, 0x0
 
     move v5, v4
 
     .line 224
     .local v5, "charsProcessed":I
-    :goto_1e
+    :goto_1
     add-int v6, v1, v5
 
     invoke-interface/range {p0 .. p0}, Ljava/lang/CharSequence;->length()I
@@ -901,7 +901,7 @@
 
     const/4 v12, 0x1
 
-    if-ne v6, v7, :cond_5c
+    if-ne v6, v7, :cond_7
 
     .line 225
     const v6, 0x7fffffff
@@ -929,57 +929,57 @@
     .local v13, "minCount":I
     aget v14, v2, v4
 
-    if-ne v14, v6, :cond_3f
+    if-ne v14, v6, :cond_2
 
     .line 232
     return v4
 
     .line 234
-    :cond_3f
-    if-ne v13, v12, :cond_46
+    :cond_2
+    if-ne v13, v12, :cond_3
 
     aget-byte v4, v7, v8
 
-    if-lez v4, :cond_46
+    if-lez v4, :cond_3
 
     .line 235
     return v8
 
     .line 237
-    :cond_46
-    if-ne v13, v12, :cond_4d
+    :cond_3
+    if-ne v13, v12, :cond_4
 
     aget-byte v4, v7, v10
 
-    if-lez v4, :cond_4d
+    if-lez v4, :cond_4
 
     .line 238
     return v10
 
     .line 240
-    :cond_4d
-    if-ne v13, v12, :cond_54
+    :cond_4
+    if-ne v13, v12, :cond_5
 
     aget-byte v4, v7, v9
 
-    if-lez v4, :cond_54
+    if-lez v4, :cond_5
 
     .line 241
     return v9
 
     .line 243
-    :cond_54
-    if-ne v13, v12, :cond_5b
+    :cond_5
+    if-ne v13, v12, :cond_6
 
     aget-byte v4, v7, v11
 
-    if-lez v4, :cond_5b
+    if-lez v4, :cond_6
 
     .line 244
     return v11
 
     .line 246
-    :cond_5b
+    :cond_6
     return v12
 
     .line 249
@@ -987,7 +987,7 @@
     .end local v6    # "min":I
     .end local v7    # "mins":[B
     .end local v13    # "minCount":I
-    :cond_5c
+    :cond_7
     add-int v6, v1, v5
 
     invoke-interface {v0, v6}, Ljava/lang/CharSequence;->charAt(I)C
@@ -1005,7 +1005,7 @@
 
     const/high16 v13, 0x3f800000    # 1.0f
 
-    if-eqz v7, :cond_76
+    if-eqz v7, :cond_8
 
     .line 254
     aget v7, v3, v4
@@ -1021,14 +1021,14 @@
     aput v7, v3, v4
 
     .line 255
-    goto :goto_9f
+    goto :goto_2
 
-    :cond_76
+    :cond_8
     invoke-static {v6}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->isExtendedASCII(C)Z
 
     move-result v7
 
-    if-eqz v7, :cond_8f
+    if-eqz v7, :cond_9
 
     .line 256
     aget v7, v3, v4
@@ -1055,10 +1055,10 @@
     aput v7, v3, v4
 
     .line 258
-    goto :goto_9f
+    goto :goto_2
 
     .line 259
-    :cond_8f
+    :cond_9
     aget v7, v3, v4
 
     float-to-double v10, v7
@@ -1081,7 +1081,7 @@
     aput v7, v3, v4
 
     .line 264
-    :goto_9f
+    :goto_2
     invoke-static {v6}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->isNativeC40(C)Z
 
     move-result v7
@@ -1092,7 +1092,7 @@
 
     const v14, 0x3f2aaaab
 
-    if-eqz v7, :cond_b4
+    if-eqz v7, :cond_a
 
     .line 265
     aget v7, v3, v12
@@ -1102,14 +1102,14 @@
     aput v7, v3, v12
 
     .line 266
-    goto :goto_c5
+    goto :goto_3
 
-    :cond_b4
+    :cond_a
     invoke-static {v6}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->isExtendedASCII(C)Z
 
     move-result v7
 
-    if-eqz v7, :cond_c0
+    if-eqz v7, :cond_b
 
     .line 267
     aget v7, v3, v12
@@ -1119,10 +1119,10 @@
     aput v7, v3, v12
 
     .line 268
-    goto :goto_c5
+    goto :goto_3
 
     .line 269
-    :cond_c0
+    :cond_b
     aget v7, v3, v12
 
     add-float/2addr v7, v10
@@ -1130,12 +1130,12 @@
     aput v7, v3, v12
 
     .line 273
-    :goto_c5
+    :goto_3
     invoke-static {v6}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->isNativeText(C)Z
 
     move-result v7
 
-    if-eqz v7, :cond_d1
+    if-eqz v7, :cond_c
 
     .line 274
     aget v7, v3, v9
@@ -1145,14 +1145,14 @@
     aput v7, v3, v9
 
     .line 275
-    goto :goto_e2
+    goto :goto_4
 
-    :cond_d1
+    :cond_c
     invoke-static {v6}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->isExtendedASCII(C)Z
 
     move-result v7
 
-    if-eqz v7, :cond_dd
+    if-eqz v7, :cond_d
 
     .line 276
     aget v7, v3, v9
@@ -1162,10 +1162,10 @@
     aput v7, v3, v9
 
     .line 277
-    goto :goto_e2
+    goto :goto_4
 
     .line 278
-    :cond_dd
+    :cond_d
     aget v7, v3, v9
 
     add-float/2addr v7, v10
@@ -1173,12 +1173,12 @@
     aput v7, v3, v9
 
     .line 282
-    :goto_e2
+    :goto_4
     invoke-static {v6}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->isNativeX12(C)Z
 
     move-result v7
 
-    if-eqz v7, :cond_ef
+    if-eqz v7, :cond_e
 
     .line 283
     const/4 v7, 0x3
@@ -1190,16 +1190,16 @@
     aput v10, v3, v7
 
     .line 284
-    goto :goto_107
+    goto :goto_5
 
-    :cond_ef
+    :cond_e
     const/4 v7, 0x3
 
     invoke-static {v6}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->isExtendedASCII(C)Z
 
     move-result v10
 
-    if-eqz v10, :cond_ff
+    if-eqz v10, :cond_f
 
     .line 285
     aget v10, v3, v7
@@ -1211,10 +1211,10 @@
     aput v10, v3, v7
 
     .line 286
-    goto :goto_107
+    goto :goto_5
 
     .line 287
-    :cond_ff
+    :cond_f
     aget v10, v3, v7
 
     const v11, 0x40555555
@@ -1224,12 +1224,12 @@
     aput v10, v3, v7
 
     .line 291
-    :goto_107
+    :goto_5
     invoke-static {v6}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->isNativeEDIFACT(C)Z
 
     move-result v7
 
-    if-eqz v7, :cond_116
+    if-eqz v7, :cond_10
 
     .line 292
     const/4 v7, 0x4
@@ -1243,16 +1243,16 @@
     aput v10, v3, v7
 
     .line 293
-    goto :goto_12c
+    goto :goto_6
 
-    :cond_116
+    :cond_10
     const/4 v7, 0x4
 
     invoke-static {v6}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->isExtendedASCII(C)Z
 
     move-result v10
 
-    if-eqz v10, :cond_125
+    if-eqz v10, :cond_11
 
     .line 294
     aget v10, v3, v7
@@ -1264,10 +1264,10 @@
     aput v10, v3, v7
 
     .line 295
-    goto :goto_12c
+    goto :goto_6
 
     .line 296
-    :cond_125
+    :cond_11
     aget v10, v3, v7
 
     const/high16 v11, 0x40500000    # 3.25f
@@ -1277,12 +1277,12 @@
     aput v10, v3, v7
 
     .line 300
-    :goto_12c
+    :goto_6
     invoke-static {v6}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->isSpecialB256(C)Z
 
     move-result v7
 
-    if-eqz v7, :cond_13a
+    if-eqz v7, :cond_12
 
     .line 301
     aget v7, v3, v8
@@ -1294,10 +1294,10 @@
     aput v7, v3, v8
 
     .line 302
-    goto :goto_13f
+    goto :goto_7
 
     .line 303
-    :cond_13a
+    :cond_12
     aget v7, v3, v8
 
     add-float/2addr v7, v13
@@ -1305,10 +1305,10 @@
     aput v7, v3, v8
 
     .line 307
-    :goto_13f
+    :goto_7
     const/4 v7, 0x4
 
-    if-lt v5, v7, :cond_1eb
+    if-lt v5, v7, :cond_1d
 
     .line 308
     new-array v7, v2, [I
@@ -1334,21 +1334,21 @@
 
     aget v14, v7, v8
 
-    if-ge v13, v14, :cond_171
+    if-ge v13, v14, :cond_13
 
     .line 314
     aget v13, v7, v4
 
     aget v14, v7, v12
 
-    if-ge v13, v14, :cond_171
+    if-ge v13, v14, :cond_13
 
     .line 315
     aget v13, v7, v4
 
     aget v14, v7, v9
 
-    if-ge v13, v14, :cond_171
+    if-ge v13, v14, :cond_13
 
     .line 316
     aget v13, v7, v4
@@ -1357,7 +1357,7 @@
 
     aget v2, v7, v14
 
-    if-ge v13, v2, :cond_171
+    if-ge v13, v2, :cond_13
 
     .line 317
     aget v2, v7, v4
@@ -1366,18 +1366,18 @@
 
     aget v14, v7, v13
 
-    if-ge v2, v14, :cond_171
+    if-ge v2, v14, :cond_13
 
     .line 318
     return v4
 
     .line 320
-    :cond_171
+    :cond_13
     aget v2, v7, v8
 
     aget v13, v7, v4
 
-    if-lt v2, v13, :cond_1ea
+    if-lt v2, v13, :cond_1c
 
     .line 321
     aget-byte v2, v10, v12
@@ -1398,54 +1398,54 @@
 
     add-int/2addr v2, v14
 
-    if-nez v2, :cond_187
+    if-nez v2, :cond_14
 
-    goto :goto_1ea
+    goto :goto_a
 
     .line 324
-    :cond_187
-    if-ne v11, v12, :cond_18e
+    :cond_14
+    if-ne v11, v12, :cond_15
 
     aget-byte v2, v10, v13
 
-    if-lez v2, :cond_18e
+    if-lez v2, :cond_15
 
     .line 325
     return v13
 
     .line 327
-    :cond_18e
-    if-ne v11, v12, :cond_195
+    :cond_15
+    if-ne v11, v12, :cond_16
 
     aget-byte v2, v10, v9
 
-    if-lez v2, :cond_195
+    if-lez v2, :cond_16
 
     .line 328
     return v9
 
     .line 330
-    :cond_195
-    if-ne v11, v12, :cond_19d
+    :cond_16
+    if-ne v11, v12, :cond_17
 
     const/4 v2, 0x3
 
     aget-byte v13, v10, v2
 
-    if-lez v13, :cond_19d
+    if-lez v13, :cond_17
 
     .line 331
     return v2
 
     .line 333
-    :cond_19d
+    :cond_17
     aget v2, v7, v12
 
     add-int/2addr v2, v12
 
     aget v13, v7, v4
 
-    if-ge v2, v13, :cond_1eb
+    if-ge v2, v13, :cond_1d
 
     .line 334
     aget v2, v7, v12
@@ -1454,7 +1454,7 @@
 
     aget v8, v7, v8
 
-    if-ge v2, v8, :cond_1eb
+    if-ge v2, v8, :cond_1d
 
     .line 335
     aget v2, v7, v12
@@ -1465,7 +1465,7 @@
 
     aget v8, v7, v8
 
-    if-ge v2, v8, :cond_1eb
+    if-ge v2, v8, :cond_1d
 
     .line 336
     aget v2, v7, v12
@@ -1474,7 +1474,7 @@
 
     aget v8, v7, v9
 
-    if-ge v2, v8, :cond_1eb
+    if-ge v2, v8, :cond_1d
 
     .line 337
     aget v2, v7, v12
@@ -1483,18 +1483,18 @@
 
     aget v9, v7, v8
 
-    if-ge v2, v9, :cond_1c2
+    if-ge v2, v9, :cond_18
 
     .line 338
     return v12
 
     .line 340
-    :cond_1c2
+    :cond_18
     aget v2, v7, v12
 
     aget v9, v7, v8
 
-    if-ne v2, v9, :cond_1eb
+    if-ne v2, v9, :cond_1d
 
     .line 341
     add-int v2, v1, v5
@@ -1503,17 +1503,17 @@
 
     .line 342
     .local v2, "p":I
-    :goto_1cb
+    :goto_8
     invoke-interface/range {p0 .. p0}, Ljava/lang/CharSequence;->length()I
 
     move-result v4
 
-    if-lt v2, v4, :cond_1d2
+    if-lt v2, v4, :cond_19
 
-    goto :goto_1e6
+    goto :goto_9
 
     .line 343
-    :cond_1d2
+    :cond_19
     invoke-interface {v0, v2}, Ljava/lang/CharSequence;->charAt(I)C
 
     move-result v4
@@ -1524,7 +1524,7 @@
 
     move-result v8
 
-    if-eqz v8, :cond_1de
+    if-eqz v8, :cond_1a
 
     .line 345
     const/4 v8, 0x3
@@ -1532,35 +1532,35 @@
     return v8
 
     .line 347
-    :cond_1de
+    :cond_1a
     const/4 v8, 0x3
 
     invoke-static {v4}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->isNativeX12(C)Z
 
     move-result v9
 
-    if-nez v9, :cond_1e7
+    if-nez v9, :cond_1b
 
     .line 348
     nop
 
     .line 352
     .end local v4    # "tc":C
-    :goto_1e6
+    :goto_9
     return v12
 
     .line 350
     .restart local v4    # "tc":C
-    :cond_1e7
+    :cond_1b
     add-int/lit8 v2, v2, 0x1
 
     .end local v4    # "tc":C
-    goto :goto_1cb
+    goto :goto_8
 
     .line 322
     .end local v2    # "p":I
-    :cond_1ea
-    :goto_1ea
+    :cond_1c
+    :goto_a
     return v8
 
     .line 221
@@ -1568,12 +1568,12 @@
     .end local v7    # "intCharCounts":[I
     .end local v10    # "mins":[B
     .end local v11    # "minCount":I
-    :cond_1eb
+    :cond_1d
     const/4 v2, 0x6
 
-    goto/16 :goto_1e
+    goto/16 :goto_1
 
-    :array_1ee
+    :array_0
     .array-data 4
         0x0
         0x3f800000    # 1.0f
@@ -1583,7 +1583,7 @@
         0x3fa00000    # 1.25f
     .end array-data
 
-    :array_1fe
+    :array_1
     .array-data 4
         0x3f800000    # 1.0f
         0x40000000    # 2.0f
@@ -1595,7 +1595,7 @@
 .end method
 
 .method private static randomize253State(CI)C
-    .registers 5
+    .locals 3
     .param p0, "ch"    # C
     .param p1, "codewordPosition"    # I
 
@@ -1616,17 +1616,17 @@
     .local v1, "tempVariable":I
     const/16 v2, 0xfe
 
-    if-gt v1, v2, :cond_f
+    if-gt v1, v2, :cond_0
 
     int-to-char v2, v1
 
-    goto :goto_12
+    goto :goto_0
 
-    :cond_f
+    :cond_0
     add-int/lit16 v2, v1, -0xfe
 
     int-to-char v2, v2
 
-    :goto_12
+    :goto_0
     return v2
 .end method

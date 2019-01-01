@@ -23,7 +23,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;Landroid/app/Notification;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Landroid/widget/RemoteViews;ILandroid/app/PendingIntent;Landroid/app/PendingIntent;Landroid/graphics/Bitmap;IIZ)V
-    .registers 29
+    .locals 15
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "n"    # Landroid/app/Notification;
     .param p3, "contentTitle"    # Ljava/lang/CharSequence;
@@ -110,16 +110,16 @@
 
     const/4 v6, 0x1
 
-    if-eqz v3, :cond_4a
+    if-eqz v3, :cond_0
 
     move v3, v6
 
-    goto :goto_4b
+    goto :goto_0
 
-    :cond_4a
+    :cond_0
     move v3, v5
 
-    :goto_4b
+    :goto_0
     invoke-virtual {v1, v3}, Landroid/app/Notification$Builder;->setOngoing(Z)Landroid/app/Notification$Builder;
 
     move-result-object v1
@@ -128,16 +128,16 @@
 
     and-int/lit8 v3, v3, 0x8
 
-    if-eqz v3, :cond_57
+    if-eqz v3, :cond_1
 
     move v3, v6
 
-    goto :goto_58
+    goto :goto_1
 
-    :cond_57
+    :cond_1
     move v3, v5
 
-    :goto_58
+    :goto_1
     invoke-virtual {v1, v3}, Landroid/app/Notification$Builder;->setOnlyAlertOnce(Z)Landroid/app/Notification$Builder;
 
     move-result-object v1
@@ -146,16 +146,16 @@
 
     and-int/lit8 v3, v3, 0x10
 
-    if-eqz v3, :cond_64
+    if-eqz v3, :cond_2
 
     move v3, v6
 
-    goto :goto_65
+    goto :goto_2
 
-    :cond_64
+    :cond_2
     move v3, v5
 
-    :goto_65
+    :goto_2
     invoke-virtual {v1, v3}, Landroid/app/Notification$Builder;->setAutoCancel(Z)Landroid/app/Notification$Builder;
 
     move-result-object v1
@@ -200,13 +200,13 @@
 
     and-int/lit16 v10, v10, 0x80
 
-    if-eqz v10, :cond_95
+    if-eqz v10, :cond_3
 
     move v5, v6
 
     nop
 
-    :cond_95
+    :cond_3
     move-object/from16 v6, p9
 
     invoke-virtual {v1, v6, v5}, Landroid/app/Notification$Builder;->setFullScreenIntent(Landroid/app/PendingIntent;Z)Landroid/app/Notification$Builder;
@@ -246,7 +246,7 @@
 
 # virtual methods
 .method public build()Landroid/app/Notification;
-    .registers 2
+    .locals 1
 
     .line 66
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompatIceCreamSandwich$Builder;->b:Landroid/app/Notification$Builder;
@@ -259,7 +259,7 @@
 .end method
 
 .method public getBuilder()Landroid/app/Notification$Builder;
-    .registers 2
+    .locals 1
 
     .line 61
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompatIceCreamSandwich$Builder;->b:Landroid/app/Notification$Builder;

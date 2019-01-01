@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/graphics/drawable/Drawable;)V
-    .registers 2
+    .locals 0
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 24
@@ -18,7 +18,7 @@
 
 # virtual methods
 .method public isAutoMirrored()Z
-    .registers 2
+    .locals 1
 
     .line 34
     iget-object v0, p0, Landroid/support/v4/graphics/drawable/DrawableWrapperKitKat;->mDrawable:Landroid/graphics/drawable/Drawable;
@@ -31,7 +31,7 @@
 .end method
 
 .method public setAutoMirrored(Z)V
-    .registers 3
+    .locals 1
     .param p1, "mirrored"    # Z
 
     .line 29

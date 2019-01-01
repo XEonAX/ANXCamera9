@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(Lmiui/util/Pools$BasePool;)V
-    .registers 2
+    .locals 0
 
     .line 351
     iput-object p1, p0, Lmiui/util/Pools$BasePool$1;->JA:Lmiui/util/Pools$BasePool;
@@ -33,7 +33,7 @@
 
 # virtual methods
 .method protected finalize()V
-    .registers 2
+    .locals 1
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -45,8 +45,8 @@
     iget-object v0, p0, Lmiui/util/Pools$BasePool$1;->JA:Lmiui/util/Pools$BasePool;
 
     invoke-virtual {v0}, Lmiui/util/Pools$BasePool;->close()V
-    :try_end_5
-    .catchall {:try_start_0 .. :try_end_5} :catchall_a
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 357
     invoke-super {p0}, Ljava/lang/Object;->finalize()V
@@ -58,7 +58,7 @@
     return-void
 
     .line 357
-    :catchall_a
+    :catchall_0
     move-exception v0
 
     invoke-super {p0}, Ljava/lang/Object;->finalize()V

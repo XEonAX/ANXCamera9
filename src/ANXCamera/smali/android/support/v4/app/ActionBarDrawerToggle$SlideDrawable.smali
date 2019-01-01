@@ -31,7 +31,7 @@
 
 # direct methods
 .method private constructor <init>(Landroid/support/v4/app/ActionBarDrawerToggle;Landroid/graphics/drawable/Drawable;)V
-    .registers 5
+    .locals 2
     .param p2, "wrapped"    # Landroid/graphics/drawable/Drawable;
 
     .line 508
@@ -47,13 +47,13 @@
 
     const/16 v1, 0x12
 
-    if-le v0, v1, :cond_e
+    if-le v0, v1, :cond_0
 
     const/4 p1, 0x1
 
     nop
 
-    :cond_e
+    :cond_0
     iput-boolean p1, p0, Landroid/support/v4/app/ActionBarDrawerToggle$SlideDrawable;->mHasMirroring:Z
 
     .line 503
@@ -68,7 +68,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v4/app/ActionBarDrawerToggle;Landroid/graphics/drawable/Drawable;Landroid/support/v4/app/ActionBarDrawerToggle$1;)V
-    .registers 4
+    .locals 0
     .param p1, "x0"    # Landroid/support/v4/app/ActionBarDrawerToggle;
     .param p2, "x1"    # Landroid/graphics/drawable/Drawable;
     .param p3, "x2"    # Landroid/support/v4/app/ActionBarDrawerToggle$1;
@@ -82,7 +82,7 @@
 
 # virtual methods
 .method public draw(Landroid/graphics/Canvas;)V
-    .registers 7
+    .locals 5
     .param p1, "canvas"    # Landroid/graphics/Canvas;
 
     .line 540
@@ -96,7 +96,6 @@
     .line 544
     iget-object v0, p0, Landroid/support/v4/app/ActionBarDrawerToggle$SlideDrawable;->this$0:Landroid/support/v4/app/ActionBarDrawerToggle;
 
-    # getter for: Landroid/support/v4/app/ActionBarDrawerToggle;->mActivity:Landroid/app/Activity;
     invoke-static {v0}, Landroid/support/v4/app/ActionBarDrawerToggle;->access$400(Landroid/support/v4/app/ActionBarDrawerToggle;)Landroid/app/Activity;
 
     move-result-object v0
@@ -115,19 +114,19 @@
 
     const/4 v1, 0x1
 
-    if-ne v0, v1, :cond_1f
+    if-ne v0, v1, :cond_0
 
     move v0, v1
 
-    goto :goto_20
+    goto :goto_0
 
-    :cond_1f
+    :cond_0
     const/4 v0, 0x0
 
     .line 546
     .local v0, "isLayoutRTL":Z
-    :goto_20
-    if-eqz v0, :cond_24
+    :goto_0
+    if-eqz v0, :cond_1
 
     const/4 v1, -0x1
 
@@ -135,7 +134,7 @@
 
     .line 547
     .local v1, "flipRtl":I
-    :cond_24
+    :cond_1
     iget-object v2, p0, Landroid/support/v4/app/ActionBarDrawerToggle$SlideDrawable;->mTmpRect:Landroid/graphics/Rect;
 
     invoke-virtual {v2}, Landroid/graphics/Rect;->width()I
@@ -165,11 +164,11 @@
     invoke-virtual {p1, v3, v4}, Landroid/graphics/Canvas;->translate(FF)V
 
     .line 551
-    if-eqz v0, :cond_49
+    if-eqz v0, :cond_2
 
     iget-boolean v3, p0, Landroid/support/v4/app/ActionBarDrawerToggle$SlideDrawable;->mHasMirroring:Z
 
-    if-nez v3, :cond_49
+    if-nez v3, :cond_2
 
     .line 552
     int-to-float v3, v2
@@ -184,7 +183,7 @@
     invoke-virtual {p1, v3, v4}, Landroid/graphics/Canvas;->scale(FF)V
 
     .line 556
-    :cond_49
+    :cond_2
     invoke-super {p0, p1}, Landroid/graphics/drawable/InsetDrawable;->draw(Landroid/graphics/Canvas;)V
 
     .line 557
@@ -195,7 +194,7 @@
 .end method
 
 .method public getPosition()F
-    .registers 2
+    .locals 1
 
     .line 523
     iget v0, p0, Landroid/support/v4/app/ActionBarDrawerToggle$SlideDrawable;->mPosition:F
@@ -204,7 +203,7 @@
 .end method
 
 .method public setOffset(F)V
-    .registers 2
+    .locals 0
     .param p1, "offset"    # F
 
     .line 534
@@ -218,7 +217,7 @@
 .end method
 
 .method public setPosition(F)V
-    .registers 2
+    .locals 0
     .param p1, "position"    # F
 
     .line 518

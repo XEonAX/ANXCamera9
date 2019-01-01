@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static registerMediaButtonEventReceiver(Landroid/content/Context;Landroid/content/ComponentName;)V
-    .registers 3
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "mbr"    # Landroid/content/ComponentName;
 
@@ -36,7 +36,7 @@
 .end method
 
 .method public static unregisterMediaButtonEventReceiver(Landroid/content/Context;Landroid/content/ComponentName;)V
-    .registers 3
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "mbr"    # Landroid/content/ComponentName;
 

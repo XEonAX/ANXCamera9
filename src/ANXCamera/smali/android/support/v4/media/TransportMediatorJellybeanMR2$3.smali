@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/media/TransportMediatorJellybeanMR2;)V
-    .registers 2
+    .locals 0
 
     .line 60
     iput-object p1, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2$3;->this$0:Landroid/support/v4/media/TransportMediatorJellybeanMR2;
@@ -33,7 +33,7 @@
 
 # virtual methods
 .method public onReceive(Landroid/content/Context;Landroid/content/Intent;)V
-    .registers 5
+    .locals 2
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "intent"    # Landroid/content/Intent;
 
@@ -54,15 +54,15 @@
     iget-object v1, v1, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mTransportCallback:Landroid/support/v4/media/TransportMediatorCallback;
 
     invoke-interface {v1, v0}, Landroid/support/v4/media/TransportMediatorCallback;->handleKey(Landroid/view/KeyEvent;)V
-    :try_end_f
-    .catch Ljava/lang/ClassCastException; {:try_start_0 .. :try_end_f} :catch_10
+    :try_end_0
+    .catch Ljava/lang/ClassCastException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 68
     .end local v0    # "event":Landroid/view/KeyEvent;
-    goto :goto_16
+    goto :goto_0
 
     .line 66
-    :catch_10
+    :catch_0
     move-exception v0
 
     .line 67
@@ -73,6 +73,6 @@
 
     .line 69
     .end local v0    # "e":Ljava/lang/ClassCastException;
-    :goto_16
+    :goto_0
     return-void
 .end method

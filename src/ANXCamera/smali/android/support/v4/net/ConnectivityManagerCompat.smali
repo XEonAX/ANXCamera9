@@ -21,14 +21,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .locals 2
 
     .line 84
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x10
 
-    if-lt v0, v1, :cond_e
+    if-lt v0, v1, :cond_0
 
     .line 85
     new-instance v0, Landroid/support/v4/net/ConnectivityManagerCompat$JellyBeanConnectivityManagerCompatImpl;
@@ -37,15 +37,15 @@
 
     sput-object v0, Landroid/support/v4/net/ConnectivityManagerCompat;->IMPL:Landroid/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl;
 
-    goto :goto_31
+    goto :goto_0
 
     .line 86
-    :cond_e
+    :cond_0
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xd
 
-    if-lt v0, v1, :cond_1c
+    if-lt v0, v1, :cond_1
 
     .line 87
     new-instance v0, Landroid/support/v4/net/ConnectivityManagerCompat$HoneycombMR2ConnectivityManagerCompatImpl;
@@ -54,15 +54,15 @@
 
     sput-object v0, Landroid/support/v4/net/ConnectivityManagerCompat;->IMPL:Landroid/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl;
 
-    goto :goto_31
+    goto :goto_0
 
     .line 88
-    :cond_1c
+    :cond_1
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x8
 
-    if-lt v0, v1, :cond_2a
+    if-lt v0, v1, :cond_2
 
     .line 89
     new-instance v0, Landroid/support/v4/net/ConnectivityManagerCompat$GingerbreadConnectivityManagerCompatImpl;
@@ -71,10 +71,10 @@
 
     sput-object v0, Landroid/support/v4/net/ConnectivityManagerCompat;->IMPL:Landroid/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl;
 
-    goto :goto_31
+    goto :goto_0
 
     .line 91
-    :cond_2a
+    :cond_2
     new-instance v0, Landroid/support/v4/net/ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl;
 
     invoke-direct {v0}, Landroid/support/v4/net/ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl;-><init>()V
@@ -82,12 +82,12 @@
     sput-object v0, Landroid/support/v4/net/ConnectivityManagerCompat;->IMPL:Landroid/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl;
 
     .line 93
-    :goto_31
+    :goto_0
     return-void
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 31
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -97,7 +97,7 @@
 .end method
 
 .method public static getNetworkInfoFromBroadcast(Landroid/net/ConnectivityManager;Landroid/content/Intent;)Landroid/net/NetworkInfo;
-    .registers 4
+    .locals 2
     .param p0, "cm"    # Landroid/net/ConnectivityManager;
     .param p1, "intent"    # Landroid/content/Intent;
 
@@ -112,7 +112,7 @@
 
     .line 115
     .local v0, "info":Landroid/net/NetworkInfo;
-    if-eqz v0, :cond_13
+    if-eqz v0, :cond_0
 
     .line 116
     invoke-virtual {v0}, Landroid/net/NetworkInfo;->getType()I
@@ -126,14 +126,14 @@
     return-object v1
 
     .line 118
-    :cond_13
+    :cond_0
     const/4 v1, 0x0
 
     return-object v1
 .end method
 
 .method public static isActiveNetworkMetered(Landroid/net/ConnectivityManager;)Z
-    .registers 2
+    .locals 1
     .param p0, "cm"    # Landroid/net/ConnectivityManager;
 
     .line 103

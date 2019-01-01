@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;)V
-    .registers 3
+    .locals 1
     .param p1, "context"    # Landroid/content/Context;
 
     .line 108
@@ -44,7 +44,7 @@
 
 # virtual methods
 .method public getDisplay(I)Landroid/view/Display;
-    .registers 4
+    .locals 2
     .param p1, "displayId"    # I
 
     .line 114
@@ -60,20 +60,20 @@
 
     move-result v1
 
-    if-ne v1, p1, :cond_d
+    if-ne v1, p1, :cond_0
 
     .line 116
     return-object v0
 
     .line 118
-    :cond_d
+    :cond_0
     const/4 v1, 0x0
 
     return-object v1
 .end method
 
 .method public getDisplays()[Landroid/view/Display;
-    .registers 4
+    .locals 3
 
     .line 123
     const/4 v0, 0x1
@@ -94,23 +94,23 @@
 .end method
 
 .method public getDisplays(Ljava/lang/String;)[Landroid/view/Display;
-    .registers 3
+    .locals 1
     .param p1, "category"    # Ljava/lang/String;
 
     .line 128
-    if-nez p1, :cond_7
+    if-nez p1, :cond_0
 
     invoke-virtual {p0}, Landroid/support/v4/hardware/display/DisplayManagerCompat$LegacyImpl;->getDisplays()[Landroid/view/Display;
 
     move-result-object v0
 
-    goto :goto_a
+    goto :goto_0
 
-    :cond_7
+    :cond_0
     const/4 v0, 0x0
 
     new-array v0, v0, [Landroid/view/Display;
 
-    :goto_a
+    :goto_0
     return-object v0
 .end method

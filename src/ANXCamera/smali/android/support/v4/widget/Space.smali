@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;)V
-    .registers 3
+    .locals 1
     .param p1, "context"    # Landroid/content/Context;
 
     .line 42
@@ -18,7 +18,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
-    .registers 4
+    .locals 1
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "attrs"    # Landroid/util/AttributeSet;
 
@@ -32,7 +32,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
-    .registers 5
+    .locals 1
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "attrs"    # Landroid/util/AttributeSet;
     .param p3, "defStyle"    # I
@@ -45,7 +45,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_d
+    if-nez v0, :cond_0
 
     .line 33
     const/4 v0, 0x4
@@ -53,12 +53,12 @@
     invoke-virtual {p0, v0}, Landroid/support/v4/widget/Space;->setVisibility(I)V
 
     .line 35
-    :cond_d
+    :cond_0
     return-void
 .end method
 
 .method private static getDefaultSize2(II)I
-    .registers 6
+    .locals 4
     .param p0, "size"    # I
     .param p1, "measureSpec"    # I
 
@@ -81,31 +81,31 @@
     .local v2, "specSize":I
     const/high16 v3, -0x80000000
 
-    if-eq v1, v3, :cond_18
+    if-eq v1, v3, :cond_2
 
-    if-eqz v1, :cond_16
+    if-eqz v1, :cond_1
 
     const/high16 v3, 0x40000000    # 2.0f
 
-    if-eq v1, v3, :cond_14
+    if-eq v1, v3, :cond_0
 
-    goto :goto_1d
+    goto :goto_0
 
     .line 72
-    :cond_14
+    :cond_0
     move v0, v2
 
-    goto :goto_1d
+    goto :goto_0
 
     .line 66
-    :cond_16
+    :cond_1
     move v0, p0
 
     .line 67
-    goto :goto_1d
+    goto :goto_0
 
     .line 69
-    :cond_18
+    :cond_2
     invoke-static {p0, v2}, Ljava/lang/Math;->min(II)I
 
     move-result v0
@@ -114,14 +114,14 @@
     nop
 
     .line 75
-    :goto_1d
+    :goto_0
     return v0
 .end method
 
 
 # virtual methods
 .method public draw(Landroid/graphics/Canvas;)V
-    .registers 2
+    .locals 0
     .param p1, "canvas"    # Landroid/graphics/Canvas;
 
     .line 52
@@ -129,7 +129,7 @@
 .end method
 
 .method protected onMeasure(II)V
-    .registers 5
+    .locals 2
     .param p1, "widthMeasureSpec"    # I
     .param p2, "heightMeasureSpec"    # I
 

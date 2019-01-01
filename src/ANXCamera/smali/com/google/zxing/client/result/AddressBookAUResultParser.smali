@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 32
     invoke-direct {p0}, Lcom/google/zxing/client/result/ResultParser;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method private static matchMultipleValuePrefix(Ljava/lang/String;ILjava/lang/String;Z)[Ljava/lang/String;
-    .registers 8
+    .locals 4
     .param p0, "prefix"    # Ljava/lang/String;
     .param p1, "max"    # I
     .param p2, "rawText"    # Ljava/lang/String;
@@ -28,15 +28,15 @@
     const/4 v1, 0x1
 
     .local v1, "i":I
-    :goto_2
-    if-le v1, p1, :cond_5
+    :goto_0
+    if-le v1, p1, :cond_0
 
     .end local v1    # "i":I
-    goto :goto_23
+    goto :goto_1
 
     .line 76
     .restart local v1    # "i":I
-    :cond_5
+    :cond_0
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-static {p0}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
@@ -63,7 +63,7 @@
 
     .line 77
     .local v2, "value":Ljava/lang/String;
-    if-nez v2, :cond_34
+    if-nez v2, :cond_2
 
     .line 78
     nop
@@ -71,8 +71,8 @@
     .line 85
     .end local v1    # "i":I
     .end local v2    # "value":Ljava/lang/String;
-    :goto_23
-    if-nez v0, :cond_27
+    :goto_1
+    if-nez v0, :cond_1
 
     .line 86
     const/4 v1, 0x0
@@ -80,7 +80,7 @@
     return-object v1
 
     .line 88
-    :cond_27
+    :cond_1
     invoke-interface {v0}, Ljava/util/List;->size()I
 
     move-result v1
@@ -98,8 +98,8 @@
     .line 80
     .restart local v1    # "i":I
     .restart local v2    # "value":Ljava/lang/String;
-    :cond_34
-    if-nez v0, :cond_3c
+    :cond_2
+    if-nez v0, :cond_3
 
     .line 81
     new-instance v3, Ljava/util/ArrayList;
@@ -109,20 +109,20 @@
     move-object v0, v3
 
     .line 83
-    :cond_3c
+    :cond_3
     invoke-interface {v0, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .line 75
     .end local v2    # "value":Ljava/lang/String;
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_2
+    goto :goto_0
 .end method
 
 
 # virtual methods
 .method public parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/AddressBookParsedResult;
-    .registers 28
+    .locals 26
     .param p1, "result"    # Lcom/google/zxing/Result;
 
     .line 36
@@ -140,7 +140,7 @@
 
     const/4 v2, 0x0
 
-    if-eqz v1, :cond_70
+    if-eqz v1, :cond_2
 
     const-string v1, "\r\n"
 
@@ -148,12 +148,12 @@
 
     move-result v1
 
-    if-nez v1, :cond_16
+    if-nez v1, :cond_0
 
-    goto :goto_70
+    goto :goto_2
 
     .line 44
-    :cond_16
+    :cond_0
     const-string v1, "NAME1:"
 
     const/16 v3, 0xd
@@ -210,23 +210,23 @@
 
     .line 51
     .local v3, "address":Ljava/lang/String;
-    if-nez v3, :cond_44
+    if-nez v3, :cond_1
 
-    :goto_41
+    :goto_0
     move-object/from16 v16, v2
 
-    goto :goto_49
+    goto :goto_1
 
-    :cond_44
+    :cond_1
     new-array v2, v4, [Ljava/lang/String;
 
     aput-object v3, v2, v7
 
-    goto :goto_41
+    goto :goto_0
 
     .line 52
     .local v16, "addresses":[Ljava/lang/String;
-    :goto_49
+    :goto_1
     new-instance v2, Lcom/google/zxing/client/result/AddressBookParsedResult;
 
     invoke-static {v1}, Lcom/google/zxing/client/result/AddressBookAUResultParser;->maybeWrap(Ljava/lang/String;)[Ljava/lang/String;
@@ -301,13 +301,13 @@
     .end local v23    # "phoneNumbers":[Ljava/lang/String;
     .end local v24    # "emails":[Ljava/lang/String;
     .end local v25    # "note":Ljava/lang/String;
-    :cond_70
-    :goto_70
+    :cond_2
+    :goto_2
     return-object v2
 .end method
 
 .method public bridge synthetic parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ParsedResult;
-    .registers 2
+    .locals 0
 
     .line 1
     invoke-virtual {p0, p1}, Lcom/google/zxing/client/result/AddressBookAUResultParser;->parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/AddressBookParsedResult;

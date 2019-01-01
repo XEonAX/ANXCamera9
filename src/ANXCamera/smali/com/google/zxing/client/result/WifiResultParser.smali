@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 31
     invoke-direct {p0}, Lcom/google/zxing/client/result/ResultParser;-><init>()V
@@ -16,7 +16,7 @@
 
 # virtual methods
 .method public bridge synthetic parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ParsedResult;
-    .registers 2
+    .locals 0
 
     .line 1
     invoke-virtual {p0, p1}, Lcom/google/zxing/client/result/WifiResultParser;->parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/WifiParsedResult;
@@ -27,7 +27,7 @@
 .end method
 
 .method public parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/WifiParsedResult;
-    .registers 9
+    .locals 7
     .param p1, "result"    # Lcom/google/zxing/Result;
 
     .line 35
@@ -45,13 +45,13 @@
 
     const/4 v2, 0x0
 
-    if-nez v1, :cond_e
+    if-nez v1, :cond_0
 
     .line 37
     return-object v2
 
     .line 39
-    :cond_e
+    :cond_0
     const-string v1, "S:"
 
     const/4 v3, 0x0
@@ -64,18 +64,18 @@
 
     .line 40
     .local v1, "ssid":Ljava/lang/String;
-    if-eqz v1, :cond_40
+    if-eqz v1, :cond_3
 
     invoke-virtual {v1}, Ljava/lang/String;->isEmpty()Z
 
     move-result v5
 
-    if-eqz v5, :cond_20
+    if-eqz v5, :cond_1
 
-    goto :goto_40
+    goto :goto_0
 
     .line 43
-    :cond_20
+    :cond_1
     const-string v2, "P:"
 
     invoke-static {v2, v0, v4, v3}, Lcom/google/zxing/client/result/WifiResultParser;->matchSinglePrefixedField(Ljava/lang/String;Ljava/lang/String;CZ)Ljava/lang/String;
@@ -92,13 +92,13 @@
 
     .line 45
     .local v5, "type":Ljava/lang/String;
-    if-nez v5, :cond_30
+    if-nez v5, :cond_2
 
     .line 46
     const-string v5, "nopass"
 
     .line 48
-    :cond_30
+    :cond_2
     const-string v6, "H:"
 
     invoke-static {v6, v0, v4, v3}, Lcom/google/zxing/client/result/WifiResultParser;->matchSinglePrefixedField(Ljava/lang/String;Ljava/lang/String;CZ)Ljava/lang/String;
@@ -121,7 +121,7 @@
     .end local v2    # "pass":Ljava/lang/String;
     .end local v3    # "hidden":Z
     .end local v5    # "type":Ljava/lang/String;
-    :cond_40
-    :goto_40
+    :cond_3
+    :goto_0
     return-object v2
 .end method

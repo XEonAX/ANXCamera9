@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static notifySubtreeAccessibilityStateChanged(Landroid/view/ViewParent;Landroid/view/View;Landroid/view/View;I)V
-    .registers 4
+    .locals 0
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "child"    # Landroid/view/View;
     .param p2, "source"    # Landroid/view/View;

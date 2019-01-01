@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 25
     const/4 v0, 0x0
@@ -17,20 +17,20 @@
 .end method
 
 .method public constructor <init>(Ljava/lang/String;)V
-    .registers 3
+    .locals 1
     .param p1, "message"    # Ljava/lang/String;
 
     .line 29
-    if-eqz p1, :cond_4
+    if-eqz p1, :cond_0
 
     move-object v0, p1
 
-    goto :goto_6
+    goto :goto_0
 
-    :cond_4
+    :cond_0
     const-string v0, "The operation has been canceled."
 
-    :goto_6
+    :goto_0
     invoke-direct {p0, v0}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;)V
 
     .line 30

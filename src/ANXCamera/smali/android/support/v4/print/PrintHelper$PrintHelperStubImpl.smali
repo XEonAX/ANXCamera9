@@ -27,7 +27,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 114
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -49,7 +49,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v4/print/PrintHelper$1;)V
-    .registers 2
+    .locals 0
     .param p1, "x0"    # Landroid/support/v4/print/PrintHelper$1;
 
     .line 114
@@ -61,7 +61,7 @@
 
 # virtual methods
 .method public getColorMode()I
-    .registers 2
+    .locals 1
 
     .line 125
     iget v0, p0, Landroid/support/v4/print/PrintHelper$PrintHelperStubImpl;->mColorMode:I
@@ -70,7 +70,7 @@
 .end method
 
 .method public getOrientation()I
-    .registers 2
+    .locals 1
 
     .line 137
     iget v0, p0, Landroid/support/v4/print/PrintHelper$PrintHelperStubImpl;->mOrientation:I
@@ -79,7 +79,7 @@
 .end method
 
 .method public getScaleMode()I
-    .registers 2
+    .locals 1
 
     .line 141
     iget v0, p0, Landroid/support/v4/print/PrintHelper$PrintHelperStubImpl;->mScaleMode:I
@@ -88,7 +88,7 @@
 .end method
 
 .method public printBitmap(Ljava/lang/String;Landroid/graphics/Bitmap;Landroid/support/v4/print/PrintHelper$OnPrintFinishCallback;)V
-    .registers 4
+    .locals 0
     .param p1, "jobName"    # Ljava/lang/String;
     .param p2, "bitmap"    # Landroid/graphics/Bitmap;
     .param p3, "callback"    # Landroid/support/v4/print/PrintHelper$OnPrintFinishCallback;
@@ -98,7 +98,7 @@
 .end method
 
 .method public printBitmap(Ljava/lang/String;Landroid/net/Uri;Landroid/support/v4/print/PrintHelper$OnPrintFinishCallback;)V
-    .registers 4
+    .locals 0
     .param p1, "jobName"    # Ljava/lang/String;
     .param p2, "imageFile"    # Landroid/net/Uri;
     .param p3, "callback"    # Landroid/support/v4/print/PrintHelper$OnPrintFinishCallback;
@@ -108,7 +108,7 @@
 .end method
 
 .method public setColorMode(I)V
-    .registers 2
+    .locals 0
     .param p1, "colorMode"    # I
 
     .line 130
@@ -119,7 +119,7 @@
 .end method
 
 .method public setOrientation(I)V
-    .registers 2
+    .locals 0
     .param p1, "orientation"    # I
 
     .line 134
@@ -129,7 +129,7 @@
 .end method
 
 .method public setScaleMode(I)V
-    .registers 2
+    .locals 0
     .param p1, "scaleMode"    # I
 
     .line 120

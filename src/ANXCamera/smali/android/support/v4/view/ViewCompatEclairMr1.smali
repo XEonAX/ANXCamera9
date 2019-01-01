@@ -11,7 +11,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 27
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -20,7 +20,7 @@
 .end method
 
 .method public static isOpaque(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 33
@@ -32,7 +32,7 @@
 .end method
 
 .method public static setChildrenDrawingOrderEnabled(Landroid/view/ViewGroup;Z)V
-    .registers 8
+    .locals 6
     .param p0, "viewGroup"    # Landroid/view/ViewGroup;
     .param p1, "enabled"    # Z
 
@@ -43,10 +43,10 @@
 
     const/4 v2, 0x1
 
-    if-nez v0, :cond_24
+    if-nez v0, :cond_0
 
     .line 39
-    :try_start_6
+    :try_start_0
     const-class v0, Landroid/view/ViewGroup;
 
     const-string v3, "setChildrenDrawingOrderEnabled"
@@ -62,14 +62,14 @@
     move-result-object v0
 
     sput-object v0, Landroid/support/v4/view/ViewCompatEclairMr1;->sChildrenDrawingOrderMethod:Ljava/lang/reflect/Method;
-    :try_end_16
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_6 .. :try_end_16} :catch_17
+    :try_end_0
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 43
-    goto :goto_1f
+    goto :goto_0
 
     .line 41
-    :catch_17
+    :catch_0
     move-exception v0
 
     .line 42
@@ -82,14 +82,14 @@
 
     .line 44
     .end local v0    # "e":Ljava/lang/NoSuchMethodException;
-    :goto_1f
+    :goto_0
     sget-object v0, Landroid/support/v4/view/ViewCompatEclairMr1;->sChildrenDrawingOrderMethod:Ljava/lang/reflect/Method;
 
     invoke-virtual {v0, v2}, Ljava/lang/reflect/Method;->setAccessible(Z)V
 
     .line 47
-    :cond_24
-    :try_start_24
+    :cond_0
+    :try_start_1
     sget-object v0, Landroid/support/v4/view/ViewCompatEclairMr1;->sChildrenDrawingOrderMethod:Ljava/lang/reflect/Method;
 
     new-array v2, v2, [Ljava/lang/Object;
@@ -101,15 +101,15 @@
     aput-object v3, v2, v1
 
     invoke-virtual {v0, p0, v2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_31
-    .catch Ljava/lang/IllegalAccessException; {:try_start_24 .. :try_end_31} :catch_44
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_24 .. :try_end_31} :catch_3b
-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_24 .. :try_end_31} :catch_32
+    :try_end_1
+    .catch Ljava/lang/IllegalAccessException; {:try_start_1 .. :try_end_1} :catch_3
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_1 .. :try_end_1} :catch_2
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_1 .. :try_end_1} :catch_1
 
-    goto :goto_4c
+    goto :goto_1
 
     .line 52
-    :catch_32
+    :catch_1
     move-exception v0
 
     .line 53
@@ -121,10 +121,10 @@
     invoke-static {v1, v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .end local v0    # "e":Ljava/lang/reflect/InvocationTargetException;
-    goto :goto_4d
+    goto :goto_2
 
     .line 50
-    :catch_3b
+    :catch_2
     move-exception v0
 
     .line 51
@@ -136,10 +136,10 @@
     invoke-static {v1, v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .end local v0    # "e":Ljava/lang/IllegalArgumentException;
-    goto :goto_4c
+    goto :goto_1
 
     .line 48
-    :catch_44
+    :catch_3
     move-exception v0
 
     .line 49
@@ -152,10 +152,10 @@
 
     .line 54
     .end local v0    # "e":Ljava/lang/IllegalAccessException;
-    :goto_4c
+    :goto_1
     nop
 
     .line 55
-    :goto_4d
+    :goto_2
     return-void
 .end method

@@ -36,7 +36,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/ComponentName;)V
-    .registers 4
+    .locals 2
     .param p1, "componentName"    # Landroid/content/ComponentName;
 
     .line 540

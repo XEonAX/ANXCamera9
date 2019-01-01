@@ -28,7 +28,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -37,7 +37,7 @@
 .end method
 
 .method public static getBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
-    .registers 4
+    .locals 1
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "name"    # Ljava/lang/String;
     .param p2, "defValue"    # Z
@@ -47,21 +47,21 @@
 
     move-result v0
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_9
+    :goto_0
     return v0
 .end method
 
 .method private static getByteCount(B)I
-    .registers 5
+    .locals 4
     .param p0, "b"    # B
 
     .line 160
@@ -72,10 +72,10 @@
     const/4 v1, 0x7
 
     .local v1, "i":I
-    :goto_2
+    :goto_0
     const/4 v2, 0x4
 
-    if-lt v1, v2, :cond_12
+    if-lt v1, v2, :cond_1
 
     .line 162
     shr-int v2, p0, v1
@@ -86,30 +86,30 @@
     .local v2, "shifted":B
     and-int/lit8 v3, v2, 0x1
 
-    if-nez v3, :cond_d
+    if-nez v3, :cond_0
 
     .line 164
-    goto :goto_12
+    goto :goto_1
 
     .line 166
-    :cond_d
+    :cond_0
     add-int/lit8 v0, v0, 0x1
 
     .line 161
     .end local v2    # "shifted":B
     add-int/lit8 v1, v1, -0x1
 
-    goto :goto_2
+    goto :goto_0
 
     .line 168
     .end local v1    # "i":I
-    :cond_12
-    :goto_12
+    :cond_1
+    :goto_1
     return v0
 .end method
 
 .method public static getDeviceName(Landroid/content/Context;)Ljava/lang/String;
-    .registers 5
+    .locals 4
     .param p0, "context"    # Landroid/content/Context;
 
     .line 44
@@ -129,22 +129,22 @@
 
     move-result v2
 
-    if-eqz v2, :cond_f
+    if-eqz v2, :cond_0
 
     .line 47
     sget v1, Lcom/miui/system/internal/R$string;->device_hongmi:I
 
-    goto :goto_4b
+    goto :goto_1
 
     .line 48
-    :cond_f
+    :cond_0
     const-string v2, "is_xiaomi"
 
     invoke-static {v2, v3}, Lmiui/util/FeatureParser;->getBoolean(Ljava/lang/String;Z)Z
 
     move-result v2
 
-    if-eqz v2, :cond_3e
+    if-eqz v2, :cond_3
 
     .line 49
     const-string v2, "beryllium"
@@ -159,7 +159,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_3b
+    if-eqz v2, :cond_2
 
     .line 50
     const-string v2, "ro.boot.hwc"
@@ -178,49 +178,49 @@
 
     move-result v3
 
-    if-eqz v3, :cond_38
+    if-eqz v3, :cond_1
 
     .line 52
     sget v1, Lcom/miui/system/internal/R$string;->device_poco_india:I
 
-    goto :goto_3a
+    goto :goto_0
 
     .line 54
-    :cond_38
+    :cond_1
     sget v1, Lcom/miui/system/internal/R$string;->device_poco_global:I
 
     .line 56
     .end local v2    # "hwc":Ljava/lang/String;
-    :goto_3a
-    goto :goto_4b
+    :goto_0
+    goto :goto_1
 
     .line 57
-    :cond_3b
+    :cond_2
     sget v1, Lcom/miui/system/internal/R$string;->device_xiaomi:I
 
-    goto :goto_4b
+    goto :goto_1
 
     .line 59
-    :cond_3e
+    :cond_3
     const-string v2, "is_pad"
 
     invoke-static {v2, v3}, Lmiui/util/FeatureParser;->getBoolean(Ljava/lang/String;Z)Z
 
     move-result v2
 
-    if-eqz v2, :cond_49
+    if-eqz v2, :cond_4
 
     .line 60
     sget v1, Lcom/miui/system/internal/R$string;->device_pad:I
 
-    goto :goto_4b
+    goto :goto_1
 
     .line 62
-    :cond_49
+    :cond_4
     sget v1, Lcom/miui/system/internal/R$string;->miui_device_name:I
 
     .line 64
-    :goto_4b
+    :goto_1
     invoke-virtual {p0, v1}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
     move-result-object v0
@@ -236,7 +236,7 @@
 .end method
 
 .method private static getNameInMaxLength(Ljava/lang/String;)Ljava/lang/String;
-    .registers 12
+    .locals 11
     .param p0, "newHostName"    # Ljava/lang/String;
 
     .line 101
@@ -248,7 +248,7 @@
     .local v1, "MAX_HOSTNAME_LENGTH":I
     const/4 v2, 0x0
 
-    :try_start_4
+    :try_start_0
     const-string v3, "UTF-8"
 
     invoke-virtual {p0, v3}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
@@ -261,7 +261,7 @@
 
     move-result v4
 
-    if-nez v4, :cond_27
+    if-nez v4, :cond_0
 
     .line 105
     const-string v0, "SystemSettings"
@@ -286,13 +286,13 @@
     return-object v2
 
     .line 108
-    :cond_27
+    :cond_0
     array-length v4, v3
 
     .line 109
     .local v4, "length":I
-    :goto_28
-    if-le v4, v0, :cond_4a
+    :goto_0
+    if-le v4, v0, :cond_3
 
     .line 110
     add-int/lit8 v5, v4, -0x1
@@ -309,15 +309,15 @@
 
     .line 113
     .local v7, "count":I
-    if-nez v7, :cond_37
+    if-nez v7, :cond_1
 
     .line 114
     add-int/lit8 v4, v4, -0x1
 
-    goto :goto_49
+    goto :goto_2
 
     .line 116
-    :cond_37
+    :cond_1
     const/4 v8, 0x1
 
     move v9, v7
@@ -327,8 +327,8 @@
     .line 117
     .local v7, "offset":I
     .local v9, "count":I
-    :goto_3a
-    if-ne v9, v8, :cond_48
+    :goto_1
+    if-ne v9, v8, :cond_2
 
     .line 118
     sub-int v10, v5, v7
@@ -344,10 +344,10 @@
     .line 119
     add-int/lit8 v7, v7, 0x1
 
-    goto :goto_3a
+    goto :goto_1
 
     .line 121
-    :cond_48
+    :cond_2
     sub-int/2addr v4, v7
 
     .line 123
@@ -355,14 +355,14 @@
     .end local v6    # "b":B
     .end local v7    # "offset":I
     .end local v9    # "count":I
-    :goto_49
-    goto :goto_28
+    :goto_2
+    goto :goto_0
 
     .line 124
-    :cond_4a
+    :cond_3
     array-length v0, v3
 
-    if-ge v4, v0, :cond_5b
+    if-ge v4, v0, :cond_4
 
     .line 125
     new-array v0, v4, [B
@@ -379,20 +379,20 @@
     const-string v6, "UTF-8"
 
     invoke-direct {v5, v0, v6}, Ljava/lang/String;-><init>([BLjava/lang/String;)V
-    :try_end_5a
-    .catch Ljava/io/UnsupportedEncodingException; {:try_start_4 .. :try_end_5a} :catch_5c
+    :try_end_0
+    .catch Ljava/io/UnsupportedEncodingException; {:try_start_0 .. :try_end_0} :catch_0
 
     return-object v5
 
     .line 129
     .end local v0    # "newBytes":[B
-    :cond_5b
+    :cond_4
     return-object p0
 
     .line 130
     .end local v3    # "bytes":[B
     .end local v4    # "length":I
-    :catch_5c
+    :catch_0
     move-exception v0
 
     .line 131
@@ -426,7 +426,7 @@
 .end method
 
 .method private static isValidUtf8Str([B)Z
-    .registers 7
+    .locals 6
     .param p0, "bytes"    # [B
 
     .line 137
@@ -445,12 +445,12 @@
 
     .local v0, "i":I
     .local v3, "byteCount":I
-    :goto_5
+    :goto_0
     const/4 v4, 0x1
 
     array-length v5, p0
 
-    if-ge v0, v5, :cond_2b
+    if-ge v0, v5, :cond_7
 
     .line 139
     aget-byte v5, p0, v0
@@ -461,81 +461,81 @@
 
     .line 140
     .local v5, "prefixCount":I
-    if-le v5, v4, :cond_1a
+    if-le v5, v4, :cond_2
 
     .line 141
-    if-eqz v3, :cond_17
+    if-eqz v3, :cond_1
 
-    if-ne v1, v3, :cond_16
+    if-ne v1, v3, :cond_0
 
-    goto :goto_17
+    goto :goto_1
 
     .line 145
-    :cond_16
+    :cond_0
     return v2
 
     .line 142
-    :cond_17
-    :goto_17
+    :cond_1
+    :goto_1
     move v3, v5
 
     .line 143
     const/4 v1, 0x1
 
-    goto :goto_28
+    goto :goto_3
 
     .line 147
-    :cond_1a
-    if-ne v5, v4, :cond_25
+    :cond_2
+    if-ne v5, v4, :cond_5
 
     .line 148
-    if-eqz v3, :cond_24
+    if-eqz v3, :cond_4
 
-    if-ne v1, v3, :cond_21
+    if-ne v1, v3, :cond_3
 
-    goto :goto_24
+    goto :goto_2
 
     .line 151
-    :cond_21
+    :cond_3
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_28
+    goto :goto_3
 
     .line 149
-    :cond_24
-    :goto_24
+    :cond_4
+    :goto_2
     return v2
 
     .line 152
-    :cond_25
-    if-ge v1, v3, :cond_28
+    :cond_5
+    if-ge v1, v3, :cond_6
 
     .line 153
     return v2
 
     .line 138
     .end local v5    # "prefixCount":I
-    :cond_28
-    :goto_28
+    :cond_6
+    :goto_3
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_5
+    goto :goto_0
 
     .line 156
     .end local v0    # "i":I
-    :cond_2b
-    if-ne v1, v3, :cond_2f
+    :cond_7
+    if-ne v1, v3, :cond_8
 
     move v2, v4
 
     nop
 
-    :cond_2f
+    :cond_8
     return v2
 .end method
 
 .method public static setDeviceName(Landroid/content/Context;Ljava/lang/String;)V
-    .registers 3
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "deviceName"    # Ljava/lang/String;
 
@@ -552,7 +552,7 @@
 .end method
 
 .method public static setNetHostName(Landroid/content/Context;)V
-    .registers 8
+    .locals 7
     .param p0, "context"    # Landroid/content/Context;
 
     .line 77
@@ -602,12 +602,12 @@
 
     move-result-object v4
 
-    :goto_27
+    :goto_0
     invoke-interface {v4}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v5
 
-    if-eqz v5, :cond_39
+    if-eqz v5, :cond_0
 
     invoke-interface {v4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -623,10 +623,10 @@
 
     .line 86
     .end local v5    # "token":Lmiui/text/ChinesePinyinConverter$Token;
-    goto :goto_27
+    goto :goto_0
 
     .line 87
-    :cond_39
+    :cond_0
     invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v4
@@ -645,7 +645,7 @@
 
     move-result v5
 
-    if-nez v5, :cond_56
+    if-nez v5, :cond_1
 
     .line 89
     invoke-static {v4}, Landroid/provider/SystemSettings$System;->getNameInMaxLength(Ljava/lang/String;)Ljava/lang/String;
@@ -654,7 +654,7 @@
 
     .line 90
     .local v5, "hostName":Ljava/lang/String;
-    if-eqz v5, :cond_56
+    if-eqz v5, :cond_1
 
     .line 91
     const-string v6, "net.hostname"
@@ -663,6 +663,6 @@
 
     .line 94
     .end local v5    # "hostName":Ljava/lang/String;
-    :cond_56
+    :cond_1
     return-void
 .end method

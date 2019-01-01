@@ -19,14 +19,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .locals 2
 
     .line 124
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xe
 
-    if-lt v0, v1, :cond_e
+    if-lt v0, v1, :cond_0
 
     .line 125
     new-instance v0, Landroid/support/v4/net/TrafficStatsCompat$IcsTrafficStatsCompatImpl;
@@ -35,10 +35,10 @@
 
     sput-object v0, Landroid/support/v4/net/TrafficStatsCompat;->IMPL:Landroid/support/v4/net/TrafficStatsCompat$TrafficStatsCompatImpl;
 
-    goto :goto_15
+    goto :goto_0
 
     .line 127
-    :cond_e
+    :cond_0
     new-instance v0, Landroid/support/v4/net/TrafficStatsCompat$BaseTrafficStatsCompatImpl;
 
     invoke-direct {v0}, Landroid/support/v4/net/TrafficStatsCompat$BaseTrafficStatsCompatImpl;-><init>()V
@@ -46,12 +46,12 @@
     sput-object v0, Landroid/support/v4/net/TrafficStatsCompat;->IMPL:Landroid/support/v4/net/TrafficStatsCompat$TrafficStatsCompatImpl;
 
     .line 129
-    :goto_15
+    :goto_0
     return-void
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -61,7 +61,7 @@
 .end method
 
 .method public static clearThreadStatsTag()V
-    .registers 1
+    .locals 1
 
     .line 136
     sget-object v0, Landroid/support/v4/net/TrafficStatsCompat;->IMPL:Landroid/support/v4/net/TrafficStatsCompat$TrafficStatsCompatImpl;
@@ -73,7 +73,7 @@
 .end method
 
 .method public static getThreadStatsTag()I
-    .registers 1
+    .locals 1
 
     .line 145
     sget-object v0, Landroid/support/v4/net/TrafficStatsCompat;->IMPL:Landroid/support/v4/net/TrafficStatsCompat$TrafficStatsCompatImpl;
@@ -86,7 +86,7 @@
 .end method
 
 .method public static incrementOperationCount(I)V
-    .registers 2
+    .locals 1
     .param p0, "operationCount"    # I
 
     .line 156
@@ -99,7 +99,7 @@
 .end method
 
 .method public static incrementOperationCount(II)V
-    .registers 3
+    .locals 1
     .param p0, "tag"    # I
     .param p1, "operationCount"    # I
 
@@ -113,7 +113,7 @@
 .end method
 
 .method public static setThreadStatsTag(I)V
-    .registers 2
+    .locals 1
     .param p0, "tag"    # I
 
     .line 182
@@ -126,7 +126,7 @@
 .end method
 
 .method public static tagSocket(Ljava/net/Socket;)V
-    .registers 2
+    .locals 1
     .param p0, "socket"    # Ljava/net/Socket;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -144,7 +144,7 @@
 .end method
 
 .method public static untagSocket(Ljava/net/Socket;)V
-    .registers 2
+    .locals 1
     .param p0, "socket"    # Ljava/net/Socket;
     .annotation system Ldalvik/annotation/Throws;
         value = {

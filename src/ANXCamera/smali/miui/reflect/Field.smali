@@ -29,7 +29,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 3
+    .locals 2
 
     .line 46
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -44,7 +44,7 @@
 .end method
 
 .method public static of(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Class;)Lmiui/reflect/Field;
-    .registers 3
+    .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -76,7 +76,7 @@
 .end method
 
 .method public static of(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)Lmiui/reflect/Field;
-    .registers 3
+    .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -104,7 +104,7 @@
 .end method
 
 .method public static of(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lmiui/reflect/Field;
-    .registers 3
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/NoSuchFieldException;,
@@ -121,7 +121,7 @@
 .end method
 
 .method public static of(Ljava/lang/reflect/Field;)Lmiui/reflect/Field;
-    .registers 1
+    .locals 0
 
     .line 93
     invoke-static {p0}, Lcom/miui/internal/os/Native;->getField(Ljava/lang/reflect/Field;)Lmiui/reflect/Field;
@@ -134,7 +134,7 @@
 
 # virtual methods
 .method public get(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -150,7 +150,7 @@
 .end method
 
 .method public getBoolean(Ljava/lang/Object;)Z
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -166,7 +166,7 @@
 .end method
 
 .method public getByte(Ljava/lang/Object;)B
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -182,7 +182,7 @@
 .end method
 
 .method public getChar(Ljava/lang/Object;)C
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -198,7 +198,7 @@
 .end method
 
 .method public getDouble(Ljava/lang/Object;)D
-    .registers 4
+    .locals 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -214,7 +214,7 @@
 .end method
 
 .method public getFloat(Ljava/lang/Object;)F
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -230,7 +230,7 @@
 .end method
 
 .method public getInt(Ljava/lang/Object;)I
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -246,7 +246,7 @@
 .end method
 
 .method public getLong(Ljava/lang/Object;)J
-    .registers 4
+    .locals 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -262,7 +262,7 @@
 .end method
 
 .method public getShort(Ljava/lang/Object;)S
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -278,7 +278,7 @@
 .end method
 
 .method public set(Ljava/lang/Object;B)V
-    .registers 3
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -293,7 +293,7 @@
 .end method
 
 .method public set(Ljava/lang/Object;C)V
-    .registers 3
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -308,7 +308,7 @@
 .end method
 
 .method public set(Ljava/lang/Object;D)V
-    .registers 4
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -323,7 +323,7 @@
 .end method
 
 .method public set(Ljava/lang/Object;F)V
-    .registers 3
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -338,7 +338,7 @@
 .end method
 
 .method public set(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -353,7 +353,7 @@
 .end method
 
 .method public set(Ljava/lang/Object;J)V
-    .registers 4
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -368,7 +368,7 @@
 .end method
 
 .method public set(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 3
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -383,7 +383,7 @@
 .end method
 
 .method public set(Ljava/lang/Object;S)V
-    .registers 3
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -398,7 +398,7 @@
 .end method
 
 .method public set(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -413,7 +413,7 @@
 .end method
 
 .method public toReflect()Ljava/lang/reflect/Field;
-    .registers 2
+    .locals 1
 
     .line 101
     invoke-static {p0}, Lcom/miui/internal/os/Native;->getReflectField(Lmiui/reflect/Field;)Ljava/lang/reflect/Field;

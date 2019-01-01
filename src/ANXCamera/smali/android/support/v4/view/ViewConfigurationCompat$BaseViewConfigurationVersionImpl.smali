@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 37
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public getScaledPagingTouchSlop(Landroid/view/ViewConfiguration;)I
-    .registers 3
+    .locals 1
     .param p1, "config"    # Landroid/view/ViewConfiguration;
 
     .line 40
@@ -42,7 +42,7 @@
 .end method
 
 .method public hasPermanentMenuKey(Landroid/view/ViewConfiguration;)Z
-    .registers 3
+    .locals 1
     .param p1, "config"    # Landroid/view/ViewConfiguration;
 
     .line 46

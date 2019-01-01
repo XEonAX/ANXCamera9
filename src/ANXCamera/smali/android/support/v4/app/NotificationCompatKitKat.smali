@@ -13,7 +13,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 30
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -23,7 +23,7 @@
 .end method
 
 .method public static getAction(Landroid/app/Notification;ILandroid/support/v4/app/NotificationCompatBase$Action$Factory;Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput$Factory;)Landroid/support/v4/app/NotificationCompatBase$Action;
-    .registers 13
+    .locals 9
     .param p0, "notif"    # Landroid/app/Notification;
     .param p1, "actionIndex"    # I
     .param p2, "factory"    # Landroid/support/v4/app/NotificationCompatBase$Action$Factory;
@@ -50,7 +50,7 @@
 
     .line 134
     .local v2, "actionExtrasMap":Landroid/util/SparseArray;, "Landroid/util/SparseArray<Landroid/os/Bundle;>;"
-    if-eqz v2, :cond_16
+    if-eqz v2, :cond_0
 
     .line 135
     invoke-virtual {v2, p1}, Landroid/util/SparseArray;->get(I)Ljava/lang/Object;
@@ -62,7 +62,7 @@
     check-cast v1, Landroid/os/Bundle;
 
     .line 137
-    :cond_16
+    :cond_0
     iget v5, v0, Landroid/app/Notification$Action;->icon:I
 
     iget-object v6, v0, Landroid/app/Notification$Action;->title:Ljava/lang/CharSequence;
@@ -83,29 +83,29 @@
 .end method
 
 .method public static getActionCount(Landroid/app/Notification;)I
-    .registers 2
+    .locals 1
     .param p0, "notif"    # Landroid/app/Notification;
 
     .line 124
     iget-object v0, p0, Landroid/app/Notification;->actions:[Landroid/app/Notification$Action;
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_0
 
     iget-object v0, p0, Landroid/app/Notification;->actions:[Landroid/app/Notification$Action;
 
     array-length v0, v0
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_9
+    :goto_0
     return v0
 .end method
 
 .method public static getExtras(Landroid/app/Notification;)Landroid/os/Bundle;
-    .registers 2
+    .locals 1
     .param p0, "notif"    # Landroid/app/Notification;
 
     .line 120
@@ -115,7 +115,7 @@
 .end method
 
 .method public static getGroup(Landroid/app/Notification;)Ljava/lang/String;
-    .registers 3
+    .locals 2
     .param p0, "notif"    # Landroid/app/Notification;
 
     .line 146
@@ -131,7 +131,7 @@
 .end method
 
 .method public static getLocalOnly(Landroid/app/Notification;)Z
-    .registers 3
+    .locals 2
     .param p0, "notif"    # Landroid/app/Notification;
 
     .line 142
@@ -147,7 +147,7 @@
 .end method
 
 .method public static getSortKey(Landroid/app/Notification;)Ljava/lang/String;
-    .registers 3
+    .locals 2
     .param p0, "notif"    # Landroid/app/Notification;
 
     .line 154
@@ -163,7 +163,7 @@
 .end method
 
 .method public static isGroupSummary(Landroid/app/Notification;)Z
-    .registers 3
+    .locals 2
     .param p0, "notif"    # Landroid/app/Notification;
 
     .line 150

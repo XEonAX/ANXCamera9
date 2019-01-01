@@ -15,7 +15,7 @@
 
 # direct methods
 .method constructor <init>(III)V
-    .registers 5
+    .locals 1
     .param p1, "newPosition"    # I
     .param p2, "firstDigit"    # I
     .param p3, "secondDigit"    # I
@@ -29,15 +29,15 @@
     invoke-direct {p0, p1}, Lcom/google/zxing/oned/rss/expanded/decoders/DecodedObject;-><init>(I)V
 
     .line 45
-    if-ltz p2, :cond_12
+    if-ltz p2, :cond_0
 
     const/16 v0, 0xa
 
-    if-gt p2, v0, :cond_12
+    if-gt p2, v0, :cond_0
 
-    if-ltz p3, :cond_12
+    if-ltz p3, :cond_0
 
-    if-gt p3, v0, :cond_12
+    if-gt p3, v0, :cond_0
 
     .line 49
     iput p2, p0, Lcom/google/zxing/oned/rss/expanded/decoders/DecodedNumeric;->firstDigit:I
@@ -49,7 +49,7 @@
     return-void
 
     .line 46
-    :cond_12
+    :cond_0
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v0
@@ -60,7 +60,7 @@
 
 # virtual methods
 .method getFirstDigit()I
-    .registers 2
+    .locals 1
 
     .line 54
     iget v0, p0, Lcom/google/zxing/oned/rss/expanded/decoders/DecodedNumeric;->firstDigit:I
@@ -69,7 +69,7 @@
 .end method
 
 .method getSecondDigit()I
-    .registers 2
+    .locals 1
 
     .line 58
     iget v0, p0, Lcom/google/zxing/oned/rss/expanded/decoders/DecodedNumeric;->secondDigit:I
@@ -78,7 +78,7 @@
 .end method
 
 .method getValue()I
-    .registers 3
+    .locals 2
 
     .line 62
     iget v0, p0, Lcom/google/zxing/oned/rss/expanded/decoders/DecodedNumeric;->firstDigit:I
@@ -93,64 +93,64 @@
 .end method
 
 .method isAnyFNC1()Z
-    .registers 3
+    .locals 2
 
     .line 74
     iget v0, p0, Lcom/google/zxing/oned/rss/expanded/decoders/DecodedNumeric;->firstDigit:I
 
     const/16 v1, 0xa
 
-    if-eq v0, v1, :cond_c
+    if-eq v0, v1, :cond_0
 
     iget v0, p0, Lcom/google/zxing/oned/rss/expanded/decoders/DecodedNumeric;->secondDigit:I
 
-    if-eq v0, v1, :cond_c
+    if-eq v0, v1, :cond_0
 
     const/4 v0, 0x0
 
     return v0
 
-    :cond_c
+    :cond_0
     const/4 v0, 0x1
 
     return v0
 .end method
 
 .method isFirstDigitFNC1()Z
-    .registers 3
+    .locals 2
 
     .line 66
     iget v0, p0, Lcom/google/zxing/oned/rss/expanded/decoders/DecodedNumeric;->firstDigit:I
 
     const/16 v1, 0xa
 
-    if-ne v0, v1, :cond_8
+    if-ne v0, v1, :cond_0
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_8
+    :cond_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method isSecondDigitFNC1()Z
-    .registers 3
+    .locals 2
 
     .line 70
     iget v0, p0, Lcom/google/zxing/oned/rss/expanded/decoders/DecodedNumeric;->secondDigit:I
 
     const/16 v1, 0xa
 
-    if-ne v0, v1, :cond_8
+    if-ne v0, v1, :cond_0
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_8
+    :cond_0
     const/4 v0, 0x0
 
     return v0

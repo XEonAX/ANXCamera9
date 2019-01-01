@@ -13,7 +13,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 30
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -23,7 +23,7 @@
 .end method
 
 .method public static addAction(Landroid/app/Notification$Builder;Landroid/support/v4/app/NotificationCompatBase$Action;)V
-    .registers 7
+    .locals 5
     .param p0, "b"    # Landroid/app/Notification$Builder;
     .param p1, "action"    # Landroid/support/v4/app/NotificationCompatBase$Action;
 
@@ -50,7 +50,7 @@
 
     move-result-object v1
 
-    if-eqz v1, :cond_2b
+    if-eqz v1, :cond_0
 
     .line 105
     invoke-virtual {p1}, Landroid/support/v4/app/NotificationCompatBase$Action;->getRemoteInputs()[Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput;
@@ -68,8 +68,8 @@
     const/4 v3, 0x0
 
     .local v3, "i$":I
-    :goto_21
-    if-ge v3, v2, :cond_2b
+    :goto_0
+    if-ge v3, v2, :cond_0
 
     aget-object v4, v1, v3
 
@@ -81,18 +81,18 @@
     .end local v4    # "remoteInput":Landroid/app/RemoteInput;
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_21
+    goto :goto_0
 
     .line 110
     .end local v1    # "arr$":[Landroid/app/RemoteInput;
     .end local v2    # "len$":I
     .end local v3    # "i$":I
-    :cond_2b
+    :cond_0
     invoke-virtual {p1}, Landroid/support/v4/app/NotificationCompatBase$Action;->getExtras()Landroid/os/Bundle;
 
     move-result-object v1
 
-    if-eqz v1, :cond_38
+    if-eqz v1, :cond_1
 
     .line 111
     invoke-virtual {p1}, Landroid/support/v4/app/NotificationCompatBase$Action;->getExtras()Landroid/os/Bundle;
@@ -102,7 +102,7 @@
     invoke-virtual {v0, v1}, Landroid/app/Notification$Action$Builder;->addExtras(Landroid/os/Bundle;)Landroid/app/Notification$Action$Builder;
 
     .line 113
-    :cond_38
+    :cond_1
     invoke-virtual {v0}, Landroid/app/Notification$Action$Builder;->build()Landroid/app/Notification$Action;
 
     move-result-object v1
@@ -114,7 +114,7 @@
 .end method
 
 .method public static getAction(Landroid/app/Notification;ILandroid/support/v4/app/NotificationCompatBase$Action$Factory;Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput$Factory;)Landroid/support/v4/app/NotificationCompatBase$Action;
-    .registers 5
+    .locals 1
     .param p0, "notif"    # Landroid/app/Notification;
     .param p1, "actionIndex"    # I
     .param p2, "actionFactory"    # Landroid/support/v4/app/NotificationCompatBase$Action$Factory;
@@ -133,7 +133,7 @@
 .end method
 
 .method private static getActionCompatFromAction(Landroid/app/Notification$Action;Landroid/support/v4/app/NotificationCompatBase$Action$Factory;Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput$Factory;)Landroid/support/v4/app/NotificationCompatBase$Action;
-    .registers 10
+    .locals 7
     .param p0, "action"    # Landroid/app/Notification$Action;
     .param p1, "actionFactory"    # Landroid/support/v4/app/NotificationCompatBase$Action$Factory;
     .param p2, "remoteInputFactory"    # Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput$Factory;
@@ -171,7 +171,7 @@
 .end method
 
 .method private static getActionFromActionCompat(Landroid/support/v4/app/NotificationCompatBase$Action;)Landroid/app/Notification$Action;
-    .registers 8
+    .locals 7
     .param p0, "actionCompat"    # Landroid/support/v4/app/NotificationCompatBase$Action;
 
     .line 133
@@ -207,7 +207,7 @@
 
     .line 137
     .local v1, "remoteInputCompats":[Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput;
-    if-eqz v1, :cond_30
+    if-eqz v1, :cond_0
 
     .line 138
     invoke-static {v1}, Landroid/support/v4/app/RemoteInputCompatApi20;->fromCompat([Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput;)[Landroid/app/RemoteInput;
@@ -225,8 +225,8 @@
     const/4 v5, 0x0
 
     .local v5, "i$":I
-    :goto_26
-    if-ge v5, v4, :cond_30
+    :goto_0
+    if-ge v5, v4, :cond_0
 
     aget-object v6, v3, v5
 
@@ -238,14 +238,14 @@
     .end local v6    # "remoteInput":Landroid/app/RemoteInput;
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_26
+    goto :goto_0
 
     .line 143
     .end local v2    # "remoteInputs":[Landroid/app/RemoteInput;
     .end local v3    # "arr$":[Landroid/app/RemoteInput;
     .end local v4    # "len$":I
     .end local v5    # "i$":I
-    :cond_30
+    :cond_0
     invoke-virtual {v0}, Landroid/app/Notification$Action$Builder;->build()Landroid/app/Notification$Action;
 
     move-result-object v2
@@ -254,7 +254,7 @@
 .end method
 
 .method public static getActionsFromParcelableArrayList(Ljava/util/ArrayList;Landroid/support/v4/app/NotificationCompatBase$Action$Factory;Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput$Factory;)[Landroid/support/v4/app/NotificationCompatBase$Action;
-    .registers 7
+    .locals 4
     .param p1, "actionFactory"    # Landroid/support/v4/app/NotificationCompatBase$Action$Factory;
     .param p2, "remoteInputFactory"    # Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput$Factory;
     .annotation system Ldalvik/annotation/Signature;
@@ -272,7 +272,7 @@
 
     .line 156
     .local p0, "parcelables":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Landroid/os/Parcelable;>;"
-    if-nez p0, :cond_4
+    if-nez p0, :cond_0
 
     .line 157
     const/4 v0, 0x0
@@ -280,7 +280,7 @@
     return-object v0
 
     .line 159
-    :cond_4
+    :cond_0
     invoke-virtual {p0}, Ljava/util/ArrayList;->size()I
 
     move-result v0
@@ -294,10 +294,10 @@
     const/4 v1, 0x0
 
     .local v1, "i":I
-    :goto_d
+    :goto_0
     array-length v2, v0
 
-    if-ge v1, v2, :cond_1f
+    if-ge v1, v2, :cond_1
 
     .line 161
     invoke-virtual {p0, v1}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
@@ -318,16 +318,16 @@
     .end local v2    # "action":Landroid/app/Notification$Action;
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_d
+    goto :goto_0
 
     .line 164
     .end local v1    # "i":I
-    :cond_1f
+    :cond_1
     return-object v0
 .end method
 
 .method public static getGroup(Landroid/app/Notification;)Ljava/lang/String;
-    .registers 2
+    .locals 1
     .param p0, "notif"    # Landroid/app/Notification;
 
     .line 189
@@ -339,7 +339,7 @@
 .end method
 
 .method public static getLocalOnly(Landroid/app/Notification;)Z
-    .registers 2
+    .locals 1
     .param p0, "notif"    # Landroid/app/Notification;
 
     .line 185
@@ -347,21 +347,21 @@
 
     and-int/lit16 v0, v0, 0x100
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_9
+    :goto_0
     return v0
 .end method
 
 .method public static getParcelableArrayListForActions([Landroid/support/v4/app/NotificationCompatBase$Action;)Ljava/util/ArrayList;
-    .registers 7
+    .locals 6
     .param p0, "actions"    # [Landroid/support/v4/app/NotificationCompatBase$Action;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -375,7 +375,7 @@
     .end annotation
 
     .line 174
-    if-nez p0, :cond_4
+    if-nez p0, :cond_0
 
     .line 175
     const/4 v0, 0x0
@@ -383,7 +383,7 @@
     return-object v0
 
     .line 177
-    :cond_4
+    :cond_0
     new-instance v0, Ljava/util/ArrayList;
 
     array-length v1, p0
@@ -401,8 +401,8 @@
     const/4 v3, 0x0
 
     .local v3, "i$":I
-    :goto_d
-    if-ge v3, v2, :cond_1b
+    :goto_0
+    if-ge v3, v2, :cond_1
 
     aget-object v4, v1, v3
 
@@ -418,18 +418,18 @@
     .end local v4    # "action":Landroid/support/v4/app/NotificationCompatBase$Action;
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_d
+    goto :goto_0
 
     .line 181
     .end local v1    # "arr$":[Landroid/support/v4/app/NotificationCompatBase$Action;
     .end local v2    # "len$":I
     .end local v3    # "i$":I
-    :cond_1b
+    :cond_1
     return-object v0
 .end method
 
 .method public static getSortKey(Landroid/app/Notification;)Ljava/lang/String;
-    .registers 2
+    .locals 1
     .param p0, "notif"    # Landroid/app/Notification;
 
     .line 197
@@ -441,7 +441,7 @@
 .end method
 
 .method public static isGroupSummary(Landroid/app/Notification;)Z
-    .registers 2
+    .locals 1
     .param p0, "notif"    # Landroid/app/Notification;
 
     .line 193
@@ -449,15 +449,15 @@
 
     and-int/lit16 v0, v0, 0x200
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_9
+    :goto_0
     return v0
 .end method

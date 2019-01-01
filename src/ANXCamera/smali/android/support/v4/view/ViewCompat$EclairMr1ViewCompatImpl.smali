@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 968
     invoke-direct {p0}, Landroid/support/v4/view/ViewCompat$BaseViewCompatImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public isOpaque(Landroid/view/View;)Z
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 971
@@ -39,7 +39,7 @@
 .end method
 
 .method public setChildrenDrawingOrderEnabled(Landroid/view/ViewGroup;Z)V
-    .registers 3
+    .locals 0
     .param p1, "viewGroup"    # Landroid/view/ViewGroup;
     .param p2, "enabled"    # Z
 

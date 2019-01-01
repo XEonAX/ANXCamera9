@@ -23,7 +23,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;)V
-    .registers 2
+    .locals 0
     .param p1, "context"    # Landroid/content/Context;
 
     .line 77
@@ -39,7 +39,7 @@
 
 # virtual methods
 .method public createTabContent(Ljava/lang/String;)Landroid/view/View;
-    .registers 4
+    .locals 2
     .param p1, "tag"    # Ljava/lang/String;
 
     .line 83

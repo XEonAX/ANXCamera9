@@ -5,7 +5,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,14 +14,14 @@
 .end method
 
 .method private static combins(II)I
-    .registers 7
+    .locals 5
     .param p0, "n"    # I
     .param p1, "r"    # I
 
     .line 106
     sub-int v0, p0, p1
 
-    if-le v0, p1, :cond_8
+    if-le v0, p1, :cond_0
 
     .line 107
     move v0, p1
@@ -32,12 +32,12 @@
 
     .line 109
     .local v1, "maxDenom":I
-    goto :goto_b
+    goto :goto_0
 
     .line 110
     .end local v0    # "minDenom":I
     .end local v1    # "maxDenom":I
-    :cond_8
+    :cond_0
     sub-int v0, p0, p1
 
     .line 111
@@ -46,7 +46,7 @@
 
     .line 113
     .restart local v1    # "maxDenom":I
-    :goto_b
+    :goto_0
     const/4 v2, 0x1
 
     .line 114
@@ -58,33 +58,33 @@
     move v4, p0
 
     .local v4, "i":I
-    :goto_e
-    if-gt v4, v1, :cond_17
+    :goto_1
+    if-gt v4, v1, :cond_2
 
     .line 122
     .end local v4    # "i":I
-    :goto_10
-    if-le v3, v0, :cond_13
+    :goto_2
+    if-le v3, v0, :cond_1
 
     .line 126
     return v2
 
     .line 123
-    :cond_13
+    :cond_1
     div-int/2addr v2, v3
 
     .line 124
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_10
+    goto :goto_2
 
     .line 116
     .restart local v4    # "i":I
-    :cond_17
+    :cond_2
     mul-int/2addr v2, v4
 
     .line 117
-    if-gt v3, v0, :cond_1d
+    if-gt v3, v0, :cond_3
 
     .line 118
     div-int/2addr v2, v3
@@ -93,14 +93,14 @@
     add-int/lit8 v3, v3, 0x1
 
     .line 115
-    :cond_1d
+    :cond_3
     add-int/lit8 v4, v4, -0x1
 
-    goto :goto_e
+    goto :goto_1
 .end method
 
 .method public static getRSSvalue([IIZ)I
-    .registers 15
+    .locals 12
     .param p0, "widths"    # [I
     .param p1, "maxWidth"    # I
     .param p2, "noNarrow"    # Z
@@ -118,8 +118,8 @@
 
     const/4 v3, 0x0
 
-    :goto_4
-    if-lt v3, v2, :cond_78
+    :goto_0
+    if-lt v3, v2, :cond_6
 
     .line 72
     const/4 v2, 0x0
@@ -137,10 +137,10 @@
 
     .end local v1    # "n":I
     .local v5, "n":I
-    :goto_a
+    :goto_1
     add-int/lit8 v1, v0, -0x1
 
-    if-lt v4, v1, :cond_f
+    if-lt v4, v1, :cond_0
 
     .line 100
     .end local v4    # "bar":I
@@ -148,7 +148,7 @@
 
     .line 76
     .restart local v4    # "bar":I
-    :cond_f
+    :cond_0
     const/4 v1, 0x1
 
     .local v1, "elmWidth":I
@@ -159,11 +159,11 @@
     or-int/2addr v3, v7
 
     .line 77
-    :goto_14
+    :goto_2
     aget v7, p0, v4
 
     .line 76
-    if-lt v1, v7, :cond_1c
+    if-lt v1, v7, :cond_1
 
     .line 98
     sub-int/2addr v5, v1
@@ -172,11 +172,11 @@
     .end local v1    # "elmWidth":I
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_a
+    goto :goto_1
 
     .line 79
     .restart local v1    # "elmWidth":I
-    :cond_1c
+    :cond_1
     sub-int v7, v5, v1
 
     sub-int/2addr v7, v6
@@ -191,9 +191,9 @@
 
     .line 80
     .local v7, "subVal":I
-    if-eqz p2, :cond_44
+    if-eqz p2, :cond_2
 
-    if-nez v3, :cond_44
+    if-nez v3, :cond_2
 
     .line 81
     sub-int v8, v5, v1
@@ -208,7 +208,7 @@
 
     sub-int/2addr v9, v6
 
-    if-lt v8, v9, :cond_44
+    if-lt v8, v9, :cond_2
 
     .line 82
     sub-int v8, v5, v1
@@ -229,12 +229,12 @@
     sub-int/2addr v7, v8
 
     .line 85
-    :cond_44
+    :cond_2
     sub-int v8, v0, v4
 
     sub-int/2addr v8, v6
 
-    if-le v8, v6, :cond_6a
+    if-le v8, v6, :cond_4
 
     .line 86
     const/4 v8, 0x0
@@ -254,8 +254,8 @@
     nop
 
     .line 87
-    :goto_52
-    if-gt v9, p1, :cond_5a
+    :goto_3
+    if-gt v9, p1, :cond_3
 
     .line 92
     .end local v9    # "mxwElement":I
@@ -269,12 +269,12 @@
 
     .line 93
     .end local v8    # "lessVal":I
-    goto :goto_70
+    goto :goto_4
 
     .line 89
     .restart local v8    # "lessVal":I
     .restart local v9    # "mxwElement":I
-    :cond_5a
+    :cond_3
     sub-int v10, v5, v1
 
     sub-int/2addr v10, v9
@@ -295,22 +295,22 @@
     .line 88
     add-int/lit8 v9, v9, -0x1
 
-    goto :goto_52
+    goto :goto_3
 
     .line 93
     .end local v8    # "lessVal":I
     .end local v9    # "mxwElement":I
-    :cond_6a
+    :cond_4
     sub-int v8, v5, v1
 
-    if-le v8, p1, :cond_70
+    if-le v8, p1, :cond_5
 
     .line 94
     add-int/lit8 v7, v7, -0x1
 
     .line 96
-    :cond_70
-    :goto_70
+    :cond_5
+    :goto_4
     add-int/2addr v2, v7
 
     .line 78
@@ -323,7 +323,7 @@
 
     and-int/2addr v3, v7
 
-    goto :goto_14
+    goto :goto_2
 
     .line 69
     .end local v2    # "val":I
@@ -331,7 +331,7 @@
     .end local v4    # "bar":I
     .end local v5    # "n":I
     .local v1, "n":I
-    :cond_78
+    :cond_6
     aget v4, p0, v3
 
     .line 70
@@ -342,5 +342,5 @@
     .end local v4    # "width":I
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_4
+    goto :goto_0
 .end method

@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 79
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -25,7 +25,7 @@
 .end method
 
 .method public static getAction(Ljava/lang/Object;)Ljava/lang/String;
-    .registers 2
+    .locals 1
     .param p0, "customActionObj"    # Ljava/lang/Object;
 
     .line 81
@@ -41,7 +41,7 @@
 .end method
 
 .method public static getExtras(Ljava/lang/Object;)Landroid/os/Bundle;
-    .registers 2
+    .locals 1
     .param p0, "customActionObj"    # Ljava/lang/Object;
 
     .line 92
@@ -57,7 +57,7 @@
 .end method
 
 .method public static getIcon(Ljava/lang/Object;)I
-    .registers 2
+    .locals 1
     .param p0, "customActionObj"    # Ljava/lang/Object;
 
     .line 89
@@ -73,7 +73,7 @@
 .end method
 
 .method public static getName(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .registers 2
+    .locals 1
     .param p0, "customActionObj"    # Ljava/lang/Object;
 
     .line 85
@@ -89,7 +89,7 @@
 .end method
 
 .method public static newInstance(Ljava/lang/String;Ljava/lang/CharSequence;ILandroid/os/Bundle;)Ljava/lang/Object;
-    .registers 6
+    .locals 2
     .param p0, "action"    # Ljava/lang/String;
     .param p1, "name"    # Ljava/lang/CharSequence;
     .param p2, "icon"    # I

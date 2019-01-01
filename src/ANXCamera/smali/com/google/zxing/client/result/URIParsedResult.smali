@@ -15,7 +15,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 26
     const-string v0, ":/*([^/@]+)@[^/]+"
@@ -30,7 +30,7 @@
 .end method
 
 .method public constructor <init>(Ljava/lang/String;Ljava/lang/String;)V
-    .registers 4
+    .locals 1
     .param p1, "uri"    # Ljava/lang/String;
     .param p2, "title"    # Ljava/lang/String;
 
@@ -54,7 +54,7 @@
 .end method
 
 .method private static isColonFollowedByPortNumber(Ljava/lang/String;I)Z
-    .registers 5
+    .locals 3
     .param p0, "uri"    # Ljava/lang/String;
     .param p1, "protocolEnd"    # I
 
@@ -71,7 +71,7 @@
 
     .line 85
     .local v1, "nextSlash":I
-    if-gez v1, :cond_e
+    if-gez v1, :cond_0
 
     .line 86
     invoke-virtual {p0}, Ljava/lang/String;->length()I
@@ -79,7 +79,7 @@
     move-result v1
 
     .line 88
-    :cond_e
+    :cond_0
     sub-int v2, v1, v0
 
     invoke-static {p0, v0, v2}, Lcom/google/zxing/client/result/ResultParser;->isSubstringOfDigits(Ljava/lang/CharSequence;II)Z
@@ -90,7 +90,7 @@
 .end method
 
 .method private static massageURI(Ljava/lang/String;)Ljava/lang/String;
-    .registers 4
+    .locals 3
     .param p0, "uri"    # Ljava/lang/String;
 
     .line 70
@@ -107,7 +107,7 @@
 
     .line 72
     .local v0, "protocolEnd":I
-    if-gez v0, :cond_1b
+    if-gez v0, :cond_0
 
     .line 74
     new-instance v1, Ljava/lang/StringBuilder;
@@ -123,14 +123,14 @@
     move-result-object p0
 
     .line 75
-    goto :goto_2f
+    goto :goto_0
 
-    :cond_1b
+    :cond_0
     invoke-static {p0, v0}, Lcom/google/zxing/client/result/URIParsedResult;->isColonFollowedByPortNumber(Ljava/lang/String;I)Z
 
     move-result v1
 
-    if-eqz v1, :cond_2f
+    if-eqz v1, :cond_1
 
     .line 77
     new-instance v1, Ljava/lang/StringBuilder;
@@ -146,15 +146,15 @@
     move-result-object p0
 
     .line 79
-    :cond_2f
-    :goto_2f
+    :cond_1
+    :goto_0
     return-object p0
 .end method
 
 
 # virtual methods
 .method public getDisplayResult()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 59
     new-instance v0, Ljava/lang/StringBuilder;
@@ -183,7 +183,7 @@
 .end method
 
 .method public getTitle()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 42
     iget-object v0, p0, Lcom/google/zxing/client/result/URIParsedResult;->title:Ljava/lang/String;
@@ -192,7 +192,7 @@
 .end method
 
 .method public getURI()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 38
     iget-object v0, p0, Lcom/google/zxing/client/result/URIParsedResult;->uri:Ljava/lang/String;
@@ -201,7 +201,7 @@
 .end method
 
 .method public isPossiblyMaliciousURI()Z
-    .registers 3
+    .locals 2
 
     .line 54
     sget-object v0, Lcom/google/zxing/client/result/URIParsedResult;->USER_IN_HOST:Ljava/util/regex/Pattern;

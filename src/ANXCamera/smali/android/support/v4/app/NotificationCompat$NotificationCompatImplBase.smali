@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 475
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public build(Landroid/support/v4/app/NotificationCompat$Builder;Landroid/support/v4/app/NotificationCompat$BuilderExtender;)Landroid/app/Notification;
-    .registers 8
+    .locals 5
     .param p1, "b"    # Landroid/support/v4/app/NotificationCompat$Builder;
     .param p2, "extender"    # Landroid/support/v4/app/NotificationCompat$BuilderExtender;
 
@@ -52,7 +52,7 @@
     .line 482
     iget v1, p1, Landroid/support/v4/app/NotificationCompat$Builder;->mPriority:I
 
-    if-lez v1, :cond_17
+    if-lez v1, :cond_0
 
     .line 483
     iget v1, v0, Landroid/app/Notification;->flags:I
@@ -62,12 +62,12 @@
     iput v1, v0, Landroid/app/Notification;->flags:I
 
     .line 485
-    :cond_17
+    :cond_0
     return-object v0
 .end method
 
 .method public getAction(Landroid/app/Notification;I)Landroid/support/v4/app/NotificationCompat$Action;
-    .registers 4
+    .locals 1
     .param p1, "n"    # Landroid/app/Notification;
     .param p2, "actionIndex"    # I
 
@@ -78,7 +78,7 @@
 .end method
 
 .method public getActionCount(Landroid/app/Notification;)I
-    .registers 3
+    .locals 1
     .param p1, "n"    # Landroid/app/Notification;
 
     .line 495
@@ -88,7 +88,7 @@
 .end method
 
 .method public getActionsFromParcelableArrayList(Ljava/util/ArrayList;)[Landroid/support/v4/app/NotificationCompat$Action;
-    .registers 3
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -107,7 +107,7 @@
 .end method
 
 .method public getBundleForUnreadConversation(Landroid/support/v4/app/NotificationCompatBase$UnreadConversation;)Landroid/os/Bundle;
-    .registers 3
+    .locals 1
     .param p1, "uc"    # Landroid/support/v4/app/NotificationCompatBase$UnreadConversation;
 
     .line 541
@@ -117,7 +117,7 @@
 .end method
 
 .method public getCategory(Landroid/app/Notification;)Ljava/lang/String;
-    .registers 3
+    .locals 1
     .param p1, "n"    # Landroid/app/Notification;
 
     .line 516
@@ -127,7 +127,7 @@
 .end method
 
 .method public getExtras(Landroid/app/Notification;)Landroid/os/Bundle;
-    .registers 3
+    .locals 1
     .param p1, "n"    # Landroid/app/Notification;
 
     .line 490
@@ -137,7 +137,7 @@
 .end method
 
 .method public getGroup(Landroid/app/Notification;)Ljava/lang/String;
-    .registers 3
+    .locals 1
     .param p1, "n"    # Landroid/app/Notification;
 
     .line 526
@@ -147,7 +147,7 @@
 .end method
 
 .method public getLocalOnly(Landroid/app/Notification;)Z
-    .registers 3
+    .locals 1
     .param p1, "n"    # Landroid/app/Notification;
 
     .line 521
@@ -157,7 +157,7 @@
 .end method
 
 .method public getParcelableArrayListForActions([Landroid/support/v4/app/NotificationCompat$Action;)Ljava/util/ArrayList;
-    .registers 3
+    .locals 1
     .param p1, "actions"    # [Landroid/support/v4/app/NotificationCompat$Action;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -177,7 +177,7 @@
 .end method
 
 .method public getSortKey(Landroid/app/Notification;)Ljava/lang/String;
-    .registers 3
+    .locals 1
     .param p1, "n"    # Landroid/app/Notification;
 
     .line 536
@@ -187,7 +187,7 @@
 .end method
 
 .method public getUnreadConversationFromBundle(Landroid/os/Bundle;Landroid/support/v4/app/NotificationCompatBase$UnreadConversation$Factory;Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput$Factory;)Landroid/support/v4/app/NotificationCompatBase$UnreadConversation;
-    .registers 5
+    .locals 1
     .param p1, "b"    # Landroid/os/Bundle;
     .param p2, "factory"    # Landroid/support/v4/app/NotificationCompatBase$UnreadConversation$Factory;
     .param p3, "remoteInputFactory"    # Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput$Factory;
@@ -199,7 +199,7 @@
 .end method
 
 .method public isGroupSummary(Landroid/app/Notification;)Z
-    .registers 3
+    .locals 1
     .param p1, "n"    # Landroid/app/Notification;
 
     .line 531

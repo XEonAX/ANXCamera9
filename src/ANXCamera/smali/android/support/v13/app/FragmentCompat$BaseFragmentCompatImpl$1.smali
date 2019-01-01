@@ -29,7 +29,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v13/app/FragmentCompat$BaseFragmentCompatImpl;[Ljava/lang/String;Landroid/app/Fragment;I)V
-    .registers 5
+    .locals 0
 
     .line 49
     iput-object p1, p0, Landroid/support/v13/app/FragmentCompat$BaseFragmentCompatImpl$1;->this$0:Landroid/support/v13/app/FragmentCompat$BaseFragmentCompatImpl;
@@ -48,7 +48,7 @@
 
 # virtual methods
 .method public run()V
-    .registers 8
+    .locals 7
 
     .line 52
     iget-object v0, p0, Landroid/support/v13/app/FragmentCompat$BaseFragmentCompatImpl$1;->val$permissions:[Ljava/lang/String;
@@ -67,7 +67,7 @@
 
     .line 55
     .local v1, "context":Landroid/content/Context;
-    if-eqz v1, :cond_29
+    if-eqz v1, :cond_1
 
     .line 56
     invoke-virtual {v1}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
@@ -91,8 +91,8 @@
     const/4 v5, 0x0
 
     .local v5, "i":I
-    :goto_19
-    if-ge v5, v4, :cond_28
+    :goto_0
+    if-ge v5, v4, :cond_0
 
     .line 61
     iget-object v6, p0, Landroid/support/v13/app/FragmentCompat$BaseFragmentCompatImpl$1;->val$permissions:[Ljava/lang/String;
@@ -108,24 +108,24 @@
     .line 60
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_19
+    goto :goto_0
 
     .line 64
     .end local v2    # "packageManager":Landroid/content/pm/PackageManager;
     .end local v3    # "packageName":Ljava/lang/String;
     .end local v4    # "permissionCount":I
     .end local v5    # "i":I
-    :cond_28
-    goto :goto_2d
+    :cond_0
+    goto :goto_1
 
     .line 65
-    :cond_29
+    :cond_1
     const/4 v2, -0x1
 
     invoke-static {v0, v2}, Ljava/util/Arrays;->fill([II)V
 
     .line 68
-    :goto_2d
+    :goto_1
     iget-object v2, p0, Landroid/support/v13/app/FragmentCompat$BaseFragmentCompatImpl$1;->val$fragment:Landroid/app/Fragment;
 
     check-cast v2, Landroid/support/v13/app/FragmentCompat$OnRequestPermissionsResultCallback;

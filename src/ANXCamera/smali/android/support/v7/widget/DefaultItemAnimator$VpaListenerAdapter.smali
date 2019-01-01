@@ -19,7 +19,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 627
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v7/widget/DefaultItemAnimator$1;)V
-    .registers 2
+    .locals 0
     .param p1, "x0"    # Landroid/support/v7/widget/DefaultItemAnimator$1;
 
     .line 627
@@ -40,7 +40,7 @@
 
 # virtual methods
 .method public onAnimationCancel(Landroid/view/View;)V
-    .registers 2
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
 
     .line 635
@@ -48,7 +48,7 @@
 .end method
 
 .method public onAnimationEnd(Landroid/view/View;)V
-    .registers 2
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
 
     .line 632
@@ -56,7 +56,7 @@
 .end method
 
 .method public onAnimationStart(Landroid/view/View;)V
-    .registers 2
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
 
     .line 629

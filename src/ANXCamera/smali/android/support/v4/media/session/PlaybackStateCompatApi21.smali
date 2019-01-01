@@ -13,7 +13,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -23,7 +23,7 @@
 .end method
 
 .method public static getActions(Ljava/lang/Object;)J
-    .registers 3
+    .locals 2
     .param p0, "stateObj"    # Ljava/lang/Object;
 
     .line 44
@@ -39,7 +39,7 @@
 .end method
 
 .method public static getActiveQueueItemId(Ljava/lang/Object;)J
-    .registers 3
+    .locals 2
     .param p0, "stateObj"    # Ljava/lang/Object;
 
     .line 60
@@ -55,7 +55,7 @@
 .end method
 
 .method public static getBufferedPosition(Ljava/lang/Object;)J
-    .registers 3
+    .locals 2
     .param p0, "stateObj"    # Ljava/lang/Object;
 
     .line 36
@@ -71,7 +71,7 @@
 .end method
 
 .method public static getCustomActions(Ljava/lang/Object;)Ljava/util/List;
-    .registers 2
+    .locals 1
     .param p0, "stateObj"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -97,7 +97,7 @@
 .end method
 
 .method public static getErrorMessage(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .registers 2
+    .locals 1
     .param p0, "stateObj"    # Ljava/lang/Object;
 
     .line 48
@@ -113,7 +113,7 @@
 .end method
 
 .method public static getLastPositionUpdateTime(Ljava/lang/Object;)J
-    .registers 3
+    .locals 2
     .param p0, "stateObj"    # Ljava/lang/Object;
 
     .line 52
@@ -129,7 +129,7 @@
 .end method
 
 .method public static getPlaybackSpeed(Ljava/lang/Object;)F
-    .registers 2
+    .locals 1
     .param p0, "stateObj"    # Ljava/lang/Object;
 
     .line 40
@@ -145,7 +145,7 @@
 .end method
 
 .method public static getPosition(Ljava/lang/Object;)J
-    .registers 3
+    .locals 2
     .param p0, "stateObj"    # Ljava/lang/Object;
 
     .line 32
@@ -161,7 +161,7 @@
 .end method
 
 .method public static getState(Ljava/lang/Object;)I
-    .registers 2
+    .locals 1
     .param p0, "stateObj"    # Ljava/lang/Object;
 
     .line 28
@@ -177,7 +177,7 @@
 .end method
 
 .method public static newInstance(IJJFJLjava/lang/CharSequence;JLjava/util/List;J)Ljava/lang/Object;
-    .registers 23
+    .locals 9
     .param p0, "state"    # I
     .param p1, "position"    # J
     .param p3, "bufferedPosition"    # J
@@ -239,12 +239,12 @@
     move-result-object v6
 
     .local v6, "i$":Ljava/util/Iterator;
-    :goto_1f
+    :goto_0
     invoke-interface {v6}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v7
 
-    if-eqz v7, :cond_30
+    if-eqz v7, :cond_0
 
     invoke-interface {v6}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -260,11 +260,11 @@
 
     .line 74
     .end local v7    # "customAction":Ljava/lang/Object;
-    goto :goto_1f
+    goto :goto_0
 
     .line 75
     .end local v6    # "i$":Ljava/util/Iterator;
-    :cond_30
+    :cond_0
     move-wide/from16 v6, p12
 
     invoke-virtual {v0, v6, v7}, Landroid/media/session/PlaybackState$Builder;->setActiveQueueItemId(J)Landroid/media/session/PlaybackState$Builder;

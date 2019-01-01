@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v7/widget/StaggeredGridLayoutManager;)V
-    .registers 2
+    .locals 0
 
     .line 197
     iput-object p1, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$1;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
@@ -36,12 +36,11 @@
 
 # virtual methods
 .method public run()V
-    .registers 2
+    .locals 1
 
     .line 200
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$1;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
 
-    # invokes: Landroid/support/v7/widget/StaggeredGridLayoutManager;->checkForGaps()Z
     invoke-static {v0}, Landroid/support/v7/widget/StaggeredGridLayoutManager;->access$100(Landroid/support/v7/widget/StaggeredGridLayoutManager;)Z
 
     .line 201

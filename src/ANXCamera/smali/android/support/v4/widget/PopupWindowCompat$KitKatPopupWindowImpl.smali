@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 88
     invoke-direct {p0}, Landroid/support/v4/widget/PopupWindowCompat$GingerbreadPopupWindowImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public showAsDropDown(Landroid/widget/PopupWindow;Landroid/view/View;III)V
-    .registers 6
+    .locals 0
     .param p1, "popup"    # Landroid/widget/PopupWindow;
     .param p2, "anchor"    # Landroid/view/View;
     .param p3, "xoff"    # I

@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v7/widget/helper/ItemTouchHelper;)V
-    .registers 2
+    .locals 0
 
     .line 1237
     iput-object p1, p0, Landroid/support/v7/widget/helper/ItemTouchHelper$5;->this$0:Landroid/support/v7/widget/helper/ItemTouchHelper;
@@ -36,28 +36,26 @@
 
 # virtual methods
 .method public onGetChildDrawingOrder(II)I
-    .registers 6
+    .locals 3
     .param p1, "childCount"    # I
     .param p2, "i"    # I
 
     .line 1240
     iget-object v0, p0, Landroid/support/v7/widget/helper/ItemTouchHelper$5;->this$0:Landroid/support/v7/widget/helper/ItemTouchHelper;
 
-    # getter for: Landroid/support/v7/widget/helper/ItemTouchHelper;->mOverdrawChild:Landroid/view/View;
     invoke-static {v0}, Landroid/support/v7/widget/helper/ItemTouchHelper;->access$1600(Landroid/support/v7/widget/helper/ItemTouchHelper;)Landroid/view/View;
 
     move-result-object v0
 
-    if-nez v0, :cond_9
+    if-nez v0, :cond_0
 
     .line 1241
     return p2
 
     .line 1243
-    :cond_9
+    :cond_0
     iget-object v0, p0, Landroid/support/v7/widget/helper/ItemTouchHelper$5;->this$0:Landroid/support/v7/widget/helper/ItemTouchHelper;
 
-    # getter for: Landroid/support/v7/widget/helper/ItemTouchHelper;->mOverdrawChildPosition:I
     invoke-static {v0}, Landroid/support/v7/widget/helper/ItemTouchHelper;->access$2300(Landroid/support/v7/widget/helper/ItemTouchHelper;)I
 
     move-result v0
@@ -66,19 +64,17 @@
     .local v0, "childPosition":I
     const/4 v1, -0x1
 
-    if-ne v0, v1, :cond_27
+    if-ne v0, v1, :cond_1
 
     .line 1245
     iget-object v1, p0, Landroid/support/v7/widget/helper/ItemTouchHelper$5;->this$0:Landroid/support/v7/widget/helper/ItemTouchHelper;
 
-    # getter for: Landroid/support/v7/widget/helper/ItemTouchHelper;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
     invoke-static {v1}, Landroid/support/v7/widget/helper/ItemTouchHelper;->access$300(Landroid/support/v7/widget/helper/ItemTouchHelper;)Landroid/support/v7/widget/RecyclerView;
 
     move-result-object v1
 
     iget-object v2, p0, Landroid/support/v7/widget/helper/ItemTouchHelper$5;->this$0:Landroid/support/v7/widget/helper/ItemTouchHelper;
 
-    # getter for: Landroid/support/v7/widget/helper/ItemTouchHelper;->mOverdrawChild:Landroid/view/View;
     invoke-static {v2}, Landroid/support/v7/widget/helper/ItemTouchHelper;->access$1600(Landroid/support/v7/widget/helper/ItemTouchHelper;)Landroid/view/View;
 
     move-result-object v2
@@ -90,29 +86,28 @@
     .line 1246
     iget-object v1, p0, Landroid/support/v7/widget/helper/ItemTouchHelper$5;->this$0:Landroid/support/v7/widget/helper/ItemTouchHelper;
 
-    # setter for: Landroid/support/v7/widget/helper/ItemTouchHelper;->mOverdrawChildPosition:I
     invoke-static {v1, v0}, Landroid/support/v7/widget/helper/ItemTouchHelper;->access$2302(Landroid/support/v7/widget/helper/ItemTouchHelper;I)I
 
     .line 1248
-    :cond_27
+    :cond_1
     add-int/lit8 v1, p1, -0x1
 
-    if-ne p2, v1, :cond_2c
+    if-ne p2, v1, :cond_2
 
     .line 1249
     return v0
 
     .line 1251
-    :cond_2c
-    if-ge p2, v0, :cond_30
+    :cond_2
+    if-ge p2, v0, :cond_3
 
     move v1, p2
 
-    goto :goto_32
+    goto :goto_0
 
-    :cond_30
+    :cond_3
     add-int/lit8 v1, p2, 0x1
 
-    :goto_32
+    :goto_0
     return v1
 .end method

@@ -376,14 +376,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 17
+    .locals 17
 
     .line 2459
     const/16 v0, 0x17
 
     new-array v0, v0, [I
 
-    fill-array-data v0, :array_25c
+    fill-array-data v0, :array_0
 
     sput-object v0, Lmiui/R$styleable;->ActionBar:[I
 
@@ -500,7 +500,7 @@
     .line 2700
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_28e
+    fill-array-data v15, :array_1
 
     sput-object v15, Lmiui/R$styleable;->ActionBarMovableLayout:[I
 
@@ -525,7 +525,7 @@
     .line 2789
     new-array v15, v9, [I
 
-    fill-array-data v15, :array_298
+    fill-array-data v15, :array_2
 
     sput-object v15, Lmiui/R$styleable;->ActionMode:[I
 
@@ -547,14 +547,14 @@
     .line 2846
     new-array v15, v3, [I
 
-    fill-array-data v15, :array_2a6
+    fill-array-data v15, :array_3
 
     sput-object v15, Lmiui/R$styleable;->AlertDialog:[I
 
     .line 2864
     new-array v15, v11, [I
 
-    fill-array-data v15, :array_2b8
+    fill-array-data v15, :array_4
 
     sput-object v15, Lmiui/R$styleable;->AlphabetFastIndexer:[I
 
@@ -567,7 +567,7 @@
     .line 2903
     new-array v15, v2, [I
 
-    fill-array-data v15, :array_2d4
+    fill-array-data v15, :array_5
 
     sput-object v15, Lmiui/R$styleable;->ArrowPopupView:[I
 
@@ -598,7 +598,7 @@
     .line 2977
     new-array v15, v14, [I
 
-    fill-array-data v15, :array_2ea
+    fill-array-data v15, :array_6
 
     sput-object v15, Lmiui/R$styleable;->DatePicker:[I
 
@@ -629,7 +629,7 @@
     .line 3126
     new-array v15, v12, [I
 
-    fill-array-data v15, :array_302
+    fill-array-data v15, :array_7
 
     sput-object v15, Lmiui/R$styleable;->DrawableStates:[I
 
@@ -660,7 +660,7 @@
     .line 3288
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_316
+    fill-array-data v15, :array_8
 
     sput-object v15, Lmiui/R$styleable;->DynamicExtension:[I
 
@@ -676,7 +676,7 @@
     .line 3354
     new-array v15, v4, [I
 
-    fill-array-data v15, :array_320
+    fill-array-data v15, :array_9
 
     sput-object v15, Lmiui/R$styleable;->FilterSortView:[I
 
@@ -689,7 +689,7 @@
     .line 3389
     new-array v15, v4, [I
 
-    fill-array-data v15, :array_328
+    fill-array-data v15, :array_a
 
     sput-object v15, Lmiui/R$styleable;->FloatingActionButton:[I
 
@@ -702,7 +702,7 @@
     .line 3432
     new-array v15, v3, [I
 
-    fill-array-data v15, :array_330
+    fill-array-data v15, :array_b
 
     sput-object v15, Lmiui/R$styleable;->GuidePopupView:[I
 
@@ -718,7 +718,7 @@
     .line 3477
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_342
+    fill-array-data v15, :array_c
 
     sput-object v15, Lmiui/R$styleable;->HybridViewStyle:[I
 
@@ -734,7 +734,7 @@
     .line 3549
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_34c
+    fill-array-data v15, :array_d
 
     sput-object v15, Lmiui/R$styleable;->Level:[I
 
@@ -750,7 +750,7 @@
     .line 3629
     new-array v15, v12, [I
 
-    fill-array-data v15, :array_356
+    fill-array-data v15, :array_e
 
     sput-object v15, Lmiui/R$styleable;->MenuView:[I
 
@@ -778,7 +778,7 @@
     .line 3708
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_36a
+    fill-array-data v15, :array_f
 
     sput-object v15, Lmiui/R$styleable;->MessageView:[I
 
@@ -791,7 +791,7 @@
     .line 3737
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_374
+    fill-array-data v15, :array_10
 
     sput-object v15, Lmiui/R$styleable;->MiuiManifest:[I
 
@@ -807,7 +807,7 @@
     .line 3814
     new-array v15, v9, [I
 
-    fill-array-data v15, :array_37e
+    fill-array-data v15, :array_11
 
     sput-object v15, Lmiui/R$styleable;->MiuiManifestModule:[I
 
@@ -829,7 +829,7 @@
     .line 3925
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_38c
+    fill-array-data v15, :array_12
 
     sput-object v15, Lmiui/R$styleable;->MiuiManifestUsesSdk:[I
 
@@ -845,7 +845,7 @@
     .line 4007
     new-array v15, v12, [I
 
-    fill-array-data v15, :array_396
+    fill-array-data v15, :array_13
 
     sput-object v15, Lmiui/R$styleable;->NavigationLayout:[I
 
@@ -876,7 +876,7 @@
     .line 4170
     new-array v15, v4, [I
 
-    fill-array-data v15, :array_3aa
+    fill-array-data v15, :array_14
 
     sput-object v15, Lmiui/R$styleable;->NestedHeaderLayout:[I
 
@@ -901,7 +901,7 @@
     .line 4242
     new-array v15, v12, [I
 
-    fill-array-data v15, :array_3b2
+    fill-array-data v15, :array_15
 
     sput-object v15, Lmiui/R$styleable;->NumberPicker:[I
 
@@ -920,7 +920,7 @@
     .line 4286
     new-array v15, v13, [I
 
-    fill-array-data v15, :array_3c6
+    fill-array-data v15, :array_16
 
     sput-object v15, Lmiui/R$styleable;->PlaceholderDrawablePadding:[I
 
@@ -939,7 +939,7 @@
     .line 4337
     new-array v15, v4, [I
 
-    fill-array-data v15, :array_3d2
+    fill-array-data v15, :array_17
 
     sput-object v15, Lmiui/R$styleable;->PlaceholderDrawableSize:[I
 
@@ -952,7 +952,7 @@
     .line 4368
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_3da
+    fill-array-data v15, :array_18
 
     sput-object v15, Lmiui/R$styleable;->ProgressBar:[I
 
@@ -962,7 +962,7 @@
     .line 4396
     new-array v15, v4, [I
 
-    fill-array-data v15, :array_3e4
+    fill-array-data v15, :array_19
 
     sput-object v15, Lmiui/R$styleable;->RadioButtonPreference:[I
 
@@ -975,7 +975,7 @@
     .line 4423
     new-array v15, v4, [I
 
-    fill-array-data v15, :array_3ec
+    fill-array-data v15, :array_1a
 
     sput-object v15, Lmiui/R$styleable;->Rotation3DLayout:[I
 
@@ -988,7 +988,7 @@
     .line 4472
     new-array v15, v4, [I
 
-    fill-array-data v15, :array_3f4
+    fill-array-data v15, :array_1b
 
     sput-object v15, Lmiui/R$styleable;->Rotation3DLayout_Layout:[I
 
@@ -1001,7 +1001,7 @@
     .line 4516
     new-array v15, v9, [I
 
-    fill-array-data v15, :array_3fc
+    fill-array-data v15, :array_1c
 
     sput-object v15, Lmiui/R$styleable;->ScrollableViewDrawer:[I
 
@@ -1023,7 +1023,7 @@
     .line 4598
     new-array v15, v12, [I
 
-    fill-array-data v15, :array_40a
+    fill-array-data v15, :array_1d
 
     sput-object v15, Lmiui/R$styleable;->SlidingButton:[I
 
@@ -1033,7 +1033,7 @@
     .line 4630
     new-array v15, v3, [I
 
-    fill-array-data v15, :array_41e
+    fill-array-data v15, :array_1e
 
     sput-object v15, Lmiui/R$styleable;->TriggerViewDrawer:[I
 
@@ -1075,7 +1075,7 @@
 
     new-array v15, v15, [I
 
-    fill-array-data v15, :array_430
+    fill-array-data v15, :array_1f
 
     sput-object v15, Lmiui/R$styleable;->Window:[I
 
@@ -1133,7 +1133,7 @@
 
     nop
 
-    :array_25c
+    :array_0
     .array-data 4
         0x1010002
         0x10100d4
@@ -1160,14 +1160,14 @@
         0x100100a7
     .end array-data
 
-    :array_28e
+    :array_1
     .array-data 4
         0x10010040
         0x10010041
         0x10010042
     .end array-data
 
-    :array_298
+    :array_2
     .array-data 4
         0x10100d4
         0x1010155
@@ -1176,7 +1176,7 @@
         0x101038b
     .end array-data
 
-    :array_2a6
+    :array_3
     .array-data 4
         0x100100da
         0x100100db
@@ -1187,7 +1187,7 @@
         0x100100e0
     .end array-data
 
-    :array_2b8
+    :array_4
     .array-data 4
         0x10010087
         0x10010088
@@ -1203,7 +1203,7 @@
         0x100100ee
     .end array-data
 
-    :array_2d4
+    :array_5
     .array-data 4
         0x100100b7
         0x100100b8
@@ -1216,7 +1216,7 @@
         0x100100bf
     .end array-data
 
-    :array_2ea
+    :array_6
     .array-data 4
         0x1001003a
         0x1001003b
@@ -1230,7 +1230,7 @@
         0x100100d9
     .end array-data
 
-    :array_302
+    :array_7
     .array-data 4
         0x1001000d
         0x1001000e
@@ -1242,26 +1242,26 @@
         0x10010014
     .end array-data
 
-    :array_316
+    :array_8
     .array-data 4
         0x10010090
         0x10010091
         0x10010092
     .end array-data
 
-    :array_320
+    :array_9
     .array-data 4
         0x101014f
         0x1001007e
     .end array-data
 
-    :array_328
+    :array_a
     .array-data 4
         0x10010096
         0x10010097
     .end array-data
 
-    :array_330
+    :array_b
     .array-data 4
         0x1010031
         0x1010095
@@ -1272,21 +1272,21 @@
         0x100100c3
     .end array-data
 
-    :array_342
+    :array_c
     .array-data 4
         0x1001007f
         0x10010080
         0x10010081
     .end array-data
 
-    :array_34c
+    :array_d
     .array-data 4
         0x10010063
         0x10010064
         0x10010065
     .end array-data
 
-    :array_356
+    :array_e
     .array-data 4
         0x10100ae
         0x101012c
@@ -1298,21 +1298,21 @@
         0x101052f
     .end array-data
 
-    :array_36a
+    :array_f
     .array-data 4
         0x1010098
         0x101014f
         0x10010101
     .end array-data
 
-    :array_374
+    :array_10
     .array-data 4
         0x10010061
         0x10010062
         0x10010066
     .end array-data
 
-    :array_37e
+    :array_11
     .array-data 4
         0x10010061
         0x10010063
@@ -1321,14 +1321,14 @@
         0x10010082
     .end array-data
 
-    :array_38c
+    :array_12
     .array-data 4
         0x10010063
         0x10010064
         0x10010065
     .end array-data
 
-    :array_396
+    :array_13
     .array-data 4
         0x10010016
         0x10010017
@@ -1340,13 +1340,13 @@
         0x10010067
     .end array-data
 
-    :array_3aa
+    :array_14
     .array-data 4
         0x10010099
         0x1001009a
     .end array-data
 
-    :array_3b2
+    :array_15
     .array-data 4
         0x1010099
         0x101009a
@@ -1358,7 +1358,7 @@
         0x100100d3
     .end array-data
 
-    :array_3c6
+    :array_16
     .array-data 4
         0x10101ad
         0x10101ae
@@ -1366,38 +1366,38 @@
         0x10101b0
     .end array-data
 
-    :array_3d2
+    :array_17
     .array-data 4
         0x1010155
         0x1010159
     .end array-data
 
-    :array_3da
+    :array_18
     .array-data 4
         0x10010034
         0x100100cb
         0x100100cc
     .end array-data
 
-    :array_3e4
+    :array_19
     .array-data 4
         0x10100f2
         0x10101eb
     .end array-data
 
-    :array_3ec
+    :array_1a
     .array-data 4
         0x10010044
         0x10010045
     .end array-data
 
-    :array_3f4
+    :array_1b
     .array-data 4
         0x10100b3
         0x10010043
     .end array-data
 
-    :array_3fc
+    :array_1c
     .array-data 4
         0x10010075
         0x10010076
@@ -1406,7 +1406,7 @@
         0x1001007d
     .end array-data
 
-    :array_40a
+    :array_1d
     .array-data 4
         0x10100d4
         0x100100c4
@@ -1418,7 +1418,7 @@
         0x100100ca
     .end array-data
 
-    :array_41e
+    :array_1e
     .array-data 4
         0x10010075
         0x10010076
@@ -1429,7 +1429,7 @@
         0x1001008e
     .end array-data
 
-    :array_430
+    :array_1f
     .array-data 4
         0x1001000a
         0x1001000b
@@ -1463,7 +1463,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 2399
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V

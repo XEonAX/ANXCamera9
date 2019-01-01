@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 218
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -31,17 +31,17 @@
 
 # virtual methods
 .method declared-synchronized next()Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    .registers 3
+    .locals 2
 
     monitor-enter p0
 
     .line 223
-    :try_start_1
+    :try_start_0
     iget-object v0, p0, Landroid/support/v7/util/MessageThreadUtil$MessageQueue;->mRoot:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    :try_end_3
-    .catchall {:try_start_1 .. :try_end_3} :catchall_14
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    if-nez v0, :cond_8
+    if-nez v0, :cond_0
 
     .line 224
     const/4 v0, 0x0
@@ -51,22 +51,21 @@
     return-object v0
 
     .line 226
-    :cond_8
-    :try_start_8
+    :cond_0
+    :try_start_1
     iget-object v0, p0, Landroid/support/v7/util/MessageThreadUtil$MessageQueue;->mRoot:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     .line 227
     .local v0, "next":Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
     iget-object v1, p0, Landroid/support/v7/util/MessageThreadUtil$MessageQueue;->mRoot:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
-    # getter for: Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->next:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
     invoke-static {v1}, Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->access$200(Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;)Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     move-result-object v1
 
     iput-object v1, p0, Landroid/support/v7/util/MessageThreadUtil$MessageQueue;->mRoot:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    :try_end_12
-    .catchall {:try_start_8 .. :try_end_12} :catchall_14
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     .line 228
     monitor-exit p0
@@ -75,7 +74,7 @@
 
     .line 222
     .end local v0    # "next":Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    :catchall_14
+    :catchall_0
     move-exception v0
 
     monitor-exit p0
@@ -85,23 +84,23 @@
 .end method
 
 .method declared-synchronized removeMessages(I)V
-    .registers 6
+    .locals 4
     .param p1, "what"    # I
 
     monitor-enter p0
 
     .line 249
-    :goto_1
-    :try_start_1
+    :goto_0
+    :try_start_0
     iget-object v0, p0, Landroid/support/v7/util/MessageThreadUtil$MessageQueue;->mRoot:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
-    if-eqz v0, :cond_19
+    if-eqz v0, :cond_0
 
     iget-object v0, p0, Landroid/support/v7/util/MessageThreadUtil$MessageQueue;->mRoot:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     iget v0, v0, Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->what:I
 
-    if-ne v0, p1, :cond_19
+    if-ne v0, p1, :cond_0
 
     .line 250
     iget-object v0, p0, Landroid/support/v7/util/MessageThreadUtil$MessageQueue;->mRoot:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
@@ -110,7 +109,6 @@
     .local v0, "item":Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
     iget-object v1, p0, Landroid/support/v7/util/MessageThreadUtil$MessageQueue;->mRoot:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
-    # getter for: Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->next:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
     invoke-static {v1}, Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->access$200(Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;)Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     move-result-object v1
@@ -122,31 +120,29 @@
 
     .line 253
     .end local v0    # "item":Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    goto :goto_1
+    goto :goto_0
 
     .line 254
-    :cond_19
+    :cond_0
     iget-object v0, p0, Landroid/support/v7/util/MessageThreadUtil$MessageQueue;->mRoot:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
-    if-eqz v0, :cond_37
+    if-eqz v0, :cond_2
 
     .line 255
     iget-object v0, p0, Landroid/support/v7/util/MessageThreadUtil$MessageQueue;->mRoot:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     .line 256
     .local v0, "prev":Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    # getter for: Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->next:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
     invoke-static {v0}, Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->access$200(Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;)Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     move-result-object v1
 
     .line 257
     .local v1, "item":Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    :goto_23
-    if-eqz v1, :cond_37
+    :goto_1
+    if-eqz v1, :cond_2
 
     .line 258
-    # getter for: Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->next:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
     invoke-static {v1}, Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->access$200(Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;)Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     move-result-object v2
@@ -155,42 +151,41 @@
     .local v2, "next":Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
     iget v3, v1, Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->what:I
 
-    if-ne v3, p1, :cond_34
+    if-ne v3, p1, :cond_1
 
     .line 260
-    # setter for: Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->next:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
     invoke-static {v0, v2}, Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->access$202(Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;)Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     .line 261
     invoke-virtual {v1}, Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->recycle()V
-    :try_end_33
-    .catchall {:try_start_1 .. :try_end_33} :catchall_39
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    goto :goto_35
+    goto :goto_2
 
     .line 263
-    :cond_34
+    :cond_1
     move-object v0, v1
 
     .line 265
-    :goto_35
+    :goto_2
     move-object v1, v2
 
     .line 266
     .end local v2    # "next":Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    goto :goto_23
+    goto :goto_1
 
     .line 268
     .end local v0    # "prev":Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
     .end local v1    # "item":Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    :cond_37
+    :cond_2
     monitor-exit p0
 
     return-void
 
     .line 248
     .end local p1    # "what":I
-    :catchall_39
+    :catchall_0
     move-exception p1
 
     monitor-exit p0
@@ -200,21 +195,21 @@
 .end method
 
 .method declared-synchronized sendMessage(Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;)V
-    .registers 4
+    .locals 2
     .param p1, "item"    # Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     monitor-enter p0
 
     .line 237
-    :try_start_1
+    :try_start_0
     iget-object v0, p0, Landroid/support/v7/util/MessageThreadUtil$MessageQueue;->mRoot:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
-    if-nez v0, :cond_9
+    if-nez v0, :cond_0
 
     .line 238
     iput-object p1, p0, Landroid/support/v7/util/MessageThreadUtil$MessageQueue;->mRoot:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    :try_end_7
-    .catchall {:try_start_1 .. :try_end_7} :catchall_1c
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 239
     monitor-exit p0
@@ -222,36 +217,33 @@
     return-void
 
     .line 241
-    :cond_9
-    :try_start_9
+    :cond_0
+    :try_start_1
     iget-object v0, p0, Landroid/support/v7/util/MessageThreadUtil$MessageQueue;->mRoot:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     .line 242
     .local v0, "last":Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    :goto_b
-    # getter for: Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->next:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
+    :goto_0
     invoke-static {v0}, Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->access$200(Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;)Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     move-result-object v1
 
-    if-eqz v1, :cond_17
+    if-eqz v1, :cond_1
 
     .line 243
-    # getter for: Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->next:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
     invoke-static {v0}, Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->access$200(Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;)Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     move-result-object v1
 
     move-object v0, v1
 
-    goto :goto_b
+    goto :goto_0
 
     .line 245
-    :cond_17
-    # setter for: Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->next:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
+    :cond_1
     invoke-static {v0, p1}, Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->access$202(Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;)Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    :try_end_1a
-    .catchall {:try_start_9 .. :try_end_1a} :catchall_1c
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     .line 246
     monitor-exit p0
@@ -261,7 +253,7 @@
     .line 236
     .end local v0    # "last":Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
     .end local p1    # "item":Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    :catchall_1c
+    :catchall_0
     move-exception p1
 
     monitor-exit p0
@@ -271,22 +263,21 @@
 .end method
 
 .method declared-synchronized sendMessageAtFrontOfQueue(Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;)V
-    .registers 3
+    .locals 1
     .param p1, "item"    # Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     monitor-enter p0
 
     .line 232
-    :try_start_1
+    :try_start_0
     iget-object v0, p0, Landroid/support/v7/util/MessageThreadUtil$MessageQueue;->mRoot:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
-    # setter for: Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->next:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
     invoke-static {p1, v0}, Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->access$202(Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;)Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     .line 233
     iput-object p1, p0, Landroid/support/v7/util/MessageThreadUtil$MessageQueue;->mRoot:Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    :try_end_8
-    .catchall {:try_start_1 .. :try_end_8} :catchall_a
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 234
     monitor-exit p0
@@ -295,7 +286,7 @@
 
     .line 231
     .end local p1    # "item":Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    :catchall_a
+    :catchall_0
     move-exception p1
 
     monitor-exit p0

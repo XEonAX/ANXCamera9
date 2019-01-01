@@ -13,7 +13,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-    .registers 5
+    .locals 1
     .param p1, "number"    # Ljava/lang/String;
     .param p2, "telURI"    # Ljava/lang/String;
     .param p3, "title"    # Ljava/lang/String;
@@ -39,7 +39,7 @@
 
 # virtual methods
 .method public getDisplayResult()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 49
     new-instance v0, Ljava/lang/StringBuilder;
@@ -68,7 +68,7 @@
 .end method
 
 .method public getNumber()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 36
     iget-object v0, p0, Lcom/google/zxing/client/result/TelParsedResult;->number:Ljava/lang/String;
@@ -77,7 +77,7 @@
 .end method
 
 .method public getTelURI()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 40
     iget-object v0, p0, Lcom/google/zxing/client/result/TelParsedResult;->telURI:Ljava/lang/String;
@@ -86,7 +86,7 @@
 .end method
 
 .method public getTitle()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 44
     iget-object v0, p0, Lcom/google/zxing/client/result/TelParsedResult;->title:Ljava/lang/String;

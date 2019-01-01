@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 49
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public getParentActivityIntent(Landroid/app/Activity;)Landroid/content/Intent;
-    .registers 9
+    .locals 7
     .param p1, "activity"    # Landroid/app/Activity;
 
     .line 53
@@ -42,34 +42,34 @@
     .local v0, "parentName":Ljava/lang/String;
     const/4 v1, 0x0
 
-    if-nez v0, :cond_8
+    if-nez v0, :cond_0
 
     return-object v1
 
     .line 57
-    :cond_8
+    :cond_0
     new-instance v2, Landroid/content/ComponentName;
 
     invoke-direct {v2, p1, v0}, Landroid/content/ComponentName;-><init>(Landroid/content/Context;Ljava/lang/String;)V
 
     .line 59
     .local v2, "target":Landroid/content/ComponentName;
-    :try_start_d
+    :try_start_0
     invoke-static {p1, v2}, Landroid/support/v4/app/NavUtils;->getParentActivityName(Landroid/content/Context;Landroid/content/ComponentName;)Ljava/lang/String;
 
     move-result-object v3
 
     .line 60
     .local v3, "grandparent":Ljava/lang/String;
-    if-nez v3, :cond_18
+    if-nez v3, :cond_1
 
     invoke-static {v2}, Landroid/support/v4/content/IntentCompat;->makeMainActivity(Landroid/content/ComponentName;)Landroid/content/Intent;
 
     move-result-object v4
 
-    goto :goto_21
+    goto :goto_0
 
-    :cond_18
+    :cond_1
     new-instance v4, Landroid/content/Intent;
 
     invoke-direct {v4}, Landroid/content/Intent;-><init>()V
@@ -77,10 +77,10 @@
     invoke-virtual {v4, v2}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
 
     move-result-object v4
-    :try_end_21
-    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_d .. :try_end_21} :catch_23
+    :try_end_0
+    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
-    :goto_21
+    :goto_0
     move-object v1, v4
 
     .line 63
@@ -90,7 +90,7 @@
     .line 64
     .end local v1    # "parentIntent":Landroid/content/Intent;
     .end local v3    # "grandparent":Ljava/lang/String;
-    :catch_23
+    :catch_0
     move-exception v3
 
     .line 65
@@ -122,7 +122,7 @@
 .end method
 
 .method public getParentActivityName(Landroid/content/Context;Landroid/content/pm/ActivityInfo;)Ljava/lang/String;
-    .registers 6
+    .locals 3
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "info"    # Landroid/content/pm/ActivityInfo;
 
@@ -131,12 +131,12 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_6
+    if-nez v0, :cond_0
 
     return-object v1
 
     .line 87
-    :cond_6
+    :cond_0
     iget-object v0, p2, Landroid/content/pm/ActivityInfo;->metaData:Landroid/os/Bundle;
 
     const-string v2, "android.support.PARENT_ACTIVITY"
@@ -147,12 +147,12 @@
 
     .line 88
     .local v0, "parentActivity":Ljava/lang/String;
-    if-nez v0, :cond_11
+    if-nez v0, :cond_1
 
     return-object v1
 
     .line 89
-    :cond_11
+    :cond_1
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->charAt(I)C
@@ -161,7 +161,7 @@
 
     const/16 v2, 0x2e
 
-    if-ne v1, v2, :cond_2d
+    if-ne v1, v2, :cond_2
 
     .line 90
     new-instance v1, Ljava/lang/StringBuilder;
@@ -181,12 +181,12 @@
     move-result-object v0
 
     .line 92
-    :cond_2d
+    :cond_2
     return-object v0
 .end method
 
 .method public navigateUpTo(Landroid/app/Activity;Landroid/content/Intent;)V
-    .registers 4
+    .locals 1
     .param p1, "activity"    # Landroid/app/Activity;
     .param p2, "upIntent"    # Landroid/content/Intent;
 
@@ -206,7 +206,7 @@
 .end method
 
 .method public shouldUpRecreateTask(Landroid/app/Activity;Landroid/content/Intent;)Z
-    .registers 5
+    .locals 2
     .param p1, "activity"    # Landroid/app/Activity;
     .param p2, "targetIntent"    # Landroid/content/Intent;
 
@@ -221,7 +221,7 @@
 
     .line 74
     .local v0, "action":Ljava/lang/String;
-    if-eqz v0, :cond_14
+    if-eqz v0, :cond_0
 
     const-string v1, "android.intent.action.MAIN"
 
@@ -229,15 +229,15 @@
 
     move-result v1
 
-    if-nez v1, :cond_14
+    if-nez v1, :cond_0
 
     const/4 v1, 0x1
 
-    goto :goto_15
+    goto :goto_0
 
-    :cond_14
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_15
+    :goto_0
     return v1
 .end method

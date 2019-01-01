@@ -16,7 +16,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 180
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -25,7 +25,7 @@
 .end method
 
 .method public static getGroupedRoutes(Ljava/lang/Object;)Ljava/util/List;
-    .registers 6
+    .locals 5
     .param p0, "groupObj"    # Ljava/lang/Object;
 
     .line 183
@@ -50,8 +50,8 @@
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_d
-    if-ge v3, v1, :cond_19
+    :goto_0
+    if-ge v3, v1, :cond_0
 
     .line 188
     invoke-virtual {v0, v3}, Landroid/media/MediaRouter$RouteGroup;->getRouteAt(I)Landroid/media/MediaRouter$RouteInfo;
@@ -63,10 +63,10 @@
     .line 187
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_d
+    goto :goto_0
 
     .line 190
     .end local v3    # "i":I
-    :cond_19
+    :cond_0
     return-object v2
 .end method

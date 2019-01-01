@@ -26,7 +26,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 1587
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -42,7 +42,7 @@
 
 # virtual methods
 .method public build()Landroid/app/Notification;
-    .registers 3
+    .locals 2
 
     .line 1603
     const/4 v0, 0x0
@@ -51,7 +51,7 @@
     .local v0, "notification":Landroid/app/Notification;
     iget-object v1, p0, Landroid/support/v4/app/NotificationCompat$Style;->mBuilder:Landroid/support/v4/app/NotificationCompat$Builder;
 
-    if-eqz v1, :cond_b
+    if-eqz v1, :cond_0
 
     .line 1605
     iget-object v1, p0, Landroid/support/v4/app/NotificationCompat$Style;->mBuilder:Landroid/support/v4/app/NotificationCompat$Builder;
@@ -61,18 +61,18 @@
     move-result-object v0
 
     .line 1607
-    :cond_b
+    :cond_0
     return-object v0
 .end method
 
 .method public setBuilder(Landroid/support/v4/app/NotificationCompat$Builder;)V
-    .registers 3
+    .locals 1
     .param p1, "builder"    # Landroid/support/v4/app/NotificationCompat$Builder;
 
     .line 1594
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompat$Style;->mBuilder:Landroid/support/v4/app/NotificationCompat$Builder;
 
-    if-eq v0, p1, :cond_f
+    if-eq v0, p1, :cond_0
 
     .line 1595
     iput-object p1, p0, Landroid/support/v4/app/NotificationCompat$Style;->mBuilder:Landroid/support/v4/app/NotificationCompat$Builder;
@@ -80,7 +80,7 @@
     .line 1596
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompat$Style;->mBuilder:Landroid/support/v4/app/NotificationCompat$Builder;
 
-    if-eqz v0, :cond_f
+    if-eqz v0, :cond_0
 
     .line 1597
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompat$Style;->mBuilder:Landroid/support/v4/app/NotificationCompat$Builder;
@@ -88,6 +88,6 @@
     invoke-virtual {v0, p0}, Landroid/support/v4/app/NotificationCompat$Builder;->setStyle(Landroid/support/v4/app/NotificationCompat$Style;)Landroid/support/v4/app/NotificationCompat$Builder;
 
     .line 1600
-    :cond_f
+    :cond_0
     return-void
 .end method

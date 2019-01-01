@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/zxing/common/BitArray;)V
-    .registers 2
+    .locals 0
     .param p1, "information"    # Lcom/google/zxing/common/BitArray;
 
     .line 37
@@ -18,7 +18,7 @@
 
 # virtual methods
 .method protected addWeightCode(Ljava/lang/StringBuilder;I)V
-    .registers 4
+    .locals 1
     .param p1, "buf"    # Ljava/lang/StringBuilder;
     .param p2, "weight"    # I
 
@@ -32,7 +32,7 @@
 .end method
 
 .method protected checkWeight(I)I
-    .registers 2
+    .locals 0
     .param p1, "weight"    # I
 
     .line 47

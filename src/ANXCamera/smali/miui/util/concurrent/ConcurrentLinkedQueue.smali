@@ -32,7 +32,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 19
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -51,7 +51,7 @@
 
 # virtual methods
 .method public clear()I
-    .registers 3
+    .locals 2
 
     .line 52
     iget-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->LW:Ljava/util/concurrent/ConcurrentLinkedQueue;
@@ -70,7 +70,7 @@
 .end method
 
 .method public get()Ljava/lang/Object;
-    .registers 2
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()TT;"
@@ -88,7 +88,7 @@
 .end method
 
 .method public getCapacity()I
-    .registers 2
+    .locals 1
 
     .line 64
     const/4 v0, -0x1
@@ -97,7 +97,7 @@
 .end method
 
 .method public isEmpty()Z
-    .registers 2
+    .locals 1
 
     .line 59
     iget-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->LW:Ljava/util/concurrent/ConcurrentLinkedQueue;
@@ -110,7 +110,7 @@
 .end method
 
 .method public put(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)Z"
@@ -128,7 +128,7 @@
 .end method
 
 .method public remove(Lmiui/util/concurrent/Queue$Predicate;)I
-    .registers 5
+    .locals 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -149,13 +149,13 @@
 
     const/4 v1, 0x0
 
-    :cond_8
-    :goto_8
+    :cond_0
+    :goto_0
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_1e
+    if-eqz v2, :cond_1
 
     .line 42
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
@@ -166,7 +166,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_8
+    if-eqz v2, :cond_0
 
     .line 43
     invoke-interface {v0}, Ljava/util/Iterator;->remove()V
@@ -174,15 +174,15 @@
     .line 44
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_8
+    goto :goto_0
 
     .line 47
-    :cond_1e
+    :cond_1
     return v1
 .end method
 
 .method public remove(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)Z"

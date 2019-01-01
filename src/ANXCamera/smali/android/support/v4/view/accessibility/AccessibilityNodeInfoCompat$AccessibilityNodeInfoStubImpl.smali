@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 616
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public addAction(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "action"    # I
 
@@ -39,7 +39,7 @@
 .end method
 
 .method public addAction(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "action"    # Ljava/lang/Object;
 
@@ -48,7 +48,7 @@
 .end method
 
 .method public addChild(Ljava/lang/Object;Landroid/view/View;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "child"    # Landroid/view/View;
 
@@ -57,7 +57,7 @@
 .end method
 
 .method public addChild(Ljava/lang/Object;Landroid/view/View;I)V
-    .registers 4
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "child"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I
@@ -67,7 +67,7 @@
 .end method
 
 .method public canOpenPopup(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1133
@@ -77,7 +77,7 @@
 .end method
 
 .method public findAccessibilityNodeInfosByText(Ljava/lang/Object;Ljava/lang/String;)Ljava/util/List;
-    .registers 4
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "text"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
@@ -101,7 +101,7 @@
 .end method
 
 .method public findAccessibilityNodeInfosByViewId(Ljava/lang/Object;Ljava/lang/String;)Ljava/util/List;
-    .registers 4
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "viewId"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
@@ -125,7 +125,7 @@
 .end method
 
 .method public findFocus(Ljava/lang/Object;I)Ljava/lang/Object;
-    .registers 4
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "focus"    # I
 
@@ -136,7 +136,7 @@
 .end method
 
 .method public focusSearch(Ljava/lang/Object;I)Ljava/lang/Object;
-    .registers 4
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "direction"    # I
 
@@ -147,7 +147,7 @@
 .end method
 
 .method public getAccessibilityActionId(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "action"    # Ljava/lang/Object;
 
     .line 659
@@ -157,7 +157,7 @@
 .end method
 
 .method public getAccessibilityActionLabel(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .registers 3
+    .locals 1
     .param p1, "action"    # Ljava/lang/Object;
 
     .line 664
@@ -167,7 +167,7 @@
 .end method
 
 .method public getActionList(Ljava/lang/Object;)Ljava/util/List;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -187,7 +187,7 @@
 .end method
 
 .method public getActions(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 694
@@ -197,7 +197,7 @@
 .end method
 
 .method public getBoundsInParent(Ljava/lang/Object;Landroid/graphics/Rect;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "outBounds"    # Landroid/graphics/Rect;
 
@@ -206,7 +206,7 @@
 .end method
 
 .method public getBoundsInScreen(Ljava/lang/Object;Landroid/graphics/Rect;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "outBounds"    # Landroid/graphics/Rect;
 
@@ -215,7 +215,7 @@
 .end method
 
 .method public getChild(Ljava/lang/Object;I)Ljava/lang/Object;
-    .registers 4
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "index"    # I
 
@@ -226,7 +226,7 @@
 .end method
 
 .method public getChildCount(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 714
@@ -236,7 +236,7 @@
 .end method
 
 .method public getClassName(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 719
@@ -246,7 +246,7 @@
 .end method
 
 .method public getCollectionInfo(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 974
@@ -256,7 +256,7 @@
 .end method
 
 .method public getCollectionInfoColumnCount(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1012
@@ -266,7 +266,7 @@
 .end method
 
 .method public getCollectionInfoRowCount(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1017
@@ -276,7 +276,7 @@
 .end method
 
 .method public getCollectionItemColumnIndex(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1033
@@ -286,7 +286,7 @@
 .end method
 
 .method public getCollectionItemColumnSpan(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1038
@@ -296,7 +296,7 @@
 .end method
 
 .method public getCollectionItemInfo(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 983
@@ -306,7 +306,7 @@
 .end method
 
 .method public getCollectionItemRowIndex(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1043
@@ -316,7 +316,7 @@
 .end method
 
 .method public getCollectionItemRowSpan(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1048
@@ -326,7 +326,7 @@
 .end method
 
 .method public getContentDescription(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 724
@@ -336,7 +336,7 @@
 .end method
 
 .method public getError(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1102
@@ -346,7 +346,7 @@
 .end method
 
 .method public getExtras(Ljava/lang/Object;)Landroid/os/Bundle;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1147
@@ -358,7 +358,7 @@
 .end method
 
 .method public getInputType(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1152
@@ -368,7 +368,7 @@
 .end method
 
 .method public getLabelFor(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1115
@@ -378,7 +378,7 @@
 .end method
 
 .method public getLabeledBy(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1128
@@ -388,7 +388,7 @@
 .end method
 
 .method public getLiveRegion(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 964
@@ -398,7 +398,7 @@
 .end method
 
 .method public getMaxTextLength(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1165
@@ -408,7 +408,7 @@
 .end method
 
 .method public getMovementGranularities(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 824
@@ -418,7 +418,7 @@
 .end method
 
 .method public getPackageName(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 729
@@ -428,7 +428,7 @@
 .end method
 
 .method public getParent(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 734
@@ -438,7 +438,7 @@
 .end method
 
 .method public getRangeInfo(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 992
@@ -448,7 +448,7 @@
 .end method
 
 .method public getText(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 739
@@ -458,7 +458,7 @@
 .end method
 
 .method public getTextSelectionEnd(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1179
@@ -468,7 +468,7 @@
 .end method
 
 .method public getTextSelectionStart(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1174
@@ -478,7 +478,7 @@
 .end method
 
 .method public getTraversalAfter(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1076
@@ -488,7 +488,7 @@
 .end method
 
 .method public getTraversalBefore(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1063
@@ -498,7 +498,7 @@
 .end method
 
 .method public getViewIdResourceName(Ljava/lang/Object;)Ljava/lang/String;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 954
@@ -508,7 +508,7 @@
 .end method
 
 .method public getWindow(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1184
@@ -518,7 +518,7 @@
 .end method
 
 .method public getWindowId(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 744
@@ -528,7 +528,7 @@
 .end method
 
 .method public isAccessibilityFocused(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 784
@@ -538,7 +538,7 @@
 .end method
 
 .method public isCheckable(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 749
@@ -548,7 +548,7 @@
 .end method
 
 .method public isChecked(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 754
@@ -558,7 +558,7 @@
 .end method
 
 .method public isClickable(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 759
@@ -568,7 +568,7 @@
 .end method
 
 .method public isCollectionInfoHierarchical(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1022
@@ -578,7 +578,7 @@
 .end method
 
 .method public isCollectionItemHeading(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1053
@@ -588,7 +588,7 @@
 .end method
 
 .method public isCollectionItemSelected(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1058
@@ -598,7 +598,7 @@
 .end method
 
 .method public isContentInvalid(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1093
@@ -608,7 +608,7 @@
 .end method
 
 .method public isDismissable(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1189
@@ -618,7 +618,7 @@
 .end method
 
 .method public isEditable(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1198
@@ -628,7 +628,7 @@
 .end method
 
 .method public isEnabled(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 764
@@ -638,7 +638,7 @@
 .end method
 
 .method public isFocusable(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 769
@@ -648,7 +648,7 @@
 .end method
 
 .method public isFocused(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 774
@@ -658,7 +658,7 @@
 .end method
 
 .method public isLongClickable(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 789
@@ -668,7 +668,7 @@
 .end method
 
 .method public isMultiLine(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1207
@@ -678,7 +678,7 @@
 .end method
 
 .method public isPassword(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 794
@@ -688,7 +688,7 @@
 .end method
 
 .method public isScrollable(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 799
@@ -698,7 +698,7 @@
 .end method
 
 .method public isSelected(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 804
@@ -708,7 +708,7 @@
 .end method
 
 .method public isVisibleToUser(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 779
@@ -718,7 +718,7 @@
 .end method
 
 .method public newAccessibilityAction(ILjava/lang/CharSequence;)Ljava/lang/Object;
-    .registers 4
+    .locals 1
     .param p1, "actionId"    # I
     .param p2, "label"    # Ljava/lang/CharSequence;
 
@@ -729,7 +729,7 @@
 .end method
 
 .method public obtain()Ljava/lang/Object;
-    .registers 2
+    .locals 1
 
     .line 624
     const/4 v0, 0x0
@@ -738,7 +738,7 @@
 .end method
 
 .method public obtain(Landroid/view/View;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "source"    # Landroid/view/View;
 
     .line 629
@@ -748,7 +748,7 @@
 .end method
 
 .method public obtain(Landroid/view/View;I)Ljava/lang/Object;
-    .registers 4
+    .locals 1
     .param p1, "root"    # Landroid/view/View;
     .param p2, "virtualDescendantId"    # I
 
@@ -759,7 +759,7 @@
 .end method
 
 .method public obtain(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 639
@@ -769,7 +769,7 @@
 .end method
 
 .method public obtainCollectionInfo(IIZI)Ljava/lang/Object;
-    .registers 6
+    .locals 1
     .param p1, "rowCount"    # I
     .param p2, "columnCount"    # I
     .param p3, "hierarchical"    # Z
@@ -782,7 +782,7 @@
 .end method
 
 .method public obtainCollectionItemInfo(IIIIZZ)Ljava/lang/Object;
-    .registers 8
+    .locals 1
     .param p1, "rowIndex"    # I
     .param p2, "rowSpan"    # I
     .param p3, "columnIndex"    # I
@@ -797,7 +797,7 @@
 .end method
 
 .method public performAction(Ljava/lang/Object;I)Z
-    .registers 4
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "action"    # I
 
@@ -808,7 +808,7 @@
 .end method
 
 .method public performAction(Ljava/lang/Object;ILandroid/os/Bundle;)Z
-    .registers 5
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "action"    # I
     .param p3, "arguments"    # Landroid/os/Bundle;
@@ -820,7 +820,7 @@
 .end method
 
 .method public recycle(Ljava/lang/Object;)V
-    .registers 2
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 945
@@ -828,7 +828,7 @@
 .end method
 
 .method public refresh(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1216
@@ -838,7 +838,7 @@
 .end method
 
 .method public removeAction(Ljava/lang/Object;Ljava/lang/Object;)Z
-    .registers 4
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "action"    # Ljava/lang/Object;
 
@@ -849,7 +849,7 @@
 .end method
 
 .method public removeChild(Ljava/lang/Object;Landroid/view/View;)Z
-    .registers 4
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "child"    # Landroid/view/View;
 
@@ -860,7 +860,7 @@
 .end method
 
 .method public removeChild(Ljava/lang/Object;Landroid/view/View;I)Z
-    .registers 5
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "root"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I
@@ -872,7 +872,7 @@
 .end method
 
 .method public setAccessibilityFocused(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "focused"    # Z
 
@@ -881,7 +881,7 @@
 .end method
 
 .method public setBoundsInParent(Ljava/lang/Object;Landroid/graphics/Rect;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "bounds"    # Landroid/graphics/Rect;
 
@@ -890,7 +890,7 @@
 .end method
 
 .method public setBoundsInScreen(Ljava/lang/Object;Landroid/graphics/Rect;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "bounds"    # Landroid/graphics/Rect;
 
@@ -899,7 +899,7 @@
 .end method
 
 .method public setCanOpenPopup(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "opensPopup"    # Z
 
@@ -908,7 +908,7 @@
 .end method
 
 .method public setCheckable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "checkable"    # Z
 
@@ -917,7 +917,7 @@
 .end method
 
 .method public setChecked(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "checked"    # Z
 
@@ -926,7 +926,7 @@
 .end method
 
 .method public setClassName(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "className"    # Ljava/lang/CharSequence;
 
@@ -935,7 +935,7 @@
 .end method
 
 .method public setClickable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "clickable"    # Z
 
@@ -944,7 +944,7 @@
 .end method
 
 .method public setCollectionInfo(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "collectionInfo"    # Ljava/lang/Object;
 
@@ -953,7 +953,7 @@
 .end method
 
 .method public setCollectionItemInfo(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "collectionItemInfo"    # Ljava/lang/Object;
 
@@ -962,7 +962,7 @@
 .end method
 
 .method public setContentDescription(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "contentDescription"    # Ljava/lang/CharSequence;
 
@@ -971,7 +971,7 @@
 .end method
 
 .method public setContentInvalid(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "contentInvalid"    # Z
 
@@ -980,7 +980,7 @@
 .end method
 
 .method public setDismissable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "dismissable"    # Z
 
@@ -989,7 +989,7 @@
 .end method
 
 .method public setEditable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "editable"    # Z
 
@@ -998,7 +998,7 @@
 .end method
 
 .method public setEnabled(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "enabled"    # Z
 
@@ -1007,7 +1007,7 @@
 .end method
 
 .method public setError(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "error"    # Ljava/lang/CharSequence;
 
@@ -1016,7 +1016,7 @@
 .end method
 
 .method public setFocusable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "focusable"    # Z
 
@@ -1025,7 +1025,7 @@
 .end method
 
 .method public setFocused(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "focused"    # Z
 
@@ -1034,7 +1034,7 @@
 .end method
 
 .method public setInputType(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "inputType"    # I
 
@@ -1043,7 +1043,7 @@
 .end method
 
 .method public setLabelFor(Ljava/lang/Object;Landroid/view/View;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "labeled"    # Landroid/view/View;
 
@@ -1052,7 +1052,7 @@
 .end method
 
 .method public setLabelFor(Ljava/lang/Object;Landroid/view/View;I)V
-    .registers 4
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "root"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I
@@ -1062,7 +1062,7 @@
 .end method
 
 .method public setLabeledBy(Ljava/lang/Object;Landroid/view/View;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "labeled"    # Landroid/view/View;
 
@@ -1071,7 +1071,7 @@
 .end method
 
 .method public setLabeledBy(Ljava/lang/Object;Landroid/view/View;I)V
-    .registers 4
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "root"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I
@@ -1081,7 +1081,7 @@
 .end method
 
 .method public setLiveRegion(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "mode"    # I
 
@@ -1090,7 +1090,7 @@
 .end method
 
 .method public setLongClickable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "longClickable"    # Z
 
@@ -1099,7 +1099,7 @@
 .end method
 
 .method public setMaxTextLength(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "max"    # I
 
@@ -1108,7 +1108,7 @@
 .end method
 
 .method public setMovementGranularities(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "granularities"    # I
 
@@ -1117,7 +1117,7 @@
 .end method
 
 .method public setMultiLine(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "multiLine"    # Z
 
@@ -1126,7 +1126,7 @@
 .end method
 
 .method public setPackageName(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "packageName"    # Ljava/lang/CharSequence;
 
@@ -1135,7 +1135,7 @@
 .end method
 
 .method public setParent(Ljava/lang/Object;Landroid/view/View;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "parent"    # Landroid/view/View;
 
@@ -1144,7 +1144,7 @@
 .end method
 
 .method public setParent(Ljava/lang/Object;Landroid/view/View;I)V
-    .registers 4
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "root"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I
@@ -1154,7 +1154,7 @@
 .end method
 
 .method public setPassword(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "password"    # Z
 
@@ -1163,7 +1163,7 @@
 .end method
 
 .method public setRangeInfo(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "rangeInfo"    # Ljava/lang/Object;
 
@@ -1172,7 +1172,7 @@
 .end method
 
 .method public setScrollable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "scrollable"    # Z
 
@@ -1181,7 +1181,7 @@
 .end method
 
 .method public setSelected(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "selected"    # Z
 
@@ -1190,7 +1190,7 @@
 .end method
 
 .method public setSource(Ljava/lang/Object;Landroid/view/View;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "source"    # Landroid/view/View;
 
@@ -1199,7 +1199,7 @@
 .end method
 
 .method public setSource(Ljava/lang/Object;Landroid/view/View;I)V
-    .registers 4
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "root"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I
@@ -1209,7 +1209,7 @@
 .end method
 
 .method public setText(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "text"    # Ljava/lang/CharSequence;
 
@@ -1218,7 +1218,7 @@
 .end method
 
 .method public setTextSelection(Ljava/lang/Object;II)V
-    .registers 4
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "start"    # I
     .param p3, "end"    # I
@@ -1228,7 +1228,7 @@
 .end method
 
 .method public setTraversalAfter(Ljava/lang/Object;Landroid/view/View;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "view"    # Landroid/view/View;
 
@@ -1237,7 +1237,7 @@
 .end method
 
 .method public setTraversalAfter(Ljava/lang/Object;Landroid/view/View;I)V
-    .registers 4
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "root"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I
@@ -1247,7 +1247,7 @@
 .end method
 
 .method public setTraversalBefore(Ljava/lang/Object;Landroid/view/View;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "view"    # Landroid/view/View;
 
@@ -1256,7 +1256,7 @@
 .end method
 
 .method public setTraversalBefore(Ljava/lang/Object;Landroid/view/View;I)V
-    .registers 4
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "root"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I
@@ -1266,7 +1266,7 @@
 .end method
 
 .method public setViewIdResourceName(Ljava/lang/Object;Ljava/lang/String;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "viewId"    # Ljava/lang/String;
 
@@ -1275,7 +1275,7 @@
 .end method
 
 .method public setVisibleToUser(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "visibleToUser"    # Z
 

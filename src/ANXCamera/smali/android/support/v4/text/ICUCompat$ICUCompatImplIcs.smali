@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 36
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public maximizeAndGetScript(Ljava/util/Locale;)Ljava/lang/String;
-    .registers 3
+    .locals 1
     .param p1, "locale"    # Ljava/util/Locale;
 
     .line 39

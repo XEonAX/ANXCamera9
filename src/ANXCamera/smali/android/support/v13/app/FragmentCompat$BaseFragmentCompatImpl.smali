@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 41
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public requestPermissions(Landroid/app/Fragment;[Ljava/lang/String;I)V
-    .registers 6
+    .locals 2
     .param p1, "fragment"    # Landroid/app/Fragment;
     .param p2, "permissions"    # [Ljava/lang/String;
     .param p3, "requestCode"    # I
@@ -57,7 +57,7 @@
 .end method
 
 .method public setMenuVisibility(Landroid/app/Fragment;Z)V
-    .registers 3
+    .locals 0
     .param p1, "f"    # Landroid/app/Fragment;
     .param p2, "visible"    # Z
 
@@ -66,7 +66,7 @@
 .end method
 
 .method public setUserVisibleHint(Landroid/app/Fragment;Z)V
-    .registers 3
+    .locals 0
     .param p1, "f"    # Landroid/app/Fragment;
     .param p2, "deferStart"    # Z
 
@@ -75,7 +75,7 @@
 .end method
 
 .method public shouldShowRequestPermissionRationale(Landroid/app/Fragment;Ljava/lang/String;)Z
-    .registers 4
+    .locals 1
     .param p1, "fragment"    # Landroid/app/Fragment;
     .param p2, "permission"    # Ljava/lang/String;
 

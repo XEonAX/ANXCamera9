@@ -11,14 +11,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 33
     const/4 v0, 0x4
 
     new-array v0, v0, [I
 
-    fill-array-data v0, :array_12
+    fill-array-data v0, :array_0
 
     sput-object v0, Lcom/google/zxing/oned/ITFWriter;->START_PATTERN:[I
 
@@ -27,7 +27,7 @@
 
     new-array v0, v0, [I
 
-    fill-array-data v0, :array_1e
+    fill-array-data v0, :array_1
 
     sput-object v0, Lcom/google/zxing/oned/ITFWriter;->END_PATTERN:[I
 
@@ -35,7 +35,7 @@
 
     nop
 
-    :array_12
+    :array_0
     .array-data 4
         0x1
         0x1
@@ -43,7 +43,7 @@
         0x1
     .end array-data
 
-    :array_1e
+    :array_1
     .array-data 4
         0x3
         0x1
@@ -52,7 +52,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 31
     invoke-direct {p0}, Lcom/google/zxing/oned/OneDimensionalCodeWriter;-><init>()V
@@ -63,7 +63,7 @@
 
 # virtual methods
 .method public encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;IILjava/util/Map;)Lcom/google/zxing/common/BitMatrix;
-    .registers 9
+    .locals 3
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "format"    # Lcom/google/zxing/BarcodeFormat;
     .param p3, "width"    # I
@@ -91,7 +91,7 @@
     .local p5, "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/EncodeHintType;*>;"
     sget-object v0, Lcom/google/zxing/BarcodeFormat;->ITF:Lcom/google/zxing/BarcodeFormat;
 
-    if-ne p2, v0, :cond_9
+    if-ne p2, v0, :cond_0
 
     .line 46
     invoke-super/range {p0 .. p5}, Lcom/google/zxing/oned/OneDimensionalCodeWriter;->encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;IILjava/util/Map;)Lcom/google/zxing/common/BitMatrix;
@@ -101,7 +101,7 @@
     return-object v0
 
     .line 43
-    :cond_9
+    :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -122,7 +122,7 @@
 .end method
 
 .method public encode(Ljava/lang/String;)[Z
-    .registers 14
+    .locals 12
     .param p1, "contents"    # Ljava/lang/String;
 
     .line 51
@@ -134,12 +134,12 @@
     .local v0, "length":I
     rem-int/lit8 v1, v0, 0x2
 
-    if-nez v1, :cond_74
+    if-nez v1, :cond_3
 
     .line 55
     const/16 v1, 0x50
 
-    if-gt v0, v1, :cond_60
+    if-gt v0, v1, :cond_2
 
     .line 59
     const/16 v1, 0x9
@@ -167,8 +167,8 @@
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_1c
-    if-lt v3, v0, :cond_24
+    :goto_0
+    if-lt v3, v0, :cond_0
 
     .line 71
     .end local v3    # "i":I
@@ -181,7 +181,7 @@
 
     .line 62
     .restart local v3    # "i":I
-    :cond_24
+    :cond_0
     invoke-virtual {p1, v3}, Ljava/lang/String;->charAt(I)C
 
     move-result v5
@@ -215,10 +215,10 @@
     const/4 v8, 0x0
 
     .local v8, "j":I
-    :goto_3d
+    :goto_1
     const/4 v9, 0x5
 
-    if-lt v8, v9, :cond_48
+    if-lt v8, v9, :cond_1
 
     .line 69
     .end local v8    # "j":I
@@ -234,14 +234,14 @@
     .end local v7    # "encoding":[I
     add-int/lit8 v3, v3, 0x2
 
-    goto :goto_1c
+    goto :goto_0
 
     .line 66
     .restart local v5    # "one":I
     .restart local v6    # "two":I
     .restart local v7    # "encoding":[I
     .restart local v8    # "j":I
-    :cond_48
+    :cond_1
     const/4 v9, 0x2
 
     mul-int v10, v9, v8
@@ -270,7 +270,7 @@
     .line 65
     add-int/lit8 v8, v8, 0x1
 
-    goto :goto_3d
+    goto :goto_1
 
     .line 56
     .end local v1    # "result":[Z
@@ -280,7 +280,7 @@
     .end local v6    # "two":I
     .end local v7    # "encoding":[I
     .end local v8    # "j":I
-    :cond_60
+    :cond_2
     new-instance v1, Ljava/lang/IllegalArgumentException;
 
     .line 57
@@ -302,7 +302,7 @@
     throw v1
 
     .line 53
-    :cond_74
+    :cond_3
     new-instance v1, Ljava/lang/IllegalArgumentException;
 
     const-string v2, "The lenght of the input should be even"

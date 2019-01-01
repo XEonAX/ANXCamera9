@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 1457
     invoke-direct {p0}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoIcsImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public addChild(Ljava/lang/Object;Landroid/view/View;I)V
-    .registers 4
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "child"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I
@@ -40,7 +40,7 @@
 .end method
 
 .method public findFocus(Ljava/lang/Object;I)Ljava/lang/Object;
-    .registers 4
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "focus"    # I
 
@@ -53,7 +53,7 @@
 .end method
 
 .method public focusSearch(Ljava/lang/Object;I)Ljava/lang/Object;
-    .registers 4
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "direction"    # I
 
@@ -66,7 +66,7 @@
 .end method
 
 .method public getMovementGranularities(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1515
@@ -78,7 +78,7 @@
 .end method
 
 .method public isAccessibilityFocused(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1495
@@ -90,7 +90,7 @@
 .end method
 
 .method public isVisibleToUser(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1485
@@ -102,7 +102,7 @@
 .end method
 
 .method public obtain(Landroid/view/View;I)Ljava/lang/Object;
-    .registers 4
+    .locals 1
     .param p1, "root"    # Landroid/view/View;
     .param p2, "virtualDescendantId"    # I
 
@@ -115,7 +115,7 @@
 .end method
 
 .method public performAction(Ljava/lang/Object;ILandroid/os/Bundle;)Z
-    .registers 5
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "action"    # I
     .param p3, "arguments"    # Landroid/os/Bundle;
@@ -129,7 +129,7 @@
 .end method
 
 .method public setAccessibilityFocused(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "focused"    # Z
 
@@ -141,7 +141,7 @@
 .end method
 
 .method public setMovementGranularities(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "granularities"    # I
 
@@ -153,7 +153,7 @@
 .end method
 
 .method public setParent(Ljava/lang/Object;Landroid/view/View;I)V
-    .registers 4
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "root"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I
@@ -166,7 +166,7 @@
 .end method
 
 .method public setSource(Ljava/lang/Object;Landroid/view/View;I)V
-    .registers 4
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "root"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I
@@ -179,7 +179,7 @@
 .end method
 
 .method public setVisibleToUser(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "visibleToUser"    # Z
 

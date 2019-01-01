@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 2171
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public build(ILjava/lang/CharSequence;Landroid/app/PendingIntent;Landroid/os/Bundle;[Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput;)Landroid/support/v4/app/NotificationCompat$Action;
-    .registers 14
+    .locals 8
     .param p1, "icon"    # I
     .param p2, "title"    # Ljava/lang/CharSequence;
     .param p3, "actionIntent"    # Landroid/app/PendingIntent;
@@ -62,7 +62,7 @@
 .end method
 
 .method public bridge synthetic build(ILjava/lang/CharSequence;Landroid/app/PendingIntent;Landroid/os/Bundle;[Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput;)Landroid/support/v4/app/NotificationCompatBase$Action;
-    .registers 7
+    .locals 1
     .param p1, "x0"    # I
     .param p2, "x1"    # Ljava/lang/CharSequence;
     .param p3, "x2"    # Landroid/app/PendingIntent;
@@ -78,7 +78,7 @@
 .end method
 
 .method public newArray(I)[Landroid/support/v4/app/NotificationCompat$Action;
-    .registers 3
+    .locals 1
     .param p1, "length"    # I
 
     .line 2182
@@ -88,7 +88,7 @@
 .end method
 
 .method public bridge synthetic newArray(I)[Landroid/support/v4/app/NotificationCompatBase$Action;
-    .registers 3
+    .locals 1
     .param p1, "x0"    # I
 
     .line 2171

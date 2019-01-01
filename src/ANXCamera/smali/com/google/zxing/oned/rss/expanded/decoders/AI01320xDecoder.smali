@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/zxing/common/BitArray;)V
-    .registers 2
+    .locals 0
     .param p1, "information"    # Lcom/google/zxing/common/BitArray;
 
     .line 37
@@ -18,14 +18,14 @@
 
 # virtual methods
 .method protected addWeightCode(Ljava/lang/StringBuilder;I)V
-    .registers 4
+    .locals 1
     .param p1, "buf"    # Ljava/lang/StringBuilder;
     .param p2, "weight"    # I
 
     .line 42
     const/16 v0, 0x2710
 
-    if-ge p2, v0, :cond_a
+    if-ge p2, v0, :cond_0
 
     .line 43
     const-string v0, "(3202)"
@@ -33,33 +33,33 @@
     invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 44
-    goto :goto_f
+    goto :goto_0
 
     .line 45
-    :cond_a
+    :cond_0
     const-string v0, "(3203)"
 
     invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 47
-    :goto_f
+    :goto_0
     return-void
 .end method
 
 .method protected checkWeight(I)I
-    .registers 3
+    .locals 1
     .param p1, "weight"    # I
 
     .line 51
     const/16 v0, 0x2710
 
-    if-ge p1, v0, :cond_5
+    if-ge p1, v0, :cond_0
 
     .line 52
     return p1
 
     .line 54
-    :cond_5
+    :cond_0
     add-int/lit16 v0, p1, -0x2710
 
     return v0

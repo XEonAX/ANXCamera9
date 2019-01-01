@@ -37,7 +37,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 71
     invoke-direct {p0}, Landroid/support/v4/app/Fragment;-><init>()V
@@ -68,30 +68,30 @@
 .end method
 
 .method private ensureList()V
-    .registers 5
+    .locals 4
 
     .line 323
     iget-object v0, p0, Landroid/support/v4/app/ListFragment;->mList:Landroid/widget/ListView;
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_0
 
     .line 324
     return-void
 
     .line 326
-    :cond_5
+    :cond_0
     invoke-virtual {p0}, Landroid/support/v4/app/ListFragment;->getView()Landroid/view/View;
 
     move-result-object v0
 
     .line 327
     .local v0, "root":Landroid/view/View;
-    if-eqz v0, :cond_ae
+    if-eqz v0, :cond_9
 
     .line 330
     instance-of v1, v0, Landroid/widget/ListView;
 
-    if-eqz v1, :cond_15
+    if-eqz v1, :cond_1
 
     .line 331
     move-object v1, v0
@@ -100,10 +100,10 @@
 
     iput-object v1, p0, Landroid/support/v4/app/ListFragment;->mList:Landroid/widget/ListView;
 
-    goto :goto_87
+    goto :goto_1
 
     .line 333
-    :cond_15
+    :cond_1
     const v1, 0xff0001
 
     invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
@@ -117,7 +117,7 @@
     .line 334
     iget-object v1, p0, Landroid/support/v4/app/ListFragment;->mStandardEmptyView:Landroid/widget/TextView;
 
-    if-nez v1, :cond_2e
+    if-nez v1, :cond_2
 
     .line 335
     const v1, 0x1020004
@@ -128,10 +128,10 @@
 
     iput-object v1, p0, Landroid/support/v4/app/ListFragment;->mEmptyView:Landroid/view/View;
 
-    goto :goto_35
+    goto :goto_0
 
     .line 337
-    :cond_2e
+    :cond_2
     iget-object v1, p0, Landroid/support/v4/app/ListFragment;->mStandardEmptyView:Landroid/widget/TextView;
 
     const/16 v2, 0x8
@@ -139,7 +139,7 @@
     invoke-virtual {v1, v2}, Landroid/widget/TextView;->setVisibility(I)V
 
     .line 339
-    :goto_35
+    :goto_0
     const v1, 0xff0002
 
     invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
@@ -168,10 +168,10 @@
     .local v1, "rawListView":Landroid/view/View;
     instance-of v2, v1, Landroid/widget/ListView;
 
-    if-nez v2, :cond_64
+    if-nez v2, :cond_4
 
     .line 343
-    if-nez v1, :cond_5c
+    if-nez v1, :cond_3
 
     .line 344
     new-instance v2, Ljava/lang/RuntimeException;
@@ -183,7 +183,7 @@
     throw v2
 
     .line 348
-    :cond_5c
+    :cond_3
     new-instance v2, Ljava/lang/RuntimeException;
 
     const-string v3, "Content has view with id attribute \'android.R.id.list\' that is not a ListView class"
@@ -193,7 +193,7 @@
     throw v2
 
     .line 352
-    :cond_64
+    :cond_4
     move-object v2, v1
 
     check-cast v2, Landroid/widget/ListView;
@@ -203,7 +203,7 @@
     .line 353
     iget-object v2, p0, Landroid/support/v4/app/ListFragment;->mEmptyView:Landroid/view/View;
 
-    if-eqz v2, :cond_75
+    if-eqz v2, :cond_5
 
     .line 354
     iget-object v2, p0, Landroid/support/v4/app/ListFragment;->mList:Landroid/widget/ListView;
@@ -212,13 +212,13 @@
 
     invoke-virtual {v2, v3}, Landroid/widget/ListView;->setEmptyView(Landroid/view/View;)V
 
-    goto :goto_87
+    goto :goto_1
 
     .line 355
-    :cond_75
+    :cond_5
     iget-object v2, p0, Landroid/support/v4/app/ListFragment;->mEmptyText:Ljava/lang/CharSequence;
 
-    if-eqz v2, :cond_87
+    if-eqz v2, :cond_6
 
     .line 356
     iget-object v2, p0, Landroid/support/v4/app/ListFragment;->mStandardEmptyView:Landroid/widget/TextView;
@@ -236,8 +236,8 @@
 
     .line 360
     .end local v1    # "rawListView":Landroid/view/View;
-    :cond_87
-    :goto_87
+    :cond_6
+    :goto_1
     const/4 v1, 0x1
 
     iput-boolean v1, p0, Landroid/support/v4/app/ListFragment;->mListShown:Z
@@ -252,7 +252,7 @@
     .line 362
     iget-object v1, p0, Landroid/support/v4/app/ListFragment;->mAdapter:Landroid/widget/ListAdapter;
 
-    if-eqz v1, :cond_9e
+    if-eqz v1, :cond_7
 
     .line 363
     iget-object v1, p0, Landroid/support/v4/app/ListFragment;->mAdapter:Landroid/widget/ListAdapter;
@@ -268,13 +268,13 @@
 
     .line 366
     .end local v1    # "adapter":Landroid/widget/ListAdapter;
-    goto :goto_a6
+    goto :goto_2
 
     .line 369
-    :cond_9e
+    :cond_7
     iget-object v1, p0, Landroid/support/v4/app/ListFragment;->mProgressContainer:Landroid/view/View;
 
-    if-eqz v1, :cond_a6
+    if-eqz v1, :cond_8
 
     .line 370
     const/4 v1, 0x0
@@ -282,8 +282,8 @@
     invoke-direct {p0, v1, v1}, Landroid/support/v4/app/ListFragment;->setListShown(ZZ)V
 
     .line 373
-    :cond_a6
-    :goto_a6
+    :cond_8
+    :goto_2
     iget-object v1, p0, Landroid/support/v4/app/ListFragment;->mHandler:Landroid/os/Handler;
 
     iget-object v2, p0, Landroid/support/v4/app/ListFragment;->mRequestFocus:Ljava/lang/Runnable;
@@ -294,7 +294,7 @@
     return-void
 
     .line 328
-    :cond_ae
+    :cond_9
     new-instance v1, Ljava/lang/IllegalStateException;
 
     const-string v2, "Content view not yet created"
@@ -305,7 +305,7 @@
 .end method
 
 .method private setListShown(ZZ)V
-    .registers 9
+    .locals 6
     .param p1, "shown"    # Z
     .param p2, "animate"    # Z
 
@@ -315,18 +315,18 @@
     .line 281
     iget-object v0, p0, Landroid/support/v4/app/ListFragment;->mProgressContainer:Landroid/view/View;
 
-    if-eqz v0, :cond_7c
+    if-eqz v0, :cond_4
 
     .line 284
     iget-boolean v0, p0, Landroid/support/v4/app/ListFragment;->mListShown:Z
 
-    if-ne v0, p1, :cond_c
+    if-ne v0, p1, :cond_0
 
     .line 285
     return-void
 
     .line 287
-    :cond_c
+    :cond_0
     iput-boolean p1, p0, Landroid/support/v4/app/ListFragment;->mListShown:Z
 
     .line 288
@@ -338,10 +338,10 @@
 
     const v3, 0x10a0001
 
-    if-eqz p1, :cond_4a
+    if-eqz p1, :cond_2
 
     .line 289
-    if-eqz p2, :cond_35
+    if-eqz p2, :cond_1
 
     .line 290
     iget-object v4, p0, Landroid/support/v4/app/ListFragment;->mProgressContainer:Landroid/view/View;
@@ -369,10 +369,10 @@
 
     invoke-virtual {v3, v2}, Landroid/view/View;->startAnimation(Landroid/view/animation/Animation;)V
 
-    goto :goto_3f
+    goto :goto_0
 
     .line 295
-    :cond_35
+    :cond_1
     iget-object v2, p0, Landroid/support/v4/app/ListFragment;->mProgressContainer:Landroid/view/View;
 
     invoke-virtual {v2}, Landroid/view/View;->clearAnimation()V
@@ -383,7 +383,7 @@
     invoke-virtual {v2}, Landroid/view/View;->clearAnimation()V
 
     .line 298
-    :goto_3f
+    :goto_0
     iget-object v2, p0, Landroid/support/v4/app/ListFragment;->mProgressContainer:Landroid/view/View;
 
     invoke-virtual {v2, v1}, Landroid/view/View;->setVisibility(I)V
@@ -393,11 +393,11 @@
 
     invoke-virtual {v1, v0}, Landroid/view/View;->setVisibility(I)V
 
-    goto :goto_7b
+    goto :goto_2
 
     .line 301
-    :cond_4a
-    if-eqz p2, :cond_67
+    :cond_2
+    if-eqz p2, :cond_3
 
     .line 302
     iget-object v4, p0, Landroid/support/v4/app/ListFragment;->mProgressContainer:Landroid/view/View;
@@ -425,10 +425,10 @@
 
     invoke-virtual {v2, v3}, Landroid/view/View;->startAnimation(Landroid/view/animation/Animation;)V
 
-    goto :goto_71
+    goto :goto_1
 
     .line 307
-    :cond_67
+    :cond_3
     iget-object v2, p0, Landroid/support/v4/app/ListFragment;->mProgressContainer:Landroid/view/View;
 
     invoke-virtual {v2}, Landroid/view/View;->clearAnimation()V
@@ -439,7 +439,7 @@
     invoke-virtual {v2}, Landroid/view/View;->clearAnimation()V
 
     .line 310
-    :goto_71
+    :goto_1
     iget-object v2, p0, Landroid/support/v4/app/ListFragment;->mProgressContainer:Landroid/view/View;
 
     invoke-virtual {v2, v0}, Landroid/view/View;->setVisibility(I)V
@@ -450,11 +450,11 @@
     invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
 
     .line 313
-    :goto_7b
+    :goto_2
     return-void
 
     .line 282
-    :cond_7c
+    :cond_4
     new-instance v0, Ljava/lang/IllegalStateException;
 
     const-string v1, "Can\'t be used with a custom content view"
@@ -467,7 +467,7 @@
 
 # virtual methods
 .method public getListAdapter()Landroid/widget/ListAdapter;
-    .registers 2
+    .locals 1
 
     .line 319
     iget-object v0, p0, Landroid/support/v4/app/ListFragment;->mAdapter:Landroid/widget/ListAdapter;
@@ -476,7 +476,7 @@
 .end method
 
 .method public getListView()Landroid/widget/ListView;
-    .registers 2
+    .locals 1
 
     .line 222
     invoke-direct {p0}, Landroid/support/v4/app/ListFragment;->ensureList()V
@@ -488,7 +488,7 @@
 .end method
 
 .method public getSelectedItemId()J
-    .registers 3
+    .locals 2
 
     .line 214
     invoke-direct {p0}, Landroid/support/v4/app/ListFragment;->ensureList()V
@@ -504,7 +504,7 @@
 .end method
 
 .method public getSelectedItemPosition()I
-    .registers 2
+    .locals 1
 
     .line 206
     invoke-direct {p0}, Landroid/support/v4/app/ListFragment;->ensureList()V
@@ -520,7 +520,7 @@
 .end method
 
 .method public onCreateView(Landroid/view/LayoutInflater;Landroid/view/ViewGroup;Landroid/os/Bundle;)Landroid/view/View;
-    .registers 13
+    .locals 9
     .param p1, "inflater"    # Landroid/view/LayoutInflater;
     .param p2, "container"    # Landroid/view/ViewGroup;
     .param p3, "savedInstanceState"    # Landroid/os/Bundle;
@@ -673,7 +673,7 @@
 .end method
 
 .method public onDestroyView()V
-    .registers 3
+    .locals 2
 
     .line 153
     iget-object v0, p0, Landroid/support/v4/app/ListFragment;->mHandler:Landroid/os/Handler;
@@ -710,7 +710,7 @@
 .end method
 
 .method public onListItemClick(Landroid/widget/ListView;Landroid/view/View;IJ)V
-    .registers 6
+    .locals 0
     .param p1, "l"    # Landroid/widget/ListView;
     .param p2, "v"    # Landroid/view/View;
     .param p3, "position"    # I
@@ -721,7 +721,7 @@
 .end method
 
 .method public onViewCreated(Landroid/view/View;Landroid/os/Bundle;)V
-    .registers 3
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
     .param p2, "savedInstanceState"    # Landroid/os/Bundle;
 
@@ -736,7 +736,7 @@
 .end method
 
 .method public setEmptyText(Ljava/lang/CharSequence;)V
-    .registers 4
+    .locals 2
     .param p1, "text"    # Ljava/lang/CharSequence;
 
     .line 232
@@ -745,7 +745,7 @@
     .line 233
     iget-object v0, p0, Landroid/support/v4/app/ListFragment;->mStandardEmptyView:Landroid/widget/TextView;
 
-    if-eqz v0, :cond_1a
+    if-eqz v0, :cond_1
 
     .line 236
     iget-object v0, p0, Landroid/support/v4/app/ListFragment;->mStandardEmptyView:Landroid/widget/TextView;
@@ -755,7 +755,7 @@
     .line 237
     iget-object v0, p0, Landroid/support/v4/app/ListFragment;->mEmptyText:Ljava/lang/CharSequence;
 
-    if-nez v0, :cond_17
+    if-nez v0, :cond_0
 
     .line 238
     iget-object v0, p0, Landroid/support/v4/app/ListFragment;->mList:Landroid/widget/ListView;
@@ -765,14 +765,14 @@
     invoke-virtual {v0, v1}, Landroid/widget/ListView;->setEmptyView(Landroid/view/View;)V
 
     .line 240
-    :cond_17
+    :cond_0
     iput-object p1, p0, Landroid/support/v4/app/ListFragment;->mEmptyText:Ljava/lang/CharSequence;
 
     .line 241
     return-void
 
     .line 234
-    :cond_1a
+    :cond_1
     new-instance v0, Ljava/lang/IllegalStateException;
 
     const-string v1, "Can\'t be used with a custom content view"
@@ -783,7 +783,7 @@
 .end method
 
 .method public setListAdapter(Landroid/widget/ListAdapter;)V
-    .registers 6
+    .locals 4
     .param p1, "adapter"    # Landroid/widget/ListAdapter;
 
     .line 179
@@ -793,24 +793,24 @@
 
     const/4 v2, 0x1
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_0
 
     move v0, v2
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     move v0, v1
 
     .line 180
     .local v0, "hadAdapter":Z
-    :goto_9
+    :goto_0
     iput-object p1, p0, Landroid/support/v4/app/ListFragment;->mAdapter:Landroid/widget/ListAdapter;
 
     .line 181
     iget-object v3, p0, Landroid/support/v4/app/ListFragment;->mList:Landroid/widget/ListView;
 
-    if-eqz v3, :cond_29
+    if-eqz v3, :cond_2
 
     .line 182
     iget-object v3, p0, Landroid/support/v4/app/ListFragment;->mList:Landroid/widget/ListView;
@@ -820,9 +820,9 @@
     .line 183
     iget-boolean v3, p0, Landroid/support/v4/app/ListFragment;->mListShown:Z
 
-    if-nez v3, :cond_29
+    if-nez v3, :cond_2
 
-    if-nez v0, :cond_29
+    if-nez v0, :cond_2
 
     .line 186
     invoke-virtual {p0}, Landroid/support/v4/app/ListFragment;->getView()Landroid/view/View;
@@ -833,22 +833,22 @@
 
     move-result-object v3
 
-    if-eqz v3, :cond_26
+    if-eqz v3, :cond_1
 
     move v1, v2
 
     nop
 
-    :cond_26
+    :cond_1
     invoke-direct {p0, v2, v1}, Landroid/support/v4/app/ListFragment;->setListShown(ZZ)V
 
     .line 189
-    :cond_29
+    :cond_2
     return-void
 .end method
 
 .method public setListShown(Z)V
-    .registers 3
+    .locals 1
     .param p1, "shown"    # Z
 
     .line 258
@@ -861,7 +861,7 @@
 .end method
 
 .method public setListShownNoAnimation(Z)V
-    .registers 3
+    .locals 1
     .param p1, "shown"    # Z
 
     .line 266
@@ -874,7 +874,7 @@
 .end method
 
 .method public setSelection(I)V
-    .registers 3
+    .locals 1
     .param p1, "position"    # I
 
     .line 198

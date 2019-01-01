@@ -19,7 +19,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 38
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 .end method
 
 .method private static varargs buildPath(Ljava/io/File;[Ljava/lang/String;)Ljava/io/File;
-    .registers 8
+    .locals 6
     .param p0, "base"    # Ljava/io/File;
     .param p1, "segments"    # [Ljava/lang/String;
 
@@ -46,14 +46,14 @@
     const/4 v3, 0x0
 
     .local v3, "i$":I
-    :goto_4
-    if-ge v3, v2, :cond_1c
+    :goto_0
+    if-ge v3, v2, :cond_2
 
     aget-object v4, v1, v3
 
     .line 298
     .local v4, "segment":Ljava/lang/String;
-    if-nez v0, :cond_11
+    if-nez v0, :cond_0
 
     .line 299
     new-instance v5, Ljava/io/File;
@@ -62,11 +62,11 @@
 
     move-object v0, v5
 
-    goto :goto_19
+    goto :goto_1
 
     .line 300
-    :cond_11
-    if-eqz v4, :cond_19
+    :cond_0
+    if-eqz v4, :cond_1
 
     .line 301
     new-instance v5, Ljava/io/File;
@@ -77,22 +77,22 @@
 
     .line 297
     .end local v4    # "segment":Ljava/lang/String;
-    :cond_19
-    :goto_19
+    :cond_1
+    :goto_1
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_4
+    goto :goto_0
 
     .line 304
     .end local v1    # "arr$":[Ljava/lang/String;
     .end local v2    # "len$":I
     .end local v3    # "i$":I
-    :cond_1c
+    :cond_2
     return-object v0
 .end method
 
 .method public static checkSelfPermission(Landroid/content/Context;Ljava/lang/String;)I
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -103,7 +103,7 @@
     .end param
 
     .line 383
-    if-eqz p1, :cond_f
+    if-eqz p1, :cond_0
 
     .line 387
     invoke-static {}, Landroid/os/Process;->myPid()I
@@ -121,7 +121,7 @@
     return v0
 
     .line 384
-    :cond_f
+    :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "permission is null"
@@ -132,7 +132,7 @@
 .end method
 
 .method private static declared-synchronized createFilesDir(Ljava/io/File;)Ljava/io/File;
-    .registers 5
+    .locals 4
     .param p0, "file"    # Ljava/io/File;
 
     const-class v0, Landroid/support/v4/content/ContextCompat;
@@ -140,28 +140,28 @@
     monitor-enter v0
 
     .line 442
-    :try_start_3
+    :try_start_0
     invoke-virtual {p0}, Ljava/io/File;->exists()Z
 
     move-result v1
 
-    if-nez v1, :cond_34
+    if-nez v1, :cond_1
 
     .line 443
     invoke-virtual {p0}, Ljava/io/File;->mkdirs()Z
 
     move-result v1
 
-    if-nez v1, :cond_34
+    if-nez v1, :cond_1
 
     .line 444
     invoke-virtual {p0}, Ljava/io/File;->exists()Z
 
     move-result v1
-    :try_end_13
-    .catchall {:try_start_3 .. :try_end_13} :catchall_36
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    if-eqz v1, :cond_17
+    if-eqz v1, :cond_0
 
     .line 446
     monitor-exit v0
@@ -169,8 +169,8 @@
     return-object p0
 
     .line 448
-    :cond_17
-    :try_start_17
+    :cond_0
+    :try_start_1
     const-string v1, "ContextCompat"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -192,8 +192,8 @@
     move-result-object v2
 
     invoke-static {v1, v2}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_31
-    .catchall {:try_start_17 .. :try_end_31} :catchall_36
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     .line 449
     const/4 v1, 0x0
@@ -203,14 +203,14 @@
     return-object v1
 
     .line 452
-    :cond_34
+    :cond_1
     monitor-exit v0
 
     return-object p0
 
     .line 441
     .end local p0    # "file":Ljava/io/File;
-    :catchall_36
+    :catchall_0
     move-exception p0
 
     monitor-exit v0
@@ -219,7 +219,7 @@
 .end method
 
 .method public static final getColor(Landroid/content/Context;I)I
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "id"    # I
 
@@ -230,7 +230,7 @@
     .local v0, "version":I
     const/16 v1, 0x17
 
-    if-lt v0, v1, :cond_b
+    if-lt v0, v1, :cond_0
 
     .line 366
     invoke-static {p0, p1}, Landroid/support/v4/content/ContextCompatApi23;->getColor(Landroid/content/Context;I)I
@@ -240,7 +240,7 @@
     return v1
 
     .line 368
-    :cond_b
+    :cond_0
     invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
@@ -253,7 +253,7 @@
 .end method
 
 .method public static final getColorStateList(Landroid/content/Context;I)Landroid/content/res/ColorStateList;
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "id"    # I
 
@@ -264,7 +264,7 @@
     .local v0, "version":I
     const/16 v1, 0x17
 
-    if-lt v0, v1, :cond_b
+    if-lt v0, v1, :cond_0
 
     .line 344
     invoke-static {p0, p1}, Landroid/support/v4/content/ContextCompatApi23;->getColorStateList(Landroid/content/Context;I)Landroid/content/res/ColorStateList;
@@ -274,7 +274,7 @@
     return-object v1
 
     .line 346
-    :cond_b
+    :cond_0
     invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
@@ -287,7 +287,7 @@
 .end method
 
 .method public static final getDrawable(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "id"    # I
 
@@ -298,7 +298,7 @@
     .local v0, "version":I
     const/16 v1, 0x15
 
-    if-lt v0, v1, :cond_b
+    if-lt v0, v1, :cond_0
 
     .line 321
     invoke-static {p0, p1}, Landroid/support/v4/content/ContextCompatApi21;->getDrawable(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;
@@ -308,7 +308,7 @@
     return-object v1
 
     .line 323
-    :cond_b
+    :cond_0
     invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
@@ -321,7 +321,7 @@
 .end method
 
 .method public static getExternalCacheDirs(Landroid/content/Context;)[Ljava/io/File;
-    .registers 8
+    .locals 7
     .param p0, "context"    # Landroid/content/Context;
 
     .line 280
@@ -331,7 +331,7 @@
     .local v0, "version":I
     const/16 v1, 0x13
 
-    if-lt v0, v1, :cond_b
+    if-lt v0, v1, :cond_0
 
     .line 282
     invoke-static {p0}, Landroid/support/v4/content/ContextCompatKitKat;->getExternalCacheDirs(Landroid/content/Context;)[Ljava/io/File;
@@ -341,14 +341,14 @@
     return-object v1
 
     .line 285
-    :cond_b
+    :cond_0
     const/16 v1, 0x8
 
     const/4 v2, 0x1
 
     const/4 v3, 0x0
 
-    if-lt v0, v1, :cond_16
+    if-lt v0, v1, :cond_1
 
     .line 286
     invoke-static {p0}, Landroid/support/v4/content/ContextCompatFroyo;->getExternalCacheDir(Landroid/content/Context;)Ljava/io/File;
@@ -356,11 +356,11 @@
     move-result-object v1
 
     .local v1, "single":Ljava/io/File;
-    goto :goto_35
+    goto :goto_0
 
     .line 288
     .end local v1    # "single":Ljava/io/File;
-    :cond_16
+    :cond_1
     invoke-static {}, Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
 
     move-result-object v1
@@ -397,7 +397,7 @@
 
     .line 291
     .restart local v1    # "single":Ljava/io/File;
-    :goto_35
+    :goto_0
     new-array v2, v2, [Ljava/io/File;
 
     aput-object v1, v2, v3
@@ -406,7 +406,7 @@
 .end method
 
 .method public static getExternalFilesDirs(Landroid/content/Context;Ljava/lang/String;)[Ljava/io/File;
-    .registers 9
+    .locals 7
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "type"    # Ljava/lang/String;
 
@@ -417,7 +417,7 @@
     .local v0, "version":I
     const/16 v1, 0x13
 
-    if-lt v0, v1, :cond_b
+    if-lt v0, v1, :cond_0
 
     .line 222
     invoke-static {p0, p1}, Landroid/support/v4/content/ContextCompatKitKat;->getExternalFilesDirs(Landroid/content/Context;Ljava/lang/String;)[Ljava/io/File;
@@ -427,14 +427,14 @@
     return-object v1
 
     .line 225
-    :cond_b
+    :cond_0
     const/16 v1, 0x8
 
     const/4 v2, 0x1
 
     const/4 v3, 0x0
 
-    if-lt v0, v1, :cond_16
+    if-lt v0, v1, :cond_1
 
     .line 226
     invoke-static {p0, p1}, Landroid/support/v4/content/ContextCompatFroyo;->getExternalFilesDir(Landroid/content/Context;Ljava/lang/String;)Ljava/io/File;
@@ -442,11 +442,11 @@
     move-result-object v1
 
     .local v1, "single":Ljava/io/File;
-    goto :goto_38
+    goto :goto_0
 
     .line 228
     .end local v1    # "single":Ljava/io/File;
-    :cond_16
+    :cond_1
     invoke-static {}, Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
 
     move-result-object v1
@@ -487,7 +487,7 @@
 
     .line 231
     .restart local v1    # "single":Ljava/io/File;
-    :goto_38
+    :goto_0
     new-array v2, v2, [Ljava/io/File;
 
     aput-object v1, v2, v3
@@ -496,7 +496,7 @@
 .end method
 
 .method public static getObbDirs(Landroid/content/Context;)[Ljava/io/File;
-    .registers 8
+    .locals 7
     .param p0, "context"    # Landroid/content/Context;
 
     .line 160
@@ -506,7 +506,7 @@
     .local v0, "version":I
     const/16 v1, 0x13
 
-    if-lt v0, v1, :cond_b
+    if-lt v0, v1, :cond_0
 
     .line 162
     invoke-static {p0}, Landroid/support/v4/content/ContextCompatKitKat;->getObbDirs(Landroid/content/Context;)[Ljava/io/File;
@@ -516,14 +516,14 @@
     return-object v1
 
     .line 165
-    :cond_b
+    :cond_0
     const/16 v1, 0xb
 
     const/4 v2, 0x1
 
     const/4 v3, 0x0
 
-    if-lt v0, v1, :cond_16
+    if-lt v0, v1, :cond_1
 
     .line 166
     invoke-static {p0}, Landroid/support/v4/content/ContextCompatHoneycomb;->getObbDir(Landroid/content/Context;)Ljava/io/File;
@@ -531,11 +531,11 @@
     move-result-object v1
 
     .local v1, "single":Ljava/io/File;
-    goto :goto_30
+    goto :goto_0
 
     .line 168
     .end local v1    # "single":Ljava/io/File;
-    :cond_16
+    :cond_1
     invoke-static {}, Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
 
     move-result-object v1
@@ -566,7 +566,7 @@
 
     .line 171
     .restart local v1    # "single":Ljava/io/File;
-    :goto_30
+    :goto_0
     new-array v2, v2, [Ljava/io/File;
 
     aput-object v1, v2, v3
@@ -575,7 +575,7 @@
 .end method
 
 .method public static startActivities(Landroid/content/Context;[Landroid/content/Intent;)Z
-    .registers 3
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "intents"    # [Landroid/content/Intent;
 
@@ -590,7 +590,7 @@
 .end method
 
 .method public static startActivities(Landroid/content/Context;[Landroid/content/Intent;Landroid/os/Bundle;)Z
-    .registers 6
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "intents"    # [Landroid/content/Intent;
     .param p2, "options"    # Landroid/os/Bundle;
@@ -604,7 +604,7 @@
 
     const/16 v2, 0x10
 
-    if-lt v0, v2, :cond_b
+    if-lt v0, v2, :cond_0
 
     .line 107
     invoke-static {p0, p1, p2}, Landroid/support/v4/content/ContextCompatJellybean;->startActivities(Landroid/content/Context;[Landroid/content/Intent;Landroid/os/Bundle;)V
@@ -613,10 +613,10 @@
     return v1
 
     .line 109
-    :cond_b
+    :cond_0
     const/16 v2, 0xb
 
-    if-lt v0, v2, :cond_13
+    if-lt v0, v2, :cond_1
 
     .line 110
     invoke-static {p0, p1}, Landroid/support/v4/content/ContextCompatHoneycomb;->startActivities(Landroid/content/Context;[Landroid/content/Intent;)V
@@ -625,7 +625,7 @@
     return v1
 
     .line 113
-    :cond_13
+    :cond_1
     const/4 v1, 0x0
 
     return v1
@@ -634,7 +634,7 @@
 
 # virtual methods
 .method public final getCodeCacheDir(Landroid/content/Context;)Ljava/io/File;
-    .registers 7
+    .locals 5
     .param p1, "context"    # Landroid/content/Context;
 
     .line 432
@@ -644,7 +644,7 @@
     .local v0, "version":I
     const/16 v1, 0x15
 
-    if-lt v0, v1, :cond_b
+    if-lt v0, v1, :cond_0
 
     .line 434
     invoke-static {p1}, Landroid/support/v4/content/ContextCompatApi21;->getCodeCacheDir(Landroid/content/Context;)Ljava/io/File;
@@ -654,7 +654,7 @@
     return-object v1
 
     .line 436
-    :cond_b
+    :cond_0
     invoke-virtual {p1}, Landroid/content/Context;->getApplicationInfo()Landroid/content/pm/ApplicationInfo;
 
     move-result-object v1
@@ -677,7 +677,7 @@
 .end method
 
 .method public final getNoBackupFilesDir(Landroid/content/Context;)Ljava/io/File;
-    .registers 7
+    .locals 5
     .param p1, "context"    # Landroid/content/Context;
 
     .line 407
@@ -687,7 +687,7 @@
     .local v0, "version":I
     const/16 v1, 0x15
 
-    if-lt v0, v1, :cond_b
+    if-lt v0, v1, :cond_0
 
     .line 409
     invoke-static {p1}, Landroid/support/v4/content/ContextCompatApi21;->getNoBackupFilesDir(Landroid/content/Context;)Ljava/io/File;
@@ -697,7 +697,7 @@
     return-object v1
 
     .line 411
-    :cond_b
+    :cond_0
     invoke-virtual {p1}, Landroid/content/Context;->getApplicationInfo()Landroid/content/pm/ApplicationInfo;
 
     move-result-object v1

@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v7/widget/RecyclerView;)V
-    .registers 2
+    .locals 0
 
     .line 387
     iput-object p1, p0, Landroid/support/v7/widget/RecyclerView$2;->this$0:Landroid/support/v7/widget/RecyclerView;
@@ -36,14 +36,14 @@
 
 # virtual methods
 .method public run()V
-    .registers 3
+    .locals 2
 
     .line 390
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$2;->this$0:Landroid/support/v7/widget/RecyclerView;
 
     iget-object v0, v0, Landroid/support/v7/widget/RecyclerView;->mItemAnimator:Landroid/support/v7/widget/RecyclerView$ItemAnimator;
 
-    if-eqz v0, :cond_d
+    if-eqz v0, :cond_0
 
     .line 391
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$2;->this$0:Landroid/support/v7/widget/RecyclerView;
@@ -53,12 +53,11 @@
     invoke-virtual {v0}, Landroid/support/v7/widget/RecyclerView$ItemAnimator;->runPendingAnimations()V
 
     .line 393
-    :cond_d
+    :cond_0
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$2;->this$0:Landroid/support/v7/widget/RecyclerView;
 
     const/4 v1, 0x0
 
-    # setter for: Landroid/support/v7/widget/RecyclerView;->mPostedAnimatorRunner:Z
     invoke-static {v0, v1}, Landroid/support/v7/widget/RecyclerView;->access$502(Landroid/support/v7/widget/RecyclerView;Z)Z
 
     .line 394

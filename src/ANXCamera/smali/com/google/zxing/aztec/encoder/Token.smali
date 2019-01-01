@@ -13,7 +13,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 3
+    .locals 3
 
     .line 23
     new-instance v0, Lcom/google/zxing/aztec/encoder/SimpleToken;
@@ -30,7 +30,7 @@
 .end method
 
 .method constructor <init>(Lcom/google/zxing/aztec/encoder/Token;)V
-    .registers 2
+    .locals 0
     .param p1, "previous"    # Lcom/google/zxing/aztec/encoder/Token;
 
     .line 27
@@ -46,7 +46,7 @@
 
 # virtual methods
 .method final add(II)Lcom/google/zxing/aztec/encoder/Token;
-    .registers 4
+    .locals 1
     .param p1, "value"    # I
     .param p2, "bitCount"    # I
 
@@ -59,7 +59,7 @@
 .end method
 
 .method final addBinaryShift(II)Lcom/google/zxing/aztec/encoder/Token;
-    .registers 4
+    .locals 1
     .param p1, "start"    # I
     .param p2, "byteCount"    # I
 
@@ -75,7 +75,7 @@
 .end method
 
 .method final getPrevious()Lcom/google/zxing/aztec/encoder/Token;
-    .registers 2
+    .locals 1
 
     .line 32
     iget-object v0, p0, Lcom/google/zxing/aztec/encoder/Token;->previous:Lcom/google/zxing/aztec/encoder/Token;

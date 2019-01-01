@@ -48,7 +48,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 263
     new-instance v0, Landroid/support/v4/media/MediaDescriptionCompat$1;
@@ -61,7 +61,7 @@
 .end method
 
 .method private constructor <init>(Landroid/os/Parcel;)V
-    .registers 4
+    .locals 2
     .param p1, "in"    # Landroid/os/Parcel;
 
     .line 83
@@ -148,7 +148,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/os/Parcel;Landroid/support/v4/media/MediaDescriptionCompat$1;)V
-    .registers 3
+    .locals 0
     .param p1, "x0"    # Landroid/os/Parcel;
     .param p2, "x1"    # Landroid/support/v4/media/MediaDescriptionCompat$1;
 
@@ -159,7 +159,7 @@
 .end method
 
 .method private constructor <init>(Ljava/lang/String;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Landroid/graphics/Bitmap;Landroid/net/Uri;Landroid/os/Bundle;Landroid/net/Uri;)V
-    .registers 9
+    .locals 0
     .param p1, "mediaId"    # Ljava/lang/String;
     .param p2, "title"    # Ljava/lang/CharSequence;
     .param p3, "subtitle"    # Ljava/lang/CharSequence;
@@ -201,7 +201,7 @@
 .end method
 
 .method synthetic constructor <init>(Ljava/lang/String;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Landroid/graphics/Bitmap;Landroid/net/Uri;Landroid/os/Bundle;Landroid/net/Uri;Landroid/support/v4/media/MediaDescriptionCompat$1;)V
-    .registers 10
+    .locals 0
     .param p1, "x0"    # Ljava/lang/String;
     .param p2, "x1"    # Ljava/lang/CharSequence;
     .param p3, "x2"    # Ljava/lang/CharSequence;
@@ -219,22 +219,22 @@
 .end method
 
 .method public static fromMediaDescription(Ljava/lang/Object;)Landroid/support/v4/media/MediaDescriptionCompat;
-    .registers 4
+    .locals 3
     .param p0, "descriptionObj"    # Ljava/lang/Object;
 
     .line 242
-    if-eqz p0, :cond_53
+    if-eqz p0, :cond_2
 
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x15
 
-    if-ge v0, v1, :cond_9
+    if-ge v0, v1, :cond_0
 
-    goto :goto_53
+    goto :goto_0
 
     .line 246
-    :cond_9
+    :cond_0
     new-instance v0, Landroid/support/v4/media/MediaDescriptionCompat$Builder;
 
     invoke-direct {v0}, Landroid/support/v4/media/MediaDescriptionCompat$Builder;-><init>()V
@@ -294,7 +294,7 @@
 
     const/16 v2, 0x17
 
-    if-lt v1, v2, :cond_4c
+    if-lt v1, v2, :cond_1
 
     .line 255
     invoke-static {p0}, Landroid/support/v4/media/MediaDescriptionCompatApi23;->getMediaUri(Ljava/lang/Object;)Landroid/net/Uri;
@@ -304,7 +304,7 @@
     invoke-virtual {v0, v1}, Landroid/support/v4/media/MediaDescriptionCompat$Builder;->setMediaUri(Landroid/net/Uri;)Landroid/support/v4/media/MediaDescriptionCompat$Builder;
 
     .line 257
-    :cond_4c
+    :cond_1
     invoke-virtual {v0}, Landroid/support/v4/media/MediaDescriptionCompat$Builder;->build()Landroid/support/v4/media/MediaDescriptionCompat;
 
     move-result-object v1
@@ -319,8 +319,8 @@
     .line 243
     .end local v0    # "bob":Landroid/support/v4/media/MediaDescriptionCompat$Builder;
     .end local v1    # "descriptionCompat":Landroid/support/v4/media/MediaDescriptionCompat;
-    :cond_53
-    :goto_53
+    :cond_2
+    :goto_0
     const/4 v0, 0x0
 
     return-object v0
@@ -329,7 +329,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .registers 2
+    .locals 1
 
     .line 175
     const/4 v0, 0x0
@@ -338,7 +338,7 @@
 .end method
 
 .method public getDescription()Ljava/lang/CharSequence;
-    .registers 2
+    .locals 1
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 
@@ -349,7 +349,7 @@
 .end method
 
 .method public getExtras()Landroid/os/Bundle;
-    .registers 2
+    .locals 1
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 
@@ -360,7 +360,7 @@
 .end method
 
 .method public getIconBitmap()Landroid/graphics/Bitmap;
-    .registers 2
+    .locals 1
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 
@@ -371,7 +371,7 @@
 .end method
 
 .method public getIconUri()Landroid/net/Uri;
-    .registers 2
+    .locals 1
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 
@@ -382,23 +382,23 @@
 .end method
 
 .method public getMediaDescription()Ljava/lang/Object;
-    .registers 4
+    .locals 3
 
     .line 210
     iget-object v0, p0, Landroid/support/v4/media/MediaDescriptionCompat;->mDescriptionObj:Ljava/lang/Object;
 
-    if-nez v0, :cond_46
+    if-nez v0, :cond_2
 
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x15
 
-    if-ge v0, v1, :cond_b
+    if-ge v0, v1, :cond_0
 
-    goto :goto_46
+    goto :goto_0
 
     .line 213
-    :cond_b
+    :cond_0
     invoke-static {}, Landroid/support/v4/media/MediaDescriptionCompatApi21$Builder;->newInstance()Ljava/lang/Object;
 
     move-result-object v0
@@ -444,7 +444,7 @@
 
     const/16 v2, 0x17
 
-    if-lt v1, v2, :cond_3d
+    if-lt v1, v2, :cond_1
 
     .line 222
     iget-object v1, p0, Landroid/support/v4/media/MediaDescriptionCompat;->mMediaUri:Landroid/net/Uri;
@@ -452,7 +452,7 @@
     invoke-static {v0, v1}, Landroid/support/v4/media/MediaDescriptionCompatApi23$Builder;->setMediaUri(Ljava/lang/Object;Landroid/net/Uri;)V
 
     .line 224
-    :cond_3d
+    :cond_1
     invoke-static {v0}, Landroid/support/v4/media/MediaDescriptionCompatApi21$Builder;->build(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
@@ -466,15 +466,15 @@
 
     .line 211
     .end local v0    # "bob":Ljava/lang/Object;
-    :cond_46
-    :goto_46
+    :cond_2
+    :goto_0
     iget-object v0, p0, Landroid/support/v4/media/MediaDescriptionCompat;->mDescriptionObj:Ljava/lang/Object;
 
     return-object v0
 .end method
 
 .method public getMediaId()Ljava/lang/String;
-    .registers 2
+    .locals 1
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 
@@ -485,7 +485,7 @@
 .end method
 
 .method public getMediaUri()Landroid/net/Uri;
-    .registers 2
+    .locals 1
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 
@@ -496,7 +496,7 @@
 .end method
 
 .method public getSubtitle()Ljava/lang/CharSequence;
-    .registers 2
+    .locals 1
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 
@@ -507,7 +507,7 @@
 .end method
 
 .method public getTitle()Ljava/lang/CharSequence;
-    .registers 2
+    .locals 1
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 
@@ -518,7 +518,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 195
     new-instance v0, Ljava/lang/StringBuilder;
@@ -553,7 +553,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .registers 5
+    .locals 2
     .param p1, "dest"    # Landroid/os/Parcel;
     .param p2, "flags"    # I
 
@@ -562,7 +562,7 @@
 
     const/16 v1, 0x15
 
-    if-ge v0, v1, :cond_2a
+    if-ge v0, v1, :cond_0
 
     .line 181
     iget-object v0, p0, Landroid/support/v4/media/MediaDescriptionCompat;->mMediaId:Ljava/lang/String;
@@ -599,10 +599,10 @@
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeBundle(Landroid/os/Bundle;)V
 
-    goto :goto_31
+    goto :goto_0
 
     .line 189
-    :cond_2a
+    :cond_0
     invoke-virtual {p0}, Landroid/support/v4/media/MediaDescriptionCompat;->getMediaDescription()Ljava/lang/Object;
 
     move-result-object v0
@@ -610,6 +610,6 @@
     invoke-static {v0, p1, p2}, Landroid/support/v4/media/MediaDescriptionCompatApi21;->writeToParcel(Ljava/lang/Object;Landroid/os/Parcel;I)V
 
     .line 191
-    :goto_31
+    :goto_0
     return-void
 .end method

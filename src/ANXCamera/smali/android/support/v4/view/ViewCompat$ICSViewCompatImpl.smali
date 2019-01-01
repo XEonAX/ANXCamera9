@@ -22,7 +22,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 1154
     const/4 v0, 0x0
@@ -33,7 +33,7 @@
 .end method
 
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 1152
     invoke-direct {p0}, Landroid/support/v4/view/ViewCompat$HCViewCompatImpl;-><init>()V
@@ -44,13 +44,13 @@
 
 # virtual methods
 .method public animate(Landroid/view/View;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
-    .registers 4
+    .locals 2
     .param p1, "view"    # Landroid/view/View;
 
     .line 1207
     iget-object v0, p0, Landroid/support/v4/view/ViewCompat$ICSViewCompatImpl;->mViewPropertyAnimatorCompatMap:Ljava/util/WeakHashMap;
 
-    if-nez v0, :cond_b
+    if-nez v0, :cond_0
 
     .line 1208
     new-instance v0, Ljava/util/WeakHashMap;
@@ -60,7 +60,7 @@
     iput-object v0, p0, Landroid/support/v4/view/ViewCompat$ICSViewCompatImpl;->mViewPropertyAnimatorCompatMap:Ljava/util/WeakHashMap;
 
     .line 1211
-    :cond_b
+    :cond_0
     iget-object v0, p0, Landroid/support/v4/view/ViewCompat$ICSViewCompatImpl;->mViewPropertyAnimatorCompatMap:Ljava/util/WeakHashMap;
 
     invoke-virtual {v0, p1}, Ljava/util/WeakHashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -71,7 +71,7 @@
 
     .line 1212
     .local v0, "vpa":Landroid/support/v4/view/ViewPropertyAnimatorCompat;
-    if-nez v0, :cond_20
+    if-nez v0, :cond_1
 
     .line 1213
     new-instance v1, Landroid/support/v4/view/ViewPropertyAnimatorCompat;
@@ -86,12 +86,12 @@
     invoke-virtual {v1, p1, v0}, Ljava/util/WeakHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 1216
-    :cond_20
+    :cond_1
     return-object v0
 .end method
 
 .method public canScrollHorizontally(Landroid/view/View;I)Z
-    .registers 4
+    .locals 1
     .param p1, "v"    # Landroid/view/View;
     .param p2, "direction"    # I
 
@@ -104,7 +104,7 @@
 .end method
 
 .method public canScrollVertically(Landroid/view/View;I)Z
-    .registers 4
+    .locals 1
     .param p1, "v"    # Landroid/view/View;
     .param p2, "direction"    # I
 
@@ -117,7 +117,7 @@
 .end method
 
 .method public hasAccessibilityDelegate(Landroid/view/View;)Z
-    .registers 6
+    .locals 4
     .param p1, "v"    # Landroid/view/View;
 
     .line 1184
@@ -125,21 +125,21 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_6
+    if-eqz v0, :cond_0
 
     .line 1185
     return v1
 
     .line 1187
-    :cond_6
+    :cond_0
     sget-object v0, Landroid/support/v4/view/ViewCompat$ICSViewCompatImpl;->mAccessibilityDelegateField:Ljava/lang/reflect/Field;
 
     const/4 v2, 0x1
 
-    if-nez v0, :cond_1f
+    if-nez v0, :cond_1
 
     .line 1189
-    :try_start_b
+    :try_start_0
     const-class v0, Landroid/view/View;
 
     const-string v3, "mAccessibilityDelegate"
@@ -154,14 +154,14 @@
     sget-object v0, Landroid/support/v4/view/ViewCompat$ICSViewCompatImpl;->mAccessibilityDelegateField:Ljava/lang/reflect/Field;
 
     invoke-virtual {v0, v2}, Ljava/lang/reflect/Field;->setAccessible(Z)V
-    :try_end_1a
-    .catch Ljava/lang/Throwable; {:try_start_b .. :try_end_1a} :catch_1b
+    :try_end_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1195
-    goto :goto_1f
+    goto :goto_0
 
     .line 1192
-    :catch_1b
+    :catch_0
     move-exception v0
 
     .line 1193
@@ -173,28 +173,28 @@
 
     .line 1198
     .end local v0    # "t":Ljava/lang/Throwable;
-    :cond_1f
-    :goto_1f
-    :try_start_1f
+    :cond_1
+    :goto_0
+    :try_start_1
     sget-object v0, Landroid/support/v4/view/ViewCompat$ICSViewCompatImpl;->mAccessibilityDelegateField:Ljava/lang/reflect/Field;
 
     invoke-virtual {v0, p1}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_25
-    .catch Ljava/lang/Throwable; {:try_start_1f .. :try_end_25} :catch_2a
+    :try_end_1
+    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_1
 
-    if-eqz v0, :cond_29
+    if-eqz v0, :cond_2
 
     move v1, v2
 
     nop
 
-    :cond_29
+    :cond_2
     return v1
 
     .line 1199
-    :catch_2a
+    :catch_1
     move-exception v0
 
     .line 1200
@@ -206,7 +206,7 @@
 .end method
 
 .method public onInitializeAccessibilityEvent(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
-    .registers 3
+    .locals 0
     .param p1, "v"    # Landroid/view/View;
     .param p2, "event"    # Landroid/view/accessibility/AccessibilityEvent;
 
@@ -218,7 +218,7 @@
 .end method
 
 .method public onInitializeAccessibilityNodeInfo(Landroid/view/View;Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;)V
-    .registers 4
+    .locals 1
     .param p1, "v"    # Landroid/view/View;
     .param p2, "info"    # Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;
 
@@ -234,7 +234,7 @@
 .end method
 
 .method public onPopulateAccessibilityEvent(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
-    .registers 3
+    .locals 0
     .param p1, "v"    # Landroid/view/View;
     .param p2, "event"    # Landroid/view/accessibility/AccessibilityEvent;
 
@@ -246,7 +246,7 @@
 .end method
 
 .method public setAccessibilityDelegate(Landroid/view/View;Landroid/support/v4/view/AccessibilityDelegateCompat;)V
-    .registers 4
+    .locals 1
     .param p1, "v"    # Landroid/view/View;
     .param p2, "delegate"    # Landroid/support/v4/view/AccessibilityDelegateCompat;
         .annotation build Landroid/support/annotation/Nullable;
@@ -254,18 +254,18 @@
     .end param
 
     .line 1178
-    if-nez p2, :cond_4
+    if-nez p2, :cond_0
 
     const/4 v0, 0x0
 
-    goto :goto_8
+    goto :goto_0
 
-    :cond_4
+    :cond_0
     invoke-virtual {p2}, Landroid/support/v4/view/AccessibilityDelegateCompat;->getBridge()Ljava/lang/Object;
 
     move-result-object v0
 
-    :goto_8
+    :goto_0
     invoke-static {p1, v0}, Landroid/support/v4/view/ViewCompatICS;->setAccessibilityDelegate(Landroid/view/View;Ljava/lang/Object;)V
 
     .line 1180
@@ -273,7 +273,7 @@
 .end method
 
 .method public setFitsSystemWindows(Landroid/view/View;Z)V
-    .registers 3
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
     .param p2, "fitSystemWindows"    # Z
 

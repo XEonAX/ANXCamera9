@@ -14,7 +14,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 19
     invoke-direct {p0}, Landroid/support/v4/media/routing/MediaRouterJellybeanMr1;-><init>()V
@@ -24,7 +24,7 @@
 .end method
 
 .method public static addCallback(Ljava/lang/Object;ILjava/lang/Object;I)V
-    .registers 6
+    .locals 2
     .param p0, "routerObj"    # Ljava/lang/Object;
     .param p1, "types"    # I
     .param p2, "callbackObj"    # Ljava/lang/Object;
@@ -46,7 +46,7 @@
 .end method
 
 .method public static getDefaultRoute(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 2
+    .locals 1
     .param p0, "routerObj"    # Ljava/lang/Object;
 
     .line 21

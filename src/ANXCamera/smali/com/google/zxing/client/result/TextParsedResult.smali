@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/String;Ljava/lang/String;)V
-    .registers 4
+    .locals 1
     .param p1, "text"    # Ljava/lang/String;
     .param p2, "language"    # Ljava/lang/String;
 
@@ -33,7 +33,7 @@
 
 # virtual methods
 .method public getDisplayResult()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 46
     iget-object v0, p0, Lcom/google/zxing/client/result/TextParsedResult;->text:Ljava/lang/String;
@@ -42,7 +42,7 @@
 .end method
 
 .method public getLanguage()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 41
     iget-object v0, p0, Lcom/google/zxing/client/result/TextParsedResult;->language:Ljava/lang/String;
@@ -51,7 +51,7 @@
 .end method
 
 .method public getText()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 37
     iget-object v0, p0, Lcom/google/zxing/client/result/TextParsedResult;->text:Ljava/lang/String;

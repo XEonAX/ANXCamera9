@@ -13,7 +13,7 @@
 
 # direct methods
 .method public constructor <init>(Lcom/google/zxing/common/BitMatrix;[Lcom/google/zxing/ResultPoint;ZII)V
-    .registers 6
+    .locals 0
     .param p1, "bits"    # Lcom/google/zxing/common/BitMatrix;
     .param p2, "points"    # [Lcom/google/zxing/ResultPoint;
     .param p3, "compact"    # Z
@@ -39,7 +39,7 @@
 
 # virtual methods
 .method public getNbDatablocks()I
-    .registers 2
+    .locals 1
 
     .line 45
     iget v0, p0, Lcom/google/zxing/aztec/AztecDetectorResult;->nbDatablocks:I
@@ -48,7 +48,7 @@
 .end method
 
 .method public getNbLayers()I
-    .registers 2
+    .locals 1
 
     .line 41
     iget v0, p0, Lcom/google/zxing/aztec/AztecDetectorResult;->nbLayers:I
@@ -57,7 +57,7 @@
 .end method
 
 .method public isCompact()Z
-    .registers 2
+    .locals 1
 
     .line 49
     iget-boolean v0, p0, Lcom/google/zxing/aztec/AztecDetectorResult;->compact:Z

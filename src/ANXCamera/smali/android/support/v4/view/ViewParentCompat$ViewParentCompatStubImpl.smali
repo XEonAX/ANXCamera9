@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 53
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public notifySubtreeAccessibilityStateChanged(Landroid/view/ViewParent;Landroid/view/View;Landroid/view/View;I)V
-    .registers 5
+    .locals 0
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "child"    # Landroid/view/View;
     .param p3, "source"    # Landroid/view/View;
@@ -41,7 +41,7 @@
 .end method
 
 .method public onNestedFling(Landroid/view/ViewParent;Landroid/view/View;FFZ)Z
-    .registers 7
+    .locals 1
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "target"    # Landroid/view/View;
     .param p3, "velocityX"    # F
@@ -51,7 +51,7 @@
     .line 113
     instance-of v0, p1, Landroid/support/v4/view/NestedScrollingParent;
 
-    if-eqz v0, :cond_c
+    if-eqz v0, :cond_0
 
     .line 114
     move-object v0, p1
@@ -65,14 +65,14 @@
     return v0
 
     .line 117
-    :cond_c
+    :cond_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public onNestedPreFling(Landroid/view/ViewParent;Landroid/view/View;FF)Z
-    .registers 6
+    .locals 1
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "target"    # Landroid/view/View;
     .param p3, "velocityX"    # F
@@ -81,7 +81,7 @@
     .line 123
     instance-of v0, p1, Landroid/support/v4/view/NestedScrollingParent;
 
-    if-eqz v0, :cond_c
+    if-eqz v0, :cond_0
 
     .line 124
     move-object v0, p1
@@ -95,14 +95,14 @@
     return v0
 
     .line 127
-    :cond_c
+    :cond_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public onNestedPreScroll(Landroid/view/ViewParent;Landroid/view/View;II[I)V
-    .registers 7
+    .locals 1
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "target"    # Landroid/view/View;
     .param p3, "dx"    # I
@@ -112,7 +112,7 @@
     .line 105
     instance-of v0, p1, Landroid/support/v4/view/NestedScrollingParent;
 
-    if-eqz v0, :cond_a
+    if-eqz v0, :cond_0
 
     .line 106
     move-object v0, p1
@@ -122,12 +122,12 @@
     invoke-interface {v0, p2, p3, p4, p5}, Landroid/support/v4/view/NestedScrollingParent;->onNestedPreScroll(Landroid/view/View;II[I)V
 
     .line 108
-    :cond_a
+    :cond_0
     return-void
 .end method
 
 .method public onNestedScroll(Landroid/view/ViewParent;Landroid/view/View;IIII)V
-    .registers 14
+    .locals 7
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "target"    # Landroid/view/View;
     .param p3, "dxConsumed"    # I
@@ -138,7 +138,7 @@
     .line 96
     instance-of v0, p1, Landroid/support/v4/view/NestedScrollingParent;
 
-    if-eqz v0, :cond_f
+    if-eqz v0, :cond_0
 
     .line 97
     move-object v1, p1
@@ -158,12 +158,12 @@
     invoke-interface/range {v1 .. v6}, Landroid/support/v4/view/NestedScrollingParent;->onNestedScroll(Landroid/view/View;IIII)V
 
     .line 100
-    :cond_f
+    :cond_0
     return-void
 .end method
 
 .method public onNestedScrollAccepted(Landroid/view/ViewParent;Landroid/view/View;Landroid/view/View;I)V
-    .registers 6
+    .locals 1
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "child"    # Landroid/view/View;
     .param p3, "target"    # Landroid/view/View;
@@ -172,7 +172,7 @@
     .line 80
     instance-of v0, p1, Landroid/support/v4/view/NestedScrollingParent;
 
-    if-eqz v0, :cond_a
+    if-eqz v0, :cond_0
 
     .line 81
     move-object v0, p1
@@ -182,12 +182,12 @@
     invoke-interface {v0, p2, p3, p4}, Landroid/support/v4/view/NestedScrollingParent;->onNestedScrollAccepted(Landroid/view/View;Landroid/view/View;I)V
 
     .line 84
-    :cond_a
+    :cond_0
     return-void
 .end method
 
 .method public onStartNestedScroll(Landroid/view/ViewParent;Landroid/view/View;Landroid/view/View;I)Z
-    .registers 6
+    .locals 1
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "child"    # Landroid/view/View;
     .param p3, "target"    # Landroid/view/View;
@@ -196,7 +196,7 @@
     .line 70
     instance-of v0, p1, Landroid/support/v4/view/NestedScrollingParent;
 
-    if-eqz v0, :cond_c
+    if-eqz v0, :cond_0
 
     .line 71
     move-object v0, p1
@@ -210,21 +210,21 @@
     return v0
 
     .line 74
-    :cond_c
+    :cond_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public onStopNestedScroll(Landroid/view/ViewParent;Landroid/view/View;)V
-    .registers 4
+    .locals 1
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "target"    # Landroid/view/View;
 
     .line 88
     instance-of v0, p1, Landroid/support/v4/view/NestedScrollingParent;
 
-    if-eqz v0, :cond_a
+    if-eqz v0, :cond_0
 
     .line 89
     move-object v0, p1
@@ -234,18 +234,18 @@
     invoke-interface {v0, p2}, Landroid/support/v4/view/NestedScrollingParent;->onStopNestedScroll(Landroid/view/View;)V
 
     .line 91
-    :cond_a
+    :cond_0
     return-void
 .end method
 
 .method public requestSendAccessibilityEvent(Landroid/view/ViewParent;Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)Z
-    .registers 6
+    .locals 2
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "child"    # Landroid/view/View;
     .param p3, "event"    # Landroid/view/accessibility/AccessibilityEvent;
 
     .line 58
-    if-nez p2, :cond_4
+    if-nez p2, :cond_0
 
     .line 59
     const/4 v0, 0x0
@@ -253,7 +253,7 @@
     return v0
 
     .line 61
-    :cond_4
+    :cond_0
     invoke-virtual {p2}, Landroid/view/View;->getContext()Landroid/content/Context;
 
     move-result-object v0

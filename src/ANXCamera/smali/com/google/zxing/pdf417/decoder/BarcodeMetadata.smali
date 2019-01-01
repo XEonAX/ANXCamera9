@@ -17,7 +17,7 @@
 
 # direct methods
 .method constructor <init>(IIII)V
-    .registers 6
+    .locals 1
     .param p1, "columnCount"    # I
     .param p2, "rowCountUpperPart"    # I
     .param p3, "rowCountLowerPart"    # I
@@ -50,7 +50,7 @@
 
 # virtual methods
 .method getColumnCount()I
-    .registers 2
+    .locals 1
 
     .line 39
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/BarcodeMetadata;->columnCount:I
@@ -59,7 +59,7 @@
 .end method
 
 .method getErrorCorrectionLevel()I
-    .registers 2
+    .locals 1
 
     .line 43
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/BarcodeMetadata;->errorCorrectionLevel:I
@@ -68,7 +68,7 @@
 .end method
 
 .method getRowCount()I
-    .registers 2
+    .locals 1
 
     .line 47
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/BarcodeMetadata;->rowCount:I
@@ -77,7 +77,7 @@
 .end method
 
 .method getRowCountLowerPart()I
-    .registers 2
+    .locals 1
 
     .line 55
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/BarcodeMetadata;->rowCountLowerPart:I
@@ -86,7 +86,7 @@
 .end method
 
 .method getRowCountUpperPart()I
-    .registers 2
+    .locals 1
 
     .line 51
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/BarcodeMetadata;->rowCountUpperPart:I

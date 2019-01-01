@@ -34,7 +34,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 29
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -44,7 +44,7 @@
 .end method
 
 .method public static addCallback(Ljava/lang/Object;ILjava/lang/Object;)V
-    .registers 5
+    .locals 2
     .param p0, "routerObj"    # Ljava/lang/Object;
     .param p1, "types"    # I
     .param p2, "callbackObj"    # Ljava/lang/Object;
@@ -65,7 +65,7 @@
 .end method
 
 .method public static addUserRoute(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 4
+    .locals 2
     .param p0, "routerObj"    # Ljava/lang/Object;
     .param p1, "routeObj"    # Ljava/lang/Object;
 
@@ -85,7 +85,7 @@
 .end method
 
 .method public static createCallback(Landroid/support/v4/media/routing/MediaRouterJellybean$Callback;)Ljava/lang/Object;
-    .registers 2
+    .locals 1
     .param p0, "callback"    # Landroid/support/v4/media/routing/MediaRouterJellybean$Callback;
 
     .line 107
@@ -97,7 +97,7 @@
 .end method
 
 .method public static createRouteCategory(Ljava/lang/Object;Ljava/lang/String;Z)Ljava/lang/Object;
-    .registers 4
+    .locals 1
     .param p0, "routerObj"    # Ljava/lang/Object;
     .param p1, "name"    # Ljava/lang/String;
     .param p2, "isGroupable"    # Z
@@ -115,7 +115,7 @@
 .end method
 
 .method public static createUserRoute(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 4
+    .locals 2
     .param p0, "routerObj"    # Ljava/lang/Object;
     .param p1, "categoryObj"    # Ljava/lang/Object;
 
@@ -136,7 +136,7 @@
 .end method
 
 .method public static createVolumeCallback(Landroid/support/v4/media/routing/MediaRouterJellybean$VolumeCallback;)Ljava/lang/Object;
-    .registers 2
+    .locals 1
     .param p0, "callback"    # Landroid/support/v4/media/routing/MediaRouterJellybean$VolumeCallback;
 
     .line 111
@@ -148,7 +148,7 @@
 .end method
 
 .method public static getCategories(Ljava/lang/Object;)Ljava/util/List;
-    .registers 6
+    .locals 5
     .param p0, "routerObj"    # Ljava/lang/Object;
 
     .line 58
@@ -173,8 +173,8 @@
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_d
-    if-ge v3, v1, :cond_19
+    :goto_0
+    if-ge v3, v1, :cond_0
 
     .line 62
     invoke-virtual {v0, v3}, Landroid/media/MediaRouter;->getCategoryAt(I)Landroid/media/MediaRouter$RouteCategory;
@@ -186,16 +186,16 @@
     .line 61
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_d
+    goto :goto_0
 
     .line 64
     .end local v3    # "i":I
-    :cond_19
+    :cond_0
     return-object v2
 .end method
 
 .method public static getMediaRouter(Landroid/content/Context;)Ljava/lang/Object;
-    .registers 2
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
 
     .line 42
@@ -209,7 +209,7 @@
 .end method
 
 .method public static getRoutes(Ljava/lang/Object;)Ljava/util/List;
-    .registers 6
+    .locals 5
     .param p0, "routerObj"    # Ljava/lang/Object;
 
     .line 47
@@ -234,8 +234,8 @@
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_d
-    if-ge v3, v1, :cond_19
+    :goto_0
+    if-ge v3, v1, :cond_0
 
     .line 51
     invoke-virtual {v0, v3}, Landroid/media/MediaRouter;->getRouteAt(I)Landroid/media/MediaRouter$RouteInfo;
@@ -247,16 +247,16 @@
     .line 50
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_d
+    goto :goto_0
 
     .line 53
     .end local v3    # "i":I
-    :cond_19
+    :cond_0
     return-object v2
 .end method
 
 .method public static getSelectedRoute(Ljava/lang/Object;I)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p0, "routerObj"    # Ljava/lang/Object;
     .param p1, "type"    # I
 
@@ -273,7 +273,7 @@
 .end method
 
 .method public static removeCallback(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 4
+    .locals 2
     .param p0, "routerObj"    # Ljava/lang/Object;
     .param p1, "callbackObj"    # Ljava/lang/Object;
 
@@ -293,7 +293,7 @@
 .end method
 
 .method public static removeUserRoute(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 4
+    .locals 2
     .param p0, "routerObj"    # Ljava/lang/Object;
     .param p1, "routeObj"    # Ljava/lang/Object;
 
@@ -313,7 +313,7 @@
 .end method
 
 .method public static selectRoute(Ljava/lang/Object;ILjava/lang/Object;)V
-    .registers 5
+    .locals 2
     .param p0, "routerObj"    # Ljava/lang/Object;
     .param p1, "types"    # I
     .param p2, "routeObj"    # Ljava/lang/Object;

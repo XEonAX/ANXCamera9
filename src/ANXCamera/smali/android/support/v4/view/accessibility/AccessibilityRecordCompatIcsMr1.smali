@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 24
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getMaxScrollX(Ljava/lang/Object;)I
-    .registers 2
+    .locals 1
     .param p0, "record"    # Ljava/lang/Object;
 
     .line 27
@@ -30,7 +30,7 @@
 .end method
 
 .method public static getMaxScrollY(Ljava/lang/Object;)I
-    .registers 2
+    .locals 1
     .param p0, "record"    # Ljava/lang/Object;
 
     .line 31
@@ -46,7 +46,7 @@
 .end method
 
 .method public static setMaxScrollX(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 1
     .param p0, "record"    # Ljava/lang/Object;
     .param p1, "maxScrollX"    # I
 
@@ -62,7 +62,7 @@
 .end method
 
 .method public static setMaxScrollY(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 1
     .param p0, "record"    # Ljava/lang/Object;
     .param p1, "maxScrollY"    # I
 

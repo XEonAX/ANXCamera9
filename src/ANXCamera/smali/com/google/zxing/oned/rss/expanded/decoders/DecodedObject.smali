@@ -9,7 +9,7 @@
 
 # direct methods
 .method constructor <init>(I)V
-    .registers 2
+    .locals 0
     .param p1, "newPosition"    # I
 
     .line 36
@@ -25,7 +25,7 @@
 
 # virtual methods
 .method final getNewPosition()I
-    .registers 2
+    .locals 1
 
     .line 41
     iget v0, p0, Lcom/google/zxing/oned/rss/expanded/decoders/DecodedObject;->newPosition:I

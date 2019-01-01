@@ -52,7 +52,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 14
+    .locals 14
 
     .line 32
     new-instance v0, Lcom/google/zxing/DecodeHintType;
@@ -263,7 +263,7 @@
 .end method
 
 .method private constructor <init>(Ljava/lang/String;ILjava/lang/Class;)V
-    .registers 4
+    .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -284,7 +284,7 @@
 .end method
 
 .method public static valueOf(Ljava/lang/String;)Lcom/google/zxing/DecodeHintType;
-    .registers 2
+    .locals 1
 
     .line 1
     const-class v0, Lcom/google/zxing/DecodeHintType;
@@ -299,7 +299,7 @@
 .end method
 
 .method public static values()[Lcom/google/zxing/DecodeHintType;
-    .registers 4
+    .locals 4
 
     .line 1
     sget-object v0, Lcom/google/zxing/DecodeHintType;->ENUM$VALUES:[Lcom/google/zxing/DecodeHintType;
@@ -318,7 +318,7 @@
 
 # virtual methods
 .method public getValueType()Ljava/lang/Class;
-    .registers 2
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",

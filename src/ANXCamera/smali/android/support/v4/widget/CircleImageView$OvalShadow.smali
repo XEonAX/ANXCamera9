@@ -26,7 +26,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v4/widget/CircleImageView;II)V
-    .registers 12
+    .locals 8
     .param p2, "shadowRadius"    # I
     .param p3, "circleDiameter"    # I
 
@@ -44,7 +44,6 @@
     iput-object v0, p0, Landroid/support/v4/widget/CircleImageView$OvalShadow;->mShadowPaint:Landroid/graphics/Paint;
 
     .line 135
-    # setter for: Landroid/support/v4/widget/CircleImageView;->mShadowRadius:I
     invoke-static {p1, p2}, Landroid/support/v4/widget/CircleImageView;->access$002(Landroid/support/v4/widget/CircleImageView;I)I
 
     .line 136
@@ -67,7 +66,6 @@
 
     int-to-float v4, v1
 
-    # getter for: Landroid/support/v4/widget/CircleImageView;->mShadowRadius:I
     invoke-static {p1}, Landroid/support/v4/widget/CircleImageView;->access$000(Landroid/support/v4/widget/CircleImageView;)I
 
     move-result p1
@@ -76,7 +74,7 @@
 
     new-array v5, v2, [I
 
-    fill-array-data v5, :array_3a
+    fill-array-data v5, :array_0
 
     sget-object v7, Landroid/graphics/Shader$TileMode;->CLAMP:Landroid/graphics/Shader$TileMode;
 
@@ -104,7 +102,7 @@
     .line 142
     return-void
 
-    :array_3a
+    :array_0
     .array-data 4
         0x3d000000    # 0.03125f
         0x0
@@ -114,7 +112,7 @@
 
 # virtual methods
 .method public draw(Landroid/graphics/Canvas;Landroid/graphics/Paint;)V
-    .registers 9
+    .locals 6
     .param p1, "canvas"    # Landroid/graphics/Canvas;
     .param p2, "paint"    # Landroid/graphics/Paint;
 
@@ -149,7 +147,6 @@
 
     iget-object v5, p0, Landroid/support/v4/widget/CircleImageView$OvalShadow;->this$0:Landroid/support/v4/widget/CircleImageView;
 
-    # getter for: Landroid/support/v4/widget/CircleImageView;->mShadowRadius:I
     invoke-static {v5}, Landroid/support/v4/widget/CircleImageView;->access$000(Landroid/support/v4/widget/CircleImageView;)I
 
     move-result v5

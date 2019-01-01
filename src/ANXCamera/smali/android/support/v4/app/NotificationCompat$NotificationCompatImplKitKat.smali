@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 653
     invoke-direct {p0}, Landroid/support/v4/app/NotificationCompat$NotificationCompatImplJellybean;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public build(Landroid/support/v4/app/NotificationCompat$Builder;Landroid/support/v4/app/NotificationCompat$BuilderExtender;)Landroid/app/Notification;
-    .registers 37
+    .locals 34
     .param p1, "b"    # Landroid/support/v4/app/NotificationCompat$Builder;
     .param p2, "extender"    # Landroid/support/v4/app/NotificationCompat$BuilderExtender;
 
@@ -126,13 +126,11 @@
     .local v1, "builder":Landroid/support/v4/app/NotificationCompatKitKat$Builder;
     iget-object v2, v0, Landroid/support/v4/app/NotificationCompat$Builder;->mActions:Ljava/util/ArrayList;
 
-    # invokes: Landroid/support/v4/app/NotificationCompat;->addActionsToBuilder(Landroid/support/v4/app/NotificationBuilderWithActions;Ljava/util/ArrayList;)V
     invoke-static {v1, v2}, Landroid/support/v4/app/NotificationCompat;->access$000(Landroid/support/v4/app/NotificationBuilderWithActions;Ljava/util/ArrayList;)V
 
     .line 663
     iget-object v2, v0, Landroid/support/v4/app/NotificationCompat$Builder;->mStyle:Landroid/support/v4/app/NotificationCompat$Style;
 
-    # invokes: Landroid/support/v4/app/NotificationCompat;->addStyleToBuilderJellybean(Landroid/support/v4/app/NotificationBuilderWithBuilderAccessor;Landroid/support/v4/app/NotificationCompat$Style;)V
     invoke-static {v1, v2}, Landroid/support/v4/app/NotificationCompat;->access$100(Landroid/support/v4/app/NotificationBuilderWithBuilderAccessor;Landroid/support/v4/app/NotificationCompat$Style;)V
 
     .line 664
@@ -146,7 +144,7 @@
 .end method
 
 .method public getAction(Landroid/app/Notification;I)Landroid/support/v4/app/NotificationCompat$Action;
-    .registers 5
+    .locals 2
     .param p1, "n"    # Landroid/app/Notification;
     .param p2, "actionIndex"    # I
 
@@ -165,7 +163,7 @@
 .end method
 
 .method public getActionCount(Landroid/app/Notification;)I
-    .registers 3
+    .locals 1
     .param p1, "n"    # Landroid/app/Notification;
 
     .line 674
@@ -177,7 +175,7 @@
 .end method
 
 .method public getExtras(Landroid/app/Notification;)Landroid/os/Bundle;
-    .registers 3
+    .locals 1
     .param p1, "n"    # Landroid/app/Notification;
 
     .line 669
@@ -189,7 +187,7 @@
 .end method
 
 .method public getGroup(Landroid/app/Notification;)Ljava/lang/String;
-    .registers 3
+    .locals 1
     .param p1, "n"    # Landroid/app/Notification;
 
     .line 690
@@ -201,7 +199,7 @@
 .end method
 
 .method public getLocalOnly(Landroid/app/Notification;)Z
-    .registers 3
+    .locals 1
     .param p1, "n"    # Landroid/app/Notification;
 
     .line 685
@@ -213,7 +211,7 @@
 .end method
 
 .method public getSortKey(Landroid/app/Notification;)Ljava/lang/String;
-    .registers 3
+    .locals 1
     .param p1, "n"    # Landroid/app/Notification;
 
     .line 700
@@ -225,7 +223,7 @@
 .end method
 
 .method public isGroupSummary(Landroid/app/Notification;)Z
-    .registers 3
+    .locals 1
     .param p1, "n"    # Landroid/app/Notification;
 
     .line 695

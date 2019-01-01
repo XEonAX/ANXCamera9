@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 9
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -20,28 +20,28 @@
 .end method
 
 .method private static checkService()Z
-    .registers 1
+    .locals 1
 
     .line 31
     invoke-static {}, Lcom/miui/daemon/performance/PerfShielderManager;->getService()Lcom/android/internal/app/IPerfShielder;
 
     move-result-object v0
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_9
+    :goto_0
     return v0
 .end method
 
 .method public static getFreeMemory()Ljava/lang/Long;
-    .registers 4
+    .locals 4
 
     .line 35
     invoke-static {}, Lcom/miui/daemon/performance/PerfShielderManager;->checkService()Z
@@ -53,25 +53,25 @@
     .local v0, "totoalMemory":J
     sget-object v2, Lcom/miui/daemon/performance/PerfShielderManager;->sPerfManager:Lcom/android/internal/app/IPerfShielder;
 
-    if-eqz v2, :cond_19
+    if-eqz v2, :cond_0
 
     .line 39
-    :try_start_9
+    :try_start_0
     sget-object v2, Lcom/miui/daemon/performance/PerfShielderManager;->sPerfManager:Lcom/android/internal/app/IPerfShielder;
 
     invoke-interface {v2}, Lcom/android/internal/app/IPerfShielder;->getFreeMemory()J
 
     move-result-wide v2
-    :try_end_f
-    .catch Landroid/os/RemoteException; {:try_start_9 .. :try_end_f} :catch_11
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     move-wide v0, v2
 
     .line 43
-    goto :goto_19
+    goto :goto_0
 
     .line 40
-    :catch_11
+    :catch_0
     move-exception v2
 
     .line 41
@@ -85,8 +85,8 @@
 
     .line 45
     .end local v2    # "e":Landroid/os/RemoteException;
-    :cond_19
-    :goto_19
+    :cond_0
+    :goto_0
     invoke-static {v0, v1}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
 
     move-result-object v2
@@ -95,12 +95,12 @@
 .end method
 
 .method public static getService()Lcom/android/internal/app/IPerfShielder;
-    .registers 4
+    .locals 4
 
     .line 17
     sget-object v0, Lcom/miui/daemon/performance/PerfShielderManager;->sPerfManager:Lcom/android/internal/app/IPerfShielder;
 
-    if-nez v0, :cond_24
+    if-nez v0, :cond_1
 
     .line 18
     const-class v0, Lcom/miui/daemon/performance/PerfShielderManager;
@@ -108,10 +108,10 @@
     monitor-enter v0
 
     .line 19
-    :try_start_7
+    :try_start_0
     sget-object v1, Lcom/miui/daemon/performance/PerfShielderManager;->sPerfManager:Lcom/android/internal/app/IPerfShielder;
 
-    if-nez v1, :cond_1f
+    if-nez v1, :cond_0
 
     .line 20
     const-string v1, "perfshielder"
@@ -129,48 +129,48 @@
     const-class v2, Lcom/miui/daemon/performance/PerfShielderManager;
 
     monitor-enter v2
-    :try_end_18
-    .catchall {:try_start_7 .. :try_end_18} :catchall_21
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_1
 
     .line 22
-    :try_start_18
+    :try_start_1
     sput-object v1, Lcom/miui/daemon/performance/PerfShielderManager;->sPerfManager:Lcom/android/internal/app/IPerfShielder;
 
     .line 23
     monitor-exit v2
 
-    goto :goto_1f
+    goto :goto_0
 
-    :catchall_1c
+    :catchall_0
     move-exception v3
 
     monitor-exit v2
-    :try_end_1e
-    .catchall {:try_start_18 .. :try_end_1e} :catchall_1c
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    :try_start_1e
+    :try_start_2
     throw v3
 
     .line 25
     .end local v1    # "perfShielder":Lcom/android/internal/app/IPerfShielder;
-    :cond_1f
-    :goto_1f
+    :cond_0
+    :goto_0
     monitor-exit v0
 
-    goto :goto_24
+    goto :goto_1
 
-    :catchall_21
+    :catchall_1
     move-exception v1
 
     monitor-exit v0
-    :try_end_23
-    .catchall {:try_start_1e .. :try_end_23} :catchall_21
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_1
 
     throw v1
 
     .line 27
-    :cond_24
-    :goto_24
+    :cond_1
+    :goto_1
     sget-object v0, Lcom/miui/daemon/performance/PerfShielderManager;->sPerfManager:Lcom/android/internal/app/IPerfShielder;
 
     return-object v0

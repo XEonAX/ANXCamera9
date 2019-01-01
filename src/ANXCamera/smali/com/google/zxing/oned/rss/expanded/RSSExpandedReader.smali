@@ -59,21 +59,21 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 15
+    .locals 15
 
     .line 54
     const/4 v0, 0x5
 
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_1ae
+    fill-array-data v1, :array_0
 
     sput-object v1, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->SYMBOL_WIDEST:[I
 
     .line 55
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_1bc
+    fill-array-data v1, :array_1
 
     sput-object v1, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->EVEN_TOTAL_SUBSET:[I
 
@@ -114,7 +114,7 @@
     .line 59
     new-array v7, v5, [I
 
-    fill-array-data v7, :array_1ca
+    fill-array-data v7, :array_2
 
     const/4 v8, 0x0
 
@@ -123,35 +123,35 @@
     .line 60
     new-array v7, v5, [I
 
-    fill-array-data v7, :array_1d6
+    fill-array-data v7, :array_3
 
     aput-object v7, v6, v2
 
     .line 61
     new-array v7, v5, [I
 
-    fill-array-data v7, :array_1e2
+    fill-array-data v7, :array_4
 
     aput-object v7, v6, v3
 
     .line 62
     new-array v7, v5, [I
 
-    fill-array-data v7, :array_1ee
+    fill-array-data v7, :array_5
 
     aput-object v7, v6, v4
 
     .line 63
     new-array v7, v5, [I
 
-    fill-array-data v7, :array_1fa
+    fill-array-data v7, :array_6
 
     aput-object v7, v6, v5
 
     .line 64
     new-array v7, v5, [I
 
-    fill-array-data v7, :array_206
+    fill-array-data v7, :array_7
 
     aput-object v7, v6, v0
 
@@ -168,56 +168,56 @@
 
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_212
+    fill-array-data v9, :array_8
 
     aput-object v9, v6, v8
 
     .line 69
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_226
+    fill-array-data v9, :array_9
 
     aput-object v9, v6, v2
 
     .line 70
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_23a
+    fill-array-data v9, :array_a
 
     aput-object v9, v6, v3
 
     .line 71
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_24e
+    fill-array-data v9, :array_b
 
     aput-object v9, v6, v4
 
     .line 72
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_262
+    fill-array-data v9, :array_c
 
     aput-object v9, v6, v5
 
     .line 73
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_276
+    fill-array-data v9, :array_d
 
     aput-object v9, v6, v0
 
     .line 74
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_28a
+    fill-array-data v9, :array_e
 
     aput-object v9, v6, v1
 
     .line 75
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_29e
+    fill-array-data v9, :array_f
 
     const/4 v10, 0x7
 
@@ -226,14 +226,14 @@
     .line 76
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_2b2
+    fill-array-data v9, :array_10
 
     aput-object v9, v6, v7
 
     .line 77
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_2c6
+    fill-array-data v9, :array_11
 
     const/16 v11, 0x9
 
@@ -242,7 +242,7 @@
     .line 78
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_2da
+    fill-array-data v9, :array_12
 
     const/16 v12, 0xa
 
@@ -251,7 +251,7 @@
     .line 79
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_2ee
+    fill-array-data v9, :array_13
 
     const/16 v13, 0xb
 
@@ -260,7 +260,7 @@
     .line 80
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_302
+    fill-array-data v9, :array_14
 
     const/16 v14, 0xc
 
@@ -269,7 +269,7 @@
     .line 81
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_316
+    fill-array-data v9, :array_15
 
     const/16 v14, 0xd
 
@@ -278,7 +278,7 @@
     .line 82
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_32a
+    fill-array-data v9, :array_16
 
     const/16 v14, 0xe
 
@@ -287,7 +287,7 @@
     .line 83
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_33e
+    fill-array-data v9, :array_17
 
     const/16 v14, 0xf
 
@@ -296,7 +296,7 @@
     .line 84
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_352
+    fill-array-data v9, :array_18
 
     const/16 v14, 0x10
 
@@ -305,7 +305,7 @@
     .line 85
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_366
+    fill-array-data v9, :array_19
 
     const/16 v14, 0x11
 
@@ -314,7 +314,7 @@
     .line 86
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_37a
+    fill-array-data v9, :array_1a
 
     const/16 v14, 0x12
 
@@ -323,7 +323,7 @@
     .line 87
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_38e
+    fill-array-data v9, :array_1b
 
     const/16 v14, 0x13
 
@@ -332,7 +332,7 @@
     .line 88
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_3a2
+    fill-array-data v9, :array_1c
 
     const/16 v14, 0x14
 
@@ -341,7 +341,7 @@
     .line 89
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_3b6
+    fill-array-data v9, :array_1d
 
     const/16 v14, 0x15
 
@@ -350,7 +350,7 @@
     .line 90
     new-array v9, v7, [I
 
-    fill-array-data v9, :array_3ca
+    fill-array-data v9, :array_1e
 
     const/16 v14, 0x16
 
@@ -518,7 +518,7 @@
     .line 115
     return-void
 
-    :array_1ae
+    :array_0
     .array-data 4
         0x7
         0x5
@@ -527,7 +527,7 @@
         0x1
     .end array-data
 
-    :array_1bc
+    :array_1
     .array-data 4
         0x4
         0x14
@@ -536,7 +536,7 @@
         0xcc
     .end array-data
 
-    :array_1ca
+    :array_2
     .array-data 4
         0x1
         0x8
@@ -544,7 +544,7 @@
         0x1
     .end array-data
 
-    :array_1d6
+    :array_3
     .array-data 4
         0x3
         0x6
@@ -552,7 +552,7 @@
         0x1
     .end array-data
 
-    :array_1e2
+    :array_4
     .array-data 4
         0x3
         0x4
@@ -560,7 +560,7 @@
         0x1
     .end array-data
 
-    :array_1ee
+    :array_5
     .array-data 4
         0x3
         0x2
@@ -568,7 +568,7 @@
         0x1
     .end array-data
 
-    :array_1fa
+    :array_6
     .array-data 4
         0x2
         0x6
@@ -576,7 +576,7 @@
         0x1
     .end array-data
 
-    :array_206
+    :array_7
     .array-data 4
         0x2
         0x2
@@ -584,7 +584,7 @@
         0x1
     .end array-data
 
-    :array_212
+    :array_8
     .array-data 4
         0x1
         0x3
@@ -596,7 +596,7 @@
         0x4d
     .end array-data
 
-    :array_226
+    :array_9
     .array-data 4
         0x14
         0x3c
@@ -608,7 +608,7 @@
         0x3f
     .end array-data
 
-    :array_23a
+    :array_a
     .array-data 4
         0xbd
         0x91
@@ -620,7 +620,7 @@
         0xcd
     .end array-data
 
-    :array_24e
+    :array_b
     .array-data 4
         0xc1
         0x9d
@@ -632,7 +632,7 @@
         0x5b
     .end array-data
 
-    :array_262
+    :array_c
     .array-data 4
         0x3e
         0xba
@@ -644,7 +644,7 @@
         0x84
     .end array-data
 
-    :array_276
+    :array_d
     .array-data 4
         0xb9
         0x85
@@ -656,7 +656,7 @@
         0x6c
     .end array-data
 
-    :array_28a
+    :array_e
     .array-data 4
         0x71
         0x80
@@ -668,7 +668,7 @@
         0x32
     .end array-data
 
-    :array_29e
+    :array_f
     .array-data 4
         0x96
         0x1c
@@ -680,7 +680,7 @@
         0x9c
     .end array-data
 
-    :array_2b2
+    :array_10
     .array-data 4
         0x2e
         0x8a
@@ -692,7 +692,7 @@
         0xa6
     .end array-data
 
-    :array_2c6
+    :array_11
     .array-data 4
         0x4c
         0x11
@@ -704,7 +704,7 @@
         0x9b
     .end array-data
 
-    :array_2da
+    :array_12
     .array-data 4
         0x2b
         0x81
@@ -716,7 +716,7 @@
         0x92
     .end array-data
 
-    :array_2ee
+    :array_13
     .array-data 4
         0x10
         0x30
@@ -728,7 +728,7 @@
         0xb1
     .end array-data
 
-    :array_302
+    :array_14
     .array-data 4
         0x6d
         0x74
@@ -740,7 +740,7 @@
         0xa4
     .end array-data
 
-    :array_316
+    :array_15
     .array-data 4
         0x46
         0xd2
@@ -752,7 +752,7 @@
         0x73
     .end array-data
 
-    :array_32a
+    :array_16
     .array-data 4
         0x86
         0xbf
@@ -764,7 +764,7 @@
         0xbe
     .end array-data
 
-    :array_33e
+    :array_17
     .array-data 4
         0x94
         0x16
@@ -776,7 +776,7 @@
         0x2
     .end array-data
 
-    :array_352
+    :array_18
     .array-data 4
         0x6
         0x12
@@ -788,7 +788,7 @@
         0x28
     .end array-data
 
-    :array_366
+    :array_19
     .array-data 4
         0x78
         0x95
@@ -800,7 +800,7 @@
         0xa7
     .end array-data
 
-    :array_37a
+    :array_1a
     .array-data 4
         0x4f
         0x1a
@@ -812,7 +812,7 @@
         0xaf
     .end array-data
 
-    :array_38e
+    :array_1b
     .array-data 4
         0x67
         0x62
@@ -824,7 +824,7 @@
         0x7c
     .end array-data
 
-    :array_3a2
+    :array_1c
     .array-data 4
         0xa1
         0x3d
@@ -836,7 +836,7 @@
         0x9f
     .end array-data
 
-    :array_3b6
+    :array_1d
     .array-data 4
         0x37
         0xa5
@@ -848,7 +848,7 @@
         0xf
     .end array-data
 
-    :array_3ca
+    :array_1e
     .array-data 4
         0x2d
         0x87
@@ -862,7 +862,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 3
+    .locals 2
 
     .line 52
     invoke-direct {p0}, Lcom/google/zxing/oned/rss/AbstractRSSReader;-><init>()V
@@ -900,7 +900,7 @@
 .end method
 
 .method private adjustOddEvenCounts(I)V
-    .registers 14
+    .locals 12
     .param p1, "numModules"    # I
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -941,21 +941,21 @@
 
     const/4 v5, 0x1
 
-    if-ne v3, v5, :cond_1b
+    if-ne v3, v5, :cond_0
 
     move v3, v5
 
-    goto :goto_1c
+    goto :goto_0
 
-    :cond_1b
+    :cond_0
     move v3, v4
 
     .line 703
     .local v3, "oddParityBad":Z
-    :goto_1c
+    :goto_0
     and-int/lit8 v6, v1, 0x1
 
-    if-nez v6, :cond_22
+    if-nez v6, :cond_1
 
     move v4, v5
 
@@ -963,7 +963,7 @@
 
     .line 705
     .local v4, "evenParityBad":Z
-    :cond_22
+    :cond_1
     const/4 v6, 0x0
 
     .line 706
@@ -976,23 +976,23 @@
 
     const/16 v9, 0xd
 
-    if-le v0, v9, :cond_2b
+    if-le v0, v9, :cond_2
 
     .line 709
     const/4 v7, 0x1
 
     .line 710
-    goto :goto_2e
+    goto :goto_1
 
-    :cond_2b
-    if-ge v0, v8, :cond_2e
+    :cond_2
+    if-ge v0, v8, :cond_3
 
     .line 711
     const/4 v6, 0x1
 
     .line 713
-    :cond_2e
-    :goto_2e
+    :cond_3
+    :goto_1
     const/4 v10, 0x0
 
     .line 714
@@ -1001,39 +1001,39 @@
 
     .line 715
     .local v11, "decrementEven":Z
-    if-le v1, v9, :cond_34
+    if-le v1, v9, :cond_4
 
     .line 716
     const/4 v11, 0x1
 
     .line 717
-    goto :goto_37
+    goto :goto_2
 
-    :cond_34
-    if-ge v1, v8, :cond_37
+    :cond_4
+    if-ge v1, v8, :cond_5
 
     .line 718
     const/4 v10, 0x1
 
     .line 721
-    :cond_37
-    :goto_37
-    if-ne v2, v5, :cond_4d
+    :cond_5
+    :goto_2
+    if-ne v2, v5, :cond_9
 
     .line 722
-    if-eqz v3, :cond_44
+    if-eqz v3, :cond_7
 
     .line 723
-    if-nez v4, :cond_3f
+    if-nez v4, :cond_6
 
     .line 726
     const/4 v7, 0x1
 
     .line 727
-    goto :goto_79
+    goto :goto_3
 
     .line 724
-    :cond_3f
+    :cond_6
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v5
@@ -1041,17 +1041,17 @@
     throw v5
 
     .line 728
-    :cond_44
-    if-eqz v4, :cond_48
+    :cond_7
+    if-eqz v4, :cond_8
 
     .line 731
     const/4 v11, 0x1
 
     .line 733
-    goto :goto_79
+    goto :goto_3
 
     .line 729
-    :cond_48
+    :cond_8
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v5
@@ -1059,25 +1059,25 @@
     throw v5
 
     .line 733
-    :cond_4d
+    :cond_9
     const/4 v5, -0x1
 
-    if-ne v2, v5, :cond_64
+    if-ne v2, v5, :cond_d
 
     .line 734
-    if-eqz v3, :cond_5b
+    if-eqz v3, :cond_b
 
     .line 735
-    if-nez v4, :cond_56
+    if-nez v4, :cond_a
 
     .line 738
     const/4 v6, 0x1
 
     .line 739
-    goto :goto_79
+    goto :goto_3
 
     .line 736
-    :cond_56
+    :cond_a
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v5
@@ -1085,17 +1085,17 @@
     throw v5
 
     .line 740
-    :cond_5b
-    if-eqz v4, :cond_5f
+    :cond_b
+    if-eqz v4, :cond_c
 
     .line 743
     const/4 v10, 0x1
 
     .line 745
-    goto :goto_79
+    goto :goto_3
 
     .line 741
-    :cond_5f
+    :cond_c
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v5
@@ -1103,17 +1103,17 @@
     throw v5
 
     .line 745
-    :cond_64
-    if-nez v2, :cond_c3
+    :cond_d
+    if-nez v2, :cond_18
 
     .line 746
-    if-eqz v3, :cond_77
+    if-eqz v3, :cond_10
 
     .line 747
-    if-eqz v4, :cond_72
+    if-eqz v4, :cond_f
 
     .line 751
-    if-ge v0, v1, :cond_6f
+    if-ge v0, v1, :cond_e
 
     .line 752
     const/4 v6, 0x1
@@ -1122,20 +1122,20 @@
     const/4 v11, 0x1
 
     .line 754
-    goto :goto_79
+    goto :goto_3
 
     .line 755
-    :cond_6f
+    :cond_e
     const/4 v7, 0x1
 
     .line 756
     const/4 v10, 0x1
 
     .line 758
-    goto :goto_79
+    goto :goto_3
 
     .line 748
-    :cond_72
+    :cond_f
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v5
@@ -1143,15 +1143,15 @@
     throw v5
 
     .line 759
-    :cond_77
-    if-nez v4, :cond_be
+    :cond_10
+    if-nez v4, :cond_17
 
     .line 768
-    :goto_79
-    if-eqz v6, :cond_8e
+    :goto_3
+    if-eqz v6, :cond_12
 
     .line 769
-    if-nez v7, :cond_89
+    if-nez v7, :cond_11
 
     .line 772
     invoke-virtual {p0}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->getOddCounts()[I
@@ -1164,10 +1164,10 @@
 
     invoke-static {v5, v8}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->increment([I[F)V
 
-    goto :goto_8e
+    goto :goto_4
 
     .line 770
-    :cond_89
+    :cond_11
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v5
@@ -1175,9 +1175,9 @@
     throw v5
 
     .line 774
-    :cond_8e
-    :goto_8e
-    if-eqz v7, :cond_9b
+    :cond_12
+    :goto_4
+    if-eqz v7, :cond_13
 
     .line 775
     invoke-virtual {p0}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->getOddCounts()[I
@@ -1191,11 +1191,11 @@
     invoke-static {v5, v8}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->decrement([I[F)V
 
     .line 777
-    :cond_9b
-    if-eqz v10, :cond_b0
+    :cond_13
+    if-eqz v10, :cond_15
 
     .line 778
-    if-nez v11, :cond_ab
+    if-nez v11, :cond_14
 
     .line 781
     invoke-virtual {p0}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->getEvenCounts()[I
@@ -1208,10 +1208,10 @@
 
     invoke-static {v5, v8}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->increment([I[F)V
 
-    goto :goto_b0
+    goto :goto_5
 
     .line 779
-    :cond_ab
+    :cond_14
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v5
@@ -1219,9 +1219,9 @@
     throw v5
 
     .line 783
-    :cond_b0
-    :goto_b0
-    if-eqz v11, :cond_bd
+    :cond_15
+    :goto_5
+    if-eqz v11, :cond_16
 
     .line 784
     invoke-virtual {p0}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->getEvenCounts()[I
@@ -1235,11 +1235,11 @@
     invoke-static {v5, v8}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->decrement([I[F)V
 
     .line 786
-    :cond_bd
+    :cond_16
     return-void
 
     .line 760
-    :cond_be
+    :cond_17
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v5
@@ -1247,7 +1247,7 @@
     throw v5
 
     .line 765
-    :cond_c3
+    :cond_18
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v5
@@ -1256,7 +1256,7 @@
 .end method
 
 .method private checkChecksum()Z
-    .registers 11
+    .locals 10
 
     .line 384
     iget-object v0, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->pairs:Ljava/util/List;
@@ -1283,13 +1283,13 @@
 
     .line 388
     .local v3, "firstCharacter":Lcom/google/zxing/oned/rss/DataCharacter;
-    if-nez v3, :cond_14
+    if-nez v3, :cond_0
 
     .line 389
     return v1
 
     .line 392
-    :cond_14
+    :cond_0
     invoke-virtual {v3}, Lcom/google/zxing/oned/rss/DataCharacter;->getChecksumPortion()I
 
     move-result v4
@@ -1303,14 +1303,14 @@
     const/4 v6, 0x1
 
     .local v6, "i":I
-    :goto_1a
+    :goto_0
     iget-object v7, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->pairs:Ljava/util/List;
 
     invoke-interface {v7}, Ljava/util/List;->size()I
 
     move-result v7
 
-    if-lt v6, v7, :cond_31
+    if-lt v6, v7, :cond_2
 
     .line 406
     .end local v6    # "i":I
@@ -1331,16 +1331,16 @@
 
     move-result v7
 
-    if-ne v6, v7, :cond_30
+    if-ne v6, v7, :cond_1
 
     const/4 v1, 0x1
 
-    :cond_30
+    :cond_1
     return v1
 
     .line 396
     .local v6, "i":I
-    :cond_31
+    :cond_2
     iget-object v7, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->pairs:Ljava/util/List;
 
     invoke-interface {v7, v6}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -1371,7 +1371,7 @@
 
     .line 400
     .local v8, "currentRightChar":Lcom/google/zxing/oned/rss/DataCharacter;
-    if-eqz v8, :cond_51
+    if-eqz v8, :cond_3
 
     .line 401
     invoke-virtual {v8}, Lcom/google/zxing/oned/rss/DataCharacter;->getChecksumPortion()I
@@ -1386,14 +1386,14 @@
     .line 395
     .end local v7    # "currentPair":Lcom/google/zxing/oned/rss/expanded/ExpandedPair;
     .end local v8    # "currentRightChar":Lcom/google/zxing/oned/rss/DataCharacter;
-    :cond_51
+    :cond_3
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_1a
+    goto :goto_0
 .end method
 
 .method private checkRows(Ljava/util/List;I)Ljava/util/List;
-    .registers 9
+    .locals 6
     .param p2, "currentRow"    # I
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1418,14 +1418,14 @@
     move v0, p2
 
     .local v0, "i":I
-    :goto_1
+    :goto_0
     iget-object v1, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->rows:Ljava/util/List;
 
     invoke-interface {v1}, Ljava/util/List;->size()I
 
     move-result v1
 
-    if-ge v0, v1, :cond_60
+    if-ge v0, v1, :cond_3
 
     .line 221
     iget-object v1, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->rows:Ljava/util/List;
@@ -1452,8 +1452,8 @@
     const/4 v3, 0x0
 
     .local v3, "j":I
-    :goto_1b
-    if-lt v3, v2, :cond_4e
+    :goto_1
+    if-lt v3, v2, :cond_2
 
     .line 227
     .end local v3    # "j":I
@@ -1472,18 +1472,18 @@
 
     move-result v3
 
-    if-nez v3, :cond_2f
+    if-nez v3, :cond_0
 
     .line 230
-    goto :goto_4b
+    goto :goto_2
 
     .line 233
-    :cond_2f
+    :cond_0
     invoke-direct {p0}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->checkChecksum()Z
 
     move-result v3
 
-    if-eqz v3, :cond_38
+    if-eqz v3, :cond_1
 
     .line 234
     iget-object v3, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->pairs:Ljava/util/List;
@@ -1491,7 +1491,7 @@
     return-object v3
 
     .line 237
-    :cond_38
+    :cond_1
     new-instance v3, Ljava/util/ArrayList;
 
     invoke-direct {v3}, Ljava/util/ArrayList;-><init>()V
@@ -1506,33 +1506,33 @@
     .line 242
     add-int/lit8 v4, v0, 0x1
 
-    :try_start_45
+    :try_start_0
     invoke-direct {p0, v3, v4}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->checkRows(Ljava/util/List;I)Ljava/util/List;
 
     move-result-object v4
-    :try_end_49
-    .catch Lcom/google/zxing/NotFoundException; {:try_start_45 .. :try_end_49} :catch_4a
+    :try_end_0
+    .catch Lcom/google/zxing/NotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
     return-object v4
 
     .line 243
-    :catch_4a
+    :catch_0
     move-exception v4
 
     .line 220
     .end local v1    # "row":Lcom/google/zxing/oned/rss/expanded/ExpandedRow;
     .end local v2    # "size":I
     .end local v3    # "rs":Ljava/util/List;, "Ljava/util/List<Lcom/google/zxing/oned/rss/expanded/ExpandedRow;>;"
-    :goto_4b
+    :goto_2
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_1
+    goto :goto_0
 
     .line 225
     .restart local v1    # "row":Lcom/google/zxing/oned/rss/expanded/ExpandedRow;
     .restart local v2    # "size":I
     .local v3, "j":I
-    :cond_4e
+    :cond_2
     iget-object v4, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->pairs:Ljava/util/List;
 
     invoke-interface {p1, v3}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -1550,14 +1550,14 @@
     .line 224
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_1b
+    goto :goto_1
 
     .line 248
     .end local v0    # "i":I
     .end local v1    # "row":Lcom/google/zxing/oned/rss/expanded/ExpandedRow;
     .end local v2    # "size":I
     .end local v3    # "j":I
-    :cond_60
+    :cond_3
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v0
@@ -1566,7 +1566,7 @@
 .end method
 
 .method private checkRows(Z)Ljava/util/List;
-    .registers 5
+    .locals 3
     .param p1, "reverse"    # Z
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1588,7 +1588,7 @@
 
     const/16 v2, 0x19
 
-    if-le v0, v2, :cond_11
+    if-le v0, v2, :cond_0
 
     .line 194
     iget-object v0, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->rows:Ljava/util/List;
@@ -1599,13 +1599,13 @@
     return-object v1
 
     .line 198
-    :cond_11
+    :cond_0
     iget-object v0, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->pairs:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->clear()V
 
     .line 199
-    if-eqz p1, :cond_1d
+    if-eqz p1, :cond_1
 
     .line 200
     iget-object v0, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->rows:Ljava/util/List;
@@ -1613,12 +1613,12 @@
     invoke-static {v0}, Ljava/util/Collections;->reverse(Ljava/util/List;)V
 
     .line 203
-    :cond_1d
+    :cond_1
     move-object v0, v1
 
     .line 205
     .local v0, "ps":Ljava/util/List;, "Ljava/util/List<Lcom/google/zxing/oned/rss/expanded/ExpandedPair;>;"
-    :try_start_1e
+    :try_start_0
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
@@ -1628,20 +1628,20 @@
     invoke-direct {p0, v1, v2}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->checkRows(Ljava/util/List;I)Ljava/util/List;
 
     move-result-object v1
-    :try_end_28
-    .catch Lcom/google/zxing/NotFoundException; {:try_start_1e .. :try_end_28} :catch_2a
+    :try_end_0
+    .catch Lcom/google/zxing/NotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
     move-object v0, v1
 
     .line 206
-    goto :goto_2b
+    goto :goto_0
 
-    :catch_2a
+    :catch_0
     move-exception v1
 
     .line 210
-    :goto_2b
-    if-eqz p1, :cond_32
+    :goto_0
+    if-eqz p1, :cond_2
 
     .line 211
     iget-object v1, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->rows:Ljava/util/List;
@@ -1649,12 +1649,12 @@
     invoke-static {v1}, Ljava/util/Collections;->reverse(Ljava/util/List;)V
 
     .line 214
-    :cond_32
+    :cond_2
     return-object v0
 .end method
 
 .method static constructResult(Ljava/util/List;)Lcom/google/zxing/Result;
-    .registers 11
+    .locals 10
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1779,7 +1779,7 @@
 .end method
 
 .method private findNextPair(Lcom/google/zxing/common/BitArray;Ljava/util/List;I)V
-    .registers 21
+    .locals 17
     .param p1, "row"    # Lcom/google/zxing/common/BitArray;
     .param p3, "forcedOffset"    # I
     .annotation system Ldalvik/annotation/Signature;
@@ -1836,7 +1836,7 @@
 
     .line 477
     .local v7, "width":I
-    if-ltz p3, :cond_20
+    if-ltz p3, :cond_0
 
     .line 478
     move/from16 v8, p3
@@ -1846,30 +1846,30 @@
     nop
 
     .line 483
-    :goto_1d
+    :goto_0
     move-object/from16 v9, p2
 
-    goto :goto_3f
+    goto :goto_1
 
     .line 479
     .end local v8    # "rowOffset":I
-    :cond_20
+    :cond_0
     invoke-interface/range {p2 .. p2}, Ljava/util/List;->isEmpty()Z
 
     move-result v8
 
-    if-eqz v8, :cond_28
+    if-eqz v8, :cond_1
 
     .line 480
     const/4 v8, 0x0
 
     .line 481
     .restart local v8    # "rowOffset":I
-    goto :goto_1d
+    goto :goto_0
 
     .line 482
     .end local v8    # "rowOffset":I
-    :cond_28
+    :cond_1
     invoke-interface/range {p2 .. p2}, Ljava/util/List;->size()I
 
     move-result v8
@@ -1898,55 +1898,55 @@
 
     .line 485
     .local v8, "rowOffset":I
-    :goto_3f
+    :goto_1
     invoke-interface/range {p2 .. p2}, Ljava/util/List;->size()I
 
     move-result v10
 
     rem-int/2addr v10, v5
 
-    if-eqz v10, :cond_48
+    if-eqz v10, :cond_2
 
     move v10, v4
 
-    goto :goto_49
+    goto :goto_2
 
-    :cond_48
+    :cond_2
     move v10, v3
 
     .line 486
     .local v10, "searchingEvenPair":Z
-    :goto_49
+    :goto_2
     iget-boolean v11, v0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->startFromEven:Z
 
-    if-eqz v11, :cond_53
+    if-eqz v11, :cond_4
 
     .line 487
-    if-eqz v10, :cond_51
+    if-eqz v10, :cond_3
 
     move v11, v3
 
-    goto :goto_52
+    goto :goto_3
 
-    :cond_51
+    :cond_3
     move v11, v4
 
-    :goto_52
+    :goto_3
     move v10, v11
 
     .line 490
-    :cond_53
+    :cond_4
     const/4 v11, 0x0
 
     .line 491
     .local v11, "isWhite":Z
-    :goto_54
-    if-lt v8, v7, :cond_57
+    :goto_4
+    if-lt v8, v7, :cond_5
 
-    goto :goto_60
+    goto :goto_5
 
     .line 492
-    :cond_57
+    :cond_5
     invoke-virtual {v1, v8}, Lcom/google/zxing/common/BitArray;->get(I)Z
 
     move-result v12
@@ -1956,13 +1956,13 @@
     move v11, v12
 
     .line 493
-    if-nez v11, :cond_b5
+    if-nez v11, :cond_d
 
     .line 494
     nop
 
     .line 499
-    :goto_60
+    :goto_5
     const/4 v12, 0x0
 
     .line 500
@@ -1974,8 +1974,8 @@
     move v14, v8
 
     .local v14, "x":I
-    :goto_63
-    if-ge v14, v7, :cond_b0
+    :goto_6
+    if-ge v14, v7, :cond_c
 
     .line 502
     invoke-virtual {v1, v14}, Lcom/google/zxing/common/BitArray;->get(I)Z
@@ -1984,7 +1984,7 @@
 
     xor-int/2addr v15, v11
 
-    if-eqz v15, :cond_72
+    if-eqz v15, :cond_6
 
     .line 503
     aget v15, v2, v12
@@ -1994,25 +1994,25 @@
     aput v15, v2, v12
 
     .line 504
-    goto :goto_ad
+    goto :goto_9
 
     .line 505
-    :cond_72
-    if-ne v12, v6, :cond_a3
+    :cond_6
+    if-ne v12, v6, :cond_a
 
     .line 506
-    if-eqz v10, :cond_79
+    if-eqz v10, :cond_7
 
     .line 507
     invoke-static {v2}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->reverseCounters([I)V
 
     .line 510
-    :cond_79
+    :cond_7
     invoke-static {v2}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->isFinderPattern([I)Z
 
     move-result v15
 
-    if-eqz v15, :cond_88
+    if-eqz v15, :cond_8
 
     .line 511
     iget-object v5, v0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->startEnd:[I
@@ -2028,14 +2028,14 @@
     return-void
 
     .line 516
-    :cond_88
-    if-eqz v10, :cond_8d
+    :cond_8
+    if-eqz v10, :cond_9
 
     .line 517
     invoke-static {v2}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->reverseCounters([I)V
 
     .line 520
-    :cond_8d
+    :cond_9
     aget v15, v2, v3
 
     aget v16, v2, v4
@@ -2064,38 +2064,38 @@
     add-int/lit8 v12, v12, -0x1
 
     .line 526
-    goto :goto_a5
+    goto :goto_7
 
     .line 527
-    :cond_a3
+    :cond_a
     add-int/lit8 v12, v12, 0x1
 
     .line 529
-    :goto_a5
+    :goto_7
     aput v4, v2, v12
 
     .line 530
-    if-eqz v11, :cond_ab
+    if-eqz v11, :cond_b
 
     move v15, v3
 
-    goto :goto_ac
+    goto :goto_8
 
-    :cond_ab
+    :cond_b
     move v15, v4
 
-    :goto_ac
+    :goto_8
     move v11, v15
 
     .line 501
-    :goto_ad
+    :goto_9
     add-int/lit8 v14, v14, 0x1
 
-    goto :goto_63
+    goto :goto_6
 
     .line 533
     .end local v14    # "x":I
-    :cond_b0
+    :cond_c
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v3
@@ -2105,14 +2105,14 @@
     .line 496
     .end local v12    # "counterPosition":I
     .end local v13    # "patternStart":I
-    :cond_b5
+    :cond_d
     add-int/lit8 v8, v8, 0x1
 
-    goto :goto_54
+    goto :goto_4
 .end method
 
 .method private static getNextSecondBar(Lcom/google/zxing/common/BitArray;I)I
-    .registers 3
+    .locals 1
     .param p0, "row"    # Lcom/google/zxing/common/BitArray;
     .param p1, "initialPos"    # I
 
@@ -2121,7 +2121,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_f
+    if-eqz v0, :cond_0
 
     .line 416
     invoke-virtual {p0, p1}, Lcom/google/zxing/common/BitArray;->getNextUnset(I)I
@@ -2135,11 +2135,11 @@
     move-result v0
 
     .line 418
-    goto :goto_17
+    goto :goto_0
 
     .line 419
     .end local v0    # "currentPos":I
-    :cond_f
+    :cond_0
     invoke-virtual {p0, p1}, Lcom/google/zxing/common/BitArray;->getNextSet(I)I
 
     move-result v0
@@ -2151,12 +2151,12 @@
     move-result v0
 
     .line 422
-    :goto_17
+    :goto_0
     return v0
 .end method
 
 .method private static isNotA1left(Lcom/google/zxing/oned/rss/FinderPattern;ZZ)Z
-    .registers 4
+    .locals 1
     .param p0, "pattern"    # Lcom/google/zxing/oned/rss/FinderPattern;
     .param p1, "isOddPattern"    # Z
     .param p2, "leftChar"    # Z
@@ -2166,25 +2166,25 @@
 
     move-result v0
 
-    if-nez v0, :cond_c
+    if-nez v0, :cond_0
 
-    if-eqz p1, :cond_c
+    if-eqz p1, :cond_0
 
-    if-eqz p2, :cond_c
+    if-eqz p2, :cond_0
 
     const/4 v0, 0x0
 
-    goto :goto_d
+    goto :goto_0
 
-    :cond_c
+    :cond_0
     const/4 v0, 0x1
 
-    :goto_d
+    :goto_0
     return v0
 .end method
 
 .method private static isPartialRow(Ljava/lang/Iterable;Ljava/lang/Iterable;)Z
-    .registers 11
+    .locals 9
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -2204,12 +2204,12 @@
 
     move-result-object v0
 
-    :cond_4
+    :cond_0
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-nez v1, :cond_c
+    if-nez v1, :cond_1
 
     .line 357
     const/4 v0, 0x0
@@ -2217,7 +2217,7 @@
     return v0
 
     .line 337
-    :cond_c
+    :cond_1
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v1
@@ -2234,16 +2234,16 @@
 
     move-result-object v3
 
-    :cond_17
+    :cond_2
     invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
-    if-nez v4, :cond_1e
+    if-nez v4, :cond_3
 
-    goto :goto_46
+    goto :goto_1
 
-    :cond_1e
+    :cond_3
     invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v4
@@ -2264,16 +2264,16 @@
 
     move-result-object v6
 
-    :cond_2d
+    :cond_4
     invoke-interface {v6}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v7
 
-    if-nez v7, :cond_34
+    if-nez v7, :cond_5
 
-    goto :goto_42
+    goto :goto_0
 
-    :cond_34
+    :cond_5
     invoke-interface {v6}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v7
@@ -2286,7 +2286,7 @@
 
     move-result v8
 
-    if-eqz v8, :cond_2d
+    if-eqz v8, :cond_4
 
     .line 343
     const/4 v5, 0x1
@@ -2296,8 +2296,8 @@
 
     .line 347
     .end local v7    # "pp":Lcom/google/zxing/oned/rss/expanded/ExpandedPair;
-    :goto_42
-    if-nez v5, :cond_17
+    :goto_0
+    if-nez v5, :cond_2
 
     .line 348
     const/4 v2, 0x0
@@ -2308,8 +2308,8 @@
     .line 352
     .end local v4    # "p":Lcom/google/zxing/oned/rss/expanded/ExpandedPair;
     .end local v5    # "found":Z
-    :goto_46
-    if-eqz v2, :cond_4
+    :goto_1
+    if-eqz v2, :cond_0
 
     .line 354
     const/4 v0, 0x1
@@ -2318,7 +2318,7 @@
 .end method
 
 .method private static isValidSequence(Ljava/util/List;)Z
-    .registers 10
+    .locals 9
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -2338,14 +2338,14 @@
 
     move v3, v2
 
-    :goto_5
-    if-lt v3, v1, :cond_8
+    :goto_0
+    if-lt v3, v1, :cond_0
 
     .line 272
     return v2
 
     .line 254
-    :cond_8
+    :cond_0
     aget-object v4, v0, v3
 
     .line 255
@@ -2356,13 +2356,13 @@
 
     array-length v6, v4
 
-    if-le v5, v6, :cond_12
+    if-le v5, v6, :cond_1
 
     .line 256
-    goto :goto_33
+    goto :goto_3
 
     .line 259
-    :cond_12
+    :cond_1
     const/4 v5, 0x1
 
     .line 260
@@ -2370,19 +2370,19 @@
     const/4 v6, 0x0
 
     .local v6, "j":I
-    :goto_14
+    :goto_1
     invoke-interface {p0}, Ljava/util/List;->size()I
 
     move-result v7
 
-    if-lt v6, v7, :cond_1b
+    if-lt v6, v7, :cond_2
 
     .end local v6    # "j":I
-    goto :goto_2f
+    goto :goto_2
 
     .line 261
     .restart local v6    # "j":I
-    :cond_1b
+    :cond_2
     invoke-interface {p0, v6}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
     move-result-object v7
@@ -2399,7 +2399,7 @@
 
     aget v8, v4, v6
 
-    if-eq v7, v8, :cond_36
+    if-eq v7, v8, :cond_4
 
     .line 262
     const/4 v5, 0x0
@@ -2409,8 +2409,8 @@
 
     .line 267
     .end local v6    # "j":I
-    :goto_2f
-    if-eqz v5, :cond_33
+    :goto_2
+    if-eqz v5, :cond_3
 
     .line 268
     const/4 v0, 0x1
@@ -2420,24 +2420,24 @@
     .line 254
     .end local v4    # "sequence":[I
     .end local v5    # "stop":Z
-    :cond_33
-    :goto_33
+    :cond_3
+    :goto_3
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_5
+    goto :goto_0
 
     .line 260
     .restart local v4    # "sequence":[I
     .restart local v5    # "stop":Z
     .restart local v6    # "j":I
-    :cond_36
+    :cond_4
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_14
+    goto :goto_1
 .end method
 
 .method private parseFoundFinderPattern(Lcom/google/zxing/common/BitArray;IZ)Lcom/google/zxing/oned/rss/FinderPattern;
-    .registers 19
+    .locals 15
     .param p1, "row"    # Lcom/google/zxing/common/BitArray;
     .param p2, "rowNumber"    # I
     .param p3, "oddPattern"    # Z
@@ -2451,7 +2451,7 @@
 
     const/4 v3, 0x1
 
-    if-eqz p3, :cond_24
+    if-eqz p3, :cond_2
 
     .line 554
     iget-object v4, v1, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->startEnd:[I
@@ -2462,26 +2462,26 @@
 
     .line 556
     .local v4, "firstElementStart":I
-    :goto_c
-    if-ltz v4, :cond_18
+    :goto_0
+    if-ltz v4, :cond_1
 
     invoke-virtual {v2, v4}, Lcom/google/zxing/common/BitArray;->get(I)Z
 
     move-result v5
 
-    if-eqz v5, :cond_15
+    if-eqz v5, :cond_0
 
-    goto :goto_18
+    goto :goto_1
 
     .line 557
-    :cond_15
+    :cond_0
     add-int/lit8 v4, v4, -0x1
 
-    goto :goto_c
+    goto :goto_0
 
     .line 560
-    :cond_18
-    :goto_18
+    :cond_1
+    :goto_1
     add-int/2addr v4, v3
 
     .line 561
@@ -2503,13 +2503,13 @@
 
     .line 565
     .local v4, "end":I
-    goto :goto_37
+    goto :goto_2
 
     .line 568
     .end local v4    # "end":I
     .end local v5    # "firstCounter":I
     .end local v6    # "start":I
-    :cond_24
+    :cond_2
     iget-object v4, v1, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->startEnd:[I
 
     aget v6, v4, v0
@@ -2537,7 +2537,7 @@
     .end local v6    # "start":I
     .restart local v5    # "firstCounter":I
     .local v12, "start":I
-    :goto_37
+    :goto_2
     move v12, v6
 
     .line 575
@@ -2557,14 +2557,14 @@
     aput v5, v13, v0
 
     .line 581
-    :try_start_43
+    :try_start_0
     sget-object v6, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->FINDER_PATTERNS:[[I
 
     invoke-static {v13, v6}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->parseFinderValue([I[[I)I
 
     move-result v7
-    :try_end_49
-    .catch Lcom/google/zxing/NotFoundException; {:try_start_43 .. :try_end_49} :catch_5d
+    :try_end_0
+    .catch Lcom/google/zxing/NotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 582
     .local v7, "value":I
@@ -2598,7 +2598,7 @@
 
     .line 582
     .end local v7    # "value":I
-    :catch_5d
+    :catch_0
     move-exception v0
 
     .line 583
@@ -2609,7 +2609,7 @@
 .end method
 
 .method private static removePartialRows(Ljava/util/List;Ljava/util/List;)V
-    .registers 11
+    .locals 9
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -2630,13 +2630,13 @@
     move-result-object v0
 
     .local v0, "iterator":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/google/zxing/oned/rss/expanded/ExpandedRow;>;"
-    :cond_4
-    :goto_4
+    :cond_0
+    :goto_0
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-nez v1, :cond_b
+    if-nez v1, :cond_1
 
     .line 333
     .end local v0    # "iterator":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/google/zxing/oned/rss/expanded/ExpandedRow;>;"
@@ -2644,7 +2644,7 @@
 
     .line 310
     .restart local v0    # "iterator":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/google/zxing/oned/rss/expanded/ExpandedRow;>;"
-    :cond_b
+    :cond_1
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v1
@@ -2665,13 +2665,13 @@
 
     move-result v3
 
-    if-ne v2, v3, :cond_20
+    if-ne v2, v3, :cond_2
 
     .line 312
-    goto :goto_4
+    goto :goto_0
 
     .line 314
-    :cond_20
+    :cond_2
     const/4 v2, 0x1
 
     .line 315
@@ -2684,16 +2684,16 @@
 
     move-result-object v3
 
-    :cond_29
+    :cond_3
     invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
-    if-nez v4, :cond_30
+    if-nez v4, :cond_4
 
-    goto :goto_54
+    goto :goto_2
 
-    :cond_30
+    :cond_4
     invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v4
@@ -2710,16 +2710,16 @@
 
     move-result-object v6
 
-    :cond_3b
+    :cond_5
     invoke-interface {v6}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v7
 
-    if-nez v7, :cond_42
+    if-nez v7, :cond_6
 
-    goto :goto_50
+    goto :goto_1
 
-    :cond_42
+    :cond_6
     invoke-interface {v6}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v7
@@ -2732,7 +2732,7 @@
 
     move-result v8
 
-    if-eqz v8, :cond_3b
+    if-eqz v8, :cond_5
 
     .line 319
     const/4 v5, 0x1
@@ -2742,8 +2742,8 @@
 
     .line 323
     .end local v7    # "pp":Lcom/google/zxing/oned/rss/expanded/ExpandedPair;
-    :goto_50
-    if-nez v5, :cond_29
+    :goto_1
+    if-nez v5, :cond_3
 
     .line 324
     const/4 v2, 0x0
@@ -2754,19 +2754,19 @@
     .line 328
     .end local v4    # "p":Lcom/google/zxing/oned/rss/expanded/ExpandedPair;
     .end local v5    # "found":Z
-    :goto_54
-    if-eqz v2, :cond_4
+    :goto_2
+    if-eqz v2, :cond_0
 
     .line 330
     invoke-interface {v0}, Ljava/util/Iterator;->remove()V
 
     .end local v1    # "r":Lcom/google/zxing/oned/rss/expanded/ExpandedRow;
     .end local v2    # "allFound":Z
-    goto :goto_4
+    goto :goto_0
 .end method
 
 .method private static reverseCounters([I)V
-    .registers 5
+    .locals 4
     .param p0, "counters"    # [I
 
     .line 537
@@ -2777,10 +2777,10 @@
     const/4 v1, 0x0
 
     .local v1, "i":I
-    :goto_2
+    :goto_0
     div-int/lit8 v2, v0, 0x2
 
-    if-lt v1, v2, :cond_7
+    if-lt v1, v2, :cond_0
 
     .line 543
     .end local v1    # "i":I
@@ -2788,7 +2788,7 @@
 
     .line 539
     .restart local v1    # "i":I
-    :cond_7
+    :cond_0
     aget v2, p0, v1
 
     .line 540
@@ -2812,11 +2812,11 @@
     .end local v2    # "tmp":I
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_2
+    goto :goto_0
 .end method
 
 .method private storeRow(IZ)V
-    .registers 9
+    .locals 6
     .param p1, "rowNumber"    # I
     .param p2, "wasReversed"    # Z
 
@@ -2833,19 +2833,19 @@
 
     .line 280
     .local v2, "nextIsSame":Z
-    :goto_3
+    :goto_0
     iget-object v3, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->rows:Ljava/util/List;
 
     invoke-interface {v3}, Ljava/util/List;->size()I
 
     move-result v3
 
-    if-lt v0, v3, :cond_c
+    if-lt v0, v3, :cond_0
 
-    goto :goto_21
+    goto :goto_1
 
     .line 281
-    :cond_c
+    :cond_0
     iget-object v3, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->rows:Ljava/util/List;
 
     invoke-interface {v3, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -2860,7 +2860,7 @@
 
     move-result v4
 
-    if-le v4, p1, :cond_46
+    if-le v4, p1, :cond_4
 
     .line 283
     iget-object v4, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->pairs:Ljava/util/List;
@@ -2874,15 +2874,15 @@
 
     .line 289
     .end local v3    # "erow":Lcom/google/zxing/oned/rss/expanded/ExpandedRow;
-    :goto_21
-    if-nez v2, :cond_45
+    :goto_1
+    if-nez v2, :cond_3
 
-    if-eqz v1, :cond_26
+    if-eqz v1, :cond_1
 
-    goto :goto_45
+    goto :goto_2
 
     .line 298
-    :cond_26
+    :cond_1
     iget-object v3, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->pairs:Ljava/util/List;
 
     iget-object v4, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->rows:Ljava/util/List;
@@ -2891,13 +2891,13 @@
 
     move-result v3
 
-    if-eqz v3, :cond_31
+    if-eqz v3, :cond_2
 
     .line 299
     return-void
 
     .line 302
-    :cond_31
+    :cond_2
     iget-object v3, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->rows:Ljava/util/List;
 
     new-instance v4, Lcom/google/zxing/oned/rss/expanded/ExpandedRow;
@@ -2919,13 +2919,13 @@
     return-void
 
     .line 290
-    :cond_45
-    :goto_45
+    :cond_3
+    :goto_2
     return-void
 
     .line 286
     .restart local v3    # "erow":Lcom/google/zxing/oned/rss/expanded/ExpandedRow;
-    :cond_46
+    :cond_4
     iget-object v4, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->pairs:Ljava/util/List;
 
     invoke-virtual {v3, v4}, Lcom/google/zxing/oned/rss/expanded/ExpandedRow;->isEquivalent(Ljava/util/List;)Z
@@ -2936,13 +2936,13 @@
     add-int/lit8 v0, v0, 0x1
 
     .end local v3    # "erow":Lcom/google/zxing/oned/rss/expanded/ExpandedRow;
-    goto :goto_3
+    goto :goto_0
 .end method
 
 
 # virtual methods
 .method decodeDataCharacter(Lcom/google/zxing/common/BitArray;Lcom/google/zxing/oned/rss/FinderPattern;ZZ)Lcom/google/zxing/oned/rss/DataCharacter;
-    .registers 30
+    .locals 25
     .param p1, "row"    # Lcom/google/zxing/common/BitArray;
     .param p2, "pattern"    # Lcom/google/zxing/oned/rss/FinderPattern;
     .param p3, "isOddPattern"    # Z
@@ -3002,7 +3002,7 @@
     aput v2, v1, v6
 
     .line 602
-    if-eqz p4, :cond_2a
+    if-eqz p4, :cond_0
 
     .line 603
     invoke-virtual/range {p2 .. p2}, Lcom/google/zxing/oned/rss/FinderPattern;->getStartEnd()[I
@@ -3014,10 +3014,10 @@
     invoke-static {v0, v6, v1}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->recordPatternInReverse(Lcom/google/zxing/common/BitArray;I[I)V
 
     .line 604
-    goto :goto_38
+    goto :goto_1
 
     .line 605
-    :cond_2a
+    :cond_0
     invoke-virtual/range {p2 .. p2}, Lcom/google/zxing/oned/rss/FinderPattern;->getStartEnd()[I
 
     move-result-object v6
@@ -3035,13 +3035,13 @@
     sub-int/2addr v7, v3
 
     .local v7, "j":I
-    :goto_36
-    if-lt v6, v7, :cond_182
+    :goto_0
+    if-lt v6, v7, :cond_e
 
     .line 614
     .end local v6    # "i":I
     .end local v7    # "j":I
-    :goto_38
+    :goto_1
     const/16 v6, 0x11
 
     .line 615
@@ -3092,7 +3092,7 @@
 
     cmpl-float v9, v9, v10
 
-    if-gtz v9, :cond_179
+    if-gtz v9, :cond_d
 
     .line 623
     invoke-virtual/range {p0 .. p0}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->getOddCounts()[I
@@ -3122,10 +3122,10 @@
     const/4 v14, 0x0
 
     .local v14, "i":I
-    :goto_71
+    :goto_2
     array-length v10, v1
 
-    if-lt v14, v10, :cond_11f
+    if-lt v14, v10, :cond_7
 
     .line 652
     .end local v14    # "i":I
@@ -3140,16 +3140,16 @@
 
     mul-int/2addr v14, v5
 
-    if-eqz p3, :cond_82
+    if-eqz p3, :cond_1
 
     move v15, v2
 
-    goto :goto_83
+    goto :goto_3
 
-    :cond_82
+    :cond_1
     move v15, v4
 
-    :goto_83
+    :goto_3
     add-int/2addr v14, v15
 
     xor-int/lit8 v15, p4, 0x1
@@ -3173,8 +3173,8 @@
     sub-int/2addr v2, v3
 
     .local v2, "i":I
-    :goto_8d
-    if-gez v2, :cond_f9
+    :goto_4
+    if-gez v2, :cond_5
 
     .line 665
     .end local v2    # "i":I
@@ -3187,8 +3187,8 @@
     sub-int/2addr v4, v3
 
     .local v4, "i":I
-    :goto_92
-    if-gez v4, :cond_d6
+    :goto_5
+    if-gez v4, :cond_3
 
     .line 674
     .end local v4    # "i":I
@@ -3198,13 +3198,13 @@
     .local v4, "checksumPortion":I
     and-int/lit8 v19, v14, 0x1
 
-    if-nez v19, :cond_cf
+    if-nez v19, :cond_2
 
     const/16 v3, 0xd
 
-    if-gt v14, v3, :cond_cf
+    if-gt v14, v3, :cond_2
 
-    if-lt v14, v5, :cond_cf
+    if-lt v14, v5, :cond_2
 
     .line 680
     sub-int/2addr v3, v14
@@ -3290,7 +3290,7 @@
     .end local v22    # "evenWidest":I
     .end local v23    # "group":I
     .local v6, "numModules":I
-    :cond_cf
+    :cond_2
     move/from16 v20, v6
 
     .end local v6    # "numModules":I
@@ -3305,7 +3305,7 @@
     .end local v20    # "numModules":I
     .local v4, "i":I
     .restart local v6    # "numModules":I
-    :cond_d6
+    :cond_3
     move v0, v5
 
     move/from16 v20, v6
@@ -3318,7 +3318,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_f0
+    if-eqz v3, :cond_4
 
     .line 669
     sget-object v3, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->WEIGHTS:[[I
@@ -3345,7 +3345,7 @@
 
     .line 667
     .end local v3    # "weight":I
-    :cond_f0
+    :cond_4
     add-int/lit8 v4, v4, -0x1
 
     move v5, v0
@@ -3356,14 +3356,14 @@
 
     const/4 v3, 0x1
 
-    goto :goto_92
+    goto :goto_5
 
     .line 659
     .end local v4    # "i":I
     .end local v20    # "numModules":I
     .local v2, "i":I
     .restart local v6    # "numModules":I
-    :cond_f9
+    :cond_5
     move v0, v5
 
     move/from16 v20, v6
@@ -3376,7 +3376,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_111
+    if-eqz v3, :cond_6
 
     .line 660
     sget-object v3, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->WEIGHTS:[[I
@@ -3398,13 +3398,13 @@
     add-int/2addr v15, v6
 
     .end local v3    # "weight":I
-    goto :goto_112
+    goto :goto_6
 
     .line 663
-    :cond_111
+    :cond_6
     const/4 v4, 0x2
 
-    :goto_112
+    :goto_6
     aget v3, v9, v2
 
     add-int/2addr v14, v3
@@ -3420,7 +3420,7 @@
 
     const/4 v3, 0x1
 
-    goto/16 :goto_8d
+    goto/16 :goto_4
 
     .line 629
     .end local v2    # "i":I
@@ -3429,7 +3429,7 @@
     .end local v20    # "numModules":I
     .restart local v6    # "numModules":I
     .local v14, "i":I
-    :cond_11f
+    :cond_7
     move-object/from16 v10, p0
 
     move v0, v5
@@ -3462,23 +3462,23 @@
     .local v3, "count":I
     const/4 v6, 0x1
 
-    if-ge v3, v6, :cond_141
+    if-ge v3, v6, :cond_9
 
     .line 632
     const v15, 0x3e99999a    # 0.3f
 
     cmpg-float v16, v2, v15
 
-    if-ltz v16, :cond_13c
+    if-ltz v16, :cond_8
 
     .line 635
     const/4 v3, 0x1
 
     .line 636
-    goto :goto_157
+    goto :goto_7
 
     .line 633
-    :cond_13c
+    :cond_8
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v0
@@ -3486,27 +3486,27 @@
     throw v0
 
     .line 636
-    :cond_141
+    :cond_9
     const v15, 0x3e99999a    # 0.3f
 
     const/16 v0, 0x8
 
-    if-le v3, v0, :cond_157
+    if-le v3, v0, :cond_b
 
     .line 637
     const v0, 0x410b3333    # 8.7f
 
     cmpl-float v0, v2, v0
 
-    if-gtz v0, :cond_152
+    if-gtz v0, :cond_a
 
     .line 640
     const/16 v3, 0x8
 
-    goto :goto_157
+    goto :goto_7
 
     .line 638
-    :cond_152
+    :cond_a
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v0
@@ -3514,15 +3514,15 @@
     throw v0
 
     .line 642
-    :cond_157
-    :goto_157
+    :cond_b
+    :goto_7
     div-int/lit8 v0, v14, 0x2
 
     .line 643
     .local v0, "offset":I
     and-int/lit8 v16, v14, 0x1
 
-    if-nez v16, :cond_165
+    if-nez v16, :cond_c
 
     .line 644
     aput v3, v9, v0
@@ -3535,10 +3535,10 @@
     aput v4, v12, v0
 
     .line 646
-    goto :goto_16c
+    goto :goto_8
 
     .line 647
-    :cond_165
+    :cond_c
     aput v3, v11, v0
 
     .line 648
@@ -3552,7 +3552,7 @@
     .end local v0    # "offset":I
     .end local v2    # "value":F
     .end local v3    # "count":I
-    :goto_16c
+    :goto_8
     add-int/lit8 v14, v14, 0x1
 
     move v2, v5
@@ -3569,7 +3569,7 @@
 
     const/4 v5, 0x4
 
-    goto/16 :goto_71
+    goto/16 :goto_2
 
     .line 620
     .end local v9    # "oddCounts":[I
@@ -3579,7 +3579,7 @@
     .end local v14    # "i":I
     .end local v20    # "numModules":I
     .restart local v6    # "numModules":I
-    :cond_179
+    :cond_d
     move-object/from16 v10, p0
 
     move/from16 v20, v6
@@ -3597,7 +3597,7 @@
     .end local v20    # "numModules":I
     .local v6, "i":I
     .local v7, "j":I
-    :cond_182
+    :cond_e
     move-object/from16 v10, p0
 
     move v5, v2
@@ -3631,11 +3631,11 @@
 
     const/4 v5, 0x4
 
-    goto/16 :goto_36
+    goto/16 :goto_0
 .end method
 
 .method public decodeRow(ILcom/google/zxing/common/BitArray;Ljava/util/Map;)Lcom/google/zxing/Result;
-    .registers 6
+    .locals 2
     .param p1, "rowNumber"    # I
     .param p2, "row"    # Lcom/google/zxing/common/BitArray;
     .annotation system Ldalvik/annotation/Signature;
@@ -3668,7 +3668,7 @@
     iput-boolean v0, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->startFromEven:Z
 
     .line 132
-    :try_start_8
+    :try_start_0
     invoke-virtual {p0, p1, p2}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->decodeRow2pairs(ILcom/google/zxing/common/BitArray;)Ljava/util/List;
 
     move-result-object v0
@@ -3678,14 +3678,14 @@
     invoke-static {v0}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->constructResult(Ljava/util/List;)Lcom/google/zxing/Result;
 
     move-result-object v1
-    :try_end_10
-    .catch Lcom/google/zxing/NotFoundException; {:try_start_8 .. :try_end_10} :catch_11
+    :try_end_0
+    .catch Lcom/google/zxing/NotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
     return-object v1
 
     .line 134
     .end local v0    # "pairs":Ljava/util/List;, "Ljava/util/List<Lcom/google/zxing/oned/rss/expanded/ExpandedPair;>;"
-    :catch_11
+    :catch_0
     move-exception v0
 
     .line 138
@@ -3713,7 +3713,7 @@
 .end method
 
 .method decodeRow2pairs(ILcom/google/zxing/common/BitArray;)Ljava/util/List;
-    .registers 7
+    .locals 4
     .param p1, "rowNumber"    # I
     .param p2, "row"    # Lcom/google/zxing/common/BitArray;
     .annotation system Ldalvik/annotation/Signature;
@@ -3747,15 +3747,15 @@
     iget-object v1, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->pairs:Ljava/util/List;
 
     invoke-interface {v1, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-    :try_end_b
-    .catch Lcom/google/zxing/NotFoundException; {:try_start_0 .. :try_end_b} :catch_c
+    :try_end_0
+    .catch Lcom/google/zxing/NotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 153
     .end local v0    # "nextPair":Lcom/google/zxing/oned/rss/expanded/ExpandedPair;
     goto :goto_0
 
     .line 159
-    :catch_c
+    :catch_0
     move-exception v0
 
     .line 160
@@ -3766,7 +3766,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_40
+    if-nez v1, :cond_3
 
     .line 166
     .end local v0    # "nfe":Lcom/google/zxing/NotFoundException;
@@ -3774,7 +3774,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1e
+    if-eqz v0, :cond_0
 
     .line 167
     iget-object v0, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->pairs:Ljava/util/List;
@@ -3782,7 +3782,7 @@
     return-object v0
 
     .line 170
-    :cond_1e
+    :cond_0
     iget-object v0, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->rows:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
@@ -3802,7 +3802,7 @@
     invoke-direct {p0, p1, v2}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->storeRow(IZ)V
 
     .line 173
-    if-eqz v0, :cond_3b
+    if-eqz v0, :cond_2
 
     .line 176
     const/4 v3, 0x0
@@ -3813,13 +3813,13 @@
 
     .line 177
     .local v3, "ps":Ljava/util/List;, "Ljava/util/List<Lcom/google/zxing/oned/rss/expanded/ExpandedPair;>;"
-    if-eqz v3, :cond_34
+    if-eqz v3, :cond_1
 
     .line 178
     return-object v3
 
     .line 180
-    :cond_34
+    :cond_1
     invoke-direct {p0, v1}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->checkRows(Z)Ljava/util/List;
 
     move-result-object v1
@@ -3827,14 +3827,14 @@
     .line 181
     .end local v3    # "ps":Ljava/util/List;, "Ljava/util/List<Lcom/google/zxing/oned/rss/expanded/ExpandedPair;>;"
     .local v1, "ps":Ljava/util/List;, "Ljava/util/List<Lcom/google/zxing/oned/rss/expanded/ExpandedPair;>;"
-    if-eqz v1, :cond_3b
+    if-eqz v1, :cond_2
 
     .line 182
     return-object v1
 
     .line 186
     .end local v1    # "ps":Ljava/util/List;, "Ljava/util/List<Lcom/google/zxing/oned/rss/expanded/ExpandedPair;>;"
-    :cond_3b
+    :cond_2
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v1
@@ -3844,12 +3844,12 @@
     .line 161
     .end local v2    # "wasReversed":Z
     .local v0, "nfe":Lcom/google/zxing/NotFoundException;
-    :cond_40
+    :cond_3
     throw v0
 .end method
 
 .method getRows()Ljava/util/List;
-    .registers 2
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -3866,7 +3866,7 @@
 .end method
 
 .method public reset()V
-    .registers 2
+    .locals 1
 
     .line 146
     iget-object v0, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->pairs:Ljava/util/List;
@@ -3883,7 +3883,7 @@
 .end method
 
 .method retrieveNextPair(Lcom/google/zxing/common/BitArray;Ljava/util/List;I)Lcom/google/zxing/oned/rss/expanded/ExpandedPair;
-    .registers 12
+    .locals 8
     .param p1, "row"    # Lcom/google/zxing/common/BitArray;
     .param p3, "rowNumber"    # I
     .annotation system Ldalvik/annotation/Signature;
@@ -3915,37 +3915,37 @@
 
     const/4 v2, 0x1
 
-    if-nez v0, :cond_c
+    if-nez v0, :cond_0
 
     move v0, v2
 
-    goto :goto_d
+    goto :goto_0
 
-    :cond_c
+    :cond_0
     move v0, v1
 
     .line 429
     .local v0, "isOddPattern":Z
-    :goto_d
+    :goto_0
     iget-boolean v3, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->startFromEven:Z
 
-    if-eqz v3, :cond_17
+    if-eqz v3, :cond_2
 
     .line 430
-    if-eqz v0, :cond_15
+    if-eqz v0, :cond_1
 
     move v3, v1
 
-    goto :goto_16
+    goto :goto_1
 
-    :cond_15
+    :cond_1
     move v3, v2
 
-    :goto_16
+    :goto_1
     move v0, v3
 
     .line 435
-    :cond_17
+    :cond_2
     const/4 v3, 0x1
 
     .line 436
@@ -3954,7 +3954,7 @@
 
     .line 438
     .local v4, "forcedOffset":I
-    :cond_19
+    :cond_3
     invoke-direct {p0, p1, p2, v4}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->findNextPair(Lcom/google/zxing/common/BitArray;Ljava/util/List;I)V
 
     .line 439
@@ -3964,7 +3964,7 @@
 
     .line 440
     .local v5, "pattern":Lcom/google/zxing/oned/rss/FinderPattern;
-    if-nez v5, :cond_2b
+    if-nez v5, :cond_4
 
     .line 441
     iget-object v6, p0, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->startEnd:[I
@@ -3976,15 +3976,15 @@
     move-result v4
 
     .line 442
-    goto :goto_2c
+    goto :goto_2
 
     .line 443
-    :cond_2b
+    :cond_4
     const/4 v3, 0x0
 
     .line 445
-    :goto_2c
-    if-nez v3, :cond_19
+    :goto_2
+    if-nez v3, :cond_3
 
     .line 450
     invoke-virtual {p0, p1, v5, v0, v2}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->decodeDataCharacter(Lcom/google/zxing/common/BitArray;Lcom/google/zxing/oned/rss/FinderPattern;ZZ)Lcom/google/zxing/oned/rss/DataCharacter;
@@ -3997,7 +3997,7 @@
 
     move-result v7
 
-    if-nez v7, :cond_4f
+    if-nez v7, :cond_6
 
     invoke-interface {p2}, Ljava/util/List;->size()I
 
@@ -4015,12 +4015,12 @@
 
     move-result v2
 
-    if-nez v2, :cond_4a
+    if-nez v2, :cond_5
 
-    goto :goto_4f
+    goto :goto_3
 
     .line 453
-    :cond_4a
+    :cond_5
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v1
@@ -4028,21 +4028,21 @@
     throw v1
 
     .line 458
-    :cond_4f
-    :goto_4f
-    :try_start_4f
+    :cond_6
+    :goto_3
+    :try_start_0
     invoke-virtual {p0, p1, v5, v0, v1}, Lcom/google/zxing/oned/rss/expanded/RSSExpandedReader;->decodeDataCharacter(Lcom/google/zxing/common/BitArray;Lcom/google/zxing/oned/rss/FinderPattern;ZZ)Lcom/google/zxing/oned/rss/DataCharacter;
 
     move-result-object v1
-    :try_end_53
-    .catch Lcom/google/zxing/NotFoundException; {:try_start_4f .. :try_end_53} :catch_54
+    :try_end_0
+    .catch Lcom/google/zxing/NotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 459
     .local v1, "rightChar":Lcom/google/zxing/oned/rss/DataCharacter;
-    goto :goto_56
+    goto :goto_4
 
     .end local v1    # "rightChar":Lcom/google/zxing/oned/rss/DataCharacter;
-    :catch_54
+    :catch_0
     move-exception v1
 
     .line 460
@@ -4051,7 +4051,7 @@
 
     .line 462
     .local v1, "rightChar":Lcom/google/zxing/oned/rss/DataCharacter;
-    :goto_56
+    :goto_4
     const/4 v2, 0x1
 
     .line 463

@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 138
     invoke-direct {p0}, Landroid/support/v4/app/ShareCompat$ShareCompatImplICS;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public escapeHtml(Ljava/lang/CharSequence;)Ljava/lang/String;
-    .registers 3
+    .locals 1
     .param p1, "html"    # Ljava/lang/CharSequence;
 
     .line 140
@@ -39,7 +39,7 @@
 .end method
 
 .method shouldAddChooserIntent(Landroid/view/MenuItem;)Z
-    .registers 3
+    .locals 1
     .param p1, "item"    # Landroid/view/MenuItem;
 
     .line 145

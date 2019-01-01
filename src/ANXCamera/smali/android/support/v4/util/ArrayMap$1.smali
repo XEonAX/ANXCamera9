@@ -27,7 +27,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/util/ArrayMap;)V
-    .registers 2
+    .locals 0
 
     .line 73
     .local p0, "this":Landroid/support/v4/util/ArrayMap$1;, "Landroid/support/v4/util/ArrayMap.1;"
@@ -41,7 +41,7 @@
 
 # virtual methods
 .method protected colClear()V
-    .registers 2
+    .locals 1
 
     .line 116
     .local p0, "this":Landroid/support/v4/util/ArrayMap$1;, "Landroid/support/v4/util/ArrayMap.1;"
@@ -54,7 +54,7 @@
 .end method
 
 .method protected colGetEntry(II)Ljava/lang/Object;
-    .registers 5
+    .locals 2
     .param p1, "index"    # I
     .param p2, "offset"    # I
 
@@ -74,7 +74,7 @@
 .end method
 
 .method protected colGetMap()Ljava/util/Map;
-    .registers 2
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -91,7 +91,7 @@
 .end method
 
 .method protected colGetSize()I
-    .registers 2
+    .locals 1
 
     .line 76
     .local p0, "this":Landroid/support/v4/util/ArrayMap$1;, "Landroid/support/v4/util/ArrayMap.1;"
@@ -103,7 +103,7 @@
 .end method
 
 .method protected colIndexOfKey(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "key"    # Ljava/lang/Object;
 
     .line 86
@@ -118,7 +118,7 @@
 .end method
 
 .method protected colIndexOfValue(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "value"    # Ljava/lang/Object;
 
     .line 91
@@ -133,7 +133,7 @@
 .end method
 
 .method protected colPut(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 4
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TK;TV;)V"
@@ -153,7 +153,7 @@
 .end method
 
 .method protected colRemoveAt(I)V
-    .registers 3
+    .locals 1
     .param p1, "index"    # I
 
     .line 111
@@ -167,7 +167,7 @@
 .end method
 
 .method protected colSetValue(ILjava/lang/Object;)Ljava/lang/Object;
-    .registers 4
+    .locals 1
     .param p1, "index"    # I
     .annotation system Ldalvik/annotation/Signature;
         value = {

@@ -85,7 +85,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .locals 2
 
     .line 1534
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -94,7 +94,7 @@
     .local v0, "version":I
     const/16 v1, 0x15
 
-    if-lt v0, v1, :cond_e
+    if-lt v0, v1, :cond_0
 
     .line 1536
     new-instance v1, Landroid/support/v4/view/ViewCompat$LollipopViewCompatImpl;
@@ -103,13 +103,13 @@
 
     sput-object v1, Landroid/support/v4/view/ViewCompat;->IMPL:Landroid/support/v4/view/ViewCompat$ViewCompatImpl;
 
-    goto :goto_68
+    goto :goto_0
 
     .line 1537
-    :cond_e
+    :cond_0
     const/16 v1, 0x13
 
-    if-lt v0, v1, :cond_1a
+    if-lt v0, v1, :cond_1
 
     .line 1538
     new-instance v1, Landroid/support/v4/view/ViewCompat$KitKatViewCompatImpl;
@@ -118,13 +118,13 @@
 
     sput-object v1, Landroid/support/v4/view/ViewCompat;->IMPL:Landroid/support/v4/view/ViewCompat$ViewCompatImpl;
 
-    goto :goto_68
+    goto :goto_0
 
     .line 1539
-    :cond_1a
+    :cond_1
     const/16 v1, 0x11
 
-    if-lt v0, v1, :cond_26
+    if-lt v0, v1, :cond_2
 
     .line 1540
     new-instance v1, Landroid/support/v4/view/ViewCompat$JbMr1ViewCompatImpl;
@@ -133,13 +133,13 @@
 
     sput-object v1, Landroid/support/v4/view/ViewCompat;->IMPL:Landroid/support/v4/view/ViewCompat$ViewCompatImpl;
 
-    goto :goto_68
+    goto :goto_0
 
     .line 1541
-    :cond_26
+    :cond_2
     const/16 v1, 0x10
 
-    if-lt v0, v1, :cond_32
+    if-lt v0, v1, :cond_3
 
     .line 1542
     new-instance v1, Landroid/support/v4/view/ViewCompat$JBViewCompatImpl;
@@ -148,13 +148,13 @@
 
     sput-object v1, Landroid/support/v4/view/ViewCompat;->IMPL:Landroid/support/v4/view/ViewCompat$ViewCompatImpl;
 
-    goto :goto_68
+    goto :goto_0
 
     .line 1543
-    :cond_32
+    :cond_3
     const/16 v1, 0xe
 
-    if-lt v0, v1, :cond_3e
+    if-lt v0, v1, :cond_4
 
     .line 1544
     new-instance v1, Landroid/support/v4/view/ViewCompat$ICSViewCompatImpl;
@@ -163,13 +163,13 @@
 
     sput-object v1, Landroid/support/v4/view/ViewCompat;->IMPL:Landroid/support/v4/view/ViewCompat$ViewCompatImpl;
 
-    goto :goto_68
+    goto :goto_0
 
     .line 1545
-    :cond_3e
+    :cond_4
     const/16 v1, 0xb
 
-    if-lt v0, v1, :cond_4a
+    if-lt v0, v1, :cond_5
 
     .line 1546
     new-instance v1, Landroid/support/v4/view/ViewCompat$HCViewCompatImpl;
@@ -178,13 +178,13 @@
 
     sput-object v1, Landroid/support/v4/view/ViewCompat;->IMPL:Landroid/support/v4/view/ViewCompat$ViewCompatImpl;
 
-    goto :goto_68
+    goto :goto_0
 
     .line 1547
-    :cond_4a
+    :cond_5
     const/16 v1, 0x9
 
-    if-lt v0, v1, :cond_56
+    if-lt v0, v1, :cond_6
 
     .line 1548
     new-instance v1, Landroid/support/v4/view/ViewCompat$GBViewCompatImpl;
@@ -193,13 +193,13 @@
 
     sput-object v1, Landroid/support/v4/view/ViewCompat;->IMPL:Landroid/support/v4/view/ViewCompat$ViewCompatImpl;
 
-    goto :goto_68
+    goto :goto_0
 
     .line 1549
-    :cond_56
+    :cond_6
     const/4 v1, 0x7
 
-    if-lt v0, v1, :cond_61
+    if-lt v0, v1, :cond_7
 
     .line 1550
     new-instance v1, Landroid/support/v4/view/ViewCompat$EclairMr1ViewCompatImpl;
@@ -208,10 +208,10 @@
 
     sput-object v1, Landroid/support/v4/view/ViewCompat;->IMPL:Landroid/support/v4/view/ViewCompat$ViewCompatImpl;
 
-    goto :goto_68
+    goto :goto_0
 
     .line 1552
-    :cond_61
+    :cond_7
     new-instance v1, Landroid/support/v4/view/ViewCompat$BaseViewCompatImpl;
 
     invoke-direct {v1}, Landroid/support/v4/view/ViewCompat$BaseViewCompatImpl;-><init>()V
@@ -220,12 +220,12 @@
 
     .line 1554
     .end local v0    # "version":I
-    :goto_68
+    :goto_0
     return-void
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 52
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -235,7 +235,7 @@
 .end method
 
 .method public static animate(Landroid/view/View;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2327
@@ -249,7 +249,7 @@
 .end method
 
 .method public static canScrollHorizontally(Landroid/view/View;I)Z
-    .registers 3
+    .locals 1
     .param p0, "v"    # Landroid/view/View;
     .param p1, "direction"    # I
 
@@ -264,7 +264,7 @@
 .end method
 
 .method public static canScrollVertically(Landroid/view/View;I)Z
-    .registers 3
+    .locals 1
     .param p0, "v"    # Landroid/view/View;
     .param p1, "direction"    # I
 
@@ -279,7 +279,7 @@
 .end method
 
 .method public static combineMeasuredStates(II)I
-    .registers 3
+    .locals 1
     .param p0, "curState"    # I
     .param p1, "newState"    # I
 
@@ -294,7 +294,7 @@
 .end method
 
 .method public static dispatchApplyWindowInsets(Landroid/view/View;Landroid/support/v4/view/WindowInsetsCompat;)Landroid/support/v4/view/WindowInsetsCompat;
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "insets"    # Landroid/support/v4/view/WindowInsetsCompat;
 
@@ -309,7 +309,7 @@
 .end method
 
 .method public static dispatchFinishTemporaryDetach(Landroid/view/View;)V
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2267
@@ -322,7 +322,7 @@
 .end method
 
 .method public static dispatchNestedFling(Landroid/view/View;FFZ)Z
-    .registers 5
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "velocityX"    # F
     .param p2, "velocityY"    # F
@@ -339,7 +339,7 @@
 .end method
 
 .method public static dispatchNestedPreFling(Landroid/view/View;FF)Z
-    .registers 4
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "velocityX"    # F
     .param p2, "velocityY"    # F
@@ -355,7 +355,7 @@
 .end method
 
 .method public static dispatchNestedPreScroll(Landroid/view/View;II[I[I)Z
-    .registers 11
+    .locals 6
     .param p0, "view"    # Landroid/view/View;
     .param p1, "dx"    # I
     .param p2, "dy"    # I
@@ -383,7 +383,7 @@
 .end method
 
 .method public static dispatchNestedScroll(Landroid/view/View;IIII[I)Z
-    .registers 13
+    .locals 7
     .param p0, "view"    # Landroid/view/View;
     .param p1, "dxConsumed"    # I
     .param p2, "dyConsumed"    # I
@@ -414,7 +414,7 @@
 .end method
 
 .method public static dispatchStartTemporaryDetach(Landroid/view/View;)V
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2260
@@ -427,7 +427,7 @@
 .end method
 
 .method public static getAccessibilityLiveRegion(Landroid/view/View;)I
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2180
@@ -441,7 +441,7 @@
 .end method
 
 .method public static getAccessibilityNodeProvider(Landroid/view/View;)Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat;
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 1908
@@ -455,7 +455,7 @@
 .end method
 
 .method public static getAlpha(Landroid/view/View;)F
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 1919
@@ -469,7 +469,7 @@
 .end method
 
 .method public static getBackgroundTintList(Landroid/view/View;)Landroid/content/res/ColorStateList;
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2762
@@ -483,7 +483,7 @@
 .end method
 
 .method public static getBackgroundTintMode(Landroid/view/View;)Landroid/graphics/PorterDuff$Mode;
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2784
@@ -497,7 +497,7 @@
 .end method
 
 .method public static getClipBounds(Landroid/view/View;)Landroid/graphics/Rect;
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 3079
@@ -511,7 +511,7 @@
 .end method
 
 .method public static getElevation(Landroid/view/View;)F
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2560
@@ -525,7 +525,7 @@
 .end method
 
 .method public static getFitsSystemWindows(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "v"    # Landroid/view/View;
 
     .line 2637
@@ -539,7 +539,7 @@
 .end method
 
 .method public static getImportantForAccessibility(Landroid/view/View;)I
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 1839
@@ -553,7 +553,7 @@
 .end method
 
 .method public static getLabelFor(Landroid/view/View;)I
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 1994
@@ -567,7 +567,7 @@
 .end method
 
 .method public static getLayerType(Landroid/view/View;)I
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 1983
@@ -581,7 +581,7 @@
 .end method
 
 .method public static getLayoutDirection(Landroid/view/View;)I
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2054
@@ -595,7 +595,7 @@
 .end method
 
 .method public static getMeasuredHeightAndState(Landroid/view/View;)I
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2144
@@ -609,7 +609,7 @@
 .end method
 
 .method public static getMeasuredState(Landroid/view/View;)I
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2155
@@ -623,7 +623,7 @@
 .end method
 
 .method public static getMeasuredWidthAndState(Landroid/view/View;)I
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2130
@@ -637,7 +637,7 @@
 .end method
 
 .method public static getMinimumHeight(Landroid/view/View;)I
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2315
@@ -651,7 +651,7 @@
 .end method
 
 .method public static getMinimumWidth(Landroid/view/View;)I
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2304
@@ -665,7 +665,7 @@
 .end method
 
 .method public static getOverScrollMode(Landroid/view/View;)I
-    .registers 2
+    .locals 1
     .param p0, "v"    # Landroid/view/View;
 
     .line 1589
@@ -679,7 +679,7 @@
 .end method
 
 .method public static getPaddingEnd(Landroid/view/View;)I
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2236
@@ -693,7 +693,7 @@
 .end method
 
 .method public static getPaddingStart(Landroid/view/View;)I
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2224
@@ -707,7 +707,7 @@
 .end method
 
 .method public static getParentForAccessibility(Landroid/view/View;)Landroid/view/ViewParent;
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2086
@@ -721,7 +721,7 @@
 .end method
 
 .method public static getPivotX(Landroid/view/View;)F
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2474
@@ -735,7 +735,7 @@
 .end method
 
 .method public static getPivotY(Landroid/view/View;)F
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2501
@@ -749,7 +749,7 @@
 .end method
 
 .method public static getRotation(Landroid/view/View;)F
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2520
@@ -763,7 +763,7 @@
 .end method
 
 .method public static getRotationX(Landroid/view/View;)F
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2524
@@ -777,7 +777,7 @@
 .end method
 
 .method public static getRotationY(Landroid/view/View;)F
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2528
@@ -791,7 +791,7 @@
 .end method
 
 .method public static getScaleX(Landroid/view/View;)F
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2532
@@ -805,7 +805,7 @@
 .end method
 
 .method public static getScaleY(Landroid/view/View;)F
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2536
@@ -819,7 +819,7 @@
 .end method
 
 .method public static getTransitionName(Landroid/view/View;)Ljava/lang/String;
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2601
@@ -833,7 +833,7 @@
 .end method
 
 .method public static getTranslationX(Landroid/view/View;)F
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2280
@@ -847,7 +847,7 @@
 .end method
 
 .method public static getTranslationY(Landroid/view/View;)F
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2293
@@ -861,7 +861,7 @@
 .end method
 
 .method public static getTranslationZ(Landroid/view/View;)F
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2576
@@ -875,7 +875,7 @@
 .end method
 
 .method public static getWindowSystemUiVisibility(Landroid/view/View;)I
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2608
@@ -889,7 +889,7 @@
 .end method
 
 .method public static getX(Landroid/view/View;)F
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2540
@@ -903,7 +903,7 @@
 .end method
 
 .method public static getY(Landroid/view/View;)F
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2544
@@ -917,7 +917,7 @@
 .end method
 
 .method public static getZ(Landroid/view/View;)F
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 3025
@@ -931,7 +931,7 @@
 .end method
 
 .method public static hasAccessibilityDelegate(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "v"    # Landroid/view/View;
 
     .line 1736
@@ -945,7 +945,7 @@
 .end method
 
 .method public static hasNestedScrollingParent(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2896
@@ -959,7 +959,7 @@
 .end method
 
 .method public static hasOverlappingRendering(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2742
@@ -973,7 +973,7 @@
 .end method
 
 .method public static hasTransientState(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 1748
@@ -987,7 +987,7 @@
 .end method
 
 .method public static isAttachedToWindow(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 3086
@@ -1001,7 +1001,7 @@
 .end method
 
 .method public static isLaidOut(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 3014
@@ -1015,7 +1015,7 @@
 .end method
 
 .method public static isNestedScrollingEnabled(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2831
@@ -1029,7 +1029,7 @@
 .end method
 
 .method public static isOpaque(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2099
@@ -1043,7 +1043,7 @@
 .end method
 
 .method public static isPaddingRelative(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2752
@@ -1057,7 +1057,7 @@
 .end method
 
 .method public static jumpDrawablesToCurrentState(Landroid/view/View;)V
-    .registers 2
+    .locals 1
     .param p0, "v"    # Landroid/view/View;
 
     .line 2658
@@ -1070,7 +1070,7 @@
 .end method
 
 .method public static offsetLeftAndRight(Landroid/view/View;I)V
-    .registers 4
+    .locals 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "offset"    # I
 
@@ -1078,24 +1078,24 @@
     invoke-virtual {p0, p1}, Landroid/view/View;->offsetLeftAndRight(I)V
 
     .line 3049
-    if-eqz p1, :cond_e
+    if-eqz p1, :cond_0
 
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xb
 
-    if-ge v0, v1, :cond_e
+    if-ge v0, v1, :cond_0
 
     .line 3051
     invoke-virtual {p0}, Landroid/view/View;->invalidate()V
 
     .line 3053
-    :cond_e
+    :cond_0
     return-void
 .end method
 
 .method public static offsetTopAndBottom(Landroid/view/View;I)V
-    .registers 4
+    .locals 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "offset"    # I
 
@@ -1103,24 +1103,24 @@
     invoke-virtual {p0, p1}, Landroid/view/View;->offsetTopAndBottom(I)V
 
     .line 3036
-    if-eqz p1, :cond_e
+    if-eqz p1, :cond_0
 
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xb
 
-    if-ge v0, v1, :cond_e
+    if-ge v0, v1, :cond_0
 
     .line 3038
     invoke-virtual {p0}, Landroid/view/View;->invalidate()V
 
     .line 3040
-    :cond_e
+    :cond_0
     return-void
 .end method
 
 .method public static onApplyWindowInsets(Landroid/view/View;Landroid/support/v4/view/WindowInsetsCompat;)Landroid/support/v4/view/WindowInsetsCompat;
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "insets"    # Landroid/support/v4/view/WindowInsetsCompat;
 
@@ -1135,7 +1135,7 @@
 .end method
 
 .method public static onInitializeAccessibilityEvent(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
-    .registers 3
+    .locals 1
     .param p0, "v"    # Landroid/view/View;
     .param p1, "event"    # Landroid/view/accessibility/AccessibilityEvent;
 
@@ -1149,7 +1149,7 @@
 .end method
 
 .method public static onInitializeAccessibilityNodeInfo(Landroid/view/View;Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;)V
-    .registers 3
+    .locals 1
     .param p0, "v"    # Landroid/view/View;
     .param p1, "info"    # Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;
 
@@ -1163,7 +1163,7 @@
 .end method
 
 .method public static onPopulateAccessibilityEvent(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
-    .registers 3
+    .locals 1
     .param p0, "v"    # Landroid/view/View;
     .param p1, "event"    # Landroid/view/accessibility/AccessibilityEvent;
 
@@ -1177,7 +1177,7 @@
 .end method
 
 .method public static performAccessibilityAction(Landroid/view/View;ILandroid/os/Bundle;)Z
-    .registers 4
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "action"    # I
     .param p2, "arguments"    # Landroid/os/Bundle;
@@ -1193,7 +1193,7 @@
 .end method
 
 .method public static postInvalidateOnAnimation(Landroid/view/View;)V
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 1772
@@ -1206,7 +1206,7 @@
 .end method
 
 .method public static postInvalidateOnAnimation(Landroid/view/View;IIII)V
-    .registers 11
+    .locals 6
     .param p0, "view"    # Landroid/view/View;
     .param p1, "left"    # I
     .param p2, "top"    # I
@@ -1233,7 +1233,7 @@
 .end method
 
 .method public static postOnAnimation(Landroid/view/View;Ljava/lang/Runnable;)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "action"    # Ljava/lang/Runnable;
 
@@ -1247,7 +1247,7 @@
 .end method
 
 .method public static postOnAnimationDelayed(Landroid/view/View;Ljava/lang/Runnable;J)V
-    .registers 5
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "action"    # Ljava/lang/Runnable;
     .param p2, "delayMillis"    # J
@@ -1262,7 +1262,7 @@
 .end method
 
 .method public static requestApplyInsets(Landroid/view/View;)V
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2616
@@ -1275,7 +1275,7 @@
 .end method
 
 .method public static resolveSizeAndState(III)I
-    .registers 4
+    .locals 1
     .param p0, "size"    # I
     .param p1, "measureSpec"    # I
     .param p2, "childMeasuredState"    # I
@@ -1291,7 +1291,7 @@
 .end method
 
 .method public static setAccessibilityDelegate(Landroid/view/View;Landroid/support/v4/view/AccessibilityDelegateCompat;)V
-    .registers 3
+    .locals 1
     .param p0, "v"    # Landroid/view/View;
     .param p1, "delegate"    # Landroid/support/v4/view/AccessibilityDelegateCompat;
 
@@ -1305,7 +1305,7 @@
 .end method
 
 .method public static setAccessibilityLiveRegion(Landroid/view/View;I)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "mode"    # I
 
@@ -1319,7 +1319,7 @@
 .end method
 
 .method public static setActivated(Landroid/view/View;Z)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "activated"    # Z
 
@@ -1333,7 +1333,7 @@
 .end method
 
 .method public static setAlpha(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
         .annotation build Landroid/support/annotation/FloatRange;
@@ -1352,7 +1352,7 @@
 .end method
 
 .method public static setBackgroundTintList(Landroid/view/View;Landroid/content/res/ColorStateList;)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "tintList"    # Landroid/content/res/ColorStateList;
 
@@ -1366,7 +1366,7 @@
 .end method
 
 .method public static setBackgroundTintMode(Landroid/view/View;Landroid/graphics/PorterDuff$Mode;)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "mode"    # Landroid/graphics/PorterDuff$Mode;
 
@@ -1380,7 +1380,7 @@
 .end method
 
 .method public static setChildrenDrawingOrderEnabled(Landroid/view/ViewGroup;Z)V
-    .registers 3
+    .locals 1
     .param p0, "viewGroup"    # Landroid/view/ViewGroup;
     .param p1, "enabled"    # Z
 
@@ -1394,7 +1394,7 @@
 .end method
 
 .method public static setClipBounds(Landroid/view/View;Landroid/graphics/Rect;)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "clipBounds"    # Landroid/graphics/Rect;
 
@@ -1408,7 +1408,7 @@
 .end method
 
 .method public static setElevation(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "elevation"    # F
 
@@ -1422,7 +1422,7 @@
 .end method
 
 .method public static setFitsSystemWindows(Landroid/view/View;Z)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "fitSystemWindows"    # Z
 
@@ -1436,7 +1436,7 @@
 .end method
 
 .method public static setHasTransientState(Landroid/view/View;Z)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "hasTransientState"    # Z
 
@@ -1450,7 +1450,7 @@
 .end method
 
 .method public static setImportantForAccessibility(Landroid/view/View;I)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "mode"    # I
 
@@ -1464,7 +1464,7 @@
 .end method
 
 .method public static setLabelFor(Landroid/view/View;I)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "labeledId"    # I
         .annotation build Landroid/support/annotation/IdRes;
@@ -1481,7 +1481,7 @@
 .end method
 
 .method public static setLayerPaint(Landroid/view/View;Landroid/graphics/Paint;)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "paint"    # Landroid/graphics/Paint;
 
@@ -1495,7 +1495,7 @@
 .end method
 
 .method public static setLayerType(Landroid/view/View;ILandroid/graphics/Paint;)V
-    .registers 4
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "layerType"    # I
     .param p2, "paint"    # Landroid/graphics/Paint;
@@ -1510,7 +1510,7 @@
 .end method
 
 .method public static setLayoutDirection(Landroid/view/View;I)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "layoutDirection"    # I
 
@@ -1524,7 +1524,7 @@
 .end method
 
 .method public static setNestedScrollingEnabled(Landroid/view/View;Z)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "enabled"    # Z
 
@@ -1538,7 +1538,7 @@
 .end method
 
 .method public static setOnApplyWindowInsetsListener(Landroid/view/View;Landroid/support/v4/view/OnApplyWindowInsetsListener;)V
-    .registers 3
+    .locals 1
     .param p0, "v"    # Landroid/view/View;
     .param p1, "listener"    # Landroid/support/v4/view/OnApplyWindowInsetsListener;
 
@@ -1552,7 +1552,7 @@
 .end method
 
 .method public static setOverScrollMode(Landroid/view/View;I)V
-    .registers 3
+    .locals 1
     .param p0, "v"    # Landroid/view/View;
     .param p1, "overScrollMode"    # I
 
@@ -1566,7 +1566,7 @@
 .end method
 
 .method public static setPaddingRelative(Landroid/view/View;IIII)V
-    .registers 11
+    .locals 6
     .param p0, "view"    # Landroid/view/View;
     .param p1, "start"    # I
     .param p2, "top"    # I
@@ -1593,7 +1593,7 @@
 .end method
 
 .method public static setPivotX(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -1607,7 +1607,7 @@
 .end method
 
 .method public static setPivotY(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -1621,7 +1621,7 @@
 .end method
 
 .method public static setRotation(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -1635,7 +1635,7 @@
 .end method
 
 .method public static setRotationX(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -1649,7 +1649,7 @@
 .end method
 
 .method public static setRotationY(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -1663,7 +1663,7 @@
 .end method
 
 .method public static setSaveFromParentEnabled(Landroid/view/View;Z)V
-    .registers 3
+    .locals 1
     .param p0, "v"    # Landroid/view/View;
     .param p1, "enabled"    # Z
 
@@ -1677,7 +1677,7 @@
 .end method
 
 .method public static setScaleX(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -1691,7 +1691,7 @@
 .end method
 
 .method public static setScaleY(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -1705,7 +1705,7 @@
 .end method
 
 .method public static setTransitionName(Landroid/view/View;Ljava/lang/String;)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "transitionName"    # Ljava/lang/String;
 
@@ -1719,7 +1719,7 @@
 .end method
 
 .method public static setTranslationX(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -1733,7 +1733,7 @@
 .end method
 
 .method public static setTranslationY(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -1747,7 +1747,7 @@
 .end method
 
 .method public static setTranslationZ(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "translationZ"    # F
 
@@ -1761,7 +1761,7 @@
 .end method
 
 .method public static setX(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -1775,7 +1775,7 @@
 .end method
 
 .method public static setY(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -1789,7 +1789,7 @@
 .end method
 
 .method public static startNestedScroll(Landroid/view/View;I)Z
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "axes"    # I
 
@@ -1804,7 +1804,7 @@
 .end method
 
 .method public static stopNestedScroll(Landroid/view/View;)V
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 2884

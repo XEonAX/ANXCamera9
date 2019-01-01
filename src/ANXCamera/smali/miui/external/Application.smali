@@ -159,10 +159,9 @@
     .locals 1
 
     .prologue
-
     .line 81
     const/4 v0, 0x1
-	
+
     return v0
 .end method
 
@@ -170,10 +169,9 @@
     .locals 1
 
     .prologue
-
     .line 63
     const/4 v0, 0x1
-	
+
     return v0
 .end method
 
@@ -181,10 +179,9 @@
     .locals 1
 
     .prologue
-	
     .line 99
     const/4 v0, 0x1
-	
+
     return v0
 .end method
 

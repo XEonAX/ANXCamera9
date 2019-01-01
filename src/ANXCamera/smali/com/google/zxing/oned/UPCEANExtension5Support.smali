@@ -15,14 +15,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 34
     const/16 v0, 0xa
 
     new-array v0, v0, [I
 
-    fill-array-data v0, :array_c
+    fill-array-data v0, :array_0
 
     .line 35
     nop
@@ -35,7 +35,7 @@
 
     nop
 
-    :array_c
+    :array_0
     .array-data 4
         0x18
         0x14
@@ -51,7 +51,7 @@
 .end method
 
 .method constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 32
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -75,7 +75,7 @@
 .end method
 
 .method private static determineCheckDigit(I)I
-    .registers 3
+    .locals 2
     .param p0, "lgPatternFound"    # I
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -87,30 +87,30 @@
     const/4 v0, 0x0
 
     .local v0, "d":I
-    :goto_1
+    :goto_0
     const/16 v1, 0xa
 
-    if-ge v0, v1, :cond_f
+    if-ge v0, v1, :cond_1
 
     .line 120
     sget-object v1, Lcom/google/zxing/oned/UPCEANExtension5Support;->CHECK_DIGIT_ENCODINGS:[I
 
     aget v1, v1, v0
 
-    if-ne p0, v1, :cond_c
+    if-ne p0, v1, :cond_0
 
     .line 121
     return v0
 
     .line 119
-    :cond_c
+    :cond_0
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_1
+    goto :goto_0
 
     .line 124
     .end local v0    # "d":I
-    :cond_f
+    :cond_1
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v0
@@ -119,7 +119,7 @@
 .end method
 
 .method private static extensionChecksum(Ljava/lang/CharSequence;)I
-    .registers 5
+    .locals 4
     .param p0, "s"    # Ljava/lang/CharSequence;
 
     .line 104
@@ -136,8 +136,8 @@
     add-int/lit8 v2, v0, -0x2
 
     .local v2, "i":I
-    :goto_7
-    if-gez v2, :cond_1e
+    :goto_0
+    if-gez v2, :cond_1
 
     .line 109
     .end local v2    # "i":I
@@ -147,8 +147,8 @@
     add-int/lit8 v2, v0, -0x1
 
     .restart local v2    # "i":I
-    :goto_d
-    if-gez v2, :cond_14
+    :goto_1
+    if-gez v2, :cond_0
 
     .line 113
     .end local v2    # "i":I
@@ -161,7 +161,7 @@
 
     .line 111
     .restart local v2    # "i":I
-    :cond_14
+    :cond_0
     invoke-interface {p0, v2}, Ljava/lang/CharSequence;->charAt(I)C
 
     move-result v3
@@ -173,10 +173,10 @@
     .line 110
     add-int/lit8 v2, v2, -0x2
 
-    goto :goto_d
+    goto :goto_1
 
     .line 107
-    :cond_1e
+    :cond_1
     invoke-interface {p0, v2}, Ljava/lang/CharSequence;->charAt(I)C
 
     move-result v3
@@ -188,11 +188,11 @@
     .line 106
     add-int/lit8 v2, v2, -0x2
 
-    goto :goto_7
+    goto :goto_0
 .end method
 
 .method private static parseExtension5String(Ljava/lang/String;)Ljava/lang/String;
-    .registers 8
+    .locals 7
     .param p0, "raw"    # Ljava/lang/String;
 
     .line 147
@@ -204,30 +204,30 @@
 
     const/16 v1, 0x30
 
-    if-eq v0, v1, :cond_3a
+    if-eq v0, v1, :cond_5
 
     const/16 v1, 0x35
 
-    if-eq v0, v1, :cond_37
+    if-eq v0, v1, :cond_4
 
     const/16 v1, 0x39
 
-    if-eq v0, v1, :cond_14
+    if-eq v0, v1, :cond_0
 
     .line 171
     const-string v0, ""
 
-    goto :goto_3d
+    goto :goto_0
 
     .line 156
-    :cond_14
+    :cond_0
     const-string v0, "90000"
 
     invoke-virtual {v0, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_1e
+    if-eqz v0, :cond_1
 
     .line 158
     const/4 v0, 0x0
@@ -235,14 +235,14 @@
     return-object v0
 
     .line 160
-    :cond_1e
+    :cond_1
     const-string v0, "99991"
 
     invoke-virtual {v0, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_29
+    if-eqz v0, :cond_2
 
     .line 162
     const-string v0, "0.00"
@@ -250,14 +250,14 @@
     return-object v0
 
     .line 164
-    :cond_29
+    :cond_2
     const-string v0, "99990"
 
     invoke-virtual {v0, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_34
+    if-eqz v0, :cond_3
 
     .line 165
     const-string v0, "Used"
@@ -265,25 +265,25 @@
     return-object v0
 
     .line 168
-    :cond_34
+    :cond_3
     const-string v0, ""
 
     .line 169
     .local v0, "currency":Ljava/lang/String;
-    goto :goto_3d
+    goto :goto_0
 
     .line 152
     .end local v0    # "currency":Ljava/lang/String;
-    :cond_37
+    :cond_4
     const-string v0, "$"
 
     .line 153
     .restart local v0    # "currency":Ljava/lang/String;
-    goto :goto_3d
+    goto :goto_0
 
     .line 149
     .end local v0    # "currency":Ljava/lang/String;
-    :cond_3a
+    :cond_5
     const-string v0, "\u00a3"
 
     .line 150
@@ -291,7 +291,7 @@
     nop
 
     .line 171
-    :goto_3d
+    :goto_0
     nop
 
     .line 174
@@ -321,7 +321,7 @@
     .local v3, "hundredths":I
     const/16 v4, 0xa
 
-    if-ge v3, v4, :cond_62
+    if-ge v3, v4, :cond_6
 
     new-instance v4, Ljava/lang/StringBuilder;
 
@@ -335,16 +335,16 @@
 
     move-result-object v4
 
-    goto :goto_66
+    goto :goto_1
 
-    :cond_62
+    :cond_6
     invoke-static {v3}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
     move-result-object v4
 
     .line 178
     .local v4, "hundredthsString":Ljava/lang/String;
-    :goto_66
+    :goto_1
     new-instance v5, Ljava/lang/StringBuilder;
 
     invoke-static {v0}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
@@ -369,7 +369,7 @@
 .end method
 
 .method private static parseExtensionString(Ljava/lang/String;)Ljava/util/Map;
-    .registers 4
+    .locals 3
     .param p0, "raw"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -392,26 +392,26 @@
 
     const/4 v2, 0x5
 
-    if-eq v0, v2, :cond_9
+    if-eq v0, v2, :cond_0
 
     .line 134
     return-object v1
 
     .line 136
-    :cond_9
+    :cond_0
     invoke-static {p0}, Lcom/google/zxing/oned/UPCEANExtension5Support;->parseExtension5String(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
     .line 137
     .local v0, "value":Ljava/lang/Object;
-    if-nez v0, :cond_10
+    if-nez v0, :cond_1
 
     .line 138
     return-object v1
 
     .line 140
-    :cond_10
+    :cond_1
     new-instance v1, Ljava/util/EnumMap;
 
     const-class v2, Lcom/google/zxing/ResultMetadataType;
@@ -431,7 +431,7 @@
 
 # virtual methods
 .method decodeMiddle(Lcom/google/zxing/common/BitArray;[ILjava/lang/StringBuilder;)I
-    .registers 15
+    .locals 11
     .param p1, "row"    # Lcom/google/zxing/common/BitArray;
     .param p2, "startRange"    # [I
     .param p3, "resultString"    # Ljava/lang/StringBuilder;
@@ -483,19 +483,19 @@
     const/4 v6, 0x0
 
     .local v6, "x":I
-    :goto_16
+    :goto_0
     const/4 v7, 0x5
 
-    if-ge v6, v7, :cond_4f
+    if-ge v6, v7, :cond_4
 
-    if-lt v4, v3, :cond_1c
+    if-lt v4, v3, :cond_0
 
     .end local v6    # "x":I
-    goto :goto_4f
+    goto :goto_3
 
     .line 76
     .restart local v6    # "x":I
-    :cond_1c
+    :cond_0
     sget-object v7, Lcom/google/zxing/oned/UPCEANReader;->L_AND_G_PATTERNS:[[I
 
     invoke-static {p1, v0, v4, v7}, Lcom/google/zxing/oned/UPCEANReader;->decodeDigit(Lcom/google/zxing/common/BitArray;[II[[I)I
@@ -523,15 +523,15 @@
 
     .end local v4    # "rowOffset":I
     .local v7, "rowOffset":I
-    :goto_2e
-    if-lt v4, v9, :cond_49
+    :goto_1
+    if-lt v4, v9, :cond_3
 
     .line 81
     const/4 v4, 0x4
 
     const/16 v9, 0xa
 
-    if-lt v8, v9, :cond_3a
+    if-lt v8, v9, :cond_1
 
     .line 82
     rsub-int/lit8 v9, v6, 0x4
@@ -541,8 +541,8 @@
     or-int/2addr v5, v9
 
     .line 84
-    :cond_3a
-    if-eq v6, v4, :cond_45
+    :cond_1
+    if-eq v6, v4, :cond_2
 
     .line 86
     invoke-virtual {p1, v7}, Lcom/google/zxing/common/BitArray;->getNextSet(I)I
@@ -557,26 +557,26 @@
     move-result v4
 
     .end local v8    # "bestMatch":I
-    goto :goto_46
+    goto :goto_2
 
     .line 75
     .end local v4    # "rowOffset":I
     .restart local v7    # "rowOffset":I
-    :cond_45
+    :cond_2
     move v4, v7
 
     .end local v7    # "rowOffset":I
     .restart local v4    # "rowOffset":I
-    :goto_46
+    :goto_2
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_16
+    goto :goto_0
 
     .line 78
     .end local v4    # "rowOffset":I
     .restart local v7    # "rowOffset":I
     .restart local v8    # "bestMatch":I
-    :cond_49
+    :cond_3
     aget v10, v0, v4
 
     .line 79
@@ -587,20 +587,20 @@
     .end local v10    # "counter":I
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_2e
+    goto :goto_1
 
     .line 91
     .end local v6    # "x":I
     .end local v7    # "rowOffset":I
     .end local v8    # "bestMatch":I
     .restart local v4    # "rowOffset":I
-    :cond_4f
-    :goto_4f
+    :cond_4
+    :goto_3
     invoke-virtual {p3}, Ljava/lang/StringBuilder;->length()I
 
     move-result v1
 
-    if-ne v1, v7, :cond_69
+    if-ne v1, v7, :cond_6
 
     .line 95
     invoke-static {v5}, Lcom/google/zxing/oned/UPCEANExtension5Support;->determineCheckDigit(I)I
@@ -617,13 +617,13 @@
 
     move-result v2
 
-    if-ne v2, v1, :cond_64
+    if-ne v2, v1, :cond_5
 
     .line 100
     return v4
 
     .line 97
-    :cond_64
+    :cond_5
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v2
@@ -632,7 +632,7 @@
 
     .line 92
     .end local v1    # "checkDigit":I
-    :cond_69
+    :cond_6
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v1
@@ -641,7 +641,7 @@
 .end method
 
 .method decodeRow(ILcom/google/zxing/common/BitArray;[I)Lcom/google/zxing/Result;
-    .registers 15
+    .locals 11
     .param p1, "rowNumber"    # I
     .param p2, "row"    # Lcom/google/zxing/common/BitArray;
     .param p3, "extensionStartRange"    # [I
@@ -736,12 +736,12 @@
 
     .line 58
     .local v1, "extensionResult":Lcom/google/zxing/Result;
-    if-eqz v4, :cond_3f
+    if-eqz v4, :cond_0
 
     .line 59
     invoke-virtual {v1, v4}, Lcom/google/zxing/Result;->putAllMetadata(Ljava/util/Map;)V
 
     .line 61
-    :cond_3f
+    :cond_0
     return-object v1
 .end method

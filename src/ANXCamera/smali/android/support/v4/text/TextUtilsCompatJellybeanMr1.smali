@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getLayoutDirectionFromLocale(Ljava/util/Locale;)I
-    .registers 2
+    .locals 1
     .param p0, "locale"    # Ljava/util/Locale;
         .annotation build Landroid/support/annotation/Nullable;
         .end annotation
@@ -29,7 +29,7 @@
 .end method
 
 .method public static htmlEncode(Ljava/lang/String;)Ljava/lang/String;
-    .registers 2
+    .locals 1
     .param p0, "s"    # Ljava/lang/String;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation

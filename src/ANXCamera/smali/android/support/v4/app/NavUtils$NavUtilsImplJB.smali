@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 96
     invoke-direct {p0}, Landroid/support/v4/app/NavUtils$NavUtilsImplBase;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getParentActivityIntent(Landroid/app/Activity;)Landroid/content/Intent;
-    .registers 3
+    .locals 1
     .param p1, "activity"    # Landroid/app/Activity;
 
     .line 102
@@ -37,7 +37,7 @@
 
     .line 103
     .local v0, "result":Landroid/content/Intent;
-    if-nez v0, :cond_a
+    if-nez v0, :cond_0
 
     .line 104
     invoke-virtual {p0, p1}, Landroid/support/v4/app/NavUtils$NavUtilsImplJB;->superGetParentActivityIntent(Landroid/app/Activity;)Landroid/content/Intent;
@@ -45,12 +45,12 @@
     move-result-object v0
 
     .line 106
-    :cond_a
+    :cond_0
     return-object v0
 .end method
 
 .method public getParentActivityName(Landroid/content/Context;Landroid/content/pm/ActivityInfo;)Ljava/lang/String;
-    .registers 4
+    .locals 1
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "info"    # Landroid/content/pm/ActivityInfo;
 
@@ -61,7 +61,7 @@
 
     .line 126
     .local v0, "result":Ljava/lang/String;
-    if-nez v0, :cond_a
+    if-nez v0, :cond_0
 
     .line 127
     invoke-super {p0, p1, p2}, Landroid/support/v4/app/NavUtils$NavUtilsImplBase;->getParentActivityName(Landroid/content/Context;Landroid/content/pm/ActivityInfo;)Ljava/lang/String;
@@ -69,12 +69,12 @@
     move-result-object v0
 
     .line 129
-    :cond_a
+    :cond_0
     return-object v0
 .end method
 
 .method public navigateUpTo(Landroid/app/Activity;Landroid/content/Intent;)V
-    .registers 3
+    .locals 0
     .param p1, "activity"    # Landroid/app/Activity;
     .param p2, "upIntent"    # Landroid/content/Intent;
 
@@ -86,7 +86,7 @@
 .end method
 
 .method public shouldUpRecreateTask(Landroid/app/Activity;Landroid/content/Intent;)Z
-    .registers 4
+    .locals 1
     .param p1, "activity"    # Landroid/app/Activity;
     .param p2, "targetIntent"    # Landroid/content/Intent;
 
@@ -99,7 +99,7 @@
 .end method
 
 .method superGetParentActivityIntent(Landroid/app/Activity;)Landroid/content/Intent;
-    .registers 3
+    .locals 1
     .param p1, "activity"    # Landroid/app/Activity;
 
     .line 110

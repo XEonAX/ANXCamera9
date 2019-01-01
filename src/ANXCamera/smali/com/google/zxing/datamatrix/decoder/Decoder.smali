@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 3
+    .locals 2
 
     .line 37
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 .end method
 
 .method private correctErrors([BI)V
-    .registers 8
+    .locals 5
     .param p1, "codewordBytes"    # [B
     .param p2, "numDataCodewords"    # I
     .annotation system Ldalvik/annotation/Throws;
@@ -49,8 +49,8 @@
     const/4 v2, 0x0
 
     .local v2, "i":I
-    :goto_4
-    if-lt v2, v0, :cond_20
+    :goto_0
+    if-lt v2, v0, :cond_1
 
     .line 123
     .end local v2    # "i":I
@@ -60,12 +60,12 @@
 
     .line 125
     .local v2, "numECCodewords":I
-    :try_start_8
+    :try_start_0
     iget-object v3, p0, Lcom/google/zxing/datamatrix/decoder/Decoder;->rsDecoder:Lcom/google/zxing/common/reedsolomon/ReedSolomonDecoder;
 
     invoke-virtual {v3, v1, v2}, Lcom/google/zxing/common/reedsolomon/ReedSolomonDecoder;->decode([II)V
-    :try_end_d
-    .catch Lcom/google/zxing/common/reedsolomon/ReedSolomonException; {:try_start_8 .. :try_end_d} :catch_1a
+    :try_end_0
+    .catch Lcom/google/zxing/common/reedsolomon/ReedSolomonException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 126
     nop
@@ -74,8 +74,8 @@
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_f
-    if-lt v3, p2, :cond_12
+    :goto_1
+    if-lt v3, p2, :cond_0
 
     .line 134
     .end local v3    # "i":I
@@ -83,7 +83,7 @@
 
     .line 132
     .restart local v3    # "i":I
-    :cond_12
+    :cond_0
     aget v4, v1, v3
 
     int-to-byte v4, v4
@@ -93,11 +93,11 @@
     .line 131
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_f
+    goto :goto_1
 
     .line 126
     .end local v3    # "i":I
-    :catch_1a
+    :catch_0
     move-exception v3
 
     .line 127
@@ -111,7 +111,7 @@
     .line 121
     .end local v3    # "ignored":Lcom/google/zxing/common/reedsolomon/ReedSolomonException;
     .local v2, "i":I
-    :cond_20
+    :cond_1
     aget-byte v3, p1, v2
 
     and-int/lit16 v3, v3, 0xff
@@ -121,13 +121,13 @@
     .line 120
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_4
+    goto :goto_0
 .end method
 
 
 # virtual methods
 .method public decode(Lcom/google/zxing/common/BitMatrix;)Lcom/google/zxing/common/DecoderResult;
-    .registers 16
+    .locals 14
     .param p1, "bits"    # Lcom/google/zxing/common/BitMatrix;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -173,8 +173,8 @@
 
     const/4 v7, 0x0
 
-    :goto_15
-    if-lt v7, v6, :cond_3f
+    :goto_0
+    if-lt v7, v6, :cond_2
 
     .line 90
     new-array v8, v5, [B
@@ -188,8 +188,8 @@
 
     .end local v6    # "j":I
     .local v9, "j":I
-    :goto_1b
-    if-lt v9, v4, :cond_22
+    :goto_1
+    if-lt v9, v4, :cond_0
 
     .line 105
     .end local v9    # "j":I
@@ -201,7 +201,7 @@
 
     .line 94
     .restart local v9    # "j":I
-    :cond_22
+    :cond_0
     aget-object v10, v3, v9
 
     .line 95
@@ -224,8 +224,8 @@
     const/4 v6, 0x0
 
     .local v6, "i":I
-    :goto_30
-    if-lt v6, v12, :cond_35
+    :goto_2
+    if-lt v6, v12, :cond_1
 
     .line 93
     .end local v6    # "i":I
@@ -234,14 +234,14 @@
     .end local v12    # "numDataCodewords":I
     add-int/lit8 v9, v9, 0x1
 
-    goto :goto_1b
+    goto :goto_1
 
     .line 100
     .restart local v6    # "i":I
     .restart local v10    # "dataBlock":Lcom/google/zxing/datamatrix/decoder/DataBlock;
     .restart local v11    # "codewordBytes":[B
     .restart local v12    # "numDataCodewords":I
-    :cond_35
+    :cond_1
     mul-int v7, v6, v4
 
     add-int/2addr v7, v9
@@ -253,7 +253,7 @@
     .line 98
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_30
+    goto :goto_2
 
     .line 87
     .end local v6    # "i":I
@@ -262,7 +262,7 @@
     .end local v10    # "dataBlock":Lcom/google/zxing/datamatrix/decoder/DataBlock;
     .end local v11    # "codewordBytes":[B
     .end local v12    # "numDataCodewords":I
-    :cond_3f
+    :cond_2
     aget-object v8, v3, v7
 
     .line 88
@@ -277,11 +277,11 @@
     .end local v8    # "db":Lcom/google/zxing/datamatrix/decoder/DataBlock;
     add-int/lit8 v7, v7, 0x1
 
-    goto :goto_15
+    goto :goto_0
 .end method
 
 .method public decode([[Z)Lcom/google/zxing/common/DecoderResult;
-    .registers 7
+    .locals 5
     .param p1, "image"    # [[Z
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -304,8 +304,8 @@
     const/4 v2, 0x0
 
     .local v2, "i":I
-    :goto_7
-    if-lt v2, v0, :cond_e
+    :goto_0
+    if-lt v2, v0, :cond_0
 
     .line 60
     .end local v2    # "i":I
@@ -317,34 +317,34 @@
 
     .line 54
     .restart local v2    # "i":I
-    :cond_e
+    :cond_0
     const/4 v3, 0x0
 
     .local v3, "j":I
-    :goto_f
-    if-lt v3, v0, :cond_14
+    :goto_1
+    if-lt v3, v0, :cond_1
 
     .line 53
     .end local v3    # "j":I
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_7
+    goto :goto_0
 
     .line 55
     .restart local v3    # "j":I
-    :cond_14
+    :cond_1
     aget-object v4, p1, v2
 
     aget-boolean v4, v4, v3
 
-    if-eqz v4, :cond_1d
+    if-eqz v4, :cond_2
 
     .line 56
     invoke-virtual {v1, v3, v2}, Lcom/google/zxing/common/BitMatrix;->set(II)V
 
     .line 54
-    :cond_1d
+    :cond_2
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_f
+    goto :goto_1
 .end method

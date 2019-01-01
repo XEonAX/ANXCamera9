@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 21
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static requestPermissions(Landroid/app/Fragment;[Ljava/lang/String;I)V
-    .registers 3
+    .locals 0
     .param p0, "fragment"    # Landroid/app/Fragment;
     .param p1, "permissions"    # [Ljava/lang/String;
     .param p2, "requestCode"    # I
@@ -27,7 +27,7 @@
 .end method
 
 .method public static shouldShowRequestPermissionRationale(Landroid/app/Fragment;Ljava/lang/String;)Z
-    .registers 3
+    .locals 1
     .param p0, "fragment"    # Landroid/app/Fragment;
     .param p1, "permission"    # Ljava/lang/String;
 

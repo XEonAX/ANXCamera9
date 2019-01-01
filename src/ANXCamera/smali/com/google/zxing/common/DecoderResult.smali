@@ -32,7 +32,7 @@
 
 # direct methods
 .method public constructor <init>([BLjava/lang/String;Ljava/util/List;Ljava/lang/String;)V
-    .registers 12
+    .locals 7
     .param p1, "rawBytes"    # [B
     .param p2, "text"    # Ljava/lang/String;
     .param p4, "ecLevel"    # Ljava/lang/String;
@@ -70,7 +70,7 @@
 .end method
 
 .method public constructor <init>([BLjava/lang/String;Ljava/util/List;Ljava/lang/String;II)V
-    .registers 7
+    .locals 0
     .param p1, "rawBytes"    # [B
     .param p2, "text"    # Ljava/lang/String;
     .param p4, "ecLevel"    # Ljava/lang/String;
@@ -116,7 +116,7 @@
 
 # virtual methods
 .method public getByteSegments()Ljava/util/List;
-    .registers 2
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -132,7 +132,7 @@
 .end method
 
 .method public getECLevel()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 74
     iget-object v0, p0, Lcom/google/zxing/common/DecoderResult;->ecLevel:Ljava/lang/String;
@@ -141,7 +141,7 @@
 .end method
 
 .method public getErasures()Ljava/lang/Integer;
-    .registers 2
+    .locals 1
 
     .line 86
     iget-object v0, p0, Lcom/google/zxing/common/DecoderResult;->erasures:Ljava/lang/Integer;
@@ -150,7 +150,7 @@
 .end method
 
 .method public getErrorsCorrected()Ljava/lang/Integer;
-    .registers 2
+    .locals 1
 
     .line 78
     iget-object v0, p0, Lcom/google/zxing/common/DecoderResult;->errorsCorrected:Ljava/lang/Integer;
@@ -159,7 +159,7 @@
 .end method
 
 .method public getOther()Ljava/lang/Object;
-    .registers 2
+    .locals 1
 
     .line 94
     iget-object v0, p0, Lcom/google/zxing/common/DecoderResult;->other:Ljava/lang/Object;
@@ -168,7 +168,7 @@
 .end method
 
 .method public getRawBytes()[B
-    .registers 2
+    .locals 1
 
     .line 62
     iget-object v0, p0, Lcom/google/zxing/common/DecoderResult;->rawBytes:[B
@@ -177,7 +177,7 @@
 .end method
 
 .method public getStructuredAppendParity()I
-    .registers 2
+    .locals 1
 
     .line 106
     iget v0, p0, Lcom/google/zxing/common/DecoderResult;->structuredAppendParity:I
@@ -186,7 +186,7 @@
 .end method
 
 .method public getStructuredAppendSequenceNumber()I
-    .registers 2
+    .locals 1
 
     .line 110
     iget v0, p0, Lcom/google/zxing/common/DecoderResult;->structuredAppendSequenceNumber:I
@@ -195,7 +195,7 @@
 .end method
 
 .method public getText()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 66
     iget-object v0, p0, Lcom/google/zxing/common/DecoderResult;->text:Ljava/lang/String;
@@ -204,29 +204,29 @@
 .end method
 
 .method public hasStructuredAppend()Z
-    .registers 2
+    .locals 1
 
     .line 102
     iget v0, p0, Lcom/google/zxing/common/DecoderResult;->structuredAppendParity:I
 
-    if-ltz v0, :cond_a
+    if-ltz v0, :cond_0
 
     iget v0, p0, Lcom/google/zxing/common/DecoderResult;->structuredAppendSequenceNumber:I
 
-    if-ltz v0, :cond_a
+    if-ltz v0, :cond_0
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_a
+    :cond_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public setErasures(Ljava/lang/Integer;)V
-    .registers 2
+    .locals 0
     .param p1, "erasures"    # Ljava/lang/Integer;
 
     .line 90
@@ -237,7 +237,7 @@
 .end method
 
 .method public setErrorsCorrected(Ljava/lang/Integer;)V
-    .registers 2
+    .locals 0
     .param p1, "errorsCorrected"    # Ljava/lang/Integer;
 
     .line 82
@@ -248,7 +248,7 @@
 .end method
 
 .method public setOther(Ljava/lang/Object;)V
-    .registers 2
+    .locals 0
     .param p1, "other"    # Ljava/lang/Object;
 
     .line 98

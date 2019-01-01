@@ -16,7 +16,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 115
     const/4 v0, 0x0
@@ -27,7 +27,7 @@
 .end method
 
 .method synthetic constructor <init>(Lcom/google/zxing/qrcode/decoder/DataMask$DataMask011;)V
-    .registers 2
+    .locals 0
 
     .line 115
     invoke-direct {p0}, Lcom/google/zxing/qrcode/decoder/DataMask$DataMask011;-><init>()V
@@ -38,7 +38,7 @@
 
 # virtual methods
 .method isMasked(II)Z
-    .registers 4
+    .locals 1
     .param p1, "i"    # I
     .param p2, "j"    # I
 
@@ -47,13 +47,13 @@
 
     rem-int/lit8 v0, v0, 0x3
 
-    if-nez v0, :cond_8
+    if-nez v0, :cond_0
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_8
+    :cond_0
     const/4 v0, 0x0
 
     return v0

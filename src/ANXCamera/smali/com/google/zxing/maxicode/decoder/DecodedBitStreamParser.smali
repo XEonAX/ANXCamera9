@@ -45,7 +45,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 8
+    .locals 8
 
     .line 48
     new-instance v0, Ljava/text/DecimalFormat;
@@ -98,7 +98,7 @@
 .end method
 
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 60
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -108,7 +108,7 @@
 .end method
 
 .method static decode([BI)Lcom/google/zxing/common/DecoderResult;
-    .registers 10
+    .locals 8
     .param p0, "bytes"    # [B
     .param p1, "mode"    # I
 
@@ -123,12 +123,12 @@
     .local v0, "result":Ljava/lang/StringBuilder;
     const/4 v1, 0x1
 
-    packed-switch p1, :pswitch_data_c4
+    packed-switch p1, :pswitch_data_0
 
-    goto/16 :goto_b5
+    goto/16 :goto_1
 
     .line 89
-    :pswitch_d
+    :pswitch_0
     const/16 v2, 0x4d
 
     invoke-static {p0, v1, v2}, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->getMessage([BII)Ljava/lang/String;
@@ -137,10 +137,10 @@
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    goto/16 :goto_b5
+    goto/16 :goto_1
 
     .line 86
-    :pswitch_18
+    :pswitch_1
     const/16 v2, 0x5d
 
     invoke-static {p0, v1, v2}, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->getMessage([BII)Ljava/lang/String;
@@ -150,15 +150,15 @@
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 87
-    goto/16 :goto_b5
+    goto/16 :goto_1
 
     .line 69
-    :pswitch_23
+    :pswitch_2
     const/4 v1, 0x2
 
     const/4 v2, 0x0
 
-    if-ne p1, v1, :cond_40
+    if-ne p1, v1, :cond_0
 
     .line 70
     invoke-static {p0}, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->getPostCode2([B)I
@@ -192,18 +192,18 @@
     .line 73
     .end local v3    # "df":Ljava/text/NumberFormat;
     .local v1, "postcode":Ljava/lang/String;
-    goto :goto_44
+    goto :goto_0
 
     .line 74
     .end local v1    # "postcode":Ljava/lang/String;
-    :cond_40
+    :cond_0
     invoke-static {p0}, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->getPostCode3([B)Ljava/lang/String;
 
     move-result-object v1
 
     .line 76
     .restart local v1    # "postcode":Ljava/lang/String;
-    :goto_44
+    :goto_0
     sget-object v3, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->THREE_DIGITS:Ljava/text/NumberFormat;
 
     invoke-static {p0}, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->getCountry([B)I
@@ -255,7 +255,7 @@
 
     const/16 v6, 0x1d
 
-    if-eqz v5, :cond_95
+    if-eqz v5, :cond_1
 
     .line 80
     const/16 v2, 0x9
@@ -285,10 +285,10 @@
     invoke-virtual {v0, v2, v5}, Ljava/lang/StringBuilder;->insert(ILjava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 81
-    goto :goto_b5
+    goto :goto_1
 
     .line 82
-    :cond_95
+    :cond_1
     new-instance v5, Ljava/lang/StringBuilder;
 
     invoke-static {v1}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
@@ -320,7 +320,7 @@
     .end local v1    # "postcode":Ljava/lang/String;
     .end local v3    # "country":Ljava/lang/String;
     .end local v4    # "service":Ljava/lang/String;
-    :goto_b5
+    :goto_1
     new-instance v1, Lcom/google/zxing/common/DecoderResult;
 
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
@@ -337,17 +337,17 @@
 
     return-object v1
 
-    :pswitch_data_c4
+    :pswitch_data_0
     .packed-switch 0x2
-        :pswitch_23
-        :pswitch_23
-        :pswitch_18
-        :pswitch_d
+        :pswitch_2
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
     .end packed-switch
 .end method
 
 .method private static getBit(I[B)I
-    .registers 5
+    .locals 3
     .param p0, "bit"    # I
     .param p1, "bytes"    # [B
 
@@ -369,18 +369,18 @@
 
     and-int/2addr v0, v1
 
-    if-nez v0, :cond_12
+    if-nez v0, :cond_0
 
     const/4 v2, 0x0
 
     nop
 
-    :cond_12
+    :cond_0
     return v2
 .end method
 
 .method private static getCountry([B)I
-    .registers 2
+    .locals 1
     .param p0, "bytes"    # [B
 
     .line 112
@@ -388,7 +388,7 @@
 
     new-array v0, v0, [B
 
-    fill-array-data v0, :array_c
+    fill-array-data v0, :array_0
 
     invoke-static {p0, v0}, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->getInt([B[B)I
 
@@ -396,7 +396,7 @@
 
     return v0
 
-    :array_c
+    :array_0
     .array-data 1
         0x35t
         0x36t
@@ -412,14 +412,14 @@
 .end method
 
 .method private static getInt([B[B)I
-    .registers 6
+    .locals 4
     .param p0, "bytes"    # [B
     .param p1, "x"    # [B
 
     .line 101
     array-length v0, p1
 
-    if-eqz v0, :cond_18
+    if-eqz v0, :cond_1
 
     .line 104
     const/4 v0, 0x0
@@ -429,10 +429,10 @@
     const/4 v1, 0x0
 
     .local v1, "i":I
-    :goto_5
+    :goto_0
     array-length v2, p1
 
-    if-lt v1, v2, :cond_9
+    if-lt v1, v2, :cond_0
 
     .line 108
     .end local v1    # "i":I
@@ -440,7 +440,7 @@
 
     .line 106
     .restart local v1    # "i":I
-    :cond_9
+    :cond_0
     aget-byte v2, p1, v1
 
     invoke-static {v2, p0}, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->getBit(I[B)I
@@ -460,12 +460,12 @@
     .line 105
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_5
+    goto :goto_0
 
     .line 102
     .end local v0    # "val":I
     .end local v1    # "i":I
-    :cond_18
+    :cond_1
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     invoke-direct {v0}, Ljava/lang/IllegalArgumentException;-><init>()V
@@ -474,7 +474,7 @@
 .end method
 
 .method private static getMessage([BII)Ljava/lang/String;
-    .registers 13
+    .locals 10
     .param p0, "bytes"    # [B
     .param p1, "start"    # I
     .param p2, "len"    # I
@@ -501,19 +501,19 @@
     move v4, p1
 
     .local v4, "i":I
-    :goto_9
+    :goto_0
     add-int v5, p1, p2
 
-    if-lt v4, v5, :cond_32
+    if-lt v4, v5, :cond_2
 
     .line 190
     .end local v4    # "i":I
-    :goto_d
+    :goto_1
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->length()I
 
     move-result v4
 
-    if-lez v4, :cond_2d
+    if-lez v4, :cond_1
 
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->length()I
 
@@ -527,12 +527,12 @@
 
     const v5, 0xfffc
 
-    if-eq v4, v5, :cond_23
+    if-eq v4, v5, :cond_0
 
-    goto :goto_2d
+    goto :goto_2
 
     .line 191
-    :cond_23
+    :cond_0
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->length()I
 
     move-result v4
@@ -541,11 +541,11 @@
 
     invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->setLength(I)V
 
-    goto :goto_d
+    goto :goto_1
 
     .line 193
-    :cond_2d
-    :goto_2d
+    :cond_1
+    :goto_2
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v4
@@ -554,7 +554,7 @@
 
     .line 147
     .restart local v4    # "i":I
-    :cond_32
+    :cond_2
     sget-object v5, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->SETS:[Ljava/lang/String;
 
     aget-object v5, v5, v2
@@ -567,16 +567,16 @@
 
     .line 148
     .local v5, "c":C
-    packed-switch v5, :pswitch_data_92
+    packed-switch v5, :pswitch_data_0
 
     .line 184
-    :pswitch_3f
+    :pswitch_0
     invoke-virtual {v0, v5}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    goto :goto_86
+    goto :goto_3
 
     .line 177
-    :pswitch_43
+    :pswitch_1
     add-int/lit8 v4, v4, 0x1
 
     aget-byte v6, p0, v4
@@ -626,38 +626,38 @@
     invoke-virtual {v0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 179
-    goto :goto_86
+    goto :goto_3
 
     .line 181
     .end local v6    # "nsval":I
-    :pswitch_6e
+    :pswitch_2
     const/4 v1, -0x1
 
     .line 182
-    goto :goto_86
+    goto :goto_3
 
     .line 154
-    :pswitch_70
+    :pswitch_3
     const/4 v2, 0x1
 
     .line 155
     const/4 v1, -0x1
 
     .line 156
-    goto :goto_86
+    goto :goto_3
 
     .line 150
-    :pswitch_73
+    :pswitch_4
     const/4 v2, 0x0
 
     .line 151
     const/4 v1, -0x1
 
     .line 152
-    goto :goto_86
+    goto :goto_3
 
     .line 172
-    :pswitch_76
+    :pswitch_5
     move v3, v2
 
     .line 173
@@ -667,10 +667,10 @@
     const/4 v1, 0x3
 
     .line 175
-    goto :goto_86
+    goto :goto_3
 
     .line 167
-    :pswitch_7a
+    :pswitch_6
     move v3, v2
 
     .line 168
@@ -680,10 +680,10 @@
     const/4 v1, 0x2
 
     .line 170
-    goto :goto_86
+    goto :goto_3
 
     .line 162
-    :pswitch_7e
+    :pswitch_7
     move v3, v2
 
     .line 163
@@ -698,11 +698,11 @@
     nop
 
     .line 186
-    :goto_86
+    :goto_3
     add-int/lit8 v6, v1, -0x1
 
     .local v6, "shift":I
-    if-nez v1, :cond_8c
+    if-nez v1, :cond_3
 
     .line 187
     .end local v1    # "shift":I
@@ -716,34 +716,34 @@
 
     .end local v1    # "set":I
     .restart local v2    # "set":I
-    :cond_8c
+    :cond_3
     add-int/lit8 v4, v4, 0x1
 
     move v1, v6
 
-    goto/16 :goto_9
+    goto/16 :goto_0
 
     nop
 
-    :pswitch_data_92
+    :pswitch_data_0
     .packed-switch 0xfff0
-        :pswitch_7e
-        :pswitch_7e
-        :pswitch_7e
-        :pswitch_7e
-        :pswitch_7e
-        :pswitch_7a
-        :pswitch_76
-        :pswitch_73
-        :pswitch_70
-        :pswitch_6e
-        :pswitch_3f
-        :pswitch_43
+        :pswitch_7
+        :pswitch_7
+        :pswitch_7
+        :pswitch_7
+        :pswitch_7
+        :pswitch_6
+        :pswitch_5
+        :pswitch_4
+        :pswitch_3
+        :pswitch_2
+        :pswitch_0
+        :pswitch_1
     .end packed-switch
 .end method
 
 .method private static getPostCode2([B)I
-    .registers 2
+    .locals 1
     .param p0, "bytes"    # [B
 
     .line 124
@@ -751,7 +751,7 @@
 
     new-array v0, v0, [B
 
-    fill-array-data v0, :array_e
+    fill-array-data v0, :array_0
 
     .line 125
     nop
@@ -765,7 +765,7 @@
 
     nop
 
-    :array_e
+    :array_0
     .array-data 1
         0x21t
         0x22t
@@ -801,7 +801,7 @@
 .end method
 
 .method private static getPostCode2Length([B)I
-    .registers 2
+    .locals 1
     .param p0, "bytes"    # [B
 
     .line 120
@@ -809,7 +809,7 @@
 
     new-array v0, v0, [B
 
-    fill-array-data v0, :array_c
+    fill-array-data v0, :array_0
 
     invoke-static {p0, v0}, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->getInt([B[B)I
 
@@ -819,7 +819,7 @@
 
     nop
 
-    :array_c
+    :array_0
     .array-data 1
         0x27t
         0x28t
@@ -831,7 +831,7 @@
 .end method
 
 .method private static getPostCode3([B)Ljava/lang/String;
-    .registers 6
+    .locals 5
     .param p0, "bytes"    # [B
 
     .line 130
@@ -848,7 +848,7 @@
 
     new-array v4, v0, [B
 
-    fill-array-data v4, :array_80
+    fill-array-data v4, :array_0
 
     invoke-static {p0, v4}, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->getInt([B[B)I
 
@@ -867,7 +867,7 @@
 
     new-array v4, v0, [B
 
-    fill-array-data v4, :array_88
+    fill-array-data v4, :array_1
 
     invoke-static {p0, v4}, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->getInt([B[B)I
 
@@ -888,7 +888,7 @@
 
     new-array v4, v0, [B
 
-    fill-array-data v4, :array_90
+    fill-array-data v4, :array_2
 
     invoke-static {p0, v4}, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->getInt([B[B)I
 
@@ -909,7 +909,7 @@
 
     new-array v4, v0, [B
 
-    fill-array-data v4, :array_98
+    fill-array-data v4, :array_3
 
     invoke-static {p0, v4}, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->getInt([B[B)I
 
@@ -930,7 +930,7 @@
 
     new-array v4, v0, [B
 
-    fill-array-data v4, :array_a0
+    fill-array-data v4, :array_4
 
     invoke-static {p0, v4}, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->getInt([B[B)I
 
@@ -951,7 +951,7 @@
 
     new-array v0, v0, [B
 
-    fill-array-data v0, :array_a8
+    fill-array-data v0, :array_5
 
     invoke-static {p0, v0}, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->getInt([B[B)I
 
@@ -972,7 +972,7 @@
 
     return-object v0
 
-    :array_80
+    :array_0
     .array-data 1
         0x27t
         0x28t
@@ -984,7 +984,7 @@
 
     nop
 
-    :array_88
+    :array_1
     .array-data 1
         0x21t
         0x22t
@@ -996,7 +996,7 @@
 
     nop
 
-    :array_90
+    :array_2
     .array-data 1
         0x1bt
         0x1ct
@@ -1008,7 +1008,7 @@
 
     nop
 
-    :array_98
+    :array_3
     .array-data 1
         0x15t
         0x16t
@@ -1020,7 +1020,7 @@
 
     nop
 
-    :array_a0
+    :array_4
     .array-data 1
         0xft
         0x10t
@@ -1032,7 +1032,7 @@
 
     nop
 
-    :array_a8
+    :array_5
     .array-data 1
         0x9t
         0xat
@@ -1044,7 +1044,7 @@
 .end method
 
 .method private static getServiceClass([B)I
-    .registers 2
+    .locals 1
     .param p0, "bytes"    # [B
 
     .line 116
@@ -1052,7 +1052,7 @@
 
     new-array v0, v0, [B
 
-    fill-array-data v0, :array_c
+    fill-array-data v0, :array_0
 
     invoke-static {p0, v0}, Lcom/google/zxing/maxicode/decoder/DecodedBitStreamParser;->getInt([B[B)I
 
@@ -1060,7 +1060,7 @@
 
     return v0
 
-    :array_c
+    :array_0
     .array-data 1
         0x37t
         0x38t

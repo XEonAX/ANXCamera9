@@ -13,7 +13,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 44
     invoke-direct {p0}, Landroid/app/Service;-><init>()V
@@ -23,7 +23,7 @@
 .end method
 
 .method static synthetic access$100(Landroid/support/v4/app/NotificationCompatSideChannelService;ILjava/lang/String;)V
-    .registers 3
+    .locals 0
     .param p0, "x0"    # Landroid/support/v4/app/NotificationCompatSideChannelService;
     .param p1, "x1"    # I
     .param p2, "x2"    # Ljava/lang/String;
@@ -35,7 +35,7 @@
 .end method
 
 .method private checkPermission(ILjava/lang/String;)V
-    .registers 8
+    .locals 5
     .param p1, "callingUid"    # I
     .param p2, "packageName"    # Ljava/lang/String;
 
@@ -55,8 +55,8 @@
     const/4 v2, 0x0
 
     .local v2, "i$":I
-    :goto_a
-    if-ge v2, v1, :cond_18
+    :goto_0
+    if-ge v2, v1, :cond_1
 
     aget-object v3, v0, v2
 
@@ -66,23 +66,23 @@
 
     move-result v4
 
-    if-eqz v4, :cond_15
+    if-eqz v4, :cond_0
 
     .line 112
     return-void
 
     .line 110
     .end local v3    # "validPackage":Ljava/lang/String;
-    :cond_15
+    :cond_0
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_a
+    goto :goto_0
 
     .line 115
     .end local v0    # "arr$":[Ljava/lang/String;
     .end local v1    # "len$":I
     .end local v2    # "i$":I
-    :cond_18
+    :cond_1
     new-instance v0, Ljava/lang/SecurityException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -122,7 +122,7 @@
 .end method
 
 .method public onBind(Landroid/content/Intent;)Landroid/os/IBinder;
-    .registers 5
+    .locals 3
     .param p1, "intent"    # Landroid/content/Intent;
 
     .line 47
@@ -138,20 +138,20 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_1a
+    if-eqz v0, :cond_1
 
     .line 50
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v2, 0x13
 
-    if-le v0, v2, :cond_14
+    if-le v0, v2, :cond_0
 
     .line 51
     return-object v1
 
     .line 53
-    :cond_14
+    :cond_0
     new-instance v0, Landroid/support/v4/app/NotificationCompatSideChannelService$NotificationSideChannelStub;
 
     invoke-direct {v0, p0, v1}, Landroid/support/v4/app/NotificationCompatSideChannelService$NotificationSideChannelStub;-><init>(Landroid/support/v4/app/NotificationCompatSideChannelService;Landroid/support/v4/app/NotificationCompatSideChannelService$1;)V
@@ -159,6 +159,6 @@
     return-object v0
 
     .line 55
-    :cond_1a
+    :cond_1
     return-object v1
 .end method

@@ -15,7 +15,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -26,7 +26,7 @@
 
 # virtual methods
 .method public getFileId()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 38
     iget-object v0, p0, Lcom/google/zxing/pdf417/PDF417ResultMetadata;->fileId:Ljava/lang/String;
@@ -35,7 +35,7 @@
 .end method
 
 .method public getOptionalData()[I
-    .registers 2
+    .locals 1
 
     .line 46
     iget-object v0, p0, Lcom/google/zxing/pdf417/PDF417ResultMetadata;->optionalData:[I
@@ -44,7 +44,7 @@
 .end method
 
 .method public getSegmentIndex()I
-    .registers 2
+    .locals 1
 
     .line 30
     iget v0, p0, Lcom/google/zxing/pdf417/PDF417ResultMetadata;->segmentIndex:I
@@ -53,7 +53,7 @@
 .end method
 
 .method public isLastSegment()Z
-    .registers 2
+    .locals 1
 
     .line 54
     iget-boolean v0, p0, Lcom/google/zxing/pdf417/PDF417ResultMetadata;->lastSegment:Z
@@ -62,7 +62,7 @@
 .end method
 
 .method public setFileId(Ljava/lang/String;)V
-    .registers 2
+    .locals 0
     .param p1, "fileId"    # Ljava/lang/String;
 
     .line 42
@@ -73,7 +73,7 @@
 .end method
 
 .method public setLastSegment(Z)V
-    .registers 2
+    .locals 0
     .param p1, "lastSegment"    # Z
 
     .line 58
@@ -84,7 +84,7 @@
 .end method
 
 .method public setOptionalData([I)V
-    .registers 2
+    .locals 0
     .param p1, "optionalData"    # [I
 
     .line 50
@@ -95,7 +95,7 @@
 .end method
 
 .method public setSegmentIndex(I)V
-    .registers 2
+    .locals 0
     .param p1, "segmentIndex"    # I
 
     .line 34

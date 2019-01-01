@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 23
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -16,7 +16,7 @@
 
 # virtual methods
 .method public onPlayingChanged(Landroid/support/v4/media/TransportController;)V
-    .registers 2
+    .locals 0
     .param p1, "controller"    # Landroid/support/v4/media/TransportController;
 
     .line 30
@@ -24,7 +24,7 @@
 .end method
 
 .method public onTransportControlsChanged(Landroid/support/v4/media/TransportController;)V
-    .registers 2
+    .locals 0
     .param p1, "controller"    # Landroid/support/v4/media/TransportController;
 
     .line 38

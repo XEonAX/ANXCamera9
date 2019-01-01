@@ -32,7 +32,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 107
     new-instance v0, Landroid/support/v13/app/FragmentTabHost$SavedState$1;
@@ -45,7 +45,7 @@
 .end method
 
 .method private constructor <init>(Landroid/os/Parcel;)V
-    .registers 3
+    .locals 1
     .param p1, "in"    # Landroid/os/Parcel;
 
     .line 90
@@ -63,7 +63,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/os/Parcel;Landroid/support/v13/app/FragmentTabHost$1;)V
-    .registers 3
+    .locals 0
     .param p1, "x0"    # Landroid/os/Parcel;
     .param p2, "x1"    # Landroid/support/v13/app/FragmentTabHost$1;
 
@@ -74,7 +74,7 @@
 .end method
 
 .method constructor <init>(Landroid/os/Parcelable;)V
-    .registers 2
+    .locals 0
     .param p1, "superState"    # Landroid/os/Parcelable;
 
     .line 86
@@ -87,7 +87,7 @@
 
 # virtual methods
 .method public toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 102
     new-instance v0, Ljava/lang/StringBuilder;
@@ -128,7 +128,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .registers 4
+    .locals 1
     .param p1, "out"    # Landroid/os/Parcel;
     .param p2, "flags"    # I
 

@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/util/Map;)V
-    .registers 5
+    .locals 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -24,14 +24,14 @@
     invoke-direct {p0}, Lcom/google/zxing/oned/OneDReader;-><init>()V
 
     .line 44
-    if-nez p1, :cond_7
+    if-nez p1, :cond_0
 
     const/4 v0, 0x0
 
-    goto :goto_f
+    goto :goto_0
 
     .line 45
-    :cond_7
+    :cond_0
     sget-object v0, Lcom/google/zxing/DecodeHintType;->POSSIBLE_FORMATS:Lcom/google/zxing/DecodeHintType;
 
     invoke-interface {p1, v0}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -41,7 +41,7 @@
     check-cast v0, Ljava/util/Collection;
 
     .line 44
-    :goto_f
+    :goto_0
     nop
 
     .line 46
@@ -52,7 +52,7 @@
 
     .line 47
     .local v1, "readers":Ljava/util/Collection;, "Ljava/util/Collection<Lcom/google/zxing/oned/UPCEANReader;>;"
-    if-eqz v0, :cond_58
+    if-eqz v0, :cond_4
 
     .line 48
     sget-object v2, Lcom/google/zxing/BarcodeFormat;->EAN_13:Lcom/google/zxing/BarcodeFormat;
@@ -61,7 +61,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_28
+    if-eqz v2, :cond_1
 
     .line 49
     new-instance v2, Lcom/google/zxing/oned/EAN13Reader;
@@ -71,16 +71,16 @@
     invoke-interface {v1, v2}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
 
     .line 50
-    goto :goto_38
+    goto :goto_1
 
-    :cond_28
+    :cond_1
     sget-object v2, Lcom/google/zxing/BarcodeFormat;->UPC_A:Lcom/google/zxing/BarcodeFormat;
 
     invoke-interface {v0, v2}, Ljava/util/Collection;->contains(Ljava/lang/Object;)Z
 
     move-result v2
 
-    if-eqz v2, :cond_38
+    if-eqz v2, :cond_2
 
     .line 51
     new-instance v2, Lcom/google/zxing/oned/UPCAReader;
@@ -90,15 +90,15 @@
     invoke-interface {v1, v2}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
 
     .line 53
-    :cond_38
-    :goto_38
+    :cond_2
+    :goto_1
     sget-object v2, Lcom/google/zxing/BarcodeFormat;->EAN_8:Lcom/google/zxing/BarcodeFormat;
 
     invoke-interface {v0, v2}, Ljava/util/Collection;->contains(Ljava/lang/Object;)Z
 
     move-result v2
 
-    if-eqz v2, :cond_48
+    if-eqz v2, :cond_3
 
     .line 54
     new-instance v2, Lcom/google/zxing/oned/EAN8Reader;
@@ -108,14 +108,14 @@
     invoke-interface {v1, v2}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
 
     .line 56
-    :cond_48
+    :cond_3
     sget-object v2, Lcom/google/zxing/BarcodeFormat;->UPC_E:Lcom/google/zxing/BarcodeFormat;
 
     invoke-interface {v0, v2}, Ljava/util/Collection;->contains(Ljava/lang/Object;)Z
 
     move-result v2
 
-    if-eqz v2, :cond_58
+    if-eqz v2, :cond_4
 
     .line 57
     new-instance v2, Lcom/google/zxing/oned/UPCEReader;
@@ -125,12 +125,12 @@
     invoke-interface {v1, v2}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
 
     .line 60
-    :cond_58
+    :cond_4
     invoke-interface {v1}, Ljava/util/Collection;->isEmpty()Z
 
     move-result v2
 
-    if-eqz v2, :cond_76
+    if-eqz v2, :cond_5
 
     .line 61
     new-instance v2, Lcom/google/zxing/oned/EAN13Reader;
@@ -154,7 +154,7 @@
     invoke-interface {v1, v2}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
 
     .line 66
-    :cond_76
+    :cond_5
     invoke-interface {v1}, Ljava/util/Collection;->size()I
 
     move-result v2
@@ -176,7 +176,7 @@
 
 # virtual methods
 .method public decodeRow(ILcom/google/zxing/common/BitArray;Ljava/util/Map;)Lcom/google/zxing/Result;
-    .registers 15
+    .locals 11
     .param p1, "rowNumber"    # I
     .param p2, "row"    # Lcom/google/zxing/common/BitArray;
     .annotation system Ldalvik/annotation/Signature;
@@ -212,19 +212,19 @@
 
     move v4, v3
 
-    :goto_9
-    if-ge v4, v2, :cond_6f
+    :goto_0
+    if-ge v4, v2, :cond_4
 
     aget-object v5, v1, v4
 
     .line 78
     .local v5, "reader":Lcom/google/zxing/oned/UPCEANReader;
-    :try_start_d
+    :try_start_0
     invoke-virtual {v5, p1, p2, v0, p3}, Lcom/google/zxing/oned/UPCEANReader;->decodeRow(ILcom/google/zxing/common/BitArray;[ILjava/util/Map;)Lcom/google/zxing/Result;
 
     move-result-object v6
-    :try_end_11
-    .catch Lcom/google/zxing/ReaderException; {:try_start_d .. :try_end_11} :catch_6a
+    :try_end_0
+    .catch Lcom/google/zxing/ReaderException; {:try_start_0 .. :try_end_0} :catch_0
 
     move-object v1, v6
 
@@ -244,7 +244,7 @@
 
     const/4 v6, 0x1
 
-    if-ne v2, v4, :cond_2b
+    if-ne v2, v4, :cond_0
 
     .line 96
     invoke-virtual {v1}, Lcom/google/zxing/Result;->getText()Ljava/lang/String;
@@ -257,26 +257,26 @@
 
     const/16 v4, 0x30
 
-    if-ne v2, v4, :cond_2b
+    if-ne v2, v4, :cond_0
 
     .line 94
     move v2, v6
 
-    goto :goto_2c
+    goto :goto_1
 
-    :cond_2b
+    :cond_0
     move v2, v3
 
     .line 99
     .local v2, "ean13MayBeUPCA":Z
-    :goto_2c
-    if-nez p3, :cond_30
+    :goto_1
+    if-nez p3, :cond_1
 
     const/4 v4, 0x0
 
-    goto :goto_38
+    goto :goto_2
 
-    :cond_30
+    :cond_1
     sget-object v4, Lcom/google/zxing/DecodeHintType;->POSSIBLE_FORMATS:Lcom/google/zxing/DecodeHintType;
 
     invoke-interface {p3, v4}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -286,12 +286,12 @@
     check-cast v4, Ljava/util/Collection;
 
     .line 98
-    :goto_38
+    :goto_2
     nop
 
     .line 100
     .local v4, "possibleFormats":Ljava/util/Collection;, "Ljava/util/Collection<Lcom/google/zxing/BarcodeFormat;>;"
-    if-eqz v4, :cond_44
+    if-eqz v4, :cond_2
 
     sget-object v7, Lcom/google/zxing/BarcodeFormat;->UPC_A:Lcom/google/zxing/BarcodeFormat;
 
@@ -299,19 +299,19 @@
 
     move-result v7
 
-    if-nez v7, :cond_44
+    if-nez v7, :cond_2
 
-    goto :goto_45
+    goto :goto_3
 
-    :cond_44
+    :cond_2
     move v3, v6
 
     .line 102
     .local v3, "canReturnUPCA":Z
-    :goto_45
-    if-eqz v2, :cond_69
+    :goto_3
+    if-eqz v2, :cond_3
 
-    if-eqz v3, :cond_69
+    if-eqz v3, :cond_3
 
     .line 104
     new-instance v7, Lcom/google/zxing/Result;
@@ -355,7 +355,7 @@
 
     .line 111
     .end local v6    # "resultUPCA":Lcom/google/zxing/Result;
-    :cond_69
+    :cond_3
     return-object v1
 
     .line 79
@@ -363,7 +363,7 @@
     .end local v2    # "ean13MayBeUPCA":Z
     .end local v3    # "canReturnUPCA":Z
     .end local v4    # "possibleFormats":Ljava/util/Collection;, "Ljava/util/Collection<Lcom/google/zxing/BarcodeFormat;>;"
-    :catch_6a
+    :catch_0
     move-exception v6
 
     .line 80
@@ -375,10 +375,10 @@
     .end local v6    # "ignored":Lcom/google/zxing/ReaderException;
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_9
+    goto :goto_0
 
     .line 114
-    :cond_6f
+    :cond_4
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v1
@@ -387,7 +387,7 @@
 .end method
 
 .method public reset()V
-    .registers 5
+    .locals 4
 
     .line 119
     iget-object v0, p0, Lcom/google/zxing/oned/MultiFormatUPCEANReader;->readers:[Lcom/google/zxing/oned/UPCEANReader;
@@ -396,14 +396,14 @@
 
     const/4 v2, 0x0
 
-    :goto_4
-    if-lt v2, v1, :cond_7
+    :goto_0
+    if-lt v2, v1, :cond_0
 
     .line 122
     return-void
 
     .line 119
-    :cond_7
+    :cond_0
     aget-object v3, v0, v2
 
     .line 120
@@ -414,5 +414,5 @@
     .end local v3    # "reader":Lcom/google/zxing/Reader;
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_4
+    goto :goto_0
 .end method

@@ -12,7 +12,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 20
     const/4 v0, 0x0
@@ -24,7 +24,7 @@
 .end method
 
 .method public constructor <init>(F)V
-    .registers 2
+    .locals 0
 
     .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -39,7 +39,7 @@
 
 # virtual methods
 .method public getInterpolation(F)F
-    .registers 11
+    .locals 9
 
     .line 32
     iget v0, p0, Lmiui/view/animation/BackEaseInOutInterpolator;->NS:F
@@ -48,17 +48,17 @@
 
     cmpl-float v0, v0, v1
 
-    if-nez v0, :cond_b
+    if-nez v0, :cond_0
 
     const v0, 0x3fd9cd60
 
-    goto :goto_d
+    goto :goto_0
 
-    :cond_b
+    :cond_0
     iget v0, p0, Lmiui/view/animation/BackEaseInOutInterpolator;->NS:F
 
     .line 34
-    :goto_d
+    :goto_0
     const/high16 v1, 0x40000000    # 2.0f
 
     mul-float/2addr p1, v1
@@ -72,7 +72,7 @@
 
     const-wide v5, 0x3ff8666666666666L    # 1.525
 
-    if-gez v3, :cond_28
+    if-gez v3, :cond_1
 
     .line 36
     float-to-double v0, v0
@@ -97,7 +97,7 @@
     return v4
 
     .line 40
-    :cond_28
+    :cond_1
     sub-float/2addr p1, v1
 
     .line 41

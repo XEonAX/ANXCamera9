@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 106
     invoke-direct {p0}, Landroid/support/v4/widget/CompoundButtonCompat$LollipopCompoundButtonImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getButtonDrawable(Landroid/widget/CompoundButton;)Landroid/graphics/drawable/Drawable;
-    .registers 3
+    .locals 1
     .param p1, "button"    # Landroid/widget/CompoundButton;
 
     .line 109

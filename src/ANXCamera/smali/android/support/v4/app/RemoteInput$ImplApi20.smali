@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 240
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public addResultsToIntent([Landroid/support/v4/app/RemoteInput;Landroid/content/Intent;Landroid/os/Bundle;)V
-    .registers 4
+    .locals 0
     .param p1, "remoteInputs"    # [Landroid/support/v4/app/RemoteInput;
     .param p2, "intent"    # Landroid/content/Intent;
     .param p3, "results"    # Landroid/os/Bundle;
@@ -43,7 +43,7 @@
 .end method
 
 .method public getResultsFromIntent(Landroid/content/Intent;)Landroid/os/Bundle;
-    .registers 3
+    .locals 1
     .param p1, "intent"    # Landroid/content/Intent;
 
     .line 243

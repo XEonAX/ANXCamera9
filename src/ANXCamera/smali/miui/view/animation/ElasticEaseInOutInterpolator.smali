@@ -14,7 +14,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 21
     const/4 v0, 0x0
@@ -26,7 +26,7 @@
 .end method
 
 .method public constructor <init>(FF)V
-    .registers 3
+    .locals 0
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -44,7 +44,7 @@
 
 # virtual methods
 .method public getInterpolation(F)F
-    .registers 15
+    .locals 13
 
     .line 35
     iget v0, p0, Lmiui/view/animation/ElasticEaseInOutInterpolator;->NV:F
@@ -57,13 +57,13 @@
 
     cmpl-float v3, p1, v2
 
-    if-nez v3, :cond_a
+    if-nez v3, :cond_0
 
     .line 40
     return v2
 
     .line 43
-    :cond_a
+    :cond_0
     const/high16 v3, 0x3f000000    # 0.5f
 
     div-float/2addr p1, v3
@@ -75,36 +75,36 @@
 
     const/high16 v4, 0x3f800000    # 1.0f
 
-    if-nez v3, :cond_16
+    if-nez v3, :cond_1
 
     .line 45
     return v4
 
     .line 47
-    :cond_16
+    :cond_1
     cmpl-float v3, v0, v2
 
-    if-nez v3, :cond_1d
+    if-nez v3, :cond_2
 
     .line 48
     const v0, 0x3ee66667    # 0.45000002f
 
     .line 50
-    :cond_1d
+    :cond_2
     cmpl-float v2, v1, v2
 
     const-wide v5, 0x401921fb54442d18L    # 6.283185307179586
 
-    if-eqz v2, :cond_37
+    if-eqz v2, :cond_4
 
     cmpg-float v2, v1, v4
 
-    if-gez v2, :cond_2b
+    if-gez v2, :cond_3
 
-    goto :goto_37
+    goto :goto_0
 
     .line 54
-    :cond_2b
+    :cond_3
     float-to-double v2, v0
 
     div-double/2addr v2, v5
@@ -121,11 +121,11 @@
 
     double-to-float v2, v2
 
-    goto :goto_3d
+    goto :goto_1
 
     .line 51
-    :cond_37
-    :goto_37
+    :cond_4
+    :goto_0
     nop
 
     .line 52
@@ -136,12 +136,12 @@
     .line 56
     move v1, v4
 
-    :goto_3d
+    :goto_1
     cmpg-float v3, p1, v4
 
     const-wide/high16 v7, 0x4000000000000000L    # 2.0
 
-    if-gez v3, :cond_5d
+    if-gez v3, :cond_5
 
     .line 57
     sub-float/2addr p1, v4
@@ -186,7 +186,7 @@
     return v3
 
     .line 62
-    :cond_5d
+    :cond_5
     sub-float/2addr p1, v4
 
     .line 63

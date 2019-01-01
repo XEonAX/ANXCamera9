@@ -12,7 +12,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 35
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -21,7 +21,7 @@
 .end method
 
 .method private static bitMatrixFromEncoder(Lcom/google/zxing/pdf417/encoder/PDF417;Ljava/lang/String;III)Lcom/google/zxing/common/BitMatrix;
-    .registers 16
+    .locals 11
     .param p0, "encoder"    # Lcom/google/zxing/pdf417/encoder/PDF417;
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "width"    # I
@@ -69,35 +69,35 @@
 
     const/4 v6, 0x0
 
-    if-le p3, p2, :cond_17
+    if-le p3, p2, :cond_0
 
     move v7, v5
 
-    goto :goto_18
+    goto :goto_0
 
-    :cond_17
+    :cond_0
     move v7, v6
 
-    :goto_18
+    :goto_0
     aget-object v8, v3, v6
 
     array-length v8, v8
 
     array-length v9, v3
 
-    if-ge v8, v9, :cond_20
+    if-ge v8, v9, :cond_1
 
     move v8, v5
 
-    goto :goto_21
+    goto :goto_1
 
-    :cond_20
+    :cond_1
     move v8, v6
 
-    :goto_21
+    :goto_1
     xor-int/2addr v7, v8
 
-    if-eqz v7, :cond_29
+    if-eqz v7, :cond_2
 
     .line 105
     invoke-static {v3}, Lcom/google/zxing/pdf417/PDF417Writer;->rotateArray([[B)[[B
@@ -108,7 +108,7 @@
     const/4 v4, 0x1
 
     .line 109
-    :cond_29
+    :cond_2
     aget-object v6, v3, v6
 
     array-length v6, v6
@@ -123,24 +123,24 @@
 
     .line 113
     .local v7, "scaleY":I
-    if-ge v6, v7, :cond_35
+    if-ge v6, v7, :cond_3
 
     .line 114
     move v8, v6
 
     .line 115
     .local v8, "scale":I
-    goto :goto_36
+    goto :goto_2
 
     .line 116
     .end local v8    # "scale":I
-    :cond_35
+    :cond_3
     move v8, v7
 
     .line 119
     .restart local v8    # "scale":I
-    :goto_36
-    if-le v8, v5, :cond_51
+    :goto_2
+    if-le v8, v5, :cond_5
 
     .line 121
     invoke-virtual {p0}, Lcom/google/zxing/pdf417/encoder/PDF417;->getBarcodeMatrix()Lcom/google/zxing/pdf417/encoder/BarcodeMatrix;
@@ -162,7 +162,7 @@
 
     .line 122
     .local v5, "scaledMatrix":[[B
-    if-eqz v4, :cond_4c
+    if-eqz v4, :cond_4
 
     .line 123
     invoke-static {v5}, Lcom/google/zxing/pdf417/PDF417Writer;->rotateArray([[B)[[B
@@ -170,7 +170,7 @@
     move-result-object v5
 
     .line 125
-    :cond_4c
+    :cond_4
     invoke-static {v5, p4}, Lcom/google/zxing/pdf417/PDF417Writer;->bitMatrixFrombitArray([[BI)Lcom/google/zxing/common/BitMatrix;
 
     move-result-object v9
@@ -179,7 +179,7 @@
 
     .line 127
     .end local v5    # "scaledMatrix":[[B
-    :cond_51
+    :cond_5
     invoke-static {v3, p4}, Lcom/google/zxing/pdf417/PDF417Writer;->bitMatrixFrombitArray([[BI)Lcom/google/zxing/common/BitMatrix;
 
     move-result-object v5
@@ -188,7 +188,7 @@
 .end method
 
 .method private static bitMatrixFrombitArray([[BI)Lcom/google/zxing/common/BitMatrix;
-    .registers 9
+    .locals 7
     .param p0, "input"    # [[B
     .param p1, "margin"    # I
 
@@ -234,10 +234,10 @@
     sub-int/2addr v3, v4
 
     .local v3, "yOutput":I
-    :goto_1b
+    :goto_0
     array-length v5, p0
 
-    if-lt v2, v5, :cond_1f
+    if-lt v2, v5, :cond_0
 
     .line 149
     .end local v2    # "y":I
@@ -247,16 +247,16 @@
     .line 142
     .restart local v2    # "y":I
     .restart local v3    # "yOutput":I
-    :cond_1f
+    :cond_0
     const/4 v5, 0x0
 
     .local v5, "x":I
-    :goto_20
+    :goto_1
     aget-object v6, p0, v1
 
     array-length v6, v6
 
-    if-lt v5, v6, :cond_2a
+    if-lt v5, v6, :cond_1
 
     .line 141
     .end local v5    # "x":I
@@ -264,16 +264,16 @@
 
     add-int/lit8 v3, v3, -0x1
 
-    goto :goto_1b
+    goto :goto_0
 
     .line 144
     .restart local v5    # "x":I
-    :cond_2a
+    :cond_1
     aget-object v6, p0, v2
 
     aget-byte v6, v6, v5
 
-    if-ne v6, v4, :cond_35
+    if-ne v6, v4, :cond_2
 
     .line 145
     add-int v6, v5, p1
@@ -281,14 +281,14 @@
     invoke-virtual {v0, v6, v3}, Lcom/google/zxing/common/BitMatrix;->set(II)V
 
     .line 142
-    :cond_35
+    :cond_2
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_20
+    goto :goto_1
 .end method
 
 .method private static rotateArray([[B)[[B
-    .registers 8
+    .locals 7
     .param p0, "bitarray"    # [[B
 
     .line 156
@@ -317,10 +317,10 @@
     const/4 v2, 0x0
 
     .local v2, "ii":I
-    :goto_12
+    :goto_0
     array-length v3, p0
 
-    if-lt v2, v3, :cond_16
+    if-lt v2, v3, :cond_0
 
     .line 165
     .end local v2    # "ii":I
@@ -328,7 +328,7 @@
 
     .line 160
     .restart local v2    # "ii":I
-    :cond_16
+    :cond_0
     array-length v3, p0
 
     sub-int/2addr v3, v2
@@ -340,24 +340,24 @@
     const/4 v4, 0x0
 
     .local v4, "jj":I
-    :goto_1b
+    :goto_1
     aget-object v5, p0, v0
 
     array-length v5, v5
 
-    if-lt v4, v5, :cond_23
+    if-lt v4, v5, :cond_1
 
     .line 157
     .end local v3    # "inverseii":I
     .end local v4    # "jj":I
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_12
+    goto :goto_0
 
     .line 162
     .restart local v3    # "inverseii":I
     .restart local v4    # "jj":I
-    :cond_23
+    :cond_1
     aget-object v5, v1, v4
 
     aget-object v6, p0, v2
@@ -369,13 +369,13 @@
     .line 161
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_1b
+    goto :goto_1
 .end method
 
 
 # virtual methods
 .method public encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;II)Lcom/google/zxing/common/BitMatrix;
-    .registers 11
+    .locals 6
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "format"    # Lcom/google/zxing/BarcodeFormat;
     .param p3, "width"    # I
@@ -407,7 +407,7 @@
 .end method
 
 .method public encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;IILjava/util/Map;)Lcom/google/zxing/common/BitMatrix;
-    .registers 13
+    .locals 7
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "format"    # Lcom/google/zxing/BarcodeFormat;
     .param p3, "width"    # I
@@ -435,7 +435,7 @@
     .local p5, "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/EncodeHintType;*>;"
     sget-object v0, Lcom/google/zxing/BarcodeFormat;->PDF_417:Lcom/google/zxing/BarcodeFormat;
 
-    if-ne p2, v0, :cond_8a
+    if-ne p2, v0, :cond_5
 
     .line 52
     new-instance v0, Lcom/google/zxing/pdf417/encoder/PDF417;
@@ -448,7 +448,7 @@
 
     .line 55
     .local v1, "margin":I
-    if-eqz p5, :cond_85
+    if-eqz p5, :cond_4
 
     .line 56
     sget-object v2, Lcom/google/zxing/EncodeHintType;->PDF417_COMPACT:Lcom/google/zxing/EncodeHintType;
@@ -457,7 +457,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_24
+    if-eqz v2, :cond_0
 
     .line 57
     sget-object v2, Lcom/google/zxing/EncodeHintType;->PDF417_COMPACT:Lcom/google/zxing/EncodeHintType;
@@ -475,14 +475,14 @@
     invoke-virtual {v0, v2}, Lcom/google/zxing/pdf417/encoder/PDF417;->setCompact(Z)V
 
     .line 59
-    :cond_24
+    :cond_0
     sget-object v2, Lcom/google/zxing/EncodeHintType;->PDF417_COMPACTION:Lcom/google/zxing/EncodeHintType;
 
     invoke-interface {p5, v2}, Ljava/util/Map;->containsKey(Ljava/lang/Object;)Z
 
     move-result v2
 
-    if-eqz v2, :cond_37
+    if-eqz v2, :cond_1
 
     .line 60
     sget-object v2, Lcom/google/zxing/EncodeHintType;->PDF417_COMPACTION:Lcom/google/zxing/EncodeHintType;
@@ -496,14 +496,14 @@
     invoke-virtual {v0, v2}, Lcom/google/zxing/pdf417/encoder/PDF417;->setCompaction(Lcom/google/zxing/pdf417/encoder/Compaction;)V
 
     .line 62
-    :cond_37
+    :cond_1
     sget-object v2, Lcom/google/zxing/EncodeHintType;->PDF417_DIMENSIONS:Lcom/google/zxing/EncodeHintType;
 
     invoke-interface {p5, v2}, Ljava/util/Map;->containsKey(Ljava/lang/Object;)Z
 
     move-result v2
 
-    if-eqz v2, :cond_5a
+    if-eqz v2, :cond_2
 
     .line 63
     sget-object v2, Lcom/google/zxing/EncodeHintType;->PDF417_DIMENSIONS:Lcom/google/zxing/EncodeHintType;
@@ -540,14 +540,14 @@
 
     .line 69
     .end local v2    # "dimensions":Lcom/google/zxing/pdf417/encoder/Dimensions;
-    :cond_5a
+    :cond_2
     sget-object v2, Lcom/google/zxing/EncodeHintType;->MARGIN:Lcom/google/zxing/EncodeHintType;
 
     invoke-interface {p5, v2}, Ljava/util/Map;->containsKey(Ljava/lang/Object;)Z
 
     move-result v2
 
-    if-eqz v2, :cond_6e
+    if-eqz v2, :cond_3
 
     .line 70
     sget-object v2, Lcom/google/zxing/EncodeHintType;->MARGIN:Lcom/google/zxing/EncodeHintType;
@@ -563,14 +563,14 @@
     move-result v1
 
     .line 72
-    :cond_6e
+    :cond_3
     sget-object v2, Lcom/google/zxing/EncodeHintType;->CHARACTER_SET:Lcom/google/zxing/EncodeHintType;
 
     invoke-interface {p5, v2}, Ljava/util/Map;->containsKey(Ljava/lang/Object;)Z
 
     move-result v2
 
-    if-eqz v2, :cond_85
+    if-eqz v2, :cond_4
 
     .line 73
     sget-object v2, Lcom/google/zxing/EncodeHintType;->CHARACTER_SET:Lcom/google/zxing/EncodeHintType;
@@ -591,7 +591,7 @@
 
     .line 78
     .end local v2    # "encoding":Ljava/lang/String;
-    :cond_85
+    :cond_4
     invoke-static {v0, p1, p3, p4, v1}, Lcom/google/zxing/pdf417/PDF417Writer;->bitMatrixFromEncoder(Lcom/google/zxing/pdf417/encoder/PDF417;Ljava/lang/String;III)Lcom/google/zxing/common/BitMatrix;
 
     move-result-object v2
@@ -601,7 +601,7 @@
     .line 49
     .end local v0    # "encoder":Lcom/google/zxing/pdf417/encoder/PDF417;
     .end local v1    # "margin":I
-    :cond_8a
+    :cond_5
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;

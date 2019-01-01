@@ -16,7 +16,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 238
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -25,7 +25,7 @@
 .end method
 
 .method public static getName(Ljava/lang/Object;Landroid/content/Context;)Ljava/lang/CharSequence;
-    .registers 3
+    .locals 1
     .param p0, "categoryObj"    # Ljava/lang/Object;
     .param p1, "context"    # Landroid/content/Context;
 
@@ -42,7 +42,7 @@
 .end method
 
 .method public static getRoutes(Ljava/lang/Object;)Ljava/util/List;
-    .registers 3
+    .locals 2
     .param p0, "categoryObj"    # Ljava/lang/Object;
 
     .line 245
@@ -63,7 +63,7 @@
 .end method
 
 .method public static getSupportedTypes(Ljava/lang/Object;)I
-    .registers 2
+    .locals 1
     .param p0, "categoryObj"    # Ljava/lang/Object;
 
     .line 251
@@ -79,7 +79,7 @@
 .end method
 
 .method public static isGroupable(Ljava/lang/Object;)Z
-    .registers 2
+    .locals 1
     .param p0, "categoryObj"    # Ljava/lang/Object;
 
     .line 255

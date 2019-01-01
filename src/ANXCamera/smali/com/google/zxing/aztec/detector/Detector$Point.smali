@@ -22,7 +22,7 @@
 
 # direct methods
 .method constructor <init>(II)V
-    .registers 3
+    .locals 0
     .param p1, "x"    # I
     .param p2, "y"    # I
 
@@ -42,7 +42,7 @@
 
 # virtual methods
 .method getX()I
-    .registers 2
+    .locals 1
 
     .line 588
     iget v0, p0, Lcom/google/zxing/aztec/detector/Detector$Point;->x:I
@@ -51,7 +51,7 @@
 .end method
 
 .method getY()I
-    .registers 2
+    .locals 1
 
     .line 592
     iget v0, p0, Lcom/google/zxing/aztec/detector/Detector$Point;->y:I
@@ -60,7 +60,7 @@
 .end method
 
 .method toResultPoint()Lcom/google/zxing/ResultPoint;
-    .registers 4
+    .locals 3
 
     .line 579
     new-instance v0, Lcom/google/zxing/ResultPoint;
@@ -83,7 +83,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 597
     new-instance v0, Ljava/lang/StringBuilder;

@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 6
+    .locals 5
 
     .line 282
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,16 +30,16 @@
 
     const/16 v1, 0x10
 
-    if-lt v0, v1, :cond_29
+    if-lt v0, v1, :cond_0
 
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x11
 
-    if-gt v0, v1, :cond_29
+    if-gt v0, v1, :cond_0
 
     .line 287
-    :try_start_f
+    :try_start_0
     const-class v0, Landroid/media/MediaRouter;
 
     const-string v1, "selectRouteInt"
@@ -65,22 +65,22 @@
     move-result-object v0
 
     iput-object v0, p0, Landroid/support/v4/media/routing/MediaRouterJellybean$SelectRouteWorkaround;->mSelectRouteIntMethod:Ljava/lang/reflect/Method;
-    :try_end_26
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_f .. :try_end_26} :catch_27
+    :try_end_0
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 290
-    goto :goto_28
+    goto :goto_0
 
     .line 289
-    :catch_27
+    :catch_0
     move-exception v0
 
     .line 291
-    :goto_28
+    :goto_0
     return-void
 
     .line 284
-    :cond_29
+    :cond_0
     new-instance v0, Ljava/lang/UnsupportedOperationException;
 
     invoke-direct {v0}, Ljava/lang/UnsupportedOperationException;-><init>()V
@@ -91,7 +91,7 @@
 
 # virtual methods
 .method public selectRoute(Ljava/lang/Object;ILjava/lang/Object;)V
-    .registers 11
+    .locals 7
     .param p1, "routerObj"    # Ljava/lang/Object;
     .param p2, "types"    # I
     .param p3, "routeObj"    # Ljava/lang/Object;
@@ -119,15 +119,15 @@
 
     and-int/2addr v3, v2
 
-    if-nez v3, :cond_3f
+    if-nez v3, :cond_1
 
     .line 305
     iget-object v3, p0, Landroid/support/v4/media/routing/MediaRouterJellybean$SelectRouteWorkaround;->mSelectRouteIntMethod:Ljava/lang/reflect/Method;
 
-    if-eqz v3, :cond_38
+    if-eqz v3, :cond_0
 
     .line 307
-    :try_start_13
+    :try_start_0
     iget-object v3, p0, Landroid/support/v4/media/routing/MediaRouterJellybean$SelectRouteWorkaround;->mSelectRouteIntMethod:Ljava/lang/reflect/Method;
 
     const/4 v4, 0x2
@@ -147,15 +147,15 @@
     aput-object v1, v4, v5
 
     invoke-virtual {v3, v0, v4}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_25
-    .catch Ljava/lang/IllegalAccessException; {:try_start_13 .. :try_end_25} :catch_2f
-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_13 .. :try_end_25} :catch_26
+    :try_end_0
+    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_1
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 308
     return-void
 
     .line 312
-    :catch_26
+    :catch_0
     move-exception v3
 
     .line 313
@@ -167,10 +167,10 @@
     invoke-static {v4, v5, v3}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .end local v3    # "ex":Ljava/lang/reflect/InvocationTargetException;
-    goto :goto_37
+    goto :goto_0
 
     .line 309
-    :catch_2f
+    :catch_1
     move-exception v3
 
     .line 310
@@ -183,11 +183,11 @@
 
     .line 315
     .end local v3    # "ex":Ljava/lang/IllegalAccessException;
-    :goto_37
-    goto :goto_3f
+    :goto_0
+    goto :goto_1
 
     .line 317
-    :cond_38
+    :cond_0
     const-string v3, "MediaRouterJellybean"
 
     const-string v4, "Cannot programmatically select non-user route because the platform is missing the selectRouteInt() method.  Media routing may not work."
@@ -195,8 +195,8 @@
     invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 324
-    :cond_3f
-    :goto_3f
+    :cond_1
+    :goto_1
     invoke-virtual {v0, p2, v1}, Landroid/media/MediaRouter;->selectRoute(ILandroid/media/MediaRouter$RouteInfo;)V
 
     .line 325

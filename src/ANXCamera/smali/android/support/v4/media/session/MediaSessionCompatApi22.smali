@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 20
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static setRatingType(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 1
     .param p0, "sessionObj"    # Ljava/lang/Object;
     .param p1, "type"    # I
 

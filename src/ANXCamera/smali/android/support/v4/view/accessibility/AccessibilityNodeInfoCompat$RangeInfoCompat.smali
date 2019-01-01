@@ -28,7 +28,7 @@
 
 # direct methods
 .method private constructor <init>(Ljava/lang/Object;)V
-    .registers 2
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 466
@@ -42,7 +42,7 @@
 .end method
 
 .method synthetic constructor <init>(Ljava/lang/Object;Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$1;)V
-    .registers 3
+    .locals 0
     .param p1, "x0"    # Ljava/lang/Object;
     .param p2, "x1"    # Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$1;
 
@@ -53,7 +53,7 @@
 .end method
 
 .method static synthetic access$600(Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$RangeInfoCompat;)Ljava/lang/Object;
-    .registers 2
+    .locals 1
     .param p0, "x0"    # Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$RangeInfoCompat;
 
     .line 456
@@ -65,7 +65,7 @@
 
 # virtual methods
 .method public getCurrent()F
-    .registers 2
+    .locals 1
 
     .line 471
     iget-object v0, p0, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$RangeInfoCompat;->mInfo:Ljava/lang/Object;
@@ -78,7 +78,7 @@
 .end method
 
 .method public getMax()F
-    .registers 2
+    .locals 1
 
     .line 475
     iget-object v0, p0, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$RangeInfoCompat;->mInfo:Ljava/lang/Object;
@@ -91,7 +91,7 @@
 .end method
 
 .method public getMin()F
-    .registers 2
+    .locals 1
 
     .line 479
     iget-object v0, p0, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$RangeInfoCompat;->mInfo:Ljava/lang/Object;
@@ -104,7 +104,7 @@
 .end method
 
 .method public getType()I
-    .registers 2
+    .locals 1
 
     .line 483
     iget-object v0, p0, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$RangeInfoCompat;->mInfo:Ljava/lang/Object;

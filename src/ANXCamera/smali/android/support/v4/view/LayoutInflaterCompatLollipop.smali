@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,23 +14,23 @@
 .end method
 
 .method static setFactory(Landroid/view/LayoutInflater;Landroid/support/v4/view/LayoutInflaterFactory;)V
-    .registers 3
+    .locals 1
     .param p0, "inflater"    # Landroid/view/LayoutInflater;
     .param p1, "factory"    # Landroid/support/v4/view/LayoutInflaterFactory;
 
     .line 24
-    if-eqz p1, :cond_8
+    if-eqz p1, :cond_0
 
     new-instance v0, Landroid/support/v4/view/LayoutInflaterCompatHC$FactoryWrapperHC;
 
     invoke-direct {v0, p1}, Landroid/support/v4/view/LayoutInflaterCompatHC$FactoryWrapperHC;-><init>(Landroid/support/v4/view/LayoutInflaterFactory;)V
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_9
+    :goto_0
     invoke-virtual {p0, v0}, Landroid/view/LayoutInflater;->setFactory2(Landroid/view/LayoutInflater$Factory2;)V
 
     .line 26

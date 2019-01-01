@@ -26,14 +26,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .locals 2
 
     .line 152
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x10
 
-    if-lt v0, v1, :cond_e
+    if-lt v0, v1, :cond_0
 
     .line 153
     new-instance v0, Landroid/support/v4/app/ShareCompat$ShareCompatImplJB;
@@ -42,15 +42,15 @@
 
     sput-object v0, Landroid/support/v4/app/ShareCompat;->IMPL:Landroid/support/v4/app/ShareCompat$ShareCompatImpl;
 
-    goto :goto_23
+    goto :goto_0
 
     .line 154
-    :cond_e
+    :cond_0
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xe
 
-    if-lt v0, v1, :cond_1c
+    if-lt v0, v1, :cond_1
 
     .line 155
     new-instance v0, Landroid/support/v4/app/ShareCompat$ShareCompatImplICS;
@@ -59,10 +59,10 @@
 
     sput-object v0, Landroid/support/v4/app/ShareCompat;->IMPL:Landroid/support/v4/app/ShareCompat$ShareCompatImpl;
 
-    goto :goto_23
+    goto :goto_0
 
     .line 157
-    :cond_1c
+    :cond_1
     new-instance v0, Landroid/support/v4/app/ShareCompat$ShareCompatImplBase;
 
     invoke-direct {v0}, Landroid/support/v4/app/ShareCompat$ShareCompatImplBase;-><init>()V
@@ -70,12 +70,12 @@
     sput-object v0, Landroid/support/v4/app/ShareCompat;->IMPL:Landroid/support/v4/app/ShareCompat$ShareCompatImpl;
 
     .line 159
-    :goto_23
+    :goto_0
     return-void
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 59
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -85,7 +85,7 @@
 .end method
 
 .method static synthetic access$000()Landroid/support/v4/app/ShareCompat$ShareCompatImpl;
-    .registers 1
+    .locals 1
 
     .line 59
     sget-object v0, Landroid/support/v4/app/ShareCompat;->IMPL:Landroid/support/v4/app/ShareCompat$ShareCompatImpl;
@@ -94,7 +94,7 @@
 .end method
 
 .method public static configureMenuItem(Landroid/view/Menu;ILandroid/support/v4/app/ShareCompat$IntentBuilder;)V
-    .registers 7
+    .locals 4
     .param p0, "menu"    # Landroid/view/Menu;
     .param p1, "menuItemId"    # I
     .param p2, "shareIntent"    # Landroid/support/v4/app/ShareCompat$IntentBuilder;
@@ -106,7 +106,7 @@
 
     .line 246
     .local v0, "item":Landroid/view/MenuItem;
-    if-eqz v0, :cond_a
+    if-eqz v0, :cond_0
 
     .line 250
     invoke-static {v0, p2}, Landroid/support/v4/app/ShareCompat;->configureMenuItem(Landroid/view/MenuItem;Landroid/support/v4/app/ShareCompat$IntentBuilder;)V
@@ -115,7 +115,7 @@
     return-void
 
     .line 247
-    :cond_a
+    :cond_0
     new-instance v1, Ljava/lang/IllegalArgumentException;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -142,7 +142,7 @@
 .end method
 
 .method public static configureMenuItem(Landroid/view/MenuItem;Landroid/support/v4/app/ShareCompat$IntentBuilder;)V
-    .registers 3
+    .locals 1
     .param p0, "item"    # Landroid/view/MenuItem;
     .param p1, "shareIntent"    # Landroid/support/v4/app/ShareCompat$IntentBuilder;
 
@@ -156,7 +156,7 @@
 .end method
 
 .method public static getCallingActivity(Landroid/app/Activity;)Landroid/content/ComponentName;
-    .registers 4
+    .locals 3
     .param p0, "calledActivity"    # Landroid/app/Activity;
 
     .line 194
@@ -166,7 +166,7 @@
 
     .line 195
     .local v0, "result":Landroid/content/ComponentName;
-    if-nez v0, :cond_13
+    if-nez v0, :cond_0
 
     .line 196
     invoke-virtual {p0}, Landroid/app/Activity;->getIntent()Landroid/content/Intent;
@@ -184,12 +184,12 @@
     check-cast v0, Landroid/content/ComponentName;
 
     .line 198
-    :cond_13
+    :cond_0
     return-object v0
 .end method
 
 .method public static getCallingPackage(Landroid/app/Activity;)Ljava/lang/String;
-    .registers 4
+    .locals 3
     .param p0, "calledActivity"    # Landroid/app/Activity;
 
     .line 174
@@ -199,7 +199,7 @@
 
     .line 175
     .local v0, "result":Ljava/lang/String;
-    if-nez v0, :cond_10
+    if-nez v0, :cond_0
 
     .line 176
     invoke-virtual {p0}, Landroid/app/Activity;->getIntent()Landroid/content/Intent;
@@ -213,6 +213,6 @@
     move-result-object v0
 
     .line 178
-    :cond_10
+    :cond_0
     return-object v0
 .end method

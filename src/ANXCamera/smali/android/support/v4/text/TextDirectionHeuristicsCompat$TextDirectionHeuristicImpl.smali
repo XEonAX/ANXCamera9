@@ -23,7 +23,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v4/text/TextDirectionHeuristicsCompat$TextDirectionAlgorithm;)V
-    .registers 2
+    .locals 0
     .param p1, "algorithm"    # Landroid/support/v4/text/TextDirectionHeuristicsCompat$TextDirectionAlgorithm;
 
     .line 114
@@ -37,7 +37,7 @@
 .end method
 
 .method private doCheck(Ljava/lang/CharSequence;II)Z
-    .registers 5
+    .locals 1
     .param p1, "cs"    # Ljava/lang/CharSequence;
     .param p2, "start"    # I
     .param p3, "count"    # I
@@ -49,7 +49,7 @@
 
     move-result v0
 
-    packed-switch v0, :pswitch_data_12
+    packed-switch v0, :pswitch_data_0
 
     .line 146
     invoke-virtual {p0}, Landroid/support/v4/text/TextDirectionHeuristicsCompat$TextDirectionHeuristicImpl;->defaultIsRtl()Z
@@ -59,21 +59,21 @@
     return v0
 
     .line 144
-    :pswitch_e
+    :pswitch_0
     const/4 v0, 0x0
 
     return v0
 
     .line 142
-    :pswitch_10
+    :pswitch_1
     const/4 v0, 0x1
 
     return v0
 
-    :pswitch_data_12
+    :pswitch_data_0
     .packed-switch 0x0
-        :pswitch_10
-        :pswitch_e
+        :pswitch_1
+        :pswitch_0
     .end packed-switch
 .end method
 
@@ -83,17 +83,17 @@
 .end method
 
 .method public isRtl(Ljava/lang/CharSequence;II)Z
-    .registers 5
+    .locals 1
     .param p1, "cs"    # Ljava/lang/CharSequence;
     .param p2, "start"    # I
     .param p3, "count"    # I
 
     .line 130
-    if-eqz p1, :cond_1b
+    if-eqz p1, :cond_1
 
-    if-ltz p2, :cond_1b
+    if-ltz p2, :cond_1
 
-    if-ltz p3, :cond_1b
+    if-ltz p3, :cond_1
 
     invoke-interface {p1}, Ljava/lang/CharSequence;->length()I
 
@@ -101,12 +101,12 @@
 
     sub-int/2addr v0, p3
 
-    if-lt v0, p2, :cond_1b
+    if-lt v0, p2, :cond_1
 
     .line 133
     iget-object v0, p0, Landroid/support/v4/text/TextDirectionHeuristicsCompat$TextDirectionHeuristicImpl;->mAlgorithm:Landroid/support/v4/text/TextDirectionHeuristicsCompat$TextDirectionAlgorithm;
 
-    if-nez v0, :cond_16
+    if-nez v0, :cond_0
 
     .line 134
     invoke-virtual {p0}, Landroid/support/v4/text/TextDirectionHeuristicsCompat$TextDirectionHeuristicImpl;->defaultIsRtl()Z
@@ -116,7 +116,7 @@
     return v0
 
     .line 136
-    :cond_16
+    :cond_0
     invoke-direct {p0, p1, p2, p3}, Landroid/support/v4/text/TextDirectionHeuristicsCompat$TextDirectionHeuristicImpl;->doCheck(Ljava/lang/CharSequence;II)Z
 
     move-result v0
@@ -124,7 +124,7 @@
     return v0
 
     .line 131
-    :cond_1b
+    :cond_1
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     invoke-direct {v0}, Ljava/lang/IllegalArgumentException;-><init>()V
@@ -133,7 +133,7 @@
 .end method
 
 .method public isRtl([CII)Z
-    .registers 5
+    .locals 1
     .param p1, "array"    # [C
     .param p2, "start"    # I
     .param p3, "count"    # I

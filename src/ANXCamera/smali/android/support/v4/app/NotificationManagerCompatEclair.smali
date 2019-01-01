@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method static cancelNotification(Landroid/app/NotificationManager;Ljava/lang/String;I)V
-    .registers 3
+    .locals 0
     .param p0, "notificationManager"    # Landroid/app/NotificationManager;
     .param p1, "tag"    # Ljava/lang/String;
     .param p2, "id"    # I
@@ -27,7 +27,7 @@
 .end method
 
 .method public static postNotification(Landroid/app/NotificationManager;Ljava/lang/String;ILandroid/app/Notification;)V
-    .registers 4
+    .locals 0
     .param p0, "notificationManager"    # Landroid/app/NotificationManager;
     .param p1, "tag"    # Ljava/lang/String;
     .param p2, "id"    # I

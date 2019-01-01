@@ -9,7 +9,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 3
+    .locals 2
 
     .line 19
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -24,7 +24,7 @@
 .end method
 
 .method public static of(Ljava/lang/Class;Ljava/lang/String;)Lmiui/reflect/Constructor;
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -51,7 +51,7 @@
 .end method
 
 .method public static varargs of(Ljava/lang/Class;[Ljava/lang/Class;)Lmiui/reflect/Constructor;
-    .registers 3
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -84,7 +84,7 @@
 .end method
 
 .method public static of(Ljava/lang/String;Ljava/lang/String;)Lmiui/reflect/Constructor;
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/NoSuchMethodException;,
@@ -101,7 +101,7 @@
 .end method
 
 .method public static of(Ljava/lang/reflect/Constructor;)Lmiui/reflect/Constructor;
-    .registers 1
+    .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -122,7 +122,7 @@
 
 # virtual methods
 .method public varargs newInstance([Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lmiui/reflect/IllegalArgumentException;
@@ -138,7 +138,7 @@
 .end method
 
 .method public toRefelect()Ljava/lang/reflect/Constructor;
-    .registers 2
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",

@@ -15,7 +15,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/zxing/pdf417/decoder/BoundingBox;)V
-    .registers 4
+    .locals 2
     .param p1, "boundingBox"    # Lcom/google/zxing/pdf417/decoder/BoundingBox;
 
     .line 31
@@ -52,7 +52,7 @@
 
 # virtual methods
 .method final getBoundingBox()Lcom/google/zxing/pdf417/decoder/BoundingBox;
-    .registers 2
+    .locals 1
 
     .line 73
     iget-object v0, p0, Lcom/google/zxing/pdf417/decoder/DetectionResultColumn;->boundingBox:Lcom/google/zxing/pdf417/decoder/BoundingBox;
@@ -61,7 +61,7 @@
 .end method
 
 .method final getCodeword(I)Lcom/google/zxing/pdf417/decoder/Codeword;
-    .registers 4
+    .locals 2
     .param p1, "imageRow"    # I
 
     .line 69
@@ -77,7 +77,7 @@
 .end method
 
 .method final getCodewordNearby(I)Lcom/google/zxing/pdf417/decoder/Codeword;
-    .registers 6
+    .locals 4
     .param p1, "imageRow"    # I
 
     .line 37
@@ -87,20 +87,20 @@
 
     .line 38
     .local v0, "codeword":Lcom/google/zxing/pdf417/decoder/Codeword;
-    if-eqz v0, :cond_7
+    if-eqz v0, :cond_0
 
     .line 39
     return-object v0
 
     .line 41
-    :cond_7
+    :cond_0
     const/4 v1, 0x1
 
     .local v1, "i":I
-    :goto_8
+    :goto_0
     const/4 v2, 0x5
 
-    if-lt v1, v2, :cond_d
+    if-lt v1, v2, :cond_1
 
     .line 57
     .end local v1    # "i":I
@@ -110,7 +110,7 @@
 
     .line 42
     .restart local v1    # "i":I
-    :cond_d
+    :cond_1
     invoke-virtual {p0, p1}, Lcom/google/zxing/pdf417/decoder/DetectionResultColumn;->imageRowToCodewordIndex(I)I
 
     move-result v2
@@ -119,7 +119,7 @@
 
     .line 43
     .local v2, "nearImageRow":I
-    if-ltz v2, :cond_1b
+    if-ltz v2, :cond_2
 
     .line 44
     iget-object v3, p0, Lcom/google/zxing/pdf417/decoder/DetectionResultColumn;->codewords:[Lcom/google/zxing/pdf417/decoder/Codeword;
@@ -127,13 +127,13 @@
     aget-object v0, v3, v2
 
     .line 45
-    if-eqz v0, :cond_1b
+    if-eqz v0, :cond_2
 
     .line 46
     return-object v0
 
     .line 49
-    :cond_1b
+    :cond_2
     invoke-virtual {p0, p1}, Lcom/google/zxing/pdf417/decoder/DetectionResultColumn;->imageRowToCodewordIndex(I)I
 
     move-result v3
@@ -147,7 +147,7 @@
 
     array-length v2, v2
 
-    if-ge v3, v2, :cond_2c
+    if-ge v3, v2, :cond_3
 
     .line 51
     iget-object v2, p0, Lcom/google/zxing/pdf417/decoder/DetectionResultColumn;->codewords:[Lcom/google/zxing/pdf417/decoder/Codeword;
@@ -155,21 +155,21 @@
     aget-object v0, v2, v3
 
     .line 52
-    if-eqz v0, :cond_2c
+    if-eqz v0, :cond_3
 
     .line 53
     return-object v0
 
     .line 41
     .end local v3    # "nearImageRow":I
-    :cond_2c
+    :cond_3
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_8
+    goto :goto_0
 .end method
 
 .method final getCodewords()[Lcom/google/zxing/pdf417/decoder/Codeword;
-    .registers 2
+    .locals 1
 
     .line 77
     iget-object v0, p0, Lcom/google/zxing/pdf417/decoder/DetectionResultColumn;->codewords:[Lcom/google/zxing/pdf417/decoder/Codeword;
@@ -178,7 +178,7 @@
 .end method
 
 .method final imageRowToCodewordIndex(I)I
-    .registers 3
+    .locals 1
     .param p1, "imageRow"    # I
 
     .line 61
@@ -194,7 +194,7 @@
 .end method
 
 .method final setCodeword(ILcom/google/zxing/pdf417/decoder/Codeword;)V
-    .registers 5
+    .locals 2
     .param p1, "imageRow"    # I
     .param p2, "codeword"    # Lcom/google/zxing/pdf417/decoder/Codeword;
 
@@ -212,7 +212,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .registers 12
+    .locals 11
 
     .line 82
     new-instance v0, Ljava/util/Formatter;
@@ -237,8 +237,8 @@
 
     .end local v1    # "row":I
     .local v5, "row":I
-    :goto_c
-    if-lt v1, v3, :cond_16
+    :goto_0
+    if-lt v1, v3, :cond_0
 
     .line 91
     invoke-virtual {v0}, Ljava/util/Formatter;->toString()Ljava/lang/String;
@@ -254,14 +254,14 @@
 
     .line 84
     .end local v1    # "result":Ljava/lang/String;
-    :cond_16
+    :cond_0
     aget-object v6, v2, v1
 
     .line 85
     .local v6, "codeword":Lcom/google/zxing/pdf417/decoder/Codeword;
     const/4 v7, 0x1
 
-    if-nez v6, :cond_2d
+    if-nez v6, :cond_1
 
     .line 86
     const-string v8, "%3d:    |   %n"
@@ -286,12 +286,12 @@
     .line 84
     move v5, v9
 
-    goto :goto_53
+    goto :goto_1
 
     .line 89
     .end local v9    # "row":I
     .restart local v5    # "row":I
-    :cond_2d
+    :cond_1
     const-string v8, "%3d: %3d|%3d%n"
 
     const/4 v9, 0x3
@@ -338,8 +338,8 @@
 
     .end local v10    # "row":I
     .restart local v5    # "row":I
-    :goto_53
+    :goto_1
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_c
+    goto :goto_0
 .end method

@@ -24,7 +24,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 4
+    .locals 4
 
     .line 37
     const/16 v0, 0x8
@@ -113,7 +113,7 @@
 .end method
 
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 48
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -123,7 +123,7 @@
 .end method
 
 .method synthetic constructor <init>(Lcom/google/zxing/qrcode/decoder/DataMask;)V
-    .registers 2
+    .locals 0
 
     .line 48
     invoke-direct {p0}, Lcom/google/zxing/qrcode/decoder/DataMask;-><init>()V
@@ -132,15 +132,15 @@
 .end method
 
 .method static forReference(I)Lcom/google/zxing/qrcode/decoder/DataMask;
-    .registers 2
+    .locals 1
     .param p0, "reference"    # I
 
     .line 76
-    if-ltz p0, :cond_a
+    if-ltz p0, :cond_0
 
     const/4 v0, 0x7
 
-    if-gt p0, v0, :cond_a
+    if-gt p0, v0, :cond_0
 
     .line 79
     sget-object v0, Lcom/google/zxing/qrcode/decoder/DataMask;->DATA_MASKS:[Lcom/google/zxing/qrcode/decoder/DataMask;
@@ -150,7 +150,7 @@
     return-object v0
 
     .line 77
-    :cond_a
+    :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     invoke-direct {v0}, Ljava/lang/IllegalArgumentException;-><init>()V
@@ -164,7 +164,7 @@
 .end method
 
 .method final unmaskBitMatrix(Lcom/google/zxing/common/BitMatrix;I)V
-    .registers 6
+    .locals 3
     .param p1, "bits"    # Lcom/google/zxing/common/BitMatrix;
     .param p2, "dimension"    # I
 
@@ -172,8 +172,8 @@
     const/4 v0, 0x0
 
     .local v0, "i":I
-    :goto_1
-    if-lt v0, p2, :cond_4
+    :goto_0
+    if-lt v0, p2, :cond_0
 
     .line 66
     .end local v0    # "i":I
@@ -181,34 +181,34 @@
 
     .line 60
     .restart local v0    # "i":I
-    :cond_4
+    :cond_0
     const/4 v1, 0x0
 
     .local v1, "j":I
-    :goto_5
-    if-lt v1, p2, :cond_a
+    :goto_1
+    if-lt v1, p2, :cond_1
 
     .line 59
     .end local v1    # "j":I
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_1
+    goto :goto_0
 
     .line 61
     .restart local v1    # "j":I
-    :cond_a
+    :cond_1
     invoke-virtual {p0, v0, v1}, Lcom/google/zxing/qrcode/decoder/DataMask;->isMasked(II)Z
 
     move-result v2
 
-    if-eqz v2, :cond_13
+    if-eqz v2, :cond_2
 
     .line 62
     invoke-virtual {p1, v1, v0}, Lcom/google/zxing/common/BitMatrix;->flip(II)V
 
     .line 60
-    :cond_13
+    :cond_2
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_5
+    goto :goto_1
 .end method

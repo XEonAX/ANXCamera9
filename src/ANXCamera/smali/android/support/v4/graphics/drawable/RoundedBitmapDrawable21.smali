@@ -5,7 +5,7 @@
 
 # direct methods
 .method protected constructor <init>(Landroid/content/res/Resources;Landroid/graphics/Bitmap;)V
-    .registers 3
+    .locals 0
     .param p1, "res"    # Landroid/content/res/Resources;
     .param p2, "bitmap"    # Landroid/graphics/Bitmap;
 
@@ -19,7 +19,7 @@
 
 # virtual methods
 .method public getOutline(Landroid/graphics/Outline;)V
-    .registers 4
+    .locals 2
     .param p1, "outline"    # Landroid/graphics/Outline;
 
     .line 33
@@ -39,7 +39,7 @@
 .end method
 
 .method gravityCompatApply(IIILandroid/graphics/Rect;Landroid/graphics/Rect;)V
-    .registers 12
+    .locals 6
     .param p1, "gravity"    # I
     .param p2, "bitmapWidth"    # I
     .param p3, "bitmapHeight"    # I
@@ -66,12 +66,12 @@
 .end method
 
 .method public hasMipMap()Z
-    .registers 2
+    .locals 1
 
     .line 47
     iget-object v0, p0, Landroid/support/v4/graphics/drawable/RoundedBitmapDrawable21;->mBitmap:Landroid/graphics/Bitmap;
 
-    if-eqz v0, :cond_e
+    if-eqz v0, :cond_0
 
     iget-object v0, p0, Landroid/support/v4/graphics/drawable/RoundedBitmapDrawable21;->mBitmap:Landroid/graphics/Bitmap;
 
@@ -79,27 +79,27 @@
 
     move-result v0
 
-    if-eqz v0, :cond_e
+    if-eqz v0, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_f
+    goto :goto_0
 
-    :cond_e
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_f
+    :goto_0
     return v0
 .end method
 
 .method public setMipMap(Z)V
-    .registers 3
+    .locals 1
     .param p1, "mipMap"    # Z
 
     .line 39
     iget-object v0, p0, Landroid/support/v4/graphics/drawable/RoundedBitmapDrawable21;->mBitmap:Landroid/graphics/Bitmap;
 
-    if-eqz v0, :cond_c
+    if-eqz v0, :cond_0
 
     .line 40
     iget-object v0, p0, Landroid/support/v4/graphics/drawable/RoundedBitmapDrawable21;->mBitmap:Landroid/graphics/Bitmap;
@@ -110,6 +110,6 @@
     invoke-virtual {p0}, Landroid/support/v4/graphics/drawable/RoundedBitmapDrawable21;->invalidateSelf()V
 
     .line 43
-    :cond_c
+    :cond_0
     return-void
 .end method

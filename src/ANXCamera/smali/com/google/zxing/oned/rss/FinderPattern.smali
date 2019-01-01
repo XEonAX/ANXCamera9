@@ -13,7 +13,7 @@
 
 # direct methods
 .method public constructor <init>(I[IIII)V
-    .registers 10
+    .locals 4
     .param p1, "value"    # I
     .param p2, "startEnd"    # [I
     .param p3, "start"    # I
@@ -70,7 +70,7 @@
 
 # virtual methods
 .method public equals(Ljava/lang/Object;)Z
-    .registers 6
+    .locals 4
     .param p1, "o"    # Ljava/lang/Object;
 
     .line 50
@@ -78,13 +78,13 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_6
+    if-nez v0, :cond_0
 
     .line 51
     return v1
 
     .line 53
-    :cond_6
+    :cond_0
     move-object v0, p1
 
     check-cast v0, Lcom/google/zxing/oned/rss/FinderPattern;
@@ -95,16 +95,16 @@
 
     iget v3, v0, Lcom/google/zxing/oned/rss/FinderPattern;->value:I
 
-    if-ne v2, v3, :cond_10
+    if-ne v2, v3, :cond_1
 
     const/4 v1, 0x1
 
-    :cond_10
+    :cond_1
     return v1
 .end method
 
 .method public getResultPoints()[Lcom/google/zxing/ResultPoint;
-    .registers 2
+    .locals 1
 
     .line 45
     iget-object v0, p0, Lcom/google/zxing/oned/rss/FinderPattern;->resultPoints:[Lcom/google/zxing/ResultPoint;
@@ -113,7 +113,7 @@
 .end method
 
 .method public getStartEnd()[I
-    .registers 2
+    .locals 1
 
     .line 41
     iget-object v0, p0, Lcom/google/zxing/oned/rss/FinderPattern;->startEnd:[I
@@ -122,7 +122,7 @@
 .end method
 
 .method public getValue()I
-    .registers 2
+    .locals 1
 
     .line 37
     iget v0, p0, Lcom/google/zxing/oned/rss/FinderPattern;->value:I
@@ -131,7 +131,7 @@
 .end method
 
 .method public hashCode()I
-    .registers 2
+    .locals 1
 
     .line 59
     iget v0, p0, Lcom/google/zxing/oned/rss/FinderPattern;->value:I

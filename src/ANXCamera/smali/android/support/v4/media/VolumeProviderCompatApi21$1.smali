@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(IIILandroid/support/v4/media/VolumeProviderCompatApi21$Delegate;)V
-    .registers 5
+    .locals 0
     .param p1, "x0"    # I
     .param p2, "x1"    # I
     .param p3, "x2"    # I
@@ -36,7 +36,7 @@
 
 # virtual methods
 .method public onAdjustVolume(I)V
-    .registers 3
+    .locals 1
     .param p1, "direction"    # I
 
     .line 32
@@ -49,7 +49,7 @@
 .end method
 
 .method public onSetVolumeTo(I)V
-    .registers 3
+    .locals 1
     .param p1, "volume"    # I
 
     .line 27

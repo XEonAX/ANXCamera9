@@ -45,7 +45,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 2955
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -60,7 +60,7 @@
 .end method
 
 .method public constructor <init>(Landroid/app/Notification;)V
-    .registers 7
+    .locals 5
     .param p1, "notif"    # Landroid/app/Notification;
 
     .line 2963
@@ -76,24 +76,24 @@
 
     const/16 v2, 0x15
 
-    if-ge v1, v2, :cond_d
+    if-ge v1, v2, :cond_0
 
     .line 2965
     return-void
 
     .line 2968
-    :cond_d
+    :cond_0
     invoke-static {p1}, Landroid/support/v4/app/NotificationCompat;->getExtras(Landroid/app/Notification;)Landroid/os/Bundle;
 
     move-result-object v1
 
-    if-nez v1, :cond_15
+    if-nez v1, :cond_1
 
     const/4 v1, 0x0
 
-    goto :goto_1f
+    goto :goto_0
 
-    :cond_15
+    :cond_1
     invoke-static {p1}, Landroid/support/v4/app/NotificationCompat;->getExtras(Landroid/app/Notification;)Landroid/os/Bundle;
 
     move-result-object v1
@@ -106,8 +106,8 @@
 
     .line 2970
     .local v1, "carBundle":Landroid/os/Bundle;
-    :goto_1f
-    if-eqz v1, :cond_49
+    :goto_0
+    if-eqz v1, :cond_2
 
     .line 2971
     const-string v2, "large_icon"
@@ -138,7 +138,6 @@
 
     .line 2975
     .local v0, "b":Landroid/os/Bundle;
-    # getter for: Landroid/support/v4/app/NotificationCompat;->IMPL:Landroid/support/v4/app/NotificationCompat$NotificationCompatImpl;
     invoke-static {}, Landroid/support/v4/app/NotificationCompat;->access$200()Landroid/support/v4/app/NotificationCompat$NotificationCompatImpl;
 
     move-result-object v2
@@ -157,14 +156,14 @@
 
     .line 2978
     .end local v0    # "b":Landroid/os/Bundle;
-    :cond_49
+    :cond_2
     return-void
 .end method
 
 
 # virtual methods
 .method public extend(Landroid/support/v4/app/NotificationCompat$Builder;)Landroid/support/v4/app/NotificationCompat$Builder;
-    .registers 5
+    .locals 3
     .param p1, "builder"    # Landroid/support/v4/app/NotificationCompat$Builder;
 
     .line 2987
@@ -172,13 +171,13 @@
 
     const/16 v1, 0x15
 
-    if-ge v0, v1, :cond_7
+    if-ge v0, v1, :cond_0
 
     .line 2988
     return-object p1
 
     .line 2991
-    :cond_7
+    :cond_0
     new-instance v0, Landroid/os/Bundle;
 
     invoke-direct {v0}, Landroid/os/Bundle;-><init>()V
@@ -187,7 +186,7 @@
     .local v0, "carExtensions":Landroid/os/Bundle;
     iget-object v1, p0, Landroid/support/v4/app/NotificationCompat$CarExtender;->mLargeIcon:Landroid/graphics/Bitmap;
 
-    if-eqz v1, :cond_17
+    if-eqz v1, :cond_1
 
     .line 2994
     const-string v1, "large_icon"
@@ -197,10 +196,10 @@
     invoke-virtual {v0, v1, v2}, Landroid/os/Bundle;->putParcelable(Ljava/lang/String;Landroid/os/Parcelable;)V
 
     .line 2996
-    :cond_17
+    :cond_1
     iget v1, p0, Landroid/support/v4/app/NotificationCompat$CarExtender;->mColor:I
 
-    if-eqz v1, :cond_22
+    if-eqz v1, :cond_2
 
     .line 2997
     const-string v1, "app_color"
@@ -210,13 +209,12 @@
     invoke-virtual {v0, v1, v2}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
 
     .line 3000
-    :cond_22
+    :cond_2
     iget-object v1, p0, Landroid/support/v4/app/NotificationCompat$CarExtender;->mUnreadConversation:Landroid/support/v4/app/NotificationCompat$CarExtender$UnreadConversation;
 
-    if-eqz v1, :cond_35
+    if-eqz v1, :cond_3
 
     .line 3001
-    # getter for: Landroid/support/v4/app/NotificationCompat;->IMPL:Landroid/support/v4/app/NotificationCompat$NotificationCompatImpl;
     invoke-static {}, Landroid/support/v4/app/NotificationCompat;->access$200()Landroid/support/v4/app/NotificationCompat$NotificationCompatImpl;
 
     move-result-object v1
@@ -235,7 +233,7 @@
 
     .line 3005
     .end local v1    # "b":Landroid/os/Bundle;
-    :cond_35
+    :cond_3
     invoke-virtual {p1}, Landroid/support/v4/app/NotificationCompat$Builder;->getExtras()Landroid/os/Bundle;
 
     move-result-object v1
@@ -249,7 +247,7 @@
 .end method
 
 .method public getColor()I
-    .registers 2
+    .locals 1
     .annotation build Landroid/support/annotation/ColorInt;
     .end annotation
 
@@ -260,7 +258,7 @@
 .end method
 
 .method public getLargeIcon()Landroid/graphics/Bitmap;
-    .registers 2
+    .locals 1
 
     .line 3053
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompat$CarExtender;->mLargeIcon:Landroid/graphics/Bitmap;
@@ -269,7 +267,7 @@
 .end method
 
 .method public getUnreadConversation()Landroid/support/v4/app/NotificationCompat$CarExtender$UnreadConversation;
-    .registers 2
+    .locals 1
 
     .line 3072
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompat$CarExtender;->mUnreadConversation:Landroid/support/v4/app/NotificationCompat$CarExtender$UnreadConversation;
@@ -278,7 +276,7 @@
 .end method
 
 .method public setColor(I)Landroid/support/v4/app/NotificationCompat$CarExtender;
-    .registers 2
+    .locals 0
     .param p1, "color"    # I
         .annotation build Landroid/support/annotation/ColorInt;
         .end annotation
@@ -292,7 +290,7 @@
 .end method
 
 .method public setLargeIcon(Landroid/graphics/Bitmap;)Landroid/support/v4/app/NotificationCompat$CarExtender;
-    .registers 2
+    .locals 0
     .param p1, "largeIcon"    # Landroid/graphics/Bitmap;
 
     .line 3042
@@ -303,7 +301,7 @@
 .end method
 
 .method public setUnreadConversation(Landroid/support/v4/app/NotificationCompat$CarExtender$UnreadConversation;)Landroid/support/v4/app/NotificationCompat$CarExtender;
-    .registers 2
+    .locals 0
     .param p1, "unreadConversation"    # Landroid/support/v4/app/NotificationCompat$CarExtender$UnreadConversation;
 
     .line 3063

@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 92
     invoke-direct {p0}, Landroid/support/v13/app/FragmentCompat$ICSMR1FragmentCompatImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public requestPermissions(Landroid/app/Fragment;[Ljava/lang/String;I)V
-    .registers 4
+    .locals 0
     .param p1, "fragment"    # Landroid/app/Fragment;
     .param p2, "permissions"    # [Ljava/lang/String;
     .param p3, "requestCode"    # I
@@ -40,7 +40,7 @@
 .end method
 
 .method public shouldShowRequestPermissionRationale(Landroid/app/Fragment;Ljava/lang/String;)Z
-    .registers 4
+    .locals 1
     .param p1, "fragment"    # Landroid/app/Fragment;
     .param p2, "permission"    # Ljava/lang/String;
 

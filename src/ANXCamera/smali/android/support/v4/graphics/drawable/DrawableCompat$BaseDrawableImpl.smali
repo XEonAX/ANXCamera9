@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 49
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public getLayoutDirection(Landroid/graphics/drawable/Drawable;)I
-    .registers 3
+    .locals 1
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 98
@@ -40,7 +40,7 @@
 .end method
 
 .method public isAutoMirrored(Landroid/graphics/drawable/Drawable;)Z
-    .registers 3
+    .locals 1
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 60
@@ -50,7 +50,7 @@
 .end method
 
 .method public jumpToCurrentState(Landroid/graphics/drawable/Drawable;)V
-    .registers 2
+    .locals 0
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 52
@@ -58,7 +58,7 @@
 .end method
 
 .method public setAutoMirrored(Landroid/graphics/drawable/Drawable;Z)V
-    .registers 3
+    .locals 0
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
     .param p2, "mirrored"    # Z
 
@@ -67,7 +67,7 @@
 .end method
 
 .method public setHotspot(Landroid/graphics/drawable/Drawable;FF)V
-    .registers 4
+    .locals 0
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
     .param p2, "x"    # F
     .param p3, "y"    # F
@@ -77,7 +77,7 @@
 .end method
 
 .method public setHotspotBounds(Landroid/graphics/drawable/Drawable;IIII)V
-    .registers 6
+    .locals 0
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
     .param p2, "left"    # I
     .param p3, "top"    # I
@@ -89,7 +89,7 @@
 .end method
 
 .method public setLayoutDirection(Landroid/graphics/drawable/Drawable;I)V
-    .registers 3
+    .locals 0
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
     .param p2, "layoutDirection"    # I
 
@@ -98,7 +98,7 @@
 .end method
 
 .method public setTint(Landroid/graphics/drawable/Drawable;I)V
-    .registers 3
+    .locals 0
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
     .param p2, "tint"    # I
 
@@ -110,7 +110,7 @@
 .end method
 
 .method public setTintList(Landroid/graphics/drawable/Drawable;Landroid/content/res/ColorStateList;)V
-    .registers 3
+    .locals 0
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
     .param p2, "tint"    # Landroid/content/res/ColorStateList;
 
@@ -122,7 +122,7 @@
 .end method
 
 .method public setTintMode(Landroid/graphics/drawable/Drawable;Landroid/graphics/PorterDuff$Mode;)V
-    .registers 3
+    .locals 0
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
     .param p2, "tintMode"    # Landroid/graphics/PorterDuff$Mode;
 
@@ -134,7 +134,7 @@
 .end method
 
 .method public wrap(Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
-    .registers 3
+    .locals 1
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 88

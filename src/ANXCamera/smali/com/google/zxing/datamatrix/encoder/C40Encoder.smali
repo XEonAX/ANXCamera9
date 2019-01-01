@@ -8,7 +8,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 19
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -17,7 +17,7 @@
 .end method
 
 .method private backtrackOneCharacter(Lcom/google/zxing/datamatrix/encoder/EncoderContext;Ljava/lang/StringBuilder;Ljava/lang/StringBuilder;I)I
-    .registers 7
+    .locals 2
     .param p1, "context"    # Lcom/google/zxing/datamatrix/encoder/EncoderContext;
     .param p2, "buffer"    # Ljava/lang/StringBuilder;
     .param p3, "removed"    # Ljava/lang/StringBuilder;
@@ -60,7 +60,7 @@
 .end method
 
 .method private static encodeToCodewords(Ljava/lang/CharSequence;I)Ljava/lang/String;
-    .registers 12
+    .locals 10
     .param p0, "sb"    # Ljava/lang/CharSequence;
     .param p1, "startPos"    # I
 
@@ -135,7 +135,7 @@
 .end method
 
 .method static writeNextTriplet(Lcom/google/zxing/datamatrix/encoder/EncoderContext;Ljava/lang/StringBuilder;)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Lcom/google/zxing/datamatrix/encoder/EncoderContext;
     .param p1, "buffer"    # Ljava/lang/StringBuilder;
 
@@ -160,7 +160,7 @@
 
 # virtual methods
 .method public encode(Lcom/google/zxing/datamatrix/encoder/EncoderContext;)V
-    .registers 13
+    .locals 11
     .param p1, "context"    # Lcom/google/zxing/datamatrix/encoder/EncoderContext;
 
     .line 29
@@ -170,17 +170,17 @@
 
     .line 30
     .local v0, "buffer":Ljava/lang/StringBuilder;
-    :cond_5
+    :cond_0
     invoke-virtual {p1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->hasMoreCharacters()Z
 
     move-result v1
 
-    if-nez v1, :cond_d
+    if-nez v1, :cond_1
 
-    goto/16 :goto_83
+    goto/16 :goto_1
 
     .line 31
-    :cond_d
+    :cond_1
     invoke-virtual {p1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->getCurrentChar()C
 
     move-result v1
@@ -243,7 +243,7 @@
 
     move-result v9
 
-    if-nez v9, :cond_63
+    if-nez v9, :cond_6
 
     .line 44
     new-instance v9, Ljava/lang/StringBuilder;
@@ -258,15 +258,15 @@
 
     rem-int/2addr v10, v5
 
-    if-ne v10, v6, :cond_50
+    if-ne v10, v6, :cond_3
 
     .line 46
-    if-lt v8, v6, :cond_4a
+    if-lt v8, v6, :cond_2
 
-    if-le v8, v6, :cond_50
+    if-le v8, v6, :cond_3
 
     .line 47
-    :cond_4a
+    :cond_2
     nop
 
     .line 48
@@ -278,39 +278,39 @@
     move-result v2
 
     .line 51
-    :cond_50
-    :goto_50
+    :cond_3
+    :goto_0
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->length()I
 
     move-result v6
 
     rem-int/2addr v6, v5
 
-    if-ne v6, v3, :cond_83
+    if-ne v6, v3, :cond_7
 
     .line 52
-    if-gt v2, v5, :cond_5b
+    if-gt v2, v5, :cond_4
 
-    if-ne v8, v3, :cond_5e
+    if-ne v8, v3, :cond_5
 
     .line 51
-    :cond_5b
-    if-gt v2, v5, :cond_5e
+    :cond_4
+    if-gt v2, v5, :cond_5
 
     .line 55
-    goto :goto_83
+    goto :goto_1
 
     .line 53
-    :cond_5e
+    :cond_5
     invoke-direct {p0, p1, v0, v9, v2}, Lcom/google/zxing/datamatrix/encoder/C40Encoder;->backtrackOneCharacter(Lcom/google/zxing/datamatrix/encoder/EncoderContext;Ljava/lang/StringBuilder;Ljava/lang/StringBuilder;I)I
 
     move-result v2
 
-    goto :goto_50
+    goto :goto_0
 
     .line 58
     .end local v9    # "removed":Ljava/lang/StringBuilder;
-    :cond_63
+    :cond_6
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->length()I
 
     move-result v3
@@ -319,7 +319,7 @@
     .local v3, "count":I
     rem-int/lit8 v5, v3, 0x3
 
-    if-nez v5, :cond_5
+    if-nez v5, :cond_0
 
     .line 60
     invoke-virtual {p1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->getMessage()Ljava/lang/String;
@@ -342,7 +342,7 @@
 
     move-result v6
 
-    if-eq v5, v6, :cond_5
+    if-eq v5, v6, :cond_0
 
     .line 62
     invoke-virtual {p1, v5}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->signalEncoderChange(I)V
@@ -358,8 +358,8 @@
     .end local v5    # "newMode":I
     .end local v7    # "curCodewordCount":I
     .end local v8    # "available":I
-    :cond_83
-    :goto_83
+    :cond_7
+    :goto_1
     invoke-virtual {p0, p1, v0}, Lcom/google/zxing/datamatrix/encoder/C40Encoder;->handleEOD(Lcom/google/zxing/datamatrix/encoder/EncoderContext;Ljava/lang/StringBuilder;)V
 
     .line 68
@@ -367,7 +367,7 @@
 .end method
 
 .method encodeChar(CLjava/lang/StringBuilder;)I
-    .registers 6
+    .locals 3
     .param p1, "c"    # C
     .param p2, "sb"    # Ljava/lang/StringBuilder;
 
@@ -376,7 +376,7 @@
 
     const/16 v1, 0x20
 
-    if-ne p1, v1, :cond_a
+    if-ne p1, v1, :cond_0
 
     .line 132
     const/4 v1, 0x3
@@ -387,14 +387,14 @@
     return v0
 
     .line 134
-    :cond_a
+    :cond_0
     const/16 v1, 0x30
 
-    if-lt p1, v1, :cond_1b
+    if-lt p1, v1, :cond_1
 
     const/16 v1, 0x39
 
-    if-gt p1, v1, :cond_1b
+    if-gt p1, v1, :cond_1
 
     .line 135
     add-int/lit8 v1, p1, -0x30
@@ -409,14 +409,14 @@
     return v0
 
     .line 137
-    :cond_1b
+    :cond_1
     const/16 v1, 0x41
 
-    if-lt p1, v1, :cond_2c
+    if-lt p1, v1, :cond_2
 
     const/16 v1, 0x5a
 
-    if-gt p1, v1, :cond_2c
+    if-gt p1, v1, :cond_2
 
     .line 138
     add-int/lit8 v1, p1, -0x41
@@ -431,14 +431,14 @@
     return v0
 
     .line 140
-    :cond_2c
+    :cond_2
     const/4 v1, 0x2
 
-    if-ltz p1, :cond_3b
+    if-ltz p1, :cond_3
 
     const/16 v2, 0x1f
 
-    if-gt p1, v2, :cond_3b
+    if-gt p1, v2, :cond_3
 
     .line 141
     const/4 v0, 0x0
@@ -452,14 +452,14 @@
     return v1
 
     .line 144
-    :cond_3b
+    :cond_3
     const/16 v2, 0x21
 
-    if-lt p1, v2, :cond_4d
+    if-lt p1, v2, :cond_4
 
     const/16 v2, 0x2f
 
-    if-gt p1, v2, :cond_4d
+    if-gt p1, v2, :cond_4
 
     .line 145
     invoke-virtual {p2, v0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -475,14 +475,14 @@
     return v1
 
     .line 148
-    :cond_4d
+    :cond_4
     const/16 v2, 0x3a
 
-    if-lt p1, v2, :cond_61
+    if-lt p1, v2, :cond_5
 
     const/16 v2, 0x40
 
-    if-gt p1, v2, :cond_61
+    if-gt p1, v2, :cond_5
 
     .line 149
     invoke-virtual {p2, v0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -500,14 +500,14 @@
     return v1
 
     .line 152
-    :cond_61
+    :cond_5
     const/16 v2, 0x5b
 
-    if-lt p1, v2, :cond_75
+    if-lt p1, v2, :cond_6
 
     const/16 v2, 0x5f
 
-    if-gt p1, v2, :cond_75
+    if-gt p1, v2, :cond_6
 
     .line 153
     invoke-virtual {p2, v0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -525,14 +525,14 @@
     return v1
 
     .line 156
-    :cond_75
+    :cond_6
     const/16 v0, 0x60
 
-    if-lt p1, v0, :cond_87
+    if-lt p1, v0, :cond_7
 
     const/16 v0, 0x7f
 
-    if-gt p1, v0, :cond_87
+    if-gt p1, v0, :cond_7
 
     .line 157
     invoke-virtual {p2, v1}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -548,10 +548,10 @@
     return v1
 
     .line 160
-    :cond_87
+    :cond_7
     const/16 v0, 0x80
 
-    if-lt p1, v0, :cond_9a
+    if-lt p1, v0, :cond_8
 
     .line 161
     const-string v0, "\u0001\u001e"
@@ -578,7 +578,7 @@
 
     .line 166
     .end local v0    # "len":I
-    :cond_9a
+    :cond_8
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -599,7 +599,7 @@
 .end method
 
 .method public getEncodingMode()I
-    .registers 2
+    .locals 1
 
     .line 23
     const/4 v0, 0x1
@@ -608,7 +608,7 @@
 .end method
 
 .method handleEOD(Lcom/google/zxing/datamatrix/encoder/EncoderContext;Ljava/lang/StringBuilder;)V
-    .registers 12
+    .locals 9
     .param p1, "context"    # Lcom/google/zxing/datamatrix/encoder/EncoderContext;
     .param p2, "buffer"    # Ljava/lang/StringBuilder;
 
@@ -662,66 +662,66 @@
 
     const/16 v7, 0xfe
 
-    if-ne v3, v2, :cond_3a
+    if-ne v3, v2, :cond_1
 
     .line 101
     invoke-virtual {p2, v6}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 102
-    :goto_26
+    :goto_0
     invoke-virtual {p2}, Ljava/lang/StringBuilder;->length()I
 
     move-result v2
 
-    if-ge v2, v1, :cond_36
+    if-ge v2, v1, :cond_0
 
     .line 105
     invoke-virtual {p1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->hasMoreCharacters()Z
 
     move-result v1
 
-    if-eqz v1, :cond_6c
+    if-eqz v1, :cond_6
 
     .line 106
     invoke-virtual {p1, v7}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->writeCodeword(C)V
 
     .line 108
-    goto :goto_6c
+    goto :goto_3
 
     .line 103
-    :cond_36
+    :cond_0
     invoke-static {p1, p2}, Lcom/google/zxing/datamatrix/encoder/C40Encoder;->writeNextTriplet(Lcom/google/zxing/datamatrix/encoder/EncoderContext;Ljava/lang/StringBuilder;)V
 
-    goto :goto_26
+    goto :goto_0
 
     .line 108
-    :cond_3a
+    :cond_1
     const/4 v2, 0x1
 
-    if-ne v5, v2, :cond_58
+    if-ne v5, v2, :cond_4
 
-    if-ne v3, v2, :cond_58
+    if-ne v3, v2, :cond_4
 
     .line 109
-    :goto_3f
+    :goto_1
     invoke-virtual {p2}, Ljava/lang/StringBuilder;->length()I
 
     move-result v8
 
-    if-ge v8, v1, :cond_54
+    if-ge v8, v1, :cond_3
 
     .line 112
     invoke-virtual {p1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->hasMoreCharacters()Z
 
     move-result v1
 
-    if-eqz v1, :cond_4e
+    if-eqz v1, :cond_2
 
     .line 113
     invoke-virtual {p1, v7}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->writeCodeword(C)V
 
     .line 116
-    :cond_4e
+    :cond_2
     iget v1, p1, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->pos:I
 
     sub-int/2addr v1, v2
@@ -729,58 +729,58 @@
     iput v1, p1, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->pos:I
 
     .line 117
-    goto :goto_6c
+    goto :goto_3
 
     .line 110
-    :cond_54
+    :cond_3
     invoke-static {p1, p2}, Lcom/google/zxing/datamatrix/encoder/C40Encoder;->writeNextTriplet(Lcom/google/zxing/datamatrix/encoder/EncoderContext;Ljava/lang/StringBuilder;)V
 
-    goto :goto_3f
+    goto :goto_1
 
     .line 117
-    :cond_58
-    if-nez v3, :cond_74
+    :cond_4
+    if-nez v3, :cond_8
 
     .line 118
-    :goto_5a
+    :goto_2
     invoke-virtual {p2}, Ljava/lang/StringBuilder;->length()I
 
     move-result v2
 
-    if-ge v2, v1, :cond_70
+    if-ge v2, v1, :cond_7
 
     .line 121
-    if-gtz v5, :cond_68
+    if-gtz v5, :cond_5
 
     invoke-virtual {p1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->hasMoreCharacters()Z
 
     move-result v1
 
-    if-eqz v1, :cond_6c
+    if-eqz v1, :cond_6
 
     .line 122
-    :cond_68
+    :cond_5
     invoke-virtual {p1, v7}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->writeCodeword(C)V
 
     .line 124
     nop
 
     .line 127
-    :cond_6c
-    :goto_6c
+    :cond_6
+    :goto_3
     invoke-virtual {p1, v6}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->signalEncoderChange(I)V
 
     .line 128
     return-void
 
     .line 119
-    :cond_70
+    :cond_7
     invoke-static {p1, p2}, Lcom/google/zxing/datamatrix/encoder/C40Encoder;->writeNextTriplet(Lcom/google/zxing/datamatrix/encoder/EncoderContext;Ljava/lang/StringBuilder;)V
 
-    goto :goto_5a
+    goto :goto_2
 
     .line 125
-    :cond_74
+    :cond_8
     new-instance v1, Ljava/lang/IllegalStateException;
 
     const-string v2, "Unexpected case. Please report!"

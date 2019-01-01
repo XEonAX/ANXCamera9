@@ -35,7 +35,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v4/media/routing/MediaRouterJellybean$Callback;)V
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -57,7 +57,7 @@
 
 # virtual methods
 .method public onRouteAdded(Landroid/media/MediaRouter;Landroid/media/MediaRouter$RouteInfo;)V
-    .registers 4
+    .locals 1
     .param p1, "router"    # Landroid/media/MediaRouter;
     .param p2, "route"    # Landroid/media/MediaRouter$RouteInfo;
 
@@ -72,7 +72,7 @@
 .end method
 
 .method public onRouteChanged(Landroid/media/MediaRouter;Landroid/media/MediaRouter$RouteInfo;)V
-    .registers 4
+    .locals 1
     .param p1, "router"    # Landroid/media/MediaRouter;
     .param p2, "route"    # Landroid/media/MediaRouter$RouteInfo;
 
@@ -87,7 +87,7 @@
 .end method
 
 .method public onRouteGrouped(Landroid/media/MediaRouter;Landroid/media/MediaRouter$RouteInfo;Landroid/media/MediaRouter$RouteGroup;I)V
-    .registers 6
+    .locals 1
     .param p1, "router"    # Landroid/media/MediaRouter;
     .param p2, "route"    # Landroid/media/MediaRouter$RouteInfo;
     .param p3, "group"    # Landroid/media/MediaRouter$RouteGroup;
@@ -104,7 +104,7 @@
 .end method
 
 .method public onRouteRemoved(Landroid/media/MediaRouter;Landroid/media/MediaRouter$RouteInfo;)V
-    .registers 4
+    .locals 1
     .param p1, "router"    # Landroid/media/MediaRouter;
     .param p2, "route"    # Landroid/media/MediaRouter$RouteInfo;
 
@@ -119,7 +119,7 @@
 .end method
 
 .method public onRouteSelected(Landroid/media/MediaRouter;ILandroid/media/MediaRouter$RouteInfo;)V
-    .registers 5
+    .locals 1
     .param p1, "router"    # Landroid/media/MediaRouter;
     .param p2, "type"    # I
     .param p3, "route"    # Landroid/media/MediaRouter$RouteInfo;
@@ -135,7 +135,7 @@
 .end method
 
 .method public onRouteUngrouped(Landroid/media/MediaRouter;Landroid/media/MediaRouter$RouteInfo;Landroid/media/MediaRouter$RouteGroup;)V
-    .registers 5
+    .locals 1
     .param p1, "router"    # Landroid/media/MediaRouter;
     .param p2, "route"    # Landroid/media/MediaRouter$RouteInfo;
     .param p3, "group"    # Landroid/media/MediaRouter$RouteGroup;
@@ -151,7 +151,7 @@
 .end method
 
 .method public onRouteUnselected(Landroid/media/MediaRouter;ILandroid/media/MediaRouter$RouteInfo;)V
-    .registers 5
+    .locals 1
     .param p1, "router"    # Landroid/media/MediaRouter;
     .param p2, "type"    # I
     .param p3, "route"    # Landroid/media/MediaRouter$RouteInfo;
@@ -167,7 +167,7 @@
 .end method
 
 .method public onRouteVolumeChanged(Landroid/media/MediaRouter;Landroid/media/MediaRouter$RouteInfo;)V
-    .registers 4
+    .locals 1
     .param p1, "router"    # Landroid/media/MediaRouter;
     .param p2, "route"    # Landroid/media/MediaRouter$RouteInfo;
 

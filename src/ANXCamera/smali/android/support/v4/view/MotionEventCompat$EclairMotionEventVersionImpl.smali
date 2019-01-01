@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 99
     invoke-direct {p0}, Landroid/support/v4/view/MotionEventCompat$BaseMotionEventVersionImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public findPointerIndex(Landroid/view/MotionEvent;I)I
-    .registers 4
+    .locals 1
     .param p1, "event"    # Landroid/view/MotionEvent;
     .param p2, "pointerId"    # I
 
@@ -40,7 +40,7 @@
 .end method
 
 .method public getPointerCount(Landroid/view/MotionEvent;)I
-    .registers 3
+    .locals 1
     .param p1, "event"    # Landroid/view/MotionEvent;
 
     .line 118
@@ -52,7 +52,7 @@
 .end method
 
 .method public getPointerId(Landroid/view/MotionEvent;I)I
-    .registers 4
+    .locals 1
     .param p1, "event"    # Landroid/view/MotionEvent;
     .param p2, "pointerIndex"    # I
 
@@ -65,7 +65,7 @@
 .end method
 
 .method public getX(Landroid/view/MotionEvent;I)F
-    .registers 4
+    .locals 1
     .param p1, "event"    # Landroid/view/MotionEvent;
     .param p2, "pointerIndex"    # I
 
@@ -78,7 +78,7 @@
 .end method
 
 .method public getY(Landroid/view/MotionEvent;I)F
-    .registers 4
+    .locals 1
     .param p1, "event"    # Landroid/view/MotionEvent;
     .param p2, "pointerIndex"    # I
 

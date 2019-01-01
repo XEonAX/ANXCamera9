@@ -29,7 +29,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 16
     const-string v0, "DisplayFeatureServiceProxy"
@@ -40,17 +40,17 @@
 .end method
 
 .method constructor <init>(Ljava/lang/Object;)V
-    .registers 3
+    .locals 1
     .param p1, "service"    # Ljava/lang/Object;
 
     .line 37
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 39
-    :try_start_3
+    :try_start_0
     instance-of v0, p1, Landroid/os/IBinder;
 
-    if-eqz v0, :cond_21
+    if-eqz v0, :cond_0
 
     .line 40
     move-object v0, p1
@@ -75,20 +75,20 @@
 
     move-result v0
 
-    if-eqz v0, :cond_3c
+    if-eqz v0, :cond_1
 
     .line 43
     const-string v0, "miui.hardware.display.IDisplayFeatureService"
 
     iput-object v0, p0, Lmiui/hardware/display/DisplayFeatureServiceProxy;->mDescriptor:Ljava/lang/String;
 
-    goto :goto_3c
+    goto :goto_0
 
     .line 45
-    :cond_21
+    :cond_0
     instance-of v0, p1, Landroid/os/IHwBinder;
 
-    if-eqz v0, :cond_3c
+    if-eqz v0, :cond_1
 
     .line 46
     move-object v0, p1
@@ -111,31 +111,31 @@
 
     move-result v0
 
-    if-eqz v0, :cond_3c
+    if-eqz v0, :cond_1
 
     .line 49
     const-string v0, "vendor.xiaomi.hardware.displayfeature@1.0::IDisplayFeature"
 
     iput-object v0, p0, Lmiui/hardware/display/DisplayFeatureServiceProxy;->mDescriptor:Ljava/lang/String;
-    :try_end_3c
-    .catch Landroid/os/RemoteException; {:try_start_3 .. :try_end_3c} :catch_3d
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 53
-    :cond_3c
-    :goto_3c
-    goto :goto_3e
+    :cond_1
+    :goto_0
+    goto :goto_1
 
     .line 52
-    :catch_3d
+    :catch_0
     move-exception v0
 
     .line 54
-    :goto_3e
+    :goto_1
     return-void
 .end method
 
 .method private varargs callBinderTransact(I[I)I
-    .registers 10
+    .locals 7
     .param p1, "transactId"    # I
     .param p2, "params"    # [I
 
@@ -156,7 +156,7 @@
 
     .line 89
     .local v2, "result":I
-    :try_start_9
+    :try_start_0
     iget-object v3, p0, Lmiui/hardware/display/DisplayFeatureServiceProxy;->mDescriptor:Ljava/lang/String;
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -168,8 +168,8 @@
 
     move v5, v4
 
-    :goto_11
-    if-ge v5, v3, :cond_1b
+    :goto_0
+    if-ge v5, v3, :cond_0
 
     aget v6, p2, v5
 
@@ -181,17 +181,17 @@
     .end local v6    # "param":I
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_11
+    goto :goto_0
 
     .line 93
-    :cond_1b
+    :cond_0
     iget-object v3, p0, Lmiui/hardware/display/DisplayFeatureServiceProxy;->mService:Landroid/os/IBinder;
 
     invoke-interface {v3, p1, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
     move-result v3
 
-    if-eqz v3, :cond_2b
+    if-eqz v3, :cond_1
 
     .line 94
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
@@ -200,36 +200,36 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result v3
-    :try_end_2a
-    .catch Landroid/os/RemoteException; {:try_start_9 .. :try_end_2a} :catch_34
-    .catchall {:try_start_9 .. :try_end_2a} :catchall_32
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     move v2, v3
 
     .line 100
-    :cond_2b
-    :goto_2b
+    :cond_1
+    :goto_1
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 101
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     .line 102
-    goto :goto_4c
+    goto :goto_2
 
     .line 100
-    :catchall_32
+    :catchall_0
     move-exception v3
 
-    goto :goto_4d
+    goto :goto_3
 
     .line 97
-    :catch_34
+    :catch_0
     move-exception v3
 
     .line 98
     .local v3, "e":Landroid/os/RemoteException;
-    :try_start_35
+    :try_start_1
     sget-object v4, Lmiui/hardware/display/DisplayFeatureServiceProxy;->TAG:Ljava/lang/String;
 
     new-instance v5, Ljava/lang/StringBuilder;
@@ -247,18 +247,18 @@
     move-result-object v5
 
     invoke-static {v4, v5}, Landroid/util/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_4b
-    .catchall {:try_start_35 .. :try_end_4b} :catchall_32
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     .end local v3    # "e":Landroid/os/RemoteException;
-    goto :goto_2b
+    goto :goto_1
 
     .line 103
-    :goto_4c
+    :goto_2
     return v2
 
     .line 100
-    :goto_4d
+    :goto_3
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 101
@@ -268,7 +268,7 @@
 .end method
 
 .method private varargs callHwBinderTransact(I[I)V
-    .registers 9
+    .locals 6
     .param p1, "_hidl_code"    # I
     .param p2, "params"    # [I
 
@@ -279,7 +279,7 @@
 
     .line 109
     .local v0, "hidl_reply":Landroid/os/HwParcel;
-    :try_start_5
+    :try_start_0
     new-instance v1, Landroid/os/HwParcel;
 
     invoke-direct {v1}, Landroid/os/HwParcel;-><init>()V
@@ -297,8 +297,8 @@
 
     move v4, v3
 
-    :goto_12
-    if-ge v4, v2, :cond_1c
+    :goto_0
+    if-ge v4, v2, :cond_0
 
     aget v5, p2, v4
 
@@ -310,10 +310,10 @@
     .end local v5    # "param":I
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_12
+    goto :goto_0
 
     .line 114
-    :cond_1c
+    :cond_0
     iget-object v2, p0, Lmiui/hardware/display/DisplayFeatureServiceProxy;->mHwService:Landroid/os/IHwBinder;
 
     invoke-interface {v2, p1, v1, v0, v3}, Landroid/os/IHwBinder;->transact(ILandroid/os/HwParcel;Landroid/os/HwParcel;I)V
@@ -323,26 +323,26 @@
 
     .line 116
     invoke-virtual {v1}, Landroid/os/HwParcel;->releaseTemporaryStorage()V
-    :try_end_27
-    .catch Landroid/os/RemoteException; {:try_start_5 .. :try_end_27} :catch_2a
-    .catchall {:try_start_5 .. :try_end_27} :catchall_28
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .end local v1    # "hidl_request":Landroid/os/HwParcel;
-    goto :goto_41
+    goto :goto_1
 
     .line 120
-    :catchall_28
+    :catchall_0
     move-exception v1
 
-    goto :goto_46
+    goto :goto_2
 
     .line 117
-    :catch_2a
+    :catch_0
     move-exception v1
 
     .line 118
     .local v1, "e":Landroid/os/RemoteException;
-    :try_start_2b
+    :try_start_1
     sget-object v2, Lmiui/hardware/display/DisplayFeatureServiceProxy;->TAG:Ljava/lang/String;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -360,12 +360,12 @@
     move-result-object v3
 
     invoke-static {v2, v3}, Landroid/util/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_41
-    .catchall {:try_start_2b .. :try_end_41} :catchall_28
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     .line 120
     .end local v1    # "e":Landroid/os/RemoteException;
-    :goto_41
+    :goto_1
     invoke-virtual {v0}, Landroid/os/HwParcel;->release()V
 
     .line 121
@@ -375,7 +375,7 @@
     return-void
 
     .line 120
-    :goto_46
+    :goto_2
     invoke-virtual {v0}, Landroid/os/HwParcel;->release()V
 
     throw v1
@@ -384,7 +384,7 @@
 
 # virtual methods
 .method public interfaceDescriptor()Ljava/lang/String;
-    .registers 6
+    .locals 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -409,7 +409,7 @@
 
     .line 72
     .local v1, "_hidl_reply":Landroid/os/HwParcel;
-    :try_start_f
+    :try_start_0
     iget-object v2, p0, Lmiui/hardware/display/DisplayFeatureServiceProxy;->mHwService:Landroid/os/IHwBinder;
 
     const v3, 0xf445343
@@ -428,8 +428,8 @@
     invoke-virtual {v1}, Landroid/os/HwParcel;->readString()Ljava/lang/String;
 
     move-result-object v2
-    :try_end_22
-    .catchall {:try_start_f .. :try_end_22} :catchall_27
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 78
     .local v2, "_hidl_out_descriptor":Ljava/lang/String;
@@ -443,7 +443,7 @@
 
     .line 80
     .end local v2    # "_hidl_out_descriptor":Ljava/lang/String;
-    :catchall_27
+    :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/HwParcel;->release()V
@@ -452,7 +452,7 @@
 .end method
 
 .method setFeature(IIII)V
-    .registers 11
+    .locals 6
     .param p1, "displayId"    # I
     .param p2, "mode"    # I
     .param p3, "value"    # I
@@ -471,7 +471,7 @@
 
     const/4 v5, 0x1
 
-    if-eqz v0, :cond_17
+    if-eqz v0, :cond_0
 
     .line 59
     new-array v0, v4, [I
@@ -486,10 +486,10 @@
 
     invoke-direct {p0, v5, v0}, Lmiui/hardware/display/DisplayFeatureServiceProxy;->callHwBinderTransact(I[I)V
 
-    goto :goto_26
+    goto :goto_0
 
     .line 61
-    :cond_17
+    :cond_0
     const/16 v0, 0x64
 
     new-array v4, v4, [I
@@ -505,6 +505,6 @@
     invoke-direct {p0, v0, v4}, Lmiui/hardware/display/DisplayFeatureServiceProxy;->callBinderTransact(I[I)I
 
     .line 63
-    :goto_26
+    :goto_0
     return-void
 .end method

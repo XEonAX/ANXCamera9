@@ -31,7 +31,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v7/util/AsyncListUtil;)V
-    .registers 2
+    .locals 0
 
     .line 208
     .local p0, "this":Landroid/support/v7/util/AsyncListUtil$1;, "Landroid/support/v7/util/AsyncListUtil.1;"
@@ -43,7 +43,7 @@
 .end method
 
 .method private isRequestedGeneration(I)Z
-    .registers 3
+    .locals 1
     .param p1, "generation"    # I
 
     .line 285
@@ -52,28 +52,28 @@
 
     iget v0, v0, Landroid/support/v7/util/AsyncListUtil;->mRequestedGeneration:I
 
-    if-ne p1, v0, :cond_8
+    if-ne p1, v0, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_9
+    :goto_0
     return v0
 .end method
 
 .method private recycleAllTiles()V
-    .registers 4
+    .locals 3
 
     .line 278
     .local p0, "this":Landroid/support/v7/util/AsyncListUtil$1;, "Landroid/support/v7/util/AsyncListUtil.1;"
     const/4 v0, 0x0
 
     .local v0, "i":I
-    :goto_1
+    :goto_0
     iget-object v1, p0, Landroid/support/v7/util/AsyncListUtil$1;->this$0:Landroid/support/v7/util/AsyncListUtil;
 
     iget-object v1, v1, Landroid/support/v7/util/AsyncListUtil;->mTileList:Landroid/support/v7/util/TileList;
@@ -82,7 +82,7 @@
 
     move-result v1
 
-    if-ge v0, v1, :cond_1d
+    if-ge v0, v1, :cond_0
 
     .line 279
     iget-object v1, p0, Landroid/support/v7/util/AsyncListUtil$1;->this$0:Landroid/support/v7/util/AsyncListUtil;
@@ -102,11 +102,11 @@
     .line 278
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_1
+    goto :goto_0
 
     .line 281
     .end local v0    # "i":I
-    :cond_1d
+    :cond_0
     iget-object v0, p0, Landroid/support/v7/util/AsyncListUtil$1;->this$0:Landroid/support/v7/util/AsyncListUtil;
 
     iget-object v0, v0, Landroid/support/v7/util/AsyncListUtil;->mTileList:Landroid/support/v7/util/TileList;
@@ -120,7 +120,7 @@
 
 # virtual methods
 .method public addTile(ILandroid/support/v7/util/TileList$Tile;)V
-    .registers 8
+    .locals 5
     .param p1, "generation"    # I
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -137,7 +137,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_e
+    if-nez v0, :cond_0
 
     .line 233
     iget-object v0, p0, Landroid/support/v7/util/AsyncListUtil$1;->this$0:Landroid/support/v7/util/AsyncListUtil;
@@ -150,7 +150,7 @@
     return-void
 
     .line 236
-    :cond_e
+    :cond_0
     iget-object v0, p0, Landroid/support/v7/util/AsyncListUtil$1;->this$0:Landroid/support/v7/util/AsyncListUtil;
 
     iget-object v0, v0, Landroid/support/v7/util/AsyncListUtil;->mTileList:Landroid/support/v7/util/TileList;
@@ -161,7 +161,7 @@
 
     .line 237
     .local v0, "duplicate":Landroid/support/v7/util/TileList$Tile;, "Landroid/support/v7/util/TileList$Tile<TT;>;"
-    if-eqz v0, :cond_37
+    if-eqz v0, :cond_1
 
     .line 238
     const-string v1, "AsyncListUtil"
@@ -192,7 +192,7 @@
     invoke-interface {v1, v0}, Landroid/support/v7/util/ThreadUtil$BackgroundCallback;->recycleTile(Landroid/support/v7/util/TileList$Tile;)V
 
     .line 245
-    :cond_37
+    :cond_1
     iget v1, p2, Landroid/support/v7/util/TileList$Tile;->mStartPosition:I
 
     iget v2, p2, Landroid/support/v7/util/TileList$Tile;->mItemCount:I
@@ -205,10 +205,9 @@
 
     .line 247
     .local v2, "index":I
-    :goto_3d
+    :goto_0
     iget-object v3, p0, Landroid/support/v7/util/AsyncListUtil$1;->this$0:Landroid/support/v7/util/AsyncListUtil;
 
-    # getter for: Landroid/support/v7/util/AsyncListUtil;->mMissingPositions:Landroid/util/SparseIntArray;
     invoke-static {v3}, Landroid/support/v7/util/AsyncListUtil;->access$300(Landroid/support/v7/util/AsyncListUtil;)Landroid/util/SparseIntArray;
 
     move-result-object v3
@@ -217,12 +216,11 @@
 
     move-result v3
 
-    if-ge v2, v3, :cond_6d
+    if-ge v2, v3, :cond_3
 
     .line 248
     iget-object v3, p0, Landroid/support/v7/util/AsyncListUtil$1;->this$0:Landroid/support/v7/util/AsyncListUtil;
 
-    # getter for: Landroid/support/v7/util/AsyncListUtil;->mMissingPositions:Landroid/util/SparseIntArray;
     invoke-static {v3}, Landroid/support/v7/util/AsyncListUtil;->access$300(Landroid/support/v7/util/AsyncListUtil;)Landroid/util/SparseIntArray;
 
     move-result-object v3
@@ -235,14 +233,13 @@
     .local v3, "position":I
     iget v4, p2, Landroid/support/v7/util/TileList$Tile;->mStartPosition:I
 
-    if-gt v4, v3, :cond_6a
+    if-gt v4, v3, :cond_2
 
-    if-ge v3, v1, :cond_6a
+    if-ge v3, v1, :cond_2
 
     .line 250
     iget-object v4, p0, Landroid/support/v7/util/AsyncListUtil$1;->this$0:Landroid/support/v7/util/AsyncListUtil;
 
-    # getter for: Landroid/support/v7/util/AsyncListUtil;->mMissingPositions:Landroid/util/SparseIntArray;
     invoke-static {v4}, Landroid/support/v7/util/AsyncListUtil;->access$300(Landroid/support/v7/util/AsyncListUtil;)Landroid/util/SparseIntArray;
 
     move-result-object v4
@@ -256,24 +253,24 @@
 
     invoke-virtual {v4, v3}, Landroid/support/v7/util/AsyncListUtil$ViewCallback;->onItemLoaded(I)V
 
-    goto :goto_6c
+    goto :goto_1
 
     .line 253
-    :cond_6a
+    :cond_2
     add-int/lit8 v2, v2, 0x1
 
     .line 255
     .end local v3    # "position":I
-    :goto_6c
-    goto :goto_3d
+    :goto_1
+    goto :goto_0
 
     .line 256
-    :cond_6d
+    :cond_3
     return-void
 .end method
 
 .method public removeTile(II)V
-    .registers 7
+    .locals 4
     .param p1, "generation"    # I
     .param p2, "position"    # I
 
@@ -283,13 +280,13 @@
 
     move-result v0
 
-    if-nez v0, :cond_7
+    if-nez v0, :cond_0
 
     .line 261
     return-void
 
     .line 263
-    :cond_7
+    :cond_0
     iget-object v0, p0, Landroid/support/v7/util/AsyncListUtil$1;->this$0:Landroid/support/v7/util/AsyncListUtil;
 
     iget-object v0, v0, Landroid/support/v7/util/AsyncListUtil;->mTileList:Landroid/support/v7/util/TileList;
@@ -300,7 +297,7 @@
 
     .line 264
     .local v0, "tile":Landroid/support/v7/util/TileList$Tile;, "Landroid/support/v7/util/TileList$Tile<TT;>;"
-    if-nez v0, :cond_28
+    if-nez v0, :cond_1
 
     .line 265
     const-string v1, "AsyncListUtil"
@@ -325,7 +322,7 @@
     return-void
 
     .line 271
-    :cond_28
+    :cond_1
     iget-object v1, p0, Landroid/support/v7/util/AsyncListUtil$1;->this$0:Landroid/support/v7/util/AsyncListUtil;
 
     iget-object v1, v1, Landroid/support/v7/util/AsyncListUtil;->mBackgroundProxy:Landroid/support/v7/util/ThreadUtil$BackgroundCallback;
@@ -337,7 +334,7 @@
 .end method
 
 .method public updateItemCount(II)V
-    .registers 5
+    .locals 2
     .param p1, "generation"    # I
     .param p2, "itemCount"    # I
 
@@ -347,16 +344,15 @@
 
     move-result v0
 
-    if-nez v0, :cond_7
+    if-nez v0, :cond_0
 
     .line 215
     return-void
 
     .line 217
-    :cond_7
+    :cond_0
     iget-object v0, p0, Landroid/support/v7/util/AsyncListUtil$1;->this$0:Landroid/support/v7/util/AsyncListUtil;
 
-    # setter for: Landroid/support/v7/util/AsyncListUtil;->mItemCount:I
     invoke-static {v0, p2}, Landroid/support/v7/util/AsyncListUtil;->access$002(Landroid/support/v7/util/AsyncListUtil;I)I
 
     .line 218
@@ -383,13 +379,11 @@
 
     const/4 v1, 0x0
 
-    # setter for: Landroid/support/v7/util/AsyncListUtil;->mAllowScrollHints:Z
     invoke-static {v0, v1}, Landroid/support/v7/util/AsyncListUtil;->access$102(Landroid/support/v7/util/AsyncListUtil;Z)Z
 
     .line 224
     iget-object v0, p0, Landroid/support/v7/util/AsyncListUtil$1;->this$0:Landroid/support/v7/util/AsyncListUtil;
 
-    # invokes: Landroid/support/v7/util/AsyncListUtil;->updateRange()V
     invoke-static {v0}, Landroid/support/v7/util/AsyncListUtil;->access$200(Landroid/support/v7/util/AsyncListUtil;)V
 
     .line 225

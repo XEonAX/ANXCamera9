@@ -26,7 +26,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v7/widget/LinearLayoutManager;)V
-    .registers 2
+    .locals 0
 
     .line 2100
     iput-object p1, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->this$0:Landroid/support/v7/widget/LinearLayoutManager;
@@ -37,7 +37,7 @@
 .end method
 
 .method static synthetic access$000(Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;Landroid/view/View;Landroid/support/v7/widget/RecyclerView$State;)Z
-    .registers 4
+    .locals 1
     .param p0, "x0"    # Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;
     .param p1, "x1"    # Landroid/view/View;
     .param p2, "x2"    # Landroid/support/v7/widget/RecyclerView$State;
@@ -51,7 +51,7 @@
 .end method
 
 .method private isViewValidAsAnchor(Landroid/view/View;Landroid/support/v7/widget/RecyclerView$State;)Z
-    .registers 6
+    .locals 3
     .param p1, "child"    # Landroid/view/View;
     .param p2, "state"    # Landroid/support/v7/widget/RecyclerView$State;
 
@@ -68,13 +68,13 @@
 
     move-result v1
 
-    if-nez v1, :cond_1e
+    if-nez v1, :cond_0
 
     invoke-virtual {v0}, Landroid/support/v7/widget/RecyclerView$LayoutParams;->getViewLayoutPosition()I
 
     move-result v1
 
-    if-ltz v1, :cond_1e
+    if-ltz v1, :cond_0
 
     invoke-virtual {v0}, Landroid/support/v7/widget/RecyclerView$LayoutParams;->getViewLayoutPosition()I
 
@@ -84,28 +84,28 @@
 
     move-result v2
 
-    if-ge v1, v2, :cond_1e
+    if-ge v1, v2, :cond_0
 
     const/4 v1, 0x1
 
-    goto :goto_1f
+    goto :goto_0
 
-    :cond_1e
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_1f
+    :goto_0
     return v1
 .end method
 
 
 # virtual methods
 .method assignCoordinateFromPadding()V
-    .registers 2
+    .locals 1
 
     .line 2115
     iget-boolean v0, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->mLayoutFromEnd:Z
 
-    if-eqz v0, :cond_d
+    if-eqz v0, :cond_0
 
     iget-object v0, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->this$0:Landroid/support/v7/widget/LinearLayoutManager;
 
@@ -115,9 +115,9 @@
 
     move-result v0
 
-    goto :goto_15
+    goto :goto_0
 
-    :cond_d
+    :cond_0
     iget-object v0, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->this$0:Landroid/support/v7/widget/LinearLayoutManager;
 
     iget-object v0, v0, Landroid/support/v7/widget/LinearLayoutManager;->mOrientationHelper:Landroid/support/v7/widget/OrientationHelper;
@@ -126,7 +126,7 @@
 
     move-result v0
 
-    :goto_15
+    :goto_0
     iput v0, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->mCoordinate:I
 
     .line 2118
@@ -134,13 +134,13 @@
 .end method
 
 .method public assignFromView(Landroid/view/View;)V
-    .registers 4
+    .locals 2
     .param p1, "child"    # Landroid/view/View;
 
     .line 2183
     iget-boolean v0, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->mLayoutFromEnd:Z
 
-    if-eqz v0, :cond_18
+    if-eqz v0, :cond_0
 
     .line 2184
     iget-object v0, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->this$0:Landroid/support/v7/widget/LinearLayoutManager;
@@ -163,10 +163,10 @@
 
     iput v0, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->mCoordinate:I
 
-    goto :goto_22
+    goto :goto_0
 
     .line 2187
-    :cond_18
+    :cond_0
     iget-object v0, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->this$0:Landroid/support/v7/widget/LinearLayoutManager;
 
     iget-object v0, v0, Landroid/support/v7/widget/LinearLayoutManager;->mOrientationHelper:Landroid/support/v7/widget/OrientationHelper;
@@ -178,7 +178,7 @@
     iput v0, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->mCoordinate:I
 
     .line 2190
-    :goto_22
+    :goto_0
     iget-object v0, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->this$0:Landroid/support/v7/widget/LinearLayoutManager;
 
     invoke-virtual {v0, p1}, Landroid/support/v7/widget/LinearLayoutManager;->getPosition(Landroid/view/View;)I
@@ -192,7 +192,7 @@
 .end method
 
 .method public assignFromViewAndKeepVisibleRect(Landroid/view/View;)V
-    .registers 14
+    .locals 12
     .param p1, "child"    # Landroid/view/View;
 
     .line 2136
@@ -206,7 +206,7 @@
 
     .line 2137
     .local v0, "spaceChange":I
-    if-ltz v0, :cond_e
+    if-ltz v0, :cond_0
 
     .line 2138
     invoke-virtual {p0, p1}, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->assignFromView(Landroid/view/View;)V
@@ -215,7 +215,7 @@
     return-void
 
     .line 2141
-    :cond_e
+    :cond_0
     iget-object v1, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->this$0:Landroid/support/v7/widget/LinearLayoutManager;
 
     invoke-virtual {v1, p1}, Landroid/support/v7/widget/LinearLayoutManager;->getPosition(Landroid/view/View;)I
@@ -229,7 +229,7 @@
 
     const/4 v2, 0x0
 
-    if-eqz v1, :cond_6b
+    if-eqz v1, :cond_2
 
     .line 2143
     iget-object v1, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->this$0:Landroid/support/v7/widget/LinearLayoutManager;
@@ -271,7 +271,7 @@
     iput v5, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->mCoordinate:I
 
     .line 2148
-    if-lez v4, :cond_6a
+    if-lez v4, :cond_1
 
     .line 2149
     iget-object v5, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->this$0:Landroid/support/v7/widget/LinearLayoutManager;
@@ -324,7 +324,7 @@
 
     .line 2156
     .local v9, "startMargin":I
-    if-gez v9, :cond_6a
+    if-gez v9, :cond_1
 
     .line 2158
     iget v10, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->mCoordinate:I
@@ -349,11 +349,11 @@
     .end local v7    # "layoutStart":I
     .end local v8    # "previousStartMargin":I
     .end local v9    # "startMargin":I
-    :cond_6a
-    goto :goto_b8
+    :cond_1
+    goto :goto_0
 
     .line 2162
-    :cond_6b
+    :cond_2
     iget-object v1, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->this$0:Landroid/support/v7/widget/LinearLayoutManager;
 
     iget-object v1, v1, Landroid/support/v7/widget/LinearLayoutManager;->mOrientationHelper:Landroid/support/v7/widget/OrientationHelper;
@@ -379,7 +379,7 @@
     iput v1, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->mCoordinate:I
 
     .line 2165
-    if-lez v3, :cond_b8
+    if-lez v3, :cond_3
 
     .line 2166
     iget-object v4, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->this$0:Landroid/support/v7/widget/LinearLayoutManager;
@@ -438,7 +438,7 @@
 
     .line 2175
     .local v2, "endMargin":I
-    if-gez v2, :cond_b8
+    if-gez v2, :cond_3
 
     .line 2176
     iget v8, p0, Landroid/support/v7/widget/LinearLayoutManager$AnchorInfo;->mCoordinate:I
@@ -461,13 +461,13 @@
     .end local v5    # "previousLayoutEnd":I
     .end local v6    # "previousEndMargin":I
     .end local v7    # "endReference":I
-    :cond_b8
-    :goto_b8
+    :cond_3
+    :goto_0
     return-void
 .end method
 
 .method reset()V
-    .registers 2
+    .locals 1
 
     .line 2105
     const/4 v0, -0x1
@@ -489,7 +489,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 2122
     new-instance v0, Ljava/lang/StringBuilder;

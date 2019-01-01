@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 78
     invoke-direct {p0}, Landroid/support/v4/view/accessibility/AccessibilityManagerCompat$AccessibilityManagerStubImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public addAccessibilityStateChangeListener(Landroid/view/accessibility/AccessibilityManager;Landroid/support/v4/view/accessibility/AccessibilityManagerCompat$AccessibilityStateChangeListenerCompat;)Z
-    .registers 4
+    .locals 1
     .param p1, "manager"    # Landroid/view/accessibility/AccessibilityManager;
     .param p2, "listener"    # Landroid/support/v4/view/accessibility/AccessibilityManagerCompat$AccessibilityStateChangeListenerCompat;
 
@@ -42,7 +42,7 @@
 .end method
 
 .method public getEnabledAccessibilityServiceList(Landroid/view/accessibility/AccessibilityManager;I)Ljava/util/List;
-    .registers 4
+    .locals 1
     .param p1, "manager"    # Landroid/view/accessibility/AccessibilityManager;
     .param p2, "feedbackTypeFlags"    # I
     .annotation system Ldalvik/annotation/Signature;
@@ -65,7 +65,7 @@
 .end method
 
 .method public getInstalledAccessibilityServiceList(Landroid/view/accessibility/AccessibilityManager;)Ljava/util/List;
-    .registers 3
+    .locals 1
     .param p1, "manager"    # Landroid/view/accessibility/AccessibilityManager;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -87,7 +87,7 @@
 .end method
 
 .method public isTouchExplorationEnabled(Landroid/view/accessibility/AccessibilityManager;)Z
-    .registers 3
+    .locals 1
     .param p1, "manager"    # Landroid/view/accessibility/AccessibilityManager;
 
     .line 120
@@ -99,7 +99,7 @@
 .end method
 
 .method public newAccessiblityStateChangeListener(Landroid/support/v4/view/accessibility/AccessibilityManagerCompat$AccessibilityStateChangeListenerCompat;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "listener"    # Landroid/support/v4/view/accessibility/AccessibilityManagerCompat$AccessibilityStateChangeListenerCompat;
 
     .line 83
@@ -115,7 +115,7 @@
 .end method
 
 .method public removeAccessibilityStateChangeListener(Landroid/view/accessibility/AccessibilityManager;Landroid/support/v4/view/accessibility/AccessibilityManagerCompat$AccessibilityStateChangeListenerCompat;)Z
-    .registers 4
+    .locals 1
     .param p1, "manager"    # Landroid/view/accessibility/AccessibilityManager;
     .param p2, "listener"    # Landroid/support/v4/view/accessibility/AccessibilityManagerCompat$AccessibilityStateChangeListenerCompat;
 

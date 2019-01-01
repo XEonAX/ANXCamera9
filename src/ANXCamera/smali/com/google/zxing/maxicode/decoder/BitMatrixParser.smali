@@ -13,7 +13,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 17
+    .locals 17
 
     .line 27
     const/16 v0, 0x21
@@ -25,7 +25,7 @@
 
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_1a2
+    fill-array-data v2, :array_0
 
     const/4 v3, 0x0
 
@@ -34,7 +34,7 @@
     .line 29
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_1e2
+    fill-array-data v2, :array_1
 
     const/4 v4, 0x1
 
@@ -43,7 +43,7 @@
     .line 30
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_222
+    fill-array-data v2, :array_2
 
     const/4 v5, 0x2
 
@@ -52,7 +52,7 @@
     .line 31
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_262
+    fill-array-data v2, :array_3
 
     const/4 v6, 0x3
 
@@ -61,7 +61,7 @@
     .line 32
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_2a2
+    fill-array-data v2, :array_4
 
     const/4 v7, 0x4
 
@@ -70,7 +70,7 @@
     .line 33
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_2e2
+    fill-array-data v2, :array_5
 
     const/4 v8, 0x5
 
@@ -79,7 +79,7 @@
     .line 34
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_322
+    fill-array-data v2, :array_6
 
     const/4 v9, 0x6
 
@@ -88,7 +88,7 @@
     .line 35
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_362
+    fill-array-data v2, :array_7
 
     const/4 v10, 0x7
 
@@ -97,7 +97,7 @@
     .line 36
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_3a2
+    fill-array-data v2, :array_8
 
     const/16 v11, 0x8
 
@@ -106,7 +106,7 @@
     .line 37
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_3e2
+    fill-array-data v2, :array_9
 
     const/16 v12, 0x9
 
@@ -115,7 +115,7 @@
     .line 38
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_422
+    fill-array-data v2, :array_a
 
     const/16 v13, 0xa
 
@@ -124,7 +124,7 @@
     .line 39
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_462
+    fill-array-data v2, :array_b
 
     const/16 v14, 0xb
 
@@ -133,7 +133,7 @@
     .line 40
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_4a2
+    fill-array-data v2, :array_c
 
     const/16 v15, 0xc
 
@@ -142,7 +142,7 @@
     .line 41
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_4e2
+    fill-array-data v2, :array_d
 
     const/16 v16, 0xd
 
@@ -151,7 +151,7 @@
     .line 42
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_522
+    fill-array-data v2, :array_e
 
     const/16 v16, 0xe
 
@@ -293,7 +293,7 @@
     .line 44
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_562
+    fill-array-data v2, :array_f
 
     const/16 v3, 0x10
 
@@ -302,7 +302,7 @@
     .line 45
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_5a2
+    fill-array-data v2, :array_10
 
     const/16 v3, 0x11
 
@@ -311,7 +311,7 @@
     .line 46
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_5e2
+    fill-array-data v2, :array_11
 
     const/16 v3, 0x12
 
@@ -320,7 +320,7 @@
     .line 47
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_622
+    fill-array-data v2, :array_12
 
     const/16 v3, 0x13
 
@@ -329,7 +329,7 @@
     .line 48
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_662
+    fill-array-data v2, :array_13
 
     const/16 v3, 0x14
 
@@ -338,7 +338,7 @@
     .line 49
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_6a2
+    fill-array-data v2, :array_14
 
     const/16 v3, 0x15
 
@@ -347,7 +347,7 @@
     .line 50
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_6e2
+    fill-array-data v2, :array_15
 
     const/16 v3, 0x16
 
@@ -356,7 +356,7 @@
     .line 51
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_722
+    fill-array-data v2, :array_16
 
     const/16 v3, 0x17
 
@@ -365,7 +365,7 @@
     .line 52
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_762
+    fill-array-data v2, :array_17
 
     const/16 v3, 0x18
 
@@ -374,7 +374,7 @@
     .line 53
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_7a2
+    fill-array-data v2, :array_18
 
     const/16 v3, 0x19
 
@@ -383,7 +383,7 @@
     .line 54
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_7e2
+    fill-array-data v2, :array_19
 
     const/16 v3, 0x1a
 
@@ -392,7 +392,7 @@
     .line 55
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_822
+    fill-array-data v2, :array_1a
 
     const/16 v3, 0x1b
 
@@ -401,7 +401,7 @@
     .line 56
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_862
+    fill-array-data v2, :array_1b
 
     const/16 v3, 0x1c
 
@@ -410,7 +410,7 @@
     .line 57
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_8a2
+    fill-array-data v2, :array_1c
 
     const/16 v3, 0x1d
 
@@ -419,14 +419,14 @@
     .line 58
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_8e2
+    fill-array-data v2, :array_1d
 
     aput-object v2, v0, v1
 
     .line 59
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_922
+    fill-array-data v2, :array_1e
 
     const/16 v3, 0x1f
 
@@ -435,7 +435,7 @@
     .line 60
     new-array v1, v1, [I
 
-    fill-array-data v1, :array_962
+    fill-array-data v1, :array_1f
 
     const/16 v2, 0x20
 
@@ -449,7 +449,7 @@
 
     nop
 
-    :array_1a2
+    :array_0
     .array-data 4
         0x79
         0x78
@@ -483,7 +483,7 @@
         -0x2
     .end array-data
 
-    :array_1e2
+    :array_1
     .array-data 4
         0x7b
         0x7a
@@ -517,7 +517,7 @@
         -0x3
     .end array-data
 
-    :array_222
+    :array_2
     .array-data 4
         0x7d
         0x7c
@@ -551,7 +551,7 @@
         0x331
     .end array-data
 
-    :array_262
+    :array_3
     .array-data 4
         0x11b
         0x11a
@@ -585,7 +585,7 @@
         -0x3
     .end array-data
 
-    :array_2a2
+    :array_4
     .array-data 4
         0x11d
         0x11c
@@ -619,7 +619,7 @@
         0x334
     .end array-data
 
-    :array_2e2
+    :array_5
     .array-data 4
         0x11f
         0x11e
@@ -653,7 +653,7 @@
         -0x3
     .end array-data
 
-    :array_322
+    :array_6
     .array-data 4
         0x121
         0x120
@@ -687,7 +687,7 @@
         0x337
     .end array-data
 
-    :array_362
+    :array_7
     .array-data 4
         0x123
         0x122
@@ -721,7 +721,7 @@
         -0x3
     .end array-data
 
-    :array_3a2
+    :array_8
     .array-data 4
         0x125
         0x124
@@ -755,7 +755,7 @@
         0x33a
     .end array-data
 
-    :array_3e2
+    :array_9
     .array-data 4
         0x199
         0x198
@@ -789,7 +789,7 @@
         -0x3
     .end array-data
 
-    :array_422
+    :array_a
     .array-data 4
         0x19b
         0x19a
@@ -823,7 +823,7 @@
         0x33d
     .end array-data
 
-    :array_462
+    :array_b
     .array-data 4
         0x19d
         0x19c
@@ -857,7 +857,7 @@
         -0x3
     .end array-data
 
-    :array_4a2
+    :array_c
     .array-data 4
         0x19f
         0x19e
@@ -891,7 +891,7 @@
         0x340
     .end array-data
 
-    :array_4e2
+    :array_d
     .array-data 4
         0x1a1
         0x1a0
@@ -925,7 +925,7 @@
         -0x3
     .end array-data
 
-    :array_522
+    :array_e
     .array-data 4
         0x1a3
         0x1a2
@@ -959,7 +959,7 @@
         0x343
     .end array-data
 
-    :array_562
+    :array_f
     .array-data 4
         0x1e3
         0x1e2
@@ -993,7 +993,7 @@
         0x346
     .end array-data
 
-    :array_5a2
+    :array_10
     .array-data 4
         0x1e5
         0x1e4
@@ -1027,7 +1027,7 @@
         -0x3
     .end array-data
 
-    :array_5e2
+    :array_11
     .array-data 4
         0x1e7
         0x1e6
@@ -1061,7 +1061,7 @@
         0x349
     .end array-data
 
-    :array_622
+    :array_12
     .array-data 4
         0x1e9
         0x1e8
@@ -1095,7 +1095,7 @@
         -0x3
     .end array-data
 
-    :array_662
+    :array_13
     .array-data 4
         0x1eb
         0x1ea
@@ -1129,7 +1129,7 @@
         0x34c
     .end array-data
 
-    :array_6a2
+    :array_14
     .array-data 4
         0x22f
         0x22e
@@ -1163,7 +1163,7 @@
         -0x3
     .end array-data
 
-    :array_6e2
+    :array_15
     .array-data 4
         0x231
         0x230
@@ -1197,7 +1197,7 @@
         0x34f
     .end array-data
 
-    :array_722
+    :array_16
     .array-data 4
         0x233
         0x232
@@ -1231,7 +1231,7 @@
         -0x3
     .end array-data
 
-    :array_762
+    :array_17
     .array-data 4
         0x235
         0x234
@@ -1265,7 +1265,7 @@
         0x352
     .end array-data
 
-    :array_7a2
+    :array_18
     .array-data 4
         0x237
         0x236
@@ -1299,7 +1299,7 @@
         -0x3
     .end array-data
 
-    :array_7e2
+    :array_19
     .array-data 4
         0x239
         0x238
@@ -1333,7 +1333,7 @@
         0x355
     .end array-data
 
-    :array_822
+    :array_1a
     .array-data 4
         0x2d7
         0x2d6
@@ -1367,7 +1367,7 @@
         -0x3
     .end array-data
 
-    :array_862
+    :array_1b
     .array-data 4
         0x2d9
         0x2d8
@@ -1401,7 +1401,7 @@
         0x358
     .end array-data
 
-    :array_8a2
+    :array_1c
     .array-data 4
         0x2db
         0x2da
@@ -1435,7 +1435,7 @@
         -0x3
     .end array-data
 
-    :array_8e2
+    :array_1d
     .array-data 4
         0x2dd
         0x2dc
@@ -1469,7 +1469,7 @@
         0x35b
     .end array-data
 
-    :array_922
+    :array_1e
     .array-data 4
         0x2df
         0x2de
@@ -1503,7 +1503,7 @@
         -0x3
     .end array-data
 
-    :array_962
+    :array_1f
     .array-data 4
         0x2e1
         0x2e0
@@ -1539,7 +1539,7 @@
 .end method
 
 .method constructor <init>(Lcom/google/zxing/common/BitMatrix;)V
-    .registers 2
+    .locals 0
     .param p1, "bitMatrix"    # Lcom/google/zxing/common/BitMatrix;
 
     .line 68
@@ -1555,7 +1555,7 @@
 
 # virtual methods
 .method readCodewords()[B
-    .registers 12
+    .locals 11
 
     .line 73
     const/16 v0, 0x90
@@ -1583,8 +1583,8 @@
     const/4 v3, 0x0
 
     .local v3, "y":I
-    :goto_11
-    if-lt v3, v1, :cond_14
+    :goto_0
+    if-lt v3, v1, :cond_0
 
     .line 85
     .end local v3    # "y":I
@@ -1592,7 +1592,7 @@
 
     .line 77
     .restart local v3    # "y":I
-    :cond_14
+    :cond_0
     sget-object v4, Lcom/google/zxing/maxicode/decoder/BitMatrixParser;->BITNR:[[I
 
     aget-object v4, v4, v3
@@ -1602,25 +1602,25 @@
     const/4 v5, 0x0
 
     .local v5, "x":I
-    :goto_19
-    if-lt v5, v2, :cond_1e
+    :goto_1
+    if-lt v5, v2, :cond_1
 
     .line 76
     .end local v4    # "bitnrRow":[I
     .end local v5    # "x":I
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_11
+    goto :goto_0
 
     .line 79
     .restart local v4    # "bitnrRow":[I
     .restart local v5    # "x":I
-    :cond_1e
+    :cond_1
     aget v6, v4, v5
 
     .line 80
     .local v6, "bit":I
-    if-ltz v6, :cond_3a
+    if-ltz v6, :cond_2
 
     iget-object v7, p0, Lcom/google/zxing/maxicode/decoder/BitMatrixParser;->bitMatrix:Lcom/google/zxing/common/BitMatrix;
 
@@ -1628,7 +1628,7 @@
 
     move-result v7
 
-    if-eqz v7, :cond_3a
+    if-eqz v7, :cond_2
 
     .line 81
     div-int/lit8 v7, v6, 0x6
@@ -1653,8 +1653,8 @@
 
     .line 78
     .end local v6    # "bit":I
-    :cond_3a
+    :cond_2
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_19
+    goto :goto_1
 .end method

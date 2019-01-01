@@ -5,7 +5,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 17
     const-string v0, "miuinative"
@@ -17,7 +17,7 @@
 .end method
 
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 20
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -86,7 +86,7 @@
 .end method
 
 .method public static getConstructor(Ljava/lang/reflect/Constructor;)Lmiui/reflect/Constructor;
-    .registers 5
+    .locals 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -167,7 +167,7 @@
 .end method
 
 .method public static getField(Ljava/lang/reflect/Field;)Lmiui/reflect/Field;
-    .registers 7
+    .locals 6
 
     .line 99
     invoke-virtual {p0}, Ljava/lang/reflect/Field;->getDeclaringClass()Ljava/lang/Class;
@@ -203,17 +203,17 @@
 
     and-int/lit8 v4, v4, 0x8
 
-    if-eqz v4, :cond_22
+    if-eqz v4, :cond_0
 
     const/4 v4, 0x1
 
-    goto :goto_23
+    goto :goto_0
 
-    :cond_22
+    :cond_0
     const/4 v4, 0x0
 
     .line 99
-    :goto_23
+    :goto_0
     move-object v5, p0
 
     invoke-static/range {v0 .. v5}, Lcom/miui/internal/os/Native;->getField(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/reflect/Field;)Lmiui/reflect/Field;
@@ -273,7 +273,7 @@
 .end method
 
 .method public static getMethod(Ljava/lang/reflect/Method;)Lmiui/reflect/Method;
-    .registers 7
+    .locals 6
 
     .line 34
     invoke-virtual {p0}, Ljava/lang/reflect/Method;->getDeclaringClass()Ljava/lang/Class;
@@ -313,17 +313,17 @@
 
     and-int/lit8 v4, v4, 0x8
 
-    if-eqz v4, :cond_26
+    if-eqz v4, :cond_0
 
     const/4 v4, 0x1
 
-    goto :goto_27
+    goto :goto_0
 
-    :cond_26
+    :cond_0
     const/4 v4, 0x0
 
     .line 34
-    :goto_27
+    :goto_0
     move-object v5, p0
 
     invoke-static/range {v0 .. v5}, Lcom/miui/internal/os/Native;->getMethod(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/reflect/Method;)Lmiui/reflect/Method;

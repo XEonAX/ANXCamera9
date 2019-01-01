@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 4699
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -29,7 +29,7 @@
 .end method
 
 .method public static isInstallMonitorEnabled(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4703
@@ -49,7 +49,7 @@
 .end method
 
 .method public static setInstallMonitorEnabled(Landroid/content/Context;Z)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "enabled"    # Z
 

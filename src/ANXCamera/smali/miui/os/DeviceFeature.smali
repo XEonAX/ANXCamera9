@@ -23,7 +23,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 4
+    .locals 4
 
     .line 18
     const-string v0, "support_autobrightness_optimize"
@@ -36,15 +36,15 @@
 
     const/4 v2, 0x1
 
-    if-eqz v0, :cond_10
+    if-eqz v0, :cond_0
 
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v3, 0x17
 
-    if-gt v0, v3, :cond_18
+    if-gt v0, v3, :cond_1
 
-    :cond_10
+    :cond_0
     const-string v0, "sys.autobrightness_optimize"
 
     .line 20
@@ -52,17 +52,17 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1a
+    if-eqz v0, :cond_2
 
-    :cond_18
+    :cond_1
     move v0, v2
 
-    goto :goto_1b
+    goto :goto_0
 
-    :cond_1a
+    :cond_2
     move v0, v1
 
-    :goto_1b
+    :goto_0
     sput-boolean v0, Lmiui/os/DeviceFeature;->SUPPORT_AUTO_BRIGHTNESS_OPTIMIZE:Z
 
     .line 25
@@ -76,7 +76,6 @@
     sput-boolean v0, Lmiui/os/DeviceFeature;->SUPPORT_DISPLAYFEATURE_HIDL:Z
 
     .line 31
-
     const-string/jumbo v3, "SUPPORT_NIGHT_LIGHT"
 
     invoke-static {v3, v2}, Lmiui/util/FeatureParser;->getBoolean(Ljava/lang/String;Z)Z
@@ -95,7 +94,6 @@
     sput-boolean v0, Lmiui/os/DeviceFeature;->SUPPORT_PAPERMODE_ANIMATION:Z
 
     .line 42
-
     const-string/jumbo v3, "SUPPORT_NIGHT_LIGHT_ADJ"
 
     invoke-static {v3, v2}, Lmiui/util/FeatureParser;->getBoolean(Ljava/lang/String;Z)Z
@@ -114,7 +112,7 @@
     move-result v0
 
     sput v0, Lmiui/os/DeviceFeature;->BACKLIGHT_BIT:I
-    
+
     const/4 v2, 0x0
 
     .line 52
@@ -133,7 +131,7 @@
 
     move-result v0
 
-    if-eq v0, v2, :cond_6e
+    if-eq v0, v2, :cond_4
 
     const-string v0, "ro.vendor.df.effect.conflict"
 
@@ -142,18 +140,18 @@
 
     move-result v0
 
-    if-ne v0, v2, :cond_6d
+    if-ne v0, v2, :cond_3
 
-    goto :goto_6e
+    goto :goto_1
 
-    :cond_6d
-    goto :goto_6f
+    :cond_3
+    goto :goto_2
 
-    :cond_6e
-    :goto_6e
+    :cond_4
+    :goto_1
     move v1, v2
 
-    :goto_6f
+    :goto_2
     sput-boolean v1, Lmiui/os/DeviceFeature;->SCREEN_EFFECT_CONFLICT:Z
 
     .line 57
@@ -161,7 +159,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 12
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -170,7 +168,7 @@
 .end method
 
 .method public static final hasMirihiSupport()Z
-    .registers 2
+    .locals 2
 
     .line 62
     const-string v0, "perseus"

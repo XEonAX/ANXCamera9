@@ -13,7 +13,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -23,7 +23,7 @@
 .end method
 
 .method public static setSingleLineAllCaps(Landroid/widget/TextView;)V
-    .registers 3
+    .locals 2
     .param p0, "text"    # Landroid/widget/TextView;
 
     .line 28

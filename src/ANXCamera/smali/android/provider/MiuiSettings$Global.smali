@@ -40,7 +40,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 3204
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -49,7 +49,7 @@
 .end method
 
 .method public static changeOpenSecondSpaceStatusIcon(Landroid/content/ContentResolver;Z)Z
-    .registers 3
+    .locals 1
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "isOpen"    # Z
 
@@ -64,7 +64,7 @@
 .end method
 
 .method public static changePrivacyContactMode(Landroid/content/ContentResolver;Z)Z
-    .registers 3
+    .locals 1
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "isOpen"    # Z
 
@@ -79,7 +79,7 @@
 .end method
 
 .method public static getBoolean(Landroid/content/ContentResolver;Ljava/lang/String;)Z
-    .registers 4
+    .locals 2
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "name"    # Ljava/lang/String;
 
@@ -90,18 +90,18 @@
 
     move-result v1
 
-    if-eqz v1, :cond_9
+    if-eqz v1, :cond_0
 
     const/4 v0, 0x1
 
     nop
 
-    :cond_9
+    :cond_0
     return v0
 .end method
 
 .method public static isOpenSecondSpaceStatusIcon(Landroid/content/ContentResolver;)Z
-    .registers 3
+    .locals 2
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
     .line 3292
@@ -113,19 +113,19 @@
 
     move-result v0
 
-    if-eqz v0, :cond_b
+    if-eqz v0, :cond_0
 
-    goto :goto_c
+    goto :goto_0
 
-    :cond_b
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_c
+    :goto_0
     return v1
 .end method
 
 .method public static isOpenedPrivacyContactMode(Landroid/content/ContentResolver;)Z
-    .registers 2
+    .locals 1
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
     .line 3278
@@ -139,7 +139,7 @@
 .end method
 
 .method public static putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
-    .registers 4
+    .locals 1
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "name"    # Ljava/lang/String;
     .param p2, "value"    # Z

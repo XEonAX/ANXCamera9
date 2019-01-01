@@ -8,7 +8,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 12
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -19,7 +19,7 @@
 
 # virtual methods
 .method public getInterpolation(F)F
-    .registers 5
+    .locals 3
 
     .line 15
     const/high16 v0, 0x3f000000    # 0.5f
@@ -28,7 +28,7 @@
 
     const/high16 v2, 0x40000000    # 2.0f
 
-    if-gez v1, :cond_14
+    if-gez v1, :cond_0
 
     .line 16
     new-instance v1, Lmiui/view/animation/BounceEaseInInterpolator;
@@ -46,7 +46,7 @@
     return p1
 
     .line 18
-    :cond_14
+    :cond_0
     new-instance v1, Lmiui/view/animation/BounceEaseOutInterpolator;
 
     invoke-direct {v1}, Lmiui/view/animation/BounceEaseOutInterpolator;-><init>()V

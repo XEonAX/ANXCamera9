@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/speech/tts/TextToSpeechICSMR1$UtteranceProgressListenerICSMR1;)V
-    .registers 2
+    .locals 0
 
     .line 64
     iput-object p1, p0, Landroid/support/v4/speech/tts/TextToSpeechICSMR1$2;->val$listener:Landroid/support/v4/speech/tts/TextToSpeechICSMR1$UtteranceProgressListenerICSMR1;
@@ -36,7 +36,7 @@
 
 # virtual methods
 .method public onUtteranceCompleted(Ljava/lang/String;)V
-    .registers 3
+    .locals 1
     .param p1, "utteranceId"    # Ljava/lang/String;
 
     .line 68

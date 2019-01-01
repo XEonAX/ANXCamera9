@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 42
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public getOverlapAnchor(Landroid/widget/PopupWindow;)Z
-    .registers 3
+    .locals 1
     .param p1, "popupWindow"    # Landroid/widget/PopupWindow;
 
     .line 56
@@ -40,7 +40,7 @@
 .end method
 
 .method public getWindowLayoutType(Landroid/widget/PopupWindow;)I
-    .registers 3
+    .locals 1
     .param p1, "popupWindow"    # Landroid/widget/PopupWindow;
 
     .line 66
@@ -50,7 +50,7 @@
 .end method
 
 .method public setOverlapAnchor(Landroid/widget/PopupWindow;Z)V
-    .registers 3
+    .locals 0
     .param p1, "popupWindow"    # Landroid/widget/PopupWindow;
     .param p2, "overlapAnchor"    # Z
 
@@ -59,7 +59,7 @@
 .end method
 
 .method public setWindowLayoutType(Landroid/widget/PopupWindow;I)V
-    .registers 3
+    .locals 0
     .param p1, "popupWindow"    # Landroid/widget/PopupWindow;
     .param p2, "layoutType"    # I
 
@@ -68,7 +68,7 @@
 .end method
 
 .method public showAsDropDown(Landroid/widget/PopupWindow;Landroid/view/View;III)V
-    .registers 6
+    .locals 0
     .param p1, "popup"    # Landroid/widget/PopupWindow;
     .param p2, "anchor"    # Landroid/view/View;
     .param p3, "xoff"    # I

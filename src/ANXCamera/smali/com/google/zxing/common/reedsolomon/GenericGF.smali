@@ -39,7 +39,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 5
+    .locals 5
 
     .line 32
     new-instance v0, Lcom/google/zxing/common/reedsolomon/GenericGF;
@@ -123,7 +123,7 @@
 .end method
 
 .method public constructor <init>(III)V
-    .registers 9
+    .locals 5
     .param p1, "primitive"    # I
     .param p2, "size"    # I
     .param p3, "b"    # I
@@ -158,18 +158,18 @@
     const/4 v1, 0x0
 
     .local v1, "i":I
-    :goto_13
-    if-lt v1, p2, :cond_3c
+    :goto_0
+    if-lt v1, p2, :cond_1
 
     .line 76
     .end local v1    # "i":I
     const/4 v1, 0x0
 
     .restart local v1    # "i":I
-    :goto_16
+    :goto_1
     add-int/lit8 v2, p2, -0x1
 
-    if-lt v1, v2, :cond_31
+    if-lt v1, v2, :cond_0
 
     .line 80
     .end local v1    # "i":I
@@ -201,7 +201,7 @@
 
     .line 77
     .restart local v1    # "i":I
-    :cond_31
+    :cond_0
     iget-object v2, p0, Lcom/google/zxing/common/reedsolomon/GenericGF;->logTable:[I
 
     iget-object v3, p0, Lcom/google/zxing/common/reedsolomon/GenericGF;->expTable:[I
@@ -213,10 +213,10 @@
     .line 76
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_16
+    goto :goto_1
 
     .line 69
-    :cond_3c
+    :cond_1
     iget-object v2, p0, Lcom/google/zxing/common/reedsolomon/GenericGF;->expTable:[I
 
     aput v0, v2, v1
@@ -225,7 +225,7 @@
     mul-int/lit8 v0, v0, 0x2
 
     .line 71
-    if-lt v0, p2, :cond_48
+    if-lt v0, p2, :cond_2
 
     .line 72
     xor-int/2addr v0, p1
@@ -236,14 +236,14 @@
     and-int/2addr v0, v2
 
     .line 68
-    :cond_48
+    :cond_2
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_13
+    goto :goto_0
 .end method
 
 .method static addOrSubtract(II)I
-    .registers 3
+    .locals 1
     .param p0, "a"    # I
     .param p1, "b"    # I
 
@@ -256,15 +256,15 @@
 
 # virtual methods
 .method buildMonomial(II)Lcom/google/zxing/common/reedsolomon/GenericGFPoly;
-    .registers 5
+    .locals 2
     .param p1, "degree"    # I
     .param p2, "coefficient"    # I
 
     .line 96
-    if-ltz p1, :cond_14
+    if-ltz p1, :cond_1
 
     .line 99
-    if-nez p2, :cond_7
+    if-nez p2, :cond_0
 
     .line 100
     iget-object v0, p0, Lcom/google/zxing/common/reedsolomon/GenericGF;->zero:Lcom/google/zxing/common/reedsolomon/GenericGFPoly;
@@ -272,7 +272,7 @@
     return-object v0
 
     .line 102
-    :cond_7
+    :cond_0
     add-int/lit8 v0, p1, 0x1
 
     new-array v0, v0, [I
@@ -292,7 +292,7 @@
 
     .line 97
     .end local v0    # "coefficients":[I
-    :cond_14
+    :cond_1
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     invoke-direct {v0}, Ljava/lang/IllegalArgumentException;-><init>()V
@@ -301,7 +301,7 @@
 .end method
 
 .method exp(I)I
-    .registers 3
+    .locals 1
     .param p1, "a"    # I
 
     .line 120
@@ -313,7 +313,7 @@
 .end method
 
 .method public getGeneratorBase()I
-    .registers 2
+    .locals 1
 
     .line 158
     iget v0, p0, Lcom/google/zxing/common/reedsolomon/GenericGF;->generatorBase:I
@@ -322,7 +322,7 @@
 .end method
 
 .method getOne()Lcom/google/zxing/common/reedsolomon/GenericGFPoly;
-    .registers 2
+    .locals 1
 
     .line 89
     iget-object v0, p0, Lcom/google/zxing/common/reedsolomon/GenericGF;->one:Lcom/google/zxing/common/reedsolomon/GenericGFPoly;
@@ -331,7 +331,7 @@
 .end method
 
 .method public getSize()I
-    .registers 2
+    .locals 1
 
     .line 154
     iget v0, p0, Lcom/google/zxing/common/reedsolomon/GenericGF;->size:I
@@ -340,7 +340,7 @@
 .end method
 
 .method getZero()Lcom/google/zxing/common/reedsolomon/GenericGFPoly;
-    .registers 2
+    .locals 1
 
     .line 85
     iget-object v0, p0, Lcom/google/zxing/common/reedsolomon/GenericGF;->zero:Lcom/google/zxing/common/reedsolomon/GenericGFPoly;
@@ -349,11 +349,11 @@
 .end method
 
 .method inverse(I)I
-    .registers 5
+    .locals 3
     .param p1, "a"    # I
 
     .line 137
-    if-eqz p1, :cond_10
+    if-eqz p1, :cond_0
 
     .line 140
     iget-object v0, p0, Lcom/google/zxing/common/reedsolomon/GenericGF;->expTable:[I
@@ -373,7 +373,7 @@
     return v0
 
     .line 138
-    :cond_10
+    :cond_0
     new-instance v0, Ljava/lang/ArithmeticException;
 
     invoke-direct {v0}, Ljava/lang/ArithmeticException;-><init>()V
@@ -382,11 +382,11 @@
 .end method
 
 .method log(I)I
-    .registers 3
+    .locals 1
     .param p1, "a"    # I
 
     .line 127
-    if-eqz p1, :cond_7
+    if-eqz p1, :cond_0
 
     .line 130
     iget-object v0, p0, Lcom/google/zxing/common/reedsolomon/GenericGF;->logTable:[I
@@ -396,7 +396,7 @@
     return v0
 
     .line 128
-    :cond_7
+    :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     invoke-direct {v0}, Ljava/lang/IllegalArgumentException;-><init>()V
@@ -405,19 +405,19 @@
 .end method
 
 .method multiply(II)I
-    .registers 6
+    .locals 3
     .param p1, "a"    # I
     .param p2, "b"    # I
 
     .line 147
-    if-eqz p1, :cond_18
+    if-eqz p1, :cond_1
 
-    if-nez p2, :cond_5
+    if-nez p2, :cond_0
 
-    goto :goto_18
+    goto :goto_0
 
     .line 150
-    :cond_5
+    :cond_0
     iget-object v0, p0, Lcom/google/zxing/common/reedsolomon/GenericGF;->expTable:[I
 
     iget-object v1, p0, Lcom/google/zxing/common/reedsolomon/GenericGF;->logTable:[I
@@ -441,15 +441,15 @@
     return v0
 
     .line 148
-    :cond_18
-    :goto_18
+    :cond_1
+    :goto_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 163
     new-instance v0, Ljava/lang/StringBuilder;

@@ -39,7 +39,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 5
+    .locals 5
 
     .line 39
     const/16 v0, 0x6b
@@ -51,7 +51,7 @@
 
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_3c2
+    fill-array-data v2, :array_0
 
     const/4 v3, 0x0
 
@@ -60,7 +60,7 @@
     .line 41
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_3d2
+    fill-array-data v2, :array_1
 
     const/4 v3, 0x1
 
@@ -69,7 +69,7 @@
     .line 42
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_3e2
+    fill-array-data v2, :array_2
 
     const/4 v3, 0x2
 
@@ -78,7 +78,7 @@
     .line 43
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_3f2
+    fill-array-data v2, :array_3
 
     const/4 v3, 0x3
 
@@ -87,7 +87,7 @@
     .line 44
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_402
+    fill-array-data v2, :array_4
 
     const/4 v3, 0x4
 
@@ -96,7 +96,7 @@
     .line 45
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_412
+    fill-array-data v2, :array_5
 
     const/4 v3, 0x5
 
@@ -105,14 +105,14 @@
     .line 46
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_422
+    fill-array-data v2, :array_6
 
     aput-object v2, v0, v1
 
     .line 47
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_432
+    fill-array-data v2, :array_7
 
     const/4 v3, 0x7
 
@@ -121,7 +121,7 @@
     .line 48
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_442
+    fill-array-data v2, :array_8
 
     const/16 v4, 0x8
 
@@ -130,7 +130,7 @@
     .line 49
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_452
+    fill-array-data v2, :array_9
 
     const/16 v4, 0x9
 
@@ -139,7 +139,7 @@
     .line 50
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_462
+    fill-array-data v2, :array_a
 
     const/16 v4, 0xa
 
@@ -148,7 +148,7 @@
     .line 51
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_472
+    fill-array-data v2, :array_b
 
     const/16 v4, 0xb
 
@@ -157,7 +157,7 @@
     .line 52
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_482
+    fill-array-data v2, :array_c
 
     const/16 v4, 0xc
 
@@ -166,7 +166,7 @@
     .line 53
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_492
+    fill-array-data v2, :array_d
 
     const/16 v4, 0xd
 
@@ -175,7 +175,7 @@
     .line 54
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_4a2
+    fill-array-data v2, :array_e
 
     const/16 v4, 0xe
 
@@ -184,7 +184,7 @@
     .line 55
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_4b2
+    fill-array-data v2, :array_f
 
     const/16 v4, 0xf
 
@@ -193,7 +193,7 @@
     .line 56
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_4c2
+    fill-array-data v2, :array_10
 
     const/16 v4, 0x10
 
@@ -202,7 +202,7 @@
     .line 57
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_4d2
+    fill-array-data v2, :array_11
 
     const/16 v4, 0x11
 
@@ -211,7 +211,7 @@
     .line 58
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_4e2
+    fill-array-data v2, :array_12
 
     const/16 v4, 0x12
 
@@ -220,7 +220,7 @@
     .line 59
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_4f2
+    fill-array-data v2, :array_13
 
     const/16 v4, 0x13
 
@@ -229,7 +229,7 @@
     .line 60
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_502
+    fill-array-data v2, :array_14
 
     const/16 v4, 0x14
 
@@ -238,7 +238,7 @@
     .line 61
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_512
+    fill-array-data v2, :array_15
 
     const/16 v4, 0x15
 
@@ -247,7 +247,7 @@
     .line 62
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_522
+    fill-array-data v2, :array_16
 
     const/16 v4, 0x16
 
@@ -256,7 +256,7 @@
     .line 63
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_532
+    fill-array-data v2, :array_17
 
     const/16 v4, 0x17
 
@@ -265,7 +265,7 @@
     .line 64
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_542
+    fill-array-data v2, :array_18
 
     const/16 v4, 0x18
 
@@ -274,7 +274,7 @@
     .line 65
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_552
+    fill-array-data v2, :array_19
 
     const/16 v4, 0x19
 
@@ -283,7 +283,7 @@
     .line 66
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_562
+    fill-array-data v2, :array_1a
 
     const/16 v4, 0x1a
 
@@ -292,7 +292,7 @@
     .line 67
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_572
+    fill-array-data v2, :array_1b
 
     const/16 v4, 0x1b
 
@@ -301,7 +301,7 @@
     .line 68
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_582
+    fill-array-data v2, :array_1c
 
     const/16 v4, 0x1c
 
@@ -310,7 +310,7 @@
     .line 69
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_592
+    fill-array-data v2, :array_1d
 
     const/16 v4, 0x1d
 
@@ -319,7 +319,7 @@
     .line 70
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_5a2
+    fill-array-data v2, :array_1e
 
     const/16 v4, 0x1e
 
@@ -328,7 +328,7 @@
     .line 71
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_5b2
+    fill-array-data v2, :array_1f
 
     const/16 v4, 0x1f
 
@@ -337,7 +337,7 @@
     .line 72
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_5c2
+    fill-array-data v2, :array_20
 
     const/16 v4, 0x20
 
@@ -346,7 +346,7 @@
     .line 73
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_5d2
+    fill-array-data v2, :array_21
 
     const/16 v4, 0x21
 
@@ -355,7 +355,7 @@
     .line 74
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_5e2
+    fill-array-data v2, :array_22
 
     const/16 v4, 0x22
 
@@ -364,7 +364,7 @@
     .line 75
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_5f2
+    fill-array-data v2, :array_23
 
     const/16 v4, 0x23
 
@@ -373,7 +373,7 @@
     .line 76
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_602
+    fill-array-data v2, :array_24
 
     const/16 v4, 0x24
 
@@ -382,7 +382,7 @@
     .line 77
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_612
+    fill-array-data v2, :array_25
 
     const/16 v4, 0x25
 
@@ -391,7 +391,7 @@
     .line 78
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_622
+    fill-array-data v2, :array_26
 
     const/16 v4, 0x26
 
@@ -400,7 +400,7 @@
     .line 79
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_632
+    fill-array-data v2, :array_27
 
     const/16 v4, 0x27
 
@@ -409,7 +409,7 @@
     .line 80
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_642
+    fill-array-data v2, :array_28
 
     const/16 v4, 0x28
 
@@ -418,7 +418,7 @@
     .line 81
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_652
+    fill-array-data v2, :array_29
 
     const/16 v4, 0x29
 
@@ -427,7 +427,7 @@
     .line 82
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_662
+    fill-array-data v2, :array_2a
 
     const/16 v4, 0x2a
 
@@ -436,7 +436,7 @@
     .line 83
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_672
+    fill-array-data v2, :array_2b
 
     const/16 v4, 0x2b
 
@@ -445,7 +445,7 @@
     .line 84
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_682
+    fill-array-data v2, :array_2c
 
     const/16 v4, 0x2c
 
@@ -454,7 +454,7 @@
     .line 85
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_692
+    fill-array-data v2, :array_2d
 
     const/16 v4, 0x2d
 
@@ -463,7 +463,7 @@
     .line 86
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_6a2
+    fill-array-data v2, :array_2e
 
     const/16 v4, 0x2e
 
@@ -472,7 +472,7 @@
     .line 87
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_6b2
+    fill-array-data v2, :array_2f
 
     const/16 v4, 0x2f
 
@@ -481,7 +481,7 @@
     .line 88
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_6c2
+    fill-array-data v2, :array_30
 
     const/16 v4, 0x30
 
@@ -490,7 +490,7 @@
     .line 89
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_6d2
+    fill-array-data v2, :array_31
 
     const/16 v4, 0x31
 
@@ -499,7 +499,7 @@
     .line 90
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_6e2
+    fill-array-data v2, :array_32
 
     const/16 v4, 0x32
 
@@ -508,7 +508,7 @@
     .line 91
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_6f2
+    fill-array-data v2, :array_33
 
     const/16 v4, 0x33
 
@@ -517,7 +517,7 @@
     .line 92
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_702
+    fill-array-data v2, :array_34
 
     const/16 v4, 0x34
 
@@ -526,7 +526,7 @@
     .line 93
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_712
+    fill-array-data v2, :array_35
 
     const/16 v4, 0x35
 
@@ -535,7 +535,7 @@
     .line 94
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_722
+    fill-array-data v2, :array_36
 
     const/16 v4, 0x36
 
@@ -544,7 +544,7 @@
     .line 95
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_732
+    fill-array-data v2, :array_37
 
     const/16 v4, 0x37
 
@@ -553,7 +553,7 @@
     .line 96
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_742
+    fill-array-data v2, :array_38
 
     const/16 v4, 0x38
 
@@ -562,7 +562,7 @@
     .line 97
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_752
+    fill-array-data v2, :array_39
 
     const/16 v4, 0x39
 
@@ -571,7 +571,7 @@
     .line 98
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_762
+    fill-array-data v2, :array_3a
 
     const/16 v4, 0x3a
 
@@ -580,7 +580,7 @@
     .line 99
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_772
+    fill-array-data v2, :array_3b
 
     const/16 v4, 0x3b
 
@@ -589,7 +589,7 @@
     .line 100
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_782
+    fill-array-data v2, :array_3c
 
     const/16 v4, 0x3c
 
@@ -598,7 +598,7 @@
     .line 101
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_792
+    fill-array-data v2, :array_3d
 
     const/16 v4, 0x3d
 
@@ -607,7 +607,7 @@
     .line 102
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_7a2
+    fill-array-data v2, :array_3e
 
     const/16 v4, 0x3e
 
@@ -616,7 +616,7 @@
     .line 103
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_7b2
+    fill-array-data v2, :array_3f
 
     const/16 v4, 0x3f
 
@@ -625,7 +625,7 @@
     .line 104
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_7c2
+    fill-array-data v2, :array_40
 
     const/16 v4, 0x40
 
@@ -634,7 +634,7 @@
     .line 105
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_7d2
+    fill-array-data v2, :array_41
 
     const/16 v4, 0x41
 
@@ -643,7 +643,7 @@
     .line 106
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_7e2
+    fill-array-data v2, :array_42
 
     const/16 v4, 0x42
 
@@ -652,7 +652,7 @@
     .line 107
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_7f2
+    fill-array-data v2, :array_43
 
     const/16 v4, 0x43
 
@@ -661,7 +661,7 @@
     .line 108
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_802
+    fill-array-data v2, :array_44
 
     const/16 v4, 0x44
 
@@ -670,7 +670,7 @@
     .line 109
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_812
+    fill-array-data v2, :array_45
 
     const/16 v4, 0x45
 
@@ -679,7 +679,7 @@
     .line 110
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_822
+    fill-array-data v2, :array_46
 
     const/16 v4, 0x46
 
@@ -688,7 +688,7 @@
     .line 111
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_832
+    fill-array-data v2, :array_47
 
     const/16 v4, 0x47
 
@@ -697,7 +697,7 @@
     .line 112
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_842
+    fill-array-data v2, :array_48
 
     const/16 v4, 0x48
 
@@ -706,7 +706,7 @@
     .line 113
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_852
+    fill-array-data v2, :array_49
 
     const/16 v4, 0x49
 
@@ -715,7 +715,7 @@
     .line 114
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_862
+    fill-array-data v2, :array_4a
 
     const/16 v4, 0x4a
 
@@ -724,7 +724,7 @@
     .line 115
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_872
+    fill-array-data v2, :array_4b
 
     const/16 v4, 0x4b
 
@@ -733,7 +733,7 @@
     .line 116
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_882
+    fill-array-data v2, :array_4c
 
     const/16 v4, 0x4c
 
@@ -742,7 +742,7 @@
     .line 117
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_892
+    fill-array-data v2, :array_4d
 
     const/16 v4, 0x4d
 
@@ -751,7 +751,7 @@
     .line 118
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_8a2
+    fill-array-data v2, :array_4e
 
     const/16 v4, 0x4e
 
@@ -760,7 +760,7 @@
     .line 119
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_8b2
+    fill-array-data v2, :array_4f
 
     const/16 v4, 0x4f
 
@@ -769,7 +769,7 @@
     .line 120
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_8c2
+    fill-array-data v2, :array_50
 
     const/16 v4, 0x50
 
@@ -778,7 +778,7 @@
     .line 121
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_8d2
+    fill-array-data v2, :array_51
 
     const/16 v4, 0x51
 
@@ -787,7 +787,7 @@
     .line 122
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_8e2
+    fill-array-data v2, :array_52
 
     const/16 v4, 0x52
 
@@ -796,7 +796,7 @@
     .line 123
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_8f2
+    fill-array-data v2, :array_53
 
     const/16 v4, 0x53
 
@@ -805,7 +805,7 @@
     .line 124
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_902
+    fill-array-data v2, :array_54
 
     const/16 v4, 0x54
 
@@ -814,7 +814,7 @@
     .line 125
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_912
+    fill-array-data v2, :array_55
 
     const/16 v4, 0x55
 
@@ -823,7 +823,7 @@
     .line 126
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_922
+    fill-array-data v2, :array_56
 
     const/16 v4, 0x56
 
@@ -832,7 +832,7 @@
     .line 127
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_932
+    fill-array-data v2, :array_57
 
     const/16 v4, 0x57
 
@@ -841,7 +841,7 @@
     .line 128
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_942
+    fill-array-data v2, :array_58
 
     const/16 v4, 0x58
 
@@ -850,7 +850,7 @@
     .line 129
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_952
+    fill-array-data v2, :array_59
 
     const/16 v4, 0x59
 
@@ -859,7 +859,7 @@
     .line 130
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_962
+    fill-array-data v2, :array_5a
 
     const/16 v4, 0x5a
 
@@ -868,7 +868,7 @@
     .line 131
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_972
+    fill-array-data v2, :array_5b
 
     const/16 v4, 0x5b
 
@@ -877,7 +877,7 @@
     .line 132
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_982
+    fill-array-data v2, :array_5c
 
     const/16 v4, 0x5c
 
@@ -886,7 +886,7 @@
     .line 133
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_992
+    fill-array-data v2, :array_5d
 
     const/16 v4, 0x5d
 
@@ -895,7 +895,7 @@
     .line 134
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_9a2
+    fill-array-data v2, :array_5e
 
     const/16 v4, 0x5e
 
@@ -904,7 +904,7 @@
     .line 135
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_9b2
+    fill-array-data v2, :array_5f
 
     const/16 v4, 0x5f
 
@@ -913,7 +913,7 @@
     .line 136
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_9c2
+    fill-array-data v2, :array_60
 
     const/16 v4, 0x60
 
@@ -922,7 +922,7 @@
     .line 137
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_9d2
+    fill-array-data v2, :array_61
 
     const/16 v4, 0x61
 
@@ -931,7 +931,7 @@
     .line 138
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_9e2
+    fill-array-data v2, :array_62
 
     const/16 v4, 0x62
 
@@ -940,7 +940,7 @@
     .line 139
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_9f2
+    fill-array-data v2, :array_63
 
     const/16 v4, 0x63
 
@@ -949,7 +949,7 @@
     .line 140
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_a02
+    fill-array-data v2, :array_64
 
     const/16 v4, 0x64
 
@@ -958,7 +958,7 @@
     .line 141
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_a12
+    fill-array-data v2, :array_65
 
     const/16 v4, 0x65
 
@@ -967,7 +967,7 @@
     .line 142
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_a22
+    fill-array-data v2, :array_66
 
     const/16 v4, 0x66
 
@@ -976,7 +976,7 @@
     .line 143
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_a32
+    fill-array-data v2, :array_67
 
     const/16 v4, 0x67
 
@@ -985,7 +985,7 @@
     .line 144
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_a42
+    fill-array-data v2, :array_68
 
     const/16 v4, 0x68
 
@@ -994,7 +994,7 @@
     .line 145
     new-array v1, v1, [I
 
-    fill-array-data v1, :array_a52
+    fill-array-data v1, :array_69
 
     const/16 v2, 0x69
 
@@ -1003,7 +1003,7 @@
     .line 146
     new-array v1, v3, [I
 
-    fill-array-data v1, :array_a62
+    fill-array-data v1, :array_6a
 
     const/16 v2, 0x6a
 
@@ -1015,7 +1015,7 @@
     .line 167
     return-void
 
-    :array_3c2
+    :array_0
     .array-data 4
         0x2
         0x1
@@ -1025,7 +1025,7 @@
         0x2
     .end array-data
 
-    :array_3d2
+    :array_1
     .array-data 4
         0x2
         0x2
@@ -1035,7 +1035,7 @@
         0x2
     .end array-data
 
-    :array_3e2
+    :array_2
     .array-data 4
         0x2
         0x2
@@ -1045,7 +1045,7 @@
         0x1
     .end array-data
 
-    :array_3f2
+    :array_3
     .array-data 4
         0x1
         0x2
@@ -1055,7 +1055,7 @@
         0x3
     .end array-data
 
-    :array_402
+    :array_4
     .array-data 4
         0x1
         0x2
@@ -1065,7 +1065,7 @@
         0x2
     .end array-data
 
-    :array_412
+    :array_5
     .array-data 4
         0x1
         0x3
@@ -1075,7 +1075,7 @@
         0x2
     .end array-data
 
-    :array_422
+    :array_6
     .array-data 4
         0x1
         0x2
@@ -1085,7 +1085,7 @@
         0x3
     .end array-data
 
-    :array_432
+    :array_7
     .array-data 4
         0x1
         0x2
@@ -1095,7 +1095,7 @@
         0x2
     .end array-data
 
-    :array_442
+    :array_8
     .array-data 4
         0x1
         0x3
@@ -1105,7 +1105,7 @@
         0x2
     .end array-data
 
-    :array_452
+    :array_9
     .array-data 4
         0x2
         0x2
@@ -1115,7 +1115,7 @@
         0x3
     .end array-data
 
-    :array_462
+    :array_a
     .array-data 4
         0x2
         0x2
@@ -1125,7 +1125,7 @@
         0x2
     .end array-data
 
-    :array_472
+    :array_b
     .array-data 4
         0x2
         0x3
@@ -1135,7 +1135,7 @@
         0x2
     .end array-data
 
-    :array_482
+    :array_c
     .array-data 4
         0x1
         0x1
@@ -1145,7 +1145,7 @@
         0x2
     .end array-data
 
-    :array_492
+    :array_d
     .array-data 4
         0x1
         0x2
@@ -1155,7 +1155,7 @@
         0x2
     .end array-data
 
-    :array_4a2
+    :array_e
     .array-data 4
         0x1
         0x2
@@ -1165,7 +1165,7 @@
         0x1
     .end array-data
 
-    :array_4b2
+    :array_f
     .array-data 4
         0x1
         0x1
@@ -1175,7 +1175,7 @@
         0x2
     .end array-data
 
-    :array_4c2
+    :array_10
     .array-data 4
         0x1
         0x2
@@ -1185,7 +1185,7 @@
         0x2
     .end array-data
 
-    :array_4d2
+    :array_11
     .array-data 4
         0x1
         0x2
@@ -1195,7 +1195,7 @@
         0x1
     .end array-data
 
-    :array_4e2
+    :array_12
     .array-data 4
         0x2
         0x2
@@ -1205,7 +1205,7 @@
         0x1
     .end array-data
 
-    :array_4f2
+    :array_13
     .array-data 4
         0x2
         0x2
@@ -1215,7 +1215,7 @@
         0x2
     .end array-data
 
-    :array_502
+    :array_14
     .array-data 4
         0x2
         0x2
@@ -1225,7 +1225,7 @@
         0x1
     .end array-data
 
-    :array_512
+    :array_15
     .array-data 4
         0x2
         0x1
@@ -1235,7 +1235,7 @@
         0x2
     .end array-data
 
-    :array_522
+    :array_16
     .array-data 4
         0x2
         0x2
@@ -1245,7 +1245,7 @@
         0x2
     .end array-data
 
-    :array_532
+    :array_17
     .array-data 4
         0x3
         0x1
@@ -1255,7 +1255,7 @@
         0x1
     .end array-data
 
-    :array_542
+    :array_18
     .array-data 4
         0x3
         0x1
@@ -1265,7 +1265,7 @@
         0x2
     .end array-data
 
-    :array_552
+    :array_19
     .array-data 4
         0x3
         0x2
@@ -1275,7 +1275,7 @@
         0x2
     .end array-data
 
-    :array_562
+    :array_1a
     .array-data 4
         0x3
         0x2
@@ -1285,7 +1285,7 @@
         0x1
     .end array-data
 
-    :array_572
+    :array_1b
     .array-data 4
         0x3
         0x1
@@ -1295,7 +1295,7 @@
         0x2
     .end array-data
 
-    :array_582
+    :array_1c
     .array-data 4
         0x3
         0x2
@@ -1305,7 +1305,7 @@
         0x2
     .end array-data
 
-    :array_592
+    :array_1d
     .array-data 4
         0x3
         0x2
@@ -1315,7 +1315,7 @@
         0x1
     .end array-data
 
-    :array_5a2
+    :array_1e
     .array-data 4
         0x2
         0x1
@@ -1325,7 +1325,7 @@
         0x3
     .end array-data
 
-    :array_5b2
+    :array_1f
     .array-data 4
         0x2
         0x1
@@ -1335,7 +1335,7 @@
         0x1
     .end array-data
 
-    :array_5c2
+    :array_20
     .array-data 4
         0x2
         0x3
@@ -1345,7 +1345,7 @@
         0x1
     .end array-data
 
-    :array_5d2
+    :array_21
     .array-data 4
         0x1
         0x1
@@ -1355,7 +1355,7 @@
         0x3
     .end array-data
 
-    :array_5e2
+    :array_22
     .array-data 4
         0x1
         0x3
@@ -1365,7 +1365,7 @@
         0x3
     .end array-data
 
-    :array_5f2
+    :array_23
     .array-data 4
         0x1
         0x3
@@ -1375,7 +1375,7 @@
         0x1
     .end array-data
 
-    :array_602
+    :array_24
     .array-data 4
         0x1
         0x1
@@ -1385,7 +1385,7 @@
         0x3
     .end array-data
 
-    :array_612
+    :array_25
     .array-data 4
         0x1
         0x3
@@ -1395,7 +1395,7 @@
         0x3
     .end array-data
 
-    :array_622
+    :array_26
     .array-data 4
         0x1
         0x3
@@ -1405,7 +1405,7 @@
         0x1
     .end array-data
 
-    :array_632
+    :array_27
     .array-data 4
         0x2
         0x1
@@ -1415,7 +1415,7 @@
         0x3
     .end array-data
 
-    :array_642
+    :array_28
     .array-data 4
         0x2
         0x3
@@ -1425,7 +1425,7 @@
         0x3
     .end array-data
 
-    :array_652
+    :array_29
     .array-data 4
         0x2
         0x3
@@ -1435,7 +1435,7 @@
         0x1
     .end array-data
 
-    :array_662
+    :array_2a
     .array-data 4
         0x1
         0x1
@@ -1445,7 +1445,7 @@
         0x3
     .end array-data
 
-    :array_672
+    :array_2b
     .array-data 4
         0x1
         0x1
@@ -1455,7 +1455,7 @@
         0x1
     .end array-data
 
-    :array_682
+    :array_2c
     .array-data 4
         0x1
         0x3
@@ -1465,7 +1465,7 @@
         0x1
     .end array-data
 
-    :array_692
+    :array_2d
     .array-data 4
         0x1
         0x1
@@ -1475,7 +1475,7 @@
         0x3
     .end array-data
 
-    :array_6a2
+    :array_2e
     .array-data 4
         0x1
         0x1
@@ -1485,7 +1485,7 @@
         0x1
     .end array-data
 
-    :array_6b2
+    :array_2f
     .array-data 4
         0x1
         0x3
@@ -1495,7 +1495,7 @@
         0x1
     .end array-data
 
-    :array_6c2
+    :array_30
     .array-data 4
         0x3
         0x1
@@ -1505,7 +1505,7 @@
         0x1
     .end array-data
 
-    :array_6d2
+    :array_31
     .array-data 4
         0x2
         0x1
@@ -1515,7 +1515,7 @@
         0x1
     .end array-data
 
-    :array_6e2
+    :array_32
     .array-data 4
         0x2
         0x3
@@ -1525,7 +1525,7 @@
         0x1
     .end array-data
 
-    :array_6f2
+    :array_33
     .array-data 4
         0x2
         0x1
@@ -1535,7 +1535,7 @@
         0x3
     .end array-data
 
-    :array_702
+    :array_34
     .array-data 4
         0x2
         0x1
@@ -1545,7 +1545,7 @@
         0x1
     .end array-data
 
-    :array_712
+    :array_35
     .array-data 4
         0x2
         0x1
@@ -1555,7 +1555,7 @@
         0x1
     .end array-data
 
-    :array_722
+    :array_36
     .array-data 4
         0x3
         0x1
@@ -1565,7 +1565,7 @@
         0x3
     .end array-data
 
-    :array_732
+    :array_37
     .array-data 4
         0x3
         0x1
@@ -1575,7 +1575,7 @@
         0x1
     .end array-data
 
-    :array_742
+    :array_38
     .array-data 4
         0x3
         0x3
@@ -1585,7 +1585,7 @@
         0x1
     .end array-data
 
-    :array_752
+    :array_39
     .array-data 4
         0x3
         0x1
@@ -1595,7 +1595,7 @@
         0x3
     .end array-data
 
-    :array_762
+    :array_3a
     .array-data 4
         0x3
         0x1
@@ -1605,7 +1605,7 @@
         0x1
     .end array-data
 
-    :array_772
+    :array_3b
     .array-data 4
         0x3
         0x3
@@ -1615,7 +1615,7 @@
         0x1
     .end array-data
 
-    :array_782
+    :array_3c
     .array-data 4
         0x3
         0x1
@@ -1625,7 +1625,7 @@
         0x1
     .end array-data
 
-    :array_792
+    :array_3d
     .array-data 4
         0x2
         0x2
@@ -1635,7 +1635,7 @@
         0x1
     .end array-data
 
-    :array_7a2
+    :array_3e
     .array-data 4
         0x4
         0x3
@@ -1645,7 +1645,7 @@
         0x1
     .end array-data
 
-    :array_7b2
+    :array_3f
     .array-data 4
         0x1
         0x1
@@ -1655,7 +1655,7 @@
         0x4
     .end array-data
 
-    :array_7c2
+    :array_40
     .array-data 4
         0x1
         0x1
@@ -1665,7 +1665,7 @@
         0x2
     .end array-data
 
-    :array_7d2
+    :array_41
     .array-data 4
         0x1
         0x2
@@ -1675,7 +1675,7 @@
         0x4
     .end array-data
 
-    :array_7e2
+    :array_42
     .array-data 4
         0x1
         0x2
@@ -1685,7 +1685,7 @@
         0x1
     .end array-data
 
-    :array_7f2
+    :array_43
     .array-data 4
         0x1
         0x4
@@ -1695,7 +1695,7 @@
         0x2
     .end array-data
 
-    :array_802
+    :array_44
     .array-data 4
         0x1
         0x4
@@ -1705,7 +1705,7 @@
         0x1
     .end array-data
 
-    :array_812
+    :array_45
     .array-data 4
         0x1
         0x1
@@ -1715,7 +1715,7 @@
         0x4
     .end array-data
 
-    :array_822
+    :array_46
     .array-data 4
         0x1
         0x1
@@ -1725,7 +1725,7 @@
         0x2
     .end array-data
 
-    :array_832
+    :array_47
     .array-data 4
         0x1
         0x2
@@ -1735,7 +1735,7 @@
         0x4
     .end array-data
 
-    :array_842
+    :array_48
     .array-data 4
         0x1
         0x2
@@ -1745,7 +1745,7 @@
         0x1
     .end array-data
 
-    :array_852
+    :array_49
     .array-data 4
         0x1
         0x4
@@ -1755,7 +1755,7 @@
         0x2
     .end array-data
 
-    :array_862
+    :array_4a
     .array-data 4
         0x1
         0x4
@@ -1765,7 +1765,7 @@
         0x1
     .end array-data
 
-    :array_872
+    :array_4b
     .array-data 4
         0x2
         0x4
@@ -1775,7 +1775,7 @@
         0x1
     .end array-data
 
-    :array_882
+    :array_4c
     .array-data 4
         0x2
         0x2
@@ -1785,7 +1785,7 @@
         0x4
     .end array-data
 
-    :array_892
+    :array_4d
     .array-data 4
         0x4
         0x1
@@ -1795,7 +1795,7 @@
         0x1
     .end array-data
 
-    :array_8a2
+    :array_4e
     .array-data 4
         0x2
         0x4
@@ -1805,7 +1805,7 @@
         0x2
     .end array-data
 
-    :array_8b2
+    :array_4f
     .array-data 4
         0x1
         0x3
@@ -1815,7 +1815,7 @@
         0x1
     .end array-data
 
-    :array_8c2
+    :array_50
     .array-data 4
         0x1
         0x1
@@ -1825,7 +1825,7 @@
         0x2
     .end array-data
 
-    :array_8d2
+    :array_51
     .array-data 4
         0x1
         0x2
@@ -1835,7 +1835,7 @@
         0x2
     .end array-data
 
-    :array_8e2
+    :array_52
     .array-data 4
         0x1
         0x2
@@ -1845,7 +1845,7 @@
         0x1
     .end array-data
 
-    :array_8f2
+    :array_53
     .array-data 4
         0x1
         0x1
@@ -1855,7 +1855,7 @@
         0x2
     .end array-data
 
-    :array_902
+    :array_54
     .array-data 4
         0x1
         0x2
@@ -1865,7 +1865,7 @@
         0x2
     .end array-data
 
-    :array_912
+    :array_55
     .array-data 4
         0x1
         0x2
@@ -1875,7 +1875,7 @@
         0x1
     .end array-data
 
-    :array_922
+    :array_56
     .array-data 4
         0x4
         0x1
@@ -1885,7 +1885,7 @@
         0x2
     .end array-data
 
-    :array_932
+    :array_57
     .array-data 4
         0x4
         0x2
@@ -1895,7 +1895,7 @@
         0x2
     .end array-data
 
-    :array_942
+    :array_58
     .array-data 4
         0x4
         0x2
@@ -1905,7 +1905,7 @@
         0x1
     .end array-data
 
-    :array_952
+    :array_59
     .array-data 4
         0x2
         0x1
@@ -1915,7 +1915,7 @@
         0x1
     .end array-data
 
-    :array_962
+    :array_5a
     .array-data 4
         0x2
         0x1
@@ -1925,7 +1925,7 @@
         0x1
     .end array-data
 
-    :array_972
+    :array_5b
     .array-data 4
         0x4
         0x1
@@ -1935,7 +1935,7 @@
         0x1
     .end array-data
 
-    :array_982
+    :array_5c
     .array-data 4
         0x1
         0x1
@@ -1945,7 +1945,7 @@
         0x3
     .end array-data
 
-    :array_992
+    :array_5d
     .array-data 4
         0x1
         0x1
@@ -1955,7 +1955,7 @@
         0x1
     .end array-data
 
-    :array_9a2
+    :array_5e
     .array-data 4
         0x1
         0x3
@@ -1965,37 +1965,37 @@
         0x1
     .end array-data
 
-    :array_9b2
+    :array_5f
     .array-data 4
         0x1
         0x1
         0x4
-        0x1
-        0x1
-        0x3
-    .end array-data
-
-    :array_9c2
-    .array-data 4
-        0x1
-        0x1
-        0x4
-        0x3
-        0x1
-        0x1
-    .end array-data
-
-    :array_9d2
-    .array-data 4
-        0x4
-        0x1
-        0x1
         0x1
         0x1
         0x3
     .end array-data
 
-    :array_9e2
+    :array_60
+    .array-data 4
+        0x1
+        0x1
+        0x4
+        0x3
+        0x1
+        0x1
+    .end array-data
+
+    :array_61
+    .array-data 4
+        0x4
+        0x1
+        0x1
+        0x1
+        0x1
+        0x3
+    .end array-data
+
+    :array_62
     .array-data 4
         0x4
         0x1
@@ -2005,7 +2005,7 @@
         0x1
     .end array-data
 
-    :array_9f2
+    :array_63
     .array-data 4
         0x1
         0x1
@@ -2015,7 +2015,7 @@
         0x1
     .end array-data
 
-    :array_a02
+    :array_64
     .array-data 4
         0x1
         0x1
@@ -2025,7 +2025,7 @@
         0x1
     .end array-data
 
-    :array_a12
+    :array_65
     .array-data 4
         0x3
         0x1
@@ -2035,7 +2035,7 @@
         0x1
     .end array-data
 
-    :array_a22
+    :array_66
     .array-data 4
         0x4
         0x1
@@ -2045,7 +2045,7 @@
         0x1
     .end array-data
 
-    :array_a32
+    :array_67
     .array-data 4
         0x2
         0x1
@@ -2055,7 +2055,7 @@
         0x2
     .end array-data
 
-    :array_a42
+    :array_68
     .array-data 4
         0x2
         0x1
@@ -2065,7 +2065,7 @@
         0x4
     .end array-data
 
-    :array_a52
+    :array_69
     .array-data 4
         0x2
         0x1
@@ -2075,7 +2075,7 @@
         0x2
     .end array-data
 
-    :array_a62
+    :array_6a
     .array-data 4
         0x2
         0x3
@@ -2088,7 +2088,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 37
     invoke-direct {p0}, Lcom/google/zxing/oned/OneDReader;-><init>()V
@@ -2097,7 +2097,7 @@
 .end method
 
 .method private static decodeCode(Lcom/google/zxing/common/BitArray;[II)I
-    .registers 9
+    .locals 6
     .param p0, "row"    # Lcom/google/zxing/common/BitArray;
     .param p1, "counters"    # [I
     .param p2, "rowOffset"    # I
@@ -2122,22 +2122,22 @@
     const/4 v2, 0x0
 
     .local v2, "d":I
-    :goto_7
+    :goto_0
     sget-object v3, Lcom/google/zxing/oned/Code128Reader;->CODE_PATTERNS:[[I
 
     array-length v3, v3
 
-    if-lt v2, v3, :cond_14
+    if-lt v2, v3, :cond_1
 
     .line 228
     .end local v2    # "d":I
-    if-ltz v1, :cond_f
+    if-ltz v1, :cond_0
 
     .line 229
     return v1
 
     .line 231
-    :cond_f
+    :cond_0
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v2
@@ -2146,7 +2146,7 @@
 
     .line 220
     .restart local v2    # "d":I
-    :cond_14
+    :cond_1
     sget-object v3, Lcom/google/zxing/oned/Code128Reader;->CODE_PATTERNS:[[I
 
     aget-object v3, v3, v2
@@ -2163,7 +2163,7 @@
     .local v4, "variance":F
     cmpg-float v5, v4, v0
 
-    if-gez v5, :cond_25
+    if-gez v5, :cond_2
 
     .line 223
     move v0, v4
@@ -2174,14 +2174,14 @@
     .line 219
     .end local v3    # "pattern":[I
     .end local v4    # "variance":F
-    :cond_25
+    :cond_2
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_7
+    goto :goto_0
 .end method
 
 .method private static findStartPattern(Lcom/google/zxing/common/BitArray;)[I
-    .registers 16
+    .locals 15
     .param p0, "row"    # Lcom/google/zxing/common/BitArray;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -2229,8 +2229,8 @@
     move v8, v2
 
     .local v8, "i":I
-    :goto_11
-    if-ge v8, v0, :cond_80
+    :goto_0
+    if-ge v8, v0, :cond_6
 
     .line 180
     invoke-virtual {p0, v8}, Lcom/google/zxing/common/BitArray;->get(I)Z
@@ -2241,7 +2241,7 @@
 
     const/4 v10, 0x1
 
-    if-eqz v9, :cond_21
+    if-eqz v9, :cond_0
 
     .line 181
     aget v9, v4, v3
@@ -2251,13 +2251,13 @@
     aput v9, v4, v3
 
     .line 182
-    goto :goto_7d
+    goto :goto_3
 
     .line 183
-    :cond_21
+    :cond_0
     add-int/lit8 v9, v7, -0x1
 
-    if-ne v3, v9, :cond_74
+    if-ne v3, v9, :cond_4
 
     .line 184
     const/high16 v9, 0x3e800000    # 0.25f
@@ -2271,16 +2271,16 @@
     const/16 v12, 0x67
 
     .local v12, "startCode":I
-    :goto_2a
+    :goto_1
     const/16 v13, 0x69
 
-    if-le v12, v13, :cond_60
+    if-le v12, v13, :cond_2
 
     .line 195
     .end local v12    # "startCode":I
     const/4 v12, 0x2
 
-    if-ltz v11, :cond_4a
+    if-ltz v11, :cond_1
 
     .line 196
     sub-int v13, v8, v5
@@ -2297,7 +2297,7 @@
 
     move-result v13
 
-    if-eqz v13, :cond_4a
+    if-eqz v13, :cond_1
 
     .line 197
     const/4 v13, 0x3
@@ -2313,7 +2313,7 @@
     return-object v13
 
     .line 199
-    :cond_4a
+    :cond_1
     aget v13, v4, v1
 
     aget v14, v4, v10
@@ -2343,13 +2343,13 @@
     .line 204
     .end local v9    # "bestVariance":F
     .end local v11    # "bestMatch":I
-    goto :goto_76
+    goto :goto_2
 
     .line 187
     .restart local v9    # "bestVariance":F
     .restart local v11    # "bestMatch":I
     .restart local v12    # "startCode":I
-    :cond_60
+    :cond_2
     sget-object v13, Lcom/google/zxing/oned/Code128Reader;->CODE_PATTERNS:[[I
 
     aget-object v13, v13, v12
@@ -2366,7 +2366,7 @@
     .local v13, "variance":F
     cmpg-float v14, v13, v9
 
-    if-gez v14, :cond_71
+    if-gez v14, :cond_3
 
     .line 190
     move v9, v13
@@ -2376,41 +2376,41 @@
 
     .line 186
     .end local v13    # "variance":F
-    :cond_71
+    :cond_3
     add-int/lit8 v12, v12, 0x1
 
-    goto :goto_2a
+    goto :goto_1
 
     .line 205
     .end local v9    # "bestVariance":F
     .end local v11    # "bestMatch":I
     .end local v12    # "startCode":I
-    :cond_74
+    :cond_4
     add-int/lit8 v3, v3, 0x1
 
     .line 207
-    :goto_76
+    :goto_2
     aput v10, v4, v3
 
     .line 208
-    if-eqz v6, :cond_7c
+    if-eqz v6, :cond_5
 
     move v10, v1
 
     nop
 
-    :cond_7c
+    :cond_5
     move v6, v10
 
     .line 179
-    :goto_7d
+    :goto_3
     add-int/lit8 v8, v8, 0x1
 
-    goto :goto_11
+    goto :goto_0
 
     .line 211
     .end local v8    # "i":I
-    :cond_80
+    :cond_6
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v1
@@ -2421,7 +2421,7 @@
 
 # virtual methods
 .method public decodeRow(ILcom/google/zxing/common/BitArray;Ljava/util/Map;)Lcom/google/zxing/Result;
-    .registers 41
+    .locals 37
     .param p1, "rowNumber"    # I
     .param p2, "row"    # Lcom/google/zxing/common/BitArray;
     .annotation system Ldalvik/annotation/Signature;
@@ -2455,7 +2455,7 @@
 
     const/4 v4, 0x1
 
-    if-eqz v2, :cond_14
+    if-eqz v2, :cond_0
 
     sget-object v5, Lcom/google/zxing/DecodeHintType;->ASSUME_GS1:Lcom/google/zxing/DecodeHintType;
 
@@ -2463,18 +2463,18 @@
 
     move-result v5
 
-    if-eqz v5, :cond_14
+    if-eqz v5, :cond_0
 
     move v5, v4
 
-    goto :goto_15
+    goto :goto_0
 
-    :cond_14
+    :cond_0
     move v5, v3
 
     .line 241
     .local v5, "convertFNC1":Z
-    :goto_15
+    :goto_0
     invoke-static/range {p2 .. p2}, Lcom/google/zxing/oned/Code128Reader;->findStartPattern(Lcom/google/zxing/common/BitArray;)[I
 
     move-result-object v6
@@ -2504,7 +2504,7 @@
     invoke-interface {v9, v11}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .line 248
-    packed-switch v8, :pswitch_data_30a
+    packed-switch v8, :pswitch_data_0
 
     .line 259
     move-object/from16 v29, v6
@@ -2526,25 +2526,25 @@
     .end local v29    # "startPatternInfo":[I
     .restart local v6    # "startPatternInfo":[I
     .restart local v8    # "startCode":I
-    :pswitch_37
+    :pswitch_0
     const/16 v11, 0x63
 
     .line 257
     .local v11, "codeSet":I
-    goto :goto_40
+    goto :goto_1
 
     .line 253
     .end local v11    # "codeSet":I
-    :pswitch_3a
+    :pswitch_1
     const/16 v11, 0x64
 
     .line 254
     .restart local v11    # "codeSet":I
-    goto :goto_40
+    goto :goto_1
 
     .line 250
     .end local v11    # "codeSet":I
-    :pswitch_3d
+    :pswitch_2
     const/16 v11, 0x65
 
     .line 251
@@ -2552,7 +2552,7 @@
     nop
 
     .line 259
-    :goto_40
+    :goto_1
     nop
 
     .line 262
@@ -2629,8 +2629,8 @@
     .local v24, "codeSet":I
     .local v25, "upperMode":Z
     .local v26, "shiftUpperMode":Z
-    :goto_66
-    if-eqz v12, :cond_162
+    :goto_2
+    if-eqz v12, :cond_7
 
     .line 484
     sub-int v3, v15, v14
@@ -2670,7 +2670,7 @@
     move-result v2
 
     .line 492
-    if-eqz v2, :cond_14d
+    if-eqz v2, :cond_6
 
     .line 497
     mul-int v2, v20, v11
@@ -2680,7 +2680,7 @@
     .line 499
     rem-int/lit8 v2, v19, 0x67
 
-    if-ne v2, v11, :cond_138
+    if-ne v2, v11, :cond_5
 
     .line 504
     invoke-virtual {v10}, Ljava/lang/StringBuilder;->length()I
@@ -2689,12 +2689,12 @@
 
     .line 505
     .local v2, "resultLength":I
-    if-eqz v2, :cond_121
+    if-eqz v2, :cond_4
 
     .line 512
-    if-lez v2, :cond_ab
+    if-lez v2, :cond_2
 
-    if-eqz v21, :cond_ab
+    if-eqz v21, :cond_2
 
     .line 513
     const/16 v7, 0x63
@@ -2703,7 +2703,7 @@
 
     move/from16 v8, v24
 
-    if-ne v8, v7, :cond_a5
+    if-ne v8, v7, :cond_1
 
     .line 514
     .end local v24    # "codeSet":I
@@ -2714,21 +2714,21 @@
     invoke-virtual {v10, v7, v2}, Ljava/lang/StringBuilder;->delete(II)Ljava/lang/StringBuilder;
 
     .line 515
-    goto :goto_af
+    goto :goto_3
 
     .line 516
-    :cond_a5
+    :cond_1
     add-int/lit8 v7, v2, -0x1
 
     invoke-virtual {v10, v7, v2}, Ljava/lang/StringBuilder;->delete(II)Ljava/lang/StringBuilder;
 
-    goto :goto_af
+    goto :goto_3
 
     .line 520
     .end local v27    # "startCode":I
     .local v8, "startCode":I
     .restart local v24    # "codeSet":I
-    :cond_ab
+    :cond_2
     move/from16 v27, v8
 
     move/from16 v8, v24
@@ -2736,7 +2736,7 @@
     .end local v24    # "codeSet":I
     .local v8, "codeSet":I
     .restart local v27    # "startCode":I
-    :goto_af
+    :goto_3
     const/4 v7, 0x1
 
     aget v17, v6, v7
@@ -2796,8 +2796,8 @@
     .end local v17    # "i":I
     .local v11, "i":I
     .local v31, "lastCode":I
-    :goto_d3
-    if-lt v11, v6, :cond_101
+    :goto_4
+    if-lt v11, v6, :cond_3
 
     .line 529
     .end local v11    # "i":I
@@ -2872,7 +2872,7 @@
     .restart local v12    # "done":Z
     .restart local v14    # "lastStart":I
     .restart local v15    # "nextStart":I
-    :cond_101
+    :cond_3
     move/from16 v32, v6
 
     move/from16 v33, v12
@@ -2914,7 +2914,7 @@
 
     move/from16 v12, v33
 
-    goto :goto_d3
+    goto :goto_4
 
     .line 507
     .end local v7    # "left":F
@@ -2936,7 +2936,7 @@
     .restart local v14    # "lastStart":I
     .restart local v15    # "nextStart":I
     .restart local v24    # "codeSet":I
-    :cond_121
+    :cond_4
     move/from16 v28, v2
 
     move/from16 v30, v3
@@ -2995,7 +2995,7 @@
     .restart local v14    # "lastStart":I
     .restart local v15    # "nextStart":I
     .restart local v24    # "codeSet":I
-    :cond_138
+    :cond_5
     move/from16 v30, v3
 
     move-object/from16 v29, v6
@@ -3049,7 +3049,7 @@
     .restart local v14    # "lastStart":I
     .restart local v15    # "nextStart":I
     .restart local v24    # "codeSet":I
-    :cond_14d
+    :cond_6
     move/from16 v30, v3
 
     move-object/from16 v29, v6
@@ -3102,7 +3102,7 @@
     .restart local v14    # "lastStart":I
     .restart local v15    # "nextStart":I
     .restart local v24    # "codeSet":I
-    :cond_162
+    :cond_7
     move/from16 v17, v3
 
     move-object/from16 v29, v6
@@ -3164,14 +3164,14 @@
     .line 293
     const/16 v7, 0x6a
 
-    if-eq v6, v7, :cond_189
+    if-eq v6, v7, :cond_8
 
     .line 294
     const/16 v21, 0x1
 
     .line 298
-    :cond_189
-    if-eq v6, v7, :cond_191
+    :cond_8
+    if-eq v6, v7, :cond_9
 
     .line 299
     add-int/lit8 v20, v20, 0x1
@@ -3182,7 +3182,7 @@
     add-int v19, v19, v13
 
     .line 304
-    :cond_191
+    :cond_9
     move v14, v15
 
     .line 305
@@ -3196,18 +3196,18 @@
 
     .end local v15    # "nextStart":I
     .local v18, "nextStart":I
-    :goto_197
-    if-lt v15, v13, :cond_2fe
+    :goto_5
+    if-lt v15, v13, :cond_23
 
     .line 310
-    packed-switch v6, :pswitch_data_314
+    packed-switch v6, :pswitch_data_1
 
     .line 317
     const/16 v15, 0x60
 
     const/16 v22, 0x20
 
-    packed-switch v8, :pswitch_data_31e
+    packed-switch v8, :pswitch_data_2
 
     .line 478
     move/from16 v13, v25
@@ -3220,14 +3220,14 @@
     .end local v26    # "shiftUpperMode":Z
     .local v12, "shiftUpperMode":Z
     .local v13, "upperMode":Z
-    goto/16 :goto_2db
+    goto/16 :goto_10
 
     .line 314
     .end local v12    # "shiftUpperMode":Z
     .end local v13    # "upperMode":Z
     .restart local v25    # "upperMode":Z
     .restart local v26    # "shiftUpperMode":Z
-    :pswitch_1ab
+    :pswitch_3
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v7
@@ -3235,17 +3235,17 @@
     throw v7
 
     .line 320
-    :pswitch_1b0
+    :pswitch_4
     const/16 v13, 0x40
 
-    if-ge v6, v13, :cond_1cc
+    if-ge v6, v13, :cond_b
 
     .line 321
     move/from16 v13, v25
 
     move/from16 v7, v26
 
-    if-ne v7, v13, :cond_1c1
+    if-ne v7, v13, :cond_a
 
     .line 322
     .end local v25    # "upperMode":Z
@@ -3259,10 +3259,10 @@
     invoke-virtual {v10, v12}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 323
-    goto :goto_1c9
+    goto :goto_6
 
     .line 324
-    :cond_1c1
+    :cond_a
     add-int v12, v22, v6
 
     add-int/lit16 v12, v12, 0x80
@@ -3272,17 +3272,17 @@
     invoke-virtual {v10, v12}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 326
-    :goto_1c9
+    :goto_6
     const/4 v7, 0x0
 
     .line 327
-    goto/16 :goto_242
+    goto/16 :goto_a
 
     .end local v7    # "shiftUpperMode":Z
     .end local v13    # "upperMode":Z
     .restart local v25    # "upperMode":Z
     .restart local v26    # "shiftUpperMode":Z
-    :cond_1cc
+    :cond_b
     move/from16 v13, v25
 
     move/from16 v12, v26
@@ -3291,10 +3291,10 @@
     .end local v26    # "shiftUpperMode":Z
     .restart local v12    # "shiftUpperMode":Z
     .restart local v13    # "upperMode":Z
-    if-ge v6, v15, :cond_1e3
+    if-ge v6, v15, :cond_d
 
     .line 328
-    if-ne v12, v13, :cond_1db
+    if-ne v12, v13, :cond_c
 
     .line 329
     add-int/lit8 v7, v6, -0x40
@@ -3304,10 +3304,10 @@
     invoke-virtual {v10, v7}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 330
-    goto :goto_1e1
+    goto :goto_7
 
     .line 331
-    :cond_1db
+    :cond_c
     add-int/lit8 v7, v6, 0x40
 
     int-to-char v7, v7
@@ -3315,41 +3315,41 @@
     invoke-virtual {v10, v7}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 333
-    :goto_1e1
+    :goto_7
     const/4 v7, 0x0
 
     .line 334
     .end local v12    # "shiftUpperMode":Z
     .restart local v7    # "shiftUpperMode":Z
-    goto :goto_242
+    goto :goto_a
 
     .line 337
     .end local v7    # "shiftUpperMode":Z
     .restart local v12    # "shiftUpperMode":Z
-    :cond_1e3
-    if-eq v6, v7, :cond_1e7
+    :cond_d
+    if-eq v6, v7, :cond_e
 
     .line 338
     const/16 v21, 0x0
 
     .line 340
-    :cond_1e7
-    if-eq v6, v7, :cond_224
+    :cond_e
+    if-eq v6, v7, :cond_12
 
-    packed-switch v6, :pswitch_data_328
+    packed-switch v6, :pswitch_data_3
 
-    goto :goto_227
+    goto :goto_8
 
     .line 342
-    :pswitch_1ed
-    if-eqz v5, :cond_295
+    :pswitch_5
+    if-eqz v5, :cond_1a
 
     .line 343
     invoke-virtual {v10}, Ljava/lang/StringBuilder;->length()I
 
     move-result v7
 
-    if-nez v7, :cond_1fc
+    if-nez v7, :cond_f
 
     .line 346
     const-string v7, "]C1"
@@ -3357,22 +3357,22 @@
     invoke-virtual {v10, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 347
-    goto/16 :goto_295
+    goto/16 :goto_e
 
     .line 349
-    :cond_1fc
+    :cond_f
     const/16 v7, 0x1d
 
     invoke-virtual {v10, v7}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 352
-    goto/16 :goto_295
+    goto/16 :goto_e
 
     .line 358
-    :pswitch_203
-    if-nez v13, :cond_20b
+    :pswitch_6
+    if-nez v13, :cond_10
 
-    if-eqz v12, :cond_20b
+    if-eqz v12, :cond_10
 
     .line 359
     const/4 v7, 0x1
@@ -3383,14 +3383,14 @@
     const/4 v12, 0x0
 
     .line 361
-    goto/16 :goto_274
+    goto/16 :goto_c
 
     .end local v7    # "upperMode":Z
     .restart local v13    # "upperMode":Z
-    :cond_20b
-    if-eqz v13, :cond_213
+    :cond_10
+    if-eqz v13, :cond_11
 
-    if-eqz v12, :cond_213
+    if-eqz v12, :cond_11
 
     .line 362
     const/4 v7, 0x0
@@ -3401,45 +3401,45 @@
     const/4 v12, 0x0
 
     .line 364
-    goto/16 :goto_274
+    goto/16 :goto_c
 
     .line 365
     .end local v7    # "upperMode":Z
     .restart local v13    # "upperMode":Z
-    :cond_213
+    :cond_11
     const/4 v7, 0x1
 
     .line 367
     .end local v12    # "shiftUpperMode":Z
     .local v7, "shiftUpperMode":Z
-    goto :goto_242
+    goto :goto_a
 
     .line 373
     .end local v7    # "shiftUpperMode":Z
     .restart local v12    # "shiftUpperMode":Z
-    :pswitch_215
+    :pswitch_7
     const/16 v7, 0x64
 
     .line 374
     .end local v8    # "codeSet":I
     .local v7, "codeSet":I
-    goto/16 :goto_28f
+    goto/16 :goto_d
 
     .line 376
     .end local v7    # "codeSet":I
     .restart local v8    # "codeSet":I
-    :pswitch_219
+    :pswitch_8
     const/16 v7, 0x63
 
     .line 377
     .end local v8    # "codeSet":I
     .restart local v7    # "codeSet":I
-    goto/16 :goto_28f
+    goto/16 :goto_d
 
     .line 369
     .end local v7    # "codeSet":I
     .restart local v8    # "codeSet":I
-    :pswitch_21d
+    :pswitch_9
     const/4 v3, 0x1
 
     .line 370
@@ -3448,16 +3448,16 @@
     .line 371
     .end local v8    # "codeSet":I
     .restart local v7    # "codeSet":I
-    goto/16 :goto_28f
+    goto/16 :goto_d
 
     .line 356
     .end local v7    # "codeSet":I
     .restart local v8    # "codeSet":I
-    :pswitch_222
-    goto/16 :goto_295
+    :pswitch_a
+    goto/16 :goto_e
 
     .line 379
-    :cond_224
+    :cond_12
     const/4 v7, 0x1
 
     .line 383
@@ -3467,15 +3467,15 @@
 
     .end local v7    # "done":Z
     .restart local v33    # "done":Z
-    :goto_227
-    goto/16 :goto_295
+    :goto_8
+    goto/16 :goto_e
 
     .line 385
     .end local v12    # "shiftUpperMode":Z
     .end local v13    # "upperMode":Z
     .restart local v25    # "upperMode":Z
     .restart local v26    # "shiftUpperMode":Z
-    :pswitch_229
+    :pswitch_b
     move/from16 v13, v25
 
     move/from16 v12, v26
@@ -3484,10 +3484,10 @@
     .end local v26    # "shiftUpperMode":Z
     .restart local v12    # "shiftUpperMode":Z
     .restart local v13    # "upperMode":Z
-    if-ge v6, v15, :cond_24c
+    if-ge v6, v15, :cond_14
 
     .line 386
-    if-ne v12, v13, :cond_238
+    if-ne v12, v13, :cond_13
 
     .line 387
     add-int v7, v22, v6
@@ -3497,10 +3497,10 @@
     invoke-virtual {v10, v7}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 388
-    goto :goto_240
+    goto :goto_9
 
     .line 389
-    :cond_238
+    :cond_13
     add-int v7, v22, v6
 
     add-int/lit16 v7, v7, 0x80
@@ -3510,7 +3510,7 @@
     invoke-virtual {v10, v7}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 391
-    :goto_240
+    :goto_9
     const/4 v7, 0x0
 
     .line 392
@@ -3526,17 +3526,17 @@
     .local v13, "isNextShifted":Z
     .restart local v25    # "upperMode":Z
     .restart local v26    # "shiftUpperMode":Z
-    :goto_242
+    :goto_a
     move/from16 v26, v7
 
-    :goto_244
+    :goto_b
     move/from16 v25, v13
 
     move/from16 v12, v33
 
     const/16 v15, 0x64
 
-    goto/16 :goto_2e1
+    goto/16 :goto_11
 
     .line 393
     .end local v25    # "upperMode":Z
@@ -3545,30 +3545,30 @@
     .local v12, "shiftUpperMode":Z
     .local v13, "upperMode":Z
     .restart local v33    # "done":Z
-    :cond_24c
-    if-eq v6, v7, :cond_250
+    :cond_14
+    if-eq v6, v7, :cond_15
 
     .line 394
     const/16 v21, 0x0
 
     .line 396
-    :cond_250
-    if-eq v6, v7, :cond_292
+    :cond_15
+    if-eq v6, v7, :cond_19
 
-    packed-switch v6, :pswitch_data_33a
+    packed-switch v6, :pswitch_data_4
 
-    goto :goto_295
+    goto :goto_e
 
     .line 398
-    :pswitch_256
-    if-eqz v5, :cond_295
+    :pswitch_c
+    if-eqz v5, :cond_1a
 
     .line 399
     invoke-virtual {v10}, Ljava/lang/StringBuilder;->length()I
 
     move-result v7
 
-    if-nez v7, :cond_264
+    if-nez v7, :cond_16
 
     .line 402
     const-string v7, "]C1"
@@ -3576,33 +3576,33 @@
     invoke-virtual {v10, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 403
-    goto :goto_295
+    goto :goto_e
 
     .line 405
-    :cond_264
+    :cond_16
     const/16 v7, 0x1d
 
     invoke-virtual {v10, v7}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 408
-    goto :goto_295
+    goto :goto_e
 
     .line 429
-    :pswitch_26a
+    :pswitch_d
     const/16 v7, 0x65
 
     .line 430
     .end local v8    # "codeSet":I
     .local v7, "codeSet":I
-    goto :goto_28f
+    goto :goto_d
 
     .line 414
     .end local v7    # "codeSet":I
     .restart local v8    # "codeSet":I
-    :pswitch_26d
-    if-nez v13, :cond_27f
+    :pswitch_e
+    if-nez v13, :cond_17
 
-    if-eqz v12, :cond_27f
+    if-eqz v12, :cond_17
 
     .line 415
     const/4 v7, 0x1
@@ -3623,7 +3623,7 @@
     .local v13, "isNextShifted":Z
     .restart local v25    # "upperMode":Z
     .restart local v26    # "shiftUpperMode":Z
-    :goto_274
+    :goto_c
     move v13, v3
 
     move/from16 v25, v7
@@ -3634,7 +3634,7 @@
 
     const/16 v15, 0x64
 
-    goto/16 :goto_2e2
+    goto/16 :goto_12
 
     .line 417
     .end local v25    # "upperMode":Z
@@ -3643,10 +3643,10 @@
     .local v12, "shiftUpperMode":Z
     .local v13, "upperMode":Z
     .restart local v33    # "done":Z
-    :cond_27f
-    if-eqz v13, :cond_286
+    :cond_17
+    if-eqz v13, :cond_18
 
-    if-eqz v12, :cond_286
+    if-eqz v12, :cond_18
 
     .line 418
     const/4 v7, 0x0
@@ -3657,34 +3657,34 @@
     const/4 v12, 0x0
 
     .line 420
-    goto :goto_274
+    goto :goto_c
 
     .line 421
     .end local v7    # "upperMode":Z
     .restart local v13    # "upperMode":Z
-    :cond_286
+    :cond_18
     const/4 v7, 0x1
 
     .line 423
     .end local v12    # "shiftUpperMode":Z
     .local v7, "shiftUpperMode":Z
-    goto :goto_242
+    goto :goto_a
 
     .line 432
     .end local v7    # "shiftUpperMode":Z
     .restart local v12    # "shiftUpperMode":Z
-    :pswitch_288
+    :pswitch_f
     const/16 v7, 0x63
 
     .line 433
     .end local v8    # "codeSet":I
     .local v7, "codeSet":I
-    goto :goto_28f
+    goto :goto_d
 
     .line 425
     .end local v7    # "codeSet":I
     .restart local v8    # "codeSet":I
-    :pswitch_28b
+    :pswitch_10
     const/4 v3, 0x1
 
     .line 426
@@ -3704,10 +3704,10 @@
     .local v13, "isNextShifted":Z
     .restart local v25    # "upperMode":Z
     .restart local v26    # "shiftUpperMode":Z
-    :goto_28f
+    :goto_d
     move v8, v7
 
-    goto :goto_295
+    goto :goto_e
 
     .line 412
     .end local v25    # "upperMode":Z
@@ -3716,11 +3716,11 @@
     .local v12, "shiftUpperMode":Z
     .local v13, "upperMode":Z
     .restart local v33    # "done":Z
-    :pswitch_291
-    goto :goto_295
+    :pswitch_11
+    goto :goto_e
 
     .line 435
-    :cond_292
+    :cond_19
     const/4 v7, 0x1
 
     .line 439
@@ -3735,18 +3735,18 @@
     .local v13, "isNextShifted":Z
     .restart local v25    # "upperMode":Z
     .restart local v26    # "shiftUpperMode":Z
-    :cond_295
-    :goto_295
+    :cond_1a
+    :goto_e
     move/from16 v26, v12
 
-    goto :goto_244
+    goto :goto_b
 
     .line 441
     .end local v12    # "done":Z
     .end local v13    # "isNextShifted":Z
     .restart local v3    # "isNextShifted":Z
     .restart local v33    # "done":Z
-    :pswitch_298
+    :pswitch_12
     move/from16 v13, v25
 
     move/from16 v12, v26
@@ -3757,12 +3757,12 @@
     .local v13, "upperMode":Z
     const/16 v15, 0x64
 
-    if-ge v6, v15, :cond_2ad
+    if-ge v6, v15, :cond_1c
 
     .line 442
     const/16 v7, 0xa
 
-    if-ge v6, v7, :cond_2a9
+    if-ge v6, v7, :cond_1b
 
     .line 443
     const/16 v7, 0x30
@@ -3770,37 +3770,37 @@
     invoke-virtual {v10, v7}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 445
-    :cond_2a9
+    :cond_1b
     invoke-virtual {v10, v6}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     .line 446
-    goto :goto_2db
+    goto :goto_10
 
     .line 447
-    :cond_2ad
-    if-eq v6, v7, :cond_2b1
+    :cond_1c
+    if-eq v6, v7, :cond_1d
 
     .line 448
     const/16 v21, 0x0
 
     .line 450
-    :cond_2b1
-    if-eq v6, v7, :cond_2d3
+    :cond_1d
+    if-eq v6, v7, :cond_1f
 
-    packed-switch v6, :pswitch_data_34c
+    packed-switch v6, :pswitch_data_5
 
-    goto :goto_2db
+    goto :goto_10
 
     .line 452
-    :pswitch_2b7
-    if-eqz v5, :cond_2db
+    :pswitch_13
+    if-eqz v5, :cond_20
 
     .line 453
     invoke-virtual {v10}, Ljava/lang/StringBuilder;->length()I
 
     move-result v7
 
-    if-nez v7, :cond_2c5
+    if-nez v7, :cond_1e
 
     .line 456
     const-string v7, "]C1"
@@ -3808,30 +3808,30 @@
     invoke-virtual {v10, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 457
-    goto :goto_2db
+    goto :goto_10
 
     .line 459
-    :cond_2c5
+    :cond_1e
     const/16 v7, 0x1d
 
     invoke-virtual {v10, v7}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 462
-    goto :goto_2db
+    goto :goto_10
 
     .line 464
-    :pswitch_2cb
+    :pswitch_14
     const/16 v7, 0x65
 
     .line 465
     .end local v8    # "codeSet":I
     .local v7, "codeSet":I
-    goto :goto_2d1
+    goto :goto_f
 
     .line 467
     .end local v7    # "codeSet":I
     .restart local v8    # "codeSet":I
-    :pswitch_2ce
+    :pswitch_15
     const/16 v7, 0x64
 
     .line 468
@@ -3848,10 +3848,10 @@
     .local v13, "isNextShifted":Z
     .restart local v25    # "upperMode":Z
     .restart local v26    # "shiftUpperMode":Z
-    :goto_2d1
+    :goto_f
     move v8, v7
 
-    goto :goto_2db
+    goto :goto_10
 
     .line 470
     .end local v25    # "upperMode":Z
@@ -3860,7 +3860,7 @@
     .local v12, "shiftUpperMode":Z
     .local v13, "upperMode":Z
     .restart local v33    # "done":Z
-    :cond_2d3
+    :cond_1f
     const/4 v7, 0x1
 
     .line 478
@@ -3874,7 +3874,7 @@
 
     move v12, v7
 
-    goto :goto_2e2
+    goto :goto_12
 
     .end local v3    # "isNextShifted":Z
     .end local v7    # "done":Z
@@ -3882,42 +3882,42 @@
     .local v13, "isNextShifted":Z
     .restart local v25    # "upperMode":Z
     .restart local v26    # "shiftUpperMode":Z
-    :cond_2db
-    :goto_2db
+    :cond_20
+    :goto_10
     move/from16 v26, v12
 
     move/from16 v25, v13
 
     move/from16 v12, v33
 
-    :goto_2e1
+    :goto_11
     move v13, v3
 
-    :goto_2e2
-    if-eqz v2, :cond_2ed
+    :goto_12
+    if-eqz v2, :cond_22
 
     .line 479
     const/16 v3, 0x65
 
-    if-ne v8, v3, :cond_2e9
+    if-ne v8, v3, :cond_21
 
-    goto :goto_2ea
+    goto :goto_13
 
-    :cond_2e9
+    :cond_21
     move v15, v3
 
-    :goto_2ea
+    :goto_13
     move/from16 v24, v15
 
     .end local v2    # "unshift":Z
     .end local v8    # "codeSet":I
     .restart local v24    # "codeSet":I
-    goto :goto_2ef
+    goto :goto_14
 
     .line 279
     .end local v24    # "codeSet":I
     .restart local v8    # "codeSet":I
-    :cond_2ed
+    :cond_22
     move/from16 v24, v8
 
     .end local v27    # "startCode":I
@@ -3927,7 +3927,7 @@
     .restart local v15    # "nextStart":I
     .local v18, "code":I
     .restart local v24    # "codeSet":I
-    :goto_2ef
+    :goto_14
     move/from16 v3, v17
 
     move/from16 v15, v18
@@ -3942,7 +3942,7 @@
 
     move-object/from16 v6, v29
 
-    goto/16 :goto_66
+    goto/16 :goto_2
 
     .line 305
     .end local v12    # "done":Z
@@ -3957,7 +3957,7 @@
     .restart local v27    # "startCode":I
     .restart local v29    # "startPatternInfo":[I
     .restart local v33    # "done":Z
-    :cond_2fe
+    :cond_23
     move/from16 v12, v26
 
     .end local v26    # "shiftUpperMode":Z
@@ -3974,57 +3974,57 @@
 
     const/4 v12, 0x2
 
-    goto/16 :goto_197
+    goto/16 :goto_5
 
     nop
 
-    :pswitch_data_30a
+    :pswitch_data_0
     .packed-switch 0x67
-        :pswitch_3d
-        :pswitch_3a
-        :pswitch_37
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
     .end packed-switch
 
-    :pswitch_data_314
+    :pswitch_data_1
     .packed-switch 0x67
-        :pswitch_1ab
-        :pswitch_1ab
-        :pswitch_1ab
+        :pswitch_3
+        :pswitch_3
+        :pswitch_3
     .end packed-switch
 
-    :pswitch_data_31e
+    :pswitch_data_2
     .packed-switch 0x63
-        :pswitch_298
-        :pswitch_229
-        :pswitch_1b0
+        :pswitch_12
+        :pswitch_b
+        :pswitch_4
     .end packed-switch
 
-    :pswitch_data_328
+    :pswitch_data_3
     .packed-switch 0x60
-        :pswitch_222
-        :pswitch_222
-        :pswitch_21d
-        :pswitch_219
-        :pswitch_215
-        :pswitch_203
-        :pswitch_1ed
+        :pswitch_a
+        :pswitch_a
+        :pswitch_9
+        :pswitch_8
+        :pswitch_7
+        :pswitch_6
+        :pswitch_5
     .end packed-switch
 
-    :pswitch_data_33a
+    :pswitch_data_4
     .packed-switch 0x60
-        :pswitch_291
-        :pswitch_291
-        :pswitch_28b
-        :pswitch_288
-        :pswitch_26d
-        :pswitch_26a
-        :pswitch_256
+        :pswitch_11
+        :pswitch_11
+        :pswitch_10
+        :pswitch_f
+        :pswitch_e
+        :pswitch_d
+        :pswitch_c
     .end packed-switch
 
-    :pswitch_data_34c
+    :pswitch_data_5
     .packed-switch 0x64
-        :pswitch_2ce
-        :pswitch_2cb
-        :pswitch_2b7
+        :pswitch_15
+        :pswitch_14
+        :pswitch_13
     .end packed-switch
 .end method

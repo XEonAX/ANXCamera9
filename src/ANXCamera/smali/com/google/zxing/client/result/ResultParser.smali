@@ -17,7 +17,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 3
+    .locals 3
 
     .line 42
     const/16 v0, 0x14
@@ -239,7 +239,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 40
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -248,7 +248,7 @@
 .end method
 
 .method private static appendKeyValue(Ljava/lang/CharSequence;Ljava/util/Map;)V
-    .registers 6
+    .locals 4
     .param p0, "keyValue"    # Ljava/lang/CharSequence;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -275,7 +275,7 @@
     .local v0, "keyValueTokens":[Ljava/lang/String;
     array-length v2, v0
 
-    if-ne v2, v1, :cond_1a
+    if-ne v2, v1, :cond_0
 
     .line 179
     const/4 v1, 0x0
@@ -290,7 +290,7 @@
 
     .line 182
     .local v2, "value":Ljava/lang/String;
-    :try_start_10
+    :try_start_0
     invoke-static {v2}, Lcom/google/zxing/client/result/ResultParser;->urlDecode(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
@@ -299,25 +299,25 @@
 
     .line 183
     invoke-interface {p1, v1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_18
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_10 .. :try_end_18} :catch_19
+    :try_end_0
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 184
-    goto :goto_1a
+    goto :goto_0
 
-    :catch_19
+    :catch_0
     move-exception v3
 
     .line 188
     .end local v1    # "key":Ljava/lang/String;
     .end local v2    # "value":Ljava/lang/String;
-    :cond_1a
-    :goto_1a
+    :cond_0
+    :goto_0
     return-void
 .end method
 
 .method protected static getMassagedText(Lcom/google/zxing/Result;)Ljava/lang/String;
-    .registers 3
+    .locals 2
     .param p0, "result"    # Lcom/google/zxing/Result;
 
     .line 81
@@ -333,7 +333,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_11
+    if-eqz v1, :cond_0
 
     .line 83
     const/4 v1, 0x1
@@ -343,25 +343,25 @@
     move-result-object v0
 
     .line 85
-    :cond_11
+    :cond_0
     return-object v0
 .end method
 
 .method protected static isStringOfDigits(Ljava/lang/CharSequence;I)Z
-    .registers 3
+    .locals 1
     .param p0, "value"    # Ljava/lang/CharSequence;
     .param p1, "length"    # I
 
     .line 153
-    if-eqz p0, :cond_18
+    if-eqz p0, :cond_0
 
-    if-lez p1, :cond_18
+    if-lez p1, :cond_0
 
     invoke-interface {p0}, Ljava/lang/CharSequence;->length()I
 
     move-result v0
 
-    if-ne p1, v0, :cond_18
+    if-ne p1, v0, :cond_0
 
     sget-object v0, Lcom/google/zxing/client/result/ResultParser;->DIGITS:Ljava/util/regex/Pattern;
 
@@ -373,20 +373,20 @@
 
     move-result v0
 
-    if-eqz v0, :cond_18
+    if-eqz v0, :cond_0
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_18
+    :cond_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method protected static isSubstringOfDigits(Ljava/lang/CharSequence;II)Z
-    .registers 7
+    .locals 4
     .param p0, "value"    # Ljava/lang/CharSequence;
     .param p1, "offset"    # I
     .param p2, "length"    # I
@@ -394,14 +394,14 @@
     .line 157
     const/4 v0, 0x0
 
-    if-eqz p0, :cond_20
+    if-eqz p0, :cond_2
 
-    if-gtz p2, :cond_6
+    if-gtz p2, :cond_0
 
-    goto :goto_20
+    goto :goto_0
 
     .line 160
-    :cond_6
+    :cond_0
     add-int v1, p1, p2
 
     .line 161
@@ -410,7 +410,7 @@
 
     move-result v2
 
-    if-lt v2, v1, :cond_1f
+    if-lt v2, v1, :cond_1
 
     sget-object v2, Lcom/google/zxing/client/result/ResultParser;->DIGITS:Ljava/util/regex/Pattern;
 
@@ -426,22 +426,22 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1f
+    if-eqz v2, :cond_1
 
     const/4 v0, 0x1
 
-    :cond_1f
+    :cond_1
     return v0
 
     .line 158
     .end local v1    # "max":I
-    :cond_20
-    :goto_20
+    :cond_2
+    :goto_0
     return v0
 .end method
 
 .method static matchPrefixedField(Ljava/lang/String;Ljava/lang/String;CZ)[Ljava/lang/String;
-    .registers 11
+    .locals 7
     .param p0, "prefix"    # Ljava/lang/String;
     .param p1, "rawText"    # Ljava/lang/String;
     .param p2, "endChar"    # C
@@ -462,37 +462,37 @@
 
     .line 202
     .local v2, "max":I
-    :goto_6
-    if-lt v1, v2, :cond_9
+    :goto_0
+    if-lt v1, v2, :cond_0
 
-    goto :goto_10
+    goto :goto_1
 
     .line 203
-    :cond_9
+    :cond_0
     invoke-virtual {p1, p0, v1}, Ljava/lang/String;->indexOf(Ljava/lang/String;I)I
 
     move-result v1
 
     .line 204
-    if-gez v1, :cond_28
+    if-gez v1, :cond_3
 
     .line 205
     nop
 
     .line 236
-    :goto_10
-    if-eqz v0, :cond_26
+    :goto_1
+    if-eqz v0, :cond_2
 
     invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
 
     move-result v3
 
-    if-eqz v3, :cond_19
+    if-eqz v3, :cond_1
 
-    goto :goto_26
+    goto :goto_2
 
     .line 239
-    :cond_19
+    :cond_1
     invoke-interface {v0}, Ljava/util/List;->size()I
 
     move-result v3
@@ -508,14 +508,14 @@
     return-object v3
 
     .line 237
-    :cond_26
-    :goto_26
+    :cond_2
+    :goto_2
     const/4 v3, 0x0
 
     return-object v3
 
     .line 207
-    :cond_28
+    :cond_3
     invoke-virtual {p0}, Ljava/lang/String;->length()I
 
     move-result v3
@@ -531,23 +531,23 @@
 
     .line 210
     .local v4, "more":Z
-    :goto_2f
-    if-nez v4, :cond_32
+    :goto_3
+    if-nez v4, :cond_4
 
     .end local v3    # "start":I
     .end local v4    # "more":Z
-    goto :goto_6
+    goto :goto_0
 
     .line 211
     .restart local v3    # "start":I
     .restart local v4    # "more":Z
-    :cond_32
+    :cond_4
     invoke-virtual {p1, p2, v1}, Ljava/lang/String;->indexOf(II)I
 
     move-result v1
 
     .line 212
-    if-gez v1, :cond_3e
+    if-gez v1, :cond_5
 
     .line 214
     invoke-virtual {p1}, Ljava/lang/String;->length()I
@@ -558,9 +558,9 @@
     const/4 v4, 0x0
 
     .line 216
-    goto :goto_2f
+    goto :goto_3
 
-    :cond_3e
+    :cond_5
     add-int/lit8 v5, v1, -0x1
 
     invoke-virtual {p1, v5}, Ljava/lang/String;->charAt(I)C
@@ -569,17 +569,17 @@
 
     const/16 v6, 0x5c
 
-    if-ne v5, v6, :cond_4b
+    if-ne v5, v6, :cond_6
 
     .line 218
     add-int/lit8 v1, v1, 0x1
 
     .line 219
-    goto :goto_2f
+    goto :goto_3
 
     .line 221
-    :cond_4b
-    if-nez v0, :cond_54
+    :cond_6
+    if-nez v0, :cond_7
 
     .line 222
     new-instance v5, Ljava/util/ArrayList;
@@ -591,7 +591,7 @@
     move-object v0, v5
 
     .line 224
-    :cond_54
+    :cond_7
     invoke-virtual {p1, v3, v1}, Ljava/lang/String;->substring(II)Ljava/lang/String;
 
     move-result-object v5
@@ -602,7 +602,7 @@
 
     .line 225
     .local v5, "element":Ljava/lang/String;
-    if-eqz p3, :cond_62
+    if-eqz p3, :cond_8
 
     .line 226
     invoke-virtual {v5}, Ljava/lang/String;->trim()Ljava/lang/String;
@@ -610,29 +610,29 @@
     move-result-object v5
 
     .line 228
-    :cond_62
+    :cond_8
     invoke-virtual {v5}, Ljava/lang/String;->isEmpty()Z
 
     move-result v6
 
-    if-nez v6, :cond_6b
+    if-nez v6, :cond_9
 
     .line 229
     invoke-interface {v0, v5}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .line 231
-    :cond_6b
+    :cond_9
     add-int/lit8 v1, v1, 0x1
 
     .line 232
     const/4 v4, 0x0
 
     .end local v5    # "element":Ljava/lang/String;
-    goto :goto_2f
+    goto :goto_3
 .end method
 
 .method static matchSinglePrefixedField(Ljava/lang/String;Ljava/lang/String;CZ)Ljava/lang/String;
-    .registers 6
+    .locals 2
     .param p0, "prefix"    # Ljava/lang/String;
     .param p1, "rawText"    # Ljava/lang/String;
     .param p2, "endChar"    # C
@@ -645,28 +645,28 @@
 
     .line 244
     .local v0, "matches":[Ljava/lang/String;
-    if-nez v0, :cond_8
+    if-nez v0, :cond_0
 
     const/4 v1, 0x0
 
-    goto :goto_b
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     const/4 v1, 0x0
 
     aget-object v1, v0, v1
 
-    :goto_b
+    :goto_0
     return-object v1
 .end method
 
 .method protected static maybeAppend(Ljava/lang/String;Ljava/lang/StringBuilder;)V
-    .registers 3
+    .locals 1
     .param p0, "value"    # Ljava/lang/String;
     .param p1, "result"    # Ljava/lang/StringBuilder;
 
     .line 99
-    if-eqz p0, :cond_a
+    if-eqz p0, :cond_0
 
     .line 100
     const/16 v0, 0xa
@@ -677,29 +677,29 @@
     invoke-virtual {p1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 103
-    :cond_a
+    :cond_0
     return-void
 .end method
 
 .method protected static maybeAppend([Ljava/lang/String;Ljava/lang/StringBuilder;)V
-    .registers 6
+    .locals 4
     .param p0, "value"    # [Ljava/lang/String;
     .param p1, "result"    # Ljava/lang/StringBuilder;
 
     .line 106
-    if-eqz p0, :cond_14
+    if-eqz p0, :cond_1
 
     .line 107
     array-length v0, p0
 
     const/4 v1, 0x0
 
-    :goto_4
-    if-lt v1, v0, :cond_7
+    :goto_0
+    if-lt v1, v0, :cond_0
 
-    goto :goto_14
+    goto :goto_1
 
-    :cond_7
+    :cond_0
     aget-object v2, p0, v1
 
     .line 108
@@ -715,26 +715,26 @@
     .end local v2    # "s":Ljava/lang/String;
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_4
+    goto :goto_0
 
     .line 112
-    :cond_14
-    :goto_14
+    :cond_1
+    :goto_1
     return-void
 .end method
 
 .method protected static maybeWrap(Ljava/lang/String;)[Ljava/lang/String;
-    .registers 3
+    .locals 2
     .param p0, "value"    # Ljava/lang/String;
 
     .line 115
-    if-nez p0, :cond_4
+    if-nez p0, :cond_0
 
     const/4 v0, 0x0
 
-    goto :goto_a
+    goto :goto_0
 
-    :cond_4
+    :cond_0
     const/4 v0, 0x1
 
     new-array v0, v0, [Ljava/lang/String;
@@ -743,22 +743,22 @@
 
     aput-object p0, v0, v1
 
-    :goto_a
+    :goto_0
     return-object v0
 .end method
 
 .method protected static parseHexDigit(C)I
-    .registers 3
+    .locals 2
     .param p0, "c"    # C
 
     .line 140
     const/16 v0, 0x30
 
-    if-lt p0, v0, :cond_b
+    if-lt p0, v0, :cond_0
 
     const/16 v0, 0x39
 
-    if-gt p0, v0, :cond_b
+    if-gt p0, v0, :cond_0
 
     .line 141
     add-int/lit8 v0, p0, -0x30
@@ -766,16 +766,16 @@
     return v0
 
     .line 143
-    :cond_b
+    :cond_0
     const/16 v0, 0xa
 
     const/16 v1, 0x61
 
-    if-lt p0, v1, :cond_19
+    if-lt p0, v1, :cond_1
 
     const/16 v1, 0x66
 
-    if-gt p0, v1, :cond_19
+    if-gt p0, v1, :cond_1
 
     .line 144
     add-int/lit8 v1, p0, -0x61
@@ -785,14 +785,14 @@
     return v0
 
     .line 146
-    :cond_19
+    :cond_1
     const/16 v1, 0x41
 
-    if-lt p0, v1, :cond_25
+    if-lt p0, v1, :cond_2
 
     const/16 v1, 0x46
 
-    if-gt p0, v1, :cond_25
+    if-gt p0, v1, :cond_2
 
     .line 147
     add-int/lit8 v1, p0, -0x41
@@ -802,14 +802,14 @@
     return v0
 
     .line 149
-    :cond_25
+    :cond_2
     const/4 v0, -0x1
 
     return v0
 .end method
 
 .method static parseNameValuePairs(Ljava/lang/String;)Ljava/util/Map;
-    .registers 7
+    .locals 6
     .param p0, "uri"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -832,7 +832,7 @@
 
     .line 166
     .local v0, "paramStart":I
-    if-gez v0, :cond_a
+    if-gez v0, :cond_0
 
     .line 167
     const/4 v1, 0x0
@@ -840,7 +840,7 @@
     return-object v1
 
     .line 169
-    :cond_a
+    :cond_0
     new-instance v1, Ljava/util/HashMap;
 
     const/4 v2, 0x3
@@ -865,14 +865,14 @@
 
     const/4 v4, 0x0
 
-    :goto_1e
-    if-lt v4, v3, :cond_21
+    :goto_0
+    if-lt v4, v3, :cond_1
 
     .line 173
     return-object v1
 
     .line 170
-    :cond_21
+    :cond_1
     aget-object v5, v2, v4
 
     .line 171
@@ -883,11 +883,11 @@
     .end local v5    # "keyValue":Ljava/lang/String;
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_1e
+    goto :goto_0
 .end method
 
 .method public static parseResult(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ParsedResult;
-    .registers 6
+    .locals 5
     .param p0, "theResult"    # Lcom/google/zxing/Result;
 
     .line 89
@@ -897,8 +897,8 @@
 
     const/4 v2, 0x0
 
-    :goto_4
-    if-lt v2, v1, :cond_11
+    :goto_0
+    if-lt v2, v1, :cond_0
 
     .line 95
     new-instance v0, Lcom/google/zxing/client/result/TextParsedResult;
@@ -914,7 +914,7 @@
     return-object v0
 
     .line 89
-    :cond_11
+    :cond_0
     aget-object v3, v0, v2
 
     .line 90
@@ -925,7 +925,7 @@
 
     .line 91
     .local v4, "result":Lcom/google/zxing/client/result/ParsedResult;
-    if-eqz v4, :cond_1a
+    if-eqz v4, :cond_1
 
     .line 92
     return-object v4
@@ -933,14 +933,14 @@
     .line 89
     .end local v3    # "parser":Lcom/google/zxing/client/result/ResultParser;
     .end local v4    # "result":Lcom/google/zxing/client/result/ParsedResult;
-    :cond_1a
+    :cond_1
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_4
+    goto :goto_0
 .end method
 
 .method protected static unescapeBackslash(Ljava/lang/String;)Ljava/lang/String;
-    .registers 8
+    .locals 7
     .param p0, "escaped"    # Ljava/lang/String;
 
     .line 119
@@ -952,13 +952,13 @@
 
     .line 120
     .local v1, "backslash":I
-    if-gez v1, :cond_9
+    if-gez v1, :cond_0
 
     .line 121
     return-object p0
 
     .line 123
-    :cond_9
+    :cond_0
     invoke-virtual {p0}, Ljava/lang/String;->length()I
 
     move-result v2
@@ -989,8 +989,8 @@
     move v5, v1
 
     .local v5, "i":I
-    :goto_1e
-    if-lt v5, v2, :cond_25
+    :goto_0
+    if-lt v5, v2, :cond_1
 
     .line 136
     .end local v5    # "i":I
@@ -1002,30 +1002,30 @@
 
     .line 128
     .restart local v5    # "i":I
-    :cond_25
+    :cond_1
     invoke-virtual {p0, v5}, Ljava/lang/String;->charAt(I)C
 
     move-result v6
 
     .line 129
     .local v6, "c":C
-    if-nez v4, :cond_30
+    if-nez v4, :cond_3
 
-    if-eq v6, v0, :cond_2e
+    if-eq v6, v0, :cond_2
 
-    goto :goto_30
+    goto :goto_1
 
     .line 133
-    :cond_2e
+    :cond_2
     const/4 v4, 0x1
 
     .end local v6    # "c":C
-    goto :goto_35
+    goto :goto_2
 
     .line 130
     .restart local v6    # "c":C
-    :cond_30
-    :goto_30
+    :cond_3
+    :goto_1
     invoke-virtual {v3, v6}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 131
@@ -1036,14 +1036,14 @@
 
     .line 127
     .end local v6    # "c":C
-    :goto_35
+    :goto_2
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_1e
+    goto :goto_0
 .end method
 
 .method static urlDecode(Ljava/lang/String;)Ljava/lang/String;
-    .registers 3
+    .locals 2
     .param p0, "encoded"    # Ljava/lang/String;
 
     .line 192
@@ -1053,13 +1053,13 @@
     invoke-static {p0, v0}, Ljava/net/URLDecoder;->decode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
-    :try_end_6
-    .catch Ljava/io/UnsupportedEncodingException; {:try_start_0 .. :try_end_6} :catch_7
+    :try_end_0
+    .catch Ljava/io/UnsupportedEncodingException; {:try_start_0 .. :try_end_0} :catch_0
 
     return-object v0
 
     .line 193
-    :catch_7
+    :catch_0
     move-exception v0
 
     .line 194

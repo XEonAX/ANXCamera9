@@ -4,7 +4,7 @@
 
 
 # static fields
-.field private static final DUMP_TEXTURE:Z = false
+.field private static final DUMP_TEXTURE:Z
 
 .field private static final TAG:Ljava/lang/String;
 

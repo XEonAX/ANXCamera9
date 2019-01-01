@@ -296,7 +296,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 1381
     const v0, 0x1002006e
@@ -997,7 +997,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 1380
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V

@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 1483
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public invalidateChildRegion(Landroid/support/v4/widget/SlidingPaneLayout;Landroid/view/View;)V
-    .registers 7
+    .locals 4
     .param p1, "parent"    # Landroid/support/v4/widget/SlidingPaneLayout;
     .param p2, "child"    # Landroid/view/View;
 

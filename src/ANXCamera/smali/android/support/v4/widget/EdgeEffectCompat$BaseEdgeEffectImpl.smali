@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 61
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public draw(Ljava/lang/Object;Landroid/graphics/Canvas;)Z
-    .registers 4
+    .locals 1
     .param p1, "edgeEffect"    # Ljava/lang/Object;
     .param p2, "canvas"    # Landroid/graphics/Canvas;
 
@@ -41,7 +41,7 @@
 .end method
 
 .method public finish(Ljava/lang/Object;)V
-    .registers 2
+    .locals 0
     .param p1, "edgeEffect"    # Ljava/lang/Object;
 
     .line 74
@@ -49,7 +49,7 @@
 .end method
 
 .method public isFinished(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "edgeEffect"    # Ljava/lang/Object;
 
     .line 70
@@ -59,7 +59,7 @@
 .end method
 
 .method public newEdgeEffect(Landroid/content/Context;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "context"    # Landroid/content/Context;
 
     .line 63
@@ -69,7 +69,7 @@
 .end method
 
 .method public onAbsorb(Ljava/lang/Object;I)Z
-    .registers 4
+    .locals 1
     .param p1, "edgeEffect"    # Ljava/lang/Object;
     .param p2, "velocity"    # I
 
@@ -80,7 +80,7 @@
 .end method
 
 .method public onPull(Ljava/lang/Object;F)Z
-    .registers 4
+    .locals 1
     .param p1, "edgeEffect"    # Ljava/lang/Object;
     .param p2, "deltaDistance"    # F
 
@@ -91,7 +91,7 @@
 .end method
 
 .method public onPull(Ljava/lang/Object;FF)Z
-    .registers 5
+    .locals 1
     .param p1, "edgeEffect"    # Ljava/lang/Object;
     .param p2, "deltaDistance"    # F
     .param p3, "displacement"    # F
@@ -103,7 +103,7 @@
 .end method
 
 .method public onRelease(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "edgeEffect"    # Ljava/lang/Object;
 
     .line 81
@@ -113,7 +113,7 @@
 .end method
 
 .method public setSize(Ljava/lang/Object;II)V
-    .registers 4
+    .locals 0
     .param p1, "edgeEffect"    # Ljava/lang/Object;
     .param p2, "width"    # I
     .param p3, "height"    # I

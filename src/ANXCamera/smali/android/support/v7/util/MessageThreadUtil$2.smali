@@ -49,7 +49,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v7/util/MessageThreadUtil;Landroid/support/v7/util/ThreadUtil$BackgroundCallback;)V
-    .registers 3
+    .locals 0
 
     .line 84
     .local p0, "this":Landroid/support/v7/util/MessageThreadUtil$2;, "Landroid/support/v7/util/MessageThreadUtil.2;"
@@ -84,7 +84,7 @@
 .end method
 
 .method static synthetic access$100(Landroid/support/v7/util/MessageThreadUtil$2;)Landroid/support/v7/util/MessageThreadUtil$MessageQueue;
-    .registers 2
+    .locals 1
     .param p0, "x0"    # Landroid/support/v7/util/MessageThreadUtil$2;
 
     .line 84
@@ -94,7 +94,7 @@
 .end method
 
 .method private sendMessage(Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;)V
-    .registers 4
+    .locals 2
     .param p1, "msg"    # Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     .line 116
@@ -115,7 +115,7 @@
 .end method
 
 .method private sendMessageAtFrontOfQueue(Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;)V
-    .registers 4
+    .locals 2
     .param p1, "msg"    # Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     .line 121
@@ -138,7 +138,7 @@
 
 # virtual methods
 .method public loadTile(II)V
-    .registers 4
+    .locals 1
     .param p1, "position"    # I
     .param p2, "scrollHint"    # I
 
@@ -157,7 +157,7 @@
 .end method
 
 .method public recycleTile(Landroid/support/v7/util/TileList$Tile;)V
-    .registers 4
+    .locals 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -184,7 +184,7 @@
 .end method
 
 .method public refresh(I)V
-    .registers 4
+    .locals 2
     .param p1, "generation"    # I
 
     .line 95
@@ -204,7 +204,7 @@
 .end method
 
 .method public updateRange(IIIII)V
-    .registers 13
+    .locals 7
     .param p1, "rangeStart"    # I
     .param p2, "rangeEnd"    # I
     .param p3, "extRangeStart"    # I

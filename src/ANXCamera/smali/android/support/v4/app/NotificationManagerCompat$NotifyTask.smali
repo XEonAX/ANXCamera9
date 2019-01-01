@@ -29,7 +29,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/String;ILjava/lang/String;Landroid/app/Notification;)V
-    .registers 5
+    .locals 0
     .param p1, "packageName"    # Ljava/lang/String;
     .param p2, "id"    # I
     .param p3, "tag"    # Ljava/lang/String;
@@ -57,7 +57,7 @@
 
 # virtual methods
 .method public send(Landroid/support/v4/app/INotificationSideChannel;)V
-    .registers 6
+    .locals 4
     .param p1, "service"    # Landroid/support/v4/app/INotificationSideChannel;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -81,7 +81,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 580
     new-instance v0, Ljava/lang/StringBuilder;

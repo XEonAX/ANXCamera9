@@ -21,7 +21,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .locals 2
 
     .line 32
     invoke-static {}, Ljava/nio/charset/Charset;->defaultCharset()Ljava/nio/charset/Charset;
@@ -43,7 +43,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_20
+    if-nez v0, :cond_0
 
     .line 40
     const-string v0, "EUC_JP"
@@ -54,17 +54,17 @@
 
     move-result v0
 
-    if-nez v0, :cond_20
+    if-nez v0, :cond_0
 
     .line 38
     const/4 v0, 0x0
 
-    goto :goto_21
+    goto :goto_0
 
-    :cond_20
+    :cond_0
     const/4 v0, 0x1
 
-    :goto_21
+    :goto_0
     sput-boolean v0, Lcom/google/zxing/common/StringUtils;->ASSUME_SHIFT_JIS:Z
 
     .line 40
@@ -72,7 +72,7 @@
 .end method
 
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 42
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -81,7 +81,7 @@
 .end method
 
 .method public static guessEncoding([BLjava/util/Map;)Ljava/lang/String;
-    .registers 24
+    .locals 22
     .param p0, "bytes"    # [B
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -99,7 +99,7 @@
     .line 52
     move-object/from16 v1, p1
 
-    if-eqz v1, :cond_11
+    if-eqz v1, :cond_0
 
     .line 53
     sget-object v2, Lcom/google/zxing/DecodeHintType;->CHARACTER_SET:Lcom/google/zxing/DecodeHintType;
@@ -112,14 +112,14 @@
 
     .line 54
     .local v2, "characterSet":Ljava/lang/String;
-    if-eqz v2, :cond_11
+    if-eqz v2, :cond_0
 
     .line 55
     return-object v2
 
     .line 60
     .end local v2    # "characterSet":Ljava/lang/String;
-    :cond_11
+    :cond_0
     array-length v2, v0
 
     .line 61
@@ -192,21 +192,21 @@
 
     const/16 v19, 0x1
 
-    if-le v1, v3, :cond_41
+    if-le v1, v3, :cond_1
 
     .line 82
     aget-byte v1, v0, v17
 
     const/16 v3, -0x11
 
-    if-ne v1, v3, :cond_41
+    if-ne v1, v3, :cond_1
 
     .line 83
     aget-byte v1, v0, v19
 
     const/16 v3, -0x45
 
-    if-ne v1, v3, :cond_41
+    if-ne v1, v3, :cond_1
 
     .line 84
     const/4 v1, 0x2
@@ -215,14 +215,14 @@
 
     const/16 v1, -0x41
 
-    if-ne v3, v1, :cond_41
+    if-ne v3, v1, :cond_1
 
     .line 81
     move/from16 v17, v19
 
     nop
 
-    :cond_41
+    :cond_1
     move/from16 v1, v17
 
     .line 86
@@ -231,24 +231,24 @@
 
     .line 87
     .local v3, "i":I
-    :goto_44
-    if-ge v3, v2, :cond_105
+    :goto_0
+    if-ge v3, v2, :cond_17
 
-    if-nez v18, :cond_50
+    if-nez v18, :cond_2
 
-    if-nez v4, :cond_50
+    if-nez v4, :cond_2
 
-    if-nez v5, :cond_50
+    if-nez v5, :cond_2
 
     .line 174
     .end local v3    # "i":I
     move/from16 v20, v2
 
-    goto/16 :goto_107
+    goto/16 :goto_8
 
     .line 90
     .restart local v3    # "i":I
-    :cond_50
+    :cond_2
     move/from16 v20, v2
 
     aget-byte v2, v0, v3
@@ -259,15 +259,15 @@
 
     .line 93
     .local v2, "value":I
-    if-eqz v5, :cond_8c
+    if-eqz v5, :cond_9
 
     .line 94
-    if-lez v6, :cond_65
+    if-lez v6, :cond_4
 
     .line 95
     and-int/lit16 v0, v2, 0x80
 
-    if-nez v0, :cond_62
+    if-nez v0, :cond_3
 
     .line 96
     const/4 v0, 0x0
@@ -280,27 +280,27 @@
     .line 127
     .end local v0    # "canBeUTF8":Z
     .restart local v5    # "canBeUTF8":Z
-    :goto_60
+    :goto_1
     move v5, v0
 
-    goto :goto_8c
+    goto :goto_2
 
     .line 98
-    :cond_62
+    :cond_3
     add-int/lit8 v6, v6, -0x1
 
     .line 100
-    goto :goto_8c
+    goto :goto_2
 
-    :cond_65
+    :cond_4
     and-int/lit16 v0, v2, 0x80
 
-    if-eqz v0, :cond_8c
+    if-eqz v0, :cond_9
 
     .line 101
     and-int/lit8 v0, v2, 0x40
 
-    if-nez v0, :cond_6f
+    if-nez v0, :cond_5
 
     .line 102
     const/4 v0, 0x0
@@ -308,78 +308,78 @@
     .line 103
     .end local v5    # "canBeUTF8":Z
     .restart local v0    # "canBeUTF8":Z
-    goto :goto_60
+    goto :goto_1
 
     .line 104
     .end local v0    # "canBeUTF8":Z
     .restart local v5    # "canBeUTF8":Z
-    :cond_6f
+    :cond_5
     add-int/lit8 v6, v6, 0x1
 
     .line 105
     and-int/lit8 v0, v2, 0x20
 
-    if-nez v0, :cond_78
+    if-nez v0, :cond_6
 
     .line 106
     add-int/lit8 v7, v7, 0x1
 
     .line 107
-    goto :goto_8c
+    goto :goto_2
 
     .line 108
-    :cond_78
+    :cond_6
     add-int/lit8 v6, v6, 0x1
 
     .line 109
     and-int/lit8 v0, v2, 0x10
 
-    if-nez v0, :cond_81
+    if-nez v0, :cond_7
 
     .line 110
     add-int/lit8 v8, v8, 0x1
 
     .line 111
-    goto :goto_8c
+    goto :goto_2
 
     .line 112
-    :cond_81
+    :cond_7
     add-int/lit8 v6, v6, 0x1
 
     .line 113
     and-int/lit8 v0, v2, 0x8
 
-    if-nez v0, :cond_8a
+    if-nez v0, :cond_8
 
     .line 114
     add-int/lit8 v9, v9, 0x1
 
     .line 115
-    goto :goto_8c
+    goto :goto_2
 
     .line 116
-    :cond_8a
+    :cond_8
     const/4 v0, 0x0
 
     .end local v5    # "canBeUTF8":Z
     .restart local v0    # "canBeUTF8":Z
-    goto :goto_60
+    goto :goto_1
 
     .line 127
     .end local v0    # "canBeUTF8":Z
     .restart local v5    # "canBeUTF8":Z
-    :cond_8c
-    :goto_8c
+    :cond_9
+    :goto_2
     const/16 v0, 0x7f
 
-    if-eqz v18, :cond_ad
+    if-eqz v18, :cond_c
 
     .line 128
-    if-le v2, v0, :cond_9b
+    if-le v2, v0, :cond_a
 
     const/16 v0, 0xa0
 
-    if-ge v2, v0, :cond_9b
+    if-ge v2, v0, :cond_a
 
     .line 129
     const/4 v0, 0x0
@@ -392,66 +392,66 @@
     .line 142
     move/from16 v18, v0
 
-    goto :goto_ad
+    goto :goto_3
 
     .line 130
     .end local v0    # "canBeISO88591":Z
     .restart local v18    # "canBeISO88591":Z
-    :cond_9b
+    :cond_a
     const/16 v0, 0x9f
 
-    if-le v2, v0, :cond_ad
+    if-le v2, v0, :cond_c
 
     .line 131
     const/16 v0, 0xc0
 
-    if-lt v2, v0, :cond_ab
+    if-lt v2, v0, :cond_b
 
     const/16 v0, 0xd7
 
-    if-eq v2, v0, :cond_ab
+    if-eq v2, v0, :cond_b
 
     const/16 v0, 0xf7
 
-    if-ne v2, v0, :cond_ad
+    if-ne v2, v0, :cond_c
 
     .line 132
-    :cond_ab
+    :cond_b
     add-int/lit8 v16, v16, 0x1
 
     .line 142
-    :cond_ad
-    :goto_ad
-    if-eqz v4, :cond_fd
+    :cond_c
+    :goto_3
+    if-eqz v4, :cond_16
 
     .line 143
-    if-lez v10, :cond_c5
+    if-lez v10, :cond_f
 
     .line 144
     const/16 v0, 0x40
 
-    if-lt v2, v0, :cond_c1
+    if-lt v2, v0, :cond_e
 
     const/16 v0, 0x7f
 
-    if-eq v2, v0, :cond_c1
+    if-eq v2, v0, :cond_e
 
     const/16 v0, 0xfc
 
-    if-le v2, v0, :cond_be
+    if-le v2, v0, :cond_d
 
-    goto :goto_c1
+    goto :goto_4
 
     .line 147
-    :cond_be
+    :cond_d
     add-int/lit8 v10, v10, -0x1
 
     .line 149
-    goto :goto_fd
+    goto :goto_7
 
     .line 145
-    :cond_c1
-    :goto_c1
+    :cond_e
+    :goto_4
     const/4 v0, 0x0
 
     .line 146
@@ -463,37 +463,37 @@
     .end local v0    # "canBeShiftJIS":Z
     .end local v2    # "value":I
     .restart local v4    # "canBeShiftJIS":Z
-    :goto_c3
+    :goto_5
     move v4, v0
 
-    goto :goto_fd
+    goto :goto_7
 
     .line 149
     .restart local v2    # "value":I
-    :cond_c5
+    :cond_f
     const/16 v0, 0x80
 
-    if-eq v2, v0, :cond_fb
+    if-eq v2, v0, :cond_15
 
     const/16 v0, 0xa0
 
-    if-eq v2, v0, :cond_fb
+    if-eq v2, v0, :cond_15
 
     const/16 v0, 0xef
 
-    if-le v2, v0, :cond_d2
+    if-le v2, v0, :cond_10
 
-    goto :goto_fb
+    goto :goto_6
 
     .line 151
-    :cond_d2
+    :cond_10
     const/16 v0, 0xa0
 
-    if-le v2, v0, :cond_e6
+    if-le v2, v0, :cond_12
 
     const/16 v0, 0xe0
 
-    if-ge v2, v0, :cond_e6
+    if-ge v2, v0, :cond_12
 
     .line 152
     add-int/lit8 v11, v11, 0x1
@@ -507,7 +507,7 @@
     add-int/lit8 v12, v12, 0x1
 
     .line 155
-    if-le v12, v14, :cond_e4
+    if-le v12, v14, :cond_11
 
     .line 156
     move v13, v12
@@ -524,17 +524,17 @@
     .end local v2    # "value":I
     .local v13, "sjisCurDoubleBytesWordLength":I
     .restart local v14    # "sjisMaxKatakanaWordLength":I
-    :cond_e4
+    :cond_11
     move v13, v0
 
-    goto :goto_fd
+    goto :goto_7
 
     .line 158
     .restart local v2    # "value":I
-    :cond_e6
+    :cond_12
     const/16 v0, 0x7f
 
-    if-le v2, v0, :cond_f6
+    if-le v2, v0, :cond_14
 
     .line 159
     add-int/lit8 v10, v10, 0x1
@@ -548,7 +548,7 @@
     add-int/lit8 v13, v13, 0x1
 
     .line 163
-    if-le v13, v15, :cond_f4
+    if-le v13, v15, :cond_13
 
     .line 164
     move v12, v13
@@ -565,14 +565,14 @@
     .end local v2    # "value":I
     .local v12, "sjisCurKatakanaWordLength":I
     .restart local v15    # "sjisMaxDoubleBytesWordLength":I
-    :cond_f4
+    :cond_13
     move v12, v0
 
-    goto :goto_fd
+    goto :goto_7
 
     .line 168
     .restart local v2    # "value":I
-    :cond_f6
+    :cond_14
     const/4 v0, 0x0
 
     .line 169
@@ -587,28 +587,28 @@
 
     move v13, v2
 
-    goto :goto_fd
+    goto :goto_7
 
     .line 150
     .end local v0    # "sjisCurKatakanaWordLength":I
     .local v2, "value":I
     .restart local v12    # "sjisCurKatakanaWordLength":I
     .restart local v13    # "sjisCurDoubleBytesWordLength":I
-    :cond_fb
-    :goto_fb
+    :cond_15
+    :goto_6
     const/4 v0, 0x0
 
     .line 151
     .end local v4    # "canBeShiftJIS":Z
     .local v0, "canBeShiftJIS":Z
-    goto :goto_c3
+    goto :goto_5
 
     .line 88
     .end local v0    # "canBeShiftJIS":Z
     .end local v2    # "value":I
     .restart local v4    # "canBeShiftJIS":Z
-    :cond_fd
-    :goto_fd
+    :cond_16
+    :goto_7
     add-int/lit8 v3, v3, 0x1
 
     .line 87
@@ -616,126 +616,126 @@
 
     move-object/from16 v0, p0
 
-    goto/16 :goto_44
+    goto/16 :goto_0
 
     .line 174
     .end local v3    # "i":I
     .end local v20    # "length":I
     .local v2, "length":I
-    :cond_105
+    :cond_17
     move/from16 v20, v2
 
     .end local v2    # "length":I
     .restart local v20    # "length":I
-    :goto_107
-    if-eqz v5, :cond_10c
+    :goto_8
+    if-eqz v5, :cond_18
 
-    if-lez v6, :cond_10c
+    if-lez v6, :cond_18
 
     .line 175
     const/4 v5, 0x0
 
     .line 177
-    :cond_10c
-    if-eqz v4, :cond_111
+    :cond_18
+    if-eqz v4, :cond_19
 
-    if-lez v10, :cond_111
+    if-lez v10, :cond_19
 
     .line 178
     const/4 v4, 0x0
 
     .line 182
-    :cond_111
-    if-eqz v5, :cond_11d
+    :cond_19
+    if-eqz v5, :cond_1b
 
-    if-nez v1, :cond_11a
+    if-nez v1, :cond_1a
 
     add-int v0, v7, v8
 
     add-int/2addr v0, v9
 
-    if-lez v0, :cond_11d
+    if-lez v0, :cond_1b
 
     .line 183
-    :cond_11a
+    :cond_1a
     const-string v0, "UTF8"
 
     return-object v0
 
     .line 186
-    :cond_11d
-    if-eqz v4, :cond_12b
+    :cond_1b
+    if-eqz v4, :cond_1d
 
     sget-boolean v0, Lcom/google/zxing/common/StringUtils;->ASSUME_SHIFT_JIS:Z
 
-    if-nez v0, :cond_128
+    if-nez v0, :cond_1c
 
     const/4 v0, 0x3
 
-    if-ge v14, v0, :cond_128
+    if-ge v14, v0, :cond_1c
 
-    if-lt v15, v0, :cond_12b
+    if-lt v15, v0, :cond_1d
 
     .line 187
-    :cond_128
+    :cond_1c
     const-string v0, "SJIS"
 
     return-object v0
 
     .line 194
-    :cond_12b
-    if-eqz v18, :cond_144
+    :cond_1d
+    if-eqz v18, :cond_21
 
-    if-eqz v4, :cond_144
+    if-eqz v4, :cond_21
 
     .line 195
     const/4 v0, 0x2
 
-    if-ne v14, v0, :cond_138
+    if-ne v14, v0, :cond_1f
 
-    if-eq v11, v0, :cond_135
+    if-eq v11, v0, :cond_1e
 
-    goto :goto_138
+    goto :goto_9
 
     .line 196
-    :cond_135
+    :cond_1e
     move/from16 v2, v20
 
-    goto :goto_13e
+    goto :goto_a
 
     .line 195
-    :cond_138
-    :goto_138
+    :cond_1f
+    :goto_9
     mul-int/lit8 v0, v16, 0xa
 
     move/from16 v2, v20
 
-    if-lt v0, v2, :cond_141
+    if-lt v0, v2, :cond_20
 
     .line 196
     .end local v20    # "length":I
     .restart local v2    # "length":I
-    :goto_13e
+    :goto_a
     const-string v0, "SJIS"
 
-    goto :goto_143
+    goto :goto_b
 
-    :cond_141
+    :cond_20
     const-string v0, "ISO8859_1"
 
     .line 195
-    :goto_143
+    :goto_b
     return-object v0
 
     .line 200
     .end local v2    # "length":I
     .restart local v20    # "length":I
-    :cond_144
+    :cond_21
     move/from16 v2, v20
 
     .end local v20    # "length":I
     .restart local v2    # "length":I
-    if-eqz v18, :cond_14b
+    if-eqz v18, :cond_22
 
     .line 201
     const-string v0, "ISO8859_1"
@@ -743,8 +743,8 @@
     return-object v0
 
     .line 203
-    :cond_14b
-    if-eqz v4, :cond_150
+    :cond_22
+    if-eqz v4, :cond_23
 
     .line 204
     const-string v0, "SJIS"
@@ -752,8 +752,8 @@
     return-object v0
 
     .line 206
-    :cond_150
-    if-eqz v5, :cond_155
+    :cond_23
+    if-eqz v5, :cond_24
 
     .line 207
     const-string v0, "UTF8"
@@ -761,7 +761,7 @@
     return-object v0
 
     .line 210
-    :cond_155
+    :cond_24
     sget-object v0, Lcom/google/zxing/common/StringUtils;->PLATFORM_DEFAULT_ENCODING:Ljava/lang/String;
 
     return-object v0

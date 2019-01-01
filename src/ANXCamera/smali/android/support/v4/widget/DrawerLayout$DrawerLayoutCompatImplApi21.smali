@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 308
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public applyMarginInsets(Landroid/view/ViewGroup$MarginLayoutParams;Ljava/lang/Object;I)V
-    .registers 4
+    .locals 0
     .param p1, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
     .param p2, "insets"    # Ljava/lang/Object;
     .param p3, "drawerGravity"    # I
@@ -43,7 +43,7 @@
 .end method
 
 .method public configureApplyInsets(Landroid/view/View;)V
-    .registers 2
+    .locals 0
     .param p1, "drawerLayout"    # Landroid/view/View;
 
     .line 310
@@ -54,7 +54,7 @@
 .end method
 
 .method public dispatchChildInsets(Landroid/view/View;Ljava/lang/Object;I)V
-    .registers 4
+    .locals 0
     .param p1, "child"    # Landroid/view/View;
     .param p2, "insets"    # Ljava/lang/Object;
     .param p3, "drawerGravity"    # I
@@ -67,7 +67,7 @@
 .end method
 
 .method public getDefaultStatusBarBackground(Landroid/content/Context;)Landroid/graphics/drawable/Drawable;
-    .registers 3
+    .locals 1
     .param p1, "context"    # Landroid/content/Context;
 
     .line 327
@@ -79,7 +79,7 @@
 .end method
 
 .method public getTopInset(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "insets"    # Ljava/lang/Object;
 
     .line 322

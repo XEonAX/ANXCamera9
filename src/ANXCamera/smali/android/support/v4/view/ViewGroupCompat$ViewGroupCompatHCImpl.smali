@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 95
     invoke-direct {p0}, Landroid/support/v4/view/ViewGroupCompat$ViewGroupCompatStubImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public setMotionEventSplittingEnabled(Landroid/view/ViewGroup;Z)V
-    .registers 3
+    .locals 0
     .param p1, "group"    # Landroid/view/ViewGroup;
     .param p2, "split"    # Z
 

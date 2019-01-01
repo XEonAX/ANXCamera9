@@ -28,7 +28,7 @@
 
 # direct methods
 .method private constructor <init>(Landroid/support/v7/widget/RecyclerView$ViewHolder;IIII)V
-    .registers 6
+    .locals 0
     .param p1, "holder"    # Landroid/support/v7/widget/RecyclerView$ViewHolder;
     .param p2, "fromX"    # I
     .param p3, "fromY"    # I
@@ -58,7 +58,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v7/widget/RecyclerView$ViewHolder;IIIILandroid/support/v7/widget/DefaultItemAnimator$1;)V
-    .registers 7
+    .locals 0
     .param p1, "x0"    # Landroid/support/v7/widget/RecyclerView$ViewHolder;
     .param p2, "x1"    # I
     .param p3, "x2"    # I

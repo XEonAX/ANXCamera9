@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/graphics/drawable/Drawable;)V
-    .registers 2
+    .locals 0
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 24
@@ -18,7 +18,7 @@
 
 # virtual methods
 .method public jumpToCurrentState()V
-    .registers 2
+    .locals 1
 
     .line 29
     iget-object v0, p0, Landroid/support/v4/graphics/drawable/DrawableWrapperHoneycomb;->mDrawable:Landroid/graphics/drawable/Drawable;

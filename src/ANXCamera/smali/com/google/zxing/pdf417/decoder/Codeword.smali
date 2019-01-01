@@ -21,7 +21,7 @@
 
 # direct methods
 .method constructor <init>(IIII)V
-    .registers 6
+    .locals 1
     .param p1, "startX"    # I
     .param p2, "endX"    # I
     .param p3, "bucket"    # I
@@ -54,7 +54,7 @@
 
 # virtual methods
 .method getBucket()I
-    .registers 2
+    .locals 1
 
     .line 64
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/Codeword;->bucket:I
@@ -63,7 +63,7 @@
 .end method
 
 .method getEndX()I
-    .registers 2
+    .locals 1
 
     .line 60
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/Codeword;->endX:I
@@ -72,7 +72,7 @@
 .end method
 
 .method getRowNumber()I
-    .registers 2
+    .locals 1
 
     .line 72
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/Codeword;->rowNumber:I
@@ -81,7 +81,7 @@
 .end method
 
 .method getStartX()I
-    .registers 2
+    .locals 1
 
     .line 56
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/Codeword;->startX:I
@@ -90,7 +90,7 @@
 .end method
 
 .method getValue()I
-    .registers 2
+    .locals 1
 
     .line 68
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/Codeword;->value:I
@@ -99,7 +99,7 @@
 .end method
 
 .method getWidth()I
-    .registers 3
+    .locals 2
 
     .line 52
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/Codeword;->endX:I
@@ -112,7 +112,7 @@
 .end method
 
 .method hasValidRowNumber()Z
-    .registers 2
+    .locals 1
 
     .line 40
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/Codeword;->rowNumber:I
@@ -125,13 +125,13 @@
 .end method
 
 .method isValidRowNumber(I)Z
-    .registers 4
+    .locals 2
     .param p1, "rowNumber"    # I
 
     .line 44
     const/4 v0, -0x1
 
-    if-eq p1, v0, :cond_d
+    if-eq p1, v0, :cond_0
 
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/Codeword;->bucket:I
 
@@ -139,20 +139,20 @@
 
     mul-int/lit8 v1, v1, 0x3
 
-    if-ne v0, v1, :cond_d
+    if-ne v0, v1, :cond_0
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_d
+    :cond_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method setRowNumber(I)V
-    .registers 2
+    .locals 0
     .param p1, "rowNumber"    # I
 
     .line 76
@@ -163,7 +163,7 @@
 .end method
 
 .method setRowNumberAsRowIndicatorColumn()V
-    .registers 3
+    .locals 2
 
     .line 48
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/Codeword;->value:I
@@ -185,7 +185,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 81
     new-instance v0, Ljava/lang/StringBuilder;

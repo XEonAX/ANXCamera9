@@ -12,16 +12,16 @@
 
 # direct methods
 .method static synthetic $SWITCH_TABLE$com$google$zxing$BarcodeFormat()[I
-    .registers 3
+    .locals 3
 
     .line 40
     sget-object v0, Lcom/google/zxing/MultiFormatWriter;->$SWITCH_TABLE$com$google$zxing$BarcodeFormat:[I
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_0
 
     return-object v0
 
-    :cond_5
+    :cond_0
     invoke-static {}, Lcom/google/zxing/BarcodeFormat;->values()[Lcom/google/zxing/BarcodeFormat;
 
     move-result-object v0
@@ -30,7 +30,7 @@
 
     new-array v0, v0, [I
 
-    :try_start_c
+    :try_start_0
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->AZTEC:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -40,16 +40,16 @@
     const/4 v2, 0x1
 
     aput v2, v0, v1
-    :try_end_15
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_c .. :try_end_15} :catch_16
+    :try_end_0
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_0 .. :try_end_0} :catch_0
 
-    goto :goto_17
+    goto :goto_0
 
-    :catch_16
+    :catch_0
     move-exception v1
 
-    :goto_17
-    :try_start_17
+    :goto_0
+    :try_start_1
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->CODABAR:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -59,16 +59,16 @@
     const/4 v2, 0x2
 
     aput v2, v0, v1
-    :try_end_20
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_17 .. :try_end_20} :catch_21
+    :try_end_1
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_1 .. :try_end_1} :catch_1
 
-    goto :goto_22
+    goto :goto_1
 
-    :catch_21
+    :catch_1
     move-exception v1
 
-    :goto_22
-    :try_start_22
+    :goto_1
+    :try_start_2
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->CODE_128:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -78,16 +78,16 @@
     const/4 v2, 0x5
 
     aput v2, v0, v1
-    :try_end_2b
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_22 .. :try_end_2b} :catch_2c
+    :try_end_2
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_2 .. :try_end_2} :catch_2
 
-    goto :goto_2d
+    goto :goto_2
 
-    :catch_2c
+    :catch_2
     move-exception v1
 
-    :goto_2d
-    :try_start_2d
+    :goto_2
+    :try_start_3
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->CODE_39:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -97,16 +97,16 @@
     const/4 v2, 0x3
 
     aput v2, v0, v1
-    :try_end_36
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_2d .. :try_end_36} :catch_37
+    :try_end_3
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_3 .. :try_end_3} :catch_3
 
-    goto :goto_38
+    goto :goto_3
 
-    :catch_37
+    :catch_3
     move-exception v1
 
-    :goto_38
-    :try_start_38
+    :goto_3
+    :try_start_4
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->CODE_93:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -116,16 +116,16 @@
     const/4 v2, 0x4
 
     aput v2, v0, v1
-    :try_end_41
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_38 .. :try_end_41} :catch_42
+    :try_end_4
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_4 .. :try_end_4} :catch_4
 
-    goto :goto_43
+    goto :goto_4
 
-    :catch_42
+    :catch_4
     move-exception v1
 
-    :goto_43
-    :try_start_43
+    :goto_4
+    :try_start_5
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->DATA_MATRIX:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -135,16 +135,16 @@
     const/4 v2, 0x6
 
     aput v2, v0, v1
-    :try_end_4c
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_43 .. :try_end_4c} :catch_4d
+    :try_end_5
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_5 .. :try_end_5} :catch_5
 
-    goto :goto_4e
+    goto :goto_5
 
-    :catch_4d
+    :catch_5
     move-exception v1
 
-    :goto_4e
-    :try_start_4e
+    :goto_5
+    :try_start_6
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->EAN_13:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -154,16 +154,16 @@
     const/16 v2, 0x8
 
     aput v2, v0, v1
-    :try_end_58
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_4e .. :try_end_58} :catch_59
+    :try_end_6
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_6 .. :try_end_6} :catch_6
 
-    goto :goto_5a
+    goto :goto_6
 
-    :catch_59
+    :catch_6
     move-exception v1
 
-    :goto_5a
-    :try_start_5a
+    :goto_6
+    :try_start_7
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->EAN_8:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -173,16 +173,16 @@
     const/4 v2, 0x7
 
     aput v2, v0, v1
-    :try_end_63
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_5a .. :try_end_63} :catch_64
+    :try_end_7
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_7 .. :try_end_7} :catch_7
 
-    goto :goto_65
+    goto :goto_7
 
-    :catch_64
+    :catch_7
     move-exception v1
 
-    :goto_65
-    :try_start_65
+    :goto_7
+    :try_start_8
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->ITF:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -192,16 +192,16 @@
     const/16 v2, 0x9
 
     aput v2, v0, v1
-    :try_end_6f
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_65 .. :try_end_6f} :catch_70
+    :try_end_8
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_8 .. :try_end_8} :catch_8
 
-    goto :goto_71
+    goto :goto_8
 
-    :catch_70
+    :catch_8
     move-exception v1
 
-    :goto_71
-    :try_start_71
+    :goto_8
+    :try_start_9
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->MAXICODE:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -211,16 +211,16 @@
     const/16 v2, 0xa
 
     aput v2, v0, v1
-    :try_end_7b
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_71 .. :try_end_7b} :catch_7c
+    :try_end_9
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_9 .. :try_end_9} :catch_9
 
-    goto :goto_7d
+    goto :goto_9
 
-    :catch_7c
+    :catch_9
     move-exception v1
 
-    :goto_7d
-    :try_start_7d
+    :goto_9
+    :try_start_a
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->PDF_417:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -230,16 +230,16 @@
     const/16 v2, 0xb
 
     aput v2, v0, v1
-    :try_end_87
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_7d .. :try_end_87} :catch_88
+    :try_end_a
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_a .. :try_end_a} :catch_a
 
-    goto :goto_89
+    goto :goto_a
 
-    :catch_88
+    :catch_a
     move-exception v1
 
-    :goto_89
-    :try_start_89
+    :goto_a
+    :try_start_b
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->QR_CODE:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -249,16 +249,16 @@
     const/16 v2, 0xc
 
     aput v2, v0, v1
-    :try_end_93
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_89 .. :try_end_93} :catch_94
+    :try_end_b
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_b .. :try_end_b} :catch_b
 
-    goto :goto_95
+    goto :goto_b
 
-    :catch_94
+    :catch_b
     move-exception v1
 
-    :goto_95
-    :try_start_95
+    :goto_b
+    :try_start_c
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->RSS_14:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -268,16 +268,16 @@
     const/16 v2, 0xd
 
     aput v2, v0, v1
-    :try_end_9f
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_95 .. :try_end_9f} :catch_a0
+    :try_end_c
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_c .. :try_end_c} :catch_c
 
-    goto :goto_a1
+    goto :goto_c
 
-    :catch_a0
+    :catch_c
     move-exception v1
 
-    :goto_a1
-    :try_start_a1
+    :goto_c
+    :try_start_d
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->RSS_EXPANDED:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -287,16 +287,16 @@
     const/16 v2, 0xe
 
     aput v2, v0, v1
-    :try_end_ab
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_a1 .. :try_end_ab} :catch_ac
+    :try_end_d
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_d .. :try_end_d} :catch_d
 
-    goto :goto_ad
+    goto :goto_d
 
-    :catch_ac
+    :catch_d
     move-exception v1
 
-    :goto_ad
-    :try_start_ad
+    :goto_d
+    :try_start_e
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->UPC_A:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -306,16 +306,16 @@
     const/16 v2, 0xf
 
     aput v2, v0, v1
-    :try_end_b7
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_ad .. :try_end_b7} :catch_b8
+    :try_end_e
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_e .. :try_end_e} :catch_e
 
-    goto :goto_b9
+    goto :goto_e
 
-    :catch_b8
+    :catch_e
     move-exception v1
 
-    :goto_b9
-    :try_start_b9
+    :goto_e
+    :try_start_f
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->UPC_E:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -325,16 +325,16 @@
     const/16 v2, 0x10
 
     aput v2, v0, v1
-    :try_end_c3
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_b9 .. :try_end_c3} :catch_c4
+    :try_end_f
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_f .. :try_end_f} :catch_f
 
-    goto :goto_c5
+    goto :goto_f
 
-    :catch_c4
+    :catch_f
     move-exception v1
 
-    :goto_c5
-    :try_start_c5
+    :goto_f
+    :try_start_10
     sget-object v1, Lcom/google/zxing/BarcodeFormat;->UPC_EAN_EXTENSION:Lcom/google/zxing/BarcodeFormat;
 
     invoke-virtual {v1}, Lcom/google/zxing/BarcodeFormat;->ordinal()I
@@ -344,22 +344,22 @@
     const/16 v2, 0x11
 
     aput v2, v0, v1
-    :try_end_cf
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_c5 .. :try_end_cf} :catch_d0
+    :try_end_10
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_10 .. :try_end_10} :catch_10
 
-    goto :goto_d1
+    goto :goto_10
 
-    :catch_d0
+    :catch_10
     move-exception v1
 
-    :goto_d1
+    :goto_10
     sput-object v0, Lcom/google/zxing/MultiFormatWriter;->$SWITCH_TABLE$com$google$zxing$BarcodeFormat:[I
 
     return-object v0
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 40
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -370,7 +370,7 @@
 
 # virtual methods
 .method public encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;II)Lcom/google/zxing/common/BitMatrix;
-    .registers 11
+    .locals 6
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "format"    # Lcom/google/zxing/BarcodeFormat;
     .param p3, "width"    # I
@@ -402,7 +402,7 @@
 .end method
 
 .method public encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;IILjava/util/Map;)Lcom/google/zxing/common/BitMatrix;
-    .registers 13
+    .locals 7
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "format"    # Lcom/google/zxing/BarcodeFormat;
     .param p3, "width"    # I
@@ -438,10 +438,10 @@
 
     aget v0, v0, v1
 
-    packed-switch v0, :pswitch_data_6e
+    packed-switch v0, :pswitch_data_0
 
     .line 92
-    :pswitch_d
+    :pswitch_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -461,117 +461,117 @@
     throw v0
 
     .line 65
-    :pswitch_21
+    :pswitch_1
     new-instance v0, Lcom/google/zxing/oned/UPCAWriter;
 
     invoke-direct {v0}, Lcom/google/zxing/oned/UPCAWriter;-><init>()V
 
     .line 66
     .local v0, "writer":Lcom/google/zxing/Writer;
-    goto :goto_63
+    goto :goto_0
 
     .line 68
     .end local v0    # "writer":Lcom/google/zxing/Writer;
-    :pswitch_27
+    :pswitch_2
     new-instance v0, Lcom/google/zxing/qrcode/QRCodeWriter;
 
     invoke-direct {v0}, Lcom/google/zxing/qrcode/QRCodeWriter;-><init>()V
 
     .line 69
     .restart local v0    # "writer":Lcom/google/zxing/Writer;
-    goto :goto_63
+    goto :goto_0
 
     .line 80
     .end local v0    # "writer":Lcom/google/zxing/Writer;
-    :pswitch_2d
+    :pswitch_3
     new-instance v0, Lcom/google/zxing/pdf417/PDF417Writer;
 
     invoke-direct {v0}, Lcom/google/zxing/pdf417/PDF417Writer;-><init>()V
 
     .line 81
     .restart local v0    # "writer":Lcom/google/zxing/Writer;
-    goto :goto_63
+    goto :goto_0
 
     .line 77
     .end local v0    # "writer":Lcom/google/zxing/Writer;
-    :pswitch_33
+    :pswitch_4
     new-instance v0, Lcom/google/zxing/oned/ITFWriter;
 
     invoke-direct {v0}, Lcom/google/zxing/oned/ITFWriter;-><init>()V
 
     .line 78
     .restart local v0    # "writer":Lcom/google/zxing/Writer;
-    goto :goto_63
+    goto :goto_0
 
     .line 62
     .end local v0    # "writer":Lcom/google/zxing/Writer;
-    :pswitch_39
+    :pswitch_5
     new-instance v0, Lcom/google/zxing/oned/EAN13Writer;
 
     invoke-direct {v0}, Lcom/google/zxing/oned/EAN13Writer;-><init>()V
 
     .line 63
     .restart local v0    # "writer":Lcom/google/zxing/Writer;
-    goto :goto_63
+    goto :goto_0
 
     .line 59
     .end local v0    # "writer":Lcom/google/zxing/Writer;
-    :pswitch_3f
+    :pswitch_6
     new-instance v0, Lcom/google/zxing/oned/EAN8Writer;
 
     invoke-direct {v0}, Lcom/google/zxing/oned/EAN8Writer;-><init>()V
 
     .line 60
     .restart local v0    # "writer":Lcom/google/zxing/Writer;
-    goto :goto_63
+    goto :goto_0
 
     .line 86
     .end local v0    # "writer":Lcom/google/zxing/Writer;
-    :pswitch_45
+    :pswitch_7
     new-instance v0, Lcom/google/zxing/datamatrix/DataMatrixWriter;
 
     invoke-direct {v0}, Lcom/google/zxing/datamatrix/DataMatrixWriter;-><init>()V
 
     .line 87
     .restart local v0    # "writer":Lcom/google/zxing/Writer;
-    goto :goto_63
+    goto :goto_0
 
     .line 74
     .end local v0    # "writer":Lcom/google/zxing/Writer;
-    :pswitch_4b
+    :pswitch_8
     new-instance v0, Lcom/google/zxing/oned/Code128Writer;
 
     invoke-direct {v0}, Lcom/google/zxing/oned/Code128Writer;-><init>()V
 
     .line 75
     .restart local v0    # "writer":Lcom/google/zxing/Writer;
-    goto :goto_63
+    goto :goto_0
 
     .line 71
     .end local v0    # "writer":Lcom/google/zxing/Writer;
-    :pswitch_51
+    :pswitch_9
     new-instance v0, Lcom/google/zxing/oned/Code39Writer;
 
     invoke-direct {v0}, Lcom/google/zxing/oned/Code39Writer;-><init>()V
 
     .line 72
     .restart local v0    # "writer":Lcom/google/zxing/Writer;
-    goto :goto_63
+    goto :goto_0
 
     .line 83
     .end local v0    # "writer":Lcom/google/zxing/Writer;
-    :pswitch_57
+    :pswitch_a
     new-instance v0, Lcom/google/zxing/oned/CodaBarWriter;
 
     invoke-direct {v0}, Lcom/google/zxing/oned/CodaBarWriter;-><init>()V
 
     .line 84
     .restart local v0    # "writer":Lcom/google/zxing/Writer;
-    goto :goto_63
+    goto :goto_0
 
     .line 89
     .end local v0    # "writer":Lcom/google/zxing/Writer;
-    :pswitch_5d
+    :pswitch_b
     new-instance v0, Lcom/google/zxing/aztec/AztecWriter;
 
     invoke-direct {v0}, Lcom/google/zxing/aztec/AztecWriter;-><init>()V
@@ -583,7 +583,7 @@
     .line 92
     .end local v0    # "writer":Lcom/google/zxing/Writer;
     .local v1, "writer":Lcom/google/zxing/Writer;
-    :goto_63
+    :goto_0
     move-object v1, v0
 
     .line 94
@@ -603,22 +603,22 @@
 
     return-object v0
 
-    :pswitch_data_6e
+    :pswitch_data_0
     .packed-switch 0x1
-        :pswitch_5d
-        :pswitch_57
-        :pswitch_51
-        :pswitch_d
-        :pswitch_4b
-        :pswitch_45
-        :pswitch_3f
-        :pswitch_39
-        :pswitch_33
-        :pswitch_d
-        :pswitch_2d
-        :pswitch_27
-        :pswitch_d
-        :pswitch_d
-        :pswitch_21
+        :pswitch_b
+        :pswitch_a
+        :pswitch_9
+        :pswitch_0
+        :pswitch_8
+        :pswitch_7
+        :pswitch_6
+        :pswitch_5
+        :pswitch_4
+        :pswitch_0
+        :pswitch_3
+        :pswitch_2
+        :pswitch_0
+        :pswitch_0
+        :pswitch_1
     .end packed-switch
 .end method

@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 263
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public build(Ljava/lang/String;Ljava/lang/CharSequence;[Ljava/lang/CharSequence;ZLandroid/os/Bundle;)Landroid/support/v4/app/RemoteInput;
-    .registers 13
+    .locals 7
     .param p1, "resultKey"    # Ljava/lang/String;
     .param p2, "label"    # Ljava/lang/CharSequence;
     .param p3, "choices"    # [Ljava/lang/CharSequence;
@@ -58,7 +58,7 @@
 .end method
 
 .method public bridge synthetic build(Ljava/lang/String;Ljava/lang/CharSequence;[Ljava/lang/CharSequence;ZLandroid/os/Bundle;)Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput;
-    .registers 7
+    .locals 1
     .param p1, "x0"    # Ljava/lang/String;
     .param p2, "x1"    # Ljava/lang/CharSequence;
     .param p3, "x2"    # [Ljava/lang/CharSequence;
@@ -74,7 +74,7 @@
 .end method
 
 .method public newArray(I)[Landroid/support/v4/app/RemoteInput;
-    .registers 3
+    .locals 1
     .param p1, "size"    # I
 
     .line 273
@@ -84,7 +84,7 @@
 .end method
 
 .method public bridge synthetic newArray(I)[Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput;
-    .registers 3
+    .locals 1
     .param p1, "x0"    # I
 
     .line 263

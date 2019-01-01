@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/view/ViewGroup;)V
-    .registers 2
+    .locals 0
     .param p1, "viewGroup"    # Landroid/view/ViewGroup;
 
     .line 45
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getNestedScrollAxes()I
-    .registers 2
+    .locals 1
 
     .line 69
     iget v0, p0, Landroid/support/v4/view/NestedScrollingParentHelper;->mNestedScrollAxes:I
@@ -36,7 +36,7 @@
 .end method
 
 .method public onNestedScrollAccepted(Landroid/view/View;Landroid/view/View;I)V
-    .registers 4
+    .locals 0
     .param p1, "child"    # Landroid/view/View;
     .param p2, "target"    # Landroid/view/View;
     .param p3, "axes"    # I
@@ -49,7 +49,7 @@
 .end method
 
 .method public onStopNestedScroll(Landroid/view/View;)V
-    .registers 3
+    .locals 1
     .param p1, "target"    # Landroid/view/View;
 
     .line 82

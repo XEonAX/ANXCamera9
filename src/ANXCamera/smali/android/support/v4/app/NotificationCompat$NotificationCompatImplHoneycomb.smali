@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 568
     invoke-direct {p0}, Landroid/support/v4/app/NotificationCompat$NotificationCompatImplBase;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public build(Landroid/support/v4/app/NotificationCompat$Builder;Landroid/support/v4/app/NotificationCompat$BuilderExtender;)Landroid/app/Notification;
-    .registers 13
+    .locals 10
     .param p1, "b"    # Landroid/support/v4/app/NotificationCompat$Builder;
     .param p2, "extender"    # Landroid/support/v4/app/NotificationCompat$BuilderExtender;
 

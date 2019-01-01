@@ -24,7 +24,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/app/Activity;)V
-    .registers 9
+    .locals 7
     .param p1, "activity"    # Landroid/app/Activity;
 
     .line 104
@@ -35,7 +35,7 @@
 
     const/4 v1, 0x1
 
-    :try_start_5
+    :try_start_0
     const-class v2, Landroid/app/ActionBar;
 
     const-string v3, "setHomeAsUpIndicator"
@@ -68,14 +68,14 @@
     move-result-object v2
 
     iput-object v2, p0, Landroid/support/v4/app/ActionBarDrawerToggleHoneycomb$SetIndicatorInfo;->setHomeActionContentDescription:Ljava/lang/reflect/Method;
-    :try_end_25
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_5 .. :try_end_25} :catch_26
+    :try_end_0
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 112
     return-void
 
     .line 113
-    :catch_26
+    :catch_0
     move-exception v2
 
     .line 117
@@ -87,13 +87,13 @@
 
     .line 118
     .local v3, "home":Landroid/view/View;
-    if-nez v3, :cond_31
+    if-nez v3, :cond_0
 
     .line 120
     return-void
 
     .line 123
-    :cond_31
+    :cond_0
     invoke-virtual {v3}, Landroid/view/View;->getParent()Landroid/view/ViewParent;
 
     move-result-object v4
@@ -110,13 +110,13 @@
     .local v5, "childCount":I
     const/4 v6, 0x2
 
-    if-eq v5, v6, :cond_3f
+    if-eq v5, v6, :cond_1
 
     .line 127
     return-void
 
     .line 130
-    :cond_3f
+    :cond_1
     invoke-virtual {v4, v0}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
 
     move-result-object v0
@@ -133,21 +133,21 @@
 
     move-result v6
 
-    if-ne v6, v2, :cond_4f
+    if-ne v6, v2, :cond_2
 
     move-object v2, v1
 
-    goto :goto_50
+    goto :goto_0
 
-    :cond_4f
+    :cond_2
     move-object v2, v0
 
     .line 134
     .local v2, "up":Landroid/view/View;
-    :goto_50
+    :goto_0
     instance-of v6, v2, Landroid/widget/ImageView;
 
-    if-eqz v6, :cond_59
+    if-eqz v6, :cond_3
 
     .line 136
     move-object v6, v2
@@ -157,6 +157,6 @@
     iput-object v6, p0, Landroid/support/v4/app/ActionBarDrawerToggleHoneycomb$SetIndicatorInfo;->upIndicatorView:Landroid/widget/ImageView;
 
     .line 138
-    :cond_59
+    :cond_3
     return-void
 .end method

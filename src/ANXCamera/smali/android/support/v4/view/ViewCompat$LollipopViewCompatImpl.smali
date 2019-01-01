@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 1400
     invoke-direct {p0}, Landroid/support/v4/view/ViewCompat$KitKatViewCompatImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public dispatchApplyWindowInsets(Landroid/view/View;Landroid/support/v4/view/WindowInsetsCompat;)Landroid/support/v4/view/WindowInsetsCompat;
-    .registers 4
+    .locals 1
     .param p1, "v"    # Landroid/view/View;
     .param p2, "insets"    # Landroid/support/v4/view/WindowInsetsCompat;
 
@@ -40,7 +40,7 @@
 .end method
 
 .method public dispatchNestedFling(Landroid/view/View;FFZ)Z
-    .registers 6
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
     .param p2, "velocityX"    # F
     .param p3, "velocityY"    # F
@@ -55,7 +55,7 @@
 .end method
 
 .method public dispatchNestedPreFling(Landroid/view/View;FF)Z
-    .registers 5
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
     .param p2, "velocityX"    # F
     .param p3, "velocityY"    # F
@@ -69,7 +69,7 @@
 .end method
 
 .method public dispatchNestedPreScroll(Landroid/view/View;II[I[I)Z
-    .registers 7
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
     .param p2, "dx"    # I
     .param p3, "dy"    # I
@@ -85,7 +85,7 @@
 .end method
 
 .method public dispatchNestedScroll(Landroid/view/View;IIII[I)Z
-    .registers 8
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
     .param p2, "dxConsumed"    # I
     .param p3, "dyConsumed"    # I
@@ -102,7 +102,7 @@
 .end method
 
 .method public getBackgroundTintList(Landroid/view/View;)Landroid/content/res/ColorStateList;
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1498
@@ -114,7 +114,7 @@
 .end method
 
 .method public getBackgroundTintMode(Landroid/view/View;)Landroid/graphics/PorterDuff$Mode;
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1513
@@ -126,7 +126,7 @@
 .end method
 
 .method public getElevation(Landroid/view/View;)F
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1423
@@ -138,7 +138,7 @@
 .end method
 
 .method public getTransitionName(Landroid/view/View;)Ljava/lang/String;
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1408
@@ -150,7 +150,7 @@
 .end method
 
 .method public getTranslationZ(Landroid/view/View;)F
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1433
@@ -162,7 +162,7 @@
 .end method
 
 .method public getZ(Landroid/view/View;)F
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1528
@@ -174,7 +174,7 @@
 .end method
 
 .method public hasNestedScrollingParent(Landroid/view/View;)Z
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1463
@@ -186,7 +186,7 @@
 .end method
 
 .method public isImportantForAccessibility(Landroid/view/View;)Z
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1493
@@ -198,7 +198,7 @@
 .end method
 
 .method public isNestedScrollingEnabled(Landroid/view/View;)Z
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1448
@@ -210,7 +210,7 @@
 .end method
 
 .method public onApplyWindowInsets(Landroid/view/View;Landroid/support/v4/view/WindowInsetsCompat;)Landroid/support/v4/view/WindowInsetsCompat;
-    .registers 4
+    .locals 1
     .param p1, "v"    # Landroid/view/View;
     .param p2, "insets"    # Landroid/support/v4/view/WindowInsetsCompat;
 
@@ -223,7 +223,7 @@
 .end method
 
 .method public requestApplyInsets(Landroid/view/View;)V
-    .registers 2
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
 
     .line 1413
@@ -234,7 +234,7 @@
 .end method
 
 .method public setBackgroundTintList(Landroid/view/View;Landroid/content/res/ColorStateList;)V
-    .registers 3
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
     .param p2, "tintList"    # Landroid/content/res/ColorStateList;
 
@@ -246,7 +246,7 @@
 .end method
 
 .method public setBackgroundTintMode(Landroid/view/View;Landroid/graphics/PorterDuff$Mode;)V
-    .registers 3
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
     .param p2, "mode"    # Landroid/graphics/PorterDuff$Mode;
 
@@ -258,7 +258,7 @@
 .end method
 
 .method public setElevation(Landroid/view/View;F)V
-    .registers 3
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
     .param p2, "elevation"    # F
 
@@ -270,7 +270,7 @@
 .end method
 
 .method public setNestedScrollingEnabled(Landroid/view/View;Z)V
-    .registers 3
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
     .param p2, "enabled"    # Z
 
@@ -282,7 +282,7 @@
 .end method
 
 .method public setOnApplyWindowInsetsListener(Landroid/view/View;Landroid/support/v4/view/OnApplyWindowInsetsListener;)V
-    .registers 3
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
     .param p2, "listener"    # Landroid/support/v4/view/OnApplyWindowInsetsListener;
 
@@ -294,7 +294,7 @@
 .end method
 
 .method public setTransitionName(Landroid/view/View;Ljava/lang/String;)V
-    .registers 3
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
     .param p2, "transitionName"    # Ljava/lang/String;
 
@@ -306,7 +306,7 @@
 .end method
 
 .method public setTranslationZ(Landroid/view/View;F)V
-    .registers 3
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
     .param p2, "translationZ"    # F
 
@@ -318,7 +318,7 @@
 .end method
 
 .method public startNestedScroll(Landroid/view/View;I)Z
-    .registers 4
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
     .param p2, "axes"    # I
 
@@ -331,7 +331,7 @@
 .end method
 
 .method public stopNestedScroll(Landroid/view/View;)V
-    .registers 2
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
 
     .line 1458

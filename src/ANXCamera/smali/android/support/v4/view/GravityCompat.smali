@@ -27,7 +27,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .locals 2
 
     .line 89
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -36,7 +36,7 @@
     .local v0, "version":I
     const/16 v1, 0x11
 
-    if-lt v0, v1, :cond_e
+    if-lt v0, v1, :cond_0
 
     .line 91
     new-instance v1, Landroid/support/v4/view/GravityCompat$GravityCompatImplJellybeanMr1;
@@ -45,10 +45,10 @@
 
     sput-object v1, Landroid/support/v4/view/GravityCompat;->IMPL:Landroid/support/v4/view/GravityCompat$GravityCompatImpl;
 
-    goto :goto_15
+    goto :goto_0
 
     .line 93
-    :cond_e
+    :cond_0
     new-instance v1, Landroid/support/v4/view/GravityCompat$GravityCompatImplBase;
 
     invoke-direct {v1}, Landroid/support/v4/view/GravityCompat$GravityCompatImplBase;-><init>()V
@@ -57,12 +57,12 @@
 
     .line 95
     .end local v0    # "version":I
-    :goto_15
+    :goto_0
     return-void
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 27
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -72,7 +72,7 @@
 .end method
 
 .method public static apply(IIILandroid/graphics/Rect;IILandroid/graphics/Rect;I)V
-    .registers 17
+    .locals 9
     .param p0, "gravity"    # I
     .param p1, "w"    # I
     .param p2, "h"    # I
@@ -108,7 +108,7 @@
 .end method
 
 .method public static apply(IIILandroid/graphics/Rect;Landroid/graphics/Rect;I)V
-    .registers 13
+    .locals 7
     .param p0, "gravity"    # I
     .param p1, "w"    # I
     .param p2, "h"    # I
@@ -138,7 +138,7 @@
 .end method
 
 .method public static applyDisplay(ILandroid/graphics/Rect;Landroid/graphics/Rect;I)V
-    .registers 5
+    .locals 1
     .param p0, "gravity"    # I
     .param p1, "display"    # Landroid/graphics/Rect;
     .param p2, "inoutObj"    # Landroid/graphics/Rect;
@@ -154,7 +154,7 @@
 .end method
 
 .method public static getAbsoluteGravity(II)I
-    .registers 3
+    .locals 1
     .param p0, "gravity"    # I
     .param p1, "layoutDirection"    # I
 

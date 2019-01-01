@@ -156,7 +156,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 2557
     const-string/jumbo v0, "resister_find_device_sim_number"
@@ -197,7 +197,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 2471
     invoke-direct {p0}, Landroid/provider/SystemSettings$Secure;-><init>()V
@@ -206,7 +206,7 @@
 .end method
 
 .method static synthetic access$000(Ljava/lang/String;)Landroid/content/Intent;
-    .registers 2
+    .locals 1
     .param p0, "x0"    # Ljava/lang/String;
 
     .line 2471
@@ -218,7 +218,7 @@
 .end method
 
 .method private static buildNewPasswordIntent(Ljava/lang/String;)Landroid/content/Intent;
-    .registers 4
+    .locals 3
     .param p0, "businessKey"    # Ljava/lang/String;
 
     .line 2975
@@ -246,7 +246,7 @@
 .end method
 
 .method public static changeOpenCrossUserNotification(Landroid/content/ContentResolver;ZI)V
-    .registers 4
+    .locals 1
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "isOpen"    # Z
     .param p2, "userId"    # I
@@ -261,7 +261,7 @@
 .end method
 
 .method public static changeOpenSwitchUserNotification(Landroid/content/ContentResolver;ZI)V
-    .registers 4
+    .locals 1
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "isOpen"    # Z
     .param p2, "userId"    # I
@@ -276,7 +276,7 @@
 .end method
 
 .method public static enableHttpInvokeApp(Landroid/content/ContentResolver;Z)V
-    .registers 4
+    .locals 2
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "allow"    # Z
 
@@ -294,7 +294,7 @@
 .end method
 
 .method public static enableUploadDebugLog(Landroid/content/ContentResolver;Z)V
-    .registers 4
+    .locals 2
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "allow"    # Z
 
@@ -312,7 +312,7 @@
 .end method
 
 .method public static enableUserExperienceProgram(Landroid/content/ContentResolver;Z)V
-    .registers 4
+    .locals 2
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "allow"    # Z
 
@@ -330,7 +330,7 @@
 .end method
 
 .method public static getBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
-    .registers 4
+    .locals 1
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "name"    # Ljava/lang/String;
     .param p2, "defValue"    # Z
@@ -340,27 +340,27 @@
 
     move-result v0
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_9
+    :goto_0
     return v0
 .end method
 
 .method public static getCtaSupported(Landroid/content/ContentResolver;)I
-    .registers 3
+    .locals 2
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
     .line 2904
     sget-boolean v0, Lmiui/os/Build;->IS_INTERNATIONAL_BUILD:Z
 
-    if-eqz v0, :cond_6
+    if-eqz v0, :cond_0
 
     .line 2905
     const/4 v0, 0x0
@@ -368,7 +368,7 @@
     return v0
 
     .line 2908
-    :cond_6
+    :cond_0
     const-string/jumbo v0, "tst_support"
 
     const/4 v1, -0x1
@@ -381,7 +381,7 @@
 .end method
 
 .method public static getDisableHybridIconTipTS(Landroid/content/ContentResolver;)J
-    .registers 4
+    .locals 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
     .line 3106
@@ -397,7 +397,7 @@
 .end method
 
 .method public static getSecondSpaceEntranceStatus(Landroid/content/ContentResolver;I)I
-    .registers 4
+    .locals 2
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "userId"    # I
 
@@ -414,7 +414,7 @@
 .end method
 
 .method public static hasCommonPassword(Landroid/content/Context;)Z
-    .registers 3
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
 
     .line 2929
@@ -424,21 +424,21 @@
 
     .line 2930
     .local v0, "quality":I
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_0
 
     const/4 v1, 0x1
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_9
+    :goto_0
     return v1
 .end method
 
 .method public static isCommonPasswordEnabledForBusiness(Landroid/content/Context;Ljava/lang/String;)Z
-    .registers 5
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "businessId"    # Ljava/lang/String;
 
@@ -453,25 +453,25 @@
 
     const/4 v2, 0x0
 
-    if-eqz v0, :cond_14
+    if-eqz v0, :cond_1
 
     .line 2938
     invoke-static {p0}, Lmiui/util/LockPatternUtilsWrapper;->getActivePasswordQuality(Landroid/content/Context;)I
 
     move-result v0
 
-    if-eqz v0, :cond_12
+    if-eqz v0, :cond_0
 
-    goto :goto_13
+    goto :goto_0
 
-    :cond_12
+    :cond_0
     move v1, v2
 
-    :goto_13
+    :goto_0
     return v1
 
     .line 2941
-    :cond_14
+    :cond_1
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -480,19 +480,19 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1f
+    if-eqz v0, :cond_2
 
-    goto :goto_20
+    goto :goto_1
 
-    :cond_1f
+    :cond_2
     move v1, v2
 
-    :goto_20
+    :goto_1
     return v1
 .end method
 
 .method public static isFingerprintEnabledForBusiness(Landroid/content/Context;Ljava/lang/String;)Z
-    .registers 5
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "businessId"    # Ljava/lang/String;
 
@@ -509,18 +509,18 @@
 
     const/4 v2, 0x2
 
-    if-ne v0, v2, :cond_e
+    if-ne v0, v2, :cond_0
 
     const/4 v1, 0x1
 
     nop
 
-    :cond_e
+    :cond_0
     return v1
 .end method
 
 .method public static isForceCloseDialogEnabled(Landroid/content/Context;)Z
-    .registers 6
+    .locals 5
     .param p0, "context"    # Landroid/content/Context;
 
     .line 2604
@@ -528,7 +528,7 @@
 
     const/4 v1, 0x1
 
-    :try_start_2
+    :try_start_0
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v2
@@ -540,20 +540,20 @@
     invoke-static {v2, v3, v4}, Landroid/provider/Settings$Secure;->getIntForUser(Landroid/content/ContentResolver;Ljava/lang/String;I)I
 
     move-result v2
-    :try_end_d
-    .catch Landroid/provider/Settings$SettingNotFoundException; {:try_start_2 .. :try_end_d} :catch_12
+    :try_end_0
+    .catch Landroid/provider/Settings$SettingNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
-    if-ne v1, v2, :cond_11
+    if-ne v1, v2, :cond_0
 
     move v0, v1
 
     nop
 
-    :cond_11
+    :cond_0
     return v0
 
     .line 2606
-    :catch_12
+    :catch_0
     move-exception v2
 
     .line 2608
@@ -565,31 +565,31 @@
 
     move-result v2
 
-    if-eqz v2, :cond_28
+    if-eqz v2, :cond_2
 
     sget-boolean v2, Lmiui/os/Build;->IS_DEVELOPMENT_VERSION:Z
 
-    if-nez v2, :cond_28
+    if-nez v2, :cond_2
 
     sget-boolean v2, Lmiui/os/Build;->IS_INTERNATIONAL_BUILD:Z
 
-    if-eqz v2, :cond_27
+    if-eqz v2, :cond_1
 
-    goto :goto_28
+    goto :goto_0
 
-    :cond_27
-    goto :goto_29
+    :cond_1
+    goto :goto_1
 
-    :cond_28
-    :goto_28
+    :cond_2
+    :goto_0
     move v0, v1
 
-    :goto_29
+    :goto_1
     return v0
 .end method
 
 .method public static isGreenKidActive(Landroid/content/ContentResolver;)Z
-    .registers 4
+    .locals 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
     .line 2859
@@ -603,18 +603,18 @@
 
     const/4 v2, 0x1
 
-    if-ne v0, v2, :cond_c
+    if-ne v0, v2, :cond_0
 
     move v1, v2
 
     nop
 
-    :cond_c
+    :cond_0
     return v1
 .end method
 
 .method public static isHttpInvokeAppEnable(Landroid/content/ContentResolver;)Z
-    .registers 3
+    .locals 2
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
     .line 3090
@@ -626,19 +626,19 @@
 
     move-result v0
 
-    if-ne v0, v1, :cond_a
+    if-ne v0, v1, :cond_0
 
-    goto :goto_b
+    goto :goto_0
 
-    :cond_a
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_b
+    :goto_0
     return v1
 .end method
 
 .method public static isOpenCrossUserNotification(Landroid/content/ContentResolver;I)Z
-    .registers 4
+    .locals 2
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "userId"    # I
 
@@ -651,19 +651,19 @@
 
     move-result v0
 
-    if-eqz v0, :cond_b
+    if-eqz v0, :cond_0
 
-    goto :goto_c
+    goto :goto_0
 
-    :cond_b
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_c
+    :goto_0
     return v1
 .end method
 
 .method public static isOpenSwitchUserNotification(Landroid/content/ContentResolver;I)Z
-    .registers 4
+    .locals 2
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "userId"    # I
 
@@ -676,19 +676,19 @@
 
     move-result v0
 
-    if-eqz v0, :cond_b
+    if-eqz v0, :cond_0
 
-    goto :goto_c
+    goto :goto_0
 
-    :cond_b
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_c
+    :goto_0
     return v1
 .end method
 
 .method public static isSecureSpace(Landroid/content/ContentResolver;)Z
-    .registers 3
+    .locals 2
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
     .line 2885
@@ -698,7 +698,7 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_11
+    if-eqz v0, :cond_0
 
     const-string v0, "is_second_space"
 
@@ -706,18 +706,18 @@
 
     move-result v0
 
-    if-eqz v0, :cond_11
+    if-eqz v0, :cond_0
 
     const/4 v1, 0x1
 
     nop
 
-    :cond_11
+    :cond_0
     return v1
 .end method
 
 .method public static isTimeChangeDisallow(Landroid/content/ContentResolver;)Z
-    .registers 4
+    .locals 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
     .line 2871
@@ -731,18 +731,18 @@
 
     const/4 v2, 0x1
 
-    if-ne v0, v2, :cond_d
+    if-ne v0, v2, :cond_0
 
     move v1, v2
 
     nop
 
-    :cond_d
+    :cond_0
     return v1
 .end method
 
 .method public static isUploadDebugLogEnable(Landroid/content/ContentResolver;)Z
-    .registers 4
+    .locals 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
     .line 3074
@@ -760,19 +760,19 @@
 
     const/4 v2, 0x1
 
-    if-ne v1, v2, :cond_f
+    if-ne v1, v2, :cond_0
 
-    goto :goto_10
+    goto :goto_0
 
-    :cond_f
+    :cond_0
     const/4 v2, 0x0
 
-    :goto_10
+    :goto_0
     return v2
 .end method
 
 .method public static isUserExperienceProgramEnable(Landroid/content/ContentResolver;)Z
-    .registers 4
+    .locals 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
     .line 3058
@@ -788,19 +788,19 @@
 
     const/4 v2, 0x1
 
-    if-ne v1, v2, :cond_d
+    if-ne v1, v2, :cond_0
 
-    goto :goto_e
+    goto :goto_0
 
-    :cond_d
+    :cond_0
     const/4 v2, 0x0
 
-    :goto_e
+    :goto_0
     return v2
 .end method
 
 .method public static putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)V
-    .registers 3
+    .locals 0
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "name"    # Ljava/lang/String;
     .param p2, "value"    # Z
@@ -813,7 +813,7 @@
 .end method
 
 .method static recordAccessibilityModifications(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;I)V
-    .registers 16
+    .locals 12
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "name"    # Ljava/lang/String;
     .param p2, "value"    # Ljava/lang/String;
@@ -826,13 +826,13 @@
 
     move-result v0
 
-    if-nez v0, :cond_9
+    if-nez v0, :cond_0
 
     .line 3160
     return-void
 
     .line 3162
-    :cond_9
+    :cond_0
     const-string v0, "enabled_accessibility_services"
 
     invoke-static {p0, v0, p3}, Landroid/provider/Settings$Secure;->getStringForUser(Landroid/content/ContentResolver;Ljava/lang/String;I)Ljava/lang/String;
@@ -843,13 +843,13 @@
     .local v0, "oldValue":Ljava/lang/String;
     const/4 v1, 0x0
 
-    if-nez v0, :cond_15
+    if-nez v0, :cond_1
 
     new-array v2, v1, [Ljava/lang/String;
 
-    goto :goto_1b
+    goto :goto_0
 
-    :cond_15
+    :cond_1
     const-string v2, ":"
 
     invoke-virtual {v0, v2}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
@@ -858,14 +858,14 @@
 
     .line 3165
     .local v2, "oldServices":[Ljava/lang/String;
-    :goto_1b
-    if-nez p2, :cond_20
+    :goto_0
+    if-nez p2, :cond_2
 
     new-array v3, v1, [Ljava/lang/String;
 
-    goto :goto_26
+    goto :goto_1
 
-    :cond_20
+    :cond_2
     const-string v3, ":"
 
     invoke-virtual {p2, v3}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
@@ -874,13 +874,13 @@
 
     .line 3166
     .local v3, "newServices":[Ljava/lang/String;
-    :goto_26
+    :goto_1
     array-length v4, v2
 
     move v5, v1
 
-    :goto_28
-    if-ge v5, v4, :cond_6a
+    :goto_2
+    if-ge v5, v4, :cond_7
 
     aget-object v6, v2, v5
 
@@ -890,14 +890,14 @@
 
     move-result v7
 
-    if-eqz v7, :cond_33
+    if-eqz v7, :cond_3
 
     .end local v6    # "oldService":Ljava/lang/String;
-    goto :goto_67
+    goto :goto_5
 
     .line 3168
     .restart local v6    # "oldService":Ljava/lang/String;
-    :cond_33
+    :cond_3
     const/4 v7, 0x0
 
     .line 3169
@@ -906,8 +906,8 @@
 
     move v9, v1
 
-    :goto_36
-    if-ge v9, v8, :cond_45
+    :goto_3
+    if-ge v9, v8, :cond_5
 
     aget-object v10, v3, v9
 
@@ -917,25 +917,25 @@
 
     move-result v11
 
-    if-eqz v11, :cond_42
+    if-eqz v11, :cond_4
 
     .line 3171
     const/4 v7, 0x1
 
     .line 3172
-    goto :goto_45
+    goto :goto_4
 
     .line 3169
     .end local v10    # "newService":Ljava/lang/String;
-    :cond_42
+    :cond_4
     add-int/lit8 v9, v9, 0x1
 
-    goto :goto_36
+    goto :goto_3
 
     .line 3175
-    :cond_45
-    :goto_45
-    if-nez v7, :cond_67
+    :cond_5
+    :goto_4
+    if-nez v7, :cond_6
 
     .line 3177
     new-instance v8, Ljava/lang/StringBuilder;
@@ -972,20 +972,20 @@
     .line 3166
     .end local v6    # "oldService":Ljava/lang/String;
     .end local v7    # "contains":Z
-    :cond_67
-    :goto_67
+    :cond_6
+    :goto_5
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_28
+    goto :goto_2
 
     .line 3182
-    :cond_6a
+    :cond_7
     array-length v4, v3
 
     move v5, v1
 
-    :goto_6c
-    if-ge v5, v4, :cond_ae
+    :goto_6
+    if-ge v5, v4, :cond_c
 
     aget-object v6, v3, v5
 
@@ -995,14 +995,14 @@
 
     move-result v7
 
-    if-eqz v7, :cond_77
+    if-eqz v7, :cond_8
 
     .end local v6    # "newService":Ljava/lang/String;
-    goto :goto_ab
+    goto :goto_9
 
     .line 3184
     .restart local v6    # "newService":Ljava/lang/String;
-    :cond_77
+    :cond_8
     const/4 v7, 0x0
 
     .line 3185
@@ -1011,8 +1011,8 @@
 
     move v9, v1
 
-    :goto_7a
-    if-ge v9, v8, :cond_89
+    :goto_7
+    if-ge v9, v8, :cond_a
 
     aget-object v10, v2, v9
 
@@ -1022,25 +1022,25 @@
 
     move-result v11
 
-    if-eqz v11, :cond_86
+    if-eqz v11, :cond_9
 
     .line 3187
     const/4 v7, 0x1
 
     .line 3188
-    goto :goto_89
+    goto :goto_8
 
     .line 3185
     .end local v10    # "oldService":Ljava/lang/String;
-    :cond_86
+    :cond_9
     add-int/lit8 v9, v9, 0x1
 
-    goto :goto_7a
+    goto :goto_7
 
     .line 3191
-    :cond_89
-    :goto_89
-    if-nez v7, :cond_ab
+    :cond_a
+    :goto_8
+    if-nez v7, :cond_b
 
     .line 3193
     new-instance v8, Ljava/lang/StringBuilder;
@@ -1077,32 +1077,32 @@
     .line 3182
     .end local v6    # "newService":Ljava/lang/String;
     .end local v7    # "contains":Z
-    :cond_ab
-    :goto_ab
+    :cond_b
+    :goto_9
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_6c
+    goto :goto_6
 
     .line 3198
-    :cond_ae
+    :cond_c
     return-void
 .end method
 
 .method public static setCtaSupported(Landroid/content/ContentResolver;I)V
-    .registers 3
+    .locals 1
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "ctaSupport"    # I
 
     .line 2893
     sget-boolean v0, Lmiui/os/Build;->IS_INTERNATIONAL_BUILD:Z
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_0
 
     .line 2894
     return-void
 
     .line 2897
-    :cond_5
+    :cond_0
     const-string/jumbo v0, "tst_support"
 
     invoke-static {p0, v0, p1}, Landroid/provider/Settings$Secure;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
@@ -1112,7 +1112,7 @@
 .end method
 
 .method public static setDisableHybridIconTipTS(Landroid/content/ContentResolver;J)Z
-    .registers 4
+    .locals 1
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "timeStamp"    # J
 
@@ -1127,7 +1127,7 @@
 .end method
 
 .method public static setSecondSpaceEntranceStatus(Landroid/content/ContentResolver;ZI)V
-    .registers 4
+    .locals 1
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "isShow"    # Z
     .param p2, "userId"    # I
@@ -1142,7 +1142,7 @@
 .end method
 
 .method public static setTimeChangeDisallow(Landroid/content/ContentResolver;Z)Z
-    .registers 3
+    .locals 1
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "disallow"    # Z
 
@@ -1157,7 +1157,7 @@
 .end method
 
 .method public static showApplyPasswordConfirmDialog(Landroid/app/Activity;Landroid/content/DialogInterface$OnClickListener;Ljava/lang/String;Ljava/lang/String;)V
-    .registers 10
+    .locals 6
     .param p0, "act"    # Landroid/app/Activity;
     .param p1, "clickListener"    # Landroid/content/DialogInterface$OnClickListener;
     .param p2, "businessKey"    # Ljava/lang/String;
@@ -1245,7 +1245,7 @@
 .end method
 
 .method private static showConfirmDialog(Landroid/app/Activity;Landroid/content/DialogInterface$OnClickListener;)V
-    .registers 4
+    .locals 2
     .param p0, "activity"    # Landroid/app/Activity;
     .param p1, "listener"    # Landroid/content/DialogInterface$OnClickListener;
 
@@ -1307,7 +1307,7 @@
 .end method
 
 .method public static showSetPasswordConfirmDialog(Landroid/app/Activity;Landroid/content/DialogInterface$OnClickListener;Ljava/lang/String;I)V
-    .registers 5
+    .locals 1
     .param p0, "activity"    # Landroid/app/Activity;
     .param p1, "dialogClickListener"    # Landroid/content/DialogInterface$OnClickListener;
     .param p2, "businessKey"    # Ljava/lang/String;
@@ -1322,24 +1322,24 @@
     .line 3012
     .local v0, "listener":Landroid/content/DialogInterface$OnClickListener;
     invoke-static {p0, v0}, Landroid/provider/MiuiSettings$Secure;->showConfirmDialog(Landroid/app/Activity;Landroid/content/DialogInterface$OnClickListener;)V
-    :try_end_8
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_8} :catch_9
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 3015
     .end local v0    # "listener":Landroid/content/DialogInterface$OnClickListener;
-    goto :goto_a
+    goto :goto_0
 
     .line 3013
-    :catch_9
+    :catch_0
     move-exception v0
 
     .line 3016
-    :goto_a
+    :goto_0
     return-void
 .end method
 
 .method public static showSetPasswordConfirmDialog(Landroid/app/Fragment;Landroid/content/DialogInterface$OnClickListener;Ljava/lang/String;I)V
-    .registers 6
+    .locals 2
     .param p0, "fragment"    # Landroid/app/Fragment;
     .param p1, "dialogClickListener"    # Landroid/content/DialogInterface$OnClickListener;
     .param p2, "businessKey"    # Ljava/lang/String;

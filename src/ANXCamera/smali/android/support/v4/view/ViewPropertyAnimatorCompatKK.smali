@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 21
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static setUpdateListener(Landroid/view/View;Landroid/support/v4/view/ViewPropertyAnimatorUpdateListener;)V
-    .registers 4
+    .locals 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "listener"    # Landroid/support/v4/view/ViewPropertyAnimatorUpdateListener;
 

@@ -13,7 +13,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 30
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -23,7 +23,7 @@
 .end method
 
 .method public static getAccessibilityNodeProvider(Ljava/lang/Object;Landroid/view/View;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p0, "delegate"    # Ljava/lang/Object;
     .param p1, "host"    # Landroid/view/View;
 
@@ -40,7 +40,7 @@
 .end method
 
 .method public static newAccessibilityDelegateBridge(Landroid/support/v4/view/AccessibilityDelegateCompatJellyBean$AccessibilityDelegateBridgeJellyBean;)Ljava/lang/Object;
-    .registers 2
+    .locals 1
     .param p0, "bridge"    # Landroid/support/v4/view/AccessibilityDelegateCompatJellyBean$AccessibilityDelegateBridgeJellyBean;
 
     .line 47
@@ -52,7 +52,7 @@
 .end method
 
 .method public static performAccessibilityAction(Ljava/lang/Object;Landroid/view/View;ILandroid/os/Bundle;)Z
-    .registers 5
+    .locals 1
     .param p0, "delegate"    # Ljava/lang/Object;
     .param p1, "host"    # Landroid/view/View;
     .param p2, "action"    # I

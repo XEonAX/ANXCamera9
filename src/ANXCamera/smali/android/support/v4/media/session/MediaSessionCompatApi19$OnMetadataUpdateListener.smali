@@ -39,7 +39,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v4/media/session/MediaSessionCompatApi14$Callback;)V
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -61,7 +61,7 @@
 
 # virtual methods
 .method public onMetadataUpdate(ILjava/lang/Object;)V
-    .registers 4
+    .locals 1
     .param p1, "key"    # I
     .param p2, "newValue"    # Ljava/lang/Object;
 
@@ -69,11 +69,11 @@
     .local p0, "this":Landroid/support/v4/media/session/MediaSessionCompatApi19$OnMetadataUpdateListener;, "Landroid/support/v4/media/session/MediaSessionCompatApi19$OnMetadataUpdateListener<TT;>;"
     const v0, 0x10000001
 
-    if-ne p1, v0, :cond_e
+    if-ne p1, v0, :cond_0
 
     instance-of v0, p2, Landroid/media/Rating;
 
-    if-eqz v0, :cond_e
+    if-eqz v0, :cond_0
 
     .line 97
     iget-object v0, p0, Landroid/support/v4/media/session/MediaSessionCompatApi19$OnMetadataUpdateListener;->mCallback:Landroid/support/v4/media/session/MediaSessionCompatApi14$Callback;
@@ -81,6 +81,6 @@
     invoke-interface {v0, p2}, Landroid/support/v4/media/session/MediaSessionCompatApi14$Callback;->onSetRating(Ljava/lang/Object;)V
 
     .line 99
-    :cond_e
+    :cond_0
     return-void
 .end method

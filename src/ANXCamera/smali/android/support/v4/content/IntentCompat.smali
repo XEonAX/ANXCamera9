@@ -34,7 +34,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .locals 2
 
     .line 85
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -43,7 +43,7 @@
     .local v0, "version":I
     const/16 v1, 0xf
 
-    if-lt v0, v1, :cond_e
+    if-lt v0, v1, :cond_0
 
     .line 87
     new-instance v1, Landroid/support/v4/content/IntentCompat$IntentCompatImplIcsMr1;
@@ -52,13 +52,13 @@
 
     sput-object v1, Landroid/support/v4/content/IntentCompat;->IMPL:Landroid/support/v4/content/IntentCompat$IntentCompatImpl;
 
-    goto :goto_21
+    goto :goto_0
 
     .line 88
-    :cond_e
+    :cond_0
     const/16 v1, 0xb
 
-    if-lt v0, v1, :cond_1a
+    if-lt v0, v1, :cond_1
 
     .line 89
     new-instance v1, Landroid/support/v4/content/IntentCompat$IntentCompatImplHC;
@@ -67,10 +67,10 @@
 
     sput-object v1, Landroid/support/v4/content/IntentCompat;->IMPL:Landroid/support/v4/content/IntentCompat$IntentCompatImpl;
 
-    goto :goto_21
+    goto :goto_0
 
     .line 91
-    :cond_1a
+    :cond_1
     new-instance v1, Landroid/support/v4/content/IntentCompat$IntentCompatImplBase;
 
     invoke-direct {v1}, Landroid/support/v4/content/IntentCompat$IntentCompatImplBase;-><init>()V
@@ -79,12 +79,12 @@
 
     .line 93
     .end local v0    # "version":I
-    :goto_21
+    :goto_0
     return-void
 .end method
 
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 95
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -94,7 +94,7 @@
 .end method
 
 .method public static makeMainActivity(Landroid/content/ComponentName;)Landroid/content/Intent;
-    .registers 2
+    .locals 1
     .param p0, "mainActivity"    # Landroid/content/ComponentName;
 
     .line 221
@@ -108,7 +108,7 @@
 .end method
 
 .method public static makeMainSelectorActivity(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
-    .registers 3
+    .locals 1
     .param p0, "selectorAction"    # Ljava/lang/String;
     .param p1, "selectorCategory"    # Ljava/lang/String;
 
@@ -123,7 +123,7 @@
 .end method
 
 .method public static makeRestartActivityTask(Landroid/content/ComponentName;)Landroid/content/Intent;
-    .registers 2
+    .locals 1
     .param p0, "mainActivity"    # Landroid/content/ComponentName;
 
     .line 266

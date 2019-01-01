@@ -36,7 +36,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 1787
     new-instance v0, Landroid/support/v4/widget/DrawerLayout$SavedState$1;
@@ -49,7 +49,7 @@
 .end method
 
 .method public constructor <init>(Landroid/os/Parcel;)V
-    .registers 3
+    .locals 1
     .param p1, "in"    # Landroid/os/Parcel;
 
     .line 1773
@@ -78,7 +78,7 @@
 .end method
 
 .method public constructor <init>(Landroid/os/Parcelable;)V
-    .registers 3
+    .locals 1
     .param p1, "superState"    # Landroid/os/Parcelable;
 
     .line 1778
@@ -102,7 +102,7 @@
 
 # virtual methods
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .registers 4
+    .locals 1
     .param p1, "dest"    # Landroid/os/Parcel;
     .param p2, "flags"    # I
 

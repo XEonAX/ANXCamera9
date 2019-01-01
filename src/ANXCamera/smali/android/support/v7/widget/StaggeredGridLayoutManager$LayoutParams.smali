@@ -26,7 +26,7 @@
 
 # direct methods
 .method public constructor <init>(II)V
-    .registers 3
+    .locals 0
     .param p1, "width"    # I
     .param p2, "height"    # I
 
@@ -38,7 +38,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
-    .registers 3
+    .locals 0
     .param p1, "c"    # Landroid/content/Context;
     .param p2, "attrs"    # Landroid/util/AttributeSet;
 
@@ -50,7 +50,7 @@
 .end method
 
 .method public constructor <init>(Landroid/support/v7/widget/RecyclerView$LayoutParams;)V
-    .registers 2
+    .locals 0
     .param p1, "source"    # Landroid/support/v7/widget/RecyclerView$LayoutParams;
 
     .line 2054
@@ -61,7 +61,7 @@
 .end method
 
 .method public constructor <init>(Landroid/view/ViewGroup$LayoutParams;)V
-    .registers 2
+    .locals 0
     .param p1, "source"    # Landroid/view/ViewGroup$LayoutParams;
 
     .line 2050
@@ -72,7 +72,7 @@
 .end method
 
 .method public constructor <init>(Landroid/view/ViewGroup$MarginLayoutParams;)V
-    .registers 2
+    .locals 0
     .param p1, "source"    # Landroid/view/ViewGroup$MarginLayoutParams;
 
     .line 2046
@@ -85,12 +85,12 @@
 
 # virtual methods
 .method public final getSpanIndex()I
-    .registers 2
+    .locals 1
 
     .line 2086
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$LayoutParams;->mSpan:Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;
 
-    if-nez v0, :cond_6
+    if-nez v0, :cond_0
 
     .line 2087
     const/4 v0, -0x1
@@ -98,7 +98,7 @@
     return v0
 
     .line 2089
-    :cond_6
+    :cond_0
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$LayoutParams;->mSpan:Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;
 
     iget v0, v0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mIndex:I
@@ -107,7 +107,7 @@
 .end method
 
 .method public isFullSpan()Z
-    .registers 2
+    .locals 1
 
     .line 2076
     iget-boolean v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$LayoutParams;->mFullSpan:Z
@@ -116,7 +116,7 @@
 .end method
 
 .method public setFullSpan(Z)V
-    .registers 2
+    .locals 0
     .param p1, "fullSpan"    # Z
 
     .line 2066

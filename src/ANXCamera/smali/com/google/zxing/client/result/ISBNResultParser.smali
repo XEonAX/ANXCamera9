@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 27
     invoke-direct {p0}, Lcom/google/zxing/client/result/ResultParser;-><init>()V
@@ -16,7 +16,7 @@
 
 # virtual methods
 .method public parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ISBNParsedResult;
-    .registers 7
+    .locals 5
     .param p1, "result"    # Lcom/google/zxing/Result;
 
     .line 34
@@ -30,13 +30,13 @@
 
     const/4 v2, 0x0
 
-    if-eq v0, v1, :cond_a
+    if-eq v0, v1, :cond_0
 
     .line 36
     return-object v2
 
     .line 38
-    :cond_a
+    :cond_0
     invoke-static {p1}, Lcom/google/zxing/client/result/ISBNResultParser;->getMassagedText(Lcom/google/zxing/Result;)Ljava/lang/String;
 
     move-result-object v1
@@ -51,20 +51,20 @@
     .local v3, "length":I
     const/16 v4, 0xd
 
-    if-eq v3, v4, :cond_17
+    if-eq v3, v4, :cond_1
 
     .line 41
     return-object v2
 
     .line 43
-    :cond_17
+    :cond_1
     const-string v4, "978"
 
     invoke-virtual {v1, v4}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
     move-result v4
 
-    if-nez v4, :cond_28
+    if-nez v4, :cond_2
 
     const-string v4, "979"
 
@@ -72,13 +72,13 @@
 
     move-result v4
 
-    if-nez v4, :cond_28
+    if-nez v4, :cond_2
 
     .line 44
     return-object v2
 
     .line 47
-    :cond_28
+    :cond_2
     new-instance v2, Lcom/google/zxing/client/result/ISBNParsedResult;
 
     invoke-direct {v2, v1}, Lcom/google/zxing/client/result/ISBNParsedResult;-><init>(Ljava/lang/String;)V
@@ -87,7 +87,7 @@
 .end method
 
 .method public bridge synthetic parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ParsedResult;
-    .registers 2
+    .locals 0
 
     .line 1
     invoke-virtual {p0, p1}, Lcom/google/zxing/client/result/ISBNResultParser;->parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ISBNParsedResult;

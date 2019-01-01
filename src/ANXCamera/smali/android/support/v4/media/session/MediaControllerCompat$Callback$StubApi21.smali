@@ -23,7 +23,7 @@
 
 # direct methods
 .method private constructor <init>(Landroid/support/v4/media/session/MediaControllerCompat$Callback;)V
-    .registers 2
+    .locals 0
 
     .line 438
     iput-object p1, p0, Landroid/support/v4/media/session/MediaControllerCompat$Callback$StubApi21;->this$0:Landroid/support/v4/media/session/MediaControllerCompat$Callback;
@@ -34,7 +34,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v4/media/session/MediaControllerCompat$Callback;Landroid/support/v4/media/session/MediaControllerCompat$1;)V
-    .registers 3
+    .locals 0
     .param p1, "x0"    # Landroid/support/v4/media/session/MediaControllerCompat$Callback;
     .param p2, "x1"    # Landroid/support/v4/media/session/MediaControllerCompat$1;
 
@@ -47,7 +47,7 @@
 
 # virtual methods
 .method public onMetadataChanged(Ljava/lang/Object;)V
-    .registers 4
+    .locals 2
     .param p1, "metadataObj"    # Ljava/lang/Object;
 
     .line 457
@@ -64,7 +64,7 @@
 .end method
 
 .method public onPlaybackStateChanged(Ljava/lang/Object;)V
-    .registers 4
+    .locals 2
     .param p1, "stateObj"    # Ljava/lang/Object;
 
     .line 451
@@ -81,7 +81,7 @@
 .end method
 
 .method public onSessionDestroyed()V
-    .registers 2
+    .locals 1
 
     .line 441
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$Callback$StubApi21;->this$0:Landroid/support/v4/media/session/MediaControllerCompat$Callback;
@@ -93,7 +93,7 @@
 .end method
 
 .method public onSessionEvent(Ljava/lang/String;Landroid/os/Bundle;)V
-    .registers 4
+    .locals 1
     .param p1, "event"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
 

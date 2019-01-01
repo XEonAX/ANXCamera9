@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 47
     invoke-direct {p0}, Landroid/support/v4/widget/ListPopupWindowCompat$BaseListPopupWindowImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public createDragToOpenListener(Ljava/lang/Object;Landroid/view/View;)Landroid/view/View$OnTouchListener;
-    .registers 4
+    .locals 1
     .param p1, "listPopupWindow"    # Ljava/lang/Object;
     .param p2, "src"    # Landroid/view/View;
 

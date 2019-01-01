@@ -33,7 +33,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 33
     invoke-direct {p0}, Lcom/google/zxing/oned/OneDimensionalCodeWriter;-><init>()V
@@ -42,7 +42,7 @@
 .end method
 
 .method private static isDigits(Ljava/lang/CharSequence;II)Z
-    .registers 9
+    .locals 6
     .param p0, "value"    # Ljava/lang/CharSequence;
     .param p1, "start"    # I
     .param p2, "length"    # I
@@ -61,19 +61,19 @@
     move v2, p1
 
     .local v2, "i":I
-    :goto_7
+    :goto_0
     const/4 v3, 0x0
 
-    if-ge v2, v0, :cond_23
+    if-ge v2, v0, :cond_4
 
-    if-lt v2, v1, :cond_d
+    if-lt v2, v1, :cond_0
 
     .end local v2    # "i":I
-    goto :goto_23
+    goto :goto_1
 
     .line 189
     .restart local v2    # "i":I
-    :cond_d
+    :cond_0
     invoke-interface {p0, v2}, Ljava/lang/CharSequence;->charAt(I)C
 
     move-result v4
@@ -82,50 +82,50 @@
     .local v4, "c":C
     const/16 v5, 0x30
 
-    if-lt v4, v5, :cond_19
+    if-lt v4, v5, :cond_1
 
     const/16 v5, 0x39
 
-    if-le v4, v5, :cond_20
+    if-le v4, v5, :cond_3
 
     .line 191
-    :cond_19
+    :cond_1
     const/16 v5, 0xf1
 
-    if-eq v4, v5, :cond_1e
+    if-eq v4, v5, :cond_2
 
     .line 192
     return v3
 
     .line 194
-    :cond_1e
+    :cond_2
     add-int/lit8 v0, v0, 0x1
 
     .line 188
     .end local v4    # "c":C
-    :cond_20
+    :cond_3
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_7
+    goto :goto_0
 
     .line 197
     .end local v2    # "i":I
-    :cond_23
-    :goto_23
-    if-gt v0, v1, :cond_27
+    :cond_4
+    :goto_1
+    if-gt v0, v1, :cond_5
 
     const/4 v2, 0x1
 
     return v2
 
-    :cond_27
+    :cond_5
     return v3
 .end method
 
 
 # virtual methods
 .method public encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;IILjava/util/Map;)Lcom/google/zxing/common/BitMatrix;
-    .registers 9
+    .locals 3
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "format"    # Lcom/google/zxing/BarcodeFormat;
     .param p3, "width"    # I
@@ -153,7 +153,7 @@
     .local p5, "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/EncodeHintType;*>;"
     sget-object v0, Lcom/google/zxing/BarcodeFormat;->CODE_128:Lcom/google/zxing/BarcodeFormat;
 
-    if-ne p2, v0, :cond_9
+    if-ne p2, v0, :cond_0
 
     .line 61
     invoke-super/range {p0 .. p5}, Lcom/google/zxing/oned/OneDimensionalCodeWriter;->encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;IILjava/util/Map;)Lcom/google/zxing/common/BitMatrix;
@@ -163,7 +163,7 @@
     return-object v0
 
     .line 59
-    :cond_9
+    :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -184,7 +184,7 @@
 .end method
 
 .method public encode(Ljava/lang/String;)[Z
-    .registers 15
+    .locals 13
     .param p1, "contents"    # Ljava/lang/String;
 
     .line 66
@@ -196,20 +196,20 @@
     .local v0, "length":I
     const/4 v1, 0x1
 
-    if-lt v0, v1, :cond_e5
+    if-lt v0, v1, :cond_e
 
     const/16 v2, 0x50
 
-    if-gt v0, v2, :cond_e5
+    if-gt v0, v2, :cond_e
 
     .line 73
     const/4 v2, 0x0
 
     .local v2, "i":I
-    :goto_c
+    :goto_0
     const/16 v3, 0x20
 
-    if-lt v2, v0, :cond_bf
+    if-lt v2, v0, :cond_b
 
     .line 88
     .end local v2    # "i":I
@@ -237,9 +237,9 @@
 
     .line 94
     .local v7, "position":I
-    :cond_1a
-    :goto_1a
-    if-lt v7, v0, :cond_65
+    :cond_0
+    :goto_1
+    if-lt v7, v0, :cond_4
 
     .line 161
     rem-int/lit8 v8, v2, 0x67
@@ -271,12 +271,12 @@
 
     move-result-object v9
 
-    :goto_33
+    :goto_2
     invoke-interface {v9}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-nez v3, :cond_53
+    if-nez v3, :cond_2
 
     .line 176
     new-array v3, v2, [Z
@@ -291,18 +291,18 @@
 
     move-result-object v10
 
-    :goto_40
+    :goto_3
     invoke-interface {v10}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v11
 
-    if-nez v11, :cond_47
+    if-nez v11, :cond_1
 
     .line 182
     return-object v3
 
     .line 178
-    :cond_47
+    :cond_1
     invoke-interface {v10}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v11
@@ -318,12 +318,12 @@
     add-int/2addr v9, v12
 
     .end local v11    # "pattern":[I
-    goto :goto_40
+    goto :goto_3
 
     .line 169
     .end local v3    # "result":[Z
     .end local v9    # "pos":I
-    :cond_53
+    :cond_2
     invoke-interface {v9}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v3
@@ -338,14 +338,14 @@
 
     const/4 v3, 0x0
 
-    :goto_5c
-    if-lt v3, v11, :cond_5f
+    :goto_4
+    if-lt v3, v11, :cond_3
 
     .end local v10    # "pattern":[I
-    goto :goto_33
+    goto :goto_2
 
     .restart local v10    # "pattern":[I
-    :cond_5f
+    :cond_3
     aget v12, v10, v3
 
     .line 171
@@ -356,61 +356,61 @@
     .end local v12    # "width":I
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_5c
+    goto :goto_4
 
     .line 96
     .end local v8    # "checkSum":I
     .end local v10    # "pattern":[I
     .local v2, "checkSum":I
-    :cond_65
+    :cond_4
     const/16 v8, 0x63
 
-    if-ne v6, v8, :cond_6b
+    if-ne v6, v8, :cond_5
 
     const/4 v8, 0x2
 
-    goto :goto_6c
+    goto :goto_5
 
-    :cond_6b
+    :cond_5
     const/4 v8, 0x4
 
     .line 98
     .local v8, "requiredDigitCount":I
-    :goto_6c
+    :goto_5
     invoke-static {p1, v7, v8}, Lcom/google/zxing/oned/Code128Writer;->isDigits(Ljava/lang/CharSequence;II)Z
 
     move-result v9
 
     const/16 v10, 0x64
 
-    if-eqz v9, :cond_77
+    if-eqz v9, :cond_6
 
     .line 99
     const/16 v9, 0x63
 
     .line 100
     .local v9, "newCodeSet":I
-    goto :goto_78
+    goto :goto_6
 
     .line 101
     .end local v9    # "newCodeSet":I
-    :cond_77
+    :cond_6
     move v9, v10
 
     .line 106
     .restart local v9    # "newCodeSet":I
-    :goto_78
-    if-ne v9, v6, :cond_a3
+    :goto_6
+    if-ne v9, v6, :cond_8
 
     .line 109
     invoke-virtual {p1, v7}, Ljava/lang/String;->charAt(I)C
 
     move-result v11
 
-    packed-switch v11, :pswitch_data_fa
+    packed-switch v11, :pswitch_data_0
 
     .line 124
-    if-ne v6, v10, :cond_95
+    if-ne v6, v10, :cond_7
 
     .line 125
     invoke-virtual {p1, v7}, Ljava/lang/String;->charAt(I)C
@@ -421,47 +421,47 @@
 
     .line 126
     .local v10, "patternIndex":I
-    goto :goto_a1
+    goto :goto_7
 
     .line 120
     .end local v10    # "patternIndex":I
-    :pswitch_89
+    :pswitch_0
     const/16 v10, 0x64
 
     .line 121
     .restart local v10    # "patternIndex":I
-    goto :goto_a1
+    goto :goto_7
 
     .line 117
     .end local v10    # "patternIndex":I
-    :pswitch_8c
+    :pswitch_1
     const/16 v10, 0x60
 
     .line 118
     .restart local v10    # "patternIndex":I
-    goto :goto_a1
+    goto :goto_7
 
     .line 114
     .end local v10    # "patternIndex":I
-    :pswitch_8f
+    :pswitch_2
     const/16 v10, 0x61
 
     .line 115
     .restart local v10    # "patternIndex":I
-    goto :goto_a1
+    goto :goto_7
 
     .line 111
     .end local v10    # "patternIndex":I
-    :pswitch_92
+    :pswitch_3
     const/16 v10, 0x66
 
     .line 112
     .restart local v10    # "patternIndex":I
-    goto :goto_a1
+    goto :goto_7
 
     .line 127
     .end local v10    # "patternIndex":I
-    :cond_95
+    :cond_7
     add-int/lit8 v10, v7, 0x2
 
     invoke-virtual {p1, v7, v10}, Ljava/lang/String;->substring(II)Ljava/lang/String;
@@ -477,48 +477,48 @@
     add-int/lit8 v7, v7, 0x1
 
     .line 131
-    :goto_a1
+    :goto_7
     add-int/2addr v7, v1
 
     .line 132
-    goto :goto_af
+    goto :goto_9
 
     .line 135
     .end local v10    # "patternIndex":I
-    :cond_a3
-    if-nez v6, :cond_ad
+    :cond_8
+    if-nez v6, :cond_a
 
     .line 137
-    if-ne v9, v10, :cond_aa
+    if-ne v9, v10, :cond_9
 
     .line 138
     const/16 v10, 0x68
 
     .line 139
     .restart local v10    # "patternIndex":I
-    goto :goto_ae
+    goto :goto_8
 
     .line 141
     .end local v10    # "patternIndex":I
-    :cond_aa
+    :cond_9
     const/16 v10, 0x69
 
     .line 143
     .restart local v10    # "patternIndex":I
-    goto :goto_ae
+    goto :goto_8
 
     .line 145
     .end local v10    # "patternIndex":I
-    :cond_ad
+    :cond_a
     move v10, v9
 
     .line 147
     .restart local v10    # "patternIndex":I
-    :goto_ae
+    :goto_8
     move v6, v9
 
     .line 151
-    :goto_af
+    :goto_9
     sget-object v11, Lcom/google/zxing/oned/Code128Reader;->CODE_PATTERNS:[[I
 
     aget-object v11, v11, v10
@@ -531,7 +531,7 @@
     add-int/2addr v2, v11
 
     .line 155
-    if-eqz v7, :cond_1a
+    if-eqz v7, :cond_0
 
     .line 156
     add-int/lit8 v5, v5, 0x1
@@ -539,7 +539,7 @@
     .end local v8    # "requiredDigitCount":I
     .end local v9    # "newCodeSet":I
     .end local v10    # "patternIndex":I
-    goto/16 :goto_1a
+    goto/16 :goto_1
 
     .line 74
     .end local v4    # "patterns":Ljava/util/Collection;, "Ljava/util/Collection<[I>;"
@@ -547,22 +547,22 @@
     .end local v6    # "codeSet":I
     .end local v7    # "position":I
     .local v2, "i":I
-    :cond_bf
+    :cond_b
     invoke-virtual {p1, v2}, Ljava/lang/String;->charAt(I)C
 
     move-result v4
 
     .line 75
     .local v4, "c":C
-    if-lt v4, v3, :cond_c9
+    if-lt v4, v3, :cond_c
 
     const/16 v3, 0x7e
 
-    if-le v4, v3, :cond_e1
+    if-le v4, v3, :cond_d
 
     .line 76
-    :cond_c9
-    packed-switch v4, :pswitch_data_106
+    :cond_c
+    packed-switch v4, :pswitch_data_1
 
     .line 83
     new-instance v1, Ljava/lang/IllegalArgumentException;
@@ -584,19 +584,19 @@
     throw v1
 
     .line 81
-    :pswitch_e0
+    :pswitch_4
     nop
 
     .line 73
     .end local v4    # "c":C
-    :cond_e1
+    :cond_d
     add-int/lit8 v2, v2, 0x1
 
-    goto/16 :goto_c
+    goto/16 :goto_0
 
     .line 69
     .end local v2    # "i":I
-    :cond_e5
+    :cond_e
     new-instance v1, Ljava/lang/IllegalArgumentException;
 
     .line 70
@@ -619,19 +619,19 @@
 
     nop
 
-    :pswitch_data_fa
+    :pswitch_data_0
     .packed-switch 0xf1
-        :pswitch_92
-        :pswitch_8f
-        :pswitch_8c
-        :pswitch_89
+        :pswitch_3
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
     .end packed-switch
 
-    :pswitch_data_106
+    :pswitch_data_1
     .packed-switch 0xf1
-        :pswitch_e0
-        :pswitch_e0
-        :pswitch_e0
-        :pswitch_e0
+        :pswitch_4
+        :pswitch_4
+        :pswitch_4
+        :pswitch_4
     .end packed-switch
 .end method

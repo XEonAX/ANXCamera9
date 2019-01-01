@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 69
     invoke-direct {p0}, Landroid/support/v4/graphics/BitmapCompat$JbMr2BitmapCompatImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getAllocationByteCount(Landroid/graphics/Bitmap;)I
-    .registers 3
+    .locals 1
     .param p1, "bitmap"    # Landroid/graphics/Bitmap;
 
     .line 72

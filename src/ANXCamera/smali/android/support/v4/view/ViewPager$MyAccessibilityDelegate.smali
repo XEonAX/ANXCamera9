@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/view/ViewPager;)V
-    .registers 2
+    .locals 0
 
     .line 2848
     iput-object p1, p0, Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;->this$0:Landroid/support/v4/view/ViewPager;
@@ -31,23 +31,21 @@
 .end method
 
 .method private canScroll()Z
-    .registers 3
+    .locals 2
 
     .line 2900
     iget-object v0, p0, Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;->this$0:Landroid/support/v4/view/ViewPager;
 
-    # getter for: Landroid/support/v4/view/ViewPager;->mAdapter:Landroid/support/v4/view/PagerAdapter;
     invoke-static {v0}, Landroid/support/v4/view/ViewPager;->access$200(Landroid/support/v4/view/ViewPager;)Landroid/support/v4/view/PagerAdapter;
 
     move-result-object v0
 
     const/4 v1, 0x1
 
-    if-eqz v0, :cond_16
+    if-eqz v0, :cond_0
 
     iget-object v0, p0, Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;->this$0:Landroid/support/v4/view/ViewPager;
 
-    # getter for: Landroid/support/v4/view/ViewPager;->mAdapter:Landroid/support/v4/view/PagerAdapter;
     invoke-static {v0}, Landroid/support/v4/view/ViewPager;->access$200(Landroid/support/v4/view/ViewPager;)Landroid/support/v4/view/PagerAdapter;
 
     move-result-object v0
@@ -56,21 +54,21 @@
 
     move-result v0
 
-    if-le v0, v1, :cond_16
+    if-le v0, v1, :cond_0
 
-    goto :goto_17
+    goto :goto_0
 
-    :cond_16
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_17
+    :goto_0
     return v1
 .end method
 
 
 # virtual methods
 .method public onInitializeAccessibilityEvent(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
-    .registers 6
+    .locals 3
     .param p1, "host"    # Landroid/view/View;
     .param p2, "event"    # Landroid/view/accessibility/AccessibilityEvent;
 
@@ -106,21 +104,19 @@
 
     const/16 v2, 0x1000
 
-    if-ne v1, v2, :cond_46
+    if-ne v1, v2, :cond_0
 
     iget-object v1, p0, Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;->this$0:Landroid/support/v4/view/ViewPager;
 
-    # getter for: Landroid/support/v4/view/ViewPager;->mAdapter:Landroid/support/v4/view/PagerAdapter;
     invoke-static {v1}, Landroid/support/v4/view/ViewPager;->access$200(Landroid/support/v4/view/ViewPager;)Landroid/support/v4/view/PagerAdapter;
 
     move-result-object v1
 
-    if-eqz v1, :cond_46
+    if-eqz v1, :cond_0
 
     .line 2858
     iget-object v1, p0, Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;->this$0:Landroid/support/v4/view/ViewPager;
 
-    # getter for: Landroid/support/v4/view/ViewPager;->mAdapter:Landroid/support/v4/view/PagerAdapter;
     invoke-static {v1}, Landroid/support/v4/view/ViewPager;->access$200(Landroid/support/v4/view/ViewPager;)Landroid/support/v4/view/PagerAdapter;
 
     move-result-object v1
@@ -134,7 +130,6 @@
     .line 2859
     iget-object v1, p0, Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;->this$0:Landroid/support/v4/view/ViewPager;
 
-    # getter for: Landroid/support/v4/view/ViewPager;->mCurItem:I
     invoke-static {v1}, Landroid/support/v4/view/ViewPager;->access$300(Landroid/support/v4/view/ViewPager;)I
 
     move-result v1
@@ -144,7 +139,6 @@
     .line 2860
     iget-object v1, p0, Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;->this$0:Landroid/support/v4/view/ViewPager;
 
-    # getter for: Landroid/support/v4/view/ViewPager;->mCurItem:I
     invoke-static {v1}, Landroid/support/v4/view/ViewPager;->access$300(Landroid/support/v4/view/ViewPager;)I
 
     move-result v1
@@ -152,12 +146,12 @@
     invoke-virtual {v0, v1}, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->setToIndex(I)V
 
     .line 2862
-    :cond_46
+    :cond_0
     return-void
 .end method
 
 .method public onInitializeAccessibilityNodeInfo(Landroid/view/View;Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;)V
-    .registers 5
+    .locals 2
     .param p1, "host"    # Landroid/view/View;
     .param p2, "info"    # Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;
 
@@ -189,7 +183,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_21
+    if-eqz v0, :cond_0
 
     .line 2870
     const/16 v0, 0x1000
@@ -197,7 +191,7 @@
     invoke-virtual {p2, v0}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->addAction(I)V
 
     .line 2872
-    :cond_21
+    :cond_0
     iget-object v0, p0, Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;->this$0:Landroid/support/v4/view/ViewPager;
 
     const/4 v1, -0x1
@@ -206,7 +200,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_2f
+    if-eqz v0, :cond_1
 
     .line 2873
     const/16 v0, 0x2000
@@ -214,12 +208,12 @@
     invoke-virtual {p2, v0}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->addAction(I)V
 
     .line 2875
-    :cond_2f
+    :cond_1
     return-void
 .end method
 
 .method public performAccessibilityAction(Landroid/view/View;ILandroid/os/Bundle;)Z
-    .registers 8
+    .locals 4
     .param p1, "host"    # Landroid/view/View;
     .param p2, "action"    # I
     .param p3, "args"    # Landroid/os/Bundle;
@@ -231,28 +225,28 @@
 
     const/4 v1, 0x1
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_0
 
     .line 2880
     return v1
 
     .line 2882
-    :cond_8
+    :cond_0
     const/16 v0, 0x1000
 
     const/4 v2, 0x0
 
-    if-eq p2, v0, :cond_29
+    if-eq p2, v0, :cond_3
 
     const/16 v0, 0x2000
 
-    if-eq p2, v0, :cond_12
+    if-eq p2, v0, :cond_1
 
     .line 2896
     return v2
 
     .line 2890
-    :cond_12
+    :cond_1
     iget-object v0, p0, Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;->this$0:Landroid/support/v4/view/ViewPager;
 
     const/4 v3, -0x1
@@ -261,14 +255,13 @@
 
     move-result v0
 
-    if-eqz v0, :cond_28
+    if-eqz v0, :cond_2
 
     .line 2891
     iget-object v0, p0, Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;->this$0:Landroid/support/v4/view/ViewPager;
 
     iget-object v2, p0, Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;->this$0:Landroid/support/v4/view/ViewPager;
 
-    # getter for: Landroid/support/v4/view/ViewPager;->mCurItem:I
     invoke-static {v2}, Landroid/support/v4/view/ViewPager;->access$300(Landroid/support/v4/view/ViewPager;)I
 
     move-result v2
@@ -281,25 +274,24 @@
     return v1
 
     .line 2894
-    :cond_28
+    :cond_2
     return v2
 
     .line 2884
-    :cond_29
+    :cond_3
     iget-object v0, p0, Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;->this$0:Landroid/support/v4/view/ViewPager;
 
     invoke-virtual {v0, v1}, Landroid/support/v4/view/ViewPager;->canScrollHorizontally(I)Z
 
     move-result v0
 
-    if-eqz v0, :cond_3e
+    if-eqz v0, :cond_4
 
     .line 2885
     iget-object v0, p0, Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;->this$0:Landroid/support/v4/view/ViewPager;
 
     iget-object v2, p0, Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;->this$0:Landroid/support/v4/view/ViewPager;
 
-    # getter for: Landroid/support/v4/view/ViewPager;->mCurItem:I
     invoke-static {v2}, Landroid/support/v4/view/ViewPager;->access$300(Landroid/support/v4/view/ViewPager;)I
 
     move-result v2
@@ -312,6 +304,6 @@
     return v1
 
     .line 2888
-    :cond_3e
+    :cond_4
     return v2
 .end method

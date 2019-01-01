@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 41
     invoke-direct {p0}, Lcom/google/zxing/client/result/ResultParser;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method private static addNumberVia(Ljava/util/Collection;Ljava/util/Collection;Ljava/lang/String;)V
-    .registers 7
+    .locals 4
     .param p2, "numberPart"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -43,7 +43,7 @@
     .local v0, "numberEnd":I
     const/4 v1, 0x0
 
-    if-gez v0, :cond_10
+    if-gez v0, :cond_0
 
     .line 94
     invoke-interface {p0, p2}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
@@ -52,10 +52,10 @@
     invoke-interface {p1, v1}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
 
     .line 96
-    goto :goto_30
+    goto :goto_1
 
     .line 97
-    :cond_10
+    :cond_0
     const/4 v2, 0x0
 
     invoke-virtual {p2, v2, v0}, Ljava/lang/String;->substring(II)Ljava/lang/String;
@@ -79,7 +79,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_2c
+    if-eqz v3, :cond_1
 
     .line 101
     const/4 v1, 0x4
@@ -90,29 +90,29 @@
 
     .line 102
     .local v1, "via":Ljava/lang/String;
-    goto :goto_2d
+    goto :goto_0
 
     .line 103
     .end local v1    # "via":Ljava/lang/String;
-    :cond_2c
+    :cond_1
     nop
 
     .line 105
     .restart local v1    # "via":Ljava/lang/String;
-    :goto_2d
+    :goto_0
     invoke-interface {p1, v1}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
 
     .line 107
     .end local v1    # "via":Ljava/lang/String;
     .end local v2    # "maybeVia":Ljava/lang/String;
-    :goto_30
+    :goto_1
     return-void
 .end method
 
 
 # virtual methods
 .method public bridge synthetic parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ParsedResult;
-    .registers 2
+    .locals 0
 
     .line 1
     invoke-virtual {p0, p1}, Lcom/google/zxing/client/result/SMSMMSResultParser;->parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/SMSParsedResult;
@@ -123,7 +123,7 @@
 .end method
 
 .method public parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/SMSParsedResult;
-    .registers 16
+    .locals 14
     .param p1, "result"    # Lcom/google/zxing/Result;
 
     .line 45
@@ -139,7 +139,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_26
+    if-nez v1, :cond_0
 
     const-string v1, "SMS:"
 
@@ -147,7 +147,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_26
+    if-nez v1, :cond_0
 
     .line 47
     const-string v1, "mms:"
@@ -156,7 +156,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_26
+    if-nez v1, :cond_0
 
     const-string v1, "MMS:"
 
@@ -164,7 +164,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_26
+    if-nez v1, :cond_0
 
     .line 48
     const/4 v1, 0x0
@@ -172,7 +172,7 @@
     return-object v1
 
     .line 52
-    :cond_26
+    :cond_0
     invoke-static {v0}, Lcom/google/zxing/client/result/SMSMMSResultParser;->parseNameValuePairs(Ljava/lang/String;)Ljava/util/Map;
 
     move-result-object v1
@@ -191,13 +191,13 @@
 
     .line 56
     .local v4, "querySyntax":Z
-    if-eqz v1, :cond_48
+    if-eqz v1, :cond_1
 
     invoke-interface {v1}, Ljava/util/Map;->isEmpty()Z
 
     move-result v5
 
-    if-nez v5, :cond_48
+    if-nez v5, :cond_1
 
     .line 57
     const-string v5, "subject"
@@ -225,7 +225,7 @@
     const/4 v4, 0x1
 
     .line 63
-    :cond_48
+    :cond_1
     const/16 v5, 0x3f
 
     const/4 v6, 0x4
@@ -236,23 +236,23 @@
 
     .line 66
     .local v5, "queryStart":I
-    if-ltz v5, :cond_59
+    if-ltz v5, :cond_3
 
-    if-nez v4, :cond_54
+    if-nez v4, :cond_2
 
-    goto :goto_59
+    goto :goto_0
 
     .line 69
-    :cond_54
+    :cond_2
     invoke-virtual {v0, v6, v5}, Ljava/lang/String;->substring(II)Ljava/lang/String;
 
     move-result-object v6
 
-    goto :goto_5e
+    goto :goto_1
 
     .line 67
-    :cond_59
-    :goto_59
+    :cond_3
+    :goto_0
     invoke-virtual {v0, v6}, Ljava/lang/String;->substring(I)Ljava/lang/String;
 
     move-result-object v6
@@ -262,7 +262,7 @@
     nop
 
     .line 69
-    :goto_5e
+    :goto_1
     nop
 
     .line 72
@@ -286,7 +286,7 @@
 
     .line 76
     .local v9, "vias":Ljava/util/List;, "Ljava/util/List<Ljava/lang/String;>;"
-    :goto_6c
+    :goto_2
     const/16 v10, 0x2c
 
     add-int/lit8 v11, v7, 0x1
@@ -298,7 +298,7 @@
     move v11, v10
 
     .local v11, "comma":I
-    if-gt v10, v7, :cond_a0
+    if-gt v10, v7, :cond_4
 
     .line 81
     add-int/lit8 v10, v7, 0x1
@@ -349,7 +349,7 @@
     return-object v10
 
     .line 76
-    :cond_a0
+    :cond_4
     nop
 
     .line 77
@@ -368,5 +368,5 @@
 
     .end local v10    # "numberPart":Ljava/lang/String;
     .end local v11    # "comma":I
-    goto :goto_6c
+    goto :goto_2
 .end method

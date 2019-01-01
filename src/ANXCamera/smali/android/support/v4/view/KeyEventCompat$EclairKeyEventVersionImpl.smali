@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 118
     invoke-direct {p0}, Landroid/support/v4/view/KeyEventCompat$BaseKeyEventVersionImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public dispatch(Landroid/view/KeyEvent;Landroid/view/KeyEvent$Callback;Ljava/lang/Object;Ljava/lang/Object;)Z
-    .registers 6
+    .locals 1
     .param p1, "event"    # Landroid/view/KeyEvent;
     .param p2, "receiver"    # Landroid/view/KeyEvent$Callback;
     .param p3, "state"    # Ljava/lang/Object;
@@ -42,7 +42,7 @@
 .end method
 
 .method public getKeyDispatcherState(Landroid/view/View;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 131
@@ -54,7 +54,7 @@
 .end method
 
 .method public isTracking(Landroid/view/KeyEvent;)Z
-    .registers 3
+    .locals 1
     .param p1, "event"    # Landroid/view/KeyEvent;
 
     .line 126
@@ -66,7 +66,7 @@
 .end method
 
 .method public startTracking(Landroid/view/KeyEvent;)V
-    .registers 2
+    .locals 0
     .param p1, "event"    # Landroid/view/KeyEvent;
 
     .line 121

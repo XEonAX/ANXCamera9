@@ -36,7 +36,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 1274
     new-instance v0, Landroid/support/v4/view/ViewPager$SavedState$1;
@@ -53,7 +53,7 @@
 .end method
 
 .method constructor <init>(Landroid/os/Parcel;Ljava/lang/ClassLoader;)V
-    .registers 4
+    .locals 1
     .param p1, "in"    # Landroid/os/Parcel;
     .param p2, "loader"    # Ljava/lang/ClassLoader;
 
@@ -61,7 +61,7 @@
     invoke-direct {p0, p1}, Landroid/view/View$BaseSavedState;-><init>(Landroid/os/Parcel;)V
 
     .line 1288
-    if-nez p2, :cond_d
+    if-nez p2, :cond_0
 
     .line 1289
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
@@ -73,7 +73,7 @@
     move-result-object p2
 
     .line 1291
-    :cond_d
+    :cond_0
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
@@ -95,7 +95,7 @@
 .end method
 
 .method public constructor <init>(Landroid/os/Parcelable;)V
-    .registers 2
+    .locals 0
     .param p1, "superState"    # Landroid/os/Parcelable;
 
     .line 1257
@@ -108,7 +108,7 @@
 
 # virtual methods
 .method public toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 1269
     new-instance v0, Ljava/lang/StringBuilder;
@@ -149,7 +149,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .registers 4
+    .locals 1
     .param p1, "out"    # Landroid/os/Parcel;
     .param p2, "flags"    # I
 

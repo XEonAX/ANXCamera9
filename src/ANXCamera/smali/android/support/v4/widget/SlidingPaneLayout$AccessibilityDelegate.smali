@@ -22,7 +22,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/widget/SlidingPaneLayout;)V
-    .registers 2
+    .locals 0
 
     .line 1541
     iput-object p1, p0, Landroid/support/v4/widget/SlidingPaneLayout$AccessibilityDelegate;->this$0:Landroid/support/v4/widget/SlidingPaneLayout;
@@ -40,7 +40,7 @@
 .end method
 
 .method private copyNodeInfoNoChildren(Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;)V
-    .registers 5
+    .locals 2
     .param p1, "dest"    # Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;
     .param p2, "src"    # Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;
 
@@ -158,7 +158,7 @@
 
 # virtual methods
 .method public filter(Landroid/view/View;)Z
-    .registers 3
+    .locals 1
     .param p1, "child"    # Landroid/view/View;
 
     .line 1590
@@ -172,7 +172,7 @@
 .end method
 
 .method public onInitializeAccessibilityEvent(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
-    .registers 4
+    .locals 1
     .param p1, "host"    # Landroid/view/View;
     .param p2, "event"    # Landroid/view/accessibility/AccessibilityEvent;
 
@@ -193,7 +193,7 @@
 .end method
 
 .method public onInitializeAccessibilityNodeInfo(Landroid/view/View;Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;)V
-    .registers 9
+    .locals 6
     .param p1, "host"    # Landroid/view/View;
     .param p2, "info"    # Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;
 
@@ -233,7 +233,7 @@
     .local v1, "parent":Landroid/view/ViewParent;
     instance-of v2, v1, Landroid/view/View;
 
-    if-eqz v2, :cond_27
+    if-eqz v2, :cond_0
 
     .line 1556
     move-object v2, v1
@@ -243,7 +243,7 @@
     invoke-virtual {p2, v2}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->setParent(Landroid/view/View;)V
 
     .line 1561
-    :cond_27
+    :cond_0
     iget-object v2, p0, Landroid/support/v4/widget/SlidingPaneLayout$AccessibilityDelegate;->this$0:Landroid/support/v4/widget/SlidingPaneLayout;
 
     invoke-virtual {v2}, Landroid/support/v4/widget/SlidingPaneLayout;->getChildCount()I
@@ -255,8 +255,8 @@
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_2e
-    if-ge v3, v2, :cond_4c
+    :goto_0
+    if-ge v3, v2, :cond_2
 
     .line 1563
     iget-object v4, p0, Landroid/support/v4/widget/SlidingPaneLayout$AccessibilityDelegate;->this$0:Landroid/support/v4/widget/SlidingPaneLayout;
@@ -271,13 +271,13 @@
 
     move-result v5
 
-    if-nez v5, :cond_49
+    if-nez v5, :cond_1
 
     invoke-virtual {v4}, Landroid/view/View;->getVisibility()I
 
     move-result v5
 
-    if-nez v5, :cond_49
+    if-nez v5, :cond_1
 
     .line 1566
     const/4 v5, 0x1
@@ -289,19 +289,19 @@
 
     .line 1562
     .end local v4    # "child":Landroid/view/View;
-    :cond_49
+    :cond_1
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_2e
+    goto :goto_0
 
     .line 1571
     .end local v3    # "i":I
-    :cond_4c
+    :cond_2
     return-void
 .end method
 
 .method public onRequestSendAccessibilityEvent(Landroid/view/ViewGroup;Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)Z
-    .registers 5
+    .locals 1
     .param p1, "host"    # Landroid/view/ViewGroup;
     .param p2, "child"    # Landroid/view/View;
     .param p3, "event"    # Landroid/view/accessibility/AccessibilityEvent;
@@ -311,7 +311,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_b
+    if-nez v0, :cond_0
 
     .line 1584
     invoke-super {p0, p1, p2, p3}, Landroid/support/v4/view/AccessibilityDelegateCompat;->onRequestSendAccessibilityEvent(Landroid/view/ViewGroup;Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)Z
@@ -321,7 +321,7 @@
     return v0
 
     .line 1586
-    :cond_b
+    :cond_0
     const/4 v0, 0x0
 
     return v0

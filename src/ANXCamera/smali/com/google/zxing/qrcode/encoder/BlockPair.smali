@@ -11,7 +11,7 @@
 
 # direct methods
 .method constructor <init>([B[B)V
-    .registers 3
+    .locals 0
     .param p1, "data"    # [B
     .param p2, "errorCorrection"    # [B
 
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method public getDataBytes()[B
-    .registers 2
+    .locals 1
 
     .line 30
     iget-object v0, p0, Lcom/google/zxing/qrcode/encoder/BlockPair;->dataBytes:[B
@@ -40,7 +40,7 @@
 .end method
 
 .method public getErrorCorrectionBytes()[B
-    .registers 2
+    .locals 1
 
     .line 34
     iget-object v0, p0, Lcom/google/zxing/qrcode/encoder/BlockPair;->errorCorrectionBytes:[B

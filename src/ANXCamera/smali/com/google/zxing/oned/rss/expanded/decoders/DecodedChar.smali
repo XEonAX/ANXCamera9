@@ -13,7 +13,7 @@
 
 # direct methods
 .method constructor <init>(IC)V
-    .registers 3
+    .locals 0
     .param p1, "newPosition"    # I
     .param p2, "value"    # C
 
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method getValue()C
-    .registers 2
+    .locals 1
 
     .line 45
     iget-char v0, p0, Lcom/google/zxing/oned/rss/expanded/decoders/DecodedChar;->value:C
@@ -39,20 +39,20 @@
 .end method
 
 .method isFNC1()Z
-    .registers 3
+    .locals 2
 
     .line 49
     iget-char v0, p0, Lcom/google/zxing/oned/rss/expanded/decoders/DecodedChar;->value:C
 
     const/16 v1, 0x24
 
-    if-ne v0, v1, :cond_8
+    if-ne v0, v1, :cond_0
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_8
+    :cond_0
     const/4 v0, 0x0
 
     return v0

@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 31
     invoke-direct {p0}, Lcom/google/zxing/client/result/ResultParser;-><init>()V
@@ -16,7 +16,7 @@
 
 # virtual methods
 .method public bridge synthetic parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ParsedResult;
-    .registers 2
+    .locals 0
 
     .line 1
     invoke-virtual {p0, p1}, Lcom/google/zxing/client/result/SMSTOMMSTOResultParser;->parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/SMSParsedResult;
@@ -27,7 +27,7 @@
 .end method
 
 .method public parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/SMSParsedResult;
-    .registers 8
+    .locals 6
     .param p1, "result"    # Lcom/google/zxing/Result;
 
     .line 35
@@ -45,7 +45,7 @@
 
     const/4 v2, 0x0
 
-    if-nez v1, :cond_26
+    if-nez v1, :cond_0
 
     const-string v1, "SMSTO:"
 
@@ -53,7 +53,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_26
+    if-nez v1, :cond_0
 
     .line 37
     const-string v1, "mmsto:"
@@ -62,7 +62,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_26
+    if-nez v1, :cond_0
 
     const-string v1, "MMSTO:"
 
@@ -70,13 +70,13 @@
 
     move-result v1
 
-    if-nez v1, :cond_26
+    if-nez v1, :cond_0
 
     .line 38
     return-object v2
 
     .line 42
-    :cond_26
+    :cond_0
     const/4 v1, 0x6
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->substring(I)Ljava/lang/String;
@@ -97,7 +97,7 @@
 
     .line 45
     .local v4, "bodyStart":I
-    if-ltz v4, :cond_3f
+    if-ltz v4, :cond_1
 
     .line 46
     add-int/lit8 v5, v4, 0x1
@@ -114,7 +114,7 @@
     move-result-object v1
 
     .line 49
-    :cond_3f
+    :cond_1
     new-instance v5, Lcom/google/zxing/client/result/SMSParsedResult;
 
     invoke-direct {v5, v1, v2, v2, v3}, Lcom/google/zxing/client/result/SMSParsedResult;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V

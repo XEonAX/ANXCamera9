@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 19
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static cancel(Ljava/lang/Object;)V
-    .registers 2
+    .locals 1
     .param p0, "cancellationSignalObj"    # Ljava/lang/Object;
 
     .line 25
@@ -29,7 +29,7 @@
 .end method
 
 .method public static create()Ljava/lang/Object;
-    .registers 1
+    .locals 1
 
     .line 21
     new-instance v0, Landroid/os/CancellationSignal;

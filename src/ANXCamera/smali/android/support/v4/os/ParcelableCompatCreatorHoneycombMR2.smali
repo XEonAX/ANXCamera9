@@ -32,7 +32,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v4/os/ParcelableCompatCreatorCallbacks;)V
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -56,7 +56,7 @@
 
 # virtual methods
 .method public createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
-    .registers 4
+    .locals 2
     .param p1, "in"    # Landroid/os/Parcel;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -80,7 +80,7 @@
 .end method
 
 .method public createFromParcel(Landroid/os/Parcel;Ljava/lang/ClassLoader;)Ljava/lang/Object;
-    .registers 4
+    .locals 1
     .param p1, "in"    # Landroid/os/Parcel;
     .param p2, "loader"    # Ljava/lang/ClassLoader;
     .annotation system Ldalvik/annotation/Signature;
@@ -104,7 +104,7 @@
 .end method
 
 .method public newArray(I)[Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "size"    # I
     .annotation system Ldalvik/annotation/Signature;
         value = {

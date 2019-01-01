@@ -34,7 +34,7 @@
 
 # direct methods
 .method constructor <init>(IIIII)V
-    .registers 6
+    .locals 0
     .param p1, "type"    # I
     .param p2, "stream"    # I
     .param p3, "control"    # I
@@ -66,7 +66,7 @@
 
 # virtual methods
 .method public getAudioStream()I
-    .registers 2
+    .locals 1
 
     .line 739
     iget v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$PlaybackInfo;->mAudioStream:I
@@ -75,7 +75,7 @@
 .end method
 
 .method public getCurrentVolume()I
-    .registers 2
+    .locals 1
 
     .line 772
     iget v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$PlaybackInfo;->mCurrentVolume:I
@@ -84,7 +84,7 @@
 .end method
 
 .method public getMaxVolume()I
-    .registers 2
+    .locals 1
 
     .line 763
     iget v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$PlaybackInfo;->mMaxVolume:I
@@ -93,7 +93,7 @@
 .end method
 
 .method public getPlaybackType()I
-    .registers 2
+    .locals 1
 
     .line 727
     iget v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$PlaybackInfo;->mPlaybackType:I
@@ -102,7 +102,7 @@
 .end method
 
 .method public getVolumeControl()I
-    .registers 2
+    .locals 1
 
     .line 754
     iget v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$PlaybackInfo;->mVolumeControl:I

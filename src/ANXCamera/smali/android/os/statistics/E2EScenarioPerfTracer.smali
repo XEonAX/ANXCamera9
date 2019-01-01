@@ -11,7 +11,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 8
+    .locals 8
 
     .line 18
     new-instance v7, Ljava/util/concurrent/ThreadPoolExecutor;
@@ -38,7 +38,7 @@
 .end method
 
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 21
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -48,30 +48,30 @@
 .end method
 
 .method public static abortScenario(Landroid/os/Bundle;)V
-    .registers 13
+    .locals 12
     .param p0, "scenarioBundle"    # Landroid/os/Bundle;
 
     .line 123
-    if-nez p0, :cond_3
+    if-nez p0, :cond_0
 
     .line 124
     return-void
 
     .line 126
-    :cond_3
+    :cond_0
     invoke-static {}, Lcom/miui/daemon/performance/PerfShielderManager;->getService()Lcom/android/internal/app/IPerfShielder;
 
     move-result-object v6
 
     .line 127
     .local v6, "perfShielder":Lcom/android/internal/app/IPerfShielder;
-    if-nez v6, :cond_a
+    if-nez v6, :cond_1
 
     .line 128
     return-void
 
     .line 130
-    :cond_a
+    :cond_1
     invoke-static {}, Landroid/os/Process;->myTid()I
 
     move-result v7
@@ -107,7 +107,7 @@
 .end method
 
 .method public static abortScenario(Landroid/os/statistics/E2EScenario;)V
-    .registers 2
+    .locals 1
     .param p0, "scenario"    # Landroid/os/statistics/E2EScenario;
 
     .line 98
@@ -120,36 +120,36 @@
 .end method
 
 .method public static abortScenario(Landroid/os/statistics/E2EScenario;Ljava/lang/String;)V
-    .registers 15
+    .locals 13
     .param p0, "scenario"    # Landroid/os/statistics/E2EScenario;
     .param p1, "tag"    # Ljava/lang/String;
 
     .line 102
-    if-eqz p0, :cond_29
+    if-eqz p0, :cond_2
 
     invoke-virtual {p0}, Landroid/os/statistics/E2EScenario;->isValid()Z
 
     move-result v0
 
-    if-nez v0, :cond_9
+    if-nez v0, :cond_0
 
-    goto :goto_29
+    goto :goto_0
 
     .line 105
-    :cond_9
+    :cond_0
     invoke-static {}, Lcom/miui/daemon/performance/PerfShielderManager;->getService()Lcom/android/internal/app/IPerfShielder;
 
     move-result-object v0
 
     .line 106
     .local v0, "perfShielder":Lcom/android/internal/app/IPerfShielder;
-    if-nez v0, :cond_10
+    if-nez v0, :cond_1
 
     .line 107
     return-void
 
     .line 109
-    :cond_10
+    :cond_1
     invoke-static {}, Landroid/os/Process;->myTid()I
 
     move-result v8
@@ -189,13 +189,13 @@
     .end local v0    # "perfShielder":Lcom/android/internal/app/IPerfShielder;
     .end local v8    # "tid":I
     .end local v9    # "uptimeMs":J
-    :cond_29
-    :goto_29
+    :cond_2
+    :goto_0
     return-void
 .end method
 
 .method public static asyncBeginScenario(Landroid/os/statistics/E2EScenario;Landroid/os/statistics/E2EScenarioSettings;)V
-    .registers 4
+    .locals 2
     .param p0, "scenario"    # Landroid/os/statistics/E2EScenario;
     .param p1, "settings"    # Landroid/os/statistics/E2EScenarioSettings;
 
@@ -211,7 +211,7 @@
 .end method
 
 .method public static asyncBeginScenario(Landroid/os/statistics/E2EScenario;Landroid/os/statistics/E2EScenarioSettings;Landroid/os/statistics/E2EScenarioPayload;)V
-    .registers 4
+    .locals 1
     .param p0, "scenario"    # Landroid/os/statistics/E2EScenario;
     .param p1, "settings"    # Landroid/os/statistics/E2EScenarioSettings;
     .param p2, "payload"    # Landroid/os/statistics/E2EScenarioPayload;
@@ -226,7 +226,7 @@
 .end method
 
 .method public static asyncBeginScenario(Landroid/os/statistics/E2EScenario;Landroid/os/statistics/E2EScenarioSettings;Ljava/lang/String;)V
-    .registers 4
+    .locals 1
     .param p0, "scenario"    # Landroid/os/statistics/E2EScenario;
     .param p1, "settings"    # Landroid/os/statistics/E2EScenarioSettings;
     .param p2, "tag"    # Ljava/lang/String;
@@ -241,50 +241,50 @@
 .end method
 
 .method public static asyncBeginScenario(Landroid/os/statistics/E2EScenario;Landroid/os/statistics/E2EScenarioSettings;Ljava/lang/String;Landroid/os/statistics/E2EScenarioPayload;)V
-    .registers 20
+    .locals 16
     .param p0, "scenario"    # Landroid/os/statistics/E2EScenario;
     .param p1, "settings"    # Landroid/os/statistics/E2EScenarioSettings;
     .param p2, "tag"    # Ljava/lang/String;
     .param p3, "payload"    # Landroid/os/statistics/E2EScenarioPayload;
 
     .line 74
-    if-eqz p0, :cond_3a
+    if-eqz p0, :cond_4
 
     invoke-virtual/range {p0 .. p0}, Landroid/os/statistics/E2EScenario;->isValid()Z
 
     move-result v0
 
-    if-nez v0, :cond_9
+    if-nez v0, :cond_0
 
-    goto :goto_3a
+    goto :goto_1
 
     .line 77
-    :cond_9
-    if-eqz p1, :cond_39
+    :cond_0
+    if-eqz p1, :cond_3
 
     invoke-virtual/range {p1 .. p1}, Landroid/os/statistics/E2EScenarioSettings;->isValid()Z
 
     move-result v0
 
-    if-nez v0, :cond_12
+    if-nez v0, :cond_1
 
-    goto :goto_39
+    goto :goto_0
 
     .line 80
-    :cond_12
+    :cond_1
     invoke-static {}, Lcom/miui/daemon/performance/PerfShielderManager;->getService()Lcom/android/internal/app/IPerfShielder;
 
     move-result-object v10
 
     .line 81
     .local v10, "perfShielder":Lcom/android/internal/app/IPerfShielder;
-    if-nez v10, :cond_19
+    if-nez v10, :cond_2
 
     .line 82
     return-void
 
     .line 84
-    :cond_19
+    :cond_2
     invoke-static {}, Landroid/os/Process;->myTid()I
 
     move-result v11
@@ -330,18 +330,18 @@
     .end local v10    # "perfShielder":Lcom/android/internal/app/IPerfShielder;
     .end local v11    # "tid":I
     .end local v12    # "uptimeMs":J
-    :cond_39
-    :goto_39
+    :cond_3
+    :goto_0
     return-void
 
     .line 75
-    :cond_3a
-    :goto_3a
+    :cond_4
+    :goto_1
     return-void
 .end method
 
 .method public static beginScenario(Landroid/os/statistics/E2EScenario;Landroid/os/statistics/E2EScenarioSettings;)Landroid/os/Bundle;
-    .registers 4
+    .locals 2
     .param p0, "scenario"    # Landroid/os/statistics/E2EScenario;
     .param p1, "settings"    # Landroid/os/statistics/E2EScenarioSettings;
 
@@ -358,7 +358,7 @@
 .end method
 
 .method public static beginScenario(Landroid/os/statistics/E2EScenario;Landroid/os/statistics/E2EScenarioSettings;Landroid/os/statistics/E2EScenarioPayload;)Landroid/os/Bundle;
-    .registers 4
+    .locals 1
     .param p0, "scenario"    # Landroid/os/statistics/E2EScenario;
     .param p1, "settings"    # Landroid/os/statistics/E2EScenarioSettings;
     .param p2, "payload"    # Landroid/os/statistics/E2EScenarioPayload;
@@ -374,7 +374,7 @@
 .end method
 
 .method public static beginScenario(Landroid/os/statistics/E2EScenario;Landroid/os/statistics/E2EScenarioSettings;Ljava/lang/String;)Landroid/os/Bundle;
-    .registers 4
+    .locals 1
     .param p0, "scenario"    # Landroid/os/statistics/E2EScenario;
     .param p1, "settings"    # Landroid/os/statistics/E2EScenarioSettings;
     .param p2, "tag"    # Ljava/lang/String;
@@ -390,7 +390,7 @@
 .end method
 
 .method public static beginScenario(Landroid/os/statistics/E2EScenario;Landroid/os/statistics/E2EScenarioSettings;Ljava/lang/String;Landroid/os/statistics/E2EScenarioPayload;)Landroid/os/Bundle;
-    .registers 15
+    .locals 11
     .param p0, "scenario"    # Landroid/os/statistics/E2EScenario;
     .param p1, "settings"    # Landroid/os/statistics/E2EScenarioSettings;
     .param p2, "tag"    # Ljava/lang/String;
@@ -399,44 +399,44 @@
     .line 41
     const/4 v0, 0x0
 
-    if-eqz p0, :cond_2e
+    if-eqz p0, :cond_4
 
     invoke-virtual {p0}, Landroid/os/statistics/E2EScenario;->isValid()Z
 
     move-result v1
 
-    if-nez v1, :cond_a
+    if-nez v1, :cond_0
 
-    goto :goto_2e
+    goto :goto_1
 
     .line 44
-    :cond_a
-    if-eqz p1, :cond_2d
+    :cond_0
+    if-eqz p1, :cond_3
 
     invoke-virtual {p1}, Landroid/os/statistics/E2EScenarioSettings;->isValid()Z
 
     move-result v1
 
-    if-nez v1, :cond_13
+    if-nez v1, :cond_1
 
-    goto :goto_2d
+    goto :goto_0
 
     .line 47
-    :cond_13
+    :cond_1
     invoke-static {}, Lcom/miui/daemon/performance/PerfShielderManager;->getService()Lcom/android/internal/app/IPerfShielder;
 
     move-result-object v1
 
     .line 48
     .local v1, "perfShielder":Lcom/android/internal/app/IPerfShielder;
-    if-nez v1, :cond_1a
+    if-nez v1, :cond_2
 
     .line 49
     return-object v0
 
     .line 52
-    :cond_1a
-    :try_start_1a
+    :cond_2
+    :try_start_0
     invoke-static {}, Landroid/os/Process;->myTid()I
 
     move-result v7
@@ -458,13 +458,13 @@
     invoke-interface/range {v2 .. v10}, Lcom/android/internal/app/IPerfShielder;->beginScenario(Landroid/os/statistics/E2EScenario;Landroid/os/statistics/E2EScenarioSettings;Ljava/lang/String;Landroid/os/statistics/E2EScenarioPayload;IJZ)Landroid/os/Bundle;
 
     move-result-object v2
-    :try_end_2a
-    .catch Landroid/os/RemoteException; {:try_start_1a .. :try_end_2a} :catch_2b
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     return-object v2
 
     .line 53
-    :catch_2b
+    :catch_0
     move-exception v2
 
     .line 54
@@ -474,18 +474,18 @@
     .line 45
     .end local v1    # "perfShielder":Lcom/android/internal/app/IPerfShielder;
     .end local v2    # "ex":Landroid/os/RemoteException;
-    :cond_2d
-    :goto_2d
+    :cond_3
+    :goto_0
     return-object v0
 
     .line 42
-    :cond_2e
-    :goto_2e
+    :cond_4
+    :goto_1
     return-object v0
 .end method
 
 .method public static finishScenario(Landroid/os/Bundle;)V
-    .registers 2
+    .locals 1
     .param p0, "scenarioBundle"    # Landroid/os/Bundle;
 
     .line 177
@@ -498,31 +498,31 @@
 .end method
 
 .method public static finishScenario(Landroid/os/Bundle;Landroid/os/statistics/E2EScenarioPayload;)V
-    .registers 15
+    .locals 13
     .param p0, "scenarioBundle"    # Landroid/os/Bundle;
     .param p1, "payload"    # Landroid/os/statistics/E2EScenarioPayload;
 
     .line 181
-    if-nez p0, :cond_3
+    if-nez p0, :cond_0
 
     .line 182
     return-void
 
     .line 184
-    :cond_3
+    :cond_0
     invoke-static {}, Lcom/miui/daemon/performance/PerfShielderManager;->getService()Lcom/android/internal/app/IPerfShielder;
 
     move-result-object v7
 
     .line 185
     .local v7, "perfShielder":Lcom/android/internal/app/IPerfShielder;
-    if-nez v7, :cond_a
+    if-nez v7, :cond_1
 
     .line 186
     return-void
 
     .line 188
-    :cond_a
+    :cond_1
     invoke-static {}, Landroid/os/Process;->myTid()I
 
     move-result v8
@@ -560,7 +560,7 @@
 .end method
 
 .method public static finishScenario(Landroid/os/statistics/E2EScenario;)V
-    .registers 3
+    .locals 2
     .param p0, "scenario"    # Landroid/os/statistics/E2EScenario;
 
     .line 144
@@ -575,7 +575,7 @@
 .end method
 
 .method public static finishScenario(Landroid/os/statistics/E2EScenario;Landroid/os/statistics/E2EScenarioPayload;)V
-    .registers 3
+    .locals 1
     .param p0, "scenario"    # Landroid/os/statistics/E2EScenario;
     .param p1, "payload"    # Landroid/os/statistics/E2EScenarioPayload;
 
@@ -589,7 +589,7 @@
 .end method
 
 .method public static finishScenario(Landroid/os/statistics/E2EScenario;Ljava/lang/String;)V
-    .registers 3
+    .locals 1
     .param p0, "scenario"    # Landroid/os/statistics/E2EScenario;
     .param p1, "tag"    # Ljava/lang/String;
 
@@ -603,37 +603,37 @@
 .end method
 
 .method public static finishScenario(Landroid/os/statistics/E2EScenario;Ljava/lang/String;Landroid/os/statistics/E2EScenarioPayload;)V
-    .registers 17
+    .locals 14
     .param p0, "scenario"    # Landroid/os/statistics/E2EScenario;
     .param p1, "tag"    # Ljava/lang/String;
     .param p2, "payload"    # Landroid/os/statistics/E2EScenarioPayload;
 
     .line 156
-    if-eqz p0, :cond_2b
+    if-eqz p0, :cond_2
 
     invoke-virtual {p0}, Landroid/os/statistics/E2EScenario;->isValid()Z
 
     move-result v0
 
-    if-nez v0, :cond_9
+    if-nez v0, :cond_0
 
-    goto :goto_2b
+    goto :goto_0
 
     .line 159
-    :cond_9
+    :cond_0
     invoke-static {}, Lcom/miui/daemon/performance/PerfShielderManager;->getService()Lcom/android/internal/app/IPerfShielder;
 
     move-result-object v8
 
     .line 160
     .local v8, "perfShielder":Lcom/android/internal/app/IPerfShielder;
-    if-nez v8, :cond_10
+    if-nez v8, :cond_1
 
     .line 161
     return-void
 
     .line 163
-    :cond_10
+    :cond_1
     invoke-static {}, Landroid/os/Process;->myTid()I
 
     move-result v9
@@ -675,13 +675,13 @@
     .end local v8    # "perfShielder":Lcom/android/internal/app/IPerfShielder;
     .end local v9    # "tid":I
     .end local v10    # "uptimeMs":J
-    :cond_2b
-    :goto_2b
+    :cond_2
+    :goto_0
     return-void
 .end method
 
 .method public static getVersion()I
-    .registers 1
+    .locals 1
 
     .line 25
     const/4 v0, 0x1

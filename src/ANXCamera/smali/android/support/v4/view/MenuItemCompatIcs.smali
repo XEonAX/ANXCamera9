@@ -14,7 +14,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -24,7 +24,7 @@
 .end method
 
 .method public static collapseActionView(Landroid/view/MenuItem;)Z
-    .registers 2
+    .locals 1
     .param p0, "item"    # Landroid/view/MenuItem;
 
     .line 28
@@ -36,7 +36,7 @@
 .end method
 
 .method public static expandActionView(Landroid/view/MenuItem;)Z
-    .registers 2
+    .locals 1
     .param p0, "item"    # Landroid/view/MenuItem;
 
     .line 24
@@ -48,7 +48,7 @@
 .end method
 
 .method public static isActionViewExpanded(Landroid/view/MenuItem;)Z
-    .registers 2
+    .locals 1
     .param p0, "item"    # Landroid/view/MenuItem;
 
     .line 32
@@ -60,7 +60,7 @@
 .end method
 
 .method public static setOnActionExpandListener(Landroid/view/MenuItem;Landroid/support/v4/view/MenuItemCompatIcs$SupportActionExpandProxy;)Landroid/view/MenuItem;
-    .registers 3
+    .locals 1
     .param p0, "item"    # Landroid/view/MenuItem;
     .param p1, "listener"    # Landroid/support/v4/view/MenuItemCompatIcs$SupportActionExpandProxy;
 

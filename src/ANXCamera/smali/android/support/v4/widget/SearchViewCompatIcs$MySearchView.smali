@@ -16,7 +16,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;)V
-    .registers 2
+    .locals 0
     .param p1, "context"    # Landroid/content/Context;
 
     .line 30
@@ -29,7 +29,7 @@
 
 # virtual methods
 .method public onActionViewCollapsed()V
-    .registers 3
+    .locals 2
 
     .line 37
     const-string v0, ""

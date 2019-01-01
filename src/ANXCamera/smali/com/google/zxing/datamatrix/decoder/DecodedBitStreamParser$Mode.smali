@@ -42,7 +42,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 9
+    .locals 9
 
     .line 40
     new-instance v0, Lcom/google/zxing/datamatrix/decoder/DecodedBitStreamParser$Mode;
@@ -160,7 +160,7 @@
 .end method
 
 .method private constructor <init>(Ljava/lang/String;I)V
-    .registers 3
+    .locals 0
 
     .line 39
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
@@ -169,7 +169,7 @@
 .end method
 
 .method public static valueOf(Ljava/lang/String;)Lcom/google/zxing/datamatrix/decoder/DecodedBitStreamParser$Mode;
-    .registers 2
+    .locals 1
 
     .line 1
     const-class v0, Lcom/google/zxing/datamatrix/decoder/DecodedBitStreamParser$Mode;
@@ -184,7 +184,7 @@
 .end method
 
 .method public static values()[Lcom/google/zxing/datamatrix/decoder/DecodedBitStreamParser$Mode;
-    .registers 4
+    .locals 4
 
     .line 1
     sget-object v0, Lcom/google/zxing/datamatrix/decoder/DecodedBitStreamParser$Mode;->ENUM$VALUES:[Lcom/google/zxing/datamatrix/decoder/DecodedBitStreamParser$Mode;

@@ -24,7 +24,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 55
     invoke-direct {p0}, Lmiui/util/Pools$Manager;-><init>()V
@@ -35,7 +35,7 @@
 
 # virtual methods
 .method public a(Ljava/io/CharArrayWriter;)V
-    .registers 2
+    .locals 0
 
     .line 63
     invoke-virtual {p1}, Ljava/io/CharArrayWriter;->reset()V
@@ -45,7 +45,7 @@
 .end method
 
 .method public synthetic createInstance()Ljava/lang/Object;
-    .registers 2
+    .locals 1
 
     .line 55
     invoke-virtual {p0}, Lmiui/util/IOUtils$2;->dw()Ljava/io/CharArrayWriter;
@@ -56,7 +56,7 @@
 .end method
 
 .method public dw()Ljava/io/CharArrayWriter;
-    .registers 2
+    .locals 1
 
     .line 58
     new-instance v0, Ljava/io/CharArrayWriter;
@@ -67,7 +67,7 @@
 .end method
 
 .method public synthetic onRelease(Ljava/lang/Object;)V
-    .registers 2
+    .locals 0
 
     .line 55
     check-cast p1, Ljava/io/CharArrayWriter;

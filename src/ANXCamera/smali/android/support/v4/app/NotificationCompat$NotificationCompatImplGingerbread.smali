@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 552
     invoke-direct {p0}, Landroid/support/v4/app/NotificationCompat$NotificationCompatImplBase;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public build(Landroid/support/v4/app/NotificationCompat$Builder;Landroid/support/v4/app/NotificationCompat$BuilderExtender;)Landroid/app/Notification;
-    .registers 10
+    .locals 7
     .param p1, "b"    # Landroid/support/v4/app/NotificationCompat$Builder;
     .param p2, "extender"    # Landroid/support/v4/app/NotificationCompat$BuilderExtender;
 
@@ -68,7 +68,7 @@
     .local v0, "result":Landroid/app/Notification;
     iget v1, p1, Landroid/support/v4/app/NotificationCompat$Builder;->mPriority:I
 
-    if-lez v1, :cond_26
+    if-lez v1, :cond_0
 
     .line 562
     iget v1, v0, Landroid/app/Notification;->flags:I
@@ -78,6 +78,6 @@
     iput v1, v0, Landroid/app/Notification;->flags:I
 
     .line 564
-    :cond_26
+    :cond_0
     return-object v0
 .end method

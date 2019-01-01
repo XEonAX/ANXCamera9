@@ -24,7 +24,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 68
     invoke-direct {p0}, Lmiui/util/Pools$Manager;-><init>()V
@@ -35,7 +35,7 @@
 
 # virtual methods
 .method public a(Ljava/io/StringWriter;)V
-    .registers 3
+    .locals 1
 
     .line 76
     invoke-virtual {p1}, Ljava/io/StringWriter;->getBuffer()Ljava/lang/StringBuffer;
@@ -51,7 +51,7 @@
 .end method
 
 .method public synthetic createInstance()Ljava/lang/Object;
-    .registers 2
+    .locals 1
 
     .line 68
     invoke-virtual {p0}, Lmiui/util/IOUtils$3;->dx()Ljava/io/StringWriter;
@@ -62,7 +62,7 @@
 .end method
 
 .method public dx()Ljava/io/StringWriter;
-    .registers 2
+    .locals 1
 
     .line 71
     new-instance v0, Ljava/io/StringWriter;
@@ -73,7 +73,7 @@
 .end method
 
 .method public synthetic onRelease(Ljava/lang/Object;)V
-    .registers 2
+    .locals 0
 
     .line 68
     check-cast p1, Ljava/io/StringWriter;

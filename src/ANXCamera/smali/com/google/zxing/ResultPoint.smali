@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>(FF)V
-    .registers 3
+    .locals 0
     .param p1, "x"    # F
     .param p2, "y"    # F
 
@@ -29,7 +29,7 @@
 .end method
 
 .method private static crossProductZ(Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;)F
-    .registers 8
+    .locals 5
     .param p0, "pointA"    # Lcom/google/zxing/ResultPoint;
     .param p1, "pointB"    # Lcom/google/zxing/ResultPoint;
     .param p2, "pointC"    # Lcom/google/zxing/ResultPoint;
@@ -69,7 +69,7 @@
 .end method
 
 .method public static distance(Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;)F
-    .registers 6
+    .locals 4
     .param p0, "pattern1"    # Lcom/google/zxing/ResultPoint;
     .param p1, "pattern2"    # Lcom/google/zxing/ResultPoint;
 
@@ -90,7 +90,7 @@
 .end method
 
 .method public static orderBestPatterns([Lcom/google/zxing/ResultPoint;)V
-    .registers 12
+    .locals 11
     .param p0, "patterns"    # [Lcom/google/zxing/ResultPoint;
 
     .line 79
@@ -132,11 +132,11 @@
     .local v5, "zeroTwoDistance":F
     cmpl-float v6, v3, v1
 
-    if-ltz v6, :cond_2a
+    if-ltz v6, :cond_0
 
     cmpl-float v6, v3, v5
 
-    if-ltz v6, :cond_2a
+    if-ltz v6, :cond_0
 
     .line 88
     aget-object v6, p0, v0
@@ -151,19 +151,19 @@
 
     .line 91
     .local v8, "pointC":Lcom/google/zxing/ResultPoint;
-    goto :goto_3f
+    goto :goto_0
 
     .end local v6    # "pointB":Lcom/google/zxing/ResultPoint;
     .end local v7    # "pointA":Lcom/google/zxing/ResultPoint;
     .end local v8    # "pointC":Lcom/google/zxing/ResultPoint;
-    :cond_2a
+    :cond_0
     cmpl-float v6, v5, v3
 
-    if-ltz v6, :cond_39
+    if-ltz v6, :cond_1
 
     cmpl-float v6, v5, v1
 
-    if-ltz v6, :cond_39
+    if-ltz v6, :cond_1
 
     .line 92
     aget-object v6, p0, v2
@@ -178,13 +178,13 @@
 
     .line 95
     .restart local v8    # "pointC":Lcom/google/zxing/ResultPoint;
-    goto :goto_3f
+    goto :goto_0
 
     .line 96
     .end local v6    # "pointB":Lcom/google/zxing/ResultPoint;
     .end local v7    # "pointA":Lcom/google/zxing/ResultPoint;
     .end local v8    # "pointC":Lcom/google/zxing/ResultPoint;
-    :cond_39
+    :cond_1
     aget-object v6, p0, v4
 
     .line 97
@@ -197,7 +197,7 @@
 
     .line 105
     .restart local v8    # "pointC":Lcom/google/zxing/ResultPoint;
-    :goto_3f
+    :goto_0
     invoke-static {v7, v6, v8}, Lcom/google/zxing/ResultPoint;->crossProductZ(Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;)F
 
     move-result v9
@@ -206,7 +206,7 @@
 
     cmpg-float v9, v9, v10
 
-    if-gez v9, :cond_4b
+    if-gez v9, :cond_2
 
     .line 106
     move-object v9, v7
@@ -220,7 +220,7 @@
 
     .line 111
     .end local v9    # "temp":Lcom/google/zxing/ResultPoint;
-    :cond_4b
+    :cond_2
     aput-object v7, p0, v0
 
     .line 112
@@ -236,7 +236,7 @@
 
 # virtual methods
 .method public final equals(Ljava/lang/Object;)Z
-    .registers 6
+    .locals 4
     .param p1, "other"    # Ljava/lang/Object;
 
     .line 47
@@ -244,7 +244,7 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_1a
+    if-eqz v0, :cond_1
 
     .line 48
     move-object v0, p1
@@ -259,7 +259,7 @@
 
     cmpl-float v2, v2, v3
 
-    if-nez v2, :cond_19
+    if-nez v2, :cond_0
 
     iget v2, p0, Lcom/google/zxing/ResultPoint;->y:F
 
@@ -267,21 +267,21 @@
 
     cmpl-float v2, v2, v3
 
-    if-nez v2, :cond_19
+    if-nez v2, :cond_0
 
     const/4 v1, 0x1
 
-    :cond_19
+    :cond_0
     return v1
 
     .line 51
     .end local v0    # "otherPoint":Lcom/google/zxing/ResultPoint;
-    :cond_1a
+    :cond_1
     return v1
 .end method
 
 .method public final getX()F
-    .registers 2
+    .locals 1
 
     .line 38
     iget v0, p0, Lcom/google/zxing/ResultPoint;->x:F
@@ -290,7 +290,7 @@
 .end method
 
 .method public final getY()F
-    .registers 2
+    .locals 1
 
     .line 42
     iget v0, p0, Lcom/google/zxing/ResultPoint;->y:F
@@ -299,7 +299,7 @@
 .end method
 
 .method public final hashCode()I
-    .registers 3
+    .locals 2
 
     .line 56
     iget v0, p0, Lcom/google/zxing/ResultPoint;->x:F
@@ -324,7 +324,7 @@
 .end method
 
 .method public final toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 61
     new-instance v0, Ljava/lang/StringBuilder;

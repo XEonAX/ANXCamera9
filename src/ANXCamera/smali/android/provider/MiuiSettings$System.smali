@@ -686,7 +686,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 4
+    .locals 4
 
     .line 292
     const-string/jumbo v0, "ro.haptic.default_level"
@@ -702,15 +702,15 @@
     .line 359
     sget-boolean v0, Lmiui/os/Build;->IS_CTA_BUILD:Z
 
-    if-nez v0, :cond_2b
+    if-nez v0, :cond_1
 
     sget-boolean v0, Lmiui/os/Build;->IS_CM_CUSTOMIZATION_TEST:Z
 
-    if-nez v0, :cond_2b
+    if-nez v0, :cond_1
 
     sget-boolean v0, Lmiui/os/Build;->IS_CU_CUSTOMIZATION_TEST:Z
 
-    if-nez v0, :cond_2b
+    if-nez v0, :cond_1
 
     const-string/jumbo v0, "mx_telcel"
 
@@ -726,21 +726,21 @@
 
     move-result v0
 
-    if-eqz v0, :cond_29
+    if-eqz v0, :cond_0
 
-    goto :goto_2b
+    goto :goto_0
 
     .line 360
-    :cond_29
+    :cond_0
     const/4 v0, 0x0
 
-    goto :goto_2c
+    goto :goto_1
 
-    :cond_2b
-    :goto_2b
+    :cond_1
+    :goto_0
     move v0, v1
 
-    :goto_2c
+    :goto_1
     sput v0, Landroid/provider/MiuiSettings$System;->STATUS_BAR_SHOW_NOTIFICATION_ICON_DEFAULT:I
 
     .line 610
@@ -805,13 +805,11 @@
     sput-object v0, Landroid/provider/MiuiSettings$System;->POWER_MODE_VALUES:[Ljava/lang/String;
 
     .line 982
-
     const v0, 0xff
 
     sput v0, Landroid/provider/MiuiSettings$System;->CALL_BREATHING_LIGHT_COLOR_DEFAULT:I
 
     .line 992
-
     const v0, 0x2
 
     sput v0, Landroid/provider/MiuiSettings$System;->CALL_BREATHING_LIGHT_FREQ_DEFAULT:I
@@ -1767,7 +1765,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 192
     invoke-direct {p0}, Landroid/provider/SystemSettings$System;-><init>()V
@@ -1776,7 +1774,7 @@
 .end method
 
 .method public static belongToCrossXSpaceSettings(Ljava/lang/String;I)Z
-    .registers 3
+    .locals 1
     .param p0, "setting"    # Ljava/lang/String;
     .param p1, "userId"    # I
 
@@ -1785,7 +1783,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_10
+    if-eqz v0, :cond_0
 
     sget-object v0, Landroid/provider/MiuiSettings;->CROSS_PROFILE_SETTINGS:Ljava/util/Set;
 
@@ -1793,21 +1791,21 @@
 
     move-result v0
 
-    if-eqz v0, :cond_10
+    if-eqz v0, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_11
+    goto :goto_0
 
-    :cond_10
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_11
+    :goto_0
     return v0
 .end method
 
 .method private static flattenOrderToString(Ljava/util/List;)Ljava/lang/String;
-    .registers 5
+    .locals 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1838,7 +1836,7 @@
 
     .line 1938
     .local v2, "i":I
-    :goto_c
+    :goto_0
     invoke-interface {p0, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
     move-result-object v3
@@ -1852,7 +1850,7 @@
     invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 1939
-    if-ne v2, v1, :cond_20
+    if-ne v2, v1, :cond_0
 
     .line 1940
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
@@ -1862,7 +1860,7 @@
     return-object v3
 
     .line 1941
-    :cond_20
+    :cond_0
     const-string v3, ","
 
     invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
@@ -1870,11 +1868,11 @@
     .line 1937
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_c
+    goto :goto_0
 .end method
 
 .method public static getActivityResolveOrder(Landroid/content/ContentResolver;)Ljava/util/List;
-    .registers 2
+    .locals 1
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1902,7 +1900,7 @@
 .end method
 
 .method public static getBooleanForUser(Landroid/content/ContentResolver;Ljava/lang/String;ZI)Z
-    .registers 5
+    .locals 1
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "name"    # Ljava/lang/String;
     .param p2, "defValue"    # Z
@@ -1913,21 +1911,21 @@
 
     move-result v0
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_9
+    :goto_0
     return v0
 .end method
 
 .method public static getDisableWifiAutoConnectSsid(Landroid/content/Context;)Ljava/util/HashSet;
-    .registers 8
+    .locals 7
     .param p0, "context"    # Landroid/content/Context;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1969,7 +1967,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_37
+    if-nez v2, :cond_0
 
     .line 1097
     const-string v2, ","
@@ -1980,19 +1978,19 @@
 
     .line 1098
     .local v2, "ssidArr":[Ljava/lang/String;
-    if-eqz v2, :cond_37
+    if-eqz v2, :cond_0
 
     .line 1099
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_20
+    :goto_0
     array-length v4, v2
 
-    if-ge v3, v4, :cond_37
+    if-ge v3, v4, :cond_0
 
     .line 1101
-    :try_start_23
+    :try_start_0
     new-instance v4, Ljava/lang/String;
 
     aget-object v5, v2, v3
@@ -2006,31 +2004,31 @@
     invoke-direct {v4, v5}, Ljava/lang/String;-><init>([B)V
 
     invoke-virtual {v1, v4}, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z
-    :try_end_32
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_23 .. :try_end_32} :catch_33
+    :try_end_0
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1103
-    goto :goto_34
+    goto :goto_1
 
     .line 1102
-    :catch_33
+    :catch_0
     move-exception v4
 
     .line 1099
-    :goto_34
+    :goto_1
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_20
+    goto :goto_0
 
     .line 1107
     .end local v2    # "ssidArr":[Ljava/lang/String;
     .end local v3    # "i":I
-    :cond_37
+    :cond_0
     return-object v1
 .end method
 
 .method public static getDisplayWindowSizeInSmartCover()Landroid/graphics/Rect;
-    .registers 13
+    .locals 13
 
     .line 2052
     invoke-static {}, Landroid/content/res/Resources;->getSystem()Landroid/content/res/Resources;
@@ -2106,13 +2104,13 @@
 
     .line 2059
     .local v4, "rect":Landroid/graphics/Rect;
-    if-nez v1, :cond_43
+    if-nez v1, :cond_0
 
     .line 2060
     return-object v4
 
     .line 2064
-    :cond_43
+    :cond_0
     new-array v9, v2, [I
 
     const-string/jumbo v10, "smartcover_smallwindow_left"
@@ -2166,7 +2164,7 @@
 
     .line 2069
     .local v10, "multi":Z
-    if-eqz v10, :cond_a6
+    if-eqz v10, :cond_1
 
     .line 2070
     sget-object v11, Landroid/provider/MiuiSettings$1;->$SwitchMap$android$provider$MiuiSettings$System$SmallWindowType:[I
@@ -2177,22 +2175,22 @@
 
     aget v11, v11, v12
 
-    packed-switch v11, :pswitch_data_b8
+    packed-switch v11, :pswitch_data_0
 
-    goto :goto_a6
+    goto :goto_0
 
     .line 2081
-    :pswitch_86
+    :pswitch_0
     const-string/jumbo v11, "smartcover_smallwindow_b7_size"
 
     invoke-static {v11}, Lmiui/util/FeatureParser;->getIntArray(Ljava/lang/String;)[I
 
     move-result-object v9
 
-    goto :goto_a6
+    goto :goto_0
 
     .line 2078
-    :pswitch_8e
+    :pswitch_1
     const-string/jumbo v11, "smartcover_smallwindow_a7_size"
 
     invoke-static {v11}, Lmiui/util/FeatureParser;->getIntArray(Ljava/lang/String;)[I
@@ -2200,10 +2198,10 @@
     move-result-object v9
 
     .line 2079
-    goto :goto_a6
+    goto :goto_0
 
     .line 2075
-    :pswitch_96
+    :pswitch_2
     const-string/jumbo v11, "smartcover_smallwindow_a1_size"
 
     invoke-static {v11}, Lmiui/util/FeatureParser;->getIntArray(Ljava/lang/String;)[I
@@ -2211,10 +2209,10 @@
     move-result-object v9
 
     .line 2076
-    goto :goto_a6
+    goto :goto_0
 
     .line 2072
-    :pswitch_9e
+    :pswitch_3
     const-string/jumbo v11, "smartcover_smallwindow_x7_size"
 
     invoke-static {v11}, Lmiui/util/FeatureParser;->getIntArray(Ljava/lang/String;)[I
@@ -2225,13 +2223,13 @@
     nop
 
     .line 2086
-    :cond_a6
-    :goto_a6
-    if-eqz v9, :cond_b6
+    :cond_1
+    :goto_0
+    if-eqz v9, :cond_2
 
     array-length v11, v9
 
-    if-ne v11, v2, :cond_b6
+    if-ne v11, v2, :cond_2
 
     .line 2087
     aget v2, v9, v5
@@ -2245,22 +2243,22 @@
     invoke-virtual {v4, v2, v5, v6, v7}, Landroid/graphics/Rect;->set(IIII)V
 
     .line 2089
-    :cond_b6
+    :cond_2
     return-object v4
 
     nop
 
-    :pswitch_data_b8
+    :pswitch_data_0
     .packed-switch 0x1
-        :pswitch_9e
-        :pswitch_96
-        :pswitch_8e
-        :pswitch_86
+        :pswitch_3
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
     .end packed-switch
 .end method
 
 .method public static getHapticFeedbackLevel(Landroid/content/Context;)I
-    .registers 5
+    .locals 4
     .param p0, "context"    # Landroid/content/Context;
 
     .line 297
@@ -2282,7 +2280,7 @@
 .end method
 
 .method public static getHotSpotMacBlackSet(Landroid/content/Context;)Ljava/util/Set;
-    .registers 8
+    .locals 7
     .param p0, "context"    # Landroid/content/Context;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2324,7 +2322,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_37
+    if-nez v2, :cond_0
 
     .line 1200
     const-string v2, ","
@@ -2335,19 +2333,19 @@
 
     .line 1201
     .local v2, "mac":[Ljava/lang/String;
-    if-eqz v2, :cond_37
+    if-eqz v2, :cond_0
 
     .line 1202
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_20
+    :goto_0
     array-length v4, v2
 
-    if-ge v3, v4, :cond_37
+    if-ge v3, v4, :cond_0
 
     .line 1204
-    :try_start_23
+    :try_start_0
     new-instance v4, Ljava/lang/String;
 
     aget-object v5, v2, v3
@@ -2361,31 +2359,31 @@
     invoke-direct {v4, v5}, Ljava/lang/String;-><init>([B)V
 
     invoke-interface {v1, v4}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
-    :try_end_32
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_23 .. :try_end_32} :catch_33
+    :try_end_0
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1206
-    goto :goto_34
+    goto :goto_1
 
     .line 1205
-    :catch_33
+    :catch_0
     move-exception v4
 
     .line 1202
-    :goto_34
+    :goto_1
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_20
+    goto :goto_0
 
     .line 1210
     .end local v2    # "mac":[Ljava/lang/String;
     .end local v3    # "i":I
-    :cond_37
+    :cond_0
     return-object v1
 .end method
 
 .method public static getHotSpotMaxStationNum(Landroid/content/Context;)I
-    .registers 5
+    .locals 4
     .param p0, "context"    # Landroid/content/Context;
 
     .line 1161
@@ -2396,7 +2394,7 @@
     nop
 
     .line 1164
-    :try_start_2
+    :try_start_0
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v1
@@ -2409,25 +2407,25 @@
     invoke-static {v1, v2, v3}, Landroid/provider/Settings$System;->getIntForUser(Landroid/content/ContentResolver;Ljava/lang/String;I)I
 
     move-result v1
-    :try_end_d
-    .catch Landroid/provider/Settings$SettingNotFoundException; {:try_start_2 .. :try_end_d} :catch_f
+    :try_end_0
+    .catch Landroid/provider/Settings$SettingNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
     move v0, v1
 
     .line 1166
-    goto :goto_10
+    goto :goto_0
 
     .line 1165
-    :catch_f
+    :catch_0
     move-exception v1
 
     .line 1167
-    :goto_10
+    :goto_0
     return v0
 .end method
 
 .method public static getHotSpotVendorSpecific(Landroid/content/Context;)Ljava/lang/String;
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 1227
@@ -2447,7 +2445,7 @@
 .end method
 
 .method public static getScreenKeyLongPressAction(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
-    .registers 5
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "key"    # Ljava/lang/String;
 
@@ -2468,7 +2466,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_50
+    if-eqz v1, :cond_3
 
     .line 764
     const-string/jumbo v0, "none"
@@ -2492,58 +2490,58 @@
 
     move-result v2
 
-    if-eqz v2, :cond_2a
+    if-eqz v2, :cond_0
 
     .line 768
     const/4 v2, 0x0
 
     aget-object v0, v1, v2
 
-    goto :goto_50
+    goto :goto_0
 
     .line 770
-    :cond_2a
+    :cond_0
     const-string/jumbo v2, "screen_key_long_press_home"
 
     invoke-virtual {v2, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v2
 
-    if-eqz v2, :cond_37
+    if-eqz v2, :cond_1
 
     .line 771
     const/4 v2, 0x1
 
     aget-object v0, v1, v2
 
-    goto :goto_50
+    goto :goto_0
 
     .line 773
-    :cond_37
+    :cond_1
     const-string/jumbo v2, "screen_key_long_press_back"
 
     invoke-virtual {v2, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v2
 
-    if-eqz v2, :cond_44
+    if-eqz v2, :cond_2
 
     .line 774
     const/4 v2, 0x2
 
     aget-object v0, v1, v2
 
-    goto :goto_50
+    goto :goto_0
 
     .line 776
-    :cond_44
+    :cond_2
     const-string/jumbo v2, "screen_key_long_press_app_switch"
 
     invoke-virtual {v2, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v2
 
-    if-eqz v2, :cond_50
+    if-eqz v2, :cond_3
 
     .line 777
     const/4 v2, 0x3
@@ -2552,13 +2550,13 @@
 
     .line 780
     .end local v1    # "defaultActions":[Ljava/lang/String;
-    :cond_50
-    :goto_50
+    :cond_3
+    :goto_0
     return-object v0
 .end method
 
 .method public static getScreenKeyOrder(Landroid/content/Context;)Ljava/util/ArrayList;
-    .registers 8
+    .locals 7
     .param p0, "context"    # Landroid/content/Context;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2594,7 +2592,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_46
+    if-nez v2, :cond_1
 
     .line 846
     const-string v2, " "
@@ -2609,13 +2607,13 @@
 
     .line 847
     .local v3, "i":I
-    :goto_1d
+    :goto_0
     array-length v4, v2
 
-    if-ge v3, v4, :cond_46
+    if-ge v3, v4, :cond_1
 
     .line 849
-    :try_start_20
+    :try_start_0
     aget-object v4, v2, v3
 
     invoke-static {v4}, Ljava/lang/Integer;->valueOf(Ljava/lang/String;)Ljava/lang/Integer;
@@ -2638,7 +2636,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_3d
+    if-eqz v5, :cond_0
 
     .line 851
     invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -2646,21 +2644,21 @@
     move-result-object v5
 
     invoke-virtual {v0, v5}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-    :try_end_3d
-    .catch Ljava/lang/Exception; {:try_start_20 .. :try_end_3d} :catch_41
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 856
     .end local v4    # "id":I
-    :cond_3d
+    :cond_0
     nop
 
     .line 847
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_1d
+    goto :goto_0
 
     .line 853
-    :catch_41
+    :catch_0
     move-exception v4
 
     .line 854
@@ -2674,19 +2672,19 @@
     .end local v2    # "keys":[Ljava/lang/String;
     .end local v3    # "i":I
     .end local v4    # "e":Ljava/lang/Exception;
-    :cond_46
+    :cond_1
     sget-object v2, Landroid/provider/MiuiSettings$System;->screenKeys:Ljava/util/ArrayList;
 
     invoke-virtual {v2}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
 
     move-result-object v2
 
-    :goto_4c
+    :goto_1
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_62
+    if-eqz v3, :cond_3
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -2700,36 +2698,36 @@
 
     move-result v4
 
-    if-nez v4, :cond_61
+    if-nez v4, :cond_2
 
     .line 862
     invoke-virtual {v0, v3}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
     .line 864
     .end local v3    # "id":Ljava/lang/Integer;
-    :cond_61
-    goto :goto_4c
+    :cond_2
+    goto :goto_1
 
     .line 866
-    :cond_62
+    :cond_3
     return-object v0
 .end method
 
 .method public static getShowCustomCarrierDefault()I
-    .registers 2
+    .locals 2
 
     .line 392
     sget-boolean v0, Lmiui/os/Build;->IS_CM_CUSTOMIZATION_TEST:Z
 
-    if-nez v0, :cond_1c
+    if-nez v0, :cond_1
 
     sget-boolean v0, Lmiui/os/Build;->IS_CU_CUSTOMIZATION_TEST:Z
 
-    if-nez v0, :cond_1c
+    if-nez v0, :cond_1
 
     sget-boolean v0, Lmiui/os/Build;->IS_CT_CUSTOMIZATION_TEST:Z
 
-    if-nez v0, :cond_1c
+    if-nez v0, :cond_1
 
     invoke-static {}, Landroid/content/res/Resources;->getSystem()Landroid/content/res/Resources;
 
@@ -2741,27 +2739,27 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1a
+    if-eqz v0, :cond_0
 
-    goto :goto_1c
+    goto :goto_0
 
     .line 393
-    :cond_1a
+    :cond_0
     const/4 v0, 0x0
 
-    goto :goto_1d
+    goto :goto_1
 
-    :cond_1c
-    :goto_1c
+    :cond_1
+    :goto_0
     const/4 v0, 0x1
 
     .line 389
-    :goto_1d
+    :goto_1
     return v0
 .end method
 
 .method public static getSmallWindowMode()Landroid/provider/MiuiSettings$System$SmallWindowType;
-    .registers 7
+    .locals 7
 
     .line 2110
     const-string/jumbo v0, "persist.sys.smallwin_type"
@@ -2774,7 +2772,7 @@
 
     .line 2111
     .local v0, "win":I
-    if-ne v0, v1, :cond_3d
+    if-ne v0, v1, :cond_3
 
     .line 2112
     const-string/jumbo v1, "support_multiple_small_win_cover"
@@ -2791,7 +2789,7 @@
 
     .line 2114
     .local v3, "typeArray":[I
-    if-eqz v1, :cond_1e
+    if-eqz v1, :cond_0
 
     .line 2115
     const-string/jumbo v4, "small_win_cover_type"
@@ -2800,10 +2798,10 @@
 
     move-result-object v3
 
-    goto :goto_37
+    goto :goto_0
 
     .line 2117
-    :cond_1e
+    :cond_0
     const/4 v4, 0x1
 
     new-array v3, v4, [I
@@ -2819,7 +2817,7 @@
     .local v4, "supportSmallWin":Z
     const/4 v5, -0x1
 
-    if-eqz v4, :cond_35
+    if-eqz v4, :cond_1
 
     .line 2120
     const-string/jumbo v6, "small_win_cover_type"
@@ -2830,16 +2828,16 @@
 
     aput v5, v3, v2
 
-    goto :goto_37
+    goto :goto_0
 
     .line 2122
-    :cond_35
+    :cond_1
     aput v5, v3, v2
 
     .line 2126
     .end local v4    # "supportSmallWin":Z
-    :goto_37
-    if-nez v3, :cond_3b
+    :goto_0
+    if-nez v3, :cond_2
 
     .line 2127
     const/4 v2, 0x0
@@ -2847,71 +2845,71 @@
     return-object v2
 
     .line 2129
-    :cond_3b
+    :cond_2
     aget v0, v3, v2
 
     .line 2132
     .end local v1    # "multi":Z
     .end local v3    # "typeArray":[I
-    :cond_3d
+    :cond_3
     const/4 v1, 0x0
 
     .line 2133
     .local v1, "type":Landroid/provider/MiuiSettings$System$SmallWindowType;
-    packed-switch v0, :pswitch_data_52
+    packed-switch v0, :pswitch_data_0
 
     .line 2147
     const/4 v1, 0x0
 
-    goto :goto_4f
+    goto :goto_1
 
     .line 2144
-    :pswitch_43
+    :pswitch_0
     sget-object v1, Landroid/provider/MiuiSettings$System$SmallWindowType;->B7_FULL:Landroid/provider/MiuiSettings$System$SmallWindowType;
 
     .line 2145
-    goto :goto_4f
+    goto :goto_1
 
     .line 2141
-    :pswitch_46
+    :pswitch_1
     sget-object v1, Landroid/provider/MiuiSettings$System$SmallWindowType;->A7_LATTICE:Landroid/provider/MiuiSettings$System$SmallWindowType;
 
     .line 2142
-    goto :goto_4f
+    goto :goto_1
 
     .line 2138
-    :pswitch_49
+    :pswitch_2
     sget-object v1, Landroid/provider/MiuiSettings$System$SmallWindowType;->A1_STYLE:Landroid/provider/MiuiSettings$System$SmallWindowType;
 
     .line 2139
-    goto :goto_4f
+    goto :goto_1
 
     .line 2135
-    :pswitch_4c
+    :pswitch_3
     sget-object v1, Landroid/provider/MiuiSettings$System$SmallWindowType;->X7_STYLE:Landroid/provider/MiuiSettings$System$SmallWindowType;
 
     .line 2136
     nop
 
     .line 2150
-    :goto_4f
+    :goto_1
     return-object v1
 
     nop
 
     nop
 
-    :pswitch_data_52
+    :pswitch_data_0
     .packed-switch 0x0
-        :pswitch_4c
-        :pswitch_49
-        :pswitch_46
-        :pswitch_43
+        :pswitch_3
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
     .end packed-switch
 .end method
 
 .method public static getString(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
-    .registers 3
+    .locals 1
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "name"    # Ljava/lang/String;
 
@@ -2924,7 +2922,7 @@
 .end method
 
 .method public static declared-synchronized getString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-    .registers 5
+    .locals 2
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "name"    # Ljava/lang/String;
     .param p2, "defValue"    # Ljava/lang/String;
@@ -2934,22 +2932,22 @@
     monitor-enter v0
 
     .line 1764
-    :try_start_3
+    :try_start_0
     invoke-static {p0, p1}, Landroid/provider/Settings$System;->getString(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
-    :try_end_7
-    .catchall {:try_start_3 .. :try_end_7} :catchall_c
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 1765
     .local v1, "result":Ljava/lang/String;
-    if-nez v1, :cond_a
+    if-nez v1, :cond_0
 
     .line 1766
     move-object v1, p2
 
     .line 1768
-    :cond_a
+    :cond_0
     monitor-exit v0
 
     return-object v1
@@ -2959,7 +2957,7 @@
     .end local p0    # "resolver":Landroid/content/ContentResolver;
     .end local p1    # "name":Ljava/lang/String;
     .end local p2    # "defValue":Ljava/lang/String;
-    :catchall_c
+    :catchall_0
     move-exception p0
 
     monitor-exit v0
@@ -2968,7 +2966,7 @@
 .end method
 
 .method public static getStringForUser(Landroid/content/ContentResolver;Ljava/lang/String;I)Ljava/lang/String;
-    .registers 4
+    .locals 1
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "name"    # Ljava/lang/String;
     .param p2, "userHandle"    # I
@@ -2982,7 +2980,7 @@
 .end method
 
 .method public static getT9IndexingKeyDefault()I
-    .registers 1
+    .locals 1
 
     .line 239
     const-string v0, "TW"
@@ -2995,7 +2993,7 @@
 .end method
 
 .method public static isCdmaPreciseAnswerStateEnabled(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "c"    # Landroid/content/Context;
 
     .line 224
@@ -3011,19 +3009,19 @@
 
     move-result v0
 
-    if-ne v0, v2, :cond_e
+    if-ne v0, v2, :cond_0
 
-    goto :goto_f
+    goto :goto_0
 
-    :cond_e
+    :cond_0
     const/4 v2, 0x0
 
-    :goto_f
+    :goto_0
     return v2
 .end method
 
 .method private static isCnFromOperator(Ljava/lang/String;)Z
-    .registers 4
+    .locals 3
     .param p0, "operator"    # Ljava/lang/String;
 
     .line 1255
@@ -3035,7 +3033,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_14
+    if-nez v1, :cond_0
 
     invoke-virtual {p0}, Ljava/lang/String;->length()I
 
@@ -3043,7 +3041,7 @@
 
     const/4 v2, 0x3
 
-    if-lt v1, v2, :cond_14
+    if-lt v1, v2, :cond_0
 
     .line 1257
     const/4 v1, 0x0
@@ -3053,7 +3051,7 @@
     move-result-object v0
 
     .line 1259
-    :cond_14
+    :cond_0
     const-string v1, "460"
 
     invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -3064,7 +3062,7 @@
 .end method
 
 .method public static isHapticFeedbackDisabled(Landroid/content/Context;)Z
-    .registers 5
+    .locals 4
     .param p0, "context"    # Landroid/content/Context;
 
     .line 303
@@ -3082,18 +3080,18 @@
 
     move-result v0
 
-    if-nez v0, :cond_10
+    if-nez v0, :cond_0
 
     const/4 v2, 0x1
 
     nop
 
-    :cond_10
+    :cond_0
     return v2
 .end method
 
 .method public static final isInCnRegion()Z
-    .registers 8
+    .locals 8
 
     .line 1237
     invoke-static {}, Lmiui/telephony/TelephonyManager;->getDefault()Lmiui/telephony/TelephonyManager;
@@ -3110,18 +3108,18 @@
 
     const/4 v3, 0x1
 
-    if-lez v1, :cond_e
+    if-lez v1, :cond_0
 
     move v1, v3
 
-    goto :goto_f
+    goto :goto_0
 
-    :cond_e
+    :cond_0
     move v1, v2
 
     .line 1239
     .local v1, "isExistIccCard":Z
-    :goto_f
+    :goto_0
     invoke-virtual {v0}, Lmiui/telephony/TelephonyManager;->getPhoneCount()I
 
     move-result v4
@@ -3132,7 +3130,7 @@
 
     .line 1242
     .local v5, "networkOperator":Ljava/lang/String;
-    if-eqz v1, :cond_29
+    if-eqz v1, :cond_3
 
     .line 1243
     move-object v6, v5
@@ -3141,8 +3139,8 @@
 
     .local v5, "i":I
     .local v6, "networkOperator":Ljava/lang/String;
-    :goto_18
-    if-ge v5, v4, :cond_28
+    :goto_1
+    if-ge v5, v4, :cond_2
 
     .line 1244
     invoke-virtual {v0, v5}, Lmiui/telephony/TelephonyManager;->getNetworkOperatorForSlot(I)Ljava/lang/String;
@@ -3154,52 +3152,52 @@
 
     move-result v7
 
-    if-eqz v7, :cond_25
+    if-eqz v7, :cond_1
 
     .line 1246
     return v3
 
     .line 1243
-    :cond_25
+    :cond_1
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_18
+    goto :goto_1
 
     .line 1251
     .end local v5    # "i":I
-    :cond_28
+    :cond_2
     move-object v5, v6
 
     .end local v6    # "networkOperator":Ljava/lang/String;
     .local v5, "networkOperator":Ljava/lang/String;
-    :cond_29
+    :cond_3
     const-string v6, "CN"
 
     invoke-static {v6}, Lmiui/os/Build;->checkRegion(Ljava/lang/String;)Z
 
     move-result v6
 
-    if-eqz v6, :cond_3b
+    if-eqz v6, :cond_5
 
-    if-eqz v1, :cond_39
+    if-eqz v1, :cond_4
 
     invoke-static {v5}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v6
 
-    if-eqz v6, :cond_3b
+    if-eqz v6, :cond_5
 
-    :cond_39
+    :cond_4
     move v2, v3
 
     nop
 
-    :cond_3b
+    :cond_5
     return v2
 .end method
 
 .method public static isInSmallWindowMode(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 2096
@@ -3219,7 +3217,7 @@
 .end method
 
 .method public static isMiDropEnabled(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 2196
@@ -3239,7 +3237,7 @@
 .end method
 
 .method public static isMiuiPublicSettings(Landroid/content/pm/PackageInfo;Ljava/lang/String;)Z
-    .registers 4
+    .locals 2
     .param p0, "packageInfo"    # Landroid/content/pm/PackageInfo;
     .param p1, "name"    # Ljava/lang/String;
 
@@ -3250,7 +3248,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_11
+    if-eqz v0, :cond_0
 
     iget-object v0, p0, Landroid/content/pm/PackageInfo;->applicationInfo:Landroid/content/pm/ApplicationInfo;
 
@@ -3260,13 +3258,13 @@
 
     and-int/2addr v0, v1
 
-    if-eqz v0, :cond_11
+    if-eqz v0, :cond_0
 
     .line 202
     return v1
 
     .line 204
-    :cond_11
+    :cond_0
     const-string v0, "SystemSettings"
 
     const-string v1, "Want to modify SystemSettings? See MiuiSettings.System.PUBLIC_SETTINGS"
@@ -3280,7 +3278,7 @@
 .end method
 
 .method public static isSimpleMode(Landroid/content/Context;)Z
-    .registers 5
+    .locals 4
     .param p0, "context"    # Landroid/content/Context;
 
     .line 1733
@@ -3302,19 +3300,19 @@
 
     move-result v2
 
-    if-ne v2, v1, :cond_12
+    if-ne v2, v1, :cond_0
 
-    goto :goto_13
+    goto :goto_0
 
-    :cond_12
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_13
+    :goto_0
     return v1
 .end method
 
 .method public static isTouchAssistantEnabledForUser(Landroid/content/Context;IZ)Z
-    .registers 6
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "userId"    # I
     .param p2, "hasNavBar"    # Z
@@ -3336,19 +3334,19 @@
     .local v0, "result":I
     const/4 v1, 0x1
 
-    if-ne v0, v1, :cond_10
+    if-ne v0, v1, :cond_0
 
-    goto :goto_11
+    goto :goto_0
 
-    :cond_10
+    :cond_0
     move v1, v2
 
-    :goto_11
+    :goto_0
     return v1
 .end method
 
 .method public static isTouchAssistantTemporaryForUser(Landroid/content/Context;IZ)Z
-    .registers 6
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "userId"    # I
     .param p2, "hasNavBar"    # Z
@@ -3368,21 +3366,21 @@
 
     .line 2279
     .local v0, "result":I
-    if-ne v0, v2, :cond_10
+    if-ne v0, v2, :cond_0
 
     const/4 v1, 0x1
 
-    goto :goto_11
+    goto :goto_0
 
-    :cond_10
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_11
+    :goto_0
     return v1
 .end method
 
 .method public static putActivityResolveOrder(Landroid/content/ContentResolver;Ljava/util/List;)V
-    .registers 4
+    .locals 2
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -3409,7 +3407,7 @@
 .end method
 
 .method public static putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
-    .registers 4
+    .locals 1
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "name"    # Ljava/lang/String;
     .param p2, "value"    # Z
@@ -3423,7 +3421,7 @@
 .end method
 
 .method public static putBooleanForUser(Landroid/content/ContentResolver;Ljava/lang/String;ZI)Z
-    .registers 5
+    .locals 1
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "name"    # Ljava/lang/String;
     .param p2, "value"    # Z
@@ -3438,7 +3436,7 @@
 .end method
 
 .method public static putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
-    .registers 4
+    .locals 1
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "name"    # Ljava/lang/String;
     .param p2, "value"    # Ljava/lang/String;
@@ -3452,7 +3450,7 @@
 .end method
 
 .method public static putStringForUser(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;I)Z
-    .registers 5
+    .locals 1
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "name"    # Ljava/lang/String;
     .param p2, "value"    # Ljava/lang/String;
@@ -3467,7 +3465,7 @@
 .end method
 
 .method public static setDisableWifiAutoConnectSsid(Landroid/content/Context;Ljava/util/HashSet;)V
-    .registers 7
+    .locals 5
     .param p0, "context"    # Landroid/content/Context;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -3481,13 +3479,13 @@
 
     .line 1114
     .local p1, "ssidSet":Ljava/util/HashSet;, "Ljava/util/HashSet<Ljava/lang/String;>;"
-    if-nez p1, :cond_3
+    if-nez p1, :cond_0
 
     .line 1115
     return-void
 
     .line 1117
-    :cond_3
+    :cond_0
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -3498,12 +3496,12 @@
 
     move-result-object v1
 
-    :goto_c
+    :goto_0
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_2c
+    if-eqz v2, :cond_1
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -3513,7 +3511,7 @@
 
     .line 1120
     .local v2, "ssid":Ljava/lang/String;
-    :try_start_18
+    :try_start_0
     invoke-virtual {v2}, Ljava/lang/String;->getBytes()[B
 
     move-result-object v3
@@ -3530,23 +3528,23 @@
     const-string v3, ","
 
     invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    :try_end_29
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_18 .. :try_end_29} :catch_2a
+    :try_end_0
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1123
-    goto :goto_2b
+    goto :goto_1
 
     .line 1122
-    :catch_2a
+    :catch_0
     move-exception v3
 
     .line 1124
     .end local v2    # "ssid":Ljava/lang/String;
-    :goto_2b
-    goto :goto_c
+    :goto_1
+    goto :goto_0
 
     .line 1125
-    :cond_2c
+    :cond_1
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v1
@@ -3568,7 +3566,7 @@
 .end method
 
 .method public static setHotSpotMacBlackSet(Landroid/content/Context;Ljava/util/Set;)V
-    .registers 8
+    .locals 6
     .param p0, "context"    # Landroid/content/Context;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -3582,7 +3580,7 @@
 
     .line 1174
     .local p1, "macSet":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
-    if-eqz p1, :cond_43
+    if-eqz p1, :cond_2
 
     .line 1175
     const-string v0, "^[a-fA-F0-9]{2}+:[a-fA-F0-9]{2}+:[a-fA-F0-9]{2}+:[a-fA-F0-9]{2}+:[a-fA-F0-9]{2}+:[a-fA-F0-9]{2}$"
@@ -3599,12 +3597,12 @@
 
     move-result-object v2
 
-    :goto_d
+    :goto_0
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_35
+    if-eqz v3, :cond_1
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -3614,14 +3612,14 @@
 
     .line 1180
     .local v3, "mac":Ljava/lang/String;
-    :try_start_19
+    :try_start_0
     const-string v4, "^[a-fA-F0-9]{2}+:[a-fA-F0-9]{2}+:[a-fA-F0-9]{2}+:[a-fA-F0-9]{2}+:[a-fA-F0-9]{2}+:[a-fA-F0-9]{2}$"
 
     invoke-virtual {v3, v4}, Ljava/lang/String;->matches(Ljava/lang/String;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_32
+    if-eqz v4, :cond_0
 
     .line 1181
     invoke-virtual {v3}, Ljava/lang/String;->getBytes()[B
@@ -3640,24 +3638,24 @@
     const-string v4, ","
 
     invoke-virtual {v1, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    :try_end_32
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_19 .. :try_end_32} :catch_33
+    :try_end_0
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1185
-    :cond_32
-    goto :goto_34
+    :cond_0
+    goto :goto_1
 
     .line 1184
-    :catch_33
+    :catch_0
     move-exception v4
 
     .line 1186
     .end local v3    # "mac":Ljava/lang/String;
-    :goto_34
-    goto :goto_d
+    :goto_1
+    goto :goto_0
 
     .line 1187
-    :cond_35
+    :cond_1
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v2
@@ -3677,21 +3675,21 @@
     .line 1190
     .end local v0    # "patternMac":Ljava/lang/String;
     .end local v1    # "base64Mac":Ljava/lang/StringBuilder;
-    :cond_43
+    :cond_2
     return-void
 .end method
 
 .method public static setHotSpotMaxStationNum(Landroid/content/Context;I)Z
-    .registers 5
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "num"    # I
 
     .line 1149
-    if-lez p1, :cond_13
+    if-lez p1, :cond_0
 
     const/16 v0, 0x7d8
 
-    if-ge p1, v0, :cond_13
+    if-ge p1, v0, :cond_0
 
     .line 1150
     nop
@@ -3714,19 +3712,19 @@
     return v0
 
     .line 1154
-    :cond_13
+    :cond_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public static setHotSpotVendorSpecific(Landroid/content/Context;Ljava/lang/String;)V
-    .registers 5
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "value"    # Ljava/lang/String;
 
     .line 1217
-    if-eqz p1, :cond_c
+    if-eqz p1, :cond_0
 
     .line 1218
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
@@ -3740,12 +3738,12 @@
     invoke-static {v0, v1, p1, v2}, Landroid/provider/Settings$System;->putStringForUser(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;I)Z
 
     .line 1221
-    :cond_c
+    :cond_0
     return-void
 .end method
 
 .method public static setSimpleMode(Landroid/content/Context;Z)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "isSimpleMode"    # Z
 
@@ -3763,7 +3761,7 @@
 .end method
 
 .method public static setSmartCoverMode(Z)V
-    .registers 6
+    .locals 5
     .param p0, "enable"    # Z
 
     .line 2157
@@ -3777,14 +3775,14 @@
 
     .line 2158
     .local v0, "supportHallSensor":Z
-    if-eqz v0, :cond_5a
+    if-eqz v0, :cond_2
 
-    if-nez p0, :cond_d
+    if-nez p0, :cond_0
 
-    goto :goto_5a
+    goto :goto_1
 
     .line 2163
-    :cond_d
+    :cond_0
     invoke-static {}, Landroid/provider/MiuiSettings$System;->getSmallWindowMode()Landroid/provider/MiuiSettings$System$SmallWindowType;
 
     move-result-object v1
@@ -3793,7 +3791,7 @@
     .local v1, "coverType":Landroid/provider/MiuiSettings$System$SmallWindowType;
     const/4 v2, 0x1
 
-    if-nez v1, :cond_1f
+    if-nez v1, :cond_1
 
     .line 2165
     const-string/jumbo v3, "persist.sys.smartcover_mode"
@@ -3808,7 +3806,7 @@
     return-void
 
     .line 2168
-    :cond_1f
+    :cond_1
     sget-object v3, Landroid/provider/MiuiSettings$1;->$SwitchMap$android$provider$MiuiSettings$System$SmallWindowType:[I
 
     invoke-virtual {v1}, Landroid/provider/MiuiSettings$System$SmallWindowType;->ordinal()I
@@ -3817,7 +3815,7 @@
 
     aget v3, v3, v4
 
-    packed-switch v3, :pswitch_data_66
+    packed-switch v3, :pswitch_data_0
 
     .line 2180
     const-string/jumbo v3, "persist.sys.smartcover_mode"
@@ -3828,10 +3826,10 @@
 
     invoke-static {v3, v2}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
 
-    goto :goto_59
+    goto :goto_0
 
     .line 2177
-    :pswitch_35
+    :pswitch_0
     const-string/jumbo v2, "persist.sys.smartcover_mode"
 
     const/4 v3, 0x4
@@ -3843,10 +3841,10 @@
     invoke-static {v2, v3}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
 
     .line 2178
-    goto :goto_59
+    goto :goto_0
 
     .line 2174
-    :pswitch_41
+    :pswitch_1
     const-string/jumbo v2, "persist.sys.smartcover_mode"
 
     const/4 v3, 0x3
@@ -3858,10 +3856,10 @@
     invoke-static {v2, v3}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
 
     .line 2175
-    goto :goto_59
+    goto :goto_0
 
     .line 2171
-    :pswitch_4d
+    :pswitch_2
     const-string/jumbo v2, "persist.sys.smartcover_mode"
 
     const/4 v3, 0x2
@@ -3876,13 +3874,13 @@
     nop
 
     .line 2183
-    :goto_59
+    :goto_0
     return-void
 
     .line 2159
     .end local v1    # "coverType":Landroid/provider/MiuiSettings$System$SmallWindowType;
-    :cond_5a
-    :goto_5a
+    :cond_2
+    :goto_1
     const-string/jumbo v2, "persist.sys.smartcover_mode"
 
     invoke-static {v1}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
@@ -3896,17 +3894,17 @@
 
     nop
 
-    :pswitch_data_66
+    :pswitch_data_0
     .packed-switch 0x1
-        :pswitch_4d
-        :pswitch_4d
-        :pswitch_41
-        :pswitch_35
+        :pswitch_2
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
     .end packed-switch
 .end method
 
 .method public static setUseWordPhoto(Landroid/content/Context;Z)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "useWordPhoto"    # Z
 
@@ -3924,7 +3922,7 @@
 .end method
 
 .method private static unflattenOrderFromString(Ljava/lang/String;)Ljava/util/List;
-    .registers 5
+    .locals 4
     .param p0, "string"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -3944,7 +3942,7 @@
 
     .line 1947
     .local v0, "list":Ljava/util/List;, "Ljava/util/List<Landroid/content/ComponentName;>;"
-    if-eqz p0, :cond_1d
+    if-eqz p0, :cond_0
 
     .line 1948
     const-string v1, ","
@@ -3958,10 +3956,10 @@
     const/4 v2, 0x0
 
     .local v2, "i":I
-    :goto_e
+    :goto_0
     array-length v3, v1
 
-    if-ge v2, v3, :cond_1d
+    if-ge v2, v3, :cond_0
 
     .line 1950
     aget-object v3, v1, v2
@@ -3975,17 +3973,17 @@
     .line 1949
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_e
+    goto :goto_0
 
     .line 1953
     .end local v1    # "split":[Ljava/lang/String;
     .end local v2    # "i":I
-    :cond_1d
+    :cond_0
     return-object v0
 .end method
 
 .method public static updateScreenColor()V
-    .registers 7
+    .locals 7
 
     .line 1878
     const-string v0, "1"
@@ -4004,7 +4002,7 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_1c
+    if-eqz v0, :cond_0
 
     const-string/jumbo v0, "support_screen_color_persist"
 
@@ -4013,13 +4011,13 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1c
+    if-eqz v0, :cond_0
 
     .line 1880
     return-void
 
     .line 1883
-    :cond_1c
+    :cond_0
     const-string v0, "DisplayFeatureManager"
 
     .line 1884
@@ -4043,7 +4041,7 @@
 
     const/4 v4, 0x1
 
-    if-eqz v3, :cond_3d
+    if-eqz v3, :cond_1
 
     .line 1889
     const-string v3, "DisplayFeatureManager"
@@ -4055,10 +4053,10 @@
     .line 1890
     invoke-static {v4}, Landroid/provider/MiuiSettings$ScreenEffect;->setScreenPaperMode(Z)V
 
-    goto :goto_88
+    goto :goto_0
 
     .line 1892
-    :cond_3d
+    :cond_1
     invoke-virtual {v2}, Lmiui/hareware/display/DisplayFeatureManager;->getScreenGamut()I
 
     move-result v3
@@ -4071,9 +4069,9 @@
 
     move-result v5
 
-    if-ne v5, v4, :cond_67
+    if-ne v5, v4, :cond_2
 
-    if-eqz v3, :cond_67
+    if-eqz v3, :cond_2
 
     .line 1895
     const-string v4, "DisplayFeatureManager"
@@ -4097,10 +4095,10 @@
     .line 1896
     invoke-virtual {v2, v3}, Lmiui/hareware/display/DisplayFeatureManager;->setScreenGamut(I)V
 
-    goto :goto_88
+    goto :goto_0
 
     .line 1898
-    :cond_67
+    :cond_2
     invoke-virtual {v2}, Lmiui/hareware/display/DisplayFeatureManager;->getColorPrefer()I
 
     move-result v3
@@ -4108,7 +4106,7 @@
     .line 1899
     const/4 v4, 0x2
 
-    if-eq v3, v4, :cond_88
+    if-eq v3, v4, :cond_3
 
     .line 1900
     const-string v4, "DisplayFeatureManager"
@@ -4134,8 +4132,8 @@
 
     .line 1906
     .end local v3    # "currValue":I
-    :cond_88
-    :goto_88
+    :cond_3
+    :goto_0
     invoke-virtual {v2}, Lmiui/hareware/display/DisplayFeatureManager;->getScreenSaturation()I
 
     move-result v3
@@ -4170,7 +4168,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_cd
+    if-eqz v1, :cond_4
 
     .line 1911
     invoke-virtual {v2}, Lmiui/hareware/display/DisplayFeatureManager;->getScreenCabc()I
@@ -4200,7 +4198,7 @@
     invoke-virtual {v2, v3}, Lmiui/hareware/display/DisplayFeatureManager;->setScreenCabc(I)V
 
     .line 1915
-    :cond_cd
+    :cond_4
     const-string v1, "DisplayFeatureManager"
 
     const-string/jumbo v4, "updateScreenColor end"
@@ -4212,7 +4210,7 @@
 .end method
 
 .method public static useWordPhoto(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 1852
@@ -4230,13 +4228,13 @@
 
     const/4 v1, 0x1
 
-    if-ne v0, v1, :cond_10
+    if-ne v0, v1, :cond_0
 
-    goto :goto_11
+    goto :goto_0
 
-    :cond_10
+    :cond_0
     move v1, v2
 
-    :goto_11
+    :goto_0
     return v1
 .end method

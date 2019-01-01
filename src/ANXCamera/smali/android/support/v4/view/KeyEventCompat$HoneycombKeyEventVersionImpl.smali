@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 144
     invoke-direct {p0}, Landroid/support/v4/view/KeyEventCompat$EclairKeyEventVersionImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public metaStateHasModifiers(II)Z
-    .registers 4
+    .locals 1
     .param p1, "metaState"    # I
     .param p2, "modifiers"    # I
 
@@ -40,7 +40,7 @@
 .end method
 
 .method public metaStateHasNoModifiers(I)Z
-    .registers 3
+    .locals 1
     .param p1, "metaState"    # I
 
     .line 157
@@ -52,7 +52,7 @@
 .end method
 
 .method public normalizeMetaState(I)I
-    .registers 3
+    .locals 1
     .param p1, "metaState"    # I
 
     .line 147

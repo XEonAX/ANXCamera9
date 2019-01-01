@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 135
     invoke-direct {p0}, Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectIcsImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public onPull(Ljava/lang/Object;FF)Z
-    .registers 5
+    .locals 1
     .param p1, "edgeEffect"    # Ljava/lang/Object;
     .param p2, "deltaDistance"    # F
     .param p3, "displacement"    # F

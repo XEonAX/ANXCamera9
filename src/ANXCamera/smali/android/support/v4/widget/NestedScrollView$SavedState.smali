@@ -32,7 +32,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 1782
     new-instance v0, Landroid/support/v4/widget/NestedScrollView$SavedState$1;
@@ -45,7 +45,7 @@
 .end method
 
 .method public constructor <init>(Landroid/os/Parcel;)V
-    .registers 3
+    .locals 1
     .param p1, "source"    # Landroid/os/Parcel;
 
     .line 1765
@@ -63,7 +63,7 @@
 .end method
 
 .method constructor <init>(Landroid/os/Parcelable;)V
-    .registers 2
+    .locals 0
     .param p1, "superState"    # Landroid/os/Parcelable;
 
     .line 1761
@@ -76,7 +76,7 @@
 
 # virtual methods
 .method public toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 1777
     new-instance v0, Ljava/lang/StringBuilder;
@@ -117,7 +117,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .registers 4
+    .locals 1
     .param p1, "dest"    # Landroid/os/Parcel;
     .param p2, "flags"    # I
 

@@ -11,7 +11,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 32
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -35,7 +35,7 @@
 .end method
 
 .method private static parseExtensionString(Ljava/lang/String;)Ljava/util/Map;
-    .registers 4
+    .locals 3
     .param p0, "raw"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -56,7 +56,7 @@
 
     const/4 v1, 0x2
 
-    if-eq v0, v1, :cond_9
+    if-eq v0, v1, :cond_0
 
     .line 105
     const/4 v0, 0x0
@@ -64,7 +64,7 @@
     return-object v0
 
     .line 107
-    :cond_9
+    :cond_0
     new-instance v0, Ljava/util/EnumMap;
 
     const-class v1, Lcom/google/zxing/ResultMetadataType;
@@ -88,7 +88,7 @@
 
 # virtual methods
 .method decodeMiddle(Lcom/google/zxing/common/BitArray;[ILjava/lang/StringBuilder;)I
-    .registers 16
+    .locals 12
     .param p1, "row"    # Lcom/google/zxing/common/BitArray;
     .param p2, "startRange"    # [I
     .param p3, "resultString"    # Ljava/lang/StringBuilder;
@@ -140,17 +140,17 @@
     const/4 v7, 0x0
 
     .local v7, "x":I
-    :goto_16
-    if-ge v7, v3, :cond_4e
+    :goto_0
+    if-ge v7, v3, :cond_4
 
-    if-lt v5, v4, :cond_1b
+    if-lt v5, v4, :cond_0
 
     .end local v7    # "x":I
-    goto :goto_4e
+    goto :goto_3
 
     .line 72
     .restart local v7    # "x":I
-    :cond_1b
+    :cond_0
     sget-object v8, Lcom/google/zxing/oned/UPCEANReader;->L_AND_G_PATTERNS:[[I
 
     invoke-static {p1, v0, v5, v8}, Lcom/google/zxing/oned/UPCEANReader;->decodeDigit(Lcom/google/zxing/common/BitArray;[II[[I)I
@@ -178,13 +178,13 @@
 
     .end local v5    # "rowOffset":I
     .local v10, "rowOffset":I
-    :goto_2d
-    if-lt v5, v9, :cond_48
+    :goto_1
+    if-lt v5, v9, :cond_3
 
     .line 77
     const/16 v5, 0xa
 
-    if-lt v8, v5, :cond_39
+    if-lt v8, v5, :cond_1
 
     .line 78
     rsub-int/lit8 v5, v7, 0x1
@@ -200,8 +200,8 @@
 
     .end local v5    # "checkParity":I
     .restart local v6    # "checkParity":I
-    :cond_39
-    if-eq v7, v2, :cond_44
+    :cond_1
+    if-eq v7, v2, :cond_2
 
     .line 82
     invoke-virtual {p1, v10}, Lcom/google/zxing/common/BitArray;->getNextSet(I)I
@@ -216,26 +216,26 @@
     move-result v5
 
     .end local v8    # "bestMatch":I
-    goto :goto_45
+    goto :goto_2
 
     .line 71
     .end local v5    # "rowOffset":I
     .restart local v10    # "rowOffset":I
-    :cond_44
+    :cond_2
     move v5, v10
 
     .end local v10    # "rowOffset":I
     .restart local v5    # "rowOffset":I
-    :goto_45
+    :goto_2
     add-int/lit8 v7, v7, 0x1
 
-    goto :goto_16
+    goto :goto_0
 
     .line 74
     .end local v5    # "rowOffset":I
     .restart local v8    # "bestMatch":I
     .restart local v10    # "rowOffset":I
-    :cond_48
+    :cond_3
     aget v11, v0, v5
 
     .line 75
@@ -246,20 +246,20 @@
     .end local v11    # "counter":I
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_2d
+    goto :goto_1
 
     .line 87
     .end local v7    # "x":I
     .end local v8    # "bestMatch":I
     .end local v10    # "rowOffset":I
     .restart local v5    # "rowOffset":I
-    :cond_4e
-    :goto_4e
+    :cond_4
+    :goto_3
     invoke-virtual {p3}, Ljava/lang/StringBuilder;->length()I
 
     move-result v1
 
-    if-ne v1, v3, :cond_66
+    if-ne v1, v3, :cond_6
 
     .line 91
     invoke-virtual {p3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
@@ -272,13 +272,13 @@
 
     rem-int/lit8 v1, v1, 0x4
 
-    if-ne v1, v6, :cond_61
+    if-ne v1, v6, :cond_5
 
     .line 95
     return v5
 
     .line 92
-    :cond_61
+    :cond_5
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v1
@@ -286,7 +286,7 @@
     throw v1
 
     .line 88
-    :cond_66
+    :cond_6
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v1
@@ -295,7 +295,7 @@
 .end method
 
 .method decodeRow(ILcom/google/zxing/common/BitArray;[I)Lcom/google/zxing/Result;
-    .registers 15
+    .locals 11
     .param p1, "rowNumber"    # I
     .param p2, "row"    # Lcom/google/zxing/common/BitArray;
     .param p3, "extensionStartRange"    # [I
@@ -390,12 +390,12 @@
 
     .line 54
     .local v1, "extensionResult":Lcom/google/zxing/Result;
-    if-eqz v4, :cond_3f
+    if-eqz v4, :cond_0
 
     .line 55
     invoke-virtual {v1, v4}, Lcom/google/zxing/Result;->putAllMetadata(Ljava/util/Map;)V
 
     .line 57
-    :cond_3f
+    :cond_0
     return-object v1
 .end method

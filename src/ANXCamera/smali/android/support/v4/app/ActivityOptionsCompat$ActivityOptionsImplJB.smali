@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/app/ActivityOptionsCompatJB;)V
-    .registers 2
+    .locals 0
     .param p1, "impl"    # Landroid/support/v4/app/ActivityOptionsCompatJB;
 
     .line 180
@@ -36,7 +36,7 @@
 
 # virtual methods
 .method public toBundle()Landroid/os/Bundle;
-    .registers 2
+    .locals 1
 
     .line 186
     iget-object v0, p0, Landroid/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB;->mImpl:Landroid/support/v4/app/ActivityOptionsCompatJB;
@@ -49,13 +49,13 @@
 .end method
 
 .method public update(Landroid/support/v4/app/ActivityOptionsCompat;)V
-    .registers 5
+    .locals 3
     .param p1, "otherOptions"    # Landroid/support/v4/app/ActivityOptionsCompat;
 
     .line 191
     instance-of v0, p1, Landroid/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB;
 
-    if-eqz v0, :cond_e
+    if-eqz v0, :cond_0
 
     .line 192
     move-object v0, p1
@@ -72,6 +72,6 @@
 
     .line 195
     .end local v0    # "otherImpl":Landroid/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB;
-    :cond_e
+    :cond_0
     return-void
 .end method

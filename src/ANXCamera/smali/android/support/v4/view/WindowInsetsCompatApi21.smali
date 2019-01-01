@@ -9,7 +9,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/view/WindowInsets;)V
-    .registers 2
+    .locals 0
     .param p1, "source"    # Landroid/view/WindowInsets;
 
     .line 26
@@ -25,7 +25,7 @@
 
 # virtual methods
 .method public consumeStableInsets()Landroid/support/v4/view/WindowInsetsCompat;
-    .registers 3
+    .locals 2
 
     .line 112
     new-instance v0, Landroid/support/v4/view/WindowInsetsCompatApi21;
@@ -42,7 +42,7 @@
 .end method
 
 .method public consumeSystemWindowInsets()Landroid/support/v4/view/WindowInsetsCompat;
-    .registers 3
+    .locals 2
 
     .line 72
     new-instance v0, Landroid/support/v4/view/WindowInsetsCompatApi21;
@@ -59,7 +59,7 @@
 .end method
 
 .method public getStableInsetBottom()I
-    .registers 2
+    .locals 1
 
     .line 102
     iget-object v0, p0, Landroid/support/v4/view/WindowInsetsCompatApi21;->mSource:Landroid/view/WindowInsets;
@@ -72,7 +72,7 @@
 .end method
 
 .method public getStableInsetLeft()I
-    .registers 2
+    .locals 1
 
     .line 92
     iget-object v0, p0, Landroid/support/v4/view/WindowInsetsCompatApi21;->mSource:Landroid/view/WindowInsets;
@@ -85,7 +85,7 @@
 .end method
 
 .method public getStableInsetRight()I
-    .registers 2
+    .locals 1
 
     .line 97
     iget-object v0, p0, Landroid/support/v4/view/WindowInsetsCompatApi21;->mSource:Landroid/view/WindowInsets;
@@ -98,7 +98,7 @@
 .end method
 
 .method public getStableInsetTop()I
-    .registers 2
+    .locals 1
 
     .line 87
     iget-object v0, p0, Landroid/support/v4/view/WindowInsetsCompatApi21;->mSource:Landroid/view/WindowInsets;
@@ -111,7 +111,7 @@
 .end method
 
 .method public getSystemWindowInsetBottom()I
-    .registers 2
+    .locals 1
 
     .line 47
     iget-object v0, p0, Landroid/support/v4/view/WindowInsetsCompatApi21;->mSource:Landroid/view/WindowInsets;
@@ -124,7 +124,7 @@
 .end method
 
 .method public getSystemWindowInsetLeft()I
-    .registers 2
+    .locals 1
 
     .line 32
     iget-object v0, p0, Landroid/support/v4/view/WindowInsetsCompatApi21;->mSource:Landroid/view/WindowInsets;
@@ -137,7 +137,7 @@
 .end method
 
 .method public getSystemWindowInsetRight()I
-    .registers 2
+    .locals 1
 
     .line 42
     iget-object v0, p0, Landroid/support/v4/view/WindowInsetsCompatApi21;->mSource:Landroid/view/WindowInsets;
@@ -150,7 +150,7 @@
 .end method
 
 .method public getSystemWindowInsetTop()I
-    .registers 2
+    .locals 1
 
     .line 37
     iget-object v0, p0, Landroid/support/v4/view/WindowInsetsCompatApi21;->mSource:Landroid/view/WindowInsets;
@@ -163,7 +163,7 @@
 .end method
 
 .method public hasInsets()Z
-    .registers 2
+    .locals 1
 
     .line 57
     iget-object v0, p0, Landroid/support/v4/view/WindowInsetsCompatApi21;->mSource:Landroid/view/WindowInsets;
@@ -176,7 +176,7 @@
 .end method
 
 .method public hasStableInsets()Z
-    .registers 2
+    .locals 1
 
     .line 107
     iget-object v0, p0, Landroid/support/v4/view/WindowInsetsCompatApi21;->mSource:Landroid/view/WindowInsets;
@@ -189,7 +189,7 @@
 .end method
 
 .method public hasSystemWindowInsets()Z
-    .registers 2
+    .locals 1
 
     .line 52
     iget-object v0, p0, Landroid/support/v4/view/WindowInsetsCompatApi21;->mSource:Landroid/view/WindowInsets;
@@ -202,7 +202,7 @@
 .end method
 
 .method public isConsumed()Z
-    .registers 2
+    .locals 1
 
     .line 62
     iget-object v0, p0, Landroid/support/v4/view/WindowInsetsCompatApi21;->mSource:Landroid/view/WindowInsets;
@@ -215,7 +215,7 @@
 .end method
 
 .method public isRound()Z
-    .registers 2
+    .locals 1
 
     .line 67
     iget-object v0, p0, Landroid/support/v4/view/WindowInsetsCompatApi21;->mSource:Landroid/view/WindowInsets;
@@ -228,7 +228,7 @@
 .end method
 
 .method public replaceSystemWindowInsets(IIII)Landroid/support/v4/view/WindowInsetsCompat;
-    .registers 7
+    .locals 2
     .param p1, "left"    # I
     .param p2, "top"    # I
     .param p3, "right"    # I
@@ -249,7 +249,7 @@
 .end method
 
 .method public replaceSystemWindowInsets(Landroid/graphics/Rect;)Landroid/support/v4/view/WindowInsetsCompat;
-    .registers 4
+    .locals 2
     .param p1, "systemWindowInsets"    # Landroid/graphics/Rect;
 
     .line 82
@@ -267,7 +267,7 @@
 .end method
 
 .method unwrap()Landroid/view/WindowInsets;
-    .registers 2
+    .locals 1
 
     .line 116
     iget-object v0, p0, Landroid/support/v4/view/WindowInsetsCompatApi21;->mSource:Landroid/view/WindowInsets;

@@ -25,7 +25,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/view/View;Landroid/view/animation/Animation;)V
-    .registers 4
+    .locals 1
     .param p1, "v"    # Landroid/view/View;
     .param p2, "anim"    # Landroid/view/animation/Animation;
 
@@ -38,29 +38,29 @@
     iput-boolean v0, p0, Landroid/support/v4/app/FragmentManagerImpl$AnimateOnHWLayerIfNeededListener;->mShouldRunOnHWLayer:Z
 
     .line 420
-    if-eqz p1, :cond_e
+    if-eqz p1, :cond_1
 
-    if-nez p2, :cond_b
+    if-nez p2, :cond_0
 
-    goto :goto_e
+    goto :goto_0
 
     .line 423
-    :cond_b
+    :cond_0
     iput-object p1, p0, Landroid/support/v4/app/FragmentManagerImpl$AnimateOnHWLayerIfNeededListener;->mView:Landroid/view/View;
 
     .line 424
     return-void
 
     .line 421
-    :cond_e
-    :goto_e
+    :cond_1
+    :goto_0
     return-void
 .end method
 
 
 # virtual methods
 .method public onAnimationEnd(Landroid/view/animation/Animation;)V
-    .registers 5
+    .locals 3
     .param p1, "animation"    # Landroid/view/animation/Animation;
     .annotation build Landroid/support/annotation/CallSuper;
     .end annotation
@@ -68,7 +68,7 @@
     .line 438
     iget-boolean v0, p0, Landroid/support/v4/app/FragmentManagerImpl$AnimateOnHWLayerIfNeededListener;->mShouldRunOnHWLayer:Z
 
-    if-eqz v0, :cond_b
+    if-eqz v0, :cond_0
 
     .line 439
     iget-object v0, p0, Landroid/support/v4/app/FragmentManagerImpl$AnimateOnHWLayerIfNeededListener;->mView:Landroid/view/View;
@@ -80,12 +80,12 @@
     invoke-static {v0, v1, v2}, Landroid/support/v4/view/ViewCompat;->setLayerType(Landroid/view/View;ILandroid/graphics/Paint;)V
 
     .line 441
-    :cond_b
+    :cond_0
     return-void
 .end method
 
 .method public onAnimationRepeat(Landroid/view/animation/Animation;)V
-    .registers 2
+    .locals 0
     .param p1, "animation"    # Landroid/view/animation/Animation;
 
     .line 445
@@ -93,7 +93,7 @@
 .end method
 
 .method public onAnimationStart(Landroid/view/animation/Animation;)V
-    .registers 5
+    .locals 3
     .param p1, "animation"    # Landroid/view/animation/Animation;
     .annotation build Landroid/support/annotation/CallSuper;
     .end annotation
@@ -110,7 +110,7 @@
     .line 430
     iget-boolean v0, p0, Landroid/support/v4/app/FragmentManagerImpl$AnimateOnHWLayerIfNeededListener;->mShouldRunOnHWLayer:Z
 
-    if-eqz v0, :cond_13
+    if-eqz v0, :cond_0
 
     .line 431
     iget-object v0, p0, Landroid/support/v4/app/FragmentManagerImpl$AnimateOnHWLayerIfNeededListener;->mView:Landroid/view/View;
@@ -122,6 +122,6 @@
     invoke-static {v0, v1, v2}, Landroid/support/v4/view/ViewCompat;->setLayerType(Landroid/view/View;ILandroid/graphics/Paint;)V
 
     .line 433
-    :cond_13
+    :cond_0
     return-void
 .end method

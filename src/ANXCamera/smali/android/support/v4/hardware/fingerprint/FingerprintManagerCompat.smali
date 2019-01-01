@@ -26,7 +26,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .locals 2
 
     .line 52
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -35,7 +35,7 @@
     .local v0, "version":I
     const/16 v1, 0x17
 
-    if-lt v0, v1, :cond_e
+    if-lt v0, v1, :cond_0
 
     .line 54
     new-instance v1, Landroid/support/v4/hardware/fingerprint/FingerprintManagerCompat$Api23FingerprintManagerCompatImpl;
@@ -44,10 +44,10 @@
 
     sput-object v1, Landroid/support/v4/hardware/fingerprint/FingerprintManagerCompat;->IMPL:Landroid/support/v4/hardware/fingerprint/FingerprintManagerCompat$FingerprintManagerCompatImpl;
 
-    goto :goto_15
+    goto :goto_0
 
     .line 56
-    :cond_e
+    :cond_0
     new-instance v1, Landroid/support/v4/hardware/fingerprint/FingerprintManagerCompat$LegacyFingerprintManagerCompatImpl;
 
     invoke-direct {v1}, Landroid/support/v4/hardware/fingerprint/FingerprintManagerCompat$LegacyFingerprintManagerCompatImpl;-><init>()V
@@ -56,12 +56,12 @@
 
     .line 58
     .end local v0    # "version":I
-    :goto_15
+    :goto_0
     return-void
 .end method
 
 .method private constructor <init>(Landroid/content/Context;)V
-    .registers 2
+    .locals 0
     .param p1, "context"    # Landroid/content/Context;
 
     .line 46
@@ -75,7 +75,7 @@
 .end method
 
 .method public static from(Landroid/content/Context;)Landroid/support/v4/hardware/fingerprint/FingerprintManagerCompat;
-    .registers 2
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
 
     .line 43
@@ -89,7 +89,7 @@
 
 # virtual methods
 .method public authenticate(Landroid/support/v4/hardware/fingerprint/FingerprintManagerCompat$CryptoObject;ILandroid/support/v4/os/CancellationSignal;Landroid/support/v4/hardware/fingerprint/FingerprintManagerCompat$AuthenticationCallback;Landroid/os/Handler;)V
-    .registers 13
+    .locals 7
     .param p1, "crypto"    # Landroid/support/v4/hardware/fingerprint/FingerprintManagerCompat$CryptoObject;
         .annotation build Landroid/support/annotation/Nullable;
         .end annotation
@@ -130,7 +130,7 @@
 .end method
 
 .method public hasEnrolledFingerprints()Z
-    .registers 3
+    .locals 2
 
     .line 66
     sget-object v0, Landroid/support/v4/hardware/fingerprint/FingerprintManagerCompat;->IMPL:Landroid/support/v4/hardware/fingerprint/FingerprintManagerCompat$FingerprintManagerCompatImpl;
@@ -145,7 +145,7 @@
 .end method
 
 .method public isHardwareDetected()Z
-    .registers 3
+    .locals 2
 
     .line 75
     sget-object v0, Landroid/support/v4/hardware/fingerprint/FingerprintManagerCompat;->IMPL:Landroid/support/v4/hardware/fingerprint/FingerprintManagerCompat$FingerprintManagerCompatImpl;

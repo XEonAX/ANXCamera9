@@ -56,7 +56,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 4
+    .locals 4
 
     .line 83
     sget-object v0, Landroid/support/v4/text/TextDirectionHeuristicsCompat;->FIRSTSTRONG_LTR:Landroid/support/v4/text/TextDirectionHeuristicCompat;
@@ -109,7 +109,7 @@
 .end method
 
 .method private constructor <init>(ZILandroid/support/v4/text/TextDirectionHeuristicCompat;)V
-    .registers 4
+    .locals 0
     .param p1, "isRtlContext"    # Z
     .param p2, "flags"    # I
     .param p3, "heuristic"    # Landroid/support/v4/text/TextDirectionHeuristicCompat;
@@ -131,7 +131,7 @@
 .end method
 
 .method synthetic constructor <init>(ZILandroid/support/v4/text/TextDirectionHeuristicCompat;Landroid/support/v4/text/BidiFormatter$1;)V
-    .registers 5
+    .locals 0
     .param p1, "x0"    # Z
     .param p2, "x1"    # I
     .param p3, "x2"    # Landroid/support/v4/text/TextDirectionHeuristicCompat;
@@ -144,7 +144,7 @@
 .end method
 
 .method static synthetic access$000(Ljava/util/Locale;)Z
-    .registers 2
+    .locals 1
     .param p0, "x0"    # Ljava/util/Locale;
 
     .line 78
@@ -156,7 +156,7 @@
 .end method
 
 .method static synthetic access$100()Landroid/support/v4/text/TextDirectionHeuristicCompat;
-    .registers 1
+    .locals 1
 
     .line 78
     sget-object v0, Landroid/support/v4/text/BidiFormatter;->DEFAULT_TEXT_DIRECTION_HEURISTIC:Landroid/support/v4/text/TextDirectionHeuristicCompat;
@@ -165,7 +165,7 @@
 .end method
 
 .method static synthetic access$200()Landroid/support/v4/text/BidiFormatter;
-    .registers 1
+    .locals 1
 
     .line 78
     sget-object v0, Landroid/support/v4/text/BidiFormatter;->DEFAULT_RTL_INSTANCE:Landroid/support/v4/text/BidiFormatter;
@@ -174,7 +174,7 @@
 .end method
 
 .method static synthetic access$300()Landroid/support/v4/text/BidiFormatter;
-    .registers 1
+    .locals 1
 
     .line 78
     sget-object v0, Landroid/support/v4/text/BidiFormatter;->DEFAULT_LTR_INSTANCE:Landroid/support/v4/text/BidiFormatter;
@@ -183,7 +183,7 @@
 .end method
 
 .method private static getEntryDir(Ljava/lang/String;)I
-    .registers 3
+    .locals 2
     .param p0, "str"    # Ljava/lang/String;
 
     .line 482
@@ -201,7 +201,7 @@
 .end method
 
 .method private static getExitDir(Ljava/lang/String;)I
-    .registers 3
+    .locals 2
     .param p0, "str"    # Ljava/lang/String;
 
     .line 465
@@ -219,7 +219,7 @@
 .end method
 
 .method public static getInstance()Landroid/support/v4/text/BidiFormatter;
-    .registers 1
+    .locals 1
 
     .line 234
     new-instance v0, Landroid/support/v4/text/BidiFormatter$Builder;
@@ -234,7 +234,7 @@
 .end method
 
 .method public static getInstance(Ljava/util/Locale;)Landroid/support/v4/text/BidiFormatter;
-    .registers 2
+    .locals 1
     .param p0, "locale"    # Ljava/util/Locale;
 
     .line 252
@@ -250,7 +250,7 @@
 .end method
 
 .method public static getInstance(Z)Landroid/support/v4/text/BidiFormatter;
-    .registers 2
+    .locals 1
     .param p0, "rtlContext"    # Z
 
     .line 243
@@ -266,7 +266,7 @@
 .end method
 
 .method private static isRtlLocale(Ljava/util/Locale;)Z
-    .registers 3
+    .locals 2
     .param p0, "locale"    # Ljava/util/Locale;
 
     .line 440
@@ -276,19 +276,19 @@
 
     const/4 v1, 0x1
 
-    if-ne v0, v1, :cond_8
+    if-ne v0, v1, :cond_0
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_9
+    :goto_0
     return v1
 .end method
 
 .method private markAfter(Ljava/lang/String;Landroid/support/v4/text/TextDirectionHeuristicCompat;)Ljava/lang/String;
-    .registers 6
+    .locals 3
     .param p1, "str"    # Ljava/lang/String;
     .param p2, "heuristic"    # Landroid/support/v4/text/TextDirectionHeuristicCompat;
 
@@ -307,9 +307,9 @@
     .local v0, "isRtl":Z
     iget-boolean v1, p0, Landroid/support/v4/text/BidiFormatter;->mIsRtlContext:Z
 
-    if-nez v1, :cond_19
+    if-nez v1, :cond_1
 
-    if-nez v0, :cond_16
+    if-nez v0, :cond_0
 
     invoke-static {p1}, Landroid/support/v4/text/BidiFormatter;->getExitDir(Ljava/lang/String;)I
 
@@ -317,21 +317,21 @@
 
     const/4 v2, 0x1
 
-    if-ne v1, v2, :cond_19
+    if-ne v1, v2, :cond_1
 
     .line 300
-    :cond_16
+    :cond_0
     sget-object v1, Landroid/support/v4/text/BidiFormatter;->LRM_STRING:Ljava/lang/String;
 
     return-object v1
 
     .line 302
-    :cond_19
+    :cond_1
     iget-boolean v1, p0, Landroid/support/v4/text/BidiFormatter;->mIsRtlContext:Z
 
-    if-eqz v1, :cond_29
+    if-eqz v1, :cond_3
 
-    if-eqz v0, :cond_26
+    if-eqz v0, :cond_2
 
     invoke-static {p1}, Landroid/support/v4/text/BidiFormatter;->getExitDir(Ljava/lang/String;)I
 
@@ -339,23 +339,23 @@
 
     const/4 v2, -0x1
 
-    if-ne v1, v2, :cond_29
+    if-ne v1, v2, :cond_3
 
     .line 303
-    :cond_26
+    :cond_2
     sget-object v1, Landroid/support/v4/text/BidiFormatter;->RLM_STRING:Ljava/lang/String;
 
     return-object v1
 
     .line 305
-    :cond_29
+    :cond_3
     const-string v1, ""
 
     return-object v1
 .end method
 
 .method private markBefore(Ljava/lang/String;Landroid/support/v4/text/TextDirectionHeuristicCompat;)Ljava/lang/String;
-    .registers 6
+    .locals 3
     .param p1, "str"    # Ljava/lang/String;
     .param p2, "heuristic"    # Landroid/support/v4/text/TextDirectionHeuristicCompat;
 
@@ -374,9 +374,9 @@
     .local v0, "isRtl":Z
     iget-boolean v1, p0, Landroid/support/v4/text/BidiFormatter;->mIsRtlContext:Z
 
-    if-nez v1, :cond_19
+    if-nez v1, :cond_1
 
-    if-nez v0, :cond_16
+    if-nez v0, :cond_0
 
     invoke-static {p1}, Landroid/support/v4/text/BidiFormatter;->getEntryDir(Ljava/lang/String;)I
 
@@ -384,21 +384,21 @@
 
     const/4 v2, 0x1
 
-    if-ne v1, v2, :cond_19
+    if-ne v1, v2, :cond_1
 
     .line 327
-    :cond_16
+    :cond_0
     sget-object v1, Landroid/support/v4/text/BidiFormatter;->LRM_STRING:Ljava/lang/String;
 
     return-object v1
 
     .line 329
-    :cond_19
+    :cond_1
     iget-boolean v1, p0, Landroid/support/v4/text/BidiFormatter;->mIsRtlContext:Z
 
-    if-eqz v1, :cond_29
+    if-eqz v1, :cond_3
 
-    if-eqz v0, :cond_26
+    if-eqz v0, :cond_2
 
     invoke-static {p1}, Landroid/support/v4/text/BidiFormatter;->getEntryDir(Ljava/lang/String;)I
 
@@ -406,16 +406,16 @@
 
     const/4 v2, -0x1
 
-    if-ne v1, v2, :cond_29
+    if-ne v1, v2, :cond_3
 
     .line 330
-    :cond_26
+    :cond_2
     sget-object v1, Landroid/support/v4/text/BidiFormatter;->RLM_STRING:Ljava/lang/String;
 
     return-object v1
 
     .line 332
-    :cond_29
+    :cond_3
     const-string v1, ""
 
     return-object v1
@@ -424,28 +424,28 @@
 
 # virtual methods
 .method public getStereoReset()Z
-    .registers 2
+    .locals 1
 
     .line 278
     iget v0, p0, Landroid/support/v4/text/BidiFormatter;->mFlags:I
 
     and-int/lit8 v0, v0, 0x2
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_9
+    :goto_0
     return v0
 .end method
 
 .method public isRtl(Ljava/lang/String;)Z
-    .registers 5
+    .locals 3
     .param p1, "str"    # Ljava/lang/String;
 
     .line 343
@@ -465,7 +465,7 @@
 .end method
 
 .method public isRtlContext()Z
-    .registers 2
+    .locals 1
 
     .line 270
     iget-boolean v0, p0, Landroid/support/v4/text/BidiFormatter;->mIsRtlContext:Z
@@ -474,7 +474,7 @@
 .end method
 
 .method public unicodeWrap(Ljava/lang/String;)Ljava/lang/String;
-    .registers 4
+    .locals 2
     .param p1, "str"    # Ljava/lang/String;
 
     .line 430
@@ -490,7 +490,7 @@
 .end method
 
 .method public unicodeWrap(Ljava/lang/String;Landroid/support/v4/text/TextDirectionHeuristicCompat;)Ljava/lang/String;
-    .registers 4
+    .locals 1
     .param p1, "str"    # Ljava/lang/String;
     .param p2, "heuristic"    # Landroid/support/v4/text/TextDirectionHeuristicCompat;
 
@@ -505,20 +505,20 @@
 .end method
 
 .method public unicodeWrap(Ljava/lang/String;Landroid/support/v4/text/TextDirectionHeuristicCompat;Z)Ljava/lang/String;
-    .registers 7
+    .locals 3
     .param p1, "str"    # Ljava/lang/String;
     .param p2, "heuristic"    # Landroid/support/v4/text/TextDirectionHeuristicCompat;
     .param p3, "isolate"    # Z
 
     .line 376
-    if-nez p1, :cond_4
+    if-nez p1, :cond_0
 
     const/4 v0, 0x0
 
     return-object v0
 
     .line 377
-    :cond_4
+    :cond_0
     const/4 v0, 0x0
 
     invoke-virtual {p1}, Ljava/lang/String;->length()I
@@ -541,21 +541,21 @@
 
     move-result v2
 
-    if-eqz v2, :cond_28
+    if-eqz v2, :cond_2
 
-    if-eqz p3, :cond_28
+    if-eqz p3, :cond_2
 
     .line 380
-    if-eqz v0, :cond_1f
+    if-eqz v0, :cond_1
 
     sget-object v2, Landroid/support/v4/text/TextDirectionHeuristicsCompat;->RTL:Landroid/support/v4/text/TextDirectionHeuristicCompat;
 
-    goto :goto_21
+    goto :goto_0
 
-    :cond_1f
+    :cond_1
     sget-object v2, Landroid/support/v4/text/TextDirectionHeuristicsCompat;->LTR:Landroid/support/v4/text/TextDirectionHeuristicCompat;
 
-    :goto_21
+    :goto_0
     invoke-direct {p0, p1, v2}, Landroid/support/v4/text/BidiFormatter;->markBefore(Ljava/lang/String;Landroid/support/v4/text/TextDirectionHeuristicCompat;)Ljava/lang/String;
 
     move-result-object v2
@@ -563,22 +563,22 @@
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 383
-    :cond_28
+    :cond_2
     iget-boolean v2, p0, Landroid/support/v4/text/BidiFormatter;->mIsRtlContext:Z
 
-    if-eq v0, v2, :cond_3f
+    if-eq v0, v2, :cond_4
 
     .line 384
-    if-eqz v0, :cond_31
+    if-eqz v0, :cond_3
 
     const/16 v2, 0x202b
 
-    goto :goto_33
+    goto :goto_1
 
-    :cond_31
+    :cond_3
     const/16 v2, 0x202a
 
-    :goto_33
+    :goto_1
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 385
@@ -589,27 +589,27 @@
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    goto :goto_42
+    goto :goto_2
 
     .line 388
-    :cond_3f
+    :cond_4
     invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 390
-    :goto_42
-    if-eqz p3, :cond_52
+    :goto_2
+    if-eqz p3, :cond_6
 
     .line 391
-    if-eqz v0, :cond_49
+    if-eqz v0, :cond_5
 
     sget-object v2, Landroid/support/v4/text/TextDirectionHeuristicsCompat;->RTL:Landroid/support/v4/text/TextDirectionHeuristicCompat;
 
-    goto :goto_4b
+    goto :goto_3
 
-    :cond_49
+    :cond_5
     sget-object v2, Landroid/support/v4/text/TextDirectionHeuristicsCompat;->LTR:Landroid/support/v4/text/TextDirectionHeuristicCompat;
 
-    :goto_4b
+    :goto_3
     invoke-direct {p0, p1, v2}, Landroid/support/v4/text/BidiFormatter;->markAfter(Ljava/lang/String;Landroid/support/v4/text/TextDirectionHeuristicCompat;)Ljava/lang/String;
 
     move-result-object v2
@@ -617,7 +617,7 @@
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 394
-    :cond_52
+    :cond_6
     invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v2
@@ -626,7 +626,7 @@
 .end method
 
 .method public unicodeWrap(Ljava/lang/String;Z)Ljava/lang/String;
-    .registers 4
+    .locals 1
     .param p1, "str"    # Ljava/lang/String;
     .param p2, "isolate"    # Z
 

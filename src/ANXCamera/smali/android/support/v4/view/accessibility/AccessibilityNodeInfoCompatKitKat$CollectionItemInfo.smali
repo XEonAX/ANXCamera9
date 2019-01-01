@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 129
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -25,7 +25,7 @@
 .end method
 
 .method static getColumnIndex(Ljava/lang/Object;)I
-    .registers 2
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 131
@@ -41,7 +41,7 @@
 .end method
 
 .method static getColumnSpan(Ljava/lang/Object;)I
-    .registers 2
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 135
@@ -57,7 +57,7 @@
 .end method
 
 .method static getRowIndex(Ljava/lang/Object;)I
-    .registers 2
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 139
@@ -73,7 +73,7 @@
 .end method
 
 .method static getRowSpan(Ljava/lang/Object;)I
-    .registers 2
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 143
@@ -89,7 +89,7 @@
 .end method
 
 .method static isHeading(Ljava/lang/Object;)Z
-    .registers 2
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 147

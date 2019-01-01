@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 1557
     invoke-direct {p0}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoJellybeanMr1Impl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public findAccessibilityNodeInfosByViewId(Ljava/lang/Object;Ljava/lang/String;)Ljava/util/List;
-    .registers 4
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "viewId"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
@@ -51,7 +51,7 @@
 .end method
 
 .method public getTextSelectionEnd(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1588
@@ -63,7 +63,7 @@
 .end method
 
 .method public getTextSelectionStart(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1583
@@ -75,7 +75,7 @@
 .end method
 
 .method public getViewIdResourceName(Ljava/lang/Object;)Ljava/lang/String;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1562
@@ -87,7 +87,7 @@
 .end method
 
 .method public isEditable(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1593
@@ -99,7 +99,7 @@
 .end method
 
 .method public refresh(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1603
@@ -111,7 +111,7 @@
 .end method
 
 .method public setEditable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "editable"    # Z
 
@@ -123,7 +123,7 @@
 .end method
 
 .method public setTextSelection(Ljava/lang/Object;II)V
-    .registers 4
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "start"    # I
     .param p3, "end"    # I
@@ -136,7 +136,7 @@
 .end method
 
 .method public setViewIdResourceName(Ljava/lang/Object;Ljava/lang/String;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "viewId"    # Ljava/lang/String;
 

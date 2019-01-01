@@ -54,7 +54,7 @@
 
 # direct methods
 .method public constructor <init>(Lmiui/util/Pools$Manager;I)V
-    .registers 4
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -74,11 +74,11 @@
     iput-object v0, p0, Lmiui/util/Pools$BasePool;->zM:Ljava/lang/Object;
 
     .line 363
-    if-eqz p1, :cond_31
+    if-eqz p1, :cond_1
 
     const/4 v0, 0x1
 
-    if-lt p2, v0, :cond_31
+    if-lt p2, v0, :cond_1
 
     .line 369
     iput-object p1, p0, Lmiui/util/Pools$BasePool;->Jy:Lmiui/util/Pools$Manager;
@@ -94,7 +94,7 @@
     move-result-object p1
 
     .line 372
-    if-eqz p1, :cond_29
+    if-eqz p1, :cond_0
 
     .line 376
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
@@ -115,7 +115,7 @@
     return-void
 
     .line 373
-    :cond_29
+    :cond_0
     new-instance p1, Ljava/lang/IllegalStateException;
 
     const-string p2, "manager create instance cannot return null"
@@ -125,7 +125,7 @@
     throw p1
 
     .line 365
-    :cond_31
+    :cond_1
     iget-object p1, p0, Lmiui/util/Pools$BasePool;->zM:Ljava/lang/Object;
 
     invoke-virtual {p1}, Ljava/lang/Object;->hashCode()I
@@ -157,7 +157,7 @@
 .end method
 
 .method public acquire()Ljava/lang/Object;
-    .registers 2
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()TT;"
@@ -173,12 +173,12 @@
 .end method
 
 .method public close()V
-    .registers 3
+    .locals 2
 
     .line 430
     iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
 
-    if-eqz v0, :cond_e
+    if-eqz v0, :cond_0
 
     .line 431
     iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
@@ -193,7 +193,7 @@
     iput-object v0, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
 
     .line 434
-    :cond_e
+    :cond_0
     return-void
 .end method
 
@@ -210,7 +210,7 @@
 .end method
 
 .method protected final doAcquire()Ljava/lang/Object;
-    .registers 3
+    .locals 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()TT;"
@@ -220,7 +220,7 @@
     .line 385
     iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
 
-    if-eqz v0, :cond_23
+    if-eqz v0, :cond_2
 
     .line 389
     iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
@@ -230,7 +230,7 @@
     move-result-object v0
 
     .line 390
-    if-nez v0, :cond_1d
+    if-nez v0, :cond_1
 
     .line 391
     iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jy:Lmiui/util/Pools$Manager;
@@ -240,12 +240,12 @@
     move-result-object v0
 
     .line 392
-    if-eqz v0, :cond_15
+    if-eqz v0, :cond_0
 
-    goto :goto_1d
+    goto :goto_0
 
     .line 393
-    :cond_15
+    :cond_0
     new-instance v0, Ljava/lang/IllegalStateException;
 
     const-string v1, "manager create instance cannot return null"
@@ -255,8 +255,8 @@
     throw v0
 
     .line 397
-    :cond_1d
-    :goto_1d
+    :cond_1
+    :goto_0
     iget-object v1, p0, Lmiui/util/Pools$BasePool;->Jy:Lmiui/util/Pools$Manager;
 
     invoke-virtual {v1, v0}, Lmiui/util/Pools$Manager;->onAcquire(Ljava/lang/Object;)V
@@ -265,7 +265,7 @@
     return-object v0
 
     .line 386
-    :cond_23
+    :cond_2
     new-instance v0, Ljava/lang/IllegalStateException;
 
     const-string v1, "Cannot acquire object after close()"
@@ -276,7 +276,7 @@
 .end method
 
 .method protected final doRelease(Ljava/lang/Object;)V
-    .registers 3
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -286,16 +286,16 @@
     .line 403
     iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
 
-    if-eqz v0, :cond_1a
+    if-eqz v0, :cond_2
 
     .line 407
-    if-nez p1, :cond_7
+    if-nez p1, :cond_0
 
     .line 408
     return-void
 
     .line 411
-    :cond_7
+    :cond_0
     iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jy:Lmiui/util/Pools$Manager;
 
     invoke-virtual {v0, p1}, Lmiui/util/Pools$Manager;->onRelease(Ljava/lang/Object;)V
@@ -307,7 +307,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_19
+    if-nez v0, :cond_1
 
     .line 414
     iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jy:Lmiui/util/Pools$Manager;
@@ -315,11 +315,11 @@
     invoke-virtual {v0, p1}, Lmiui/util/Pools$Manager;->onDestroy(Ljava/lang/Object;)V
 
     .line 416
-    :cond_19
+    :cond_1
     return-void
 
     .line 404
-    :cond_1a
+    :cond_2
     new-instance p1, Ljava/lang/IllegalStateException;
 
     const-string v0, "Cannot release object after close()"
@@ -330,26 +330,26 @@
 .end method
 
 .method public getSize()I
-    .registers 2
+    .locals 1
 
     .line 438
     iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
 
-    if-nez v0, :cond_6
+    if-nez v0, :cond_0
 
     const/4 v0, 0x0
 
-    goto :goto_8
+    goto :goto_0
 
-    :cond_6
+    :cond_0
     iget v0, p0, Lmiui/util/Pools$BasePool;->Hf:I
 
-    :goto_8
+    :goto_0
     return v0
 .end method
 
 .method public release(Ljava/lang/Object;)V
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"

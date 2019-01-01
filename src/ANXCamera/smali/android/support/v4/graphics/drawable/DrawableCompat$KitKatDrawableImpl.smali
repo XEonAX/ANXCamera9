@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 133
     invoke-direct {p0}, Landroid/support/v4/graphics/drawable/DrawableCompat$JellybeanMr1DrawableImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public isAutoMirrored(Landroid/graphics/drawable/Drawable;)Z
-    .registers 3
+    .locals 1
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 141
@@ -39,7 +39,7 @@
 .end method
 
 .method public setAutoMirrored(Landroid/graphics/drawable/Drawable;Z)V
-    .registers 3
+    .locals 0
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
     .param p2, "mirrored"    # Z
 
@@ -51,7 +51,7 @@
 .end method
 
 .method public wrap(Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
-    .registers 3
+    .locals 1
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 146

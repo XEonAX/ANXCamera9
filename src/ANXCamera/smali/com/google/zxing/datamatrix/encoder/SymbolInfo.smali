@@ -29,7 +29,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 16
+    .locals 16
 
     .line 28
     const/16 v0, 0x1e
@@ -684,7 +684,7 @@
 .end method
 
 .method public constructor <init>(ZIIIII)V
-    .registers 16
+    .locals 9
     .param p1, "rectangular"    # Z
     .param p2, "dataCapacity"    # I
     .param p3, "errorCodewords"    # I
@@ -721,7 +721,7 @@
 .end method
 
 .method constructor <init>(ZIIIIIII)V
-    .registers 9
+    .locals 0
     .param p1, "rectangular"    # Z
     .param p2, "dataCapacity"    # I
     .param p3, "errorCodewords"    # I
@@ -763,7 +763,7 @@
 .end method
 
 .method public static lookup(I)Lcom/google/zxing/datamatrix/encoder/SymbolInfo;
-    .registers 3
+    .locals 2
     .param p0, "dataCodewords"    # I
 
     .line 104
@@ -779,7 +779,7 @@
 .end method
 
 .method public static lookup(ILcom/google/zxing/datamatrix/encoder/SymbolShapeHint;)Lcom/google/zxing/datamatrix/encoder/SymbolInfo;
-    .registers 3
+    .locals 1
     .param p0, "dataCodewords"    # I
     .param p1, "shape"    # Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;
 
@@ -794,7 +794,7 @@
 .end method
 
 .method public static lookup(ILcom/google/zxing/datamatrix/encoder/SymbolShapeHint;Lcom/google/zxing/Dimension;Lcom/google/zxing/Dimension;Z)Lcom/google/zxing/datamatrix/encoder/SymbolInfo;
-    .registers 11
+    .locals 6
     .param p0, "dataCodewords"    # I
     .param p1, "shape"    # Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;
     .param p2, "minSize"    # Lcom/google/zxing/Dimension;
@@ -808,11 +808,11 @@
 
     const/4 v2, 0x0
 
-    :goto_4
-    if-lt v2, v1, :cond_1e
+    :goto_0
+    if-lt v2, v1, :cond_1
 
     .line 147
-    if-nez p4, :cond_a
+    if-nez p4, :cond_0
 
     .line 152
     const/4 v0, 0x0
@@ -820,7 +820,7 @@
     return-object v0
 
     .line 148
-    :cond_a
+    :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     .line 149
@@ -844,38 +844,38 @@
     throw v0
 
     .line 126
-    :cond_1e
+    :cond_1
     aget-object v3, v0, v2
 
     .line 127
     .local v3, "symbol":Lcom/google/zxing/datamatrix/encoder/SymbolInfo;
     sget-object v4, Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;->FORCE_SQUARE:Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;
 
-    if-ne p1, v4, :cond_29
+    if-ne p1, v4, :cond_2
 
     iget-boolean v4, v3, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->rectangular:Z
 
-    if-eqz v4, :cond_29
+    if-eqz v4, :cond_2
 
     .line 128
-    goto :goto_65
+    goto :goto_1
 
     .line 130
-    :cond_29
+    :cond_2
     sget-object v4, Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;->FORCE_RECTANGLE:Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;
 
-    if-ne p1, v4, :cond_32
+    if-ne p1, v4, :cond_3
 
     iget-boolean v4, v3, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->rectangular:Z
 
-    if-nez v4, :cond_32
+    if-nez v4, :cond_3
 
     .line 131
-    goto :goto_65
+    goto :goto_1
 
     .line 133
-    :cond_32
-    if-eqz p2, :cond_49
+    :cond_3
+    if-eqz p2, :cond_4
 
     .line 134
     invoke-virtual {v3}, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->getSymbolWidth()I
@@ -886,7 +886,7 @@
 
     move-result v5
 
-    if-lt v4, v5, :cond_65
+    if-lt v4, v5, :cond_6
 
     .line 135
     invoke-virtual {v3}, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->getSymbolHeight()I
@@ -897,14 +897,14 @@
 
     move-result v5
 
-    if-ge v4, v5, :cond_49
+    if-ge v4, v5, :cond_4
 
     .line 136
-    goto :goto_65
+    goto :goto_1
 
     .line 138
-    :cond_49
-    if-eqz p3, :cond_60
+    :cond_4
+    if-eqz p3, :cond_5
 
     .line 139
     invoke-virtual {v3}, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->getSymbolWidth()I
@@ -915,7 +915,7 @@
 
     move-result v5
 
-    if-gt v4, v5, :cond_65
+    if-gt v4, v5, :cond_6
 
     .line 140
     invoke-virtual {v3}, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->getSymbolHeight()I
@@ -926,31 +926,31 @@
 
     move-result v5
 
-    if-le v4, v5, :cond_60
+    if-le v4, v5, :cond_5
 
     .line 141
-    goto :goto_65
+    goto :goto_1
 
     .line 143
-    :cond_60
+    :cond_5
     iget v4, v3, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->dataCapacity:I
 
-    if-gt p0, v4, :cond_65
+    if-gt p0, v4, :cond_6
 
     .line 144
     return-object v3
 
     .line 126
     .end local v3    # "symbol":Lcom/google/zxing/datamatrix/encoder/SymbolInfo;
-    :cond_65
-    :goto_65
+    :cond_6
+    :goto_1
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_4
+    goto :goto_0
 .end method
 
 .method private static lookup(ILcom/google/zxing/datamatrix/encoder/SymbolShapeHint;Z)Lcom/google/zxing/datamatrix/encoder/SymbolInfo;
-    .registers 4
+    .locals 1
     .param p0, "dataCodewords"    # I
     .param p1, "shape"    # Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;
     .param p2, "fail"    # Z
@@ -966,24 +966,24 @@
 .end method
 
 .method public static lookup(IZZ)Lcom/google/zxing/datamatrix/encoder/SymbolInfo;
-    .registers 5
+    .locals 2
     .param p0, "dataCodewords"    # I
     .param p1, "allowRectangular"    # Z
     .param p2, "fail"    # Z
 
     .line 112
-    if-eqz p1, :cond_5
+    if-eqz p1, :cond_0
 
     .line 113
     sget-object v0, Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;->FORCE_NONE:Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;
 
-    goto :goto_7
+    goto :goto_0
 
-    :cond_5
+    :cond_0
     sget-object v0, Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;->FORCE_SQUARE:Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;
 
     .line 112
-    :goto_7
+    :goto_0
     nop
 
     .line 114
@@ -996,7 +996,7 @@
 .end method
 
 .method public static overrideSymbolSet([Lcom/google/zxing/datamatrix/encoder/SymbolInfo;)V
-    .registers 1
+    .locals 0
     .param p0, "override"    # [Lcom/google/zxing/datamatrix/encoder/SymbolInfo;
 
     .line 72
@@ -1009,7 +1009,7 @@
 
 # virtual methods
 .method public getCodewordCount()I
-    .registers 3
+    .locals 2
 
     .line 206
     iget v0, p0, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->dataCapacity:I
@@ -1022,7 +1022,7 @@
 .end method
 
 .method public final getDataCapacity()I
-    .registers 2
+    .locals 1
 
     .line 214
     iget v0, p0, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->dataCapacity:I
@@ -1031,7 +1031,7 @@
 .end method
 
 .method public getDataLengthForInterleavedBlock(I)I
-    .registers 3
+    .locals 1
     .param p1, "index"    # I
 
     .line 222
@@ -1041,7 +1041,7 @@
 .end method
 
 .method public final getErrorCodewords()I
-    .registers 2
+    .locals 1
 
     .line 218
     iget v0, p0, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->errorCodewords:I
@@ -1050,7 +1050,7 @@
 .end method
 
 .method public final getErrorLengthForInterleavedBlock(I)I
-    .registers 3
+    .locals 1
     .param p1, "index"    # I
 
     .line 226
@@ -1060,7 +1060,7 @@
 .end method
 
 .method final getHorizontalDataRegions()I
-    .registers 5
+    .locals 4
 
     .line 156
     iget v0, p0, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->dataRegions:I
@@ -1069,17 +1069,17 @@
 
     const/4 v2, 0x4
 
-    if-eq v0, v2, :cond_1f
+    if-eq v0, v2, :cond_2
 
     const/16 v3, 0x10
 
-    if-eq v0, v3, :cond_1e
+    if-eq v0, v3, :cond_1
 
     const/16 v2, 0x24
 
-    if-eq v0, v2, :cond_1c
+    if-eq v0, v2, :cond_0
 
-    packed-switch v0, :pswitch_data_20
+    packed-switch v0, :pswitch_data_0
 
     .line 168
     new-instance v0, Ljava/lang/IllegalStateException;
@@ -1091,38 +1091,38 @@
     throw v0
 
     .line 160
-    :pswitch_19
+    :pswitch_0
     return v1
 
     .line 158
-    :pswitch_1a
+    :pswitch_1
     const/4 v0, 0x1
 
     return v0
 
     .line 166
-    :cond_1c
+    :cond_0
     const/4 v0, 0x6
 
     return v0
 
     .line 164
-    :cond_1e
+    :cond_1
     return v2
 
     .line 162
-    :cond_1f
+    :cond_2
     return v1
 
-    :pswitch_data_20
+    :pswitch_data_0
     .packed-switch 0x1
-        :pswitch_1a
-        :pswitch_19
+        :pswitch_1
+        :pswitch_0
     .end packed-switch
 .end method
 
 .method public getInterleavedBlockCount()I
-    .registers 3
+    .locals 2
 
     .line 210
     iget v0, p0, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->dataCapacity:I
@@ -1135,7 +1135,7 @@
 .end method
 
 .method public final getSymbolDataHeight()I
-    .registers 3
+    .locals 2
 
     .line 194
     invoke-virtual {p0}, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->getVerticalDataRegions()I
@@ -1150,7 +1150,7 @@
 .end method
 
 .method public final getSymbolDataWidth()I
-    .registers 3
+    .locals 2
 
     .line 190
     invoke-virtual {p0}, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->getHorizontalDataRegions()I
@@ -1165,7 +1165,7 @@
 .end method
 
 .method public final getSymbolHeight()I
-    .registers 3
+    .locals 2
 
     .line 202
     invoke-virtual {p0}, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->getSymbolDataHeight()I
@@ -1184,7 +1184,7 @@
 .end method
 
 .method public final getSymbolWidth()I
-    .registers 3
+    .locals 2
 
     .line 198
     invoke-virtual {p0}, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->getSymbolDataWidth()I
@@ -1203,26 +1203,26 @@
 .end method
 
 .method final getVerticalDataRegions()I
-    .registers 4
+    .locals 3
 
     .line 173
     iget v0, p0, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->dataRegions:I
 
     const/4 v1, 0x4
 
-    if-eq v0, v1, :cond_1e
+    if-eq v0, v1, :cond_2
 
     const/16 v2, 0x10
 
-    if-eq v0, v2, :cond_1d
+    if-eq v0, v2, :cond_1
 
     const/16 v1, 0x24
 
-    if-eq v0, v1, :cond_1b
+    if-eq v0, v1, :cond_0
 
     const/4 v1, 0x1
 
-    packed-switch v0, :pswitch_data_20
+    packed-switch v0, :pswitch_data_0
 
     .line 185
     new-instance v0, Ljava/lang/IllegalStateException;
@@ -1234,38 +1234,38 @@
     throw v0
 
     .line 177
-    :pswitch_19
+    :pswitch_0
     return v1
 
     .line 175
-    :pswitch_1a
+    :pswitch_1
     return v1
 
     .line 183
-    :cond_1b
+    :cond_0
     const/4 v0, 0x6
 
     return v0
 
     .line 181
-    :cond_1d
+    :cond_1
     return v1
 
     .line 179
-    :cond_1e
+    :cond_2
     const/4 v0, 0x2
 
     return v0
 
-    :pswitch_data_20
+    :pswitch_data_0
     .packed-switch 0x1
-        :pswitch_1a
-        :pswitch_19
+        :pswitch_1
+        :pswitch_0
     .end packed-switch
 .end method
 
 .method public final toString()Ljava/lang/String;
-    .registers 4
+    .locals 3
 
     .line 231
     new-instance v0, Ljava/lang/StringBuilder;
@@ -1276,16 +1276,16 @@
     .local v0, "sb":Ljava/lang/StringBuilder;
     iget-boolean v1, p0, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->rectangular:Z
 
-    if-eqz v1, :cond_c
+    if-eqz v1, :cond_0
 
     const-string v1, "Rectangular Symbol:"
 
-    goto :goto_e
+    goto :goto_0
 
-    :cond_c
+    :cond_0
     const-string v1, "Square Symbol:"
 
-    :goto_e
+    :goto_0
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 233

@@ -44,7 +44,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 5650
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -53,7 +53,7 @@
 .end method
 
 .method public static getMiSimId(Landroid/content/Context;)J
-    .registers 5
+    .locals 4
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5737
@@ -73,7 +73,7 @@
 .end method
 
 .method public static getSupportNetworkType(Landroid/content/Context;)Ljava/lang/String;
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5746
@@ -93,7 +93,7 @@
 .end method
 
 .method public static getVirtualSimIccId(Landroid/content/Context;)Ljava/lang/String;
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5684
@@ -113,7 +113,7 @@
 .end method
 
 .method public static getVirtualSimImsi(Landroid/content/Context;)Ljava/lang/String;
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5674
@@ -133,7 +133,7 @@
 .end method
 
 .method public static getVirtualSimSlotId(Landroid/content/Context;)I
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5694
@@ -153,7 +153,7 @@
 .end method
 
 .method public static getVirtualSimStatus(Landroid/content/Context;)I
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5719
@@ -173,7 +173,7 @@
 .end method
 
 .method public static getVirtualSimType(Landroid/content/Context;)I
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5709
@@ -193,7 +193,7 @@
 .end method
 
 .method public static isMiSimEnabled(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5728
@@ -215,13 +215,13 @@
 
     move-result v1
 
-    if-nez v1, :cond_24
+    if-nez v1, :cond_0
 
     invoke-static {p0}, Landroid/provider/MiuiSettings$VirtualSim;->isVirtualSimEnabled(Landroid/content/Context;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_24
+    if-eqz v1, :cond_0
 
     invoke-static {p0}, Landroid/provider/MiuiSettings$VirtualSim;->getVirtualSimImsi(Landroid/content/Context;)Ljava/lang/String;
 
@@ -231,21 +231,21 @@
 
     move-result v1
 
-    if-eqz v1, :cond_24
+    if-eqz v1, :cond_0
 
     const/4 v1, 0x1
 
-    goto :goto_25
+    goto :goto_0
 
-    :cond_24
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_25
+    :goto_0
     return v1
 .end method
 
 .method public static isSupport4G(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5741
@@ -267,7 +267,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_1e
+    if-nez v1, :cond_1
 
     const-string v1, "4G"
 
@@ -275,25 +275,25 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1c
+    if-eqz v1, :cond_0
 
-    goto :goto_1e
+    goto :goto_0
 
-    :cond_1c
+    :cond_0
     const/4 v1, 0x0
 
-    goto :goto_1f
+    goto :goto_1
 
-    :cond_1e
-    :goto_1e
+    :cond_1
+    :goto_0
     const/4 v1, 0x1
 
-    :goto_1f
+    :goto_1
     return v1
 .end method
 
 .method public static isVirtualSimEnabled(Landroid/content/Context;)Z
-    .registers 2
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5670
@@ -311,7 +311,7 @@
 .end method
 
 .method public static setMiSimId(Landroid/content/Context;J)V
-    .registers 5
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "miSimId"    # J
 
@@ -329,7 +329,7 @@
 .end method
 
 .method public static setMiSimImsi(Landroid/content/Context;Ljava/lang/String;)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "imsi"    # Ljava/lang/String;
 
@@ -347,7 +347,7 @@
 .end method
 
 .method public static setSupportNetworkType(Landroid/content/Context;Ljava/lang/String;)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "networkType"    # Ljava/lang/String;
 
@@ -365,7 +365,7 @@
 .end method
 
 .method public static setVirtualSimIccId(Landroid/content/Context;Ljava/lang/String;)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "iccid"    # Ljava/lang/String;
 
@@ -383,7 +383,7 @@
 .end method
 
 .method public static setVirtualSimImsi(Landroid/content/Context;Ljava/lang/String;)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "imsi"    # Ljava/lang/String;
 
@@ -401,7 +401,7 @@
 .end method
 
 .method public static setVirtualSimSlotId(Landroid/content/Context;I)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "slotId"    # I
 
@@ -419,7 +419,7 @@
 .end method
 
 .method public static setVirtualSimStatus(Landroid/content/Context;I)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "status"    # I
 
@@ -437,7 +437,7 @@
 .end method
 
 .method public static setVirtualSimType(Landroid/content/Context;I)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "type"    # I
 

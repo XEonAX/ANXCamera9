@@ -20,7 +20,7 @@
 
 # direct methods
 .method private constructor <init>(Landroid/support/v4/app/NotificationCompatSideChannelService;)V
-    .registers 2
+    .locals 0
 
     .line 73
     iput-object p1, p0, Landroid/support/v4/app/NotificationCompatSideChannelService$NotificationSideChannelStub;->this$0:Landroid/support/v4/app/NotificationCompatSideChannelService;
@@ -31,7 +31,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v4/app/NotificationCompatSideChannelService;Landroid/support/v4/app/NotificationCompatSideChannelService$1;)V
-    .registers 3
+    .locals 0
     .param p1, "x0"    # Landroid/support/v4/app/NotificationCompatSideChannelService;
     .param p2, "x1"    # Landroid/support/v4/app/NotificationCompatSideChannelService$1;
 
@@ -44,7 +44,7 @@
 
 # virtual methods
 .method public cancel(Ljava/lang/String;ILjava/lang/String;)V
-    .registers 7
+    .locals 3
     .param p1, "packageName"    # Ljava/lang/String;
     .param p2, "id"    # I
     .param p3, "tag"    # Ljava/lang/String;
@@ -61,7 +61,6 @@
 
     move-result v1
 
-    # invokes: Landroid/support/v4/app/NotificationCompatSideChannelService;->checkPermission(ILjava/lang/String;)V
     invoke-static {v0, v1, p1}, Landroid/support/v4/app/NotificationCompatSideChannelService;->access$100(Landroid/support/v4/app/NotificationCompatSideChannelService;ILjava/lang/String;)V
 
     .line 89
@@ -71,12 +70,12 @@
 
     .line 91
     .local v0, "idToken":J
-    :try_start_d
+    :try_start_0
     iget-object v2, p0, Landroid/support/v4/app/NotificationCompatSideChannelService$NotificationSideChannelStub;->this$0:Landroid/support/v4/app/NotificationCompatSideChannelService;
 
     invoke-virtual {v2, p1, p2, p3}, Landroid/support/v4/app/NotificationCompatSideChannelService;->cancel(Ljava/lang/String;ILjava/lang/String;)V
-    :try_end_12
-    .catchall {:try_start_d .. :try_end_12} :catchall_17
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 93
     invoke-static {v0, v1}, Landroid/support/v4/app/NotificationCompatSideChannelService$NotificationSideChannelStub;->restoreCallingIdentity(J)V
@@ -88,7 +87,7 @@
     return-void
 
     .line 93
-    :catchall_17
+    :catchall_0
     move-exception v2
 
     invoke-static {v0, v1}, Landroid/support/v4/app/NotificationCompatSideChannelService$NotificationSideChannelStub;->restoreCallingIdentity(J)V
@@ -97,7 +96,7 @@
 .end method
 
 .method public cancelAll(Ljava/lang/String;)V
-    .registers 5
+    .locals 3
     .param p1, "packageName"    # Ljava/lang/String;
 
     .line 99
@@ -107,7 +106,6 @@
 
     move-result v1
 
-    # invokes: Landroid/support/v4/app/NotificationCompatSideChannelService;->checkPermission(ILjava/lang/String;)V
     invoke-static {v0, v1, p1}, Landroid/support/v4/app/NotificationCompatSideChannelService;->access$100(Landroid/support/v4/app/NotificationCompatSideChannelService;ILjava/lang/String;)V
 
     .line 100
@@ -117,12 +115,12 @@
 
     .line 102
     .local v0, "idToken":J
-    :try_start_d
+    :try_start_0
     iget-object v2, p0, Landroid/support/v4/app/NotificationCompatSideChannelService$NotificationSideChannelStub;->this$0:Landroid/support/v4/app/NotificationCompatSideChannelService;
 
     invoke-virtual {v2, p1}, Landroid/support/v4/app/NotificationCompatSideChannelService;->cancelAll(Ljava/lang/String;)V
-    :try_end_12
-    .catchall {:try_start_d .. :try_end_12} :catchall_17
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 104
     invoke-static {v0, v1}, Landroid/support/v4/app/NotificationCompatSideChannelService$NotificationSideChannelStub;->restoreCallingIdentity(J)V
@@ -134,7 +132,7 @@
     return-void
 
     .line 104
-    :catchall_17
+    :catchall_0
     move-exception v2
 
     invoke-static {v0, v1}, Landroid/support/v4/app/NotificationCompatSideChannelService$NotificationSideChannelStub;->restoreCallingIdentity(J)V
@@ -143,7 +141,7 @@
 .end method
 
 .method public notify(Ljava/lang/String;ILjava/lang/String;Landroid/app/Notification;)V
-    .registers 8
+    .locals 3
     .param p1, "packageName"    # Ljava/lang/String;
     .param p2, "id"    # I
     .param p3, "tag"    # Ljava/lang/String;
@@ -161,7 +159,6 @@
 
     move-result v1
 
-    # invokes: Landroid/support/v4/app/NotificationCompatSideChannelService;->checkPermission(ILjava/lang/String;)V
     invoke-static {v0, v1, p1}, Landroid/support/v4/app/NotificationCompatSideChannelService;->access$100(Landroid/support/v4/app/NotificationCompatSideChannelService;ILjava/lang/String;)V
 
     .line 78
@@ -171,12 +168,12 @@
 
     .line 80
     .local v0, "idToken":J
-    :try_start_d
+    :try_start_0
     iget-object v2, p0, Landroid/support/v4/app/NotificationCompatSideChannelService$NotificationSideChannelStub;->this$0:Landroid/support/v4/app/NotificationCompatSideChannelService;
 
     invoke-virtual {v2, p1, p2, p3, p4}, Landroid/support/v4/app/NotificationCompatSideChannelService;->notify(Ljava/lang/String;ILjava/lang/String;Landroid/app/Notification;)V
-    :try_end_12
-    .catchall {:try_start_d .. :try_end_12} :catchall_17
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 82
     invoke-static {v0, v1}, Landroid/support/v4/app/NotificationCompatSideChannelService$NotificationSideChannelStub;->restoreCallingIdentity(J)V
@@ -188,7 +185,7 @@
     return-void
 
     .line 82
-    :catchall_17
+    :catchall_0
     move-exception v2
 
     invoke-static {v0, v1}, Landroid/support/v4/app/NotificationCompatSideChannelService$NotificationSideChannelStub;->restoreCallingIdentity(J)V

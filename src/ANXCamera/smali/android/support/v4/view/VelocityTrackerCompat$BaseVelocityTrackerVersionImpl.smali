@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 37
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public getXVelocity(Landroid/view/VelocityTracker;I)F
-    .registers 4
+    .locals 1
     .param p1, "tracker"    # Landroid/view/VelocityTracker;
     .param p2, "pointerId"    # I
 
@@ -43,7 +43,7 @@
 .end method
 
 .method public getYVelocity(Landroid/view/VelocityTracker;I)F
-    .registers 4
+    .locals 1
     .param p1, "tracker"    # Landroid/view/VelocityTracker;
     .param p2, "pointerId"    # I
 

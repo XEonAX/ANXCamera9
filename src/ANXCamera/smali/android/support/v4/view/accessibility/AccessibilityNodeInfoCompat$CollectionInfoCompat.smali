@@ -28,7 +28,7 @@
 
 # direct methods
 .method private constructor <init>(Ljava/lang/Object;)V
-    .registers 2
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 395
@@ -42,7 +42,7 @@
 .end method
 
 .method synthetic constructor <init>(Ljava/lang/Object;Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$1;)V
-    .registers 3
+    .locals 0
     .param p1, "x0"    # Ljava/lang/Object;
     .param p2, "x1"    # Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$1;
 
@@ -53,7 +53,7 @@
 .end method
 
 .method public static obtain(IIZI)Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$CollectionInfoCompat;
-    .registers 6
+    .locals 2
     .param p0, "rowCount"    # I
     .param p1, "columnCount"    # I
     .param p2, "hierarchical"    # Z
@@ -62,7 +62,6 @@
     .line 391
     new-instance v0, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$CollectionInfoCompat;
 
-    # getter for: Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl;
     invoke-static {}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->access$000()Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl;
 
     move-result-object v1
@@ -79,10 +78,9 @@
 
 # virtual methods
 .method public getColumnCount()I
-    .registers 3
+    .locals 2
 
     .line 400
-    # getter for: Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl;
     invoke-static {}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->access$000()Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl;
 
     move-result-object v0
@@ -97,10 +95,9 @@
 .end method
 
 .method public getRowCount()I
-    .registers 3
+    .locals 2
 
     .line 404
-    # getter for: Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl;
     invoke-static {}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->access$000()Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl;
 
     move-result-object v0
@@ -115,10 +112,9 @@
 .end method
 
 .method public isHierarchical()Z
-    .registers 3
+    .locals 2
 
     .line 408
-    # getter for: Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl;
     invoke-static {}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->access$000()Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl;
 
     move-result-object v0

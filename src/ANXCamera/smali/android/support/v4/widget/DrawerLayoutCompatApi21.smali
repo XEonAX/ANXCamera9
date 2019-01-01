@@ -17,7 +17,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 3
+    .locals 3
 
     .line 33
     const/4 v0, 0x1
@@ -36,7 +36,7 @@
 .end method
 
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 31
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -46,7 +46,7 @@
 .end method
 
 .method public static applyMarginInsets(Landroid/view/ViewGroup$MarginLayoutParams;Ljava/lang/Object;I)V
-    .registers 8
+    .locals 5
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
     .param p1, "insets"    # Ljava/lang/Object;
     .param p2, "gravity"    # I
@@ -62,7 +62,7 @@
 
     const/4 v2, 0x3
 
-    if-ne p2, v2, :cond_18
+    if-ne p2, v2, :cond_0
 
     .line 61
     invoke-virtual {v0}, Landroid/view/WindowInsets;->getSystemWindowInsetLeft()I
@@ -81,13 +81,13 @@
 
     move-result-object v0
 
-    goto :goto_2b
+    goto :goto_0
 
     .line 63
-    :cond_18
+    :cond_0
     const/4 v2, 0x5
 
-    if-ne p2, v2, :cond_2b
+    if-ne p2, v2, :cond_1
 
     .line 64
     invoke-virtual {v0}, Landroid/view/WindowInsets;->getSystemWindowInsetTop()I
@@ -107,8 +107,8 @@
     move-result-object v0
 
     .line 67
-    :cond_2b
-    :goto_2b
+    :cond_1
+    :goto_0
     invoke-virtual {v0}, Landroid/view/WindowInsets;->getSystemWindowInsetLeft()I
 
     move-result v1
@@ -141,13 +141,13 @@
 .end method
 
 .method public static configureApplyInsets(Landroid/view/View;)V
-    .registers 2
+    .locals 1
     .param p0, "drawerLayout"    # Landroid/view/View;
 
     .line 38
     instance-of v0, p0, Landroid/support/v4/widget/DrawerLayoutImpl;
 
-    if-eqz v0, :cond_11
+    if-eqz v0, :cond_0
 
     .line 39
     new-instance v0, Landroid/support/v4/widget/DrawerLayoutCompatApi21$InsetsListener;
@@ -162,12 +162,12 @@
     invoke-virtual {p0, v0}, Landroid/view/View;->setSystemUiVisibility(I)V
 
     .line 43
-    :cond_11
+    :cond_0
     return-void
 .end method
 
 .method public static dispatchChildInsets(Landroid/view/View;Ljava/lang/Object;I)V
-    .registers 8
+    .locals 5
     .param p0, "child"    # Landroid/view/View;
     .param p1, "insets"    # Ljava/lang/Object;
     .param p2, "gravity"    # I
@@ -183,7 +183,7 @@
 
     const/4 v2, 0x3
 
-    if-ne p2, v2, :cond_18
+    if-ne p2, v2, :cond_0
 
     .line 48
     invoke-virtual {v0}, Landroid/view/WindowInsets;->getSystemWindowInsetLeft()I
@@ -202,13 +202,13 @@
 
     move-result-object v0
 
-    goto :goto_2b
+    goto :goto_0
 
     .line 50
-    :cond_18
+    :cond_0
     const/4 v2, 0x5
 
-    if-ne p2, v2, :cond_2b
+    if-ne p2, v2, :cond_1
 
     .line 51
     invoke-virtual {v0}, Landroid/view/WindowInsets;->getSystemWindowInsetTop()I
@@ -228,8 +228,8 @@
     move-result-object v0
 
     .line 54
-    :cond_2b
-    :goto_2b
+    :cond_1
+    :goto_0
     invoke-virtual {p0, v0}, Landroid/view/View;->dispatchApplyWindowInsets(Landroid/view/WindowInsets;)Landroid/view/WindowInsets;
 
     .line 55
@@ -237,7 +237,7 @@
 .end method
 
 .method public static getDefaultStatusBarBackground(Landroid/content/Context;)Landroid/graphics/drawable/Drawable;
-    .registers 3
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
 
     .line 78
@@ -251,19 +251,19 @@
     .local v0, "a":Landroid/content/res/TypedArray;
     const/4 v1, 0x0
 
-    :try_start_7
+    :try_start_0
     invoke-virtual {v0, v1}, Landroid/content/res/TypedArray;->getDrawable(I)Landroid/graphics/drawable/Drawable;
 
     move-result-object v1
-    :try_end_b
-    .catchall {:try_start_7 .. :try_end_b} :catchall_f
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 82
     invoke-virtual {v0}, Landroid/content/res/TypedArray;->recycle()V
 
     return-object v1
 
-    :catchall_f
+    :catchall_0
     move-exception v1
 
     invoke-virtual {v0}, Landroid/content/res/TypedArray;->recycle()V
@@ -272,11 +272,11 @@
 .end method
 
 .method public static getTopInset(Ljava/lang/Object;)I
-    .registers 2
+    .locals 1
     .param p0, "insets"    # Ljava/lang/Object;
 
     .line 74
-    if-eqz p0, :cond_a
+    if-eqz p0, :cond_0
 
     move-object v0, p0
 
@@ -286,11 +286,11 @@
 
     move-result v0
 
-    goto :goto_b
+    goto :goto_0
 
-    :cond_a
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_b
+    :goto_0
     return v0
 .end method

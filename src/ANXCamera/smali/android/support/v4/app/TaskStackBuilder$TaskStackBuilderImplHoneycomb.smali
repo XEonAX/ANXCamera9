@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 90
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public getPendingIntent(Landroid/content/Context;[Landroid/content/Intent;IILandroid/os/Bundle;)Landroid/app/PendingIntent;
-    .registers 9
+    .locals 3
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "intents"    # [Landroid/content/Intent;
     .param p3, "requestCode"    # I

@@ -12,7 +12,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 36
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -21,7 +21,7 @@
 .end method
 
 .method private static renderResult(Lcom/google/zxing/qrcode/encoder/QRCode;III)Lcom/google/zxing/common/BitMatrix;
-    .registers 25
+    .locals 21
     .param p0, "code"    # Lcom/google/zxing/qrcode/encoder/QRCode;
     .param p1, "width"    # I
     .param p2, "height"    # I
@@ -34,7 +34,7 @@
 
     .line 88
     .local v1, "input":Lcom/google/zxing/qrcode/encoder/ByteMatrix;
-    if-eqz v1, :cond_66
+    if-eqz v1, :cond_3
 
     .line 91
     invoke-virtual {v1}, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->getWidth()I
@@ -115,8 +115,8 @@
     move v15, v12
 
     .local v15, "outputY":I
-    :goto_3b
-    if-lt v14, v3, :cond_3e
+    :goto_0
+    if-lt v14, v3, :cond_0
 
     .line 117
     .end local v14    # "inputY":I
@@ -126,7 +126,7 @@
     .line 110
     .restart local v14    # "inputY":I
     .restart local v15    # "outputY":I
-    :cond_3e
+    :cond_0
     const/16 v16, 0x0
 
     .local v16, "inputX":I
@@ -144,8 +144,8 @@
     .local v0, "inputX":I
     .local v3, "outputX":I
     .local v18, "inputHeight":I
-    :goto_48
-    if-lt v0, v2, :cond_50
+    :goto_1
+    if-lt v0, v2, :cond_1
 
     .line 108
     .end local v0    # "inputX":I
@@ -156,12 +156,12 @@
 
     move/from16 v3, v18
 
-    goto :goto_3b
+    goto :goto_0
 
     .line 111
     .restart local v0    # "inputX":I
     .restart local v3    # "outputX":I
-    :cond_50
+    :cond_1
     move/from16 v19, v2
 
     invoke-virtual {v1, v0, v14}, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->get(II)B
@@ -176,13 +176,13 @@
 
     .end local v1    # "input":Lcom/google/zxing/qrcode/encoder/ByteMatrix;
     .local v20, "input":Lcom/google/zxing/qrcode/encoder/ByteMatrix;
-    if-ne v2, v1, :cond_5e
+    if-ne v2, v1, :cond_2
 
     .line 112
     invoke-virtual {v13, v3, v15, v10, v10}, Lcom/google/zxing/common/BitMatrix;->setRegion(IIII)V
 
     .line 110
-    :cond_5e
+    :cond_2
     add-int/lit8 v0, v0, 0x1
 
     add-int/2addr v3, v10
@@ -191,7 +191,7 @@
 
     move-object/from16 v1, v20
 
-    goto :goto_48
+    goto :goto_1
 
     .line 89
     .end local v0    # "inputX":I
@@ -210,7 +210,7 @@
     .end local v19    # "inputWidth":I
     .end local v20    # "input":Lcom/google/zxing/qrcode/encoder/ByteMatrix;
     .restart local v1    # "input":Lcom/google/zxing/qrcode/encoder/ByteMatrix;
-    :cond_66
+    :cond_3
     move/from16 v6, p1
 
     move/from16 v8, p2
@@ -229,7 +229,7 @@
 
 # virtual methods
 .method public encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;II)Lcom/google/zxing/common/BitMatrix;
-    .registers 11
+    .locals 6
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "format"    # Lcom/google/zxing/BarcodeFormat;
     .param p3, "width"    # I
@@ -261,7 +261,7 @@
 .end method
 
 .method public encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;IILjava/util/Map;)Lcom/google/zxing/common/BitMatrix;
-    .registers 10
+    .locals 4
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "format"    # Lcom/google/zxing/BarcodeFormat;
     .param p3, "width"    # I
@@ -291,17 +291,17 @@
 
     move-result v0
 
-    if-nez v0, :cond_65
+    if-nez v0, :cond_4
 
     .line 58
     sget-object v0, Lcom/google/zxing/BarcodeFormat;->QR_CODE:Lcom/google/zxing/BarcodeFormat;
 
-    if-ne p2, v0, :cond_51
+    if-ne p2, v0, :cond_3
 
     .line 62
-    if-ltz p3, :cond_35
+    if-ltz p3, :cond_2
 
-    if-ltz p4, :cond_35
+    if-ltz p4, :cond_2
 
     .line 67
     sget-object v0, Lcom/google/zxing/qrcode/decoder/ErrorCorrectionLevel;->L:Lcom/google/zxing/qrcode/decoder/ErrorCorrectionLevel;
@@ -312,7 +312,7 @@
 
     .line 69
     .local v1, "quietZone":I
-    if-eqz p5, :cond_2c
+    if-eqz p5, :cond_1
 
     .line 70
     sget-object v2, Lcom/google/zxing/EncodeHintType;->ERROR_CORRECTION:Lcom/google/zxing/EncodeHintType;
@@ -325,13 +325,13 @@
 
     .line 71
     .local v2, "requestedECLevel":Lcom/google/zxing/qrcode/decoder/ErrorCorrectionLevel;
-    if-eqz v2, :cond_1e
+    if-eqz v2, :cond_0
 
     .line 72
     move-object v0, v2
 
     .line 74
-    :cond_1e
+    :cond_0
     sget-object v3, Lcom/google/zxing/EncodeHintType;->MARGIN:Lcom/google/zxing/EncodeHintType;
 
     invoke-interface {p5, v3}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -342,7 +342,7 @@
 
     .line 75
     .local v3, "quietZoneInt":Ljava/lang/Integer;
-    if-eqz v3, :cond_2c
+    if-eqz v3, :cond_1
 
     .line 76
     invoke-virtual {v3}, Ljava/lang/Integer;->intValue()I
@@ -352,7 +352,7 @@
     .line 80
     .end local v2    # "requestedECLevel":Lcom/google/zxing/qrcode/decoder/ErrorCorrectionLevel;
     .end local v3    # "quietZoneInt":Ljava/lang/Integer;
-    :cond_2c
+    :cond_1
     invoke-static {p1, v0, p5}, Lcom/google/zxing/qrcode/encoder/Encoder;->encode(Ljava/lang/String;Lcom/google/zxing/qrcode/decoder/ErrorCorrectionLevel;Ljava/util/Map;)Lcom/google/zxing/qrcode/encoder/QRCode;
 
     move-result-object v2
@@ -369,7 +369,7 @@
     .end local v0    # "errorCorrectionLevel":Lcom/google/zxing/qrcode/decoder/ErrorCorrectionLevel;
     .end local v1    # "quietZone":I
     .end local v2    # "code":Lcom/google/zxing/qrcode/encoder/QRCode;
-    :cond_35
+    :cond_2
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -397,7 +397,7 @@
     throw v0
 
     .line 59
-    :cond_51
+    :cond_3
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -417,7 +417,7 @@
     throw v0
 
     .line 55
-    :cond_65
+    :cond_4
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "Found empty contents"

@@ -550,6 +550,8 @@
     <public type="raw" name="feature_beryllium" id="0x7f080002" />
     <public type="raw" name="goofy_face" id="0x7f080003" />
     <public type="raw" name="xiaomi_static_config" id="0x7f080004" />
+    <public type="raw" name="unfeature_dipper" id="0x7f080005" />
+    <public type="raw" name="unfeature_polaris" id="0x7f080006" />
     <public type="dimen" name="activity_horizontal_margin" id="0x7f090000" />
     <public type="dimen" name="activity_vertical_margin" id="0x7f090001" />
     <public type="dimen" name="item_touch_helper_max_drag_scroll_per_frame" id="0x7f090002" />

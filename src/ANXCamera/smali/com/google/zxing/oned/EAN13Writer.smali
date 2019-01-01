@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 32
     invoke-direct {p0}, Lcom/google/zxing/oned/UPCEANWriter;-><init>()V
@@ -20,7 +20,7 @@
 
 # virtual methods
 .method public encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;IILjava/util/Map;)Lcom/google/zxing/common/BitMatrix;
-    .registers 9
+    .locals 3
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "format"    # Lcom/google/zxing/BarcodeFormat;
     .param p3, "width"    # I
@@ -48,7 +48,7 @@
     .local p5, "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/EncodeHintType;*>;"
     sget-object v0, Lcom/google/zxing/BarcodeFormat;->EAN_13:Lcom/google/zxing/BarcodeFormat;
 
-    if-ne p2, v0, :cond_9
+    if-ne p2, v0, :cond_0
 
     .line 50
     invoke-super/range {p0 .. p5}, Lcom/google/zxing/oned/UPCEANWriter;->encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;IILjava/util/Map;)Lcom/google/zxing/common/BitMatrix;
@@ -58,7 +58,7 @@
     return-object v0
 
     .line 47
-    :cond_9
+    :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -79,7 +79,7 @@
 .end method
 
 .method public encode(Ljava/lang/String;)[Z
-    .registers 11
+    .locals 9
     .param p1, "contents"    # Ljava/lang/String;
 
     .line 55
@@ -89,17 +89,17 @@
 
     const/16 v1, 0xd
 
-    if-ne v0, v1, :cond_83
+    if-ne v0, v1, :cond_4
 
     .line 60
-    :try_start_8
+    :try_start_0
     invoke-static {p1}, Lcom/google/zxing/oned/UPCEANReader;->checkStandardUPCEANChecksum(Ljava/lang/CharSequence;)Z
 
     move-result v0
-    :try_end_c
-    .catch Lcom/google/zxing/FormatException; {:try_start_8 .. :try_end_c} :catch_7a
+    :try_end_0
+    .catch Lcom/google/zxing/FormatException; {:try_start_0 .. :try_end_0} :catch_0
 
-    if-eqz v0, :cond_72
+    if-eqz v0, :cond_3
 
     .line 67
     const/4 v0, 0x0
@@ -144,10 +144,10 @@
     const/4 v6, 0x1
 
     .local v6, "i":I
-    :goto_29
+    :goto_0
     const/4 v7, 0x6
 
-    if-le v6, v7, :cond_54
+    if-le v6, v7, :cond_1
 
     .line 83
     .end local v6    # "i":I
@@ -163,10 +163,10 @@
     const/4 v0, 0x7
 
     .local v0, "i":I
-    :goto_34
+    :goto_1
     const/16 v6, 0xc
 
-    if-le v0, v6, :cond_3e
+    if-le v0, v6, :cond_0
 
     .line 89
     .end local v0    # "i":I
@@ -179,7 +179,7 @@
 
     .line 86
     .restart local v0    # "i":I
-    :cond_3e
+    :cond_0
     add-int/lit8 v6, v0, 0x1
 
     invoke-virtual {p1, v0, v6}, Ljava/lang/String;->substring(II)Ljava/lang/String;
@@ -206,12 +206,12 @@
     .end local v6    # "digit":I
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_34
+    goto :goto_1
 
     .line 76
     .end local v0    # "i":I
     .local v6, "i":I
-    :cond_54
+    :cond_1
     add-int/lit8 v8, v6, 0x1
 
     invoke-virtual {p1, v6, v8}, Ljava/lang/String;->substring(II)Ljava/lang/String;
@@ -230,13 +230,13 @@
 
     and-int/2addr v7, v1
 
-    if-ne v7, v1, :cond_66
+    if-ne v7, v1, :cond_2
 
     .line 78
     add-int/lit8 v8, v8, 0xa
 
     .line 80
-    :cond_66
+    :cond_2
     sget-object v7, Lcom/google/zxing/oned/UPCEANReader;->L_AND_G_PATTERNS:[[I
 
     aget-object v7, v7, v8
@@ -251,7 +251,7 @@
     .end local v8    # "digit":I
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_29
+    goto :goto_0
 
     .line 61
     .end local v2    # "firstDigit":I
@@ -259,8 +259,8 @@
     .end local v4    # "result":[Z
     .end local v5    # "pos":I
     .end local v6    # "i":I
-    :cond_72
-    :try_start_72
+    :cond_3
+    :try_start_1
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "Contents do not pass checksum"
@@ -268,11 +268,11 @@
     invoke-direct {v0, v1}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
 
     throw v0
-    :try_end_7a
-    .catch Lcom/google/zxing/FormatException; {:try_start_72 .. :try_end_7a} :catch_7a
+    :try_end_1
+    .catch Lcom/google/zxing/FormatException; {:try_start_1 .. :try_end_1} :catch_0
 
     .line 63
-    :catch_7a
+    :catch_0
     move-exception v0
 
     .line 64
@@ -287,7 +287,7 @@
 
     .line 56
     .end local v0    # "ignored":Lcom/google/zxing/FormatException;
-    :cond_83
+    :cond_4
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     .line 57

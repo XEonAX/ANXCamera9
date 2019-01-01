@@ -25,7 +25,7 @@
 
 # direct methods
 .method private constructor <init>(FFFFFFFFF)V
-    .registers 10
+    .locals 0
     .param p1, "a11"    # F
     .param p2, "a21"    # F
     .param p3, "a31"    # F
@@ -71,7 +71,7 @@
 .end method
 
 .method public static quadrilateralToQuadrilateral(FFFFFFFFFFFFFFFF)Lcom/google/zxing/common/PerspectiveTransform;
-    .registers 19
+    .locals 3
     .param p0, "x0"    # F
     .param p1, "y0"    # F
     .param p2, "x1"    # F
@@ -110,7 +110,7 @@
 .end method
 
 .method public static quadrilateralToSquare(FFFFFFFF)Lcom/google/zxing/common/PerspectiveTransform;
-    .registers 9
+    .locals 1
     .param p0, "x0"    # F
     .param p1, "y0"    # F
     .param p2, "x1"    # F
@@ -133,7 +133,7 @@
 .end method
 
 .method public static squareToQuadrilateral(FFFFFFFF)Lcom/google/zxing/common/PerspectiveTransform;
-    .registers 28
+    .locals 20
     .param p0, "x0"    # F
     .param p1, "y0"    # F
     .param p2, "x1"    # F
@@ -164,11 +164,11 @@
 
     cmpl-float v1, v10, v0
 
-    if-nez v1, :cond_2c
+    if-nez v1, :cond_0
 
     cmpl-float v0, v11, v0
 
-    if-nez v0, :cond_2c
+    if-nez v0, :cond_0
 
     .line 105
     new-instance v12, Lcom/google/zxing/common/PerspectiveTransform;
@@ -201,7 +201,7 @@
     return-object v12
 
     .line 109
-    :cond_2c
+    :cond_0
     sub-float v12, p2, p4
 
     .line 110
@@ -295,7 +295,7 @@
 
 # virtual methods
 .method buildAdjoint()Lcom/google/zxing/common/PerspectiveTransform;
-    .registers 13
+    .locals 12
 
     .line 132
     new-instance v10, Lcom/google/zxing/common/PerspectiveTransform;
@@ -443,7 +443,7 @@
 .end method
 
 .method times(Lcom/google/zxing/common/PerspectiveTransform;)Lcom/google/zxing/common/PerspectiveTransform;
-    .registers 14
+    .locals 12
     .param p1, "other"    # Lcom/google/zxing/common/PerspectiveTransform;
 
     .line 144
@@ -664,7 +664,7 @@
 .end method
 
 .method public transformPoints([F)V
-    .registers 21
+    .locals 19
     .param p1, "points"    # [F
 
     move-object/from16 v0, p0
@@ -715,8 +715,8 @@
     const/4 v12, 0x0
 
     .local v12, "i":I
-    :goto_18
-    if-lt v12, v2, :cond_1b
+    :goto_0
+    if-lt v12, v2, :cond_0
 
     .line 84
     .end local v12    # "i":I
@@ -724,7 +724,7 @@
 
     .line 78
     .restart local v12    # "i":I
-    :cond_1b
+    :cond_0
     aget v13, v1, v12
 
     .line 79
@@ -778,11 +778,11 @@
     .end local v15    # "denominator":F
     add-int/lit8 v12, v12, 0x2
 
-    goto :goto_18
+    goto :goto_0
 .end method
 
 .method public transformPoints([F[F)V
-    .registers 10
+    .locals 7
     .param p1, "xValues"    # [F
     .param p2, "yValues"    # [F
 
@@ -794,8 +794,8 @@
     const/4 v1, 0x0
 
     .local v1, "i":I
-    :goto_2
-    if-lt v1, v0, :cond_5
+    :goto_0
+    if-lt v1, v0, :cond_0
 
     .line 95
     .end local v1    # "i":I
@@ -803,7 +803,7 @@
 
     .line 89
     .restart local v1    # "i":I
-    :cond_5
+    :cond_0
     aget v2, p1, v1
 
     .line 90
@@ -871,5 +871,5 @@
     .end local v4    # "denominator":F
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_2
+    goto :goto_0
 .end method

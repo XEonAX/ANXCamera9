@@ -17,7 +17,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 33
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -27,7 +27,7 @@
 .end method
 
 .method public static create(Landroid/content/res/Resources;Landroid/graphics/Bitmap;)Landroid/support/v4/graphics/drawable/RoundedBitmapDrawable;
-    .registers 4
+    .locals 2
     .param p0, "res"    # Landroid/content/res/Resources;
     .param p1, "bitmap"    # Landroid/graphics/Bitmap;
 
@@ -36,7 +36,7 @@
 
     const/16 v1, 0x15
 
-    if-lt v0, v1, :cond_c
+    if-lt v0, v1, :cond_0
 
     .line 68
     new-instance v0, Landroid/support/v4/graphics/drawable/RoundedBitmapDrawable21;
@@ -46,7 +46,7 @@
     return-object v0
 
     .line 70
-    :cond_c
+    :cond_0
     new-instance v0, Landroid/support/v4/graphics/drawable/RoundedBitmapDrawableFactory$DefaultRoundedBitmapDrawable;
 
     invoke-direct {v0, p0, p1}, Landroid/support/v4/graphics/drawable/RoundedBitmapDrawableFactory$DefaultRoundedBitmapDrawable;-><init>(Landroid/content/res/Resources;Landroid/graphics/Bitmap;)V
@@ -55,7 +55,7 @@
 .end method
 
 .method public static create(Landroid/content/res/Resources;Ljava/io/InputStream;)Landroid/support/v4/graphics/drawable/RoundedBitmapDrawable;
-    .registers 6
+    .locals 4
     .param p0, "res"    # Landroid/content/res/Resources;
     .param p1, "is"    # Ljava/io/InputStream;
 
@@ -74,7 +74,7 @@
 
     move-result-object v1
 
-    if-nez v1, :cond_24
+    if-nez v1, :cond_0
 
     .line 93
     const-string v1, "RoundedBitmapDrawableFactory"
@@ -96,12 +96,12 @@
     invoke-static {v1, v2}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 95
-    :cond_24
+    :cond_0
     return-object v0
 .end method
 
 .method public static create(Landroid/content/res/Resources;Ljava/lang/String;)Landroid/support/v4/graphics/drawable/RoundedBitmapDrawable;
-    .registers 6
+    .locals 4
     .param p0, "res"    # Landroid/content/res/Resources;
     .param p1, "filepath"    # Ljava/lang/String;
 
@@ -120,7 +120,7 @@
 
     move-result-object v1
 
-    if-nez v1, :cond_24
+    if-nez v1, :cond_0
 
     .line 80
     const-string v1, "RoundedBitmapDrawableFactory"
@@ -142,6 +142,6 @@
     invoke-static {v1, v2}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 82
-    :cond_24
+    :cond_0
     return-object v0
 .end method

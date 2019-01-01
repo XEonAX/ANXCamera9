@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 43
     invoke-direct {p0}, Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderStubImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public newAccessibilityNodeProviderBridge(Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "compat"    # Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat;
 
     .line 47

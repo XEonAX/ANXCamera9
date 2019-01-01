@@ -29,7 +29,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 14
+    .locals 14
 
     .line 43
     const-string v0, "UPPER"
@@ -209,10 +209,10 @@
     const/16 v1, 0x41
 
     .local v1, "c":I
-    :goto_9a
+    :goto_0
     const/16 v4, 0x5a
 
-    if-le v1, v4, :cond_25d
+    if-le v1, v4, :cond_6
 
     .line 103
     .end local v1    # "c":I
@@ -226,10 +226,10 @@
     const/16 v1, 0x61
 
     .restart local v1    # "c":I
-    :goto_a6
+    :goto_1
     const/16 v4, 0x7a
 
-    if-le v1, v4, :cond_250
+    if-le v1, v4, :cond_5
 
     .line 107
     .end local v1    # "c":I
@@ -243,10 +243,10 @@
     const/16 v1, 0x30
 
     .restart local v1    # "c":I
-    :goto_b2
+    :goto_2
     const/16 v4, 0x39
 
-    if-le v1, v4, :cond_243
+    if-le v1, v4, :cond_4
 
     .line 111
     .end local v1    # "c":I
@@ -411,10 +411,10 @@
     const/4 v0, 0x0
 
     .local v0, "i":I
-    :goto_14a
+    :goto_3
     array-length v1, v13
 
-    if-lt v0, v1, :cond_237
+    if-lt v0, v1, :cond_3
 
     .line 121
     .end local v0    # "i":I
@@ -575,10 +575,10 @@
     const/4 v0, 0x0
 
     .restart local v0    # "i":I
-    :goto_1e1
+    :goto_4
     array-length v2, v1
 
-    if-lt v0, v2, :cond_228
+    if-lt v0, v2, :cond_1
 
     .line 135
     .end local v0    # "i":I
@@ -605,8 +605,8 @@
 
     move v0, v10
 
-    :goto_1f6
-    if-lt v0, v6, :cond_21f
+    :goto_5
+    if-lt v0, v6, :cond_0
 
     .line 140
     sget-object v0, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->SHIFT_TABLE:[[I
@@ -656,7 +656,7 @@
     return-void
 
     .line 137
-    :cond_21f
+    :cond_0
     aget-object v1, v2, v0
 
     .line 138
@@ -669,16 +669,16 @@
     .end local v1    # "table":[I
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_1f6
+    goto :goto_5
 
     .line 127
     .restart local v0    # "i":I
     .local v1, "punctTable":[I
     .restart local v13    # "mixedTable":[I
-    :cond_228
+    :cond_1
     aget v2, v1, v0
 
-    if-lez v2, :cond_234
+    if-lez v2, :cond_2
 
     .line 128
     sget-object v2, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->CHAR_MAP:[[I
@@ -690,14 +690,14 @@
     aput v0, v2, v6
 
     .line 126
-    :cond_234
+    :cond_2
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_1e1
+    goto :goto_4
 
     .line 119
     .end local v1    # "punctTable":[I
-    :cond_237
+    :cond_3
     sget-object v1, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->CHAR_MAP:[[I
 
     aget-object v1, v1, v7
@@ -709,13 +709,13 @@
     .line 118
     add-int/lit8 v0, v0, 0x1
 
-    goto/16 :goto_14a
+    goto/16 :goto_3
 
     .line 109
     .end local v0    # "i":I
     .end local v13    # "mixedTable":[I
     .local v1, "c":I
-    :cond_243
+    :cond_4
     sget-object v4, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->CHAR_MAP:[[I
 
     aget-object v4, v4, v5
@@ -729,10 +729,10 @@
     .line 108
     add-int/lit8 v1, v1, 0x1
 
-    goto/16 :goto_b2
+    goto/16 :goto_2
 
     .line 105
-    :cond_250
+    :cond_5
     sget-object v4, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->CHAR_MAP:[[I
 
     aget-object v4, v4, v3
@@ -746,10 +746,10 @@
     .line 104
     add-int/lit8 v1, v1, 0x1
 
-    goto/16 :goto_a6
+    goto/16 :goto_1
 
     .line 101
-    :cond_25d
+    :cond_6
     sget-object v4, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->CHAR_MAP:[[I
 
     aget-object v4, v4, v10
@@ -763,11 +763,11 @@
     .line 100
     add-int/lit8 v1, v1, 0x1
 
-    goto/16 :goto_9a
+    goto/16 :goto_0
 .end method
 
 .method public constructor <init>([B)V
-    .registers 2
+    .locals 0
     .param p1, "text"    # [B
 
     .line 153
@@ -781,7 +781,7 @@
 .end method
 
 .method private static simplifyStates(Ljava/lang/Iterable;)Ljava/util/Collection;
-    .registers 8
+    .locals 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -806,19 +806,19 @@
 
     move-result-object v1
 
-    :cond_9
-    :goto_9
+    :cond_0
+    :goto_0
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-nez v2, :cond_10
+    if-nez v2, :cond_1
 
     .line 304
     return-object v0
 
     .line 288
-    :cond_10
+    :cond_1
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v2
@@ -836,20 +836,20 @@
     move-result-object v4
 
     .local v4, "iterator":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/google/zxing/aztec/encoder/State;>;"
-    :cond_1b
-    :goto_1b
+    :cond_2
+    :goto_1
     invoke-interface {v4}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v5
 
-    if-nez v5, :cond_22
+    if-nez v5, :cond_3
 
     .end local v4    # "iterator":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/google/zxing/aztec/encoder/State;>;"
-    goto :goto_30
+    goto :goto_2
 
     .line 291
     .restart local v4    # "iterator":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/google/zxing/aztec/encoder/State;>;"
-    :cond_22
+    :cond_3
     invoke-interface {v4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v5
@@ -862,7 +862,7 @@
 
     move-result v6
 
-    if-eqz v6, :cond_36
+    if-eqz v6, :cond_4
 
     .line 293
     const/4 v3, 0x0
@@ -873,37 +873,37 @@
     .line 300
     .end local v4    # "iterator":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/google/zxing/aztec/encoder/State;>;"
     .end local v5    # "oldState":Lcom/google/zxing/aztec/encoder/State;
-    :goto_30
-    if-eqz v3, :cond_9
+    :goto_2
+    if-eqz v3, :cond_0
 
     .line 301
     invoke-interface {v0, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .end local v2    # "newState":Lcom/google/zxing/aztec/encoder/State;
     .end local v3    # "add":Z
-    goto :goto_9
+    goto :goto_0
 
     .line 296
     .restart local v2    # "newState":Lcom/google/zxing/aztec/encoder/State;
     .restart local v3    # "add":Z
     .restart local v4    # "iterator":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/google/zxing/aztec/encoder/State;>;"
     .restart local v5    # "oldState":Lcom/google/zxing/aztec/encoder/State;
-    :cond_36
+    :cond_4
     invoke-virtual {v2, v5}, Lcom/google/zxing/aztec/encoder/State;->isBetterThanOrEqualTo(Lcom/google/zxing/aztec/encoder/State;)Z
 
     move-result v6
 
-    if-eqz v6, :cond_1b
+    if-eqz v6, :cond_2
 
     .line 297
     invoke-interface {v4}, Ljava/util/Iterator;->remove()V
 
     .end local v5    # "oldState":Lcom/google/zxing/aztec/encoder/State;
-    goto :goto_1b
+    goto :goto_1
 .end method
 
 .method private updateStateForChar(Lcom/google/zxing/aztec/encoder/State;ILjava/util/Collection;)V
-    .registers 11
+    .locals 7
     .param p1, "state"    # Lcom/google/zxing/aztec/encoder/State;
     .param p2, "index"    # I
     .annotation system Ldalvik/annotation/Signature;
@@ -939,18 +939,18 @@
 
     aget v1, v1, v0
 
-    if-lez v1, :cond_15
+    if-lez v1, :cond_0
 
     const/4 v1, 0x1
 
-    goto :goto_16
+    goto :goto_0
 
-    :cond_15
+    :cond_0
     const/4 v1, 0x0
 
     .line 219
     .local v1, "charInCurrentTable":Z
-    :goto_16
+    :goto_0
     const/4 v2, 0x0
 
     .line 220
@@ -958,10 +958,10 @@
     const/4 v3, 0x0
 
     .local v3, "mode":I
-    :goto_18
+    :goto_1
     const/4 v4, 0x4
 
-    if-le v3, v4, :cond_35
+    if-le v3, v4, :cond_3
 
     .line 245
     .end local v3    # "mode":I
@@ -969,7 +969,7 @@
 
     move-result v3
 
-    if-gtz v3, :cond_2d
+    if-gtz v3, :cond_1
 
     sget-object v3, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->CHAR_MAP:[[I
 
@@ -981,10 +981,10 @@
 
     aget v3, v3, v0
 
-    if-nez v3, :cond_34
+    if-nez v3, :cond_2
 
     .line 249
-    :cond_2d
+    :cond_1
     invoke-virtual {p1, p2}, Lcom/google/zxing/aztec/encoder/State;->addBinaryShiftChar(I)Lcom/google/zxing/aztec/encoder/State;
 
     move-result-object v3
@@ -995,12 +995,12 @@
 
     .line 252
     .end local v3    # "binaryState":Lcom/google/zxing/aztec/encoder/State;
-    :cond_34
+    :cond_2
     return-void
 
     .line 221
     .local v3, "mode":I
-    :cond_35
+    :cond_3
     sget-object v4, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->CHAR_MAP:[[I
 
     aget-object v4, v4, v3
@@ -1009,10 +1009,10 @@
 
     .line 222
     .local v4, "charInMode":I
-    if-lez v4, :cond_6a
+    if-lez v4, :cond_7
 
     .line 223
-    if-nez v2, :cond_43
+    if-nez v2, :cond_4
 
     .line 225
     invoke-virtual {p1, p2}, Lcom/google/zxing/aztec/encoder/State;->endBinaryShift(I)Lcom/google/zxing/aztec/encoder/State;
@@ -1020,21 +1020,21 @@
     move-result-object v2
 
     .line 228
-    :cond_43
-    if-eqz v1, :cond_4e
+    :cond_4
+    if-eqz v1, :cond_5
 
     invoke-virtual {p1}, Lcom/google/zxing/aztec/encoder/State;->getMode()I
 
     move-result v5
 
-    if-eq v3, v5, :cond_4e
+    if-eq v3, v5, :cond_5
 
     const/4 v5, 0x2
 
-    if-ne v3, v5, :cond_55
+    if-ne v3, v5, :cond_6
 
     .line 233
-    :cond_4e
+    :cond_5
     invoke-virtual {v2, v3, v4}, Lcom/google/zxing/aztec/encoder/State;->latchAndAppend(II)Lcom/google/zxing/aztec/encoder/State;
 
     move-result-object v5
@@ -1045,8 +1045,8 @@
 
     .line 237
     .end local v5    # "latch_state":Lcom/google/zxing/aztec/encoder/State;
-    :cond_55
-    if-nez v1, :cond_6a
+    :cond_6
+    if-nez v1, :cond_7
 
     sget-object v5, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->SHIFT_TABLE:[[I
 
@@ -1058,7 +1058,7 @@
 
     aget v5, v5, v3
 
-    if-ltz v5, :cond_6a
+    if-ltz v5, :cond_7
 
     .line 240
     invoke-virtual {v2, v3, v4}, Lcom/google/zxing/aztec/encoder/State;->shiftAndAppend(II)Lcom/google/zxing/aztec/encoder/State;
@@ -1072,14 +1072,14 @@
     .line 220
     .end local v4    # "charInMode":I
     .end local v5    # "shift_state":Lcom/google/zxing/aztec/encoder/State;
-    :cond_6a
+    :cond_7
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_18
+    goto :goto_1
 .end method
 
 .method private static updateStateForPair(Lcom/google/zxing/aztec/encoder/State;IILjava/util/Collection;)V
-    .registers 8
+    .locals 4
     .param p0, "state"    # Lcom/google/zxing/aztec/encoder/State;
     .param p1, "index"    # I
     .param p2, "pairCode"    # I
@@ -1115,7 +1115,7 @@
 
     move-result v2
 
-    if-eq v2, v1, :cond_19
+    if-eq v2, v1, :cond_0
 
     .line 269
     invoke-virtual {v0, v1, p2}, Lcom/google/zxing/aztec/encoder/State;->shiftAndAppend(II)Lcom/google/zxing/aztec/encoder/State;
@@ -1125,15 +1125,15 @@
     invoke-interface {p3, v2}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
 
     .line 271
-    :cond_19
+    :cond_0
     const/4 v2, 0x3
 
-    if-eq p2, v2, :cond_1e
+    if-eq p2, v2, :cond_1
 
-    if-ne p2, v1, :cond_2f
+    if-ne p2, v1, :cond_2
 
     .line 273
-    :cond_1e
+    :cond_1
     nop
 
     .line 274
@@ -1161,12 +1161,12 @@
 
     .line 278
     .end local v1    # "digit_state":Lcom/google/zxing/aztec/encoder/State;
-    :cond_2f
+    :cond_2
     invoke-virtual {p0}, Lcom/google/zxing/aztec/encoder/State;->getBinaryShiftByteCount()I
 
     move-result v1
 
-    if-lez v1, :cond_42
+    if-lez v1, :cond_3
 
     .line 281
     invoke-virtual {p0, p1}, Lcom/google/zxing/aztec/encoder/State;->addBinaryShiftChar(I)Lcom/google/zxing/aztec/encoder/State;
@@ -1185,12 +1185,12 @@
 
     .line 284
     .end local v1    # "binaryState":Lcom/google/zxing/aztec/encoder/State;
-    :cond_42
+    :cond_3
     return-void
 .end method
 
 .method private updateStateListForChar(Ljava/lang/Iterable;I)Ljava/util/Collection;
-    .registers 6
+    .locals 3
     .param p2, "index"    # I
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1216,12 +1216,12 @@
 
     move-result-object v1
 
-    :goto_9
+    :goto_0
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-nez v2, :cond_14
+    if-nez v2, :cond_0
 
     .line 210
     invoke-static {v0}, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->simplifyStates(Ljava/lang/Iterable;)Ljava/util/Collection;
@@ -1231,7 +1231,7 @@
     return-object v1
 
     .line 207
-    :cond_14
+    :cond_0
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v2
@@ -1243,11 +1243,11 @@
     invoke-direct {p0, v2, p2, v0}, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->updateStateForChar(Lcom/google/zxing/aztec/encoder/State;ILjava/util/Collection;)V
 
     .end local v2    # "state":Lcom/google/zxing/aztec/encoder/State;
-    goto :goto_9
+    goto :goto_0
 .end method
 
 .method private static updateStateListForPair(Ljava/lang/Iterable;II)Ljava/util/Collection;
-    .registers 6
+    .locals 3
     .param p1, "index"    # I
     .param p2, "pairCode"    # I
     .annotation system Ldalvik/annotation/Signature;
@@ -1274,12 +1274,12 @@
 
     move-result-object v1
 
-    :goto_9
+    :goto_0
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-nez v2, :cond_14
+    if-nez v2, :cond_0
 
     .line 259
     invoke-static {v0}, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->simplifyStates(Ljava/lang/Iterable;)Ljava/util/Collection;
@@ -1289,7 +1289,7 @@
     return-object v1
 
     .line 256
-    :cond_14
+    :cond_0
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v2
@@ -1301,13 +1301,13 @@
     invoke-static {v2, p1, p2, v0}, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->updateStateForPair(Lcom/google/zxing/aztec/encoder/State;IILjava/util/Collection;)V
 
     .end local v2    # "state":Lcom/google/zxing/aztec/encoder/State;
-    goto :goto_9
+    goto :goto_0
 .end method
 
 
 # virtual methods
 .method public encode()Lcom/google/zxing/common/BitArray;
-    .registers 8
+    .locals 7
 
     .line 161
     sget-object v0, Lcom/google/zxing/aztec/encoder/State;->INITIAL_STATE:Lcom/google/zxing/aztec/encoder/State;
@@ -1321,12 +1321,12 @@
     const/4 v1, 0x0
 
     .local v1, "index":I
-    :goto_7
+    :goto_0
     iget-object v2, p0, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->text:[B
 
     array-length v2, v2
 
-    if-lt v1, v2, :cond_1e
+    if-lt v1, v2, :cond_0
 
     .line 192
     .end local v1    # "index":I
@@ -1352,7 +1352,7 @@
 
     .line 164
     .local v1, "index":I
-    :cond_1e
+    :cond_0
     add-int/lit8 v2, v1, 0x1
 
     iget-object v3, p0, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->text:[B
@@ -1361,7 +1361,7 @@
 
     const/4 v4, 0x0
 
-    if-ge v2, v3, :cond_2d
+    if-ge v2, v3, :cond_1
 
     iget-object v2, p0, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->text:[B
 
@@ -1369,42 +1369,42 @@
 
     aget-byte v2, v2, v3
 
-    goto :goto_2e
+    goto :goto_1
 
-    :cond_2d
+    :cond_1
     move v2, v4
 
     .line 165
     .local v2, "nextChar":I
-    :goto_2e
+    :goto_1
     iget-object v3, p0, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->text:[B
 
     aget-byte v3, v3, v1
 
     const/16 v5, 0xd
 
-    if-eq v3, v5, :cond_54
+    if-eq v3, v5, :cond_8
 
     const/16 v5, 0x2c
 
     const/16 v6, 0x20
 
-    if-eq v3, v5, :cond_4f
+    if-eq v3, v5, :cond_6
 
     const/16 v5, 0x2e
 
-    if-eq v3, v5, :cond_4a
+    if-eq v3, v5, :cond_4
 
     const/16 v5, 0x3a
 
-    if-eq v3, v5, :cond_45
+    if-eq v3, v5, :cond_2
 
     .line 179
-    goto :goto_5b
+    goto :goto_2
 
     .line 176
-    :cond_45
-    if-ne v2, v6, :cond_49
+    :cond_2
+    if-ne v2, v6, :cond_3
 
     const/4 v4, 0x5
 
@@ -1412,13 +1412,13 @@
 
     .line 177
     .local v4, "pairCode":I
-    :cond_49
-    goto :goto_5b
+    :cond_3
+    goto :goto_2
 
     .line 170
     .end local v4    # "pairCode":I
-    :cond_4a
-    if-ne v2, v6, :cond_4e
+    :cond_4
+    if-ne v2, v6, :cond_5
 
     const/4 v4, 0x3
 
@@ -1426,13 +1426,13 @@
 
     .line 171
     .restart local v4    # "pairCode":I
-    :cond_4e
-    goto :goto_5b
+    :cond_5
+    goto :goto_2
 
     .line 173
     .end local v4    # "pairCode":I
-    :cond_4f
-    if-ne v2, v6, :cond_53
+    :cond_6
+    if-ne v2, v6, :cond_7
 
     const/4 v4, 0x4
 
@@ -1440,15 +1440,15 @@
 
     .line 174
     .restart local v4    # "pairCode":I
-    :cond_53
-    goto :goto_5b
+    :cond_7
+    goto :goto_2
 
     .line 167
     .end local v4    # "pairCode":I
-    :cond_54
+    :cond_8
     const/16 v3, 0xa
 
-    if-ne v2, v3, :cond_5a
+    if-ne v2, v3, :cond_9
 
     const/4 v4, 0x2
 
@@ -1456,17 +1456,17 @@
 
     .line 168
     .restart local v4    # "pairCode":I
-    :cond_5a
+    :cond_9
     nop
 
     .line 179
-    :goto_5b
+    :goto_2
     move v3, v4
 
     .line 181
     .end local v4    # "pairCode":I
     .local v3, "pairCode":I
-    if-lez v3, :cond_65
+    if-lez v3, :cond_a
 
     .line 184
     invoke-static {v0, v1, v3}, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->updateStateListForPair(Ljava/lang/Iterable;II)Ljava/util/Collection;
@@ -1477,10 +1477,10 @@
     add-int/lit8 v1, v1, 0x1
 
     .line 186
-    goto :goto_69
+    goto :goto_3
 
     .line 188
-    :cond_65
+    :cond_a
     invoke-direct {p0, v0, v1}, Lcom/google/zxing/aztec/encoder/HighLevelEncoder;->updateStateListForChar(Ljava/lang/Iterable;I)Ljava/util/Collection;
 
     move-result-object v0
@@ -1488,8 +1488,8 @@
     .line 162
     .end local v2    # "nextChar":I
     .end local v3    # "pairCode":I
-    :goto_69
+    :goto_3
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_7
+    goto :goto_0
 .end method

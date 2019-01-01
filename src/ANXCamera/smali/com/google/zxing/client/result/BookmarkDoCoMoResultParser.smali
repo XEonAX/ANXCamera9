@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 24
     invoke-direct {p0}, Lcom/google/zxing/client/result/AbstractDoCoMoResultParser;-><init>()V
@@ -16,7 +16,7 @@
 
 # virtual methods
 .method public bridge synthetic parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ParsedResult;
-    .registers 2
+    .locals 0
 
     .line 1
     invoke-virtual {p0, p1}, Lcom/google/zxing/client/result/BookmarkDoCoMoResultParser;->parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/URIParsedResult;
@@ -27,7 +27,7 @@
 .end method
 
 .method public parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/URIParsedResult;
-    .registers 8
+    .locals 6
     .param p1, "result"    # Lcom/google/zxing/Result;
 
     .line 28
@@ -45,13 +45,13 @@
 
     const/4 v2, 0x0
 
-    if-nez v1, :cond_e
+    if-nez v1, :cond_0
 
     .line 30
     return-object v2
 
     .line 32
-    :cond_e
+    :cond_0
     const-string v1, "TITLE:"
 
     const/4 v3, 0x1
@@ -70,13 +70,13 @@
 
     .line 34
     .local v3, "rawUri":[Ljava/lang/String;
-    if-nez v3, :cond_1e
+    if-nez v3, :cond_1
 
     .line 35
     return-object v2
 
     .line 37
-    :cond_1e
+    :cond_1
     const/4 v4, 0x0
 
     aget-object v4, v3, v4
@@ -87,7 +87,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_2d
+    if-eqz v5, :cond_2
 
     new-instance v2, Lcom/google/zxing/client/result/URIParsedResult;
 
@@ -95,6 +95,6 @@
 
     nop
 
-    :cond_2d
+    :cond_2
     return-object v2
 .end method

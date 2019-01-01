@@ -36,7 +36,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 3
+    .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TF;TS;)V"
@@ -60,7 +60,7 @@
 .end method
 
 .method public static create(Ljava/lang/Object;Ljava/lang/Object;)Landroid/support/v4/util/Pair;
-    .registers 3
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<A:",
@@ -84,40 +84,40 @@
 .end method
 
 .method private static objectsEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p0, "a"    # Ljava/lang/Object;
     .param p1, "b"    # Ljava/lang/Object;
 
     .line 57
-    if-eq p0, p1, :cond_d
+    if-eq p0, p1, :cond_1
 
-    if-eqz p0, :cond_b
+    if-eqz p0, :cond_0
 
     invoke-virtual {p0, p1}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_b
+    if-eqz v0, :cond_0
 
-    goto :goto_d
+    goto :goto_0
 
-    :cond_b
+    :cond_0
     const/4 v0, 0x0
 
-    goto :goto_e
+    goto :goto_1
 
-    :cond_d
-    :goto_d
+    :cond_1
+    :goto_0
     const/4 v0, 0x1
 
-    :goto_e
+    :goto_1
     return v0
 .end method
 
 
 # virtual methods
 .method public equals(Ljava/lang/Object;)Z
-    .registers 6
+    .locals 4
     .param p1, "o"    # Ljava/lang/Object;
 
     .line 49
@@ -126,13 +126,13 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_6
+    if-nez v0, :cond_0
 
     .line 50
     return v1
 
     .line 52
-    :cond_6
+    :cond_0
     move-object v0, p1
 
     check-cast v0, Landroid/support/v4/util/Pair;
@@ -147,7 +147,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1f
+    if-eqz v2, :cond_1
 
     iget-object v2, v0, Landroid/support/v4/util/Pair;->second:Ljava/lang/Object;
 
@@ -157,18 +157,18 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1f
+    if-eqz v2, :cond_1
 
     const/4 v1, 0x1
 
     nop
 
-    :cond_1f
+    :cond_1
     return v1
 .end method
 
 .method public hashCode()I
-    .registers 4
+    .locals 3
 
     .line 67
     .local p0, "this":Landroid/support/v4/util/Pair;, "Landroid/support/v4/util/Pair<TF;TS;>;"
@@ -176,34 +176,34 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_7
+    if-nez v0, :cond_0
 
     move v0, v1
 
-    goto :goto_d
+    goto :goto_0
 
-    :cond_7
+    :cond_0
     iget-object v0, p0, Landroid/support/v4/util/Pair;->first:Ljava/lang/Object;
 
     invoke-virtual {v0}, Ljava/lang/Object;->hashCode()I
 
     move-result v0
 
-    :goto_d
+    :goto_0
     iget-object v2, p0, Landroid/support/v4/util/Pair;->second:Ljava/lang/Object;
 
-    if-nez v2, :cond_12
+    if-nez v2, :cond_1
 
-    goto :goto_18
+    goto :goto_1
 
-    :cond_12
+    :cond_1
     iget-object v1, p0, Landroid/support/v4/util/Pair;->second:Ljava/lang/Object;
 
     invoke-virtual {v1}, Ljava/lang/Object;->hashCode()I
 
     move-result v1
 
-    :goto_18
+    :goto_1
     xor-int/2addr v0, v1
 
     return v0

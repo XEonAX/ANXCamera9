@@ -24,7 +24,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/content/IntentFilter;Landroid/content/BroadcastReceiver;)V
-    .registers 3
+    .locals 0
     .param p1, "_filter"    # Landroid/content/IntentFilter;
     .param p2, "_receiver"    # Landroid/content/BroadcastReceiver;
 
@@ -44,7 +44,7 @@
 
 # virtual methods
 .method public toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 59
     new-instance v0, Ljava/lang/StringBuilder;

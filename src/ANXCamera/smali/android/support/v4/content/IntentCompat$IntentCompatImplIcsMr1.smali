@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 76
     invoke-direct {p0}, Landroid/support/v4/content/IntentCompat$IntentCompatImplHC;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public makeMainSelectorActivity(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
-    .registers 4
+    .locals 1
     .param p1, "selectorAction"    # Ljava/lang/String;
     .param p2, "selectorCategory"    # Ljava/lang/String;
 

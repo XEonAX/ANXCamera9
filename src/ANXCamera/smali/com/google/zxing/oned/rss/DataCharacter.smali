@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>(II)V
-    .registers 3
+    .locals 0
     .param p1, "value"    # I
     .param p2, "checksumPortion"    # I
 
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method public final equals(Ljava/lang/Object;)Z
-    .registers 6
+    .locals 4
     .param p1, "o"    # Ljava/lang/Object;
 
     .line 44
@@ -39,13 +39,13 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_6
+    if-nez v0, :cond_0
 
     .line 45
     return v1
 
     .line 47
-    :cond_6
+    :cond_0
     move-object v0, p1
 
     check-cast v0, Lcom/google/zxing/oned/rss/DataCharacter;
@@ -56,22 +56,22 @@
 
     iget v3, v0, Lcom/google/zxing/oned/rss/DataCharacter;->value:I
 
-    if-ne v2, v3, :cond_16
+    if-ne v2, v3, :cond_1
 
     iget v2, p0, Lcom/google/zxing/oned/rss/DataCharacter;->checksumPortion:I
 
     iget v3, v0, Lcom/google/zxing/oned/rss/DataCharacter;->checksumPortion:I
 
-    if-ne v2, v3, :cond_16
+    if-ne v2, v3, :cond_1
 
     const/4 v1, 0x1
 
-    :cond_16
+    :cond_1
     return v1
 .end method
 
 .method public final getChecksumPortion()I
-    .registers 2
+    .locals 1
 
     .line 34
     iget v0, p0, Lcom/google/zxing/oned/rss/DataCharacter;->checksumPortion:I
@@ -80,7 +80,7 @@
 .end method
 
 .method public final getValue()I
-    .registers 2
+    .locals 1
 
     .line 30
     iget v0, p0, Lcom/google/zxing/oned/rss/DataCharacter;->value:I
@@ -89,7 +89,7 @@
 .end method
 
 .method public final hashCode()I
-    .registers 3
+    .locals 2
 
     .line 53
     iget v0, p0, Lcom/google/zxing/oned/rss/DataCharacter;->value:I
@@ -102,7 +102,7 @@
 .end method
 
 .method public final toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 39
     new-instance v0, Ljava/lang/StringBuilder;

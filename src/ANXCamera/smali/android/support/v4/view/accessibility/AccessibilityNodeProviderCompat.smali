@@ -24,14 +24,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .locals 2
 
     .line 139
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x13
 
-    if-lt v0, v1, :cond_e
+    if-lt v0, v1, :cond_0
 
     .line 140
     new-instance v0, Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderKitKatImpl;
@@ -40,15 +40,15 @@
 
     sput-object v0, Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderImpl;
 
-    goto :goto_23
+    goto :goto_0
 
     .line 141
-    :cond_e
+    :cond_0
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x10
 
-    if-lt v0, v1, :cond_1c
+    if-lt v0, v1, :cond_1
 
     .line 142
     new-instance v0, Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl;
@@ -57,10 +57,10 @@
 
     sput-object v0, Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderImpl;
 
-    goto :goto_23
+    goto :goto_0
 
     .line 144
-    :cond_1c
+    :cond_1
     new-instance v0, Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderStubImpl;
 
     invoke-direct {v0}, Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderStubImpl;-><init>()V
@@ -68,12 +68,12 @@
     sput-object v0, Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderImpl;
 
     .line 146
-    :goto_23
+    :goto_0
     return-void
 .end method
 
 .method public constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 151
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -92,7 +92,7 @@
 .end method
 
 .method public constructor <init>(Ljava/lang/Object;)V
-    .registers 2
+    .locals 0
     .param p1, "provider"    # Ljava/lang/Object;
 
     .line 161
@@ -108,7 +108,7 @@
 
 # virtual methods
 .method public createAccessibilityNodeInfo(I)Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;
-    .registers 3
+    .locals 1
     .param p1, "virtualViewId"    # I
 
     .line 195
@@ -118,7 +118,7 @@
 .end method
 
 .method public findAccessibilityNodeInfosByText(Ljava/lang/String;I)Ljava/util/List;
-    .registers 4
+    .locals 1
     .param p1, "text"    # Ljava/lang/String;
     .param p2, "virtualViewId"    # I
     .annotation system Ldalvik/annotation/Signature;
@@ -139,7 +139,7 @@
 .end method
 
 .method public findFocus(I)Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;
-    .registers 3
+    .locals 1
     .param p1, "focus"    # I
 
     .line 246
@@ -149,7 +149,7 @@
 .end method
 
 .method public getProvider()Ljava/lang/Object;
-    .registers 2
+    .locals 1
 
     .line 169
     iget-object v0, p0, Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat;->mProvider:Ljava/lang/Object;
@@ -158,7 +158,7 @@
 .end method
 
 .method public performAction(IILandroid/os/Bundle;)Z
-    .registers 5
+    .locals 1
     .param p1, "virtualViewId"    # I
     .param p2, "action"    # I
     .param p3, "arguments"    # Landroid/os/Bundle;

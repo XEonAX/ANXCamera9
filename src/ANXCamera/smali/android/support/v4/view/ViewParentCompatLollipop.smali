@@ -9,7 +9,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 24
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -18,7 +18,7 @@
 .end method
 
 .method public static onNestedFling(Landroid/view/ViewParent;Landroid/view/View;FFZ)Z
-    .registers 9
+    .locals 4
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "target"    # Landroid/view/View;
     .param p2, "velocityX"    # F
@@ -30,13 +30,13 @@
     invoke-interface {p0, p1, p2, p3, p4}, Landroid/view/ViewParent;->onNestedFling(Landroid/view/View;FFZ)Z
 
     move-result v0
-    :try_end_4
-    .catch Ljava/lang/AbstractMethodError; {:try_start_0 .. :try_end_4} :catch_5
+    :try_end_0
+    .catch Ljava/lang/AbstractMethodError; {:try_start_0 .. :try_end_0} :catch_0
 
     return v0
 
     .line 81
-    :catch_5
+    :catch_0
     move-exception v0
 
     .line 82
@@ -74,7 +74,7 @@
 .end method
 
 .method public static onNestedPreFling(Landroid/view/ViewParent;Landroid/view/View;FF)Z
-    .registers 8
+    .locals 4
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "target"    # Landroid/view/View;
     .param p2, "velocityX"    # F
@@ -85,13 +85,13 @@
     invoke-interface {p0, p1, p2, p3}, Landroid/view/ViewParent;->onNestedPreFling(Landroid/view/View;FF)Z
 
     move-result v0
-    :try_end_4
-    .catch Ljava/lang/AbstractMethodError; {:try_start_0 .. :try_end_4} :catch_5
+    :try_end_0
+    .catch Ljava/lang/AbstractMethodError; {:try_start_0 .. :try_end_0} :catch_0
 
     return v0
 
     .line 92
-    :catch_5
+    :catch_0
     move-exception v0
 
     .line 93
@@ -129,7 +129,7 @@
 .end method
 
 .method public static onNestedPreScroll(Landroid/view/ViewParent;Landroid/view/View;II[I)V
-    .registers 9
+    .locals 4
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "target"    # Landroid/view/View;
     .param p2, "dx"    # I
@@ -139,14 +139,14 @@
     .line 70
     :try_start_0
     invoke-interface {p0, p1, p2, p3, p4}, Landroid/view/ViewParent;->onNestedPreScroll(Landroid/view/View;II[I)V
-    :try_end_3
-    .catch Ljava/lang/AbstractMethodError; {:try_start_0 .. :try_end_3} :catch_4
+    :try_end_0
+    .catch Ljava/lang/AbstractMethodError; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 74
-    goto :goto_25
+    goto :goto_0
 
     .line 71
-    :catch_4
+    :catch_0
     move-exception v0
 
     .line 72
@@ -179,12 +179,12 @@
 
     .line 75
     .end local v0    # "e":Ljava/lang/AbstractMethodError;
-    :goto_25
+    :goto_0
     return-void
 .end method
 
 .method public static onNestedScroll(Landroid/view/ViewParent;Landroid/view/View;IIII)V
-    .registers 10
+    .locals 4
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "target"    # Landroid/view/View;
     .param p2, "dxConsumed"    # I
@@ -195,14 +195,14 @@
     .line 60
     :try_start_0
     invoke-interface/range {p0 .. p5}, Landroid/view/ViewParent;->onNestedScroll(Landroid/view/View;IIII)V
-    :try_end_3
-    .catch Ljava/lang/AbstractMethodError; {:try_start_0 .. :try_end_3} :catch_4
+    :try_end_0
+    .catch Ljava/lang/AbstractMethodError; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 64
-    goto :goto_25
+    goto :goto_0
 
     .line 61
-    :catch_4
+    :catch_0
     move-exception v0
 
     .line 62
@@ -235,12 +235,12 @@
 
     .line 65
     .end local v0    # "e":Ljava/lang/AbstractMethodError;
-    :goto_25
+    :goto_0
     return-void
 .end method
 
 .method public static onNestedScrollAccepted(Landroid/view/ViewParent;Landroid/view/View;Landroid/view/View;I)V
-    .registers 8
+    .locals 4
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "child"    # Landroid/view/View;
     .param p2, "target"    # Landroid/view/View;
@@ -249,14 +249,14 @@
     .line 41
     :try_start_0
     invoke-interface {p0, p1, p2, p3}, Landroid/view/ViewParent;->onNestedScrollAccepted(Landroid/view/View;Landroid/view/View;I)V
-    :try_end_3
-    .catch Ljava/lang/AbstractMethodError; {:try_start_0 .. :try_end_3} :catch_4
+    :try_end_0
+    .catch Ljava/lang/AbstractMethodError; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 45
-    goto :goto_25
+    goto :goto_0
 
     .line 42
-    :catch_4
+    :catch_0
     move-exception v0
 
     .line 43
@@ -289,12 +289,12 @@
 
     .line 46
     .end local v0    # "e":Ljava/lang/AbstractMethodError;
-    :goto_25
+    :goto_0
     return-void
 .end method
 
 .method public static onStartNestedScroll(Landroid/view/ViewParent;Landroid/view/View;Landroid/view/View;I)Z
-    .registers 8
+    .locals 4
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "child"    # Landroid/view/View;
     .param p2, "target"    # Landroid/view/View;
@@ -305,13 +305,13 @@
     invoke-interface {p0, p1, p2, p3}, Landroid/view/ViewParent;->onStartNestedScroll(Landroid/view/View;Landroid/view/View;I)Z
 
     move-result v0
-    :try_end_4
-    .catch Ljava/lang/AbstractMethodError; {:try_start_0 .. :try_end_4} :catch_5
+    :try_end_0
+    .catch Ljava/lang/AbstractMethodError; {:try_start_0 .. :try_end_0} :catch_0
 
     return v0
 
     .line 31
-    :catch_5
+    :catch_0
     move-exception v0
 
     .line 32
@@ -349,21 +349,21 @@
 .end method
 
 .method public static onStopNestedScroll(Landroid/view/ViewParent;Landroid/view/View;)V
-    .registers 6
+    .locals 4
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "target"    # Landroid/view/View;
 
     .line 50
     :try_start_0
     invoke-interface {p0, p1}, Landroid/view/ViewParent;->onStopNestedScroll(Landroid/view/View;)V
-    :try_end_3
-    .catch Ljava/lang/AbstractMethodError; {:try_start_0 .. :try_end_3} :catch_4
+    :try_end_0
+    .catch Ljava/lang/AbstractMethodError; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 54
-    goto :goto_25
+    goto :goto_0
 
     .line 51
-    :catch_4
+    :catch_0
     move-exception v0
 
     .line 52
@@ -396,6 +396,6 @@
 
     .line 55
     .end local v0    # "e":Ljava/lang/AbstractMethodError;
-    :goto_25
+    :goto_0
     return-void
 .end method

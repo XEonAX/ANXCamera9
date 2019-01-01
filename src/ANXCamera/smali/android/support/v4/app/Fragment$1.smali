@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/app/Fragment;)V
-    .registers 2
+    .locals 0
 
     .line 1917
     iput-object p1, p0, Landroid/support/v4/app/Fragment$1;->this$0:Landroid/support/v4/app/Fragment;
@@ -33,7 +33,7 @@
 
 # virtual methods
 .method public onFindViewById(I)Landroid/view/View;
-    .registers 4
+    .locals 2
     .param p1, "id"    # I
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
@@ -43,7 +43,7 @@
 
     iget-object v0, v0, Landroid/support/v4/app/Fragment;->mView:Landroid/view/View;
 
-    if-eqz v0, :cond_f
+    if-eqz v0, :cond_0
 
     .line 1924
     iget-object v0, p0, Landroid/support/v4/app/Fragment$1;->this$0:Landroid/support/v4/app/Fragment;
@@ -57,7 +57,7 @@
     return-object v0
 
     .line 1922
-    :cond_f
+    :cond_0
     new-instance v0, Ljava/lang/IllegalStateException;
 
     const-string v1, "Fragment does not have a view"
@@ -68,22 +68,22 @@
 .end method
 
 .method public onHasView()Z
-    .registers 2
+    .locals 1
 
     .line 1929
     iget-object v0, p0, Landroid/support/v4/app/Fragment$1;->this$0:Landroid/support/v4/app/Fragment;
 
     iget-object v0, v0, Landroid/support/v4/app/Fragment;->mView:Landroid/view/View;
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_9
+    :goto_0
     return v0
 .end method

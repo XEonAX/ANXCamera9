@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 1225
     invoke-direct {p0}, Landroid/support/v4/view/ViewCompat$ICSViewCompatImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getAccessibilityNodeProvider(Landroid/view/View;)Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat;
-    .registers 4
+    .locals 2
     .param p1, "view"    # Landroid/view/View;
 
     .line 1270
@@ -37,7 +37,7 @@
 
     .line 1271
     .local v0, "compat":Ljava/lang/Object;
-    if-eqz v0, :cond_c
+    if-eqz v0, :cond_0
 
     .line 1272
     new-instance v1, Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat;
@@ -47,14 +47,14 @@
     return-object v1
 
     .line 1274
-    :cond_c
+    :cond_0
     const/4 v1, 0x0
 
     return-object v1
 .end method
 
 .method public getFitsSystemWindows(Landroid/view/View;)Z
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1299
@@ -66,7 +66,7 @@
 .end method
 
 .method public getImportantForAccessibility(Landroid/view/View;)I
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1252
@@ -78,7 +78,7 @@
 .end method
 
 .method public getMinimumHeight(Landroid/view/View;)I
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1289
@@ -90,7 +90,7 @@
 .end method
 
 .method public getMinimumWidth(Landroid/view/View;)I
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1284
@@ -102,7 +102,7 @@
 .end method
 
 .method public getParentForAccessibility(Landroid/view/View;)Landroid/view/ViewParent;
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1279
@@ -114,7 +114,7 @@
 .end method
 
 .method public hasOverlappingRendering(Landroid/view/View;)Z
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1304
@@ -126,7 +126,7 @@
 .end method
 
 .method public hasTransientState(Landroid/view/View;)Z
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 1228
@@ -138,7 +138,7 @@
 .end method
 
 .method public performAccessibilityAction(Landroid/view/View;ILandroid/os/Bundle;)Z
-    .registers 5
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
     .param p2, "action"    # I
     .param p3, "arguments"    # Landroid/os/Bundle;
@@ -152,7 +152,7 @@
 .end method
 
 .method public postInvalidateOnAnimation(Landroid/view/View;)V
-    .registers 2
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
 
     .line 1236
@@ -163,7 +163,7 @@
 .end method
 
 .method public postInvalidateOnAnimation(Landroid/view/View;IIII)V
-    .registers 6
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
     .param p2, "left"    # I
     .param p3, "top"    # I
@@ -178,7 +178,7 @@
 .end method
 
 .method public postOnAnimation(Landroid/view/View;Ljava/lang/Runnable;)V
-    .registers 3
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
     .param p2, "action"    # Ljava/lang/Runnable;
 
@@ -190,7 +190,7 @@
 .end method
 
 .method public postOnAnimationDelayed(Landroid/view/View;Ljava/lang/Runnable;J)V
-    .registers 5
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
     .param p2, "action"    # Ljava/lang/Runnable;
     .param p3, "delayMillis"    # J
@@ -203,7 +203,7 @@
 .end method
 
 .method public requestApplyInsets(Landroid/view/View;)V
-    .registers 2
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
 
     .line 1294
@@ -214,7 +214,7 @@
 .end method
 
 .method public setHasTransientState(Landroid/view/View;Z)V
-    .registers 3
+    .locals 0
     .param p1, "view"    # Landroid/view/View;
     .param p2, "hasTransientState"    # Z
 
@@ -226,20 +226,20 @@
 .end method
 
 .method public setImportantForAccessibility(Landroid/view/View;I)V
-    .registers 4
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
     .param p2, "mode"    # I
 
     .line 1259
     const/4 v0, 0x4
 
-    if-ne p2, v0, :cond_4
+    if-ne p2, v0, :cond_0
 
     .line 1260
     const/4 p2, 0x2
 
     .line 1262
-    :cond_4
+    :cond_0
     invoke-static {p1, p2}, Landroid/support/v4/view/ViewCompatJB;->setImportantForAccessibility(Landroid/view/View;I)V
 
     .line 1263

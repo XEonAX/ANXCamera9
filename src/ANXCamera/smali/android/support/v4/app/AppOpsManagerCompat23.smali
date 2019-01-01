@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 25
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static noteOp(Landroid/content/Context;Ljava/lang/String;ILjava/lang/String;)I
-    .registers 6
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "op"    # Ljava/lang/String;
     .param p2, "uid"    # I
@@ -39,7 +39,7 @@
 .end method
 
 .method public static noteProxyOp(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)I
-    .registers 5
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "op"    # Ljava/lang/String;
     .param p2, "proxiedPackageName"    # Ljava/lang/String;
@@ -63,7 +63,7 @@
 .end method
 
 .method public static permissionToOp(Ljava/lang/String;)Ljava/lang/String;
-    .registers 2
+    .locals 1
     .param p0, "permission"    # Ljava/lang/String;
 
     .line 27

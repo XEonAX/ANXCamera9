@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/media/TransportMediator;)V
-    .registers 2
+    .locals 0
 
     .line 58
     iput-object p1, p0, Landroid/support/v4/media/TransportMediator$1;->this$0:Landroid/support/v4/media/TransportMediator;
@@ -36,7 +36,7 @@
 
 # virtual methods
 .method public getPlaybackPosition()J
-    .registers 3
+    .locals 2
 
     .line 70
     iget-object v0, p0, Landroid/support/v4/media/TransportMediator$1;->this$0:Landroid/support/v4/media/TransportMediator;
@@ -51,7 +51,7 @@
 .end method
 
 .method public handleAudioFocusChange(I)V
-    .registers 3
+    .locals 1
     .param p1, "focusChange"    # I
 
     .line 65
@@ -66,7 +66,7 @@
 .end method
 
 .method public handleKey(Landroid/view/KeyEvent;)V
-    .registers 3
+    .locals 1
     .param p1, "key"    # Landroid/view/KeyEvent;
 
     .line 61
@@ -81,7 +81,7 @@
 .end method
 
 .method public playbackPositionUpdate(J)V
-    .registers 4
+    .locals 1
     .param p1, "newPositionMs"    # J
 
     .line 75

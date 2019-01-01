@@ -533,9 +533,8 @@
 
     .line 242
     const-string/jumbo v0, "getCloudDataString"
-    
-    invoke-static {v0, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
+    invoke-static {v0, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 241
     return-object p2

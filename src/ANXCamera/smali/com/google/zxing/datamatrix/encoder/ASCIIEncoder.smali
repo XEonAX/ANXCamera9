@@ -8,7 +8,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 19
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -17,7 +17,7 @@
 .end method
 
 .method private static encodeASCIIDigits(CC)C
-    .registers 5
+    .locals 3
     .param p0, "digit1"    # C
     .param p1, "digit2"    # C
 
@@ -26,13 +26,13 @@
 
     move-result v0
 
-    if-eqz v0, :cond_17
+    if-eqz v0, :cond_0
 
     invoke-static {p1}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->isDigit(C)Z
 
     move-result v0
 
-    if-eqz v0, :cond_17
+    if-eqz v0, :cond_0
 
     .line 76
     add-int/lit8 v0, p0, -0x30
@@ -53,7 +53,7 @@
 
     .line 79
     .end local v0    # "num":I
-    :cond_17
+    :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -78,7 +78,7 @@
 
 # virtual methods
 .method public encode(Lcom/google/zxing/datamatrix/encoder/EncoderContext;)V
-    .registers 9
+    .locals 7
     .param p1, "context"    # Lcom/google/zxing/datamatrix/encoder/EncoderContext;
 
     .line 29
@@ -98,7 +98,7 @@
 
     const/4 v2, 0x1
 
-    if-lt v0, v1, :cond_31
+    if-lt v0, v1, :cond_0
 
     .line 31
     invoke-virtual {p1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->getMessage()Ljava/lang/String;
@@ -139,10 +139,10 @@
     iput v2, p1, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->pos:I
 
     .line 34
-    goto/16 :goto_b3
+    goto/16 :goto_0
 
     .line 35
-    :cond_31
+    :cond_0
     invoke-virtual {p1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->getCurrentChar()C
 
     move-result v3
@@ -169,10 +169,10 @@
 
     move-result v5
 
-    if-eq v4, v5, :cond_90
+    if-eq v4, v5, :cond_1
 
     .line 38
-    packed-switch v4, :pswitch_data_b4
+    packed-switch v4, :pswitch_data_0
 
     .line 60
     new-instance v1, Ljava/lang/IllegalStateException;
@@ -194,7 +194,7 @@
     throw v1
 
     .line 40
-    :pswitch_60
+    :pswitch_0
     const/16 v1, 0xe7
 
     invoke-virtual {p1, v1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->writeCodeword(C)V
@@ -208,7 +208,7 @@
     return-void
 
     .line 56
-    :pswitch_6a
+    :pswitch_1
     const/16 v1, 0xf0
 
     invoke-virtual {p1, v1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->writeCodeword(C)V
@@ -219,10 +219,10 @@
     invoke-virtual {p1, v1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->signalEncoderChange(I)V
 
     .line 58
-    goto :goto_b3
+    goto :goto_0
 
     .line 48
-    :pswitch_74
+    :pswitch_2
     const/16 v1, 0xee
 
     invoke-virtual {p1, v1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->writeCodeword(C)V
@@ -233,10 +233,10 @@
     invoke-virtual {p1, v1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->signalEncoderChange(I)V
 
     .line 50
-    goto :goto_b3
+    goto :goto_0
 
     .line 52
-    :pswitch_7e
+    :pswitch_3
     const/16 v2, 0xef
 
     invoke-virtual {p1, v2}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->writeCodeword(C)V
@@ -245,10 +245,10 @@
     invoke-virtual {p1, v1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->signalEncoderChange(I)V
 
     .line 54
-    goto :goto_b3
+    goto :goto_0
 
     .line 44
-    :pswitch_87
+    :pswitch_4
     const/16 v1, 0xe6
 
     invoke-virtual {p1, v1}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->writeCodeword(C)V
@@ -260,12 +260,12 @@
     return-void
 
     .line 62
-    :cond_90
+    :cond_1
     invoke-static {v3}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->isExtendedASCII(C)Z
 
     move-result v1
 
-    if-eqz v1, :cond_a8
+    if-eqz v1, :cond_2
 
     .line 63
     const/16 v1, 0xeb
@@ -289,10 +289,10 @@
     iput v1, p1, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->pos:I
 
     .line 66
-    goto :goto_b3
+    goto :goto_0
 
     .line 67
-    :cond_a8
+    :cond_2
     add-int/lit8 v1, v3, 0x1
 
     int-to-char v1, v1
@@ -309,21 +309,21 @@
     .line 72
     .end local v3    # "c":C
     .end local v4    # "newMode":I
-    :goto_b3
+    :goto_0
     return-void
 
-    :pswitch_data_b4
+    :pswitch_data_0
     .packed-switch 0x1
-        :pswitch_87
-        :pswitch_7e
-        :pswitch_74
-        :pswitch_6a
-        :pswitch_60
+        :pswitch_4
+        :pswitch_3
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
     .end packed-switch
 .end method
 
 .method public getEncodingMode()I
-    .registers 2
+    .locals 1
 
     .line 23
     const/4 v0, 0x0

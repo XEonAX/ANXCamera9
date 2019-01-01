@@ -120,7 +120,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 3
+    .locals 3
 
     .line 6629
     const-string/jumbo v0, "screen_effect_supported"
@@ -203,7 +203,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 6609
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -212,7 +212,7 @@
 .end method
 
 .method private static getDefaultSaturation()I
-    .registers 3
+    .locals 3
 
     .line 6676
     const/16 v0, 0xa
@@ -227,13 +227,13 @@
 
     move-result v1
 
-    if-eqz v1, :cond_d
+    if-eqz v1, :cond_0
 
     .line 6678
     const/16 v0, 0xb
 
     .line 6680
-    :cond_d
+    :cond_0
     const-string v1, "display_ce"
 
     invoke-static {v1, v0}, Lmiui/util/FeatureParser;->getInteger(Ljava/lang/String;I)I
@@ -244,7 +244,7 @@
 .end method
 
 .method private static getDefaultScreenOptimizeMode()I
-    .registers 2
+    .locals 2
 
     .line 6665
     sget v0, Landroid/provider/MiuiSettings$ScreenEffect;->SCREEN_EFFECT_SUPPORTED:I
@@ -253,7 +253,7 @@
 
     and-int/2addr v0, v1
 
-    if-nez v0, :cond_8
+    if-nez v0, :cond_0
 
     .line 6666
     const/4 v1, 0x2
@@ -261,12 +261,12 @@
     nop
 
     .line 6665
-    :cond_8
+    :cond_0
     return v1
 .end method
 
 .method public static getScreenModePkgList(Landroid/content/Context;Ljava/lang/String;)Ljava/util/HashMap;
-    .registers 12
+    .locals 10
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "screenModePkgList"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
@@ -309,7 +309,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_3e
+    if-nez v2, :cond_0
 
     .line 6719
     const-string v2, ","
@@ -320,7 +320,7 @@
 
     .line 6720
     .local v2, "packageArr":[Ljava/lang/String;
-    if-eqz v2, :cond_3e
+    if-eqz v2, :cond_0
 
     .line 6721
     const/4 v3, 0x0
@@ -328,10 +328,10 @@
     move v4, v3
 
     .local v4, "i":I
-    :goto_1f
+    :goto_0
     array-length v5, v2
 
-    if-ge v4, v5, :cond_3e
+    if-ge v4, v5, :cond_0
 
     .line 6722
     aget-object v5, v2, v4
@@ -373,17 +373,17 @@
     .end local v8    # "pairValue":Ljava/lang/String;
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_1f
+    goto :goto_0
 
     .line 6730
     .end local v2    # "packageArr":[Ljava/lang/String;
     .end local v4    # "i":I
-    :cond_3e
+    :cond_0
     return-object v1
 .end method
 
 .method public static isInPaperModeTimeSchedule(Landroid/content/Context;II)Z
-    .registers 8
+    .locals 5
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "startTime"    # I
     .param p2, "endTime"    # I
@@ -421,50 +421,50 @@
 
     .line 6780
     .local v4, "isIn":Z
-    if-le p1, p2, :cond_1e
+    if-le p1, p2, :cond_1
 
     .line 6782
-    if-lt v3, p2, :cond_1c
+    if-lt v3, p2, :cond_0
 
-    if-ge v3, p1, :cond_1c
+    if-ge v3, p1, :cond_0
 
     .line 6784
     const/4 v4, 0x0
 
-    goto :goto_27
+    goto :goto_0
 
     .line 6787
-    :cond_1c
+    :cond_0
     const/4 v4, 0x1
 
-    goto :goto_27
+    goto :goto_0
 
     .line 6789
-    :cond_1e
-    if-ge p1, p2, :cond_27
+    :cond_1
+    if-ge p1, p2, :cond_3
 
     .line 6790
-    if-lt v3, p1, :cond_26
+    if-lt v3, p1, :cond_2
 
-    if-ge v3, p2, :cond_26
+    if-ge v3, p2, :cond_2
 
     .line 6792
     const/4 v4, 0x1
 
-    goto :goto_27
+    goto :goto_0
 
     .line 6795
-    :cond_26
+    :cond_2
     const/4 v4, 0x0
 
     .line 6800
-    :cond_27
-    :goto_27
+    :cond_3
+    :goto_0
     return v4
 .end method
 
 .method public static isScreenPaperMode()Z
-    .registers 1
+    .locals 1
 
     .line 6615
     invoke-static {}, Lmiui/hareware/display/DisplayFeatureManager;->getInstance()Lmiui/hareware/display/DisplayFeatureManager;
@@ -475,21 +475,21 @@
 
     move-result v0
 
-    if-lez v0, :cond_c
+    if-lez v0, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_d
+    goto :goto_0
 
-    :cond_c
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_d
+    :goto_0
     return v0
 .end method
 
 .method public static setScreenModePkgList(Landroid/content/Context;Ljava/util/HashMap;Ljava/lang/String;)V
-    .registers 9
+    .locals 6
     .param p0, "context"    # Landroid/content/Context;
     .param p2, "screenModePkgList"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
@@ -507,18 +507,18 @@
 
     .line 6734
     .local p1, "pkg2PaperMode":Ljava/util/HashMap;, "Ljava/util/HashMap<Ljava/lang/String;Ljava/lang/Boolean;>;"
-    if-eqz p1, :cond_51
+    if-eqz p1, :cond_3
 
     invoke-virtual {p1}, Ljava/util/HashMap;->size()I
 
     move-result v0
 
-    if-nez v0, :cond_9
+    if-nez v0, :cond_0
 
-    goto :goto_51
+    goto :goto_1
 
     .line 6738
-    :cond_9
+    :cond_0
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -535,12 +535,12 @@
 
     .line 6740
     .local v1, "it":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/util/Map$Entry<Ljava/lang/String;Ljava/lang/Boolean;>;>;"
-    :goto_16
+    :goto_0
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_45
+    if-eqz v2, :cond_2
 
     .line 6741
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
@@ -582,7 +582,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_44
+    if-eqz v5, :cond_1
 
     .line 6750
     const-string v5, ","
@@ -593,11 +593,11 @@
     .end local v2    # "entry":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Ljava/lang/Boolean;>;"
     .end local v3    # "key":Ljava/lang/String;
     .end local v4    # "value":Ljava/lang/Boolean;
-    :cond_44
-    goto :goto_16
+    :cond_1
+    goto :goto_0
 
     .line 6753
-    :cond_45
+    :cond_2
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v2
@@ -616,17 +616,17 @@
     .line 6735
     .end local v0    # "buffer":Ljava/lang/StringBuilder;
     .end local v1    # "it":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/util/Map$Entry<Ljava/lang/String;Ljava/lang/Boolean;>;>;"
-    :cond_51
-    :goto_51
+    :cond_3
+    :goto_1
     return-void
 .end method
 
 .method public static setScreenPaperMode(Z)V
-    .registers 3
+    .locals 2
     .param p0, "isScreenPaperMode"    # Z
 
     .line 6620
-    if-eqz p0, :cond_13
+    if-eqz p0, :cond_0
 
     .line 6621
     const-string/jumbo v0, "persist.sys.eyecare_cache"
@@ -647,10 +647,10 @@
 
     .line 6624
     .end local v0    # "level":I
-    goto :goto_1b
+    goto :goto_0
 
     .line 6625
-    :cond_13
+    :cond_0
     invoke-static {}, Lmiui/hareware/display/DisplayFeatureManager;->getInstance()Lmiui/hareware/display/DisplayFeatureManager;
 
     move-result-object v0
@@ -660,6 +660,6 @@
     invoke-virtual {v0, v1}, Lmiui/hareware/display/DisplayFeatureManager;->setEyeCare(I)V
 
     .line 6627
-    :goto_1b
+    :goto_0
     return-void
 .end method

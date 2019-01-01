@@ -36,7 +36,7 @@
 
 .field private static final VIDEO_MIME_TYPE:Ljava/lang/String; = "video/avc"
 
-.field private static final m_verbose:Z = false
+.field private static final m_verbose:Z
 
 
 # instance fields

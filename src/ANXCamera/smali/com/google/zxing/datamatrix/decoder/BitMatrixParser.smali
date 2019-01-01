@@ -13,7 +13,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/zxing/common/BitMatrix;)V
-    .registers 6
+    .locals 4
     .param p1, "bitMatrix"    # Lcom/google/zxing/common/BitMatrix;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -33,15 +33,15 @@
     .local v0, "dimension":I
     const/16 v1, 0x8
 
-    if-lt v0, v1, :cond_33
+    if-lt v0, v1, :cond_0
 
     const/16 v1, 0x90
 
-    if-gt v0, v1, :cond_33
+    if-gt v0, v1, :cond_0
 
     and-int/lit8 v1, v0, 0x1
 
-    if-nez v1, :cond_33
+    if-nez v1, :cond_0
 
     .line 41
     invoke-static {p1}, Lcom/google/zxing/datamatrix/decoder/BitMatrixParser;->readVersion(Lcom/google/zxing/common/BitMatrix;)Lcom/google/zxing/datamatrix/decoder/Version;
@@ -80,7 +80,7 @@
     return-void
 
     .line 38
-    :cond_33
+    :cond_0
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v1
@@ -89,7 +89,7 @@
 .end method
 
 .method private static readVersion(Lcom/google/zxing/common/BitMatrix;)Lcom/google/zxing/datamatrix/decoder/Version;
-    .registers 4
+    .locals 3
     .param p0, "bitMatrix"    # Lcom/google/zxing/common/BitMatrix;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -120,7 +120,7 @@
 
 # virtual methods
 .method extractDataRegion(Lcom/google/zxing/common/BitMatrix;)Lcom/google/zxing/common/BitMatrix;
-    .registers 23
+    .locals 21
     .param p1, "bitMatrix"    # Lcom/google/zxing/common/BitMatrix;
 
     move-object/from16 v0, p0
@@ -146,7 +146,7 @@
 
     move-result v3
 
-    if-ne v3, v1, :cond_7a
+    if-ne v3, v1, :cond_5
 
     .line 410
     iget-object v3, v0, Lcom/google/zxing/datamatrix/decoder/BitMatrixParser;->version:Lcom/google/zxing/datamatrix/decoder/Version;
@@ -190,8 +190,8 @@
     const/4 v10, 0x0
 
     .local v10, "dataRegionRow":I
-    :goto_2e
-    if-lt v10, v5, :cond_31
+    :goto_0
+    if-lt v10, v5, :cond_0
 
     .line 437
     .end local v10    # "dataRegionRow":I
@@ -199,7 +199,7 @@
 
     .line 421
     .restart local v10    # "dataRegionRow":I
-    :cond_31
+    :cond_0
     mul-int v11, v10, v3
 
     .line 422
@@ -207,20 +207,20 @@
     const/4 v12, 0x0
 
     .local v12, "dataRegionColumn":I
-    :goto_34
-    if-lt v12, v6, :cond_39
+    :goto_1
+    if-lt v12, v6, :cond_1
 
     .line 420
     .end local v11    # "dataRegionRowOffset":I
     .end local v12    # "dataRegionColumn":I
     add-int/lit8 v10, v10, 0x1
 
-    goto :goto_2e
+    goto :goto_0
 
     .line 423
     .restart local v11    # "dataRegionRowOffset":I
     .restart local v12    # "dataRegionColumn":I
-    :cond_39
+    :cond_1
     mul-int v13, v12, v4
 
     .line 424
@@ -228,20 +228,20 @@
     const/4 v14, 0x0
 
     .local v14, "i":I
-    :goto_3c
-    if-lt v14, v3, :cond_41
+    :goto_2
+    if-lt v14, v3, :cond_2
 
     .line 422
     .end local v13    # "dataRegionColumnOffset":I
     .end local v14    # "i":I
     add-int/lit8 v12, v12, 0x1
 
-    goto :goto_34
+    goto :goto_1
 
     .line 425
     .restart local v13    # "dataRegionColumnOffset":I
     .restart local v14    # "i":I
-    :cond_41
+    :cond_2
     add-int/lit8 v15, v3, 0x2
 
     mul-int/2addr v15, v10
@@ -266,8 +266,8 @@
     .end local v16    # "j":I
     .local v1, "j":I
     .local v17, "symbolSizeRows":I
-    :goto_4f
-    if-lt v1, v4, :cond_58
+    :goto_3
+    if-lt v1, v4, :cond_3
 
     .line 424
     .end local v0    # "writeRowOffset":I
@@ -279,13 +279,13 @@
 
     move-object/from16 v0, p0
 
-    goto :goto_3c
+    goto :goto_2
 
     .line 428
     .restart local v0    # "writeRowOffset":I
     .restart local v1    # "j":I
     .restart local v15    # "readRowOffset":I
-    :cond_58
+    :cond_3
     add-int/lit8 v16, v4, 0x2
 
     mul-int v16, v16, v12
@@ -309,7 +309,7 @@
 
     .end local v3    # "dataRegionSizeRows":I
     .local v19, "dataRegionSizeRows":I
-    if-eqz v16, :cond_73
+    if-eqz v16, :cond_4
 
     .line 430
     move/from16 v20, v2
@@ -324,14 +324,14 @@
     .line 427
     .end local v2    # "writeColumnOffset":I
     .end local v20    # "readColumnOffset":I
-    :cond_73
+    :cond_4
     add-int/lit8 v1, v1, 0x1
 
     move/from16 v2, v18
 
     move/from16 v3, v19
 
-    goto :goto_4f
+    goto :goto_3
 
     .line 407
     .end local v0    # "writeRowOffset":I
@@ -352,7 +352,7 @@
     .end local v19    # "dataRegionSizeRows":I
     .local v1, "symbolSizeRows":I
     .local v2, "symbolSizeColumns":I
-    :cond_7a
+    :cond_5
     move-object/from16 v3, p1
 
     move/from16 v17, v1
@@ -373,7 +373,7 @@
 .end method
 
 .method getVersion()Lcom/google/zxing/datamatrix/decoder/Version;
-    .registers 2
+    .locals 1
 
     .line 47
     iget-object v0, p0, Lcom/google/zxing/datamatrix/decoder/BitMatrixParser;->version:Lcom/google/zxing/datamatrix/decoder/Version;
@@ -382,7 +382,7 @@
 .end method
 
 .method readCodewords()[B
-    .registers 13
+    .locals 12
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lcom/google/zxing/FormatException;
@@ -444,12 +444,12 @@
 
     .line 94
     .local v9, "corner4Read":Z
-    :cond_1b
-    if-ne v2, v4, :cond_34
+    :cond_0
+    if-ne v2, v4, :cond_1
 
-    if-nez v3, :cond_34
+    if-nez v3, :cond_1
 
-    if-nez v6, :cond_34
+    if-nez v6, :cond_1
 
     .line 95
     add-int/lit8 v10, v1, 0x1
@@ -484,24 +484,24 @@
     .end local v10    # "resultOffset":I
     .local v1, "resultOffset":I
     .restart local v6    # "corner1Read":Z
-    :goto_31
+    :goto_0
     move v1, v10
 
-    goto/16 :goto_d1
+    goto/16 :goto_1
 
     .line 99
-    :cond_34
+    :cond_1
     add-int/lit8 v10, v4, -0x2
 
-    if-ne v2, v10, :cond_51
+    if-ne v2, v10, :cond_2
 
-    if-nez v3, :cond_51
+    if-nez v3, :cond_2
 
     and-int/lit8 v10, v5, 0x3
 
-    if-eqz v10, :cond_51
+    if-eqz v10, :cond_2
 
-    if-nez v7, :cond_51
+    if-nez v7, :cond_2
 
     .line 100
     add-int/lit8 v10, v1, 0x1
@@ -533,26 +533,26 @@
     .line 137
     move v7, v1
 
-    goto :goto_31
+    goto :goto_0
 
     .line 104
     .end local v10    # "resultOffset":I
     .local v1, "resultOffset":I
     .restart local v7    # "corner2Read":Z
-    :cond_51
+    :cond_2
     add-int/lit8 v10, v4, 0x4
 
-    if-ne v2, v10, :cond_6f
+    if-ne v2, v10, :cond_3
 
     const/4 v10, 0x2
 
-    if-ne v3, v10, :cond_6f
+    if-ne v3, v10, :cond_3
 
     and-int/lit8 v10, v5, 0x7
 
-    if-nez v10, :cond_6f
+    if-nez v10, :cond_3
 
-    if-nez v8, :cond_6f
+    if-nez v8, :cond_3
 
     .line 105
     add-int/lit8 v10, v1, 0x1
@@ -584,26 +584,26 @@
     .line 137
     move v8, v1
 
-    goto :goto_31
+    goto :goto_0
 
     .line 109
     .end local v10    # "resultOffset":I
     .local v1, "resultOffset":I
     .restart local v8    # "corner3Read":Z
-    :cond_6f
+    :cond_3
     add-int/lit8 v10, v4, -0x2
 
-    if-ne v2, v10, :cond_8d
+    if-ne v2, v10, :cond_4
 
-    if-nez v3, :cond_8d
+    if-nez v3, :cond_4
 
     and-int/lit8 v10, v5, 0x7
 
     const/4 v11, 0x4
 
-    if-ne v10, v11, :cond_8d
+    if-ne v10, v11, :cond_4
 
-    if-nez v9, :cond_8d
+    if-nez v9, :cond_4
 
     .line 110
     add-int/lit8 v10, v1, 0x1
@@ -635,16 +635,16 @@
     .line 137
     move v9, v1
 
-    goto :goto_31
+    goto :goto_0
 
     .line 117
     .end local v10    # "resultOffset":I
     .local v1, "resultOffset":I
     .restart local v9    # "corner4Read":Z
-    :cond_8d
-    if-ge v2, v4, :cond_a3
+    :cond_4
+    if-ge v2, v4, :cond_5
 
-    if-ltz v3, :cond_a3
+    if-ltz v3, :cond_5
 
     iget-object v10, p0, Lcom/google/zxing/datamatrix/decoder/BitMatrixParser;->readMappingMatrix:Lcom/google/zxing/common/BitMatrix;
 
@@ -652,7 +652,7 @@
 
     move-result v10
 
-    if-nez v10, :cond_a3
+    if-nez v10, :cond_5
 
     .line 118
     add-int/lit8 v10, v1, 0x1
@@ -672,30 +672,30 @@
 
     .end local v10    # "resultOffset":I
     .restart local v1    # "resultOffset":I
-    :cond_a3
+    :cond_5
     add-int/lit8 v2, v2, -0x2
 
     .line 121
     add-int/lit8 v3, v3, 0x2
 
     .line 122
-    if-ltz v2, :cond_ab
+    if-ltz v2, :cond_6
 
     .line 116
-    if-lt v3, v5, :cond_8d
+    if-lt v3, v5, :cond_4
 
     .line 123
-    :cond_ab
+    :cond_6
     add-int/lit8 v2, v2, 0x1
 
     .line 124
     add-int/lit8 v3, v3, 0x3
 
     .line 128
-    :cond_af
-    if-ltz v2, :cond_c5
+    :cond_7
+    if-ltz v2, :cond_8
 
-    if-ge v3, v5, :cond_c5
+    if-ge v3, v5, :cond_8
 
     iget-object v10, p0, Lcom/google/zxing/datamatrix/decoder/BitMatrixParser;->readMappingMatrix:Lcom/google/zxing/common/BitMatrix;
 
@@ -703,7 +703,7 @@
 
     move-result v10
 
-    if-nez v10, :cond_c5
+    if-nez v10, :cond_8
 
     .line 129
     add-int/lit8 v10, v1, 0x1
@@ -723,31 +723,31 @@
 
     .end local v10    # "resultOffset":I
     .restart local v1    # "resultOffset":I
-    :cond_c5
+    :cond_8
     add-int/lit8 v2, v2, 0x2
 
     .line 132
     add-int/lit8 v3, v3, -0x2
 
     .line 133
-    if-ge v2, v4, :cond_cd
+    if-ge v2, v4, :cond_9
 
     .line 127
-    if-gez v3, :cond_af
+    if-gez v3, :cond_7
 
     .line 134
-    :cond_cd
+    :cond_9
     add-int/lit8 v2, v2, 0x3
 
     .line 135
     add-int/lit8 v3, v3, 0x1
 
     .line 137
-    :goto_d1
-    if-lt v2, v4, :cond_1b
+    :goto_1
+    if-lt v2, v4, :cond_0
 
     .line 92
-    if-lt v3, v5, :cond_1b
+    if-lt v3, v5, :cond_0
 
     .line 139
     iget-object v10, p0, Lcom/google/zxing/datamatrix/decoder/BitMatrixParser;->version:Lcom/google/zxing/datamatrix/decoder/Version;
@@ -756,13 +756,13 @@
 
     move-result v10
 
-    if-ne v1, v10, :cond_de
+    if-ne v1, v10, :cond_a
 
     .line 142
     return-object v0
 
     .line 140
-    :cond_de
+    :cond_a
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v10
@@ -771,7 +771,7 @@
 .end method
 
 .method readCorner1(II)I
-    .registers 8
+    .locals 5
     .param p1, "numRows"    # I
     .param p2, "numColumns"    # I
 
@@ -788,13 +788,13 @@
 
     move-result v1
 
-    if-eqz v1, :cond_c
+    if-eqz v1, :cond_0
 
     .line 227
     or-int/lit8 v0, v0, 0x1
 
     .line 229
-    :cond_c
+    :cond_0
     const/4 v1, 0x1
 
     shl-int/2addr v0, v1
@@ -806,13 +806,13 @@
 
     move-result v3
 
-    if-eqz v3, :cond_18
+    if-eqz v3, :cond_1
 
     .line 231
     or-int/lit8 v0, v0, 0x1
 
     .line 233
-    :cond_18
+    :cond_1
     shl-int/2addr v0, v1
 
     .line 234
@@ -824,13 +824,13 @@
 
     move-result v3
 
-    if-eqz v3, :cond_24
+    if-eqz v3, :cond_2
 
     .line 235
     or-int/lit8 v0, v0, 0x1
 
     .line 237
-    :cond_24
+    :cond_2
     shl-int/2addr v0, v1
 
     .line 238
@@ -840,13 +840,13 @@
 
     move-result v3
 
-    if-eqz v3, :cond_2f
+    if-eqz v3, :cond_3
 
     .line 239
     or-int/lit8 v0, v0, 0x1
 
     .line 241
-    :cond_2f
+    :cond_3
     shl-int/2addr v0, v1
 
     .line 242
@@ -856,13 +856,13 @@
 
     move-result v2
 
-    if-eqz v2, :cond_3a
+    if-eqz v2, :cond_4
 
     .line 243
     or-int/lit8 v0, v0, 0x1
 
     .line 245
-    :cond_3a
+    :cond_4
     shl-int/2addr v0, v1
 
     .line 246
@@ -872,13 +872,13 @@
 
     move-result v2
 
-    if-eqz v2, :cond_45
+    if-eqz v2, :cond_5
 
     .line 247
     or-int/lit8 v0, v0, 0x1
 
     .line 249
-    :cond_45
+    :cond_5
     shl-int/2addr v0, v1
 
     .line 250
@@ -888,13 +888,13 @@
 
     move-result v2
 
-    if-eqz v2, :cond_50
+    if-eqz v2, :cond_6
 
     .line 251
     or-int/lit8 v0, v0, 0x1
 
     .line 253
-    :cond_50
+    :cond_6
     shl-int/2addr v0, v1
 
     .line 254
@@ -906,18 +906,18 @@
 
     move-result v1
 
-    if-eqz v1, :cond_5c
+    if-eqz v1, :cond_7
 
     .line 255
     or-int/lit8 v0, v0, 0x1
 
     .line 257
-    :cond_5c
+    :cond_7
     return v0
 .end method
 
 .method readCorner2(II)I
-    .registers 7
+    .locals 4
     .param p1, "numRows"    # I
     .param p2, "numColumns"    # I
 
@@ -934,13 +934,13 @@
 
     move-result v1
 
-    if-eqz v1, :cond_c
+    if-eqz v1, :cond_0
 
     .line 272
     or-int/lit8 v0, v0, 0x1
 
     .line 274
-    :cond_c
+    :cond_0
     const/4 v1, 0x1
 
     shl-int/2addr v0, v1
@@ -952,13 +952,13 @@
 
     move-result v3
 
-    if-eqz v3, :cond_18
+    if-eqz v3, :cond_1
 
     .line 276
     or-int/lit8 v0, v0, 0x1
 
     .line 278
-    :cond_18
+    :cond_1
     shl-int/2addr v0, v1
 
     .line 279
@@ -968,13 +968,13 @@
 
     move-result v3
 
-    if-eqz v3, :cond_23
+    if-eqz v3, :cond_2
 
     .line 280
     or-int/lit8 v0, v0, 0x1
 
     .line 282
-    :cond_23
+    :cond_2
     shl-int/2addr v0, v1
 
     .line 283
@@ -984,13 +984,13 @@
 
     move-result v3
 
-    if-eqz v3, :cond_2e
+    if-eqz v3, :cond_3
 
     .line 284
     or-int/lit8 v0, v0, 0x1
 
     .line 286
-    :cond_2e
+    :cond_3
     shl-int/2addr v0, v1
 
     .line 287
@@ -1000,13 +1000,13 @@
 
     move-result v3
 
-    if-eqz v3, :cond_39
+    if-eqz v3, :cond_4
 
     .line 288
     or-int/lit8 v0, v0, 0x1
 
     .line 290
-    :cond_39
+    :cond_4
     shl-int/2addr v0, v1
 
     .line 291
@@ -1016,13 +1016,13 @@
 
     move-result v3
 
-    if-eqz v3, :cond_44
+    if-eqz v3, :cond_5
 
     .line 292
     or-int/lit8 v0, v0, 0x1
 
     .line 294
-    :cond_44
+    :cond_5
     shl-int/2addr v0, v1
 
     .line 295
@@ -1032,13 +1032,13 @@
 
     move-result v2
 
-    if-eqz v2, :cond_4f
+    if-eqz v2, :cond_6
 
     .line 296
     or-int/lit8 v0, v0, 0x1
 
     .line 298
-    :cond_4f
+    :cond_6
     shl-int/2addr v0, v1
 
     .line 299
@@ -1048,18 +1048,18 @@
 
     move-result v1
 
-    if-eqz v1, :cond_5a
+    if-eqz v1, :cond_7
 
     .line 300
     or-int/lit8 v0, v0, 0x1
 
     .line 302
-    :cond_5a
+    :cond_7
     return v0
 .end method
 
 .method readCorner3(II)I
-    .registers 8
+    .locals 5
     .param p1, "numRows"    # I
     .param p2, "numColumns"    # I
 
@@ -1076,13 +1076,13 @@
 
     move-result v1
 
-    if-eqz v1, :cond_c
+    if-eqz v1, :cond_0
 
     .line 317
     or-int/lit8 v0, v0, 0x1
 
     .line 319
-    :cond_c
+    :cond_0
     const/4 v1, 0x1
 
     shl-int/2addr v0, v1
@@ -1096,13 +1096,13 @@
 
     move-result v3
 
-    if-eqz v3, :cond_1a
+    if-eqz v3, :cond_1
 
     .line 321
     or-int/lit8 v0, v0, 0x1
 
     .line 323
-    :cond_1a
+    :cond_1
     shl-int/2addr v0, v1
 
     .line 324
@@ -1112,13 +1112,13 @@
 
     move-result v3
 
-    if-eqz v3, :cond_25
+    if-eqz v3, :cond_2
 
     .line 325
     or-int/lit8 v0, v0, 0x1
 
     .line 327
-    :cond_25
+    :cond_2
     shl-int/2addr v0, v1
 
     .line 328
@@ -1128,13 +1128,13 @@
 
     move-result v3
 
-    if-eqz v3, :cond_30
+    if-eqz v3, :cond_3
 
     .line 329
     or-int/lit8 v0, v0, 0x1
 
     .line 331
-    :cond_30
+    :cond_3
     shl-int/2addr v0, v1
 
     .line 332
@@ -1144,13 +1144,13 @@
 
     move-result v2
 
-    if-eqz v2, :cond_3b
+    if-eqz v2, :cond_4
 
     .line 333
     or-int/lit8 v0, v0, 0x1
 
     .line 335
-    :cond_3b
+    :cond_4
     shl-int/2addr v0, v1
 
     .line 336
@@ -1160,13 +1160,13 @@
 
     move-result v2
 
-    if-eqz v2, :cond_46
+    if-eqz v2, :cond_5
 
     .line 337
     or-int/lit8 v0, v0, 0x1
 
     .line 339
-    :cond_46
+    :cond_5
     shl-int/2addr v0, v1
 
     .line 340
@@ -1176,13 +1176,13 @@
 
     move-result v2
 
-    if-eqz v2, :cond_51
+    if-eqz v2, :cond_6
 
     .line 341
     or-int/lit8 v0, v0, 0x1
 
     .line 343
-    :cond_51
+    :cond_6
     shl-int/2addr v0, v1
 
     .line 344
@@ -1192,18 +1192,18 @@
 
     move-result v1
 
-    if-eqz v1, :cond_5c
+    if-eqz v1, :cond_7
 
     .line 345
     or-int/lit8 v0, v0, 0x1
 
     .line 347
-    :cond_5c
+    :cond_7
     return v0
 .end method
 
 .method readCorner4(II)I
-    .registers 7
+    .locals 4
     .param p1, "numRows"    # I
     .param p2, "numColumns"    # I
 
@@ -1220,13 +1220,13 @@
 
     move-result v1
 
-    if-eqz v1, :cond_c
+    if-eqz v1, :cond_0
 
     .line 362
     or-int/lit8 v0, v0, 0x1
 
     .line 364
-    :cond_c
+    :cond_0
     const/4 v1, 0x1
 
     shl-int/2addr v0, v1
@@ -1238,13 +1238,13 @@
 
     move-result v3
 
-    if-eqz v3, :cond_18
+    if-eqz v3, :cond_1
 
     .line 366
     or-int/lit8 v0, v0, 0x1
 
     .line 368
-    :cond_18
+    :cond_1
     shl-int/2addr v0, v1
 
     .line 369
@@ -1254,13 +1254,13 @@
 
     move-result v3
 
-    if-eqz v3, :cond_23
+    if-eqz v3, :cond_2
 
     .line 370
     or-int/lit8 v0, v0, 0x1
 
     .line 372
-    :cond_23
+    :cond_2
     shl-int/2addr v0, v1
 
     .line 373
@@ -1270,13 +1270,13 @@
 
     move-result v3
 
-    if-eqz v3, :cond_2e
+    if-eqz v3, :cond_3
 
     .line 374
     or-int/lit8 v0, v0, 0x1
 
     .line 376
-    :cond_2e
+    :cond_3
     shl-int/2addr v0, v1
 
     .line 377
@@ -1286,13 +1286,13 @@
 
     move-result v2
 
-    if-eqz v2, :cond_39
+    if-eqz v2, :cond_4
 
     .line 378
     or-int/lit8 v0, v0, 0x1
 
     .line 380
-    :cond_39
+    :cond_4
     shl-int/2addr v0, v1
 
     .line 381
@@ -1302,13 +1302,13 @@
 
     move-result v2
 
-    if-eqz v2, :cond_44
+    if-eqz v2, :cond_5
 
     .line 382
     or-int/lit8 v0, v0, 0x1
 
     .line 384
-    :cond_44
+    :cond_5
     shl-int/2addr v0, v1
 
     .line 385
@@ -1320,13 +1320,13 @@
 
     move-result v2
 
-    if-eqz v2, :cond_50
+    if-eqz v2, :cond_6
 
     .line 386
     or-int/lit8 v0, v0, 0x1
 
     .line 388
-    :cond_50
+    :cond_6
     shl-int/2addr v0, v1
 
     .line 389
@@ -1338,25 +1338,25 @@
 
     move-result v1
 
-    if-eqz v1, :cond_5c
+    if-eqz v1, :cond_7
 
     .line 390
     or-int/lit8 v0, v0, 0x1
 
     .line 392
-    :cond_5c
+    :cond_7
     return v0
 .end method
 
 .method readModule(IIII)Z
-    .registers 6
+    .locals 1
     .param p1, "row"    # I
     .param p2, "column"    # I
     .param p3, "numRows"    # I
     .param p4, "numColumns"    # I
 
     .line 156
-    if-gez p1, :cond_a
+    if-gez p1, :cond_0
 
     .line 157
     add-int/2addr p1, p3
@@ -1371,8 +1371,8 @@
     add-int/2addr p2, v0
 
     .line 160
-    :cond_a
-    if-gez p2, :cond_14
+    :cond_0
+    if-gez p2, :cond_1
 
     .line 161
     add-int/2addr p2, p4
@@ -1387,7 +1387,7 @@
     add-int/2addr p1, v0
 
     .line 164
-    :cond_14
+    :cond_1
     iget-object v0, p0, Lcom/google/zxing/datamatrix/decoder/BitMatrixParser;->readMappingMatrix:Lcom/google/zxing/common/BitMatrix;
 
     invoke-virtual {v0, p2, p1}, Lcom/google/zxing/common/BitMatrix;->set(II)V
@@ -1403,7 +1403,7 @@
 .end method
 
 .method readUtah(IIII)I
-    .registers 8
+    .locals 3
     .param p1, "row"    # I
     .param p2, "column"    # I
     .param p3, "numRows"    # I
@@ -1422,13 +1422,13 @@
 
     move-result v1
 
-    if-eqz v1, :cond_d
+    if-eqz v1, :cond_0
 
     .line 182
     or-int/lit8 v0, v0, 0x1
 
     .line 184
-    :cond_d
+    :cond_0
     shl-int/lit8 v0, v0, 0x1
 
     .line 185
@@ -1440,13 +1440,13 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1b
+    if-eqz v1, :cond_1
 
     .line 186
     or-int/lit8 v0, v0, 0x1
 
     .line 188
-    :cond_1b
+    :cond_1
     shl-int/lit8 v0, v0, 0x1
 
     .line 189
@@ -1458,13 +1458,13 @@
 
     move-result v1
 
-    if-eqz v1, :cond_29
+    if-eqz v1, :cond_2
 
     .line 190
     or-int/lit8 v0, v0, 0x1
 
     .line 192
-    :cond_29
+    :cond_2
     shl-int/lit8 v0, v0, 0x1
 
     .line 193
@@ -1476,13 +1476,13 @@
 
     move-result v1
 
-    if-eqz v1, :cond_37
+    if-eqz v1, :cond_3
 
     .line 194
     or-int/lit8 v0, v0, 0x1
 
     .line 196
-    :cond_37
+    :cond_3
     shl-int/lit8 v0, v0, 0x1
 
     .line 197
@@ -1492,13 +1492,13 @@
 
     move-result v1
 
-    if-eqz v1, :cond_43
+    if-eqz v1, :cond_4
 
     .line 198
     or-int/lit8 v0, v0, 0x1
 
     .line 200
-    :cond_43
+    :cond_4
     shl-int/lit8 v0, v0, 0x1
 
     .line 201
@@ -1508,13 +1508,13 @@
 
     move-result v1
 
-    if-eqz v1, :cond_4f
+    if-eqz v1, :cond_5
 
     .line 202
     or-int/lit8 v0, v0, 0x1
 
     .line 204
-    :cond_4f
+    :cond_5
     shl-int/lit8 v0, v0, 0x1
 
     .line 205
@@ -1524,13 +1524,13 @@
 
     move-result v1
 
-    if-eqz v1, :cond_5b
+    if-eqz v1, :cond_6
 
     .line 206
     or-int/lit8 v0, v0, 0x1
 
     .line 208
-    :cond_5b
+    :cond_6
     shl-int/lit8 v0, v0, 0x1
 
     .line 209
@@ -1538,12 +1538,12 @@
 
     move-result v1
 
-    if-eqz v1, :cond_65
+    if-eqz v1, :cond_7
 
     .line 210
     or-int/lit8 v0, v0, 0x1
 
     .line 212
-    :cond_65
+    :cond_7
     return v0
 .end method

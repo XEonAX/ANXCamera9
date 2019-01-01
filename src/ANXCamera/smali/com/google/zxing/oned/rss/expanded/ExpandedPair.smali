@@ -15,7 +15,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/zxing/oned/rss/DataCharacter;Lcom/google/zxing/oned/rss/DataCharacter;Lcom/google/zxing/oned/rss/FinderPattern;Z)V
-    .registers 5
+    .locals 0
     .param p1, "leftChar"    # Lcom/google/zxing/oned/rss/DataCharacter;
     .param p2, "rightChar"    # Lcom/google/zxing/oned/rss/DataCharacter;
     .param p3, "finderPattern"    # Lcom/google/zxing/oned/rss/FinderPattern;
@@ -41,57 +41,57 @@
 .end method
 
 .method private static equalsOrNull(Ljava/lang/Object;Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p0, "o1"    # Ljava/lang/Object;
     .param p1, "o2"    # Ljava/lang/Object;
 
     .line 92
-    if-nez p0, :cond_8
+    if-nez p0, :cond_1
 
-    if-nez p1, :cond_6
+    if-nez p1, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_c
+    goto :goto_0
 
-    :cond_6
+    :cond_0
     const/4 v0, 0x0
 
-    goto :goto_c
+    goto :goto_0
 
-    :cond_8
+    :cond_1
     invoke-virtual {p0, p1}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    :goto_c
+    :goto_0
     return v0
 .end method
 
 .method private static hashNotNull(Ljava/lang/Object;)I
-    .registers 2
+    .locals 1
     .param p0, "o"    # Ljava/lang/Object;
 
     .line 101
-    if-nez p0, :cond_4
+    if-nez p0, :cond_0
 
     const/4 v0, 0x0
 
-    goto :goto_8
+    goto :goto_0
 
-    :cond_4
+    :cond_0
     invoke-virtual {p0}, Ljava/lang/Object;->hashCode()I
 
     move-result v0
 
-    :goto_8
+    :goto_0
     return v0
 .end method
 
 
 # virtual methods
 .method public equals(Ljava/lang/Object;)Z
-    .registers 6
+    .locals 4
     .param p1, "o"    # Ljava/lang/Object;
 
     .line 81
@@ -99,13 +99,13 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_6
+    if-nez v0, :cond_0
 
     .line 82
     return v1
 
     .line 84
-    :cond_6
+    :cond_0
     move-object v0, p1
 
     check-cast v0, Lcom/google/zxing/oned/rss/expanded/ExpandedPair;
@@ -120,7 +120,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_28
+    if-eqz v2, :cond_1
 
     .line 87
     iget-object v2, p0, Lcom/google/zxing/oned/rss/expanded/ExpandedPair;->rightChar:Lcom/google/zxing/oned/rss/DataCharacter;
@@ -131,7 +131,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_28
+    if-eqz v2, :cond_1
 
     .line 88
     iget-object v2, p0, Lcom/google/zxing/oned/rss/expanded/ExpandedPair;->finderPattern:Lcom/google/zxing/oned/rss/FinderPattern;
@@ -142,17 +142,17 @@
 
     move-result v2
 
-    if-eqz v2, :cond_28
+    if-eqz v2, :cond_1
 
     .line 85
     const/4 v1, 0x1
 
-    :cond_28
+    :cond_1
     return v1
 .end method
 
 .method getFinderPattern()Lcom/google/zxing/oned/rss/FinderPattern;
-    .registers 2
+    .locals 1
 
     .line 65
     iget-object v0, p0, Lcom/google/zxing/oned/rss/expanded/ExpandedPair;->finderPattern:Lcom/google/zxing/oned/rss/FinderPattern;
@@ -161,7 +161,7 @@
 .end method
 
 .method getLeftChar()Lcom/google/zxing/oned/rss/DataCharacter;
-    .registers 2
+    .locals 1
 
     .line 57
     iget-object v0, p0, Lcom/google/zxing/oned/rss/expanded/ExpandedPair;->leftChar:Lcom/google/zxing/oned/rss/DataCharacter;
@@ -170,7 +170,7 @@
 .end method
 
 .method getRightChar()Lcom/google/zxing/oned/rss/DataCharacter;
-    .registers 2
+    .locals 1
 
     .line 61
     iget-object v0, p0, Lcom/google/zxing/oned/rss/expanded/ExpandedPair;->rightChar:Lcom/google/zxing/oned/rss/DataCharacter;
@@ -179,7 +179,7 @@
 .end method
 
 .method public hashCode()I
-    .registers 3
+    .locals 2
 
     .line 97
     iget-object v0, p0, Lcom/google/zxing/oned/rss/expanded/ExpandedPair;->leftChar:Lcom/google/zxing/oned/rss/DataCharacter;
@@ -208,7 +208,7 @@
 .end method
 
 .method mayBeLast()Z
-    .registers 2
+    .locals 1
 
     .line 53
     iget-boolean v0, p0, Lcom/google/zxing/oned/rss/expanded/ExpandedPair;->mayBeLast:Z
@@ -217,25 +217,25 @@
 .end method
 
 .method public mustBeLast()Z
-    .registers 2
+    .locals 1
 
     .line 69
     iget-object v0, p0, Lcom/google/zxing/oned/rss/expanded/ExpandedPair;->rightChar:Lcom/google/zxing/oned/rss/DataCharacter;
 
-    if-nez v0, :cond_6
+    if-nez v0, :cond_0
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_6
+    :cond_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 75
     new-instance v0, Ljava/lang/StringBuilder;
@@ -263,13 +263,13 @@
     .line 76
     iget-object v1, p0, Lcom/google/zxing/oned/rss/expanded/ExpandedPair;->finderPattern:Lcom/google/zxing/oned/rss/FinderPattern;
 
-    if-nez v1, :cond_22
+    if-nez v1, :cond_0
 
     const-string v1, "null"
 
-    goto :goto_2c
+    goto :goto_0
 
-    :cond_22
+    :cond_0
     iget-object v1, p0, Lcom/google/zxing/oned/rss/expanded/ExpandedPair;->finderPattern:Lcom/google/zxing/oned/rss/FinderPattern;
 
     invoke-virtual {v1}, Lcom/google/zxing/oned/rss/FinderPattern;->getValue()I
@@ -280,7 +280,7 @@
 
     move-result-object v1
 
-    :goto_2c
+    :goto_0
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
     const-string v1, " ]"

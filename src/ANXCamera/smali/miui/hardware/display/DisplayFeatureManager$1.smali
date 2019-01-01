@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Lmiui/hardware/display/DisplayFeatureManager;)V
-    .registers 2
+    .locals 0
     .param p1, "this$0"    # Lmiui/hardware/display/DisplayFeatureManager;
 
     .line 119
@@ -37,13 +37,12 @@
 
 # virtual methods
 .method public serviceDied(J)V
-    .registers 6
+    .locals 3
     .param p1, "cookie"    # J
 
     .line 122
     iget-object v0, p0, Lmiui/hardware/display/DisplayFeatureManager$1;->this$0:Lmiui/hardware/display/DisplayFeatureManager;
 
-    # getter for: Lmiui/hardware/display/DisplayFeatureManager;->mLock:Ljava/lang/Object;
     invoke-static {v0}, Lmiui/hardware/display/DisplayFeatureManager;->access$000(Lmiui/hardware/display/DisplayFeatureManager;)Ljava/lang/Object;
 
     move-result-object v0
@@ -51,8 +50,7 @@
     monitor-enter v0
 
     .line 123
-    :try_start_7
-    # getter for: Lmiui/hardware/display/DisplayFeatureManager;->TAG:Ljava/lang/String;
+    :try_start_0
     invoke-static {}, Lmiui/hardware/display/DisplayFeatureManager;->access$100()Ljava/lang/String;
 
     move-result-object v1
@@ -66,7 +64,6 @@
 
     const/4 v2, 0x0
 
-    # setter for: Lmiui/hardware/display/DisplayFeatureManager;->mProxy:Lmiui/hardware/display/DisplayFeatureServiceProxy;
     invoke-static {v1, v2}, Lmiui/hardware/display/DisplayFeatureManager;->access$202(Lmiui/hardware/display/DisplayFeatureManager;Lmiui/hardware/display/DisplayFeatureServiceProxy;)Lmiui/hardware/display/DisplayFeatureServiceProxy;
 
     .line 125
@@ -76,12 +73,12 @@
     return-void
 
     .line 125
-    :catchall_18
+    :catchall_0
     move-exception v1
 
     monitor-exit v0
-    :try_end_1a
-    .catchall {:try_start_7 .. :try_end_1a} :catchall_18
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     throw v1
 .end method

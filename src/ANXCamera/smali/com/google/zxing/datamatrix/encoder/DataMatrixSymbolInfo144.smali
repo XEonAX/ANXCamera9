@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 10
+    .locals 9
 
     .line 22
     const/4 v1, 0x0
@@ -35,27 +35,27 @@
 
 # virtual methods
 .method public getDataLengthForInterleavedBlock(I)I
-    .registers 3
+    .locals 1
     .param p1, "index"    # I
 
     .line 32
     const/16 v0, 0x8
 
-    if-gt p1, v0, :cond_7
+    if-gt p1, v0, :cond_0
 
     const/16 v0, 0x9c
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_7
+    :cond_0
     const/16 v0, 0x9b
 
-    :goto_9
+    :goto_0
     return v0
 .end method
 
 .method public getInterleavedBlockCount()I
-    .registers 2
+    .locals 1
 
     .line 27
     const/16 v0, 0xa

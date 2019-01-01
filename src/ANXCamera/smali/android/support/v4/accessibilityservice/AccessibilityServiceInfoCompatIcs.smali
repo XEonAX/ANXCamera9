@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getCanRetrieveWindowContent(Landroid/accessibilityservice/AccessibilityServiceInfo;)Z
-    .registers 2
+    .locals 1
     .param p0, "info"    # Landroid/accessibilityservice/AccessibilityServiceInfo;
 
     .line 29
@@ -26,7 +26,7 @@
 .end method
 
 .method public static getDescription(Landroid/accessibilityservice/AccessibilityServiceInfo;)Ljava/lang/String;
-    .registers 2
+    .locals 1
     .param p0, "info"    # Landroid/accessibilityservice/AccessibilityServiceInfo;
 
     .line 33
@@ -38,7 +38,7 @@
 .end method
 
 .method public static getId(Landroid/accessibilityservice/AccessibilityServiceInfo;)Ljava/lang/String;
-    .registers 2
+    .locals 1
     .param p0, "info"    # Landroid/accessibilityservice/AccessibilityServiceInfo;
 
     .line 37
@@ -50,7 +50,7 @@
 .end method
 
 .method public static getResolveInfo(Landroid/accessibilityservice/AccessibilityServiceInfo;)Landroid/content/pm/ResolveInfo;
-    .registers 2
+    .locals 1
     .param p0, "info"    # Landroid/accessibilityservice/AccessibilityServiceInfo;
 
     .line 41
@@ -62,7 +62,7 @@
 .end method
 
 .method public static getSettingsActivityName(Landroid/accessibilityservice/AccessibilityServiceInfo;)Ljava/lang/String;
-    .registers 2
+    .locals 1
     .param p0, "info"    # Landroid/accessibilityservice/AccessibilityServiceInfo;
 
     .line 45

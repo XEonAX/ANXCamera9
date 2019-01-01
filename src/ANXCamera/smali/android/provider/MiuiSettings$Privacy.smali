@@ -22,7 +22,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 6825
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -31,7 +31,7 @@
 .end method
 
 .method public static isEnabled(Landroid/content/Context;Ljava/lang/String;)Z
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "key"    # Ljava/lang/String;
 
@@ -54,7 +54,7 @@
 .end method
 
 .method public static setEnabled(Landroid/content/Context;Ljava/lang/String;Z)V
-    .registers 4
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "key"    # Ljava/lang/String;
     .param p2, "enabled"    # Z

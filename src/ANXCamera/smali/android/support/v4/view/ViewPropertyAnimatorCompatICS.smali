@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 23
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static alpha(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -30,7 +30,7 @@
 .end method
 
 .method public static alphaBy(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -46,7 +46,7 @@
 .end method
 
 .method public static cancel(Landroid/view/View;)V
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 102
@@ -61,7 +61,7 @@
 .end method
 
 .method public static getDuration(Landroid/view/View;)J
-    .registers 3
+    .locals 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 42
@@ -77,7 +77,7 @@
 .end method
 
 .method public static getStartDelay(Landroid/view/View;)J
-    .registers 3
+    .locals 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 54
@@ -93,7 +93,7 @@
 .end method
 
 .method public static rotation(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -109,7 +109,7 @@
 .end method
 
 .method public static rotationBy(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -125,7 +125,7 @@
 .end method
 
 .method public static rotationX(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -141,7 +141,7 @@
 .end method
 
 .method public static rotationXBy(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -157,7 +157,7 @@
 .end method
 
 .method public static rotationY(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -173,7 +173,7 @@
 .end method
 
 .method public static rotationYBy(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -189,7 +189,7 @@
 .end method
 
 .method public static scaleX(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -205,7 +205,7 @@
 .end method
 
 .method public static scaleXBy(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -221,7 +221,7 @@
 .end method
 
 .method public static scaleY(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -237,7 +237,7 @@
 .end method
 
 .method public static scaleYBy(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -253,7 +253,7 @@
 .end method
 
 .method public static setDuration(Landroid/view/View;J)V
-    .registers 4
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # J
 
@@ -269,7 +269,7 @@
 .end method
 
 .method public static setInterpolator(Landroid/view/View;Landroid/view/animation/Interpolator;)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # Landroid/view/animation/Interpolator;
 
@@ -285,12 +285,12 @@
 .end method
 
 .method public static setListener(Landroid/view/View;Landroid/support/v4/view/ViewPropertyAnimatorListener;)V
-    .registers 4
+    .locals 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "listener"    # Landroid/support/v4/view/ViewPropertyAnimatorListener;
 
     .line 135
-    if-eqz p1, :cond_f
+    if-eqz p1, :cond_0
 
     .line 136
     invoke-virtual {p0}, Landroid/view/View;->animate()Landroid/view/ViewPropertyAnimator;
@@ -303,10 +303,10 @@
 
     invoke-virtual {v0, v1}, Landroid/view/ViewPropertyAnimator;->setListener(Landroid/animation/Animator$AnimatorListener;)Landroid/view/ViewPropertyAnimator;
 
-    goto :goto_17
+    goto :goto_0
 
     .line 153
-    :cond_f
+    :cond_0
     invoke-virtual {p0}, Landroid/view/View;->animate()Landroid/view/ViewPropertyAnimator;
 
     move-result-object v0
@@ -316,12 +316,12 @@
     invoke-virtual {v0, v1}, Landroid/view/ViewPropertyAnimator;->setListener(Landroid/animation/Animator$AnimatorListener;)Landroid/view/ViewPropertyAnimator;
 
     .line 155
-    :goto_17
+    :goto_0
     return-void
 .end method
 
 .method public static setStartDelay(Landroid/view/View;J)V
-    .registers 4
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # J
 
@@ -337,7 +337,7 @@
 .end method
 
 .method public static start(Landroid/view/View;)V
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 130
@@ -352,7 +352,7 @@
 .end method
 
 .method public static translationX(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -368,7 +368,7 @@
 .end method
 
 .method public static translationXBy(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -384,7 +384,7 @@
 .end method
 
 .method public static translationY(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -400,7 +400,7 @@
 .end method
 
 .method public static translationYBy(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -416,7 +416,7 @@
 .end method
 
 .method public static x(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -432,7 +432,7 @@
 .end method
 
 .method public static xBy(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -448,7 +448,7 @@
 .end method
 
 .method public static y(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -464,7 +464,7 @@
 .end method
 
 .method public static yBy(Landroid/view/View;F)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 

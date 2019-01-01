@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompatKitKat$AccessibilityNodeInfoBridge;)V
-    .registers 2
+    .locals 0
 
     .line 39
     iput-object p1, p0, Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompatKitKat$1;->val$bridge:Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompatKitKat$AccessibilityNodeInfoBridge;
@@ -33,7 +33,7 @@
 
 # virtual methods
 .method public createAccessibilityNodeInfo(I)Landroid/view/accessibility/AccessibilityNodeInfo;
-    .registers 3
+    .locals 1
     .param p1, "virtualViewId"    # I
 
     .line 42
@@ -49,7 +49,7 @@
 .end method
 
 .method public findAccessibilityNodeInfosByText(Ljava/lang/String;I)Ljava/util/List;
-    .registers 4
+    .locals 1
     .param p1, "text"    # Ljava/lang/String;
     .param p2, "virtualViewId"    # I
     .annotation system Ldalvik/annotation/Signature;
@@ -74,7 +74,7 @@
 .end method
 
 .method public findFocus(I)Landroid/view/accessibility/AccessibilityNodeInfo;
-    .registers 3
+    .locals 1
     .param p1, "focus"    # I
 
     .line 61
@@ -90,7 +90,7 @@
 .end method
 
 .method public performAction(IILandroid/os/Bundle;)Z
-    .registers 5
+    .locals 1
     .param p1, "virtualViewId"    # I
     .param p2, "action"    # I
     .param p3, "arguments"    # Landroid/os/Bundle;

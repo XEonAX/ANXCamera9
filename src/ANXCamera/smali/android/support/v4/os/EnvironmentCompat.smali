@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 30
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -20,7 +20,7 @@
 .end method
 
 .method public static getStorageState(Ljava/io/File;)Ljava/lang/String;
-    .registers 6
+    .locals 5
     .param p0, "path"    # Ljava/io/File;
 
     .line 56
@@ -30,7 +30,7 @@
     .local v0, "version":I
     const/16 v1, 0x13
 
-    if-lt v0, v1, :cond_b
+    if-lt v0, v1, :cond_0
 
     .line 58
     invoke-static {p0}, Landroid/support/v4/os/EnvironmentCompatKitKat;->getStorageState(Ljava/io/File;)Ljava/lang/String;
@@ -40,8 +40,8 @@
     return-object v1
 
     .line 62
-    :cond_b
-    :try_start_b
+    :cond_0
+    :try_start_0
     invoke-virtual {p0}, Ljava/io/File;->getCanonicalPath()Ljava/lang/String;
 
     move-result-object v1
@@ -62,25 +62,25 @@
 
     move-result v3
 
-    if-eqz v3, :cond_22
+    if-eqz v3, :cond_1
 
     .line 67
     invoke-static {}, Landroid/os/Environment;->getExternalStorageState()Ljava/lang/String;
 
     move-result-object v3
-    :try_end_21
-    .catch Ljava/io/IOException; {:try_start_b .. :try_end_21} :catch_23
+    :try_end_0
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
 
     return-object v3
 
     .line 71
     .end local v1    # "canonicalPath":Ljava/lang/String;
     .end local v2    # "canonicalExternal":Ljava/lang/String;
-    :cond_22
-    goto :goto_3a
+    :cond_1
+    goto :goto_0
 
     .line 69
-    :catch_23
+    :catch_0
     move-exception v1
 
     .line 70
@@ -105,7 +105,7 @@
 
     .line 73
     .end local v1    # "e":Ljava/io/IOException;
-    :goto_3a
+    :goto_0
     const-string v1, "unknown"
 
     return-object v1

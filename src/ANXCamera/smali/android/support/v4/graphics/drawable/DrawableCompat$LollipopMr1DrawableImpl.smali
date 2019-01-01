@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 188
     invoke-direct {p0}, Landroid/support/v4/graphics/drawable/DrawableCompat$LollipopDrawableImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public wrap(Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
-    .registers 3
+    .locals 1
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 191

@@ -22,7 +22,7 @@
 
 # direct methods
 .method private constructor <init>(II)V
-    .registers 3
+    .locals 0
     .param p1, "count"    # I
     .param p2, "dataCodewords"    # I
 
@@ -40,7 +40,7 @@
 .end method
 
 .method synthetic constructor <init>(IILcom/google/zxing/datamatrix/decoder/Version$ECB;)V
-    .registers 4
+    .locals 0
 
     .line 150
     invoke-direct {p0, p1, p2}, Lcom/google/zxing/datamatrix/decoder/Version$ECB;-><init>(II)V
@@ -51,7 +51,7 @@
 
 # virtual methods
 .method getCount()I
-    .registers 2
+    .locals 1
 
     .line 156
     iget v0, p0, Lcom/google/zxing/datamatrix/decoder/Version$ECB;->count:I
@@ -60,7 +60,7 @@
 .end method
 
 .method getDataCodewords()I
-    .registers 2
+    .locals 1
 
     .line 160
     iget v0, p0, Lcom/google/zxing/datamatrix/decoder/Version$ECB;->dataCodewords:I

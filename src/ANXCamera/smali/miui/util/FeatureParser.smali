@@ -107,7 +107,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 52
     new-instance v0, Ljava/util/HashMap;
@@ -159,7 +159,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 20
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -168,7 +168,7 @@
 .end method
 
 .method public static getBoolean(Ljava/lang/String;Z)Z
-    .registers 4
+    .locals 2
     .param p0, "name"    # Ljava/lang/String;
     .param p1, "defaultValue"    # Z
 
@@ -183,7 +183,7 @@
 
     .line 64
     .local v0, "value":Ljava/lang/Boolean;
-    if-eqz v0, :cond_f
+    if-eqz v0, :cond_0
 
     .line 65
     invoke-virtual {v0}, Ljava/lang/Boolean;->booleanValue()Z
@@ -193,12 +193,12 @@
     return v1
 
     .line 67
-    :cond_f
+    :cond_0
     return p1
 .end method
 
 .method public static getFloat(Ljava/lang/String;F)Ljava/lang/Float;
-    .registers 4
+    .locals 2
     .param p0, "name"    # Ljava/lang/String;
     .param p1, "defaultValue"    # F
 
@@ -213,18 +213,18 @@
 
     .line 105
     .local v0, "value":Ljava/lang/Float;
-    if-eqz v0, :cond_f
+    if-eqz v0, :cond_0
 
     invoke-virtual {v0}, Ljava/lang/Float;->floatValue()F
 
     move-result v1
 
-    goto :goto_10
+    goto :goto_0
 
-    :cond_f
+    :cond_0
     move v1, p1
 
-    :goto_10
+    :goto_0
     invoke-static {v1}, Ljava/lang/Float;->valueOf(F)Ljava/lang/Float;
 
     move-result-object v1
@@ -233,7 +233,7 @@
 .end method
 
 .method public static getIntArray(Ljava/lang/String;)[I
-    .registers 6
+    .locals 5
     .param p0, "name"    # Ljava/lang/String;
 
     .line 83
@@ -247,7 +247,7 @@
 
     .line 84
     .local v0, "intList":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/Integer;>;"
-    if-eqz v0, :cond_23
+    if-eqz v0, :cond_1
 
     .line 85
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
@@ -263,8 +263,8 @@
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_11
-    if-ge v3, v1, :cond_22
+    :goto_0
+    if-ge v3, v1, :cond_0
 
     .line 88
     invoke-virtual {v0, v3}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
@@ -282,24 +282,24 @@
     .line 87
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_11
+    goto :goto_0
 
     .line 90
     .end local v3    # "i":I
-    :cond_22
+    :cond_0
     return-object v2
 
     .line 92
     .end local v1    # "length":I
     .end local v2    # "intArr":[I
-    :cond_23
+    :cond_1
     const/4 v1, 0x0
 
     return-object v1
 .end method
 
 .method public static getInteger(Ljava/lang/String;I)I
-    .registers 4
+    .locals 2
     .param p0, "name"    # Ljava/lang/String;
     .param p1, "defaultValue"    # I
 
@@ -314,7 +314,7 @@
 
     .line 76
     .local v0, "value":Ljava/lang/Integer;
-    if-eqz v0, :cond_f
+    if-eqz v0, :cond_0
 
     .line 77
     invoke-virtual {v0}, Ljava/lang/Integer;->intValue()I
@@ -324,12 +324,12 @@
     return v1
 
     .line 79
-    :cond_f
+    :cond_0
     return p1
 .end method
 
 .method public static getString(Ljava/lang/String;)Ljava/lang/String;
-    .registers 2
+    .locals 1
     .param p0, "name"    # Ljava/lang/String;
 
     .line 71
@@ -345,7 +345,7 @@
 .end method
 
 .method public static getStringArray(Ljava/lang/String;)[Ljava/lang/String;
-    .registers 3
+    .locals 2
     .param p0, "name"    # Ljava/lang/String;
 
     .line 96
@@ -359,7 +359,7 @@
 
     .line 97
     .local v0, "strList":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
-    if-eqz v0, :cond_14
+    if-eqz v0, :cond_0
 
     .line 98
     const/4 v1, 0x0
@@ -375,14 +375,14 @@
     return-object v1
 
     .line 100
-    :cond_14
+    :cond_0
     const/4 v1, 0x0
 
     return-object v1
 .end method
 
 .method public static hasFeature(Ljava/lang/String;I)Z
-    .registers 4
+    .locals 2
     .param p0, "name"    # Ljava/lang/String;
     .param p1, "type"    # I
 
@@ -391,12 +391,12 @@
 
     .line 110
     .local v0, "result":Z
-    packed-switch p1, :pswitch_data_30
+    packed-switch p1, :pswitch_data_0
 
-    goto :goto_2f
+    goto :goto_0
 
     .line 127
-    :pswitch_5
+    :pswitch_0
     sget-object v1, Lmiui/util/FeatureParser;->sFloatMap:Ljava/util/HashMap;
 
     invoke-virtual {v1, p0}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
@@ -404,10 +404,10 @@
     move-result v0
 
     .line 128
-    goto :goto_2f
+    goto :goto_0
 
     .line 121
-    :pswitch_c
+    :pswitch_1
     sget-object v1, Lmiui/util/FeatureParser;->sIntArrMap:Ljava/util/HashMap;
 
     invoke-virtual {v1, p0}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
@@ -415,10 +415,10 @@
     move-result v0
 
     .line 122
-    goto :goto_2f
+    goto :goto_0
 
     .line 124
-    :pswitch_13
+    :pswitch_2
     sget-object v1, Lmiui/util/FeatureParser;->sStrArrMap:Ljava/util/HashMap;
 
     invoke-virtual {v1, p0}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
@@ -426,10 +426,10 @@
     move-result v0
 
     .line 125
-    goto :goto_2f
+    goto :goto_0
 
     .line 118
-    :pswitch_1a
+    :pswitch_3
     sget-object v1, Lmiui/util/FeatureParser;->sStrMap:Ljava/util/HashMap;
 
     invoke-virtual {v1, p0}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
@@ -437,10 +437,10 @@
     move-result v0
 
     .line 119
-    goto :goto_2f
+    goto :goto_0
 
     .line 115
-    :pswitch_21
+    :pswitch_4
     sget-object v1, Lmiui/util/FeatureParser;->sIntMap:Ljava/util/HashMap;
 
     invoke-virtual {v1, p0}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
@@ -448,10 +448,10 @@
     move-result v0
 
     .line 116
-    goto :goto_2f
+    goto :goto_0
 
     .line 112
-    :pswitch_28
+    :pswitch_5
     sget-object v1, Lmiui/util/FeatureParser;->sBooleanMap:Ljava/util/HashMap;
 
     invoke-virtual {v1, p0}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
@@ -462,22 +462,22 @@
     nop
 
     .line 132
-    :goto_2f
+    :goto_0
     return v0
 
-    :pswitch_data_30
+    :pswitch_data_0
     .packed-switch 0x1
-        :pswitch_28
-        :pswitch_21
-        :pswitch_1a
-        :pswitch_13
-        :pswitch_c
         :pswitch_5
+        :pswitch_4
+        :pswitch_3
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
     .end packed-switch
 .end method
 
 .method private static read()V
-    .registers 11
+    .locals 11
 
     .line 137
     const/4 v0, 0x0
@@ -490,7 +490,7 @@
 
     .line 140
     .local v2, "fileName":Ljava/lang/String;
-    :try_start_3
+    :try_start_0
     const-string v3, "cancro"
 
     sget-object v4, Lmiui/os/Build;->DEVICE:Ljava/lang/String;
@@ -499,7 +499,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_29
+    if-eqz v3, :cond_1
 
     .line 141
     sget-object v3, Lmiui/os/Build;->MODEL:Ljava/lang/String;
@@ -510,17 +510,17 @@
 
     move-result v3
 
-    if-eqz v3, :cond_1b
+    if-eqz v3, :cond_0
 
     .line 142
     const-string v3, "cancro_MI3.xml"
 
     move-object v2, v3
 
-    goto :goto_3d
+    goto :goto_0
 
     .line 143
-    :cond_1b
+    :cond_0
     sget-object v3, Lmiui/os/Build;->MODEL:Ljava/lang/String;
 
     const-string v4, "MI 4"
@@ -529,17 +529,17 @@
 
     move-result v3
 
-    if-eqz v3, :cond_3d
+    if-eqz v3, :cond_2
 
     .line 144
     const-string v3, "cancro_MI4.xml"
 
     move-object v2, v3
 
-    goto :goto_3d
+    goto :goto_0
 
     .line 146
-    :cond_29
+    :cond_1
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -555,17 +555,17 @@
     invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v3
-    :try_end_3c
-    .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3c} :catch_1c3
-    .catch Lorg/xmlpull/v1/XmlPullParserException; {:try_start_3 .. :try_end_3c} :catch_1bc
-    .catchall {:try_start_3 .. :try_end_3c} :catchall_1b3
+    :try_end_0
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_5
+    .catch Lorg/xmlpull/v1/XmlPullParserException; {:try_start_0 .. :try_end_0} :catch_4
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     move-object v2, v3
 
     .line 150
-    :cond_3d
-    :goto_3d
-    :try_start_3d
+    :cond_2
+    :goto_0
+    :try_start_1
     invoke-static {}, Landroid/content/res/Resources;->getSystem()Landroid/content/res/Resources;
 
     move-result-object v3
@@ -591,23 +591,23 @@
     invoke-virtual {v3, v4}, Landroid/content/res/AssetManager;->open(Ljava/lang/String;)Ljava/io/InputStream;
 
     move-result-object v3
-    :try_end_5a
-    .catch Ljava/io/IOException; {:try_start_3d .. :try_end_5a} :catch_5c
-    .catch Lorg/xmlpull/v1/XmlPullParserException; {:try_start_3d .. :try_end_5a} :catch_1bc
-    .catchall {:try_start_3d .. :try_end_5a} :catchall_1b3
+    :try_end_1
+    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_0
+    .catch Lorg/xmlpull/v1/XmlPullParserException; {:try_start_1 .. :try_end_1} :catch_4
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     move-object v1, v3
 
     .line 154
-    goto :goto_87
+    goto :goto_1
 
     .line 151
-    :catch_5c
+    :catch_0
     move-exception v3
 
     .line 152
     .local v3, "e":Ljava/io/IOException;
-    :try_start_5d
+    :try_start_2
     const-string v4, "FeatureParser"
 
     new-instance v5, Ljava/lang/StringBuilder;
@@ -644,8 +644,8 @@
 
     .line 155
     .end local v3    # "e":Ljava/io/IOException;
-    :goto_87
-    if-nez v1, :cond_bb
+    :goto_1
+    if-nez v1, :cond_5
 
     .line 156
     new-instance v3, Ljava/io/File;
@@ -660,7 +660,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_9d
+    if-eqz v4, :cond_3
 
     .line 158
     new-instance v4, Ljava/io/FileInputStream;
@@ -669,10 +669,10 @@
 
     move-object v1, v4
 
-    goto :goto_bb
+    goto :goto_3
 
     .line 160
-    :cond_9d
+    :cond_3
     const-string v0, "FeatureParser"
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -690,37 +690,37 @@
     move-result-object v4
 
     invoke-static {v0, v4}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_b3
-    .catch Ljava/io/IOException; {:try_start_5d .. :try_end_b3} :catch_1c3
-    .catch Lorg/xmlpull/v1/XmlPullParserException; {:try_start_5d .. :try_end_b3} :catch_1bc
-    .catchall {:try_start_5d .. :try_end_b3} :catchall_1b3
+    :try_end_2
+    .catch Ljava/io/IOException; {:try_start_2 .. :try_end_2} :catch_5
+    .catch Lorg/xmlpull/v1/XmlPullParserException; {:try_start_2 .. :try_end_2} :catch_4
+    .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
     .line 220
-    if-eqz v1, :cond_ba
+    if-eqz v1, :cond_4
 
     .line 222
-    :try_start_b5
+    :try_start_3
     invoke-virtual {v1}, Ljava/io/InputStream;->close()V
-    :try_end_b8
-    .catch Ljava/io/IOException; {:try_start_b5 .. :try_end_b8} :catch_b9
+    :try_end_3
+    .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3} :catch_1
 
     .line 225
-    goto :goto_ba
+    goto :goto_2
 
     .line 223
-    :catch_b9
+    :catch_1
     move-exception v0
 
     .line 162
-    :cond_ba
-    :goto_ba
+    :cond_4
+    :goto_2
     return-void
 
     .line 165
     .end local v3    # "file":Ljava/io/File;
-    :cond_bb
-    :goto_bb
-    :try_start_bb
+    :cond_5
+    :goto_3
+    :try_start_4
     invoke-static {}, Lorg/xmlpull/v1/XmlPullParserFactory;->newInstance()Lorg/xmlpull/v1/XmlPullParserFactory;
 
     move-result-object v3
@@ -760,18 +760,18 @@
 
     .line 174
     .local v0, "strList":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
-    :goto_d0
+    :goto_4
     const/4 v9, 0x1
 
-    if-eq v9, v5, :cond_1ab
+    if-eq v9, v5, :cond_10
 
     .line 175
-    packed-switch v5, :pswitch_data_1cc
+    packed-switch v5, :pswitch_data_0
 
-    goto/16 :goto_1a4
+    goto/16 :goto_5
 
     .line 202
-    :pswitch_d8
+    :pswitch_0
     invoke-interface {v4}, Lorg/xmlpull/v1/XmlPullParser;->getName()Ljava/lang/String;
 
     move-result-object v9
@@ -784,7 +784,7 @@
 
     move-result v10
 
-    if-eqz v10, :cond_ec
+    if-eqz v10, :cond_6
 
     .line 204
     sget-object v10, Lmiui/util/FeatureParser;->sIntArrMap:Ljava/util/HashMap;
@@ -794,17 +794,17 @@
     .line 205
     const/4 v8, 0x0
 
-    goto/16 :goto_1a4
+    goto/16 :goto_5
 
     .line 206
-    :cond_ec
+    :cond_6
     const-string v10, "string-array"
 
     invoke-virtual {v10, v9}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v10
 
-    if-eqz v10, :cond_1a4
+    if-eqz v10, :cond_f
 
     .line 207
     sget-object v10, Lmiui/util/FeatureParser;->sStrArrMap:Ljava/util/HashMap;
@@ -814,11 +814,11 @@
     .line 208
     const/4 v0, 0x0
 
-    goto/16 :goto_1a4
+    goto/16 :goto_5
 
     .line 177
     .end local v9    # "end_tag_name":Ljava/lang/String;
-    :pswitch_fc
+    :pswitch_1
     invoke-interface {v4}, Lorg/xmlpull/v1/XmlPullParser;->getName()Ljava/lang/String;
 
     move-result-object v9
@@ -830,7 +830,7 @@
 
     move-result v9
 
-    if-lez v9, :cond_10d
+    if-lez v9, :cond_7
 
     .line 179
     const/4 v9, 0x0
@@ -842,14 +842,14 @@
     move-object v7, v9
 
     .line 181
-    :cond_10d
+    :cond_7
     const-string v9, "integer-array"
 
     invoke-virtual {v9, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v9
 
-    if-eqz v9, :cond_11d
+    if-eqz v9, :cond_8
 
     .line 182
     new-instance v9, Ljava/util/ArrayList;
@@ -858,17 +858,17 @@
 
     move-object v8, v9
 
-    goto/16 :goto_1a4
+    goto/16 :goto_5
 
     .line 183
-    :cond_11d
+    :cond_8
     const-string v9, "string-array"
 
     invoke-virtual {v9, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v9
 
-    if-eqz v9, :cond_12d
+    if-eqz v9, :cond_9
 
     .line 184
     new-instance v9, Ljava/util/ArrayList;
@@ -877,17 +877,17 @@
 
     move-object v0, v9
 
-    goto/16 :goto_1a4
+    goto/16 :goto_5
 
     .line 185
-    :cond_12d
+    :cond_9
     const-string v9, "bool"
 
     invoke-virtual {v9, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v9
 
-    if-eqz v9, :cond_143
+    if-eqz v9, :cond_a
 
     .line 186
     sget-object v9, Lmiui/util/FeatureParser;->sBooleanMap:Ljava/util/HashMap;
@@ -902,17 +902,17 @@
 
     invoke-virtual {v9, v7, v10}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    goto :goto_1a4
+    goto :goto_5
 
     .line 187
-    :cond_143
+    :cond_a
     const-string v9, "integer"
 
     invoke-virtual {v9, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v9
 
-    if-eqz v9, :cond_159
+    if-eqz v9, :cond_b
 
     .line 188
     sget-object v9, Lmiui/util/FeatureParser;->sIntMap:Ljava/util/HashMap;
@@ -927,17 +927,17 @@
 
     invoke-virtual {v9, v7, v10}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    goto :goto_1a4
+    goto :goto_5
 
     .line 189
-    :cond_159
+    :cond_b
     const-string v9, "string"
 
     invoke-virtual {v9, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v9
 
-    if-eqz v9, :cond_16b
+    if-eqz v9, :cond_c
 
     .line 190
     sget-object v9, Lmiui/util/FeatureParser;->sStrMap:Ljava/util/HashMap;
@@ -948,17 +948,17 @@
 
     invoke-virtual {v9, v7, v10}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    goto :goto_1a4
+    goto :goto_5
 
     .line 191
-    :cond_16b
+    :cond_c
     const-string v9, "float"
 
     invoke-virtual {v9, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v9
 
-    if-eqz v9, :cond_185
+    if-eqz v9, :cond_d
 
     .line 192
     sget-object v9, Lmiui/util/FeatureParser;->sFloatMap:Ljava/util/HashMap;
@@ -977,20 +977,20 @@
 
     invoke-virtual {v9, v7, v10}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    goto :goto_1a4
+    goto :goto_5
 
     .line 193
-    :cond_185
+    :cond_d
     const-string v9, "item"
 
     invoke-virtual {v9, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v9
 
-    if-eqz v9, :cond_1a4
+    if-eqz v9, :cond_f
 
     .line 194
-    if-eqz v8, :cond_19b
+    if-eqz v8, :cond_e
 
     .line 195
     invoke-interface {v4}, Lorg/xmlpull/v1/XmlPullParser;->nextText()Ljava/lang/String;
@@ -1003,11 +1003,11 @@
 
     invoke-virtual {v8, v9}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    goto :goto_1a4
+    goto :goto_5
 
     .line 196
-    :cond_19b
-    if-eqz v0, :cond_1a4
+    :cond_e
+    if-eqz v0, :cond_f
 
     .line 197
     invoke-interface {v4}, Lorg/xmlpull/v1/XmlPullParser;->nextText()Ljava/lang/String;
@@ -1017,19 +1017,19 @@
     invoke-virtual {v0, v9}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
     .line 214
-    :cond_1a4
-    :goto_1a4
+    :cond_f
+    :goto_5
     invoke-interface {v4}, Lorg/xmlpull/v1/XmlPullParser;->next()I
 
     move-result v9
-    :try_end_1a8
-    .catch Ljava/io/IOException; {:try_start_bb .. :try_end_1a8} :catch_1c3
-    .catch Lorg/xmlpull/v1/XmlPullParserException; {:try_start_bb .. :try_end_1a8} :catch_1bc
-    .catchall {:try_start_bb .. :try_end_1a8} :catchall_1b3
+    :try_end_4
+    .catch Ljava/io/IOException; {:try_start_4 .. :try_end_4} :catch_5
+    .catch Lorg/xmlpull/v1/XmlPullParserException; {:try_start_4 .. :try_end_4} :catch_4
+    .catchall {:try_start_4 .. :try_end_4} :catchall_0
 
     move v5, v9
 
-    goto/16 :goto_d0
+    goto/16 :goto_4
 
     .line 220
     .end local v0    # "strList":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
@@ -1040,86 +1040,86 @@
     .end local v6    # "tagName":Ljava/lang/String;
     .end local v7    # "keyName":Ljava/lang/String;
     .end local v8    # "intList":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/Integer;>;"
-    :cond_1ab
-    if-eqz v1, :cond_1ca
+    :cond_10
+    if-eqz v1, :cond_12
 
     .line 222
-    :try_start_1ad
+    :try_start_5
     invoke-virtual {v1}, Ljava/io/InputStream;->close()V
-    :try_end_1b0
-    .catch Ljava/io/IOException; {:try_start_1ad .. :try_end_1b0} :catch_1b1
+    :try_end_5
+    .catch Ljava/io/IOException; {:try_start_5 .. :try_end_5} :catch_2
 
     .line 225
-    :goto_1b0
-    goto :goto_1ca
+    :goto_6
+    goto :goto_8
 
     .line 223
-    :catch_1b1
+    :catch_2
     move-exception v0
 
-    goto :goto_1b0
+    goto :goto_6
 
     .line 220
-    :catchall_1b3
+    :catchall_0
     move-exception v0
 
-    if-eqz v1, :cond_1bb
+    if-eqz v1, :cond_11
 
     .line 222
-    :try_start_1b6
+    :try_start_6
     invoke-virtual {v1}, Ljava/io/InputStream;->close()V
-    :try_end_1b9
-    .catch Ljava/io/IOException; {:try_start_1b6 .. :try_end_1b9} :catch_1ba
+    :try_end_6
+    .catch Ljava/io/IOException; {:try_start_6 .. :try_end_6} :catch_3
 
     .line 225
-    goto :goto_1bb
+    goto :goto_7
 
     .line 223
-    :catch_1ba
+    :catch_3
     move-exception v2
 
     .line 225
-    :cond_1bb
-    :goto_1bb
+    :cond_11
+    :goto_7
     throw v0
 
     .line 218
-    :catch_1bc
+    :catch_4
     move-exception v0
 
     .line 220
-    if-eqz v1, :cond_1ca
+    if-eqz v1, :cond_12
 
     .line 222
-    :try_start_1bf
+    :try_start_7
     invoke-virtual {v1}, Ljava/io/InputStream;->close()V
 
-    goto :goto_1b0
+    goto :goto_6
 
     .line 217
-    :catch_1c3
+    :catch_5
     move-exception v0
 
     .line 220
-    if-eqz v1, :cond_1ca
+    if-eqz v1, :cond_12
 
     .line 222
     invoke-virtual {v1}, Ljava/io/InputStream;->close()V
-    :try_end_1c9
-    .catch Ljava/io/IOException; {:try_start_1bf .. :try_end_1c9} :catch_1b1
+    :try_end_7
+    .catch Ljava/io/IOException; {:try_start_7 .. :try_end_7} :catch_2
 
-    goto :goto_1b0
+    goto :goto_6
 
     .line 229
-    :cond_1ca
-    :goto_1ca
+    :cond_12
+    :goto_8
     return-void
 
     nop
 
-    :pswitch_data_1cc
+    :pswitch_data_0
     .packed-switch 0x2
-        :pswitch_fc
-        :pswitch_d8
+        :pswitch_1
+        :pswitch_0
     .end packed-switch
 .end method

@@ -11,7 +11,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/provider/DocumentFile;Landroid/content/Context;Landroid/net/Uri;)V
-    .registers 4
+    .locals 0
     .param p1, "parent"    # Landroid/support/v4/provider/DocumentFile;
     .param p2, "context"    # Landroid/content/Context;
     .param p3, "uri"    # Landroid/net/Uri;
@@ -32,7 +32,7 @@
 
 # virtual methods
 .method public canRead()Z
-    .registers 3
+    .locals 2
 
     .line 80
     iget-object v0, p0, Landroid/support/v4/provider/SingleDocumentFile;->mContext:Landroid/content/Context;
@@ -47,7 +47,7 @@
 .end method
 
 .method public canWrite()Z
-    .registers 3
+    .locals 2
 
     .line 85
     iget-object v0, p0, Landroid/support/v4/provider/SingleDocumentFile;->mContext:Landroid/content/Context;
@@ -62,7 +62,7 @@
 .end method
 
 .method public createDirectory(Ljava/lang/String;)Landroid/support/v4/provider/DocumentFile;
-    .registers 3
+    .locals 1
     .param p1, "displayName"    # Ljava/lang/String;
 
     .line 40
@@ -74,7 +74,7 @@
 .end method
 
 .method public createFile(Ljava/lang/String;Ljava/lang/String;)Landroid/support/v4/provider/DocumentFile;
-    .registers 4
+    .locals 1
     .param p1, "mimeType"    # Ljava/lang/String;
     .param p2, "displayName"    # Ljava/lang/String;
 
@@ -87,7 +87,7 @@
 .end method
 
 .method public delete()Z
-    .registers 3
+    .locals 2
 
     .line 90
     iget-object v0, p0, Landroid/support/v4/provider/SingleDocumentFile;->mContext:Landroid/content/Context;
@@ -102,7 +102,7 @@
 .end method
 
 .method public exists()Z
-    .registers 3
+    .locals 2
 
     .line 95
     iget-object v0, p0, Landroid/support/v4/provider/SingleDocumentFile;->mContext:Landroid/content/Context;
@@ -117,7 +117,7 @@
 .end method
 
 .method public getName()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 50
     iget-object v0, p0, Landroid/support/v4/provider/SingleDocumentFile;->mContext:Landroid/content/Context;
@@ -132,7 +132,7 @@
 .end method
 
 .method public getType()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 55
     iget-object v0, p0, Landroid/support/v4/provider/SingleDocumentFile;->mContext:Landroid/content/Context;
@@ -147,7 +147,7 @@
 .end method
 
 .method public getUri()Landroid/net/Uri;
-    .registers 2
+    .locals 1
 
     .line 45
     iget-object v0, p0, Landroid/support/v4/provider/SingleDocumentFile;->mUri:Landroid/net/Uri;
@@ -156,7 +156,7 @@
 .end method
 
 .method public isDirectory()Z
-    .registers 3
+    .locals 2
 
     .line 60
     iget-object v0, p0, Landroid/support/v4/provider/SingleDocumentFile;->mContext:Landroid/content/Context;
@@ -171,7 +171,7 @@
 .end method
 
 .method public isFile()Z
-    .registers 3
+    .locals 2
 
     .line 65
     iget-object v0, p0, Landroid/support/v4/provider/SingleDocumentFile;->mContext:Landroid/content/Context;
@@ -186,7 +186,7 @@
 .end method
 
 .method public lastModified()J
-    .registers 3
+    .locals 2
 
     .line 70
     iget-object v0, p0, Landroid/support/v4/provider/SingleDocumentFile;->mContext:Landroid/content/Context;
@@ -201,7 +201,7 @@
 .end method
 
 .method public length()J
-    .registers 3
+    .locals 2
 
     .line 75
     iget-object v0, p0, Landroid/support/v4/provider/SingleDocumentFile;->mContext:Landroid/content/Context;
@@ -216,7 +216,7 @@
 .end method
 
 .method public listFiles()[Landroid/support/v4/provider/DocumentFile;
-    .registers 2
+    .locals 1
 
     .line 100
     new-instance v0, Ljava/lang/UnsupportedOperationException;
@@ -227,7 +227,7 @@
 .end method
 
 .method public renameTo(Ljava/lang/String;)Z
-    .registers 3
+    .locals 1
     .param p1, "displayName"    # Ljava/lang/String;
 
     .line 105

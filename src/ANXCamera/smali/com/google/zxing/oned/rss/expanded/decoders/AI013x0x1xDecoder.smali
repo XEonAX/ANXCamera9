@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/zxing/common/BitArray;Ljava/lang/String;Ljava/lang/String;)V
-    .registers 4
+    .locals 0
     .param p1, "information"    # Lcom/google/zxing/common/BitArray;
     .param p2, "firstAIdigits"    # Ljava/lang/String;
     .param p3, "dateCode"    # Ljava/lang/String;
@@ -38,7 +38,7 @@
 .end method
 
 .method private encodeCompressedDate(Ljava/lang/StringBuilder;I)V
-    .registers 9
+    .locals 6
     .param p1, "buf"    # Ljava/lang/StringBuilder;
     .param p2, "currentPos"    # I
 
@@ -57,13 +57,13 @@
     .local v0, "numericDate":I
     const v1, 0x9600
 
-    if-ne v0, v1, :cond_10
+    if-ne v0, v1, :cond_0
 
     .line 69
     return-void
 
     .line 72
-    :cond_10
+    :cond_0
     const/16 v1, 0x28
 
     invoke-virtual {p1, v1}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -103,37 +103,37 @@
 
     const/16 v5, 0x30
 
-    if-nez v4, :cond_33
+    if-nez v4, :cond_1
 
     .line 83
     invoke-virtual {p1, v5}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 85
-    :cond_33
+    :cond_1
     invoke-virtual {p1, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     .line 86
     div-int/lit8 v4, v2, 0xa
 
-    if-nez v4, :cond_3d
+    if-nez v4, :cond_2
 
     .line 87
     invoke-virtual {p1, v5}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 89
-    :cond_3d
+    :cond_2
     invoke-virtual {p1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     .line 90
     div-int/lit8 v4, v1, 0xa
 
-    if-nez v4, :cond_47
+    if-nez v4, :cond_3
 
     .line 91
     invoke-virtual {p1, v5}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 93
-    :cond_47
+    :cond_3
     invoke-virtual {p1, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     .line 94
@@ -143,7 +143,7 @@
 
 # virtual methods
 .method protected addWeightCode(Ljava/lang/StringBuilder;I)V
-    .registers 5
+    .locals 2
     .param p1, "buf"    # Ljava/lang/StringBuilder;
     .param p2, "weight"    # I
 
@@ -176,7 +176,7 @@
 .end method
 
 .method protected checkWeight(I)I
-    .registers 3
+    .locals 1
     .param p1, "weight"    # I
 
     .line 107
@@ -188,7 +188,7 @@
 .end method
 
 .method public parseInformation()Ljava/lang/String;
-    .registers 4
+    .locals 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lcom/google/zxing/NotFoundException;
@@ -206,7 +206,7 @@
 
     const/16 v1, 0x54
 
-    if-ne v0, v1, :cond_27
+    if-ne v0, v1, :cond_0
 
     .line 57
     new-instance v0, Ljava/lang/StringBuilder;
@@ -240,7 +240,7 @@
 
     .line 54
     .end local v0    # "buf":Ljava/lang/StringBuilder;
-    :cond_27
+    :cond_0
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v0

@@ -157,7 +157,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 5
+    .locals 5
 
     .line 48
     const-string v0, "mione"
@@ -172,7 +172,7 @@
 
     const/4 v2, 0x1
 
-    if-nez v0, :cond_19
+    if-nez v0, :cond_1
 
     const-string v0, "mione_plus"
 
@@ -182,20 +182,20 @@
 
     move-result v0
 
-    if-eqz v0, :cond_17
+    if-eqz v0, :cond_0
 
-    goto :goto_19
+    goto :goto_0
 
-    :cond_17
+    :cond_0
     move v0, v1
 
-    goto :goto_1a
+    goto :goto_1
 
-    :cond_19
-    :goto_19
+    :cond_1
+    :goto_0
     move v0, v2
 
-    :goto_1a
+    :goto_1
     sput-boolean v0, Lmiui/os/Build;->IS_MIONE:Z
 
     .line 51
@@ -207,7 +207,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_33
+    if-nez v0, :cond_3
 
     const-string v0, "MI 1SC"
 
@@ -217,20 +217,20 @@
 
     move-result v0
 
-    if-eqz v0, :cond_31
+    if-eqz v0, :cond_2
 
-    goto :goto_33
+    goto :goto_2
 
-    :cond_31
+    :cond_2
     move v0, v1
 
-    goto :goto_34
+    goto :goto_3
 
-    :cond_33
-    :goto_33
+    :cond_3
+    :goto_2
     move v0, v2
 
-    :goto_34
+    :goto_3
     sput-boolean v0, Lmiui/os/Build;->IS_MI1S:Z
 
     .line 54
@@ -242,7 +242,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_57
+    if-nez v0, :cond_5
 
     const-string v0, "taurus"
 
@@ -252,7 +252,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_57
+    if-nez v0, :cond_5
 
     const-string v0, "taurus_td"
 
@@ -262,20 +262,20 @@
 
     move-result v0
 
-    if-eqz v0, :cond_55
+    if-eqz v0, :cond_4
 
-    goto :goto_57
+    goto :goto_4
 
-    :cond_55
+    :cond_4
     move v0, v1
 
-    goto :goto_58
+    goto :goto_5
 
-    :cond_57
-    :goto_57
+    :cond_5
+    :goto_4
     move v0, v2
 
-    :goto_58
+    :goto_5
     sput-boolean v0, Lmiui/os/Build;->IS_MITWO:Z
 
     .line 57
@@ -287,7 +287,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_71
+    if-nez v0, :cond_7
 
     const-string v0, "MI 2A TD"
 
@@ -297,20 +297,20 @@
 
     move-result v0
 
-    if-eqz v0, :cond_6f
+    if-eqz v0, :cond_6
 
-    goto :goto_71
+    goto :goto_6
 
-    :cond_6f
+    :cond_6
     move v0, v1
 
-    goto :goto_72
+    goto :goto_7
 
-    :cond_71
-    :goto_71
+    :cond_7
+    :goto_6
     move v0, v2
 
-    :goto_72
+    :goto_7
     sput-boolean v0, Lmiui/os/Build;->IS_MI2A:Z
 
     .line 60
@@ -322,7 +322,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_95
+    if-nez v0, :cond_9
 
     const-string v0, "cancro"
 
@@ -332,7 +332,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_93
+    if-eqz v0, :cond_8
 
     sget-object v0, Lmiui/os/Build;->MODEL:Ljava/lang/String;
 
@@ -342,20 +342,20 @@
 
     move-result v0
 
-    if-eqz v0, :cond_93
+    if-eqz v0, :cond_8
 
-    goto :goto_95
+    goto :goto_8
 
-    :cond_93
+    :cond_8
     move v0, v1
 
-    goto :goto_96
+    goto :goto_9
 
-    :cond_95
-    :goto_95
+    :cond_9
+    :goto_8
     move v0, v2
 
-    :goto_96
+    :goto_9
     sput-boolean v0, Lmiui/os/Build;->IS_MITHREE:Z
 
     .line 63
@@ -367,7 +367,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_ae
+    if-eqz v0, :cond_a
 
     sget-object v0, Lmiui/os/Build;->MODEL:Ljava/lang/String;
 
@@ -377,16 +377,16 @@
 
     move-result v0
 
-    if-eqz v0, :cond_ae
+    if-eqz v0, :cond_a
 
     move v0, v2
 
-    goto :goto_af
+    goto :goto_a
 
-    :cond_ae
+    :cond_a
     move v0, v1
 
-    :goto_af
+    :goto_a
     sput-boolean v0, Lmiui/os/Build;->IS_MIFOUR:Z
 
     .line 66
@@ -403,36 +403,36 @@
     .line 69
     sget-boolean v0, Lmiui/os/Build;->IS_MIONE:Z
 
-    if-nez v0, :cond_d2
+    if-nez v0, :cond_c
 
     sget-boolean v0, Lmiui/os/Build;->IS_MITWO:Z
 
-    if-nez v0, :cond_d2
+    if-nez v0, :cond_c
 
     sget-boolean v0, Lmiui/os/Build;->IS_MITHREE:Z
 
-    if-nez v0, :cond_d2
+    if-nez v0, :cond_c
 
     sget-boolean v0, Lmiui/os/Build;->IS_MIFOUR:Z
 
-    if-nez v0, :cond_d2
+    if-nez v0, :cond_c
 
     sget-boolean v0, Lmiui/os/Build;->IS_MIFIVE:Z
 
-    if-eqz v0, :cond_d0
+    if-eqz v0, :cond_b
 
-    goto :goto_d2
+    goto :goto_b
 
-    :cond_d0
+    :cond_b
     move v0, v1
 
-    goto :goto_d3
+    goto :goto_c
 
-    :cond_d2
-    :goto_d2
+    :cond_c
+    :goto_b
     move v0, v2
 
-    :goto_d3
+    :goto_c
     sput-boolean v0, Lmiui/os/Build;->IS_XIAOMI:Z
 
     .line 75
@@ -477,7 +477,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_10a
+    if-nez v0, :cond_e
 
     const-string v0, "HM2014012"
 
@@ -487,20 +487,20 @@
 
     move-result v0
 
-    if-eqz v0, :cond_108
+    if-eqz v0, :cond_d
 
-    goto :goto_10a
+    goto :goto_d
 
-    :cond_108
+    :cond_d
     move v0, v1
 
-    goto :goto_10b
+    goto :goto_e
 
-    :cond_10a
-    :goto_10a
+    :cond_e
+    :goto_d
     move v0, v2
 
-    :goto_10b
+    :goto_e
     sput-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWO_S:Z
 
     .line 90
@@ -523,7 +523,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_136
+    if-nez v0, :cond_10
 
     const-string v0, "HM2013023"
 
@@ -533,28 +533,28 @@
 
     move-result v0
 
-    if-nez v0, :cond_136
+    if-nez v0, :cond_10
 
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWO_A:Z
 
-    if-nez v0, :cond_136
+    if-nez v0, :cond_10
 
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWO_S:Z
 
-    if-eqz v0, :cond_134
+    if-eqz v0, :cond_f
 
-    goto :goto_136
+    goto :goto_f
 
-    :cond_134
+    :cond_f
     move v0, v1
 
-    goto :goto_137
+    goto :goto_10
 
-    :cond_136
-    :goto_136
+    :cond_10
+    :goto_f
     move v0, v2
 
-    :goto_137
+    :goto_10
     sput-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWO:Z
 
     .line 97
@@ -566,7 +566,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_150
+    if-nez v0, :cond_12
 
     const-string v0, "lcsh92_wet_tdd"
 
@@ -576,20 +576,20 @@
 
     move-result v0
 
-    if-eqz v0, :cond_14e
+    if-eqz v0, :cond_11
 
-    goto :goto_150
+    goto :goto_11
 
-    :cond_14e
+    :cond_11
     move v0, v1
 
-    goto :goto_151
+    goto :goto_12
 
-    :cond_150
-    :goto_150
+    :cond_12
+    :goto_11
     move v0, v2
 
-    :goto_151
+    :goto_12
     sput-boolean v0, Lmiui/os/Build;->IS_HONGMI_THREE:Z
 
     .line 100
@@ -606,7 +606,7 @@
     .line 103
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_THREE_LTE:Z
 
-    if-eqz v0, :cond_171
+    if-eqz v0, :cond_13
 
     const-string v0, "LTETD"
 
@@ -620,22 +620,22 @@
 
     move-result v0
 
-    if-eqz v0, :cond_171
+    if-eqz v0, :cond_13
 
     move v0, v2
 
-    goto :goto_172
+    goto :goto_13
 
-    :cond_171
+    :cond_13
     move v0, v1
 
-    :goto_172
+    :goto_13
     sput-boolean v0, Lmiui/os/Build;->IS_HONGMI_THREE_LTE_CM:Z
 
     .line 106
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_THREE_LTE:Z
 
-    if-eqz v0, :cond_188
+    if-eqz v0, :cond_14
 
     const-string v0, "LTEW"
 
@@ -649,16 +649,16 @@
 
     move-result v0
 
-    if-eqz v0, :cond_188
+    if-eqz v0, :cond_14
 
     move v0, v2
 
-    goto :goto_189
+    goto :goto_14
 
-    :cond_188
+    :cond_14
     move v0, v1
 
-    :goto_189
+    :goto_14
     sput-boolean v0, Lmiui/os/Build;->IS_HONGMI_THREE_LTE_CU:Z
 
     .line 109
@@ -681,7 +681,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_1ac
+    if-nez v0, :cond_16
 
     const-string v0, "HM2014821"
 
@@ -691,20 +691,20 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1aa
+    if-eqz v0, :cond_15
 
-    goto :goto_1ac
+    goto :goto_15
 
-    :cond_1aa
+    :cond_15
     move v0, v1
 
-    goto :goto_1ad
+    goto :goto_16
 
-    :cond_1ac
-    :goto_1ac
+    :cond_16
+    :goto_15
     move v0, v2
 
-    :goto_1ad
+    :goto_16
     sput-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWOX_CT:Z
 
     .line 115
@@ -716,7 +716,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_1c6
+    if-nez v0, :cond_18
 
     const-string v0, "HM2014112"
 
@@ -726,20 +726,20 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1c4
+    if-eqz v0, :cond_17
 
-    goto :goto_1c6
+    goto :goto_17
 
-    :cond_1c4
+    :cond_17
     move v0, v1
 
-    goto :goto_1c7
+    goto :goto_18
 
-    :cond_1c6
-    :goto_1c6
+    :cond_18
+    :goto_17
     move v0, v2
 
-    :goto_1c7
+    :goto_18
     sput-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWOX_CM:Z
 
     .line 118
@@ -778,40 +778,40 @@
     .line 127
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWOX_CU:Z
 
-    if-nez v0, :cond_202
+    if-nez v0, :cond_1a
 
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWOX_CT:Z
 
-    if-nez v0, :cond_202
+    if-nez v0, :cond_1a
 
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWOX_CM:Z
 
-    if-nez v0, :cond_202
+    if-nez v0, :cond_1a
 
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWOX_IN:Z
 
-    if-nez v0, :cond_202
+    if-nez v0, :cond_1a
 
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWOX_SA:Z
 
-    if-nez v0, :cond_202
+    if-nez v0, :cond_1a
 
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWOX_BR:Z
 
-    if-eqz v0, :cond_200
+    if-eqz v0, :cond_19
 
-    goto :goto_202
+    goto :goto_19
 
-    :cond_200
+    :cond_19
     move v0, v1
 
-    goto :goto_203
+    goto :goto_1a
 
-    :cond_202
-    :goto_202
+    :cond_1a
+    :goto_19
     move v0, v2
 
-    :goto_203
+    :goto_1a
     sput-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWOX:Z
 
     .line 130
@@ -839,7 +839,7 @@
     .line 136
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_THREEX:Z
 
-    if-eqz v0, :cond_22d
+    if-eqz v0, :cond_1b
 
     const-string v0, "cm"
 
@@ -853,22 +853,22 @@
 
     move-result v0
 
-    if-eqz v0, :cond_22d
+    if-eqz v0, :cond_1b
 
     move v0, v2
 
-    goto :goto_22e
+    goto :goto_1b
 
-    :cond_22d
+    :cond_1b
     move v0, v1
 
-    :goto_22e
+    :goto_1b
     sput-boolean v0, Lmiui/os/Build;->IS_HONGMI_THREEX_CM:Z
 
     .line 139
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_THREEX:Z
 
-    if-eqz v0, :cond_244
+    if-eqz v0, :cond_1c
 
     const-string v0, "cu"
 
@@ -882,22 +882,22 @@
 
     move-result v0
 
-    if-eqz v0, :cond_244
+    if-eqz v0, :cond_1c
 
     move v0, v2
 
-    goto :goto_245
+    goto :goto_1c
 
-    :cond_244
+    :cond_1c
     move v0, v1
 
-    :goto_245
+    :goto_1c
     sput-boolean v0, Lmiui/os/Build;->IS_HONGMI_THREEX_CU:Z
 
     .line 142
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_THREEX:Z
 
-    if-eqz v0, :cond_25b
+    if-eqz v0, :cond_1d
 
     const-string v0, "ct"
 
@@ -911,86 +911,86 @@
 
     move-result v0
 
-    if-eqz v0, :cond_25b
+    if-eqz v0, :cond_1d
 
     move v0, v2
 
-    goto :goto_25c
+    goto :goto_1d
 
-    :cond_25b
+    :cond_1d
     move v0, v1
 
-    :goto_25c
+    :goto_1d
     sput-boolean v0, Lmiui/os/Build;->IS_HONGMI_THREEX_CT:Z
 
     .line 146
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWO:Z
 
-    if-nez v0, :cond_27d
+    if-nez v0, :cond_1f
 
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_THREE:Z
 
-    if-nez v0, :cond_27d
+    if-nez v0, :cond_1f
 
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWOX:Z
 
-    if-nez v0, :cond_27d
+    if-nez v0, :cond_1f
 
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_THREE_LTE:Z
 
-    if-nez v0, :cond_27d
+    if-nez v0, :cond_1f
 
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWOX_LC:Z
 
-    if-nez v0, :cond_27d
+    if-nez v0, :cond_1f
 
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_TWOS_LTE_MTK:Z
 
-    if-nez v0, :cond_27d
+    if-nez v0, :cond_1f
 
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI_THREEX:Z
 
-    if-eqz v0, :cond_27b
+    if-eqz v0, :cond_1e
 
-    goto :goto_27d
+    goto :goto_1e
 
-    :cond_27b
+    :cond_1e
     move v0, v1
 
-    goto :goto_27e
+    goto :goto_1f
 
-    :cond_27d
-    :goto_27d
+    :cond_1f
+    :goto_1e
     move v0, v2
 
-    :goto_27e
+    :goto_1f
     sput-boolean v0, Lmiui/os/Build;->IS_HONGMI:Z
 
     .line 153
     sget-boolean v0, Lmiui/os/Build;->IS_MIONE:Z
 
-    if-eqz v0, :cond_28c
+    if-eqz v0, :cond_20
 
     invoke-static {}, Lmiui/os/Build;->hasMsm8660Property()Z
 
     move-result v0
 
-    if-eqz v0, :cond_28c
+    if-eqz v0, :cond_20
 
     move v0, v2
 
-    goto :goto_28d
+    goto :goto_20
 
-    :cond_28c
+    :cond_20
     move v0, v1
 
-    :goto_28d
+    :goto_20
     sput-boolean v0, Lmiui/os/Build;->IS_MIONE_CDMA:Z
 
     .line 156
     sget-boolean v0, Lmiui/os/Build;->IS_MITWO:Z
 
-    if-eqz v0, :cond_2a3
+    if-eqz v0, :cond_21
 
     const-string v0, "CDMA"
 
@@ -1006,22 +1006,22 @@
 
     move-result v0
 
-    if-eqz v0, :cond_2a3
+    if-eqz v0, :cond_21
 
     move v0, v2
 
-    goto :goto_2a4
+    goto :goto_21
 
-    :cond_2a3
+    :cond_21
     move v0, v1
 
-    :goto_2a4
+    :goto_21
     sput-boolean v0, Lmiui/os/Build;->IS_MITWO_CDMA:Z
 
     .line 160
     sget-boolean v0, Lmiui/os/Build;->IS_MITHREE:Z
 
-    if-eqz v0, :cond_2b6
+    if-eqz v0, :cond_22
 
     const-string v0, "MI 3C"
 
@@ -1031,22 +1031,22 @@
 
     move-result v0
 
-    if-eqz v0, :cond_2b6
+    if-eqz v0, :cond_22
 
     move v0, v2
 
-    goto :goto_2b7
+    goto :goto_22
 
-    :cond_2b6
+    :cond_22
     move v0, v1
 
-    :goto_2b7
+    :goto_22
     sput-boolean v0, Lmiui/os/Build;->IS_MITHREE_CDMA:Z
 
     .line 163
     sget-boolean v0, Lmiui/os/Build;->IS_MIFOUR:Z
 
-    if-eqz v0, :cond_2cd
+    if-eqz v0, :cond_23
 
     const-string v0, "CDMA"
 
@@ -1062,22 +1062,22 @@
 
     move-result v0
 
-    if-eqz v0, :cond_2cd
+    if-eqz v0, :cond_23
 
     move v0, v2
 
-    goto :goto_2ce
+    goto :goto_23
 
-    :cond_2cd
+    :cond_23
     move v0, v1
 
-    :goto_2ce
+    :goto_23
     sput-boolean v0, Lmiui/os/Build;->IS_MIFOUR_CDMA:Z
 
     .line 167
     sget-boolean v0, Lmiui/os/Build;->IS_MITWO:Z
 
-    if-eqz v0, :cond_2e4
+    if-eqz v0, :cond_24
 
     const-string v0, "TD"
 
@@ -1093,22 +1093,22 @@
 
     move-result v0
 
-    if-eqz v0, :cond_2e4
+    if-eqz v0, :cond_24
 
     move v0, v2
 
-    goto :goto_2e5
+    goto :goto_24
 
-    :cond_2e4
+    :cond_24
     move v0, v1
 
-    :goto_2e5
+    :goto_24
     sput-boolean v0, Lmiui/os/Build;->IS_MITWO_TDSCDMA:Z
 
     .line 171
     sget-boolean v0, Lmiui/os/Build;->IS_MITHREE:Z
 
-    if-eqz v0, :cond_2fb
+    if-eqz v0, :cond_25
 
     const-string v0, "TD"
 
@@ -1124,22 +1124,22 @@
 
     move-result v0
 
-    if-eqz v0, :cond_2fb
+    if-eqz v0, :cond_25
 
     move v0, v2
 
-    goto :goto_2fc
+    goto :goto_25
 
-    :cond_2fb
+    :cond_25
     move v0, v1
 
-    :goto_2fc
+    :goto_25
     sput-boolean v0, Lmiui/os/Build;->IS_MITHREE_TDSCDMA:Z
 
     .line 175
     sget-boolean v0, Lmiui/os/Build;->IS_MIFOUR:Z
 
-    if-eqz v0, :cond_312
+    if-eqz v0, :cond_26
 
     const-string v0, "LTE-CMCC"
 
@@ -1154,22 +1154,22 @@
 
     move-result v0
 
-    if-eqz v0, :cond_312
+    if-eqz v0, :cond_26
 
     move v0, v2
 
-    goto :goto_313
+    goto :goto_26
 
-    :cond_312
+    :cond_26
     move v0, v1
 
-    :goto_313
+    :goto_26
     sput-boolean v0, Lmiui/os/Build;->IS_MIFOUR_LTE_CM:Z
 
     .line 179
     sget-boolean v0, Lmiui/os/Build;->IS_MIFOUR:Z
 
-    if-eqz v0, :cond_329
+    if-eqz v0, :cond_27
 
     const-string v0, "LTE-CU"
 
@@ -1184,22 +1184,22 @@
 
     move-result v0
 
-    if-eqz v0, :cond_329
+    if-eqz v0, :cond_27
 
     move v0, v2
 
-    goto :goto_32a
+    goto :goto_27
 
-    :cond_329
+    :cond_27
     move v0, v1
 
-    :goto_32a
+    :goto_27
     sput-boolean v0, Lmiui/os/Build;->IS_MIFOUR_LTE_CU:Z
 
     .line 183
     sget-boolean v0, Lmiui/os/Build;->IS_MIFOUR:Z
 
-    if-eqz v0, :cond_340
+    if-eqz v0, :cond_28
 
     const-string v0, "LTE-CT"
 
@@ -1214,22 +1214,22 @@
 
     move-result v0
 
-    if-eqz v0, :cond_340
+    if-eqz v0, :cond_28
 
     move v0, v2
 
-    goto :goto_341
+    goto :goto_28
 
-    :cond_340
+    :cond_28
     move v0, v1
 
-    :goto_341
+    :goto_28
     sput-boolean v0, Lmiui/os/Build;->IS_MIFOUR_LTE_CT:Z
 
     .line 187
     sget-boolean v0, Lmiui/os/Build;->IS_MIFOUR:Z
 
-    if-eqz v0, :cond_357
+    if-eqz v0, :cond_29
 
     const-string v0, "LTE-India"
 
@@ -1244,22 +1244,22 @@
 
     move-result v0
 
-    if-eqz v0, :cond_357
+    if-eqz v0, :cond_29
 
     move v0, v2
 
-    goto :goto_358
+    goto :goto_29
 
-    :cond_357
+    :cond_29
     move v0, v1
 
-    :goto_358
+    :goto_29
     sput-boolean v0, Lmiui/os/Build;->IS_MIFOUR_LTE_INDIA:Z
 
     .line 191
     sget-boolean v0, Lmiui/os/Build;->IS_MIFOUR:Z
 
-    if-eqz v0, :cond_36e
+    if-eqz v0, :cond_2a
 
     const-string v0, "LTE-SEAsa"
 
@@ -1274,16 +1274,16 @@
 
     move-result v0
 
-    if-eqz v0, :cond_36e
+    if-eqz v0, :cond_2a
 
     move v0, v2
 
-    goto :goto_36f
+    goto :goto_2a
 
-    :cond_36e
+    :cond_2a
     move v0, v1
 
-    :goto_36f
+    :goto_2a
     sput-boolean v0, Lmiui/os/Build;->IS_MIFOUR_LTE_SEASA:Z
 
     .line 195
@@ -1300,63 +1300,63 @@
     .line 198
     sget-boolean v0, Lmiui/os/Build;->IS_MIONE_CDMA:Z
 
-    if-nez v0, :cond_392
+    if-nez v0, :cond_2c
 
     sget-boolean v0, Lmiui/os/Build;->IS_MITWO_CDMA:Z
 
-    if-nez v0, :cond_392
+    if-nez v0, :cond_2c
 
     sget-boolean v0, Lmiui/os/Build;->IS_MITHREE_CDMA:Z
 
-    if-nez v0, :cond_392
+    if-nez v0, :cond_2c
 
     sget-boolean v0, Lmiui/os/Build;->IS_MIFOUR_CDMA:Z
 
-    if-nez v0, :cond_392
+    if-nez v0, :cond_2c
 
     sget-boolean v0, Lmiui/os/Build;->IS_MIFOUR_LTE_CT:Z
 
-    if-eqz v0, :cond_390
+    if-eqz v0, :cond_2b
 
-    goto :goto_392
+    goto :goto_2b
 
-    :cond_390
+    :cond_2b
     move v0, v1
 
-    goto :goto_393
+    goto :goto_2c
 
-    :cond_392
-    :goto_392
+    :cond_2c
+    :goto_2b
     move v0, v2
 
-    :goto_393
+    :goto_2c
     sput-boolean v0, Lmiui/os/Build;->IS_CDMA:Z
 
     .line 201
     sget-boolean v0, Lmiui/os/Build;->IS_MITHREE_TDSCDMA:Z
 
-    if-nez v0, :cond_3a4
+    if-nez v0, :cond_2e
 
     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI2_TDSCDMA:Z
 
-    if-nez v0, :cond_3a4
+    if-nez v0, :cond_2e
 
     sget-boolean v0, Lmiui/os/Build;->IS_MITWO_TDSCDMA:Z
 
-    if-eqz v0, :cond_3a2
+    if-eqz v0, :cond_2d
 
-    goto :goto_3a4
+    goto :goto_2d
 
-    :cond_3a2
+    :cond_2d
     move v0, v1
 
-    goto :goto_3a5
+    goto :goto_2e
 
-    :cond_3a4
-    :goto_3a4
+    :cond_2e
+    :goto_2d
     move v0, v2
 
-    :goto_3a5
+    :goto_2e
     sput-boolean v0, Lmiui/os/Build;->IS_TDS_CDMA:Z
 
     .line 204
@@ -1391,7 +1391,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_3e1
+    if-eqz v0, :cond_30
 
     const-string v0, "cn_chinamobile"
 
@@ -1407,7 +1407,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_3df
+    if-nez v0, :cond_2f
 
     const-string v0, "cn_cta"
 
@@ -1423,17 +1423,17 @@
 
     move-result v0
 
-    if-eqz v0, :cond_3e1
+    if-eqz v0, :cond_30
 
-    :cond_3df
+    :cond_2f
     move v0, v2
 
-    goto :goto_3e2
+    goto :goto_2f
 
-    :cond_3e1
+    :cond_30
     move v0, v1
 
-    :goto_3e2
+    :goto_2f
     sput-boolean v0, Lmiui/os/Build;->IS_CM_CUSTOMIZATION:Z
 
     .line 214
@@ -1451,7 +1451,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_402
+    if-eqz v0, :cond_31
 
     const-string v0, "cn_cmcooperation"
 
@@ -1467,16 +1467,16 @@
 
     move-result v0
 
-    if-eqz v0, :cond_402
+    if-eqz v0, :cond_31
 
     move v0, v2
 
-    goto :goto_403
+    goto :goto_30
 
-    :cond_402
+    :cond_31
     move v0, v1
 
-    :goto_403
+    :goto_30
     sput-boolean v0, Lmiui/os/Build;->IS_CM_COOPERATION:Z
 
     .line 219
@@ -1504,7 +1504,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_427
+    if-nez v0, :cond_32
 
     sget-object v0, Landroid/os/Build$VERSION;->INCREMENTAL:Ljava/lang/String;
 
@@ -1515,16 +1515,16 @@
 
     move-result v0
 
-    if-eqz v0, :cond_427
+    if-eqz v0, :cond_32
 
     move v0, v2
 
-    goto :goto_428
+    goto :goto_31
 
-    :cond_427
+    :cond_32
     move v0, v1
 
-    :goto_428
+    :goto_31
     sput-boolean v0, Lmiui/os/Build;->IS_DEVELOPMENT_VERSION:Z
 
     .line 228
@@ -1536,43 +1536,43 @@
 
     move-result v0
 
-    if-eqz v0, :cond_43a
+    if-eqz v0, :cond_33
 
     sget-boolean v0, Lmiui/os/Build;->IS_DEVELOPMENT_VERSION:Z
 
-    if-nez v0, :cond_43a
+    if-nez v0, :cond_33
 
     move v0, v2
 
-    goto :goto_43b
+    goto :goto_32
 
-    :cond_43a
+    :cond_33
     move v0, v1
 
-    :goto_43b
+    :goto_32
     sput-boolean v0, Lmiui/os/Build;->IS_STABLE_VERSION:Z
 
     .line 232
     sget-boolean v0, Lmiui/os/Build;->IS_DEVELOPMENT_VERSION:Z
 
-    if-nez v0, :cond_448
+    if-nez v0, :cond_35
 
     sget-boolean v0, Lmiui/os/Build;->IS_STABLE_VERSION:Z
 
-    if-eqz v0, :cond_446
+    if-eqz v0, :cond_34
 
-    goto :goto_448
+    goto :goto_33
 
-    :cond_446
+    :cond_34
     move v0, v1
 
-    goto :goto_449
+    goto :goto_34
 
-    :cond_448
-    :goto_448
+    :cond_35
+    :goto_33
     move v0, v2
 
-    :goto_449
+    :goto_34
     sput-boolean v0, Lmiui/os/Build;->IS_OFFICIAL_VERSION:Z
 
     .line 235
@@ -1770,16 +1770,16 @@
 
     move-result v0
 
-    if-ne v0, v2, :cond_4f5
+    if-ne v0, v2, :cond_36
 
     move v0, v2
 
-    goto :goto_4f6
+    goto :goto_35
 
-    :cond_4f5
+    :cond_36
     move v0, v1
 
-    :goto_4f6
+    :goto_35
     sput-boolean v0, Lmiui/os/Build;->IS_DEBUGGABLE:Z
 
     .line 406
@@ -1833,7 +1833,7 @@
 .end method
 
 .method protected constructor <init>()V
-    .registers 3
+    .locals 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/InstantiationException;
@@ -1854,7 +1854,7 @@
 .end method
 
 .method public static checkRegion(Ljava/lang/String;)Z
-    .registers 2
+    .locals 1
     .param p0, "region"    # Ljava/lang/String;
 
     .line 297
@@ -1870,12 +1870,12 @@
 .end method
 
 .method public static getCustVariant()Ljava/lang/String;
-    .registers 2
+    .locals 2
 
     .line 359
     sget-boolean v0, Lmiui/os/Build;->IS_INTERNATIONAL_BUILD:Z
 
-    if-nez v0, :cond_d
+    if-nez v0, :cond_0
 
     .line 360
     const-string v0, "ro.miui.cust_variant"
@@ -1889,7 +1889,7 @@
     return-object v0
 
     .line 362
-    :cond_d
+    :cond_0
     const-string v0, "ro.miui.cust_variant"
 
     const-string v1, "hk"
@@ -1902,7 +1902,7 @@
 .end method
 
 .method public static getRegion()Ljava/lang/String;
-    .registers 2
+    .locals 2
 
     .line 283
     const-string v0, "ro.miui.region"
@@ -1917,7 +1917,7 @@
 .end method
 
 .method public static getUserMode()I
-    .registers 2
+    .locals 2
 
     .line 337
     const-string v0, "persist.sys.user_mode"
@@ -1932,7 +1932,7 @@
 .end method
 
 .method private static getUserdataImageVersionCode()Ljava/lang/String;
-    .registers 6
+    .locals 6
 
     .line 377
     const-string v0, "ro.miui.userdata_version"
@@ -1951,7 +1951,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_13
+    if-eqz v1, :cond_0
 
     .line 379
     const-string v1, "Unavailable"
@@ -1959,25 +1959,25 @@
     return-object v1
 
     .line 383
-    :cond_13
+    :cond_0
     sget-boolean v1, Lmiui/os/Build;->IS_INTERNATIONAL_BUILD:Z
 
-    if-eqz v1, :cond_1a
+    if-eqz v1, :cond_1
 
     .line 384
     const-string v1, "global"
 
     .local v1, "region":Ljava/lang/String;
-    goto :goto_1c
+    goto :goto_0
 
     .line 386
     .end local v1    # "region":Ljava/lang/String;
-    :cond_1a
+    :cond_1
     const-string v1, "cn"
 
     .line 389
     .restart local v1    # "region":Ljava/lang/String;
-    :goto_1c
+    :goto_0
     const-string v2, "ro.carrier.name"
 
     const-string v3, ""
@@ -1994,7 +1994,7 @@
 
     move-result v3
 
-    if-nez v3, :cond_3d
+    if-nez v3, :cond_2
 
     .line 391
     new-instance v3, Ljava/lang/StringBuilder;
@@ -2012,7 +2012,7 @@
     move-result-object v2
 
     .line 394
-    :cond_3d
+    :cond_2
     const-string v3, "%s(%s%s)"
 
     const/4 v4, 0x3
@@ -2039,7 +2039,7 @@
 .end method
 
 .method public static hasCameraFlash(Landroid/content/Context;)Z
-    .registers 3
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
 
     .line 323
@@ -2055,7 +2055,7 @@
 .end method
 
 .method private static hasMsm8660Property()Z
-    .registers 2
+    .locals 2
 
     .line 313
     const-string v0, "ro.soc.name"
@@ -2072,7 +2072,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_19
+    if-nez v1, :cond_1
 
     const-string v1, "unkown"
 
@@ -2080,25 +2080,25 @@
 
     move-result v1
 
-    if-eqz v1, :cond_17
+    if-eqz v1, :cond_0
 
-    goto :goto_19
+    goto :goto_0
 
-    :cond_17
+    :cond_0
     const/4 v1, 0x0
 
-    goto :goto_1a
+    goto :goto_1
 
-    :cond_19
-    :goto_19
+    :cond_1
+    :goto_0
     const/4 v1, 0x1
 
-    :goto_1a
+    :goto_1
     return v1
 .end method
 
 .method private static isTablet()Z
-    .registers 2
+    .locals 2
 
     .line 319
     const-string v0, "ro.build.characteristics"
@@ -2117,7 +2117,7 @@
 .end method
 
 .method private static reboot(ZLjava/lang/String;Z)V
-    .registers 4
+    .locals 1
     .param p0, "confim"    # Z
     .param p1, "reason"    # Ljava/lang/String;
     .param p2, "wait"    # Z
@@ -2138,29 +2138,29 @@
 
     .line 350
     .local v0, "powermanager":Landroid/os/IPowerManager;
-    if-eqz v0, :cond_f
+    if-eqz v0, :cond_0
 
     .line 351
     invoke-interface {v0, p0, p1, p2}, Landroid/os/IPowerManager;->reboot(ZLjava/lang/String;Z)V
-    :try_end_f
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_f} :catch_10
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 354
     .end local v0    # "powermanager":Landroid/os/IPowerManager;
-    :cond_f
-    goto :goto_11
+    :cond_0
+    goto :goto_0
 
     .line 353
-    :catch_10
+    :catch_0
     move-exception v0
 
     .line 355
-    :goto_11
+    :goto_0
     return-void
 .end method
 
 .method public static setUserMode(Landroid/content/Context;I)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "mode"    # I
 

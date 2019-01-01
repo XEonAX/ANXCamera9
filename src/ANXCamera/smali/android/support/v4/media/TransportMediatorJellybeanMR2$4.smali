@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/media/TransportMediatorJellybeanMR2;)V
-    .registers 2
+    .locals 0
 
     .line 72
     iput-object p1, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2$4;->this$0:Landroid/support/v4/media/TransportMediatorJellybeanMR2;
@@ -36,7 +36,7 @@
 
 # virtual methods
 .method public onAudioFocusChange(I)V
-    .registers 3
+    .locals 1
     .param p1, "focusChange"    # I
 
     .line 75

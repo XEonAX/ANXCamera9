@@ -35,7 +35,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 909
     new-instance v0, Landroid/support/v4/media/session/MediaSessionCompat$ResultReceiverWrapper$1;
@@ -48,7 +48,7 @@
 .end method
 
 .method constructor <init>(Landroid/os/Parcel;)V
-    .registers 3
+    .locals 1
     .param p1, "in"    # Landroid/os/Parcel;
 
     .line 904
@@ -70,7 +70,7 @@
 .end method
 
 .method public constructor <init>(Landroid/os/ResultReceiver;)V
-    .registers 2
+    .locals 0
     .param p1, "resultReceiver"    # Landroid/os/ResultReceiver;
 
     .line 900
@@ -84,7 +84,7 @@
 .end method
 
 .method static synthetic access$700(Landroid/support/v4/media/session/MediaSessionCompat$ResultReceiverWrapper;)Landroid/os/ResultReceiver;
-    .registers 2
+    .locals 1
     .param p0, "x0"    # Landroid/support/v4/media/session/MediaSessionCompat$ResultReceiverWrapper;
 
     .line 897
@@ -96,7 +96,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .registers 2
+    .locals 1
 
     .line 923
     const/4 v0, 0x0
@@ -105,7 +105,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .registers 4
+    .locals 1
     .param p1, "dest"    # Landroid/os/Parcel;
     .param p2, "flags"    # I
 

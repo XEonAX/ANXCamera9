@@ -114,7 +114,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 6372
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -123,7 +123,7 @@
 .end method
 
 .method public static getKeyAndGestureShortcutFunction(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "action"    # Ljava/lang/String;
 
@@ -144,7 +144,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_80
+    if-eqz v1, :cond_9
 
     .line 6530
     const-string v1, "double_click_power_key"
@@ -153,150 +153,150 @@
 
     move-result v1
 
-    if-eqz v1, :cond_19
+    if-eqz v1, :cond_0
 
     .line 6531
     const/4 v0, 0x0
 
-    goto :goto_80
+    goto :goto_0
 
     .line 6533
-    :cond_19
+    :cond_0
     const-string/jumbo v1, "three_gesture_down"
 
     invoke-virtual {v1, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_26
+    if-eqz v1, :cond_1
 
     .line 6534
     const-string/jumbo v0, "screen_shot"
 
-    goto :goto_80
+    goto :goto_0
 
     .line 6536
-    :cond_26
+    :cond_1
     const-string/jumbo v1, "long_press_home_key"
 
     invoke-virtual {v1, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_3b
+    if-eqz v1, :cond_3
 
     .line 6537
     sget-boolean v1, Lmiui/os/Build;->IS_GLOBAL_BUILD:Z
 
-    if-nez v1, :cond_37
+    if-nez v1, :cond_2
 
     .line 6538
     const-string/jumbo v0, "launch_voice_assistant"
 
-    goto :goto_80
+    goto :goto_0
 
     .line 6540
-    :cond_37
+    :cond_2
     const-string/jumbo v0, "launch_google_search"
 
-    goto :goto_80
+    goto :goto_0
 
     .line 6543
-    :cond_3b
+    :cond_3
     const-string/jumbo v1, "long_press_menu_key"
 
     invoke-virtual {v1, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_48
+    if-eqz v1, :cond_4
 
     .line 6544
     const-string/jumbo v0, "show_menu"
 
-    goto :goto_80
+    goto :goto_0
 
     .line 6546
-    :cond_48
+    :cond_4
     const-string/jumbo v1, "long_press_menu_key_when_lock"
 
     invoke-virtual {v1, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_55
+    if-eqz v1, :cond_5
 
     .line 6547
     const-string/jumbo v0, "turn_on_torch"
 
-    goto :goto_80
+    goto :goto_0
 
     .line 6549
-    :cond_55
+    :cond_5
     const-string/jumbo v1, "long_press_back_key"
 
     invoke-virtual {v1, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_60
+    if-eqz v1, :cond_6
 
     .line 6550
     const/4 v0, 0x0
 
-    goto :goto_80
+    goto :goto_0
 
     .line 6552
-    :cond_60
+    :cond_6
     const-string/jumbo v1, "key_combination_power_home"
 
     invoke-virtual {v1, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_6b
+    if-eqz v1, :cond_7
 
     .line 6553
     const/4 v0, 0x0
 
-    goto :goto_80
+    goto :goto_0
 
     .line 6555
-    :cond_6b
+    :cond_7
     const-string/jumbo v1, "key_combination_power_back"
 
     invoke-virtual {v1, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_76
+    if-eqz v1, :cond_8
 
     .line 6556
     const/4 v0, 0x0
 
-    goto :goto_80
+    goto :goto_0
 
     .line 6558
-    :cond_76
+    :cond_8
     const-string/jumbo v1, "key_combination_power_menu"
 
     invoke-virtual {v1, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_80
+    if-eqz v1, :cond_9
 
     .line 6559
     const/4 v0, 0x0
 
     .line 6562
-    :cond_80
-    :goto_80
+    :cond_9
+    :goto_0
     return-object v0
 .end method
 
 .method public static isTSMClientInstalled(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 6398
@@ -308,21 +308,21 @@
     .local v0, "pm":Landroid/content/pm/PackageManager;
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_13
+    if-eqz v0, :cond_1
 
     .line 6401
-    :try_start_7
+    :try_start_0
     const-string v2, "com.miui.tsmclient"
 
     invoke-virtual {v0, v2, v1}, Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;
 
     move-result-object v2
-    :try_end_d
-    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_7 .. :try_end_d} :catch_12
+    :try_end_0
+    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 6402
     .local v2, "packageInfo":Landroid/content/pm/PackageInfo;
-    if-eqz v2, :cond_11
+    if-eqz v2, :cond_0
 
     .line 6403
     const/4 v1, 0x1
@@ -331,21 +331,21 @@
 
     .line 6407
     .end local v2    # "packageInfo":Landroid/content/pm/PackageInfo;
-    :cond_11
-    goto :goto_13
+    :cond_0
+    goto :goto_0
 
     .line 6405
-    :catch_12
+    :catch_0
     move-exception v2
 
     .line 6409
-    :cond_13
-    :goto_13
+    :cond_1
+    :goto_0
     return v1
 .end method
 
 .method public static updateOldKeyFunctionToNew(Landroid/content/Context;)V
-    .registers 8
+    .locals 7
     .param p0, "context"    # Landroid/content/Context;
 
     .line 6569
@@ -363,7 +363,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_b1
+    if-nez v0, :cond_6
 
     .line 6571
     const-string/jumbo v0, "screen_key_long_press_app_switch"
@@ -396,7 +396,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_3b
+    if-eqz v4, :cond_0
 
     .line 6578
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
@@ -409,17 +409,17 @@
 
     invoke-static {v4, v5, v6, v2}, Landroid/provider/Settings$System;->putStringForUser(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;I)Z
 
-    goto :goto_68
+    goto :goto_0
 
     .line 6580
-    :cond_3b
+    :cond_0
     const-string/jumbo v4, "voice_assistant"
 
     invoke-virtual {v4, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_52
+    if-eqz v4, :cond_1
 
     .line 6581
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
@@ -432,17 +432,17 @@
 
     invoke-static {v4, v5, v6, v2}, Landroid/provider/Settings$System;->putStringForUser(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;I)Z
 
-    goto :goto_68
+    goto :goto_0
 
     .line 6583
-    :cond_52
+    :cond_1
     const-string/jumbo v4, "voice_assistant"
 
     invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_68
+    if-eqz v4, :cond_2
 
     .line 6584
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
@@ -456,15 +456,15 @@
     invoke-static {v4, v5, v6, v2}, Landroid/provider/Settings$System;->putStringForUser(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;I)Z
 
     .line 6588
-    :cond_68
-    :goto_68
+    :cond_2
+    :goto_0
     const-string v4, "close_app"
 
     invoke-virtual {v4, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_7d
+    if-eqz v4, :cond_3
 
     .line 6589
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
@@ -477,17 +477,17 @@
 
     invoke-static {v4, v5, v6, v2}, Landroid/provider/Settings$System;->putStringForUser(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;I)Z
 
-    goto :goto_a6
+    goto :goto_1
 
     .line 6591
-    :cond_7d
+    :cond_3
     const-string v4, "close_app"
 
     invoke-virtual {v4, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_92
+    if-eqz v4, :cond_4
 
     .line 6592
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
@@ -500,17 +500,17 @@
 
     invoke-static {v4, v5, v6, v2}, Landroid/provider/Settings$System;->putStringForUser(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;I)Z
 
-    goto :goto_a6
+    goto :goto_1
 
     .line 6594
-    :cond_92
+    :cond_4
     const-string v4, "close_app"
 
     invoke-virtual {v4, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_a6
+    if-eqz v4, :cond_5
 
     .line 6595
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
@@ -524,8 +524,8 @@
     invoke-static {v4, v5, v6, v2}, Landroid/provider/Settings$System;->putStringForUser(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;I)Z
 
     .line 6599
-    :cond_a6
-    :goto_a6
+    :cond_5
+    :goto_1
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v4
@@ -540,6 +540,6 @@
     .end local v0    # "menuAction":Ljava/lang/String;
     .end local v1    # "homeAction":Ljava/lang/String;
     .end local v3    # "backAction":Ljava/lang/String;
-    :cond_b1
+    :cond_6
     return-void
 .end method

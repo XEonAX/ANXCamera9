@@ -19,7 +19,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 45
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v4/view/accessibility/AccessibilityWindowInfoCompat$1;)V
-    .registers 2
+    .locals 0
     .param p1, "x0"    # Landroid/support/v4/view/accessibility/AccessibilityWindowInfoCompat$1;
 
     .line 45
@@ -40,7 +40,7 @@
 
 # virtual methods
 .method public getBoundsInScreen(Ljava/lang/Object;Landroid/graphics/Rect;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "outBounds"    # Landroid/graphics/Rect;
 
@@ -49,7 +49,7 @@
 .end method
 
 .method public getChild(Ljava/lang/Object;I)Ljava/lang/Object;
-    .registers 4
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "index"    # I
 
@@ -60,7 +60,7 @@
 .end method
 
 .method public getChildCount(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 103
@@ -70,7 +70,7 @@
 .end method
 
 .method public getId(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 79
@@ -80,7 +80,7 @@
 .end method
 
 .method public getLayer(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 64
@@ -90,7 +90,7 @@
 .end method
 
 .method public getParent(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 74
@@ -100,7 +100,7 @@
 .end method
 
 .method public getRoot(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 69
@@ -110,7 +110,7 @@
 .end method
 
 .method public getType(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 59
@@ -120,7 +120,7 @@
 .end method
 
 .method public isAccessibilityFocused(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 98
@@ -130,7 +130,7 @@
 .end method
 
 .method public isActive(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 88
@@ -140,7 +140,7 @@
 .end method
 
 .method public isFocused(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 93
@@ -150,7 +150,7 @@
 .end method
 
 .method public obtain()Ljava/lang/Object;
-    .registers 2
+    .locals 1
 
     .line 49
     const/4 v0, 0x0
@@ -159,7 +159,7 @@
 .end method
 
 .method public obtain(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 54
@@ -169,7 +169,7 @@
 .end method
 
 .method public recycle(Ljava/lang/Object;)V
-    .registers 2
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 113

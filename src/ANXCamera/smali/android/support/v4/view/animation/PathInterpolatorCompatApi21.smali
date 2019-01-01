@@ -5,7 +5,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -15,7 +15,7 @@
 .end method
 
 .method public static create(FF)Landroid/view/animation/Interpolator;
-    .registers 3
+    .locals 1
     .param p0, "controlX"    # F
     .param p1, "controlY"    # F
 
@@ -28,7 +28,7 @@
 .end method
 
 .method public static create(FFFF)Landroid/view/animation/Interpolator;
-    .registers 5
+    .locals 1
     .param p0, "controlX1"    # F
     .param p1, "controlY1"    # F
     .param p2, "controlX2"    # F
@@ -43,7 +43,7 @@
 .end method
 
 .method public static create(Landroid/graphics/Path;)Landroid/view/animation/Interpolator;
-    .registers 2
+    .locals 1
     .param p0, "path"    # Landroid/graphics/Path;
 
     .line 33

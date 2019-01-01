@@ -45,7 +45,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v4/app/BackStackRecord;)V
-    .registers 2
+    .locals 0
 
     .line 1447
     iput-object p1, p0, Landroid/support/v4/app/BackStackRecord$TransitionState;->this$0:Landroid/support/v4/app/BackStackRecord;

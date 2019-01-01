@@ -29,7 +29,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/app/Activity;Ljava/lang/String;ILandroid/content/DialogInterface$OnClickListener;)V
-    .registers 5
+    .locals 0
 
     .line 3000
     iput-object p1, p0, Landroid/provider/MiuiSettings$Secure$2;->val$activity:Landroid/app/Activity;
@@ -48,21 +48,20 @@
 
 # virtual methods
 .method public onClick(Landroid/content/DialogInterface;I)V
-    .registers 6
+    .locals 3
     .param p1, "dialog"    # Landroid/content/DialogInterface;
     .param p2, "which"    # I
 
     .line 3003
     const/4 v0, -0x1
 
-    if-ne p2, v0, :cond_10
+    if-ne p2, v0, :cond_0
 
     .line 3004
     iget-object v0, p0, Landroid/provider/MiuiSettings$Secure$2;->val$activity:Landroid/app/Activity;
 
     iget-object v1, p0, Landroid/provider/MiuiSettings$Secure$2;->val$businessKey:Ljava/lang/String;
 
-    # invokes: Landroid/provider/MiuiSettings$Secure;->buildNewPasswordIntent(Ljava/lang/String;)Landroid/content/Intent;
     invoke-static {v1}, Landroid/provider/MiuiSettings$Secure;->access$000(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v1
@@ -72,10 +71,10 @@
     invoke-virtual {v0, v1, v2}, Landroid/app/Activity;->startActivityForResult(Landroid/content/Intent;I)V
 
     .line 3006
-    :cond_10
+    :cond_0
     iget-object v0, p0, Landroid/provider/MiuiSettings$Secure$2;->val$dialogClickListener:Landroid/content/DialogInterface$OnClickListener;
 
-    if-eqz v0, :cond_19
+    if-eqz v0, :cond_1
 
     .line 3007
     iget-object v0, p0, Landroid/provider/MiuiSettings$Secure$2;->val$dialogClickListener:Landroid/content/DialogInterface$OnClickListener;
@@ -83,6 +82,6 @@
     invoke-interface {v0, p1, p2}, Landroid/content/DialogInterface$OnClickListener;->onClick(Landroid/content/DialogInterface;I)V
 
     .line 3009
-    :cond_19
+    :cond_1
     return-void
 .end method

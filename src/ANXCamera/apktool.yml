@@ -1,5 +1,5 @@
 !!brut.androlib.meta.MetaInfo
-apkFileName: MiuiCamera.apk
+apkFileName: ANXCamera.apk
 compressionType: false
 doNotCompress:
 - dex
@@ -55,7 +55,9 @@ isFrameworkApk: false
 packageInfo:
   forcedPackageId: '127'
   renameManifestPackage: null
-sdkInfo: null
+sdkInfo:
+  minSdkVersion: '26'
+  targetSdkVersion: '28'
 sharedLibrary: false
 sparseResources: false
 unknownFiles:
@@ -69,5 +71,5 @@ usesFramework:
   tag: null
 version: 2.3.4
 versionInfo:
-  versionCode: '3'
-  versionName: '3.0'
+  versionCode: '1'
+  versionName: OrdinaryEnergeticWuerhosaurus

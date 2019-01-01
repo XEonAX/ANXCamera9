@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 234
     invoke-direct {p0}, Landroid/support/v4/widget/SearchViewCompat$SearchViewCompatHoneycombImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public newSearchView(Landroid/content/Context;)Landroid/view/View;
-    .registers 3
+    .locals 1
     .param p1, "context"    # Landroid/content/Context;
 
     .line 238
@@ -39,7 +39,7 @@
 .end method
 
 .method public setImeOptions(Landroid/view/View;I)V
-    .registers 3
+    .locals 0
     .param p1, "searchView"    # Landroid/view/View;
     .param p2, "imeOptions"    # I
 
@@ -51,7 +51,7 @@
 .end method
 
 .method public setInputType(Landroid/view/View;I)V
-    .registers 3
+    .locals 0
     .param p1, "searchView"    # Landroid/view/View;
     .param p2, "inputType"    # I
 

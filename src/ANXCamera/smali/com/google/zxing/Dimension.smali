@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>(II)V
-    .registers 4
+    .locals 1
     .param p1, "width"    # I
     .param p2, "height"    # I
 
@@ -19,9 +19,9 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 28
-    if-ltz p1, :cond_c
+    if-ltz p1, :cond_0
 
-    if-ltz p2, :cond_c
+    if-ltz p2, :cond_0
 
     .line 31
     iput p1, p0, Lcom/google/zxing/Dimension;->width:I
@@ -33,7 +33,7 @@
     return-void
 
     .line 29
-    :cond_c
+    :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     invoke-direct {v0}, Ljava/lang/IllegalArgumentException;-><init>()V
@@ -44,7 +44,7 @@
 
 # virtual methods
 .method public equals(Ljava/lang/Object;)Z
-    .registers 6
+    .locals 4
     .param p1, "other"    # Ljava/lang/Object;
 
     .line 45
@@ -52,7 +52,7 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_16
+    if-eqz v0, :cond_1
 
     .line 46
     move-object v0, p1
@@ -65,27 +65,27 @@
 
     iget v3, v0, Lcom/google/zxing/Dimension;->width:I
 
-    if-ne v2, v3, :cond_15
+    if-ne v2, v3, :cond_0
 
     iget v2, p0, Lcom/google/zxing/Dimension;->height:I
 
     iget v3, v0, Lcom/google/zxing/Dimension;->height:I
 
-    if-ne v2, v3, :cond_15
+    if-ne v2, v3, :cond_0
 
     const/4 v1, 0x1
 
-    :cond_15
+    :cond_0
     return v1
 
     .line 49
     .end local v0    # "d":Lcom/google/zxing/Dimension;
-    :cond_16
+    :cond_1
     return v1
 .end method
 
 .method public getHeight()I
-    .registers 2
+    .locals 1
 
     .line 40
     iget v0, p0, Lcom/google/zxing/Dimension;->height:I
@@ -94,7 +94,7 @@
 .end method
 
 .method public getWidth()I
-    .registers 2
+    .locals 1
 
     .line 36
     iget v0, p0, Lcom/google/zxing/Dimension;->width:I
@@ -103,7 +103,7 @@
 .end method
 
 .method public hashCode()I
-    .registers 3
+    .locals 2
 
     .line 54
     iget v0, p0, Lcom/google/zxing/Dimension;->width:I
@@ -118,7 +118,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 59
     new-instance v0, Ljava/lang/StringBuilder;

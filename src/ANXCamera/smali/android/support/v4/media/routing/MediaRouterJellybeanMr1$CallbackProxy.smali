@@ -26,7 +26,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v4/media/routing/MediaRouterJellybeanMr1$Callback;)V
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -45,7 +45,7 @@
 
 # virtual methods
 .method public onRoutePresentationDisplayChanged(Landroid/media/MediaRouter;Landroid/media/MediaRouter$RouteInfo;)V
-    .registers 4
+    .locals 1
     .param p1, "router"    # Landroid/media/MediaRouter;
     .param p2, "route"    # Landroid/media/MediaRouter$RouteInfo;
 

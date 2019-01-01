@@ -21,14 +21,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .locals 2
 
     .line 86
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xe
 
-    if-lt v0, v1, :cond_e
+    if-lt v0, v1, :cond_0
 
     .line 87
     new-instance v0, Landroid/support/v4/view/ViewConfigurationCompat$IcsViewConfigurationVersionImpl;
@@ -37,15 +37,15 @@
 
     sput-object v0, Landroid/support/v4/view/ViewConfigurationCompat;->IMPL:Landroid/support/v4/view/ViewConfigurationCompat$ViewConfigurationVersionImpl;
 
-    goto :goto_31
+    goto :goto_0
 
     .line 88
-    :cond_e
+    :cond_0
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xb
 
-    if-lt v0, v1, :cond_1c
+    if-lt v0, v1, :cond_1
 
     .line 89
     new-instance v0, Landroid/support/v4/view/ViewConfigurationCompat$HoneycombViewConfigurationVersionImpl;
@@ -54,15 +54,15 @@
 
     sput-object v0, Landroid/support/v4/view/ViewConfigurationCompat;->IMPL:Landroid/support/v4/view/ViewConfigurationCompat$ViewConfigurationVersionImpl;
 
-    goto :goto_31
+    goto :goto_0
 
     .line 90
-    :cond_1c
+    :cond_1
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x8
 
-    if-lt v0, v1, :cond_2a
+    if-lt v0, v1, :cond_2
 
     .line 91
     new-instance v0, Landroid/support/v4/view/ViewConfigurationCompat$FroyoViewConfigurationVersionImpl;
@@ -71,10 +71,10 @@
 
     sput-object v0, Landroid/support/v4/view/ViewConfigurationCompat;->IMPL:Landroid/support/v4/view/ViewConfigurationCompat$ViewConfigurationVersionImpl;
 
-    goto :goto_31
+    goto :goto_0
 
     .line 93
-    :cond_2a
+    :cond_2
     new-instance v0, Landroid/support/v4/view/ViewConfigurationCompat$BaseViewConfigurationVersionImpl;
 
     invoke-direct {v0}, Landroid/support/v4/view/ViewConfigurationCompat$BaseViewConfigurationVersionImpl;-><init>()V
@@ -82,12 +82,12 @@
     sput-object v0, Landroid/support/v4/view/ViewConfigurationCompat;->IMPL:Landroid/support/v4/view/ViewConfigurationCompat$ViewConfigurationVersionImpl;
 
     .line 95
-    :goto_31
+    :goto_0
     return-void
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 25
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -97,7 +97,7 @@
 .end method
 
 .method public static getScaledPagingTouchSlop(Landroid/view/ViewConfiguration;)I
-    .registers 2
+    .locals 1
     .param p0, "config"    # Landroid/view/ViewConfiguration;
 
     .line 105
@@ -111,7 +111,7 @@
 .end method
 
 .method public static hasPermanentMenuKey(Landroid/view/ViewConfiguration;)Z
-    .registers 2
+    .locals 1
     .param p0, "config"    # Landroid/view/ViewConfiguration;
 
     .line 113

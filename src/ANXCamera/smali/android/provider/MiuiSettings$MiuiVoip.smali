@@ -30,7 +30,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 5758
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -39,7 +39,7 @@
 .end method
 
 .method public static getVoipContactCount(Landroid/content/Context;)I
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5804
@@ -59,7 +59,7 @@
 .end method
 
 .method public static getVoipNewContactCount(Landroid/content/Context;)I
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5812
@@ -79,7 +79,7 @@
 .end method
 
 .method public static isVoipActivated(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5768
@@ -99,7 +99,7 @@
 .end method
 
 .method public static isVoipCallLogAuto(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5792
@@ -119,7 +119,7 @@
 .end method
 
 .method public static isVoipEnabled(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5776
@@ -139,7 +139,7 @@
 .end method
 
 .method public static isVoipWifiAuto(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 5784
@@ -159,7 +159,7 @@
 .end method
 
 .method public static setVoipActivated(Landroid/content/Context;Z)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "isActivated"    # Z
 
@@ -177,7 +177,7 @@
 .end method
 
 .method public static setVoipCallLogAuto(Landroid/content/Context;Z)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "enabled"    # Z
 
@@ -195,7 +195,7 @@
 .end method
 
 .method public static setVoipContactCount(Landroid/content/Context;I)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "count"    # I
 
@@ -213,7 +213,7 @@
 .end method
 
 .method public static setVoipEnabled(Landroid/content/Context;Z)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "enabled"    # Z
 
@@ -231,7 +231,7 @@
 .end method
 
 .method public static setVoipNewContactCount(Landroid/content/Context;I)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "count"    # I
 
@@ -249,7 +249,7 @@
 .end method
 
 .method public static setVoipWifiAuto(Landroid/content/Context;Z)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "enabled"    # Z
 

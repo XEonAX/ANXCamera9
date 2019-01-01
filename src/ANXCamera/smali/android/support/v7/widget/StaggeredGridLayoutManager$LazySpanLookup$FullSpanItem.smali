@@ -41,7 +41,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 2664
     new-instance v0, Landroid/support/v7/widget/StaggeredGridLayoutManager$LazySpanLookup$FullSpanItem$1;
@@ -54,7 +54,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 2625
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -64,7 +64,7 @@
 .end method
 
 .method public constructor <init>(Landroid/os/Parcel;)V
-    .registers 4
+    .locals 2
     .param p1, "in"    # Landroid/os/Parcel;
 
     .line 2614
@@ -91,14 +91,14 @@
 
     const/4 v1, 0x1
 
-    if-ne v0, v1, :cond_17
+    if-ne v0, v1, :cond_0
 
-    goto :goto_18
+    goto :goto_0
 
-    :cond_17
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_18
+    :goto_0
     iput-boolean v1, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$LazySpanLookup$FullSpanItem;->mHasUnwantedGapAfter:Z
 
     .line 2618
@@ -108,7 +108,7 @@
 
     .line 2619
     .local v0, "spanCount":I
-    if-lez v0, :cond_29
+    if-lez v0, :cond_1
 
     .line 2620
     new-array v1, v0, [I
@@ -121,14 +121,14 @@
     invoke-virtual {p1, v1}, Landroid/os/Parcel;->readIntArray([I)V
 
     .line 2623
-    :cond_29
+    :cond_1
     return-void
 .end method
 
 
 # virtual methods
 .method public describeContents()I
-    .registers 2
+    .locals 1
 
     .line 2638
     const/4 v0, 0x0
@@ -137,29 +137,29 @@
 .end method
 
 .method getGapForSpan(I)I
-    .registers 3
+    .locals 1
     .param p1, "spanIndex"    # I
 
     .line 2629
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$LazySpanLookup$FullSpanItem;->mGapPerSpan:[I
 
-    if-nez v0, :cond_6
+    if-nez v0, :cond_0
 
     const/4 v0, 0x0
 
-    goto :goto_a
+    goto :goto_0
 
-    :cond_6
+    :cond_0
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$LazySpanLookup$FullSpanItem;->mGapPerSpan:[I
 
     aget v0, v0, p1
 
-    :goto_a
+    :goto_0
     return v0
 .end method
 
 .method public invalidateSpanGaps()V
-    .registers 2
+    .locals 1
 
     .line 2633
     const/4 v0, 0x0
@@ -171,7 +171,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 2656
     new-instance v0, Ljava/lang/StringBuilder;
@@ -226,7 +226,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .registers 4
+    .locals 1
     .param p1, "dest"    # Landroid/os/Parcel;
     .param p2, "flags"    # I
 
@@ -248,13 +248,13 @@
     .line 2646
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$LazySpanLookup$FullSpanItem;->mGapPerSpan:[I
 
-    if-eqz v0, :cond_24
+    if-eqz v0, :cond_0
 
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$LazySpanLookup$FullSpanItem;->mGapPerSpan:[I
 
     array-length v0, v0
 
-    if-lez v0, :cond_24
+    if-lez v0, :cond_0
 
     .line 2647
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$LazySpanLookup$FullSpanItem;->mGapPerSpan:[I
@@ -268,15 +268,15 @@
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeIntArray([I)V
 
-    goto :goto_28
+    goto :goto_0
 
     .line 2650
-    :cond_24
+    :cond_0
     const/4 v0, 0x0
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 2652
-    :goto_28
+    :goto_0
     return-void
 .end method

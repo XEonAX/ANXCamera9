@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 1607
     invoke-direct {p0}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoJellybeanMr2Impl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public canOpenPopup(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1714
@@ -39,7 +39,7 @@
 .end method
 
 .method public getCollectionInfo(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1620
@@ -51,7 +51,7 @@
 .end method
 
 .method public getCollectionInfoColumnCount(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1644
@@ -63,7 +63,7 @@
 .end method
 
 .method public getCollectionInfoRowCount(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1649
@@ -75,7 +75,7 @@
 .end method
 
 .method public getCollectionItemColumnIndex(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1674
@@ -87,7 +87,7 @@
 .end method
 
 .method public getCollectionItemColumnSpan(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1679
@@ -99,7 +99,7 @@
 .end method
 
 .method public getCollectionItemInfo(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1659
@@ -111,7 +111,7 @@
 .end method
 
 .method public getCollectionItemRowIndex(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1684
@@ -123,7 +123,7 @@
 .end method
 
 .method public getCollectionItemRowSpan(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1689
@@ -135,7 +135,7 @@
 .end method
 
 .method public getExtras(Ljava/lang/Object;)Landroid/os/Bundle;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1724
@@ -147,7 +147,7 @@
 .end method
 
 .method public getInputType(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1729
@@ -159,7 +159,7 @@
 .end method
 
 .method public getLiveRegion(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1610
@@ -171,7 +171,7 @@
 .end method
 
 .method public getRangeInfo(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1664
@@ -183,7 +183,7 @@
 .end method
 
 .method public isCollectionInfoHierarchical(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1654
@@ -195,7 +195,7 @@
 .end method
 
 .method public isCollectionItemHeading(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1694
@@ -207,7 +207,7 @@
 .end method
 
 .method public isContentInvalid(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1709
@@ -219,7 +219,7 @@
 .end method
 
 .method public isDismissable(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1739
@@ -231,7 +231,7 @@
 .end method
 
 .method public isMultiLine(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1749
@@ -243,7 +243,7 @@
 .end method
 
 .method public obtainCollectionInfo(IIZI)Ljava/lang/Object;
-    .registers 6
+    .locals 1
     .param p1, "rowCount"    # I
     .param p2, "columnCount"    # I
     .param p3, "hierarchical"    # Z
@@ -258,7 +258,7 @@
 .end method
 
 .method public obtainCollectionItemInfo(IIIIZZ)Ljava/lang/Object;
-    .registers 8
+    .locals 1
     .param p1, "rowIndex"    # I
     .param p2, "rowSpan"    # I
     .param p3, "columnIndex"    # I
@@ -275,7 +275,7 @@
 .end method
 
 .method public setCanOpenPopup(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "opensPopup"    # Z
 
@@ -287,7 +287,7 @@
 .end method
 
 .method public setCollectionInfo(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "collectionInfo"    # Ljava/lang/Object;
 
@@ -299,7 +299,7 @@
 .end method
 
 .method public setCollectionItemInfo(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "collectionItemInfo"    # Ljava/lang/Object;
 
@@ -311,7 +311,7 @@
 .end method
 
 .method public setContentInvalid(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "contentInvalid"    # Z
 
@@ -323,7 +323,7 @@
 .end method
 
 .method public setDismissable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "dismissable"    # Z
 
@@ -335,7 +335,7 @@
 .end method
 
 .method public setInputType(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "inputType"    # I
 
@@ -347,7 +347,7 @@
 .end method
 
 .method public setLiveRegion(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "mode"    # I
 
@@ -359,7 +359,7 @@
 .end method
 
 .method public setMultiLine(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "multiLine"    # Z
 
@@ -371,7 +371,7 @@
 .end method
 
 .method public setRangeInfo(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "rangeInfo"    # Ljava/lang/Object;
 

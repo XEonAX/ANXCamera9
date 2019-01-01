@@ -24,7 +24,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 267
     invoke-direct {p0}, Lmiui/util/Pools$Manager;-><init>()V
@@ -35,7 +35,7 @@
 
 # virtual methods
 .method public a(Ljava/lang/StringBuilder;)V
-    .registers 3
+    .locals 1
 
     .line 275
     const/4 v0, 0x0
@@ -47,7 +47,7 @@
 .end method
 
 .method public synthetic createInstance()Ljava/lang/Object;
-    .registers 2
+    .locals 1
 
     .line 267
     invoke-virtual {p0}, Lmiui/util/Pools$1;->db()Ljava/lang/StringBuilder;
@@ -58,7 +58,7 @@
 .end method
 
 .method public db()Ljava/lang/StringBuilder;
-    .registers 2
+    .locals 1
 
     .line 270
     new-instance v0, Ljava/lang/StringBuilder;
@@ -69,7 +69,7 @@
 .end method
 
 .method public synthetic onRelease(Ljava/lang/Object;)V
-    .registers 2
+    .locals 0
 
     .line 267
     check-cast p1, Ljava/lang/StringBuilder;

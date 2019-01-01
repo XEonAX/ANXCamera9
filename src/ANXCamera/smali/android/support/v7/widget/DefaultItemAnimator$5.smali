@@ -24,7 +24,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v7/widget/DefaultItemAnimator;Landroid/support/v7/widget/RecyclerView$ViewHolder;Landroid/support/v4/view/ViewPropertyAnimatorCompat;)V
-    .registers 4
+    .locals 0
 
     .line 228
     iput-object p1, p0, Landroid/support/v7/widget/DefaultItemAnimator$5;->this$0:Landroid/support/v7/widget/DefaultItemAnimator;
@@ -43,7 +43,7 @@
 
 # virtual methods
 .method public onAnimationCancel(Landroid/view/View;)V
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 235
@@ -56,7 +56,7 @@
 .end method
 
 .method public onAnimationEnd(Landroid/view/View;)V
-    .registers 4
+    .locals 2
     .param p1, "view"    # Landroid/view/View;
 
     .line 240
@@ -76,7 +76,6 @@
     .line 242
     iget-object v0, p0, Landroid/support/v7/widget/DefaultItemAnimator$5;->this$0:Landroid/support/v7/widget/DefaultItemAnimator;
 
-    # getter for: Landroid/support/v7/widget/DefaultItemAnimator;->mAddAnimations:Ljava/util/ArrayList;
     invoke-static {v0}, Landroid/support/v7/widget/DefaultItemAnimator;->access$900(Landroid/support/v7/widget/DefaultItemAnimator;)Ljava/util/ArrayList;
 
     move-result-object v0
@@ -88,7 +87,6 @@
     .line 243
     iget-object v0, p0, Landroid/support/v7/widget/DefaultItemAnimator$5;->this$0:Landroid/support/v7/widget/DefaultItemAnimator;
 
-    # invokes: Landroid/support/v7/widget/DefaultItemAnimator;->dispatchFinishedWhenDone()V
     invoke-static {v0}, Landroid/support/v7/widget/DefaultItemAnimator;->access$800(Landroid/support/v7/widget/DefaultItemAnimator;)V
 
     .line 244
@@ -96,7 +94,7 @@
 .end method
 
 .method public onAnimationStart(Landroid/view/View;)V
-    .registers 4
+    .locals 2
     .param p1, "view"    # Landroid/view/View;
 
     .line 231

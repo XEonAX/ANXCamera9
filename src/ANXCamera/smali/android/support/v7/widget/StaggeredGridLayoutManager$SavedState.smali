@@ -61,7 +61,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 2767
     new-instance v0, Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState$1;
@@ -74,7 +74,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 2692
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -84,7 +84,7 @@
 .end method
 
 .method constructor <init>(Landroid/os/Parcel;)V
-    .registers 5
+    .locals 3
     .param p1, "in"    # Landroid/os/Parcel;
 
     .line 2695
@@ -114,7 +114,7 @@
     .line 2699
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState;->mSpanOffsetsSize:I
 
-    if-lez v0, :cond_24
+    if-lez v0, :cond_0
 
     .line 2700
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState;->mSpanOffsetsSize:I
@@ -129,7 +129,7 @@
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->readIntArray([I)V
 
     .line 2704
-    :cond_24
+    :cond_0
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
@@ -139,7 +139,7 @@
     .line 2705
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState;->mSpanLookupSize:I
 
-    if-lez v0, :cond_39
+    if-lez v0, :cond_1
 
     .line 2706
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState;->mSpanLookupSize:I
@@ -154,7 +154,7 @@
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->readIntArray([I)V
 
     .line 2709
-    :cond_39
+    :cond_1
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
@@ -163,16 +163,16 @@
 
     const/4 v2, 0x1
 
-    if-ne v0, v2, :cond_43
+    if-ne v0, v2, :cond_2
 
     move v0, v2
 
-    goto :goto_44
+    goto :goto_0
 
-    :cond_43
+    :cond_2
     move v0, v1
 
-    :goto_44
+    :goto_0
     iput-boolean v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState;->mReverseLayout:Z
 
     .line 2710
@@ -180,16 +180,16 @@
 
     move-result v0
 
-    if-ne v0, v2, :cond_4e
+    if-ne v0, v2, :cond_3
 
     move v0, v2
 
-    goto :goto_4f
+    goto :goto_1
 
-    :cond_4e
+    :cond_3
     move v0, v1
 
-    :goto_4f
+    :goto_1
     iput-boolean v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState;->mAnchorLayoutFromEnd:Z
 
     .line 2711
@@ -197,13 +197,13 @@
 
     move-result v0
 
-    if-ne v0, v2, :cond_59
+    if-ne v0, v2, :cond_4
 
     move v1, v2
 
     nop
 
-    :cond_59
+    :cond_4
     iput-boolean v1, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState;->mLastLayoutRTL:Z
 
     .line 2712
@@ -224,7 +224,7 @@
 .end method
 
 .method public constructor <init>(Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState;)V
-    .registers 3
+    .locals 1
     .param p1, "other"    # Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState;
 
     .line 2716
@@ -287,7 +287,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .registers 2
+    .locals 1
 
     .line 2746
     const/4 v0, 0x0
@@ -296,7 +296,7 @@
 .end method
 
 .method invalidateAnchorPositionInfo()V
-    .registers 2
+    .locals 1
 
     .line 2738
     const/4 v0, 0x0
@@ -321,7 +321,7 @@
 .end method
 
 .method invalidateSpanInfo()V
-    .registers 3
+    .locals 2
 
     .line 2730
     const/4 v0, 0x0
@@ -347,7 +347,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .registers 4
+    .locals 1
     .param p1, "dest"    # Landroid/os/Parcel;
     .param p2, "flags"    # I
 
@@ -369,7 +369,7 @@
     .line 2754
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState;->mSpanOffsetsSize:I
 
-    if-lez v0, :cond_18
+    if-lez v0, :cond_0
 
     .line 2755
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState;->mSpanOffsets:[I
@@ -377,7 +377,7 @@
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeIntArray([I)V
 
     .line 2757
-    :cond_18
+    :cond_0
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState;->mSpanLookupSize:I
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
@@ -385,7 +385,7 @@
     .line 2758
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState;->mSpanLookupSize:I
 
-    if-lez v0, :cond_26
+    if-lez v0, :cond_1
 
     .line 2759
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState;->mSpanLookup:[I
@@ -393,7 +393,7 @@
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeIntArray([I)V
 
     .line 2761
-    :cond_26
+    :cond_1
     iget-boolean v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$SavedState;->mReverseLayout:Z
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V

@@ -56,7 +56,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 5
+    .locals 5
 
     .line 3327
     const-string v0, "SilenceMode.MOD"
@@ -74,16 +74,16 @@
 
     const/16 v1, 0x17
 
-    if-lt v0, v1, :cond_11
+    if-lt v0, v1, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_12
+    goto :goto_0
 
-    :cond_11
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_12
+    :goto_0
     sput-boolean v0, Landroid/provider/MiuiSettings$SilenceMode;->isSupported:Z
 
     .line 3393
@@ -107,7 +107,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 3317
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -116,7 +116,7 @@
 .end method
 
 .method public static enableVIPMode(Landroid/content/Context;Z)V
-    .registers 3
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "enable"    # Z
 
@@ -130,7 +130,7 @@
 .end method
 
 .method public static enableVIPMode(Landroid/content/Context;ZI)V
-    .registers 3
+    .locals 0
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "enable"    # Z
     .param p2, "userId"    # I
@@ -143,7 +143,7 @@
 .end method
 
 .method public static getLastestQuietMode(Landroid/content/Context;)I
-    .registers 2
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
 
     .line 3433
@@ -153,7 +153,7 @@
 .end method
 
 .method public static getRemainTime(Landroid/content/Context;)J
-    .registers 3
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
 
     .line 3413
@@ -165,7 +165,7 @@
 .end method
 
 .method public static getZenMode(Landroid/content/Context;)I
-    .registers 2
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
 
     .line 3454
@@ -177,7 +177,7 @@
 .end method
 
 .method public static isDNDEnabled(Landroid/content/Context;)Z
-    .registers 3
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
 
     .line 3537
@@ -187,25 +187,25 @@
 
     const/4 v1, 0x1
 
-    if-ne v0, v1, :cond_8
+    if-ne v0, v1, :cond_0
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_9
+    :goto_0
     return v1
 .end method
 
 .method public static isSilenceModeEnable(Landroid/content/Context;)Z
-    .registers 2
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
 
     .line 3464
     sget-boolean v0, Landroid/provider/MiuiSettings$SilenceMode;->isSupported:Z
 
-    if-nez v0, :cond_9
+    if-nez v0, :cond_0
 
     .line 3465
     invoke-static {p0}, Landroid/provider/MiuiSettings$AntiSpam;->isQuietModeEnable(Landroid/content/Context;)Z
@@ -215,7 +215,7 @@
     return v0
 
     .line 3467
-    :cond_9
+    :cond_0
     const/4 v0, -0x3
 
     invoke-static {p0, v0}, Landroid/app/ExtraNotificationManager;->isSilenceModeEnable(Landroid/content/Context;I)Z
@@ -226,7 +226,7 @@
 .end method
 
 .method public static isSilenceModeEnable(Landroid/content/Context;I)Z
-    .registers 3
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "userId"    # I
 
@@ -239,7 +239,7 @@
 .end method
 
 .method public static isVIPModeEnable(Landroid/content/Context;)Z
-    .registers 2
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
 
     .line 3444
@@ -251,7 +251,7 @@
 .end method
 
 .method public static muteMusicStream(Landroid/content/Context;)Z
-    .registers 5
+    .locals 4
     .param p0, "context"    # Landroid/content/Context;
 
     .line 3528
@@ -261,7 +261,7 @@
 
     const/4 v1, 0x1
 
-    if-ne v0, v1, :cond_16
+    if-ne v0, v1, :cond_0
 
     .line 3530
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
@@ -277,20 +277,20 @@
 
     move-result v0
 
-    if-ne v1, v0, :cond_16
+    if-ne v1, v0, :cond_0
 
-    goto :goto_17
+    goto :goto_0
 
-    :cond_16
+    :cond_0
     const/4 v1, 0x0
 
     .line 3528
-    :goto_17
+    :goto_0
     return v1
 .end method
 
 .method public static reportRingerModeInfo(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)V
-    .registers 9
+    .locals 4
     .param p0, "type"    # Ljava/lang/String;
     .param p1, "mode"    # Ljava/lang/String;
     .param p2, "params"    # Ljava/lang/String;
@@ -349,7 +349,7 @@
     .line 3550
     sget-boolean v1, Landroid/provider/MiuiSettings$SilenceMode;->DEBUG_MODE:Z
 
-    if-eqz v1, :cond_5c
+    if-eqz v1, :cond_0
 
     const-string v1, "SilenceMode"
 
@@ -374,7 +374,7 @@
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 3552
-    :cond_5c
+    :cond_0
     invoke-static {}, Lmiui/mqsas/sdk/MQSEventManagerDelegate;->getInstance()Lmiui/mqsas/sdk/MQSEventManagerDelegate;
 
     move-result-object v1
@@ -394,7 +394,7 @@
 .end method
 
 .method public static setRemainTime(Landroid/content/Context;J)V
-    .registers 5
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "time"    # J
 
@@ -412,7 +412,7 @@
 .end method
 
 .method public static setSilenceMode(Landroid/content/Context;ILandroid/net/Uri;)V
-    .registers 3
+    .locals 0
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "mode"    # I
     .param p2, "id"    # Landroid/net/Uri;
@@ -425,7 +425,7 @@
 .end method
 
 .method public static setSilenceMode(Landroid/content/Context;ILandroid/net/Uri;I)V
-    .registers 4
+    .locals 0
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "mode"    # I
     .param p2, "id"    # Landroid/net/Uri;
@@ -439,7 +439,7 @@
 .end method
 
 .method public static showNotification(Landroid/content/Context;)Z
-    .registers 5
+    .locals 4
     .param p0, "context"    # Landroid/content/Context;
 
     .line 3519
@@ -449,7 +449,7 @@
 
     const/4 v1, 0x1
 
-    if-ne v0, v1, :cond_16
+    if-ne v0, v1, :cond_0
 
     .line 3521
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
@@ -465,14 +465,14 @@
 
     move-result v0
 
-    if-ne v1, v0, :cond_16
+    if-ne v1, v0, :cond_0
 
-    goto :goto_17
+    goto :goto_0
 
-    :cond_16
+    :cond_0
     const/4 v1, 0x0
 
     .line 3519
-    :goto_17
+    :goto_0
     return v1
 .end method

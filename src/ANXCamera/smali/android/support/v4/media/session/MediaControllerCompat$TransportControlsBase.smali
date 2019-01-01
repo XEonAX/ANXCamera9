@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v4/media/session/IMediaSession;)V
-    .registers 2
+    .locals 0
     .param p1, "binder"    # Landroid/support/v4/media/session/IMediaSession;
 
     .line 1004
@@ -36,21 +36,21 @@
 
 # virtual methods
 .method public fastForward()V
-    .registers 5
+    .locals 4
 
     .line 1083
     :try_start_0
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsBase;->mBinder:Landroid/support/v4/media/session/IMediaSession;
 
     invoke-interface {v0}, Landroid/support/v4/media/session/IMediaSession;->fastForward()V
-    :try_end_5
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_5} :catch_6
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1086
-    goto :goto_1d
+    goto :goto_0
 
     .line 1084
-    :catch_6
+    :catch_0
     move-exception v0
 
     .line 1085
@@ -75,26 +75,26 @@
 
     .line 1087
     .end local v0    # "e":Landroid/os/RemoteException;
-    :goto_1d
+    :goto_0
     return-void
 .end method
 
 .method public pause()V
-    .registers 5
+    .locals 4
 
     .line 1056
     :try_start_0
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsBase;->mBinder:Landroid/support/v4/media/session/IMediaSession;
 
     invoke-interface {v0}, Landroid/support/v4/media/session/IMediaSession;->pause()V
-    :try_end_5
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_5} :catch_6
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1059
-    goto :goto_1d
+    goto :goto_0
 
     .line 1057
-    :catch_6
+    :catch_0
     move-exception v0
 
     .line 1058
@@ -119,26 +119,26 @@
 
     .line 1060
     .end local v0    # "e":Landroid/os/RemoteException;
-    :goto_1d
+    :goto_0
     return-void
 .end method
 
 .method public play()V
-    .registers 5
+    .locals 4
 
     .line 1011
     :try_start_0
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsBase;->mBinder:Landroid/support/v4/media/session/IMediaSession;
 
     invoke-interface {v0}, Landroid/support/v4/media/session/IMediaSession;->play()V
-    :try_end_5
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_5} :catch_6
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1014
-    goto :goto_1d
+    goto :goto_0
 
     .line 1012
-    :catch_6
+    :catch_0
     move-exception v0
 
     .line 1013
@@ -163,12 +163,12 @@
 
     .line 1015
     .end local v0    # "e":Landroid/os/RemoteException;
-    :goto_1d
+    :goto_0
     return-void
 .end method
 
 .method public playFromMediaId(Ljava/lang/String;Landroid/os/Bundle;)V
-    .registers 7
+    .locals 4
     .param p1, "mediaId"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
 
@@ -177,14 +177,14 @@
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsBase;->mBinder:Landroid/support/v4/media/session/IMediaSession;
 
     invoke-interface {v0, p1, p2}, Landroid/support/v4/media/session/IMediaSession;->playFromMediaId(Ljava/lang/String;Landroid/os/Bundle;)V
-    :try_end_5
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_5} :catch_6
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1023
-    goto :goto_1d
+    goto :goto_0
 
     .line 1021
-    :catch_6
+    :catch_0
     move-exception v0
 
     .line 1022
@@ -209,12 +209,12 @@
 
     .line 1024
     .end local v0    # "e":Landroid/os/RemoteException;
-    :goto_1d
+    :goto_0
     return-void
 .end method
 
 .method public playFromSearch(Ljava/lang/String;Landroid/os/Bundle;)V
-    .registers 7
+    .locals 4
     .param p1, "query"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
 
@@ -223,14 +223,14 @@
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsBase;->mBinder:Landroid/support/v4/media/session/IMediaSession;
 
     invoke-interface {v0, p1, p2}, Landroid/support/v4/media/session/IMediaSession;->playFromSearch(Ljava/lang/String;Landroid/os/Bundle;)V
-    :try_end_5
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_5} :catch_6
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1032
-    goto :goto_1d
+    goto :goto_0
 
     .line 1030
-    :catch_6
+    :catch_0
     move-exception v0
 
     .line 1031
@@ -255,12 +255,12 @@
 
     .line 1033
     .end local v0    # "e":Landroid/os/RemoteException;
-    :goto_1d
+    :goto_0
     return-void
 .end method
 
 .method public playFromUri(Landroid/net/Uri;Landroid/os/Bundle;)V
-    .registers 7
+    .locals 4
     .param p1, "uri"    # Landroid/net/Uri;
     .param p2, "extras"    # Landroid/os/Bundle;
 
@@ -269,14 +269,14 @@
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsBase;->mBinder:Landroid/support/v4/media/session/IMediaSession;
 
     invoke-interface {v0, p1, p2}, Landroid/support/v4/media/session/IMediaSession;->playFromUri(Landroid/net/Uri;Landroid/os/Bundle;)V
-    :try_end_5
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_5} :catch_6
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1041
-    goto :goto_1d
+    goto :goto_0
 
     .line 1039
-    :catch_6
+    :catch_0
     move-exception v0
 
     .line 1040
@@ -301,26 +301,26 @@
 
     .line 1042
     .end local v0    # "e":Landroid/os/RemoteException;
-    :goto_1d
+    :goto_0
     return-void
 .end method
 
 .method public rewind()V
-    .registers 5
+    .locals 4
 
     .line 1101
     :try_start_0
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsBase;->mBinder:Landroid/support/v4/media/session/IMediaSession;
 
     invoke-interface {v0}, Landroid/support/v4/media/session/IMediaSession;->rewind()V
-    :try_end_5
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_5} :catch_6
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1104
-    goto :goto_1d
+    goto :goto_0
 
     .line 1102
-    :catch_6
+    :catch_0
     move-exception v0
 
     .line 1103
@@ -345,12 +345,12 @@
 
     .line 1105
     .end local v0    # "e":Landroid/os/RemoteException;
-    :goto_1d
+    :goto_0
     return-void
 .end method
 
 .method public seekTo(J)V
-    .registers 7
+    .locals 4
     .param p1, "pos"    # J
 
     .line 1074
@@ -358,14 +358,14 @@
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsBase;->mBinder:Landroid/support/v4/media/session/IMediaSession;
 
     invoke-interface {v0, p1, p2}, Landroid/support/v4/media/session/IMediaSession;->seekTo(J)V
-    :try_end_5
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_5} :catch_6
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1077
-    goto :goto_1d
+    goto :goto_0
 
     .line 1075
-    :catch_6
+    :catch_0
     move-exception v0
 
     .line 1076
@@ -390,12 +390,12 @@
 
     .line 1078
     .end local v0    # "e":Landroid/os/RemoteException;
-    :goto_1d
+    :goto_0
     return-void
 .end method
 
 .method public sendCustomAction(Landroid/support/v4/media/session/PlaybackStateCompat$CustomAction;Landroid/os/Bundle;)V
-    .registers 4
+    .locals 1
     .param p1, "customAction"    # Landroid/support/v4/media/session/PlaybackStateCompat$CustomAction;
     .param p2, "args"    # Landroid/os/Bundle;
 
@@ -411,7 +411,7 @@
 .end method
 
 .method public sendCustomAction(Ljava/lang/String;Landroid/os/Bundle;)V
-    .registers 7
+    .locals 4
     .param p1, "action"    # Ljava/lang/String;
     .param p2, "args"    # Landroid/os/Bundle;
 
@@ -420,14 +420,14 @@
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsBase;->mBinder:Landroid/support/v4/media/session/IMediaSession;
 
     invoke-interface {v0, p1, p2}, Landroid/support/v4/media/session/IMediaSession;->sendCustomAction(Ljava/lang/String;Landroid/os/Bundle;)V
-    :try_end_5
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_5} :catch_6
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1136
-    goto :goto_1d
+    goto :goto_0
 
     .line 1134
-    :catch_6
+    :catch_0
     move-exception v0
 
     .line 1135
@@ -452,12 +452,12 @@
 
     .line 1137
     .end local v0    # "e":Landroid/os/RemoteException;
-    :goto_1d
+    :goto_0
     return-void
 .end method
 
 .method public setRating(Landroid/support/v4/media/RatingCompat;)V
-    .registers 6
+    .locals 4
     .param p1, "rating"    # Landroid/support/v4/media/RatingCompat;
 
     .line 1119
@@ -465,14 +465,14 @@
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsBase;->mBinder:Landroid/support/v4/media/session/IMediaSession;
 
     invoke-interface {v0, p1}, Landroid/support/v4/media/session/IMediaSession;->rate(Landroid/support/v4/media/RatingCompat;)V
-    :try_end_5
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_5} :catch_6
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1122
-    goto :goto_1d
+    goto :goto_0
 
     .line 1120
-    :catch_6
+    :catch_0
     move-exception v0
 
     .line 1121
@@ -497,26 +497,26 @@
 
     .line 1123
     .end local v0    # "e":Landroid/os/RemoteException;
-    :goto_1d
+    :goto_0
     return-void
 .end method
 
 .method public skipToNext()V
-    .registers 5
+    .locals 4
 
     .line 1092
     :try_start_0
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsBase;->mBinder:Landroid/support/v4/media/session/IMediaSession;
 
     invoke-interface {v0}, Landroid/support/v4/media/session/IMediaSession;->next()V
-    :try_end_5
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_5} :catch_6
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1095
-    goto :goto_1d
+    goto :goto_0
 
     .line 1093
-    :catch_6
+    :catch_0
     move-exception v0
 
     .line 1094
@@ -541,26 +541,26 @@
 
     .line 1096
     .end local v0    # "e":Landroid/os/RemoteException;
-    :goto_1d
+    :goto_0
     return-void
 .end method
 
 .method public skipToPrevious()V
-    .registers 5
+    .locals 4
 
     .line 1110
     :try_start_0
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsBase;->mBinder:Landroid/support/v4/media/session/IMediaSession;
 
     invoke-interface {v0}, Landroid/support/v4/media/session/IMediaSession;->previous()V
-    :try_end_5
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_5} :catch_6
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1113
-    goto :goto_1d
+    goto :goto_0
 
     .line 1111
-    :catch_6
+    :catch_0
     move-exception v0
 
     .line 1112
@@ -585,12 +585,12 @@
 
     .line 1114
     .end local v0    # "e":Landroid/os/RemoteException;
-    :goto_1d
+    :goto_0
     return-void
 .end method
 
 .method public skipToQueueItem(J)V
-    .registers 7
+    .locals 4
     .param p1, "id"    # J
 
     .line 1047
@@ -598,14 +598,14 @@
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsBase;->mBinder:Landroid/support/v4/media/session/IMediaSession;
 
     invoke-interface {v0, p1, p2}, Landroid/support/v4/media/session/IMediaSession;->skipToQueueItem(J)V
-    :try_end_5
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_5} :catch_6
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1050
-    goto :goto_1d
+    goto :goto_0
 
     .line 1048
-    :catch_6
+    :catch_0
     move-exception v0
 
     .line 1049
@@ -630,26 +630,26 @@
 
     .line 1051
     .end local v0    # "e":Landroid/os/RemoteException;
-    :goto_1d
+    :goto_0
     return-void
 .end method
 
 .method public stop()V
-    .registers 5
+    .locals 4
 
     .line 1065
     :try_start_0
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsBase;->mBinder:Landroid/support/v4/media/session/IMediaSession;
 
     invoke-interface {v0}, Landroid/support/v4/media/session/IMediaSession;->stop()V
-    :try_end_5
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_5} :catch_6
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1068
-    goto :goto_1d
+    goto :goto_0
 
     .line 1066
-    :catch_6
+    :catch_0
     move-exception v0
 
     .line 1067
@@ -674,6 +674,6 @@
 
     .line 1069
     .end local v0    # "e":Landroid/os/RemoteException;
-    :goto_1d
+    :goto_0
     return-void
 .end method

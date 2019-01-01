@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 32
     invoke-direct {p0}, Lcom/google/zxing/oned/UPCEANReader;-><init>()V
@@ -28,7 +28,7 @@
 
 # virtual methods
 .method protected decodeMiddle(Lcom/google/zxing/common/BitArray;[ILjava/lang/StringBuilder;)I
-    .registers 16
+    .locals 12
     .param p1, "row"    # Lcom/google/zxing/common/BitArray;
     .param p2, "startRange"    # [I
     .param p3, "result"    # Ljava/lang/StringBuilder;
@@ -76,21 +76,21 @@
     const/4 v5, 0x0
 
     .local v5, "x":I
-    :goto_15
+    :goto_0
     const/16 v6, 0x30
 
     const/4 v7, 0x4
 
-    if-ge v5, v7, :cond_37
+    if-ge v5, v7, :cond_2
 
-    if-lt v4, v3, :cond_1d
+    if-lt v4, v3, :cond_0
 
     .end local v5    # "x":I
-    goto :goto_37
+    goto :goto_2
 
     .line 49
     .restart local v5    # "x":I
-    :cond_1d
+    :cond_0
     sget-object v7, Lcom/google/zxing/oned/EAN8Reader;->L_PATTERNS:[[I
 
     invoke-static {p1, v0, v4, v7}, Lcom/google/zxing/oned/EAN8Reader;->decodeDigit(Lcom/google/zxing/common/BitArray;[II[[I)I
@@ -114,8 +114,8 @@
 
     .end local v4    # "rowOffset":I
     .local v6, "rowOffset":I
-    :goto_2b
-    if-lt v4, v9, :cond_31
+    :goto_1
+    if-lt v4, v9, :cond_1
 
     .line 48
     .end local v8    # "bestMatch":I
@@ -123,11 +123,11 @@
 
     move v4, v6
 
-    goto :goto_15
+    goto :goto_0
 
     .line 51
     .restart local v8    # "bestMatch":I
-    :cond_31
+    :cond_1
     aget v7, v0, v4
 
     .line 52
@@ -138,15 +138,15 @@
     .end local v7    # "counter":I
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_2b
+    goto :goto_1
 
     .line 56
     .end local v5    # "x":I
     .end local v6    # "rowOffset":I
     .end local v8    # "bestMatch":I
     .restart local v4    # "rowOffset":I
-    :cond_37
-    :goto_37
+    :cond_2
+    :goto_2
     sget-object v5, Lcom/google/zxing/oned/EAN8Reader;->MIDDLE_PATTERN:[I
 
     invoke-static {p1, v4, v2, v5}, Lcom/google/zxing/oned/EAN8Reader;->findGuardPattern(Lcom/google/zxing/common/BitArray;IZ[I)[I
@@ -163,17 +163,17 @@
     const/4 v4, 0x0
 
     .local v4, "x":I
-    :goto_40
-    if-ge v4, v7, :cond_60
+    :goto_3
+    if-ge v4, v7, :cond_5
 
-    if-lt v2, v3, :cond_45
+    if-lt v2, v3, :cond_3
 
     .end local v4    # "x":I
-    goto :goto_60
+    goto :goto_5
 
     .line 60
     .restart local v4    # "x":I
-    :cond_45
+    :cond_3
     sget-object v8, Lcom/google/zxing/oned/EAN8Reader;->L_PATTERNS:[[I
 
     invoke-static {p1, v0, v2, v8}, Lcom/google/zxing/oned/EAN8Reader;->decodeDigit(Lcom/google/zxing/common/BitArray;[II[[I)I
@@ -197,8 +197,8 @@
 
     .end local v2    # "rowOffset":I
     .local v10, "rowOffset":I
-    :goto_54
-    if-lt v2, v9, :cond_5a
+    :goto_4
+    if-lt v2, v9, :cond_4
 
     .line 59
     .end local v8    # "bestMatch":I
@@ -206,11 +206,11 @@
 
     move v2, v10
 
-    goto :goto_40
+    goto :goto_3
 
     .line 62
     .restart local v8    # "bestMatch":I
-    :cond_5a
+    :cond_4
     aget v11, v0, v2
 
     .line 63
@@ -221,20 +221,20 @@
     .end local v11    # "counter":I
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_54
+    goto :goto_4
 
     .line 67
     .end local v4    # "x":I
     .end local v8    # "bestMatch":I
     .end local v10    # "rowOffset":I
     .restart local v2    # "rowOffset":I
-    :cond_60
-    :goto_60
+    :cond_5
+    :goto_5
     return v2
 .end method
 
 .method getBarcodeFormat()Lcom/google/zxing/BarcodeFormat;
-    .registers 2
+    .locals 1
 
     .line 72
     sget-object v0, Lcom/google/zxing/BarcodeFormat;->EAN_8:Lcom/google/zxing/BarcodeFormat;

@@ -30,7 +30,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 3
+    .locals 3
 
     .line 1395
     const/4 v0, 0x1
@@ -49,7 +49,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 1419
     const/4 v0, -0x1
@@ -66,7 +66,7 @@
 .end method
 
 .method public constructor <init>(II)V
-    .registers 4
+    .locals 1
     .param p1, "width"    # I
     .param p2, "height"    # I
 
@@ -83,7 +83,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
-    .registers 6
+    .locals 3
     .param p1, "c"    # Landroid/content/Context;
     .param p2, "attrs"    # Landroid/util/AttributeSet;
 
@@ -120,7 +120,7 @@
 .end method
 
 .method public constructor <init>(Landroid/support/v4/widget/SlidingPaneLayout$LayoutParams;)V
-    .registers 3
+    .locals 1
     .param p1, "source"    # Landroid/support/v4/widget/SlidingPaneLayout$LayoutParams;
 
     .line 1435
@@ -141,7 +141,7 @@
 .end method
 
 .method public constructor <init>(Landroid/view/ViewGroup$LayoutParams;)V
-    .registers 3
+    .locals 1
     .param p1, "source"    # Landroid/view/ViewGroup$LayoutParams;
 
     .line 1427
@@ -157,7 +157,7 @@
 .end method
 
 .method public constructor <init>(Landroid/view/ViewGroup$MarginLayoutParams;)V
-    .registers 3
+    .locals 1
     .param p1, "source"    # Landroid/view/ViewGroup$MarginLayoutParams;
 
     .line 1431

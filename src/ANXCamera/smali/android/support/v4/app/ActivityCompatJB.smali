@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 24
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static finishAffinity(Landroid/app/Activity;)V
-    .registers 1
+    .locals 0
     .param p0, "activity"    # Landroid/app/Activity;
 
     .line 34
@@ -25,7 +25,7 @@
 .end method
 
 .method public static startActivity(Landroid/content/Context;Landroid/content/Intent;Landroid/os/Bundle;)V
-    .registers 3
+    .locals 0
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "intent"    # Landroid/content/Intent;
     .param p2, "options"    # Landroid/os/Bundle;
@@ -38,7 +38,7 @@
 .end method
 
 .method public static startActivityForResult(Landroid/app/Activity;Landroid/content/Intent;ILandroid/os/Bundle;)V
-    .registers 4
+    .locals 0
     .param p0, "activity"    # Landroid/app/Activity;
     .param p1, "intent"    # Landroid/content/Intent;
     .param p2, "requestCode"    # I

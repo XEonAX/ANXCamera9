@@ -15,7 +15,7 @@
 
 # direct methods
 .method constructor <init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-    .registers 6
+    .locals 1
     .param p1, "emailAddress"    # Ljava/lang/String;
     .param p2, "subject"    # Ljava/lang/String;
     .param p3, "body"    # Ljava/lang/String;
@@ -45,7 +45,7 @@
 
 # virtual methods
 .method public getBody()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 49
     iget-object v0, p0, Lcom/google/zxing/client/result/EmailAddressParsedResult;->body:Ljava/lang/String;
@@ -54,7 +54,7 @@
 .end method
 
 .method public getDisplayResult()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 58
     new-instance v0, Ljava/lang/StringBuilder;
@@ -88,7 +88,7 @@
 .end method
 
 .method public getEmailAddress()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 41
     iget-object v0, p0, Lcom/google/zxing/client/result/EmailAddressParsedResult;->emailAddress:Ljava/lang/String;
@@ -97,7 +97,7 @@
 .end method
 
 .method public getMailtoURI()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 53
     iget-object v0, p0, Lcom/google/zxing/client/result/EmailAddressParsedResult;->mailtoURI:Ljava/lang/String;
@@ -106,7 +106,7 @@
 .end method
 
 .method public getSubject()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 45
     iget-object v0, p0, Lcom/google/zxing/client/result/EmailAddressParsedResult;->subject:Ljava/lang/String;

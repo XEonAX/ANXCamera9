@@ -25,7 +25,7 @@
 
 # direct methods
 .method constructor <init>(Ljava/lang/String;)V
-    .registers 9
+    .locals 7
     .param p1, "msg"    # Ljava/lang/String;
 
     .line 35
@@ -58,8 +58,8 @@
     array-length v3, v0
 
     .local v3, "c":I
-    :goto_15
-    if-lt v2, v3, :cond_30
+    :goto_0
+    if-lt v2, v3, :cond_0
 
     .line 46
     .end local v2    # "i":I
@@ -97,7 +97,7 @@
     .line 40
     .restart local v2    # "i":I
     .restart local v3    # "c":I
-    :cond_30
+    :cond_0
     aget-byte v4, v0, v2
 
     and-int/lit16 v4, v4, 0xff
@@ -108,18 +108,18 @@
     .local v4, "ch":C
     const/16 v5, 0x3f
 
-    if-ne v4, v5, :cond_48
+    if-ne v4, v5, :cond_2
 
     invoke-virtual {p1, v2}, Ljava/lang/String;->charAt(I)C
 
     move-result v6
 
-    if-ne v6, v5, :cond_40
+    if-ne v6, v5, :cond_1
 
-    goto :goto_48
+    goto :goto_1
 
     .line 42
-    :cond_40
+    :cond_1
     new-instance v5, Ljava/lang/IllegalArgumentException;
 
     const-string v6, "Message contains characters outside ISO-8859-1 encoding."
@@ -129,19 +129,19 @@
     throw v5
 
     .line 44
-    :cond_48
-    :goto_48
+    :cond_2
+    :goto_1
     invoke-virtual {v1, v4}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 39
     .end local v4    # "ch":C
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_15
+    goto :goto_0
 .end method
 
 .method private getTotalMessageCharCount()I
-    .registers 3
+    .locals 2
 
     .line 110
     iget-object v0, p0, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->msg:Ljava/lang/String;
@@ -160,7 +160,7 @@
 
 # virtual methods
 .method public getCodewordCount()I
-    .registers 2
+    .locals 1
 
     .line 90
     iget-object v0, p0, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->codewords:Ljava/lang/StringBuilder;
@@ -173,7 +173,7 @@
 .end method
 
 .method public getCodewords()Ljava/lang/StringBuilder;
-    .registers 2
+    .locals 1
 
     .line 78
     iget-object v0, p0, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->codewords:Ljava/lang/StringBuilder;
@@ -182,7 +182,7 @@
 .end method
 
 .method public getCurrent()C
-    .registers 3
+    .locals 2
 
     .line 74
     iget-object v0, p0, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->msg:Ljava/lang/String;
@@ -197,7 +197,7 @@
 .end method
 
 .method public getCurrentChar()C
-    .registers 3
+    .locals 2
 
     .line 70
     iget-object v0, p0, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->msg:Ljava/lang/String;
@@ -212,7 +212,7 @@
 .end method
 
 .method public getMessage()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 62
     iget-object v0, p0, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->msg:Ljava/lang/String;
@@ -221,7 +221,7 @@
 .end method
 
 .method public getNewEncoding()I
-    .registers 2
+    .locals 1
 
     .line 94
     iget v0, p0, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->newEncoding:I
@@ -230,7 +230,7 @@
 .end method
 
 .method public getRemainingCharacters()I
-    .registers 3
+    .locals 2
 
     .line 114
     invoke-direct {p0}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->getTotalMessageCharCount()I
@@ -245,7 +245,7 @@
 .end method
 
 .method public getSymbolInfo()Lcom/google/zxing/datamatrix/encoder/SymbolInfo;
-    .registers 2
+    .locals 1
 
     .line 118
     iget-object v0, p0, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->symbolInfo:Lcom/google/zxing/datamatrix/encoder/SymbolInfo;
@@ -254,7 +254,7 @@
 .end method
 
 .method public hasMoreCharacters()Z
-    .registers 3
+    .locals 2
 
     .line 106
     iget v0, p0, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->pos:I
@@ -263,20 +263,20 @@
 
     move-result v1
 
-    if-ge v0, v1, :cond_a
+    if-ge v0, v1, :cond_0
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_a
+    :cond_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public resetEncoderSignal()V
-    .registers 2
+    .locals 1
 
     .line 102
     const/4 v0, -0x1
@@ -288,7 +288,7 @@
 .end method
 
 .method public resetSymbolInfo()V
-    .registers 2
+    .locals 1
 
     .line 132
     const/4 v0, 0x0
@@ -300,7 +300,7 @@
 .end method
 
 .method public setSizeConstraints(Lcom/google/zxing/Dimension;Lcom/google/zxing/Dimension;)V
-    .registers 3
+    .locals 0
     .param p1, "minSize"    # Lcom/google/zxing/Dimension;
     .param p2, "maxSize"    # Lcom/google/zxing/Dimension;
 
@@ -315,7 +315,7 @@
 .end method
 
 .method public setSkipAtEnd(I)V
-    .registers 2
+    .locals 0
     .param p1, "count"    # I
 
     .line 66
@@ -326,7 +326,7 @@
 .end method
 
 .method public setSymbolShape(Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;)V
-    .registers 2
+    .locals 0
     .param p1, "shape"    # Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;
 
     .line 53
@@ -337,7 +337,7 @@
 .end method
 
 .method public signalEncoderChange(I)V
-    .registers 2
+    .locals 0
     .param p1, "encoding"    # I
 
     .line 98
@@ -348,7 +348,7 @@
 .end method
 
 .method public updateSymbolInfo()V
-    .registers 2
+    .locals 1
 
     .line 122
     invoke-virtual {p0}, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->getCodewordCount()I
@@ -362,13 +362,13 @@
 .end method
 
 .method public updateSymbolInfo(I)V
-    .registers 6
+    .locals 4
     .param p1, "len"    # I
 
     .line 126
     iget-object v0, p0, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->symbolInfo:Lcom/google/zxing/datamatrix/encoder/SymbolInfo;
 
-    if-eqz v0, :cond_c
+    if-eqz v0, :cond_0
 
     iget-object v0, p0, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->symbolInfo:Lcom/google/zxing/datamatrix/encoder/SymbolInfo;
 
@@ -376,10 +376,10 @@
 
     move-result v0
 
-    if-le p1, v0, :cond_19
+    if-le p1, v0, :cond_1
 
     .line 127
-    :cond_c
+    :cond_0
     iget-object v0, p0, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->shape:Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;
 
     iget-object v1, p0, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->minSize:Lcom/google/zxing/Dimension;
@@ -395,12 +395,12 @@
     iput-object v0, p0, Lcom/google/zxing/datamatrix/encoder/EncoderContext;->symbolInfo:Lcom/google/zxing/datamatrix/encoder/SymbolInfo;
 
     .line 129
-    :cond_19
+    :cond_1
     return-void
 .end method
 
 .method public writeCodeword(C)V
-    .registers 3
+    .locals 1
     .param p1, "codeword"    # C
 
     .line 86
@@ -413,7 +413,7 @@
 .end method
 
 .method public writeCodewords(Ljava/lang/String;)V
-    .registers 3
+    .locals 1
     .param p1, "codewords"    # Ljava/lang/String;
 
     .line 82

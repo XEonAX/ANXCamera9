@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 23
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static apply(IIILandroid/graphics/Rect;IILandroid/graphics/Rect;I)V
-    .registers 8
+    .locals 0
     .param p0, "gravity"    # I
     .param p1, "w"    # I
     .param p2, "h"    # I
@@ -32,7 +32,7 @@
 .end method
 
 .method public static apply(IIILandroid/graphics/Rect;Landroid/graphics/Rect;I)V
-    .registers 6
+    .locals 0
     .param p0, "gravity"    # I
     .param p1, "w"    # I
     .param p2, "h"    # I
@@ -48,7 +48,7 @@
 .end method
 
 .method public static applyDisplay(ILandroid/graphics/Rect;Landroid/graphics/Rect;I)V
-    .registers 4
+    .locals 0
     .param p0, "gravity"    # I
     .param p1, "display"    # Landroid/graphics/Rect;
     .param p2, "inoutObj"    # Landroid/graphics/Rect;
@@ -62,7 +62,7 @@
 .end method
 
 .method public static getAbsoluteGravity(II)I
-    .registers 3
+    .locals 1
     .param p0, "gravity"    # I
     .param p1, "layoutDirection"    # I
 

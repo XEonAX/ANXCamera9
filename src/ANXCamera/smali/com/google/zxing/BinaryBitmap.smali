@@ -11,14 +11,14 @@
 
 # direct methods
 .method public constructor <init>(Lcom/google/zxing/Binarizer;)V
-    .registers 4
+    .locals 2
     .param p1, "binarizer"    # Lcom/google/zxing/Binarizer;
 
     .line 33
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 34
-    if-eqz p1, :cond_8
+    if-eqz p1, :cond_0
 
     .line 37
     iput-object p1, p0, Lcom/google/zxing/BinaryBitmap;->binarizer:Lcom/google/zxing/Binarizer;
@@ -27,7 +27,7 @@
     return-void
 
     .line 35
-    :cond_8
+    :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "Binarizer must be non-null."
@@ -40,7 +40,7 @@
 
 # virtual methods
 .method public crop(IIII)Lcom/google/zxing/BinaryBitmap;
-    .registers 8
+    .locals 3
     .param p1, "left"    # I
     .param p2, "top"    # I
     .param p3, "width"    # I
@@ -73,7 +73,7 @@
 .end method
 
 .method public getBlackMatrix()Lcom/google/zxing/common/BitMatrix;
-    .registers 2
+    .locals 1
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lcom/google/zxing/NotFoundException;
@@ -83,7 +83,7 @@
     .line 84
     iget-object v0, p0, Lcom/google/zxing/BinaryBitmap;->matrix:Lcom/google/zxing/common/BitMatrix;
 
-    if-nez v0, :cond_c
+    if-nez v0, :cond_0
 
     .line 85
     iget-object v0, p0, Lcom/google/zxing/BinaryBitmap;->binarizer:Lcom/google/zxing/Binarizer;
@@ -95,14 +95,14 @@
     iput-object v0, p0, Lcom/google/zxing/BinaryBitmap;->matrix:Lcom/google/zxing/common/BitMatrix;
 
     .line 87
-    :cond_c
+    :cond_0
     iget-object v0, p0, Lcom/google/zxing/BinaryBitmap;->matrix:Lcom/google/zxing/common/BitMatrix;
 
     return-object v0
 .end method
 
 .method public getBlackRow(ILcom/google/zxing/common/BitArray;)Lcom/google/zxing/common/BitArray;
-    .registers 4
+    .locals 1
     .param p1, "y"    # I
     .param p2, "row"    # Lcom/google/zxing/common/BitArray;
     .annotation system Ldalvik/annotation/Throws;
@@ -122,7 +122,7 @@
 .end method
 
 .method public getHeight()I
-    .registers 2
+    .locals 1
 
     .line 51
     iget-object v0, p0, Lcom/google/zxing/BinaryBitmap;->binarizer:Lcom/google/zxing/Binarizer;
@@ -135,7 +135,7 @@
 .end method
 
 .method public getWidth()I
-    .registers 2
+    .locals 1
 
     .line 44
     iget-object v0, p0, Lcom/google/zxing/BinaryBitmap;->binarizer:Lcom/google/zxing/Binarizer;
@@ -148,7 +148,7 @@
 .end method
 
 .method public isCropSupported()Z
-    .registers 2
+    .locals 1
 
     .line 94
     iget-object v0, p0, Lcom/google/zxing/BinaryBitmap;->binarizer:Lcom/google/zxing/Binarizer;
@@ -165,7 +165,7 @@
 .end method
 
 .method public isRotateSupported()Z
-    .registers 2
+    .locals 1
 
     .line 116
     iget-object v0, p0, Lcom/google/zxing/BinaryBitmap;->binarizer:Lcom/google/zxing/Binarizer;
@@ -182,7 +182,7 @@
 .end method
 
 .method public rotateCounterClockwise()Lcom/google/zxing/BinaryBitmap;
-    .registers 4
+    .locals 3
 
     .line 126
     iget-object v0, p0, Lcom/google/zxing/BinaryBitmap;->binarizer:Lcom/google/zxing/Binarizer;
@@ -211,7 +211,7 @@
 .end method
 
 .method public rotateCounterClockwise45()Lcom/google/zxing/BinaryBitmap;
-    .registers 4
+    .locals 3
 
     .line 137
     iget-object v0, p0, Lcom/google/zxing/BinaryBitmap;->binarizer:Lcom/google/zxing/Binarizer;
@@ -240,7 +240,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 144
     :try_start_0
@@ -251,13 +251,13 @@
     invoke-virtual {v0}, Lcom/google/zxing/common/BitMatrix;->toString()Ljava/lang/String;
 
     move-result-object v0
-    :try_end_8
-    .catch Lcom/google/zxing/NotFoundException; {:try_start_0 .. :try_end_8} :catch_9
+    :try_end_0
+    .catch Lcom/google/zxing/NotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
     return-object v0
 
     .line 145
-    :catch_9
+    :catch_0
     move-exception v0
 
     .line 146

@@ -30,7 +30,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 79
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -39,7 +39,7 @@
 .end method
 
 .method synthetic constructor <init>(Lcom/google/zxing/multi/qrcode/detector/MultiFinderPatternFinder$ModuleSizeComparator;)V
-    .registers 2
+    .locals 0
 
     .line 79
     invoke-direct {p0}, Lcom/google/zxing/multi/qrcode/detector/MultiFinderPatternFinder$ModuleSizeComparator;-><init>()V
@@ -50,7 +50,7 @@
 
 # virtual methods
 .method public compare(Lcom/google/zxing/qrcode/detector/FinderPattern;Lcom/google/zxing/qrcode/detector/FinderPattern;)I
-    .registers 8
+    .locals 5
     .param p1, "center1"    # Lcom/google/zxing/qrcode/detector/FinderPattern;
     .param p2, "center2"    # Lcom/google/zxing/qrcode/detector/FinderPattern;
 
@@ -73,32 +73,32 @@
 
     cmpg-double v1, v1, v3
 
-    if-gez v1, :cond_12
+    if-gez v1, :cond_0
 
     const/4 v1, -0x1
 
-    goto :goto_1a
+    goto :goto_0
 
-    :cond_12
+    :cond_0
     float-to-double v1, v0
 
     cmpl-double v1, v1, v3
 
-    if-lez v1, :cond_19
+    if-lez v1, :cond_1
 
     const/4 v1, 0x1
 
-    goto :goto_1a
+    goto :goto_0
 
-    :cond_19
+    :cond_1
     const/4 v1, 0x0
 
-    :goto_1a
+    :goto_0
     return v1
 .end method
 
 .method public bridge synthetic compare(Ljava/lang/Object;Ljava/lang/Object;)I
-    .registers 3
+    .locals 0
 
     .line 1
     check-cast p1, Lcom/google/zxing/qrcode/detector/FinderPattern;

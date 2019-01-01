@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 25
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getClipBounds(Landroid/view/View;)Landroid/graphics/Rect;
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 28
@@ -26,7 +26,7 @@
 .end method
 
 .method public static setClipBounds(Landroid/view/View;Landroid/graphics/Rect;)V
-    .registers 2
+    .locals 0
     .param p0, "view"    # Landroid/view/View;
     .param p1, "clipBounds"    # Landroid/graphics/Rect;
 

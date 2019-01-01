@@ -8,7 +8,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 39
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -17,7 +17,7 @@
 .end method
 
 .method private static convertByteMatrixToBitMatrix(Lcom/google/zxing/qrcode/encoder/ByteMatrix;)Lcom/google/zxing/common/BitMatrix;
-    .registers 8
+    .locals 7
     .param p0, "matrix"    # Lcom/google/zxing/qrcode/encoder/ByteMatrix;
 
     .line 161
@@ -45,8 +45,8 @@
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_11
-    if-lt v3, v0, :cond_14
+    :goto_0
+    if-lt v3, v0, :cond_0
 
     .line 175
     .end local v3    # "i":I
@@ -54,42 +54,42 @@
 
     .line 167
     .restart local v3    # "i":I
-    :cond_14
+    :cond_0
     const/4 v4, 0x0
 
     .local v4, "j":I
-    :goto_15
-    if-lt v4, v1, :cond_1a
+    :goto_1
+    if-lt v4, v1, :cond_1
 
     .line 166
     .end local v4    # "j":I
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_11
+    goto :goto_0
 
     .line 169
     .restart local v4    # "j":I
-    :cond_1a
+    :cond_1
     invoke-virtual {p0, v3, v4}, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->get(II)B
 
     move-result v5
 
     const/4 v6, 0x1
 
-    if-ne v5, v6, :cond_24
+    if-ne v5, v6, :cond_2
 
     .line 170
     invoke-virtual {v2, v3, v4}, Lcom/google/zxing/common/BitMatrix;->set(II)V
 
     .line 167
-    :cond_24
+    :cond_2
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_15
+    goto :goto_1
 .end method
 
 .method private static encodeLowLevel(Lcom/google/zxing/datamatrix/encoder/DefaultPlacement;Lcom/google/zxing/datamatrix/encoder/SymbolInfo;)Lcom/google/zxing/common/BitMatrix;
-    .registers 13
+    .locals 11
     .param p0, "placement"    # Lcom/google/zxing/datamatrix/encoder/DefaultPlacement;
     .param p1, "symbolInfo"    # Lcom/google/zxing/datamatrix/encoder/SymbolInfo;
 
@@ -127,8 +127,8 @@
     const/4 v4, 0x0
 
     .local v4, "y":I
-    :goto_17
-    if-lt v4, v1, :cond_1e
+    :goto_0
+    if-lt v4, v1, :cond_0
 
     .line 151
     .end local v4    # "y":I
@@ -140,7 +140,7 @@
 
     .line 116
     .restart local v4    # "y":I
-    :cond_1e
+    :cond_0
     iget v5, p1, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->matrixHeight:I
 
     rem-int v5, v4, v5
@@ -149,7 +149,7 @@
 
     const/4 v7, 0x1
 
-    if-nez v5, :cond_40
+    if-nez v5, :cond_3
 
     .line 117
     const/4 v5, 0x0
@@ -159,36 +159,36 @@
     const/4 v8, 0x0
 
     .local v8, "x":I
-    :goto_28
+    :goto_1
     invoke-virtual {p1}, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->getSymbolWidth()I
 
     move-result v9
 
-    if-lt v8, v9, :cond_31
+    if-lt v8, v9, :cond_1
 
     .line 122
     .end local v8    # "x":I
     add-int/lit8 v3, v3, 0x1
 
     .end local v5    # "matrixX":I
-    goto :goto_40
+    goto :goto_3
 
     .line 119
     .restart local v5    # "matrixX":I
     .restart local v8    # "x":I
-    :cond_31
+    :cond_1
     rem-int/lit8 v9, v8, 0x2
 
-    if-nez v9, :cond_37
+    if-nez v9, :cond_2
 
     move v9, v7
 
-    goto :goto_38
+    goto :goto_2
 
-    :cond_37
+    :cond_2
     move v9, v6
 
-    :goto_38
+    :goto_2
     invoke-virtual {v2, v5, v3, v9}, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->set(IIZ)V
 
     .line 120
@@ -197,13 +197,13 @@
     .line 118
     add-int/lit8 v8, v8, 0x1
 
-    goto :goto_28
+    goto :goto_1
 
     .line 124
     .end local v5    # "matrixX":I
     .end local v8    # "x":I
-    :cond_40
-    :goto_40
+    :cond_3
+    :goto_3
     const/4 v5, 0x0
 
     .line 125
@@ -211,8 +211,8 @@
     const/4 v8, 0x0
 
     .restart local v8    # "x":I
-    :goto_42
-    if-lt v8, v0, :cond_65
+    :goto_4
+    if-lt v8, v0, :cond_6
 
     .line 139
     .end local v8    # "x":I
@@ -227,7 +227,7 @@
 
     sub-int/2addr v8, v7
 
-    if-ne v6, v8, :cond_62
+    if-ne v6, v8, :cond_5
 
     .line 142
     const/4 v5, 0x0
@@ -236,24 +236,24 @@
     const/4 v6, 0x0
 
     .local v6, "x":I
-    :goto_51
+    :goto_5
     invoke-virtual {p1}, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->getSymbolWidth()I
 
     move-result v8
 
-    if-lt v6, v8, :cond_5a
+    if-lt v6, v8, :cond_4
 
     .line 147
     .end local v6    # "x":I
     add-int/lit8 v3, v3, 0x1
 
     .end local v5    # "matrixX":I
-    goto :goto_62
+    goto :goto_6
 
     .line 144
     .restart local v5    # "matrixX":I
     .restart local v6    # "x":I
-    :cond_5a
+    :cond_4
     invoke-virtual {v2, v5, v3, v7}, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->set(IIZ)V
 
     .line 145
@@ -262,26 +262,26 @@
     .line 143
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_51
+    goto :goto_5
 
     .line 113
     .end local v5    # "matrixX":I
     .end local v6    # "x":I
-    :cond_62
-    :goto_62
+    :cond_5
+    :goto_6
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_17
+    goto :goto_0
 
     .line 127
     .restart local v5    # "matrixX":I
     .restart local v8    # "x":I
-    :cond_65
+    :cond_6
     iget v9, p1, Lcom/google/zxing/datamatrix/encoder/SymbolInfo;->matrixWidth:I
 
     rem-int v9, v8, v9
 
-    if-nez v9, :cond_70
+    if-nez v9, :cond_7
 
     .line 128
     invoke-virtual {v2, v5, v3, v7}, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->set(IIZ)V
@@ -290,7 +290,7 @@
     add-int/lit8 v5, v5, 0x1
 
     .line 131
-    :cond_70
+    :cond_7
     invoke-virtual {p0, v8, v4}, Lcom/google/zxing/datamatrix/encoder/DefaultPlacement;->getBit(II)Z
 
     move-result v9
@@ -309,37 +309,37 @@
 
     sub-int/2addr v10, v7
 
-    if-ne v9, v10, :cond_8d
+    if-ne v9, v10, :cond_9
 
     .line 135
     rem-int/lit8 v9, v4, 0x2
 
-    if-nez v9, :cond_87
+    if-nez v9, :cond_8
 
     move v9, v7
 
-    goto :goto_88
+    goto :goto_7
 
-    :cond_87
+    :cond_8
     move v9, v6
 
-    :goto_88
+    :goto_7
     invoke-virtual {v2, v5, v3, v9}, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->set(IIZ)V
 
     .line 136
     add-int/lit8 v5, v5, 0x1
 
     .line 125
-    :cond_8d
+    :cond_9
     add-int/lit8 v8, v8, 0x1
 
-    goto :goto_42
+    goto :goto_4
 .end method
 
 
 # virtual methods
 .method public encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;II)Lcom/google/zxing/common/BitMatrix;
-    .registers 11
+    .locals 6
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "format"    # Lcom/google/zxing/BarcodeFormat;
     .param p3, "width"    # I
@@ -366,7 +366,7 @@
 .end method
 
 .method public encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;IILjava/util/Map;)Lcom/google/zxing/common/BitMatrix;
-    .registers 15
+    .locals 9
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "format"    # Lcom/google/zxing/BarcodeFormat;
     .param p3, "width"    # I
@@ -390,17 +390,17 @@
 
     move-result v0
 
-    if-nez v0, :cond_8c
+    if-nez v0, :cond_5
 
     .line 53
     sget-object v0, Lcom/google/zxing/BarcodeFormat;->DATA_MATRIX:Lcom/google/zxing/BarcodeFormat;
 
-    if-ne p2, v0, :cond_78
+    if-ne p2, v0, :cond_4
 
     .line 57
-    if-ltz p3, :cond_5c
+    if-ltz p3, :cond_3
 
-    if-ltz p4, :cond_5c
+    if-ltz p4, :cond_3
 
     .line 62
     sget-object v0, Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;->FORCE_NONE:Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;
@@ -415,7 +415,7 @@
 
     .line 65
     .local v2, "maxSize":Lcom/google/zxing/Dimension;
-    if-eqz p5, :cond_35
+    if-eqz p5, :cond_2
 
     .line 66
     sget-object v3, Lcom/google/zxing/EncodeHintType;->DATA_MATRIX_SHAPE:Lcom/google/zxing/EncodeHintType;
@@ -428,13 +428,13 @@
 
     .line 67
     .local v3, "requestedShape":Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;
-    if-eqz v3, :cond_1f
+    if-eqz v3, :cond_0
 
     .line 68
     move-object v0, v3
 
     .line 70
-    :cond_1f
+    :cond_0
     sget-object v4, Lcom/google/zxing/EncodeHintType;->MIN_SIZE:Lcom/google/zxing/EncodeHintType;
 
     invoke-interface {p5, v4}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -445,13 +445,13 @@
 
     .line 71
     .local v4, "requestedMinSize":Lcom/google/zxing/Dimension;
-    if-eqz v4, :cond_2a
+    if-eqz v4, :cond_1
 
     .line 72
     move-object v1, v4
 
     .line 74
-    :cond_2a
+    :cond_1
     sget-object v5, Lcom/google/zxing/EncodeHintType;->MAX_SIZE:Lcom/google/zxing/EncodeHintType;
 
     invoke-interface {p5, v5}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -462,7 +462,7 @@
 
     .line 75
     .local v5, "requestedMaxSize":Lcom/google/zxing/Dimension;
-    if-eqz v5, :cond_35
+    if-eqz v5, :cond_2
 
     .line 76
     move-object v2, v5
@@ -471,7 +471,7 @@
     .end local v3    # "requestedShape":Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;
     .end local v4    # "requestedMinSize":Lcom/google/zxing/Dimension;
     .end local v5    # "requestedMaxSize":Lcom/google/zxing/Dimension;
-    :cond_35
+    :cond_2
     invoke-static {p1, v0, v1, v2}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->encodeHighLevel(Ljava/lang/String;Lcom/google/zxing/datamatrix/encoder/SymbolShapeHint;Lcom/google/zxing/Dimension;Lcom/google/zxing/Dimension;)Ljava/lang/String;
 
     move-result-object v3
@@ -530,7 +530,7 @@
     .end local v4    # "symbolInfo":Lcom/google/zxing/datamatrix/encoder/SymbolInfo;
     .end local v5    # "codewords":Ljava/lang/String;
     .end local v6    # "placement":Lcom/google/zxing/datamatrix/encoder/DefaultPlacement;
-    :cond_5c
+    :cond_3
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -556,7 +556,7 @@
     throw v0
 
     .line 54
-    :cond_78
+    :cond_4
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -576,7 +576,7 @@
     throw v0
 
     .line 50
-    :cond_8c
+    :cond_5
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "Found empty contents"

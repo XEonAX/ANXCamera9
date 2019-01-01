@@ -11,7 +11,7 @@
 
 # direct methods
 .method private constructor <init>(I[B)V
-    .registers 3
+    .locals 0
     .param p1, "numDataCodewords"    # I
     .param p2, "codewords"    # [B
 
@@ -29,7 +29,7 @@
 .end method
 
 .method static getDataBlocks([BLcom/google/zxing/datamatrix/decoder/Version;)[Lcom/google/zxing/datamatrix/decoder/DataBlock;
-    .registers 20
+    .locals 18
     .param p0, "rawCodewords"    # [B
     .param p1, "version"    # Lcom/google/zxing/datamatrix/decoder/Version;
 
@@ -62,8 +62,8 @@
 
     .end local v2    # "totalBlocks":I
     .local v6, "totalBlocks":I
-    :goto_f
-    if-lt v2, v4, :cond_c5
+    :goto_0
+    if-lt v2, v4, :cond_b
 
     .line 59
     new-array v7, v6, [Lcom/google/zxing/datamatrix/decoder/DataBlock;
@@ -78,8 +78,8 @@
 
     move v9, v5
 
-    :goto_16
-    if-lt v9, v8, :cond_a0
+    :goto_1
+    if-lt v9, v8, :cond_9
 
     .line 72
     aget-object v4, v7, v5
@@ -113,8 +113,8 @@
 
     .end local v9    # "i":I
     .local v12, "i":I
-    :goto_28
-    if-lt v12, v11, :cond_88
+    :goto_2
+    if-lt v12, v11, :cond_7
 
     .line 87
     .end local v12    # "i":I
@@ -124,28 +124,28 @@
 
     const/16 v12, 0x18
 
-    if-ne v9, v12, :cond_34
+    if-ne v9, v12, :cond_0
 
     const/4 v9, 0x1
 
-    goto :goto_35
+    goto :goto_3
 
-    :cond_34
+    :cond_0
     move v9, v5
 
     .line 88
     .local v9, "specialVersion":Z
-    :goto_35
-    if-eqz v9, :cond_3a
+    :goto_3
+    if-eqz v9, :cond_1
 
     const/16 v12, 0x8
 
-    goto :goto_3b
+    goto :goto_4
 
-    :cond_3a
+    :cond_1
     move v12, v2
 
-    :goto_3b
+    :goto_4
     move v13, v12
 
     .line 89
@@ -153,8 +153,8 @@
     const/4 v12, 0x0
 
     .local v12, "j":I
-    :goto_3d
-    if-lt v12, v13, :cond_74
+    :goto_5
+    if-lt v12, v13, :cond_6
 
     .line 94
     .end local v12    # "j":I
@@ -173,20 +173,20 @@
 
     .end local v5    # "i":I
     .local v15, "i":I
-    :goto_46
-    if-lt v15, v14, :cond_52
+    :goto_6
+    if-lt v15, v14, :cond_3
 
     .line 102
     .end local v15    # "i":I
     array-length v5, v0
 
-    if-ne v8, v5, :cond_4c
+    if-ne v8, v5, :cond_2
 
     .line 106
     return-object v7
 
     .line 103
-    :cond_4c
+    :cond_2
     new-instance v5, Ljava/lang/IllegalArgumentException;
 
     invoke-direct {v5}, Ljava/lang/IllegalArgumentException;-><init>()V
@@ -195,38 +195,38 @@
 
     .line 96
     .restart local v15    # "i":I
-    :cond_52
+    :cond_3
     const/4 v5, 0x0
 
     .local v5, "j":I
-    :goto_53
-    if-lt v5, v2, :cond_58
+    :goto_7
+    if-lt v5, v2, :cond_4
 
     .line 95
     .end local v5    # "j":I
     add-int/lit8 v15, v15, 0x1
 
-    goto :goto_46
+    goto :goto_6
 
     .line 97
     .restart local v5    # "j":I
-    :cond_58
-    if-eqz v9, :cond_60
+    :cond_4
+    if-eqz v9, :cond_5
 
     const/4 v12, 0x7
 
-    if-le v5, v12, :cond_60
+    if-le v5, v12, :cond_5
 
     add-int/lit8 v12, v15, -0x1
 
-    goto :goto_61
+    goto :goto_8
 
-    :cond_60
+    :cond_5
     move v12, v15
 
     .line 98
     .local v12, "iOffset":I
-    :goto_61
+    :goto_8
     move/from16 v16, v4
 
     aget-object v4, v7, v5
@@ -251,7 +251,7 @@
 
     move/from16 v8, v17
 
-    goto :goto_53
+    goto :goto_7
 
     .line 90
     .end local v5    # "j":I
@@ -262,7 +262,7 @@
     .restart local v4    # "longerBlocksTotalCodewords":I
     .restart local v8    # "rawCodewordsOffset":I
     .local v12, "j":I
-    :cond_74
+    :cond_6
     move/from16 v16, v4
 
     .end local v4    # "longerBlocksTotalCodewords":I
@@ -288,7 +288,7 @@
 
     move/from16 v4, v16
 
-    goto :goto_3d
+    goto :goto_5
 
     .line 81
     .end local v9    # "specialVersion":Z
@@ -298,7 +298,7 @@
     .restart local v4    # "longerBlocksTotalCodewords":I
     .restart local v8    # "rawCodewordsOffset":I
     .local v12, "i":I
-    :cond_88
+    :cond_7
     move/from16 v16, v4
 
     .end local v4    # "longerBlocksTotalCodewords":I
@@ -306,8 +306,8 @@
     const/4 v4, 0x0
 
     .local v4, "j":I
-    :goto_8b
-    if-lt v4, v2, :cond_92
+    :goto_9
+    if-lt v4, v2, :cond_8
 
     .line 80
     .end local v4    # "j":I
@@ -315,11 +315,11 @@
 
     move/from16 v4, v16
 
-    goto :goto_28
+    goto :goto_2
 
     .line 82
     .restart local v4    # "j":I
-    :cond_92
+    :cond_8
     aget-object v9, v7, v4
 
     iget-object v9, v9, Lcom/google/zxing/datamatrix/decoder/DataBlock;->codewords:[B
@@ -337,7 +337,7 @@
 
     move v8, v13
 
-    goto :goto_8b
+    goto :goto_9
 
     .line 61
     .end local v4    # "j":I
@@ -346,7 +346,7 @@
     .end local v12    # "i":I
     .end local v13    # "rawCodewordsOffset":I
     .end local v16    # "longerBlocksTotalCodewords":I
-    :cond_a0
+    :cond_9
     aget-object v10, v3, v9
 
     .line 62
@@ -354,24 +354,24 @@
     const/4 v4, 0x0
 
     .local v4, "i":I
-    :goto_a3
+    :goto_a
     invoke-virtual {v10}, Lcom/google/zxing/datamatrix/decoder/Version$ECB;->getCount()I
 
     move-result v11
 
-    if-lt v4, v11, :cond_ad
+    if-lt v4, v11, :cond_a
 
     .line 61
     .end local v4    # "i":I
     .end local v10    # "ecBlock":Lcom/google/zxing/datamatrix/decoder/Version$ECB;
     add-int/lit8 v9, v9, 0x1
 
-    goto/16 :goto_16
+    goto/16 :goto_1
 
     .line 63
     .restart local v4    # "i":I
     .restart local v10    # "ecBlock":Lcom/google/zxing/datamatrix/decoder/Version$ECB;
-    :cond_ad
+    :cond_a
     invoke-virtual {v10}, Lcom/google/zxing/datamatrix/decoder/Version$ECB;->getDataCodewords()I
 
     move-result v11
@@ -405,14 +405,14 @@
 
     move v2, v13
 
-    goto :goto_a3
+    goto :goto_a
 
     .line 54
     .end local v4    # "i":I
     .end local v7    # "result":[Lcom/google/zxing/datamatrix/decoder/DataBlock;
     .end local v10    # "ecBlock":Lcom/google/zxing/datamatrix/decoder/Version$ECB;
     .end local v13    # "numResultBlocks":I
-    :cond_c5
+    :cond_b
     aget-object v7, v3, v2
 
     .line 55
@@ -427,13 +427,13 @@
     .end local v7    # "ecBlock":Lcom/google/zxing/datamatrix/decoder/Version$ECB;
     add-int/lit8 v2, v2, 0x1
 
-    goto/16 :goto_f
+    goto/16 :goto_0
 .end method
 
 
 # virtual methods
 .method getCodewords()[B
-    .registers 2
+    .locals 1
 
     .line 114
     iget-object v0, p0, Lcom/google/zxing/datamatrix/decoder/DataBlock;->codewords:[B
@@ -442,7 +442,7 @@
 .end method
 
 .method getNumDataCodewords()I
-    .registers 2
+    .locals 1
 
     .line 110
     iget v0, p0, Lcom/google/zxing/datamatrix/decoder/DataBlock;->numDataCodewords:I

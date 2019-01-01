@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 44
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -18,7 +18,7 @@
 .end method
 
 .method private static decode(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;Z)[Lcom/google/zxing/Result;
-    .registers 14
+    .locals 11
     .param p0, "image"    # Lcom/google/zxing/BinaryBitmap;
     .param p2, "multiple"    # Z
     .annotation system Ldalvik/annotation/Signature;
@@ -62,12 +62,12 @@
 
     move-result-object v2
 
-    :goto_11
+    :goto_0
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-nez v3, :cond_24
+    if-nez v3, :cond_0
 
     .line 97
     invoke-interface {v0}, Ljava/util/List;->size()I
@@ -85,7 +85,7 @@
     return-object v2
 
     .line 86
-    :cond_24
+    :cond_0
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v3
@@ -163,7 +163,7 @@
 
     .line 92
     .local v6, "pdf417ResultMetadata":Lcom/google/zxing/pdf417/PDF417ResultMetadata;
-    if-eqz v6, :cond_6b
+    if-eqz v6, :cond_1
 
     .line 93
     sget-object v7, Lcom/google/zxing/ResultMetadataType;->PDF417_EXTRA_METADATA:Lcom/google/zxing/ResultMetadataType;
@@ -171,18 +171,18 @@
     invoke-virtual {v5, v7, v6}, Lcom/google/zxing/Result;->putMetadata(Lcom/google/zxing/ResultMetadataType;Ljava/lang/Object;)V
 
     .line 95
-    :cond_6b
+    :cond_1
     invoke-interface {v0, v5}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .end local v3    # "points":[Lcom/google/zxing/ResultPoint;
     .end local v4    # "decoderResult":Lcom/google/zxing/common/DecoderResult;
     .end local v5    # "result":Lcom/google/zxing/Result;
     .end local v6    # "pdf417ResultMetadata":Lcom/google/zxing/pdf417/PDF417ResultMetadata;
-    goto :goto_11
+    goto :goto_0
 .end method
 
 .method private static getMaxCodewordWidth([Lcom/google/zxing/ResultPoint;)I
-    .registers 5
+    .locals 4
     .param p0, "p"    # [Lcom/google/zxing/ResultPoint;
 
     .line 116
@@ -264,19 +264,19 @@
 .end method
 
 .method private static getMaxWidth(Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;)I
-    .registers 4
+    .locals 2
     .param p0, "p1"    # Lcom/google/zxing/ResultPoint;
     .param p1, "p2"    # Lcom/google/zxing/ResultPoint;
 
     .line 101
-    if-eqz p0, :cond_14
+    if-eqz p0, :cond_1
 
-    if-nez p1, :cond_5
+    if-nez p1, :cond_0
 
-    goto :goto_14
+    goto :goto_0
 
     .line 104
-    :cond_5
+    :cond_0
     invoke-virtual {p0}, Lcom/google/zxing/ResultPoint;->getX()F
 
     move-result v0
@@ -296,15 +296,15 @@
     return v0
 
     .line 102
-    :cond_14
-    :goto_14
+    :cond_1
+    :goto_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method private static getMinCodewordWidth([Lcom/google/zxing/ResultPoint;)I
-    .registers 5
+    .locals 4
     .param p0, "p"    # [Lcom/google/zxing/ResultPoint;
 
     .line 124
@@ -386,19 +386,19 @@
 .end method
 
 .method private static getMinWidth(Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;)I
-    .registers 4
+    .locals 2
     .param p0, "p1"    # Lcom/google/zxing/ResultPoint;
     .param p1, "p2"    # Lcom/google/zxing/ResultPoint;
 
     .line 108
-    if-eqz p0, :cond_14
+    if-eqz p0, :cond_1
 
-    if-nez p1, :cond_5
+    if-nez p1, :cond_0
 
-    goto :goto_14
+    goto :goto_0
 
     .line 111
-    :cond_5
+    :cond_0
     invoke-virtual {p0}, Lcom/google/zxing/ResultPoint;->getX()F
 
     move-result v0
@@ -418,8 +418,8 @@
     return v0
 
     .line 109
-    :cond_14
-    :goto_14
+    :cond_1
+    :goto_0
     const v0, 0x7fffffff
 
     return v0
@@ -428,7 +428,7 @@
 
 # virtual methods
 .method public decode(Lcom/google/zxing/BinaryBitmap;)Lcom/google/zxing/Result;
-    .registers 3
+    .locals 1
     .param p1, "image"    # Lcom/google/zxing/BinaryBitmap;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -449,7 +449,7 @@
 .end method
 
 .method public decode(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;)Lcom/google/zxing/Result;
-    .registers 6
+    .locals 3
     .param p1, "image"    # Lcom/google/zxing/BinaryBitmap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -480,15 +480,15 @@
 
     .line 62
     .local v1, "result":[Lcom/google/zxing/Result;
-    if-eqz v1, :cond_11
+    if-eqz v1, :cond_0
 
     array-length v2, v1
 
-    if-eqz v2, :cond_11
+    if-eqz v2, :cond_0
 
     aget-object v2, v1, v0
 
-    if-eqz v2, :cond_11
+    if-eqz v2, :cond_0
 
     .line 65
     aget-object v0, v1, v0
@@ -496,7 +496,7 @@
     return-object v0
 
     .line 63
-    :cond_11
+    :cond_0
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v0
@@ -505,7 +505,7 @@
 .end method
 
 .method public decodeMultiple(Lcom/google/zxing/BinaryBitmap;)[Lcom/google/zxing/Result;
-    .registers 3
+    .locals 1
     .param p1, "image"    # Lcom/google/zxing/BinaryBitmap;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -524,7 +524,7 @@
 .end method
 
 .method public decodeMultiple(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;)[Lcom/google/zxing/Result;
-    .registers 5
+    .locals 2
     .param p1, "image"    # Lcom/google/zxing/BinaryBitmap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -547,17 +547,17 @@
     .local p2, "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
     const/4 v0, 0x1
 
-    :try_start_1
+    :try_start_0
     invoke-static {p1, p2, v0}, Lcom/google/zxing/pdf417/PDF417Reader;->decode(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;Z)[Lcom/google/zxing/Result;
 
     move-result-object v0
-    :try_end_5
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_5} :catch_6
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     return-object v0
 
     .line 77
-    :catch_6
+    :catch_0
     move-exception v0
 
     .line 78
@@ -570,7 +570,7 @@
 .end method
 
 .method public reset()V
-    .registers 1
+    .locals 0
 
     .line 133
     return-void

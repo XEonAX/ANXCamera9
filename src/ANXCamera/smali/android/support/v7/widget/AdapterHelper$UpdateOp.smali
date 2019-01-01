@@ -38,7 +38,7 @@
 
 # direct methods
 .method constructor <init>(IIILjava/lang/Object;)V
-    .registers 5
+    .locals 0
     .param p1, "cmd"    # I
     .param p2, "positionStart"    # I
     .param p3, "itemCount"    # I
@@ -66,12 +66,12 @@
 
 # virtual methods
 .method cmdToString()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 634
     iget v0, p0, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->cmd:I
 
-    packed-switch v0, :pswitch_data_14
+    packed-switch v0, :pswitch_data_0
 
     .line 644
     const-string v0, "??"
@@ -79,55 +79,55 @@
     return-object v0
 
     .line 642
-    :pswitch_8
+    :pswitch_0
     const-string v0, "mv"
 
     return-object v0
 
     .line 640
-    :pswitch_b
+    :pswitch_1
     const-string v0, "up"
 
     return-object v0
 
     .line 638
-    :pswitch_e
+    :pswitch_2
     const-string v0, "rm"
 
     return-object v0
 
     .line 636
-    :pswitch_11
+    :pswitch_3
     const-string v0, "add"
 
     return-object v0
 
-    :pswitch_data_14
+    :pswitch_data_0
     .packed-switch 0x0
-        :pswitch_11
-        :pswitch_e
-        :pswitch_b
-        :pswitch_8
+        :pswitch_3
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
     .end packed-switch
 .end method
 
 .method public equals(Ljava/lang/Object;)Z
-    .registers 7
+    .locals 5
     .param p1, "o"    # Ljava/lang/Object;
 
     .line 656
     const/4 v0, 0x1
 
-    if-ne p0, p1, :cond_4
+    if-ne p0, p1, :cond_0
 
     .line 657
     return v0
 
     .line 659
-    :cond_4
+    :cond_0
     const/4 v1, 0x0
 
-    if-eqz p1, :cond_5c
+    if-eqz p1, :cond_8
 
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
@@ -137,12 +137,12 @@
 
     move-result-object v3
 
-    if-eq v2, v3, :cond_12
+    if-eq v2, v3, :cond_1
 
-    goto :goto_5c
+    goto :goto_0
 
     .line 663
-    :cond_12
+    :cond_1
     move-object v2, p1
 
     check-cast v2, Landroid/support/v7/widget/AdapterHelper$UpdateOp;
@@ -153,18 +153,18 @@
 
     iget v4, v2, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->cmd:I
 
-    if-eq v3, v4, :cond_1c
+    if-eq v3, v4, :cond_2
 
     .line 666
     return v1
 
     .line 668
-    :cond_1c
+    :cond_2
     iget v3, p0, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->cmd:I
 
     const/4 v4, 0x3
 
-    if-ne v3, v4, :cond_39
+    if-ne v3, v4, :cond_3
 
     iget v3, p0, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
@@ -176,51 +176,51 @@
 
     move-result v3
 
-    if-ne v3, v0, :cond_39
+    if-ne v3, v0, :cond_3
 
     .line 670
     iget v3, p0, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
     iget v4, v2, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-ne v3, v4, :cond_39
+    if-ne v3, v4, :cond_3
 
     iget v3, p0, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     iget v4, v2, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
-    if-ne v3, v4, :cond_39
+    if-ne v3, v4, :cond_3
 
     .line 671
     return v0
 
     .line 674
-    :cond_39
+    :cond_3
     iget v3, p0, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
     iget v4, v2, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
-    if-eq v3, v4, :cond_40
+    if-eq v3, v4, :cond_4
 
     .line 675
     return v1
 
     .line 677
-    :cond_40
+    :cond_4
     iget v3, p0, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     iget v4, v2, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-eq v3, v4, :cond_47
+    if-eq v3, v4, :cond_5
 
     .line 678
     return v1
 
     .line 680
-    :cond_47
+    :cond_5
     iget-object v3, p0, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->payload:Ljava/lang/Object;
 
-    if-eqz v3, :cond_56
+    if-eqz v3, :cond_6
 
     .line 681
     iget-object v3, p0, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->payload:Ljava/lang/Object;
@@ -231,33 +231,33 @@
 
     move-result v3
 
-    if-nez v3, :cond_5b
+    if-nez v3, :cond_7
 
     .line 682
     return v1
 
     .line 684
-    :cond_56
+    :cond_6
     iget-object v3, v2, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->payload:Ljava/lang/Object;
 
-    if-eqz v3, :cond_5b
+    if-eqz v3, :cond_7
 
     .line 685
     return v1
 
     .line 688
-    :cond_5b
+    :cond_7
     return v0
 
     .line 660
     .end local v2    # "op":Landroid/support/v7/widget/AdapterHelper$UpdateOp;
-    :cond_5c
-    :goto_5c
+    :cond_8
+    :goto_0
     return v1
 .end method
 
 .method public hashCode()I
-    .registers 5
+    .locals 4
 
     .line 693
     iget v0, p0, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->cmd:I
@@ -288,7 +288,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 649
     new-instance v0, Ljava/lang/StringBuilder;

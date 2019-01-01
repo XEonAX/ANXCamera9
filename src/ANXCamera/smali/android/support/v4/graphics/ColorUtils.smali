@@ -11,7 +11,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 29
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -20,7 +20,7 @@
 .end method
 
 .method public static HSLToColor([F)I
-    .registers 14
+    .locals 13
     .param p0, "hsl"    # [F
 
     .line 226
@@ -104,12 +104,12 @@
     .local v10, "b":I
     const/high16 v11, 0x437f0000    # 255.0f
 
-    packed-switch v4, :pswitch_data_c4
+    packed-switch v4, :pswitch_data_0
 
-    goto/16 :goto_b1
+    goto/16 :goto_0
 
     .line 266
-    :pswitch_35
+    :pswitch_0
     add-float v12, v5, v7
 
     mul-float/2addr v12, v11
@@ -134,10 +134,10 @@
 
     move-result v10
 
-    goto :goto_b1
+    goto :goto_0
 
     .line 260
-    :pswitch_4a
+    :pswitch_1
     add-float v12, v6, v7
 
     mul-float/2addr v12, v11
@@ -163,10 +163,10 @@
     move-result v10
 
     .line 263
-    goto :goto_b1
+    goto :goto_0
 
     .line 255
-    :pswitch_5f
+    :pswitch_2
     mul-float v12, v11, v7
 
     invoke-static {v12}, Ljava/lang/Math;->round(F)I
@@ -192,10 +192,10 @@
     move-result v10
 
     .line 258
-    goto :goto_b1
+    goto :goto_0
 
     .line 250
-    :pswitch_74
+    :pswitch_3
     mul-float v12, v11, v7
 
     invoke-static {v12}, Ljava/lang/Math;->round(F)I
@@ -221,10 +221,10 @@
     move-result v10
 
     .line 253
-    goto :goto_b1
+    goto :goto_0
 
     .line 245
-    :pswitch_89
+    :pswitch_4
     add-float v12, v6, v7
 
     mul-float/2addr v12, v11
@@ -250,10 +250,10 @@
     move-result v10
 
     .line 248
-    goto :goto_b1
+    goto :goto_0
 
     .line 240
-    :pswitch_9d
+    :pswitch_5
     add-float v12, v5, v7
 
     mul-float/2addr v12, v11
@@ -282,7 +282,7 @@
     nop
 
     .line 272
-    :goto_b1
+    :goto_0
     const/16 v11, 0xff
 
     invoke-static {v8, v0, v11}, Landroid/support/v4/graphics/ColorUtils;->constrain(III)I
@@ -308,20 +308,20 @@
 
     return v10
 
-    :pswitch_data_c4
+    :pswitch_data_0
     .packed-switch 0x0
-        :pswitch_9d
-        :pswitch_89
-        :pswitch_74
-        :pswitch_5f
-        :pswitch_4a
-        :pswitch_35
-        :pswitch_35
+        :pswitch_5
+        :pswitch_4
+        :pswitch_3
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
+        :pswitch_0
     .end packed-switch
 .end method
 
 .method public static RGBToHSL(III[F)V
-    .registers 20
+    .locals 16
     .param p0, "r"    # I
     .param p1, "g"    # I
     .param p2, "b"    # I
@@ -392,7 +392,7 @@
 
     const/4 v13, 0x0
 
-    if-nez v11, :cond_2f
+    if-nez v11, :cond_0
 
     .line 175
     move v10, v13
@@ -401,15 +401,15 @@
     move v11, v13
 
     .local v11, "h":F
-    goto :goto_53
+    goto :goto_2
 
     .line 177
     .end local v10    # "s":F
     .end local v11    # "h":F
-    :cond_2f
+    :cond_0
     cmpl-float v11, v2, v1
 
-    if-nez v11, :cond_3a
+    if-nez v11, :cond_1
 
     .line 178
     sub-float v11, v4, v6
@@ -421,15 +421,15 @@
     rem-float/2addr v11, v14
 
     .restart local v11    # "h":F
-    :goto_39
-    goto :goto_49
+    :goto_0
+    goto :goto_1
 
     .line 179
     .end local v11    # "h":F
-    :cond_3a
+    :cond_1
     cmpl-float v11, v2, v4
 
-    if-nez v11, :cond_43
+    if-nez v11, :cond_2
 
     .line 180
     sub-float v11, v6, v1
@@ -438,10 +438,10 @@
 
     add-float/2addr v11, v10
 
-    goto :goto_39
+    goto :goto_0
 
     .line 182
-    :cond_43
+    :cond_2
     sub-float v11, v1, v4
 
     div-float/2addr v11, v8
@@ -452,7 +452,7 @@
 
     .line 185
     .restart local v11    # "h":F
-    :goto_49
+    :goto_1
     mul-float/2addr v10, v9
 
     sub-float/2addr v10, v12
@@ -467,7 +467,7 @@
 
     .line 188
     .restart local v10    # "s":F
-    :goto_53
+    :goto_2
     const/high16 v14, 0x42700000    # 60.0f
 
     mul-float/2addr v14, v11
@@ -481,13 +481,13 @@
     .local v14, "h":F
     cmpg-float v11, v14, v13
 
-    if-gez v11, :cond_5e
+    if-gez v11, :cond_3
 
     .line 190
     add-float/2addr v14, v12
 
     .line 193
-    :cond_5e
+    :cond_3
     const/4 v11, 0x0
 
     invoke-static {v14, v13, v12}, Landroid/support/v4/graphics/ColorUtils;->constrain(FFF)F
@@ -521,7 +521,7 @@
 .end method
 
 .method public static calculateContrast(II)D
-    .registers 10
+    .locals 8
     .param p0, "foreground"    # I
     .param p1, "background"    # I
 
@@ -532,14 +532,14 @@
 
     const/16 v1, 0xff
 
-    if-ne v0, v1, :cond_2b
+    if-ne v0, v1, :cond_1
 
     .line 87
     invoke-static {p0}, Landroid/graphics/Color;->alpha(I)I
 
     move-result v0
 
-    if-ge v0, v1, :cond_12
+    if-ge v0, v1, :cond_0
 
     .line 89
     invoke-static {p0, p1}, Landroid/support/v4/graphics/ColorUtils;->compositeColors(II)I
@@ -547,7 +547,7 @@
     move-result p0
 
     .line 92
-    :cond_12
+    :cond_0
     invoke-static {p0}, Landroid/support/v4/graphics/ColorUtils;->calculateLuminance(I)D
 
     move-result-wide v0
@@ -581,7 +581,7 @@
     .line 85
     .end local v0    # "luminance1":D
     .end local v4    # "luminance2":D
-    :cond_2b
+    :cond_1
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "background can not be translucent"
@@ -592,7 +592,7 @@
 .end method
 
 .method public static calculateLuminance(I)D
-    .registers 21
+    .locals 20
     .param p0, "color"    # I
 
     .line 64
@@ -620,13 +620,13 @@
 
     const-wide v13, 0x4029d70a3d70a3d7L    # 12.92
 
-    if-gez v6, :cond_2b
+    if-gez v6, :cond_0
 
     div-double v15, v0, v13
 
-    goto :goto_33
+    goto :goto_0
 
-    :cond_2b
+    :cond_0
     add-double v15, v0, v11
 
     div-double v11, v15, v9
@@ -635,7 +635,7 @@
 
     move-result-wide v15
 
-    :goto_33
+    :goto_0
     move-wide v0, v15
 
     .line 67
@@ -651,13 +651,13 @@
     .local v11, "green":D
     cmpg-double v6, v11, v4
 
-    if-gez v6, :cond_41
+    if-gez v6, :cond_1
 
     div-double v15, v11, v13
 
-    goto :goto_4e
+    goto :goto_1
 
-    :cond_41
+    :cond_1
     const-wide v15, 0x3fac28f5c28f5c29L    # 0.055
 
     add-double v17, v11, v15
@@ -668,7 +668,7 @@
 
     move-result-wide v15
 
-    :goto_4e
+    :goto_1
     move-wide v11, v15
 
     .line 70
@@ -684,15 +684,15 @@
     .local v13, "blue":D
     cmpg-double v2, v13, v4
 
-    if-gez v2, :cond_61
+    if-gez v2, :cond_2
 
     const-wide v2, 0x4029d70a3d70a3d7L    # 12.92
 
     div-double v2, v13, v2
 
-    goto :goto_6c
+    goto :goto_2
 
-    :cond_61
+    :cond_2
     const-wide v2, 0x3fac28f5c28f5c29L    # 0.055
 
     add-double/2addr v2, v13
@@ -706,7 +706,7 @@
     .line 73
     .end local v13    # "blue":D
     .local v2, "blue":D
-    :goto_6c
+    :goto_2
     const-wide v4, 0x3fcb367a0f9096bcL    # 0.2126
 
     mul-double/2addr v4, v0
@@ -727,7 +727,7 @@
 .end method
 
 .method public static calculateMinimumAlpha(IIF)I
-    .registers 12
+    .locals 9
     .param p0, "foreground"    # I
     .param p1, "background"    # I
     .param p2, "minContrastRatio"    # F
@@ -739,7 +739,7 @@
 
     const/16 v1, 0xff
 
-    if-ne v0, v1, :cond_3a
+    if-ne v0, v1, :cond_3
 
     .line 116
     invoke-static {p0, v1}, Landroid/support/v4/graphics/ColorUtils;->setAlphaComponent(II)I
@@ -758,7 +758,7 @@
 
     cmpg-double v4, v2, v4
 
-    if-gez v4, :cond_17
+    if-gez v4, :cond_0
 
     .line 120
     const/4 v1, -0x1
@@ -766,7 +766,7 @@
     return v1
 
     .line 124
-    :cond_17
+    :cond_0
     const/4 v4, 0x0
 
     .line 125
@@ -779,14 +779,14 @@
 
     .line 128
     .local v1, "maxAlpha":I
-    :goto_1a
+    :goto_0
     const/16 v6, 0xa
 
-    if-gt v4, v6, :cond_39
+    if-gt v4, v6, :cond_2
 
     sub-int v7, v1, v5
 
-    if-le v7, v6, :cond_39
+    if-le v7, v6, :cond_2
 
     .line 130
     add-int v6, v5, v1
@@ -809,27 +809,27 @@
 
     cmpg-double v7, v2, v7
 
-    if-gez v7, :cond_35
+    if-gez v7, :cond_1
 
     .line 136
     move v5, v6
 
-    goto :goto_36
+    goto :goto_1
 
     .line 138
-    :cond_35
+    :cond_1
     move v1, v6
 
     .line 141
-    :goto_36
+    :goto_1
     add-int/lit8 v4, v4, 0x1
 
     .line 142
     .end local v6    # "testAlpha":I
-    goto :goto_1a
+    goto :goto_0
 
     .line 145
-    :cond_39
+    :cond_2
     return v1
 
     .line 112
@@ -838,7 +838,7 @@
     .end local v2    # "testRatio":D
     .end local v4    # "numIterations":I
     .end local v5    # "minAlpha":I
-    :cond_3a
+    :cond_3
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "background can not be translucent"
@@ -849,7 +849,7 @@
 .end method
 
 .method public static colorToHSL(I[F)V
-    .registers 5
+    .locals 3
     .param p0, "color"    # I
     .param p1, "hsl"    # [F
 
@@ -873,7 +873,7 @@
 .end method
 
 .method private static compositeAlpha(II)I
-    .registers 4
+    .locals 2
     .param p0, "foregroundAlpha"    # I
     .param p1, "backgroundAlpha"    # I
 
@@ -892,7 +892,7 @@
 .end method
 
 .method public static compositeColors(II)I
-    .registers 9
+    .locals 7
     .param p0, "foreground"    # I
     .param p1, "background"    # I
 
@@ -965,7 +965,7 @@
 .end method
 
 .method private static compositeComponent(IIIII)I
-    .registers 8
+    .locals 3
     .param p0, "fgC"    # I
     .param p1, "fgA"    # I
     .param p2, "bgC"    # I
@@ -973,14 +973,14 @@
     .param p4, "a"    # I
 
     .line 54
-    if-nez p4, :cond_4
+    if-nez p4, :cond_0
 
     const/4 v0, 0x0
 
     return v0
 
     .line 55
-    :cond_4
+    :cond_0
     const/16 v0, 0xff
 
     mul-int v1, v0, p0
@@ -1003,7 +1003,7 @@
 .end method
 
 .method private static constrain(FFF)F
-    .registers 4
+    .locals 1
     .param p0, "amount"    # F
     .param p1, "low"    # F
     .param p2, "high"    # F
@@ -1011,66 +1011,66 @@
     .line 290
     cmpg-float v0, p0, p1
 
-    if-gez v0, :cond_6
+    if-gez v0, :cond_0
 
     move v0, p1
 
-    goto :goto_d
+    goto :goto_0
 
-    :cond_6
+    :cond_0
     cmpl-float v0, p0, p2
 
-    if-lez v0, :cond_c
+    if-lez v0, :cond_1
 
     move v0, p2
 
-    goto :goto_d
+    goto :goto_0
 
-    :cond_c
+    :cond_1
     move v0, p0
 
-    :goto_d
+    :goto_0
     return v0
 .end method
 
 .method private static constrain(III)I
-    .registers 4
+    .locals 1
     .param p0, "amount"    # I
     .param p1, "low"    # I
     .param p2, "high"    # I
 
     .line 294
-    if-ge p0, p1, :cond_4
+    if-ge p0, p1, :cond_0
 
     move v0, p1
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_4
-    if-le p0, p2, :cond_8
+    :cond_0
+    if-le p0, p2, :cond_1
 
     move v0, p2
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_1
     move v0, p0
 
-    :goto_9
+    :goto_0
     return v0
 .end method
 
 .method public static setAlphaComponent(II)I
-    .registers 4
+    .locals 2
     .param p0, "color"    # I
     .param p1, "alpha"    # I
 
     .line 283
-    if-ltz p1, :cond_e
+    if-ltz p1, :cond_0
 
     const/16 v0, 0xff
 
-    if-gt p1, v0, :cond_e
+    if-gt p1, v0, :cond_0
 
     .line 286
     const v0, 0xffffff
@@ -1084,7 +1084,7 @@
     return v0
 
     .line 284
-    :cond_e
+    :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "alpha must be between 0 and 255."

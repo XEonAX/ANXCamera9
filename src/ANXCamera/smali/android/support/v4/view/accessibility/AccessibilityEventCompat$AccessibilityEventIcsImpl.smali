@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 64
     invoke-direct {p0}, Landroid/support/v4/view/accessibility/AccessibilityEventCompat$AccessibilityEventStubImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public appendRecord(Landroid/view/accessibility/AccessibilityEvent;Ljava/lang/Object;)V
-    .registers 3
+    .locals 0
     .param p1, "event"    # Landroid/view/accessibility/AccessibilityEvent;
     .param p2, "record"    # Ljava/lang/Object;
 
@@ -39,7 +39,7 @@
 .end method
 
 .method public getRecord(Landroid/view/accessibility/AccessibilityEvent;I)Ljava/lang/Object;
-    .registers 4
+    .locals 1
     .param p1, "event"    # Landroid/view/accessibility/AccessibilityEvent;
     .param p2, "index"    # I
 
@@ -52,7 +52,7 @@
 .end method
 
 .method public getRecordCount(Landroid/view/accessibility/AccessibilityEvent;)I
-    .registers 3
+    .locals 1
     .param p1, "event"    # Landroid/view/accessibility/AccessibilityEvent;
 
     .line 78

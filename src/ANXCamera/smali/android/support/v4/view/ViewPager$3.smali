@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/view/ViewPager;)V
-    .registers 2
+    .locals 0
 
     .line 248
     iput-object p1, p0, Landroid/support/v4/view/ViewPager$3;->this$0:Landroid/support/v4/view/ViewPager;
@@ -36,14 +36,13 @@
 
 # virtual methods
 .method public run()V
-    .registers 3
+    .locals 2
 
     .line 250
     iget-object v0, p0, Landroid/support/v4/view/ViewPager$3;->this$0:Landroid/support/v4/view/ViewPager;
 
     const/4 v1, 0x0
 
-    # invokes: Landroid/support/v4/view/ViewPager;->setScrollState(I)V
     invoke-static {v0, v1}, Landroid/support/v4/view/ViewPager;->access$000(Landroid/support/v4/view/ViewPager;I)V
 
     .line 251

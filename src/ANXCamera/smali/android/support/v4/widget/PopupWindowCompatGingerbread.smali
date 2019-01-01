@@ -15,7 +15,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -24,7 +24,7 @@
 .end method
 
 .method static getWindowLayoutType(Landroid/widget/PopupWindow;)I
-    .registers 6
+    .locals 5
     .param p0, "popupWindow"    # Landroid/widget/PopupWindow;
 
     .line 55
@@ -32,12 +32,12 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_1b
+    if-nez v0, :cond_0
 
     .line 57
     const/4 v0, 0x1
 
-    :try_start_6
+    :try_start_0
     const-class v2, Landroid/widget/PopupWindow;
 
     const-string v3, "getWindowLayoutType"
@@ -54,28 +54,28 @@
     sget-object v2, Landroid/support/v4/widget/PopupWindowCompatGingerbread;->sGetWindowLayoutTypeMethod:Ljava/lang/reflect/Method;
 
     invoke-virtual {v2, v0}, Ljava/lang/reflect/Method;->setAccessible(Z)V
-    :try_end_17
-    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_17} :catch_18
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 62
-    goto :goto_19
+    goto :goto_0
 
     .line 60
-    :catch_18
+    :catch_0
     move-exception v2
 
     .line 63
-    :goto_19
+    :goto_0
     sput-boolean v0, Landroid/support/v4/widget/PopupWindowCompatGingerbread;->sGetWindowLayoutTypeMethodAttempted:Z
 
     .line 66
-    :cond_1b
+    :cond_0
     sget-object v0, Landroid/support/v4/widget/PopupWindowCompatGingerbread;->sGetWindowLayoutTypeMethod:Ljava/lang/reflect/Method;
 
-    if-eqz v0, :cond_2f
+    if-eqz v0, :cond_1
 
     .line 68
-    :try_start_1f
+    :try_start_1
     sget-object v0, Landroid/support/v4/widget/PopupWindowCompatGingerbread;->sGetWindowLayoutTypeMethod:Ljava/lang/reflect/Method;
 
     new-array v2, v1, [Ljava/lang/Object;
@@ -89,22 +89,22 @@
     invoke-virtual {v0}, Ljava/lang/Integer;->intValue()I
 
     move-result v0
-    :try_end_2d
-    .catch Ljava/lang/Exception; {:try_start_1f .. :try_end_2d} :catch_2e
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
 
     return v0
 
     .line 69
-    :catch_2e
+    :catch_1
     move-exception v0
 
     .line 73
-    :cond_2f
+    :cond_1
     return v1
 .end method
 
 .method static setWindowLayoutType(Landroid/widget/PopupWindow;I)V
-    .registers 8
+    .locals 6
     .param p0, "popupWindow"    # Landroid/widget/PopupWindow;
     .param p1, "layoutType"    # I
 
@@ -115,10 +115,10 @@
 
     const/4 v2, 0x1
 
-    if-nez v0, :cond_1f
+    if-nez v0, :cond_0
 
     .line 36
-    :try_start_6
+    :try_start_0
     const-class v0, Landroid/widget/PopupWindow;
 
     const-string v3, "setWindowLayoutType"
@@ -139,28 +139,28 @@
     sget-object v0, Landroid/support/v4/widget/PopupWindowCompatGingerbread;->sSetWindowLayoutTypeMethod:Ljava/lang/reflect/Method;
 
     invoke-virtual {v0, v2}, Ljava/lang/reflect/Method;->setAccessible(Z)V
-    :try_end_1b
-    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_1b} :catch_1c
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 41
-    goto :goto_1d
+    goto :goto_0
 
     .line 39
-    :catch_1c
+    :catch_0
     move-exception v0
 
     .line 42
-    :goto_1d
+    :goto_0
     sput-boolean v2, Landroid/support/v4/widget/PopupWindowCompatGingerbread;->sSetWindowLayoutTypeMethodAttempted:Z
 
     .line 45
-    :cond_1f
+    :cond_0
     sget-object v0, Landroid/support/v4/widget/PopupWindowCompatGingerbread;->sSetWindowLayoutTypeMethod:Ljava/lang/reflect/Method;
 
-    if-eqz v0, :cond_32
+    if-eqz v0, :cond_1
 
     .line 47
-    :try_start_23
+    :try_start_1
     sget-object v0, Landroid/support/v4/widget/PopupWindowCompatGingerbread;->sSetWindowLayoutTypeMethod:Ljava/lang/reflect/Method;
 
     new-array v2, v2, [Ljava/lang/Object;
@@ -172,18 +172,18 @@
     aput-object v3, v2, v1
 
     invoke-virtual {v0, p0, v2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_30
-    .catch Ljava/lang/Exception; {:try_start_23 .. :try_end_30} :catch_31
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
 
     .line 50
-    goto :goto_32
+    goto :goto_1
 
     .line 48
-    :catch_31
+    :catch_1
     move-exception v0
 
     .line 52
-    :cond_32
-    :goto_32
+    :cond_1
+    :goto_1
     return-void
 .end method

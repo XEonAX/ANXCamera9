@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/content/LocalBroadcastManager;Landroid/os/Looper;)V
-    .registers 3
+    .locals 0
     .param p2, "x0"    # Landroid/os/Looper;
 
     .line 110
@@ -34,7 +34,7 @@
 
 # virtual methods
 .method public handleMessage(Landroid/os/Message;)V
-    .registers 4
+    .locals 2
     .param p1, "msg"    # Landroid/os/Message;
 
     .line 114
@@ -42,24 +42,23 @@
 
     const/4 v1, 0x1
 
-    if-eq v0, v1, :cond_9
+    if-eq v0, v1, :cond_0
 
     .line 119
     invoke-super {p0, p1}, Landroid/os/Handler;->handleMessage(Landroid/os/Message;)V
 
-    goto :goto_f
+    goto :goto_0
 
     .line 116
-    :cond_9
+    :cond_0
     iget-object v0, p0, Landroid/support/v4/content/LocalBroadcastManager$1;->this$0:Landroid/support/v4/content/LocalBroadcastManager;
 
-    # invokes: Landroid/support/v4/content/LocalBroadcastManager;->executePendingBroadcasts()V
     invoke-static {v0}, Landroid/support/v4/content/LocalBroadcastManager;->access$000(Landroid/support/v4/content/LocalBroadcastManager;)V
 
     .line 117
     nop
 
     .line 121
-    :goto_f
+    :goto_0
     return-void
 .end method

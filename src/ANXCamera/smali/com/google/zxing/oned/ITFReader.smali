@@ -27,14 +27,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 6
+    .locals 6
 
     .line 54
     const/4 v0, 0x5
 
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_6e
+    fill-array-data v1, :array_0
 
     sput-object v1, Lcom/google/zxing/oned/ITFReader;->DEFAULT_ALLOWED_LENGTHS:[I
 
@@ -43,7 +43,7 @@
 
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_7c
+    fill-array-data v2, :array_1
 
     sput-object v2, Lcom/google/zxing/oned/ITFReader;->START_PATTERN:[I
 
@@ -52,7 +52,7 @@
 
     new-array v3, v2, [I
 
-    fill-array-data v3, :array_88
+    fill-array-data v3, :array_2
 
     sput-object v3, Lcom/google/zxing/oned/ITFReader;->END_PATTERN_REVERSED:[I
 
@@ -64,7 +64,7 @@
     .line 72
     new-array v4, v0, [I
 
-    fill-array-data v4, :array_92
+    fill-array-data v4, :array_3
 
     const/4 v5, 0x0
 
@@ -73,7 +73,7 @@
     .line 73
     new-array v4, v0, [I
 
-    fill-array-data v4, :array_a0
+    fill-array-data v4, :array_4
 
     const/4 v5, 0x1
 
@@ -82,7 +82,7 @@
     .line 74
     new-array v4, v0, [I
 
-    fill-array-data v4, :array_ae
+    fill-array-data v4, :array_5
 
     const/4 v5, 0x2
 
@@ -91,28 +91,28 @@
     .line 75
     new-array v4, v0, [I
 
-    fill-array-data v4, :array_bc
+    fill-array-data v4, :array_6
 
     aput-object v4, v3, v2
 
     .line 76
     new-array v2, v0, [I
 
-    fill-array-data v2, :array_ca
+    fill-array-data v2, :array_7
 
     aput-object v2, v3, v1
 
     .line 77
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_d8
+    fill-array-data v1, :array_8
 
     aput-object v1, v3, v0
 
     .line 78
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_e6
+    fill-array-data v1, :array_9
 
     const/4 v2, 0x6
 
@@ -121,7 +121,7 @@
     .line 79
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_f4
+    fill-array-data v1, :array_a
 
     const/4 v2, 0x7
 
@@ -130,7 +130,7 @@
     .line 80
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_102
+    fill-array-data v1, :array_b
 
     const/16 v2, 0x8
 
@@ -139,7 +139,7 @@
     .line 81
     new-array v0, v0, [I
 
-    fill-array-data v0, :array_110
+    fill-array-data v0, :array_c
 
     const/16 v1, 0x9
 
@@ -151,7 +151,7 @@
     .line 82
     return-void
 
-    :array_6e
+    :array_0
     .array-data 4
         0x6
         0x8
@@ -160,7 +160,7 @@
         0xe
     .end array-data
 
-    :array_7c
+    :array_1
     .array-data 4
         0x1
         0x1
@@ -168,14 +168,14 @@
         0x1
     .end array-data
 
-    :array_88
+    :array_2
     .array-data 4
         0x1
         0x1
         0x3
     .end array-data
 
-    :array_92
+    :array_3
     .array-data 4
         0x1
         0x1
@@ -184,7 +184,7 @@
         0x1
     .end array-data
 
-    :array_a0
+    :array_4
     .array-data 4
         0x3
         0x1
@@ -193,7 +193,7 @@
         0x3
     .end array-data
 
-    :array_ae
+    :array_5
     .array-data 4
         0x1
         0x3
@@ -202,7 +202,7 @@
         0x3
     .end array-data
 
-    :array_bc
+    :array_6
     .array-data 4
         0x3
         0x3
@@ -211,7 +211,7 @@
         0x1
     .end array-data
 
-    :array_ca
+    :array_7
     .array-data 4
         0x1
         0x1
@@ -220,7 +220,7 @@
         0x3
     .end array-data
 
-    :array_d8
+    :array_8
     .array-data 4
         0x3
         0x1
@@ -229,7 +229,7 @@
         0x1
     .end array-data
 
-    :array_e6
+    :array_9
     .array-data 4
         0x1
         0x3
@@ -238,7 +238,7 @@
         0x1
     .end array-data
 
-    :array_f4
+    :array_a
     .array-data 4
         0x1
         0x1
@@ -247,7 +247,7 @@
         0x3
     .end array-data
 
-    :array_102
+    :array_b
     .array-data 4
         0x3
         0x1
@@ -256,7 +256,7 @@
         0x1
     .end array-data
 
-    :array_110
+    :array_c
     .array-data 4
         0x1
         0x3
@@ -267,7 +267,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 45
     invoke-direct {p0}, Lcom/google/zxing/oned/OneDReader;-><init>()V
@@ -282,7 +282,7 @@
 .end method
 
 .method private static decodeDigit([I)I
-    .registers 8
+    .locals 7
     .param p0, "counters"    # [I
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -308,18 +308,18 @@
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_8
-    if-lt v3, v2, :cond_12
+    :goto_0
+    if-lt v3, v2, :cond_1
 
     .line 350
     .end local v3    # "i":I
-    if-ltz v1, :cond_d
+    if-ltz v1, :cond_0
 
     .line 351
     return v1
 
     .line 353
-    :cond_d
+    :cond_0
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v3
@@ -328,7 +328,7 @@
 
     .line 343
     .restart local v3    # "i":I
-    :cond_12
+    :cond_1
     sget-object v4, Lcom/google/zxing/oned/ITFReader;->PATTERNS:[[I
 
     aget-object v4, v4, v3
@@ -345,7 +345,7 @@
     .local v5, "variance":F
     cmpg-float v6, v5, v0
 
-    if-gez v6, :cond_23
+    if-gez v6, :cond_2
 
     .line 346
     move v0, v5
@@ -356,14 +356,14 @@
     .line 342
     .end local v4    # "pattern":[I
     .end local v5    # "variance":F
-    :cond_23
+    :cond_2
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_8
+    goto :goto_0
 .end method
 
 .method private static decodeMiddle(Lcom/google/zxing/common/BitArray;IILjava/lang/StringBuilder;)V
-    .registers 12
+    .locals 8
     .param p0, "row"    # Lcom/google/zxing/common/BitArray;
     .param p1, "payloadStart"    # I
     .param p2, "payloadEnd"    # I
@@ -391,22 +391,22 @@
 
     .line 154
     .local v3, "counterWhite":[I
-    :goto_9
-    if-lt p1, p2, :cond_c
+    :goto_0
+    if-lt p1, p2, :cond_0
 
     .line 174
     return-void
 
     .line 157
-    :cond_c
+    :cond_0
     invoke-static {p0, p1, v0}, Lcom/google/zxing/oned/ITFReader;->recordPattern(Lcom/google/zxing/common/BitArray;I[I)V
 
     .line 159
     const/4 v4, 0x0
 
     .local v4, "k":I
-    :goto_10
-    if-lt v4, v1, :cond_32
+    :goto_1
+    if-lt v4, v1, :cond_2
 
     .line 165
     .end local v4    # "k":I
@@ -443,14 +443,14 @@
 
     const/4 v4, 0x0
 
-    :goto_29
-    if-lt v4, v5, :cond_2c
+    :goto_2
+    if-lt v4, v5, :cond_1
 
     .end local v6    # "bestMatch":I
-    goto :goto_9
+    goto :goto_0
 
     .restart local v6    # "bestMatch":I
-    :cond_2c
+    :cond_1
     aget v7, v0, v4
 
     .line 171
@@ -461,12 +461,12 @@
     .end local v7    # "counterDigit":I
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_29
+    goto :goto_2
 
     .line 160
     .end local v6    # "bestMatch":I
     .local v4, "k":I
-    :cond_32
+    :cond_2
     const/4 v5, 0x2
 
     mul-int/2addr v5, v4
@@ -488,11 +488,11 @@
     .end local v5    # "twoK":I
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_10
+    goto :goto_1
 .end method
 
 .method private static findGuardPattern(Lcom/google/zxing/common/BitArray;I[I)[I
-    .registers 15
+    .locals 12
     .param p0, "row"    # Lcom/google/zxing/common/BitArray;
     .param p1, "rowOffset"    # I
     .param p2, "pattern"    # [I
@@ -532,8 +532,8 @@
     move v6, p1
 
     .local v6, "x":I
-    :goto_b
-    if-ge v6, v2, :cond_58
+    :goto_0
+    if-ge v6, v2, :cond_4
 
     .line 308
     invoke-virtual {p0, v6}, Lcom/google/zxing/common/BitArray;->get(I)Z
@@ -544,7 +544,7 @@
 
     const/4 v8, 0x1
 
-    if-eqz v7, :cond_1b
+    if-eqz v7, :cond_0
 
     .line 309
     aget v7, v1, v4
@@ -554,15 +554,15 @@
     aput v7, v1, v4
 
     .line 310
-    goto :goto_55
+    goto :goto_2
 
     .line 311
-    :cond_1b
+    :cond_0
     add-int/lit8 v7, v0, -0x1
 
     const/4 v9, 0x0
 
-    if-ne v4, v7, :cond_4c
+    if-ne v4, v7, :cond_2
 
     .line 312
     const v7, 0x3f47ae14    # 0.78f
@@ -577,7 +577,7 @@
 
     const/4 v10, 0x2
 
-    if-gez v7, :cond_36
+    if-gez v7, :cond_1
 
     .line 313
     new-array v7, v10, [I
@@ -589,7 +589,7 @@
     return-object v7
 
     .line 315
-    :cond_36
+    :cond_1
     aget v7, v1, v9
 
     aget v11, v1, v8
@@ -617,35 +617,35 @@
     add-int/lit8 v4, v4, -0x1
 
     .line 320
-    goto :goto_4e
+    goto :goto_1
 
     .line 321
-    :cond_4c
+    :cond_2
     add-int/lit8 v4, v4, 0x1
 
     .line 323
-    :goto_4e
+    :goto_1
     aput v8, v1, v4
 
     .line 324
-    if-eqz v3, :cond_54
+    if-eqz v3, :cond_3
 
     move v8, v9
 
     nop
 
-    :cond_54
+    :cond_3
     move v3, v8
 
     .line 307
-    :goto_55
+    :goto_2
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_b
+    goto :goto_0
 
     .line 327
     .end local v6    # "x":I
-    :cond_58
+    :cond_4
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v6
@@ -654,7 +654,7 @@
 .end method
 
 .method private static skipWhiteSpace(Lcom/google/zxing/common/BitArray;)I
-    .registers 4
+    .locals 3
     .param p0, "row"    # Lcom/google/zxing/common/BitArray;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -677,13 +677,13 @@
 
     .line 242
     .local v1, "endStart":I
-    if-eq v1, v0, :cond_c
+    if-eq v1, v0, :cond_0
 
     .line 246
     return v1
 
     .line 243
-    :cond_c
+    :cond_0
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v2
@@ -692,7 +692,7 @@
 .end method
 
 .method private validateQuietZone(Lcom/google/zxing/common/BitArray;I)V
-    .registers 6
+    .locals 3
     .param p1, "row"    # Lcom/google/zxing/common/BitArray;
     .param p2, "startPattern"    # I
     .annotation system Ldalvik/annotation/Throws;
@@ -708,62 +708,62 @@
 
     .line 218
     .local v0, "quietCount":I
-    if-ge v0, p2, :cond_8
+    if-ge v0, p2, :cond_0
 
     move v1, v0
 
-    goto :goto_9
+    goto :goto_0
 
-    :cond_8
+    :cond_0
     move v1, p2
 
-    :goto_9
+    :goto_0
     move v0, v1
 
     .line 220
     add-int/lit8 v1, p2, -0x1
 
     .local v1, "i":I
-    :goto_c
-    if-lez v0, :cond_1d
+    :goto_1
+    if-lez v0, :cond_3
 
-    if-gez v1, :cond_11
+    if-gez v1, :cond_1
 
     .end local v1    # "i":I
-    goto :goto_1d
+    goto :goto_2
 
     .line 221
     .restart local v1    # "i":I
-    :cond_11
+    :cond_1
     invoke-virtual {p1, v1}, Lcom/google/zxing/common/BitArray;->get(I)Z
 
     move-result v2
 
-    if-eqz v2, :cond_18
+    if-eqz v2, :cond_2
 
     .line 222
-    goto :goto_1d
+    goto :goto_2
 
     .line 224
-    :cond_18
+    :cond_2
     add-int/lit8 v0, v0, -0x1
 
     .line 220
     add-int/lit8 v1, v1, -0x1
 
-    goto :goto_c
+    goto :goto_1
 
     .line 226
     .end local v1    # "i":I
-    :cond_1d
-    :goto_1d
-    if-nez v0, :cond_20
+    :cond_3
+    :goto_2
+    if-nez v0, :cond_4
 
     .line 230
     return-void
 
     .line 228
-    :cond_20
+    :cond_4
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v1
@@ -774,7 +774,7 @@
 
 # virtual methods
 .method decodeEnd(Lcom/google/zxing/common/BitArray;)[I
-    .registers 9
+    .locals 7
     .param p1, "row"    # Lcom/google/zxing/common/BitArray;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -786,7 +786,7 @@
     invoke-virtual {p1}, Lcom/google/zxing/common/BitArray;->reverse()V
 
     .line 263
-    :try_start_3
+    :try_start_0
     invoke-static {p1}, Lcom/google/zxing/oned/ITFReader;->skipWhiteSpace(Lcom/google/zxing/common/BitArray;)I
 
     move-result v0
@@ -832,8 +832,8 @@
     sub-int/2addr v2, v3
 
     aput v2, v1, v5
-    :try_end_26
-    .catchall {:try_start_3 .. :try_end_26} :catchall_2b
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 278
     nop
@@ -848,7 +848,7 @@
     .end local v0    # "endStart":I
     .end local v1    # "endPattern":[I
     .end local v3    # "temp":I
-    :catchall_2b
+    :catchall_0
     move-exception v0
 
     .line 281
@@ -859,7 +859,7 @@
 .end method
 
 .method public decodeRow(ILcom/google/zxing/common/BitArray;Ljava/util/Map;)Lcom/google/zxing/Result;
-    .registers 22
+    .locals 18
     .param p1, "rowNumber"    # I
     .param p2, "row"    # Lcom/google/zxing/common/BitArray;
     .annotation system Ldalvik/annotation/Signature;
@@ -931,7 +931,7 @@
 
     .line 97
     .local v10, "allowedLengths":[I
-    if-eqz v3, :cond_30
+    if-eqz v3, :cond_0
 
     .line 98
     sget-object v11, Lcom/google/zxing/DecodeHintType;->ALLOWED_LENGTHS:Lcom/google/zxing/DecodeHintType;
@@ -945,14 +945,14 @@
     check-cast v10, [I
 
     .line 101
-    :cond_30
-    if-nez v10, :cond_34
+    :cond_0
+    if-nez v10, :cond_1
 
     .line 102
     sget-object v10, Lcom/google/zxing/oned/ITFReader;->DEFAULT_ALLOWED_LENGTHS:[I
 
     .line 107
-    :cond_34
+    :cond_1
     invoke-virtual {v8}, Ljava/lang/String;->length()I
 
     move-result v11
@@ -975,17 +975,17 @@
 
     .end local v13    # "maxAllowedLength":I
     .local v15, "maxAllowedLength":I
-    :goto_3d
-    if-lt v13, v14, :cond_40
+    :goto_0
+    if-lt v13, v14, :cond_2
 
-    goto :goto_46
+    goto :goto_1
 
-    :cond_40
+    :cond_2
     aget v9, v10, v13
 
     .line 111
     .local v9, "allowedLength":I
-    if-ne v11, v9, :cond_79
+    if-ne v11, v9, :cond_5
 
     .line 112
     const/4 v12, 0x1
@@ -995,17 +995,17 @@
 
     .line 119
     .end local v9    # "allowedLength":I
-    :goto_46
-    if-nez v12, :cond_4b
+    :goto_1
+    if-nez v12, :cond_3
 
-    if-le v11, v15, :cond_4b
+    if-le v11, v15, :cond_3
 
     .line 120
     const/4 v12, 0x1
 
     .line 122
-    :cond_4b
-    if-eqz v12, :cond_74
+    :cond_3
+    if-eqz v12, :cond_4
 
     .line 126
     new-instance v9, Lcom/google/zxing/Result;
@@ -1061,7 +1061,7 @@
     return-object v9
 
     .line 123
-    :cond_74
+    :cond_4
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v0
@@ -1070,12 +1070,12 @@
 
     .line 115
     .restart local v9    # "allowedLength":I
-    :cond_79
+    :cond_5
     move/from16 v16, v7
 
     const/4 v0, 0x0
 
-    if-le v9, v15, :cond_80
+    if-le v9, v15, :cond_6
 
     .line 116
     move v7, v9
@@ -1088,7 +1088,7 @@
 
     .end local v7    # "maxAllowedLength":I
     .restart local v15    # "maxAllowedLength":I
-    :cond_80
+    :cond_6
     add-int/lit8 v13, v13, 0x1
 
     move v9, v0
@@ -1097,11 +1097,11 @@
 
     move-object/from16 v0, p0
 
-    goto :goto_3d
+    goto :goto_0
 .end method
 
 .method decodeStart(Lcom/google/zxing/common/BitArray;)[I
-    .registers 7
+    .locals 5
     .param p1, "row"    # Lcom/google/zxing/common/BitArray;
     .annotation system Ldalvik/annotation/Throws;
         value = {

@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 24
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static metaStateHasModifiers(II)Z
-    .registers 3
+    .locals 1
     .param p0, "metaState"    # I
     .param p1, "modifiers"    # I
 
@@ -27,7 +27,7 @@
 .end method
 
 .method public static metaStateHasNoModifiers(I)Z
-    .registers 2
+    .locals 1
     .param p0, "metaState"    # I
 
     .line 34
@@ -39,7 +39,7 @@
 .end method
 
 .method public static normalizeMetaState(I)I
-    .registers 2
+    .locals 1
     .param p0, "metaState"    # I
 
     .line 26

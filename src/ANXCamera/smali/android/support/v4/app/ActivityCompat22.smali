@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getReferrer(Landroid/app/Activity;)Landroid/net/Uri;
-    .registers 2
+    .locals 1
     .param p0, "activity"    # Landroid/app/Activity;
 
     .line 24

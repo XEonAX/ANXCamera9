@@ -24,7 +24,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 42
     invoke-direct {p0}, Lmiui/util/Pools$Manager;-><init>()V
@@ -35,7 +35,7 @@
 
 # virtual methods
 .method public a(Ljava/io/ByteArrayOutputStream;)V
-    .registers 2
+    .locals 0
 
     .line 50
     invoke-virtual {p1}, Ljava/io/ByteArrayOutputStream;->reset()V
@@ -45,7 +45,7 @@
 .end method
 
 .method public synthetic createInstance()Ljava/lang/Object;
-    .registers 2
+    .locals 1
 
     .line 42
     invoke-virtual {p0}, Lmiui/util/IOUtils$1;->dv()Ljava/io/ByteArrayOutputStream;
@@ -56,7 +56,7 @@
 .end method
 
 .method public dv()Ljava/io/ByteArrayOutputStream;
-    .registers 2
+    .locals 1
 
     .line 45
     new-instance v0, Ljava/io/ByteArrayOutputStream;
@@ -67,7 +67,7 @@
 .end method
 
 .method public synthetic onRelease(Ljava/lang/Object;)V
-    .registers 2
+    .locals 0
 
     .line 42
     check-cast p1, Ljava/io/ByteArrayOutputStream;

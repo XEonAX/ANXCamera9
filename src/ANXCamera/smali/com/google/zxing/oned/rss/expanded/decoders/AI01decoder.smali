@@ -9,7 +9,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/zxing/common/BitArray;)V
-    .registers 2
+    .locals 0
     .param p1, "information"    # Lcom/google/zxing/common/BitArray;
 
     .line 40
@@ -20,7 +20,7 @@
 .end method
 
 .method private static appendCheckDigit(Ljava/lang/StringBuilder;I)V
-    .registers 6
+    .locals 4
     .param p0, "buf"    # Ljava/lang/StringBuilder;
     .param p1, "currentPos"    # I
 
@@ -32,10 +32,10 @@
     const/4 v1, 0x0
 
     .local v1, "i":I
-    :goto_2
+    :goto_0
     const/16 v2, 0xd
 
-    if-lt v1, v2, :cond_13
+    if-lt v1, v2, :cond_1
 
     .line 73
     .end local v1    # "i":I
@@ -46,13 +46,13 @@
     rsub-int/lit8 v0, v1, 0xa
 
     .line 74
-    if-ne v0, v2, :cond_f
+    if-ne v0, v2, :cond_0
 
     .line 75
     const/4 v0, 0x0
 
     .line 78
-    :cond_f
+    :cond_0
     invoke-virtual {p0, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     .line 79
@@ -60,7 +60,7 @@
 
     .line 69
     .restart local v1    # "i":I
-    :cond_13
+    :cond_1
     add-int v2, v1, p1
 
     invoke-virtual {p0, v2}, Ljava/lang/StringBuilder;->charAt(I)C
@@ -73,31 +73,31 @@
     .local v2, "digit":I
     and-int/lit8 v3, v1, 0x1
 
-    if-nez v3, :cond_22
+    if-nez v3, :cond_2
 
     const/4 v3, 0x3
 
     mul-int/2addr v3, v2
 
-    goto :goto_23
+    goto :goto_1
 
-    :cond_22
+    :cond_2
     move v3, v2
 
-    :goto_23
+    :goto_1
     add-int/2addr v0, v3
 
     .line 68
     .end local v2    # "digit":I
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_2
+    goto :goto_0
 .end method
 
 
 # virtual methods
 .method protected final encodeCompressedGtin(Ljava/lang/StringBuilder;I)V
-    .registers 5
+    .locals 2
     .param p1, "buf"    # Ljava/lang/StringBuilder;
     .param p2, "currentPos"    # I
 
@@ -125,7 +125,7 @@
 .end method
 
 .method protected final encodeCompressedGtinWithoutAI(Ljava/lang/StringBuilder;II)V
-    .registers 8
+    .locals 4
     .param p1, "buf"    # Ljava/lang/StringBuilder;
     .param p2, "currentPos"    # I
     .param p3, "initialBufferPosition"    # I
@@ -134,10 +134,10 @@
     const/4 v0, 0x0
 
     .local v0, "i":I
-    :goto_1
+    :goto_0
     const/4 v1, 0x4
 
-    if-lt v0, v1, :cond_8
+    if-lt v0, v1, :cond_0
 
     .line 63
     .end local v0    # "i":I
@@ -148,7 +148,7 @@
 
     .line 53
     .restart local v0    # "i":I
-    :cond_8
+    :cond_0
     invoke-virtual {p0}, Lcom/google/zxing/oned/rss/expanded/decoders/AI01decoder;->getGeneralDecoder()Lcom/google/zxing/oned/rss/expanded/decoders/GeneralAppIdDecoder;
 
     move-result-object v1
@@ -169,27 +169,27 @@
 
     const/16 v3, 0x30
 
-    if-nez v2, :cond_1e
+    if-nez v2, :cond_1
 
     .line 55
     invoke-virtual {p1, v3}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 57
-    :cond_1e
+    :cond_1
     div-int/lit8 v2, v1, 0xa
 
-    if-nez v2, :cond_25
+    if-nez v2, :cond_2
 
     .line 58
     invoke-virtual {p1, v3}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 60
-    :cond_25
+    :cond_2
     invoke-virtual {p1, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     .line 52
     .end local v1    # "currentBlock":I
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_1
+    goto :goto_0
 .end method

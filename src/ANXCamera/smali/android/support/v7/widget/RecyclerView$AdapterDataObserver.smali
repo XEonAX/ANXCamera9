@@ -16,7 +16,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 8825
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -27,14 +27,14 @@
 
 # virtual methods
 .method public onChanged()V
-    .registers 1
+    .locals 0
 
     .line 8828
     return-void
 .end method
 
 .method public onItemRangeChanged(II)V
-    .registers 3
+    .locals 0
     .param p1, "positionStart"    # I
     .param p2, "itemCount"    # I
 
@@ -43,7 +43,7 @@
 .end method
 
 .method public onItemRangeChanged(IILjava/lang/Object;)V
-    .registers 4
+    .locals 0
     .param p1, "positionStart"    # I
     .param p2, "itemCount"    # I
     .param p3, "payload"    # Ljava/lang/Object;
@@ -56,7 +56,7 @@
 .end method
 
 .method public onItemRangeInserted(II)V
-    .registers 3
+    .locals 0
     .param p1, "positionStart"    # I
     .param p2, "itemCount"    # I
 
@@ -65,7 +65,7 @@
 .end method
 
 .method public onItemRangeMoved(III)V
-    .registers 4
+    .locals 0
     .param p1, "fromPosition"    # I
     .param p2, "toPosition"    # I
     .param p3, "itemCount"    # I
@@ -75,7 +75,7 @@
 .end method
 
 .method public onItemRangeRemoved(II)V
-    .registers 3
+    .locals 0
     .param p1, "positionStart"    # I
     .param p2, "itemCount"    # I
 

@@ -39,7 +39,7 @@
 
 # direct methods
 .method public constructor <init>([Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V
-    .registers 34
+    .locals 17
     .param p1, "names"    # [Ljava/lang/String;
     .param p2, "nicknames"    # [Ljava/lang/String;
     .param p3, "pronunciation"    # Ljava/lang/String;
@@ -149,7 +149,7 @@
 .end method
 
 .method public constructor <init>([Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V
-    .registers 25
+    .locals 17
     .param p1, "names"    # [Ljava/lang/String;
     .param p2, "phoneNumbers"    # [Ljava/lang/String;
     .param p3, "phoneTypes"    # [Ljava/lang/String;
@@ -247,7 +247,7 @@
 
 # virtual methods
 .method public getAddressTypes()[Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 160
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->addressTypes:[Ljava/lang/String;
@@ -256,7 +256,7 @@
 .end method
 
 .method public getAddresses()[Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 152
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->addresses:[Ljava/lang/String;
@@ -265,7 +265,7 @@
 .end method
 
 .method public getBirthday()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 179
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->birthday:Ljava/lang/String;
@@ -274,7 +274,7 @@
 .end method
 
 .method public getDisplayResult()Ljava/lang/String;
-    .registers 3
+    .locals 2
 
     .line 191
     new-instance v0, Ljava/lang/StringBuilder;
@@ -358,7 +358,7 @@
 .end method
 
 .method public getEmailTypes()[Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 140
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->emailTypes:[Ljava/lang/String;
@@ -367,7 +367,7 @@
 .end method
 
 .method public getEmails()[Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 132
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->emails:[Ljava/lang/String;
@@ -376,7 +376,7 @@
 .end method
 
 .method public getGeo()[Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 186
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->geo:[Ljava/lang/String;
@@ -385,7 +385,7 @@
 .end method
 
 .method public getInstantMessenger()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 144
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->instantMessenger:Ljava/lang/String;
@@ -394,7 +394,7 @@
 .end method
 
 .method public getNames()[Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 102
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->names:[Ljava/lang/String;
@@ -403,7 +403,7 @@
 .end method
 
 .method public getNicknames()[Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 106
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->nicknames:[Ljava/lang/String;
@@ -412,7 +412,7 @@
 .end method
 
 .method public getNote()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 148
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->note:Ljava/lang/String;
@@ -421,7 +421,7 @@
 .end method
 
 .method public getOrg()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 168
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->org:Ljava/lang/String;
@@ -430,7 +430,7 @@
 .end method
 
 .method public getPhoneNumbers()[Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 120
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->phoneNumbers:[Ljava/lang/String;
@@ -439,7 +439,7 @@
 .end method
 
 .method public getPhoneTypes()[Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 128
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->phoneTypes:[Ljava/lang/String;
@@ -448,7 +448,7 @@
 .end method
 
 .method public getPronunciation()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 116
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->pronunciation:Ljava/lang/String;
@@ -457,7 +457,7 @@
 .end method
 
 .method public getTitle()Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 164
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->title:Ljava/lang/String;
@@ -466,7 +466,7 @@
 .end method
 
 .method public getURLs()[Ljava/lang/String;
-    .registers 2
+    .locals 1
 
     .line 172
     iget-object v0, p0, Lcom/google/zxing/client/result/AddressBookParsedResult;->urls:[Ljava/lang/String;

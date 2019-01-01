@@ -38,7 +38,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 141
     invoke-direct {p0}, Landroid/os/statistics/PerfEvent$DetailFields;-><init>()V

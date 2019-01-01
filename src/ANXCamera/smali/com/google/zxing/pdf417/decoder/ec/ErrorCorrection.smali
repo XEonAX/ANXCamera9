@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 34
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -24,7 +24,7 @@
 .end method
 
 .method private findErrorLocations(Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;)[I
-    .registers 7
+    .locals 5
     .param p1, "errorLocator"    # Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -50,28 +50,28 @@
     const/4 v3, 0x1
 
     .local v3, "i":I
-    :goto_8
+    :goto_0
     iget-object v4, p0, Lcom/google/zxing/pdf417/decoder/ec/ErrorCorrection;->field:Lcom/google/zxing/pdf417/decoder/ec/ModulusGF;
 
     invoke-virtual {v4}, Lcom/google/zxing/pdf417/decoder/ec/ModulusGF;->getSize()I
 
     move-result v4
 
-    if-ge v3, v4, :cond_26
+    if-ge v3, v4, :cond_2
 
-    if-lt v2, v0, :cond_13
+    if-lt v2, v0, :cond_0
 
     .end local v3    # "i":I
-    goto :goto_26
+    goto :goto_1
 
     .line 154
     .restart local v3    # "i":I
-    :cond_13
+    :cond_0
     invoke-virtual {p1, v3}, Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;->evaluateAt(I)I
 
     move-result v4
 
-    if-nez v4, :cond_23
+    if-nez v4, :cond_1
 
     .line 155
     iget-object v4, p0, Lcom/google/zxing/pdf417/decoder/ec/ErrorCorrection;->field:Lcom/google/zxing/pdf417/decoder/ec/ModulusGF;
@@ -86,22 +86,22 @@
     add-int/lit8 v2, v2, 0x1
 
     .line 153
-    :cond_23
+    :cond_1
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_8
+    goto :goto_0
 
     .line 159
     .end local v3    # "i":I
-    :cond_26
-    :goto_26
-    if-ne v2, v0, :cond_29
+    :cond_2
+    :goto_1
+    if-ne v2, v0, :cond_3
 
     .line 162
     return-object v1
 
     .line 160
-    :cond_29
+    :cond_3
     invoke-static {}, Lcom/google/zxing/ChecksumException;->getChecksumInstance()Lcom/google/zxing/ChecksumException;
 
     move-result-object v3
@@ -110,7 +110,7 @@
 .end method
 
 .method private findErrorMagnitudes(Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;[I)[I
-    .registers 14
+    .locals 10
     .param p1, "errorEvaluator"    # Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
     .param p2, "errorLocator"    # Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
     .param p3, "errorLocations"    # [I
@@ -129,8 +129,8 @@
     const/4 v2, 0x1
 
     .local v2, "i":I
-    :goto_7
-    if-le v2, v0, :cond_40
+    :goto_0
+    if-le v2, v0, :cond_1
 
     .line 174
     .end local v2    # "i":I
@@ -155,8 +155,8 @@
     const/4 v2, 0x0
 
     .restart local v2    # "i":I
-    :goto_15
-    if-lt v2, v4, :cond_18
+    :goto_1
+    if-lt v2, v4, :cond_0
 
     .line 185
     .end local v2    # "i":I
@@ -164,7 +164,7 @@
 
     .line 180
     .restart local v2    # "i":I
-    :cond_18
+    :cond_0
     iget-object v6, p0, Lcom/google/zxing/pdf417/decoder/ec/ErrorCorrection;->field:Lcom/google/zxing/pdf417/decoder/ec/ModulusGF;
 
     aget v7, p3, v2
@@ -215,13 +215,13 @@
     .end local v8    # "denominator":I
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_15
+    goto :goto_1
 
     .line 171
     .end local v3    # "formalDerivative":Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
     .end local v4    # "s":I
     .end local v5    # "result":[I
-    :cond_40
+    :cond_1
     sub-int v3, v0, v2
 
     .line 172
@@ -241,11 +241,11 @@
     .line 170
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_7
+    goto :goto_0
 .end method
 
 .method private runEuclideanAlgorithm(Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;I)[Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
-    .registers 16
+    .locals 12
     .param p1, "a"    # Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
     .param p2, "b"    # Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
     .param p3, "R"    # I
@@ -264,7 +264,7 @@
 
     move-result v1
 
-    if-ge v0, v1, :cond_d
+    if-ge v0, v1, :cond_0
 
     .line 101
     move-object v0, p1
@@ -278,7 +278,7 @@
 
     .line 106
     .end local v0    # "temp":Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
-    :cond_d
+    :cond_0
     move-object v0, p1
 
     .line 107
@@ -303,14 +303,14 @@
 
     .line 112
     .local v3, "t":Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
-    :goto_1b
+    :goto_0
     invoke-virtual {v1}, Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;->getDegree()I
 
     move-result v4
 
     div-int/lit8 v5, p3, 0x2
 
-    if-ge v4, v5, :cond_46
+    if-ge v4, v5, :cond_2
 
     .line 137
     const/4 v4, 0x0
@@ -321,7 +321,7 @@
 
     .line 138
     .local v5, "sigmaTildeAtZero":I
-    if-eqz v5, :cond_41
+    if-eqz v5, :cond_1
 
     .line 142
     iget-object v6, p0, Lcom/google/zxing/pdf417/decoder/ec/ErrorCorrection;->field:Lcom/google/zxing/pdf417/decoder/ec/ModulusGF;
@@ -360,7 +360,7 @@
     .end local v6    # "inverse":I
     .end local v7    # "sigma":Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
     .end local v8    # "omega":Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
-    :cond_41
+    :cond_1
     invoke-static {}, Lcom/google/zxing/ChecksumException;->getChecksumInstance()Lcom/google/zxing/ChecksumException;
 
     move-result-object v4
@@ -369,7 +369,7 @@
 
     .line 113
     .end local v5    # "sigmaTildeAtZero":I
-    :cond_46
+    :cond_2
     move-object v4, v0
 
     .line 114
@@ -388,7 +388,7 @@
 
     move-result v6
 
-    if-nez v6, :cond_ae
+    if-nez v6, :cond_5
 
     .line 123
     move-object v1, v4
@@ -420,7 +420,7 @@
 
     .line 127
     .local v8, "dltInverse":I
-    :goto_65
+    :goto_1
     invoke-virtual {v1}, Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;->getDegree()I
 
     move-result v9
@@ -429,18 +429,18 @@
 
     move-result v10
 
-    if-lt v9, v10, :cond_a0
+    if-lt v9, v10, :cond_4
 
     invoke-virtual {v1}, Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;->isZero()Z
 
     move-result v9
 
-    if-eqz v9, :cond_76
+    if-eqz v9, :cond_3
 
-    goto :goto_a0
+    goto :goto_2
 
     .line 128
-    :cond_76
+    :cond_3
     invoke-virtual {v1}, Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;->getDegree()I
 
     move-result v9
@@ -490,11 +490,11 @@
 
     .end local v9    # "degreeDiff":I
     .end local v10    # "scale":I
-    goto :goto_65
+    goto :goto_1
 
     .line 134
-    :cond_a0
-    :goto_a0
+    :cond_4
+    :goto_2
     invoke-virtual {v6, v2}, Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;->multiply(Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;)Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
 
     move-result-object v9
@@ -512,12 +512,12 @@
     .end local v6    # "q":Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
     .end local v7    # "denominatorLeadingTerm":I
     .end local v8    # "dltInverse":I
-    goto/16 :goto_1b
+    goto/16 :goto_0
 
     .line 121
     .restart local v4    # "rLastLast":Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
     .restart local v5    # "tLastLast":Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
-    :cond_ae
+    :cond_5
     invoke-static {}, Lcom/google/zxing/ChecksumException;->getChecksumInstance()Lcom/google/zxing/ChecksumException;
 
     move-result-object v6
@@ -528,7 +528,7 @@
 
 # virtual methods
 .method public decode([II[I)I
-    .registers 22
+    .locals 18
     .param p1, "received"    # [I
     .param p2, "numECCodewords"    # I
     .param p3, "erasures"    # [I
@@ -566,20 +566,20 @@
     move v7, v2
 
     .local v7, "i":I
-    :goto_13
-    if-gtz v7, :cond_a5
+    :goto_0
+    if-gtz v7, :cond_5
 
     .line 60
     .end local v7    # "i":I
     const/4 v7, 0x0
 
-    if-nez v6, :cond_19
+    if-nez v6, :cond_0
 
     .line 61
     return v7
 
     .line 64
-    :cond_19
+    :cond_0
     iget-object v8, v0, Lcom/google/zxing/pdf417/decoder/ec/ErrorCorrection;->field:Lcom/google/zxing/pdf417/decoder/ec/ModulusGF;
 
     invoke-virtual {v8}, Lcom/google/zxing/pdf417/decoder/ec/ModulusGF;->getOne()Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
@@ -590,7 +590,7 @@
     .local v8, "knownErrors":Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
     const/4 v9, 0x1
 
-    if-eqz v3, :cond_53
+    if-eqz v3, :cond_2
 
     .line 66
     array-length v10, v3
@@ -601,12 +601,12 @@
 
     .end local v8    # "knownErrors":Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
     .local v11, "knownErrors":Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
-    :goto_25
-    if-lt v8, v10, :cond_28
+    :goto_1
+    if-lt v8, v10, :cond_1
 
-    goto :goto_54
+    goto :goto_2
 
-    :cond_28
+    :cond_1
     aget v12, v3, v8
 
     .line 67
@@ -665,17 +665,17 @@
 
     const/4 v9, 0x1
 
-    goto :goto_25
+    goto :goto_1
 
     .line 74
     .end local v11    # "knownErrors":Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
     .restart local v8    # "knownErrors":Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
-    :cond_53
+    :cond_2
     move-object v11, v8
 
     .end local v8    # "knownErrors":Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
     .restart local v11    # "knownErrors":Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
-    :goto_54
+    :goto_2
     new-instance v3, Lcom/google/zxing/pdf417/decoder/ec/ModulusPoly;
 
     iget-object v8, v0, Lcom/google/zxing/pdf417/decoder/ec/ErrorCorrection;->field:Lcom/google/zxing/pdf417/decoder/ec/ModulusGF;
@@ -724,10 +724,10 @@
     const/4 v13, 0x0
 
     .local v13, "i":I
-    :goto_74
+    :goto_3
     array-length v14, v9
 
-    if-lt v13, v14, :cond_79
+    if-lt v13, v14, :cond_3
 
     .line 94
     .end local v13    # "i":I
@@ -737,7 +737,7 @@
 
     .line 88
     .restart local v13    # "i":I
-    :cond_79
+    :cond_3
     array-length v14, v1
 
     const/4 v15, 0x1
@@ -760,7 +760,7 @@
 
     .line 89
     .local v14, "position":I
-    if-ltz v14, :cond_9e
+    if-ltz v14, :cond_4
 
     .line 92
     iget-object v3, v0, Lcom/google/zxing/pdf417/decoder/ec/ErrorCorrection;->field:Lcom/google/zxing/pdf417/decoder/ec/ModulusGF;
@@ -787,13 +787,13 @@
 
     move/from16 v6, v17
 
-    goto :goto_74
+    goto :goto_3
 
     .line 90
     .end local v17    # "error":Z
     .restart local v6    # "error":Z
     .restart local v14    # "position":I
-    :cond_9e
+    :cond_4
     move/from16 v17, v6
 
     .end local v6    # "error":Z
@@ -816,7 +816,7 @@
     .end local v17    # "error":Z
     .restart local v6    # "error":Z
     .local v7, "i":I
-    :cond_a5
+    :cond_5
     move/from16 v17, v6
 
     .end local v6    # "error":Z
@@ -838,7 +838,7 @@
     aput v3, v5, v6
 
     .line 55
-    if-eqz v3, :cond_ba
+    if-eqz v3, :cond_6
 
     .line 56
     const/4 v3, 0x1
@@ -848,19 +848,19 @@
     .local v3, "error":Z
     move v6, v3
 
-    goto :goto_bc
+    goto :goto_4
 
     .end local v3    # "error":Z
     .restart local v17    # "error":Z
-    :cond_ba
+    :cond_6
     move/from16 v6, v17
 
     .end local v17    # "error":Z
     .restart local v6    # "error":Z
-    :goto_bc
+    :goto_4
     add-int/lit8 v7, v7, -0x1
 
     move-object/from16 v3, p3
 
-    goto/16 :goto_13
+    goto/16 :goto_0
 .end method

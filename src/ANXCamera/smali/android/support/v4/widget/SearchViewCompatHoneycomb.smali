@@ -14,7 +14,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 30
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -24,7 +24,7 @@
 .end method
 
 .method public static getQuery(Landroid/view/View;)Ljava/lang/CharSequence;
-    .registers 2
+    .locals 1
     .param p0, "searchView"    # Landroid/view/View;
 
     .line 84
@@ -40,7 +40,7 @@
 .end method
 
 .method public static isIconified(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "searchView"    # Landroid/view/View;
 
     .line 100
@@ -56,7 +56,7 @@
 .end method
 
 .method public static isQueryRefinementEnabled(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "searchView"    # Landroid/view/View;
 
     .line 116
@@ -72,7 +72,7 @@
 .end method
 
 .method public static isSubmitButtonEnabled(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "searchView"    # Landroid/view/View;
 
     .line 108
@@ -88,7 +88,7 @@
 .end method
 
 .method public static newOnCloseListener(Landroid/support/v4/widget/SearchViewCompatHoneycomb$OnCloseListenerCompatBridge;)Ljava/lang/Object;
-    .registers 2
+    .locals 1
     .param p0, "listener"    # Landroid/support/v4/widget/SearchViewCompatHoneycomb$OnCloseListenerCompatBridge;
 
     .line 71
@@ -100,7 +100,7 @@
 .end method
 
 .method public static newOnQueryTextListener(Landroid/support/v4/widget/SearchViewCompatHoneycomb$OnQueryTextListenerCompatBridge;)Ljava/lang/Object;
-    .registers 2
+    .locals 1
     .param p0, "listener"    # Landroid/support/v4/widget/SearchViewCompatHoneycomb$OnQueryTextListenerCompatBridge;
 
     .line 53
@@ -112,7 +112,7 @@
 .end method
 
 .method public static newSearchView(Landroid/content/Context;)Landroid/view/View;
-    .registers 2
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
 
     .line 42
@@ -124,7 +124,7 @@
 .end method
 
 .method public static setIconified(Landroid/view/View;Z)V
-    .registers 3
+    .locals 1
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "iconify"    # Z
 
@@ -140,7 +140,7 @@
 .end method
 
 .method public static setMaxWidth(Landroid/view/View;I)V
-    .registers 3
+    .locals 1
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "maxpixels"    # I
 
@@ -156,7 +156,7 @@
 .end method
 
 .method public static setOnCloseListener(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 4
+    .locals 2
     .param p0, "searchView"    # Ljava/lang/Object;
     .param p1, "listener"    # Ljava/lang/Object;
 
@@ -176,7 +176,7 @@
 .end method
 
 .method public static setOnQueryTextListener(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 4
+    .locals 2
     .param p0, "searchView"    # Ljava/lang/Object;
     .param p1, "listener"    # Ljava/lang/Object;
 
@@ -196,7 +196,7 @@
 .end method
 
 .method public static setQuery(Landroid/view/View;Ljava/lang/CharSequence;Z)V
-    .registers 4
+    .locals 1
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "query"    # Ljava/lang/CharSequence;
     .param p2, "submit"    # Z
@@ -213,7 +213,7 @@
 .end method
 
 .method public static setQueryHint(Landroid/view/View;Ljava/lang/CharSequence;)V
-    .registers 3
+    .locals 1
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "hint"    # Ljava/lang/CharSequence;
 
@@ -229,7 +229,7 @@
 .end method
 
 .method public static setQueryRefinementEnabled(Landroid/view/View;Z)V
-    .registers 3
+    .locals 1
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "enable"    # Z
 
@@ -245,7 +245,7 @@
 .end method
 
 .method public static setSearchableInfo(Landroid/view/View;Landroid/content/ComponentName;)V
-    .registers 5
+    .locals 3
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "searchableComponent"    # Landroid/content/ComponentName;
 
@@ -281,7 +281,7 @@
 .end method
 
 .method public static setSubmitButtonEnabled(Landroid/view/View;Z)V
-    .registers 3
+    .locals 1
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "enabled"    # Z
 

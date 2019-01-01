@@ -13,7 +13,7 @@
 
 # direct methods
 .method public constructor <init>([B)V
-    .registers 2
+    .locals 0
     .param p1, "bytes"    # [B
 
     .line 38
@@ -29,7 +29,7 @@
 
 # virtual methods
 .method public available()I
-    .registers 3
+    .locals 2
 
     .line 108
     iget-object v0, p0, Lcom/google/zxing/common/BitSource;->bytes:[B
@@ -52,7 +52,7 @@
 .end method
 
 .method public getBitOffset()I
-    .registers 2
+    .locals 1
 
     .line 46
     iget v0, p0, Lcom/google/zxing/common/BitSource;->bitOffset:I
@@ -61,7 +61,7 @@
 .end method
 
 .method public getByteOffset()I
-    .registers 2
+    .locals 1
 
     .line 53
     iget v0, p0, Lcom/google/zxing/common/BitSource;->byteOffset:I
@@ -70,23 +70,23 @@
 .end method
 
 .method public readBits(I)I
-    .registers 12
+    .locals 10
     .param p1, "numBits"    # I
 
     .line 63
     const/4 v0, 0x1
 
-    if-lt p1, v0, :cond_71
+    if-lt p1, v0, :cond_4
 
     const/16 v1, 0x20
 
-    if-gt p1, v1, :cond_71
+    if-gt p1, v1, :cond_4
 
     invoke-virtual {p0}, Lcom/google/zxing/common/BitSource;->available()I
 
     move-result v1
 
-    if-gt p1, v1, :cond_71
+    if-gt p1, v1, :cond_4
 
     .line 67
     const/4 v1, 0x0
@@ -99,7 +99,7 @@
 
     const/16 v4, 0x8
 
-    if-lez v2, :cond_41
+    if-lez v2, :cond_1
 
     .line 71
     iget v2, p0, Lcom/google/zxing/common/BitSource;->bitOffset:I
@@ -108,18 +108,18 @@
 
     .line 72
     .local v2, "bitsLeft":I
-    if-ge p1, v2, :cond_1e
+    if-ge p1, v2, :cond_0
 
     move v5, p1
 
-    goto :goto_1f
+    goto :goto_0
 
-    :cond_1e
+    :cond_0
     move v5, v2
 
     .line 73
     .local v5, "toRead":I
-    :goto_1f
+    :goto_0
     sub-int v6, v2, v5
 
     .line 74
@@ -155,7 +155,7 @@
     .line 78
     iget v8, p0, Lcom/google/zxing/common/BitSource;->bitOffset:I
 
-    if-ne v8, v4, :cond_41
+    if-ne v8, v4, :cond_1
 
     .line 79
     const/4 v8, 0x0
@@ -174,15 +174,15 @@
     .end local v5    # "toRead":I
     .end local v6    # "bitsToNotRead":I
     .end local v7    # "mask":I
-    :cond_41
-    if-lez p1, :cond_70
+    :cond_1
+    if-lez p1, :cond_3
 
     .line 86
-    :goto_43
-    if-ge p1, v4, :cond_5d
+    :goto_1
+    if-ge p1, v4, :cond_2
 
     .line 93
-    if-lez p1, :cond_70
+    if-lez p1, :cond_3
 
     .line 94
     sub-int/2addr v4, p1
@@ -218,10 +218,10 @@
 
     .end local v0    # "mask":I
     .end local v4    # "bitsToNotRead":I
-    goto :goto_70
+    goto :goto_2
 
     .line 87
-    :cond_5d
+    :cond_2
     shl-int/lit8 v2, v1, 0x8
 
     iget-object v5, p0, Lcom/google/zxing/common/BitSource;->bytes:[B
@@ -244,16 +244,16 @@
     .line 89
     add-int/lit8 p1, p1, -0x8
 
-    goto :goto_43
+    goto :goto_1
 
     .line 101
-    :cond_70
-    :goto_70
+    :cond_3
+    :goto_2
     return v1
 
     .line 64
     .end local v1    # "result":I
-    :cond_71
+    :cond_4
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     invoke-static {p1}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;

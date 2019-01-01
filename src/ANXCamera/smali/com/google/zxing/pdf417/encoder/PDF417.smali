@@ -37,7 +37,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 4
+    .locals 4
 
     .line 44
     const/4 v0, 0x3
@@ -49,7 +49,7 @@
 
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_1ec
+    fill-array-data v2, :array_0
 
     .line 46
     nop
@@ -518,7 +518,7 @@
     .line 200
     new-array v2, v1, [I
 
-    fill-array-data v2, :array_932
+    fill-array-data v2, :array_1
 
     .line 201
     nop
@@ -987,7 +987,7 @@
     .line 355
     new-array v1, v1, [I
 
-    fill-array-data v1, :array_1078
+    fill-array-data v1, :array_2
 
     .line 356
     nop
@@ -1461,7 +1461,7 @@
 
     nop
 
-    :array_1ec
+    :array_0
     .array-data 4
         0x1d5c0
         0x1eaf0
@@ -2394,7 +2394,7 @@
         0x1bef4
     .end array-data
 
-    :array_932
+    :array_1
     .array-data 4
         0x1f560
         0x1fab8
@@ -3327,7 +3327,7 @@
         0x13f26
     .end array-data
 
-    :array_1078
+    :array_2
     .array-data 4
         0x1abe0
         0x1d5f8
@@ -4262,7 +4262,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 525
     const/4 v0, 0x0
@@ -4274,7 +4274,7 @@
 .end method
 
 .method public constructor <init>(Z)V
-    .registers 4
+    .locals 2
     .param p1, "compact"    # Z
 
     .line 528
@@ -4314,7 +4314,7 @@
 .end method
 
 .method private static calculateNumberOfRows(III)I
-    .registers 6
+    .locals 3
     .param p0, "m"    # I
     .param p1, "k"    # I
     .param p2, "c"    # I
@@ -4338,18 +4338,18 @@
 
     add-int/2addr v2, p2
 
-    if-lt v1, v2, :cond_10
+    if-lt v1, v2, :cond_0
 
     .line 555
     add-int/lit8 v0, v0, -0x1
 
     .line 557
-    :cond_10
+    :cond_0
     return v0
 .end method
 
 .method private determineDimensions(II)[I
-    .registers 13
+    .locals 10
     .param p1, "sourceCodeWords"    # I
     .param p2, "errorCorrectionCodeWords"    # I
     .annotation system Ldalvik/annotation/Throws;
@@ -4370,7 +4370,7 @@
     iget v2, p0, Lcom/google/zxing/pdf417/encoder/PDF417;->minCols:I
 
     .local v2, "cols":I
-    :goto_4
+    :goto_0
     iget v3, p0, Lcom/google/zxing/pdf417/encoder/PDF417;->maxCols:I
 
     const/4 v4, 0x0
@@ -4379,14 +4379,14 @@
 
     const/4 v6, 0x1
 
-    if-le v2, v3, :cond_c
+    if-le v2, v3, :cond_0
 
     .end local v2    # "cols":I
-    goto :goto_15
+    goto :goto_1
 
     .line 696
     .restart local v2    # "cols":I
-    :cond_c
+    :cond_0
     invoke-static {p1, p2, v2}, Lcom/google/zxing/pdf417/encoder/PDF417;->calculateNumberOfRows(III)I
 
     move-result v3
@@ -4395,7 +4395,7 @@
     .local v3, "rows":I
     iget v7, p0, Lcom/google/zxing/pdf417/encoder/PDF417;->minRows:I
 
-    if-ge v3, v7, :cond_37
+    if-ge v3, v7, :cond_3
 
     .line 699
     nop
@@ -4403,8 +4403,8 @@
     .line 718
     .end local v2    # "cols":I
     .end local v3    # "rows":I
-    :goto_15
-    if-nez v1, :cond_2c
+    :goto_1
+    if-nez v1, :cond_1
 
     .line 719
     iget v2, p0, Lcom/google/zxing/pdf417/encoder/PDF417;->minCols:I
@@ -4417,7 +4417,7 @@
     .local v2, "rows":I
     iget v3, p0, Lcom/google/zxing/pdf417/encoder/PDF417;->minRows:I
 
-    if-ge v2, v3, :cond_2c
+    if-ge v2, v3, :cond_1
 
     .line 721
     new-array v3, v5, [I
@@ -4434,14 +4434,14 @@
 
     .line 725
     .end local v2    # "rows":I
-    :cond_2c
-    if-eqz v1, :cond_2f
+    :cond_1
+    if-eqz v1, :cond_2
 
     .line 729
     return-object v1
 
     .line 726
-    :cond_2f
+    :cond_2
     new-instance v2, Lcom/google/zxing/WriterException;
 
     const-string v3, "Unable to fit message in columns"
@@ -4453,16 +4453,16 @@
     .line 702
     .local v2, "cols":I
     .restart local v3    # "rows":I
-    :cond_37
+    :cond_3
     iget v7, p0, Lcom/google/zxing/pdf417/encoder/PDF417;->maxRows:I
 
-    if-le v3, v7, :cond_3c
+    if-le v3, v7, :cond_4
 
     .line 703
-    goto :goto_68
+    goto :goto_2
 
     .line 706
-    :cond_3c
+    :cond_4
     const/16 v7, 0x11
 
     mul-int/2addr v7, v2
@@ -4485,7 +4485,7 @@
 
     .line 709
     .local v7, "newRatio":F
-    if-eqz v1, :cond_60
+    if-eqz v1, :cond_5
 
     const/high16 v8, 0x40400000    # 3.0f
 
@@ -4503,13 +4503,13 @@
 
     cmpl-float v8, v9, v8
 
-    if-lez v8, :cond_60
+    if-lez v8, :cond_5
 
     .line 710
-    goto :goto_68
+    goto :goto_2
 
     .line 713
-    :cond_60
+    :cond_5
     move v0, v7
 
     .line 714
@@ -4524,14 +4524,14 @@
     .line 694
     .end local v3    # "rows":I
     .end local v7    # "newRatio":F
-    :goto_68
+    :goto_2
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_4
+    goto :goto_0
 .end method
 
 .method private static encodeChar(IILcom/google/zxing/pdf417/encoder/BarcodeRow;)V
-    .registers 10
+    .locals 7
     .param p0, "pattern"    # I
     .param p1, "len"    # I
     .param p2, "logic"    # Lcom/google/zxing/pdf417/encoder/BarcodeRow;
@@ -4549,18 +4549,18 @@
 
     const/4 v3, 0x0
 
-    if-eqz v2, :cond_c
+    if-eqz v2, :cond_0
 
     move v2, v1
 
-    goto :goto_d
+    goto :goto_0
 
-    :cond_c
+    :cond_0
     move v2, v3
 
     .line 579
     .local v2, "last":Z
-    :goto_d
+    :goto_0
     const/4 v4, 0x0
 
     .line 580
@@ -4568,8 +4568,8 @@
     const/4 v5, 0x0
 
     .local v5, "i":I
-    :goto_f
-    if-lt v5, p1, :cond_15
+    :goto_1
+    if-lt v5, p1, :cond_1
 
     .line 592
     .end local v5    # "i":I
@@ -4580,31 +4580,31 @@
 
     .line 581
     .restart local v5    # "i":I
-    :cond_15
+    :cond_1
     and-int v6, p0, v0
 
-    if-eqz v6, :cond_1b
+    if-eqz v6, :cond_2
 
     move v6, v1
 
-    goto :goto_1c
+    goto :goto_2
 
-    :cond_1b
+    :cond_2
     move v6, v3
 
     .line 582
     .local v6, "black":Z
-    :goto_1c
-    if-ne v2, v6, :cond_21
+    :goto_2
+    if-ne v2, v6, :cond_3
 
     .line 583
     add-int/lit8 v4, v4, 0x1
 
     .line 584
-    goto :goto_26
+    goto :goto_3
 
     .line 585
-    :cond_21
+    :cond_3
     invoke-virtual {p2, v2, v4}, Lcom/google/zxing/pdf417/encoder/BarcodeRow;->addBar(ZI)V
 
     .line 587
@@ -4614,18 +4614,18 @@
     const/4 v4, 0x1
 
     .line 590
-    :goto_26
+    :goto_3
     shr-int/lit8 v0, v0, 0x1
 
     .line 580
     .end local v6    # "black":Z
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_f
+    goto :goto_1
 .end method
 
 .method private encodeLowLevel(Ljava/lang/CharSequence;IIILcom/google/zxing/pdf417/encoder/BarcodeMatrix;)V
-    .registers 21
+    .locals 15
     .param p1, "fullCodewords"    # Ljava/lang/CharSequence;
     .param p2, "c"    # I
     .param p3, "r"    # I
@@ -4644,8 +4644,8 @@
     const/4 v3, 0x0
 
     .local v3, "y":I
-    :goto_6
-    if-lt v3, v1, :cond_9
+    :goto_0
+    if-lt v3, v1, :cond_0
 
     .line 638
     .end local v3    # "y":I
@@ -4653,7 +4653,7 @@
 
     .line 603
     .restart local v3    # "y":I
-    :cond_9
+    :cond_0
     rem-int/lit8 v4, v3, 0x3
 
     .line 604
@@ -4676,7 +4676,7 @@
 
     const/4 v6, 0x1
 
-    if-nez v4, :cond_2e
+    if-nez v4, :cond_1
 
     .line 610
     div-int/lit8 v8, v3, 0x3
@@ -4701,12 +4701,12 @@
 
     .line 612
     .local v5, "right":I
-    goto :goto_55
+    goto :goto_1
 
     .end local v5    # "right":I
     .end local v8    # "left":I
-    :cond_2e
-    if-ne v4, v6, :cond_44
+    :cond_1
+    if-ne v4, v6, :cond_2
 
     .line 613
     div-int/lit8 v8, v3, 0x3
@@ -4737,12 +4737,12 @@
 
     .line 615
     .restart local v5    # "right":I
-    goto :goto_55
+    goto :goto_1
 
     .line 616
     .end local v5    # "right":I
     .end local v8    # "left":I
-    :cond_44
+    :cond_2
     div-int/lit8 v8, v3, 0x3
 
     mul-int/2addr v8, v5
@@ -4769,7 +4769,7 @@
 
     .line 620
     .restart local v5    # "right":I
-    :goto_55
+    :goto_1
     sget-object v9, Lcom/google/zxing/pdf417/encoder/PDF417;->CODEWORD_TABLE:[[I
 
     aget-object v9, v9, v4
@@ -4788,8 +4788,8 @@
     const/4 v10, 0x0
 
     .local v10, "x":I
-    :goto_63
-    if-lt v10, v0, :cond_8f
+    :goto_2
+    if-lt v10, v0, :cond_4
 
     .line 629
     .end local v10    # "x":I
@@ -4799,7 +4799,7 @@
 
     const v12, 0x3fa29
 
-    if-eqz v10, :cond_75
+    if-eqz v10, :cond_3
 
     .line 630
     invoke-virtual/range {p5 .. p5}, Lcom/google/zxing/pdf417/encoder/BarcodeMatrix;->getCurrentRow()Lcom/google/zxing/pdf417/encoder/BarcodeRow;
@@ -4809,10 +4809,10 @@
     invoke-static {v12, v6, v7}, Lcom/google/zxing/pdf417/encoder/PDF417;->encodeChar(IILcom/google/zxing/pdf417/encoder/BarcodeRow;)V
 
     .line 631
-    goto :goto_8b
+    goto :goto_3
 
     .line 632
-    :cond_75
+    :cond_3
     sget-object v6, Lcom/google/zxing/pdf417/encoder/PDF417;->CODEWORD_TABLE:[[I
 
     aget-object v6, v6, v4
@@ -4842,10 +4842,10 @@
     .end local v5    # "right":I
     .end local v6    # "pattern":I
     .end local v8    # "left":I
-    :goto_8b
+    :goto_3
     add-int/lit8 v3, v3, 0x1
 
-    goto/16 :goto_6
+    goto/16 :goto_0
 
     .line 624
     .restart local v4    # "cluster":I
@@ -4853,7 +4853,7 @@
     .restart local v8    # "left":I
     .restart local v9    # "pattern":I
     .restart local v10    # "x":I
-    :cond_8f
+    :cond_4
     move-object v11, p0
 
     sget-object v12, Lcom/google/zxing/pdf417/encoder/PDF417;->CODEWORD_TABLE:[[I
@@ -4881,11 +4881,11 @@
     .line 623
     add-int/lit8 v10, v10, 0x1
 
-    goto :goto_63
+    goto :goto_2
 .end method
 
 .method private static getNumberOfPadCodewords(IIII)I
-    .registers 6
+    .locals 2
     .param p0, "m"    # I
     .param p1, "k"    # I
     .param p2, "c"    # I
@@ -4900,25 +4900,25 @@
     .local v0, "n":I
     add-int/lit8 v1, p0, 0x1
 
-    if-le v0, v1, :cond_c
+    if-le v0, v1, :cond_0
 
     sub-int v1, v0, p0
 
     add-int/lit8 v1, v1, -0x1
 
-    goto :goto_d
+    goto :goto_0
 
-    :cond_c
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_d
+    :goto_0
     return v1
 .end method
 
 
 # virtual methods
 .method public generateBarcodeLogic(Ljava/lang/String;I)V
-    .registers 24
+    .locals 21
     .param p1, "msg"    # Ljava/lang/String;
     .param p2, "errorCorrectionLevel"    # I
     .annotation system Ldalvik/annotation/Throws;
@@ -4984,7 +4984,7 @@
 
     const/16 v2, 0x3a1
 
-    if-gt v1, v2, :cond_7f
+    if-gt v1, v2, :cond_1
 
     .line 664
     add-int v1, v10, v14
@@ -5012,8 +5012,8 @@
     const/4 v0, 0x0
 
     .local v0, "i":I
-    :goto_3b
-    if-lt v0, v14, :cond_74
+    :goto_0
+    if-lt v0, v14, :cond_0
 
     .line 671
     .end local v0    # "i":I
@@ -5094,7 +5094,7 @@
     .end local v19    # "dataCodewords":Ljava/lang/String;
     .restart local v0    # "i":I
     .restart local v5    # "sb":Ljava/lang/StringBuilder;
-    :cond_74
+    :cond_0
     move-object v6, v5
 
     .end local v5    # "sb":Ljava/lang/StringBuilder;
@@ -5108,13 +5108,13 @@
 
     move-object/from16 v6, p0
 
-    goto :goto_3b
+    goto :goto_0
 
     .line 661
     .end local v0    # "i":I
     .end local v6    # "sb":Ljava/lang/StringBuilder;
     .end local v15    # "n":I
-    :cond_7f
+    :cond_1
     new-instance v0, Lcom/google/zxing/WriterException;
 
     .line 662
@@ -5145,7 +5145,7 @@
 .end method
 
 .method public getBarcodeMatrix()Lcom/google/zxing/pdf417/encoder/BarcodeMatrix;
-    .registers 2
+    .locals 1
 
     .line 539
     iget-object v0, p0, Lcom/google/zxing/pdf417/encoder/PDF417;->barcodeMatrix:Lcom/google/zxing/pdf417/encoder/BarcodeMatrix;
@@ -5154,7 +5154,7 @@
 .end method
 
 .method public setCompact(Z)V
-    .registers 2
+    .locals 0
     .param p1, "compact"    # Z
 
     .line 758
@@ -5165,7 +5165,7 @@
 .end method
 
 .method public setCompaction(Lcom/google/zxing/pdf417/encoder/Compaction;)V
-    .registers 2
+    .locals 0
     .param p1, "compaction"    # Lcom/google/zxing/pdf417/encoder/Compaction;
 
     .line 751
@@ -5176,7 +5176,7 @@
 .end method
 
 .method public setDimensions(IIII)V
-    .registers 5
+    .locals 0
     .param p1, "maxCols"    # I
     .param p2, "minCols"    # I
     .param p3, "maxRows"    # I
@@ -5199,7 +5199,7 @@
 .end method
 
 .method public setEncoding(Ljava/nio/charset/Charset;)V
-    .registers 2
+    .locals 0
     .param p1, "encoding"    # Ljava/nio/charset/Charset;
 
     .line 765

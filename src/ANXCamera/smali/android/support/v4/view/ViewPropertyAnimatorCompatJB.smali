@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,12 +14,12 @@
 .end method
 
 .method public static setListener(Landroid/view/View;Landroid/support/v4/view/ViewPropertyAnimatorListener;)V
-    .registers 4
+    .locals 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "listener"    # Landroid/support/v4/view/ViewPropertyAnimatorListener;
 
     .line 38
-    if-eqz p1, :cond_f
+    if-eqz p1, :cond_0
 
     .line 39
     invoke-virtual {p0}, Landroid/view/View;->animate()Landroid/view/ViewPropertyAnimator;
@@ -32,10 +32,10 @@
 
     invoke-virtual {v0, v1}, Landroid/view/ViewPropertyAnimator;->setListener(Landroid/animation/Animator$AnimatorListener;)Landroid/view/ViewPropertyAnimator;
 
-    goto :goto_17
+    goto :goto_0
 
     .line 56
-    :cond_f
+    :cond_0
     invoke-virtual {p0}, Landroid/view/View;->animate()Landroid/view/ViewPropertyAnimator;
 
     move-result-object v0
@@ -45,12 +45,12 @@
     invoke-virtual {v0, v1}, Landroid/view/ViewPropertyAnimator;->setListener(Landroid/animation/Animator$AnimatorListener;)Landroid/view/ViewPropertyAnimator;
 
     .line 58
-    :goto_17
+    :goto_0
     return-void
 .end method
 
 .method public static withEndAction(Landroid/view/View;Ljava/lang/Runnable;)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "runnable"    # Ljava/lang/Runnable;
 
@@ -66,7 +66,7 @@
 .end method
 
 .method public static withLayer(Landroid/view/View;)V
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 33
@@ -81,7 +81,7 @@
 .end method
 
 .method public static withStartAction(Landroid/view/View;Ljava/lang/Runnable;)V
-    .registers 3
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
     .param p1, "runnable"    # Ljava/lang/Runnable;
 

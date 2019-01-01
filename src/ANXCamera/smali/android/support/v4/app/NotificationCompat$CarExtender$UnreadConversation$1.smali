@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 3157
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public build([Ljava/lang/String;Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput;Landroid/app/PendingIntent;Landroid/app/PendingIntent;[Ljava/lang/String;J)Landroid/support/v4/app/NotificationCompat$CarExtender$UnreadConversation;
-    .registers 18
+    .locals 10
     .param p1, "messages"    # [Ljava/lang/String;
     .param p2, "remoteInput"    # Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput;
     .param p3, "replyPendingIntent"    # Landroid/app/PendingIntent;
@@ -63,7 +63,7 @@
 .end method
 
 .method public bridge synthetic build([Ljava/lang/String;Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput;Landroid/app/PendingIntent;Landroid/app/PendingIntent;[Ljava/lang/String;J)Landroid/support/v4/app/NotificationCompatBase$UnreadConversation;
-    .registers 9
+    .locals 1
     .param p1, "x0"    # [Ljava/lang/String;
     .param p2, "x1"    # Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput;
     .param p3, "x2"    # Landroid/app/PendingIntent;

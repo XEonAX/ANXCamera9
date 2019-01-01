@@ -14,7 +14,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 21
     const/4 v0, 0x0
@@ -26,7 +26,7 @@
 .end method
 
 .method public constructor <init>(FF)V
-    .registers 3
+    .locals 0
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -44,7 +44,7 @@
 
 # virtual methods
 .method public getInterpolation(F)F
-    .registers 14
+    .locals 12
 
     .line 35
     iget v0, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->NV:F
@@ -57,47 +57,47 @@
 
     cmpl-float v3, p1, v2
 
-    if-nez v3, :cond_a
+    if-nez v3, :cond_0
 
     .line 40
     return v2
 
     .line 42
-    :cond_a
+    :cond_0
     const/high16 v3, 0x3f800000    # 1.0f
 
     cmpl-float v4, p1, v3
 
-    if-nez v4, :cond_11
+    if-nez v4, :cond_1
 
     .line 43
     return v3
 
     .line 45
-    :cond_11
+    :cond_1
     cmpl-float v4, v0, v2
 
-    if-nez v4, :cond_18
+    if-nez v4, :cond_2
 
     .line 46
     const v0, 0x3e99999a    # 0.3f
 
     .line 48
-    :cond_18
+    :cond_2
     cmpl-float v2, v1, v2
 
     const-wide v4, 0x401921fb54442d18L    # 6.283185307179586
 
-    if-eqz v2, :cond_32
+    if-eqz v2, :cond_4
 
     cmpg-float v2, v1, v3
 
-    if-gez v2, :cond_26
+    if-gez v2, :cond_3
 
-    goto :goto_32
+    goto :goto_0
 
     .line 52
-    :cond_26
+    :cond_3
     float-to-double v6, v0
 
     div-double/2addr v6, v4
@@ -114,11 +114,11 @@
 
     double-to-float v2, v6
 
-    goto :goto_38
+    goto :goto_1
 
     .line 49
-    :cond_32
-    :goto_32
+    :cond_4
+    :goto_0
     nop
 
     .line 50
@@ -129,7 +129,7 @@
     .line 54
     move v1, v3
 
-    :goto_38
+    :goto_1
     sub-float/2addr p1, v3
 
     .line 55

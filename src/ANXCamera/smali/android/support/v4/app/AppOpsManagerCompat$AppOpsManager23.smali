@@ -16,7 +16,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 64
     const/4 v0, 0x0
@@ -27,7 +27,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v4/app/AppOpsManagerCompat$1;)V
-    .registers 2
+    .locals 0
     .param p1, "x0"    # Landroid/support/v4/app/AppOpsManagerCompat$1;
 
     .line 64
@@ -39,7 +39,7 @@
 
 # virtual methods
 .method public noteOp(Landroid/content/Context;Ljava/lang/String;ILjava/lang/String;)I
-    .registers 6
+    .locals 1
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "op"    # Ljava/lang/String;
     .param p3, "uid"    # I
@@ -54,7 +54,7 @@
 .end method
 
 .method public noteProxyOp(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)I
-    .registers 5
+    .locals 1
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "op"    # Ljava/lang/String;
     .param p3, "proxiedPackageName"    # Ljava/lang/String;
@@ -68,7 +68,7 @@
 .end method
 
 .method public permissionToOp(Ljava/lang/String;)Ljava/lang/String;
-    .registers 3
+    .locals 1
     .param p1, "permission"    # Ljava/lang/String;
 
     .line 67

@@ -13,7 +13,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 21
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -23,7 +23,7 @@
 .end method
 
 .method public static createVolumeProvider(IIILandroid/support/v4/media/VolumeProviderCompatApi21$Delegate;)Ljava/lang/Object;
-    .registers 5
+    .locals 1
     .param p0, "volumeControl"    # I
     .param p1, "maxVolume"    # I
     .param p2, "currentVolume"    # I
@@ -38,7 +38,7 @@
 .end method
 
 .method public static setCurrentVolume(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 1
     .param p0, "volumeProviderObj"    # Ljava/lang/Object;
     .param p1, "currentVolume"    # I
 

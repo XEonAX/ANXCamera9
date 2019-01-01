@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 82
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public getAddedCount(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 92
@@ -40,7 +40,7 @@
 .end method
 
 .method public getBeforeText(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 96
@@ -50,7 +50,7 @@
 .end method
 
 .method public getClassName(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 100
@@ -60,7 +60,7 @@
 .end method
 
 .method public getContentDescription(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 104
@@ -70,7 +70,7 @@
 .end method
 
 .method public getCurrentItemIndex(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 108
@@ -80,7 +80,7 @@
 .end method
 
 .method public getFromIndex(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 112
@@ -90,7 +90,7 @@
 .end method
 
 .method public getItemCount(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 116
@@ -100,7 +100,7 @@
 .end method
 
 .method public getMaxScrollX(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 120
@@ -110,7 +110,7 @@
 .end method
 
 .method public getMaxScrollY(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 124
@@ -120,7 +120,7 @@
 .end method
 
 .method public getParcelableData(Ljava/lang/Object;)Landroid/os/Parcelable;
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 128
@@ -130,7 +130,7 @@
 .end method
 
 .method public getRemovedCount(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 132
@@ -140,7 +140,7 @@
 .end method
 
 .method public getScrollX(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 136
@@ -150,7 +150,7 @@
 .end method
 
 .method public getScrollY(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 140
@@ -160,7 +160,7 @@
 .end method
 
 .method public getSource(Ljava/lang/Object;)Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 144
@@ -170,7 +170,7 @@
 .end method
 
 .method public getText(Ljava/lang/Object;)Ljava/util/List;
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -192,7 +192,7 @@
 .end method
 
 .method public getToIndex(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 152
@@ -202,7 +202,7 @@
 .end method
 
 .method public getWindowId(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 156
@@ -212,7 +212,7 @@
 .end method
 
 .method public isChecked(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 160
@@ -222,7 +222,7 @@
 .end method
 
 .method public isEnabled(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 164
@@ -232,7 +232,7 @@
 .end method
 
 .method public isFullScreen(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 168
@@ -242,7 +242,7 @@
 .end method
 
 .method public isPassword(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 172
@@ -252,7 +252,7 @@
 .end method
 
 .method public isScrollable(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 176
@@ -262,7 +262,7 @@
 .end method
 
 .method public obtain()Ljava/lang/Object;
-    .registers 2
+    .locals 1
 
     .line 84
     const/4 v0, 0x0
@@ -271,7 +271,7 @@
 .end method
 
 .method public obtain(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 88
@@ -281,7 +281,7 @@
 .end method
 
 .method public recycle(Ljava/lang/Object;)V
-    .registers 2
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 181
@@ -289,7 +289,7 @@
 .end method
 
 .method public setAddedCount(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "addedCount"    # I
 
@@ -298,7 +298,7 @@
 .end method
 
 .method public setBeforeText(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "beforeText"    # Ljava/lang/CharSequence;
 
@@ -307,7 +307,7 @@
 .end method
 
 .method public setChecked(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "isChecked"    # Z
 
@@ -316,7 +316,7 @@
 .end method
 
 .method public setClassName(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "className"    # Ljava/lang/CharSequence;
 
@@ -325,7 +325,7 @@
 .end method
 
 .method public setContentDescription(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "contentDescription"    # Ljava/lang/CharSequence;
 
@@ -334,7 +334,7 @@
 .end method
 
 .method public setCurrentItemIndex(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "currentItemIndex"    # I
 
@@ -343,7 +343,7 @@
 .end method
 
 .method public setEnabled(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "isEnabled"    # Z
 
@@ -352,7 +352,7 @@
 .end method
 
 .method public setFromIndex(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "fromIndex"    # I
 
@@ -361,7 +361,7 @@
 .end method
 
 .method public setFullScreen(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "isFullScreen"    # Z
 
@@ -370,7 +370,7 @@
 .end method
 
 .method public setItemCount(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "itemCount"    # I
 
@@ -379,7 +379,7 @@
 .end method
 
 .method public setMaxScrollX(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "maxScrollX"    # I
 
@@ -388,7 +388,7 @@
 .end method
 
 .method public setMaxScrollY(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "maxScrollY"    # I
 
@@ -397,7 +397,7 @@
 .end method
 
 .method public setParcelableData(Ljava/lang/Object;Landroid/os/Parcelable;)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "parcelableData"    # Landroid/os/Parcelable;
 
@@ -406,7 +406,7 @@
 .end method
 
 .method public setPassword(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "isPassword"    # Z
 
@@ -415,7 +415,7 @@
 .end method
 
 .method public setRemovedCount(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "removedCount"    # I
 
@@ -424,7 +424,7 @@
 .end method
 
 .method public setScrollX(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "scrollX"    # I
 
@@ -433,7 +433,7 @@
 .end method
 
 .method public setScrollY(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "scrollY"    # I
 
@@ -442,7 +442,7 @@
 .end method
 
 .method public setScrollable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "scrollable"    # Z
 
@@ -451,7 +451,7 @@
 .end method
 
 .method public setSource(Ljava/lang/Object;Landroid/view/View;)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "source"    # Landroid/view/View;
 
@@ -460,7 +460,7 @@
 .end method
 
 .method public setSource(Ljava/lang/Object;Landroid/view/View;I)V
-    .registers 4
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "root"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I
@@ -470,7 +470,7 @@
 .end method
 
 .method public setToIndex(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "toIndex"    # I
 

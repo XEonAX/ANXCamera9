@@ -22,7 +22,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/view/ViewPropertyAnimatorListener;Landroid/view/View;)V
-    .registers 3
+    .locals 0
 
     .line 39
     iput-object p1, p0, Landroid/support/v4/view/ViewPropertyAnimatorCompatJB$1;->val$listener:Landroid/support/v4/view/ViewPropertyAnimatorListener;
@@ -37,7 +37,7 @@
 
 # virtual methods
 .method public onAnimationCancel(Landroid/animation/Animator;)V
-    .registers 4
+    .locals 2
     .param p1, "animation"    # Landroid/animation/Animator;
 
     .line 42
@@ -52,7 +52,7 @@
 .end method
 
 .method public onAnimationEnd(Landroid/animation/Animator;)V
-    .registers 4
+    .locals 2
     .param p1, "animation"    # Landroid/animation/Animator;
 
     .line 47
@@ -67,7 +67,7 @@
 .end method
 
 .method public onAnimationStart(Landroid/animation/Animator;)V
-    .registers 4
+    .locals 2
     .param p1, "animation"    # Landroid/animation/Animator;
 
     .line 52

@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/view/accessibility/AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge;)V
-    .registers 2
+    .locals 0
 
     .line 36
     iput-object p1, p0, Landroid/support/v4/view/accessibility/AccessibilityManagerCompatIcs$1;->val$bridge:Landroid/support/v4/view/accessibility/AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge;
@@ -36,7 +36,7 @@
 
 # virtual methods
 .method public onAccessibilityStateChanged(Z)V
-    .registers 3
+    .locals 1
     .param p1, "enabled"    # Z
 
     .line 39

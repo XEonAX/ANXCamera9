@@ -19,7 +19,7 @@
 
 # direct methods
 .method public constructor <init>(Lcom/google/zxing/common/reedsolomon/GenericGF;)V
-    .registers 7
+    .locals 5
     .param p1, "field"    # Lcom/google/zxing/common/reedsolomon/GenericGF;
 
     .line 33
@@ -57,7 +57,7 @@
 .end method
 
 .method private buildGenerator(I)Lcom/google/zxing/common/reedsolomon/GenericGFPoly;
-    .registers 11
+    .locals 9
     .param p1, "degree"    # I
 
     .line 40
@@ -67,7 +67,7 @@
 
     move-result v0
 
-    if-lt p1, v0, :cond_4d
+    if-lt p1, v0, :cond_1
 
     .line 41
     iget-object v0, p0, Lcom/google/zxing/common/reedsolomon/ReedSolomonEncoder;->cachedGenerators:Ljava/util/List;
@@ -97,17 +97,17 @@
     move-result v1
 
     .local v1, "d":I
-    :goto_1e
-    if-le v1, p1, :cond_21
+    :goto_0
+    if-le v1, p1, :cond_0
 
     .end local v0    # "lastGenerator":Lcom/google/zxing/common/reedsolomon/GenericGFPoly;
     .end local v1    # "d":I
-    goto :goto_4d
+    goto :goto_1
 
     .line 43
     .restart local v0    # "lastGenerator":Lcom/google/zxing/common/reedsolomon/GenericGFPoly;
     .restart local v1    # "d":I
-    :cond_21
+    :cond_0
     nop
 
     .line 44
@@ -161,13 +161,13 @@
     .end local v3    # "nextGenerator":Lcom/google/zxing/common/reedsolomon/GenericGFPoly;
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_1e
+    goto :goto_0
 
     .line 49
     .end local v0    # "lastGenerator":Lcom/google/zxing/common/reedsolomon/GenericGFPoly;
     .end local v1    # "d":I
-    :cond_4d
-    :goto_4d
+    :cond_1
+    :goto_1
     iget-object v0, p0, Lcom/google/zxing/common/reedsolomon/ReedSolomonEncoder;->cachedGenerators:Ljava/util/List;
 
     invoke-interface {v0, p1}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -182,12 +182,12 @@
 
 # virtual methods
 .method public encode([II)V
-    .registers 13
+    .locals 10
     .param p1, "toEncode"    # [I
     .param p2, "ecBytes"    # I
 
     .line 53
-    if-eqz p2, :cond_42
+    if-eqz p2, :cond_2
 
     .line 56
     array-length v0, p1
@@ -196,7 +196,7 @@
 
     .line 57
     .local v0, "dataBytes":I
-    if-lez v0, :cond_3a
+    if-lez v0, :cond_1
 
     .line 60
     invoke-direct {p0, p2}, Lcom/google/zxing/common/reedsolomon/ReedSolomonEncoder;->buildGenerator(I)Lcom/google/zxing/common/reedsolomon/GenericGFPoly;
@@ -252,8 +252,8 @@
     const/4 v8, 0x0
 
     .local v8, "i":I
-    :goto_2a
-    if-lt v8, v7, :cond_33
+    :goto_0
+    if-lt v8, v7, :cond_0
 
     .line 71
     .end local v8    # "i":I
@@ -268,7 +268,7 @@
 
     .line 69
     .restart local v8    # "i":I
-    :cond_33
+    :cond_0
     add-int v9, v0, v8
 
     aput v3, p1, v9
@@ -276,7 +276,7 @@
     .line 68
     add-int/lit8 v8, v8, 0x1
 
-    goto :goto_2a
+    goto :goto_0
 
     .line 58
     .end local v1    # "generator":Lcom/google/zxing/common/reedsolomon/GenericGFPoly;
@@ -286,7 +286,7 @@
     .end local v6    # "coefficients":[I
     .end local v7    # "numZeroCoefficients":I
     .end local v8    # "i":I
-    :cond_3a
+    :cond_1
     new-instance v1, Ljava/lang/IllegalArgumentException;
 
     const-string v2, "No data bytes provided"
@@ -297,7 +297,7 @@
 
     .line 54
     .end local v0    # "dataBytes":I
-    :cond_42
+    :cond_2
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "No error correction bytes"

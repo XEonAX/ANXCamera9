@@ -14,7 +14,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 44
     invoke-direct {p0}, Landroid/support/v4/content/ContextCompat;-><init>()V
@@ -24,7 +24,7 @@
 .end method
 
 .method private static createCallback(Landroid/support/v4/app/SharedElementCallback;)Landroid/support/v4/app/ActivityCompat21$SharedElementCallback21;
-    .registers 3
+    .locals 2
     .param p0, "callback"    # Landroid/support/v4/app/SharedElementCallback;
 
     .line 370
@@ -32,7 +32,7 @@
 
     .line 371
     .local v0, "newCallback":Landroid/support/v4/app/ActivityCompat21$SharedElementCallback21;
-    if-eqz p0, :cond_9
+    if-eqz p0, :cond_0
 
     .line 372
     new-instance v1, Landroid/support/v4/app/ActivityCompat$SharedElementCallback21Impl;
@@ -42,12 +42,12 @@
     move-object v0, v1
 
     .line 374
-    :cond_9
+    :cond_0
     return-object v0
 .end method
 
 .method public static finishAffinity(Landroid/app/Activity;)V
-    .registers 3
+    .locals 2
     .param p0, "activity"    # Landroid/app/Activity;
 
     .line 176
@@ -55,24 +55,24 @@
 
     const/16 v1, 0x10
 
-    if-lt v0, v1, :cond_a
+    if-lt v0, v1, :cond_0
 
     .line 177
     invoke-static {p0}, Landroid/support/v4/app/ActivityCompatJB;->finishAffinity(Landroid/app/Activity;)V
 
-    goto :goto_d
+    goto :goto_0
 
     .line 179
-    :cond_a
+    :cond_0
     invoke-virtual {p0}, Landroid/app/Activity;->finish()V
 
     .line 181
-    :goto_d
+    :goto_0
     return-void
 .end method
 
 .method public static finishAfterTransition(Landroid/app/Activity;)V
-    .registers 3
+    .locals 2
     .param p0, "activity"    # Landroid/app/Activity;
 
     .line 193
@@ -80,24 +80,24 @@
 
     const/16 v1, 0x15
 
-    if-lt v0, v1, :cond_a
+    if-lt v0, v1, :cond_0
 
     .line 194
     invoke-static {p0}, Landroid/support/v4/app/ActivityCompat21;->finishAfterTransition(Landroid/app/Activity;)V
 
-    goto :goto_d
+    goto :goto_0
 
     .line 196
-    :cond_a
+    :cond_0
     invoke-virtual {p0}, Landroid/app/Activity;->finish()V
 
     .line 198
-    :goto_d
+    :goto_0
     return-void
 .end method
 
 .method public static invalidateOptionsMenu(Landroid/app/Activity;)Z
-    .registers 3
+    .locals 2
     .param p0, "activity"    # Landroid/app/Activity;
 
     .line 107
@@ -105,7 +105,7 @@
 
     const/16 v1, 0xb
 
-    if-lt v0, v1, :cond_b
+    if-lt v0, v1, :cond_0
 
     .line 108
     invoke-static {p0}, Landroid/support/v4/app/ActivityCompatHoneycomb;->invalidateOptionsMenu(Landroid/app/Activity;)V
@@ -116,14 +116,14 @@
     return v0
 
     .line 111
-    :cond_b
+    :cond_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public static postponeEnterTransition(Landroid/app/Activity;)V
-    .registers 3
+    .locals 2
     .param p0, "activity"    # Landroid/app/Activity;
 
     .line 253
@@ -131,18 +131,18 @@
 
     const/16 v1, 0x15
 
-    if-lt v0, v1, :cond_9
+    if-lt v0, v1, :cond_0
 
     .line 254
     invoke-static {p0}, Landroid/support/v4/app/ActivityCompat21;->postponeEnterTransition(Landroid/app/Activity;)V
 
     .line 256
-    :cond_9
+    :cond_0
     return-void
 .end method
 
 .method public static requestPermissions(Landroid/app/Activity;[Ljava/lang/String;I)V
-    .registers 5
+    .locals 2
     .param p0, "activity"    # Landroid/app/Activity;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -158,18 +158,18 @@
 
     const/16 v1, 0x17
 
-    if-lt v0, v1, :cond_a
+    if-lt v0, v1, :cond_0
 
     .line 316
     invoke-static {p0, p1, p2}, Landroid/support/v4/app/ActivityCompatApi23;->requestPermissions(Landroid/app/Activity;[Ljava/lang/String;I)V
 
-    goto :goto_1f
+    goto :goto_0
 
     .line 317
-    :cond_a
+    :cond_0
     instance-of v0, p0, Landroid/support/v4/app/ActivityCompat$OnRequestPermissionsResultCallback;
 
-    if-eqz v0, :cond_1f
+    if-eqz v0, :cond_1
 
     .line 318
     new-instance v0, Landroid/os/Handler;
@@ -190,13 +190,13 @@
 
     .line 338
     .end local v0    # "handler":Landroid/os/Handler;
-    :cond_1f
-    :goto_1f
+    :cond_1
+    :goto_0
     return-void
 .end method
 
 .method public static setEnterSharedElementCallback(Landroid/app/Activity;Landroid/support/v4/app/SharedElementCallback;)V
-    .registers 4
+    .locals 2
     .param p0, "activity"    # Landroid/app/Activity;
     .param p1, "callback"    # Landroid/support/v4/app/SharedElementCallback;
 
@@ -205,7 +205,7 @@
 
     const/16 v1, 0x15
 
-    if-lt v0, v1, :cond_d
+    if-lt v0, v1, :cond_0
 
     .line 232
     invoke-static {p1}, Landroid/support/v4/app/ActivityCompat;->createCallback(Landroid/support/v4/app/SharedElementCallback;)Landroid/support/v4/app/ActivityCompat21$SharedElementCallback21;
@@ -215,12 +215,12 @@
     invoke-static {p0, v0}, Landroid/support/v4/app/ActivityCompat21;->setEnterSharedElementCallback(Landroid/app/Activity;Landroid/support/v4/app/ActivityCompat21$SharedElementCallback21;)V
 
     .line 234
-    :cond_d
+    :cond_0
     return-void
 .end method
 
 .method public static setExitSharedElementCallback(Landroid/app/Activity;Landroid/support/v4/app/SharedElementCallback;)V
-    .registers 4
+    .locals 2
     .param p0, "activity"    # Landroid/app/Activity;
     .param p1, "callback"    # Landroid/support/v4/app/SharedElementCallback;
 
@@ -229,7 +229,7 @@
 
     const/16 v1, 0x15
 
-    if-lt v0, v1, :cond_d
+    if-lt v0, v1, :cond_0
 
     .line 248
     invoke-static {p1}, Landroid/support/v4/app/ActivityCompat;->createCallback(Landroid/support/v4/app/SharedElementCallback;)Landroid/support/v4/app/ActivityCompat21$SharedElementCallback21;
@@ -239,12 +239,12 @@
     invoke-static {p0, v0}, Landroid/support/v4/app/ActivityCompat21;->setExitSharedElementCallback(Landroid/app/Activity;Landroid/support/v4/app/ActivityCompat21$SharedElementCallback21;)V
 
     .line 250
-    :cond_d
+    :cond_0
     return-void
 .end method
 
 .method public static shouldShowRequestPermissionRationale(Landroid/app/Activity;Ljava/lang/String;)Z
-    .registers 4
+    .locals 2
     .param p0, "activity"    # Landroid/app/Activity;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -259,7 +259,7 @@
 
     const/16 v1, 0x17
 
-    if-lt v0, v1, :cond_b
+    if-lt v0, v1, :cond_0
 
     .line 363
     invoke-static {p0, p1}, Landroid/support/v4/app/ActivityCompatApi23;->shouldShowRequestPermissionRationale(Landroid/app/Activity;Ljava/lang/String;)Z
@@ -269,14 +269,14 @@
     return v0
 
     .line 365
-    :cond_b
+    :cond_0
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public static startActivity(Landroid/app/Activity;Landroid/content/Intent;Landroid/os/Bundle;)V
-    .registers 5
+    .locals 2
     .param p0, "activity"    # Landroid/app/Activity;
     .param p1, "intent"    # Landroid/content/Intent;
     .param p2, "options"    # Landroid/os/Bundle;
@@ -289,24 +289,24 @@
 
     const/16 v1, 0x10
 
-    if-lt v0, v1, :cond_a
+    if-lt v0, v1, :cond_0
 
     .line 133
     invoke-static {p0, p1, p2}, Landroid/support/v4/app/ActivityCompatJB;->startActivity(Landroid/content/Context;Landroid/content/Intent;Landroid/os/Bundle;)V
 
-    goto :goto_d
+    goto :goto_0
 
     .line 135
-    :cond_a
+    :cond_0
     invoke-virtual {p0, p1}, Landroid/app/Activity;->startActivity(Landroid/content/Intent;)V
 
     .line 137
-    :goto_d
+    :goto_0
     return-void
 .end method
 
 .method public static startActivityForResult(Landroid/app/Activity;Landroid/content/Intent;ILandroid/os/Bundle;)V
-    .registers 6
+    .locals 2
     .param p0, "activity"    # Landroid/app/Activity;
     .param p1, "intent"    # Landroid/content/Intent;
     .param p2, "requestCode"    # I
@@ -320,24 +320,24 @@
 
     const/16 v1, 0x10
 
-    if-lt v0, v1, :cond_a
+    if-lt v0, v1, :cond_0
 
     .line 162
     invoke-static {p0, p1, p2, p3}, Landroid/support/v4/app/ActivityCompatJB;->startActivityForResult(Landroid/app/Activity;Landroid/content/Intent;ILandroid/os/Bundle;)V
 
-    goto :goto_d
+    goto :goto_0
 
     .line 164
-    :cond_a
+    :cond_0
     invoke-virtual {p0, p1, p2}, Landroid/app/Activity;->startActivityForResult(Landroid/content/Intent;I)V
 
     .line 166
-    :goto_d
+    :goto_0
     return-void
 .end method
 
 .method public static startPostponedEnterTransition(Landroid/app/Activity;)V
-    .registers 3
+    .locals 2
     .param p0, "activity"    # Landroid/app/Activity;
 
     .line 259
@@ -345,20 +345,20 @@
 
     const/16 v1, 0x15
 
-    if-lt v0, v1, :cond_9
+    if-lt v0, v1, :cond_0
 
     .line 260
     invoke-static {p0}, Landroid/support/v4/app/ActivityCompat21;->startPostponedEnterTransition(Landroid/app/Activity;)V
 
     .line 262
-    :cond_9
+    :cond_0
     return-void
 .end method
 
 
 # virtual methods
 .method public getReferrer(Landroid/app/Activity;)Landroid/net/Uri;
-    .registers 6
+    .locals 4
     .param p1, "activity"    # Landroid/app/Activity;
 
     .line 206
@@ -366,7 +366,7 @@
 
     const/16 v1, 0x16
 
-    if-lt v0, v1, :cond_b
+    if-lt v0, v1, :cond_0
 
     .line 207
     invoke-static {p1}, Landroid/support/v4/app/ActivityCompat22;->getReferrer(Landroid/app/Activity;)Landroid/net/Uri;
@@ -376,7 +376,7 @@
     return-object v0
 
     .line 209
-    :cond_b
+    :cond_0
     invoke-virtual {p1}, Landroid/app/Activity;->getIntent()Landroid/content/Intent;
 
     move-result-object v0
@@ -393,13 +393,13 @@
 
     .line 211
     .local v1, "referrer":Landroid/net/Uri;
-    if-eqz v1, :cond_1a
+    if-eqz v1, :cond_1
 
     .line 212
     return-object v1
 
     .line 214
-    :cond_1a
+    :cond_1
     const-string v2, "android.intent.extra.REFERRER_NAME"
 
     invoke-virtual {v0, v2}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
@@ -408,7 +408,7 @@
 
     .line 215
     .local v2, "referrerName":Ljava/lang/String;
-    if-eqz v2, :cond_27
+    if-eqz v2, :cond_2
 
     .line 216
     invoke-static {v2}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
@@ -418,7 +418,7 @@
     return-object v3
 
     .line 218
-    :cond_27
+    :cond_2
     const/4 v3, 0x0
 
     return-object v3

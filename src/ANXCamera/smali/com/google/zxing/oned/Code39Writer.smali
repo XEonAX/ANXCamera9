@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 31
     invoke-direct {p0}, Lcom/google/zxing/oned/OneDimensionalCodeWriter;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method private static toIntArray(I[I)V
-    .registers 5
+    .locals 3
     .param p0, "a"    # I
     .param p1, "toReturn"    # [I
 
@@ -22,10 +22,10 @@
     const/4 v0, 0x0
 
     .local v0, "i":I
-    :goto_1
+    :goto_0
     const/16 v1, 0x9
 
-    if-lt v0, v1, :cond_6
+    if-lt v0, v1, :cond_0
 
     .line 87
     .end local v0    # "i":I
@@ -33,7 +33,7 @@
 
     .line 84
     .restart local v0    # "i":I
-    :cond_6
+    :cond_0
     rsub-int/lit8 v1, v0, 0x8
 
     const/4 v2, 0x1
@@ -44,27 +44,27 @@
 
     .line 85
     .local v1, "temp":I
-    if-nez v1, :cond_f
+    if-nez v1, :cond_1
 
-    goto :goto_10
+    goto :goto_1
 
-    :cond_f
+    :cond_1
     const/4 v2, 0x2
 
-    :goto_10
+    :goto_1
     aput v2, p1, v0
 
     .line 83
     .end local v1    # "temp":I
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_1
+    goto :goto_0
 .end method
 
 
 # virtual methods
 .method public encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;IILjava/util/Map;)Lcom/google/zxing/common/BitMatrix;
-    .registers 9
+    .locals 3
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "format"    # Lcom/google/zxing/BarcodeFormat;
     .param p3, "width"    # I
@@ -92,7 +92,7 @@
     .local p5, "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/EncodeHintType;*>;"
     sget-object v0, Lcom/google/zxing/BarcodeFormat;->CODE_39:Lcom/google/zxing/BarcodeFormat;
 
-    if-ne p2, v0, :cond_9
+    if-ne p2, v0, :cond_0
 
     .line 42
     invoke-super/range {p0 .. p5}, Lcom/google/zxing/oned/OneDimensionalCodeWriter;->encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;IILjava/util/Map;)Lcom/google/zxing/common/BitMatrix;
@@ -102,7 +102,7 @@
     return-object v0
 
     .line 40
-    :cond_9
+    :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -123,7 +123,7 @@
 .end method
 
 .method public encode(Ljava/lang/String;)[Z
-    .registers 14
+    .locals 12
     .param p1, "contents"    # Ljava/lang/String;
 
     .line 47
@@ -135,7 +135,7 @@
     .local v0, "length":I
     const/16 v1, 0x50
 
-    if-gt v0, v1, :cond_8b
+    if-gt v0, v1, :cond_4
 
     .line 53
     const/16 v1, 0x9
@@ -153,10 +153,10 @@
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_10
+    :goto_0
     const/4 v4, 0x0
 
-    if-lt v3, v0, :cond_58
+    if-lt v3, v0, :cond_1
 
     .line 65
     .end local v3    # "i":I
@@ -197,8 +197,8 @@
     const/4 v9, 0x0
 
     .local v9, "i":I
-    :goto_2d
-    if-lt v9, v0, :cond_3a
+    :goto_1
+    if-lt v9, v0, :cond_0
 
     .line 77
     .end local v9    # "i":I
@@ -216,7 +216,7 @@
 
     .line 72
     .restart local v9    # "i":I
-    :cond_3a
+    :cond_0
     const-string v10, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. *$/+%"
 
     invoke-virtual {p1, v9}, Ljava/lang/String;->charAt(I)C
@@ -253,14 +253,14 @@
     .end local v10    # "indexInString":I
     add-int/lit8 v9, v9, 0x1
 
-    goto :goto_2d
+    goto :goto_1
 
     .line 56
     .end local v5    # "result":[Z
     .end local v8    # "narrowWhite":[I
     .end local v9    # "i":I
     .local v3, "i":I
-    :cond_58
+    :cond_1
     const-string v5, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. *$/+%"
 
     invoke-virtual {p1, v3}, Ljava/lang/String;->charAt(I)C
@@ -273,7 +273,7 @@
 
     .line 57
     .local v5, "indexInString":I
-    if-ltz v5, :cond_77
+    if-ltz v5, :cond_3
 
     .line 60
     sget-object v6, Lcom/google/zxing/oned/Code39Reader;->CHARACTER_ENCODINGS:[I
@@ -285,18 +285,18 @@
     .line 61
     array-length v6, v1
 
-    :goto_6c
-    if-lt v4, v6, :cond_71
+    :goto_2
+    if-lt v4, v6, :cond_2
 
     .line 55
     .end local v5    # "indexInString":I
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_10
+    goto :goto_0
 
     .line 61
     .restart local v5    # "indexInString":I
-    :cond_71
+    :cond_2
     aget v7, v1, v4
 
     .line 62
@@ -307,10 +307,10 @@
     .end local v7    # "width":I
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_6c
+    goto :goto_2
 
     .line 58
-    :cond_77
+    :cond_3
     new-instance v4, Ljava/lang/IllegalArgumentException;
 
     new-instance v6, Ljava/lang/StringBuilder;
@@ -334,7 +334,7 @@
     .end local v2    # "codeWidth":I
     .end local v3    # "i":I
     .end local v5    # "indexInString":I
-    :cond_8b
+    :cond_4
     new-instance v1, Ljava/lang/IllegalArgumentException;
 
     .line 50

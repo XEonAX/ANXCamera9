@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 101
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 .end method
 
 .method private draw(Landroid/graphics/Canvas;Landroid/support/v7/widget/RecyclerView;Landroid/view/View;FF)V
-    .registers 8
+    .locals 2
     .param p1, "c"    # Landroid/graphics/Canvas;
     .param p2, "parent"    # Landroid/support/v7/widget/RecyclerView;
     .param p3, "view"    # Landroid/view/View;
@@ -56,7 +56,7 @@
 
 # virtual methods
 .method public clearView(Landroid/view/View;)V
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 113
@@ -69,7 +69,7 @@
 .end method
 
 .method public onDraw(Landroid/graphics/Canvas;Landroid/support/v7/widget/RecyclerView;Landroid/view/View;FFIZ)V
-    .registers 9
+    .locals 1
     .param p1, "c"    # Landroid/graphics/Canvas;
     .param p2, "recyclerView"    # Landroid/support/v7/widget/RecyclerView;
     .param p3, "view"    # Landroid/view/View;
@@ -81,18 +81,18 @@
     .line 124
     const/4 v0, 0x2
 
-    if-eq p6, v0, :cond_6
+    if-eq p6, v0, :cond_0
 
     .line 125
     invoke-direct/range {p0 .. p5}, Landroid/support/v7/widget/helper/ItemTouchUIUtilImpl$Gingerbread;->draw(Landroid/graphics/Canvas;Landroid/support/v7/widget/RecyclerView;Landroid/view/View;FF)V
 
     .line 127
-    :cond_6
+    :cond_0
     return-void
 .end method
 
 .method public onDrawOver(Landroid/graphics/Canvas;Landroid/support/v7/widget/RecyclerView;Landroid/view/View;FFIZ)V
-    .registers 9
+    .locals 1
     .param p1, "c"    # Landroid/graphics/Canvas;
     .param p2, "recyclerView"    # Landroid/support/v7/widget/RecyclerView;
     .param p3, "view"    # Landroid/view/View;
@@ -104,18 +104,18 @@
     .line 133
     const/4 v0, 0x2
 
-    if-ne p6, v0, :cond_6
+    if-ne p6, v0, :cond_0
 
     .line 134
     invoke-direct/range {p0 .. p5}, Landroid/support/v7/widget/helper/ItemTouchUIUtilImpl$Gingerbread;->draw(Landroid/graphics/Canvas;Landroid/support/v7/widget/RecyclerView;Landroid/view/View;FF)V
 
     .line 136
-    :cond_6
+    :cond_0
     return-void
 .end method
 
 .method public onSelected(Landroid/view/View;)V
-    .registers 3
+    .locals 1
     .param p1, "view"    # Landroid/view/View;
 
     .line 118

@@ -55,7 +55,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v7/util/SortedList$Callback;)V
-    .registers 3
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -90,7 +90,7 @@
 .end method
 
 .method static synthetic access$000(Landroid/support/v7/util/SortedList$BatchedCallback;)Landroid/support/v7/util/SortedList$Callback;
-    .registers 2
+    .locals 1
     .param p0, "x0"    # Landroid/support/v7/util/SortedList$BatchedCallback;
 
     .line 780
@@ -102,7 +102,7 @@
 
 # virtual methods
 .method public areContentsTheSame(Ljava/lang/Object;Ljava/lang/Object;)Z
-    .registers 4
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT2;TT2;)Z"
@@ -123,7 +123,7 @@
 .end method
 
 .method public areItemsTheSame(Ljava/lang/Object;Ljava/lang/Object;)Z
-    .registers 4
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT2;TT2;)Z"
@@ -144,7 +144,7 @@
 .end method
 
 .method public compare(Ljava/lang/Object;Ljava/lang/Object;)I
-    .registers 4
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT2;TT2;)I"
@@ -165,27 +165,27 @@
 .end method
 
 .method public dispatchLastEvent()V
-    .registers 4
+    .locals 3
 
     .line 874
     .local p0, "this":Landroid/support/v7/util/SortedList$BatchedCallback;, "Landroid/support/v7/util/SortedList$BatchedCallback<TT2;>;"
     iget v0, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mLastEventType:I
 
-    if-nez v0, :cond_5
+    if-nez v0, :cond_0
 
     .line 875
     return-void
 
     .line 877
-    :cond_5
+    :cond_0
     iget v0, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mLastEventType:I
 
-    packed-switch v0, :pswitch_data_2e
+    packed-switch v0, :pswitch_data_0
 
-    goto :goto_29
+    goto :goto_0
 
     .line 885
-    :pswitch_b
+    :pswitch_0
     iget-object v0, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mWrappedCallback:Landroid/support/v7/util/SortedList$Callback;
 
     iget v1, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mLastEventPosition:I
@@ -194,10 +194,10 @@
 
     invoke-virtual {v0, v1, v2}, Landroid/support/v7/util/SortedList$Callback;->onChanged(II)V
 
-    goto :goto_29
+    goto :goto_0
 
     .line 882
-    :pswitch_15
+    :pswitch_1
     iget-object v0, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mWrappedCallback:Landroid/support/v7/util/SortedList$Callback;
 
     iget v1, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mLastEventPosition:I
@@ -207,10 +207,10 @@
     invoke-virtual {v0, v1, v2}, Landroid/support/v7/util/SortedList$Callback;->onRemoved(II)V
 
     .line 883
-    goto :goto_29
+    goto :goto_0
 
     .line 879
-    :pswitch_1f
+    :pswitch_2
     iget-object v0, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mWrappedCallback:Landroid/support/v7/util/SortedList$Callback;
 
     iget v1, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mLastEventPosition:I
@@ -223,7 +223,7 @@
     nop
 
     .line 888
-    :goto_29
+    :goto_0
     const/4 v0, 0x0
 
     iput v0, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mLastEventType:I
@@ -233,16 +233,16 @@
 
     nop
 
-    :pswitch_data_2e
+    :pswitch_data_0
     .packed-switch 0x1
-        :pswitch_1f
-        :pswitch_15
-        :pswitch_b
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
     .end packed-switch
 .end method
 
 .method public onChanged(II)V
-    .registers 6
+    .locals 3
     .param p1, "position"    # I
     .param p2, "count"    # I
 
@@ -252,7 +252,7 @@
 
     const/4 v1, 0x3
 
-    if-ne v0, v1, :cond_2b
+    if-ne v0, v1, :cond_0
 
     iget v0, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mLastEventPosition:I
 
@@ -260,13 +260,13 @@
 
     add-int/2addr v0, v2
 
-    if-gt p1, v0, :cond_2b
+    if-gt p1, v0, :cond_0
 
     add-int v0, p1, p2
 
     iget v2, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mLastEventPosition:I
 
-    if-lt v0, v2, :cond_2b
+    if-lt v0, v2, :cond_0
 
     .line 847
     iget v0, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mLastEventPosition:I
@@ -303,7 +303,7 @@
 
     .line 852
     .end local v0    # "previousEnd":I
-    :cond_2b
+    :cond_0
     invoke-virtual {p0}, Landroid/support/v7/util/SortedList$BatchedCallback;->dispatchLastEvent()V
 
     .line 853
@@ -320,7 +320,7 @@
 .end method
 
 .method public onInserted(II)V
-    .registers 6
+    .locals 3
     .param p1, "position"    # I
     .param p2, "count"    # I
 
@@ -330,11 +330,11 @@
 
     const/4 v1, 0x1
 
-    if-ne v0, v1, :cond_1e
+    if-ne v0, v1, :cond_0
 
     iget v0, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mLastEventPosition:I
 
-    if-lt p1, v0, :cond_1e
+    if-lt p1, v0, :cond_0
 
     iget v0, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mLastEventPosition:I
 
@@ -342,7 +342,7 @@
 
     add-int/2addr v0, v2
 
-    if-gt p1, v0, :cond_1e
+    if-gt p1, v0, :cond_0
 
     .line 813
     iget v0, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mLastEventCount:I
@@ -364,7 +364,7 @@
     return-void
 
     .line 817
-    :cond_1e
+    :cond_0
     invoke-virtual {p0}, Landroid/support/v7/util/SortedList$BatchedCallback;->dispatchLastEvent()V
 
     .line 818
@@ -381,7 +381,7 @@
 .end method
 
 .method public onMoved(II)V
-    .registers 4
+    .locals 1
     .param p1, "fromPosition"    # I
     .param p2, "toPosition"    # I
 
@@ -399,7 +399,7 @@
 .end method
 
 .method public onRemoved(II)V
-    .registers 5
+    .locals 2
     .param p1, "position"    # I
     .param p2, "count"    # I
 
@@ -409,11 +409,11 @@
 
     const/4 v1, 0x2
 
-    if-ne v0, v1, :cond_f
+    if-ne v0, v1, :cond_0
 
     iget v0, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mLastEventPosition:I
 
-    if-ne v0, p1, :cond_f
+    if-ne v0, p1, :cond_0
 
     .line 826
     iget v0, p0, Landroid/support/v7/util/SortedList$BatchedCallback;->mLastEventCount:I
@@ -426,7 +426,7 @@
     return-void
 
     .line 829
-    :cond_f
+    :cond_0
     invoke-virtual {p0}, Landroid/support/v7/util/SortedList$BatchedCallback;->dispatchLastEvent()V
 
     .line 830

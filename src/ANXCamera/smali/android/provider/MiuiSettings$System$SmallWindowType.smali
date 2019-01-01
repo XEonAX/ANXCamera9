@@ -36,7 +36,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 6
+    .locals 6
 
     .line 2103
     new-instance v0, Landroid/provider/MiuiSettings$System$SmallWindowType;
@@ -106,7 +106,7 @@
 .end method
 
 .method private constructor <init>(Ljava/lang/String;I)V
-    .registers 3
+    .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
@@ -120,7 +120,7 @@
 .end method
 
 .method public static valueOf(Ljava/lang/String;)Landroid/provider/MiuiSettings$System$SmallWindowType;
-    .registers 2
+    .locals 1
     .param p0, "name"    # Ljava/lang/String;
 
     .line 2102
@@ -136,7 +136,7 @@
 .end method
 
 .method public static values()[Landroid/provider/MiuiSettings$System$SmallWindowType;
-    .registers 1
+    .locals 1
 
     .line 2102
     sget-object v0, Landroid/provider/MiuiSettings$System$SmallWindowType;->$VALUES:[Landroid/provider/MiuiSettings$System$SmallWindowType;

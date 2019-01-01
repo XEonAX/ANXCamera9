@@ -31,7 +31,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/util/MapCollections;)V
-    .registers 2
+    .locals 0
 
     .line 353
     .local p0, "this":Landroid/support/v4/util/MapCollections$ValuesCollection;, "Landroid/support/v4/util/MapCollections<TK;TV;>.ValuesCollection;"
@@ -45,7 +45,7 @@
 
 # virtual methods
 .method public add(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TV;)Z"
@@ -63,7 +63,7 @@
 .end method
 
 .method public addAll(Ljava/util/Collection;)Z
-    .registers 3
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -83,7 +83,7 @@
 .end method
 
 .method public clear()V
-    .registers 2
+    .locals 1
 
     .line 367
     .local p0, "this":Landroid/support/v4/util/MapCollections$ValuesCollection;, "Landroid/support/v4/util/MapCollections<TK;TV;>.ValuesCollection;"
@@ -96,7 +96,7 @@
 .end method
 
 .method public contains(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "object"    # Ljava/lang/Object;
 
     .line 372
@@ -107,21 +107,21 @@
 
     move-result v0
 
-    if-ltz v0, :cond_a
+    if-ltz v0, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_b
+    goto :goto_0
 
-    :cond_a
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_b
+    :goto_0
     return v0
 .end method
 
 .method public containsAll(Ljava/util/Collection;)Z
-    .registers 4
+    .locals 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -139,12 +139,12 @@
 
     .line 378
     .local v0, "it":Ljava/util/Iterator;, "Ljava/util/Iterator<*>;"
-    :cond_4
+    :cond_0
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_16
+    if-eqz v1, :cond_1
 
     .line 379
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
@@ -155,7 +155,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_4
+    if-nez v1, :cond_0
 
     .line 380
     const/4 v1, 0x0
@@ -163,14 +163,14 @@
     return v1
 
     .line 383
-    :cond_16
+    :cond_1
     const/4 v1, 0x1
 
     return v1
 .end method
 
 .method public isEmpty()Z
-    .registers 2
+    .locals 1
 
     .line 388
     .local p0, "this":Landroid/support/v4/util/MapCollections$ValuesCollection;, "Landroid/support/v4/util/MapCollections<TK;TV;>.ValuesCollection;"
@@ -180,21 +180,21 @@
 
     move-result v0
 
-    if-nez v0, :cond_a
+    if-nez v0, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_b
+    goto :goto_0
 
-    :cond_a
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_b
+    :goto_0
     return v0
 .end method
 
 .method public iterator()Ljava/util/Iterator;
-    .registers 4
+    .locals 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -217,7 +217,7 @@
 .end method
 
 .method public remove(Ljava/lang/Object;)Z
-    .registers 4
+    .locals 2
     .param p1, "object"    # Ljava/lang/Object;
 
     .line 398
@@ -230,7 +230,7 @@
 
     .line 399
     .local v0, "index":I
-    if-ltz v0, :cond_f
+    if-ltz v0, :cond_0
 
     .line 400
     iget-object v1, p0, Landroid/support/v4/util/MapCollections$ValuesCollection;->this$0:Landroid/support/v4/util/MapCollections;
@@ -243,14 +243,14 @@
     return v1
 
     .line 403
-    :cond_f
+    :cond_0
     const/4 v1, 0x0
 
     return v1
 .end method
 
 .method public removeAll(Ljava/util/Collection;)Z
-    .registers 8
+    .locals 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -277,8 +277,8 @@
     const/4 v2, 0x0
 
     .local v2, "i":I
-    :goto_8
-    if-ge v2, v0, :cond_23
+    :goto_0
+    if-ge v2, v0, :cond_1
 
     .line 411
     iget-object v3, p0, Landroid/support/v4/util/MapCollections$ValuesCollection;->this$0:Landroid/support/v4/util/MapCollections;
@@ -295,7 +295,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_21
+    if-eqz v5, :cond_0
 
     .line 413
     iget-object v5, p0, Landroid/support/v4/util/MapCollections$ValuesCollection;->this$0:Landroid/support/v4/util/MapCollections;
@@ -313,19 +313,19 @@
 
     .line 410
     .end local v3    # "cur":Ljava/lang/Object;
-    :cond_21
+    :cond_0
     add-int/2addr v2, v4
 
-    goto :goto_8
+    goto :goto_0
 
     .line 419
     .end local v2    # "i":I
-    :cond_23
+    :cond_1
     return v1
 .end method
 
 .method public retainAll(Ljava/util/Collection;)Z
-    .registers 8
+    .locals 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -352,8 +352,8 @@
     const/4 v2, 0x0
 
     .local v2, "i":I
-    :goto_8
-    if-ge v2, v0, :cond_23
+    :goto_0
+    if-ge v2, v0, :cond_1
 
     .line 427
     iget-object v3, p0, Landroid/support/v4/util/MapCollections$ValuesCollection;->this$0:Landroid/support/v4/util/MapCollections;
@@ -370,7 +370,7 @@
 
     move-result v5
 
-    if-nez v5, :cond_21
+    if-nez v5, :cond_0
 
     .line 429
     iget-object v5, p0, Landroid/support/v4/util/MapCollections$ValuesCollection;->this$0:Landroid/support/v4/util/MapCollections;
@@ -388,19 +388,19 @@
 
     .line 426
     .end local v3    # "cur":Ljava/lang/Object;
-    :cond_21
+    :cond_0
     add-int/2addr v2, v4
 
-    goto :goto_8
+    goto :goto_0
 
     .line 435
     .end local v2    # "i":I
-    :cond_23
+    :cond_1
     return v1
 .end method
 
 .method public size()I
-    .registers 2
+    .locals 1
 
     .line 440
     .local p0, "this":Landroid/support/v4/util/MapCollections$ValuesCollection;, "Landroid/support/v4/util/MapCollections<TK;TV;>.ValuesCollection;"
@@ -414,7 +414,7 @@
 .end method
 
 .method public toArray()[Ljava/lang/Object;
-    .registers 3
+    .locals 2
 
     .line 445
     .local p0, "this":Landroid/support/v4/util/MapCollections$ValuesCollection;, "Landroid/support/v4/util/MapCollections<TK;TV;>.ValuesCollection;"
@@ -430,7 +430,7 @@
 .end method
 
 .method public toArray([Ljava/lang/Object;)[Ljava/lang/Object;
-    .registers 4
+    .locals 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",

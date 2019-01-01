@@ -20,7 +20,7 @@
 
 # direct methods
 .method private constructor <init>(Landroid/support/v4/view/ViewPager;)V
-    .registers 2
+    .locals 0
 
     .line 2904
     iput-object p1, p0, Landroid/support/v4/view/ViewPager$PagerObserver;->this$0:Landroid/support/v4/view/ViewPager;
@@ -31,7 +31,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v4/view/ViewPager;Landroid/support/v4/view/ViewPager$1;)V
-    .registers 3
+    .locals 0
     .param p1, "x0"    # Landroid/support/v4/view/ViewPager;
     .param p2, "x1"    # Landroid/support/v4/view/ViewPager$1;
 
@@ -44,7 +44,7 @@
 
 # virtual methods
 .method public onChanged()V
-    .registers 2
+    .locals 1
 
     .line 2907
     iget-object v0, p0, Landroid/support/v4/view/ViewPager$PagerObserver;->this$0:Landroid/support/v4/view/ViewPager;
@@ -56,7 +56,7 @@
 .end method
 
 .method public onInvalidated()V
-    .registers 2
+    .locals 1
 
     .line 2911
     iget-object v0, p0, Landroid/support/v4/view/ViewPager$PagerObserver;->this$0:Landroid/support/v4/view/ViewPager;

@@ -19,14 +19,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .locals 2
 
     .line 67
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xb
 
-    if-lt v0, v1, :cond_e
+    if-lt v0, v1, :cond_0
 
     .line 68
     new-instance v0, Landroid/support/v4/view/VelocityTrackerCompat$HoneycombVelocityTrackerVersionImpl;
@@ -35,10 +35,10 @@
 
     sput-object v0, Landroid/support/v4/view/VelocityTrackerCompat;->IMPL:Landroid/support/v4/view/VelocityTrackerCompat$VelocityTrackerVersionImpl;
 
-    goto :goto_15
+    goto :goto_0
 
     .line 70
-    :cond_e
+    :cond_0
     new-instance v0, Landroid/support/v4/view/VelocityTrackerCompat$BaseVelocityTrackerVersionImpl;
 
     invoke-direct {v0}, Landroid/support/v4/view/VelocityTrackerCompat$BaseVelocityTrackerVersionImpl;-><init>()V
@@ -46,12 +46,12 @@
     sput-object v0, Landroid/support/v4/view/VelocityTrackerCompat;->IMPL:Landroid/support/v4/view/VelocityTrackerCompat$VelocityTrackerVersionImpl;
 
     .line 72
-    :goto_15
+    :goto_0
     return-void
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 25
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -61,7 +61,7 @@
 .end method
 
 .method public static getXVelocity(Landroid/view/VelocityTracker;I)F
-    .registers 3
+    .locals 1
     .param p0, "tracker"    # Landroid/view/VelocityTracker;
     .param p1, "pointerId"    # I
 
@@ -76,7 +76,7 @@
 .end method
 
 .method public static getYVelocity(Landroid/view/VelocityTracker;I)F
-    .registers 3
+    .locals 1
     .param p0, "tracker"    # Landroid/view/VelocityTracker;
     .param p1, "pointerId"    # I
 

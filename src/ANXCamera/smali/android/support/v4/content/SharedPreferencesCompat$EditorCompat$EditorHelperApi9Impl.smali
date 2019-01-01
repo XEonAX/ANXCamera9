@@ -19,7 +19,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 41
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v4/content/SharedPreferencesCompat$1;)V
-    .registers 2
+    .locals 0
     .param p1, "x0"    # Landroid/support/v4/content/SharedPreferencesCompat$1;
 
     .line 41
@@ -40,7 +40,7 @@
 
 # virtual methods
 .method public apply(Landroid/content/SharedPreferences$Editor;)V
-    .registers 2
+    .locals 0
     .param p1, "editor"    # Landroid/content/SharedPreferences$Editor;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation

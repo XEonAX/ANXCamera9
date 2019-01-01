@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>(Lcom/google/zxing/LuminanceSource;)V
-    .registers 4
+    .locals 2
     .param p1, "delegate"    # Lcom/google/zxing/LuminanceSource;
 
     .line 30
@@ -33,7 +33,7 @@
 
 # virtual methods
 .method public crop(IIII)Lcom/google/zxing/LuminanceSource;
-    .registers 7
+    .locals 2
     .param p1, "left"    # I
     .param p2, "top"    # I
     .param p3, "width"    # I
@@ -54,7 +54,7 @@
 .end method
 
 .method public getMatrix()[B
-    .registers 6
+    .locals 5
 
     .line 46
     iget-object v0, p0, Lcom/google/zxing/InvertedLuminanceSource;->delegate:Lcom/google/zxing/LuminanceSource;
@@ -84,8 +84,8 @@
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_12
-    if-lt v3, v1, :cond_15
+    :goto_0
+    if-lt v3, v1, :cond_0
 
     .line 52
     .end local v3    # "i":I
@@ -93,7 +93,7 @@
 
     .line 50
     .restart local v3    # "i":I
-    :cond_15
+    :cond_0
     aget-byte v4, v0, v3
 
     and-int/lit16 v4, v4, 0xff
@@ -107,11 +107,11 @@
     .line 49
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_12
+    goto :goto_0
 .end method
 
 .method public getRow(I[B)[B
-    .registers 6
+    .locals 3
     .param p1, "y"    # I
     .param p2, "row"    # [B
 
@@ -132,8 +132,8 @@
     const/4 v1, 0x0
 
     .local v1, "i":I
-    :goto_b
-    if-lt v1, v0, :cond_e
+    :goto_0
+    if-lt v1, v0, :cond_0
 
     .line 41
     .end local v1    # "i":I
@@ -141,7 +141,7 @@
 
     .line 39
     .restart local v1    # "i":I
-    :cond_e
+    :cond_0
     aget-byte v2, p2, v1
 
     and-int/lit16 v2, v2, 0xff
@@ -155,11 +155,11 @@
     .line 38
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_b
+    goto :goto_0
 .end method
 
 .method public invert()Lcom/google/zxing/LuminanceSource;
-    .registers 2
+    .locals 1
 
     .line 75
     iget-object v0, p0, Lcom/google/zxing/InvertedLuminanceSource;->delegate:Lcom/google/zxing/LuminanceSource;
@@ -168,7 +168,7 @@
 .end method
 
 .method public isCropSupported()Z
-    .registers 2
+    .locals 1
 
     .line 57
     iget-object v0, p0, Lcom/google/zxing/InvertedLuminanceSource;->delegate:Lcom/google/zxing/LuminanceSource;
@@ -181,7 +181,7 @@
 .end method
 
 .method public isRotateSupported()Z
-    .registers 2
+    .locals 1
 
     .line 67
     iget-object v0, p0, Lcom/google/zxing/InvertedLuminanceSource;->delegate:Lcom/google/zxing/LuminanceSource;
@@ -194,7 +194,7 @@
 .end method
 
 .method public rotateCounterClockwise()Lcom/google/zxing/LuminanceSource;
-    .registers 3
+    .locals 2
 
     .line 80
     new-instance v0, Lcom/google/zxing/InvertedLuminanceSource;
@@ -211,7 +211,7 @@
 .end method
 
 .method public rotateCounterClockwise45()Lcom/google/zxing/LuminanceSource;
-    .registers 3
+    .locals 2
 
     .line 85
     new-instance v0, Lcom/google/zxing/InvertedLuminanceSource;

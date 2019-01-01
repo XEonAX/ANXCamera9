@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 24
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getAccessibilityLiveRegion(Landroid/view/View;)I
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 26
@@ -26,7 +26,7 @@
 .end method
 
 .method public static isAttachedToWindow(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 38
@@ -38,7 +38,7 @@
 .end method
 
 .method public static isLaidOut(Landroid/view/View;)Z
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 34
@@ -50,7 +50,7 @@
 .end method
 
 .method public static setAccessibilityLiveRegion(Landroid/view/View;I)V
-    .registers 2
+    .locals 0
     .param p0, "view"    # Landroid/view/View;
     .param p1, "mode"    # I
 

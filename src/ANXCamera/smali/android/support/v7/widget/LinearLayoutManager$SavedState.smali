@@ -39,7 +39,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 2083
     new-instance v0, Landroid/support/v7/widget/LinearLayoutManager$SavedState$1;
@@ -52,7 +52,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 2047
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -62,7 +62,7 @@
 .end method
 
 .method constructor <init>(Landroid/os/Parcel;)V
-    .registers 4
+    .locals 2
     .param p1, "in"    # Landroid/os/Parcel;
 
     .line 2051
@@ -89,14 +89,14 @@
 
     const/4 v1, 0x1
 
-    if-ne v0, v1, :cond_17
+    if-ne v0, v1, :cond_0
 
-    goto :goto_18
+    goto :goto_0
 
-    :cond_17
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_18
+    :goto_0
     iput-boolean v1, p0, Landroid/support/v7/widget/LinearLayoutManager$SavedState;->mAnchorLayoutFromEnd:Z
 
     .line 2055
@@ -104,7 +104,7 @@
 .end method
 
 .method public constructor <init>(Landroid/support/v7/widget/LinearLayoutManager$SavedState;)V
-    .registers 3
+    .locals 1
     .param p1, "other"    # Landroid/support/v7/widget/LinearLayoutManager$SavedState;
 
     .line 2057
@@ -132,7 +132,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .registers 2
+    .locals 1
 
     .line 2073
     const/4 v0, 0x0
@@ -141,26 +141,26 @@
 .end method
 
 .method hasValidAnchor()Z
-    .registers 2
+    .locals 1
 
     .line 2064
     iget v0, p0, Landroid/support/v7/widget/LinearLayoutManager$SavedState;->mAnchorPosition:I
 
-    if-ltz v0, :cond_6
+    if-ltz v0, :cond_0
 
     const/4 v0, 0x1
 
-    goto :goto_7
+    goto :goto_0
 
-    :cond_6
+    :cond_0
     const/4 v0, 0x0
 
-    :goto_7
+    :goto_0
     return v0
 .end method
 
 .method invalidateAnchor()V
-    .registers 2
+    .locals 1
 
     .line 2068
     const/4 v0, -0x1
@@ -172,7 +172,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .registers 4
+    .locals 1
     .param p1, "dest"    # Landroid/os/Parcel;
     .param p2, "flags"    # I
 

@@ -20,7 +20,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 254
     new-instance v0, Landroid/support/v4/text/TextDirectionHeuristicsCompat$TextDirectionHeuristicLocale;
@@ -33,7 +33,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 245
     const/4 v0, 0x0
@@ -47,7 +47,7 @@
 
 # virtual methods
 .method protected defaultIsRtl()Z
-    .registers 3
+    .locals 2
 
     .line 250
     invoke-static {}, Ljava/util/Locale;->getDefault()Ljava/util/Locale;
@@ -62,13 +62,13 @@
     .local v0, "dir":I
     const/4 v1, 0x1
 
-    if-ne v0, v1, :cond_c
+    if-ne v0, v1, :cond_0
 
-    goto :goto_d
+    goto :goto_0
 
-    :cond_c
+    :cond_0
     const/4 v1, 0x0
 
-    :goto_d
+    :goto_0
     return v1
 .end method

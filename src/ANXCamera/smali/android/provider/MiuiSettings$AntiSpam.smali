@@ -221,7 +221,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 3818
     const-string v0, "antispam_action_source"
@@ -268,7 +268,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 3557
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -277,7 +277,7 @@
 .end method
 
 .method public static getEndTimeForQuietMode(Landroid/content/Context;)I
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4319
@@ -297,7 +297,7 @@
 .end method
 
 .method public static getMarkedNumberBlockType(I)I
-    .registers 3
+    .locals 2
     .param p0, "cid"    # I
 
     .line 3922
@@ -321,7 +321,7 @@
 .end method
 
 .method public static getMode(Landroid/content/Context;Ljava/lang/String;I)I
-    .registers 4
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "mode"    # Ljava/lang/String;
     .param p2, "def"    # I
@@ -339,7 +339,7 @@
 .end method
 
 .method public static getNextAutoEndTime(Landroid/content/Context;)J
-    .registers 5
+    .locals 4
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4363
@@ -359,7 +359,7 @@
 .end method
 
 .method public static getNextAutoStartTime(Landroid/content/Context;)J
-    .registers 5
+    .locals 4
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4347
@@ -379,7 +379,7 @@
 .end method
 
 .method public static getNotificationType(Landroid/content/Context;I)I
-    .registers 5
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "simId"    # I
 
@@ -391,16 +391,16 @@
     .line 4457
     const/4 v1, 0x1
 
-    if-ne p1, v1, :cond_b
+    if-ne p1, v1, :cond_0
 
     const-string/jumbo v1, "show_notification_type"
 
-    goto :goto_e
+    goto :goto_0
 
-    :cond_b
+    :cond_0
     const-string/jumbo v1, "show_notification_type_sim_2"
 
-    :goto_e
+    :goto_0
     const/4 v2, 0x0
 
     .line 4456
@@ -412,7 +412,7 @@
 .end method
 
 .method public static getQuietRepeatType(Landroid/content/Context;)I
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4385
@@ -432,7 +432,7 @@
 .end method
 
 .method public static getSMSClassifierUpdateTime(Landroid/content/Context;)J
-    .registers 5
+    .locals 4
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4028
@@ -452,7 +452,7 @@
 .end method
 
 .method public static getStartTimeForQuietMode(Landroid/content/Context;)I
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4298
@@ -472,7 +472,7 @@
 .end method
 
 .method public static getState(Landroid/content/Context;Ljava/lang/String;Z)Z
-    .registers 4
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "mode"    # Ljava/lang/String;
     .param p2, "def"    # Z
@@ -490,7 +490,7 @@
 .end method
 
 .method public static getVipListForQuietMode(Landroid/content/Context;)I
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4233
@@ -510,7 +510,7 @@
 .end method
 
 .method public static hasNewAntispam(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4471
@@ -530,7 +530,7 @@
 .end method
 
 .method public static isAntiSpam(Landroid/content/Context;)Z
-    .registers 7
+    .locals 6
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4056
@@ -540,7 +540,7 @@
 
     const/4 v1, 0x1
 
-    if-eqz v0, :cond_c
+    if-eqz v0, :cond_0
 
     .line 4057
     invoke-static {p0, v1}, Landroid/provider/MiuiSettings$AntiSpam;->isAntiSpamEnableForSim(Landroid/content/Context;I)Z
@@ -550,7 +550,7 @@
     return v0
 
     .line 4059
-    :cond_c
+    :cond_0
     invoke-static {}, Lmiui/telephony/SubscriptionManager;->getDefault()Lmiui/telephony/SubscriptionManager;
 
     move-result-object v0
@@ -561,18 +561,18 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_19
+    if-eqz v0, :cond_1
 
     move v0, v1
 
-    goto :goto_1a
+    goto :goto_0
 
-    :cond_19
+    :cond_1
     move v0, v2
 
     .line 4060
     .local v0, "isSim1Active":Z
-    :goto_1a
+    :goto_0
     invoke-static {}, Lmiui/telephony/SubscriptionManager;->getDefault()Lmiui/telephony/SubscriptionManager;
 
     move-result-object v3
@@ -581,85 +581,85 @@
 
     move-result-object v3
 
-    if-eqz v3, :cond_26
+    if-eqz v3, :cond_2
 
     move v3, v1
 
-    goto :goto_27
+    goto :goto_1
 
-    :cond_26
+    :cond_2
     move v3, v2
 
     .line 4061
     .local v3, "isSim2Active":Z
-    :goto_27
+    :goto_1
     const/4 v4, 0x2
 
-    if-nez v0, :cond_3d
+    if-nez v0, :cond_6
 
-    if-eqz v3, :cond_2d
+    if-eqz v3, :cond_3
 
-    goto :goto_3d
+    goto :goto_3
 
     .line 4065
-    :cond_2d
+    :cond_3
     invoke-static {p0, v1}, Landroid/provider/MiuiSettings$AntiSpam;->isAntiSpamEnableForSim(Landroid/content/Context;I)Z
 
     move-result v5
 
-    if-nez v5, :cond_3c
+    if-nez v5, :cond_5
 
     invoke-static {p0, v4}, Landroid/provider/MiuiSettings$AntiSpam;->isAntiSpamEnableForSim(Landroid/content/Context;I)Z
 
     move-result v4
 
-    if-eqz v4, :cond_3a
+    if-eqz v4, :cond_4
 
-    goto :goto_3c
+    goto :goto_2
 
-    :cond_3a
+    :cond_4
     move v1, v2
 
     nop
 
-    :cond_3c
-    :goto_3c
+    :cond_5
+    :goto_2
     return v1
 
     .line 4062
-    :cond_3d
-    :goto_3d
+    :cond_6
+    :goto_3
     invoke-static {p0, v1}, Landroid/provider/MiuiSettings$AntiSpam;->isAntiSpamEnableForSim(Landroid/content/Context;I)Z
 
     move-result v5
 
-    if-eqz v5, :cond_45
+    if-eqz v5, :cond_7
 
-    if-nez v0, :cond_4d
+    if-nez v0, :cond_8
 
     .line 4063
-    :cond_45
+    :cond_7
     invoke-static {p0, v4}, Landroid/provider/MiuiSettings$AntiSpam;->isAntiSpamEnableForSim(Landroid/content/Context;I)Z
 
     move-result v4
 
-    if-eqz v4, :cond_4e
+    if-eqz v4, :cond_9
 
-    if-eqz v3, :cond_4e
+    if-eqz v3, :cond_9
 
-    :cond_4d
-    goto :goto_4f
+    :cond_8
+    goto :goto_4
 
     .line 4062
-    :cond_4e
+    :cond_9
     move v1, v2
 
-    :goto_4f
+    :goto_4
     return v1
 .end method
 
 .method public static isAntiSpamEnableForSim(Landroid/content/Context;I)Z
-    .registers 5
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "simId"    # I
 
@@ -671,17 +671,17 @@
     .line 4079
     const/4 v1, 0x1
 
-    if-ne p1, v1, :cond_a
+    if-ne p1, v1, :cond_0
 
     const-string v2, "antispam_enable_for_sim_1"
 
-    goto :goto_c
+    goto :goto_0
 
-    :cond_a
+    :cond_0
     const-string v2, "antispam_enable_for_sim_2"
 
     .line 4078
-    :goto_c
+    :goto_0
     invoke-static {v0, v2, v1}, Lmiui/provider/ExtraSettings$Secure;->getBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
     move-result v0
@@ -690,7 +690,7 @@
 .end method
 
 .method public static isAntiSpamSettingsSharedForSims(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4102
@@ -710,7 +710,7 @@
 .end method
 
 .method public static isAutoTimerOfQuietModeEnable(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4258
@@ -728,19 +728,19 @@
 
     const/4 v1, 0x1
 
-    if-ne v0, v1, :cond_f
+    if-ne v0, v1, :cond_0
 
-    goto :goto_10
+    goto :goto_0
 
-    :cond_f
+    :cond_0
     move v1, v2
 
-    :goto_10
+    :goto_0
     return v1
 .end method
 
 .method public static isMarkNumBlockOpen(Landroid/content/Context;I)Z
-    .registers 5
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "simId"    # I
 
@@ -749,7 +749,7 @@
 
     const/4 v1, 0x1
 
-    if-ne p1, v1, :cond_29
+    if-ne p1, v1, :cond_2
 
     .line 3990
     const-string v2, "fraud_num_state"
@@ -758,7 +758,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_27
+    if-eqz v2, :cond_1
 
     const-string v2, "agent_num_state"
 
@@ -767,7 +767,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_27
+    if-eqz v2, :cond_1
 
     const-string/jumbo v2, "sell_num_state"
 
@@ -776,7 +776,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_27
+    if-eqz v2, :cond_1
 
     const-string v2, "harass_num_state"
 
@@ -785,26 +785,26 @@
 
     move-result v2
 
-    if-nez v2, :cond_26
+    if-nez v2, :cond_0
 
-    goto :goto_27
+    goto :goto_0
 
-    :cond_26
-    goto :goto_28
+    :cond_0
+    goto :goto_1
 
     .line 3990
-    :cond_27
-    :goto_27
+    :cond_1
+    :goto_0
     move v0, v1
 
-    :goto_28
+    :goto_1
     return v0
 
     .line 3994
-    :cond_29
+    :cond_2
     const/4 v2, 0x2
 
-    if-ne p1, v2, :cond_51
+    if-ne p1, v2, :cond_5
 
     .line 3995
     const-string v2, "fraud_num_state_sim_2"
@@ -813,7 +813,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_4f
+    if-eqz v2, :cond_4
 
     const-string v2, "agent_num_state_sim_2"
 
@@ -822,7 +822,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_4f
+    if-eqz v2, :cond_4
 
     const-string/jumbo v2, "sell_num_state_sim_2"
 
@@ -831,7 +831,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_4f
+    if-eqz v2, :cond_4
 
     const-string v2, "harass_num_state_sim_2"
 
@@ -840,28 +840,28 @@
 
     move-result v2
 
-    if-nez v2, :cond_4e
+    if-nez v2, :cond_3
 
-    goto :goto_4f
+    goto :goto_2
 
-    :cond_4e
-    goto :goto_50
+    :cond_3
+    goto :goto_3
 
     .line 3995
-    :cond_4f
-    :goto_4f
+    :cond_4
+    :goto_2
     move v0, v1
 
-    :goto_50
+    :goto_3
     return v0
 
     .line 4000
-    :cond_51
+    :cond_5
     return v0
 .end method
 
 .method private static isMarkNumBlockSet(Landroid/content/Context;)Z
-    .registers 3
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
 
     .line 3950
@@ -877,7 +877,7 @@
 .end method
 
 .method public static isMarkingTypeGuided(Landroid/content/Context;Ljava/lang/String;)Z
-    .registers 3
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "markingType"    # Ljava/lang/String;
 
@@ -892,7 +892,7 @@
 .end method
 
 .method public static isQuietModeEnable(Landroid/content/Context;)Z
-    .registers 2
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4137
@@ -906,7 +906,7 @@
 .end method
 
 .method public static isQuietModeEnable(Landroid/content/Context;I)Z
-    .registers 3
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "userId"    # I
 
@@ -919,7 +919,7 @@
 .end method
 
 .method public static isQuietModeEnableForCurrentUser(Landroid/content/Context;)Z
-    .registers 8
+    .locals 7
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4173
@@ -927,7 +927,7 @@
 
     .line 4175
     .local v0, "cursor":Landroid/database/Cursor;
-    :try_start_1
+    :try_start_0
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v1
@@ -957,81 +957,81 @@
     invoke-virtual/range {v1 .. v6}, Landroid/content/ContentResolver;->query(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
 
     move-result-object v1
-    :try_end_19
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_19} :catch_2b
-    .catchall {:try_start_1 .. :try_end_19} :catchall_29
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     move-object v0, v1
 
     .line 4178
-    if-eqz v0, :cond_23
+    if-eqz v0, :cond_1
 
     .line 4179
     const/4 v1, 0x1
 
     .line 4184
-    if-eqz v0, :cond_22
+    if-eqz v0, :cond_0
 
     .line 4185
     invoke-interface {v0}, Landroid/database/Cursor;->close()V
 
     .line 4179
-    :cond_22
+    :cond_0
     return v1
 
     .line 4184
-    :cond_23
-    if-eqz v0, :cond_32
+    :cond_1
+    if-eqz v0, :cond_2
 
     .line 4185
-    :goto_25
+    :goto_0
     invoke-interface {v0}, Landroid/database/Cursor;->close()V
 
-    goto :goto_32
+    goto :goto_1
 
     .line 4184
-    :catchall_29
+    :catchall_0
     move-exception v1
 
-    goto :goto_34
+    goto :goto_2
 
     .line 4181
-    :catch_2b
+    :catch_0
     move-exception v1
 
     .line 4182
     .local v1, "e":Ljava/lang/Exception;
-    :try_start_2c
+    :try_start_1
     invoke-virtual {v1}, Ljava/lang/Exception;->printStackTrace()V
-    :try_end_2f
-    .catchall {:try_start_2c .. :try_end_2f} :catchall_29
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     .line 4184
     .end local v1    # "e":Ljava/lang/Exception;
-    if-eqz v0, :cond_32
+    if-eqz v0, :cond_2
 
-    goto :goto_25
+    goto :goto_0
 
     .line 4188
-    :cond_32
-    :goto_32
+    :cond_2
+    :goto_1
     const/4 v1, 0x0
 
     return v1
 
     .line 4184
-    :goto_34
-    if-eqz v0, :cond_39
+    :goto_2
+    if-eqz v0, :cond_3
 
     .line 4185
     invoke-interface {v0}, Landroid/database/Cursor;->close()V
 
-    :cond_39
+    :cond_3
     throw v1
 .end method
 
 .method public static isQuietWristband(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4195
@@ -1049,19 +1049,19 @@
 
     const/4 v1, 0x1
 
-    if-ne v0, v1, :cond_10
+    if-ne v0, v1, :cond_0
 
-    goto :goto_11
+    goto :goto_0
 
-    :cond_10
+    :cond_0
     move v1, v2
 
-    :goto_11
+    :goto_0
     return v1
 .end method
 
 .method public static isRepeatedCallActionEnable(Landroid/content/Context;)Z
-    .registers 2
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4419
@@ -1073,7 +1073,7 @@
 .end method
 
 .method public static isSMSClassifierAutoUpdate(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4037
@@ -1093,7 +1093,7 @@
 .end method
 
 .method public static isVipCallActionEnable(Landroid/content/Context;)Z
-    .registers 4
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4399
@@ -1111,27 +1111,27 @@
 
     const/4 v1, 0x1
 
-    if-ne v0, v1, :cond_f
+    if-ne v0, v1, :cond_0
 
-    goto :goto_10
+    goto :goto_0
 
-    :cond_f
+    :cond_0
     move v1, v2
 
-    :goto_10
+    :goto_0
     return v1
 .end method
 
 .method public static mapIdToString(I)Ljava/lang/String;
-    .registers 2
+    .locals 1
     .param p0, "id"    # I
 
     .line 3932
     const/16 v0, 0xa
 
-    if-eq p0, v0, :cond_16
+    if-eq p0, v0, :cond_0
 
-    packed-switch p0, :pswitch_data_1a
+    packed-switch p0, :pswitch_data_0
 
     .line 3942
     const-string v0, ""
@@ -1139,39 +1139,39 @@
     return-object v0
 
     .line 3938
-    :pswitch_a
+    :pswitch_0
     const-string/jumbo v0, "mark_guide_sell"
 
     return-object v0
 
     .line 3936
-    :pswitch_e
+    :pswitch_1
     const-string/jumbo v0, "mark_guide_agent"
 
     return-object v0
 
     .line 3934
-    :pswitch_12
+    :pswitch_2
     const-string/jumbo v0, "mark_guide_fraud"
 
     return-object v0
 
     .line 3940
-    :cond_16
+    :cond_0
     const-string/jumbo v0, "mark_guide_harass"
 
     return-object v0
 
-    :pswitch_data_1a
+    :pswitch_data_0
     .packed-switch 0x1
-        :pswitch_12
-        :pswitch_e
-        :pswitch_a
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
     .end packed-switch
 .end method
 
 .method public static resetMarkedNumberBlockSettings(Landroid/content/Context;)V
-    .registers 3
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
 
     .line 4122
@@ -1221,7 +1221,7 @@
 .end method
 
 .method public static setAntiSpamEnableForSim(Landroid/content/Context;IZ)V
-    .registers 5
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "simId"    # I
     .param p2, "enable"    # Z
@@ -1234,17 +1234,17 @@
     .line 4092
     const/4 v1, 0x1
 
-    if-ne p1, v1, :cond_a
+    if-ne p1, v1, :cond_0
 
     const-string v1, "antispam_enable_for_sim_1"
 
-    goto :goto_c
+    goto :goto_0
 
-    :cond_a
+    :cond_0
     const-string v1, "antispam_enable_for_sim_2"
 
     .line 4091
-    :goto_c
+    :goto_0
     invoke-static {v0, v1, p2}, Lmiui/provider/ExtraSettings$Secure;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
     .line 4093
@@ -1252,7 +1252,7 @@
 .end method
 
 .method public static setAntiSpamSettingsSharedForSims(Landroid/content/Context;Z)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "value"    # Z
 
@@ -1270,7 +1270,7 @@
 .end method
 
 .method public static setAutoTimerOfQuietMode(Landroid/content/Context;Z)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "enable"    # Z
 
@@ -1292,7 +1292,7 @@
 .end method
 
 .method public static setEndTimeForQuietMode(Landroid/content/Context;I)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "minute"    # I
 
@@ -1310,7 +1310,7 @@
 .end method
 
 .method public static setHasNewAntispam(Landroid/content/Context;Z)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "value"    # Z
 
@@ -1328,7 +1328,7 @@
 .end method
 
 .method public static setMarkNumBlockSet(Landroid/content/Context;Z)V
-    .registers 3
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "value"    # Z
 
@@ -1342,7 +1342,7 @@
 .end method
 
 .method public static setMarkingTypeGuided(Landroid/content/Context;Ljava/lang/String;Z)V
-    .registers 3
+    .locals 0
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "markingType"    # Ljava/lang/String;
     .param p2, "value"    # Z
@@ -1355,7 +1355,7 @@
 .end method
 
 .method public static setMode(Landroid/content/Context;Ljava/lang/String;I)V
-    .registers 4
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "MODE"    # Ljava/lang/String;
     .param p2, "value"    # I
@@ -1372,7 +1372,7 @@
 .end method
 
 .method public static setNextAutoEndTime(Landroid/content/Context;J)V
-    .registers 5
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "time"    # J
 
@@ -1390,7 +1390,7 @@
 .end method
 
 .method public static setNextAutoStartTime(Landroid/content/Context;J)V
-    .registers 5
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "time"    # J
 
@@ -1408,7 +1408,7 @@
 .end method
 
 .method public static setNotificationType(Landroid/content/Context;II)V
-    .registers 5
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "type"    # I
     .param p2, "simId"    # I
@@ -1421,17 +1421,17 @@
     .line 4448
     const/4 v1, 0x1
 
-    if-ne p2, v1, :cond_b
+    if-ne p2, v1, :cond_0
 
     const-string/jumbo v1, "show_notification_type"
 
-    goto :goto_e
+    goto :goto_0
 
-    :cond_b
+    :cond_0
     const-string/jumbo v1, "show_notification_type_sim_2"
 
     .line 4447
-    :goto_e
+    :goto_0
     invoke-static {v0, v1, p1}, Landroid/provider/Settings$Secure;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
 
     .line 4450
@@ -1439,7 +1439,7 @@
 .end method
 
 .method public static setQuietMode(Landroid/content/Context;Z)V
-    .registers 3
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "enable"    # Z
 
@@ -1453,7 +1453,7 @@
 .end method
 
 .method public static setQuietMode(Landroid/content/Context;ZI)V
-    .registers 3
+    .locals 0
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "enable"    # Z
     .param p2, "userId"    # I
@@ -1466,7 +1466,7 @@
 .end method
 
 .method public static setQuietRepeatType(Landroid/content/Context;I)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "type"    # I
 
@@ -1484,7 +1484,7 @@
 .end method
 
 .method public static setQuietWristband(Landroid/content/Context;Z)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "enable"    # Z
 
@@ -1506,7 +1506,7 @@
 .end method
 
 .method public static setRepeatedCallActionEnable(Landroid/content/Context;Z)V
-    .registers 2
+    .locals 0
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "enable"    # Z
 
@@ -1518,7 +1518,7 @@
 .end method
 
 .method public static setSMSClassifierAutoUpdate(Landroid/content/Context;Z)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "autoUpdate"    # Z
 
@@ -1536,7 +1536,7 @@
 .end method
 
 .method public static setSMSClassifierUpdateTime(Landroid/content/Context;J)V
-    .registers 5
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "time"    # J
 
@@ -1554,7 +1554,7 @@
 .end method
 
 .method public static setStartTimeForQuietMode(Landroid/content/Context;I)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "minute"    # I
 
@@ -1572,7 +1572,7 @@
 .end method
 
 .method public static setState(Landroid/content/Context;Ljava/lang/String;Z)V
-    .registers 4
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "mode"    # Ljava/lang/String;
     .param p2, "value"    # Z
@@ -1589,7 +1589,7 @@
 .end method
 
 .method public static setVipCallActionEnable(Landroid/content/Context;Z)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "enable"    # Z
 
@@ -1611,7 +1611,7 @@
 .end method
 
 .method public static setVipListForQuietMode(Landroid/content/Context;I)V
-    .registers 4
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "action"    # I
 
@@ -1629,7 +1629,7 @@
 .end method
 
 .method public static shouldShowGuidingDialog(Landroid/content/Context;I)Z
-    .registers 5
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "id"    # I
 
@@ -1656,14 +1656,14 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_35
+    if-eqz v0, :cond_0
 
     .line 4009
     invoke-static {p0, v1}, Landroid/provider/MiuiSettings$AntiSpam;->isMarkNumBlockOpen(Landroid/content/Context;I)Z
 
     move-result v0
 
-    if-nez v0, :cond_35
+    if-nez v0, :cond_0
 
     const/4 v0, 0x2
 
@@ -1672,14 +1672,14 @@
 
     move-result v0
 
-    if-nez v0, :cond_35
+    if-nez v0, :cond_0
 
     .line 4011
     invoke-static {p0}, Landroid/provider/MiuiSettings$AntiSpam;->isMarkNumBlockSet(Landroid/content/Context;)Z
 
     move-result v0
 
-    if-nez v0, :cond_35
+    if-nez v0, :cond_0
 
     .line 4012
     invoke-static {p1}, Landroid/provider/MiuiSettings$AntiSpam;->mapIdToString(I)Ljava/lang/String;
@@ -1690,14 +1690,14 @@
 
     move-result v0
 
-    if-nez v0, :cond_35
+    if-nez v0, :cond_0
 
-    goto :goto_36
+    goto :goto_0
 
-    :cond_35
+    :cond_0
     const/4 v1, 0x0
 
     .line 4008
-    :goto_36
+    :goto_0
     return v1
 .end method

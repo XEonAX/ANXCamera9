@@ -35,7 +35,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v4/media/session/MediaSessionCompatApi21$Callback;)V
-    .registers 2
+    .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -57,7 +57,7 @@
 
 # virtual methods
 .method public onCommand(Ljava/lang/String;Landroid/os/Bundle;Landroid/os/ResultReceiver;)V
-    .registers 5
+    .locals 1
     .param p1, "command"    # Ljava/lang/String;
     .param p2, "args"    # Landroid/os/Bundle;
     .param p3, "cb"    # Landroid/os/ResultReceiver;
@@ -73,7 +73,7 @@
 .end method
 
 .method public onCustomAction(Ljava/lang/String;Landroid/os/Bundle;)V
-    .registers 4
+    .locals 1
     .param p1, "action"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
 
@@ -88,7 +88,7 @@
 .end method
 
 .method public onFastForward()V
-    .registers 2
+    .locals 1
 
     .line 208
     .local p0, "this":Landroid/support/v4/media/session/MediaSessionCompatApi21$CallbackProxy;, "Landroid/support/v4/media/session/MediaSessionCompatApi21$CallbackProxy<TT;>;"
@@ -101,7 +101,7 @@
 .end method
 
 .method public onMediaButtonEvent(Landroid/content/Intent;)Z
-    .registers 3
+    .locals 1
     .param p1, "mediaButtonIntent"    # Landroid/content/Intent;
 
     .line 167
@@ -112,31 +112,31 @@
 
     move-result v0
 
-    if-nez v0, :cond_11
+    if-nez v0, :cond_1
 
     invoke-super {p0, p1}, Landroid/media/session/MediaSession$Callback;->onMediaButtonEvent(Landroid/content/Intent;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_f
+    if-eqz v0, :cond_0
 
-    goto :goto_11
+    goto :goto_0
 
-    :cond_f
+    :cond_0
     const/4 v0, 0x0
 
-    goto :goto_12
+    goto :goto_1
 
-    :cond_11
-    :goto_11
+    :cond_1
+    :goto_0
     const/4 v0, 0x1
 
-    :goto_12
+    :goto_1
     return v0
 .end method
 
 .method public onPause()V
-    .registers 2
+    .locals 1
 
     .line 193
     .local p0, "this":Landroid/support/v4/media/session/MediaSessionCompatApi21$CallbackProxy;, "Landroid/support/v4/media/session/MediaSessionCompatApi21$CallbackProxy<TT;>;"
@@ -149,7 +149,7 @@
 .end method
 
 .method public onPlay()V
-    .registers 2
+    .locals 1
 
     .line 173
     .local p0, "this":Landroid/support/v4/media/session/MediaSessionCompatApi21$CallbackProxy;, "Landroid/support/v4/media/session/MediaSessionCompatApi21$CallbackProxy<TT;>;"
@@ -162,7 +162,7 @@
 .end method
 
 .method public onPlayFromMediaId(Ljava/lang/String;Landroid/os/Bundle;)V
-    .registers 4
+    .locals 1
     .param p1, "mediaId"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
 
@@ -177,7 +177,7 @@
 .end method
 
 .method public onPlayFromSearch(Ljava/lang/String;Landroid/os/Bundle;)V
-    .registers 4
+    .locals 1
     .param p1, "search"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
 
@@ -192,7 +192,7 @@
 .end method
 
 .method public onRewind()V
-    .registers 2
+    .locals 1
 
     .line 213
     .local p0, "this":Landroid/support/v4/media/session/MediaSessionCompatApi21$CallbackProxy;, "Landroid/support/v4/media/session/MediaSessionCompatApi21$CallbackProxy<TT;>;"
@@ -205,7 +205,7 @@
 .end method
 
 .method public onSeekTo(J)V
-    .registers 4
+    .locals 1
     .param p1, "pos"    # J
 
     .line 223
@@ -219,7 +219,7 @@
 .end method
 
 .method public onSetRating(Landroid/media/Rating;)V
-    .registers 3
+    .locals 1
     .param p1, "rating"    # Landroid/media/Rating;
 
     .line 228
@@ -233,7 +233,7 @@
 .end method
 
 .method public onSkipToNext()V
-    .registers 2
+    .locals 1
 
     .line 198
     .local p0, "this":Landroid/support/v4/media/session/MediaSessionCompatApi21$CallbackProxy;, "Landroid/support/v4/media/session/MediaSessionCompatApi21$CallbackProxy<TT;>;"
@@ -246,7 +246,7 @@
 .end method
 
 .method public onSkipToPrevious()V
-    .registers 2
+    .locals 1
 
     .line 203
     .local p0, "this":Landroid/support/v4/media/session/MediaSessionCompatApi21$CallbackProxy;, "Landroid/support/v4/media/session/MediaSessionCompatApi21$CallbackProxy<TT;>;"
@@ -259,7 +259,7 @@
 .end method
 
 .method public onSkipToQueueItem(J)V
-    .registers 4
+    .locals 1
     .param p1, "id"    # J
 
     .line 188
@@ -273,7 +273,7 @@
 .end method
 
 .method public onStop()V
-    .registers 2
+    .locals 1
 
     .line 218
     .local p0, "this":Landroid/support/v4/media/session/MediaSessionCompatApi21$CallbackProxy;, "Landroid/support/v4/media/session/MediaSessionCompatApi21$CallbackProxy<TT;>;"

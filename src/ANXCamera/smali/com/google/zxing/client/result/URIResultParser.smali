@@ -11,7 +11,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 32
     const-string v0, "[a-zA-Z][a-zA-Z0-9+-.]+:"
@@ -37,7 +37,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 29
     invoke-direct {p0}, Lcom/google/zxing/client/result/ResultParser;-><init>()V
@@ -46,7 +46,7 @@
 .end method
 
 .method static isBasicallyValidURI(Ljava/lang/String;)Z
-    .registers 5
+    .locals 4
     .param p0, "uri"    # Ljava/lang/String;
 
     .line 51
@@ -58,13 +58,13 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_a
+    if-eqz v0, :cond_0
 
     .line 53
     return v1
 
     .line 55
-    :cond_a
+    :cond_0
     sget-object v0, Lcom/google/zxing/client/result/URIResultParser;->URL_WITH_PROTOCOL_PATTERN:Ljava/util/regex/Pattern;
 
     invoke-virtual {v0, p0}, Ljava/util/regex/Pattern;->matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
@@ -79,19 +79,19 @@
 
     const/4 v3, 0x1
 
-    if-eqz v2, :cond_1e
+    if-eqz v2, :cond_1
 
     invoke-virtual {v0}, Ljava/util/regex/Matcher;->start()I
 
     move-result v2
 
-    if-nez v2, :cond_1e
+    if-nez v2, :cond_1
 
     .line 57
     return v3
 
     .line 59
-    :cond_1e
+    :cond_1
     sget-object v2, Lcom/google/zxing/client/result/URIResultParser;->URL_WITHOUT_PROTOCOL_PATTERN:Ljava/util/regex/Pattern;
 
     invoke-virtual {v2, p0}, Ljava/util/regex/Pattern;->matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
@@ -103,24 +103,24 @@
 
     move-result v2
 
-    if-eqz v2, :cond_31
+    if-eqz v2, :cond_2
 
     invoke-virtual {v0}, Ljava/util/regex/Matcher;->start()I
 
     move-result v2
 
-    if-nez v2, :cond_31
+    if-nez v2, :cond_2
 
     return v3
 
-    :cond_31
+    :cond_2
     return v1
 .end method
 
 
 # virtual methods
 .method public bridge synthetic parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ParsedResult;
-    .registers 2
+    .locals 0
 
     .line 1
     invoke-virtual {p0, p1}, Lcom/google/zxing/client/result/URIResultParser;->parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/URIParsedResult;
@@ -131,7 +131,7 @@
 .end method
 
 .method public parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/URIParsedResult;
-    .registers 6
+    .locals 4
     .param p1, "result"    # Lcom/google/zxing/Result;
 
     .line 40
@@ -149,7 +149,7 @@
 
     const/4 v2, 0x0
 
-    if-nez v1, :cond_28
+    if-nez v1, :cond_2
 
     const-string v1, "URI:"
 
@@ -157,12 +157,12 @@
 
     move-result v1
 
-    if-eqz v1, :cond_16
+    if-eqz v1, :cond_0
 
-    goto :goto_28
+    goto :goto_1
 
     .line 46
-    :cond_16
+    :cond_0
     invoke-virtual {v0}, Ljava/lang/String;->trim()Ljava/lang/String;
 
     move-result-object v0
@@ -172,23 +172,23 @@
 
     move-result v1
 
-    if-eqz v1, :cond_26
+    if-eqz v1, :cond_1
 
     new-instance v1, Lcom/google/zxing/client/result/URIParsedResult;
 
     invoke-direct {v1, v0, v2}, Lcom/google/zxing/client/result/URIParsedResult;-><init>(Ljava/lang/String;Ljava/lang/String;)V
 
-    goto :goto_27
+    goto :goto_0
 
-    :cond_26
+    :cond_1
     move-object v1, v2
 
-    :goto_27
+    :goto_0
     return-object v1
 
     .line 44
-    :cond_28
-    :goto_28
+    :cond_2
+    :goto_1
     new-instance v1, Lcom/google/zxing/client/result/URIParsedResult;
 
     const/4 v3, 0x4

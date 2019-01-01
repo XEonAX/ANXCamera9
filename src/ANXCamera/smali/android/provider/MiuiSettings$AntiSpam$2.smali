@@ -25,7 +25,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 4
+    .locals 3
 
     .line 3860
     invoke-direct {p0}, Ljava/util/HashMap;-><init>()V

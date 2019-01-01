@@ -24,7 +24,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 517
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -35,7 +35,7 @@
 
 # virtual methods
 .method public extendRangeInto([I[II)V
-    .registers 10
+    .locals 6
     .param p1, "range"    # [I
     .param p2, "outRange"    # [I
     .param p3, "scrollHint"    # I
@@ -63,16 +63,16 @@
     .local v3, "halfRange":I
     aget v4, p1, v2
 
-    if-ne p3, v0, :cond_10
+    if-ne p3, v0, :cond_0
 
     move v5, v1
 
-    goto :goto_11
+    goto :goto_0
 
-    :cond_10
+    :cond_0
     move v5, v3
 
-    :goto_11
+    :goto_0
     sub-int/2addr v4, v5
 
     aput v4, p2, v2
@@ -82,16 +82,16 @@
 
     const/4 v4, 0x2
 
-    if-ne p3, v4, :cond_1b
+    if-ne p3, v4, :cond_1
 
     move v4, v1
 
-    goto :goto_1c
+    goto :goto_1
 
-    :cond_1b
+    :cond_1
     move v4, v3
 
-    :goto_1c
+    :goto_1
     add-int/2addr v2, v4
 
     aput v2, p2, v0

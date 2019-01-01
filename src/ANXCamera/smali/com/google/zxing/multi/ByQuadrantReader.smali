@@ -12,7 +12,7 @@
 
 # direct methods
 .method public constructor <init>(Lcom/google/zxing/Reader;)V
-    .registers 2
+    .locals 0
     .param p1, "delegate"    # Lcom/google/zxing/Reader;
 
     .line 42
@@ -28,7 +28,7 @@
 
 # virtual methods
 .method public decode(Lcom/google/zxing/BinaryBitmap;)Lcom/google/zxing/Result;
-    .registers 3
+    .locals 1
     .param p1, "image"    # Lcom/google/zxing/BinaryBitmap;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -49,7 +49,7 @@
 .end method
 
 .method public decode(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;)Lcom/google/zxing/Result;
-    .registers 15
+    .locals 12
     .param p1, "image"    # Lcom/google/zxing/BinaryBitmap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -100,19 +100,19 @@
 
     .line 63
     .local v5, "topLeft":Lcom/google/zxing/BinaryBitmap;
-    :try_start_11
+    :try_start_0
     iget-object v6, p0, Lcom/google/zxing/multi/ByQuadrantReader;->delegate:Lcom/google/zxing/Reader;
 
     invoke-interface {v6, v5, p2}, Lcom/google/zxing/Reader;->decode(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;)Lcom/google/zxing/Result;
 
     move-result-object v6
-    :try_end_17
-    .catch Lcom/google/zxing/NotFoundException; {:try_start_11 .. :try_end_17} :catch_18
+    :try_end_0
+    .catch Lcom/google/zxing/NotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
     return-object v6
 
     .line 64
-    :catch_18
+    :catch_0
     move-exception v6
 
     .line 68
@@ -122,19 +122,19 @@
 
     .line 70
     .local v6, "topRight":Lcom/google/zxing/BinaryBitmap;
-    :try_start_1d
+    :try_start_1
     iget-object v7, p0, Lcom/google/zxing/multi/ByQuadrantReader;->delegate:Lcom/google/zxing/Reader;
 
     invoke-interface {v7, v6, p2}, Lcom/google/zxing/Reader;->decode(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;)Lcom/google/zxing/Result;
 
     move-result-object v7
-    :try_end_23
-    .catch Lcom/google/zxing/NotFoundException; {:try_start_1d .. :try_end_23} :catch_24
+    :try_end_1
+    .catch Lcom/google/zxing/NotFoundException; {:try_start_1 .. :try_end_1} :catch_1
 
     return-object v7
 
     .line 71
-    :catch_24
+    :catch_1
     move-exception v7
 
     .line 75
@@ -144,19 +144,19 @@
 
     .line 77
     .local v4, "bottomLeft":Lcom/google/zxing/BinaryBitmap;
-    :try_start_29
+    :try_start_2
     iget-object v7, p0, Lcom/google/zxing/multi/ByQuadrantReader;->delegate:Lcom/google/zxing/Reader;
 
     invoke-interface {v7, v4, p2}, Lcom/google/zxing/Reader;->decode(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;)Lcom/google/zxing/Result;
 
     move-result-object v7
-    :try_end_2f
-    .catch Lcom/google/zxing/NotFoundException; {:try_start_29 .. :try_end_2f} :catch_30
+    :try_end_2
+    .catch Lcom/google/zxing/NotFoundException; {:try_start_2 .. :try_end_2} :catch_2
 
     return-object v7
 
     .line 78
-    :catch_30
+    :catch_2
     move-exception v7
 
     .line 82
@@ -166,19 +166,19 @@
 
     .line 84
     .local v7, "bottomRight":Lcom/google/zxing/BinaryBitmap;
-    :try_start_35
+    :try_start_3
     iget-object v8, p0, Lcom/google/zxing/multi/ByQuadrantReader;->delegate:Lcom/google/zxing/Reader;
 
     invoke-interface {v8, v7, p2}, Lcom/google/zxing/Reader;->decode(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;)Lcom/google/zxing/Result;
 
     move-result-object v8
-    :try_end_3b
-    .catch Lcom/google/zxing/NotFoundException; {:try_start_35 .. :try_end_3b} :catch_3c
+    :try_end_3
+    .catch Lcom/google/zxing/NotFoundException; {:try_start_3 .. :try_end_3} :catch_3
 
     return-object v8
 
     .line 85
-    :catch_3c
+    :catch_3
     move-exception v8
 
     .line 89
@@ -206,7 +206,7 @@
 .end method
 
 .method public reset()V
-    .registers 2
+    .locals 1
 
     .line 97
     iget-object v0, p0, Lcom/google/zxing/multi/ByQuadrantReader;->delegate:Lcom/google/zxing/Reader;

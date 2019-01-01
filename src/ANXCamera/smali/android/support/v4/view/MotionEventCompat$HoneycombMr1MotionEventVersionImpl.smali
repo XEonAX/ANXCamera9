@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 135
     invoke-direct {p0}, Landroid/support/v4/view/MotionEventCompat$GingerbreadMotionEventVersionImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getAxisValue(Landroid/view/MotionEvent;I)F
-    .registers 4
+    .locals 1
     .param p1, "event"    # Landroid/view/MotionEvent;
     .param p2, "axis"    # I
 
@@ -40,7 +40,7 @@
 .end method
 
 .method public getAxisValue(Landroid/view/MotionEvent;II)F
-    .registers 5
+    .locals 1
     .param p1, "event"    # Landroid/view/MotionEvent;
     .param p2, "axis"    # I
     .param p3, "pointerIndex"    # I

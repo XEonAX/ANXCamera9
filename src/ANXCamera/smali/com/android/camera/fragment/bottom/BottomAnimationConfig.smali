@@ -102,9 +102,8 @@
     if-ne v0, v4, :cond_1
 
     .line 62
-    
-    const/16 v3, 0x1B58
-    
+    const/16 v3, 0x1b58
+
     iput v3, p0, Lcom/android/camera/fragment/bottom/BottomAnimationConfig;->mDuration:I
 
     goto :goto_0

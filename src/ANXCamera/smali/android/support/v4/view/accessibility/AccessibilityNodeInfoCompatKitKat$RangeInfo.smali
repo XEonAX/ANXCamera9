@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 151
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -25,7 +25,7 @@
 .end method
 
 .method static getCurrent(Ljava/lang/Object;)F
-    .registers 2
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 153
@@ -41,7 +41,7 @@
 .end method
 
 .method static getMax(Ljava/lang/Object;)F
-    .registers 2
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 157
@@ -57,7 +57,7 @@
 .end method
 
 .method static getMin(Ljava/lang/Object;)F
-    .registers 2
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 161
@@ -73,7 +73,7 @@
 .end method
 
 .method static getType(Ljava/lang/Object;)I
-    .registers 2
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 165

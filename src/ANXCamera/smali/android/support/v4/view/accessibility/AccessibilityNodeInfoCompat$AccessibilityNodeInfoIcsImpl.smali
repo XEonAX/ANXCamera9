@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 1220
     invoke-direct {p0}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoStubImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public addAction(Ljava/lang/Object;I)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "action"    # I
 
@@ -39,7 +39,7 @@
 .end method
 
 .method public addChild(Ljava/lang/Object;Landroid/view/View;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "child"    # Landroid/view/View;
 
@@ -51,7 +51,7 @@
 .end method
 
 .method public findAccessibilityNodeInfosByText(Ljava/lang/Object;Ljava/lang/String;)Ljava/util/List;
-    .registers 4
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "text"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
@@ -75,7 +75,7 @@
 .end method
 
 .method public getActions(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1253
@@ -87,7 +87,7 @@
 .end method
 
 .method public getBoundsInParent(Ljava/lang/Object;Landroid/graphics/Rect;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "outBounds"    # Landroid/graphics/Rect;
 
@@ -99,7 +99,7 @@
 .end method
 
 .method public getBoundsInScreen(Ljava/lang/Object;Landroid/graphics/Rect;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "outBounds"    # Landroid/graphics/Rect;
 
@@ -111,7 +111,7 @@
 .end method
 
 .method public getChild(Ljava/lang/Object;I)Ljava/lang/Object;
-    .registers 4
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "index"    # I
 
@@ -124,7 +124,7 @@
 .end method
 
 .method public getChildCount(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1273
@@ -136,7 +136,7 @@
 .end method
 
 .method public getClassName(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1278
@@ -148,7 +148,7 @@
 .end method
 
 .method public getContentDescription(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1283
@@ -160,7 +160,7 @@
 .end method
 
 .method public getPackageName(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1288
@@ -172,7 +172,7 @@
 .end method
 
 .method public getParent(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1293
@@ -184,7 +184,7 @@
 .end method
 
 .method public getText(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1298
@@ -196,7 +196,7 @@
 .end method
 
 .method public getWindowId(Ljava/lang/Object;)I
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1303
@@ -208,7 +208,7 @@
 .end method
 
 .method public isCheckable(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1308
@@ -220,7 +220,7 @@
 .end method
 
 .method public isChecked(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1313
@@ -232,7 +232,7 @@
 .end method
 
 .method public isClickable(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1318
@@ -244,7 +244,7 @@
 .end method
 
 .method public isEnabled(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1323
@@ -256,7 +256,7 @@
 .end method
 
 .method public isFocusable(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1328
@@ -268,7 +268,7 @@
 .end method
 
 .method public isFocused(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1333
@@ -280,7 +280,7 @@
 .end method
 
 .method public isLongClickable(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1338
@@ -292,7 +292,7 @@
 .end method
 
 .method public isPassword(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1343
@@ -304,7 +304,7 @@
 .end method
 
 .method public isScrollable(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1348
@@ -316,7 +316,7 @@
 .end method
 
 .method public isSelected(Ljava/lang/Object;)Z
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1353
@@ -328,7 +328,7 @@
 .end method
 
 .method public obtain()Ljava/lang/Object;
-    .registers 2
+    .locals 1
 
     .line 1223
     invoke-static {}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompatIcs;->obtain()Ljava/lang/Object;
@@ -339,7 +339,7 @@
 .end method
 
 .method public obtain(Landroid/view/View;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "source"    # Landroid/view/View;
 
     .line 1228
@@ -351,7 +351,7 @@
 .end method
 
 .method public obtain(Ljava/lang/Object;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1233
@@ -363,7 +363,7 @@
 .end method
 
 .method public performAction(Ljava/lang/Object;I)Z
-    .registers 4
+    .locals 1
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "action"    # I
 
@@ -376,7 +376,7 @@
 .end method
 
 .method public recycle(Ljava/lang/Object;)V
-    .registers 2
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1453
@@ -387,7 +387,7 @@
 .end method
 
 .method public setBoundsInParent(Ljava/lang/Object;Landroid/graphics/Rect;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "bounds"    # Landroid/graphics/Rect;
 
@@ -399,7 +399,7 @@
 .end method
 
 .method public setBoundsInScreen(Ljava/lang/Object;Landroid/graphics/Rect;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "bounds"    # Landroid/graphics/Rect;
 
@@ -411,7 +411,7 @@
 .end method
 
 .method public setCheckable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "checkable"    # Z
 
@@ -423,7 +423,7 @@
 .end method
 
 .method public setChecked(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "checked"    # Z
 
@@ -435,7 +435,7 @@
 .end method
 
 .method public setClassName(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "className"    # Ljava/lang/CharSequence;
 
@@ -447,7 +447,7 @@
 .end method
 
 .method public setClickable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "clickable"    # Z
 
@@ -459,7 +459,7 @@
 .end method
 
 .method public setContentDescription(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "contentDescription"    # Ljava/lang/CharSequence;
 
@@ -471,7 +471,7 @@
 .end method
 
 .method public setEnabled(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "enabled"    # Z
 
@@ -483,7 +483,7 @@
 .end method
 
 .method public setFocusable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "focusable"    # Z
 
@@ -495,7 +495,7 @@
 .end method
 
 .method public setFocused(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "focused"    # Z
 
@@ -507,7 +507,7 @@
 .end method
 
 .method public setLongClickable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "longClickable"    # Z
 
@@ -519,7 +519,7 @@
 .end method
 
 .method public setPackageName(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "packageName"    # Ljava/lang/CharSequence;
 
@@ -531,7 +531,7 @@
 .end method
 
 .method public setParent(Ljava/lang/Object;Landroid/view/View;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "parent"    # Landroid/view/View;
 
@@ -543,7 +543,7 @@
 .end method
 
 .method public setPassword(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "password"    # Z
 
@@ -555,7 +555,7 @@
 .end method
 
 .method public setScrollable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "scrollable"    # Z
 
@@ -567,7 +567,7 @@
 .end method
 
 .method public setSelected(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "selected"    # Z
 
@@ -579,7 +579,7 @@
 .end method
 
 .method public setSource(Ljava/lang/Object;Landroid/view/View;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "source"    # Landroid/view/View;
 
@@ -591,7 +591,7 @@
 .end method
 
 .method public setText(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .registers 3
+    .locals 0
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "text"    # Ljava/lang/CharSequence;
 

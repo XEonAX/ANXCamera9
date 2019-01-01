@@ -43,7 +43,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;Landroid/media/AudioManager;Landroid/view/View;Landroid/support/v4/media/TransportMediatorCallback;)V
-    .registers 7
+    .locals 2
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "audioManager"    # Landroid/media/AudioManager;
     .param p3, "view"    # Landroid/view/View;
@@ -185,7 +185,7 @@
 
 # virtual methods
 .method public destroy()V
-    .registers 3
+    .locals 2
 
     .line 105
     invoke-virtual {p0}, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->windowDetached()V
@@ -217,12 +217,12 @@
 .end method
 
 .method dropAudioFocus()V
-    .registers 3
+    .locals 2
 
     .line 183
     iget-boolean v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mAudioFocused:Z
 
-    if-eqz v0, :cond_e
+    if-eqz v0, :cond_0
 
     .line 184
     const/4 v0, 0x0
@@ -237,17 +237,17 @@
     invoke-virtual {v0, v1}, Landroid/media/AudioManager;->abandonAudioFocus(Landroid/media/AudioManager$OnAudioFocusChangeListener;)I
 
     .line 187
-    :cond_e
+    :cond_0
     return-void
 .end method
 
 .method gainFocus()V
-    .registers 3
+    .locals 2
 
     .line 120
     iget-boolean v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mFocused:Z
 
-    if-nez v0, :cond_1d
+    if-nez v0, :cond_0
 
     .line 121
     const/4 v0, 0x1
@@ -273,18 +273,18 @@
 
     const/4 v1, 0x3
 
-    if-ne v0, v1, :cond_1d
+    if-ne v0, v1, :cond_0
 
     .line 125
     invoke-virtual {p0}, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->takeAudioFocus()V
 
     .line 128
-    :cond_1d
+    :cond_0
     return-void
 .end method
 
 .method public getRemoteControlClient()Ljava/lang/Object;
-    .registers 2
+    .locals 1
 
     .line 101
     iget-object v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mRemoteControl:Landroid/media/RemoteControlClient;
@@ -293,7 +293,7 @@
 .end method
 
 .method loseFocus()V
-    .registers 3
+    .locals 2
 
     .line 190
     invoke-virtual {p0}, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->dropAudioFocus()V
@@ -301,7 +301,7 @@
     .line 191
     iget-boolean v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mFocused:Z
 
-    if-eqz v0, :cond_18
+    if-eqz v0, :cond_0
 
     .line 192
     const/4 v0, 0x0
@@ -323,12 +323,12 @@
     invoke-virtual {v0, v1}, Landroid/media/AudioManager;->unregisterMediaButtonEventReceiver(Landroid/app/PendingIntent;)V
 
     .line 196
-    :cond_18
+    :cond_0
     return-void
 .end method
 
 .method public onGetPlaybackPosition()J
-    .registers 3
+    .locals 2
 
     .line 150
     iget-object v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mTransportCallback:Landroid/support/v4/media/TransportMediatorCallback;
@@ -341,7 +341,7 @@
 .end method
 
 .method public onPlaybackPositionUpdate(J)V
-    .registers 4
+    .locals 1
     .param p1, "newPositionMs"    # J
 
     .line 155
@@ -354,14 +354,14 @@
 .end method
 
 .method public pausePlaying()V
-    .registers 3
+    .locals 2
 
     .line 167
     iget v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mPlayState:I
 
     const/4 v1, 0x3
 
-    if-ne v0, v1, :cond_d
+    if-ne v0, v1, :cond_0
 
     .line 168
     const/4 v0, 0x2
@@ -374,7 +374,7 @@
     invoke-virtual {v1, v0}, Landroid/media/RemoteControlClient;->setPlaybackState(I)V
 
     .line 171
-    :cond_d
+    :cond_0
     invoke-virtual {p0}, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->dropAudioFocus()V
 
     .line 172
@@ -382,7 +382,7 @@
 .end method
 
 .method public refreshState(ZJI)V
-    .registers 8
+    .locals 3
     .param p1, "playing"    # Z
     .param p2, "position"    # J
     .param p4, "transportControls"    # I
@@ -390,31 +390,31 @@
     .line 159
     iget-object v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mRemoteControl:Landroid/media/RemoteControlClient;
 
-    if-eqz v0, :cond_19
+    if-eqz v0, :cond_2
 
     .line 160
     iget-object v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mRemoteControl:Landroid/media/RemoteControlClient;
 
-    if-eqz p1, :cond_a
+    if-eqz p1, :cond_0
 
     const/4 v1, 0x3
 
-    goto :goto_b
+    goto :goto_0
 
-    :cond_a
+    :cond_0
     const/4 v1, 0x1
 
-    :goto_b
-    if-eqz p1, :cond_10
+    :goto_0
+    if-eqz p1, :cond_1
 
     const/high16 v2, 0x3f800000    # 1.0f
 
-    goto :goto_11
+    goto :goto_1
 
-    :cond_10
+    :cond_1
     const/4 v2, 0x0
 
-    :goto_11
+    :goto_1
     invoke-virtual {v0, v1, p2, p3, v2}, Landroid/media/RemoteControlClient;->setPlaybackState(IJF)V
 
     .line 162
@@ -423,19 +423,19 @@
     invoke-virtual {v0, p4}, Landroid/media/RemoteControlClient;->setTransportControlFlags(I)V
 
     .line 164
-    :cond_19
+    :cond_2
     return-void
 .end method
 
 .method public startPlaying()V
-    .registers 3
+    .locals 2
 
     .line 139
     iget v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mPlayState:I
 
     const/4 v1, 0x3
 
-    if-eq v0, v1, :cond_c
+    if-eq v0, v1, :cond_0
 
     .line 140
     iput v1, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mPlayState:I
@@ -446,28 +446,28 @@
     invoke-virtual {v0, v1}, Landroid/media/RemoteControlClient;->setPlaybackState(I)V
 
     .line 143
-    :cond_c
+    :cond_0
     iget-boolean v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mFocused:Z
 
-    if-eqz v0, :cond_13
+    if-eqz v0, :cond_1
 
     .line 144
     invoke-virtual {p0}, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->takeAudioFocus()V
 
     .line 146
-    :cond_13
+    :cond_1
     return-void
 .end method
 
 .method public stopPlaying()V
-    .registers 3
+    .locals 2
 
     .line 175
     iget v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mPlayState:I
 
     const/4 v1, 0x1
 
-    if-eq v0, v1, :cond_c
+    if-eq v0, v1, :cond_0
 
     .line 176
     iput v1, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mPlayState:I
@@ -478,7 +478,7 @@
     invoke-virtual {v0, v1}, Landroid/media/RemoteControlClient;->setPlaybackState(I)V
 
     .line 179
-    :cond_c
+    :cond_0
     invoke-virtual {p0}, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->dropAudioFocus()V
 
     .line 180
@@ -486,12 +486,12 @@
 .end method
 
 .method takeAudioFocus()V
-    .registers 5
+    .locals 4
 
     .line 131
     iget-boolean v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mAudioFocused:Z
 
-    if-nez v0, :cond_f
+    if-nez v0, :cond_0
 
     .line 132
     const/4 v0, 0x1
@@ -508,12 +508,12 @@
     invoke-virtual {v1, v2, v3, v0}, Landroid/media/AudioManager;->requestAudioFocus(Landroid/media/AudioManager$OnAudioFocusChangeListener;II)I
 
     .line 136
-    :cond_f
+    :cond_0
     return-void
 .end method
 
 .method windowAttached()V
-    .registers 5
+    .locals 4
 
     .line 111
     iget-object v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mContext:Landroid/content/Context;
@@ -563,7 +563,7 @@
 .end method
 
 .method windowDetached()V
-    .registers 3
+    .locals 2
 
     .line 199
     invoke-virtual {p0}, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->loseFocus()V
@@ -571,7 +571,7 @@
     .line 200
     iget-object v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mPendingIntent:Landroid/app/PendingIntent;
 
-    if-eqz v0, :cond_18
+    if-eqz v0, :cond_0
 
     .line 201
     iget-object v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mContext:Landroid/content/Context;
@@ -594,6 +594,6 @@
     iput-object v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->mRemoteControl:Landroid/media/RemoteControlClient;
 
     .line 206
-    :cond_18
+    :cond_0
     return-void
 .end method

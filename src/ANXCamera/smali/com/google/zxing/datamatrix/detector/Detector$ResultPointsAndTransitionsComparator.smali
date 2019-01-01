@@ -30,7 +30,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 432
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -39,7 +39,7 @@
 .end method
 
 .method synthetic constructor <init>(Lcom/google/zxing/datamatrix/detector/Detector$ResultPointsAndTransitionsComparator;)V
-    .registers 2
+    .locals 0
 
     .line 432
     invoke-direct {p0}, Lcom/google/zxing/datamatrix/detector/Detector$ResultPointsAndTransitionsComparator;-><init>()V
@@ -50,7 +50,7 @@
 
 # virtual methods
 .method public compare(Lcom/google/zxing/datamatrix/detector/Detector$ResultPointsAndTransitions;Lcom/google/zxing/datamatrix/detector/Detector$ResultPointsAndTransitions;)I
-    .registers 5
+    .locals 2
     .param p1, "o1"    # Lcom/google/zxing/datamatrix/detector/Detector$ResultPointsAndTransitions;
     .param p2, "o2"    # Lcom/google/zxing/datamatrix/detector/Detector$ResultPointsAndTransitions;
 
@@ -69,7 +69,7 @@
 .end method
 
 .method public bridge synthetic compare(Ljava/lang/Object;Ljava/lang/Object;)I
-    .registers 3
+    .locals 0
 
     .line 1
     check-cast p1, Lcom/google/zxing/datamatrix/detector/Detector$ResultPointsAndTransitions;

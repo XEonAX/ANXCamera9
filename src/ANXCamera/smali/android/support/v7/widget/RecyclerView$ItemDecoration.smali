@@ -16,7 +16,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 7941
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getItemOffsets(Landroid/graphics/Rect;ILandroid/support/v7/widget/RecyclerView;)V
-    .registers 5
+    .locals 1
     .param p1, "outRect"    # Landroid/graphics/Rect;
     .param p2, "itemPosition"    # I
     .param p3, "parent"    # Landroid/support/v7/widget/RecyclerView;
@@ -44,7 +44,7 @@
 .end method
 
 .method public getItemOffsets(Landroid/graphics/Rect;Landroid/view/View;Landroid/support/v7/widget/RecyclerView;Landroid/support/v7/widget/RecyclerView$State;)V
-    .registers 6
+    .locals 1
     .param p1, "outRect"    # Landroid/graphics/Rect;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "parent"    # Landroid/support/v7/widget/RecyclerView;
@@ -68,7 +68,7 @@
 .end method
 
 .method public onDraw(Landroid/graphics/Canvas;Landroid/support/v7/widget/RecyclerView;)V
-    .registers 3
+    .locals 0
     .param p1, "c"    # Landroid/graphics/Canvas;
     .param p2, "parent"    # Landroid/support/v7/widget/RecyclerView;
     .annotation runtime Ljava/lang/Deprecated;
@@ -79,7 +79,7 @@
 .end method
 
 .method public onDraw(Landroid/graphics/Canvas;Landroid/support/v7/widget/RecyclerView;Landroid/support/v7/widget/RecyclerView$State;)V
-    .registers 4
+    .locals 0
     .param p1, "c"    # Landroid/graphics/Canvas;
     .param p2, "parent"    # Landroid/support/v7/widget/RecyclerView;
     .param p3, "state"    # Landroid/support/v7/widget/RecyclerView$State;
@@ -92,7 +92,7 @@
 .end method
 
 .method public onDrawOver(Landroid/graphics/Canvas;Landroid/support/v7/widget/RecyclerView;)V
-    .registers 3
+    .locals 0
     .param p1, "c"    # Landroid/graphics/Canvas;
     .param p2, "parent"    # Landroid/support/v7/widget/RecyclerView;
     .annotation runtime Ljava/lang/Deprecated;
@@ -103,7 +103,7 @@
 .end method
 
 .method public onDrawOver(Landroid/graphics/Canvas;Landroid/support/v7/widget/RecyclerView;Landroid/support/v7/widget/RecyclerView$State;)V
-    .registers 4
+    .locals 0
     .param p1, "c"    # Landroid/graphics/Canvas;
     .param p2, "parent"    # Landroid/support/v7/widget/RecyclerView;
     .param p3, "state"    # Landroid/support/v7/widget/RecyclerView$State;

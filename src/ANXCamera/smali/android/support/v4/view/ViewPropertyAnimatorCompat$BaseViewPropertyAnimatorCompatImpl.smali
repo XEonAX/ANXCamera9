@@ -38,7 +38,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 2
+    .locals 1
 
     .line 81
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -53,7 +53,7 @@
 .end method
 
 .method static synthetic access$200(Landroid/support/v4/view/ViewPropertyAnimatorCompat$BaseViewPropertyAnimatorCompatImpl;Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;)V
-    .registers 3
+    .locals 0
     .param p0, "x0"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat$BaseViewPropertyAnimatorCompatImpl;
     .param p1, "x1"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "x2"    # Landroid/view/View;
@@ -65,7 +65,7 @@
 .end method
 
 .method private postStartMessage(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;)V
-    .registers 6
+    .locals 3
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
 
@@ -76,7 +76,7 @@
     .local v0, "starter":Ljava/lang/Runnable;
     iget-object v1, p0, Landroid/support/v4/view/ViewPropertyAnimatorCompat$BaseViewPropertyAnimatorCompatImpl;->mStarterMap:Ljava/util/WeakHashMap;
 
-    if-eqz v1, :cond_e
+    if-eqz v1, :cond_0
 
     .line 347
     iget-object v1, p0, Landroid/support/v4/view/ViewPropertyAnimatorCompat$BaseViewPropertyAnimatorCompatImpl;->mStarterMap:Ljava/util/WeakHashMap;
@@ -90,8 +90,8 @@
     check-cast v0, Ljava/lang/Runnable;
 
     .line 349
-    :cond_e
-    if-nez v0, :cond_27
+    :cond_0
+    if-nez v0, :cond_2
 
     .line 350
     new-instance v1, Landroid/support/v4/view/ViewPropertyAnimatorCompat$BaseViewPropertyAnimatorCompatImpl$Starter;
@@ -105,7 +105,7 @@
     .line 351
     iget-object v1, p0, Landroid/support/v4/view/ViewPropertyAnimatorCompat$BaseViewPropertyAnimatorCompatImpl;->mStarterMap:Ljava/util/WeakHashMap;
 
-    if-nez v1, :cond_22
+    if-nez v1, :cond_1
 
     .line 352
     new-instance v1, Ljava/util/WeakHashMap;
@@ -115,13 +115,13 @@
     iput-object v1, p0, Landroid/support/v4/view/ViewPropertyAnimatorCompat$BaseViewPropertyAnimatorCompatImpl;->mStarterMap:Ljava/util/WeakHashMap;
 
     .line 354
-    :cond_22
+    :cond_1
     iget-object v1, p0, Landroid/support/v4/view/ViewPropertyAnimatorCompat$BaseViewPropertyAnimatorCompatImpl;->mStarterMap:Ljava/util/WeakHashMap;
 
     invoke-virtual {v1, p2, v0}, Ljava/util/WeakHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 356
-    :cond_27
+    :cond_2
     invoke-virtual {p2, v0}, Landroid/view/View;->removeCallbacks(Ljava/lang/Runnable;)Z
 
     .line 357
@@ -132,7 +132,7 @@
 .end method
 
 .method private removeStartMessage(Landroid/view/View;)V
-    .registers 4
+    .locals 2
     .param p1, "view"    # Landroid/view/View;
 
     .line 335
@@ -142,7 +142,7 @@
     .local v0, "starter":Ljava/lang/Runnable;
     iget-object v1, p0, Landroid/support/v4/view/ViewPropertyAnimatorCompat$BaseViewPropertyAnimatorCompatImpl;->mStarterMap:Ljava/util/WeakHashMap;
 
-    if-eqz v1, :cond_13
+    if-eqz v1, :cond_0
 
     .line 337
     iget-object v1, p0, Landroid/support/v4/view/ViewPropertyAnimatorCompat$BaseViewPropertyAnimatorCompatImpl;->mStarterMap:Ljava/util/WeakHashMap;
@@ -156,18 +156,18 @@
     check-cast v0, Ljava/lang/Runnable;
 
     .line 338
-    if-eqz v0, :cond_13
+    if-eqz v0, :cond_0
 
     .line 339
     invoke-virtual {p1, v0}, Landroid/view/View;->removeCallbacks(Ljava/lang/Runnable;)Z
 
     .line 342
-    :cond_13
+    :cond_0
     return-void
 .end method
 
 .method private startAnimation(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;)V
-    .registers 8
+    .locals 5
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
 
@@ -186,7 +186,7 @@
     .local v1, "listener":Landroid/support/v4/view/ViewPropertyAnimatorListener;
     instance-of v2, v0, Landroid/support/v4/view/ViewPropertyAnimatorListener;
 
-    if-eqz v2, :cond_e
+    if-eqz v2, :cond_0
 
     .line 297
     move-object v1, v0
@@ -194,29 +194,27 @@
     check-cast v1, Landroid/support/v4/view/ViewPropertyAnimatorListener;
 
     .line 299
-    :cond_e
-    # getter for: Landroid/support/v4/view/ViewPropertyAnimatorCompat;->mStartAction:Ljava/lang/Runnable;
+    :cond_0
     invoke-static {p1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->access$100(Landroid/support/v4/view/ViewPropertyAnimatorCompat;)Ljava/lang/Runnable;
 
     move-result-object v2
 
     .line 300
     .local v2, "startAction":Ljava/lang/Runnable;
-    # getter for: Landroid/support/v4/view/ViewPropertyAnimatorCompat;->mEndAction:Ljava/lang/Runnable;
     invoke-static {p1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->access$000(Landroid/support/v4/view/ViewPropertyAnimatorCompat;)Ljava/lang/Runnable;
 
     move-result-object v3
 
     .line 301
     .local v3, "endAction":Ljava/lang/Runnable;
-    if-eqz v2, :cond_1b
+    if-eqz v2, :cond_1
 
     .line 302
     invoke-interface {v2}, Ljava/lang/Runnable;->run()V
 
     .line 304
-    :cond_1b
-    if-eqz v1, :cond_23
+    :cond_1
+    if-eqz v1, :cond_2
 
     .line 305
     invoke-interface {v1, p2}, Landroid/support/v4/view/ViewPropertyAnimatorListener;->onAnimationStart(Landroid/view/View;)V
@@ -225,17 +223,17 @@
     invoke-interface {v1, p2}, Landroid/support/v4/view/ViewPropertyAnimatorListener;->onAnimationEnd(Landroid/view/View;)V
 
     .line 308
-    :cond_23
-    if-eqz v3, :cond_28
+    :cond_2
+    if-eqz v3, :cond_3
 
     .line 309
     invoke-interface {v3}, Ljava/lang/Runnable;->run()V
 
     .line 311
-    :cond_28
+    :cond_3
     iget-object v4, p0, Landroid/support/v4/view/ViewPropertyAnimatorCompat$BaseViewPropertyAnimatorCompatImpl;->mStarterMap:Ljava/util/WeakHashMap;
 
-    if-eqz v4, :cond_31
+    if-eqz v4, :cond_4
 
     .line 312
     iget-object v4, p0, Landroid/support/v4/view/ViewPropertyAnimatorCompat$BaseViewPropertyAnimatorCompatImpl;->mStarterMap:Ljava/util/WeakHashMap;
@@ -243,14 +241,14 @@
     invoke-virtual {v4, p2}, Ljava/util/WeakHashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 314
-    :cond_31
+    :cond_4
     return-void
 .end method
 
 
 # virtual methods
 .method public alpha(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -263,7 +261,7 @@
 .end method
 
 .method public alphaBy(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -276,7 +274,7 @@
 .end method
 
 .method public cancel(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;)V
-    .registers 3
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
 
@@ -288,7 +286,7 @@
 .end method
 
 .method public getDuration(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;)J
-    .registers 5
+    .locals 2
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
 
@@ -299,7 +297,7 @@
 .end method
 
 .method public getInterpolator(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;)Landroid/view/animation/Interpolator;
-    .registers 4
+    .locals 1
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
 
@@ -310,7 +308,7 @@
 .end method
 
 .method public getStartDelay(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;)J
-    .registers 5
+    .locals 2
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
 
@@ -321,7 +319,7 @@
 .end method
 
 .method public rotation(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -334,7 +332,7 @@
 .end method
 
 .method public rotationBy(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -347,7 +345,7 @@
 .end method
 
 .method public rotationX(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -360,7 +358,7 @@
 .end method
 
 .method public rotationXBy(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -373,7 +371,7 @@
 .end method
 
 .method public rotationY(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -386,7 +384,7 @@
 .end method
 
 .method public rotationYBy(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -399,7 +397,7 @@
 .end method
 
 .method public scaleX(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -412,7 +410,7 @@
 .end method
 
 .method public scaleXBy(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -425,7 +423,7 @@
 .end method
 
 .method public scaleY(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -438,7 +436,7 @@
 .end method
 
 .method public scaleYBy(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -451,7 +449,7 @@
 .end method
 
 .method public setDuration(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;J)V
-    .registers 5
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # J
@@ -461,7 +459,7 @@
 .end method
 
 .method public setInterpolator(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;Landroid/view/animation/Interpolator;)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # Landroid/view/animation/Interpolator;
@@ -471,7 +469,7 @@
 .end method
 
 .method public setListener(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;Landroid/support/v4/view/ViewPropertyAnimatorListener;)V
-    .registers 5
+    .locals 1
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "listener"    # Landroid/support/v4/view/ViewPropertyAnimatorListener;
@@ -486,7 +484,7 @@
 .end method
 
 .method public setStartDelay(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;J)V
-    .registers 5
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # J
@@ -496,7 +494,7 @@
 .end method
 
 .method public setUpdateListener(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;Landroid/support/v4/view/ViewPropertyAnimatorUpdateListener;)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "listener"    # Landroid/support/v4/view/ViewPropertyAnimatorUpdateListener;
@@ -506,7 +504,7 @@
 .end method
 
 .method public start(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;)V
-    .registers 3
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
 
@@ -521,7 +519,7 @@
 .end method
 
 .method public translationX(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -534,7 +532,7 @@
 .end method
 
 .method public translationXBy(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -547,7 +545,7 @@
 .end method
 
 .method public translationY(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -560,7 +558,7 @@
 .end method
 
 .method public translationYBy(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -573,7 +571,7 @@
 .end method
 
 .method public translationZ(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -583,7 +581,7 @@
 .end method
 
 .method public translationZBy(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -593,13 +591,12 @@
 .end method
 
 .method public withEndAction(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;Ljava/lang/Runnable;)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "runnable"    # Ljava/lang/Runnable;
 
     .line 109
-    # setter for: Landroid/support/v4/view/ViewPropertyAnimatorCompat;->mEndAction:Ljava/lang/Runnable;
     invoke-static {p1, p3}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->access$002(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Ljava/lang/Runnable;)Ljava/lang/Runnable;
 
     .line 110
@@ -610,7 +607,7 @@
 .end method
 
 .method public withLayer(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;)V
-    .registers 3
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
 
@@ -619,13 +616,12 @@
 .end method
 
 .method public withStartAction(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;Ljava/lang/Runnable;)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "runnable"    # Ljava/lang/Runnable;
 
     .line 279
-    # setter for: Landroid/support/v4/view/ViewPropertyAnimatorCompat;->mStartAction:Ljava/lang/Runnable;
     invoke-static {p1, p3}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->access$102(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Ljava/lang/Runnable;)Ljava/lang/Runnable;
 
     .line 280
@@ -636,7 +632,7 @@
 .end method
 
 .method public x(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -649,7 +645,7 @@
 .end method
 
 .method public xBy(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -662,7 +658,7 @@
 .end method
 
 .method public y(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -675,7 +671,7 @@
 .end method
 
 .method public yBy(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -688,7 +684,7 @@
 .end method
 
 .method public z(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -698,7 +694,7 @@
 .end method
 
 .method public zBy(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .registers 4
+    .locals 0
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F

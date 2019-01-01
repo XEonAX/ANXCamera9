@@ -16,7 +16,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 121
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -25,7 +25,7 @@
 .end method
 
 .method public static fastForward(Ljava/lang/Object;)V
-    .registers 2
+    .locals 1
     .param p0, "controlsObj"    # Ljava/lang/Object;
 
     .line 139
@@ -40,7 +40,7 @@
 .end method
 
 .method public static pause(Ljava/lang/Object;)V
-    .registers 2
+    .locals 1
     .param p0, "controlsObj"    # Ljava/lang/Object;
 
     .line 127
@@ -55,7 +55,7 @@
 .end method
 
 .method public static play(Ljava/lang/Object;)V
-    .registers 2
+    .locals 1
     .param p0, "controlsObj"    # Ljava/lang/Object;
 
     .line 123
@@ -70,7 +70,7 @@
 .end method
 
 .method public static playFromMediaId(Ljava/lang/Object;Ljava/lang/String;Landroid/os/Bundle;)V
-    .registers 4
+    .locals 1
     .param p0, "controlsObj"    # Ljava/lang/Object;
     .param p1, "mediaId"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
@@ -87,7 +87,7 @@
 .end method
 
 .method public static playFromSearch(Ljava/lang/Object;Ljava/lang/String;Landroid/os/Bundle;)V
-    .registers 4
+    .locals 1
     .param p0, "controlsObj"    # Ljava/lang/Object;
     .param p1, "query"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
@@ -104,7 +104,7 @@
 .end method
 
 .method public static rewind(Ljava/lang/Object;)V
-    .registers 2
+    .locals 1
     .param p0, "controlsObj"    # Ljava/lang/Object;
 
     .line 143
@@ -119,7 +119,7 @@
 .end method
 
 .method public static seekTo(Ljava/lang/Object;J)V
-    .registers 4
+    .locals 1
     .param p0, "controlsObj"    # Ljava/lang/Object;
     .param p1, "pos"    # J
 
@@ -135,7 +135,7 @@
 .end method
 
 .method public static sendCustomAction(Ljava/lang/Object;Ljava/lang/String;Landroid/os/Bundle;)V
-    .registers 4
+    .locals 1
     .param p0, "controlsObj"    # Ljava/lang/Object;
     .param p1, "action"    # Ljava/lang/String;
     .param p2, "args"    # Landroid/os/Bundle;
@@ -152,7 +152,7 @@
 .end method
 
 .method public static setRating(Ljava/lang/Object;Ljava/lang/Object;)V
-    .registers 4
+    .locals 2
     .param p0, "controlsObj"    # Ljava/lang/Object;
     .param p1, "ratingObj"    # Ljava/lang/Object;
 
@@ -172,7 +172,7 @@
 .end method
 
 .method public static skipToNext(Ljava/lang/Object;)V
-    .registers 2
+    .locals 1
     .param p0, "controlsObj"    # Ljava/lang/Object;
 
     .line 147
@@ -187,7 +187,7 @@
 .end method
 
 .method public static skipToPrevious(Ljava/lang/Object;)V
-    .registers 2
+    .locals 1
     .param p0, "controlsObj"    # Ljava/lang/Object;
 
     .line 151
@@ -202,7 +202,7 @@
 .end method
 
 .method public static skipToQueueItem(Ljava/lang/Object;J)V
-    .registers 4
+    .locals 1
     .param p0, "controlsObj"    # Ljava/lang/Object;
     .param p1, "id"    # J
 
@@ -218,7 +218,7 @@
 .end method
 
 .method public static stop(Ljava/lang/Object;)V
-    .registers 2
+    .locals 1
     .param p0, "controlsObj"    # Ljava/lang/Object;
 
     .line 131

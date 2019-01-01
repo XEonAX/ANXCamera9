@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 214
     invoke-direct {p0}, Landroid/support/v4/view/AccessibilityDelegateCompat$AccessibilityDelegateIcsImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getAccessibilityNodeProvider(Ljava/lang/Object;Landroid/view/View;)Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat;
-    .registers 5
+    .locals 2
     .param p1, "delegate"    # Ljava/lang/Object;
     .param p2, "host"    # Landroid/view/View;
 
@@ -38,7 +38,7 @@
 
     .line 277
     .local v0, "provider":Ljava/lang/Object;
-    if-eqz v0, :cond_c
+    if-eqz v0, :cond_0
 
     .line 278
     new-instance v1, Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat;
@@ -48,14 +48,14 @@
     return-object v1
 
     .line 280
-    :cond_c
+    :cond_0
     const/4 v1, 0x0
 
     return-object v1
 .end method
 
 .method public newAccessiblityDelegateBridge(Landroid/support/v4/view/AccessibilityDelegateCompat;)Ljava/lang/Object;
-    .registers 3
+    .locals 1
     .param p1, "compat"    # Landroid/support/v4/view/AccessibilityDelegateCompat;
 
     .line 217
@@ -71,7 +71,7 @@
 .end method
 
 .method public performAccessibilityAction(Ljava/lang/Object;Landroid/view/View;ILandroid/os/Bundle;)Z
-    .registers 6
+    .locals 1
     .param p1, "delegate"    # Ljava/lang/Object;
     .param p2, "host"    # Landroid/view/View;
     .param p3, "action"    # I

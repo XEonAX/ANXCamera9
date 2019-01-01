@@ -26,14 +26,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 2281
     const/4 v0, 0x3
 
     new-array v0, v0, [I
 
-    fill-array-data v0, :array_a
+    fill-array-data v0, :array_0
 
     sput-object v0, Landroid/support/v4/app/FragmentManagerImpl$FragmentTag;->Fragment:[I
 
@@ -41,7 +41,7 @@
 
     nop
 
-    :array_a
+    :array_0
     .array-data 4
         0x1010003
         0x10100d0
@@ -50,7 +50,7 @@
 .end method
 
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 2280
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V

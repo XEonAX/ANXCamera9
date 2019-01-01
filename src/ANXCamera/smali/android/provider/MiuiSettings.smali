@@ -167,7 +167,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .locals 2
 
     .line 146
     const-string v0, "com_miui_applicatinlock_use_fingerprint_state"
@@ -235,7 +235,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 76
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -244,7 +244,7 @@
 .end method
 
 .method public static getConfigurationForUser(Landroid/content/ContentResolver;Landroid/content/res/Configuration;I)V
-    .registers 7
+    .locals 4
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "outConfig"    # Landroid/content/res/Configuration;
     .param p2, "userHandle"    # I
@@ -267,39 +267,39 @@
     .line 5823
     const/16 v3, 0xc
 
-    if-eq v0, v3, :cond_20
+    if-eq v0, v3, :cond_1
 
     const/16 v3, 0xd
 
-    if-eq v0, v3, :cond_20
+    if-eq v0, v3, :cond_1
 
     const/16 v3, 0xe
 
-    if-eq v0, v3, :cond_20
+    if-eq v0, v3, :cond_1
 
-    if-eq v0, v2, :cond_20
+    if-eq v0, v2, :cond_1
 
     const/16 v2, 0xb
 
-    if-ne v0, v2, :cond_1e
+    if-ne v0, v2, :cond_0
 
-    goto :goto_20
+    goto :goto_0
 
-    :cond_1e
+    :cond_0
     const/4 v1, 0x0
 
     nop
 
     .line 5830
     .local v1, "isLargeUiMode":Z
-    :cond_20
-    :goto_20
-    if-eqz v1, :cond_35
+    :cond_1
+    :goto_0
+    if-eqz v1, :cond_3
 
     .line 5831
     sget-boolean v2, Lmiui/os/Build;->IS_TABLET:Z
 
-    if-eqz v2, :cond_2d
+    if-eqz v2, :cond_2
 
     .line 5832
     invoke-static {v0}, Landroid/content/res/MiuiConfiguration;->getFontScale(I)F
@@ -308,10 +308,10 @@
 
     iput v2, p1, Landroid/content/res/Configuration;->fontScale:F
 
-    goto :goto_35
+    goto :goto_1
 
     .line 5834
-    :cond_2d
+    :cond_2
     sget v2, Landroid/util/MiuiDisplayMetrics;->DENSITY_DEVICE:I
 
     .line 5835
@@ -322,7 +322,7 @@
     iput v2, p1, Landroid/content/res/Configuration;->fontScale:F
 
     .line 5838
-    :cond_35
-    :goto_35
+    :cond_3
+    :goto_1
     return-void
 .end method

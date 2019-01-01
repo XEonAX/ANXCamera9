@@ -21,7 +21,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .locals 2
 
     .line 203
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -30,7 +30,7 @@
     .local v0, "version":I
     const/16 v1, 0x15
 
-    if-lt v0, v1, :cond_e
+    if-lt v0, v1, :cond_0
 
     .line 205
     new-instance v1, Landroid/support/v4/view/ViewParentCompat$ViewParentCompatLollipopImpl;
@@ -39,13 +39,13 @@
 
     sput-object v1, Landroid/support/v4/view/ViewParentCompat;->IMPL:Landroid/support/v4/view/ViewParentCompat$ViewParentCompatImpl;
 
-    goto :goto_2d
+    goto :goto_0
 
     .line 206
-    :cond_e
+    :cond_0
     const/16 v1, 0x13
 
-    if-lt v0, v1, :cond_1a
+    if-lt v0, v1, :cond_1
 
     .line 207
     new-instance v1, Landroid/support/v4/view/ViewParentCompat$ViewParentCompatKitKatImpl;
@@ -54,13 +54,13 @@
 
     sput-object v1, Landroid/support/v4/view/ViewParentCompat;->IMPL:Landroid/support/v4/view/ViewParentCompat$ViewParentCompatImpl;
 
-    goto :goto_2d
+    goto :goto_0
 
     .line 208
-    :cond_1a
+    :cond_1
     const/16 v1, 0xe
 
-    if-lt v0, v1, :cond_26
+    if-lt v0, v1, :cond_2
 
     .line 209
     new-instance v1, Landroid/support/v4/view/ViewParentCompat$ViewParentCompatICSImpl;
@@ -69,10 +69,10 @@
 
     sput-object v1, Landroid/support/v4/view/ViewParentCompat;->IMPL:Landroid/support/v4/view/ViewParentCompat$ViewParentCompatImpl;
 
-    goto :goto_2d
+    goto :goto_0
 
     .line 211
-    :cond_26
+    :cond_2
     new-instance v1, Landroid/support/v4/view/ViewParentCompat$ViewParentCompatStubImpl;
 
     invoke-direct {v1}, Landroid/support/v4/view/ViewParentCompat$ViewParentCompatStubImpl;-><init>()V
@@ -81,12 +81,12 @@
 
     .line 213
     .end local v0    # "version":I
-    :goto_2d
+    :goto_0
     return-void
 .end method
 
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 218
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -96,7 +96,7 @@
 .end method
 
 .method public static notifySubtreeAccessibilityStateChanged(Landroid/view/ViewParent;Landroid/view/View;Landroid/view/View;I)V
-    .registers 5
+    .locals 1
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "child"    # Landroid/view/View;
     .param p2, "source"    # Landroid/view/View;
@@ -112,7 +112,7 @@
 .end method
 
 .method public static onNestedFling(Landroid/view/ViewParent;Landroid/view/View;FFZ)Z
-    .registers 11
+    .locals 6
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "target"    # Landroid/view/View;
     .param p2, "velocityX"    # F
@@ -140,7 +140,7 @@
 .end method
 
 .method public static onNestedPreFling(Landroid/view/ViewParent;Landroid/view/View;FF)Z
-    .registers 5
+    .locals 1
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "target"    # Landroid/view/View;
     .param p2, "velocityX"    # F
@@ -157,7 +157,7 @@
 .end method
 
 .method public static onNestedPreScroll(Landroid/view/ViewParent;Landroid/view/View;II[I)V
-    .registers 11
+    .locals 6
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "target"    # Landroid/view/View;
     .param p2, "dx"    # I
@@ -184,7 +184,7 @@
 .end method
 
 .method public static onNestedScroll(Landroid/view/ViewParent;Landroid/view/View;IIII)V
-    .registers 13
+    .locals 7
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "target"    # Landroid/view/View;
     .param p2, "dxConsumed"    # I
@@ -214,7 +214,7 @@
 .end method
 
 .method public static onNestedScrollAccepted(Landroid/view/ViewParent;Landroid/view/View;Landroid/view/View;I)V
-    .registers 5
+    .locals 1
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "child"    # Landroid/view/View;
     .param p2, "target"    # Landroid/view/View;
@@ -230,7 +230,7 @@
 .end method
 
 .method public static onStartNestedScroll(Landroid/view/ViewParent;Landroid/view/View;Landroid/view/View;I)Z
-    .registers 5
+    .locals 1
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "child"    # Landroid/view/View;
     .param p2, "target"    # Landroid/view/View;
@@ -247,7 +247,7 @@
 .end method
 
 .method public static onStopNestedScroll(Landroid/view/ViewParent;Landroid/view/View;)V
-    .registers 3
+    .locals 1
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "target"    # Landroid/view/View;
 
@@ -261,7 +261,7 @@
 .end method
 
 .method public static requestSendAccessibilityEvent(Landroid/view/ViewParent;Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)Z
-    .registers 4
+    .locals 1
     .param p0, "parent"    # Landroid/view/ViewParent;
     .param p1, "child"    # Landroid/view/View;
     .param p2, "event"    # Landroid/view/accessibility/AccessibilityEvent;

@@ -19,7 +19,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .locals 2
 
     .line 58
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -28,7 +28,7 @@
     .local v0, "version":I
     const/16 v1, 0x13
 
-    if-lt v0, v1, :cond_e
+    if-lt v0, v1, :cond_0
 
     .line 60
     new-instance v1, Landroid/support/v4/widget/PopupMenuCompat$KitKatPopupMenuImpl;
@@ -37,10 +37,10 @@
 
     sput-object v1, Landroid/support/v4/widget/PopupMenuCompat;->IMPL:Landroid/support/v4/widget/PopupMenuCompat$PopupMenuImpl;
 
-    goto :goto_15
+    goto :goto_0
 
     .line 62
-    :cond_e
+    :cond_0
     new-instance v1, Landroid/support/v4/widget/PopupMenuCompat$BasePopupMenuImpl;
 
     invoke-direct {v1}, Landroid/support/v4/widget/PopupMenuCompat$BasePopupMenuImpl;-><init>()V
@@ -49,12 +49,12 @@
 
     .line 64
     .end local v0    # "version":I
-    :goto_15
+    :goto_0
     return-void
 .end method
 
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 66
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -64,7 +64,7 @@
 .end method
 
 .method public static getDragToOpenListener(Ljava/lang/Object;)Landroid/view/View$OnTouchListener;
-    .registers 2
+    .locals 1
     .param p0, "popupMenu"    # Ljava/lang/Object;
 
     .line 90

@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 23
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static findAccessibilityNodeInfosByViewId(Ljava/lang/Object;Ljava/lang/String;)Ljava/util/List;
-    .registers 4
+    .locals 2
     .param p0, "info"    # Ljava/lang/Object;
     .param p1, "viewId"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
@@ -48,7 +48,7 @@
 .end method
 
 .method public static getTextSelectionEnd(Ljava/lang/Object;)I
-    .registers 2
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 48
@@ -64,7 +64,7 @@
 .end method
 
 .method public static getTextSelectionStart(Ljava/lang/Object;)I
-    .registers 2
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 44
@@ -80,7 +80,7 @@
 .end method
 
 .method public static getViewIdResourceName(Ljava/lang/Object;)Ljava/lang/String;
-    .registers 2
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 30
@@ -96,7 +96,7 @@
 .end method
 
 .method public static isEditable(Ljava/lang/Object;)Z
-    .registers 2
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 52
@@ -112,7 +112,7 @@
 .end method
 
 .method public static refresh(Ljava/lang/Object;)Z
-    .registers 2
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 60
@@ -128,7 +128,7 @@
 .end method
 
 .method public static setEditable(Ljava/lang/Object;Z)V
-    .registers 3
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
     .param p1, "editable"    # Z
 
@@ -144,7 +144,7 @@
 .end method
 
 .method public static setTextSelection(Ljava/lang/Object;II)V
-    .registers 4
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
     .param p1, "start"    # I
     .param p2, "end"    # I
@@ -161,7 +161,7 @@
 .end method
 
 .method public static setViewIdResourceName(Ljava/lang/Object;Ljava/lang/String;)V
-    .registers 3
+    .locals 1
     .param p0, "info"    # Ljava/lang/Object;
     .param p1, "viewId"    # Ljava/lang/String;
 

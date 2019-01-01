@@ -31,7 +31,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/android/internal/app/IPerfShielder;Landroid/os/Bundle;Landroid/os/statistics/E2EScenarioPayload;IJ)V
-    .registers 7
+    .locals 0
 
     .line 190
     iput-object p1, p0, Landroid/os/statistics/E2EScenarioPerfTracer$5;->val$perfShielder:Lcom/android/internal/app/IPerfShielder;
@@ -52,7 +52,7 @@
 
 # virtual methods
 .method public run()V
-    .registers 7
+    .locals 6
 
     .line 194
     :try_start_0
@@ -67,17 +67,17 @@
     iget-wide v4, p0, Landroid/os/statistics/E2EScenarioPerfTracer$5;->val$uptimeMs:J
 
     invoke-interface/range {v0 .. v5}, Lcom/android/internal/app/IPerfShielder;->finishSpecificScenario(Landroid/os/Bundle;Landroid/os/statistics/E2EScenarioPayload;IJ)V
-    :try_end_d
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_d} :catch_e
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 196
-    goto :goto_f
+    goto :goto_0
 
     .line 195
-    :catch_e
+    :catch_0
     move-exception v0
 
     .line 197
-    :goto_f
+    :goto_0
     return-void
 .end method

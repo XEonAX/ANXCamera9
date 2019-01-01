@@ -9,14 +9,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 2
+    .locals 2
 
     .line 27
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xc
 
-    if-lt v0, v1, :cond_e
+    if-lt v0, v1, :cond_0
 
     .line 28
     new-instance v0, Landroid/support/v4/animation/HoneycombMr1AnimatorCompatProvider;
@@ -25,10 +25,10 @@
 
     sput-object v0, Landroid/support/v4/animation/AnimatorCompatHelper;->IMPL:Landroid/support/v4/animation/AnimatorProvider;
 
-    goto :goto_15
+    goto :goto_0
 
     .line 30
-    :cond_e
+    :cond_0
     new-instance v0, Landroid/support/v4/animation/DonutAnimatorCompatProvider;
 
     invoke-direct {v0}, Landroid/support/v4/animation/DonutAnimatorCompatProvider;-><init>()V
@@ -36,12 +36,12 @@
     sput-object v0, Landroid/support/v4/animation/AnimatorCompatHelper;->IMPL:Landroid/support/v4/animation/AnimatorProvider;
 
     .line 32
-    :goto_15
+    :goto_0
     return-void
 .end method
 
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 38
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -51,7 +51,7 @@
 .end method
 
 .method public static clearInterpolator(Landroid/view/View;)V
-    .registers 2
+    .locals 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 43
@@ -64,7 +64,7 @@
 .end method
 
 .method public static emptyValueAnimator()Landroid/support/v4/animation/ValueAnimatorCompat;
-    .registers 1
+    .locals 1
 
     .line 35
     sget-object v0, Landroid/support/v4/animation/AnimatorCompatHelper;->IMPL:Landroid/support/v4/animation/AnimatorProvider;

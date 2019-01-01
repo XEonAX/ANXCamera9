@@ -32,7 +32,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 6024
     const-string v0, "content://com.android.settings.cloud.CloudSettings/cloud_all_data"
@@ -69,7 +69,7 @@
 .end method
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 5907
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -78,7 +78,7 @@
 .end method
 
 .method public static getCloudDataBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;Z)Z
-    .registers 6
+    .locals 2
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "moduleName"    # Ljava/lang/String;
     .param p2, "key"    # Ljava/lang/String;
@@ -95,7 +95,7 @@
 
     .line 6148
     .local v0, "data":Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;
-    if-eqz v0, :cond_d
+    if-eqz v0, :cond_0
 
     .line 6149
     invoke-virtual {v0, p2, p3}, Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;->getBoolean(Ljava/lang/String;Z)Z
@@ -105,12 +105,12 @@
     return v1
 
     .line 6151
-    :cond_d
+    :cond_0
     return p3
 .end method
 
 .method public static getCloudDataInt(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;I)I
-    .registers 6
+    .locals 2
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "moduleName"    # Ljava/lang/String;
     .param p2, "key"    # Ljava/lang/String;
@@ -127,7 +127,7 @@
 
     .line 6111
     .local v0, "data":Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;
-    if-eqz v0, :cond_d
+    if-eqz v0, :cond_0
 
     .line 6112
     invoke-virtual {v0, p2, p3}, Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;->getInt(Ljava/lang/String;I)I
@@ -137,12 +137,12 @@
     return v1
 
     .line 6114
-    :cond_d
+    :cond_0
     return p3
 .end method
 
 .method public static getCloudDataList(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/util/List;
-    .registers 10
+    .locals 8
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "moduleName"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
@@ -164,7 +164,7 @@
 
     .line 6166
     .local v1, "cursor":Landroid/database/Cursor;
-    :try_start_2
+    :try_start_0
     sget-object v3, Landroid/provider/MiuiSettings$SettingsCloudData;->URI_CLOUD_ALL_DATA:Landroid/net/Uri;
 
     const/4 v2, 0x1
@@ -190,7 +190,7 @@
     move-object v1, v2
 
     .line 6169
-    if-eqz v1, :cond_38
+    if-eqz v1, :cond_0
 
     .line 6170
     invoke-interface {v1}, Landroid/database/Cursor;->getExtras()Landroid/os/Bundle;
@@ -199,13 +199,13 @@
 
     .line 6171
     .local v2, "bundle":Landroid/os/Bundle;
-    if-eqz v2, :cond_38
+    if-eqz v2, :cond_0
 
     invoke-virtual {v2}, Landroid/os/Bundle;->isEmpty()Z
 
     move-result v3
 
-    if-nez v3, :cond_38
+    if-nez v3, :cond_0
 
     .line 6172
     invoke-interface {v1}, Landroid/database/Cursor;->getExtras()Landroid/os/Bundle;
@@ -218,9 +218,9 @@
     invoke-virtual {v3, v4}, Landroid/os/Bundle;->getParcelableArrayList(Ljava/lang/String;)Ljava/util/ArrayList;
 
     move-result-object v3
-    :try_end_2c
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2c} :catch_34
-    .catchall {:try_start_2 .. :try_end_2c} :catchall_32
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     move-object v0, v3
 
@@ -237,25 +237,25 @@
     .line 6180
     .end local v0    # "dataList":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;>;"
     .end local v2    # "bundle":Landroid/os/Bundle;
-    :catchall_32
+    :catchall_0
     move-exception v0
 
-    goto :goto_3d
+    goto :goto_0
 
     .line 6177
-    :catch_34
+    :catch_0
     move-exception v2
 
     .line 6178
     .local v2, "e":Ljava/lang/Exception;
-    :try_start_35
+    :try_start_1
     invoke-virtual {v2}, Ljava/lang/Exception;->printStackTrace()V
-    :try_end_38
-    .catchall {:try_start_35 .. :try_end_38} :catchall_32
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     .line 6180
     .end local v2    # "e":Ljava/lang/Exception;
-    :cond_38
+    :cond_0
     invoke-static {v1}, Lmiui/util/IOUtils;->closeQuietly(Ljava/io/Closeable;)V
 
     .line 6181
@@ -265,14 +265,14 @@
     return-object v0
 
     .line 6180
-    :goto_3d
+    :goto_0
     invoke-static {v1}, Lmiui/util/IOUtils;->closeQuietly(Ljava/io/Closeable;)V
 
     throw v0
 .end method
 
 .method public static getCloudDataLong(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;J)J
-    .registers 8
+    .locals 3
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "moduleName"    # Ljava/lang/String;
     .param p2, "key"    # Ljava/lang/String;
@@ -289,7 +289,7 @@
 
     .line 6130
     .local v0, "data":Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;
-    if-eqz v0, :cond_d
+    if-eqz v0, :cond_0
 
     .line 6131
     invoke-virtual {v0, p2, p3, p4}, Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;->getLong(Ljava/lang/String;J)J
@@ -299,12 +299,12 @@
     return-wide v1
 
     .line 6133
-    :cond_d
+    :cond_0
     return-wide p3
 .end method
 
 .method public static getCloudDataNotifyUri()Landroid/net/Uri;
-    .registers 1
+    .locals 1
 
     .line 6032
     sget-object v0, Landroid/provider/MiuiSettings$SettingsCloudData;->URI_CLOUD_ALL_DATA_NOTIFY:Landroid/net/Uri;
@@ -313,7 +313,7 @@
 .end method
 
 .method public static getCloudDataSingle(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;
-    .registers 13
+    .locals 8
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "moduleName"    # Ljava/lang/String;
     .param p2, "key"    # Ljava/lang/String;
@@ -321,19 +321,19 @@
     .param p4, "cached"    # Z
 
     .line 6055
-    if-eqz p1, :cond_5f
+    if-eqz p1, :cond_3
 
     .line 6058
-    if-eqz p4, :cond_11
+    if-eqz p4, :cond_1
 
-    if-eqz p2, :cond_9
+    if-eqz p2, :cond_0
 
-    if-eqz p3, :cond_9
+    if-eqz p3, :cond_0
 
-    goto :goto_11
+    goto :goto_0
 
     .line 6059
-    :cond_9
+    :cond_0
     new-instance v0, Ljava/lang/NullPointerException;
 
     const-string v1, "Want cache, but key or propertyName is null"
@@ -343,15 +343,15 @@
     throw v0
 
     .line 6061
-    :cond_11
-    :goto_11
+    :cond_1
+    :goto_0
     const/4 v0, 0x0
 
     move-object v1, v0
 
     .line 6063
     .local v1, "cursor":Landroid/database/Cursor;
-    :try_start_13
+    :try_start_0
     sget-object v3, Landroid/provider/MiuiSettings$SettingsCloudData;->URI_CLOUD_ALL_DATA_SINGLE:Landroid/net/Uri;
 
     const/4 v2, 0x4
@@ -395,7 +395,7 @@
     move-object v1, v2
 
     .line 6066
-    if-eqz v1, :cond_56
+    if-eqz v1, :cond_2
 
     .line 6067
     invoke-interface {v1}, Landroid/database/Cursor;->getExtras()Landroid/os/Bundle;
@@ -404,13 +404,13 @@
 
     .line 6068
     .local v2, "bundle":Landroid/os/Bundle;
-    if-eqz v2, :cond_56
+    if-eqz v2, :cond_2
 
     invoke-virtual {v2}, Landroid/os/Bundle;->isEmpty()Z
 
     move-result v3
 
-    if-nez v3, :cond_56
+    if-nez v3, :cond_2
 
     .line 6069
     invoke-interface {v1}, Landroid/database/Cursor;->getExtras()Landroid/os/Bundle;
@@ -425,9 +425,9 @@
     move-result-object v3
 
     check-cast v3, Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;
-    :try_end_4c
-    .catch Ljava/lang/Exception; {:try_start_13 .. :try_end_4c} :catch_52
-    .catchall {:try_start_13 .. :try_end_4c} :catchall_50
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 6076
     invoke-static {v1}, Lmiui/util/IOUtils;->closeQuietly(Ljava/io/Closeable;)V
@@ -437,25 +437,25 @@
 
     .line 6076
     .end local v2    # "bundle":Landroid/os/Bundle;
-    :catchall_50
+    :catchall_0
     move-exception v0
 
-    goto :goto_5b
+    goto :goto_1
 
     .line 6073
-    :catch_52
+    :catch_0
     move-exception v2
 
     .line 6074
     .local v2, "e":Ljava/lang/Exception;
-    :try_start_53
+    :try_start_1
     invoke-virtual {v2}, Ljava/lang/Exception;->printStackTrace()V
-    :try_end_56
-    .catchall {:try_start_53 .. :try_end_56} :catchall_50
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     .line 6076
     .end local v2    # "e":Ljava/lang/Exception;
-    :cond_56
+    :cond_2
     invoke-static {v1}, Lmiui/util/IOUtils;->closeQuietly(Ljava/io/Closeable;)V
 
     .line 6077
@@ -465,14 +465,14 @@
     return-object v0
 
     .line 6076
-    :goto_5b
+    :goto_1
     invoke-static {v1}, Lmiui/util/IOUtils;->closeQuietly(Ljava/io/Closeable;)V
 
     throw v0
 
     .line 6056
     .end local v1    # "cursor":Landroid/database/Cursor;
-    :cond_5f
+    :cond_3
     new-instance v0, Ljava/lang/NullPointerException;
 
     const-string/jumbo v1, "moduleName is null"
@@ -483,7 +483,7 @@
 .end method
 
 .method public static getCloudDataString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-    .registers 6
+    .locals 2
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "moduleName"    # Ljava/lang/String;
     .param p2, "key"    # Ljava/lang/String;
@@ -500,7 +500,7 @@
 
     .line 6093
     .local v0, "data":Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;
-    if-eqz v0, :cond_d
+    if-eqz v0, :cond_0
 
     .line 6094
     invoke-virtual {v0, p2, p3}, Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
@@ -510,6 +510,6 @@
     return-object v1
 
     .line 6096
-    :cond_d
+    :cond_0
     return-object p3
 .end method

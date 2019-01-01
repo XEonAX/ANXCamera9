@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 26
     invoke-direct {p0}, Lcom/google/zxing/oned/OneDimensionalCodeWriter;-><init>()V
@@ -16,7 +16,7 @@
 
 # virtual methods
 .method public getDefaultMargin()I
-    .registers 2
+    .locals 1
 
     .line 31
     sget-object v0, Lcom/google/zxing/oned/UPCEANReader;->START_END_PATTERN:[I

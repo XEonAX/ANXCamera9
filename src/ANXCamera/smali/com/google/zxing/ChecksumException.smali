@@ -9,7 +9,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 1
+    .locals 1
 
     .line 27
     new-instance v0, Lcom/google/zxing/ChecksumException;
@@ -22,7 +22,7 @@
 .end method
 
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 29
     invoke-direct {p0}, Lcom/google/zxing/ReaderException;-><init>()V
@@ -32,7 +32,7 @@
 .end method
 
 .method public static getChecksumInstance()Lcom/google/zxing/ChecksumException;
-    .registers 1
+    .locals 1
 
     .line 34
     sget-object v0, Lcom/google/zxing/ChecksumException;->instance:Lcom/google/zxing/ChecksumException;

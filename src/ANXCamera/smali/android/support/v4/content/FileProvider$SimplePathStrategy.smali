@@ -34,7 +34,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/String;)V
-    .registers 3
+    .locals 1
     .param p1, "authority"    # Ljava/lang/String;
 
     .line 634
@@ -57,7 +57,7 @@
 
 # virtual methods
 .method public addRoot(Ljava/lang/String;Ljava/io/File;)V
-    .registers 7
+    .locals 4
     .param p1, "name"    # Ljava/lang/String;
     .param p2, "root"    # Ljava/io/File;
 
@@ -66,15 +66,15 @@
 
     move-result v0
 
-    if-nez v0, :cond_2a
+    if-nez v0, :cond_0
 
     .line 649
-    :try_start_6
+    :try_start_0
     invoke-virtual {p2}, Ljava/io/File;->getCanonicalFile()Ljava/io/File;
 
     move-result-object v0
-    :try_end_a
-    .catch Ljava/io/IOException; {:try_start_6 .. :try_end_a} :catch_12
+    :try_end_0
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
 
     move-object p2, v0
 
@@ -90,7 +90,7 @@
     return-void
 
     .line 650
-    :catch_12
+    :catch_0
     move-exception v0
 
     .line 651
@@ -117,7 +117,7 @@
 
     .line 644
     .end local v0    # "e":Ljava/io/IOException;
-    :cond_2a
+    :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "Name must not be empty"
@@ -128,7 +128,7 @@
 .end method
 
 .method public getFileForUri(Landroid/net/Uri;)Ljava/io/File;
-    .registers 11
+    .locals 9
     .param p1, "uri"    # Landroid/net/Uri;
 
     .line 698
@@ -179,7 +179,7 @@
 
     .line 705
     .local v3, "root":Ljava/io/File;
-    if-eqz v3, :cond_61
+    if-eqz v3, :cond_1
 
     .line 709
     new-instance v4, Ljava/io/File;
@@ -188,12 +188,12 @@
 
     .line 711
     .local v4, "file":Ljava/io/File;
-    :try_start_2c
+    :try_start_0
     invoke-virtual {v4}, Ljava/io/File;->getCanonicalFile()Ljava/io/File;
 
     move-result-object v5
-    :try_end_30
-    .catch Ljava/io/IOException; {:try_start_2c .. :try_end_30} :catch_49
+    :try_end_0
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
 
     move-object v4, v5
 
@@ -213,13 +213,13 @@
 
     move-result v5
 
-    if-eqz v5, :cond_41
+    if-eqz v5, :cond_0
 
     .line 720
     return-object v4
 
     .line 717
-    :cond_41
+    :cond_0
     new-instance v5, Ljava/lang/SecurityException;
 
     const-string v6, "Resolved path jumped beyond configured root"
@@ -229,7 +229,7 @@
     throw v5
 
     .line 712
-    :catch_49
+    :catch_0
     move-exception v5
 
     .line 713
@@ -257,7 +257,7 @@
     .line 706
     .end local v4    # "file":Ljava/io/File;
     .end local v5    # "e":Ljava/io/IOException;
-    :cond_61
+    :cond_1
     new-instance v4, Ljava/lang/IllegalArgumentException;
 
     new-instance v5, Ljava/lang/StringBuilder;
@@ -280,7 +280,7 @@
 .end method
 
 .method public getUriForFile(Ljava/io/File;)Landroid/net/Uri;
-    .registers 9
+    .locals 7
     .param p1, "file"    # Ljava/io/File;
 
     .line 662
@@ -288,8 +288,8 @@
     invoke-virtual {p1}, Ljava/io/File;->getCanonicalPath()Ljava/lang/String;
 
     move-result-object v0
-    :try_end_4
-    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_4} :catch_c0
+    :try_end_0
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 665
     .local v0, "path":Ljava/lang/String;
@@ -311,12 +311,12 @@
     move-result-object v2
 
     .local v2, "i$":Ljava/util/Iterator;
-    :goto_10
+    :goto_0
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_44
+    if-eqz v3, :cond_2
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -342,9 +342,9 @@
 
     move-result v5
 
-    if-eqz v5, :cond_43
+    if-eqz v5, :cond_1
 
-    if-eqz v1, :cond_42
+    if-eqz v1, :cond_0
 
     invoke-virtual {v4}, Ljava/lang/String;->length()I
 
@@ -364,22 +364,22 @@
 
     move-result v6
 
-    if-le v5, v6, :cond_43
+    if-le v5, v6, :cond_1
 
     .line 673
-    :cond_42
+    :cond_0
     move-object v1, v3
 
     .line 675
     .end local v3    # "root":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Ljava/io/File;>;"
     .end local v4    # "rootPath":Ljava/lang/String;
-    :cond_43
-    goto :goto_10
+    :cond_1
+    goto :goto_0
 
     .line 677
     .end local v2    # "i$":Ljava/util/Iterator;
-    :cond_44
-    if-eqz v1, :cond_a9
+    :cond_2
+    if-eqz v1, :cond_4
 
     .line 683
     invoke-interface {v1}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
@@ -400,7 +400,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_61
+    if-eqz v3, :cond_3
 
     .line 685
     invoke-virtual {v2}, Ljava/lang/String;->length()I
@@ -411,10 +411,10 @@
 
     move-result-object v0
 
-    goto :goto_6b
+    goto :goto_1
 
     .line 687
-    :cond_61
+    :cond_3
     invoke-virtual {v2}, Ljava/lang/String;->length()I
 
     move-result v3
@@ -426,7 +426,7 @@
     move-result-object v0
 
     .line 691
-    :goto_6b
+    :goto_1
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -488,7 +488,7 @@
 
     .line 678
     .end local v2    # "rootPath":Ljava/lang/String;
-    :cond_a9
+    :cond_4
     new-instance v2, Ljava/lang/IllegalArgumentException;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -512,7 +512,7 @@
     .line 663
     .end local v0    # "path":Ljava/lang/String;
     .end local v1    # "mostSpecific":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/String;Ljava/io/File;>;"
-    :catch_c0
+    :catch_0
     move-exception v0
 
     .line 664

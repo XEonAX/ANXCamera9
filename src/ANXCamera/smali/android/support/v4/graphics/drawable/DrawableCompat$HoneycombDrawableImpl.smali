@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 105
     invoke-direct {p0}, Landroid/support/v4/graphics/drawable/DrawableCompat$BaseDrawableImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public jumpToCurrentState(Landroid/graphics/drawable/Drawable;)V
-    .registers 2
+    .locals 0
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 108
@@ -38,7 +38,7 @@
 .end method
 
 .method public wrap(Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
-    .registers 3
+    .locals 1
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 113

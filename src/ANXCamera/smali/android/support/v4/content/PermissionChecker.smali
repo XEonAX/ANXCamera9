@@ -21,7 +21,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .registers 1
+    .locals 0
 
     .line 70
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -31,7 +31,7 @@
 .end method
 
 .method public static checkCallingOrSelfPermission(Landroid/content/Context;Ljava/lang/String;)I
-    .registers 5
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -50,20 +50,20 @@
 
     move-result v1
 
-    if-ne v0, v1, :cond_f
+    if-ne v0, v1, :cond_0
 
     invoke-virtual {p0}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
 
     move-result-object v0
 
-    goto :goto_10
+    goto :goto_0
 
-    :cond_f
+    :cond_0
     const/4 v0, 0x0
 
     .line 162
     .local v0, "packageName":Ljava/lang/String;
-    :goto_10
+    :goto_0
     invoke-static {}, Landroid/os/Binder;->getCallingPid()I
 
     move-result v1
@@ -80,7 +80,7 @@
 .end method
 
 .method public static checkCallingPermission(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)I
-    .registers 5
+    .locals 2
     .param p0, "context"    # Landroid/content/Context;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -100,7 +100,7 @@
 
     move-result v1
 
-    if-ne v0, v1, :cond_c
+    if-ne v0, v1, :cond_0
 
     .line 143
     const/4 v0, -0x1
@@ -108,7 +108,7 @@
     return v0
 
     .line 145
-    :cond_c
+    :cond_0
     invoke-static {}, Landroid/os/Binder;->getCallingPid()I
 
     move-result v0
@@ -125,7 +125,7 @@
 .end method
 
 .method public static checkPermission(Landroid/content/Context;Ljava/lang/String;IILjava/lang/String;)I
-    .registers 10
+    .locals 5
     .param p0, "context"    # Landroid/content/Context;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -145,13 +145,13 @@
 
     const/4 v1, -0x1
 
-    if-ne v0, v1, :cond_8
+    if-ne v0, v1, :cond_0
 
     .line 90
     return v1
 
     .line 93
-    :cond_8
+    :cond_0
     invoke-static {p1}, Landroid/support/v4/app/AppOpsManagerCompat;->permissionToOp(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
@@ -160,14 +160,14 @@
     .local v0, "op":Ljava/lang/String;
     const/4 v2, 0x0
 
-    if-nez v0, :cond_10
+    if-nez v0, :cond_1
 
     .line 95
     return v2
 
     .line 98
-    :cond_10
-    if-nez p4, :cond_24
+    :cond_1
+    if-nez p4, :cond_4
 
     .line 99
     invoke-virtual {p0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
@@ -180,36 +180,36 @@
 
     .line 100
     .local v3, "packageNames":[Ljava/lang/String;
-    if-eqz v3, :cond_23
+    if-eqz v3, :cond_3
 
     array-length v4, v3
 
-    if-gtz v4, :cond_20
+    if-gtz v4, :cond_2
 
-    goto :goto_23
+    goto :goto_0
 
     .line 103
-    :cond_20
+    :cond_2
     aget-object p4, v3, v2
 
     .end local v3    # "packageNames":[Ljava/lang/String;
-    goto :goto_24
+    goto :goto_1
 
     .line 101
     .restart local v3    # "packageNames":[Ljava/lang/String;
-    :cond_23
-    :goto_23
+    :cond_3
+    :goto_0
     return v1
 
     .line 106
     .end local v3    # "packageNames":[Ljava/lang/String;
-    :cond_24
-    :goto_24
+    :cond_4
+    :goto_1
     invoke-static {p0, v0, p4}, Landroid/support/v4/app/AppOpsManagerCompat;->noteProxyOp(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)I
 
     move-result v1
 
-    if-eqz v1, :cond_2c
+    if-eqz v1, :cond_5
 
     .line 108
     const/4 v1, -0x2
@@ -217,12 +217,12 @@
     return v1
 
     .line 111
-    :cond_2c
+    :cond_5
     return v2
 .end method
 
 .method public static checkSelfPermission(Landroid/content/Context;Ljava/lang/String;)I
-    .registers 5
+    .locals 3
     .param p0, "context"    # Landroid/content/Context;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
