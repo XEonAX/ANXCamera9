@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.statistics.E2EScenario;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
@@ -389,7 +390,7 @@ public class FragmentLiveSticker extends FragmentLiveBase implements OnCtaNotice
     }
 
     private void updateData() {
-        new TTLiveStickerResourceRequest("test", "default").execute(new ResponseListener() {
+        new TTLiveStickerResourceRequest("test", E2EScenario.DEFAULT_CATEGORY).execute(new ResponseListener() {
             public void onResponse(Object... objArr) {
                 final List<LiveStickerInfo> list = (List) objArr[0];
                 for (LiveStickerInfo liveStickerInfo : list) {

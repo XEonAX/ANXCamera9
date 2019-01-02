@@ -1,5 +1,6 @@
 package com.ss.android.ugc.effectmanager;
 
+import android.os.statistics.E2EScenario;
 import android.text.TextUtils;
 import android.util.Log;
 import com.android.camera.module.impl.component.FileUtils;
@@ -181,7 +182,7 @@ public class EffectManager {
         String currentTaskID = getCurrentTaskID();
         this.mEffectContext.getEffectConfiguration().getListenerManger().setFetchEffectChannelListener(currentTaskID, anonymousClass3);
         if (TextUtils.isEmpty(str)) {
-            this.mEffectChannelRepository.fetchList("default", currentTaskID, false);
+            this.mEffectChannelRepository.fetchList(E2EScenario.DEFAULT_CATEGORY, currentTaskID, false);
         } else {
             this.mEffectChannelRepository.fetchList(str, currentTaskID, false);
         }
@@ -197,7 +198,7 @@ public class EffectManager {
         String currentTaskID = getCurrentTaskID();
         this.mEffectContext.getEffectConfiguration().getListenerManger().setFetchEffectChannelListener(currentTaskID, iFetchEffectChannelListener);
         if (TextUtils.isEmpty(str)) {
-            this.mEffectChannelRepository.fetchList("default", currentTaskID, true);
+            this.mEffectChannelRepository.fetchList(E2EScenario.DEFAULT_CATEGORY, currentTaskID, true);
         } else {
             this.mEffectChannelRepository.fetchList(str, currentTaskID, true);
         }
@@ -213,7 +214,7 @@ public class EffectManager {
         String currentTaskID = getCurrentTaskID();
         this.mEffectContext.getEffectConfiguration().getListenerManger().setFetchEffectChannelListener(currentTaskID, iFetchEffectChannelListener);
         if (TextUtils.isEmpty(str)) {
-            this.mEffectChannelRepository.fetchExistEffectList("default", currentTaskID);
+            this.mEffectChannelRepository.fetchExistEffectList(E2EScenario.DEFAULT_CATEGORY, currentTaskID);
         } else {
             this.mEffectChannelRepository.fetchExistEffectList(str, currentTaskID);
         }

@@ -8,6 +8,7 @@ import android.os.IHwBinder;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemProperties;
+import android.os.statistics.E2EScenario;
 import android.util.Slog;
 import miui.os.DeviceFeature;
 import miui.util.FeatureParser;
@@ -98,7 +99,7 @@ public class DisplayFeatureManager {
                 stringBuilder.append(" hidlServiceName = ");
                 stringBuilder.append(hidlServiceName);
                 Slog.d(str, stringBuilder.toString());
-                IHwBinder hb = HwBinder.getService(hidlServiceName, "default");
+                IHwBinder hb = HwBinder.getService(hidlServiceName, E2EScenario.DEFAULT_CATEGORY);
                 if (hb != null) {
                     hb.linkToDeath(this.mHwBinderDeathHandler, 10001);
                     this.mProxy = new DisplayFeatureServiceProxy(hb);

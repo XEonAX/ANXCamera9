@@ -1,6 +1,7 @@
 package com.ss.android.ugc.effectmanager;
 
 import android.content.Context;
+import android.os.statistics.E2EScenario;
 import com.ss.android.ugc.effectmanager.common.TaskManager;
 import com.ss.android.ugc.effectmanager.common.listener.ICache;
 import com.ss.android.ugc.effectmanager.common.listener.IEffectNetWorker;
@@ -192,7 +193,7 @@ public class EffectConfiguration {
     }
 
     private EffectConfiguration(Builder builder) {
-        this.mChannel = "default";
+        this.mChannel = E2EScenario.DEFAULT_CATEGORY;
         this.mRetryCount = 3;
         this.mApiAddress = API_ADDRESS;
         this.mAccessKey = builder.accessKey;
