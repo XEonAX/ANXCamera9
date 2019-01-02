@@ -2216,7 +2216,7 @@ public class MiuiSettings {
             PUBLIC_SETTINGS.add("livetalk_dial_range");
             PUBLIC_SETTINGS.add("livetalk_available_status");
             PUBLIC_SETTINGS.add("livetalk_remain_minutes");
-            PUBLIC_SETTINGS.add("lock_wallpaper_provider_authority");
+            PUBLIC_SETTINGS.add(android.provider.SystemSettings.System.LOCK_WALLPAPER_PROVIDER_AUTHORITY);
             String themeClockSettingPrefix = "clock_changed_time_";
             Set set = PUBLIC_SETTINGS;
             StringBuilder stringBuilder = new StringBuilder();
@@ -2631,7 +2631,7 @@ public class MiuiSettings {
         }
 
         public static boolean isInSmallWindowMode(Context context) {
-            return getBoolean(context.getContentResolver(), KEY_IN_SMALL_WINDOW_MODE, false);
+            return android.provider.SystemSettings.System.getBoolean(context.getContentResolver(), KEY_IN_SMALL_WINDOW_MODE, false);
         }
 
         public static SmallWindowType getSmallWindowMode() {
@@ -2702,7 +2702,7 @@ public class MiuiSettings {
         }
 
         public static boolean isMiDropEnabled(Context context) {
-            return getBoolean(context.getContentResolver(), KEY_MIDROP_ENABLED, false);
+            return android.provider.SystemSettings.System.getBoolean(context.getContentResolver(), KEY_MIDROP_ENABLED, false);
         }
 
         public static boolean isTouchAssistantEnabledForUser(Context context, int userId, boolean hasNavBar) {
@@ -2835,7 +2835,7 @@ public class MiuiSettings {
         }
 
         public static boolean isTurnOverMuteEnabled(ContentResolver cr) {
-            return System.getBoolean(cr, ENABLED_TURN_OVER_MUTE, false);
+            return android.provider.SystemSettings.System.getBoolean(cr, ENABLED_TURN_OVER_MUTE, false);
         }
 
         public static void setTurnOverMuteEnabled(ContentResolver cr, boolean enable) {
@@ -2843,7 +2843,7 @@ public class MiuiSettings {
         }
 
         public static boolean isHandonRingerEnabled(ContentResolver cr) {
-            return System.getBoolean(cr, ENABLED_HANDON_RINGER, false);
+            return android.provider.SystemSettings.System.getBoolean(cr, ENABLED_HANDON_RINGER, false);
         }
 
         public static void setHandonRingerEnabled(ContentResolver cr, boolean enabled) {
@@ -2851,7 +2851,7 @@ public class MiuiSettings {
         }
 
         public static boolean isCrescendoRingerEnable(ContentResolver cr) {
-            return System.getBoolean(cr, ENABLE_CRESCENDO_RINGER, false);
+            return android.provider.SystemSettings.System.getBoolean(cr, ENABLE_CRESCENDO_RINGER, false);
         }
 
         public static void setCrescendoRingerEnable(ContentResolver cr, boolean enabled) {
@@ -2859,7 +2859,7 @@ public class MiuiSettings {
         }
 
         public static boolean isAntispamStangerEnabled(ContentResolver cr) {
-            return System.getBoolean(cr, ENABLED_ANTISPAM_STRANGE, false);
+            return android.provider.SystemSettings.System.getBoolean(cr, ENABLED_ANTISPAM_STRANGE, false);
         }
 
         public static void setAntispamStangerEnabled(ContentResolver cr, boolean enabled) {
@@ -2883,7 +2883,7 @@ public class MiuiSettings {
         }
 
         public static boolean getEnabledAutoRedial(ContentResolver cr) {
-            return System.getBoolean(cr, ENABLED_AUTO_REDIAL, false);
+            return android.provider.SystemSettings.System.getBoolean(cr, ENABLED_AUTO_REDIAL, false);
         }
 
         public static void setAutoRedialEnabled(ContentResolver cr, boolean isEnabledRedial) {
@@ -2891,7 +2891,7 @@ public class MiuiSettings {
         }
 
         public static boolean isIncomingVideoShowEnabled(ContentResolver cr) {
-            return System.getBoolean(cr, ENABLED_INCOMING_VIDEO_SHOW, true);
+            return android.provider.SystemSettings.System.getBoolean(cr, ENABLED_INCOMING_VIDEO_SHOW, true);
         }
 
         public static void setIncomingVideoShowEnabled(ContentResolver cr, boolean isVideoShowEnabled) {
@@ -2899,7 +2899,7 @@ public class MiuiSettings {
         }
 
         public static boolean isRecordNotificationEnabled(ContentResolver cr) {
-            return System.getBoolean(cr, ENABLED_RECORD_NOTIFY, true);
+            return android.provider.SystemSettings.System.getBoolean(cr, ENABLED_RECORD_NOTIFY, true);
         }
 
         public static void setRecordNotificationEnabled(ContentResolver cr, boolean isEnabledRecordNotify) {
@@ -2907,7 +2907,7 @@ public class MiuiSettings {
         }
 
         public static boolean isAutoRecordEnabled(ContentResolver cr) {
-            return System.getBoolean(cr, ENABLED_AUTO_RECORD, false);
+            return android.provider.SystemSettings.System.getBoolean(cr, ENABLED_AUTO_RECORD, false);
         }
 
         public static void setAutoRecordEnabled(ContentResolver cr, boolean isEnabledAutoRecord) {
@@ -2931,7 +2931,7 @@ public class MiuiSettings {
         }
 
         public static boolean isUnknownNumberRecordEnabled(ContentResolver cr) {
-            return System.getBoolean(cr, ENABLED_UNKNOWN_NUMBER_RECORD, false);
+            return android.provider.SystemSettings.System.getBoolean(cr, ENABLED_UNKNOWN_NUMBER_RECORD, false);
         }
 
         public static void setUnknownNumberRecordEnabled(ContentResolver cr, boolean enabledUnknownNumberRecord) {
@@ -2939,7 +2939,7 @@ public class MiuiSettings {
         }
 
         public static boolean isYellowpageRecordEnabled(ContentResolver cr) {
-            return System.getBoolean(cr, ENABLED_YELLOWPAGE_RECORD, false);
+            return android.provider.SystemSettings.System.getBoolean(cr, ENABLED_YELLOWPAGE_RECORD, false);
         }
 
         public static void setYellowpageRecordEnabled(ContentResolver cr, boolean enabledYellowpageRecord) {
@@ -2955,7 +2955,7 @@ public class MiuiSettings {
         }
 
         public static boolean isTelocationEnable(ContentResolver cr) {
-            return System.getBoolean(cr, "enable_telocation", true);
+            return android.provider.SystemSettings.System.getBoolean(cr, "enable_telocation", true);
         }
 
         public static void setTelocationEnable(ContentResolver cr, boolean enable) {
@@ -2963,7 +2963,7 @@ public class MiuiSettings {
         }
 
         public static boolean isAutoCountryCodeEnable(ContentResolver cr) {
-            return System.getBoolean(cr, AUTO_COUNTRY_CODE, false);
+            return android.provider.SystemSettings.System.getBoolean(cr, AUTO_COUNTRY_CODE, false);
         }
 
         public static void setAutoCountryCodeEnable(ContentResolver cr, boolean enable) {
@@ -2978,7 +2978,7 @@ public class MiuiSettings {
                 stringBuilder.append(slotId);
                 prefix = stringBuilder.toString();
             }
-            return System.getBoolean(cr, prefix, false);
+            return android.provider.SystemSettings.System.getBoolean(cr, prefix, false);
         }
 
         public static void setAutoIpEnable(ContentResolver cr, boolean enable, int slotId) {
@@ -3000,7 +3000,7 @@ public class MiuiSettings {
                 stringBuilder.append(slotId);
                 prefix = stringBuilder.toString();
             }
-            return System.getBoolean(cr, prefix, false);
+            return android.provider.SystemSettings.System.getBoolean(cr, prefix, false);
         }
 
         public static void setAutoAddZeroPrefixEnable(ContentResolver cr, boolean enable, int slotId) {
@@ -3022,7 +3022,7 @@ public class MiuiSettings {
                 stringBuilder.append(slotId);
                 prefix = stringBuilder.toString();
             }
-            return System.getBoolean(cr, prefix, false);
+            return android.provider.SystemSettings.System.getBoolean(cr, prefix, false);
         }
 
         public static void setAutoIpSupportLocalNumEnable(ContentResolver cr, boolean enable, int slotId) {
@@ -3037,7 +3037,7 @@ public class MiuiSettings {
         }
 
         public static boolean isProximitySensorEnable(ContentResolver cr) {
-            return System.getBoolean(cr, ENABLE_PROXIMITY_KEY, true);
+            return android.provider.SystemSettings.System.getBoolean(cr, ENABLE_PROXIMITY_KEY, true);
         }
 
         public static void setProximitySensorEnable(ContentResolver cr, boolean enable) {
@@ -3045,7 +3045,7 @@ public class MiuiSettings {
         }
 
         public static boolean isRejectViaSmsEnable(ContentResolver cr) {
-            return System.getBoolean(cr, ENABLE_REJECT_VIA_SMS_KEY, true);
+            return android.provider.SystemSettings.System.getBoolean(cr, ENABLE_REJECT_VIA_SMS_KEY, true);
         }
 
         public static void setRejectViaSmsEnable(ContentResolver cr, boolean enable) {
@@ -3065,11 +3065,11 @@ public class MiuiSettings {
         }
 
         public static boolean getEnabledVoiceService(ContentResolver cr) {
-            return System.getBoolean(cr, ENABLED_VOICE_SERVICE, false);
+            return android.provider.SystemSettings.System.getBoolean(cr, ENABLED_VOICE_SERVICE, false);
         }
 
         public static boolean isAutoAnswerCall(ContentResolver cr) {
-            return System.getBoolean(cr, ENABLED_AUTO_ANSWER, false);
+            return android.provider.SystemSettings.System.getBoolean(cr, ENABLED_AUTO_ANSWER, false);
         }
 
         public static void setAutoAnswerCall(ContentResolver cr, boolean enable) {
