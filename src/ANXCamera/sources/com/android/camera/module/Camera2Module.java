@@ -19,6 +19,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
+import android.provider.MiuiSettings.ScreenEffect;
 import android.text.TextUtils;
 import android.util.Range;
 import android.util.Size;
@@ -256,7 +257,7 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
             Camera2Module.this.mHandler.removeMessages(33);
             if (!Camera2Module.this.mPaused) {
                 int roundOrientation = Util.roundOrientation(Math.round(f), Camera2Module.this.mOrientation);
-                Camera2Module.this.mHandler.obtainMessage(33, roundOrientation, (Util.getDisplayRotation(Camera2Module.this.mActivity) + roundOrientation) % 360).sendToTarget();
+                Camera2Module.this.mHandler.obtainMessage(33, roundOrientation, (Util.getDisplayRotation(Camera2Module.this.mActivity) + roundOrientation) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT).sendToTarget();
             }
         }
 

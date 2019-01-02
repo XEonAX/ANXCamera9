@@ -31,6 +31,7 @@ import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.os.SystemClock;
 import android.os.SystemProperties;
+import android.provider.MiuiSettings.ScreenEffect;
 import android.text.format.DateFormat;
 import android.util.Size;
 import android.view.KeyEvent;
@@ -1712,9 +1713,9 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
         this.mInitParam.direction = CameraSettings.getPanoramaMoveDirection();
         int displayRotation = Util.getDisplayRotation(this.mActivity);
         if (this.mOrientation == -1) {
-            this.mInitParam.output_rotation = ((this.mCameraOrientation + displayRotation) + 360) % 360;
+            this.mInitParam.output_rotation = ((this.mCameraOrientation + displayRotation) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         } else {
-            this.mInitParam.output_rotation = (((this.mCameraOrientation + displayRotation) + this.mOrientation) + 360) % 360;
+            this.mInitParam.output_rotation = (((this.mCameraOrientation + displayRotation) + this.mOrientation) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         }
         String cameraZoomMode = CameraSettings.getCameraZoomMode(166);
         String str = TAG;
@@ -1971,7 +1972,7 @@ Caused by: jadx.core.utils.exceptions.CodegenException: MERGE can be used only i
         if (!(i == 0 || i == 90 || i == 180 || i == 270)) {
             i = 0;
         }
-        return (i + this.mDeviceOrientationAtCapture) % 360;
+        return (i + this.mDeviceOrientationAtCapture) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
     }
 
     private void addImageAsApplication(String str, String str2, int i, int i2, int i3) {

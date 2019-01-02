@@ -1,6 +1,5 @@
 package okhttp3.internal.ws;
 
-import com.android.camera.snap.SnapService;
 import okio.ByteString;
 
 public final class WebSocketProtocol {
@@ -42,7 +41,7 @@ public final class WebSocketProtocol {
 
     static String closeCodeExceptionMessage(int i) {
         StringBuilder stringBuilder;
-        if (i < 1000 || i >= SnapService.MAX_DELAY) {
+        if (i < 1000 || i >= 5000) {
             stringBuilder = new StringBuilder();
             stringBuilder.append("Code must be in range [1000,5000): ");
             stringBuilder.append(i);

@@ -4,6 +4,7 @@ import android.media.MediaCodec;
 import android.media.MediaFormat;
 import android.opengl.EGLContext;
 import android.os.Handler;
+import android.provider.MiuiSettings.System;
 import android.view.Surface;
 import com.android.camera.effect.draw_mode.DrawExtTexAttribute;
 import com.android.camera.log.Log;
@@ -18,7 +19,7 @@ public class CircularVideoEncoder extends CircularMediaEncoder {
     private static final boolean DEBUG_FPS = true;
     private static final String TAG = CircularVideoEncoder.class.getSimpleName();
     protected long mFirstPresentationTimeUs;
-    private int mFpsOutputInterval = 500;
+    private int mFpsOutputInterval = System.SCREEN_KEY_LONG_PRESS_TIMEOUT_DEFAULT;
     private long mFrameStartTimestampNs = 0;
     private int mFramesRendered = 0;
     private Surface mInputSurface;

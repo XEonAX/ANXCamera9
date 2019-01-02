@@ -50,7 +50,6 @@ import com.android.camera.protocol.ModeProtocol.HandleBackTrace;
 import com.android.camera.protocol.ModeProtocol.ManuallyAdjust;
 import com.android.camera.protocol.ModeProtocol.MiBeautyProtocol;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
-import com.android.camera.snap.SnapService;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera2.CameraCapabilities;
 import com.mi.config.b;
@@ -508,7 +507,7 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
                     i = 1000;
                     break;
                 case 2:
-                    i = SnapService.MAX_DELAY;
+                    i = 5000;
                     break;
                 case 3:
                     i = 15000;

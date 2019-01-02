@@ -134,7 +134,7 @@ public class BasicNetwork implements Network {
             throw new com.android.volley.ClientError(r13);
      */
     /* JADX WARNING: Missing block: B:61:0x0107, code:
-            if (r0 < 500) goto L_0x0124;
+            if (r0 < android.provider.MiuiSettings.System.SCREEN_KEY_LONG_PRESS_TIMEOUT_DEFAULT) goto L_0x0124;
      */
     /* JADX WARNING: Missing block: B:65:0x0111, code:
             if (r29.shouldRetryServerErrors() != false) goto L_0x0113;

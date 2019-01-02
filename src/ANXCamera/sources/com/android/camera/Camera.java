@@ -15,6 +15,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.ServiceManager;
 import android.os.UserHandle;
+import android.provider.MiuiSettings.ScreenEffect;
 import android.support.annotation.MainThread;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import android.support.v4.app.DialogFragment;
@@ -247,7 +248,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
                     Camera.this.mDisplayRotation = i;
                     Camera.this.onDisplayRotationChanged();
                 }
-                Camera.this.mOrientationCompensation = (Camera.this.mOrientation + Camera.this.mDisplayRotation) % 360;
+                Camera.this.mOrientationCompensation = (Camera.this.mOrientation + Camera.this.mDisplayRotation) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
                 if (Camera.this.mCurrentModule != null) {
                     Camera.this.mCurrentModule.onOrientationChanged(Camera.this.mOrientation, Camera.this.mOrientationCompensation);
                 }

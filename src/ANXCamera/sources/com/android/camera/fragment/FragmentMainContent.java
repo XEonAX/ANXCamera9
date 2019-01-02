@@ -8,6 +8,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.hardware.camera2.params.MeteringRectangle;
 import android.os.Bundle;
+import android.provider.MiuiSettings.ScreenEffect;
+import android.provider.MiuiSettings.System;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.text.SpannableStringBuilder;
@@ -279,7 +281,7 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
                 this.mZoomInAnimator.start();
             } else {
                 this.mZoomOutAnimator.start();
-                Completable.create(new AlphaOutOnSubscribe(this.mMultiSnapNum).setStartDelayTime(500)).subscribe();
+                Completable.create(new AlphaOutOnSubscribe(this.mMultiSnapNum).setStartDelayTime(System.SCREEN_KEY_LONG_PRESS_TIMEOUT_DEFAULT)).subscribe();
             }
         }
     }
@@ -753,7 +755,7 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
 
     public void provideRotateItem(List<View> list, int i) {
         super.provideRotateItem(list, i);
-        this.mFaceView.setOrientation((360 - i) % 360, false);
+        this.mFaceView.setOrientation((360 - i) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT, false);
         this.mAfRegionsView.setOrientation(i, false);
         this.mLightingView.setOrientation(i, false);
         this.mFocusView.setOrientation(i, false);

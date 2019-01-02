@@ -10,9 +10,9 @@ public class JpegEncodingQualityMappings {
     private static HashMap<String, Integer> sHashMap = new HashMap();
 
     static {
-        sHashMap.put(LOW, Integer.valueOf(67));
+        sHashMap.put("low", Integer.valueOf(67));
         sHashMap.put("normal", Integer.valueOf(87));
-        sHashMap.put(HIGH, Integer.valueOf(CameraAppImpl.getAndroidContext().getResources().getInteger(R.integer.high_jpeg_quality)));
+        sHashMap.put("high", Integer.valueOf(CameraAppImpl.getAndroidContext().getResources().getInteger(R.integer.high_jpeg_quality)));
     }
 
     public static int getQualityNumber(String str) {

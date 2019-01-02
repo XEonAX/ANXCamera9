@@ -1,5 +1,6 @@
 package com.ss.android.vesdk.runtime.cloudconfig;
 
+import android.provider.MiuiSettings.System;
 import com.android.camera.network.net.base.HTTP;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -847,7 +848,7 @@ public class HttpRequest {
     }
 
     public boolean serverError() throws HttpRequestException {
-        return 500 == code();
+        return System.SCREEN_KEY_LONG_PRESS_TIMEOUT_DEFAULT == code();
     }
 
     public boolean badRequest() throws HttpRequestException {

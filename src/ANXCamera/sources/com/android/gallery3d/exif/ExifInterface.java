@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.provider.MiuiSettings.ScreenEffect;
 import android.support.v4.internal.view.SupportMenu;
 import android.util.Log;
 import android.util.SparseIntArray;
@@ -1253,9 +1254,9 @@ public class ExifInterface {
     }
 
     public static short getExifOrientationValue(int i) {
-        i %= 360;
+        i %= ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         if (i < 0) {
-            i += 360;
+            i += ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         }
         if (i < 90) {
             return (short) 1;
