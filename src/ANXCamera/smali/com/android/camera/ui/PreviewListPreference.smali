@@ -370,31 +370,6 @@
     return-void
 .end method
 
-.method protected onCreateView(Landroid/view/ViewGroup;)Landroid/view/View;
-    .locals 3
-
-    .line 121
-    invoke-virtual {p0}, Lcom/android/camera/ui/PreviewListPreference;->getContext()Landroid/content/Context;
-
-    move-result-object v0
-
-    invoke-static {v0}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
-
-    move-result-object v0
-
-    .line 122
-    const v1, 0x7f04003d
-
-    const/4 v2, 0x0
-
-    invoke-virtual {v0, v1, p1, v2}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
-
-    move-result-object p1
-
-    .line 121
-    return-object p1
-.end method
-
 .method protected onGetDefaultValue(Landroid/content/res/TypedArray;I)Ljava/lang/Object;
     .locals 2
 

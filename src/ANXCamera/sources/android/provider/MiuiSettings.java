@@ -37,6 +37,7 @@ import android.util.MiuiFontSizeUtils;
 import android.util.Slog;
 import com.mi.config.d;
 import com.ss.android.ttve.common.TEDefine;
+import java.io.Closeable;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -1593,7 +1594,7 @@ public class MiuiSettings {
             } else if (cached && (key == null || propertyName == null)) {
                 throw new NullPointerException("Want cache, but key or propertyName is null");
             } else {
-                Cursor cursor = null;
+                Closeable cursor = null;
                 try {
                     cursor = resolver.query(URI_CLOUD_ALL_DATA_SINGLE, new String[]{moduleName, key, propertyName, String.valueOf(cached)}, null, null, null);
                     if (cursor != null) {
@@ -1647,7 +1648,7 @@ public class MiuiSettings {
         }
 
         public static List<CloudData> getCloudDataList(ContentResolver resolver, String moduleName) {
-            Cursor cursor = null;
+            Closeable cursor = null;
             try {
                 cursor = resolver.query(URI_CLOUD_ALL_DATA, new String[]{moduleName}, null, null, null);
                 if (cursor != null) {

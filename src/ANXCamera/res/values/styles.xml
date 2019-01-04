@@ -10,7 +10,7 @@
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
-    <style name="ThemeCameraSettings" parent="@miui:style/Theme.Light.Settings" />
+    <style name="ThemeCameraSettings" parent="@android:style/Theme.Material.Light" />
     <style name="OnScreenHintTextAppearance">
         <item name="android:textSize">16.0sp</item>
         <item name="android:textStyle">normal</item>
