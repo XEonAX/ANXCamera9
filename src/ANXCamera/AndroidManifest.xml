@@ -4,7 +4,7 @@
     android:compileSdkVersionCodename="9" 
     package="com.android.camera" 
     android:versionCode="1" 
-    android:versionName="LooseTealCutworm"
+    android:versionName="ProperSarcasticAfricanclawedfrog"
     platformBuildVersionCode="28" 
     platformBuildVersionName="9">
     <original-package android:name="com.android.camera"/>
