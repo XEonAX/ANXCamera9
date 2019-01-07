@@ -4,7 +4,7 @@
     android:compileSdkVersionCodename="9" 
     package="com.android.camera" 
     android:versionCode="1" 
-    android:versionName="ProperSarcasticAfricanclawedfrog"
+    android:versionName="DirtyMetallicAxisdeer"
     platformBuildVersionCode="28" 
     platformBuildVersionName="9">
     <original-package android:name="com.android.camera"/>
@@ -42,7 +42,8 @@
         android:backupAgent="miui.app.backup.FullBackupAgent" 
         android:debuggable="true" 
         android:hardwareAccelerated="true" 
-        android:icon="@mipmap/ic_launcher_camera" 
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/camera_label" 
         android:name="com.android.camera.CameraAppImpl" 
         android:networkSecurityConfig="@xml/network_security_config" 

@@ -16,6 +16,7 @@ namespace ANXAppPortVersion
             var androidmanifestFilePath = args.FirstOrDefault(x => x.StartsWith("am="))?.Substring("am=".Length);
             var magiskmodulepropFilePath = args.FirstOrDefault(x => x.StartsWith("mm="))?.Substring("mm=".Length);
             bool incrementVersion = args.Contains("incrementversion=true");
+            bool incrementVersionName = args.Contains("incrementversionname=true");
             if (!string.IsNullOrWhiteSpace(versionFilePath) && File.Exists(versionFilePath))
             {
                 Console.WriteLine("VersionFile found at " + versionFilePath);
@@ -25,17 +26,23 @@ namespace ANXAppPortVersion
 
                 var versionFile = File.ReadAllLines(versionFilePath);
                 var oldVersionStr = versionFile.FirstOrDefault(x => x.StartsWith("versioncode="))?.Substring("versioncode=".Length);
+                var oldVersion = versionFile.FirstOrDefault(x => x.StartsWith("version="))?.Substring("version=".Length);
                 var oldVersionCode = Convert.ToInt32(oldVersionStr);
                 var newVersionCode = oldVersionCode;
                 if (incrementVersion)
                 {
                     newVersionCode++;
                 }
-
-
-                var newVersionName = adjectives.GetRand() +
+                var newVersionName = oldVersion ?? adjectives.GetRand() +
                 adjectives.GetRand() +
                 animals.GetRand();
+                if (incrementVersionName)
+                {
+                    newVersionName = adjectives.GetRand() +
+                                       adjectives.GetRand() +
+                                       animals.GetRand();
+                }
+
                 File.WriteAllLines(versionFilePath, new string[]
                 {
                     "versioncode=" +newVersionCode,
@@ -91,7 +98,7 @@ namespace ANXAppPortVersion
                             newMagiskModuleProp.Add(line);
                         }
                     }
-                    
+
                     File.WriteAllText(magiskmodulepropFilePath, string.Join("\n", newMagiskModuleProp) + "\n");
                 }
             }
