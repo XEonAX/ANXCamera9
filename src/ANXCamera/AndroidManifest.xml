@@ -4,7 +4,7 @@
     android:compileSdkVersionCodename="9" 
     package="com.android.camera" 
     android:versionCode="1" 
-    android:versionName="PunctualLateHalibut" 
+    android:versionName="AchingHighOwl" 
     platformBuildVersionCode="28" 
     platformBuildVersionName="9">
     <uses-sdk android:minSdkVersion="26" 
