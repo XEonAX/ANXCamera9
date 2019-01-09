@@ -12,6 +12,8 @@ This repository requires `git-lfs`
 Get it from https://git-lfs.github.com/ 
 Follow Step 1 of Getting Started. i.e. run once `git lfs install`
 
+Also requires Java 1.7 or 1.8, and 7-zip.
+
 Instructions for Development:
 
  1. Clone this repository

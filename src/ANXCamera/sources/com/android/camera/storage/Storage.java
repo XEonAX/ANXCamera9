@@ -185,7 +185,7 @@ public class Storage {
         return addImage(context, str, j, location, i, bArr, i2, i3, z, z2, z3, false, false, str2, pictureInfo);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:74:0x0110 A:{ExcHandler: all (r0_23 'th' java.lang.Throwable), Splitter: B:3:0x005d} */
+    /* JADX WARNING: Removed duplicated region for block: B:74:0x0110 A:{Splitter: B:3:0x005d, ExcHandler: all (r0_23 'th' java.lang.Throwable)} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:72:0x010d, code:
             r0 = th;
