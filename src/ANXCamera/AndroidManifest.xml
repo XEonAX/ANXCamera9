@@ -4,7 +4,7 @@
     android:compileSdkVersionCodename="9" 
     package="com.android.camera" 
     android:versionCode="1" 
-    android:versionName="PushyJealousIrishterrier"
+    android:versionName="LawfulSteepIndianabat"
     platformBuildVersionCode="28" 
     platformBuildVersionName="9">
     <original-package android:name="com.android.camera"/>
@@ -38,8 +38,7 @@
     <uses-permission android:name="com.miui.powerkeeper.permission.KILL_CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <application android:allowBackup="true" 
-        android:backupAgent="miui.app.backup.FullBackupAgent" 
+    <application android:allowBackup="false" 
         android:debuggable="true" 
         android:hardwareAccelerated="true" 
         android:icon="@mipmap/ic_launcher"
