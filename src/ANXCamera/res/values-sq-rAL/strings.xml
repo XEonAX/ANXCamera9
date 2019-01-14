@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">"S'mund të lidhet me kamerën"</string>
     <string name="cannot_connect_camera_twice">Akoma nuk mund të lidhet me kamerën. Provoni ta rindizni pajisjen tuaj.</string>
     <string name="camera_disabled">Kamera është çaktivizuar</string>
-    <string name="camera_label">Kamer</string>
+    <string name="camera_label">AnX Kamer</string>
     <string name="video_camera_label">Video regjistrues</string>
     <string name="no_storage">Futni kartën SD përpara përdorimit të kameras</string>
     <string name="not_enough_space">Memoria e brendshme është plot</string>

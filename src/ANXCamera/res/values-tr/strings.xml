@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Kameraya bağlanılamıyor</string>
     <string name="cannot_connect_camera_twice">Kameraya hala bağlanılamıyor. Cihazınızı yeniden başlatmayı deneyin.</string>
     <string name="camera_disabled">Kamera devre dışı bırakıldı</string>
-    <string name="camera_label">Kamera</string>
+    <string name="camera_label">AnX Kamera</string>
     <string name="video_camera_label">Video kamera</string>
     <string name="no_storage">Kamerayı kullanmadan önce bir SD kart takın</string>
     <string name="not_enough_space">Dahili hafıza dolu</string>

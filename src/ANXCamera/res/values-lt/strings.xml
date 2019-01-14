@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Neįmanoma prisijungti prie kameros</string>
     <string name="cannot_connect_camera_twice">Vis dar nepavyko prisijungti prie kameros. Pamėginkite perkrauti įrenginį.</string>
     <string name="camera_disabled">Kamera buvo išjungta</string>
-    <string name="camera_label">Kamera</string>
+    <string name="camera_label">AnX Kamera</string>
     <string name="video_camera_label">Vaizdo kamera</string>
     <string name="no_storage">Prieš naudodami kamerą įdėkite SD kortelę</string>
     <string name="not_enough_space">Vidinė atminė yra pilna</string>

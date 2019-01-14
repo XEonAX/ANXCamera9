@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Не атрымліваецца падключыцца да камеры</string>
     <string name="cannot_connect_camera_twice">Усё яшчэ не атрымліваецца падключыцца да камеры. Паспрабуйце перазагрузіць ваш тэлефон.</string>
     <string name="camera_disabled">Камера была адключана</string>
-    <string name="camera_label">Камера</string>
+    <string name="camera_label">AnX Камера</string>
     <string name="video_camera_label">Відэакамера</string>
     <string name="no_storage">Устаўце SD-карту перад выкарыстаннем камеры</string>
     <string name="not_enough_space">Унутранае сховішча запоўнена</string>

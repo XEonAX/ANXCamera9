@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">No es pot accedir a la càmera</string>
     <string name="cannot_connect_camera_twice">Encara no es pot accedir a la càmera. Proveu de reiniciar el telèfon.</string>
     <string name="camera_disabled">La càmera ha estat desactivada</string>
-    <string name="camera_label">Càmera</string>
+    <string name="camera_label">AnX Càmera</string>
     <string name="video_camera_label">Càmera de vídeo</string>
     <string name="no_storage">"Inseriu una targeta SD abans d'usar la càmera"</string>
     <string name="not_enough_space">"L'emmagatzematge intern està ple"</string>
