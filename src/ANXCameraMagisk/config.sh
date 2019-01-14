@@ -41,9 +41,10 @@ LATESTARTSERVICE=false
 
 print_modname() {
   ui_print "************************************"
-  ui_print "   MIUI Camera Port for Dipper      "
+  ui_print "   MIUI Camera Port for Perseus     "
   ui_print "                                    "
   ui_print " Created by AEonAX and Abhishek987  "
+  ui_print " Along with Mustang_ssc and Puksom  "
   ui_print "************************************"
 }
 

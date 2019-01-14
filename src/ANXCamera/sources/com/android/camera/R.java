@@ -1361,6 +1361,8 @@ public final class R {
         public static final int xiaomi_static_config = 2131230724;
         /* added by JADX */
         public static final int feature_beryllium = 2131230725;
+        /* added by JADX */
+        public static final int feature_perseus = 2131230726;
     }
 
     public static final class string {

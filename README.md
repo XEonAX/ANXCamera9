@@ -1,11 +1,18 @@
 # ANXMiuiCamera10
-MiuiCamera Port for Dipper
+MiuiCamera Port for Perseus
 
 Self sufficient repository to decompile to smali, recompile, sign, decompile to java, push to device app port.
 
-miui_MI8Global_8.12.20_c7a9af8587_9.0 was used as src.
+miui_MI8Global_8.12.20_c7a9af8587_9.0 was used as src. With Few FIles from Perseus
 
 Recommended to open this Repository in VSCode
+
+This repository requires `git-lfs`
+
+Get it from https://git-lfs.github.com/ 
+Follow Step 1 of Getting Started. i.e. run once `git lfs install`
+
+Also requires Java 1.7 or 1.8, and 7-zip.
 
 Instructions for Development:
 
@@ -16,11 +23,13 @@ Instructions for Development:
   
 Instructions for Testing:
 
- 1. Download the `apk` and `etc` folder from https://github.com/XEonAX/ANXMiuiCamera10/tree/dipper/out
- 2. Copy the `etc` folder to internal storage, so that `/sdcard/etc/device_features/beryllium.xml` becomes a valid path.
- 3. Install the `apk`
- 4. Grant All Permissions
- 5. Grant Usage Access Permission. 
-	 - Generally From Settings>Apps>Advanced>Special App Access>Usage Access>Camera>Allowed
- 6. Start Testing
+ 1. Download the `zip` from https://github.com/XEonAX/ANXMiuiCamera10/tree/perseus/out
+ 2. Install the `zip` with Magisk
+ 3. Grant All Permissions !Important!
+ 4. Start Testing
+
+
+Special Thanks to Abhishek Aggarwal (https://github.com/TheScarastic) for bringing this up to Beta version
+Special Thanks to Mustang_ssc (https://github.com/Mustang-ssc) for his help
+
 
