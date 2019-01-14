@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Não é possível ligar à câmara</string>
     <string name="cannot_connect_camera_twice">Ainda não é possível ligar à câmara. Tente reiniciar o dispositivo.</string>
     <string name="camera_disabled">A câmara foi desativada</string>
-    <string name="camera_label">Câmara</string>
+    <string name="camera_label">AnX Câmara</string>
     <string name="video_camera_label">Câmara de vídeo</string>
     <string name="no_storage">Introduza um cartão SD antes de utilizar a câmara</string>
     <string name="not_enough_space">O armazenamento interno está cheio</string>

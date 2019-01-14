@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">לא ניתן להתחבר למצלמה</string>
     <string name="cannot_connect_camera_twice">עדיין לא ניתן להתחבר למצלמה. נסה להפעיל את מכשירך מחדש.</string>
     <string name="camera_disabled">המצלמה הושבתה</string>
-    <string name="camera_label">מצלמה</string>
+    <string name="camera_label">AnX מצלמה</string>
     <string name="video_camera_label">מצלמת וידאו</string>
     <string name="no_storage">הכנס כרטיס זכרון לפני הפעלת המצלמה</string>
     <string name="not_enough_space">אחסון פנימי מלא</string>

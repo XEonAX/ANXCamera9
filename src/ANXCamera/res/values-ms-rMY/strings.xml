@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Sambungan kamera gagal</string>
     <string name="cannot_connect_camera_twice">Sambungan kamera masih gagal. Hidupkan semula peranti.</string>
     <string name="camera_disabled">Kamera telah dilumpuhkan</string>
-    <string name="camera_label">Kamera</string>
+    <string name="camera_label">AnX Kamera</string>
     <string name="video_camera_label">Kamera perakam</string>
     <string name="no_storage">Masukkan kad SD sebelum menggunakan kamera</string>
     <string name="not_enough_space">Storan dalaman penuh</string>

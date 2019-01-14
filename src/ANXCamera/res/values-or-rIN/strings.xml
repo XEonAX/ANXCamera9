@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">କ୍ୟାମେରା ସହିତ ସଂଯୋଗ ହୋ‌ଇପାରିବ ନାହିଁ</string>
     <string name="cannot_connect_camera_twice">କ୍ୟାମେରା ସହିତ ଏ ପର୍ଯ୍ୟନ୍ତ ସଂଯୋଗ ହୋ‌ଇପାରୁ ନାହିଁ। ଆପଣଙ୍କ ଫୋନ୍‌ ପୁଣି ଚାଲୁ କରିବାକୁ ଚେଷ୍ଟା କରନ୍ତୁ।</string>
     <string name="camera_disabled">କ୍ୟାମେରାକୁ ଅକ୍ଷମ କରାଯାଇଛି</string>
-    <string name="camera_label">କ୍ୟାମେରା</string>
+    <string name="camera_label">AnX କ୍ୟାମେରା</string>
     <string name="video_camera_label">କ୍ୟାମକଡର୍‌</string>
     <string name="no_storage">କ୍ୟାମେରା ବ୍ୟବହାର କରିବା ପୂର୍ବରୁ SD କାର୍ଡ ଭର୍ତ୍ତି କରନ୍ତୁ</string>
     <string name="not_enough_space">ଆଭ୍ୟନ୍ତରୀଣ ଷ୍ଟୋରେଜ୍‌ ପୂର୍ଣ୍ଣ ଅଛି</string>

@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">कॅमेर्‍याशी कनेक्ट करु शकत नाही</string>
     <string name="cannot_connect_camera_twice">अद्याप कॅमेरा कनेक्ट करु शकत नाही. डिव्हाइस रिस्टार्ट करून पहा.</string>
     <string name="camera_disabled">कॅमेरा अक्षम केलेला आहे</string>
-    <string name="camera_label">कॅमेरा</string>
+    <string name="camera_label">AnX कॅमेरा</string>
     <string name="video_camera_label">कॅमकॉर्डर</string>
     <string name="no_storage">कॅमेरा वापरण्यापूर्वी SD कार्ड टाका</string>
     <string name="not_enough_space">अंतर्गत स्टोरेज पूर्ण भरले आहे</string>
