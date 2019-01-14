@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">به دوربین وصل نمی شود</string>
     <string name="cannot_connect_camera_twice">همچنان به دوربین وصل نمی شود. دستگاه خود را دوباره راه‌اندازی کنید.</string>
     <string name="camera_disabled">دوربین غیرفعال شده است</string>
-    <string name="camera_label">دوربین</string>
+    <string name="camera_label">AnX دوربین</string>
     <string name="video_camera_label">دوربین فیلم‌برداری</string>
     <string name="no_storage">قبل از استفاده از دوربین کارت SD را وارد کنید</string>
     <string name="not_enough_space">حافظه داخلی پر است</string>

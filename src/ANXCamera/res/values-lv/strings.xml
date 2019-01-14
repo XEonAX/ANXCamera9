@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Pieslēgties kamerai neizdevās</string>
     <string name="cannot_connect_camera_twice">Vēl joprojām nevar savienoties ar kameru. Mēģiniet pārstartēt ierīci.</string>
     <string name="camera_disabled">Kamera tika atvienota</string>
-    <string name="camera_label">Kamera</string>
+    <string name="camera_label">AnX Kamera</string>
     <string name="video_camera_label">Videokamera</string>
     <string name="no_storage">Ievietojiet SD karti, pirms kameras izmantošanas</string>
     <string name="not_enough_space">Iekšējā atmiņa ir pilna</string>
