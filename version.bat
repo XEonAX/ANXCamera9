@@ -1,3 +1,3 @@
-call .\tools\ANXAppPortVersion\bin\Debug\ANXAppPortVersion.exe v=".\VERSION" incrementversionname=true
+call ..\ANXMiuiPortTools\versionizer.exe v=".\VERSION" incrementversionname=true incrementversion=true
 
-.\tools\ANXAppPortVersion\bin\Debug\ANXAppPortVersion.exe v=".\VERSION" am=".\src\ANXCamera\AndroidManifest.xml" mm=".\src\ANXCameraMagisk\module.prop"
+..\ANXMiuiPortTools\versionizer.exe v=".\VERSION" am=".\src\ANXCamera\AndroidManifest.xml" mm=".\src\ANXCameraMagisk\module.prop"
