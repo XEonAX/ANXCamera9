@@ -17,7 +17,7 @@
 # static fields
 .field public static final BEAUTY_FRAGMENT_CONTAINER_ID:I = 0x7f0d001a
 
-.field public static final EYE_LIGHT_POPU_TIP_FRAGMENT_CONTAINER_ID:I = 0x7f0d00f0
+.field public static final EYE_LIGHT_POPU_TIP_FRAGMENT_CONTAINER_ID:I = 0x7f0d00fd
 
 .field public static final FRAGMENT_BEAUTY:I = 0xfb
 
@@ -75,7 +75,7 @@
 
 .field public static final FRAGMENT_VERTICAL:I = 0xff8
 
-.field public static final MAKE_UP_POPU_FRAGMENT_CONTAINER_ID:I = 0x7f0d00ef
+.field public static final MAKE_UP_POPU_FRAGMENT_CONTAINER_ID:I = 0x7f0d00fc
 
 .field private static final TAG:Ljava/lang/String;
 
@@ -103,7 +103,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 52
+    .line 53
     const-class v0, Lcom/android/camera/fragment/BaseFragmentDelegate;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -118,27 +118,27 @@
 .method public constructor <init>(Lcom/android/camera/Camera;)V
     .locals 0
 
-    .line 131
+    .line 132
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 132
+    .line 133
     iput-object p1, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->mActivity:Lcom/android/camera/Camera;
 
-    .line 133
+    .line 134
     new-instance p1, Lcom/android/camera/animation/AnimationComposite;
 
     invoke-direct {p1}, Lcom/android/camera/animation/AnimationComposite;-><init>()V
 
     iput-object p1, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
-    .line 134
+    .line 135
     new-instance p1, Landroid/util/SparseIntArray;
 
     invoke-direct {p1}, Landroid/util/SparseIntArray;-><init>()V
 
     iput-object p1, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
 
-    .line 135
+    .line 136
     return-void
 .end method
 
@@ -155,7 +155,7 @@
         }
     .end annotation
 
-    .line 293
+    .line 294
     if-eqz p1, :cond_c
 
     invoke-interface {p1}, Ljava/util/List;->isEmpty()Z
@@ -164,7 +164,7 @@
 
     if-nez v0, :cond_c
 
-    .line 297
+    .line 298
     iget-object v0, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->mActivity:Lcom/android/camera/Camera;
 
     if-eqz v0, :cond_0
@@ -177,10 +177,10 @@
 
     if-eqz v0, :cond_0
 
-    .line 298
+    .line 299
     return-void
 
-    .line 301
+    .line 302
     :cond_0
     iget-object v0, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->mActivity:Lcom/android/camera/Camera;
 
@@ -188,12 +188,12 @@
 
     move-result-object v0
 
-    .line 303
+    .line 304
     invoke-virtual {v0}, Landroid/support/v4/app/FragmentManager;->beginTransaction()Landroid/support/v4/app/FragmentTransaction;
 
     move-result-object v1
 
-    .line 306
+    .line 307
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object p1
@@ -211,17 +211,17 @@
 
     check-cast v2, Lcom/android/camera/fragment/BaseFragmentOperation;
 
-    .line 307
+    .line 308
     iget v3, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->containerViewId:I
 
     invoke-virtual {p0, v3}, Lcom/android/camera/fragment/BaseFragmentDelegate;->getActiveFragment(I)I
 
     move-result v3
 
-    .line 308
+    .line 309
     iget v4, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->pendingFragmentInfo:I
 
-    .line 311
+    .line 312
     iget v5, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->operateType:I
 
     const/4 v6, 0x1
@@ -232,7 +232,7 @@
 
     goto/16 :goto_5
 
-    .line 417
+    .line 418
     :pswitch_0
     invoke-static {v3}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
@@ -244,13 +244,13 @@
 
     check-cast v4, Lcom/android/camera/fragment/BaseFragment;
 
-    .line 418
+    .line 419
     if-eqz v4, :cond_1
 
-    .line 419
+    .line 420
     invoke-virtual {v1, v4}, Landroid/support/v4/app/FragmentTransaction;->hide(Landroid/support/v4/app/Fragment;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 421
+    .line 422
     :cond_1
     iget v4, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->containerViewId:I
 
@@ -260,11 +260,11 @@
 
     goto/16 :goto_5
 
-    .line 400
+    .line 401
     :pswitch_1
     if-eq v3, v4, :cond_2
 
-    .line 401
+    .line 402
     invoke-static {v3}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
     move-result-object v5
@@ -275,16 +275,16 @@
 
     check-cast v5, Lcom/android/camera/fragment/BaseFragment;
 
-    .line 402
+    .line 403
     if-eqz v5, :cond_2
 
-    .line 403
+    .line 404
     invoke-virtual {v5, v6}, Lcom/android/camera/fragment/BaseFragment;->pendingGone(Z)V
 
-    .line 404
+    .line 405
     invoke-virtual {v1, v5}, Landroid/support/v4/app/FragmentTransaction;->hide(Landroid/support/v4/app/Fragment;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 408
+    .line 409
     :cond_2
     invoke-static {v4}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
@@ -296,26 +296,26 @@
 
     check-cast v5, Lcom/android/camera/fragment/BaseFragment;
 
-    .line 409
+    .line 410
     invoke-virtual {v5, v3}, Lcom/android/camera/fragment/BaseFragment;->setLastFragmentInfo(I)V
 
-    .line 410
+    .line 411
     invoke-virtual {v5}, Lcom/android/camera/fragment/BaseFragment;->pendingShow()V
 
-    .line 411
+    .line 412
     invoke-virtual {v1, v5}, Landroid/support/v4/app/FragmentTransaction;->show(Landroid/support/v4/app/Fragment;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 413
+    .line 414
     iget v3, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->containerViewId:I
 
     iget v2, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->operateType:I
 
     invoke-direct {p0, v3, v4, v2}, Lcom/android/camera/fragment/BaseFragmentDelegate;->updateCurrentFragments(III)V
 
-    .line 414
+    .line 415
     goto/16 :goto_5
 
-    .line 372
+    .line 373
     :pswitch_2
     iget-object v5, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->currentFragments:Landroid/util/SparseArray;
 
@@ -327,7 +327,7 @@
 
     check-cast v5, Ljava/util/List;
 
-    .line 373
+    .line 374
     move v8, v7
 
     :goto_1
@@ -337,7 +337,7 @@
 
     if-ge v8, v9, :cond_6
 
-    .line 374
+    .line 375
     invoke-interface {v5, v8}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
     move-result-object v9
@@ -348,19 +348,19 @@
 
     move-result v9
 
-    .line 375
+    .line 376
     if-ne v9, v4, :cond_3
 
-    .line 376
+    .line 377
     goto :goto_3
 
-    .line 378
+    .line 379
     :cond_3
     iget-object v10, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v10, v9}, Lcom/android/camera/animation/AnimationComposite;->remove(I)V
 
-    .line 379
+    .line 380
     invoke-static {v9}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
     move-result-object v10
@@ -371,33 +371,33 @@
 
     check-cast v10, Lcom/android/camera/fragment/BaseFragment;
 
-    .line 381
+    .line 382
     if-eqz v10, :cond_5
 
-    .line 382
+    .line 383
     if-eq v9, v3, :cond_4
 
-    .line 383
+    .line 384
     invoke-virtual {v10, v6}, Lcom/android/camera/fragment/BaseFragment;->pendingGone(Z)V
 
     goto :goto_2
 
-    .line 385
+    .line 386
     :cond_4
     invoke-virtual {v10, v7}, Lcom/android/camera/fragment/BaseFragment;->pendingGone(Z)V
 
-    .line 387
+    .line 388
     :goto_2
     invoke-virtual {v1, v10}, Landroid/support/v4/app/FragmentTransaction;->remove(Landroid/support/v4/app/Fragment;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 373
+    .line 374
     :cond_5
     :goto_3
     add-int/lit8 v8, v8, 0x1
 
     goto :goto_1
 
-    .line 391
+    .line 392
     :cond_6
     invoke-static {v4}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
@@ -409,26 +409,26 @@
 
     check-cast v5, Lcom/android/camera/fragment/BaseFragment;
 
-    .line 392
+    .line 393
     invoke-virtual {v5, v3}, Lcom/android/camera/fragment/BaseFragment;->setLastFragmentInfo(I)V
 
-    .line 393
+    .line 394
     invoke-virtual {v5}, Lcom/android/camera/fragment/BaseFragment;->pendingShow()V
 
-    .line 394
+    .line 395
     invoke-virtual {v1, v5}, Landroid/support/v4/app/FragmentTransaction;->show(Landroid/support/v4/app/Fragment;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 396
+    .line 397
     iget v3, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->containerViewId:I
 
     iget v2, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->operateType:I
 
     invoke-direct {p0, v3, v4, v2}, Lcom/android/camera/fragment/BaseFragmentDelegate;->updateCurrentFragments(III)V
 
-    .line 397
+    .line 398
     goto/16 :goto_5
 
-    .line 351
+    .line 352
     :pswitch_3
     invoke-static {v3}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
@@ -440,16 +440,16 @@
 
     check-cast v5, Lcom/android/camera/fragment/BaseFragment;
 
-    .line 352
+    .line 353
     if-eqz v5, :cond_7
 
-    .line 353
+    .line 354
     invoke-virtual {v5, v7}, Lcom/android/camera/fragment/BaseFragment;->pendingGone(Z)V
 
-    .line 354
+    .line 355
     invoke-virtual {v1, v5}, Landroid/support/v4/app/FragmentTransaction;->hide(Landroid/support/v4/app/Fragment;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 356
+    .line 357
     :cond_7
     invoke-static {v4}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
@@ -461,24 +461,24 @@
 
     check-cast v5, Lcom/android/camera/fragment/BaseFragment;
 
-    .line 357
+    .line 358
     if-eqz v5, :cond_8
 
-    .line 358
+    .line 359
     invoke-virtual {v5}, Lcom/android/camera/fragment/BaseFragment;->pendingShow()V
 
-    .line 359
+    .line 360
     invoke-virtual {v1, v5}, Landroid/support/v4/app/FragmentTransaction;->show(Landroid/support/v4/app/Fragment;)Landroid/support/v4/app/FragmentTransaction;
 
     goto :goto_4
 
-    .line 361
+    .line 362
     :cond_8
     invoke-direct {p0, v7, v4, v3, p2}, Lcom/android/camera/fragment/BaseFragmentDelegate;->constructFragment(ZIILcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)Lcom/android/camera/fragment/BaseFragment;
 
     move-result-object v5
 
-    .line 362
+    .line 363
     iget v3, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->containerViewId:I
 
     invoke-virtual {v5}, Lcom/android/camera/fragment/BaseFragment;->getFragmentTag()Ljava/lang/String;
@@ -487,7 +487,7 @@
 
     invoke-virtual {v1, v3, v5, v6}, Landroid/support/v4/app/FragmentTransaction;->add(ILandroid/support/v4/app/Fragment;Ljava/lang/String;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 365
+    .line 366
     :goto_4
     iget-object v3, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
@@ -497,23 +497,23 @@
 
     invoke-virtual {v3, v6, v5}, Lcom/android/camera/animation/AnimationComposite;->put(ILcom/android/camera/animation/AnimationDelegate$AnimationResource;)V
 
-    .line 367
+    .line 368
     iget v3, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->containerViewId:I
 
     iget v2, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->operateType:I
 
     invoke-direct {p0, v3, v4, v2}, Lcom/android/camera/fragment/BaseFragmentDelegate;->updateCurrentFragments(III)V
 
-    .line 369
+    .line 370
     goto :goto_5
 
-    .line 336
+    .line 337
     :pswitch_4
     iget-object v4, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v4, v3}, Lcom/android/camera/animation/AnimationComposite;->remove(I)V
 
-    .line 337
+    .line 338
     invoke-static {v3}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
     move-result-object v4
@@ -524,16 +524,16 @@
 
     check-cast v4, Lcom/android/camera/fragment/BaseFragment;
 
-    .line 338
+    .line 339
     if-eqz v4, :cond_9
 
-    .line 339
+    .line 340
     invoke-virtual {v4, v7}, Lcom/android/camera/fragment/BaseFragment;->pendingGone(Z)V
 
-    .line 340
+    .line 341
     invoke-virtual {v1, v4}, Landroid/support/v4/app/FragmentTransaction;->remove(Landroid/support/v4/app/Fragment;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 345
+    .line 346
     :cond_9
     iget v4, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->containerViewId:I
 
@@ -541,16 +541,16 @@
 
     invoke-direct {p0, v4, v3, v2}, Lcom/android/camera/fragment/BaseFragmentDelegate;->updateCurrentFragments(III)V
 
-    .line 348
+    .line 349
     goto :goto_5
 
-    .line 323
+    .line 324
     :pswitch_5
     iget-object v3, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v3, v4}, Lcom/android/camera/animation/AnimationComposite;->remove(I)V
 
-    .line 325
+    .line 326
     invoke-static {v4}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
     move-result-object v3
@@ -561,16 +561,16 @@
 
     check-cast v3, Lcom/android/camera/fragment/BaseFragment;
 
-    .line 326
+    .line 327
     if-eqz v3, :cond_a
 
-    .line 327
+    .line 328
     invoke-virtual {v3, v7}, Lcom/android/camera/fragment/BaseFragment;->pendingGone(Z)V
 
-    .line 328
+    .line 329
     invoke-virtual {v1, v3}, Landroid/support/v4/app/FragmentTransaction;->remove(Landroid/support/v4/app/Fragment;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 331
+    .line 332
     :cond_a
     iget v3, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->containerViewId:I
 
@@ -578,10 +578,10 @@
 
     invoke-direct {p0, v3, v4, v2}, Lcom/android/camera/fragment/BaseFragmentDelegate;->updateCurrentFragments(III)V
 
-    .line 333
+    .line 334
     goto :goto_5
 
-    .line 313
+    .line 314
     :pswitch_6
     iget v3, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->containerViewId:I
 
@@ -589,17 +589,17 @@
 
     move-result v3
 
-    .line 314
+    .line 315
     iget-object v5, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v5, v3}, Lcom/android/camera/animation/AnimationComposite;->remove(I)V
 
-    .line 315
+    .line 316
     invoke-direct {p0, v7, v4, v3, p2}, Lcom/android/camera/fragment/BaseFragmentDelegate;->constructFragment(ZIILcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)Lcom/android/camera/fragment/BaseFragment;
 
     move-result-object v3
 
-    .line 316
+    .line 317
     iget v5, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->containerViewId:I
 
     invoke-virtual {v3}, Lcom/android/camera/fragment/BaseFragment;->getFragmentTag()Ljava/lang/String;
@@ -608,7 +608,7 @@
 
     invoke-virtual {v1, v5, v3, v6}, Landroid/support/v4/app/FragmentTransaction;->replace(ILandroid/support/v4/app/Fragment;Ljava/lang/String;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 317
+    .line 318
     iget-object v5, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v3}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
@@ -617,28 +617,28 @@
 
     invoke-virtual {v5, v6, v3}, Lcom/android/camera/animation/AnimationComposite;->put(ILcom/android/camera/animation/AnimationDelegate$AnimationResource;)V
 
-    .line 319
+    .line 320
     iget v3, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->containerViewId:I
 
     iget v2, v2, Lcom/android/camera/fragment/BaseFragmentOperation;->operateType:I
 
     invoke-direct {p0, v3, v4, v2}, Lcom/android/camera/fragment/BaseFragmentDelegate;->updateCurrentFragments(III)V
 
-    .line 320
+    .line 321
     nop
 
-    .line 426
+    .line 427
     :goto_5
     goto/16 :goto_0
 
-    .line 428
+    .line 429
     :cond_b
     invoke-virtual {v1}, Landroid/support/v4/app/FragmentTransaction;->commitAllowingStateLoss()I
 
-    .line 429
+    .line 430
     return-void
 
-    .line 294
+    .line 295
     :cond_c
     new-instance p1, Ljava/lang/RuntimeException;
 
@@ -665,17 +665,17 @@
     .annotation runtime Ljava/lang/Deprecated;
     .end annotation
 
-    .line 768
+    .line 769
     invoke-virtual {p0}, Landroid/support/v4/app/Fragment;->getChildFragmentManager()Landroid/support/v4/app/FragmentManager;
 
     move-result-object p0
 
-    .line 769
+    .line 770
     new-instance v0, Lcom/android/camera/fragment/lifeCircle/BaseLifeCircleBindFragment;
 
     invoke-direct {v0}, Lcom/android/camera/fragment/lifeCircle/BaseLifeCircleBindFragment;-><init>()V
 
-    .line 770
+    .line 771
     invoke-virtual {v0}, Lcom/android/camera/fragment/lifeCircle/BaseLifeCircleBindFragment;->getLifecycle()Lcom/android/camera/fragment/lifeCircle/BaseFragmentLifecycle;
 
     move-result-object v1
@@ -688,32 +688,32 @@
 
     invoke-virtual {v1, v2, v3}, Lcom/android/camera/fragment/lifeCircle/BaseFragmentLifecycle;->addListener(Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;Ljava/lang/String;)V
 
-    .line 798
+    .line 799
     invoke-virtual {p0}, Landroid/support/v4/app/FragmentManager;->beginTransaction()Landroid/support/v4/app/FragmentTransaction;
 
     move-result-object p0
 
     const-string v1, "com.android.camera.bind"
 
-    .line 799
+    .line 800
     invoke-virtual {p0, v0, v1}, Landroid/support/v4/app/FragmentTransaction;->add(Landroid/support/v4/app/Fragment;Ljava/lang/String;)Landroid/support/v4/app/FragmentTransaction;
 
     move-result-object p0
 
-    .line 800
+    .line 801
     invoke-virtual {p0}, Landroid/support/v4/app/FragmentTransaction;->commitAllowingStateLoss()I
 
-    .line 801
+    .line 802
     return-void
 .end method
 
 .method private constructFragment(ZIILcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)Lcom/android/camera/fragment/BaseFragment;
     .locals 2
 
-    .line 500
+    .line 501
     nop
 
-    .line 502
+    .line 503
     const/16 v0, 0xf7
 
     const/4 v1, 0x0
@@ -736,7 +736,7 @@
 
     goto/16 :goto_0
 
-    .line 586
+    .line 587
     :pswitch_0
     new-instance v1, Lcom/android/camera/fragment/live/FragmentLiveSpeed;
 
@@ -744,215 +744,215 @@
 
     goto/16 :goto_0
 
-    .line 583
+    .line 584
     :pswitch_1
     new-instance v1, Lcom/android/camera/fragment/live/FragmentLiveSticker;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/live/FragmentLiveSticker;-><init>()V
 
-    .line 584
+    .line 585
     goto/16 :goto_0
 
-    .line 580
+    .line 581
     :pswitch_2
     new-instance v1, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;-><init>()V
 
-    .line 581
+    .line 582
     goto/16 :goto_0
 
-    .line 577
+    .line 578
     :pswitch_3
     new-instance v1, Lcom/android/camera/fragment/beauty/FragmentBlankBeauty;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/beauty/FragmentBlankBeauty;-><init>()V
 
-    .line 578
+    .line 579
     goto/16 :goto_0
 
-    .line 574
+    .line 575
     :pswitch_4
     new-instance v1, Lcom/android/camera/fragment/beauty/FragmentPopuEyeLightTip;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/beauty/FragmentPopuEyeLightTip;-><init>()V
 
-    .line 575
+    .line 576
     goto/16 :goto_0
 
-    .line 571
+    .line 572
     :pswitch_5
     new-instance v1, Lcom/android/camera/fragment/FragmentVertical;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/FragmentVertical;-><init>()V
 
-    .line 572
+    .line 573
     goto/16 :goto_0
 
-    .line 568
-    :pswitch_6
-    new-instance v1, Lcom/android/camera/fragment/FragmentFullScreen;
-
-    invoke-direct {v1}, Lcom/android/camera/fragment/FragmentFullScreen;-><init>()V
-
     .line 569
+    :pswitch_6
+    new-instance v1, Lcom/android/camera/fragment/fullscreen/FragmentFullScreen;
+
+    invoke-direct {v1}, Lcom/android/camera/fragment/fullscreen/FragmentFullScreen;-><init>()V
+
+    .line 570
     goto :goto_0
 
-    .line 564
+    .line 565
     :pswitch_7
     new-instance v1, Lcom/android/camera/fragment/dual/FragmentDualStereo;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/dual/FragmentDualStereo;-><init>()V
 
-    .line 565
+    .line 566
     goto :goto_0
 
-    .line 560
+    .line 561
     :pswitch_8
     new-instance v1, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;-><init>()V
 
-    .line 561
+    .line 562
     goto :goto_0
 
-    .line 556
+    .line 557
     :pswitch_9
     new-instance v1, Lcom/android/camera/fragment/FragmentBottomIntentDone;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/FragmentBottomIntentDone;-><init>()V
 
-    .line 557
+    .line 558
     goto :goto_0
 
-    .line 548
+    .line 549
     :pswitch_a
     new-instance v1, Lcom/android/camera/fragment/beauty/FragmentPopupBeautyLevel;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/beauty/FragmentPopupBeautyLevel;-><init>()V
 
-    .line 549
+    .line 550
     goto :goto_0
 
-    .line 552
+    .line 553
     :pswitch_b
     new-instance v1, Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;-><init>()V
 
-    .line 553
+    .line 554
     goto :goto_0
 
-    .line 544
+    .line 545
     :pswitch_c
     new-instance v1, Lcom/android/camera/fragment/FragmentPanorama;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/FragmentPanorama;-><init>()V
 
-    .line 545
+    .line 546
     goto :goto_0
 
-    .line 532
+    .line 533
     :pswitch_d
     new-instance v1, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;-><init>()V
 
-    .line 533
+    .line 534
     goto :goto_0
 
-    .line 528
+    .line 529
     :pswitch_e
     new-instance v1, Lcom/android/camera/fragment/FragmentBeauty;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/FragmentBeauty;-><init>()V
 
-    .line 529
+    .line 530
     goto :goto_0
 
-    .line 520
+    .line 521
     :pswitch_f
     new-instance v1, Lcom/android/camera/fragment/FragmentFilter;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/FragmentFilter;-><init>()V
 
-    .line 521
+    .line 522
     goto :goto_0
 
-    .line 536
+    .line 537
     :pswitch_10
     new-instance v1, Lcom/android/camera/fragment/beauty/FragmentPopupBeauty;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/beauty/FragmentPopupBeauty;-><init>()V
 
-    .line 537
+    .line 538
     goto :goto_0
 
-    .line 516
+    .line 517
     :pswitch_11
     new-instance v1, Lcom/android/camera/fragment/top/FragmentTopConfig;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/top/FragmentTopConfig;-><init>()V
 
-    .line 517
+    .line 518
     goto :goto_0
 
-    .line 512
+    .line 513
     :pswitch_12
     new-instance v1, Lcom/android/camera/fragment/FragmentMainContent;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/FragmentMainContent;-><init>()V
 
-    .line 513
+    .line 514
     goto :goto_0
 
-    .line 508
+    .line 509
     :pswitch_13
     new-instance v1, Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;-><init>()V
 
-    .line 509
+    .line 510
     goto :goto_0
 
-    .line 505
+    .line 506
     :pswitch_14
     return-object v1
 
-    .line 540
+    .line 541
     :cond_0
     new-instance v1, Lcom/android/camera/fragment/sticker/FragmentSticker;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/sticker/FragmentSticker;-><init>()V
 
-    .line 541
+    .line 542
     goto :goto_0
 
-    .line 524
+    .line 525
     :cond_1
     new-instance v1, Lcom/android/camera/fragment/manually/FragmentManually;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/manually/FragmentManually;-><init>()V
 
-    .line 525
+    .line 526
     nop
 
-    .line 590
+    .line 591
     :goto_0
     invoke-virtual {v1, p3}, Lcom/android/camera/fragment/BaseFragment;->setLastFragmentInfo(I)V
 
-    .line 591
+    .line 592
     invoke-virtual {v1, p4}, Lcom/android/camera/fragment/BaseFragment;->setLifecycleListener(Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)V
 
-    .line 592
+    .line 593
     invoke-virtual {v1}, Lcom/android/camera/fragment/BaseFragment;->registerProtocol()V
 
-    .line 593
+    .line 594
     xor-int/lit8 p1, p1, 0x1
 
     invoke-virtual {v1, p1}, Lcom/android/camera/fragment/BaseFragment;->setEnableClickInitValue(Z)V
 
-    .line 594
+    .line 595
     return-object v1
 
     nop
@@ -1002,30 +1002,30 @@
 .method private initCurrentFragments(Landroid/util/SparseIntArray;)V
     .locals 5
 
-    .line 253
+    .line 254
     invoke-virtual {p1}, Landroid/util/SparseIntArray;->size()I
 
     move-result v0
 
-    .line 254
+    .line 255
     new-instance v1, Landroid/util/SparseArray;
 
     invoke-direct {v1, v0}, Landroid/util/SparseArray;-><init>(I)V
 
     iput-object v1, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->currentFragments:Landroid/util/SparseArray;
 
-    .line 255
+    .line 256
     const/4 v1, 0x0
 
     :goto_0
     if-ge v1, v0, :cond_0
 
-    .line 256
+    .line 257
     new-instance v2, Ljava/util/ArrayList;
 
     invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
 
-    .line 257
+    .line 258
     invoke-virtual {p1, v1}, Landroid/util/SparseIntArray;->valueAt(I)I
 
     move-result v3
@@ -1036,7 +1036,7 @@
 
     invoke-interface {v2, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 258
+    .line 259
     iget-object v3, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->currentFragments:Landroid/util/SparseArray;
 
     invoke-virtual {p1, v1}, Landroid/util/SparseIntArray;->keyAt(I)I
@@ -1045,12 +1045,12 @@
 
     invoke-virtual {v3, v4, v2}, Landroid/util/SparseArray;->put(ILjava/lang/Object;)V
 
-    .line 255
+    .line 256
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
 
-    .line 260
+    .line 261
     :cond_0
     return-void
 .end method
@@ -1062,7 +1062,7 @@
         .end annotation
     .end param
 
-    .line 434
+    .line 435
     iget-object v0, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->currentFragments:Landroid/util/SparseArray;
 
     invoke-virtual {v0, p1}, Landroid/util/SparseArray;->get(I)Ljava/lang/Object;
@@ -1071,14 +1071,14 @@
 
     check-cast p1, Ljava/util/List;
 
-    .line 435
+    .line 436
     const/4 v0, 0x0
 
     packed-switch p3, :pswitch_data_0
 
     goto/16 :goto_7
 
-    .line 478
+    .line 479
     :goto_0
     :pswitch_0
     invoke-interface {p1}, Ljava/util/List;->size()I
@@ -1087,7 +1087,7 @@
 
     if-ge v0, p3, :cond_7
 
-    .line 479
+    .line 480
     invoke-interface {p1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
     move-result-object p3
@@ -1100,19 +1100,19 @@
 
     if-ne p3, p2, :cond_0
 
-    .line 480
+    .line 481
     invoke-interface {p1, v0}, Ljava/util/List;->remove(I)Ljava/lang/Object;
 
-    .line 481
+    .line 482
     goto/16 :goto_7
 
-    .line 478
+    .line 479
     :cond_0
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
 
-    .line 468
+    .line 469
     :goto_1
     :pswitch_1
     invoke-interface {p1}, Ljava/util/List;->size()I
@@ -1121,7 +1121,7 @@
 
     if-ge v0, p3, :cond_2
 
-    .line 469
+    .line 470
     invoke-interface {p1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
     move-result-object p3
@@ -1134,19 +1134,19 @@
 
     if-ne p3, p2, :cond_1
 
-    .line 470
+    .line 471
     invoke-interface {p1, v0}, Ljava/util/List;->remove(I)Ljava/lang/Object;
 
-    .line 471
+    .line 472
     goto :goto_2
 
-    .line 468
+    .line 469
     :cond_1
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_1
 
-    .line 474
+    .line 475
     :cond_2
     :goto_2
     invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1155,24 +1155,24 @@
 
     invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 475
+    .line 476
     goto :goto_7
 
-    .line 463
+    .line 464
     :pswitch_2
     invoke-interface {p1}, Ljava/util/List;->clear()V
 
-    .line 464
+    .line 465
     invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object p2
 
     invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 465
+    .line 466
     goto :goto_7
 
-    .line 459
+    .line 460
     :pswitch_3
     invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
@@ -1180,10 +1180,10 @@
 
     invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 460
+    .line 461
     goto :goto_7
 
-    .line 450
+    .line 451
     :goto_3
     :pswitch_4
     invoke-interface {p1}, Ljava/util/List;->size()I
@@ -1192,7 +1192,7 @@
 
     if-ge v0, p3, :cond_4
 
-    .line 451
+    .line 452
     invoke-interface {p1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
     move-result-object p3
@@ -1205,24 +1205,24 @@
 
     if-ne p3, p2, :cond_3
 
-    .line 452
+    .line 453
     invoke-interface {p1, v0}, Ljava/util/List;->remove(I)Ljava/lang/Object;
 
-    .line 453
+    .line 454
     goto :goto_4
 
-    .line 450
+    .line 451
     :cond_3
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_3
 
-    .line 456
+    .line 457
     :cond_4
     :goto_4
     goto :goto_7
 
-    .line 442
+    .line 443
     :goto_5
     :pswitch_5
     invoke-interface {p1}, Ljava/util/List;->size()I
@@ -1231,7 +1231,7 @@
 
     if-ge v0, p3, :cond_6
 
-    .line 443
+    .line 444
     invoke-interface {p1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
     move-result-object p3
@@ -1244,38 +1244,38 @@
 
     if-ne p3, p2, :cond_5
 
-    .line 444
+    .line 445
     invoke-interface {p1, v0}, Ljava/util/List;->remove(I)Ljava/lang/Object;
 
-    .line 445
+    .line 446
     goto :goto_6
 
-    .line 442
+    .line 443
     :cond_5
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_5
 
-    .line 448
+    .line 449
     :cond_6
     :goto_6
     goto :goto_7
 
-    .line 437
+    .line 438
     :pswitch_6
     invoke-interface {p1}, Ljava/util/List;->clear()V
 
-    .line 438
+    .line 439
     invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object p2
 
     invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 439
+    .line 440
     nop
 
-    .line 486
+    .line 487
     :cond_7
     :goto_7
     return-void
@@ -1297,19 +1297,19 @@
 .method public delegateEvent(I)V
     .locals 9
 
-    .line 605
+    .line 606
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 608
+    .line 609
     const/16 v1, 0xff1
 
-    const v2, 0x7f0d00ee
+    const v2, 0x7f0d00fb
 
     const/16 v3, 0xf1
 
-    const v4, 0x7f0d00ef
+    const v4, 0x7f0d00fc
 
     const v5, 0x7f0d001b
 
@@ -1320,7 +1320,7 @@
     :pswitch_0
     goto/16 :goto_1
 
-    .line 678
+    .line 679
     :pswitch_1
     invoke-virtual {p0, v6}, Lcom/android/camera/fragment/BaseFragmentDelegate;->getActiveFragment(I)I
 
@@ -1330,7 +1330,7 @@
 
     if-eq p1, v1, :cond_0
 
-    .line 679
+    .line 680
     invoke-static {v6}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1343,7 +1343,7 @@
 
     goto/16 :goto_1
 
-    .line 681
+    .line 682
     :cond_0
     invoke-static {v6}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
@@ -1355,10 +1355,10 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 683
+    .line 684
     goto/16 :goto_1
 
-    .line 670
+    .line 671
     :pswitch_2
     invoke-virtual {p0, v6}, Lcom/android/camera/fragment/BaseFragmentDelegate;->getActiveFragment(I)I
 
@@ -1368,7 +1368,7 @@
 
     if-eq p1, v1, :cond_1
 
-    .line 671
+    .line 672
     invoke-static {v6}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1381,7 +1381,7 @@
 
     goto/16 :goto_1
 
-    .line 673
+    .line 674
     :cond_1
     invoke-static {v6}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
@@ -1393,21 +1393,21 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 675
+    .line 676
     goto/16 :goto_1
 
-    .line 630
+    .line 631
     :pswitch_3
     invoke-virtual {p0, v6}, Lcom/android/camera/fragment/BaseFragmentDelegate;->getActiveFragment(I)I
 
     move-result p1
 
-    .line 631
+    .line 632
     const/16 v1, 0xffa
 
     if-eq p1, v1, :cond_2
 
-    .line 632
+    .line 633
     invoke-static {v6}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1420,7 +1420,7 @@
 
     goto/16 :goto_1
 
-    .line 634
+    .line 635
     :cond_2
     invoke-static {v6}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
@@ -1432,12 +1432,12 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 636
+    .line 637
     goto/16 :goto_1
 
-    .line 728
+    .line 729
     :pswitch_4
-    const p1, 0x7f0d00f0
+    const p1, 0x7f0d00fd
 
     invoke-virtual {p0, p1}, Lcom/android/camera/fragment/BaseFragmentDelegate;->getActiveFragment(I)I
 
@@ -1447,7 +1447,7 @@
 
     if-ne v1, v2, :cond_3
 
-    .line 729
+    .line 730
     invoke-static {p1}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1462,7 +1462,7 @@
 
     goto/16 :goto_1
 
-    .line 731
+    .line 732
     :cond_3
     invoke-static {p1}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
@@ -1476,7 +1476,7 @@
 
     goto/16 :goto_1
 
-    .line 710
+    .line 711
     :pswitch_5
     invoke-virtual {p0, v5}, Lcom/android/camera/fragment/BaseFragmentDelegate;->getActiveFragment(I)I
 
@@ -1484,7 +1484,7 @@
 
     if-eq p1, v3, :cond_d
 
-    .line 711
+    .line 712
     invoke-static {v5}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1495,7 +1495,7 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 713
+    .line 714
     invoke-static {v4}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1506,7 +1506,7 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 715
+    .line 716
     invoke-static {v2}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1519,7 +1519,7 @@
 
     goto/16 :goto_1
 
-    .line 686
+    .line 687
     :pswitch_6
     invoke-virtual {p0, v5}, Lcom/android/camera/fragment/BaseFragmentDelegate;->getActiveFragment(I)I
 
@@ -1527,17 +1527,17 @@
 
     const/16 v1, 0xff3
 
-    const v4, 0x7f0d00ec
+    const v4, 0x7f0d00f9
 
-    const v6, 0x7f0d00e7
+    const v6, 0x7f0d00f4
 
-    const v7, 0x7f0d00eb
+    const v7, 0x7f0d00f8
 
-    const v8, 0x7f0d00ea
+    const v8, 0x7f0d00f7
 
     if-eq p1, v1, :cond_5
 
-    .line 687
+    .line 688
     invoke-static {v5}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1548,7 +1548,7 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 688
+    .line 689
     invoke-static {v8}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1559,7 +1559,7 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 689
+    .line 690
     invoke-static {v7}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1570,7 +1570,7 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 690
+    .line 691
     iget-object p1, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {p1}, Lcom/android/camera/Camera;->getCameraIntentManager()Lcom/android/camera/CameraIntentManager;
@@ -1583,7 +1583,7 @@
 
     if-nez p1, :cond_4
 
-    .line 691
+    .line 692
     invoke-static {v6}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1594,7 +1594,7 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 693
+    .line 694
     :cond_4
     invoke-static {v2}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
@@ -1606,7 +1606,7 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 694
+    .line 695
     invoke-static {v4}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1619,7 +1619,7 @@
 
     goto/16 :goto_1
 
-    .line 696
+    .line 697
     :cond_5
     invoke-static {v5}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
@@ -1631,7 +1631,7 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 697
+    .line 698
     invoke-static {v8}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1646,7 +1646,7 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 698
+    .line 699
     invoke-static {v7}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1661,7 +1661,7 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 699
+    .line 700
     iget-object p1, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {p1}, Lcom/android/camera/Camera;->getCameraIntentManager()Lcom/android/camera/CameraIntentManager;
@@ -1674,7 +1674,7 @@
 
     if-nez p1, :cond_6
 
-    .line 700
+    .line 701
     invoke-static {v6}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1689,7 +1689,7 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 702
+    .line 703
     :cond_6
     invoke-static {v2}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
@@ -1705,20 +1705,20 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 703
+    .line 704
     invoke-static {}, Lcom/mi/config/b;->isSupportedOpticalZoom()Z
 
     move-result p1
 
     if-nez p1, :cond_7
 
-    invoke-static {}, Lcom/mi/config/b;->hd()Z
+    invoke-static {}, Lcom/mi/config/b;->hm()Z
 
     move-result p1
 
     if-eqz p1, :cond_d
 
-    .line 704
+    .line 705
     :cond_7
     invoke-static {v4}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
@@ -1736,7 +1736,7 @@
 
     goto/16 :goto_1
 
-    .line 662
+    .line 663
     :pswitch_7
     invoke-virtual {p0, v4}, Lcom/android/camera/fragment/BaseFragmentDelegate;->getActiveFragment(I)I
 
@@ -1746,7 +1746,7 @@
 
     if-eq p1, v1, :cond_8
 
-    .line 663
+    .line 664
     invoke-static {v4}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1761,7 +1761,7 @@
 
     goto/16 :goto_1
 
-    .line 665
+    .line 666
     :cond_8
     invoke-static {v4}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
@@ -1773,21 +1773,21 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 667
+    .line 668
     goto/16 :goto_1
 
-    .line 639
+    .line 640
     :pswitch_8
     invoke-virtual {p0, v5}, Lcom/android/camera/fragment/BaseFragmentDelegate;->getActiveFragment(I)I
 
     move-result p1
 
-    .line 640
+    .line 641
     const/16 v6, 0xff
 
     if-eq p1, v6, :cond_9
 
-    .line 641
+    .line 642
     invoke-static {v5}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1800,7 +1800,7 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 642
+    .line 643
     invoke-static {v4}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1813,7 +1813,7 @@
 
     goto/16 :goto_1
 
-    .line 644
+    .line 645
     :cond_9
     invoke-static {v5}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
@@ -1825,7 +1825,7 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 645
+    .line 646
     invoke-static {v2}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1836,10 +1836,10 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 647
+    .line 648
     goto/16 :goto_1
 
-    .line 654
+    .line 655
     :pswitch_9
     invoke-virtual {p0, v4}, Lcom/android/camera/fragment/BaseFragmentDelegate;->getActiveFragment(I)I
 
@@ -1849,7 +1849,7 @@
 
     if-eq p1, v1, :cond_a
 
-    .line 655
+    .line 656
     invoke-static {v4}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1864,7 +1864,7 @@
 
     goto :goto_1
 
-    .line 657
+    .line 658
     :cond_a
     invoke-static {v4}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
@@ -1876,21 +1876,21 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 659
+    .line 660
     goto :goto_1
 
-    .line 622
+    .line 623
     :pswitch_a
     invoke-virtual {p0, v6}, Lcom/android/camera/fragment/BaseFragmentDelegate;->getActiveFragment(I)I
 
     move-result p1
 
-    .line 623
+    .line 624
     const/16 v1, 0xfb
 
     if-eq p1, v1, :cond_b
 
-    .line 624
+    .line 625
     invoke-static {v6}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1905,7 +1905,7 @@
 
     goto :goto_1
 
-    .line 626
+    .line 627
     :cond_b
     invoke-static {v6}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
@@ -1917,21 +1917,21 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 628
+    .line 629
     goto :goto_1
 
-    .line 612
+    .line 613
     :pswitch_b
     invoke-virtual {p0, v5}, Lcom/android/camera/fragment/BaseFragmentDelegate;->getActiveFragment(I)I
 
     move-result p1
 
-    .line 613
+    .line 614
     const/16 v1, 0xfa
 
     if-eq p1, v1, :cond_c
 
-    .line 614
+    .line 615
     invoke-static {v5}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
     move-result-object p1
@@ -1946,7 +1946,7 @@
 
     goto :goto_0
 
-    .line 616
+    .line 617
     :cond_c
     invoke-static {v5}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
@@ -1958,7 +1958,7 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 618
+    .line 619
     :goto_0
     invoke-static {v4}, Lcom/android/camera/fragment/BaseFragmentOperation;->create(I)Lcom/android/camera/fragment/BaseFragmentOperation;
 
@@ -1970,17 +1970,17 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 619
+    .line 620
     nop
 
-    .line 738
+    .line 739
     :cond_d
     :goto_1
     const/4 p1, 0x0
 
     invoke-direct {p0, v0, p1}, Lcom/android/camera/fragment/BaseFragmentDelegate;->applyUpdateSet(Ljava/util/List;Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)V
 
-    .line 739
+    .line 740
     return-void
 
     :pswitch_data_0
@@ -2008,29 +2008,29 @@
         .end annotation
     .end param
 
-    .line 273
+    .line 274
     iget-object v0, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->mActivity:Lcom/android/camera/Camera;
 
     const/4 v1, 0x0
 
     if-nez v0, :cond_0
 
-    .line 274
+    .line 275
     return-object v1
 
-    .line 277
+    .line 278
     :cond_0
     nop
 
-    .line 278
+    .line 279
     if-eqz p3, :cond_1
 
-    .line 279
+    .line 280
     new-instance v1, Lcom/android/camera/fragment/BaseFragmentDelegate$1;
 
     invoke-direct {v1, p0, p3}, Lcom/android/camera/fragment/BaseFragmentDelegate$1;-><init>(Lcom/android/camera/fragment/BaseFragmentDelegate;Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)V
 
-    .line 288
+    .line 289
     :cond_1
     iget-object p3, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
@@ -2048,7 +2048,7 @@
         .end annotation
     .end param
 
-    .line 743
+    .line 744
     iget-object v0, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->currentFragments:Landroid/util/SparseArray;
 
     invoke-virtual {v0, p1}, Landroid/util/SparseArray;->get(I)Ljava/lang/Object;
@@ -2057,7 +2057,7 @@
 
     check-cast p1, Ljava/util/List;
 
-    .line 744
+    .line 745
     if-eqz p1, :cond_1
 
     invoke-interface {p1}, Ljava/util/List;->isEmpty()Z
@@ -2068,7 +2068,7 @@
 
     goto :goto_0
 
-    .line 747
+    .line 748
     :cond_0
     invoke-interface {p1}, Ljava/util/List;->size()I
 
@@ -2086,10 +2086,10 @@
 
     move-result p1
 
-    .line 748
+    .line 749
     return p1
 
-    .line 745
+    .line 746
     :cond_1
     :goto_0
     const/16 p1, 0xf0
@@ -2100,7 +2100,7 @@
 .method public getAnimationComposite()Lcom/android/camera/animation/AnimationComposite;
     .locals 1
 
-    .line 758
+    .line 759
     iget-object v0, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     return-object v0
@@ -2113,7 +2113,7 @@
         .end annotation
     .end param
 
-    .line 752
+    .line 753
     iget-object v0, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
 
     const/16 v1, 0xf0
@@ -2122,7 +2122,7 @@
 
     move-result p1
 
-    .line 753
+    .line 754
     return p1
 .end method
 
@@ -2131,12 +2131,12 @@
 
     move-object/from16 v0, p0
 
-    .line 159
+    .line 160
     move-object/from16 v1, p3
 
     invoke-virtual/range {p0 .. p0}, Lcom/android/camera/fragment/BaseFragmentDelegate;->registerProtocol()V
 
-    .line 165
+    .line 166
     const/4 v2, 0x1
 
     const/16 v3, 0xf0
@@ -2147,70 +2147,70 @@
 
     move-result-object v4
 
-    .line 169
+    .line 170
     const/16 v5, 0xf7
 
     invoke-direct {v0, v2, v5, v3, v1}, Lcom/android/camera/fragment/BaseFragmentDelegate;->constructFragment(ZIILcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)Lcom/android/camera/fragment/BaseFragment;
 
     move-result-object v5
 
-    .line 171
+    .line 172
     const/16 v6, 0xff1
 
     invoke-direct {v0, v2, v6, v3, v1}, Lcom/android/camera/fragment/BaseFragmentDelegate;->constructFragment(ZIILcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)Lcom/android/camera/fragment/BaseFragment;
 
     move-result-object v6
 
-    .line 173
+    .line 174
     const/16 v7, 0xf1
 
     invoke-direct {v0, v2, v7, v3, v1}, Lcom/android/camera/fragment/BaseFragmentDelegate;->constructFragment(ZIILcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)Lcom/android/camera/fragment/BaseFragment;
 
     move-result-object v7
 
-    .line 175
+    .line 176
     const/16 v8, 0xf3
 
     invoke-direct {v0, v2, v8, v3, v1}, Lcom/android/camera/fragment/BaseFragmentDelegate;->constructFragment(ZIILcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)Lcom/android/camera/fragment/BaseFragment;
 
     move-result-object v8
 
-    .line 177
+    .line 178
     const/16 v9, 0xff0
 
     invoke-direct {v0, v2, v9, v3, v1}, Lcom/android/camera/fragment/BaseFragmentDelegate;->constructFragment(ZIILcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)Lcom/android/camera/fragment/BaseFragment;
 
     move-result-object v9
 
-    .line 179
+    .line 180
     const/16 v10, 0xff6
 
     invoke-direct {v0, v2, v10, v3, v1}, Lcom/android/camera/fragment/BaseFragmentDelegate;->constructFragment(ZIILcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)Lcom/android/camera/fragment/BaseFragment;
 
     move-result-object v10
 
-    .line 181
+    .line 182
     const/16 v11, 0xff8
 
     invoke-direct {v0, v2, v11, v3, v1}, Lcom/android/camera/fragment/BaseFragmentDelegate;->constructFragment(ZIILcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)Lcom/android/camera/fragment/BaseFragment;
 
     move-result-object v11
 
-    .line 183
+    .line 184
     invoke-virtual/range {p1 .. p1}, Landroid/support/v4/app/FragmentManager;->beginTransaction()Landroid/support/v4/app/FragmentTransaction;
 
     move-result-object v12
 
-    .line 184
+    .line 185
     invoke-virtual {v6}, Lcom/android/camera/fragment/BaseFragment;->getFragmentTag()Ljava/lang/String;
 
     move-result-object v13
 
-    const v14, 0x7f0d00ee
+    const v14, 0x7f0d00fb
 
     invoke-virtual {v12, v14, v6, v13}, Landroid/support/v4/app/FragmentTransaction;->replace(ILandroid/support/v4/app/Fragment;Ljava/lang/String;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 185
+    .line 186
     invoke-virtual {v7}, Lcom/android/camera/fragment/BaseFragment;->getFragmentTag()Ljava/lang/String;
 
     move-result-object v13
@@ -2219,71 +2219,71 @@
 
     invoke-virtual {v12, v15, v7, v13}, Landroid/support/v4/app/FragmentTransaction;->replace(ILandroid/support/v4/app/Fragment;Ljava/lang/String;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 186
+    .line 187
     invoke-virtual {v4}, Lcom/android/camera/fragment/BaseFragment;->getFragmentTag()Ljava/lang/String;
 
     move-result-object v13
 
-    const v15, 0x7f0d00ea
+    const v15, 0x7f0d00f7
 
     invoke-virtual {v12, v15, v4, v13}, Landroid/support/v4/app/FragmentTransaction;->replace(ILandroid/support/v4/app/Fragment;Ljava/lang/String;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 188
+    .line 189
     invoke-virtual {v5}, Lcom/android/camera/fragment/BaseFragment;->getFragmentTag()Ljava/lang/String;
 
     move-result-object v13
 
-    const v15, 0x7f0d00eb
+    const v15, 0x7f0d00f8
 
     invoke-virtual {v12, v15, v5, v13}, Landroid/support/v4/app/FragmentTransaction;->replace(ILandroid/support/v4/app/Fragment;Ljava/lang/String;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 189
+    .line 190
     invoke-virtual {v8}, Lcom/android/camera/fragment/BaseFragment;->getFragmentTag()Ljava/lang/String;
 
     move-result-object v13
 
-    const v15, 0x7f0d00e7
+    const v15, 0x7f0d00f4
 
     invoke-virtual {v12, v15, v8, v13}, Landroid/support/v4/app/FragmentTransaction;->replace(ILandroid/support/v4/app/Fragment;Ljava/lang/String;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 190
+    .line 191
     invoke-virtual {v9}, Lcom/android/camera/fragment/BaseFragment;->getFragmentTag()Ljava/lang/String;
 
     move-result-object v13
 
-    const v15, 0x7f0d00e8
+    const v15, 0x7f0d00f5
 
     invoke-virtual {v12, v15, v9, v13}, Landroid/support/v4/app/FragmentTransaction;->replace(ILandroid/support/v4/app/Fragment;Ljava/lang/String;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 191
+    .line 192
     invoke-virtual {v10}, Lcom/android/camera/fragment/BaseFragment;->getFragmentTag()Ljava/lang/String;
 
     move-result-object v13
 
-    const v15, 0x7f0d00f1
+    const v15, 0x7f0d00fe
 
     invoke-virtual {v12, v15, v10, v13}, Landroid/support/v4/app/FragmentTransaction;->replace(ILandroid/support/v4/app/Fragment;Ljava/lang/String;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 192
+    .line 193
     invoke-virtual {v11}, Lcom/android/camera/fragment/BaseFragment;->getFragmentTag()Ljava/lang/String;
 
     move-result-object v13
 
-    const v15, 0x7f0d00e9
+    const v15, 0x7f0d00f6
 
     invoke-virtual {v12, v15, v11, v13}, Landroid/support/v4/app/FragmentTransaction;->replace(ILandroid/support/v4/app/Fragment;Ljava/lang/String;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 194
+    .line 195
     nop
 
-    .line 196
+    .line 197
     invoke-static {}, Lcom/mi/config/b;->isSupportedOpticalZoom()Z
 
     move-result v13
 
     if-eqz v13, :cond_0
 
-    .line 197
+    .line 198
     const/16 v13, 0xff4
 
     invoke-direct {v0, v2, v13, v3, v1}, Lcom/android/camera/fragment/BaseFragmentDelegate;->constructFragment(ZIILcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)Lcom/android/camera/fragment/BaseFragment;
@@ -2292,15 +2292,15 @@
 
     goto :goto_0
 
-    .line 198
+    .line 199
     :cond_0
-    invoke-static {}, Lcom/mi/config/b;->hd()Z
+    invoke-static {}, Lcom/mi/config/b;->hm()Z
 
     move-result v13
 
     if-eqz v13, :cond_1
 
-    .line 199
+    .line 200
     const/16 v13, 0xff5
 
     invoke-direct {v0, v2, v13, v3, v1}, Lcom/android/camera/fragment/BaseFragmentDelegate;->constructFragment(ZIILcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)Lcom/android/camera/fragment/BaseFragment;
@@ -2309,16 +2309,16 @@
 
     goto :goto_0
 
-    .line 202
+    .line 203
     :cond_1
     const/4 v13, 0x0
 
     :goto_0
-    const v15, 0x7f0d00ec
+    const v15, 0x7f0d00f9
 
     if-eqz v13, :cond_2
 
-    .line 203
+    .line 204
     iget-object v14, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
 
     invoke-virtual {v13}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
@@ -2327,7 +2327,7 @@
 
     invoke-virtual {v14, v15, v2}, Landroid/util/SparseIntArray;->put(II)V
 
-    .line 204
+    .line 205
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v13}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
@@ -2336,7 +2336,7 @@
 
     invoke-virtual {v2, v14, v13}, Lcom/android/camera/animation/AnimationComposite;->put(ILcom/android/camera/animation/AnimationDelegate$AnimationResource;)V
 
-    .line 205
+    .line 206
     invoke-virtual {v13}, Lcom/android/camera/fragment/BaseFragment;->getFragmentTag()Ljava/lang/String;
 
     move-result-object v2
@@ -2345,13 +2345,13 @@
 
     goto :goto_1
 
-    .line 207
+    .line 208
     :cond_2
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
 
     invoke-virtual {v2, v15, v3}, Landroid/util/SparseIntArray;->put(II)V
 
-    .line 210
+    .line 211
     :goto_1
     invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
 
@@ -2359,7 +2359,11 @@
 
     if-eqz v2, :cond_3
 
-    .line 211
+    sget-boolean v2, Lcom/mi/config/b;->qP:Z
+
+    if-nez v2, :cond_3
+
+    .line 212
     const/16 v2, 0xffb
 
     const/4 v13, 0x1
@@ -2368,18 +2372,18 @@
 
     move-result-object v2
 
-    .line 212
+    .line 213
     iget-object v13, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
 
     invoke-virtual {v2}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
 
     move-result v14
 
-    const v15, 0x7f0d00ed
+    const v15, 0x7f0d00fa
 
     invoke-virtual {v13, v15, v14}, Landroid/util/SparseIntArray;->put(II)V
 
-    .line 213
+    .line 214
     iget-object v13, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v2}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
@@ -2388,14 +2392,14 @@
 
     invoke-virtual {v13, v14, v2}, Lcom/android/camera/animation/AnimationComposite;->put(ILcom/android/camera/animation/AnimationDelegate$AnimationResource;)V
 
-    .line 214
+    .line 215
     invoke-virtual {v2}, Lcom/android/camera/fragment/BaseFragment;->getFragmentTag()Ljava/lang/String;
 
     move-result-object v13
 
     invoke-virtual {v12, v15, v2, v13}, Landroid/support/v4/app/FragmentTransaction;->replace(ILandroid/support/v4/app/Fragment;Ljava/lang/String;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 217
+    .line 218
     :cond_3
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
 
@@ -2403,11 +2407,11 @@
 
     move-result v13
 
-    const v14, 0x7f0d00ee
+    const v14, 0x7f0d00fb
 
     invoke-virtual {v2, v14, v13}, Landroid/util/SparseIntArray;->put(II)V
 
-    .line 218
+    .line 219
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
 
     invoke-virtual {v7}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
@@ -2418,83 +2422,83 @@
 
     invoke-virtual {v2, v14, v13}, Landroid/util/SparseIntArray;->put(II)V
 
-    .line 219
+    .line 220
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
 
     invoke-virtual {v4}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
 
     move-result v13
 
-    const v14, 0x7f0d00ea
+    const v14, 0x7f0d00f7
 
     invoke-virtual {v2, v14, v13}, Landroid/util/SparseIntArray;->put(II)V
 
-    .line 222
+    .line 223
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
 
-    const v13, 0x7f0d00ef
+    const v13, 0x7f0d00fc
 
     invoke-virtual {v2, v13, v3}, Landroid/util/SparseIntArray;->put(II)V
 
-    .line 224
+    .line 225
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
 
     invoke-virtual {v5}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
 
     move-result v13
 
-    const v14, 0x7f0d00eb
-
-    invoke-virtual {v2, v14, v13}, Landroid/util/SparseIntArray;->put(II)V
-
-    .line 225
-    iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
-
-    invoke-virtual {v8}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
-
-    move-result v13
-
-    const v14, 0x7f0d00e7
+    const v14, 0x7f0d00f8
 
     invoke-virtual {v2, v14, v13}, Landroid/util/SparseIntArray;->put(II)V
 
     .line 226
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
 
-    invoke-virtual {v9}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
+    invoke-virtual {v8}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
 
     move-result v13
 
-    const v14, 0x7f0d00e8
+    const v14, 0x7f0d00f4
 
     invoke-virtual {v2, v14, v13}, Landroid/util/SparseIntArray;->put(II)V
 
     .line 227
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
 
-    invoke-virtual {v10}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
+    invoke-virtual {v9}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
 
     move-result v13
 
-    const v14, 0x7f0d00f1
+    const v14, 0x7f0d00f5
 
     invoke-virtual {v2, v14, v13}, Landroid/util/SparseIntArray;->put(II)V
 
     .line 228
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
 
-    const v13, 0x7f0d001a
+    invoke-virtual {v10}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
 
-    invoke-virtual {v2, v13, v3}, Landroid/util/SparseIntArray;->put(II)V
+    move-result v13
+
+    const v14, 0x7f0d00fe
+
+    invoke-virtual {v2, v14, v13}, Landroid/util/SparseIntArray;->put(II)V
 
     .line 229
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
 
-    const v13, 0x7f0d00f0
+    const v13, 0x7f0d001a
 
     invoke-virtual {v2, v13, v3}, Landroid/util/SparseIntArray;->put(II)V
 
-    .line 233
+    .line 230
+    iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
+
+    const v13, 0x7f0d00fd
+
+    invoke-virtual {v2, v13, v3}, Landroid/util/SparseIntArray;->put(II)V
+
+    .line 234
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v6}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
@@ -2503,7 +2507,7 @@
 
     invoke-virtual {v2, v3, v6}, Lcom/android/camera/animation/AnimationComposite;->put(ILcom/android/camera/animation/AnimationDelegate$AnimationResource;)V
 
-    .line 234
+    .line 235
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v4}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
@@ -2512,7 +2516,7 @@
 
     invoke-virtual {v2, v3, v4}, Lcom/android/camera/animation/AnimationComposite;->put(ILcom/android/camera/animation/AnimationDelegate$AnimationResource;)V
 
-    .line 236
+    .line 237
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v5}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
@@ -2521,7 +2525,7 @@
 
     invoke-virtual {v2, v3, v5}, Lcom/android/camera/animation/AnimationComposite;->put(ILcom/android/camera/animation/AnimationDelegate$AnimationResource;)V
 
-    .line 237
+    .line 238
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v8}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
@@ -2530,7 +2534,7 @@
 
     invoke-virtual {v2, v3, v8}, Lcom/android/camera/animation/AnimationComposite;->put(ILcom/android/camera/animation/AnimationDelegate$AnimationResource;)V
 
-    .line 238
+    .line 239
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v7}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
@@ -2539,7 +2543,7 @@
 
     invoke-virtual {v2, v3, v7}, Lcom/android/camera/animation/AnimationComposite;->put(ILcom/android/camera/animation/AnimationDelegate$AnimationResource;)V
 
-    .line 239
+    .line 240
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v9}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
@@ -2548,7 +2552,7 @@
 
     invoke-virtual {v2, v3, v9}, Lcom/android/camera/animation/AnimationComposite;->put(ILcom/android/camera/animation/AnimationDelegate$AnimationResource;)V
 
-    .line 240
+    .line 241
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v10}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
@@ -2557,7 +2561,7 @@
 
     invoke-virtual {v2, v3, v10}, Lcom/android/camera/animation/AnimationComposite;->put(ILcom/android/camera/animation/AnimationDelegate$AnimationResource;)V
 
-    .line 241
+    .line 242
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v11}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
@@ -2566,25 +2570,25 @@
 
     invoke-virtual {v2, v3, v11}, Lcom/android/camera/animation/AnimationComposite;->put(ILcom/android/camera/animation/AnimationDelegate$AnimationResource;)V
 
-    .line 243
+    .line 244
     iget-object v2, v0, Lcom/android/camera/fragment/BaseFragmentDelegate;->originalFragments:Landroid/util/SparseIntArray;
 
     invoke-direct {v0, v2}, Lcom/android/camera/fragment/BaseFragmentDelegate;->initCurrentFragments(Landroid/util/SparseIntArray;)V
 
-    .line 247
+    .line 248
     invoke-virtual {v12}, Landroid/support/v4/app/FragmentTransaction;->commitAllowingStateLoss()I
 
-    .line 249
+    .line 250
     invoke-interface/range {p3 .. p3}, Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;->onLifeAlive()V
 
-    .line 250
+    .line 251
     return-void
 .end method
 
 .method public registerProtocol()V
     .locals 2
 
-    .line 139
+    .line 140
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -2593,14 +2597,14 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 140
+    .line 141
     return-void
 .end method
 
 .method public unRegisterProtocol()V
     .locals 2
 
-    .line 144
+    .line 145
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -2609,16 +2613,16 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 145
+    .line 146
     iget-object v0, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->animationComposite:Lcom/android/camera/animation/AnimationComposite;
 
     invoke-virtual {v0}, Lcom/android/camera/animation/AnimationComposite;->destroy()V
 
-    .line 146
+    .line 147
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/fragment/BaseFragmentDelegate;->mActivity:Lcom/android/camera/Camera;
 
-    .line 147
+    .line 148
     return-void
 .end method

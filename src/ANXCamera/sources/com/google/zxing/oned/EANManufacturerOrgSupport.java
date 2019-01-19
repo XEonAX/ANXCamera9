@@ -2,6 +2,7 @@ package com.google.zxing.oned;
 
 import android.provider.MiuiSettings.System;
 import com.android.camera.Util;
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import com.google.zxing.client.result.ExpandedProductParsedResult;
 import com.ss.android.ugc.effectmanager.common.EffectTypeConstants;
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ final class EANManufacturerOrgSupport {
             add(new int[]{383}, "SI");
             add(new int[]{385}, "HR");
             add(new int[]{387}, "BA");
-            add(new int[]{400, 440}, "DE");
+            add(new int[]{MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME, 440}, "DE");
             add(new int[]{450, 459}, "JP");
             add(new int[]{460, 469}, "RU");
             add(new int[]{471}, "TW");

@@ -12,7 +12,6 @@ public class EffectTypeConstants {
     public static final String TYPE_FACE_PICK = "FacePick";
     public static final String TYPE_FACE_RESHAPE = "FaceReshape";
     public static final String TYPE_FILTER = "Filter";
-    public static final String TYPE_GAME = "Game";
     public static final String TYPE_HAIR_COLOR = "HairColor";
     public static final String TYPE_MATTING = "Matting";
     public static final String TYPE_PARTICL = "Particle";

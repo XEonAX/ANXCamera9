@@ -136,7 +136,8 @@ public class MiCamera2ShotParallelBurst extends MiCamera2Shot<ParallelTaskData> 
         if (Util.isMemoryRich(CameraAppImpl.getAndroidContext())) {
             return getGroupShotMaxImage();
         }
-        return 1;
+        Log.w(TAG, "getGroupShotNum: low memory");
+        return 2;
     }
 
     private int getGroupShotMaxImage() {

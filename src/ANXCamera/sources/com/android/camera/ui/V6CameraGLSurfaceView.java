@@ -54,11 +54,11 @@ public class V6CameraGLSurfaceView extends GLSurfaceView implements Renderer {
         private MyEGLConfigChooser() {
             int[] iArr = new int[11];
             iArr[0] = 12324;
-            iArr[1] = b.hp() ? 8 : 5;
+            iArr[1] = b.hy() ? 8 : 5;
             iArr[2] = 12323;
-            iArr[3] = b.hp() ? 8 : 6;
+            iArr[3] = b.hy() ? 8 : 6;
             iArr[4] = 12322;
-            iArr[5] = b.hp() ? 8 : 5;
+            iArr[5] = b.hy() ? 8 : 5;
             iArr[6] = 12321;
             iArr[7] = 0;
             iArr[8] = 12352;
@@ -145,7 +145,7 @@ public class V6CameraGLSurfaceView extends GLSurfaceView implements Renderer {
         setRenderMode(0);
         setPreserveEGLContextOnPause(true);
         getHolder().setFormat(4);
-        if (b.gH()) {
+        if (b.gQ()) {
             getHolder().setFixedSize(Util.LIMIT_SURFACE_WIDTH, (Util.sWindowHeight * Util.LIMIT_SURFACE_WIDTH) / Util.sWindowWidth);
         }
         this.mActivity = (Camera) context;

@@ -535,17 +535,17 @@
 .method private destroy()V
     .locals 5
 
-    .line 606
+    .line 607
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mRelease:Z
 
-    .line 607
+    .line 608
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mReleasePending:Z
 
-    .line 608
+    .line 609
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mEgl:Ljavax/microedition/khronos/egl/EGL10;
 
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mEglDisplay:Ljavax/microedition/khronos/egl/EGLDisplay;
@@ -554,7 +554,7 @@
 
     invoke-interface {v0, v1, v2}, Ljavax/microedition/khronos/egl/EGL10;->eglDestroySurface(Ljavax/microedition/khronos/egl/EGLDisplay;Ljavax/microedition/khronos/egl/EGLSurface;)Z
 
-    .line 609
+    .line 610
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mEgl:Ljavax/microedition/khronos/egl/EGL10;
 
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mEglDisplay:Ljavax/microedition/khronos/egl/EGLDisplay;
@@ -563,7 +563,7 @@
 
     invoke-interface {v0, v1, v2}, Ljavax/microedition/khronos/egl/EGL10;->eglDestroyContext(Ljavax/microedition/khronos/egl/EGLDisplay;Ljavax/microedition/khronos/egl/EGLContext;)Z
 
-    .line 610
+    .line 611
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mEgl:Ljavax/microedition/khronos/egl/EGL10;
 
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mEglDisplay:Ljavax/microedition/khronos/egl/EGLDisplay;
@@ -576,30 +576,30 @@
 
     invoke-interface {v0, v1, v2, v3, v4}, Ljavax/microedition/khronos/egl/EGL10;->eglMakeCurrent(Ljavax/microedition/khronos/egl/EGLDisplay;Ljavax/microedition/khronos/egl/EGLSurface;Ljavax/microedition/khronos/egl/EGLSurface;Ljavax/microedition/khronos/egl/EGLContext;)Z
 
-    .line 611
+    .line 612
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mEgl:Ljavax/microedition/khronos/egl/EGL10;
 
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mEglDisplay:Ljavax/microedition/khronos/egl/EGLDisplay;
 
     invoke-interface {v0, v1}, Ljavax/microedition/khronos/egl/EGL10;->eglTerminate(Ljavax/microedition/khronos/egl/EGLDisplay;)Z
 
-    .line 612
+    .line 613
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mEglSurface:Ljavax/microedition/khronos/egl/EGLSurface;
 
-    .line 613
+    .line 614
     iput-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mEglContext:Ljavax/microedition/khronos/egl/EGLContext;
 
-    .line 614
+    .line 615
     iput-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mEglDisplay:Ljavax/microedition/khronos/egl/EGLDisplay;
 
-    .line 615
+    .line 616
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mEglThread:Landroid/os/HandlerThread;
 
     invoke-virtual {v1}, Landroid/os/HandlerThread;->quit()Z
 
-    .line 616
+    .line 617
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mDualCameraWaterMarkBitmap:Landroid/graphics/Bitmap;
 
     if-eqz v1, :cond_0
@@ -612,19 +612,19 @@
 
     if-nez v1, :cond_0
 
-    .line 617
+    .line 618
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mDualCameraWaterMarkBitmap:Landroid/graphics/Bitmap;
 
     invoke-virtual {v1}, Landroid/graphics/Bitmap;->recycle()V
 
-    .line 618
+    .line 619
     iput-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender;->mDualCameraWaterMarkBitmap:Landroid/graphics/Bitmap;
 
-    .line 620
+    .line 621
     :cond_0
     invoke-static {}, Ljava/lang/System;->gc()V
 
-    .line 621
+    .line 622
     sget-object v0, Lcom/android/camera/effect/renders/SnapshotRender;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -643,7 +643,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 622
+    .line 623
     return-void
 .end method
 
@@ -673,7 +673,7 @@
 
     move-result-object v1
 
-    invoke-virtual {v1}, Lcom/mi/config/a;->fd()Z
+    invoke-virtual {v1}, Lcom/mi/config/a;->fe()Z
 
     move-result v1
 
@@ -1059,7 +1059,7 @@
 
     move-result-object v1
 
-    invoke-virtual {v1}, Lcom/mi/config/a;->fd()Z
+    invoke-virtual {v1}, Lcom/mi/config/a;->fe()Z
 
     move-result v1
 

@@ -47,7 +47,7 @@
 
 # virtual methods
 .method public apply(Lcom/android/camera/module/loader/NullHolder;)Lcom/android/camera/module/loader/NullHolder;
-    .locals 7
+    .locals 8
     .param p1    # Lcom/android/camera/module/loader/NullHolder;
         .annotation build Lio/reactivex/annotations/NonNull;
         .end annotation
@@ -153,7 +153,9 @@
     .line 62
     iget v5, p0, Lcom/android/camera/module/loader/FunctionModuleSetup;->mTargetMode:I
 
-    const/4 v6, 0x1
+    const/4 v6, 0x0
+
+    const/4 v7, 0x1
 
     packed-switch v5, :pswitch_data_0
 
@@ -161,8 +163,21 @@
     :pswitch_0
     goto/16 :goto_1
 
-    .line 96
+    .line 142
     :pswitch_1
+    invoke-virtual {v1}, Lcom/android/camera/Camera;->startFromKeyguard()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_7
+
+    .line 143
+    invoke-virtual {v4, v6}, Lcom/android/camera/data/data/runing/DataItemRunning;->setLiveConfigIsNeedRestore(Z)V
+
+    goto/16 :goto_1
+
+    .line 96
+    :pswitch_2
     invoke-virtual {v3}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentCameraId()I
 
     move-result v5
@@ -188,7 +203,7 @@
 
     move-result-object v4
 
-    invoke-virtual {v4, v6}, Lcom/android/camera/Camera;->isNewBieAlive(I)Z
+    invoke-virtual {v4, v7}, Lcom/android/camera/Camera;->isNewBieAlive(I)Z
 
     move-result v4
 
@@ -207,7 +222,7 @@
 
     const-string v4, "pref_camera_first_portrait_use_hint_shown_key"
 
-    invoke-virtual {v3, v4, v6}, Lcom/android/camera/data/data/global/DataItemGlobal;->getBoolean(Ljava/lang/String;Z)Z
+    invoke-virtual {v3, v4, v7}, Lcom/android/camera/data/data/global/DataItemGlobal;->getBoolean(Ljava/lang/String;Z)Z
 
     move-result v4
 
@@ -218,7 +233,7 @@
 
     move-result-object v0
 
-    invoke-virtual {v0, v6}, Lcom/android/camera/Camera;->showNewBie(I)Z
+    invoke-virtual {v0, v7}, Lcom/android/camera/Camera;->showNewBie(I)Z
 
     .line 110
     nop
@@ -230,10 +245,8 @@
 
     const-string v1, "pref_camera_first_portrait_use_hint_shown_key"
 
-    const/4 v2, 0x0
-
     .line 112
-    invoke-interface {v0, v1, v2}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putBoolean(Ljava/lang/String;Z)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
+    invoke-interface {v0, v1, v6}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putBoolean(Ljava/lang/String;Z)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
     move-result-object v0
 
@@ -244,7 +257,7 @@
     return-object p1
 
     .line 134
-    :pswitch_2
+    :pswitch_3
     const-string v5, "pref_video_speed_fast_key"
 
     invoke-virtual {v4, v5}, Lcom/android/camera/data/data/runing/DataItemRunning;->switchOff(Ljava/lang/String;)V
@@ -263,7 +276,7 @@
     goto/16 :goto_1
 
     .line 124
-    :pswitch_3
+    :pswitch_4
     const-string v5, "pref_video_speed_fast_key"
 
     invoke-virtual {v4, v5}, Lcom/android/camera/data/data/runing/DataItemRunning;->switchOn(Ljava/lang/String;)V
@@ -282,7 +295,7 @@
     goto/16 :goto_1
 
     .line 129
-    :pswitch_4
+    :pswitch_5
     const-string v5, "pref_video_speed_fast_key"
 
     invoke-virtual {v4, v5}, Lcom/android/camera/data/data/runing/DataItemRunning;->switchOff(Ljava/lang/String;)V
@@ -301,7 +314,7 @@
     goto :goto_1
 
     .line 91
-    :pswitch_5
+    :pswitch_6
     const-string v5, "pref_camera_manual_mode_key"
 
     invoke-virtual {v4, v5}, Lcom/android/camera/data/data/runing/DataItemRunning;->switchOn(Ljava/lang/String;)V
@@ -310,20 +323,21 @@
     goto :goto_1
 
     .line 139
-    :pswitch_6
+    :pswitch_7
     const-string v5, "pref_camera_square_mode_key"
 
     invoke-virtual {v4, v5}, Lcom/android/camera/data/data/runing/DataItemRunning;->switchOn(Ljava/lang/String;)V
 
+    .line 140
     goto :goto_1
 
     .line 67
-    :pswitch_7
+    :pswitch_8
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object v4
 
-    invoke-virtual {v4}, Lcom/mi/config/a;->fw()Z
+    invoke-virtual {v4}, Lcom/mi/config/a;->fx()Z
 
     move-result v4
 
@@ -350,7 +364,7 @@
     :cond_4
     const-string v4, "pref_camera_first_ultra_wide_use_hint_shown_key"
 
-    invoke-virtual {v3, v4, v6}, Lcom/android/camera/data/data/global/DataItemGlobal;->getBoolean(Ljava/lang/String;Z)Z
+    invoke-virtual {v3, v4, v7}, Lcom/android/camera/data/data/global/DataItemGlobal;->getBoolean(Ljava/lang/String;Z)Z
 
     move-result v4
 
@@ -387,14 +401,14 @@
     :cond_6
     const-string v4, "pref_camera_first_ai_scene_use_hint_shown_key"
 
-    invoke-virtual {v3, v4, v6}, Lcom/android/camera/data/data/global/DataItemGlobal;->getBoolean(Ljava/lang/String;Z)Z
+    invoke-virtual {v3, v4, v7}, Lcom/android/camera/data/data/global/DataItemGlobal;->getBoolean(Ljava/lang/String;Z)Z
 
     move-result v4
 
     if-eqz v4, :cond_7
 
     .line 82
-    invoke-static {}, Lcom/mi/config/b;->gq()Z
+    invoke-static {}, Lcom/mi/config/b;->gz()Z
 
     move-result v4
 
@@ -411,7 +425,7 @@
     return-object p1
 
     .line 119
-    :pswitch_8
+    :pswitch_9
     const-string v5, "pref_video_speed_fast_key"
 
     invoke-virtual {v4, v5}, Lcom/android/camera/data/data/runing/DataItemRunning;->switchOff(Ljava/lang/String;)V
@@ -429,7 +443,7 @@
     .line 122
     nop
 
-    .line 144
+    .line 149
     :cond_7
     :goto_1
     invoke-virtual {v0}, Lcom/android/camera/module/BaseModule;->getActivity()Lcom/android/camera/Camera;
@@ -438,7 +452,7 @@
 
     invoke-virtual {v4}, Lcom/android/camera/Camera;->removeNewBie()V
 
-    .line 147
+    .line 152
     invoke-virtual {v0}, Lcom/android/camera/module/BaseModule;->isDeparted()Z
 
     move-result v4
@@ -453,7 +467,7 @@
 
     goto :goto_2
 
-    .line 152
+    .line 157
     :cond_8
     :try_start_0
     invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
@@ -466,7 +480,7 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/BaseModule;->setCameraDevice(Lcom/android/camera2/Camera2Proxy;)V
 
-    .line 153
+    .line 158
     iget v1, p0, Lcom/android/camera/module/loader/FunctionModuleSetup;->mTargetMode:I
 
     invoke-virtual {v3}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentCameraId()I
@@ -477,37 +491,37 @@
     :try_end_0
     .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 160
+    .line 165
     nop
 
-    .line 162
+    .line 167
     invoke-virtual {v0}, Lcom/android/camera/module/BaseModule;->isCreated()Z
 
     move-result v1
 
     if-eqz v1, :cond_9
 
-    .line 163
+    .line 168
     invoke-virtual {v0}, Lcom/android/camera/module/BaseModule;->onResume()V
 
-    .line 164
+    .line 169
     invoke-virtual {v0}, Lcom/android/camera/module/BaseModule;->registerProtocol()V
 
-    .line 167
+    .line 172
     :cond_9
     return-object p1
 
-    .line 154
+    .line 159
     :catch_0
     move-exception p1
 
-    .line 155
+    .line 160
     invoke-virtual {p1}, Ljava/lang/IllegalArgumentException;->printStackTrace()V
 
-    .line 156
+    .line 161
     invoke-virtual {v0}, Lcom/android/camera/module/BaseModule;->setDeparted()V
 
-    .line 159
+    .line 164
     const/4 p1, 0x0
 
     const/16 v0, 0xed
@@ -518,7 +532,7 @@
 
     return-object p1
 
-    .line 148
+    .line 153
     :cond_a
     :goto_2
     invoke-static {v0, v2}, Lcom/android/camera/module/loader/NullHolder;->ofNullable(Ljava/lang/Object;I)Lcom/android/camera/module/loader/NullHolder;
@@ -527,17 +541,22 @@
 
     return-object p1
 
+    nop
+
     :pswitch_data_0
     .packed-switch 0xa2
+        :pswitch_9
         :pswitch_8
+        :pswitch_0
         :pswitch_7
         :pswitch_0
         :pswitch_6
-        :pswitch_0
         :pswitch_5
         :pswitch_4
         :pswitch_3
         :pswitch_2
+        :pswitch_0
+        :pswitch_0
         :pswitch_1
     .end packed-switch
 .end method

@@ -98,7 +98,7 @@
     iput-object v0, p0, Lcom/android/camera/fragment/beauty/BeautyValues;->mBeautyLevel:Ljava/lang/String;
 
     .line 124
-    invoke-static {}, Lcom/mi/config/b;->hC()Z
+    invoke-static {}, Lcom/mi/config/b;->hL()Z
 
     move-result v0
 
@@ -545,7 +545,7 @@
     .locals 10
 
     .line 41
-    invoke-static {}, Lcom/mi/config/b;->hC()Z
+    invoke-static {}, Lcom/mi/config/b;->hL()Z
 
     move-result v0
 
@@ -810,7 +810,7 @@
     invoke-virtual {p1, p2}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
 
     .line 66
-    invoke-static {}, Lcom/mi/config/b;->hC()Z
+    invoke-static {}, Lcom/mi/config/b;->hL()Z
 
     move-result p2
 

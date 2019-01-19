@@ -33,7 +33,7 @@
     .locals 2
 
     .line 54
-    const v0, 0x7f0a003e
+    const v0, 0x7f0b003e
 
     const/16 v1, 0xa5
 
@@ -72,7 +72,7 @@
 
     .line 69
     :cond_1
-    const p2, 0x7f0a0049
+    const p2, 0x7f0b0049
 
     invoke-virtual {p1, p2}, Landroid/view/View;->setBackgroundResource(I)V
 

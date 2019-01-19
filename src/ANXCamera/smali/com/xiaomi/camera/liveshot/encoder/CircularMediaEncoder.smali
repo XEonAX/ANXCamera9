@@ -51,6 +51,8 @@
 
 .field protected mMediaCodec:Landroid/media/MediaCodec;
 
+.field private volatile mOutputFormatChanged:Z
+
 .field protected final mPostCaptureDurationUs:J
 
 .field protected final mPreCaptureDurationUs:J
@@ -85,7 +87,7 @@
 .method public constructor <init>(Landroid/media/MediaFormat;JJ)V
     .locals 4
 
-    .line 49
+    .line 54
     invoke-direct {p0}, Landroid/media/MediaCodec$Callback;-><init>()V
 
     .line 46
@@ -93,15 +95,15 @@
 
     iput-boolean v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mIsInitialized:Z
 
-    .line 50
+    .line 55
     if-eqz p1, :cond_5
 
-    .line 54
+    .line 59
     cmp-long v1, p4, p2
 
     if-gtz v1, :cond_4
 
-    .line 58
+    .line 63
     const-wide/16 v1, 0x0
 
     cmp-long v3, p2, v1
@@ -112,45 +114,45 @@
 
     if-lez v1, :cond_3
 
-    .line 62
+    .line 67
     const-string v1, "mime"
 
     invoke-virtual {p1, v1}, Landroid/media/MediaFormat;->getString(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 63
+    .line 68
     if-eqz v1, :cond_2
 
-    .line 67
+    .line 72
     invoke-static {p1, v1}, Lcom/xiaomi/camera/liveshot/MediaCodecCapability;->isFormatSupported(Landroid/media/MediaFormat;Ljava/lang/String;)Z
 
     move-result v2
 
     if-eqz v2, :cond_1
 
-    .line 71
+    .line 76
     iput-object p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mDesiredMediaFormat:Landroid/media/MediaFormat;
 
-    .line 73
+    .line 78
     iput-wide p2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mCaptureDurationUs:J
 
-    .line 74
+    .line 79
     iput-wide p4, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mPreCaptureDurationUs:J
 
-    .line 75
+    .line 80
     sub-long p4, p2, p4
 
     iput-wide p4, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mPostCaptureDurationUs:J
 
-    .line 76
+    .line 81
     const-wide/16 p4, 0x2
 
     mul-long/2addr p2, p4
 
     iput-wide p2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mBufferingDurationUs:J
 
-    .line 78
+    .line 83
     sget-object p1, Ljava/util/concurrent/TimeUnit;->MICROSECONDS:Ljava/util/concurrent/TimeUnit;
 
     iget-wide p2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mBufferingDurationUs:J
@@ -159,7 +161,7 @@
 
     move-result-wide p1
 
-    .line 79
+    .line 84
     new-instance p3, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;
 
     iget-object p4, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mDesiredMediaFormat:Landroid/media/MediaFormat;
@@ -168,21 +170,21 @@
 
     iput-object p3, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mCyclicBuffer:Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;
 
-    .line 81
+    .line 86
     new-instance p1, Landroid/media/MediaCodec$BufferInfo;
 
     invoke-direct {p1}, Landroid/media/MediaCodec$BufferInfo;-><init>()V
 
     iput-object p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mBufferInfo:Landroid/media/MediaCodec$BufferInfo;
 
-    .line 82
+    .line 87
     new-instance p1, Ljava/util/ArrayList;
 
     invoke-direct {p1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mSnapshots:Ljava/util/List;
 
-    .line 84
+    .line 89
     const-string p1, "video"
 
     invoke-virtual {v1, p1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
@@ -198,7 +200,7 @@
     :cond_0
     const-string p1, "AudioEncodingThread"
 
-    .line 85
+    .line 90
     :goto_0
     new-instance p2, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;
 
@@ -206,7 +208,7 @@
 
     iput-object p2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mEncodingThread:Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;
 
-    .line 86
+    .line 91
     new-instance p1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$EventHandler;
 
     iget-object p2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mEncodingThread:Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;
@@ -219,20 +221,20 @@
 
     iput-object p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mEventHandler:Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$EventHandler;
 
-    .line 87
+    .line 92
     new-instance p1, Lcom/xiaomi/camera/liveshot/util/HandlerHelper;
 
     invoke-direct {p1}, Lcom/xiaomi/camera/liveshot/util/HandlerHelper;-><init>()V
 
     iput-object p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mHandlerHelper:Lcom/xiaomi/camera/liveshot/util/HandlerHelper;
 
-    .line 89
+    .line 94
     iput-boolean v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mIsBuffering:Z
 
-    .line 90
+    .line 95
     return-void
 
-    .line 68
+    .line 73
     :cond_1
     new-instance p1, Ljava/lang/IllegalArgumentException;
 
@@ -242,7 +244,7 @@
 
     throw p1
 
-    .line 64
+    .line 69
     :cond_2
     new-instance p1, Ljava/lang/IllegalArgumentException;
 
@@ -252,7 +254,7 @@
 
     throw p1
 
-    .line 59
+    .line 64
     :cond_3
     new-instance p1, Ljava/lang/IllegalArgumentException;
 
@@ -262,7 +264,7 @@
 
     throw p1
 
-    .line 55
+    .line 60
     :cond_4
     new-instance p1, Ljava/lang/IllegalArgumentException;
 
@@ -272,7 +274,7 @@
 
     throw p1
 
-    .line 51
+    .line 56
     :cond_5
     new-instance p1, Ljava/lang/IllegalArgumentException;
 
@@ -297,28 +299,28 @@
 .method protected doRelease()V
     .locals 4
 
-    .line 139
+    .line 155
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mMediaCodec:Landroid/media/MediaCodec;
 
     if-eqz v0, :cond_0
 
-    .line 140
+    .line 156
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mMediaCodec:Landroid/media/MediaCodec;
 
     invoke-virtual {v0}, Landroid/media/MediaCodec;->release()V
 
-    .line 141
+    .line 157
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mMediaCodec:Landroid/media/MediaCodec;
 
-    .line 144
+    .line 160
     :cond_0
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mEncodingThread:Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;
 
     if-eqz v0, :cond_1
 
-    .line 146
+    .line 162
     :try_start_0
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mEncodingThread:Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;
 
@@ -326,14 +328,14 @@
     :try_end_0
     .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 150
+    .line 166
     goto :goto_0
 
-    .line 148
+    .line 164
     :catch_0
     move-exception v0
 
-    .line 149
+    .line 165
     sget-object v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -352,7 +354,7 @@
 
     invoke-static {v1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 153
+    .line 169
     :cond_1
     :goto_0
     return-void
@@ -361,17 +363,22 @@
 .method protected doStart()V
     .locals 1
 
-    .line 112
+    .line 117
+    const/4 v0, 0x0
+
+    iput-boolean v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mOutputFormatChanged:Z
+
+    .line 118
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mMediaCodec:Landroid/media/MediaCodec;
 
     if-eqz v0, :cond_0
 
-    .line 113
+    .line 119
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mMediaCodec:Landroid/media/MediaCodec;
 
     invoke-virtual {v0}, Landroid/media/MediaCodec;->start()V
 
-    .line 115
+    .line 121
     :cond_0
     return-void
 .end method
@@ -379,27 +386,27 @@
 .method protected doStop()V
     .locals 1
 
-    .line 123
+    .line 139
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mMediaCodec:Landroid/media/MediaCodec;
 
     if-eqz v0, :cond_0
 
-    .line 124
+    .line 140
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mMediaCodec:Landroid/media/MediaCodec;
 
     invoke-virtual {v0}, Landroid/media/MediaCodec;->flush()V
 
-    .line 125
+    .line 141
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mMediaCodec:Landroid/media/MediaCodec;
 
     invoke-virtual {v0}, Landroid/media/MediaCodec;->stop()V
 
-    .line 128
+    .line 144
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mMediaCodec:Landroid/media/MediaCodec;
 
     invoke-virtual {v0}, Landroid/media/MediaCodec;->reset()V
 
-    .line 130
+    .line 146
     :cond_0
     return-void
 .end method
@@ -407,14 +414,14 @@
 .method protected getNextPresentationTimeUs(J)J
     .locals 0
 
-    .line 246
+    .line 266
     return-wide p1
 .end method
 
 .method public onError(Landroid/media/MediaCodec;Landroid/media/MediaCodec$CodecException;)V
     .locals 2
 
-    .line 230
+    .line 246
     sget-object p1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -433,14 +440,14 @@
 
     invoke-static {p1, p2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 234
+    .line 250
     return-void
 .end method
 
 .method public onInputBufferAvailable(Landroid/media/MediaCodec;I)V
     .locals 0
 
-    .line 159
+    .line 175
     return-void
 .end method
 
@@ -449,19 +456,19 @@
 
     move-object/from16 v1, p0
 
-    .line 163
+    .line 179
     move-object/from16 v0, p3
 
     invoke-virtual/range {p1 .. p2}, Landroid/media/MediaCodec;->getOutputBuffer(I)Ljava/nio/ByteBuffer;
 
     move-result-object v2
 
-    .line 164
+    .line 180
     invoke-virtual/range {p1 .. p2}, Landroid/media/MediaCodec;->getOutputFormat(I)Landroid/media/MediaFormat;
 
     move-result-object v3
 
-    .line 165
+    .line 181
     const-string v4, "mime"
 
     invoke-virtual {v3, v4}, Landroid/media/MediaFormat;->getString(Ljava/lang/String;)Ljava/lang/String;
@@ -478,7 +485,7 @@
 
     aget-object v3, v3, v4
 
-    .line 166
+    .line 182
     if-eqz v2, :cond_8
 
     iget v5, v0, Landroid/media/MediaCodec$BufferInfo;->size:I
@@ -489,12 +496,12 @@
 
     if-eqz v5, :cond_8
 
-    .line 168
+    .line 184
     iget v5, v0, Landroid/media/MediaCodec$BufferInfo;->offset:I
 
     invoke-virtual {v2, v5}, Ljava/nio/ByteBuffer;->position(I)Ljava/nio/Buffer;
 
-    .line 169
+    .line 185
     iget v5, v0, Landroid/media/MediaCodec$BufferInfo;->offset:I
 
     iget v6, v0, Landroid/media/MediaCodec$BufferInfo;->size:I
@@ -503,7 +510,7 @@
 
     invoke-virtual {v2, v5}, Ljava/nio/ByteBuffer;->limit(I)Ljava/nio/Buffer;
 
-    .line 171
+    .line 187
     iget-wide v5, v0, Landroid/media/MediaCodec$BufferInfo;->presentationTimeUs:J
 
     invoke-virtual {v1, v5, v6}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->getNextPresentationTimeUs(J)J
@@ -512,7 +519,7 @@
 
     iput-wide v5, v0, Landroid/media/MediaCodec$BufferInfo;->presentationTimeUs:J
 
-    .line 173
+    .line 189
     sget-object v5, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
     new-instance v6, Ljava/lang/StringBuilder;
@@ -535,7 +542,7 @@
 
     invoke-static {v5, v6}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 174
+    .line 190
     iget-object v5, v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mCyclicBuffer:Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;
 
     iget v6, v0, Landroid/media/MediaCodec$BufferInfo;->flags:I
@@ -544,12 +551,12 @@
 
     invoke-virtual {v5, v2, v6, v7, v8}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->add(Ljava/nio/ByteBuffer;IJ)V
 
-    .line 175
+    .line 191
     iget-wide v5, v0, Landroid/media/MediaCodec$BufferInfo;->presentationTimeUs:J
 
     iput-wide v5, v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mCurrentPresentationTimeUs:J
 
-    .line 176
+    .line 192
     sget-object v2, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
     new-instance v5, Ljava/lang/StringBuilder;
@@ -572,28 +579,28 @@
 
     invoke-static {v2, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 178
+    .line 194
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 179
+    .line 195
     iget-object v2, v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mSnapshots:Ljava/util/List;
 
     monitor-enter v2
 
-    .line 180
+    .line 196
     :try_start_0
     iget-object v5, v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mSnapshots:Ljava/util/List;
 
     invoke-interface {v0, v5}, Ljava/util/List;->addAll(Ljava/util/Collection;)Z
 
-    .line 181
+    .line 197
     monitor-exit v2
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_1
 
-    .line 183
+    .line 199
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v2
@@ -613,17 +620,17 @@
 
     check-cast v5, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;
 
-    .line 184
+    .line 200
     iget-object v0, v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mCyclicBuffer:Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;
 
     invoke-virtual {v0}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->getFirstIndex()I
 
     move-result v0
 
-    .line 185
+    .line 201
     if-ltz v0, :cond_7
 
-    .line 190
+    .line 206
     iget-wide v6, v5, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->position:J
 
     const-wide/16 v8, -0x1
@@ -634,16 +641,16 @@
 
     if-nez v6, :cond_0
 
-    .line 192
+    .line 208
     move v6, v7
 
     goto :goto_1
 
-    .line 190
+    .line 206
     :cond_0
     nop
 
-    .line 192
+    .line 208
     move v6, v4
 
     :goto_1
@@ -658,12 +665,12 @@
 
     move-result-object v0
 
-    .line 193
+    .line 209
     iget-object v9, v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mBufferInfo:Landroid/media/MediaCodec$BufferInfo;
 
     iget-wide v9, v9, Landroid/media/MediaCodec$BufferInfo;->presentationTimeUs:J
 
-    .line 194
+    .line 210
     iget-object v11, v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mBufferInfo:Landroid/media/MediaCodec$BufferInfo;
 
     iget v11, v11, Landroid/media/MediaCodec$BufferInfo;->flags:I
@@ -672,22 +679,22 @@
 
     if-eqz v11, :cond_2
 
-    .line 196
+    .line 212
     move v11, v7
 
     goto :goto_2
 
-    .line 194
+    .line 210
     :cond_2
     nop
 
-    .line 196
+    .line 212
     move v11, v4
 
     :goto_2
     if-eqz v6, :cond_3
 
-    .line 197
+    .line 213
     :try_start_1
     iget-wide v12, v5, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->head:J
 
@@ -695,7 +702,7 @@
 
     if-ltz v12, :cond_4
 
-    .line 198
+    .line 214
     sget-object v12, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
     new-instance v13, Ljava/lang/StringBuilder;
@@ -738,12 +745,12 @@
 
     invoke-static {v12, v9}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 200
+    .line 216
     iget-object v9, v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mBufferInfo:Landroid/media/MediaCodec$BufferInfo;
 
     invoke-virtual {v5, v0, v9}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->put(Ljava/nio/ByteBuffer;Landroid/media/MediaCodec$BufferInfo;)V
 
-    .line 201
+    .line 217
     sget-object v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
     new-instance v9, Ljava/lang/StringBuilder;
@@ -764,13 +771,13 @@
 
     goto :goto_3
 
-    .line 209
+    .line 225
     :catch_0
     move-exception v0
 
     goto :goto_4
 
-    .line 203
+    .line 219
     :cond_3
     iget-wide v12, v5, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->position:J
 
@@ -778,7 +785,7 @@
 
     if-lez v12, :cond_4
 
-    .line 204
+    .line 220
     sget-object v12, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
     new-instance v13, Ljava/lang/StringBuilder;
@@ -821,12 +828,12 @@
 
     invoke-static {v12, v9}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 206
+    .line 222
     iget-object v9, v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mBufferInfo:Landroid/media/MediaCodec$BufferInfo;
 
     invoke-virtual {v5, v0, v9}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->put(Ljava/nio/ByteBuffer;Landroid/media/MediaCodec$BufferInfo;)V
 
-    .line 207
+    .line 223
     sget-object v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
     new-instance v9, Ljava/lang/StringBuilder;
@@ -847,16 +854,16 @@
     :try_end_1
     .catch Ljava/lang/InterruptedException; {:try_start_1 .. :try_end_1} :catch_0
 
-    .line 211
+    .line 227
     :cond_4
     :goto_3
     goto :goto_5
 
-    .line 209
+    .line 225
     :goto_4
     nop
 
-    .line 210
+    .line 226
     sget-object v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
     new-instance v9, Ljava/lang/StringBuilder;
@@ -875,7 +882,7 @@
 
     invoke-static {v0, v9}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 213
+    .line 229
     :goto_5
     invoke-virtual {v5}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->eos()Z
 
@@ -883,12 +890,12 @@
 
     if-eqz v0, :cond_5
 
-    .line 214
+    .line 230
     iget-object v9, v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mSnapshots:Ljava/util/List;
 
     monitor-enter v9
 
-    .line 215
+    .line 231
     :try_start_2
     sget-object v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
@@ -908,18 +915,18 @@
 
     invoke-static {v0, v6}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 216
+    .line 232
     iget-object v0, v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mSnapshots:Ljava/util/List;
 
     invoke-interface {v0, v5}, Ljava/util/List;->remove(Ljava/lang/Object;)Z
 
-    .line 217
+    .line 233
     monitor-exit v9
 
-    .line 218
+    .line 234
     goto :goto_6
 
-    .line 217
+    .line 233
     :catchall_0
     move-exception v0
 
@@ -929,7 +936,7 @@
 
     throw v0
 
-    .line 220
+    .line 236
     :cond_5
     iget-object v0, v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mCyclicBuffer:Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;
 
@@ -937,7 +944,7 @@
 
     move-result v8
 
-    .line 221
+    .line 237
     if-ltz v8, :cond_6
 
     invoke-virtual {v5}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->eos()Z
@@ -946,12 +953,12 @@
 
     if-eqz v0, :cond_1
 
-    .line 222
+    .line 238
     :cond_6
     :goto_6
     goto/16 :goto_0
 
-    .line 186
+    .line 202
     :cond_7
     sget-object v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
@@ -971,7 +978,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 187
+    .line 203
     new-instance v0, Ljava/lang/IllegalStateException;
 
     const-string v1, "Unable to get the first index"
@@ -980,7 +987,7 @@
 
     throw v0
 
-    .line 181
+    .line 197
     :catchall_1
     move-exception v0
 
@@ -991,7 +998,7 @@
 
     throw v0
 
-    .line 225
+    .line 241
     :cond_8
     move-object/from16 v1, p1
 
@@ -999,14 +1006,14 @@
 
     invoke-virtual {v1, v2, v4}, Landroid/media/MediaCodec;->releaseOutputBuffer(IZ)V
 
-    .line 226
+    .line 242
     return-void
 .end method
 
 .method public onOutputFormatChanged(Landroid/media/MediaCodec;Landroid/media/MediaFormat;)V
     .locals 2
 
-    .line 238
+    .line 254
     sget-object p1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -1025,21 +1032,46 @@
 
     invoke-static {p1, p2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 239
+    .line 255
+    monitor-enter p0
+
+    .line 256
+    const/4 p1, 0x1
+
+    :try_start_0
+    iput-boolean p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mOutputFormatChanged:Z
+
+    .line 257
+    invoke-virtual {p0}, Ljava/lang/Object;->notifyAll()V
+
+    .line 258
+    monitor-exit p0
+
+    .line 259
     return-void
+
+    .line 258
+    :catchall_0
+    move-exception p1
+
+    monitor-exit p0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw p1
 .end method
 
 .method public release()V
     .locals 3
 
-    .line 133
+    .line 149
     sget-object v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
     const-string v1, "release"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 134
+    .line 150
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mHandlerHelper:Lcom/xiaomi/camera/liveshot/util/HandlerHelper;
 
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mEventHandler:Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$EventHandler;
@@ -1052,31 +1084,31 @@
 
     invoke-virtual {v0, v1}, Lcom/xiaomi/camera/liveshot/util/HandlerHelper;->sendMessageAndAwaitResponse(Landroid/os/Message;)Ljava/lang/Object;
 
-    .line 135
+    .line 151
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mHandlerHelper:Lcom/xiaomi/camera/liveshot/util/HandlerHelper;
 
     invoke-virtual {v0}, Lcom/xiaomi/camera/liveshot/util/HandlerHelper;->release()V
 
-    .line 136
+    .line 152
     return-void
 .end method
 
 .method public snapshot()Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;
     .locals 12
 
-    .line 93
+    .line 98
     iget-boolean v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mIsBuffering:Z
 
     if-eqz v0, :cond_0
 
-    .line 96
+    .line 101
     iget-wide v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mCurrentPresentationTimeUs:J
 
     iget-wide v2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mPostCaptureDurationUs:J
 
     add-long v7, v0, v2
 
-    .line 97
+    .line 102
     const-wide/16 v0, 0x0
 
     iget-wide v2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mCaptureDurationUs:J
@@ -1087,7 +1119,7 @@
 
     move-result-wide v5
 
-    .line 98
+    .line 103
     sget-object v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -1124,7 +1156,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 99
+    .line 104
     new-instance v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;
 
     iget-wide v9, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mCurrentPresentationTimeUs:J
@@ -1139,24 +1171,24 @@
 
     invoke-direct/range {v4 .. v11}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;-><init>(JJJLandroid/media/MediaFormat;)V
 
-    .line 100
+    .line 105
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mSnapshots:Ljava/util/List;
 
     monitor-enter v1
 
-    .line 101
+    .line 106
     :try_start_0
     iget-object v2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mSnapshots:Ljava/util/List;
 
     invoke-interface {v2, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 102
+    .line 107
     monitor-exit v1
 
-    .line 103
+    .line 108
     return-object v0
 
-    .line 102
+    .line 107
     :catchall_0
     move-exception v0
 
@@ -1166,7 +1198,7 @@
 
     throw v0
 
-    .line 94
+    .line 99
     :cond_0
     new-instance v0, Ljava/lang/IllegalStateException;
 
@@ -1180,14 +1212,14 @@
 .method public start()V
     .locals 3
 
-    .line 107
+    .line 112
     sget-object v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
     const-string v1, "start"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 108
+    .line 113
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mHandlerHelper:Lcom/xiaomi/camera/liveshot/util/HandlerHelper;
 
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mEventHandler:Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$EventHandler;
@@ -1200,21 +1232,64 @@
 
     invoke-virtual {v0, v1}, Lcom/xiaomi/camera/liveshot/util/HandlerHelper;->sendMessageAndAwaitResponse(Landroid/os/Message;)Ljava/lang/Object;
 
-    .line 109
+    .line 114
     return-void
 .end method
 
 .method public stop()V
     .locals 3
 
-    .line 118
+    .line 124
     sget-object v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
 
     const-string v1, "stop"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 119
+    .line 125
+    monitor-enter p0
+
+    .line 126
+    :goto_0
+    :try_start_0
+    iget-boolean v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mOutputFormatChanged:Z
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    if-nez v0, :cond_0
+
+    .line 128
+    :try_start_1
+    sget-object v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->TAG:Ljava/lang/String;
+
+    const-string v1, "waiting for getting stable before stop"
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 129
+    invoke-virtual {p0}, Ljava/lang/Object;->wait()V
+    :try_end_1
+    .catch Ljava/lang/InterruptedException; {:try_start_1 .. :try_end_1} :catch_0
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    goto :goto_1
+
+    .line 130
+    :catch_0
+    move-exception v0
+
+    .line 132
+    :goto_1
+    goto :goto_0
+
+    .line 134
+    :cond_0
+    :try_start_2
+    monitor-exit p0
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+
+    .line 135
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mHandlerHelper:Lcom/xiaomi/camera/liveshot/util/HandlerHelper;
 
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->mEventHandler:Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$EventHandler;
@@ -1227,6 +1302,17 @@
 
     invoke-virtual {v0, v1}, Lcom/xiaomi/camera/liveshot/util/HandlerHelper;->sendMessageAndAwaitResponse(Landroid/os/Message;)Ljava/lang/Object;
 
-    .line 120
+    .line 136
     return-void
+
+    .line 134
+    :catchall_0
+    move-exception v0
+
+    :try_start_3
+    monitor-exit p0
+    :try_end_3
+    .catchall {:try_start_3 .. :try_end_3} :catchall_0
+
+    throw v0
 .end method

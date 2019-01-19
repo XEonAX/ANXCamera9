@@ -24,15 +24,15 @@
 .method public constructor <init>(Lcom/android/camera/module/VideoModule;Landroid/location/Location;)V
     .locals 0
 
-    .line 2318
+    .line 2323
     iput-object p1, p0, Lcom/android/camera/module/VideoModule$JpegPictureCallback;->this$0:Lcom/android/camera/module/VideoModule;
 
     invoke-direct {p0}, Lcom/android/camera2/Camera2Proxy$PictureCallbackWrapper;-><init>()V
 
-    .line 2319
+    .line 2324
     iput-object p2, p0, Lcom/android/camera/module/VideoModule$JpegPictureCallback;->mLocation:Landroid/location/Location;
 
-    .line 2320
+    .line 2325
     return-void
 .end method
 
@@ -41,17 +41,17 @@
 
     move-object/from16 v0, p0
 
-    .line 2333
+    .line 2338
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v1
 
-    .line 2334
+    .line 2339
     invoke-static/range {p1 .. p1}, Lcom/android/camera/Exif;->getOrientation([B)I
 
     move-result v15
 
-    .line 2336
+    .line 2341
     iget-object v3, v0, Lcom/android/camera/module/VideoModule$JpegPictureCallback;->this$0:Lcom/android/camera/module/VideoModule;
 
     iget-object v3, v3, Lcom/android/camera/module/VideoModule;->mActivity:Lcom/android/camera/Camera;
@@ -62,19 +62,19 @@
 
     iget-object v4, v0, Lcom/android/camera/module/VideoModule$JpegPictureCallback;->this$0:Lcom/android/camera/module/VideoModule;
 
-    .line 2338
+    .line 2343
     const/16 v5, 0xc
 
     invoke-static {v4, v5}, Lcom/android/camera/module/VideoModule;->access$1500(Lcom/android/camera/module/VideoModule;I)Z
 
     move-result v5
 
-    .line 2339
+    .line 2344
     invoke-static {v1, v2}, Lcom/android/camera/Util;->createJpegName(J)Ljava/lang/String;
 
     move-result-object v6
 
-    .line 2341
+    .line 2346
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v8
@@ -91,7 +91,7 @@
 
     iget v13, v0, Lcom/android/camera/CameraSize;->height:I
 
-    .line 2336
+    .line 2341
     const/4 v7, 0x0
 
     const/4 v10, 0x0
@@ -118,7 +118,7 @@
 
     invoke-virtual/range {v3 .. v22}, Lcom/android/camera/storage/ImageSaver;->addImage([BZLjava/lang/String;Ljava/lang/String;JLandroid/net/Uri;Landroid/location/Location;IILcom/android/gallery3d/exif/ExifInterface;IZZZZZLjava/lang/String;Lcom/xiaomi/camera/core/PictureInfo;)V
 
-    .line 2355
+    .line 2360
     return-void
 .end method
 
@@ -127,36 +127,36 @@
 .method public onPictureTaken([B)V
     .locals 2
 
-    .line 2324
+    .line 2329
     sget-object v0, Lcom/android/camera/module/VideoBase;->TAG:Ljava/lang/String;
 
     const-string v1, "onPictureTaken"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2325
+    .line 2330
     iget-object v0, p0, Lcom/android/camera/module/VideoModule$JpegPictureCallback;->this$0:Lcom/android/camera/module/VideoModule;
 
     const/4 v1, 0x0
 
     invoke-static {v0, v1}, Lcom/android/camera/module/VideoModule;->access$1402(Lcom/android/camera/module/VideoModule;Z)Z
 
-    .line 2326
+    .line 2331
     iget-object v0, p0, Lcom/android/camera/module/VideoModule$JpegPictureCallback;->this$0:Lcom/android/camera/module/VideoModule;
 
     iget-boolean v0, v0, Lcom/android/camera/module/VideoModule;->mPaused:Z
 
     if-eqz v0, :cond_0
 
-    .line 2327
+    .line 2332
     return-void
 
-    .line 2329
+    .line 2334
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/VideoModule$JpegPictureCallback;->mLocation:Landroid/location/Location;
 
     invoke-direct {p0, p1, v0}, Lcom/android/camera/module/VideoModule$JpegPictureCallback;->storeImage([BLandroid/location/Location;)V
 
-    .line 2330
+    .line 2335
     return-void
 .end method

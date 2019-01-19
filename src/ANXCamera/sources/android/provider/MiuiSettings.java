@@ -1039,6 +1039,7 @@ public class MiuiSettings {
         public static final int FLAG_SUPPORT_ENHANCE_MODE = 2;
         public static final int FLAG_SUPPORT_MONOCHROME_MODE = 8;
         public static final int FLAG_SUPPORT_STANDARD_MODE = 4;
+        public static final String GAME_HDR_LEVEL = "game_hdr_level";
         public static final String GAME_MODE = "screen_game_mode";
         public static final int GAME_MODE_DISABLE_EYECARE = 1;
         public static final int GAME_MODE_ENABLE_HDR = 2;
@@ -1107,7 +1108,7 @@ public class MiuiSettings {
 
         private static int getDefaultSaturation() {
             int defaultSaturation = 10;
-            if (FeatureParser.getBoolean(d.sc, false)) {
+            if (FeatureParser.getBoolean(d.sn, false)) {
                 defaultSaturation = 11;
             }
             return FeatureParser.getInteger("display_ce", defaultSaturation);
@@ -1797,9 +1798,9 @@ public class MiuiSettings {
         public static final String BREATHING_LIGHT_FREQ = "breathing_light_freq";
         public static final String CALENDAR_ALERT = "calendar_alert";
         public static final String CALL_BREATHING_LIGHT_COLOR = "call_breathing_light_color";
-        public static final int CALL_BREATHING_LIGHT_COLOR_DEFAULT = 255;
+        public static final int CALL_BREATHING_LIGHT_COLOR_DEFAULT = Resources.getSystem().getColor(285671426);
         public static final String CALL_BREATHING_LIGHT_FREQ = "call_breathing_light_freq";
-        public static final int CALL_BREATHING_LIGHT_FREQ_DEFAULT = 2;
+        public static final int CALL_BREATHING_LIGHT_FREQ_DEFAULT = Resources.getSystem().getInteger(285736971);
         public static final String CAMERA_KEY_PREFERRED_ACTION_APP_COMPONENT = "camera_key_preferred_action_app_component";
         public static final String CAMERA_KEY_PREFERRED_ACTION_SHORTCUT_ID = "camera_key_preferred_action_shortcut_id";
         public static final int CAMERA_KEY_PREFERRED_ACTION_SHORTCUT_ID_CALL = 3;

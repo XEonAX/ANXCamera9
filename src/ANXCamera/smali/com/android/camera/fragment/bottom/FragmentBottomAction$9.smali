@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)V
     .locals 0
 
-    .line 1080
+    .line 1056
     iput-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$9;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,6 +38,6 @@
 .method public onClick(Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 1084
+    .line 1060
     return-void
 .end method

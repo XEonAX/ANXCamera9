@@ -69,7 +69,7 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
         linearLayoutManager.setOrientation(0);
         this.mRecyclerView.setLayoutManager(linearLayoutManager);
         adjustViewBackground(this.mCurrentMode);
-        provideAnimateElement(this.mCurrentMode, null, false);
+        provideAnimateElement(this.mCurrentMode, null, 2);
     }
 
     protected void register(ModeCoordinator modeCoordinator) {
@@ -166,22 +166,22 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
             ManuallyValueChanged manuallyValueChanged = (ManuallyValueChanged) ModeCoordinatorImpl.getInstance().getAttachProtocol(174);
             if (manuallyValueChanged != null) {
                 switch (componentData.getDisplayTitleString()) {
-                    case R.string.pref_camera_whitebalance_title /*2131427430*/:
+                    case R.string.pref_camera_whitebalance_title /*2131296357*/:
                         if (str2.equals("manual")) {
                             getExtraFragment().showCustomWB((ComponentManuallyWB) componentData);
                         }
                         manuallyValueChanged.onWBValueChanged((ComponentManuallyWB) componentData, str2, z);
                         break;
-                    case R.string.pref_camera_iso_title /*2131427500*/:
+                    case R.string.pref_camera_iso_title /*2131296427*/:
                         manuallyValueChanged.onISOValueChanged((ComponentManuallyISO) componentData, str2);
                         break;
-                    case R.string.pref_manual_exposure_title /*2131427637*/:
+                    case R.string.pref_manual_exposure_title /*2131296565*/:
                         manuallyValueChanged.onETValueChanged((ComponentManuallyET) componentData, str2);
                         break;
-                    case R.string.pref_qc_focus_position_title /*2131427685*/:
+                    case R.string.pref_qc_focus_position_title /*2131296613*/:
                         manuallyValueChanged.onFocusValueChanged((ComponentManuallyFocus) componentData, str, str2);
                         break;
-                    case R.string.pref_camera_zoom_mode_title /*2131427735*/:
+                    case R.string.pref_camera_zoom_mode_title /*2131296663*/:
                         manuallyValueChanged.onDualLensSwitch((ComponentManuallyDualLens) componentData, this.mCurrentMode);
                         break;
                 }
@@ -204,7 +204,7 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
         }
         DataItemConfig dataItemConfig = DataRepository.dataItemConfig();
         this.mManuallyComponents.add(new ComponentManuallyWB(dataItemConfig));
-        if (b.gu()) {
+        if (b.gD()) {
             this.mManuallyComponents.add(new ComponentManuallyFocus(dataItemConfig));
             this.mManuallyComponents.add(new ComponentManuallyET(dataItemConfig));
         }
@@ -223,8 +223,8 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
         return 247;
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
         if (i != 167) {
             i = 0;
         } else {
@@ -284,7 +284,7 @@ public class FragmentManually extends BaseFragment implements OnClickListener, M
     }
 
     public int visibleHeight() {
-        if (this.mCurrentAdjustType == 0) {
+        if (this.mCurrentAdjustType == 0 || this.mCurrentAdjustType == -1) {
             return 0;
         }
         if (this.mIndicatorButton.getVisibility() == 0) {

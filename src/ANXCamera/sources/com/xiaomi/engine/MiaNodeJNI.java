@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import com.android.camera.module.loader.FunctionParseBeautyBodySlimCount;
 import java.util.List;
 
 public class MiaNodeJNI {
@@ -27,7 +28,7 @@ public class MiaNodeJNI {
 
     private static native int init(int i);
 
-    private static native int processRequest(@NonNull List<FrameData> list, @NonNull Image image, int i);
+    private static native int processRequest(@NonNull List<FrameData> list, @NonNull Image image, int i, boolean z);
 
     /* synthetic */ MiaNodeJNI(AnonymousClass1 anonymousClass1) {
         this();
@@ -61,7 +62,7 @@ public class MiaNodeJNI {
             public void run() {
                 MiaNodeJNI.this.deInitialize(MiaNodeJNI.sType);
             }
-        }, 10000);
+        }, FunctionParseBeautyBodySlimCount.TIP_INTERVAL_TIME);
     }
 
     private void initialize(int i) {
@@ -100,7 +101,7 @@ public class MiaNodeJNI {
         }
     }
 
-    public int process(@NonNull List<FrameData> list, @NonNull Image image, int i) {
+    public int process(@NonNull List<FrameData> list, @NonNull Image image, int i, boolean z) {
         int processRequest;
         synchronized (this.mObjLock) {
             if (!sInitialized) {
@@ -108,7 +109,7 @@ public class MiaNodeJNI {
             }
             long currentTimeMillis = System.currentTimeMillis();
             Log.d(TAG, "processRequest: start");
-            processRequest = processRequest(list, image, i);
+            processRequest = processRequest(list, image, i, z);
             String str = TAG;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("processRequest: end, cost: ");

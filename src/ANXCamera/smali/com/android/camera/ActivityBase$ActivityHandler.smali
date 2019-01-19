@@ -149,7 +149,7 @@
 
     .line 174
     :pswitch_3
-    const p1, 0x7f0b0008
+    const p1, 0x7f090008
 
     invoke-static {v0, p1}, Lcom/android/camera/Util;->showErrorAndFinish(Landroid/app/Activity;I)V
 
@@ -171,7 +171,7 @@
     if-eqz p1, :cond_2
 
     .line 186
-    const p1, 0x7f0b01b6
+    const p1, 0x7f0901b6
 
     goto :goto_0
 
@@ -188,13 +188,13 @@
     if-lez p1, :cond_3
 
     .line 188
-    const p1, 0x7f0b0007
+    const p1, 0x7f090007
 
     goto :goto_0
 
     .line 189
     :cond_3
-    const p1, 0x7f0b0006
+    const p1, 0x7f090006
 
     .line 184
     :goto_0

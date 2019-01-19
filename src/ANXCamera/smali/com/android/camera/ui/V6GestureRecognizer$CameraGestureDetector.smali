@@ -24,19 +24,19 @@
 .method public constructor <init>(Lcom/android/camera/ui/V6GestureRecognizer;)V
     .locals 0
 
-    .line 205
+    .line 207
     iput-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$CameraGestureDetector;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 203
+    .line 205
     new-instance p1, Landroid/graphics/Point;
 
     invoke-direct {p1}, Landroid/graphics/Point;-><init>()V
 
     iput-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$CameraGestureDetector;->mStartPoint:Landroid/graphics/Point;
 
-    .line 206
+    .line 208
     return-void
 .end method
 
@@ -45,7 +45,7 @@
 .method public onTouchEvent(Landroid/view/MotionEvent;)V
     .locals 6
 
-    .line 209
+    .line 211
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getAction()I
 
     move-result v0
@@ -64,7 +64,7 @@
 
     goto/16 :goto_4
 
-    .line 226
+    .line 228
     :cond_0
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getPointerCount()I
 
@@ -82,7 +82,7 @@
 
     if-eqz v0, :cond_9
 
-    .line 228
+    .line 230
     invoke-virtual {p1, v1}, Landroid/view/MotionEvent;->getX(I)F
 
     move-result v0
@@ -97,30 +97,30 @@
 
     if-gez v0, :cond_1
 
-    .line 229
+    .line 231
     invoke-virtual {p1, v1}, Landroid/view/MotionEvent;->getX(I)F
 
     move-result v0
 
-    .line 230
+    .line 232
     invoke-virtual {p1, v2}, Landroid/view/MotionEvent;->getX(I)F
 
     move-result v3
 
     goto :goto_0
 
-    .line 232
+    .line 234
     :cond_1
     invoke-virtual {p1, v2}, Landroid/view/MotionEvent;->getX(I)F
 
     move-result v0
 
-    .line 233
+    .line 235
     invoke-virtual {p1, v1}, Landroid/view/MotionEvent;->getX(I)F
 
     move-result v3
 
-    .line 236
+    .line 238
     :goto_0
     invoke-virtual {p1, v1}, Landroid/view/MotionEvent;->getY(I)F
 
@@ -134,30 +134,30 @@
 
     if-gez v4, :cond_2
 
-    .line 237
+    .line 239
     invoke-virtual {p1, v1}, Landroid/view/MotionEvent;->getY(I)F
 
     move-result v4
 
-    .line 238
+    .line 240
     invoke-virtual {p1, v2}, Landroid/view/MotionEvent;->getY(I)F
 
     move-result p1
 
     goto :goto_1
 
-    .line 240
+    .line 242
     :cond_2
     invoke-virtual {p1, v2}, Landroid/view/MotionEvent;->getY(I)F
 
     move-result v4
 
-    .line 241
+    .line 243
     invoke-virtual {p1, v1}, Landroid/view/MotionEvent;->getY(I)F
 
     move-result p1
 
-    .line 243
+    .line 245
     :goto_1
     iget-object v5, p0, Lcom/android/camera/ui/V6GestureRecognizer$CameraGestureDetector;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
@@ -167,14 +167,14 @@
 
     if-eqz v1, :cond_3
 
-    .line 244
+    .line 246
     iget-object v1, p0, Lcom/android/camera/ui/V6GestureRecognizer$CameraGestureDetector;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     const/16 v5, 0xa
 
     invoke-static {v1, v5}, Lcom/android/camera/ui/V6GestureRecognizer;->access$312(Lcom/android/camera/ui/V6GestureRecognizer;I)I
 
-    .line 245
+    .line 247
     iget-object v1, p0, Lcom/android/camera/ui/V6GestureRecognizer$CameraGestureDetector;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {v1}, Lcom/android/camera/ui/V6GestureRecognizer;->access$700(Lcom/android/camera/ui/V6GestureRecognizer;)Lcom/android/camera/module/Module;
@@ -187,11 +187,11 @@
 
     invoke-interface {v1, v5, v2}, Lcom/android/camera/module/Module;->onGestureTrack(Landroid/graphics/RectF;Z)Z
 
-    .line 247
+    .line 249
     :cond_3
     goto/16 :goto_4
 
-    .line 214
+    .line 216
     :cond_4
     const-string v0, "GESTURE_"
 
@@ -217,7 +217,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 215
+    .line 217
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$CameraGestureDetector;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {v0}, Lcom/android/camera/ui/V6GestureRecognizer;->access$300(Lcom/android/camera/ui/V6GestureRecognizer;)I
@@ -230,7 +230,7 @@
 
     if-nez v0, :cond_7
 
-    .line 216
+    .line 218
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$CameraGestureDetector;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     iget-object v2, p0, Lcom/android/camera/ui/V6GestureRecognizer$CameraGestureDetector;->mStartPoint:Landroid/graphics/Point;
@@ -257,7 +257,7 @@
 
     move-result-object p1
 
-    .line 217
+    .line 219
     const-string v0, "CameraGestureRecognizer"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -326,7 +326,7 @@
 
     invoke-static {v0, v2}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 219
+    .line 221
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$CameraGestureDetector;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {v0}, Lcom/android/camera/ui/V6GestureRecognizer;->access$500(Lcom/android/camera/ui/V6GestureRecognizer;)I
@@ -349,7 +349,7 @@
 
     if-gt v0, v2, :cond_7
 
-    .line 220
+    .line 222
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$CameraGestureDetector;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     iget v2, p1, Landroid/graphics/Point;->x:I
@@ -374,7 +374,7 @@
     :goto_3
     invoke-static {v0, v1}, Lcom/android/camera/ui/V6GestureRecognizer;->access$312(Lcom/android/camera/ui/V6GestureRecognizer;I)I
 
-    .line 223
+    .line 225
     :cond_7
     const-string p1, "GESTURE_"
 
@@ -400,10 +400,10 @@
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 224
+    .line 226
     goto :goto_4
 
-    .line 211
+    .line 213
     :cond_8
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$CameraGestureDetector;->mStartPoint:Landroid/graphics/Point;
 
@@ -421,10 +421,10 @@
 
     invoke-virtual {v0, v1, p1}, Landroid/graphics/Point;->set(II)V
 
-    .line 212
+    .line 214
     nop
 
-    .line 252
+    .line 254
     :cond_9
     :goto_4
     return-void

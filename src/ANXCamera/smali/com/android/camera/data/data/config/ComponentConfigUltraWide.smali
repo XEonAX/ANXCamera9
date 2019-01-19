@@ -40,28 +40,28 @@
 .method private getUltraWideResources()[I
     .locals 1
 
-    .line 123
+    .line 122
     const/4 v0, 0x2
 
     new-array v0, v0, [I
 
     fill-array-data v0, :array_0
 
+    .line 123
+    nop
+
     .line 124
     nop
 
     .line 125
-    nop
-
-    .line 126
     return-object v0
 
     nop
 
     :array_0
     .array-data 4
-        0x7f020165
-        0x7f020166
+        0x7f020176
+        0x7f020177
     .end array-data
 .end method
 
@@ -157,12 +157,12 @@
 .method public getValueSelectedDrawableIgnoreClose(I)I
     .locals 1
 
-    .line 98
+    .line 97
     invoke-virtual {p0, p1}, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->getComponentValue(I)Ljava/lang/String;
 
     move-result-object p1
 
-    .line 99
+    .line 98
     const-string v0, "ON"
 
     invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -171,7 +171,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 100
+    .line 99
     iget-object p1, p0, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->mUltraWideResource:[I
 
     const/4 v0, 0x1
@@ -180,7 +180,7 @@
 
     return p1
 
-    .line 101
+    .line 100
     :cond_0
     const-string v0, "OFF"
 
@@ -190,7 +190,7 @@
 
     if-eqz p1, :cond_1
 
-    .line 102
+    .line 101
     iget-object p1, p0, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->mUltraWideResource:[I
 
     const/4 v0, 0x0
@@ -199,7 +199,7 @@
 
     return p1
 
-    .line 104
+    .line 103
     :cond_1
     const/4 p1, -0x1
 
@@ -209,12 +209,12 @@
 .method public getValueSelectedStringIdIgnoreClose(I)I
     .locals 1
 
-    .line 108
+    .line 107
     invoke-virtual {p0, p1}, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->getComponentValue(I)Ljava/lang/String;
 
     move-result-object p1
 
-    .line 109
+    .line 108
     const-string v0, "ON"
 
     invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -223,12 +223,12 @@
 
     if-eqz v0, :cond_0
 
-    .line 110
-    const p1, 0x7f0b0246
+    .line 109
+    const p1, 0x7f090247
 
     return p1
 
-    .line 111
+    .line 110
     :cond_0
     const-string v0, "OFF"
 
@@ -238,12 +238,12 @@
 
     if-eqz p1, :cond_1
 
-    .line 112
-    const p1, 0x7f0b0247
+    .line 111
+    const p1, 0x7f090248
 
     return p1
 
-    .line 114
+    .line 113
     :cond_1
     const/4 p1, -0x1
 
@@ -253,7 +253,7 @@
 .method public isOpenUltrWide(I)Z
     .locals 1
 
-    .line 130
+    .line 129
     invoke-virtual {p0}, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->isEmpty()Z
 
     move-result v0
@@ -322,33 +322,29 @@
 
     move-result-object p3
 
-    invoke-virtual {p3}, Lcom/mi/config/a;->fw()Z
+    invoke-virtual {p3}, Lcom/mi/config/a;->fx()Z
 
     move-result p3
 
     .line 74
-    if-nez p2, :cond_2
+    if-nez p2, :cond_3
 
     if-nez p3, :cond_1
 
-    goto :goto_2
+    goto :goto_1
 
     .line 79
     :cond_1
+    const/16 p2, 0xa6
+
+    if-eq p1, p2, :cond_2
+
     packed-switch p1, :pswitch_data_0
 
-    .line 87
-    :pswitch_0
-    goto :goto_1
+    .line 86
+    nop
 
-    .line 84
-    :pswitch_1
-    iget-object p1, p0, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->mItems:Ljava/util/List;
-
-    return-object p1
-
-    .line 89
-    :goto_1
+    .line 88
     iget-object p1, p0, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->mItems:Ljava/util/List;
 
     new-instance p2, Lcom/android/camera/data/data/ComponentDataItem;
@@ -357,60 +353,62 @@
 
     const/4 v0, 0x0
 
-    const v1, 0x7f020165
+    const v1, 0x7f020176
 
     invoke-direct {p2, v1, v1, v0, p3}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 
     invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 90
+    .line 89
     iget-object p1, p0, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->mItems:Ljava/util/List;
 
     new-instance p2, Lcom/android/camera/data/data/ComponentDataItem;
 
     const-string p3, "ON"
 
-    const v1, 0x7f020166
+    const v1, 0x7f020177
 
     invoke-direct {p2, v1, v1, v0, p3}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 
     invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 94
+    .line 93
+    iget-object p1, p0, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->mItems:Ljava/util/List;
+
+    return-object p1
+
+    .line 83
+    :cond_2
+    :pswitch_0
     iget-object p1, p0, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->mItems:Ljava/util/List;
 
     return-object p1
 
     .line 75
-    :cond_2
-    :goto_2
+    :cond_3
+    :goto_1
     iget-object p1, p0, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->mItems:Ljava/util/List;
 
     return-object p1
 
     :pswitch_data_0
-    .packed-switch 0xa6
-        :pswitch_1
-        :pswitch_1
+    .packed-switch 0xab
         :pswitch_0
         :pswitch_0
-        :pswitch_0
-        :pswitch_1
-        :pswitch_1
     .end packed-switch
 .end method
 
 .method public resetUltraWide(Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
     .locals 3
 
-    .line 134
+    .line 133
     const/16 v0, 0xa3
 
     invoke-virtual {p0, v0}, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->getComponentValue(I)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 135
+    .line 134
     const-string v2, "OFF"
 
     invoke-virtual {v2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -419,7 +417,7 @@
 
     if-nez v1, :cond_0
 
-    .line 136
+    .line 135
     invoke-virtual {p0, v0}, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->getKey(I)Ljava/lang/String;
 
     move-result-object v0
@@ -428,7 +426,7 @@
 
     invoke-interface {p1, v0, v1}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putString(Ljava/lang/String;Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 139
+    .line 138
     :cond_0
     const/16 v0, 0xa1
 
@@ -436,7 +434,7 @@
 
     move-result-object v1
 
-    .line 140
+    .line 139
     const-string v2, "OFF"
 
     invoke-virtual {v2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -445,7 +443,7 @@
 
     if-nez v1, :cond_1
 
-    .line 141
+    .line 140
     invoke-virtual {p0, v0}, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->getKey(I)Ljava/lang/String;
 
     move-result-object v0
@@ -454,7 +452,7 @@
 
     invoke-interface {p1, v0, v1}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putString(Ljava/lang/String;Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 144
+    .line 143
     :cond_1
     const/16 v0, 0xac
 
@@ -462,7 +460,7 @@
 
     move-result-object v1
 
-    .line 145
+    .line 144
     const-string v2, "OFF"
 
     invoke-virtual {v2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -471,7 +469,7 @@
 
     if-nez v1, :cond_2
 
-    .line 146
+    .line 145
     invoke-virtual {p0, v0}, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->getKey(I)Ljava/lang/String;
 
     move-result-object v0
@@ -480,7 +478,7 @@
 
     invoke-interface {p1, v0, v1}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putString(Ljava/lang/String;Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 149
+    .line 148
     :cond_2
     const/16 v0, 0xa2
 
@@ -488,7 +486,7 @@
 
     move-result-object v1
 
-    .line 150
+    .line 149
     const-string v2, "OFF"
 
     invoke-virtual {v2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -497,7 +495,7 @@
 
     if-nez v1, :cond_3
 
-    .line 151
+    .line 150
     invoke-virtual {p0, v0}, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->getKey(I)Ljava/lang/String;
 
     move-result-object v0
@@ -506,7 +504,7 @@
 
     invoke-interface {p1, v0, v1}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putString(Ljava/lang/String;Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 154
+    .line 153
     :cond_3
     const/16 v0, 0xad
 
@@ -514,7 +512,7 @@
 
     move-result-object v1
 
-    .line 155
+    .line 154
     const-string v2, "OFF"
 
     invoke-virtual {v2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -523,7 +521,7 @@
 
     if-nez v1, :cond_4
 
-    .line 156
+    .line 155
     invoke-virtual {p0, v0}, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->getKey(I)Ljava/lang/String;
 
     move-result-object v0
@@ -532,7 +530,7 @@
 
     invoke-interface {p1, v0, v1}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putString(Ljava/lang/String;Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 159
+    .line 158
     :cond_4
     const/16 v0, 0xa5
 
@@ -540,7 +538,7 @@
 
     move-result-object v1
 
-    .line 160
+    .line 159
     const-string v2, "OFF"
 
     invoke-virtual {v2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -549,7 +547,7 @@
 
     if-nez v1, :cond_5
 
-    .line 161
+    .line 160
     invoke-virtual {p0, v0}, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->getKey(I)Ljava/lang/String;
 
     move-result-object v0
@@ -558,7 +556,7 @@
 
     invoke-interface {p1, v0, v1}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putString(Ljava/lang/String;Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 163
+    .line 162
     :cond_5
     return-void
 .end method

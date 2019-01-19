@@ -34,7 +34,7 @@
 .method static constructor <clinit>()V
     .locals 4
 
-    .line 70
+    .line 72
     new-instance v0, Lcom/ss/android/vesdk/VEEditor$SCALE_MODE;
 
     const-string v1, "SCALE_MODE_CENTER_INSIDE"
@@ -45,7 +45,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VEEditor$SCALE_MODE;->SCALE_MODE_CENTER_INSIDE:Lcom/ss/android/vesdk/VEEditor$SCALE_MODE;
 
-    .line 74
+    .line 76
     new-instance v0, Lcom/ss/android/vesdk/VEEditor$SCALE_MODE;
 
     const-string v1, "SCALE_MODE_CENTER_CROP"
@@ -56,7 +56,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VEEditor$SCALE_MODE;->SCALE_MODE_CENTER_CROP:Lcom/ss/android/vesdk/VEEditor$SCALE_MODE;
 
-    .line 66
+    .line 68
     const/4 v0, 0x2
 
     new-array v0, v0, [Lcom/ss/android/vesdk/VEEditor$SCALE_MODE;
@@ -82,7 +82,7 @@
         }
     .end annotation
 
-    .line 66
+    .line 68
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -91,7 +91,7 @@
 .method public static valueOf(Ljava/lang/String;)Lcom/ss/android/vesdk/VEEditor$SCALE_MODE;
     .locals 1
 
-    .line 66
+    .line 68
     const-class v0, Lcom/ss/android/vesdk/VEEditor$SCALE_MODE;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -106,7 +106,7 @@
 .method public static values()[Lcom/ss/android/vesdk/VEEditor$SCALE_MODE;
     .locals 1
 
-    .line 66
+    .line 68
     sget-object v0, Lcom/ss/android/vesdk/VEEditor$SCALE_MODE;->$VALUES:[Lcom/ss/android/vesdk/VEEditor$SCALE_MODE;
 
     invoke-virtual {v0}, [Lcom/ss/android/vesdk/VEEditor$SCALE_MODE;->clone()Ljava/lang/Object;

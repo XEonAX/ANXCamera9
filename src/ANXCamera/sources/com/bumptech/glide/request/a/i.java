@@ -5,20 +5,20 @@ import com.bumptech.glide.request.a.j.a;
 
 /* compiled from: ViewPropertyAnimationFactory */
 public class i<R> implements g<R> {
-    private final a pa;
-    private j<R> pb;
+    private final a oZ;
+    private j<R> pa;
 
     public i(a aVar) {
-        this.pa = aVar;
+        this.oZ = aVar;
     }
 
     public f<R> a(DataSource dataSource, boolean z) {
         if (dataSource == DataSource.MEMORY_CACHE || !z) {
             return e.eA();
         }
-        if (this.pb == null) {
-            this.pb = new j(this.pa);
+        if (this.pa == null) {
+            this.pa = new j(this.oZ);
         }
-        return this.pb;
+        return this.pa;
     }
 }

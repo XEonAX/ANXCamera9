@@ -68,15 +68,15 @@ public class SingleCameraProcessor extends ImageProcessor {
     }
 
     void processImage(CaptureDataBean captureDataBean) {
-        ICustomCaptureResult result = captureDataBean.getResult();
-        Image mainImage = captureDataBean.getMainImage();
-        if (captureDataBean.isFirstResult()) {
-            this.mImageProcessorStatusCallback.onImageProcessStart(result.getTimeStamp());
-        }
-        processCaptureResult(result, mainImage);
+        processCaptureResult(captureDataBean.getResult(), captureDataBean.getMainImage());
     }
 
     private void processCaptureResult(ICustomCaptureResult iCustomCaptureResult, Image image) {
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("processCaptureResult: processFrame image -- ");
+        stringBuilder.append(image);
+        Log.d(str, stringBuilder.toString());
         FrameData frameData = new FrameData(0, iCustomCaptureResult.getSequenceId(), iCustomCaptureResult.getFrameNumber(), iCustomCaptureResult.getResults(), image);
         frameData.setFrameCallback(new FrameStatusCallback() {
             public void onFrameImageClosed(Image image) {
@@ -85,16 +85,15 @@ public class SingleCameraProcessor extends ImageProcessor {
                 stringBuilder.append("onFrameImageClosed: ");
                 stringBuilder.append(image);
                 Log.d(access$000, stringBuilder.toString());
+                if (SingleCameraProcessor.this.mTaskSession != null) {
+                    SingleCameraProcessor.this.mTaskSession.onTaskFinish(1);
+                }
                 if (SingleCameraProcessor.this.mImageProcessorStatusCallback != null) {
                     SingleCameraProcessor.this.mImageProcessorStatusCallback.onOriginalImageClosed(image);
                 }
             }
         });
-        String str = TAG;
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("processCaptureResult: processFrame image -- ");
-        stringBuilder.append(image);
-        Log.d(str, stringBuilder.toString());
+        this.mTaskSession.onTaskStart(1);
         this.mTaskSession.processFrame(frameData, new FrameCallback() {
             public void onFrameProcessed(int i, String str, Object obj) {
                 String access$000 = SingleCameraProcessor.TAG;

@@ -83,7 +83,7 @@
     .line 208
     iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$3;->this$0:Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
 
-    invoke-static {p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$400(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)Landroid/os/Handler;
+    invoke-static {p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$300(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)Landroid/os/Handler;
 
     move-result-object p1
 

@@ -7,46 +7,46 @@ import android.support.v4.media.session.PlaybackStateCompat;
 public class a {
     private long mHandle;
     private int mStatus = 0;
-    private AudioTrack ua = null;
-    private long ub = 0;
-    private Thread uc = null;
-    private b ud = null;
+    private AudioTrack uk = null;
+    private long ul = 0;
+    private Thread um = null;
+    private b un = null;
 
     public a(long j) {
         this.mHandle = j;
     }
 
-    public long hJ() {
+    public long hT() {
         return this.mHandle;
     }
 
     public boolean a(b bVar) {
-        this.ud = bVar;
-        this.ub = (long) AudioTrack.getMinBufferSize(44100, 12, 2);
-        if (this.ub <= 0) {
+        this.un = bVar;
+        this.ul = (long) AudioTrack.getMinBufferSize(44100, 12, 2);
+        if (this.ul <= 0) {
             return false;
         }
-        hN();
-        if (this.ua.getState() != 1) {
+        hX();
+        if (this.uk.getState() != 1) {
             return false;
         }
         this.mStatus = 1;
-        if (this.ud != null) {
-            this.ud.setAudioMinSize(this.mHandle, PlaybackStateCompat.ACTION_SKIP_TO_QUEUE_ITEM);
+        if (this.un != null) {
+            this.un.setAudioMinSize(this.mHandle, PlaybackStateCompat.ACTION_SKIP_TO_QUEUE_ITEM);
         }
         return true;
     }
 
-    public void hK() {
+    public void hU() {
         this.mStatus = 0;
-        hM();
-        hO();
+        hW();
+        hY();
     }
 
-    public void hL() {
+    public void hV() {
         if (this.mStatus == 1) {
             this.mStatus = 2;
-            hP();
+            hZ();
         }
     }
 
@@ -62,66 +62,66 @@ public class a {
         }
     }
 
-    public void hM() {
+    public void hW() {
         this.mStatus = 4;
-        if (this.ud != null) {
-            this.ud.stopAudio(this.mHandle);
+        if (this.un != null) {
+            this.un.stopAudio(this.mHandle);
         }
-        if (this.uc != null) {
+        if (this.um != null) {
             try {
-                this.uc.join();
+                this.um.join();
             } catch (Exception e) {
             }
         }
-        this.uc = null;
+        this.um = null;
     }
 
-    private void hN() {
-        hO();
-        this.ua = new AudioTrack(3, 44100, 12, 2, (int) this.ub, 1);
+    private void hX() {
+        hY();
+        this.uk = new AudioTrack(3, 44100, 12, 2, (int) this.ul, 1);
     }
 
-    private void hO() {
-        if (this.ua != null) {
-            this.ua.flush();
-            if (this.ua.getPlayState() == 1) {
-                this.ua.stop();
+    private void hY() {
+        if (this.uk != null) {
+            this.uk.flush();
+            if (this.uk.getPlayState() == 1) {
+                this.uk.stop();
             }
-            this.ua.release();
-            this.ua = null;
+            this.uk.release();
+            this.uk = null;
         }
     }
 
-    private int hP() {
+    private int hZ() {
         if (this.mStatus != 2) {
             return -1;
         }
-        if (this.ud == null) {
+        if (this.un == null) {
             return -2;
         }
-        this.uc = new Thread(new Runnable() {
+        this.um = new Thread(new Runnable() {
             public void run() {
-                if (a.this.ua != null && a.this.mStatus == 2) {
-                    a.this.ua.play();
+                if (a.this.uk != null && a.this.mStatus == 2) {
+                    a.this.uk.play();
                 }
                 while (a.this.mStatus != 4) {
-                    byte[] playAudioSamples = a.this.mStatus == 3 ? null : a.this.ud.playAudioSamples(a.this.mHandle);
+                    byte[] playAudioSamples = a.this.mStatus == 3 ? null : a.this.un.playAudioSamples(a.this.mHandle);
                     if (playAudioSamples == null || playAudioSamples.length <= 0) {
                         try {
                             Thread.sleep(10);
                         } catch (InterruptedException e) {
                             return;
                         }
-                    } else if (a.this.ua != null) {
+                    } else if (a.this.uk != null) {
                         try {
-                            a.this.ua.write(playAudioSamples, 0, playAudioSamples.length);
+                            a.this.uk.write(playAudioSamples, 0, playAudioSamples.length);
                         } catch (Exception e2) {
                         }
                     }
                 }
             }
         });
-        this.uc.start();
+        this.um.start();
         return 0;
     }
 }

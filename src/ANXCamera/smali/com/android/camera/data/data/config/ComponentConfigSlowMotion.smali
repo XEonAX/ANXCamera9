@@ -24,7 +24,7 @@
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/mi/config/a;->fr()Z
+    invoke-virtual {v0}, Lcom/mi/config/a;->fs()Z
 
     move-result v0
 
@@ -77,14 +77,14 @@
 .method public getContentDesc()I
     .locals 2
 
-    .line 102
+    .line 106
     const/16 v0, 0xac
 
     invoke-virtual {p0, v0}, Lcom/android/camera/data/data/config/ComponentConfigSlowMotion;->getComponentValue(I)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 103
+    .line 107
     const-string v1, "slow_motion_120"
 
     invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -93,12 +93,12 @@
 
     if-eqz v1, :cond_0
 
-    .line 104
-    const v0, 0x7f0b0100
+    .line 108
+    const v0, 0x7f090100
 
     return v0
 
-    .line 105
+    .line 109
     :cond_0
     const-string v1, "slow_motion_240"
 
@@ -108,14 +108,14 @@
 
     if-eqz v0, :cond_1
 
-    .line 106
-    const v0, 0x7f0b0101
+    .line 110
+    const v0, 0x7f090101
 
     return v0
 
-    .line 108
+    .line 112
     :cond_1
-    const v0, 0x7f0b0102
+    const v0, 0x7f090102
 
     return v0
 .end method
@@ -147,14 +147,14 @@
 .method public getImageResource()I
     .locals 2
 
-    .line 91
+    .line 95
     const/16 v0, 0xac
 
     invoke-virtual {p0, v0}, Lcom/android/camera/data/data/config/ComponentConfigSlowMotion;->getComponentValue(I)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 92
+    .line 96
     const-string v1, "slow_motion_120"
 
     invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -163,12 +163,12 @@
 
     if-eqz v1, :cond_0
 
-    .line 93
-    const v0, 0x7f02012f
+    .line 97
+    const v0, 0x7f02013f
 
     return v0
 
-    .line 94
+    .line 98
     :cond_0
     const-string v1, "slow_motion_240"
 
@@ -178,14 +178,14 @@
 
     if-eqz v0, :cond_1
 
-    .line 95
-    const v0, 0x7f020130
+    .line 99
+    const v0, 0x7f020140
 
     return v0
 
-    .line 97
+    .line 101
     :cond_1
-    const v0, 0x7f020131
+    const v0, 0x7f020141
 
     return v0
 .end method
@@ -221,12 +221,12 @@
 .method public getNextValue(I)Ljava/lang/String;
     .locals 4
 
-    .line 81
+    .line 85
     invoke-virtual {p0, p1}, Lcom/android/camera/data/data/config/ComponentConfigSlowMotion;->getComponentValue(I)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 82
+    .line 86
     sget-object v1, Lcom/android/camera/data/data/config/ComponentConfigSlowMotion;->SLOW_MOTION_MODE:[Ljava/lang/String;
 
     array-length v1, v1
@@ -236,7 +236,7 @@
     :goto_0
     if-ge v2, v1, :cond_1
 
-    .line 83
+    .line 87
     sget-object v3, Lcom/android/camera/data/data/config/ComponentConfigSlowMotion;->SLOW_MOTION_MODE:[Ljava/lang/String;
 
     aget-object v3, v3, v2
@@ -247,7 +247,7 @@
 
     if-eqz v3, :cond_0
 
-    .line 84
+    .line 88
     sget-object p1, Lcom/android/camera/data/data/config/ComponentConfigSlowMotion;->SLOW_MOTION_MODE:[Ljava/lang/String;
 
     add-int/lit8 v2, v2, 0x1
@@ -258,13 +258,13 @@
 
     return-object p1
 
-    .line 82
+    .line 86
     :cond_0
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_0
 
-    .line 87
+    .line 91
     :cond_1
     invoke-virtual {p0, p1}, Lcom/android/camera/data/data/config/ComponentConfigSlowMotion;->getDefaultValue(I)Ljava/lang/String;
 
@@ -273,10 +273,29 @@
     return-object p1
 .end method
 
-.method public isSlowMotionFps960()Z
+.method public isSlowMotionFps120()Z
     .locals 2
 
     .line 77
+    const-string v0, "slow_motion_120"
+
+    const/16 v1, 0xac
+
+    invoke-virtual {p0, v1}, Lcom/android/camera/data/data/config/ComponentConfigSlowMotion;->getComponentValue(I)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public isSlowMotionFps960()Z
+    .locals 2
+
+    .line 81
     const-string v0, "slow_motion_960"
 
     const/16 v1, 0xac

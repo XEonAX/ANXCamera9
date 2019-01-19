@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/xiaomi/camera/core/DualCameraProcessor;)V
     .locals 0
 
-    .line 137
+    .line 138
     iput-object p1, p0, Lcom/xiaomi/camera/core/DualCameraProcessor$5;->this$0:Lcom/xiaomi/camera/core/DualCameraProcessor;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public onFrameProcessed(ILjava/lang/String;Ljava/lang/Object;)V
     .locals 1
 
-    .line 140
+    .line 141
     invoke-static {}, Lcom/xiaomi/camera/core/DualCameraProcessor;->access$000()Ljava/lang/String;
 
     move-result-object p2
@@ -59,6 +59,6 @@
 
     invoke-static {p2, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 141
+    .line 142
     return-void
 .end method

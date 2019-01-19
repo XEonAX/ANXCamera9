@@ -55,6 +55,7 @@ import java.nio.channels.FileChannel;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicLong;
+import miui.os.Build;
 import miui.reflect.Method;
 
 public class Storage {
@@ -64,12 +65,13 @@ public class Storage {
     private static final String CAMERA_STORAGE_PATH_TEMP = "/DCIM/Camera/temp";
     public static String CAMERA_TEMP_DIRECTORY = null;
     public static String DIRECTORY = null;
-    public static String FIRST_CONSIDER_STORAGE_PATH = (b.pR ? SECONDARY_STORAGE_PATH : PRIMARY_STORAGE_PATH);
+    public static String FIRST_CONSIDER_STORAGE_PATH = (b.pQ ? SECONDARY_STORAGE_PATH : PRIMARY_STORAGE_PATH);
     public static String HIDEDIRECTORY = null;
     private static final String HIDE_CAMERA_STORAGE_PATH_SUFFIX = "/DCIM/Camera/.ubifocus";
     public static final String JPEG_SUFFIX = ".jpg";
     private static final AtomicLong LEFT_SPACE = new AtomicLong(0);
     public static final long LOW_STORAGE_THRESHOLD = 52428800;
+    private static final int MAX_WRITE_RETRY = (Build.IS_ALPHA_BUILD ? 1 : 3);
     protected static final String PARALLEL_PROCESS_EXIF_PROCESS_TAG = "processing";
     public static final long PREPARING = -2;
     public static int PRIMARY_BUCKET_ID = 0;
@@ -131,7 +133,7 @@ public class Storage {
 
     public static void initStorage(Context context) {
         initQuota(context);
-        if (b.ge()) {
+        if (b.gn()) {
             FileCompat.updateSDPath();
             String sdcardPath = CompatibilityUtils.getSdcardPath(context);
             String str = TAG;
@@ -187,244 +189,312 @@ public class Storage {
         return addImage(context, str, j, location, i, bArr, i2, i3, z, z2, z3, false, false, str2, pictureInfo);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:74:0x0117 A:{ExcHandler: all (r0_22 'th' java.lang.Throwable), Splitter: B:3:0x0065} */
-    /* JADX WARNING: Failed to process nested try/catch */
-    /* JADX WARNING: Missing block: B:72:0x0114, code:
-            r0 = th;
-     */
-    /* JADX WARNING: Missing block: B:73:0x0115, code:
-            r7 = null;
-     */
-    /* JADX WARNING: Missing block: B:74:0x0117, code:
-            r0 = move-exception;
-     */
-    /* JADX WARNING: Missing block: B:75:0x0118, code:
-            r7 = r0;
-     */
-    /* JADX WARNING: Missing block: B:80:?, code:
-            $closeResource(r7, r3);
-     */
-    /* JADX WARNING: Missing block: B:81:0x011e, code:
-            throw r0;
-     */
+    /* JADX WARNING: Removed duplicated region for block: B:144:0x01b7  */
+    /* JADX WARNING: Removed duplicated region for block: B:142:0x01b5  */
+    /* JADX WARNING: Removed duplicated region for block: B:186:0x015f A:{SYNTHETIC, EDGE_INSN: B:186:0x015f->B:108:0x015f ?: BREAK  } */
+    /* JADX WARNING: Removed duplicated region for block: B:106:0x015c A:{SYNTHETIC, Splitter: B:106:0x015c} */
+    /* JADX WARNING: Removed duplicated region for block: B:106:0x015c A:{SYNTHETIC, Splitter: B:106:0x015c} */
+    /* JADX WARNING: Removed duplicated region for block: B:186:0x015f A:{SYNTHETIC, EDGE_INSN: B:186:0x015f->B:108:0x015f ?: BREAK  } */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     public static Uri addImage(Context context, String str, long j, Location location, int i, byte[] bArr, int i2, int i3, boolean z, boolean z2, boolean z3, boolean z4, boolean z5, String str2, PictureInfo pictureInfo) {
         Throwable th;
-        final Context context2 = context;
+        Throwable th2;
+        int i4;
+        int i5;
+        boolean z6;
+        boolean z7;
+        Throwable th3;
+        boolean z8;
+        Context context2 = context;
         String str3 = str;
         Location location2 = location;
-        int i4 = i;
-        boolean z6 = z2;
-        boolean z7 = z3;
+        int i6 = i;
+        boolean z9 = z2;
+        boolean z10 = z3;
         String str4 = TAG;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("addImage: parallel=");
-        boolean z8 = z5;
-        stringBuilder.append(z8);
+        boolean z11 = z5;
+        stringBuilder.append(z11);
         stringBuilder.append(" appendExif=");
-        stringBuilder.append(z4);
+        boolean z12 = z4;
+        stringBuilder.append(z12);
         Log.d(str4, stringBuilder.toString());
-        byte[] updateExif = updateExif(bArr, z8, str2, pictureInfo, i4, i2, i3);
-        String generateFilepath = generateFilepath(str3, z6, z7);
+        byte[] updateExif = updateExif(bArr, z11, str2, pictureInfo, i6, i2, i3);
+        String generateFilepath = generateFilepath(str3, z9, z10);
         str4 = TAG;
         StringBuilder stringBuilder2 = new StringBuilder();
         stringBuilder2.append("addImage: path=");
         stringBuilder2.append(generateFilepath);
         Log.d(str4, stringBuilder2.toString());
-        String str5;
-        int i5;
-        boolean z9;
-        try {
-            AutoCloseable bufferedInputStream = new BufferedInputStream(new ByteArrayInputStream(updateExif));
-            Throwable th2;
+        int i7 = 0;
+        while (true) {
             try {
-                OutputStream fileOutputStream;
-                if (isUseDocumentMode()) {
-                    fileOutputStream = FileCompat.getFileOutputStream(generateFilepath, true);
-                } else {
-                    fileOutputStream = new FileOutputStream(generateFilepath);
-                }
-                OutputStream outputStream = fileOutputStream;
+                AutoCloseable bufferedInputStream = new BufferedInputStream(new ByteArrayInputStream(updateExif));
                 try {
-                    boolean z10;
-                    boolean z11;
-                    OutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
-                    byte[] bArr2;
-                    int read;
-                    if (z) {
+                    OutputStream fileOutputStream;
+                    if (isUseDocumentMode()) {
                         try {
-                            z10 = i4 % 180 == 0;
-                            Bitmap flipJpeg = flipJpeg(updateExif, z10, z10 ^ 1);
-                            if (flipJpeg != null) {
-                                ExifInterface exif = Util.getExif(updateExif);
-                                byte[] thumbnailBytes = exif.getThumbnailBytes();
-                                if (thumbnailBytes != null) {
-                                    Bitmap flipJpeg2 = flipJpeg(thumbnailBytes, z10, z10 ^ 1);
-                                    if (flipJpeg2 != null) {
-                                        exif.setCompressedThumbnail(flipJpeg2);
-                                        flipJpeg2.recycle();
+                            fileOutputStream = FileCompat.getFileOutputStream(generateFilepath, true);
+                        } catch (Throwable th4) {
+                            th = th4;
+                            th2 = null;
+                            try {
+                                $closeResource(th2, bufferedInputStream);
+                                throw th;
+                            } catch (Exception e) {
+                                th = e;
+                                dumpExceptionEnv(th, generateFilepath);
+                                Log.e(TAG, "Failed to write image", th);
+                                i7++;
+                                if (Util.isQuotaExceeded(th) && (context2 instanceof ActivityBase)) {
+                                    ActivityBase activityBase = (ActivityBase) context2;
+                                    if (!activityBase.isActivityPaused()) {
+                                        activityBase.runOnUiThread(new Runnable() {
+                                            public void run() {
+                                                ToastUtils.showToast(context2, (int) R.string.spaceIsLow_content_primary_storage_priority);
+                                            }
+                                        });
                                     }
-                                    z11 = false;
+                                    i7 = MAX_WRITE_RETRY;
+                                } else if (i7 < MAX_WRITE_RETRY) {
+                                    System.gc();
+                                    try {
+                                        Thread.sleep(50);
+                                    } catch (InterruptedException e2) {
+                                    }
+                                }
+                                if (i7 >= MAX_WRITE_RETRY) {
+                                    i4 = 1;
+                                    if (i4 == 0) {
+                                    }
                                 } else {
-                                    z11 = z4;
+                                    i5 = i2;
+                                    context2 = context;
+                                    z11 = z5;
+                                    z9 = z2;
                                 }
-                                exif.writeExif(flipJpeg, bufferedOutputStream);
-                                flipJpeg.recycle();
-                            } else {
-                                bArr2 = new byte[4096];
-                                while (true) {
-                                    read = bufferedInputStream.read(bArr2);
-                                    if (read == -1) {
-                                        break;
-                                    }
-                                    bufferedOutputStream.write(bArr2, 0, read);
-                                }
-                                z11 = z4;
                             }
-                        } catch (Throwable th3) {
-                            th = th3;
                         }
                     } else {
-                        bArr2 = new byte[4096];
-                        while (true) {
-                            read = bufferedInputStream.read(bArr2);
-                            if (read == -1) {
-                                break;
+                        fileOutputStream = new FileOutputStream(generateFilepath);
+                    }
+                    OutputStream outputStream = fileOutputStream;
+                    try {
+                        OutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
+                        byte[] bArr2;
+                        int read;
+                        if (!z) {
+                            z6 = z12;
+                            bArr2 = new byte[4096];
+                            while (true) {
+                                read = bufferedInputStream.read(bArr2);
+                                if (read == -1) {
+                                    break;
+                                }
+                                bufferedOutputStream.write(bArr2, 0, read);
                             }
-                            bufferedOutputStream.write(bArr2, 0, read);
-                        }
-                        z11 = z4;
-                    }
-                    if (z11) {
-                        bufferedOutputStream.flush();
-                        ExifHelper.writeExif(generateFilepath, i4, location2, System.currentTimeMillis());
-                    }
-                    $closeResource(null, bufferedOutputStream);
-                    if (outputStream != null) {
-                        $closeResource(null, outputStream);
-                    }
-                    $closeResource(null, bufferedInputStream);
-                    str5 = generateFilepath;
-                    i5 = 0;
-                    z9 = true;
-                    if (i5 != 0) {
-                        return null;
-                    }
-                    int i6;
-                    int i7;
-                    boolean z12;
-                    if (z7) {
-                        boolean isProduceFocusInfoSuccess = Util.isProduceFocusInfoSuccess(updateExif);
-                        i6 = i2;
-                        i7 = i3;
-                        int centerFocusDepthIndex = Util.getCenterFocusDepthIndex(updateExif, i6, i7);
-                        str3 = str3.substring(0, str3.lastIndexOf(isProduceFocusInfoSuccess ? "_" : UBIFOCUS_SUFFIX));
-                        String generateFilepath2 = generateFilepath(str3, false, false);
-                        StringBuilder stringBuilder3 = new StringBuilder();
-                        stringBuilder3.append(str3);
-                        stringBuilder3.append(isProduceFocusInfoSuccess ? "_" : UBIFOCUS_SUFFIX);
-                        stringBuilder3.append(centerFocusDepthIndex);
-                        generateFilepath = stringBuilder3.toString();
-                        z10 = z2;
-                        z12 = false;
-                        generateFilepath = generateFilepath(generateFilepath, z10, false);
-                        if (generateFilepath2 == null || generateFilepath == null) {
-                            String str6 = TAG;
-                            StringBuilder stringBuilder4 = new StringBuilder();
-                            stringBuilder4.append("oldPath: ");
-                            if (generateFilepath == null) {
-                                generateFilepath = TEDefine.FACE_BEAUTY_NULL;
-                            }
-                            stringBuilder4.append(generateFilepath);
-                            stringBuilder4.append(" newPath: ");
-                            stringBuilder4.append(generateFilepath2 == null ? TEDefine.FACE_BEAUTY_NULL : generateFilepath2);
-                            Log.e(str6, stringBuilder4.toString());
                         } else {
-                            new File(generateFilepath).renameTo(new File(generateFilepath2));
+                            try {
+                                z7 = i6 % 180 == 0;
+                                Bitmap flipJpeg = flipJpeg(updateExif, z7, z7 ^ 1);
+                                if (flipJpeg == null) {
+                                    z6 = z12;
+                                    bArr2 = new byte[4096];
+                                    while (true) {
+                                        read = bufferedInputStream.read(bArr2);
+                                        if (read == -1) {
+                                            break;
+                                        }
+                                        bufferedOutputStream.write(bArr2, 0, read);
+                                    }
+                                } else {
+                                    z6 = z12;
+                                    try {
+                                        ExifInterface exif = Util.getExif(updateExif);
+                                        byte[] thumbnailBytes = exif.getThumbnailBytes();
+                                        if (thumbnailBytes != null) {
+                                            Bitmap flipJpeg2 = flipJpeg(thumbnailBytes, z7, z7 ^ 1);
+                                            if (flipJpeg2 != null) {
+                                                exif.setCompressedThumbnail(flipJpeg2);
+                                                flipJpeg2.recycle();
+                                            }
+                                            z6 = false;
+                                        }
+                                        exif.writeExif(flipJpeg, bufferedOutputStream);
+                                        flipJpeg.recycle();
+                                    } catch (Throwable th5) {
+                                        th = th5;
+                                        z12 = z6;
+                                        th3 = null;
+                                        try {
+                                            $closeResource(th3, bufferedOutputStream);
+                                            throw th;
+                                        } catch (Throwable th6) {
+                                            th = th6;
+                                            th2 = null;
+                                            if (outputStream == null) {
+                                                break;
+                                            }
+                                            $closeResource(th2, outputStream);
+                                            break;
+                                            throw th;
+                                        }
+                                    }
+                                }
+                            } catch (Throwable th7) {
+                                th = th7;
+                                z6 = z12;
+                                th3 = null;
+                                $closeResource(th3, bufferedOutputStream);
+                                throw th;
+                            }
                         }
-                        if (!isProduceFocusInfoSuccess) {
-                            deleteImage(str3);
+                        z12 = z6;
+                        if (z12) {
+                            try {
+                                bufferedOutputStream.flush();
+                                z8 = z12;
+                                try {
+                                    ExifHelper.writeExifByFilePath(generateFilepath, i6, location2, System.currentTimeMillis());
+                                } catch (Throwable th8) {
+                                    th = th8;
+                                    z12 = z8;
+                                    th3 = null;
+                                    $closeResource(th3, bufferedOutputStream);
+                                    throw th;
+                                }
+                            } catch (Throwable th9) {
+                                th = th9;
+                                z8 = z12;
+                                th3 = null;
+                                $closeResource(th3, bufferedOutputStream);
+                                throw th;
+                            }
                         }
-                        generateFilepath = str3;
-                        str4 = generateFilepath2;
-                    } else {
-                        i6 = i2;
-                        i7 = i3;
-                        z10 = z2;
-                        z12 = false;
-                        generateFilepath = str3;
-                        str4 = str5;
+                        z8 = z12;
+                        try {
+                            $closeResource(null, bufferedOutputStream);
+                            if (outputStream != null) {
+                                try {
+                                    $closeResource(null, outputStream);
+                                } catch (Throwable th10) {
+                                    th = th10;
+                                    th2 = null;
+                                    z12 = z8;
+                                    $closeResource(th2, bufferedInputStream);
+                                    throw th;
+                                }
+                            }
+                            try {
+                                $closeResource(null, bufferedInputStream);
+                                i4 = 0;
+                                break;
+                            } catch (Exception e3) {
+                                th = e3;
+                                z12 = z8;
+                            }
+                        } catch (Throwable th11) {
+                            th = th11;
+                            z12 = z8;
+                            th2 = null;
+                            if (outputStream == null) {
+                            }
+                            throw th;
+                        }
+                    } catch (Throwable th12) {
+                        th = th12;
+                        z6 = z12;
+                        th2 = null;
+                        if (outputStream == null) {
+                        }
+                        throw th;
                     }
-                    if (z10 && !z7) {
-                        return null;
-                    }
-                    StringBuilder stringBuilder5 = new StringBuilder();
-                    stringBuilder5.append(generateFilepath);
-                    stringBuilder5.append(JPEG_SUFFIX);
-                    boolean z13 = z12;
-                    boolean z14 = z9;
-                    Uri uri = null;
-                    Location location3 = location;
-                    byte[] bArr3 = updateExif;
-                    Uri insertToMediaStore = insertToMediaStore(context2, generateFilepath, stringBuilder5.toString(), j, "image/jpeg", i, str4, new File(str4).length(), i6, i7, location, z5);
-                    if (insertToMediaStore == null) {
-                        str3 = TAG;
-                        stringBuilder = new StringBuilder();
-                        stringBuilder.append("failed to insert to DB: ");
-                        stringBuilder.append(str4);
-                        Log.e(str3, stringBuilder.toString());
-                        return uri;
-                    }
-                    saveToCloudAlbum(context, str4, (long) bArr3.length, z5, ContentUris.parseId(insertToMediaStore), location3 == null ? z14 : z13);
-                    return insertToMediaStore;
-                    $closeResource(th2, bufferedOutputStream);
+                } catch (Throwable th13) {
+                    th = th13;
+                    z6 = z12;
+                    th2 = null;
+                    $closeResource(th2, bufferedInputStream);
                     throw th;
-                    if (outputStream != null) {
-                        $closeResource(th2, outputStream);
-                    }
-                    throw th;
-                } catch (Throwable th4) {
-                    th = th4;
                 }
-            } catch (Throwable th5) {
-                th = th5;
+            } catch (Exception e4) {
+                th = e4;
+                z6 = z12;
             }
-        } catch (Throwable th6) {
-            if (th6 instanceof FileNotFoundException) {
-                long maxMemory = Runtime.getRuntime().maxMemory();
-                long totalMemory = Runtime.getRuntime().totalMemory();
-                long freeMemory = Runtime.getRuntime().freeMemory();
-                File file = new File(generateFilepath);
-                str5 = generateFilepath;
-                generateFilepath = TAG;
-                Locale locale = Locale.ENGLISH;
-                String str7 = "Failed to write image, memory state(max:%d, total:%d, free:%d), file state(%s;%s;%s)";
-                Object[] objArr = new Object[6];
-                objArr[0] = Long.valueOf(maxMemory);
-                z9 = true;
-                objArr[1] = Long.valueOf(totalMemory);
-                objArr[2] = Long.valueOf(freeMemory);
-                objArr[3] = file.exists() ? "exists" : "not exists";
-                objArr[4] = file.isDirectory() ? "isDirectory" : "isNotDirectory";
-                objArr[5] = file.canWrite() ? "canWrite" : "canNotWrite";
-                Log.e(generateFilepath, String.format(locale, str7, objArr), th6);
-            } else {
-                str5 = generateFilepath;
-                z9 = true;
-            }
-            Log.e(TAG, "Failed to write image", th6);
-            if (Util.isQuotaExceeded(th6) && (context2 instanceof ActivityBase)) {
-                ActivityBase activityBase = (ActivityBase) context2;
-                if (!activityBase.isActivityPaused()) {
-                    activityBase.runOnUiThread(new Runnable() {
-                        public void run() {
-                            ToastUtils.showToast(context2, (int) R.string.spaceIsLow_content_primary_storage_priority);
-                        }
-                    });
-                }
-            }
-            i5 = z9;
+            i5 = i2;
+            context2 = context;
+            z11 = z5;
+            z9 = z2;
         }
+        if (i4 == 0) {
+            return null;
+        }
+        int i8;
+        boolean z13;
+        boolean z14;
+        if (z10) {
+            z7 = Util.isProduceFocusInfoSuccess(updateExif);
+            i5 = i2;
+            i8 = i3;
+            int centerFocusDepthIndex = Util.getCenterFocusDepthIndex(updateExif, i5, i8);
+            str3 = str3.substring(0, str3.lastIndexOf(z7 ? "_" : UBIFOCUS_SUFFIX));
+            String generateFilepath2 = generateFilepath(str3, false, false);
+            StringBuilder stringBuilder3 = new StringBuilder();
+            stringBuilder3.append(str3);
+            stringBuilder3.append(z7 ? "_" : UBIFOCUS_SUFFIX);
+            stringBuilder3.append(centerFocusDepthIndex);
+            generateFilepath = stringBuilder3.toString();
+            z13 = z2;
+            z14 = false;
+            generateFilepath = generateFilepath(generateFilepath, z13, false);
+            if (generateFilepath2 == null || generateFilepath == null) {
+                String str5 = TAG;
+                StringBuilder stringBuilder4 = new StringBuilder();
+                stringBuilder4.append("oldPath: ");
+                if (generateFilepath == null) {
+                    generateFilepath = TEDefine.FACE_BEAUTY_NULL;
+                }
+                stringBuilder4.append(generateFilepath);
+                stringBuilder4.append(" newPath: ");
+                stringBuilder4.append(generateFilepath2 == null ? TEDefine.FACE_BEAUTY_NULL : generateFilepath2);
+                Log.e(str5, stringBuilder4.toString());
+            } else {
+                new File(generateFilepath).renameTo(new File(generateFilepath2));
+            }
+            if (!z7) {
+                deleteImage(str3);
+            }
+            generateFilepath = str3;
+            str4 = generateFilepath2;
+        } else {
+            i5 = i2;
+            i8 = i3;
+            z13 = z2;
+            z14 = false;
+            str4 = generateFilepath;
+            generateFilepath = str3;
+        }
+        if (z13 && !z10) {
+            return null;
+        }
+        StringBuilder stringBuilder5 = new StringBuilder();
+        stringBuilder5.append(generateFilepath);
+        stringBuilder5.append(JPEG_SUFFIX);
+        Uri uri = null;
+        boolean z15 = z14;
+        byte[] bArr3 = updateExif;
+        Location location3 = location2;
+        Uri insertToMediaStore = insertToMediaStore(context2, generateFilepath, stringBuilder5.toString(), j, "image/jpeg", i6, str4, new File(str4).length(), i5, i8, location2, z5);
+        if (insertToMediaStore == null) {
+            str3 = TAG;
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("failed to insert to DB: ");
+            stringBuilder.append(str4);
+            Log.e(str3, stringBuilder.toString());
+            return uri;
+        }
+        saveToCloudAlbum(context, str4, (long) bArr3.length, z5, ContentUris.parseId(insertToMediaStore), location3 == null ? true : z15);
+        return insertToMediaStore;
     }
 
     private static /* synthetic */ void $closeResource(Throwable th, AutoCloseable autoCloseable) {
@@ -438,6 +508,38 @@ public class Storage {
             }
         }
         autoCloseable.close();
+    }
+
+    private static void dumpExceptionEnv(Exception exception, String str) {
+        if (exception instanceof FileNotFoundException) {
+            boolean createNewFile;
+            long maxMemory = Runtime.getRuntime().maxMemory();
+            long totalMemory = Runtime.getRuntime().totalMemory();
+            long freeMemory = Runtime.getRuntime().freeMemory();
+            File file = new File(str);
+            try {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(str);
+                stringBuilder.append(".ex");
+                File file2 = new File(stringBuilder.toString());
+                createNewFile = file2.createNewFile();
+                file2.delete();
+            } catch (IOException e) {
+                createNewFile = false;
+            }
+            String str2 = TAG;
+            Locale locale = Locale.ENGLISH;
+            String str3 = "Failed to write image, memory state(max:%d, total:%d, free:%d), file state(%s;%s;%s;%s)";
+            Object[] objArr = new Object[7];
+            objArr[0] = Long.valueOf(maxMemory);
+            objArr[1] = Long.valueOf(totalMemory);
+            objArr[2] = Long.valueOf(freeMemory);
+            objArr[3] = file.exists() ? "exists" : "not exists";
+            objArr[4] = file.isDirectory() ? "isDirectory" : "isNotDirectory";
+            objArr[5] = file.canWrite() ? "canWrite" : "canNotWrite";
+            objArr[6] = createNewFile ? "testFileCanWrite" : "testFileCannotWrite";
+            Log.e(str2, String.format(locale, str3, objArr), exception);
+        }
     }
 
     private static byte[] updateExif(byte[] bArr, boolean z, String str, PictureInfo pictureInfo, int i, int i2, int i3) {
@@ -948,12 +1050,12 @@ public class Storage {
     public static boolean hasSecondaryStorage() {
         boolean z = false;
         if (VERSION.SDK_INT == 28) {
-            if (UserHandle.myUserId() == 0 && b.ge() && SECONDARY_STORAGE_PATH != null) {
+            if (UserHandle.myUserId() == 0 && b.gn() && SECONDARY_STORAGE_PATH != null) {
                 z = true;
             }
             return z;
         }
-        if (b.ge() && SECONDARY_STORAGE_PATH != null) {
+        if (b.gn() && SECONDARY_STORAGE_PATH != null) {
             z = true;
         }
         return z;

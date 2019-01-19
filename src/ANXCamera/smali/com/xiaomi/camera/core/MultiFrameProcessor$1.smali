@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/xiaomi/camera/core/MultiFrameProcessor;)V
     .locals 0
 
-    .line 47
+    .line 55
     iput-object p1, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor$1;->this$0:Lcom/xiaomi/camera/core/MultiFrameProcessor;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public onProcessFinished(Lcom/xiaomi/camera/core/CaptureData;Z)V
     .locals 3
 
-    .line 49
+    .line 57
     invoke-static {}, Lcom/xiaomi/camera/core/MultiFrameProcessor;->access$100()Ljava/lang/String;
 
     move-result-object v0
@@ -59,15 +59,15 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 50
+    .line 58
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData;->getCaptureDataListener()Lcom/xiaomi/camera/core/CaptureDataListener;
 
     move-result-object v0
 
-    .line 51
+    .line 59
     if-nez v0, :cond_3
 
-    .line 52
+    .line 60
     invoke-static {}, Lcom/xiaomi/camera/core/MultiFrameProcessor;->access$100()Ljava/lang/String;
 
     move-result-object p2
@@ -76,18 +76,18 @@
 
     invoke-static {p2, v0}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 53
+    .line 61
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData;->getMultiFrameProcessResult()Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;
 
     move-result-object p2
 
-    .line 54
+    .line 62
     if-eqz p2, :cond_0
 
-    .line 55
+    .line 63
     invoke-virtual {p2}, Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;->close()V
 
-    .line 57
+    .line 65
     :cond_0
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData;->getCaptureDataBeanList()Ljava/util/List;
 
@@ -110,35 +110,35 @@
 
     check-cast p2, Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;
 
-    .line 58
+    .line 66
     if-eqz p2, :cond_1
 
-    .line 59
+    .line 67
     invoke-virtual {p2}, Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;->close()V
 
-    .line 61
+    .line 69
     :cond_1
     goto :goto_0
 
-    .line 62
+    .line 70
     :cond_2
     return-void
 
-    .line 64
+    .line 72
     :cond_3
     if-eqz p2, :cond_4
 
-    .line 65
+    .line 73
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData;->getMultiFrameProcessResult()Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;
 
     move-result-object p2
 
-    .line 66
+    .line 74
     iget-object v1, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor$1;->this$0:Lcom/xiaomi/camera/core/MultiFrameProcessor;
 
     invoke-static {v1, p2}, Lcom/xiaomi/camera/core/MultiFrameProcessor;->access$200(Lcom/xiaomi/camera/core/MultiFrameProcessor;Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;)V
 
-    .line 68
+    .line 76
     :cond_4
     invoke-static {}, Lcom/xiaomi/camera/core/MultiFrameProcessor;->access$100()Ljava/lang/String;
 
@@ -148,9 +148,9 @@
 
     invoke-static {p2, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 70
+    .line 78
     invoke-interface {v0, p1}, Lcom/xiaomi/camera/core/CaptureDataListener;->onCaptureDataAvailable(Lcom/xiaomi/camera/core/CaptureData;)V
 
-    .line 71
+    .line 79
     return-void
 .end method

@@ -15,7 +15,7 @@
 
 
 # instance fields
-.field final synthetic JA:Lmiui/util/Pools$BasePool;
+.field final synthetic JK:Lmiui/util/Pools$BasePool;
 
 
 # direct methods
@@ -23,7 +23,7 @@
     .registers 2
 
     .line 351
-    iput-object p1, p0, Lmiui/util/Pools$BasePool$1;->JA:Lmiui/util/Pools$BasePool;
+    iput-object p1, p0, Lmiui/util/Pools$BasePool$1;->JK:Lmiui/util/Pools$BasePool;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -42,7 +42,7 @@
 
     .line 355
     :try_start_0
-    iget-object v0, p0, Lmiui/util/Pools$BasePool$1;->JA:Lmiui/util/Pools$BasePool;
+    iget-object v0, p0, Lmiui/util/Pools$BasePool$1;->JK:Lmiui/util/Pools$BasePool;
 
     invoke-virtual {v0}, Lmiui/util/Pools$BasePool;->close()V
     :try_end_5

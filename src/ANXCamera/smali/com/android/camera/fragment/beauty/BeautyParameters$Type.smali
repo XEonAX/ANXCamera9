@@ -47,7 +47,7 @@
 
 .field public static final enum LIVE_SHRINK_FACE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-.field public static final enum LIVE_WHITEN_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+.field public static final enum LIVE_SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
 .field public static final enum NECK_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
@@ -308,13 +308,13 @@
     .line 68
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "LIVE_WHITEN_STRENGTH"
+    const-string v1, "LIVE_SMOOTH_STRENGTH"
 
     const/16 v15, 0x15
 
     invoke-direct {v0, v1, v15}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIVE_WHITEN_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIVE_SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     .line 34
     const/16 v0, 0x16
@@ -421,7 +421,7 @@
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIVE_WHITEN_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIVE_SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     const/16 v2, 0x15
 

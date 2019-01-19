@@ -24,7 +24,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/bottom/FragmentBottomAction;Z)V
     .locals 0
 
-    .line 1203
+    .line 1236
     iput-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$10;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     iput-boolean p2, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$10;->val$start:Z
@@ -39,12 +39,12 @@
 .method public getInterpolation(F)F
     .locals 4
 
-    .line 1206
+    .line 1239
     invoke-super {p0, p1}, Landroid/view/animation/DecelerateInterpolator;->getInterpolation(F)F
 
     move-result p1
 
-    .line 1207
+    .line 1240
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$10;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {v0}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$400(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Lcom/android/camera/fragment/bottom/BottomActionMenu;
@@ -67,7 +67,7 @@
 
     goto :goto_0
 
-    .line 1208
+    .line 1241
     :cond_0
     iget-object v1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$10;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
@@ -87,22 +87,22 @@
 
     if-nez v1, :cond_1
 
-    .line 1207
+    .line 1240
     move v1, p1
 
     goto :goto_0
 
-    .line 1208
+    .line 1241
     :cond_1
     nop
 
-    .line 1207
+    .line 1240
     move v1, v3
 
     :goto_0
     invoke-static {v0, v1}, Landroid/support/v4/view/ViewCompat;->setAlpha(Landroid/view/View;F)V
 
-    .line 1209
+    .line 1242
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$10;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {v0}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$500(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Z
@@ -111,7 +111,7 @@
 
     if-eqz v0, :cond_4
 
-    .line 1210
+    .line 1243
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$10;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {v0}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$600(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/widget/ImageView;
@@ -126,7 +126,7 @@
 
     goto :goto_1
 
-    .line 1211
+    .line 1244
     :cond_2
     iget-object v1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$10;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
@@ -142,22 +142,22 @@
 
     if-nez v1, :cond_3
 
-    .line 1210
+    .line 1243
     move v1, p1
 
     goto :goto_1
 
-    .line 1211
+    .line 1244
     :cond_3
     nop
 
-    .line 1210
+    .line 1243
     move v1, v3
 
     :goto_1
     invoke-static {v0, v1}, Landroid/support/v4/view/ViewCompat;->setAlpha(Landroid/view/View;F)V
 
-    .line 1213
+    .line 1246
     :cond_4
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$10;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
@@ -173,7 +173,7 @@
 
     goto :goto_2
 
-    .line 1214
+    .line 1247
     :cond_5
     iget-object v1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$10;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
@@ -189,22 +189,22 @@
 
     if-nez v1, :cond_6
 
-    .line 1213
+    .line 1246
     move v1, p1
 
     goto :goto_2
 
-    .line 1214
+    .line 1247
     :cond_6
     nop
 
-    .line 1213
+    .line 1246
     move v1, v3
 
     :goto_2
     invoke-static {v0, v1}, Landroid/support/v4/view/ViewCompat;->setAlpha(Landroid/view/View;F)V
 
-    .line 1216
+    .line 1249
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$10;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {v0}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$800(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Z
@@ -213,7 +213,7 @@
 
     if-eqz v0, :cond_8
 
-    .line 1217
+    .line 1250
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$10;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {v0}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$900(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/widget/ImageView;
@@ -234,7 +234,7 @@
     :goto_3
     invoke-static {v0, v1}, Landroid/support/v4/view/ViewCompat;->setAlpha(Landroid/view/View;F)V
 
-    .line 1220
+    .line 1253
     :cond_8
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$10;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
@@ -244,7 +244,7 @@
 
     if-eqz v0, :cond_a
 
-    .line 1221
+    .line 1254
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$10;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {v0}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$1100(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/widget/ImageView;
@@ -265,7 +265,7 @@
     :goto_4
     invoke-static {v0, v1}, Landroid/support/v4/view/ViewCompat;->setAlpha(Landroid/view/View;F)V
 
-    .line 1224
+    .line 1257
     :cond_a
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$10;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
@@ -275,7 +275,7 @@
 
     if-eqz v0, :cond_c
 
-    .line 1225
+    .line 1258
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$10;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {v0}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$1300(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/widget/ImageView;
@@ -296,7 +296,7 @@
     :goto_5
     invoke-static {v0, v1}, Landroid/support/v4/view/ViewCompat;->setAlpha(Landroid/view/View;F)V
 
-    .line 1230
+    .line 1263
     :cond_c
     return p1
 .end method

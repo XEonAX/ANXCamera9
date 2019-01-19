@@ -19,7 +19,7 @@
 
 
 # static fields
-.field private static final Jv:Ljava/util/HashMap;
+.field private static final JF:Ljava/util/HashMap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/HashMap<",
@@ -31,7 +31,7 @@
     .end annotation
 .end field
 
-.field private static final Jw:Ljava/util/HashMap;
+.field private static final JG:Ljava/util/HashMap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/HashMap<",
@@ -43,7 +43,7 @@
     .end annotation
 .end field
 
-.field private static final Jx:Lmiui/util/Pools$Pool;
+.field private static final JH:Lmiui/util/Pools$Pool;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lmiui/util/Pools$Pool<",
@@ -63,14 +63,14 @@
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
-    sput-object v0, Lmiui/util/Pools;->Jv:Ljava/util/HashMap;
+    sput-object v0, Lmiui/util/Pools;->JF:Ljava/util/HashMap;
 
     .line 262
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
-    sput-object v0, Lmiui/util/Pools;->Jw:Ljava/util/HashMap;
+    sput-object v0, Lmiui/util/Pools;->JG:Ljava/util/HashMap;
 
     .line 266
     new-instance v0, Lmiui/util/Pools$1;
@@ -83,7 +83,7 @@
 
     move-result-object v0
 
-    sput-object v0, Lmiui/util/Pools;->Jx:Lmiui/util/Pools$Pool;
+    sput-object v0, Lmiui/util/Pools;->JH:Lmiui/util/Pools$Pool;
 
     return-void
 .end method
@@ -110,7 +110,7 @@
     .end annotation
 
     .line 310
-    sget-object v0, Lmiui/util/Pools;->Jv:Ljava/util/HashMap;
+    sget-object v0, Lmiui/util/Pools;->JF:Ljava/util/HashMap;
 
     monitor-enter v0
 
@@ -150,7 +150,7 @@
     .end annotation
 
     .line 341
-    sget-object v0, Lmiui/util/Pools;->Jw:Ljava/util/HashMap;
+    sget-object v0, Lmiui/util/Pools;->JG:Ljava/util/HashMap;
 
     monitor-enter v0
 
@@ -192,13 +192,13 @@
     .end annotation
 
     .line 291
-    sget-object v0, Lmiui/util/Pools;->Jv:Ljava/util/HashMap;
+    sget-object v0, Lmiui/util/Pools;->JF:Ljava/util/HashMap;
 
     monitor-enter v0
 
     .line 292
     :try_start_3
-    sget-object v1, Lmiui/util/Pools;->Jv:Ljava/util/HashMap;
+    sget-object v1, Lmiui/util/Pools;->JF:Ljava/util/HashMap;
 
     .line 293
     invoke-virtual {v1, p0}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -216,7 +216,7 @@
     invoke-direct {v1, p0, p1}, Lmiui/util/Pools$InstanceHolder;-><init>(Ljava/lang/Class;I)V
 
     .line 296
-    sget-object p1, Lmiui/util/Pools;->Jv:Ljava/util/HashMap;
+    sget-object p1, Lmiui/util/Pools;->JF:Ljava/util/HashMap;
 
     invoke-virtual {p1, p0, v1}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -258,13 +258,13 @@
     .end annotation
 
     .line 322
-    sget-object v0, Lmiui/util/Pools;->Jw:Ljava/util/HashMap;
+    sget-object v0, Lmiui/util/Pools;->JG:Ljava/util/HashMap;
 
     monitor-enter v0
 
     .line 323
     :try_start_3
-    sget-object v1, Lmiui/util/Pools;->Jw:Ljava/util/HashMap;
+    sget-object v1, Lmiui/util/Pools;->JG:Ljava/util/HashMap;
 
     .line 324
     invoke-virtual {v1, p0}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -282,7 +282,7 @@
     invoke-direct {v1, p0, p1}, Lmiui/util/Pools$SoftReferenceInstanceHolder;-><init>(Ljava/lang/Class;I)V
 
     .line 327
-    sget-object p1, Lmiui/util/Pools;->Jw:Ljava/util/HashMap;
+    sget-object p1, Lmiui/util/Pools;->JG:Ljava/util/HashMap;
 
     invoke-virtual {p1, p0, v1}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -353,20 +353,20 @@
     return-object v0
 .end method
 
-.method static synthetic dB()Ljava/util/HashMap;
-    .registers 1
-
-    .line 28
-    sget-object v0, Lmiui/util/Pools;->Jv:Ljava/util/HashMap;
-
-    return-object v0
-.end method
-
 .method static synthetic dC()Ljava/util/HashMap;
     .registers 1
 
     .line 28
-    sget-object v0, Lmiui/util/Pools;->Jw:Ljava/util/HashMap;
+    sget-object v0, Lmiui/util/Pools;->JF:Ljava/util/HashMap;
+
+    return-object v0
+.end method
+
+.method static synthetic dD()Ljava/util/HashMap;
+    .registers 1
+
+    .line 28
+    sget-object v0, Lmiui/util/Pools;->JG:Ljava/util/HashMap;
 
     return-object v0
 .end method
@@ -383,7 +383,7 @@
     .end annotation
 
     .line 281
-    sget-object v0, Lmiui/util/Pools;->Jx:Lmiui/util/Pools$Pool;
+    sget-object v0, Lmiui/util/Pools;->JH:Lmiui/util/Pools$Pool;
 
     return-object v0
 .end method

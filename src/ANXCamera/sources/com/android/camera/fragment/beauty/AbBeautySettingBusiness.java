@@ -40,10 +40,12 @@ public abstract class AbBeautySettingBusiness implements IBeautySettingBusiness 
             String beautyRatioSettingKey = BeautyParameters.getBeautyRatioSettingKey(type);
             int i = 0;
             if (!"".equals(beautyRatioSettingKey)) {
-                int faceBeautyRatio = CameraSettings.getFaceBeautyRatio(beautyRatioSettingKey, 0);
-                if (faceBeautyRatio == 0) {
+                int faceBeautyRatio = CameraSettings.getFaceBeautyRatio(beautyRatioSettingKey, getProgressDefValue());
+                if (faceBeautyRatio == getProgressDefValue()) {
                     faceBeautyRatio = this.mBeautyValueRange[1] - this.mBeautyValueRange[0];
-                    if (b.hr() && faceBeautyRatio != 0) {
+                    if (!b.hA() || faceBeautyRatio == 0) {
+                        i = getProgressDefValue();
+                    } else {
                         int beautifyDefaultValue = CameraSettings.getBeautifyDefaultValue(beautyRatioSettingKey);
                         i = (100 * (beautifyDefaultValue - this.mBeautyValueRange[0])) / faceBeautyRatio;
                         String str = TAG;
@@ -71,7 +73,7 @@ public abstract class AbBeautySettingBusiness implements IBeautySettingBusiness 
             i2 = ((Integer) this.mExtraTable.get(this.mCurrentBeautyItemType)).intValue();
         }
         this.mExtraTable.put(this.mCurrentBeautyItemType, Integer.valueOf(i));
-        if (i2 != i || i == 0) {
+        if (i2 != i || i == getProgressDefValue()) {
             String beautyRatioSettingKey = BeautyParameters.getBeautyRatioSettingKey(this.mCurrentBeautyItemType);
             CameraSettings.setFaceBeautyRatio(beautyRatioSettingKey, i);
             String str = TAG;
@@ -87,17 +89,17 @@ public abstract class AbBeautySettingBusiness implements IBeautySettingBusiness 
 
     public int getProgress() {
         if (this.mExtraTable.get(this.mCurrentBeautyItemType) == null) {
-            return 0;
+            return getProgressDefValue();
         }
         return ((Integer) this.mExtraTable.get(this.mCurrentBeautyItemType)).intValue();
     }
 
     public void resetBeauty() {
         for (Type type : getTypeArray()) {
-            CameraSettings.setFaceBeautyRatio(BeautyParameters.getBeautyRatioSettingKey(type), 0);
-            this.mExtraTable.put(type, Integer.valueOf(0));
+            CameraSettings.setFaceBeautyRatio(BeautyParameters.getBeautyRatioSettingKey(type), getProgressDefValue());
+            this.mExtraTable.put(type, Integer.valueOf(getProgressDefValue()));
         }
-        setProgress(0);
+        setProgress(getProgressDefValue());
     }
 
     public void setType(BeautyParameterType beautyParameterType) {
@@ -114,5 +116,9 @@ public abstract class AbBeautySettingBusiness implements IBeautySettingBusiness 
 
     public CameraBeautyParameterType getCurrentBeautyParameterType() {
         return this.mCurrentBeautyParameterType;
+    }
+
+    protected int getProgressDefValue() {
+        return 0;
     }
 }

@@ -11,7 +11,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 35
+    .line 36
     sget v0, Lcom/ss/android/ttve/monitor/TEMonitor;->MONITOR_ACTION_CANCEL:I
 
     sput v0, Lcom/ss/android/vesdk/VESDK;->MONITOR_ACTION_CANCEL:I
@@ -22,7 +22,7 @@
 .method public constructor <init>()V
     .locals 0
 
-    .line 29
+    .line 30
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -43,7 +43,7 @@
         .end annotation
     .end param
 
-    .line 201
+    .line 202
     invoke-static {p0, p1, p2, p3}, Lcom/ss/android/ttve/oauth/TEOAuth;->activate(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/ss/android/ttve/oauth/TEOAuthResult;
 
     move-result-object p0
@@ -54,7 +54,7 @@
 .method public static getActivationCode()Ljava/lang/String;
     .locals 1
 
-    .line 208
+    .line 209
     invoke-static {}, Lcom/ss/android/ttve/oauth/TEOAuth;->getActivationCode()Ljava/lang/String;
 
     move-result-object v0
@@ -65,12 +65,12 @@
 .method public static getEffectSDKVer()Ljava/lang/String;
     .locals 4
 
-    .line 168
+    .line 169
     invoke-static {}, Lcom/ss/android/ttve/nativePort/TEEffectUtils;->getEffectVersion()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 169
+    .line 170
     const-string v1, "Steven"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -89,7 +89,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 170
+    .line 171
     return-object v0
 .end method
 
@@ -106,14 +106,14 @@
     .annotation runtime Ljava/lang/Deprecated;
     .end annotation
 
-    .line 46
+    .line 47
     invoke-static {}, Lcom/ss/android/vesdk/runtime/VERuntime;->getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
 
     move-result-object v0
 
     invoke-virtual {v0, p0, p1}, Lcom/ss/android/vesdk/runtime/VERuntime;->init(Landroid/content/Context;Lcom/ss/android/vesdk/runtime/VEEnv;)V
 
-    .line 47
+    .line 48
     return-void
 .end method
 
@@ -128,48 +128,48 @@
         .end annotation
     .end param
 
-    .line 57
+    .line 58
     invoke-static {}, Lcom/ss/android/vesdk/runtime/VERuntime;->getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
 
     move-result-object v0
 
     invoke-virtual {v0, p0, p1}, Lcom/ss/android/vesdk/runtime/VERuntime;->init(Landroid/content/Context;Ljava/lang/String;)V
 
-    .line 58
+    .line 59
     return-void
 .end method
 
 .method public static monitorClear()V
     .locals 0
 
-    .line 102
+    .line 103
     invoke-static {}, Lcom/ss/android/ttve/monitor/TEMonitor;->clear()V
 
-    .line 103
+    .line 104
     return-void
 .end method
 
 .method public static monitorRegister(Lcom/ss/android/vesdk/VEListener$VEMonitorListener;)V
     .locals 1
 
-    .line 79
+    .line 80
     invoke-static {}, Lcom/ss/android/vesdk/runtime/VERuntime;->getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
 
     move-result-object v0
 
     invoke-virtual {v0, p0}, Lcom/ss/android/vesdk/runtime/VERuntime;->registerMonitor(Lcom/ss/android/vesdk/VEListener$VEMonitorListener;)V
 
-    .line 80
+    .line 81
     return-void
 .end method
 
 .method public static monitorReport(I)V
     .locals 0
 
-    .line 89
+    .line 90
     invoke-static {p0}, Lcom/ss/android/ttve/monitor/TEMonitor;->report(I)V
 
-    .line 90
+    .line 91
     return-void
 .end method
 
@@ -181,7 +181,7 @@
         }
     .end annotation
 
-    .line 122
+    .line 123
     invoke-static {}, Lcom/ss/android/vesdk/runtime/VERuntime;->getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
 
     move-result-object v0
@@ -190,12 +190,12 @@
 
     move-result v0
 
-    .line 123
+    .line 124
     const/16 v1, -0x6c
 
     if-eq v0, v1, :cond_1
 
-    .line 126
+    .line 127
     if-nez v0, :cond_0
 
     const/4 v0, 0x1
@@ -208,7 +208,7 @@
     :goto_0
     return v0
 
-    .line 124
+    .line 125
     :cond_1
     new-instance v1, Lcom/ss/android/vesdk/VEException;
 
@@ -228,14 +228,14 @@
     .annotation runtime Ljava/lang/Deprecated;
     .end annotation
 
-    .line 158
+    .line 159
     invoke-static {}, Lcom/ss/android/vesdk/runtime/VERuntime;->getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
 
     move-result-object v0
 
     invoke-virtual {v0, p0}, Lcom/ss/android/vesdk/runtime/VERuntime;->setAB(Lcom/ss/android/vesdk/VEAB;)V
 
-    .line 159
+    .line 160
     return-void
 .end method
 
@@ -246,44 +246,62 @@
         .end annotation
     .end param
 
-    .line 67
+    .line 68
     iget-object v0, p0, Lcom/ss/android/vesdk/VEAppField;->userId:Ljava/lang/String;
 
     invoke-static {v0}, Lcom/ss/android/ttve/monitor/MonitorUtils;->setUserId(Ljava/lang/String;)V
 
-    .line 68
+    .line 69
     iget-object v0, p0, Lcom/ss/android/vesdk/VEAppField;->deviceId:Ljava/lang/String;
 
     invoke-static {v0}, Lcom/ss/android/ttve/monitor/MonitorUtils;->setDeviceId(Ljava/lang/String;)V
 
-    .line 69
+    .line 70
     iget-object p0, p0, Lcom/ss/android/vesdk/VEAppField;->version:Ljava/lang/String;
 
     invoke-static {p0}, Lcom/ss/android/ttve/monitor/MonitorUtils;->setAppVersion(Ljava/lang/String;)V
 
-    .line 70
+    .line 71
+    return-void
+.end method
+
+.method public static setExternalMonitorListener(Lcom/ss/android/vesdk/runtime/VEExternalMonitorListener;)V
+    .locals 1
+    .param p0    # Lcom/ss/android/vesdk/runtime/VEExternalMonitorListener;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
+
+    .line 219
+    invoke-static {}, Lcom/ss/android/vesdk/runtime/VERuntime;->getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p0}, Lcom/ss/android/vesdk/runtime/VERuntime;->setExternalMonitorListener(Lcom/ss/android/vesdk/runtime/VEExternalMonitorListener;)V
+
+    .line 220
     return-void
 .end method
 
 .method public static setLogLevel(B)V
     .locals 1
 
-    .line 185
+    .line 186
     const/4 v0, 0x0
 
     invoke-static {v0, p0}, Lcom/ss/android/ttve/common/TELogUtil;->setUp(Ljava/lang/String;B)V
 
-    .line 186
+    .line 187
     return-void
 .end method
 
 .method public static setSDKMonitorEnable(Z)V
     .locals 0
 
-    .line 112
+    .line 113
     invoke-static {p0}, Lcom/ss/android/ttve/monitor/TEMonitor;->setSDKMonitorEnable(Z)V
 
-    .line 113
+    .line 114
     return-void
 .end method
 
@@ -295,14 +313,14 @@
         }
     .end annotation
 
-    .line 139
+    .line 140
     invoke-static {}, Lcom/ss/android/vesdk/VESDK;->needUpdateEffectModelFiles()Z
 
     move-result v0
 
     if-eqz v0, :cond_2
 
-    .line 140
+    .line 141
     invoke-static {}, Lcom/ss/android/vesdk/runtime/VERuntime;->getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
 
     move-result-object v0
@@ -311,19 +329,19 @@
 
     move-result v0
 
-    .line 141
+    .line 142
     const/16 v1, -0x6c
 
     if-eq v0, v1, :cond_1
 
-    .line 144
+    .line 145
     const/4 v1, -0x1
 
     if-eq v0, v1, :cond_0
 
     goto :goto_0
 
-    .line 145
+    .line 146
     :cond_0
     new-instance v1, Lcom/ss/android/vesdk/VEException;
 
@@ -333,7 +351,7 @@
 
     throw v1
 
-    .line 142
+    .line 143
     :cond_1
     new-instance v1, Lcom/ss/android/vesdk/VEException;
 
@@ -343,7 +361,7 @@
 
     throw v1
 
-    .line 148
+    .line 149
     :cond_2
     :goto_0
     return-void

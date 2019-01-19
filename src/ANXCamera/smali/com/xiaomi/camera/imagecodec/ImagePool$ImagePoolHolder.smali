@@ -29,7 +29,7 @@
 
     sput-object v0, Lcom/xiaomi/camera/imagecodec/ImagePool$ImagePoolHolder;->sInstance:Lcom/xiaomi/camera/imagecodec/ImagePool;
 
-    .line 53
+    .line 54
     sget-object v0, Lcom/xiaomi/camera/imagecodec/ImagePool$ImagePoolHolder;->sInstance:Lcom/xiaomi/camera/imagecodec/ImagePool;
 
     invoke-static {v0}, Lcom/xiaomi/camera/imagecodec/ImagePool;->access$300(Lcom/xiaomi/camera/imagecodec/ImagePool;)Landroid/os/HandlerThread;
@@ -38,7 +38,7 @@
 
     invoke-virtual {v0}, Landroid/os/HandlerThread;->start()V
 
-    .line 54
+    .line 55
     sget-object v0, Lcom/xiaomi/camera/imagecodec/ImagePool$ImagePoolHolder;->sInstance:Lcom/xiaomi/camera/imagecodec/ImagePool;
 
     invoke-static {v0}, Lcom/xiaomi/camera/imagecodec/ImagePool;->access$400(Lcom/xiaomi/camera/imagecodec/ImagePool;)Landroid/os/HandlerThread;
@@ -47,7 +47,7 @@
 
     invoke-virtual {v0}, Landroid/os/HandlerThread;->start()V
 
-    .line 55
+    .line 56
     return-void
 .end method
 

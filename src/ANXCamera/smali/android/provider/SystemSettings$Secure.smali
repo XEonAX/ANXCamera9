@@ -24,7 +24,7 @@
 .method public constructor <init>()V
     .registers 1
 
-    .line 107
+    .line 109
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -34,7 +34,7 @@
     .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 129
+    .line 131
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -59,11 +59,11 @@
     :goto_10
     move v0, v1
 
-    .line 131
+    .line 133
     .local v0, "enabled":Z
     if-eqz v0, :cond_1f
 
-    .line 132
+    .line 134
     new-instance v1, Landroid/database/MatrixCursor;
 
     const-string v2, "_id"
@@ -76,7 +76,7 @@
 
     return-object v1
 
-    .line 136
+    .line 138
     :cond_1f
     const/4 v1, 0x0
 
@@ -87,7 +87,7 @@
     .registers 2
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 125
+    .line 127
     sget-boolean v0, Lmiui/os/Build;->IS_CTA_BUILD:Z
 
     return v0

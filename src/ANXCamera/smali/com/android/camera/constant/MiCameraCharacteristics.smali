@@ -95,6 +95,8 @@
 
 .field private static final KEY_QCFA_STREAM_CONFIGURATIONS:Ljava/lang/String; = "org.codeaurora.qcamera3.quadra_cfa.availableStreamConfigurations"
 
+.field private static final KEY_XIAOMI_SCALER_AVAILABLE_SR_STREAM_CONFIGURATIONS:Ljava/lang/String; = "xiaomi.scaler.availableSuperResolutionStreamConfigurations"
+
 .field public static final QCFA_ACTIVE_ARRAY_SIZE:Landroid/hardware/camera2/CameraCharacteristics$Key;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -148,12 +150,23 @@
     .end annotation
 .end field
 
+.field public static final XIAOMI_SCALER_AVAILABLE_SR_STREAM_CONFIGURATIONS:Landroid/hardware/camera2/CameraCharacteristics$Key;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Landroid/hardware/camera2/CameraCharacteristics$Key<",
+            "[",
+            "Landroid/hardware/camera2/params/StreamConfiguration;",
+            ">;"
+        }
+    .end annotation
+.end field
+
 
 # direct methods
 .method static constructor <clinit>()V
     .locals 3
 
-    .line 25
+    .line 26
     new-instance v0, Landroid/hardware/camera2/CameraCharacteristics$Key;
 
     const-string v1, "org.codeaurora.qcamera3.quadra_cfa.is_qcfa_sensor"
@@ -164,7 +177,7 @@
 
     sput-object v0, Lcom/android/camera/constant/MiCameraCharacteristics;->IS_QCFA_SENSOR:Landroid/hardware/camera2/CameraCharacteristics$Key;
 
-    .line 28
+    .line 29
     new-instance v0, Landroid/hardware/camera2/CameraCharacteristics$Key;
 
     const-string v1, "com.xiaomi.camera.supportedfeatures.videoBeauty"
@@ -175,7 +188,7 @@
 
     sput-object v0, Lcom/android/camera/constant/MiCameraCharacteristics;->VIDEO_BEAUTY:Landroid/hardware/camera2/CameraCharacteristics$Key;
 
-    .line 31
+    .line 32
     new-instance v0, Landroid/hardware/camera2/CameraCharacteristics$Key;
 
     const-string v1, "com.xiaomi.camera.supportedfeatures.beautyMakeup"
@@ -186,7 +199,7 @@
 
     sput-object v0, Lcom/android/camera/constant/MiCameraCharacteristics;->BEAUTY_MAKEUP:Landroid/hardware/camera2/CameraCharacteristics$Key;
 
-    .line 37
+    .line 38
     new-instance v0, Landroid/hardware/camera2/CameraCharacteristics$Key;
 
     const-string v1, "org.codeaurora.qcamera3.additional_hfr_video_sizes.hfr_video_size"
@@ -197,7 +210,7 @@
 
     sput-object v0, Lcom/android/camera/constant/MiCameraCharacteristics;->EXTRA_HIGH_SPEED_VIDEO_CONFIGURATIONS:Landroid/hardware/camera2/CameraCharacteristics$Key;
 
-    .line 40
+    .line 41
     new-instance v0, Landroid/hardware/camera2/CameraCharacteristics$Key;
 
     const-string v1, "org.codeaurora.qcamera3.additional_hfr_video_sizes.valid_number"
@@ -208,7 +221,7 @@
 
     sput-object v0, Lcom/android/camera/constant/MiCameraCharacteristics;->EXTRA_HIGH_SPEED_VIDEO_NUMBER:Landroid/hardware/camera2/CameraCharacteristics$Key;
 
-    .line 44
+    .line 45
     new-instance v0, Landroid/hardware/camera2/CameraCharacteristics$Key;
 
     const-string v1, "org.quic.camera2.customhfrfps.info.CustomHFRFpsTable"
@@ -219,7 +232,7 @@
 
     sput-object v0, Lcom/android/camera/constant/MiCameraCharacteristics;->CUSTOM_HFR_FPS_TABLE:Landroid/hardware/camera2/CameraCharacteristics$Key;
 
-    .line 47
+    .line 48
     new-instance v0, Landroid/hardware/camera2/CameraCharacteristics$Key;
 
     const-string v1, "xiaomi.scaler.availableStreamConfigurations"
@@ -230,7 +243,7 @@
 
     sput-object v0, Lcom/android/camera/constant/MiCameraCharacteristics;->SCALER_AVAILABLE_STREAM_CONFIGURATIONS:Landroid/hardware/camera2/CameraCharacteristics$Key;
 
-    .line 50
+    .line 51
     new-instance v0, Landroid/hardware/camera2/CameraCharacteristics$Key;
 
     const-string v1, "xiaomi.scaler.availableLimitStreamConfigurations"
@@ -241,7 +254,7 @@
 
     sput-object v0, Lcom/android/camera/constant/MiCameraCharacteristics;->SCALER_AVAILABLE_LIMIT_STREAM_CONFIGURATIONS:Landroid/hardware/camera2/CameraCharacteristics$Key;
 
-    .line 53
+    .line 54
     new-instance v0, Landroid/hardware/camera2/CameraCharacteristics$Key;
 
     const-string v1, "org.codeaurora.qcamera3.quadra_cfa.activeArraySize"
@@ -252,7 +265,7 @@
 
     sput-object v0, Lcom/android/camera/constant/MiCameraCharacteristics;->QCFA_ACTIVE_ARRAY_SIZE:Landroid/hardware/camera2/CameraCharacteristics$Key;
 
-    .line 56
+    .line 57
     new-instance v0, Landroid/hardware/camera2/CameraCharacteristics$Key;
 
     const-string v1, "org.codeaurora.qcamera3.quadra_cfa.availableStreamConfigurations"
@@ -263,7 +276,18 @@
 
     sput-object v0, Lcom/android/camera/constant/MiCameraCharacteristics;->QCFA_STREAM_CONFIGURATIONS:Landroid/hardware/camera2/CameraCharacteristics$Key;
 
-    .line 62
+    .line 60
+    new-instance v0, Landroid/hardware/camera2/CameraCharacteristics$Key;
+
+    const-string v1, "xiaomi.scaler.availableSuperResolutionStreamConfigurations"
+
+    const-class v2, [Landroid/hardware/camera2/params/StreamConfiguration;
+
+    invoke-direct {v0, v1, v2}, Landroid/hardware/camera2/CameraCharacteristics$Key;-><init>(Ljava/lang/String;Ljava/lang/Class;)V
+
+    sput-object v0, Lcom/android/camera/constant/MiCameraCharacteristics;->XIAOMI_SCALER_AVAILABLE_SR_STREAM_CONFIGURATIONS:Landroid/hardware/camera2/CameraCharacteristics$Key;
+
+    .line 66
     new-instance v0, Landroid/hardware/camera2/CameraCharacteristics$Key;
 
     const-string v1, "com.xiaomi.camera.algoup.dualCalibrationData"
@@ -274,7 +298,7 @@
 
     sput-object v0, Lcom/android/camera/constant/MiCameraCharacteristics;->CAM_CALIBRATION_DATA:Landroid/hardware/camera2/CameraCharacteristics$Key;
 
-    .line 68
+    .line 72
     new-instance v0, Landroid/hardware/camera2/CameraCharacteristics$Key;
 
     const-string v1, "xiaomi.capabilities.videoStabilization.previewSupported"

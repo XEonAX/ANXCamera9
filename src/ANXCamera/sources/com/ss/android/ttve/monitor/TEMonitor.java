@@ -2,7 +2,11 @@ package com.ss.android.ttve.monitor;
 
 import android.text.TextUtils;
 import android.util.Log;
+import com.ss.android.medialib.log.IMonitor;
+import com.ss.android.medialib.log.VEMonitor;
+import com.ss.android.medialib.log.VEMonitorKeys;
 import com.ss.android.ttve.common.TELogUtil;
+import com.ss.android.vesdk.runtime.VERuntime;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +20,13 @@ public class TEMonitor {
     private static WeakReference<IMonitor> sMonitor;
 
     public static void init() {
+        MonitorUtils.init(VERuntime.getInstance().getContext(), null, null, null);
+        TEMonitorInvoker.nativeInit();
+        VEMonitor.register(new IMonitor() {
+            public void monitorLog(String str, JSONObject jSONObject) {
+                TEMonitor.monitorVELog(jSONObject);
+            }
+        });
     }
 
     public static void report(int i) {
@@ -23,11 +34,12 @@ public class TEMonitor {
     }
 
     public static void register(IMonitor iMonitor) {
-        TEMonitorInvoker.nativeInit();
         sMonitor = new WeakReference(iMonitor);
     }
 
     public static void clear() {
+        TEMonitorInvoker.nativeReset();
+        VEMonitor.clear();
     }
 
     public static void setUserId(String str) {
@@ -82,6 +94,17 @@ public class TEMonitor {
         }
     }
 
+    public static void perfString(String str, String str2) {
+        if (TextUtils.isEmpty(str)) {
+            TELogUtil.w(TAG, "perfString: key is null");
+            return;
+        }
+        if (str2 == null) {
+            str2 = "";
+        }
+        TEMonitorInvoker.nativePerfString(str, str2);
+    }
+
     public static boolean monitorTELog(String str, String str2, long j) {
         Map hashMap = new HashMap();
         hashMap.put(str2, Long.valueOf(j));
@@ -105,11 +128,23 @@ public class TEMonitor {
     }
 
     private static boolean monitorTELog(WeakReference<IMonitor> weakReference, String str, String str2, Map map) {
-        if (weakReference != null) {
-            return true;
+        if (weakReference == null) {
+            TELogUtil.d(TAG, "No monitor callback, return");
+            return false;
         }
-        TELogUtil.d(TAG, "No monitor callback, return");
-        return false;
+        map.putAll(VEMonitor.getMap());
+        JSONObject jSONObject = new JSONObject();
+        try {
+            putAll(map, jSONObject);
+            if (!TextUtils.isEmpty(str2)) {
+                jSONObject.put("service", str2);
+            }
+            reportMonitor(weakReference, str, jSONObject);
+            return true;
+        } catch (JSONException e) {
+            TELogUtil.d(TAG, "No monitor callback, skip");
+            return false;
+        }
     }
 
     private static void monitorVELog(JSONObject jSONObject) {
@@ -124,23 +159,51 @@ public class TEMonitor {
     }
 
     private static int getIsComplete(JSONObject jSONObject) {
-        return 0;
+        try {
+            if (jSONObject.has("completed")) {
+                return jSONObject.getInt("completed");
+            }
+            return 0;
+        } catch (JSONException e) {
+            TELogUtil.e(TAG, "get complete filed error!");
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     private static void reportMonitor(WeakReference<IMonitor> weakReference, String str, JSONObject jSONObject) {
-        MonitorUtils.monitorStatusRate("sdk_video_edit_compose", getIsComplete(jSONObject), jSONObject);
+        int isComplete;
+        String str2 = "sdk_video_edit_compose";
+        if (jSONObject != null) {
+            isComplete = getIsComplete(jSONObject);
+            try {
+                if (jSONObject.has("service")) {
+                    str2 = jSONObject.getString("service");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            isComplete = 0;
+        }
+        MonitorUtils.monitorStatusRate(str2, isComplete, jSONObject);
         if (weakReference != null && weakReference.get() != null) {
             try {
                 ((IMonitor) weakReference.get()).monitorLog(str, jSONObject);
-            } catch (Throwable e) {
-                Log.e(TAG, "Something happened when monitor log", e);
+            } catch (Throwable e2) {
+                Log.e(TAG, "Something happened when monitor log", e2);
             }
         }
     }
 
     private static void putAll(Map map, JSONObject jSONObject) throws JSONException {
         for (String str : map.keySet()) {
-            int type = TEMonitorKeys.getType(str);
+            int type;
+            if (str.startsWith("iesve_")) {
+                type = VEMonitorKeys.getType(str);
+            } else {
+                type = TEMonitorKeys.getType(str);
+            }
             if (type == TEMonitorKeys.TYPE_INT) {
                 try {
                     jSONObject.put(str, Integer.parseInt((String) map.get(str)));

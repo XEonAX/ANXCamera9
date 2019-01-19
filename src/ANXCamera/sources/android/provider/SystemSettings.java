@@ -48,11 +48,13 @@ public class SystemSettings {
         public static String getDeviceName(Context context) {
             int deviceNameRes;
             String defaultName = "";
-            if (FeatureParser.getBoolean(d.sc, false)) {
-                deviceNameRes = R.string.device_hongmi;
-            } else if (FeatureParser.getBoolean("is_redmi", false)) {
-                deviceNameRes = R.string.device_redmi;
-            } else if (FeatureParser.getBoolean(d.sb, false)) {
+            if (FeatureParser.getBoolean(d.sn, false)) {
+                if (FeatureParser.getBoolean("is_redmi", false)) {
+                    deviceNameRes = R.string.device_redmi;
+                } else {
+                    deviceNameRes = R.string.device_hongmi;
+                }
+            } else if (FeatureParser.getBoolean(d.sm, false)) {
                 if (!E10_DEVICE.equals(SystemProperties.get("ro.product.device"))) {
                     deviceNameRes = R.string.device_xiaomi;
                 } else if (SystemProperties.get("ro.boot.hwc", "").contains(INDIA)) {
@@ -60,7 +62,7 @@ public class SystemSettings {
                 } else {
                     deviceNameRes = R.string.device_poco_global;
                 }
-            } else if (FeatureParser.getBoolean(d.se, false)) {
+            } else if (FeatureParser.getBoolean(d.so, false)) {
                 deviceNameRes = R.string.device_pad;
             } else {
                 deviceNameRes = R.string.miui_device_name;

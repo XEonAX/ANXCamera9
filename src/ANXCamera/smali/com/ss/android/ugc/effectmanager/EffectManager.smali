@@ -268,10 +268,10 @@
         }
     .end annotation
 
-    .line 563
+    .line 527
     invoke-virtual {p1, p2}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;->setAllCategoryEffects(Ljava/util/List;)V
 
-    .line 564
+    .line 528
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;->getCategoryResponseList()Ljava/util/List;
 
     move-result-object v0
@@ -293,12 +293,12 @@
 
     check-cast v1, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryResponse;
 
-    .line 566
+    .line 530
     new-instance v2, Ljava/util/ArrayList;
 
     invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
 
-    .line 567
+    .line 531
     invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryResponse;->getTotalEffects()Ljava/util/List;
 
     move-result-object v3
@@ -320,28 +320,28 @@
 
     check-cast v4, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
-    .line 568
+    .line 532
     invoke-interface {p2, v4}, Ljava/util/List;->contains(Ljava/lang/Object;)Z
 
     move-result v5
 
     if-eqz v5, :cond_0
 
-    .line 569
+    .line 533
     invoke-interface {v2, v4}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 571
+    .line 535
     :cond_0
     goto :goto_1
 
-    .line 572
+    .line 536
     :cond_1
     invoke-virtual {v1, v2}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryResponse;->setTotalEffects(Ljava/util/List;)V
 
-    .line 573
+    .line 537
     goto :goto_0
 
-    .line 574
+    .line 538
     :cond_2
     return-object p1
 .end method
@@ -359,7 +359,7 @@
         }
     .end annotation
 
-    .line 536
+    .line 500
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     if-eqz v0, :cond_1
@@ -370,13 +370,13 @@
 
     goto :goto_0
 
-    .line 542
+    .line 506
     :cond_0
     invoke-direct {p0}, Lcom/ss/android/ugc/effectmanager/EffectManager;->getCurrentTaskID()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 543
+    .line 507
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -389,20 +389,20 @@
 
     invoke-virtual {v1, v0, p2}, Lcom/ss/android/ugc/effectmanager/ListenerManger;->setFetchEffectListListener(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;)V
 
-    .line 544
+    .line 508
     iget-object p2, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectRepository:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;
 
     invoke-virtual {p2, p1, v0}, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->fetchEffectList(Ljava/util/List;Ljava/lang/String;)V
 
-    .line 545
+    .line 509
     return-void
 
-    .line 537
+    .line 501
     :cond_1
     :goto_0
     if-eqz p2, :cond_2
 
-    .line 538
+    .line 502
     new-instance p1, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
 
     new-instance v0, Ljava/lang/IllegalStateException;
@@ -415,7 +415,7 @@
 
     invoke-interface {p2, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;->onFail(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 540
+    .line 504
     :cond_2
     return-void
 .end method
@@ -423,12 +423,12 @@
 .method private getCurrentTaskID()Ljava/lang/String;
     .locals 1
 
-    .line 581
+    .line 545
     invoke-static {}, Ljava/util/UUID;->randomUUID()Ljava/util/UUID;
 
     move-result-object v0
 
-    .line 582
+    .line 546
     invoke-virtual {v0}, Ljava/util/UUID;->toString()Ljava/lang/String;
 
     move-result-object v0
@@ -450,19 +450,19 @@
         }
     .end annotation
 
-    .line 548
+    .line 512
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 549
+    .line 513
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectStore:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectStore;
 
     invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectStore;->getCurrentDownloadingEffectList()Ljava/util/List;
 
     move-result-object v1
 
-    .line 550
+    .line 514
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object p1
@@ -480,21 +480,21 @@
 
     check-cast v2, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
-    .line 551
+    .line 515
     invoke-interface {v1, v2}, Ljava/util/List;->contains(Ljava/lang/Object;)Z
 
     move-result v3
 
     if-nez v3, :cond_0
 
-    .line 552
+    .line 516
     invoke-interface {v0, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 554
+    .line 518
     :cond_0
     goto :goto_0
 
-    .line 555
+    .line 519
     :cond_1
     return-object v0
 .end method
@@ -705,12 +705,12 @@
 .method private linkSelectorStart()V
     .locals 1
 
-    .line 619
+    .line 583
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mLinkSelector:Lcom/ss/android/ugc/effectmanager/link/LinkSelector;
 
     invoke-virtual {v0}, Lcom/ss/android/ugc/effectmanager/link/LinkSelector;->startOptHosts()V
 
-    .line 620
+    .line 584
     return-void
 .end method
 
@@ -719,7 +719,7 @@
 .method public checkedEffectListUpdate(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/ICheckChannelListener;)V
     .locals 2
 
-    .line 503
+    .line 467
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     if-eqz v0, :cond_1
@@ -730,13 +730,13 @@
 
     goto :goto_0
 
-    .line 509
+    .line 473
     :cond_0
     invoke-direct {p0}, Lcom/ss/android/ugc/effectmanager/EffectManager;->getCurrentTaskID()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 510
+    .line 474
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -749,20 +749,20 @@
 
     invoke-virtual {v1, v0, p2}, Lcom/ss/android/ugc/effectmanager/ListenerManger;->setCheckChannelListener(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/ICheckChannelListener;)V
 
-    .line 511
+    .line 475
     iget-object p2, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectChannelRepository:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectChannelRepository;
 
     invoke-virtual {p2, p1, v0}, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectChannelRepository;->checkUpdate(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 512
+    .line 476
     return-void
 
-    .line 504
+    .line 468
     :cond_1
     :goto_0
     if-eqz p2, :cond_2
 
-    .line 505
+    .line 469
     new-instance p1, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
 
     new-instance v0, Ljava/lang/IllegalStateException;
@@ -775,59 +775,33 @@
 
     invoke-interface {p2, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/ICheckChannelListener;->checkChannelFailed(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 507
+    .line 471
     :cond_2
-    return-void
-.end method
-
-.method public clearCache(Ljava/lang/String;)V
-    .locals 3
-
-    .line 481
-    iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mCache:Lcom/ss/android/ugc/effectmanager/common/listener/ICache;
-
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v2, "effectchannel"
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object p1
-
-    invoke-interface {v0, p1}, Lcom/ss/android/ugc/effectmanager/common/listener/ICache;->remove(Ljava/lang/String;)Z
-
-    .line 482
     return-void
 .end method
 
 .method public clearEffects()V
     .locals 1
 
-    .line 474
+    .line 445
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mCache:Lcom/ss/android/ugc/effectmanager/common/listener/ICache;
 
     invoke-interface {v0}, Lcom/ss/android/ugc/effectmanager/common/listener/ICache;->clear()V
 
-    .line 475
+    .line 446
     return-void
 .end method
 
 .method public deleteEffect(Lcom/ss/android/ugc/effectmanager/effect/model/Effect;)V
     .locals 2
 
-    .line 461
+    .line 432
     if-nez p1, :cond_0
 
-    .line 462
+    .line 433
     return-void
 
-    .line 464
+    .line 435
     :cond_0
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mCache:Lcom/ss/android/ugc/effectmanager/common/listener/ICache;
 
@@ -837,7 +811,7 @@
 
     invoke-interface {v0, v1}, Lcom/ss/android/ugc/effectmanager/common/listener/ICache;->remove(Ljava/lang/String;)Z
 
-    .line 465
+    .line 436
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mCache:Lcom/ss/android/ugc/effectmanager/common/listener/ICache;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -860,27 +834,27 @@
 
     invoke-interface {v0, p1}, Lcom/ss/android/ugc/effectmanager/common/listener/ICache;->remove(Ljava/lang/String;)Z
 
-    .line 466
+    .line 437
     return-void
 .end method
 
 .method public destroy()V
     .locals 1
 
-    .line 518
+    .line 482
     iget-boolean v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mInited:Z
 
     if-eqz v0, :cond_1
 
-    .line 519
+    .line 483
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     if-nez v0, :cond_0
 
-    .line 520
+    .line 484
     return-void
 
-    .line 522
+    .line 486
     :cond_0
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
@@ -894,7 +868,7 @@
 
     invoke-virtual {v0}, Lcom/ss/android/ugc/effectmanager/common/TaskManager;->destroy()V
 
-    .line 523
+    .line 487
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {v0}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -907,17 +881,17 @@
 
     invoke-virtual {v0}, Lcom/ss/android/ugc/effectmanager/ListenerManger;->destroy()V
 
-    .line 524
+    .line 488
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mLinkSelector:Lcom/ss/android/ugc/effectmanager/link/LinkSelector;
 
     invoke-virtual {v0}, Lcom/ss/android/ugc/effectmanager/link/LinkSelector;->destory()V
 
-    .line 525
+    .line 489
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mInited:Z
 
-    .line 527
+    .line 491
     :cond_1
     return-void
 .end method
@@ -1131,85 +1105,6 @@
 
     .line 192
     :cond_3
-    return-void
-.end method
-
-.method public fetchEffectList(Ljava/util/List;ILcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;)V
-    .locals 2
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Ljava/util/List<",
-            "Ljava/lang/String;",
-            ">;I",
-            "Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;",
-            ")V"
-        }
-    .end annotation
-
-    .line 414
-    iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
-
-    if-eqz v0, :cond_1
-
-    iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectRepository:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;
-
-    if-nez v0, :cond_0
-
-    goto :goto_0
-
-    .line 421
-    :cond_0
-    new-instance v0, Lcom/ss/android/ugc/effectmanager/EffectManager$7;
-
-    invoke-direct {v0, p0, p3}, Lcom/ss/android/ugc/effectmanager/EffectManager$7;-><init>(Lcom/ss/android/ugc/effectmanager/EffectManager;Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;)V
-
-    .line 432
-    invoke-direct {p0}, Lcom/ss/android/ugc/effectmanager/EffectManager;->getCurrentTaskID()Ljava/lang/String;
-
-    move-result-object p3
-
-    .line 433
-    iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
-
-    invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getListenerManger()Lcom/ss/android/ugc/effectmanager/ListenerManger;
-
-    move-result-object v1
-
-    invoke-virtual {v1, p3, v0}, Lcom/ss/android/ugc/effectmanager/ListenerManger;->setFetchEffectListListener(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;)V
-
-    .line 434
-    iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectRepository:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;
-
-    invoke-virtual {v0, p1, p3, p2}, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->fetchEffectListById(Ljava/util/List;Ljava/lang/String;I)V
-
-    .line 435
-    return-void
-
-    .line 415
-    :cond_1
-    :goto_0
-    if-eqz p3, :cond_2
-
-    .line 416
-    new-instance p1, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
-
-    new-instance p2, Ljava/lang/IllegalStateException;
-
-    const-string v0, "\u8bf7\u5148\u521d\u59cb\u5316"
-
-    invoke-direct {p2, v0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
-
-    invoke-direct {p1, p2}, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;-><init>(Ljava/lang/Exception;)V
-
-    invoke-interface {p3, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;->onFail(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
-
-    .line 418
-    :cond_2
     return-void
 .end method
 
@@ -1540,7 +1435,7 @@
 .method public fetchFavoriteList(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchFavoriteList;)V
     .locals 2
 
-    .line 694
+    .line 658
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     if-eqz v0, :cond_1
@@ -1551,13 +1446,13 @@
 
     goto :goto_0
 
-    .line 700
+    .line 664
     :cond_0
     invoke-direct {p0}, Lcom/ss/android/ugc/effectmanager/EffectManager;->getCurrentTaskID()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 701
+    .line 665
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -1570,20 +1465,20 @@
 
     invoke-virtual {v1, v0, p2}, Lcom/ss/android/ugc/effectmanager/ListenerManger;->setFetchFavoriteListListener(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchFavoriteList;)V
 
-    .line 702
+    .line 666
     iget-object p2, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mFavoriteRepository:Lcom/ss/android/ugc/effectmanager/effect/repository/FavoriteRepository;
 
     invoke-virtual {p2, p1, v0}, Lcom/ss/android/ugc/effectmanager/effect/repository/FavoriteRepository;->fetchFavoriteList(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 703
+    .line 667
     return-void
 
-    .line 695
+    .line 659
     :cond_1
     :goto_0
     if-eqz p2, :cond_2
 
-    .line 696
+    .line 660
     new-instance p1, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
 
     new-instance v0, Ljava/lang/IllegalStateException;
@@ -1596,7 +1491,7 @@
 
     invoke-interface {p2, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchFavoriteList;->onFailed(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 698
+    .line 662
     :cond_2
     return-void
 .end method
@@ -1604,17 +1499,17 @@
 .method public getCurrentEffectChannel()Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;
     .locals 1
 
-    .line 490
+    .line 454
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectStore:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectStore;
 
     if-nez v0, :cond_0
 
-    .line 491
+    .line 455
     const/4 v0, 0x0
 
     return-object v0
 
-    .line 493
+    .line 457
     :cond_0
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectStore:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectStore;
 
@@ -1706,7 +1601,7 @@
 .method public isEffectDownloaded(Lcom/ss/android/ugc/effectmanager/effect/model/Effect;)Z
     .locals 1
 
-    .line 443
+    .line 414
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectStore:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectStore;
 
     if-eqz v0, :cond_0
@@ -1739,7 +1634,7 @@
 .method public isEffectDownloading(Lcom/ss/android/ugc/effectmanager/effect/model/Effect;)Z
     .locals 1
 
-    .line 452
+    .line 423
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectStore:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectStore;
 
     if-eqz v0, :cond_0
@@ -1772,36 +1667,36 @@
 .method public isTagUpdated(Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IIsTagNeedUpdatedListener;)V
     .locals 2
 
-    .line 607
+    .line 571
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mUpdateTagRepository:Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;
 
     if-nez v0, :cond_0
 
-    .line 608
+    .line 572
     invoke-interface {p3}, Lcom/ss/android/ugc/effectmanager/effect/listener/IIsTagNeedUpdatedListener;->onTagNeedNotUpdate()V
 
-    .line 609
+    .line 573
     return-void
 
-    .line 611
+    .line 575
     :cond_0
     invoke-direct {p0}, Lcom/ss/android/ugc/effectmanager/EffectManager;->getCurrentTaskID()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 612
+    .line 576
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mUpdateTagRepository:Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;
 
     invoke-virtual {v1, v0, p1, p2, p3}, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->isTagUpdated(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IIsTagNeedUpdatedListener;)V
 
-    .line 613
+    .line 577
     return-void
 .end method
 
 .method public modifyFavoriteList(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lcom/ss/android/ugc/effectmanager/effect/listener/IModFavoriteList;)V
     .locals 2
 
-    .line 672
+    .line 636
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     if-eqz v0, :cond_1
@@ -1812,13 +1707,13 @@
 
     goto :goto_0
 
-    .line 678
+    .line 642
     :cond_0
     invoke-direct {p0}, Lcom/ss/android/ugc/effectmanager/EffectManager;->getCurrentTaskID()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 679
+    .line 643
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -1831,20 +1726,20 @@
 
     invoke-virtual {v1, v0, p4}, Lcom/ss/android/ugc/effectmanager/ListenerManger;->setModFavoriteListener(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IModFavoriteList;)V
 
-    .line 680
+    .line 644
     iget-object p4, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mFavoriteRepository:Lcom/ss/android/ugc/effectmanager/effect/repository/FavoriteRepository;
 
     invoke-virtual {p4, p1, p2, p3, v0}, Lcom/ss/android/ugc/effectmanager/effect/repository/FavoriteRepository;->modFavoriteList(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;)V
 
-    .line 681
+    .line 645
     return-void
 
-    .line 673
+    .line 637
     :cond_1
     :goto_0
     if-eqz p4, :cond_2
 
-    .line 674
+    .line 638
     new-instance p1, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
 
     new-instance p2, Ljava/lang/IllegalStateException;
@@ -1857,7 +1752,7 @@
 
     invoke-interface {p4, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IModFavoriteList;->onFail(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 676
+    .line 640
     :cond_2
     return-void
 .end method
@@ -1877,7 +1772,7 @@
         }
     .end annotation
 
-    .line 649
+    .line 613
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     if-eqz v0, :cond_1
@@ -1888,13 +1783,13 @@
 
     goto :goto_0
 
-    .line 655
+    .line 619
     :cond_0
     invoke-direct {p0}, Lcom/ss/android/ugc/effectmanager/EffectManager;->getCurrentTaskID()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 656
+    .line 620
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -1907,20 +1802,20 @@
 
     invoke-virtual {v1, v0, p4}, Lcom/ss/android/ugc/effectmanager/ListenerManger;->setModFavoriteListener(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IModFavoriteList;)V
 
-    .line 657
+    .line 621
     iget-object p4, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mFavoriteRepository:Lcom/ss/android/ugc/effectmanager/effect/repository/FavoriteRepository;
 
     invoke-virtual {p4, p1, p2, p3, v0}, Lcom/ss/android/ugc/effectmanager/effect/repository/FavoriteRepository;->modFavoriteList(Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;)V
 
-    .line 658
+    .line 622
     return-void
 
-    .line 650
+    .line 614
     :cond_1
     :goto_0
     if-eqz p4, :cond_2
 
-    .line 651
+    .line 615
     new-instance p1, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
 
     new-instance p2, Ljava/lang/IllegalStateException;
@@ -1933,7 +1828,7 @@
 
     invoke-interface {p4, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IModFavoriteList;->onFail(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 653
+    .line 617
     :cond_2
     return-void
 .end method
@@ -1941,7 +1836,7 @@
 .method public updateDeviceId(Ljava/lang/String;)V
     .locals 1
 
-    .line 710
+    .line 674
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {v0}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -1950,7 +1845,7 @@
 
     invoke-virtual {v0, p1}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->setDeviceId(Ljava/lang/String;)V
 
-    .line 711
+    .line 675
     return-void
 .end method
 
@@ -1965,17 +1860,17 @@
         }
     .end annotation
 
-    .line 630
+    .line 594
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mLinkSelector:Lcom/ss/android/ugc/effectmanager/link/LinkSelector;
 
     if-eqz v0, :cond_0
 
-    .line 631
+    .line 595
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mLinkSelector:Lcom/ss/android/ugc/effectmanager/link/LinkSelector;
 
     invoke-virtual {v0, p1, p2}, Lcom/ss/android/ugc/effectmanager/link/LinkSelector;->updateHosts(Ljava/util/List;Z)V
 
-    .line 633
+    .line 597
     :cond_0
     return-void
 .end method
@@ -1983,32 +1878,32 @@
 .method public updateTag(Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;)V
     .locals 2
 
-    .line 589
+    .line 553
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mUpdateTagRepository:Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;
 
     if-nez v0, :cond_1
 
-    .line 590
+    .line 554
     if-eqz p3, :cond_0
 
-    .line 591
+    .line 555
     invoke-interface {p3}, Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;->onFinally()V
 
-    .line 593
+    .line 557
     :cond_0
     return-void
 
-    .line 595
+    .line 559
     :cond_1
     invoke-direct {p0}, Lcom/ss/android/ugc/effectmanager/EffectManager;->getCurrentTaskID()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 596
+    .line 560
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mUpdateTagRepository:Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;
 
     invoke-virtual {v1, v0, p1, p2, p3}, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->updateTag(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;)V
 
-    .line 597
+    .line 561
     return-void
 .end method

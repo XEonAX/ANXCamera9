@@ -20,7 +20,7 @@
 
 
 # instance fields
-.field private final LW:Ljava/util/concurrent/ConcurrentLinkedQueue;
+.field private final Mg:Ljava/util/concurrent/ConcurrentLinkedQueue;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/concurrent/ConcurrentLinkedQueue<",
@@ -42,7 +42,7 @@
 
     invoke-direct {v0}, Ljava/util/concurrent/ConcurrentLinkedQueue;-><init>()V
 
-    iput-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->LW:Ljava/util/concurrent/ConcurrentLinkedQueue;
+    iput-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->Mg:Ljava/util/concurrent/ConcurrentLinkedQueue;
 
     .line 21
     return-void
@@ -54,14 +54,14 @@
     .registers 3
 
     .line 52
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->LW:Ljava/util/concurrent/ConcurrentLinkedQueue;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->Mg:Ljava/util/concurrent/ConcurrentLinkedQueue;
 
     invoke-virtual {v0}, Ljava/util/concurrent/ConcurrentLinkedQueue;->size()I
 
     move-result v0
 
     .line 53
-    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->LW:Ljava/util/concurrent/ConcurrentLinkedQueue;
+    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->Mg:Ljava/util/concurrent/ConcurrentLinkedQueue;
 
     invoke-virtual {v1}, Ljava/util/concurrent/ConcurrentLinkedQueue;->clear()V
 
@@ -78,7 +78,7 @@
     .end annotation
 
     .line 30
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->LW:Ljava/util/concurrent/ConcurrentLinkedQueue;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->Mg:Ljava/util/concurrent/ConcurrentLinkedQueue;
 
     invoke-virtual {v0}, Ljava/util/concurrent/ConcurrentLinkedQueue;->poll()Ljava/lang/Object;
 
@@ -100,7 +100,7 @@
     .registers 2
 
     .line 59
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->LW:Ljava/util/concurrent/ConcurrentLinkedQueue;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->Mg:Ljava/util/concurrent/ConcurrentLinkedQueue;
 
     invoke-virtual {v0}, Ljava/util/concurrent/ConcurrentLinkedQueue;->isEmpty()Z
 
@@ -118,7 +118,7 @@
     .end annotation
 
     .line 25
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->LW:Ljava/util/concurrent/ConcurrentLinkedQueue;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->Mg:Ljava/util/concurrent/ConcurrentLinkedQueue;
 
     invoke-virtual {v0, p1}, Ljava/util/concurrent/ConcurrentLinkedQueue;->offer(Ljava/lang/Object;)Z
 
@@ -141,7 +141,7 @@
     nop
 
     .line 41
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->LW:Ljava/util/concurrent/ConcurrentLinkedQueue;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->Mg:Ljava/util/concurrent/ConcurrentLinkedQueue;
 
     invoke-virtual {v0}, Ljava/util/concurrent/ConcurrentLinkedQueue;->iterator()Ljava/util/Iterator;
 
@@ -190,7 +190,7 @@
     .end annotation
 
     .line 35
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->LW:Ljava/util/concurrent/ConcurrentLinkedQueue;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentLinkedQueue;->Mg:Ljava/util/concurrent/ConcurrentLinkedQueue;
 
     invoke-virtual {v0, p1}, Ljava/util/concurrent/ConcurrentLinkedQueue;->remove(Ljava/lang/Object;)Z
 

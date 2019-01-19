@@ -8,6 +8,7 @@ import android.widget.Toast;
 import java.lang.ref.WeakReference;
 
 public class ToastUtils {
+    private static final long SHORT_DURATION_TIMEOUT = 2000;
     private static int sGravity = 17;
     private static String sOldMsg;
     private static long sOneTime = 0;
@@ -80,10 +81,10 @@ public class ToastUtils {
                     sXOffset = i2;
                     sYOffset = i3;
                 }
-                if (i5 != 0 || sTwoTime - sOneTime > 0) {
+                if (i5 != 0 || sTwoTime - sOneTime > 2000) {
+                    sOneTime = sTwoTime;
                     sToast.show();
                 }
-                sOneTime = sTwoTime;
             }
         }
     }

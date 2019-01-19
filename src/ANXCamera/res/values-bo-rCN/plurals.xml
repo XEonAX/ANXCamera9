@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">མདོ་གཏོགས་ལེགས་གྲུབ། མིའི་གདོང་%dདཔྱད་འཇལ་ཐུབ་སོང་།</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">བསྟུད་ལེན་མཇུག་སྒྲིལ། བསྡོམས་པར་རིས་%1$sཔར་བླངས།</item>
+    </plurals>
+</resources>

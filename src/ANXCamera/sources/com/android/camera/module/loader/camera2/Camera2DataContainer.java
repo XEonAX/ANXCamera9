@@ -76,8 +76,8 @@ public class Camera2DataContainer {
                 try {
                     int parseInt = Integer.parseInt(str);
                     CameraCharacteristics cameraCharacteristics = cameraManager.getCameraCharacteristics(str);
-                    this.mCapabilities.put(parseInt, new CameraCapabilities(cameraCharacteristics));
-                    if (!(DataRepository.dataItemFeature().fw() && (21 == parseInt || 63 == parseInt))) {
+                    this.mCapabilities.put(parseInt, new CameraCapabilities(cameraCharacteristics, parseInt));
+                    if (!(DataRepository.dataItemFeature().fx() && (21 == parseInt || 63 == parseInt))) {
                         Integer num = (Integer) cameraCharacteristics.get(CameraCharacteristics.LENS_FACING);
                         int i3;
                         if (num == null) {
@@ -303,7 +303,7 @@ public class Camera2DataContainer {
                                 break;
                             }
                         case 163:
-                            if (CameraSettings.isMeunUltraPixelPhotographyOn()) {
+                            if (CameraSettings.isRearMenuUltraPixelPhotographyOn()) {
                                 ultraWideCameraId = getMainBackCameraId();
                                 break;
                             }

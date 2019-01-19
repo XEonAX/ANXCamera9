@@ -21,7 +21,7 @@
 .method constructor <init>()V
     .locals 0
 
-    .line 770
+    .line 771
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -32,28 +32,28 @@
 .method public onLifeAlive()V
     .locals 0
 
-    .line 785
+    .line 786
     return-void
 .end method
 
 .method public onLifeDestroy(Ljava/lang/String;)V
     .locals 0
 
-    .line 795
+    .line 796
     return-void
 .end method
 
 .method public onLifeStart(Ljava/lang/String;)V
     .locals 0
 
-    .line 780
+    .line 781
     return-void
 .end method
 
 .method public onLifeStop(Ljava/lang/String;)V
     .locals 0
 
-    .line 790
+    .line 791
     return-void
 .end method
 
@@ -68,6 +68,6 @@
         }
     .end annotation
 
-    .line 775
+    .line 776
     return-void
 .end method

@@ -810,14 +810,14 @@
     invoke-virtual {v0, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
 
     .line 795
-    invoke-static {}, Lcom/mi/config/b;->fX()Z
+    invoke-static {}, Lcom/mi/config/b;->gi()Z
 
     move-result v2
 
     if-eqz v2, :cond_5
 
     .line 796
-    invoke-static {}, Lcom/mi/config/b;->hH()Z
+    invoke-static {}, Lcom/mi/config/b;->hQ()Z
 
     move-result v2
 
@@ -1527,17 +1527,18 @@
 .method protected onDestroy()V
     .locals 3
 
-    .line 562
+    .line 563
     iget-object v0, p0, Lcom/android/camera/ActivityBase;->mCameraScreenNail:Lcom/android/camera/CameraScreenNail;
 
     if-eqz v0, :cond_0
 
-    .line 563
     iget-object v0, p0, Lcom/android/camera/ActivityBase;->mCameraScreenNail:Lcom/android/camera/CameraScreenNail;
 
     invoke-virtual {v0}, Lcom/android/camera/CameraScreenNail;->getLastFrameGaussianBitmap()Landroid/graphics/Bitmap;
 
     move-result-object v0
+
+    if-eqz v0, :cond_0
 
     .line 564
     invoke-static {}, Lio/reactivex/schedulers/Schedulers;->io()Lio/reactivex/Scheduler;

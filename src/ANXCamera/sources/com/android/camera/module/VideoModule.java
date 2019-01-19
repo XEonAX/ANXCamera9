@@ -201,7 +201,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
         List<String> arrayList = new ArrayList();
         if (isBackCamera()) {
             arrayList.add("pref_video_speed_fast_key");
-            if (b.gh()) {
+            if (b.gq()) {
                 arrayList.add("pref_video_speed_slow_key");
             }
         }
@@ -229,7 +229,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
         readVideoPreferences();
         initializeFocusManager();
         updatePreferenceTrampoline(UpdateConstant.VIDEO_TYPES_INIT);
-        if (!initializeRecorder()) {
+        if (!initializeRecorder(false)) {
             startPreviewSession();
         } else if (isHFRMode() || isSlowMode() || ModuleManager.isVideoNewSlowMotion()) {
             startHighSpeedRecordSession();
@@ -622,7 +622,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
 
     public void onPause() {
         super.onPause();
-        if (this.mFovcEnabled && this.mCamera2Device != null) {
+        if (this.mCamera2Device != null && (this.mFovcEnabled || (this.mCameraCapabilities.isEISPreviewSupported() && isEisOn()))) {
             this.mCamera2Device.notifyVideoStreamEnd();
         }
         waitStereoSwitchThread();
@@ -759,31 +759,30 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:56:0x0156  */
-    /* JADX WARNING: Removed duplicated region for block: B:56:0x0156  */
+    /* JADX WARNING: Removed duplicated region for block: B:56:0x0155  */
+    /* JADX WARNING: Removed duplicated region for block: B:56:0x0155  */
     /* Code decompiled incorrectly, please refer to instructions dump. */
-    private boolean initializeRecorder() {
+    private boolean initializeRecorder(boolean z) {
         Throwable e;
         String str;
         StringBuilder stringBuilder;
+        StringBuilder stringBuilder2;
         Throwable th;
         Log.d(TAG, "initializeRecorder>>");
         long currentTimeMillis = System.currentTimeMillis();
-        boolean z = false;
         if (getActivity() == null) {
             Log.w(TAG, "initializeRecorder: null host");
             return false;
         }
         long currentTimeMillis2;
         String str2;
-        StringBuilder stringBuilder2;
         closeVideoFileDescriptor();
         cleanupEmptyFile();
         if (isCaptureIntent()) {
             parseIntent(this.mActivity.getIntent());
         }
         if (this.mVideoFileDescriptor == null) {
-            this.mCurrentVideoValues = genContentValues(this.mOutputFormat, this.mCurrentFileNumber, isFPS960());
+            this.mCurrentVideoValues = genContentValues(this.mOutputFormat, this.mCurrentFileNumber, isFPS960(), z);
             this.mCurrentVideoFilename = this.mCurrentVideoValues.getAsString("_data");
         }
         if (this.mStopRecorderDone != null) {
@@ -794,10 +793,10 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                 e2.printStackTrace();
             }
             str2 = TAG;
-            stringBuilder2 = new StringBuilder();
-            stringBuilder2.append("initializeRecorder: waitTime=");
-            stringBuilder2.append(System.currentTimeMillis() - currentTimeMillis2);
-            Log.d(str2, stringBuilder2.toString());
+            StringBuilder stringBuilder3 = new StringBuilder();
+            stringBuilder3.append("initializeRecorder: waitTime=");
+            stringBuilder3.append(System.currentTimeMillis() - currentTimeMillis2);
+            Log.d(str2, stringBuilder3.toString());
         }
         currentTimeMillis2 = System.currentTimeMillis();
         synchronized (this.mLock) {
@@ -807,14 +806,15 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                 this.mMediaRecorder.reset();
                 if (DEBUG) {
                     String str3 = TAG;
-                    StringBuilder stringBuilder3 = new StringBuilder();
-                    stringBuilder3.append("initializeRecorder: t1=");
-                    stringBuilder3.append(System.currentTimeMillis() - currentTimeMillis2);
-                    Log.v(str3, stringBuilder3.toString());
+                    StringBuilder stringBuilder4 = new StringBuilder();
+                    stringBuilder4.append("initializeRecorder: t1=");
+                    stringBuilder4.append(System.currentTimeMillis() - currentTimeMillis2);
+                    Log.v(str3, stringBuilder4.toString());
                 }
             }
         }
         Closeable closeable = null;
+        boolean z2 = true;
         try {
             setupRecorder(this.mMediaRecorder);
             if (this.mVideoFileDescriptor != null) {
@@ -829,20 +829,21 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                     closeable = parcelFileDescriptor;
                     try {
                         str = TAG;
-                        stringBuilder2 = new StringBuilder();
-                        stringBuilder2.append("prepare failed for ");
-                        stringBuilder2.append(this.mCurrentVideoFilename);
-                        Log.e(str, stringBuilder2.toString(), e);
+                        stringBuilder = new StringBuilder();
+                        stringBuilder.append("prepare failed for ");
+                        stringBuilder.append(this.mCurrentVideoFilename);
+                        Log.e(str, stringBuilder.toString(), e);
                         releaseMediaRecorder();
                         Util.closeSilently(closeable);
+                        z2 = false;
                         if (DEBUG) {
                         }
                         str2 = TAG;
-                        stringBuilder = new StringBuilder();
-                        stringBuilder.append("initializeRecorder<<time=");
-                        stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
-                        Log.d(str2, stringBuilder.toString());
-                        return z;
+                        stringBuilder2 = new StringBuilder();
+                        stringBuilder2.append("initializeRecorder<<time=");
+                        stringBuilder2.append(System.currentTimeMillis() - currentTimeMillis);
+                        Log.d(str2, stringBuilder2.toString());
+                        return z2;
                     } catch (Throwable th2) {
                         th = th2;
                         Util.closeSilently(closeable);
@@ -858,46 +859,46 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                 this.mMediaRecorder.setOutputFile(this.mCurrentVideoFilename);
             }
             this.mMediaRecorder.setInputSurface(this.mRecorderSurface);
-            long currentTimeMillis3 = System.currentTimeMillis();
+            currentTimeMillis2 = System.currentTimeMillis();
             this.mMediaRecorder.prepare();
             this.mMediaRecorder.setOnErrorListener(this);
             this.mMediaRecorder.setOnInfoListener(this);
             if (DEBUG) {
                 String str4 = TAG;
-                StringBuilder stringBuilder4 = new StringBuilder();
-                stringBuilder4.append("initializeRecorder: t2=");
-                stringBuilder4.append(System.currentTimeMillis() - currentTimeMillis3);
-                Log.v(str4, stringBuilder4.toString());
+                StringBuilder stringBuilder5 = new StringBuilder();
+                stringBuilder5.append("initializeRecorder: t2=");
+                stringBuilder5.append(System.currentTimeMillis() - currentTimeMillis2);
+                Log.v(str4, stringBuilder5.toString());
             }
             Util.closeSilently(closeable);
-            z = true;
         } catch (Exception e4) {
             e = e4;
             str = TAG;
-            stringBuilder2 = new StringBuilder();
-            stringBuilder2.append("prepare failed for ");
-            stringBuilder2.append(this.mCurrentVideoFilename);
-            Log.e(str, stringBuilder2.toString(), e);
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("prepare failed for ");
+            stringBuilder.append(this.mCurrentVideoFilename);
+            Log.e(str, stringBuilder.toString(), e);
             releaseMediaRecorder();
             Util.closeSilently(closeable);
+            z2 = false;
             if (DEBUG) {
             }
             str2 = TAG;
-            stringBuilder = new StringBuilder();
-            stringBuilder.append("initializeRecorder<<time=");
-            stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
-            Log.d(str2, stringBuilder.toString());
-            return z;
+            stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("initializeRecorder<<time=");
+            stringBuilder2.append(System.currentTimeMillis() - currentTimeMillis);
+            Log.d(str2, stringBuilder2.toString());
+            return z2;
         }
         if (DEBUG) {
             showSurfaceInfo(this.mRecorderSurface);
         }
         str2 = TAG;
-        stringBuilder = new StringBuilder();
-        stringBuilder.append("initializeRecorder<<time=");
-        stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
-        Log.d(str2, stringBuilder.toString());
-        return z;
+        stringBuilder2 = new StringBuilder();
+        stringBuilder2.append("initializeRecorder<<time=");
+        stringBuilder2.append(System.currentTimeMillis() - currentTimeMillis);
+        Log.d(str2, stringBuilder2.toString());
+        return z2;
     }
 
     private void showSurfaceInfo(Surface surface) {
@@ -1008,12 +1009,12 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                 setParameterExtra(mediaRecorder, "param-use-64bit-offset=1");
             }
         }
-        if (!DataRepository.dataItemFeature().fj() || (normalVideoFrameRate <= 0 && recorderMaxFileSize != VIDEO_MAX_SINGLE_FILE_SIZE)) {
+        if (!DataRepository.dataItemFeature().fk() || (normalVideoFrameRate <= 0 && recorderMaxFileSize != VIDEO_MAX_SINGLE_FILE_SIZE)) {
             setSplitWhenReachMaxSize(false);
         } else {
             setSplitWhenReachMaxSize(true);
         }
-        if (isFPS240()) {
+        if (isFPS240() || isFPS960()) {
             try {
                 setParameterExtra(mediaRecorder, "video-param-i-frames-interval=0.033");
             } catch (Throwable e) {
@@ -1059,7 +1060,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                 leftSpace = j;
             }
         }
-        if (leftSpace > VIDEO_MAX_SINGLE_FILE_SIZE && DataRepository.dataItemFeature().fj()) {
+        if (leftSpace > VIDEO_MAX_SINGLE_FILE_SIZE && DataRepository.dataItemFeature().fk()) {
             leftSpace = VIDEO_MAX_SINGLE_FILE_SIZE;
         } else if (leftSpace < VIDEO_MIN_SINGLE_FILE_SIZE) {
             leftSpace = VIDEO_MIN_SINGLE_FILE_SIZE;
@@ -1285,7 +1286,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     }
 
     private boolean startRecorder() {
-        if (!initializeRecorder()) {
+        if (!initializeRecorder(true)) {
             return false;
         }
         try {
@@ -1355,20 +1356,15 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     }
 
     public void stopVideoRecording(boolean z, boolean z2) {
-        boolean z3 = z;
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("stopVideoRecording>>");
         stringBuilder.append(this.mMediaRecorderRecording);
         stringBuilder.append("|");
-        stringBuilder.append(z3);
+        stringBuilder.append(z);
         stringBuilder.append("|");
         stringBuilder.append(this.mMediaRecorderPostProcessing);
         Log.v(str, stringBuilder.toString());
-        if (this.mInStartingFocusRecording) {
-            this.mInStartingFocusRecording = false;
-            ((RecordState) ModeCoordinatorImpl.getInstance().getAttachProtocol(212)).onFinish();
-        }
         if (this.mMediaRecorderRecording && (!isFPS960() || !this.mMediaRecorderPostProcessing)) {
             long currentTimeMillis = System.currentTimeMillis();
             if (!isFPS960()) {
@@ -1380,7 +1376,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
             }
             enableCameraControls(false);
             if (this.mCamera2Device != null) {
-                this.mCamera2Device.stopRecording(z3 ? null : this);
+                this.mCamera2Device.stopRecording(z ? null : this);
             }
             if (this.mCountDownTimer != null && CameraSettings.isVideoBokehOn()) {
                 this.mCountDownTimer.cancel();
@@ -1395,7 +1391,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                 CameraStatUtil.trackVideoRecorded(isFrontCamera(), this.mSpeed, this.mQuality, this.mCamera2Device.getFlashMode(), this.mFrameRate, this.mTimeBetweenTimeLapseFrameCaptureMs, this.mBeautyValues, this.mVideoRecordTime);
             }
             this.mVideoRecordTime = 0;
-            if (z3) {
+            if (z) {
                 stopRecorder();
                 startPreviewAfterRecord();
             } else {
@@ -1778,7 +1774,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     }
 
     public boolean onGestureTrack(RectF rectF, boolean z) {
-        if (this.mInStartingFocusRecording || !isBackCamera() || !b.gj() || CameraSettings.is4KHigherVideoQuality(this.mQuality) || isCaptureIntent()) {
+        if (this.mInStartingFocusRecording || !isBackCamera() || !b.gs() || CameraSettings.is4KHigherVideoQuality(this.mQuality) || isCaptureIntent()) {
             return false;
         }
         return initializeObjectTrack(rectF, z);
@@ -1812,7 +1808,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
             this.mCamera2Device.setGpsLocation(currentLocation);
             setJpegQuality();
             updateFrontMirror();
-            if (!b.gN()) {
+            if (!b.gW()) {
                 this.mActivity.getCameraScreenNail().animateCapture(getCameraRotation());
             }
             Log.v(TAG, "capture: start");
@@ -1920,7 +1916,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                     break;
                 case 9:
                     String str;
-                    if (b.gh() && (isHFRMode() || isSlowMode())) {
+                    if (b.gq() && (isHFRMode() || isSlowMode())) {
                         str = "0";
                     } else {
                         str = CameraSettings.getAntiBanding();
@@ -1935,6 +1931,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                 case 30:
                 case 34:
                 case 42:
+                case 50:
                     break;
                 case 12:
                     setEvValue();
@@ -2009,7 +2006,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
         stringBuilder.append(optimalVideoSnapshotPictureSize.toString());
         Log.d(str, stringBuilder.toString());
         int i3 = Integer.MAX_VALUE;
-        if (b.gG()) {
+        if (b.gP()) {
             i3 = optimalVideoSnapshotPictureSize.width;
             i = optimalVideoSnapshotPictureSize.height;
         } else {

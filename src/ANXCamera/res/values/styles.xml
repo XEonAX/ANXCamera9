@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="@android:style/Theme.Material.Light" />
-    <style name="ThemeCamera" parent="@android:style/Theme.Material.Light">
+    <style name="AppTheme" parent="@android:style/Theme.Light" />
+    <style name="ThemeCamera" parent="@miui:style/Theme.Light">
         <item name="android:colorBackground">@android:color/black</item>
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:windowNoTitle">true</item>
@@ -9,8 +9,9 @@
         <item name="android:listChoiceIndicatorMultiple">@drawable/btn_checkbox_light</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="miui:windowActionBar">false</item>
     </style>
-    <style name="ThemeCameraSettings" parent="@android:style/Theme.Material.Light" />
+    <style name="ThemeCameraSettings" parent="@miui:style/Theme.Light.Settings" />
     <style name="OnScreenHintTextAppearance">
         <item name="android:textSize">16.0sp</item>
         <item name="android:textStyle">normal</item>
@@ -140,11 +141,11 @@
     </style>
     <style name="ZoomButtonDigitsTextStyle">
         <item name="android:textSize">@dimen/zoom_button_digits_textSize</item>
-        <item name="android:textColor">@color/white_alpha_cc</item>
+        <item name="android:textColor">@color/white</item>
     </style>
     <style name="ZoomButtonXTextStyle">
         <item name="android:textSize">@dimen/zoom_button_x_textSize</item>
-        <item name="android:textColor">@color/white_alpha_cc</item>
+        <item name="android:textColor">@color/white</item>
     </style>
     <style name="ZoomPopupDigitsTextStyle">
         <item name="android:textSize">@dimen/zoom_popup_digits_textSize</item>
@@ -203,9 +204,11 @@
     <style name="LensDirtyDetectDialogFragment" parent="@style/DialogFragmentFullScreen">
         <item name="android:windowIsFloating">false</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="miui:windowActionBar">false</item>
     </style>
     <style name="TTMusicDialogFragment" parent="@style/DialogFragmentFullScreen">
         <item name="android:windowIsFloating">false</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="miui:windowActionBar">false</item>
     </style>
 </resources>

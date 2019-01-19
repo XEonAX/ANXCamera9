@@ -52,6 +52,7 @@ public class PostProcessor {
                     stringBuilder.append(timeStamp);
                     Log.d(access$000, stringBuilder.toString());
                     if (timeStamp != captureTimeStamp) {
+                        parallelTaskData.setTimeStamp(timeStamp);
                         PostProcessor.this.mParallelTaskHashMap.remove(Long.valueOf(captureTimeStamp));
                         PostProcessor.this.mParallelTaskHashMap.put(Long.valueOf(timeStamp), parallelTaskData);
                     }
@@ -59,12 +60,16 @@ public class PostProcessor {
                         for (int i = 0; i < captureData.getCaptureDataBeanList().size(); i++) {
                             ParallelTaskData cloneTaskData = parallelTaskData.cloneTaskData(i);
                             long timeStamp2 = ((CaptureDataBean) captureData.getCaptureDataBeanList().get(i)).getResult().getTimeStamp();
+                            if (timeStamp2 == timeStamp) {
+                                timeStamp2++;
+                            }
+                            cloneTaskData.setTimeStamp(timeStamp2);
                             PostProcessor.this.mParallelTaskHashMap.put(Long.valueOf(timeStamp2), cloneTaskData);
-                            String access$0002 = PostProcessor.TAG;
-                            stringBuilder = new StringBuilder();
-                            stringBuilder.append("[1] onCaptureDataAvailable: add ");
-                            stringBuilder.append(timeStamp2);
-                            Log.d(access$0002, stringBuilder.toString());
+                            access$000 = PostProcessor.TAG;
+                            StringBuilder stringBuilder2 = new StringBuilder();
+                            stringBuilder2.append("[1] onCaptureDataAvailable: add ");
+                            stringBuilder2.append(timeStamp2);
+                            Log.d(access$000, stringBuilder2.toString());
                         }
                     }
                     captureData.getCaptureDataBeanList().add(multiFrameProcessResult);
@@ -83,11 +88,11 @@ public class PostProcessor {
                     PostProcessor.this.mImageProcessorStatusCallback.onImageProcessStart(mainImage.getTimestamp());
                     PostProcessor.this.mImageProcessorStatusCallback.onImageProcessed(mainImage, 0);
                 } else {
-                    String access$0003 = PostProcessor.TAG;
-                    StringBuilder stringBuilder2 = new StringBuilder();
-                    stringBuilder2.append("[1] onCaptureDataAvailable: no captureResult ");
-                    stringBuilder2.append(captureTimeStamp);
-                    Log.e(access$0003, stringBuilder2.toString());
+                    String access$0002 = PostProcessor.TAG;
+                    StringBuilder stringBuilder3 = new StringBuilder();
+                    stringBuilder3.append("[1] onCaptureDataAvailable: no captureResult ");
+                    stringBuilder3.append(captureTimeStamp);
+                    Log.e(access$0002, stringBuilder3.toString());
                 }
                 mainImage.close();
                 onOriginalImageClosed(mainImage);
@@ -101,11 +106,11 @@ public class PostProcessor {
                             if (parallelTaskData2 != null) {
                                 parallelTaskData2.setCaptureResult(captureDataBean2.getResult());
                             } else {
-                                String access$0004 = PostProcessor.TAG;
-                                StringBuilder stringBuilder3 = new StringBuilder();
-                                stringBuilder3.append("[1] onCaptureDataAvailable: no captureResult ");
-                                stringBuilder3.append(timeStamp3);
-                                Log.e(access$0004, stringBuilder3.toString());
+                                String access$0003 = PostProcessor.TAG;
+                                StringBuilder stringBuilder4 = new StringBuilder();
+                                stringBuilder4.append("[1] onCaptureDataAvailable: no captureResult ");
+                                stringBuilder4.append(timeStamp3);
+                                Log.e(access$0003, stringBuilder4.toString());
                             }
                         }
                         if (PostProcessor.this.mImageProcessor != null) {
@@ -146,6 +151,9 @@ public class PostProcessor {
                 }
             }
             int algoType = captureData.getAlgoType();
+            if (algoType != 4) {
+                PostProcessor.this.mImageProcessorStatusCallback.onImageProcessStart(captureData.getCaptureTimeStamp());
+            }
             if (algoType == 2) {
                 captureData.setMultiFrameProcessListener(PostProcessor.this.mCaptureDataListener);
                 MultiFrameProcessor.getInstance().processData(captureData);
@@ -276,12 +284,11 @@ public class PostProcessor {
                 Log.d(PostProcessor.TAG, "[3] onJpegAvailable: save image start");
                 PostProcessor.this.mImageSaver.onParallelProcessFinish(parallelTaskData);
                 parallelTaskData.setDeparted();
-                long timeStamp = parallelTaskData.getTimeStamp();
-                PostProcessor.this.mParallelTaskHashMap.remove(Long.valueOf(timeStamp));
+                PostProcessor.this.mParallelTaskHashMap.remove(Long.valueOf(parseLong));
                 String access$0002 = PostProcessor.TAG;
                 StringBuilder stringBuilder2 = new StringBuilder();
                 stringBuilder2.append("[3] onJpegAvailable: mParallelTaskHashMap remove ");
-                stringBuilder2.append(timeStamp);
+                stringBuilder2.append(parseLong);
                 Log.d(access$0002, stringBuilder2.toString());
             } else {
                 Log.d(PostProcessor.TAG, "[3] onJpegAvailable: jpeg data isn't ready, save action has been ignored.");
@@ -453,14 +460,15 @@ public class PostProcessor {
             this.mImageProcessor.goOffWork();
             this.mImageProcessor = null;
         }
+        int max = Math.max(15, 28);
         if (bufferFormat.getGraphDescriptor().getStreamNumber() != 2 || obj == null) {
             this.mImageProcessor = new SingleCameraProcessor(this.mImageProcessorStatusCallback);
             this.mImageProcessor.startWork();
-            this.mTaskSession = MiCameraAlgo.createSessionByOutputConfigurations(bufferFormat, this.mImageProcessor.configOutputConfigurations(bufferFormat), this.mSessionStatusCallback);
+            this.mTaskSession = MiCameraAlgo.createSessionByOutputConfigurations(bufferFormat, this.mImageProcessor.configOutputConfigurations(bufferFormat), this.mSessionStatusCallback, max);
         } else {
             this.mImageProcessor = new DualCameraProcessor(this.mImageProcessorStatusCallback);
             this.mImageProcessor.startWork();
-            this.mTaskSession = MiCameraAlgo.createSessionByOutputConfigurations(bufferFormat, this.mImageProcessor.configOutputConfigurations(bufferFormat), this.mSessionStatusCallback);
+            this.mTaskSession = MiCameraAlgo.createSessionByOutputConfigurations(bufferFormat, this.mImageProcessor.configOutputConfigurations(bufferFormat), this.mSessionStatusCallback, 2 * max);
         }
         this.mImageProcessor.setTaskSession(this.mTaskSession);
         if (this.mFilterProcessor != null) {

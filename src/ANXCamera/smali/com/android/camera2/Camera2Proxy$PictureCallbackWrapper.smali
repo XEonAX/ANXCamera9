@@ -21,7 +21,7 @@
 .method public constructor <init>()V
     .locals 0
 
-    .line 467
+    .line 469
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -32,7 +32,7 @@
 .method public onCaptureStart(Lcom/xiaomi/camera/core/ParallelTaskData;Lcom/android/camera/CameraSize;)Lcom/xiaomi/camera/core/ParallelTaskData;
     .locals 0
 
-    .line 469
+    .line 471
     const/4 p1, 0x0
 
     return-object p1
@@ -41,21 +41,21 @@
 .method public onPictureTaken([B)V
     .locals 0
 
-    .line 480
+    .line 482
     return-void
 .end method
 
 .method public onPictureTakenFinished(Z)V
     .locals 0
 
-    .line 485
+    .line 487
     return-void
 .end method
 
 .method public onPictureTakenImageConsumed(Landroid/media/Image;)Z
     .locals 0
 
-    .line 474
+    .line 476
     const/4 p1, 0x0
 
     return p1

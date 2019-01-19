@@ -172,16 +172,27 @@
     return-void
 .end method
 
-.method static synthetic access$100(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Ljava/lang/Object;
+.method static synthetic access$100()Ljava/lang/String;
+    .locals 1
+
+    .line 47
+    sget-object v0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
+
+    return-object v0
+.end method
+
+.method static synthetic access$1000(Landroid/hardware/camera2/CameraCaptureSession;)I
     .locals 0
 
     .line 47
-    iget-object p0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCameraLock:Ljava/lang/Object;
+    invoke-static {p0}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->getSessionId(Landroid/hardware/camera2/CameraCaptureSession;)I
 
-    return-object p0
+    move-result p0
+
+    return p0
 .end method
 
-.method static synthetic access$1000(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Landroid/media/ImageWriter;
+.method static synthetic access$1100(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Landroid/media/ImageWriter;
     .locals 0
 
     .line 47
@@ -190,7 +201,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$1002(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Landroid/media/ImageWriter;)Landroid/media/ImageWriter;
+.method static synthetic access$1102(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Landroid/media/ImageWriter;)Landroid/media/ImageWriter;
     .locals 0
 
     .line 47
@@ -199,7 +210,7 @@
     return-object p1
 .end method
 
-.method static synthetic access$1100(Landroid/media/Image;)[B
+.method static synthetic access$1200(Landroid/media/Image;)[B
     .locals 0
 
     .line 47
@@ -210,7 +221,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$1200(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Ljava/lang/Object;
+.method static synthetic access$1300(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Ljava/lang/Object;
     .locals 0
 
     .line 47
@@ -219,7 +230,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$1300(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Lcom/xiaomi/camera/imagecodec/ReprocessData;
+.method static synthetic access$1400(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Lcom/xiaomi/camera/imagecodec/ReprocessData;
     .locals 0
 
     .line 47
@@ -228,7 +239,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$1302(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Lcom/xiaomi/camera/imagecodec/ReprocessData;)Lcom/xiaomi/camera/imagecodec/ReprocessData;
+.method static synthetic access$1402(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Lcom/xiaomi/camera/imagecodec/ReprocessData;)Lcom/xiaomi/camera/imagecodec/ReprocessData;
     .locals 0
 
     .line 47
@@ -237,7 +248,7 @@
     return-object p1
 .end method
 
-.method static synthetic access$1400(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)J
+.method static synthetic access$1500(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)J
     .locals 2
 
     .line 47
@@ -246,7 +257,7 @@
     return-wide v0
 .end method
 
-.method static synthetic access$1500(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Z
+.method static synthetic access$1600(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Z
     .locals 0
 
     .line 47
@@ -257,7 +268,7 @@
     return p0
 .end method
 
-.method static synthetic access$1600(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
+.method static synthetic access$1700(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
     .locals 0
 
     .line 47
@@ -266,16 +277,25 @@
     return-void
 .end method
 
-.method static synthetic access$200()Ljava/lang/String;
-    .locals 1
+.method static synthetic access$200(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Ljava/util/LinkedList;
+    .locals 0
 
     .line 47
-    sget-object v0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
+    iget-object p0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mTaskDataList:Ljava/util/LinkedList;
 
-    return-object v0
+    return-object p0
 .end method
 
-.method static synthetic access$300(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Landroid/hardware/camera2/CameraDevice;
+.method static synthetic access$300(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Ljava/lang/Object;
+    .locals 0
+
+    .line 47
+    iget-object p0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCameraLock:Ljava/lang/Object;
+
+    return-object p0
+.end method
+
+.method static synthetic access$400(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Landroid/hardware/camera2/CameraDevice;
     .locals 0
 
     .line 47
@@ -284,7 +304,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$302(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Landroid/hardware/camera2/CameraDevice;)Landroid/hardware/camera2/CameraDevice;
+.method static synthetic access$402(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Landroid/hardware/camera2/CameraDevice;)Landroid/hardware/camera2/CameraDevice;
     .locals 0
 
     .line 47
@@ -293,7 +313,7 @@
     return-object p1
 .end method
 
-.method static synthetic access$400(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)I
+.method static synthetic access$500(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)I
     .locals 0
 
     .line 47
@@ -302,7 +322,7 @@
     return p0
 .end method
 
-.method static synthetic access$402(Lcom/xiaomi/camera/imagecodec/JpegEncoder;I)I
+.method static synthetic access$502(Lcom/xiaomi/camera/imagecodec/JpegEncoder;I)I
     .locals 0
 
     .line 47
@@ -311,7 +331,7 @@
     return p1
 .end method
 
-.method static synthetic access$408(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)I
+.method static synthetic access$508(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)I
     .locals 2
 
     .line 47
@@ -324,7 +344,7 @@
     return v0
 .end method
 
-.method static synthetic access$502(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Landroid/hardware/camera2/CameraCaptureSession;)Landroid/hardware/camera2/CameraCaptureSession;
+.method static synthetic access$602(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Landroid/hardware/camera2/CameraCaptureSession;)Landroid/hardware/camera2/CameraCaptureSession;
     .locals 0
 
     .line 47
@@ -333,7 +353,7 @@
     return-object p1
 .end method
 
-.method static synthetic access$602(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Z)Z
+.method static synthetic access$702(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Z)Z
     .locals 0
 
     .line 47
@@ -342,7 +362,7 @@
     return p1
 .end method
 
-.method static synthetic access$700(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
+.method static synthetic access$800(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
     .locals 0
 
     .line 47
@@ -351,7 +371,7 @@
     return-void
 .end method
 
-.method static synthetic access$800(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Z
+.method static synthetic access$900(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Z
     .locals 0
 
     .line 47
@@ -360,24 +380,13 @@
     return p0
 .end method
 
-.method static synthetic access$802(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Z)Z
+.method static synthetic access$902(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Z)Z
     .locals 0
 
     .line 47
     iput-boolean p1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mNeedReopenCamera:Z
 
     return p1
-.end method
-
-.method static synthetic access$900(Landroid/hardware/camera2/CameraCaptureSession;)I
-    .locals 0
-
-    .line 47
-    invoke-static {p0}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->getSessionId(Landroid/hardware/camera2/CameraCaptureSession;)I
-
-    move-result p0
-
-    return p0
 .end method
 
 .method private checkConditionIsReady()Z
@@ -998,7 +1007,7 @@
     .annotation build Landroid/support/annotation/WorkerThread;
     .end annotation
 
-    .line 504
+    .line 511
     sget-object v0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
 
     sget-object v1, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
@@ -1009,7 +1018,7 @@
 
     new-array v3, v3, [Ljava/lang/Object;
 
-    .line 505
+    .line 512
     invoke-virtual {p1}, Landroid/hardware/camera2/params/InputConfiguration;->getWidth()I
 
     move-result v4
@@ -1058,14 +1067,14 @@
 
     aput-object v4, v3, v8
 
-    .line 504
+    .line 511
     invoke-static {v1, v2, v3}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v1
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 506
+    .line 513
     invoke-virtual {p2}, Lcom/xiaomi/camera/imagecodec/OutputConfiguration;->getWidth()I
 
     move-result v0
@@ -1076,7 +1085,7 @@
 
     invoke-direct {p0, v0, v1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->initYuvImageReader(II)V
 
-    .line 507
+    .line 514
     invoke-virtual {p3}, Lcom/xiaomi/camera/imagecodec/OutputConfiguration;->getWidth()I
 
     move-result v0
@@ -1087,7 +1096,7 @@
 
     invoke-direct {p0, v0, p3}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->initJpegImageReader(II)V
 
-    .line 511
+    .line 518
     :try_start_0
     invoke-virtual {p2}, Lcom/xiaomi/camera/imagecodec/OutputConfiguration;->getWidth()I
 
@@ -1099,7 +1108,7 @@
 
     if-eqz p2, :cond_0
 
-    .line 512
+    .line 519
     new-array p2, v7, [Landroid/view/Surface;
 
     iget-object p3, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mJpegImageReader:Landroid/media/ImageReader;
@@ -1124,7 +1133,7 @@
 
     goto :goto_0
 
-    .line 514
+    .line 521
     :cond_0
     new-array p2, v6, [Landroid/view/Surface;
 
@@ -1140,13 +1149,13 @@
 
     move-result-object p2
 
-    .line 516
+    .line 523
     :goto_0
     iget-object p3, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mVTCameraDevice:Landroid/hardware/camera2/CameraDevice;
 
     new-instance v0, Landroid/hardware/camera2/params/InputConfiguration;
 
-    .line 517
+    .line 524
     invoke-virtual {p1}, Landroid/hardware/camera2/params/InputConfiguration;->getWidth()I
 
     move-result v1
@@ -1161,28 +1170,28 @@
 
     invoke-direct {v0, v1, v2, p1}, Landroid/hardware/camera2/params/InputConfiguration;-><init>(III)V
 
-    new-instance p1, Lcom/xiaomi/camera/imagecodec/JpegEncoder$2;
+    new-instance p1, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;
 
-    invoke-direct {p1, p0}, Lcom/xiaomi/camera/imagecodec/JpegEncoder$2;-><init>(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
+    invoke-direct {p1, p0}, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;-><init>(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
 
     iget-object v1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCameraOperationHandler:Landroid/os/Handler;
 
-    .line 516
+    .line 523
     invoke-virtual {p3, v0, p2, p1, v1}, Landroid/hardware/camera2/CameraDevice;->createReprocessableCaptureSession(Landroid/hardware/camera2/params/InputConfiguration;Ljava/util/List;Landroid/hardware/camera2/CameraCaptureSession$StateCallback;Landroid/os/Handler;)V
     :try_end_0
     .catch Landroid/hardware/camera2/CameraAccessException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 565
+    .line 572
     goto :goto_1
 
-    .line 563
+    .line 570
     :catch_0
     move-exception p1
 
-    .line 564
+    .line 571
     invoke-virtual {p1}, Landroid/hardware/camera2/CameraAccessException;->printStackTrace()V
 
-    .line 566
+    .line 573
     :goto_1
     sget-object p1, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
 
@@ -1190,24 +1199,24 @@
 
     invoke-static {p1, p2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 567
+    .line 574
     return-void
 .end method
 
 .method private static getJpegData(Landroid/media/Image;)[B
     .locals 1
 
-    .line 658
+    .line 670
     invoke-virtual {p0}, Landroid/media/Image;->getPlanes()[Landroid/media/Image$Plane;
 
     move-result-object p0
 
-    .line 659
+    .line 671
     array-length v0, p0
 
     if-lez v0, :cond_0
 
-    .line 660
+    .line 672
     const/4 v0, 0x0
 
     aget-object p0, p0, v0
@@ -1216,20 +1225,20 @@
 
     move-result-object p0
 
-    .line 661
+    .line 673
     invoke-virtual {p0}, Ljava/nio/ByteBuffer;->remaining()I
 
     move-result v0
 
     new-array v0, v0, [B
 
-    .line 662
+    .line 674
     invoke-virtual {p0, v0}, Ljava/nio/ByteBuffer;->get([B)Ljava/nio/ByteBuffer;
 
-    .line 663
+    .line 675
     return-object v0
 
-    .line 665
+    .line 677
     :cond_0
     const/4 p0, 0x0
 
@@ -1239,10 +1248,10 @@
 .method private static getSessionId(Landroid/hardware/camera2/CameraCaptureSession;)I
     .locals 2
 
-    .line 644
+    .line 656
     if-eqz p0, :cond_0
 
-    .line 646
+    .line 658
     :try_start_0
     const-string v0, "android.hardware.camera2.impl.CameraCaptureSessionImpl"
 
@@ -1250,19 +1259,19 @@
 
     move-result-object v0
 
-    .line 647
+    .line 659
     const-string v1, "mId"
 
     invoke-virtual {v0, v1}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object v0
 
-    .line 648
+    .line 660
     const/4 v1, 0x1
 
     invoke-virtual {v0, v1}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
-    .line 649
+    .line 661
     invoke-virtual {v0, p0}, Ljava/lang/reflect/Field;->getInt(Ljava/lang/Object;)I
 
     move-result p0
@@ -1273,18 +1282,18 @@
 
     return p0
 
-    .line 650
+    .line 662
     :catch_0
     move-exception p0
 
-    .line 651
+    .line 663
     sget-object v0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
 
     const-string v1, "getSessionId: failed! "
 
     invoke-static {v0, v1, p0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 654
+    .line 666
     :cond_0
     const/4 p0, -0x1
 
@@ -1296,21 +1305,21 @@
     .annotation build Landroid/support/annotation/WorkerThread;
     .end annotation
 
-    .line 571
+    .line 578
     sget-object v0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
 
     const-string v1, "initJpegImageReader>>"
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 572
+    .line 579
     iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mJpegImageReader:Landroid/media/ImageReader;
 
     if-eqz v0, :cond_1
 
     iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mJpegImageReader:Landroid/media/ImageReader;
 
-    .line 573
+    .line 580
     invoke-virtual {v0}, Landroid/media/ImageReader;->getWidth()I
 
     move-result v0
@@ -1319,14 +1328,14 @@
 
     iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mJpegImageReader:Landroid/media/ImageReader;
 
-    .line 574
+    .line 581
     invoke-virtual {v0}, Landroid/media/ImageReader;->getHeight()I
 
     move-result v0
 
     if-eq v0, p2, :cond_1
 
-    .line 575
+    .line 582
     :cond_0
     sget-object v0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
 
@@ -1334,12 +1343,12 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 576
+    .line 583
     iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mJpegImageReader:Landroid/media/ImageReader;
 
     invoke-virtual {v0}, Landroid/media/ImageReader;->close()V
 
-    .line 578
+    .line 585
     :cond_1
     const/16 v0, 0x100
 
@@ -1351,25 +1360,25 @@
 
     iput-object p1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mJpegImageReader:Landroid/media/ImageReader;
 
-    .line 580
+    .line 587
     iget-object p1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mJpegImageReader:Landroid/media/ImageReader;
 
-    new-instance p2, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;
+    new-instance p2, Lcom/xiaomi/camera/imagecodec/JpegEncoder$4;
 
-    invoke-direct {p2, p0}, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;-><init>(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
+    invoke-direct {p2, p0}, Lcom/xiaomi/camera/imagecodec/JpegEncoder$4;-><init>(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
 
     iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCameraOperationHandler:Landroid/os/Handler;
 
     invoke-virtual {p1, p2, v0}, Landroid/media/ImageReader;->setOnImageAvailableListener(Landroid/media/ImageReader$OnImageAvailableListener;Landroid/os/Handler;)V
 
-    .line 600
+    .line 607
     sget-object p1, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
 
     const-string p2, "initJpegImageReader<<"
 
     invoke-static {p1, p2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 601
+    .line 608
     return-void
 .end method
 
@@ -1378,7 +1387,7 @@
     .annotation build Landroid/support/annotation/WorkerThread;
     .end annotation
 
-    .line 605
+    .line 612
     sget-object v0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -1403,14 +1412,14 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 606
+    .line 613
     iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mYuvImageReader:Landroid/media/ImageReader;
 
     if-eqz v0, :cond_1
 
     iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mYuvImageReader:Landroid/media/ImageReader;
 
-    .line 607
+    .line 614
     invoke-virtual {v0}, Landroid/media/ImageReader;->getWidth()I
 
     move-result v0
@@ -1419,14 +1428,14 @@
 
     iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mYuvImageReader:Landroid/media/ImageReader;
 
-    .line 608
+    .line 615
     invoke-virtual {v0}, Landroid/media/ImageReader;->getHeight()I
 
     move-result v0
 
     if-eq v0, p2, :cond_1
 
-    .line 609
+    .line 616
     :cond_0
     sget-object v0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
 
@@ -1434,17 +1443,17 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 610
+    .line 617
     iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mYuvImageReader:Landroid/media/ImageReader;
 
     invoke-virtual {v0}, Landroid/media/ImageReader;->close()V
 
-    .line 611
+    .line 618
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mYuvImageReader:Landroid/media/ImageReader;
 
-    .line 614
+    .line 621
     :cond_1
     if-lez p1, :cond_3
 
@@ -1452,7 +1461,7 @@
 
     goto :goto_0
 
-    .line 618
+    .line 625
     :cond_2
     const/16 v0, 0x23
 
@@ -1464,28 +1473,28 @@
 
     iput-object p1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mYuvImageReader:Landroid/media/ImageReader;
 
-    .line 619
+    .line 626
     iget-object p1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mYuvImageReader:Landroid/media/ImageReader;
 
-    new-instance p2, Lcom/xiaomi/camera/imagecodec/JpegEncoder$4;
+    new-instance p2, Lcom/xiaomi/camera/imagecodec/JpegEncoder$5;
 
-    invoke-direct {p2, p0}, Lcom/xiaomi/camera/imagecodec/JpegEncoder$4;-><init>(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
+    invoke-direct {p2, p0}, Lcom/xiaomi/camera/imagecodec/JpegEncoder$5;-><init>(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
 
     iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCameraOperationHandler:Landroid/os/Handler;
 
     invoke-virtual {p1, p2, v0}, Landroid/media/ImageReader;->setOnImageAvailableListener(Landroid/media/ImageReader$OnImageAvailableListener;Landroid/os/Handler;)V
 
-    .line 640
+    .line 652
     sget-object p1, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
 
     const-string p2, "initYuvImageReader<<"
 
     invoke-static {p1, p2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 641
+    .line 653
     return-void
 
-    .line 615
+    .line 622
     :cond_3
     :goto_0
     return-void
@@ -1513,7 +1522,7 @@
     .annotation build Landroid/support/annotation/WorkerThread;
     .end annotation
 
-    .line 432
+    .line 439
     sget-object v0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -1532,13 +1541,13 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 434
+    .line 441
     :try_start_0
     iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCameraManager:Landroid/hardware/camera2/CameraManager;
 
-    new-instance v1, Lcom/xiaomi/camera/imagecodec/JpegEncoder$1;
+    new-instance v1, Lcom/xiaomi/camera/imagecodec/JpegEncoder$2;
 
-    invoke-direct {v1, p0}, Lcom/xiaomi/camera/imagecodec/JpegEncoder$1;-><init>(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
+    invoke-direct {v1, p0}, Lcom/xiaomi/camera/imagecodec/JpegEncoder$2;-><init>(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
 
     iget-object v2, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCameraOperationHandler:Landroid/os/Handler;
 
@@ -1546,27 +1555,27 @@
     :try_end_0
     .catch Landroid/hardware/camera2/CameraAccessException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 497
+    .line 504
     goto :goto_0
 
-    .line 495
+    .line 502
     :catch_0
     move-exception p1
 
-    .line 496
+    .line 503
     sget-object v0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
 
     const-string v1, "openVTCamera: open camera failed! No permission Exception."
 
     invoke-static {v0, v1, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 498
+    .line 505
     :goto_0
     return-void
 .end method
 
 .method private reprocessImage()V
-    .locals 6
+    .locals 5
     .annotation build Landroid/support/annotation/WorkerThread;
     .end annotation
 
@@ -1619,44 +1628,35 @@
     invoke-static {v1, v2}, Landroid/util/Log;->wtf(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 384
-    iget-object v1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCurrentProcessingData:Lcom/xiaomi/camera/imagecodec/ReprocessData;
-
-    invoke-virtual {v1}, Lcom/xiaomi/camera/imagecodec/ReprocessData;->getYuvImage()Landroid/media/Image;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Landroid/media/Image;->close()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_2
-
-    .line 386
-    :try_start_1
-    iget-object v1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mDataLock:Ljava/lang/Object;
-
-    invoke-virtual {v1}, Ljava/lang/Object;->notifyAll()V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
-    .catchall {:try_start_1 .. :try_end_1} :catchall_2
-
-    .line 389
-    goto :goto_0
-
-    .line 387
-    :catch_0
-    move-exception v1
-
-    .line 388
-    :try_start_2
-    invoke-virtual {v1}, Ljava/lang/Exception;->printStackTrace()V
-
-    .line 390
-    :goto_0
     monitor-exit v0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_1
 
     return-void
 
-    .line 392
+    .line 387
     :cond_0
+    :try_start_1
+    iget-object v2, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mDataLock:Ljava/lang/Object;
+
+    invoke-virtual {v2}, Ljava/lang/Object;->notifyAll()V
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+
+    .line 390
+    goto :goto_0
+
+    .line 388
+    :catch_0
+    move-exception v2
+
+    .line 389
+    :try_start_2
+    invoke-virtual {v2}, Ljava/lang/Exception;->printStackTrace()V
+
+    .line 391
+    :goto_0
     sget-object v2, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -1681,6 +1681,11 @@
 
     invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
+    .line 392
+    monitor-exit v0
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+
     .line 394
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
@@ -1692,89 +1697,70 @@
     iget-object v2, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCameraLock:Ljava/lang/Object;
 
     monitor-enter v2
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_2
 
     .line 397
     :try_start_3
-    iget-object v3, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mVTCameraDevice:Landroid/hardware/camera2/CameraDevice;
+    iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mVTCameraDevice:Landroid/hardware/camera2/CameraDevice;
 
     .line 398
-    invoke-virtual {v3, v1}, Landroid/hardware/camera2/CameraDevice;->createReprocessCaptureRequest(Landroid/hardware/camera2/TotalCaptureResult;)Landroid/hardware/camera2/CaptureRequest$Builder;
+    invoke-virtual {v0, v1}, Landroid/hardware/camera2/CameraDevice;->createReprocessCaptureRequest(Landroid/hardware/camera2/TotalCaptureResult;)Landroid/hardware/camera2/CaptureRequest$Builder;
+
+    move-result-object v0
+
+    .line 399
+    const/16 v1, 0x100
+
+    iget-object v3, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCurrentProcessingData:Lcom/xiaomi/camera/imagecodec/ReprocessData;
+
+    invoke-virtual {v3}, Lcom/xiaomi/camera/imagecodec/ReprocessData;->getOutputFormat()I
+
+    move-result v3
+
+    if-ne v1, v3, :cond_1
+
+    .line 400
+    iget-object v1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mJpegImageReader:Landroid/media/ImageReader;
+
+    invoke-virtual {v1}, Landroid/media/ImageReader;->getSurface()Landroid/view/Surface;
 
     move-result-object v1
 
-    .line 399
-    const/16 v3, 0x100
+    invoke-virtual {v0, v1}, Landroid/hardware/camera2/CaptureRequest$Builder;->addTarget(Landroid/view/Surface;)V
 
-    iget-object v4, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCurrentProcessingData:Lcom/xiaomi/camera/imagecodec/ReprocessData;
+    .line 401
+    sget-object v1, Landroid/hardware/camera2/CaptureRequest;->JPEG_QUALITY:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    invoke-virtual {v4}, Lcom/xiaomi/camera/imagecodec/ReprocessData;->getOutputFormat()I
+    const/16 v3, 0x64
 
-    move-result v4
-
-    if-ne v3, v4, :cond_1
-
-    .line 400
-    iget-object v3, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mJpegImageReader:Landroid/media/ImageReader;
-
-    invoke-virtual {v3}, Landroid/media/ImageReader;->getSurface()Landroid/view/Surface;
+    invoke-static {v3}, Ljava/lang/Byte;->valueOf(B)Ljava/lang/Byte;
 
     move-result-object v3
 
-    invoke-virtual {v1, v3}, Landroid/hardware/camera2/CaptureRequest$Builder;->addTarget(Landroid/view/Surface;)V
-
-    .line 401
-    sget-object v3, Landroid/hardware/camera2/CaptureRequest;->JPEG_QUALITY:Landroid/hardware/camera2/CaptureRequest$Key;
-
-    const/16 v4, 0x64
-
-    invoke-static {v4}, Ljava/lang/Byte;->valueOf(B)Ljava/lang/Byte;
-
-    move-result-object v4
-
-    invoke-virtual {v1, v3, v4}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
+    invoke-virtual {v0, v1, v3}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
     goto :goto_1
 
     .line 403
     :cond_1
-    iget-object v3, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mYuvImageReader:Landroid/media/ImageReader;
+    iget-object v1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mYuvImageReader:Landroid/media/ImageReader;
 
-    invoke-virtual {v3}, Landroid/media/ImageReader;->getSurface()Landroid/view/Surface;
+    invoke-virtual {v1}, Landroid/media/ImageReader;->getSurface()Landroid/view/Surface;
 
-    move-result-object v3
+    move-result-object v1
 
-    invoke-virtual {v1, v3}, Landroid/hardware/camera2/CaptureRequest$Builder;->addTarget(Landroid/view/Surface;)V
+    invoke-virtual {v0, v1}, Landroid/hardware/camera2/CaptureRequest$Builder;->addTarget(Landroid/view/Surface;)V
 
     .line 407
     :goto_1
-    sget-object v3, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
+    sget-object v1, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
 
-    new-instance v4, Ljava/lang/StringBuilder;
+    new-instance v3, Ljava/lang/StringBuilder;
 
-    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v5, "reprocessImage: "
+    const-string v4, "reprocessImage: "
 
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    iget-object v5, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCurrentProcessingData:Lcom/xiaomi/camera/imagecodec/ReprocessData;
-
-    invoke-virtual {v5}, Lcom/xiaomi/camera/imagecodec/ReprocessData;->getYuvImage()Landroid/media/Image;
-
-    move-result-object v5
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v4
-
-    invoke-static {v3, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 408
-    iget-object v3, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mReprocessImageWriter:Landroid/media/ImageWriter;
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     iget-object v4, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCurrentProcessingData:Lcom/xiaomi/camera/imagecodec/ReprocessData;
 
@@ -1782,163 +1768,94 @@
 
     move-result-object v4
 
-    invoke-virtual {v3, v4}, Landroid/media/ImageWriter;->queueInputImage(Landroid/media/Image;)V
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
-    .line 411
-    iget-object v3, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mVTCaptureSession:Landroid/hardware/camera2/CameraCaptureSession;
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    invoke-virtual {v1}, Landroid/hardware/camera2/CaptureRequest$Builder;->build()Landroid/hardware/camera2/CaptureRequest;
+    move-result-object v3
 
-    move-result-object v1
+    invoke-static {v1, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    const/4 v4, 0x0
+    .line 408
+    iget-object v1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mReprocessImageWriter:Landroid/media/ImageWriter;
 
-    iget-object v5, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCameraOperationHandler:Landroid/os/Handler;
-
-    invoke-virtual {v3, v1, v4, v5}, Landroid/hardware/camera2/CameraCaptureSession;->capture(Landroid/hardware/camera2/CaptureRequest;Landroid/hardware/camera2/CameraCaptureSession$CaptureCallback;Landroid/os/Handler;)I
-    :try_end_3
-    .catch Landroid/hardware/camera2/CameraAccessException; {:try_start_3 .. :try_end_3} :catch_2
-    .catchall {:try_start_3 .. :try_end_3} :catchall_0
-
-    .line 418
-    :try_start_4
-    iget-object v1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mDataLock:Ljava/lang/Object;
-
-    invoke-virtual {v1}, Ljava/lang/Object;->notifyAll()V
-    :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_1
-    .catchall {:try_start_4 .. :try_end_4} :catchall_1
-
-    goto :goto_2
-
-    .line 419
-    :catch_1
-    move-exception v1
-
-    goto :goto_3
-
-    .line 417
-    :catchall_0
-    move-exception v1
-
-    goto :goto_5
-
-    .line 412
-    :catch_2
-    move-exception v1
-
-    .line 413
-    :try_start_5
     iget-object v3, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCurrentProcessingData:Lcom/xiaomi/camera/imagecodec/ReprocessData;
 
     invoke-virtual {v3}, Lcom/xiaomi/camera/imagecodec/ReprocessData;->getYuvImage()Landroid/media/Image;
 
     move-result-object v3
 
-    invoke-virtual {v3}, Landroid/media/Image;->close()V
+    invoke-virtual {v1, v3}, Landroid/media/ImageWriter;->queueInputImage(Landroid/media/Image;)V
 
-    .line 414
-    invoke-virtual {v1}, Landroid/hardware/camera2/CameraAccessException;->printStackTrace()V
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_0
+    .line 409
+    new-instance v1, Lcom/xiaomi/camera/imagecodec/JpegEncoder$1;
 
-    .line 418
-    :try_start_6
-    iget-object v1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mDataLock:Ljava/lang/Object;
+    invoke-direct {v1, p0}, Lcom/xiaomi/camera/imagecodec/JpegEncoder$1;-><init>(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
 
-    invoke-virtual {v1}, Ljava/lang/Object;->notifyAll()V
-    :try_end_6
-    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_6} :catch_3
-    .catchall {:try_start_6 .. :try_end_6} :catchall_1
+    .line 428
+    iget-object v3, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mVTCaptureSession:Landroid/hardware/camera2/CameraCaptureSession;
 
-    .line 421
+    invoke-virtual {v0}, Landroid/hardware/camera2/CaptureRequest$Builder;->build()Landroid/hardware/camera2/CaptureRequest;
+
+    move-result-object v0
+
+    iget-object v4, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mCameraOperationHandler:Landroid/os/Handler;
+
+    invoke-virtual {v3, v0, v1, v4}, Landroid/hardware/camera2/CameraCaptureSession;->capture(Landroid/hardware/camera2/CaptureRequest;Landroid/hardware/camera2/CameraCaptureSession$CaptureCallback;Landroid/os/Handler;)I
+    :try_end_3
+    .catch Landroid/hardware/camera2/CameraAccessException; {:try_start_3 .. :try_end_3} :catch_1
+    .catchall {:try_start_3 .. :try_end_3} :catchall_0
+
+    .line 431
+    goto :goto_2
+
+    .line 432
+    :catchall_0
+    move-exception v0
+
+    goto :goto_3
+
+    .line 429
+    :catch_1
+    move-exception v0
+
+    .line 430
+    :try_start_4
+    invoke-virtual {v0}, Landroid/hardware/camera2/CameraAccessException;->printStackTrace()V
+
+    .line 432
     :goto_2
-    goto :goto_4
-
-    .line 419
-    :catch_3
-    move-exception v1
-
-    .line 420
-    :goto_3
-    :try_start_7
-    invoke-virtual {v1}, Ljava/lang/Exception;->printStackTrace()V
-
-    .line 422
-    nop
-
-    .line 423
-    :goto_4
     monitor-exit v2
-    :try_end_7
-    .catchall {:try_start_7 .. :try_end_7} :catchall_1
+    :try_end_4
+    .catchall {:try_start_4 .. :try_end_4} :catchall_0
 
-    .line 424
-    :try_start_8
-    monitor-exit v0
-    :try_end_8
-    .catchall {:try_start_8 .. :try_end_8} :catchall_2
-
-    .line 426
+    .line 433
     sget-object v0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->TAG:Ljava/lang/String;
 
     const-string v1, "reprocessImage<<"
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 427
+    .line 434
     return-void
 
-    .line 417
-    :goto_5
-    nop
+    .line 432
+    :goto_3
+    :try_start_5
+    monitor-exit v2
+    :try_end_5
+    .catchall {:try_start_5 .. :try_end_5} :catchall_0
 
-    .line 418
-    :try_start_9
-    iget-object v3, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->mDataLock:Ljava/lang/Object;
+    throw v0
 
-    invoke-virtual {v3}, Ljava/lang/Object;->notifyAll()V
-    :try_end_9
-    .catch Ljava/lang/Exception; {:try_start_9 .. :try_end_9} :catch_4
-    .catchall {:try_start_9 .. :try_end_9} :catchall_1
-
-    .line 421
-    goto :goto_6
-
-    .line 423
+    .line 392
     :catchall_1
     move-exception v1
 
-    goto :goto_7
-
-    .line 419
-    :catch_4
-    move-exception v3
-
-    .line 420
-    :try_start_a
-    invoke-virtual {v3}, Ljava/lang/Exception;->printStackTrace()V
-
-    .line 421
-    :goto_6
-    throw v1
-
-    .line 423
-    :goto_7
-    monitor-exit v2
-    :try_end_a
-    .catchall {:try_start_a .. :try_end_a} :catchall_1
-
-    :try_start_b
-    throw v1
-
-    .line 424
-    :catchall_2
-    move-exception v1
-
+    :try_start_6
     monitor-exit v0
-    :try_end_b
-    .catchall {:try_start_b .. :try_end_b} :catchall_2
+    :try_end_6
+    .catchall {:try_start_6 .. :try_end_6} :catchall_1
 
     throw v1
 .end method
@@ -2497,7 +2414,7 @@
     :cond_2
     new-instance p1, Ljava/lang/RuntimeException;
 
-    const-string v0, "JpegEncoder not initialized yet. Call init() first!"
+    const-string v0, "NOT initialized. Call init() first!"
 
     invoke-direct {p1, v0}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;)V
 

@@ -10,7 +10,6 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.provider.MiuiSettings;
@@ -33,8 +32,10 @@ import com.android.camera.storage.Storage;
 import com.android.camera.ui.PreviewListPreference;
 import com.mi.config.b;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import miui.preference.PreferenceActivity;
 
 public abstract class BasePreferenceActivity extends PreferenceActivity implements OnPreferenceChangeListener, OnPreferenceClickListener {
     public static final String FROM_WHERE = "from_where";
@@ -122,13 +123,13 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
             removeFromGroup(findPreference2, CameraSettings.KEY_FRONT_MIRROR);
             return;
         }
-        boolean fq = DataRepository.dataItemFeature().fq();
+        boolean fr = DataRepository.dataItemFeature().fr();
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("filterByConfig: isSupportVideoFrontMirror = ");
-        stringBuilder.append(fq);
+        stringBuilder.append(fr);
         Log.d(str, stringBuilder.toString());
-        if (fq) {
+        if (fr) {
             removeFromGroup(findPreference2, CameraSettings.KEY_FRONT_MIRROR);
         } else {
             removeFromGroup(findPreference, CameraSettings.KEY_FRONT_MIRROR);
@@ -147,10 +148,10 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
     private void filterByPreference() {
         PreviewListPreference previewListPreference = (PreviewListPreference) this.mPreferenceGroup.findPreference(CameraSettings.KEY_VIDEO_QUALITY);
         if (previewListPreference != null) {
-            List supportedVideoQuality = CameraSettings.getSupportedVideoQuality(CameraSettings.getCameraId());
+            List supportedVideoQuality = CameraSettings.getSupportedVideoQuality(this.mFromWhere);
             filterUnsupportedOptions(this.mPreferenceGroup, previewListPreference, supportedVideoQuality);
             previewListPreference = (PreviewListPreference) this.mPreferenceGroup.findPreference(CameraSettings.KEY_VIDEO_QUALITY_EXTRA);
-            if (previewListPreference == null || this.mFromWhere == 161 || this.mFromWhere == 174 || (!CameraSettings.isVideoBokehOn() && TextUtils.equals(CameraSettings.getFaceBeautifyValue(), BeautyConstant.LEVEL_CLOSE))) {
+            if (previewListPreference == null || this.mFromWhere != 162 || (!CameraSettings.isVideoBokehOn() && TextUtils.equals(CameraSettings.getFaceBeautifyValue(), BeautyConstant.LEVEL_CLOSE))) {
                 removePreference(this.mPreferenceGroup, CameraSettings.KEY_VIDEO_QUALITY_EXTRA);
             } else {
                 supportedVideoQuality.clear();
@@ -163,10 +164,10 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
         }
         previewListPreference = (PreviewListPreference) this.mPreferenceGroup.findPreference(CameraSettings.KEY_VIDEO_HIGH_FRAME_RATE);
         if (previewListPreference != null) {
-            filterUnsupportedOptions(this.mPreferenceGroup, previewListPreference, CameraSettings.getSupportedHfrSettings(CameraSettings.getCameraId()));
+            filterUnsupportedOptions(this.mPreferenceGroup, previewListPreference, CameraSettings.getSupportedHfrSettings(CameraSettings.getCameraId(this.mFromWhere)));
         }
         String videoSpeed = DataRepository.dataItemRunning().getVideoSpeed();
-        if (b.qk && !"normal".equals(videoSpeed)) {
+        if ((b.qj && !"normal".equals(videoSpeed)) || b.hS()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_MOVIE_SOLID);
         }
         if (!Util.isLabOptionsVisible()) {
@@ -178,6 +179,7 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_CAMERA_MFNR_SAT_ENABLE);
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_CAMERA_SR_ENABLE);
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_CAMERA_PARALLEL_PROCESS_ENABLE);
+            removePreference(this.mPreferenceGroup, CameraSettings.KEY_LIVE_STICKER_INTERNAL);
         }
         if (!DataRepository.dataItemFeature().fE()) {
             removeFromGroup(this.mPreferenceGroup, "user_define_watermark");
@@ -185,10 +187,27 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
     }
 
     private void filterByDeviceCapability() {
-        if (this.mFromWhere == 172 && !CameraSettings.getSupportedHfrSettings(0).contains(CameraSettings.SIZE_FPS_1080_240)) {
-            this.mPreferenceGroup.findPreference(CameraSettings.KEY_VIDEO_NEW_SLOW_MOTION).setSummary(R.string.pref_new_slow_motion_video_quality_240_720only);
+        if (this.mFromWhere == 172) {
+            boolean isSlowMotionFps960 = DataRepository.dataItemConfig().getComponentConfigSlowMotion().isSlowMotionFps960();
+            boolean isSlowMotionFps120 = DataRepository.dataItemConfig().getComponentConfigSlowMotion().isSlowMotionFps120();
+            PreviewListPreference previewListPreference = (PreviewListPreference) this.mPreferenceGroup.findPreference(CameraSettings.KEY_VIDEO_NEW_SLOW_MOTION);
+            if (CameraSettings.getSupportedHfrSettings(0).contains(CameraSettings.SIZE_FPS_1080_240) || isSlowMotionFps120) {
+                filterUnsupportedOptions(this.mPreferenceGroup, previewListPreference, Arrays.asList(getResources().getStringArray(R.array.pref_video_new_slow_motion_entryvalues)));
+                previewListPreference.setEnabled(true);
+            } else {
+                int i;
+                previewListPreference.filterUnsupported(Arrays.asList(new String[]{String.valueOf(5)}));
+                resetIfInvalid(previewListPreference);
+                if (isSlowMotionFps960) {
+                    i = R.string.pref_new_slow_motion_video_quality_960_720only;
+                } else {
+                    i = R.string.pref_new_slow_motion_video_quality_240_720only;
+                }
+                previewListPreference.setSummary(i);
+                previewListPreference.setEnabled(false);
+            }
         }
-        if (DataRepository.dataItemFeature().fr()) {
+        if (DataRepository.dataItemFeature().fs()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_VIDEO_HIGH_FRAME_RATE);
         } else {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_VIDEO_NEW_SLOW_MOTION);
@@ -232,11 +251,19 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
     private void filterByFrom() {
         if (this.mFromWhere == 163 || this.mFromWhere == 165 || this.mFromWhere == 166 || this.mFromWhere == 167 || this.mFromWhere == 173 || this.mFromWhere == 171) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_VOLUME_VIDEO_FUNCTION);
+            removePreference(this.mPreferenceGroup, CameraSettings.KEY_VOLUME_LIVE_FUNCTION);
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_CATEGORY_CAMCORDER_SETTING);
+            removePreference(this.mPreferenceGroup, CameraSettings.KEY_VIDEO_AUTOEXPOSURE);
         } else if (this.mFromWhere == 161 || this.mFromWhere == 174 || this.mFromWhere == 162 || this.mFromWhere == 169 || this.mFromWhere == 168 || this.mFromWhere == 172 || this.mFromWhere == 170) {
+            if (this.mFromWhere == 174) {
+                removePreference(this.mPreferenceGroup, CameraSettings.KEY_VOLUME_VIDEO_FUNCTION);
+            } else {
+                removePreference(this.mPreferenceGroup, CameraSettings.KEY_VOLUME_LIVE_FUNCTION);
+            }
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_VOLUME_CAMERA_FUNCTION);
             removeNonVideoPreference();
             removeIncompatibleVideoPreference();
+            removePreference(this.mPreferenceGroup, CameraSettings.KEY_AUTOEXPOSURE);
         }
         if (this.mFromWhere == 161 || this.mFromWhere == 174 || this.mFromWhere == 162 || this.mFromWhere == 169 || this.mFromWhere == 168 || this.mFromWhere == 170 || this.mFromWhere == 172 || this.mFromWhere == 166) {
             removeIncompatibleAdvancePreference();
@@ -266,47 +293,47 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
 
     private void filterByDeviceID() {
         DataRepository.dataItemFeature();
-        if (!b.gh()) {
+        if (!b.gq()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_VIDEO_HIGH_FRAME_RATE);
         }
         removePreference(this.mPreferenceGroup, CameraSettings.KEY_LONG_PRESS_SHUTTER);
-        if (!b.fI()) {
+        if (!b.fS()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_MOVIE_SOLID);
         }
-        if (!b.fT()) {
+        if (!b.ge()) {
             removePreference(this.mPreferenceGroup, "pref_watermark_key");
         }
         if (!CameraSettings.isSupportedDualCameraWaterMark()) {
             removePreference(this.mPreferenceGroup, "pref_dualcamera_watermark");
         }
-        if (!b.fM()) {
+        if (!b.fW()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_CAMERA_SOUND);
         }
-        if (!b.fR()) {
+        if (!b.gb()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_RECORD_LOCATION);
         }
-        if (b.isPad() || (b.pO && CameraSettings.isFrontCamera())) {
+        if (b.isPad() || (b.pN && CameraSettings.isFrontCamera())) {
             removePreference(this.mPreferenceGroup, "pref_camera_picturesize_key");
         }
         if (!Storage.hasSecondaryStorage()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_PRIORITY_STORAGE);
         }
-        if (!b.gi()) {
+        if (!b.gr()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_AUTO_CHROMA_FLASH);
         }
-        if (!b.fO()) {
+        if (!b.fY()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_LONG_PRESS_SHUTTER_FEATURE);
         }
-        if (!b.gj()) {
+        if (!b.gs()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_CAPTURE_WHEN_STABLE);
         }
-        if (!b.gt()) {
+        if (!b.gC()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_CAMERA_ASD_NIGHT);
         }
-        if (!b.gR()) {
+        if (!b.ha()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_CAMERA_SNAP);
         }
-        if (!b.hj()) {
+        if (!b.hs()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_CAMERA_GROUPSHOT_PRIMITIVE);
         }
         if (!CameraSettings.isSupportedPortrait()) {
@@ -324,7 +351,7 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
         if (!CameraSettings.isSupportParallelProcess()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_CAMERA_PARALLEL_PROCESS_ENABLE);
         }
-        if (b.gC()) {
+        if (b.gL()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_FACE_DETECTION);
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_CAMERA_FACE_DETECTION_AUTO_HIDDEN);
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_CAMERA_PARALLEL_PROCESS_ENABLE);
@@ -339,10 +366,10 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
         if (!ProximitySensorLock.supported()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_CAMERA_PROXIMITY_LOCK);
         }
-        if (!b.hv()) {
+        if (!b.hE()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_FINGERPRINT_CAPTURE);
         }
-        if (!CameraSettings.shouldNormalWideLDCBeVisibleInMode(this.mFromWhere) || CameraSettings.isUltraWideConfigOpen(this.mFromWhere)) {
+        if (!CameraSettings.shouldNormalWideLDCBeVisibleInMode(this.mFromWhere) || CameraSettings.isUltraWideConfigOpen(this.mFromWhere) || CameraSettings.isRearMenuUltraPixelPhotographyOn() || CameraSettings.isUltraPixelPhotographyOn()) {
             removePreference(this.mPreferenceGroup, CameraSettings.KEY_NORMAL_WIDE_LDC);
         }
         if (!(CameraSettings.shouldUltraWideLDCBeVisibleInMode(this.mFromWhere) && CameraSettings.isUltraWideConfigOpen(this.mFromWhere))) {
@@ -397,6 +424,9 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
             return true;
         } else if (preference.getKey().equals("user_define_watermark")) {
             Intent intent = new Intent(this, UserDefineWatermarkActivity.class);
+            if (getIntent().getBooleanExtra("StartActivityWhenLocked", false)) {
+                intent.putExtra("StartActivityWhenLocked", true);
+            }
             this.mGoToActivity = true;
             startActivity(intent);
             return true;
@@ -528,7 +558,7 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
             previewListPreference3.setDefaultValue(string);
             previewListPreference3.setValue(string);
         }
-        if (previewListPreference4 != null && b.gR()) {
+        if (previewListPreference4 != null && b.ha()) {
             string = getString(R.string.pref_camera_snap_default);
             previewListPreference4.setDefaultValue(string);
             previewListPreference4.setValue(string);
@@ -633,6 +663,13 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
         filterGroupIfEmpty(CameraSettings.KEY_CATEGORY_ADVANCE_SETTING);
     }
 
+    private void filterGroupIfEmpty(String str) {
+        Preference findPreference = this.mPreferenceGroup.findPreference(str);
+        if (findPreference != null && (findPreference instanceof PreferenceGroup) && ((PreferenceGroup) findPreference).getPreferenceCount() == 0) {
+            removePreference(this.mPreferenceGroup, str);
+        }
+    }
+
     protected void onRestart() {
         super.onRestart();
         if (this.mGoToActivity) {
@@ -642,15 +679,8 @@ public abstract class BasePreferenceActivity extends PreferenceActivity implemen
         }
     }
 
-    private void filterGroupIfEmpty(String str) {
-        Preference findPreference = this.mPreferenceGroup.findPreference(str);
-        if (findPreference != null && (findPreference instanceof PreferenceGroup) && ((PreferenceGroup) findPreference).getPreferenceCount() == 0) {
-            removePreference(this.mPreferenceGroup, str);
-        }
-    }
-
     private void updateConflictPreference(Preference preference) {
-        if (b.qk && CameraSettings.isFrontCamera() && CameraSettings.isMovieSolidOn() && 6 <= CameraSettings.getPreferVideoQuality()) {
+        if (b.qj && CameraSettings.isFrontCamera() && CameraSettings.isMovieSolidOn() && 6 <= CameraSettings.getPreferVideoQuality(this.mFromWhere)) {
             CheckBoxPreference checkBoxPreference = (CheckBoxPreference) this.mPreferenceGroup.findPreference(CameraSettings.KEY_MOVIE_SOLID);
             PreviewListPreference previewListPreference = (PreviewListPreference) this.mPreferenceGroup.findPreference(CameraSettings.KEY_VIDEO_QUALITY);
             if (preference == null || !CameraSettings.KEY_MOVIE_SOLID.equals(preference.getKey())) {

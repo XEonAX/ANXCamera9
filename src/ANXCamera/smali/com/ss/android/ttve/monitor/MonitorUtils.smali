@@ -37,7 +37,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 39
+    .line 41
     const/4 v0, 0x1
 
     sput-boolean v0, Lcom/ss/android/ttve/monitor/MonitorUtils;->sEnable:Z
@@ -48,7 +48,7 @@
 .method public constructor <init>()V
     .locals 0
 
-    .line 24
+    .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -69,32 +69,32 @@
         .end annotation
     .end param
 
-    .line 238
+    .line 264
     new-instance v0, Lorg/json/JSONObject;
 
     invoke-direct {v0}, Lorg/json/JSONObject;-><init>()V
 
-    .line 241
+    .line 267
     :try_start_0
     const-string v1, "device_id"
 
     invoke-virtual {v0, v1, p1}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    .line 242
+    .line 268
     const-string p1, "app_version"
 
-    const-string v1, "medialib_oem:2.9.0.14_20181125235018_2fdc4b2b5"
+    const-string v1, "medialib_oem:2.9.0.14_20190108192605_xiaomi_54edffc9e_v8a"
 
     invoke-virtual {v0, p1, v1}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    .line 245
+    .line 271
     const-string p1, "channel"
 
     const-string v1, "release"
 
     invoke-virtual {v0, p1, v1}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    .line 249
+    .line 275
     const-string p1, "package_name"
 
     invoke-virtual {p0}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
@@ -103,29 +103,29 @@
 
     invoke-virtual {v0, p1, p0}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    .line 250
+    .line 276
     const-string p0, "user_id"
 
     invoke-virtual {v0, p0, p2}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    .line 251
+    .line 277
     const-string p0, "version_code"
 
     invoke-virtual {v0, p0, p3}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
     :try_end_0
     .catch Lorg/json/JSONException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 255
+    .line 281
     goto :goto_0
 
-    .line 253
+    .line 279
     :catch_0
     move-exception p0
 
-    .line 254
+    .line 280
     invoke-virtual {p0}, Lorg/json/JSONException;->printStackTrace()V
 
-    .line 256
+    .line 282
     :goto_0
     return-object v0
 .end method
@@ -133,7 +133,7 @@
 .method public static getAppVersion()Ljava/lang/String;
     .locals 1
 
-    .line 108
+    .line 114
     const-string v0, "app_version"
 
     invoke-static {v0}, Lcom/ss/android/ttve/monitor/MonitorUtils;->getHeaderInfo(Ljava/lang/String;)Ljava/lang/String;
@@ -146,7 +146,7 @@
 .method public static getDeviceId()Ljava/lang/String;
     .locals 1
 
-    .line 100
+    .line 105
     const-string v0, "device_id"
 
     invoke-static {v0}, Lcom/ss/android/ttve/monitor/MonitorUtils;->getHeaderInfo(Ljava/lang/String;)Ljava/lang/String;
@@ -159,24 +159,24 @@
 .method private static getHeaderInfo(Ljava/lang/String;)Ljava/lang/String;
     .locals 5
 
-    .line 112
+    .line 118
     sget-boolean v0, Lcom/ss/android/ttve/monitor/MonitorUtils;->sEnable:Z
 
     const/4 v1, 0x0
 
     if-nez v0, :cond_0
 
-    .line 113
+    .line 119
     const-string p0, "MonitorUtils"
 
     const-string v0, "getHeaderInfo: Monitor not enabled just return."
 
     invoke-static {p0, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 114
+    .line 120
     return-object v1
 
-    .line 116
+    .line 122
     :cond_0
     const-string v0, "1357"
 
@@ -184,29 +184,29 @@
 
     move-result-object v0
 
-    .line 117
+    .line 123
     if-nez v0, :cond_1
 
-    .line 118
+    .line 124
     const-string p0, "MonitorUtils"
 
     const-string v0, "SDKMonitor is not inited, setDeviceId failed!"
 
     invoke-static {p0, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 119
+    .line 125
     return-object v1
 
-    .line 122
+    .line 128
     :cond_1
     invoke-virtual {v0}, Lbytedance/framwork/core/sdkmonitor/SDKMonitor;->reportJsonHeaderInfo()Lorg/json/JSONObject;
 
     move-result-object v0
 
-    .line 123
+    .line 129
     if-eqz v0, :cond_2
 
-    .line 125
+    .line 131
     :try_start_0
     invoke-virtual {v0, p0}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
 
@@ -216,11 +216,11 @@
 
     return-object v0
 
-    .line 126
+    .line 132
     :catch_0
     move-exception v0
 
-    .line 127
+    .line 133
     const-string v2, "MonitorUtils"
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -239,7 +239,7 @@
 
     invoke-static {v2, p0, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 131
+    .line 137
     :cond_2
     return-object v1
 .end method
@@ -247,7 +247,7 @@
 .method public static getUserId()Ljava/lang/String;
     .locals 1
 
-    .line 93
+    .line 98
     const-string v0, "user_id"
 
     invoke-static {v0}, Lcom/ss/android/ttve/monitor/MonitorUtils;->getHeaderInfo(Ljava/lang/String;)Ljava/lang/String;
@@ -264,22 +264,22 @@
         .end annotation
     .end param
 
-    .line 52
+    .line 54
     sget-boolean v0, Lcom/ss/android/ttve/monitor/MonitorUtils;->sEnable:Z
 
     if-nez v0, :cond_0
 
-    .line 53
+    .line 55
     const-string p0, "MonitorUtils"
 
     const-string p1, "init: Monitor not enabled just return."
 
     invoke-static {p0, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 54
+    .line 56
     return-void
 
-    .line 56
+    .line 58
     :cond_0
     const-string v0, "1357"
 
@@ -293,43 +293,116 @@
 
     invoke-static {p0, v0, p1, p2}, Lbytedance/framwork/core/sdkmonitor/SDKMonitorUtils;->init(Landroid/content/Context;Ljava/lang/String;Lorg/json/JSONObject;Lbytedance/framwork/core/sdkmonitor/SDKMonitor$IGetCommonParams;)V
 
-    .line 63
+    .line 65
+    return-void
+.end method
+
+.method public static monitorStatistics(Ljava/lang/String;ILcom/ss/android/vesdk/keyvaluepair/VEKeyValue;)V
+    .locals 3
+
+    .line 242
+    sget-boolean v0, Lcom/ss/android/ttve/monitor/MonitorUtils;->sEnable:Z
+
+    if-nez v0, :cond_0
+
+    .line 243
+    const-string p0, "MonitorUtils"
+
+    const-string p1, "monitorStatistics: Monitor not enabled just return."
+
+    invoke-static {p0, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 244
+    return-void
+
+    .line 246
+    :cond_0
+    const/4 v0, 0x0
+
+    if-nez p2, :cond_1
+
+    .line 247
+    move-object p2, v0
+
+    goto :goto_0
+
+    .line 246
+    :cond_1
+    invoke-virtual {p2}, Lcom/ss/android/vesdk/keyvaluepair/VEKeyValue;->parseJsonObj()Lorg/json/JSONObject;
+
+    move-result-object p2
+
+    .line 247
+    :goto_0
+    invoke-static {}, Lcom/ss/android/vesdk/runtime/VERuntime;->getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
+
+    move-result-object v1
+
+    if-nez p2, :cond_2
+
+    move-object v2, v0
+
+    goto :goto_1
+
+    :cond_2
+    invoke-virtual {p2}, Lorg/json/JSONObject;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    :goto_1
+    invoke-virtual {v1, p0, p1, v2}, Lcom/ss/android/vesdk/runtime/VERuntime;->notifyExternalMonitor(Ljava/lang/String;ILjava/lang/String;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_3
+
+    .line 248
+    const-string v1, "1357"
+
+    invoke-static {v1}, Lbytedance/framwork/core/sdkmonitor/SDKMonitorUtils;->getInstance(Ljava/lang/String;)Lbytedance/framwork/core/sdkmonitor/SDKMonitor;
+
+    move-result-object v1
+
+    invoke-virtual {v1, p0, p1, p2, v0}, Lbytedance/framwork/core/sdkmonitor/SDKMonitor;->monitorStatusAndDuration(Ljava/lang/String;ILorg/json/JSONObject;Lorg/json/JSONObject;)V
+
+    .line 250
+    :cond_3
     return-void
 .end method
 
 .method public static monitorStatusRate(Ljava/lang/String;ILorg/json/JSONObject;)V
     .locals 6
 
-    .line 168
+    .line 175
     sget-boolean v0, Lcom/ss/android/ttve/monitor/MonitorUtils;->sEnable:Z
 
     if-nez v0, :cond_0
 
-    .line 169
+    .line 176
     const-string p0, "MonitorUtils"
 
     const-string p1, "monitorStatusRate: Monitor not enabled just return."
 
     invoke-static {p0, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 170
+    .line 177
     return-void
 
-    .line 172
+    .line 179
     :cond_0
     if-nez p2, :cond_1
 
-    .line 173
+    .line 180
     const-string p0, "MonitorUtils"
 
     const-string p1, "monitorStatusRate: empty log data!"
 
     invoke-static {p0, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 174
+    .line 181
     return-void
 
-    .line 176
+    .line 183
     :cond_1
     const-string v0, "device_id"
 
@@ -343,21 +416,21 @@
 
     if-eqz v0, :cond_2
 
-    .line 180
+    .line 187
     const-string v0, "device_id"
 
     const-string v1, "Unknown"
 
     invoke-static {v0, v1}, Lcom/ss/android/ttve/monitor/MonitorUtils;->setHeaderInfo(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 181
+    .line 188
     const-string v0, "MonitorUtils"
 
     const-string v1, "Device id is empty, please set device id with 1. TEMonitor.setDeviceId(deviceid) before using SDK. \n 2. Use TEMonitor.setSDKMonitorEnable(false) to disable SDKMonitor."
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 185
+    .line 192
     :cond_2
     const-string v0, "user_id"
 
@@ -371,21 +444,21 @@
 
     if-eqz v0, :cond_3
 
-    .line 189
+    .line 196
     const-string v0, "user_id"
 
     const-string v1, "Unknown"
 
     invoke-static {v0, v1}, Lcom/ss/android/ttve/monitor/MonitorUtils;->setHeaderInfo(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 190
+    .line 197
     const-string v0, "MonitorUtils"
 
     const-string v1, "User id is empty, please set user id with TEMonitor.setUserId(userid) before using SDK\n 2. Use TEMonitor.setSDKMonitorEnable(false) to disable SDKMonitor."
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 194
+    .line 201
     :cond_3
     const-string v0, "app_version"
 
@@ -399,28 +472,28 @@
 
     if-eqz v0, :cond_4
 
-    .line 198
+    .line 205
     const-string v0, "app_version"
 
     const-string v1, "Unknown"
 
     invoke-static {v0, v1}, Lcom/ss/android/ttve/monitor/MonitorUtils;->setHeaderInfo(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 199
+    .line 206
     const-string v0, "MonitorUtils"
 
     const-string v1, "App version is empty, please set app version with TEMonitor.setAppVersion(version) before using SDK\n 2. Use TEMonitor.setSDKMonitorEnable(false) to disable SDKMonitor."
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 204
+    .line 211
     :cond_4
     :try_start_0
     invoke-static {}, Lcom/ss/android/vesdk/runtime/cloudconfig/DeviceInfoDetector;->toMap()Ljava/util/Map;
 
     move-result-object v0
 
-    .line 205
+    .line 212
     invoke-interface {v0}, Ljava/util/Map;->entrySet()Ljava/util/Set;
 
     move-result-object v0
@@ -442,14 +515,14 @@
 
     check-cast v1, Ljava/util/Map$Entry;
 
-    .line 206
+    .line 213
     invoke-interface {v1}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
 
     move-result-object v2
 
     check-cast v2, Ljava/lang/String;
 
-    .line 207
+    .line 214
     sget-object v3, Lcom/ss/android/vesdk/runtime/cloudconfig/DeviceInfoDetector;->sNumberKeys:Ljava/util/List;
 
     invoke-interface {v1}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
@@ -462,7 +535,7 @@
 
     if-eqz v3, :cond_5
 
-    .line 208
+    .line 215
     invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v3
@@ -471,13 +544,13 @@
 
     if-nez v3, :cond_6
 
-    .line 210
+    .line 217
     :try_start_1
     invoke-static {v2}, Ljava/lang/Float;->parseFloat(Ljava/lang/String;)F
 
     move-result v2
 
-    .line 211
+    .line 218
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -505,15 +578,15 @@
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
     .catch Lorg/json/JSONException; {:try_start_1 .. :try_end_1} :catch_1
 
-    .line 214
+    .line 221
     :goto_1
     goto :goto_2
 
-    .line 212
+    .line 219
     :catch_0
     move-exception v2
 
-    .line 213
+    .line 220
     :try_start_2
     const-string v2, "MonitorUtils"
 
@@ -541,7 +614,7 @@
 
     goto :goto_1
 
-    .line 217
+    .line 224
     :cond_5
     new-instance v3, Ljava/lang/StringBuilder;
 
@@ -567,27 +640,27 @@
     :try_end_2
     .catch Lorg/json/JSONException; {:try_start_2 .. :try_end_2} :catch_1
 
-    .line 220
+    .line 227
     :cond_6
     :goto_2
     goto :goto_0
 
-    .line 223
+    .line 230
     :cond_7
     goto :goto_3
 
-    .line 221
+    .line 228
     :catch_1
     move-exception v0
 
-    .line 222
+    .line 229
     const-string v1, "MonitorUtils"
 
     const-string v2, "monitorStatusRate: json exception!"
 
     invoke-static {v1, v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 224
+    .line 231
     :goto_3
     const-string v0, "1357"
 
@@ -599,63 +672,63 @@
 
     invoke-virtual {v0, p0, p1, p2, v1}, Lbytedance/framwork/core/sdkmonitor/SDKMonitor;->monitorStatusAndDuration(Ljava/lang/String;ILorg/json/JSONObject;Lorg/json/JSONObject;)V
 
-    .line 225
+    .line 232
     return-void
 .end method
 
 .method public static setAppVersion(Ljava/lang/String;)V
     .locals 1
 
-    .line 86
+    .line 91
     const-string v0, "app_version"
 
     invoke-static {v0, p0}, Lcom/ss/android/ttve/monitor/MonitorUtils;->setHeaderInfo(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 87
+    .line 92
     return-void
 .end method
 
 .method public static setDeviceId(Ljava/lang/String;)V
     .locals 1
 
-    .line 78
+    .line 82
     const-string v0, "device_id"
 
     invoke-static {v0, p0}, Lcom/ss/android/ttve/monitor/MonitorUtils;->setHeaderInfo(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 79
+    .line 83
     return-void
 .end method
 
 .method public static setEnable(Z)V
     .locals 0
 
-    .line 264
+    .line 291
     sput-boolean p0, Lcom/ss/android/ttve/monitor/MonitorUtils;->sEnable:Z
 
-    .line 265
+    .line 292
     return-void
 .end method
 
 .method private static setHeaderInfo(Ljava/lang/String;Ljava/lang/String;)V
     .locals 3
 
-    .line 140
+    .line 147
     sget-boolean v0, Lcom/ss/android/ttve/monitor/MonitorUtils;->sEnable:Z
 
     if-nez v0, :cond_0
 
-    .line 141
+    .line 148
     const-string p0, "MonitorUtils"
 
     const-string p1, "setHeaderInfo: Monitor not enabled just return."
 
     invoke-static {p0, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 142
+    .line 149
     return-void
 
-    .line 144
+    .line 151
     :cond_0
     const-string v0, "1357"
 
@@ -663,42 +736,42 @@
 
     move-result-object v0
 
-    .line 145
+    .line 152
     if-nez v0, :cond_1
 
-    .line 146
+    .line 153
     const-string p0, "MonitorUtils"
 
     const-string p1, "SDKMonitor is not inited, setDeviceId failed!"
 
     invoke-static {p0, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 147
+    .line 154
     return-void
 
-    .line 149
+    .line 156
     :cond_1
     invoke-virtual {v0}, Lbytedance/framwork/core/sdkmonitor/SDKMonitor;->reportJsonHeaderInfo()Lorg/json/JSONObject;
 
     move-result-object v0
 
-    .line 150
+    .line 157
     if-eqz v0, :cond_2
 
-    .line 152
+    .line 159
     :try_start_0
     invoke-virtual {v0, p0, p1}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
     :try_end_0
     .catch Lorg/json/JSONException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 155
+    .line 162
     goto :goto_0
 
-    .line 153
+    .line 160
     :catch_0
     move-exception p1
 
-    .line 154
+    .line 161
     const-string v0, "MonitorUtils"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -717,7 +790,7 @@
 
     invoke-static {v0, p0, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 157
+    .line 164
     :cond_2
     :goto_0
     return-void
@@ -726,11 +799,11 @@
 .method public static setUserId(Ljava/lang/String;)V
     .locals 1
 
-    .line 70
+    .line 73
     const-string v0, "user_id"
 
     invoke-static {v0, p0}, Lcom/ss/android/ttve/monitor/MonitorUtils;->setHeaderInfo(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 71
+    .line 74
     return-void
 .end method

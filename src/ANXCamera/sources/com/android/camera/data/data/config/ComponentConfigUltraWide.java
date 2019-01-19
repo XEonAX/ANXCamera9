@@ -58,21 +58,22 @@ public class ComponentConfigUltraWide extends ComponentData {
         } else {
             this.mItems.clear();
         }
-        boolean fw = DataRepository.dataItemFeature().fw();
-        if (i2 != 0 || !fw) {
+        boolean fx = DataRepository.dataItemFeature().fx();
+        if (i2 != 0 || !fx) {
             return this.mItems;
         }
-        switch (i) {
-            case 166:
-            case 167:
-            case 171:
-            case 172:
-                return this.mItems;
-            default:
-                this.mItems.add(new ComponentDataItem(R.drawable.icon_config_ultra_wide_off, R.drawable.icon_config_ultra_wide_off, 0, ULTRA_WIDE_VALUE_OFF));
-                this.mItems.add(new ComponentDataItem(R.drawable.icon_config_ultra_wide_on, R.drawable.icon_config_ultra_wide_on, 0, ULTRA_WIDE_VALUE_ON));
-                return this.mItems;
+        if (i != 166) {
+            switch (i) {
+                case 171:
+                case 172:
+                    break;
+                default:
+                    this.mItems.add(new ComponentDataItem(R.drawable.icon_config_ultra_wide_off, R.drawable.icon_config_ultra_wide_off, 0, ULTRA_WIDE_VALUE_OFF));
+                    this.mItems.add(new ComponentDataItem(R.drawable.icon_config_ultra_wide_on, R.drawable.icon_config_ultra_wide_on, 0, ULTRA_WIDE_VALUE_ON));
+                    return this.mItems;
+            }
         }
+        return this.mItems;
     }
 
     public int getValueSelectedDrawableIgnoreClose(int i) {

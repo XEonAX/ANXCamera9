@@ -3,6 +3,7 @@ package com.android.camera.module.loader.camera2;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.global.DataItemGlobal;
 import com.android.camera.log.Log;
+import com.android.camera.module.ModuleManager;
 import com.android.camera.module.loader.SurfaceCreatedCallback;
 import com.android.camera.module.loader.SurfaceStateListener;
 import com.android.camera.snap.SnapTrigger;
@@ -68,7 +69,7 @@ public class Camera2OpenOnSubScribe implements SurfaceCreatedCallback, Observer<
         stringBuilder.append(this.mSurfaceStateListener.hasSurface());
         Log.d(str, stringBuilder.toString());
         this.mCamera2Result = camera2Result;
-        if (this.mSurfaceStateListener.hasSurface()) {
+        if (ModuleManager.isCapture() || this.mSurfaceStateListener.hasSurface()) {
             submitResult(camera2Result);
         }
     }

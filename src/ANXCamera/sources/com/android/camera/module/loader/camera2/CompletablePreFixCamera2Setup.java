@@ -64,7 +64,7 @@ public class CompletablePreFixCamera2Setup implements CompletableOnSubscribe, Ob
             Pair parseIntent = dataItemGlobal.parseIntent(this.mIntent, Boolean.valueOf(this.isFromVoiceControl), this.mStartFromKeyguard, true, true);
             intValue = ((Integer) parseIntent.first).intValue();
             intValue2 = ((Integer) parseIntent.second).intValue();
-            if (DataRepository.dataItemFeature().fo()) {
+            if (DataRepository.dataItemFeature().fp()) {
                 DbRepository.dbItemSaveTask().markAllDepartedTask();
                 AlgoConnector.getInstance().startService(CameraAppImpl.getAndroidContext());
             }

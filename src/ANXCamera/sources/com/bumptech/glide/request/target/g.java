@@ -18,36 +18,36 @@ import com.bumptech.glide.util.i;
 /* compiled from: FixedSizeDrawable */
 public class g extends Drawable {
     private final Matrix matrix;
+    private final RectF or;
     private final RectF os;
-    private final RectF ot;
-    private Drawable ou;
-    private a ov;
-    private boolean ow;
+    private Drawable ot;
+    private a ou;
+    private boolean ov;
 
     /* compiled from: FixedSizeDrawable */
     static final class a extends ConstantState {
         final int height;
-        private final ConstantState ox;
+        private final ConstantState ow;
         final int width;
 
         a(a aVar) {
-            this(aVar.ox, aVar.width, aVar.height);
+            this(aVar.ow, aVar.width, aVar.height);
         }
 
         a(ConstantState constantState, int i, int i2) {
-            this.ox = constantState;
+            this.ow = constantState;
             this.width = i;
             this.height = i2;
         }
 
         @NonNull
         public Drawable newDrawable() {
-            return new g(this, this.ox.newDrawable());
+            return new g(this, this.ow.newDrawable());
         }
 
         @NonNull
         public Drawable newDrawable(Resources resources) {
-            return new g(this, this.ox.newDrawable(resources));
+            return new g(this, this.ow.newDrawable(resources));
         }
 
         public int getChangingConfigurations() {
@@ -60,138 +60,138 @@ public class g extends Drawable {
     }
 
     g(a aVar, Drawable drawable) {
-        this.ov = (a) i.checkNotNull(aVar);
-        this.ou = (Drawable) i.checkNotNull(drawable);
+        this.ou = (a) i.checkNotNull(aVar);
+        this.ot = (Drawable) i.checkNotNull(drawable);
         drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
         this.matrix = new Matrix();
-        this.os = new RectF(0.0f, 0.0f, (float) drawable.getIntrinsicWidth(), (float) drawable.getIntrinsicHeight());
-        this.ot = new RectF();
+        this.or = new RectF(0.0f, 0.0f, (float) drawable.getIntrinsicWidth(), (float) drawable.getIntrinsicHeight());
+        this.os = new RectF();
     }
 
     public void setBounds(int i, int i2, int i3, int i4) {
         super.setBounds(i, i2, i3, i4);
-        this.ot.set((float) i, (float) i2, (float) i3, (float) i4);
+        this.os.set((float) i, (float) i2, (float) i3, (float) i4);
         em();
     }
 
     public void setBounds(@NonNull Rect rect) {
         super.setBounds(rect);
-        this.ot.set(rect);
+        this.os.set(rect);
         em();
     }
 
     private void em() {
-        this.matrix.setRectToRect(this.os, this.ot, ScaleToFit.CENTER);
+        this.matrix.setRectToRect(this.or, this.os, ScaleToFit.CENTER);
     }
 
     public void setChangingConfigurations(int i) {
-        this.ou.setChangingConfigurations(i);
+        this.ot.setChangingConfigurations(i);
     }
 
     public int getChangingConfigurations() {
-        return this.ou.getChangingConfigurations();
+        return this.ot.getChangingConfigurations();
     }
 
     @Deprecated
     public void setDither(boolean z) {
-        this.ou.setDither(z);
+        this.ot.setDither(z);
     }
 
     public void setFilterBitmap(boolean z) {
-        this.ou.setFilterBitmap(z);
+        this.ot.setFilterBitmap(z);
     }
 
     public Callback getCallback() {
-        return this.ou.getCallback();
+        return this.ot.getCallback();
     }
 
     @RequiresApi(19)
     public int getAlpha() {
-        return this.ou.getAlpha();
+        return this.ot.getAlpha();
     }
 
     public void setColorFilter(int i, @NonNull Mode mode) {
-        this.ou.setColorFilter(i, mode);
+        this.ot.setColorFilter(i, mode);
     }
 
     public void clearColorFilter() {
-        this.ou.clearColorFilter();
+        this.ot.clearColorFilter();
     }
 
     @NonNull
     public Drawable getCurrent() {
-        return this.ou.getCurrent();
+        return this.ot.getCurrent();
     }
 
     public boolean setVisible(boolean z, boolean z2) {
-        return this.ou.setVisible(z, z2);
+        return this.ot.setVisible(z, z2);
     }
 
     public int getIntrinsicWidth() {
-        return this.ov.width;
+        return this.ou.width;
     }
 
     public int getIntrinsicHeight() {
-        return this.ov.height;
+        return this.ou.height;
     }
 
     public int getMinimumWidth() {
-        return this.ou.getMinimumWidth();
+        return this.ot.getMinimumWidth();
     }
 
     public int getMinimumHeight() {
-        return this.ou.getMinimumHeight();
+        return this.ot.getMinimumHeight();
     }
 
     public boolean getPadding(@NonNull Rect rect) {
-        return this.ou.getPadding(rect);
+        return this.ot.getPadding(rect);
     }
 
     public void invalidateSelf() {
         super.invalidateSelf();
-        this.ou.invalidateSelf();
+        this.ot.invalidateSelf();
     }
 
     public void unscheduleSelf(@NonNull Runnable runnable) {
         super.unscheduleSelf(runnable);
-        this.ou.unscheduleSelf(runnable);
+        this.ot.unscheduleSelf(runnable);
     }
 
     public void scheduleSelf(@NonNull Runnable runnable, long j) {
         super.scheduleSelf(runnable, j);
-        this.ou.scheduleSelf(runnable, j);
+        this.ot.scheduleSelf(runnable, j);
     }
 
     public void draw(@NonNull Canvas canvas) {
         canvas.save();
         canvas.concat(this.matrix);
-        this.ou.draw(canvas);
+        this.ot.draw(canvas);
         canvas.restore();
     }
 
     public void setAlpha(int i) {
-        this.ou.setAlpha(i);
+        this.ot.setAlpha(i);
     }
 
     public void setColorFilter(ColorFilter colorFilter) {
-        this.ou.setColorFilter(colorFilter);
+        this.ot.setColorFilter(colorFilter);
     }
 
     public int getOpacity() {
-        return this.ou.getOpacity();
+        return this.ot.getOpacity();
     }
 
     @NonNull
     public Drawable mutate() {
-        if (!this.ow && super.mutate() == this) {
-            this.ou = this.ou.mutate();
-            this.ov = new a(this.ov);
-            this.ow = true;
+        if (!this.ov && super.mutate() == this) {
+            this.ot = this.ot.mutate();
+            this.ou = new a(this.ou);
+            this.ov = true;
         }
         return this;
     }
 
     public ConstantState getConstantState() {
-        return this.ov;
+        return this.ou;
     }
 }

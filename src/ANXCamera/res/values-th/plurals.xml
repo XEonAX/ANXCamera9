@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <plurals name="accessibility_focus_face_detect">
-        <item quantity="other">โฟกัสแล้ว ตรวจพบ %d ใบหน้า</item>
-    </plurals>
-    <plurals name="toast_burst_snap_finished_summary">
-        <item quantity="other">ถ่ายภาพต่อเนื่องเสร็จสิ้น ทั้งหมด %1$s รูป</item>
-    </plurals>
-</resources>

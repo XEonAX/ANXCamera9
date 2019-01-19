@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/module/VideoModule;)V
     .locals 0
 
-    .line 897
+    .line 900
     iput-object p1, p0, Lcom/android/camera/module/VideoModule$1;->this$0:Lcom/android/camera/module/VideoModule;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public run()V
     .locals 2
 
-    .line 900
+    .line 903
     iget-object v0, p0, Lcom/android/camera/module/VideoModule$1;->this$0:Lcom/android/camera/module/VideoModule;
 
     iget-object v1, p0, Lcom/android/camera/module/VideoModule$1;->this$0:Lcom/android/camera/module/VideoModule;
@@ -49,6 +49,6 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/VideoModule;->onShutterButtonClick(I)V
 
-    .line 901
+    .line 904
     return-void
 .end method

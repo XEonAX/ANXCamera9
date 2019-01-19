@@ -74,7 +74,7 @@
 
     const-string v3, "0"
 
-    const v4, 0x7f0b0063
+    const v4, 0x7f090062
 
     invoke-direct {v0, v1, v2, v4, v3}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 
@@ -140,7 +140,7 @@
     .locals 1
 
     .line 290
-    const v0, 0x7f020119
+    const v0, 0x7f020129
 
     return v0
 .end method
@@ -149,7 +149,7 @@
     .locals 1
 
     .line 286
-    const v0, 0x7f02011a
+    const v0, 0x7f02012a
 
     return v0
 .end method
@@ -158,7 +158,7 @@
     .locals 1
 
     .line 282
-    const v0, 0x7f02011b
+    const v0, 0x7f02012b
 
     return v0
 .end method
@@ -167,7 +167,7 @@
     .locals 1
 
     .line 294
-    const v0, 0x7f02011c
+    const v0, 0x7f02012c
 
     return v0
 .end method
@@ -258,13 +258,13 @@
     if-eqz v0, :cond_0
 
     .line 111
-    const v0, 0x7f0b0225
+    const v0, 0x7f090226
 
     return v0
 
     .line 113
     :cond_0
-    const v0, 0x7f0b0226
+    const v0, 0x7f090227
 
     return v0
 .end method
@@ -273,7 +273,7 @@
     .locals 1
 
     .line 62
-    const v0, 0x7f0b0060
+    const v0, 0x7f09005f
 
     return v0
 .end method
@@ -504,7 +504,7 @@
 
     move-result v0
 
-    const v1, 0x7f0b00de
+    const v1, 0x7f0900dd
 
     if-eqz v0, :cond_0
 
@@ -519,7 +519,7 @@
 
     move-result v0
 
-    const v2, 0x7f0b00df
+    const v2, 0x7f0900de
 
     if-eqz v0, :cond_1
 
@@ -537,7 +537,7 @@
     if-eqz v0, :cond_2
 
     .line 314
-    const p1, 0x7f0b00e0
+    const p1, 0x7f0900df
 
     return p1
 
@@ -561,7 +561,7 @@
     goto :goto_0
 
     :cond_3
-    const v1, 0x7f0b00e1
+    const v1, 0x7f0900e0
 
     :goto_0
     return v1
@@ -687,11 +687,11 @@
 
     move-result p3
 
-    const v0, 0x7f0b0061
+    const v0, 0x7f090060
 
-    const v2, 0x7f0b0062
+    const v2, 0x7f090061
 
-    const v3, 0x7f0b0063
+    const v3, 0x7f090062
 
     if-nez p3, :cond_6
 
@@ -701,7 +701,7 @@
     if-ne p2, p3, :cond_4
 
     .line 177
-    invoke-static {}, Lcom/mi/config/b;->hw()Z
+    invoke-static {}, Lcom/mi/config/b;->hF()Z
 
     move-result p2
 
@@ -842,7 +842,7 @@
     .line 211
     const/16 p2, 0xac
 
-    const p3, 0x7f0b0064
+    const p3, 0x7f090063
 
     if-eq p1, p2, :cond_9
 
@@ -911,7 +911,7 @@
 
     if-eqz p1, :cond_8
 
-    invoke-static {}, Lcom/mi/config/b;->hq()Z
+    invoke-static {}, Lcom/mi/config/b;->hz()Z
 
     move-result p1
 
@@ -942,7 +942,7 @@
 
     .line 230
     :cond_8
-    invoke-static {}, Lcom/mi/config/b;->gy()Z
+    invoke-static {}, Lcom/mi/config/b;->gH()Z
 
     move-result p1
 

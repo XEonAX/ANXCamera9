@@ -209,11 +209,11 @@ public class SnapshotEffectRender {
             int i10 = i3;
             int i11 = i4;
             int i12 = i7;
-            if (b.gO()) {
+            if (b.gX()) {
                 if (drawJPEGAttribute2.mTimeWaterMarkText != null) {
                     WaterMark newStyleTextWaterMark;
                     String str = drawJPEGAttribute2.mTimeWaterMarkText;
-                    if (b.fU()) {
+                    if (b.gf()) {
                         newStyleTextWaterMark = new NewStyleTextWaterMark(str, i10, i11, i12);
                     } else {
                         newStyleTextWaterMark = new TextWaterMark(str, i10, i11, i12);
@@ -227,7 +227,8 @@ public class SnapshotEffectRender {
                     }
                     Bitmap access$1200 = SnapshotEffectRender.this.mDualCameraWaterMarkBitmap;
                     boolean equals = CameraSettings.getCustomWatermark().equals(CameraSettings.getDefaultWatermarkStr());
-                    if (CameraSettings.isUltraPixelPhotographyOn() && equals) {
+                    Object obj = (CameraSettings.isUltraPixelPhotographyOn() || CameraSettings.isRearMenuUltraPixelPhotographyOn()) ? 1 : null;
+                    if (!(obj == null || DataRepository.dataItemFeature().fM() || !equals)) {
                         if (SnapshotEffectRender.this.m48MCameraWaterMarkBitmap == null) {
                             SnapshotEffectRender.this.m48MCameraWaterMarkBitmap = SnapshotEffectRender.this.load48MWatermark(SnapshotEffectRender.this.mActivity);
                         }
@@ -245,7 +246,7 @@ public class SnapshotEffectRender {
      */
         /* Code decompiled incorrectly, please refer to instructions dump. */
         private void drawAgeGenderAndMagicMirrorWater(List<WaterMarkData> list, int i, int i2, int i3, int i4, int i5, boolean z) {
-            if (b.gO() && !z && CameraSettings.isAgeGenderAndMagicMirrorWaterOpen()) {
+            if (b.gX() && !z && CameraSettings.isAgeGenderAndMagicMirrorWaterOpen()) {
                 WaterMarkBitmap waterMarkBitmap = new WaterMarkBitmap(list);
                 WaterMarkData waterMarkData = waterMarkBitmap.getWaterMarkData();
                 if (waterMarkData != null) {
@@ -647,7 +648,7 @@ public class SnapshotEffectRender {
         options.inScaled = false;
         options.inPurgeable = true;
         options.inPremultiplied = false;
-        if (DataRepository.dataItemFeature().fd()) {
+        if (DataRepository.dataItemFeature().fe()) {
             File file = new File(context.getFilesDir(), Util.WATERMARK_48M_FILE_NAME);
             if (!file.exists()) {
                 return Util.generate48MWatermark2File();
@@ -707,7 +708,7 @@ public class SnapshotEffectRender {
         options.inPurgeable = true;
         options.inPremultiplied = false;
         Bitmap loadCameraCustomWatermark;
-        if (DataRepository.dataItemFeature().fd()) {
+        if (DataRepository.dataItemFeature().fe()) {
             if (!new File(context.getFilesDir(), Util.WATERMARK_FILE_NAME).exists()) {
                 Util.generateCustomWatermark2File();
             }

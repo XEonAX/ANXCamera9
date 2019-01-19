@@ -42,7 +42,7 @@
 
 .field public static final LIVE_SHRINK_FACE_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-.field public static final LIVE_WHITEN_STRENGTH:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
+.field public static final LIVE_SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
 .field public static final PUPIL_LINE_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
@@ -298,11 +298,11 @@
     .line 51
     new-instance v0, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIVE_WHITEN_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIVE_SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     invoke-direct {v0, v2, v1}, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;-><init>(ILcom/android/camera/fragment/beauty/BeautyParameters$Type;)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->LIVE_WHITEN_STRENGTH:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
+    sput-object v0, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->LIVE_SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
     return-void
 .end method

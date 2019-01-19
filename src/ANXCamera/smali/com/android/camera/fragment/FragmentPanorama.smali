@@ -68,34 +68,34 @@
 .method public constructor <init>()V
     .locals 1
 
-    .line 49
+    .line 50
     invoke-direct {p0}, Lcom/android/camera/fragment/BaseFragment;-><init>()V
 
-    .line 57
+    .line 58
     new-instance v0, Landroid/os/Handler;
 
     invoke-direct {v0}, Landroid/os/Handler;-><init>()V
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mHandler:Landroid/os/Handler;
 
-    .line 58
+    .line 59
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mWaitingFirstFrame:Z
 
-    .line 59
+    .line 60
     const/4 v0, -0x1
 
     iput v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveDirection:I
 
-    .line 79
+    .line 80
     new-instance v0, Lmiui/view/animation/CubicEaseInOutInterpolator;
 
     invoke-direct {v0}, Lmiui/view/animation/CubicEaseInOutInterpolator;-><init>()V
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mCubicEaseInOutInterpolator:Landroid/view/animation/Interpolator;
 
-    .line 81
+    .line 82
     new-instance v0, Lcom/android/camera/ui/drawable/PanoramaArrowAnimateDrawable;
 
     invoke-direct {v0}, Lcom/android/camera/ui/drawable/PanoramaArrowAnimateDrawable;-><init>()V
@@ -108,7 +108,7 @@
 .method static synthetic access$100(Lcom/android/camera/fragment/FragmentPanorama;)Lcom/android/camera/ui/GLTextureView;
     .locals 0
 
-    .line 49
+    .line 50
     iget-object p0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     return-object p0
@@ -117,7 +117,7 @@
 .method static synthetic access$1000(Lcom/android/camera/fragment/FragmentPanorama;)Landroid/os/Handler;
     .locals 0
 
-    .line 49
+    .line 50
     iget-object p0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mHandler:Landroid/os/Handler;
 
     return-object p0
@@ -126,7 +126,7 @@
 .method static synthetic access$200(Lcom/android/camera/fragment/FragmentPanorama;)I
     .locals 0
 
-    .line 49
+    .line 50
     iget p0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveDirection:I
 
     return p0
@@ -135,7 +135,7 @@
 .method static synthetic access$300(Lcom/android/camera/fragment/FragmentPanorama;)I
     .locals 0
 
-    .line 49
+    .line 50
     iget p0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewTextureOffsetX:I
 
     return p0
@@ -144,7 +144,7 @@
 .method static synthetic access$400(Lcom/android/camera/fragment/FragmentPanorama;)I
     .locals 0
 
-    .line 49
+    .line 50
     iget p0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewTextureOffsetY:I
 
     return p0
@@ -153,7 +153,7 @@
 .method static synthetic access$500(Lcom/android/camera/fragment/FragmentPanorama;)I
     .locals 0
 
-    .line 49
+    .line 50
     iget p0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewTextureWidth:I
 
     return p0
@@ -162,7 +162,7 @@
 .method static synthetic access$600(Lcom/android/camera/fragment/FragmentPanorama;)I
     .locals 0
 
-    .line 49
+    .line 50
     iget p0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewTextureHeight:I
 
     return p0
@@ -171,7 +171,7 @@
 .method static synthetic access$700(Lcom/android/camera/fragment/FragmentPanorama;)Z
     .locals 0
 
-    .line 49
+    .line 50
     iget-boolean p0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mWaitingFirstFrame:Z
 
     return p0
@@ -180,7 +180,7 @@
 .method static synthetic access$702(Lcom/android/camera/fragment/FragmentPanorama;Z)Z
     .locals 0
 
-    .line 49
+    .line 50
     iput-boolean p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mWaitingFirstFrame:Z
 
     return p1
@@ -189,7 +189,7 @@
 .method static synthetic access$800(Lcom/android/camera/fragment/FragmentPanorama;)Landroid/view/View;
     .locals 0
 
-    .line 49
+    .line 50
     iget-object p0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveReferenceLine:Landroid/view/View;
 
     return-object p0
@@ -198,7 +198,7 @@
 .method static synthetic access$900(Lcom/android/camera/fragment/FragmentPanorama;)Landroid/widget/ImageView;
     .locals 0
 
-    .line 49
+    .line 50
     iget-object p0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mIndicator:Landroid/widget/ImageView;
 
     return-object p0
@@ -207,23 +207,23 @@
 .method private setViewMargin(Landroid/view/View;I)V
     .locals 1
 
-    .line 160
+    .line 161
     nop
 
-    .line 161
+    .line 162
     invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object v0
 
     check-cast v0, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    .line 162
+    .line 163
     iput p2, v0, Landroid/view/ViewGroup$MarginLayoutParams;->topMargin:I
 
-    .line 163
+    .line 164
     invoke-virtual {p1, v0}, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 164
+    .line 165
     return-void
 .end method
 
@@ -232,7 +232,7 @@
 .method public getFragmentInto()I
     .locals 1
 
-    .line 128
+    .line 129
     const/16 v0, 0xff0
 
     return v0
@@ -241,8 +241,8 @@
 .method protected getLayoutResourceId()I
     .locals 1
 
-    .line 123
-    const v0, 0x7f04003c
+    .line 124
+    const v0, 0x7f04003e
 
     return v0
 .end method
@@ -250,7 +250,7 @@
 .method public getPreivewContainer()Landroid/view/ViewGroup;
     .locals 1
 
-    .line 259
+    .line 260
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mHintFrame:Landroid/view/ViewGroup;
 
     return-object v0
@@ -259,32 +259,32 @@
 .method public initPreviewLayout(IIII)V
     .locals 1
 
-    .line 167
+    .line 168
     invoke-static {}, Lcom/android/camera/CameraSettings;->getPanoramaMoveDirection()I
 
     move-result v0
 
     iput v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveDirection:I
 
-    .line 169
+    .line 170
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/GLTextureView;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object v0
 
-    .line 170
+    .line 171
     iput p1, v0, Landroid/view/ViewGroup$LayoutParams;->width:I
 
-    .line 171
+    .line 172
     iput p2, v0, Landroid/view/ViewGroup$LayoutParams;->height:I
 
-    .line 173
+    .line 174
     iget p1, v0, Landroid/view/ViewGroup$LayoutParams;->width:I
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewTextureWidth:I
 
-    .line 174
+    .line 175
     iget p1, v0, Landroid/view/ViewGroup$LayoutParams;->width:I
 
     mul-int/2addr p1, p3
@@ -293,12 +293,12 @@
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewTextureHeight:I
 
-    .line 175
+    .line 176
     const/4 p1, 0x0
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewTextureOffsetX:I
 
-    .line 176
+    .line 177
     iget p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewTextureHeight:I
 
     iget p2, v0, Landroid/view/ViewGroup$LayoutParams;->height:I
@@ -311,32 +311,32 @@
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewTextureOffsetY:I
 
-    .line 178
+    .line 179
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/GLTextureView;->requestLayout()V
 
-    .line 180
+    .line 181
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mUseHint:Landroid/widget/TextView;
 
-    const p2, 0x7f0b00ce
+    const p2, 0x7f0900cd
 
     invoke-virtual {p1, p2}, Landroid/widget/TextView;->setText(I)V
 
-    .line 181
+    .line 182
     return-void
 .end method
 
 .method protected initView(Landroid/view/View;)V
     .locals 2
 
-    .line 86
+    .line 87
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
-    .line 87
+    .line 88
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
-    const v0, 0x7f0d00c4
+    const v0, 0x7f0d00ce
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -346,10 +346,10 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mIndicator:Landroid/widget/ImageView;
 
-    .line 88
+    .line 89
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
-    const v0, 0x7f0d00c6
+    const v0, 0x7f0d00d0
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -359,19 +359,19 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mUseHint:Landroid/widget/TextView;
 
-    .line 89
+    .line 90
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mIndicator:Landroid/widget/ImageView;
 
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaArrowAnimateDrawable:Lcom/android/camera/ui/drawable/PanoramaArrowAnimateDrawable;
 
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setImageDrawable(Landroid/graphics/drawable/Drawable;)V
 
-    .line 90
+    .line 91
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentPanorama;->getResources()Landroid/content/res/Resources;
 
     move-result-object p1
 
-    const v0, 0x7f09000f
+    const v0, 0x7f0a000f
 
     invoke-virtual {p1, v0}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -379,23 +379,23 @@
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mArrowMargin:I
 
-    .line 92
+    .line 93
     sget-boolean p1, Lcom/android/camera/Util;->isNotchDevice:Z
 
     if-eqz p1, :cond_0
 
-    .line 93
+    .line 94
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
     sget v0, Lcom/android/camera/Util;->sStatusBarHeight:I
 
     invoke-direct {p0, p1, v0}, Lcom/android/camera/fragment/FragmentPanorama;->setViewMargin(Landroid/view/View;I)V
 
-    .line 96
+    .line 97
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
-    const v0, 0x7f0d00c1
+    const v0, 0x7f0d00cb
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -405,10 +405,10 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaPreview:Landroid/widget/ImageView;
 
-    .line 97
+    .line 98
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
-    const v0, 0x7f0d00c3
+    const v0, 0x7f0d00cd
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -418,12 +418,12 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
-    .line 98
+    .line 99
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
-    const v0, 0x7f0d00c7
+    const v0, 0x7f0d00d1
 
-    .line 99
+    .line 100
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
     move-result-object p1
@@ -432,10 +432,10 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMovingDirectionView:Lcom/android/camera/ui/PanoMovingIndicatorView;
 
-    .line 101
+    .line 102
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
-    const v0, 0x7f0d00c0
+    const v0, 0x7f0d00ca
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -443,10 +443,10 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveReferenceLine:Landroid/view/View;
 
-    .line 102
+    .line 103
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
-    const v0, 0x7f0d00c2
+    const v0, 0x7f0d00cc
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -454,10 +454,10 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewHintArea:Landroid/view/View;
 
-    .line 104
+    .line 105
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
-    const v0, 0x7f0d00bf
+    const v0, 0x7f0d00c9
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -467,12 +467,12 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mHintFrame:Landroid/view/ViewGroup;
 
-    .line 105
+    .line 106
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mHintFrame:Landroid/view/ViewGroup;
 
     invoke-virtual {p1, p0}, Landroid/view/ViewGroup;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 107
+    .line 108
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/GLTextureView;->getRenderer()Landroid/opengl/GLSurfaceView$Renderer;
@@ -481,21 +481,21 @@
 
     if-nez p1, :cond_1
 
-    .line 108
+    .line 109
     new-instance p1, Lcom/android/camera/fragment/FragmentPanorama$StillPreviewRender;
 
     const/4 v0, 0x0
 
     invoke-direct {p1, p0, v0}, Lcom/android/camera/fragment/FragmentPanorama$StillPreviewRender;-><init>(Lcom/android/camera/fragment/FragmentPanorama;Lcom/android/camera/fragment/FragmentPanorama$1;)V
 
-    .line 109
+    .line 110
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     const/4 v1, 0x2
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/GLTextureView;->setEGLContextClientVersion(I)V
 
-    .line 110
+    .line 111
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     new-instance v1, Lcom/android/camera/fragment/FragmentPanorama$1;
@@ -504,24 +504,24 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/GLTextureView;->setEGLShareContextGetter(Lcom/android/camera/ui/GLTextureView$EGLShareContextGetter;)V
 
-    .line 115
+    .line 116
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/GLTextureView;->setRenderer(Landroid/opengl/GLSurfaceView$Renderer;)V
 
-    .line 116
+    .line 117
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     const/4 v0, 0x0
 
     invoke-virtual {p1, v0}, Lcom/android/camera/ui/GLTextureView;->setRenderMode(I)V
 
-    .line 117
+    .line 118
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/GLTextureView;->onPause()V
 
-    .line 119
+    .line 120
     :cond_1
     return-void
 .end method
@@ -529,7 +529,7 @@
 .method public isShown()Z
     .locals 1
 
-    .line 337
+    .line 338
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
     invoke-virtual {v0}, Landroid/view/View;->isShown()Z
@@ -542,24 +542,24 @@
 .method public moveToDirection(I)V
     .locals 12
 
-    .line 184
+    .line 185
     iput p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveDirection:I
 
-    .line 186
+    .line 187
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mIndicator:Landroid/widget/ImageView;
 
     invoke-virtual {p1}, Landroid/widget/ImageView;->getTranslationX()F
 
     move-result p1
 
-    .line 187
+    .line 188
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaArrowAnimateDrawable:Lcom/android/camera/ui/drawable/PanoramaArrowAnimateDrawable;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/drawable/PanoramaArrowAnimateDrawable;->getTransformationRatio()F
 
     move-result v0
 
-    .line 188
+    .line 189
     iget v1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveDirection:I
 
     const/4 v2, 0x0
@@ -568,7 +568,7 @@
 
     if-ne v1, v3, :cond_0
 
-    .line 189
+    .line 190
     iget p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewTextureWidth:I
 
     iget v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mArrowMargin:I
@@ -577,12 +577,12 @@
 
     int-to-float p1, p1
 
-    .line 190
+    .line 191
     const/high16 v0, 0x40000000    # 2.0f
 
     goto :goto_0
 
-    .line 191
+    .line 192
     :cond_0
     iget v1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveDirection:I
 
@@ -590,7 +590,7 @@
 
     if-ne v1, v4, :cond_1
 
-    .line 192
+    .line 193
     sget p1, Lcom/android/camera/Util;->sWindowWidth:I
 
     iget v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewTextureWidth:I
@@ -603,7 +603,7 @@
 
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mIndicator:Landroid/widget/ImageView;
 
-    .line 193
+    .line 194
     invoke-virtual {v0}, Landroid/widget/ImageView;->getWidth()I
 
     move-result v0
@@ -612,10 +612,10 @@
 
     int-to-float p1, p1
 
-    .line 194
+    .line 195
     nop
 
-    .line 197
+    .line 198
     move v0, v2
 
     :cond_1
@@ -630,7 +630,7 @@
 
     iget-object v7, p0, Lcom/android/camera/fragment/FragmentPanorama;->mIndicator:Landroid/widget/ImageView;
 
-    .line 198
+    .line 199
     invoke-virtual {v7}, Landroid/widget/ImageView;->getTranslationX()F
 
     move-result v7
@@ -643,17 +643,17 @@
 
     aput p1, v6, v7
 
-    .line 197
+    .line 198
     invoke-static {v1, v4, v6}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Ljava/lang/String;[F)Landroid/animation/ObjectAnimator;
 
     move-result-object p1
 
-    .line 199
+    .line 200
     const-wide/16 v9, 0x1f4
 
     invoke-virtual {p1, v9, v10}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
 
-    .line 200
+    .line 201
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaArrowAnimateDrawable:Lcom/android/camera/ui/drawable/PanoramaArrowAnimateDrawable;
 
     const-string v4, "transformationRatio"
@@ -662,7 +662,7 @@
 
     iget-object v11, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaArrowAnimateDrawable:Lcom/android/camera/ui/drawable/PanoramaArrowAnimateDrawable;
 
-    .line 202
+    .line 203
     invoke-virtual {v11}, Lcom/android/camera/ui/drawable/PanoramaArrowAnimateDrawable;->getTransformationRatio()F
 
     move-result v11
@@ -671,15 +671,15 @@
 
     aput v0, v6, v7
 
-    .line 201
+    .line 202
     invoke-static {v1, v4, v6}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Ljava/lang/String;[F)Landroid/animation/ObjectAnimator;
 
     move-result-object v0
 
-    .line 203
+    .line 204
     invoke-virtual {v0, v9, v10}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
 
-    .line 205
+    .line 206
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     const-string v4, "alpha"
@@ -688,7 +688,7 @@
 
     iget-object v9, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
-    .line 206
+    .line 207
     invoke-virtual {v9}, Lcom/android/camera/ui/GLTextureView;->getAlpha()F
 
     move-result v9
@@ -697,17 +697,17 @@
 
     aput v2, v6, v7
 
-    .line 205
+    .line 206
     invoke-static {v1, v4, v6}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Ljava/lang/String;[F)Landroid/animation/ObjectAnimator;
 
     move-result-object v1
 
-    .line 207
+    .line 208
     const-wide/16 v9, 0xfa
 
     invoke-virtual {v1, v9, v10}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
 
-    .line 208
+    .line 209
     iget-object v2, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     const-string v4, "alpha"
@@ -720,22 +720,22 @@
 
     move-result-object v2
 
-    .line 209
+    .line 210
     invoke-virtual {v2, v9, v10}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
 
-    .line 210
+    .line 211
     new-instance v4, Lcom/android/camera/fragment/FragmentPanorama$2;
 
     invoke-direct {v4, p0}, Lcom/android/camera/fragment/FragmentPanorama$2;-><init>(Lcom/android/camera/fragment/FragmentPanorama;)V
 
     invoke-virtual {v2, v4}, Landroid/animation/ObjectAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
-    .line 225
+    .line 226
     new-instance v4, Landroid/animation/AnimatorSet;
 
     invoke-direct {v4}, Landroid/animation/AnimatorSet;-><init>()V
 
-    .line 226
+    .line 227
     new-array v6, v5, [Landroid/animation/Animator;
 
     aput-object v1, v6, v8
@@ -744,12 +744,12 @@
 
     invoke-virtual {v4, v6}, Landroid/animation/AnimatorSet;->playSequentially([Landroid/animation/Animator;)V
 
-    .line 228
+    .line 229
     new-instance v1, Landroid/animation/AnimatorSet;
 
     invoke-direct {v1}, Landroid/animation/AnimatorSet;-><init>()V
 
-    .line 229
+    .line 230
     new-array v2, v3, [Landroid/animation/Animator;
 
     aput-object p1, v2, v8
@@ -760,15 +760,15 @@
 
     invoke-virtual {v1, v2}, Landroid/animation/AnimatorSet;->playTogether([Landroid/animation/Animator;)V
 
-    .line 230
+    .line 231
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mCubicEaseInOutInterpolator:Landroid/view/animation/Interpolator;
 
     invoke-virtual {v1, p1}, Landroid/animation/AnimatorSet;->setInterpolator(Landroid/animation/TimeInterpolator;)V
 
-    .line 231
+    .line 232
     invoke-virtual {v1}, Landroid/animation/AnimatorSet;->start()V
 
-    .line 232
+    .line 233
     return-void
 
     nop
@@ -783,17 +783,17 @@
 .method public notifyAfterFrameAvailable(I)V
     .locals 1
 
-    .line 432
+    .line 433
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->notifyAfterFrameAvailable(I)V
 
-    .line 434
+    .line 435
     iget p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mCurrentMode:I
 
     const/16 v0, 0xa6
 
     if-ne p1, v0, :cond_0
 
-    .line 435
+    .line 436
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
     invoke-virtual {p1}, Landroid/view/View;->getVisibility()I
@@ -802,12 +802,12 @@
 
     if-eqz p1, :cond_0
 
-    .line 436
+    .line 437
     const/4 p1, 0x1
 
     invoke-virtual {p0, p1}, Lcom/android/camera/fragment/FragmentPanorama;->showSmallPreview(Z)V
 
-    .line 439
+    .line 440
     :cond_0
     return-void
 .end method
@@ -815,33 +815,33 @@
 .method public onCaptureOrientationDecided(III)V
     .locals 3
 
-    .line 326
+    .line 327
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewHintArea:Landroid/view/View;
 
     const/16 v1, 0x8
 
     invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
 
-    .line 327
+    .line 328
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/GLTextureView;->onPause()V
 
-    .line 328
+    .line 329
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mUseHint:Landroid/widget/TextView;
 
-    const v1, 0x7f0b00cd
+    const v1, 0x7f0900cc
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
 
-    .line 329
+    .line 330
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMovingDirectionView:Lcom/android/camera/ui/PanoMovingIndicatorView;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/PanoMovingIndicatorView;->setVisibility(I)V
 
-    .line 331
+    .line 332
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMovingDirectionView:Lcom/android/camera/ui/PanoMovingIndicatorView;
 
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveReferenceLine:Landroid/view/View;
@@ -854,7 +854,7 @@
 
     aget v0, v0, v1
 
-    .line 332
+    .line 333
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMovingDirectionView:Lcom/android/camera/ui/PanoMovingIndicatorView;
 
     iget-object v2, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveReferenceLine:Landroid/view/View;
@@ -869,29 +869,29 @@
 
     invoke-virtual {v1, v0}, Lcom/android/camera/ui/PanoMovingIndicatorView;->setDisplayCenterY(I)V
 
-    .line 333
+    .line 334
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMovingDirectionView:Lcom/android/camera/ui/PanoMovingIndicatorView;
 
     invoke-virtual {v0, p1, p2, p3}, Lcom/android/camera/ui/PanoMovingIndicatorView;->setMovingAttribute(III)V
 
-    .line 334
+    .line 335
     return-void
 .end method
 
 .method public onClick(Landroid/view/View;)V
     .locals 2
 
-    .line 145
+    .line 146
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentPanorama;->isEnableClick()Z
 
     move-result p1
 
     if-nez p1, :cond_0
 
-    .line 146
+    .line 147
     return-void
 
-    .line 149
+    .line 150
     :cond_0
     iget p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveDirection:I
 
@@ -901,63 +901,63 @@
 
     if-ne p1, v1, :cond_1
 
-    .line 150
+    .line 151
     invoke-static {v0}, Lcom/android/camera/statistic/CameraStatUtil;->trackDirectionChanged(I)V
 
-    .line 151
+    .line 152
     invoke-virtual {p0, v0}, Lcom/android/camera/fragment/FragmentPanorama;->moveToDirection(I)V
 
     goto :goto_0
 
-    .line 152
+    .line 153
     :cond_1
     iget p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveDirection:I
 
     if-ne p1, v0, :cond_2
 
-    .line 153
+    .line 154
     invoke-static {v1}, Lcom/android/camera/statistic/CameraStatUtil;->trackDirectionChanged(I)V
 
-    .line 154
+    .line 155
     invoke-virtual {p0, v1}, Lcom/android/camera/fragment/FragmentPanorama;->moveToDirection(I)V
 
-    .line 156
+    .line 157
     :cond_2
     :goto_0
     iget p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveDirection:I
 
     invoke-static {p1}, Lcom/android/camera/CameraSettings;->setPanoramaMoveDirection(I)V
 
-    .line 157
+    .line 158
     return-void
 .end method
 
 .method public onPause()V
     .locals 2
 
-    .line 342
+    .line 343
     invoke-super {p0}, Lcom/android/camera/fragment/BaseFragment;->onPause()V
 
-    .line 343
+    .line 344
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/GLTextureView;->onPause()V
 
-    .line 344
+    .line 345
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaPreview:Landroid/widget/ImageView;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setImageDrawable(Landroid/graphics/drawable/Drawable;)V
 
-    .line 345
+    .line 346
     return-void
 .end method
 
 .method public onPreviewMoving()V
     .locals 2
 
-    .line 314
+    .line 315
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewHintArea:Landroid/view/View;
 
     invoke-virtual {v0}, Landroid/view/View;->getVisibility()I
@@ -966,7 +966,7 @@
 
     if-eqz v0, :cond_2
 
-    .line 315
+    .line 316
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMovingDirectionView:Lcom/android/camera/ui/PanoMovingIndicatorView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/PanoMovingIndicatorView;->isTooFast()Z
@@ -975,16 +975,16 @@
 
     if-eqz v0, :cond_0
 
-    .line 316
+    .line 317
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mUseHint:Landroid/widget/TextView;
 
-    const v1, 0x7f0b0191
+    const v1, 0x7f090191
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
 
     goto :goto_0
 
-    .line 317
+    .line 318
     :cond_0
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMovingDirectionView:Lcom/android/camera/ui/PanoMovingIndicatorView;
 
@@ -994,24 +994,24 @@
 
     if-eqz v0, :cond_1
 
-    .line 318
+    .line 319
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mUseHint:Landroid/widget/TextView;
 
-    const v1, 0x7f0b0190
+    const v1, 0x7f090190
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
 
     goto :goto_0
 
-    .line 320
+    .line 321
     :cond_1
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mUseHint:Landroid/widget/TextView;
 
-    const v1, 0x7f0b00cd
+    const v1, 0x7f0900cc
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
 
-    .line 323
+    .line 324
     :cond_2
     :goto_0
     return-void
@@ -1020,57 +1020,57 @@
 .method public onResume()V
     .locals 2
 
-    .line 349
+    .line 350
     invoke-super {p0}, Lcom/android/camera/fragment/BaseFragment;->onResume()V
 
-    .line 350
+    .line 351
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/GLTextureView;->setAlpha(F)V
 
-    .line 351
+    .line 352
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
     const/4 v1, 0x4
 
     invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
 
-    .line 352
+    .line 353
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveReferenceLine:Landroid/view/View;
 
     invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
 
-    .line 353
+    .line 354
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mIndicator:Landroid/widget/ImageView;
 
     invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 354
+    .line 355
     return-void
 .end method
 
-.method public provideAnimateElement(ILjava/util/List;Z)V
+.method public provideAnimateElement(ILjava/util/List;I)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
             "Ljava/util/List<",
             "Lio/reactivex/Completable;",
-            ">;Z)V"
+            ">;I)V"
         }
     .end annotation
 
-    .line 412
-    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;Z)V
+    .line 413
+    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;I)V
 
-    .line 414
+    .line 415
     const/16 p3, 0xa6
 
     if-eq p1, p3, :cond_1
 
-    .line 418
+    .line 419
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
     invoke-virtual {p1}, Landroid/view/View;->getVisibility()I
@@ -1079,17 +1079,17 @@
 
     if-nez p1, :cond_2
 
-    .line 419
+    .line 420
     if-nez p2, :cond_0
 
-    .line 420
+    .line 421
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
     goto :goto_0
 
-    .line 422
+    .line 423
     :cond_0
     new-instance p1, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
 
@@ -1099,12 +1099,12 @@
 
     const/16 p3, 0x96
 
-    .line 423
+    .line 424
     invoke-virtual {p1, p3}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->setDurationTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object p1
 
-    .line 422
+    .line 423
     invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object p1
@@ -1113,11 +1113,11 @@
 
     goto :goto_0
 
-    .line 416
+    .line 417
     :cond_1
     nop
 
-    .line 428
+    .line 429
     :cond_2
     :goto_0
     return-void
@@ -1126,22 +1126,22 @@
 .method protected register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 1
 
-    .line 134
+    .line 135
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 135
+    .line 136
     const/16 v0, 0xb0
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 136
+    .line 137
     return-void
 .end method
 
 .method public requestRender()V
     .locals 1
 
-    .line 235
+    .line 236
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewHintArea:Landroid/view/View;
 
     if-eqz v0, :cond_0
@@ -1154,12 +1154,12 @@
 
     if-eqz v0, :cond_0
 
-    .line 236
+    .line 237
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/GLTextureView;->requestRender()V
 
-    .line 238
+    .line 239
     :cond_0
     return-void
 .end method
@@ -1167,77 +1167,77 @@
 .method public resetShootUI()V
     .locals 2
 
-    .line 248
+    .line 249
     const-string v0, "FragmentPanorama"
 
     const-string v1, "resetShootUI"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 250
+    .line 251
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Lcom/android/camera/fragment/FragmentPanorama;->setClickEnable(Z)V
 
-    .line 251
+    .line 252
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewHintArea:Landroid/view/View;
 
     const/16 v1, 0x8
 
     invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
 
-    .line 252
+    .line 253
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/GLTextureView;->onPause()V
 
-    .line 253
+    .line 254
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMovingDirectionView:Lcom/android/camera/ui/PanoMovingIndicatorView;
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/PanoMovingIndicatorView;->setVisibility(I)V
 
-    .line 254
+    .line 255
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mUseHint:Landroid/widget/TextView;
 
-    const v1, 0x7f0b00ce
+    const v1, 0x7f0900cd
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
 
-    .line 255
+    .line 256
     return-void
 .end method
 
 .method public setDirectionPosition(Landroid/graphics/Point;I)V
     .locals 1
 
-    .line 310
+    .line 311
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMovingDirectionView:Lcom/android/camera/ui/PanoMovingIndicatorView;
 
     invoke-virtual {v0, p1, p2}, Lcom/android/camera/ui/PanoMovingIndicatorView;->setPosition(Landroid/graphics/Point;I)V
 
-    .line 311
+    .line 312
     return-void
 .end method
 
 .method public setDirectionTooFast(ZI)V
     .locals 1
 
-    .line 306
+    .line 307
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMovingDirectionView:Lcom/android/camera/ui/PanoMovingIndicatorView;
 
     invoke-virtual {v0, p1, p2}, Lcom/android/camera/ui/PanoMovingIndicatorView;->setTooFast(ZI)V
 
-    .line 307
+    .line 308
     return-void
 .end method
 
 .method public setDisplayPreviewBitmap(Landroid/graphics/Bitmap;)V
     .locals 1
 
-    .line 298
+    .line 299
     if-nez p1, :cond_0
 
-    .line 299
+    .line 300
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaPreview:Landroid/widget/ImageView;
 
     const/4 v0, 0x0
@@ -1246,13 +1246,13 @@
 
     goto :goto_0
 
-    .line 301
+    .line 302
     :cond_0
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaPreview:Landroid/widget/ImageView;
 
     invoke-virtual {v0, p1}, Landroid/widget/ImageView;->setImageBitmap(Landroid/graphics/Bitmap;)V
 
-    .line 303
+    .line 304
     :goto_0
     return-void
 .end method
@@ -1260,55 +1260,55 @@
 .method public setShootUI()V
     .locals 3
 
-    .line 241
+    .line 242
     const-string v0, "FragmentPanorama"
 
     const-string v1, "setShootUI"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 242
+    .line 243
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Lcom/android/camera/fragment/FragmentPanorama;->setClickEnable(Z)V
 
-    .line 243
+    .line 244
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMovingDirectionView:Lcom/android/camera/ui/PanoMovingIndicatorView;
 
     const/16 v2, 0x8
 
     invoke-virtual {v1, v2}, Lcom/android/camera/ui/PanoMovingIndicatorView;->setVisibility(I)V
 
-    .line 244
+    .line 245
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewHintArea:Landroid/view/View;
 
     invoke-virtual {v1, v0}, Landroid/view/View;->setVisibility(I)V
 
-    .line 245
+    .line 246
     return-void
 .end method
 
 .method public showSmallPreview(Z)V
     .locals 5
 
-    .line 264
+    .line 265
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMovingDirectionView:Lcom/android/camera/ui/PanoMovingIndicatorView;
 
     const/16 v1, 0x8
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/PanoMovingIndicatorView;->setVisibility(I)V
 
-    .line 265
+    .line 266
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
-    .line 266
+    .line 267
     invoke-virtual {v0}, Lcom/android/camera/ui/GLTextureView;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object v0
 
     check-cast v0, Landroid/widget/RelativeLayout$LayoutParams;
 
-    .line 267
+    .line 268
     iget v1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveDirection:I
 
     const/16 v2, 0xb
@@ -1319,13 +1319,13 @@
 
     if-ne v1, v4, :cond_0
 
-    .line 268
+    .line 269
     invoke-virtual {v0, v3}, Landroid/widget/RelativeLayout$LayoutParams;->removeRule(I)V
 
-    .line 269
+    .line 270
     invoke-virtual {v0, v2}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
 
-    .line 270
+    .line 271
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mIndicator:Landroid/widget/ImageView;
 
     sget v1, Lcom/android/camera/Util;->sWindowWidth:I
@@ -1340,7 +1340,7 @@
 
     iget-object v2, p0, Lcom/android/camera/fragment/FragmentPanorama;->mIndicator:Landroid/widget/ImageView;
 
-    .line 271
+    .line 272
     invoke-virtual {v2}, Landroid/widget/ImageView;->getWidth()I
 
     move-result v2
@@ -1349,10 +1349,10 @@
 
     int-to-float v1, v1
 
-    .line 270
+    .line 271
     invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setTranslationX(F)V
 
-    .line 272
+    .line 273
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaArrowAnimateDrawable:Lcom/android/camera/ui/drawable/PanoramaArrowAnimateDrawable;
 
     const/4 v1, 0x0
@@ -1361,7 +1361,7 @@
 
     goto :goto_0
 
-    .line 274
+    .line 275
     :cond_0
     iget v1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mMoveDirection:I
 
@@ -1369,13 +1369,13 @@
 
     if-ne v1, v4, :cond_1
 
-    .line 275
+    .line 276
     invoke-virtual {v0, v2}, Landroid/widget/RelativeLayout$LayoutParams;->removeRule(I)V
 
-    .line 276
+    .line 277
     invoke-virtual {v0, v3}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
 
-    .line 277
+    .line 278
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mIndicator:Landroid/widget/ImageView;
 
     iget v1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewTextureWidth:I
@@ -1388,46 +1388,46 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setTranslationX(F)V
 
-    .line 278
+    .line 279
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaArrowAnimateDrawable:Lcom/android/camera/ui/drawable/PanoramaArrowAnimateDrawable;
 
     const/high16 v1, 0x40000000    # 2.0f
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/drawable/PanoramaArrowAnimateDrawable;->setTransformationRatio(F)V
 
-    .line 281
+    .line 282
     :cond_1
     :goto_0
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/GLTextureView;->requestLayout()V
 
-    .line 284
+    .line 285
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/GLTextureView;->onResume()V
 
-    .line 285
+    .line 286
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreview:Lcom/android/camera/ui/GLTextureView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/GLTextureView;->requestRender()V
 
-    .line 286
+    .line 287
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mStillPreviewHintArea:Landroid/view/View;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
 
-    .line 287
+    .line 288
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mWaitingFirstFrame:Z
 
-    .line 289
+    .line 290
     if-eqz p1, :cond_2
 
-    .line 290
+    .line 291
     new-instance p1, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
 
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
@@ -1444,18 +1444,18 @@
 
     move-result-object p1
 
-    .line 291
+    .line 292
     invoke-virtual {p1}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
     goto :goto_1
 
-    .line 293
+    .line 294
     :cond_2
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama;->mPanoramaViewRoot:Landroid/view/View;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 295
+    .line 296
     :goto_1
     return-void
 .end method
@@ -1463,14 +1463,14 @@
 .method protected unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 1
 
-    .line 140
+    .line 141
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 141
+    .line 142
     const/16 v0, 0xb0
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 142
+    .line 143
     return-void
 .end method

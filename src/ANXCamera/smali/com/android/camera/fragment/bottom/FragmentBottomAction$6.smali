@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)V
     .locals 0
 
-    .line 835
+    .line 847
     iput-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$6;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,14 +38,14 @@
 .method public onAnimationUpdate(Landroid/animation/ValueAnimator;)V
     .locals 1
 
-    .line 838
+    .line 850
     invoke-virtual {p1}, Landroid/animation/ValueAnimator;->getAnimatedValue()Ljava/lang/Object;
 
     move-result-object p1
 
     check-cast p1, Ljava/lang/Float;
 
-    .line 839
+    .line 851
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$6;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {v0}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$200(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/widget/ProgressBar;
@@ -58,6 +58,6 @@
 
     invoke-virtual {v0, p1}, Landroid/widget/ProgressBar;->setAlpha(F)V
 
-    .line 840
+    .line 852
     return-void
 .end method

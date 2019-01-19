@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;)V
     .locals 0
 
-    .line 139
+    .line 134
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$1;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
     invoke-direct {p0}, Landroid/os/Handler;-><init>()V
@@ -35,7 +35,7 @@
 .method public handleMessage(Landroid/os/Message;)V
     .locals 3
 
-    .line 142
+    .line 137
     iget p1, p1, Landroid/os/Message;->what:I
 
     const/4 v0, 0x1
@@ -44,7 +44,7 @@
 
     goto :goto_1
 
-    .line 144
+    .line 139
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$1;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
@@ -56,7 +56,7 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setVisibility(I)V
 
-    .line 145
+    .line 140
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$1;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
     invoke-static {p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->access$100(Lcom/android/camera/fragment/FragmentBottomPopupTips;)I
@@ -71,7 +71,7 @@
 
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$1;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
-    .line 146
+    .line 141
     invoke-static {p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->access$200(Lcom/android/camera/fragment/FragmentBottomPopupTips;)I
 
     move-result p1
@@ -80,14 +80,14 @@
 
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$1;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
-    .line 147
+    .line 142
     invoke-virtual {p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->isPortraitHintVisible()Z
 
     move-result p1
 
     if-nez p1, :cond_1
 
-    .line 148
+    .line 143
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$1;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$1;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
@@ -106,7 +106,7 @@
 
     goto :goto_0
 
-    .line 149
+    .line 144
     :cond_1
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$1;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
@@ -118,7 +118,7 @@
 
     if-ne p1, v0, :cond_2
 
-    .line 150
+    .line 145
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$1;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$1;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
@@ -135,14 +135,14 @@
 
     invoke-virtual {p1, v0, v1, v2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->showTips(III)V
 
-    .line 152
+    .line 147
     :cond_2
     :goto_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$1;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
     invoke-static {p1, v2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->access$102(Lcom/android/camera/fragment/FragmentBottomPopupTips;I)I
 
-    .line 155
+    .line 150
     :goto_1
     return-void
 .end method

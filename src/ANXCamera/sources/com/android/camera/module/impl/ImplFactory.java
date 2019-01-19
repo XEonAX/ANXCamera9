@@ -79,7 +79,7 @@ public class ImplFactory {
         detach(this.mPersistentProtocolList);
     }
 
-    private void detachBase() {
+    public void detachBase() {
         detach(this.mBaseProtocolList);
     }
 
@@ -92,6 +92,7 @@ public class ImplFactory {
         }
     }
 
+    @Deprecated
     public void release() {
         if (!this.mReleased) {
             detachAdditional();

@@ -177,58 +177,55 @@
     move-result-object v1
 
     .line 204
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "_ORG"
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    if-nez p1, :cond_0
-
-    const-string v3, ""
-
-    goto :goto_0
-
-    :cond_0
-    const-string v3, "_"
-
-    :goto_0
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object p1
+    const-string v2, "_ORG"
 
     .line 205
-    const-string v2, "."
-
-    invoke-virtual {v1, v2}, Ljava/lang/String;->lastIndexOf(Ljava/lang/String;)I
-
-    move-result v2
+    if-lez p1, :cond_0
 
     .line 206
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string v2, "_"
+
+    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 208
+    :cond_0
+    const-string p1, "."
+
+    invoke-virtual {v1, p1}, Ljava/lang/String;->lastIndexOf(Ljava/lang/String;)I
+
+    move-result p1
+
+    .line 209
     const/4 v3, 0x0
 
-    if-lez v2, :cond_1
+    if-lez p1, :cond_1
 
-    .line 207
+    .line 210
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
 
-    invoke-virtual {v1, v3, v2}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+    invoke-virtual {v1, v3, p1}, Ljava/lang/String;->substring(II)Ljava/lang/String;
 
     move-result-object v5
 
     invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v4, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v4, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v1, v2}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+    invoke-virtual {v1, p1}, Ljava/lang/String;->substring(I)Ljava/lang/String;
 
     move-result-object p1
 
@@ -238,24 +235,24 @@
 
     move-result-object p1
 
-    goto :goto_1
+    goto :goto_0
 
-    .line 209
+    .line 212
     :cond_1
-    new-instance v2, Ljava/lang/StringBuilder;
+    new-instance p1, Ljava/lang/StringBuilder;
 
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {p1}, Ljava/lang/StringBuilder;-><init>()V
 
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {p1, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {p1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object p1
 
-    .line 211
-    :goto_1
+    .line 214
+    :goto_0
     sget-object v1, Lcom/xiaomi/camera/core/ParallelTaskData;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -274,13 +271,13 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 212
+    .line 215
     invoke-virtual {v0, p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->setSavePath(Ljava/lang/String;)V
 
-    .line 213
+    .line 216
     invoke-virtual {v0, v3}, Lcom/xiaomi/camera/core/ParallelTaskData;->setNeedThumbnail(Z)V
 
-    .line 214
+    .line 217
     new-instance p1, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
     invoke-virtual {p0}, Lcom/xiaomi/camera/core/ParallelTaskData;->getDataParameter()Lcom/xiaomi/camera/core/ParallelTaskDataParameter;
@@ -289,20 +286,25 @@
 
     invoke-direct {p1, v1}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;-><init>(Lcom/xiaomi/camera/core/ParallelTaskDataParameter;)V
 
-    .line 215
+    .line 218
     invoke-virtual {p1, v3}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setHasDualWaterMark(Z)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
-    .line 216
+    .line 219
+    const/4 v1, 0x0
+
+    invoke-virtual {p1, v1}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setTimeWaterMarkString(Ljava/lang/String;)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    .line 220
     invoke-virtual {p1, v3}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setSaveGroupshotPrimitive(Z)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
-    .line 217
+    .line 221
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->build()Lcom/xiaomi/camera/core/ParallelTaskDataParameter;
 
     move-result-object p1
 
     invoke-virtual {v0, p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->fillParameter(Lcom/xiaomi/camera/core/ParallelTaskDataParameter;)V
 
-    .line 219
+    .line 223
     return-object v0
 .end method
 
@@ -534,7 +536,7 @@
 .method public getAlgoType()I
     .locals 1
 
-    .line 273
+    .line 277
     iget v0, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mAlgoType:I
 
     return v0
@@ -543,7 +545,7 @@
 .method public getBurstNum()I
     .locals 1
 
-    .line 277
+    .line 281
     iget v0, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mBurstNum:I
 
     return v0
@@ -552,7 +554,7 @@
 .method public getCaptureResult()Lcom/xiaomi/protocol/ICustomCaptureResult;
     .locals 1
 
-    .line 252
+    .line 256
     iget-object v0, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mCaptureResult:Lcom/xiaomi/protocol/ICustomCaptureResult;
 
     return-object v0
@@ -563,7 +565,7 @@
 
     monitor-enter p0
 
-    .line 232
+    .line 236
     :try_start_0
     iget-wide v0, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mCoverFrameTimestamp:J
     :try_end_0
@@ -584,7 +586,7 @@
 .method public getDataParameter()Lcom/xiaomi/camera/core/ParallelTaskDataParameter;
     .locals 1
 
-    .line 265
+    .line 269
     iget-object v0, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mDataParameter:Lcom/xiaomi/camera/core/ParallelTaskDataParameter;
 
     return-object v0
@@ -593,7 +595,7 @@
 .method public getJpegImageData()[B
     .locals 1
 
-    .line 236
+    .line 240
     iget-object v0, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mJpegImageData:[B
 
     return-object v0
@@ -604,13 +606,13 @@
 
     monitor-enter p0
 
-    .line 225
+    .line 229
     :try_start_0
     iget-object v0, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mVideoRawData:[B
 
     if-eqz v0, :cond_0
 
-    .line 228
+    .line 232
     iget-object v0, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mVideoRawData:[B
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -619,7 +621,7 @@
 
     return-object v0
 
-    .line 226
+    .line 230
     :cond_0
     :try_start_1
     new-instance v0, Ljava/lang/IllegalStateException;
@@ -632,7 +634,7 @@
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 224
+    .line 228
     :catchall_0
     move-exception v0
 
@@ -644,7 +646,7 @@
 .method public getParallelType()I
     .locals 1
 
-    .line 257
+    .line 261
     iget v0, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mParallelType:I
 
     return v0
@@ -653,7 +655,7 @@
 .method public getPortraitDepthData()[B
     .locals 1
 
-    .line 248
+    .line 252
     iget-object v0, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mPortraitDepthData:[B
 
     return-object v0
@@ -662,7 +664,7 @@
 .method public getPortraitRawData()[B
     .locals 1
 
-    .line 244
+    .line 248
     iget-object v0, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mPortraitRawData:[B
 
     return-object v0
@@ -671,7 +673,7 @@
 .method public getSavePath()Ljava/lang/String;
     .locals 1
 
-    .line 261
+    .line 265
     iget-object v0, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mSavePath:Ljava/lang/String;
 
     return-object v0
@@ -680,7 +682,7 @@
 .method public getTimeStamp()J
     .locals 2
 
-    .line 240
+    .line 244
     iget-wide v0, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mTimeStamp:J
 
     return-wide v0
@@ -919,7 +921,7 @@
 .method public isNeedThumbnail()Z
     .locals 1
 
-    .line 269
+    .line 273
     iget-boolean v0, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->isNeedThumbnail:Z
 
     return v0
@@ -938,20 +940,20 @@
 .method public setAlgoType(I)V
     .locals 0
 
-    .line 294
+    .line 298
     iput p1, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mAlgoType:I
 
-    .line 295
+    .line 299
     return-void
 .end method
 
 .method public setBurstNum(I)V
     .locals 0
 
-    .line 298
+    .line 302
     iput p1, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mBurstNum:I
 
-    .line 299
+    .line 303
     return-void
 .end method
 
@@ -991,29 +993,29 @@
 .method public setNeedThumbnail(Z)V
     .locals 0
 
-    .line 290
+    .line 294
     iput-boolean p1, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->isNeedThumbnail:Z
 
-    .line 291
+    .line 295
     return-void
 .end method
 
 .method public setSavePath(Ljava/lang/String;)V
     .locals 0
 
-    .line 282
+    .line 286
     iput-object p1, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mSavePath:Ljava/lang/String;
 
-    .line 283
+    .line 287
     return-void
 .end method
 
 .method public setTimeStamp(J)V
     .locals 0
 
-    .line 286
+    .line 290
     iput-wide p1, p0, Lcom/xiaomi/camera/core/ParallelTaskData;->mTimeStamp:J
 
-    .line 287
+    .line 291
     return-void
 .end method

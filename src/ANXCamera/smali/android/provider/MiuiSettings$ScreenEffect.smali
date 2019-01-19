@@ -31,6 +31,8 @@
 
 .field public static final FLAG_SUPPORT_STANDARD_MODE:I = 0x4
 
+.field public static final GAME_HDR_LEVEL:Ljava/lang/String; = "game_hdr_level"
+
 .field public static final GAME_MODE:Ljava/lang/String; = "screen_game_mode"
 
 .field public static final GAME_MODE_DISABLE_EYECARE:I = 0x1

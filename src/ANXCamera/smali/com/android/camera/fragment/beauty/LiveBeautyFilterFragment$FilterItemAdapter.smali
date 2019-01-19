@@ -100,7 +100,7 @@
     .line 241
     iget-object p2, p0, Lcom/android/camera/fragment/beauty/LiveBeautyFilterFragment$FilterItemAdapter;->mLayoutInflater:Landroid/view/LayoutInflater;
 
-    const v0, 0x7f040038
+    const v0, 0x7f04003a
 
     const/4 v1, 0x0
 

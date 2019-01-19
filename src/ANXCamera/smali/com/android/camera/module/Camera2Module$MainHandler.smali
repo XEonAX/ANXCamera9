@@ -22,13 +22,13 @@
 .method public constructor <init>(Lcom/android/camera/module/Camera2Module;Landroid/os/Looper;)V
     .locals 0
 
-    .line 2012
+    .line 2070
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    .line 2013
+    .line 2071
     invoke-direct {p0, p2}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
 
-    .line 2014
+    .line 2072
     return-void
 .end method
 
@@ -37,7 +37,7 @@
 .method public handleMessage(Landroid/os/Message;)V
     .locals 5
 
-    .line 2018
+    .line 2076
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-virtual {v0}, Lcom/android/camera/module/Camera2Module;->isCreated()Z
@@ -48,13 +48,13 @@
 
     if-nez v0, :cond_0
 
-    .line 2019
+    .line 2077
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 2020
+    .line 2078
     return-void
 
-    .line 2023
+    .line 2081
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
@@ -64,10 +64,10 @@
 
     if-nez v0, :cond_1
 
-    .line 2024
+    .line 2082
     return-void
 
-    .line 2027
+    .line 2085
     :cond_1
     iget v0, p1, Landroid/os/Message;->what:I
 
@@ -107,7 +107,7 @@
 
     packed-switch v0, :pswitch_data_2
 
-    .line 2030
+    .line 2088
     new-instance v0, Ljava/lang/RuntimeException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -130,7 +130,7 @@
 
     throw v0
 
-    .line 2113
+    .line 2171
     :pswitch_0
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
@@ -142,10 +142,10 @@
 
     invoke-virtual {p1, v0}, Lcom/android/camera/module/Camera2Module;->onShutterButtonClick(I)V
 
-    .line 2114
+    .line 2172
     goto/16 :goto_1
 
-    .line 2083
+    .line 2141
     :pswitch_1
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
@@ -157,21 +157,21 @@
 
     if-nez p1, :cond_b
 
-    .line 2084
+    .line 2142
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
     iput-boolean v4, p1, Lcom/android/camera/module/Camera2Module;->mOpenCameraFail:Z
 
-    .line 2085
+    .line 2143
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-virtual {p1}, Lcom/android/camera/module/Camera2Module;->onCameraException()V
 
     goto/16 :goto_1
 
-    .line 2107
+    .line 2165
     :pswitch_2
-    invoke-static {}, Lcom/android/camera/module/Camera2Module;->access$1300()Ljava/lang/String;
+    invoke-static {}, Lcom/android/camera/module/Camera2Module;->access$1400()Ljava/lang/String;
 
     move-result-object p1
 
@@ -179,15 +179,15 @@
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2109
+    .line 2167
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-virtual {p1, v3}, Lcom/android/camera/module/Camera2Module;->onPictureTakenFinished(Z)V
 
-    .line 2110
+    .line 2168
     goto/16 :goto_1
 
-    .line 2099
+    .line 2157
     :pswitch_3
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
@@ -197,16 +197,16 @@
 
     if-nez p1, :cond_2
 
-    .line 2100
+    .line 2158
     return-void
 
-    .line 2102
+    .line 2160
     :cond_2
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$2600(Lcom/android/camera/module/Camera2Module;)V
+    invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$2700(Lcom/android/camera/module/Camera2Module;)V
 
-    .line 2103
+    .line 2161
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$000(Lcom/android/camera/module/Camera2Module;)Lio/reactivex/ObservableEmitter;
@@ -215,28 +215,28 @@
 
     invoke-interface {p1}, Lio/reactivex/ObservableEmitter;->onComplete()V
 
-    .line 2104
+    .line 2162
     goto/16 :goto_1
 
-    .line 2095
+    .line 2153
     :pswitch_4
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-virtual {p1, v4}, Lcom/android/camera/module/Camera2Module;->setCameraState(I)V
 
-    .line 2096
+    .line 2154
     goto/16 :goto_1
 
-    .line 2079
+    .line 2137
     :pswitch_5
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-virtual {p1, v1}, Lcom/android/camera/module/Camera2Module;->setActivity(Lcom/android/camera/Camera;)V
 
-    .line 2080
+    .line 2138
     goto/16 :goto_1
 
-    .line 2117
+    .line 2175
     :pswitch_6
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
@@ -244,25 +244,25 @@
 
     goto/16 :goto_1
 
-    .line 2039
+    .line 2097
     :pswitch_7
     goto/16 :goto_1
 
-    .line 2090
+    .line 2148
     :pswitch_8
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
     iput-boolean v4, p1, Lcom/android/camera/module/Camera2Module;->mOpenCameraFail:Z
 
-    .line 2091
+    .line 2149
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-virtual {p1}, Lcom/android/camera/module/Camera2Module;->onCameraException()V
 
-    .line 2092
+    .line 2150
     goto/16 :goto_1
 
-    .line 2033
+    .line 2091
     :pswitch_9
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
@@ -272,7 +272,7 @@
 
     invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->initializeFocusView(Lcom/android/camera/ui/FocusView$ExposureViewListener;)V
 
-    .line 2034
+    .line 2092
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
     iget-object p1, p1, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
@@ -281,10 +281,10 @@
 
     invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->setObjectViewListener(Lcom/android/camera/ui/ObjectView$ObjectViewListener;)V
 
-    .line 2036
+    .line 2094
     goto/16 :goto_1
 
-    .line 2064
+    .line 2122
     :cond_3
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
@@ -309,12 +309,12 @@
     nop
 
     :cond_5
-    invoke-static {v0, v1, v3}, Lcom/android/camera/module/Camera2Module;->access$3600(Lcom/android/camera/module/Camera2Module;ZZ)V
+    invoke-static {v0, v1, v3}, Lcom/android/camera/module/Camera2Module;->access$3700(Lcom/android/camera/module/Camera2Module;ZZ)V
 
-    .line 2065
+    .line 2123
     goto :goto_1
 
-    .line 2056
+    .line 2114
     :cond_6
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
@@ -322,40 +322,40 @@
 
     iget p1, p1, Landroid/os/Message;->arg2:I
 
-    invoke-static {v0, v1, p1}, Lcom/android/camera/module/Camera2Module;->access$3400(Lcom/android/camera/module/Camera2Module;II)V
+    invoke-static {v0, v1, p1}, Lcom/android/camera/module/Camera2Module;->access$3500(Lcom/android/camera/module/Camera2Module;II)V
 
-    .line 2057
+    .line 2115
     goto :goto_1
 
-    .line 2060
+    .line 2118
     :cond_7
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$3500(Lcom/android/camera/module/Camera2Module;)V
+    invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$3600(Lcom/android/camera/module/Camera2Module;)V
 
-    .line 2061
+    .line 2119
     goto :goto_1
 
-    .line 2072
+    .line 2130
     :cond_8
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$3300(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/module/Camera2Module$MainHandler;
+    invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$3400(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/module/Camera2Module$MainHandler;
 
     move-result-object p1
 
     invoke-virtual {p1, v4}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeMessages(I)V
 
-    .line 2073
+    .line 2131
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$3300(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/module/Camera2Module$MainHandler;
+    invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$3400(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/module/Camera2Module$MainHandler;
 
     move-result-object p1
 
     invoke-virtual {p1, v3}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeMessages(I)V
 
-    .line 2074
+    .line 2132
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-virtual {p1}, Lcom/android/camera/module/Camera2Module;->getWindow()Landroid/view/Window;
@@ -364,10 +364,10 @@
 
     invoke-virtual {p1, v2}, Landroid/view/Window;->addFlags(I)V
 
-    .line 2075
+    .line 2133
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$3300(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/module/Camera2Module$MainHandler;
+    invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$3400(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/module/Camera2Module$MainHandler;
 
     move-result-object p1
 
@@ -381,23 +381,23 @@
 
     invoke-virtual {p1, v3, v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->sendEmptyMessageDelayed(IJ)Z
 
-    .line 2076
+    .line 2134
     goto :goto_1
 
-    .line 2047
+    .line 2105
     :cond_9
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-virtual {p1}, Lcom/android/camera/module/Camera2Module;->checkActivityOrientation()V
 
-    .line 2050
+    .line 2108
     invoke-static {}, Landroid/os/SystemClock;->uptimeMillis()J
 
     move-result-wide v0
 
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$3200(Lcom/android/camera/module/Camera2Module;)J
+    invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$3300(Lcom/android/camera/module/Camera2Module;)J
 
     move-result-wide v2
 
@@ -409,10 +409,10 @@
 
     if-gez p1, :cond_b
 
-    .line 2051
+    .line 2109
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$3300(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/module/Camera2Module$MainHandler;
+    invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$3400(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/module/Camera2Module$MainHandler;
 
     move-result-object p1
 
@@ -422,7 +422,7 @@
 
     goto :goto_1
 
-    .line 2068
+    .line 2126
     :cond_a
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$MainHandler;->this$0:Lcom/android/camera/module/Camera2Module;
 
@@ -432,10 +432,10 @@
 
     invoke-virtual {p1, v2}, Landroid/view/Window;->clearFlags(I)V
 
-    .line 2069
+    .line 2127
     nop
 
-    .line 2121
+    .line 2179
     :cond_b
     :goto_1
     return-void

@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/FragmentMainContent;)V
     .locals 0
 
-    .line 972
+    .line 1004
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent$3;->this$0:Lcom/android/camera/fragment/FragmentMainContent;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public run()V
     .locals 2
 
-    .line 975
+    .line 1007
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent$3;->this$0:Lcom/android/camera/fragment/FragmentMainContent;
 
     invoke-virtual {v0}, Lcom/android/camera/fragment/FragmentMainContent;->isAdded()Z
@@ -47,7 +47,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 976
+    .line 1008
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent$3;->this$0:Lcom/android/camera/fragment/FragmentMainContent;
 
     invoke-static {v0}, Lcom/android/camera/fragment/FragmentMainContent;->access$300(Lcom/android/camera/fragment/FragmentMainContent;)Lcom/android/camera/ui/V6PreviewFrame;
@@ -58,7 +58,7 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/V6PreviewFrame;->sendAccessibilityEvent(I)V
 
-    .line 978
+    .line 1010
     :cond_0
     return-void
 .end method

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
+import android.hardware.SensorEvent;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CaptureResult;
 import android.location.Location;
@@ -16,12 +17,14 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
+import android.support.annotation.MainThread;
 import android.util.Range;
 import android.view.KeyEvent;
 import android.view.Surface;
 import android.view.View;
 import android.widget.Toast;
 import com.android.camera.BasePreferenceActivity;
+import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraPreferenceActivity;
 import com.android.camera.CameraSettings;
 import com.android.camera.LocationManager;
@@ -33,6 +36,7 @@ import com.android.camera.data.DataRepository;
 import com.android.camera.effect.EffectController;
 import com.android.camera.effect.FaceAnalyzeInfo;
 import com.android.camera.fragment.CtaNoticeFragment;
+import com.android.camera.fragment.beauty.LiveBeautyFilterFragment.LiveFilterItem;
 import com.android.camera.log.Log;
 import com.android.camera.module.loader.FunctionParseAsdFace;
 import com.android.camera.module.loader.camera2.Camera2DataContainer;
@@ -45,6 +49,7 @@ import com.android.camera.protocol.ModeProtocol.CameraAction;
 import com.android.camera.protocol.ModeProtocol.FullScreenProtocol;
 import com.android.camera.protocol.ModeProtocol.LiveConfigChanges;
 import com.android.camera.protocol.ModeProtocol.LiveVideoEditor;
+import com.android.camera.protocol.ModeProtocol.MainContentProtocol;
 import com.android.camera.protocol.ModeProtocol.OnFaceBeautyChangedProtocol;
 import com.android.camera.protocol.ModeProtocol.RecordState;
 import com.android.camera.statistic.CameraStatUtil;
@@ -55,6 +60,7 @@ import com.android.camera2.Camera2Proxy.FocusCallback;
 import com.android.camera2.CameraCapabilities;
 import com.android.camera2.CameraHardwareFace;
 import com.mi.config.b;
+import com.ss.android.medialib.TTRecorder.SlamDetectListener;
 import com.ss.android.ttve.oauth.TEOAuthResult;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
@@ -67,6 +73,9 @@ import java.util.Date;
 import java.util.Locale;
 
 public class LiveModule extends BaseModule implements Listener, CameraAction, OnFaceBeautyChangedProtocol, CameraPreviewCallback, FaceDetectionCallback, FocusCallback {
+    private static final int BEAUTY_SWITCH = 8;
+    private static final int FILTER_SWITCH = 2;
+    private static final int STICKER_SWITCH = 4;
     private static final String TAG = LiveModule.class.getSimpleName();
     private boolean m3ALocked;
     private String mBaseFileName;
@@ -75,11 +84,14 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
     protected boolean mFaceDetectionStarted;
     private FocusManager2 mFocusManager;
     private MainHandler mHandler;
+    private boolean mIsRecording = false;
     private LiveConfigChanges mLiveConfigChanges;
     private LiveVideoEditor mLiveVideoEditor;
     private Disposable mMetaDataDisposable;
     private FlowableEmitter<CaptureResult> mMetaDataFlowableEmitter;
+    private int mOldOriginVolumeStream;
     private long mOnResumeTime;
+    private int mQuality = 5;
     private boolean mSaved;
     protected SensorStateListener mSensorStateListener = new SensorStateListener() {
         public void onDeviceBecomeStable() {
@@ -108,7 +120,20 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
         public void notifyDevicePostureChanged() {
             LiveModule.this.mActivity.getEdgeShutterView().onDevicePostureChanged();
         }
+
+        public void onDeviceRotationChanged(float[] fArr) {
+            if (LiveModule.this.mLiveConfigChanges != null) {
+                LiveModule.this.mLiveConfigChanges.onDeviceRotationChange(fArr);
+            }
+        }
+
+        public void onSensorChanged(SensorEvent sensorEvent) {
+            if (LiveModule.this.mLiveConfigChanges != null) {
+                LiveModule.this.mLiveConfigChanges.onSensorChanged(sensorEvent);
+            }
+        }
     };
+    protected boolean mShowFace = false;
     private long mTouchFocusStartingTime;
 
     private class MainHandler extends Handler {
@@ -118,18 +143,35 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
 
         public void handleMessage(Message message) {
             int i = message.what;
-            if (i == 4) {
+            if (i == 2) {
+                LiveModule.this.getWindow().clearFlags(128);
+            } else if (i == 4) {
                 LiveModule.this.checkActivityOrientation();
                 if (SystemClock.uptimeMillis() - LiveModule.this.mOnResumeTime < 5000) {
                     LiveModule.this.mHandler.sendEmptyMessageDelayed(4, 100);
                 }
             } else if (i == 9) {
                 LiveModule.this.mMainProtocol.initializeFocusView(LiveModule.this);
-            } else if (i == 31) {
+            } else if (i == 17) {
+                LiveModule.this.mHandler.removeMessages(17);
+                LiveModule.this.mHandler.removeMessages(2);
+                LiveModule.this.getWindow().addFlags(128);
+                LiveModule.this.mHandler.sendEmptyMessageDelayed(2, (long) LiveModule.this.getScreenDelay());
+            } else if (i != 31) {
+                boolean z = true;
+                if (i == 35) {
+                    LiveModule liveModule = LiveModule.this;
+                    boolean z2 = message.arg1 > 0;
+                    if (message.arg2 <= 0) {
+                        z = false;
+                    }
+                    liveModule.handleUpdateFaceView(z2, z);
+                } else if (i == 51 && !LiveModule.this.mActivity.isActivityPaused()) {
+                    LiveModule.this.mOpenCameraFail = true;
+                    LiveModule.this.onCameraException();
+                }
+            } else {
                 LiveModule.this.setOrientationParameter();
-            } else if (i == 51 && !LiveModule.this.mActivity.isActivityPaused()) {
-                LiveModule.this.mOpenCameraFail = true;
-                LiveModule.this.onCameraException();
             }
         }
     }
@@ -170,6 +212,7 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
         onCameraOpened();
         this.mHandler.sendEmptyMessage(4);
         this.mHandler.sendEmptyMessage(31);
+        this.mActivity.getSensorStateManager().setRotationVectorEnabled(true);
     }
 
     protected void onCameraOpened() {
@@ -282,6 +325,8 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
                 case 30:
                 case 34:
                 case 42:
+                case 43:
+                case 50:
                     break;
                 case 12:
                     setEvValue();
@@ -323,23 +368,31 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
     }
 
     private void updateBeauty() {
-        float faceBeautyRatio = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_SHRINK_FACE_RATIO, 0)) / 100.0f;
-        float faceBeautyRatio2 = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_ENLARGE_EYE_RATIO, 0)) / 100.0f;
-        float faceBeautyRatio3 = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_WHITEN_STRENGTH, 0)) / 100.0f;
+        float faceBeautyRatio = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_SHRINK_FACE_RATIO, 40)) / 100.0f;
+        float faceBeautyRatio2 = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_ENLARGE_EYE_RATIO, 40)) / 100.0f;
+        float faceBeautyRatio3 = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_SMOOTH_STRENGTH, 40)) / 100.0f;
+        if (faceBeautyRatio > 0.0f || faceBeautyRatio2 > 0.0f || faceBeautyRatio3 > 0.0f) {
+            CameraSettings.setLiveBeautyStatus(true);
+            if (this.mLiveConfigChanges != null) {
+                this.mLiveConfigChanges.setBeautyFaceReshape(true, faceBeautyRatio2, faceBeautyRatio);
+                this.mLiveConfigChanges.setBeautify(true, faceBeautyRatio3);
+            }
+        } else {
+            CameraSettings.setLiveBeautyStatus(false);
+            if (this.mLiveConfigChanges != null) {
+                this.mLiveConfigChanges.setBeautyFaceReshape(false, faceBeautyRatio2, faceBeautyRatio);
+                this.mLiveConfigChanges.setBeautify(false, faceBeautyRatio3);
+            }
+        }
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("shrinkFaceRatio->");
         stringBuilder.append(faceBeautyRatio);
         stringBuilder.append(",enlargEyeRatio->");
         stringBuilder.append(faceBeautyRatio2);
-        stringBuilder.append(",whitenStrengthRatio->");
+        stringBuilder.append(",smoothStrengthRatio->");
         stringBuilder.append(faceBeautyRatio3);
         Log.d(str, stringBuilder.toString());
-        LiveConfigChanges liveConfigChanges = (LiveConfigChanges) ModeCoordinatorImpl.getInstance().getAttachProtocol(201);
-        if (liveConfigChanges != null) {
-            liveConfigChanges.setBeautyFaceReshape(faceBeautyRatio2, faceBeautyRatio);
-            liveConfigChanges.setBeautify(true, faceBeautyRatio3);
-        }
     }
 
     protected void openSettingActivity() {
@@ -359,7 +412,7 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
         if (isEisOn()) {
             return 32772;
         }
-        if (DataRepository.dataItemFeature().ff()) {
+        if (DataRepository.dataItemFeature().fg()) {
             return CameraCapabilities.SESSION_OPERATION_MODE_MCTF;
         }
         return 0;
@@ -384,15 +437,21 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
         }
     }
 
-    private void resetScreenOn() {
-        if (this.mHandler != null) {
-            this.mHandler.removeMessages(17);
-            this.mHandler.removeMessages(2);
-        }
+    protected void keepScreenOnAwhile() {
+        this.mHandler.sendEmptyMessageDelayed(17, 1000);
     }
 
-    private void keepScreenOnAwhile() {
-        this.mHandler.sendEmptyMessageDelayed(17, 1000);
+    protected void keepScreenOn() {
+        this.mHandler.removeMessages(17);
+        this.mHandler.removeMessages(2);
+        this.mHandler.removeMessages(52);
+        getWindow().addFlags(128);
+    }
+
+    protected void resetScreenOn() {
+        this.mHandler.removeMessages(17);
+        this.mHandler.removeMessages(2);
+        this.mHandler.removeMessages(52);
     }
 
     public void onStop() {
@@ -407,8 +466,18 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
         if (this.mCtaNoticeFragment != null) {
             this.mCtaNoticeFragment.dismiss();
         }
+        this.mHandler.post(-$$Lambda$LiveModule$QVM-tqWYbz8yPiLYvpxAglWLw-g.INSTANCE);
         if (this.mHandler != null) {
             this.mHandler.sendEmptyMessage(45);
+        }
+        this.mActivity.getSensorStateManager().setRotationVectorEnabled(false);
+        this.mActivity.getSensorStateManager().setTTARSensorEnabled(false);
+    }
+
+    static /* synthetic */ void lambda$onDestroy$0() {
+        MainContentProtocol mainContentProtocol = (MainContentProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(166);
+        if (mainContentProtocol != null) {
+            mainContentProtocol.setCenterHint(8, null, null, 0);
         }
     }
 
@@ -431,14 +500,26 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
         this.mCamera2Device.setMetaDataCallback(this);
         this.mCamera2Device.setErrorCallback(this.mErrorCallback);
         this.mCamera2Device.setPictureSize(this.mPictureSize);
+        this.mCamera2Device.setPreviewSize(this.mPreviewSize);
+        this.mQuality = Util.convertSizeToQuality(this.mPreviewSize);
         this.mSurfaceCreatedTimestamp = this.mActivity.getCameraScreenNail().getSurfaceCreatedTimestamp();
         Log.d(TAG, "LiveModule, startPreview");
         checkDisplayOrientation();
-        this.mLiveConfigChanges.initPreview(this.mPreviewSize.width, this.mPreviewSize.height, isFrontCamera(), this.mCameraDisplayOrientation);
+        this.mLiveConfigChanges.initPreview(this.mPreviewSize.width, this.mPreviewSize.height, isFrontCamera(), isFrontCamera() ? 270 : 90);
         this.mLiveVideoEditor.setEncodeSize(this.mPreviewSize.width, this.mPreviewSize.height);
-        this.mLiveConfigChanges.startPreview(new Surface(this.mActivity.getCameraScreenNail().getSurfaceTexture()));
+        this.mLiveConfigChanges.startPreview(new Surface(this.mActivity.getCameraScreenNail().getSurfaceTexture()), new SlamDetectListener() {
+            public void onSlam(boolean z) {
+                if (z) {
+                    Log.d(LiveModule.TAG, "onSlam open, register tt ar sensor");
+                    LiveModule.this.mActivity.getSensorStateManager().setTTARSensorEnabled(true);
+                    return;
+                }
+                Log.d(LiveModule.TAG, "onSlam close, unregister tt ar sensor");
+                LiveModule.this.mActivity.getSensorStateManager().setTTARSensorEnabled(false);
+            }
+        });
         if (!isSelectingCapturedResult()) {
-            this.mCamera2Device.startPreviewSession(new Surface(this.mLiveConfigChanges.getInputSurfaceTexture()), false, false, getOperatingMode(), false, this);
+            this.mCamera2Device.startPreviewSession(new Surface(this.mLiveConfigChanges.getInputSurfaceTexture()), true, false, getOperatingMode(), false, this);
         }
     }
 
@@ -538,25 +619,90 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
         }
     }
 
+    @MainThread
     private void startVideoRecording() {
+        keepScreenOn();
         RecordState recordState = (RecordState) ModeCoordinatorImpl.getInstance().getAttachProtocol(212);
         recordState.onPrepare();
         this.mLiveConfigChanges.onRecordStart();
         recordState.onStart();
+        trackLiveRecordingParams();
+        this.mIsRecording = true;
+        this.mOldOriginVolumeStream = getActivity().getVolumeControlStream();
+        getActivity().setVolumeControlStream(3);
+    }
+
+    private void trackLiveRecordingParams() {
+        boolean z;
+        boolean z2;
+        boolean z3;
+        int liveAllSwitchAllValue = CameraSettings.getLiveAllSwitchAllValue();
+        String str = CameraSettings.getCurrentLiveMusic()[1];
+        boolean z4 = !str.isEmpty();
+        LiveFilterItem findLiveFilter = EffectController.getInstance().findLiveFilter(CameraAppImpl.getAndroidContext(), DataRepository.dataItemRunning().getLiveFilter());
+        if (findLiveFilter.directoryName.isEmpty()) {
+            z = false;
+        } else {
+            if ((liveAllSwitchAllValue & 2) == 0) {
+                liveAllSwitchAllValue += 2;
+            }
+            z = true;
+        }
+        String currentLiveSticker = CameraSettings.getCurrentLiveSticker();
+        if (currentLiveSticker.isEmpty()) {
+            z2 = false;
+        } else {
+            if ((liveAllSwitchAllValue & 4) == 0) {
+                liveAllSwitchAllValue += 4;
+            }
+            z2 = true;
+        }
+        String currentLiveSpeed = CameraSettings.getCurrentLiveSpeed();
+        float faceBeautyRatio = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_SHRINK_FACE_RATIO, 40)) / 100.0f;
+        float faceBeautyRatio2 = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_ENLARGE_EYE_RATIO, 40)) / 100.0f;
+        float faceBeautyRatio3 = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_SMOOTH_STRENGTH, 40)) / 100.0f;
+        if (faceBeautyRatio > 0.0f || faceBeautyRatio2 > 0.0f || faceBeautyRatio3 > 0.0f) {
+            if ((liveAllSwitchAllValue & 8) == 0) {
+                liveAllSwitchAllValue += 8;
+            }
+            z3 = true;
+        } else {
+            z3 = false;
+        }
+        CameraStatUtil.trackLiveRecordingParams(z4, str, z, findLiveFilter.directoryName, z2, currentLiveSticker, currentLiveSpeed, z3, faceBeautyRatio, faceBeautyRatio2, faceBeautyRatio3, this.mQuality, isFrontCamera());
+        CameraSettings.setLiveAllSwitchAddValue(liveAllSwitchAllValue);
     }
 
     public void stopVideoRecording(boolean z, boolean z2) {
+        keepScreenOnAwhile();
         this.mLiveConfigChanges.onRecordPause();
         RecordState recordState = (RecordState) ModeCoordinatorImpl.getInstance().getAttachProtocol(212);
-        if (Long.valueOf(this.mLiveConfigChanges.getTotalRecordingTime()).longValue() <= 0) {
-            this.mLiveConfigChanges.onRecordStop();
-            recordState.onFinish();
+        if (this.mLiveConfigChanges.hasSegments()) {
+            recordState.onPostPreview();
+            trackLiveVideoParams();
+            if (!z2) {
+                showPreview();
+                return;
+            }
             return;
         }
-        recordState.onPostPreview();
-        if (!z2) {
-            showPreview();
+        Log.d(TAG, "onFinish of no segments !!");
+        this.mLiveConfigChanges.onRecordStop();
+        recordState.onFinish();
+    }
+
+    private void trackLiveVideoParams() {
+        int segments = this.mLiveConfigChanges.getSegments();
+        float totalRecordingTime = (float) this.mLiveConfigChanges.getTotalRecordingTime();
+        int liveAllSwitchAllValue = CameraSettings.getLiveAllSwitchAllValue();
+        boolean z = true;
+        boolean z2 = (liveAllSwitchAllValue & 2) != 0;
+        boolean z3 = (liveAllSwitchAllValue & 4) != 0;
+        if ((liveAllSwitchAllValue & 8) == 0) {
+            z = false;
         }
+        CameraSettings.setLiveAllSwitchAddValue(0);
+        CameraStatUtil.trackLiveVideoParams(segments, totalRecordingTime / 1000.0f, z2, z3, z);
     }
 
     public void onPauseButtonClick() {
@@ -566,6 +712,7 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
             recordState.onPause();
             return;
         }
+        trackLiveRecordingParams();
         this.mLiveConfigChanges.onRecordResume();
         recordState.onResume();
     }
@@ -603,6 +750,8 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
     public void onReviewDoneClicked() {
         this.mLiveConfigChanges.onRecordStop();
         ((RecordState) ModeCoordinatorImpl.getInstance().getAttachProtocol(212)).onFinish();
+        getActivity().setVolumeControlStream(this.mOldOriginVolumeStream);
+        this.mIsRecording = false;
         startSaveToLocal();
         if (this.mCamera2Device.isSessionReady()) {
             resumePreview();
@@ -614,6 +763,8 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
     public void onReviewCancelClicked() {
         this.mLiveConfigChanges.onRecordStop();
         ((RecordState) ModeCoordinatorImpl.getInstance().getAttachProtocol(212)).onFinish();
+        getActivity().setVolumeControlStream(this.mOldOriginVolumeStream);
+        this.mIsRecording = false;
         if (this.mCamera2Device.isSessionReady()) {
             resumePreview();
         } else {
@@ -725,7 +876,6 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
     public void checkDisplayOrientation() {
         if (isCreated()) {
             super.checkDisplayOrientation();
-            this.mCameraDisplayOrientation = isFrontCamera() ? 270 : 90;
             if (this.mMainProtocol != null) {
                 this.mMainProtocol.setCameraDisplayOrientation(this.mCameraDisplayOrientation);
             }
@@ -916,7 +1066,7 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
         return false;
     }
 
-    /* JADX WARNING: Missing block: B:12:0x0020, code:
+    /* JADX WARNING: Missing block: B:12:0x0025, code:
             return;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
@@ -924,6 +1074,7 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
         if (this.mFaceDetectionEnabled && !this.mFaceDetectionStarted && isAlive() && this.mMaxFaceCount > 0 && this.mCamera2Device != null) {
             this.mFaceDetectionStarted = true;
             this.mCamera2Device.startFaceDetection();
+            updateFaceView(this.mShowFace, true);
         }
     }
 
@@ -933,6 +1084,8 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
             if (this.mCamera2Device != null) {
                 this.mCamera2Device.stopFaceDetection();
             }
+            this.mMainProtocol.setActiveIndicator(2);
+            updateFaceView(false, z);
         }
     }
 
@@ -958,9 +1111,18 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
         this.mHandler.obtainMessage(35, z, z2).sendToTarget();
     }
 
+    private void handleUpdateFaceView(boolean z, boolean z2) {
+        boolean isFrontCamera = isFrontCamera();
+        if (!z) {
+            this.mMainProtocol.updateFaceView(z, z2, isFrontCamera, false, -1);
+        } else if (this.mFaceDetectionStarted && 1 != this.mCamera2Device.getFocusMode()) {
+            this.mMainProtocol.updateFaceView(z, true, isFrontCamera, true, this.mCameraDisplayOrientation);
+        }
+    }
+
     public void onFaceDetected(CameraHardwareFace[] cameraHardwareFaceArr, FaceAnalyzeInfo faceAnalyzeInfo) {
         if (isCreated() && cameraHardwareFaceArr != null) {
-            if (b.gj() && cameraHardwareFaceArr.length > 0 && cameraHardwareFaceArr[0].faceType == CameraHardwareFace.CAMERA_META_DATA_T2T) {
+            if (b.gs() && cameraHardwareFaceArr.length > 0 && cameraHardwareFaceArr[0].faceType == CameraHardwareFace.CAMERA_META_DATA_T2T) {
                 if (this.mObjectTrackingStarted) {
                     this.mMainProtocol.setFaces(3, cameraHardwareFaceArr, getActiveArraySize(), this.mZoomValue);
                 }
@@ -987,11 +1149,8 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
     }
 
     public boolean onBackPressed() {
-        if (!isAlive()) {
+        if (!isFrameAvailable() || this.mLiveConfigChanges == null) {
             return false;
-        }
-        if (this.mPaused) {
-            return true;
         }
         if (!this.mLiveConfigChanges.isRecording() && !this.mLiveConfigChanges.isRecordingPaused()) {
             return super.onBackPressed();
@@ -1019,11 +1178,13 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
             case 25:
             case 87:
             case 88:
-                if (i == 24 || i == 88) {
-                    z = true;
-                }
-                if (handleVolumeKeyEvent(z, true, keyEvent.getRepeatCount())) {
-                    return true;
+                if (!this.mIsRecording) {
+                    if (i == 24 || i == 88) {
+                        z = true;
+                    }
+                    if (handleVolumeKeyEvent(z, true, keyEvent.getRepeatCount())) {
+                        return true;
+                    }
                 }
                 break;
             case 27:
@@ -1091,7 +1252,9 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
     public void notifyError() {
         super.notifyError();
         if (currentIsMainThread()) {
-            stopVideoRecording(true, true);
+            if (isVideoRecording()) {
+                stopVideoRecording(true, true);
+            }
             if (this.mPaused) {
                 closeCamera();
             }
@@ -1128,13 +1291,13 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
                     FullScreenProtocol fullScreenProtocol = (FullScreenProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(196);
                     if (fullScreenProtocol != null) {
                         String asString = fullScreenProtocol.getSaveContentValues().getAsString("title");
-                        String access$400 = LiveModule.TAG;
+                        String access$500 = LiveModule.TAG;
                         StringBuilder stringBuilder = new StringBuilder();
                         stringBuilder.append("newUri: ");
                         stringBuilder.append(str);
                         stringBuilder.append(" | ");
                         stringBuilder.append(asString);
-                        Log.d(access$400, stringBuilder.toString());
+                        Log.d(access$500, stringBuilder.toString());
                         if (asString.equals(str)) {
                             fullScreenProtocol.onLiveSaveToLocalFinished(uri);
                         }

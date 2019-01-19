@@ -1340,7 +1340,7 @@
     invoke-virtual {p1, v0, v1}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
     .line 375
-    invoke-static {}, Lcom/mi/config/b;->hC()Z
+    invoke-static {}, Lcom/mi/config/b;->hL()Z
 
     move-result v0
 

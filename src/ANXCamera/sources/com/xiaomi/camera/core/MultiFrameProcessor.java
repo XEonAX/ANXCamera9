@@ -1,6 +1,10 @@
 package com.xiaomi.camera.core;
 
 import android.media.Image;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
+import android.os.Message;
 import com.android.camera.log.Log;
 import com.xiaomi.camera.core.CaptureData.CaptureDataBean;
 import com.xiaomi.camera.imagecodec.JpegEncoder;
@@ -14,15 +18,36 @@ import java.io.File;
 public class MultiFrameProcessor {
     private static final int REPROCESS_TIMEOUT_MS = 8000;
     private static final String TAG = MultiFrameProcessor.class.getSimpleName();
+    private final int MSG_PROCESS_DATA;
+    private Handler mHandler;
     private final Object mObjLock;
     private ProcessResultListener mProcessResultListener;
     private long mReprocessStartTime;
     private boolean mReprocessing;
+    private HandlerThread mWorkThread;
 
     static class MultiFrameProcessorHolder {
         static MultiFrameProcessor INSTANCE = new MultiFrameProcessor();
 
         MultiFrameProcessorHolder() {
+        }
+    }
+
+    private class WorkerHandler extends Handler {
+        public WorkerHandler(Looper looper) {
+            super(looper);
+        }
+
+        public void handleMessage(Message message) {
+            if (message.what != 1) {
+                String access$100 = MultiFrameProcessor.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("unexpected msg ");
+                stringBuilder.append(message.what);
+                Log.w(access$100, stringBuilder.toString());
+                return;
+            }
+            MultiFrameProcessor.this.doProcess((CaptureData) message.obj);
         }
     }
 
@@ -60,6 +85,10 @@ public class MultiFrameProcessor {
                 captureDataListener.onCaptureDataAvailable(captureData);
             }
         };
+        this.MSG_PROCESS_DATA = 1;
+        this.mWorkThread = new HandlerThread("MultiFrameProcessorThread");
+        this.mWorkThread.start();
+        this.mHandler = new WorkerHandler(this.mWorkThread.getLooper());
     }
 
     public static MultiFrameProcessor getInstance() {
@@ -68,35 +97,46 @@ public class MultiFrameProcessor {
 
     public void processData(CaptureData captureData) {
         StringBuilder stringBuilder;
-        if (captureData.getBurstNum() == captureData.getCaptureDataBeanList().size()) {
+        if (captureData.getBurstNum() != captureData.getCaptureDataBeanList().size()) {
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("Loss some capture data, burstNum is: ");
+            stringBuilder.append(captureData.getBurstNum());
+            stringBuilder.append("; but data bean list size is: ");
+            stringBuilder.append(captureData.getCaptureDataBeanList().size());
+            throw new RuntimeException(stringBuilder.toString());
+        } else if (!this.mWorkThread.isAlive() || this.mHandler == null) {
+            Log.w(TAG, "processData: sync mode");
+            doProcess(captureData);
+        } else {
             String str = TAG;
             stringBuilder = new StringBuilder();
-            stringBuilder.append("processData: start process task with: ");
-            stringBuilder.append(captureData);
-            Log.d(str, stringBuilder.toString());
-            int algoType = captureData.getAlgoType();
-            if (algoType == 2) {
-                new ClearShotProcessor().doProcess(captureData, this.mProcessResultListener);
-                return;
-            } else if (algoType == 5) {
-                new GroupShotProcessor().doProcess(captureData, this.mProcessResultListener);
-                return;
-            } else {
-                stringBuilder = new StringBuilder();
-                stringBuilder.append("unknown multi-frame process algorithm type:");
-                stringBuilder.append(algoType);
-                throw new RuntimeException(stringBuilder.toString());
-            }
+            stringBuilder.append("processData: queue data: ");
+            stringBuilder.append(captureData.hashCode());
+            Log.v(str, stringBuilder.toString());
+            this.mHandler.obtainMessage(1, captureData).sendToTarget();
         }
-        stringBuilder = new StringBuilder();
-        stringBuilder.append("Loss some capture data, burstNum is: ");
-        stringBuilder.append(captureData.getBurstNum());
-        stringBuilder.append("; but data bean list size is: ");
-        stringBuilder.append(captureData.getCaptureDataBeanList().size());
-        throw new RuntimeException(stringBuilder.toString());
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:9:0x0076 A:{ExcHandler: java.lang.InterruptedException (r13_4 'e' java.lang.Throwable), Splitter: B:4:0x0069} */
+    private void doProcess(CaptureData captureData) {
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("doProcess: start process task with: ");
+        stringBuilder.append(captureData.hashCode());
+        Log.d(str, stringBuilder.toString());
+        int algoType = captureData.getAlgoType();
+        if (algoType == 2) {
+            new ClearShotProcessor().doProcess(captureData, this.mProcessResultListener);
+        } else if (algoType == 5) {
+            new GroupShotProcessor().doProcess(captureData, this.mProcessResultListener);
+        } else {
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("unknown multi-frame process algorithm type:");
+            stringBuilder.append(algoType);
+            throw new RuntimeException(stringBuilder.toString());
+        }
+    }
+
+    /* JADX WARNING: Removed duplicated region for block: B:9:0x0076 A:{Splitter: B:4:0x0069, ExcHandler: java.lang.InterruptedException (r13_4 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:9:0x0076, code:
             r13 = move-exception;
      */

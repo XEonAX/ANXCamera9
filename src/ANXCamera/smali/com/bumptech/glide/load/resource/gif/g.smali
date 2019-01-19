@@ -14,7 +14,7 @@
     .end annotation
 .end field
 
-.field public static final lY:Lcom/bumptech/glide/load/e;
+.field public static final lX:Lcom/bumptech/glide/load/e;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/e<",
@@ -55,7 +55,7 @@
 
     move-result-object v0
 
-    sput-object v0, Lcom/bumptech/glide/load/resource/gif/g;->lY:Lcom/bumptech/glide/load/e;
+    sput-object v0, Lcom/bumptech/glide/load/resource/gif/g;->lX:Lcom/bumptech/glide/load/e;
 
     return-void
 .end method

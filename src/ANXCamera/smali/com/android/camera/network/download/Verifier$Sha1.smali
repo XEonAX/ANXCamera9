@@ -22,7 +22,7 @@
 .method public constructor <init>(Ljava/lang/String;)V
     .locals 2
 
-    .line 53
+    .line 54
     const-string v0, "SHA-1"
 
     const/16 v1, 0x28
@@ -33,18 +33,18 @@
 
     invoke-direct {p0, v0, p1}, Lcom/android/camera/network/download/Verifier;-><init>(Ljava/lang/String;[B)V
 
-    .line 54
+    .line 55
     return-void
 .end method
 
 .method constructor <init>([B)V
     .locals 1
 
-    .line 57
+    .line 58
     const-string v0, "SHA-1"
 
     invoke-direct {p0, v0, p1}, Lcom/android/camera/network/download/Verifier;-><init>(Ljava/lang/String;[B)V
 
-    .line 58
+    .line 59
     return-void
 .end method

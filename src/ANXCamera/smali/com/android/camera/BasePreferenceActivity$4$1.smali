@@ -27,7 +27,7 @@
 .method constructor <init>(Lcom/android/camera/BasePreferenceActivity$4;Landroid/preference/CheckBoxPreference;)V
     .locals 0
 
-    .line 565
+    .line 592
     iput-object p1, p0, Lcom/android/camera/BasePreferenceActivity$4$1;->this$1:Lcom/android/camera/BasePreferenceActivity$4;
 
     iput-object p2, p0, Lcom/android/camera/BasePreferenceActivity$4$1;->val$scanQRCode:Landroid/preference/CheckBoxPreference;
@@ -42,14 +42,14 @@
 .method public run()V
     .locals 3
 
-    .line 568
+    .line 595
     iget-object v0, p0, Lcom/android/camera/BasePreferenceActivity$4$1;->val$scanQRCode:Landroid/preference/CheckBoxPreference;
 
     const/4 v1, 0x1
 
     invoke-virtual {v0, v1}, Landroid/preference/CheckBoxPreference;->setChecked(Z)V
 
-    .line 569
+    .line 596
     iget-object v0, p0, Lcom/android/camera/BasePreferenceActivity$4$1;->this$1:Lcom/android/camera/BasePreferenceActivity$4;
 
     iget-object v0, v0, Lcom/android/camera/BasePreferenceActivity$4;->this$0:Lcom/android/camera/BasePreferenceActivity;
@@ -60,6 +60,6 @@
 
     invoke-virtual {v0, v1, v2}, Lcom/android/camera/BasePreferenceActivity;->onPreferenceChange(Landroid/preference/Preference;Ljava/lang/Object;)Z
 
-    .line 570
+    .line 597
     return-void
 .end method

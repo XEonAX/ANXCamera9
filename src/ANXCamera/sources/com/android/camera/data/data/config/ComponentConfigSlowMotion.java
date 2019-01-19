@@ -17,7 +17,7 @@ public class ComponentConfigSlowMotion extends ComponentData {
     private static final String[] SLOW_MOTION_MODE;
 
     static {
-        if (DataRepository.dataItemFeature().fr()) {
+        if (DataRepository.dataItemFeature().fs()) {
             SLOW_MOTION_MODE = new String[]{DATA_CONFIG_NEW_SLOW_MOTION_960, DATA_CONFIG_NEW_SLOW_MOTION_120, DATA_CONFIG_NEW_SLOW_MOTION_240};
         } else {
             SLOW_MOTION_MODE = new String[]{DATA_CONFIG_NEW_SLOW_MOTION_120, DATA_CONFIG_NEW_SLOW_MOTION_240};
@@ -47,6 +47,10 @@ public class ComponentConfigSlowMotion extends ComponentData {
 
     public void setVideoNewSlowMotionFPS(String str) {
         setComponentValue(172, str);
+    }
+
+    public boolean isSlowMotionFps120() {
+        return DATA_CONFIG_NEW_SLOW_MOTION_120.equals(getComponentValue(172));
     }
 
     public boolean isSlowMotionFps960() {

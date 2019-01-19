@@ -54,7 +54,7 @@
     if-nez p2, :cond_0
 
     .line 67
-    const p2, 0x7f04003e
+    const p2, 0x7f040040
 
     .line 69
     :cond_0
@@ -142,7 +142,7 @@
     move-result-object v0
 
     .line 77
-    const v1, 0x7f0d00c9
+    const v1, 0x7f0d00d3
 
     invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -151,7 +151,7 @@
     iput-object v1, p0, Lcom/android/camera/RotateDialogController;->mDialogRootLayout:Landroid/view/View;
 
     .line 78
-    const v1, 0x7f0d00ca
+    const v1, 0x7f0d00d4
 
     invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -162,7 +162,7 @@
     iput-object v1, p0, Lcom/android/camera/RotateDialogController;->mRotateDialog:Lcom/android/camera/ui/RotateLayout;
 
     .line 79
-    const v1, 0x7f0d00cb
+    const v1, 0x7f0d00d5
 
     invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -171,7 +171,7 @@
     iput-object v1, p0, Lcom/android/camera/RotateDialogController;->mRotateDialogTitleLayout:Landroid/view/View;
 
     .line 80
-    const v1, 0x7f0d00cf
+    const v1, 0x7f0d00d9
 
     invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -180,7 +180,7 @@
     iput-object v1, p0, Lcom/android/camera/RotateDialogController;->mRotateDialogButtonLayout:Landroid/view/View;
 
     .line 81
-    const v1, 0x7f0d00cc
+    const v1, 0x7f0d00d6
 
     invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -191,7 +191,7 @@
     iput-object v1, p0, Lcom/android/camera/RotateDialogController;->mRotateDialogTitle:Landroid/widget/TextView;
 
     .line 82
-    const v1, 0x7f0d00cd
+    const v1, 0x7f0d00d7
 
     invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -202,7 +202,7 @@
     iput-object v1, p0, Lcom/android/camera/RotateDialogController;->mRotateDialogSpinner:Landroid/widget/ProgressBar;
 
     .line 83
-    const v1, 0x7f0d00ce
+    const v1, 0x7f0d00d8
 
     invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -213,7 +213,7 @@
     iput-object v1, p0, Lcom/android/camera/RotateDialogController;->mRotateDialogText:Landroid/widget/TextView;
 
     .line 84
-    const v1, 0x7f0d00d1
+    const v1, 0x7f0d00db
 
     invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -224,7 +224,7 @@
     iput-object v1, p0, Lcom/android/camera/RotateDialogController;->mRotateDialogButton1:Landroid/widget/TextView;
 
     .line 85
-    const v1, 0x7f0d00d0
+    const v1, 0x7f0d00da
 
     invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -327,7 +327,7 @@
 .end method
 
 .method public static showSystemChoiceDialog(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;Ljava/lang/Runnable;)Landroid/app/AlertDialog;
-    .locals 6
+    .locals 7
 
     .line 204
     new-instance v0, Lcom/android/camera/RotateDialogController$5;
@@ -345,7 +345,7 @@
     move-result-object v2
 
     .line 214
-    const v3, 0x7f040041
+    const v3, 0x7f040043
 
     const/4 v4, 0x0
 
@@ -354,7 +354,7 @@
     move-result-object v2
 
     .line 215
-    const v3, 0x7f0d00d4
+    const v3, 0x7f0d00de
 
     invoke-virtual {v2, v3}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -370,7 +370,7 @@
 
     move-result-object p2
 
-    const v3, 0x7f0b0210
+    const v3, 0x7f090211
 
     invoke-virtual {p2, v3}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -389,41 +389,56 @@
     .line 231
     invoke-virtual {p2}, Ljava/lang/String;->length()I
 
-    move-result p0
+    move-result p2
 
     .line 220
-    const/4 p2, 0x0
+    const/4 v5, 0x0
 
-    const/16 v5, 0x21
+    const/16 v6, 0x21
 
-    invoke-virtual {v3, v4, p2, p0, v5}, Landroid/text/SpannableString;->setSpan(Ljava/lang/Object;III)V
+    invoke-virtual {v3, v4, v5, p2, v6}, Landroid/text/SpannableString;->setSpan(Ljava/lang/Object;III)V
 
     .line 232
-    const p0, 0x7f0d00d5
+    const p2, 0x7f0d00df
 
-    invoke-virtual {v2, p0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+    invoke-virtual {v2, p2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
-    move-result-object p0
+    move-result-object p2
 
-    check-cast p0, Landroid/widget/TextView;
+    check-cast p2, Landroid/widget/TextView;
 
     .line 233
     const/4 v4, 0x1
 
-    invoke-virtual {p0, v4}, Landroid/widget/TextView;->setClickable(Z)V
+    invoke-virtual {p2, v4}, Landroid/widget/TextView;->setClickable(Z)V
 
     .line 234
-    invoke-virtual {p0, v3}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+    invoke-virtual {p2, v3}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
     .line 235
     invoke-static {}, Landroid/text/method/LinkMovementMethod;->getInstance()Landroid/text/method/MovementMethod;
 
     move-result-object v3
 
-    invoke-virtual {p0, v3}, Landroid/widget/TextView;->setMovementMethod(Landroid/text/method/MovementMethod;)V
+    invoke-virtual {p2, v3}, Landroid/widget/TextView;->setMovementMethod(Landroid/text/method/MovementMethod;)V
 
-    .line 237
-    const p0, 0x7f0d00d6
+    .line 236
+    invoke-static {}, Lcom/android/camera/Util;->isAccessible()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_0
+
+    .line 238
+    new-instance v3, Lcom/android/camera/RotateDialogController$7;
+
+    invoke-direct {v3, p0}, Lcom/android/camera/RotateDialogController$7;-><init>(Landroid/content/Context;)V
+
+    invoke-virtual {p2, v3}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+
+    .line 246
+    :cond_0
+    const p0, 0x7f0d00e0
 
     invoke-virtual {v2, p0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -431,41 +446,41 @@
 
     check-cast p0, Landroid/widget/CheckBox;
 
-    .line 238
+    .line 247
     invoke-virtual {p0, p3}, Landroid/widget/CheckBox;->setText(Ljava/lang/CharSequence;)V
 
-    .line 240
+    .line 249
     invoke-virtual {v1, v0}, Landroid/app/AlertDialog$Builder;->setOnKeyListener(Landroid/content/DialogInterface$OnKeyListener;)Landroid/app/AlertDialog$Builder;
 
-    .line 241
+    .line 250
     invoke-virtual {v1, p1}, Landroid/app/AlertDialog$Builder;->setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
 
-    .line 242
-    invoke-virtual {v1, p2}, Landroid/app/AlertDialog$Builder;->setCancelable(Z)Landroid/app/AlertDialog$Builder;
+    .line 251
+    invoke-virtual {v1, v5}, Landroid/app/AlertDialog$Builder;->setCancelable(Z)Landroid/app/AlertDialog$Builder;
 
-    .line 243
+    .line 252
     invoke-virtual {v1, v2}, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
 
-    .line 244
-    if-eqz p4, :cond_0
+    .line 253
+    if-eqz p4, :cond_1
 
-    .line 245
-    new-instance p1, Lcom/android/camera/RotateDialogController$7;
+    .line 254
+    new-instance p1, Lcom/android/camera/RotateDialogController$8;
 
-    invoke-direct {p1, p0, p5, p6}, Lcom/android/camera/RotateDialogController$7;-><init>(Landroid/widget/CheckBox;Ljava/lang/Runnable;Ljava/lang/Runnable;)V
+    invoke-direct {p1, p0, p5, p6}, Lcom/android/camera/RotateDialogController$8;-><init>(Landroid/widget/CheckBox;Ljava/lang/Runnable;Ljava/lang/Runnable;)V
 
     invoke-virtual {v1, p4, p1}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
-    .line 261
-    :cond_0
+    .line 270
+    :cond_1
     invoke-virtual {v1}, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
 
     move-result-object p0
 
-    .line 262
+    .line 271
     invoke-virtual {p0}, Landroid/app/AlertDialog;->show()V
 
-    .line 263
+    .line 272
     return-object p0
 .end method
 
@@ -652,24 +667,24 @@
 .method public showWaitingDialog(Ljava/lang/String;)V
     .locals 1
 
-    .line 267
+    .line 276
     invoke-virtual {p0}, Lcom/android/camera/RotateDialogController;->resetRotateDialog()V
 
-    .line 269
+    .line 278
     iget-object v0, p0, Lcom/android/camera/RotateDialogController;->mRotateDialogText:Landroid/widget/TextView;
 
     invoke-virtual {v0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 270
+    .line 279
     iget-object p1, p0, Lcom/android/camera/RotateDialogController;->mRotateDialogSpinner:Landroid/widget/ProgressBar;
 
     const/4 v0, 0x0
 
     invoke-virtual {p1, v0}, Landroid/widget/ProgressBar;->setVisibility(I)V
 
-    .line 272
+    .line 281
     invoke-direct {p0}, Lcom/android/camera/RotateDialogController;->fadeInDialog()V
 
-    .line 273
+    .line 282
     return-void
 .end method

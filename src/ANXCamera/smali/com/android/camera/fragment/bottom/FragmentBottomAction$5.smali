@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)V
     .locals 0
 
-    .line 818
+    .line 830
     iput-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$5;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,14 +38,14 @@
 .method public onAnimationUpdate(Landroid/animation/ValueAnimator;)V
     .locals 4
 
-    .line 821
+    .line 833
     invoke-virtual {p1}, Landroid/animation/ValueAnimator;->getAnimatedValue()Ljava/lang/Object;
 
     move-result-object p1
 
     check-cast p1, Ljava/lang/Float;
 
-    .line 822
+    .line 834
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$5;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {v0}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$200(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/widget/ProgressBar;
@@ -58,7 +58,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/ProgressBar;->setAlpha(F)V
 
-    .line 823
+    .line 835
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$5;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {v0}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$200(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/widget/ProgressBar;
@@ -79,7 +79,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/ProgressBar;->setScaleX(F)V
 
-    .line 824
+    .line 836
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$5;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {v0}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$200(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/widget/ProgressBar;
@@ -96,6 +96,6 @@
 
     invoke-virtual {v0, v3}, Landroid/widget/ProgressBar;->setScaleY(F)V
 
-    .line 825
+    .line 837
     return-void
 .end method

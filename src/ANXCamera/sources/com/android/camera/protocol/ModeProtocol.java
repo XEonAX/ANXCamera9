@@ -6,6 +6,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
+import android.hardware.SensorEvent;
 import android.hardware.camera2.params.MeteringRectangle;
 import android.net.Uri;
 import android.support.annotation.IdRes;
@@ -37,6 +38,7 @@ import com.android.camera.ui.ObjectView.ObjectViewListener;
 import com.android.camera.watermark.WaterMarkData;
 import com.android.camera2.CameraHardwareFace;
 import com.miui.filtersdk.beauty.BeautyParameterType;
+import com.ss.android.medialib.TTRecorder.SlamDetectListener;
 import com.ss.android.ttve.oauth.TEOAuthResult;
 import com.ss.android.vesdk.VECommonCallback;
 import io.reactivex.Completable;
@@ -179,7 +181,9 @@ public interface ModeProtocol {
         public static final int FILTER_CLOSE_TYPE = 1;
         public static final int LIGHT_CLOSE_TYPE = 2;
         public static final int NONE_CLOSE_TYPE = 0;
+        public static final int TIP_48M_NO_SUPPORT_ZOOM = 15;
         public static final int TIP_DURATION_2S = 5;
+        public static final int TIP_DURATION_3S = 6;
         public static final int TIP_DURATION_LONG = 2;
         public static final int TIP_DURATION_PERSISTED = 4;
         public static final int TIP_DURATION_SHORT = 1;
@@ -188,6 +192,7 @@ public interface ModeProtocol {
         public static final int TIP_TYPE_DUAL_CAMERA = 6;
         public static final int TIP_TYPE_DUAL_CAMERA_SUCCESS = 7;
         public static final int TIP_TYPE_EYE_LIGHT = 10;
+        public static final int TIP_TYPE_HAND_GESTURE = 16;
         public static final int TIP_TYPE_HINT = 4;
         public static final int TIP_TYPE_LIGHTING = 12;
         public static final int TIP_TYPE_NEW_SLOW_MOTION = 9;
@@ -252,26 +257,6 @@ public interface ModeProtocol {
         void updateTipBottomMargin(int i, boolean z);
 
         void updateTipImage();
-    }
-
-    public interface FullScreenProtocol extends BaseProtocol {
-        public static final int TYPE_TAG = 196;
-
-        ContentValues getSaveContentValues();
-
-        void hideScreenLight();
-
-        boolean isLiveRecordPreviewShown();
-
-        void onLiveSaveToLocalFinished(Uri uri);
-
-        void quitLiveRecordPreview(boolean z);
-
-        void setScreenLightColor(int i);
-
-        void showScreenLight();
-
-        void startLiveRecordPreview(ContentValues contentValues);
     }
 
     public interface EffectCropViewController {
@@ -383,11 +368,15 @@ public interface ModeProtocol {
 
         void performHapticFeedback(int i);
 
+        void setCenterHint(int i, String str, String str2, int i2);
+
         void setPreviewAspectRatio(float f);
 
         void showDelayNumber(int i);
 
         void showReviewViews(Bitmap bitmap);
+
+        void updateContentDescription();
     }
 
     public interface SnapShotIndicator extends BaseProtocol {
@@ -430,6 +419,8 @@ public interface ModeProtocol {
         public static final int TYPE_TAG = 198;
 
         void alertLightingHint(int i);
+
+        boolean isAnyViewVisible();
 
         void setLightingPattern(String str);
     }
@@ -556,6 +547,26 @@ public interface ModeProtocol {
         int visibleHeight();
     }
 
+    public interface FullScreenProtocol extends BaseProtocol {
+        public static final int TYPE_TAG = 196;
+
+        ContentValues getSaveContentValues();
+
+        void hideScreenLight();
+
+        boolean isLiveRecordPreviewShown();
+
+        void onLiveSaveToLocalFinished(Uri uri);
+
+        void quitLiveRecordPreview(boolean z);
+
+        void setScreenLightColor(int i);
+
+        void showScreenLight();
+
+        void startLiveRecordPreview(ContentValues contentValues);
+    }
+
     public interface ManuallyAdjust extends BaseProtocol {
         public static final int ADJUST_MANUAL = 1;
         public static final int ADJUST_NOT_SPECIFIED = -1;
@@ -598,11 +609,19 @@ public interface ModeProtocol {
 
         void alertMoonModeSelector(int i);
 
+        void alertMusicClose(boolean z);
+
         void alertSwitchHint(int i, @StringRes int i2);
+
+        void alertSwitchHint(int i, String str);
 
         void alertTopHint(int i, @StringRes int i2);
 
+        void alertTopHint(int i, String str);
+
         void alertUpdateValue(int i);
+
+        void clearAlertStatus();
 
         void disableMenuItem(int... iArr);
 
@@ -625,8 +644,6 @@ public interface ModeProtocol {
         void removeExtraMenu(int i);
 
         void setAiSceneImageLevel(int i);
-
-        void setConfigItemVisible(int i, int i2, boolean z);
 
         void setRecordingTimeState(int i);
 
@@ -734,7 +751,7 @@ public interface ModeProtocol {
 
         boolean handleBackStackFromKeyBack();
 
-        boolean handleBackStackFromShutter();
+        void handleBackStackFromShutter();
 
         boolean handleBackStackFromTapDown(int i, int i2);
 
@@ -816,6 +833,8 @@ public interface ModeProtocol {
 
         void reCheckLighting();
 
+        void reCheckLiveShot();
+
         void reCheckMutexConfigs(int i);
 
         void reCheckUltraPixelPhotoGraphy();
@@ -840,6 +859,8 @@ public interface ModeProtocol {
     public interface LiveConfigChanges extends BaseProtocol {
         public static final int TYPE_TAG = 201;
 
+        void closeBGM();
+
         TEOAuthResult getAuthResult();
 
         Pair<String, String> getConcatResult();
@@ -847,6 +868,8 @@ public interface ModeProtocol {
         SurfaceTexture getInputSurfaceTexture();
 
         float getRecordSpeed();
+
+        int getSegments();
 
         long getStartRecordingTime();
 
@@ -868,7 +891,7 @@ public interface ModeProtocol {
 
         void onDeviceRotationChange(float[] fArr);
 
-        void onRecordConcat();
+        boolean onRecordConcat();
 
         void onRecordPause();
 
@@ -880,17 +903,19 @@ public interface ModeProtocol {
 
         void onRecordStop();
 
+        void onSensorChanged(SensorEvent sensorEvent);
+
         void release();
 
         void setBeautify(boolean z, float f);
 
-        void setBeautyFaceReshape(float f, float f2);
+        void setBeautyFaceReshape(boolean z, float f, float f2);
 
         void setFilter(boolean z, String str);
 
         void setRecordSpeed(int i);
 
-        void startPreview(Surface surface);
+        void startPreview(Surface surface, SlamDetectListener slamDetectListener);
 
         void updateRecordingTime();
     }
@@ -900,11 +925,13 @@ public interface ModeProtocol {
 
         void combineVideoAudio(String str, VECommonCallback vECommonCallback, VECommonCallback vECommonCallback2);
 
-        void init(TextureView textureView, String str, String str2, VECommonCallback vECommonCallback, VECommonCallback vECommonCallback2);
+        boolean init(TextureView textureView, String str, String str2, VECommonCallback vECommonCallback, VECommonCallback vECommonCallback2);
 
         void onDestory();
 
         void pausePlay();
+
+        void resumePlay();
 
         void setEncodeSize(int i, int i2);
 

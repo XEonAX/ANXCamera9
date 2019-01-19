@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;)V
     .locals 0
 
-    .line 823
+    .line 830
     iput-object p1, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$18;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,14 +38,14 @@
 .method public onAnimationCancel(Landroid/animation/Animator;)V
     .locals 0
 
-    .line 843
+    .line 850
     return-void
 .end method
 
 .method public onAnimationEnd(Landroid/animation/Animator;)V
     .locals 1
 
-    .line 835
+    .line 842
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
@@ -58,24 +58,24 @@
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$BeautyRecording;
 
-    .line 837
+    .line 844
     invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$BeautyRecording;->handleBeautyRecordingStop()V
 
-    .line 838
+    .line 845
     return-void
 .end method
 
 .method public onAnimationRepeat(Landroid/animation/Animator;)V
     .locals 0
 
-    .line 848
+    .line 855
     return-void
 .end method
 
 .method public onAnimationStart(Landroid/animation/Animator;)V
     .locals 1
 
-    .line 827
+    .line 834
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
@@ -88,9 +88,9 @@
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$BeautyRecording;
 
-    .line 829
+    .line 836
     invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$BeautyRecording;->handleBeautyRecordingStart()V
 
-    .line 830
+    .line 837
     return-void
 .end method

@@ -5,7 +5,6 @@ import java.util.List;
 
 public class EffectChannelModel {
     private List<EffectCategoryModel> category;
-    private List<Effect> collection;
     private List<Effect> effects;
     private String front_effect_id;
     private EffectPanelModel panel;
@@ -69,14 +68,6 @@ public class EffectChannelModel {
 
     public EffectPanelModel getPanel() {
         return this.panel;
-    }
-
-    public List<Effect> getCollection() {
-        return this.collection;
-    }
-
-    public void setCollection(List<Effect> list) {
-        this.collection = list;
     }
 
     public boolean checkValued() {

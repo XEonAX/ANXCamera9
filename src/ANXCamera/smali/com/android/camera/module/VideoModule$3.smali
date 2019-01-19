@@ -34,7 +34,7 @@
 .method constructor <init>(Lcom/android/camera/module/VideoModule;)V
     .locals 0
 
-    .line 1557
+    .line 1561
     iput-object p1, p0, Lcom/android/camera/module/VideoModule$3;->this$0:Lcom/android/camera/module/VideoModule;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -52,12 +52,12 @@
         }
     .end annotation
 
-    .line 1560
+    .line 1564
     iget-object p1, p0, Lcom/android/camera/module/VideoModule$3;->this$0:Lcom/android/camera/module/VideoModule;
 
     invoke-static {p1}, Lcom/android/camera/module/VideoModule;->access$100(Lcom/android/camera/module/VideoModule;)V
 
-    .line 1561
+    .line 1565
     return-void
 .end method
 
@@ -69,7 +69,7 @@
         }
     .end annotation
 
-    .line 1557
+    .line 1561
     check-cast p1, Ljava/lang/Boolean;
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/VideoModule$3;->accept(Ljava/lang/Boolean;)V

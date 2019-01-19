@@ -38,6 +38,7 @@ public abstract class CircularMediaEncoder extends Callback {
     protected volatile boolean mIsBuffering;
     protected volatile boolean mIsInitialized = false;
     protected MediaCodec mMediaCodec;
+    private volatile boolean mOutputFormatChanged;
     protected final long mPostCaptureDurationUs;
     protected final long mPreCaptureDurationUs;
     protected final List<Snapshot> mSnapshots;
@@ -432,6 +433,7 @@ public abstract class CircularMediaEncoder extends Callback {
     }
 
     protected void doStart() {
+        this.mOutputFormatChanged = false;
         if (this.mMediaCodec != null) {
             this.mMediaCodec.start();
         }
@@ -439,6 +441,15 @@ public abstract class CircularMediaEncoder extends Callback {
 
     public void stop() {
         Log.d(TAG, "stop");
+        synchronized (this) {
+            while (!this.mOutputFormatChanged) {
+                try {
+                    Log.d(TAG, "waiting for getting stable before stop");
+                    wait();
+                } catch (InterruptedException e) {
+                }
+            }
+        }
         this.mHandlerHelper.sendMessageAndAwaitResponse(this.mEventHandler.obtainMessage(1));
     }
 
@@ -608,6 +619,10 @@ public abstract class CircularMediaEncoder extends Callback {
         stringBuilder.append("MediaCodec Output Format Changed: ");
         stringBuilder.append(mediaFormat);
         Log.e(str, stringBuilder.toString());
+        synchronized (this) {
+            this.mOutputFormatChanged = true;
+            notifyAll();
+        }
     }
 
     protected long getNextPresentationTimeUs(long j) {

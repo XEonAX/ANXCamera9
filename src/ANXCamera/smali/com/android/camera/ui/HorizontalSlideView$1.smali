@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/ui/HorizontalSlideView;)V
     .locals 0
 
-    .line 35
+    .line 39
     iput-object p1, p0, Lcom/android/camera/ui/HorizontalSlideView$1;->this$0:Lcom/android/camera/ui/HorizontalSlideView;
 
     invoke-direct {p0}, Landroid/view/GestureDetector$SimpleOnGestureListener;-><init>()V
@@ -35,7 +35,7 @@
 .method public onDown(Landroid/view/MotionEvent;)Z
     .locals 2
 
-    .line 38
+    .line 42
     iget-object p1, p0, Lcom/android/camera/ui/HorizontalSlideView$1;->this$0:Lcom/android/camera/ui/HorizontalSlideView;
 
     iget-object p1, p1, Lcom/android/camera/ui/HorizontalSlideView;->mScroller:Landroid/widget/Scroller;
@@ -44,21 +44,21 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/Scroller;->forceFinished(Z)V
 
-    .line 39
+    .line 43
     iget-object p1, p0, Lcom/android/camera/ui/HorizontalSlideView$1;->this$0:Lcom/android/camera/ui/HorizontalSlideView;
 
     const/4 v1, 0x0
 
     invoke-static {p1, v1}, Lcom/android/camera/ui/HorizontalSlideView;->access$002(Lcom/android/camera/ui/HorizontalSlideView;Z)Z
 
-    .line 40
+    .line 44
     return v0
 .end method
 
 .method public onFling(Landroid/view/MotionEvent;Landroid/view/MotionEvent;FF)Z
     .locals 0
 
-    .line 64
+    .line 68
     iget-object p1, p0, Lcom/android/camera/ui/HorizontalSlideView$1;->this$0:Lcom/android/camera/ui/HorizontalSlideView;
 
     float-to-int p2, p3
@@ -67,7 +67,7 @@
 
     invoke-static {p1, p2}, Lcom/android/camera/ui/HorizontalSlideView;->access$600(Lcom/android/camera/ui/HorizontalSlideView;I)V
 
-    .line 65
+    .line 69
     const/4 p1, 0x1
 
     return p1
@@ -76,14 +76,14 @@
 .method public onScroll(Landroid/view/MotionEvent;Landroid/view/MotionEvent;FF)Z
     .locals 2
 
-    .line 51
+    .line 55
     iget-object p1, p0, Lcom/android/camera/ui/HorizontalSlideView$1;->this$0:Lcom/android/camera/ui/HorizontalSlideView;
 
     const/4 p2, 0x1
 
     invoke-static {p1, p2}, Lcom/android/camera/ui/HorizontalSlideView;->access$202(Lcom/android/camera/ui/HorizontalSlideView;Z)Z
 
-    .line 52
+    .line 56
     iget-object p1, p0, Lcom/android/camera/ui/HorizontalSlideView$1;->this$0:Lcom/android/camera/ui/HorizontalSlideView;
 
     iget p1, p1, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
@@ -104,10 +104,10 @@
 
     if-gez p1, :cond_0
 
-    .line 53
+    .line 57
     return v0
 
-    .line 54
+    .line 58
     :cond_0
     iget-object p1, p0, Lcom/android/camera/ui/HorizontalSlideView$1;->this$0:Lcom/android/camera/ui/HorizontalSlideView;
 
@@ -125,10 +125,10 @@
 
     if-lez p1, :cond_1
 
-    .line 55
+    .line 59
     return v0
 
-    .line 57
+    .line 61
     :cond_1
     iget-object p1, p0, Lcom/android/camera/ui/HorizontalSlideView$1;->this$0:Lcom/android/camera/ui/HorizontalSlideView;
 
@@ -144,14 +144,14 @@
 
     invoke-static {p1, p3}, Lcom/android/camera/ui/HorizontalSlideView;->access$500(Lcom/android/camera/ui/HorizontalSlideView;I)V
 
-    .line 58
+    .line 62
     return p2
 .end method
 
 .method public onSingleTapUp(Landroid/view/MotionEvent;)Z
     .locals 2
 
-    .line 45
+    .line 49
     iget-object v0, p0, Lcom/android/camera/ui/HorizontalSlideView$1;->this$0:Lcom/android/camera/ui/HorizontalSlideView;
 
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getX()F
@@ -168,7 +168,7 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/ui/HorizontalSlideView;->access$100(Lcom/android/camera/ui/HorizontalSlideView;I)V
 
-    .line 46
+    .line 50
     const/4 p1, 0x1
 
     return p1

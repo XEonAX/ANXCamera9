@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/ss/android/vesdk/VEEditor;)V
     .locals 0
 
-    .line 303
+    .line 318
     iput-object p1, p0, Lcom/ss/android/vesdk/VEEditor$3;->this$0:Lcom/ss/android/vesdk/VEEditor;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public onOpenGLCreate(I)I
     .locals 3
 
-    .line 306
+    .line 321
     const-string v0, "VEEditor"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -57,14 +57,7 @@
 
     invoke-static {v0, p1}, Lcom/ss/android/ttve/common/TELogUtil;->d(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 307
-    iget-object p1, p0, Lcom/ss/android/vesdk/VEEditor$3;->this$0:Lcom/ss/android/vesdk/VEEditor;
-
-    const/4 v0, 0x1
-
-    invoke-static {p1, v0}, Lcom/ss/android/vesdk/VEEditor;->access$702(Lcom/ss/android/vesdk/VEEditor;Z)Z
-
-    .line 308
+    .line 322
     const/4 p1, 0x0
 
     return p1
@@ -73,7 +66,7 @@
 .method public onOpenGLDestroy(I)I
     .locals 3
 
-    .line 333
+    .line 347
     const-string v0, "VEEditor"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -92,21 +85,16 @@
 
     invoke-static {v0, p1}, Lcom/ss/android/ttve/common/TELogUtil;->d(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 334
-    iget-object p1, p0, Lcom/ss/android/vesdk/VEEditor$3;->this$0:Lcom/ss/android/vesdk/VEEditor;
+    .line 348
+    const/4 p1, 0x0
 
-    const/4 v0, 0x0
-
-    invoke-static {p1, v0}, Lcom/ss/android/vesdk/VEEditor;->access$702(Lcom/ss/android/vesdk/VEEditor;Z)Z
-
-    .line 335
-    return v0
+    return p1
 .end method
 
 .method public onOpenGLDrawAfter(ID)I
     .locals 4
 
-    .line 318
+    .line 332
     const-string v0, "VEEditor"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -131,12 +119,12 @@
 
     invoke-static {v0, p1}, Lcom/ss/android/ttve/common/TELogUtil;->v(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 320
+    .line 334
     iget-object p1, p0, Lcom/ss/android/vesdk/VEEditor$3;->this$0:Lcom/ss/android/vesdk/VEEditor;
 
     invoke-static {p1}, Lcom/ss/android/vesdk/VEEditor;->access$804(Lcom/ss/android/vesdk/VEEditor;)I
 
-    .line 321
+    .line 335
     iget-object p1, p0, Lcom/ss/android/vesdk/VEEditor$3;->this$0:Lcom/ss/android/vesdk/VEEditor;
 
     invoke-static {p1}, Lcom/ss/android/vesdk/VEEditor;->access$800(Lcom/ss/android/vesdk/VEEditor;)I
@@ -149,7 +137,7 @@
 
     if-ne p1, p3, :cond_0
 
-    .line 322
+    .line 336
     iget-object p1, p0, Lcom/ss/android/vesdk/VEEditor$3;->this$0:Lcom/ss/android/vesdk/VEEditor;
 
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
@@ -158,7 +146,7 @@
 
     invoke-static {p1, v0, v1}, Lcom/ss/android/vesdk/VEEditor;->access$902(Lcom/ss/android/vesdk/VEEditor;J)J
 
-    .line 323
+    .line 337
     const p1, 0x46ea6000    # 30000.0f
 
     iget-object p3, p0, Lcom/ss/android/vesdk/VEEditor$3;->this$0:Lcom/ss/android/vesdk/VEEditor;
@@ -179,7 +167,7 @@
 
     div-float/2addr p1, p3
 
-    .line 324
+    .line 338
     const-string p3, "VEEditor"
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -198,7 +186,7 @@
 
     invoke-static {p3, p1}, Lcom/ss/android/ttve/common/TELogUtil;->d(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 325
+    .line 339
     iget-object p1, p0, Lcom/ss/android/vesdk/VEEditor$3;->this$0:Lcom/ss/android/vesdk/VEEditor;
 
     iget-object p3, p0, Lcom/ss/android/vesdk/VEEditor$3;->this$0:Lcom/ss/android/vesdk/VEEditor;
@@ -209,12 +197,12 @@
 
     invoke-static {p1, v0, v1}, Lcom/ss/android/vesdk/VEEditor;->access$1002(Lcom/ss/android/vesdk/VEEditor;J)J
 
-    .line 326
+    .line 340
     iget-object p1, p0, Lcom/ss/android/vesdk/VEEditor$3;->this$0:Lcom/ss/android/vesdk/VEEditor;
 
     invoke-static {p1, p2}, Lcom/ss/android/vesdk/VEEditor;->access$802(Lcom/ss/android/vesdk/VEEditor;I)I
 
-    .line 328
+    .line 342
     :cond_0
     return p2
 .end method
@@ -222,7 +210,7 @@
 .method public onOpenGLDrawBefore(ID)I
     .locals 0
 
-    .line 313
+    .line 327
     const/4 p1, 0x0
 
     return p1
@@ -231,7 +219,7 @@
 .method public onPreviewSurface(I)I
     .locals 0
 
-    .line 340
+    .line 353
     const/4 p1, 0x0
 
     return p1

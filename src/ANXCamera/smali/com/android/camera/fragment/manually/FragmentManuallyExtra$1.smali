@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/manually/FragmentManuallyExtra;)V
     .locals 0
 
-    .line 89
+    .line 90
     iput-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManuallyExtra$1;->this$0:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -43,13 +43,13 @@
         }
     .end annotation
 
-    .line 92
+    .line 93
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManuallyExtra$1;->this$0:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     const/4 v1, 0x0
 
     invoke-static {v0, v1}, Lcom/android/camera/fragment/manually/FragmentManuallyExtra;->access$002(Lcom/android/camera/fragment/manually/FragmentManuallyExtra;Z)Z
 
-    .line 93
+    .line 94
     return-void
 .end method

@@ -39,9 +39,9 @@
     .line 26
     new-instance v1, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;
 
-    const v2, 0x7f02016a
+    const v2, 0x7f02017b
 
-    const v3, 0x7f0b01d8
+    const v3, 0x7f0901d8
 
     invoke-direct {v1, v2, v3}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(II)V
 
@@ -50,9 +50,9 @@
     .line 28
     new-instance v1, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;
 
-    const v2, 0x7f020177
+    const v2, 0x7f020188
 
-    const v3, 0x7f0b01d5
+    const v3, 0x7f0901d5
 
     invoke-direct {v1, v2, v3}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(II)V
 
@@ -61,9 +61,9 @@
     .line 30
     new-instance v1, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;
 
-    const v2, 0x7f020179
+    const v2, 0x7f02018a
 
-    const v3, 0x7f0b01d6
+    const v3, 0x7f0901d6
 
     invoke-direct {v1, v2, v3}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(II)V
 

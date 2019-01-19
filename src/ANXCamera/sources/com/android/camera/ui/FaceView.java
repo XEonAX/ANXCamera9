@@ -249,10 +249,10 @@ public class FaceView extends FrameView {
             public void run() {
                 if (i > 0) {
                     FaceView.this.setContentDescription(FaceView.this.getResources().getQuantityString(R.plurals.accessibility_focus_face_detect, i, new Object[]{Integer.valueOf(i)}));
-                    FaceView.this.sendAccessibilityEvent(4);
-                    return;
+                } else {
+                    FaceView.this.setContentDescription("");
                 }
-                FaceView.this.setContentDescription("");
+                FaceView.this.sendAccessibilityEvent(4);
             }
         });
     }

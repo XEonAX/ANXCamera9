@@ -6,6 +6,7 @@ import android.hardware.camera2.CaptureRequest.Key;
 import com.android.camera.constant.MiCameraCharacteristics;
 import com.android.camera.log.Log;
 import com.android.camera2.CaptureResultParser;
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import java.util.HashSet;
 
 @TargetApi(21)
@@ -40,7 +41,7 @@ class MiCameraCompatQcomImpl extends MiCameraCompatBaseImpl {
             builder.set(ISO_EXP, Long.valueOf(2));
         } else if (i == 200) {
             builder.set(ISO_EXP, Long.valueOf(3));
-        } else if (i == 400) {
+        } else if (i == MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME) {
             builder.set(ISO_EXP, Long.valueOf(4));
         } else if (i == 800) {
             builder.set(ISO_EXP, Long.valueOf(5));

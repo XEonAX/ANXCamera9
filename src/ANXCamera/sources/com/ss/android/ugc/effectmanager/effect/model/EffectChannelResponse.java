@@ -6,7 +6,6 @@ import java.util.List;
 public class EffectChannelResponse {
     private List<Effect> allCategoryEffects;
     private List<EffectCategoryResponse> categoryResponseList;
-    private List<Effect> collections;
     private Effect frontEffect;
     private String panel;
     private EffectPanelModel panelModel;
@@ -91,13 +90,5 @@ public class EffectChannelResponse {
 
     public void setCategoryResponseList(List<EffectCategoryResponse> list) {
         this.categoryResponseList = list;
-    }
-
-    public List<Effect> getCollections() {
-        return this.collections;
-    }
-
-    public void setCollections(List<Effect> list) {
-        this.collections = list;
     }
 }

@@ -83,7 +83,7 @@ public class ByteBufferGifDecoder implements g<ByteBuffer, b> {
     }
 
     public boolean a(@NonNull ByteBuffer byteBuffer, @NonNull f fVar) throws IOException {
-        return !((Boolean) fVar.a(g.lY)).booleanValue() && com.bumptech.glide.load.b.a(this.dL, byteBuffer) == ImageType.GIF;
+        return !((Boolean) fVar.a(g.lX)).booleanValue() && com.bumptech.glide.load.b.a(this.dL, byteBuffer) == ImageType.GIF;
     }
 
     /* renamed from: b */

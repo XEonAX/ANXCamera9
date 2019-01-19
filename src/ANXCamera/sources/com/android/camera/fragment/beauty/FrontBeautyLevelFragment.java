@@ -29,7 +29,7 @@ public class FrontBeautyLevelFragment extends BeautyLevelFragment {
     }
 
     private void setBeautyLevel(int i) {
-        if (!b.hr()) {
+        if (!b.hA()) {
             boolean isFaceBeautyOn = BeautyParameters.isFaceBeautyOn();
             BottomMenuProtocol bottomMenuProtocol = (BottomMenuProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(197);
             if (bottomMenuProtocol != null) {

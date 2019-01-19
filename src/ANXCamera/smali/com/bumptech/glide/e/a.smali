@@ -6,7 +6,7 @@
 # static fields
 .field private static final TAG:Ljava/lang/String; = "AppVersionSignature"
 
-.field private static final pc:Ljava/util/concurrent/ConcurrentMap;
+.field private static final pb:Ljava/util/concurrent/ConcurrentMap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/concurrent/ConcurrentMap<",
@@ -27,7 +27,7 @@
 
     invoke-direct {v0}, Ljava/util/concurrent/ConcurrentHashMap;-><init>()V
 
-    sput-object v0, Lcom/bumptech/glide/e/a;->pc:Ljava/util/concurrent/ConcurrentMap;
+    sput-object v0, Lcom/bumptech/glide/e/a;->pb:Ljava/util/concurrent/ConcurrentMap;
 
     return-void
 .end method
@@ -93,7 +93,7 @@
     move-result-object v0
 
     .line 30
-    sget-object v1, Lcom/bumptech/glide/e/a;->pc:Ljava/util/concurrent/ConcurrentMap;
+    sget-object v1, Lcom/bumptech/glide/e/a;->pb:Ljava/util/concurrent/ConcurrentMap;
 
     invoke-interface {v1, v0}, Ljava/util/concurrent/ConcurrentMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -110,7 +110,7 @@
     move-result-object v1
 
     .line 33
-    sget-object p0, Lcom/bumptech/glide/e/a;->pc:Ljava/util/concurrent/ConcurrentMap;
+    sget-object p0, Lcom/bumptech/glide/e/a;->pb:Ljava/util/concurrent/ConcurrentMap;
 
     invoke-interface {p0, v0, v1}, Ljava/util/concurrent/ConcurrentMap;->putIfAbsent(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -228,7 +228,7 @@
     .end annotation
 
     .line 45
-    sget-object v0, Lcom/bumptech/glide/e/a;->pc:Ljava/util/concurrent/ConcurrentMap;
+    sget-object v0, Lcom/bumptech/glide/e/a;->pb:Ljava/util/concurrent/ConcurrentMap;
 
     invoke-interface {v0}, Ljava/util/concurrent/ConcurrentMap;->clear()V
 

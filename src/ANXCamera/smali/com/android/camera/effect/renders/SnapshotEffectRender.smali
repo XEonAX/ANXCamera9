@@ -239,7 +239,7 @@
     iput-object p1, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mCurrentCustomWaterMarkText:Ljava/lang/String;
 
     .line 111
-    const p1, 0x7f0900ad
+    const p1, 0x7f0a00ad
 
     const/4 p2, 0x0
 
@@ -250,7 +250,7 @@
     iput p1, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mDualCameraWaterMarkSizeRatio:F
 
     .line 112
-    const p1, 0x7f0900ae
+    const p1, 0x7f0a00ae
 
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/effect/renders/SnapshotEffectRender;->getResourceFloat(IF)F
 
@@ -259,7 +259,7 @@
     iput p1, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mDualCameraWaterMarkPaddingXRatio:F
 
     .line 113
-    const p1, 0x7f0900af
+    const p1, 0x7f0a00af
 
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/effect/renders/SnapshotEffectRender;->getResourceFloat(IF)F
 
@@ -275,7 +275,7 @@
 
     move-result-object p1
 
-    const p2, 0x7f0900c3
+    const p2, 0x7f0a00c3
 
     invoke-virtual {p1, p2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -699,22 +699,22 @@
 .method private destroy()V
     .locals 6
 
-    .line 884
+    .line 885
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mImageSaver:Lcom/android/camera/storage/ImageSaver;
 
-    .line 885
+    .line 886
     const/4 v1, 0x1
 
     iput-boolean v1, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mRelease:Z
 
-    .line 886
+    .line 887
     const/4 v1, 0x0
 
     iput-boolean v1, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mReleasePending:Z
 
-    .line 887
+    .line 888
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mEgl:Ljavax/microedition/khronos/egl/EGL10;
 
     iget-object v2, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mEglDisplay:Ljavax/microedition/khronos/egl/EGLDisplay;
@@ -723,7 +723,7 @@
 
     invoke-interface {v1, v2, v3}, Ljavax/microedition/khronos/egl/EGL10;->eglDestroySurface(Ljavax/microedition/khronos/egl/EGLDisplay;Ljavax/microedition/khronos/egl/EGLSurface;)Z
 
-    .line 888
+    .line 889
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mEgl:Ljavax/microedition/khronos/egl/EGL10;
 
     iget-object v2, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mEglDisplay:Ljavax/microedition/khronos/egl/EGLDisplay;
@@ -732,7 +732,7 @@
 
     invoke-interface {v1, v2, v3}, Ljavax/microedition/khronos/egl/EGL10;->eglDestroyContext(Ljavax/microedition/khronos/egl/EGLDisplay;Ljavax/microedition/khronos/egl/EGLContext;)Z
 
-    .line 889
+    .line 890
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mEgl:Ljavax/microedition/khronos/egl/EGL10;
 
     iget-object v2, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mEglDisplay:Ljavax/microedition/khronos/egl/EGLDisplay;
@@ -745,31 +745,31 @@
 
     invoke-interface {v1, v2, v3, v4, v5}, Ljavax/microedition/khronos/egl/EGL10;->eglMakeCurrent(Ljavax/microedition/khronos/egl/EGLDisplay;Ljavax/microedition/khronos/egl/EGLSurface;Ljavax/microedition/khronos/egl/EGLSurface;Ljavax/microedition/khronos/egl/EGLContext;)Z
 
-    .line 890
+    .line 891
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mEgl:Ljavax/microedition/khronos/egl/EGL10;
 
     iget-object v2, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mEglDisplay:Ljavax/microedition/khronos/egl/EGLDisplay;
 
     invoke-interface {v1, v2}, Ljavax/microedition/khronos/egl/EGL10;->eglTerminate(Ljavax/microedition/khronos/egl/EGLDisplay;)Z
 
-    .line 891
+    .line 892
     iput-object v0, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mEglSurface:Ljavax/microedition/khronos/egl/EGLSurface;
 
-    .line 892
+    .line 893
     iput-object v0, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mEglContext:Ljavax/microedition/khronos/egl/EGLContext;
 
-    .line 893
+    .line 894
     iput-object v0, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mEglDisplay:Ljavax/microedition/khronos/egl/EGLDisplay;
 
-    .line 894
+    .line 895
     iput-object v0, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mActivity:Lcom/android/camera/ActivityBase;
 
-    .line 895
+    .line 896
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mEglThread:Landroid/os/HandlerThread;
 
     invoke-virtual {v1}, Landroid/os/HandlerThread;->quit()Z
 
-    .line 896
+    .line 897
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mDualCameraWaterMarkBitmap:Landroid/graphics/Bitmap;
 
     if-eqz v1, :cond_0
@@ -782,26 +782,26 @@
 
     if-nez v1, :cond_0
 
-    .line 897
+    .line 898
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mDualCameraWaterMarkBitmap:Landroid/graphics/Bitmap;
 
     invoke-virtual {v1}, Landroid/graphics/Bitmap;->recycle()V
 
-    .line 898
+    .line 899
     iput-object v0, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mDualCameraWaterMarkBitmap:Landroid/graphics/Bitmap;
 
-    .line 900
+    .line 901
     :cond_0
     invoke-static {}, Ljava/lang/System;->gc()V
 
-    .line 901
+    .line 902
     sget-object v0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->TAG:Ljava/lang/String;
 
     const-string v1, "SnapshotEffectRender: has been released!!!"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 902
+    .line 903
     return-void
 .end method
 
@@ -883,7 +883,7 @@
 
     move-result-object v1
 
-    invoke-virtual {v1}, Lcom/mi/config/a;->fd()Z
+    invoke-virtual {v1}, Lcom/mi/config/a;->fe()Z
 
     move-result v1
 
@@ -1269,7 +1269,7 @@
 
     move-result-object v1
 
-    invoke-virtual {v1}, Lcom/mi/config/a;->fd()Z
+    invoke-virtual {v1}, Lcom/mi/config/a;->fe()Z
 
     move-result v1
 
@@ -1611,7 +1611,7 @@
 .method public prepareEffectRender(I)V
     .locals 3
 
-    .line 879
+    .line 880
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotEffectRender;->mEglHandler:Lcom/android/camera/effect/renders/SnapshotEffectRender$EGLHandler;
 
     const/4 v1, 0x6
@@ -1624,7 +1624,7 @@
 
     invoke-virtual {p1}, Landroid/os/Message;->sendToTarget()V
 
-    .line 880
+    .line 881
     return-void
 .end method
 

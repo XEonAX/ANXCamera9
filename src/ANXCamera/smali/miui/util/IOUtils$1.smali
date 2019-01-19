@@ -48,14 +48,14 @@
     .registers 2
 
     .line 42
-    invoke-virtual {p0}, Lmiui/util/IOUtils$1;->dv()Ljava/io/ByteArrayOutputStream;
+    invoke-virtual {p0}, Lmiui/util/IOUtils$1;->dw()Ljava/io/ByteArrayOutputStream;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public dv()Ljava/io/ByteArrayOutputStream;
+.method public dw()Ljava/io/ByteArrayOutputStream;
     .registers 2
 
     .line 45

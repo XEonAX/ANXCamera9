@@ -16,27 +16,27 @@ import java.util.Map;
 public class ImagePool {
     public static final int MAX_IMAGES = 30;
     private static final String TAG = ImagePool.class.getSimpleName();
-    private HandlerThread imageReaderHandlerThread = new HandlerThread("ImageReaderHandlerThread");
-    private HandlerThread imageWriterHandlerThread = new HandlerThread("ImageWriterHandlerThread");
     private OnImageAvailableListener mImageAvailableListener = new OnImageAvailableListener() {
         public void onImageAvailable(ImageReader imageReader) {
-            synchronized (ImagePool.this.objLock) {
+            synchronized (ImagePool.this.mObjLock) {
                 Image acquireNextImage = imageReader.acquireNextImage();
                 long timestamp = acquireNextImage.getTimestamp();
                 String access$100 = ImagePool.TAG;
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("onImageAvailable: queued a image: ");
+                stringBuilder.append("onImageAvailable: ");
                 stringBuilder.append(timestamp);
                 Log.d(access$100, stringBuilder.toString());
                 ImagePool.this.mImageLongSparseArray.append(timestamp, acquireNextImage);
-                ImagePool.this.objLock.notify();
+                ImagePool.this.mObjLock.notify();
             }
         }
     };
     private LongSparseArray<Image> mImageLongSparseArray = new LongSparseArray();
+    private HandlerThread mImageReaderHandlerThread = new HandlerThread("ImageReaderHandlerThread");
     private Map<ImageFormat, ImageReader> mImageReaderMap = new HashMap();
+    private HandlerThread mImageWriterHandlerThread = new HandlerThread("ImageWriterHandlerThread");
     private Map<ImageFormat, ImageWriter> mImageWriterMap = new HashMap();
-    private final Object objLock = new Object();
+    private final Object mObjLock = new Object();
 
     public static class ImageFormat {
         private int mFormat;
@@ -82,8 +82,8 @@ public class ImagePool {
         }
 
         static {
-            sInstance.imageReaderHandlerThread.start();
-            sInstance.imageWriterHandlerThread.start();
+            sInstance.mImageReaderHandlerThread.start();
+            sInstance.mImageWriterHandlerThread.start();
         }
     }
 
@@ -94,16 +94,16 @@ public class ImagePool {
     public void queueImage(Image image) {
         long timestamp = image.getTimestamp();
         if (this.mImageLongSparseArray.get(timestamp) == null) {
-            synchronized (this.objLock) {
+            synchronized (this.mObjLock) {
                 ImageWriter imageWriter = getImageWriter(new ImageFormat(image.getWidth(), image.getHeight(), image.getFormat()));
                 String str = TAG;
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("queueImage: start queueInputImage : ");
+                stringBuilder.append("queueImage: start. image: ");
                 stringBuilder.append(image.getTimestamp());
                 Log.d(str, stringBuilder.toString());
                 imageWriter.queueInputImage(image);
                 try {
-                    this.objLock.wait();
+                    this.mObjLock.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -112,7 +112,7 @@ public class ImagePool {
             return;
         }
         StringBuilder stringBuilder2 = new StringBuilder();
-        stringBuilder2.append("Image has exist :");
+        stringBuilder2.append("Image has exist: ");
         stringBuilder2.append(timestamp);
         throw new RuntimeException(stringBuilder2.toString());
     }
@@ -153,9 +153,9 @@ public class ImagePool {
             return (ImageWriter) this.mImageWriterMap.get(imageFormat);
         }
         ImageReader newInstance = ImageReader.newInstance(imageFormat.getWidth(), imageFormat.getHeight(), imageFormat.getFormat(), 30);
-        newInstance.setOnImageAvailableListener(this.mImageAvailableListener, new Handler(this.imageReaderHandlerThread.getLooper()));
+        newInstance.setOnImageAvailableListener(this.mImageAvailableListener, new Handler(this.mImageReaderHandlerThread.getLooper()));
         ImageWriter newInstance2 = ImageWriter.newInstance(newInstance.getSurface(), 30);
-        newInstance2.setOnImageReleasedListener(null, new Handler(this.imageWriterHandlerThread.getLooper()));
+        newInstance2.setOnImageReleasedListener(null, new Handler(this.mImageWriterHandlerThread.getLooper()));
         this.mImageReaderMap.put(imageFormat, newInstance);
         this.mImageWriterMap.put(imageFormat, newInstance2);
         String str = TAG;

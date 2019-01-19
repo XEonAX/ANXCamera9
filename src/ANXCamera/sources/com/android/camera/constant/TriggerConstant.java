@@ -8,6 +8,7 @@ public class TriggerConstant {
     public static final int MODE_EXPOSURE_VIEW = 90;
     public static final int MODE_FINGERPRINT = 30;
     public static final int MODE_FOCUS_SHOOT = 80;
+    public static final int MODE_HAND_GESTURE = 100;
     public static final int MODE_KEYCODE_CAMERA = 40;
     public static final int MODE_KEYCODE_DPAD = 50;
     public static final int MODE_OBJECT_TRACK = 60;

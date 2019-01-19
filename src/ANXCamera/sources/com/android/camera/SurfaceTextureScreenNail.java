@@ -23,7 +23,7 @@ import com.android.gallery3d.ui.ScreenNail;
 import com.mi.config.b;
 
 public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListener, Rotatable, ScreenNail {
-    private static final float MOVIE_SOLID_CROPPED_X = (b.ga() ? 0.9f : 0.8f);
+    private static final float MOVIE_SOLID_CROPPED_X = (b.gl() ? 0.9f : 0.8f);
     private static final float MOVIE_SOLID_CROPPED_Y;
     private static final String TAG = "STScreenNail";
     private static HandlerThread sFrameListener = new HandlerThread("FrameListener");
@@ -87,7 +87,7 @@ public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListen
 
     static {
         float f = 0.8f;
-        if (b.ga()) {
+        if (b.gl()) {
             f = 0.9f;
         }
         MOVIE_SOLID_CROPPED_Y = f;
@@ -120,7 +120,7 @@ public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListen
             this.mExtTexture = new ExtTexture();
         }
         this.mExtTexture.setSize(this.mWidth, this.mHeight);
-        if (b.gM() && !sFrameListener.isAlive()) {
+        if (b.gV() && !sFrameListener.isAlive()) {
             sFrameListener.start();
         }
         if (this.mSurfaceTexture == null) {
@@ -135,7 +135,7 @@ public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListen
         stringBuilder.append(this.mHeight);
         Log.d(str, stringBuilder.toString());
         this.mSurfaceTexture.setDefaultBufferSize(this.mWidth, this.mHeight);
-        if (VERSION.SDK_INT < 21 || !b.gM()) {
+        if (VERSION.SDK_INT < 21 || !b.gV()) {
             this.mSurfaceTexture.setOnFrameAvailableListener(this);
         } else {
             CompatibilityUtils.setSurfaceTextureOnFrameAvailableListener(this.mSurfaceTexture, this, new Handler(sFrameListener.getLooper()));
@@ -396,7 +396,7 @@ public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListen
             return;
         }
         gLCanvas.clearBuffer();
-        if (!this.mIsFullScreen || b.fS() || Util.isNotchDevice || Util.isLongRatioScreen) {
+        if (!this.mIsFullScreen || b.gd() || Util.isNotchDevice || Util.isLongRatioScreen) {
             draw(gLCanvas, this.mTx, this.mTy, this.mTwidth, this.mTheight);
         } else {
             draw(gLCanvas, 0, 0, this.mSurfaceWidth, this.mSurfaceHeight);
@@ -406,7 +406,7 @@ public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListen
     public void draw(GLCanvas gLCanvas, int i, int i2, int i3, int i4) {
         synchronized (this) {
             if (this.mHasTexture) {
-                if (b.gM()) {
+                if (b.gV()) {
                     checkThreadPriority();
                 }
                 gLCanvas.setPreviewSize(this.mWidth, this.mHeight);
@@ -429,7 +429,7 @@ public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListen
     }
 
     public void setVideoStabilizationCropped(boolean z) {
-        if (b.fI()) {
+        if (b.fS()) {
             this.mVideoStabilizationCropped = z;
         } else {
             this.mVideoStabilizationCropped = false;

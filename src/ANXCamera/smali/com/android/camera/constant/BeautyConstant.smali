@@ -41,7 +41,7 @@
     .line 10
     sget-object v0, Lcom/android/camera/constant/BeautyConstant;->res:Landroid/content/res/Resources;
 
-    const v1, 0x7f0b014b
+    const v1, 0x7f09014b
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -52,7 +52,7 @@
     .line 11
     sget-object v0, Lcom/android/camera/constant/BeautyConstant;->res:Landroid/content/res/Resources;
 
-    const v1, 0x7f0b014c
+    const v1, 0x7f09014c
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -63,7 +63,7 @@
     .line 12
     sget-object v0, Lcom/android/camera/constant/BeautyConstant;->res:Landroid/content/res/Resources;
 
-    const v1, 0x7f0b014d
+    const v1, 0x7f09014d
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -74,7 +74,7 @@
     .line 13
     sget-object v0, Lcom/android/camera/constant/BeautyConstant;->res:Landroid/content/res/Resources;
 
-    const v1, 0x7f0b014e
+    const v1, 0x7f09014e
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -85,7 +85,7 @@
     .line 14
     sget-object v0, Lcom/android/camera/constant/BeautyConstant;->res:Landroid/content/res/Resources;
 
-    const v1, 0x7f0b014f
+    const v1, 0x7f09014f
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -96,7 +96,7 @@
     .line 15
     sget-object v0, Lcom/android/camera/constant/BeautyConstant;->res:Landroid/content/res/Resources;
 
-    const v1, 0x7f0b0150
+    const v1, 0x7f090150
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -107,7 +107,7 @@
     .line 16
     sget-object v0, Lcom/android/camera/constant/BeautyConstant;->res:Landroid/content/res/Resources;
 
-    const v1, 0x7f0b0151
+    const v1, 0x7f090151
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -118,7 +118,7 @@
     .line 17
     sget-object v0, Lcom/android/camera/constant/BeautyConstant;->res:Landroid/content/res/Resources;
 
-    const v1, 0x7f0b0152
+    const v1, 0x7f090152
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 

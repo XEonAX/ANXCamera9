@@ -74,7 +74,7 @@
 
     move-result-object p1
 
-    const v0, 0x7f090090
+    const v0, 0x7f0a0090
 
     .line 43
     invoke-virtual {p1, v0}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
@@ -308,7 +308,7 @@
     invoke-super {p0, p1}, Landroid/preference/ListPreference;->onBindView(Landroid/view/View;)V
 
     .line 106
-    const v0, 0x7f0d00c8
+    const v0, 0x7f0d00d2
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -368,6 +368,31 @@
     :cond_2
     :goto_1
     return-void
+.end method
+
+.method protected onCreateView(Landroid/view/ViewGroup;)Landroid/view/View;
+    .locals 3
+
+    .line 121
+    invoke-virtual {p0}, Lcom/android/camera/ui/PreviewListPreference;->getContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    invoke-static {v0}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
+
+    move-result-object v0
+
+    .line 122
+    const v1, 0x7f04003f
+
+    const/4 v2, 0x0
+
+    invoke-virtual {v0, v1, p1, v2}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
+
+    move-result-object p1
+
+    .line 121
+    return-object p1
 .end method
 
 .method protected onGetDefaultValue(Landroid/content/res/TypedArray;I)Ljava/lang/Object;

@@ -218,10 +218,15 @@ public class BeautyEyeLightFragment extends BaseBeautyFragment implements OnClic
         }
     }
 
+    /* JADX WARNING: Missing block: B:9:0x003a, code:
+            return;
+     */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public void userInvisibleHit() {
         hideTipMessage(R.string.hint_eye_light);
         BaseDelegate baseDelegate = (BaseDelegate) ModeCoordinatorImpl.getInstance().getAttachProtocol(160);
-        if (!(baseDelegate == null || baseDelegate.getActiveFragment(R.id.bottom_popup_beauty) == 252)) {
+        MiBeautyProtocol miBeautyProtocol = (MiBeautyProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(194);
+        if (!(baseDelegate == null || miBeautyProtocol == null || miBeautyProtocol.getBeautyType() == 1 || baseDelegate.getActiveFragment(R.id.bottom_popup_beauty) == 252)) {
             baseDelegate.delegateEvent(3);
         }
     }

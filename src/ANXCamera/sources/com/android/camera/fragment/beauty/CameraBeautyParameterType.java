@@ -23,7 +23,7 @@ public class CameraBeautyParameterType {
     public static final CameraBeautyParameterType LEG_SLIM_RATIO = new CameraBeautyParameterType(5, Type.LEG_SLIM_RATIO);
     public static final CameraBeautyParameterType LIVE_ENLARGE_EYE_RATIO = new CameraBeautyParameterType(7, Type.LIVE_ENLARGE_EYE_RATIO);
     public static final CameraBeautyParameterType LIVE_SHRINK_FACE_RATIO = new CameraBeautyParameterType(7, Type.LIVE_SHRINK_FACE_RATIO);
-    public static final CameraBeautyParameterType LIVE_WHITEN_STRENGTH = new CameraBeautyParameterType(7, Type.LIVE_WHITEN_STRENGTH);
+    public static final CameraBeautyParameterType LIVE_SMOOTH_STRENGTH = new CameraBeautyParameterType(7, Type.LIVE_SMOOTH_STRENGTH);
     public static final CameraBeautyParameterType PUPIL_LINE_RATIO = new CameraBeautyParameterType(3, Type.PUPIL_LINE_RATIO);
     public static final CameraBeautyParameterType SHOULDER_SLIM_RATIO = new CameraBeautyParameterType(5, Type.SHOULDER_SLIM_RATIO);
     public static final CameraBeautyParameterType SHRINK_FACE_RATIO = new CameraBeautyParameterType(2, BeautyParameterType.SHRINK_FACE_RATIO);

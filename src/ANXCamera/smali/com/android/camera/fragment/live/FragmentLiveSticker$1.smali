@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/live/FragmentLiveSticker;)V
     .locals 0
 
-    .line 95
+    .line 121
     iput-object p1, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$1;->this$0:Lcom/android/camera/fragment/live/FragmentLiveSticker;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -47,11 +47,11 @@
         }
     .end annotation
 
-    .line 98
+    .line 124
     iget-object p1, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$1;->this$0:Lcom/android/camera/fragment/live/FragmentLiveSticker;
 
     invoke-virtual {p1, p3, p2}, Lcom/android/camera/fragment/live/FragmentLiveSticker;->onItemSelected(ILandroid/view/View;)V
 
-    .line 99
+    .line 125
     return-void
 .end method

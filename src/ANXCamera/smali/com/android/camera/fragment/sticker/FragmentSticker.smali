@@ -33,7 +33,7 @@
 .method public constructor <init>()V
     .locals 0
 
-    .line 30
+    .line 31
     invoke-direct {p0}, Lcom/android/camera/fragment/BaseFragment;-><init>()V
 
     return-void
@@ -42,7 +42,7 @@
 .method static synthetic access$000(Lcom/android/camera/fragment/sticker/FragmentSticker;)Landroid/widget/RadioGroup;
     .locals 0
 
-    .line 30
+    .line 31
     iget-object p0, p0, Lcom/android/camera/fragment/sticker/FragmentSticker;->mRadioGroup:Landroid/widget/RadioGroup;
 
     return-object p0
@@ -51,7 +51,7 @@
 .method static synthetic access$100(Lcom/android/camera/fragment/sticker/FragmentSticker;)Lcom/android/camera/ui/NoScrollViewPager;
     .locals 0
 
-    .line 30
+    .line 31
     iget-object p0, p0, Lcom/android/camera/fragment/sticker/FragmentSticker;->mViewPager:Lcom/android/camera/ui/NoScrollViewPager;
 
     return-object p0
@@ -60,7 +60,7 @@
 .method static synthetic access$200(Lcom/android/camera/fragment/sticker/FragmentSticker;)Lcom/android/camera/fragment/sticker/FragmentSticker$OnRadioButtonChangedListener;
     .locals 0
 
-    .line 30
+    .line 31
     iget-object p0, p0, Lcom/android/camera/fragment/sticker/FragmentSticker;->mOnRadioButtonChangedListener:Lcom/android/camera/fragment/sticker/FragmentSticker$OnRadioButtonChangedListener;
 
     return-object p0
@@ -69,7 +69,7 @@
 .method static synthetic access$300(Lcom/android/camera/fragment/sticker/FragmentSticker;)I
     .locals 0
 
-    .line 30
+    .line 31
     iget p0, p0, Lcom/android/camera/fragment/sticker/FragmentSticker;->mCurrentMode:I
 
     return p0
@@ -80,7 +80,7 @@
 .method public getFragmentInto()I
     .locals 1
 
-    .line 141
+    .line 142
     const/16 v0, 0xff
 
     return v0
@@ -89,8 +89,8 @@
 .method protected getLayoutResourceId()I
     .locals 1
 
-    .line 136
-    const v0, 0x7f04002c
+    .line 137
+    const v0, 0x7f04002e
 
     return v0
 .end method
@@ -98,7 +98,7 @@
 .method protected initView(Landroid/view/View;)V
     .locals 3
 
-    .line 42
+    .line 43
     invoke-virtual {p0}, Lcom/android/camera/fragment/sticker/FragmentSticker;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
@@ -109,7 +109,7 @@
 
     iget v0, v0, Landroid/util/DisplayMetrics;->widthPixels:I
 
-    .line 43
+    .line 44
     invoke-virtual {p0}, Lcom/android/camera/fragment/sticker/FragmentSticker;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
@@ -120,7 +120,7 @@
 
     iget v1, v1, Landroid/util/DisplayMetrics;->heightPixels:I
 
-    .line 45
+    .line 46
     int-to-float v1, v1
 
     int-to-float v0, v0
@@ -133,14 +133,14 @@
 
     float-to-int v0, v1
 
-    .line 46
+    .line 47
     invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object v1
 
     iput v0, v1, Landroid/view/ViewGroup$LayoutParams;->height:I
 
-    .line 48
+    .line 49
     const v0, 0x7f0d0015
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
@@ -151,17 +151,10 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/sticker/FragmentSticker;->mViewPager:Lcom/android/camera/ui/NoScrollViewPager;
 
-    .line 49
+    .line 50
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
-
-    .line 50
-    new-instance v1, Lcom/android/camera/fragment/sticker/FragmentStickerPager;
-
-    invoke-direct {v1}, Lcom/android/camera/fragment/sticker/FragmentStickerPager;-><init>()V
-
-    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .line 51
     new-instance v1, Lcom/android/camera/fragment/sticker/FragmentStickerPager;
@@ -171,6 +164,13 @@
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .line 52
+    new-instance v1, Lcom/android/camera/fragment/sticker/FragmentStickerPager;
+
+    invoke-direct {v1}, Lcom/android/camera/fragment/sticker/FragmentStickerPager;-><init>()V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 53
     new-instance v1, Lcom/android/camera/fragment/sticker/FragmentSticker$StickerPagerAdapter;
 
     invoke-virtual {p0}, Lcom/android/camera/fragment/sticker/FragmentSticker;->getChildFragmentManager()Landroid/support/v4/app/FragmentManager;
@@ -179,12 +179,12 @@
 
     invoke-direct {v1, p0, v2, v0}, Lcom/android/camera/fragment/sticker/FragmentSticker$StickerPagerAdapter;-><init>(Lcom/android/camera/fragment/sticker/FragmentSticker;Landroid/support/v4/app/FragmentManager;Ljava/util/List;)V
 
-    .line 53
+    .line 54
     iget-object v0, p0, Lcom/android/camera/fragment/sticker/FragmentSticker;->mViewPager:Lcom/android/camera/ui/NoScrollViewPager;
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/NoScrollViewPager;->setAdapter(Landroid/support/v4/view/PagerAdapter;)V
 
-    .line 54
+    .line 55
     iget-object v0, p0, Lcom/android/camera/fragment/sticker/FragmentSticker;->mViewPager:Lcom/android/camera/ui/NoScrollViewPager;
 
     new-instance v1, Lcom/android/camera/fragment/sticker/FragmentSticker$1;
@@ -193,8 +193,8 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/NoScrollViewPager;->setOnPageChangeListener(Landroid/support/v4/view/ViewPager$OnPageChangeListener;)V
 
-    .line 76
-    const v0, 0x7f0d008d
+    .line 77
+    const v0, 0x7f0d0096
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -204,7 +204,7 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/sticker/FragmentSticker;->mRadioGroup:Landroid/widget/RadioGroup;
 
-    .line 77
+    .line 78
     iget-object v0, p0, Lcom/android/camera/fragment/sticker/FragmentSticker;->mRadioGroup:Landroid/widget/RadioGroup;
 
     new-instance v1, Lcom/android/camera/fragment/sticker/FragmentSticker$2;
@@ -213,15 +213,15 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/RadioGroup;->setOnCheckedChangeListener(Landroid/widget/RadioGroup$OnCheckedChangeListener;)V
 
-    .line 95
+    .line 96
     iget-object v0, p0, Lcom/android/camera/fragment/sticker/FragmentSticker;->mRadioGroup:Landroid/widget/RadioGroup;
 
-    const v1, 0x7f0d008e
+    const v1, 0x7f0d0097
 
     invoke-virtual {v0, v1}, Landroid/widget/RadioGroup;->check(I)V
 
-    .line 97
-    const v0, 0x7f0d0090
+    .line 98
+    const v0, 0x7f0d0099
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -231,7 +231,7 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/sticker/FragmentSticker;->mBackButton:Landroid/widget/ImageView;
 
-    .line 98
+    .line 99
     iget-object p1, p0, Lcom/android/camera/fragment/sticker/FragmentSticker;->mBackButton:Landroid/widget/ImageView;
 
     new-instance v0, Lcom/android/camera/fragment/sticker/FragmentSticker$3;
@@ -240,7 +240,7 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 117
+    .line 118
     invoke-virtual {p0}, Lcom/android/camera/fragment/sticker/FragmentSticker;->getActivity()Landroid/support/v4/app/FragmentActivity;
 
     move-result-object p1
@@ -251,14 +251,14 @@
 
     invoke-static {p1}, Lcom/android/camera/fragment/CtaNoticeFragment;->checkCta(Landroid/app/FragmentManager;)Z
 
-    .line 118
+    .line 119
     return-void
 .end method
 
 .method public onBackEvent(I)Z
     .locals 3
 
-    .line 193
+    .line 194
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
@@ -271,15 +271,15 @@
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;
 
-    .line 194
+    .line 195
     const/4 v0, 0x0
 
     if-nez p1, :cond_0
 
-    .line 195
+    .line 196
     return v0
 
-    .line 197
+    .line 198
     :cond_0
     const v1, 0x7f0d001b
 
@@ -291,43 +291,43 @@
 
     if-eq v1, v2, :cond_1
 
-    .line 198
+    .line 199
     return v0
 
-    .line 201
+    .line 202
     :cond_1
     const/4 v0, 0x4
 
     invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->delegateEvent(I)V
 
-    .line 202
+    .line 203
     const/4 p1, 0x1
 
     return p1
 .end method
 
-.method public provideAnimateElement(ILjava/util/List;Z)V
+.method public provideAnimateElement(ILjava/util/List;I)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
             "Ljava/util/List<",
             "Lio/reactivex/Completable;",
-            ">;Z)V"
+            ">;I)V"
         }
     .end annotation
 
-    .line 146
-    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;Z)V
-
     .line 147
+    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;I)V
+
+    .line 148
     return-void
 .end method
 
 .method protected provideEnterAnimation(I)Landroid/view/animation/Animation;
     .locals 0
 
-    .line 178
+    .line 179
     const/4 p1, 0x2
 
     new-array p1, p1, [I
@@ -352,7 +352,7 @@
 .method protected provideExitAnimation()Landroid/view/animation/Animation;
     .locals 1
 
-    .line 185
+    .line 186
     const/4 v0, 0x2
 
     new-array v0, v0, [I
@@ -377,35 +377,35 @@
 .method protected register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 0
 
-    .line 122
+    .line 123
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 123
+    .line 124
     invoke-virtual {p0, p1, p0}, Lcom/android/camera/fragment/sticker/FragmentSticker;->registerBackStack(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;Lcom/android/camera/protocol/ModeProtocol$HandleBackTrace;)V
 
-    .line 125
+    .line 126
     return-void
 .end method
 
 .method public setOnRadioButtonChangedListener(Lcom/android/camera/fragment/sticker/FragmentSticker$OnRadioButtonChangedListener;)V
     .locals 0
 
-    .line 169
+    .line 170
     iput-object p1, p0, Lcom/android/camera/fragment/sticker/FragmentSticker;->mOnRadioButtonChangedListener:Lcom/android/camera/fragment/sticker/FragmentSticker$OnRadioButtonChangedListener;
 
-    .line 170
+    .line 171
     return-void
 .end method
 
 .method protected unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 0
 
-    .line 129
+    .line 130
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 130
+    .line 131
     invoke-virtual {p0, p1, p0}, Lcom/android/camera/fragment/sticker/FragmentSticker;->unRegisterBackStack(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;Lcom/android/camera/protocol/ModeProtocol$HandleBackTrace;)V
 
-    .line 132
+    .line 133
     return-void
 .end method

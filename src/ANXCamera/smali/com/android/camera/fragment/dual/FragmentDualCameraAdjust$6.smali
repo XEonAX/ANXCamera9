@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)V
     .locals 0
 
-    .line 343
+    .line 348
     iput-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$6;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public run()V
     .locals 2
 
-    .line 346
+    .line 351
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$6;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-virtual {v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->isAdded()Z
@@ -47,7 +47,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 347
+    .line 352
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$6;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-static {v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->access$1300(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)Landroid/widget/TextView;
@@ -58,7 +58,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->sendAccessibilityEvent(I)V
 
-    .line 349
+    .line 354
     :cond_0
     return-void
 .end method

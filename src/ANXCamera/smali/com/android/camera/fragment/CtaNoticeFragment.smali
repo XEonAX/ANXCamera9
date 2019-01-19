@@ -67,14 +67,14 @@
     move-result-object v0
 
     .line 146
-    const v1, 0x7f0b01e4
+    const v1, 0x7f0901e4
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
     move-result-object v1
 
     .line 147
-    const v2, 0x7f0b01e5
+    const v2, 0x7f0901e5
 
     invoke-virtual {v0, v2}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -276,7 +276,7 @@
 
     move-result-object p1
 
-    const v0, 0x7f0b01e8
+    const v0, 0x7f0901e8
 
     invoke-static {p1, v0}, Lcom/android/camera/fragment/CtaNoticeFragment;->buildUserNotice(Landroid/content/Context;I)Landroid/text/SpannableStringBuilder;
 
@@ -292,7 +292,7 @@
     invoke-direct {v0, v1}, Lmiui/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
 
     .line 103
-    const v1, 0x7f0b01e9
+    const v1, 0x7f0901ea
 
     invoke-virtual {v0, v1}, Lmiui/app/AlertDialog$Builder;->setTitle(I)Lmiui/app/AlertDialog$Builder;
 
@@ -308,7 +308,7 @@
     invoke-direct {v0, p0}, Lcom/android/camera/fragment/CtaNoticeFragment$2;-><init>(Lcom/android/camera/fragment/CtaNoticeFragment;)V
 
     .line 105
-    const v1, 0x7f0b01e6
+    const v1, 0x7f0901e6
 
     invoke-virtual {p1, v1, v0}, Lmiui/app/AlertDialog$Builder;->setPositiveButton(ILandroid/content/DialogInterface$OnClickListener;)Lmiui/app/AlertDialog$Builder;
 
@@ -337,7 +337,7 @@
 
     move-result-object v1
 
-    const v2, 0x7f0b01e7
+    const v2, 0x7f0901e7
 
     invoke-virtual {v1, v2}, Landroid/app/Activity;->getString(I)Ljava/lang/String;
 

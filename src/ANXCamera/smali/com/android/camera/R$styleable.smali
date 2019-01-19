@@ -102,7 +102,7 @@
 .method static constructor <clinit>()V
     .locals 4
 
-    .line 2869
+    .line 2962
     const/4 v0, 0x1
 
     new-array v1, v0, [I
@@ -115,7 +115,7 @@
 
     sput-object v1, Lcom/android/camera/R$styleable;->CameraPreference:[I
 
-    .line 2898
+    .line 2991
     const/4 v1, 0x2
 
     new-array v1, v1, [I
@@ -124,7 +124,7 @@
 
     sput-object v1, Lcom/android/camera/R$styleable;->IconIndicator:[I
 
-    .line 2937
+    .line 3030
     const/4 v1, 0x4
 
     new-array v1, v1, [I
@@ -133,7 +133,7 @@
 
     sput-object v1, Lcom/android/camera/R$styleable;->IconListPreference:[I
 
-    .line 3000
+    .line 3093
     const/4 v1, 0x5
 
     new-array v3, v1, [I
@@ -142,7 +142,7 @@
 
     sput-object v3, Lcom/android/camera/R$styleable;->ListPreference:[I
 
-    .line 3073
+    .line 3166
     new-array v0, v0, [I
 
     const v3, 0x7f01000f
@@ -151,14 +151,14 @@
 
     sput-object v0, Lcom/android/camera/R$styleable;->PreviewListPreference:[I
 
-    .line 3104
+    .line 3197
     new-array v0, v1, [I
 
     fill-array-data v0, :array_3
 
     sput-object v0, Lcom/android/camera/R$styleable;->RecyclerView:[I
 
-    .line 3220
+    .line 3313
     const/16 v0, 0x10
 
     new-array v0, v0, [I
@@ -227,7 +227,7 @@
 .method public constructor <init>()V
     .locals 0
 
-    .line 2858
+    .line 2951
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

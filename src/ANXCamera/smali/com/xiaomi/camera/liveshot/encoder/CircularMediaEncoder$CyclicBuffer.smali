@@ -40,7 +40,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 319
+    .line 339
     const-class v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -55,30 +55,30 @@
 .method public constructor <init>(Landroid/media/MediaFormat;J)V
     .locals 7
 
-    .line 335
+    .line 355
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 336
+    .line 356
     if-eqz p1, :cond_2
 
-    .line 340
+    .line 360
     const-string v0, "mime"
 
     invoke-virtual {p1, v0}, Landroid/media/MediaFormat;->getString(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 341
+    .line 361
     if-eqz v0, :cond_1
 
-    .line 345
+    .line 365
     const-string v1, "bitrate"
 
     invoke-virtual {p1, v1}, Landroid/media/MediaFormat;->getInteger(Ljava/lang/String;)I
 
     move-result v1
 
-    .line 346
+    .line 366
     int-to-long v2, v1
 
     mul-long/2addr v2, p2
@@ -89,12 +89,12 @@
 
     long-to-int v2, v2
 
-    .line 347
+    .line 367
     new-array v3, v2, [B
 
     iput-object v3, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mDataBuffer:[B
 
-    .line 351
+    .line 371
     const-string v3, "video"
 
     invoke-virtual {v0, v3}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
@@ -103,7 +103,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 352
+    .line 372
     const-string v0, "frame-rate"
 
     invoke-virtual {p1, v0}, Landroid/media/MediaFormat;->getInteger(Ljava/lang/String;)I
@@ -114,7 +114,7 @@
 
     goto :goto_0
 
-    .line 354
+    .line 374
     :cond_0
     const-string v0, "sample-rate"
 
@@ -124,12 +124,12 @@
 
     int-to-double v3, p1
 
-    .line 355
+    .line 375
     const-wide/high16 v5, 0x4090000000000000L    # 1024.0
 
     div-double/2addr v3, v5
 
-    .line 358
+    .line 378
     :goto_0
     int-to-double v0, v1
 
@@ -139,7 +139,7 @@
 
     div-double/2addr v0, v3
 
-    .line 359
+    .line 379
     int-to-double v3, v2
 
     div-double/2addr v3, v0
@@ -150,30 +150,30 @@
 
     double-to-int p1, v3
 
-    .line 363
+    .line 383
     mul-int/lit8 v0, p1, 0x2
 
-    .line 365
+    .line 385
     new-array v1, v0, [I
 
     iput-object v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketFlags:[I
 
-    .line 366
+    .line 386
     new-array v1, v0, [J
 
     iput-object v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketPtsUs:[J
 
-    .line 367
+    .line 387
     new-array v1, v0, [I
 
     iput-object v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketStart:[I
 
-    .line 368
+    .line 388
     new-array v1, v0, [I
 
     iput-object v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketLength:[I
 
-    .line 371
+    .line 391
     sget-object v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->TAG:Ljava/lang/String;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -210,10 +210,10 @@
 
     invoke-static {v1, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 377
+    .line 397
     return-void
 
-    .line 342
+    .line 362
     :cond_1
     new-instance p1, Ljava/lang/IllegalArgumentException;
 
@@ -223,7 +223,7 @@
 
     throw p1
 
-    .line 337
+    .line 357
     :cond_2
     new-instance p1, Ljava/lang/IllegalArgumentException;
 
@@ -237,20 +237,20 @@
 .method private canAdd(I)Z
     .locals 7
 
-    .line 538
+    .line 558
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mDataBuffer:[B
 
     array-length v0, v0
 
-    .line 539
+    .line 559
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketStart:[I
 
     array-length v1, v1
 
-    .line 541
+    .line 561
     if-gt p1, v0, :cond_3
 
-    .line 544
+    .line 564
     iget v2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
     iget v3, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaTail:I
@@ -259,10 +259,10 @@
 
     if-ne v2, v3, :cond_0
 
-    .line 546
+    .line 566
     return v4
 
-    .line 550
+    .line 570
     :cond_0
     iget v2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
@@ -270,14 +270,14 @@
 
     rem-int/2addr v2, v1
 
-    .line 551
+    .line 571
     iget v3, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaTail:I
 
     const/4 v5, 0x0
 
     if-ne v2, v3, :cond_1
 
-    .line 553
+    .line 573
     sget-object p1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->TAG:Ljava/lang/String;
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -310,33 +310,33 @@
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 555
+    .line 575
     return v5
 
-    .line 560
+    .line 580
     :cond_1
     invoke-direct {p0}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->getHeadStart()I
 
     move-result v2
 
-    .line 561
+    .line 581
     iget-object v3, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketStart:[I
 
     iget v6, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaTail:I
 
     aget v3, v3, v6
 
-    .line 562
+    .line 582
     add-int v6, v3, v0
 
     sub-int/2addr v6, v2
 
     rem-int/2addr v6, v0
 
-    .line 563
+    .line 583
     if-le p1, v6, :cond_2
 
-    .line 565
+    .line 585
     sget-object v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -377,10 +377,10 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 568
+    .line 588
     return v5
 
-    .line 572
+    .line 592
     :cond_2
     sget-object v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->TAG:Ljava/lang/String;
 
@@ -424,10 +424,10 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 576
+    .line 596
     return v4
 
-    .line 542
+    .line 562
     :cond_3
     new-instance v1, Ljava/lang/RuntimeException;
 
@@ -459,30 +459,30 @@
 .method private getHeadStart()I
     .locals 4
 
-    .line 519
+    .line 539
     iget v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
     iget v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaTail:I
 
     if-ne v0, v1, :cond_0
 
-    .line 521
+    .line 541
     const/4 v0, 0x0
 
     return v0
 
-    .line 524
+    .line 544
     :cond_0
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mDataBuffer:[B
 
     array-length v0, v0
 
-    .line 525
+    .line 545
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketStart:[I
 
     array-length v1, v1
 
-    .line 527
+    .line 547
     iget v2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
     add-int/2addr v2, v1
@@ -491,7 +491,7 @@
 
     rem-int/2addr v2, v1
 
-    .line 528
+    .line 548
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketStart:[I
 
     aget v1, v1, v2
@@ -512,19 +512,19 @@
 .method private removeTail()V
     .locals 2
 
-    .line 583
+    .line 603
     iget v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
     iget v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaTail:I
 
     if-eq v0, v1, :cond_0
 
-    .line 586
+    .line 606
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketStart:[I
 
     array-length v0, v0
 
-    .line 587
+    .line 607
     iget v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaTail:I
 
     add-int/lit8 v1, v1, 0x1
@@ -533,10 +533,10 @@
 
     iput v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaTail:I
 
-    .line 588
+    .line 608
     return-void
 
-    .line 584
+    .line 604
     :cond_0
     new-instance v0, Ljava/lang/RuntimeException;
 
@@ -552,7 +552,7 @@
 .method public add(Ljava/nio/ByteBuffer;IJ)V
     .locals 6
 
-    .line 418
+    .line 438
     invoke-virtual {p1}, Ljava/nio/ByteBuffer;->limit()I
 
     move-result v0
@@ -563,7 +563,7 @@
 
     sub-int/2addr v0, v1
 
-    .line 420
+    .line 440
     sget-object v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -598,7 +598,7 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 423
+    .line 443
     :goto_0
     invoke-direct {p0, v0}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->canAdd(I)Z
 
@@ -606,79 +606,79 @@
 
     if-nez v1, :cond_0
 
-    .line 424
+    .line 444
     sget-object v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->TAG:Ljava/lang/String;
 
     const-string v2, "Cached buffer removed from tail"
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 425
+    .line 445
     invoke-direct {p0}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->removeTail()V
 
     goto :goto_0
 
-    .line 428
+    .line 448
     :cond_0
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mDataBuffer:[B
 
     array-length v1, v1
 
-    .line 429
+    .line 449
     iget-object v2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketStart:[I
 
     array-length v2, v2
 
-    .line 430
+    .line 450
     invoke-direct {p0}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->getHeadStart()I
 
     move-result v3
 
-    .line 431
+    .line 451
     iget-object v4, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketFlags:[I
 
     iget v5, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
     aput p2, v4, v5
 
-    .line 432
+    .line 452
     iget-object p2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketPtsUs:[J
 
     iget v4, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
     aput-wide p3, p2, v4
 
-    .line 433
+    .line 453
     iget-object p2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketStart:[I
 
     iget p3, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
     aput v3, p2, p3
 
-    .line 434
+    .line 454
     iget-object p2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketLength:[I
 
     iget p3, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
     aput v0, p2, p3
 
-    .line 437
+    .line 457
     add-int p2, v3, v0
 
     if-ge p2, v1, :cond_1
 
-    .line 439
+    .line 459
     iget-object p2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mDataBuffer:[B
 
     invoke-virtual {p1, p2, v3, v0}, Ljava/nio/ByteBuffer;->get([BII)Ljava/nio/ByteBuffer;
 
     goto :goto_1
 
-    .line 442
+    .line 462
     :cond_1
     sub-int/2addr v1, v3
 
-    .line 444
+    .line 464
     sget-object p2, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->TAG:Ljava/lang/String;
 
     new-instance p3, Ljava/lang/StringBuilder;
@@ -703,12 +703,12 @@
 
     invoke-static {p2, p3}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 446
+    .line 466
     iget-object p2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mDataBuffer:[B
 
     invoke-virtual {p1, p2, v3, v1}, Ljava/nio/ByteBuffer;->get([BII)Ljava/nio/ByteBuffer;
 
-    .line 447
+    .line 467
     iget-object p2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mDataBuffer:[B
 
     const/4 p3, 0x0
@@ -717,7 +717,7 @@
 
     invoke-virtual {p1, p2, p3, v0}, Ljava/nio/ByteBuffer;->get([BII)Ljava/nio/ByteBuffer;
 
-    .line 450
+    .line 470
     :goto_1
     iget p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
@@ -727,73 +727,73 @@
 
     iput p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
-    .line 451
+    .line 471
     return-void
 .end method
 
 .method public clear()V
     .locals 4
 
-    .line 383
+    .line 403
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mDataBuffer:[B
 
     const/4 v1, 0x0
 
     invoke-static {v0, v1}, Ljava/util/Arrays;->fill([BB)V
 
-    .line 384
+    .line 404
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketFlags:[I
 
     invoke-static {v0, v1}, Ljava/util/Arrays;->fill([II)V
 
-    .line 385
+    .line 405
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketPtsUs:[J
 
     const-wide/16 v2, 0x0
 
     invoke-static {v0, v2, v3}, Ljava/util/Arrays;->fill([JJ)V
 
-    .line 386
+    .line 406
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketStart:[I
 
     invoke-static {v0, v1}, Ljava/util/Arrays;->fill([II)V
 
-    .line 387
+    .line 407
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketLength:[I
 
     invoke-static {v0, v1}, Ljava/util/Arrays;->fill([II)V
 
-    .line 388
+    .line 408
     iput v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
-    .line 389
+    .line 409
     iput v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaTail:I
 
-    .line 390
+    .line 410
     return-void
 .end method
 
 .method public computeTimeSpanUsec()J
     .locals 4
 
-    .line 397
+    .line 417
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketStart:[I
 
     array-length v0, v0
 
-    .line 399
+    .line 419
     iget v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
     iget v2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaTail:I
 
     if-ne v1, v2, :cond_0
 
-    .line 401
+    .line 421
     const-wide/16 v0, 0x0
 
     return-wide v0
 
-    .line 405
+    .line 425
     :cond_0
     iget v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
@@ -803,7 +803,7 @@
 
     rem-int/2addr v1, v0
 
-    .line 406
+    .line 426
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketPtsUs:[J
 
     aget-wide v0, v0, v1
@@ -822,74 +822,74 @@
 .method public getChunk(ILandroid/media/MediaCodec$BufferInfo;)Ljava/nio/ByteBuffer;
     .locals 6
 
-    .line 486
+    .line 506
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mDataBuffer:[B
 
     array-length v0, v0
 
-    .line 487
+    .line 507
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketStart:[I
 
     aget v1, v1, p1
 
-    .line 488
+    .line 508
     iget-object v2, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketLength:[I
 
     aget v2, v2, p1
 
-    .line 490
+    .line 510
     iget-object v3, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketFlags:[I
 
     aget v3, v3, p1
 
     iput v3, p2, Landroid/media/MediaCodec$BufferInfo;->flags:I
 
-    .line 491
+    .line 511
     iput v1, p2, Landroid/media/MediaCodec$BufferInfo;->offset:I
 
-    .line 492
+    .line 512
     iget-object v3, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketPtsUs:[J
 
     aget-wide v3, v3, p1
 
     iput-wide v3, p2, Landroid/media/MediaCodec$BufferInfo;->presentationTimeUs:J
 
-    .line 493
+    .line 513
     iput v2, p2, Landroid/media/MediaCodec$BufferInfo;->size:I
 
-    .line 495
+    .line 515
     add-int v3, v1, v2
 
     const/4 v4, 0x0
 
     if-gt v3, v0, :cond_0
 
-    .line 498
+    .line 518
     invoke-static {v2}, Ljava/nio/ByteBuffer;->allocateDirect(I)Ljava/nio/ByteBuffer;
 
     move-result-object p1
 
-    .line 499
+    .line 519
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mDataBuffer:[B
 
     invoke-virtual {p1, v0, v1, v2}, Ljava/nio/ByteBuffer;->put([BII)Ljava/nio/ByteBuffer;
 
-    .line 500
+    .line 520
     iput v4, p2, Landroid/media/MediaCodec$BufferInfo;->offset:I
 
-    .line 501
+    .line 521
     return-object p1
 
-    .line 504
+    .line 524
     :cond_0
     invoke-static {v2}, Ljava/nio/ByteBuffer;->allocateDirect(I)Ljava/nio/ByteBuffer;
 
     move-result-object v3
 
-    .line 505
+    .line 525
     sub-int/2addr v0, v1
 
-    .line 506
+    .line 526
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mDataBuffer:[B
 
     iget-object v5, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketStart:[I
@@ -898,35 +898,35 @@
 
     invoke-virtual {v3, v1, p1, v0}, Ljava/nio/ByteBuffer;->put([BII)Ljava/nio/ByteBuffer;
 
-    .line 507
+    .line 527
     iget-object p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mDataBuffer:[B
 
     sub-int/2addr v2, v0
 
     invoke-virtual {v3, p1, v4, v2}, Ljava/nio/ByteBuffer;->put([BII)Ljava/nio/ByteBuffer;
 
-    .line 508
+    .line 528
     iput v4, p2, Landroid/media/MediaCodec$BufferInfo;->offset:I
 
-    .line 509
+    .line 529
     return-object v3
 .end method
 
 .method public getFirstIndex()I
     .locals 2
 
-    .line 459
+    .line 479
     iget v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaTail:I
 
-    .line 460
+    .line 480
     iget v1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
     if-ne v0, v1, :cond_0
 
-    .line 461
+    .line 481
     const/4 v0, -0x1
 
-    .line 463
+    .line 483
     :cond_0
     return v0
 .end method
@@ -934,25 +934,25 @@
 .method public getNextIndex(I)I
     .locals 1
 
-    .line 470
+    .line 490
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mPacketStart:[I
 
     array-length v0, v0
 
-    .line 471
+    .line 491
     add-int/lit8 p1, p1, 0x1
 
     rem-int/2addr p1, v0
 
-    .line 472
+    .line 492
     iget v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$CyclicBuffer;->mMetaHead:I
 
     if-ne p1, v0, :cond_0
 
-    .line 473
+    .line 493
     const/4 p1, -0x1
 
-    .line 475
+    .line 495
     :cond_0
     return p1
 .end method

@@ -57,7 +57,7 @@
     iput-object p1, p0, Lcom/android/camera/fragment/beauty/LiveBeautyFilterFragment$FilterStillItemHolder;->mSelectedOuterIndicator:Landroid/widget/ImageView;
 
     .line 285
-    const p1, 0x7f0d00bc
+    const p1, 0x7f0d00c6
 
     invoke-virtual {p2, p1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 

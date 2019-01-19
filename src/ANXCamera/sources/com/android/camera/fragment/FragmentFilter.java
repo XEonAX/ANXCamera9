@@ -432,7 +432,7 @@ public class FragmentFilter extends BaseFragment implements OnClickListener {
         return 250;
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
     }
 }

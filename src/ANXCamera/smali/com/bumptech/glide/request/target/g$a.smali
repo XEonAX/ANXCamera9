@@ -17,7 +17,7 @@
 # instance fields
 .field final height:I
 
-.field private final ox:Landroid/graphics/drawable/Drawable$ConstantState;
+.field private final ow:Landroid/graphics/drawable/Drawable$ConstantState;
 
 .field final width:I
 
@@ -30,7 +30,7 @@
     invoke-direct {p0}, Landroid/graphics/drawable/Drawable$ConstantState;-><init>()V
 
     .line 212
-    iput-object p1, p0, Lcom/bumptech/glide/request/target/g$a;->ox:Landroid/graphics/drawable/Drawable$ConstantState;
+    iput-object p1, p0, Lcom/bumptech/glide/request/target/g$a;->ow:Landroid/graphics/drawable/Drawable$ConstantState;
 
     .line 213
     iput p2, p0, Lcom/bumptech/glide/request/target/g$a;->width:I
@@ -46,7 +46,7 @@
     .locals 2
 
     .line 208
-    iget-object v0, p1, Lcom/bumptech/glide/request/target/g$a;->ox:Landroid/graphics/drawable/Drawable$ConstantState;
+    iget-object v0, p1, Lcom/bumptech/glide/request/target/g$a;->ow:Landroid/graphics/drawable/Drawable$ConstantState;
 
     iget v1, p1, Lcom/bumptech/glide/request/target/g$a;->width:I
 
@@ -77,7 +77,7 @@
     .line 220
     new-instance v0, Lcom/bumptech/glide/request/target/g;
 
-    iget-object v1, p0, Lcom/bumptech/glide/request/target/g$a;->ox:Landroid/graphics/drawable/Drawable$ConstantState;
+    iget-object v1, p0, Lcom/bumptech/glide/request/target/g$a;->ow:Landroid/graphics/drawable/Drawable$ConstantState;
 
     invoke-virtual {v1}, Landroid/graphics/drawable/Drawable$ConstantState;->newDrawable()Landroid/graphics/drawable/Drawable;
 
@@ -96,7 +96,7 @@
     .line 226
     new-instance v0, Lcom/bumptech/glide/request/target/g;
 
-    iget-object v1, p0, Lcom/bumptech/glide/request/target/g$a;->ox:Landroid/graphics/drawable/Drawable$ConstantState;
+    iget-object v1, p0, Lcom/bumptech/glide/request/target/g$a;->ow:Landroid/graphics/drawable/Drawable$ConstantState;
 
     invoke-virtual {v1, p1}, Landroid/graphics/drawable/Drawable$ConstantState;->newDrawable(Landroid/content/res/Resources;)Landroid/graphics/drawable/Drawable;
 

@@ -2,6 +2,7 @@ package com.ss.android.vesdk.runtime.cloudconfig;
 
 import android.provider.MiuiSettings.System;
 import com.android.camera.network.net.base.HTTP;
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -852,7 +853,7 @@ public class HttpRequest {
     }
 
     public boolean badRequest() throws HttpRequestException {
-        return 400 == code();
+        return MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME == code();
     }
 
     public boolean notFound() throws HttpRequestException {
@@ -951,7 +952,7 @@ public class HttpRequest {
 
     public InputStream stream() throws HttpRequestException {
         InputStream inputStream;
-        if (code() < 400) {
+        if (code() < MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME) {
             try {
                 inputStream = getConnection().getInputStream();
             } catch (IOException e) {

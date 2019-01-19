@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/beauty/LiveBeautyModeFragment;)V
     .locals 0
 
-    .line 56
+    .line 57
     iput-object p1, p0, Lcom/android/camera/fragment/beauty/LiveBeautyModeFragment$1;->this$0:Lcom/android/camera/fragment/beauty/LiveBeautyModeFragment;
 
     invoke-direct {p0}, Landroid/support/v4/view/ViewPropertyAnimatorListenerAdapter;-><init>()V
@@ -35,10 +35,10 @@
 .method public onAnimationEnd(Landroid/view/View;)V
     .locals 1
 
-    .line 59
+    .line 60
     invoke-super {p0, p1}, Landroid/support/v4/view/ViewPropertyAnimatorListenerAdapter;->onAnimationEnd(Landroid/view/View;)V
 
-    .line 60
+    .line 61
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/LiveBeautyModeFragment$1;->this$0:Lcom/android/camera/fragment/beauty/LiveBeautyModeFragment;
 
     invoke-static {p1}, Lcom/android/camera/fragment/beauty/LiveBeautyModeFragment;->access$000(Lcom/android/camera/fragment/beauty/LiveBeautyModeFragment;)Landroid/widget/ImageView;
@@ -49,6 +49,6 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setRotation(F)V
 
-    .line 61
+    .line 62
     return-void
 .end method

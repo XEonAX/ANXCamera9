@@ -104,6 +104,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 @TargetApi(21)
 public class Panorama3Module extends BaseModule implements SensorEventListener, CameraAction, CameraPreviewCallback {
+    public static final boolean DUMP_YUV = SystemProperties.getBoolean("camera.debug.panorama", false);
     private static final int MIN_SHOOTING_TIME = 600;
     private static final int PREVIEW_SKIP_COUNT = 1;
     private static final String TAG = Panorama3Module.class.getSimpleName();
@@ -528,7 +529,6 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
         final /* synthetic */ Panorama3Module this$0;
 
         private class PreviewAttach extends AttachRunnable {
-            public final boolean DUMP_YUV;
             private InputSave mInputSave;
             private boolean mIsAttachEnd;
             private final PostAttachRunnable mPostAttachRunnable;
@@ -543,7 +543,7 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
                 }
 
                 public void run() {
-                    if (!PanoramaPreview.this.this$0.mPaused) {
+                    if (!PanoramaPreview.this.this$0.mPaused && !PanoramaPreview.this.this$0.mRequestStop) {
                         PanoramaPreview.this.this$0.onPreviewMoving();
                         if (!PanoramaPreview.this.this$0.mCaptureOrientationDecided) {
                             PanoramaPreview.this.this$0.onCaptureOrientationDecided();
@@ -564,7 +564,6 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
                 this.mIsAttachEnd = false;
                 this.mPostAttachRunnable = new PostAttachRunnable(this, null);
                 this.mInputSave = new InputSave();
-                this.DUMP_YUV = SystemProperties.getBoolean("persist.camera.debug.panorama", false);
             }
 
             /* synthetic */ PreviewAttach(PanoramaPreview panoramaPreview, AnonymousClass1 anonymousClass1) {
@@ -605,7 +604,7 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
                         }
                         try {
                             setImage(captureImage);
-                            if (this.DUMP_YUV) {
+                            if (Panorama3Module.DUMP_YUV) {
                                 this.mInputSave.onSaveImage(captureImage, PanoramaPreview.this.this$0.mImageFormat);
                             }
                             synchronized (Panorama3Module.mEngineLock) {
@@ -1979,7 +1978,7 @@ Caused by: jadx.core.utils.exceptions.CodegenException: MERGE can be used only i
         String str3 = str;
         Location currentLocation = LocationManager.instance().getCurrentLocation();
         int i4 = i3;
-        ExifHelper.writeExif(str3, i4, currentLocation, this.mTimeTaken);
+        ExifHelper.writeExifByFilePath(str3, i4, currentLocation, this.mTimeTaken);
         boolean z = currentLocation != null;
         Uri addImageForGroupOrPanorama = Storage.addImageForGroupOrPanorama(CameraAppImpl.getAndroidContext(), str3, i4, this.mTimeTaken, this.mLocation, i, i2);
         if (addImageForGroupOrPanorama == null) {

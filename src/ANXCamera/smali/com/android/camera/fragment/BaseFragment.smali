@@ -43,7 +43,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 39
+    .line 40
     const-class v0, Lcom/android/camera/fragment/BaseFragment;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -58,20 +58,20 @@
 .method public constructor <init>()V
     .locals 1
 
-    .line 36
+    .line 37
     invoke-direct {p0}, Landroid/support/v4/app/Fragment;-><init>()V
 
-    .line 49
+    .line 50
     const/16 v0, 0xf0
 
     iput v0, p0, Lcom/android/camera/fragment/BaseFragment;->mLaseFragmentInfo:I
 
-    .line 53
+    .line 54
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/fragment/BaseFragment;->mSilentRemove:Z
 
-    .line 62
+    .line 63
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/fragment/BaseFragment;->mEnableClick:Z
@@ -82,7 +82,7 @@
 .method private triggerFragmentAnimationManually(ZI)V
     .locals 0
 
-    .line 360
+    .line 361
     if-eqz p1, :cond_0
 
     invoke-virtual {p0, p2}, Lcom/android/camera/fragment/BaseFragment;->provideEnterAnimation(I)Landroid/view/animation/Animation;
@@ -96,14 +96,14 @@
 
     move-result-object p1
 
-    .line 361
+    .line 362
     :goto_0
     if-nez p1, :cond_1
 
-    .line 362
+    .line 363
     return-void
 
-    .line 365
+    .line 366
     :cond_1
     invoke-virtual {p0}, Lcom/android/camera/fragment/BaseFragment;->getView()Landroid/view/View;
 
@@ -111,7 +111,7 @@
 
     invoke-virtual {p2, p1}, Landroid/view/View;->startAnimation(Landroid/view/animation/Animation;)V
 
-    .line 366
+    .line 367
     return-void
 .end method
 
@@ -120,7 +120,7 @@
 .method public final canProvide()Z
     .locals 1
 
-    .line 113
+    .line 114
     invoke-virtual {p0}, Lcom/android/camera/fragment/BaseFragment;->isAdded()Z
 
     move-result v0
@@ -136,7 +136,7 @@
     .annotation build Landroid/support/annotation/NonNull;
     .end annotation
 
-    .line 108
+    .line 109
     invoke-virtual {p0}, Lcom/android/camera/fragment/BaseFragment;->getFragmentInto()I
 
     move-result v0
@@ -159,7 +159,7 @@
 .method public isEnableClick()Z
     .locals 1
 
-    .line 337
+    .line 338
     iget-boolean v0, p0, Lcom/android/camera/fragment/BaseFragment;->mEnableClick:Z
 
     return v0
@@ -168,7 +168,7 @@
 .method protected isInModeChanging()Z
     .locals 1
 
-    .line 341
+    .line 342
     iget-boolean v0, p0, Lcom/android/camera/fragment/BaseFragment;->mInModeChanging:Z
 
     return v0
@@ -177,7 +177,7 @@
 .method public final isLandScape()Z
     .locals 2
 
-    .line 253
+    .line 254
     iget v0, p0, Lcom/android/camera/fragment/BaseFragment;->mDegree:I
 
     const/16 v1, 0x5a
@@ -192,13 +192,13 @@
 
     goto :goto_0
 
-    .line 256
+    .line 257
     :cond_0
     const/4 v0, 0x0
 
     return v0
 
-    .line 254
+    .line 255
     :cond_1
     :goto_0
     const/4 v0, 0x1
@@ -209,19 +209,19 @@
 .method public final isLeftLandScape()Z
     .locals 2
 
-    .line 264
+    .line 265
     iget v0, p0, Lcom/android/camera/fragment/BaseFragment;->mDegree:I
 
     const/16 v1, 0x5a
 
     if-ne v0, v1, :cond_0
 
-    .line 265
+    .line 266
     const/4 v0, 0x1
 
     return v0
 
-    .line 267
+    .line 268
     :cond_0
     const/4 v0, 0x0
 
@@ -231,19 +231,19 @@
 .method public final isRightLandScape()Z
     .locals 2
 
-    .line 275
+    .line 276
     iget v0, p0, Lcom/android/camera/fragment/BaseFragment;->mDegree:I
 
     const/16 v1, 0x10e
 
     if-ne v0, v1, :cond_0
 
-    .line 276
+    .line 277
     const/4 v0, 0x1
 
     return v0
 
-    .line 278
+    .line 279
     :cond_0
     const/4 v0, 0x0
 
@@ -253,7 +253,7 @@
 .method public needViewClear()Z
     .locals 1
 
-    .line 118
+    .line 119
     const/4 v0, 0x0
 
     return v0
@@ -264,7 +264,7 @@
     .annotation build Landroid/support/annotation/CallSuper;
     .end annotation
 
-    .line 356
+    .line 357
     return-void
 .end method
 
@@ -273,25 +273,25 @@
     .annotation build Landroid/support/annotation/CallSuper;
     .end annotation
 
-    .line 348
+    .line 349
     const/4 p1, 0x0
 
     iput-boolean p1, p0, Lcom/android/camera/fragment/BaseFragment;->mInModeChanging:Z
 
-    .line 349
+    .line 350
     iput p2, p0, Lcom/android/camera/fragment/BaseFragment;->mCurrentMode:I
 
-    .line 350
+    .line 351
     return-void
 .end method
 
 .method public onCreateAnimation(IZI)Landroid/view/animation/Animation;
     .locals 0
 
-    .line 123
+    .line 124
     if-eqz p2, :cond_0
 
-    .line 124
+    .line 125
     iget p1, p0, Lcom/android/camera/fragment/BaseFragment;->mLaseFragmentInfo:I
 
     invoke-virtual {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->provideEnterAnimation(I)Landroid/view/animation/Animation;
@@ -300,20 +300,20 @@
 
     return-object p1
 
-    .line 125
+    .line 126
     :cond_0
     iget-boolean p1, p0, Lcom/android/camera/fragment/BaseFragment;->mSilentRemove:Z
 
     if-nez p1, :cond_1
 
-    .line 126
+    .line 127
     invoke-virtual {p0}, Lcom/android/camera/fragment/BaseFragment;->provideExitAnimation()Landroid/view/animation/Animation;
 
     move-result-object p1
 
     return-object p1
 
-    .line 129
+    .line 130
     :cond_1
     const/4 p1, 0x0
 
@@ -333,7 +333,7 @@
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 
-    .line 89
+    .line 90
     invoke-static {}, Lcom/android/camera/data/DataRepository;->provider()Lcom/android/camera/data/provider/DataProvider;
 
     move-result-object p3
@@ -344,19 +344,19 @@
 
     check-cast p3, Lcom/android/camera/data/data/global/DataItemGlobal;
 
-    .line 90
+    .line 91
     invoke-virtual {p3}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentMode()I
 
     move-result p3
 
     iput p3, p0, Lcom/android/camera/fragment/BaseFragment;->mCurrentMode:I
 
-    .line 92
+    .line 93
     sget-boolean p3, Lcom/android/camera/Util;->sIsFullScreenNavBarHidden:Z
 
     iput-boolean p3, p0, Lcom/android/camera/fragment/BaseFragment;->mIsFullScreenNavBarHidden:Z
 
-    .line 93
+    .line 94
     invoke-virtual {p0}, Lcom/android/camera/fragment/BaseFragment;->getLayoutResourceId()I
 
     move-result p3
@@ -367,42 +367,42 @@
 
     move-result-object p1
 
-    .line 94
+    .line 95
     invoke-virtual {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->initView(Landroid/view/View;)V
 
-    .line 95
+    .line 96
     return-object p1
 .end method
 
 .method public onDestroyView()V
     .locals 2
 
-    .line 147
+    .line 148
     invoke-super {p0}, Landroid/support/v4/app/Fragment;->onDestroyView()V
 
-    .line 148
+    .line 149
     iget-boolean v0, p0, Lcom/android/camera/fragment/BaseFragment;->mRegistered:Z
 
     if-nez v0, :cond_0
 
-    .line 149
+    .line 150
     return-void
 
-    .line 152
+    .line 153
     :cond_0
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/fragment/BaseFragment;->mRegistered:Z
 
-    .line 153
+    .line 154
     invoke-virtual {p0}, Lcom/android/camera/fragment/BaseFragment;->unRegisterProtocol()V
 
-    .line 154
+    .line 155
     iget-object v0, p0, Lcom/android/camera/fragment/BaseFragment;->mLifecycleListener:Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;
 
     if-eqz v0, :cond_1
 
-    .line 155
+    .line 156
     iget-object v0, p0, Lcom/android/camera/fragment/BaseFragment;->mLifecycleListener:Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;
 
     invoke-virtual {p0}, Lcom/android/camera/fragment/BaseFragment;->getFragmentTag()Ljava/lang/String;
@@ -411,12 +411,12 @@
 
     invoke-interface {v0, v1}, Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;->onLifeDestroy(Ljava/lang/String;)V
 
-    .line 156
+    .line 157
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/fragment/BaseFragment;->mLifecycleListener:Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;
 
-    .line 158
+    .line 159
     :cond_1
     return-void
 .end method
@@ -424,45 +424,45 @@
 .method public onResume()V
     .locals 2
 
-    .line 226
+    .line 227
     invoke-super {p0}, Landroid/support/v4/app/Fragment;->onResume()V
 
-    .line 227
+    .line 228
     iget-boolean v0, p0, Lcom/android/camera/fragment/BaseFragment;->mIsFullScreenNavBarHidden:Z
 
     sget-boolean v1, Lcom/android/camera/Util;->sIsFullScreenNavBarHidden:Z
 
     if-eq v0, v1, :cond_0
 
-    .line 228
+    .line 229
     invoke-virtual {p0}, Lcom/android/camera/fragment/BaseFragment;->getView()Landroid/view/View;
 
     move-result-object v0
 
     invoke-virtual {p0, v0}, Lcom/android/camera/fragment/BaseFragment;->initView(Landroid/view/View;)V
 
-    .line 230
+    .line 231
     :cond_0
     sget-boolean v0, Lcom/android/camera/Util;->sIsFullScreenNavBarHidden:Z
 
     iput-boolean v0, p0, Lcom/android/camera/fragment/BaseFragment;->mIsFullScreenNavBarHidden:Z
 
-    .line 231
+    .line 232
     return-void
 .end method
 
 .method public onStart()V
     .locals 2
 
-    .line 210
+    .line 211
     invoke-super {p0}, Landroid/support/v4/app/Fragment;->onStart()V
 
-    .line 211
+    .line 212
     iget-object v0, p0, Lcom/android/camera/fragment/BaseFragment;->mLifecycleListener:Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;
 
     if-eqz v0, :cond_0
 
-    .line 212
+    .line 213
     iget-object v0, p0, Lcom/android/camera/fragment/BaseFragment;->mLifecycleListener:Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;
 
     invoke-virtual {p0}, Lcom/android/camera/fragment/BaseFragment;->getFragmentTag()Ljava/lang/String;
@@ -471,7 +471,7 @@
 
     invoke-interface {v0, v1}, Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;->onLifeStart(Ljava/lang/String;)V
 
-    .line 214
+    .line 215
     :cond_0
     return-void
 .end method
@@ -479,15 +479,15 @@
 .method public onStop()V
     .locals 2
 
-    .line 218
+    .line 219
     invoke-super {p0}, Landroid/support/v4/app/Fragment;->onStop()V
 
-    .line 219
+    .line 220
     iget-object v0, p0, Lcom/android/camera/fragment/BaseFragment;->mLifecycleListener:Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;
 
     if-eqz v0, :cond_0
 
-    .line 220
+    .line 221
     iget-object v0, p0, Lcom/android/camera/fragment/BaseFragment;->mLifecycleListener:Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;
 
     invoke-virtual {p0}, Lcom/android/camera/fragment/BaseFragment;->getFragmentTag()Ljava/lang/String;
@@ -496,7 +496,7 @@
 
     invoke-interface {v0, v1}, Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;->onLifeStop(Ljava/lang/String;)V
 
-    .line 222
+    .line 223
     :cond_0
     return-void
 .end method
@@ -508,41 +508,41 @@
         .end annotation
     .end param
 
-    .line 142
+    .line 143
     invoke-super {p0, p1, p2}, Landroid/support/v4/app/Fragment;->onViewCreated(Landroid/view/View;Landroid/os/Bundle;)V
 
-    .line 143
+    .line 144
     return-void
 .end method
 
 .method public pendingGone(Z)V
     .locals 1
 
-    .line 81
+    .line 82
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Lcom/android/camera/fragment/BaseFragment;->setClickEnable(Z)V
 
-    .line 82
+    .line 83
     iput-boolean p1, p0, Lcom/android/camera/fragment/BaseFragment;->mSilentRemove:Z
 
-    .line 83
+    .line 84
     return-void
 .end method
 
 .method public pendingShow()V
     .locals 1
 
-    .line 77
+    .line 78
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Lcom/android/camera/fragment/BaseFragment;->setClickEnable(Z)V
 
-    .line 78
+    .line 79
     return-void
 .end method
 
-.method public provideAnimateElement(ILjava/util/List;Z)V
+.method public provideAnimateElement(ILjava/util/List;I)V
     .locals 0
     .annotation build Landroid/support/annotation/CallSuper;
     .end annotation
@@ -552,30 +552,30 @@
             "(I",
             "Ljava/util/List<",
             "Lio/reactivex/Completable;",
-            ">;Z)V"
+            ">;I)V"
         }
     .end annotation
 
-    .line 237
+    .line 238
     if-eqz p2, :cond_0
 
-    .line 238
+    .line 239
     const/4 p2, 0x1
 
     iput-boolean p2, p0, Lcom/android/camera/fragment/BaseFragment;->mInModeChanging:Z
 
-    .line 240
+    .line 241
     :cond_0
     iput p1, p0, Lcom/android/camera/fragment/BaseFragment;->mCurrentMode:I
 
-    .line 241
+    .line 242
     return-void
 .end method
 
 .method protected provideEnterAnimation(I)Landroid/view/animation/Animation;
     .locals 0
 
-    .line 133
+    .line 134
     const/4 p1, 0x0
 
     return-object p1
@@ -584,7 +584,7 @@
 .method protected provideExitAnimation()Landroid/view/animation/Animation;
     .locals 1
 
-    .line 137
+    .line 138
     const/4 v0, 0x0
 
     return-object v0
@@ -604,10 +604,10 @@
         }
     .end annotation
 
-    .line 325
+    .line 326
     invoke-virtual {p0, p2}, Lcom/android/camera/fragment/BaseFragment;->setDegree(I)V
 
-    .line 326
+    .line 327
     return-void
 .end method
 
@@ -616,17 +616,17 @@
     .annotation build Landroid/support/annotation/CallSuper;
     .end annotation
 
-    .line 183
+    .line 184
     return-void
 .end method
 
 .method protected final registerBackStack(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;Lcom/android/camera/protocol/ModeProtocol$HandleBackTrace;)V
     .locals 1
 
-    .line 192
+    .line 193
     nop
 
-    .line 193
+    .line 194
     const/16 v0, 0xab
 
     invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -635,29 +635,29 @@
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$BackStack;
 
-    .line 194
+    .line 195
     invoke-interface {p1, p2}, Lcom/android/camera/protocol/ModeProtocol$BackStack;->addInBackStack(Lcom/android/camera/protocol/ModeProtocol$HandleBackTrace;)V
 
-    .line 195
+    .line 196
     return-void
 .end method
 
 .method public final registerProtocol()V
     .locals 1
 
-    .line 171
+    .line 172
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/fragment/BaseFragment;->mRegistered:Z
 
-    .line 172
+    .line 173
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
     invoke-virtual {p0, v0}, Lcom/android/camera/fragment/BaseFragment;->register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 173
+    .line 174
     return-void
 .end method
 
@@ -666,7 +666,7 @@
     .annotation build Landroid/support/annotation/CallSuper;
     .end annotation
 
-    .line 331
+    .line 332
     sget-object v0, Lcom/android/camera/fragment/BaseFragment;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -685,78 +685,78 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 332
+    .line 333
     iput-boolean p1, p0, Lcom/android/camera/fragment/BaseFragment;->mEnableClick:Z
 
-    .line 333
+    .line 334
     return-void
 .end method
 
 .method public final setDegree(I)V
     .locals 0
 
-    .line 244
+    .line 245
     iput p1, p0, Lcom/android/camera/fragment/BaseFragment;->mDegree:I
 
-    .line 245
+    .line 246
     return-void
 .end method
 
 .method public setEnableClickInitValue(Z)V
     .locals 0
 
-    .line 65
+    .line 66
     iput-boolean p1, p0, Lcom/android/camera/fragment/BaseFragment;->mEnableClick:Z
 
-    .line 66
+    .line 67
     return-void
 .end method
 
 .method public setLastFragmentInfo(I)V
     .locals 0
 
-    .line 73
+    .line 74
     iput p1, p0, Lcom/android/camera/fragment/BaseFragment;->mLaseFragmentInfo:I
 
-    .line 74
+    .line 75
     return-void
 .end method
 
 .method public setLifecycleListener(Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)V
     .locals 0
 
-    .line 69
+    .line 70
     iput-object p1, p0, Lcom/android/camera/fragment/BaseFragment;->mLifecycleListener:Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;
 
-    .line 70
+    .line 71
     return-void
 .end method
 
 .method protected starAnimatetViewGone(Landroid/view/View;Z)V
     .locals 3
 
-    .line 308
+    .line 309
     invoke-virtual {p1}, Landroid/view/View;->getVisibility()I
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 309
+    .line 310
     return-void
 
-    .line 311
+    .line 312
     :cond_0
     if-eqz p2, :cond_1
 
-    .line 312
+    .line 313
     new-instance p2, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
 
     invoke-direct {p2, p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;-><init>(Landroid/view/View;)V
 
     const/16 p1, 0x104
 
-    .line 313
+    .line 314
     invoke-virtual {p2, p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->setDurationTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object p1
@@ -771,26 +771,26 @@
 
     invoke-direct {p2, v2, v0, v2, v1}, Landroid/view/animation/PathInterpolator;-><init>(FFFF)V
 
-    .line 314
+    .line 315
     invoke-virtual {p1, p2}, Lcom/android/camera/animation/type/BaseOnSubScribe;->setInterpolator(Landroid/view/animation/Interpolator;)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object p1
 
-    .line 312
+    .line 313
     invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object p1
 
-    .line 316
+    .line 317
     invoke-virtual {p1}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
     goto :goto_0
 
-    .line 318
+    .line 319
     :cond_1
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 320
+    .line 321
     :goto_0
     return-void
 .end method
@@ -798,35 +798,35 @@
 .method protected startAnimateViewVisible(Landroid/view/View;Z)V
     .locals 3
 
-    .line 287
+    .line 288
     invoke-virtual {p1}, Landroid/view/View;->getVisibility()I
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 288
+    .line 289
     return-void
 
-    .line 290
+    .line 291
     :cond_0
     if-eqz p2, :cond_1
 
-    .line 291
+    .line 292
     new-instance p2, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
 
     invoke-direct {p2, p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;-><init>(Landroid/view/View;)V
 
     const/16 p1, 0xf0
 
-    .line 292
+    .line 293
     invoke-virtual {p2, p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->setStartDelayTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object p1
 
     const/16 p2, 0x12c
 
-    .line 293
+    .line 294
     invoke-virtual {p1, p2}, Lcom/android/camera/animation/type/BaseOnSubScribe;->setDurationTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object p1
@@ -841,26 +841,26 @@
 
     invoke-direct {p2, v2, v0, v2, v1}, Landroid/view/animation/PathInterpolator;-><init>(FFFF)V
 
-    .line 294
+    .line 295
     invoke-virtual {p1, p2}, Lcom/android/camera/animation/type/BaseOnSubScribe;->setInterpolator(Landroid/view/animation/Interpolator;)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object p1
 
-    .line 291
+    .line 292
     invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object p1
 
-    .line 296
+    .line 297
     invoke-virtual {p1}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
     goto :goto_0
 
-    .line 298
+    .line 299
     :cond_1
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 300
+    .line 301
     :goto_0
     return-void
 .end method
@@ -870,17 +870,17 @@
     .annotation build Landroid/support/annotation/CallSuper;
     .end annotation
 
-    .line 188
+    .line 189
     return-void
 .end method
 
 .method protected final unRegisterBackStack(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;Lcom/android/camera/protocol/ModeProtocol$HandleBackTrace;)V
     .locals 1
 
-    .line 199
+    .line 200
     nop
 
-    .line 200
+    .line 201
     const/16 v0, 0xab
 
     invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -889,13 +889,13 @@
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$BackStack;
 
-    .line 203
+    .line 204
     if-eqz p1, :cond_0
 
-    .line 204
+    .line 205
     invoke-interface {p1, p2}, Lcom/android/camera/protocol/ModeProtocol$BackStack;->removeBackStack(Lcom/android/camera/protocol/ModeProtocol$HandleBackTrace;)V
 
-    .line 206
+    .line 207
     :cond_0
     return-void
 .end method
@@ -903,13 +903,13 @@
 .method public final unRegisterProtocol()V
     .locals 1
 
-    .line 177
+    .line 178
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
     invoke-virtual {p0, v0}, Lcom/android/camera/fragment/BaseFragment;->unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 178
+    .line 179
     return-void
 .end method

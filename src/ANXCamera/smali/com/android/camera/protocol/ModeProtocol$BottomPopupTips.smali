@@ -32,7 +32,11 @@
 
 .field public static final NONE_CLOSE_TYPE:I = 0x0
 
+.field public static final TIP_48M_NO_SUPPORT_ZOOM:I = 0xf
+
 .field public static final TIP_DURATION_2S:I = 0x5
+
+.field public static final TIP_DURATION_3S:I = 0x6
 
 .field public static final TIP_DURATION_LONG:I = 0x2
 
@@ -49,6 +53,8 @@
 .field public static final TIP_TYPE_DUAL_CAMERA_SUCCESS:I = 0x7
 
 .field public static final TIP_TYPE_EYE_LIGHT:I = 0xa
+
+.field public static final TIP_TYPE_HAND_GESTURE:I = 0x10
 
 .field public static final TIP_TYPE_HINT:I = 0x4
 

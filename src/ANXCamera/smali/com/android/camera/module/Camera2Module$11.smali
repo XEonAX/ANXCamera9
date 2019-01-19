@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/module/Camera2Module;)V
     .locals 0
 
-    .line 1879
+    .line 1933
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module$11;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,10 +38,10 @@
 .method public run()V
     .locals 4
 
-    .line 1887
+    .line 1941
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$11;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    invoke-static {v0}, Lcom/android/camera/module/Camera2Module;->access$3000(Lcom/android/camera/module/Camera2Module;)Lcom/google/lens/sdk/LensApi;
+    invoke-static {v0}, Lcom/android/camera/module/Camera2Module;->access$3100(Lcom/android/camera/module/Camera2Module;)Lcom/google/lens/sdk/LensApi;
 
     move-result-object v0
 
@@ -49,14 +49,14 @@
 
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$11;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    invoke-static {v0}, Lcom/android/camera/module/Camera2Module;->access$3100(Lcom/android/camera/module/Camera2Module;)Z
+    invoke-static {v0}, Lcom/android/camera/module/Camera2Module;->access$3200(Lcom/android/camera/module/Camera2Module;)Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 1888
-    invoke-static {}, Lcom/android/camera/module/Camera2Module;->access$1300()Ljava/lang/String;
+    .line 1942
+    invoke-static {}, Lcom/android/camera/module/Camera2Module;->access$1400()Ljava/lang/String;
 
     move-result-object v0
 
@@ -64,18 +64,18 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1889
+    .line 1943
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$11;->this$0:Lcom/android/camera/module/Camera2Module;
 
     const/4 v1, 0x0
 
-    invoke-static {v0, v1}, Lcom/android/camera/module/Camera2Module;->access$3102(Lcom/android/camera/module/Camera2Module;Z)Z
+    invoke-static {v0, v1}, Lcom/android/camera/module/Camera2Module;->access$3202(Lcom/android/camera/module/Camera2Module;Z)Z
 
-    .line 1891
+    .line 1945
     :try_start_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$11;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    invoke-static {v0}, Lcom/android/camera/module/Camera2Module;->access$3000(Lcom/android/camera/module/Camera2Module;)Lcom/google/lens/sdk/LensApi;
+    invoke-static {v0}, Lcom/android/camera/module/Camera2Module;->access$3100(Lcom/android/camera/module/Camera2Module;)Lcom/google/lens/sdk/LensApi;
 
     move-result-object v0
 
@@ -83,15 +83,15 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 1894
+    .line 1948
     goto :goto_0
 
-    .line 1892
+    .line 1946
     :catch_0
     move-exception v0
 
-    .line 1893
-    invoke-static {}, Lcom/android/camera/module/Camera2Module;->access$1300()Ljava/lang/String;
+    .line 1947
+    invoke-static {}, Lcom/android/camera/module/Camera2Module;->access$1400()Ljava/lang/String;
 
     move-result-object v1
 
@@ -115,9 +115,9 @@
 
     invoke-static {v1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1895
+    .line 1949
     :goto_0
-    invoke-static {}, Lcom/android/camera/module/Camera2Module;->access$1300()Ljava/lang/String;
+    invoke-static {}, Lcom/android/camera/module/Camera2Module;->access$1400()Ljava/lang/String;
 
     move-result-object v0
 
@@ -125,7 +125,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1897
+    .line 1951
     :cond_0
     return-void
 .end method

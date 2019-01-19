@@ -4,7 +4,11 @@
 
 
 # static fields
-.field public static final DATA_RUNING_MENU_ULTRA_PIXEL_PHOTOGRAPHY_48MP:Ljava/lang/String; = "pref_menu_ultra_pixel_photography_48mp"
+.field public static final DATA_RUNING_HAND_GESTURE:Ljava/lang/String; = "pref_hand_gesture"
+
+.field public static final DATA_RUNING_MENU_ULTRA_PIXEL_PHOTOGRAPHY_FRONT:Ljava/lang/String; = "pref_menu_ultra_pixel_photography_front"
+
+.field public static final DATA_RUNING_MENU_ULTRA_PIXEL_PHOTOGRAPHY_REAR:Ljava/lang/String; = "pref_menu_ultra_pixel_photography_rear"
 
 .field public static final DATA_RUNNING_FILTER_INDEX:Ljava/lang/String; = "pref_camera_shader_coloreffect_key"
 
@@ -96,19 +100,19 @@
 .method public getComponentConfigFilter()Lcom/android/camera/data/data/config/ComponentConfigFilter;
     .locals 1
 
-    .line 204
+    .line 206
     iget-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mComponentConfigFilter:Lcom/android/camera/data/data/config/ComponentConfigFilter;
 
     if-nez v0, :cond_0
 
-    .line 205
+    .line 207
     new-instance v0, Lcom/android/camera/data/data/config/ComponentConfigFilter;
 
     invoke-direct {v0, p0}, Lcom/android/camera/data/data/config/ComponentConfigFilter;-><init>(Lcom/android/camera/data/data/runing/DataItemRunning;)V
 
     iput-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mComponentConfigFilter:Lcom/android/camera/data/data/config/ComponentConfigFilter;
 
-    .line 207
+    .line 209
     :cond_0
     iget-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mComponentConfigFilter:Lcom/android/camera/data/data/config/ComponentConfigFilter;
 
@@ -118,19 +122,19 @@
 .method public getComponentRunningLighting()Lcom/android/camera/data/data/runing/ComponentRunningLighting;
     .locals 1
 
-    .line 211
+    .line 213
     iget-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mComponentRunningLighting:Lcom/android/camera/data/data/runing/ComponentRunningLighting;
 
     if-nez v0, :cond_0
 
-    .line 212
+    .line 214
     new-instance v0, Lcom/android/camera/data/data/runing/ComponentRunningLighting;
 
     invoke-direct {v0, p0}, Lcom/android/camera/data/data/runing/ComponentRunningLighting;-><init>(Lcom/android/camera/data/data/runing/DataItemRunning;)V
 
     iput-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mComponentRunningLighting:Lcom/android/camera/data/data/runing/ComponentRunningLighting;
 
-    .line 214
+    .line 216
     :cond_0
     iget-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mComponentRunningLighting:Lcom/android/camera/data/data/runing/ComponentRunningLighting;
 
@@ -140,19 +144,19 @@
 .method public getComponentRunningLiveShot()Lcom/android/camera/data/data/runing/ComponentRunningLiveShot;
     .locals 1
 
-    .line 218
+    .line 220
     iget-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mComponentRunningLiveShot:Lcom/android/camera/data/data/runing/ComponentRunningLiveShot;
 
     if-nez v0, :cond_0
 
-    .line 219
+    .line 221
     new-instance v0, Lcom/android/camera/data/data/runing/ComponentRunningLiveShot;
 
     invoke-direct {v0, p0}, Lcom/android/camera/data/data/runing/ComponentRunningLiveShot;-><init>(Lcom/android/camera/data/data/runing/DataItemRunning;)V
 
     iput-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mComponentRunningLiveShot:Lcom/android/camera/data/data/runing/ComponentRunningLiveShot;
 
-    .line 221
+    .line 223
     :cond_0
     iget-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mComponentRunningLiveShot:Lcom/android/camera/data/data/runing/ComponentRunningLiveShot;
 
@@ -162,19 +166,19 @@
 .method public getComponentRunningSceneValue()Lcom/android/camera/data/data/runing/ComponentRunningSceneValue;
     .locals 1
 
-    .line 190
+    .line 192
     iget-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mComponentRunningSceneValue:Lcom/android/camera/data/data/runing/ComponentRunningSceneValue;
 
     if-nez v0, :cond_0
 
-    .line 191
+    .line 193
     new-instance v0, Lcom/android/camera/data/data/runing/ComponentRunningSceneValue;
 
     invoke-direct {v0, p0}, Lcom/android/camera/data/data/runing/ComponentRunningSceneValue;-><init>(Lcom/android/camera/data/data/runing/DataItemRunning;)V
 
     iput-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mComponentRunningSceneValue:Lcom/android/camera/data/data/runing/ComponentRunningSceneValue;
 
-    .line 193
+    .line 195
     :cond_0
     iget-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mComponentRunningSceneValue:Lcom/android/camera/data/data/runing/ComponentRunningSceneValue;
 
@@ -184,19 +188,19 @@
 .method public getComponentRunningTiltValue()Lcom/android/camera/data/data/runing/ComponentRunningTiltValue;
     .locals 1
 
-    .line 197
+    .line 199
     iget-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->componentRunningTiltValue:Lcom/android/camera/data/data/runing/ComponentRunningTiltValue;
 
     if-nez v0, :cond_0
 
-    .line 198
+    .line 200
     new-instance v0, Lcom/android/camera/data/data/runing/ComponentRunningTiltValue;
 
     invoke-direct {v0, p0}, Lcom/android/camera/data/data/runing/ComponentRunningTiltValue;-><init>(Lcom/android/camera/data/data/runing/DataItemRunning;)V
 
     iput-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->componentRunningTiltValue:Lcom/android/camera/data/data/runing/ComponentRunningTiltValue;
 
-    .line 200
+    .line 202
     :cond_0
     iget-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->componentRunningTiltValue:Lcom/android/camera/data/data/runing/ComponentRunningTiltValue;
 
@@ -206,19 +210,19 @@
 .method public getComponentRunningTimer()Lcom/android/camera/data/data/runing/ComponentRunningTimer;
     .locals 1
 
-    .line 183
+    .line 185
     iget-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mComponentRunningTimer:Lcom/android/camera/data/data/runing/ComponentRunningTimer;
 
     if-nez v0, :cond_0
 
-    .line 184
+    .line 186
     new-instance v0, Lcom/android/camera/data/data/runing/ComponentRunningTimer;
 
     invoke-direct {v0, p0}, Lcom/android/camera/data/data/runing/ComponentRunningTimer;-><init>(Lcom/android/camera/data/data/runing/DataItemRunning;)V
 
     iput-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mComponentRunningTimer:Lcom/android/camera/data/data/runing/ComponentRunningTimer;
 
-    .line 186
+    .line 188
     :cond_0
     iget-object v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mComponentRunningTimer:Lcom/android/camera/data/data/runing/ComponentRunningTimer;
 
@@ -228,7 +232,7 @@
 .method public getLastUiStyle()I
     .locals 1
 
-    .line 242
+    .line 244
     iget v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mLastUiStyle:I
 
     return v0
@@ -237,7 +241,7 @@
 .method public getLiveConfigIsNeedRestore()Z
     .locals 2
 
-    .line 256
+    .line 258
     const-string v0, "pref_live_config_is_need_restore"
 
     const/4 v1, 0x0
@@ -252,7 +256,7 @@
 .method public getLiveFilter()I
     .locals 2
 
-    .line 272
+    .line 274
     const-string v0, "key_live_filter"
 
     const/4 v1, 0x0
@@ -267,7 +271,7 @@
 .method public getLiveMusicFirstRequestTime()J
     .locals 3
 
-    .line 264
+    .line 266
     const-string v0, "pref_key_live_music_first_request_time"
 
     const-wide/16 v1, -0x1
@@ -282,7 +286,7 @@
 .method public getUiStyle()I
     .locals 1
 
-    .line 237
+    .line 239
     iget v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mUiStyle:I
 
     return v0
@@ -291,7 +295,7 @@
 .method public getVideoSpeed()Ljava/lang/String;
     .locals 1
 
-    .line 225
+    .line 227
     const-string v0, "pref_video_speed_fast_key"
 
     invoke-virtual {p0, v0}, Lcom/android/camera/data/data/runing/DataItemRunning;->isSwitchOn(Ljava/lang/String;)Z
@@ -300,12 +304,12 @@
 
     if-eqz v0, :cond_0
 
-    .line 226
+    .line 228
     const-string v0, "fast"
 
     return-object v0
 
-    .line 227
+    .line 229
     :cond_0
     const-string v0, "pref_video_speed_slow_key"
 
@@ -315,12 +319,12 @@
 
     if-eqz v0, :cond_1
 
-    .line 228
+    .line 230
     const-string v0, "slow"
 
     return-object v0
 
-    .line 229
+    .line 231
     :cond_1
     const-string v0, "pref_video_speed_hfr_key"
 
@@ -330,12 +334,12 @@
 
     if-eqz v0, :cond_2
 
-    .line 230
+    .line 232
     const-string v0, "hfr"
 
     return-object v0
 
-    .line 232
+    .line 234
     :cond_2
     const-string v0, "normal"
 
@@ -345,7 +349,7 @@
 .method public isSwitchOn(Ljava/lang/String;)Z
     .locals 1
 
-    .line 151
+    .line 153
     const/4 v0, 0x0
 
     invoke-virtual {p0, p1, v0}, Lcom/android/camera/data/data/runing/DataItemRunning;->getBoolean(Ljava/lang/String;Z)Z
@@ -358,7 +362,7 @@
 .method public isTransient()Z
     .locals 1
 
-    .line 179
+    .line 181
     const/4 v0, 0x1
 
     return v0
@@ -367,7 +371,7 @@
 .method public provideKey()Ljava/lang/String;
     .locals 1
 
-    .line 174
+    .line 176
     const-string v0, "camera_running"
 
     return-object v0
@@ -376,43 +380,43 @@
 .method public setLiveConfigIsNeedRestore(Z)V
     .locals 1
 
-    .line 252
+    .line 254
     const-string v0, "pref_live_config_is_need_restore"
 
     invoke-virtual {p0, v0, p1}, Lcom/android/camera/data/data/runing/DataItemRunning;->putBoolean(Ljava/lang/String;Z)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 253
+    .line 255
     return-void
 .end method
 
 .method public setLiveFilter(I)V
     .locals 1
 
-    .line 268
+    .line 270
     const-string v0, "key_live_filter"
 
     invoke-virtual {p0, v0, p1}, Lcom/android/camera/data/data/runing/DataItemRunning;->putInt(Ljava/lang/String;I)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 269
+    .line 271
     return-void
 .end method
 
 .method public setLiveMusicFirstRequestTime(J)V
     .locals 1
 
-    .line 260
+    .line 262
     const-string v0, "pref_key_live_music_first_request_time"
 
     invoke-virtual {p0, v0, p1, p2}, Lcom/android/camera/data/data/runing/DataItemRunning;->putLong(Ljava/lang/String;J)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 261
+    .line 263
     return-void
 .end method
 
 .method public setUiStyle(I)V
     .locals 3
 
-    .line 246
+    .line 248
     const-string v0, "DataItemRunning"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -431,65 +435,65 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 247
+    .line 249
     iget v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mUiStyle:I
 
     iput v0, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mLastUiStyle:I
 
-    .line 248
+    .line 250
     iput p1, p0, Lcom/android/camera/data/data/runing/DataItemRunning;->mUiStyle:I
 
-    .line 249
+    .line 251
     return-void
 .end method
 
 .method public switchOff(Ljava/lang/String;)V
     .locals 1
 
-    .line 169
+    .line 171
     const/4 v0, 0x0
 
     invoke-virtual {p0, p1, v0}, Lcom/android/camera/data/data/runing/DataItemRunning;->putBoolean(Ljava/lang/String;Z)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 170
+    .line 172
     return-void
 .end method
 
 .method public switchOn(Ljava/lang/String;)V
     .locals 1
 
-    .line 165
+    .line 167
     const/4 v0, 0x1
 
     invoke-virtual {p0, p1, v0}, Lcom/android/camera/data/data/runing/DataItemRunning;->putBoolean(Ljava/lang/String;Z)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 166
+    .line 168
     return-void
 .end method
 
 .method public triggerSwitchAndGet(Ljava/lang/String;)Z
     .locals 1
 
-    .line 155
+    .line 157
     invoke-virtual {p0, p1}, Lcom/android/camera/data/data/runing/DataItemRunning;->isSwitchOn(Ljava/lang/String;)Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 156
+    .line 158
     invoke-virtual {p0, p1}, Lcom/android/camera/data/data/runing/DataItemRunning;->switchOff(Ljava/lang/String;)V
 
-    .line 157
+    .line 159
     const/4 p1, 0x0
 
     return p1
 
-    .line 159
+    .line 161
     :cond_0
     invoke-virtual {p0, p1}, Lcom/android/camera/data/data/runing/DataItemRunning;->switchOn(Ljava/lang/String;)V
 
-    .line 160
+    .line 162
     const/4 p1, 0x1
 
     return p1

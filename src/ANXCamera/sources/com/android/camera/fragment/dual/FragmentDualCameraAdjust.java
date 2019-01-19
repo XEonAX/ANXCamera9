@@ -23,6 +23,7 @@ import android.view.ViewGroup.MarginLayoutParams;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
+import com.android.camera.Camera;
 import com.android.camera.CameraSettings;
 import com.android.camera.R;
 import com.android.camera.Util;
@@ -39,6 +40,7 @@ import com.android.camera.data.data.config.ComponentManuallyDualZoom;
 import com.android.camera.fragment.BaseFragment;
 import com.android.camera.fragment.manually.ManuallyListener;
 import com.android.camera.fragment.manually.adapter.ExtraSlideZoomAdapter;
+import com.android.camera.module.Panorama3Module;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BottomPopupTips;
 import com.android.camera.protocol.ModeProtocol.CameraAction;
@@ -47,6 +49,7 @@ import com.android.camera.protocol.ModeProtocol.HandleBackTrace;
 import com.android.camera.protocol.ModeProtocol.ManuallyValueChanged;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.protocol.ModeProtocol.SnapShotIndicator;
+import com.android.camera.protocol.ModeProtocol.TopAlert;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.HorizontalSlideView;
@@ -65,6 +68,7 @@ public class FragmentDualCameraAdjust extends BaseFragment implements OnClickLis
     private TextAppearanceSpan mDigitsTextStyle;
     private ViewGroup mDualParentLayout;
     private TextView mDualZoomButton;
+    private int mDualZoomButtonHeight;
     private Handler mHandler = new Handler() {
         public void handleMessage(Message message) {
             if (message.what == 1) {
@@ -170,8 +174,9 @@ public class FragmentDualCameraAdjust extends BaseFragment implements OnClickLis
         float f = (float) i;
         this.mHorizontalSlideLayout.getLayoutParams().height = ((int) (((f / 0.75f) - f) / 2.0f)) + getResources().getDimensionPixelSize(R.dimen.square_mode_bottom_cover_extra_margin);
         this.mSlideLayoutHeight = this.mHorizontalSlideLayout.getLayoutParams().height;
+        this.mDualZoomButtonHeight = this.mDualZoomButton.getLayoutParams().height;
         adjustViewBackground(this.mHorizontalSlideLayout, this.mCurrentMode);
-        provideAnimateElement(this.mCurrentMode, null, false);
+        provideAnimateElement(this.mCurrentMode, null, 2);
         this.mDualZoomButton.setOnTouchListener(new OnTouchListener() {
             private int mMiddleX = (FragmentDualCameraAdjust.this.getResources().getDisplayMetrics().widthPixels / 2);
             private float mTouchDownX = -1.0f;
@@ -286,19 +291,27 @@ public class FragmentDualCameraAdjust extends BaseFragment implements OnClickLis
         if (this.mHorizontalSlideLayout.getVisibility() == 0) {
             return this.mSlideLayoutHeight + this.mDualZoomButton.getHeight();
         }
-        return this.mDualZoomButton.getHeight();
+        return this.mDualZoomButtonHeight;
     }
 
     public void hideZoomButton() {
         if (this.mCurrentState != -1) {
             this.mCurrentState = -1;
             Completable.create(new AlphaOutOnSubscribe(this.mDualZoomButton)).subscribe();
+            if (this.mHorizontalSlideLayout != null && this.mHorizontalSlideLayout.getVisibility() == 0) {
+                this.mIsHiding = true;
+                this.mSlidingAdapter.setEnable(false);
+                this.mHorizontalSlideLayout.setVisibility(4);
+                ViewCompat.setTranslationY(this.mHorizontalSlideLayout, (float) this.mSlideLayoutHeight);
+                ViewCompat.setTranslationY(this.mDualZoomButton, (float) this.mSlideLayoutHeight);
+            }
         }
     }
 
     public void showZoomButton() {
         if (this.mCurrentState != 1) {
             this.mCurrentState = 1;
+            updateZoomValue();
             ViewCompat.setRotation(this.mDualZoomButton, (float) this.mDegree);
             Completable.create(new AlphaInOnSubscribe(this.mDualZoomButton)).subscribe();
         }
@@ -331,67 +344,84 @@ public class FragmentDualCameraAdjust extends BaseFragment implements OnClickLis
         return 4084;
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        int i2;
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0048  */
+    /* JADX WARNING: Removed duplicated region for block: B:17:0x004c  */
+    /* JADX WARNING: Removed duplicated region for block: B:25:0x0066  */
+    /* JADX WARNING: Removed duplicated region for block: B:22:0x0060  */
+    /* JADX WARNING: Missing block: B:10:0x002c, code:
+            if (com.android.camera.CameraSettings.isRearMenuUltraPixelPhotographyOn() != false) goto L_0x0026;
+     */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
         int i3 = this.mCurrentMode;
-        super.provideAnimateElement(i, list, z);
-        if (!(i == 163 || i == 173)) {
-            switch (i) {
-                case 165:
-                    break;
-                case 166:
-                    this.mDualZoomButton.setOnLongClickListener(null);
-                    break;
-                default:
-                    i2 = -1;
-                    break;
+        super.provideAnimateElement(i, list, i2);
+        if (i != 163) {
+            if (i != 173) {
+                switch (i) {
+                    case 165:
+                        break;
+                    case 166:
+                        if (DataRepository.dataItemFeature().fI()) {
+                            this.mDualZoomButton.setOnLongClickListener(null);
+                            break;
+                        }
+                        break;
+                }
             }
-        }
-        ViewCompat.setRotation(this.mDualZoomButton, (float) this.mDegree);
-        this.mDualZoomButton.setOnLongClickListener(this);
-        i2 = 1;
-        if (CameraSettings.isUltraWideConfigOpen(this.mCurrentMode)) {
-            i2 = -1;
-        }
-        if (i2 == 1) {
-            onBackEvent(4);
-            if (DataRepository.dataItemGlobal().getCurrentCameraId() == 1) {
+            ViewCompat.setRotation(this.mDualZoomButton, (float) this.mDegree);
+            this.mDualZoomButton.setOnLongClickListener(this);
+            i2 = 1;
+            if (CameraSettings.isUltraWideConfigOpen(this.mCurrentMode)) {
                 i2 = -1;
             }
-        }
-        if (this.mCurrentState == i2) {
             if (i2 == 1) {
-                resetZoomIcon();
+                onBackEvent(4);
+                if (DataRepository.dataItemGlobal().getCurrentCameraId() == 1) {
+                    i2 = -1;
+                }
+            }
+            if (this.mCurrentState != i2) {
+                if (i2 == 1) {
+                    resetZoomIcon();
+                }
+                return;
+            }
+            this.mCurrentState = i2;
+            if (i2 != -1) {
+                if (i2 == 1) {
+                    if (this.mDualParentLayout.getVisibility() != 0) {
+                        SlideInOnSubscribe.directSetResult(this.mDualParentLayout, 80);
+                    }
+                    SlideOutOnSubscribe.directSetResult(this.mHorizontalSlideLayout, 80);
+                    ViewCompat.setTranslationY(this.mDualZoomButton, (float) this.mSlideLayoutHeight);
+                    resetZoomIcon();
+                    if (list == null || (i == 165 && i3 != 167)) {
+                        AlphaInOnSubscribe.directSetResult(this.mDualZoomButton);
+                    } else if (i3 == 167) {
+                        list.add(Completable.create(new AlphaInOnSubscribe(this.mDualZoomButton).setStartDelayTime(150)));
+                    } else {
+                        list.add(Completable.create(new AlphaInOnSubscribe(this.mDualZoomButton)));
+                    }
+                }
+            } else if (this.mHorizontalSlideLayout.getVisibility() == 0) {
+                if (list == null) {
+                    this.mHorizontalSlideLayout.setVisibility(8);
+                } else {
+                    list.add(Completable.create(new SlideOutOnSubscribe(this.mDualParentLayout, 80)));
+                }
+            } else if (list == null || i3 == 165) {
+                AlphaOutOnSubscribe.directSetResult(this.mDualZoomButton);
+            } else {
+                list.add(Completable.create(new AlphaOutOnSubscribe(this.mDualZoomButton)));
             }
             return;
         }
-        this.mCurrentState = i2;
-        if (i2 != -1) {
-            if (i2 == 1) {
-                if (this.mDualParentLayout.getVisibility() != 0) {
-                    SlideInOnSubscribe.directSetResult(this.mDualParentLayout, 80);
-                }
-                SlideOutOnSubscribe.directSetResult(this.mHorizontalSlideLayout, 80);
-                ViewCompat.setTranslationY(this.mDualZoomButton, (float) this.mSlideLayoutHeight);
-                resetZoomIcon();
-                if (list == null || (i == 165 && i3 != 167)) {
-                    AlphaInOnSubscribe.directSetResult(this.mDualZoomButton);
-                } else if (i3 == 167) {
-                    list.add(Completable.create(new AlphaInOnSubscribe(this.mDualZoomButton).setStartDelayTime(150)));
-                } else {
-                    list.add(Completable.create(new AlphaInOnSubscribe(this.mDualZoomButton)));
-                }
-            }
-        } else if (this.mHorizontalSlideLayout.getVisibility() == 0) {
-            if (list == null) {
-                this.mHorizontalSlideLayout.setVisibility(8);
-            } else {
-                list.add(Completable.create(new SlideOutOnSubscribe(this.mDualParentLayout, 80)));
-            }
-        } else if (list == null || i3 == 165) {
-            AlphaOutOnSubscribe.directSetResult(this.mDualZoomButton);
-        } else {
-            list.add(Completable.create(new AlphaOutOnSubscribe(this.mDualZoomButton)));
+        i2 = -1;
+        if (CameraSettings.isUltraWideConfigOpen(this.mCurrentMode)) {
+        }
+        if (i2 == 1) {
+        }
+        if (this.mCurrentState != i2) {
         }
     }
 
@@ -415,6 +445,16 @@ public class FragmentDualCameraAdjust extends BaseFragment implements OnClickLis
         if (isEnableClick()) {
             CameraAction cameraAction = (CameraAction) ModeCoordinatorImpl.getInstance().getAttachProtocol(161);
             if ((cameraAction == null || !cameraAction.isDoingAction()) && view.getId() == R.id.dual_camera_zoom_button) {
+                if (this.mCurrentMode == 166) {
+                    Camera camera = (Camera) getContext();
+                    Panorama3Module panorama3Module = null;
+                    if (camera != null) {
+                        panorama3Module = (Panorama3Module) camera.getCurrentModule();
+                    }
+                    if (panorama3Module != null && panorama3Module.isPanoramaDoing()) {
+                        return;
+                    }
+                }
                 if (CameraSettings.isSwitchCameraZoomMode()) {
                     toggle();
                 } else if (this.mZoomRatio == ((float) this.mZoomRatioWide)) {
@@ -514,6 +554,10 @@ public class FragmentDualCameraAdjust extends BaseFragment implements OnClickLis
             Completable.create(new TranslateYAlphaOutOnSubscribe(this.mDualZoomButton, this.mSlideLayoutHeight).setInterpolator(new OvershootInterpolator())).subscribe();
         } else {
             hideZoomButton();
+            TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
+            if (topAlert != null) {
+                topAlert.alertUpdateValue(2);
+            }
         }
         notifyTipsMargin();
     }
@@ -575,7 +619,7 @@ public class FragmentDualCameraAdjust extends BaseFragment implements OnClickLis
 
     public void notifyAfterFrameAvailable(int i) {
         super.notifyAfterFrameAvailable(i);
-        provideAnimateElement(this.mCurrentMode, null, false);
+        provideAnimateElement(this.mCurrentMode, null, 2);
     }
 
     private void adjustViewBackground(View view, int i) {

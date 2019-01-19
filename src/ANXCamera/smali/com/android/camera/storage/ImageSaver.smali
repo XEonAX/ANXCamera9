@@ -142,7 +142,7 @@
 
     iput-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mUpdateThumbnailLock:Ljava/lang/Object;
 
-    .line 733
+    .line 775
     new-instance v0, Lcom/android/camera/storage/ImageSaver$ThumbnailUpdater;
 
     invoke-direct {v0, p0}, Lcom/android/camera/storage/ImageSaver$ThumbnailUpdater;-><init>(Lcom/android/camera/storage/ImageSaver;)V
@@ -206,10 +206,10 @@
 .method private addSaveRequest(Lcom/android/camera/storage/SaveRequest;)V
     .locals 2
 
-    .line 559
+    .line 601
     monitor-enter p0
 
-    .line 560
+    .line 602
     const/4 v0, 0x2
 
     :try_start_0
@@ -217,14 +217,14 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 561
+    .line 603
     sget-object v0, Lcom/android/camera/storage/ImageSaver;->TAG:Ljava/lang/String;
 
     const-string v1, "addSaveRequest: host is being destroyed."
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 563
+    .line 605
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/storage/ImageSaver;->isSaveQueueFull()Z
 
@@ -234,10 +234,10 @@
 
     if-eqz v0, :cond_1
 
-    .line 564
+    .line 606
     iput-boolean v1, p0, Lcom/android/camera/storage/ImageSaver;->mIsBusy:Z
 
-    .line 567
+    .line 609
     :cond_1
     invoke-interface {p1}, Lcom/android/camera/storage/SaveRequest;->getSize()I
 
@@ -245,14 +245,14 @@
 
     invoke-virtual {p0, v0}, Lcom/android/camera/storage/ImageSaver;->addUsedMemory(I)V
 
-    .line 568
+    .line 610
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mContext:Landroid/content/Context;
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/storage/SaveRequest;->setContextAndCallback(Landroid/content/Context;Lcom/android/camera/storage/SaverCallback;)V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 570
+    .line 612
     :try_start_1
     sget-object v0, Lcom/android/camera/storage/ImageSaver;->CAMERA_SAVER_EXECUTOR:Ljava/util/concurrent/Executor;
 
@@ -261,32 +261,32 @@
     .catch Ljava/util/concurrent/RejectedExecutionException; {:try_start_1 .. :try_end_1} :catch_0
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 575
+    .line 617
     goto :goto_0
 
-    .line 571
+    .line 613
     :catch_0
     move-exception p1
 
-    .line 573
+    .line 615
     :try_start_2
     iput-boolean v1, p0, Lcom/android/camera/storage/ImageSaver;->mIsBusy:Z
 
-    .line 574
+    .line 616
     sget-object p1, Lcom/android/camera/storage/ImageSaver;->TAG:Ljava/lang/String;
 
     const-string v0, "stop snapshot due to thread pool is full"
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 576
+    .line 618
     :goto_0
     monitor-exit p0
 
-    .line 577
+    .line 619
     return-void
 
-    .line 576
+    .line 618
     :catchall_0
     move-exception p1
 
@@ -297,7 +297,7 @@
     throw p1
 .end method
 
-.method private getDrawJPEGAttribute([BIIZIILandroid/location/Location;Ljava/lang/String;IIFLjava/lang/String;ZLjava/util/List;ZLcom/xiaomi/camera/core/PictureInfo;)Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;
+.method private getDrawJPEGAttribute([BIIZIILandroid/location/Location;Ljava/lang/String;IIFLjava/lang/String;ZLjava/lang/String;Ljava/util/List;ZLcom/xiaomi/camera/core/PictureInfo;)Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;
     .locals 25
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -307,6 +307,7 @@
             "IIF",
             "Ljava/lang/String;",
             "Z",
+            "Ljava/lang/String;",
             "Ljava/util/List<",
             "Lcom/android/camera/watermark/WaterMarkData;",
             ">;Z",
@@ -322,23 +323,23 @@
 
     move-object/from16 v0, p7
 
-    .line 904
+    .line 947
     new-instance v24, Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;
 
-    .line 907
+    .line 950
     if-le v5, v6, :cond_0
 
     invoke-static/range {p2 .. p3}, Ljava/lang/Math;->max(II)I
 
     move-result v1
 
-    .line 908
+    .line 951
     :goto_0
     move v3, v1
 
     goto :goto_1
 
-    .line 907
+    .line 950
     :cond_0
     invoke-static/range {p2 .. p3}, Ljava/lang/Math;->min(II)I
 
@@ -346,7 +347,7 @@
 
     goto :goto_0
 
-    .line 908
+    .line 951
     :goto_1
     if-le v6, v5, :cond_1
 
@@ -354,13 +355,13 @@
 
     move-result v1
 
-    .line 911
+    .line 954
     :goto_2
     move v4, v1
 
     goto :goto_3
 
-    .line 908
+    .line 951
     :cond_1
     invoke-static/range {p2 .. p3}, Ljava/lang/Math;->min(II)I
 
@@ -368,7 +369,7 @@
 
     goto :goto_2
 
-    .line 911
+    .line 954
     :goto_3
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
@@ -380,7 +381,7 @@
 
     move-result v7
 
-    .line 912
+    .line 955
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v1
@@ -389,23 +390,23 @@
 
     move-result-object v8
 
-    .line 913
+    .line 956
     const/4 v1, 0x0
 
     if-nez v0, :cond_2
 
-    .line 915
+    .line 958
     move-object v9, v1
 
     goto :goto_4
 
-    .line 913
+    .line 956
     :cond_2
     new-instance v2, Landroid/location/Location;
 
     invoke-direct {v2, v0}, Landroid/location/Location;-><init>(Landroid/location/Location;)V
 
-    .line 915
+    .line 958
     move-object v9, v2
 
     :goto_4
@@ -413,28 +414,24 @@
 
     move-result-wide v11
 
-    .line 919
-    invoke-virtual/range {p16 .. p16}, Lcom/xiaomi/camera/core/PictureInfo;->isFrontMirror()Z
+    .line 962
+    invoke-virtual/range {p17 .. p17}, Lcom/xiaomi/camera/core/PictureInfo;->isFrontMirror()Z
 
     move-result v16
 
-    .line 925
+    .line 968
     invoke-static {}, Lcom/android/camera/CameraSettings;->isDualCameraWaterMarkOpen()Z
 
     move-result v21
 
-    .line 926
+    .line 969
     invoke-static {}, Lcom/android/camera/CameraSettings;->isTimeWaterMarkOpen()Z
 
     move-result v0
 
     if-eqz v0, :cond_3
 
-    invoke-static {}, Lcom/android/camera/Util;->getTimeWatermark()Ljava/lang/String;
-
-    move-result-object v0
-
-    move-object/from16 v22, v0
+    move-object/from16 v22, p14
 
     goto :goto_5
 
@@ -460,111 +457,109 @@
 
     move/from16 v18, p13
 
-    move-object/from16 v19, p16
+    move-object/from16 v19, p17
 
-    move-object/from16 v20, p14
+    move-object/from16 v20, p15
 
-    move/from16 v23, p15
+    move/from16 v23, p16
 
     invoke-direct/range {v0 .. v23}, Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;-><init>([BZIIIIILcom/android/camera/effect/EffectController$EffectRectAttribute;Landroid/location/Location;Ljava/lang/String;JIIFZLjava/lang/String;ZLcom/xiaomi/camera/core/PictureInfo;Ljava/util/List;ZLjava/lang/String;Z)V
 
-    .line 904
+    .line 947
     return-object v24
 .end method
 
 .method private insertLiveShotTask(Lcom/xiaomi/camera/core/ParallelTaskData;)V
-    .locals 29
+    .locals 46
 
-    move-object/from16 v15, p0
-
-    .line 291
+    .line 301
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getDataParameter()Lcom/xiaomi/camera/core/ParallelTaskDataParameter;
-
-    move-result-object v14
-
-    .line 292
-    invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/android/camera/effect/EffectController;->hasEffect()Z
-
-    move-result v0
-
-    .line 293
-    invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getJpegImageData()[B
+    .line 302
+    invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v1
 
-    .line 294
+    invoke-virtual {v1}, Lcom/android/camera/effect/EffectController;->hasEffect()Z
+
+    move-result v1
+
+    .line 303
+    invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getJpegImageData()[B
+
+    move-result-object v3
+
+    .line 304
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getMicroVideoData()[B
 
-    move-result-object v17
+    move-result-object v20
 
-    .line 295
+    .line 305
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getCoverFrameTimestamp()J
 
-    move-result-wide v18
+    move-result-wide v21
 
-    .line 297
-    invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureSize()Landroid/util/Size;
+    .line 307
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureSize()Landroid/util/Size;
 
     move-result-object v2
 
     invoke-virtual {v2}, Landroid/util/Size;->getWidth()I
 
-    move-result v20
+    move-result v23
 
-    .line 298
-    invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureSize()Landroid/util/Size;
+    .line 308
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureSize()Landroid/util/Size;
 
     move-result-object v2
 
     invoke-virtual {v2}, Landroid/util/Size;->getHeight()I
 
-    move-result v21
+    move-result v24
 
-    .line 299
-    invoke-static {v1}, Lcom/android/camera/Exif;->getOrientation([B)I
+    .line 309
+    invoke-static {v3}, Lcom/android/camera/Exif;->getOrientation([B)I
 
-    move-result v22
+    move-result v37
 
-    .line 300
-    invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getJpegRotation()I
+    .line 310
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getJpegRotation()I
 
     move-result v2
 
-    .line 304
-    add-int v2, v2, v22
+    .line 314
+    add-int v2, v2, v37
 
     rem-int/lit16 v2, v2, 0xb4
 
     if-nez v2, :cond_0
 
-    .line 305
+    .line 315
     nop
 
-    .line 306
+    .line 316
     nop
 
-    .line 311
-    move/from16 v5, v20
+    .line 321
+    move/from16 v7, v23
 
-    move/from16 v6, v21
+    move/from16 v8, v24
 
     goto :goto_0
 
-    .line 308
+    .line 318
     :cond_0
     nop
 
-    .line 309
+    .line 319
     nop
 
-    .line 311
-    move/from16 v6, v20
+    .line 321
+    move/from16 v8, v23
 
-    move/from16 v5, v21
+    move/from16 v7, v24
 
     :goto_0
     new-instance v2, Ljava/lang/StringBuilder;
@@ -573,302 +568,272 @@
 
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
-    move-result-wide v3
+    move-result-wide v4
 
-    invoke-static {v3, v4}, Lcom/android/camera/Util;->createJpegName(J)Ljava/lang/String;
+    invoke-static {v4, v5}, Lcom/android/camera/Util;->createJpegName(J)Ljava/lang/String;
 
-    move-result-object v3
+    move-result-object v4
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getSuffix()Ljava/lang/String;
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getSuffix()Ljava/lang/String;
 
-    move-result-object v3
+    move-result-object v4
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v2
 
-    .line 312
+    .line 322
     invoke-static {}, Lcom/android/camera/Util;->createGooglePhotosCompatibleLiveShot()Z
-
-    move-result v3
-
-    if-eqz v3, :cond_1
-
-    .line 313
-    new-instance v3, Ljava/lang/StringBuilder;
-
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v4, "MV"
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    .line 316
-    :cond_1
-    move-object v13, v2
-
-    if-eqz v0, :cond_2
-
-    .line 317
-    nop
-
-    .line 318
-    invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPreviewSize()Landroid/util/Size;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Landroid/util/Size;->getWidth()I
-
-    move-result v2
-
-    invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPreviewSize()Landroid/util/Size;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Landroid/util/Size;->getHeight()I
-
-    move-result v3
-
-    .line 319
-    invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->isNeedThumbnail()Z
 
     move-result v4
 
-    .line 321
-    invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getLocation()Landroid/location/Location;
+    if-eqz v4, :cond_1
 
-    move-result-object v7
+    .line 323
+    new-instance v4, Ljava/lang/StringBuilder;
 
-    .line 322
-    invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getShootOrientation()I
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
 
-    move-result v9
+    const-string v5, "MV"
 
-    invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getShootRotation()F
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 326
+    :cond_1
+    move-object v15, v2
+
+    if-eqz v1, :cond_2
+
+    .line 327
+    nop
+
+    .line 329
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPreviewSize()Landroid/util/Size;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Landroid/util/Size;->getWidth()I
+
+    move-result v4
+
+    .line 330
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPreviewSize()Landroid/util/Size;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Landroid/util/Size;->getHeight()I
+
+    move-result v5
+
+    .line 331
+    invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->isNeedThumbnail()Z
+
+    move-result v6
+
+    .line 334
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getLocation()Landroid/location/Location;
+
+    move-result-object v9
+
+    .line 336
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getShootOrientation()I
 
     move-result v11
 
-    .line 323
-    invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getAlgorithmName()Ljava/lang/String;
+    .line 338
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getShootRotation()F
 
-    move-result-object v12
+    move-result v13
 
-    const/16 v16, 0x1
+    .line 339
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getAlgorithmName()Ljava/lang/String;
 
-    .line 324
-    invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getFaceWaterMarkList()Ljava/util/List;
+    move-result-object v14
 
-    move-result-object v23
+    const/4 v1, 0x1
 
-    const/16 v24, 0x0
+    .line 341
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getTimeWaterMarkString()Ljava/lang/String;
 
-    invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
+    move-result-object v16
 
-    move-result-object v25
+    .line 342
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getFaceWaterMarkList()Ljava/util/List;
 
-    .line 317
-    move-object v0, v15
+    move-result-object v17
 
-    move-object v8, v13
+    const/16 v18, 0x0
 
-    move/from16 v10, v22
+    .line 344
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
 
-    move-object/from16 v26, v13
-
-    move/from16 v13, v16
-
-    move-object/from16 v27, v14
-
-    move-object/from16 v14, v23
-
-    move/from16 v15, v24
-
-    move-object/from16 v16, v25
-
-    invoke-direct/range {v0 .. v16}, Lcom/android/camera/storage/ImageSaver;->getDrawJPEGAttribute([BIIZIILandroid/location/Location;Ljava/lang/String;IIFLjava/lang/String;ZLjava/util/List;ZLcom/xiaomi/camera/core/PictureInfo;)Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;
-
-    move-result-object v0
-
-    .line 326
-    move-object/from16 v11, p0
-
-    iget-object v1, v11, Lcom/android/camera/storage/ImageSaver;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
-
-    const/4 v2, 0x0
-
-    invoke-virtual {v1, v0, v2}, Lcom/android/camera/effect/renders/SnapshotEffectRender;->processorJpegSync(Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;Z)V
+    move-result-object v19
 
     .line 327
-    iget-object v1, v0, Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;->mData:[B
+    move-object/from16 v2, p0
 
-    .line 328
-    iget v2, v0, Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;->mWidth:I
+    move-object v10, v15
 
-    .line 329
-    iget v0, v0, Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;->mHeight:I
+    move/from16 v12, v37
 
-    .line 332
-    move v13, v0
+    move-object/from16 v45, v15
 
-    move v12, v2
+    move v15, v1
+
+    invoke-direct/range {v2 .. v19}, Lcom/android/camera/storage/ImageSaver;->getDrawJPEGAttribute([BIIZIILandroid/location/Location;Ljava/lang/String;IIFLjava/lang/String;ZLjava/lang/String;Ljava/util/List;ZLcom/xiaomi/camera/core/PictureInfo;)Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;
+
+    move-result-object v1
+
+    .line 346
+    iget-object v3, v2, Lcom/android/camera/storage/ImageSaver;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
+
+    const/4 v4, 0x0
+
+    invoke-virtual {v3, v1, v4}, Lcom/android/camera/effect/renders/SnapshotEffectRender;->processorJpegSync(Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;Z)V
+
+    .line 347
+    iget-object v3, v1, Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;->mData:[B
+
+    .line 348
+    iget v4, v1, Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;->mWidth:I
+
+    .line 349
+    iget v1, v1, Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;->mHeight:I
+
+    .line 352
+    move/from16 v35, v1
+
+    move/from16 v34, v4
 
     goto :goto_1
 
     :cond_2
-    move-object/from16 v26, v13
+    move-object/from16 v2, p0
 
-    move-object/from16 v27, v14
+    move-object/from16 v45, v15
 
-    move-object v11, v15
+    move/from16 v34, v7
 
-    move v12, v5
-
-    move v13, v6
+    move/from16 v35, v8
 
     :goto_1
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getParallelType()I
 
-    move-result v0
+    move-result v1
 
-    const/4 v2, 0x1
+    const/4 v4, 0x1
 
-    if-ne v0, v2, :cond_5
+    if-ne v1, v4, :cond_5
 
-    .line 333
-    iget-object v2, v11, Lcom/android/camera/storage/ImageSaver;->mContext:Landroid/content/Context;
+    .line 353
+    nop
 
-    .line 335
-    move-object/from16 v0, v27
-
+    .line 355
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->isHasDualWaterMark()Z
 
-    move-result v9
+    move-result v10
 
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getTimeWaterMarkString()Ljava/lang/String;
 
-    move-result-object v10
+    move-result-object v11
 
-    .line 333
-    move-object v3, v1
+    .line 353
+    move-object v4, v3
 
-    move/from16 v4, v20
+    move/from16 v5, v23
 
-    move/from16 v5, v21
+    move/from16 v6, v24
 
-    move-object/from16 v6, v17
+    move-object/from16 v7, v20
 
-    move-wide/from16 v7, v18
+    move-wide/from16 v8, v21
 
-    invoke-static/range {v2 .. v10}, Lcom/android/camera/Util;->composeLiveShotPicture(Landroid/content/Context;[BII[BJZLjava/lang/String;)[B
+    invoke-static/range {v4 .. v11}, Lcom/android/camera/Util;->composeLiveShotPicture([BII[BJZLjava/lang/String;)[B
 
-    move-result-object v2
+    move-result-object v1
 
-    .line 336
-    if-eqz v2, :cond_4
-
+    .line 356
     if-eqz v1, :cond_4
 
-    array-length v3, v2
+    if-eqz v3, :cond_4
 
-    array-length v1, v1
+    array-length v4, v1
 
-    if-ge v3, v1, :cond_3
+    array-length v3, v3
+
+    if-ge v4, v3, :cond_3
 
     goto :goto_2
 
-    .line 340
+    .line 360
     :cond_3
     nop
 
-    .line 341
+    .line 361
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->isNeedThumbnail()Z
 
-    move-result v3
+    move-result v27
 
-    const/4 v4, 0x0
+    const/16 v29, 0x0
 
-    .line 342
+    .line 362
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
-    move-result-wide v5
+    move-result-wide v30
 
-    const/4 v7, 0x0
+    const/16 v32, 0x0
 
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getLocation()Landroid/location/Location;
 
-    move-result-object v8
+    move-result-object v33
 
-    const/4 v14, 0x0
+    const/16 v36, 0x0
 
-    const/4 v15, 0x0
+    const/16 v38, 0x0
 
-    const/16 v16, 0x0
+    const/16 v39, 0x0
 
-    const/16 v17, 0x1
+    const/16 v40, 0x1
 
-    const/16 v18, 0x0
+    const/16 v41, 0x0
 
-    const/16 v19, 0x0
+    const/16 v42, 0x0
 
-    .line 344
+    .line 364
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getAlgorithmName()Ljava/lang/String;
 
-    move-result-object v20
+    move-result-object v43
 
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
 
-    move-result-object v21
+    move-result-object v44
 
-    .line 340
-    move-object v0, v11
+    .line 360
+    move-object/from16 v25, v2
 
-    move-object v1, v2
+    move-object/from16 v26, v1
 
-    move v2, v3
+    move-object/from16 v28, v45
 
-    move-object/from16 v3, v26
+    invoke-virtual/range {v25 .. v44}, Lcom/android/camera/storage/ImageSaver;->addImage([BZLjava/lang/String;Ljava/lang/String;JLandroid/net/Uri;Landroid/location/Location;IILcom/android/gallery3d/exif/ExifInterface;IZZZZZLjava/lang/String;Lcom/xiaomi/camera/core/PictureInfo;)V
 
-    move v9, v12
-
-    move v10, v13
-
-    move-object v11, v14
-
-    move/from16 v12, v22
-
-    move v13, v15
-
-    move/from16 v14, v16
-
-    move/from16 v15, v17
-
-    move/from16 v16, v18
-
-    move/from16 v17, v19
-
-    move-object/from16 v18, v20
-
-    move-object/from16 v19, v21
-
-    invoke-virtual/range {v0 .. v19}, Lcom/android/camera/storage/ImageSaver;->addImage([BZLjava/lang/String;Ljava/lang/String;JLandroid/net/Uri;Landroid/location/Location;IILcom/android/gallery3d/exif/ExifInterface;IZZZZZLjava/lang/String;Lcom/xiaomi/camera/core/PictureInfo;)V
-
-    .line 345
+    .line 365
     nop
 
-    .line 348
+    .line 368
     return-void
 
-    .line 337
+    .line 357
     :cond_4
     :goto_2
     sget-object v0, Lcom/android/camera/storage/ImageSaver;->TAG:Ljava/lang/String;
@@ -881,7 +846,7 @@
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-object/from16 v2, v26
+    move-object/from16 v2, v45
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -891,10 +856,10 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 338
+    .line 358
     return-void
 
-    .line 346
+    .line 366
     :cond_5
     new-instance v0, Ljava/lang/IllegalStateException;
 
@@ -906,11 +871,11 @@
 .end method
 
 .method private insertNormalDualTask(Lcom/xiaomi/camera/core/ParallelTaskData;)V
-    .locals 31
+    .locals 32
 
     move-object/from16 v15, p0
 
-    .line 354
+    .line 374
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v0
@@ -919,36 +884,36 @@
 
     move-result v0
 
-    .line 355
+    .line 375
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getPortraitDepthData()[B
 
     move-result-object v1
 
     invoke-static {v1}, Lcom/android/camera2/ArcsoftDepthMap;->isDepthMapData([B)Z
 
-    move-result v17
+    move-result v18
 
-    .line 356
+    .line 376
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getJpegImageData()[B
 
     move-result-object v1
 
-    .line 357
+    .line 377
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getPortraitRawData()[B
-
-    move-result-object v18
-
-    .line 358
-    invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getPortraitDepthData()[B
 
     move-result-object v19
 
-    .line 359
+    .line 378
+    invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getPortraitDepthData()[B
+
+    move-result-object v20
+
+    .line 379
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getDataParameter()Lcom/xiaomi/camera/core/ParallelTaskDataParameter;
 
     move-result-object v14
 
-    .line 361
+    .line 381
     invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureSize()Landroid/util/Size;
 
     move-result-object v2
@@ -957,7 +922,7 @@
 
     move-result v2
 
-    .line 362
+    .line 382
     invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureSize()Landroid/util/Size;
 
     move-result-object v3
@@ -966,47 +931,47 @@
 
     move-result v3
 
-    .line 363
+    .line 383
     invoke-static {v1}, Lcom/android/camera/Exif;->getOrientation([B)I
 
-    move-result v20
+    move-result v21
 
-    .line 364
+    .line 384
     invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getJpegRotation()I
 
     move-result v4
 
-    .line 368
-    add-int v4, v4, v20
+    .line 388
+    add-int v4, v4, v21
 
     rem-int/lit16 v4, v4, 0xb4
 
     if-nez v4, :cond_0
 
-    .line 369
+    .line 389
     nop
 
-    .line 370
+    .line 390
     nop
 
-    .line 375
-    move/from16 v21, v2
+    .line 395
+    move/from16 v22, v2
 
-    move/from16 v22, v3
+    move/from16 v23, v3
 
     goto :goto_0
 
-    .line 372
+    .line 392
     :cond_0
     nop
 
-    .line 373
+    .line 393
     nop
 
-    .line 375
-    move/from16 v22, v2
+    .line 395
+    move/from16 v23, v2
 
-    move/from16 v21, v3
+    move/from16 v22, v3
 
     :goto_0
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1031,15 +996,15 @@
 
     invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v23
+    move-result-object v24
 
-    .line 377
+    .line 397
     if-eqz v0, :cond_2
 
-    .line 379
+    .line 399
     nop
 
-    .line 380
+    .line 401
     invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPreviewSize()Landroid/util/Size;
 
     move-result-object v0
@@ -1048,7 +1013,7 @@
 
     move-result v2
 
-    .line 381
+    .line 402
     invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPreviewSize()Landroid/util/Size;
 
     move-result-object v0
@@ -1057,67 +1022,76 @@
 
     move-result v3
 
-    .line 382
+    .line 403
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->isNeedThumbnail()Z
 
     move-result v4
 
-    .line 384
+    .line 406
     invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getLocation()Landroid/location/Location;
 
     move-result-object v7
 
-    .line 385
+    .line 408
     invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getShootOrientation()I
 
     move-result v9
 
+    .line 410
     invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getShootRotation()F
 
     move-result v11
 
-    .line 386
+    .line 411
     invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getAlgorithmName()Ljava/lang/String;
 
     move-result-object v12
 
     const/4 v13, 0x1
 
-    .line 387
-    invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getFaceWaterMarkList()Ljava/util/List;
+    .line 413
+    invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getTimeWaterMarkString()Ljava/lang/String;
 
     move-result-object v16
 
-    const/16 v24, 0x0
+    .line 414
+    invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getFaceWaterMarkList()Ljava/util/List;
 
+    move-result-object v17
+
+    const/16 v25, 0x0
+
+    .line 416
     invoke-virtual {v14}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
 
-    move-result-object v25
+    move-result-object v26
 
-    .line 379
+    .line 399
     move-object v0, v15
 
-    move/from16 v5, v21
+    move/from16 v5, v22
 
-    move/from16 v6, v22
+    move/from16 v6, v23
 
-    move-object/from16 v8, v23
+    move-object/from16 v8, v24
 
-    move/from16 v10, v20
+    move/from16 v10, v21
 
-    move-object/from16 v26, v14
+    move-object/from16 v27, v14
 
     move-object/from16 v14, v16
 
-    move/from16 v15, v24
+    move-object/from16 v15, v17
 
-    move-object/from16 v16, v25
+    move/from16 v16, v25
 
-    invoke-direct/range {v0 .. v16}, Lcom/android/camera/storage/ImageSaver;->getDrawJPEGAttribute([BIIZIILandroid/location/Location;Ljava/lang/String;IIFLjava/lang/String;ZLjava/util/List;ZLcom/xiaomi/camera/core/PictureInfo;)Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;
+    move-object/from16 v17, v26
+
+    invoke-direct/range {v0 .. v17}, Lcom/android/camera/storage/ImageSaver;->getDrawJPEGAttribute([BIIZIILandroid/location/Location;Ljava/lang/String;IIFLjava/lang/String;ZLjava/lang/String;Ljava/util/List;ZLcom/xiaomi/camera/core/PictureInfo;)Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;
 
     move-result-object v0
 
-    .line 389
+    .line 418
     move-object/from16 v15, p0
 
     iget-object v1, v15, Lcom/android/camera/storage/ImageSaver;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
@@ -1126,17 +1100,17 @@
 
     invoke-virtual {v1, v0, v14}, Lcom/android/camera/effect/renders/SnapshotEffectRender;->processorJpegSync(Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;Z)V
 
-    .line 390
+    .line 419
     iget-object v13, v0, Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;->mData:[B
 
-    .line 393
-    if-eqz v17, :cond_1
+    .line 422
+    if-eqz v18, :cond_1
 
-    .line 395
+    .line 424
     nop
 
-    .line 396
-    move-object/from16 v12, v26
+    .line 426
+    move-object/from16 v12, v27
 
     invoke-virtual {v12}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPreviewSize()Landroid/util/Size;
 
@@ -1146,6 +1120,7 @@
 
     move-result v2
 
+    .line 427
     invoke-virtual {v12}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPreviewSize()Landroid/util/Size;
 
     move-result-object v0
@@ -1154,138 +1129,147 @@
 
     move-result v3
 
-    .line 397
+    .line 428
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->isNeedThumbnail()Z
 
     move-result v4
 
-    .line 399
+    .line 431
     invoke-virtual {v12}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getLocation()Landroid/location/Location;
 
     move-result-object v7
 
-    .line 400
+    .line 433
     invoke-virtual {v12}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getShootOrientation()I
 
     move-result v9
 
+    .line 435
     invoke-virtual {v12}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getShootRotation()F
 
     move-result v11
 
-    .line 401
+    .line 436
     invoke-virtual {v12}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getAlgorithmName()Ljava/lang/String;
 
     move-result-object v16
 
-    const/16 v24, 0x0
+    const/16 v17, 0x0
 
-    .line 402
-    invoke-virtual {v12}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getFaceWaterMarkList()Ljava/util/List;
+    .line 438
+    invoke-virtual {v12}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getTimeWaterMarkString()Ljava/lang/String;
 
     move-result-object v25
 
-    const/16 v26, 0x1
+    .line 439
+    invoke-virtual {v12}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getFaceWaterMarkList()Ljava/util/List;
 
+    move-result-object v26
+
+    const/16 v27, 0x1
+
+    .line 441
     invoke-virtual {v12}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
 
-    move-result-object v27
+    move-result-object v28
 
-    .line 395
+    .line 424
     move-object v0, v15
 
-    move-object/from16 v1, v18
+    move-object/from16 v1, v19
 
-    move/from16 v5, v21
+    move/from16 v5, v22
 
-    move/from16 v6, v22
+    move/from16 v6, v23
 
-    move-object/from16 v8, v23
+    move-object/from16 v8, v24
 
-    move/from16 v10, v20
+    move/from16 v10, v21
 
-    move-object/from16 v28, v12
+    move-object/from16 v29, v12
 
     move-object/from16 v12, v16
 
-    move-object/from16 v29, v13
+    move-object/from16 v30, v13
 
-    move/from16 v13, v24
+    move/from16 v13, v17
 
     move-object/from16 v14, v25
 
-    move/from16 v15, v26
+    move-object/from16 v15, v26
 
-    move-object/from16 v16, v27
+    move/from16 v16, v27
 
-    invoke-direct/range {v0 .. v16}, Lcom/android/camera/storage/ImageSaver;->getDrawJPEGAttribute([BIIZIILandroid/location/Location;Ljava/lang/String;IIFLjava/lang/String;ZLjava/util/List;ZLcom/xiaomi/camera/core/PictureInfo;)Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;
+    move-object/from16 v17, v28
+
+    invoke-direct/range {v0 .. v17}, Lcom/android/camera/storage/ImageSaver;->getDrawJPEGAttribute([BIIZIILandroid/location/Location;Ljava/lang/String;IIFLjava/lang/String;ZLjava/lang/String;Ljava/util/List;ZLcom/xiaomi/camera/core/PictureInfo;)Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;
 
     move-result-object v0
 
-    .line 403
-    move-object/from16 v12, p0
+    .line 442
+    move-object/from16 v13, p0
 
-    iget-object v1, v12, Lcom/android/camera/storage/ImageSaver;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
+    iget-object v1, v13, Lcom/android/camera/storage/ImageSaver;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
     const/4 v2, 0x0
 
     invoke-virtual {v1, v0, v2}, Lcom/android/camera/effect/renders/SnapshotEffectRender;->processorJpegSync(Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;Z)V
 
-    .line 404
+    .line 443
     iget-object v0, v0, Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;->mData:[B
 
-    .line 408
+    .line 447
     move-object v4, v0
 
     goto :goto_1
 
     :cond_1
-    move-object/from16 v29, v13
+    move-object/from16 v30, v13
 
-    move-object v12, v15
+    move-object v13, v15
 
-    move-object/from16 v28, v26
+    move-object/from16 v29, v27
 
-    move-object/from16 v4, v18
+    move-object/from16 v4, v19
 
     :goto_1
-    move-object/from16 v2, v29
+    move-object/from16 v2, v30
 
     goto :goto_2
 
     :cond_2
-    move-object/from16 v28, v14
+    move-object/from16 v29, v14
 
-    move-object v12, v15
+    move-object v13, v15
 
     move-object v2, v1
 
-    move-object/from16 v4, v18
+    move-object/from16 v4, v19
 
     :goto_2
-    if-eqz v17, :cond_3
+    if-eqz v18, :cond_3
 
-    .line 409
+    .line 448
     nop
 
-    .line 413
-    move-object/from16 v0, v28
+    .line 452
+    move-object/from16 v0, v29
 
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->isHasDualWaterMark()Z
 
     move-result v5
 
-    .line 414
+    .line 453
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getLightingPattern()I
 
     move-result v6
 
-    .line 415
+    .line 454
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getTimeWaterMarkString()Ljava/lang/String;
 
     move-result-object v7
 
-    .line 416
+    .line 455
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getOutputSize()Landroid/util/Size;
 
     move-result-object v1
@@ -1294,7 +1278,7 @@
 
     move-result v8
 
-    .line 417
+    .line 456
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getOutputSize()Landroid/util/Size;
 
     move-result-object v1
@@ -1303,28 +1287,33 @@
 
     move-result v9
 
-    .line 418
+    .line 457
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->isMirror()Z
 
     move-result v10
 
-    .line 419
+    .line 458
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->isBokehFrontCamera()Z
 
     move-result v11
 
-    .line 409
-    move-object/from16 v3, v19
+    .line 459
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
 
-    invoke-static/range {v2 .. v11}, Lcom/android/camera/Util;->composeDepthMapPicture([B[B[BZILjava/lang/String;IIZZ)[B
+    move-result-object v12
+
+    .line 448
+    move-object/from16 v3, v20
+
+    invoke-static/range {v2 .. v12}, Lcom/android/camera/Util;->composeDepthMapPicture([B[B[BZILjava/lang/String;IIZZLcom/xiaomi/camera/core/PictureInfo;)[B
 
     move-result-object v1
 
     goto :goto_3
 
-    .line 422
+    .line 462
     :cond_3
-    move-object/from16 v0, v28
+    move-object/from16 v0, v29
 
     move-object v1, v2
 
@@ -1335,7 +1324,7 @@
 
     const/4 v4, 0x0
 
-    .line 423
+    .line 463
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v5
@@ -1348,51 +1337,65 @@
 
     const/4 v11, 0x0
 
-    const/4 v13, 0x0
-
     const/4 v14, 0x0
 
-    const/4 v15, 0x1
+    const/4 v15, 0x0
 
-    const/16 v16, 0x0
+    const/16 v16, 0x1
 
     const/16 v17, 0x0
 
-    .line 426
+    const/16 v18, 0x0
+
+    .line 466
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getAlgorithmName()Ljava/lang/String;
-
-    move-result-object v18
-
-    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
 
     move-result-object v19
 
-    .line 422
-    move-object v0, v12
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
 
-    move-object/from16 v3, v23
+    move-result-object v20
 
-    move/from16 v9, v21
+    .line 462
+    move-object v0, v13
 
-    move/from16 v10, v22
+    move-object/from16 v3, v24
 
-    move/from16 v12, v20
+    move/from16 v9, v22
+
+    move/from16 v10, v23
+
+    move/from16 v12, v21
+
+    move v13, v14
+
+    move v14, v15
+
+    move/from16 v15, v16
+
+    move/from16 v16, v17
+
+    move/from16 v17, v18
+
+    move-object/from16 v18, v19
+
+    move-object/from16 v19, v20
 
     invoke-virtual/range {v0 .. v19}, Lcom/android/camera/storage/ImageSaver;->addImage([BZLjava/lang/String;Ljava/lang/String;JLandroid/net/Uri;Landroid/location/Location;IILcom/android/gallery3d/exif/ExifInterface;IZZZZZLjava/lang/String;Lcom/xiaomi/camera/core/PictureInfo;)V
 
-    .line 427
+    .line 467
     return-void
 .end method
 
 .method private insertParallelBurstTask(Lcom/xiaomi/camera/core/ParallelTaskData;)V
     .locals 23
 
-    .line 466
+    .line 508
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getDataParameter()Lcom/xiaomi/camera/core/ParallelTaskDataParameter;
 
     move-result-object v0
 
-    .line 467
+    .line 509
     sget-object v1, Lcom/android/camera/storage/ImageSaver;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1415,12 +1418,12 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 468
+    .line 510
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getJpegImageData()[B
 
     move-result-object v4
 
-    .line 469
+    .line 511
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureSize()Landroid/util/Size;
 
     move-result-object v1
@@ -1429,7 +1432,7 @@
 
     move-result v1
 
-    .line 470
+    .line 512
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureSize()Landroid/util/Size;
 
     move-result-object v2
@@ -1438,17 +1441,17 @@
 
     move-result v2
 
-    .line 471
+    .line 513
     invoke-static {v4}, Lcom/android/camera/Exif;->getOrientation([B)I
 
     move-result v15
 
-    .line 473
+    .line 515
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getJpegRotation()I
 
     move-result v3
 
-    .line 474
+    .line 516
     sget-object v5, Lcom/android/camera/storage/ImageSaver;->TAG:Ljava/lang/String;
 
     sget-object v6, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
@@ -1459,7 +1462,7 @@
 
     new-array v8, v8, [Ljava/lang/Object;
 
-    .line 475
+    .line 517
     invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v9
@@ -1492,41 +1495,41 @@
 
     aput-object v9, v8, v10
 
-    .line 474
+    .line 516
     invoke-static {v6, v7, v8}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v6
 
     invoke-static {v5, v6}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 478
+    .line 520
     add-int/2addr v3, v15
 
     rem-int/lit16 v3, v3, 0xb4
 
     if-nez v3, :cond_0
 
-    .line 479
+    .line 521
     nop
 
-    .line 480
+    .line 522
     nop
 
-    .line 485
+    .line 527
     move v12, v1
 
     move v13, v2
 
     goto :goto_0
 
-    .line 482
+    .line 524
     :cond_0
     nop
 
-    .line 483
+    .line 525
     nop
 
-    .line 485
+    .line 527
     move v13, v1
 
     move v12, v2
@@ -1556,7 +1559,7 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 487
+    .line 529
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getSavePath()Ljava/lang/String;
 
     move-result-object v1
@@ -1565,7 +1568,7 @@
 
     move-result-object v6
 
-    .line 488
+    .line 530
     sget-object v1, Lcom/android/camera/storage/ImageSaver;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1584,12 +1587,12 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 490
+    .line 532
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->isNeedThumbnail()Z
 
     move-result v18
 
-    .line 491
+    .line 533
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->isNeedThumbnail()Z
 
     move-result v5
@@ -1602,7 +1605,7 @@
 
     const/4 v10, 0x0
 
-    .line 492
+    .line 534
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getLocation()Landroid/location/Location;
 
     move-result-object v11
@@ -1617,7 +1620,7 @@
 
     const/16 v20, 0x1
 
-    .line 495
+    .line 537
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getAlgorithmName()Ljava/lang/String;
 
     move-result-object v21
@@ -1626,24 +1629,24 @@
 
     move-result-object v22
 
-    .line 491
+    .line 533
     move-object/from16 v3, p0
 
     invoke-virtual/range {v3 .. v22}, Lcom/android/camera/storage/ImageSaver;->addImage([BZLjava/lang/String;Ljava/lang/String;JLandroid/net/Uri;Landroid/location/Location;IILcom/android/gallery3d/exif/ExifInterface;IZZZZZLjava/lang/String;Lcom/xiaomi/camera/core/PictureInfo;)V
 
-    .line 496
+    .line 538
     return-void
 .end method
 
 .method private insertParallelDualTask(Lcom/xiaomi/camera/core/ParallelTaskData;)V
-    .locals 12
+    .locals 13
 
-    .line 433
+    .line 473
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getDataParameter()Lcom/xiaomi/camera/core/ParallelTaskDataParameter;
 
     move-result-object v0
 
-    .line 434
+    .line 474
     sget-object v1, Lcom/android/camera/storage/ImageSaver;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1666,7 +1669,26 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 437
+    .line 476
+    invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getParallelType()I
+
+    move-result v1
+
+    const/4 v2, 0x6
+
+    if-eq v2, v1, :cond_0
+
+    const/4 v1, 0x7
+
+    .line 477
+    invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getParallelType()I
+
+    move-result v2
+
+    if-ne v1, v2, :cond_1
+
+    .line 478
+    :cond_0
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getPortraitDepthData()[B
 
     move-result-object v1
@@ -1675,39 +1697,39 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_1
 
-    .line 438
+    .line 479
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getJpegImageData()[B
 
     move-result-object v2
 
-    .line 439
+    .line 480
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getPortraitDepthData()[B
 
     move-result-object v3
 
-    .line 440
+    .line 481
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getPortraitRawData()[B
 
     move-result-object v4
 
-    .line 441
+    .line 482
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->isHasDualWaterMark()Z
 
     move-result v5
 
-    .line 442
+    .line 483
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getLightingPattern()I
 
     move-result v6
 
-    .line 443
+    .line 484
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getTimeWaterMarkString()Ljava/lang/String;
 
     move-result-object v7
 
-    .line 444
+    .line 485
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getOutputSize()Landroid/util/Size;
 
     move-result-object v1
@@ -1716,7 +1738,7 @@
 
     move-result v8
 
-    .line 445
+    .line 486
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getOutputSize()Landroid/util/Size;
 
     move-result-object v1
@@ -1725,60 +1747,61 @@
 
     move-result v9
 
-    .line 446
+    .line 487
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->isMirror()Z
 
     move-result v10
 
-    .line 447
+    .line 488
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->isBokehFrontCamera()Z
 
     move-result v11
 
-    .line 438
-    invoke-static/range {v2 .. v11}, Lcom/android/camera/Util;->composeDepthMapPicture([B[B[BZILjava/lang/String;IIZZ)[B
+    .line 489
+    invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
 
-    move-result-object v1
+    move-result-object v12
 
-    .line 451
-    :goto_0
-    move-object v3, v1
-
-    goto :goto_1
-
-    .line 449
-    :cond_0
-    invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getJpegImageData()[B
+    .line 479
+    invoke-static/range {v2 .. v12}, Lcom/android/camera/Util;->composeDepthMapPicture([B[B[BZILjava/lang/String;IIZZLcom/xiaomi/camera/core/PictureInfo;)[B
 
     move-result-object v1
 
     goto :goto_0
 
-    .line 451
-    :goto_1
+    .line 491
+    :cond_1
+    invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getJpegImageData()[B
+
+    move-result-object v1
+
+    .line 493
+    :goto_0
+    move-object v3, v1
+
     new-instance v1, Lcom/android/camera/storage/ParallelSaveRequest;
 
-    .line 452
+    .line 494
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getTimeStamp()J
 
     move-result-wide v4
 
-    .line 453
+    .line 495
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getLocation()Landroid/location/Location;
 
     move-result-object v6
 
-    .line 454
+    .line 496
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getJpegRotation()I
 
     move-result v7
 
-    .line 455
+    .line 497
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getSavePath()Ljava/lang/String;
 
     move-result-object v8
 
-    .line 456
+    .line 498
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getOutputSize()Landroid/util/Size;
 
     move-result-object v2
@@ -1787,7 +1810,7 @@
 
     move-result v9
 
-    .line 457
+    .line 499
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getOutputSize()Landroid/util/Size;
 
     move-result-object v0
@@ -1796,7 +1819,7 @@
 
     move-result v10
 
-    .line 458
+    .line 500
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->isNeedThumbnail()Z
 
     move-result v11
@@ -1805,10 +1828,10 @@
 
     invoke-direct/range {v2 .. v11}, Lcom/android/camera/storage/ParallelSaveRequest;-><init>([BJLandroid/location/Location;ILjava/lang/String;IIZ)V
 
-    .line 459
+    .line 501
     invoke-direct {p0, v1}, Lcom/android/camera/storage/ImageSaver;->addSaveRequest(Lcom/android/camera/storage/SaveRequest;)V
 
-    .line 460
+    .line 502
     return-void
 .end method
 
@@ -1947,7 +1970,7 @@
 .end method
 
 .method private insertSingleTask(Lcom/xiaomi/camera/core/ParallelTaskData;)V
-    .locals 25
+    .locals 26
 
     move-object/from16 v15, p0
 
@@ -2055,7 +2078,7 @@
 
     invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v17
+    move-result-object v18
 
     .line 262
     if-eqz v0, :cond_1
@@ -2063,7 +2086,7 @@
     .line 263
     nop
 
-    .line 264
+    .line 265
     invoke-virtual {v13}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPreviewSize()Landroid/util/Size;
 
     move-result-object v0
@@ -2072,6 +2095,7 @@
 
     move-result v2
 
+    .line 266
     invoke-virtual {v13}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPreviewSize()Landroid/util/Size;
 
     move-result-object v0
@@ -2080,69 +2104,78 @@
 
     move-result v3
 
-    .line 265
+    .line 267
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->isNeedThumbnail()Z
 
     move-result v4
 
-    .line 267
+    .line 270
     invoke-virtual {v13}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getLocation()Landroid/location/Location;
 
     move-result-object v7
 
-    .line 268
+    .line 272
     invoke-virtual {v13}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getShootOrientation()I
 
     move-result v9
 
+    .line 274
     invoke-virtual {v13}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getShootRotation()F
 
     move-result v11
 
-    .line 269
+    .line 275
     invoke-virtual {v13}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getAlgorithmName()Ljava/lang/String;
 
     move-result-object v16
 
-    const/16 v18, 0x1
+    const/16 v17, 0x1
 
-    .line 270
-    invoke-virtual {v13}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getFaceWaterMarkList()Ljava/util/List;
+    .line 277
+    invoke-virtual {v13}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getTimeWaterMarkString()Ljava/lang/String;
 
     move-result-object v19
 
-    const/16 v20, 0x0
+    .line 278
+    invoke-virtual {v13}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getFaceWaterMarkList()Ljava/util/List;
 
+    move-result-object v20
+
+    const/16 v21, 0x0
+
+    .line 280
     invoke-virtual {v13}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
 
-    move-result-object v21
+    move-result-object v22
 
     .line 263
     move-object v0, v15
 
-    move-object/from16 v8, v17
+    move-object/from16 v8, v18
 
     move v10, v12
 
-    move/from16 v22, v12
+    move/from16 v23, v12
 
     move-object/from16 v12, v16
 
-    move-object/from16 v23, v13
+    move-object/from16 v24, v13
 
-    move/from16 v13, v18
+    move/from16 v13, v17
 
     move-object/from16 v14, v19
 
-    move/from16 v15, v20
+    move-object/from16 v15, v20
 
-    move-object/from16 v16, v21
+    move/from16 v16, v21
 
-    invoke-direct/range {v0 .. v16}, Lcom/android/camera/storage/ImageSaver;->getDrawJPEGAttribute([BIIZIILandroid/location/Location;Ljava/lang/String;IIFLjava/lang/String;ZLjava/util/List;ZLcom/xiaomi/camera/core/PictureInfo;)Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;
+    move-object/from16 v17, v22
+
+    invoke-direct/range {v0 .. v17}, Lcom/android/camera/storage/ImageSaver;->getDrawJPEGAttribute([BIIZIILandroid/location/Location;Ljava/lang/String;IIFLjava/lang/String;ZLjava/lang/String;Ljava/util/List;ZLcom/xiaomi/camera/core/PictureInfo;)Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;
 
     move-result-object v0
 
-    .line 272
+    .line 282
     move-object/from16 v2, p0
 
     iget-object v1, v2, Lcom/android/camera/storage/ImageSaver;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
@@ -2151,16 +2184,16 @@
 
     invoke-virtual {v1, v0, v3}, Lcom/android/camera/effect/renders/SnapshotEffectRender;->processorJpegSync(Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;Z)V
 
-    .line 273
+    .line 283
     iget-object v1, v0, Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;->mData:[B
 
-    .line 274
+    .line 284
     iget v3, v0, Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;->mWidth:I
 
-    .line 275
+    .line 285
     iget v0, v0, Lcom/android/camera/effect/draw_mode/DrawJPEGAttribute;->mHeight:I
 
-    .line 278
+    .line 288
     move v10, v0
 
     move v9, v3
@@ -2168,9 +2201,9 @@
     goto :goto_1
 
     :cond_1
-    move/from16 v22, v12
+    move/from16 v23, v12
 
-    move-object/from16 v23, v13
+    move-object/from16 v24, v13
 
     move-object v2, v15
 
@@ -2187,7 +2220,7 @@
 
     if-eq v0, v3, :cond_3
 
-    .line 279
+    .line 289
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getParallelType()I
 
     move-result v0
@@ -2198,7 +2231,7 @@
 
     goto :goto_2
 
-    .line 283
+    .line 293
     :cond_2
     invoke-virtual/range {p1 .. p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->isNeedThumbnail()Z
 
@@ -2206,14 +2239,14 @@
 
     const/4 v4, 0x0
 
-    .line 284
+    .line 294
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v5
 
     const/4 v7, 0x0
 
-    move-object/from16 v0, v23
+    move-object/from16 v0, v24
 
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getLocation()Landroid/location/Location;
 
@@ -2229,9 +2262,9 @@
 
     const/16 v16, 0x0
 
-    const/16 v18, 0x0
+    const/16 v17, 0x0
 
-    .line 286
+    .line 296
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter;->getAlgorithmName()Ljava/lang/String;
 
     move-result-object v19
@@ -2240,16 +2273,14 @@
 
     move-result-object v20
 
-    .line 283
+    .line 293
     move-object v0, v2
 
     move v2, v3
 
-    move-object/from16 v3, v17
+    move-object/from16 v3, v18
 
-    move/from16 v12, v22
-
-    move/from16 v17, v18
+    move/from16 v12, v23
 
     move-object/from16 v18, v19
 
@@ -2259,19 +2290,19 @@
 
     goto :goto_3
 
-    .line 280
+    .line 290
     :cond_3
     :goto_2
     move-object/from16 v0, p1
 
     invoke-virtual {v0, v1}, Lcom/xiaomi/camera/core/ParallelTaskData;->refillJpegData([B)V
 
-    .line 281
-    move/from16 v1, v22
+    .line 291
+    move/from16 v1, v23
 
     invoke-direct {v2, v0, v9, v1}, Lcom/android/camera/storage/ImageSaver;->storeJpegData(Lcom/xiaomi/camera/core/ParallelTaskData;II)V
 
-    .line 288
+    .line 298
     :goto_3
     return-void
 .end method
@@ -2279,7 +2310,7 @@
 .method private isLastImageForThumbnail()Z
     .locals 1
 
-    .line 843
+    .line 885
     const/4 v0, 0x1
 
     return v0
@@ -2288,17 +2319,17 @@
 .method private releaseResourcesIfQueueEmpty()V
     .locals 2
 
-    .line 698
+    .line 740
     iget v0, p0, Lcom/android/camera/storage/ImageSaver;->mHostState:I
 
     const/4 v1, 0x2
 
     if-eq v0, v1, :cond_0
 
-    .line 699
+    .line 741
     return-void
 
-    .line 702
+    .line 744
     :cond_0
     sget-object v0, Lcom/android/camera/storage/ImageSaver;->mSaveRequestQueue:Ljava/util/concurrent/BlockingQueue;
 
@@ -2308,10 +2339,10 @@
 
     if-lez v0, :cond_1
 
-    .line 703
+    .line 745
     return-void
 
-    .line 706
+    .line 748
     :cond_1
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
@@ -2319,19 +2350,19 @@
 
     if-eqz v0, :cond_2
 
-    .line 707
+    .line 749
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
     invoke-virtual {v0}, Lcom/android/camera/effect/renders/SnapshotEffectRender;->releaseIfNeeded()V
 
-    .line 708
+    .line 750
     iput-object v1, p0, Lcom/android/camera/storage/ImageSaver;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
-    .line 710
+    .line 752
     :cond_2
     iput-object v1, p0, Lcom/android/camera/storage/ImageSaver;->mStoredTaskData:Lcom/xiaomi/camera/core/ParallelTaskData;
 
-    .line 711
+    .line 753
     return-void
 .end method
 
@@ -2421,12 +2452,12 @@
 .method private updateThumbnail(Z)V
     .locals 3
 
-    .line 740
+    .line 782
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mUpdateThumbnailLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 741
+    .line 783
     :try_start_0
     iget-object v1, p0, Lcom/android/camera/storage/ImageSaver;->mHandler:Landroid/os/Handler;
 
@@ -2434,23 +2465,23 @@
 
     invoke-virtual {v1, v2}, Landroid/os/Handler;->removeCallbacks(Ljava/lang/Runnable;)V
 
-    .line 742
+    .line 784
     iget-object v1, p0, Lcom/android/camera/storage/ImageSaver;->mPendingThumbnail:Lcom/android/camera/Thumbnail;
 
-    .line 743
+    .line 785
     const/4 v2, 0x0
 
     iput-object v2, p0, Lcom/android/camera/storage/ImageSaver;->mPendingThumbnail:Lcom/android/camera/Thumbnail;
 
-    .line 744
+    .line 786
     monitor-exit v0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 746
+    .line 788
     if-eqz v1, :cond_0
 
-    .line 747
+    .line 789
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mActivity:Lcom/android/camera/ActivityBase;
 
     invoke-virtual {v0}, Lcom/android/camera/ActivityBase;->getThumbnailUpdater()Lcom/android/camera/ThumbnailUpdater;
@@ -2461,7 +2492,7 @@
 
     invoke-virtual {v0, v1, v2, p1}, Lcom/android/camera/ThumbnailUpdater;->setThumbnail(Lcom/android/camera/Thumbnail;ZZ)V
 
-    .line 748
+    .line 790
     iget-object p1, p0, Lcom/android/camera/storage/ImageSaver;->mActivity:Lcom/android/camera/ActivityBase;
 
     invoke-virtual {p1}, Lcom/android/camera/ActivityBase;->isActivityPaused()Z
@@ -2470,7 +2501,7 @@
 
     if-eqz p1, :cond_0
 
-    .line 749
+    .line 791
     iget-object p1, p0, Lcom/android/camera/storage/ImageSaver;->mActivity:Lcom/android/camera/ActivityBase;
 
     invoke-virtual {p1}, Lcom/android/camera/ActivityBase;->getThumbnailUpdater()Lcom/android/camera/ThumbnailUpdater;
@@ -2479,11 +2510,11 @@
 
     invoke-virtual {p1}, Lcom/android/camera/ThumbnailUpdater;->saveThumbnailToFile()V
 
-    .line 752
+    .line 794
     :cond_0
     return-void
 
-    .line 744
+    .line 786
     :catchall_0
     move-exception p1
 
@@ -2610,7 +2641,7 @@
 
     monitor-enter p0
 
-    .line 551
+    .line 593
     :try_start_0
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mMemoryManager:Lcom/android/camera/storage/MemoryManager;
 
@@ -2618,12 +2649,12 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 552
+    .line 594
     monitor-exit p0
 
     return-void
 
-    .line 550
+    .line 592
     :catchall_0
     move-exception p1
 
@@ -2635,10 +2666,10 @@
 .method public addVideo(Ljava/lang/String;Landroid/content/ContentValues;Z)V
     .locals 2
 
-    .line 580
+    .line 622
     monitor-enter p0
 
-    .line 581
+    .line 623
     const/4 v0, 0x2
 
     :try_start_0
@@ -2646,29 +2677,29 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 582
+    .line 624
     sget-object v0, Lcom/android/camera/storage/ImageSaver;->TAG:Ljava/lang/String;
 
     const-string v1, "addVideo: host is being destroyed."
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 584
+    .line 626
     :cond_0
     new-instance v0, Lcom/android/camera/storage/VideoSaveRequest;
 
     invoke-direct {v0, p1, p2, p3}, Lcom/android/camera/storage/VideoSaveRequest;-><init>(Ljava/lang/String;Landroid/content/ContentValues;Z)V
 
-    .line 585
+    .line 627
     invoke-direct {p0, v0}, Lcom/android/camera/storage/ImageSaver;->addSaveRequest(Lcom/android/camera/storage/SaveRequest;)V
 
-    .line 586
+    .line 628
     monitor-exit p0
 
-    .line 587
+    .line 629
     return-void
 
-    .line 586
+    .line 628
     :catchall_0
     move-exception p1
 
@@ -2682,10 +2713,10 @@
 .method public addVideoSync(Ljava/lang/String;Landroid/content/ContentValues;Z)Landroid/net/Uri;
     .locals 2
 
-    .line 590
+    .line 632
     monitor-enter p0
 
-    .line 591
+    .line 633
     const/4 v0, 0x2
 
     :try_start_0
@@ -2693,35 +2724,35 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 592
+    .line 634
     sget-object v0, Lcom/android/camera/storage/ImageSaver;->TAG:Ljava/lang/String;
 
     const-string v1, "addVideo: host is being destroyed."
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 594
+    .line 636
     :cond_0
     new-instance v0, Lcom/android/camera/storage/VideoSaveRequest;
 
     invoke-direct {v0, p1, p2, p3}, Lcom/android/camera/storage/VideoSaveRequest;-><init>(Ljava/lang/String;Landroid/content/ContentValues;Z)V
 
-    .line 595
+    .line 637
     iget-object p1, p0, Lcom/android/camera/storage/ImageSaver;->mContext:Landroid/content/Context;
 
     invoke-virtual {v0, p1, p0}, Lcom/android/camera/storage/VideoSaveRequest;->setContextAndCallback(Landroid/content/Context;Lcom/android/camera/storage/SaverCallback;)V
 
-    .line 596
+    .line 638
     invoke-virtual {v0}, Lcom/android/camera/storage/VideoSaveRequest;->save()V
 
-    .line 597
+    .line 639
     iget-object p1, v0, Lcom/android/camera/storage/VideoSaveRequest;->mUri:Landroid/net/Uri;
 
     monitor-exit p0
 
     return-object p1
 
-    .line 598
+    .line 640
     :catchall_0
     move-exception p1
 
@@ -2735,7 +2766,7 @@
 .method public getBurstDelay()I
     .locals 1
 
-    .line 528
+    .line 570
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mMemoryManager:Lcom/android/camera/storage/MemoryManager;
 
     invoke-virtual {v0}, Lcom/android/camera/storage/MemoryManager;->getBurstDelay()I
@@ -2761,7 +2792,7 @@
 .method public getSuitableBurstShotSpeed()F
     .locals 1
 
-    .line 546
+    .line 588
     const v0, 0x3f28f5c3    # 0.66f
 
     return v0
@@ -2770,7 +2801,7 @@
 .method public isBusy()Z
     .locals 1
 
-    .line 603
+    .line 645
     iget-boolean v0, p0, Lcom/android/camera/storage/ImageSaver;->mIsBusy:Z
 
     return v0
@@ -2779,7 +2810,7 @@
 .method public isNeedSlowDown()Z
     .locals 1
 
-    .line 542
+    .line 584
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mMemoryManager:Lcom/android/camera/storage/MemoryManager;
 
     invoke-virtual {v0}, Lcom/android/camera/storage/MemoryManager;->isNeedSlowDown()Z
@@ -2792,7 +2823,7 @@
 .method public isNeedStopCapture()Z
     .locals 1
 
-    .line 532
+    .line 574
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mMemoryManager:Lcom/android/camera/storage/MemoryManager;
 
     invoke-virtual {v0}, Lcom/android/camera/storage/MemoryManager;->isNeedStopCapture()Z
@@ -2807,7 +2838,7 @@
 
     monitor-enter p0
 
-    .line 536
+    .line 578
     :try_start_0
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mMemoryManager:Lcom/android/camera/storage/MemoryManager;
 
@@ -2815,7 +2846,7 @@
 
     move-result v0
 
-    .line 537
+    .line 579
     iget-boolean v1, p0, Lcom/android/camera/storage/ImageSaver;->mIsBusy:Z
 
     or-int/2addr v1, v0
@@ -2824,12 +2855,12 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 538
+    .line 580
     monitor-exit p0
 
     return v0
 
-    .line 535
+    .line 577
     :catchall_0
     move-exception v0
 
@@ -2841,13 +2872,13 @@
 .method public needThumbnail(Z)Z
     .locals 0
 
-    .line 756
+    .line 798
     monitor-enter p0
 
-    .line 761
+    .line 803
     if-eqz p1, :cond_0
 
-    .line 763
+    .line 805
     :try_start_0
     invoke-direct {p0}, Lcom/android/camera/storage/ImageSaver;->isLastImageForThumbnail()Z
 
@@ -2863,23 +2894,23 @@
 
     goto :goto_0
 
-    .line 765
+    .line 807
     :catchall_0
     move-exception p1
 
     goto :goto_1
 
-    .line 763
+    .line 805
     :cond_0
     const/4 p1, 0x0
 
     :goto_0
     monitor-exit p0
 
-    .line 761
+    .line 803
     return p1
 
-    .line 765
+    .line 807
     :goto_1
     monitor-exit p0
     :try_end_0
@@ -2891,19 +2922,19 @@
 .method public notifyNewMediaData(Landroid/net/Uri;Ljava/lang/String;I)V
     .locals 2
 
-    .line 816
+    .line 858
     iget-boolean v0, p0, Lcom/android/camera/storage/ImageSaver;->mIsCaptureIntent:Z
 
     if-eqz v0, :cond_0
 
-    .line 817
+    .line 859
     return-void
 
-    .line 820
+    .line 862
     :cond_0
     monitor-enter p0
 
-    .line 821
+    .line 863
     const/16 v0, 0x15
 
     if-eq p3, v0, :cond_2
@@ -2914,24 +2945,24 @@
 
     goto :goto_0
 
-    .line 828
+    .line 870
     :cond_1
     :try_start_0
     iget-object p3, p0, Lcom/android/camera/storage/ImageSaver;->mContext:Landroid/content/Context;
 
     invoke-static {p3, p1}, Lcom/android/camera/Util;->broadcastNewPicture(Landroid/content/Context;Landroid/net/Uri;)V
 
-    .line 829
+    .line 871
     iput-object p1, p0, Lcom/android/camera/storage/ImageSaver;->mLastImageUri:Landroid/net/Uri;
 
-    .line 830
+    .line 872
     iget-object p3, p0, Lcom/android/camera/storage/ImageSaver;->mActivity:Lcom/android/camera/ActivityBase;
 
     invoke-virtual {p3, p1, p2}, Lcom/android/camera/ActivityBase;->onNewUriArrived(Landroid/net/Uri;Ljava/lang/String;)V
 
     goto :goto_0
 
-    .line 823
+    .line 865
     :cond_2
     iget-object p3, p0, Lcom/android/camera/storage/ImageSaver;->mContext:Landroid/content/Context;
 
@@ -2943,22 +2974,22 @@
 
     invoke-virtual {p3, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
-    .line 824
+    .line 866
     iget-object p3, p0, Lcom/android/camera/storage/ImageSaver;->mActivity:Lcom/android/camera/ActivityBase;
 
     invoke-virtual {p3, p1, p2}, Lcom/android/camera/ActivityBase;->onNewUriArrived(Landroid/net/Uri;Ljava/lang/String;)V
 
-    .line 825
+    .line 867
     nop
 
-    .line 834
+    .line 876
     :goto_0
     monitor-exit p0
 
-    .line 835
+    .line 877
     return-void
 
-    .line 834
+    .line 876
     :catchall_0
     move-exception p1
 
@@ -2972,29 +3003,29 @@
 .method public onHostDestroy()V
     .locals 3
 
-    .line 684
+    .line 726
     monitor-enter p0
 
-    .line 685
+    .line 727
     const/4 v0, 0x2
 
     :try_start_0
     iput v0, p0, Lcom/android/camera/storage/ImageSaver;->mHostState:I
 
-    .line 688
+    .line 730
     invoke-direct {p0}, Lcom/android/camera/storage/ImageSaver;->releaseResourcesIfQueueEmpty()V
 
-    .line 689
+    .line 731
     monitor-exit p0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_1
 
-    .line 690
+    .line 732
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mUpdateThumbnailLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 691
+    .line 733
     :try_start_1
     iget-object v1, p0, Lcom/android/camera/storage/ImageSaver;->mHandler:Landroid/os/Handler;
 
@@ -3002,25 +3033,25 @@
 
     invoke-virtual {v1, v2}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 692
+    .line 734
     iput-object v2, p0, Lcom/android/camera/storage/ImageSaver;->mPendingThumbnail:Lcom/android/camera/Thumbnail;
 
-    .line 693
+    .line 735
     monitor-exit v0
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 694
+    .line 736
     sget-object v0, Lcom/android/camera/storage/ImageSaver;->TAG:Ljava/lang/String;
 
     const-string v1, "onHostDestroy"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 695
+    .line 737
     return-void
 
-    .line 693
+    .line 735
     :catchall_0
     move-exception v1
 
@@ -3031,7 +3062,7 @@
 
     throw v1
 
-    .line 689
+    .line 731
     :catchall_1
     move-exception v0
 
@@ -3046,26 +3077,26 @@
 .method public onHostPause()V
     .locals 3
 
-    .line 662
+    .line 704
     monitor-enter p0
 
-    .line 663
+    .line 705
     const/4 v0, 0x1
 
     :try_start_0
     iput v0, p0, Lcom/android/camera/storage/ImageSaver;->mHostState:I
 
-    .line 664
+    .line 706
     monitor-exit p0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_1
 
-    .line 666
+    .line 708
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mUpdateThumbnailLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 667
+    .line 709
     :try_start_1
     iget-object v1, p0, Lcom/android/camera/storage/ImageSaver;->mHandler:Landroid/os/Handler;
 
@@ -3073,25 +3104,25 @@
 
     invoke-virtual {v1, v2}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 668
+    .line 710
     iput-object v2, p0, Lcom/android/camera/storage/ImageSaver;->mPendingThumbnail:Lcom/android/camera/Thumbnail;
 
-    .line 669
+    .line 711
     monitor-exit v0
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 674
+    .line 716
     sget-object v0, Lcom/android/camera/storage/ImageSaver;->TAG:Ljava/lang/String;
 
     const-string v1, "onHostPause"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 675
+    .line 717
     return-void
 
-    .line 669
+    .line 711
     :catchall_0
     move-exception v1
 
@@ -3102,7 +3133,7 @@
 
     throw v1
 
-    .line 664
+    .line 706
     :catchall_1
     move-exception v0
 
@@ -3117,19 +3148,19 @@
 .method public onHostResume(Z)V
     .locals 2
 
-    .line 649
+    .line 691
     monitor-enter p0
 
-    .line 650
+    .line 692
     :try_start_0
     iput-boolean p1, p0, Lcom/android/camera/storage/ImageSaver;->mIsCaptureIntent:Z
 
-    .line 651
+    .line 693
     const/4 p1, 0x0
 
     iput p1, p0, Lcom/android/camera/storage/ImageSaver;->mHostState:I
 
-    .line 652
+    .line 694
     sget-object p1, Lcom/android/camera/storage/ImageSaver;->TAG:Ljava/lang/String;
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -3150,13 +3181,13 @@
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 653
+    .line 695
     monitor-exit p0
 
-    .line 654
+    .line 696
     return-void
 
-    .line 653
+    .line 695
     :catchall_0
     move-exception p1
 
@@ -3170,7 +3201,7 @@
 .method public onParallelProcessFinish(Lcom/xiaomi/camera/core/ParallelTaskData;)V
     .locals 3
 
-    .line 848
+    .line 890
     sget-object v0, Lcom/android/camera/storage/ImageSaver;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -3187,18 +3218,28 @@
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
+    const-string v2, " type:"
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getParallelType()I
+
+    move-result v2
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
     invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v1
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 849
+    .line 891
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
     if-nez v0, :cond_0
 
-    .line 850
+    .line 892
     new-instance v0, Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
     iget-object v1, p0, Lcom/android/camera/storage/ImageSaver;->mActivity:Lcom/android/camera/ActivityBase;
@@ -3209,19 +3250,19 @@
 
     iput-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
-    .line 851
+    .line 893
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
     invoke-virtual {v0, p0}, Lcom/android/camera/effect/renders/SnapshotEffectRender;->setImageSaver(Lcom/android/camera/storage/ImageSaver;)V
 
-    .line 852
+    .line 894
     const/4 v0, 0x0
 
     invoke-static {v0}, Lcom/android/camera/CameraSettings;->getJpegQuality(Z)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 853
+    .line 895
     iget-object v1, p0, Lcom/android/camera/storage/ImageSaver;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
     invoke-static {v0}, Lcom/android/camera/JpegEncodingQualityMappings;->getQualityNumber(Ljava/lang/String;)I
@@ -3230,7 +3271,7 @@
 
     invoke-virtual {v1, v0}, Lcom/android/camera/effect/renders/SnapshotEffectRender;->setQuality(I)V
 
-    .line 855
+    .line 897
     :cond_0
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getParallelType()I
 
@@ -3238,7 +3279,7 @@
 
     packed-switch v0, :pswitch_data_0
 
-    .line 884
+    .line 926
     :pswitch_0
     new-instance p1, Ljava/lang/RuntimeException;
 
@@ -3248,49 +3289,49 @@
 
     throw p1
 
-    .line 880
+    .line 922
     :pswitch_1
     invoke-direct {p0, p1}, Lcom/android/camera/storage/ImageSaver;->insertParallelBurstTask(Lcom/xiaomi/camera/core/ParallelTaskData;)V
 
-    .line 881
+    .line 923
     goto :goto_0
 
-    .line 872
+    .line 914
     :pswitch_2
     invoke-direct {p0, p1}, Lcom/android/camera/storage/ImageSaver;->insertParallelDualTask(Lcom/xiaomi/camera/core/ParallelTaskData;)V
 
-    .line 873
+    .line 915
     goto :goto_0
 
-    .line 866
+    .line 908
     :pswitch_3
     invoke-direct {p0, p1}, Lcom/android/camera/storage/ImageSaver;->insertNormalDualTask(Lcom/xiaomi/camera/core/ParallelTaskData;)V
 
-    .line 867
+    .line 909
     goto :goto_0
 
-    .line 876
+    .line 918
     :pswitch_4
     invoke-direct {p0, p1}, Lcom/android/camera/storage/ImageSaver;->insertLiveShotTask(Lcom/xiaomi/camera/core/ParallelTaskData;)V
 
-    .line 877
+    .line 919
     goto :goto_0
 
-    .line 857
+    .line 899
     :pswitch_5
     invoke-direct {p0, p1}, Lcom/android/camera/storage/ImageSaver;->insertPreviewShotTask(Lcom/xiaomi/camera/core/ParallelTaskData;)V
 
-    .line 858
+    .line 900
     goto :goto_0
 
-    .line 862
+    .line 904
     :pswitch_6
     invoke-direct {p0, p1}, Lcom/android/camera/storage/ImageSaver;->insertSingleTask(Lcom/xiaomi/camera/core/ParallelTaskData;)V
 
-    .line 863
+    .line 905
     nop
 
-    .line 886
+    .line 928
     :goto_0
     return-void
 
@@ -3314,14 +3355,14 @@
 .method public onSaveFinish(I)V
     .locals 1
 
-    .line 805
+    .line 847
     monitor-enter p0
 
-    .line 806
+    .line 848
     :try_start_0
     invoke-virtual {p0, p1}, Lcom/android/camera/storage/ImageSaver;->reduceUsedMemory(I)V
 
-    .line 807
+    .line 849
     invoke-virtual {p0}, Lcom/android/camera/storage/ImageSaver;->isSaveQueueFull()Z
 
     move-result p1
@@ -3338,22 +3379,22 @@
 
     if-ge p1, v0, :cond_0
 
-    .line 808
+    .line 850
     const/4 p1, 0x0
 
     iput-boolean p1, p0, Lcom/android/camera/storage/ImageSaver;->mIsBusy:Z
 
-    .line 810
+    .line 852
     :cond_0
     invoke-direct {p0}, Lcom/android/camera/storage/ImageSaver;->releaseResourcesIfQueueEmpty()V
 
-    .line 811
+    .line 853
     monitor-exit p0
 
-    .line 812
+    .line 854
     return-void
 
-    .line 811
+    .line 853
     :catchall_0
     move-exception p1
 
@@ -3367,12 +3408,12 @@
 .method public postHideThumbnailProgressing()V
     .locals 3
 
-    .line 788
+    .line 830
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mUpdateThumbnailLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 789
+    .line 831
     :try_start_0
     iget-object v1, p0, Lcom/android/camera/storage/ImageSaver;->mHandler:Landroid/os/Handler;
 
@@ -3382,13 +3423,13 @@
 
     invoke-virtual {v1, v2}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
-    .line 800
+    .line 842
     monitor-exit v0
 
-    .line 801
+    .line 843
     return-void
 
-    .line 800
+    .line 842
     :catchall_0
     move-exception v1
 
@@ -3402,34 +3443,34 @@
 .method public postUpdateThumbnail(Lcom/android/camera/Thumbnail;Z)V
     .locals 1
 
-    .line 770
+    .line 812
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mUpdateThumbnailLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 773
+    .line 815
     :try_start_0
     iput-object p1, p0, Lcom/android/camera/storage/ImageSaver;->mPendingThumbnail:Lcom/android/camera/Thumbnail;
 
-    .line 774
+    .line 816
     iget-object p1, p0, Lcom/android/camera/storage/ImageSaver;->mUpdateThumbnail:Lcom/android/camera/storage/ImageSaver$ThumbnailUpdater;
 
     invoke-virtual {p1, p2}, Lcom/android/camera/storage/ImageSaver$ThumbnailUpdater;->setNeedAnimation(Z)V
 
-    .line 775
+    .line 817
     iget-object p1, p0, Lcom/android/camera/storage/ImageSaver;->mHandler:Landroid/os/Handler;
 
     iget-object p2, p0, Lcom/android/camera/storage/ImageSaver;->mUpdateThumbnail:Lcom/android/camera/storage/ImageSaver$ThumbnailUpdater;
 
     invoke-virtual {p1, p2}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
-    .line 776
+    .line 818
     monitor-exit v0
 
-    .line 777
+    .line 819
     return-void
 
-    .line 776
+    .line 818
     :catchall_0
     move-exception p1
 
@@ -3445,7 +3486,7 @@
 
     monitor-enter p0
 
-    .line 555
+    .line 597
     :try_start_0
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mMemoryManager:Lcom/android/camera/storage/MemoryManager;
 
@@ -3453,12 +3494,12 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 556
+    .line 598
     monitor-exit p0
 
     return-void
 
-    .line 554
+    .line 596
     :catchall_0
     move-exception p1
 
@@ -3638,33 +3679,33 @@
 .method public updateImage(Ljava/lang/String;Ljava/lang/String;)V
     .locals 1
 
-    .line 500
+    .line 542
     new-instance v0, Lcom/android/camera/storage/ImageSaveRequest;
 
     invoke-direct {v0}, Lcom/android/camera/storage/ImageSaveRequest;-><init>()V
 
-    .line 501
+    .line 543
     iput-object p1, v0, Lcom/android/camera/storage/ImageSaveRequest;->title:Ljava/lang/String;
 
-    .line 502
+    .line 544
     iput-object p2, v0, Lcom/android/camera/storage/ImageSaveRequest;->oldTitle:Ljava/lang/String;
 
-    .line 503
+    .line 545
     invoke-direct {p0, v0}, Lcom/android/camera/storage/ImageSaver;->addSaveRequest(Lcom/android/camera/storage/SaveRequest;)V
 
-    .line 504
+    .line 546
     return-void
 .end method
 
 .method public updatePreviewThumbnailUri(Landroid/net/Uri;)V
     .locals 2
 
-    .line 781
+    .line 823
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaver;->mUpdateThumbnailLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 782
+    .line 824
     :try_start_0
     iget-object v1, p0, Lcom/android/camera/storage/ImageSaver;->mActivity:Lcom/android/camera/ActivityBase;
 
@@ -3674,13 +3715,13 @@
 
     invoke-virtual {v1, p1}, Lcom/android/camera/ThumbnailUpdater;->updatePreviewThumbnailUri(Landroid/net/Uri;)V
 
-    .line 783
+    .line 825
     monitor-exit v0
 
-    .line 784
+    .line 826
     return-void
 
-    .line 783
+    .line 825
     :catchall_0
     move-exception p1
 

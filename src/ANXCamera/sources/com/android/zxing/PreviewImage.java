@@ -10,19 +10,21 @@ public class PreviewImage {
     private byte[] mData;
     private int mFormat;
     private int mHeight;
+    private int mOrientation;
     private long mTimestamp;
     private int mWidth;
 
-    public PreviewImage(Image image, int i, int i2) {
+    public PreviewImage(Image image, int i, int i2, int i3) {
         long currentTimeMillis = System.currentTimeMillis();
         this.mTimestamp = image.getTimestamp();
         this.mWidth = image.getWidth();
         this.mHeight = image.getHeight();
         this.mFormat = image.getFormat();
         this.mData = convertYUV420ToNV21(image, i, i2);
+        this.mOrientation = i3;
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("QRCodeManager convertYUV420ToNV21: cost = ");
+        stringBuilder.append("PreviewDecodeManager convertYUV420ToNV21: cost = ");
         stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
         stringBuilder.append("ms");
         Log.d(str, stringBuilder.toString());
@@ -46,6 +48,10 @@ public class PreviewImage {
 
     public int getFormat() {
         return this.mFormat;
+    }
+
+    public int getOrientation() {
+        return this.mOrientation;
     }
 
     public String toString() {

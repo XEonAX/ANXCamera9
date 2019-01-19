@@ -48,7 +48,7 @@ public class FunctionModuleSetup extends Func1Base<BaseModule, BaseModule> {
                 dataItemRunning.switchOff("pref_video_speed_hfr_key");
                 break;
             case 163:
-                if (DataRepository.dataItemFeature().fw()) {
+                if (DataRepository.dataItemFeature().fx()) {
                     if (baseModule.getActivity().isNewBieAlive(4)) {
                         return nullHolder;
                     }
@@ -59,7 +59,7 @@ public class FunctionModuleSetup extends Func1Base<BaseModule, BaseModule> {
                 } else if (baseModule.getActivity().isNewBieAlive(3)) {
                     return nullHolder;
                 } else {
-                    if (dataItemGlobal.getBoolean("pref_camera_first_ai_scene_use_hint_shown_key", true) && b.gq()) {
+                    if (dataItemGlobal.getBoolean("pref_camera_first_ai_scene_use_hint_shown_key", true) && b.gz()) {
                         baseModule.getActivity().showNewBie(3);
                         return nullHolder;
                     }
@@ -100,6 +100,12 @@ public class FunctionModuleSetup extends Func1Base<BaseModule, BaseModule> {
                     dataItemGlobal.editor().putBoolean("pref_camera_first_portrait_use_hint_shown_key", false).apply();
                     return nullHolder;
                 }
+            case 174:
+                if (activity.startFromKeyguard()) {
+                    dataItemRunning.setLiveConfigIsNeedRestore(false);
+                    break;
+                }
+                break;
         }
         baseModule.getActivity().removeNewBie();
         if (baseModule.isDeparted() || activity.isActivityPaused()) {

@@ -64,6 +64,16 @@
     .end annotation
 .end field
 
+.field private static final BEAUTY_BODY_SLIM_COUNT:Landroid/hardware/camera2/CaptureResult$Key;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Landroid/hardware/camera2/CaptureResult$Key<",
+            "Ljava/lang/Integer;",
+            ">;"
+        }
+    .end annotation
+.end field
+
 .field public static final FAST_ZOOM_RESULT:Landroid/hardware/camera2/CaptureResult$Key;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -121,6 +131,8 @@
 
 .field public static final VENDER_TAG_ASD_ENABLE:Ljava/lang/String; = "xiaomi.ai.asd.enabled"
 
+.field public static final VENDER_TAG_BEAUTY_BODY_SLIM_COUNT:Ljava/lang/String; = "xiaomi.beauty.bodySlimCnt"
+
 .field public static final VENDER_TAG_HDR_DETECTED_MODES:Ljava/lang/String; = "xiaomi.hdr.hdrDetected"
 
 .field public static final VENDER_TAG_LENS_DIRTY_DETECTED:Ljava/lang/String; = "xiaomi.ai.add.lensDirtyDetected"
@@ -153,7 +165,7 @@
 
     sput-object v0, Lcom/android/camera2/CaptureResultParser;->TAG:Ljava/lang/String;
 
-    .line 31
+    .line 32
     new-instance v0, Landroid/hardware/camera2/CaptureResult$Key;
 
     const-string v1, "xiaomi.ai.asd.enabled"
@@ -164,7 +176,7 @@
 
     sput-object v0, Lcom/android/camera2/CaptureResultParser;->AI_SCENE_ENABLE:Landroid/hardware/camera2/CaptureResult$Key;
 
-    .line 36
+    .line 37
     new-instance v0, Landroid/hardware/camera2/CaptureResult$Key;
 
     const-string v1, "xiaomi.ai.asd.sceneDetected"
@@ -175,7 +187,7 @@
 
     sput-object v0, Lcom/android/camera2/CaptureResultParser;->AI_SCENE_DETECTED:Landroid/hardware/camera2/CaptureResult$Key;
 
-    .line 42
+    .line 43
     new-instance v0, Landroid/hardware/camera2/CaptureResult$Key;
 
     const-string v1, "xiaomi.hdr.hdrDetected"
@@ -186,7 +198,7 @@
 
     sput-object v0, Lcom/android/camera2/CaptureResultParser;->AI_HDR_DETECTED:Landroid/hardware/camera2/CaptureResult$Key;
 
-    .line 48
+    .line 49
     new-instance v0, Landroid/hardware/camera2/CaptureResult$Key;
 
     const-string v1, "xiaomi.ai.add.lensDirtyDetected"
@@ -197,7 +209,7 @@
 
     sput-object v0, Lcom/android/camera2/CaptureResultParser;->LENS_DIRTY_DETECTED:Landroid/hardware/camera2/CaptureResult$Key;
 
-    .line 54
+    .line 55
     new-instance v0, Landroid/hardware/camera2/CaptureResult$Key;
 
     const-string v1, "org.quic.camera2.statsconfigs.AWBFrameControl"
@@ -208,7 +220,7 @@
 
     sput-object v0, Lcom/android/camera2/CaptureResultParser;->AWB_FRAME_CONTROL:Landroid/hardware/camera2/CaptureResult$Key;
 
-    .line 60
+    .line 61
     new-instance v0, Landroid/hardware/camera2/CaptureResult$Key;
 
     const-string v1, "org.quic.camera2.statsconfigs.AECFrameControl"
@@ -219,7 +231,7 @@
 
     sput-object v0, Lcom/android/camera2/CaptureResultParser;->AEC_FRAME_CONTROL:Landroid/hardware/camera2/CaptureResult$Key;
 
-    .line 66
+    .line 67
     new-instance v0, Landroid/hardware/camera2/CaptureResult$Key;
 
     const-string v1, "org.quic.camera2.statsconfigs.AFFrameControl"
@@ -230,7 +242,7 @@
 
     sput-object v0, Lcom/android/camera2/CaptureResultParser;->AF_FRAME_CONTROL:Landroid/hardware/camera2/CaptureResult$Key;
 
-    .line 72
+    .line 73
     new-instance v0, Landroid/hardware/camera2/CaptureResult$Key;
 
     const-string v1, "xiaomi.smoothTransition.result"
@@ -241,7 +253,7 @@
 
     sput-object v0, Lcom/android/camera2/CaptureResultParser;->FAST_ZOOM_RESULT:Landroid/hardware/camera2/CaptureResult$Key;
 
-    .line 76
+    .line 77
     new-instance v0, Landroid/hardware/camera2/CaptureResult$Key;
 
     const-string v1, "xiaomi.hdr.hdrChecker"
@@ -252,7 +264,7 @@
 
     sput-object v0, Lcom/android/camera2/CaptureResultParser;->KEY_HDR_CHECKTER_EV_VALUES:Landroid/hardware/camera2/CaptureResult$Key;
 
-    .line 82
+    .line 83
     new-instance v0, Landroid/hardware/camera2/CaptureResult$Key;
 
     const-string v1, "xiaomi.ai.misd.ultraWideRecommended"
@@ -263,7 +275,7 @@
 
     sput-object v0, Lcom/android/camera2/CaptureResultParser;->ULTR_WIDE_RECOMMENDED_RESULT:Landroid/hardware/camera2/CaptureResult$Key;
 
-    .line 85
+    .line 86
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.multiframe.inputNum"
@@ -274,35 +286,46 @@
 
     sput-object v0, Lcom/android/camera2/CaptureResultParser;->MULTIFRAME_INPUTNUM:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 90
+    .line 92
+    new-instance v0, Landroid/hardware/camera2/CaptureResult$Key;
+
+    const-string v1, "xiaomi.beauty.bodySlimCnt"
+
+    sget-object v2, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
+
+    invoke-direct {v0, v1, v2}, Landroid/hardware/camera2/CaptureResult$Key;-><init>(Ljava/lang/String;Ljava/lang/Class;)V
+
+    sput-object v0, Lcom/android/camera2/CaptureResultParser;->BEAUTY_BODY_SLIM_COUNT:Landroid/hardware/camera2/CaptureResult$Key;
+
+    .line 96
     new-instance v0, Lcom/android/camera2/AWBFrameControl$MarshalQueryableAWBFrameControl;
 
     invoke-direct {v0}, Lcom/android/camera2/AWBFrameControl$MarshalQueryableAWBFrameControl;-><init>()V
 
     invoke-static {v0}, Landroid/hardware/camera2/marshal/MarshalRegistry;->registerMarshalQueryable(Landroid/hardware/camera2/marshal/MarshalQueryable;)V
 
-    .line 91
+    .line 97
     invoke-static {}, Lcom/android/camera/Util;->isShowPreviewDebugInfo()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 92
+    .line 98
     new-instance v0, Lcom/android/camera2/AECFrameControl$MarshalQueryableAECFrameControl;
 
     invoke-direct {v0}, Lcom/android/camera2/AECFrameControl$MarshalQueryableAECFrameControl;-><init>()V
 
     invoke-static {v0}, Landroid/hardware/camera2/marshal/MarshalRegistry;->registerMarshalQueryable(Landroid/hardware/camera2/marshal/MarshalQueryable;)V
 
-    .line 93
+    .line 99
     new-instance v0, Lcom/android/camera2/AFFrameControl$MarshalQueryableAFFrameControl;
 
     invoke-direct {v0}, Lcom/android/camera2/AFFrameControl$MarshalQueryableAFFrameControl;-><init>()V
 
     invoke-static {v0}, Landroid/hardware/camera2/marshal/MarshalRegistry;->registerMarshalQueryable(Landroid/hardware/camera2/marshal/MarshalQueryable;)V
 
-    .line 95
+    .line 101
     :cond_0
     return-void
 .end method
@@ -319,7 +342,7 @@
 .method public static getAECFrameControl(Landroid/hardware/camera2/CaptureResult;)Lcom/android/camera2/AECFrameControl;
     .locals 1
 
-    .line 145
+    .line 151
     sget-object v0, Lcom/android/camera2/CaptureResultParser;->AEC_FRAME_CONTROL:Landroid/hardware/camera2/CaptureResult$Key;
 
     invoke-virtual {p0, v0}, Landroid/hardware/camera2/CaptureResult;->get(Landroid/hardware/camera2/CaptureResult$Key;)Ljava/lang/Object;
@@ -334,7 +357,7 @@
 .method public static getAFFrameControl(Landroid/hardware/camera2/CaptureResult;)Lcom/android/camera2/AFFrameControl;
     .locals 1
 
-    .line 149
+    .line 155
     sget-object v0, Lcom/android/camera2/CaptureResultParser;->AF_FRAME_CONTROL:Landroid/hardware/camera2/CaptureResult$Key;
 
     invoke-virtual {p0, v0}, Landroid/hardware/camera2/CaptureResult;->get(Landroid/hardware/camera2/CaptureResult$Key;)Ljava/lang/Object;
@@ -349,7 +372,7 @@
 .method public static getAWBFrameControl(Landroid/hardware/camera2/CaptureResult;)Lcom/android/camera2/AWBFrameControl;
     .locals 1
 
-    .line 141
+    .line 147
     sget-object v0, Lcom/android/camera2/CaptureResultParser;->AWB_FRAME_CONTROL:Landroid/hardware/camera2/CaptureResult$Key;
 
     invoke-virtual {p0, v0}, Landroid/hardware/camera2/CaptureResult;->get(Landroid/hardware/camera2/CaptureResult$Key;)Ljava/lang/Object;
@@ -364,7 +387,7 @@
 .method public static getAsdDetectedModes(Landroid/hardware/camera2/CaptureResult;)I
     .locals 1
 
-    .line 112
+    .line 118
     sget-object v0, Lcom/android/camera2/CaptureResultParser;->AI_SCENE_DETECTED:Landroid/hardware/camera2/CaptureResult$Key;
 
     invoke-virtual {p0, v0}, Landroid/hardware/camera2/CaptureResult;->get(Landroid/hardware/camera2/CaptureResult$Key;)Ljava/lang/Object;
@@ -373,19 +396,87 @@
 
     check-cast p0, Ljava/lang/Integer;
 
-    .line 113
+    .line 119
     if-eqz p0, :cond_0
 
-    .line 114
+    .line 120
     invoke-virtual {p0}, Ljava/lang/Integer;->intValue()I
 
     move-result p0
 
     return p0
 
-    .line 116
+    .line 122
     :cond_0
     const/4 p0, 0x0
+
+    return p0
+.end method
+
+.method public static getBeautyBodySlimCountResult(Landroid/hardware/camera2/CaptureResult;)I
+    .locals 2
+
+    .line 191
+    nop
+
+    .line 193
+    :try_start_0
+    sget-object v0, Lcom/android/camera2/CaptureResultParser;->BEAUTY_BODY_SLIM_COUNT:Landroid/hardware/camera2/CaptureResult$Key;
+
+    invoke-virtual {p0, v0}, Landroid/hardware/camera2/CaptureResult;->get(Landroid/hardware/camera2/CaptureResult$Key;)Ljava/lang/Object;
+
+    move-result-object p0
+
+    check-cast p0, Ljava/lang/Integer;
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 197
+    nop
+
+    .line 198
+    if-eqz p0, :cond_0
+
+    .line 199
+    invoke-virtual {p0}, Ljava/lang/Integer;->intValue()I
+
+    move-result p0
+
+    return p0
+
+    .line 201
+    :cond_0
+    const/4 p0, 0x0
+
+    return p0
+
+    .line 194
+    :catch_0
+    move-exception p0
+
+    .line 195
+    sget-object p0, Lcom/android/camera2/CaptureResultParser;->TAG:Ljava/lang/String;
+
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "Could not find tag for key "
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    sget-object v1, Lcom/android/camera2/CaptureResultParser;->BEAUTY_BODY_SLIM_COUNT:Landroid/hardware/camera2/CaptureResult$Key;
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {p0, v0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 196
+    const/4 p0, -0x1
 
     return p0
 .end method
@@ -393,7 +484,7 @@
 .method public static getFastZoomResult(Landroid/hardware/camera2/CaptureResult;)Z
     .locals 3
 
-    .line 153
+    .line 159
     sget-object v0, Lcom/android/camera2/CaptureResultParser;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -418,7 +509,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 154
+    .line 160
     sget-object v0, Lcom/android/camera2/CaptureResultParser;->FAST_ZOOM_RESULT:Landroid/hardware/camera2/CaptureResult$Key;
 
     invoke-virtual {p0, v0}, Landroid/hardware/camera2/CaptureResult;->get(Landroid/hardware/camera2/CaptureResult$Key;)Ljava/lang/Object;
@@ -427,7 +518,7 @@
 
     check-cast p0, Ljava/lang/Byte;
 
-    .line 155
+    .line 161
     const/4 v0, 0x1
 
     if-eqz p0, :cond_0
@@ -450,7 +541,7 @@
 .method public static getHDRDetectedScene(Landroid/hardware/camera2/CaptureResult;)I
     .locals 1
 
-    .line 125
+    .line 131
     sget-object v0, Lcom/android/camera2/CaptureResultParser;->AI_HDR_DETECTED:Landroid/hardware/camera2/CaptureResult$Key;
 
     invoke-virtual {p0, v0}, Landroid/hardware/camera2/CaptureResult;->get(Landroid/hardware/camera2/CaptureResult$Key;)Ljava/lang/Object;
@@ -459,17 +550,17 @@
 
     check-cast p0, Ljava/lang/Byte;
 
-    .line 126
+    .line 132
     if-eqz p0, :cond_0
 
-    .line 127
+    .line 133
     invoke-virtual {p0}, Ljava/lang/Byte;->byteValue()B
 
     move-result p0
 
     return p0
 
-    .line 129
+    .line 135
     :cond_0
     const/4 p0, 0x0
 
@@ -479,7 +570,7 @@
 .method public static getHdrCheckerValues(Landroid/hardware/camera2/CaptureResult;)[Ljava/lang/Byte;
     .locals 1
 
-    .line 159
+    .line 165
     sget-object v0, Lcom/android/camera2/CaptureResultParser;->KEY_HDR_CHECKTER_EV_VALUES:Landroid/hardware/camera2/CaptureResult$Key;
 
     invoke-virtual {p0, v0}, Landroid/hardware/camera2/CaptureResult;->get(Landroid/hardware/camera2/CaptureResult$Key;)Ljava/lang/Object;
@@ -494,7 +585,7 @@
 .method public static getRequestMultiFrameInputNum(Landroid/hardware/camera2/CaptureRequest;)I
     .locals 1
 
-    .line 176
+    .line 182
     sget-object v0, Lcom/android/camera2/CaptureResultParser;->MULTIFRAME_INPUTNUM:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-virtual {p0, v0}, Landroid/hardware/camera2/CaptureRequest;->get(Landroid/hardware/camera2/CaptureRequest$Key;)Ljava/lang/Object;
@@ -503,15 +594,15 @@
 
     check-cast p0, Ljava/lang/Integer;
 
-    .line 177
+    .line 183
     if-nez p0, :cond_0
 
-    .line 178
+    .line 184
     const/4 p0, 0x0
 
     return p0
 
-    .line 181
+    .line 187
     :cond_0
     invoke-virtual {p0}, Ljava/lang/Integer;->intValue()I
 
@@ -523,10 +614,10 @@
 .method public static getUltraWideDetectedResult(Landroid/hardware/camera2/CaptureResult;)I
     .locals 2
 
-    .line 163
+    .line 169
     nop
 
-    .line 165
+    .line 171
     :try_start_0
     sget-object v0, Lcom/android/camera2/CaptureResultParser;->ULTR_WIDE_RECOMMENDED_RESULT:Landroid/hardware/camera2/CaptureResult$Key;
 
@@ -538,14 +629,14 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 168
+    .line 174
     goto :goto_0
 
-    .line 166
+    .line 172
     :catch_0
     move-exception p0
 
-    .line 167
+    .line 173
     sget-object p0, Lcom/android/camera2/CaptureResultParser;->TAG:Ljava/lang/String;
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -566,20 +657,20 @@
 
     invoke-static {p0, v0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 169
+    .line 175
     const/4 p0, 0x0
 
     :goto_0
     if-eqz p0, :cond_0
 
-    .line 170
+    .line 176
     invoke-virtual {p0}, Ljava/lang/Integer;->intValue()I
 
     move-result p0
 
     return p0
 
-    .line 172
+    .line 178
     :cond_0
     const/4 p0, 0x0
 
@@ -589,7 +680,7 @@
 .method public static isASDEnable(Landroid/hardware/camera2/CaptureResult;)Z
     .locals 4
 
-    .line 98
+    .line 104
     sget-object v0, Lcom/android/camera2/CaptureResultParser;->AI_SCENE_ENABLE:Landroid/hardware/camera2/CaptureResult$Key;
 
     invoke-virtual {p0, v0}, Landroid/hardware/camera2/CaptureResult;->get(Landroid/hardware/camera2/CaptureResult$Key;)Ljava/lang/Object;
@@ -598,12 +689,12 @@
 
     check-cast p0, Ljava/lang/Byte;
 
-    .line 99
+    .line 105
     const/4 v0, 0x0
 
     if-eqz p0, :cond_1
 
-    .line 100
+    .line 106
     sget-object v1, Lcom/android/camera2/CaptureResultParser;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -622,7 +713,7 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 101
+    .line 107
     invoke-virtual {p0}, Ljava/lang/Byte;->byteValue()B
 
     move-result p0
@@ -638,7 +729,7 @@
     :cond_0
     return v0
 
-    .line 103
+    .line 109
     :cond_1
     return v0
 .end method
@@ -646,7 +737,7 @@
 .method public static isLensDirtyDetected(Landroid/hardware/camera2/CaptureResult;)Z
     .locals 2
 
-    .line 133
+    .line 139
     sget-object v0, Lcom/android/camera2/CaptureResultParser;->LENS_DIRTY_DETECTED:Landroid/hardware/camera2/CaptureResult$Key;
 
     invoke-virtual {p0, v0}, Landroid/hardware/camera2/CaptureResult;->get(Landroid/hardware/camera2/CaptureResult$Key;)Ljava/lang/Object;
@@ -655,12 +746,12 @@
 
     check-cast p0, Ljava/lang/Integer;
 
-    .line 134
+    .line 140
     const/4 v0, 0x0
 
     if-eqz p0, :cond_1
 
-    .line 135
+    .line 141
     invoke-virtual {p0}, Ljava/lang/Integer;->intValue()I
 
     move-result p0
@@ -676,7 +767,7 @@
     :cond_0
     return v0
 
-    .line 137
+    .line 143
     :cond_1
     return v0
 .end method

@@ -453,10 +453,6 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
     }
 
     public void stopVideoRecording(boolean z, boolean z2) {
-        if (this.mInStartingFocusRecording) {
-            this.mInStartingFocusRecording = false;
-            ((RecordState) ModeCoordinatorImpl.getInstance().getAttachProtocol(212)).onFinish();
-        }
         if (this.mMediaRecorderRecording) {
             if (is3ALocked()) {
                 unlockAEAF();
@@ -604,6 +600,8 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
                 case 30:
                 case 34:
                 case 42:
+                case 43:
+                case 50:
                     break;
                 case 12:
                     setEvValue();
@@ -684,7 +682,7 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
         if (this.mCameraCapabilities.isSupportVideoBeauty() && isBeautyOn()) {
             return CameraCapabilities.SESSION_OPERATION_MODE_VIDEO_BEAUTY;
         }
-        if (DataRepository.dataItemFeature().ff()) {
+        if (DataRepository.dataItemFeature().fg()) {
             return CameraCapabilities.SESSION_OPERATION_MODE_MCTF;
         }
         return 0;

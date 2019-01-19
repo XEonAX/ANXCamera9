@@ -27,7 +27,7 @@ public class MakeupBeautyFragment extends BaseBeautyMakeupFragment {
         arrayList.add(new MakeupItem(R.drawable.icon_eyebrow_dye_n, R.string.edit_eyebrow_dye, CameraBeautyParameterType.EYEBROW_DYE_RATIO));
         arrayList.add(new MakeupItem(R.drawable.icon_pupil_line_n, R.string.edit_pupil_line, CameraBeautyParameterType.PUPIL_LINE_RATIO));
         arrayList.add(new MakeupItem(R.drawable.icon_jelly_lips_n, R.string.edit_jelly_lips, CameraBeautyParameterType.JELLY_LIPS_RATIO));
-        if (1 == currentCameraId && DataRepository.dataItemFeature().fs()) {
+        if (1 == currentCameraId && DataRepository.dataItemFeature().ft()) {
             arrayList.add(new MakeupItem(R.drawable.icon_eye_light, R.string.eye_light, CameraBeautyParameterType.EYE_LIGHT));
         }
         arrayList.add(new MakeupItem(R.drawable.icon_blusher_n, R.string.edit_blusher, CameraBeautyParameterType.BLUSHER_RATIO));

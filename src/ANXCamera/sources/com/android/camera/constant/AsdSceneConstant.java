@@ -8,8 +8,8 @@ import java.lang.annotation.RetentionPolicy;
 
 public class AsdSceneConstant {
     private static final Key<Float> AEC_LUX = new Key("com.qti.chi.statsaec.AecLux", Float.class);
-    private static final float AEC_LUX_HEIGHT_LIGHT = ((float) DataRepository.dataItemFeature().fv());
-    private static final float AEC_LUX_LAST_LIGHT = ((float) DataRepository.dataItemFeature().fu());
+    private static final float AEC_LUX_HEIGHT_LIGHT = ((float) DataRepository.dataItemFeature().fw());
+    private static final float AEC_LUX_LAST_LIGHT = ((float) DataRepository.dataItemFeature().fv());
     private static final float AEC_LUX_LOW_LIGHT = 450.0f;
     private static final int FRAME_BYPASS_NUMBER = 2;
     private static final float LENS_FOCUS_DISTANCE_TOO_CLOSE = 2.5f;
@@ -59,7 +59,7 @@ public class AsdSceneConstant {
         } else if (z2) {
             mFrameNumber = 0;
             return -1;
-        } else if (DataRepository.dataItemFeature().fk() && mFrameNumber < 2) {
+        } else if (DataRepository.dataItemFeature().fl() && mFrameNumber < 2) {
             mFrameNumber++;
             return -1;
         } else if (mIsFlashRetain && floatValue > AEC_LUX_HEIGHT_LIGHT) {

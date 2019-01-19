@@ -11,20 +11,20 @@
 
 
 # instance fields
-.field private pE:Ljava/lang/String;
+.field private pD:Ljava/lang/String;
 
 
 # direct methods
 .method public constructor <init>()V
     .locals 0
 
-    .line 28
+    .line 29
     invoke-direct {p0}, Lcom/android/camera/data/data/DataItemBase;-><init>()V
 
-    .line 29
+    .line 30
     invoke-virtual {p0}, Lcom/mi/config/a;->eO()V
 
-    .line 30
+    .line 31
     return-void
 .end method
 
@@ -36,22 +36,22 @@
         }
     .end annotation
 
-    .line 80
+    .line 81
     new-instance v0, Lorg/json/JSONObject;
 
     invoke-direct {v0, p1}, Lorg/json/JSONObject;-><init>(Ljava/lang/String;)V
 
-    .line 81
+    .line 82
     invoke-virtual {v0}, Lorg/json/JSONObject;->keys()Ljava/util/Iterator;
 
     move-result-object p1
 
-    .line 82
+    .line 83
     invoke-virtual {p0}, Lcom/mi/config/a;->getValues()Landroid/support/v4/util/SimpleArrayMap;
 
     move-result-object v1
 
-    .line 83
+    .line 84
     :goto_0
     invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
@@ -59,24 +59,24 @@
 
     if-eqz v2, :cond_0
 
-    .line 84
+    .line 85
     invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v2
 
     check-cast v2, Ljava/lang/String;
 
-    .line 85
+    .line 86
     invoke-virtual {v0, v2}, Lorg/json/JSONObject;->opt(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v3
 
     invoke-virtual {v1, v2, v3}, Landroid/support/v4/util/SimpleArrayMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 86
+    .line 87
     goto :goto_0
 
-    .line 87
+    .line 88
     :cond_0
     return-void
 .end method
@@ -86,7 +86,7 @@
 .method public B(Ljava/lang/String;)Z
     .locals 1
 
-    .line 90
+    .line 91
     invoke-virtual {p0}, Lcom/mi/config/a;->getValues()Landroid/support/v4/util/SimpleArrayMap;
 
     move-result-object v0
@@ -101,12 +101,12 @@
 .method public eO()V
     .locals 6
 
-    .line 43
+    .line 44
     invoke-static {}, Lcom/android/camera/CameraAppImpl;->getAndroidContext()Landroid/content/Context;
 
     move-result-object v0
 
-    .line 44
+    .line 45
     invoke-virtual {v0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
@@ -119,7 +119,7 @@
 
     invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    sget-object v3, Lcom/mi/config/b;->pF:Ljava/lang/String;
+    sget-object v3, Lcom/mi/config/b;->pE:Ljava/lang/String;
 
     invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -135,29 +135,29 @@
 
     move-result v1
 
-    .line 50
+    .line 51
     if-gtz v1, :cond_0
 
-    .line 51
+    .line 52
     const-string v0, "DataFeature"
 
     const-string v1, "feature list default"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 52
+    .line 53
     return-void
 
-    .line 55
+    .line 56
     :cond_0
     const/4 v2, 0x0
 
-    .line 57
+    .line 58
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 59
+    .line 60
     :try_start_0
     new-instance v4, Ljava/io/BufferedReader;
 
@@ -179,7 +179,7 @@
     .catch Lorg/json/JSONException; {:try_start_0 .. :try_end_0} :catch_2
     .catchall {:try_start_0 .. :try_end_0} :catchall_1
 
-    .line 60
+    .line 61
     :goto_0
     :try_start_1
     invoke-virtual {v4}, Ljava/io/BufferedReader;->readLine()Ljava/lang/String;
@@ -188,12 +188,12 @@
 
     if-eqz v0, :cond_1
 
-    .line 61
+    .line 62
     invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     goto :goto_0
 
-    .line 63
+    .line 64
     :cond_1
     invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
@@ -205,10 +205,10 @@
     .catch Lorg/json/JSONException; {:try_start_1 .. :try_end_1} :catch_0
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 69
+    .line 70
     nop
 
-    .line 71
+    .line 72
     :try_start_2
     invoke-virtual {v4}, Ljava/io/BufferedReader;->close()V
     :try_end_2
@@ -216,7 +216,7 @@
 
     goto :goto_3
 
-    .line 69
+    .line 70
     :catchall_0
     move-exception v0
 
@@ -224,7 +224,7 @@
 
     goto :goto_5
 
-    .line 66
+    .line 67
     :catch_0
     move-exception v0
 
@@ -232,7 +232,7 @@
 
     goto :goto_1
 
-    .line 64
+    .line 65
     :catch_1
     move-exception v0
 
@@ -240,27 +240,27 @@
 
     goto :goto_2
 
-    .line 69
+    .line 70
     :catchall_1
     move-exception v0
 
     goto :goto_5
 
-    .line 66
+    .line 67
     :catch_2
     move-exception v0
 
-    .line 67
+    .line 68
     :goto_1
     :try_start_3
     invoke-virtual {v0}, Lorg/json/JSONException;->printStackTrace()V
     :try_end_3
     .catchall {:try_start_3 .. :try_end_3} :catchall_1
 
-    .line 69
+    .line 70
     if-eqz v2, :cond_2
 
-    .line 71
+    .line 72
     :try_start_4
     invoke-virtual {v2}, Ljava/io/BufferedReader;->close()V
     :try_end_4
@@ -268,65 +268,65 @@
 
     goto :goto_3
 
-    .line 64
+    .line 65
     :catch_3
     move-exception v0
 
-    .line 65
+    .line 66
     :goto_2
     :try_start_5
     invoke-virtual {v0}, Ljava/io/IOException;->printStackTrace()V
     :try_end_5
     .catchall {:try_start_5 .. :try_end_5} :catchall_1
 
-    .line 69
+    .line 70
     if-eqz v2, :cond_2
 
-    .line 71
+    .line 72
     :try_start_6
     invoke-virtual {v2}, Ljava/io/BufferedReader;->close()V
     :try_end_6
     .catch Ljava/io/IOException; {:try_start_6 .. :try_end_6} :catch_4
 
-    .line 74
+    .line 75
     :goto_3
     goto :goto_4
 
-    .line 72
+    .line 73
     :catch_4
     move-exception v0
 
-    .line 73
+    .line 74
     invoke-virtual {v0}, Ljava/io/IOException;->printStackTrace()V
 
     goto :goto_3
 
-    .line 77
+    .line 78
     :cond_2
     :goto_4
     return-void
 
-    .line 69
+    .line 70
     :goto_5
     if-eqz v2, :cond_3
 
-    .line 71
+    .line 72
     :try_start_7
     invoke-virtual {v2}, Ljava/io/BufferedReader;->close()V
     :try_end_7
     .catch Ljava/io/IOException; {:try_start_7 .. :try_end_7} :catch_5
 
-    .line 74
+    .line 75
     goto :goto_6
 
-    .line 72
+    .line 73
     :catch_5
     move-exception v1
 
-    .line 73
+    .line 74
     invoke-virtual {v1}, Ljava/io/IOException;->printStackTrace()V
 
-    .line 74
+    .line 75
     :cond_3
     :goto_6
     throw v0
@@ -335,7 +335,7 @@
 .method public eP()Z
     .locals 2
 
-    .line 94
+    .line 95
     const-string v0, "s_a"
 
     const/4 v1, 0x0
@@ -350,7 +350,7 @@
 .method public eQ()I
     .locals 2
 
-    .line 98
+    .line 99
     const-string v0, "c_t_r"
 
     const/16 v1, 0x14
@@ -365,25 +365,25 @@
 .method public eR()Z
     .locals 2
 
-    .line 103
-    iget-object v0, p0, Lcom/mi/config/a;->pE:Ljava/lang/String;
+    .line 104
+    iget-object v0, p0, Lcom/mi/config/a;->pD:Ljava/lang/String;
 
     if-nez v0, :cond_0
 
-    .line 104
+    .line 105
     const-string v0, "ro.boot.hwc"
 
     invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/mi/config/a;->pE:Ljava/lang/String;
+    iput-object v0, p0, Lcom/mi/config/a;->pD:Ljava/lang/String;
 
-    .line 107
+    .line 108
     :cond_0
     const-string v0, "india"
 
-    iget-object v1, p0, Lcom/mi/config/a;->pE:Ljava/lang/String;
+    iget-object v1, p0, Lcom/mi/config/a;->pD:Ljava/lang/String;
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
 
@@ -395,36 +395,38 @@
 .method public eS()Z
     .locals 2
 
-    .line 111
-    const-string v0, "s_i_a"
+    .line 112
+    iget-object v0, p0, Lcom/mi/config/a;->pD:Ljava/lang/String;
 
-    const/4 v1, 0x0
+    if-nez v0, :cond_0
 
-    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
+    .line 113
+    const-string v0, "ro.boot.hwc"
 
-    move-result v0
+    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
 
-    if-eqz v0, :cond_0
+    move-result-object v0
 
-    invoke-virtual {p0}, Lcom/mi/config/a;->eR()Z
+    iput-object v0, p0, Lcom/mi/config/a;->pD:Ljava/lang/String;
 
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    const/4 v1, 0x1
-
-    nop
-
+    .line 115
     :cond_0
-    return v1
+    const-string v0, "cn"
+
+    iget-object v1, p0, Lcom/mi/config/a;->pD:Ljava/lang/String;
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v0
+
+    return v0
 .end method
 
 .method public eT()Z
     .locals 2
 
-    .line 115
-    const-string v0, "c_0x0c"
+    .line 119
+    const-string v0, "s_i_a"
 
     const/4 v1, 0x0
 
@@ -451,8 +453,8 @@
 .method public eU()Z
     .locals 2
 
-    .line 119
-    const-string v0, "s_z_m"
+    .line 123
+    const-string v0, "c_0x0c"
 
     const/4 v1, 0x0
 
@@ -460,14 +462,27 @@
 
     move-result v0
 
-    return v0
+    if-eqz v0, :cond_0
+
+    invoke-virtual {p0}, Lcom/mi/config/a;->eR()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const/4 v1, 0x1
+
+    nop
+
+    :cond_0
+    return v1
 .end method
 
 .method public eV()Z
     .locals 2
 
-    .line 123
-    const-string v0, "a_e_d"
+    .line 127
+    const-string v0, "s_z_m"
 
     const/4 v1, 0x0
 
@@ -481,8 +496,8 @@
 .method public eW()Z
     .locals 2
 
-    .line 127
-    const-string v0, "s_m_f"
+    .line 131
+    const-string v0, "a_e_d"
 
     const/4 v1, 0x0
 
@@ -496,8 +511,8 @@
 .method public eX()Z
     .locals 2
 
-    .line 132
-    const-string v0, "i_l_m_d"
+    .line 135
+    const-string v0, "s_m_f"
 
     const/4 v1, 0x0
 
@@ -511,8 +526,8 @@
 .method public eY()Z
     .locals 2
 
-    .line 136
-    const-string v0, "s_p_l_b"
+    .line 140
+    const-string v0, "i_l_m_d"
 
     const/4 v1, 0x0
 
@@ -526,8 +541,8 @@
 .method public eZ()Z
     .locals 2
 
-    .line 140
-    const-string v0, "s_p_l_f"
+    .line 144
+    const-string v0, "s_p_l_b"
 
     const/4 v1, 0x0
 
@@ -541,24 +556,19 @@
 .method public fA()Z
     .locals 2
 
-    .line 269
+    .line 277
     invoke-static {}, Lcom/android/camera/Util;->isGlobalVersion()Z
 
     move-result v0
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_1
-
-    invoke-static {}, Lcom/android/camera/Util;->isInternationalBuild()Z
-
-    move-result v0
-
     if-eqz v0, :cond_0
 
-    goto :goto_0
+    .line 278
+    return v1
 
-    .line 272
+    .line 280
     :cond_0
     const-string v0, "c_0x00_s_l_s"
 
@@ -567,17 +577,12 @@
     move-result v0
 
     return v0
-
-    .line 270
-    :cond_1
-    :goto_0
-    return v1
 .end method
 
 .method public fB()I
     .locals 2
 
-    .line 276
+    .line 284
     const-string v0, "c_0x01_p_g_a_v"
 
     const/16 v1, 0x118
@@ -592,7 +597,7 @@
 .method public fC()F
     .locals 3
 
-    .line 280
+    .line 288
     const-string v0, "c_0x02_p_c_r_v"
 
     const-wide v1, 0x3fec0d1b80000000L    # 0.8766000270843506
@@ -609,10 +614,21 @@
 .method public fD()Z
     .locals 2
 
-    .line 284
-    const-string v0, "c_0x03"
+    .line 292
+    invoke-static {}, Lcom/android/camera/Util;->isGlobalVersion()Z
+
+    move-result v0
 
     const/4 v1, 0x0
+
+    if-eqz v0, :cond_0
+
+    .line 293
+    return v1
+
+    .line 295
+    :cond_0
+    const-string v0, "c_0x03"
 
     invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
 
@@ -624,7 +640,7 @@
 .method public fE()Z
     .locals 2
 
-    .line 288
+    .line 299
     const-string v0, "s_c_w_m"
 
     const/4 v1, 0x0
@@ -639,7 +655,7 @@
 .method public fF()Z
     .locals 2
 
-    .line 304
+    .line 315
     const-string v0, "c_0x08"
 
     const/4 v1, 0x0
@@ -654,7 +670,7 @@
 .method public fG()Z
     .locals 2
 
-    .line 308
+    .line 319
     const-string v0, "c_0x09"
 
     const/4 v1, 0x0
@@ -669,8 +685,176 @@
 .method public fH()Z
     .locals 2
 
-    .line 312
+    .line 323
     const-string v0, "c_0x0a"
+
+    const/4 v1, 0x0
+
+    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public fI()Z
+    .locals 2
+
+    .line 327
+    const-string v0, "c_0x10"
+
+    const/4 v1, 0x1
+
+    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public fJ()Z
+    .locals 2
+
+    .line 331
+    const-string v0, "c_0x11"
+
+    const/4 v1, 0x0
+
+    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public fK()I
+    .locals 2
+
+    .line 335
+    const-string v0, "c_0x13"
+
+    const/4 v1, 0x0
+
+    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getInt(Ljava/lang/String;I)I
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public fL()Z
+    .locals 2
+
+    .line 345
+    const-string v0, "c_0x0e"
+
+    const/4 v1, 0x0
+
+    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public fM()Z
+    .locals 2
+
+    .line 351
+    invoke-virtual {p0}, Lcom/mi/config/a;->fN()I
+
+    move-result v0
+
+    const/4 v1, 0x0
+
+    if-lez v0, :cond_1
+
+    const-string v0, "c_0x0f"
+
+    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    goto :goto_0
+
+    :cond_0
+    goto :goto_1
+
+    :cond_1
+    :goto_0
+    const/4 v1, 0x1
+
+    :goto_1
+    return v1
+.end method
+
+.method public fN()I
+    .locals 2
+
+    .line 355
+    const-string v0, "c_0x0d"
+
+    const/4 v1, 0x0
+
+    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getInt(Ljava/lang/String;I)I
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public fO()I
+    .locals 2
+
+    .line 359
+    const-string v0, "c_0x12"
+
+    const/4 v1, 0x0
+
+    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getInt(Ljava/lang/String;I)I
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public fP()Z
+    .locals 2
+
+    .line 363
+    const-string v0, "c_0x14"
+
+    const/4 v1, 0x0
+
+    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public fQ()Ljava/lang/String;
+    .locals 2
+
+    .line 367
+    const-string v0, "c_0x15"
+
+    sget-object v1, Lcom/android/camera/constant/BeautyConstant;->LEVEL_CLOSE:Ljava/lang/String;
+
+    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public fR()Z
+    .locals 2
+
+    .line 371
+    const-string v0, "c_0x16"
 
     const/4 v1, 0x0
 
@@ -684,8 +868,8 @@
 .method public fa()Z
     .locals 2
 
-    .line 144
-    const-string v0, "s_f_a"
+    .line 148
+    const-string v0, "s_p_l_f"
 
     const/4 v1, 0x0
 
@@ -699,8 +883,8 @@
 .method public fb()Z
     .locals 2
 
-    .line 148
-    const-string v0, "s_p_a"
+    .line 152
+    const-string v0, "s_f_a"
 
     const/4 v1, 0x0
 
@@ -714,8 +898,8 @@
 .method public fc()Z
     .locals 2
 
-    .line 152
-    const-string v0, "s_v_b"
+    .line 156
+    const-string v0, "s_p_a"
 
     const/4 v1, 0x0
 
@@ -729,8 +913,8 @@
 .method public fd()Z
     .locals 2
 
-    .line 156
-    const-string v0, "s_o_a_w"
+    .line 160
+    const-string v0, "s_v_b"
 
     const/4 v1, 0x0
 
@@ -744,8 +928,8 @@
 .method public fe()Z
     .locals 2
 
-    .line 160
-    const-string v0, "s_f_s"
+    .line 164
+    const-string v0, "s_o_a_w"
 
     const/4 v1, 0x0
 
@@ -759,8 +943,8 @@
 .method public ff()Z
     .locals 2
 
-    .line 172
-    const-string v0, "s_m_c_t_f"
+    .line 168
+    const-string v0, "s_f_s"
 
     const/4 v1, 0x0
 
@@ -774,8 +958,8 @@
 .method public fg()Z
     .locals 2
 
-    .line 176
-    const-string v0, "s_a_3"
+    .line 180
+    const-string v0, "s_m_c_t_f"
 
     const/4 v1, 0x0
 
@@ -787,9 +971,24 @@
 .end method
 
 .method public fh()Z
+    .locals 2
+
+    .line 184
+    const-string v0, "s_a_3"
+
+    const/4 v1, 0x0
+
+    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public fi()Z
     .locals 3
 
-    .line 181
+    .line 189
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/4 v1, 0x0
@@ -800,7 +999,7 @@
 
     const-string v0, "s_s_n"
 
-    .line 182
+    .line 190
     invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
 
     move-result v0
@@ -811,15 +1010,15 @@
 
     nop
 
-    .line 181
+    .line 189
     :cond_0
     return v1
 .end method
 
-.method public fi()Z
+.method public fj()Z
     .locals 2
 
-    .line 192
+    .line 200
     const-string v0, "s_m_l"
 
     const/4 v1, 0x0
@@ -831,10 +1030,10 @@
     return v0
 .end method
 
-.method public fj()Z
+.method public fk()Z
     .locals 2
 
-    .line 201
+    .line 209
     const-string v0, "s_s_v"
 
     const/4 v1, 0x1
@@ -846,26 +1045,11 @@
     return v0
 .end method
 
-.method public fk()Z
-    .locals 2
-
-    .line 205
-    const-string v0, "s_s_s"
-
-    const/4 v1, 0x0
-
-    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
-
-    move-result v0
-
-    return v0
-.end method
-
 .method public fl()Z
     .locals 2
 
-    .line 209
-    const-string v0, "s_f_s_c"
+    .line 213
+    const-string v0, "s_s_s"
 
     const/4 v1, 0x0
 
@@ -879,7 +1063,22 @@
 .method public fm()Z
     .locals 2
 
-    .line 213
+    .line 217
+    const-string v0, "s_f_s_c"
+
+    const/4 v1, 0x0
+
+    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public fn()Z
+    .locals 2
+
+    .line 221
     const-string v0, "s_b_m"
 
     const/4 v1, 0x0
@@ -891,10 +1090,10 @@
     return v0
 .end method
 
-.method public fn()I
+.method public fo()I
     .locals 2
 
-    .line 217
+    .line 225
     const-string v0, "c_0x0b"
 
     const/16 v1, 0xb4
@@ -906,26 +1105,11 @@
     return v0
 .end method
 
-.method public fo()Z
-    .locals 2
-
-    .line 221
-    const-string v0, "s_a_u"
-
-    const/4 v1, 0x0
-
-    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
-
-    move-result v0
-
-    return v0
-.end method
-
 .method public fp()Z
     .locals 2
 
-    .line 225
-    const-string v0, "s_f_z_i"
+    .line 229
+    const-string v0, "s_a_u"
 
     const/4 v1, 0x0
 
@@ -939,8 +1123,8 @@
 .method public fq()Z
     .locals 2
 
-    .line 229
-    const-string v0, "s_v_f_m"
+    .line 233
+    const-string v0, "s_f_z_i"
 
     const/4 v1, 0x0
 
@@ -954,8 +1138,8 @@
 .method public fr()Z
     .locals 2
 
-    .line 233
-    const-string v0, "s_f_9"
+    .line 237
+    const-string v0, "s_v_f_m"
 
     const/4 v1, 0x0
 
@@ -969,7 +1153,22 @@
 .method public fs()Z
     .locals 2
 
-    .line 237
+    .line 241
+    const-string v0, "s_f_9"
+
+    const/4 v1, 0x0
+
+    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public ft()Z
+    .locals 2
+
+    .line 245
     const-string v0, "s_e_l"
 
     const/4 v1, 0x0
@@ -981,10 +1180,10 @@
     return v0
 .end method
 
-.method public ft()Ljava/lang/String;
+.method public fu()Ljava/lang/String;
     .locals 2
 
-    .line 241
+    .line 249
     const-string v0, "h_d_v"
 
     const-string v1, ""
@@ -996,10 +1195,10 @@
     return-object v0
 .end method
 
-.method public fu()I
+.method public fv()I
     .locals 2
 
-    .line 245
+    .line 253
     const-string v0, "a_l_l_l"
 
     const/16 v1, 0x15e
@@ -1011,10 +1210,10 @@
     return v0
 .end method
 
-.method public fv()I
+.method public fw()I
     .locals 2
 
-    .line 249
+    .line 257
     const-string v0, "a_l_h_l"
 
     const/16 v1, 0x12c
@@ -1026,10 +1225,10 @@
     return v0
 .end method
 
-.method public fw()Z
+.method public fx()Z
     .locals 2
 
-    .line 253
+    .line 261
     const-string v0, "s_u_w"
 
     const/4 v1, 0x0
@@ -1041,10 +1240,10 @@
     return v0
 .end method
 
-.method public fx()Z
+.method public fy()Z
     .locals 2
 
-    .line 257
+    .line 265
     const-string v0, "s_c_w_b"
 
     const/4 v1, 0x1
@@ -1056,25 +1255,10 @@
     return v0
 .end method
 
-.method public fy()Z
-    .locals 2
-
-    .line 261
-    const-string v0, "s_b_b"
-
-    const/4 v1, 0x0
-
-    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
-
-    move-result v0
-
-    return v0
-.end method
-
 .method public fz()Z
     .locals 2
 
-    .line 265
+    .line 273
     const-string v0, "c_0x04_i_l_h_d"
 
     const/4 v1, 0x0
@@ -1089,7 +1273,7 @@
 .method protected isMutable()Z
     .locals 1
 
-    .line 318
+    .line 341
     const/4 v0, 0x0
 
     return v0
@@ -1098,8 +1282,23 @@
 .method public isSupport4KUHDEIS()Z
     .locals 2
 
-    .line 300
+    .line 311
     const-string v0, "c_0x07"
+
+    const/4 v1, 0x0
+
+    invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public isSupportBeautyBody()Z
+    .locals 2
+
+    .line 269
+    const-string v0, "s_b_b"
 
     const/4 v1, 0x0
 
@@ -1113,7 +1312,7 @@
 .method public isSupportNormalWideLDC()Z
     .locals 2
 
-    .line 292
+    .line 303
     const-string v0, "c_0x05"
 
     const/4 v1, 0x0
@@ -1128,7 +1327,7 @@
 .method public isSupportUltraWideLDC()Z
     .locals 2
 
-    .line 296
+    .line 307
     const-string v0, "c_0x06"
 
     const/4 v1, 0x0
@@ -1143,7 +1342,7 @@
 .method public isTransient()Z
     .locals 1
 
-    .line 39
+    .line 40
     const/4 v0, 0x1
 
     return v0
@@ -1152,7 +1351,7 @@
 .method public provideKey()Ljava/lang/String;
     .locals 1
 
-    .line 34
+    .line 35
     const/4 v0, 0x0
 
     return-object v0

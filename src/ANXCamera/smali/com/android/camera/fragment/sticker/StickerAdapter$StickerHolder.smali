@@ -33,7 +33,7 @@
     invoke-direct {p0, p2}, Lcom/android/camera/fragment/sticker/BaseSelectAdapter$BaseSelectHolder;-><init>(Landroid/view/View;)V
 
     .line 39
-    const p1, 0x7f0d0092
+    const p1, 0x7f0d009b
 
     invoke-virtual {p2, p1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -44,7 +44,7 @@
     iput-object p1, p0, Lcom/android/camera/fragment/sticker/StickerAdapter$StickerHolder;->mImageView:Landroid/widget/ImageView;
 
     .line 40
-    const p1, 0x7f0d006e
+    const p1, 0x7f0d0077
 
     invoke-virtual {p2, p1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 

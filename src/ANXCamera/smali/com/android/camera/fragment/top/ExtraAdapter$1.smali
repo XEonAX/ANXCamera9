@@ -27,7 +27,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/top/ExtraAdapter;Lcom/android/camera/fragment/CommonRecyclerViewHolder;)V
     .locals 0
 
-    .line 229
+    .line 250
     iput-object p1, p0, Lcom/android/camera/fragment/top/ExtraAdapter$1;->this$0:Lcom/android/camera/fragment/top/ExtraAdapter;
 
     iput-object p2, p0, Lcom/android/camera/fragment/top/ExtraAdapter$1;->val$holder:Lcom/android/camera/fragment/CommonRecyclerViewHolder;
@@ -42,7 +42,7 @@
 .method public run()V
     .locals 2
 
-    .line 232
+    .line 253
     iget-object v0, p0, Lcom/android/camera/fragment/top/ExtraAdapter$1;->val$holder:Lcom/android/camera/fragment/CommonRecyclerViewHolder;
 
     iget-object v0, v0, Lcom/android/camera/fragment/CommonRecyclerViewHolder;->itemView:Landroid/view/View;
@@ -51,6 +51,6 @@
 
     invoke-virtual {v0, v1}, Landroid/view/View;->sendAccessibilityEvent(I)V
 
-    .line 233
+    .line 254
     return-void
 .end method

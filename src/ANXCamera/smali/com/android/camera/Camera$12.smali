@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/Camera;->showLensDirtyDetectedHint()V
+    value = Lcom/android/camera/Camera;->onHibernate()V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/Camera;)V
     .locals 0
 
-    .line 1684
+    .line 1664
     iput-object p1, p0, Lcom/android/camera/Camera$12;->this$0:Lcom/android/camera/Camera;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -36,64 +36,41 @@
 
 # virtual methods
 .method public run()V
-    .locals 5
+    .locals 2
 
-    .line 1687
-    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+    .line 1667
+    iget-object v0, p0, Lcom/android/camera/Camera$12;->this$0:Lcom/android/camera/Camera;
 
-    move-result-object v0
+    invoke-virtual {v0}, Lcom/android/camera/Camera;->isCurrentModuleAlive()Z
 
-    const/16 v1, 0xac
+    move-result v0
 
-    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+    if-eqz v0, :cond_0
 
-    move-result-object v0
+    .line 1668
+    iget-object v0, p0, Lcom/android/camera/Camera$12;->this$0:Lcom/android/camera/Camera;
 
-    check-cast v0, Lcom/android/camera/fragment/top/FragmentTopConfig;
+    iget-object v0, v0, Lcom/android/camera/Camera;->mCurrentModule:Lcom/android/camera/module/Module;
 
-    .line 1688
-    if-eqz v0, :cond_2
+    invoke-interface {v0}, Lcom/android/camera/module/Module;->setDeparted()V
 
-    .line 1689
-    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
+    .line 1669
+    iget-object v0, p0, Lcom/android/camera/Camera$12;->this$0:Lcom/android/camera/Camera;
 
-    move-result-object v1
+    iget-object v0, v0, Lcom/android/camera/Camera;->mCurrentModule:Lcom/android/camera/module/Module;
 
-    invoke-virtual {v1}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentCameraId()I
+    invoke-interface {v0}, Lcom/android/camera/module/Module;->closeCamera()V
 
-    move-result v1
-
-    const/4 v2, 0x0
-
-    const/4 v3, 0x1
-
-    if-ne v1, v3, :cond_0
-
-    goto :goto_0
-
-    .line 1691
+    .line 1671
     :cond_0
-    move v3, v2
+    invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
 
-    :goto_0
-    if-eqz v3, :cond_1
+    move-result-object v0
 
-    .line 1692
-    const v1, 0x7f0b01ff
+    const/4 v1, 0x1
 
-    goto :goto_1
+    invoke-virtual {v0, v1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->release(Z)V
 
-    .line 1693
-    :cond_1
-    const v1, 0x7f0b01fe
-
-    :goto_1
-    const-wide/16 v3, 0x1f40
-
-    .line 1691
-    invoke-virtual {v0, v2, v1, v3, v4}, Lcom/android/camera/fragment/top/FragmentTopConfig;->alertAiDetectTipHint(IIJ)V
-
-    .line 1696
-    :cond_2
+    .line 1672
     return-void
 .end method

@@ -24,9 +24,11 @@ public class MiCameraCharacteristics {
     private static final String KEY_QCFA_ACTIVE_ARRAY_SIZE = "org.codeaurora.qcamera3.quadra_cfa.activeArraySize";
     private static final String KEY_QCFA_SENSOR = "org.codeaurora.qcamera3.quadra_cfa.is_qcfa_sensor";
     private static final String KEY_QCFA_STREAM_CONFIGURATIONS = "org.codeaurora.qcamera3.quadra_cfa.availableStreamConfigurations";
+    private static final String KEY_XIAOMI_SCALER_AVAILABLE_SR_STREAM_CONFIGURATIONS = "xiaomi.scaler.availableSuperResolutionStreamConfigurations";
     public static final Key<Rect> QCFA_ACTIVE_ARRAY_SIZE = new Key(KEY_QCFA_ACTIVE_ARRAY_SIZE, Rect.class);
     public static final Key<StreamConfiguration[]> QCFA_STREAM_CONFIGURATIONS = new Key(KEY_QCFA_STREAM_CONFIGURATIONS, StreamConfiguration[].class);
     public static final Key<StreamConfiguration[]> SCALER_AVAILABLE_LIMIT_STREAM_CONFIGURATIONS = new Key(KEY_LIMIT_STREAM_CON, StreamConfiguration[].class);
     public static final Key<StreamConfiguration[]> SCALER_AVAILABLE_STREAM_CONFIGURATIONS = new Key(KEY_AVAILABLE_STREAM_CON, StreamConfiguration[].class);
     public static final Key<Boolean> VIDEO_BEAUTY = new Key(KEY_FEATURE_VIDEO_BEAUTY, Boolean.class);
+    public static final Key<StreamConfiguration[]> XIAOMI_SCALER_AVAILABLE_SR_STREAM_CONFIGURATIONS = new Key(KEY_XIAOMI_SCALER_AVAILABLE_SR_STREAM_CONFIGURATIONS, StreamConfiguration[].class);
 }

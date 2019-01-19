@@ -10,7 +10,6 @@ import com.ss.android.ugc.effectmanager.common.task.ExceptionResult;
 import com.ss.android.ugc.effectmanager.common.task.NormalTask;
 import com.ss.android.ugc.effectmanager.common.utils.EffectUtils;
 import com.ss.android.ugc.effectmanager.context.EffectContext;
-import com.ss.android.ugc.effectmanager.effect.model.BuildEffectChannelResponse;
 import com.ss.android.ugc.effectmanager.effect.model.Effect;
 import com.ss.android.ugc.effectmanager.effect.model.EffectCategoryModel;
 import com.ss.android.ugc.effectmanager.effect.model.EffectCategoryResponse;
@@ -49,7 +48,7 @@ public class FetchEffectChannelCacheTask extends NormalTask {
         if (effectChannelModel == null) {
             sendMessage(14, new EffectChannelTaskResult(new EffectChannelResponse(this.panel), new ExceptionResult((int) ErrorConstants.CODE_INVALID_EFFECT_CACHE)));
         } else if (effectChannelModel.checkValued()) {
-            sendMessage(14, new EffectChannelTaskResult(new BuildEffectChannelResponse(this.panel, this.mEffectContext.getEffectConfiguration().getEffectDir().getAbsolutePath(), true).buildChannelResponse(effectChannelModel), null));
+            sendMessage(14, new EffectChannelTaskResult(buildChannelResponse(effectChannelModel), null));
         } else {
             sendMessage(14, new EffectChannelTaskResult(new EffectChannelResponse(this.panel), new ExceptionResult((int) ErrorConstants.CODE_INVALID_EFFECT_CACHE)));
         }
@@ -60,7 +59,6 @@ public class FetchEffectChannelCacheTask extends NormalTask {
         effectChannelResponse.setVersion(effectChannelModel.getVersion());
         effectChannelResponse.setAllCategoryEffects(effectChannelModel.getEffects());
         List arrayList = new ArrayList();
-        effectChannelResponse.setCollections(effectChannelModel.getCollection());
         for (EffectCategoryModel effectCategoryModel : effectChannelModel.getCategory()) {
             EffectCategoryResponse effectCategoryResponse = new EffectCategoryResponse();
             effectCategoryModel.checkValued();

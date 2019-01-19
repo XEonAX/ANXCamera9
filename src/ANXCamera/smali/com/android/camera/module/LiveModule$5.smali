@@ -1,142 +1,130 @@
-.class synthetic Lcom/android/camera/module/LiveModule$5;
+.class Lcom/android/camera/module/LiveModule$5;
 .super Ljava/lang/Object;
 .source "LiveModule.java"
 
+# interfaces
+.implements Ljava/lang/Runnable;
+
 
 # annotations
-.annotation system Ldalvik/annotation/EnclosingClass;
-    value = Lcom/android/camera/module/LiveModule;
+.annotation system Ldalvik/annotation/EnclosingMethod;
+    value = Lcom/android/camera/module/LiveModule;->onNewUriArrived(Landroid/net/Uri;Ljava/lang/String;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x1008
+    accessFlags = 0x0
     name = null
 .end annotation
 
 
-# static fields
-.field static final synthetic $SwitchMap$com$ss$android$ttve$oauth$TEOAuthResult:[I
+# instance fields
+.field final synthetic this$0:Lcom/android/camera/module/LiveModule;
+
+.field final synthetic val$title:Ljava/lang/String;
+
+.field final synthetic val$uri:Landroid/net/Uri;
 
 
 # direct methods
-.method static constructor <clinit>()V
-    .locals 3
+.method constructor <init>(Lcom/android/camera/module/LiveModule;Ljava/lang/String;Landroid/net/Uri;)V
+    .locals 0
 
-    .line 210
-    invoke-static {}, Lcom/ss/android/ttve/oauth/TEOAuthResult;->values()[Lcom/ss/android/ttve/oauth/TEOAuthResult;
+    .line 1717
+    iput-object p1, p0, Lcom/android/camera/module/LiveModule$5;->this$0:Lcom/android/camera/module/LiveModule;
+
+    iput-object p2, p0, Lcom/android/camera/module/LiveModule$5;->val$title:Ljava/lang/String;
+
+    iput-object p3, p0, Lcom/android/camera/module/LiveModule$5;->val$uri:Landroid/net/Uri;
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public run()V
+    .locals 5
+
+    .line 1721
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    array-length v0, v0
+    const/16 v1, 0xc4
 
-    new-array v0, v0, [I
+    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
-    sput-object v0, Lcom/android/camera/module/LiveModule$5;->$SwitchMap$com$ss$android$ttve$oauth$TEOAuthResult:[I
+    move-result-object v0
 
-    :try_start_0
-    sget-object v0, Lcom/android/camera/module/LiveModule$5;->$SwitchMap$com$ss$android$ttve$oauth$TEOAuthResult:[I
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$FullScreenProtocol;
 
-    sget-object v1, Lcom/ss/android/ttve/oauth/TEOAuthResult;->OK:Lcom/ss/android/ttve/oauth/TEOAuthResult;
+    .line 1722
+    if-nez v0, :cond_0
 
-    invoke-virtual {v1}, Lcom/ss/android/ttve/oauth/TEOAuthResult;->ordinal()I
+    .line 1723
+    return-void
 
-    move-result v1
+    .line 1725
+    :cond_0
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$FullScreenProtocol;->getSaveContentValues()Landroid/content/ContentValues;
 
-    const/4 v2, 0x1
+    move-result-object v1
 
-    aput v2, v0, v1
-    :try_end_0
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_0 .. :try_end_0} :catch_0
+    .line 1726
+    const-string v2, "title"
 
-    goto :goto_0
+    invoke-virtual {v1, v2}, Landroid/content/ContentValues;->getAsString(Ljava/lang/String;)Ljava/lang/String;
 
-    :catch_0
-    move-exception v0
+    move-result-object v1
 
-    :goto_0
-    :try_start_1
-    sget-object v0, Lcom/android/camera/module/LiveModule$5;->$SwitchMap$com$ss$android$ttve$oauth$TEOAuthResult:[I
+    .line 1727
+    invoke-static {}, Lcom/android/camera/module/LiveModule;->access$500()Ljava/lang/String;
 
-    sget-object v1, Lcom/ss/android/ttve/oauth/TEOAuthResult;->TBD:Lcom/ss/android/ttve/oauth/TEOAuthResult;
+    move-result-object v2
 
-    invoke-virtual {v1}, Lcom/ss/android/ttve/oauth/TEOAuthResult;->ordinal()I
+    new-instance v3, Ljava/lang/StringBuilder;
 
-    move-result v1
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    const/4 v2, 0x2
+    const-string v4, "newUri: "
 
-    aput v2, v0, v1
-    :try_end_1
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_1 .. :try_end_1} :catch_1
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    goto :goto_1
+    iget-object v4, p0, Lcom/android/camera/module/LiveModule$5;->val$title:Ljava/lang/String;
 
-    :catch_1
-    move-exception v0
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    :goto_1
-    :try_start_2
-    sget-object v0, Lcom/android/camera/module/LiveModule$5;->$SwitchMap$com$ss$android$ttve$oauth$TEOAuthResult:[I
+    const-string v4, " | "
 
-    sget-object v1, Lcom/ss/android/ttve/oauth/TEOAuthResult;->FAIL:Lcom/ss/android/ttve/oauth/TEOAuthResult;
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v1}, Lcom/ss/android/ttve/oauth/TEOAuthResult;->ordinal()I
+    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result v1
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    const/4 v2, 0x3
+    move-result-object v3
 
-    aput v2, v0, v1
-    :try_end_2
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_2 .. :try_end_2} :catch_2
+    invoke-static {v2, v3}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_2
+    .line 1728
+    iget-object v2, p0, Lcom/android/camera/module/LiveModule$5;->val$title:Ljava/lang/String;
 
-    :catch_2
-    move-exception v0
-
-    :goto_2
-    :try_start_3
-    sget-object v0, Lcom/android/camera/module/LiveModule$5;->$SwitchMap$com$ss$android$ttve$oauth$TEOAuthResult:[I
-
-    sget-object v1, Lcom/ss/android/ttve/oauth/TEOAuthResult;->EXPIRED:Lcom/ss/android/ttve/oauth/TEOAuthResult;
-
-    invoke-virtual {v1}, Lcom/ss/android/ttve/oauth/TEOAuthResult;->ordinal()I
+    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
-    const/4 v2, 0x4
+    if-nez v1, :cond_1
 
-    aput v2, v0, v1
-    :try_end_3
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_3 .. :try_end_3} :catch_3
+    .line 1729
+    return-void
 
-    goto :goto_3
+    .line 1732
+    :cond_1
+    iget-object v1, p0, Lcom/android/camera/module/LiveModule$5;->val$uri:Landroid/net/Uri;
 
-    :catch_3
-    move-exception v0
+    invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$FullScreenProtocol;->onLiveSaveToLocalFinished(Landroid/net/Uri;)V
 
-    :goto_3
-    :try_start_4
-    sget-object v0, Lcom/android/camera/module/LiveModule$5;->$SwitchMap$com$ss$android$ttve$oauth$TEOAuthResult:[I
-
-    sget-object v1, Lcom/ss/android/ttve/oauth/TEOAuthResult;->NOT_MATCH:Lcom/ss/android/ttve/oauth/TEOAuthResult;
-
-    invoke-virtual {v1}, Lcom/ss/android/ttve/oauth/TEOAuthResult;->ordinal()I
-
-    move-result v1
-
-    const/4 v2, 0x5
-
-    aput v2, v0, v1
-    :try_end_4
-    .catch Ljava/lang/NoSuchFieldError; {:try_start_4 .. :try_end_4} :catch_4
-
-    goto :goto_4
-
-    :catch_4
-    move-exception v0
-
-    :goto_4
+    .line 1733
     return-void
 .end method

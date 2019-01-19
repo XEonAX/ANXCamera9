@@ -50,6 +50,6 @@ public abstract class MiCamera2Shot<T> {
     }
 
     protected boolean isInQcfaMode() {
-        return this.mMiCamera.getCapabilities().isSupportedQcfa() && this.mMiCamera.getCapabilities().getOperatingMode() == 32775;
+        return this.mMiCamera.getCapabilities().isSupportedQcfa() && (this.mMiCamera.getCapabilities().getOperatingMode() == 32775 || this.mMiCamera.getCapabilities().getOperatingMode() == CameraCapabilities.SESSION_OPERATION_MODE_PROFESSIONAL_ULTRA_PIXEL_PHOTOGRAPHY);
     }
 }

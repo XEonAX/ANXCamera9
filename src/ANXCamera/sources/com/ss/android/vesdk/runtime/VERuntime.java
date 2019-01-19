@@ -5,11 +5,14 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import com.bef.effectsdk.EffectSDKUtils;
+import com.ss.android.ttve.common.TEDefine;
 import com.ss.android.ttve.monitor.IMonitor;
+import com.ss.android.ttve.monitor.MonitorUtils;
 import com.ss.android.ttve.monitor.TEMonitor;
 import com.ss.android.vesdk.VEAB;
 import com.ss.android.vesdk.VEListener.VEMonitorListener;
 import com.ss.android.vesdk.VEResult;
+import com.ss.android.vesdk.keyvaluepair.VEKeyValue;
 import com.ss.android.vesdk.runtime.cloudconfig.DeviceInfoDetector;
 import com.ss.android.vesdk.runtime.cloudconfig.PerformanceConfig;
 import com.ss.android.vesdk.runtime.persistence.VESP;
@@ -22,6 +25,7 @@ public class VERuntime {
     private VEAB mAB;
     Context mContext;
     private VEEnv mEnv;
+    private WeakReference<VEExternalMonitorListener> mExternalMonitorListenerRef;
     private boolean mIsInited;
     private IMonitor mMoniter;
     private VEResManager mResManager;
@@ -45,8 +49,11 @@ public class VERuntime {
         this.mIsInited = false;
         this.mMoniter = new IMonitor() {
             public void monitorLog(String str, JSONObject jSONObject) {
-                if (VERuntime.this.mVEMonitorListener != null && VERuntime.this.mVEMonitorListener.get() != null) {
-                    ((VEMonitorListener) VERuntime.this.mVEMonitorListener.get()).monitorLog(str, jSONObject);
+                if (VERuntime.this.mVEMonitorListener != null) {
+                    VEMonitorListener vEMonitorListener = (VEMonitorListener) VERuntime.this.mVEMonitorListener.get();
+                    if (vEMonitorListener != null) {
+                        vEMonitorListener.monitorLog(str, jSONObject);
+                    }
                 }
             }
         };
@@ -105,6 +112,10 @@ public class VERuntime {
                     }
                 }
             }.start();
+            VEKeyValue vEKeyValue = new VEKeyValue();
+            vEKeyValue.add("iesve_vesdk_init_finish_result", "success");
+            vEKeyValue.add("iesve_vesdk_init_finish_reason", TEDefine.FACE_BEAUTY_NULL);
+            MonitorUtils.monitorStatistics("iesve_vesdk_init_finish", 1, vEKeyValue);
         }
     }
 
@@ -138,6 +149,21 @@ public class VERuntime {
     public void registerMonitor(VEMonitorListener vEMonitorListener) {
         this.mVEMonitorListener = new WeakReference(vEMonitorListener);
         TEMonitor.register(this.mMoniter);
+    }
+
+    public void setExternalMonitorListener(VEExternalMonitorListener vEExternalMonitorListener) {
+        this.mExternalMonitorListenerRef = new WeakReference(vEExternalMonitorListener);
+    }
+
+    public boolean notifyExternalMonitor(String str, int i, String str2) {
+        if (this.mExternalMonitorListenerRef != null) {
+            VEExternalMonitorListener vEExternalMonitorListener = (VEExternalMonitorListener) this.mExternalMonitorListenerRef.get();
+            if (vEExternalMonitorListener != null) {
+                vEExternalMonitorListener.onMonitorInvoked(str, i, str2);
+                return true;
+            }
+        }
+        return false;
     }
 
     public int updateEffectModelFiles() {

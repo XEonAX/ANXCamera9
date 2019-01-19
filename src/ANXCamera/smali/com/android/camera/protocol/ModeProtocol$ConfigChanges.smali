@@ -111,6 +111,9 @@
 .method public abstract reCheckLighting()V
 .end method
 
+.method public abstract reCheckLiveShot()V
+.end method
+
 .method public abstract reCheckMutexConfigs(I)V
 .end method
 

@@ -1,11 +1,11 @@
 package com.android.camera.network.live;
 
+import bytedance.framwork.core.sdkmonitor.MonitorToutiaoConstants;
 import com.android.camera.CameraSettings;
 import com.android.camera.Util;
 import com.android.camera.fragment.music.LiveMusicInfo;
 import com.android.camera.log.Log;
 import com.android.camera.network.net.base.ErrorCode;
-import com.ss.android.ugc.effectmanager.EffectConfiguration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -26,7 +26,7 @@ public class TTLiveMusicResourceRequest extends BaseJsonRequest<List<LiveMusicIn
         stringBuilder.append(Long.toString(currentTimeMillis));
         stringBuilder.append(APP_KEY);
         String md5 = Util.md5(stringBuilder.toString());
-        addParam(EffectConfiguration.KEY_APP_ID, "2");
+        addParam(MonitorToutiaoConstants.KEY_AID, "2");
         addParam("randnum", Integer.toString(nextInt));
         addParam("time", Long.toString(currentTimeMillis));
         addParam("generate", md5);

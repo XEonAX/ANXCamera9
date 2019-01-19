@@ -470,11 +470,13 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
     protected void onDestroy() {
         if (this.mCameraScreenNail != null) {
             final Bitmap lastFrameGaussianBitmap = this.mCameraScreenNail.getLastFrameGaussianBitmap();
-            Schedulers.io().scheduleDirect(new Runnable() {
-                public void run() {
-                    Util.saveLastFrameGaussian2File(lastFrameGaussianBitmap);
-                }
-            });
+            if (lastFrameGaussianBitmap != null) {
+                Schedulers.io().scheduleDirect(new Runnable() {
+                    public void run() {
+                        Util.saveLastFrameGaussian2File(lastFrameGaussianBitmap);
+                    }
+                });
+            }
         }
         PopupManager.removeInstance(this);
         this.mApplication.removeActivity(this);
@@ -675,8 +677,8 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
                         Intent intent = new Intent(Util.REVIEW_ACTION, uri);
                         intent.setPackage(Util.REVIEW_ACTIVITY_PACKAGE);
                         intent.putExtra(Util.KEY_REVIEW_FROM_MIUICAMERA, true);
-                        if (b.fX()) {
-                            if (!b.hH()) {
+                        if (b.gi()) {
+                            if (!b.hQ()) {
                                 intent.putExtra(Util.KEY_CAMERA_BRIGHTNESS, this.mCameraBrightness.getCurrentBrightness());
                             } else if (this.mCameraBrightness.getCurrentBrightnessManual() != -1) {
                                 intent.putExtra(Util.KEY_CAMERA_BRIGHTNESS_MANUAL, this.mCameraBrightness.getCurrentBrightnessManual());

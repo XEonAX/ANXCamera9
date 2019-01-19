@@ -339,8 +339,8 @@ public class FragmentPanorama extends BaseFragment implements OnClickListener, R
         this.mIndicator.setVisibility(4);
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
         if (i != 166 && this.mPanoramaViewRoot.getVisibility() == 0) {
             if (list == null) {
                 AlphaOutOnSubscribe.directSetResult(this.mPanoramaViewRoot);

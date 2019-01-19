@@ -415,7 +415,7 @@
 
     new-instance v8, Lcom/android/camera2/CameraCapabilities;
 
-    invoke-direct {v8, v5}, Lcom/android/camera2/CameraCapabilities;-><init>(Landroid/hardware/camera2/CameraCharacteristics;)V
+    invoke-direct {v8, v5, v6}, Lcom/android/camera2/CameraCapabilities;-><init>(Landroid/hardware/camera2/CameraCharacteristics;I)V
 
     invoke-virtual {v7, v6, v8}, Landroid/util/SparseArray;->put(ILjava/lang/Object;)V
 
@@ -424,7 +424,7 @@
 
     move-result-object v7
 
-    invoke-virtual {v7}, Lcom/mi/config/a;->fw()Z
+    invoke-virtual {v7}, Lcom/mi/config/a;->fx()Z
 
     move-result v7
 
@@ -838,7 +838,7 @@
 
     .line 401
     :pswitch_3
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isMeunUltraPixelPhotographyOn()Z
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isRearMenuUltraPixelPhotographyOn()Z
 
     move-result v2
 

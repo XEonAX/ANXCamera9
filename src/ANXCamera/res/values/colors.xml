@@ -73,7 +73,7 @@
     <color name="popup_background">#d1282828</color>
     <color name="effect_divider_color">#4dffffff</color>
     <color name="halfscreen_background">#b3000000</color>
-    <color name="fullscreen_background">#4d000000</color>
+    <color name="fullscreen_background">#80000000</color>
     <color name="preview_cover_capture">#b3000000</color>
     <color name="lens_dirty_detected_background_color">#b3000000</color>
     <color name="portrait_hint_text_color">#b3000000</color>
@@ -108,8 +108,12 @@
     <color name="bokeh_popup_line_color_selected">#ff00a8ff</color>
     <color name="bokeh_popup_line_default_circle">#66ffffff</color>
     <color name="live_sticker_download_bg">#c0ffffff</color>
-    <color name="square_module_bg_popup_indicator">#993e3e3e</color>
+    <color name="live_speed_item_text_color">#99ffffff</color>
+    <color name="square_module_bg_popup_indicator">#663e3e3e</color>
     <color name="disable_status">#66ffffff</color>
+    <color name="live_share_divider_line">#3c000000</color>
+    <color name="live_share_cancel_text">#b2000000</color>
+    <color name="live_share_name_text">#99000000</color>
     <color name="front_camera_hint_popup_background_color">#d9000000</color>
     <color name="front_camera_hint_text_rotate_color">#ffffffff</color>
     <color name="front_camera_hint_text_place_color">#99ffffff</color>

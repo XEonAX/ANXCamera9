@@ -4,9 +4,11 @@
 
 
 # static fields
+.field public static final AAR_ABI:Ljava/lang/String; = "arm64-v8a"
+
 .field public static final AAR_POM_ARTIFACT_ID:Ljava/lang/String; = "vesdk"
 
-.field public static final AAR_VERSION_NAME:Ljava/lang/String; = "2.0.4.23_xiaomi_20181130185104_31536f2a4"
+.field public static final AAR_VERSION_NAME:Ljava/lang/String; = "2.3.0.49_xiaomi_20190108192644_1468c0775_v8a"
 
 .field public static final APPLICATION_ID:Ljava/lang/String; = "com.ss.android.ttve"
 
@@ -14,7 +16,7 @@
 
 .field public static final DEBUG:Z = false
 
-.field public static final FLAVOR:Ljava/lang/String; = ""
+.field public static final FLAVOR:Ljava/lang/String; = "common"
 
 .field public static final USE_CLOUD_CONFIG:Ljava/lang/String; = "off"
 

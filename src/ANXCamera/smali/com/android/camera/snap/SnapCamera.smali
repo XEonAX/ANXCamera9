@@ -745,7 +745,9 @@
     .line 262
     new-instance v2, Lcom/android/camera2/CameraCapabilities;
 
-    invoke-direct {v2, v1}, Lcom/android/camera2/CameraCapabilities;-><init>(Landroid/hardware/camera2/CameraCharacteristics;)V
+    iget v3, p0, Lcom/android/camera/snap/SnapCamera;->mCameraId:I
+
+    invoke-direct {v2, v1, v3}, Lcom/android/camera2/CameraCapabilities;-><init>(Landroid/hardware/camera2/CameraCharacteristics;I)V
 
     iput-object v2, p0, Lcom/android/camera/snap/SnapCamera;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
     :try_end_0
@@ -763,7 +765,9 @@
     if-eqz v1, :cond_2
 
     .line 269
-    invoke-static {}, Lcom/android/camera/CameraSettings;->getPreferVideoQuality()I
+    const/16 v0, 0xa2
+
+    invoke-static {v0}, Lcom/android/camera/CameraSettings;->getPreferVideoQuality(I)I
 
     move-result v0
 
@@ -1023,7 +1027,7 @@
     iget-object v1, p0, Lcom/android/camera/snap/SnapCamera;->mContext:Landroid/content/Context;
 
     .line 299
-    invoke-static {}, Lcom/mi/config/b;->hI()Z
+    invoke-static {}, Lcom/mi/config/b;->hR()Z
 
     move-result v2
 
@@ -1579,7 +1583,7 @@
     .line 510
     iget-object v3, p0, Lcom/android/camera/snap/SnapCamera;->mContext:Landroid/content/Context;
 
-    const v4, 0x7f0b00ca
+    const v4, 0x7f0900c9
 
     invoke-virtual {v3, v4}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
@@ -1799,7 +1803,7 @@
 
     move-result-object v4
 
-    invoke-virtual {v4}, Lcom/mi/config/a;->fj()Z
+    invoke-virtual {v4}, Lcom/mi/config/a;->fk()Z
 
     move-result v4
 

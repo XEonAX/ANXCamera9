@@ -64,7 +64,7 @@ public class MiuiCameraSound implements Consumer<Integer> {
         int i = 1;
         builder.setMaxStreams(1);
         AudioAttributes.Builder builder2 = new AudioAttributes.Builder();
-        if (!b.fM()) {
+        if (!b.fW()) {
             i = 7;
         }
         builder.setAudioAttributes(builder2.setInternalLegacyStreamType(i).build());
@@ -207,7 +207,7 @@ public class MiuiCameraSound implements Consumer<Integer> {
     }
 
     private void playSound(int i, int i2) {
-        if (!b.fM() || this.mAudioManager.getRingerMode() == 2) {
+        if (!b.fW() || this.mAudioManager.getRingerMode() == 2) {
             play(i, i2);
         }
     }

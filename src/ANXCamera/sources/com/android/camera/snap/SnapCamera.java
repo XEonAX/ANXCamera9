@@ -264,18 +264,18 @@ public class SnapCamera implements OnErrorListener, OnInfoListener {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:14:0x00dc A:{ExcHandler: android.hardware.camera2.CameraAccessException (r0_10 'e' java.lang.Throwable), Splitter: B:4:0x0022} */
-    /* JADX WARNING: Missing block: B:14:0x00dc, code:
+    /* JADX WARNING: Removed duplicated region for block: B:14:0x00e0 A:{Splitter: B:4:0x0022, ExcHandler: android.hardware.camera2.CameraAccessException (r0_11 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Missing block: B:14:0x00e0, code:
             r0 = move-exception;
      */
-    /* JADX WARNING: Missing block: B:15:0x00dd, code:
+    /* JADX WARNING: Missing block: B:15:0x00e1, code:
             r1 = TAG;
             r2 = new java.lang.StringBuilder();
             r2.append("initCamera: ");
             r2.append(r0.getMessage());
             com.android.camera.log.Log.e(r1, r2.toString(), r0);
      */
-    /* JADX WARNING: Missing block: B:16:0x00f7, code:
+    /* JADX WARNING: Missing block: B:16:0x00fb, code:
             return;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
@@ -288,9 +288,9 @@ public class SnapCamera implements OnErrorListener, OnInfoListener {
         try {
             String valueOf = String.valueOf(this.mCameraId);
             cameraManager.openCamera(valueOf, this.mCameraStateCallback, this.mMainHandler);
-            this.mCameraCapabilities = new CameraCapabilities(cameraManager.getCameraCharacteristics(valueOf));
+            this.mCameraCapabilities = new CameraCapabilities(cameraManager.getCameraCharacteristics(valueOf), this.mCameraId);
             if (isCamcorder()) {
-                int preferVideoQuality = CameraSettings.getPreferVideoQuality();
+                int preferVideoQuality = CameraSettings.getPreferVideoQuality(162);
                 if (CamcorderProfile.hasProfile(this.mCameraId, preferVideoQuality)) {
                     this.mProfile = CamcorderProfile.get(this.mCameraId, preferVideoQuality);
                 } else {
@@ -317,7 +317,7 @@ public class SnapCamera implements OnErrorListener, OnInfoListener {
     }
 
     private void initOrientationListener() {
-        this.mOrientationListener = new OrientationEventListener(this.mContext, b.hI() ? 2 : 3) {
+        this.mOrientationListener = new OrientationEventListener(this.mContext, b.hR() ? 2 : 3) {
             public void onOrientationChanged(int i) {
                 SnapCamera.this.mOrientation = Util.roundOrientation(i, SnapCamera.this.mOrientation);
             }
@@ -529,7 +529,7 @@ public class SnapCamera implements OnErrorListener, OnInfoListener {
             this.mContentValues.put("longitude", Double.valueOf(currentLocation.getLongitude()));
         }
         long availableSpace = Storage.getAvailableSpace() - Storage.LOW_STORAGE_THRESHOLD;
-        if (VideoModule.VIDEO_MAX_SINGLE_FILE_SIZE < availableSpace && DataRepository.dataItemFeature().fj()) {
+        if (VideoModule.VIDEO_MAX_SINGLE_FILE_SIZE < availableSpace && DataRepository.dataItemFeature().fk()) {
             stringBuilder2 = TAG;
             StringBuilder stringBuilder6 = new StringBuilder();
             stringBuilder6.append("need reduce , now maxFileSize = ");

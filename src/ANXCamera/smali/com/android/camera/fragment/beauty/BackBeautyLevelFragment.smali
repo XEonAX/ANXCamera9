@@ -31,7 +31,7 @@
 
     move-result-object v0
 
-    const v1, 0x7f0e0028
+    const v1, 0x7f0e002a
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getStringArray(I)[Ljava/lang/String;
 
@@ -45,7 +45,7 @@
     .line 20
     new-instance v2, Lcom/android/camera/fragment/beauty/SingleCheckAdapter$LevelItem;
 
-    const v3, 0x7f020041
+    const v3, 0x7f020042
 
     invoke-direct {v2, v3}, Lcom/android/camera/fragment/beauty/SingleCheckAdapter$LevelItem;-><init>(I)V
 

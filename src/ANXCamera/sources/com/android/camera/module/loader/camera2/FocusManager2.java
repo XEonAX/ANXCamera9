@@ -13,6 +13,7 @@ import com.android.camera.FocusManagerAbstract;
 import com.android.camera.Util;
 import com.android.camera.constant.AutoFocus;
 import com.android.camera.log.Log;
+import com.android.camera.module.loader.FunctionParseBeautyBodySlimCount;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.MainContentProtocol;
 import com.android.camera2.CameraCapabilities;
@@ -236,7 +237,7 @@ public class FocusManager2 extends FocusManagerAbstract {
                     } else {
                         focusFaceArea();
                     }
-                } else if (!(!z || this.mCameraFocusArea == null || b.gf())) {
+                } else if (!(!z || this.mCameraFocusArea == null || b.go())) {
                     this.mKeepFocusUIState = true;
                     startFocus(this.mLastFocusFrom);
                     this.mKeepFocusUIState = false;
@@ -244,7 +245,7 @@ public class FocusManager2 extends FocusManagerAbstract {
                 z2 = true;
             }
             if (!z2 && z && equals) {
-                if (!b.gU()) {
+                if (!b.hd()) {
                     requestAutoFocus();
                 } else if (this.mState == 1) {
                     cancelFocus();
@@ -527,7 +528,7 @@ public class FocusManager2 extends FocusManagerAbstract {
 
     private boolean isFocusValid(int i) {
         long currentTimeMillis = System.currentTimeMillis();
-        long j = (this.mLastFocusFrom == 3 || this.mLastFocusFrom == 4) ? 5000 : 4000;
+        long j = (this.mLastFocusFrom == 3 || this.mLastFocusFrom == 4) ? 5000 : FunctionParseBeautyBodySlimCount.TIP_TIME;
         if (i >= 3 || i >= this.mLastFocusFrom || Util.isTimeout(currentTimeMillis, this.mLatestFocusTime, j)) {
             this.mLatestFocusTime = System.currentTimeMillis();
             return true;
@@ -580,7 +581,7 @@ public class FocusManager2 extends FocusManagerAbstract {
 
     private void capture() {
         if (this.mListener.onWaitingFocusFinished()) {
-            if (b.gf()) {
+            if (b.go()) {
                 setFocusState(0);
                 this.mCancelAutoFocusIfMove = false;
             }
@@ -699,7 +700,7 @@ public class FocusManager2 extends FocusManagerAbstract {
     }
 
     public void resetAfterCapture(boolean z) {
-        if (b.gf()) {
+        if (b.go()) {
             resetTouchFocus(7);
         } else if (!z) {
         } else {

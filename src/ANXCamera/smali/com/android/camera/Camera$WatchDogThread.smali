@@ -28,7 +28,7 @@
 .method private constructor <init>(Lcom/android/camera/Camera;)V
     .locals 0
 
-    .line 1260
+    .line 1265
     iput-object p1, p0, Lcom/android/camera/Camera$WatchDogThread;->this$0:Lcom/android/camera/Camera;
 
     invoke-direct {p0}, Ljava/lang/Thread;-><init>()V
@@ -39,7 +39,7 @@
 .method synthetic constructor <init>(Lcom/android/camera/Camera;Lcom/android/camera/Camera$1;)V
     .locals 0
 
-    .line 1260
+    .line 1265
     invoke-direct {p0, p1}, Lcom/android/camera/Camera$WatchDogThread;-><init>(Lcom/android/camera/Camera;)V
 
     return-void
@@ -50,12 +50,12 @@
 .method public run()V
     .locals 4
 
-    .line 1266
+    .line 1271
     const-string v0, "ANR-WatchDog"
 
     invoke-virtual {p0, v0}, Lcom/android/camera/Camera$WatchDogThread;->setName(Ljava/lang/String;)V
 
-    .line 1269
+    .line 1274
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/Camera$WatchDogThread;->isInterrupted()Z
 
@@ -63,7 +63,7 @@
 
     if-nez v0, :cond_1
 
-    .line 1270
+    .line 1275
     const-string v0, "WatchDogThread"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -90,14 +90,14 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1271
+    .line 1276
     iget-object v0, p0, Lcom/android/camera/Camera$WatchDogThread;->this$0:Lcom/android/camera/Camera;
 
     invoke-static {v0}, Lcom/android/camera/Camera;->access$000(Lcom/android/camera/Camera;)I
 
     move-result v0
 
-    .line 1272
+    .line 1277
     iget-object v1, p0, Lcom/android/camera/Camera$WatchDogThread;->this$0:Lcom/android/camera/Camera;
 
     iget-object v1, v1, Lcom/android/camera/Camera;->mHandler:Landroid/os/Handler;
@@ -110,7 +110,7 @@
 
     invoke-virtual {v1, v2}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
-    .line 1274
+    .line 1279
     const-wide/16 v1, 0x1388
 
     :try_start_0
@@ -118,10 +118,10 @@
     :try_end_0
     .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 1278
+    .line 1283
     nop
 
-    .line 1281
+    .line 1286
     iget-object v1, p0, Lcom/android/camera/Camera$WatchDogThread;->this$0:Lcom/android/camera/Camera;
 
     invoke-static {v1}, Lcom/android/camera/Camera;->access$000(Lcom/android/camera/Camera;)I
@@ -130,33 +130,33 @@
 
     if-ne v1, v0, :cond_0
 
-    .line 1282
+    .line 1287
     iget-object v0, p0, Lcom/android/camera/Camera$WatchDogThread;->this$0:Lcom/android/camera/Camera;
 
     const/4 v1, 0x0
 
     invoke-static {v0, v1}, Lcom/android/camera/CameraSettings;->setEdgeMode(Landroid/content/Context;Z)V
 
-    .line 1283
+    .line 1288
     iget-object v0, p0, Lcom/android/camera/Camera$WatchDogThread;->this$0:Lcom/android/camera/Camera;
 
     const/4 v2, -0x1
 
     invoke-static {v0, v2}, Lcom/android/camera/Camera;->access$1100(Lcom/android/camera/Camera;I)V
 
-    .line 1284
+    .line 1289
     iget-object v0, p0, Lcom/android/camera/Camera$WatchDogThread;->this$0:Lcom/android/camera/Camera;
 
     invoke-static {v0, v1}, Lcom/android/camera/Camera;->access$1200(Lcom/android/camera/Camera;Z)V
 
-    .line 1285
+    .line 1290
     return-void
 
-    .line 1275
+    .line 1280
     :catch_0
     move-exception v0
 
-    .line 1276
+    .line 1281
     const-string v0, "WatchDogThread"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -183,10 +183,10 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1277
+    .line 1282
     return-void
 
-    .line 1288
+    .line 1293
     :cond_1
     return-void
 .end method

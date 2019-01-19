@@ -1,7 +1,5 @@
 package com.android.camera;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.android.camera.sensitive.SensitiveFilter;
 import miui.R;
+import miui.app.ActionBar;
+import miui.app.Activity;
 
 public class UserDefineWatermarkActivity extends Activity implements TextWatcher {
     private static final int MSG_BG_FILTER_WORDS = 1;
@@ -74,6 +74,9 @@ public class UserDefineWatermarkActivity extends Activity implements TextWatcher
     protected void onCreate(@Nullable Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.fragment_userdefine_watermark);
+        if (getIntent().getBooleanExtra("StartActivityWhenLocked", false)) {
+            getWindow().addFlags(524288);
+        }
         this.mEtUserDefineWords = (EditText) findViewById(R.id.et_user_define_words);
         this.mEtUserDefineWords.addTextChangedListener(this);
         this.mEtUserDefineWords.setTransformationMethod(new AllCapTransformationMethod(this, null));

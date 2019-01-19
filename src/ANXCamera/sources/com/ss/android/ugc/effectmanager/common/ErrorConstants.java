@@ -3,7 +3,6 @@ package com.ss.android.ugc.effectmanager.common;
 import com.android.camera.network.net.base.Method;
 
 public class ErrorConstants {
-    public static final int APP_NEED_UPGRADE = 2006;
     public static final int CODE_CANCEL_DOWNLOAD = 10001;
     public static final int CODE_DOWNLOAD_ERROR = 10002;
     public static final int CODE_EFFECT_NULL = 10003;
@@ -19,15 +18,17 @@ public class ErrorConstants {
     public static final int CODE_SDK_ERROR = 10005;
     public static final int CODE_UNKNOW = 1;
     public static final int CODE_UNZIP_FAIL = 10013;
+    public static final int CODE_URL_NOT_EXIST = 10015;
     public static final int EFFECT_NOT_FOUND = 2004;
     public static final int EFFECT_NOT_IN_WHITE_LIST = 2005;
     public static final int EFFECT_NOT_SUPPORT = 2003;
     public static final int EFFECT_UNAVAILABLE = 2002;
     public static final String EXCEPTION_CANCEL_DOWNLOAD = "Cancel download";
     public static final String EXCEPTION_DOWNLOAD_ERROR = "Download error";
+    public static final String EXCEPTION_DOWNLOAD_URL_ERROR = "File url is empty";
     public static final String EXCEPTION_EFFECT_NULL = "Sticker is null";
     public static final String EXCEPTION_INVALID_EFFECT_CACHE = "Invalid effect list cache !!!";
-    public static final String EXCEPTION_JSON_CONVERT = "Json convert fail";
+    public static final String EXCEPTION_JSON_CONVERT = "Json convert failse";
     public static final String EXCEPTION_MD5_ERROR = "MD5 error";
     public static final String EXCEPTION_NO_DOWNLOADED_EFFECTS = "No Downloaded Effects";
     public static final String EXCEPTION_NO_NETWORK = "network unavailable";
@@ -84,8 +85,6 @@ public class ErrorConstants {
                                 return "当前特效id不存在";
                             case EFFECT_NOT_IN_WHITE_LIST /*2005*/:
                                 return "不在白名单";
-                            case APP_NEED_UPGRADE /*2006*/:
-                                return "需要更新app";
                             default:
                                 switch (i) {
                                     case CODE_CANCEL_DOWNLOAD /*10001*/:

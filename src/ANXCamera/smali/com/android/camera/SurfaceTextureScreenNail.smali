@@ -115,7 +115,7 @@
     .locals 3
 
     .line 45
-    invoke-static {}, Lcom/mi/config/b;->ga()Z
+    invoke-static {}, Lcom/mi/config/b;->gl()Z
 
     move-result v0
 
@@ -136,7 +136,7 @@
     sput v0, Lcom/android/camera/SurfaceTextureScreenNail;->MOVIE_SOLID_CROPPED_X:F
 
     .line 46
-    invoke-static {}, Lcom/mi/config/b;->ga()Z
+    invoke-static {}, Lcom/mi/config/b;->gl()Z
 
     move-result v0
 
@@ -902,7 +902,7 @@
     invoke-virtual {v0, v1, v2}, Lcom/android/gallery3d/ui/ExtTexture;->setSize(II)V
 
     .line 129
-    invoke-static {}, Lcom/mi/config/b;->gM()Z
+    invoke-static {}, Lcom/mi/config/b;->gV()Z
 
     move-result v0
 
@@ -994,7 +994,7 @@
     if-lt v0, v1, :cond_3
 
     .line 144
-    invoke-static {}, Lcom/mi/config/b;->gM()Z
+    invoke-static {}, Lcom/mi/config/b;->gV()Z
 
     move-result v0
 
@@ -1285,7 +1285,7 @@
 
     if-eqz v0, :cond_2
 
-    invoke-static {}, Lcom/mi/config/b;->fS()Z
+    invoke-static {}, Lcom/mi/config/b;->gd()Z
 
     move-result v0
 
@@ -1356,7 +1356,7 @@
 
     .line 416
     :cond_0
-    invoke-static {}, Lcom/mi/config/b;->gM()Z
+    invoke-static {}, Lcom/mi/config/b;->gV()Z
 
     move-result v0
 
@@ -1802,7 +1802,7 @@
     .locals 1
 
     .line 444
-    invoke-static {}, Lcom/mi/config/b;->fI()Z
+    invoke-static {}, Lcom/mi/config/b;->fS()Z
 
     move-result v0
 

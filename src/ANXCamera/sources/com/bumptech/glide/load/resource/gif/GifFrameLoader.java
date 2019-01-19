@@ -28,38 +28,38 @@ class GifFrameLoader {
     private final Handler handler;
     private final d i;
     private boolean isRunning;
-    private final com.bumptech.glide.b.a lJ;
+    private final com.bumptech.glide.b.a lI;
+    private boolean lJ;
     private boolean lK;
-    private boolean lL;
-    private h<Bitmap> lM;
-    private DelayTarget lN;
-    private boolean lO;
-    private DelayTarget lP;
-    private Bitmap lQ;
-    private DelayTarget lR;
+    private h<Bitmap> lL;
+    private DelayTarget lM;
+    private boolean lN;
+    private DelayTarget lO;
+    private Bitmap lP;
+    private DelayTarget lQ;
     @Nullable
-    private OnEveryFrameListener lS;
+    private OnEveryFrameListener lR;
 
     @VisibleForTesting
     static class DelayTarget extends l<Bitmap> {
         private final Handler handler;
         final int index;
-        private final long lT;
-        private Bitmap lU;
+        private final long lS;
+        private Bitmap lT;
 
         DelayTarget(Handler handler, int i, long j) {
             this.handler = handler;
             this.index = i;
-            this.lT = j;
+            this.lS = j;
         }
 
         Bitmap cO() {
-            return this.lU;
+            return this.lT;
         }
 
         public void a(@NonNull Bitmap bitmap, @Nullable f<? super Bitmap> fVar) {
-            this.lU = bitmap;
-            this.handler.sendMessageAtTime(this.handler.obtainMessage(1, this), this.lT);
+            this.lT = bitmap;
+            this.handler.sendMessageAtTime(this.handler.obtainMessage(1, this), this.lS);
         }
     }
 
@@ -73,8 +73,8 @@ class GifFrameLoader {
     }
 
     private class b implements Callback {
-        static final int lV = 1;
-        static final int lW = 2;
+        static final int lU = 1;
+        static final int lV = 2;
 
         b() {
         }
@@ -103,15 +103,15 @@ class GifFrameLoader {
         }
         this.i = dVar;
         this.handler = handler;
-        this.lM = hVar;
-        this.lJ = aVar;
+        this.lL = hVar;
+        this.lI = aVar;
         a(iVar2, bitmap);
     }
 
     void a(com.bumptech.glide.load.i<Bitmap> iVar, Bitmap bitmap) {
         this.gn = (com.bumptech.glide.load.i) com.bumptech.glide.util.i.checkNotNull(iVar);
-        this.lQ = (Bitmap) com.bumptech.glide.util.i.checkNotNull(bitmap);
-        this.lM = this.lM.b(new com.bumptech.glide.request.f().b((com.bumptech.glide.load.i) iVar));
+        this.lP = (Bitmap) com.bumptech.glide.util.i.checkNotNull(bitmap);
+        this.lL = this.lL.b(new com.bumptech.glide.request.f().b((com.bumptech.glide.load.i) iVar));
     }
 
     com.bumptech.glide.load.i<Bitmap> cB() {
@@ -119,11 +119,11 @@ class GifFrameLoader {
     }
 
     Bitmap cA() {
-        return this.lQ;
+        return this.lP;
     }
 
     void a(a aVar) {
-        if (this.lO) {
+        if (this.lN) {
             throw new IllegalStateException("Cannot subscribe to a cleared frame loader");
         } else if (this.callbacks.contains(aVar)) {
             throw new IllegalStateException("Cannot subscribe twice in a row");
@@ -152,11 +152,11 @@ class GifFrameLoader {
     }
 
     int getSize() {
-        return this.lJ.T() + getFrameSize();
+        return this.lI.T() + getFrameSize();
     }
 
     int getCurrentIndex() {
-        return this.lN != null ? this.lN.index : -1;
+        return this.lM != null ? this.lM.index : -1;
     }
 
     private int getFrameSize() {
@@ -164,21 +164,21 @@ class GifFrameLoader {
     }
 
     ByteBuffer getBuffer() {
-        return this.lJ.getData().asReadOnlyBuffer();
+        return this.lI.getData().asReadOnlyBuffer();
     }
 
     int getFrameCount() {
-        return this.lJ.getFrameCount();
+        return this.lI.getFrameCount();
     }
 
     int getLoopCount() {
-        return this.lJ.S();
+        return this.lI.S();
     }
 
     private void start() {
         if (!this.isRunning) {
             this.isRunning = true;
-            this.lO = false;
+            this.lN = false;
             cK();
         }
     }
@@ -191,81 +191,81 @@ class GifFrameLoader {
         this.callbacks.clear();
         cL();
         stop();
-        if (this.lN != null) {
-            this.X.d(this.lN);
-            this.lN = null;
+        if (this.lM != null) {
+            this.X.d(this.lM);
+            this.lM = null;
         }
-        if (this.lP != null) {
-            this.X.d(this.lP);
-            this.lP = null;
+        if (this.lO != null) {
+            this.X.d(this.lO);
+            this.lO = null;
         }
-        if (this.lR != null) {
-            this.X.d(this.lR);
-            this.lR = null;
+        if (this.lQ != null) {
+            this.X.d(this.lQ);
+            this.lQ = null;
         }
-        this.lJ.clear();
-        this.lO = true;
+        this.lI.clear();
+        this.lN = true;
     }
 
     Bitmap cJ() {
-        return this.lN != null ? this.lN.cO() : this.lQ;
+        return this.lM != null ? this.lM.cO() : this.lP;
     }
 
     private void cK() {
-        if (this.isRunning && !this.lK) {
-            if (this.lL) {
-                com.bumptech.glide.util.i.a(this.lR == null, "Pending target must be null when starting from the first frame");
-                this.lJ.Q();
-                this.lL = false;
+        if (this.isRunning && !this.lJ) {
+            if (this.lK) {
+                com.bumptech.glide.util.i.a(this.lQ == null, "Pending target must be null when starting from the first frame");
+                this.lI.Q();
+                this.lK = false;
             }
-            if (this.lR != null) {
-                DelayTarget delayTarget = this.lR;
-                this.lR = null;
+            if (this.lQ != null) {
+                DelayTarget delayTarget = this.lQ;
+                this.lQ = null;
                 onFrameReady(delayTarget);
                 return;
             }
-            this.lK = true;
-            long uptimeMillis = SystemClock.uptimeMillis() + ((long) this.lJ.O());
-            this.lJ.advance();
-            this.lP = new DelayTarget(this.handler, this.lJ.P(), uptimeMillis);
-            this.lM.b(com.bumptech.glide.request.f.j(cN())).load(this.lJ).b(this.lP);
+            this.lJ = true;
+            long uptimeMillis = SystemClock.uptimeMillis() + ((long) this.lI.O());
+            this.lI.advance();
+            this.lO = new DelayTarget(this.handler, this.lI.P(), uptimeMillis);
+            this.lL.b(com.bumptech.glide.request.f.j(cN())).load(this.lI).b(this.lO);
         }
     }
 
     private void cL() {
-        if (this.lQ != null) {
-            this.i.d(this.lQ);
-            this.lQ = null;
+        if (this.lP != null) {
+            this.i.d(this.lP);
+            this.lP = null;
         }
     }
 
     void cM() {
         com.bumptech.glide.util.i.a(this.isRunning ^ true, "Can't restart a running animation");
-        this.lL = true;
-        if (this.lR != null) {
-            this.X.d(this.lR);
-            this.lR = null;
+        this.lK = true;
+        if (this.lQ != null) {
+            this.X.d(this.lQ);
+            this.lQ = null;
         }
     }
 
     @VisibleForTesting
     void setOnEveryFrameReadyListener(@Nullable OnEveryFrameListener onEveryFrameListener) {
-        this.lS = onEveryFrameListener;
+        this.lR = onEveryFrameListener;
     }
 
     @VisibleForTesting
     void onFrameReady(DelayTarget delayTarget) {
-        if (this.lS != null) {
-            this.lS.cI();
+        if (this.lR != null) {
+            this.lR.cI();
         }
-        this.lK = false;
-        if (this.lO) {
+        this.lJ = false;
+        if (this.lN) {
             this.handler.obtainMessage(2, delayTarget).sendToTarget();
         } else if (this.isRunning) {
             if (delayTarget.cO() != null) {
                 cL();
-                DelayTarget delayTarget2 = this.lN;
-                this.lN = delayTarget;
+                DelayTarget delayTarget2 = this.lM;
+                this.lM = delayTarget;
                 for (int size = this.callbacks.size() - 1; size >= 0; size--) {
                     ((a) this.callbacks.get(size)).cI();
                 }
@@ -275,7 +275,7 @@ class GifFrameLoader {
             }
             cK();
         } else {
-            this.lR = delayTarget;
+            this.lQ = delayTarget;
         }
     }
 

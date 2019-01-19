@@ -101,7 +101,7 @@
 .method public constructor <init>(Landroid/content/Context;Lcom/xiaomi/camera/core/PostProcessor$PostProcessStatusCallback;)V
     .locals 1
 
-    .line 376
+    .line 385
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 55
@@ -163,33 +163,33 @@
 
     iput-object p1, p0, Lcom/xiaomi/camera/core/PostProcessor;->mDataListener:Lcom/xiaomi/camera/core/ParallelDataZipper$DataListener;
 
-    .line 184
+    .line 189
     new-instance p1, Lcom/xiaomi/camera/core/PostProcessor$3;
 
     invoke-direct {p1, p0}, Lcom/xiaomi/camera/core/PostProcessor$3;-><init>(Lcom/xiaomi/camera/core/PostProcessor;)V
 
     iput-object p1, p0, Lcom/xiaomi/camera/core/PostProcessor;->mCaptureDataListener:Lcom/xiaomi/camera/core/CaptureDataListener;
 
-    .line 274
+    .line 284
     new-instance p1, Lcom/xiaomi/camera/core/PostProcessor$4;
 
     invoke-direct {p1, p0}, Lcom/xiaomi/camera/core/PostProcessor$4;-><init>(Lcom/xiaomi/camera/core/PostProcessor;)V
 
     iput-object p1, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessorStatusCallback:Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;
 
-    .line 344
+    .line 354
     new-instance p1, Lcom/xiaomi/camera/core/PostProcessor$5;
 
     invoke-direct {p1, p0}, Lcom/xiaomi/camera/core/PostProcessor$5;-><init>(Lcom/xiaomi/camera/core/PostProcessor;)V
 
     iput-object p1, p0, Lcom/xiaomi/camera/core/PostProcessor;->mJpegEncoderListener:Lcom/xiaomi/camera/imagecodec/ReprocessData$OnDataAvailableListener;
 
-    .line 377
+    .line 386
     iget-object p1, p0, Lcom/xiaomi/camera/core/PostProcessor;->mWorkerThread:Landroid/os/HandlerThread;
 
     invoke-virtual {p1}, Landroid/os/HandlerThread;->start()V
 
-    .line 378
+    .line 387
     new-instance p1, Landroid/os/Handler;
 
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mWorkerThread:Landroid/os/HandlerThread;
@@ -202,13 +202,13 @@
 
     iput-object p1, p0, Lcom/xiaomi/camera/core/PostProcessor;->mWorkerHandler:Landroid/os/Handler;
 
-    .line 379
+    .line 388
     iput-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mPostProcessStatusCallback:Lcom/xiaomi/camera/core/PostProcessor$PostProcessStatusCallback;
 
-    .line 380
+    .line 389
     invoke-virtual {p0}, Lcom/xiaomi/camera/core/PostProcessor;->init()V
 
-    .line 381
+    .line 390
     return-void
 .end method
 
@@ -302,20 +302,20 @@
     return-object p0
 .end method
 
-.method static synthetic access$600(Lcom/xiaomi/camera/core/PostProcessor;)Lcom/xiaomi/camera/core/CaptureDataListener;
-    .locals 0
-
-    .line 50
-    iget-object p0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mCaptureDataListener:Lcom/xiaomi/camera/core/CaptureDataListener;
-
-    return-object p0
-.end method
-
-.method static synthetic access$700(Lcom/xiaomi/camera/core/PostProcessor;)Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;
+.method static synthetic access$600(Lcom/xiaomi/camera/core/PostProcessor;)Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;
     .locals 0
 
     .line 50
     iget-object p0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessorStatusCallback:Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;
+
+    return-object p0
+.end method
+
+.method static synthetic access$700(Lcom/xiaomi/camera/core/PostProcessor;)Lcom/xiaomi/camera/core/CaptureDataListener;
+    .locals 0
+
+    .line 50
+    iget-object p0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mCaptureDataListener:Lcom/xiaomi/camera/core/CaptureDataListener;
 
     return-object p0
 .end method
@@ -341,7 +341,7 @@
 .method private tryToCloseSession()V
     .locals 2
 
-    .line 512
+    .line 522
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mParallelTaskHashMap:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-virtual {v0}, Ljava/util/concurrent/ConcurrentHashMap;->isEmpty()Z
@@ -354,43 +354,43 @@
 
     if-eqz v0, :cond_1
 
-    .line 513
+    .line 523
     sget-object v0, Lcom/xiaomi/camera/core/PostProcessor;->TAG:Ljava/lang/String;
 
     const-string v1, "tryToCloseSession: start"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 514
+    .line 524
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mTaskSession:Lcom/xiaomi/engine/TaskSession;
 
     if-eqz v0, :cond_0
 
-    .line 515
+    .line 525
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mTaskSession:Lcom/xiaomi/engine/TaskSession;
 
     invoke-virtual {v0}, Lcom/xiaomi/engine/TaskSession;->close()V
 
-    .line 517
+    .line 527
     :cond_0
     invoke-virtual {p0}, Lcom/xiaomi/camera/core/PostProcessor;->finish()V
 
-    .line 518
+    .line 528
     invoke-virtual {p0}, Lcom/xiaomi/camera/core/PostProcessor;->deInit()V
 
-    .line 519
+    .line 529
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mPostProcessStatusCallback:Lcom/xiaomi/camera/core/PostProcessor$PostProcessStatusCallback;
 
     if-eqz v0, :cond_2
 
-    .line 520
+    .line 530
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mPostProcessStatusCallback:Lcom/xiaomi/camera/core/PostProcessor$PostProcessStatusCallback;
 
     invoke-interface {v0, p0}, Lcom/xiaomi/camera/core/PostProcessor$PostProcessStatusCallback;->onPostProcessorClosed(Lcom/xiaomi/camera/core/PostProcessor;)V
 
     goto :goto_0
 
-    .line 523
+    .line 533
     :cond_1
     sget-object v0, Lcom/xiaomi/camera/core/PostProcessor;->TAG:Ljava/lang/String;
 
@@ -398,7 +398,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 525
+    .line 535
     :cond_2
     :goto_0
     return-void
@@ -409,7 +409,7 @@
 .method public addCapturePath(Ljava/lang/String;)V
     .locals 3
 
-    .line 491
+    .line 501
     sget-object v0, Lcom/xiaomi/camera/core/PostProcessor;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -428,14 +428,14 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 492
+    .line 502
     return-void
 .end method
 
 .method public configCaptureSession(Lcom/xiaomi/engine/BufferFormat;I)V
-    .locals 3
+    .locals 4
 
-    .line 454
+    .line 463
     invoke-virtual {p1}, Lcom/xiaomi/engine/BufferFormat;->getGraphDescriptor()Lcom/xiaomi/engine/GraphDescriptorBean;
 
     move-result-object p2
@@ -444,7 +444,7 @@
 
     move-result p2
 
-    .line 455
+    .line 464
     const v0, 0x8002
 
     if-ne p2, v0, :cond_0
@@ -456,7 +456,7 @@
     :cond_0
     const/4 p2, 0x0
 
-    .line 457
+    .line 466
     :goto_0
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
 
@@ -464,97 +464,108 @@
 
     if-eqz v0, :cond_1
 
-    .line 458
+    .line 467
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
 
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ImageProcessor;->goOffWork()V
 
-    .line 459
+    .line 468
     iput-object v1, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
 
-    .line 463
+    .line 471
     :cond_1
-    invoke-virtual {p1}, Lcom/xiaomi/engine/BufferFormat;->getGraphDescriptor()Lcom/xiaomi/engine/GraphDescriptorBean;
+    const/16 v0, 0xf
 
-    move-result-object v0
+    const/16 v2, 0x1c
 
-    invoke-virtual {v0}, Lcom/xiaomi/engine/GraphDescriptorBean;->getStreamNumber()I
+    invoke-static {v0, v2}, Ljava/lang/Math;->max(II)I
 
     move-result v0
 
-    const/4 v2, 0x2
+    .line 473
+    invoke-virtual {p1}, Lcom/xiaomi/engine/BufferFormat;->getGraphDescriptor()Lcom/xiaomi/engine/GraphDescriptorBean;
 
-    if-ne v0, v2, :cond_2
+    move-result-object v2
+
+    invoke-virtual {v2}, Lcom/xiaomi/engine/GraphDescriptorBean;->getStreamNumber()I
+
+    move-result v2
+
+    const/4 v3, 0x2
+
+    if-ne v2, v3, :cond_2
 
     if-eqz p2, :cond_2
 
-    .line 464
+    .line 474
     new-instance p2, Lcom/xiaomi/camera/core/DualCameraProcessor;
 
-    iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessorStatusCallback:Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;
+    iget-object v2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessorStatusCallback:Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;
 
-    invoke-direct {p2, v0}, Lcom/xiaomi/camera/core/DualCameraProcessor;-><init>(Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;)V
-
-    iput-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
-
-    .line 465
-    iget-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
-
-    invoke-virtual {p2}, Lcom/xiaomi/camera/core/ImageProcessor;->startWork()V
-
-    .line 467
-    iget-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
-
-    .line 468
-    invoke-virtual {p2, p1}, Lcom/xiaomi/camera/core/ImageProcessor;->configOutputConfigurations(Lcom/xiaomi/engine/BufferFormat;)Ljava/util/List;
-
-    move-result-object p2
-
-    .line 469
-    iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mSessionStatusCallback:Lcom/xiaomi/engine/TaskSession$SessionStatusCallback;
-
-    invoke-static {p1, p2, v0}, Lcom/xiaomi/engine/MiCameraAlgo;->createSessionByOutputConfigurations(Lcom/xiaomi/engine/BufferFormat;Ljava/util/List;Lcom/xiaomi/engine/TaskSession$SessionStatusCallback;)Lcom/xiaomi/engine/TaskSession;
-
-    move-result-object p2
-
-    iput-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mTaskSession:Lcom/xiaomi/engine/TaskSession;
-
-    .line 471
-    goto :goto_1
-
-    .line 472
-    :cond_2
-    new-instance p2, Lcom/xiaomi/camera/core/SingleCameraProcessor;
-
-    iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessorStatusCallback:Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;
-
-    invoke-direct {p2, v0}, Lcom/xiaomi/camera/core/SingleCameraProcessor;-><init>(Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;)V
+    invoke-direct {p2, v2}, Lcom/xiaomi/camera/core/DualCameraProcessor;-><init>(Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;)V
 
     iput-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
-
-    .line 473
-    iget-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
-
-    invoke-virtual {p2}, Lcom/xiaomi/camera/core/ImageProcessor;->startWork()V
 
     .line 475
     iget-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
 
-    .line 476
+    invoke-virtual {p2}, Lcom/xiaomi/camera/core/ImageProcessor;->startWork()V
+
+    .line 477
+    iget-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
+
+    .line 478
     invoke-virtual {p2, p1}, Lcom/xiaomi/camera/core/ImageProcessor;->configOutputConfigurations(Lcom/xiaomi/engine/BufferFormat;)Ljava/util/List;
 
     move-result-object p2
 
-    .line 477
-    iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mSessionStatusCallback:Lcom/xiaomi/engine/TaskSession$SessionStatusCallback;
+    .line 479
+    iget-object v2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mSessionStatusCallback:Lcom/xiaomi/engine/TaskSession$SessionStatusCallback;
 
-    invoke-static {p1, p2, v0}, Lcom/xiaomi/engine/MiCameraAlgo;->createSessionByOutputConfigurations(Lcom/xiaomi/engine/BufferFormat;Ljava/util/List;Lcom/xiaomi/engine/TaskSession$SessionStatusCallback;)Lcom/xiaomi/engine/TaskSession;
+    mul-int/2addr v3, v0
+
+    invoke-static {p1, p2, v2, v3}, Lcom/xiaomi/engine/MiCameraAlgo;->createSessionByOutputConfigurations(Lcom/xiaomi/engine/BufferFormat;Ljava/util/List;Lcom/xiaomi/engine/TaskSession$SessionStatusCallback;I)Lcom/xiaomi/engine/TaskSession;
 
     move-result-object p2
 
     iput-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mTaskSession:Lcom/xiaomi/engine/TaskSession;
 
-    .line 480
+    .line 481
+    goto :goto_1
+
+    .line 482
+    :cond_2
+    new-instance p2, Lcom/xiaomi/camera/core/SingleCameraProcessor;
+
+    iget-object v2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessorStatusCallback:Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;
+
+    invoke-direct {p2, v2}, Lcom/xiaomi/camera/core/SingleCameraProcessor;-><init>(Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;)V
+
+    iput-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
+
+    .line 483
+    iget-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
+
+    invoke-virtual {p2}, Lcom/xiaomi/camera/core/ImageProcessor;->startWork()V
+
+    .line 485
+    iget-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
+
+    .line 486
+    invoke-virtual {p2, p1}, Lcom/xiaomi/camera/core/ImageProcessor;->configOutputConfigurations(Lcom/xiaomi/engine/BufferFormat;)Ljava/util/List;
+
+    move-result-object p2
+
+    .line 487
+    iget-object v2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mSessionStatusCallback:Lcom/xiaomi/engine/TaskSession$SessionStatusCallback;
+
+    invoke-static {p1, p2, v2, v0}, Lcom/xiaomi/engine/MiCameraAlgo;->createSessionByOutputConfigurations(Lcom/xiaomi/engine/BufferFormat;Ljava/util/List;Lcom/xiaomi/engine/TaskSession$SessionStatusCallback;I)Lcom/xiaomi/engine/TaskSession;
+
+    move-result-object p2
+
+    iput-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mTaskSession:Lcom/xiaomi/engine/TaskSession;
+
+    .line 490
     :goto_1
     iget-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
 
@@ -562,20 +573,20 @@
 
     invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ImageProcessor;->setTaskSession(Lcom/xiaomi/engine/TaskSession;)V
 
-    .line 482
+    .line 492
     iget-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mFilterProcessor:Lcom/xiaomi/camera/core/FilterProcessor;
 
     if-eqz p2, :cond_3
 
-    .line 483
+    .line 493
     iget-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mFilterProcessor:Lcom/xiaomi/camera/core/FilterProcessor;
 
     invoke-virtual {p2}, Lcom/xiaomi/camera/core/FilterProcessor;->deInit()V
 
-    .line 484
+    .line 494
     iput-object v1, p0, Lcom/xiaomi/camera/core/PostProcessor;->mFilterProcessor:Lcom/xiaomi/camera/core/FilterProcessor;
 
-    .line 486
+    .line 496
     :cond_3
     new-instance p2, Lcom/xiaomi/camera/core/FilterProcessor;
 
@@ -583,7 +594,7 @@
 
     iput-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mFilterProcessor:Lcom/xiaomi/camera/core/FilterProcessor;
 
-    .line 487
+    .line 497
     iget-object p2, p0, Lcom/xiaomi/camera/core/PostProcessor;->mFilterProcessor:Lcom/xiaomi/camera/core/FilterProcessor;
 
     new-instance v0, Landroid/util/Size;
@@ -600,7 +611,7 @@
 
     invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/FilterProcessor;->init(Landroid/util/Size;)V
 
-    .line 488
+    .line 498
     return-void
 .end method
 
@@ -622,7 +633,7 @@
         }
     .end annotation
 
-    .line 412
+    .line 421
     sget-object v0, Lcom/xiaomi/camera/core/PostProcessor;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -645,7 +656,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 414
+    .line 423
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageReaderList:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
@@ -654,12 +665,12 @@
 
     if-nez v0, :cond_0
 
-    .line 415
+    .line 424
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageReaderList:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->clear()V
 
-    .line 417
+    .line 426
     :cond_0
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mSurfaceList:Ljava/util/List;
 
@@ -669,16 +680,16 @@
 
     if-nez v0, :cond_1
 
-    .line 418
+    .line 427
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mSurfaceList:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->clear()V
 
-    .line 420
+    .line 429
     :cond_1
     const/4 v0, 0x0
 
-    .line 421
+    .line 430
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object p1
@@ -696,19 +707,19 @@
 
     check-cast v1, Lcom/xiaomi/protocol/IImageReaderParameterSets;
 
-    .line 422
+    .line 431
     invoke-virtual {v1}, Lcom/xiaomi/protocol/IImageReaderParameterSets;->isShouldHoldImages()Z
 
     move-result v2
 
     if-eqz v2, :cond_2
 
-    .line 423
+    .line 432
     iget v2, v1, Lcom/xiaomi/protocol/IImageReaderParameterSets;->maxImages:I
 
     add-int/2addr v0, v2
 
-    .line 425
+    .line 434
     :cond_2
     iget v2, v1, Lcom/xiaomi/protocol/IImageReaderParameterSets;->width:I
 
@@ -722,7 +733,7 @@
 
     move-result-object v2
 
-    .line 426
+    .line 435
     new-instance v3, Lcom/xiaomi/camera/core/PostProcessor$ImageAvailableListener;
 
     iget v1, v1, Lcom/xiaomi/protocol/IImageReaderParameterSets;->targetCamera:I
@@ -733,7 +744,7 @@
 
     invoke-virtual {v2, v3, v1}, Landroid/media/ImageReader;->setOnImageAvailableListener(Landroid/media/ImageReader$OnImageAvailableListener;Landroid/os/Handler;)V
 
-    .line 427
+    .line 436
     iget-object v1, p0, Lcom/xiaomi/camera/core/PostProcessor;->mSurfaceList:Ljava/util/List;
 
     invoke-virtual {v2}, Landroid/media/ImageReader;->getSurface()Landroid/view/Surface;
@@ -742,15 +753,15 @@
 
     invoke-interface {v1, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 428
+    .line 437
     iget-object v1, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageReaderList:Ljava/util/List;
 
     invoke-interface {v1, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 429
+    .line 438
     goto :goto_0
 
-    .line 430
+    .line 439
     :cond_3
     new-instance p1, Lcom/xiaomi/camera/core/ImageMemoryManager;
 
@@ -758,7 +769,7 @@
 
     iput-object p1, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageMemoryManager:Lcom/xiaomi/camera/core/ImageMemoryManager;
 
-    .line 431
+    .line 440
     iget-object p1, p0, Lcom/xiaomi/camera/core/PostProcessor;->mSurfaceList:Ljava/util/List;
 
     return-object p1
@@ -767,22 +778,22 @@
 .method public deInit()V
     .locals 2
 
-    .line 388
+    .line 397
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mFilterProcessor:Lcom/xiaomi/camera/core/FilterProcessor;
 
     if-eqz v0, :cond_0
 
-    .line 389
+    .line 398
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mFilterProcessor:Lcom/xiaomi/camera/core/FilterProcessor;
 
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/FilterProcessor;->deInit()V
 
-    .line 390
+    .line 399
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mFilterProcessor:Lcom/xiaomi/camera/core/FilterProcessor;
 
-    .line 393
+    .line 402
     :cond_0
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageReaderList:Ljava/util/List;
 
@@ -792,7 +803,7 @@
 
     if-nez v0, :cond_2
 
-    .line 394
+    .line 403
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageReaderList:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
@@ -812,19 +823,19 @@
 
     check-cast v1, Landroid/media/ImageReader;
 
-    .line 395
+    .line 404
     invoke-virtual {v1}, Landroid/media/ImageReader;->close()V
 
-    .line 396
+    .line 405
     goto :goto_0
 
-    .line 397
+    .line 406
     :cond_1
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageReaderList:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->clear()V
 
-    .line 400
+    .line 409
     :cond_2
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mSurfaceList:Ljava/util/List;
 
@@ -834,12 +845,12 @@
 
     if-nez v0, :cond_3
 
-    .line 401
+    .line 410
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mSurfaceList:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->clear()V
 
-    .line 403
+    .line 412
     :cond_3
     return-void
 .end method
@@ -847,73 +858,73 @@
 .method public destroyWhenTasksFinished()V
     .locals 1
 
-    .line 544
+    .line 554
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mShouldDestroyWhenTasksFinished:Z
 
-    .line 545
+    .line 555
     invoke-direct {p0}, Lcom/xiaomi/camera/core/PostProcessor;->tryToCloseSession()V
 
-    .line 546
+    .line 556
     return-void
 .end method
 
 .method public finish()V
     .locals 3
 
-    .line 495
+    .line 505
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
 
     if-eqz v0, :cond_0
 
-    .line 496
+    .line 506
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageProcessor:Lcom/xiaomi/camera/core/ImageProcessor;
 
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/ImageProcessor;->goOffWork()V
 
-    .line 498
+    .line 508
     :cond_0
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mWorkerThread:Landroid/os/HandlerThread;
 
     if-eqz v0, :cond_1
 
-    .line 499
+    .line 509
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mWorkerThread:Landroid/os/HandlerThread;
 
     invoke-virtual {v0}, Landroid/os/HandlerThread;->quitSafely()Z
 
-    .line 501
+    .line 511
     :try_start_0
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mWorkerThread:Landroid/os/HandlerThread;
 
     invoke-virtual {v0}, Landroid/os/HandlerThread;->join()V
 
-    .line 502
+    .line 512
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mWorkerThread:Landroid/os/HandlerThread;
 
-    .line 503
+    .line 513
     iput-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mWorkerHandler:Landroid/os/Handler;
     :try_end_0
     .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 507
+    .line 517
     goto :goto_0
 
-    .line 504
+    .line 514
     :catch_0
     move-exception v0
 
-    .line 506
+    .line 516
     sget-object v1, Lcom/xiaomi/camera/core/PostProcessor;->TAG:Ljava/lang/String;
 
     const-string v2, "finish: failed!"
 
     invoke-static {v1, v2, v0}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 509
+    .line 519
     :cond_1
     :goto_0
     return-void
@@ -922,7 +933,7 @@
 .method public getCaptureStatusListener()Lcom/xiaomi/camera/core/PostProcessor$CaptureStatusListener;
     .locals 1
 
-    .line 444
+    .line 453
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mCaptureStatusListener:Lcom/xiaomi/camera/core/PostProcessor$CaptureStatusListener;
 
     return-object v0
@@ -939,7 +950,7 @@
         }
     .end annotation
 
-    .line 435
+    .line 444
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mSurfaceList:Ljava/util/List;
 
     return-object v0
@@ -948,14 +959,14 @@
 .method public init()V
     .locals 0
 
-    .line 385
+    .line 394
     return-void
 .end method
 
 .method public isIdle()Z
     .locals 1
 
-    .line 528
+    .line 538
     iget-object v0, p0, Lcom/xiaomi/camera/core/PostProcessor;->mParallelTaskHashMap:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-virtual {v0}, Ljava/util/concurrent/ConcurrentHashMap;->isEmpty()Z
@@ -1015,9 +1026,9 @@
 .method public setImageSaver(Lcom/android/camera/storage/ImageSaver;)V
     .locals 0
 
-    .line 540
+    .line 550
     iput-object p1, p0, Lcom/xiaomi/camera/core/PostProcessor;->mImageSaver:Lcom/android/camera/storage/ImageSaver;
 
-    .line 541
+    .line 551
     return-void
 .end method

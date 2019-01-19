@@ -12,80 +12,81 @@ import miui.os.Build;
 
 /* compiled from: Device */
 public class b {
-    public static final boolean IS_HONGMI = d.getBoolean(d.sc, false);
+    public static final boolean IS_HONGMI = d.getBoolean(d.sn, false);
     public static final boolean IS_MI2A = Build.IS_MI2A;
-    public static final boolean IS_XIAOMI = d.getBoolean(d.sb, false);
-    public static final String pF = Build.DEVICE;
-    public static final String pG = "qcom";
-    public static final String pH = "mediatek";
-    public static final String pI = "leadcore";
-    public static final String pJ = "nvidia";
-    public static final String pK = "intel";
-    private static final int pL = 100;
-    public static final String pM = Build.MODEL;
-    public static final boolean pN = Build.IS_MITWO;
-    public static final boolean pO = "pisces".equals(pF);
+    public static final boolean IS_XIAOMI = d.getBoolean(d.sm, false);
+    public static final String pE = Build.DEVICE;
+    public static final String pF = "qcom";
+    public static final String pG = "mediatek";
+    public static final String pH = "leadcore";
+    public static final String pI = "nvidia";
+    public static final String pJ = "intel";
+    private static final int pK = 100;
+    public static final String pL = Build.MODEL;
+    public static final boolean pM = Build.IS_MITWO;
+    public static final boolean pN = "pisces".equals(pE);
+    public static final boolean pO;
     public static final boolean pP;
     public static final boolean pQ;
-    public static final boolean pR;
-    public static final boolean pS = Build.IS_HONGMI_TWO_S;
-    public static final boolean pT;
-    public static final boolean pU = Build.IS_HONGMI_TWOS_LTE_MTK;
-    public static final boolean pV = Build.IS_HONGMI_TWO_A;
-    public static final boolean pW = Build.IS_HONGMI_THREE;
-    public static final boolean pX = "gucci".equals(pF);
-    public static final boolean pY = "hermes".equals(pF);
-    public static final boolean pZ = "hennessy".equals(pF);
-    public static final boolean qA = pF.startsWith("mark");
-    public static final boolean qB = pF.startsWith("prada");
-    public static final boolean qC = pF.startsWith("mido");
-    public static final boolean qD = "rolex".equals(pF);
-    public static final boolean qE = "sagit".equals(pF);
-    public static final boolean qF = "centaur".equals(pF);
-    public static final boolean qG = "achilles".equals(pF);
-    public static final boolean qH = "jason".equals(pF);
-    public static final boolean qI = "tiffany".equals(pF);
-    public static final boolean qJ = "ulysse".equals(pF);
-    public static final boolean qK = "oxygen".equals(pF);
-    public static final boolean qL = "chiron".equals(pF);
-    public static final boolean qM = "ugg".equals(pF);
-    public static final boolean qN = "vince".equals(pF);
-    public static final boolean qO = "whyred".equals(pF);
-    public static final boolean qP = "beryllium".equals(pF);
-    public static final boolean qQ = "pisces".equals(pF);
-    public static final boolean qR = "hammerhead".equals(pF);
-    public static final boolean qS = "santoni".equals(pF);
-    public static final boolean qT = "polaris".equals(pF);
-    public static final boolean qU = "sirius".equals(pF);
-    public static final boolean qV = "dipper".equals(pF);
-    public static final boolean qW = "ursa".equals(pF);
-    public static final boolean qX = "equuleus".equals(pF);
+    public static final boolean pR = Build.IS_HONGMI_TWO_S;
+    public static final boolean pS;
+    public static final boolean pT = Build.IS_HONGMI_TWOS_LTE_MTK;
+    public static final boolean pU = Build.IS_HONGMI_TWO_A;
+    public static final boolean pV = Build.IS_HONGMI_THREE;
+    public static final boolean pW = "gucci".equals(pE);
+    public static final boolean pX = "hermes".equals(pE);
+    public static final boolean pY = "hennessy".equals(pE);
+    public static final boolean pZ = "dior".equals(pE);
+    public static final boolean qA = pE.startsWith("prada");
+    public static final boolean qB = pE.startsWith("mido");
+    public static final boolean qC = "rolex".equals(pE);
+    public static final boolean qD = "sagit".equals(pE);
+    public static final boolean qE = "centaur".equals(pE);
+    public static final boolean qF = "achilles".equals(pE);
+    public static final boolean qG = "jason".equals(pE);
+    public static final boolean qH = "tiffany".equals(pE);
+    public static final boolean qI = "ulysse".equals(pE);
+    public static final boolean qJ = "oxygen".equals(pE);
+    public static final boolean qK = "chiron".equals(pE);
+    public static final boolean qL = "ugg".equals(pE);
+    public static final boolean qM = "vince".equals(pE);
+    public static final boolean qN = "whyred".equals(pE);
+    public static final boolean qO = "beryllium".equals(pE);
+    public static final boolean qP = "violet".equals(pE);
+    public static final boolean qQ = "pisces".equals(pE);
+    public static final boolean qR = "hammerhead".equals(pE);
+    public static final boolean qS = "santoni".equals(pE);
+    public static final boolean qT = "polaris".equals(pE);
+    public static final boolean qU = "sirius".equals(pE);
+    public static final boolean qV = "dipper".equals(pE);
+    public static final boolean qW = "ursa".equals(pE);
+    public static final boolean qX = "equuleus".equals(pE);
     public static final boolean qY = Build.IS_STABLE_VERSION;
     public static final boolean qZ = Build.IS_CM_CUSTOMIZATION_TEST;
-    public static final boolean qa = "dior".equals(pF);
-    public static final boolean qb = "kenzo".equals(pF);
-    public static final boolean qc = "kate".equals(pF);
-    public static final boolean qe;
-    public static final boolean qf = Build.IS_HONGMI_TWOX_LC;
-    public static final boolean qg = Build.IS_MIFOUR;
-    public static final boolean qh = Build.IS_MIPAD;
-    public static final boolean qi = Build.IS_MIFIVE;
-    public static final boolean qj = "leo".equals(pF);
-    public static final boolean qk = "ferrari".equals(pF);
-    public static final boolean ql = "ido".equals(pF);
-    public static final boolean qm = "aqua".equals(pF);
-    public static final boolean qn = "gemini".equals(pF);
-    public static final boolean qo = "gold".equals(pF);
-    public static final boolean qp = "capricorn".equals(pF);
-    public static final boolean qq = "natrium".equals(pF);
-    public static final boolean qr = "lithium".equals(pF);
-    public static final boolean qt = "scorpio".equals(pF);
-    public static final boolean qu = "libra".equals(pF);
-    public static final boolean qv = "land".equals(pF);
-    public static final boolean qw = "hydrogen".equals(pF);
-    public static final boolean qx = "helium".equals(pF);
-    public static final boolean qy = "omega".equals(pF);
-    public static final boolean qz = pF.startsWith("nike");
+    public static final boolean qa = "kenzo".equals(pE);
+    public static final boolean qb = "kate".equals(pE);
+    public static final boolean qc;
+    public static final boolean qe = Build.IS_HONGMI_TWOX_LC;
+    public static final boolean qf = Build.IS_MIFOUR;
+    public static final boolean qg = Build.IS_MIPAD;
+    public static final boolean qh = Build.IS_MIFIVE;
+    public static final boolean qi = "leo".equals(pE);
+    public static final boolean qj = "ferrari".equals(pE);
+    public static final boolean qk = "ido".equals(pE);
+    public static final boolean ql = "aqua".equals(pE);
+    public static final boolean qm = "gemini".equals(pE);
+    public static final boolean qn = "gold".equals(pE);
+    public static final boolean qo = "capricorn".equals(pE);
+    public static final boolean qp = "natrium".equals(pE);
+    public static final boolean qq = "lithium".equals(pE);
+    public static final boolean qr = "scorpio".equals(pE);
+    public static final boolean qt = "libra".equals(pE);
+    public static final boolean qu = "land".equals(pE);
+    public static final boolean qv = "hydrogen".equals(pE);
+    public static final boolean qw = "helium".equals(pE);
+    public static final boolean qx = "omega".equals(pE);
+    public static final boolean qy = pE.startsWith("nike");
+    public static final boolean qz = pE.startsWith("mark");
     private static final int ra = 1;
     private static final int rb = 2;
     private static final int rc = 4;
@@ -94,45 +95,45 @@ public class b {
 
     static {
         boolean z = true;
-        boolean z2 = "cancro".equals(pF) && Build.MODEL.startsWith("MI 3");
+        boolean z2 = "cancro".equals(pE) && Build.MODEL.startsWith("MI 3");
+        pO = z2;
+        z2 = pO || pN;
         pP = z2;
-        z2 = pP || pO;
-        pQ = z2;
         z2 = (!Build.IS_HONGMI_TWO || Build.IS_HONGMI_TWO_A || Build.IS_HONGMI_TWO_S) ? false : true;
-        pR = z2;
-        z2 = pR || pS;
-        pT = z2;
-        if (!(Build.IS_HONGMI_TWOX || "HM2014816".equals(pF))) {
+        pQ = z2;
+        z2 = pQ || pR;
+        pS = z2;
+        if (!(Build.IS_HONGMI_TWOX || "HM2014816".equals(pE))) {
             z = false;
         }
-        qe = z;
+        qc = z;
     }
 
     public static int getBurstShootCount() {
-        return d.getInteger(d.so, 100);
+        return d.getInteger(d.sy, 100);
     }
 
-    public static boolean fI() {
-        return d.getBoolean(d.sp, false);
+    public static boolean fS() {
+        return d.getBoolean(d.sz, false);
     }
 
-    public static boolean fJ() {
-        return d.getBoolean(d.th, false) ^ 1;
+    public static boolean fT() {
+        return d.getBoolean(d.tr, false) ^ 1;
     }
 
-    public static boolean fK() {
-        return qf || d.getBoolean(d.tq, false);
+    public static boolean fU() {
+        return qe || d.getBoolean(d.tA, false);
     }
 
-    public static boolean fL() {
-        return d.getBoolean(d.sl, false);
+    public static boolean fV() {
+        return d.getBoolean(d.sv, false);
     }
 
-    public static boolean fM() {
-        return fN() ^ 1;
+    public static boolean fW() {
+        return fX() ^ 1;
     }
 
-    public static boolean fN() {
+    public static boolean fX() {
         if (!Build.IS_INTERNATIONAL_BUILD) {
             return false;
         }
@@ -143,328 +144,328 @@ public class b {
         return TextUtils.equals(charSequence, "KR");
     }
 
-    public static boolean fO() {
-        return d.getBoolean(d.sm, false);
-    }
-
-    public static boolean fP() {
-        return d.getBoolean(d.sq, false);
-    }
-
-    public static boolean fQ() {
-        return !Build.IS_INTERNATIONAL_BUILD && d.getBoolean(d.sr, false);
-    }
-
-    public static boolean fR() {
-        return d.getBoolean(d.ss, false);
-    }
-
-    public static boolean fS() {
-        return d.getBoolean(d.tr, false);
-    }
-
-    public static boolean fT() {
-        return d.getBoolean(d.st, false);
-    }
-
-    public static boolean fU() {
-        return d.getBoolean(d.su, false);
-    }
-
-    public static boolean fV() {
-        return d.getBoolean(d.tf, false);
-    }
-
-    public static boolean fW() {
-        return d.getBoolean(d.sv, false);
-    }
-
-    public static boolean fX() {
-        return !qZ && d.getBoolean(d.sw, false);
-    }
-
     public static boolean fY() {
-        return d.getBoolean(d.sx, false);
+        return d.getBoolean(d.sw, false);
     }
 
     public static boolean fZ() {
-        return pG.equals(d.getString(d.sf));
-    }
-
-    public static boolean ga() {
-        return pJ.equals(d.getString(d.sf));
-    }
-
-    public static boolean gb() {
-        return pI.equals(d.getString(d.sf));
-    }
-
-    public static boolean gd() {
-        return pH.equals(d.getString(d.sf));
-    }
-
-    public static boolean ge() {
-        return d.getBoolean(d.sg, false);
-    }
-
-    public static boolean gf() {
-        return false;
-    }
-
-    public static boolean gg() {
-        return d.getBoolean(d.sy, false);
-    }
-
-    public static boolean gh() {
-        return d.getBoolean(d.sz, false);
-    }
-
-    public static boolean gi() {
         return d.getBoolean(d.sA, false);
     }
 
-    public static boolean gj() {
-        return d.getBoolean(d.sB, false);
+    public static boolean ga() {
+        return !Build.IS_INTERNATIONAL_BUILD && d.getBoolean(d.sB, false);
     }
 
-    public static boolean gk() {
+    public static boolean gb() {
         return d.getBoolean(d.sC, false);
     }
 
-    public static boolean gl() {
+    public static boolean gd() {
+        return d.getBoolean(d.tB, false);
+    }
+
+    public static boolean ge() {
         return d.getBoolean(d.sD, false);
     }
 
+    public static boolean gf() {
+        return d.getBoolean(d.sE, false);
+    }
+
+    public static boolean gg() {
+        return d.getBoolean(d.tp, false);
+    }
+
+    public static boolean gh() {
+        return d.getBoolean(d.sF, false);
+    }
+
+    public static boolean gi() {
+        return !qZ && d.getBoolean(d.sG, false);
+    }
+
+    public static boolean gj() {
+        return d.getBoolean(d.sH, false);
+    }
+
+    public static boolean gk() {
+        return pF.equals(d.getString(d.sp));
+    }
+
+    public static boolean gl() {
+        return pI.equals(d.getString(d.sp));
+    }
+
     public static boolean gm() {
+        return pH.equals(d.getString(d.sp));
+    }
+
+    public static boolean isMTKPlatform() {
+        return pG.equals(d.getString(d.sp));
+    }
+
+    public static boolean gn() {
+        return d.getBoolean(d.sq, false);
+    }
+
+    public static boolean go() {
+        return false;
+    }
+
+    public static boolean gp() {
+        return d.getBoolean(d.sI, false);
+    }
+
+    public static boolean gq() {
+        return d.getBoolean(d.sJ, false);
+    }
+
+    public static boolean gr() {
+        return d.getBoolean(d.sK, false);
+    }
+
+    public static boolean gs() {
+        return d.getBoolean(d.sL, false);
+    }
+
+    public static boolean gt() {
+        return d.getBoolean(d.sM, false);
+    }
+
+    public static boolean gu() {
+        return d.getBoolean(d.sN, false);
+    }
+
+    public static boolean gv() {
         if ((d.getInteger(d.rf, 0) & 1) != 0) {
             return true;
         }
         return false;
     }
 
-    public static boolean gn() {
+    public static boolean gw() {
         if ((d.getInteger(d.rf, 0) & 15) != 0) {
             return true;
         }
         return false;
     }
 
-    public static boolean go() {
+    public static boolean gx() {
         if ((d.getInteger(d.rf, 0) & 2) != 0) {
             return true;
         }
         return false;
     }
 
-    public static boolean gp() {
-        return !gq() && IS_HONGMI;
+    public static boolean gy() {
+        return !gz() && IS_HONGMI;
     }
 
-    public static boolean gq() {
-        return d.getBoolean(d.sF, true);
+    public static boolean gz() {
+        return d.getBoolean(d.sP, true);
     }
 
-    public static boolean gr() {
+    public static boolean gA() {
         if ((d.getInteger(d.rf, 0) & 4) != 0) {
             return true;
         }
         return false;
     }
 
-    public static boolean gs() {
-        if (d.getBoolean(d.tt, false) && gt()) {
+    public static boolean gB() {
+        if (d.getBoolean(d.tD, false) && gC()) {
             return true;
         }
         return false;
     }
 
-    public static boolean gt() {
-        return false;
-    }
-
-    public static boolean gu() {
-        return d.getBoolean(d.sJ, false);
-    }
-
-    public static boolean gv() {
-        return d.getBoolean(d.sG, false);
-    }
-
-    public static boolean gw() {
-        if (pV || qf || Build.IS_HONGMI_TWOX || pP || pW || pR || pS || pU || pN || IS_MI2A || pQ || !d.getBoolean(d.tu, true)) {
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean gx() {
-        return false;
-    }
-
-    public static boolean gy() {
-        return d.getBoolean(d.sL, false);
-    }
-
-    public static boolean gz() {
-        return fZ() && 21 <= VERSION.SDK_INT;
-    }
-
-    public static boolean gA() {
-        return d.getBoolean(d.sM, false);
-    }
-
-    public static boolean gB() {
-        return d.getBoolean(d.sN, false);
-    }
-
     public static boolean gC() {
-        return (IS_XIAOMI || IS_HONGMI) ? false : true;
+        return false;
     }
 
     public static boolean gD() {
-        return d.getBoolean(d.tv, false);
+        return d.getBoolean(d.sT, false);
     }
 
     public static boolean gE() {
-        return d.getBoolean(d.sO, false);
-    }
-
-    public static boolean gF() {
-        return d.getBoolean(d.sP, false);
-    }
-
-    public static boolean gG() {
-        if (pV || qf || Build.IS_HONGMI_TWOX || pP || pW || pR || pS || pU || pN || IS_MI2A || pQ || qg || !d.getBoolean(d.tw, true)) {
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean gH() {
-        return d.getBoolean(d.tx, false);
-    }
-
-    public static boolean gI() {
-        return pN && !IS_MI2A;
-    }
-
-    public static boolean gJ() {
         return d.getBoolean(d.sQ, false);
     }
 
-    public static int gK() {
-        return d.getInteger(d.tJ, AutoLockManager.HIBERNATION_TIMEOUT);
+    public static boolean gF() {
+        if (pU || qe || Build.IS_HONGMI_TWOX || pO || pV || pQ || pR || pT || pM || IS_MI2A || pP || !d.getBoolean(d.tE, true)) {
+            return false;
+        }
+        return true;
     }
 
-    public static boolean gL() {
-        return d.getBoolean(d.sR, false);
-    }
-
-    public static boolean gM() {
-        return d.getBoolean(d.sS, false);
-    }
-
-    public static boolean gN() {
+    public static boolean gG() {
         return false;
     }
 
-    public static boolean gO() {
+    public static boolean gH() {
+        return d.getBoolean(d.sV, false);
+    }
+
+    public static boolean gI() {
+        return gk() && 21 <= VERSION.SDK_INT;
+    }
+
+    public static boolean gJ() {
         return d.getBoolean(d.sW, false);
     }
 
-    public static boolean gP() {
-        return d.getBoolean(d.sh, false);
-    }
-
-    public static boolean gQ() {
+    public static boolean gK() {
         return d.getBoolean(d.sZ, false);
     }
 
+    public static boolean gL() {
+        return (IS_XIAOMI || IS_HONGMI) ? false : true;
+    }
+
+    public static boolean gM() {
+        return d.getBoolean(d.tF, false);
+    }
+
+    public static boolean gN() {
+        return d.getBoolean(d.ta, false);
+    }
+
+    public static boolean gO() {
+        return d.getBoolean(d.tb, false);
+    }
+
+    public static boolean gP() {
+        if (pU || qe || Build.IS_HONGMI_TWOX || pO || pV || pQ || pR || pT || pM || IS_MI2A || pP || qf || !d.getBoolean(d.tG, true)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean gQ() {
+        return d.getBoolean(d.tH, false);
+    }
+
     public static boolean gR() {
-        return !Build.IS_INTERNATIONAL_BUILD && d.getBoolean(d.tb, false);
+        return pM && !IS_MI2A;
     }
 
-    public static boolean isPad() {
-        return d.getBoolean(d.se, false);
+    public static boolean gS() {
+        return d.getBoolean(d.tc, false);
     }
 
-    public static String gS() {
-        return d.getString(d.si);
-    }
-
-    public static String gT() {
-        return d.getString(d.sj);
+    public static int gT() {
+        return d.getInteger(d.tT, AutoLockManager.HIBERNATION_TIMEOUT);
     }
 
     public static boolean gU() {
-        return d.getBoolean(d.ty, false);
+        return d.getBoolean(d.td, false);
     }
 
     public static boolean gV() {
-        if (Build.IS_INTERNATIONAL_BUILD || !d.getBoolean(d.ta, false)) {
-            return false;
-        }
-        return true;
+        return d.getBoolean(d.te, false);
     }
 
     public static boolean gW() {
-        return (qb && Build.IS_INTERNATIONAL_BUILD) || qv;
-    }
-
-    public static boolean gX() {
-        return true;
-    }
-
-    public static boolean gY() {
-        return d.getBoolean(d.tg, false);
-    }
-
-    public static boolean gZ() {
-        if (pP || qg || Build.IS_HONGMI_TWOX || pV || !d.getBoolean(d.tz, true)) {
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean ha() {
-        return d.getBoolean(d.tl, false) ^ 1;
-    }
-
-    public static boolean hb() {
-        if (d.getBoolean(d.tA, false) || gd()) {
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean hc() {
-        return d.getBoolean(d.tm, true);
-    }
-
-    public static boolean hd() {
-        return d.getBoolean(d.tB, false);
-    }
-
-    public static boolean isSupportedOpticalZoom() {
-        return d.getBoolean(d.tC, false);
-    }
-
-    public static boolean isSupportedPortrait() {
-        return d.getBoolean(d.tD, false);
-    }
-
-    public static boolean he() {
-        return d.getBoolean(d.tE, false);
-    }
-
-    public static boolean hf() {
         return false;
     }
 
-    public static ArrayList<String> hg() {
+    public static boolean gX() {
+        return d.getBoolean(d.ti, false);
+    }
+
+    public static boolean gY() {
+        return d.getBoolean(d.sr, false);
+    }
+
+    public static boolean gZ() {
+        return d.getBoolean(d.tj, false);
+    }
+
+    public static boolean ha() {
+        return !Build.IS_INTERNATIONAL_BUILD && d.getBoolean(d.tl, false);
+    }
+
+    public static boolean isPad() {
+        return d.getBoolean(d.so, false);
+    }
+
+    public static String hb() {
+        return d.getString(d.ss);
+    }
+
+    public static String hc() {
+        return d.getString(d.st);
+    }
+
+    public static boolean hd() {
+        return d.getBoolean(d.tI, false);
+    }
+
+    public static boolean he() {
+        if (Build.IS_INTERNATIONAL_BUILD || !d.getBoolean(d.tk, false)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean hf() {
+        return (qa && Build.IS_INTERNATIONAL_BUILD) || qu;
+    }
+
+    public static boolean hg() {
+        return true;
+    }
+
+    public static boolean hh() {
+        return d.getBoolean(d.tq, false);
+    }
+
+    public static boolean hi() {
+        if (pO || qf || Build.IS_HONGMI_TWOX || pU || !d.getBoolean(d.tJ, true)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean hj() {
+        return d.getBoolean(d.tv, false) ^ 1;
+    }
+
+    public static boolean hk() {
+        if (d.getBoolean(d.tK, false) || isMTKPlatform()) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean hl() {
+        return d.getBoolean(d.tw, true);
+    }
+
+    public static boolean hm() {
+        return d.getBoolean(d.tL, false);
+    }
+
+    public static boolean isSupportedOpticalZoom() {
+        return d.getBoolean(d.tM, false);
+    }
+
+    public static boolean isSupportedPortrait() {
+        return d.getBoolean(d.tN, false);
+    }
+
+    public static boolean hn() {
+        return d.getBoolean(d.tO, false);
+    }
+
+    public static boolean ho() {
+        return false;
+    }
+
+    public static ArrayList<String> hp() {
         if (re == null) {
             re = new ArrayList();
-            String[] stringArray = d.getStringArray(d.sk);
+            String[] stringArray = d.getStringArray(d.su);
             if (stringArray != null) {
                 Collections.addAll(re, stringArray);
             }
@@ -472,132 +473,150 @@ public class b {
         return re;
     }
 
-    public static boolean hh() {
-        return d.getBoolean(d.te, false);
+    public static boolean hq() {
+        return d.getBoolean(d.to, false);
     }
 
-    public static boolean hi() {
-        return d.getBoolean(d.sn, false);
+    public static boolean hr() {
+        return d.getBoolean(d.sx, false);
     }
 
-    public static boolean hj() {
-        return d.getBoolean(d.td, false);
+    public static boolean hs() {
+        return d.getBoolean(d.tn, false);
     }
 
-    public static boolean hk() {
-        return d.getBoolean(d.tk, true);
+    public static boolean ht() {
+        return d.getBoolean(d.tu, true);
     }
 
-    public static boolean hl() {
-        return d.getBoolean(d.tF, false);
+    public static boolean hu() {
+        return d.getBoolean(d.tP, false);
     }
 
-    public static boolean hm() {
-        if (!qO) {
-            return d.getBoolean(d.tn, false);
+    public static boolean hv() {
+        if (!qN) {
+            return d.getBoolean(d.tx, false);
         }
         return "India".equals(SystemProperties.get("ro.boot.hwc"));
     }
 
-    public static boolean hn() {
-        return qr || qL || qT;
+    public static boolean hw() {
+        return qq || qK || qT;
     }
 
-    public static boolean ho() {
-        return d.getBoolean(d.tN, true);
+    public static boolean hx() {
+        return d.getBoolean(d.tX, true);
     }
 
-    public static boolean hp() {
-        return d.getBoolean(d.tG, true);
+    public static boolean hy() {
+        return d.getBoolean(d.tQ, true);
     }
 
-    public static boolean hq() {
-        return d.getBoolean(d.ti, false);
+    public static boolean hz() {
+        return d.getBoolean(d.ts, false);
     }
 
-    public static boolean hr() {
-        return d.getBoolean(d.tH, true);
+    public static boolean hA() {
+        return d.getBoolean(d.tR, true);
     }
 
-    public static boolean hs() {
-        return hq() && d.getBoolean(d.tj, true);
+    public static boolean hB() {
+        return hz() && d.getBoolean(d.tt, true);
     }
 
-    private static boolean ht() {
+    private static boolean hC() {
         return SystemProperties.getBoolean("ro.hardware.fp.fod", false);
     }
 
-    private static boolean hu() {
-        if (d.getBoolean(d.to, false) || ht()) {
+    private static boolean hD() {
+        if (d.getBoolean(d.ty, false) || hC()) {
             return true;
         }
         return false;
     }
 
-    public static boolean hv() {
-        if (hu() || hg() == null || hg().isEmpty()) {
+    public static boolean hE() {
+        if (hD() || hp() == null || hp().isEmpty()) {
             return false;
         }
         return true;
     }
 
-    public static boolean hw() {
-        return d.getBoolean(d.tL, false);
-    }
-
-    public static boolean hx() {
-        return d.getBoolean(d.tU, false);
-    }
-
-    public static boolean hy() {
-        return d.getBoolean(d.tO, false);
-    }
-
-    public static boolean hz() {
-        return d.getBoolean(d.tP, false);
-    }
-
-    public static boolean hA() {
-        return d.getBoolean(d.tQ, false);
-    }
-
-    public static boolean hB() {
-        return d.getBoolean(d.tR, false);
-    }
-
-    public static boolean hC() {
-        return hA() || hB();
-    }
-
-    public static boolean hD() {
-        return d.getBoolean(d.tI, false);
-    }
-
-    public static boolean hE() {
-        return d.getBoolean(d.tT, false);
-    }
-
-    public static boolean isSupportSuperResolution() {
+    public static boolean hF() {
         return d.getBoolean(d.tV, false);
     }
 
-    public static boolean hF() {
-        return d.getBoolean(d.tW, true);
-    }
-
     public static boolean hG() {
-        return d.getBoolean(d.tX, false);
+        return d.getBoolean(d.ue, false);
     }
 
     public static boolean hH() {
-        return qV || qT;
-    }
-
-    public static boolean hI() {
         return d.getBoolean(d.tY, false);
     }
 
-    public static boolean fw() {
-        return DataRepository.dataItemFeature().fw();
+    public static boolean hI() {
+        return d.getBoolean(d.tZ, false);
+    }
+
+    public static boolean hJ() {
+        return d.getBoolean(d.ua, false);
+    }
+
+    public static boolean hK() {
+        return d.getBoolean(d.ub, false);
+    }
+
+    public static boolean hL() {
+        return hJ() || hK();
+    }
+
+    public static boolean hM() {
+        return d.getBoolean(d.tS, false);
+    }
+
+    public static boolean hN() {
+        return d.getBoolean(d.ud, false);
+    }
+
+    public static boolean isSupportSuperResolution() {
+        return d.getBoolean(d.uf, false);
+    }
+
+    public static boolean hO() {
+        return d.getBoolean(d.ug, true);
+    }
+
+    public static boolean hP() {
+        return d.getBoolean(d.uh, false);
+    }
+
+    public static boolean hQ() {
+        return qV || qT;
+    }
+
+    public static boolean hR() {
+        return d.getBoolean(d.ui, false);
+    }
+
+    public static boolean fx() {
+        return DataRepository.dataItemFeature().fx();
+    }
+
+    public static boolean fP() {
+        return DataRepository.dataItemFeature().fP();
+    }
+
+    public static boolean hS() {
+        boolean z = false;
+        if ("onc".equals(pE)) {
+            Object obj = SystemProperties.get("ro.boot.hwversion");
+            if (!TextUtils.isEmpty(obj)) {
+                if ('2' == obj.charAt(0)) {
+                    z = true;
+                }
+                return z;
+            }
+        }
+        return false;
     }
 }

@@ -1,6 +1,5 @@
 package com.ss.android.ugc.effectmanager;
 
-import android.os.statistics.E2EScenario;
 import android.text.TextUtils;
 import android.util.Log;
 import com.android.camera.module.impl.component.FileUtils;
@@ -182,7 +181,7 @@ public class EffectManager {
         String currentTaskID = getCurrentTaskID();
         this.mEffectContext.getEffectConfiguration().getListenerManger().setFetchEffectChannelListener(currentTaskID, anonymousClass3);
         if (TextUtils.isEmpty(str)) {
-            this.mEffectChannelRepository.fetchList(E2EScenario.DEFAULT_CATEGORY, currentTaskID, false);
+            this.mEffectChannelRepository.fetchList("default", currentTaskID, false);
         } else {
             this.mEffectChannelRepository.fetchList(str, currentTaskID, false);
         }
@@ -198,7 +197,7 @@ public class EffectManager {
         String currentTaskID = getCurrentTaskID();
         this.mEffectContext.getEffectConfiguration().getListenerManger().setFetchEffectChannelListener(currentTaskID, iFetchEffectChannelListener);
         if (TextUtils.isEmpty(str)) {
-            this.mEffectChannelRepository.fetchList(E2EScenario.DEFAULT_CATEGORY, currentTaskID, true);
+            this.mEffectChannelRepository.fetchList("default", currentTaskID, true);
         } else {
             this.mEffectChannelRepository.fetchList(str, currentTaskID, true);
         }
@@ -214,7 +213,7 @@ public class EffectManager {
         String currentTaskID = getCurrentTaskID();
         this.mEffectContext.getEffectConfiguration().getListenerManger().setFetchEffectChannelListener(currentTaskID, iFetchEffectChannelListener);
         if (TextUtils.isEmpty(str)) {
-            this.mEffectChannelRepository.fetchExistEffectList(E2EScenario.DEFAULT_CATEGORY, currentTaskID);
+            this.mEffectChannelRepository.fetchExistEffectList("default", currentTaskID);
         } else {
             this.mEffectChannelRepository.fetchExistEffectList(str, currentTaskID);
         }
@@ -305,27 +304,6 @@ public class EffectManager {
         this.mEffectRepository.fetchEffectListById(list, currentTaskID);
     }
 
-    public void fetchEffectList(List<String> list, int i, final IFetchEffectListListener iFetchEffectListListener) {
-        if (this.mEffectContext == null || this.mEffectRepository == null) {
-            if (iFetchEffectListListener != null) {
-                iFetchEffectListListener.onFail(new ExceptionResult(new IllegalStateException("请先初始化")));
-            }
-            return;
-        }
-        IFetchEffectListListener anonymousClass7 = new IFetchEffectListListener() {
-            public void onSuccess(List<Effect> list) {
-                iFetchEffectListListener.onSuccess(list);
-            }
-
-            public void onFail(ExceptionResult exceptionResult) {
-                iFetchEffectListListener.onFail(exceptionResult);
-            }
-        };
-        String currentTaskID = getCurrentTaskID();
-        this.mEffectContext.getEffectConfiguration().getListenerManger().setFetchEffectListListener(currentTaskID, anonymousClass7);
-        this.mEffectRepository.fetchEffectListById(list, currentTaskID, i);
-    }
-
     public boolean isEffectDownloaded(Effect effect) {
         return this.mEffectStore != null && EffectUtils.isEffectValid(effect) && this.mEffectStore.isDownloaded(effect);
     }
@@ -347,14 +325,6 @@ public class EffectManager {
 
     public void clearEffects() {
         this.mCache.clear();
-    }
-
-    public void clearCache(String str) {
-        ICache iCache = this.mCache;
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(EffectConstants.KEY_EFFECT_CHANNEL);
-        stringBuilder.append(str);
-        iCache.remove(stringBuilder.toString());
     }
 
     public EffectChannelResponse getCurrentEffectChannel() {

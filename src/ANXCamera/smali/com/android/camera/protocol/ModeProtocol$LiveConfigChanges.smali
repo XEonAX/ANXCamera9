@@ -22,6 +22,9 @@
 
 
 # virtual methods
+.method public abstract closeBGM()V
+.end method
+
 .method public abstract getAuthResult()Lcom/ss/android/ttve/oauth/TEOAuthResult;
 .end method
 
@@ -41,6 +44,9 @@
 .end method
 
 .method public abstract getRecordSpeed()F
+.end method
+
+.method public abstract getSegments()I
 .end method
 
 .method public abstract getStartRecordingTime()J
@@ -73,7 +79,7 @@
 .method public abstract onDeviceRotationChange([F)V
 .end method
 
-.method public abstract onRecordConcat()V
+.method public abstract onRecordConcat()Z
 .end method
 
 .method public abstract onRecordPause()V
@@ -91,13 +97,16 @@
 .method public abstract onRecordStop()V
 .end method
 
+.method public abstract onSensorChanged(Landroid/hardware/SensorEvent;)V
+.end method
+
 .method public abstract release()V
 .end method
 
 .method public abstract setBeautify(ZF)V
 .end method
 
-.method public abstract setBeautyFaceReshape(FF)V
+.method public abstract setBeautyFaceReshape(ZFF)V
 .end method
 
 .method public abstract setFilter(ZLjava/lang/String;)V
@@ -106,7 +115,7 @@
 .method public abstract setRecordSpeed(I)V
 .end method
 
-.method public abstract startPreview(Landroid/view/Surface;)V
+.method public abstract startPreview(Landroid/view/Surface;Lcom/ss/android/medialib/TTRecorder$SlamDetectListener;)V
 .end method
 
 .method public abstract updateRecordingTime()V

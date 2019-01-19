@@ -29,7 +29,7 @@
 .method constructor <init>(Lcom/android/camera/module/BaseModule;ZLandroid/hardware/camera2/CaptureResult;)V
     .locals 0
 
-    .line 1220
+    .line 1222
     iput-object p1, p0, Lcom/android/camera/module/BaseModule$2;->this$0:Lcom/android/camera/module/BaseModule;
 
     iput-boolean p2, p0, Lcom/android/camera/module/BaseModule$2;->val$isShow:Z
@@ -46,12 +46,12 @@
 .method public run()V
     .locals 2
 
-    .line 1223
+    .line 1225
     iget-boolean v0, p0, Lcom/android/camera/module/BaseModule$2;->val$isShow:Z
 
     if-eqz v0, :cond_0
 
-    .line 1224
+    .line 1226
     iget-object v0, p0, Lcom/android/camera/module/BaseModule$2;->this$0:Lcom/android/camera/module/BaseModule;
 
     iget-object v0, v0, Lcom/android/camera/module/BaseModule;->mActivity:Lcom/android/camera/Camera;
@@ -66,7 +66,7 @@
 
     goto :goto_0
 
-    .line 1226
+    .line 1228
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/BaseModule$2;->this$0:Lcom/android/camera/module/BaseModule;
 
@@ -76,7 +76,7 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/Camera;->showDebugInfo(Ljava/lang/String;)V
 
-    .line 1228
+    .line 1230
     :goto_0
     return-void
 .end method

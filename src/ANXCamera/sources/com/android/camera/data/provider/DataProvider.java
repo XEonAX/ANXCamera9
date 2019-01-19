@@ -62,6 +62,8 @@ public interface DataProvider {
 
     <P extends ProviderEvent> P dataGlobal();
 
+    <P extends ProviderEvent> P dataLive();
+
     <P extends ProviderEvent> P dataNormalConfig();
 
     <P extends ProviderEvent> P dataRunning();

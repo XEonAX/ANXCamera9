@@ -171,7 +171,7 @@
     .locals 12
 
     .line 74
-    const v0, 0x7f090127
+    const v0, 0x7f0a0130
 
     const/high16 v1, 0x3f800000    # 1.0f
 

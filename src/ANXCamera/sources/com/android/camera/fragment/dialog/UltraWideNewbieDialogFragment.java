@@ -14,7 +14,7 @@ public class UltraWideNewbieDialogFragment extends AiSceneNewbieDialogFragment {
     public View onCreateView(LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
         View inflate = layoutInflater.inflate(R.layout.fragment_dialog_ultra_wide_hint, viewGroup, false);
         initViewOnTouchListener(inflate);
-        adjustViewHeight(inflate.findViewById(R.id.ultra_use_hint_layout));
+        adjustViewHeight(inflate.findViewById(R.id.ultra_wide_use_hint_layout));
         return inflate;
     }
 }

@@ -179,35 +179,40 @@ public class ParallelTaskData {
     }
 
     public ParallelTaskData cloneTaskData(int i) {
+        String stringBuilder;
         ParallelTaskData parallelTaskData = new ParallelTaskData(this);
         String savePath = getSavePath();
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(GROUPSHOT_ORIGINAL_SUFFIX);
-        stringBuilder.append(i == 0 ? "" : "_");
-        stringBuilder.append(i);
-        String stringBuilder2 = stringBuilder.toString();
-        int lastIndexOf = savePath.lastIndexOf(".");
-        if (lastIndexOf > 0) {
+        String str = GROUPSHOT_ORIGINAL_SUFFIX;
+        if (i > 0) {
+            StringBuilder stringBuilder2 = new StringBuilder();
+            stringBuilder2.append(str);
+            stringBuilder2.append("_");
+            stringBuilder2.append(i);
+            str = stringBuilder2.toString();
+        }
+        i = savePath.lastIndexOf(".");
+        if (i > 0) {
             StringBuilder stringBuilder3 = new StringBuilder();
-            stringBuilder3.append(savePath.substring(0, lastIndexOf));
-            stringBuilder3.append(stringBuilder2);
-            stringBuilder3.append(savePath.substring(lastIndexOf));
-            stringBuilder2 = stringBuilder3.toString();
+            stringBuilder3.append(savePath.substring(0, i));
+            stringBuilder3.append(str);
+            stringBuilder3.append(savePath.substring(i));
+            stringBuilder = stringBuilder3.toString();
         } else {
-            stringBuilder = new StringBuilder();
-            stringBuilder.append(savePath);
-            stringBuilder.append(stringBuilder2);
-            stringBuilder2 = stringBuilder.toString();
+            StringBuilder stringBuilder4 = new StringBuilder();
+            stringBuilder4.append(savePath);
+            stringBuilder4.append(str);
+            stringBuilder = stringBuilder4.toString();
         }
         savePath = TAG;
-        stringBuilder = new StringBuilder();
-        stringBuilder.append("[1] cloneTaskData: path=");
-        stringBuilder.append(stringBuilder2);
-        Log.d(savePath, stringBuilder.toString());
-        parallelTaskData.setSavePath(stringBuilder2);
+        StringBuilder stringBuilder5 = new StringBuilder();
+        stringBuilder5.append("[1] cloneTaskData: path=");
+        stringBuilder5.append(stringBuilder);
+        Log.d(savePath, stringBuilder5.toString());
+        parallelTaskData.setSavePath(stringBuilder);
         parallelTaskData.setNeedThumbnail(false);
         Builder builder = new Builder(getDataParameter());
         builder.setHasDualWaterMark(false);
+        builder.setTimeWaterMarkString(null);
         builder.setSaveGroupshotPrimitive(false);
         parallelTaskData.fillParameter(builder.build());
         return parallelTaskData;

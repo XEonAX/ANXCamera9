@@ -27,11 +27,13 @@
 
 .field private mAfRegionsView:Lcom/android/camera/ui/AfRegionsView;
 
-.field private mAspectRatio:F
-
 .field private mBottomCover:Landroid/view/View;
 
 .field private mCaptureDelayNumber:Landroid/widget/TextView;
+
+.field private mCenterHintIcon:Landroid/widget/ImageView;
+
+.field private mCenterHintText:Landroid/widget/TextView;
 
 .field private mCoverParent:Landroid/view/ViewGroup;
 
@@ -43,6 +45,8 @@
 
 .field private mFocusView:Lcom/android/camera/ui/FocusView;
 
+.field private mHandler:Landroid/os/Handler;
+
 .field private mIsIntentAction:Z
 
 .field private mLastCameraId:I
@@ -52,6 +56,8 @@
 .field private mMultiSnapNum:Landroid/widget/TextView;
 
 .field private mObjectView:Lcom/android/camera/ui/ObjectView;
+
+.field private mPreviewCenterHint:Landroid/view/ViewGroup;
 
 .field private mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
 
@@ -76,25 +82,27 @@
 .method public constructor <init>()V
     .locals 1
 
-    .line 55
+    .line 60
     invoke-direct {p0}, Lcom/android/camera/fragment/BaseFragment;-><init>()V
 
-    .line 90
+    .line 88
+    new-instance v0, Landroid/os/Handler;
+
+    invoke-direct {v0}, Landroid/os/Handler;-><init>()V
+
+    iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mHandler:Landroid/os/Handler;
+
+    .line 100
     const/4 v0, -0x1
 
     iput v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLastCameraId:I
 
-    .line 91
-    const/4 v0, 0x0
-
-    iput v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mAspectRatio:F
-
-    .line 713
+    .line 734
     const/4 v0, 0x2
 
     iput v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mActiveIndicator:I
 
-    .line 773
+    .line 794
     new-instance v0, Landroid/graphics/RectF;
 
     invoke-direct {v0}, Landroid/graphics/RectF;-><init>()V
@@ -107,7 +115,7 @@
 .method static synthetic access$000(Lcom/android/camera/fragment/FragmentMainContent;)I
     .locals 0
 
-    .line 55
+    .line 60
     iget p0, p0, Lcom/android/camera/fragment/FragmentMainContent;->lastFaceResult:I
 
     return p0
@@ -116,7 +124,7 @@
 .method static synthetic access$100(Lcom/android/camera/fragment/FragmentMainContent;)Z
     .locals 0
 
-    .line 55
+    .line 60
     iget-boolean p0, p0, Lcom/android/camera/fragment/FragmentMainContent;->lastFaceSuccess:Z
 
     return p0
@@ -125,7 +133,7 @@
 .method static synthetic access$200(Lcom/android/camera/fragment/FragmentMainContent;)Lcom/android/camera/ui/LightingView;
     .locals 0
 
-    .line 55
+    .line 60
     iget-object p0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLightingView:Lcom/android/camera/ui/LightingView;
 
     return-object p0
@@ -134,84 +142,142 @@
 .method static synthetic access$300(Lcom/android/camera/fragment/FragmentMainContent;)Lcom/android/camera/ui/V6PreviewFrame;
     .locals 0
 
-    .line 55
+    .line 60
     iget-object p0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
 
     return-object p0
 .end method
 
-.method private adjustViewHeight(Landroid/view/View;)V
-    .locals 5
+.method static synthetic access$400(Lcom/android/camera/fragment/FragmentMainContent;)Landroid/view/ViewGroup;
+    .locals 0
 
-    .line 146
+    .line 60
+    iget-object p0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewCenterHint:Landroid/view/ViewGroup;
+
+    return-object p0
+.end method
+
+.method private adjustViewHeight()V
+    .locals 7
+
+    .line 155
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentMainContent;->getContext()Landroid/content/Context;
 
     move-result-object v0
 
-    invoke-static {v0}, Lcom/android/camera/Util;->getDisplayRect(Landroid/content/Context;)Landroid/graphics/Rect;
+    if-eqz v0, :cond_3
+
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
+
+    if-nez v0, :cond_0
+
+    goto :goto_0
+
+    .line 161
+    :cond_0
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
+
+    invoke-virtual {v0}, Lcom/android/camera/ui/V6PreviewPanel;->getParent()Landroid/view/ViewParent;
 
     move-result-object v0
 
-    .line 149
+    check-cast v0, Landroid/view/ViewGroup;
+
+    .line 162
     nop
 
-    .line 150
-    invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+    .line 163
+    invoke-virtual {v0}, Landroid/view/ViewGroup;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object v1
 
     check-cast v1, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    .line 151
+    .line 164
     iget-object v2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
 
-    .line 152
+    .line 165
     invoke-virtual {v2}, Lcom/android/camera/ui/V6PreviewPanel;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object v2
 
     check-cast v2, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    .line 154
-    iget v3, v2, Landroid/view/ViewGroup$MarginLayoutParams;->height:I
+    .line 166
+    iget-object v3, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewCenterHint:Landroid/view/ViewGroup;
 
-    invoke-virtual {v0}, Landroid/graphics/Rect;->height()I
+    .line 167
+    invoke-virtual {v3}, Landroid/view/ViewGroup;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
-    move-result v4
+    move-result-object v3
 
-    if-ne v3, v4, :cond_0
+    check-cast v3, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    iget v3, v0, Landroid/graphics/Rect;->top:I
+    .line 169
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentMainContent;->getContext()Landroid/content/Context;
 
-    iget v4, p0, Lcom/android/camera/fragment/FragmentMainContent;->mDisplayRectTopMargin:I
+    move-result-object v4
 
-    if-eq v3, v4, :cond_1
+    invoke-static {v4}, Lcom/android/camera/Util;->getDisplayRect(Landroid/content/Context;)Landroid/graphics/Rect;
 
-    .line 155
-    :cond_0
-    iget v3, v0, Landroid/graphics/Rect;->top:I
+    move-result-object v4
 
-    iput v3, p0, Lcom/android/camera/fragment/FragmentMainContent;->mDisplayRectTopMargin:I
+    .line 170
+    iget v5, v2, Landroid/view/ViewGroup$MarginLayoutParams;->height:I
 
-    .line 157
-    invoke-virtual {v0}, Landroid/graphics/Rect;->height()I
+    invoke-virtual {v4}, Landroid/graphics/Rect;->height()I
 
-    move-result v3
+    move-result v6
 
-    iput v3, v2, Landroid/view/ViewGroup$MarginLayoutParams;->height:I
+    if-ne v5, v6, :cond_1
 
-    .line 158
-    iget v3, v0, Landroid/graphics/Rect;->top:I
+    iget v5, v4, Landroid/graphics/Rect;->top:I
 
-    iput v3, v2, Landroid/view/ViewGroup$MarginLayoutParams;->topMargin:I
+    iget v6, p0, Lcom/android/camera/fragment/FragmentMainContent;->mDisplayRectTopMargin:I
 
-    .line 159
-    iget-object v3, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
+    if-eq v5, v6, :cond_2
 
-    invoke-virtual {v3, v2}, Lcom/android/camera/ui/V6PreviewPanel;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+    .line 171
+    :cond_1
+    iget v5, v4, Landroid/graphics/Rect;->top:I
 
-    .line 161
-    invoke-virtual {v0}, Landroid/graphics/Rect;->height()I
+    iput v5, p0, Lcom/android/camera/fragment/FragmentMainContent;->mDisplayRectTopMargin:I
+
+    .line 173
+    invoke-virtual {v4}, Landroid/graphics/Rect;->height()I
+
+    move-result v5
+
+    iput v5, v2, Landroid/view/ViewGroup$MarginLayoutParams;->height:I
+
+    .line 174
+    iget v5, v4, Landroid/graphics/Rect;->top:I
+
+    iput v5, v2, Landroid/view/ViewGroup$MarginLayoutParams;->topMargin:I
+
+    .line 175
+    iget-object v5, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
+
+    invoke-virtual {v5, v2}, Lcom/android/camera/ui/V6PreviewPanel;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 177
+    invoke-virtual {v4}, Landroid/graphics/Rect;->width()I
+
+    move-result v2
+
+    mul-int/lit8 v2, v2, 0x4
+
+    div-int/lit8 v2, v2, 0x3
+
+    iput v2, v3, Landroid/view/ViewGroup$MarginLayoutParams;->height:I
+
+    .line 178
+    iget-object v2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewCenterHint:Landroid/view/ViewGroup;
+
+    invoke-virtual {v2, v3}, Landroid/view/ViewGroup;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 180
+    invoke-virtual {v4}, Landroid/graphics/Rect;->height()I
 
     move-result v2
 
@@ -221,29 +287,34 @@
 
     iput v2, v1, Landroid/view/ViewGroup$MarginLayoutParams;->height:I
 
-    .line 162
-    invoke-virtual {p1, v1}, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+    .line 181
+    invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 163
-    invoke-virtual {v0}, Landroid/graphics/Rect;->width()I
-
-    move-result p1
-
-    invoke-virtual {v0}, Landroid/graphics/Rect;->height()I
+    .line 183
+    invoke-virtual {v4}, Landroid/graphics/Rect;->width()I
 
     move-result v0
 
-    invoke-virtual {p0, p1, v0}, Lcom/android/camera/fragment/FragmentMainContent;->setDisplaySize(II)V
+    invoke-virtual {v4}, Landroid/graphics/Rect;->height()I
 
-    .line 165
-    :cond_1
+    move-result v1
+
+    invoke-virtual {p0, v0, v1}, Lcom/android/camera/fragment/FragmentMainContent;->setDisplaySize(II)V
+
+    .line 185
+    :cond_2
+    return-void
+
+    .line 157
+    :cond_3
+    :goto_0
     return-void
 .end method
 
 .method private consumeResult(I)V
     .locals 4
 
-    .line 847
+    .line 868
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
@@ -258,10 +329,10 @@
 
     if-gez v0, :cond_0
 
-    .line 848
+    .line 869
     return-void
 
-    .line 851
+    .line 872
     :cond_0
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
@@ -269,7 +340,7 @@
 
     iput-wide v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->lastConfirmTime:J
 
-    .line 852
+    .line 873
     const-string v0, "faceResult:"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -288,19 +359,19 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 854
+    .line 875
     iget v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->lastFaceResult:I
 
     if-ne v0, p1, :cond_1
 
-    .line 855
+    .line 876
     return-void
 
-    .line 858
+    .line 879
     :cond_1
     iput p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->lastFaceResult:I
 
-    .line 861
+    .line 882
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLightingView:Lcom/android/camera/ui/LightingView;
 
     new-instance v1, Lcom/android/camera/fragment/FragmentMainContent$1;
@@ -309,7 +380,7 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/LightingView;->post(Ljava/lang/Runnable;)Z
 
-    .line 875
+    .line 896
     const/4 v0, 0x6
 
     if-ne p1, v0, :cond_2
@@ -321,20 +392,20 @@
     :cond_2
     const/4 p1, 0x0
 
-    .line 877
+    .line 898
     :goto_0
     iget-boolean v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->lastFaceSuccess:Z
 
     if-ne v0, p1, :cond_3
 
-    .line 878
+    .line 899
     return-void
 
-    .line 881
+    .line 902
     :cond_3
     iput-boolean p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->lastFaceSuccess:Z
 
-    .line 884
+    .line 905
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLightingView:Lcom/android/camera/ui/LightingView;
 
     new-instance v0, Lcom/android/camera/fragment/FragmentMainContent$2;
@@ -343,14 +414,14 @@
 
     invoke-virtual {p1, v0}, Lcom/android/camera/ui/LightingView;->post(Ljava/lang/Runnable;)Z
 
-    .line 895
+    .line 916
     return-void
 .end method
 
 .method private getMergeRect(Landroid/graphics/RectF;Landroid/graphics/RectF;)Landroid/graphics/RectF;
     .locals 4
 
-    .line 900
+    .line 921
     iget v0, p1, Landroid/graphics/RectF;->left:F
 
     iget v1, p2, Landroid/graphics/RectF;->left:F
@@ -359,7 +430,7 @@
 
     move-result v0
 
-    .line 901
+    .line 922
     iget v1, p1, Landroid/graphics/RectF;->right:F
 
     iget v2, p2, Landroid/graphics/RectF;->right:F
@@ -368,7 +439,7 @@
 
     move-result v1
 
-    .line 903
+    .line 924
     iget v2, p1, Landroid/graphics/RectF;->top:F
 
     iget v3, p2, Landroid/graphics/RectF;->top:F
@@ -377,7 +448,7 @@
 
     move-result v2
 
-    .line 904
+    .line 925
     iget p1, p1, Landroid/graphics/RectF;->bottom:F
 
     iget p2, p2, Landroid/graphics/RectF;->bottom:F
@@ -386,12 +457,12 @@
 
     move-result p1
 
-    .line 906
+    .line 927
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mergeRectF:Landroid/graphics/RectF;
 
     invoke-virtual {p2, v0, v2, v1, p1}, Landroid/graphics/RectF;->set(FFFF)V
 
-    .line 908
+    .line 929
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mergeRectF:Landroid/graphics/RectF;
 
     return-object p1
@@ -400,7 +471,7 @@
 .method private initSnapNumAnimator()V
     .locals 2
 
-    .line 323
+    .line 346
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentMainContent;->getContext()Landroid/content/Context;
 
     move-result-object v0
@@ -415,14 +486,14 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mZoomInAnimator:Landroid/animation/AnimatorSet;
 
-    .line 324
+    .line 347
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mZoomInAnimator:Landroid/animation/AnimatorSet;
 
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mMultiSnapNum:Landroid/widget/TextView;
 
     invoke-virtual {v0, v1}, Landroid/animation/AnimatorSet;->setTarget(Ljava/lang/Object;)V
 
-    .line 325
+    .line 348
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mZoomInAnimator:Landroid/animation/AnimatorSet;
 
     new-instance v1, Lmiui/view/animation/QuadraticEaseInOutInterpolator;
@@ -431,7 +502,7 @@
 
     invoke-virtual {v0, v1}, Landroid/animation/AnimatorSet;->setInterpolator(Landroid/animation/TimeInterpolator;)V
 
-    .line 326
+    .line 349
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentMainContent;->getContext()Landroid/content/Context;
 
     move-result-object v0
@@ -446,14 +517,14 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mZoomOutAnimator:Landroid/animation/AnimatorSet;
 
-    .line 327
+    .line 350
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mZoomOutAnimator:Landroid/animation/AnimatorSet;
 
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mMultiSnapNum:Landroid/widget/TextView;
 
     invoke-virtual {v0, v1}, Landroid/animation/AnimatorSet;->setTarget(Ljava/lang/Object;)V
 
-    .line 328
+    .line 351
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mZoomOutAnimator:Landroid/animation/AnimatorSet;
 
     new-instance v1, Lmiui/view/animation/QuadraticEaseInOutInterpolator;
@@ -462,14 +533,14 @@
 
     invoke-virtual {v0, v1}, Landroid/animation/AnimatorSet;->setInterpolator(Landroid/animation/TimeInterpolator;)V
 
-    .line 329
+    .line 352
     return-void
 .end method
 
 .method private isRectIntersect(Landroid/graphics/RectF;Landroid/graphics/RectF;)Z
     .locals 2
 
-    .line 918
+    .line 939
     iget v0, p2, Landroid/graphics/RectF;->right:F
 
     iget v1, p1, Landroid/graphics/RectF;->left:F
@@ -516,33 +587,33 @@
 .method private showIndicator(Lcom/android/camera/ui/FocusIndicator;I)V
     .locals 0
 
-    .line 745
+    .line 766
     packed-switch p2, :pswitch_data_0
 
     goto :goto_0
 
-    .line 747
+    .line 768
     :pswitch_0
     invoke-interface {p1}, Lcom/android/camera/ui/FocusIndicator;->showFail()V
 
-    .line 748
+    .line 769
     goto :goto_0
 
-    .line 753
+    .line 774
     :pswitch_1
     invoke-interface {p1}, Lcom/android/camera/ui/FocusIndicator;->showSuccess()V
 
-    .line 754
+    .line 775
     goto :goto_0
 
-    .line 750
+    .line 771
     :pswitch_2
     invoke-interface {p1}, Lcom/android/camera/ui/FocusIndicator;->showStart()V
 
-    .line 751
+    .line 772
     nop
 
-    .line 758
+    .line 779
     :goto_0
     return-void
 
@@ -561,24 +632,24 @@
 .method public clearFocusView(I)V
     .locals 1
 
-    .line 546
+    .line 567
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/FocusView;->clear(I)V
 
-    .line 547
+    .line 568
     return-void
 .end method
 
 .method public clearIndicator(I)V
     .locals 1
 
-    .line 672
+    .line 693
     packed-switch p1, :pswitch_data_0
 
     goto :goto_0
 
-    .line 682
+    .line 703
     :pswitch_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
@@ -586,7 +657,7 @@
 
     goto :goto_0
 
-    .line 680
+    .line 701
     :pswitch_1
     new-instance p1, Ljava/lang/RuntimeException;
 
@@ -596,16 +667,16 @@
 
     throw p1
 
-    .line 674
+    .line 695
     :pswitch_2
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/FaceView;->clear()V
 
-    .line 675
+    .line 696
     nop
 
-    .line 685
+    .line 706
     :goto_0
     return-void
 
@@ -622,19 +693,19 @@
 .method public destroyEffectCropView()V
     .locals 1
 
-    .line 424
+    .line 443
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mEffectCropView:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/V6EffectCropView;->onDestroy()V
 
-    .line 425
+    .line 444
     return-void
 .end method
 
 .method public getActiveIndicator()I
     .locals 1
 
-    .line 723
+    .line 744
     iget v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mActiveIndicator:I
 
     return v0
@@ -651,7 +722,7 @@
         }
     .end annotation
 
-    .line 1038
+    .line 1070
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/FaceView;->getFaceWaterMarkInfos()Ljava/util/List;
@@ -664,7 +735,7 @@
 .method public getFaces()[Lcom/android/camera2/CameraHardwareFace;
     .locals 1
 
-    .line 509
+    .line 530
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/FaceView;->getFaces()[Lcom/android/camera2/CameraHardwareFace;
@@ -677,7 +748,7 @@
 .method public getFocusRect(I)Landroid/graphics/RectF;
     .locals 3
 
-    .line 762
+    .line 783
     const/4 v0, 0x1
 
     if-eq p1, v0, :cond_1
@@ -686,7 +757,7 @@
 
     if-eq p1, v0, :cond_0
 
-    .line 768
+    .line 789
     const-string v0, "FragmentMainContent"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -711,14 +782,14 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 769
+    .line 790
     new-instance p1, Landroid/graphics/RectF;
 
     invoke-direct {p1}, Landroid/graphics/RectF;-><init>()V
 
     return-object p1
 
-    .line 766
+    .line 787
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
@@ -728,7 +799,7 @@
 
     return-object p1
 
-    .line 764
+    .line 785
     :cond_1
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
@@ -742,7 +813,7 @@
 .method public getFocusRectInPreviewFrame()Landroid/graphics/RectF;
     .locals 1
 
-    .line 600
+    .line 621
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/ObjectView;->getFocusRectInPreviewFrame()Landroid/graphics/RectF;
@@ -755,7 +826,7 @@
 .method public getFragmentInto()I
     .locals 1
 
-    .line 174
+    .line 194
     const/16 v0, 0xf3
 
     return v0
@@ -764,8 +835,8 @@
 .method protected getLayoutResourceId()I
     .locals 1
 
-    .line 169
-    const v0, 0x7f040022
+    .line 189
+    const v0, 0x7f040024
 
     return v0
 .end method
@@ -773,7 +844,7 @@
 .method public hideDelayNumber()V
     .locals 2
 
-    .line 317
+    .line 340
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCaptureDelayNumber:Landroid/widget/TextView;
 
     invoke-virtual {v0}, Landroid/widget/TextView;->getVisibility()I
@@ -784,12 +855,12 @@
 
     if-eq v0, v1, :cond_0
 
-    .line 318
+    .line 341
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCaptureDelayNumber:Landroid/widget/TextView;
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setVisibility(I)V
 
-    .line 320
+    .line 343
     :cond_0
     return-void
 .end method
@@ -797,7 +868,7 @@
 .method public hideReviewViews()V
     .locals 1
 
-    .line 289
+    .line 312
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
 
     iget-object v0, v0, Lcom/android/camera/ui/V6PreviewPanel;->mVideoReviewImage:Landroid/widget/ImageView;
@@ -808,14 +879,14 @@
 
     if-nez v0, :cond_0
 
-    .line 290
+    .line 313
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
 
     iget-object v0, v0, Lcom/android/camera/ui/V6PreviewPanel;->mVideoReviewImage:Landroid/widget/ImageView;
 
     invoke-static {v0}, Lcom/android/camera/Util;->fadeOut(Landroid/view/View;)V
 
-    .line 292
+    .line 315
     :cond_0
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
 
@@ -823,27 +894,27 @@
 
     invoke-static {v0}, Lcom/android/camera/Util;->fadeOut(Landroid/view/View;)V
 
-    .line 293
+    .line 316
     return-void
 .end method
 
 .method public initEffectCropView()V
     .locals 1
 
-    .line 419
+    .line 438
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mEffectCropView:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/V6EffectCropView;->onCreate()V
 
-    .line 420
+    .line 439
     return-void
 .end method
 
 .method protected initView(Landroid/view/View;)V
-    .locals 3
+    .locals 4
 
-    .line 106
-    const v0, 0x7f0d0070
+    .line 115
+    const v0, 0x7f0d0079
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -853,10 +924,10 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCoverParent:Landroid/view/ViewGroup;
 
-    .line 107
+    .line 116
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCoverParent:Landroid/view/ViewGroup;
 
-    const v1, 0x7f0d0073
+    const v1, 0x7f0d007c
 
     invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
 
@@ -866,10 +937,10 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mMultiSnapNum:Landroid/widget/TextView;
 
-    .line 108
+    .line 117
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCoverParent:Landroid/view/ViewGroup;
 
-    const v1, 0x7f0d0074
+    const v1, 0x7f0d007d
 
     invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
 
@@ -879,10 +950,10 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCaptureDelayNumber:Landroid/widget/TextView;
 
-    .line 110
+    .line 119
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCoverParent:Landroid/view/ViewGroup;
 
-    const v1, 0x7f0d0071
+    const v1, 0x7f0d007a
 
     invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
 
@@ -890,10 +961,10 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mTopCover:Landroid/view/View;
 
-    .line 111
+    .line 120
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCoverParent:Landroid/view/ViewGroup;
 
-    const v1, 0x7f0d0072
+    const v1, 0x7f0d007b
 
     invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
 
@@ -901,149 +972,171 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mBottomCover:Landroid/view/View;
 
-    .line 113
-    const v0, 0x7f0d006f
+    .line 122
+    const v0, 0x7f0d0078
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
-    move-result-object v0
+    move-result-object p1
 
-    check-cast v0, Landroid/view/ViewGroup;
+    check-cast p1, Landroid/view/ViewGroup;
 
-    iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPage:Landroid/view/ViewGroup;
-
-    .line 114
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPage:Landroid/view/ViewGroup;
-
-    const v1, 0x7f0d00d9
-
-    invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/android/camera/ui/V6PreviewPanel;
-
-    iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
-
-    .line 115
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
-
-    const v1, 0x7f0d00db
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/ui/V6PreviewPanel;->findViewById(I)Landroid/view/View;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/android/camera/ui/V6PreviewFrame;
-
-    iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
-
-    .line 116
-    iget v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mAspectRatio:F
-
-    const/4 v1, 0x0
-
-    cmpl-float v0, v0, v1
-
-    if-lez v0, :cond_0
-
-    .line 117
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
-
-    iget v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mAspectRatio:F
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/ui/V6PreviewFrame;->setAspectRatio(F)V
-
-    .line 120
-    :cond_0
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
-
-    const v1, 0x7f0d00e4
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/ui/V6PreviewPanel;->findViewById(I)Landroid/view/View;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/android/camera/ui/V6EffectCropView;
-
-    iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mEffectCropView:Lcom/android/camera/ui/V6EffectCropView;
-
-    .line 121
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
-
-    const v1, 0x7f0d00dd
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/ui/V6PreviewPanel;->findViewById(I)Landroid/view/View;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/android/camera/ui/FaceView;
-
-    iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
-
-    .line 122
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
-
-    const v1, 0x7f0d00df
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/ui/V6PreviewPanel;->findViewById(I)Landroid/view/View;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/android/camera/ui/FocusView;
-
-    iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
+    iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPage:Landroid/view/ViewGroup;
 
     .line 123
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPage:Landroid/view/ViewGroup;
 
-    const v1, 0x7f0d00e0
+    const v0, 0x7f0d00e3
 
-    invoke-virtual {v0, v1}, Lcom/android/camera/ui/V6PreviewPanel;->findChildrenById(I)Landroid/view/View;
+    invoke-virtual {p1, v0}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
 
-    move-result-object v0
+    move-result-object p1
 
-    check-cast v0, Lcom/android/camera/ui/LightingView;
+    check-cast p1, Lcom/android/camera/ui/V6PreviewPanel;
 
-    iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLightingView:Lcom/android/camera/ui/LightingView;
+    iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
 
     .line 124
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
 
-    const v1, 0x7f0d00de
+    const v0, 0x7f0d00e5
 
-    invoke-virtual {v0, v1}, Lcom/android/camera/ui/V6PreviewPanel;->findViewById(I)Landroid/view/View;
+    invoke-virtual {p1, v0}, Lcom/android/camera/ui/V6PreviewPanel;->findViewById(I)Landroid/view/View;
 
-    move-result-object v0
+    move-result-object p1
 
-    check-cast v0, Lcom/android/camera/ui/ObjectView;
+    check-cast p1, Lcom/android/camera/ui/V6PreviewFrame;
 
-    iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
+    iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
 
-    .line 125
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
+    .line 126
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
 
-    const v1, 0x7f0d00e1
+    const v0, 0x7f0d00ef
 
-    invoke-virtual {v0, v1}, Lcom/android/camera/ui/V6PreviewPanel;->findViewById(I)Landroid/view/View;
+    invoke-virtual {p1, v0}, Lcom/android/camera/ui/V6PreviewPanel;->findViewById(I)Landroid/view/View;
 
-    move-result-object v0
+    move-result-object p1
 
-    check-cast v0, Lcom/android/camera/ui/AfRegionsView;
+    check-cast p1, Landroid/view/ViewGroup;
 
-    iput-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mAfRegionsView:Lcom/android/camera/ui/AfRegionsView;
+    iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewCenterHint:Landroid/view/ViewGroup;
+
+    .line 127
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewCenterHint:Landroid/view/ViewGroup;
+
+    const v0, 0x7f0d00f0
+
+    invoke-virtual {p1, v0}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
+
+    move-result-object p1
+
+    check-cast p1, Landroid/widget/ImageView;
+
+    iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCenterHintIcon:Landroid/widget/ImageView;
 
     .line 128
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLightingView:Lcom/android/camera/ui/LightingView;
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewCenterHint:Landroid/view/ViewGroup;
 
-    iget v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mDegree:I
+    const v0, 0x7f0d00f1
 
-    invoke-virtual {v0, v1}, Lcom/android/camera/ui/LightingView;->setRotation(I)V
+    invoke-virtual {p1, v0}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
+
+    move-result-object p1
+
+    check-cast p1, Landroid/widget/TextView;
+
+    iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCenterHintText:Landroid/widget/TextView;
+
+    .line 130
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
+
+    const v0, 0x7f0d00ee
+
+    invoke-virtual {p1, v0}, Lcom/android/camera/ui/V6PreviewPanel;->findViewById(I)Landroid/view/View;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/camera/ui/V6EffectCropView;
+
+    iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mEffectCropView:Lcom/android/camera/ui/V6EffectCropView;
 
     .line 131
-    invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentMainContent;->adjustViewHeight(Landroid/view/View;)V
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
+
+    const v0, 0x7f0d00e7
+
+    invoke-virtual {p1, v0}, Lcom/android/camera/ui/V6PreviewPanel;->findViewById(I)Landroid/view/View;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/camera/ui/FaceView;
+
+    iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
+
+    .line 132
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
+
+    const v0, 0x7f0d00e9
+
+    invoke-virtual {p1, v0}, Lcom/android/camera/ui/V6PreviewPanel;->findViewById(I)Landroid/view/View;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/camera/ui/FocusView;
+
+    iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     .line 133
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
+
+    const v0, 0x7f0d00ea
+
+    invoke-virtual {p1, v0}, Lcom/android/camera/ui/V6PreviewPanel;->findChildrenById(I)Landroid/view/View;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/camera/ui/LightingView;
+
+    iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLightingView:Lcom/android/camera/ui/LightingView;
+
+    .line 134
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
+
+    const v0, 0x7f0d00e8
+
+    invoke-virtual {p1, v0}, Lcom/android/camera/ui/V6PreviewPanel;->findViewById(I)Landroid/view/View;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/camera/ui/ObjectView;
+
+    iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
+
+    .line 135
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
+
+    const v0, 0x7f0d00eb
+
+    invoke-virtual {p1, v0}, Lcom/android/camera/ui/V6PreviewPanel;->findViewById(I)Landroid/view/View;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/camera/ui/AfRegionsView;
+
+    iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mAfRegionsView:Lcom/android/camera/ui/AfRegionsView;
+
+    .line 138
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLightingView:Lcom/android/camera/ui/LightingView;
+
+    iget v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mDegree:I
+
+    invoke-virtual {p1, v0}, Lcom/android/camera/ui/LightingView;->setRotation(I)V
+
+    .line 140
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentMainContent;->adjustViewHeight()V
+
+    .line 142
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCoverParent:Landroid/view/ViewGroup;
 
     invoke-virtual {p1}, Landroid/view/ViewGroup;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
@@ -1064,7 +1157,7 @@
 
     iput v0, p1, Landroid/view/ViewGroup$LayoutParams;->height:I
 
-    .line 134
+    .line 143
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mBottomCover:Landroid/view/View;
 
     invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
@@ -1085,24 +1178,26 @@
 
     sub-int/2addr v0, v1
 
-    div-int/lit8 v0, v0, 0x2
+    const/4 v1, 0x2
 
-    .line 135
+    div-int/2addr v0, v1
+
+    .line 144
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentMainContent;->getResources()Landroid/content/res/Resources;
 
-    move-result-object v1
+    move-result-object v2
 
-    const v2, 0x7f0900c3
+    const v3, 0x7f0a00c3
 
-    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+    invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
-    move-result v1
+    move-result v2
 
-    add-int/2addr v0, v1
+    add-int/2addr v0, v2
 
     iput v0, p1, Landroid/view/ViewGroup$LayoutParams;->height:I
 
-    .line 136
+    .line 145
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mTopCover:Landroid/view/View;
 
     invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
@@ -1117,24 +1212,24 @@
 
     iget v0, v0, Landroid/view/ViewGroup$LayoutParams;->height:I
 
-    sget v1, Lcom/android/camera/Util;->sWindowWidth:I
+    sget v2, Lcom/android/camera/Util;->sWindowWidth:I
 
-    sub-int/2addr v0, v1
+    sub-int/2addr v0, v2
 
-    iget-object v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mBottomCover:Landroid/view/View;
+    iget-object v2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mBottomCover:Landroid/view/View;
 
-    .line 137
-    invoke-virtual {v1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+    .line 146
+    invoke-virtual {v2}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
-    move-result-object v1
+    move-result-object v2
 
-    iget v1, v1, Landroid/view/ViewGroup$LayoutParams;->height:I
+    iget v2, v2, Landroid/view/ViewGroup$LayoutParams;->height:I
 
-    sub-int/2addr v0, v1
+    sub-int/2addr v0, v2
 
     iput v0, p1, Landroid/view/ViewGroup$LayoutParams;->height:I
 
-    .line 140
+    .line 149
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
 
     move-result-object p1
@@ -1145,52 +1240,50 @@
 
     iput-boolean p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mIsIntentAction:Z
 
-    .line 142
+    .line 151
     iget p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCurrentMode:I
 
     const/4 v0, 0x0
 
-    const/4 v1, 0x0
+    invoke-virtual {p0, p1, v0, v1}, Lcom/android/camera/fragment/FragmentMainContent;->provideAnimateElement(ILjava/util/List;I)V
 
-    invoke-virtual {p0, p1, v0, v1}, Lcom/android/camera/fragment/FragmentMainContent;->provideAnimateElement(ILjava/util/List;Z)V
-
-    .line 143
+    .line 152
     return-void
 .end method
 
 .method public initializeFocusView(Lcom/android/camera/ui/FocusView$ExposureViewListener;)V
     .locals 1
 
-    .line 528
+    .line 549
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/FocusView;->initialize(Lcom/android/camera/ui/FocusView$ExposureViewListener;)V
 
-    .line 529
+    .line 550
     return-void
 .end method
 
 .method public initializeObjectTrack(Landroid/graphics/RectF;Z)Z
     .locals 2
 
-    .line 556
+    .line 577
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/FocusView;->clear()V
 
-    .line 557
+    .line 578
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/ObjectView;->clear()V
 
-    .line 558
+    .line 579
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/ObjectView;->setVisibility(I)V
 
-    .line 559
+    .line 580
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
     invoke-virtual {v0, p1, p2}, Lcom/android/camera/ui/ObjectView;->initializeTrackView(Landroid/graphics/RectF;Z)Z
@@ -1203,7 +1296,7 @@
 .method public initializeObjectView(Landroid/graphics/RectF;Z)Z
     .locals 1
 
-    .line 564
+    .line 585
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
     invoke-virtual {v0, p1, p2}, Lcom/android/camera/ui/ObjectView;->initializeTrackView(Landroid/graphics/RectF;Z)Z
@@ -1216,7 +1309,7 @@
 .method public isAdjustingObjectView()Z
     .locals 1
 
-    .line 569
+    .line 590
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/ObjectView;->isAdjusting()Z
@@ -1229,7 +1322,7 @@
 .method public isEffectViewMoved()Z
     .locals 1
 
-    .line 458
+    .line 477
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mEffectCropView:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/V6EffectCropView;->isMoved()Z
@@ -1242,7 +1335,7 @@
 .method public isEffectViewVisible()Z
     .locals 1
 
-    .line 463
+    .line 482
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mEffectCropView:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/V6EffectCropView;->isVisible()Z
@@ -1255,10 +1348,10 @@
 .method public isEvAdjusted(Z)Z
     .locals 0
 
-    .line 514
+    .line 535
     if-eqz p1, :cond_0
 
-    .line 515
+    .line 536
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/FocusView;->isEvAdjustedTime()Z
@@ -1267,7 +1360,7 @@
 
     return p1
 
-    .line 517
+    .line 538
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
@@ -1281,7 +1374,7 @@
 .method public isFaceExists(I)Z
     .locals 1
 
-    .line 605
+    .line 626
     const/4 v0, 0x1
 
     if-eq p1, v0, :cond_1
@@ -1290,12 +1383,12 @@
 
     if-eq p1, v0, :cond_0
 
-    .line 611
+    .line 632
     const/4 p1, 0x0
 
     return p1
 
-    .line 609
+    .line 630
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
@@ -1305,7 +1398,7 @@
 
     return p1
 
-    .line 607
+    .line 628
     :cond_1
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
@@ -1319,7 +1412,7 @@
 .method public isFaceStable(I)Z
     .locals 1
 
-    .line 617
+    .line 638
     const/4 v0, 0x1
 
     if-eq p1, v0, :cond_1
@@ -1328,12 +1421,12 @@
 
     if-eq p1, v0, :cond_0
 
-    .line 623
+    .line 644
     const/4 p1, 0x0
 
     return p1
 
-    .line 621
+    .line 642
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
@@ -1343,7 +1436,7 @@
 
     return p1
 
-    .line 619
+    .line 640
     :cond_1
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
@@ -1357,17 +1450,17 @@
 .method public isIndicatorVisible(I)Z
     .locals 2
 
-    .line 629
+    .line 650
     const/4 v0, 0x1
 
     const/4 v1, 0x0
 
     packed-switch p1, :pswitch_data_0
 
-    .line 637
+    .line 658
     return v1
 
-    .line 635
+    .line 656
     :pswitch_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
@@ -1385,7 +1478,7 @@
     :goto_0
     return v0
 
-    .line 633
+    .line 654
     :pswitch_1
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
@@ -1403,7 +1496,7 @@
     :goto_1
     return v0
 
-    .line 631
+    .line 652
     :pswitch_2
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
@@ -1434,7 +1527,7 @@
 .method public isNeedExposure(I)Z
     .locals 1
 
-    .line 643
+    .line 664
     const/4 v0, 0x1
 
     if-eq p1, v0, :cond_1
@@ -1443,12 +1536,12 @@
 
     if-eq p1, v0, :cond_0
 
-    .line 649
+    .line 670
     const/4 p1, 0x0
 
     return p1
 
-    .line 647
+    .line 668
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
@@ -1458,7 +1551,7 @@
 
     return p1
 
-    .line 645
+    .line 666
     :cond_1
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
@@ -1472,7 +1565,7 @@
 .method public isObjectTrackFailed()Z
     .locals 1
 
-    .line 574
+    .line 595
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/ObjectView;->isTrackFailed()Z
@@ -1485,36 +1578,36 @@
 .method public lightingCancel()V
     .locals 2
 
-    .line 941
+    .line 962
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLightingView:Lcom/android/camera/ui/LightingView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/LightingView;->triggerAnimateExit()V
 
-    .line 942
+    .line 963
     const-wide/16 v0, -0x1
 
     iput-wide v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->lastConfirmTime:J
 
-    .line 943
+    .line 964
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/FaceView;->setLightingOn(Z)V
 
-    .line 944
+    .line 965
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mAfRegionsView:Lcom/android/camera/ui/AfRegionsView;
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/AfRegionsView;->setLightingOn(Z)V
 
-    .line 945
+    .line 966
     return-void
 .end method
 
 .method public lightingDetectFace([Lcom/android/camera2/CameraHardwareFace;)V
     .locals 6
 
-    .line 780
+    .line 801
     const/4 v0, 0x5
 
     if-eqz p1, :cond_6
@@ -1531,7 +1624,7 @@
 
     goto/16 :goto_2
 
-    .line 785
+    .line 806
     :cond_0
     iget-wide v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->lastConfirmTime:J
 
@@ -1541,10 +1634,10 @@
 
     if-nez v1, :cond_1
 
-    .line 786
+    .line 807
     return-void
 
-    .line 789
+    .line 810
     :cond_1
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
@@ -1562,31 +1655,31 @@
 
     invoke-virtual {v1, p1, v2}, Lcom/android/camera/ui/FaceView;->transToViewRect(Landroid/graphics/Rect;Landroid/graphics/RectF;)V
 
-    .line 791
+    .line 812
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLightingView:Lcom/android/camera/ui/LightingView;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/LightingView;->getFaceViewRectF()Landroid/graphics/RectF;
 
     move-result-object p1
 
-    .line 793
+    .line 814
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLightingView:Lcom/android/camera/ui/LightingView;
 
     invoke-virtual {v1}, Lcom/android/camera/ui/LightingView;->getFocusRectF()Landroid/graphics/RectF;
 
     move-result-object v1
 
-    .line 799
+    .line 820
     invoke-direct {p0, p1, v1}, Lcom/android/camera/fragment/FragmentMainContent;->isRectIntersect(Landroid/graphics/RectF;Landroid/graphics/RectF;)Z
 
     move-result v2
 
     if-eqz v2, :cond_5
 
-    .line 800
+    .line 821
     invoke-direct {p0, p1, v1}, Lcom/android/camera/fragment/FragmentMainContent;->getMergeRect(Landroid/graphics/RectF;Landroid/graphics/RectF;)Landroid/graphics/RectF;
 
-    .line 802
+    .line 823
     invoke-virtual {p1}, Landroid/graphics/RectF;->width()F
 
     move-result v2
@@ -1597,7 +1690,7 @@
 
     mul-float/2addr v2, p1
 
-    .line 803
+    .line 824
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mergeRectF:Landroid/graphics/RectF;
 
     invoke-virtual {p1}, Landroid/graphics/RectF;->width()F
@@ -1612,7 +1705,7 @@
 
     mul-float/2addr p1, v3
 
-    .line 804
+    .line 825
     invoke-virtual {v1}, Landroid/graphics/RectF;->width()F
 
     move-result v3
@@ -1623,28 +1716,28 @@
 
     mul-float/2addr v3, v1
 
-    .line 807
+    .line 828
     const v1, 0x3e4ccccd    # 0.2f
 
     mul-float/2addr v1, v3
 
-    .line 808
+    .line 829
     const/high16 v4, 0x3f000000    # 0.5f
 
     mul-float/2addr v3, v4
 
-    .line 810
+    .line 831
     mul-float/2addr v4, v2
 
-    .line 815
+    .line 836
     cmpg-float v5, p1, v4
 
     if-gez v5, :cond_2
 
-    .line 817
+    .line 838
     goto :goto_0
 
-    .line 818
+    .line 839
     :cond_2
     cmpg-float v0, p1, v1
 
@@ -1654,12 +1747,12 @@
 
     if-lez v0, :cond_3
 
-    .line 819
+    .line 840
     const/4 v0, 0x4
 
     goto :goto_0
 
-    .line 821
+    .line 842
     :cond_3
     cmpg-float p1, p1, v3
 
@@ -1669,96 +1762,96 @@
 
     if-gez p1, :cond_4
 
-    .line 822
+    .line 843
     const/4 v0, 0x6
 
     goto :goto_0
 
-    .line 825
+    .line 846
     :cond_4
     const/4 v0, 0x3
 
-    .line 829
+    .line 850
     :goto_0
     goto :goto_1
 
-    .line 830
+    .line 851
     :cond_5
     nop
 
-    .line 833
+    .line 854
     :goto_1
     invoke-direct {p0, v0}, Lcom/android/camera/fragment/FragmentMainContent;->consumeResult(I)V
 
-    .line 840
+    .line 861
     return-void
 
-    .line 781
+    .line 802
     :cond_6
     :goto_2
     invoke-direct {p0, v0}, Lcom/android/camera/fragment/FragmentMainContent;->consumeResult(I)V
 
-    .line 782
+    .line 803
     return-void
 .end method
 
 .method public lightingFocused()V
     .locals 1
 
-    .line 936
+    .line 957
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLightingView:Lcom/android/camera/ui/LightingView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/LightingView;->triggerAnimateSuccess()V
 
-    .line 937
+    .line 958
     return-void
 .end method
 
 .method public lightingStart()V
     .locals 2
 
-    .line 926
+    .line 947
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLightingView:Lcom/android/camera/ui/LightingView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/LightingView;->triggerAnimateStart()V
 
-    .line 927
+    .line 948
     const/4 v0, -0x1
 
     iput v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->lastFaceResult:I
 
-    .line 928
+    .line 949
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->lastFaceSuccess:Z
 
-    .line 929
+    .line 950
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
 
     iput-wide v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->lastConfirmTime:J
 
-    .line 930
+    .line 951
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     const/4 v1, 0x1
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/FaceView;->setLightingOn(Z)V
 
-    .line 931
+    .line 952
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mAfRegionsView:Lcom/android/camera/ui/AfRegionsView;
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/AfRegionsView;->setLightingOn(Z)V
 
-    .line 932
+    .line 953
     return-void
 .end method
 
 .method public needViewClear()Z
     .locals 1
 
-    .line 179
+    .line 199
     const/4 v0, 0x1
 
     return v0
@@ -1767,40 +1860,40 @@
 .method public notifyAfterFrameAvailable(I)V
     .locals 0
 
-    .line 996
+    .line 1028
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->notifyAfterFrameAvailable(I)V
 
-    .line 1000
+    .line 1032
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/V6PreviewFrame;->updateReferenceLineAccordSquare()V
 
-    .line 1001
+    .line 1033
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/V6PreviewFrame;->updatePreviewGrid()V
 
-    .line 1004
+    .line 1036
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/FocusView;->reInit()V
 
-    .line 1006
+    .line 1038
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mEffectCropView:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/V6EffectCropView;->updateVisible()V
 
-    .line 1007
+    .line 1039
     return-void
 .end method
 
 .method public notifyDataChanged(II)V
     .locals 3
 
-    .line 957
+    .line 985
     invoke-super {p0, p1, p2}, Lcom/android/camera/fragment/BaseFragment;->notifyDataChanged(II)V
 
-    .line 959
+    .line 987
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
 
     move-result-object p2
@@ -1809,18 +1902,18 @@
 
     move-result p2
 
-    .line 960
+    .line 988
     iget-boolean v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mIsIntentAction:Z
 
     if-eq p2, v0, :cond_0
 
-    .line 961
+    .line 989
     iput-boolean p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mIsIntentAction:Z
 
-    .line 962
+    .line 990
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentMainContent;->hideReviewViews()V
 
-    .line 964
+    .line 992
     :cond_0
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
 
@@ -1832,9 +1925,9 @@
 
     iget v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLastCameraId:I
 
-    if-eq p2, v0, :cond_2
+    if-eq p2, v0, :cond_3
 
-    .line 965
+    .line 993
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
 
     move-result-object p2
@@ -1845,24 +1938,35 @@
 
     iput p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLastCameraId:I
 
-    .line 966
+    .line 994
     invoke-static {}, Lcom/android/camera/Util;->isAccessible()Z
 
     move-result p2
 
-    if-eqz p2, :cond_2
+    if-eqz p2, :cond_3
 
-    .line 967
+    .line 995
     iget p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLastCameraId:I
 
     const/4 v0, 0x1
 
-    if-ne p2, v0, :cond_1
+    if-ne p2, v0, :cond_2
 
-    .line 968
+    .line 996
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentMainContent;->getActivity()Landroid/support/v4/app/FragmentActivity;
+
+    move-result-object p2
+
+    invoke-static {p2}, Lcom/android/camera/Util;->isScreenSlideOff(Landroid/content/Context;)Z
+
+    move-result p2
+
+    if-eqz p2, :cond_1
+
+    .line 997
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
 
-    const v0, 0x7f0b00f7
+    const v0, 0x7f0900f7
 
     invoke-virtual {p0, v0}, Lcom/android/camera/fragment/FragmentMainContent;->getString(I)Ljava/lang/String;
 
@@ -1872,11 +1976,11 @@
 
     goto :goto_0
 
-    .line 970
+    .line 999
     :cond_1
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
 
-    const v0, 0x7f0b00f6
+    const v0, 0x7f0900f6
 
     invoke-virtual {p0, v0}, Lcom/android/camera/fragment/FragmentMainContent;->getString(I)Ljava/lang/String;
 
@@ -1884,7 +1988,21 @@
 
     invoke-virtual {p2, v0}, Lcom/android/camera/ui/V6PreviewFrame;->setContentDescription(Ljava/lang/CharSequence;)V
 
-    .line 972
+    goto :goto_0
+
+    .line 1002
+    :cond_2
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
+
+    const v0, 0x7f0900f5
+
+    invoke-virtual {p0, v0}, Lcom/android/camera/fragment/FragmentMainContent;->getString(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {p2, v0}, Lcom/android/camera/ui/V6PreviewFrame;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    .line 1004
     :goto_0
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
 
@@ -1896,38 +2014,28 @@
 
     invoke-virtual {p2, v0, v1, v2}, Lcom/android/camera/ui/V6PreviewFrame;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 983
-    :cond_2
+    .line 1015
+    :cond_3
     packed-switch p1, :pswitch_data_0
 
     goto :goto_1
 
-    .line 989
+    .line 1021
     :pswitch_0
-    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentMainContent;->getView()Landroid/view/View;
-
-    move-result-object p1
-
-    invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentMainContent;->adjustViewHeight(Landroid/view/View;)V
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentMainContent;->adjustViewHeight()V
 
     goto :goto_1
 
-    .line 986
+    .line 1018
     :pswitch_1
-    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentMainContent;->getView()Landroid/view/View;
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentMainContent;->adjustViewHeight()V
 
-    move-result-object p1
-
-    invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentMainContent;->adjustViewHeight(Landroid/view/View;)V
-
-    .line 987
+    .line 1019
     nop
 
-    .line 992
+    .line 1024
     :goto_1
     return-void
-
-    nop
 
     :pswitch_data_0
     .packed-switch 0x2
@@ -1939,7 +2047,7 @@
 .method public onBackEvent(I)Z
     .locals 0
 
-    .line 1011
+    .line 1043
     const/4 p1, 0x0
 
     return p1
@@ -1952,30 +2060,30 @@
         .end annotation
     .end param
 
-    .line 95
+    .line 104
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->onCreate(Landroid/os/Bundle;)V
 
-    .line 96
+    .line 105
     return-void
 .end method
 
 .method public onDestroy()V
     .locals 0
 
-    .line 950
+    .line 978
     invoke-super {p0}, Lcom/android/camera/fragment/BaseFragment;->onDestroy()V
 
-    .line 951
+    .line 979
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentMainContent;->destroyEffectCropView()V
 
-    .line 952
+    .line 980
     return-void
 .end method
 
 .method public onEffectViewTouchEvent(Landroid/view/MotionEvent;)Z
     .locals 1
 
-    .line 453
+    .line 472
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mEffectCropView:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/V6EffectCropView;->onTouchEvent(Landroid/view/MotionEvent;)Z
@@ -1985,44 +2093,61 @@
     return p1
 .end method
 
+.method public onPause()V
+    .locals 2
+
+    .line 972
+    invoke-super {p0}, Lcom/android/camera/fragment/BaseFragment;->onPause()V
+
+    .line 973
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mHandler:Landroid/os/Handler;
+
+    const/4 v1, 0x0
+
+    invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
+
+    .line 974
+    return-void
+.end method
+
 .method public onStop()V
     .locals 1
 
-    .line 100
+    .line 109
     invoke-super {p0}, Lcom/android/camera/fragment/BaseFragment;->onStop()V
 
-    .line 101
+    .line 110
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLightingView:Lcom/android/camera/ui/LightingView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/LightingView;->clear()V
 
-    .line 102
+    .line 111
     return-void
 .end method
 
 .method public onStopObjectTrack()V
     .locals 2
 
-    .line 579
+    .line 600
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/ObjectView;->clear()V
 
-    .line 580
+    .line 601
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
     const/16 v1, 0x8
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/ObjectView;->setVisibility(I)V
 
-    .line 581
+    .line 602
     return-void
 .end method
 
 .method public onViewTouchEvent(ILandroid/view/MotionEvent;)Z
     .locals 1
 
-    .line 407
+    .line 426
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/FocusView;->getId()I
@@ -2031,7 +2156,7 @@
 
     if-ne p1, v0, :cond_0
 
-    .line 408
+    .line 427
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     invoke-virtual {p1, p2}, Lcom/android/camera/ui/FocusView;->onViewTouchEvent(Landroid/view/MotionEvent;)Z
@@ -2040,7 +2165,7 @@
 
     return p1
 
-    .line 409
+    .line 428
     :cond_0
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mEffectCropView:Lcom/android/camera/ui/V6EffectCropView;
 
@@ -2050,7 +2175,7 @@
 
     if-ne p1, v0, :cond_1
 
-    .line 410
+    .line 429
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mEffectCropView:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-virtual {p1, p2}, Lcom/android/camera/ui/V6EffectCropView;->onViewTouchEvent(Landroid/view/MotionEvent;)Z
@@ -2059,7 +2184,7 @@
 
     return p1
 
-    .line 412
+    .line 431
     :cond_1
     const/4 p1, 0x0
 
@@ -2069,55 +2194,55 @@
 .method public performHapticFeedback(I)V
     .locals 1
 
-    .line 392
+    .line 411
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/V6PreviewFrame;->performHapticFeedback(I)Z
 
-    .line 393
+    .line 412
     return-void
 .end method
 
-.method public provideAnimateElement(ILjava/util/List;Z)V
+.method public provideAnimateElement(ILjava/util/List;I)V
     .locals 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
             "Ljava/util/List<",
             "Lio/reactivex/Completable;",
-            ">;Z)V"
+            ">;I)V"
         }
     .end annotation
 
-    .line 185
+    .line 205
     iget v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCurrentMode:I
 
-    .line 186
-    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;Z)V
+    .line 206
+    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;I)V
 
-    .line 188
+    .line 208
     nop
 
-    .line 189
+    .line 209
     const/4 p3, 0x1
 
     const/16 v1, 0xa5
 
     if-eq p1, v1, :cond_0
 
-    .line 194
+    .line 214
     const/4 v1, -0x1
 
     goto :goto_0
 
-    .line 191
+    .line 211
     :cond_0
     nop
 
-    .line 192
+    .line 212
     nop
 
-    .line 197
+    .line 217
     move v1, p3
 
     :goto_0
@@ -2125,40 +2250,40 @@
 
     invoke-virtual {p0, v2, p3}, Lcom/android/camera/fragment/FragmentMainContent;->setSnapNumVisible(ZZ)V
 
-    .line 198
+    .line 218
     iget-object v3, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
 
     invoke-virtual {v3}, Lcom/android/camera/ui/V6PreviewFrame;->hidePreviewGrid()V
 
-    .line 199
+    .line 219
     iget-object v3, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-virtual {v3}, Lcom/android/camera/ui/FaceView;->clear()V
 
-    .line 200
+    .line 220
     iget-object v3, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-virtual {v3}, Lcom/android/camera/ui/FaceView;->clearFaceFlags()V
 
-    .line 201
+    .line 221
     iget-object v3, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     invoke-virtual {v3}, Lcom/android/camera/ui/FocusView;->clear()V
 
-    .line 202
+    .line 222
     iget-object v3, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLightingView:Lcom/android/camera/ui/LightingView;
 
     invoke-virtual {v3}, Lcom/android/camera/ui/LightingView;->clear()V
 
-    .line 203
+    .line 223
     iget-object v3, p0, Lcom/android/camera/fragment/FragmentMainContent;->mAfRegionsView:Lcom/android/camera/ui/AfRegionsView;
 
     invoke-virtual {v3}, Lcom/android/camera/ui/AfRegionsView;->clear()V
 
-    .line 205
+    .line 225
     nop
 
-    .line 206
+    .line 226
     const/16 v3, 0xa2
 
     if-eq v0, v3, :cond_1
@@ -2167,38 +2292,35 @@
 
     goto :goto_1
 
-    .line 210
+    .line 230
     :cond_1
     :pswitch_0
     if-eq p1, v3, :cond_2
 
     packed-switch p1, :pswitch_data_1
 
-    .line 219
+    .line 239
     :goto_1
     move v2, p3
 
     goto :goto_2
 
-    .line 214
+    .line 234
     :cond_2
     :pswitch_1
     nop
 
-    .line 219
+    .line 239
     :goto_2
     if-eqz v2, :cond_3
 
-    .line 220
+    .line 240
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/FocusView;->releaseListener()V
 
-    .line 223
+    .line 248
     :cond_3
-    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentMainContent;->destroyEffectCropView()V
-
-    .line 225
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mTopCover:Landroid/view/View;
 
     invoke-virtual {p1}, Landroid/view/View;->getTag()Ljava/lang/Object;
@@ -2221,10 +2343,10 @@
 
     if-ne p1, v1, :cond_4
 
-    .line 226
+    .line 249
     return-void
 
-    .line 229
+    .line 252
     :cond_4
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mTopCover:Landroid/view/View;
 
@@ -2234,29 +2356,29 @@
 
     invoke-virtual {p1, v0}, Landroid/view/View;->setTag(Ljava/lang/Object;)V
 
-    .line 231
+    .line 254
     const/16 p1, 0x50
 
     const/16 v0, 0x30
 
     if-ne v1, p3, :cond_6
 
-    .line 232
+    .line 255
     if-nez p2, :cond_5
 
-    .line 233
+    .line 256
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mTopCover:Landroid/view/View;
 
     invoke-static {p2, v0}, Lcom/android/camera/animation/type/SlideInOnSubscribe;->directSetResult(Landroid/view/View;I)V
 
-    .line 234
+    .line 257
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mBottomCover:Landroid/view/View;
 
     invoke-static {p2, p1}, Lcom/android/camera/animation/type/SlideInOnSubscribe;->directSetResult(Landroid/view/View;I)V
 
     goto :goto_3
 
-    .line 236
+    .line 259
     :cond_5
     new-instance p3, Lcom/android/camera/animation/type/SlideInOnSubscribe;
 
@@ -2264,48 +2386,48 @@
 
     invoke-direct {p3, v1, v0}, Lcom/android/camera/animation/type/SlideInOnSubscribe;-><init>(Landroid/view/View;I)V
 
-    .line 237
+    .line 260
     invoke-static {p3}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object p3
 
-    .line 236
+    .line 259
     invoke-interface {p2, p3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 238
+    .line 261
     new-instance p3, Lcom/android/camera/animation/type/SlideInOnSubscribe;
 
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mBottomCover:Landroid/view/View;
 
     invoke-direct {p3, v0, p1}, Lcom/android/camera/animation/type/SlideInOnSubscribe;-><init>(Landroid/view/View;I)V
 
-    .line 239
+    .line 262
     invoke-static {p3}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object p1
 
-    .line 238
+    .line 261
     invoke-interface {p2, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     goto :goto_3
 
-    .line 242
+    .line 265
     :cond_6
     if-nez p2, :cond_7
 
-    .line 243
+    .line 266
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mTopCover:Landroid/view/View;
 
     invoke-static {p2, v0}, Lcom/android/camera/animation/type/SlideOutOnSubscribe;->directSetResult(Landroid/view/View;I)V
 
-    .line 244
+    .line 267
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mBottomCover:Landroid/view/View;
 
     invoke-static {p2, p1}, Lcom/android/camera/animation/type/SlideOutOnSubscribe;->directSetResult(Landroid/view/View;I)V
 
     goto :goto_3
 
-    .line 246
+    .line 269
     :cond_7
     new-instance p3, Lcom/android/camera/animation/type/SlideOutOnSubscribe;
 
@@ -2313,7 +2435,7 @@
 
     invoke-direct {p3, v1, v0}, Lcom/android/camera/animation/type/SlideOutOnSubscribe;-><init>(Landroid/view/View;I)V
 
-    .line 247
+    .line 270
     const/16 v0, 0xc8
 
     invoke-virtual {p3, v0}, Lcom/android/camera/animation/type/SlideOutOnSubscribe;->setDurationTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
@@ -2324,17 +2446,17 @@
 
     move-result-object p3
 
-    .line 246
+    .line 269
     invoke-interface {p2, p3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 248
+    .line 271
     new-instance p3, Lcom/android/camera/animation/type/SlideOutOnSubscribe;
 
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mBottomCover:Landroid/view/View;
 
     invoke-direct {p3, v1, p1}, Lcom/android/camera/animation/type/SlideOutOnSubscribe;-><init>(Landroid/view/View;I)V
 
-    .line 249
+    .line 272
     invoke-virtual {p3, v0}, Lcom/android/camera/animation/type/SlideOutOnSubscribe;->setDurationTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object p1
@@ -2343,14 +2465,12 @@
 
     move-result-object p1
 
-    .line 248
+    .line 271
     invoke-interface {p2, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 252
+    .line 275
     :goto_3
     return-void
-
-    nop
 
     :pswitch_data_0
     .packed-switch 0xa8
@@ -2376,10 +2496,10 @@
         }
     .end annotation
 
-    .line 1016
+    .line 1048
     invoke-super {p0, p1, p2}, Lcom/android/camera/fragment/BaseFragment;->provideRotateItem(Ljava/util/List;I)V
 
-    .line 1018
+    .line 1050
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     rsub-int v1, p2, 0x168
@@ -2390,79 +2510,79 @@
 
     invoke-virtual {v0, v1, v2}, Lcom/android/camera/ui/FaceView;->setOrientation(IZ)V
 
-    .line 1021
+    .line 1053
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mAfRegionsView:Lcom/android/camera/ui/AfRegionsView;
 
     invoke-virtual {v0, p2, v2}, Lcom/android/camera/ui/AfRegionsView;->setOrientation(IZ)V
 
-    .line 1024
+    .line 1056
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mLightingView:Lcom/android/camera/ui/LightingView;
 
     invoke-virtual {v0, p2, v2}, Lcom/android/camera/ui/LightingView;->setOrientation(IZ)V
 
-    .line 1026
+    .line 1058
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     invoke-virtual {v0, p2, v2}, Lcom/android/camera/ui/FocusView;->setOrientation(IZ)V
 
-    .line 1027
+    .line 1059
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 1029
+    .line 1061
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mMultiSnapNum:Landroid/widget/TextView;
 
     invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 1032
+    .line 1064
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCaptureDelayNumber:Landroid/widget/TextView;
 
     invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 1034
+    .line 1066
     return-void
 .end method
 
 .method public reShowFaceRect()V
     .locals 1
 
-    .line 551
+    .line 572
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/FaceView;->reShowFaceRect()V
 
-    .line 552
+    .line 573
     return-void
 .end method
 
 .method protected register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 1
 
-    .line 256
+    .line 279
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 257
+    .line 280
     const/16 v0, 0xa6
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 259
+    .line 282
     invoke-virtual {p0, p1, p0}, Lcom/android/camera/fragment/FragmentMainContent;->registerBackStack(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;Lcom/android/camera/protocol/ModeProtocol$HandleBackTrace;)V
 
-    .line 261
+    .line 284
     invoke-static {}, Lcom/mi/config/b;->isSupportedOpticalZoom()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 262
+    .line 285
     const/16 v0, 0xb8
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 264
+    .line 287
     :cond_0
     return-void
 .end method
@@ -2470,86 +2590,223 @@
 .method public removeTiltShiftMask()V
     .locals 1
 
-    .line 429
+    .line 448
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mEffectCropView:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/V6EffectCropView;->removeTiltShiftMask()V
 
-    .line 430
+    .line 449
     return-void
 .end method
 
 .method public setActiveIndicator(I)V
     .locals 0
 
-    .line 718
+    .line 739
     iput p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mActiveIndicator:I
 
-    .line 719
+    .line 740
     return-void
 .end method
 
 .method public setAfRegionView([Landroid/hardware/camera2/params/MeteringRectangle;Landroid/graphics/Rect;F)V
     .locals 1
 
-    .line 1043
+    .line 1075
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mAfRegionsView:Lcom/android/camera/ui/AfRegionsView;
 
     invoke-virtual {v0, p1, p2, p3}, Lcom/android/camera/ui/AfRegionsView;->setAfRegionRect([Landroid/hardware/camera2/params/MeteringRectangle;Landroid/graphics/Rect;F)V
 
-    .line 1044
+    .line 1076
     return-void
 .end method
 
 .method public setCameraDisplayOrientation(I)V
     .locals 1
 
-    .line 470
+    .line 489
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
+
+    if-eqz v0, :cond_0
+
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mAfRegionsView:Lcom/android/camera/ui/AfRegionsView;
+
+    if-eqz v0, :cond_0
+
+    .line 490
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/FaceView;->setCameraDisplayOrientation(I)V
 
-    .line 471
+    .line 491
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mAfRegionsView:Lcom/android/camera/ui/AfRegionsView;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/AfRegionsView;->setCameraDisplayOrientation(I)V
 
-    .line 472
+    .line 493
+    :cond_0
+    return-void
+.end method
+
+.method public setCenterHint(ILjava/lang/String;Ljava/lang/String;I)V
+    .locals 5
+
+    .line 1080
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mHandler:Landroid/os/Handler;
+
+    iget-object v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewCenterHint:Landroid/view/ViewGroup;
+
+    invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
+
+    .line 1081
+    if-nez p1, :cond_4
+
+    .line 1082
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCenterHintText:Landroid/widget/TextView;
+
+    invoke-virtual {v0, p2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    .line 1083
+    const/16 v0, 0x8
+
+    const/4 v1, 0x0
+
+    if-eqz p2, :cond_1
+
+    const-string v2, ""
+
+    invoke-virtual {p2, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result p2
+
+    if-eqz p2, :cond_0
+
+    goto :goto_0
+
+    .line 1086
+    :cond_0
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCenterHintText:Landroid/widget/TextView;
+
+    invoke-virtual {p2, v1}, Landroid/widget/TextView;->setVisibility(I)V
+
+    goto :goto_1
+
+    .line 1084
+    :cond_1
+    :goto_0
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCenterHintText:Landroid/widget/TextView;
+
+    invoke-virtual {p2, v0}, Landroid/widget/TextView;->setVisibility(I)V
+
+    .line 1088
+    :goto_1
+    if-eqz p3, :cond_3
+
+    const-string p2, ""
+
+    invoke-virtual {p3, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result p2
+
+    if-eqz p2, :cond_2
+
+    goto :goto_2
+
+    .line 1091
+    :cond_2
+    invoke-static {p0}, Lcom/bumptech/glide/c;->a(Landroid/support/v4/app/Fragment;)Lcom/bumptech/glide/i;
+
+    move-result-object p2
+
+    invoke-virtual {p2, p3}, Lcom/bumptech/glide/i;->b(Ljava/lang/String;)Lcom/bumptech/glide/h;
+
+    move-result-object p2
+
+    iget-object p3, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCenterHintIcon:Landroid/widget/ImageView;
+
+    invoke-virtual {p2, p3}, Lcom/bumptech/glide/h;->a(Landroid/widget/ImageView;)Lcom/bumptech/glide/request/target/ViewTarget;
+
+    .line 1092
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCenterHintIcon:Landroid/widget/ImageView;
+
+    invoke-virtual {p2, v1}, Landroid/widget/ImageView;->setVisibility(I)V
+
+    goto :goto_3
+
+    .line 1089
+    :cond_3
+    :goto_2
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCenterHintIcon:Landroid/widget/ImageView;
+
+    invoke-virtual {p2, v0}, Landroid/widget/ImageView;->setVisibility(I)V
+
+    .line 1094
+    :goto_3
+    if-lez p4, :cond_4
+
+    .line 1095
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mHandler:Landroid/os/Handler;
+
+    new-instance p3, Lcom/android/camera/fragment/FragmentMainContent$4;
+
+    invoke-direct {p3, p0}, Lcom/android/camera/fragment/FragmentMainContent$4;-><init>(Lcom/android/camera/fragment/FragmentMainContent;)V
+
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewCenterHint:Landroid/view/ViewGroup;
+
+    .line 1100
+    invoke-static {}, Landroid/os/SystemClock;->uptimeMillis()J
+
+    move-result-wide v1
+
+    int-to-long v3, p4
+
+    add-long/2addr v1, v3
+
+    .line 1095
+    invoke-virtual {p2, p3, v0, v1, v2}, Landroid/os/Handler;->postAtTime(Ljava/lang/Runnable;Ljava/lang/Object;J)Z
+
+    .line 1103
+    :cond_4
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewCenterHint:Landroid/view/ViewGroup;
+
+    invoke-virtual {p2, p1}, Landroid/view/ViewGroup;->setVisibility(I)V
+
+    .line 1104
     return-void
 .end method
 
 .method public setDisplaySize(II)V
     .locals 1
 
-    .line 585
+    .line 606
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
     invoke-virtual {v0, p1, p2}, Lcom/android/camera/ui/ObjectView;->setDisplaySize(II)V
 
-    .line 586
+    .line 607
     return-void
 .end method
 
 .method public setEffectViewVisible(Z)V
     .locals 0
 
-    .line 434
+    .line 453
     if-eqz p1, :cond_0
 
-    .line 435
+    .line 454
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mEffectCropView:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/V6EffectCropView;->show()V
 
     goto :goto_0
 
-    .line 437
+    .line 456
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mEffectCropView:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/V6EffectCropView;->hide()V
 
-    .line 439
+    .line 458
     :goto_0
     return-void
 .end method
@@ -2557,19 +2814,19 @@
 .method public setEvAdjustable(Z)V
     .locals 1
 
-    .line 523
+    .line 544
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/FocusView;->setEvAdjustable(Z)V
 
-    .line 524
+    .line 545
     return-void
 .end method
 
 .method public setFaces(I[Lcom/android/camera2/CameraHardwareFace;Landroid/graphics/Rect;F)Z
     .locals 1
 
-    .line 656
+    .line 677
     const/4 v0, 0x1
 
     if-eq p1, v0, :cond_2
@@ -2580,10 +2837,10 @@
 
     if-eq p1, p3, :cond_0
 
-    .line 665
+    .line 686
     return p4
 
-    .line 660
+    .line 681
     :cond_0
     if-eqz p2, :cond_1
 
@@ -2591,18 +2848,18 @@
 
     if-lez p1, :cond_1
 
-    .line 661
+    .line 682
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
     aget-object p2, p2, p4
 
     invoke-virtual {p1, p2}, Lcom/android/camera/ui/ObjectView;->setObject(Lcom/android/camera2/CameraHardwareFace;)V
 
-    .line 663
+    .line 684
     :cond_1
     return v0
 
-    .line 658
+    .line 679
     :cond_2
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
@@ -2616,113 +2873,99 @@
 .method public setFocusViewPosition(III)V
     .locals 1
 
-    .line 539
+    .line 560
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     invoke-virtual {v0, p1, p2, p3}, Lcom/android/camera/ui/FocusView;->setPosition(III)V
 
-    .line 541
+    .line 562
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/FaceView;->forceHideRect()V
 
-    .line 542
+    .line 563
     return-void
 .end method
 
 .method public setFocusViewType(Z)V
     .locals 1
 
-    .line 533
+    .line 554
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/FocusView;->setFocusType(Z)V
 
-    .line 534
+    .line 555
     return-void
 .end method
 
 .method public setObjectViewListener(Lcom/android/camera/ui/ObjectView$ObjectViewListener;)V
     .locals 1
 
-    .line 595
+    .line 616
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/ObjectView;->setObjectViewListener(Lcom/android/camera/ui/ObjectView$ObjectViewListener;)V
 
-    .line 596
+    .line 617
     return-void
 .end method
 
 .method public setPreviewAspectRatio(F)V
-    .locals 1
+    .locals 0
 
-    .line 383
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
+    .line 406
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentMainContent;->adjustViewHeight()V
 
-    if-nez v0, :cond_0
-
-    .line 384
-    iput p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mAspectRatio:F
-
-    goto :goto_0
-
-    .line 386
-    :cond_0
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
-
-    invoke-virtual {v0, p1}, Lcom/android/camera/ui/V6PreviewFrame;->setAspectRatio(F)V
-
-    .line 388
-    :goto_0
+    .line 407
     return-void
 .end method
 
 .method public setPreviewSize(II)V
     .locals 1
 
-    .line 590
+    .line 611
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
     invoke-virtual {v0, p1, p2}, Lcom/android/camera/ui/ObjectView;->setPreviewSize(II)V
 
-    .line 591
+    .line 612
     return-void
 .end method
 
 .method public setShowGenderAndAge(Z)V
     .locals 1
 
-    .line 476
+    .line 497
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/FaceView;->setShowGenderAndAge(Z)V
 
-    .line 477
+    .line 498
     return-void
 .end method
 
 .method public setShowMagicMirror(Z)V
     .locals 1
 
-    .line 481
+    .line 502
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/FaceView;->setShowMagicMirror(Z)V
 
-    .line 482
+    .line 503
     return-void
 .end method
 
 .method public setSkipDrawFace(Z)V
     .locals 1
 
-    .line 486
+    .line 507
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/FaceView;->setSkipDraw(Z)V
 
-    .line 487
+    .line 508
     return-void
 .end method
 
@@ -2732,17 +2975,17 @@
         value = 0x15
     .end annotation
 
-    .line 353
+    .line 376
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0, v0}, Lcom/android/camera/fragment/FragmentMainContent;->setSnapNumVisible(ZZ)V
 
-    .line 354
+    .line 377
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mSnapStyle:Landroid/text/style/TextAppearanceSpan;
 
     if-nez v1, :cond_0
 
-    .line 355
+    .line 378
     new-instance v1, Landroid/text/style/TextAppearanceSpan;
 
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentMainContent;->getContext()Landroid/content/Context;
@@ -2755,13 +2998,13 @@
 
     iput-object v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mSnapStyle:Landroid/text/style/TextAppearanceSpan;
 
-    .line 357
+    .line 380
     :cond_0
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mStringBuilder:Landroid/text/SpannableStringBuilder;
 
     if-nez v1, :cond_1
 
-    .line 358
+    .line 381
     new-instance v1, Landroid/text/SpannableStringBuilder;
 
     invoke-direct {v1}, Landroid/text/SpannableStringBuilder;-><init>()V
@@ -2770,13 +3013,13 @@
 
     goto :goto_0
 
-    .line 360
+    .line 383
     :cond_1
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mStringBuilder:Landroid/text/SpannableStringBuilder;
 
     invoke-virtual {v1}, Landroid/text/SpannableStringBuilder;->clear()V
 
-    .line 362
+    .line 385
     :goto_0
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mStringBuilder:Landroid/text/SpannableStringBuilder;
 
@@ -2802,21 +3045,21 @@
 
     invoke-virtual {v1, p1, v0, v2}, Landroid/text/SpannableStringBuilder;->append(Ljava/lang/CharSequence;Ljava/lang/Object;I)Landroid/text/SpannableStringBuilder;
 
-    .line 363
+    .line 386
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mMultiSnapNum:Landroid/widget/TextView;
 
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mStringBuilder:Landroid/text/SpannableStringBuilder;
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 364
+    .line 387
     return-void
 .end method
 
 .method public setSnapNumVisible(ZZ)V
     .locals 1
 
-    .line 333
+    .line 356
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mMultiSnapNum:Landroid/widget/TextView;
 
     invoke-virtual {p2}, Landroid/widget/TextView;->getVisibility()I
@@ -2837,44 +3080,44 @@
     :goto_0
     if-ne p1, p2, :cond_1
 
-    .line 334
+    .line 357
     return-void
 
-    .line 337
+    .line 360
     :cond_1
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mZoomInAnimator:Landroid/animation/AnimatorSet;
 
     if-nez p2, :cond_2
 
-    .line 338
+    .line 361
     invoke-direct {p0}, Lcom/android/camera/fragment/FragmentMainContent;->initSnapNumAnimator()V
 
-    .line 340
+    .line 363
     :cond_2
     if-eqz p1, :cond_3
 
-    .line 341
+    .line 364
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mMultiSnapNum:Landroid/widget/TextView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 342
+    .line 365
     invoke-virtual {p0, v0}, Lcom/android/camera/fragment/FragmentMainContent;->setSnapNumValue(I)V
 
-    .line 343
+    .line 366
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mZoomInAnimator:Landroid/animation/AnimatorSet;
 
     invoke-virtual {p1}, Landroid/animation/AnimatorSet;->start()V
 
     goto :goto_1
 
-    .line 345
+    .line 368
     :cond_3
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mZoomOutAnimator:Landroid/animation/AnimatorSet;
 
     invoke-virtual {p1}, Landroid/animation/AnimatorSet;->start()V
 
-    .line 346
+    .line 369
     new-instance p1, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
 
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mMultiSnapNum:Landroid/widget/TextView;
@@ -2893,7 +3136,7 @@
 
     invoke-virtual {p1}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
-    .line 348
+    .line 371
     :goto_1
     return-void
 .end method
@@ -2901,7 +3144,7 @@
 .method public showDelayNumber(I)V
     .locals 3
 
-    .line 297
+    .line 320
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCaptureDelayNumber:Landroid/widget/TextView;
 
     invoke-virtual {v0}, Landroid/widget/TextView;->getVisibility()I
@@ -2910,30 +3153,30 @@
 
     if-eqz v0, :cond_4
 
-    .line 298
+    .line 321
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentMainContent;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
 
-    const v1, 0x7f09002f
+    const v1, 0x7f0a002f
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
     move-result v0
 
-    .line 299
+    .line 322
     iget v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCurrentMode:I
 
     const/16 v2, 0xa5
 
     if-eq v1, v2, :cond_0
 
-    .line 300
+    .line 323
     iget v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mDisplayRectTopMargin:I
 
     add-int/2addr v0, v1
 
-    .line 302
+    .line 325
     :cond_0
     iget v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mDisplayRectTopMargin:I
 
@@ -2943,13 +3186,13 @@
 
     if-ne v1, v2, :cond_2
 
-    .line 303
+    .line 326
     :cond_1
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentMainContent;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
 
-    const v2, 0x7f090055
+    const v2, 0x7f0a0055
 
     invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -2957,7 +3200,7 @@
 
     add-int/2addr v0, v1
 
-    .line 305
+    .line 328
     :cond_2
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCaptureDelayNumber:Landroid/widget/TextView;
 
@@ -2967,15 +3210,15 @@
 
     check-cast v1, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    .line 306
+    .line 329
     iput v0, v1, Landroid/view/ViewGroup$MarginLayoutParams;->topMargin:I
 
-    .line 307
+    .line 330
     iget v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mDegree:I
 
     if-lez v0, :cond_3
 
-    .line 308
+    .line 331
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCaptureDelayNumber:Landroid/widget/TextView;
 
     iget v1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mDegree:I
@@ -2984,7 +3227,7 @@
 
     invoke-static {v0, v1}, Landroid/support/v4/view/ViewCompat;->setRotation(Landroid/view/View;F)V
 
-    .line 310
+    .line 333
     :cond_3
     new-instance v0, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
 
@@ -2998,7 +3241,7 @@
 
     invoke-virtual {v0}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
-    .line 312
+    .line 335
     :cond_4
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mCaptureDelayNumber:Landroid/widget/TextView;
 
@@ -3008,46 +3251,46 @@
 
     invoke-virtual {v0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 313
+    .line 336
     return-void
 .end method
 
 .method public showIndicator(II)V
     .locals 0
 
-    .line 729
+    .line 750
     packed-switch p1, :pswitch_data_0
 
     goto :goto_0
 
-    .line 737
+    .line 758
     :pswitch_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mObjectView:Lcom/android/camera/ui/ObjectView;
 
     invoke-direct {p0, p1, p2}, Lcom/android/camera/fragment/FragmentMainContent;->showIndicator(Lcom/android/camera/ui/FocusIndicator;I)V
 
-    .line 738
+    .line 759
     goto :goto_0
 
-    .line 734
+    .line 755
     :pswitch_1
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFocusView:Lcom/android/camera/ui/FocusView;
 
     invoke-direct {p0, p1, p2}, Lcom/android/camera/fragment/FragmentMainContent;->showIndicator(Lcom/android/camera/ui/FocusIndicator;I)V
 
-    .line 735
+    .line 756
     goto :goto_0
 
-    .line 731
+    .line 752
     :pswitch_2
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-direct {p0, p1, p2}, Lcom/android/camera/fragment/FragmentMainContent;->showIndicator(Lcom/android/camera/ui/FocusIndicator;I)V
 
-    .line 732
+    .line 753
     nop
 
-    .line 742
+    .line 763
     :goto_0
     return-void
 
@@ -3064,17 +3307,17 @@
 .method public showReviewViews(Landroid/graphics/Bitmap;)V
     .locals 1
 
-    .line 280
+    .line 303
     if-eqz p1, :cond_0
 
-    .line 281
+    .line 304
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
 
     iget-object v0, v0, Lcom/android/camera/ui/V6PreviewPanel;->mVideoReviewImage:Landroid/widget/ImageView;
 
     invoke-virtual {v0, p1}, Landroid/widget/ImageView;->setImageBitmap(Landroid/graphics/Bitmap;)V
 
-    .line 282
+    .line 305
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
 
     iget-object p1, p1, Lcom/android/camera/ui/V6PreviewPanel;->mVideoReviewImage:Landroid/widget/ImageView;
@@ -3083,7 +3326,7 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 284
+    .line 307
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewPanel:Lcom/android/camera/ui/V6PreviewPanel;
 
@@ -3091,77 +3334,95 @@
 
     invoke-static {p1}, Lcom/android/camera/Util;->fadeIn(Landroid/view/View;)V
 
-    .line 285
+    .line 308
     return-void
 .end method
 
 .method protected unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 1
 
-    .line 268
+    .line 291
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 269
+    .line 292
     const/16 v0, 0xa6
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 271
+    .line 294
     invoke-virtual {p0, p1, p0}, Lcom/android/camera/fragment/FragmentMainContent;->unRegisterBackStack(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;Lcom/android/camera/protocol/ModeProtocol$HandleBackTrace;)V
 
-    .line 273
+    .line 296
     invoke-static {}, Lcom/mi/config/b;->isSupportedOpticalZoom()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 274
+    .line 297
     const/16 v0, 0xb8
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 276
+    .line 299
     :cond_0
+    return-void
+.end method
+
+.method public updateContentDescription()V
+    .locals 2
+
+    .line 1108
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mPreviewFrame:Lcom/android/camera/ui/V6PreviewFrame;
+
+    const v1, 0x7f0900f6
+
+    invoke-virtual {p0, v1}, Lcom/android/camera/fragment/FragmentMainContent;->getString(I)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Lcom/android/camera/ui/V6PreviewFrame;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    .line 1109
     return-void
 .end method
 
 .method public updateEffectViewVisible()V
     .locals 1
 
-    .line 443
+    .line 462
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mEffectCropView:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/V6EffectCropView;->updateVisible()V
 
-    .line 444
+    .line 463
     return-void
 .end method
 
 .method public updateEffectViewVisible(I)V
     .locals 1
 
-    .line 448
+    .line 467
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent;->mEffectCropView:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/V6EffectCropView;->updateVisible(I)V
 
-    .line 449
+    .line 468
     return-void
 .end method
 
 .method public updateFaceView(ZZZZI)V
     .locals 0
 
-    .line 492
+    .line 513
     if-eqz p2, :cond_0
 
-    .line 493
+    .line 514
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-virtual {p2}, Lcom/android/camera/ui/FaceView;->clear()V
 
-    .line 495
+    .line 516
     :cond_0
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
@@ -3177,29 +3438,29 @@
     :goto_0
     invoke-virtual {p2, p1}, Lcom/android/camera/ui/FaceView;->setVisibility(I)V
 
-    .line 497
+    .line 518
     if-lez p5, :cond_2
 
-    .line 498
+    .line 519
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-virtual {p1, p5}, Lcom/android/camera/ui/FaceView;->setCameraDisplayOrientation(I)V
 
-    .line 501
+    .line 522
     :cond_2
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-virtual {p1, p3}, Lcom/android/camera/ui/FaceView;->setMirror(Z)V
 
-    .line 502
+    .line 523
     if-eqz p4, :cond_3
 
-    .line 503
+    .line 524
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent;->mFaceView:Lcom/android/camera/ui/FaceView;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/FaceView;->resume()V
 
-    .line 505
+    .line 526
     :cond_3
     return-void
 .end method

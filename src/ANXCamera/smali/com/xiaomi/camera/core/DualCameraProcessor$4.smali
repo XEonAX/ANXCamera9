@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/xiaomi/camera/core/DualCameraProcessor;)V
     .locals 0
 
-    .line 127
+    .line 124
     iput-object p1, p0, Lcom/xiaomi/camera/core/DualCameraProcessor$4;->this$0:Lcom/xiaomi/camera/core/DualCameraProcessor;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public onFrameImageClosed(Landroid/media/Image;)V
     .locals 3
 
-    .line 130
+    .line 127
     invoke-static {}, Lcom/xiaomi/camera/core/DualCameraProcessor;->access$000()Ljava/lang/String;
 
     move-result-object v0
@@ -59,12 +59,29 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
+    .line 128
+    iget-object v0, p0, Lcom/xiaomi/camera/core/DualCameraProcessor$4;->this$0:Lcom/xiaomi/camera/core/DualCameraProcessor;
+
+    iget-object v0, v0, Lcom/xiaomi/camera/core/DualCameraProcessor;->mTaskSession:Lcom/xiaomi/engine/TaskSession;
+
+    if-eqz v0, :cond_0
+
+    .line 129
+    iget-object v0, p0, Lcom/xiaomi/camera/core/DualCameraProcessor$4;->this$0:Lcom/xiaomi/camera/core/DualCameraProcessor;
+
+    iget-object v0, v0, Lcom/xiaomi/camera/core/DualCameraProcessor;->mTaskSession:Lcom/xiaomi/engine/TaskSession;
+
+    const/4 v1, 0x1
+
+    invoke-virtual {v0, v1}, Lcom/xiaomi/engine/TaskSession;->onTaskFinish(I)V
+
     .line 131
+    :cond_0
     iget-object v0, p0, Lcom/xiaomi/camera/core/DualCameraProcessor$4;->this$0:Lcom/xiaomi/camera/core/DualCameraProcessor;
 
     iget-object v0, v0, Lcom/xiaomi/camera/core/DualCameraProcessor;->mImageProcessorStatusCallback:Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1
 
     .line 132
     iget-object v0, p0, Lcom/xiaomi/camera/core/DualCameraProcessor$4;->this$0:Lcom/xiaomi/camera/core/DualCameraProcessor;
@@ -74,6 +91,6 @@
     invoke-interface {v0, p1}, Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;->onOriginalImageClosed(Landroid/media/Image;)V
 
     .line 134
-    :cond_0
+    :cond_1
     return-void
 .end method

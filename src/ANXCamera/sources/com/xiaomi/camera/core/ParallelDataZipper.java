@@ -43,7 +43,7 @@ public class ParallelDataZipper {
         this.mBurstNum = 1;
         this.mCaptureDataBeanArray = new LongSparseArray(4);
         this.mCaptureDataArray = new SparseArray(4);
-        this.mWorkThread = new HandlerThread("ParallelDataZipper Thread");
+        this.mWorkThread = new HandlerThread("ParallelDataZipperThread");
         this.mWorkThread.start();
         this.mHandler = new Handler(this.mWorkThread.getLooper());
     }

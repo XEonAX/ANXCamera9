@@ -3,12 +3,12 @@
 .source "FragmentBottomPopupTips.java"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Landroid/animation/ValueAnimator$AnimatorUpdateListener;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/fragment/FragmentBottomPopupTips;->showTips(III)V
+    value = Lcom/android/camera/fragment/FragmentBottomPopupTips;->startLeftImageIntroAnim(I)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;)V
     .locals 0
 
-    .line 615
+    .line 1600
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$4;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -35,30 +35,30 @@
 
 
 # virtual methods
-.method public run()V
+.method public onAnimationUpdate(Landroid/animation/ValueAnimator;)V
     .locals 2
 
-    .line 618
+    .line 1603
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$4;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
-    invoke-virtual {v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->isAdded()Z
+    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$4;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
-    move-result v0
+    invoke-static {v1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->access$500(Lcom/android/camera/fragment/FragmentBottomPopupTips;)Landroid/widget/FrameLayout;
 
-    if-eqz v0, :cond_0
+    move-result-object v1
 
-    .line 619
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$4;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
+    invoke-virtual {p1}, Landroid/animation/ValueAnimator;->getAnimatedValue()Ljava/lang/Object;
 
-    invoke-static {v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->access$000(Lcom/android/camera/fragment/FragmentBottomPopupTips;)Landroid/widget/TextView;
+    move-result-object p1
 
-    move-result-object v0
+    check-cast p1, Ljava/lang/Integer;
 
-    const/4 v1, 0x4
+    invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
 
-    invoke-virtual {v0, v1}, Landroid/widget/TextView;->sendAccessibilityEvent(I)V
+    move-result p1
 
-    .line 621
-    :cond_0
+    invoke-static {v0, v1, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->access$600(Lcom/android/camera/fragment/FragmentBottomPopupTips;Landroid/view/View;I)V
+
+    .line 1605
     return-void
 .end method

@@ -19,10 +19,13 @@ public class SupportedConfigFactory {
     public static final int BEAUTY = 239;
     public static final String CLOSE_BY_AI = "e";
     public static final String CLOSE_BY_BURST_SHOOT = "d";
+    public static final String CLOSE_BY_FILTER = "k";
     public static final String CLOSE_BY_GROUP = "b";
     public static final String CLOSE_BY_HDR = "g";
     public static final String CLOSE_BY_HHT = "a";
     public static final String CLOSE_BY_SUPER_RESOLUTION = "c";
+    public static final String CLOSE_BY_ULTRA_PIXEL = "j";
+    public static final String CLOSE_BY_ULTRA_WIDE = "i";
     public static final String CLOSE_BY_VIDEO = "h";
     public static final int DUAL_WATER_MARK = 240;
     public static final int FAST = 233;
@@ -32,6 +35,7 @@ public class SupportedConfigFactory {
     public static final int GENDER_AGE = 238;
     public static final int GRADIENTER = 229;
     public static final int GROUP = 235;
+    public static final int HAND_GESTURE = 252;
     public static final int HDR = 194;
     public static final int HFR = 202;
     public static final int HHT = 230;
@@ -42,9 +46,10 @@ public class SupportedConfigFactory {
     public static final int MAGIC_FOCUS = 231;
     public static final int MAGIC_MIRROR = 236;
     public static final int MENU_ULTRA_PIXEL_PHOTOGRAPHY = 250;
+    public static final int MENU_ULTRA_PIXEL_PHOTOGRAPHY_FRONT = 251;
     public static final int MOON = 246;
     public static final int MORE = 197;
-    public static final int[] MUTEX_MENU_CONFIGS = new int[]{229, 236, 235, 228, 230, 241, 234, 195, 238, 199, 203, 206};
+    public static final int[] MUTEX_MENU_CONFIGS = new int[]{229, 236, 235, 228, 230, 241, 234, 195, 238, 199, 203, 206, 250, 251};
     public static final int NEW_SLOW_MOTION = 204;
     public static final int NIGHT = 247;
     public static final int PORTRAIT = 195;
@@ -61,6 +66,7 @@ public class SupportedConfigFactory {
     public static final int ULTRA_WIDE_BOKEH = 207;
     public static final int USER_DEFINE_WATER_MARK = 244;
     public static final int VIDEO_BOKEH = 243;
+    public static int[] gRecordingMutexElements;
 
     @Retention(RetentionPolicy.SOURCE)
     public @interface CloseElementTrigger {
@@ -102,9 +108,6 @@ public class SupportedConfigFactory {
         if (i == 241) {
             return "pref_camera_super_resolution_key";
         }
-        if (i == 250) {
-            return "pref_menu_ultra_pixel_photography_48mp";
-        }
         switch (i) {
             case 228:
                 return "pref_camera_tilt_shift_mode";
@@ -121,7 +124,16 @@ public class SupportedConfigFactory {
                     case 236:
                         return "pref_camera_magic_mirror_key";
                     default:
-                        throw new RuntimeException("unknown config item");
+                        switch (i) {
+                            case 250:
+                                return "pref_menu_ultra_pixel_photography_rear";
+                            case 251:
+                                return "pref_menu_ultra_pixel_photography_front";
+                            case 252:
+                                return "pref_hand_gesture";
+                            default:
+                                throw new RuntimeException("unknown config item");
+                        }
                 }
         }
     }
@@ -141,7 +153,7 @@ public class SupportedConfigFactory {
         boolean fA = DataRepository.dataItemFeature().fA();
         switch (i) {
             case 161:
-                if (z && i2 != 0 && DataRepository.dataItemFeature().fc()) {
+                if (z && i2 != 0 && DataRepository.dataItemFeature().fd()) {
                     arrayList.add(createConfigItem(243));
                 }
                 if (i2 == 1) {
@@ -168,13 +180,13 @@ public class SupportedConfigFactory {
                     if (dataItemConfig.supportHdr()) {
                         arrayList.add(createConfigItem(194));
                     }
-                    if (!DataRepository.dataItemFeature().fr() && b.gh() && b.hz()) {
+                    if (!DataRepository.dataItemFeature().fs() && b.gq() && b.hI()) {
                         arrayList.add(createConfigItem(202));
                     }
                     arrayList.add(createConfigItem(197));
                     break;
                 }
-                if (z && i == 162 && DataRepository.dataItemFeature().fc()) {
+                if (z && i == 162 && DataRepository.dataItemFeature().fd()) {
                     arrayList.add(createConfigItem(243));
                 }
                 arrayList.add(createConfigItem(225));
@@ -183,7 +195,7 @@ public class SupportedConfigFactory {
                 if (dataItemConfig.supportHdr()) {
                     arrayList.add(createConfigItem(194));
                 }
-                if ((b.gq() && i2 == 0) || (DataRepository.dataItemFeature().fa() && i2 == 1)) {
+                if ((b.gz() && i2 == 0) || (DataRepository.dataItemFeature().fb() && i2 == 1)) {
                     arrayList.add(createConfigItem(201));
                 }
                 arrayList.add(createConfigItem(196));
@@ -195,11 +207,12 @@ public class SupportedConfigFactory {
                 break;
             case 167:
                 ComponentManuallyFocus manuallyFocus = dataItemConfig.getManuallyFocus();
-                if (b.gF() && !manuallyFocus.getComponentValue(i).equals(manuallyFocus.getDefaultValue(i))) {
+                if (b.gO() && !manuallyFocus.getComponentValue(i).equals(manuallyFocus.getDefaultValue(i))) {
                     arrayList.add(createConfigItem(199));
                 }
                 if (CameraSettings.isSupportedUltraPixelPhotography(cameraCapabilities) && z) {
                     arrayList.add(createConfigItem(209));
+                    DataRepository.dataItemConfig().getRearComponentConfigUltraPixel().initUltraPixelResource(DataRepository.dataItemFeature().fN());
                 }
                 arrayList.add(createConfigItem(196));
                 arrayList.add(createConfigItem(197));
@@ -207,17 +220,17 @@ public class SupportedConfigFactory {
             case 171:
                 if (!Util.UI_DEBUG() && z && cameraCapabilities.isSupportPortraitLighting()) {
                     if (i2 == 0) {
-                        if (DataRepository.dataItemFeature().eY()) {
+                        if (DataRepository.dataItemFeature().eZ()) {
                             arrayList.add(createConfigItem(203));
                         }
-                    } else if (i2 == 1 && DataRepository.dataItemFeature().eZ()) {
+                    } else if (i2 == 1 && DataRepository.dataItemFeature().fa()) {
                         arrayList.add(createConfigItem(203));
                     }
                 }
-                if (DataRepository.dataItemFeature().fw() && i2 == 0) {
+                if (DataRepository.dataItemFeature().fx() && i2 == 0 && z) {
                     arrayList.add(createConfigItem(207));
                 }
-                if (DataRepository.dataItemFeature().fb() && (i2 == 0 || (DataRepository.dataItemFeature().fa() && i2 == 1))) {
+                if (DataRepository.dataItemFeature().fc() && (i2 == 0 || (DataRepository.dataItemFeature().fb() && i2 == 1))) {
                     arrayList.add(createConfigItem(201));
                 }
                 arrayList.add(createConfigItem(196, 17));
@@ -231,25 +244,23 @@ public class SupportedConfigFactory {
                 arrayList.add(createConfigItem(225));
                 break;
             case 174:
-                if (z && i2 != 0 && DataRepository.dataItemFeature().fc()) {
+                if (z && i2 != 0 && DataRepository.dataItemFeature().fd()) {
                     arrayList.add(createConfigItem(243));
                 }
-                arrayList.add(createConfigItem(245));
+                arrayList.add(createConfigItem(245, 17));
                 arrayList.add(createConfigItem(225));
                 break;
             default:
                 if (dataItemConfig.supportHdr()) {
                     arrayList.add(createConfigItem(194));
                 }
-                if ((b.gq() && i2 == 0) || (DataRepository.dataItemFeature().fa() && i2 == 1)) {
+                if ((b.gz() && i2 == 0) || (DataRepository.dataItemFeature().fb() && i2 == 1)) {
                     arrayList.add(createConfigItem(201));
                 }
                 if (fA && z) {
                     arrayList.add(createConfigItem(206));
                 }
-                if (!(CameraSettings.isSupportedUltraPixelPhotography(cameraCapabilities) && CameraSettings.isMeunUltraPixelPhotographyOn())) {
-                    arrayList.add(createConfigItem(196));
-                }
+                arrayList.add(createConfigItem(196));
                 arrayList.add(createConfigItem(197));
                 break;
         }
@@ -267,7 +278,7 @@ public class SupportedConfigFactory {
         return new TopConfigItem(i);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:72:0x0100  */
+    /* JADX WARNING: Removed duplicated region for block: B:89:0x015e  */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     public static final SupportedConfigs getSupportedExtraConfigs(int i, int i2, CloudFeature cloudFeature, CameraCapabilities cameraCapabilities, boolean z) {
         SupportedConfigs supportedConfigs = new SupportedConfigs();
@@ -290,17 +301,20 @@ public class SupportedConfigFactory {
                             break;
                         case 171:
                             supportedConfigs.add(225).add(226);
-                            if (i2 != 1 || !b.he()) {
-                                if (i2 == 0 && !Util.UI_DEBUG() && CameraSettings.isCameraPortraitWithFaceBeauty() && b.fP()) {
+                            if (i2 != 1 || !b.hn()) {
+                                if (i2 == 0 && !Util.UI_DEBUG() && CameraSettings.isCameraPortraitWithFaceBeauty() && b.fZ()) {
                                     supportedConfigs.add(239);
                                     break;
                                 }
                             }
-                            if (b.fQ() && b.fP()) {
+                            if (b.ga() && b.fZ()) {
                                 supportedConfigs.add(238);
                             }
-                            if (b.gV()) {
+                            if (b.he()) {
                                 supportedConfigs.add(236);
+                            }
+                            if (b.fP()) {
+                                supportedConfigs.add(252);
                                 break;
                             }
                             break;
@@ -308,39 +322,54 @@ public class SupportedConfigFactory {
                             supportedConfigs.add(225).add(226);
                             switch (i2) {
                                 case 0:
-                                    if (b.gQ()) {
+                                    if (b.gZ()) {
                                         supportedConfigs.add(228);
                                     }
-                                    if (b.gJ()) {
+                                    if (b.gS()) {
                                         supportedConfigs.add(229);
                                     }
-                                    if (b.gp()) {
+                                    if (b.gy()) {
                                         supportedConfigs.add(234);
                                     }
-                                    if (i != 165 && z && b.hj()) {
+                                    if (i != 165 && z && b.hs()) {
                                         supportedConfigs.add(235);
                                     }
-                                    if (!Util.UI_DEBUG() && ((i == 165 || i == 163) && b.fP())) {
+                                    if (!Util.UI_DEBUG() && ((i == 165 || i == 163) && b.fZ())) {
                                         supportedConfigs.add(239);
                                     }
                                     if (z && CameraSettings.checkLensAvailability(CameraAppImpl.getAndroidContext())) {
                                         supportedConfigs.add(242);
                                     }
-                                    if (CameraSettings.isSupportedUltraPixelPhotography(cameraCapabilities) && z) {
-                                        supportedConfigs.add(250);
-                                        break;
+                                    if (i == 163) {
+                                        i = DataRepository.dataItemFeature().fN();
+                                        if (CameraSettings.isSupportedUltraPixelPhotography(cameraCapabilities) && z && i > 0 && !DataRepository.dataItemFeature().fL()) {
+                                            supportedConfigs.add(250);
+                                            DataRepository.dataItemConfig().getRearComponentConfigUltraPixel().initUltraPixelResource(i);
+                                            break;
+                                        }
                                     }
+                                    break;
                                 case 1:
-                                    if (b.hj() && i != 165) {
+                                    if (z && b.hs() && i != 165) {
                                         supportedConfigs.add(235);
                                     }
                                     if (i == 165 || i == 163) {
-                                        if (b.fQ() && b.fP()) {
+                                        if (b.ga() && b.fZ()) {
                                             supportedConfigs.add(238);
                                         }
-                                        if (b.gV()) {
+                                        if (b.he()) {
                                             supportedConfigs.add(236);
-                                            break;
+                                        }
+                                        if (i == 163) {
+                                            i = DataRepository.dataItemFeature().fO();
+                                            if (CameraSettings.isFrontSupportedUltraPixelPhotography(cameraCapabilities) && z && i > 0) {
+                                                supportedConfigs.add(251);
+                                                DataRepository.dataItemConfig().getFrontComponentConfigUltraPixel().initUltraPixelResource(i);
+                                            }
+                                            if (b.fP()) {
+                                                supportedConfigs.add(252);
+                                                break;
+                                            }
                                         }
                                     }
                                     break;
@@ -349,7 +378,7 @@ public class SupportedConfigFactory {
                     }
                     if (i2 == 0) {
                         supportedConfigs.add(225).add(233);
-                        if (b.gh() && !DataRepository.dataItemFeature().fr()) {
+                        if (b.gq() && !DataRepository.dataItemFeature().fs()) {
                             supportedConfigs.add(232);
                         }
                         if (!Util.UI_DEBUG() && cameraCapabilities.isSupportVideoBeauty()) {

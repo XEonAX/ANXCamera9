@@ -29,7 +29,7 @@ public class BeautyModeSettingBusiness extends AbBeautySettingBusiness {
     }
 
     public List<Type> getTypeArray() {
-        return b.hC() ? sSupportNewBeautyModeTypes : sLegacyBeautyModeTypes;
+        return b.hL() ? sSupportNewBeautyModeTypes : sLegacyBeautyModeTypes;
     }
 
     public static List<Type> getSupportBeautyTypes() {

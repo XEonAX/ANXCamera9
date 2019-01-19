@@ -90,9 +90,6 @@ public class DualCameraProcessor extends ImageProcessor {
 
     void processImage(CaptureDataBean captureDataBean) {
         ICustomCaptureResult result = captureDataBean.getResult();
-        if (captureDataBean.isFirstResult()) {
-            this.mImageProcessorStatusCallback.onImageProcessStart(result.getTimeStamp());
-        }
         PerformanceTracker.trackAlgorithmProcess("[ORIGINAL]", 0);
         processCaptureResult(result, captureDataBean.getMainImage(), 0);
         processCaptureResult(result, captureDataBean.getSubImage(), 1);
@@ -118,11 +115,15 @@ public class DualCameraProcessor extends ImageProcessor {
                 stringBuilder.append("onFrameImageClosed: ");
                 stringBuilder.append(image);
                 Log.d(access$000, stringBuilder.toString());
+                if (DualCameraProcessor.this.mTaskSession != null) {
+                    DualCameraProcessor.this.mTaskSession.onTaskFinish(1);
+                }
                 if (DualCameraProcessor.this.mImageProcessorStatusCallback != null) {
                     DualCameraProcessor.this.mImageProcessorStatusCallback.onOriginalImageClosed(image);
                 }
             }
         });
+        this.mTaskSession.onTaskStart(1);
         this.mTaskSession.processFrame(frameData, new FrameCallback() {
             public void onFrameProcessed(int i, String str, Object obj) {
                 str = DualCameraProcessor.TAG;

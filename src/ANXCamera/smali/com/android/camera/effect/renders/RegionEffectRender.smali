@@ -217,7 +217,7 @@
     move-result-object v0
 
     .line 25
-    const v1, 0x7f090025
+    const v1, 0x7f0a0025
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -226,7 +226,7 @@
     iput v1, p0, Lcom/android/camera/effect/renders/RegionEffectRender;->mThresholdWidth:I
 
     .line 26
-    const v1, 0x7f090026
+    const v1, 0x7f0a0026
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 

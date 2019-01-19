@@ -81,7 +81,7 @@
 
     move-result-object p2
 
-    const p3, 0x7f0900c5
+    const p3, 0x7f0a00c5
 
     invoke-virtual {p2, p3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -223,7 +223,7 @@
     check-cast v0, Landroid/view/ViewGroup$MarginLayoutParams;
 
     .line 268
-    const v1, 0x7f0d005a
+    const v1, 0x7f0d0059
 
     invoke-virtual {p1, v1}, Lcom/android/camera/fragment/CommonRecyclerViewHolder;->getView(I)Landroid/view/View;
 
@@ -232,7 +232,7 @@
     check-cast v1, Lcom/android/camera/ui/ColorImageView;
 
     .line 269
-    const v2, 0x7f0d005b
+    const v2, 0x7f0d005a
 
     invoke-virtual {p1, v2}, Lcom/android/camera/fragment/CommonRecyclerViewHolder;->getView(I)Landroid/view/View;
 

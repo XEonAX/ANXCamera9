@@ -14,10 +14,10 @@ public class PictureSizeManager {
     static {
         sEntryValues.add("4x3");
         sEntryValues.add("16x9");
-        if (b.fS()) {
+        if (b.gd()) {
             sEntryValues.add("18x9");
         }
-        if (DataRepository.dataItemFeature().fe()) {
+        if (DataRepository.dataItemFeature().ff()) {
             sEntryValues.add("19.5x9");
         }
     }
@@ -25,9 +25,9 @@ public class PictureSizeManager {
     public static String[] getEntries() {
         if (ModuleManager.isPortraitModule() && CameraSettings.isBackCamera() && DataRepository.dataItemFeature().fz()) {
             return new String[]{CameraSettings.getString(R.string.pref_camera_picturesize_entry_4_3)};
-        } else if (b.fS()) {
+        } else if (b.gd()) {
             return new String[]{CameraSettings.getString(R.string.pref_camera_picturesize_entry_4_3), CameraSettings.getString(R.string.pref_camera_picturesize_entry_16_9), CameraSettings.getString(R.string.pref_camera_picturesize_entry_18_9)};
-        } else if (DataRepository.dataItemFeature().fe()) {
+        } else if (DataRepository.dataItemFeature().ff()) {
             return new String[]{CameraSettings.getString(R.string.pref_camera_picturesize_entry_4_3), CameraSettings.getString(R.string.pref_camera_picturesize_entry_16_9), CameraSettings.getString(R.string.pref_camera_picturesize_entry_195_9)};
         } else {
             return new String[]{CameraSettings.getString(R.string.pref_camera_picturesize_entry_4_3), CameraSettings.getString(R.string.pref_camera_picturesize_entry_16_9)};
@@ -235,7 +235,7 @@ public class PictureSizeManager {
     }
 
     private static void initSensorRatio(List<CameraSize> list) {
-        if (b.qk || b.qr) {
+        if (b.qj || b.qq) {
             sDefaultValue = "16x9";
             return;
         }

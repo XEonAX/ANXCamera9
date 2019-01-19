@@ -31,7 +31,7 @@ public class PermissionManager {
         mLaunchPermissionList.addAll(sStoragePermissionList);
         sRuntimePermissions.addAll(mLaunchPermissionList);
         sRuntimePermissions.addAll(sLocationPermissionList);
-        if (b.gd()) {
+        if (b.isMTKPlatform()) {
             sRuntimePermissions.add("android.permission.READ_PHONE_STATE");
         }
     }

@@ -4,13 +4,13 @@
 
 
 # static fields
-.field private static final pt:I = 0x1f
+.field private static final ps:I = 0x1f
 
-.field private static final pu:I = 0x11
+.field private static final pt:I = 0x11
+
+.field private static final pu:[C
 
 .field private static final pv:[C
-
-.field private static final pw:[C
 
 
 # direct methods
@@ -24,14 +24,14 @@
 
     move-result-object v0
 
-    sput-object v0, Lcom/bumptech/glide/util/k;->pv:[C
+    sput-object v0, Lcom/bumptech/glide/util/k;->pu:[C
 
     .line 25
     const/16 v0, 0x40
 
     new-array v0, v0, [C
 
-    sput-object v0, Lcom/bumptech/glide/util/k;->pw:[C
+    sput-object v0, Lcom/bumptech/glide/util/k;->pv:[C
 
     return-void
 .end method
@@ -176,7 +176,7 @@
     .line 50
     mul-int/lit8 v2, v0, 0x2
 
-    sget-object v3, Lcom/bumptech/glide/util/k;->pv:[C
+    sget-object v3, Lcom/bumptech/glide/util/k;->pu:[C
 
     ushr-int/lit8 v4, v1, 0x4
 
@@ -187,7 +187,7 @@
     .line 51
     add-int/lit8 v2, v2, 0x1
 
-    sget-object v3, Lcom/bumptech/glide/util/k;->pv:[C
+    sget-object v3, Lcom/bumptech/glide/util/k;->pu:[C
 
     and-int/lit8 v1, v1, 0xf
 
@@ -592,13 +592,13 @@
     .end annotation
 
     .line 36
-    sget-object v0, Lcom/bumptech/glide/util/k;->pw:[C
+    sget-object v0, Lcom/bumptech/glide/util/k;->pv:[C
 
     monitor-enter v0
 
     .line 37
     :try_start_0
-    sget-object v1, Lcom/bumptech/glide/util/k;->pw:[C
+    sget-object v1, Lcom/bumptech/glide/util/k;->pv:[C
 
     invoke-static {p0, v1}, Lcom/bumptech/glide/util/k;->a([B[C)Ljava/lang/String;
 

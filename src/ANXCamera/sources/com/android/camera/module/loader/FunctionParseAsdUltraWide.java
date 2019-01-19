@@ -10,7 +10,7 @@ import java.lang.ref.WeakReference;
 
 public class FunctionParseAsdUltraWide implements Function<CaptureResult, CaptureResult> {
     private boolean mIsOpenUltraWide;
-    private boolean mIsSupportUltraWide = DataRepository.dataItemFeature().fw();
+    private boolean mIsSupportUltraWide = DataRepository.dataItemFeature().fx();
     private boolean mUltraWideStatus = CameraSettings.isUltraWideConfigOpen(DataRepository.dataItemGlobal().getCurrentMode());
     private WeakReference<UltraWideCheckCallback> mUltrawidecheckcallback;
 

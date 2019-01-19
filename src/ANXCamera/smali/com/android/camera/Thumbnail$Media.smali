@@ -30,24 +30,24 @@
 .method public constructor <init>(JIJLandroid/net/Uri;Ljava/lang/String;)V
     .locals 0
 
-    .line 282
+    .line 288
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 283
+    .line 289
     iput-wide p1, p0, Lcom/android/camera/Thumbnail$Media;->id:J
 
-    .line 284
+    .line 290
     iput p3, p0, Lcom/android/camera/Thumbnail$Media;->orientation:I
 
-    .line 285
+    .line 291
     iput-wide p4, p0, Lcom/android/camera/Thumbnail$Media;->dateTaken:J
 
-    .line 286
+    .line 292
     iput-object p6, p0, Lcom/android/camera/Thumbnail$Media;->uri:Landroid/net/Uri;
 
-    .line 287
+    .line 293
     iput-object p7, p0, Lcom/android/camera/Thumbnail$Media;->path:Ljava/lang/String;
 
-    .line 288
+    .line 294
     return-void
 .end method

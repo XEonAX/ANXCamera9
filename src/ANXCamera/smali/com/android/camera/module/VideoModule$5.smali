@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/module/VideoModule;)V
     .locals 0
 
-    .line 1635
+    .line 1639
     iput-object p1, p0, Lcom/android/camera/module/VideoModule$5;->this$0:Lcom/android/camera/module/VideoModule;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,11 +38,11 @@
 .method public run()V
     .locals 1
 
-    .line 1638
+    .line 1642
     iget-object v0, p0, Lcom/android/camera/module/VideoModule$5;->this$0:Lcom/android/camera/module/VideoModule;
 
     invoke-virtual {v0}, Lcom/android/camera/module/VideoModule;->handlePendingScreenSlide()V
 
-    .line 1639
+    .line 1643
     return-void
 .end method

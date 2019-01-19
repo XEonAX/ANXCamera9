@@ -77,7 +77,7 @@
 .method public cancelDownloadEffect(Lcom/ss/android/ugc/effectmanager/effect/model/Effect;)V
     .locals 4
 
-    .line 83
+    .line 78
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mTaskMap:Ljava/util/HashMap;
 
     invoke-virtual {v0, p1}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
@@ -86,7 +86,7 @@
 
     if-eqz v0, :cond_1
 
-    .line 84
+    .line 79
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mTaskMap:Ljava/util/HashMap;
 
     invoke-virtual {v0, p1}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -97,30 +97,30 @@
 
     invoke-interface {v0}, Lcom/ss/android/ugc/effectmanager/common/task/BaseTask;->cancel()V
 
-    .line 86
+    .line 81
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x0
 
     if-eqz v0, :cond_0
 
-    .line 87
+    .line 82
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mHandler:Landroid/os/Handler;
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 90
+    .line 85
     :cond_0
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mTaskMap:Ljava/util/HashMap;
 
     invoke-virtual {v0, p1}, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 92
+    .line 87
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mListener:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository$EffectListener;
 
     if-eqz v0, :cond_1
 
-    .line 93
+    .line 88
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mListener:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository$EffectListener;
 
     const-string v2, ""
@@ -129,7 +129,7 @@
 
     invoke-interface {v0, v2, p1, v3, v1}, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository$EffectListener;->updateEffectStatus(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/model/Effect;ILcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 96
+    .line 91
     :cond_1
     return-void
 .end method
@@ -188,7 +188,7 @@
         }
     .end annotation
 
-    .line 75
+    .line 70
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v0
@@ -206,7 +206,7 @@
 
     check-cast v1, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
-    .line 76
+    .line 71
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mListener:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository$EffectListener;
 
     const-string v3, ""
@@ -217,10 +217,10 @@
 
     invoke-interface {v2, v3, v1, v4, v5}, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository$EffectListener;->updateEffectStatus(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/model/Effect;ILcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 77
+    .line 72
     goto :goto_0
 
-    .line 78
+    .line 73
     :cond_0
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -238,7 +238,7 @@
 
     invoke-virtual {v0, v1}, Lcom/ss/android/ugc/effectmanager/common/TaskManager;->commit(Lcom/ss/android/ugc/effectmanager/common/task/BaseTask;)V
 
-    .line 79
+    .line 74
     return-void
 .end method
 
@@ -276,60 +276,18 @@
     return-void
 .end method
 
-.method public fetchEffectListById(Ljava/util/List;Ljava/lang/String;I)V
-    .locals 8
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Ljava/util/List<",
-            "Ljava/lang/String;",
-            ">;",
-            "Ljava/lang/String;",
-            "I)V"
-        }
-    .end annotation
-
-    .line 67
-    iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
-
-    invoke-virtual {v0}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getTaskManager()Lcom/ss/android/ugc/effectmanager/common/TaskManager;
-
-    move-result-object v0
-
-    new-instance v7, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectListByIdsTask;
-
-    iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
-
-    iget-object v4, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mHandler:Landroid/os/Handler;
-
-    move-object v1, v7
-
-    move-object v3, p1
-
-    move-object v5, p2
-
-    move v6, p3
-
-    invoke-direct/range {v1 .. v6}, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectListByIdsTask;-><init>(Lcom/ss/android/ugc/effectmanager/context/EffectContext;Ljava/util/List;Landroid/os/Handler;Ljava/lang/String;I)V
-
-    invoke-virtual {v0, v7}, Lcom/ss/android/ugc/effectmanager/common/TaskManager;->commit(Lcom/ss/android/ugc/effectmanager/common/task/BaseTask;)V
-
-    .line 68
-    return-void
-.end method
-
 .method public handleMsg(Landroid/os/Message;)V
     .locals 6
 
-    .line 104
+    .line 99
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mListener:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository$EffectListener;
 
     if-nez v0, :cond_0
 
-    .line 105
+    .line 100
     return-void
 
-    .line 108
+    .line 103
     :cond_0
     iget v0, p1, Landroid/os/Message;->what:I
 
@@ -339,32 +297,32 @@
 
     if-ne v0, v1, :cond_2
 
-    .line 109
+    .line 104
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     instance-of v0, v0, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;
 
     if-eqz v0, :cond_2
 
-    .line 110
+    .line 105
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast v0, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;
 
-    .line 111
+    .line 106
     invoke-virtual {v0}, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;->getEffect()Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
     move-result-object v1
 
-    .line 113
+    .line 108
     invoke-virtual {v0}, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;->getException()Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
 
     move-result-object v3
 
-    .line 115
+    .line 110
     if-nez v3, :cond_1
 
-    .line 116
+    .line 111
     iget-object v3, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mListener:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository$EffectListener;
 
     invoke-virtual {v0}, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;->getTaskID()Ljava/lang/String;
@@ -377,7 +335,7 @@
 
     goto :goto_0
 
-    .line 118
+    .line 113
     :cond_1
     iget-object v4, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mListener:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository$EffectListener;
 
@@ -389,13 +347,13 @@
 
     invoke-interface {v4, v0, v1, v5, v3}, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository$EffectListener;->updateEffectStatus(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/model/Effect;ILcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 121
+    .line 116
     :goto_0
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mTaskMap:Ljava/util/HashMap;
 
     invoke-virtual {v0, v1}, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 125
+    .line 120
     :cond_2
     iget v0, p1, Landroid/os/Message;->what:I
 
@@ -403,27 +361,27 @@
 
     if-ne v0, v1, :cond_4
 
-    .line 126
+    .line 121
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     instance-of v0, v0, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectListTaskResult;
 
     if-eqz v0, :cond_4
 
-    .line 127
+    .line 122
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast v0, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectListTaskResult;
 
-    .line 128
+    .line 123
     invoke-virtual {v0}, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectListTaskResult;->getException()Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
 
     move-result-object v1
 
-    .line 129
+    .line 124
     if-nez v1, :cond_3
 
-    .line 130
+    .line 125
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mListener:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository$EffectListener;
 
     invoke-virtual {v0}, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectListTaskResult;->getTaskID()Ljava/lang/String;
@@ -438,7 +396,7 @@
 
     goto :goto_1
 
-    .line 132
+    .line 127
     :cond_3
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mListener:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository$EffectListener;
 
@@ -452,7 +410,7 @@
 
     invoke-interface {v2, v3, v0, v1}, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository$EffectListener;->updateEffectListStatus(Ljava/lang/String;Ljava/util/List;Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 137
+    .line 132
     :cond_4
     :goto_1
     iget v0, p1, Landroid/os/Message;->what:I
@@ -461,19 +419,19 @@
 
     if-ne v0, v1, :cond_5
 
-    .line 138
+    .line 133
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     instance-of v0, v0, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;
 
     if-eqz v0, :cond_5
 
-    .line 139
+    .line 134
     iget-object p1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast p1, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;
 
-    .line 140
+    .line 135
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
     invoke-virtual {v0}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getListenerManger()Lcom/ss/android/ugc/effectmanager/ListenerManger;
@@ -488,17 +446,17 @@
 
     move-result-object v0
 
-    .line 141
+    .line 136
     if-eqz v0, :cond_5
 
-    .line 142
+    .line 137
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;->getEffect()Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
     move-result-object p1
 
     invoke-interface {v0, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListener;->onStart(Lcom/ss/android/ugc/effectmanager/effect/model/Effect;)V
 
-    .line 146
+    .line 141
     :cond_5
     return-void
 .end method
@@ -506,9 +464,9 @@
 .method public setListener(Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository$EffectListener;)V
     .locals 0
 
-    .line 99
+    .line 94
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mListener:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository$EffectListener;
 
-    .line 100
+    .line 95
     return-void
 .end method

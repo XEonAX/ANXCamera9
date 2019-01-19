@@ -23,7 +23,7 @@
 .method static constructor <clinit>()V
     .locals 2
 
-    .line 22
+    .line 24
     new-instance v0, Ljava/text/SimpleDateFormat;
 
     const-string v1, "yyyy:MM:dd"
@@ -32,7 +32,7 @@
 
     sput-object v0, Lcom/android/camera/ExifHelper;->mGPSDateStampFormat:Ljava/text/DateFormat;
 
-    .line 23
+    .line 25
     new-instance v0, Ljava/text/SimpleDateFormat;
 
     const-string v1, "HH:mm:ss"
@@ -41,7 +41,7 @@
 
     sput-object v0, Lcom/android/camera/ExifHelper;->mGPSTimeStampFormat:Ljava/text/DateFormat;
 
-    .line 24
+    .line 26
     new-instance v0, Ljava/text/SimpleDateFormat;
 
     const-string v1, "yyyy:MM:dd HH:mm:ss"
@@ -50,31 +50,31 @@
 
     sput-object v0, Lcom/android/camera/ExifHelper;->mDateTimeStampFormat:Ljava/text/DateFormat;
 
-    .line 27
+    .line 29
     const-string v0, "UTC"
 
     invoke-static {v0}, Ljava/util/TimeZone;->getTimeZone(Ljava/lang/String;)Ljava/util/TimeZone;
 
     move-result-object v0
 
-    .line 28
+    .line 30
     sget-object v1, Lcom/android/camera/ExifHelper;->mGPSDateStampFormat:Ljava/text/DateFormat;
 
     invoke-virtual {v1, v0}, Ljava/text/DateFormat;->setTimeZone(Ljava/util/TimeZone;)V
 
-    .line 29
+    .line 31
     sget-object v1, Lcom/android/camera/ExifHelper;->mGPSTimeStampFormat:Ljava/text/DateFormat;
 
     invoke-virtual {v1, v0}, Ljava/text/DateFormat;->setTimeZone(Ljava/util/TimeZone;)V
 
-    .line 30
+    .line 32
     return-void
 .end method
 
 .method public constructor <init>()V
     .locals 0
 
-    .line 15
+    .line 17
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -83,7 +83,7 @@
 .method public static convertDoubleToLaLon(D)Ljava/lang/String;
     .locals 9
 
-    .line 82
+    .line 101
     invoke-static {p0, p1}, Ljava/lang/Math;->abs(D)D
 
     move-result-wide v0
@@ -94,7 +94,7 @@
 
     double-to-int v0, v0
 
-    .line 83
+    .line 102
     invoke-static {p0, p1}, Ljava/lang/Math;->abs(D)D
 
     move-result-wide v1
@@ -111,7 +111,7 @@
 
     move-result-wide v1
 
-    .line 84
+    .line 103
     invoke-static {p0, p1}, Ljava/lang/Math;->abs(D)D
 
     move-result-wide v7
@@ -130,14 +130,14 @@
 
     move-result-wide v3
 
-    .line 85
+    .line 104
     const-wide/16 v5, 0x0
 
     cmpg-double p0, p0, v5
 
     if-gez p0, :cond_0
 
-    .line 86
+    .line 105
     new-instance p0, Ljava/lang/StringBuilder;
 
     invoke-direct {p0}, Ljava/lang/StringBuilder;-><init>()V
@@ -174,7 +174,7 @@
 
     return-object p0
 
-    .line 88
+    .line 107
     :cond_0
     new-instance p0, Ljava/lang/StringBuilder;
 
@@ -212,7 +212,7 @@
 .method private static getExifOrientation(I)Ljava/lang/String;
     .locals 3
 
-    .line 92
+    .line 111
     if-eqz p0, :cond_3
 
     const/16 v0, 0x5a
@@ -227,7 +227,7 @@
 
     if-ne p0, v0, :cond_0
 
-    .line 100
+    .line 119
     const/16 p0, 0x8
 
     invoke-static {p0}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
@@ -236,7 +236,7 @@
 
     return-object p0
 
-    .line 102
+    .line 121
     :cond_0
     new-instance v0, Ljava/lang/AssertionError;
 
@@ -258,7 +258,7 @@
 
     throw v0
 
-    .line 98
+    .line 117
     :cond_1
     const/4 p0, 0x3
 
@@ -268,7 +268,7 @@
 
     return-object p0
 
-    .line 96
+    .line 115
     :cond_2
     const/4 p0, 0x6
 
@@ -278,7 +278,7 @@
 
     return-object p0
 
-    .line 94
+    .line 113
     :cond_3
     const/4 p0, 0x1
 
@@ -289,16 +289,23 @@
     return-object p0
 .end method
 
-.method public static writeExif(Ljava/lang/String;ILandroid/location/Location;J)V
+.method private static writeExif(Ljava/lang/String;Ljava/io/FileDescriptor;ILandroid/location/Location;J)V
     .locals 4
 
-    .line 35
+    .line 47
     :try_start_0
+    invoke-static {p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    .line 48
     invoke-static {p0}, Lcom/android/camera/Util;->isPathExist(Ljava/lang/String;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_6
+    if-eqz v0, :cond_0
 
     new-instance v0, Ljava/io/File;
 
@@ -312,214 +319,10 @@
 
     cmp-long v0, v0, v2
 
-    if-nez v0, :cond_0
-
-    goto/16 :goto_4
-
-    .line 39
-    :cond_0
-    new-instance v0, Landroid/media/ExifInterface;
-
-    invoke-direct {v0, p0}, Landroid/media/ExifInterface;-><init>(Ljava/lang/String;)V
-
-    .line 40
-    const-string v1, "GPSDateStamp"
-
-    sget-object v2, Lcom/android/camera/ExifHelper;->mGPSDateStampFormat:Ljava/text/DateFormat;
-
-    .line 41
-    invoke-static {p3, p4}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
-
-    move-result-object v3
-
-    invoke-virtual {v2, v3}, Ljava/text/DateFormat;->format(Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object v2
-
-    .line 40
-    invoke-virtual {v0, v1, v2}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 42
-    const-string v1, "GPSTimeStamp"
-
-    sget-object v2, Lcom/android/camera/ExifHelper;->mGPSTimeStampFormat:Ljava/text/DateFormat;
-
-    .line 43
-    invoke-static {p3, p4}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
-
-    move-result-object v3
-
-    invoke-virtual {v2, v3}, Ljava/text/DateFormat;->format(Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object v2
-
-    .line 42
-    invoke-virtual {v0, v1, v2}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 44
-    const-string v1, "DateTime"
-
-    sget-object v2, Lcom/android/camera/ExifHelper;->mDateTimeStampFormat:Ljava/text/DateFormat;
-
-    .line 45
-    invoke-static {p3, p4}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
-
-    move-result-object p3
-
-    invoke-virtual {v2, p3}, Ljava/text/DateFormat;->format(Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object p3
-
-    .line 44
-    invoke-virtual {v0, v1, p3}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 46
-    const-string p3, "Orientation"
-
-    invoke-static {p1}, Lcom/android/camera/ExifHelper;->getExifOrientation(I)Ljava/lang/String;
-
-    move-result-object p1
-
-    invoke-virtual {v0, p3, p1}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 47
-    const-string p1, "Make"
-
-    sget-object p3, Landroid/os/Build;->MANUFACTURER:Ljava/lang/String;
-
-    invoke-virtual {v0, p1, p3}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
+    if-nez v0, :cond_1
 
     .line 49
-    if-eqz p2, :cond_3
-
-    .line 50
-    invoke-virtual {p2}, Landroid/location/Location;->getLatitude()D
-
-    move-result-wide p3
-
-    .line 51
-    invoke-virtual {p2}, Landroid/location/Location;->getLongitude()D
-
-    move-result-wide p1
-
-    .line 52
-    const-string v1, "GPSLatitude"
-
-    invoke-static {p3, p4}, Lcom/android/camera/ExifHelper;->convertDoubleToLaLon(D)Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-virtual {v0, v1, v2}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 53
-    const-string v1, "GPSLongitude"
-
-    invoke-static {p1, p2}, Lcom/android/camera/ExifHelper;->convertDoubleToLaLon(D)Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-virtual {v0, v1, v2}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 54
-    const-wide/16 v1, 0x0
-
-    cmpl-double p3, p3, v1
-
-    if-lez p3, :cond_1
-
-    .line 55
-    const-string p3, "GPSLatitudeRef"
-
-    const-string p4, "N"
-
-    invoke-virtual {v0, p3, p4}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
-
-    goto :goto_0
-
-    .line 57
-    :cond_1
-    const-string p3, "GPSLatitudeRef"
-
-    const-string p4, "S"
-
-    invoke-virtual {v0, p3, p4}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 59
-    :goto_0
-    cmpl-double p1, p1, v1
-
-    if-lez p1, :cond_2
-
-    .line 60
-    const-string p1, "GPSLongitudeRef"
-
-    const-string p2, "E"
-
-    invoke-virtual {v0, p1, p2}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
-
-    goto :goto_1
-
-    .line 62
-    :cond_2
-    const-string p1, "GPSLongitudeRef"
-
-    const-string p2, "W"
-
-    invoke-virtual {v0, p1, p2}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 65
-    :cond_3
-    :goto_1
-    sget-boolean p1, Lcom/mi/config/b;->pN:Z
-
-    if-nez p1, :cond_5
-
-    sget-boolean p1, Lcom/mi/config/b;->IS_MI2A:Z
-
-    if-eqz p1, :cond_4
-
-    goto :goto_2
-
-    .line 69
-    :cond_4
-    const-string p1, "Model"
-
-    sget-object p2, Lcom/mi/config/b;->pM:Ljava/lang/String;
-
-    invoke-virtual {v0, p1, p2}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
-
-    goto :goto_3
-
-    .line 66
-    :cond_5
-    :goto_2
-    const-string p1, "Model"
-
-    const-string p2, "MiTwo"
-
-    invoke-virtual {v0, p1, p2}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 67
-    const-string p1, "FocalLength"
-
-    const-string p2, "354/100"
-
-    invoke-static {p2}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object p2
-
-    invoke-virtual {v0, p1, p2}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 71
-    :goto_3
-    invoke-virtual {v0}, Landroid/media/ExifInterface;->saveAttributes()V
-
-    .line 74
-    goto :goto_5
-
-    .line 36
-    :cond_6
-    :goto_4
+    :cond_0
     const-string p1, "ExifHelper"
 
     new-instance p2, Ljava/lang/StringBuilder;
@@ -541,17 +344,232 @@
     move-result-object p2
 
     invoke-static {p1, p2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 50
+    return-void
+
+    .line 53
+    :cond_1
+    if-nez p1, :cond_2
+
+    .line 54
+    new-instance p1, Landroid/media/ExifInterface;
+
+    invoke-direct {p1, p0}, Landroid/media/ExifInterface;-><init>(Ljava/lang/String;)V
+
+    goto :goto_0
+
+    .line 56
+    :cond_2
+    new-instance v0, Landroid/media/ExifInterface;
+
+    invoke-direct {v0, p1}, Landroid/media/ExifInterface;-><init>(Ljava/io/FileDescriptor;)V
+
+    .line 59
+    move-object p1, v0
+
+    :goto_0
+    const-string v0, "GPSDateStamp"
+
+    sget-object v1, Lcom/android/camera/ExifHelper;->mGPSDateStampFormat:Ljava/text/DateFormat;
+
+    .line 60
+    invoke-static {p4, p5}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Ljava/text/DateFormat;->format(Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 59
+    invoke-virtual {p1, v0, v1}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 61
+    const-string v0, "GPSTimeStamp"
+
+    sget-object v1, Lcom/android/camera/ExifHelper;->mGPSTimeStampFormat:Ljava/text/DateFormat;
+
+    .line 62
+    invoke-static {p4, p5}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Ljava/text/DateFormat;->format(Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 61
+    invoke-virtual {p1, v0, v1}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 63
+    const-string v0, "DateTime"
+
+    sget-object v1, Lcom/android/camera/ExifHelper;->mDateTimeStampFormat:Ljava/text/DateFormat;
+
+    .line 64
+    invoke-static {p4, p5}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
+
+    move-result-object p4
+
+    invoke-virtual {v1, p4}, Ljava/text/DateFormat;->format(Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object p4
+
+    .line 63
+    invoke-virtual {p1, v0, p4}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 65
+    const-string p4, "Orientation"
+
+    invoke-static {p2}, Lcom/android/camera/ExifHelper;->getExifOrientation(I)Ljava/lang/String;
+
+    move-result-object p2
+
+    invoke-virtual {p1, p4, p2}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 66
+    const-string p2, "Make"
+
+    sget-object p4, Landroid/os/Build;->MANUFACTURER:Ljava/lang/String;
+
+    invoke-virtual {p1, p2, p4}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 68
+    if-eqz p3, :cond_5
+
+    .line 69
+    invoke-virtual {p3}, Landroid/location/Location;->getLatitude()D
+
+    move-result-wide p4
+
+    .line 70
+    invoke-virtual {p3}, Landroid/location/Location;->getLongitude()D
+
+    move-result-wide p2
+
+    .line 71
+    const-string v0, "GPSLatitude"
+
+    invoke-static {p4, p5}, Lcom/android/camera/ExifHelper;->convertDoubleToLaLon(D)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {p1, v0, v1}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 72
+    const-string v0, "GPSLongitude"
+
+    invoke-static {p2, p3}, Lcom/android/camera/ExifHelper;->convertDoubleToLaLon(D)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {p1, v0, v1}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 73
+    const-wide/16 v0, 0x0
+
+    cmpl-double p4, p4, v0
+
+    if-lez p4, :cond_3
+
+    .line 74
+    const-string p4, "GPSLatitudeRef"
+
+    const-string p5, "N"
+
+    invoke-virtual {p1, p4, p5}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
+
+    goto :goto_1
+
+    .line 76
+    :cond_3
+    const-string p4, "GPSLatitudeRef"
+
+    const-string p5, "S"
+
+    invoke-virtual {p1, p4, p5}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 78
+    :goto_1
+    cmpl-double p2, p2, v0
+
+    if-lez p2, :cond_4
+
+    .line 79
+    const-string p2, "GPSLongitudeRef"
+
+    const-string p3, "E"
+
+    invoke-virtual {p1, p2, p3}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
+
+    goto :goto_2
+
+    .line 81
+    :cond_4
+    const-string p2, "GPSLongitudeRef"
+
+    const-string p3, "W"
+
+    invoke-virtual {p1, p2, p3}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 84
+    :cond_5
+    :goto_2
+    sget-boolean p2, Lcom/mi/config/b;->pM:Z
+
+    if-nez p2, :cond_7
+
+    sget-boolean p2, Lcom/mi/config/b;->IS_MI2A:Z
+
+    if-eqz p2, :cond_6
+
+    goto :goto_3
+
+    .line 88
+    :cond_6
+    const-string p2, "Model"
+
+    sget-object p3, Lcom/mi/config/b;->pL:Ljava/lang/String;
+
+    invoke-virtual {p1, p2, p3}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
+
+    goto :goto_4
+
+    .line 85
+    :cond_7
+    :goto_3
+    const-string p2, "Model"
+
+    const-string p3, "MiTwo"
+
+    invoke-virtual {p1, p2, p3}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 86
+    const-string p2, "FocalLength"
+
+    const-string p3, "354/100"
+
+    invoke-static {p3}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object p3
+
+    invoke-virtual {p1, p2, p3}, Landroid/media/ExifInterface;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 90
+    :goto_4
+    invoke-virtual {p1}, Landroid/media/ExifInterface;->saveAttributes()V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 37
-    return-void
+    .line 93
+    goto :goto_5
 
-    .line 72
+    .line 91
     :catch_0
     move-exception p1
 
-    .line 73
+    .line 92
     const-string p2, "ExifHelper"
 
     new-instance p3, Ljava/lang/StringBuilder;
@@ -570,7 +588,47 @@
 
     invoke-static {p2, p0, p1}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 75
+    .line 94
     :goto_5
+    return-void
+.end method
+
+.method public static writeExifByFd(Ljava/io/FileDescriptor;ILandroid/location/Location;J)V
+    .locals 6
+
+    .line 41
+    const/4 v0, 0x0
+
+    move-object v1, p0
+
+    move v2, p1
+
+    move-object v3, p2
+
+    move-wide v4, p3
+
+    invoke-static/range {v0 .. v5}, Lcom/android/camera/ExifHelper;->writeExif(Ljava/lang/String;Ljava/io/FileDescriptor;ILandroid/location/Location;J)V
+
+    .line 42
+    return-void
+.end method
+
+.method public static writeExifByFilePath(Ljava/lang/String;ILandroid/location/Location;J)V
+    .locals 6
+
+    .line 36
+    const/4 v1, 0x0
+
+    move-object v0, p0
+
+    move v2, p1
+
+    move-object v3, p2
+
+    move-wide v4, p3
+
+    invoke-static/range {v0 .. v5}, Lcom/android/camera/ExifHelper;->writeExif(Ljava/lang/String;Ljava/io/FileDescriptor;ILandroid/location/Location;J)V
+
+    .line 37
     return-void
 .end method

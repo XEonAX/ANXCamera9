@@ -7,7 +7,7 @@
 
 
 # instance fields
-.field private final mK:Ljava/util/Set;
+.field private final mJ:Ljava/util/Set;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/Set<",
@@ -35,7 +35,7 @@
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/bumptech/glide/manager/o;->mK:Ljava/util/Set;
+    iput-object v0, p0, Lcom/bumptech/glide/manager/o;->mJ:Ljava/util/Set;
 
     .line 16
     return-void
@@ -47,7 +47,7 @@
     .locals 1
 
     .line 54
-    iget-object v0, p0, Lcom/bumptech/glide/manager/o;->mK:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/o;->mJ:Ljava/util/Set;
 
     invoke-interface {v0}, Ljava/util/Set;->clear()V
 
@@ -70,7 +70,7 @@
     .end annotation
 
     .line 20
-    iget-object v0, p0, Lcom/bumptech/glide/manager/o;->mK:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/o;->mJ:Ljava/util/Set;
 
     invoke-interface {v0, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
@@ -93,7 +93,7 @@
     .end annotation
 
     .line 50
-    iget-object v0, p0, Lcom/bumptech/glide/manager/o;->mK:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/o;->mJ:Ljava/util/Set;
 
     invoke-static {v0}, Lcom/bumptech/glide/util/k;->c(Ljava/util/Collection;)Ljava/util/List;
 
@@ -117,7 +117,7 @@
     .end annotation
 
     .line 24
-    iget-object v0, p0, Lcom/bumptech/glide/manager/o;->mK:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/o;->mJ:Ljava/util/Set;
 
     invoke-interface {v0, p1}, Ljava/util/Set;->remove(Ljava/lang/Object;)Z
 
@@ -129,7 +129,7 @@
     .locals 2
 
     .line 43
-    iget-object v0, p0, Lcom/bumptech/glide/manager/o;->mK:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/o;->mJ:Ljava/util/Set;
 
     invoke-static {v0}, Lcom/bumptech/glide/util/k;->c(Ljava/util/Collection;)Ljava/util/List;
 
@@ -167,7 +167,7 @@
     .locals 2
 
     .line 29
-    iget-object v0, p0, Lcom/bumptech/glide/manager/o;->mK:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/o;->mJ:Ljava/util/Set;
 
     invoke-static {v0}, Lcom/bumptech/glide/util/k;->c(Ljava/util/Collection;)Ljava/util/List;
 
@@ -205,7 +205,7 @@
     .locals 2
 
     .line 36
-    iget-object v0, p0, Lcom/bumptech/glide/manager/o;->mK:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/o;->mJ:Ljava/util/Set;
 
     invoke-static {v0}, Lcom/bumptech/glide/util/k;->c(Ljava/util/Collection;)Ljava/util/List;
 

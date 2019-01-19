@@ -363,7 +363,7 @@
     invoke-virtual {p0, p1}, Lcom/android/camera/fragment/dialog/AiSceneNewbieDialogFragment;->initViewOnTouchListener(Landroid/view/View;)V
 
     .line 39
-    const p2, 0x7f0d003f
+    const p2, 0x7f0d003d
 
     invoke-virtual {p1, p2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 

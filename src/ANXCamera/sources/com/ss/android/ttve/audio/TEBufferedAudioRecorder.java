@@ -2,6 +2,7 @@ package com.ss.android.ttve.audio;
 
 import android.media.AudioRecord;
 import android.util.Log;
+import com.android.camera.constant.DurationConstant;
 import com.android.camera.module.BaseModule;
 
 public class TEBufferedAudioRecorder {
@@ -9,7 +10,7 @@ public class TEBufferedAudioRecorder {
     protected static int channelConfigOffset = -1;
     protected static int[] channelConfigSuggested = new int[]{12, 16, 1};
     protected static int sampleRateOffset = -1;
-    protected static int[] sampleRateSuggested = new int[]{44100, BaseModule.LENS_DIRTY_DETECT_HINT_DURATION, 11025, 16000, 22050};
+    protected static int[] sampleRateSuggested = new int[]{44100, BaseModule.LENS_DIRTY_DETECT_HINT_DURATION, 11025, DurationConstant.DURATION_LIVE_RECORD, 22050};
     AudioRecord audio;
     TEAudioWriterInterface audioCaller;
     int audioFormat = 2;

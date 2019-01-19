@@ -662,7 +662,7 @@
     .end annotation
 
     .line 76
-    sget-object v0, Lcom/bumptech/glide/load/resource/gif/g;->lY:Lcom/bumptech/glide/load/e;
+    sget-object v0, Lcom/bumptech/glide/load/resource/gif/g;->lX:Lcom/bumptech/glide/load/e;
 
     invoke-virtual {p2, v0}, Lcom/bumptech/glide/load/f;->a(Lcom/bumptech/glide/load/e;)Ljava/lang/Object;
 

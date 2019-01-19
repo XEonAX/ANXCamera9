@@ -108,9 +108,9 @@
 
     const/4 v3, 0x0
 
-    const v4, 0x7f0b006a
+    const v4, 0x7f090069
 
-    const v5, 0x7f020196
+    const v5, 0x7f0201a9
 
     invoke-direct {v1, v2, v4, v5, v3}, Lcom/android/camera/effect/FilterInfo;-><init>(IIII)V
 
@@ -171,10 +171,10 @@
     const/16 v5, 0x96
 
     .line 112
-    const v6, 0x7f0b0086
+    const v6, 0x7f090085
 
     .line 113
-    const v7, 0x7f02018e
+    const v7, 0x7f0201a1
 
     .line 114
     goto :goto_1
@@ -184,10 +184,10 @@
     const/16 v5, 0x8c
 
     .line 106
-    const v6, 0x7f0b008c
+    const v6, 0x7f09008b
 
     .line 107
-    const v7, 0x7f020190
+    const v7, 0x7f0201a3
 
     .line 108
     goto :goto_1
@@ -197,10 +197,10 @@
     const/16 v5, 0x82
 
     .line 100
-    const v6, 0x7f0b008b
+    const v6, 0x7f09008a
 
     .line 101
-    const v7, 0x7f02018f
+    const v7, 0x7f0201a2
 
     .line 102
     goto :goto_1
@@ -210,10 +210,10 @@
     const/16 v5, 0x78
 
     .line 94
-    const v6, 0x7f0b008a
+    const v6, 0x7f090089
 
     .line 95
-    const v7, 0x7f020191
+    const v7, 0x7f0201a4
 
     .line 96
     goto :goto_1
@@ -223,10 +223,10 @@
     const/16 v5, 0x6e
 
     .line 82
-    const v6, 0x7f0b0089
+    const v6, 0x7f090088
 
     .line 83
-    const v7, 0x7f020194
+    const v7, 0x7f0201a7
 
     .line 84
     goto :goto_1
@@ -236,10 +236,10 @@
     const/16 v5, 0x64
 
     .line 77
-    const v6, 0x7f0b0088
+    const v6, 0x7f090087
 
     .line 78
-    const v7, 0x7f020198
+    const v7, 0x7f0201ab
 
     .line 79
     goto :goto_1
@@ -249,10 +249,10 @@
     const/16 v5, 0x50
 
     .line 67
-    const v6, 0x7f0b0084
+    const v6, 0x7f090083
 
     .line 68
-    const v7, 0x7f020192
+    const v7, 0x7f0201a5
 
     .line 69
     goto :goto_1
@@ -262,10 +262,10 @@
     const/16 v5, 0x32
 
     .line 52
-    const v6, 0x7f0b007f
+    const v6, 0x7f09007e
 
     .line 53
-    const v7, 0x7f02018c
+    const v7, 0x7f02019f
 
     .line 54
     goto :goto_1
@@ -275,10 +275,10 @@
     const/16 v5, 0x28
 
     .line 47
-    const v6, 0x7f0b0087
+    const v6, 0x7f090086
 
     .line 48
-    const v7, 0x7f02019a
+    const v7, 0x7f0201ad
 
     .line 49
     goto :goto_1
@@ -288,10 +288,10 @@
     const/16 v5, 0x1e
 
     .line 42
-    const v6, 0x7f0b0080
+    const v6, 0x7f09007f
 
     .line 43
-    const v7, 0x7f020197
+    const v7, 0x7f0201aa
 
     .line 44
     goto :goto_1
@@ -301,10 +301,10 @@
     const/16 v5, 0x14
 
     .line 37
-    const v6, 0x7f0b0081
+    const v6, 0x7f090080
 
     .line 38
-    const v7, 0x7f02018d
+    const v7, 0x7f0201a0
 
     .line 39
     goto :goto_1
@@ -314,10 +314,10 @@
     const/16 v5, 0xa
 
     .line 32
-    const v6, 0x7f0b007e
+    const v6, 0x7f09007d
 
     .line 33
-    const v7, 0x7f020195
+    const v7, 0x7f0201a8
 
     .line 34
     nop

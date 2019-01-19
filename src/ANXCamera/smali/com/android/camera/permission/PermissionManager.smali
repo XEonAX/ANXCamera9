@@ -145,7 +145,7 @@
     invoke-interface {v0, v1}, Ljava/util/List;->addAll(Ljava/util/Collection;)Z
 
     .line 44
-    invoke-static {}, Lcom/mi/config/b;->gd()Z
+    invoke-static {}, Lcom/mi/config/b;->isMTKPlatform()Z
 
     move-result v0
 

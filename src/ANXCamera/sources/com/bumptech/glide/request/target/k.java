@@ -11,8 +11,8 @@ import com.bumptech.glide.request.a.f;
 
 /* compiled from: PreloadTarget */
 public final class k<Z> extends l<Z> {
-    private static final int oB = 1;
-    private static final Handler oC = new Handler(Looper.getMainLooper(), new Callback() {
+    private static final int oA = 1;
+    private static final Handler oB = new Handler(Looper.getMainLooper(), new Callback() {
         public boolean handleMessage(Message message) {
             if (message.what != 1) {
                 return false;
@@ -33,7 +33,7 @@ public final class k<Z> extends l<Z> {
     }
 
     public void a(@NonNull Z z, @Nullable f<? super Z> fVar) {
-        oC.obtainMessage(1, this).sendToTarget();
+        oB.obtainMessage(1, this).sendToTarget();
     }
 
     void clear() {

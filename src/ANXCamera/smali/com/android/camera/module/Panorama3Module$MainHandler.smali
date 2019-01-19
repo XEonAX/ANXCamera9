@@ -22,7 +22,7 @@
 .method private constructor <init>(Lcom/android/camera/module/Panorama3Module;)V
     .locals 0
 
-    .line 318
+    .line 319
     iput-object p1, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     invoke-direct {p0}, Landroid/os/Handler;-><init>()V
@@ -33,7 +33,7 @@
 .method synthetic constructor <init>(Lcom/android/camera/module/Panorama3Module;Lcom/android/camera/module/Panorama3Module$1;)V
     .locals 0
 
-    .line 318
+    .line 319
     invoke-direct {p0, p1}, Lcom/android/camera/module/Panorama3Module$MainHandler;-><init>(Lcom/android/camera/module/Panorama3Module;)V
 
     return-void
@@ -44,7 +44,7 @@
 .method public handleMessage(Landroid/os/Message;)V
     .locals 5
 
-    .line 321
+    .line 322
     iget-object v0, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     invoke-virtual {v0}, Lcom/android/camera/module/Panorama3Module;->isCreated()Z
@@ -55,13 +55,13 @@
 
     if-nez v0, :cond_0
 
-    .line 322
+    .line 323
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Panorama3Module$MainHandler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 323
+    .line 324
     return-void
 
-    .line 326
+    .line 327
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
@@ -71,10 +71,10 @@
 
     if-nez v0, :cond_1
 
-    .line 327
+    .line 328
     return-void
 
-    .line 330
+    .line 331
     :cond_1
     iget v0, p1, Landroid/os/Message;->what:I
 
@@ -100,12 +100,12 @@
 
     packed-switch v0, :pswitch_data_0
 
-    .line 332
+    .line 333
     sget-boolean v0, Lcom/android/camera/module/BaseModule;->DEBUG:Z
 
     if-nez v0, :cond_2
 
-    .line 335
+    .line 336
     invoke-static {}, Lcom/android/camera/module/Panorama3Module;->access$100()Ljava/lang/String;
 
     move-result-object v0
@@ -130,7 +130,7 @@
 
     goto/16 :goto_0
 
-    .line 333
+    .line 334
     :cond_2
     new-instance v0, Ljava/lang/RuntimeException;
 
@@ -154,21 +154,21 @@
 
     throw v0
 
-    .line 353
+    .line 354
     :pswitch_0
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     iput-boolean v3, p1, Lcom/android/camera/module/Panorama3Module;->mOpenCameraFail:Z
 
-    .line 354
+    .line 355
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     invoke-virtual {p1}, Lcom/android/camera/module/Panorama3Module;->onCameraException()V
 
-    .line 355
+    .line 356
     goto :goto_1
 
-    .line 365
+    .line 366
     :pswitch_1
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
@@ -186,33 +186,33 @@
 
     move-result p1
 
-    .line 366
+    .line 367
     iget-object v0, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     iget v0, v0, Lcom/android/camera/module/Panorama3Module;->mUIStyle:I
 
     if-eq p1, v0, :cond_3
 
-    .line 367
+    .line 368
     iget-object v0, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     iput p1, v0, Lcom/android/camera/module/Panorama3Module;->mUIStyle:I
 
-    .line 369
+    .line 370
     :cond_3
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     invoke-static {p1}, Lcom/android/camera/module/Panorama3Module;->access$200(Lcom/android/camera/module/Panorama3Module;)V
 
-    .line 370
+    .line 371
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     invoke-static {p1}, Lcom/android/camera/module/Panorama3Module;->access$300(Lcom/android/camera/module/Panorama3Module;)V
 
-    .line 371
+    .line 372
     goto :goto_1
 
-    .line 358
+    .line 359
     :cond_4
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
@@ -224,19 +224,19 @@
 
     if-nez p1, :cond_8
 
-    .line 359
+    .line 360
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     iput-boolean v3, p1, Lcom/android/camera/module/Panorama3Module;->mOpenCameraFail:Z
 
-    .line 360
+    .line 361
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     invoke-virtual {p1}, Lcom/android/camera/module/Panorama3Module;->onCameraException()V
 
     goto :goto_1
 
-    .line 374
+    .line 375
     :cond_5
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
@@ -244,7 +244,7 @@
 
     goto :goto_1
 
-    .line 344
+    .line 345
     :cond_6
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
@@ -252,14 +252,14 @@
 
     invoke-virtual {p1, v4}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 345
+    .line 346
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     iget-object p1, p1, Lcom/android/camera/module/Panorama3Module;->mMainHandler:Landroid/os/Handler;
 
     invoke-virtual {p1, v3}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 346
+    .line 347
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     invoke-virtual {p1}, Lcom/android/camera/module/Panorama3Module;->getWindow()Landroid/view/Window;
@@ -268,27 +268,27 @@
 
     invoke-virtual {p1, v2}, Landroid/view/Window;->addFlags(I)V
 
-    .line 347
+    .line 348
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     iget-object p1, p1, Lcom/android/camera/module/Panorama3Module;->mMainHandler:Landroid/os/Handler;
 
     iget-object v0, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
 
-    .line 348
+    .line 349
     invoke-virtual {v0}, Lcom/android/camera/module/Panorama3Module;->getScreenDelay()I
 
     move-result v0
 
     int-to-long v0, v0
 
-    .line 347
+    .line 348
     invoke-virtual {p1, v3, v0, v1}, Landroid/os/Handler;->sendEmptyMessageDelayed(IJ)Z
 
-    .line 349
+    .line 350
     goto :goto_1
 
-    .line 339
+    .line 340
     :cond_7
     :goto_0
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$MainHandler;->this$0:Lcom/android/camera/module/Panorama3Module;
@@ -299,10 +299,10 @@
 
     invoke-virtual {p1, v2}, Landroid/view/Window;->clearFlags(I)V
 
-    .line 340
+    .line 341
     nop
 
-    .line 378
+    .line 379
     :cond_8
     :goto_1
     return-void

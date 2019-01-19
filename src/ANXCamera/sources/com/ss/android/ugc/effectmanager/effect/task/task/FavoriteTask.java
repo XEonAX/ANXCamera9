@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import com.ss.android.ugc.effectmanager.EffectConfiguration;
 import com.ss.android.ugc.effectmanager.common.EffectConstants;
 import com.ss.android.ugc.effectmanager.common.EffectRequest;
-import com.ss.android.ugc.effectmanager.common.exception.StatusCodeException;
 import com.ss.android.ugc.effectmanager.common.listener.IJsonConverter;
 import com.ss.android.ugc.effectmanager.common.model.BaseNetResponse;
 import com.ss.android.ugc.effectmanager.common.task.ExceptionResult;
@@ -36,7 +35,7 @@ public class FavoriteTask extends NormalTask {
         this.mEffectIds.addAll(list);
         this.mIsFavorite = z;
         this.mPanel = str;
-        this.mCurCnt = this.mConfiguration.getRetryCount();
+        this.mCurCnt = this.mConfiguration.getRetryCount() + 1;
     }
 
     public FavoriteTask(EffectContext effectContext, String str, String str2, Handler handler, String str3, boolean z) {
@@ -48,7 +47,7 @@ public class FavoriteTask extends NormalTask {
         this.mEffectIds.add(str3);
         this.mIsFavorite = z;
         this.mPanel = str;
-        this.mCurCnt = this.mConfiguration.getRetryCount();
+        this.mCurCnt = this.mConfiguration.getRetryCount() + 1;
     }
 
     public void execute() {
@@ -60,9 +59,8 @@ public class FavoriteTask extends NormalTask {
                 return;
             } catch (Exception e) {
                 e.printStackTrace();
-                if (i == this.mCurCnt - 1 || (e instanceof StatusCodeException)) {
+                if (i == this.mCurCnt - 1) {
                     sendMessage(40, new FavoriteTaskResult(false, this.mEffectIds, new ExceptionResult(e)));
-                    return;
                 }
                 i++;
             }
@@ -94,15 +92,6 @@ public class FavoriteTask extends NormalTask {
         }
         if (!TextUtils.isEmpty(this.mConfiguration.getChannel())) {
             hashMap.put("channel", this.mConfiguration.getChannel());
-        }
-        if (!TextUtils.isEmpty(this.mConfiguration.getAppID())) {
-            hashMap.put(EffectConfiguration.KEY_APP_ID, this.mConfiguration.getAppID());
-        }
-        if (!TextUtils.isEmpty(this.mConfiguration.getAppLanguage())) {
-            hashMap.put(EffectConfiguration.KEY_APP_LANGUAGE, this.mConfiguration.getAppLanguage());
-        }
-        if (!TextUtils.isEmpty(this.mConfiguration.getSysLanguage())) {
-            hashMap.put(EffectConfiguration.KEY_SYS_LANGUAGE, this.mConfiguration.getSysLanguage());
         }
         if (!TextUtils.isEmpty(this.mPanel)) {
             hashMap.put(EffectConfiguration.KEY_PANEL, this.mPanel);

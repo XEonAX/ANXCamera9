@@ -21,6 +21,7 @@ import com.android.camera.fragment.bottom.FragmentBottomAction;
 import com.android.camera.fragment.dual.FragmentDualCameraAdjust;
 import com.android.camera.fragment.dual.FragmentDualCameraBokehAdjust;
 import com.android.camera.fragment.dual.FragmentDualStereo;
+import com.android.camera.fragment.fullscreen.FragmentFullScreen;
 import com.android.camera.fragment.lifeCircle.BaseLifeCircleBindFragment;
 import com.android.camera.fragment.lifeCircle.BaseLifecycleListener;
 import com.android.camera.fragment.live.FragmentLiveSpeed;
@@ -42,7 +43,7 @@ import java.util.List;
 
 public class BaseFragmentDelegate implements BaseDelegate {
     public static final int BEAUTY_FRAGMENT_CONTAINER_ID = 2131558426;
-    public static final int EYE_LIGHT_POPU_TIP_FRAGMENT_CONTAINER_ID = 2131558640;
+    public static final int EYE_LIGHT_POPU_TIP_FRAGMENT_CONTAINER_ID = 2131558653;
     public static final int FRAGMENT_BEAUTY = 251;
     public static final int FRAGMENT_BLANK_BEAUTY = 4090;
     public static final int FRAGMENT_BOTTOM_ACTION = 241;
@@ -71,7 +72,7 @@ public class BaseFragmentDelegate implements BaseDelegate {
     public static final int FRAGMENT_TOP_CONFIG = 244;
     public static final int FRAGMENT_TOP_CONFIG_EXTRA = 245;
     public static final int FRAGMENT_VERTICAL = 4088;
-    public static final int MAKE_UP_POPU_FRAGMENT_CONTAINER_ID = 2131558639;
+    public static final int MAKE_UP_POPU_FRAGMENT_CONTAINER_ID = 2131558652;
     private static final String TAG = BaseFragmentDelegate.class.getSimpleName();
     private AnimationComposite animationComposite = new AnimationComposite();
     private SparseArray<List<Integer>> currentFragments;
@@ -119,7 +120,7 @@ public class BaseFragmentDelegate implements BaseDelegate {
         beginTransaction.replace(R.id.main_vertical, constructFragment9, constructFragment9.getFragmentTag());
         if (b.isSupportedOpticalZoom()) {
             constructFragment = constructFragment(true, 4084, 240, baseLifecycleListener2);
-        } else if (b.hd()) {
+        } else if (b.hm()) {
             constructFragment = constructFragment(true, 4085, 240, baseLifecycleListener2);
         } else {
             constructFragment = null;
@@ -131,7 +132,7 @@ public class BaseFragmentDelegate implements BaseDelegate {
         } else {
             this.originalFragments.put(R.id.bottom_popup_dual_camera_adjust, 240);
         }
-        if (Util.UI_DEBUG()) {
+        if (Util.UI_DEBUG() && !b.qP) {
             Fragment constructFragment10 = constructFragment(true, 4091, 240, baseLifecycleListener2);
             this.originalFragments.put(R.id.bottom_popup_dual_camera_bokeh_adjust, constructFragment10.getFragmentInto());
             this.animationComposite.put(constructFragment10.getFragmentInto(), constructFragment10);
@@ -538,7 +539,7 @@ public class BaseFragmentDelegate implements BaseDelegate {
                         arrayList.add(BaseFragmentOperation.create(R.id.main_content).show(getOriginalFragment(R.id.main_content)));
                     }
                     arrayList.add(BaseFragmentOperation.create(R.id.bottom_popup_tips).show(getOriginalFragment(R.id.bottom_popup_tips)));
-                    if (b.isSupportedOpticalZoom() || b.hd()) {
+                    if (b.isSupportedOpticalZoom() || b.hm()) {
                         arrayList.add(BaseFragmentOperation.create(R.id.bottom_popup_dual_camera_adjust).show(getOriginalFragment(R.id.bottom_popup_dual_camera_adjust)));
                         break;
                     }

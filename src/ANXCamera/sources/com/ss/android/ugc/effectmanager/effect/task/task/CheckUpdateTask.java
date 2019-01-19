@@ -1,7 +1,5 @@
 package com.ss.android.ugc.effectmanager.effect.task.task;
 
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Handler;
 import android.text.TextUtils;
 import com.ss.android.ugc.effectmanager.EffectConfiguration;
@@ -16,14 +14,11 @@ import com.ss.android.ugc.effectmanager.context.EffectContext;
 import com.ss.android.ugc.effectmanager.effect.model.EffectChannelModel;
 import com.ss.android.ugc.effectmanager.effect.model.net.EffectCheckUpdateResponse;
 import com.ss.android.ugc.effectmanager.effect.task.result.EffectCheckUpdateResult;
-import com.ss.android.ugc.effectmanager.link.LinkSelector;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CheckUpdateTask extends NormalTask {
-    private static final String APP_VERSION = "app_version";
-    private static final String VERSION = "version";
     private EffectChannelModel mCachedChannelModel;
     private EffectConfiguration mConfiguration = this.mEffectContext.getEffectConfiguration();
     private int mCurCnt;
@@ -34,31 +29,40 @@ public class CheckUpdateTask extends NormalTask {
         super(handler, str, EffectConstants.NETWORK);
         this.mEffectContext = effectContext;
         this.mPanel = str2;
-        this.mCurCnt = this.mConfiguration.getRetryCount();
+        this.mCurCnt = this.mConfiguration.getRetryCount() + 1;
     }
 
     public void execute() {
         if (checkedChannelCache()) {
             EffectRequest buildRequest = buildRequest();
-            if (isCanceled()) {
-                sendMessage(13, new EffectCheckUpdateResult(this.mPanel, false, new ExceptionResult((int) ErrorConstants.CODE_CANCEL_DOWNLOAD)));
-            }
-            try {
-                EffectCheckUpdateResponse effectCheckUpdateResponse = (EffectCheckUpdateResponse) this.mConfiguration.getEffectNetWorker().execute(buildRequest, this.mConfiguration.getJsonConverter(), EffectCheckUpdateResponse.class);
-                if (effectCheckUpdateResponse != null) {
-                    sendMessage(13, new EffectCheckUpdateResult(this.mPanel, effectCheckUpdateResponse.isUpdated(), null));
-                    return;
-                } else {
-                    sendMessage(13, new EffectCheckUpdateResult(this.mPanel, false, new ExceptionResult((int) ErrorConstants.CODE_DOWNLOAD_ERROR)));
+            while (true) {
+                int i = this.mCurCnt;
+                this.mCurCnt = i - 1;
+                if (i == 0) {
                     return;
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-                sendMessage(13, new EffectCheckUpdateResult(this.mPanel, false, new ExceptionResult(e)));
-                return;
+                if (isCanceled()) {
+                    sendMessage(13, new EffectCheckUpdateResult(this.mPanel, false, new ExceptionResult((int) ErrorConstants.CODE_CANCEL_DOWNLOAD)));
+                    return;
+                }
+                try {
+                    EffectCheckUpdateResponse effectCheckUpdateResponse = (EffectCheckUpdateResponse) this.mConfiguration.getEffectNetWorker().execute(buildRequest, this.mConfiguration.getJsonConverter(), EffectCheckUpdateResponse.class);
+                    if (effectCheckUpdateResponse != null) {
+                        sendMessage(13, new EffectCheckUpdateResult(this.mPanel, effectCheckUpdateResponse.isUpdated(), null));
+                        return;
+                    } else if (this.mCurCnt == 0) {
+                        sendMessage(13, new EffectCheckUpdateResult(this.mPanel, false, new ExceptionResult((int) ErrorConstants.CODE_DOWNLOAD_ERROR)));
+                    }
+                } catch (Exception e) {
+                    if (this.mCurCnt == 0) {
+                        e.printStackTrace();
+                        sendMessage(13, new EffectCheckUpdateResult(this.mPanel, false, new ExceptionResult(e)));
+                    }
+                }
             }
+        } else {
+            sendMessage(13, new EffectCheckUpdateResult(this.mPanel, true, null));
         }
-        sendMessage(13, new EffectCheckUpdateResult(this.mPanel, true, null));
     }
 
     private boolean checkedChannelCache() {
@@ -76,17 +80,6 @@ public class CheckUpdateTask extends NormalTask {
 
     private EffectRequest buildRequest() {
         Map hashMap = new HashMap();
-        LinkSelector linkSelector = this.mEffectContext.getLinkSelector();
-        int i = 0;
-        if (linkSelector != null) {
-            SharedPreferences sharedPreferences = linkSelector.getContext().getSharedPreferences("version", 0);
-            i = sharedPreferences.getString("app_version", "").equals(this.mConfiguration.getAppVersion()) ^ 1;
-            if (i != 0) {
-                Editor edit = sharedPreferences.edit();
-                edit.putString("app_version", this.mConfiguration.getAppVersion());
-                edit.commit();
-            }
-        }
         if (!TextUtils.isEmpty(this.mConfiguration.getAccessKey())) {
             hashMap.put(EffectConfiguration.KEY_ACCESS_KEY, this.mConfiguration.getAccessKey());
         }
@@ -111,24 +104,11 @@ public class CheckUpdateTask extends NormalTask {
         if (!TextUtils.isEmpty(this.mConfiguration.getDeviceType())) {
             hashMap.put(EffectConfiguration.KEY_DEVICE_TYPE, this.mConfiguration.getDeviceType());
         }
-        if (!TextUtils.isEmpty(this.mConfiguration.getAppID())) {
-            hashMap.put(EffectConfiguration.KEY_APP_ID, this.mConfiguration.getAppID());
-        }
-        if (!TextUtils.isEmpty(this.mConfiguration.getAppLanguage())) {
-            hashMap.put(EffectConfiguration.KEY_APP_LANGUAGE, this.mConfiguration.getAppLanguage());
-        }
-        if (!TextUtils.isEmpty(this.mConfiguration.getSysLanguage())) {
-            hashMap.put(EffectConfiguration.KEY_SYS_LANGUAGE, this.mConfiguration.getSysLanguage());
-        }
         if (!TextUtils.isEmpty(this.mPanel)) {
             hashMap.put(EffectConfiguration.KEY_PANEL, this.mPanel);
         }
         if (this.mCachedChannelModel != null) {
-            if (i != 0) {
-                hashMap.put("version", "");
-            } else {
-                hashMap.put("version", this.mCachedChannelModel.getVersion());
-            }
+            hashMap.put("version", this.mCachedChannelModel.getVersion());
         }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(this.mEffectContext.getLinkSelector().getBestHostUrl());

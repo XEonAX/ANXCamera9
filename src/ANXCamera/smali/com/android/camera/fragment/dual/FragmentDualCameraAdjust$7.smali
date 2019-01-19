@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)V
     .locals 0
 
-    .line 675
+    .line 706
     iput-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$7;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -43,14 +43,14 @@
         }
     .end annotation
 
-    .line 678
+    .line 709
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$7;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     const/4 v1, 0x0
 
     invoke-static {v0, v1}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->access$1402(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;Z)Z
 
-    .line 679
+    .line 710
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$7;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-static {v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->access$1500(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)Landroid/view/ViewGroup;
@@ -61,6 +61,6 @@
 
     invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->setVisibility(I)V
 
-    .line 680
+    .line 711
     return-void
 .end method

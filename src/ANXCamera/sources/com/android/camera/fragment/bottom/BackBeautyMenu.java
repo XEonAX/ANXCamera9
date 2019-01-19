@@ -72,7 +72,7 @@ public class BackBeautyMenu extends AbBottomMenu implements OnClickListener {
         menuItem.text = string;
         menuItem.number = 0;
         this.mBackBeautyMenuTabList.put(1, menuItem);
-        if (DataRepository.dataItemFeature().fy()) {
+        if (DataRepository.dataItemFeature().isSupportBeautyBody()) {
             string = CameraAppImpl.getAndroidContext().getString(R.string.beauty_body);
             menuItem = new MenuItem();
             menuItem.type = 5;
@@ -107,6 +107,6 @@ public class BackBeautyMenu extends AbBottomMenu implements OnClickListener {
     }
 
     private boolean isJustBeautyTab() {
-        return CameraSettings.isBackPortrait();
+        return CameraSettings.isSupportBeautyBody() ^ 1;
     }
 }

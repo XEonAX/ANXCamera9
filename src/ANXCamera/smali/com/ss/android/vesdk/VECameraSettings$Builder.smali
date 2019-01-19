@@ -15,295 +15,394 @@
 
 
 # instance fields
-.field private mCameraFacing:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
-
-.field private mCameraType:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;
-
-.field private mFps:I
-
-.field private mFpsRange:[I
-
-.field private mHwLevel:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
-
-.field private mIsUseCloudConfig:Z
-
-.field public mOptionFlags:B
-
-.field private mPreviewSize:Lcom/ss/android/vesdk/VESize;
-
-.field private mSceneMode:Ljava/lang/String;
+.field private mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
 
 
 # direct methods
 .method public constructor <init>()V
-    .locals 3
+    .locals 2
 
-    .line 519
+    .line 489
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 525
-    const/16 v0, 0x1e
+    .line 490
+    new-instance v0, Lcom/ss/android/vesdk/VECameraSettings;
 
-    iput v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mFps:I
+    const/4 v1, 0x0
 
-    .line 532
-    new-instance v0, Lcom/ss/android/vesdk/VESize;
+    invoke-direct {v0, v1}, Lcom/ss/android/vesdk/VECameraSettings;-><init>(Lcom/ss/android/vesdk/VECameraSettings$1;)V
 
-    const/16 v1, 0x2d0
+    iput-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
 
-    const/16 v2, 0x500
+    .line 491
+    return-void
+.end method
 
-    invoke-direct {v0, v1, v2}, Lcom/ss/android/vesdk/VESize;-><init>(II)V
+.method public constructor <init>(Lcom/ss/android/vesdk/VECameraSettings;)V
+    .locals 0
 
-    iput-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mPreviewSize:Lcom/ss/android/vesdk/VESize;
+    .line 493
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 539
+    .line 494
+    iput-object p1, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
+
+    .line 495
+    return-void
+.end method
+
+.method private getCameraHwLevelFromCloudConfig()Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
+    .locals 3
+
+    .line 641
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget v0, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordCameraCompatLevel:I
+
+    packed-switch v0, :pswitch_data_0
+
+    .line 651
+    sget-object v0, Lcom/ss/android/vesdk/VECameraSettings;->TAG:Ljava/lang/String;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "Fetch unexpected cameraLevel = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget v2, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordCameraCompatLevel:I
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 652
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
+
+    invoke-static {v0}, Lcom/ss/android/vesdk/VECameraSettings;->access$500(Lcom/ss/android/vesdk/VECameraSettings;)Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
+
+    move-result-object v0
+
+    return-object v0
+
+    .line 649
+    :pswitch_0
+    sget-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;->CAMERA_HW_LEVEL_LEVEL_3:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
+
+    return-object v0
+
+    .line 647
+    :pswitch_1
+    sget-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;->CAMERA_HW_LEVEL_FULL:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
+
+    return-object v0
+
+    .line 645
+    :pswitch_2
+    sget-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;->CAMERA_HW_LEVEL_LIMITED:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
+
+    return-object v0
+
+    .line 643
+    :pswitch_3
     sget-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;->CAMERA_HW_LEVEL_LEGACY:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
-    iput-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mHwLevel:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
+    return-object v0
 
-    .line 546
+    :pswitch_data_0
+    .packed-switch 0x0
+        :pswitch_3
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
+    .end packed-switch
+.end method
+
+.method private getCameraTypeFromCloudConfig()Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;
+    .locals 3
+
+    .line 629
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget v0, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordCameraType:I
+
+    packed-switch v0, :pswitch_data_0
+
+    .line 635
+    sget-object v0, Lcom/ss/android/vesdk/VECameraSettings;->TAG:Ljava/lang/String;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "Fetch unexpected cameraType = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget v2, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordCameraType:I
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 636
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
+
+    invoke-static {v0}, Lcom/ss/android/vesdk/VECameraSettings;->access$200(Lcom/ss/android/vesdk/VECameraSettings;)Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;
+
+    move-result-object v0
+
+    return-object v0
+
+    .line 633
+    :pswitch_0
+    sget-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;->TYPE2:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;
+
+    return-object v0
+
+    .line 631
+    :pswitch_1
     sget-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;->TYPE1:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;
 
-    iput-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mCameraType:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;
+    return-object v0
 
-    .line 553
-    sget-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;->FACING_FRONT:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
-
-    iput-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mCameraFacing:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
-
-    .line 560
-    const/4 v0, 0x2
-
-    new-array v0, v0, [I
-
-    fill-array-data v0, :array_0
-
-    iput-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mFpsRange:[I
-
-    .line 567
-    const-string v0, "auto"
-
-    iput-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mSceneMode:Ljava/lang/String;
-
-    .line 574
-    const/4 v0, 0x0
-
-    iput-boolean v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mIsUseCloudConfig:Z
-
-    .line 581
-    const/4 v0, 0x1
-
-    iput-byte v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mOptionFlags:B
-
-    return-void
-
-    nop
-
-    :array_0
-    .array-data 4
-        0x1e
-        0x1e
-    .end array-data
-.end method
-
-.method static synthetic access$000(Lcom/ss/android/vesdk/VECameraSettings$Builder;)Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;
-    .locals 0
-
-    .line 519
-    iget-object p0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mCameraType:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;
-
-    return-object p0
-.end method
-
-.method static synthetic access$100(Lcom/ss/android/vesdk/VECameraSettings$Builder;)Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
-    .locals 0
-
-    .line 519
-    iget-object p0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mCameraFacing:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
-
-    return-object p0
-.end method
-
-.method static synthetic access$200(Lcom/ss/android/vesdk/VECameraSettings$Builder;)I
-    .locals 0
-
-    .line 519
-    iget p0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mFps:I
-
-    return p0
-.end method
-
-.method static synthetic access$300(Lcom/ss/android/vesdk/VECameraSettings$Builder;)Lcom/ss/android/vesdk/VESize;
-    .locals 0
-
-    .line 519
-    iget-object p0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mPreviewSize:Lcom/ss/android/vesdk/VESize;
-
-    return-object p0
-.end method
-
-.method static synthetic access$400(Lcom/ss/android/vesdk/VECameraSettings$Builder;)Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
-    .locals 0
-
-    .line 519
-    iget-object p0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mHwLevel:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
-
-    return-object p0
-.end method
-
-.method static synthetic access$500(Lcom/ss/android/vesdk/VECameraSettings$Builder;)[I
-    .locals 0
-
-    .line 519
-    iget-object p0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mFpsRange:[I
-
-    return-object p0
-.end method
-
-.method static synthetic access$600(Lcom/ss/android/vesdk/VECameraSettings$Builder;)Ljava/lang/String;
-    .locals 0
-
-    .line 519
-    iget-object p0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mSceneMode:Ljava/lang/String;
-
-    return-object p0
-.end method
-
-.method static synthetic access$700(Lcom/ss/android/vesdk/VECameraSettings$Builder;)Z
-    .locals 0
-
-    .line 519
-    iget-boolean p0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mIsUseCloudConfig:Z
-
-    return p0
+    :pswitch_data_0
+    .packed-switch 0x1
+        :pswitch_1
+        :pswitch_0
+    .end packed-switch
 .end method
 
 
 # virtual methods
 .method public build()Lcom/ss/android/vesdk/VECameraSettings;
-    .locals 2
+    .locals 1
 
-    .line 699
-    new-instance v0, Lcom/ss/android/vesdk/VECameraSettings;
-
-    const/4 v1, 0x0
-
-    invoke-direct {v0, p0, v1}, Lcom/ss/android/vesdk/VECameraSettings;-><init>(Lcom/ss/android/vesdk/VECameraSettings$Builder;Lcom/ss/android/vesdk/VECameraSettings$1;)V
+    .line 625
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
 
     return-object v0
 .end method
 
-.method public isUseCloudConfig(Z)Lcom/ss/android/vesdk/VECameraSettings$Builder;
-    .locals 0
+.method public overrideWithCloudConfig()Lcom/ss/android/vesdk/VECameraSettings$Builder;
+    .locals 4
 
-    .line 672
-    iput-boolean p1, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mIsUseCloudConfig:Z
+    .line 611
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
-    .line 673
+    if-nez v0, :cond_0
+
+    .line 612
+    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "Override with Cloud Configs failed. CloudConfig == null"
+
+    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 615
+    :cond_0
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
+
+    invoke-direct {p0}, Lcom/ss/android/vesdk/VECameraSettings$Builder;->getCameraTypeFromCloudConfig()Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Lcom/ss/android/vesdk/VECameraSettings;->access$202(Lcom/ss/android/vesdk/VECameraSettings;Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;)Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;
+
+    .line 616
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
+
+    invoke-direct {p0}, Lcom/ss/android/vesdk/VECameraSettings$Builder;->getCameraHwLevelFromCloudConfig()Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Lcom/ss/android/vesdk/VECameraSettings;->access$502(Lcom/ss/android/vesdk/VECameraSettings;Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;)Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
+
+    .line 617
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
+
+    new-instance v1, Lcom/ss/android/vesdk/VESize;
+
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget v2, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCameraPreviewResolutionWidth:I
+
+    sget-object v3, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget v3, v3, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCameraPreviewResolutionHeight:I
+
+    invoke-direct {v1, v2, v3}, Lcom/ss/android/vesdk/VESize;-><init>(II)V
+
+    invoke-static {v0, v1}, Lcom/ss/android/vesdk/VECameraSettings;->access$302(Lcom/ss/android/vesdk/VECameraSettings;Lcom/ss/android/vesdk/VESize;)Lcom/ss/android/vesdk/VESize;
+
+    .line 621
     return-object p0
 .end method
 
 .method public setCameraFacing(Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;)Lcom/ss/android/vesdk/VECameraSettings$Builder;
-    .locals 0
+    .locals 1
     .param p1    # Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
 
-    .line 590
-    iput-object p1, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mCameraFacing:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
+    .line 504
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
 
-    .line 591
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VECameraSettings;->access$102(Lcom/ss/android/vesdk/VECameraSettings;Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;)Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
+
+    .line 505
     return-object p0
 .end method
 
 .method public setCameraType(Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;)Lcom/ss/android/vesdk/VECameraSettings$Builder;
-    .locals 0
+    .locals 1
     .param p1    # Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
 
-    .line 601
-    iput-object p1, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mCameraType:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;
+    .line 515
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
 
-    .line 602
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VECameraSettings;->access$202(Lcom/ss/android/vesdk/VECameraSettings;Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;)Lcom/ss/android/vesdk/VECameraSettings$CAMERA_TYPE;
+
+    .line 516
+    return-object p0
+.end method
+
+.method public setCaptureSize(II)Lcom/ss/android/vesdk/VECameraSettings$Builder;
+    .locals 2
+
+    .line 593
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
+
+    new-instance v1, Lcom/ss/android/vesdk/VESize;
+
+    invoke-direct {v1, p1, p2}, Lcom/ss/android/vesdk/VESize;-><init>(II)V
+
+    invoke-static {v0, v1}, Lcom/ss/android/vesdk/VECameraSettings;->access$902(Lcom/ss/android/vesdk/VECameraSettings;Lcom/ss/android/vesdk/VESize;)Lcom/ss/android/vesdk/VESize;
+
+    .line 594
     return-object p0
 .end method
 
 .method public setFps(I)Lcom/ss/android/vesdk/VECameraSettings$Builder;
-    .locals 0
+    .locals 1
 
-    .line 624
-    iput p1, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mFps:I
+    .line 538
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
 
-    .line 625
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VECameraSettings;->access$402(Lcom/ss/android/vesdk/VECameraSettings;I)I
+
+    .line 539
     return-object p0
 .end method
 
 .method public setFpsRange([I)Lcom/ss/android/vesdk/VECameraSettings$Builder;
-    .locals 0
+    .locals 1
     .param p1    # [I
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
 
-    .line 646
-    iput-object p1, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mFpsRange:[I
+    .line 560
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
 
-    .line 647
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VECameraSettings;->access$602(Lcom/ss/android/vesdk/VECameraSettings;[I)[I
+
+    .line 561
     return-object p0
 .end method
 
 .method public setHwLevel(Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;)Lcom/ss/android/vesdk/VECameraSettings$Builder;
-    .locals 0
+    .locals 1
     .param p1    # Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
 
-    .line 635
-    iput-object p1, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mHwLevel:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
+    .line 549
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
 
-    .line 636
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VECameraSettings;->access$502(Lcom/ss/android/vesdk/VECameraSettings;Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;)Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
+
+    .line 550
     return-object p0
 .end method
 
 .method public setOptionFlag(B)Lcom/ss/android/vesdk/VECameraSettings$Builder;
-    .locals 0
+    .locals 1
 
-    .line 690
-    iput-byte p1, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mOptionFlags:B
+    .line 588
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
 
-    .line 691
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VECameraSettings;->access$802(Lcom/ss/android/vesdk/VECameraSettings;B)B
+
+    .line 589
+    return-object p0
+.end method
+
+.method public setOutPutMode(Lcom/ss/android/vesdk/VECameraSettings$CAMERA_OUTPUT_MODE;)Lcom/ss/android/vesdk/VECameraSettings$Builder;
+    .locals 1
+
+    .line 599
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
+
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VECameraSettings;->access$1002(Lcom/ss/android/vesdk/VECameraSettings;Lcom/ss/android/vesdk/VECameraSettings$CAMERA_OUTPUT_MODE;)Lcom/ss/android/vesdk/VECameraSettings$CAMERA_OUTPUT_MODE;
+
+    .line 600
     return-object p0
 .end method
 
 .method public setPreviewSize(II)Lcom/ss/android/vesdk/VECameraSettings$Builder;
-    .locals 1
+    .locals 2
 
-    .line 613
-    new-instance v0, Lcom/ss/android/vesdk/VESize;
+    .line 527
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
 
-    invoke-direct {v0, p1, p2}, Lcom/ss/android/vesdk/VESize;-><init>(II)V
+    new-instance v1, Lcom/ss/android/vesdk/VESize;
 
-    iput-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mPreviewSize:Lcom/ss/android/vesdk/VESize;
+    invoke-direct {v1, p1, p2}, Lcom/ss/android/vesdk/VESize;-><init>(II)V
 
-    .line 614
+    invoke-static {v0, v1}, Lcom/ss/android/vesdk/VECameraSettings;->access$302(Lcom/ss/android/vesdk/VECameraSettings;Lcom/ss/android/vesdk/VESize;)Lcom/ss/android/vesdk/VESize;
+
+    .line 528
     return-object p0
 .end method
 
 .method public setSceneMode(Ljava/lang/String;)Lcom/ss/android/vesdk/VECameraSettings$Builder;
-    .locals 0
+    .locals 1
     .param p1    # Ljava/lang/String;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
 
-    .line 657
-    iput-object p1, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mSceneMode:Ljava/lang/String;
+    .line 571
+    iget-object v0, p0, Lcom/ss/android/vesdk/VECameraSettings$Builder;->mExportCameraSettings:Lcom/ss/android/vesdk/VECameraSettings;
 
-    .line 658
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VECameraSettings;->access$702(Lcom/ss/android/vesdk/VECameraSettings;Ljava/lang/String;)Ljava/lang/String;
+
+    .line 572
     return-object p0
 .end method

@@ -53,12 +53,12 @@
 .method private processCaptureResult(Lcom/xiaomi/protocol/ICustomCaptureResult;Landroid/media/Image;I)V
     .locals 8
 
-    .line 121
+    .line 118
     invoke-virtual {p1}, Lcom/xiaomi/protocol/ICustomCaptureResult;->getResults()Landroid/os/Parcelable;
 
     move-result-object v5
 
-    .line 122
+    .line 119
     sget-object v0, Lcom/xiaomi/camera/core/DualCameraProcessor;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -77,7 +77,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 123
+    .line 120
     sget-object v0, Lcom/xiaomi/camera/core/DualCameraProcessor;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -96,15 +96,15 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 124
+    .line 121
     new-instance v7, Lcom/xiaomi/engine/FrameData;
 
-    .line 125
+    .line 122
     invoke-virtual {p1}, Lcom/xiaomi/protocol/ICustomCaptureResult;->getSequenceId()I
 
     move-result v2
 
-    .line 126
+    .line 123
     invoke-virtual {p1}, Lcom/xiaomi/protocol/ICustomCaptureResult;->getFrameNumber()J
 
     move-result-wide v3
@@ -117,7 +117,7 @@
 
     invoke-direct/range {v0 .. v6}, Lcom/xiaomi/engine/FrameData;-><init>(IIJLandroid/os/Parcelable;Landroid/media/Image;)V
 
-    .line 127
+    .line 124
     new-instance p1, Lcom/xiaomi/camera/core/DualCameraProcessor$4;
 
     invoke-direct {p1, p0}, Lcom/xiaomi/camera/core/DualCameraProcessor$4;-><init>(Lcom/xiaomi/camera/core/DualCameraProcessor;)V
@@ -127,13 +127,20 @@
     .line 137
     iget-object p1, p0, Lcom/xiaomi/camera/core/DualCameraProcessor;->mTaskSession:Lcom/xiaomi/engine/TaskSession;
 
+    const/4 p2, 0x1
+
+    invoke-virtual {p1, p2}, Lcom/xiaomi/engine/TaskSession;->onTaskStart(I)V
+
+    .line 138
+    iget-object p1, p0, Lcom/xiaomi/camera/core/DualCameraProcessor;->mTaskSession:Lcom/xiaomi/engine/TaskSession;
+
     new-instance p2, Lcom/xiaomi/camera/core/DualCameraProcessor$5;
 
     invoke-direct {p2, p0}, Lcom/xiaomi/camera/core/DualCameraProcessor$5;-><init>(Lcom/xiaomi/camera/core/DualCameraProcessor;)V
 
     invoke-virtual {p1, v7, p2}, Lcom/xiaomi/engine/TaskSession;->processFrame(Lcom/xiaomi/engine/FrameData;Lcom/xiaomi/engine/TaskSession$FrameCallback;)V
 
-    .line 143
+    .line 144
     return-void
 .end method
 
@@ -358,7 +365,7 @@
 .end method
 
 .method processImage(Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;)V
-    .locals 4
+    .locals 3
 
     .line 110
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;->getResult()Lcom/xiaomi/protocol/ICustomCaptureResult;
@@ -366,37 +373,20 @@
     move-result-object v0
 
     .line 111
-    invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;->isFirstResult()Z
-
-    move-result v1
-
-    if-eqz v1, :cond_0
-
-    .line 112
-    iget-object v1, p0, Lcom/xiaomi/camera/core/DualCameraProcessor;->mImageProcessorStatusCallback:Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;
-
-    invoke-virtual {v0}, Lcom/xiaomi/protocol/ICustomCaptureResult;->getTimeStamp()J
-
-    move-result-wide v2
-
-    invoke-interface {v1, v2, v3}, Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;->onImageProcessStart(J)V
-
-    .line 114
-    :cond_0
     const-string v1, "[ORIGINAL]"
 
     const/4 v2, 0x0
 
     invoke-static {v1, v2}, Lcom/xiaomi/camera/base/PerformanceTracker;->trackAlgorithmProcess(Ljava/lang/String;I)V
 
-    .line 115
+    .line 112
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;->getMainImage()Landroid/media/Image;
 
     move-result-object v1
 
     invoke-direct {p0, v0, v1, v2}, Lcom/xiaomi/camera/core/DualCameraProcessor;->processCaptureResult(Lcom/xiaomi/protocol/ICustomCaptureResult;Landroid/media/Image;I)V
 
-    .line 116
+    .line 113
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;->getSubImage()Landroid/media/Image;
 
     move-result-object p1
@@ -405,57 +395,57 @@
 
     invoke-direct {p0, v0, p1, v1}, Lcom/xiaomi/camera/core/DualCameraProcessor;->processCaptureResult(Lcom/xiaomi/protocol/ICustomCaptureResult;Landroid/media/Image;I)V
 
-    .line 117
+    .line 114
     return-void
 .end method
 
 .method public releaseResource()V
     .locals 2
 
-    .line 147
+    .line 148
     iget-object v0, p0, Lcom/xiaomi/camera/core/DualCameraProcessor;->mEffectImageReaderHolder:Landroid/media/ImageReader;
 
     const/4 v1, 0x0
 
     if-eqz v0, :cond_0
 
-    .line 148
+    .line 149
     iget-object v0, p0, Lcom/xiaomi/camera/core/DualCameraProcessor;->mEffectImageReaderHolder:Landroid/media/ImageReader;
 
     invoke-virtual {v0}, Landroid/media/ImageReader;->close()V
 
-    .line 149
+    .line 150
     iput-object v1, p0, Lcom/xiaomi/camera/core/DualCameraProcessor;->mEffectImageReaderHolder:Landroid/media/ImageReader;
 
-    .line 152
+    .line 153
     :cond_0
     iget-object v0, p0, Lcom/xiaomi/camera/core/DualCameraProcessor;->mRawImageReaderHolder:Landroid/media/ImageReader;
 
     if-eqz v0, :cond_1
 
-    .line 153
+    .line 154
     iget-object v0, p0, Lcom/xiaomi/camera/core/DualCameraProcessor;->mRawImageReaderHolder:Landroid/media/ImageReader;
 
     invoke-virtual {v0}, Landroid/media/ImageReader;->close()V
 
-    .line 154
+    .line 155
     iput-object v1, p0, Lcom/xiaomi/camera/core/DualCameraProcessor;->mRawImageReaderHolder:Landroid/media/ImageReader;
 
-    .line 157
+    .line 158
     :cond_1
     iget-object v0, p0, Lcom/xiaomi/camera/core/DualCameraProcessor;->mDepthImageReaderHolder:Landroid/media/ImageReader;
 
     if-eqz v0, :cond_2
 
-    .line 158
+    .line 159
     iget-object v0, p0, Lcom/xiaomi/camera/core/DualCameraProcessor;->mDepthImageReaderHolder:Landroid/media/ImageReader;
 
     invoke-virtual {v0}, Landroid/media/ImageReader;->close()V
 
-    .line 159
+    .line 160
     iput-object v1, p0, Lcom/xiaomi/camera/core/DualCameraProcessor;->mDepthImageReaderHolder:Landroid/media/ImageReader;
 
-    .line 161
+    .line 162
     :cond_2
     return-void
 .end method

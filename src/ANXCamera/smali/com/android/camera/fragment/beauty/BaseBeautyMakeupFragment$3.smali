@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment;)V
     .locals 0
 
-    .line 130
+    .line 138
     iput-object p1, p0, Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment$3;->this$0:Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -47,39 +47,48 @@
         }
     .end annotation
 
-    .line 133
+    .line 141
+    iget-object p1, p0, Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment$3;->this$0:Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment;
+
+    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+
+    move-result-wide p4
+
+    invoke-static {p1, p4, p5}, Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment;->access$202(Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment;J)J
+
+    .line 142
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment$3;->this$0:Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment;
 
     iput p3, p1, Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment;->mSelectedParam:I
 
-    .line 134
+    .line 143
     invoke-virtual {p2}, Landroid/view/View;->getTag()Ljava/lang/Object;
 
     move-result-object p1
 
-    .line 135
+    .line 144
     if-eqz p1, :cond_0
 
     instance-of p2, p1, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;
 
     if-eqz p2, :cond_0
 
-    .line 136
+    .line 145
     check-cast p1, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;
 
-    .line 137
+    .line 146
     invoke-virtual {p1}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;->getCameraBeautyParameterType()Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
     move-result-object p2
 
     invoke-static {p2}, Lcom/android/camera/fragment/beauty/BeautyHelper;->setCurrentBeautyParameterType(Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
-    .line 138
+    .line 147
     iget-object p2, p0, Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment$3;->this$0:Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment;
 
     invoke-virtual {p2, p1}, Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment;->onAdapterItemClick(Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;)V
 
-    .line 140
+    .line 149
     :cond_0
     return-void
 .end method

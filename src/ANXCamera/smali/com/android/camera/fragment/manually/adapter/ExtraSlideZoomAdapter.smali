@@ -729,7 +729,7 @@
     move-result-object v0
 
     .line 161
-    const v2, 0x7f090015
+    const v2, 0x7f0a0015
 
     invoke-virtual {v0, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -744,7 +744,7 @@
     iput v2, p0, Lcom/android/camera/fragment/manually/adapter/ExtraSlideZoomAdapter;->mLineHalfHeight:F
 
     .line 162
-    const v2, 0x7f090016
+    const v2, 0x7f0a0016
 
     invoke-virtual {v0, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -753,7 +753,7 @@
     iput v2, p0, Lcom/android/camera/fragment/manually/adapter/ExtraSlideZoomAdapter;->mLineWidth:I
 
     .line 163
-    const v2, 0x7f090019
+    const v2, 0x7f0a0019
 
     invoke-virtual {v0, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -762,7 +762,7 @@
     iput v2, p0, Lcom/android/camera/fragment/manually/adapter/ExtraSlideZoomAdapter;->mDotRadius:I
 
     .line 164
-    const v2, 0x7f090017
+    const v2, 0x7f0a0017
 
     invoke-virtual {v0, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -771,7 +771,7 @@
     iput v2, p0, Lcom/android/camera/fragment/manually/adapter/ExtraSlideZoomAdapter;->mLineLineGap:I
 
     .line 165
-    const v2, 0x7f090018
+    const v2, 0x7f0a0018
 
     invoke-virtual {v0, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -780,7 +780,7 @@
     iput v2, p0, Lcom/android/camera/fragment/manually/adapter/ExtraSlideZoomAdapter;->mLineTextGap:I
 
     .line 166
-    const v2, 0x7f09001a
+    const v2, 0x7f0a001a
 
     invoke-virtual {v0, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -789,7 +789,7 @@
     iput v2, p0, Lcom/android/camera/fragment/manually/adapter/ExtraSlideZoomAdapter;->mLineDotYGap:I
 
     .line 167
-    const v2, 0x7f0a004e
+    const v2, 0x7f0b004e
 
     invoke-virtual {v0, v2}, Landroid/content/res/Resources;->getColor(I)I
 
@@ -798,7 +798,7 @@
     iput v2, p0, Lcom/android/camera/fragment/manually/adapter/ExtraSlideZoomAdapter;->mLineColorDefault:I
 
     .line 168
-    const v2, 0x7f0a004f
+    const v2, 0x7f0b004f
 
     invoke-virtual {v0, v2}, Landroid/content/res/Resources;->getColor(I)I
 

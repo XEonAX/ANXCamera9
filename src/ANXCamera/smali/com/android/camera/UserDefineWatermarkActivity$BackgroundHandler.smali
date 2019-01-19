@@ -22,13 +22,13 @@
 .method constructor <init>(Lcom/android/camera/UserDefineWatermarkActivity;Landroid/os/Looper;)V
     .locals 0
 
-    .line 216
+    .line 221
     iput-object p1, p0, Lcom/android/camera/UserDefineWatermarkActivity$BackgroundHandler;->this$0:Lcom/android/camera/UserDefineWatermarkActivity;
 
-    .line 217
+    .line 222
     invoke-direct {p0, p2}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
 
-    .line 218
+    .line 223
     return-void
 .end method
 
@@ -37,11 +37,11 @@
 .method public handleMessage(Landroid/os/Message;)V
     .locals 1
 
-    .line 222
+    .line 227
     iget-object v0, p0, Lcom/android/camera/UserDefineWatermarkActivity$BackgroundHandler;->this$0:Lcom/android/camera/UserDefineWatermarkActivity;
 
     invoke-static {v0, p1}, Lcom/android/camera/UserDefineWatermarkActivity;->access$300(Lcom/android/camera/UserDefineWatermarkActivity;Landroid/os/Message;)V
 
-    .line 223
+    .line 228
     return-void
 .end method

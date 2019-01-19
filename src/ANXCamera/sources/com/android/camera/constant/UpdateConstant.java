@@ -4,15 +4,15 @@ public class UpdateConstant {
     @UpdateType
     public static final int[] AI_SCENE_CONFIG = new int[]{13, 11, 28, 34, 27, 20, 26, 30, 16, 42};
     @UpdateType
-    public static final int[] CAMERA_TYPES_INIT = new int[]{44, 1, 2, 26, 27, 28, 29, 46, 47, 29};
+    public static final int[] CAMERA_TYPES_INIT = new int[]{44, 1};
     @UpdateType
     public static final int[] CAMERA_TYPES_MANUALLY = new int[]{6, 16, 15};
     @UpdateType
-    public static final int[] CAMERA_TYPES_ON_PREVIEW_SUCCESS = new int[]{7, 8, 10, 11, 14, 19, 4, 13, 45, 5, 9, 20, 21, 22, 34, 23, 25, 36, 37, 42, 43, 48, 49};
+    public static final int[] CAMERA_TYPES_ON_PREVIEW_SUCCESS = new int[]{2, 26, 27, 28, 29, 46, 47, 7, 8, 10, 11, 14, 19, 4, 13, 45, 5, 9, 20, 21, 22, 34, 23, 25, 36, 37, 42, 43, 48, 49};
     @UpdateType
-    public static final int[] FUN_TYPES_INIT = new int[]{1, 2, 29, 35, 13, 19, 47};
+    public static final int[] FUN_TYPES_INIT = new int[]{1};
     @UpdateType
-    public static final int[] FUN_TYPES_ON_PREVIEW_SUCCESS = new int[]{5, 9, 10, 14, 25, 31, 19};
+    public static final int[] FUN_TYPES_ON_PREVIEW_SUCCESS = new int[]{2, 29, 35, 13, 19, 47, 5, 9, 10, 14, 25, 31};
     @UpdateType
     public static final int[] PANORAMA_ON_PREVIEW_SUCCESS = new int[]{32};
     @UpdateType
@@ -22,8 +22,8 @@ public class UpdateConstant {
     public static final int TYPE_AREA_FOCUS_AND_METERING = 3;
     public static final int TYPE_BEAUTY = 13;
     public static final int TYPE_BOKEH = 37;
-    public static final int TYPE_CHANGED_OPERATEMODE = 41;
     public static final int TYPE_CONTRAST = 26;
+    public static final int TYPE_DECODE_PREVIEW = 23;
     public static final int TYPE_DEVICE_ORIENTATION = 35;
     public static final int TYPE_EIS = 31;
     public static final int TYPE_EXPOSURE_COMPENSATION = 12;
@@ -51,7 +51,6 @@ public class UpdateConstant {
     public static final int TYPE_NORMAL_WIDE_LDC = 46;
     public static final int TYPE_OIS = 20;
     public static final int TYPE_PORTRAIT_LIGHTING = 43;
-    public static final int TYPE_QR = 23;
     public static final int TYPE_SATURATION = 27;
     public static final int TYPE_SCENE = 4;
     public static final int TYPE_SHARPNESS = 28;
@@ -60,15 +59,16 @@ public class UpdateConstant {
     public static final int TYPE_SIZE_SNAPSHOT = 33;
     public static final int TYPE_SUPER_RESOLUTION = 30;
     public static final int TYPE_SW_MFNR = 42;
+    public static final int TYPE_ULTRA_PIXEL = 50;
     public static final int TYPE_ULTRA_WIDE_LDC = 47;
     public static final int TYPE_UPDATE_PANORAMA_SETUP = 32;
     public static final int TYPE_WHITE_BALANCE = 6;
     public static final int TYPE_ZOOM = 24;
     public static final int TYPE_ZSL = 22;
     @UpdateType
-    public static final int[] VIDEO_TYPES_INIT = new int[]{1, 29, 13, 35, 19, 47};
+    public static final int[] VIDEO_TYPES_INIT = new int[]{1};
     @UpdateType
-    public static final int[] VIDEO_TYPES_ON_PREVIEW_SUCCESS = new int[]{31, 5, 9, 10, 14, 25};
+    public static final int[] VIDEO_TYPES_ON_PREVIEW_SUCCESS = new int[]{29, 13, 35, 19, 47, 31, 5, 9, 10, 14, 25};
     @UpdateType
     public static final int[] VIDEO_TYPES_RECORD = new int[]{19, 31, 40, 35, 33};
 

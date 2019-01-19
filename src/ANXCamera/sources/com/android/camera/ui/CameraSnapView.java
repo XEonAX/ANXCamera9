@@ -32,6 +32,7 @@ public class CameraSnapView extends View {
     private static final String TAG = CameraSnapView.class.getSimpleName();
     private CameraSnapAnimateDrawable cameraSnapAnimateDrawable;
     private int mCurrentMode;
+    private boolean mEnableSnapClick = true;
     private Bitmap mExtraBitmap;
     private Matrix mExtraBitmapMatrix;
     private Paint mExtraBitmapPaint;
@@ -214,7 +215,7 @@ public class CameraSnapView extends View {
     }
 
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (isEnabled()) {
+        if (isSnapEnableClick()) {
             int action = motionEvent.getAction();
             long j = 0;
             if (action != 6) {
@@ -359,5 +360,18 @@ public class CameraSnapView extends View {
         this.mHandler.removeCallbacksAndMessages(null);
         this.mHandler.sendEmptyMessage(1);
         return true;
+    }
+
+    public void setSnapClickEnable(boolean z) {
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("setClickEnable: ");
+        stringBuilder.append(z);
+        Log.d(str, stringBuilder.toString());
+        this.mEnableSnapClick = z;
+    }
+
+    public boolean isSnapEnableClick() {
+        return this.mEnableSnapClick;
     }
 }

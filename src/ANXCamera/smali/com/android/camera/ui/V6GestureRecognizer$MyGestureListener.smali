@@ -24,7 +24,7 @@
 .method private constructor <init>(Lcom/android/camera/ui/V6GestureRecognizer;)V
     .locals 0
 
-    .line 267
+    .line 269
     iput-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-direct {p0}, Landroid/view/GestureDetector$SimpleOnGestureListener;-><init>()V
@@ -35,7 +35,7 @@
 .method synthetic constructor <init>(Lcom/android/camera/ui/V6GestureRecognizer;Lcom/android/camera/ui/V6GestureRecognizer$1;)V
     .locals 0
 
-    .line 267
+    .line 269
     invoke-direct {p0, p1}, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;-><init>(Lcom/android/camera/ui/V6GestureRecognizer;)V
 
     return-void
@@ -44,7 +44,7 @@
 .method private handleSingleTap(Landroid/view/MotionEvent;)Z
     .locals 2
 
-    .line 271
+    .line 273
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     const/4 v1, 0x0
@@ -55,7 +55,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 272
+    .line 274
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {v0}, Lcom/android/camera/ui/V6GestureRecognizer;->access$700(Lcom/android/camera/ui/V6GestureRecognizer;)Lcom/android/camera/module/Module;
@@ -76,12 +76,12 @@
 
     invoke-interface {v0, v1, p1}, Lcom/android/camera/module/Module;->onSingleTapUp(II)V
 
-    .line 273
+    .line 275
     const/4 p1, 0x1
 
     return p1
 
-    .line 275
+    .line 277
     :cond_0
     return v1
 .end method
@@ -91,14 +91,14 @@
 .method public onDoubleTap(Landroid/view/MotionEvent;)Z
     .locals 3
 
-    .line 294
+    .line 296
     iget-boolean p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->mHandleConfirmTap:Z
 
     const/4 v0, 0x0
 
     if-eqz p1, :cond_1
 
-    .line 295
+    .line 297
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object p1
@@ -107,7 +107,7 @@
 
     move-result p1
 
-    .line 296
+    .line 298
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v1
@@ -123,10 +123,10 @@
     :cond_0
     invoke-virtual {v1, v0}, Lcom/android/camera/effect/EffectController;->setInvertFlag(I)V
 
-    .line 297
+    .line 299
     return v2
 
-    .line 299
+    .line 301
     :cond_1
     return v0
 .end method
@@ -134,14 +134,14 @@
 .method public onLongPress(Landroid/view/MotionEvent;)V
     .locals 2
 
-    .line 315
+    .line 317
     const-string v0, "CameraGestureRecognizer"
 
     const-string v1, "onLongPress"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 316
+    .line 318
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     const/4 v1, 0x0
@@ -152,7 +152,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 317
+    .line 319
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {v0}, Lcom/android/camera/ui/V6GestureRecognizer;->access$700(Lcom/android/camera/ui/V6GestureRecognizer;)Lcom/android/camera/module/Module;
@@ -173,7 +173,7 @@
 
     invoke-interface {v0, v1, p1}, Lcom/android/camera/module/Module;->onLongPress(II)V
 
-    .line 319
+    .line 321
     :cond_0
     return-void
 .end method
@@ -181,7 +181,7 @@
 .method public onScroll(Landroid/view/MotionEvent;Landroid/view/MotionEvent;FF)Z
     .locals 4
 
-    .line 323
+    .line 325
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {v0}, Lcom/android/camera/ui/V6GestureRecognizer;->access$800(Lcom/android/camera/ui/V6GestureRecognizer;)Z
@@ -192,10 +192,10 @@
 
     if-eqz v0, :cond_0
 
-    .line 324
+    .line 326
     return v1
 
-    .line 327
+    .line 329
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
@@ -205,10 +205,10 @@
 
     if-eqz v0, :cond_1
 
-    .line 328
+    .line 330
     return v1
 
-    .line 331
+    .line 333
     :cond_1
     const-string v0, "CameraGestureRecognizer"
 
@@ -274,14 +274,14 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 333
+    .line 335
     iget-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     neg-float p2, p4
 
     invoke-static {p1, p2}, Lcom/android/camera/ui/V6GestureRecognizer;->access$1016(Lcom/android/camera/ui/V6GestureRecognizer;F)F
 
-    .line 334
+    .line 336
     iget-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {p1}, Lcom/android/camera/ui/V6GestureRecognizer;->access$1000(Lcom/android/camera/ui/V6GestureRecognizer;)F
@@ -304,10 +304,10 @@
 
     if-lez p1, :cond_2
 
-    .line 335
+    .line 337
     return v1
 
-    .line 339
+    .line 341
     :cond_2
     iget-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
@@ -319,10 +319,10 @@
 
     if-ne p1, p2, :cond_3
 
-    .line 340
+    .line 342
     return v1
 
-    .line 344
+    .line 346
     :cond_3
     iget-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
@@ -334,10 +334,10 @@
 
     if-ne p1, p2, :cond_4
 
-    .line 345
+    .line 347
     return v1
 
-    .line 348
+    .line 350
     :cond_4
     iget-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
@@ -345,7 +345,7 @@
 
     invoke-static {p1, p2}, Lcom/android/camera/ui/V6GestureRecognizer;->access$1116(Lcom/android/camera/ui/V6GestureRecognizer;F)F
 
-    .line 350
+    .line 352
     iget-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {p1}, Lcom/android/camera/ui/V6GestureRecognizer;->access$1200(Lcom/android/camera/ui/V6GestureRecognizer;)I
@@ -398,7 +398,7 @@
 
     if-gtz p1, :cond_6
 
-    .line 351
+    .line 353
     iget-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     iget-object p3, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
@@ -435,7 +435,7 @@
     :goto_0
     invoke-static {p1, p3}, Lcom/android/camera/ui/V6GestureRecognizer;->access$1202(Lcom/android/camera/ui/V6GestureRecognizer;I)I
 
-    .line 353
+    .line 355
     :cond_6
     iget-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
@@ -445,20 +445,20 @@
 
     if-eq p1, p2, :cond_7
 
-    .line 354
+    .line 356
     return v1
 
-    .line 357
+    .line 359
     :cond_7
     const/4 p1, -0x1
 
-    .line 358
+    .line 360
     const/16 p2, 0x23
 
-    .line 359
+    .line 361
     nop
 
-    .line 360
+    .line 362
     iget-object p3, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {p3}, Lcom/android/camera/ui/V6GestureRecognizer;->access$1100(Lcom/android/camera/ui/V6GestureRecognizer;)F
@@ -495,17 +495,17 @@
 
     if-gez p3, :cond_8
 
-    .line 361
+    .line 363
     const/4 p1, 0x3
 
-    .line 362
+    .line 364
     iget-object p2, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {p2, p4}, Lcom/android/camera/ui/V6GestureRecognizer;->access$902(Lcom/android/camera/ui/V6GestureRecognizer;Z)Z
 
     goto :goto_1
 
-    .line 363
+    .line 365
     :cond_8
     iget-object p3, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
@@ -543,15 +543,15 @@
 
     if-lez p2, :cond_9
 
-    .line 364
+    .line 366
     const/4 p1, 0x5
 
-    .line 365
+    .line 367
     iget-object p2, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {p2, p4}, Lcom/android/camera/ui/V6GestureRecognizer;->access$902(Lcom/android/camera/ui/V6GestureRecognizer;Z)Z
 
-    .line 370
+    .line 372
     :cond_9
     :goto_1
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
@@ -560,14 +560,14 @@
 
     const/16 p3, 0xb7
 
-    .line 371
+    .line 373
     invoke-virtual {p2, p3}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object p2
 
     check-cast p2, Lcom/android/camera/protocol/ModeProtocol$HandlerSwitcher;
 
-    .line 372
+    .line 374
     if-eqz p2, :cond_a
 
     invoke-interface {p2, p1}, Lcom/android/camera/protocol/ModeProtocol$HandlerSwitcher;->onHandleSwitcher(I)Z
@@ -576,10 +576,10 @@
 
     if-eqz p2, :cond_a
 
-    .line 373
+    .line 375
     return p4
 
-    .line 377
+    .line 379
     :cond_a
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -587,14 +587,14 @@
 
     const/16 p3, 0xb3
 
-    .line 378
+    .line 380
     invoke-virtual {p2, p3}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object p2
 
     check-cast p2, Lcom/android/camera/protocol/ModeProtocol$ModeChangeController;
 
-    .line 379
+    .line 381
     if-eqz p2, :cond_b
 
     invoke-interface {p2}, Lcom/android/camera/protocol/ModeProtocol$ModeChangeController;->canSwipeChangeMode()Z
@@ -603,13 +603,13 @@
 
     if-eqz p3, :cond_b
 
-    .line 380
+    .line 382
     invoke-interface {p2, p1, v1}, Lcom/android/camera/protocol/ModeProtocol$ModeChangeController;->selectMode(II)V
 
-    .line 381
+    .line 383
     return p4
 
-    .line 384
+    .line 386
     :cond_b
     return v1
 .end method
@@ -617,12 +617,12 @@
 .method public onSingleTapConfirmed(Landroid/view/MotionEvent;)Z
     .locals 2
 
-    .line 305
+    .line 307
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 306
+    .line 308
     const/16 v1, 0xa6
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -631,7 +631,7 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
-    .line 307
+    .line 309
     if-eqz v0, :cond_0
 
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->isEffectViewVisible()Z
@@ -644,14 +644,14 @@
 
     if-eqz v0, :cond_0
 
-    .line 308
+    .line 310
     invoke-direct {p0, p1}, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->handleSingleTap(Landroid/view/MotionEvent;)Z
 
     move-result p1
 
     return p1
 
-    .line 310
+    .line 312
     :cond_0
     const/4 p1, 0x0
 
@@ -661,19 +661,19 @@
 .method public onSingleTapUp(Landroid/view/MotionEvent;)Z
     .locals 2
 
-    .line 280
+    .line 282
     const-string v0, "CameraGestureRecognizer"
 
     const-string v1, "onSingleTapUp"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 282
+    .line 284
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 283
+    .line 285
     const/16 v1, 0xa6
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -682,7 +682,7 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
-    .line 284
+    .line 286
     if-eqz v0, :cond_0
 
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->isEffectViewVisible()Z
@@ -691,7 +691,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 285
+    .line 287
     iget-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     const/4 v0, 0x0
@@ -702,10 +702,10 @@
 
     iput-boolean p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->mHandleConfirmTap:Z
 
-    .line 289
+    .line 291
     return v0
 
-    .line 287
+    .line 289
     :cond_0
     invoke-direct {p0, p1}, Lcom/android/camera/ui/V6GestureRecognizer$MyGestureListener;->handleSingleTap(Landroid/view/MotionEvent;)Z
 

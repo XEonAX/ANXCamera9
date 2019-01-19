@@ -178,7 +178,7 @@ public abstract class BaseFragment extends Fragment implements AnimationResource
     }
 
     @CallSuper
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
         if (list != null) {
             this.mInModeChanging = true;
         }

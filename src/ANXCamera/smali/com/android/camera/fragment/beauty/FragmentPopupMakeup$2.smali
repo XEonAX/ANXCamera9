@@ -34,7 +34,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)V
     .locals 0
 
-    .line 81
+    .line 82
     iput-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$2;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -56,7 +56,7 @@
         }
     .end annotation
 
-    .line 84
+    .line 85
     const-string v0, "VIEW_"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -79,7 +79,7 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 85
+    .line 86
     return-void
 .end method
 
@@ -95,7 +95,7 @@
         }
     .end annotation
 
-    .line 81
+    .line 82
     check-cast p1, Ljava/lang/Integer;
 
     invoke-virtual {p0, p1}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$2;->accept(Ljava/lang/Integer;)V

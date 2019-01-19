@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/module/FunModule;)V
     .locals 0
 
-    .line 891
+    .line 885
     iput-object p1, p0, Lcom/android/camera/module/FunModule$2;->this$0:Lcom/android/camera/module/FunModule;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public onPrepared(Lcom/android/camera/module/encoder/MediaEncoder;)V
     .locals 3
 
-    .line 894
+    .line 888
     sget-object v0, Lcom/android/camera/module/VideoBase;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -57,14 +57,14 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 895
+    .line 889
     return-void
 .end method
 
 .method public onStopped(Lcom/android/camera/module/encoder/MediaEncoder;Z)V
     .locals 3
 
-    .line 899
+    .line 893
     sget-object v0, Lcom/android/camera/module/VideoBase;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -83,17 +83,17 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 900
+    .line 894
     if-eqz p2, :cond_0
 
-    .line 901
+    .line 895
     iget-object p1, p0, Lcom/android/camera/module/FunModule$2;->this$0:Lcom/android/camera/module/FunModule;
 
     const/4 p2, 0x1
 
     invoke-static {p1, p2}, Lcom/android/camera/module/FunModule;->access$000(Lcom/android/camera/module/FunModule;Z)V
 
-    .line 903
+    .line 897
     :cond_0
     return-void
 .end method

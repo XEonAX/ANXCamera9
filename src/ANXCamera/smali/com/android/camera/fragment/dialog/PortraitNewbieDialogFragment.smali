@@ -353,7 +353,7 @@
 
     move-result-object p3
 
-    invoke-virtual {p3}, Lcom/mi/config/a;->eY()Z
+    invoke-virtual {p3}, Lcom/mi/config/a;->eZ()Z
 
     move-result p3
 
@@ -362,7 +362,7 @@
     if-eqz p3, :cond_0
 
     .line 44
-    const p3, 0x7f040013
+    const p3, 0x7f040014
 
     invoke-virtual {p1, p3, p2, v0}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
 
@@ -372,7 +372,7 @@
 
     .line 46
     :cond_0
-    const p3, 0x7f040012
+    const p3, 0x7f040013
 
     invoke-virtual {p1, p3, p2, v0}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
 
@@ -383,7 +383,7 @@
     invoke-virtual {p0, p1}, Lcom/android/camera/fragment/dialog/PortraitNewbieDialogFragment;->initViewOnTouchListener(Landroid/view/View;)V
 
     .line 49
-    const p2, 0x7f0d0045
+    const p2, 0x7f0d0047
 
     invoke-virtual {p1, p2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 

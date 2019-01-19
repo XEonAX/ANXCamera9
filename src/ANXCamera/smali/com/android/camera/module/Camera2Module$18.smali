@@ -27,7 +27,7 @@
 .method constructor <init>(Lcom/android/camera/module/Camera2Module;Lcom/android/camera/protocol/ModeProtocol$TopAlert;)V
     .locals 0
 
-    .line 3697
+    .line 3777
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module$18;->this$0:Lcom/android/camera/module/Camera2Module;
 
     iput-object p2, p0, Lcom/android/camera/module/Camera2Module$18;->val$alert:Lcom/android/camera/protocol/ModeProtocol$TopAlert;
@@ -42,15 +42,15 @@
 .method public run()V
     .locals 3
 
-    .line 3700
+    .line 3780
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$18;->val$alert:Lcom/android/camera/protocol/ModeProtocol$TopAlert;
 
     const/4 v1, 0x0
 
-    const v2, 0x7f0b0213
+    const v2, 0x7f090214
 
     invoke-interface {v0, v1, v2}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertTopHint(II)V
 
-    .line 3701
+    .line 3781
     return-void
 .end method

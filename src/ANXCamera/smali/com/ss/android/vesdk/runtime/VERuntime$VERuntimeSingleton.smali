@@ -36,7 +36,7 @@
 .method static constructor <clinit>()V
     .locals 3
 
-    .line 40
+    .line 41
     new-instance v0, Lcom/ss/android/vesdk/runtime/VERuntime$VERuntimeSingleton;
 
     const-string v1, "INSTANCE"
@@ -47,7 +47,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/runtime/VERuntime$VERuntimeSingleton;->INSTANCE:Lcom/ss/android/vesdk/runtime/VERuntime$VERuntimeSingleton;
 
-    .line 38
+    .line 39
     const/4 v0, 0x1
 
     new-array v0, v0, [Lcom/ss/android/vesdk/runtime/VERuntime$VERuntimeSingleton;
@@ -69,10 +69,10 @@
         }
     .end annotation
 
-    .line 44
+    .line 45
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
-    .line 45
+    .line 46
     new-instance p1, Lcom/ss/android/vesdk/runtime/VERuntime;
 
     const/4 p2, 0x0
@@ -81,14 +81,14 @@
 
     iput-object p1, p0, Lcom/ss/android/vesdk/runtime/VERuntime$VERuntimeSingleton;->veRuntime:Lcom/ss/android/vesdk/runtime/VERuntime;
 
-    .line 46
+    .line 47
     return-void
 .end method
 
 .method public static valueOf(Ljava/lang/String;)Lcom/ss/android/vesdk/runtime/VERuntime$VERuntimeSingleton;
     .locals 1
 
-    .line 38
+    .line 39
     const-class v0, Lcom/ss/android/vesdk/runtime/VERuntime$VERuntimeSingleton;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -103,7 +103,7 @@
 .method public static values()[Lcom/ss/android/vesdk/runtime/VERuntime$VERuntimeSingleton;
     .locals 1
 
-    .line 38
+    .line 39
     sget-object v0, Lcom/ss/android/vesdk/runtime/VERuntime$VERuntimeSingleton;->$VALUES:[Lcom/ss/android/vesdk/runtime/VERuntime$VERuntimeSingleton;
 
     invoke-virtual {v0}, [Lcom/ss/android/vesdk/runtime/VERuntime$VERuntimeSingleton;->clone()Ljava/lang/Object;
@@ -120,7 +120,7 @@
 .method public getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
     .locals 1
 
-    .line 49
+    .line 50
     iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime$VERuntimeSingleton;->veRuntime:Lcom/ss/android/vesdk/runtime/VERuntime;
 
     return-object v0

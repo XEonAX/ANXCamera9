@@ -22,13 +22,13 @@ public class k extends Fragment {
     private static final String TAG = "RMFragment";
     @Nullable
     private i X;
-    private final a mo;
-    private final m mp;
-    private final Set<k> mq;
+    private final a mn;
+    private final m mo;
+    private final Set<k> mp;
     @Nullable
-    private k mr;
+    private k mq;
     @Nullable
-    private Fragment ms;
+    private Fragment mr;
 
     /* compiled from: RequestManagerFragment */
     private class a implements m {
@@ -64,9 +64,9 @@ public class k extends Fragment {
     @VisibleForTesting
     @SuppressLint({"ValidFragment"})
     k(@NonNull a aVar) {
-        this.mp = new a();
-        this.mq = new HashSet();
-        this.mo = aVar;
+        this.mo = new a();
+        this.mp = new HashSet();
+        this.mn = aVar;
     }
 
     public void c(@Nullable i iVar) {
@@ -75,7 +75,7 @@ public class k extends Fragment {
 
     @NonNull
     a cR() {
-        return this.mo;
+        return this.mn;
     }
 
     @Nullable
@@ -85,28 +85,28 @@ public class k extends Fragment {
 
     @NonNull
     public m cT() {
-        return this.mp;
+        return this.mo;
     }
 
     private void a(k kVar) {
-        this.mq.add(kVar);
+        this.mp.add(kVar);
     }
 
     private void b(k kVar) {
-        this.mq.remove(kVar);
+        this.mp.remove(kVar);
     }
 
     @TargetApi(17)
     @NonNull
     Set<k> cU() {
-        if (equals(this.mr)) {
-            return Collections.unmodifiableSet(this.mq);
+        if (equals(this.mq)) {
+            return Collections.unmodifiableSet(this.mp);
         }
-        if (this.mr == null || VERSION.SDK_INT < 17) {
+        if (this.mq == null || VERSION.SDK_INT < 17) {
             return Collections.emptySet();
         }
         Set hashSet = new HashSet();
-        for (k kVar : this.mr.cU()) {
+        for (k kVar : this.mq.cU()) {
             if (c(kVar.getParentFragment())) {
                 hashSet.add(kVar);
             }
@@ -115,7 +115,7 @@ public class k extends Fragment {
     }
 
     void b(@Nullable Fragment fragment) {
-        this.ms = fragment;
+        this.mr = fragment;
         if (fragment != null && fragment.getActivity() != null) {
             b(fragment.getActivity());
         }
@@ -130,7 +130,7 @@ public class k extends Fragment {
         } else {
             parentFragment = null;
         }
-        return parentFragment != null ? parentFragment : this.ms;
+        return parentFragment != null ? parentFragment : this.mr;
     }
 
     @TargetApi(17)
@@ -150,16 +150,16 @@ public class k extends Fragment {
 
     private void b(@NonNull Activity activity) {
         cW();
-        this.mr = c.b((Context) activity).k().e(activity);
-        if (!equals(this.mr)) {
-            this.mr.a(this);
+        this.mq = c.b((Context) activity).k().e(activity);
+        if (!equals(this.mq)) {
+            this.mq.a(this);
         }
     }
 
     private void cW() {
-        if (this.mr != null) {
-            this.mr.b(this);
-            this.mr = null;
+        if (this.mq != null) {
+            this.mq.b(this);
+            this.mq = null;
         }
     }
 
@@ -181,17 +181,17 @@ public class k extends Fragment {
 
     public void onStart() {
         super.onStart();
-        this.mo.onStart();
+        this.mn.onStart();
     }
 
     public void onStop() {
         super.onStop();
-        this.mo.onStop();
+        this.mn.onStop();
     }
 
     public void onDestroy() {
         super.onDestroy();
-        this.mo.onDestroy();
+        this.mn.onDestroy();
         cW();
     }
 

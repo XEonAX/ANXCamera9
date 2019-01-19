@@ -81,7 +81,7 @@ public class CameraSnapPaintCircle extends CameraPaintBase {
             }
             canvas.drawArc(this.mArcRectF, -90.0f + (this.isClockwise ? 0.0f : this.timeAngle), Math.max(0.0f, this.isClockwise ? this.timeAngle : 360.0f - this.timeAngle), false, this.mPaint);
             this.mPaint.setColor(this.mCurrentColor);
-            this.mOffsetPaint.setStrokeWidth(this.mCurrentStrokeWidth * 2.0f);
+            this.mOffsetPaint.setStrokeWidth(this.mPaint.getStrokeWidth() + 1.0f);
             if (this.timeAngle != 0.0f) {
                 drawOffset(canvas, 0.0f);
                 drawOffset(canvas, this.timeAngle);
@@ -102,6 +102,11 @@ public class CameraSnapPaintCircle extends CameraPaintBase {
 
     private void drawOffset(Canvas canvas, float f) {
         canvas.drawArc(this.mArcRectF, (-90.0f + f) - this.mSpaceAngle, this.mSpaceAngle * 2.0f, false, this.mOffsetPaint);
+    }
+
+    private void drawElapsedArc(Canvas canvas, float f, float f2) {
+        Canvas canvas2 = canvas;
+        canvas2.drawArc(this.mArcRectF, this.mSpaceAngle + (-90.0f + f), (f2 - f) - this.mSpaceAngle, false, this.mPaint);
     }
 
     public void addSegmentNow(long j) {

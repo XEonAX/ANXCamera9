@@ -6,7 +6,6 @@ import com.ss.android.ugc.effectmanager.EffectConfiguration;
 import com.ss.android.ugc.effectmanager.common.EffectConstants;
 import com.ss.android.ugc.effectmanager.common.EffectRequest;
 import com.ss.android.ugc.effectmanager.common.ErrorConstants;
-import com.ss.android.ugc.effectmanager.common.exception.StatusCodeException;
 import com.ss.android.ugc.effectmanager.common.task.ExceptionResult;
 import com.ss.android.ugc.effectmanager.common.task.NormalTask;
 import com.ss.android.ugc.effectmanager.common.utils.NetworkUtils;
@@ -19,25 +18,17 @@ import java.util.List;
 import java.util.Map;
 
 public class DownloadEffectListByIdsTask extends NormalTask {
-    public static final int CODE_CHECK_WHITE_LIST = 1;
-    private static final String EXTRA_CHECK_WHITE_LIST = "whitelist_key";
     private EffectConfiguration mConfiguration;
     private EffectContext mContext;
     private int mCurCnt;
     private List<String> mEffectIds;
-    private int mExtraParamsCode;
 
     public DownloadEffectListByIdsTask(EffectContext effectContext, List<String> list, Handler handler, String str) {
-        this(effectContext, list, handler, str, 0);
-    }
-
-    public DownloadEffectListByIdsTask(EffectContext effectContext, List<String> list, Handler handler, String str, int i) {
         super(handler, str, EffectConstants.NETWORK);
         this.mConfiguration = effectContext.getEffectConfiguration();
         this.mContext = effectContext;
         this.mEffectIds = list;
-        this.mCurCnt = effectContext.getEffectConfiguration().getRetryCount();
-        this.mExtraParamsCode = i;
+        this.mCurCnt = effectContext.getEffectConfiguration().getRetryCount() + 1;
     }
 
     public void execute() {
@@ -56,7 +47,7 @@ public class DownloadEffectListByIdsTask extends NormalTask {
                         }
                     }
                 } catch (Exception e) {
-                    if (this.mCurCnt == 0 || (e instanceof StatusCodeException)) {
+                    if (this.mCurCnt == 0) {
                         sendMessage(17, new EffectListTaskResult(new ArrayList(), new ExceptionResult(e)));
                         e.printStackTrace();
                     }
@@ -65,8 +56,6 @@ public class DownloadEffectListByIdsTask extends NormalTask {
                 return;
             }
         }
-        sendMessage(17, new EffectListTaskResult(new ArrayList(), new ExceptionResult(e)));
-        e.printStackTrace();
     }
 
     private EffectRequest buildRequest(List<String> list) {
@@ -94,18 +83,6 @@ public class DownloadEffectListByIdsTask extends NormalTask {
         }
         if (!TextUtils.isEmpty(this.mConfiguration.getChannel())) {
             hashMap.put("channel", this.mConfiguration.getChannel());
-        }
-        if (!TextUtils.isEmpty(this.mConfiguration.getAppID())) {
-            hashMap.put(EffectConfiguration.KEY_APP_ID, this.mConfiguration.getAppID());
-        }
-        if (!TextUtils.isEmpty(this.mConfiguration.getAppLanguage())) {
-            hashMap.put(EffectConfiguration.KEY_APP_LANGUAGE, this.mConfiguration.getAppLanguage());
-        }
-        if (!TextUtils.isEmpty(this.mConfiguration.getSysLanguage())) {
-            hashMap.put(EffectConfiguration.KEY_SYS_LANGUAGE, this.mConfiguration.getSysLanguage());
-        }
-        if ((this.mExtraParamsCode & 1) != 0) {
-            hashMap.put(EXTRA_CHECK_WHITE_LIST, "active");
         }
         hashMap.put(EffectConfiguration.KEY_EFFECT_IDS, NetworkUtils.toJson(list));
         StringBuilder stringBuilder = new StringBuilder();

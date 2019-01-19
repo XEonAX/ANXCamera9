@@ -4,17 +4,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 import miui.util.concurrent.Queue.Predicate;
 
 public class ConcurrentRingQueue<T> implements Queue<T> {
-    private int LX;
-    private final boolean LZ;
-    private final boolean Ma;
-    private final AtomicInteger Mb = new AtomicInteger(0);
-    private volatile Node<T> Mc = new Node();
-    private final AtomicInteger Md = new AtomicInteger(0);
-    private volatile Node<T> Me = this.Mc;
-    private volatile int Mf;
+    private int Mh;
+    private final boolean Mi;
+    private final boolean Mj;
+    private final AtomicInteger Mk = new AtomicInteger(0);
+    private volatile Node<T> Ml = new Node();
+    private final AtomicInteger Mm = new AtomicInteger(0);
+    private volatile Node<T> Mn = this.Ml;
+    private volatile int Mo;
 
     private static class Node<T> {
-        Node<T> Mg;
+        Node<T> Mp;
         T element;
 
         private Node() {
@@ -22,17 +22,17 @@ public class ConcurrentRingQueue<T> implements Queue<T> {
     }
 
     public ConcurrentRingQueue(int i, boolean z, boolean z2) {
-        this.LX = i;
-        this.LZ = z;
-        this.Ma = z2;
+        this.Mh = i;
+        this.Mi = z;
+        this.Mj = z2;
         int i2 = 0;
-        Node node = this.Mc;
+        Node node = this.Ml;
         while (i2 < i) {
-            node.Mg = new Node();
-            node = node.Mg;
+            node.Mp = new Node();
+            node = node.Mp;
             i2++;
         }
-        node.Mg = this.Mc;
+        node.Mp = this.Ml;
     }
 
     public boolean put(T t) {
@@ -40,56 +40,56 @@ public class ConcurrentRingQueue<T> implements Queue<T> {
             return false;
         }
         while (true) {
-            if (this.Md.get() == 0 && this.Md.compareAndSet(0, -1)) {
+            if (this.Mm.get() == 0 && this.Mm.compareAndSet(0, -1)) {
                 break;
             }
             Thread.yield();
         }
-        Node node = this.Mc;
-        Node node2 = this.Me;
-        int i = this.Mf;
+        Node node = this.Ml;
+        Node node2 = this.Mn;
+        int i = this.Mo;
         boolean z = true;
-        if (node2.Mg != node) {
+        if (node2.Mp != node) {
             node2.element = t;
-            if (node2.Mg.Mg != node && this.Ma && i > 0) {
-                node2.Mg = node2.Mg.Mg;
-                this.Mf = i - 1;
+            if (node2.Mp.Mp != node && this.Mj && i > 0) {
+                node2.Mp = node2.Mp.Mp;
+                this.Mo = i - 1;
             }
-            this.Me = node2.Mg;
-        } else if (this.LZ || i < 0) {
-            node2.Mg = new Node();
-            node2.Mg.Mg = node;
+            this.Mn = node2.Mp;
+        } else if (this.Mi || i < 0) {
+            node2.Mp = new Node();
+            node2.Mp.Mp = node;
             node2.element = t;
-            this.Mf = i + 1;
-            this.Me = node2.Mg;
+            this.Mo = i + 1;
+            this.Mn = node2.Mp;
         } else {
             z = false;
         }
-        this.Md.set(0);
+        this.Mm.set(0);
         return z;
     }
 
     public T get() {
         while (true) {
-            if (this.Mb.get() == 0 && this.Mb.compareAndSet(0, -1)) {
+            if (this.Mk.get() == 0 && this.Mk.compareAndSet(0, -1)) {
                 break;
             }
             Thread.yield();
         }
-        Node node = this.Mc;
-        Node node2 = this.Me;
+        Node node = this.Ml;
+        Node node2 = this.Mn;
         Node node3 = node;
         T t = null;
         while (t == null && node3 != node2) {
             t = node3.element;
             node3.element = null;
-            node3 = node3.Mg;
-            node2 = this.Me;
+            node3 = node3.Mp;
+            node2 = this.Mn;
         }
         if (t != null) {
-            this.Mc = node3;
+            this.Ml = node3;
         }
-        this.Mb.set(0);
+        this.Mk.set(0);
         return t;
     }
 
@@ -99,12 +99,12 @@ public class ConcurrentRingQueue<T> implements Queue<T> {
         }
         boolean z;
         while (true) {
-            if (this.Mb.get() == 0 && this.Mb.compareAndSet(0, -1)) {
+            if (this.Mk.get() == 0 && this.Mk.compareAndSet(0, -1)) {
                 break;
             }
             Thread.yield();
         }
-        for (Node node = this.Mc; node != this.Me; node = node.Mg) {
+        for (Node node = this.Ml; node != this.Mn; node = node.Mp) {
             if (t.equals(node.element)) {
                 node.element = null;
                 z = true;
@@ -112,7 +112,7 @@ public class ConcurrentRingQueue<T> implements Queue<T> {
             }
         }
         z = false;
-        this.Mb.set(0);
+        this.Mk.set(0);
         return z;
     }
 
@@ -122,20 +122,20 @@ public class ConcurrentRingQueue<T> implements Queue<T> {
         }
         int i;
         while (true) {
-            if (this.Mb.get() == 0) {
+            if (this.Mk.get() == 0) {
                 i = -1;
-                if (this.Mb.compareAndSet(0, -1)) {
+                if (this.Mk.compareAndSet(0, -1)) {
                     try {
                         break;
                     } finally {
-                        this.Mb.set(0);
+                        this.Mk.set(0);
                     }
                 }
             }
             Thread.yield();
         }
         i = 0;
-        for (Node node = this.Mc; node != this.Me; node = node.Mg) {
+        for (Node node = this.Ml; node != this.Mn; node = node.Mp) {
             if (predicate.apply(node.element)) {
                 node.element = null;
                 i++;
@@ -146,39 +146,39 @@ public class ConcurrentRingQueue<T> implements Queue<T> {
 
     public int clear() {
         while (true) {
-            if (this.Mb.get() == 0 && this.Mb.compareAndSet(0, -1)) {
+            if (this.Mk.get() == 0 && this.Mk.compareAndSet(0, -1)) {
                 break;
             }
             Thread.yield();
         }
-        Node node = this.Mc;
+        Node node = this.Ml;
         int i = 0;
-        while (node != this.Me) {
+        while (node != this.Mn) {
             node.element = null;
             i++;
-            node = node.Mg;
+            node = node.Mp;
         }
-        this.Mc = node;
-        this.Mb.set(0);
+        this.Ml = node;
+        this.Mk.set(0);
         return i;
     }
 
     public boolean isEmpty() {
-        return this.Me == this.Mc;
+        return this.Mn == this.Ml;
     }
 
     public int getCapacity() {
-        int i = this.Mf;
-        return i > 0 ? this.LX + i : this.LX;
+        int i = this.Mo;
+        return i > 0 ? this.Mh + i : this.Mh;
     }
 
     public void increaseCapacity(int i) {
-        if (!this.LZ && i > 0) {
+        if (!this.Mi && i > 0) {
             while (true) {
-                if (this.Md.get() == 0 && this.Md.compareAndSet(0, -1)) {
-                    this.Mf = -i;
-                    this.LX += i;
-                    this.Md.set(0);
+                if (this.Mm.get() == 0 && this.Mm.compareAndSet(0, -1)) {
+                    this.Mo = -i;
+                    this.Mh += i;
+                    this.Mm.set(0);
                     return;
                 }
                 Thread.yield();
@@ -187,12 +187,12 @@ public class ConcurrentRingQueue<T> implements Queue<T> {
     }
 
     public void decreaseCapacity(int i) {
-        if (this.Ma && i > 0) {
+        if (this.Mj && i > 0) {
             while (true) {
-                if (this.Md.get() == 0 && this.Md.compareAndSet(0, -1)) {
-                    this.LX -= i;
-                    this.Mf = i;
-                    this.Md.set(0);
+                if (this.Mm.get() == 0 && this.Mm.compareAndSet(0, -1)) {
+                    this.Mh -= i;
+                    this.Mo = i;
+                    this.Mm.set(0);
                     return;
                 }
                 Thread.yield();

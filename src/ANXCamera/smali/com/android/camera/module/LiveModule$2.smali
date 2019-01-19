@@ -34,7 +34,7 @@
 .method constructor <init>(Lcom/android/camera/module/LiveModule;)V
     .locals 0
 
-    .line 290
+    .line 325
     iput-object p1, p0, Lcom/android/camera/module/LiveModule$2;->this$0:Lcom/android/camera/module/LiveModule;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -61,11 +61,11 @@
         }
     .end annotation
 
-    .line 293
+    .line 328
     iget-object v0, p0, Lcom/android/camera/module/LiveModule$2;->this$0:Lcom/android/camera/module/LiveModule;
 
-    invoke-static {v0, p1}, Lcom/android/camera/module/LiveModule;->access$302(Lcom/android/camera/module/LiveModule;Lio/reactivex/FlowableEmitter;)Lio/reactivex/FlowableEmitter;
+    invoke-static {v0, p1}, Lcom/android/camera/module/LiveModule;->access$402(Lcom/android/camera/module/LiveModule;Lio/reactivex/FlowableEmitter;)Lio/reactivex/FlowableEmitter;
 
-    .line 294
+    .line 329
     return-void
 .end method

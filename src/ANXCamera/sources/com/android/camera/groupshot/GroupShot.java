@@ -3,6 +3,8 @@ package com.android.camera.groupshot;
 import android.media.Image;
 import android.media.Image.Plane;
 import com.android.camera.log.Log;
+import java.io.FileDescriptor;
+import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 import java.util.Locale;
 
@@ -32,7 +34,7 @@ public class GroupShot {
 
     private final native int getImage(long j, byte[] bArr);
 
-    private final native int getImageAndSaveJpeg(long j, String str);
+    private final native int getImageAndSaveJpeg(long j, String str, int i);
 
     private final native int getImageNum(long j);
 
@@ -279,12 +281,24 @@ public class GroupShot {
         return selectTarget(this.mNative, i, i2);
     }
 
+    public int getImageAndSaveJpeg(FileDescriptor fileDescriptor) {
+        if (this.mNative == 0) {
+            return -1;
+        }
+        int fd = getFD(fileDescriptor);
+        Log.v(TAG, String.format("getImageAndSaveJpeg: mNative=%x fd=%s", new Object[]{Long.valueOf(this.mNative), Integer.valueOf(fd)}));
+        if (fd < 0) {
+            return -1;
+        }
+        return getImageAndSaveJpeg(this.mNative, null, fd);
+    }
+
     public int getImageAndSaveJpeg(String str) {
         if (this.mNative == 0) {
             return -1;
         }
         Log.v(TAG, String.format("getImageAndSaveJpeg: mNative=%x filename=%s", new Object[]{Long.valueOf(this.mNative), str}));
-        return getImageAndSaveJpeg(this.mNative, str);
+        return getImageAndSaveJpeg(this.mNative, str, -1);
     }
 
     public int getYuvImage(Image image) {
@@ -335,5 +349,19 @@ public class GroupShot {
             return -1;
         }
         return setBestFace(this.mNative);
+    }
+
+    /* JADX WARNING: Removed duplicated region for block: B:3:0x0011 A:{Splitter: B:0:0x0000, ExcHandler: java.lang.NoSuchFieldException (e java.lang.NoSuchFieldException)} */
+    /* JADX WARNING: Missing block: B:5:0x0013, code:
+            return -1;
+     */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static int getFD(FileDescriptor fileDescriptor) {
+        try {
+            Field declaredField = FileDescriptor.class.getDeclaredField("descriptor");
+            declaredField.setAccessible(true);
+            return declaredField.getInt(fileDescriptor);
+        } catch (NoSuchFieldException e) {
+        }
     }
 }

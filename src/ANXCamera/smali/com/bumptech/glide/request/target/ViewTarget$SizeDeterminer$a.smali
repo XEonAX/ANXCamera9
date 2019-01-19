@@ -18,7 +18,7 @@
 
 
 # instance fields
-.field private final oO:Ljava/lang/ref/WeakReference;
+.field private final oN:Ljava/lang/ref/WeakReference;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/lang/ref/WeakReference<",
@@ -45,7 +45,7 @@
 
     invoke-direct {v0, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
-    iput-object v0, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;->oO:Ljava/lang/ref/WeakReference;
+    iput-object v0, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;->oN:Ljava/lang/ref/WeakReference;
 
     .line 509
     return-void
@@ -88,7 +88,7 @@
 
     .line 516
     :cond_0
-    iget-object v0, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;->oO:Ljava/lang/ref/WeakReference;
+    iget-object v0, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;->oN:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
 

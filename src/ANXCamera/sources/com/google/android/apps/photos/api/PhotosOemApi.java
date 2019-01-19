@@ -69,7 +69,7 @@ public final class PhotosOemApi {
     }
 
     public static Uri getQueryDataUri(Context context, String str) {
-        return getBaseBuilder(context).appendPath(PATH_SPECIAL_TYPE_DATA).appendEncodedPath(Uri.encode(str)).build();
+        return getBaseBuilder(context).appendPath("data").appendEncodedPath(Uri.encode(str)).build();
     }
 
     public static Uri getDeleteUri(Context context, long j) {

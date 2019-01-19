@@ -22,14 +22,17 @@ import com.android.camera.ToastUtils;
 import com.android.camera.Util;
 import com.android.camera.fragment.DefaultItemAnimator;
 import com.android.camera.fragment.beauty.MakeupSingleCheckAdapter.MakeupItem;
+import com.android.camera.log.Log;
 import java.util.List;
 
 public abstract class BaseBeautyMakeupFragment extends BaseBeautyFragment {
+    private static final String TAG = "BaseBeautyMakeup";
     protected OnItemClickListener mClickListener;
     private LinearLayout mHeaderRecyclerView;
     private View mHeaderView;
     protected List<MakeupItem> mItemList;
     private int mItemWidth;
+    private long mLastClickTime;
     int mLastSelectedParam = -1;
     protected MyLayoutManager mLayoutManager;
     protected MakeupSingleCheckAdapter mMakeupAdapter;
@@ -151,6 +154,11 @@ public abstract class BaseBeautyMakeupFragment extends BaseBeautyFragment {
             this.mHeaderView.setLayoutParams(layoutParams);
             this.mHeaderView.setOnClickListener(new OnClickListener() {
                 public void onClick(View view) {
+                    if (System.currentTimeMillis() - BaseBeautyMakeupFragment.this.mLastClickTime < 1000) {
+                        Log.d(BaseBeautyMakeupFragment.TAG, "onHeaderClick: too quick!");
+                        return;
+                    }
+                    BaseBeautyMakeupFragment.this.mLastClickTime = System.currentTimeMillis();
                     BaseBeautyMakeupFragment.this.onHeaderClick();
                 }
             });
@@ -160,6 +168,7 @@ public abstract class BaseBeautyMakeupFragment extends BaseBeautyFragment {
     protected OnItemClickListener initOnItemClickListener() {
         return new OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
+                BaseBeautyMakeupFragment.this.mLastClickTime = System.currentTimeMillis();
                 BaseBeautyMakeupFragment.this.mSelectedParam = i;
                 Object tag = view.getTag();
                 if (tag != null && (tag instanceof MakeupItem)) {

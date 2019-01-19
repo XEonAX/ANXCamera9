@@ -204,6 +204,8 @@
 
     if-eqz v1, :cond_5
 
+    if-eqz v2, :cond_5
+
     .line 92
     invoke-interface {v2}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->getAnimationComposite()Lcom/android/camera/animation/AnimationComposite;
 

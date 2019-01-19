@@ -97,3 +97,23 @@
 .field public static final ry:Ljava/lang/String; = "s_f_z_i"
 
 .field public static final rz:Ljava/lang/String; = "s_s_n"
+
+.field public static final sb:Ljava/lang/String; = "c_0x0d"
+
+.field public static final sc:Ljava/lang/String; = "c_0x0e"
+
+.field public static final se:Ljava/lang/String; = "c_0x0f"
+
+.field public static final sf:Ljava/lang/String; = "c_0x10"
+
+.field public static final sg:Ljava/lang/String; = "c_0x11"
+
+.field public static final sh:Ljava/lang/String; = "c_0x12"
+
+.field public static final si:Ljava/lang/String; = "c_0x13"
+
+.field public static final sj:Ljava/lang/String; = "c_0x14"
+
+.field public static final sk:Ljava/lang/String; = "c_0x15"
+
+.field public static final sl:Ljava/lang/String; = "c_0x16"

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.SurfaceView;
 import android.view.TextureView;
 import com.android.camera.ActivityBase;
+import com.android.camera.constant.DurationConstant;
 import com.android.camera.log.Log;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.LiveVideoEditor;
@@ -42,7 +43,8 @@ public class LiveVideoEditorTTImpl implements LiveVideoEditor {
         ModeCoordinatorImpl.getInstance().detachProtocol(209, this);
     }
 
-    public void init(TextureView textureView, String str, String str2, VECommonCallback vECommonCallback, VECommonCallback vECommonCallback2) {
+    public boolean init(TextureView textureView, String str, String str2, VECommonCallback vECommonCallback, VECommonCallback vECommonCallback2) {
+        Log.v(TAG, "VEEditor init");
         this.mEditor = new VEEditor(FileUtils.ROOT_DIR, textureView);
         int init = this.mEditor.init(new String[]{str}, null, !str2.equals("") ? new String[]{str2} : null, VIDEO_RATIO.VIDEO_OUT_RATIO_ORIGINAL);
         this.mEditor.setOnInfoListener(vECommonCallback);
@@ -57,14 +59,15 @@ public class LiveVideoEditorTTImpl implements LiveVideoEditor {
                 this.mEditor.destroy();
                 this.mEditor = null;
             }
-            return;
+            return false;
         }
         this.mEditor.setLoopPlay(false);
         this.mEditor.setScaleMode(SCALE_MODE.SCALE_MODE_CENTER_CROP);
         this.mEditor.prepare();
         this.mNeedPrepare = false;
-        this.mEditor.addAudioTrack(str2, 0, 15000, true);
+        this.mEditor.addAudioTrack(str2, 0, DurationConstant.DURATION_VIDEO_RECORDING_FUN, true);
         this.mEditor.seek(0, SEEK_MODE.EDITOR_SEEK_FLAG_LastSeek);
+        return true;
     }
 
     public void combineVideoAudio(String str, VECommonCallback vECommonCallback, VECommonCallback vECommonCallback2) {
@@ -90,12 +93,19 @@ public class LiveVideoEditorTTImpl implements LiveVideoEditor {
 
     public void pausePlay() {
         if (this.mEditor != null) {
-            this.mNeedPrepare = true;
             this.mEditor.pause();
         }
     }
 
+    public void resumePlay() {
+        if (this.mEditor != null) {
+            this.mEditor.seek(0, SEEK_MODE.EDITOR_SEEK_FLAG_LastSeek);
+            this.mEditor.play();
+        }
+    }
+
     public void onDestory() {
+        Log.v(TAG, "VEEditor onDestory");
         if (this.mEditor != null) {
             this.mEditor.destroy();
             this.mEditor = null;

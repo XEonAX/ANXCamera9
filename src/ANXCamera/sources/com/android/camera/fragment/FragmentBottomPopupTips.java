@@ -31,6 +31,7 @@ import com.android.camera.animation.FragmentAnimationFactory;
 import com.android.camera.animation.type.AlphaInOnSubscribe;
 import com.android.camera.animation.type.AlphaOutOnSubscribe;
 import com.android.camera.animation.type.TranslateYOnSubscribe;
+import com.android.camera.constant.DurationConstant;
 import com.android.camera.constant.LightingConstant;
 import com.android.camera.data.DataRepository;
 import com.android.camera.fragment.beauty.MiBeauty;
@@ -50,6 +51,8 @@ import com.android.camera.protocol.ModeProtocol.HandleBackTrace;
 import com.android.camera.protocol.ModeProtocol.ManuallyAdjust;
 import com.android.camera.protocol.ModeProtocol.MiBeautyProtocol;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
+import com.android.camera.protocol.ModeProtocol.TopAlert;
+import com.android.camera.protocol.ModeProtocol.VerticalProtocol;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera2.CameraCapabilities;
 import com.mi.config.b;
@@ -74,14 +77,10 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
     private static final int LEFT_TIP_IMAGE_STICKER = 18;
     private static final int LEFT_TIP_IMAGE_ULTRA_WIDE = 21;
     private static final int MSG_HIDE_TIP = 1;
+    private static final int TIP_BACK_FACING_IMAGE_BEAUTY = 4;
     private static final int TIP_IMAGE_BEAUTY = 3;
     private static final int TIP_IMAGE_INVALID = -1;
     private static final int TIP_IMAGE_STICKER = 2;
-    private View mBeautyIntroButton;
-    private int mBeautyIntroRadius;
-    private AnimatorSet mBeautyIntroShowAnimator;
-    private TextView mBeautyIntroText;
-    private int mBeautyIntroWidth;
     private ImageView mCenterTipImage;
     private ImageView mCloseIv;
     private int mCloseType = 0;
@@ -115,7 +114,6 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
     private View mPortraitSuccessHint;
     private TextView mQrCodeButton;
     private View mRootView;
-    private boolean mShowBeautyIntro;
     private ViewGroup mSpeedTipImage;
     private ImageView mTipImage;
     private TextView mTipMessage;
@@ -128,7 +126,6 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
     protected void initView(View view) {
         this.mRootView = view;
         this.mTipImage = (ImageView) view.findViewById(R.id.popup_tip_image);
-        this.mBeautyIntroButton = view.findViewById(R.id.popup_tip_beauty_intro);
         if (Util.UI_DEBUG()) {
             ((LayoutParams) this.mTipImage.getLayoutParams()).gravity = 8388693;
             this.mLeftTipImage = (ImageView) view.findViewById(R.id.popup_left_tip_image);
@@ -141,16 +138,12 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
             this.mCenterTipImage = (ImageView) view.findViewById(R.id.popup_center_tip_image);
             ((LayoutParams) this.mCenterTipImage.getLayoutParams()).gravity = 81;
             this.mCenterTipImage.setOnClickListener(this);
-            layoutParams = (LayoutParams) this.mBeautyIntroButton.getLayoutParams();
-            layoutParams.gravity = 8388693;
-            layoutParams.rightMargin = getResources().getDimensionPixelSize(R.dimen.beauty_intro_margin);
             this.mLeftImageIntro = (FrameLayout) view.findViewById(R.id.popup_left_tip_intro);
             this.mLeftImageIntro.setOnClickListener(this);
             this.mLeftImageIntroContent = (TextView) view.findViewById(R.id.popup_left_tip_intro_text);
             this.mLeftImageIntroRadius = getResources().getDimensionPixelSize(R.dimen.popup_tip_beauty_intro_radius);
             this.mLeftImageIntroWidth = getLeftImageIntroWide();
         }
-        this.mBeautyIntroText = (TextView) view.findViewById(R.id.popup_tip_beauty_intro_text);
         this.mQrCodeButton = (TextView) view.findViewById(R.id.popup_tips_qrcode);
         this.mTipMessage = (TextView) view.findViewById(R.id.popup_tips_message);
         this.mPortraitSuccessHint = view.findViewById(R.id.portrait_success_hint);
@@ -158,17 +151,8 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
         ((MarginLayoutParams) view.getLayoutParams()).bottomMargin = Util.getBottomHeight(getResources());
         this.mTipImage.setOnClickListener(this);
         this.mQrCodeButton.setOnClickListener(this);
-        this.mBeautyIntroButton.setOnClickListener(this);
         adjustViewBackground(this.mCurrentMode);
-        provideAnimateElement(this.mCurrentMode, null, false);
-        this.mBeautyIntroRadius = getResources().getDimensionPixelSize(R.dimen.popup_tip_beauty_intro_radius);
-        this.mBeautyIntroText.measure(0, 0);
-        int measuredWidth = this.mBeautyIntroText.getMeasuredWidth();
-        int dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.popup_tip_beauty_intro_left_padding);
-        int dimensionPixelSize2 = getResources().getDimensionPixelSize(R.dimen.popup_tip_beauty_intro_right_padding);
-        this.mBeautyIntroWidth = (((measuredWidth + dimensionPixelSize) + dimensionPixelSize2) + ((this.mBeautyIntroRadius - dimensionPixelSize) * 2)) + getResources().getDimensionPixelSize(R.dimen.popup_tip_beauty_intro_text_margin_left);
-        initBeautyIntroAnimator();
-        resetBeautyIntro();
+        provideAnimateElement(this.mCurrentMode, null, 2);
         if (((ActivityBase) getContext()).getCameraIntentManager().isFromScreenSlide().booleanValue()) {
             Util.startScreenSlideAlphaInAnimation(this.mTipImage);
         }
@@ -184,45 +168,6 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
         int measuredWidth = this.mLeftImageIntroContent.getMeasuredWidth();
         int dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.popup_tip_beauty_intro_left_padding);
         return ((measuredWidth + dimensionPixelSize) + getResources().getDimensionPixelSize(R.dimen.popup_tip_beauty_intro_right_padding)) + ((this.mLeftImageIntroRadius - dimensionPixelSize) * 2);
-    }
-
-    private void resetBeautyIntro() {
-        this.mBeautyIntroShowAnimator.cancel();
-        setBeautyIntroButtonWidth(this.mBeautyIntroButton, this.mBeautyIntroWidth);
-        this.mBeautyIntroText.setAlpha(1.0f);
-    }
-
-    private void initBeautyIntroAnimator() {
-        ValueAnimator ofInt = ValueAnimator.ofInt(new int[]{this.mBeautyIntroWidth, this.mBeautyIntroRadius * 2});
-        ofInt.setDuration(300);
-        ObjectAnimator.ofFloat(this.mBeautyIntroText, "alpha", new float[]{1.0f, 0.0f}).setDuration(250);
-        ofInt.addUpdateListener(new AnimatorUpdateListener() {
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                FragmentBottomPopupTips.this.setBeautyIntroButtonWidth(FragmentBottomPopupTips.this.mBeautyIntroButton, ((Integer) valueAnimator.getAnimatedValue()).intValue());
-            }
-        });
-        this.mBeautyIntroShowAnimator = new AnimatorSet();
-        this.mBeautyIntroShowAnimator.playTogether(new Animator[]{ofInt, r2});
-        this.mBeautyIntroShowAnimator.setInterpolator(new PathInterpolator(0.25f, 0.1f, 0.25f, 0.1f));
-        this.mBeautyIntroShowAnimator.setStartDelay(FragmentTopAlert.HINT_DELAY_TIME);
-        this.mBeautyIntroShowAnimator.addListener(new AnimatorListenerAdapter() {
-            private boolean mCancelled;
-
-            public void onAnimationStart(Animator animator) {
-                this.mCancelled = false;
-            }
-
-            public void onAnimationCancel(Animator animator) {
-                this.mCancelled = true;
-            }
-
-            public void onAnimationEnd(Animator animator) {
-                if (!this.mCancelled) {
-                    AlphaOutOnSubscribe.directSetResult(FragmentBottomPopupTips.this.mBeautyIntroButton);
-                    AlphaInOnSubscribe.directSetResult(FragmentBottomPopupTips.this.mTipImage);
-                }
-            }
-        });
     }
 
     protected int getLayoutResourceId() {
@@ -250,17 +195,17 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
         this.mIsShowLeftImageIntro = false;
     }
 
-    /* JADX WARNING: Missing block: B:25:0x0092, code:
-            if (((java.lang.Integer) r3.getTag()).intValue() == 18) goto L_0x0095;
+    /* JADX WARNING: Missing block: B:25:0x0095, code:
+            if (((java.lang.Integer) r3.getTag()).intValue() == 18) goto L_0x0098;
      */
-    /* JADX WARNING: Missing block: B:26:0x0095, code:
+    /* JADX WARNING: Missing block: B:26:0x0098, code:
             hideAllTipImage();
             showLiveSticker();
      */
-    /* JADX WARNING: Missing block: B:27:0x009c, code:
+    /* JADX WARNING: Missing block: B:27:0x009f, code:
             onLeftImageClick(r3);
      */
-    /* JADX WARNING: Missing block: B:38:0x00f8, code:
+    /* JADX WARNING: Missing block: B:37:0x00fb, code:
             return;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
@@ -273,7 +218,6 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
             if (!CameraSettings.isFrontCamera() || !((Camera) getContext()).isScreenSlideOff()) {
                 switch (view.getId()) {
                     case R.id.popup_tip_image /*2131558449*/:
-                    case R.id.popup_tip_beauty_intro /*2131558455*/:
                         int intValue = ((Integer) view.getTag()).intValue();
                         hideAllTipImage();
                         CameraSettings.setPopupTipBeautyIntroClicked();
@@ -283,14 +227,15 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
                                 baseDelegate.delegateEvent(4);
                                 break;
                             case 3:
+                            case 4:
                                 CameraStat.recordCountEvent(CameraStat.CATEGORY_COUNTER, CameraStat.KEY_BEAUTY_BUTTON);
+                                showBeauty(this.mCurrentMode);
                                 ActionProcessing actionProcessing = (ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162);
                                 ConfigChanges configChanges = (ConfigChanges) ModeCoordinatorImpl.getInstance().getAttachProtocol(164);
                                 if (!(actionProcessing == null || !actionProcessing.isShowFilterView() || configChanges == null)) {
                                     configChanges.showOrHideFilter();
+                                    break;
                                 }
-                                showBeauty(this.mCurrentMode);
-                                break;
                         }
                         break;
                     case R.id.popup_left_tip_image /*2131558450*/:
@@ -300,6 +245,7 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
                     case R.id.popup_left_tip_intro /*2131558452*/:
                         view.setTag(Integer.valueOf(21));
                         CameraSettings.setPopupUltraWideIntroClicked();
+                        directHideLeftImageIntro();
                         break;
                     case R.id.popup_speed_tip_image /*2131558454*/:
                         if (((Integer) view.getTag()).intValue() == 33) {
@@ -308,12 +254,12 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
                             break;
                         }
                         break;
-                    case R.id.popup_tips_qrcode /*2131558458*/:
+                    case R.id.popup_tips_qrcode /*2131558456*/:
                         hideQrCodeTip();
                         CameraStat.recordCountEvent(CameraStat.CATEGORY_COUNTER, CameraStat.KEY_QRCODE_DETECTED);
                         ((CameraModuleSpecial) ModeCoordinatorImpl.getInstance().getAttachProtocol(195)).showQRCodeResult();
                         break;
-                    case R.id.close_iv /*2131558461*/:
+                    case R.id.close_iv /*2131558459*/:
                         switch (this.mCloseType) {
                             case 1:
                                 closeFilter();
@@ -373,15 +319,21 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
         if (!(i == 163 || i == 173)) {
             switch (i) {
                 case 165:
-                case 166:
                     break;
-                default:
-                    return;
+                case 166:
+                    if (!DataRepository.dataItemFeature().fI()) {
+                        return;
+                    }
+                    break;
             }
         }
         DualController dualController = (DualController) ModeCoordinatorImpl.getInstance().getAttachProtocol(182);
         if (dualController != null) {
             dualController.hideZoomButton();
+            TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
+            if (topAlert != null) {
+                topAlert.alertUpdateValue(2);
+            }
         }
     }
 
@@ -428,7 +380,6 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
 
     private void hideAllTipImage() {
         hideTipImage();
-        hideTipBeautyIntro();
         if (Util.UI_DEBUG()) {
             hideLeftTipImage();
             hideSpeedTipImage();
@@ -449,23 +400,10 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
             this.mTipImage.setTag(Integer.valueOf(-1));
             this.mTipImage.setVisibility(4);
         }
-        if (this.mBeautyIntroButton.getVisibility() != 4) {
-            this.mBeautyIntroButton.setTag(Integer.valueOf(-1));
-            this.mBeautyIntroButton.setVisibility(4);
-        }
-    }
-
-    private void hideTipBeautyIntro() {
-        if (this.mBeautyIntroButton.getVisibility() == 0) {
-            this.mBeautyIntroButton.setTag(Integer.valueOf(-1));
-            this.mTipImage.setTag(Integer.valueOf(-1));
-            this.mBeautyIntroShowAnimator.pause();
-            Completable.create(new AlphaOutOnSubscribe(this.mBeautyIntroButton)).subscribe();
-        }
     }
 
     public void reInitTipImage() {
-        provideAnimateElement(this.mCurrentMode, null, false);
+        provideAnimateElement(this.mCurrentMode, null, 2);
     }
 
     public void updateTipBottomMargin(int i, boolean z) {
@@ -482,7 +420,10 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
     }
 
     public void showTips(int i, @StringRes int i2, int i3) {
-        if ((i != 6 || this.mCurrentMode == 171) && !isLightingHintVisible()) {
+        if (i == 6 && this.mCurrentMode != 171) {
+            return;
+        }
+        if ((i != 10 || CameraSettings.getBogusCameraId() != 0) && !isLightingHintVisible()) {
             this.mLastTipType = this.mCurrentTipType;
             this.mLastTipMessage = this.mCurrentTipMessage;
             this.mCurrentTipType = i;
@@ -510,10 +451,13 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
                     i = 5000;
                     break;
                 case 3:
-                    i = 15000;
+                    i = DurationConstant.DURATION_VIDEO_RECORDING_FUN;
                     break;
                 case 5:
                     i = 2000;
+                    break;
+                case 6:
+                    i = 3000;
                     break;
             }
             this.mHandler.removeCallbacksAndMessages(null);
@@ -530,6 +474,7 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
         ManuallyAdjust manuallyAdjust = (ManuallyAdjust) ModeCoordinatorImpl.getInstance().getAttachProtocol(181);
         MiBeautyProtocol miBeautyProtocol = (MiBeautyProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(194);
         BokehFNumberController bokehFNumberController = (BokehFNumberController) ModeCoordinatorImpl.getInstance().getAttachProtocol(210);
+        int dimensionPixelSize2 = getResources().getDimensionPixelSize(R.dimen.beauty_extra_tip_bottom_margin);
         if (this.mCurrentMode == 165) {
             if (!CameraSettings.isUltraWideConfigOpen(this.mCurrentMode) || this.mCenterTipImage == null || this.mCenterTipImage.getVisibility() == 0) {
                 dimensionPixelSize = ((((int) (((float) Util.sWindowWidth) / 0.75f)) - Util.sWindowWidth) / 2) + getResources().getDimensionPixelSize(R.dimen.tips_margin_bottom_normal);
@@ -548,15 +493,15 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
                 } else if (miBeautyProtocol == null || !miBeautyProtocol.isBeautyPanelShow()) {
                     dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.tips_margin_bottom_normal);
                 } else {
-                    dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.beauty_fragment_height) + 20;
+                    dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.beauty_fragment_height) + dimensionPixelSize2;
                 }
             } else {
-                dimensionPixelSize = bokehFNumberController.visibleHeight() + ((int) this.mRootView.getTranslationY());
+                dimensionPixelSize = (bokehFNumberController.visibleHeight() + ((int) this.mRootView.getTranslationY())) + dimensionPixelSize2;
             }
         } else if (miBeautyProtocol == null || !miBeautyProtocol.isBeautyPanelShow()) {
             dimensionPixelSize = this.mTipImage.getHeight();
         } else {
-            dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.beauty_fragment_height) + 20;
+            dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.beauty_fragment_height) + dimensionPixelSize2;
         }
         if (marginLayoutParams.bottomMargin != dimensionPixelSize) {
             marginLayoutParams.bottomMargin = dimensionPixelSize;
@@ -596,7 +541,17 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
     }
 
     public boolean isLightingHintVisible() {
-        return this.mLightingPattern.getVisibility() == 0;
+        boolean isAnyViewVisible;
+        VerticalProtocol verticalProtocol = (VerticalProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(198);
+        if (verticalProtocol != null) {
+            isAnyViewVisible = verticalProtocol.isAnyViewVisible();
+        } else {
+            isAnyViewVisible = false;
+        }
+        if (isAnyViewVisible || this.mLightingPattern.getVisibility() == 0) {
+            return true;
+        }
+        return false;
     }
 
     /* Code decompiled incorrectly, please refer to instructions dump. */
@@ -682,7 +637,6 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
         hideTip(this.mTipMessage);
         hideTip(this.mPortraitSuccessHint);
         directHideTipImage();
-        hideTipBeautyIntro();
         reIntTipViewMarginBottom(this.mLightingPattern);
         this.mLightingPattern.setText(this.stringLightingRes);
         if (!isLandScape()) {
@@ -749,20 +703,20 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
         return true;
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        if (z || this.mCurrentMode != i) {
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        if (i2 == 3 || this.mCurrentMode != i) {
             this.mCloseIv.setVisibility(8);
             this.mCloseType = 0;
         }
-        int i2 = this.mCurrentMode;
-        super.provideAnimateElement(i, list, z);
+        int i3 = this.mCurrentMode;
+        super.provideAnimateElement(i, list, i2);
         onBackEvent(4);
         updateTipBottomMargin(0, false);
-        updateTipImage(i, i2, list);
+        updateTipImage(i, i3, list);
         if (Util.UI_DEBUG()) {
-            updateLeftTipImage(0, i, i2, list);
-            updateSpeedTipImage(i, i2, list);
-            updateCenterTipImage(i, i2, list);
+            updateLeftTipImage(0, i, i3, list);
+            updateSpeedTipImage(i, i3, list);
+            updateCenterTipImage(i, i3, list);
         }
     }
 
@@ -774,58 +728,66 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
         }
     }
 
-    private void startBeautyIntroShowAnimation() {
-        this.mBeautyIntroButton.setTag(Integer.valueOf(3));
-        resetBeautyIntro();
-        Completable.create(new AlphaInOnSubscribe(this.mBeautyIntroButton)).subscribe();
-        CameraSettings.addPopupTipBeautyIntroShowTimes();
-        this.mBeautyIntroShowAnimator.start();
-    }
-
-    /* JADX WARNING: Removed duplicated region for block: B:96:0x01a1  */
-    /* JADX WARNING: Removed duplicated region for block: B:92:0x0188  */
-    /* JADX WARNING: Removed duplicated region for block: B:89:0x0175  */
-    /* JADX WARNING: Removed duplicated region for block: B:86:0x0158  */
-    /* JADX WARNING: Removed duplicated region for block: B:82:0x012b  */
-    /* JADX WARNING: Removed duplicated region for block: B:96:0x01a1  */
-    /* JADX WARNING: Removed duplicated region for block: B:92:0x0188  */
-    /* JADX WARNING: Removed duplicated region for block: B:89:0x0175  */
-    /* JADX WARNING: Removed duplicated region for block: B:86:0x0158  */
-    /* JADX WARNING: Removed duplicated region for block: B:82:0x012b  */
-    /* JADX WARNING: Removed duplicated region for block: B:42:0x009c  */
-    /* JADX WARNING: Removed duplicated region for block: B:31:0x0064  */
-    /* JADX WARNING: Removed duplicated region for block: B:44:0x00a3  */
-    /* JADX WARNING: Removed duplicated region for block: B:55:0x00d7  */
-    /* JADX WARNING: Removed duplicated region for block: B:61:0x00f6  */
-    /* JADX WARNING: Removed duplicated region for block: B:58:0x00ee  */
-    /* JADX WARNING: Removed duplicated region for block: B:96:0x01a1  */
-    /* JADX WARNING: Removed duplicated region for block: B:92:0x0188  */
-    /* JADX WARNING: Removed duplicated region for block: B:89:0x0175  */
-    /* JADX WARNING: Removed duplicated region for block: B:86:0x0158  */
-    /* JADX WARNING: Removed duplicated region for block: B:82:0x012b  */
-    /* JADX WARNING: Missing block: B:14:0x0031, code:
-            if (r3.isSupportVideoBeauty() != false) goto L_0x005d;
+    /* JADX WARNING: Removed duplicated region for block: B:82:0x016a  */
+    /* JADX WARNING: Removed duplicated region for block: B:81:0x0164  */
+    /* JADX WARNING: Removed duplicated region for block: B:80:0x0155  */
+    /* JADX WARNING: Removed duplicated region for block: B:79:0x013c  */
+    /* JADX WARNING: Removed duplicated region for block: B:78:0x012d  */
+    /* JADX WARNING: Removed duplicated region for block: B:49:0x00ba  */
+    /* JADX WARNING: Removed duplicated region for block: B:35:0x0078  */
+    /* JADX WARNING: Removed duplicated region for block: B:51:0x00c1  */
+    /* JADX WARNING: Removed duplicated region for block: B:62:0x00f5  */
+    /* JADX WARNING: Removed duplicated region for block: B:68:0x0110  */
+    /* JADX WARNING: Removed duplicated region for block: B:65:0x0108  */
+    /* JADX WARNING: Removed duplicated region for block: B:82:0x016a  */
+    /* JADX WARNING: Removed duplicated region for block: B:81:0x0164  */
+    /* JADX WARNING: Removed duplicated region for block: B:80:0x0155  */
+    /* JADX WARNING: Removed duplicated region for block: B:79:0x013c  */
+    /* JADX WARNING: Removed duplicated region for block: B:78:0x012d  */
+    /* JADX WARNING: Removed duplicated region for block: B:35:0x0078  */
+    /* JADX WARNING: Removed duplicated region for block: B:49:0x00ba  */
+    /* JADX WARNING: Removed duplicated region for block: B:51:0x00c1  */
+    /* JADX WARNING: Removed duplicated region for block: B:58:0x00e4  */
+    /* JADX WARNING: Removed duplicated region for block: B:62:0x00f5  */
+    /* JADX WARNING: Removed duplicated region for block: B:65:0x0108  */
+    /* JADX WARNING: Removed duplicated region for block: B:68:0x0110  */
+    /* JADX WARNING: Removed duplicated region for block: B:82:0x016a  */
+    /* JADX WARNING: Removed duplicated region for block: B:81:0x0164  */
+    /* JADX WARNING: Removed duplicated region for block: B:80:0x0155  */
+    /* JADX WARNING: Removed duplicated region for block: B:79:0x013c  */
+    /* JADX WARNING: Removed duplicated region for block: B:78:0x012d  */
+    /* JADX WARNING: Missing block: B:7:0x0018, code:
+            if (com.android.camera.CameraSettings.isRearMenuUltraPixelPhotographyOn() != false) goto L_0x0071;
      */
-    /* JADX WARNING: Missing block: B:16:0x0037, code:
-            if (com.android.camera.Util.UI_DEBUG() != false) goto L_0x005d;
+    /* JADX WARNING: Missing block: B:12:0x0033, code:
+            if (r5.isSupportVideoBeauty() != false) goto L_0x0066;
      */
-    /* JADX WARNING: Missing block: B:20:0x0044, code:
-            if (com.mi.config.b.he() != false) goto L_0x005d;
+    /* JADX WARNING: Missing block: B:17:0x0042, code:
+            if (r5.isSupportVideoBeauty() != false) goto L_0x006f;
      */
-    /* JADX WARNING: Missing block: B:22:0x004a, code:
-            if (com.android.camera.Util.UI_DEBUG() != false) goto L_0x005d;
+    /* JADX WARNING: Missing block: B:25:0x005c, code:
+            if (com.android.camera.Util.UI_DEBUG() != false) goto L_0x006f;
      */
-    /* JADX WARNING: Missing block: B:26:0x0057, code:
-            if (com.android.camera.Util.UI_DEBUG() == false) goto L_0x005a;
+    /* JADX WARNING: Missing block: B:30:0x006c, code:
+            if (com.android.camera.Util.UI_DEBUG() != false) goto L_0x006f;
+     */
+    /* JADX WARNING: Missing block: B:31:0x006f, code:
+            r5 = 4;
+     */
+    /* JADX WARNING: Missing block: B:65:0x0108, code:
+            if (r9 != 0) goto L_0x010b;
+     */
+    /* JADX WARNING: Missing block: B:76:0x0124, code:
+            if (r11.mCurrentMode != 165) goto L_0x0129;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     private void updateTipImage(int i, int i2, List<Completable> list) {
         int i3;
-        boolean z;
+        Object obj;
         int i4;
         int i5;
         int i6;
-        boolean z2;
+        Object obj2 = 4;
         if (i != 165) {
             if (i != 171) {
                 if (i != 174) {
@@ -837,14 +799,17 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
                             break;
                     }
                 }
-                if (CameraSettings.isFrontCamera() || Util.UI_DEBUG()) {
-                    CameraCapabilities capabilitiesByBogusCameraId = Camera2DataContainer.getInstance().getCapabilitiesByBogusCameraId(CameraSettings.getCameraId(), i);
+                CameraCapabilities capabilitiesByBogusCameraId = Camera2DataContainer.getInstance().getCapabilitiesByBogusCameraId(CameraSettings.getBogusCameraId(), i);
+                if (CameraSettings.isFrontCamera()) {
+                    if (capabilitiesByBogusCameraId != null) {
+                    }
+                } else if (Util.UI_DEBUG()) {
                     if (capabilitiesByBogusCameraId != null) {
                     }
                 }
                 i3 = -1;
-                z = true;
-                if (i3 == -1) {
+                obj = 1;
+                if (i3 != -1) {
                     switch (i3) {
                         case 2:
                             i4 = R.drawable.ic_beauty_sticker;
@@ -852,12 +817,21 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
                             i6 = 0;
                             break;
                         case 3:
-                            if (!Util.UI_DEBUG()) {
-                                i4 = R.drawable.ic_beauty_magic;
-                            } else if (CameraSettings.isFaceBeautyOn(DataRepository.dataItemConfig().getComponentConfigBeauty().getComponentValue(this.mCurrentMode))) {
-                                i4 = R.drawable.ic_beauty_on;
+                        case 4:
+                            if (Util.UI_DEBUG()) {
+                                boolean isFaceBeautyOn;
+                                if (this.mCurrentMode != 174) {
+                                    isFaceBeautyOn = CameraSettings.isFaceBeautyOn(DataRepository.dataItemConfig().getComponentConfigBeauty().getComponentValue(this.mCurrentMode));
+                                } else {
+                                    isFaceBeautyOn = CameraSettings.isLiveBeautyOpen();
+                                }
+                                if (isFaceBeautyOn) {
+                                    i4 = R.drawable.ic_beauty_on;
+                                } else {
+                                    i4 = R.drawable.ic_beauty_normal;
+                                }
                             } else {
-                                i4 = R.drawable.ic_beauty_normal;
+                                i4 = R.drawable.ic_beauty_magic;
                             }
                             i6 = R.string.accessibility_beauty_panel_open;
                             i5 = 1;
@@ -884,96 +858,96 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
                         ViewCompat.setRotation(this.mTipImage, (float) this.mDegree);
                     }
                     this.mTipImage.setTag(Integer.valueOf(i3));
-                    this.mShowBeautyIntro = false;
-                    if (list == null) {
-                        if (i5 != 0) {
-                            boolean z3 = i2 == 165 ? b.isSupportedOpticalZoom() ? false : true : true;
-                            z2 = i3 == 3 && CameraSettings.isPopupTipBeautyIntroEnable() && i != 162 && i != 161;
-                            this.mShowBeautyIntro = z2;
-                            z2 = z3;
-                        } else if (!(i2 == 165 || this.mCurrentMode == 165)) {
-                            z2 = true;
+                    if (list != null) {
+                        if (i5 == 0) {
+                            if (i2 != 165) {
+                            }
+                            obj2 = 1;
+                        } else if (i2 != 165) {
+                            obj2 = 2;
+                        } else if (!b.isSupportedOpticalZoom()) {
+                            obj2 = 3;
                         }
-                        switch (z2) {
-                            case false:
-                                break;
-                            case true:
-                                break;
-                            case true:
-                                break;
-                            case true:
-                                break;
-                            case true:
-                                break;
-                        }
-                    } else if (i5 != 0) {
-                        z2 = false;
-                        switch (z2) {
-                            case false:
+                        switch (obj2) {
+                            case null:
                                 ActionProcessing actionProcessing = (ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162);
                                 if (actionProcessing == null || !actionProcessing.isShowLightingView()) {
-                                    z = false;
+                                    obj = null;
                                 }
-                                if (z) {
+                                if (obj != null) {
                                     this.mTipImage.setTag(Integer.valueOf(-1));
                                 }
-                                if (!(this.mShowBeautyIntro || z)) {
+                                if (obj == null) {
                                     AlphaInOnSubscribe.directSetResult(this.mTipImage);
                                     break;
                                 }
-                            case true:
-                                if (!this.mBeautyIntroButton.isShown()) {
-                                    AlphaOutOnSubscribe.directSetResult(this.mTipImage);
-                                    break;
-                                }
-                                this.mBeautyIntroShowAnimator.pause();
-                                AlphaOutOnSubscribe.directSetResult(this.mBeautyIntroButton);
                                 break;
-                            case true:
-                                if (!this.mShowBeautyIntro) {
-                                    list.add(Completable.create(new AlphaInOnSubscribe(this.mTipImage)));
-                                    break;
-                                }
+                            case 1:
+                                AlphaOutOnSubscribe.directSetResult(this.mTipImage);
                                 break;
-                            case true:
-                                if (!this.mShowBeautyIntro) {
-                                    list.add(Completable.create(new AlphaInOnSubscribe(this.mTipImage).setStartDelayTime(150).setDurationTime(150)));
-                                    break;
-                                }
+                            case 2:
+                                list.add(Completable.create(new AlphaInOnSubscribe(this.mTipImage)));
                                 break;
-                            case true:
-                                if (!this.mBeautyIntroButton.isShown()) {
-                                    list.add(Completable.create(new AlphaOutOnSubscribe(this.mTipImage)));
-                                    break;
-                                }
-                                this.mBeautyIntroShowAnimator.pause();
-                                list.add(Completable.create(new AlphaOutOnSubscribe(this.mBeautyIntroButton)));
+                            case 3:
+                                list.add(Completable.create(new AlphaInOnSubscribe(this.mTipImage).setStartDelayTime(150).setDurationTime(150)));
+                                break;
+                            case 4:
+                                list.add(Completable.create(new AlphaOutOnSubscribe(this.mTipImage)));
                                 break;
                         }
                     }
-                    z2 = true;
-                    switch (z2) {
-                        case false:
+                    obj2 = null;
+                    switch (obj2) {
+                        case null:
                             break;
-                        case true:
+                        case 1:
                             break;
-                        case true:
+                        case 2:
                             break;
-                        case true:
+                        case 3:
                             break;
-                        case true:
+                        case 4:
                             break;
                     }
                 }
                 return;
-            } else if (CameraSettings.isFrontCamera()) {
+            }
+            if (!((CameraSettings.isFrontCamera() && b.hn()) || Util.UI_DEBUG())) {
+            }
+            i3 = 3;
+            obj = 1;
+            if (i3 != -1) {
+            }
+            if (i4 > 0) {
+            }
+            this.mTipImage.setContentDescription(getString(i6));
+            updateImageBgColor(i, this.mTipImage);
+            if (this.mTipImage.getTag() != null) {
+            }
+            if (i5 != 0) {
+            }
+            this.mTipImage.setTag(Integer.valueOf(i3));
+            if (list != null) {
+            }
+            obj2 = null;
+            switch (obj2) {
+                case null:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
             }
         }
         if (!CameraSettings.isFrontCamera()) {
         }
         i3 = 3;
-        z = true;
-        if (i3 == -1) {
+        obj = 1;
+        if (i3 != -1) {
         }
         if (i4 > 0) {
         }
@@ -984,20 +958,19 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
         if (i5 != 0) {
         }
         this.mTipImage.setTag(Integer.valueOf(i3));
-        this.mShowBeautyIntro = false;
-        if (list == null) {
+        if (list != null) {
         }
-        z2 = true;
-        switch (z2) {
-            case false:
+        obj2 = null;
+        switch (obj2) {
+            case null:
                 break;
-            case true:
+            case 1:
                 break;
-            case true:
+            case 2:
                 break;
-            case true:
+            case 3:
                 break;
-            case true:
+            case 4:
                 break;
         }
     }
@@ -1010,190 +983,209 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
         }
     }
 
-    /* JADX WARNING: Missing block: B:25:0x006b, code:
-            r3 = 21;
+    /* JADX WARNING: Missing block: B:6:0x003a, code:
+            if (com.android.camera.data.DataRepository.dataItemFeature().fa() != false) goto L_0x0076;
      */
-    /* JADX WARNING: Missing block: B:26:0x006d, code:
-            r3 = -1;
+    /* JADX WARNING: Missing block: B:8:0x0045, code:
+            if (com.android.camera.data.DataRepository.dataItemFeature().eZ() != false) goto L_0x0076;
      */
-    /* JADX WARNING: Missing block: B:28:0x0071, code:
-            if (r3 == -1) goto L_0x00b3;
+    /* JADX WARNING: Missing block: B:13:0x0054, code:
+            if (com.android.camera.CameraSettings.isRearMenuUltraPixelPhotographyOn() != false) goto L_0x0075;
      */
-    /* JADX WARNING: Missing block: B:29:0x0073, code:
-            if (r3 == 21) goto L_0x0096;
+    /* JADX WARNING: Missing block: B:27:0x0073, code:
+            r8 = 21;
      */
-    /* JADX WARNING: Missing block: B:30:0x0075, code:
-            switch(r3) {
-                case 18: goto L_0x0082;
-                case 19: goto L_0x007c;
-                default: goto L_0x0078;
+    /* JADX WARNING: Missing block: B:28:0x0075, code:
+            r8 = -1;
+     */
+    /* JADX WARNING: Missing block: B:29:0x0076, code:
+            r8 = checkLeftImageTipClose(r8);
+            r0 = 1;
+     */
+    /* JADX WARNING: Missing block: B:30:0x007f, code:
+            if (r8 == -1) goto L_0x00c6;
+     */
+    /* JADX WARNING: Missing block: B:31:0x0081, code:
+            if (r8 == 21) goto L_0x00a9;
+     */
+    /* JADX WARNING: Missing block: B:32:0x0083, code:
+            switch(r8) {
+                case 18: goto L_0x0093;
+                case 19: goto L_0x008a;
+                default: goto L_0x0086;
             };
      */
-    /* JADX WARNING: Missing block: B:31:0x0078, code:
-            r0 = 0;
-            r1 = r0;
+    /* JADX WARNING: Missing block: B:33:0x0086, code:
+            r4 = 1;
+            r2 = 0;
+            r3 = r2;
      */
-    /* JADX WARNING: Missing block: B:32:0x007a, code:
-            r2 = 1;
+    /* JADX WARNING: Missing block: B:34:0x008a, code:
+            r2 = com.android.camera.R.drawable.ic_light;
+            r3 = com.android.camera.R.string.accessibility_lighting_panel_on;
+            r4 = 1;
      */
-    /* JADX WARNING: Missing block: B:33:0x007c, code:
-            r0 = com.android.camera.R.drawable.ic_light;
+    /* JADX WARNING: Missing block: B:36:0x009d, code:
+            if ("".equals(com.android.camera.CameraSettings.getCurrentLiveSticker()) == false) goto L_0x00a5;
      */
-    /* JADX WARNING: Missing block: B:34:0x0080, code:
-            r1 = 0;
+    /* JADX WARNING: Missing block: B:37:0x009f, code:
+            r2 = com.android.camera.R.drawable.ic_live_sticker_normal;
      */
-    /* JADX WARNING: Missing block: B:36:0x008c, code:
-            if ("".equals(com.android.camera.CameraSettings.getCurrentLiveSticker()) == false) goto L_0x0092;
+    /* JADX WARNING: Missing block: B:38:0x00a2, code:
+            r4 = 1;
+            r3 = 0;
      */
-    /* JADX WARNING: Missing block: B:37:0x008e, code:
-            r0 = com.android.camera.R.drawable.ic_live_sticker_normal;
+    /* JADX WARNING: Missing block: B:39:0x00a5, code:
+            r2 = com.android.camera.R.drawable.ic_live_sticker_on;
      */
-    /* JADX WARNING: Missing block: B:38:0x0092, code:
-            r0 = com.android.camera.R.drawable.ic_live_sticker_on;
+    /* JADX WARNING: Missing block: B:40:0x00a9, code:
+            r2 = com.android.camera.CameraSettings.isUltraWideConfigOpen(r7.mCurrentMode);
      */
-    /* JADX WARNING: Missing block: B:39:0x0096, code:
-            r0 = com.android.camera.CameraSettings.isUltraWideConfigOpen(r8.mCurrentMode);
+    /* JADX WARNING: Missing block: B:41:0x00af, code:
+            if (r2 == false) goto L_0x00b5;
      */
-    /* JADX WARNING: Missing block: B:40:0x009c, code:
-            if (r0 == false) goto L_0x00a2;
+    /* JADX WARNING: Missing block: B:42:0x00b1, code:
+            r3 = com.android.camera.R.drawable.icon_config_ultra_wide_on;
      */
-    /* JADX WARNING: Missing block: B:41:0x009e, code:
-            r1 = com.android.camera.R.drawable.icon_config_ultra_wide_on;
+    /* JADX WARNING: Missing block: B:43:0x00b5, code:
+            r3 = com.android.camera.R.drawable.icon_config_ultra_wide_off;
      */
-    /* JADX WARNING: Missing block: B:42:0x00a2, code:
-            r1 = com.android.camera.R.drawable.icon_config_ultra_wide_off;
+    /* JADX WARNING: Missing block: B:44:0x00b8, code:
+            if (r2 == false) goto L_0x00be;
      */
-    /* JADX WARNING: Missing block: B:43:0x00a5, code:
-            if (r0 == false) goto L_0x00ab;
+    /* JADX WARNING: Missing block: B:45:0x00ba, code:
+            r2 = com.android.camera.R.string.accessibility_ultra_wide_on;
      */
-    /* JADX WARNING: Missing block: B:44:0x00a7, code:
-            r0 = com.android.camera.R.string.accessibility_ultra_wide_on;
+    /* JADX WARNING: Missing block: B:46:0x00be, code:
+            r2 = com.android.camera.R.string.accessibility_ultra_wide_off;
      */
-    /* JADX WARNING: Missing block: B:45:0x00ab, code:
-            r0 = com.android.camera.R.string.accessibility_ultra_wide_off;
+    /* JADX WARNING: Missing block: B:47:0x00c1, code:
+            r4 = 1;
+            r6 = r3;
+            r3 = r2;
+            r2 = r6;
      */
-    /* JADX WARNING: Missing block: B:46:0x00ae, code:
-            r2 = 1;
-            r7 = r1;
-            r1 = r0;
-            r0 = r7;
+    /* JADX WARNING: Missing block: B:48:0x00c6, code:
+            r2 = 0;
+            r3 = r2;
+            r4 = r3;
      */
-    /* JADX WARNING: Missing block: B:47:0x00b3, code:
-            r0 = 0;
-            r1 = r0;
-            r2 = r1;
+    /* JADX WARNING: Missing block: B:49:0x00cb, code:
+            if (r2 <= 0) goto L_0x00d2;
      */
-    /* JADX WARNING: Missing block: B:48:0x00b8, code:
-            if (r0 <= 0) goto L_0x00bf;
+    /* JADX WARNING: Missing block: B:50:0x00cd, code:
+            r7.mLeftTipImage.setImageResource(r2);
      */
-    /* JADX WARNING: Missing block: B:49:0x00ba, code:
-            r8.mLeftTipImage.setImageResource(r0);
+    /* JADX WARNING: Missing block: B:51:0x00d2, code:
+            if (r3 <= 0) goto L_0x00e3;
      */
-    /* JADX WARNING: Missing block: B:50:0x00bf, code:
-            if (r1 <= 0) goto L_0x00d0;
+    /* JADX WARNING: Missing block: B:53:0x00d8, code:
+            if (com.android.camera.Util.isAccessible() == false) goto L_0x00e3;
      */
-    /* JADX WARNING: Missing block: B:52:0x00c5, code:
-            if (com.android.camera.Util.isAccessible() == false) goto L_0x00d0;
+    /* JADX WARNING: Missing block: B:54:0x00da, code:
+            r7.mLeftTipImage.setContentDescription(getString(r3));
      */
-    /* JADX WARNING: Missing block: B:53:0x00c7, code:
-            r8.mLeftTipImage.setContentDescription(getString(r1));
+    /* JADX WARNING: Missing block: B:55:0x00e3, code:
+            updateImageBgColor(r9, r7.mLeftTipImage);
      */
-    /* JADX WARNING: Missing block: B:54:0x00d0, code:
-            updateImageBgColor(r10, r8.mLeftTipImage);
+    /* JADX WARNING: Missing block: B:56:0x00ee, code:
+            if (r7.mLeftTipImage.getTag() == null) goto L_0x00ff;
      */
-    /* JADX WARNING: Missing block: B:55:0x00db, code:
-            if (r8.mLeftTipImage.getTag() == null) goto L_0x00ec;
+    /* JADX WARNING: Missing block: B:58:0x00fc, code:
+            if (((java.lang.Integer) r7.mLeftTipImage.getTag()).intValue() != r8) goto L_0x00ff;
      */
-    /* JADX WARNING: Missing block: B:57:0x00e9, code:
-            if (((java.lang.Integer) r8.mLeftTipImage.getTag()).intValue() != r3) goto L_0x00ec;
-     */
-    /* JADX WARNING: Missing block: B:58:0x00eb, code:
+    /* JADX WARNING: Missing block: B:59:0x00fe, code:
             return;
      */
-    /* JADX WARNING: Missing block: B:59:0x00ec, code:
-            if (r2 == 0) goto L_0x00f6;
+    /* JADX WARNING: Missing block: B:60:0x00ff, code:
+            if (r4 == 0) goto L_0x0109;
      */
-    /* JADX WARNING: Missing block: B:60:0x00ee, code:
-            android.support.v4.view.ViewCompat.setRotation(r8.mLeftTipImage, (float) r8.mDegree);
+    /* JADX WARNING: Missing block: B:61:0x0101, code:
+            android.support.v4.view.ViewCompat.setRotation(r7.mLeftTipImage, (float) r7.mDegree);
      */
-    /* JADX WARNING: Missing block: B:61:0x00f6, code:
-            r8.mLeftTipImage.setTag(java.lang.Integer.valueOf(r3));
+    /* JADX WARNING: Missing block: B:62:0x0109, code:
+            r7.mLeftTipImage.setTag(java.lang.Integer.valueOf(r8));
      */
-    /* JADX WARNING: Missing block: B:62:0x00ff, code:
-            if (r12 != null) goto L_0x0107;
+    /* JADX WARNING: Missing block: B:63:0x0112, code:
+            if (r11 != null) goto L_0x011a;
      */
-    /* JADX WARNING: Missing block: B:63:0x0101, code:
-            if (r2 == 0) goto L_0x0122;
+    /* JADX WARNING: Missing block: B:64:0x0114, code:
+            if (r4 == 0) goto L_0x013b;
      */
-    /* JADX WARNING: Missing block: B:64:0x0104, code:
-            r6 = null;
+    /* JADX WARNING: Missing block: B:65:0x0116, code:
+            r0 = null;
      */
-    /* JADX WARNING: Missing block: B:66:0x0109, code:
-            if (r2 == 0) goto L_0x0118;
+    /* JADX WARNING: Missing block: B:67:0x011c, code:
+            if (r4 == 0) goto L_0x0131;
      */
-    /* JADX WARNING: Missing block: B:67:0x010b, code:
-            if (r11 != 165) goto L_0x0116;
+    /* JADX WARNING: Missing block: B:68:0x011e, code:
+            if (r10 != 165) goto L_0x012b;
      */
-    /* JADX WARNING: Missing block: B:69:0x0111, code:
-            if (com.mi.config.b.isSupportedOpticalZoom() == false) goto L_0x0114;
+    /* JADX WARNING: Missing block: B:70:0x0124, code:
+            if (com.mi.config.b.isSupportedOpticalZoom() == false) goto L_0x0129;
      */
-    /* JADX WARNING: Missing block: B:70:0x0114, code:
-            r6 = 3;
+    /* JADX WARNING: Missing block: B:71:0x0126, code:
+            r0 = null;
      */
-    /* JADX WARNING: Missing block: B:71:0x0116, code:
-            r6 = 2;
+    /* JADX WARNING: Missing block: B:72:0x0129, code:
+            r8 = 3;
      */
-    /* JADX WARNING: Missing block: B:72:0x0118, code:
-            if (r11 == 165) goto L_0x0122;
+    /* JADX WARNING: Missing block: B:73:0x012b, code:
+            r8 = 2;
      */
-    /* JADX WARNING: Missing block: B:74:0x011c, code:
-            if (r8.mCurrentMode != 165) goto L_0x011f;
+    /* JADX WARNING: Missing block: B:74:0x012c, code:
+            r0 = r8;
      */
-    /* JADX WARNING: Missing block: B:75:0x011f, code:
-            r6 = 4;
+    /* JADX WARNING: Missing block: B:75:0x012d, code:
+            directHideLeftImageIntro();
      */
-    /* JADX WARNING: Missing block: B:76:0x0122, code:
-            switch(r6) {
-                case 0: goto L_0x0163;
-                case 1: goto L_0x015d;
-                case 2: goto L_0x014e;
-                case 3: goto L_0x0135;
-                case 4: goto L_0x0126;
-                default: goto L_0x0125;
-            };
-     */
-    /* JADX WARNING: Missing block: B:77:0x0126, code:
-            r12.add(io.reactivex.Completable.create(new com.android.camera.animation.type.AlphaOutOnSubscribe(r8.mLeftTipImage)));
+    /* JADX WARNING: Missing block: B:76:0x0131, code:
+            if (r10 == 165) goto L_0x013b;
      */
     /* JADX WARNING: Missing block: B:78:0x0135, code:
-            r12.add(io.reactivex.Completable.create(new com.android.camera.animation.type.AlphaInOnSubscribe(r8.mLeftTipImage).setStartDelayTime(150).setDurationTime(150)));
+            if (r7.mCurrentMode != 165) goto L_0x0138;
      */
-    /* JADX WARNING: Missing block: B:79:0x014e, code:
-            r12.add(io.reactivex.Completable.create(new com.android.camera.animation.type.AlphaInOnSubscribe(r8.mLeftTipImage)));
+    /* JADX WARNING: Missing block: B:79:0x0138, code:
+            r0 = 4;
      */
-    /* JADX WARNING: Missing block: B:80:0x015d, code:
-            com.android.camera.animation.type.AlphaOutOnSubscribe.directSetResult(r8.mLeftTipImage);
+    /* JADX WARNING: Missing block: B:80:0x013b, code:
+            switch(r0) {
+                case 0: goto L_0x017c;
+                case 1: goto L_0x0176;
+                case 2: goto L_0x0167;
+                case 3: goto L_0x014e;
+                case 4: goto L_0x013f;
+                default: goto L_0x013e;
+            };
      */
-    /* JADX WARNING: Missing block: B:81:0x0163, code:
-            com.android.camera.animation.type.AlphaInOnSubscribe.directSetResult(r8.mLeftTipImage);
+    /* JADX WARNING: Missing block: B:81:0x013f, code:
+            r11.add(io.reactivex.Completable.create(new com.android.camera.animation.type.AlphaOutOnSubscribe(r7.mLeftTipImage)));
      */
-    /* JADX WARNING: Missing block: B:82:0x0169, code:
+    /* JADX WARNING: Missing block: B:82:0x014e, code:
+            r11.add(io.reactivex.Completable.create(new com.android.camera.animation.type.AlphaInOnSubscribe(r7.mLeftTipImage).setStartDelayTime(150).setDurationTime(150)));
+     */
+    /* JADX WARNING: Missing block: B:83:0x0167, code:
+            r11.add(io.reactivex.Completable.create(new com.android.camera.animation.type.AlphaInOnSubscribe(r7.mLeftTipImage)));
+     */
+    /* JADX WARNING: Missing block: B:84:0x0176, code:
+            com.android.camera.animation.type.AlphaOutOnSubscribe.directSetResult(r7.mLeftTipImage);
+     */
+    /* JADX WARNING: Missing block: B:85:0x017c, code:
+            com.android.camera.animation.type.AlphaInOnSubscribe.directSetResult(r7.mLeftTipImage);
+     */
+    /* JADX WARNING: Missing block: B:86:0x0182, code:
             return;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     private void updateLeftTipImage(int i, int i2, int i3, List<Completable> list) {
         int currentCameraId = DataRepository.dataItemGlobal().getCurrentCameraId();
         boolean isNormalIntent = DataRepository.dataItemGlobal().isNormalIntent();
-        boolean fw = DataRepository.dataItemFeature().fw();
-        int i4 = 19;
-        Object obj = 1;
+        boolean fx = DataRepository.dataItemFeature().fx();
+        CameraCapabilities capabilitiesByBogusCameraId = Camera2DataContainer.getInstance().getCapabilitiesByBogusCameraId(currentCameraId, this.mCurrentMode);
         switch (i2) {
             case 161:
-            case 163:
             case 165:
-            case 173:
-            case 174:
-                if (fw && currentCameraId == 0) {
+                if (fx && currentCameraId == 0) {
                     if (this.mIsShowLeftImageIntro) {
                         startLeftImageIntroAnim(i);
                         return;
@@ -1204,24 +1196,40 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
             case 168:
             case 169:
             case 170:
-                if (currentCameraId == 0 && isNormalIntent && fw) {
+                if (currentCameraId == 0 && isNormalIntent && fx) {
                     if (this.mIsShowLeftImageIntro) {
                         startLeftImageIntroAnim(i);
                         return;
                     }
                 }
                 break;
+            case 163:
+            case 174:
+                if (CameraSettings.isSupportedUltraPixelPhotography(capabilitiesByBogusCameraId)) {
+                    break;
+                }
             case 171:
-                CameraCapabilities capabilitiesByBogusCameraId = Camera2DataContainer.getInstance().getCapabilitiesByBogusCameraId(currentCameraId, this.mCurrentMode);
                 if (isNormalIntent) {
-                    if (capabilitiesByBogusCameraId.isSupportPortraitLighting()) {
-                        if (currentCameraId == 0) {
+                    i = 19;
+                    switch (currentCameraId) {
+                        case 0:
                             break;
-                        }
+                        case 1:
+                            break;
+                        default:
+                            i = -1;
+                            break;
                     }
                 }
-                break;
         }
+    }
+
+    private int checkLeftImageTipClose(int i) {
+        ActionProcessing actionProcessing = (ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162);
+        if (actionProcessing == null || !actionProcessing.isShowLightingView()) {
+            return i;
+        }
+        return 20;
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:43:0x00c9  */
@@ -1305,13 +1313,13 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:44:0x00e0  */
-    /* JADX WARNING: Removed duplicated region for block: B:43:0x00da  */
-    /* JADX WARNING: Removed duplicated region for block: B:42:0x00cb  */
-    /* JADX WARNING: Removed duplicated region for block: B:41:0x00b2  */
-    /* JADX WARNING: Removed duplicated region for block: B:40:0x00a3  */
-    /* JADX WARNING: Missing block: B:29:0x0087, code:
-            if (r4 != 0) goto L_0x008a;
+    /* JADX WARNING: Removed duplicated region for block: B:45:0x00e7  */
+    /* JADX WARNING: Removed duplicated region for block: B:44:0x00e1  */
+    /* JADX WARNING: Removed duplicated region for block: B:43:0x00d2  */
+    /* JADX WARNING: Removed duplicated region for block: B:42:0x00b9  */
+    /* JADX WARNING: Removed duplicated region for block: B:41:0x00aa  */
+    /* JADX WARNING: Missing block: B:30:0x008e, code:
+            if (r4 != 0) goto L_0x0091;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     private void updateSpeedTipImage(int i, int i2, List<Completable> list) {
@@ -1344,7 +1352,9 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
             ((TextView) this.mSpeedTipImage.findViewById(R.id.live_speed_text)).setText(CameraSettings.getCurrentLiveSpeedText());
         }
         if (obj2 != null) {
-            if (!(i4 == 0 || i5 == 0)) {
+            if (i4 == 0 || i5 == 0) {
+                ViewCompat.setRotation(this.mSpeedTipImage, 0.0f);
+            } else {
                 ViewCompat.setRotation(this.mSpeedTipImage, (float) this.mDegree);
             }
             this.mSpeedTipImage.setTag(Integer.valueOf(i));
@@ -1412,6 +1422,9 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
             if (!(this.mSpeedTipImage == null || this.mSpeedTipImage.getVisibility() != 0 || ((Integer) this.mSpeedTipImage.getTag()).intValue() == 33)) {
                 list.add(this.mSpeedTipImage);
             }
+            if (this.mCenterTipImage != null && this.mCenterTipImage.getVisibility() == 0) {
+                list.add(this.mCenterTipImage);
+            }
         }
         updateLightingPattern(false, true);
     }
@@ -1449,10 +1462,6 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
 
     public void notifyAfterFrameAvailable(int i) {
         super.notifyAfterFrameAvailable(i);
-        if (this.mShowBeautyIntro) {
-            startBeautyIntroShowAnimation();
-        }
-        this.mShowBeautyIntro = false;
     }
 
     private void adjustViewBackground(int i) {
@@ -1513,19 +1522,24 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
     }
 
     public void directShowOrHideLeftTipImage(boolean z) {
-        if (z) {
-            updateLeftTipImage();
-            this.mLeftTipImage.setVisibility(0);
-            return;
+        if (this.mLeftTipImage != null) {
+            if (z) {
+                updateLeftTipImage();
+                this.mLeftTipImage.setVisibility(0);
+            } else {
+                this.mLeftTipImage.setTag(Integer.valueOf(-1));
+                this.mLeftTipImage.setVisibility(4);
+            }
         }
-        this.mLeftTipImage.setTag(Integer.valueOf(-1));
-        this.mLeftTipImage.setVisibility(4);
     }
 
     public void showOrHideCloseImage(boolean z) {
         if (this.mLeftTipImage != null) {
-            this.mLeftTipImage.setImageResource(R.drawable.ic_close_tip);
+            this.mLeftTipImage.setImageResource(R.drawable.ic_manually_indicator);
             if (z) {
+                if (Util.isAccessible() && this.mCloseType == 2) {
+                    this.mLeftTipImage.setContentDescription(getString(R.string.accessibility_lighting_panel_off));
+                }
                 this.mLeftTipImage.setTag(Integer.valueOf(20));
                 Completable.create(new AlphaInOnSubscribe(this.mLeftTipImage)).subscribe();
             } else {
@@ -1541,6 +1555,7 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
 
     private void startLeftImageIntroAnim(int i) {
         if (i != 1) {
+            directShowOrHideLeftTipImage(false);
             this.mLeftImageIntro.setVisibility(0);
             if (this.mLeftImageIntroAnimator == null) {
                 ValueAnimator ofInt = ValueAnimator.ofInt(new int[]{this.mLeftImageIntroWidth, this.mLeftImageIntroRadius * 2});
@@ -1567,20 +1582,26 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
                     }
 
                     public void onAnimationEnd(Animator animator) {
-                        if (!this.cancelled) {
-                            FragmentBottomPopupTips.this.mIsShowLeftImageIntro = false;
-                            AlphaOutOnSubscribe.directSetResult(FragmentBottomPopupTips.this.mLeftImageIntro);
+                        if (FragmentBottomPopupTips.this.canProvide() && !this.cancelled) {
+                            FragmentBottomPopupTips.this.directHideLeftImageIntro();
                             FragmentBottomPopupTips.this.updateLeftTipImage();
                         }
                     }
                 });
             } else {
-                this.mBeautyIntroText.setAlpha(1.0f);
+                this.mLeftImageIntro.setAlpha(1.0f);
                 this.mLeftImageIntroContent.clearAnimation();
                 this.mLeftImageIntroAnimator.cancel();
             }
             this.mLeftImageIntroAnimator.start();
             CameraSettings.addPopupUltraWideIntroShowTimes();
+        }
+    }
+
+    private void directHideLeftImageIntro() {
+        this.mIsShowLeftImageIntro = false;
+        if (this.mLeftImageIntro.getVisibility() == 0) {
+            AlphaOutOnSubscribe.directSetResult(this.mLeftImageIntro);
         }
     }
 

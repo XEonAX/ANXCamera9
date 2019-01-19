@@ -42,7 +42,7 @@
     .param p1, "name"    # Ljava/lang/String;
     .param p2, "defValue"    # Z
 
-    .line 103
+    .line 105
     invoke-static {p0, p1, p2}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
 
     move-result v0
@@ -81,29 +81,29 @@
 
     move-result v2
 
-    if-eqz v2, :cond_f
+    if-eqz v2, :cond_1a
 
     .line 48
-    sget v1, Lcom/miui/system/internal/R$string;->device_hongmi:I
-
-    goto :goto_56
-
-    .line 49
-    :cond_f
     const-string v2, "is_redmi"
 
     invoke-static {v2, v3}, Lmiui/util/FeatureParser;->getBoolean(Ljava/lang/String;Z)Z
 
     move-result v2
 
-    if-eqz v2, :cond_1a
+    if-eqz v2, :cond_17
 
-    .line 53
+    .line 52
     sget v1, Lcom/miui/system/internal/R$string;->device_redmi:I
 
     goto :goto_56
 
     .line 54
+    :cond_17
+    sget v1, Lcom/miui/system/internal/R$string;->device_hongmi:I
+
+    goto :goto_56
+
+    .line 56
     :cond_1a
     const-string v2, "is_xiaomi"
 
@@ -113,7 +113,7 @@
 
     if-eqz v2, :cond_49
 
-    .line 55
+    .line 57
     const-string v2, "beryllium"
 
     const-string v3, "ro.product.device"
@@ -128,7 +128,7 @@
 
     if-eqz v2, :cond_46
 
-    .line 56
+    .line 58
     const-string v2, "ro.boot.hwc"
 
     const-string v3, ""
@@ -137,7 +137,7 @@
 
     move-result-object v2
 
-    .line 57
+    .line 59
     .local v2, "hwc":Ljava/lang/String;
     const-string v3, "INDIA"
 
@@ -147,27 +147,27 @@
 
     if-eqz v3, :cond_43
 
-    .line 58
+    .line 60
     sget v1, Lcom/miui/system/internal/R$string;->device_poco_india:I
 
     goto :goto_45
 
-    .line 60
+    .line 62
     :cond_43
     sget v1, Lcom/miui/system/internal/R$string;->device_poco_global:I
 
-    .line 62
+    .line 64
     .end local v2    # "hwc":Ljava/lang/String;
     :goto_45
     goto :goto_56
 
-    .line 63
+    .line 65
     :cond_46
     sget v1, Lcom/miui/system/internal/R$string;->device_xiaomi:I
 
     goto :goto_56
 
-    .line 65
+    .line 67
     :cond_49
     const-string v2, "is_pad"
 
@@ -177,22 +177,22 @@
 
     if-eqz v2, :cond_54
 
-    .line 66
+    .line 68
     sget v1, Lcom/miui/system/internal/R$string;->device_pad:I
 
     goto :goto_56
 
-    .line 68
+    .line 70
     :cond_54
     sget v1, Lcom/miui/system/internal/R$string;->miui_device_name:I
 
-    .line 70
+    .line 72
     :goto_56
     invoke-virtual {p0, v1}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 71
+    .line 73
     const-string v2, "persist.sys.device_name"
 
     invoke-static {v2, v0}, Lmiui/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
@@ -207,15 +207,15 @@
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "deviceName"    # Ljava/lang/String;
 
-    .line 75
+    .line 77
     const-string v0, "persist.sys.device_name"
 
     invoke-static {v0, p1}, Lmiui/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 76
+    .line 78
     invoke-static {p0}, Landroid/provider/SystemSettings$System;->setNetHostName(Landroid/content/Context;)V
 
-    .line 77
+    .line 79
     return-void
 .end method
 
@@ -223,10 +223,10 @@
     .registers 8
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 83
+    .line 85
     const-string v0, "net.hostname"
 
-    .line 84
+    .line 86
     .local v0, "NET_HOSTNAME_PROPERTY":Ljava/lang/String;
     const-string v1, "net.hostname"
 
@@ -234,24 +234,24 @@
 
     move-result-object v1
 
-    .line 86
+    .line 88
     .local v1, "netHostName":Ljava/lang/String;
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 87
+    .line 89
     .local v2, "nameBuilder":Ljava/lang/StringBuilder;
     sget-object v3, Lmiui/os/Build;->MODEL:Ljava/lang/String;
 
     invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 88
+    .line 90
     const-string v3, "-"
 
     invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 89
+    .line 91
     invoke-static {}, Lmiui/text/ChinesePinyinConverter;->getInstance()Lmiui/text/ChinesePinyinConverter;
 
     move-result-object v3
@@ -264,7 +264,7 @@
 
     move-result-object v3
 
-    .line 90
+    .line 92
     .local v3, "tokenList":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Lmiui/text/ChinesePinyinConverter$Token;>;"
     invoke-virtual {v3}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
 
@@ -283,17 +283,17 @@
 
     check-cast v5, Lmiui/text/ChinesePinyinConverter$Token;
 
-    .line 91
+    .line 93
     .local v5, "token":Lmiui/text/ChinesePinyinConverter$Token;
     iget-object v6, v5, Lmiui/text/ChinesePinyinConverter$Token;->target:Ljava/lang/String;
 
     invoke-virtual {v2, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 92
+    .line 94
     .end local v5    # "token":Lmiui/text/ChinesePinyinConverter$Token;
     goto :goto_27
 
-    .line 93
+    .line 95
     :cond_39
     invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
@@ -307,7 +307,7 @@
 
     move-result-object v4
 
-    .line 94
+    .line 96
     .local v4, "newNetHostName":Ljava/lang/String;
     invoke-virtual {v4, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -315,23 +315,23 @@
 
     if-nez v5, :cond_58
 
-    .line 95
+    .line 97
     const/16 v5, 0x14
 
     invoke-static {v4, v5}, Lmiui/util/Utf8TextUtils;->truncateByte(Ljava/lang/String;I)Ljava/lang/String;
 
     move-result-object v5
 
-    .line 96
+    .line 98
     .local v5, "hostName":Ljava/lang/String;
     if-eqz v5, :cond_58
 
-    .line 97
+    .line 99
     const-string v6, "net.hostname"
 
     invoke-static {v6, v5}, Lmiui/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 100
+    .line 102
     .end local v5    # "hostName":Ljava/lang/String;
     :cond_58
     return-void

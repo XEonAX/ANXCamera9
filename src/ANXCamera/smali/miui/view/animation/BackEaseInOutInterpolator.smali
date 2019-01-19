@@ -7,7 +7,7 @@
 
 
 # instance fields
-.field private final NS:F
+.field private final Od:F
 
 
 # direct methods
@@ -30,7 +30,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 27
-    iput p1, p0, Lmiui/view/animation/BackEaseInOutInterpolator;->NS:F
+    iput p1, p0, Lmiui/view/animation/BackEaseInOutInterpolator;->Od:F
 
     .line 28
     return-void
@@ -42,7 +42,7 @@
     .registers 11
 
     .line 32
-    iget v0, p0, Lmiui/view/animation/BackEaseInOutInterpolator;->NS:F
+    iget v0, p0, Lmiui/view/animation/BackEaseInOutInterpolator;->Od:F
 
     const/4 v1, 0x0
 
@@ -55,7 +55,7 @@
     goto :goto_d
 
     :cond_b
-    iget v0, p0, Lmiui/view/animation/BackEaseInOutInterpolator;->NS:F
+    iget v0, p0, Lmiui/view/animation/BackEaseInOutInterpolator;->Od:F
 
     .line 34
     :goto_d

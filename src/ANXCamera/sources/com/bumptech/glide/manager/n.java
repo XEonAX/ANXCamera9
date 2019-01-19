@@ -15,17 +15,17 @@ import java.util.WeakHashMap;
 /* compiled from: RequestTracker */
 public class n {
     private static final String TAG = "RequestTracker";
-    private final Set<c> mD = Collections.newSetFromMap(new WeakHashMap());
-    private final List<c> mE = new ArrayList();
-    private boolean mF;
+    private final Set<c> mC = Collections.newSetFromMap(new WeakHashMap());
+    private final List<c> mD = new ArrayList();
+    private boolean mE;
 
     public void a(@NonNull c cVar) {
-        this.mD.add(cVar);
-        if (this.mF) {
+        this.mC.add(cVar);
+        if (this.mE) {
             if (Log.isLoggable(TAG, 2)) {
                 Log.v(TAG, "Paused, delaying request");
             }
-            this.mE.add(cVar);
+            this.mD.add(cVar);
             return;
         }
         cVar.begin();
@@ -33,7 +33,7 @@ public class n {
 
     @VisibleForTesting
     void addRequest(c cVar) {
-        this.mD.add(cVar);
+        this.mC.add(cVar);
     }
 
     public boolean b(@Nullable c cVar) {
@@ -45,8 +45,8 @@ public class n {
         if (cVar == null) {
             return true;
         }
-        boolean remove = this.mD.remove(cVar);
-        if (!(this.mE.remove(cVar) || remove)) {
+        boolean remove = this.mC.remove(cVar);
+        if (!(this.mD.remove(cVar) || remove)) {
             z2 = false;
         }
         if (z2) {
@@ -59,52 +59,52 @@ public class n {
     }
 
     public boolean isPaused() {
-        return this.mF;
+        return this.mE;
     }
 
     public void w() {
-        this.mF = true;
-        for (c cVar : k.c(this.mD)) {
+        this.mE = true;
+        for (c cVar : k.c(this.mC)) {
             if (cVar.isRunning()) {
                 cVar.pause();
-                this.mE.add(cVar);
+                this.mD.add(cVar);
             }
         }
     }
 
     public void x() {
-        this.mF = true;
-        for (c cVar : k.c(this.mD)) {
+        this.mE = true;
+        for (c cVar : k.c(this.mC)) {
             if (cVar.isRunning() || cVar.isComplete()) {
                 cVar.pause();
-                this.mE.add(cVar);
+                this.mD.add(cVar);
             }
         }
     }
 
     public void z() {
-        this.mF = false;
-        for (c cVar : k.c(this.mD)) {
+        this.mE = false;
+        for (c cVar : k.c(this.mC)) {
             if (!(cVar.isComplete() || cVar.isCancelled() || cVar.isRunning())) {
                 cVar.begin();
             }
         }
-        this.mE.clear();
+        this.mD.clear();
     }
 
     public void cX() {
-        for (c a : k.c(this.mD)) {
+        for (c a : k.c(this.mC)) {
             a(a, false);
         }
-        this.mE.clear();
+        this.mD.clear();
     }
 
     public void cY() {
-        for (c cVar : k.c(this.mD)) {
+        for (c cVar : k.c(this.mC)) {
             if (!(cVar.isComplete() || cVar.isCancelled())) {
                 cVar.pause();
-                if (this.mF) {
-                    this.mE.add(cVar);
+                if (this.mE) {
+                    this.mD.add(cVar);
                 } else {
                     cVar.begin();
                 }
@@ -116,9 +116,9 @@ public class n {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(super.toString());
         stringBuilder.append("{numRequests=");
-        stringBuilder.append(this.mD.size());
+        stringBuilder.append(this.mC.size());
         stringBuilder.append(", isPaused=");
-        stringBuilder.append(this.mF);
+        stringBuilder.append(this.mE);
         stringBuilder.append("}");
         return stringBuilder.toString();
     }

@@ -47,7 +47,7 @@
 
     move-result-object v0
 
-    const v1, 0x7f0900e8
+    const v1, 0x7f0a00e8
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -113,7 +113,7 @@
     .line 87
     iget-object v1, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Landroid/widget/ImageView;
 
-    const v2, 0x7f020160
+    const v2, 0x7f020171
 
     invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setImageResource(I)V
 
@@ -127,7 +127,7 @@
     check-cast v1, Landroid/widget/TextView;
 
     .line 89
-    const v2, 0x7f0b0212
+    const v2, 0x7f090213
 
     invoke-virtual {v1, v2}, Landroid/widget/TextView;->setText(I)V
 
@@ -136,7 +136,7 @@
 
     move-result-object v2
 
-    const v3, 0x7f0a005b
+    const v3, 0x7f0b005b
 
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getColor(I)I
 
@@ -169,9 +169,9 @@
 
     sget-object v2, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->SHRINK_FACE_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v3, 0x7f02016a
+    const v3, 0x7f02017b
 
-    const v4, 0x7f0b01d8
+    const v4, 0x7f0901d8
 
     invoke-direct {v1, v3, v4, v2}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
@@ -182,9 +182,9 @@
 
     sget-object v2, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->ENLARGE_EYE_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v3, 0x7f020167
+    const v3, 0x7f020178
 
-    const v4, 0x7f0b01d7
+    const v4, 0x7f0901d7
 
     invoke-direct {v1, v3, v4, v2}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
@@ -195,9 +195,9 @@
 
     sget-object v2, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->WHITEN_STRENGTH:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v3, 0x7f020177
+    const v3, 0x7f020188
 
-    const v4, 0x7f0b01d5
+    const v4, 0x7f0901d5
 
     invoke-direct {v1, v3, v4, v2}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
@@ -208,9 +208,9 @@
 
     sget-object v2, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v3, 0x7f020179
+    const v3, 0x7f02018a
 
-    const v4, 0x7f0b01d6
+    const v4, 0x7f0901d6
 
     invoke-direct {v1, v3, v4, v2}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
@@ -429,7 +429,7 @@
 
     move-result-object v0
 
-    const v1, 0x7f0b0221
+    const v1, 0x7f090222
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -516,7 +516,7 @@
 
     const/16 v2, 0xfc
 
-    const v3, 0x7f0d00ef
+    const v3, 0x7f0d00fc
 
     if-nez p1, :cond_1
 

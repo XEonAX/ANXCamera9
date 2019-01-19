@@ -45,7 +45,7 @@
     invoke-virtual {p0, p1}, Lcom/android/camera/fragment/dialog/UltraWideNewbieDialogFragment;->initViewOnTouchListener(Landroid/view/View;)V
 
     .line 20
-    const p2, 0x7f0d004b
+    const p2, 0x7f0d0048
 
     invoke-virtual {p1, p2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 

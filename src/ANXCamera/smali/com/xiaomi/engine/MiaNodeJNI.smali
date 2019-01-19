@@ -352,7 +352,7 @@
     throw p1
 .end method
 
-.method private static native processRequest(Ljava/util/List;Landroid/media/Image;I)I
+.method private static native processRequest(Ljava/util/List;Landroid/media/Image;IZ)I
     .param p0    # Ljava/util/List;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -368,7 +368,7 @@
             "Lcom/xiaomi/engine/FrameData;",
             ">;",
             "Landroid/media/Image;",
-            "I)I"
+            "IZ)I"
         }
     .end annotation
 .end method
@@ -400,7 +400,7 @@
 
 
 # virtual methods
-.method public process(Ljava/util/List;Landroid/media/Image;I)I
+.method public process(Ljava/util/List;Landroid/media/Image;IZ)I
     .locals 5
     .param p1    # Ljava/util/List;
         .annotation build Landroid/support/annotation/NonNull;
@@ -417,52 +417,52 @@
             "Lcom/xiaomi/engine/FrameData;",
             ">;",
             "Landroid/media/Image;",
-            "I)I"
+            "IZ)I"
         }
     .end annotation
 
-    .line 97
+    .line 100
     iget-object v0, p0, Lcom/xiaomi/engine/MiaNodeJNI;->mObjLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 98
+    .line 101
     :try_start_0
     sget-boolean v1, Lcom/xiaomi/engine/MiaNodeJNI;->sInitialized:Z
 
     if-nez v1, :cond_0
 
-    .line 99
+    .line 102
     invoke-direct {p0, p3}, Lcom/xiaomi/engine/MiaNodeJNI;->initialize(I)V
 
-    .line 101
+    .line 104
     :cond_0
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v1
 
-    .line 102
+    .line 105
     sget-object v3, Lcom/xiaomi/engine/MiaNodeJNI;->TAG:Ljava/lang/String;
 
     const-string v4, "processRequest: start"
 
     invoke-static {v3, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 104
-    invoke-static {p1, p2, p3}, Lcom/xiaomi/engine/MiaNodeJNI;->processRequest(Ljava/util/List;Landroid/media/Image;I)I
+    .line 107
+    invoke-static {p1, p2, p3, p4}, Lcom/xiaomi/engine/MiaNodeJNI;->processRequest(Ljava/util/List;Landroid/media/Image;IZ)I
 
     move-result p1
 
-    .line 105
+    .line 108
     sget-object p2, Lcom/xiaomi/engine/MiaNodeJNI;->TAG:Ljava/lang/String;
 
     new-instance p3, Ljava/lang/StringBuilder;
 
     invoke-direct {p3}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v3, "processRequest: end, cost: "
+    const-string p4, "processRequest: end, cost: "
 
-    invoke-virtual {p3, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {p3, p4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
@@ -478,15 +478,15 @@
 
     invoke-static {p2, p3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 107
+    .line 110
     invoke-direct {p0}, Lcom/xiaomi/engine/MiaNodeJNI;->tryToCloseNode()V
 
-    .line 108
+    .line 111
     monitor-exit v0
 
     return p1
 
-    .line 109
+    .line 112
     :catchall_0
     move-exception p1
 

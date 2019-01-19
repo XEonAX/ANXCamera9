@@ -41,9 +41,9 @@
 
     const-string v2, "circle"
 
-    const v3, 0x7f0200d9
+    const v3, 0x7f0200db
 
-    const v4, 0x7f0b0154
+    const v4, 0x7f090154
 
     invoke-direct {v1, v3, v3, v4, v2}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 
@@ -54,9 +54,9 @@
 
     const-string v2, "parallel"
 
-    const v3, 0x7f0200da
+    const v3, 0x7f0200dc
 
-    const v4, 0x7f0b0155
+    const v4, 0x7f090155
 
     invoke-direct {v1, v3, v3, v4, v2}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 
@@ -81,7 +81,7 @@
     .locals 1
 
     .line 26
-    const v0, 0x7f0b018e
+    const v0, 0x7f09018e
 
     return v0
 .end method

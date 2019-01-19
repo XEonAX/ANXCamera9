@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/FragmentMainContent;)V
     .locals 0
 
-    .line 861
+    .line 882
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent$1;->this$0:Lcom/android/camera/fragment/FragmentMainContent;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public run()V
     .locals 2
 
-    .line 864
+    .line 885
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -51,10 +51,10 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
 
-    .line 865
+    .line 886
     if-eqz v0, :cond_0
 
-    .line 866
+    .line 887
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentMainContent$1;->this$0:Lcom/android/camera/fragment/FragmentMainContent;
 
     invoke-static {v1}, Lcom/android/camera/fragment/FragmentMainContent;->access$000(Lcom/android/camera/fragment/FragmentMainContent;)I
@@ -63,7 +63,7 @@
 
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertLightingHint(I)V
 
-    .line 868
+    .line 889
     :cond_0
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -77,10 +77,10 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$VerticalProtocol;
 
-    .line 869
+    .line 890
     if-eqz v0, :cond_1
 
-    .line 870
+    .line 891
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentMainContent$1;->this$0:Lcom/android/camera/fragment/FragmentMainContent;
 
     invoke-static {v1}, Lcom/android/camera/fragment/FragmentMainContent;->access$000(Lcom/android/camera/fragment/FragmentMainContent;)I
@@ -89,7 +89,7 @@
 
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$VerticalProtocol;->alertLightingHint(I)V
 
-    .line 872
+    .line 893
     :cond_1
     return-void
 .end method

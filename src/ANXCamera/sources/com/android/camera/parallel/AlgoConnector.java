@@ -12,8 +12,8 @@ import com.android.camera.log.Log;
 
 public class AlgoConnector {
     private static final String TAG = AlgoConnector.class.getSimpleName();
-    private static AlgoConnector ourInstance = new AlgoConnector();
-    public LocalBinder mLocalBinder;
+    private static final AlgoConnector ourInstance = new AlgoConnector();
+    private LocalBinder mLocalBinder;
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             String access$000 = AlgoConnector.TAG;
@@ -21,12 +21,18 @@ public class AlgoConnector {
             stringBuilder.append("onServiceConnected: ");
             stringBuilder.append(componentName);
             Log.d(access$000, stringBuilder.toString());
-            AlgoConnector.this.mLocalBinder = (LocalBinder) iBinder;
+            synchronized (AlgoConnector.ourInstance) {
+                AlgoConnector.this.mLocalBinder = (LocalBinder) iBinder;
+                AlgoConnector.ourInstance.notify();
+            }
         }
 
         public void onServiceDisconnected(ComponentName componentName) {
             Log.d(AlgoConnector.TAG, "onServiceDisconnected");
-            AlgoConnector.this.mLocalBinder = null;
+            synchronized (AlgoConnector.ourInstance) {
+                AlgoConnector.this.mLocalBinder = null;
+                AlgoConnector.ourInstance.notify();
+            }
         }
     };
 
@@ -34,9 +40,6 @@ public class AlgoConnector {
     }
 
     public static AlgoConnector getInstance() {
-        if (ourInstance == null) {
-            ourInstance = new AlgoConnector();
-        }
         return ourInstance;
     }
 
@@ -53,6 +56,28 @@ public class AlgoConnector {
     }
 
     public LocalBinder getLocalBinder() {
+        return getLocalBinder(false);
+    }
+
+    public LocalBinder getLocalBinder(boolean z) {
+        if (z) {
+            int i = 0;
+            synchronized (ourInstance) {
+                while (this.mLocalBinder == null && i < 50) {
+                    try {
+                        ourInstance.wait(100);
+                        i++;
+                        String str = TAG;
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append("waiting service...");
+                        stringBuilder.append(i);
+                        Log.w(str, stringBuilder.toString());
+                    } catch (Throwable e) {
+                        Log.e(TAG, e.getMessage(), e);
+                    }
+                }
+            }
+        }
         return this.mLocalBinder;
     }
 }

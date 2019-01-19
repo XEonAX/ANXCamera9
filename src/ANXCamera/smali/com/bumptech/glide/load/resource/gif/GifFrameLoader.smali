@@ -43,13 +43,13 @@
 
 .field private isRunning:Z
 
-.field private final lJ:Lcom/bumptech/glide/b/a;
+.field private final lI:Lcom/bumptech/glide/b/a;
+
+.field private lJ:Z
 
 .field private lK:Z
 
-.field private lL:Z
-
-.field private lM:Lcom/bumptech/glide/h;
+.field private lL:Lcom/bumptech/glide/h;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/h<",
@@ -59,17 +59,17 @@
     .end annotation
 .end field
 
-.field private lN:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+.field private lM:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
-.field private lO:Z
+.field private lN:Z
 
-.field private lP:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+.field private lO:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
-.field private lQ:Landroid/graphics/Bitmap;
+.field private lP:Landroid/graphics/Bitmap;
 
-.field private lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+.field private lQ:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
-.field private lS:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$OnEveryFrameListener;
+.field private lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$OnEveryFrameListener;
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 .end field
@@ -196,10 +196,10 @@
     iput-object p4, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->handler:Landroid/os/Handler;
 
     .line 89
-    iput-object p5, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lM:Lcom/bumptech/glide/h;
+    iput-object p5, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lL:Lcom/bumptech/glide/h;
 
     .line 91
-    iput-object p3, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lJ:Lcom/bumptech/glide/b/a;
+    iput-object p3, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lI:Lcom/bumptech/glide/b/a;
 
     .line 93
     invoke-virtual {p0, p6, p7}, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->a(Lcom/bumptech/glide/load/i;Landroid/graphics/Bitmap;)V
@@ -270,7 +270,7 @@
 
     if-eqz v0, :cond_4
 
-    iget-boolean v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lK:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lJ:Z
 
     if-eqz v0, :cond_0
 
@@ -278,14 +278,14 @@
 
     .line 206
     :cond_0
-    iget-boolean v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lL:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lK:Z
 
     const/4 v1, 0x1
 
     if-eqz v0, :cond_2
 
     .line 207
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     const/4 v2, 0x0
 
@@ -304,26 +304,26 @@
     invoke-static {v0, v3}, Lcom/bumptech/glide/util/i;->a(ZLjava/lang/String;)V
 
     .line 209
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lJ:Lcom/bumptech/glide/b/a;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lI:Lcom/bumptech/glide/b/a;
 
     invoke-interface {v0}, Lcom/bumptech/glide/b/a;->Q()V
 
     .line 210
-    iput-boolean v2, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lL:Z
+    iput-boolean v2, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lK:Z
 
     .line 212
     :cond_2
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     if-eqz v0, :cond_3
 
     .line 213
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     .line 214
     const/4 v1, 0x0
 
-    iput-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iput-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     .line 215
     invoke-virtual {p0, v0}, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->onFrameReady(Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;)V
@@ -333,10 +333,10 @@
 
     .line 218
     :cond_3
-    iput-boolean v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lK:Z
+    iput-boolean v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lJ:Z
 
     .line 221
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lJ:Lcom/bumptech/glide/b/a;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lI:Lcom/bumptech/glide/b/a;
 
     invoke-interface {v0}, Lcom/bumptech/glide/b/a;->O()I
 
@@ -352,7 +352,7 @@
     add-long/2addr v1, v3
 
     .line 224
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lJ:Lcom/bumptech/glide/b/a;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lI:Lcom/bumptech/glide/b/a;
 
     invoke-interface {v0}, Lcom/bumptech/glide/b/a;->advance()V
 
@@ -361,7 +361,7 @@
 
     iget-object v3, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->handler:Landroid/os/Handler;
 
-    iget-object v4, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lJ:Lcom/bumptech/glide/b/a;
+    iget-object v4, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lI:Lcom/bumptech/glide/b/a;
 
     invoke-interface {v4}, Lcom/bumptech/glide/b/a;->P()I
 
@@ -369,10 +369,10 @@
 
     invoke-direct {v0, v3, v4, v1, v2}, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;-><init>(Landroid/os/Handler;IJ)V
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lP:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iput-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lO:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     .line 226
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lM:Lcom/bumptech/glide/h;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lL:Lcom/bumptech/glide/h;
 
     invoke-static {}, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->cN()Lcom/bumptech/glide/load/c;
 
@@ -386,13 +386,13 @@
 
     move-result-object v0
 
-    iget-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lJ:Lcom/bumptech/glide/b/a;
+    iget-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lI:Lcom/bumptech/glide/b/a;
 
     invoke-virtual {v0, v1}, Lcom/bumptech/glide/h;->e(Ljava/lang/Object;)Lcom/bumptech/glide/h;
 
     move-result-object v0
 
-    iget-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lP:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lO:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     invoke-virtual {v0, v1}, Lcom/bumptech/glide/h;->b(Lcom/bumptech/glide/request/target/n;)Lcom/bumptech/glide/request/target/n;
 
@@ -409,21 +409,21 @@
     .locals 2
 
     .line 230
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Landroid/graphics/Bitmap;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lP:Landroid/graphics/Bitmap;
 
     if-eqz v0, :cond_0
 
     .line 231
     iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->i:Lcom/bumptech/glide/load/engine/bitmap_recycle/d;
 
-    iget-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Landroid/graphics/Bitmap;
+    iget-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lP:Landroid/graphics/Bitmap;
 
     invoke-interface {v0, v1}, Lcom/bumptech/glide/load/engine/bitmap_recycle/d;->d(Landroid/graphics/Bitmap;)V
 
     .line 232
     const/4 v0, 0x0
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Landroid/graphics/Bitmap;
+    iput-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lP:Landroid/graphics/Bitmap;
 
     .line 234
     :cond_0
@@ -506,7 +506,7 @@
     .line 169
     const/4 v0, 0x0
 
-    iput-boolean v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lO:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lN:Z
 
     .line 171
     invoke-direct {p0}, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->cK()V
@@ -558,10 +558,10 @@
 
     check-cast p2, Landroid/graphics/Bitmap;
 
-    iput-object p2, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Landroid/graphics/Bitmap;
+    iput-object p2, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lP:Landroid/graphics/Bitmap;
 
     .line 99
-    iget-object p2, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lM:Lcom/bumptech/glide/h;
+    iget-object p2, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lL:Lcom/bumptech/glide/h;
 
     new-instance v0, Lcom/bumptech/glide/request/f;
 
@@ -575,7 +575,7 @@
 
     move-result-object p1
 
-    iput-object p1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lM:Lcom/bumptech/glide/h;
+    iput-object p1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lL:Lcom/bumptech/glide/h;
 
     .line 100
     return-void
@@ -585,7 +585,7 @@
     .locals 2
 
     .line 111
-    iget-boolean v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lO:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lN:Z
 
     if-nez v0, :cond_2
 
@@ -670,7 +670,7 @@
     .locals 1
 
     .line 107
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Landroid/graphics/Bitmap;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lP:Landroid/graphics/Bitmap;
 
     return-object v0
 .end method
@@ -696,11 +696,11 @@
     .locals 1
 
     .line 199
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lN:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lM:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     if-eqz v0, :cond_0
 
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lN:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lM:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;->cO()Landroid/graphics/Bitmap;
 
@@ -709,7 +709,7 @@
     goto :goto_0
 
     :cond_0
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Landroid/graphics/Bitmap;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lP:Landroid/graphics/Bitmap;
 
     :goto_0
     return-object v0
@@ -730,24 +730,24 @@
     invoke-static {v0, v2}, Lcom/bumptech/glide/util/i;->a(ZLjava/lang/String;)V
 
     .line 238
-    iput-boolean v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lL:Z
+    iput-boolean v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lK:Z
 
     .line 239
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     if-eqz v0, :cond_0
 
     .line 240
     iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->X:Lcom/bumptech/glide/i;
 
-    iget-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     invoke-virtual {v0, v1}, Lcom/bumptech/glide/i;->d(Lcom/bumptech/glide/request/target/n;)V
 
     .line 241
     const/4 v0, 0x0
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iput-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     .line 243
     :cond_0
@@ -769,7 +769,7 @@
     invoke-direct {p0}, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->stop()V
 
     .line 182
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lN:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lM:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     const/4 v1, 0x0
 
@@ -778,55 +778,55 @@
     .line 183
     iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->X:Lcom/bumptech/glide/i;
 
-    iget-object v2, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lN:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v2, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lM:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     invoke-virtual {v0, v2}, Lcom/bumptech/glide/i;->d(Lcom/bumptech/glide/request/target/n;)V
 
     .line 184
-    iput-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lN:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iput-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lM:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     .line 186
     :cond_0
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lP:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lO:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     if-eqz v0, :cond_1
 
     .line 187
     iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->X:Lcom/bumptech/glide/i;
 
-    iget-object v2, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lP:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v2, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lO:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     invoke-virtual {v0, v2}, Lcom/bumptech/glide/i;->d(Lcom/bumptech/glide/request/target/n;)V
 
     .line 188
-    iput-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lP:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iput-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lO:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     .line 190
     :cond_1
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     if-eqz v0, :cond_2
 
     .line 191
     iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->X:Lcom/bumptech/glide/i;
 
-    iget-object v2, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v2, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     invoke-virtual {v0, v2}, Lcom/bumptech/glide/i;->d(Lcom/bumptech/glide/request/target/n;)V
 
     .line 192
-    iput-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iput-object v1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     .line 194
     :cond_2
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lJ:Lcom/bumptech/glide/b/a;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lI:Lcom/bumptech/glide/b/a;
 
     invoke-interface {v0}, Lcom/bumptech/glide/b/a;->clear()V
 
     .line 195
     const/4 v0, 0x1
 
-    iput-boolean v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lO:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lN:Z
 
     .line 196
     return-void
@@ -836,7 +836,7 @@
     .locals 1
 
     .line 153
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lJ:Lcom/bumptech/glide/b/a;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lI:Lcom/bumptech/glide/b/a;
 
     invoke-interface {v0}, Lcom/bumptech/glide/b/a;->getData()Ljava/nio/ByteBuffer;
 
@@ -853,11 +853,11 @@
     .locals 1
 
     .line 144
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lN:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lM:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     if-eqz v0, :cond_0
 
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lN:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lM:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     iget v0, v0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;->index:I
 
@@ -874,7 +874,7 @@
     .locals 1
 
     .line 157
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lJ:Lcom/bumptech/glide/b/a;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lI:Lcom/bumptech/glide/b/a;
 
     invoke-interface {v0}, Lcom/bumptech/glide/b/a;->getFrameCount()I
 
@@ -902,7 +902,7 @@
     .locals 1
 
     .line 161
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lJ:Lcom/bumptech/glide/b/a;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lI:Lcom/bumptech/glide/b/a;
 
     invoke-interface {v0}, Lcom/bumptech/glide/b/a;->S()I
 
@@ -915,7 +915,7 @@
     .locals 2
 
     .line 140
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lJ:Lcom/bumptech/glide/b/a;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lI:Lcom/bumptech/glide/b/a;
 
     invoke-interface {v0}, Lcom/bumptech/glide/b/a;->T()I
 
@@ -951,12 +951,12 @@
     .end annotation
 
     .line 252
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lS:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$OnEveryFrameListener;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$OnEveryFrameListener;
 
     if-eqz v0, :cond_0
 
     .line 253
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lS:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$OnEveryFrameListener;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$OnEveryFrameListener;
 
     invoke-interface {v0}, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$OnEveryFrameListener;->cI()V
 
@@ -964,10 +964,10 @@
     :cond_0
     const/4 v0, 0x0
 
-    iput-boolean v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lK:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lJ:Z
 
     .line 256
-    iget-boolean v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lO:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lN:Z
 
     const/4 v1, 0x2
 
@@ -992,7 +992,7 @@
     if-nez v0, :cond_2
 
     .line 265
-    iput-object p1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iput-object p1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lQ:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     .line 266
     return-void
@@ -1009,10 +1009,10 @@
     invoke-direct {p0}, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->cL()V
 
     .line 271
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lN:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lM:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     .line 272
-    iput-object p1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lN:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
+    iput-object p1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lM:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     .line 275
     iget-object p1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->callbacks:Ljava/util/List;
@@ -1074,7 +1074,7 @@
     .end annotation
 
     .line 247
-    iput-object p1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lS:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$OnEveryFrameListener;
+    iput-object p1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->lR:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$OnEveryFrameListener;
 
     .line 248
     return-void

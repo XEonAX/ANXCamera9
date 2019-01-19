@@ -251,15 +251,6 @@
     return-void
 .end method
 
-.method static synthetic access$100(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)Lcom/android/camera2/Camera2Proxy;
-    .locals 0
-
-    .line 42
-    iget-object p0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    return-object p0
-.end method
-
 .method static synthetic access$102(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;Lcom/android/camera2/Camera2Proxy;)Lcom/android/camera2/Camera2Proxy;
     .locals 0
 
@@ -278,22 +269,22 @@
     return-object v0
 .end method
 
-.method static synthetic access$300(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;ILjava/lang/String;)V
-    .locals 0
-
-    .line 42
-    invoke-direct {p0, p1, p2}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->onCameraOpenFailed(ILjava/lang/String;)V
-
-    return-void
-.end method
-
-.method static synthetic access$400(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)Landroid/os/Handler;
+.method static synthetic access$300(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)Landroid/os/Handler;
     .locals 0
 
     .line 42
     iget-object p0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraHandler:Landroid/os/Handler;
 
     return-object p0
+.end method
+
+.method static synthetic access$400(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;ILjava/lang/String;)V
+    .locals 0
+
+    .line 42
+    invoke-direct {p0, p1, p2}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->onCameraOpenFailed(ILjava/lang/String;)V
+
+    return-void
 .end method
 
 .method static synthetic access$502(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;Lio/reactivex/ObservableEmitter;)Lio/reactivex/ObservableEmitter;

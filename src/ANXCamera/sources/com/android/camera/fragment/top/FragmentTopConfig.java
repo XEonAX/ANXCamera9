@@ -42,7 +42,7 @@ import com.android.camera.data.data.config.TopConfigItem;
 import com.android.camera.effect.FilterInfo;
 import com.android.camera.fragment.BaseFragment;
 import com.android.camera.fragment.FragmentUtils;
-import com.android.camera.fragment.live.FragmentLiveMusic;
+import com.android.camera.fragment.music.FragmentLiveMusic;
 import com.android.camera.fragment.top.ExpandAdapter.ExpandListener;
 import com.android.camera.log.Log;
 import com.android.camera.module.loader.camera2.Camera2DataContainer;
@@ -71,7 +71,6 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
     private static final int EXPAND_STATE_RIGHT_FROM_SIBLING = 3;
     private static final String TAG = "FragmentTopConfig";
     private int[] mAiSceneResources;
-    private int mBeforeMode = 160;
     private List<ImageView> mConfigViews;
     private int mCurrentAiSceneLevel = CameraSettings.getAiSceneOpen();
     private Set<Integer> mDisabledFunctionMenu;
@@ -95,6 +94,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
     private int[] mUltraWideBokehResources;
     private int[] mUltraWideResource;
     private int[] mVideoBokehResource;
+    private boolean mVideoRecordingStarted;
     private int mViewPadding;
 
     protected void initView(View view) {
@@ -126,7 +126,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
         if (((ActivityBase) getContext()).getCameraIntentManager().isFromScreenSlide().booleanValue()) {
             Util.startScreenSlideAlphaInAnimation(this.mTopConfigMenu);
         }
-        provideAnimateElement(this.mCurrentMode, null, false);
+        provideAnimateElement(this.mCurrentMode, null, 2);
     }
 
     private void initTopView() {
@@ -235,9 +235,6 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
         if (topAlert != null) {
             topAlert.setClickEnable(z);
         }
-        if (z && this.mDisabledFunctionMenu != null) {
-            this.mDisabledFunctionMenu.clear();
-        }
     }
 
     public void onClick(View view) {
@@ -250,7 +247,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                 }
                 if (!CameraSettings.isFrontCamera() || !((Camera) getContext()).isScreenSlideOff()) {
                     int intValue = ((Integer) view.getTag()).intValue();
-                    if (this.mDisabledFunctionMenu == null || !this.mDisabledFunctionMenu.contains(Integer.valueOf(intValue))) {
+                    if (this.mDisabledFunctionMenu.isEmpty() || !this.mDisabledFunctionMenu.contains(Integer.valueOf(intValue))) {
                         if (intValue == 199) {
                             configChanges.onConfigChanged(199);
                             ((ImageView) view).setImageResource(getFocusPeakImageResource());
@@ -313,14 +310,25 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                                     }
                                     break;
                             }
-                        } else if (FragmentUtils.getFragmentByTag(getChildFragmentManager(), FragmentLiveMusic.TAG) == null) {
-                            Fragment fragmentLiveMusic = new FragmentLiveMusic();
-                            fragmentLiveMusic.setStyle(2, R.style.TTMusicDialogFragment);
-                            getChildFragmentManager().beginTransaction().add(fragmentLiveMusic, FragmentLiveMusic.TAG).commitAllowingStateLoss();
+                        } else {
+                            Fragment fragmentByTag = FragmentUtils.getFragmentByTag(getFragmentManager(), FragmentLiveMusic.TAG);
+                            CameraStatUtil.trackLiveMusicClickCount();
+                            if (fragmentByTag == null) {
+                                fragmentByTag = new FragmentLiveMusic();
+                                fragmentByTag.setStyle(2, R.style.TTMusicDialogFragment);
+                                getFragmentManager().beginTransaction().add(fragmentByTag, FragmentLiveMusic.TAG).commitAllowingStateLoss();
+                            }
                         }
                     }
                 }
             }
+        }
+    }
+
+    public void alertMusicClose(boolean z) {
+        FragmentTopAlert topAlert = getTopAlert();
+        if (topAlert != null) {
+            topAlert.alertMusicClose(z);
         }
     }
 
@@ -527,39 +535,39 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
     }
 
     /* JADX WARNING: Missing block: B:81:0x017e, code:
-            r8 = r3;
+            r9 = r4;
      */
     /* JADX WARNING: Missing block: B:99:0x01d1, code:
-            r8 = 0;
+            r9 = 0;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
-    private boolean setTopImageResource(int i, ImageView imageView, int i2, DataItemConfig dataItemConfig, int i3, boolean z) {
+    private boolean setTopImageResource(int i, ImageView imageView, int i2, DataItemConfig dataItemConfig, boolean z) {
         ActionProcessing actionProcessing = (ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162);
-        int i4 = 0;
+        int i3 = 0;
         boolean isUltraPixelPhotographyOn;
         if (i == 209) {
             isUltraPixelPhotographyOn = CameraSettings.isUltraPixelPhotographyOn();
-            i4 = isUltraPixelPhotographyOn ? this.mUltraPixelPhotographyResources[1] : this.mUltraPixelPhotographyResources[0];
-            i2 = isUltraPixelPhotographyOn ? R.string.accessibility_ultra_pixel_photography_on : R.string.accessibility_ultra_pixel_photography_off;
+            i3 = isUltraPixelPhotographyOn ? this.mUltraPixelPhotographyResources[1] : this.mUltraPixelPhotographyResources[0];
+            i2 = isUltraPixelPhotographyOn ? R.string.accessibility_ultra_pixel_photography_48mp_on : R.string.accessibility_ultra_pixel_photography_48mp_off;
         } else if (i == 225) {
-            i4 = getSettingResources();
+            i3 = getSettingResources();
             i2 = R.string.accessibility_setting;
         } else if (i != 243) {
             boolean z2;
             if (i != 245) {
-                int i5;
+                int i4;
                 String componentValue;
                 switch (i) {
                     case 193:
                         ComponentConfigFlash componentFlash = dataItemConfig.getComponentFlash();
                         if (!componentFlash.isEmpty()) {
-                            int i6;
+                            int i5;
                             if (dataItemConfig.getComponentConfigUltraWide().isOpenUltrWide(i2)) {
-                                i6 = R.drawable.ic_new_config_flash_off;
-                                i5 = R.string.accessibility_flash_off;
+                                i5 = R.drawable.ic_new_config_flash_off;
+                                i4 = R.string.accessibility_flash_off;
                             } else {
-                                i6 = componentFlash.getValueSelectedDrawableIgnoreClose(i2);
-                                i5 = componentFlash.getValueSelectedStringIdIgnoreClose(i2);
+                                i5 = componentFlash.getValueSelectedDrawableIgnoreClose(i2);
+                                i4 = componentFlash.getValueSelectedStringIdIgnoreClose(i2);
                             }
                             if (!z) {
                                 componentValue = componentFlash.getComponentValue(i2);
@@ -571,15 +579,15 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                                     alertFlash(8, false, false);
                                 }
                             }
-                            i4 = i6;
+                            i3 = i5;
                             break;
                         }
                         break;
                     case 194:
                         ComponentConfigHdr componentHdr = dataItemConfig.getComponentHdr();
                         if (!componentHdr.isEmpty()) {
-                            i3 = componentHdr.getValueSelectedDrawableIgnoreClose(i2);
-                            i5 = componentHdr.getValueSelectedStringIdIgnoreClose(i2);
+                            int valueSelectedDrawableIgnoreClose = componentHdr.getValueSelectedDrawableIgnoreClose(i2);
+                            i4 = componentHdr.getValueSelectedStringIdIgnoreClose(i2);
                             if (!z) {
                                 componentValue = componentHdr.getComponentValue(i2);
                                 if ("on".equals(componentValue) || "normal".equals(componentValue)) {
@@ -590,12 +598,12 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                                     alertHDR(8, false, false);
                                 }
                             }
-                            i4 = i3;
+                            i3 = valueSelectedDrawableIgnoreClose;
                             break;
                         }
                         break;
                     case 195:
-                        i4 = getPortraitResources();
+                        i3 = getPortraitResources();
                         i2 = R.string.accessibility_protrait;
                         break;
                     case 196:
@@ -620,19 +628,19 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                         }
                         break;
                     case 197:
-                        i4 = getMoreResources();
+                        i3 = getMoreResources();
                         i2 = R.string.accessibility_more;
                         break;
                     case 198:
                         return false;
                     case 199:
-                        i4 = getFocusPeakImageResource();
+                        i3 = getFocusPeakImageResource();
                         i2 = R.string.accessibility_foucs_peak;
                         break;
                     default:
                         switch (i) {
                             case 201:
-                                i4 = CameraSettings.getAiSceneOpen() ? this.mAiSceneResources[1] : this.mAiSceneResources[0];
+                                i3 = CameraSettings.getAiSceneOpen() ? this.mAiSceneResources[1] : this.mAiSceneResources[0];
                                 if (!CameraSettings.getAiSceneOpen()) {
                                     i2 = R.string.accessibility_ai_scene_off;
                                     break;
@@ -640,7 +648,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                                 i2 = R.string.accessibility_ai_scene_on;
                                 break;
                             case 202:
-                                i4 = getHFRImageResource(i2);
+                                i3 = getHFRImageResource(i2);
                                 i2 = getHFRContentDesc(i2);
                                 break;
                             case 203:
@@ -659,19 +667,19 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                                 }
                                 break;
                             case 204:
-                                i4 = getFPS960ImageResource(i2);
+                                i3 = getFPS960ImageResource(i2);
                                 i2 = DataRepository.dataItemConfig().getComponentConfigSlowMotion().getContentDesc();
                                 break;
                             case 205:
                                 ComponentConfigUltraWide componentConfigUltraWide = dataItemConfig.getComponentConfigUltraWide();
                                 if (!componentConfigUltraWide.isEmpty()) {
-                                    i4 = componentConfigUltraWide.getValueSelectedDrawableIgnoreClose(i2);
+                                    i3 = componentConfigUltraWide.getValueSelectedDrawableIgnoreClose(i2);
                                     i2 = componentConfigUltraWide.getValueSelectedStringIdIgnoreClose(i2);
                                     break;
                                 }
                             case 206:
                                 isUltraPixelPhotographyOn = CameraSettings.isLiveShotOn();
-                                i4 = isUltraPixelPhotographyOn ? this.mLiveShotResource[1] : this.mLiveShotResource[0];
+                                i3 = isUltraPixelPhotographyOn ? this.mLiveShotResource[1] : this.mLiveShotResource[0];
                                 if (!isUltraPixelPhotographyOn) {
                                     i2 = R.string.accessibility_camera_liveshot_off;
                                     break;
@@ -680,7 +688,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                                 break;
                             case 207:
                                 isUltraPixelPhotographyOn = CameraSettings.isUltraWideBokehOn();
-                                i4 = isUltraPixelPhotographyOn ? this.mUltraWideBokehResources[1] : this.mUltraWideBokehResources[0];
+                                i3 = isUltraPixelPhotographyOn ? this.mUltraWideBokehResources[1] : this.mUltraWideBokehResources[0];
                                 if (!isUltraPixelPhotographyOn) {
                                     i2 = R.string.accessibility_camera_ultra_wide_bokeh_off;
                                     break;
@@ -699,7 +707,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                 i2 = this.mLiveMusicSelectResources[1];
             }
             boolean z3 = z2;
-            i4 = i2;
+            i3 = i2;
             i2 = z3;
         } else {
             isUltraPixelPhotographyOn = CameraSettings.isVideoBokehOn();
@@ -708,10 +716,10 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
             stringBuilder.append("setTopImageResource: VIDEO_BOKEH isSwitchOn = ");
             stringBuilder.append(isUltraPixelPhotographyOn);
             Log.d(str, stringBuilder.toString());
-            i4 = isUltraPixelPhotographyOn ? this.mVideoBokehResource[1] : this.mVideoBokehResource[0];
+            i3 = isUltraPixelPhotographyOn ? this.mVideoBokehResource[1] : this.mVideoBokehResource[0];
             i2 = isUltraPixelPhotographyOn ? R.string.pref_camera_video_bokeh_on : R.string.pref_camera_video_bokeh_off;
         }
-        if (imageView != null && i4 > 0) {
+        if (imageView != null && i3 > 0) {
             TopConfigItem findConfigItem = this.mSupportedConfigs.findConfigItem(i);
             imageView.setEnabled(findConfigItem.enable);
             if (findConfigItem.enable) {
@@ -721,9 +729,9 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                 imageView.setAlpha(1.0f);
             } else {
                 imageView.setTag(R.id.tag_config_view_state_desc, findConfigItem);
-                imageView.setAlpha(0.6f);
+                imageView.setAlpha(0.4f);
             }
-            Drawable drawable = getResources().getDrawable(i4);
+            Drawable drawable = getResources().getDrawable(i3);
             i = getInitialMargin(i);
             imageView.setTag(R.id.tag_config_view_margin_key, Integer.valueOf(i));
             if (i > 0) {
@@ -792,186 +800,193 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
         return new int[]{R.drawable.ic_live_music_normal, R.drawable.ic_live_music_selected};
     }
 
-    /* JADX WARNING: Missing block: B:7:0x001f, code:
-            if (r8 == 162) goto L_0x0026;
+    /* JADX WARNING: Missing block: B:8:0x001f, code:
+            if (r7 == 162) goto L_0x0026;
      */
-    /* JADX WARNING: Missing block: B:8:0x0021, code:
-            switch(r8) {
+    /* JADX WARNING: Missing block: B:9:0x0021, code:
+            switch(r7) {
                 case 168: goto L_0x0026;
                 case 169: goto L_0x0026;
                 case 170: goto L_0x0026;
                 default: goto L_0x0024;
             };
      */
-    /* JADX WARNING: Missing block: B:9:0x0024, code:
-            r0 = true;
+    /* JADX WARNING: Missing block: B:10:0x0024, code:
+            r2 = true;
      */
-    /* JADX WARNING: Missing block: B:10:0x0026, code:
-            r0 = false;
+    /* JADX WARNING: Missing block: B:11:0x0026, code:
+            r2 = false;
      */
-    /* JADX WARNING: Missing block: B:14:0x0030, code:
-            r0 = true;
+    /* JADX WARNING: Missing block: B:15:0x0030, code:
+            r2 = true;
      */
-    /* JADX WARNING: Missing block: B:15:0x0031, code:
-            if (r0 == false) goto L_0x0037;
+    /* JADX WARNING: Missing block: B:16:0x0031, code:
+            if (r2 == false) goto L_0x0037;
      */
-    /* JADX WARNING: Missing block: B:16:0x0033, code:
+    /* JADX WARNING: Missing block: B:17:0x0033, code:
             onBackEvent(4);
      */
-    /* JADX WARNING: Missing block: B:17:0x0037, code:
-            r0 = getTopAlert();
+    /* JADX WARNING: Missing block: B:18:0x0037, code:
+            if (r1 == false) goto L_0x003e;
      */
-    /* JADX WARNING: Missing block: B:18:0x003b, code:
-            if (r0 == null) goto L_0x0040;
+    /* JADX WARNING: Missing block: B:19:0x0039, code:
+            r6.mDisabledFunctionMenu.clear();
      */
-    /* JADX WARNING: Missing block: B:19:0x003d, code:
-            r0.provideAnimateElement(r8, r9, false);
+    /* JADX WARNING: Missing block: B:20:0x003e, code:
+            r1 = getTopAlert();
      */
-    /* JADX WARNING: Missing block: B:20:0x0040, code:
-            r13 = com.android.camera.data.DataRepository.dataItemConfig();
+    /* JADX WARNING: Missing block: B:21:0x0042, code:
+            if (r1 == null) goto L_0x0047;
+     */
+    /* JADX WARNING: Missing block: B:22:0x0044, code:
+            r1.provideAnimateElement(r7, r8, r0);
+     */
+    /* JADX WARNING: Missing block: B:23:0x0047, code:
+            r12 = com.android.camera.data.DataRepository.dataItemConfig();
             r0 = com.android.camera.data.DataRepository.dataItemGlobal().getCurrentCameraId();
-            r1 = com.android.camera.module.loader.camera2.Camera2DataContainer.getInstance().getCapabilitiesByBogusCameraId(r0, r7.mCurrentMode);
+            r1 = com.android.camera.module.loader.camera2.Camera2DataContainer.getInstance().getCapabilitiesByBogusCameraId(r0, r6.mCurrentMode);
      */
-    /* JADX WARNING: Missing block: B:21:0x0056, code:
-            if (r1 != null) goto L_0x0059;
+    /* JADX WARNING: Missing block: B:24:0x005d, code:
+            if (r1 != null) goto L_0x0060;
      */
-    /* JADX WARNING: Missing block: B:22:0x0058, code:
+    /* JADX WARNING: Missing block: B:25:0x005f, code:
             return;
      */
-    /* JADX WARNING: Missing block: B:24:0x005f, code:
-            if (r7.mTopConfigMenu.getVisibility() == 0) goto L_0x0066;
+    /* JADX WARNING: Missing block: B:27:0x0066, code:
+            if (r6.mTopConfigMenu.getVisibility() == 0) goto L_0x006d;
      */
-    /* JADX WARNING: Missing block: B:25:0x0061, code:
-            com.android.camera.animation.type.AlphaInOnSubscribe.directSetResult(r7.mTopConfigMenu);
+    /* JADX WARNING: Missing block: B:28:0x0068, code:
+            com.android.camera.animation.type.AlphaInOnSubscribe.directSetResult(r6.mTopConfigMenu);
      */
-    /* JADX WARNING: Missing block: B:26:0x0066, code:
-            r7.mSupportedConfigs = com.android.camera.data.data.config.SupportedConfigFactory.getSupportedTopConfigs(r7.mCurrentMode, r13, r0, r1, com.android.camera.data.DataRepository.dataItemGlobal().isNormalIntent());
-            r14 = 0;
+    /* JADX WARNING: Missing block: B:29:0x006d, code:
+            r6.mSupportedConfigs = com.android.camera.data.data.config.SupportedConfigFactory.getSupportedTopConfigs(r6.mCurrentMode, r12, r0, r1, com.android.camera.data.DataRepository.dataItemGlobal().isNormalIntent());
+            r13 = 0;
      */
-    /* JADX WARNING: Missing block: B:28:0x007d, code:
-            if (r14 >= r7.mConfigViews.size()) goto L_0x0137;
+    /* JADX WARNING: Missing block: B:31:0x0084, code:
+            if (r13 >= r6.mConfigViews.size()) goto L_0x0149;
      */
-    /* JADX WARNING: Missing block: B:29:0x007f, code:
-            r15 = (android.widget.ImageView) r7.mConfigViews.get(r14);
-            r15.setEnabled(r11);
-            r16 = r15.getTag(com.android.camera.R.id.tag_config_view_margin_key);
+    /* JADX WARNING: Missing block: B:32:0x0086, code:
+            r14 = (android.widget.ImageView) r6.mConfigViews.get(r13);
+            r14.setEnabled(r11);
+            r16 = r14.getTag(com.android.camera.R.id.tag_config_view_margin_key);
      */
-    /* JADX WARNING: Missing block: B:30:0x0092, code:
-            if (r16 == null) goto L_0x009e;
+    /* JADX WARNING: Missing block: B:33:0x0099, code:
+            if (r16 == null) goto L_0x00a5;
      */
-    /* JADX WARNING: Missing block: B:31:0x0094, code:
+    /* JADX WARNING: Missing block: B:34:0x009b, code:
             r5 = ((java.lang.Integer) r16).intValue();
      */
-    /* JADX WARNING: Missing block: B:32:0x009e, code:
-            r5 = r12;
+    /* JADX WARNING: Missing block: B:35:0x00a5, code:
+            r5 = 0;
      */
-    /* JADX WARNING: Missing block: B:33:0x00a0, code:
-            r4 = r7.mSupportedConfigs.getConfigTypeForViewPosition(r14);
-     */
-    /* JADX WARNING: Missing block: B:34:0x00a6, code:
-            if (r9 == null) goto L_0x00ab;
-     */
-    /* JADX WARNING: Missing block: B:35:0x00a8, code:
-            r17 = r11;
-     */
-    /* JADX WARNING: Missing block: B:36:0x00ab, code:
-            r17 = r12;
+    /* JADX WARNING: Missing block: B:36:0x00a7, code:
+            r4 = r6.mSupportedConfigs.getConfigTypeForViewPosition(r13);
      */
     /* JADX WARNING: Missing block: B:37:0x00ad, code:
-            r11 = r4;
-            r12 = r5;
-            r8 = com.android.camera.R.id.tag_config_view_margin_key;
-            r0 = setTopImageResource(r4, r15, r8, r13, r14, r17);
+            if (r8 == null) goto L_0x00b2;
      */
-    /* JADX WARNING: Missing block: B:38:0x00bd, code:
-            if (r0 == false) goto L_0x00d0;
+    /* JADX WARNING: Missing block: B:38:0x00af, code:
+            r17 = r11;
      */
-    /* JADX WARNING: Missing block: B:39:0x00bf, code:
-            if (r16 == null) goto L_0x00d0;
+    /* JADX WARNING: Missing block: B:39:0x00b2, code:
+            r17 = false;
      */
-    /* JADX WARNING: Missing block: B:41:0x00cb, code:
-            if (r12 != ((java.lang.Integer) r15.getTag(r8)).intValue()) goto L_0x00ce;
+    /* JADX WARNING: Missing block: B:40:0x00b4, code:
+            r10 = r4;
+            r11 = r5;
+            r0 = setTopImageResource(r4, r14, r7, r12, r17);
      */
-    /* JADX WARNING: Missing block: B:42:0x00ce, code:
-            r1 = null;
+    /* JADX WARNING: Missing block: B:41:0x00c1, code:
+            if (r0 == false) goto L_0x00d2;
      */
-    /* JADX WARNING: Missing block: B:43:0x00d0, code:
-            r1 = 1;
+    /* JADX WARNING: Missing block: B:43:0x00cd, code:
+            if (r6.mDisabledFunctionMenu.contains(java.lang.Integer.valueOf(r10)) == false) goto L_0x00d2;
      */
-    /* JADX WARNING: Missing block: B:45:0x00d5, code:
-            if (r15.getTag() == null) goto L_0x00e6;
+    /* JADX WARNING: Missing block: B:44:0x00d2, code:
+            if (r0 == false) goto L_0x00e5;
      */
-    /* JADX WARNING: Missing block: B:47:0x00e1, code:
-            if (((java.lang.Integer) r15.getTag()).intValue() != r11) goto L_0x00e6;
+    /* JADX WARNING: Missing block: B:45:0x00d4, code:
+            if (r16 == null) goto L_0x00e5;
+     */
+    /* JADX WARNING: Missing block: B:47:0x00e0, code:
+            if (r11 != ((java.lang.Integer) r14.getTag(com.android.camera.R.id.tag_config_view_margin_key)).intValue()) goto L_0x00e3;
      */
     /* JADX WARNING: Missing block: B:48:0x00e3, code:
-            if (r1 == null) goto L_0x00e6;
+            r11 = null;
      */
-    /* JADX WARNING: Missing block: B:49:0x00e6, code:
-            r15.setTag(java.lang.Integer.valueOf(r11));
+    /* JADX WARNING: Missing block: B:49:0x00e5, code:
+            r11 = 1;
      */
-    /* JADX WARNING: Missing block: B:50:0x00ed, code:
-            if (r9 != null) goto L_0x00f9;
+    /* JADX WARNING: Missing block: B:51:0x00ea, code:
+            if (r14.getTag() == null) goto L_0x00fb;
      */
-    /* JADX WARNING: Missing block: B:51:0x00ef, code:
-            if (r0 == false) goto L_0x00f5;
+    /* JADX WARNING: Missing block: B:53:0x00f6, code:
+            if (((java.lang.Integer) r14.getTag()).intValue() != r10) goto L_0x00fb;
      */
-    /* JADX WARNING: Missing block: B:52:0x00f1, code:
-            com.android.camera.animation.type.AlphaInOnSubscribe.directSetResult(r15);
-     */
-    /* JADX WARNING: Missing block: B:53:0x00f5, code:
-            com.android.camera.animation.type.AlphaOutOnSubscribe.directSetResult(r15);
+    /* JADX WARNING: Missing block: B:54:0x00f8, code:
+            if (r11 == null) goto L_0x00fb;
      */
     /* JADX WARNING: Missing block: B:55:0x00fb, code:
-            if (r0 == false) goto L_0x0112;
+            r14.setTag(java.lang.Integer.valueOf(r10));
      */
-    /* JADX WARNING: Missing block: B:56:0x00fd, code:
-            r0 = new com.android.camera.animation.type.AlphaInOnSubscribe(r15);
+    /* JADX WARNING: Missing block: B:56:0x0102, code:
+            if (r8 != null) goto L_0x010e;
+     */
+    /* JADX WARNING: Missing block: B:57:0x0104, code:
+            if (r0 == false) goto L_0x010a;
+     */
+    /* JADX WARNING: Missing block: B:58:0x0106, code:
+            com.android.camera.animation.type.AlphaInOnSubscribe.directSetResult(r14);
+     */
+    /* JADX WARNING: Missing block: B:59:0x010a, code:
+            com.android.camera.animation.type.AlphaOutOnSubscribe.directSetResult(r14);
+     */
+    /* JADX WARNING: Missing block: B:61:0x0110, code:
+            if (r0 == false) goto L_0x0127;
+     */
+    /* JADX WARNING: Missing block: B:62:0x0112, code:
+            r0 = new com.android.camera.animation.type.AlphaInOnSubscribe(r14);
             r0.setStartDelayTime(150).setDurationTime(150);
-            r9.add(io.reactivex.Completable.create(r0));
+            r8.add(io.reactivex.Completable.create(r0));
      */
-    /* JADX WARNING: Missing block: B:58:0x0114, code:
-            if (r10 == 165) goto L_0x012c;
+    /* JADX WARNING: Missing block: B:64:0x0129, code:
+            if (r9 == 165) goto L_0x0141;
      */
-    /* JADX WARNING: Missing block: B:60:0x0118, code:
-            if (r7.mCurrentMode != 165) goto L_0x011b;
+    /* JADX WARNING: Missing block: B:66:0x012d, code:
+            if (r6.mCurrentMode != 165) goto L_0x0130;
      */
-    /* JADX WARNING: Missing block: B:61:0x011b, code:
-            r9.add(io.reactivex.Completable.create(new com.android.camera.animation.type.AlphaOutOnSubscribe(r15).setDurationTime(150)));
+    /* JADX WARNING: Missing block: B:67:0x0130, code:
+            r8.add(io.reactivex.Completable.create(new com.android.camera.animation.type.AlphaOutOnSubscribe(r14).setDurationTime(150)));
      */
-    /* JADX WARNING: Missing block: B:62:0x012c, code:
-            com.android.camera.animation.type.AlphaOutOnSubscribe.directSetResult(r15);
+    /* JADX WARNING: Missing block: B:68:0x0141, code:
+            com.android.camera.animation.type.AlphaOutOnSubscribe.directSetResult(r14);
      */
-    /* JADX WARNING: Missing block: B:63:0x012f, code:
-            r14 = r14 + 1;
-            r8 = r20;
+    /* JADX WARNING: Missing block: B:69:0x0144, code:
+            r13 = r13 + 1;
             r11 = true;
-            r12 = false;
      */
-    /* JADX WARNING: Missing block: B:64:0x0137, code:
+    /* JADX WARNING: Missing block: B:70:0x0149, code:
             return;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        int i2 = i;
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        int i3 = i;
         List<Completable> list2 = list;
-        if (this.mCurrentMode != i2) {
-            this.mBeforeMode = this.mCurrentMode;
-        }
-        int i3 = this.mCurrentMode;
-        super.provideAnimateElement(i, list, z);
-        boolean z2 = true;
-        boolean z3 = false;
-        switch (i3) {
+        int i4 = i2;
+        int i5 = this.mCurrentMode;
+        boolean z = true;
+        boolean z2 = i4 == 3;
+        super.provideAnimateElement(i, list, i2);
+        switch (i5) {
             case 161:
-                if (i2 == 161) {
-                    boolean z4 = false;
+                if (i3 == 161) {
+                    boolean z3 = false;
                     break;
                 }
             case 162:
                 break;
             default:
-                switch (i3) {
+                switch (i5) {
                     case 168:
                     case 169:
                     case 170:
@@ -986,22 +1001,24 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
         int currentCameraId = DataRepository.dataItemGlobal().getCurrentCameraId();
         this.mSupportedConfigs = SupportedConfigFactory.getSupportedTopConfigs(this.mCurrentMode, dataItemConfig, currentCameraId, Camera2DataContainer.getInstance().getCapabilitiesByBogusCameraId(currentCameraId, this.mCurrentMode), DataRepository.dataItemGlobal().isNormalIntent());
         for (int i = 0; i < this.mConfigViews.size(); i++) {
-            int intValue;
             ImageView imageView = (ImageView) this.mConfigViews.get(i);
+            boolean z = true;
             imageView.setEnabled(true);
             imageView.setColorFilter(null);
             Object tag = imageView.getTag(R.id.tag_config_view_margin_key);
+            int intValue;
             if (tag != null) {
                 intValue = ((Integer) tag).intValue();
             } else {
                 intValue = 0;
             }
             int configTypeForViewPosition = this.mSupportedConfigs.getConfigTypeForViewPosition(i);
-            int i2 = configTypeForViewPosition;
-            boolean topImageResource = setTopImageResource(configTypeForViewPosition, imageView, this.mCurrentMode, dataItemConfig, i, false);
-            int i3 = (!topImageResource || tag == null || intValue == ((Integer) imageView.getTag(R.id.tag_config_view_margin_key)).intValue()) ? 1 : 0;
-            if (imageView.getTag() == null || ((Integer) imageView.getTag()).intValue() != i2 || i3 == 0) {
-                imageView.setTag(Integer.valueOf(i2));
+            boolean topImageResource = setTopImageResource(configTypeForViewPosition, imageView, this.mCurrentMode, dataItemConfig, false);
+            if (!(!topImageResource || tag == null || intValue == ((Integer) imageView.getTag(R.id.tag_config_view_margin_key)).intValue())) {
+                z = false;
+            }
+            if (imageView.getTag() == null || ((Integer) imageView.getTag()).intValue() != configTypeForViewPosition || !z) {
+                imageView.setTag(Integer.valueOf(configTypeForViewPosition));
                 imageView.clearAnimation();
                 imageView.setVisibility(0);
                 if (topImageResource) {
@@ -1015,11 +1032,10 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
     }
 
     public void updateConfigItem(int... iArr) {
-        this.mBeforeMode = this.mCurrentMode;
         DataItemConfig dataItemConfig = DataRepository.dataItemConfig();
         for (int i : iArr) {
             if (this.mSupportedConfigs.isHasConfigItem(i)) {
-                setTopImageResource(i, getTopImage(i), this.mCurrentMode, dataItemConfig, getTopImagePosition(i), false);
+                setTopImageResource(i, getTopImage(i), this.mCurrentMode, dataItemConfig, false);
             }
         }
     }
@@ -1034,23 +1050,6 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
 
     public void removeExtraMenu(int i) {
         onBackEvent(i);
-    }
-
-    public void setConfigItemVisible(int i, int i2, boolean z) {
-        View topImage = getTopImage(i);
-        if (topImage != null) {
-            if (i2 == 0) {
-                if (z) {
-                    Completable.create(new AlphaInOnSubscribe(topImage)).subscribe();
-                } else {
-                    AlphaInOnSubscribe.directSetResult(topImage);
-                }
-            } else if (z) {
-                Completable.create(new AlphaOutOnSubscribe(topImage)).subscribe();
-            } else {
-                AlphaOutOnSubscribe.directSetResult(topImage);
-            }
-        }
     }
 
     public void hideExtraMenu() {
@@ -1092,19 +1091,19 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
 
     public void disableMenuItem(int... iArr) {
         if (iArr != null) {
-            for (int valueOf : iArr) {
-                this.mDisabledFunctionMenu.add(Integer.valueOf(valueOf));
+            for (int i : iArr) {
+                this.mDisabledFunctionMenu.add(Integer.valueOf(i));
+                AlphaOutOnSubscribe.directSetResult(getTopImage(i));
             }
         }
     }
 
     public void enableMenuItem(int... iArr) {
-        if (iArr == null || iArr.length == 0) {
-            this.mDisabledFunctionMenu.clear();
-            return;
-        }
-        for (int valueOf : iArr) {
-            this.mDisabledFunctionMenu.remove(Integer.valueOf(valueOf));
+        if (!this.mDisabledFunctionMenu.isEmpty()) {
+            for (int i : iArr) {
+                this.mDisabledFunctionMenu.remove(Integer.valueOf(i));
+                AlphaInOnSubscribe.directSetResult(getTopImage(i));
+            }
         }
     }
 
@@ -1188,10 +1187,24 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
         }
     }
 
+    public void alertSwitchHint(int i, String str) {
+        FragmentTopAlert topAlert = getTopAlert();
+        if (topAlert != null && topAlert.isShow()) {
+            topAlert.alertSwitchHint(i, str, getAlertTopMargin());
+        }
+    }
+
     public void alertTopHint(int i, @StringRes int i2) {
         FragmentTopAlert topAlert = getTopAlert();
         if (topAlert != null && topAlert.isShow()) {
             topAlert.alertTopHint(i, i2, getAlertTopMargin());
+        }
+    }
+
+    public void alertTopHint(int i, String str) {
+        FragmentTopAlert topAlert = getTopAlert();
+        if (topAlert != null && topAlert.isShow()) {
+            topAlert.alertTopHint(i, getAlertTopMargin(), str);
         }
     }
 
@@ -1247,7 +1260,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
     public void notifyDataChanged(int i, int i2) {
         super.notifyDataChanged(i, i2);
         this.mDisplayRectTopMargin = Util.getDisplayRect(getContext()).top;
-        provideAnimateElement(this.mCurrentMode, null, false);
+        provideAnimateElement(this.mCurrentMode, null, 2);
     }
 
     public void notifyAfterFrameAvailable(int i) {
@@ -1263,6 +1276,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
         if (configChanges != null) {
             configChanges.reCheckMutexConfigs(this.mCurrentMode);
             configChanges.reCheckUltraPixelPhotoGraphy();
+            configChanges.reCheckLiveShot();
         }
     }
 
@@ -1290,8 +1304,13 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
                 return;
             }
         }
-        if (CameraSettings.isMeunUltraPixelPhotographyOn() || CameraSettings.isUltraPixelPhotographyOn()) {
-            alertTopHint(0, R.string.ultra_pixel_photography_open_tip);
+        if (CameraSettings.isRearMenuUltraPixelPhotographyOn() || CameraSettings.isUltraPixelPhotographyOn()) {
+            alertTopHint(0, DataRepository.dataItemConfig().getRearComponentConfigUltraPixel().getUltraPixelOpenTip());
+        } else if (CameraSettings.isFrontMenuUltraPixelPhotographyOn()) {
+            alertTopHint(0, DataRepository.dataItemConfig().getFrontComponentConfigUltraPixel().getUltraPixelOpenTip());
+        }
+        if (CameraSettings.isHangGestureOpen()) {
+            alertTopHint(0, (int) R.string.hand_gesture_tip);
         }
     }
 
@@ -1356,6 +1375,13 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
         if (topAlert != null) {
             topAlert.clear();
             topAlert.setShow(false);
+        }
+    }
+
+    public void clearAlertStatus() {
+        FragmentTopAlert topAlert = getTopAlert();
+        if (topAlert != null) {
+            topAlert.clearAlertStatus();
         }
     }
 

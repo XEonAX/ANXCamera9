@@ -20,7 +20,7 @@
 
 
 # instance fields
-.field private nd:Lcom/bumptech/glide/request/c;
+.field private nc:Lcom/bumptech/glide/request/c;
 
 
 # direct methods
@@ -52,7 +52,7 @@
     .end annotation
 
     .line 33
-    iget-object v0, p0, Lcom/bumptech/glide/request/target/b;->nd:Lcom/bumptech/glide/request/c;
+    iget-object v0, p0, Lcom/bumptech/glide/request/target/b;->nc:Lcom/bumptech/glide/request/c;
 
     return-object v0
 .end method
@@ -87,7 +87,7 @@
     .end param
 
     .line 27
-    iput-object p1, p0, Lcom/bumptech/glide/request/target/b;->nd:Lcom/bumptech/glide/request/c;
+    iput-object p1, p0, Lcom/bumptech/glide/request/target/b;->nc:Lcom/bumptech/glide/request/c;
 
     .line 28
     return-void

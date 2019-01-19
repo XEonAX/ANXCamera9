@@ -14,6 +14,7 @@ import java.util.List;
 
 public abstract class ImageProcessor {
     private static final int DEFAULT_IMAGE_BUFFER_QUEUE_SIZE = 4;
+    private static final int DELAY_SEND_MSG_TIME_MS = 50;
     private static final int MSG_IMAGE_RECEIVED = 1;
     private static final String TAG = ImageProcessor.class.getSimpleName();
     private Handler mHandler;
@@ -68,20 +69,25 @@ public abstract class ImageProcessor {
         this.mWorkThread.start();
         this.mHandler = new Handler(this.mWorkThread.getLooper()) {
             public void handleMessage(Message message) {
-                StringBuilder stringBuilder;
                 if (message.what != 1) {
                     String access$000 = ImageProcessor.TAG;
-                    stringBuilder = new StringBuilder();
-                    stringBuilder.append("handleMessage: unknown message received : ");
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("handleMessage: unknown message received: ");
                     stringBuilder.append(message.what);
                     Log.d(access$000, stringBuilder.toString());
-                } else if (message.obj instanceof CaptureDataBean) {
+                } else if (ImageProcessor.this.mTaskSession == null || !ImageProcessor.this.mTaskSession.isBusy()) {
                     ImageProcessor.this.processImage((CaptureDataBean) message.obj);
                 } else {
-                    stringBuilder = new StringBuilder();
-                    stringBuilder.append("Unknown message data:");
-                    stringBuilder.append(message.obj);
-                    throw new RuntimeException(stringBuilder.toString());
+                    CaptureDataBean captureDataBean = (CaptureDataBean) message.obj;
+                    String access$0002 = ImageProcessor.TAG;
+                    StringBuilder stringBuilder2 = new StringBuilder();
+                    stringBuilder2.append("delay to process: ");
+                    stringBuilder2.append(captureDataBean.getResult().getTimeStamp());
+                    Log.w(access$0002, stringBuilder2.toString());
+                    Message obtainMessage = obtainMessage();
+                    obtainMessage.what = 1;
+                    obtainMessage.obj = message.obj;
+                    sendMessageDelayed(obtainMessage, 50);
                 }
             }
         };

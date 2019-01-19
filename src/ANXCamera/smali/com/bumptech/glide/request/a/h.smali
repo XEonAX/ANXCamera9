@@ -27,7 +27,7 @@
 
 
 # instance fields
-.field private oQ:Lcom/bumptech/glide/request/a/f;
+.field private oP:Lcom/bumptech/glide/request/a/f;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/request/a/f<",
@@ -36,7 +36,7 @@
     .end annotation
 .end field
 
-.field private final oX:Lcom/bumptech/glide/request/a/k$a;
+.field private final oW:Lcom/bumptech/glide/request/a/k$a;
 
 
 # direct methods
@@ -75,7 +75,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 29
-    iput-object p1, p0, Lcom/bumptech/glide/request/a/h;->oX:Lcom/bumptech/glide/request/a/k$a;
+    iput-object p1, p0, Lcom/bumptech/glide/request/a/h;->oW:Lcom/bumptech/glide/request/a/k$a;
 
     .line 30
     return-void
@@ -106,22 +106,22 @@
 
     .line 46
     :cond_0
-    iget-object p1, p0, Lcom/bumptech/glide/request/a/h;->oQ:Lcom/bumptech/glide/request/a/f;
+    iget-object p1, p0, Lcom/bumptech/glide/request/a/h;->oP:Lcom/bumptech/glide/request/a/f;
 
     if-nez p1, :cond_1
 
     .line 47
     new-instance p1, Lcom/bumptech/glide/request/a/k;
 
-    iget-object p2, p0, Lcom/bumptech/glide/request/a/h;->oX:Lcom/bumptech/glide/request/a/k$a;
+    iget-object p2, p0, Lcom/bumptech/glide/request/a/h;->oW:Lcom/bumptech/glide/request/a/k$a;
 
     invoke-direct {p1, p2}, Lcom/bumptech/glide/request/a/k;-><init>(Lcom/bumptech/glide/request/a/k$a;)V
 
-    iput-object p1, p0, Lcom/bumptech/glide/request/a/h;->oQ:Lcom/bumptech/glide/request/a/f;
+    iput-object p1, p0, Lcom/bumptech/glide/request/a/h;->oP:Lcom/bumptech/glide/request/a/f;
 
     .line 50
     :cond_1
-    iget-object p1, p0, Lcom/bumptech/glide/request/a/h;->oQ:Lcom/bumptech/glide/request/a/f;
+    iget-object p1, p0, Lcom/bumptech/glide/request/a/h;->oP:Lcom/bumptech/glide/request/a/f;
 
     return-object p1
 

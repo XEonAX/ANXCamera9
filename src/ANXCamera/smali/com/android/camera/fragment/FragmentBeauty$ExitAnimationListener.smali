@@ -25,7 +25,7 @@
 .method private constructor <init>(Lcom/android/camera/fragment/FragmentBeauty;)V
     .locals 0
 
-    .line 173
+    .line 174
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentBeauty$ExitAnimationListener;->this$0:Lcom/android/camera/fragment/FragmentBeauty;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -36,7 +36,7 @@
 .method synthetic constructor <init>(Lcom/android/camera/fragment/FragmentBeauty;Lcom/android/camera/fragment/FragmentBeauty$1;)V
     .locals 0
 
-    .line 173
+    .line 174
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBeauty$ExitAnimationListener;-><init>(Lcom/android/camera/fragment/FragmentBeauty;)V
 
     return-void
@@ -47,7 +47,7 @@
 .method public onAnimationEnd(Landroid/view/animation/Animation;)V
     .locals 2
 
-    .line 182
+    .line 183
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
@@ -60,12 +60,12 @@
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;
 
-    .line 183
+    .line 184
     if-eqz p1, :cond_0
 
     const v0, 0x7f0d001a
 
-    .line 184
+    .line 185
     invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->getActiveFragment(I)I
 
     move-result v0
@@ -74,12 +74,12 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 185
+    .line 186
     const/16 v0, 0xa
 
     invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->delegateEvent(I)V
 
-    .line 186
+    .line 187
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBeauty$ExitAnimationListener;->this$0:Lcom/android/camera/fragment/FragmentBeauty;
 
@@ -89,7 +89,7 @@
 
     if-eqz p1, :cond_3
 
-    .line 187
+    .line 188
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
@@ -102,7 +102,7 @@
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$CameraAction;
 
-    .line 188
+    .line 189
     invoke-static {}, Lcom/android/camera/fragment/beauty/BeautyParameters;->isCurrentModeSupportVideoBeauty()Z
 
     move-result v0
@@ -111,14 +111,14 @@
 
     if-eqz p1, :cond_2
 
-    .line 189
+    .line 190
     invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$CameraAction;->isDoingAction()Z
 
     move-result p1
 
     if-nez p1, :cond_2
 
-    .line 191
+    .line 192
     :cond_1
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -132,16 +132,11 @@
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;
 
-    .line 192
+    .line 193
     invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->reInitTipImage()V
 
-    .line 194
-    :cond_2
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBeauty$ExitAnimationListener;->this$0:Lcom/android/camera/fragment/FragmentBeauty;
-
-    invoke-static {p1}, Lcom/android/camera/fragment/FragmentBeauty;->access$300(Lcom/android/camera/fragment/FragmentBeauty;)V
-
     .line 195
+    :cond_2
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBeauty$ExitAnimationListener;->this$0:Lcom/android/camera/fragment/FragmentBeauty;
 
     const/4 v0, 0x0
@@ -163,6 +158,6 @@
 .method public onAnimationStart(Landroid/view/animation/Animation;)V
     .locals 0
 
-    .line 177
+    .line 178
     return-void
 .end method

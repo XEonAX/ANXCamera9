@@ -61,6 +61,12 @@
     return v0
 .end method
 
+.method public abstract getPaddingX()I
+.end method
+
+.method public abstract getPaddingY()I
+.end method
+
 .method public abstract getTexture()Lcom/android/gallery3d/ui/BasicTexture;
 .end method
 

@@ -31,22 +31,22 @@
 .method public constructor <init>(Lcom/ss/android/ugc/effectmanager/context/EffectContext;Ljava/lang/String;Ljava/lang/String;Landroid/os/Handler;Ljava/lang/String;Z)V
     .locals 1
 
-    .line 60
+    .line 56
     const-string v0, "NETWORK"
 
     invoke-direct {p0, p4, p3, v0}, Lcom/ss/android/ugc/effectmanager/common/task/NormalTask;-><init>(Landroid/os/Handler;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 42
+    .line 38
     new-instance p3, Ljava/util/ArrayList;
 
     invoke-direct {p3}, Ljava/util/ArrayList;-><init>()V
 
     iput-object p3, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectIds:Ljava/util/List;
 
-    .line 61
+    .line 57
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
-    .line 62
+    .line 58
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -55,7 +55,7 @@
 
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
-    .line 63
+    .line 59
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -68,32 +68,34 @@
 
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mJsonConverter:Lcom/ss/android/ugc/effectmanager/common/listener/IJsonConverter;
 
-    .line 64
+    .line 60
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectIds:Ljava/util/List;
 
     invoke-interface {p1}, Ljava/util/List;->clear()V
 
-    .line 65
+    .line 61
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectIds:Ljava/util/List;
 
     invoke-interface {p1, p5}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 66
+    .line 62
     iput-boolean p6, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mIsFavorite:Z
 
-    .line 67
+    .line 63
     iput-object p2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mPanel:Ljava/lang/String;
 
-    .line 68
+    .line 64
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getRetryCount()I
 
     move-result p1
 
+    add-int/lit8 p1, p1, 0x1
+
     iput p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mCurCnt:I
 
-    .line 69
+    .line 65
     return-void
 .end method
 
@@ -112,22 +114,22 @@
         }
     .end annotation
 
-    .line 48
+    .line 44
     const-string v0, "NETWORK"
 
     invoke-direct {p0, p4, p3, v0}, Lcom/ss/android/ugc/effectmanager/common/task/NormalTask;-><init>(Landroid/os/Handler;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 42
+    .line 38
     new-instance p3, Ljava/util/ArrayList;
 
     invoke-direct {p3}, Ljava/util/ArrayList;-><init>()V
 
     iput-object p3, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectIds:Ljava/util/List;
 
-    .line 49
+    .line 45
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
-    .line 50
+    .line 46
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -136,7 +138,7 @@
 
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
-    .line 51
+    .line 47
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -149,32 +151,34 @@
 
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mJsonConverter:Lcom/ss/android/ugc/effectmanager/common/listener/IJsonConverter;
 
-    .line 52
+    .line 48
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectIds:Ljava/util/List;
 
     invoke-interface {p1}, Ljava/util/List;->clear()V
 
-    .line 53
+    .line 49
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectIds:Ljava/util/List;
 
     invoke-interface {p1, p5}, Ljava/util/List;->addAll(Ljava/util/Collection;)Z
 
-    .line 54
+    .line 50
     iput-boolean p6, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mIsFavorite:Z
 
-    .line 55
+    .line 51
     iput-object p2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mPanel:Ljava/lang/String;
 
-    .line 56
+    .line 52
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getRetryCount()I
 
     move-result p1
 
+    add-int/lit8 p1, p1, 0x1
+
     iput p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mCurCnt:I
 
-    .line 57
+    .line 53
     return-void
 .end method
 
@@ -190,12 +194,12 @@
         }
     .end annotation
 
-    .line 92
+    .line 87
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
-    .line 94
+    .line 89
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
     invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getAccessKey()Ljava/lang/String;
@@ -208,7 +212,7 @@
 
     if-nez v1, :cond_0
 
-    .line 95
+    .line 90
     const-string v1, "access_key"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -219,7 +223,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 98
+    .line 93
     :cond_0
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -233,7 +237,7 @@
 
     if-nez v1, :cond_1
 
-    .line 99
+    .line 94
     const-string v1, "device_id"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -244,7 +248,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 102
+    .line 97
     :cond_1
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -258,7 +262,7 @@
 
     if-nez v1, :cond_2
 
-    .line 103
+    .line 98
     const-string v1, "device_type"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -269,7 +273,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 106
+    .line 101
     :cond_2
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -283,7 +287,7 @@
 
     if-nez v1, :cond_3
 
-    .line 107
+    .line 102
     const-string v1, "device_platform"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -294,7 +298,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 110
+    .line 105
     :cond_3
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -308,7 +312,7 @@
 
     if-nez v1, :cond_4
 
-    .line 111
+    .line 106
     const-string v1, "region"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -319,7 +323,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 114
+    .line 109
     :cond_4
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -333,7 +337,7 @@
 
     if-nez v1, :cond_5
 
-    .line 115
+    .line 110
     const-string v1, "sdk_version"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -344,7 +348,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 118
+    .line 113
     :cond_5
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -358,7 +362,7 @@
 
     if-nez v1, :cond_6
 
-    .line 119
+    .line 114
     const-string v1, "app_version"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -369,7 +373,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 122
+    .line 117
     :cond_6
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -383,7 +387,7 @@
 
     if-nez v1, :cond_7
 
-    .line 123
+    .line 118
     const-string v1, "channel"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -394,13 +398,9 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 126
+    .line 121
     :cond_7
-    iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
-
-    invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getAppID()Ljava/lang/String;
-
-    move-result-object v1
+    iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mPanel:Ljava/lang/String;
 
     invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -408,101 +408,30 @@
 
     if-nez v1, :cond_8
 
-    .line 127
-    const-string v1, "aid"
-
-    iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
-
-    invoke-virtual {v2}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getAppID()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 129
-    :cond_8
-    iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
-
-    invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getAppLanguage()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    move-result v1
-
-    if-nez v1, :cond_9
-
-    .line 130
-    const-string v1, "app_language"
-
-    iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
-
-    invoke-virtual {v2}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getAppLanguage()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 132
-    :cond_9
-    iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
-
-    invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getSysLanguage()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    move-result v1
-
-    if-nez v1, :cond_a
-
-    .line 133
-    const-string v1, "language"
-
-    iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
-
-    invoke-virtual {v2}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getSysLanguage()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 135
-    :cond_a
-    iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mPanel:Ljava/lang/String;
-
-    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    move-result v1
-
-    if-nez v1, :cond_b
-
-    .line 136
+    .line 122
     const-string v1, "panel"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mPanel:Ljava/lang/String;
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 139
-    :cond_b
+    .line 125
+    :cond_8
     const-string v1, "effect_ids"
 
     invoke-virtual {v0, v1, p1}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 140
+    .line 126
     invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object p1
 
-    .line 141
+    .line 127
     const-string p2, "type"
 
     invoke-virtual {v0, p2, p1}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 143
+    .line 129
     new-instance p1, Lcom/ss/android/ugc/effectmanager/common/EffectRequest;
 
     const-string p2, "POST"
@@ -513,7 +442,7 @@
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
-    .line 144
+    .line 130
     invoke-virtual {v2}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getLinkSelector()Lcom/ss/android/ugc/effectmanager/link/LinkSelector;
 
     move-result-object v2
@@ -542,15 +471,15 @@
 
     invoke-direct {p1, p2, v1}, Lcom/ss/android/ugc/effectmanager/common/EffectRequest;-><init>(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 145
+    .line 131
     invoke-virtual {p1, v0}, Lcom/ss/android/ugc/effectmanager/common/EffectRequest;->setBodyParams(Ljava/util/Map;)V
 
-    .line 146
+    .line 132
     const-string p2, "application/json"
 
     invoke-virtual {p1, p2}, Lcom/ss/android/ugc/effectmanager/common/EffectRequest;->setContentType(Ljava/lang/String;)V
 
-    .line 147
+    .line 133
     return-object p1
 .end method
 
@@ -559,7 +488,7 @@
 .method public execute()V
     .locals 8
 
-    .line 74
+    .line 70
     const/4 v0, 0x0
 
     move v1, v0
@@ -567,9 +496,9 @@
     :goto_0
     iget v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mCurCnt:I
 
-    if-ge v1, v2, :cond_2
+    if-ge v1, v2, :cond_1
 
-    .line 75
+    .line 71
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectIds:Ljava/util/List;
 
     iget-boolean v3, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mIsFavorite:Z
@@ -578,7 +507,7 @@
 
     move-result-object v2
 
-    .line 77
+    .line 73
     const/16 v3, 0x28
 
     const/4 v4, 0x1
@@ -596,7 +525,7 @@
 
     invoke-virtual {v5, v2, v6, v7}, Lcom/ss/android/ugc/effectmanager/network/EffectNetWorkerWrapper;->execute(Lcom/ss/android/ugc/effectmanager/common/EffectRequest;Lcom/ss/android/ugc/effectmanager/common/listener/IJsonConverter;Ljava/lang/Class;)Lcom/ss/android/ugc/effectmanager/common/model/BaseNetResponse;
 
-    .line 78
+    .line 74
     new-instance v2, Lcom/ss/android/ugc/effectmanager/effect/task/result/FavoriteTaskResult;
 
     iget-object v5, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectIds:Ljava/util/List;
@@ -609,30 +538,37 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 79
-    goto :goto_2
+    .line 75
+    goto :goto_1
 
-    .line 80
+    .line 76
     :catch_0
     move-exception v2
 
-    .line 81
+    .line 77
     invoke-virtual {v2}, Ljava/lang/Exception;->printStackTrace()V
 
-    .line 83
+    .line 79
     iget v5, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mCurCnt:I
 
     sub-int/2addr v5, v4
 
-    if-eq v1, v5, :cond_1
+    if-ne v1, v5, :cond_0
 
-    instance-of v4, v2, Lcom/ss/android/ugc/effectmanager/common/exception/StatusCodeException;
+    .line 80
+    new-instance v4, Lcom/ss/android/ugc/effectmanager/effect/task/result/FavoriteTaskResult;
 
-    if-eqz v4, :cond_0
+    iget-object v5, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectIds:Ljava/util/List;
 
-    goto :goto_1
+    new-instance v6, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
 
-    .line 74
+    invoke-direct {v6, v2}, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;-><init>(Ljava/lang/Exception;)V
+
+    invoke-direct {v4, v0, v5, v6}, Lcom/ss/android/ugc/effectmanager/effect/task/result/FavoriteTaskResult;-><init>(ZLjava/util/List;Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
+
+    invoke-virtual {p0, v3, v4}, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->sendMessage(ILcom/ss/android/ugc/effectmanager/common/task/BaseTaskResult;)V
+
+    .line 70
     :cond_0
     add-int/lit8 v1, v1, 0x1
 
@@ -641,23 +577,5 @@
     .line 84
     :cond_1
     :goto_1
-    new-instance v1, Lcom/ss/android/ugc/effectmanager/effect/task/result/FavoriteTaskResult;
-
-    iget-object v4, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->mEffectIds:Ljava/util/List;
-
-    new-instance v5, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
-
-    invoke-direct {v5, v2}, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;-><init>(Ljava/lang/Exception;)V
-
-    invoke-direct {v1, v0, v4, v5}, Lcom/ss/android/ugc/effectmanager/effect/task/result/FavoriteTaskResult;-><init>(ZLjava/util/List;Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
-
-    invoke-virtual {p0, v3, v1}, Lcom/ss/android/ugc/effectmanager/effect/task/task/FavoriteTask;->sendMessage(ILcom/ss/android/ugc/effectmanager/common/task/BaseTaskResult;)V
-
-    .line 85
-    nop
-
-    .line 89
-    :cond_2
-    :goto_2
     return-void
 .end method

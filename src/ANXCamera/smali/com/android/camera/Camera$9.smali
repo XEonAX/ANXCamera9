@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/Camera;)V
     .locals 0
 
-    .line 1543
+    .line 1552
     iput-object p1, p0, Lcom/android/camera/Camera$9;->this$0:Lcom/android/camera/Camera;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public run()V
     .locals 1
 
-    .line 1546
+    .line 1555
     iget-object v0, p0, Lcom/android/camera/Camera$9;->this$0:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->isActivityPaused()Z
@@ -47,10 +47,10 @@
 
     if-eqz v0, :cond_0
 
-    .line 1547
+    .line 1556
     return-void
 
-    .line 1549
+    .line 1558
     :cond_0
     iget-object v0, p0, Lcom/android/camera/Camera$9;->this$0:Lcom/android/camera/Camera;
 
@@ -60,21 +60,21 @@
 
     invoke-virtual {v0}, Lcom/android/camera/ui/ScreenHint;->showFirstUseHint()V
 
-    .line 1550
+    .line 1559
     iget-object v0, p0, Lcom/android/camera/Camera$9;->this$0:Lcom/android/camera/Camera;
 
     iget-object v0, v0, Lcom/android/camera/Camera;->mCameraRootView:Lcom/android/camera/ui/CameraRootView;
 
     if-eqz v0, :cond_1
 
-    .line 1551
+    .line 1560
     iget-object v0, p0, Lcom/android/camera/Camera$9;->this$0:Lcom/android/camera/Camera;
 
     iget-object v0, v0, Lcom/android/camera/Camera;->mCameraRootView:Lcom/android/camera/ui/CameraRootView;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/CameraRootView;->enableTouchEvent()V
 
-    .line 1553
+    .line 1562
     :cond_1
     return-void
 .end method

@@ -84,6 +84,8 @@
 
 .field public static final KEY_LIGHTING_CHANGED:Ljava/lang/String; = "lighting_changed"
 
+.field public static final KEY_LIVE_VIDEO:Ljava/lang/String; = "live_video"
+
 .field public static final KEY_MAGIC_MIRROR_CHANGED:Ljava/lang/String; = "magic_mirror_changed"
 
 .field public static final KEY_MANUAL_AWB_CHANGED:Ljava/lang/String; = "manual_awb_changed"
@@ -242,6 +244,60 @@
 
 .field public static final PARAM_LIGHTING:Ljava/lang/String; = "\u5149\u6548"
 
+.field public static final PARAM_LIVE_BEAUTY_ON:Ljava/lang/String; = "\u6296\u97f3\u7f8e\u989c1"
+
+.field public static final PARAM_LIVE_BEAUTY_SEGMENT_ON:Ljava/lang/String; = "\u6296\u97f3\u7f8e\u989c2"
+
+.field public static final PARAM_LIVE_CLICK_PAUSE:Ljava/lang/String; = "live\u5f55\u5236\u6682\u505c"
+
+.field public static final PARAM_LIVE_CLICK_PLAY_EXIT:Ljava/lang/String; = "live\u9884\u89c8\u9000\u51fa"
+
+.field public static final PARAM_LIVE_CLICK_PLAY_EXIT_CONFIRM:Ljava/lang/String; = "live\u9884\u89c8\u9000\u51fa\u786e\u8ba4"
+
+.field public static final PARAM_LIVE_CLICK_PLAY_SAVE:Ljava/lang/String; = "live\u9884\u89c8\u4fdd\u5b58"
+
+.field public static final PARAM_LIVE_CLICK_PLAY_SHARE:Ljava/lang/String; = "live\u9884\u89c8\u5206\u4eab"
+
+.field public static final PARAM_LIVE_CLICK_PLAY_SHARE_DEFAULT:Ljava/lang/String; = "live\u9884\u89c8\u5206\u4eab01"
+
+.field public static final PARAM_LIVE_CLICK_RESUME:Ljava/lang/String; = "live\u5f55\u5236\u7ee7\u7eed"
+
+.field public static final PARAM_LIVE_CLICK_REVERSE:Ljava/lang/String; = "live\u5f55\u5236\u56de\u9000"
+
+.field public static final PARAM_LIVE_CLICK_REVERSE_CONFIRM:Ljava/lang/String; = "live\u5f55\u5236\u56de\u9000\u786e\u8ba4"
+
+.field public static final PARAM_LIVE_CLICK_SWITCH:Ljava/lang/String; = "live\u5f55\u5236\u5207\u6362"
+
+.field public static final PARAM_LIVE_ENLARGE_EYE_RATIO:Ljava/lang/String; = "\u5927\u773c\u7b49\u7ea7"
+
+.field public static final PARAM_LIVE_FILTER_NAME:Ljava/lang/String; = "\u6ee4\u955c\u7c7b\u578b"
+
+.field public static final PARAM_LIVE_FILTER_ON:Ljava/lang/String; = "\u6ee4\u955c1"
+
+.field public static final PARAM_LIVE_FILTER_SEGMENT_ON:Ljava/lang/String; = "\u6ee4\u955c2"
+
+.field public static final PARAM_LIVE_MUSIC_ICON_CLICK:Ljava/lang/String; = "\u6296\u97f3\u97f3\u4e501"
+
+.field public static final PARAM_LIVE_MUSIC_NAME:Ljava/lang/String; = "\u6296\u97f3\u97f3\u4e50\u7c7b\u578b"
+
+.field public static final PARAM_LIVE_MUSIC_ON:Ljava/lang/String; = "\u6296\u97f3\u97f3\u4e502"
+
+.field public static final PARAM_LIVE_RECORD_SEGMENTS:Ljava/lang/String; = "\u5f55\u5236\u6b21\u6570"
+
+.field public static final PARAM_LIVE_RECORD_TIME:Ljava/lang/String; = "\u6296\u97f3\u89c6\u9891\u5f55\u5236\u65f6\u957f"
+
+.field public static final PARAM_LIVE_SHRINK_FACE_RATIO:Ljava/lang/String; = "\u7626\u8138\u7b49\u7ea7"
+
+.field public static final PARAM_LIVE_SMOOTH_RATIO:Ljava/lang/String; = "\u7f8e\u767d\u7b49\u7ea7"
+
+.field public static final PARAM_LIVE_SPEED_LEVEL:Ljava/lang/String; = "\u901f\u5ea6\u8c03\u8282\u7ec6\u8282"
+
+.field public static final PARAM_LIVE_STICKER_NAME:Ljava/lang/String; = "\u9b54\u6cd5\u9053\u5177\u7c7b\u578b"
+
+.field public static final PARAM_LIVE_STICKER_ON:Ljava/lang/String; = "\u9b54\u6cd5\u9053\u51771"
+
+.field public static final PARAM_LIVE_STICKER_SEGMENT_ON:Ljava/lang/String; = "\u9b54\u6cd5\u9053\u51772"
+
 .field public static final PARAM_LOCATION:Ljava/lang/String; = "\u5730\u7406\u4f4d\u7f6e"
 
 .field public static final PARAM_MAGIC_MIRROR:Ljava/lang/String; = "\u9b54\u955c"
@@ -374,12 +430,12 @@
         }
     .end annotation
 
-    .line 325
+    .line 360
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 326
+    .line 361
     invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     const-string p0, " category:"
@@ -394,26 +450,26 @@
 
     invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 327
+    .line 362
     if-eqz p3, :cond_0
 
-    .line 328
+    .line 363
     const-string p0, " value:"
 
     invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     invoke-virtual {v0, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 330
+    .line 365
     :cond_0
     if-eqz p4, :cond_2
 
-    .line 331
+    .line 366
     const-string p0, "\n"
 
     invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 332
+    .line 367
     const-string p0, "params:"
 
     invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
@@ -422,7 +478,7 @@
 
     invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 333
+    .line 368
     invoke-interface {p4}, Ljava/util/Map;->entrySet()Ljava/util/Set;
 
     move-result-object p0
@@ -444,7 +500,7 @@
 
     check-cast p1, Ljava/util/Map$Entry;
 
-    .line 334
+    .line 369
     invoke-interface {p1}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
 
     move-result-object p2
@@ -469,23 +525,23 @@
 
     invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 335
+    .line 370
     goto :goto_0
 
-    .line 336
+    .line 371
     :cond_1
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->length()I
 
     move-result p0
 
-    .line 337
+    .line 372
     add-int/lit8 p1, p0, -0x1
 
     const-string p2, "]"
 
     invoke-virtual {v0, p1, p0, p2}, Ljava/lang/StringBuilder;->replace(IILjava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 340
+    .line 375
     :cond_2
     sget-object p0, Lcom/android/camera/statistic/CameraStat;->TAG:Ljava/lang/String;
 
@@ -495,14 +551,14 @@
 
     invoke-static {p0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 341
+    .line 376
     return-void
 .end method
 
 .method public static initialize(Landroid/content/Context;)V
     .locals 3
 
-    .line 227
+    .line 262
     const-string v0, "camera.debug.dump_stat_event"
 
     const/4 v1, 0x0
@@ -513,12 +569,12 @@
 
     sput-boolean v0, Lcom/android/camera/statistic/CameraStat;->sDumpStatEvent:Z
 
-    .line 228
+    .line 263
     invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
 
-    .line 229
+    .line 264
     const v1, 0x7f0f000b
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getBoolean(I)Z
@@ -527,12 +583,12 @@
 
     sput-boolean v1, Lcom/android/camera/statistic/CameraStat;->sIsEnabled:Z
 
-    .line 230
+    .line 265
     sget-boolean v1, Lcom/android/camera/statistic/CameraStat;->sIsEnabled:Z
 
     if-eqz v1, :cond_0
 
-    .line 231
+    .line 266
     const v1, 0x7f0f000c
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getBoolean(I)Z
@@ -541,12 +597,12 @@
 
     sput-boolean v0, Lcom/android/camera/statistic/CameraStat;->sIsCounterEventEnabled:Z
 
-    .line 232
+    .line 267
     sget-boolean v0, Lmiui/os/Build;->IS_INTERNATIONAL_BUILD:Z
 
     sput-boolean v0, Lcom/android/camera/statistic/CameraStat;->sIsAnonymous:Z
 
-    .line 233
+    .line 268
     const-string v0, "2882303761517373386"
 
     const-string v1, "5641737344386"
@@ -555,7 +611,7 @@
 
     invoke-static {p0, v0, v1, v2}, Lcom/xiaomi/mistatistic/sdk/MiStatInterface;->initialize(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 235
+    .line 270
     sget-boolean p0, Lcom/android/camera/statistic/CameraStat;->sIsAnonymous:Z
 
     const/4 v0, 0x1
@@ -564,17 +620,17 @@
 
     invoke-static {p0}, Lcom/xiaomi/mistatistic/sdk/MiStatInterface;->enableExceptionCatcher(Z)V
 
-    .line 236
+    .line 271
     const/4 p0, 0x4
 
     const-wide/32 v1, 0x15f90
 
     invoke-static {p0, v1, v2}, Lcom/xiaomi/mistatistic/sdk/MiStatInterface;->setUploadPolicy(IJ)V
 
-    .line 237
+    .line 272
     invoke-static {v0}, Lcom/xiaomi/mistatistic/sdk/CustomSettings;->setUseSystemUploadingService(Z)V
 
-    .line 239
+    .line 274
     :cond_0
     return-void
 .end method
@@ -582,7 +638,7 @@
 .method public static isCounterEventDisabled()Z
     .locals 1
 
-    .line 242
+    .line 277
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sIsCounterEventEnabled:Z
 
     xor-int/lit8 v0, v0, 0x1
@@ -593,33 +649,33 @@
 .method public static recordCalculateEvent(Ljava/lang/String;Ljava/lang/String;J)V
     .locals 1
 
-    .line 284
+    .line 319
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sIsEnabled:Z
 
     if-eqz v0, :cond_1
 
-    .line 285
+    .line 320
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sIsAnonymous:Z
 
     if-eqz v0, :cond_0
 
-    .line 286
+    .line 321
     invoke-static {p0, p1, p2, p3}, Lcom/xiaomi/mistatistic/sdk/MiStatInterface;->recordCalculateEventAnonymous(Ljava/lang/String;Ljava/lang/String;J)V
 
     goto :goto_0
 
-    .line 288
+    .line 323
     :cond_0
     invoke-static {p0, p1, p2, p3}, Lcom/xiaomi/mistatistic/sdk/MiStatInterface;->recordCalculateEvent(Ljava/lang/String;Ljava/lang/String;J)V
 
-    .line 291
+    .line 326
     :cond_1
     :goto_0
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sDumpStatEvent:Z
 
     if-eqz v0, :cond_2
 
-    .line 292
+    .line 327
     const-string v0, "CalculateEvent"
 
     invoke-static {p2, p3}, Ljava/lang/String;->valueOf(J)Ljava/lang/String;
@@ -630,7 +686,7 @@
 
     invoke-static {v0, p0, p1, p2, p3}, Lcom/android/camera/statistic/CameraStat;->dumpEvent(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)V
 
-    .line 294
+    .line 329
     :cond_2
     return-void
 .end method
@@ -650,33 +706,33 @@
         }
     .end annotation
 
-    .line 298
+    .line 333
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sIsEnabled:Z
 
     if-eqz v0, :cond_1
 
-    .line 299
+    .line 334
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sIsAnonymous:Z
 
     if-eqz v0, :cond_0
 
-    .line 300
+    .line 335
     invoke-static {p0, p1, p2, p3, p4}, Lcom/xiaomi/mistatistic/sdk/MiStatInterface;->recordCalculateEventAnonymous(Ljava/lang/String;Ljava/lang/String;JLjava/util/Map;)V
 
     goto :goto_0
 
-    .line 302
+    .line 337
     :cond_0
     invoke-static {p0, p1, p2, p3, p4}, Lcom/xiaomi/mistatistic/sdk/MiStatInterface;->recordCalculateEvent(Ljava/lang/String;Ljava/lang/String;JLjava/util/Map;)V
 
-    .line 305
+    .line 340
     :cond_1
     :goto_0
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sDumpStatEvent:Z
 
     if-eqz v0, :cond_2
 
-    .line 306
+    .line 341
     const-string v0, "CalculateEvent"
 
     invoke-static {p2, p3}, Ljava/lang/String;->valueOf(J)Ljava/lang/String;
@@ -685,7 +741,7 @@
 
     invoke-static {v0, p0, p1, p2, p4}, Lcom/android/camera/statistic/CameraStat;->dumpEvent(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)V
 
-    .line 308
+    .line 343
     :cond_2
     return-void
 .end method
@@ -693,40 +749,40 @@
 .method public static recordCountEvent(Ljava/lang/String;Ljava/lang/String;)V
     .locals 2
 
-    .line 258
+    .line 293
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sIsEnabled:Z
 
     if-eqz v0, :cond_1
 
-    .line 259
+    .line 294
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sIsAnonymous:Z
 
     if-eqz v0, :cond_0
 
-    .line 260
+    .line 295
     invoke-static {p0, p1}, Lcom/xiaomi/mistatistic/sdk/MiStatInterface;->recordCountEventAnonymous(Ljava/lang/String;Ljava/lang/String;)V
 
     goto :goto_0
 
-    .line 262
+    .line 297
     :cond_0
     invoke-static {p0, p1}, Lcom/xiaomi/mistatistic/sdk/MiStatInterface;->recordCountEvent(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 265
+    .line 300
     :cond_1
     :goto_0
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sDumpStatEvent:Z
 
     if-eqz v0, :cond_2
 
-    .line 266
+    .line 301
     const-string v0, "CountEvent"
 
     const/4 v1, 0x0
 
     invoke-static {v0, p0, p1, v1, v1}, Lcom/android/camera/statistic/CameraStat;->dumpEvent(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)V
 
-    .line 268
+    .line 303
     :cond_2
     return-void
 .end method
@@ -745,40 +801,40 @@
         }
     .end annotation
 
-    .line 271
+    .line 306
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sIsEnabled:Z
 
     if-eqz v0, :cond_1
 
-    .line 272
+    .line 307
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sIsAnonymous:Z
 
     if-eqz v0, :cond_0
 
-    .line 273
+    .line 308
     invoke-static {p0, p1, p2}, Lcom/xiaomi/mistatistic/sdk/MiStatInterface;->recordCountEventAnonymous(Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)V
 
     goto :goto_0
 
-    .line 275
+    .line 310
     :cond_0
     invoke-static {p0, p1, p2}, Lcom/xiaomi/mistatistic/sdk/MiStatInterface;->recordCountEvent(Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)V
 
-    .line 278
+    .line 313
     :cond_1
     :goto_0
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sDumpStatEvent:Z
 
     if-eqz v0, :cond_2
 
-    .line 279
+    .line 314
     const-string v0, "CountEvent"
 
     const/4 v1, 0x0
 
     invoke-static {v0, p0, p1, v1, p2}, Lcom/android/camera/statistic/CameraStat;->dumpEvent(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)V
 
-    .line 281
+    .line 316
     :cond_2
     return-void
 .end method
@@ -786,15 +842,15 @@
 .method public static recordPageEnd()V
     .locals 1
 
-    .line 252
+    .line 287
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sIsEnabled:Z
 
     if-eqz v0, :cond_0
 
-    .line 253
+    .line 288
     invoke-static {}, Lcom/xiaomi/mistatistic/sdk/MiStatInterface;->recordPageEnd()V
 
-    .line 255
+    .line 290
     :cond_0
     return-void
 .end method
@@ -802,15 +858,15 @@
 .method public static recordPageStart(Landroid/content/Context;Ljava/lang/String;)V
     .locals 1
 
-    .line 246
+    .line 281
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sIsEnabled:Z
 
     if-eqz v0, :cond_0
 
-    .line 247
+    .line 282
     invoke-static {p0, p1}, Lcom/xiaomi/mistatistic/sdk/MiStatInterface;->recordPageStart(Landroid/content/Context;Ljava/lang/String;)V
 
-    .line 249
+    .line 284
     :cond_0
     return-void
 .end method
@@ -818,40 +874,40 @@
 .method public static recordStringPropertyEvent(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
     .locals 2
 
-    .line 311
+    .line 346
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sIsEnabled:Z
 
     if-eqz v0, :cond_1
 
-    .line 312
+    .line 347
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sIsAnonymous:Z
 
     if-eqz v0, :cond_0
 
-    .line 313
+    .line 348
     invoke-static {p0, p1, p2}, Lcom/xiaomi/mistatistic/sdk/MiStatInterface;->recordStringPropertyEventAnonymous(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 
     goto :goto_0
 
-    .line 315
+    .line 350
     :cond_0
     invoke-static {p0, p1, p2}, Lcom/xiaomi/mistatistic/sdk/MiStatInterface;->recordStringPropertyEvent(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 318
+    .line 353
     :cond_1
     :goto_0
     sget-boolean v0, Lcom/android/camera/statistic/CameraStat;->sDumpStatEvent:Z
 
     if-eqz v0, :cond_2
 
-    .line 319
+    .line 354
     const-string v0, "PropertyEvent"
 
     const/4 v1, 0x0
 
     invoke-static {v0, p0, p1, p2, v1}, Lcom/android/camera/statistic/CameraStat;->dumpEvent(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)V
 
-    .line 321
+    .line 356
     :cond_2
     return-void
 .end method

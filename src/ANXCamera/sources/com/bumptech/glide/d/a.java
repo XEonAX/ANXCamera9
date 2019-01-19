@@ -7,7 +7,7 @@ import java.util.List;
 
 /* compiled from: EncoderRegistry */
 public class a {
-    private final List<a<?>> mN = new ArrayList();
+    private final List<a<?>> mL = new ArrayList();
 
     /* compiled from: EncoderRegistry */
     private static final class a<T> {
@@ -26,7 +26,7 @@ public class a {
 
     @Nullable
     public synchronized <T> com.bumptech.glide.load.a<T> m(@NonNull Class<T> cls) {
-        for (a aVar : this.mN) {
+        for (a aVar : this.mL) {
             if (aVar.l(cls)) {
                 return aVar.ef;
             }
@@ -35,10 +35,10 @@ public class a {
     }
 
     public synchronized <T> void d(@NonNull Class<T> cls, @NonNull com.bumptech.glide.load.a<T> aVar) {
-        this.mN.add(new a(cls, aVar));
+        this.mL.add(new a(cls, aVar));
     }
 
     public synchronized <T> void e(@NonNull Class<T> cls, @NonNull com.bumptech.glide.load.a<T> aVar) {
-        this.mN.add(0, new a(cls, aVar));
+        this.mL.add(0, new a(cls, aVar));
     }
 }

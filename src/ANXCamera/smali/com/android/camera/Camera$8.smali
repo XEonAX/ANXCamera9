@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/Camera;)V
     .locals 0
 
-    .line 1509
+    .line 1518
     iput-object p1, p0, Lcom/android/camera/Camera$8;->this$0:Lcom/android/camera/Camera;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,13 +38,13 @@
 .method public onServiceConnected(Landroid/content/ComponentName;Landroid/os/IBinder;)V
     .locals 0
 
-    .line 1512
+    .line 1521
     return-void
 .end method
 
 .method public onServiceDisconnected(Landroid/content/ComponentName;)V
     .locals 0
 
-    .line 1516
+    .line 1525
     return-void
 .end method

@@ -67,10 +67,42 @@
     return-void
 .end method
 
+.method private drawElapsedArc(Landroid/graphics/Canvas;FF)V
+    .locals 6
+
+    .line 189
+    iget-object v1, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mArcRectF:Landroid/graphics/RectF;
+
+    const/high16 v0, -0x3d4c0000    # -90.0f
+
+    add-float/2addr v0, p2
+
+    iget v2, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSpaceAngle:F
+
+    add-float/2addr v2, v0
+
+    sub-float/2addr p3, p2
+
+    iget p2, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSpaceAngle:F
+
+    sub-float v3, p3, p2
+
+    iget-object v5, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mPaint:Landroid/graphics/Paint;
+
+    const/4 v4, 0x0
+
+    move-object v0, p1
+
+    invoke-virtual/range {v0 .. v5}, Landroid/graphics/Canvas;->drawArc(Landroid/graphics/RectF;FFZLandroid/graphics/Paint;)V
+
+    .line 193
+    return-void
+.end method
+
 .method private drawOffset(Landroid/graphics/Canvas;F)V
     .locals 6
 
-    .line 158
+    .line 182
     iget-object v1, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mArcRectF:Landroid/graphics/RectF;
 
     const/high16 v0, -0x3d4c0000    # -90.0f
@@ -95,7 +127,7 @@
 
     invoke-virtual/range {v0 .. v5}, Landroid/graphics/Canvas;->drawArc(Landroid/graphics/RectF;FFZLandroid/graphics/Paint;)V
 
-    .line 162
+    .line 186
     return-void
 .end method
 
@@ -104,19 +136,19 @@
 .method public addSegmentNow(J)V
     .locals 2
 
-    .line 166
+    .line 197
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentRatios:Ljava/util/List;
 
     if-nez v0, :cond_0
 
-    .line 167
+    .line 198
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentRatios:Ljava/util/List;
 
-    .line 169
+    .line 200
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentRatios:Ljava/util/List;
 
@@ -128,19 +160,19 @@
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 171
+    .line 202
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentTimes:Ljava/util/List;
 
     if-nez v0, :cond_1
 
-    .line 172
+    .line 203
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentTimes:Ljava/util/List;
 
-    .line 174
+    .line 205
     :cond_1
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentTimes:Ljava/util/List;
 
@@ -150,24 +182,24 @@
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 175
+    .line 206
     return-void
 .end method
 
 .method public clearSegments()V
     .locals 1
 
-    .line 178
+    .line 209
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentRatios:Ljava/util/List;
 
     if-eqz v0, :cond_0
 
-    .line 179
+    .line 210
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentRatios:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->clear()V
 
-    .line 181
+    .line 212
     :cond_0
     return-void
 .end method
@@ -337,11 +369,15 @@
     .line 123
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mOffsetPaint:Landroid/graphics/Paint;
 
-    iget v1, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mCurrentStrokeWidth:F
+    iget-object v1, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mPaint:Landroid/graphics/Paint;
 
-    const/high16 v2, 0x40000000    # 2.0f
+    invoke-virtual {v1}, Landroid/graphics/Paint;->getStrokeWidth()F
 
-    mul-float/2addr v1, v2
+    move-result v1
+
+    const/high16 v2, 0x3f800000    # 1.0f
+
+    add-float/2addr v1, v2
 
     invoke-virtual {v0, v1}, Landroid/graphics/Paint;->setStrokeWidth(F)V
 
@@ -396,24 +432,24 @@
     .line 137
     goto :goto_3
 
-    .line 141
+    .line 165
     :cond_6
     goto :goto_4
 
-    .line 142
+    .line 166
     :cond_7
     iget-boolean v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mNeedRing:Z
 
     if-eqz v0, :cond_8
 
-    .line 143
+    .line 167
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mPaint:Landroid/graphics/Paint;
 
     sget v1, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->ALPHA_OUTSTANDING:I
 
     invoke-virtual {v0, v1}, Landroid/graphics/Paint;->setAlpha(I)V
 
-    .line 144
+    .line 168
     iget v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mMiddleX:F
 
     iget v1, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mMiddleY:F
@@ -428,7 +464,7 @@
 
     invoke-virtual {p1, v0, v1, v2, v3}, Landroid/graphics/Canvas;->drawCircle(FFFLandroid/graphics/Paint;)V
 
-    .line 145
+    .line 169
     iget-object p1, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mPaint:Landroid/graphics/Paint;
 
     iget v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mCurrentAlpha:I
@@ -437,7 +473,7 @@
 
     goto :goto_4
 
-    .line 147
+    .line 171
     :cond_8
     iget v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mMiddleX:F
 
@@ -453,7 +489,7 @@
 
     invoke-virtual {p1, v0, v1, v2, v3}, Landroid/graphics/Canvas;->drawCircle(FFFLandroid/graphics/Paint;)V
 
-    .line 150
+    .line 174
     :goto_4
     return-void
 .end method
@@ -469,7 +505,7 @@
         }
     .end annotation
 
-    .line 185
+    .line 216
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentRatios:Ljava/util/List;
 
     return-object v0
@@ -478,7 +514,7 @@
 .method public hasSegments()Z
     .locals 1
 
-    .line 211
+    .line 242
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentRatios:Ljava/util/List;
 
     if-eqz v0, :cond_0
@@ -594,7 +630,7 @@
 .method public removeLastSegmentAndGetLastTime()J
     .locals 4
 
-    .line 189
+    .line 220
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentRatios:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
@@ -605,10 +641,10 @@
 
     if-eqz v0, :cond_0
 
-    .line 190
+    .line 221
     return-wide v1
 
-    .line 192
+    .line 223
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentRatios:Ljava/util/List;
 
@@ -622,7 +658,7 @@
 
     invoke-interface {v0, v3}, Ljava/util/List;->remove(I)Ljava/lang/Object;
 
-    .line 193
+    .line 224
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentTimes:Ljava/util/List;
 
     iget-object v3, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentTimes:Ljava/util/List;
@@ -635,7 +671,7 @@
 
     invoke-interface {v0, v3}, Ljava/util/List;->remove(I)Ljava/lang/Object;
 
-    .line 195
+    .line 226
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentRatios:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
@@ -644,15 +680,15 @@
 
     if-eqz v0, :cond_1
 
-    .line 196
+    .line 227
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->timeAngle:F
 
-    .line 197
+    .line 228
     return-wide v1
 
-    .line 199
+    .line 230
     :cond_1
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentRatios:Ljava/util/List;
 
@@ -676,7 +712,7 @@
 
     iput v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->timeAngle:F
 
-    .line 201
+    .line 232
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentTimes:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
@@ -685,10 +721,10 @@
 
     if-eqz v0, :cond_2
 
-    .line 202
+    .line 233
     return-wide v1
 
-    .line 204
+    .line 235
     :cond_2
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mSegmentTimes:Ljava/util/List;
 

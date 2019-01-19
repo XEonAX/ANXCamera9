@@ -356,7 +356,7 @@
 
     move-result-object p1
 
-    const p2, 0x7f02015f
+    const p2, 0x7f020170
 
     invoke-static {p1, p2}, Landroid/graphics/BitmapFactory;->decodeResource(Landroid/content/res/Resources;I)Landroid/graphics/Bitmap;
 
@@ -369,7 +369,7 @@
 
     move-result-object p1
 
-    const p2, 0x7f02015e
+    const p2, 0x7f02016f
 
     invoke-static {p1, p2}, Landroid/graphics/BitmapFactory;->decodeResource(Landroid/content/res/Resources;I)Landroid/graphics/Bitmap;
 
@@ -3342,7 +3342,7 @@
     .line 472
     const/16 v0, 0x8
 
-    const v2, 0x7f0b01be
+    const v2, 0x7f0901be
 
     invoke-direct {p0, v0, v2}, Lcom/android/camera/ui/FocusView;->showTipMessage(II)V
 

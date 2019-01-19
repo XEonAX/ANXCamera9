@@ -44,13 +44,13 @@
 .method public abstract notifyDataChanged(II)V
 .end method
 
-.method public abstract provideAnimateElement(ILjava/util/List;Z)V
+.method public abstract provideAnimateElement(ILjava/util/List;I)V
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
             "Ljava/util/List<",
             "Lio/reactivex/Completable;",
-            ">;Z)V"
+            ">;I)V"
         }
     .end annotation
 .end method

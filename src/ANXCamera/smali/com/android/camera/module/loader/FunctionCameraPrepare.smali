@@ -30,31 +30,31 @@
 .method public constructor <init>(IIZLcom/android/camera/module/BaseModule;)V
     .locals 0
 
-    .line 50
+    .line 51
     invoke-direct {p0, p1}, Lcom/android/camera/module/loader/Func1Base;-><init>(I)V
 
-    .line 52
+    .line 53
     iput p2, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mResetType:I
 
-    .line 53
+    .line 54
     iput-boolean p3, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mNeedReConfigureData:Z
 
-    .line 54
+    .line 55
     iput-object p4, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->baseModule:Lcom/android/camera/module/BaseModule;
 
-    .line 56
+    .line 57
     return-void
 .end method
 
 .method private reconfigureData()V
     .locals 10
 
-    .line 94
+    .line 95
     iget-boolean v0, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mNeedReConfigureData:Z
 
     if-nez v0, :cond_0
 
-    .line 96
+    .line 97
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
 
     move-result-object v0
@@ -71,44 +71,44 @@
 
     invoke-interface {v0}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->apply()V
 
-    .line 97
+    .line 98
     return-void
 
-    .line 99
+    .line 100
     :cond_0
     invoke-static {}, Lcom/android/camera/CameraSettings;->upgradeGlobalPreferences()V
 
-    .line 102
+    .line 103
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
 
     move-result-object v0
 
-    .line 103
+    .line 104
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
     move-result-object v1
 
-    .line 104
+    .line 105
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
 
     move-result-object v2
 
-    .line 106
+    .line 107
     invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->getLastCameraId()I
 
     move-result v3
 
-    .line 108
+    .line 109
     invoke-virtual {v2}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentFlash()Lcom/android/camera/data/data/config/ComponentConfigFlash;
 
     move-result-object v4
 
-    .line 112
+    .line 113
     invoke-virtual {v2}, Lcom/android/camera/data/data/config/DataItemConfig;->editor()Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
     move-result-object v5
 
-    .line 113
+    .line 114
     invoke-static {}, Lcom/android/camera/data/DataRepository;->getInstance()Lcom/android/camera/data/DataRepository;
 
     move-result-object v6
@@ -117,7 +117,7 @@
 
     move-result-object v6
 
-    .line 116
+    .line 117
     const-string v7, "pref_camera_zoom_key"
 
     invoke-interface {v5, v7}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
@@ -128,21 +128,21 @@
 
     invoke-interface {v7, v8}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 118
+    .line 119
     iget v7, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {v4, v7}, Lcom/android/camera/data/data/config/ComponentConfigFlash;->getPersistValue(I)Ljava/lang/String;
 
     move-result-object v7
 
-    .line 120
+    .line 121
     invoke-virtual {v4, v7}, Lcom/android/camera/data/data/config/ComponentConfigFlash;->isValidFlashValue(Ljava/lang/String;)Z
 
     move-result v8
 
     if-nez v8, :cond_1
 
-    .line 121
+    .line 122
     iget v7, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {v4, v7}, Lcom/android/camera/data/data/config/ComponentConfigFlash;->getKey(I)Ljava/lang/String;
@@ -153,7 +153,7 @@
 
     goto :goto_0
 
-    .line 122
+    .line 123
     :cond_1
     const-string v8, "2"
 
@@ -163,7 +163,7 @@
 
     if-eqz v7, :cond_2
 
-    .line 123
+    .line 124
     iget v7, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {v4, v7}, Lcom/android/camera/data/data/config/ComponentConfigFlash;->getKey(I)Ljava/lang/String;
@@ -172,15 +172,15 @@
 
     iget v8, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
-    .line 124
+    .line 125
     invoke-virtual {v4, v8}, Lcom/android/camera/data/data/config/ComponentConfigFlash;->getDefaultValue(I)Ljava/lang/String;
 
     move-result-object v8
 
-    .line 123
+    .line 124
     invoke-interface {v5, v7, v8}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putString(Ljava/lang/String;Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 128
+    .line 129
     :cond_2
     :goto_0
     iget v7, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
@@ -189,25 +189,25 @@
 
     if-ne v7, v8, :cond_3
 
-    .line 129
+    .line 130
     invoke-static {}, Lcom/android/camera/CameraAppImpl;->getAndroidContext()Landroid/content/Context;
 
     move-result-object v7
 
-    const v9, 0x7f0b00ab
+    const v9, 0x7f0900aa
 
     invoke-virtual {v7, v9}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
     move-result-object v7
 
-    .line 130
+    .line 131
     const-string v9, "pref_qc_camera_iso_key"
 
     invoke-virtual {v2, v9, v7}, Lcom/android/camera/data/data/config/DataItemConfig;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v7
 
-    .line 131
+    .line 132
     const v9, 0x7f0e001a
 
     invoke-static {v7, v9}, Lcom/android/camera/Util;->isStringValueContained(Ljava/lang/Object;I)Z
@@ -216,43 +216,43 @@
 
     if-nez v7, :cond_3
 
-    .line 132
+    .line 133
     const-string v7, "pref_qc_camera_iso_key"
 
     invoke-interface {v5, v7}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 137
+    .line 138
     :cond_3
-    invoke-static {}, Lcom/mi/config/b;->gu()Z
+    invoke-static {}, Lcom/mi/config/b;->gD()Z
 
     move-result v7
 
     if-nez v7, :cond_4
 
-    .line 138
+    .line 139
     const-string v7, "pref_focus_position_key"
 
     invoke-interface {v5, v7}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 139
+    .line 140
     const-string v7, "pref_qc_camera_exposuretime_key"
 
     invoke-interface {v5, v7}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
     goto :goto_1
 
-    .line 140
+    .line 141
     :cond_4
     iget v7, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     if-ne v7, v8, :cond_5
 
-    .line 141
+    .line 142
     new-instance v7, Lcom/android/camera/data/data/config/ComponentManuallyET;
 
     invoke-direct {v7, v2}, Lcom/android/camera/data/data/config/ComponentManuallyET;-><init>(Lcom/android/camera/data/data/config/DataItemConfig;)V
 
-    .line 142
+    .line 143
     iget v8, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {v7, v8}, Lcom/android/camera/data/data/config/ComponentManuallyET;->getComponentValue(I)Ljava/lang/String;
@@ -265,12 +265,12 @@
 
     if-nez v8, :cond_5
 
-    .line 143
+    .line 144
     iget v8, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {v7, v8}, Lcom/android/camera/data/data/config/ComponentManuallyET;->resetComponentValue(I)V
 
-    .line 148
+    .line 149
     :cond_5
     :goto_1
     invoke-static {}, Lcom/android/camera/Util;->isLabOptionsVisible()Z
@@ -279,7 +279,7 @@
 
     if-nez v7, :cond_6
 
-    .line 151
+    .line 152
     invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->editor()Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
     move-result-object v7
@@ -292,50 +292,50 @@
 
     const-string v8, "pref_camera_portrait_with_facebeauty_key"
 
-    .line 152
+    .line 153
     invoke-interface {v7, v8}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
     move-result-object v7
 
     const-string v8, "pref_camera_facedetection_auto_hidden_key"
 
-    .line 153
+    .line 154
     invoke-interface {v7, v8}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
     move-result-object v7
 
     const-string v8, "pref_camera_dual_enable_key"
 
-    .line 154
+    .line 155
     invoke-interface {v7, v8}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
     move-result-object v7
 
     const-string v8, "pref_camera_dual_sat_enable_key"
 
-    .line 155
+    .line 156
     invoke-interface {v7, v8}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
     move-result-object v7
 
     const-string v8, "pref_camera_mfnr_sat_enable_key"
 
-    .line 156
+    .line 157
     invoke-interface {v7, v8}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
     move-result-object v7
 
     const-string v8, "pref_camera_sr_enable_key"
 
-    .line 157
+    .line 158
     invoke-interface {v7, v8}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
     move-result-object v7
 
-    .line 159
+    .line 160
     invoke-interface {v7}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->apply()V
 
-    .line 163
+    .line 164
     :cond_6
     const-string v7, "pref_camera_antibanding_key"
 
@@ -345,14 +345,14 @@
 
     move-result-object v7
 
-    .line 164
+    .line 165
     invoke-static {v7}, Lcom/android/camera/Util;->isValidValue(Ljava/lang/String;)Z
 
     move-result v7
 
     if-nez v7, :cond_7
 
-    .line 165
+    .line 166
     invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->editor()Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
     move-result-object v7
@@ -365,7 +365,7 @@
 
     invoke-interface {v7}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->apply()V
 
-    .line 168
+    .line 169
     :cond_7
     iget v7, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mResetType:I
 
@@ -375,11 +375,10 @@
 
     packed-switch v7, :pswitch_data_0
 
-    :pswitch_0
     goto/16 :goto_5
 
-    .line 176
-    :pswitch_1
+    .line 177
+    :pswitch_0
     iget v2, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     const/16 v4, 0xae
@@ -390,94 +389,94 @@
 
     packed-switch v2, :pswitch_data_2
 
-    .line 210
+    .line 211
     invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentCameraId()I
 
     move-result v2
 
     goto :goto_3
 
-    .line 184
-    :pswitch_2
-    invoke-static {}, Lcom/mi/config/b;->he()Z
+    .line 185
+    :pswitch_1
+    invoke-static {}, Lcom/mi/config/b;->hn()Z
 
     move-result v2
 
     if-eqz v2, :cond_8
 
-    .line 185
+    .line 186
     invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentCameraId()I
 
     move-result v2
 
     goto :goto_3
 
-    .line 187
+    .line 188
     :cond_8
     nop
 
-    .line 189
+    .line 190
     goto :goto_2
 
-    .line 206
-    :pswitch_3
+    .line 207
+    :pswitch_2
     invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentCameraId()I
 
     move-result v2
 
-    .line 207
+    .line 208
     goto :goto_3
 
-    .line 178
+    .line 179
+    :pswitch_3
+    nop
+
+    .line 180
+    goto :goto_2
+
+    .line 182
     :pswitch_4
     nop
 
-    .line 179
-    goto :goto_2
-
-    .line 181
-    :pswitch_5
+    .line 183
     nop
 
-    .line 182
-    nop
-
-    .line 214
+    .line 215
     :goto_2
     move v2, v9
 
     goto :goto_3
 
-    .line 197
+    .line 198
+    :pswitch_5
+    invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentCameraId()I
+
+    move-result v2
+
+    .line 199
+    if-nez v2, :cond_a
+
+    .line 200
+    invoke-interface {v6}, Lcom/android/camera/data/backup/DataBackUp;->removeOtherVideoMode()V
+
+    goto :goto_3
+
+    .line 194
+    :cond_9
     :pswitch_6
     invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentCameraId()I
 
     move-result v2
 
-    .line 198
-    if-nez v2, :cond_a
-
-    .line 199
-    invoke-interface {v6}, Lcom/android/camera/data/backup/DataBackUp;->removeOtherVideoMode()V
-
-    goto :goto_3
-
-    .line 193
-    :cond_9
-    :pswitch_7
-    invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentCameraId()I
-
-    move-result v2
-
-    .line 194
+    .line 195
     nop
 
-    .line 214
+    .line 215
     :cond_a
     :goto_3
     invoke-virtual {v0, v2}, Lcom/android/camera/data/data/global/DataItemGlobal;->setCameraIdTransient(I)V
 
-    .line 217
+    .line 218
     iget v4, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {v0, v4}, Lcom/android/camera/data/data/global/DataItemGlobal;->getDataBackUpKey(I)I
@@ -486,40 +485,40 @@
 
     invoke-interface {v6, v1, v4, v2}, Lcom/android/camera/data/backup/DataBackUp;->revertRunning(Lcom/android/camera/data/data/runing/DataItemRunning;II)V
 
-    .line 219
+    .line 220
     goto/16 :goto_5
 
-    .line 225
-    :pswitch_8
+    .line 226
+    :pswitch_7
     invoke-direct {p0, v4, v5}, Lcom/android/camera/module/loader/FunctionCameraPrepare;->resetFlash(Lcom/android/camera/data/data/config/ComponentConfigFlash;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
 
-    .line 226
+    .line 227
     invoke-virtual {v2}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentHdr()Lcom/android/camera/data/data/config/ComponentConfigHdr;
 
     move-result-object v4
 
     invoke-direct {p0, v4, v5}, Lcom/android/camera/module/loader/FunctionCameraPrepare;->resetHdr(Lcom/android/camera/data/data/config/ComponentConfigHdr;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
 
-    .line 227
+    .line 228
     invoke-virtual {v2}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentConfigBeauty()Lcom/android/camera/data/data/config/ComponentConfigBeauty;
 
     move-result-object v4
 
     invoke-direct {p0, v4, v5}, Lcom/android/camera/module/loader/FunctionCameraPrepare;->resetVideoBeauty(Lcom/android/camera/data/data/config/ComponentConfigBeauty;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
 
-    .line 228
+    .line 229
     invoke-virtual {v2}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentConfigUltraWide()Lcom/android/camera/data/data/config/ComponentConfigUltraWide;
 
     move-result-object v4
 
     invoke-direct {p0, v4, v5}, Lcom/android/camera/module/loader/FunctionCameraPrepare;->resetUltraWide(Lcom/android/camera/data/data/config/ComponentConfigUltraWide;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
 
-    .line 229
+    .line 230
     const-string v4, "pref_eye_light_type_key"
 
     invoke-interface {v5, v4}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 230
+    .line 231
     invoke-virtual {v2}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentConfigSlowMotion()Lcom/android/camera/data/data/config/ComponentConfigSlowMotion;
 
     move-result-object v4
@@ -532,21 +531,30 @@
 
     invoke-interface {v5, v4}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 233
+    .line 234
     invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentCameraId()I
 
     move-result v4
 
     if-nez v4, :cond_b
 
-    .line 236
+    .line 237
     invoke-virtual {v2}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentConfigBeauty()Lcom/android/camera/data/data/config/ComponentConfigBeauty;
+
+    move-result-object v4
+
+    invoke-direct {p0, v4, v5}, Lcom/android/camera/module/loader/FunctionCameraPrepare;->resetBeauty(Lcom/android/camera/data/data/config/ComponentConfigBeauty;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
+
+    .line 239
+    iget v4, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
+
+    invoke-virtual {v2}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentConfigBeautyBody()Lcom/android/camera/data/data/config/ComponentConfigBeautyBody;
 
     move-result-object v2
 
-    invoke-direct {p0, v2, v5}, Lcom/android/camera/module/loader/FunctionCameraPrepare;->resetBeauty(Lcom/android/camera/data/data/config/ComponentConfigBeauty;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
+    invoke-direct {p0, v4, v2, v5}, Lcom/android/camera/module/loader/FunctionCameraPrepare;->resetBeautyBody(ILcom/android/camera/data/data/config/ComponentConfigBeautyBody;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
 
-    .line 237
+    .line 240
     invoke-static {}, Lcom/android/camera/data/DataRepository;->provider()Lcom/android/camera/data/provider/DataProvider;
 
     move-result-object v2
@@ -559,7 +567,7 @@
 
     goto :goto_4
 
-    .line 239
+    .line 242
     :cond_b
     invoke-static {}, Lcom/android/camera/data/DataRepository;->provider()Lcom/android/camera/data/provider/DataProvider;
 
@@ -571,55 +579,117 @@
 
     check-cast v2, Lcom/android/camera/data/data/config/DataItemConfig;
 
-    .line 242
+    .line 245
     :goto_4
     invoke-virtual {v2}, Lcom/android/camera/data/data/config/DataItemConfig;->editor()Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
     move-result-object v4
 
-    .line 243
+    .line 246
     invoke-virtual {v2}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentFlash()Lcom/android/camera/data/data/config/ComponentConfigFlash;
 
     move-result-object v7
 
     invoke-direct {p0, v7, v4}, Lcom/android/camera/module/loader/FunctionCameraPrepare;->resetFlash(Lcom/android/camera/data/data/config/ComponentConfigFlash;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
 
-    .line 244
+    .line 247
     invoke-virtual {v2}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentHdr()Lcom/android/camera/data/data/config/ComponentConfigHdr;
 
     move-result-object v7
 
     invoke-direct {p0, v7, v4}, Lcom/android/camera/module/loader/FunctionCameraPrepare;->resetHdr(Lcom/android/camera/data/data/config/ComponentConfigHdr;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
 
-    .line 245
+    .line 248
     invoke-virtual {v2}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentConfigBeauty()Lcom/android/camera/data/data/config/ComponentConfigBeauty;
 
     move-result-object v2
 
     invoke-direct {p0, v2, v4}, Lcom/android/camera/module/loader/FunctionCameraPrepare;->resetVideoBeauty(Lcom/android/camera/data/data/config/ComponentConfigBeauty;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
 
-    .line 246
+    .line 249
     const-string v2, "pref_eye_light_type_key"
 
     invoke-interface {v4, v2}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 247
+    .line 250
     invoke-interface {v4}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->apply()V
 
-    .line 254
+    .line 257
     invoke-virtual {v1}, Lcom/android/camera/data/data/runing/DataItemRunning;->clearArrayMap()V
 
-    .line 255
+    .line 258
     invoke-interface {v6}, Lcom/android/camera/data/backup/DataBackUp;->clearBackUp()V
 
-    .line 257
-    iget v1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
+    .line 261
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/mi/config/a;->fD()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_c
+
+    .line 262
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemLive()Lcom/android/camera/data/data/extra/DataItemLive;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/android/camera/data/data/extra/DataItemLive;->editor()Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
+
+    move-result-object v1
+
+    .line 263
+    const-string v2, "pref_live_music_path_key"
+
+    invoke-interface {v1, v2}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
+
+    move-result-object v1
+
+    const-string v2, "pref_live_music_hint_key"
+
+    .line 264
+    invoke-interface {v1, v2}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
+
+    move-result-object v1
+
+    const-string v2, "pref_live_sticker_key"
+
+    .line 265
+    invoke-interface {v1, v2}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
+
+    move-result-object v1
+
+    const-string v2, "pref_live_sticker_name_key"
+
+    .line 266
+    invoke-interface {v1, v2}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
+
+    move-result-object v1
+
+    const-string v2, "pref_live_sticker_hint_key"
+
+    .line 267
+    invoke-interface {v1, v2}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
+
+    move-result-object v1
+
+    const-string v2, "pref_live_speed_key"
+
+    .line 268
+    invoke-interface {v1, v2}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->remove(Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
+
+    move-result-object v1
+
+    .line 269
+    invoke-interface {v1}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->apply()V
 
     .line 270
     goto :goto_5
 
-    .line 277
-    :pswitch_9
+    .line 280
+    :pswitch_8
     iget v2, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {v0, v2}, Lcom/android/camera/data/data/global/DataItemGlobal;->getDataBackUpKey(I)I
@@ -632,7 +702,7 @@
 
     invoke-interface {v6, v1, v2, v7}, Lcom/android/camera/data/backup/DataBackUp;->revertRunning(Lcom/android/camera/data/data/runing/DataItemRunning;II)V
 
-    .line 279
+    .line 282
     iget v1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {v4, v1}, Lcom/android/camera/data/data/config/ComponentConfigFlash;->getPersistValue(I)Ljava/lang/String;
@@ -647,7 +717,7 @@
 
     if-eqz v1, :cond_c
 
-    .line 280
+    .line 283
     iget v1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {v4, v1}, Lcom/android/camera/data/data/config/ComponentConfigFlash;->getKey(I)Ljava/lang/String;
@@ -656,68 +726,16 @@
 
     iget v2, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
-    .line 281
+    .line 284
     invoke-virtual {v4, v2}, Lcom/android/camera/data/data/config/ComponentConfigFlash;->getDefaultValue(I)Ljava/lang/String;
 
     move-result-object v2
 
-    .line 280
+    .line 283
     invoke-interface {v5, v1, v2}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putString(Ljava/lang/String;Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 283
+    .line 289
     :cond_c
-    iget v1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
-
-    const/16 v2, 0xa3
-
-    if-eq v1, v2, :cond_d
-
-    iget v1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
-
-    const/16 v2, 0xa5
-
-    if-eq v1, v2, :cond_d
-
-    iget v1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
-
-    const/16 v2, 0xab
-
-    if-eq v1, v2, :cond_d
-
-    iget v1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
-
-    const/16 v2, 0xa2
-
-    if-eq v1, v2, :cond_d
-
-    iget v1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
-
-    const/16 v2, 0xa9
-
-    if-eq v1, v2, :cond_d
-
-    iget v1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
-
-    const/16 v2, 0xa8
-
-    if-eq v1, v2, :cond_d
-
-    iget v1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
-
-    const/16 v2, 0xaa
-
-    if-eq v1, v2, :cond_d
-
-    iget v1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
-
-    const/16 v2, 0xa1
-
-    if-eq v1, v2, :cond_d
-
-    iget v1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
-
-    .line 296
-    :cond_d
     :goto_5
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
@@ -727,93 +745,92 @@
 
     move-result v1
 
-    .line 297
+    .line 290
     iget v2, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mResetType:I
 
-    const/4 v4, 0x3
+    const/4 v4, 0x4
 
-    if-ne v2, v4, :cond_e
+    if-ne v2, v4, :cond_d
 
-    .line 298
+    .line 291
     invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentCameraId()I
 
     move-result v0
 
-    if-ne v3, v0, :cond_e
+    if-ne v3, v0, :cond_d
 
-    .line 299
+    .line 292
     nop
 
-    .line 302
+    .line 295
     move v1, v9
 
-    :cond_e
-    if-eqz v1, :cond_f
+    :cond_d
+    if-eqz v1, :cond_e
 
-    .line 303
+    .line 296
     const-string v0, "pref_lens_dirty_detect_enabled_key"
 
     invoke-interface {v5, v0, v8}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putBoolean(Ljava/lang/String;Z)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 307
-    :cond_f
+    .line 300
+    :cond_e
     invoke-interface {v5}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->apply()V
 
-    .line 309
+    .line 302
     return-void
 
     :pswitch_data_0
-    .packed-switch 0x1
-        :pswitch_9
+    .packed-switch 0x2
         :pswitch_8
-        :pswitch_1
+        :pswitch_7
         :pswitch_0
-        :pswitch_1
-        :pswitch_8
+        :pswitch_0
+        :pswitch_7
     .end packed-switch
 
     :pswitch_data_1
     .packed-switch 0xa1
-        :pswitch_7
         :pswitch_6
+        :pswitch_5
     .end packed-switch
 
     :pswitch_data_2
     .packed-switch 0xa6
-        :pswitch_5
         :pswitch_4
         :pswitch_3
-        :pswitch_3
-        :pswitch_3
         :pswitch_2
+        :pswitch_2
+        :pswitch_2
+        :pswitch_1
     .end packed-switch
 .end method
 
 .method private resetBeauty(Lcom/android/camera/data/data/config/ComponentConfigBeauty;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
     .locals 2
 
-    .line 331
+    .line 328
     iget v0, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {p1, v0}, Lcom/android/camera/data/data/config/ComponentConfigBeauty;->getPersistValue(I)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 332
+    .line 329
     iget v1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {p1, v1}, Lcom/android/camera/data/data/config/ComponentConfigBeauty;->getDefaultValue(I)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 333
+    .line 330
     invoke-static {v0, v1}, Landroid/text/TextUtils;->equals(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 334
+    .line 331
     iget v0, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {p1, v0}, Lcom/android/camera/data/data/config/ComponentConfigBeauty;->getKey(I)Ljava/lang/String;
@@ -822,15 +839,25 @@
 
     invoke-interface {p2, p1, v1}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putString(Ljava/lang/String;Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 337
+    .line 334
     :cond_0
+    return-void
+.end method
+
+.method private resetBeautyBody(ILcom/android/camera/data/data/config/ComponentConfigBeautyBody;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
+    .locals 0
+
+    .line 305
+    invoke-virtual {p2, p1, p3}, Lcom/android/camera/data/data/config/ComponentConfigBeautyBody;->resetBeautyBody(ILcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
+
+    .line 306
     return-void
 .end method
 
 .method private resetFlash(Lcom/android/camera/data/data/config/ComponentConfigFlash;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
     .locals 2
 
-    .line 313
+    .line 310
     iget v0, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {p1, v0}, Lcom/android/camera/data/data/config/ComponentConfigFlash;->getPersistValue(I)Ljava/lang/String;
@@ -845,7 +872,7 @@
 
     if-nez v0, :cond_0
 
-    .line 314
+    .line 311
     iget v0, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {p1, v0}, Lcom/android/camera/data/data/config/ComponentConfigFlash;->getKey(I)Ljava/lang/String;
@@ -854,15 +881,15 @@
 
     iget v1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
-    .line 315
+    .line 312
     invoke-virtual {p1, v1}, Lcom/android/camera/data/data/config/ComponentConfigFlash;->getDefaultValue(I)Ljava/lang/String;
 
     move-result-object p1
 
-    .line 314
+    .line 311
     invoke-interface {p2, v0, p1}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putString(Ljava/lang/String;Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 318
+    .line 315
     :cond_0
     return-void
 .end method
@@ -870,14 +897,14 @@
 .method private resetHdr(Lcom/android/camera/data/data/config/ComponentConfigHdr;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
     .locals 2
 
-    .line 322
+    .line 319
     iget v0, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {p1, v0}, Lcom/android/camera/data/data/config/ComponentConfigHdr;->getPersistValue(I)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 323
+    .line 320
     const-string v1, "auto"
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -888,14 +915,14 @@
 
     const-string v1, "off"
 
-    .line 324
+    .line 321
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 325
+    .line 322
     iget v0, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
     invoke-virtual {p1, v0}, Lcom/android/camera/data/data/config/ComponentConfigHdr;->getKey(I)Ljava/lang/String;
@@ -904,15 +931,15 @@
 
     iget v1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->mTargetMode:I
 
-    .line 326
+    .line 323
     invoke-virtual {p1, v1}, Lcom/android/camera/data/data/config/ComponentConfigHdr;->getDefaultValue(I)Ljava/lang/String;
 
     move-result-object p1
 
-    .line 325
+    .line 322
     invoke-interface {p2, v0, p1}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putString(Ljava/lang/String;Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 328
+    .line 325
     :cond_0
     return-void
 .end method
@@ -920,13 +947,13 @@
 .method private resetUltraWide(Lcom/android/camera/data/data/config/ComponentConfigUltraWide;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
     .locals 0
 
-    .line 349
+    .line 346
     if-eqz p1, :cond_0
 
-    .line 350
+    .line 347
     invoke-virtual {p1, p2}, Lcom/android/camera/data/data/config/ComponentConfigUltraWide;->resetUltraWide(Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
 
-    .line 352
+    .line 349
     :cond_0
     return-void
 .end method
@@ -934,36 +961,36 @@
 .method private resetVideoBeauty(Lcom/android/camera/data/data/config/ComponentConfigBeauty;Lcom/android/camera/data/provider/DataProvider$ProviderEditor;)V
     .locals 3
 
-    .line 340
+    .line 337
     nop
 
-    .line 341
+    .line 338
     const/16 v0, 0xa2
 
     invoke-virtual {p1, v0}, Lcom/android/camera/data/data/config/ComponentConfigBeauty;->getPersistValue(I)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 342
+    .line 339
     invoke-virtual {p1, v0}, Lcom/android/camera/data/data/config/ComponentConfigBeauty;->getDefaultValue(I)Ljava/lang/String;
 
     move-result-object v2
 
-    .line 343
+    .line 340
     invoke-static {v1, v2}, Landroid/text/TextUtils;->equals(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
 
     move-result v1
 
     if-nez v1, :cond_0
 
-    .line 344
+    .line 341
     invoke-virtual {p1, v0}, Lcom/android/camera/data/data/config/ComponentConfigBeauty;->getKey(I)Ljava/lang/String;
 
     move-result-object p1
 
     invoke-interface {p2, p1, v2}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putString(Ljava/lang/String;Ljava/lang/String;)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
-    .line 346
+    .line 343
     :cond_0
     return-void
 .end method
@@ -994,7 +1021,7 @@
         }
     .end annotation
 
-    .line 66
+    .line 67
     invoke-virtual {p1}, Lcom/android/camera/module/loader/NullHolder;->isPresent()Z
 
     move-result v0
@@ -1003,7 +1030,7 @@
 
     if-nez v0, :cond_0
 
-    .line 67
+    .line 68
     const/16 p1, 0xea
 
     invoke-static {v1, p1}, Lcom/android/camera/module/loader/NullHolder;->ofNullable(Ljava/lang/Object;I)Lcom/android/camera/module/loader/NullHolder;
@@ -1012,7 +1039,7 @@
 
     return-object p1
 
-    .line 70
+    .line 71
     :cond_0
     invoke-static {}, Lcom/android/camera/permission/PermissionManager;->checkCameraLaunchPermissions()Z
 
@@ -1020,7 +1047,7 @@
 
     if-nez v0, :cond_1
 
-    .line 71
+    .line 72
     const/16 p1, 0xe5
 
     invoke-static {v1, p1}, Lcom/android/camera/module/loader/NullHolder;->ofNullable(Ljava/lang/Object;I)Lcom/android/camera/module/loader/NullHolder;
@@ -1029,7 +1056,7 @@
 
     return-object p1
 
-    .line 74
+    .line 75
     :cond_1
     invoke-virtual {p1}, Lcom/android/camera/module/loader/NullHolder;->get()Ljava/lang/Object;
 
@@ -1037,21 +1064,21 @@
 
     check-cast p1, Lcom/android/camera/Camera;
 
-    .line 75
+    .line 76
     invoke-virtual {p1}, Lcom/android/camera/Camera;->isFinishing()Z
 
     move-result v0
 
     if-eqz v0, :cond_2
 
-    .line 76
+    .line 77
     const-string p1, "FunctionCameraPrepare"
 
     const-string v0, "activity is finishing, the content of BaseModuleHolder is set to null"
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 77
+    .line 78
     const/16 p1, 0xeb
 
     invoke-static {v1, p1}, Lcom/android/camera/module/loader/NullHolder;->ofNullable(Ljava/lang/Object;I)Lcom/android/camera/module/loader/NullHolder;
@@ -1060,11 +1087,11 @@
 
     return-object p1
 
-    .line 80
+    .line 81
     :cond_2
     invoke-virtual {p1}, Lcom/android/camera/Camera;->changeRequestOrientation()V
 
-    .line 83
+    .line 84
     iget-object p1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->baseModule:Lcom/android/camera/module/BaseModule;
 
     invoke-virtual {p1}, Lcom/android/camera/module/BaseModule;->isDeparted()Z
@@ -1073,7 +1100,7 @@
 
     if-eqz p1, :cond_3
 
-    .line 84
+    .line 85
     iget-object p1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->baseModule:Lcom/android/camera/module/BaseModule;
 
     const/16 v0, 0xe1
@@ -1084,11 +1111,11 @@
 
     return-object p1
 
-    .line 88
+    .line 89
     :cond_3
     invoke-direct {p0}, Lcom/android/camera/module/loader/FunctionCameraPrepare;->reconfigureData()V
 
-    .line 90
+    .line 91
     iget-object p1, p0, Lcom/android/camera/module/loader/FunctionCameraPrepare;->baseModule:Lcom/android/camera/module/BaseModule;
 
     invoke-static {p1}, Lcom/android/camera/module/loader/NullHolder;->ofNullable(Ljava/lang/Object;)Lcom/android/camera/module/loader/NullHolder;
@@ -1110,7 +1137,7 @@
         }
     .end annotation
 
-    .line 38
+    .line 39
     check-cast p1, Lcom/android/camera/module/loader/NullHolder;
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/loader/FunctionCameraPrepare;->apply(Lcom/android/camera/module/loader/NullHolder;)Lcom/android/camera/module/loader/NullHolder;
@@ -1123,7 +1150,7 @@
 .method public getWorkThread()Lio/reactivex/Scheduler;
     .locals 1
 
-    .line 60
+    .line 61
     sget-object v0, Lcom/android/camera/constant/GlobalConstant;->sCameraSetupScheduler:Lio/reactivex/Scheduler;
 
     return-object v0

@@ -4,11 +4,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 public class StartControl {
-    public static final int RESET_TYPE_RETAIN = 1;
+    public static final int RESET_TYPE_RETAIN = 2;
     public static final int RESET_TYPE_SWITCH_CAMERA = 5;
     public static final int RESET_TYPE_SWITCH_INTENT_CHANGED = 6;
-    public static final int RESET_TYPE_SWITCH_MODE = 3;
-    public static final int RESET_TYPE_TIME_OUT = 2;
+    public static final int RESET_TYPE_SWITCH_MODE = 4;
+    public static final int RESET_TYPE_TIME_OUT = 3;
     public static final int START_IMMEDIATELY = 0;
     @Deprecated
     public static final int START_WAIT_FOR_TOUCH = 300;
@@ -19,7 +19,7 @@ public class StartControl {
     public boolean mNeedBlurAnimation;
     public boolean mNeedReConfigureCamera = true;
     public boolean mNeedReConfigureData = true;
-    public int mResetType = 1;
+    public int mResetType = 2;
     public int mStartDelay = 0;
     public int mTargetMode;
     public int mViewConfigType = 1;

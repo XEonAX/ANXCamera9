@@ -70,28 +70,28 @@
 
     invoke-direct {p2, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
 
-    const v0, 0x7f0b01b1
+    const v0, 0x7f0901b1
 
     .line 107
     invoke-virtual {p2, v0}, Landroid/app/AlertDialog$Builder;->setTitle(I)Landroid/app/AlertDialog$Builder;
 
     move-result-object p2
 
-    const v0, 0x7f0b01b2
+    const v0, 0x7f0901b2
 
     .line 108
     invoke-virtual {p2, v0}, Landroid/app/AlertDialog$Builder;->setMessage(I)Landroid/app/AlertDialog$Builder;
 
     move-result-object p2
 
-    const v0, 0x7f0b01b3
+    const v0, 0x7f0901b3
 
     .line 109
     invoke-virtual {p2, v0, p1}, Landroid/app/AlertDialog$Builder;->setPositiveButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
     move-result-object p2
 
-    const v0, 0x7f0b01b4
+    const v0, 0x7f0901b4
 
     .line 110
     invoke-virtual {p2, v0, p1}, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
@@ -131,7 +131,7 @@
     .locals 1
 
     .line 71
-    invoke-static {}, Lcom/mi/config/b;->hn()Z
+    invoke-static {}, Lcom/mi/config/b;->hw()Z
 
     move-result v0
 
@@ -181,7 +181,30 @@
     .line 62
     invoke-super {p0, p1}, Lcom/android/camera/BasePreferenceActivity;->onCreate(Landroid/os/Bundle;)V
 
+    .line 63
+    invoke-virtual {p0}, Lcom/android/camera/CameraPreferenceActivity;->getIntent()Landroid/content/Intent;
+
+    move-result-object p1
+
+    const-string v0, ":miui:starting_window_label"
+
+    invoke-virtual {p1, v0}, Landroid/content/Intent;->getCharSequenceExtra(Ljava/lang/String;)Ljava/lang/CharSequence;
+
+    move-result-object p1
+
+    if-eqz p1, :cond_0
+
+    .line 64
+    invoke-virtual {p0}, Lcom/android/camera/CameraPreferenceActivity;->getActionBar()Lmiui/app/ActionBar;
+
+    move-result-object p1
+
+    const v0, 0x7f090045
+
+    invoke-virtual {p1, v0}, Lmiui/app/ActionBar;->setTitle(I)V
+
     .line 67
+    :cond_0
     invoke-virtual {p0}, Lcom/android/camera/CameraPreferenceActivity;->changeRequestOrientation()V
 
     .line 68
@@ -224,7 +247,7 @@
     if-ne v0, v1, :cond_0
 
     .line 37
-    const p1, 0x7f0b018d
+    const p1, 0x7f09018d
 
     invoke-static {p0, p1, v2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;II)Landroid/widget/Toast;
 
@@ -238,7 +261,7 @@
 
     .line 41
     :cond_0
-    const v0, 0x7f0b018a
+    const v0, 0x7f09018a
 
     invoke-virtual {p0, v0}, Lcom/android/camera/CameraPreferenceActivity;->getString(I)Ljava/lang/String;
 
@@ -250,7 +273,7 @@
 
     if-nez v0, :cond_1
 
-    const v0, 0x7f0b018b
+    const v0, 0x7f09018b
 
     .line 42
     invoke-virtual {p0, v0}, Lcom/android/camera/CameraPreferenceActivity;->getString(I)Ljava/lang/String;

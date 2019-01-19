@@ -47,7 +47,7 @@
 
     new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const v3, 0x7f0b00ad
+    const v3, 0x7f0900ac
 
     const-string v4, "0"
 
@@ -61,7 +61,7 @@
 
     new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const v3, 0x7f0b00ae
+    const v3, 0x7f0900ad
 
     const-string v4, "100"
 
@@ -73,7 +73,7 @@
 
     new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const v3, 0x7f0b00af
+    const v3, 0x7f0900ae
 
     const-string v4, "200"
 
@@ -85,7 +85,7 @@
 
     new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const v3, 0x7f0b00b0
+    const v3, 0x7f0900af
 
     const-string v4, "400"
 
@@ -97,7 +97,7 @@
 
     new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const v3, 0x7f0b00b1
+    const v3, 0x7f0900b0
 
     const-string v4, "800"
 
@@ -109,7 +109,7 @@
 
     new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const v3, 0x7f0b00b2
+    const v3, 0x7f0900b1
 
     const-string v4, "1600"
 
@@ -121,7 +121,7 @@
 
     new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const v3, 0x7f0b00b3
+    const v3, 0x7f0900b2
 
     const-string v4, "3200"
 
@@ -330,7 +330,7 @@
     .locals 1
 
     .line 35
-    const v0, 0x7f0b00ac
+    const v0, 0x7f0900ab
 
     return v0
 .end method

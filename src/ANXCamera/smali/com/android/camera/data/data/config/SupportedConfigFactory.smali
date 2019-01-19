@@ -26,6 +26,8 @@
 
 .field public static final CLOSE_BY_BURST_SHOOT:Ljava/lang/String; = "d"
 
+.field public static final CLOSE_BY_FILTER:Ljava/lang/String; = "k"
+
 .field public static final CLOSE_BY_GROUP:Ljava/lang/String; = "b"
 
 .field public static final CLOSE_BY_HDR:Ljava/lang/String; = "g"
@@ -33,6 +35,10 @@
 .field public static final CLOSE_BY_HHT:Ljava/lang/String; = "a"
 
 .field public static final CLOSE_BY_SUPER_RESOLUTION:Ljava/lang/String; = "c"
+
+.field public static final CLOSE_BY_ULTRA_PIXEL:Ljava/lang/String; = "j"
+
+.field public static final CLOSE_BY_ULTRA_WIDE:Ljava/lang/String; = "i"
 
 .field public static final CLOSE_BY_VIDEO:Ljava/lang/String; = "h"
 
@@ -51,6 +57,8 @@
 .field public static final GRADIENTER:I = 0xe5
 
 .field public static final GROUP:I = 0xeb
+
+.field public static final HAND_GESTURE:I = 0xfc
 
 .field public static final HDR:I = 0xc2
 
@@ -71,6 +79,8 @@
 .field public static final MAGIC_MIRROR:I = 0xec
 
 .field public static final MENU_ULTRA_PIXEL_PHOTOGRAPHY:I = 0xfa
+
+.field public static final MENU_ULTRA_PIXEL_PHOTOGRAPHY_FRONT:I = 0xfb
 
 .field public static final MOON:I = 0xf6
 
@@ -110,13 +120,15 @@
 
 .field public static final VIDEO_BOKEH:I = 0xf3
 
+.field public static gRecordingMutexElements:[I
+
 
 # direct methods
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 99
-    const/16 v0, 0xc
+    .line 102
+    const/16 v0, 0xe
 
     new-array v0, v0, [I
 
@@ -140,6 +152,8 @@
         0xc7
         0xcb
         0xce
+        0xfa
+        0xfb
     .end array-data
 .end method
 
@@ -155,7 +169,7 @@
 .method private static createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
     .locals 1
 
-    .line 365
+    .line 381
     new-instance v0, Lcom/android/camera/data/data/config/TopConfigItem;
 
     invoke-direct {v0, p0}, Lcom/android/camera/data/data/config/TopConfigItem;-><init>(I)V
@@ -166,7 +180,7 @@
 .method private static createConfigItem(II)Lcom/android/camera/data/data/config/TopConfigItem;
     .locals 1
 
-    .line 361
+    .line 377
     new-instance v0, Lcom/android/camera/data/data/config/TopConfigItem;
 
     invoke-direct {v0, p0, p1}, Lcom/android/camera/data/data/config/TopConfigItem;-><init>(II)V
@@ -177,7 +191,7 @@
 .method public static findViewPosition(I)I
     .locals 0
 
-    .line 515
+    .line 552
     invoke-static {p0}, Lcom/android/camera/data/data/config/TopViewPositionArray;->getCurrentUseViewPositionFromConfig(I)I
 
     move-result p0
@@ -188,32 +202,28 @@
 .method public static getConfigKey(I)Ljava/lang/String;
     .locals 1
 
-    .line 153
+    .line 166
     const/16 v0, 0xc3
-
-    if-eq p0, v0, :cond_6
-
-    const/16 v0, 0xc7
 
     if-eq p0, v0, :cond_5
 
-    const/16 v0, 0xc9
+    const/16 v0, 0xc7
 
     if-eq p0, v0, :cond_4
 
-    const/16 v0, 0xce
+    const/16 v0, 0xc9
 
     if-eq p0, v0, :cond_3
 
-    const/16 v0, 0xee
+    const/16 v0, 0xce
 
     if-eq p0, v0, :cond_2
 
-    const/16 v0, 0xf1
+    const/16 v0, 0xee
 
     if-eq p0, v0, :cond_1
 
-    const/16 v0, 0xfa
+    const/16 v0, 0xf1
 
     if-eq p0, v0, :cond_0
 
@@ -221,7 +231,9 @@
 
     packed-switch p0, :pswitch_data_1
 
-    .line 181
+    packed-switch p0, :pswitch_data_2
+
+    .line 198
     new-instance p0, Ljava/lang/RuntimeException;
 
     const-string v0, "unknown config item"
@@ -230,95 +242,112 @@
 
     throw p0
 
-    .line 157
+    .line 196
     :pswitch_0
+    const-string p0, "pref_hand_gesture"
+
+    return-object p0
+
+    .line 194
+    :pswitch_1
+    const-string p0, "pref_menu_ultra_pixel_photography_front"
+
+    return-object p0
+
+    .line 192
+    :pswitch_2
+    const-string p0, "pref_menu_ultra_pixel_photography_rear"
+
+    return-object p0
+
+    .line 170
+    :pswitch_3
     const-string p0, "pref_camera_magic_mirror_key"
 
     return-object p0
 
-    .line 159
-    :pswitch_1
+    .line 172
+    :pswitch_4
     const-string p0, "pref_camera_groupshot_mode_key"
 
     return-object p0
 
-    .line 167
-    :pswitch_2
+    .line 180
+    :pswitch_5
     const-string p0, "pref_camera_scenemode_setting_key"
 
     return-object p0
 
-    .line 163
-    :pswitch_3
+    .line 176
+    :pswitch_6
     const-string p0, "pref_camera_hand_night_key"
 
     return-object p0
 
-    .line 155
-    :pswitch_4
+    .line 168
+    :pswitch_7
     const-string p0, "pref_camera_gradienter_key"
 
     return-object p0
 
-    .line 161
-    :pswitch_5
+    .line 174
+    :pswitch_8
     const-string p0, "pref_camera_tilt_shift_mode"
 
     return-object p0
 
-    .line 179
+    .line 178
     :cond_0
-    const-string p0, "pref_menu_ultra_pixel_photography_48mp"
-
-    return-object p0
-
-    .line 165
-    :cond_1
     const-string p0, "pref_camera_super_resolution_key"
 
     return-object p0
 
-    .line 171
-    :cond_2
+    .line 184
+    :cond_1
     const-string p0, "pref_camera_show_gender_age_key"
 
     return-object p0
 
-    .line 177
-    :cond_3
+    .line 190
+    :cond_2
     const-string p0, "pref_live_shot_enabled"
 
     return-object p0
 
-    .line 175
-    :cond_4
+    .line 188
+    :cond_3
     const-string p0, "pref_camera_ai_scene_mode_key"
 
     return-object p0
 
-    .line 173
-    :cond_5
+    .line 186
+    :cond_4
     const-string p0, "pref_camera_peak_key"
 
     return-object p0
 
-    .line 169
-    :cond_6
+    .line 182
+    :cond_5
     const-string p0, "pref_camera_portrait_mode_key"
 
     return-object p0
 
-    nop
-
     :pswitch_data_0
     .packed-switch 0xe4
+        :pswitch_8
+        :pswitch_7
+        :pswitch_6
+    .end packed-switch
+
+    :pswitch_data_1
+    .packed-switch 0xea
         :pswitch_5
         :pswitch_4
         :pswitch_3
     .end packed-switch
 
-    :pswitch_data_1
-    .packed-switch 0xea
+    :pswitch_data_2
+    .packed-switch 0xfa
         :pswitch_2
         :pswitch_1
         :pswitch_0
@@ -326,313 +355,423 @@
 .end method
 
 .method public static final getSupportedExtraConfigs(IILcom/android/camera/data/cloud/DataCloud$CloudFeature;Lcom/android/camera2/CameraCapabilities;Z)Lcom/android/camera/data/data/config/SupportedConfigs;
-    .locals 7
+    .locals 8
 
-    .line 371
+    .line 387
     new-instance v0, Lcom/android/camera/data/data/config/SupportedConfigs;
 
     invoke-direct {v0}, Lcom/android/camera/data/data/config/SupportedConfigs;-><init>()V
 
-    .line 376
+    .line 392
     const/16 v1, 0xae
 
     const/16 v2, 0xef
 
     const/16 v3, 0xe1
 
-    if-eq p0, v1, :cond_10
+    if-eq p0, v1, :cond_15
 
     packed-switch p0, :pswitch_data_0
 
-    const/16 v1, 0xec
+    const/16 v1, 0xfc
 
-    const/16 v4, 0xee
+    const/16 v4, 0xec
 
-    const/16 v5, 0xe2
+    const/16 v5, 0xee
+
+    const/16 v6, 0xe2
 
     packed-switch p0, :pswitch_data_1
 
-    .line 381
+    .line 396
     invoke-virtual {v0, v3}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
     move-result-object v3
 
-    invoke-virtual {v3, v5}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
+    invoke-virtual {v3, v6}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
-    .line 383
-    const/16 v3, 0xa3
+    .line 397
+    const/16 v3, 0xeb
 
-    const/16 v5, 0xeb
+    const/16 v6, 0xa3
 
-    const/16 v6, 0xa5
+    const/16 v7, 0xa5
 
     packed-switch p1, :pswitch_data_2
 
-    goto/16 :goto_0
+    goto/16 :goto_1
 
-    .line 431
+    .line 454
     :pswitch_0
-    invoke-static {}, Lcom/mi/config/b;->hj()Z
+    if-eqz p4, :cond_0
+
+    invoke-static {}, Lcom/mi/config/b;->hs()Z
 
     move-result p1
 
     if-eqz p1, :cond_0
 
-    if-eq p0, v6, :cond_0
+    if-eq p0, v7, :cond_0
 
-    .line 432
+    .line 455
+    invoke-virtual {v0, v3}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
+
+    .line 457
+    :cond_0
+    if-eq p0, v7, :cond_1
+
+    if-ne p0, v6, :cond_e
+
+    .line 458
+    :cond_1
+    invoke-static {}, Lcom/mi/config/b;->ga()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_2
+
+    invoke-static {}, Lcom/mi/config/b;->fZ()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_2
+
+    .line 459
     invoke-virtual {v0, v5}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
-    .line 434
-    :cond_0
-    if-eq p0, v6, :cond_1
-
-    if-ne p0, v3, :cond_a
-
-    .line 435
-    :cond_1
-    invoke-static {}, Lcom/mi/config/b;->fQ()Z
-
-    move-result p0
-
-    if-eqz p0, :cond_2
-
-    invoke-static {}, Lcom/mi/config/b;->fP()Z
-
-    move-result p0
-
-    if-eqz p0, :cond_2
-
-    .line 436
-    invoke-virtual {v0, v4}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
-
-    .line 439
+    .line 462
     :cond_2
-    invoke-static {}, Lcom/mi/config/b;->gV()Z
-
-    move-result p0
-
-    if-eqz p0, :cond_a
-
-    .line 440
-    invoke-virtual {v0, v1}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
-
-    goto :goto_0
-
-    .line 385
-    :pswitch_1
-    invoke-static {}, Lcom/mi/config/b;->gQ()Z
+    invoke-static {}, Lcom/mi/config/b;->he()Z
 
     move-result p1
 
     if-eqz p1, :cond_3
 
-    .line 386
-    const/16 p1, 0xe4
+    .line 463
+    invoke-virtual {v0, v4}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
-    invoke-virtual {v0, p1}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
-
-    .line 389
+    .line 466
     :cond_3
-    invoke-static {}, Lcom/mi/config/b;->gJ()Z
+    if-ne p0, v6, :cond_e
+
+    .line 468
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Lcom/mi/config/a;->fO()I
+
+    move-result p0
+
+    .line 469
+    invoke-static {p3}, Lcom/android/camera/CameraSettings;->isFrontSupportedUltraPixelPhotography(Lcom/android/camera2/CameraCapabilities;)Z
 
     move-result p1
 
     if-eqz p1, :cond_4
 
-    .line 390
-    const/16 p1, 0xe5
+    if-eqz p4, :cond_4
+
+    if-lez p0, :cond_4
+
+    .line 470
+    const/16 p1, 0xfb
 
     invoke-virtual {v0, p1}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
-    .line 393
+    .line 471
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/camera/data/data/config/DataItemConfig;->getFrontComponentConfigUltraPixel()Lcom/android/camera/data/data/config/ComponentConfigUltraPixel;
+
+    move-result-object p1
+
+    invoke-virtual {p1, p0}, Lcom/android/camera/data/data/config/ComponentConfigUltraPixel;->initUltraPixelResource(I)V
+
+    .line 473
     :cond_4
-    invoke-static {}, Lcom/mi/config/b;->gp()Z
+    invoke-static {}, Lcom/mi/config/b;->fP()Z
+
+    move-result p0
+
+    if-eqz p0, :cond_e
+
+    .line 474
+    invoke-virtual {v0, v1}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
+
+    goto/16 :goto_1
+
+    .line 399
+    :pswitch_1
+    invoke-static {}, Lcom/mi/config/b;->gZ()Z
 
     move-result p1
 
     if-eqz p1, :cond_5
 
-    .line 394
-    const/16 p1, 0xea
+    .line 400
+    const/16 p1, 0xe4
 
     invoke-virtual {v0, p1}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
-    .line 397
+    .line 403
     :cond_5
-    if-eq p0, v6, :cond_6
-
-    if-eqz p4, :cond_6
-
-    .line 398
-    invoke-static {}, Lcom/mi/config/b;->hj()Z
+    invoke-static {}, Lcom/mi/config/b;->gS()Z
 
     move-result p1
 
     if-eqz p1, :cond_6
 
-    .line 399
-    invoke-virtual {v0, v5}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
+    .line 404
+    const/16 p1, 0xe5
 
-    .line 406
+    invoke-virtual {v0, p1}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
+
+    .line 407
     :cond_6
+    invoke-static {}, Lcom/mi/config/b;->gy()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_7
+
+    .line 408
+    const/16 p1, 0xea
+
+    invoke-virtual {v0, p1}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
+
+    .line 411
+    :cond_7
+    if-eq p0, v7, :cond_8
+
+    if-eqz p4, :cond_8
+
+    .line 412
+    invoke-static {}, Lcom/mi/config/b;->hs()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_8
+
+    .line 413
+    invoke-virtual {v0, v3}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
+
+    .line 420
+    :cond_8
     invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
 
     move-result p1
 
-    if-nez p1, :cond_8
+    if-nez p1, :cond_a
 
-    .line 407
-    if-eq p0, v6, :cond_7
+    .line 421
+    if-eq p0, v7, :cond_9
 
-    if-ne p0, v3, :cond_8
-
-    .line 408
-    :cond_7
-    invoke-static {}, Lcom/mi/config/b;->fP()Z
-
-    move-result p0
-
-    if-eqz p0, :cond_8
-
-    .line 409
-    invoke-virtual {v0, v2}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
+    if-ne p0, v6, :cond_a
 
     .line 422
-    :cond_8
-    if-eqz p4, :cond_9
+    :cond_9
+    invoke-static {}, Lcom/mi/config/b;->fZ()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_a
+
+    .line 423
+    invoke-virtual {v0, v2}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
+
+    .line 436
+    :cond_a
+    if-eqz p4, :cond_b
 
     invoke-static {}, Lcom/android/camera/CameraAppImpl;->getAndroidContext()Landroid/content/Context;
 
+    move-result-object p1
+
+    invoke-static {p1}, Lcom/android/camera/CameraSettings;->checkLensAvailability(Landroid/content/Context;)Z
+
+    move-result p1
+
+    if-eqz p1, :cond_b
+
+    .line 437
+    const/16 p1, 0xf2
+
+    invoke-virtual {v0, p1}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
+
+    .line 439
+    :cond_b
+    if-eq p0, v6, :cond_c
+
+    goto :goto_0
+
+    .line 442
+    :cond_c
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
     move-result-object p0
 
-    invoke-static {p0}, Lcom/android/camera/CameraSettings;->checkLensAvailability(Landroid/content/Context;)Z
+    invoke-virtual {p0}, Lcom/mi/config/a;->fN()I
 
     move-result p0
 
-    if-eqz p0, :cond_9
-
-    .line 423
-    const/16 p0, 0xf2
-
-    invoke-virtual {v0, p0}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
-
-    .line 425
-    :cond_9
+    .line 443
     invoke-static {p3}, Lcom/android/camera/CameraSettings;->isSupportedUltraPixelPhotography(Lcom/android/camera2/CameraCapabilities;)Z
 
-    move-result p0
+    move-result p1
 
-    if-eqz p0, :cond_a
+    if-eqz p1, :cond_d
 
-    if-eqz p4, :cond_a
+    if-eqz p4, :cond_d
 
-    .line 426
-    const/16 p0, 0xfa
+    if-lez p0, :cond_d
 
-    invoke-virtual {v0, p0}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
+    .line 445
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/mi/config/a;->fL()Z
+
+    move-result p1
+
+    if-nez p1, :cond_d
 
     .line 446
-    :cond_a
-    :goto_0
-    goto/16 :goto_2
+    const/16 p1, 0xfa
 
-    .line 449
+    invoke-virtual {v0, p1}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
+
+    .line 447
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/camera/data/data/config/DataItemConfig;->getRearComponentConfigUltraPixel()Lcom/android/camera/data/data/config/ComponentConfigUltraPixel;
+
+    move-result-object p1
+
+    invoke-virtual {p1, p0}, Lcom/android/camera/data/data/config/ComponentConfigUltraPixel;->initUltraPixelResource(I)V
+
+    .line 451
+    :cond_d
+    :goto_0
+    nop
+
+    .line 480
+    :cond_e
+    :goto_1
+    goto/16 :goto_3
+
+    .line 483
     :pswitch_2
     invoke-virtual {v0, v3}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
     move-result-object p0
 
-    invoke-virtual {p0, v5}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
+    invoke-virtual {p0, v6}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
-    .line 450
+    .line 484
     const/4 p0, 0x1
 
-    if-ne p1, p0, :cond_c
+    if-ne p1, p0, :cond_11
 
+    invoke-static {}, Lcom/mi/config/b;->hn()Z
+
+    move-result p0
+
+    if-eqz p0, :cond_11
+
+    .line 485
+    invoke-static {}, Lcom/mi/config/b;->ga()Z
+
+    move-result p0
+
+    if-eqz p0, :cond_f
+
+    invoke-static {}, Lcom/mi/config/b;->fZ()Z
+
+    move-result p0
+
+    if-eqz p0, :cond_f
+
+    .line 486
+    invoke-virtual {v0, v5}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
+
+    .line 489
+    :cond_f
     invoke-static {}, Lcom/mi/config/b;->he()Z
 
     move-result p0
 
-    if-eqz p0, :cond_c
+    if-eqz p0, :cond_10
 
-    .line 451
-    invoke-static {}, Lcom/mi/config/b;->fQ()Z
+    .line 490
+    invoke-virtual {v0, v4}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
-    move-result p0
-
-    if-eqz p0, :cond_b
-
+    .line 492
+    :cond_10
     invoke-static {}, Lcom/mi/config/b;->fP()Z
 
     move-result p0
 
-    if-eqz p0, :cond_b
+    if-eqz p0, :cond_16
 
-    .line 452
-    invoke-virtual {v0, v4}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
-
-    .line 455
-    :cond_b
-    invoke-static {}, Lcom/mi/config/b;->gV()Z
-
-    move-result p0
-
-    if-eqz p0, :cond_11
-
-    .line 456
+    .line 493
     invoke-virtual {v0, v1}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
-    goto :goto_2
+    goto :goto_3
 
-    .line 458
-    :cond_c
-    if-nez p1, :cond_11
+    .line 495
+    :cond_11
+    if-nez p1, :cond_16
 
-    .line 460
+    .line 497
     invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
 
     move-result p0
 
-    if-nez p0, :cond_11
+    if-nez p0, :cond_16
 
-    .line 461
+    .line 498
     invoke-static {}, Lcom/android/camera/CameraSettings;->isCameraPortraitWithFaceBeauty()Z
 
     move-result p0
 
-    if-eqz p0, :cond_11
+    if-eqz p0, :cond_16
 
-    invoke-static {}, Lcom/mi/config/b;->fP()Z
+    invoke-static {}, Lcom/mi/config/b;->fZ()Z
 
     move-result p0
 
-    if-eqz p0, :cond_11
+    if-eqz p0, :cond_16
 
-    .line 462
+    .line 499
     invoke-virtual {v0, v2}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
-    goto :goto_2
+    goto :goto_3
 
-    .line 468
+    .line 505
     :pswitch_3
     invoke-virtual {v0, v3}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
     move-result-object p0
 
-    invoke-virtual {p0, v5}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
+    invoke-virtual {p0, v6}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
-    .line 473
+    .line 510
+    goto :goto_3
+
+    .line 517
+    :pswitch_4
+    if-eqz p1, :cond_12
+
     goto :goto_2
 
-    .line 480
-    :pswitch_4
-    if-eqz p1, :cond_d
-
-    goto :goto_1
-
-    .line 482
-    :cond_d
+    .line 519
+    :cond_12
     invoke-virtual {v0, v3}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
     move-result-object p0
@@ -641,79 +780,79 @@
 
     invoke-virtual {p0, p1}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
-    .line 483
-    invoke-static {}, Lcom/mi/config/b;->gh()Z
+    .line 520
+    invoke-static {}, Lcom/mi/config/b;->gq()Z
 
     move-result p0
 
-    if-eqz p0, :cond_e
+    if-eqz p0, :cond_13
 
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object p0
 
-    invoke-virtual {p0}, Lcom/mi/config/a;->fr()Z
+    invoke-virtual {p0}, Lcom/mi/config/a;->fs()Z
 
     move-result p0
 
-    if-nez p0, :cond_e
+    if-nez p0, :cond_13
 
-    .line 484
+    .line 521
     const/16 p0, 0xe8
 
     invoke-virtual {v0, p0}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
-    .line 487
-    :cond_e
+    .line 524
+    :cond_13
     invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
 
     move-result p0
 
-    if-nez p0, :cond_f
+    if-nez p0, :cond_14
 
-    .line 488
+    .line 525
     invoke-virtual {p3}, Lcom/android/camera2/CameraCapabilities;->isSupportVideoBeauty()Z
 
     move-result p0
 
-    if-eqz p0, :cond_f
+    if-eqz p0, :cond_14
 
-    .line 489
+    .line 526
     invoke-virtual {v0, v2}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
-    .line 495
-    :cond_f
-    :goto_1
-    goto :goto_2
+    .line 532
+    :cond_14
+    :goto_2
+    goto :goto_3
 
-    .line 499
-    :cond_10
+    .line 536
+    :cond_15
     :pswitch_5
-    if-nez p1, :cond_11
+    if-nez p1, :cond_16
 
-    .line 500
+    .line 537
     invoke-virtual {p3}, Lcom/android/camera2/CameraCapabilities;->isSupportVideoBeauty()Z
 
     move-result p0
 
-    if-eqz p0, :cond_11
+    if-eqz p0, :cond_16
 
-    .line 501
+    .line 538
     invoke-virtual {v0, v3}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
-    .line 503
+    .line 540
     invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
 
     move-result p0
 
-    if-nez p0, :cond_11
+    if-nez p0, :cond_16
 
-    .line 504
+    .line 541
     invoke-virtual {v0, v2}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(I)Lcom/android/camera/data/data/config/SupportedConfigs;
 
-    .line 511
-    :cond_11
-    :goto_2
+    .line 548
+    :cond_16
+    :goto_3
     invoke-interface {p2, v0}, Lcom/android/camera/data/cloud/DataCloud$CloudFeature;->filterFeature(Lcom/android/camera/data/data/config/SupportedConfigs;)Lcom/android/camera/data/data/config/SupportedConfigs;
 
     move-result-object p0
@@ -747,22 +886,22 @@
 .method public static final getSupportedTopConfigs(ILcom/android/camera/data/data/config/DataItemConfig;ILcom/android/camera2/CameraCapabilities;Z)Lcom/android/camera/data/data/config/SupportedConfigs;
     .locals 10
 
-    .line 193
+    .line 210
     invoke-virtual {p1, p0, p3}, Lcom/android/camera/data/data/config/DataItemConfig;->reInitComponent(ILcom/android/camera2/CameraCapabilities;)V
 
-    .line 195
+    .line 212
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 197
+    .line 214
     invoke-virtual {p1}, Lcom/android/camera/data/data/config/DataItemConfig;->supportFlash()Z
 
     move-result v1
 
     if-eqz v1, :cond_1
 
-    .line 198
+    .line 215
     invoke-static {p0}, Lcom/android/camera/CameraSettings;->isUltraWideConfigOpen(I)Z
 
     move-result v1
@@ -771,23 +910,23 @@
 
     if-eqz v1, :cond_0
 
-    .line 200
+    .line 217
     invoke-static {v2}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object v1
 
-    .line 201
+    .line 218
     const/4 v2, 0x0
 
     iput-boolean v2, v1, Lcom/android/camera/data/data/config/TopConfigItem;->enable:Z
 
-    .line 202
+    .line 219
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 203
+    .line 220
     goto :goto_0
 
-    .line 204
+    .line 221
     :cond_0
     invoke-static {v2}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
@@ -795,7 +934,7 @@
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 207
+    .line 224
     :cond_1
     :goto_0
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
@@ -806,10 +945,10 @@
 
     move-result v1
 
-    .line 208
-    const/16 v2, 0x11
+    .line 225
+    const/16 v2, 0xc9
 
-    const/16 v3, 0xc9
+    const/16 v3, 0x11
 
     const/16 v4, 0xf3
 
@@ -825,7 +964,7 @@
 
     packed-switch p0, :pswitch_data_0
 
-    .line 211
+    .line 228
     :pswitch_0
     invoke-virtual {p1}, Lcom/android/camera/data/data/config/DataItemConfig;->supportHdr()Z
 
@@ -833,7 +972,7 @@
 
     if-eqz p0, :cond_16
 
-    .line 212
+    .line 229
     invoke-static {v5}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
@@ -842,51 +981,51 @@
 
     goto/16 :goto_3
 
-    .line 316
+    .line 332
     :pswitch_1
     if-eqz p4, :cond_2
 
     if-eqz p2, :cond_2
 
-    .line 317
+    .line 333
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object p0
 
-    invoke-virtual {p0}, Lcom/mi/config/a;->fc()Z
+    invoke-virtual {p0}, Lcom/mi/config/a;->fd()Z
 
     move-result p0
 
     if-eqz p0, :cond_2
 
-    .line 318
+    .line 334
     invoke-static {v4}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 320
+    .line 336
     :cond_2
     const/16 p0, 0xf5
 
-    invoke-static {p0}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
+    invoke-static {p0, v3}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(II)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 321
+    .line 337
     invoke-static {v9}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 322
+    .line 338
     goto/16 :goto_4
 
-    .line 351
+    .line 367
     :pswitch_2
     invoke-static {v9}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
@@ -896,7 +1035,7 @@
 
     goto/16 :goto_4
 
-    .line 346
+    .line 362
     :pswitch_3
     const/16 p0, 0xcc
 
@@ -906,17 +1045,17 @@
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 347
+    .line 363
     invoke-static {v9}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 348
+    .line 364
     goto/16 :goto_4
 
-    .line 233
+    .line 247
     :pswitch_4
     invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
 
@@ -924,7 +1063,7 @@
 
     if-nez p0, :cond_4
 
-    .line 234
+    .line 248
     if-eqz p4, :cond_4
 
     invoke-virtual {p3}, Lcom/android/camera2/CameraCapabilities;->isSupportPortraitLighting()Z
@@ -933,36 +1072,12 @@
 
     if-eqz p0, :cond_4
 
-    .line 235
+    .line 249
     const/16 p0, 0xcb
 
     if-nez p2, :cond_3
 
-    .line 236
-    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
-
-    move-result-object p1
-
-    invoke-virtual {p1}, Lcom/mi/config/a;->eY()Z
-
-    move-result p1
-
-    if-eqz p1, :cond_4
-
-    .line 237
-    invoke-static {p0}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
-
-    move-result-object p0
-
-    invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    goto :goto_1
-
-    .line 239
-    :cond_3
-    if-ne p2, v6, :cond_4
-
-    .line 240
+    .line 250
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object p1
@@ -973,21 +1088,45 @@
 
     if-eqz p1, :cond_4
 
-    .line 241
+    .line 251
     invoke-static {p0}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 246
+    goto :goto_1
+
+    .line 253
+    :cond_3
+    if-ne p2, v6, :cond_4
+
+    .line 254
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/mi/config/a;->fa()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_4
+
+    .line 255
+    invoke-static {p0}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
+
+    move-result-object p0
+
+    invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 260
     :cond_4
     :goto_1
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object p0
 
-    invoke-virtual {p0}, Lcom/mi/config/a;->fw()Z
+    invoke-virtual {p0}, Lcom/mi/config/a;->fx()Z
 
     move-result p0
 
@@ -995,7 +1134,9 @@
 
     if-nez p2, :cond_5
 
-    .line 248
+    if-eqz p4, :cond_5
+
+    .line 262
     const/16 p0, 0xcf
 
     invoke-static {p0}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
@@ -1004,8 +1145,21 @@
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 250
+    .line 264
     :cond_5
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Lcom/mi/config/a;->fc()Z
+
+    move-result p0
+
+    if-eqz p0, :cond_7
+
+    if-eqz p2, :cond_6
+
+    .line 266
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object p0
@@ -1016,61 +1170,48 @@
 
     if-eqz p0, :cond_7
 
-    if-eqz p2, :cond_6
-
-    .line 252
-    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
-
-    move-result-object p0
-
-    invoke-virtual {p0}, Lcom/mi/config/a;->fa()Z
-
-    move-result p0
-
-    if-eqz p0, :cond_7
-
     if-ne p2, v6, :cond_7
 
-    .line 254
+    .line 268
     :cond_6
-    invoke-static {v3}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
+    invoke-static {v2}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 256
+    .line 270
     :cond_7
-    invoke-static {v8, v2}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(II)Lcom/android/camera/data/data/config/TopConfigItem;
+    invoke-static {v8, v3}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(II)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 257
+    .line 271
     invoke-static {v7}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 258
+    .line 272
     goto/16 :goto_4
 
-    .line 289
+    .line 303
     :pswitch_5
     invoke-virtual {p1}, Lcom/android/camera/data/data/config/DataItemConfig;->getManuallyFocus()Lcom/android/camera/data/data/config/ComponentManuallyFocus;
 
     move-result-object p1
 
-    .line 290
-    invoke-static {}, Lcom/mi/config/b;->gF()Z
+    .line 304
+    invoke-static {}, Lcom/mi/config/b;->gO()Z
 
     move-result p2
 
     if-eqz p2, :cond_8
 
-    .line 291
+    .line 305
     invoke-virtual {p1, p0}, Lcom/android/camera/data/data/config/ComponentManuallyFocus;->getComponentValue(I)Ljava/lang/String;
 
     move-result-object p2
@@ -1085,7 +1226,7 @@
 
     if-nez p0, :cond_8
 
-    .line 292
+    .line 306
     const/16 p0, 0xc7
 
     invoke-static {p0}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
@@ -1094,7 +1235,7 @@
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 294
+    .line 308
     :cond_8
     invoke-static {p3}, Lcom/android/camera/CameraSettings;->isSupportedUltraPixelPhotography(Lcom/android/camera2/CameraCapabilities;)Z
 
@@ -1104,7 +1245,7 @@
 
     if-eqz p4, :cond_9
 
-    .line 295
+    .line 309
     const/16 p0, 0xd1
 
     invoke-static {p0}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
@@ -1113,7 +1254,27 @@
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 297
+    .line 310
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Lcom/mi/config/a;->fN()I
+
+    move-result p0
+
+    .line 311
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/camera/data/data/config/DataItemConfig;->getRearComponentConfigUltraPixel()Lcom/android/camera/data/data/config/ComponentConfigUltraPixel;
+
+    move-result-object p1
+
+    invoke-virtual {p1, p0}, Lcom/android/camera/data/data/config/ComponentConfigUltraPixel;->initUltraPixelResource(I)V
+
+    .line 313
     :cond_9
     invoke-static {v8}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
@@ -1121,31 +1282,31 @@
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 298
+    .line 314
     invoke-static {v7}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 299
+    .line 315
     goto/16 :goto_4
 
-    .line 341
+    .line 357
     :pswitch_6
     invoke-interface {v0}, Ljava/util/List;->clear()V
 
-    .line 342
+    .line 358
     invoke-static {v9}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 343
+    .line 359
     goto/16 :goto_4
 
-    .line 302
+    .line 318
     :pswitch_7
     invoke-virtual {p1}, Lcom/android/camera/data/data/config/DataItemConfig;->supportHdr()Z
 
@@ -1153,16 +1314,16 @@
 
     if-eqz p0, :cond_a
 
-    .line 303
+    .line 319
     invoke-static {v5}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 306
+    .line 322
     :cond_a
-    invoke-static {}, Lcom/mi/config/b;->gq()Z
+    invoke-static {}, Lcom/mi/config/b;->gz()Z
 
     move-result p0
 
@@ -1170,13 +1331,13 @@
 
     if-eqz p2, :cond_c
 
-    .line 307
+    .line 323
     :cond_b
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object p0
 
-    invoke-virtual {p0}, Lcom/mi/config/a;->fa()Z
+    invoke-virtual {p0}, Lcom/mi/config/a;->fb()Z
 
     move-result p0
 
@@ -1184,15 +1345,15 @@
 
     if-ne p2, v6, :cond_d
 
-    .line 308
+    .line 324
     :cond_c
-    invoke-static {v3}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
+    invoke-static {v2}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 311
+    .line 327
     :cond_d
     invoke-static {v8}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
@@ -1200,24 +1361,24 @@
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 312
+    .line 328
     invoke-static {v7}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 313
+    .line 329
     goto/16 :goto_4
 
-    .line 264
+    .line 278
     :pswitch_8
     if-nez p2, :cond_11
 
-    .line 265
+    .line 279
     if-nez p4, :cond_e
 
-    .line 266
+    .line 280
     invoke-static {v9}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
@@ -1226,7 +1387,7 @@
 
     goto/16 :goto_4
 
-    .line 268
+    .line 282
     :cond_e
     invoke-virtual {p1}, Lcom/android/camera/data/data/config/DataItemConfig;->supportHdr()Z
 
@@ -1234,39 +1395,39 @@
 
     if-eqz p0, :cond_f
 
-    .line 269
+    .line 283
     invoke-static {v5}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 271
+    .line 285
     :cond_f
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object p0
 
-    invoke-virtual {p0}, Lcom/mi/config/a;->fr()Z
+    invoke-virtual {p0}, Lcom/mi/config/a;->fs()Z
 
     move-result p0
 
     if-nez p0, :cond_10
 
-    .line 272
-    invoke-static {}, Lcom/mi/config/b;->gh()Z
+    .line 286
+    invoke-static {}, Lcom/mi/config/b;->gq()Z
 
     move-result p0
 
     if-eqz p0, :cond_10
 
-    invoke-static {}, Lcom/mi/config/b;->hz()Z
+    invoke-static {}, Lcom/mi/config/b;->hI()Z
 
     move-result p0
 
     if-eqz p0, :cond_10
 
-    .line 273
+    .line 287
     const/16 p0, 0xca
 
     invoke-static {p0}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
@@ -1275,7 +1436,7 @@
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 276
+    .line 290
     :cond_10
     invoke-static {v7}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
@@ -1285,7 +1446,7 @@
 
     goto/16 :goto_4
 
-    .line 279
+    .line 293
     :cond_11
     if-eqz p4, :cond_12
 
@@ -1293,25 +1454,25 @@
 
     if-ne p0, p1, :cond_12
 
-    .line 280
+    .line 294
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object p0
 
-    invoke-virtual {p0}, Lcom/mi/config/a;->fc()Z
+    invoke-virtual {p0}, Lcom/mi/config/a;->fd()Z
 
     move-result p0
 
     if-eqz p0, :cond_12
 
-    .line 281
+    .line 295
     invoke-static {v4}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 283
+    .line 297
     :cond_12
     invoke-static {v9}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
@@ -1319,39 +1480,39 @@
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 285
+    .line 299
     goto/16 :goto_4
 
-    .line 324
+    .line 340
     :pswitch_9
     if-eqz p4, :cond_13
 
     if-eqz p2, :cond_13
 
-    .line 325
+    .line 341
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object p0
 
-    invoke-virtual {p0}, Lcom/mi/config/a;->fc()Z
+    invoke-virtual {p0}, Lcom/mi/config/a;->fd()Z
 
     move-result p0
 
     if-eqz p0, :cond_13
 
-    .line 326
+    .line 342
     invoke-static {v4}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 328
+    .line 344
     :cond_13
     if-ne p2, v6, :cond_14
 
-    .line 329
-    invoke-static {v8, v2}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(II)Lcom/android/camera/data/data/config/TopConfigItem;
+    .line 345
+    invoke-static {v8, v3}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(II)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
@@ -1359,7 +1520,7 @@
 
     goto :goto_2
 
-    .line 331
+    .line 347
     :cond_14
     invoke-static {v8}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
@@ -1367,7 +1528,7 @@
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 333
+    .line 349
     :goto_2
     if-nez p2, :cond_15
 
@@ -1377,7 +1538,7 @@
 
     if-eqz p0, :cond_15
 
-    .line 334
+    .line 350
     invoke-static {v7}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
@@ -1386,7 +1547,7 @@
 
     goto :goto_4
 
-    .line 336
+    .line 352
     :cond_15
     invoke-static {v9}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
@@ -1394,13 +1555,13 @@
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 338
+    .line 354
     goto :goto_4
 
-    .line 215
+    .line 232
     :cond_16
     :goto_3
-    invoke-static {}, Lcom/mi/config/b;->gq()Z
+    invoke-static {}, Lcom/mi/config/b;->gz()Z
 
     move-result p0
 
@@ -1408,13 +1569,13 @@
 
     if-eqz p2, :cond_18
 
-    .line 216
+    .line 233
     :cond_17
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object p0
 
-    invoke-virtual {p0}, Lcom/mi/config/a;->fa()Z
+    invoke-virtual {p0}, Lcom/mi/config/a;->fb()Z
 
     move-result p0
 
@@ -1422,21 +1583,21 @@
 
     if-ne p2, v6, :cond_19
 
-    .line 217
+    .line 234
     :cond_18
-    invoke-static {v3}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
+    invoke-static {v2}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 220
+    .line 237
     :cond_19
     if-eqz v1, :cond_1a
 
     if-eqz p4, :cond_1a
 
-    .line 221
+    .line 238
     const/16 p0, 0xce
 
     invoke-static {p0}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
@@ -1445,55 +1606,38 @@
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 224
+    .line 240
     :cond_1a
-    invoke-static {p3}, Lcom/android/camera/CameraSettings;->isSupportedUltraPixelPhotography(Lcom/android/camera2/CameraCapabilities;)Z
-
-    move-result p0
-
-    if-eqz p0, :cond_1b
-
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isMeunUltraPixelPhotographyOn()Z
-
-    move-result p0
-
-    if-nez p0, :cond_1c
-
-    .line 225
-    :cond_1b
     invoke-static {v8}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 227
-    :cond_1c
+    .line 241
     invoke-static {v7}, Lcom/android/camera/data/data/config/SupportedConfigFactory;->createConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
 
     move-result-object p0
 
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 229
+    .line 243
     nop
 
-    .line 354
+    .line 370
     :goto_4
     invoke-static {v0}, Lcom/android/camera/data/data/config/TopViewPositionArray;->fillNotUseViewPosition(Ljava/util/List;)Ljava/util/List;
 
-    .line 355
+    .line 371
     new-instance p0, Lcom/android/camera/data/data/config/SupportedConfigs;
 
     invoke-direct {p0}, Lcom/android/camera/data/data/config/SupportedConfigs;-><init>()V
 
-    .line 356
+    .line 372
     invoke-virtual {p0, v0}, Lcom/android/camera/data/data/config/SupportedConfigs;->add(Ljava/util/List;)V
 
-    .line 357
+    .line 373
     return-object p0
-
-    nop
 
     :pswitch_data_0
     .packed-switch 0xa1
@@ -1517,7 +1661,7 @@
 .method public static isMutexConfig(I)Z
     .locals 5
 
-    .line 144
+    .line 157
     sget-object v0, Lcom/android/camera/data/data/config/SupportedConfigFactory;->MUTEX_MENU_CONFIGS:[I
 
     array-length v1, v0
@@ -1531,21 +1675,21 @@
 
     aget v4, v0, v3
 
-    .line 145
+    .line 158
     if-ne v4, p0, :cond_0
 
-    .line 146
+    .line 159
     const/4 p0, 0x1
 
     return p0
 
-    .line 144
+    .line 157
     :cond_0
     add-int/lit8 v3, v3, 0x1
 
     goto :goto_0
 
-    .line 149
+    .line 162
     :cond_1
     return v2
 .end method

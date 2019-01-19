@@ -570,7 +570,7 @@
     if-eqz v0, :cond_1
 
     .line 770
-    invoke-static {}, Lcom/mi/config/b;->gf()Z
+    invoke-static {}, Lcom/mi/config/b;->go()Z
 
     move-result v0
 
@@ -2912,7 +2912,7 @@
 
     if-eqz v0, :cond_6
 
-    invoke-static {}, Lcom/mi/config/b;->gf()Z
+    invoke-static {}, Lcom/mi/config/b;->go()Z
 
     move-result v0
 
@@ -2942,7 +2942,7 @@
     if-eqz p2, :cond_8
 
     .line 273
-    invoke-static {}, Lcom/mi/config/b;->gU()Z
+    invoke-static {}, Lcom/mi/config/b;->hd()Z
 
     move-result p1
 
@@ -3121,7 +3121,7 @@
     .locals 3
 
     .line 900
-    invoke-static {}, Lcom/mi/config/b;->gf()Z
+    invoke-static {}, Lcom/mi/config/b;->go()Z
 
     move-result v0
 

@@ -15,6 +15,7 @@ import com.android.camera.constant.ExceptionConstant;
 import com.android.camera.constant.GlobalConstant;
 import com.android.camera.log.Log;
 import com.android.camera2.Camera2Proxy;
+import com.android.camera2.CameraCapabilities;
 import com.android.camera2.MiCamera2;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -46,26 +47,25 @@ public class Camera2OpenManager {
     private final StateCallback mCameraOpenCallback = new StateCallback() {
         public void onOpened(@NonNull CameraDevice cameraDevice) {
             int parseInt = Integer.parseInt(cameraDevice.getId());
-            CameraDevice cameraDevice2 = cameraDevice;
-            int i = parseInt;
-            Camera2OpenManager.this.mCamera2Device = new MiCamera2(cameraDevice2, i, Camera2DataContainer.getInstance().getCapabilities(parseInt), Camera2OpenManager.this.getCameraHandler(), Camera2OpenManager.this.getCameraMainThreadHandler());
-            Camera2DataContainer.getInstance().setCurrentOpenedCameraId(parseInt);
+            CameraCapabilities capabilities = Camera2DataContainer.getInstance().getCapabilities(parseInt);
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("CameraOpenCallback: camera ");
             stringBuilder.append(parseInt);
             stringBuilder.append(" was opened successfully");
             String stringBuilder2 = stringBuilder.toString();
-            if (Camera2OpenManager.this.mCamera2Device.getCapabilities() == null) {
-                StringBuilder stringBuilder3 = new StringBuilder();
-                stringBuilder3.append(stringBuilder2);
-                stringBuilder3.append(", but corresponding CameraCapabilities is null");
-                stringBuilder2 = stringBuilder3.toString();
+            if (capabilities != null) {
+                Camera2OpenManager.this.mCamera2Device = new MiCamera2(cameraDevice, parseInt, capabilities, Camera2OpenManager.this.getCameraHandler(), Camera2OpenManager.this.getCameraMainThreadHandler());
+                Camera2DataContainer.getInstance().setCurrentOpenedCameraId(parseInt);
                 Log.d(Camera2OpenManager.TAG, stringBuilder2);
-                Camera2OpenManager.this.onCameraOpenFailed(231, stringBuilder2);
+                Camera2OpenManager.this.mCameraHandler.sendEmptyMessage(4);
                 return;
             }
-            Log.d(Camera2OpenManager.TAG, stringBuilder2);
-            Camera2OpenManager.this.mCameraHandler.sendEmptyMessage(4);
+            StringBuilder stringBuilder3 = new StringBuilder();
+            stringBuilder3.append(stringBuilder2);
+            stringBuilder3.append(", but corresponding CameraCapabilities is null");
+            String stringBuilder4 = stringBuilder3.toString();
+            Log.e(Camera2OpenManager.TAG, stringBuilder4);
+            Camera2OpenManager.this.onCameraOpenFailed(231, stringBuilder4);
         }
 
         public void onClosed(@NonNull CameraDevice cameraDevice) {
@@ -240,8 +240,8 @@ public class Camera2OpenManager {
         this.mCameraHandler.sendEmptyMessage(2);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:31:0x0124 A:{ExcHandler: android.hardware.camera2.CameraAccessException (r0_32 'e' java.lang.Throwable), Splitter: B:29:0x010a} */
-    /* JADX WARNING: Removed duplicated region for block: B:31:0x0124 A:{ExcHandler: android.hardware.camera2.CameraAccessException (r0_32 'e' java.lang.Throwable), Splitter: B:29:0x010a} */
+    /* JADX WARNING: Removed duplicated region for block: B:31:0x0124 A:{Splitter: B:29:0x010a, ExcHandler: android.hardware.camera2.CameraAccessException (r0_32 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:31:0x0124 A:{Splitter: B:29:0x010a, ExcHandler: android.hardware.camera2.CameraAccessException (r0_32 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:31:0x0124, code:
             r0 = move-exception;
      */

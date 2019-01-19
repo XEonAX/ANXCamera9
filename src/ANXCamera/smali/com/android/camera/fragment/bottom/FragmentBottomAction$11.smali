@@ -27,7 +27,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/bottom/FragmentBottomAction;Z)V
     .locals 0
 
-    .line 1233
+    .line 1266
     iput-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     iput-boolean p2, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->val$start:Z
@@ -42,14 +42,14 @@
 .method public onAnimationCancel(Landroid/animation/Animator;)V
     .locals 0
 
-    .line 1271
+    .line 1304
     return-void
 .end method
 
 .method public onAnimationEnd(Landroid/animation/Animator;)V
     .locals 3
 
-    .line 1247
+    .line 1280
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-virtual {p1}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->canProvide()Z
@@ -58,10 +58,10 @@
 
     if-nez p1, :cond_0
 
-    .line 1248
+    .line 1281
     return-void
 
-    .line 1250
+    .line 1283
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
@@ -75,7 +75,7 @@
 
     if-eqz p1, :cond_2
 
-    .line 1251
+    .line 1284
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {p1}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$900(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/widget/ImageView;
@@ -96,7 +96,7 @@
     :goto_0
     invoke-virtual {p1, v2}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 1253
+    .line 1286
     :cond_2
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
@@ -106,7 +106,7 @@
 
     if-eqz p1, :cond_4
 
-    .line 1254
+    .line 1287
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {p1}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$1100(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/widget/ImageView;
@@ -125,7 +125,7 @@
     :goto_1
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 1256
+    .line 1289
     :cond_4
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
@@ -139,7 +139,7 @@
 
     if-nez p1, :cond_5
 
-    .line 1257
+    .line 1290
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {p1}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$1300(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/widget/ImageView;
@@ -148,13 +148,13 @@
 
     invoke-virtual {p1, v1}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 1259
+    .line 1292
     :cond_5
     iget-boolean p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->val$start:Z
 
     if-eqz p1, :cond_7
 
-    .line 1260
+    .line 1293
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {p1}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$700(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/view/ViewGroup;
@@ -163,7 +163,7 @@
 
     invoke-virtual {p1, v1}, Landroid/view/ViewGroup;->setVisibility(I)V
 
-    .line 1261
+    .line 1294
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {p1}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$500(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Z
@@ -172,7 +172,7 @@
 
     if-eqz p1, :cond_6
 
-    .line 1262
+    .line 1295
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {p1}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$600(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/widget/ImageView;
@@ -181,7 +181,7 @@
 
     invoke-virtual {p1, v1}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 1264
+    .line 1297
     :cond_6
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
@@ -191,7 +191,7 @@
 
     invoke-virtual {p1, v1}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 1266
+    .line 1299
     :cond_7
     return-void
 .end method
@@ -199,19 +199,19 @@
 .method public onAnimationRepeat(Landroid/animation/Animator;)V
     .locals 0
 
-    .line 1276
+    .line 1309
     return-void
 .end method
 
 .method public onAnimationStart(Landroid/animation/Animator;)V
     .locals 1
 
-    .line 1236
+    .line 1269
     iget-boolean p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->val$start:Z
 
     if-nez p1, :cond_1
 
-    .line 1237
+    .line 1270
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {p1}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$500(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Z
@@ -222,7 +222,7 @@
 
     if-eqz p1, :cond_0
 
-    .line 1238
+    .line 1271
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {p1}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$600(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/widget/ImageView;
@@ -231,7 +231,7 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 1240
+    .line 1273
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
@@ -241,7 +241,7 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 1241
+    .line 1274
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$11;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {p1}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$700(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/view/ViewGroup;
@@ -250,7 +250,7 @@
 
     invoke-virtual {p1, v0}, Landroid/view/ViewGroup;->setVisibility(I)V
 
-    .line 1243
+    .line 1276
     :cond_1
     return-void
 .end method

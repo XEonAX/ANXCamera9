@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;)V
     .locals 0
 
-    .line 801
+    .line 808
     iput-object p1, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$17;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-direct {p0}, Landroid/view/animation/LinearInterpolator;-><init>()V
@@ -35,24 +35,24 @@
 .method public getInterpolation(F)F
     .locals 7
 
-    .line 804
+    .line 811
     invoke-super {p0, p1}, Landroid/view/animation/LinearInterpolator;->getInterpolation(F)F
 
     move-result p1
 
-    .line 805
+    .line 812
     const v0, 0x4604d000    # 8500.0f
 
     mul-float/2addr v0, p1
 
-    .line 806
+    .line 813
     const/high16 v1, 0x43fa0000    # 500.0f
 
     cmpl-float v2, v0, v1
 
     if-lez v2, :cond_0
 
-    .line 807
+    .line 814
     iget-object v2, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$17;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-static {v2}, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;->access$000(Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;)Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;
@@ -71,7 +71,7 @@
 
     iput v3, v2, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->timeAngle:F
 
-    .line 810
+    .line 817
     :cond_0
     const/high16 v1, 0x447a0000    # 1000.0f
 
@@ -87,7 +87,7 @@
 
     if-gtz v2, :cond_1
 
-    .line 811
+    .line 818
     iget-object v1, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$17;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-static {v1}, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;->access$800(Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;)Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$LongPressIncreaseListener;
@@ -104,7 +104,7 @@
 
     invoke-interface {v1, v0}, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$LongPressIncreaseListener;->OnValueUp(F)V
 
-    .line 812
+    .line 819
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$17;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-static {v0}, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;->access$800(Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;)Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$LongPressIncreaseListener;
@@ -117,7 +117,7 @@
 
     goto :goto_0
 
-    .line 813
+    .line 820
     :cond_1
     sub-float v1, v0, v1
 
@@ -127,7 +127,7 @@
 
     if-gez v1, :cond_2
 
-    .line 814
+    .line 821
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$17;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-static {v0}, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;->access$800(Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;)Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$LongPressIncreaseListener;
@@ -140,7 +140,7 @@
 
     goto :goto_0
 
-    .line 816
+    .line 823
     :cond_2
     iget-object v1, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$17;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
@@ -158,7 +158,7 @@
 
     invoke-interface {v1, v0}, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$LongPressIncreaseListener;->OnIncrease(F)V
 
-    .line 819
+    .line 826
     :goto_0
     return p1
 .end method

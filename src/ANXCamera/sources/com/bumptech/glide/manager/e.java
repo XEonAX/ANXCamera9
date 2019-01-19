@@ -17,9 +17,9 @@ final class e implements c {
     private static final String TAG = "ConnectivityMonitor";
     private final Context context;
     boolean isConnected;
-    final a mj;
-    private boolean mk;
-    private final BroadcastReceiver ml = new BroadcastReceiver() {
+    final a mi;
+    private boolean mj;
+    private final BroadcastReceiver mk = new BroadcastReceiver() {
         public void onReceive(@NonNull Context context, Intent intent) {
             boolean z = e.this.isConnected;
             e.this.isConnected = e.this.isConnected(context);
@@ -31,22 +31,22 @@ final class e implements c {
                     stringBuilder.append(e.this.isConnected);
                     Log.d(str, stringBuilder.toString());
                 }
-                e.this.mj.b(e.this.isConnected);
+                e.this.mi.b(e.this.isConnected);
             }
         }
     };
 
     e(@NonNull Context context, @NonNull a aVar) {
         this.context = context.getApplicationContext();
-        this.mj = aVar;
+        this.mi = aVar;
     }
 
     private void register() {
-        if (!this.mk) {
+        if (!this.mj) {
             this.isConnected = isConnected(this.context);
             try {
-                this.context.registerReceiver(this.ml, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
-                this.mk = true;
+                this.context.registerReceiver(this.mk, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+                this.mj = true;
             } catch (Throwable e) {
                 if (Log.isLoggable(TAG, 5)) {
                     Log.w(TAG, "Failed to register", e);
@@ -56,9 +56,9 @@ final class e implements c {
     }
 
     private void unregister() {
-        if (this.mk) {
-            this.context.unregisterReceiver(this.ml);
-            this.mk = false;
+        if (this.mj) {
+            this.context.unregisterReceiver(this.mk);
+            this.mj = false;
         }
     }
 

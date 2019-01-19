@@ -60,7 +60,7 @@
 
     .line 23
     :goto_0
-    invoke-static {}, Lcom/mi/config/b;->hr()Z
+    invoke-static {}, Lcom/mi/config/b;->hA()Z
 
     move-result v0
 
@@ -88,7 +88,7 @@
 
     .line 26
     :cond_1
-    invoke-static {}, Lcom/mi/config/b;->hC()Z
+    invoke-static {}, Lcom/mi/config/b;->hL()Z
 
     move-result v0
 
@@ -166,7 +166,7 @@
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/mi/config/a;->fm()Z
+    invoke-virtual {v0}, Lcom/mi/config/a;->fn()Z
 
     move-result v0
 

@@ -106,7 +106,7 @@
     .locals 1
 
     .line 105
-    const v0, 0x7f04001e
+    const v0, 0x7f040020
 
     return v0
 .end method
@@ -146,7 +146,7 @@
     .line 52
     iget-object v0, p0, Lcom/android/camera/fragment/live/FragmentLiveSpeed;->mRootView:Landroid/view/View;
 
-    const v1, 0x7f0d0068
+    const v1, 0x7f0d0071
 
     invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 

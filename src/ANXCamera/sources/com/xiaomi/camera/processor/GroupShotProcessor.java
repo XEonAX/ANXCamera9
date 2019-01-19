@@ -78,6 +78,9 @@ public class GroupShotProcessor implements AlgoProcessor {
             ImagePool.getInstance().queueImage(mainImage);
             captureDataBean.setMainImage(ImagePool.getInstance().getImage(timeStamp));
             captureDataBeanList.add(captureDataBean);
+            result.setSequenceId((int) (((long) result.getSequenceId()) + result.getFrameNumber()));
+            ICustomCaptureResult result2 = captureDataBean.getResult();
+            result2.setSequenceId((int) (((long) result2.getSequenceId()) + result2.getFrameNumber()));
         }
         onImageAvailable(captureData, captureDataBean2, processResultListener);
         this.mGroupShot.clearImages();

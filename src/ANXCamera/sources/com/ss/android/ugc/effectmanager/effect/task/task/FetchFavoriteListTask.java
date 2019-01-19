@@ -32,15 +32,14 @@ public class FetchFavoriteListTask extends NormalTask {
         super(handler, str2, EffectConstants.NETWORK);
         this.mEffectContext = effectContext;
         this.mPanel = str;
-        this.mCurCnt = this.mConfiguration.getRetryCount();
+        this.mCurCnt = this.mConfiguration.getRetryCount() + 1;
     }
 
     public void execute() {
-        EffectRequest buildRequest = buildRequest();
         int i = 0;
         while (i < this.mCurCnt) {
             try {
-                FetchFavoriteListResponse fetchFavoriteListResponse = (FetchFavoriteListResponse) this.mConfiguration.getEffectNetWorker().execute(buildRequest, this.mJsonConverter, FetchFavoriteListResponse.class);
+                FetchFavoriteListResponse fetchFavoriteListResponse = (FetchFavoriteListResponse) this.mConfiguration.getEffectNetWorker().execute(buildRequest(), this.mJsonConverter, FetchFavoriteListResponse.class);
                 if (fetchFavoriteListResponse == null || !fetchFavoriteListResponse.checkValued()) {
                     throw new NetException(Integer.valueOf(ErrorConstants.CODE_DOWNLOAD_ERROR), ErrorConstants.EXCEPTION_DOWNLOAD_ERROR);
                 }
@@ -100,15 +99,6 @@ public class FetchFavoriteListTask extends NormalTask {
         }
         if (!TextUtils.isEmpty(this.mPanel)) {
             hashMap.put(EffectConfiguration.KEY_PANEL, this.mPanel);
-        }
-        if (!TextUtils.isEmpty(this.mConfiguration.getAppID())) {
-            hashMap.put(EffectConfiguration.KEY_APP_ID, this.mConfiguration.getAppID());
-        }
-        if (!TextUtils.isEmpty(this.mConfiguration.getAppLanguage())) {
-            hashMap.put(EffectConfiguration.KEY_APP_LANGUAGE, this.mConfiguration.getAppLanguage());
-        }
-        if (!TextUtils.isEmpty(this.mConfiguration.getSysLanguage())) {
-            hashMap.put(EffectConfiguration.KEY_SYS_LANGUAGE, this.mConfiguration.getSysLanguage());
         }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(this.mEffectContext.getLinkSelector().getBestHostUrl());

@@ -116,7 +116,7 @@ public class CtaNoticeFragment extends DialogFragment {
     }
 
     public Dialog onCreateDialog(Bundle bundle) {
-        Builder negativeButton = new Builder(getActivity()).setTitle(R.string.user_notice_title).setMessage(buildUserNotice(getActivity(), R.string.user_notice_identify_summary_format)).setPositiveButton(R.string.user_agree, new OnClickListener() {
+        Builder negativeButton = new Builder(getActivity()).setTitle(R.string.network_access_user_notice_title).setMessage(buildUserNotice(getActivity(), R.string.user_notice_identify_summary_format)).setPositiveButton(R.string.user_agree, new OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
                 boolean isChecked;
                 if (CtaNoticeFragment.this.mShowRemindButton) {

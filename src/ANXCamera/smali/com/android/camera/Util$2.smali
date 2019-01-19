@@ -24,7 +24,7 @@
 .method constructor <init>(JJLandroid/app/Activity;Landroid/widget/Button;)V
     .locals 0
 
-    .line 607
+    .line 613
     iput-object p5, p0, Lcom/android/camera/Util$2;->val$activity:Landroid/app/Activity;
 
     iput-object p6, p0, Lcom/android/camera/Util$2;->val$btn:Landroid/widget/Button;
@@ -39,7 +39,7 @@
 .method public onFinish()V
     .locals 3
 
-    .line 617
+    .line 623
     iget-object v0, p0, Lcom/android/camera/Util$2;->val$activity:Landroid/app/Activity;
 
     check-cast v0, Lcom/android/camera/ActivityBase;
@@ -50,14 +50,14 @@
 
     if-nez v0, :cond_0
 
-    .line 618
+    .line 624
     iget-object v0, p0, Lcom/android/camera/Util$2;->val$btn:Landroid/widget/Button;
 
     const/4 v1, 0x1
 
     invoke-virtual {v0, v1}, Landroid/widget/Button;->setEnabled(Z)V
 
-    .line 619
+    .line 625
     iget-object v0, p0, Lcom/android/camera/Util$2;->val$btn:Landroid/widget/Button;
 
     iget-object v1, p0, Lcom/android/camera/Util$2;->val$activity:Landroid/app/Activity;
@@ -66,7 +66,7 @@
 
     move-result-object v1
 
-    const v2, 0x7f0b00c5
+    const v2, 0x7f0900c4
 
     invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -74,7 +74,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
 
-    .line 621
+    .line 627
     :cond_0
     return-void
 .end method
@@ -82,7 +82,7 @@
 .method public onTick(J)V
     .locals 7
 
-    .line 610
+    .line 616
     iget-object v0, p0, Lcom/android/camera/Util$2;->val$activity:Landroid/app/Activity;
 
     check-cast v0, Lcom/android/camera/ActivityBase;
@@ -93,7 +93,7 @@
 
     if-nez v0, :cond_0
 
-    .line 611
+    .line 617
     iget-object v0, p0, Lcom/android/camera/Util$2;->val$btn:Landroid/widget/Button;
 
     iget-object v1, p0, Lcom/android/camera/Util$2;->val$activity:Landroid/app/Activity;
@@ -102,7 +102,7 @@
 
     move-result-object v1
 
-    const v2, 0x7f0b00c6
+    const v2, 0x7f0900c5
 
     const/4 v3, 0x1
 
@@ -126,7 +126,7 @@
 
     invoke-virtual {v0, p1}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
 
-    .line 613
+    .line 619
     :cond_0
     return-void
 .end method

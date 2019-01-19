@@ -50,14 +50,14 @@
     .registers 2
 
     .line 267
-    invoke-virtual {p0}, Lmiui/util/Pools$1;->db()Ljava/lang/StringBuilder;
+    invoke-virtual {p0}, Lmiui/util/Pools$1;->dc()Ljava/lang/StringBuilder;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public db()Ljava/lang/StringBuilder;
+.method public dc()Ljava/lang/StringBuilder;
     .registers 2
 
     .line 270

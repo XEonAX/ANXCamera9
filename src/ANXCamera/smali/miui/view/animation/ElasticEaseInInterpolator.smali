@@ -7,9 +7,9 @@
 
 
 # instance fields
-.field private final NT:F
+.field private final Oe:F
 
-.field private final NV:F
+.field private final Of:F
 
 
 # direct methods
@@ -32,10 +32,10 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 29
-    iput p1, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->NT:F
+    iput p1, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->Oe:F
 
     .line 30
-    iput p2, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->NV:F
+    iput p2, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->Of:F
 
     .line 31
     return-void
@@ -47,10 +47,10 @@
     .registers 14
 
     .line 35
-    iget v0, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->NV:F
+    iget v0, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->Of:F
 
     .line 36
-    iget v1, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->NT:F
+    iget v1, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->Oe:F
 
     .line 39
     const/4 v2, 0x0

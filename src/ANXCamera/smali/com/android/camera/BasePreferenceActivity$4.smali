@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/BasePreferenceActivity;)V
     .locals 0
 
-    .line 558
+    .line 585
     iput-object p1, p0, Lcom/android/camera/BasePreferenceActivity$4;->this$0:Lcom/android/camera/BasePreferenceActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public onPackageInstalled(Ljava/lang/String;Z)V
     .locals 1
 
-    .line 561
+    .line 588
     if-eqz p2, :cond_0
 
     const-string p2, "com.xiaomi.scanner"
@@ -49,24 +49,24 @@
 
     if-eqz p1, :cond_0
 
-    .line 562
+    .line 589
     iget-object p1, p0, Lcom/android/camera/BasePreferenceActivity$4;->this$0:Lcom/android/camera/BasePreferenceActivity;
 
     iget-object p1, p1, Lcom/android/camera/BasePreferenceActivity;->mPreferenceGroup:Landroid/preference/PreferenceScreen;
 
     const-string p2, "pref_scan_qrcode_key"
 
-    .line 563
+    .line 590
     invoke-virtual {p1, p2}, Landroid/preference/PreferenceScreen;->findPreference(Ljava/lang/CharSequence;)Landroid/preference/Preference;
 
     move-result-object p1
 
     check-cast p1, Landroid/preference/CheckBoxPreference;
 
-    .line 564
+    .line 591
     if-eqz p1, :cond_0
 
-    .line 565
+    .line 592
     iget-object p2, p0, Lcom/android/camera/BasePreferenceActivity$4;->this$0:Lcom/android/camera/BasePreferenceActivity;
 
     new-instance v0, Lcom/android/camera/BasePreferenceActivity$4$1;
@@ -75,7 +75,7 @@
 
     invoke-virtual {p2, v0}, Lcom/android/camera/BasePreferenceActivity;->runOnUiThread(Ljava/lang/Runnable;)V
 
-    .line 574
+    .line 601
     :cond_0
     return-void
 .end method

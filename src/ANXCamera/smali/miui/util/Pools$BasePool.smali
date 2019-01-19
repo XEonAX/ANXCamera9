@@ -29,9 +29,9 @@
 
 
 # instance fields
-.field private final Hf:I
+.field private final Ho:I
 
-.field private final Jy:Lmiui/util/Pools$Manager;
+.field private final JI:Lmiui/util/Pools$Manager;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lmiui/util/Pools$Manager<",
@@ -40,7 +40,7 @@
     .end annotation
 .end field
 
-.field private Jz:Lmiui/util/Pools$IInstanceHolder;
+.field private JJ:Lmiui/util/Pools$IInstanceHolder;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lmiui/util/Pools$IInstanceHolder<",
@@ -49,7 +49,7 @@
     .end annotation
 .end field
 
-.field private final zM:Ljava/lang/Object;
+.field private final zV:Ljava/lang/Object;
 
 
 # direct methods
@@ -71,7 +71,7 @@
 
     invoke-direct {v0, p0}, Lmiui/util/Pools$BasePool$1;-><init>(Lmiui/util/Pools$BasePool;)V
 
-    iput-object v0, p0, Lmiui/util/Pools$BasePool;->zM:Ljava/lang/Object;
+    iput-object v0, p0, Lmiui/util/Pools$BasePool;->zV:Ljava/lang/Object;
 
     .line 363
     if-eqz p1, :cond_31
@@ -81,13 +81,13 @@
     if-lt p2, v0, :cond_31
 
     .line 369
-    iput-object p1, p0, Lmiui/util/Pools$BasePool;->Jy:Lmiui/util/Pools$Manager;
+    iput-object p1, p0, Lmiui/util/Pools$BasePool;->JI:Lmiui/util/Pools$Manager;
 
     .line 370
-    iput p2, p0, Lmiui/util/Pools$BasePool;->Hf:I
+    iput p2, p0, Lmiui/util/Pools$BasePool;->Ho:I
 
     .line 371
-    iget-object p1, p0, Lmiui/util/Pools$BasePool;->Jy:Lmiui/util/Pools$Manager;
+    iget-object p1, p0, Lmiui/util/Pools$BasePool;->JI:Lmiui/util/Pools$Manager;
 
     invoke-virtual {p1}, Lmiui/util/Pools$Manager;->createInstance()Ljava/lang/Object;
 
@@ -106,7 +106,7 @@
 
     move-result-object p2
 
-    iput-object p2, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
+    iput-object p2, p0, Lmiui/util/Pools$BasePool;->JJ:Lmiui/util/Pools$IInstanceHolder;
 
     .line 378
     invoke-virtual {p0, p1}, Lmiui/util/Pools$BasePool;->doRelease(Ljava/lang/Object;)V
@@ -126,13 +126,13 @@
 
     .line 365
     :cond_31
-    iget-object p1, p0, Lmiui/util/Pools$BasePool;->zM:Ljava/lang/Object;
+    iget-object p1, p0, Lmiui/util/Pools$BasePool;->zV:Ljava/lang/Object;
 
     invoke-virtual {p1}, Ljava/lang/Object;->hashCode()I
 
     move-result p1
 
-    iput p1, p0, Lmiui/util/Pools$BasePool;->Hf:I
+    iput p1, p0, Lmiui/util/Pools$BasePool;->Ho:I
 
     .line 366
     new-instance p1, Ljava/lang/IllegalArgumentException;
@@ -176,21 +176,21 @@
     .registers 3
 
     .line 430
-    iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
+    iget-object v0, p0, Lmiui/util/Pools$BasePool;->JJ:Lmiui/util/Pools$IInstanceHolder;
 
     if-eqz v0, :cond_e
 
     .line 431
-    iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
+    iget-object v0, p0, Lmiui/util/Pools$BasePool;->JJ:Lmiui/util/Pools$IInstanceHolder;
 
-    iget v1, p0, Lmiui/util/Pools$BasePool;->Hf:I
+    iget v1, p0, Lmiui/util/Pools$BasePool;->Ho:I
 
     invoke-virtual {p0, v0, v1}, Lmiui/util/Pools$BasePool;->a(Lmiui/util/Pools$IInstanceHolder;I)V
 
     .line 432
     const/4 v0, 0x0
 
-    iput-object v0, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
+    iput-object v0, p0, Lmiui/util/Pools$BasePool;->JJ:Lmiui/util/Pools$IInstanceHolder;
 
     .line 434
     :cond_e
@@ -218,12 +218,12 @@
     .end annotation
 
     .line 385
-    iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
+    iget-object v0, p0, Lmiui/util/Pools$BasePool;->JJ:Lmiui/util/Pools$IInstanceHolder;
 
     if-eqz v0, :cond_23
 
     .line 389
-    iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
+    iget-object v0, p0, Lmiui/util/Pools$BasePool;->JJ:Lmiui/util/Pools$IInstanceHolder;
 
     invoke-interface {v0}, Lmiui/util/Pools$IInstanceHolder;->get()Ljava/lang/Object;
 
@@ -233,7 +233,7 @@
     if-nez v0, :cond_1d
 
     .line 391
-    iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jy:Lmiui/util/Pools$Manager;
+    iget-object v0, p0, Lmiui/util/Pools$BasePool;->JI:Lmiui/util/Pools$Manager;
 
     invoke-virtual {v0}, Lmiui/util/Pools$Manager;->createInstance()Ljava/lang/Object;
 
@@ -257,7 +257,7 @@
     .line 397
     :cond_1d
     :goto_1d
-    iget-object v1, p0, Lmiui/util/Pools$BasePool;->Jy:Lmiui/util/Pools$Manager;
+    iget-object v1, p0, Lmiui/util/Pools$BasePool;->JI:Lmiui/util/Pools$Manager;
 
     invoke-virtual {v1, v0}, Lmiui/util/Pools$Manager;->onAcquire(Ljava/lang/Object;)V
 
@@ -284,7 +284,7 @@
     .end annotation
 
     .line 403
-    iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
+    iget-object v0, p0, Lmiui/util/Pools$BasePool;->JJ:Lmiui/util/Pools$IInstanceHolder;
 
     if-eqz v0, :cond_1a
 
@@ -296,12 +296,12 @@
 
     .line 411
     :cond_7
-    iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jy:Lmiui/util/Pools$Manager;
+    iget-object v0, p0, Lmiui/util/Pools$BasePool;->JI:Lmiui/util/Pools$Manager;
 
     invoke-virtual {v0, p1}, Lmiui/util/Pools$Manager;->onRelease(Ljava/lang/Object;)V
 
     .line 413
-    iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
+    iget-object v0, p0, Lmiui/util/Pools$BasePool;->JJ:Lmiui/util/Pools$IInstanceHolder;
 
     invoke-interface {v0, p1}, Lmiui/util/Pools$IInstanceHolder;->put(Ljava/lang/Object;)Z
 
@@ -310,7 +310,7 @@
     if-nez v0, :cond_19
 
     .line 414
-    iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jy:Lmiui/util/Pools$Manager;
+    iget-object v0, p0, Lmiui/util/Pools$BasePool;->JI:Lmiui/util/Pools$Manager;
 
     invoke-virtual {v0, p1}, Lmiui/util/Pools$Manager;->onDestroy(Ljava/lang/Object;)V
 
@@ -333,7 +333,7 @@
     .registers 2
 
     .line 438
-    iget-object v0, p0, Lmiui/util/Pools$BasePool;->Jz:Lmiui/util/Pools$IInstanceHolder;
+    iget-object v0, p0, Lmiui/util/Pools$BasePool;->JJ:Lmiui/util/Pools$IInstanceHolder;
 
     if-nez v0, :cond_6
 
@@ -342,7 +342,7 @@
     goto :goto_8
 
     :cond_6
-    iget v0, p0, Lmiui/util/Pools$BasePool;->Hf:I
+    iget v0, p0, Lmiui/util/Pools$BasePool;->Ho:I
 
     :goto_8
     return v0

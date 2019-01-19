@@ -3,12 +3,12 @@
 .source "Camera2Module.java"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Lio/reactivex/functions/Consumer;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/module/Camera2Module;->onHDRSceneChanged(Z)V
+    value = Lcom/android/camera/module/Camera2Module;->prepareSuperNight()V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -16,21 +16,26 @@
     name = null
 .end annotation
 
+.annotation system Ldalvik/annotation/Signature;
+    value = {
+        "Ljava/lang/Object;",
+        "Lio/reactivex/functions/Consumer<",
+        "Ljava/lang/Integer;",
+        ">;"
+    }
+.end annotation
+
 
 # instance fields
 .field final synthetic this$0:Lcom/android/camera/module/Camera2Module;
 
-.field final synthetic val$isInHdr:Z
-
 
 # direct methods
-.method constructor <init>(Lcom/android/camera/module/Camera2Module;Z)V
+.method constructor <init>(Lcom/android/camera/module/Camera2Module;)V
     .locals 0
 
-    .line 800
+    .line 1187
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module$6;->this$0:Lcom/android/camera/module/Camera2Module;
-
-    iput-boolean p2, p0, Lcom/android/camera/module/Camera2Module$6;->val$isInHdr:Z
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -39,40 +44,129 @@
 
 
 # virtual methods
-.method public run()V
+.method public accept(Ljava/lang/Integer;)V
     .locals 3
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/lang/Exception;
+        }
+    .end annotation
 
-    .line 803
-    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+    .line 1190
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module$6;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    move-result-object v0
+    invoke-virtual {v0}, Lcom/android/camera/module/Camera2Module;->isAlive()Z
 
-    .line 804
-    const/16 v1, 0xac
+    move-result v0
 
-    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+    if-nez v0, :cond_0
 
-    move-result-object v0
+    .line 1191
+    return-void
 
-    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
+    .line 1194
+    :cond_0
+    invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
 
-    .line 805
-    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module$6;->val$isInHdr:Z
+    move-result p1
 
-    const/4 v2, 0x0
+    const/16 v0, 0x12c
 
-    if-eqz v1, :cond_0
+    if-eq p1, v0, :cond_2
 
-    move v1, v2
+    const/16 v0, 0x7d0
+
+    if-eq p1, v0, :cond_1
 
     goto :goto_0
 
-    :cond_0
-    const/16 v1, 0x8
+    .line 1206
+    :cond_1
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module$6;->this$0:Lcom/android/camera/module/Camera2Module;
 
+    const/4 v0, 0x1
+
+    invoke-static {p1, v0}, Lcom/android/camera/module/Camera2Module;->access$402(Lcom/android/camera/module/Camera2Module;Z)Z
+
+    .line 1207
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module$6;->this$0:Lcom/android/camera/module/Camera2Module;
+
+    invoke-static {p1}, Lcom/android/camera/module/Camera2Module;->access$500(Lcom/android/camera/module/Camera2Module;)V
+
+    .line 1208
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module$6;->this$0:Lcom/android/camera/module/Camera2Module;
+
+    const/4 v0, 0x0
+
+    invoke-virtual {p1, v0}, Lcom/android/camera/module/Camera2Module;->playCameraSound(I)V
+
+    .line 1210
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object p1
+
+    const/16 v0, 0xd4
+
+    .line 1211
+    invoke-virtual {p1, v0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/camera/protocol/ModeProtocol$RecordState;
+
+    .line 1212
+    if-eqz p1, :cond_3
+
+    .line 1213
+    invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$RecordState;->onPostSavingStart()V
+
+    goto :goto_0
+
+    .line 1196
+    :cond_2
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object p1
+
+    const/16 v0, 0xaf
+
+    .line 1197
+    invoke-virtual {p1, v0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;
+
+    .line 1199
+    if-eqz p1, :cond_3
+
+    .line 1200
+    const/16 v0, 0xb
+
+    const v1, 0x7f090225
+
+    const/4 v2, 0x4
+
+    invoke-interface {p1, v0, v1, v2}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->showTips(III)V
+
+    .line 1218
+    :cond_3
     :goto_0
-    invoke-interface {v0, v1, v2, v2}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertHDR(IZZ)V
+    return-void
+.end method
 
-    .line 806
+.method public bridge synthetic accept(Ljava/lang/Object;)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/lang/Exception;
+        }
+    .end annotation
+
+    .line 1187
+    check-cast p1, Ljava/lang/Integer;
+
+    invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module$6;->accept(Ljava/lang/Integer;)V
+
     return-void
 .end method

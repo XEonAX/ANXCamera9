@@ -26,7 +26,7 @@
 
 
 # static fields
-.field static final oV:Lcom/bumptech/glide/request/a/e;
+.field static final oU:Lcom/bumptech/glide/request/a/e;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/request/a/e<",
@@ -35,7 +35,7 @@
     .end annotation
 .end field
 
-.field private static final oW:Lcom/bumptech/glide/request/a/g;
+.field private static final oV:Lcom/bumptech/glide/request/a/g;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/request/a/g<",
@@ -54,14 +54,14 @@
 
     invoke-direct {v0}, Lcom/bumptech/glide/request/a/e;-><init>()V
 
-    sput-object v0, Lcom/bumptech/glide/request/a/e;->oV:Lcom/bumptech/glide/request/a/e;
+    sput-object v0, Lcom/bumptech/glide/request/a/e;->oU:Lcom/bumptech/glide/request/a/e;
 
     .line 15
     new-instance v0, Lcom/bumptech/glide/request/a/e$a;
 
     invoke-direct {v0}, Lcom/bumptech/glide/request/a/e$a;-><init>()V
 
-    sput-object v0, Lcom/bumptech/glide/request/a/e;->oW:Lcom/bumptech/glide/request/a/g;
+    sput-object v0, Lcom/bumptech/glide/request/a/e;->oV:Lcom/bumptech/glide/request/a/g;
 
     return-void
 .end method
@@ -88,7 +88,7 @@
     .end annotation
 
     .line 44
-    sget-object v0, Lcom/bumptech/glide/request/a/e;->oV:Lcom/bumptech/glide/request/a/e;
+    sget-object v0, Lcom/bumptech/glide/request/a/e;->oU:Lcom/bumptech/glide/request/a/e;
 
     return-object v0
 .end method
@@ -106,7 +106,7 @@
     .end annotation
 
     .line 36
-    sget-object v0, Lcom/bumptech/glide/request/a/e;->oW:Lcom/bumptech/glide/request/a/g;
+    sget-object v0, Lcom/bumptech/glide/request/a/e;->oV:Lcom/bumptech/glide/request/a/g;
 
     return-object v0
 .end method

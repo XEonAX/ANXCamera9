@@ -36,6 +36,7 @@ public class FileUtils {
     public static final String MUSIC_EFFECT_DIR = RESOURCE_DIR;
     public static final String MUSIC_LOCAL;
     public static final String MUSIC_ONLINE;
+    public static final String PHONEPARAM = "phoneParams.txt";
     public static final String RESHAPE_DIR_NAME;
     public static final String RESOURCE_DIR;
     public static final String ROOT_DIR;
@@ -48,7 +49,7 @@ public class FileUtils {
     static {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(Environment.getExternalStorageDirectory().getPath());
-        stringBuilder.append("/RecordDemo/");
+        stringBuilder.append("/MIUI/Camera/");
         ROOT_DIR = stringBuilder.toString();
         stringBuilder = new StringBuilder();
         stringBuilder.append(ROOT_DIR);
@@ -60,7 +61,7 @@ public class FileUtils {
         STICKER_RESOURCE_DIR = stringBuilder.toString();
         stringBuilder = new StringBuilder();
         stringBuilder.append(ROOT_DIR);
-        stringBuilder.append("algorithmResource/");
+        stringBuilder.append("model/");
         MODELS_DIR = stringBuilder.toString();
         stringBuilder = new StringBuilder();
         stringBuilder.append(ROOT_DIR);
@@ -72,7 +73,7 @@ public class FileUtils {
         CONCAT_VIDEO_DIR = stringBuilder.toString();
         stringBuilder = new StringBuilder();
         stringBuilder.append(ROOT_DIR);
-        stringBuilder.append("/cache/");
+        stringBuilder.append("cache/");
         CACHE = stringBuilder.toString();
         stringBuilder = new StringBuilder();
         stringBuilder.append(ROOT_DIR);
@@ -106,15 +107,9 @@ public class FileUtils {
         stringBuilder.append(MUSIC);
         stringBuilder.append("/online/");
         MUSIC_ONLINE = stringBuilder.toString();
-        ResourcesList.add("2D_angel");
-        ResourcesList.add("2D_bubble");
-        ResourcesList.add("E12_3D_Glass_Crystal_a02");
-        ResourcesList.add("E12_3D_hat_fj_a01_155");
-        ResourcesList.add("E12_D_Glass_Diamond_a01");
-        ResourcesList.add("E12_D_glasses_cobain_a02");
-        ResourcesList.add("05311139_wuyun");
-        ResourcesList.add("05311201");
-        ResourcesList.add("05311202");
+        ResourcesList.add("0eb0e0214f7bc7f7bbfb4e9f4dba7f99");
+        ResourcesList.add("a75682e81788cc12f68682b9c9067f70");
+        ResourcesList.add("24991e783f23920397ac8aeed15994c2");
         musicList.add("music00001.mp3");
         musicList.add("music00002.mp3");
         musicList.add("music00003.mp3");

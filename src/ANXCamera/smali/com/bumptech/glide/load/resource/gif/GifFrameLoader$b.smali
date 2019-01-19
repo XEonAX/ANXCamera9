@@ -18,13 +18,13 @@
 
 
 # static fields
-.field static final lV:I = 0x1
+.field static final lU:I = 0x1
 
-.field static final lW:I = 0x2
+.field static final lV:I = 0x2
 
 
 # instance fields
-.field final synthetic lX:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;
+.field final synthetic lW:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;
 
 
 # direct methods
@@ -32,7 +32,7 @@
     .locals 0
 
     .line 292
-    iput-object p1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$b;->lX:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;
+    iput-object p1, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$b;->lW:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -57,7 +57,7 @@
     check-cast p1, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     .line 298
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$b;->lX:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$b;->lW:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;
 
     invoke-virtual {v0, p1}, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->onFrameReady(Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;)V
 
@@ -78,7 +78,7 @@
     check-cast p1, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$DelayTarget;
 
     .line 302
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$b;->lX:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader$b;->lW:Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;
 
     iget-object v0, v0, Lcom/bumptech/glide/load/resource/gif/GifFrameLoader;->X:Lcom/bumptech/glide/i;
 

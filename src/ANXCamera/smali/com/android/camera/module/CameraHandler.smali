@@ -68,8 +68,6 @@
 
 .field public static final MSG_UPDATE_FPS960_HINT:I = 0x36
 
-.field public static final MSG_WAITING_BEFORE_CLOSE_FINISH:I = 0x2f
-
 .field public static final MSG_WAIT_STOP_CALLBACK_TIMEOUT:I = 0x2e
 
 .field public static final MULTI_SNAP_LAUNCH:I = 0xc

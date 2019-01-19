@@ -32,7 +32,7 @@
     .end annotation
 .end field
 
-.field private static final oL:I
+.field private static final oK:I
 
 
 # instance fields
@@ -46,9 +46,9 @@
     .end annotation
 .end field
 
-.field oM:Z
+.field oL:Z
 
-.field private oN:Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;
+.field private oM:Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 .end field
@@ -120,7 +120,7 @@
 
     .line 454
     :cond_0
-    iget-boolean v0, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer;->oM:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer;->oL:Z
 
     const/4 v1, 0x0
 
@@ -479,7 +479,7 @@
 
     .line 392
     :cond_1
-    iget-object p1, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer;->oN:Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;
+    iget-object p1, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer;->oM:Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;
 
     if-nez p1, :cond_2
 
@@ -495,10 +495,10 @@
 
     invoke-direct {v0, p0}, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;-><init>(Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer;)V
 
-    iput-object v0, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer;->oN:Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;
+    iput-object v0, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer;->oM:Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;
 
     .line 395
-    iget-object v0, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer;->oN:Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;
+    iget-object v0, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer;->oM:Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;
 
     invoke-virtual {p1, v0}, Landroid/view/ViewTreeObserver;->addOnPreDrawListener(Landroid/view/ViewTreeObserver$OnPreDrawListener;)V
 
@@ -588,7 +588,7 @@
     if-eqz v1, :cond_0
 
     .line 418
-    iget-object v1, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer;->oN:Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;
+    iget-object v1, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer;->oM:Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;
 
     invoke-virtual {v0, v1}, Landroid/view/ViewTreeObserver;->removeOnPreDrawListener(Landroid/view/ViewTreeObserver$OnPreDrawListener;)V
 
@@ -596,7 +596,7 @@
     :cond_0
     const/4 v0, 0x0
 
-    iput-object v0, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer;->oN:Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;
+    iput-object v0, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer;->oM:Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer$a;
 
     .line 421
     iget-object v0, p0, Lcom/bumptech/glide/request/target/ViewTarget$SizeDeterminer;->fN:Ljava/util/List;

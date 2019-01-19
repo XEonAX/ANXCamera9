@@ -58,17 +58,17 @@
 
     move-object/from16 v7, p0
 
-    .line 419
+    .line 420
     move-object/from16 v8, p1
 
     invoke-direct/range {p0 .. p1}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->getEffectRender(Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;)Lcom/android/camera/effect/renders/PipeRender;
 
     move-result-object v0
 
-    .line 421
+    .line 422
     if-nez v0, :cond_0
 
-    .line 422
+    .line 423
     invoke-static {}, Lcom/android/camera/effect/renders/SnapshotRender;->access$600()Ljava/lang/String;
 
     move-result-object v0
@@ -77,48 +77,48 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 423
+    .line 424
     const/4 v0, 0x0
 
     return-object v0
 
-    .line 426
+    .line 427
     :cond_0
     invoke-direct {v7, v0, v8}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->updateRenderParameters(Lcom/android/camera/effect/renders/Render;Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;)V
 
-    .line 428
+    .line 429
     iget-object v1, v8, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mPictureSize:Landroid/util/Size;
 
     invoke-virtual {v1}, Landroid/util/Size;->getWidth()I
 
     move-result v1
 
-    .line 429
+    .line 430
     iget-object v2, v8, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mPictureSize:Landroid/util/Size;
 
     invoke-virtual {v2}, Landroid/util/Size;->getHeight()I
 
     move-result v2
 
-    .line 430
+    .line 431
     invoke-direct {v7, v1, v2}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->checkFrameBuffer(II)V
 
-    .line 432
+    .line 433
     iget-object v3, v7, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mGLCanvas:Lcom/android/camera/effect/SnapshotCanvas;
 
     iget-object v4, v7, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mFrameBuffer:Lcom/android/camera/effect/FrameBuffer;
 
     invoke-virtual {v3, v4}, Lcom/android/camera/effect/SnapshotCanvas;->beginBindFrameBuffer(Lcom/android/camera/effect/FrameBuffer;)V
 
-    .line 434
+    .line 435
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v3
 
-    .line 435
+    .line 436
     invoke-static {}, Landroid/opengl/GLES20;->glFlush()V
 
-    .line 436
+    .line 437
     iget-object v5, v7, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mFrameBuffer:Lcom/android/camera/effect/FrameBuffer;
 
     invoke-virtual {v5}, Lcom/android/camera/effect/FrameBuffer;->getId()I
@@ -127,10 +127,10 @@
 
     invoke-virtual {v0, v5}, Lcom/android/camera/effect/renders/PipeRender;->setParentFrameBufferId(I)V
 
-    .line 437
+    .line 438
     invoke-virtual {v0, v8}, Lcom/android/camera/effect/renders/PipeRender;->draw(Lcom/android/camera/effect/draw_mode/DrawAttribute;)Z
 
-    .line 438
+    .line 439
     invoke-static {}, Lcom/android/camera/effect/renders/SnapshotRender;->access$600()Ljava/lang/String;
 
     move-result-object v5
@@ -157,23 +157,23 @@
 
     invoke-static {v5, v3}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 439
+    .line 440
     invoke-virtual {v0}, Lcom/android/camera/effect/renders/PipeRender;->deleteBuffer()V
 
-    .line 440
+    .line 441
     new-instance v0, Landroid/util/Size;
 
     invoke-direct {v0, v1, v2}, Landroid/util/Size;-><init>(II)V
 
     iput-object v0, v8, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mOriginalSize:Landroid/util/Size;
 
-    .line 441
-    nop
-
     .line 442
     nop
 
     .line 443
+    nop
+
+    .line 444
     invoke-static {}, Lcom/android/camera/module/ModuleManager;->isSquareModule()Z
 
     move-result v0
@@ -182,18 +182,18 @@
 
     if-eqz v0, :cond_2
 
-    .line 444
+    .line 445
     if-le v1, v2, :cond_1
 
-    .line 445
+    .line 446
     sub-int/2addr v1, v2
 
     div-int/lit8 v1, v1, 0x2
 
-    .line 446
+    .line 447
     nop
 
-    .line 453
+    .line 454
     move v9, v1
 
     move v4, v2
@@ -205,16 +205,16 @@
 
     goto :goto_1
 
-    .line 448
+    .line 449
     :cond_1
     sub-int/2addr v2, v1
 
     div-int/lit8 v2, v2, 0x2
 
-    .line 449
+    .line 450
     nop
 
-    .line 453
+    .line 454
     move v4, v1
 
     move v10, v2
@@ -237,12 +237,12 @@
 
     if-eqz v0, :cond_3
 
-    .line 454
+    .line 455
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v11
 
-    .line 455
+    .line 456
     iget v5, v8, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mJpegRotation:I
 
     iget-object v6, v8, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mTimeWatermark:Ljava/lang/String;
@@ -255,7 +255,7 @@
 
     invoke-virtual/range {v0 .. v6}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->drawWaterMark(IIIIILjava/lang/String;)V
 
-    .line 456
+    .line 457
     iget-object v0, v8, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mOriginalSize:Landroid/util/Size;
 
     iget-object v1, v8, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mPreviewSize:Landroid/util/Size;
@@ -266,7 +266,7 @@
 
     invoke-virtual {v7, v0, v1, v2, v3}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->drawFaceWaterMarkInfos(Landroid/util/Size;Landroid/util/Size;ILjava/util/List;)V
 
-    .line 458
+    .line 459
     invoke-static {}, Lcom/android/camera/effect/renders/SnapshotRender;->access$600()Ljava/lang/String;
 
     move-result-object v0
@@ -293,29 +293,29 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 465
+    .line 466
     iget-object v0, v7, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mGLCanvas:Lcom/android/camera/effect/SnapshotCanvas;
 
     invoke-virtual {v0}, Lcom/android/camera/effect/SnapshotCanvas;->endBindFrameBuffer()V
 
-    .line 467
+    .line 468
     iget-object v0, v8, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mOriginalSize:Landroid/util/Size;
 
     invoke-direct {v7, v0}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->checkWatermarkFrameBuffer(Landroid/util/Size;)V
 
-    .line 468
+    .line 469
     iget-object v0, v7, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mGLCanvas:Lcom/android/camera/effect/SnapshotCanvas;
 
     iget-object v1, v7, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mWatermarkFrameBuffer:Lcom/android/camera/effect/FrameBuffer;
 
     invoke-virtual {v0, v1}, Lcom/android/camera/effect/SnapshotCanvas;->beginBindFrameBuffer(Lcom/android/camera/effect/FrameBuffer;)V
 
-    .line 469
+    .line 470
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
 
-    .line 470
+    .line 471
     sget v2, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_RGB2YUV:I
 
     invoke-direct {v7, v2}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
@@ -326,10 +326,10 @@
 
     check-cast v11, Lcom/android/camera/effect/renders/RgbToYuvRender;
 
-    .line 471
+    .line 472
     invoke-direct {v7, v11, v8}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->updateRenderParameters(Lcom/android/camera/effect/renders/Render;Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;)V
 
-    .line 472
+    .line 473
     iget-object v2, v7, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mFrameBuffer:Lcom/android/camera/effect/FrameBuffer;
 
     invoke-virtual {v2}, Lcom/android/camera/effect/FrameBuffer;->getId()I
@@ -338,7 +338,7 @@
 
     invoke-virtual {v11, v2}, Lcom/android/camera/effect/renders/RgbToYuvRender;->setParentFrameBufferId(I)V
 
-    .line 473
+    .line 474
     iget-object v2, v7, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mFrameBuffer:Lcom/android/camera/effect/FrameBuffer;
 
     invoke-virtual {v2}, Lcom/android/camera/effect/FrameBuffer;->getTexture()Lcom/android/gallery3d/ui/RawTexture;
@@ -355,7 +355,7 @@
 
     iget-object v2, v8, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mOriginalSize:Landroid/util/Size;
 
-    .line 474
+    .line 475
     invoke-virtual {v2}, Landroid/util/Size;->getWidth()I
 
     move-result v2
@@ -372,12 +372,12 @@
 
     const/16 v17, 0x1
 
-    .line 473
+    .line 474
     move/from16 v16, v2
 
     invoke-virtual/range {v11 .. v17}, Lcom/android/camera/effect/renders/RgbToYuvRender;->drawTexture(IFFFFZ)V
 
-    .line 475
+    .line 476
     invoke-static {}, Lcom/android/camera/effect/renders/SnapshotRender;->access$600()Ljava/lang/String;
 
     move-result-object v2
@@ -404,7 +404,7 @@
 
     invoke-static {v2, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 479
+    .line 480
     :cond_3
     const/16 v0, 0xd05
 
@@ -412,29 +412,29 @@
 
     invoke-static {v0, v1}, Landroid/opengl/GLES20;->glPixelStorei(II)V
 
-    .line 481
+    .line 482
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
 
-    .line 482
+    .line 483
     iget-object v2, v8, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mOriginalSize:Landroid/util/Size;
 
     invoke-virtual {v2}, Landroid/util/Size;->getWidth()I
 
     move-result v2
 
-    .line 483
+    .line 484
     iget-object v3, v8, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mOriginalSize:Landroid/util/Size;
 
     invoke-virtual {v3}, Landroid/util/Size;->getHeight()I
 
     move-result v3
 
-    .line 484
+    .line 485
     mul-int v4, v2, v3
 
-    .line 485
+    .line 486
     mul-int/lit8 v4, v4, 0x3
 
     div-int/lit8 v4, v4, 0x2
@@ -443,7 +443,7 @@
 
     move-result-object v4
 
-    .line 486
+    .line 487
     const/4 v11, 0x0
 
     const/4 v12, 0x0
@@ -462,10 +462,10 @@
 
     invoke-static/range {v11 .. v17}, Landroid/opengl/GLES20;->glReadPixels(IIIIIILjava/nio/Buffer;)V
 
-    .line 487
+    .line 488
     invoke-virtual {v4}, Ljava/nio/ByteBuffer;->rewind()Ljava/nio/Buffer;
 
-    .line 488
+    .line 489
     invoke-static {}, Lcom/android/camera/effect/renders/SnapshotRender;->access$600()Ljava/lang/String;
 
     move-result-object v5
@@ -504,7 +504,7 @@
 
     invoke-static {v5, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 489
+    .line 490
     invoke-static {}, Lcom/android/camera/effect/renders/SnapshotRender;->access$600()Ljava/lang/String;
 
     move-result-object v2
@@ -531,12 +531,12 @@
 
     invoke-static {v2, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 499
+    .line 500
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
 
-    .line 500
+    .line 501
     iget-object v2, v8, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mImage:Landroid/media/Image;
 
     invoke-virtual {v4}, Ljava/nio/ByteBuffer;->array()[B
@@ -545,7 +545,7 @@
 
     invoke-static {v2, v3}, Lcom/xiaomi/camera/base/ImageUtil;->updateYuvImage(Landroid/media/Image;[B)V
 
-    .line 501
+    .line 502
     invoke-static {}, Lcom/android/camera/effect/renders/SnapshotRender;->access$600()Ljava/lang/String;
 
     move-result-object v2
@@ -572,17 +572,17 @@
 
     invoke-static {v2, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 503
+    .line 504
     iget-object v0, v7, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mGLCanvas:Lcom/android/camera/effect/SnapshotCanvas;
 
     invoke-virtual {v0}, Lcom/android/camera/effect/SnapshotCanvas;->endBindFrameBuffer()V
 
-    .line 504
+    .line 505
     iget-object v0, v7, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mGLCanvas:Lcom/android/camera/effect/SnapshotCanvas;
 
     invoke-virtual {v0}, Lcom/android/camera/effect/SnapshotCanvas;->recycledResources()V
 
-    .line 505
+    .line 506
     invoke-virtual {v4}, Ljava/nio/ByteBuffer;->array()[B
 
     move-result-object v0
@@ -593,14 +593,14 @@
 .method private checkFrameBuffer(II)V
     .locals 3
 
-    .line 574
+    .line 575
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mFrameBuffer:Lcom/android/camera/effect/FrameBuffer;
 
     if-eqz v0, :cond_0
 
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mFrameBuffer:Lcom/android/camera/effect/FrameBuffer;
 
-    .line 575
+    .line 576
     invoke-virtual {v0}, Lcom/android/camera/effect/FrameBuffer;->getWidth()I
 
     move-result v0
@@ -609,14 +609,14 @@
 
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mFrameBuffer:Lcom/android/camera/effect/FrameBuffer;
 
-    .line 576
+    .line 577
     invoke-virtual {v0}, Lcom/android/camera/effect/FrameBuffer;->getHeight()I
 
     move-result v0
 
     if-ge v0, p2, :cond_1
 
-    .line 577
+    .line 578
     :cond_0
     new-instance v0, Lcom/android/camera/effect/FrameBuffer;
 
@@ -628,7 +628,7 @@
 
     iput-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mFrameBuffer:Lcom/android/camera/effect/FrameBuffer;
 
-    .line 579
+    .line 580
     :cond_1
     return-void
 .end method
@@ -636,14 +636,14 @@
 .method private checkWatermarkFrameBuffer(Landroid/util/Size;)V
     .locals 4
 
-    .line 582
+    .line 583
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mWatermarkFrameBuffer:Lcom/android/camera/effect/FrameBuffer;
 
     if-eqz v0, :cond_0
 
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mWatermarkFrameBuffer:Lcom/android/camera/effect/FrameBuffer;
 
-    .line 583
+    .line 584
     invoke-virtual {v0}, Lcom/android/camera/effect/FrameBuffer;->getWidth()I
 
     move-result v0
@@ -656,7 +656,7 @@
 
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mWatermarkFrameBuffer:Lcom/android/camera/effect/FrameBuffer;
 
-    .line 584
+    .line 585
     invoke-virtual {v0}, Lcom/android/camera/effect/FrameBuffer;->getHeight()I
 
     move-result v0
@@ -667,7 +667,7 @@
 
     if-ge v0, v1, :cond_1
 
-    .line 585
+    .line 586
     :cond_0
     new-instance v0, Lcom/android/camera/effect/FrameBuffer;
 
@@ -687,7 +687,7 @@
 
     iput-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mWatermarkFrameBuffer:Lcom/android/camera/effect/FrameBuffer;
 
-    .line 587
+    .line 588
     :cond_1
     return-void
 .end method
@@ -695,12 +695,12 @@
 .method private drawImage(Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;)Z
     .locals 3
 
-    .line 568
+    .line 569
     invoke-direct {p0, p1}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->applyEffect(Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;)[B
 
     move-result-object p1
 
-    .line 569
+    .line 570
     invoke-static {}, Lcom/android/camera/effect/renders/SnapshotRender;->access$600()Ljava/lang/String;
 
     move-result-object v0
@@ -735,7 +735,7 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 570
+    .line 571
     const/4 p1, 0x1
 
     return p1
@@ -902,34 +902,34 @@
 .method private fetchRender(I)Lcom/android/camera/effect/renders/Render;
     .locals 3
 
-    .line 509
+    .line 510
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mGLCanvas:Lcom/android/camera/effect/SnapshotCanvas;
 
     invoke-virtual {v0}, Lcom/android/camera/effect/SnapshotCanvas;->getEffectRenderGroup()Lcom/android/camera/effect/renders/RenderGroup;
 
     move-result-object v0
 
-    .line 510
+    .line 511
     invoke-virtual {v0, p1}, Lcom/android/camera/effect/renders/RenderGroup;->getRender(I)Lcom/android/camera/effect/renders/Render;
 
     move-result-object v1
 
-    .line 511
+    .line 512
     if-nez v1, :cond_0
 
-    .line 512
+    .line 513
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mGLCanvas:Lcom/android/camera/effect/SnapshotCanvas;
 
     const/4 v2, 0x0
 
     invoke-virtual {v1, v2, p1}, Lcom/android/camera/effect/SnapshotCanvas;->prepareEffectRenders(ZI)V
 
-    .line 513
+    .line 514
     invoke-virtual {v0, p1}, Lcom/android/camera/effect/renders/RenderGroup;->getRender(I)Lcom/android/camera/effect/renders/Render;
 
     move-result-object v1
 
-    .line 515
+    .line 516
     :cond_0
     return-object v1
 .end method
@@ -937,63 +937,63 @@
 .method private getEffectRender(Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;)Lcom/android/camera/effect/renders/PipeRender;
     .locals 4
 
-    .line 519
+    .line 520
     new-instance v0, Lcom/android/camera/effect/renders/PipeRender;
 
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mGLCanvas:Lcom/android/camera/effect/SnapshotCanvas;
 
     invoke-direct {v0, v1}, Lcom/android/camera/effect/renders/PipeRender;-><init>(Lcom/android/gallery3d/ui/GLCanvas;)V
 
-    .line 521
+    .line 522
     sget v1, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_YUV2RGB:I
 
     invoke-direct {p0, v1}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
 
     move-result-object v1
 
-    .line 522
+    .line 523
     invoke-virtual {v0, v1}, Lcom/android/camera/effect/renders/PipeRender;->addRender(Lcom/android/camera/effect/renders/Render;)V
 
-    .line 524
+    .line 525
     iget v1, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mEffectIndex:I
 
     sget v2, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_NONE:I
 
     if-eq v1, v2, :cond_0
 
-    .line 525
+    .line 526
     iget v1, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mEffectIndex:I
 
     invoke-direct {p0, v1}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
 
     move-result-object v1
 
-    .line 526
+    .line 527
     if-eqz v1, :cond_0
 
-    .line 527
+    .line 528
     invoke-virtual {v0, v1}, Lcom/android/camera/effect/renders/PipeRender;->addRender(Lcom/android/camera/effect/renders/Render;)V
 
-    .line 531
+    .line 532
     :cond_0
     iget-boolean v1, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mIsGradienterOn:Z
 
     if-eqz v1, :cond_2
 
-    .line 532
+    .line 533
     sget v1, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_GRADIENTER:I
 
     invoke-direct {p0, v1}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
 
     move-result-object v1
 
-    .line 533
+    .line 534
     if-eqz v1, :cond_1
 
-    .line 534
+    .line 535
     invoke-virtual {v0, v1}, Lcom/android/camera/effect/renders/PipeRender;->addRender(Lcom/android/camera/effect/renders/Render;)V
 
-    .line 536
+    .line 537
     :cond_1
     goto :goto_1
 
@@ -1002,10 +1002,10 @@
 
     if-eqz v1, :cond_5
 
-    .line 537
+    .line 538
     const/4 v1, 0x0
 
-    .line 538
+    .line 539
     const-string v2, "circle"
 
     iget-object v3, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mTiltShiftMode:Ljava/lang/String;
@@ -1016,7 +1016,7 @@
 
     if-eqz v2, :cond_3
 
-    .line 539
+    .line 540
     sget v1, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_GAUSSIAN:I
 
     invoke-direct {p0, v1}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
@@ -1025,7 +1025,7 @@
 
     goto :goto_0
 
-    .line 540
+    .line 541
     :cond_3
     const-string v2, "parallel"
 
@@ -1037,39 +1037,39 @@
 
     if-eqz v2, :cond_4
 
-    .line 541
+    .line 542
     sget v1, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_TILTSHIFT:I
 
     invoke-direct {p0, v1}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
 
     move-result-object v1
 
-    .line 543
+    .line 544
     :cond_4
     :goto_0
     if-eqz v1, :cond_5
 
-    .line 544
+    .line 545
     invoke-virtual {v0, v1}, Lcom/android/camera/effect/renders/PipeRender;->addRender(Lcom/android/camera/effect/renders/Render;)V
 
-    .line 548
+    .line 549
     :cond_5
     :goto_1
     iget-boolean p1, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mApplyWaterMark:Z
 
     if-nez p1, :cond_6
 
-    .line 550
+    .line 551
     sget p1, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_RGB2YUV:I
 
     invoke-direct {p0, p1}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
 
     move-result-object p1
 
-    .line 551
+    .line 552
     invoke-virtual {v0, p1}, Lcom/android/camera/effect/renders/PipeRender;->addRender(Lcom/android/camera/effect/renders/Render;)V
 
-    .line 554
+    .line 555
     :cond_6
     return-object v0
 .end method
@@ -1427,40 +1427,40 @@
 .method private release()V
     .locals 2
 
-    .line 590
+    .line 591
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mFrameBuffer:Lcom/android/camera/effect/FrameBuffer;
 
-    .line 591
+    .line 592
     iput-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mWatermarkFrameBuffer:Lcom/android/camera/effect/FrameBuffer;
 
-    .line 592
+    .line 593
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mGLCanvas:Lcom/android/camera/effect/SnapshotCanvas;
 
     invoke-virtual {v1}, Lcom/android/camera/effect/SnapshotCanvas;->recycledResources()V
 
-    .line 593
+    .line 594
     iput-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->mGLCanvas:Lcom/android/camera/effect/SnapshotCanvas;
 
-    .line 594
+    .line 595
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->this$0:Lcom/android/camera/effect/renders/SnapshotRender;
 
     invoke-static {v0}, Lcom/android/camera/effect/renders/SnapshotRender;->access$1700(Lcom/android/camera/effect/renders/SnapshotRender;)V
 
-    .line 595
+    .line 596
     return-void
 .end method
 
 .method private updateRenderParameters(Lcom/android/camera/effect/renders/Render;Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;)V
     .locals 3
 
-    .line 405
+    .line 406
     instance-of v0, p1, Lcom/android/camera/effect/renders/PipeRender;
 
     if-eqz v0, :cond_0
 
-    .line 406
+    .line 407
     move-object v0, p1
 
     check-cast v0, Lcom/android/camera/effect/renders/PipeRender;
@@ -1479,7 +1479,7 @@
 
     invoke-virtual {v0, v1, v2}, Lcom/android/camera/effect/renders/PipeRender;->setFrameBufferSize(II)V
 
-    .line 408
+    .line 409
     :cond_0
     iget-object v0, p2, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mPictureSize:Landroid/util/Size;
 
@@ -1495,7 +1495,7 @@
 
     invoke-virtual {p1, v0, v1}, Lcom/android/camera/effect/renders/Render;->setViewportSize(II)V
 
-    .line 409
+    .line 410
     iget-object v0, p2, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mPreviewSize:Landroid/util/Size;
 
     invoke-virtual {v0}, Landroid/util/Size;->getWidth()I
@@ -1510,17 +1510,17 @@
 
     invoke-virtual {p1, v0, v1}, Lcom/android/camera/effect/renders/Render;->setPreviewSize(II)V
 
-    .line 410
+    .line 411
     iget-object v0, p2, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mAttribute:Lcom/android/camera/effect/EffectController$EffectRectAttribute;
 
     invoke-virtual {p1, v0}, Lcom/android/camera/effect/renders/Render;->setEffectRangeAttribute(Lcom/android/camera/effect/EffectController$EffectRectAttribute;)V
 
-    .line 411
+    .line 412
     iget-boolean v0, p2, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mMirror:Z
 
     invoke-virtual {p1, v0}, Lcom/android/camera/effect/renders/Render;->setMirror(Z)V
 
-    .line 412
+    .line 413
     iget-object v0, p2, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mPictureSize:Landroid/util/Size;
 
     invoke-virtual {v0}, Landroid/util/Size;->getWidth()I
@@ -1535,22 +1535,22 @@
 
     invoke-virtual {p1, v0, v1}, Lcom/android/camera/effect/renders/Render;->setSnapshotSize(II)V
 
-    .line 413
+    .line 414
     iget v0, p2, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mOrientation:I
 
     invoke-virtual {p1, v0}, Lcom/android/camera/effect/renders/Render;->setOrientation(I)V
 
-    .line 414
+    .line 415
     iget v0, p2, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mShootRotation:F
 
     invoke-virtual {p1, v0}, Lcom/android/camera/effect/renders/Render;->setShootRotation(F)V
 
-    .line 415
+    .line 416
     iget p2, p2, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mJpegRotation:I
 
     invoke-virtual {p1, p2}, Lcom/android/camera/effect/renders/Render;->setJpegOrientation(I)V
 
-    .line 416
+    .line 417
     return-void
 .end method
 
@@ -1570,7 +1570,7 @@
         }
     .end annotation
 
-    .line 386
+    .line 387
     if-eqz p4, :cond_3
 
     invoke-interface {p4}, Ljava/util/List;->isEmpty()Z
@@ -1581,7 +1581,7 @@
 
     goto :goto_0
 
-    .line 389
+    .line 390
     :cond_0
     invoke-static {}, Lcom/android/camera/CameraSettings;->isAgeGenderAndMagicMirrorWaterOpen()Z
 
@@ -1589,23 +1589,23 @@
 
     if-eqz v0, :cond_2
 
-    .line 390
+    .line 391
     new-instance v0, Lcom/android/camera/watermark/WaterMarkBitmap;
 
     invoke-direct {v0, p4}, Lcom/android/camera/watermark/WaterMarkBitmap;-><init>(Ljava/util/List;)V
 
-    .line 391
+    .line 392
     invoke-virtual {v0}, Lcom/android/camera/watermark/WaterMarkBitmap;->getWaterMarkData()Lcom/android/camera/watermark/WaterMarkData;
 
     move-result-object p4
 
-    .line 392
+    .line 393
     if-eqz p4, :cond_1
 
-    .line 393
+    .line 394
     new-instance v10, Lcom/android/camera/effect/renders/AgeGenderAndMagicMirrorWaterMark;
 
-    .line 394
+    .line 395
     invoke-virtual {p4}, Lcom/android/camera/watermark/WaterMarkData;->getImage()Landroid/graphics/Bitmap;
 
     move-result-object v2
@@ -1614,7 +1614,7 @@
 
     move-result v3
 
-    .line 395
+    .line 396
     invoke-virtual {p1}, Landroid/util/Size;->getHeight()I
 
     move-result v4
@@ -1623,7 +1623,7 @@
 
     move-result v6
 
-    .line 396
+    .line 397
     invoke-virtual {p2}, Landroid/util/Size;->getHeight()I
 
     move-result v7
@@ -1638,7 +1638,7 @@
 
     invoke-direct/range {v1 .. v9}, Lcom/android/camera/effect/renders/AgeGenderAndMagicMirrorWaterMark;-><init>(Landroid/graphics/Bitmap;IIIIIFF)V
 
-    .line 397
+    .line 398
     invoke-virtual {p4}, Lcom/android/camera/watermark/WaterMarkData;->getOrientation()I
 
     move-result p1
@@ -1649,11 +1649,11 @@
 
     invoke-direct {p0, v10, p1, p1, p3}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->drawWaterMark(Lcom/android/camera/effect/renders/WaterMark;III)V
 
-    .line 399
+    .line 400
     :cond_1
     invoke-virtual {v0}, Lcom/android/camera/watermark/WaterMarkBitmap;->releaseBitmap()V
 
-    .line 400
+    .line 401
     const-class p1, Lcom/android/camera/watermark/WaterMarkBitmap;
 
     invoke-virtual {p1}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -1664,11 +1664,11 @@
 
     invoke-static {p1, p2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 402
+    .line 403
     :cond_2
     return-void
 
-    .line 387
+    .line 388
     :cond_3
     :goto_0
     return-void
@@ -1696,7 +1696,7 @@
 
     move-result-object p6
 
-    if-eqz p6, :cond_4
+    if-eqz p6, :cond_6
 
     iget-object p6, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->this$0:Lcom/android/camera/effect/renders/SnapshotRender;
 
@@ -1708,7 +1708,7 @@
 
     move-result p6
 
-    if-eqz p6, :cond_4
+    if-eqz p6, :cond_6
 
     .line 355
     iget-object p6, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->this$0:Lcom/android/camera/effect/renders/SnapshotRender;
@@ -1787,20 +1787,41 @@
 
     move-result v1
 
-    if-eqz v1, :cond_3
+    if-nez v1, :cond_3
 
-    if-eqz v0, :cond_3
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isRearMenuUltraPixelPhotographyOn()Z
 
-    .line 365
+    move-result v1
+
+    if-eqz v1, :cond_2
+
+    goto :goto_0
+
+    :cond_2
+    const/4 v1, 0x0
+
+    goto :goto_1
+
+    :cond_3
+    :goto_0
+    const/4 v1, 0x1
+
+    .line 364
+    :goto_1
+    if-eqz v1, :cond_5
+
+    if-eqz v0, :cond_5
+
+    .line 366
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->this$0:Lcom/android/camera/effect/renders/SnapshotRender;
 
     invoke-static {v0}, Lcom/android/camera/effect/renders/SnapshotRender;->access$1500(Lcom/android/camera/effect/renders/SnapshotRender;)Landroid/graphics/Bitmap;
 
     move-result-object v0
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_4
 
-    .line 366
+    .line 367
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->this$0:Lcom/android/camera/effect/renders/SnapshotRender;
 
     iget-object v1, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->this$0:Lcom/android/camera/effect/renders/SnapshotRender;
@@ -1815,32 +1836,32 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/effect/renders/SnapshotRender;->access$1502(Lcom/android/camera/effect/renders/SnapshotRender;Landroid/graphics/Bitmap;)Landroid/graphics/Bitmap;
 
-    .line 368
-    :cond_2
+    .line 369
+    :cond_4
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->this$0:Lcom/android/camera/effect/renders/SnapshotRender;
 
     invoke-static {v0}, Lcom/android/camera/effect/renders/SnapshotRender;->access$1500(Lcom/android/camera/effect/renders/SnapshotRender;)Landroid/graphics/Bitmap;
 
     move-result-object v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_5
 
-    .line 369
+    .line 370
     iget-object p6, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->this$0:Lcom/android/camera/effect/renders/SnapshotRender;
 
     invoke-static {p6}, Lcom/android/camera/effect/renders/SnapshotRender;->access$1500(Lcom/android/camera/effect/renders/SnapshotRender;)Landroid/graphics/Bitmap;
 
     move-result-object p6
 
-    .line 372
-    :cond_3
+    .line 373
+    :cond_5
     move-object v1, p6
 
     new-instance p6, Lcom/android/camera/effect/renders/ImageWaterMark;
 
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->this$0:Lcom/android/camera/effect/renders/SnapshotRender;
 
-    .line 374
+    .line 375
     invoke-static {v0}, Lcom/android/camera/effect/renders/SnapshotRender;->access$1200(Lcom/android/camera/effect/renders/SnapshotRender;)Lcom/android/camera/effect/renders/DualWatermarkParam;
 
     move-result-object v0
@@ -1851,7 +1872,7 @@
 
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->this$0:Lcom/android/camera/effect/renders/SnapshotRender;
 
-    .line 375
+    .line 376
     invoke-static {v0}, Lcom/android/camera/effect/renders/SnapshotRender;->access$1200(Lcom/android/camera/effect/renders/SnapshotRender;)Lcom/android/camera/effect/renders/DualWatermarkParam;
 
     move-result-object v0
@@ -1862,7 +1883,7 @@
 
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->this$0:Lcom/android/camera/effect/renders/SnapshotRender;
 
-    .line 376
+    .line 377
     invoke-static {v0}, Lcom/android/camera/effect/renders/SnapshotRender;->access$1200(Lcom/android/camera/effect/renders/SnapshotRender;)Lcom/android/camera/effect/renders/DualWatermarkParam;
 
     move-result-object v0
@@ -1881,11 +1902,11 @@
 
     invoke-direct/range {v0 .. v7}, Lcom/android/camera/effect/renders/ImageWaterMark;-><init>(Landroid/graphics/Bitmap;IIIFFF)V
 
-    .line 377
+    .line 378
     invoke-direct {p0, p6, p1, p2, p5}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->drawWaterMark(Lcom/android/camera/effect/renders/WaterMark;III)V
 
-    .line 379
-    :cond_4
+    .line 380
+    :cond_6
     return-void
 .end method
 
@@ -2072,7 +2093,7 @@
 .method public sendMessageSync(Landroid/os/Message;)V
     .locals 1
 
-    .line 599
+    .line 600
     iget-object v0, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->this$0:Lcom/android/camera/effect/renders/SnapshotRender;
 
     invoke-static {v0}, Lcom/android/camera/effect/renders/SnapshotRender;->access$000(Lcom/android/camera/effect/renders/SnapshotRender;)Landroid/os/ConditionVariable;
@@ -2081,10 +2102,10 @@
 
     invoke-virtual {v0}, Landroid/os/ConditionVariable;->close()V
 
-    .line 600
+    .line 601
     invoke-virtual {p0, p1}, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->sendMessage(Landroid/os/Message;)Z
 
-    .line 601
+    .line 602
     iget-object p1, p0, Lcom/android/camera/effect/renders/SnapshotRender$EGLHandler;->this$0:Lcom/android/camera/effect/renders/SnapshotRender;
 
     invoke-static {p1}, Lcom/android/camera/effect/renders/SnapshotRender;->access$000(Lcom/android/camera/effect/renders/SnapshotRender;)Landroid/os/ConditionVariable;
@@ -2093,6 +2114,6 @@
 
     invoke-virtual {p1}, Landroid/os/ConditionVariable;->block()V
 
-    .line 602
+    .line 603
     return-void
 .end method

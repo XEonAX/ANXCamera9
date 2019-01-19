@@ -14,6 +14,8 @@
 # static fields
 .field private static final DEFAULT_IMAGE_BUFFER_QUEUE_SIZE:I = 0x4
 
+.field private static final DELAY_SEND_MSG_TIME_MS:I = 0x32
+
 .field private static final MSG_IMAGE_RECEIVED:I = 0x1
 
 .field private static final TAG:Ljava/lang/String;
@@ -35,7 +37,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 36
+    .line 35
     const-class v0, Lcom/xiaomi/camera/core/ImageProcessor;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -77,7 +79,7 @@
 .method static synthetic access$000()Ljava/lang/String;
     .locals 1
 
-    .line 35
+    .line 34
     sget-object v0, Lcom/xiaomi/camera/core/ImageProcessor;->TAG:Ljava/lang/String;
 
     return-object v0
@@ -141,20 +143,20 @@
 .method public dispatchTask(Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;)V
     .locals 2
 
-    .line 116
+    .line 122
     if-nez p1, :cond_0
 
-    .line 117
+    .line 123
     sget-object p1, Lcom/xiaomi/camera/core/ImageProcessor;->TAG:Ljava/lang/String;
 
     const-string v0, "dispatchTask: data is null"
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 118
+    .line 124
     return-void
 
-    .line 120
+    .line 126
     :cond_0
     invoke-direct {p0}, Lcom/xiaomi/camera/core/ImageProcessor;->isAlive()Z
 
@@ -162,33 +164,33 @@
 
     if-eqz v0, :cond_1
 
-    .line 121
+    .line 127
     iget-object v0, p0, Lcom/xiaomi/camera/core/ImageProcessor;->mHandler:Landroid/os/Handler;
 
     invoke-virtual {v0}, Landroid/os/Handler;->obtainMessage()Landroid/os/Message;
 
     move-result-object v0
 
-    .line 122
+    .line 128
     const/4 v1, 0x1
 
     iput v1, v0, Landroid/os/Message;->what:I
 
-    .line 123
+    .line 129
     iput-object p1, v0, Landroid/os/Message;->obj:Ljava/lang/Object;
 
-    .line 124
+    .line 130
     iget-object p1, p0, Lcom/xiaomi/camera/core/ImageProcessor;->mHandler:Landroid/os/Handler;
 
     invoke-virtual {p1, v0}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
 
-    .line 125
+    .line 131
     nop
 
-    .line 128
+    .line 134
     return-void
 
-    .line 126
+    .line 132
     :cond_1
     new-instance p1, Ljava/lang/RuntimeException;
 
@@ -220,25 +222,25 @@
 .method public goOffWork()V
     .locals 2
 
-    .line 99
+    .line 104
     iget-object v0, p0, Lcom/xiaomi/camera/core/ImageProcessor;->mWorkThread:Landroid/os/HandlerThread;
 
     invoke-virtual {v0}, Landroid/os/HandlerThread;->quitSafely()Z
 
-    .line 100
+    .line 105
     iget-object v0, p0, Lcom/xiaomi/camera/core/ImageProcessor;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 101
+    .line 106
     iput-object v1, p0, Lcom/xiaomi/camera/core/ImageProcessor;->mHandler:Landroid/os/Handler;
 
-    .line 102
+    .line 107
     invoke-virtual {p0}, Lcom/xiaomi/camera/core/ImageProcessor;->releaseResource()V
 
-    .line 103
+    .line 108
     return-void
 .end method
 
@@ -289,6 +291,6 @@
 
     iput-object v0, p0, Lcom/xiaomi/camera/core/ImageProcessor;->mHandler:Landroid/os/Handler;
 
-    .line 93
+    .line 98
     return-void
 .end method

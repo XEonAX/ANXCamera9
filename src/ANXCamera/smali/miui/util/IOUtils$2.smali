@@ -48,14 +48,14 @@
     .registers 2
 
     .line 55
-    invoke-virtual {p0}, Lmiui/util/IOUtils$2;->dw()Ljava/io/CharArrayWriter;
+    invoke-virtual {p0}, Lmiui/util/IOUtils$2;->dx()Ljava/io/CharArrayWriter;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public dw()Ljava/io/CharArrayWriter;
+.method public dx()Ljava/io/CharArrayWriter;
     .registers 2
 
     .line 58

@@ -22,7 +22,7 @@
 .method private constructor <init>(Lcom/android/camera/module/VideoBase;)V
     .locals 0
 
-    .line 171
+    .line 172
     iput-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-direct {p0}, Landroid/os/Handler;-><init>()V
@@ -33,7 +33,7 @@
 .method synthetic constructor <init>(Lcom/android/camera/module/VideoBase;Lcom/android/camera/module/VideoBase$1;)V
     .locals 0
 
-    .line 171
+    .line 172
     invoke-direct {p0, p1}, Lcom/android/camera/module/VideoBase$MainHandler;-><init>(Lcom/android/camera/module/VideoBase;)V
 
     return-void
@@ -44,7 +44,7 @@
 .method public handleMessage(Landroid/os/Message;)V
     .locals 7
 
-    .line 174
+    .line 175
     iget-object v0, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {v0}, Lcom/android/camera/module/VideoBase;->isCreated()Z
@@ -55,13 +55,13 @@
 
     if-nez v0, :cond_0
 
-    .line 175
+    .line 176
     invoke-virtual {p0, v1}, Lcom/android/camera/module/VideoBase$MainHandler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 176
+    .line 177
     return-void
 
-    .line 179
+    .line 180
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
@@ -71,10 +71,10 @@
 
     if-nez v0, :cond_1
 
-    .line 180
+    .line 181
     return-void
 
-    .line 183
+    .line 184
     :cond_1
     iget v0, p1, Landroid/os/Message;->what:I
 
@@ -90,12 +90,12 @@
 
     sparse-switch v0, :sswitch_data_0
 
-    .line 185
+    .line 186
     sget-boolean v0, Lcom/android/camera/module/BaseModule;->DEBUG:Z
 
     if-nez v0, :cond_6
 
-    .line 188
+    .line 189
     sget-object v0, Lcom/android/camera/module/VideoBase;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -118,7 +118,7 @@
 
     goto/16 :goto_1
 
-    .line 280
+    .line 274
     :sswitch_0
     sget-object p1, Lcom/android/camera/module/VideoBase;->TAG:Ljava/lang/String;
 
@@ -126,49 +126,49 @@
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 281
+    .line 275
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget-object p1, p1, Lcom/android/camera/module/VideoBase;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {p1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->resetFocused()V
 
-    .line 282
+    .line 276
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->onWaitingFocusFinished()Z
 
     goto/16 :goto_2
 
-    .line 276
+    .line 270
     :sswitch_1
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     const/16 v0, 0x9
 
-    const v1, 0x7f0b0223
+    const v1, 0x7f090224
 
     invoke-virtual {p1, v0, v1, v3}, Lcom/android/camera/module/VideoBase;->updateTipMessage(III)V
 
-    .line 277
+    .line 271
     goto/16 :goto_2
 
-    .line 203
+    .line 204
     :sswitch_2
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->enterSavePowerMode()V
 
-    .line 204
+    .line 205
     goto/16 :goto_2
 
-    .line 232
+    .line 233
     :sswitch_3
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1, v6, v5}, Lcom/android/camera/module/VideoBase;->stopVideoRecording(ZZ)V
 
-    .line 233
+    .line 234
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget-object p1, p1, Lcom/android/camera/module/VideoBase;->mActivity:Lcom/android/camera/Camera;
@@ -179,97 +179,75 @@
 
     if-nez p1, :cond_5
 
-    .line 234
+    .line 235
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     iput-boolean v6, p1, Lcom/android/camera/module/VideoBase;->mOpenCameraFail:Z
 
-    .line 235
+    .line 236
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->onCameraException()V
 
     goto/16 :goto_2
 
-    .line 269
+    .line 266
     :sswitch_4
-    iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
-
-    iget-object p1, p1, Lcom/android/camera/module/VideoBase;->mHandlerFinishEmitter:Lio/reactivex/CompletableEmitter;
-
-    if-eqz p1, :cond_5
-
-    .line 270
-    iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
-
-    iget-object p1, p1, Lcom/android/camera/module/VideoBase;->mHandlerFinishEmitter:Lio/reactivex/CompletableEmitter;
-
-    invoke-interface {p1}, Lio/reactivex/CompletableEmitter;->onComplete()V
-
-    .line 271
-    iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
-
-    iput-object v1, p1, Lcom/android/camera/module/VideoBase;->mHandlerFinishEmitter:Lio/reactivex/CompletableEmitter;
-
-    goto/16 :goto_2
-
-    .line 265
-    :sswitch_5
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->onWaitStopCallbackTimeout()V
 
-    .line 266
+    .line 267
     goto/16 :goto_2
 
-    .line 261
-    :sswitch_6
+    .line 262
+    :sswitch_5
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1, v1}, Lcom/android/camera/module/VideoBase;->setActivity(Lcom/android/camera/Camera;)V
 
-    .line 262
+    .line 263
     goto/16 :goto_2
 
-    .line 253
-    :sswitch_7
+    .line 254
+    :sswitch_6
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->restoreMusicSound()V
 
-    .line 254
+    .line 255
     goto/16 :goto_2
 
-    .line 207
-    :sswitch_8
+    .line 208
+    :sswitch_7
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->updateRecordingTime()V
 
-    .line 208
+    .line 209
     goto/16 :goto_2
 
-    .line 245
-    :sswitch_9
+    .line 246
+    :sswitch_8
     invoke-static {}, Lcom/android/camera/CameraSettings;->isStereoModeOn()Z
 
     move-result p1
 
     if-eqz p1, :cond_5
 
-    .line 246
+    .line 247
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     const/4 v0, 0x6
 
-    const v1, 0x7f0b0196
+    const v1, 0x7f090196
 
     invoke-virtual {p1, v0, v1, v4}, Lcom/android/camera/module/VideoBase;->updateTipMessage(III)V
 
     goto/16 :goto_2
 
-    .line 257
-    :sswitch_a
+    .line 258
+    :sswitch_9
     iget-object v0, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget v1, p1, Landroid/os/Message;->arg1:I
@@ -295,11 +273,11 @@
     :cond_3
     invoke-static {v0, v1, v5}, Lcom/android/camera/module/VideoBase;->access$000(Lcom/android/camera/module/VideoBase;ZZ)V
 
-    .line 258
+    .line 259
     goto/16 :goto_2
 
-    .line 196
-    :sswitch_b
+    .line 197
+    :sswitch_a
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget-object p1, p1, Lcom/android/camera/module/VideoBase;->mHandler:Landroid/os/Handler;
@@ -308,14 +286,14 @@
 
     invoke-virtual {p1, v0}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 197
+    .line 198
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget-object p1, p1, Lcom/android/camera/module/VideoBase;->mHandler:Landroid/os/Handler;
 
     invoke-virtual {p1, v4}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 198
+    .line 199
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->getWindow()Landroid/view/Window;
@@ -324,7 +302,7 @@
 
     invoke-virtual {p1, v2}, Landroid/view/Window;->addFlags(I)V
 
-    .line 199
+    .line 200
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget-object p1, p1, Lcom/android/camera/module/VideoBase;->mHandler:Landroid/os/Handler;
@@ -339,44 +317,44 @@
 
     invoke-virtual {p1, v4, v0, v1}, Landroid/os/Handler;->sendEmptyMessageDelayed(IJ)Z
 
-    .line 200
+    .line 201
     goto :goto_2
 
-    .line 226
-    :sswitch_c
+    .line 227
+    :sswitch_b
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1, v6, v5}, Lcom/android/camera/module/VideoBase;->stopVideoRecording(ZZ)V
 
-    .line 227
+    .line 228
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     iput-boolean v6, p1, Lcom/android/camera/module/VideoBase;->mOpenCameraFail:Z
 
-    .line 228
+    .line 229
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->onCameraException()V
 
-    .line 229
+    .line 230
     goto :goto_2
 
-    .line 240
-    :sswitch_d
+    .line 241
+    :sswitch_c
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->onPreviewStart()V
 
-    .line 241
+    .line 242
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     iput-object v1, p1, Lcom/android/camera/module/VideoBase;->mStereoSwitchThread:Lcom/android/camera/module/VideoBase$StereoSwitchThread;
 
-    .line 242
+    .line 243
     goto :goto_2
 
-    .line 216
-    :sswitch_e
+    .line 217
+    :sswitch_d
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget-object p1, p1, Lcom/android/camera/module/VideoBase;->mActivity:Lcom/android/camera/Camera;
@@ -397,12 +375,12 @@
 
     if-nez p1, :cond_4
 
-    .line 218
+    .line 219
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->startPreview()V
 
-    .line 220
+    .line 221
     :cond_4
     invoke-static {}, Landroid/os/SystemClock;->uptimeMillis()J
 
@@ -420,7 +398,7 @@
 
     if-gez p1, :cond_5
 
-    .line 221
+    .line 222
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget-object p1, p1, Lcom/android/camera/module/VideoBase;->mHandler:Landroid/os/Handler;
@@ -431,9 +409,9 @@
 
     goto :goto_2
 
-    .line 192
+    .line 193
     :goto_1
-    :sswitch_f
+    :sswitch_e
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->getWindow()Landroid/view/Window;
@@ -442,15 +420,15 @@
 
     invoke-virtual {p1, v2}, Landroid/view/Window;->clearFlags(I)V
 
-    .line 193
+    .line 194
     nop
 
-    .line 285
+    .line 279
     :cond_5
     :goto_2
     return-void
 
-    .line 186
+    .line 187
     :cond_6
     new-instance v0, Ljava/lang/RuntimeException;
 
@@ -474,20 +452,21 @@
 
     throw v0
 
+    nop
+
     :sswitch_data_0
     .sparse-switch
-        0x2 -> :sswitch_f
-        0x4 -> :sswitch_e
-        0x9 -> :sswitch_d
-        0xa -> :sswitch_c
-        0x11 -> :sswitch_b
-        0x23 -> :sswitch_a
-        0x28 -> :sswitch_9
-        0x2a -> :sswitch_8
-        0x2b -> :sswitch_7
-        0x2d -> :sswitch_6
-        0x2e -> :sswitch_5
-        0x2f -> :sswitch_4
+        0x2 -> :sswitch_e
+        0x4 -> :sswitch_d
+        0x9 -> :sswitch_c
+        0xa -> :sswitch_b
+        0x11 -> :sswitch_a
+        0x23 -> :sswitch_9
+        0x28 -> :sswitch_8
+        0x2a -> :sswitch_7
+        0x2b -> :sswitch_6
+        0x2d -> :sswitch_5
+        0x2e -> :sswitch_4
         0x33 -> :sswitch_3
         0x34 -> :sswitch_2
         0x36 -> :sswitch_1

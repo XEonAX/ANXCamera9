@@ -9,7 +9,6 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import com.android.camera.animation.AnimationDelegate.AnimationResource;
-import com.android.camera.data.DataRepository;
 import com.android.camera.module.loader.StartControl;
 import com.ss.android.vesdk.VEResult;
 import io.reactivex.Completable;
@@ -54,35 +53,35 @@ public class AnimationComposite implements Consumer<Integer> {
             arrayList.add(completable);
         }
         int i = startControl.mTargetMode;
-        int i2 = 0;
-        boolean z = startControl.mResetType == 2;
+        int i2 = startControl.mResetType;
+        int i3 = 0;
         AnimationResource animationResource;
         switch (startControl.mViewConfigType) {
             case 1:
-                while (i2 < this.mResourceSparseArray.size()) {
-                    animationResource = (AnimationResource) this.mResourceSparseArray.valueAt(i2);
+                while (i3 < this.mResourceSparseArray.size()) {
+                    animationResource = (AnimationResource) this.mResourceSparseArray.valueAt(i3);
                     if (animationResource.canProvide()) {
-                        animationResource.provideAnimateElement(i, null, z);
+                        animationResource.provideAnimateElement(i, null, i2);
                     }
-                    i2++;
+                    i3++;
                 }
                 break;
             case 2:
-                while (i2 < this.mResourceSparseArray.size()) {
-                    animationResource = (AnimationResource) this.mResourceSparseArray.valueAt(i2);
+                while (i3 < this.mResourceSparseArray.size()) {
+                    animationResource = (AnimationResource) this.mResourceSparseArray.valueAt(i3);
                     if (animationResource.canProvide()) {
-                        animationResource.provideAnimateElement(i, arrayList, z);
+                        animationResource.provideAnimateElement(i, arrayList, i2);
                     }
-                    i2++;
+                    i3++;
                 }
                 break;
             case 3:
-                while (i2 < this.mResourceSparseArray.size()) {
-                    animationResource = (AnimationResource) this.mResourceSparseArray.valueAt(i2);
+                while (i3 < this.mResourceSparseArray.size()) {
+                    animationResource = (AnimationResource) this.mResourceSparseArray.valueAt(i3);
                     if (animationResource.canProvide() && animationResource.needViewClear()) {
-                        animationResource.provideAnimateElement(i, null, z);
+                        animationResource.provideAnimateElement(i, null, i2);
                     }
-                    i2++;
+                    i3++;
                 }
                 break;
         }
@@ -201,9 +200,7 @@ public class AnimationComposite implements Consumer<Integer> {
     }
 
     public void accept(@NonNull Integer num) throws Exception {
-        int i = 0;
-        DataRepository.dataItemGlobal().setRetriedIfCameraError(false);
-        while (i < this.mResourceSparseArray.size()) {
+        for (int i = 0; i < this.mResourceSparseArray.size(); i++) {
             AnimationResource animationResource = (AnimationResource) this.mResourceSparseArray.valueAt(i);
             if (animationResource.canProvide()) {
                 if (!animationResource.isEnableClick()) {
@@ -211,7 +208,6 @@ public class AnimationComposite implements Consumer<Integer> {
                 }
                 animationResource.notifyAfterFrameAvailable(num.intValue());
             }
-            i++;
         }
     }
 }

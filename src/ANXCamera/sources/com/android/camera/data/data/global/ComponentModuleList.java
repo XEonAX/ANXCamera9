@@ -44,15 +44,14 @@ public class ComponentModuleList extends ComponentData {
     private List<ComponentDataItem> initItems() {
         if (this.mIntentType != -1) {
             List<ComponentDataItem> arrayList = new ArrayList();
-            if (DataRepository.dataItemFeature().fD()) {
-                if (this.mIntentType == 0) {
-                    arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_fun, String.valueOf(174)));
-                }
-            } else if (this.mIntentType == 0) {
+            if (!DataRepository.dataItemFeature().fD() && this.mIntentType == 0) {
                 arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_fun, String.valueOf(161)));
             }
-            if (this.mIntentType == 0 && DataRepository.dataItemFeature().fr()) {
+            if (this.mIntentType == 0 && DataRepository.dataItemFeature().fs()) {
                 arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_new_slow_motion, String.valueOf(172)));
+            }
+            if (DataRepository.dataItemFeature().fD() && this.mIntentType == 0) {
+                arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_fun, String.valueOf(174)));
             }
             if (this.mIntentType == 2 || this.mIntentType == 0) {
                 arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_video, String.valueOf(162)));
@@ -64,7 +63,7 @@ public class ComponentModuleList extends ComponentData {
                 if (b.isSupportedPortrait()) {
                     arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_portrait, String.valueOf(171)));
                 }
-                if (DataRepository.dataItemFeature().fh() && this.mIntentType == 0) {
+                if (DataRepository.dataItemFeature().fi() && this.mIntentType == 0) {
                     arrayList.add(new ComponentDataItem(-1, -1, R.string.pref_camera_scenemode_entry_night, String.valueOf(173)));
                 }
                 arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_square, String.valueOf(165)));

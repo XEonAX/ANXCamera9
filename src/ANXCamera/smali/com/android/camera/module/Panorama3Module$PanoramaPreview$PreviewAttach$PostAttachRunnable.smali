@@ -56,10 +56,21 @@
 
     iget-boolean v0, v0, Lcom/android/camera/module/Panorama3Module;->mPaused:Z
 
+    if-nez v0, :cond_3
+
+    iget-object v0, p0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$PreviewAttach$PostAttachRunnable;->this$2:Lcom/android/camera/module/Panorama3Module$PanoramaPreview$PreviewAttach;
+
+    iget-object v0, v0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$PreviewAttach;->this$1:Lcom/android/camera/module/Panorama3Module$PanoramaPreview;
+
+    iget-object v0, v0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview;->this$0:Lcom/android/camera/module/Panorama3Module;
+
+    invoke-static {v0}, Lcom/android/camera/module/Panorama3Module;->access$2000(Lcom/android/camera/module/Panorama3Module;)Z
+
+    move-result v0
+
     if-eqz v0, :cond_0
 
-    .line 2222
-    return-void
+    goto :goto_2
 
     .line 2225
     :cond_0
@@ -166,4 +177,9 @@
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     throw v0
+
+    .line 2222
+    :cond_3
+    :goto_2
+    return-void
 .end method

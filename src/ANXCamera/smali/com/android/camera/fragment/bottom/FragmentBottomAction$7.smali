@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)V
     .locals 0
 
-    .line 842
+    .line 854
     iput-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$7;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,14 +38,14 @@
 .method public onAnimationCancel(Landroid/animation/Animator;)V
     .locals 0
 
-    .line 856
+    .line 868
     return-void
 .end method
 
 .method public onAnimationEnd(Landroid/animation/Animator;)V
     .locals 1
 
-    .line 850
+    .line 862
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$7;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-static {p1}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$200(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/widget/ProgressBar;
@@ -56,20 +56,20 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/ProgressBar;->setVisibility(I)V
 
-    .line 851
+    .line 863
     return-void
 .end method
 
 .method public onAnimationRepeat(Landroid/animation/Animator;)V
     .locals 0
 
-    .line 861
+    .line 873
     return-void
 .end method
 
 .method public onAnimationStart(Landroid/animation/Animator;)V
     .locals 0
 
-    .line 846
+    .line 858
     return-void
 .end method

@@ -26,11 +26,20 @@
 
 
 # virtual methods
+.method protected getAlphaNormal()F
+    .locals 1
+
+    .line 37
+    const v0, 0x3f4ccccd    # 0.8f
+
+    return v0
+.end method
+
 .method protected getStateImageResource(I)I
     .locals 1
 
     .line 22
-    const v0, 0x7f02016f
+    const v0, 0x7f020180
 
     if-eqz p1, :cond_0
 
@@ -47,13 +56,13 @@
 
     .line 28
     :pswitch_1
-    const p1, 0x7f020170
+    const p1, 0x7f020181
 
     return p1
 
     .line 26
     :pswitch_2
-    const p1, 0x7f020171
+    const p1, 0x7f020182
 
     return p1
 

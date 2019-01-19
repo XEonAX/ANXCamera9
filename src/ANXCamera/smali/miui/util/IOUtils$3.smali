@@ -54,14 +54,14 @@
     .registers 2
 
     .line 68
-    invoke-virtual {p0}, Lmiui/util/IOUtils$3;->dx()Ljava/io/StringWriter;
+    invoke-virtual {p0}, Lmiui/util/IOUtils$3;->dy()Ljava/io/StringWriter;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public dx()Ljava/io/StringWriter;
+.method public dy()Ljava/io/StringWriter;
     .registers 2
 
     .line 71

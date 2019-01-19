@@ -26,15 +26,15 @@
 
 
 # instance fields
-.field private LX:I
+.field private Mh:I
 
-.field private final LZ:Z
+.field private final Mi:Z
 
-.field private final Ma:Z
+.field private final Mj:Z
 
-.field private final Mb:Ljava/util/concurrent/atomic/AtomicInteger;
+.field private final Mk:Ljava/util/concurrent/atomic/AtomicInteger;
 
-.field private volatile Mc:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+.field private volatile Ml:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lmiui/util/concurrent/ConcurrentRingQueue$Node<",
@@ -43,9 +43,9 @@
     .end annotation
 .end field
 
-.field private final Md:Ljava/util/concurrent/atomic/AtomicInteger;
+.field private final Mm:Ljava/util/concurrent/atomic/AtomicInteger;
 
-.field private volatile Me:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+.field private volatile Mn:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lmiui/util/concurrent/ConcurrentRingQueue$Node<",
@@ -54,7 +54,7 @@
     .end annotation
 .end field
 
-.field private volatile Mf:I
+.field private volatile Mo:I
 
 
 # direct methods
@@ -65,13 +65,13 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 45
-    iput p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->LX:I
+    iput p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mh:I
 
     .line 46
-    iput-boolean p2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->LZ:Z
+    iput-boolean p2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mi:Z
 
     .line 47
-    iput-boolean p3, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Ma:Z
+    iput-boolean p3, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mj:Z
 
     .line 48
     new-instance p2, Ljava/util/concurrent/atomic/AtomicInteger;
@@ -80,14 +80,14 @@
 
     invoke-direct {p2, p3}, Ljava/util/concurrent/atomic/AtomicInteger;-><init>(I)V
 
-    iput-object p2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mb:Ljava/util/concurrent/atomic/AtomicInteger;
+    iput-object p2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mk:Ljava/util/concurrent/atomic/AtomicInteger;
 
     .line 49
     new-instance p2, Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-direct {p2, p3}, Ljava/util/concurrent/atomic/AtomicInteger;-><init>(I)V
 
-    iput-object p2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Md:Ljava/util/concurrent/atomic/AtomicInteger;
+    iput-object p2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mm:Ljava/util/concurrent/atomic/AtomicInteger;
 
     .line 51
     new-instance p2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;
@@ -96,15 +96,15 @@
 
     invoke-direct {p2, v0}, Lmiui/util/concurrent/ConcurrentRingQueue$Node;-><init>(Lmiui/util/concurrent/ConcurrentRingQueue$1;)V
 
-    iput-object p2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mc:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iput-object p2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Ml:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 52
-    iget-object p2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mc:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object p2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Ml:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
-    iput-object p2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Me:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iput-object p2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mn:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 53
-    iget-object p2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mc:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object p2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Ml:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 54
     :goto_26
@@ -115,10 +115,10 @@
 
     invoke-direct {v1, v0}, Lmiui/util/concurrent/ConcurrentRingQueue$Node;-><init>(Lmiui/util/concurrent/ConcurrentRingQueue$1;)V
 
-    iput-object v1, p2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iput-object v1, p2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 56
-    iget-object p2, p2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object p2, p2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 54
     add-int/lit8 p3, p3, 0x1
@@ -127,9 +127,9 @@
 
     .line 58
     :cond_34
-    iget-object p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mc:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Ml:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
-    iput-object p1, p2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iput-object p1, p2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 59
     return-void
@@ -142,7 +142,7 @@
 
     .line 162
     :goto_0
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mb:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mk:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
 
@@ -150,7 +150,7 @@
 
     if-nez v0, :cond_2b
 
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mb:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mk:Ljava/util/concurrent/atomic/AtomicInteger;
 
     const/4 v1, -0x1
 
@@ -169,12 +169,12 @@
     nop
 
     .line 168
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mc:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Ml:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     move v1, v2
 
     :goto_17
-    iget-object v3, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Me:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v3, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mn:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     if-eq v0, v3, :cond_23
 
@@ -187,16 +187,16 @@
     add-int/lit8 v1, v1, 0x1
 
     .line 168
-    iget-object v0, v0, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v0, v0, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     goto :goto_17
 
     .line 173
     :cond_23
-    iput-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mc:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iput-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Ml:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 175
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mb:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mk:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v0, v2}, Ljava/util/concurrent/atomic/AtomicInteger;->set(I)V
 
@@ -215,7 +215,7 @@
     .registers 5
 
     .line 218
-    iget-boolean v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Ma:Z
+    iget-boolean v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mj:Z
 
     if-eqz v0, :cond_2b
 
@@ -226,7 +226,7 @@
     .line 222
     :cond_7
     :goto_7
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Md:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mm:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
 
@@ -234,7 +234,7 @@
 
     if-nez v0, :cond_27
 
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Md:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mm:Ljava/util/concurrent/atomic/AtomicInteger;
 
     const/4 v1, -0x1
 
@@ -250,17 +250,17 @@
 
     .line 226
     :cond_1a
-    iget v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->LX:I
+    iget v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mh:I
 
     sub-int/2addr v0, p1
 
-    iput v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->LX:I
+    iput v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mh:I
 
     .line 227
-    iput p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mf:I
+    iput p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mo:I
 
     .line 229
-    iget-object p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Md:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mm:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {p1, v2}, Ljava/util/concurrent/atomic/AtomicInteger;->set(I)V
 
@@ -290,7 +290,7 @@
 
     .line 97
     :goto_0
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mb:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mk:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
 
@@ -298,7 +298,7 @@
 
     if-nez v0, :cond_33
 
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mb:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mk:Ljava/util/concurrent/atomic/AtomicInteger;
 
     const/4 v1, -0x1
 
@@ -317,10 +317,10 @@
     nop
 
     .line 102
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mc:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Ml:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 103
-    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Me:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mn:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     const/4 v3, 0x0
 
@@ -342,9 +342,9 @@
     iput-object v3, v1, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->element:Ljava/lang/Object;
 
     .line 103
-    iget-object v1, v1, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v1, v1, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
-    iget-object v4, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Me:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v4, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mn:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     goto :goto_1c
 
@@ -353,11 +353,11 @@
     if-eqz v0, :cond_2d
 
     .line 108
-    iput-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mc:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iput-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Ml:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 110
     :cond_2d
-    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mb:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mk:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v1, v2}, Ljava/util/concurrent/atomic/AtomicInteger;->set(I)V
 
@@ -376,18 +376,18 @@
     .registers 3
 
     .line 187
-    iget v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mf:I
+    iget v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mo:I
 
     if-lez v0, :cond_8
 
-    iget v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->LX:I
+    iget v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mh:I
 
     add-int/2addr v1, v0
 
     goto :goto_a
 
     :cond_8
-    iget v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->LX:I
+    iget v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mh:I
 
     :goto_a
     return v1
@@ -397,7 +397,7 @@
     .registers 5
 
     .line 197
-    iget-boolean v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->LZ:Z
+    iget-boolean v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mi:Z
 
     if-nez v0, :cond_2c
 
@@ -408,7 +408,7 @@
     .line 201
     :cond_7
     :goto_7
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Md:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mm:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
 
@@ -416,7 +416,7 @@
 
     if-nez v0, :cond_28
 
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Md:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mm:Ljava/util/concurrent/atomic/AtomicInteger;
 
     const/4 v1, -0x1
 
@@ -434,17 +434,17 @@
     :cond_1a
     neg-int v0, p1
 
-    iput v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mf:I
+    iput v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mo:I
 
     .line 206
-    iget v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->LX:I
+    iget v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mh:I
 
     add-int/2addr v0, p1
 
-    iput v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->LX:I
+    iput v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mh:I
 
     .line 208
-    iget-object p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Md:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mm:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {p1, v2}, Ljava/util/concurrent/atomic/AtomicInteger;->set(I)V
 
@@ -468,9 +468,9 @@
     .registers 3
 
     .line 181
-    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Me:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v0, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mn:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
-    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mc:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Ml:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     if-ne v0, v1, :cond_8
 
@@ -504,7 +504,7 @@
     .line 67
     :cond_4
     :goto_4
-    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Md:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mm:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v1}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
 
@@ -512,7 +512,7 @@
 
     if-nez v1, :cond_63
 
-    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Md:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mm:Ljava/util/concurrent/atomic/AtomicInteger;
 
     const/4 v2, -0x1
 
@@ -529,16 +529,16 @@
     nop
 
     .line 72
-    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mc:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Ml:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 73
-    iget-object v2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Me:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mn:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 74
-    iget v3, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mf:I
+    iget v3, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mo:I
 
     .line 75
-    iget-object v4, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v4, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     const/4 v5, 0x1
 
@@ -548,42 +548,42 @@
     iput-object p1, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->element:Ljava/lang/Object;
 
     .line 77
-    iget-object p1, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object p1, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
-    iget-object p1, p1, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object p1, p1, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     if-eq p1, v1, :cond_39
 
-    iget-boolean p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Ma:Z
+    iget-boolean p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mj:Z
 
     if-eqz p1, :cond_39
 
     if-lez v3, :cond_39
 
     .line 78
-    iget-object p1, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object p1, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
-    iget-object p1, p1, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object p1, p1, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
-    iput-object p1, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iput-object p1, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 79
     sub-int/2addr v3, v5
 
-    iput v3, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mf:I
+    iput v3, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mo:I
 
     .line 81
     :cond_39
-    iget-object p1, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object p1, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
-    iput-object p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Me:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iput-object p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mn:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 82
     goto :goto_5d
 
     .line 83
     :cond_3e
-    iget-boolean v4, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->LZ:Z
+    iget-boolean v4, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mi:Z
 
     if-nez v4, :cond_47
 
@@ -606,12 +606,12 @@
 
     invoke-direct {v4, v6}, Lmiui/util/concurrent/ConcurrentRingQueue$Node;-><init>(Lmiui/util/concurrent/ConcurrentRingQueue$1;)V
 
-    iput-object v4, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iput-object v4, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 85
-    iget-object v4, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v4, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
-    iput-object v1, v4, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iput-object v1, v4, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 86
     iput-object p1, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->element:Ljava/lang/Object;
@@ -619,19 +619,19 @@
     .line 87
     add-int/2addr v3, v5
 
-    iput v3, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mf:I
+    iput v3, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mo:I
 
     .line 88
-    iget-object p1, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object p1, v2, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
-    iput-object p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Me:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iput-object p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mn:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     .line 89
     nop
 
     .line 91
     :goto_5d
-    iget-object p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Md:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mm:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {p1, v0}, Ljava/util/concurrent/atomic/AtomicInteger;->set(I)V
 
@@ -667,7 +667,7 @@
     .line 142
     :cond_4
     :goto_4
-    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mb:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mk:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v1}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
 
@@ -675,7 +675,7 @@
 
     if-nez v1, :cond_3c
 
-    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mb:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mk:Ljava/util/concurrent/atomic/AtomicInteger;
 
     const/4 v2, -0x1
 
@@ -693,12 +693,12 @@
 
     .line 148
     :try_start_17
-    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mc:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Ml:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     move v2, v0
 
     :goto_1a
-    iget-object v3, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Me:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v3, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mn:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     if-eq v1, v3, :cond_2e
 
@@ -721,7 +721,7 @@
 
     .line 148
     :cond_2b
-    iget-object v1, v1, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v1, v1, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
     :try_end_2d
     .catchall {:try_start_17 .. :try_end_2d} :catchall_35
 
@@ -729,7 +729,7 @@
 
     .line 155
     :cond_2e
-    iget-object p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mb:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object p1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mk:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {p1, v0}, Ljava/util/concurrent/atomic/AtomicInteger;->set(I)V
 
@@ -743,7 +743,7 @@
     :catchall_35
     move-exception p1
 
-    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mb:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mk:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v1, v0}, Ljava/util/concurrent/atomic/AtomicInteger;->set(I)V
 
@@ -776,7 +776,7 @@
     .line 120
     :cond_4
     :goto_4
-    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mb:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mk:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v1}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
 
@@ -784,7 +784,7 @@
 
     if-nez v1, :cond_34
 
-    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mb:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mk:Ljava/util/concurrent/atomic/AtomicInteger;
 
     const/4 v2, -0x1
 
@@ -801,10 +801,10 @@
     nop
 
     .line 125
-    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mc:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Ml:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     :goto_19
-    iget-object v2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Me:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v2, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mn:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     if-eq v1, v2, :cond_2d
 
@@ -830,7 +830,7 @@
 
     .line 125
     :cond_2a
-    iget-object v1, v1, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+    iget-object v1, v1, Lmiui/util/concurrent/ConcurrentRingQueue$Node;->Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
 
     goto :goto_19
 
@@ -839,7 +839,7 @@
     move p1, v0
 
     :goto_2e
-    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mb:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object v1, p0, Lmiui/util/concurrent/ConcurrentRingQueue;->Mk:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v1, v0}, Ljava/util/concurrent/atomic/AtomicInteger;->set(I)V
 

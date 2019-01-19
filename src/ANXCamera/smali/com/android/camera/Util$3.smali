@@ -25,7 +25,7 @@
 .method constructor <init>(Landroid/os/CountDownTimer;)V
     .locals 0
 
-    .line 625
+    .line 631
     iput-object p1, p0, Lcom/android/camera/Util$3;->val$countdownTimer:Landroid/os/CountDownTimer;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,17 +38,17 @@
 .method public onDismiss(Landroid/content/DialogInterface;)V
     .locals 0
 
-    .line 628
+    .line 634
     iget-object p1, p0, Lcom/android/camera/Util$3;->val$countdownTimer:Landroid/os/CountDownTimer;
 
     if-eqz p1, :cond_0
 
-    .line 629
+    .line 635
     iget-object p1, p0, Lcom/android/camera/Util$3;->val$countdownTimer:Landroid/os/CountDownTimer;
 
     invoke-virtual {p1}, Landroid/os/CountDownTimer;->cancel()V
 
-    .line 631
+    .line 637
     :cond_0
     return-void
 .end method

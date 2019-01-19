@@ -26,7 +26,7 @@
     .registers 2
     .param p1, "this$0"    # Lmiui/hardware/display/DisplayFeatureManager;
 
-    .line 130
+    .line 132
     iput-object p1, p0, Lmiui/hardware/display/DisplayFeatureManager$1;->this$0:Lmiui/hardware/display/DisplayFeatureManager;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -40,7 +40,7 @@
     .registers 6
     .param p1, "cookie"    # J
 
-    .line 133
+    .line 135
     iget-object v0, p0, Lmiui/hardware/display/DisplayFeatureManager$1;->this$0:Lmiui/hardware/display/DisplayFeatureManager;
 
     # getter for: Lmiui/hardware/display/DisplayFeatureManager;->mLock:Ljava/lang/Object;
@@ -50,7 +50,7 @@
 
     monitor-enter v0
 
-    .line 134
+    .line 136
     :try_start_7
     # getter for: Lmiui/hardware/display/DisplayFeatureManager;->TAG:Ljava/lang/String;
     invoke-static {}, Lmiui/hardware/display/DisplayFeatureManager;->access$100()Ljava/lang/String;
@@ -61,7 +61,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 135
+    .line 137
     iget-object v1, p0, Lmiui/hardware/display/DisplayFeatureManager$1;->this$0:Lmiui/hardware/display/DisplayFeatureManager;
 
     const/4 v2, 0x0
@@ -69,13 +69,13 @@
     # setter for: Lmiui/hardware/display/DisplayFeatureManager;->mProxy:Lmiui/hardware/display/DisplayFeatureServiceProxy;
     invoke-static {v1, v2}, Lmiui/hardware/display/DisplayFeatureManager;->access$202(Lmiui/hardware/display/DisplayFeatureManager;Lmiui/hardware/display/DisplayFeatureServiceProxy;)Lmiui/hardware/display/DisplayFeatureServiceProxy;
 
-    .line 136
+    .line 138
     monitor-exit v0
 
-    .line 137
+    .line 139
     return-void
 
-    .line 136
+    .line 138
     :catchall_18
     move-exception v1
 

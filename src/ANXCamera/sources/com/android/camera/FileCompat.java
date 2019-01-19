@@ -456,10 +456,10 @@ public class FileCompat {
         LollipopFileCompatImpl() {
         }
 
-        /* JADX WARNING: Removed duplicated region for block: B:45:0x00cf  */
-        /* Code decompiled incorrectly, please refer to instructions dump. */
         public DocumentFile getDocumentFileByPath(String str, boolean z, String str2, boolean z2) {
+            Log.d(FileCompat.TAG, "getDocumentFileByPath start>>");
             String access$000 = FileCompat.getSDPath(str);
+            String str3 = null;
             if (access$000 == null) {
                 return null;
             }
@@ -491,20 +491,20 @@ public class FileCompat {
             int i = 0;
             int i2 = i;
             while (i < length) {
-                String str3 = obj[i];
+                String str4 = obj[i];
                 if (documentFile == null) {
                     break;
                 }
                 if (i2 != 0) {
-                    documentFile = documentFile.createDirectory(str3);
+                    documentFile = documentFile.createDirectory(str4);
                 } else {
-                    DocumentFile findFile = documentFile.findFile(str3);
+                    DocumentFile findFile = documentFile.findFile(str4);
                     if (findFile != null) {
                         documentFile = findFile;
                     } else if (!z) {
                         return null;
                     } else {
-                        documentFile = documentFile.createDirectory(str3);
+                        documentFile = documentFile.createDirectory(str4);
                         i2 = 1;
                     }
                 }
@@ -513,40 +513,48 @@ public class FileCompat {
             if (documentFile == null) {
                 return null;
             }
+            DocumentFile findFile2;
             str = substring[substring.length - 1];
-            DocumentFile findFile2 = documentFile.findFile(str);
-            if (findFile2 != null || !z) {
-                return findFile2;
-            }
-            if (z2) {
+            access$000 = FileCompat.TAG;
+            StringBuilder stringBuilder3 = new StringBuilder();
+            stringBuilder3.append("getDocumentFileByPath>> DocumentFile findFile or createFile, createIfNotFound = ");
+            stringBuilder3.append(z);
+            Log.d(access$000, stringBuilder3.toString());
+            long currentTimeMillis = System.currentTimeMillis();
+            if (!z) {
+                findFile2 = documentFile.findFile(str);
+            } else if (z2) {
                 try {
-                    return documentFile.createDirectory(str);
+                    findFile2 = documentFile.createDirectory(str);
                 } catch (Throwable e) {
                     Log.w(FileCompat.TAG, "createFile error", e);
-                    return null;
+                    findFile2 = documentFile.findFile(str);
                 }
-            }
-            String substring2;
-            int indexOf = str.indexOf(".");
-            if (TextUtils.isEmpty(str2) && indexOf > 0) {
-                str2 = FileCompat.getMimeTypeFromPath(str);
-                if (!TextUtils.isEmpty(str2)) {
-                    substring2 = str.substring(0, indexOf);
-                    if (substring2 != null) {
-                        str = substring2;
+            } else {
+                int indexOf = str.indexOf(".");
+                if (TextUtils.isEmpty(str2) && indexOf > 0) {
+                    str2 = FileCompat.getMimeTypeFromPath(str);
+                    if (!TextUtils.isEmpty(str2)) {
+                        str3 = str.substring(0, indexOf);
                     }
-                    return documentFile.createFile(str2, str);
+                }
+                if (str3 == null) {
+                    str3 = str;
+                }
+                try {
+                    findFile2 = documentFile.createFile(str2, str3);
+                } catch (Throwable e2) {
+                    Log.w(FileCompat.TAG, "createFile error", e2);
+                    findFile2 = documentFile.findFile(str);
                 }
             }
-            substring2 = null;
-            if (substring2 != null) {
-            }
-            try {
-                return documentFile.createFile(str2, str);
-            } catch (Throwable e2) {
-                Log.w(FileCompat.TAG, "createFile error", e2);
-                return null;
-            }
+            str = FileCompat.TAG;
+            StringBuilder stringBuilder4 = new StringBuilder();
+            stringBuilder4.append("getDocumentFileByPath end<< cost time= ");
+            stringBuilder4.append(System.currentTimeMillis() - currentTimeMillis);
+            stringBuilder4.append(" ms");
+            Log.d(str, stringBuilder4.toString());
+            return findFile2;
         }
 
         public OutputStream getFileOutputStream(String str, boolean z) {

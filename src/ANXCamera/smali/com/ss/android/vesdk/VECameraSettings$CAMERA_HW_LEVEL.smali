@@ -52,7 +52,7 @@
 .method static constructor <clinit>()V
     .locals 6
 
-    .line 101
+    .line 104
     new-instance v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
     const-string v1, "CAMERA_HW_LEVEL_LEGACY"
@@ -63,7 +63,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;->CAMERA_HW_LEVEL_LEGACY:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
-    .line 102
+    .line 105
     new-instance v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
     const-string v1, "CAMERA_HW_LEVEL_LIMITED"
@@ -74,7 +74,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;->CAMERA_HW_LEVEL_LIMITED:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
-    .line 103
+    .line 106
     new-instance v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
     const-string v1, "CAMERA_HW_LEVEL_FULL"
@@ -85,7 +85,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;->CAMERA_HW_LEVEL_FULL:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
-    .line 104
+    .line 107
     new-instance v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
     const-string v1, "CAMERA_HW_LEVEL_LEVEL_3"
@@ -96,7 +96,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;->CAMERA_HW_LEVEL_LEVEL_3:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
-    .line 100
+    .line 103
     const/4 v0, 0x4
 
     new-array v0, v0, [Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
@@ -119,7 +119,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;->$VALUES:[Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
-    .line 116
+    .line 119
     new-instance v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL$1;
 
     invoke-direct {v0}, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL$1;-><init>()V
@@ -137,7 +137,7 @@
         }
     .end annotation
 
-    .line 100
+    .line 103
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -146,7 +146,7 @@
 .method public static valueOf(Ljava/lang/String;)Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
     .locals 1
 
-    .line 100
+    .line 103
     const-class v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -161,7 +161,7 @@
 .method public static values()[Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
     .locals 1
 
-    .line 100
+    .line 103
     sget-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;->$VALUES:[Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
     invoke-virtual {v0}, [Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;->clone()Ljava/lang/Object;
@@ -178,7 +178,7 @@
 .method public describeContents()I
     .locals 1
 
-    .line 113
+    .line 116
     const/4 v0, 0x0
 
     return v0
@@ -187,13 +187,13 @@
 .method public writeToParcel(Landroid/os/Parcel;I)V
     .locals 0
 
-    .line 108
+    .line 111
     invoke-virtual {p0}, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;->ordinal()I
 
     move-result p2
 
     invoke-virtual {p1, p2}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 109
+    .line 112
     return-void
 .end method

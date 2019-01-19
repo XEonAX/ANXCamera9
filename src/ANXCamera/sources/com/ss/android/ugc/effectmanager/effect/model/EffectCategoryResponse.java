@@ -4,7 +4,6 @@ import java.util.List;
 
 public class EffectCategoryResponse {
     private List<Effect> addedEffects;
-    private List<Effect> collectionEffect;
     private List<Effect> deletedEffects;
     private Effect frontEffect;
     private String icon_normal_url;
@@ -22,14 +21,6 @@ public class EffectCategoryResponse {
         this.name = str2;
         this.key = str3;
         this.totalEffects = list;
-    }
-
-    public EffectCategoryResponse(String str, String str2, String str3, List<Effect> list, List<String> list2, String str4, List<Effect> list3) {
-        this.id = str;
-        this.name = str2;
-        this.key = str3;
-        this.totalEffects = list;
-        this.collectionEffect = list3;
     }
 
     public String getKey() {
@@ -126,31 +117,5 @@ public class EffectCategoryResponse {
 
     public Effect getRearEffect() {
         return this.rearEffect;
-    }
-
-    public List<Effect> getCollectionEffect() {
-        return this.collectionEffect;
-    }
-
-    public void setCollectionEffect(List<Effect> list) {
-        this.collectionEffect = list;
-    }
-
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("EffectCategoryResponse{id='");
-        stringBuilder.append(this.id);
-        stringBuilder.append('\'');
-        stringBuilder.append(", name='");
-        stringBuilder.append(this.name);
-        stringBuilder.append('\'');
-        stringBuilder.append(", key='");
-        stringBuilder.append(this.key);
-        stringBuilder.append('\'');
-        stringBuilder.append(", collection='");
-        stringBuilder.append(this.collectionEffect);
-        stringBuilder.append('\'');
-        stringBuilder.append('}');
-        return stringBuilder.toString();
     }
 }

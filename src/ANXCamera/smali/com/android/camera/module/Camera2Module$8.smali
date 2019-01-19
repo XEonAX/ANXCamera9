@@ -3,12 +3,12 @@
 .source "Camera2Module.java"
 
 # interfaces
-.implements Lio/reactivex/functions/Function;
+.implements Ljava/lang/Runnable;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/module/Camera2Module;->prepareSuperNight()V
+    value = Lcom/android/camera/module/Camera2Module;->onBeautyBodySlimCountChange(Z)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -16,28 +16,21 @@
     name = null
 .end annotation
 
-.annotation system Ldalvik/annotation/Signature;
-    value = {
-        "Ljava/lang/Object;",
-        "Lio/reactivex/functions/Function<",
-        "Ljava/lang/Integer;",
-        "Lio/reactivex/ObservableSource<",
-        "Ljava/lang/Integer;",
-        ">;>;"
-    }
-.end annotation
-
 
 # instance fields
 .field final synthetic this$0:Lcom/android/camera/module/Camera2Module;
 
+.field final synthetic val$isNeedTip:Z
+
 
 # direct methods
-.method constructor <init>(Lcom/android/camera/module/Camera2Module;)V
+.method constructor <init>(Lcom/android/camera/module/Camera2Module;Z)V
     .locals 0
 
-    .line 1150
+    .line 1225
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module$8;->this$0:Lcom/android/camera/module/Camera2Module;
+
+    iput-boolean p2, p0, Lcom/android/camera/module/Camera2Module$8;->val$isNeedTip:Z
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -46,59 +39,54 @@
 
 
 # virtual methods
-.method public apply(Ljava/lang/Integer;)Lio/reactivex/ObservableSource;
-    .locals 3
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Ljava/lang/Integer;",
-            ")",
-            "Lio/reactivex/ObservableSource<",
-            "Ljava/lang/Integer;",
-            ">;"
-        }
-    .end annotation
+.method public run()V
+    .locals 5
 
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Ljava/lang/Exception;
-        }
-    .end annotation
-
-    .line 1153
-    invoke-static {p1}, Lio/reactivex/Observable;->just(Ljava/lang/Object;)Lio/reactivex/Observable;
+    .line 1228
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
+    const/16 v1, 0xac
 
-    move-result p1
+    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
-    int-to-long v1, p1
+    move-result-object v0
 
-    sget-object p1, Ljava/util/concurrent/TimeUnit;->MILLISECONDS:Ljava/util/concurrent/TimeUnit;
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
 
-    invoke-virtual {v0, v1, v2, p1}, Lio/reactivex/Observable;->delaySubscription(JLjava/util/concurrent/TimeUnit;)Lio/reactivex/Observable;
+    .line 1229
+    if-nez v0, :cond_0
 
-    move-result-object p1
+    .line 1230
+    return-void
 
-    return-object p1
-.end method
+    .line 1232
+    :cond_0
+    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module$8;->val$isNeedTip:Z
 
-.method public bridge synthetic apply(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 0
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Ljava/lang/Exception;
-        }
-    .end annotation
+    const v2, 0x7f090267
 
-    .line 1150
-    check-cast p1, Ljava/lang/Integer;
+    if-eqz v1, :cond_1
 
-    invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module$8;->apply(Ljava/lang/Integer;)Lio/reactivex/ObservableSource;
+    .line 1233
+    const/4 v1, 0x0
 
-    move-result-object p1
+    const-wide/16 v3, 0xfa0
 
-    return-object p1
+    invoke-interface {v0, v1, v2, v3, v4}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertAiDetectTipHint(IIJ)V
+
+    goto :goto_0
+
+    .line 1235
+    :cond_1
+    const/16 v1, 0x8
+
+    const-wide/16 v3, 0x0
+
+    invoke-interface {v0, v1, v2, v3, v4}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertAiDetectTipHint(IIJ)V
+
+    .line 1237
+    :goto_0
+    return-void
 .end method

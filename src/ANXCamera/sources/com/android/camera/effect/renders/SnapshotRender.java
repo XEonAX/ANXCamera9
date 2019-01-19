@@ -169,7 +169,8 @@ public class SnapshotRender {
                 }
                 Bitmap access$1100 = SnapshotRender.this.mDualCameraWaterMarkBitmap;
                 boolean equals = CameraSettings.getCustomWatermark().equals(CameraSettings.getDefaultWatermarkStr());
-                if (CameraSettings.isUltraPixelPhotographyOn() && equals) {
+                Object obj = (CameraSettings.isUltraPixelPhotographyOn() || CameraSettings.isRearMenuUltraPixelPhotographyOn()) ? 1 : null;
+                if (obj != null && equals) {
                     if (SnapshotRender.this.m48MCameraWaterMarkBitmap == null) {
                         SnapshotRender.this.m48MCameraWaterMarkBitmap = SnapshotRender.this.load48MWatermark(CameraAppImpl.getAndroidContext());
                     }
@@ -416,7 +417,7 @@ public class SnapshotRender {
         options.inPurgeable = true;
         options.inPremultiplied = false;
         Bitmap loadCameraCustomWatermark;
-        if (DataRepository.dataItemFeature().fd()) {
+        if (DataRepository.dataItemFeature().fe()) {
             if (!new File(context.getFilesDir(), Util.WATERMARK_FILE_NAME).exists()) {
                 Util.generateCustomWatermark2File();
             }
@@ -440,7 +441,7 @@ public class SnapshotRender {
         options.inScaled = false;
         options.inPurgeable = true;
         options.inPremultiplied = false;
-        if (DataRepository.dataItemFeature().fd()) {
+        if (DataRepository.dataItemFeature().fe()) {
             File file = new File(context.getFilesDir(), Util.WATERMARK_48M_FILE_NAME);
             if (!file.exists()) {
                 return Util.generate48MWatermark2File();

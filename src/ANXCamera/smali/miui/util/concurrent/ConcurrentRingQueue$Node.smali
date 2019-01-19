@@ -24,7 +24,7 @@
 
 
 # instance fields
-.field Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+.field Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lmiui/util/concurrent/ConcurrentRingQueue$Node<",

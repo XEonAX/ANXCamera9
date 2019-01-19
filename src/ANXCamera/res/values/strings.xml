@@ -9,7 +9,7 @@
     <string name="cannot_connect_camera_once">"Can't connect to camera"</string>
     <string name="cannot_connect_camera_twice">"Still can't connect to camera. Try restarting your device."</string>
     <string name="camera_disabled">Camera has been disabled</string>
-    <string name="camera_label">AnX Camera</string>
+    <string name="camera_label">Camera</string>
     <string name="video_camera_label">Camcorder</string>
     <string name="no_storage">Insert SD card before using camera</string>
     <string name="not_enough_space">SD card is full</string>
@@ -38,17 +38,16 @@
     <string name="pref_video_quality_entry_value_4kuhd">8</string>
     <string name="pref_video_quality_entry_value_4kuhd_60fps">8,60</string>
     <string name="pref_video_quality_entry_value_1080p_60fps">6,60</string>
-    <string name="pref_video_quality_entry_value_720p_60fps">5,60</string>
     <string name="pref_video_quality_entry_4kuhd">UHD 4K, 30fps</string>
     <string name="pref_video_quality_entry_4kuhd_60fps">UHD 4K, 60fps</string>
     <string name="pref_video_quality_entry_1080p">FHD 1080p, 30fps</string>
     <string name="pref_video_quality_entry_1080p_60fps">FHD 1080p, 60fps</string>
     <string name="pref_video_quality_entry_720p">HD 720p</string>
-    <string name="pref_video_quality_entry_720p_60fps">HD 720p, 60fps</string>
     <string name="pref_video_quality_entry_480p">SD 480p</string>
     <string name="pref_new_slow_motion_video_quality_entry_1080p">FHD 1080p</string>
     <string name="pref_new_slow_motion_video_quality_entry_720p">HD 720p</string>
     <string name="pref_new_slow_motion_video_quality_240_720only">You can only record 720p videos with 240fps</string>
+    <string name="pref_new_slow_motion_video_quality_960_720only">You can only record 720p videos with 960fps</string>
     <string name="pref_video_encoder_title">Video encoder</string>
     <string name="pref_video_encoder_entry_h264">H.264 High compatibility</string>
     <string name="pref_video_encoder_entry_h265">H.265 High performance</string>
@@ -248,6 +247,7 @@
     <string name="accessibility_beauty_panel_open">Beautify menu is opened</string>
     <string name="accessibility_back_preview_status">Rear camera preview</string>
     <string name="accessibility_front_preview_status">Front camera preview</string>
+    <string name="accessibility_pull_down_to_open_camera">Swipe down to open camera</string>
     <string name="accessibility_focus_status">%1$sX zoom</string>
     <string name="accessibility_filter_pad_close">Filter menu is hidden</string>
     <string name="accessibility_camera_picker_finish">Switched cameras successfully</string>
@@ -261,13 +261,14 @@
     <string name="accessibility_camera_video_960fps_960">960FPS</string>
     <string name="accessibility_camera_lighting_open_panel">Opened lighting menu</string>
     <string name="accessibility_camera_lighting_close_panel">Closed lighting menu</string>
-    <string name="accessibility_bokeh_level">F%1$s级虚化</string>
-    <string name="accessibility_bokeh_adjust">虚化程度调节</string>
+    <string name="accessibility_bokeh_level">F%1$s aperture</string>
+    <string name="accessibility_bokeh_adjust">Adjusting background blur</string>
     <string name="pref_camera_autoexposure_title">Auto exposure settings</string>
     <string name="pref_camera_autoexposure_entry_frameaverage">Frame average</string>
     <string name="pref_camera_autoexposure_entry_centerweighted">Center weighted</string>
     <string name="pref_camera_autoexposure_entry_spotmetering">Spot metering</string>
     <string name="pref_camera_autoexposure_default">1</string>
+    <string name="pref_video_autoexposure_default">1</string>
     <string name="pref_camera_autoexposure_value_frameaverage">0</string>
     <string name="pref_camera_autoexposure_value_centerweighted">1</string>
     <string name="pref_camera_autoexposure_value_spotmetering">2</string>
@@ -288,6 +289,7 @@
     <string name="pref_camera_volumekey_function_entryvalue_zoom">zoom</string>
     <string name="pref_camera_volumekey_function_default">timer</string>
     <string name="pref_video_volumekey_function_default">shutter</string>
+    <string name="pref_live_volumekey_function_default">volume</string>
     <string name="record_back_pressed_hint">Touch again to stop recording</string>
     <string name="capture_back_pressed_hint">Touch again to exit</string>
     <string name="time_lapse_error">"Can't use this video-size for time-lapse recording"</string>
@@ -296,15 +298,13 @@
     <string name="see_qrcode_detals">View QR code details</string>
     <string name="pref_camera_watermark_title">Add time stamp on photos</string>
     <string name="pref_camera_device_watermark_title">Device watermark</string>
-    <string name="pref_userdefine_watermark_title">User define camera watermark</string>
-    <string name="custom_watermark_words">User define watermark words</string>
-    <string name="custom_watermark_tips">The above text will be the second line of the photo watermark. Please limit it to 15 Chinese characters or 15 English letters.</string>
-    <string name="custom_watermark_words_input_hint">Enter words</string>
-    <string name="custom_watermark_words_save_success">Save sucess</string>
-    <string name="custom_watermark_contains_senstive_words">Please modify sensitive text %1$s</string>
-    <string name="custom_watermark_too_many_words">You went over the character limit</string>
-    <string name="device_watermark_default_text">AI DUAL CAMERA</string>
-    <string name="device_48m_watermark_default_text">48M DUAL CAMERA</string>
+    <string name="pref_userdefine_watermark_title">Custom watermark</string>
+    <string name="custom_watermark_words">Custom watermark</string>
+    <string name="custom_watermark_tips">This text will appear as the second line of your watermark. It can contain up to 18 letters or 14 Chinese characters.</string>
+    <string name="custom_watermark_words_input_hint">Enter text</string>
+    <string name="custom_watermark_words_save_success">Saved successfully</string>
+    <string name="custom_watermark_contains_senstive_words">"Watermarks can't contain restricted terms (%1$s)"</string>
+    <string name="custom_watermark_too_many_words">The text you entered is too long</string>
     <string name="pref_camera_hdr_title">HDR</string>
     <string name="pref_scan_qrcode_title">Scan QR codes</string>
     <string name="pref_scan_qrcode_summary">Only the rear camera can scan QR codes in the \"Photo\" mode.</string>
@@ -492,7 +492,8 @@ and then create a shot with a minimal amount of noise."</string>
     <string name="user_agree">Agree</string>
     <string name="do_not_remind_me">"Don't show again"</string>
     <string name="user_notice_identify_summary_format">"By using this service, you agree to Xiaomi's %1$s and %2$s. Do you agree to connect to the internet?"</string>
-    <string name="user_notice_title">Network Connection Agreement</string>
+    <string name="user_notice_title">Terms and Conditions</string>
+    <string name="network_access_user_notice_title">Connecting to the internet</string>
     <string name="install_confirmed">Install</string>
     <string name="confirm_install_scanner_title">Install Scanner</string>
     <string name="confirm_install_scanner_message">"Scanner allows you to scan QR codes, barcodes, and more. You don't have to connect to the internet to install it."</string>
@@ -558,55 +559,55 @@ in Portrait mode"</string>
     <string name="super_night_toast">Taking a photo, please hold your phone</string>
     <string name="close_front_flash_toast">"Your device is overheated. Can't use flash now."</string>
     <string name="close_back_flash_toast">"Your device is overheated. Can't use flash now."</string>
-    <string name="live_sticker_fragment_tab_name">Magic</string>
-    <string name="live_speed_fragment_tab_name">Speed</string>
-    <string name="live_speed_extreme_slow">Slowest</string>
+    <string name="live_sticker_fragment_tab_name">Stickers</string>
+    <string name="live_speed_fragment_tab_name">Record speed</string>
+    <string name="live_speed_extreme_slow">Super slow</string>
     <string name="live_speed_slow">Slow</string>
-    <string name="live_speed_normal">Normal</string>
+    <string name="live_speed_normal">Regular</string>
     <string name="live_speed_fast">Fast</string>
-    <string name="live_speed_extreme_fast">Fastest</string>
-    <string name="live_sticker_updating">Updating...</string>
+    <string name="live_speed_extreme_fast">Super fast</string>
+    <string name="live_sticker_updating">Updating…</string>
     <string name="live_sticker_network_error_hint">Network error</string>
-    <string name="beauty_fragment_tab_name_3d_makeup">美妆</string>
-    <string name="edit_eyebrow_dye">染眉</string>
-    <string name="edit_pupil_line">美瞳线</string>
-    <string name="edit_jelly_lips">果冻唇</string>
-    <string name="edit_blusher">腮红</string>
-    <string name="ultra_wide_mode">超广角</string>
-    <string name="beauty_body">塑型</string>
-    <string name="beauty_body_head">头部</string>
-    <string name="beauty_body_body">瘦身</string>
-    <string name="beauty_body_shoulder">肩部</string>
-    <string name="beauty_body_legged">长腿</string>
-    <string name="beauty_body_reset_tip">塑型效果已清除</string>
-    <string name="ultra_wide_open_tip">超广角模式</string>
-    <string name="ultra_wide_close_tip">超广角模式已关闭</string>
-    <string name="pref_camera_zoom_mode_entry_ultra">ULTRA</string>
-    <string name="ultra_wide_recommend_tip_hint">建议开启超广角模式</string>
-    <string name="camera_liveshot_on_tip">动态照片</string>
-    <string name="camera_liveshot_off_tip">动态照片已关闭</string>
-    <string name="accessibility_camera_liveshot_on">动态照片,开启状态</string>
-    <string name="accessibility_camera_liveshot_off">动态照片,关闭状态</string>
-    <string name="beauty_tab_name_live_filter">滤镜</string>
-    <string name="beauty_tab_name_live_beauty">美颜</string>
-    <string name="accessibility_ultra_wide_on">超广角,开启状态</string>
-    <string name="accessibility_ultra_wide_off">超广角,关闭状态</string>
-    <string name="ai_scene_top_tip">月亮模式</string>
-    <string name="pref_camera_ultra_wide_ldc_title">超广角畸变矫正</string>
-    <string name="pref_camera_ultra_wide_ldc_description">在超广角模式下对畸变的画面进行矫正</string>
-    <string name="pref_camera_normal_wide_ldc_title">合影人脸修正</string>
-    <string name="pref_camera_normal_wide_ldc_description">修正在照片边缘的人脸畸变</string>
-    <string name="ultra_wide_bokeh_open_tip">全身模式</string>
-    <string name="ultra_wide_bokeh_close_tip">全身模式已关闭</string>
-    <string name="accessibility_camera_ultra_wide_bokeh_on">全身模式,开启状态</string>
-    <string name="accessibility_camera_ultra_wide_bokeh_off">全身模式,关闭状态</string>
-    <string name="ai_scene_top_moon_off">夜景模式</string>
-    <string name="ultra_pixel_photography_open_tip">4800万超清</string>
-    <string name="ultra_pixel_photography_close_tip">4800万超清已关闭</string>
-    <string name="accessibility_ultra_pixel_photography_on">4800万超清,开启状态</string>
-    <string name="accessibility_ultra_pixel_photography_off">4800万超清,关闭状态</string>
+    <string name="beauty_fragment_tab_name_3d_makeup">Makeup</string>
+    <string name="edit_eyebrow_dye">Eyebrows</string>
+    <string name="edit_pupil_line">Eyeliner</string>
+    <string name="edit_jelly_lips">Lip gloss</string>
+    <string name="edit_blusher">Rouge</string>
+    <string name="ultra_wide_mode">Wide angle</string>
+    <string name="beauty_body">Figure</string>
+    <string name="beauty_body_head">Head</string>
+    <string name="beauty_body_body">Slender</string>
+    <string name="beauty_body_shoulder">Shoulders</string>
+    <string name="beauty_body_legged">Legs</string>
+    <string name="beauty_body_reset_tip">Removed figure effects successfully</string>
+    <string name="ultra_wide_open_tip">Wide angle mode</string>
+    <string name="ultra_wide_close_tip">Wide angle mode is off</string>
+    <string name="pref_camera_zoom_mode_entry_ultra">Wide angle</string>
+    <string name="ultra_wide_recommend_tip_hint">Try wide angle mode</string>
+    <string name="camera_liveshot_on_tip">Dynamic shots</string>
+    <string name="camera_liveshot_off_tip">Turned off dynamic shots</string>
+    <string name="accessibility_camera_liveshot_on">Turned on dynamic shots</string>
+    <string name="accessibility_camera_liveshot_off">Turned off dynamic shots</string>
+    <string name="beauty_tab_name_live_filter">Filters</string>
+    <string name="beauty_tab_name_live_beauty">Beautify</string>
+    <string name="accessibility_ultra_wide_on">Turned on wide angle mode</string>
+    <string name="accessibility_ultra_wide_off">Turned off wide angle mode</string>
+    <string name="ai_scene_top_tip">Moon mode</string>
+    <string name="pref_camera_ultra_wide_ldc_title">Correct distortion in wide shots</string>
+    <string name="pref_camera_ultra_wide_ldc_description">Correct distorted objects automatically</string>
+    <string name="pref_camera_normal_wide_ldc_title">Correct face distortions on group photos</string>
+    <string name="pref_camera_normal_wide_ldc_description">Correct distorted faces of the people who are close to the edge of the frame</string>
+    <string name="ultra_wide_bokeh_open_tip">Full body mode</string>
+    <string name="ultra_wide_bokeh_close_tip">Full body mode is off</string>
+    <string name="accessibility_camera_ultra_wide_bokeh_on">Full body mode is on</string>
+    <string name="accessibility_camera_ultra_wide_bokeh_off">Full body mode is off</string>
+    <string name="ai_scene_top_moon_off">Low light mode</string>
+    <string name="ultra_pixel_photography_48mp_open_tip">48MP</string>
+    <string name="ultra_pixel_photography_48mp_close_tip">48MP is off</string>
+    <string name="accessibility_ultra_pixel_photography_48mp_on">48MP is on</string>
+    <string name="accessibility_ultra_pixel_photography_48mp_off">48MP is off</string>
     <string name="module_name_professional">Pro</string>
-    <string name="beauty_reset_toast">美颜效果已清除</string>
+    <string name="beauty_reset_toast">Reset figure effects successfully</string>
     <string name="color_effect_live_blue">Orchid</string>
     <string name="color_effect_live_contrast">Xpro</string>
     <string name="color_effect_live_deepblack">B&amp;W</string>
@@ -616,52 +617,50 @@ in Portrait mode"</string>
     <string name="color_effect_live_solar">Sky blue</string>
     <string name="color_effect_live_years">Sepia</string>
     <string name="color_effect_live_none">Normal</string>
-    <string name="pref_camera_ultra_wide_mode_title">超广角模式</string>
-    <string name="ultra_widem_mode_use_hint_text">"开启超广角模式，为您记录更广阔的视野
-探索更多精彩的美"</string>
-    <string name="pref_menu_ultra_pixel_photography_48mp">4800万超清</string>
-    <string name="change_bgm">更换配乐</string>
-    <string name="hot_music">热门歌曲</string>
-    <string name="local_music">本地音乐</string>
-    <string name="network_exception">网络异常</string>
-    <string name="live_edit_exit_message">Discard capture?</string>
-    <string name="live_edit_exit_confirm">Exit</string>
+    <string name="pref_camera_ultra_wide_mode_title">Wide angle mode</string>
+    <string name="ultra_wide_mode_use_hint_text">"Use this mode to include more of the scene in your photo.
+Wide angle mode comes to help when you can't move farther from the scene."</string>
+    <string name="pref_menu_ultra_pixel_photography_48mp">48MP</string>
+    <string name="accessibility_lighting_panel_on">Showing studio lighting bar</string>
+    <string name="accessibility_lighting_panel_off">Studio lighting bar is hidden</string>
+    <string name="beauty_body_slim_count_tip">Figure effects work only for one person shots</string>
+    <string name="live_music_change_bgm">Change background music</string>
+    <string name="live_music_hot_title">Popular songs</string>
+    <string name="live_music_local_title">Local</string>
+    <string name="live_music_downloading_tips">Downloading…</string>
+    <string name="live_music_network_exception">Network error</string>
+    <string name="live_music_network_exception_tips">A network error occurred. Tap to try again.</string>
+    <string name="live_music_close_message">Turn off music now?</string>
+    <string name="live_music_close_sure_message">Turn off</string>
+    <string name="live_music_close_cancel_message">Cancel</string>
+    <string name="live_edit_exit_message">Stop shooting now?</string>
+    <string name="live_edit_exit_confirm">Stop</string>
     <string name="live_edit_share_title">Share</string>
-    <string name="live_reverse_message">Delete last segment?</string>
+    <string name="live_reverse_message">Delete previously captured item?</string>
     <string name="live_reverse_confirm">Delete</string>
-    <string name="live_error_title">Function Error</string>
-    <string name="live_error_message">Function Error</string>
-    <string name="live_error_confirm">Adjust</string>
-    <item type="string" name="APKTOOL_DUMMY_317">false</item>
-    <item type="string" name="APKTOOL_DUMMY_318">false</item>
-    <item type="string" name="APKTOOL_DUMMY_319">false</item>
-    <item type="string" name="APKTOOL_DUMMY_31a">false</item>
-    <item type="string" name="APKTOOL_DUMMY_31b">false</item>
-    <item type="string" name="APKTOOL_DUMMY_31c">false</item>
-    <item type="string" name="APKTOOL_DUMMY_31d">false</item>
-    <item type="string" name="APKTOOL_DUMMY_31e">false</item>
-    <item type="string" name="APKTOOL_DUMMY_31f">false</item>
-    <item type="string" name="APKTOOL_DUMMY_320">false</item>
-    <item type="string" name="APKTOOL_DUMMY_321">false</item>
-    <item type="string" name="APKTOOL_DUMMY_322">false</item>
-    <item type="string" name="APKTOOL_DUMMY_323">false</item>
-    <item type="string" name="APKTOOL_DUMMY_324">false</item>
-    <item type="string" name="APKTOOL_DUMMY_325">false</item>
-    <item type="string" name="APKTOOL_DUMMY_326">false</item>
-    <item type="string" name="APKTOOL_DUMMY_327">false</item>
-    <item type="string" name="APKTOOL_DUMMY_328">false</item>
-    <item type="string" name="APKTOOL_DUMMY_329">false</item>
-    <item type="string" name="APKTOOL_DUMMY_32a">false</item>
-    <item type="string" name="APKTOOL_DUMMY_32b">false</item>
-    <item type="string" name="APKTOOL_DUMMY_32c">false</item>
-    <item type="string" name="APKTOOL_DUMMY_32d">false</item>
-    <item type="string" name="APKTOOL_DUMMY_32e">false</item>
-    <item type="string" name="APKTOOL_DUMMY_32f">false</item>
-    <item type="string" name="APKTOOL_DUMMY_330">false</item>
-    <item type="string" name="APKTOOL_DUMMY_331">false</item>
-    <item type="string" name="APKTOOL_DUMMY_332">false</item>
-    <item type="string" name="APKTOOL_DUMMY_333">false</item>
-    <item type="string" name="APKTOOL_DUMMY_334">false</item>
+    <string name="live_error_title">"System time isn't correct"</string>
+    <string name="live_error_message">Some features might not work properly when system time is incorrect.</string>
+    <string name="live_error_confirm">Adjust time</string>
+    <string name="pref_menu_ultra_pixel_photography_32mp">32MP</string>
+    <string name="ultra_pixel_photography_32mp_open_tip">32MP</string>
+    <string name="ultra_pixel_photography_32mp_close_tip">32MP is off</string>
+    <string name="accessibility_ultra_pixel_photography_32mp_on">32MP is on</string>
+    <string name="accessibility_ultra_pixel_photography_32mp_off">32MP is off</string>
+    <string name="zoom_no_support_tip_48M">"Zoom doesn't work in 48MP mode"</string>
+    <string name="pref_camera_live_sticker_internal_title">Internal magic tools</string>
+    <string name="hand_gesture_open_tip">伸出手掌开始倒计时拍照</string>
+    <string name="hand_gesture_tip">手势拍照</string>
+    <string name="device_watermark_default_text">AI DUAL CAMERA</string>
+    <string name="device_48m_watermark_default_text">48MP DUAL CAMERA</string>
+    <string name="live_share_tik">TikTok</string>
+    <string name="live_share_wechat">WeChat</string>
+    <string name="live_share_moments">Moments</string>
+    <string name="live_share_qq">QQ</string>
+    <string name="live_share_qzone">QZone</string>
+    <string name="live_share_weibo">WeiBo</string>
+    <item type="string" name="APKTOOL_DUMMY_291">false</item>
+    <item type="string" name="APKTOOL_DUMMY_311">false</item>
+    <item type="string" name="APKTOOL_DUMMY_312">false</item>
     <item type="string" name="APKTOOL_DUMMY_335">false</item>
     <item type="string" name="APKTOOL_DUMMY_336">false</item>
     <item type="string" name="APKTOOL_DUMMY_337">false</item>
@@ -756,6 +755,7 @@ in Portrait mode"</string>
     <item type="string" name="APKTOOL_DUMMY_390">false</item>
     <item type="string" name="APKTOOL_DUMMY_391">false</item>
     <item type="string" name="APKTOOL_DUMMY_392">false</item>
+    <item type="string" name="APKTOOL_DUMMY_393">false</item>
     <item type="string" name="APKTOOL_DUMMY_394">false</item>
     <item type="string" name="APKTOOL_DUMMY_395">false</item>
     <item type="string" name="APKTOOL_DUMMY_396">false</item>
@@ -773,9 +773,11 @@ in Portrait mode"</string>
     <item type="string" name="APKTOOL_DUMMY_3a2">false</item>
     <item type="string" name="APKTOOL_DUMMY_3a3">false</item>
     <item type="string" name="APKTOOL_DUMMY_3a4">false</item>
+    <item type="string" name="APKTOOL_DUMMY_3a5">false</item>
     <item type="string" name="APKTOOL_DUMMY_3a6">false</item>
     <item type="string" name="APKTOOL_DUMMY_3a7">false</item>
     <item type="string" name="APKTOOL_DUMMY_3a8">false</item>
+    <item type="string" name="APKTOOL_DUMMY_3a9">false</item>
     <item type="string" name="APKTOOL_DUMMY_3aa">false</item>
     <item type="string" name="APKTOOL_DUMMY_3ab">false</item>
     <item type="string" name="APKTOOL_DUMMY_3ac">false</item>
@@ -783,11 +785,11 @@ in Portrait mode"</string>
     <item type="string" name="APKTOOL_DUMMY_3ae">false</item>
     <item type="string" name="APKTOOL_DUMMY_3af">false</item>
     <item type="string" name="APKTOOL_DUMMY_3b0">false</item>
-    <item type="string" name="APKTOOL_DUMMY_3b1">false</item>
     <item type="string" name="APKTOOL_DUMMY_3b2">false</item>
     <item type="string" name="APKTOOL_DUMMY_3b3">false</item>
     <item type="string" name="APKTOOL_DUMMY_3b4">false</item>
     <item type="string" name="APKTOOL_DUMMY_3b5">false</item>
+    <item type="string" name="APKTOOL_DUMMY_3b6">false</item>
     <item type="string" name="APKTOOL_DUMMY_3b7">false</item>
     <item type="string" name="APKTOOL_DUMMY_3b8">false</item>
     <item type="string" name="APKTOOL_DUMMY_3b9">false</item>
@@ -800,19 +802,25 @@ in Portrait mode"</string>
     <item type="string" name="APKTOOL_DUMMY_3c0">false</item>
     <item type="string" name="APKTOOL_DUMMY_3c1">false</item>
     <item type="string" name="APKTOOL_DUMMY_3c2">false</item>
-    <item type="string" name="APKTOOL_DUMMY_3c3">false</item>
     <item type="string" name="APKTOOL_DUMMY_3c4">false</item>
     <item type="string" name="APKTOOL_DUMMY_3c5">false</item>
     <item type="string" name="APKTOOL_DUMMY_3c6">false</item>
-    <item type="string" name="APKTOOL_DUMMY_3c7">false</item>
     <item type="string" name="APKTOOL_DUMMY_3c8">false</item>
     <item type="string" name="APKTOOL_DUMMY_3c9">false</item>
     <item type="string" name="APKTOOL_DUMMY_3ca">false</item>
+    <item type="string" name="APKTOOL_DUMMY_3cb">false</item>
     <item type="string" name="APKTOOL_DUMMY_3cc">false</item>
+    <item type="string" name="APKTOOL_DUMMY_3cd">false</item>
     <item type="string" name="APKTOOL_DUMMY_3ce">false</item>
+    <item type="string" name="APKTOOL_DUMMY_3cf">false</item>
     <item type="string" name="APKTOOL_DUMMY_3d0">false</item>
+    <item type="string" name="APKTOOL_DUMMY_3d1">false</item>
     <item type="string" name="APKTOOL_DUMMY_3d2">false</item>
     <item type="string" name="APKTOOL_DUMMY_3d3">false</item>
+    <item type="string" name="APKTOOL_DUMMY_3d5">false</item>
+    <item type="string" name="APKTOOL_DUMMY_3d6">false</item>
+    <item type="string" name="APKTOOL_DUMMY_3d7">false</item>
+    <item type="string" name="APKTOOL_DUMMY_3d8">false</item>
     <item type="string" name="APKTOOL_DUMMY_3d9">false</item>
     <item type="string" name="APKTOOL_DUMMY_3da">false</item>
     <item type="string" name="APKTOOL_DUMMY_3db">false</item>
@@ -829,19 +837,11 @@ in Portrait mode"</string>
     <item type="string" name="APKTOOL_DUMMY_3e6">false</item>
     <item type="string" name="APKTOOL_DUMMY_3e7">false</item>
     <item type="string" name="APKTOOL_DUMMY_3e8">false</item>
-    <item type="string" name="APKTOOL_DUMMY_3e9">false</item>
-    <item type="string" name="APKTOOL_DUMMY_3eb">false</item>
+    <item type="string" name="APKTOOL_DUMMY_3ea">false</item>
     <item type="string" name="APKTOOL_DUMMY_3ec">false</item>
-    <item type="string" name="APKTOOL_DUMMY_3ed">false</item>
     <item type="string" name="APKTOOL_DUMMY_3ee">false</item>
-    <item type="string" name="APKTOOL_DUMMY_3ef">false</item>
     <item type="string" name="APKTOOL_DUMMY_3f0">false</item>
     <item type="string" name="APKTOOL_DUMMY_3f1">false</item>
-    <item type="string" name="APKTOOL_DUMMY_3f2">false</item>
-    <item type="string" name="APKTOOL_DUMMY_3f3">false</item>
-    <item type="string" name="APKTOOL_DUMMY_3f4">false</item>
-    <item type="string" name="APKTOOL_DUMMY_3f5">false</item>
-    <item type="string" name="APKTOOL_DUMMY_3f6">false</item>
     <item type="string" name="APKTOOL_DUMMY_3f7">false</item>
     <item type="string" name="APKTOOL_DUMMY_3f8">false</item>
     <item type="string" name="APKTOOL_DUMMY_3f9">false</item>
@@ -859,7 +859,6 @@ in Portrait mode"</string>
     <item type="string" name="APKTOOL_DUMMY_405">false</item>
     <item type="string" name="APKTOOL_DUMMY_406">false</item>
     <item type="string" name="APKTOOL_DUMMY_407">false</item>
-    <item type="string" name="APKTOOL_DUMMY_408">false</item>
     <item type="string" name="APKTOOL_DUMMY_409">false</item>
     <item type="string" name="APKTOOL_DUMMY_40a">false</item>
     <item type="string" name="APKTOOL_DUMMY_40b">false</item>
@@ -912,4 +911,34 @@ in Portrait mode"</string>
     <item type="string" name="APKTOOL_DUMMY_43a">false</item>
     <item type="string" name="APKTOOL_DUMMY_43b">false</item>
     <item type="string" name="APKTOOL_DUMMY_43c">false</item>
+    <item type="string" name="APKTOOL_DUMMY_43d">false</item>
+    <item type="string" name="APKTOOL_DUMMY_43e">false</item>
+    <item type="string" name="APKTOOL_DUMMY_43f">false</item>
+    <item type="string" name="APKTOOL_DUMMY_440">false</item>
+    <item type="string" name="APKTOOL_DUMMY_441">false</item>
+    <item type="string" name="APKTOOL_DUMMY_442">false</item>
+    <item type="string" name="APKTOOL_DUMMY_443">false</item>
+    <item type="string" name="APKTOOL_DUMMY_444">false</item>
+    <item type="string" name="APKTOOL_DUMMY_445">false</item>
+    <item type="string" name="APKTOOL_DUMMY_446">false</item>
+    <item type="string" name="APKTOOL_DUMMY_447">false</item>
+    <item type="string" name="APKTOOL_DUMMY_448">false</item>
+    <item type="string" name="APKTOOL_DUMMY_449">false</item>
+    <item type="string" name="APKTOOL_DUMMY_44a">false</item>
+    <item type="string" name="APKTOOL_DUMMY_44b">false</item>
+    <item type="string" name="APKTOOL_DUMMY_44c">false</item>
+    <item type="string" name="APKTOOL_DUMMY_44d">false</item>
+    <item type="string" name="APKTOOL_DUMMY_44e">false</item>
+    <item type="string" name="APKTOOL_DUMMY_44f">false</item>
+    <item type="string" name="APKTOOL_DUMMY_450">false</item>
+    <item type="string" name="APKTOOL_DUMMY_451">false</item>
+    <item type="string" name="APKTOOL_DUMMY_452">false</item>
+    <item type="string" name="APKTOOL_DUMMY_453">false</item>
+    <item type="string" name="APKTOOL_DUMMY_454">false</item>
+    <item type="string" name="APKTOOL_DUMMY_455">false</item>
+    <item type="string" name="APKTOOL_DUMMY_456">false</item>
+    <item type="string" name="APKTOOL_DUMMY_457">false</item>
+    <item type="string" name="APKTOOL_DUMMY_458">false</item>
+    <item type="string" name="APKTOOL_DUMMY_459">false</item>
+    <item type="string" name="APKTOOL_DUMMY_45a">false</item>
 </resources>

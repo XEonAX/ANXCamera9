@@ -45,7 +45,7 @@
 
     const/4 v3, -0x1
 
-    const v4, 0x7f0b0198
+    const v4, 0x7f090198
 
     invoke-direct {v1, v3, v3, v4, v2}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 
@@ -56,14 +56,14 @@
 
     const-string v2, "tele"
 
-    const v4, 0x7f0b0199
+    const v4, 0x7f090199
 
     invoke-direct {v1, v3, v3, v4, v2}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .line 73
-    invoke-static {}, Lcom/mi/config/b;->fw()Z
+    invoke-static {}, Lcom/mi/config/b;->fx()Z
 
     move-result v1
 
@@ -72,7 +72,7 @@
     .line 74
     new-instance v1, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const v2, 0x7f0b023e
+    const v2, 0x7f09023f
 
     const-string v4, "ultra"
 
@@ -104,7 +104,7 @@
 
     .line 89
     :cond_0
-    invoke-static {}, Lcom/mi/config/b;->fw()Z
+    invoke-static {}, Lcom/mi/config/b;->fx()Z
 
     move-result v0
 
@@ -150,7 +150,7 @@
     .locals 1
 
     .line 29
-    const v0, 0x7f0b0197
+    const v0, 0x7f090197
 
     return v0
 .end method

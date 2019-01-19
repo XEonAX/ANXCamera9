@@ -127,12 +127,12 @@
     :cond_2
     iget v0, p0, Lcom/android/camera/fragment/bottom/BottomAnimationConfig;->mCurrentMode:I
 
-    const/16 v3, 0x3a98
-
     if-ne v0, v1, :cond_3
 
     .line 66
-    iput v3, p0, Lcom/android/camera/fragment/bottom/BottomAnimationConfig;->mDuration:I
+    const/16 v0, 0x3a98
+
+    iput v0, p0, Lcom/android/camera/fragment/bottom/BottomAnimationConfig;->mDuration:I
 
     goto :goto_0
 
@@ -140,12 +140,14 @@
     :cond_3
     iget v0, p0, Lcom/android/camera/fragment/bottom/BottomAnimationConfig;->mCurrentMode:I
 
-    const/16 v5, 0xae
+    const/16 v3, 0xae
 
-    if-ne v0, v5, :cond_4
+    if-ne v0, v3, :cond_4
 
     .line 68
-    iput v3, p0, Lcom/android/camera/fragment/bottom/BottomAnimationConfig;->mDuration:I
+    const/16 v0, 0x3e80
+
+    iput v0, p0, Lcom/android/camera/fragment/bottom/BottomAnimationConfig;->mDuration:I
 
     goto :goto_0
 

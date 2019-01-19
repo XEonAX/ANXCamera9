@@ -2,8 +2,8 @@ package com.bumptech.glide.util.a;
 
 /* compiled from: GlideTrace */
 public final class b {
-    private static final boolean pB = false;
-    private static final int pC = 127;
+    private static final boolean pA = false;
+    private static final int pB = 127;
 
     private b() {
     }

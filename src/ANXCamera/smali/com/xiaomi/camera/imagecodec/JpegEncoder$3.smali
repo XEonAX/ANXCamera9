@@ -1,14 +1,11 @@
 .class Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;
-.super Ljava/lang/Object;
+.super Landroid/hardware/camera2/CameraCaptureSession$StateCallback;
 .source "JpegEncoder.java"
-
-# interfaces
-.implements Landroid/media/ImageReader$OnImageAvailableListener;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/xiaomi/camera/imagecodec/JpegEncoder;->initJpegImageReader(II)V
+    value = Lcom/xiaomi/camera/imagecodec/JpegEncoder;->createReprocessSession(Landroid/hardware/camera2/params/InputConfiguration;Lcom/xiaomi/camera/imagecodec/OutputConfiguration;Lcom/xiaomi/camera/imagecodec/OutputConfiguration;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -25,170 +22,307 @@
 .method constructor <init>(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
     .locals 0
 
-    .line 580
+    .line 526
     iput-object p1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
 
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0}, Landroid/hardware/camera2/CameraCaptureSession$StateCallback;-><init>()V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public onImageAvailable(Landroid/media/ImageReader;)V
-    .locals 8
+.method public onConfigureFailed(Landroid/hardware/camera2/CameraCaptureSession;)V
+    .locals 2
+    .param p1    # Landroid/hardware/camera2/CameraCaptureSession;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
 
-    .line 583
-    invoke-virtual {p1}, Landroid/media/ImageReader;->acquireNextImage()Landroid/media/Image;
+    .line 562
+    invoke-static {}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$100()Ljava/lang/String;
 
     move-result-object p1
 
-    .line 584
-    invoke-static {}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$200()Ljava/lang/String;
+    const-string v0, "onConfigureFailed"
 
-    move-result-object v0
+    invoke-static {p1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v2, "onImageAvailable: received reprocessed image"
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 586
-    invoke-static {p1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$1100(Landroid/media/Image;)[B
-
-    move-result-object v0
-
-    .line 587
-    invoke-virtual {p1}, Landroid/media/Image;->close()V
-
-    .line 588
+    .line 563
     iget-object p1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
 
-    invoke-static {p1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$1200(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Ljava/lang/Object;
+    invoke-static {p1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$300(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Ljava/lang/Object;
 
     move-result-object p1
 
     monitor-enter p1
 
-    .line 590
+    .line 564
     :try_start_0
-    iget-object v1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
-
-    invoke-static {v1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$1300(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Lcom/xiaomi/camera/imagecodec/ReprocessData;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Lcom/xiaomi/camera/imagecodec/ReprocessData;->getResultListener()Lcom/xiaomi/camera/imagecodec/ReprocessData$OnDataAvailableListener;
-
-    move-result-object v1
-
-    iget-object v2, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
-
-    .line 591
-    invoke-static {v2}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$1300(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Lcom/xiaomi/camera/imagecodec/ReprocessData;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Lcom/xiaomi/camera/imagecodec/ReprocessData;->getImageTag()Ljava/lang/String;
-
-    move-result-object v2
-
-    .line 590
-    invoke-interface {v1, v0, v2}, Lcom/xiaomi/camera/imagecodec/ReprocessData$OnDataAvailableListener;->onJpegAvailable([BLjava/lang/String;)V
-
-    .line 592
-    invoke-static {}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$200()Ljava/lang/String;
-
-    move-result-object v0
-
-    const-string v1, "jpeg return for %s. cost=%d"
-
-    const/4 v2, 0x2
-
-    new-array v2, v2, [Ljava/lang/Object;
-
-    const/4 v3, 0x0
-
-    iget-object v4, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
-
-    .line 593
-    invoke-static {v4}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$1300(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Lcom/xiaomi/camera/imagecodec/ReprocessData;
-
-    move-result-object v4
-
-    invoke-virtual {v4}, Lcom/xiaomi/camera/imagecodec/ReprocessData;->getImageTag()Ljava/lang/String;
-
-    move-result-object v4
-
-    aput-object v4, v2, v3
-
-    const/4 v3, 0x1
-
-    .line 594
-    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
-
-    move-result-wide v4
-
-    iget-object v6, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
-
-    invoke-static {v6}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$1400(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)J
-
-    move-result-wide v6
-
-    sub-long/2addr v4, v6
-
-    invoke-static {v4, v5}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
-
-    move-result-object v4
-
-    aput-object v4, v2, v3
-
-    .line 592
-    invoke-static {v1, v2}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 595
     iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
 
     const/4 v1, 0x0
 
-    invoke-static {v0, v1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$1302(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Lcom/xiaomi/camera/imagecodec/ReprocessData;)Lcom/xiaomi/camera/imagecodec/ReprocessData;
+    invoke-static {v0, v1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$702(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Z)Z
 
-    .line 596
+    .line 565
+    iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
+
+    const/4 v1, 0x0
+
+    invoke-static {v0, v1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$602(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Landroid/hardware/camera2/CameraCaptureSession;)Landroid/hardware/camera2/CameraCaptureSession;
+
+    .line 566
+    iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
+
+    invoke-static {v0, v1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$1102(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Landroid/media/ImageWriter;)Landroid/media/ImageWriter;
+
+    .line 567
+    monitor-exit p1
+
+    .line 568
+    return-void
+
+    .line 567
+    :catchall_0
+    move-exception v0
+
     monitor-exit p1
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 597
+    throw v0
+.end method
+
+.method public onConfigured(Landroid/hardware/camera2/CameraCaptureSession;)V
+    .locals 9
+    .param p1    # Landroid/hardware/camera2/CameraCaptureSession;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
+
+    .line 530
+    invoke-static {}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$100()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "onConfigured>>"
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 531
+    iget-object v0, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
+
+    invoke-static {v0}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$300(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    monitor-enter v0
+
+    .line 533
+    :try_start_0
+    iget-object v1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
+
+    invoke-static {v1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$400(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Landroid/hardware/camera2/CameraDevice;
+
+    move-result-object v1
+
+    const/4 v2, 0x0
+
+    if-nez v1, :cond_0
+
+    .line 534
+    invoke-static {}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$100()Ljava/lang/String;
+
+    move-result-object p1
+
+    const-string v1, "onConfigured: null camera device"
+
+    invoke-static {p1, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 535
     iget-object p1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
 
-    invoke-static {p1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$700(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
+    invoke-static {p1, v2}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$702(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Z)Z
 
-    .line 598
+    .line 536
+    monitor-exit v0
+
     return-void
 
-    .line 596
+    .line 539
+    :cond_0
+    iget-object v1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
+
+    invoke-static {v1, p1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$602(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Landroid/hardware/camera2/CameraCaptureSession;)Landroid/hardware/camera2/CameraCaptureSession;
+
+    .line 540
+    iget-object v1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
+
+    invoke-static {v1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$508(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)I
+
+    .line 541
+    invoke-static {p1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$1000(Landroid/hardware/camera2/CameraCaptureSession;)I
+
+    move-result v1
+
+    .line 542
+    invoke-static {}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$100()Ljava/lang/String;
+
+    move-result-object v3
+
+    const-string v4, "sessionId: %d %d"
+
+    const/4 v5, 0x2
+
+    new-array v6, v5, [Ljava/lang/Object;
+
+    iget-object v7, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
+
+    invoke-static {v7}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$500(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)I
+
+    move-result v7
+
+    invoke-static {v7}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v7
+
+    aput-object v7, v6, v2
+
+    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v7
+
+    const/4 v8, 0x1
+
+    aput-object v7, v6, v8
+
+    invoke-static {v4, v6}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-static {v3, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 543
+    const/4 v3, -0x1
+
+    if-eq v1, v3, :cond_1
+
+    iget-object v3, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
+
+    invoke-static {v3}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$500(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)I
+
+    move-result v3
+
+    if-eq v3, v1, :cond_1
+
+    .line 544
+    invoke-static {}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$100()Ljava/lang/String;
+
+    move-result-object v3
+
+    const-string v4, "sessionId: %d->%d"
+
+    new-array v6, v5, [Ljava/lang/Object;
+
+    iget-object v7, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
+
+    invoke-static {v7}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$500(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)I
+
+    move-result v7
+
+    invoke-static {v7}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v7
+
+    aput-object v7, v6, v2
+
+    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v7
+
+    aput-object v7, v6, v8
+
+    invoke-static {v4, v6}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 545
+    iget-object v3, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
+
+    invoke-static {v3, v1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$502(Lcom/xiaomi/camera/imagecodec/JpegEncoder;I)I
+
+    .line 548
+    :cond_1
+    iget-object v1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
+
+    invoke-static {v1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$1100(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Landroid/media/ImageWriter;
+
+    move-result-object v1
+
+    if-eqz v1, :cond_2
+
+    .line 549
+    iget-object v1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
+
+    invoke-static {v1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$1100(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Landroid/media/ImageWriter;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Landroid/media/ImageWriter;->close()V
+
+    .line 551
+    :cond_2
+    invoke-virtual {p1}, Landroid/hardware/camera2/CameraCaptureSession;->getInputSurface()Landroid/view/Surface;
+
+    move-result-object p1
+
+    .line 552
+    iget-object v1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
+
+    invoke-static {p1, v5}, Landroid/media/ImageWriter;->newInstance(Landroid/view/Surface;I)Landroid/media/ImageWriter;
+
+    move-result-object p1
+
+    invoke-static {v1, p1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$1102(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Landroid/media/ImageWriter;)Landroid/media/ImageWriter;
+
+    .line 554
+    iget-object p1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
+
+    invoke-static {p1, v2}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$702(Lcom/xiaomi/camera/imagecodec/JpegEncoder;Z)Z
+
+    .line 555
+    monitor-exit v0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 556
+    iget-object p1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$3;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
+
+    invoke-static {p1}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$800(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
+
+    .line 557
+    invoke-static {}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$100()Ljava/lang/String;
+
+    move-result-object p1
+
+    const-string v0, "onConfigured<<"
+
+    invoke-static {p1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 558
+    return-void
+
+    .line 555
     :catchall_0
-    move-exception v0
+    move-exception p1
 
     :try_start_1
-    monitor-exit p1
+    monitor-exit v0
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    throw v0
+    throw p1
 .end method

@@ -848,7 +848,7 @@
     if-nez v1, :cond_18
 
     .line 744
-    invoke-static {}, Lcom/mi/config/b;->gQ()Z
+    invoke-static {}, Lcom/mi/config/b;->gZ()Z
 
     move-result v1
 
@@ -1234,7 +1234,7 @@
     if-nez v0, :cond_24
 
     .line 789
-    invoke-static {}, Lcom/mi/config/b;->gF()Z
+    invoke-static {}, Lcom/mi/config/b;->gO()Z
 
     move-result v0
 
@@ -1803,9 +1803,9 @@
 
     const/4 v3, 0x0
 
-    const v4, 0x7f0b006a
+    const v4, 0x7f090069
 
-    const v5, 0x7f02002b
+    const v5, 0x7f02002c
 
     invoke-direct {v1, v2, v4, v5, v3}, Lcom/android/camera/effect/FilterInfo;-><init>(IIII)V
 
@@ -1866,10 +1866,10 @@
     const/16 v5, 0x82
 
     .line 585
-    const v6, 0x7f0b0077
+    const v6, 0x7f090076
 
     .line 586
-    const v7, 0x7f020026
+    const v7, 0x7f020027
 
     .line 587
     goto/16 :goto_1
@@ -1879,10 +1879,10 @@
     const/16 v5, 0x78
 
     .line 580
-    const v6, 0x7f0b0076
+    const v6, 0x7f090075
 
     .line 581
-    const v7, 0x7f020023
+    const v7, 0x7f020024
 
     .line 582
     goto :goto_1
@@ -1892,10 +1892,10 @@
     const/16 v5, 0x6e
 
     .line 575
-    const v6, 0x7f0b0075
+    const v6, 0x7f090074
 
     .line 576
-    const v7, 0x7f020022
+    const v7, 0x7f020023
 
     .line 577
     goto :goto_1
@@ -1905,10 +1905,10 @@
     const/16 v5, 0x64
 
     .line 570
-    const v6, 0x7f0b0074
+    const v6, 0x7f090073
 
     .line 571
-    const v7, 0x7f020028
+    const v7, 0x7f020029
 
     .line 572
     goto :goto_1
@@ -1918,10 +1918,10 @@
     const/16 v5, 0x5a
 
     .line 565
-    const v6, 0x7f0b0073
+    const v6, 0x7f090072
 
     .line 566
-    const v7, 0x7f020025
+    const v7, 0x7f020026
 
     .line 567
     goto :goto_1
@@ -1931,10 +1931,10 @@
     const/16 v5, 0x50
 
     .line 560
-    const v6, 0x7f0b0072
+    const v6, 0x7f090071
 
     .line 561
-    const v7, 0x7f02002d
+    const v7, 0x7f02002e
 
     .line 562
     goto :goto_1
@@ -1944,10 +1944,10 @@
     const/16 v5, 0x46
 
     .line 555
-    const v6, 0x7f0b0071
+    const v6, 0x7f090070
 
     .line 556
-    const v7, 0x7f02002c
+    const v7, 0x7f02002d
 
     .line 557
     goto :goto_1
@@ -1957,10 +1957,10 @@
     const/16 v5, 0x3c
 
     .line 550
-    const v6, 0x7f0b0070
+    const v6, 0x7f09006f
 
     .line 551
-    const v7, 0x7f020024
+    const v7, 0x7f020025
 
     .line 552
     goto :goto_1
@@ -1970,10 +1970,10 @@
     const/16 v5, 0x32
 
     .line 545
-    const v6, 0x7f0b006f
+    const v6, 0x7f09006e
 
     .line 546
-    const v7, 0x7f02002f
+    const v7, 0x7f020030
 
     .line 547
     goto :goto_1
@@ -1983,10 +1983,10 @@
     const/16 v5, 0x28
 
     .line 540
-    const v6, 0x7f0b006e
+    const v6, 0x7f09006d
 
     .line 541
-    const v7, 0x7f02002a
+    const v7, 0x7f02002b
 
     .line 542
     goto :goto_1
@@ -1996,10 +1996,10 @@
     const/16 v5, 0x1e
 
     .line 535
-    const v6, 0x7f0b006d
+    const v6, 0x7f09006c
 
     .line 536
-    const v7, 0x7f020029
+    const v7, 0x7f02002a
 
     .line 537
     goto :goto_1
@@ -2009,10 +2009,10 @@
     const/16 v5, 0x14
 
     .line 530
-    const v6, 0x7f0b006c
+    const v6, 0x7f09006b
 
     .line 531
-    const v7, 0x7f020027
+    const v7, 0x7f020028
 
     .line 532
     goto :goto_1
@@ -2022,10 +2022,10 @@
     const/16 v5, 0xa
 
     .line 525
-    const v6, 0x7f0b006b
+    const v6, 0x7f09006a
 
     .line 526
-    const v7, 0x7f02002e
+    const v7, 0x7f02002f
 
     .line 527
     nop
@@ -2239,9 +2239,9 @@
 
     const/4 v3, 0x0
 
-    const v4, 0x7f0b006a
+    const v4, 0x7f090069
 
-    const v5, 0x7f0201b3
+    const v5, 0x7f0201c6
 
     invoke-direct {v1, v2, v4, v5, v3}, Lcom/android/camera/effect/FilterInfo;-><init>(IIII)V
 
@@ -2302,10 +2302,10 @@
     const/16 v5, 0x32
 
     .line 644
-    const v6, 0x7f0b007c
+    const v6, 0x7f09007b
 
     .line 645
-    const v7, 0x7f0201ae
+    const v7, 0x7f0201c1
 
     .line 646
     goto :goto_1
@@ -2315,10 +2315,10 @@
     const/16 v5, 0x2d
 
     .line 639
-    const v6, 0x7f0b007d
+    const v6, 0x7f09007c
 
     .line 640
-    const v7, 0x7f0201af
+    const v7, 0x7f0201c2
 
     .line 641
     goto :goto_1
@@ -2328,10 +2328,10 @@
     const/16 v5, 0x28
 
     .line 634
-    const v6, 0x7f0b007b
+    const v6, 0x7f09007a
 
     .line 635
-    const v7, 0x7f0201b1
+    const v7, 0x7f0201c4
 
     .line 636
     goto :goto_1
@@ -2341,10 +2341,10 @@
     const/16 v5, 0x1e
 
     .line 629
-    const v6, 0x7f0b007a
+    const v6, 0x7f090079
 
     .line 630
-    const v7, 0x7f0201b4
+    const v7, 0x7f0201c7
 
     .line 631
     goto :goto_1
@@ -2354,10 +2354,10 @@
     const/16 v5, 0x14
 
     .line 624
-    const v6, 0x7f0b0079
+    const v6, 0x7f090078
 
     .line 625
-    const v7, 0x7f0201b2
+    const v7, 0x7f0201c5
 
     .line 626
     goto :goto_1
@@ -2367,10 +2367,10 @@
     const/16 v5, 0xa
 
     .line 619
-    const v6, 0x7f0b0078
+    const v6, 0x7f090077
 
     .line 620
-    const v7, 0x7f0201b0
+    const v7, 0x7f0201c3
 
     .line 621
     nop
@@ -2509,7 +2509,7 @@
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/mi/config/a;->eT()Z
+    invoke-virtual {v0}, Lcom/mi/config/a;->eU()Z
 
     move-result v0
 
@@ -3027,7 +3027,7 @@
     .locals 4
 
     .line 664
-    invoke-static {}, Lcom/mi/config/b;->fL()Z
+    invoke-static {}, Lcom/mi/config/b;->fV()Z
 
     move-result v0
 
@@ -3269,7 +3269,7 @@
 
     move-result-object v0
 
-    const v1, 0x7f0e0029
+    const v1, 0x7f0e002b
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->obtainTypedArray(I)Landroid/content/res/TypedArray;
 
@@ -3280,7 +3280,7 @@
 
     move-result-object v1
 
-    const v2, 0x7f0e002a
+    const v2, 0x7f0e002c
 
     invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getStringArray(I)[Ljava/lang/String;
 
@@ -3291,7 +3291,7 @@
 
     move-result-object p1
 
-    const v2, 0x7f0e002b
+    const v2, 0x7f0e002d
 
     invoke-virtual {p1, v2}, Landroid/content/res/Resources;->getStringArray(I)[Ljava/lang/String;
 
@@ -3386,7 +3386,7 @@
 
     .line 322
     :try_start_0
-    invoke-static {}, Lcom/mi/config/b;->fL()Z
+    invoke-static {}, Lcom/mi/config/b;->fV()Z
 
     move-result v0
 
@@ -3443,7 +3443,7 @@
 
     move-result-object v7
 
-    invoke-virtual {v7}, Lcom/mi/config/a;->fd()Z
+    invoke-virtual {v7}, Lcom/mi/config/a;->fe()Z
 
     move-result v7
 

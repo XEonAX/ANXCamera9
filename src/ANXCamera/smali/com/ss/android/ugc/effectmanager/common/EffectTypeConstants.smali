@@ -26,8 +26,6 @@
 
 .field public static final TYPE_FILTER:Ljava/lang/String; = "Filter"
 
-.field public static final TYPE_GAME:Ljava/lang/String; = "Game"
-
 .field public static final TYPE_HAIR_COLOR:Ljava/lang/String; = "HairColor"
 
 .field public static final TYPE_MATTING:Ljava/lang/String; = "Matting"

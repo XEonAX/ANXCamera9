@@ -14,23 +14,23 @@ import java.util.concurrent.ConcurrentMap;
 /* compiled from: ApplicationVersionSignature */
 public final class a {
     private static final String TAG = "AppVersionSignature";
-    private static final ConcurrentMap<String, c> pc = new ConcurrentHashMap();
+    private static final ConcurrentMap<String, c> pb = new ConcurrentHashMap();
 
     @NonNull
     public static c m(@NonNull Context context) {
         String packageName = context.getPackageName();
-        c cVar = (c) pc.get(packageName);
+        c cVar = (c) pb.get(packageName);
         if (cVar != null) {
             return cVar;
         }
         cVar = n(context);
-        c cVar2 = (c) pc.putIfAbsent(packageName, cVar);
+        c cVar2 = (c) pb.putIfAbsent(packageName, cVar);
         return cVar2 == null ? cVar : cVar2;
     }
 
     @VisibleForTesting
     static void reset() {
-        pc.clear();
+        pb.clear();
     }
 
     @NonNull

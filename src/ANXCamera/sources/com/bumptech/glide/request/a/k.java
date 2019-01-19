@@ -6,7 +6,7 @@ import android.view.animation.Animation;
 
 /* compiled from: ViewTransition */
 public class k<R> implements f<R> {
-    private final a oX;
+    private final a oW;
 
     /* compiled from: ViewTransition */
     interface a {
@@ -14,14 +14,14 @@ public class k<R> implements f<R> {
     }
 
     k(a aVar) {
-        this.oX = aVar;
+        this.oW = aVar;
     }
 
     public boolean a(R r, com.bumptech.glide.request.a.f.a aVar) {
         View view = aVar.getView();
         if (view != null) {
             view.clearAnimation();
-            view.startAnimation(this.oX.l(view.getContext()));
+            view.startAnimation(this.oW.l(view.getContext()));
         }
         return false;
     }

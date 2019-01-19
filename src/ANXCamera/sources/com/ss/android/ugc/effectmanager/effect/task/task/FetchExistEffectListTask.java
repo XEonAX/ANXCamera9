@@ -48,7 +48,7 @@ public class FetchExistEffectListTask extends NormalTask {
                 return;
             }
             effectChannelResponse.setAllCategoryEffects(this.allDownloadedCategoryEffects);
-            effectChannelResponse.setCategoryResponseList(getCategoryEffectResponse(cachedChannelModel));
+            effectChannelResponse.setCategoryResponseList(getCategoryEffectResponse(cachedChannelModel.getCategory()));
             effectChannelResponse.setPanel(this.panel);
             effectChannelResponse.setPanelModel(cachedChannelModel.getPanel());
             sendMessage(14, new EffectChannelTaskResult(effectChannelResponse, null));
@@ -67,14 +67,11 @@ public class FetchExistEffectListTask extends NormalTask {
         return arrayList;
     }
 
-    private List<EffectCategoryResponse> getCategoryEffectResponse(EffectChannelModel effectChannelModel) {
-        List<EffectCategoryModel> category = effectChannelModel.getCategory();
+    private List<EffectCategoryResponse> getCategoryEffectResponse(List<EffectCategoryModel> list) {
         List<EffectCategoryResponse> arrayList = new ArrayList();
-        for (EffectCategoryModel effectCategoryModel : category) {
+        for (EffectCategoryModel effectCategoryModel : list) {
             if (effectCategoryModel.checkValued()) {
-                EffectCategoryResponse effectCategoryResponse = new EffectCategoryResponse(effectCategoryModel.getId(), effectCategoryModel.getName(), effectCategoryModel.getKey(), getCategoryAllEffects(effectCategoryModel.getEffects()), effectCategoryModel.getTags(), effectCategoryModel.getTagsUpdated());
-                effectCategoryResponse.setCollectionEffect(effectChannelModel.getCollection());
-                arrayList.add(effectCategoryResponse);
+                arrayList.add(new EffectCategoryResponse(effectCategoryModel.getId(), effectCategoryModel.getName(), effectCategoryModel.getKey(), getCategoryAllEffects(effectCategoryModel.getEffects()), effectCategoryModel.getTags(), effectCategoryModel.getTagsUpdated()));
             }
         }
         return arrayList;

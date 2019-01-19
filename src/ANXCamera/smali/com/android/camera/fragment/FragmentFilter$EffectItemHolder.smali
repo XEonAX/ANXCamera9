@@ -26,13 +26,13 @@
 .method public constructor <init>(Lcom/android/camera/fragment/FragmentFilter;Landroid/view/View;)V
     .locals 0
 
-    .line 348
+    .line 349
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentFilter$EffectItemHolder;->this$0:Lcom/android/camera/fragment/FragmentFilter;
 
-    .line 349
+    .line 350
     invoke-direct {p0, p2}, Landroid/support/v7/widget/RecyclerView$ViewHolder;-><init>(Landroid/view/View;)V
 
-    .line 350
+    .line 351
     const p1, 0x7f0d0012
 
     invoke-virtual {p2, p1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
@@ -43,7 +43,7 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentFilter$EffectItemHolder;->mTextView:Landroid/widget/TextView;
 
-    .line 351
+    .line 352
     return-void
 .end method
 
@@ -52,28 +52,28 @@
 .method public bindEffectIndex(ILcom/android/camera/data/data/ComponentDataItem;)V
     .locals 0
 
-    .line 354
+    .line 355
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/fragment/FragmentFilter$EffectItemHolder;->getRenderId(ILcom/android/camera/data/data/ComponentDataItem;)I
 
     move-result p1
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentFilter$EffectItemHolder;->mEffectIndex:I
 
-    .line 355
+    .line 356
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentFilter$EffectItemHolder;->mTextView:Landroid/widget/TextView;
 
     iget p2, p2, Lcom/android/camera/data/data/ComponentDataItem;->mDisplayNameRes:I
 
     invoke-virtual {p1, p2}, Landroid/widget/TextView;->setText(I)V
 
-    .line 356
+    .line 357
     return-void
 .end method
 
 .method protected getRenderId(ILcom/android/camera/data/data/ComponentDataItem;)I
     .locals 0
 
-    .line 359
+    .line 360
     iget-object p1, p2, Lcom/android/camera/data/data/ComponentDataItem;->mValue:Ljava/lang/String;
 
     invoke-static {p1}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I

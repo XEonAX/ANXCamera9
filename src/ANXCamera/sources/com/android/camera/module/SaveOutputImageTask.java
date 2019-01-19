@@ -4,9 +4,10 @@ import android.content.Context;
 import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build.VERSION;
+import android.os.ParcelFileDescriptor;
 import com.android.camera.CameraApplicationDelegate;
 import com.android.camera.ExifHelper;
+import com.android.camera.FileCompat;
 import com.android.camera.LocationManager;
 import com.android.camera.Thumbnail;
 import com.android.camera.Util;
@@ -17,8 +18,8 @@ import com.android.camera.storage.Storage;
 import java.io.File;
 import java.lang.ref.WeakReference;
 
-public class SaveOutputImageTask extends AsyncTask<Void, Integer, Integer> {
-    private static final String TAG = SaveOutputImageTask.class.getName();
+public class SaveOutputImageTask extends AsyncTask<Void, Integer, Thumbnail> {
+    private static final String TAG = "SaveOutputImageTask";
     private GroupShot mGroupShotInternal;
     private int mHeight;
     private Location mLocation;
@@ -40,14 +41,14 @@ public class SaveOutputImageTask extends AsyncTask<Void, Integer, Integer> {
         this.mGroupShotInternal = groupShot;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:35:0x018c  */
+    /* JADX WARNING: Removed duplicated region for block: B:30:0x0169  */
     /* Code decompiled incorrectly, please refer to instructions dump. */
-    protected Integer doInBackground(Void... voidArr) {
+    protected Thumbnail doInBackground(Void... voidArr) {
         Exception e;
         String str;
         StringBuilder stringBuilder;
         Log.v(TAG, "doInBackground start");
-        String str2;
+        String generateFilepath;
         try {
             int attach_end = this.mGroupShotInternal.attach_end();
             Log.v(TAG, String.format("attach_end() = 0x%08x", new Object[]{Integer.valueOf(attach_end)}));
@@ -57,35 +58,29 @@ public class SaveOutputImageTask extends AsyncTask<Void, Integer, Integer> {
             attach_end = this.mGroupShotInternal.setBaseImage(0);
             Log.v(TAG, String.format("setBaseImage() = 0x%08x", new Object[]{Integer.valueOf(attach_end)}));
             this.mGroupShotInternal.setBestFace();
-            String str3 = TAG;
+            String str2 = TAG;
             StringBuilder stringBuilder2 = new StringBuilder();
             stringBuilder2.append("groupshot attach end & setbestface cost ");
             stringBuilder2.append(System.currentTimeMillis() - this.mStartTime);
-            Log.v(str3, stringBuilder2.toString());
-            if (VERSION.SDK_INT < 28) {
-                str3 = Storage.generateFilepath(this.mTitle);
-            } else {
-                StringBuilder stringBuilder3 = new StringBuilder();
-                stringBuilder3.append(this.mTitle);
-                stringBuilder3.append(Storage.JPEG_SUFFIX);
-                str3 = Storage.generatePrimaryFilepath(stringBuilder3.toString());
-            }
-            str2 = str3;
+            Log.v(str2, stringBuilder2.toString());
+            generateFilepath = Storage.generateFilepath(this.mTitle);
             try {
-                this.mGroupShotInternal.getImageAndSaveJpeg(str2);
-                str3 = TAG;
+                saveGroupShotImage(generateFilepath);
+                str2 = TAG;
                 stringBuilder2 = new StringBuilder();
                 stringBuilder2.append("groupshot finish group cost ");
                 stringBuilder2.append(System.currentTimeMillis() - this.mStartTime);
-                Log.v(str3, stringBuilder2.toString());
+                stringBuilder2.append(", path = ");
+                stringBuilder2.append(generateFilepath);
+                Log.v(str2, stringBuilder2.toString());
                 if (isCancelled()) {
                     return null;
                 }
                 if (Util.sIsDumpOrigJpg) {
-                    str3 = str2.substring(0, str2.lastIndexOf(Storage.JPEG_SUFFIX));
-                    new File(str3).mkdirs();
+                    str2 = generateFilepath.substring(0, generateFilepath.lastIndexOf(Storage.JPEG_SUFFIX));
+                    new File(str2).mkdirs();
                     stringBuilder2 = new StringBuilder();
-                    stringBuilder2.append(str3);
+                    stringBuilder2.append(str2);
                     stringBuilder2.append(File.separator);
                     this.mGroupShotInternal.saveInputImages(stringBuilder2.toString());
                 }
@@ -93,27 +88,26 @@ public class SaveOutputImageTask extends AsyncTask<Void, Integer, Integer> {
                     return null;
                 }
                 Context androidContext = CameraApplicationDelegate.getAndroidContext();
-                ExifHelper.writeExif(str2, this.mOrientation, LocationManager.instance().getCurrentLocation(), this.mTimeTaken);
-                Uri addImageForGroupOrPanorama = Storage.addImageForGroupOrPanorama(androidContext, str2, this.mOrientation, this.mTimeTaken, this.mLocation, this.mWidth, this.mHeight);
-                String str4 = TAG;
-                StringBuilder stringBuilder4 = new StringBuilder();
-                stringBuilder4.append("groupshot insert db cost ");
-                stringBuilder4.append(System.currentTimeMillis() - this.mStartTime);
-                Log.v(str4, stringBuilder4.toString());
+                Uri addImageForGroupOrPanorama = Storage.addImageForGroupOrPanorama(androidContext, generateFilepath, this.mOrientation, this.mTimeTaken, this.mLocation, this.mWidth, this.mHeight);
+                String str3 = TAG;
+                StringBuilder stringBuilder3 = new StringBuilder();
+                stringBuilder3.append("groupshot insert db cost ");
+                stringBuilder3.append(System.currentTimeMillis() - this.mStartTime);
+                stringBuilder3.append(", uri = ");
+                stringBuilder3.append(addImageForGroupOrPanorama);
+                Log.v(str3, stringBuilder3.toString());
                 SaverCallback saverCallback = (SaverCallback) this.mSaverCallbackWeakReference.get();
-                if (saverCallback == null) {
+                if (saverCallback == null || addImageForGroupOrPanorama == null) {
                     return null;
                 }
-                if (addImageForGroupOrPanorama != null) {
-                    saverCallback.notifyNewMediaData(addImageForGroupOrPanorama, this.mTitle, 31);
-                    saverCallback.postUpdateThumbnail(Thumbnail.createThumbnailFromUri(androidContext.getContentResolver(), addImageForGroupOrPanorama, false), false);
-                }
-                str3 = TAG;
+                saverCallback.notifyNewMediaData(addImageForGroupOrPanorama, this.mTitle, 31);
+                Thumbnail createThumbnailFromUri = Thumbnail.createThumbnailFromUri(androidContext.getContentResolver(), addImageForGroupOrPanorama, false);
+                str2 = TAG;
                 stringBuilder2 = new StringBuilder();
                 stringBuilder2.append("groupshot asynctask cost ");
                 stringBuilder2.append(System.currentTimeMillis() - this.mStartTime);
-                Log.v(str3, stringBuilder2.toString());
-                return null;
+                Log.v(str2, stringBuilder2.toString());
+                return createThumbnailFromUri;
             } catch (Exception e2) {
                 e = e2;
                 str = TAG;
@@ -121,23 +115,47 @@ public class SaveOutputImageTask extends AsyncTask<Void, Integer, Integer> {
                 stringBuilder.append("SaveOutputImageTask exception occurs, ");
                 stringBuilder.append(e.getMessage());
                 Log.e(str, stringBuilder.toString());
-                if (str2 != null) {
+                if (generateFilepath != null) {
                 }
                 return null;
             }
         } catch (Exception e3) {
             e = e3;
-            str2 = null;
+            generateFilepath = null;
             str = TAG;
             stringBuilder = new StringBuilder();
             stringBuilder.append("SaveOutputImageTask exception occurs, ");
             stringBuilder.append(e.getMessage());
             Log.e(str, stringBuilder.toString());
-            if (str2 != null) {
-                new File(str2).delete();
+            if (generateFilepath != null) {
+                new File(generateFilepath).delete();
             }
             return null;
         }
+    }
+
+    private void saveGroupShotImage(String str) {
+        if (Storage.isUseDocumentMode()) {
+            ParcelFileDescriptor parcelFileDescriptor;
+            try {
+                parcelFileDescriptor = FileCompat.getParcelFileDescriptor(str, true);
+                this.mGroupShotInternal.getImageAndSaveJpeg(parcelFileDescriptor.getFileDescriptor());
+                if (parcelFileDescriptor != null) {
+                    parcelFileDescriptor.close();
+                }
+            } catch (Throwable th) {
+                String str2 = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("open file failed, filePath ");
+                stringBuilder.append(str);
+                Log.e(str2, stringBuilder.toString(), th);
+            } catch (Throwable th2) {
+                r1.addSuppressed(th2);
+            }
+            return;
+        }
+        this.mGroupShotInternal.getImageAndSaveJpeg(str);
+        ExifHelper.writeExifByFilePath(str, this.mOrientation, LocationManager.instance().getCurrentLocation(), this.mTimeTaken);
     }
 
     protected void onPreExecute() {
@@ -149,14 +167,28 @@ public class SaveOutputImageTask extends AsyncTask<Void, Integer, Integer> {
         finishGroupShot();
     }
 
-    protected void onPostExecute(Integer num) {
+    protected void onPostExecute(Thumbnail thumbnail) {
         Log.v(TAG, "SaveOutputImageTask onPostExecute");
-        String str = TAG;
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("groupshot image process cost ");
-        stringBuilder.append(System.currentTimeMillis() - this.mStartTime);
-        Log.v(str, stringBuilder.toString());
-        finishGroupShot();
+        SaverCallback saverCallback = (SaverCallback) this.mSaverCallbackWeakReference.get();
+        if (saverCallback != null) {
+            if (thumbnail == null) {
+                Log.e(TAG, "onPostExecute thumbnail is null");
+                saverCallback.postHideThumbnailProgressing();
+            } else {
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("onPostExecute thumbnail = ");
+                stringBuilder.append(thumbnail);
+                Log.v(str, stringBuilder.toString());
+                saverCallback.postUpdateThumbnail(thumbnail, false);
+            }
+            String str2 = TAG;
+            StringBuilder stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("groupshot image process cost ");
+            stringBuilder2.append(System.currentTimeMillis() - this.mStartTime);
+            Log.v(str2, stringBuilder2.toString());
+            finishGroupShot();
+        }
     }
 
     private void finishGroupShot() {

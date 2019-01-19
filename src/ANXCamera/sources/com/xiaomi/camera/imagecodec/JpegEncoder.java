@@ -7,8 +7,6 @@ import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraDevice.StateCallback;
 import android.hardware.camera2.CameraManager;
-import android.hardware.camera2.CaptureRequest;
-import android.hardware.camera2.CaptureRequest.Builder;
 import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.InputConfiguration;
 import android.media.Image;
@@ -92,11 +90,11 @@ public class JpegEncoder {
                     Log.d(JpegEncoder.TAG, "recv MSG_CLOSE_VT_CAMERA");
                     synchronized (JpegEncoder.this.mCameraLock) {
                         if (JpegEncoder.this.mVTCameraDevice != null) {
-                            String access$200 = JpegEncoder.TAG;
+                            String access$100 = JpegEncoder.TAG;
                             StringBuilder stringBuilder = new StringBuilder();
                             stringBuilder.append("close current VtCamera: ");
                             stringBuilder.append(JpegEncoder.this.mVTCameraDevice);
-                            Log.d(access$200, stringBuilder.toString());
+                            Log.d(access$100, stringBuilder.toString());
                             JpegEncoder.this.mVTCameraDevice.close();
                             JpegEncoder.this.mVTCameraDevice = null;
                         }
@@ -269,7 +267,7 @@ public class JpegEncoder {
             }
             sendReprocessRequest();
         } else {
-            throw new RuntimeException("JpegEncoder not initialized yet. Call init() first!");
+            throw new RuntimeException("NOT initialized. Call init() first!");
         }
     }
 
@@ -434,74 +432,64 @@ public class JpegEncoder {
         }
     }
 
+    /* JADX WARNING: Missing block: B:15:0x0052, code:
+            r5.mReprocessStartTime = java.lang.System.currentTimeMillis();
+            r2 = r5.mCameraLock;
+     */
+    /* JADX WARNING: Missing block: B:16:0x005a, code:
+            monitor-enter(r2);
+     */
+    /* JADX WARNING: Missing block: B:18:?, code:
+            r0 = r5.mVTCameraDevice.createReprocessCaptureRequest(r1);
+     */
+    /* JADX WARNING: Missing block: B:19:0x0069, code:
+            if (256 != r5.mCurrentProcessingData.getOutputFormat()) goto L_0x0080;
+     */
+    /* JADX WARNING: Missing block: B:20:0x006b, code:
+            r0.addTarget(r5.mJpegImageReader.getSurface());
+            r0.set(android.hardware.camera2.CaptureRequest.JPEG_QUALITY, java.lang.Byte.valueOf((byte) 100));
+     */
+    /* JADX WARNING: Missing block: B:21:0x0080, code:
+            r0.addTarget(r5.mYuvImageReader.getSurface());
+     */
+    /* JADX WARNING: Missing block: B:22:0x0089, code:
+            r1 = TAG;
+            r3 = new java.lang.StringBuilder();
+            r3.append("reprocessImage: ");
+            r3.append(r5.mCurrentProcessingData.getYuvImage());
+            android.util.Log.d(r1, r3.toString());
+            r5.mReprocessImageWriter.queueInputImage(r5.mCurrentProcessingData.getYuvImage());
+            r5.mVTCaptureSession.capture(r0.build(), new com.xiaomi.camera.imagecodec.JpegEncoder.AnonymousClass1(r5), r5.mCameraOperationHandler);
+     */
+    /* JADX WARNING: Missing block: B:24:0x00c3, code:
+            r0 = move-exception;
+     */
+    /* JADX WARNING: Missing block: B:26:?, code:
+            r0.printStackTrace();
+     */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     @WorkerThread
     private void reprocessImage() {
-        Exception e;
         Log.d(TAG, "reprocessImage>>");
         synchronized (this.mDataLock) {
             this.mCurrentProcessingData = (ReprocessData) this.mTaskDataList.poll();
             TotalCaptureResult toTotalCaptureResult = ICustomCaptureResult.toTotalCaptureResult(this.mCurrentProcessingData.getTotalCaptureResult(), this.mCurrentSessionId);
             if (toTotalCaptureResult == null) {
                 Log.wtf(TAG, "reprocessImage<<null metadata!");
-                this.mCurrentProcessingData.getYuvImage().close();
-                try {
-                    this.mDataLock.notifyAll();
-                } catch (Exception e2) {
-                    e2.printStackTrace();
-                }
-            } else {
-                String str = TAG;
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("reprocessImage: tag=");
-                stringBuilder.append(this.mCurrentProcessingData.getImageTag());
-                Log.d(str, stringBuilder.toString());
-                this.mReprocessStartTime = System.currentTimeMillis();
-                synchronized (this.mCameraLock) {
-                    try {
-                        Builder createReprocessCaptureRequest = this.mVTCameraDevice.createReprocessCaptureRequest(toTotalCaptureResult);
-                        if (256 == this.mCurrentProcessingData.getOutputFormat()) {
-                            createReprocessCaptureRequest.addTarget(this.mJpegImageReader.getSurface());
-                            createReprocessCaptureRequest.set(CaptureRequest.JPEG_QUALITY, Byte.valueOf((byte) 100));
-                        } else {
-                            createReprocessCaptureRequest.addTarget(this.mYuvImageReader.getSurface());
-                        }
-                        String str2 = TAG;
-                        StringBuilder stringBuilder2 = new StringBuilder();
-                        stringBuilder2.append("reprocessImage: ");
-                        stringBuilder2.append(this.mCurrentProcessingData.getYuvImage());
-                        Log.d(str2, stringBuilder2.toString());
-                        this.mReprocessImageWriter.queueInputImage(this.mCurrentProcessingData.getYuvImage());
-                        this.mVTCaptureSession.capture(createReprocessCaptureRequest.build(), null, this.mCameraOperationHandler);
-                        try {
-                            this.mDataLock.notifyAll();
-                        } catch (Exception e3) {
-                            e2 = e3;
-                        }
-                    } catch (CameraAccessException e4) {
-                        try {
-                            this.mCurrentProcessingData.getYuvImage().close();
-                            e4.printStackTrace();
-                            try {
-                                this.mDataLock.notifyAll();
-                            } catch (Exception e5) {
-                                e2 = e5;
-                            }
-                        } catch (Throwable th) {
-                            try {
-                                this.mDataLock.notifyAll();
-                            } catch (Exception e6) {
-                                e6.printStackTrace();
-                            }
-                        }
-                    }
-                }
-                Log.d(TAG, "reprocessImage<<");
                 return;
             }
+            try {
+                this.mDataLock.notifyAll();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("reprocessImage: tag=");
+            stringBuilder.append(this.mCurrentProcessingData.getImageTag());
+            Log.d(str, stringBuilder.toString());
         }
-        e2.printStackTrace();
         Log.d(TAG, "reprocessImage<<");
-        return;
     }
 
     @WorkerThread
@@ -516,17 +504,17 @@ public class JpegEncoder {
             this.mCameraManager.openCamera(str, new StateCallback() {
                 public void onOpened(@NonNull CameraDevice cameraDevice) {
                     synchronized (JpegEncoder.this.mCameraLock) {
-                        String access$200 = JpegEncoder.TAG;
+                        String access$100 = JpegEncoder.TAG;
                         StringBuilder stringBuilder = new StringBuilder();
                         stringBuilder.append("onOpened>>id=");
                         stringBuilder.append(cameraDevice.getId());
-                        Log.d(access$200, stringBuilder.toString());
+                        Log.d(access$100, stringBuilder.toString());
                         JpegEncoder.this.mVTCameraDevice = cameraDevice;
-                        String access$2002 = JpegEncoder.TAG;
+                        String access$1002 = JpegEncoder.TAG;
                         StringBuilder stringBuilder2 = new StringBuilder();
                         stringBuilder2.append("onOpened: ");
                         stringBuilder2.append(JpegEncoder.this.mVTCameraDevice);
-                        Log.d(access$2002, stringBuilder2.toString());
+                        Log.d(access$1002, stringBuilder2.toString());
                         JpegEncoder.this.mCurrentSessionId = -1;
                         JpegEncoder.this.mVTCaptureSession = null;
                         JpegEncoder.this.mCreatingReprocessSession = false;
@@ -537,18 +525,18 @@ public class JpegEncoder {
 
                 public void onClosed(@NonNull CameraDevice cameraDevice) {
                     synchronized (JpegEncoder.this.mCameraLock) {
-                        String access$200 = JpegEncoder.TAG;
+                        String access$100 = JpegEncoder.TAG;
                         StringBuilder stringBuilder = new StringBuilder();
                         stringBuilder.append("onClosed>>id=");
                         stringBuilder.append(cameraDevice.getId());
-                        Log.d(access$200, stringBuilder.toString());
+                        Log.d(access$100, stringBuilder.toString());
                         JpegEncoder.this.mCreatingReprocessSession = false;
                         if (cameraDevice == JpegEncoder.this.mVTCameraDevice) {
-                            String access$2002 = JpegEncoder.TAG;
+                            String access$1002 = JpegEncoder.TAG;
                             StringBuilder stringBuilder2 = new StringBuilder();
                             stringBuilder2.append("onClosed: ");
                             stringBuilder2.append(JpegEncoder.this.mVTCameraDevice);
-                            Log.d(access$2002, stringBuilder2.toString());
+                            Log.d(access$1002, stringBuilder2.toString());
                             JpegEncoder.this.mVTCameraDevice = null;
                         }
                         if (JpegEncoder.this.mNeedReopenCamera) {
@@ -561,19 +549,19 @@ public class JpegEncoder {
 
                 public void onDisconnected(@NonNull CameraDevice cameraDevice) {
                     synchronized (JpegEncoder.this.mCameraLock) {
-                        String access$200 = JpegEncoder.TAG;
+                        String access$100 = JpegEncoder.TAG;
                         StringBuilder stringBuilder = new StringBuilder();
                         stringBuilder.append("onDisconnected>>id=");
                         stringBuilder.append(cameraDevice.getId());
-                        Log.d(access$200, stringBuilder.toString());
+                        Log.d(access$100, stringBuilder.toString());
                         cameraDevice.close();
                         JpegEncoder.this.mCreatingReprocessSession = false;
                         if (cameraDevice == JpegEncoder.this.mVTCameraDevice) {
-                            String access$2002 = JpegEncoder.TAG;
+                            String access$1002 = JpegEncoder.TAG;
                             StringBuilder stringBuilder2 = new StringBuilder();
                             stringBuilder2.append("onDisconnected: ");
                             stringBuilder2.append(JpegEncoder.this.mVTCameraDevice);
-                            Log.d(access$2002, stringBuilder2.toString());
+                            Log.d(access$1002, stringBuilder2.toString());
                             JpegEncoder.this.mVTCameraDevice = null;
                         }
                         Log.d(JpegEncoder.TAG, "onDisconnected<<");
@@ -582,19 +570,19 @@ public class JpegEncoder {
 
                 public void onError(@NonNull CameraDevice cameraDevice, int i) {
                     synchronized (JpegEncoder.this.mCameraLock) {
-                        String access$200 = JpegEncoder.TAG;
+                        String access$100 = JpegEncoder.TAG;
                         StringBuilder stringBuilder = new StringBuilder();
                         stringBuilder.append("onError>>id=");
                         stringBuilder.append(cameraDevice.getId());
-                        Log.e(access$200, stringBuilder.toString());
+                        Log.e(access$100, stringBuilder.toString());
                         cameraDevice.close();
                         JpegEncoder.this.mCreatingReprocessSession = false;
                         if (cameraDevice == JpegEncoder.this.mVTCameraDevice) {
-                            String access$2002 = JpegEncoder.TAG;
+                            String access$1002 = JpegEncoder.TAG;
                             StringBuilder stringBuilder2 = new StringBuilder();
                             stringBuilder2.append("onError: ");
                             stringBuilder2.append(JpegEncoder.this.mVTCameraDevice);
-                            Log.d(access$2002, stringBuilder2.toString());
+                            Log.d(access$1002, stringBuilder2.toString());
                             JpegEncoder.this.mVTCameraDevice = null;
                         }
                         Log.e(JpegEncoder.TAG, "onError<<");
@@ -629,11 +617,11 @@ public class JpegEncoder {
                         }
                         JpegEncoder.this.mVTCaptureSession = cameraCaptureSession;
                         JpegEncoder.this.mCurrentSessionId = JpegEncoder.this.mCurrentSessionId + 1;
-                        int access$900 = JpegEncoder.getSessionId(cameraCaptureSession);
-                        Log.d(JpegEncoder.TAG, String.format("sessionId: %d %d", new Object[]{Integer.valueOf(JpegEncoder.this.mCurrentSessionId), Integer.valueOf(access$900)}));
-                        if (!(access$900 == -1 || JpegEncoder.this.mCurrentSessionId == access$900)) {
-                            Log.w(JpegEncoder.TAG, String.format("sessionId: %d->%d", new Object[]{Integer.valueOf(JpegEncoder.this.mCurrentSessionId), Integer.valueOf(access$900)}));
-                            JpegEncoder.this.mCurrentSessionId = access$900;
+                        int access$1000 = JpegEncoder.getSessionId(cameraCaptureSession);
+                        Log.d(JpegEncoder.TAG, String.format("sessionId: %d %d", new Object[]{Integer.valueOf(JpegEncoder.this.mCurrentSessionId), Integer.valueOf(access$1000)}));
+                        if (!(access$1000 == -1 || JpegEncoder.this.mCurrentSessionId == access$1000)) {
+                            Log.w(JpegEncoder.TAG, String.format("sessionId: %d->%d", new Object[]{Integer.valueOf(JpegEncoder.this.mCurrentSessionId), Integer.valueOf(access$1000)}));
+                            JpegEncoder.this.mCurrentSessionId = access$1000;
                         }
                         if (JpegEncoder.this.mReprocessImageWriter != null) {
                             JpegEncoder.this.mReprocessImageWriter.close();
@@ -671,15 +659,15 @@ public class JpegEncoder {
         this.mJpegImageReader.setOnImageAvailableListener(new OnImageAvailableListener() {
             public void onImageAvailable(ImageReader imageReader) {
                 Image acquireNextImage = imageReader.acquireNextImage();
-                String access$200 = JpegEncoder.TAG;
+                String access$100 = JpegEncoder.TAG;
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("onImageAvailable: received reprocessed image");
                 stringBuilder.append(acquireNextImage);
-                Log.d(access$200, stringBuilder.toString());
-                byte[] access$1100 = JpegEncoder.getJpegData(acquireNextImage);
+                Log.d(access$100, stringBuilder.toString());
+                byte[] access$1200 = JpegEncoder.getJpegData(acquireNextImage);
                 acquireNextImage.close();
                 synchronized (JpegEncoder.this.mDataLock) {
-                    JpegEncoder.this.mCurrentProcessingData.getResultListener().onJpegAvailable(access$1100, JpegEncoder.this.mCurrentProcessingData.getImageTag());
+                    JpegEncoder.this.mCurrentProcessingData.getResultListener().onJpegAvailable(access$1200, JpegEncoder.this.mCurrentProcessingData.getImageTag());
                     Log.d(JpegEncoder.TAG, String.format("jpeg return for %s. cost=%d", new Object[]{JpegEncoder.this.mCurrentProcessingData.getImageTag(), Long.valueOf(System.currentTimeMillis() - JpegEncoder.this.mReprocessStartTime)}));
                     JpegEncoder.this.mCurrentProcessingData = null;
                 }
@@ -708,12 +696,17 @@ public class JpegEncoder {
             this.mYuvImageReader.setOnImageAvailableListener(new OnImageAvailableListener() {
                 public void onImageAvailable(ImageReader imageReader) {
                     Image acquireNextImage = imageReader.acquireNextImage();
-                    String access$200 = JpegEncoder.TAG;
+                    long timeStamp = JpegEncoder.this.mCurrentProcessingData.getTotalCaptureResult().getTimeStamp();
+                    acquireNextImage.setTimestamp(timeStamp);
+                    String access$100 = JpegEncoder.TAG;
                     StringBuilder stringBuilder = new StringBuilder();
                     stringBuilder.append("receive yuv image ");
                     stringBuilder.append(acquireNextImage);
-                    Log.d(access$200, stringBuilder.toString());
-                    acquireNextImage.setTimestamp(JpegEncoder.this.mCurrentProcessingData.getTotalCaptureResult().getTimeStamp());
+                    stringBuilder.append("|");
+                    stringBuilder.append(timeStamp);
+                    Log.d(access$100, stringBuilder.toString());
+                    ImagePool.getInstance().queueImage(acquireNextImage);
+                    acquireNextImage = ImagePool.getInstance().getImage(timeStamp);
                     synchronized (JpegEncoder.this.mDataLock) {
                         JpegEncoder.this.mCurrentProcessingData.getResultListener().onYuvAvailable(acquireNextImage, JpegEncoder.this.mCurrentProcessingData.getImageTag());
                         Log.d(JpegEncoder.TAG, String.format("yuv return for %s. cost=%d", new Object[]{JpegEncoder.this.mCurrentProcessingData.getImageTag(), Long.valueOf(System.currentTimeMillis() - JpegEncoder.this.mReprocessStartTime)}));
@@ -726,8 +719,8 @@ public class JpegEncoder {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:4:0x0017 A:{ExcHandler: java.lang.ClassNotFoundException (r2_2 'e' java.lang.Throwable), Splitter: B:1:0x0002} */
-    /* JADX WARNING: Removed duplicated region for block: B:4:0x0017 A:{ExcHandler: java.lang.ClassNotFoundException (r2_2 'e' java.lang.Throwable), Splitter: B:1:0x0002} */
+    /* JADX WARNING: Removed duplicated region for block: B:4:0x0017 A:{Splitter: B:1:0x0002, ExcHandler: java.lang.ClassNotFoundException (r2_2 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:4:0x0017 A:{Splitter: B:1:0x0002, ExcHandler: java.lang.ClassNotFoundException (r2_2 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:4:0x0017, code:
             r2 = move-exception;
      */

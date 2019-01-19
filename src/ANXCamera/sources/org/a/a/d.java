@@ -3,6 +3,7 @@ package org.a.a;
 import android.media.AudioRecord;
 import android.os.Build;
 import android.util.Log;
+import com.android.camera.constant.DurationConstant;
 import com.android.camera.module.BaseModule;
 
 /* compiled from: BufferedAudioRecorder */
@@ -11,14 +12,14 @@ public class d {
     protected static int channelConfigOffset = -1;
     protected static int[] channelConfigSuggested = new int[]{12, 16, 1};
     protected static int sampleRateOffset = -1;
-    protected static int[] sampleRateSuggested = new int[]{48000, 44100, BaseModule.LENS_DIRTY_DETECT_HINT_DURATION, 11025, 16000, 22050};
+    protected static int[] sampleRateSuggested = new int[]{48000, 44100, BaseModule.LENS_DIRTY_DETECT_HINT_DURATION, 11025, DurationConstant.DURATION_LIVE_RECORD, 22050};
     AudioRecord audio;
     int audioFormat = 2;
     int bufferSizeInBytes = 0;
     int channelConfig = -1;
     boolean isRecording = false;
     int sampleRateInHz = -1;
-    c uf;
+    c up;
 
     public int W(int i) {
         if (16 == i) {
@@ -28,7 +29,7 @@ public class d {
     }
 
     public d(c cVar) {
-        this.uf = cVar;
+        this.up = cVar;
         if ("SM919".equals(Build.MODEL)) {
             channelConfigSuggested = new int[]{16, 12, 1};
         }
@@ -167,7 +168,7 @@ public class d {
     }
 
     /* JADX WARNING: Missing block: B:10:0x0027, code:
-            if (r4.uf.initWavFile(r4.sampleRateInHz, W(channelConfigSuggested[channelConfigOffset]), r5) == 0) goto L_0x0031;
+            if (r4.up.initWavFile(r4.sampleRateInHz, W(channelConfigSuggested[channelConfigOffset]), r5) == 0) goto L_0x0031;
      */
     /* JADX WARNING: Missing block: B:11:0x0029, code:
             android.util.Log.d(TAG, "init wav file failed");
@@ -199,7 +200,7 @@ public class d {
             r3.audio.stop();
      */
     /* JADX WARNING: Missing block: B:11:0x001b, code:
-            r3.uf.closeWavFile();
+            r3.up.closeWavFile();
      */
     /* JADX WARNING: Missing block: B:12:0x0021, code:
             return true;

@@ -65,6 +65,8 @@ import com.android.camera.protocol.ModeProtocol.HandlerSwitcher;
 import com.android.camera.protocol.ModeProtocol.ModeChangeController;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.protocol.ModeProtocol.TopAlert;
+import com.android.camera.statistic.CameraStat;
+import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.statistic.ScenarioTrackUtil;
 import com.android.camera.ui.CameraSnapView;
 import com.android.camera.ui.CameraSnapView.SnapListener;
@@ -115,6 +117,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
     private boolean mIsIntentAction;
     private boolean mIsShowFilter = false;
     private boolean mIsShowLighting = false;
+    private long mLastPauseTime;
     private boolean mLongPressBurst;
     private BottomActionMenu mModeSelectLayout;
     private ModeSelectView mModeSelectView;
@@ -131,6 +134,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
     private RelativeLayout mV9bottomParentLayout;
     private boolean mVideoCaptureEnable;
     private boolean mVideoPauseSupported;
+    private boolean mVideoRecordingPaused;
     private boolean mVideoRecordingStarted;
     private boolean mVideoReverseEnable;
 
@@ -164,7 +168,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
         this.mBottomRecordingCameraPicker = (ImageView) view.findViewById(R.id.bottom_recording_camera_picker);
         this.mBottomRecordingCameraPicker.setOnClickListener(this);
         this.mShutterButton.setSnapListener(this);
-        this.mShutterButton.setEnabled(false);
+        this.mShutterButton.setSnapClickEnable(false);
         this.mCaptureProgressDelay = getResources().getInteger(R.integer.capture_progress_delay_time);
         this.mRecordProgressDelay = getResources().getInteger(R.integer.record_progress_delay_time);
         this.mThumbnailImageLayout.setOnClickListener(this);
@@ -173,7 +177,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
         this.mRecordingSnap.setOnClickListener(this);
         this.mRecordingReverse.setOnClickListener(this);
         adjustViewBackground(this.mModeSelectLayout.getView(), this.mCurrentMode);
-        provideAnimateElement(this.mCurrentMode, null, false);
+        provideAnimateElement(this.mCurrentMode, null, 2);
         this.mIsIntentAction = DataRepository.dataItemGlobal().isIntentAction();
         this.mCubicEaseOut = new CubicEaseOutInterpolator();
         this.mSineEaseOut = new SineEaseOutInterpolator();
@@ -249,6 +253,15 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                 }
                 if (this.mBottomRecordingCameraPicker.getVisibility() == 0) {
                     Completable.create(new AlphaOutOnSubscribe(this.mBottomRecordingCameraPicker)).subscribe();
+                    return;
+                }
+                return;
+            case 3:
+                Completable.create(new AlphaInOnSubscribe(this.mBottomRecordingCameraPicker)).subscribe();
+                return;
+            case 4:
+                if (this.mBottomRecordingTime.getVisibility() != 0) {
+                    this.mBottomRecordingTime.setVisibility(0);
                     return;
                 }
                 return;
@@ -383,7 +396,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
 
     public void setClickEnable(boolean z) {
         super.setClickEnable(z);
-        this.mShutterButton.setEnabled(z);
+        this.mShutterButton.setSnapClickEnable(z);
     }
 
     private void adjustViewBackground(View view, int i) {
@@ -411,7 +424,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
             if (this.mThumbnailProgress.getVisibility() != 8) {
                 this.mThumbnailProgress.setVisibility(8);
             }
-            if (!this.mIsIntentAction && !this.mVideoRecordingStarted) {
+            if (!this.mIsIntentAction) {
                 if (thumbnail == null) {
                     this.mThumbnailImage.setImageResource(R.drawable.ic_thumbnail_background);
                     return;
@@ -420,7 +433,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                 create.getPaint().setAntiAlias(true);
                 create.setCircular(true);
                 this.mThumbnailImage.setImageDrawable(create);
-                if (z) {
+                if (z && !this.mVideoRecordingStarted) {
                     ViewCompat.setAlpha(this.mThumbnailImageLayout, 0.3f);
                     ViewCompat.setScaleX(this.mThumbnailImageLayout, 0.5f);
                     ViewCompat.setScaleY(this.mThumbnailImageLayout, 0.5f);
@@ -472,27 +485,35 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
     }
 
     public void processingPause() {
+        this.mVideoRecordingPaused = true;
         this.mShutterButton.pauseRecording();
         this.mRecordingPause.setImageResource(R.drawable.ic_recording_resume);
         this.mRecordingPause.setContentDescription(getString(R.string.accessibility_video_resume_button));
         if (this.mCurrentMode == 174) {
             setRecordingTimeState(3);
             this.mShutterButton.addSegmentNow();
-            this.mRecordingReverse.setVisibility(this.mRecordingReverse.getVisibility() == 0 ? 8 : 0);
-            if (this.mBottomRecordingCameraPicker.getVisibility() == 8) {
-                Completable.create(new AlphaInOnSubscribe(this.mBottomRecordingCameraPicker)).subscribe();
+            int i = 8;
+            this.mModeSelectView.setVisibility(8);
+            Completable.create(new AlphaInOnSubscribe(this.mModeSelectLayout.getView())).subscribe();
+            int visibility = this.mRecordingReverse.getVisibility();
+            ImageView imageView = this.mRecordingReverse;
+            if (visibility != 0) {
+                i = 0;
             }
+            imageView.setVisibility(i);
         }
     }
 
     public void processingResume() {
+        int i = 0;
+        this.mVideoRecordingPaused = false;
         this.mShutterButton.resumeRecording();
         this.mRecordingPause.setImageResource(R.drawable.ic_recording_pause);
         this.mRecordingPause.setContentDescription(getString(R.string.accessibility_video_pause_button));
         if (this.mCurrentMode == 174) {
             setRecordingTimeState(4);
+            Completable.create(new AlphaOutOnSubscribe(this.mModeSelectLayout.getView())).subscribe();
             int visibility = this.mRecordingReverse.getVisibility();
-            int i = 0;
             this.mRecordingReverse.setVisibility(visibility == 0 ? 8 : 0);
             ImageView imageView = this.mBottomRecordingCameraPicker;
             if (visibility == 0) {
@@ -510,13 +531,16 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
             this.mEdgeHorizonScrollView.setEnabled(true);
             this.mModeSelectView.setEnabled(true);
             this.mVideoRecordingStarted = false;
+            this.mVideoRecordingPaused = false;
             setProgressBarVisible(8);
             this.mShutterButton.showRoundPaintItem();
-            this.mShutterButton.triggerAnimation(BottomAnimationConfig.generate(false, this.mCurrentMode, false, isFPS960(), CameraSettings.isVideoBokehOn()).configVariables());
-            updateBottomInRecording(false, false);
             if (this.mCurrentMode == 174) {
+                this.mModeSelectView.setVisibility(0);
+                this.mModeSelectLayout.getView().setVisibility(0);
                 setRecordingTimeState(2);
             }
+            this.mShutterButton.triggerAnimation(BottomAnimationConfig.generate(false, this.mCurrentMode, false, isFPS960(), CameraSettings.isVideoBokehOn()).configVariables());
+            updateBottomInRecording(false, false);
         }
     }
 
@@ -642,8 +666,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
         unRegisterBackStack(modeCoordinator, this);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:82:0x0162  */
-    /* JADX WARNING: Missing block: B:25:0x005f, code:
+    /* JADX WARNING: Missing block: B:25:0x005d, code:
             return;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
@@ -655,7 +678,6 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                     Log.w(TAG, "onClick: ignore click event, because module isn't ready");
                     return;
                 }
-                int i;
                 int id = view.getId();
                 if (id != R.id.bottom_recording_camera_picker) {
                     if (id != R.id.v9_thumbnail_layout) {
@@ -664,6 +686,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                                 case R.id.v9_camera_picker /*2131558444*/:
                                     if (!cameraAction.isDoingAction() && !isThumbLoading()) {
                                         hideExtra();
+                                        changeCamera(view);
                                         break;
                                     }
                                     return;
@@ -690,7 +713,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                                     break;
                             }
                         } else if (this.mVideoPauseSupported && this.mVideoRecordingStarted) {
-                            i = this.mCurrentMode;
+                            int i = this.mCurrentMode;
                             if (i != 162) {
                                 if (i != 174) {
                                     switch (i) {
@@ -701,12 +724,19 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                                         default:
                                             return;
                                     }
+                                } else if (System.currentTimeMillis() - this.mLastPauseTime >= 500) {
+                                    if (this.mVideoRecordingPaused) {
+                                        CameraStatUtil.trackLiveClick(CameraStat.PARAM_LIVE_CLICK_RESUME);
+                                    } else {
+                                        CameraStatUtil.trackLiveClick(CameraStat.PARAM_LIVE_CLICK_PAUSE);
+                                    }
+                                    this.mLastPauseTime = System.currentTimeMillis();
+                                    ((LiveModule) ((ActivityBase) getContext()).getCurrentModule()).onPauseButtonClick();
+                                } else {
+                                    return;
                                 }
-                                ((LiveModule) ((ActivityBase) getContext()).getCurrentModule()).onPauseButtonClick();
                             }
                             ((VideoModule) ((ActivityBase) getContext()).getCurrentModule()).onPauseButtonClick();
-                        } else {
-                            return;
                         }
                     } else if (!isThumbLoading()) {
                         if (DataRepository.dataItemGlobal().isIntentAction()) {
@@ -714,61 +744,24 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                         } else {
                             cameraAction.onThumbnailClicked(null);
                         }
-                    } else {
-                        return;
                     }
-                }
-                i = changeCamera(view);
-                ((TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172)).removeExtraMenu(4);
-                int i2 = this.mCurrentMode;
-                if (i2 != 162) {
-                    switch (i2) {
-                        case 168:
-                        case 169:
-                        case 170:
-                            DataRepository.dataItemGlobal().setCurrentMode(162);
-                            ((Camera) getContext()).onModeSelected(StartControl.create(162).setNeedBlurAnimation(true).setViewConfigType(2));
-                            break;
-                        default:
-                            i = this.mCurrentMode;
-                            this.mCurrentMode = 160;
-                            changeMode(i, 0);
-                            break;
-                    }
-                }
-                if (i == 0) {
-                    DataBackUp backUp = DataRepository.getInstance().backUp();
-                    if (backUp.isLastVideoFastMotion()) {
-                        i = 169;
-                    } else if (backUp.isLastVideoSlowMotion()) {
-                        i = 168;
-                    } else if (backUp.isLastVideoHFRMode()) {
-                        i = 170;
-                    }
-                    if (i != 162) {
-                        DataRepository.dataItemGlobal().setCurrentMode(i);
-                    }
-                    ((Camera) getContext()).onModeSelected(StartControl.create(i).setNeedBlurAnimation(true).setViewConfigType(2));
-                }
-                i = 162;
-                if (i != 162) {
-                }
-                ((Camera) getContext()).onModeSelected(StartControl.create(i).setNeedBlurAnimation(true).setViewConfigType(2));
-                if (Util.isAccessible()) {
-                    this.mEdgeHorizonScrollView.setContentDescription(getString(R.string.accessibility_camera_picker_finish));
-                    this.mEdgeHorizonScrollView.sendAccessibilityEvent(32768);
+                } else if (this.mVideoRecordingPaused) {
+                    CameraStatUtil.trackLiveClick(CameraStat.PARAM_LIVE_CLICK_SWITCH);
+                    changeCamera(view);
                 }
             }
         }
     }
 
     private void showReverseConfirmDialog() {
+        CameraStatUtil.trackLiveClick(CameraStat.PARAM_LIVE_CLICK_REVERSE);
         Builder builder = new Builder(getContext());
         builder.setMessage(R.string.live_reverse_message);
         builder.setCancelable(false);
         builder.setPositiveButton(R.string.live_reverse_confirm, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
                 FragmentBottomAction.this.mShutterButton.removeLastSegment();
+                CameraStatUtil.trackLiveClick(CameraStat.PARAM_LIVE_CLICK_REVERSE_CONFIRM);
                 ((LiveModule) ((ActivityBase) FragmentBottomAction.this.getContext()).getCurrentModule()).doReverse();
             }
         });
@@ -779,7 +772,9 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
         builder.show();
     }
 
-    private int changeCamera(View view) {
+    /* JADX WARNING: Removed duplicated region for block: B:31:0x00f0  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private void changeCamera(View view) {
         DataItemGlobal dataItemGlobal = (DataItemGlobal) DataRepository.provider().dataGlobal();
         int currentCameraId = dataItemGlobal.getCurrentCameraId();
         boolean z = false;
@@ -796,11 +791,47 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
             z = true;
         }
         ScenarioTrackUtil.trackSwitchCameraStart(z2, z, this.mCurrentMode);
-        return i;
+        ((TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172)).removeExtraMenu(4);
+        int i2 = this.mCurrentMode;
+        if (i2 != 162) {
+            switch (i2) {
+                case 168:
+                case 169:
+                case 170:
+                    DataRepository.dataItemGlobal().setCurrentMode(162);
+                    ((Camera) getContext()).onModeSelected(StartControl.create(162).setNeedBlurAnimation(true).setViewConfigType(2));
+                    break;
+                default:
+                    ((Camera) getContext()).onModeSelected(StartControl.create(this.mCurrentMode).setResetType(5).setViewConfigType(2).setNeedBlurAnimation(true));
+                    break;
+            }
+        }
+        if (i == 0) {
+            DataBackUp backUp = DataRepository.getInstance().backUp();
+            if (backUp.isLastVideoFastMotion()) {
+                i2 = 169;
+            } else if (backUp.isLastVideoSlowMotion()) {
+                i2 = 168;
+            } else if (backUp.isLastVideoHFRMode()) {
+                i2 = 170;
+            }
+            if (i2 != 162) {
+                DataRepository.dataItemGlobal().setCurrentMode(i2);
+            }
+            ((Camera) getContext()).onModeSelected(StartControl.create(i2).setResetType(5).setNeedBlurAnimation(true).setViewConfigType(2));
+        }
+        i2 = 162;
+        if (i2 != 162) {
+        }
+        ((Camera) getContext()).onModeSelected(StartControl.create(i2).setResetType(5).setNeedBlurAnimation(true).setViewConfigType(2));
+        if (Util.isAccessible()) {
+            this.mEdgeHorizonScrollView.setContentDescription(getString(R.string.accessibility_camera_picker_finish));
+            this.mEdgeHorizonScrollView.sendAccessibilityEvent(32768);
+        }
     }
 
     private boolean isFPS960() {
-        if (this.mCurrentMode == 172 && DataRepository.dataItemFeature().fr()) {
+        if (this.mCurrentMode == 172 && DataRepository.dataItemFeature().fs()) {
             return DataRepository.dataItemConfig().getComponentConfigSlowMotion().isSlowMotionFps960();
         }
         return false;
@@ -843,7 +874,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
             if (!DataRepository.dataItemGlobal().isIntentAction()) {
                 this.mVideoCaptureEnable = CameraSettings.isVideoCaptureVisible();
             }
-            if (!b.fW() || CameraSettings.isVideoBokehOn()) {
+            if (!b.gh() || CameraSettings.isVideoBokehOn()) {
                 z3 = false;
             }
             this.mVideoPauseSupported = z3;
@@ -851,7 +882,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
         }
         if (z) {
             if (this.mVideoCaptureEnable) {
-                this.mRecordingSnap.setImageResource(R.drawable.bg_recording_snap);
+                this.mRecordingSnap.setImageResource(R.drawable.ic_recording_snap);
                 this.mRecordingSnap.setSoundEffectsEnabled(false);
                 this.mRecordingSnap.setVisibility(0);
                 ViewCompat.setAlpha(this.mRecordingSnap, 0.0f);
@@ -979,7 +1010,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
     /* JADX WARNING: Missing block: B:21:0x003d, code:
             r2.mCurrentMode = r3;
             ((com.android.camera.data.data.global.DataItemGlobal) com.android.camera.data.DataRepository.provider().dataGlobal()).setCurrentMode(r3);
-            ((com.android.camera.Camera) getContext()).onModeSelected(com.android.camera.module.loader.StartControl.create(r3).setStartDelay(r4).setResetType(3).setViewConfigType(2).setNeedBlurAnimation(true));
+            ((com.android.camera.Camera) getContext()).onModeSelected(com.android.camera.module.loader.StartControl.create(r3).setStartDelay(r4).setResetType(4).setViewConfigType(2).setNeedBlurAnimation(true));
      */
     /* JADX WARNING: Missing block: B:22:0x006c, code:
             return;
@@ -1075,23 +1106,24 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
     }
 
     /* Code decompiled incorrectly, please refer to instructions dump. */
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        int i2 = this.mCurrentMode;
-        if (z || i2 != i) {
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        int i3 = this.mCurrentMode;
+        boolean z = i2 == 3;
+        if (z || i3 != i) {
             if (this.mIsShowFilter) {
                 showOrHideFilterView();
             } else if (this.mIsShowLighting) {
                 showOrHideLightingView();
             }
         }
-        if (i2 == 174 && this.mVideoRecordingStarted) {
+        if (i3 == 174 && this.mVideoRecordingStarted) {
             if (z) {
                 processingFinish();
             } else {
                 return;
             }
         }
-        super.provideAnimateElement(i, list, z);
+        super.provideAnimateElement(i, list, i2);
         if (this.mFragmentFilter != null) {
             this.mFragmentFilter.isShowAnimation(list);
         }
@@ -1099,8 +1131,11 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
             this.mModeSelectLayout.getView().setBackgroundResource(R.color.black);
         }
         this.mShutterButton.setParameters(i, list != null, isFPS960());
+        if (this.mModeSelectView.getVisibility() != 0) {
+            this.mModeSelectView.setVisibility(0);
+        }
         this.mModeSelectView.judgePosition(i, list);
-        int i3 = -1;
+        i2 = -1;
         switch (i) {
             case 166:
             case 167:
@@ -1109,7 +1144,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                 this.mCameraPickEnable = false;
                 break;
             case 171:
-                if (!b.he()) {
+                if (!b.hn()) {
                     this.mCameraPickEnable = false;
                     break;
                 }
@@ -1117,10 +1152,10 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
             default:
                 this.mCameraPickEnable = true;
         }
-        i3 = 1;
-        if (this.mCameraPicker.getTag() == null || ((Integer) this.mCameraPicker.getTag()).intValue() != i3) {
-            this.mCameraPicker.setTag(Integer.valueOf(i3));
-            animateViews(i3, list, this.mCameraPicker);
+        i2 = 1;
+        if (this.mCameraPicker.getTag() == null || ((Integer) this.mCameraPicker.getTag()).intValue() != i2) {
+            this.mCameraPicker.setTag(Integer.valueOf(i2));
+            animateViews(i2, list, this.mCameraPicker);
         }
     }
 
@@ -1180,6 +1215,8 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
         list.add(this.mCameraPicker);
         list.add(this.mPostProcess);
         list.add(this.mRecordingPause);
+        list.add(this.mBottomRecordingCameraPicker);
+        list.add(this.mRecordingReverse);
     }
 
     public void notifyDataChanged(int i, int i2) {
@@ -1191,7 +1228,6 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
             initThumbLayoutByIntent();
         }
         this.mInLoading = false;
-        adjustViewBackground(this.mModeSelectLayout.getView(), this.mCurrentMode);
         if (this.mFragmentLighting != null && this.mFragmentLighting.isAdded()) {
             this.mFragmentLighting.reInit();
         }
@@ -1221,6 +1257,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
             }
         }
         this.mModeSelectLayout.initBeautyMenuView();
+        adjustViewBackground(this.mModeSelectLayout.getView(), this.mCurrentMode);
     }
 
     public boolean canSnap() {
@@ -1370,8 +1407,10 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
     }
 
     public boolean onBackEvent(int i) {
-        boolean z = this.mCurrentMode == 161 && i == 3 && this.mIsShowFilter;
-        if (((i != 1 && (!Util.UI_DEBUG() || i != 2)) || (!this.mIsShowFilter && !this.mIsShowLighting)) && !z) {
+        boolean z = i == 3 && this.mCurrentMode == 161 && this.mIsShowFilter;
+        boolean z2 = i == 1 && (this.mIsShowFilter || this.mIsShowLighting);
+        boolean z3 = i == 2 && this.mIsShowFilter && Util.UI_DEBUG();
+        if (!z && !z2 && !z3) {
             return false;
         }
         hideExtra();
@@ -1397,15 +1436,24 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
     }
 
     public void onSwitchCameraActionMenu(int i) {
+        if (this.mVideoRecordingStarted && this.mCurrentMode == 174 && this.mBottomRecordingTime.getVisibility() != 0) {
+            this.mBottomRecordingTime.setVisibility(0);
+        }
         this.mModeSelectLayout.switchMenuMode(i, true);
     }
 
     public void onSwitchLiveActionMenu(int i) {
+        if (this.mBottomRecordingTime.getVisibility() == 0) {
+            this.mBottomRecordingTime.setVisibility(8);
+        }
         this.mCurrentLiveActionMenuType = i;
         this.mModeSelectLayout.switchMenuMode(2, i, true);
     }
 
     public void onSwitchBeautyActionMenu(int i) {
+        if (this.mBottomRecordingTime.getVisibility() == 0) {
+            this.mBottomRecordingTime.setVisibility(8);
+        }
         this.mCurrentBeautyActionMenuType = i;
         this.mModeSelectLayout.switchMenuMode(1, i, true);
     }

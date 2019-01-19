@@ -65,15 +65,15 @@
         }
     .end annotation
 
-    .line 361
+    .line 502
     invoke-direct {p0}, Landroid/support/v7/widget/RecyclerView$Adapter;-><init>()V
 
-    .line 358
+    .line 499
     new-instance v0, Lcom/bumptech/glide/request/f;
 
     invoke-direct {v0}, Lcom/bumptech/glide/request/f;-><init>()V
 
-    const v1, 0x7f02010f
+    const v1, 0x7f02011e
 
     invoke-virtual {v0, v1}, Lcom/bumptech/glide/request/f;->J(I)Lcom/bumptech/glide/request/f;
 
@@ -81,26 +81,26 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mGlideOptions:Lcom/bumptech/glide/request/f;
 
-    .line 362
+    .line 503
     iput-object p1, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mContext:Landroid/content/Context;
 
-    .line 363
+    .line 504
     iput-object p2, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mStickerList:Ljava/util/List;
 
-    .line 364
+    .line 505
     iput p3, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mSelectIndex:I
 
-    .line 365
+    .line 506
     invoke-static {p1}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
 
     move-result-object p1
 
     iput-object p1, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mLayoutInflater:Landroid/view/LayoutInflater;
 
-    .line 366
+    .line 507
     iput-object p4, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mListener:Landroid/widget/AdapterView$OnItemClickListener;
 
-    .line 367
+    .line 508
     return-void
 .end method
 
@@ -109,7 +109,7 @@
 .method public getItemCount()I
     .locals 1
 
-    .line 403
+    .line 548
     iget-object v0, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mStickerList:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->size()I
@@ -122,7 +122,7 @@
 .method public bridge synthetic onBindViewHolder(Landroid/support/v7/widget/RecyclerView$ViewHolder;I)V
     .locals 0
 
-    .line 352
+    .line 493
     check-cast p1, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter$StickerItemHolder;
 
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->onBindViewHolder(Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter$StickerItemHolder;I)V
@@ -131,10 +131,10 @@
 .end method
 
 .method public onBindViewHolder(Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter$StickerItemHolder;I)V
-    .locals 5
+    .locals 6
 
-    .line 377
-    const v0, 0x7f0d006e
+    .line 518
+    const v0, 0x7f0d0077
 
     invoke-virtual {p1, v0}, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter$StickerItemHolder;->getView(I)Landroid/view/View;
 
@@ -142,8 +142,8 @@
 
     check-cast v0, Lcom/android/camera/fragment/live/LiveDownloadView;
 
-    .line 378
-    const v1, 0x7f0d006c
+    .line 519
+    const v1, 0x7f0d0075
 
     invoke-virtual {p1, v1}, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter$StickerItemHolder;->getView(I)Landroid/view/View;
 
@@ -151,14 +151,14 @@
 
     check-cast v1, Landroid/widget/ImageView;
 
-    .line 379
-    const v2, 0x7f0d006d
+    .line 520
+    const v2, 0x7f0d0076
 
     invoke-virtual {p1, v2}, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter$StickerItemHolder;->getView(I)Landroid/view/View;
 
     move-result-object v2
 
-    .line 381
+    .line 522
     iget-object v3, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mStickerList:Ljava/util/List;
 
     invoke-interface {v3, p2}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -167,100 +167,112 @@
 
     check-cast v3, Lcom/android/camera/sticker/LiveStickerInfo;
 
-    .line 382
-    iget-object p1, p1, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter$StickerItemHolder;->itemView:Landroid/view/View;
+    .line 523
+    iget-object v4, p1, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter$StickerItemHolder;->itemView:Landroid/view/View;
 
-    invoke-virtual {p1, v3}, Landroid/view/View;->setTag(Ljava/lang/Object;)V
+    invoke-virtual {v4, v3}, Landroid/view/View;->setTag(Ljava/lang/Object;)V
 
-    .line 384
-    iget-boolean p1, v3, Lcom/android/camera/sticker/LiveStickerInfo;->isLocal:Z
+    .line 525
+    iget-boolean v4, v3, Lcom/android/camera/sticker/LiveStickerInfo;->isLocal:Z
 
-    if-nez p1, :cond_1
+    if-eqz v4, :cond_0
 
-    iget p1, v3, Lcom/android/camera/sticker/LiveStickerInfo;->iconId:I
+    iget v4, v3, Lcom/android/camera/sticker/LiveStickerInfo;->iconId:I
 
-    if-lez p1, :cond_0
+    if-lez v4, :cond_0
+
+    .line 526
+    iget v4, v3, Lcom/android/camera/sticker/LiveStickerInfo;->iconId:I
+
+    invoke-virtual {v1, v4}, Landroid/widget/ImageView;->setImageResource(I)V
 
     goto :goto_0
 
-    .line 387
+    .line 528
     :cond_0
-    iget-object p1, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mContext:Landroid/content/Context;
+    iget-object v4, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mContext:Landroid/content/Context;
 
-    invoke-static {p1}, Lcom/bumptech/glide/c;->f(Landroid/content/Context;)Lcom/bumptech/glide/i;
+    invoke-static {v4}, Lcom/bumptech/glide/c;->f(Landroid/content/Context;)Lcom/bumptech/glide/i;
 
-    move-result-object p1
+    move-result-object v4
 
-    iget-object v4, v3, Lcom/android/camera/sticker/LiveStickerInfo;->icon:Ljava/lang/String;
+    iget-object v5, v3, Lcom/android/camera/sticker/LiveStickerInfo;->icon:Ljava/lang/String;
 
-    invoke-virtual {p1, v4}, Lcom/bumptech/glide/i;->b(Ljava/lang/String;)Lcom/bumptech/glide/h;
+    invoke-virtual {v4, v5}, Lcom/bumptech/glide/i;->b(Ljava/lang/String;)Lcom/bumptech/glide/h;
 
-    move-result-object p1
+    move-result-object v4
 
-    iget-object v4, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mGlideOptions:Lcom/bumptech/glide/request/f;
+    iget-object v5, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mGlideOptions:Lcom/bumptech/glide/request/f;
 
-    invoke-virtual {p1, v4}, Lcom/bumptech/glide/h;->b(Lcom/bumptech/glide/request/f;)Lcom/bumptech/glide/h;
+    invoke-virtual {v4, v5}, Lcom/bumptech/glide/h;->b(Lcom/bumptech/glide/request/f;)Lcom/bumptech/glide/h;
 
-    move-result-object p1
+    move-result-object v4
 
-    invoke-virtual {p1, v1}, Lcom/bumptech/glide/h;->a(Landroid/widget/ImageView;)Lcom/bumptech/glide/request/target/ViewTarget;
+    invoke-virtual {v4, v1}, Lcom/bumptech/glide/h;->a(Landroid/widget/ImageView;)Lcom/bumptech/glide/request/target/ViewTarget;
 
-    goto :goto_1
-
-    .line 385
-    :cond_1
+    .line 530
     :goto_0
-    iget p1, v3, Lcom/android/camera/sticker/LiveStickerInfo;->iconId:I
-
-    invoke-virtual {v1, p1}, Landroid/widget/ImageView;->setImageResource(I)V
-
-    .line 389
-    :goto_1
     invoke-virtual {v3}, Lcom/android/camera/sticker/LiveStickerInfo;->getDownloadState()I
 
-    move-result p1
+    move-result v1
 
-    .line 390
-    invoke-virtual {v0, p1}, Lcom/android/camera/fragment/live/LiveDownloadView;->setStateImage(I)V
+    .line 531
+    const/4 v4, 0x3
 
-    .line 391
-    const/4 v0, 0x3
+    if-ne v1, v4, :cond_1
 
-    if-ne p1, v0, :cond_2
+    .line 532
+    const/4 v4, 0x1
 
-    .line 392
-    const/4 p1, 0x1
+    iput-boolean v4, p1, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter$StickerItemHolder;->mWaitingDownloadSuccess:Z
 
-    iput p1, v3, Lcom/android/camera/sticker/LiveStickerInfo;->downloadState:I
+    .line 533
+    iput v4, v3, Lcom/android/camera/sticker/LiveStickerInfo;->downloadState:I
 
-    .line 394
+    .line 535
+    :cond_1
+    iget-boolean p1, p1, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter$StickerItemHolder;->mWaitingDownloadSuccess:Z
+
+    if-eqz p1, :cond_2
+
+    const/4 p1, 0x5
+
+    if-eq v1, p1, :cond_3
+
+    .line 536
     :cond_2
+    invoke-virtual {v0, v1}, Lcom/android/camera/fragment/live/LiveDownloadView;->setStateImage(I)V
+
+    .line 537
     iget p1, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mSelectIndex:I
 
     if-ne p2, p1, :cond_3
 
-    .line 395
+    .line 538
     const/4 p1, 0x0
 
     invoke-virtual {v2, p1}, Landroid/view/View;->setVisibility(I)V
 
-    goto :goto_2
-
-    .line 397
+    .line 541
     :cond_3
+    iget p1, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mSelectIndex:I
+
+    if-eq p2, p1, :cond_4
+
+    .line 542
     const/16 p1, 0x8
 
     invoke-virtual {v2, p1}, Landroid/view/View;->setVisibility(I)V
 
-    .line 399
-    :goto_2
+    .line 544
+    :cond_4
     return-void
 .end method
 
 .method public bridge synthetic onCreateViewHolder(Landroid/view/ViewGroup;I)Landroid/support/v7/widget/RecyclerView$ViewHolder;
     .locals 0
 
-    .line 352
+    .line 493
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->onCreateViewHolder(Landroid/view/ViewGroup;I)Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter$StickerItemHolder;
 
     move-result-object p1
@@ -271,10 +283,10 @@
 .method public onCreateViewHolder(Landroid/view/ViewGroup;I)Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter$StickerItemHolder;
     .locals 2
 
-    .line 371
+    .line 512
     iget-object p2, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mLayoutInflater:Landroid/view/LayoutInflater;
 
-    const v0, 0x7f040021
+    const v0, 0x7f040023
 
     const/4 v1, 0x0
 
@@ -282,7 +294,7 @@
 
     move-result-object p1
 
-    .line 372
+    .line 513
     new-instance p2, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter$StickerItemHolder;
 
     invoke-direct {p2, p0, p1}, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter$StickerItemHolder;-><init>(Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;Landroid/view/View;)V
@@ -293,9 +305,9 @@
 .method public setSelectIndex(I)V
     .locals 0
 
-    .line 407
+    .line 552
     iput p1, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$StickerItemAdapter;->mSelectIndex:I
 
-    .line 408
+    .line 553
     return-void
 .end method

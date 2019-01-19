@@ -70,7 +70,7 @@ public class DataItemGlobal extends DataItemBase {
             case 173:
                 return 0;
             case 171:
-                if (b.he()) {
+                if (b.hn()) {
                     return Integer.valueOf(getString("pref_camera_id_key", String.valueOf(getDefaultCameraId(i)))).intValue();
                 }
                 return 0;
@@ -92,7 +92,7 @@ public class DataItemGlobal extends DataItemBase {
             case 172:
                 return 162;
             case 171:
-                if (b.he()) {
+                if (b.hn()) {
                     return i;
                 }
                 break;
@@ -407,7 +407,7 @@ public class DataItemGlobal extends DataItemBase {
     public Pair<Integer, Integer> parseIntent(Intent intent, Boolean bool, boolean z, boolean z2, boolean z3) {
         int i;
         int i2 = 0;
-        if (DataRepository.dataItemFeature().fk() && Util.isScreenSlideOff(CameraAppImpl.getAndroidContext())) {
+        if (DataRepository.dataItemFeature().fl() && Util.isScreenSlideOff(CameraAppImpl.getAndroidContext())) {
             setCameraId(0);
         }
         String action = intent.getAction();

@@ -50,19 +50,18 @@
 
     move-result v2
 
-    const v3, 0x7f0b01c0
+    const v3, 0x7f0901c0
 
-    if-eqz v2, :cond_0
+    if-nez v2, :cond_0
 
-    .line 63
     iget v2, p0, Lcom/android/camera/data/data/global/ComponentModuleList;->mIntentType:I
 
-    if-nez v2, :cond_1
+    if-nez v2, :cond_0
 
     .line 64
     new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const/16 v4, 0xae
+    const/16 v4, 0xa1
 
     .line 65
     invoke-static {v4}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
@@ -74,61 +73,68 @@
     .line 64
     invoke-interface {v0, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    goto :goto_0
-
-    .line 68
+    .line 69
     :cond_0
     iget v2, p0, Lcom/android/camera/data/data/global/ComponentModuleList;->mIntentType:I
 
     if-nez v2, :cond_1
 
-    .line 69
-    new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
-
-    const/16 v4, 0xa1
-
-    .line 70
-    invoke-static {v4}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
-
-    move-result-object v4
-
-    invoke-direct {v2, v1, v1, v3, v4}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
-
-    .line 69
-    invoke-interface {v0, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    .line 75
-    :cond_1
-    :goto_0
-    iget v2, p0, Lcom/android/camera/data/data/global/ComponentModuleList;->mIntentType:I
-
-    if-nez v2, :cond_2
-
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object v2
 
-    invoke-virtual {v2}, Lcom/mi/config/a;->fr()Z
+    invoke-virtual {v2}, Lcom/mi/config/a;->fs()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_1
+
+    .line 70
+    new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
+
+    const v4, 0x7f0901c1
+
+    const/16 v5, 0xac
+
+    .line 71
+    invoke-static {v5}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-direct {v2, v1, v1, v4, v5}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
+
+    .line 70
+    invoke-interface {v0, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 75
+    :cond_1
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Lcom/mi/config/a;->fD()Z
 
     move-result v2
 
     if-eqz v2, :cond_2
 
-    .line 76
-    new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
+    iget v2, p0, Lcom/android/camera/data/data/global/ComponentModuleList;->mIntentType:I
 
-    const v3, 0x7f0b01c1
-
-    const/16 v4, 0xac
+    if-nez v2, :cond_2
 
     .line 77
+    new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
+
+    const/16 v4, 0xae
+
+    .line 78
     invoke-static {v4}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
     move-result-object v4
 
     invoke-direct {v2, v1, v1, v3, v4}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 
-    .line 76
+    .line 77
     invoke-interface {v0, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .line 82
@@ -147,7 +153,7 @@
     :cond_3
     new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const v3, 0x7f0b01c2
+    const v3, 0x7f0901c2
 
     const/16 v4, 0xa2
 
@@ -169,7 +175,7 @@
 
     const/16 v4, 0xa3
 
-    const v5, 0x7f0b01c3
+    const v5, 0x7f0901c3
 
     if-ne v2, v3, :cond_5
 
@@ -186,7 +192,7 @@
     .line 88
     invoke-interface {v0, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    goto/16 :goto_1
+    goto/16 :goto_0
 
     .line 93
     :cond_5
@@ -224,7 +230,7 @@
     .line 98
     new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const v3, 0x7f0b01c8
+    const v3, 0x7f0901c8
 
     const/16 v4, 0xab
 
@@ -244,7 +250,7 @@
 
     move-result-object v2
 
-    invoke-virtual {v2}, Lcom/mi/config/a;->fh()Z
+    invoke-virtual {v2}, Lcom/mi/config/a;->fi()Z
 
     move-result v2
 
@@ -257,7 +263,7 @@
     .line 103
     new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const v3, 0x7f0b00a1
+    const v3, 0x7f0900a0
 
     const/16 v4, 0xad
 
@@ -275,7 +281,7 @@
     :cond_8
     new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const v3, 0x7f0b01c5
+    const v3, 0x7f0901c5
 
     const/16 v4, 0xa5
 
@@ -297,7 +303,7 @@
     .line 111
     new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const v3, 0x7f0b01c6
+    const v3, 0x7f0901c6
 
     const/16 v4, 0xa6
 
@@ -315,7 +321,7 @@
     :cond_9
     new-instance v2, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const v3, 0x7f0b0256
+    const v3, 0x7f090257
 
     const/16 v4, 0xa7
 
@@ -331,7 +337,7 @@
 
     .line 122
     :cond_a
-    :goto_1
+    :goto_0
     return-object v0
 
     .line 57

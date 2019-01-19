@@ -24,7 +24,7 @@ public class LiveBeautyModeFragment extends BaseBeautyMakeupFragment {
         List<MakeupItem> arrayList = new ArrayList();
         arrayList.add(new MakeupItem(R.drawable.icon_face_slender_n, R.string.edit_face_slender, CameraBeautyParameterType.LIVE_SHRINK_FACE_RATIO));
         arrayList.add(new MakeupItem(R.drawable.icon_eye_large_n, R.string.edit_eye_large, CameraBeautyParameterType.LIVE_ENLARGE_EYE_RATIO));
-        arrayList.add(new MakeupItem(R.drawable.icon_skin_white_n, R.string.edit_skin_white, CameraBeautyParameterType.LIVE_WHITEN_STRENGTH));
+        arrayList.add(new MakeupItem(R.drawable.icon_smooth_n, R.string.edit_skin_smooth, CameraBeautyParameterType.LIVE_SMOOTH_STRENGTH));
         return arrayList;
     }
 
@@ -50,7 +50,7 @@ public class LiveBeautyModeFragment extends BaseBeautyMakeupFragment {
             }).start();
         }
         BeautyHelper.resetBeauty();
-        BeautyHelper.setType(CameraBeautyParameterType.SHRINK_FACE_RATIO.beautyModelParameterType);
+        BeautyHelper.setType(CameraBeautyParameterType.LIVE_SHRINK_FACE_RATIO.beautyParamType);
         this.mSelectedParam = 0;
         this.mMakeupAdapter.setSelectedPosition(this.mSelectedParam);
         this.mLayoutManager.scrollToPosition(this.mSelectedParam);

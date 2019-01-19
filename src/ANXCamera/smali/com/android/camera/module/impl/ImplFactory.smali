@@ -58,22 +58,22 @@
         }
     .end annotation
 
-    .line 124
+    .line 125
     iget-boolean v0, p0, Lcom/android/camera/module/impl/ImplFactory;->mReleased:Z
 
     if-eqz v0, :cond_0
 
-    .line 125
+    .line 126
     return-void
 
-    .line 127
+    .line 128
     :cond_0
     if-nez p1, :cond_1
 
-    .line 128
+    .line 129
     return-void
 
-    .line 131
+    .line 132
     :cond_1
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
@@ -92,29 +92,17 @@
 
     check-cast v1, Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
-    .line 132
+    .line 133
     invoke-interface {v1}, Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;->unRegisterProtocol()V
 
-    .line 133
+    .line 134
     goto :goto_0
 
-    .line 134
+    .line 135
     :cond_2
     invoke-interface {p1}, Ljava/util/List;->clear()V
 
-    .line 135
-    return-void
-.end method
-
-.method private detachBase()V
-    .locals 1
-
-    .line 120
-    iget-object v0, p0, Lcom/android/camera/module/impl/ImplFactory;->mBaseProtocolList:Ljava/util/List;
-
-    invoke-direct {p0, v0}, Lcom/android/camera/module/impl/ImplFactory;->detach(Ljava/util/List;)V
-
-    .line 121
+    .line 136
     return-void
 .end method
 
@@ -275,24 +263,36 @@
 .method public detachAdditional()V
     .locals 1
 
-    .line 112
+    .line 113
     iget-object v0, p0, Lcom/android/camera/module/impl/ImplFactory;->mAdditionalProtocolList:Ljava/util/List;
 
     invoke-direct {p0, v0}, Lcom/android/camera/module/impl/ImplFactory;->detach(Ljava/util/List;)V
 
-    .line 113
+    .line 114
+    return-void
+.end method
+
+.method public detachBase()V
+    .locals 1
+
+    .line 121
+    iget-object v0, p0, Lcom/android/camera/module/impl/ImplFactory;->mBaseProtocolList:Ljava/util/List;
+
+    invoke-direct {p0, v0}, Lcom/android/camera/module/impl/ImplFactory;->detach(Ljava/util/List;)V
+
+    .line 122
     return-void
 .end method
 
 .method public detachModulePersistent()V
     .locals 1
 
-    .line 116
+    .line 117
     iget-object v0, p0, Lcom/android/camera/module/impl/ImplFactory;->mPersistentProtocolList:Ljava/util/List;
 
     invoke-direct {p0, v0}, Lcom/android/camera/module/impl/ImplFactory;->detach(Ljava/util/List;)V
 
-    .line 117
+    .line 118
     return-void
 .end method
 
@@ -373,30 +373,32 @@
 
 .method public release()V
     .locals 1
+    .annotation runtime Ljava/lang/Deprecated;
+    .end annotation
 
-    .line 138
+    .line 144
     iget-boolean v0, p0, Lcom/android/camera/module/impl/ImplFactory;->mReleased:Z
 
     if-eqz v0, :cond_0
 
-    .line 139
+    .line 145
     return-void
 
-    .line 141
+    .line 147
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/impl/ImplFactory;->detachAdditional()V
 
-    .line 142
+    .line 148
     invoke-virtual {p0}, Lcom/android/camera/module/impl/ImplFactory;->detachModulePersistent()V
 
-    .line 143
-    invoke-direct {p0}, Lcom/android/camera/module/impl/ImplFactory;->detachBase()V
+    .line 149
+    invoke-virtual {p0}, Lcom/android/camera/module/impl/ImplFactory;->detachBase()V
 
-    .line 144
+    .line 150
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/module/impl/ImplFactory;->mReleased:Z
 
-    .line 145
+    .line 151
     return-void
 .end method

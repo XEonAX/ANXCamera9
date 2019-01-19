@@ -538,7 +538,7 @@
     nop
 
     .line 131
-    invoke-static {}, Lcom/mi/config/b;->gd()Z
+    invoke-static {}, Lcom/mi/config/b;->isMTKPlatform()Z
 
     move-result v0
 

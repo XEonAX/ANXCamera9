@@ -22,7 +22,7 @@
 .method static constructor <clinit>()V
     .locals 2
 
-    .line 40
+    .line 48
     new-instance v0, Lcom/xiaomi/camera/core/MultiFrameProcessor;
 
     const/4 v1, 0x0
@@ -37,7 +37,7 @@
 .method constructor <init>()V
     .locals 0
 
-    .line 39
+    .line 47
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

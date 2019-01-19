@@ -37,7 +37,7 @@ public class MusicUtils {
                         liveMusicInfo.mThumbnailUrl = name;
                         name = mediaMetadataRetriever.extractMetadata(2);
                         if (name == null) {
-                            name = "小米";
+                            name = "小米小视频";
                         }
                         liveMusicInfo.mAuthor = name;
                         name = mediaMetadataRetriever.extractMetadata(9);

@@ -26,6 +26,7 @@ import com.android.camera.fragment.beauty.BeautyParameters.Type;
 import com.android.camera.fragment.beauty.BeautyValues;
 import com.android.camera.log.Log;
 import com.android.camera.module.BaseModule;
+import com.android.camera.module.loader.FunctionParseBeautyBodySlimCount;
 import com.mi.config.b;
 import com.miui.filtersdk.filter.helper.FilterType;
 import java.util.HashMap;
@@ -64,6 +65,7 @@ public class CameraStatUtil {
         sTriggerModeIdToName.put(70, "声控快门");
         sTriggerModeIdToName.put(80, "长按屏幕");
         sTriggerModeIdToName.put(90, "曝光环");
+        sTriggerModeIdToName.put(100, "手势拍照");
         sPictureQualityIndexToName.put(0, "最低");
         sPictureQualityIndexToName.put(1, "更低");
         sPictureQualityIndexToName.put(2, "低");
@@ -654,7 +656,7 @@ public class CameraStatUtil {
     }
 
     public static void trackStartAppCost(long j) {
-        if (j < 0 || j > 10000) {
+        if (j < 0 || j > FunctionParseBeautyBodySlimCount.TIP_INTERVAL_TIME) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("The time cost when start app is illegal: ");
             stringBuilder.append(j);
@@ -1017,7 +1019,7 @@ public class CameraStatUtil {
     public static void trackBeautyInfo(int i, String str, BeautyValues beautyValues) {
         Map hashMap = new HashMap();
         hashMap.put(CameraStat.PARAM_CAMERA_ID, str);
-        if (b.hC()) {
+        if (b.hL()) {
             for (Type type : BeautyParameters.getInstance().getAdjustableTypes()) {
                 String str2 = (String) sBeautyTypeToName.get(type.ordinal());
                 if (str2 != null) {
@@ -1030,7 +1032,7 @@ public class CameraStatUtil {
             hashMap.put(CameraStat.PARAM_BEAUTY_SKIN_COLOR, faceBeautyRatioToName(beautyValues.mBeautySkinColor));
             hashMap.put(CameraStat.PARAM_BEAUTY_SKIN_SMOOTH, faceBeautyRatioToName(beautyValues.mBeautySkinSmooth));
         }
-        if (b.hr()) {
+        if (b.hA()) {
             Object obj;
             str = CameraStat.PARAM_BEAUTY_LEVEL;
             if (CameraSettings.isAdvancedBeautyOn()) {
@@ -1190,6 +1192,60 @@ public class CameraStatUtil {
                     break;
             }
             CameraStat.recordStringPropertyEvent(CameraStat.CATEGORY_SETTINGS, str, valueOf);
+        }
+    }
+
+    public static void trackLiveRecordingParams(boolean z, String str, boolean z2, String str2, boolean z3, String str3, String str4, boolean z4, float f, float f2, float f3, int i, boolean z5) {
+        if (!CameraStat.isCounterEventDisabled()) {
+            Map hashMap = new HashMap();
+            hashMap.put(CameraStat.PARAM_LIVE_MUSIC_ON, z ? "on" : "off");
+            if (z) {
+                hashMap.put(CameraStat.PARAM_LIVE_MUSIC_NAME, str);
+            }
+            hashMap.put(CameraStat.PARAM_LIVE_FILTER_SEGMENT_ON, z2 ? "on" : "off");
+            if (z2) {
+                hashMap.put(CameraStat.PARAM_LIVE_FILTER_NAME, str2);
+            }
+            hashMap.put(CameraStat.PARAM_LIVE_STICKER_SEGMENT_ON, z3 ? "on" : "off");
+            if (z3) {
+                hashMap.put(CameraStat.PARAM_LIVE_STICKER_NAME, str3);
+            }
+            hashMap.put(CameraStat.PARAM_LIVE_SPEED_LEVEL, str4);
+            hashMap.put(CameraStat.PARAM_LIVE_BEAUTY_SEGMENT_ON, z4 ? "on" : "off");
+            hashMap.put(CameraStat.PARAM_LIVE_SHRINK_FACE_RATIO, Float.toString(f));
+            hashMap.put(CameraStat.PARAM_LIVE_ENLARGE_EYE_RATIO, Float.toString(f2));
+            hashMap.put(CameraStat.PARAM_LIVE_SMOOTH_RATIO, Float.toString(f3));
+            hashMap.put(CameraStat.PARAM_CAMERA_ID, cameraIdToName(z5));
+            String str5 = CameraStat.PARAM_QUALITY;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("");
+            stringBuilder.append(i);
+            hashMap.put(str5, videoQualityToName(stringBuilder.toString()));
+            CameraStat.recordCountEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_LIVE_VIDEO, hashMap);
+        }
+    }
+
+    public static void trackLiveVideoParams(int i, float f, boolean z, boolean z2, boolean z3) {
+        if (!CameraStat.isCounterEventDisabled()) {
+            Map hashMap = new HashMap();
+            hashMap.put(CameraStat.PARAM_LIVE_FILTER_ON, z ? "on" : "off");
+            hashMap.put(CameraStat.PARAM_LIVE_STICKER_ON, z2 ? "on" : "off");
+            hashMap.put(CameraStat.PARAM_LIVE_BEAUTY_ON, z3 ? "on" : "off");
+            hashMap.put(CameraStat.PARAM_LIVE_RECORD_SEGMENTS, Integer.toString(i));
+            hashMap.put(CameraStat.PARAM_LIVE_RECORD_TIME, Integer.toString((int) f));
+            CameraStat.recordCountEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_LIVE_VIDEO, hashMap);
+        }
+    }
+
+    public static void trackLiveMusicClickCount() {
+        if (!CameraStat.isCounterEventDisabled()) {
+            CameraStat.recordCountEvent(CameraStat.CATEGORY_COUNTER, CameraStat.PARAM_LIVE_MUSIC_ICON_CLICK);
+        }
+    }
+
+    public static void trackLiveClick(String str) {
+        if (!CameraStat.isCounterEventDisabled()) {
+            CameraStat.recordCountEvent(CameraStat.CATEGORY_COUNTER, str);
         }
     }
 }

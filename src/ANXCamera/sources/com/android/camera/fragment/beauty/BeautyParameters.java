@@ -69,7 +69,7 @@ public class BeautyParameters {
         LEG_SLIM_RATIO,
         LIVE_SHRINK_FACE_RATIO,
         LIVE_ENLARGE_EYE_RATIO,
-        LIVE_WHITEN_STRENGTH
+        LIVE_SMOOTH_STRENGTH
     }
 
     static {
@@ -95,7 +95,7 @@ public class BeautyParameters {
 
     public static boolean isCurrentModeSupportVideoBeauty() {
         int currentMode = ((DataItemGlobal) DataRepository.provider().dataGlobal()).getCurrentMode();
-        return currentMode == 162 || currentMode == 161;
+        return currentMode == 162 || currentMode == 161 || currentMode == 174;
     }
 
     public static List<Type> updateSupportedBeautyTypes(List<Type> list) {
@@ -165,8 +165,8 @@ public class BeautyParameters {
                 return CameraSettings.KEY_LIVE_SHRINK_FACE_RATIO;
             case LIVE_ENLARGE_EYE_RATIO:
                 return CameraSettings.KEY_LIVE_ENLARGE_EYE_RATIO;
-            case LIVE_WHITEN_STRENGTH:
-                return CameraSettings.KEY_LIVE_WHITEN_STRENGTH;
+            case LIVE_SMOOTH_STRENGTH:
+                return CameraSettings.KEY_LIVE_SMOOTH_STRENGTH;
             default:
                 return "";
         }
@@ -199,7 +199,7 @@ public class BeautyParameters {
     }
 
     public List<Type> getSupportBeautyTypes() {
-        if (!b.hC()) {
+        if (!b.hL()) {
             return BeautySettingManager.getLegacySupportedBeautyTypes();
         }
         if (CameraSettings.isFrontCamera()) {
@@ -259,7 +259,7 @@ public class BeautyParameters {
     }
 
     private Map<BeautyParameterType, Float> getProcessorBeautyParams(IntelligentBeautyProcessor intelligentBeautyProcessor, int i) {
-        if (!b.hr()) {
+        if (!b.hA()) {
             i--;
         }
         return intelligentBeautyProcessor.getIntelligentLevelParams(i);

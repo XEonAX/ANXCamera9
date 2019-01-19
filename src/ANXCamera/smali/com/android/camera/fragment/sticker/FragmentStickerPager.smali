@@ -131,7 +131,7 @@
     .locals 2
 
     .line 64
-    const v0, 0x7f0d0094
+    const v0, 0x7f0d009d
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -419,7 +419,7 @@
     .end annotation
 
     .line 52
-    const p3, 0x7f04002e
+    const p3, 0x7f040030
 
     const/4 v0, 0x0
 

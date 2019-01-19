@@ -199,7 +199,7 @@
 
     .line 121
     :pswitch_1
-    invoke-static {}, Lcom/mi/config/b;->he()Z
+    invoke-static {}, Lcom/mi/config/b;->hn()Z
 
     move-result v1
 
@@ -301,7 +301,7 @@
 
     .line 143
     :pswitch_0
-    invoke-static {}, Lcom/mi/config/b;->he()Z
+    invoke-static {}, Lcom/mi/config/b;->hn()Z
 
     move-result v1
 
@@ -650,7 +650,7 @@
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/mi/config/a;->fk()Z
+    invoke-virtual {v0}, Lcom/mi/config/a;->fl()Z
 
     move-result v0
 

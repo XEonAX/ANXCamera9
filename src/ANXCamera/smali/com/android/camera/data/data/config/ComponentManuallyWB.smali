@@ -46,7 +46,7 @@
 
     const/4 v3, -0x1
 
-    const v4, 0x7f0b0067
+    const v4, 0x7f090066
 
     invoke-direct {v1, v3, v3, v4, v2}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 
@@ -59,9 +59,9 @@
 
     const/4 v3, -0x2
 
-    const v4, 0x7f020011
+    const v4, 0x7f020012
 
-    const v5, 0x7f020155
+    const v5, 0x7f020166
 
     invoke-direct {v1, v4, v5, v3, v2}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 
@@ -72,9 +72,9 @@
 
     const-string v2, "5"
 
-    const v4, 0x7f020013
+    const v4, 0x7f020014
 
-    const v5, 0x7f02015b
+    const v5, 0x7f02016c
 
     invoke-direct {v1, v4, v5, v3, v2}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 
@@ -85,9 +85,9 @@
 
     const-string v2, "3"
 
-    const v4, 0x7f020010
+    const v4, 0x7f020011
 
-    const v5, 0x7f020152
+    const v5, 0x7f020163
 
     invoke-direct {v1, v4, v5, v3, v2}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 
@@ -98,16 +98,16 @@
 
     const-string v2, "6"
 
-    const v4, 0x7f02000f
+    const v4, 0x7f020010
 
-    const v5, 0x7f02014f
+    const v5, 0x7f020160
 
     invoke-direct {v1, v4, v5, v3, v2}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .line 100
-    invoke-static {}, Lcom/mi/config/b;->gu()Z
+    invoke-static {}, Lcom/mi/config/b;->gD()Z
 
     move-result v1
 
@@ -117,7 +117,7 @@
 
     move-result-object v1
 
-    invoke-virtual {v1}, Lcom/mi/config/a;->fx()Z
+    invoke-virtual {v1}, Lcom/mi/config/a;->fy()Z
 
     move-result v1
 
@@ -126,9 +126,9 @@
     .line 101
     new-instance v1, Lcom/android/camera/data/data/ComponentDataItem;
 
-    const v2, 0x7f020012
+    const v2, 0x7f020013
 
-    const v4, 0x7f020158
+    const v4, 0x7f020169
 
     const-string v5, "manual"
 
@@ -223,7 +223,7 @@
     .locals 1
 
     .line 32
-    const v0, 0x7f0b0066
+    const v0, 0x7f090065
 
     return v0
 .end method

@@ -153,8 +153,8 @@ public class FragmentPopupMakeup extends BaseFragment implements MakeupProtocol,
         return 252;
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
         i = (i == 163 || i == 165) ? 1 : -1;
         if (getView().getTag() == null || ((Integer) getView().getTag()).intValue() != i) {
             getView().setTag(Integer.valueOf(i));

@@ -5,7 +5,6 @@ import com.adobe.xmp.XMPException;
 import com.adobe.xmp.XMPSchemaRegistry;
 import com.adobe.xmp.options.AliasOptions;
 import com.adobe.xmp.properties.XMPAliasInfo;
-import com.ss.android.ugc.effectmanager.EffectConfiguration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -255,7 +254,7 @@ public final class XMPSchemaRegistryImpl implements XMPConst, XMPSchemaRegistry 
         registerAlias(XMPConst.NS_XMP, "Description", XMPConst.NS_DC, "description", null);
         registerAlias(XMPConst.NS_XMP, "Format", XMPConst.NS_DC, "format", null);
         registerAlias(XMPConst.NS_XMP, "Keywords", XMPConst.NS_DC, "subject", null);
-        registerAlias(XMPConst.NS_XMP, "Locale", XMPConst.NS_DC, EffectConfiguration.KEY_SYS_LANGUAGE, null);
+        registerAlias(XMPConst.NS_XMP, "Locale", XMPConst.NS_DC, "language", null);
         registerAlias(XMPConst.NS_XMP, "Title", XMPConst.NS_DC, "title", null);
         registerAlias(XMPConst.NS_XMP_RIGHTS, "Copyright", XMPConst.NS_DC, "rights", null);
         registerAlias(XMPConst.NS_PDF, "Author", XMPConst.NS_DC, "creator", arrayOrdered);

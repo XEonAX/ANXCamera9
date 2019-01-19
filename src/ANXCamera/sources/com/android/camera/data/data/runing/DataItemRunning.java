@@ -6,7 +6,9 @@ import com.android.camera.data.data.config.ComponentConfigFilter;
 import com.android.camera.log.Log;
 
 public class DataItemRunning extends DataItemBase {
-    public static final String DATA_RUNING_MENU_ULTRA_PIXEL_PHOTOGRAPHY_48MP = "pref_menu_ultra_pixel_photography_48mp";
+    public static final String DATA_RUNING_HAND_GESTURE = "pref_hand_gesture";
+    public static final String DATA_RUNING_MENU_ULTRA_PIXEL_PHOTOGRAPHY_FRONT = "pref_menu_ultra_pixel_photography_front";
+    public static final String DATA_RUNING_MENU_ULTRA_PIXEL_PHOTOGRAPHY_REAR = "pref_menu_ultra_pixel_photography_rear";
     public static final String DATA_RUNNING_FILTER_INDEX = "pref_camera_shader_coloreffect_key";
     public static final String DATA_RUNNING_FOCUS_PEAK = "pref_camera_peak_key";
     public static final String DATA_RUNNING_GENDER_AGE = "pref_camera_show_gender_age_key";

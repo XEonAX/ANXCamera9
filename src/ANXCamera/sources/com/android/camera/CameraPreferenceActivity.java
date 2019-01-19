@@ -47,11 +47,14 @@ public class CameraPreferenceActivity extends BasePreferenceActivity {
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        if (getIntent().getCharSequenceExtra(":miui:starting_window_label") != null) {
+            getActionBar().setTitle(R.string.pref_camera_settings_category);
+        }
         changeRequestOrientation();
     }
 
     public void changeRequestOrientation() {
-        if (b.hn()) {
+        if (b.hw()) {
             if (CameraSettings.isFrontCamera()) {
                 setRequestedOrientation(7);
             } else {

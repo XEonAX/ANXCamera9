@@ -134,12 +134,16 @@ public class MiCamera2ShotStill extends MiCamera2Shot<ParallelTaskData> {
             return;
         }
         byte[] firstPlane = Util.getFirstPlane(image);
-        image.close();
         String str2 = TAG;
         StringBuilder stringBuilder2 = new StringBuilder();
         stringBuilder2.append("onImageReceived: dataLen=");
         stringBuilder2.append(firstPlane == null ? TEDefine.FACE_BEAUTY_NULL : Integer.valueOf(firstPlane.length));
+        stringBuilder2.append(" timeStamp=");
+        stringBuilder2.append(image.getTimestamp());
+        stringBuilder2.append(" holder=");
+        stringBuilder2.append(hashCode());
         Log.d(str2, stringBuilder2.toString());
+        image.close();
         this.mCurrentParallelTaskData.fillJpegData(firstPlane, i);
         if (this.mCurrentParallelTaskData.isJpegDataReady()) {
             if (this.mIsIntent) {

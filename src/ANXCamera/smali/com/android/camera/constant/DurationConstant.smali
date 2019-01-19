@@ -6,7 +6,7 @@
 # static fields
 .field public static final DURATION_FPS960_VIDEO:I = 0x7d0
 
-.field public static final DURATION_LIVE_RECORD:I = 0x3a98
+.field public static final DURATION_LIVE_RECORD:I = 0x3e80
 
 .field public static final DURATION_SUPER_NIGHT_CAPTURE:I = 0x7d0
 

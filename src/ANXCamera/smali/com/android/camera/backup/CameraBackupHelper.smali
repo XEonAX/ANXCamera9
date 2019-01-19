@@ -952,7 +952,7 @@
 
     check-cast v5, Ljava/lang/String;
 
-    const v6, 0x7f0e0024
+    const v6, 0x7f0e0026
 
     invoke-static {v5, v6}, Lcom/android/camera/backup/CameraBackupHelper;->filterValue(Ljava/lang/String;I)Ljava/lang/String;
 

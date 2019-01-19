@@ -129,7 +129,7 @@
     invoke-interface {p2, v0}, Landroid/view/SurfaceHolder;->setFormat(I)V
 
     .line 68
-    invoke-static {}, Lcom/mi/config/b;->gH()Z
+    invoke-static {}, Lcom/mi/config/b;->gQ()Z
 
     move-result p2
 

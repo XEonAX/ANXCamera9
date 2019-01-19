@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)V
     .locals 0
 
-    .line 66
+    .line 67
     iput-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$1;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,6 +38,6 @@
 .method public onClick(Landroid/view/View;)V
     .locals 0
 
-    .line 71
+    .line 72
     return-void
 .end method

@@ -48,10 +48,6 @@ public class EffectRepository implements IHandler {
         this.mConfiguration.getTaskManager().commit(new DownloadEffectListByIdsTask(this.mEffectContext, list, this.mHandler, str));
     }
 
-    public void fetchEffectListById(List<String> list, String str, int i) {
-        this.mConfiguration.getTaskManager().commit(new DownloadEffectListByIdsTask(this.mEffectContext, list, this.mHandler, str, i));
-    }
-
     public void fetchEffectList(List<Effect> list, String str) {
         for (Effect updateEffectStatus : list) {
             this.mListener.updateEffectStatus("", updateEffectStatus, 21, null);

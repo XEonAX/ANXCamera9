@@ -37,7 +37,7 @@
     .locals 1
 
     .line 29
-    const v0, 0x7f04002a
+    const v0, 0x7f04002c
 
     return v0
 .end method

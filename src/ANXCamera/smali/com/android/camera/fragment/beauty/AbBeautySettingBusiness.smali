@@ -121,12 +121,20 @@
     if-nez v3, :cond_2
 
     .line 47
-    invoke-static {v2, v4}, Lcom/android/camera/CameraSettings;->getFaceBeautyRatio(Ljava/lang/String;I)I
+    invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/AbBeautySettingBusiness;->getProgressDefValue()I
+
+    move-result v3
+
+    invoke-static {v2, v3}, Lcom/android/camera/CameraSettings;->getFaceBeautyRatio(Ljava/lang/String;I)I
 
     move-result v3
 
     .line 48
-    if-nez v3, :cond_1
+    invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/AbBeautySettingBusiness;->getProgressDefValue()I
+
+    move-result v5
+
+    if-ne v3, v5, :cond_1
 
     .line 49
     iget-object v3, p0, Lcom/android/camera/fragment/beauty/AbBeautySettingBusiness;->mBeautyValueRange:[I
@@ -142,7 +150,7 @@
     sub-int/2addr v3, v5
 
     .line 50
-    invoke-static {}, Lcom/mi/config/b;->hr()Z
+    invoke-static {}, Lcom/mi/config/b;->hA()Z
 
     move-result v5
 
@@ -202,6 +210,10 @@
 
     .line 55
     :cond_0
+    invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/AbBeautySettingBusiness;->getProgressDefValue()I
+
+    move-result v4
+
     goto :goto_1
 
     .line 59
@@ -274,7 +286,9 @@
     if-nez v0, :cond_0
 
     .line 83
-    const/4 v0, 0x0
+    invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/AbBeautySettingBusiness;->getProgressDefValue()I
+
+    move-result v0
 
     return v0
 
@@ -293,6 +307,15 @@
     invoke-virtual {v0}, Ljava/lang/Integer;->intValue()I
 
     move-result v0
+
+    return v0
+.end method
+
+.method protected getProgressDefValue()I
+    .locals 1
+
+    .line 119
+    const/4 v0, 0x0
 
     return v0
 .end method
@@ -348,8 +371,6 @@
 
     move-result v1
 
-    const/4 v2, 0x0
-
     if-eqz v1, :cond_0
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
@@ -361,26 +382,38 @@
     .line 91
     invoke-static {v1}, Lcom/android/camera/fragment/beauty/BeautyParameters;->getBeautyRatioSettingKey(Lcom/android/camera/fragment/beauty/BeautyParameters$Type;)Ljava/lang/String;
 
-    move-result-object v3
-
-    .line 92
-    invoke-static {v3, v2}, Lcom/android/camera/CameraSettings;->setFaceBeautyRatio(Ljava/lang/String;I)V
-
-    .line 93
-    iget-object v3, p0, Lcom/android/camera/fragment/beauty/AbBeautySettingBusiness;->mExtraTable:Ljava/util/Map;
-
-    invoke-static {v2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
     move-result-object v2
 
-    invoke-interface {v3, v1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    .line 92
+    invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/AbBeautySettingBusiness;->getProgressDefValue()I
+
+    move-result v3
+
+    invoke-static {v2, v3}, Lcom/android/camera/CameraSettings;->setFaceBeautyRatio(Ljava/lang/String;I)V
+
+    .line 93
+    iget-object v2, p0, Lcom/android/camera/fragment/beauty/AbBeautySettingBusiness;->mExtraTable:Ljava/util/Map;
+
+    invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/AbBeautySettingBusiness;->getProgressDefValue()I
+
+    move-result v3
+
+    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v3
+
+    invoke-interface {v2, v1, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 94
     goto :goto_0
 
     .line 95
     :cond_0
-    invoke-virtual {p0, v2}, Lcom/android/camera/fragment/beauty/AbBeautySettingBusiness;->setProgress(I)V
+    invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/AbBeautySettingBusiness;->getProgressDefValue()I
+
+    move-result v0
+
+    invoke-virtual {p0, v0}, Lcom/android/camera/fragment/beauty/AbBeautySettingBusiness;->setProgress(I)V
 
     .line 96
     return-void
@@ -446,7 +479,11 @@
     .line 72
     if-ne v0, p1, :cond_1
 
-    if-nez p1, :cond_2
+    invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/AbBeautySettingBusiness;->getProgressDefValue()I
+
+    move-result v0
+
+    if-ne p1, v0, :cond_2
 
     .line 73
     :cond_1

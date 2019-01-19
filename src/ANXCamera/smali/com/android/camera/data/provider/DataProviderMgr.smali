@@ -19,17 +19,17 @@
 .method public constructor <init>(Lcom/android/camera/data/cloud/DataCloud$CloudManager;)V
     .locals 1
 
-    .line 14
+    .line 15
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 15
+    .line 16
     new-instance v0, Lcom/android/camera/data/provider/DataProviderMgr$DataProviderImpl;
 
     invoke-direct {v0, p0, p1}, Lcom/android/camera/data/provider/DataProviderMgr$DataProviderImpl;-><init>(Lcom/android/camera/data/provider/DataProviderMgr;Lcom/android/camera/data/cloud/DataCloud$CloudManager;)V
 
     iput-object v0, p0, Lcom/android/camera/data/provider/DataProviderMgr;->mDataProvider:Lcom/android/camera/data/provider/DataProvider;
 
-    .line 16
+    .line 17
     return-void
 .end method
 
@@ -38,7 +38,7 @@
 .method public provider()Lcom/android/camera/data/provider/DataProvider;
     .locals 1
 
-    .line 19
+    .line 20
     iget-object v0, p0, Lcom/android/camera/data/provider/DataProviderMgr;->mDataProvider:Lcom/android/camera/data/provider/DataProvider;
 
     return-object v0

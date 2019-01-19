@@ -69,6 +69,12 @@ public abstract class Camera2Proxy {
         }
     }
 
+    public interface BeautyBodySlimCountCallback {
+        boolean isBeautyBodySlimCountDetectStarted();
+
+        void onBeautyBodySlimCountChange(boolean z);
+    }
+
     public interface CameraPreviewCallback {
         void onPreviewSessionClosed(CameraCaptureSession cameraCaptureSession);
 
@@ -112,7 +118,7 @@ public abstract class Camera2Proxy {
     }
 
     public interface PreviewCallback {
-        void onPreviewFrame(Image image, Camera2Proxy camera2Proxy);
+        void onPreviewFrame(Image image, Camera2Proxy camera2Proxy, int i);
     }
 
     public abstract void cancelContinuousShot();
@@ -217,7 +223,7 @@ public abstract class Camera2Proxy {
 
     public abstract void setASDPeriod(int i);
 
-    public abstract void setASDScebe(int i);
+    public abstract void setASDScene(int i);
 
     public abstract void setAWBLock(boolean z);
 
@@ -386,6 +392,8 @@ public abstract class Camera2Proxy {
     public abstract void stopRecording(VideoRecordStateCallback videoRecordStateCallback);
 
     public abstract void takePicture(@NonNull PictureCallback pictureCallback, @NonNull ParallelCallback parallelCallback);
+
+    public abstract boolean updateDeferPreviewSession(Surface surface);
 
     public Camera2Proxy(int i) {
         this.mCameraId = i;

@@ -178,8 +178,8 @@ public class FragmentManuallyExtra extends BaseFragment {
         return 254;
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
     }
 
     public void notifyDataChanged(int i, int i2) {

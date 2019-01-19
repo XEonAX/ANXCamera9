@@ -26,20 +26,20 @@ public final class MiCameraAlgo {
         throw new IllegalArgumentException("context is null!");
     }
 
-    public static TaskSession createSessionWithSurfaces(@NonNull BufferFormat bufferFormat, @NonNull List<Surface> list, SessionStatusCallback sessionStatusCallback) {
+    public static TaskSession createSessionWithSurfaces(@NonNull BufferFormat bufferFormat, @NonNull List<Surface> list, SessionStatusCallback sessionStatusCallback, int i) {
         Log.d(TAG, "createSessionWithSurfaces: start");
         long createSessionWithSurfaces = MiCamAlgoInterfaceJNI.createSessionWithSurfaces(bufferFormat, list, sessionStatusCallback);
         if (createSessionWithSurfaces != 0) {
-            return new TaskSession(createSessionWithSurfaces);
+            return new TaskSession(createSessionWithSurfaces, i);
         }
         throw new RuntimeException("Create session failed: Session handle is null!");
     }
 
-    public static TaskSession createSessionByOutputConfigurations(@NonNull BufferFormat bufferFormat, @NonNull List<OutputConfiguration> list, SessionStatusCallback sessionStatusCallback) {
+    public static TaskSession createSessionByOutputConfigurations(@NonNull BufferFormat bufferFormat, @NonNull List<OutputConfiguration> list, SessionStatusCallback sessionStatusCallback, int i) {
         Log.d(TAG, "createSessionByOutputConfigurations: start");
         long createSessionByOutputConfigurations = MiCamAlgoInterfaceJNI.createSessionByOutputConfigurations(bufferFormat, list, sessionStatusCallback);
         if (createSessionByOutputConfigurations != 0) {
-            TaskSession taskSession = new TaskSession(createSessionByOutputConfigurations);
+            TaskSession taskSession = new TaskSession(createSessionByOutputConfigurations, i);
             String str = TAG;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("createSessionByOutputConfigurations: A new TaskSession had been created:");

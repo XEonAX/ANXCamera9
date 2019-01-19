@@ -6,7 +6,6 @@ import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
-import android.os.ConditionVariable;
 import com.android.camera.SurfaceTextureScreenNail.SurfaceTextureScreenNailCallback;
 import com.android.camera.effect.FrameBuffer;
 import com.android.camera.effect.draw_mode.DrawBasicTexAttribute;
@@ -59,7 +58,6 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
     private final Object mLock = new Object();
     private SwitchAnimManager mModuleAnimManager = new SwitchAnimManager();
     private NailListener mNailListener;
-    private ConditionVariable mReadLastFrameVariable = new ConditionVariable();
     private List<RequestRenderListener> mRequestRenderListeners;
     private SwitchAnimManager mSwitchAnimManager = new SwitchAnimManager();
     private final float[] mTextureTransformMatrix = new float[16];
@@ -152,59 +150,22 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
     }
 
     public void readLastFrameGaussian() {
-        this.mReadLastFrameVariable.close();
+        Log.d(TAG, "readLastFrameGaussian: state=ANIM_READ_LAST_FRAME_GAUSSIAN start");
         synchronized (this.mLock) {
             if (!this.mFirstFrameArrived || getSurfaceTexture() == null) {
-                Log.d(TAG, "readLastFrameGaussian: not start preview return!!!");
+                Log.w(TAG, "readLastFrameGaussian: not start preview return!!!");
             } else if (this.mAnimTexture == null || this.mFrameAvailableNotified.get()) {
                 this.mAnimState = 36;
                 postRequestListener();
-                Log.d(TAG, "readLastFrameGaussian: state=ANIM_READ_LAST_FRAME_GAUSSIAN start block");
-                this.mReadLastFrameVariable.block(50);
-                Log.d(TAG, "readLastFrameGaussian: state=ANIM_READ_LAST_FRAME_GAUSSIAN end block");
+                Log.d(TAG, "readLastFrameGaussian: state=ANIM_READ_LAST_FRAME_GAUSSIAN end");
+            } else {
+                Log.w(TAG, "readLastFrameGaussian: not start preview return!!!");
             }
         }
     }
 
     public Bitmap getLastFrameGaussianBitmap() {
         return this.mLastFrameGaussianBitmap;
-    }
-
-    private void toBlurBitmap(GLCanvas gLCanvas, int i, int i2) {
-        if (gLCanvas == null || i <= 0 || i2 <= 0) {
-            String str = TAG;
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("toBlurBitmap: start... canvas = ");
-            stringBuilder.append(gLCanvas);
-            stringBuilder.append(", size = ");
-            stringBuilder.append(i);
-            stringBuilder.append("x");
-            stringBuilder.append(i2);
-            Log.w(str, stringBuilder.toString());
-            return;
-        }
-        long currentTimeMillis = System.currentTimeMillis();
-        int width = this.mAnimTexture.getWidth();
-        int height = this.mAnimTexture.getHeight();
-        int i3 = i * height;
-        int i4 = i2 * width;
-        if (i3 > i4) {
-            height = i4 / i;
-        } else {
-            width = i3 / i2;
-        }
-        byte[] readPreviewPixels = readPreviewPixels(gLCanvas, width, height);
-        Bitmap createBitmap = Bitmap.createBitmap(width, height, Config.ARGB_8888);
-        createBitmap.copyPixelsFromBuffer(ByteBuffer.wrap(readPreviewPixels));
-        this.mLastFrameGaussianBitmap = Util.getBlurBitmap(createBitmap);
-        String str2 = TAG;
-        StringBuilder stringBuilder2 = new StringBuilder();
-        stringBuilder2.append("toBlurBitmap: end... mLastFrameGaussianBitmap = ");
-        stringBuilder2.append(this.mLastFrameGaussianBitmap);
-        stringBuilder2.append(", cost time = ");
-        stringBuilder2.append(System.currentTimeMillis() - currentTimeMillis);
-        stringBuilder2.append("ms");
-        Log.d(str2, stringBuilder2.toString());
     }
 
     public void clearAnimation() {
@@ -335,92 +296,92 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
     /* JADX WARNING: Missing block: B:26:0x005d, code:
             r15 = 0;
      */
-    /* JADX WARNING: Missing block: B:33:0x00b7, code:
+    /* JADX WARNING: Missing block: B:33:0x00b9, code:
             r8.updateTexImage();
             r15 = 0;
             r0.mSwitchAnimManager.drawPreview(r9, r10, r11, r12, r13, r0.mAnimTexture);
      */
-    /* JADX WARNING: Missing block: B:43:0x0124, code:
-            if (r0.mAnimState == 23) goto L_0x0182;
+    /* JADX WARNING: Missing block: B:43:0x0126, code:
+            if (r0.mAnimState == 23) goto L_0x0184;
      */
-    /* JADX WARNING: Missing block: B:45:0x012a, code:
-            if (r0.mAnimState == 24) goto L_0x0182;
+    /* JADX WARNING: Missing block: B:45:0x012c, code:
+            if (r0.mAnimState == 24) goto L_0x0184;
      */
-    /* JADX WARNING: Missing block: B:47:0x012e, code:
-            if (r0.mAnimState != 25) goto L_0x0131;
+    /* JADX WARNING: Missing block: B:47:0x0130, code:
+            if (r0.mAnimState != 25) goto L_0x0133;
      */
-    /* JADX WARNING: Missing block: B:49:0x0135, code:
-            if (r0.mAnimState != 12) goto L_0x014c;
+    /* JADX WARNING: Missing block: B:49:0x0137, code:
+            if (r0.mAnimState != 12) goto L_0x014e;
      */
-    /* JADX WARNING: Missing block: B:51:0x013f, code:
-            if (r0.mCaptureAnimManager.drawAnimation(r9, r0.mCaptureAnimTexture) == false) goto L_0x0145;
+    /* JADX WARNING: Missing block: B:51:0x0141, code:
+            if (r0.mCaptureAnimManager.drawAnimation(r9, r0.mCaptureAnimTexture) == false) goto L_0x0147;
      */
-    /* JADX WARNING: Missing block: B:52:0x0141, code:
+    /* JADX WARNING: Missing block: B:52:0x0143, code:
             postRequestListener();
      */
-    /* JADX WARNING: Missing block: B:53:0x0145, code:
+    /* JADX WARNING: Missing block: B:53:0x0147, code:
             r0.mAnimState = r15;
             super.draw(r19, r20, r21, r22, r23);
      */
-    /* JADX WARNING: Missing block: B:55:0x0152, code:
-            if (r0.mAnimState == 33) goto L_0x015e;
+    /* JADX WARNING: Missing block: B:55:0x0154, code:
+            if (r0.mAnimState == 33) goto L_0x0160;
      */
-    /* JADX WARNING: Missing block: B:57:0x0158, code:
-            if (r0.mAnimState == 34) goto L_0x015e;
+    /* JADX WARNING: Missing block: B:57:0x015a, code:
+            if (r0.mAnimState == 34) goto L_0x0160;
      */
-    /* JADX WARNING: Missing block: B:59:0x015c, code:
-            if (r0.mAnimState != 35) goto L_0x01bd;
+    /* JADX WARNING: Missing block: B:59:0x015e, code:
+            if (r0.mAnimState != 35) goto L_0x01bf;
      */
-    /* JADX WARNING: Missing block: B:60:0x015e, code:
+    /* JADX WARNING: Missing block: B:60:0x0160, code:
             r8.updateTexImage();
             r15 = 35;
      */
-    /* JADX WARNING: Missing block: B:61:0x0170, code:
-            if (r0.mModuleAnimManager.drawAnimation(r9, r10, r11, r12, r13, r0, r0.mAnimTexture) != false) goto L_0x017e;
+    /* JADX WARNING: Missing block: B:61:0x0172, code:
+            if (r0.mModuleAnimManager.drawAnimation(r9, r10, r11, r12, r13, r0, r0.mAnimTexture) != false) goto L_0x0180;
      */
-    /* JADX WARNING: Missing block: B:63:0x0174, code:
-            if (r0.mAnimState == r15) goto L_0x0177;
+    /* JADX WARNING: Missing block: B:63:0x0176, code:
+            if (r0.mAnimState == r15) goto L_0x0179;
      */
-    /* JADX WARNING: Missing block: B:64:0x0177, code:
+    /* JADX WARNING: Missing block: B:64:0x0179, code:
             r0.mAnimState = 0;
             super.draw(r19, r20, r21, r22, r23);
      */
-    /* JADX WARNING: Missing block: B:65:0x017e, code:
+    /* JADX WARNING: Missing block: B:65:0x0180, code:
             postRequestListener();
      */
-    /* JADX WARNING: Missing block: B:66:0x0182, code:
+    /* JADX WARNING: Missing block: B:66:0x0184, code:
             r8.updateTexImage();
      */
-    /* JADX WARNING: Missing block: B:67:0x0188, code:
-            if (r0.mDisableSwitchAnimationOnce == false) goto L_0x019a;
+    /* JADX WARNING: Missing block: B:67:0x018a, code:
+            if (r0.mDisableSwitchAnimationOnce == false) goto L_0x019c;
      */
-    /* JADX WARNING: Missing block: B:68:0x018a, code:
+    /* JADX WARNING: Missing block: B:68:0x018c, code:
             r15 = 25;
             r0.mSwitchAnimManager.drawPreview(r9, r10, r11, r12, r13, r0.mAnimTexture);
             r6 = false;
      */
-    /* JADX WARNING: Missing block: B:69:0x019a, code:
+    /* JADX WARNING: Missing block: B:69:0x019c, code:
             r15 = 25;
             r6 = r0.mSwitchAnimManager.drawAnimation(r9, r10, r11, r12, r13, r0, r0.mAnimTexture);
      */
-    /* JADX WARNING: Missing block: B:70:0x01a9, code:
-            if (r6 != false) goto L_0x01b9;
+    /* JADX WARNING: Missing block: B:70:0x01ab, code:
+            if (r6 != false) goto L_0x01bb;
      */
-    /* JADX WARNING: Missing block: B:72:0x01ad, code:
-            if (r0.mAnimState == r15) goto L_0x01b0;
+    /* JADX WARNING: Missing block: B:72:0x01af, code:
+            if (r0.mAnimState == r15) goto L_0x01b2;
      */
-    /* JADX WARNING: Missing block: B:73:0x01b0, code:
+    /* JADX WARNING: Missing block: B:73:0x01b2, code:
             r0.mAnimState = 0;
             r0.mDisableSwitchAnimationOnce = false;
             super.draw(r19, r20, r21, r22, r23);
      */
-    /* JADX WARNING: Missing block: B:74:0x01b9, code:
+    /* JADX WARNING: Missing block: B:74:0x01bb, code:
             postRequestListener();
      */
-    /* JADX WARNING: Missing block: B:76:0x01be, code:
+    /* JADX WARNING: Missing block: B:76:0x01c0, code:
             return;
      */
-    /* JADX WARNING: Missing block: B:81:0x01e5, code:
+    /* JADX WARNING: Missing block: B:81:0x01e7, code:
             return;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
@@ -500,9 +461,9 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
                         case 36:
                             super.draw(gLCanvas, i, i2, i3, i4);
                             Log.v(TAG, "draw: state=ANIM_READ_LAST_FRAME_GAUSSIAN");
-                            toBlurBitmap(gLCanvas2, i7, i8);
+                            copyPreviewTexture(gLCanvas2, this.mAnimTexture, this.mFrameBuffer);
+                            drawGaussianBitmap(gLCanvas, i, i2, i3, i4);
                             this.mAnimState = 0;
-                            this.mReadLastFrameVariable.open();
                             break;
                     }
                 }
@@ -565,6 +526,36 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
         gLCanvas.beginBindFrameBuffer(frameBuffer);
         gLCanvas.draw(new DrawExtTexAttribute(this.mExtTexture, this.mTextureTransformMatrix, 0, 0, width, height));
         gLCanvas.endBindFrameBuffer();
+    }
+
+    public void drawGaussianBitmap(GLCanvas gLCanvas, int i, int i2, int i3, int i4) {
+        long currentTimeMillis = System.currentTimeMillis();
+        i3 = this.mAnimTexture.getWidth();
+        i4 = this.mAnimTexture.getHeight();
+        for (int i5 = 0; i5 < 8; i5++) {
+            renderBlurTexture(gLCanvas);
+        }
+        GLES20.glFlush();
+        Buffer allocate = ByteBuffer.allocate((i3 * i4) * 4);
+        if (this.mFrameBuffer == null) {
+            this.mFrameBuffer = new FrameBuffer(gLCanvas, this.mAnimTexture, 0);
+        }
+        gLCanvas.beginBindFrameBuffer(this.mFrameBuffer);
+        gLCanvas.draw(new DrawBasicTexAttribute(this.mAnimTexture, 0, 0, i3, i4));
+        GLES20.glReadPixels(0, 0, i3, i4, 6408, 5121, allocate);
+        gLCanvas.endBindFrameBuffer();
+        byte[] array = allocate.array();
+        Bitmap createBitmap = Bitmap.createBitmap(i3, i4, Config.ARGB_8888);
+        createBitmap.copyPixelsFromBuffer(ByteBuffer.wrap(array));
+        this.mLastFrameGaussianBitmap = createBitmap;
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("readLastFrameGaussian end... bitmap = ");
+        stringBuilder.append(this.mLastFrameGaussianBitmap);
+        stringBuilder.append(", cost time = ");
+        stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
+        stringBuilder.append("ms");
+        Log.d(str, stringBuilder.toString());
     }
 
     public void drawBlurTexture(GLCanvas gLCanvas, int i, int i2, int i3, int i4) {
@@ -654,8 +645,8 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
     public void setPreviewFrameLayoutSize(int i, int i2) {
         synchronized (this.mLock) {
             Log.d(TAG, String.format(Locale.ENGLISH, "setPreviewFrameLayoutSize: %dx%d", new Object[]{Integer.valueOf(i), Integer.valueOf(i2)}));
-            this.mSurfaceWidth = !b.gH() ? i : Util.LIMIT_SURFACE_WIDTH;
-            if (b.gH()) {
+            this.mSurfaceWidth = !b.gQ() ? i : Util.LIMIT_SURFACE_WIDTH;
+            if (b.gQ()) {
                 i2 = (Util.LIMIT_SURFACE_WIDTH * i2) / i;
             }
             this.mSurfaceHeight = i2;

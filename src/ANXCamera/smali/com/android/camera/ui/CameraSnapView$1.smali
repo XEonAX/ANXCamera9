@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/ui/CameraSnapView;)V
     .locals 0
 
-    .line 60
+    .line 62
     iput-object p1, p0, Lcom/android/camera/ui/CameraSnapView$1;->this$0:Lcom/android/camera/ui/CameraSnapView;
 
     invoke-direct {p0}, Landroid/os/Handler;-><init>()V
@@ -35,14 +35,14 @@
 .method public handleMessage(Landroid/os/Message;)V
     .locals 0
 
-    .line 64
+    .line 66
     iget p1, p1, Landroid/os/Message;->what:I
 
     packed-switch p1, :pswitch_data_0
 
     goto :goto_0
 
-    .line 75
+    .line 77
     :pswitch_0
     iget-object p1, p0, Lcom/android/camera/ui/CameraSnapView$1;->this$0:Lcom/android/camera/ui/CameraSnapView;
 
@@ -52,10 +52,10 @@
 
     invoke-interface {p1}, Lcom/android/camera/ui/CameraSnapView$SnapListener;->onSnapLongPressCancelIn()V
 
-    .line 76
+    .line 78
     goto :goto_0
 
-    .line 79
+    .line 81
     :pswitch_1
     iget-object p1, p0, Lcom/android/camera/ui/CameraSnapView$1;->this$0:Lcom/android/camera/ui/CameraSnapView;
 
@@ -67,7 +67,7 @@
 
     goto :goto_0
 
-    .line 71
+    .line 73
     :pswitch_2
     iget-object p1, p0, Lcom/android/camera/ui/CameraSnapView$1;->this$0:Lcom/android/camera/ui/CameraSnapView;
 
@@ -77,10 +77,10 @@
 
     invoke-interface {p1}, Lcom/android/camera/ui/CameraSnapView$SnapListener;->onSnapLongPress()V
 
-    .line 72
+    .line 74
     goto :goto_0
 
-    .line 67
+    .line 69
     :pswitch_3
     iget-object p1, p0, Lcom/android/camera/ui/CameraSnapView$1;->this$0:Lcom/android/camera/ui/CameraSnapView;
 
@@ -90,10 +90,10 @@
 
     invoke-interface {p1}, Lcom/android/camera/ui/CameraSnapView$SnapListener;->onSnapClick()V
 
-    .line 68
+    .line 70
     nop
 
-    .line 83
+    .line 85
     :goto_0
     return-void
 

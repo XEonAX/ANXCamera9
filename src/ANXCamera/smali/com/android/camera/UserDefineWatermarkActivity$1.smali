@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/UserDefineWatermarkActivity;)V
     .locals 0
 
-    .line 74
+    .line 79
     iput-object p1, p0, Lcom/android/camera/UserDefineWatermarkActivity$1;->this$0:Lcom/android/camera/UserDefineWatermarkActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,11 +38,11 @@
 .method public onClick(Landroid/view/View;)V
     .locals 0
 
-    .line 77
+    .line 82
     iget-object p1, p0, Lcom/android/camera/UserDefineWatermarkActivity$1;->this$0:Lcom/android/camera/UserDefineWatermarkActivity;
 
     invoke-static {p1}, Lcom/android/camera/UserDefineWatermarkActivity;->access$100(Lcom/android/camera/UserDefineWatermarkActivity;)V
 
-    .line 78
+    .line 83
     return-void
 .end method

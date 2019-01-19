@@ -3,10 +3,10 @@ package com.ss.android.ugc.effectmanager.network;
 import android.accounts.NetworkErrorException;
 import com.ss.android.ugc.effectmanager.common.EffectRequest;
 import com.ss.android.ugc.effectmanager.common.ErrorConstants;
-import com.ss.android.ugc.effectmanager.common.exception.StatusCodeException;
 import com.ss.android.ugc.effectmanager.common.listener.IEffectNetWorker;
 import com.ss.android.ugc.effectmanager.common.listener.IJsonConverter;
 import com.ss.android.ugc.effectmanager.common.model.BaseNetResponse;
+import com.ss.android.ugc.effectmanager.common.model.NetException;
 import com.ss.android.ugc.effectmanager.link.LinkSelector;
 import java.io.InputStream;
 import org.json.JSONException;
@@ -54,7 +54,7 @@ public class EffectNetWorkerWrapper {
                 return baseNetResponse;
             }
             this.mLinkSelector.onApiError(effectRequest.getUrl());
-            throw new StatusCodeException(status_code, baseNetResponse.getMessage());
+            throw new NetException(Integer.valueOf(status_code), baseNetResponse.getMessage());
         }
         this.mLinkSelector.onApiError(effectRequest.getUrl());
         throw new JSONException(ErrorConstants.EXCEPTION_JSON_CONVERT);

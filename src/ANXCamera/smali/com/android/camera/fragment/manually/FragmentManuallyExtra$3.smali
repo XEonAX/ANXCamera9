@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/manually/FragmentManuallyExtra;Lcom/android/camera/data/data/ComponentData;ILcom/android/camera/fragment/manually/ManuallyListener;I)V
     .locals 0
 
-    .line 158
+    .line 159
     iput-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManuallyExtra$3;->this$0:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     invoke-direct {p0, p2, p3, p4, p5}, Lcom/android/camera/fragment/manually/adapter/ExtraRecyclerViewAdapter;-><init>(Lcom/android/camera/data/data/ComponentData;ILcom/android/camera/fragment/manually/ManuallyListener;I)V
@@ -35,7 +35,7 @@
 .method protected couldNewValueTakeEffect(Ljava/lang/String;)Z
     .locals 1
 
-    .line 162
+    .line 163
     if-eqz p1, :cond_0
 
     const-string v0, "manual"
@@ -46,12 +46,12 @@
 
     if-eqz v0, :cond_0
 
-    .line 163
+    .line 164
     const/4 p1, 0x1
 
     return p1
 
-    .line 165
+    .line 166
     :cond_0
     invoke-super {p0, p1}, Lcom/android/camera/fragment/manually/adapter/ExtraRecyclerViewAdapter;->couldNewValueTakeEffect(Ljava/lang/String;)Z
 

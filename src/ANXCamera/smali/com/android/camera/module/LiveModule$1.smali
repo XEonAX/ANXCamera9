@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/module/LiveModule;)V
     .locals 0
 
-    .line 236
+    .line 271
     iput-object p1, p0, Lcom/android/camera/module/LiveModule$1;->this$0:Lcom/android/camera/module/LiveModule;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public run()V
     .locals 3
 
-    .line 239
+    .line 274
     new-instance v0, Landroid/app/AlertDialog$Builder;
 
     iget-object v1, p0, Lcom/android/camera/module/LiveModule$1;->this$0:Lcom/android/camera/module/LiveModule;
@@ -47,42 +47,42 @@
 
     invoke-direct {v0, v1}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
 
-    .line 240
-    const v1, 0x7f0b026d
+    .line 275
+    const v1, 0x7f090276
 
     invoke-virtual {v0, v1}, Landroid/app/AlertDialog$Builder;->setTitle(I)Landroid/app/AlertDialog$Builder;
 
-    .line 241
-    const v1, 0x7f0b026e
+    .line 276
+    const v1, 0x7f090277
 
     invoke-virtual {v0, v1}, Landroid/app/AlertDialog$Builder;->setMessage(I)Landroid/app/AlertDialog$Builder;
 
-    .line 242
+    .line 277
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Landroid/app/AlertDialog$Builder;->setCancelable(Z)Landroid/app/AlertDialog$Builder;
 
-    .line 244
+    .line 279
     new-instance v1, Lcom/android/camera/module/LiveModule$1$1;
 
     invoke-direct {v1, p0}, Lcom/android/camera/module/LiveModule$1$1;-><init>(Lcom/android/camera/module/LiveModule$1;)V
 
-    const v2, 0x7f0b026f
+    const v2, 0x7f090278
 
     invoke-virtual {v0, v2, v1}, Landroid/app/AlertDialog$Builder;->setPositiveButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
-    .line 251
+    .line 286
     new-instance v1, Lcom/android/camera/module/LiveModule$1$2;
 
     invoke-direct {v1, p0}, Lcom/android/camera/module/LiveModule$1$2;-><init>(Lcom/android/camera/module/LiveModule$1;)V
 
-    const v2, 0x7f0b01b4
+    const v2, 0x7f0901b4
 
     invoke-virtual {v0, v2, v1}, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
-    .line 257
+    .line 292
     invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
 
-    .line 258
+    .line 293
     return-void
 .end method

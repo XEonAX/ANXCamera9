@@ -47,20 +47,20 @@
 .method public constructor <init>(Lcom/android/camera/module/loader/SurfaceStateListener;)V
     .locals 0
 
-    .line 29
+    .line 30
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 30
+    .line 31
     iput-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->mSurfaceStateListener:Lcom/android/camera/module/loader/SurfaceStateListener;
 
-    .line 31
+    .line 32
     return-void
 .end method
 
 .method private openCamera()V
     .locals 4
 
-    .line 53
+    .line 54
     invoke-static {}, Lcom/android/camera/snap/SnapTrigger;->getInstance()Lcom/android/camera/snap/SnapTrigger;
 
     move-result-object v0
@@ -69,31 +69,31 @@
 
     move-result v0
 
-    .line 54
+    .line 55
     if-eqz v0, :cond_0
 
-    .line 55
+    .line 56
     invoke-static {}, Lcom/android/camera/snap/SnapTrigger;->getInstance()Lcom/android/camera/snap/SnapTrigger;
 
     invoke-static {}, Lcom/android/camera/snap/SnapTrigger;->destroy()V
 
-    .line 57
+    .line 58
     :cond_0
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
 
     move-result-object v0
 
-    .line 58
+    .line 59
     invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentCameraId()I
 
     move-result v1
 
-    .line 59
+    .line 60
     invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentMode()I
 
     move-result v0
 
-    .line 60
+    .line 61
     invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
 
     move-result-object v2
@@ -102,29 +102,29 @@
 
     invoke-virtual {v2, v1, v0, p0, v3}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->openCamera(IILio/reactivex/Observer;Z)V
 
-    .line 61
+    .line 62
     return-void
 .end method
 
 .method private submitResult(Lcom/android/camera/module/loader/camera2/Camera2Result;)V
     .locals 1
 
-    .line 64
+    .line 65
     iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->mSingleEmitter:Lio/reactivex/SingleEmitter;
 
     if-eqz v0, :cond_0
 
-    .line 65
+    .line 66
     iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->mSingleEmitter:Lio/reactivex/SingleEmitter;
 
     invoke-interface {v0, p1}, Lio/reactivex/SingleEmitter;->onSuccess(Ljava/lang/Object;)V
 
-    .line 66
+    .line 67
     const/4 p1, 0x0
 
     iput-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->mSingleEmitter:Lio/reactivex/SingleEmitter;
 
-    .line 68
+    .line 69
     :cond_0
     return-void
 .end method
@@ -134,14 +134,14 @@
 .method public onComplete()V
     .locals 0
 
-    .line 96
+    .line 97
     return-void
 .end method
 
 .method public onError(Ljava/lang/Throwable;)V
     .locals 0
 
-    .line 89
+    .line 90
     const/4 p1, 0x3
 
     invoke-static {p1}, Lcom/android/camera/module/loader/camera2/Camera2Result;->create(I)Lcom/android/camera/module/loader/camera2/Camera2Result;
@@ -150,19 +150,19 @@
 
     iput-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->mCamera2Result:Lcom/android/camera/module/loader/camera2/Camera2Result;
 
-    .line 90
+    .line 91
     iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->mCamera2Result:Lcom/android/camera/module/loader/camera2/Camera2Result;
 
     invoke-direct {p0, p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->submitResult(Lcom/android/camera/module/loader/camera2/Camera2Result;)V
 
-    .line 91
+    .line 92
     return-void
 .end method
 
 .method public onGlSurfaceCreated()V
     .locals 3
 
-    .line 42
+    .line 43
     const-string v0, "Camera2OpenOnSubScribe"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -183,7 +183,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 43
+    .line 44
     iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->mSingleEmitter:Lio/reactivex/SingleEmitter;
 
     if-eqz v0, :cond_2
@@ -198,22 +198,22 @@
 
     goto :goto_0
 
-    .line 47
+    .line 48
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->mCamera2Result:Lcom/android/camera/module/loader/camera2/Camera2Result;
 
     if-eqz v0, :cond_1
 
-    .line 48
+    .line 49
     iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->mCamera2Result:Lcom/android/camera/module/loader/camera2/Camera2Result;
 
     invoke-direct {p0, v0}, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->submitResult(Lcom/android/camera/module/loader/camera2/Camera2Result;)V
 
-    .line 50
+    .line 51
     :cond_1
     return-void
 
-    .line 44
+    .line 45
     :cond_2
     :goto_0
     return-void
@@ -222,7 +222,7 @@
 .method public onNext(Lcom/android/camera/module/loader/camera2/Camera2Result;)V
     .locals 3
 
-    .line 80
+    .line 81
     const-string v0, "Camera2OpenOnSubScribe"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -247,30 +247,37 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 81
+    .line 82
     iput-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->mCamera2Result:Lcom/android/camera/module/loader/camera2/Camera2Result;
 
-    .line 82
+    .line 83
+    invoke-static {}, Lcom/android/camera/module/ModuleManager;->isCapture()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
     iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->mSurfaceStateListener:Lcom/android/camera/module/loader/SurfaceStateListener;
 
     invoke-interface {v0}, Lcom/android/camera/module/loader/SurfaceStateListener;->hasSurface()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1
 
-    .line 83
+    .line 84
+    :cond_0
     invoke-direct {p0, p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->submitResult(Lcom/android/camera/module/loader/camera2/Camera2Result;)V
 
-    .line 85
-    :cond_0
+    .line 86
+    :cond_1
     return-void
 .end method
 
 .method public bridge synthetic onNext(Ljava/lang/Object;)V
     .locals 0
 
-    .line 20
+    .line 21
     check-cast p1, Lcom/android/camera/module/loader/camera2/Camera2Result;
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->onNext(Lcom/android/camera/module/loader/camera2/Camera2Result;)V
@@ -281,7 +288,7 @@
 .method public onSubscribe(Lio/reactivex/disposables/Disposable;)V
     .locals 0
 
-    .line 76
+    .line 77
     return-void
 .end method
 
@@ -302,17 +309,17 @@
         }
     .end annotation
 
-    .line 35
+    .line 36
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->mCamera2Result:Lcom/android/camera/module/loader/camera2/Camera2Result;
 
-    .line 36
+    .line 37
     iput-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->mSingleEmitter:Lio/reactivex/SingleEmitter;
 
-    .line 37
+    .line 38
     invoke-direct {p0}, Lcom/android/camera/module/loader/camera2/Camera2OpenOnSubScribe;->openCamera()V
 
-    .line 38
+    .line 39
     return-void
 .end method

@@ -24,7 +24,7 @@
 .method static constructor <clinit>()V
     .locals 6
 
-    .line 263
+    .line 265
     invoke-static {}, Lcom/miui/filtersdk/beauty/BeautyParameterType;->values()[Lcom/miui/filtersdk/beauty/BeautyParameterType;
 
     move-result-object v0
@@ -118,7 +118,7 @@
     :catch_3
     move-exception v4
 
-    .line 204
+    .line 206
     :goto_3
     invoke-static {}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->values()[Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
@@ -566,7 +566,7 @@
     :try_start_19
     sget-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$1;->$SwitchMap$com$android$camera$fragment$beauty$BeautyParameters$Type:[I
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIVE_WHITEN_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIVE_SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     invoke-virtual {v1}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->ordinal()I
 

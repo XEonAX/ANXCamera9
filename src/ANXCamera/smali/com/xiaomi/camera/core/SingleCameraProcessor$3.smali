@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/xiaomi/camera/core/SingleCameraProcessor;)V
     .locals 0
 
-    .line 102
+    .line 99
     iput-object p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor$3;->this$0:Lcom/xiaomi/camera/core/SingleCameraProcessor;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public onFrameImageClosed(Landroid/media/Image;)V
     .locals 3
 
-    .line 105
+    .line 102
     invoke-static {}, Lcom/xiaomi/camera/core/SingleCameraProcessor;->access$000()Ljava/lang/String;
 
     move-result-object v0
@@ -59,12 +59,29 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
+    .line 103
+    iget-object v0, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor$3;->this$0:Lcom/xiaomi/camera/core/SingleCameraProcessor;
+
+    iget-object v0, v0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mTaskSession:Lcom/xiaomi/engine/TaskSession;
+
+    if-eqz v0, :cond_0
+
+    .line 104
+    iget-object v0, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor$3;->this$0:Lcom/xiaomi/camera/core/SingleCameraProcessor;
+
+    iget-object v0, v0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mTaskSession:Lcom/xiaomi/engine/TaskSession;
+
+    const/4 v1, 0x1
+
+    invoke-virtual {v0, v1}, Lcom/xiaomi/engine/TaskSession;->onTaskFinish(I)V
+
     .line 106
+    :cond_0
     iget-object v0, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor$3;->this$0:Lcom/xiaomi/camera/core/SingleCameraProcessor;
 
     iget-object v0, v0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mImageProcessorStatusCallback:Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1
 
     .line 107
     iget-object v0, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor$3;->this$0:Lcom/xiaomi/camera/core/SingleCameraProcessor;
@@ -74,6 +91,6 @@
     invoke-interface {v0, p1}, Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;->onOriginalImageClosed(Landroid/media/Image;)V
 
     .line 109
-    :cond_0
+    :cond_1
     return-void
 .end method

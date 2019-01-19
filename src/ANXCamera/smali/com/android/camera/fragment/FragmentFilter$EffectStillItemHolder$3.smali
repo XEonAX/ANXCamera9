@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder;)V
     .locals 0
 
-    .line 423
+    .line 424
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder$3;->this$1:Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,14 +38,14 @@
 .method public onAnimationCancel(Landroid/view/View;)V
     .locals 0
 
-    .line 436
+    .line 437
     return-void
 .end method
 
 .method public onAnimationEnd(Landroid/view/View;)V
     .locals 1
 
-    .line 430
+    .line 431
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder$3;->this$1:Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder;
 
     invoke-static {p1}, Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder;->access$300(Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder;)Landroid/widget/ImageView;
@@ -56,13 +56,13 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 431
+    .line 432
     return-void
 .end method
 
 .method public onAnimationStart(Landroid/view/View;)V
     .locals 0
 
-    .line 426
+    .line 427
     return-void
 .end method

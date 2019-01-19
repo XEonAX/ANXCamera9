@@ -82,16 +82,9 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/FaceView;->setContentDescription(Ljava/lang/CharSequence;)V
 
-    .line 304
-    iget-object v0, p0, Lcom/android/camera/ui/FaceView$2;->this$0:Lcom/android/camera/ui/FaceView;
-
-    const/4 v1, 0x4
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/ui/FaceView;->sendAccessibilityEvent(I)V
-
     goto :goto_0
 
-    .line 306
+    .line 305
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/FaceView$2;->this$0:Lcom/android/camera/ui/FaceView;
 
@@ -99,7 +92,14 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/FaceView;->setContentDescription(Ljava/lang/CharSequence;)V
 
-    .line 308
+    .line 307
     :goto_0
+    iget-object v0, p0, Lcom/android/camera/ui/FaceView$2;->this$0:Lcom/android/camera/ui/FaceView;
+
+    const/4 v1, 0x4
+
+    invoke-virtual {v0, v1}, Lcom/android/camera/ui/FaceView;->sendAccessibilityEvent(I)V
+
+    .line 308
     return-void
 .end method

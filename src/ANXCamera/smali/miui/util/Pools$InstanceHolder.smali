@@ -29,7 +29,7 @@
 
 
 # instance fields
-.field private final JB:Ljava/lang/Class;
+.field private final JL:Ljava/lang/Class;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/lang/Class<",
@@ -38,7 +38,7 @@
     .end annotation
 .end field
 
-.field private final JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+.field private final JN:Lmiui/util/concurrent/ConcurrentRingQueue;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lmiui/util/concurrent/ConcurrentRingQueue<",
@@ -63,7 +63,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 126
-    iput-object p1, p0, Lmiui/util/Pools$InstanceHolder;->JB:Ljava/lang/Class;
+    iput-object p1, p0, Lmiui/util/Pools$InstanceHolder;->JL:Ljava/lang/Class;
 
     .line 127
     new-instance p1, Lmiui/util/concurrent/ConcurrentRingQueue;
@@ -74,7 +74,7 @@
 
     invoke-direct {p1, p2, v0, v1}, Lmiui/util/concurrent/ConcurrentRingQueue;-><init>(IZZ)V
 
-    iput-object p1, p0, Lmiui/util/Pools$InstanceHolder;->JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+    iput-object p1, p0, Lmiui/util/Pools$InstanceHolder;->JN:Lmiui/util/concurrent/ConcurrentRingQueue;
 
     .line 128
     return-void
@@ -82,7 +82,7 @@
 
 
 # virtual methods
-.method public dD()Ljava/lang/Class;
+.method public dE()Ljava/lang/Class;
     .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -93,7 +93,7 @@
     .end annotation
 
     .line 132
-    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JB:Ljava/lang/Class;
+    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JL:Ljava/lang/Class;
 
     return-object v0
 .end method
@@ -107,7 +107,7 @@
     .end annotation
 
     .line 159
-    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JN:Lmiui/util/concurrent/ConcurrentRingQueue;
 
     invoke-virtual {v0}, Lmiui/util/concurrent/ConcurrentRingQueue;->get()Ljava/lang/Object;
 
@@ -120,7 +120,7 @@
     .registers 2
 
     .line 137
-    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JN:Lmiui/util/concurrent/ConcurrentRingQueue;
 
     invoke-virtual {v0}, Lmiui/util/concurrent/ConcurrentRingQueue;->getCapacity()I
 
@@ -138,7 +138,7 @@
     .end annotation
 
     .line 164
-    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JN:Lmiui/util/concurrent/ConcurrentRingQueue;
 
     invoke-virtual {v0, p1}, Lmiui/util/concurrent/ConcurrentRingQueue;->put(Ljava/lang/Object;)Z
 
@@ -154,7 +154,7 @@
 
     .line 142
     :try_start_1
-    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JN:Lmiui/util/concurrent/ConcurrentRingQueue;
 
     invoke-virtual {v0}, Lmiui/util/concurrent/ConcurrentRingQueue;->getCapacity()I
 
@@ -166,7 +166,7 @@
     if-gtz p1, :cond_20
 
     .line 144
-    invoke-static {}, Lmiui/util/Pools;->dB()Ljava/util/HashMap;
+    invoke-static {}, Lmiui/util/Pools;->dC()Ljava/util/HashMap;
 
     move-result-object p1
 
@@ -176,11 +176,11 @@
 
     .line 145
     :try_start_f
-    invoke-static {}, Lmiui/util/Pools;->dB()Ljava/util/HashMap;
+    invoke-static {}, Lmiui/util/Pools;->dC()Ljava/util/HashMap;
 
     move-result-object v0
 
-    invoke-virtual {p0}, Lmiui/util/Pools$InstanceHolder;->dD()Ljava/lang/Class;
+    invoke-virtual {p0}, Lmiui/util/Pools$InstanceHolder;->dE()Ljava/lang/Class;
 
     move-result-object v1
 
@@ -213,7 +213,7 @@
     if-lez p1, :cond_28
 
     .line 151
-    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JN:Lmiui/util/concurrent/ConcurrentRingQueue;
 
     invoke-virtual {v0, p1}, Lmiui/util/concurrent/ConcurrentRingQueue;->increaseCapacity(I)V
 
@@ -221,7 +221,7 @@
 
     .line 153
     :cond_28
-    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JN:Lmiui/util/concurrent/ConcurrentRingQueue;
 
     neg-int p1, p1
 

@@ -58,7 +58,13 @@ public class FragmentTopConfigExtra extends BaseFragment implements OnClickListe
             i = supportedExtraConfigs.getLength();
         }
         int max = Math.max(1, i);
-        ((MarginLayoutParams) this.mRecyclerView.getLayoutParams()).height = getResources().getDimensionPixelSize(R.dimen.config_item_height) * ((int) Math.ceil((double) (((float) supportedExtraConfigs.getLength()) / ((float) max))));
+        int dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.config_item_height) * ((int) Math.ceil((double) (((float) supportedExtraConfigs.getLength()) / ((float) max))));
+        MarginLayoutParams marginLayoutParams = (MarginLayoutParams) this.mRecyclerView.getLayoutParams();
+        marginLayoutParams.height = dimensionPixelSize;
+        dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.top_config_extra_margin);
+        if (dimensionPixelSize > 0) {
+            marginLayoutParams.setMargins(0, dimensionPixelSize, 0, dimensionPixelSize);
+        }
         if (Util.isLongRatioScreen) {
             adjustViewBackground(this.mCurrentMode);
             this.mBackgroundView.setPadding(0, this.mDisplayRectTopMargin, 0, 0);
@@ -86,8 +92,8 @@ public class FragmentTopConfigExtra extends BaseFragment implements OnClickListe
         }
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
     }
 
     public void onClick(View view) {
@@ -161,7 +167,9 @@ public class FragmentTopConfigExtra extends BaseFragment implements OnClickListe
             }
 
             public void onAnimationEnd(Animation animation) {
-                FragmentUtils.removeFragmentByTag(FragmentTopConfigExtra.this.getFragmentManager(), FragmentTopConfigExtra.this.getFragmentTag());
+                if (FragmentTopConfigExtra.this.canProvide()) {
+                    FragmentUtils.removeFragmentByTag(FragmentTopConfigExtra.this.getFragmentManager(), FragmentTopConfigExtra.this.getFragmentTag());
+                }
             }
 
             public void onAnimationRepeat(Animation animation) {

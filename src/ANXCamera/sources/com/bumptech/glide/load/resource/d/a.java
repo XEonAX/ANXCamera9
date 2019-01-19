@@ -12,7 +12,7 @@ import java.io.OutputStream;
 
 /* compiled from: BitmapBytesTranscoder */
 public class a implements e<Bitmap, byte[]> {
-    private final CompressFormat ma;
+    private final CompressFormat lZ;
     private final int quality;
 
     public a() {
@@ -20,14 +20,14 @@ public class a implements e<Bitmap, byte[]> {
     }
 
     public a(@NonNull CompressFormat compressFormat, int i) {
-        this.ma = compressFormat;
+        this.lZ = compressFormat;
         this.quality = i;
     }
 
     @Nullable
     public p<byte[]> a(@NonNull p<Bitmap> pVar, @NonNull f fVar) {
         OutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ((Bitmap) pVar.get()).compress(this.ma, this.quality, byteArrayOutputStream);
+        ((Bitmap) pVar.get()).compress(this.lZ, this.quality, byteArrayOutputStream);
         pVar.recycle();
         return new b(byteArrayOutputStream.toByteArray());
     }

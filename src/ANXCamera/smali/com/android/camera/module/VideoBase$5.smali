@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/module/VideoBase;)V
     .locals 0
 
-    .line 1582
+    .line 1594
     iput-object p1, p0, Lcom/android/camera/module/VideoBase$5;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public isWorking()Z
     .locals 1
 
-    .line 1590
+    .line 1602
     iget-object v0, p0, Lcom/android/camera/module/VideoBase$5;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {v0}, Lcom/android/camera/module/VideoBase;->isAlive()Z
@@ -67,7 +67,7 @@
 .method public notifyDevicePostureChanged()V
     .locals 1
 
-    .line 1626
+    .line 1638
     iget-object v0, p0, Lcom/android/camera/module/VideoBase$5;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget-object v0, v0, Lcom/android/camera/module/VideoBase;->mActivity:Lcom/android/camera/Camera;
@@ -78,35 +78,35 @@
 
     invoke-virtual {v0}, Lcom/android/camera/ui/V9EdgeShutterView;->onDevicePostureChanged()V
 
-    .line 1627
+    .line 1639
     return-void
 .end method
 
 .method public onDeviceBecomeStable()V
     .locals 2
 
-    .line 1585
+    .line 1597
     sget-object v0, Lcom/android/camera/module/VideoBase;->TAG:Ljava/lang/String;
 
     const-string v1, "onDeviceBecomeStable"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1586
+    .line 1598
     return-void
 .end method
 
 .method public onDeviceBeginMoving()V
     .locals 0
 
-    .line 1612
+    .line 1624
     return-void
 .end method
 
 .method public onDeviceKeepMoving(D)V
     .locals 7
 
-    .line 1595
+    .line 1607
     iget-object v0, p0, Lcom/android/camera/module/VideoBase$5;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget-object v0, v0, Lcom/android/camera/module/VideoBase;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
@@ -125,7 +125,7 @@
 
     if-nez v0, :cond_0
 
-    .line 1597
+    .line 1609
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v1
@@ -144,14 +144,14 @@
 
     iget-object v0, p0, Lcom/android/camera/module/VideoBase$5;->this$0:Lcom/android/camera/module/VideoBase;
 
-    .line 1598
+    .line 1610
     invoke-virtual {v0}, Lcom/android/camera/module/VideoBase;->is3ALocked()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 1600
+    .line 1612
     iget-object v0, p0, Lcom/android/camera/module/VideoBase$5;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget-object v0, v0, Lcom/android/camera/module/VideoBase;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
@@ -168,7 +168,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 1602
+    .line 1614
     iget-object v0, p0, Lcom/android/camera/module/VideoBase$5;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {v0}, Lcom/android/camera/module/VideoBase;->isVideoRecording()Z
@@ -177,14 +177,14 @@
 
     if-nez v0, :cond_0
 
-    .line 1603
+    .line 1615
     iget-object v0, p0, Lcom/android/camera/module/VideoBase$5;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget-object v0, v0, Lcom/android/camera/module/VideoBase;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {v0, p1, p2}, Lcom/android/camera/module/loader/camera2/FocusManager2;->onDeviceKeepMoving(D)V
 
-    .line 1607
+    .line 1619
     :cond_0
     return-void
 .end method
@@ -192,13 +192,27 @@
 .method public onDeviceKeepStable()V
     .locals 0
 
-    .line 1617
+    .line 1629
     return-void
 .end method
 
 .method public onDeviceOrientationChanged(FZ)V
     .locals 0
 
-    .line 1622
+    .line 1634
+    return-void
+.end method
+
+.method public onDeviceRotationChanged([F)V
+    .locals 0
+
+    .line 1644
+    return-void
+.end method
+
+.method public onSensorChanged(Landroid/hardware/SensorEvent;)V
+    .locals 0
+
+    .line 1649
     return-void
 .end method

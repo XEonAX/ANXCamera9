@@ -3,21 +3,21 @@ package miui.view.animation;
 import android.view.animation.Interpolator;
 
 public class ElasticEaseInInterpolator implements Interpolator {
-    private final float NT;
-    private final float NV;
+    private final float Oe;
+    private final float Of;
 
     public ElasticEaseInInterpolator() {
         this(0.0f, 0.0f);
     }
 
     public ElasticEaseInInterpolator(float f, float f2) {
-        this.NT = f;
-        this.NV = f2;
+        this.Oe = f;
+        this.Of = f2;
     }
 
     public float getInterpolation(float f) {
-        float f2 = this.NV;
-        float f3 = this.NT;
+        float f2 = this.Of;
+        float f3 = this.Oe;
         if (f == 0.0f) {
             return 0.0f;
         }

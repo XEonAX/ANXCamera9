@@ -65,7 +65,7 @@
     invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
     .line 19
-    invoke-static {}, Lcom/mi/config/b;->fS()Z
+    invoke-static {}, Lcom/mi/config/b;->gd()Z
 
     move-result v0
 
@@ -84,7 +84,7 @@
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/mi/config/a;->fe()Z
+    invoke-virtual {v0}, Lcom/mi/config/a;->ff()Z
 
     move-result v0
 
@@ -1268,7 +1268,7 @@
 
     move-result v0
 
-    const v1, 0x7f0b0048
+    const v1, 0x7f090047
 
     const/4 v2, 0x0
 
@@ -1307,7 +1307,7 @@
 
     .line 32
     :cond_0
-    invoke-static {}, Lcom/mi/config/b;->fS()Z
+    invoke-static {}, Lcom/mi/config/b;->gd()Z
 
     move-result v0
 
@@ -1315,7 +1315,7 @@
 
     const/4 v5, 0x2
 
-    const v6, 0x7f0b0049
+    const v6, 0x7f090048
 
     if-eqz v0, :cond_1
 
@@ -1336,7 +1336,7 @@
 
     aput-object v1, v0, v3
 
-    const v1, 0x7f0b004a
+    const v1, 0x7f090049
 
     .line 36
     invoke-static {v1}, Lcom/android/camera/CameraSettings;->getString(I)Ljava/lang/String;
@@ -1354,7 +1354,7 @@
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/mi/config/a;->fe()Z
+    invoke-virtual {v0}, Lcom/mi/config/a;->ff()Z
 
     move-result v0
 
@@ -1377,7 +1377,7 @@
 
     aput-object v1, v0, v3
 
-    const v1, 0x7f0b004b
+    const v1, 0x7f09004a
 
     .line 42
     invoke-static {v1}, Lcom/android/camera/CameraSettings;->getString(I)Ljava/lang/String;
@@ -1492,11 +1492,11 @@
     .end annotation
 
     .line 279
-    sget-boolean v0, Lcom/mi/config/b;->qk:Z
+    sget-boolean v0, Lcom/mi/config/b;->qj:Z
 
     if-nez v0, :cond_4
 
-    sget-boolean v0, Lcom/mi/config/b;->qr:Z
+    sget-boolean v0, Lcom/mi/config/b;->qq:Z
 
     if-eqz v0, :cond_0
 

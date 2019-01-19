@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)V
     .locals 0
 
-    .line 125
+    .line 126
     iput-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public onTouch(Landroid/view/View;Landroid/view/MotionEvent;)Z
     .locals 4
 
-    .line 128
+    .line 129
     invoke-virtual {p2}, Landroid/view/MotionEvent;->getAction()I
 
     move-result p1
@@ -49,10 +49,10 @@
 
     packed-switch p1, :pswitch_data_0
 
-    .line 165
+    .line 166
     return v1
 
-    .line 130
+    .line 131
     :pswitch_0
     invoke-virtual {p2}, Landroid/view/MotionEvent;->getX()F
 
@@ -60,14 +60,14 @@
 
     float-to-int p1, p1
 
-    .line 131
+    .line 132
     invoke-virtual {p2}, Landroid/view/MotionEvent;->getY()F
 
     move-result v2
 
     float-to-int v2, v2
 
-    .line 132
+    .line 133
     iget-object v3, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     invoke-static {v3}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$300(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)Lcom/android/camera/ui/SeekBarCompat;
@@ -82,17 +82,17 @@
 
     move-result-object v3
 
-    .line 133
+    .line 134
     invoke-virtual {v3, p1, v2}, Landroid/graphics/Rect;->contains(II)Z
 
     move-result p1
 
     if-nez p1, :cond_0
 
-    .line 134
+    .line 135
     return v0
 
-    .line 139
+    .line 140
     :cond_0
     :pswitch_1
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
@@ -105,7 +105,7 @@
 
     move-result p1
 
-    .line 140
+    .line 141
     iget-object v2, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     invoke-static {v2}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$400(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)Z
@@ -129,7 +129,7 @@
 
     move-result v2
 
-    .line 141
+    .line 142
     :goto_0
     int-to-float p1, p1
 
@@ -145,7 +145,7 @@
 
     float-to-int p1, v2
 
-    .line 142
+    .line 143
     iget-object v2, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     invoke-static {v2}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$300(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)Lcom/android/camera/ui/SeekBarCompat;
@@ -158,14 +158,14 @@
 
     if-eqz v2, :cond_5
 
-    .line 144
+    .line 145
     invoke-virtual {p2}, Landroid/view/MotionEvent;->getAction()I
 
     move-result p2
 
     if-ne p2, v0, :cond_4
 
-    .line 145
+    .line 146
     iget-object p2, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     const/16 v2, -0xf
@@ -180,7 +180,7 @@
 
     const/16 v2, 0xf
 
-    .line 146
+    .line 147
     invoke-static {p2, v2}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$500(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;I)I
 
     move-result p2
@@ -189,14 +189,14 @@
 
     iget-object p2, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
-    .line 147
+    .line 148
     invoke-static {p2, v1}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$500(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;I)I
 
     move-result p2
 
     if-eq p1, p2, :cond_2
 
-    .line 148
+    .line 149
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     invoke-static {p1, v1}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$500(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;I)I
@@ -205,7 +205,7 @@
 
     goto :goto_1
 
-    .line 149
+    .line 150
     :cond_2
     iget-object p2, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
@@ -219,7 +219,7 @@
 
     iget-object p2, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
-    .line 150
+    .line 151
     const/16 v2, -0x64
 
     invoke-static {p2, v2}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$500(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;I)I
@@ -228,7 +228,7 @@
 
     if-eq p1, p2, :cond_3
 
-    .line 151
+    .line 152
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     invoke-static {p1, v2}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$500(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;I)I
@@ -237,7 +237,7 @@
 
     goto :goto_1
 
-    .line 152
+    .line 153
     :cond_3
     iget-object p2, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
@@ -251,7 +251,7 @@
 
     iget-object p2, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
-    .line 153
+    .line 154
     const/16 v2, 0x64
 
     invoke-static {p2, v2}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$500(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;I)I
@@ -260,14 +260,14 @@
 
     if-eq p1, p2, :cond_4
 
-    .line 154
+    .line 155
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     invoke-static {p1, v2}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$500(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;I)I
 
     move-result p1
 
-    .line 157
+    .line 158
     :cond_4
     :goto_1
     invoke-static {}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$100()I
@@ -288,7 +288,7 @@
 
     goto :goto_2
 
-    .line 159
+    .line 160
     :cond_5
     invoke-static {}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$100()I
 
@@ -298,7 +298,7 @@
 
     move-result p1
 
-    .line 161
+    .line 162
     :goto_2
     iget-object p2, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
@@ -308,7 +308,7 @@
 
     invoke-virtual {p2, p1}, Lcom/android/camera/ui/SeekBarCompat;->setProgress(I)V
 
-    .line 162
+    .line 163
     return v0
 
     nop

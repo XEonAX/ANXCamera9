@@ -9,6 +9,8 @@ import android.util.Log;
 import bytedance.framwork.core.sdkmonitor.SDKMonitor;
 import bytedance.framwork.core.sdkmonitor.SDKMonitor.IGetCommonParams;
 import bytedance.framwork.core.sdkmonitor.SDKMonitorUtils;
+import com.ss.android.vesdk.keyvaluepair.VEKeyValue;
+import com.ss.android.vesdk.runtime.VERuntime;
 import com.ss.android.vesdk.runtime.cloudconfig.DeviceInfoDetector;
 import java.util.Map.Entry;
 import org.json.JSONException;
@@ -162,15 +164,31 @@ public class MonitorUtils {
         }
     }
 
+    public static void monitorStatistics(String str, int i, VEKeyValue vEKeyValue) {
+        if (sEnable) {
+            JSONObject jSONObject;
+            if (vEKeyValue == null) {
+                jSONObject = null;
+            } else {
+                jSONObject = vEKeyValue.parseJsonObj();
+            }
+            if (!VERuntime.getInstance().notifyExternalMonitor(str, i, jSONObject == null ? null : jSONObject.toString())) {
+                SDKMonitorUtils.getInstance(MONITOR_AID).monitorStatusAndDuration(str, i, jSONObject, null);
+            }
+            return;
+        }
+        Log.w(TAG, "monitorStatistics: Monitor not enabled just return.");
+    }
+
     private static JSONObject generateHeaderInfo(@NonNull Context context, @NonNull String str, @NonNull String str2, String str3) {
         JSONObject jSONObject = new JSONObject();
         try {
             jSONObject.put("device_id", str);
-            jSONObject.put("app_version", "medialib_oem:2.9.0.14_20181125235018_2fdc4b2b5");
+            jSONObject.put("app_version", "medialib_oem:2.9.0.14_20190108192605_xiaomi_54edffc9e_v8a");
             jSONObject.put("channel", "release");
-            jSONObject.put(KEY_PACKAGE_NAME, context.getPackageName());
+            jSONObject.put("package_name", context.getPackageName());
             jSONObject.put(KEY_USER_ID, str2);
-            jSONObject.put(KEY_VERSION_CODE, str3);
+            jSONObject.put("version_code", str3);
         } catch (JSONException e) {
             e.printStackTrace();
         }

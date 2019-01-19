@@ -25,7 +25,7 @@
 .method private constructor <init>(Lcom/android/camera/fragment/sticker/download/DownloadView;)V
     .locals 0
 
-    .line 179
+    .line 195
     iput-object p1, p0, Lcom/android/camera/fragment/sticker/download/DownloadView$MyAnimalListener;->this$0:Lcom/android/camera/fragment/sticker/download/DownloadView;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -36,7 +36,7 @@
 .method synthetic constructor <init>(Lcom/android/camera/fragment/sticker/download/DownloadView;Lcom/android/camera/fragment/sticker/download/DownloadView$1;)V
     .locals 0
 
-    .line 179
+    .line 195
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/sticker/download/DownloadView$MyAnimalListener;-><init>(Lcom/android/camera/fragment/sticker/download/DownloadView;)V
 
     return-void
@@ -47,20 +47,20 @@
 .method public onAnimationCancel(Landroid/animation/Animator;)V
     .locals 0
 
-    .line 186
+    .line 202
     return-void
 .end method
 
 .method public onAnimationRepeat(Landroid/animation/Animator;)V
     .locals 0
 
-    .line 190
+    .line 206
     return-void
 .end method
 
 .method public onAnimationStart(Landroid/animation/Animator;)V
     .locals 0
 
-    .line 182
+    .line 198
     return-void
 .end method

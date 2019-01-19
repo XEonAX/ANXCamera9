@@ -47,59 +47,66 @@
 .end method
 
 .method private processCaptureResult(Lcom/xiaomi/protocol/ICustomCaptureResult;Landroid/media/Image;)V
-    .locals 8
+    .locals 9
 
-    .line 98
-    new-instance v7, Lcom/xiaomi/engine/FrameData;
+    .line 94
+    sget-object v0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->TAG:Ljava/lang/String;
 
-    .line 99
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "processCaptureResult: processFrame image -- "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 95
+    new-instance v0, Lcom/xiaomi/engine/FrameData;
+
+    .line 96
     invoke-virtual {p1}, Lcom/xiaomi/protocol/ICustomCaptureResult;->getSequenceId()I
 
-    move-result v2
+    move-result v4
 
-    .line 100
+    .line 97
     invoke-virtual {p1}, Lcom/xiaomi/protocol/ICustomCaptureResult;->getFrameNumber()J
 
-    move-result-wide v3
+    move-result-wide v5
 
-    .line 101
+    .line 98
     invoke-virtual {p1}, Lcom/xiaomi/protocol/ICustomCaptureResult;->getResults()Landroid/os/Parcelable;
 
-    move-result-object v5
+    move-result-object v7
 
-    const/4 v1, 0x0
+    const/4 v3, 0x0
 
-    move-object v0, v7
+    move-object v2, v0
 
-    move-object v6, p2
+    move-object v8, p2
 
-    invoke-direct/range {v0 .. v6}, Lcom/xiaomi/engine/FrameData;-><init>(IIJLandroid/os/Parcelable;Landroid/media/Image;)V
+    invoke-direct/range {v2 .. v8}, Lcom/xiaomi/engine/FrameData;-><init>(IIJLandroid/os/Parcelable;Landroid/media/Image;)V
 
-    .line 102
+    .line 99
     new-instance p1, Lcom/xiaomi/camera/core/SingleCameraProcessor$3;
 
     invoke-direct {p1, p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor$3;-><init>(Lcom/xiaomi/camera/core/SingleCameraProcessor;)V
 
-    invoke-virtual {v7, p1}, Lcom/xiaomi/engine/FrameData;->setFrameCallback(Lcom/xiaomi/engine/FrameData$FrameStatusCallback;)V
+    invoke-virtual {v0, p1}, Lcom/xiaomi/engine/FrameData;->setFrameCallback(Lcom/xiaomi/engine/FrameData$FrameStatusCallback;)V
 
     .line 112
-    sget-object p1, Lcom/xiaomi/camera/core/SingleCameraProcessor;->TAG:Ljava/lang/String;
+    iget-object p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mTaskSession:Lcom/xiaomi/engine/TaskSession;
 
-    new-instance v0, Ljava/lang/StringBuilder;
+    const/4 p2, 0x1
 
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v1, "processCaptureResult: processFrame image -- "
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object p2
-
-    invoke-static {p1, p2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-virtual {p1, p2}, Lcom/xiaomi/engine/TaskSession;->onTaskStart(I)V
 
     .line 113
     iget-object p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mTaskSession:Lcom/xiaomi/engine/TaskSession;
@@ -108,7 +115,7 @@
 
     invoke-direct {p2, p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor$4;-><init>(Lcom/xiaomi/camera/core/SingleCameraProcessor;)V
 
-    invoke-virtual {p1, v7, p2}, Lcom/xiaomi/engine/TaskSession;->processFrame(Lcom/xiaomi/engine/FrameData;Lcom/xiaomi/engine/TaskSession$FrameCallback;)V
+    invoke-virtual {p1, v0, p2}, Lcom/xiaomi/engine/TaskSession;->processFrame(Lcom/xiaomi/engine/FrameData;Lcom/xiaomi/engine/TaskSession$FrameCallback;)V
 
     .line 120
     return-void
@@ -267,7 +274,7 @@
 .end method
 
 .method processImage(Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;)V
-    .locals 4
+    .locals 1
 
     .line 88
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;->getResult()Lcom/xiaomi/protocol/ICustomCaptureResult;
@@ -277,29 +284,12 @@
     .line 89
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;->getMainImage()Landroid/media/Image;
 
-    move-result-object v1
+    move-result-object p1
 
     .line 90
-    invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;->isFirstResult()Z
+    invoke-direct {p0, v0, p1}, Lcom/xiaomi/camera/core/SingleCameraProcessor;->processCaptureResult(Lcom/xiaomi/protocol/ICustomCaptureResult;Landroid/media/Image;)V
 
-    move-result p1
-
-    if-eqz p1, :cond_0
-
-    .line 92
-    iget-object p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mImageProcessorStatusCallback:Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;
-
-    invoke-virtual {v0}, Lcom/xiaomi/protocol/ICustomCaptureResult;->getTimeStamp()J
-
-    move-result-wide v2
-
-    invoke-interface {p1, v2, v3}, Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;->onImageProcessStart(J)V
-
-    .line 94
-    :cond_0
-    invoke-direct {p0, v0, v1}, Lcom/xiaomi/camera/core/SingleCameraProcessor;->processCaptureResult(Lcom/xiaomi/protocol/ICustomCaptureResult;Landroid/media/Image;)V
-
-    .line 95
+    .line 91
     return-void
 .end method
 

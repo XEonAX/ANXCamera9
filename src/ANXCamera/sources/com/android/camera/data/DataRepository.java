@@ -6,6 +6,7 @@ import com.android.camera.data.backup.DataBackUpMgr;
 import com.android.camera.data.cloud.DataCloud.CloudManager;
 import com.android.camera.data.cloud.DataCloudMgr;
 import com.android.camera.data.data.config.DataItemConfig;
+import com.android.camera.data.data.extra.DataItemLive;
 import com.android.camera.data.data.global.DataItemGlobal;
 import com.android.camera.data.data.runing.DataItemRunning;
 import com.android.camera.data.provider.DataProvider;
@@ -72,5 +73,9 @@ public class DataRepository implements DataProtocol {
 
     public static a dataItemFeature() {
         return (a) provider().dataFeature();
+    }
+
+    public static DataItemLive dataItemLive() {
+        return (DataItemLive) provider().dataLive();
     }
 }

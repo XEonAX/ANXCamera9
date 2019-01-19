@@ -24,7 +24,7 @@
 .method private constructor <init>(Lcom/android/camera/ui/V6GestureRecognizer;)V
     .locals 0
 
-    .line 404
+    .line 406
     iput-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyScaleListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-direct {p0}, Landroid/view/ScaleGestureDetector$SimpleOnScaleGestureListener;-><init>()V
@@ -35,7 +35,7 @@
 .method synthetic constructor <init>(Lcom/android/camera/ui/V6GestureRecognizer;Lcom/android/camera/ui/V6GestureRecognizer$1;)V
     .locals 0
 
-    .line 404
+    .line 406
     invoke-direct {p0, p1}, Lcom/android/camera/ui/V6GestureRecognizer$MyScaleListener;-><init>(Lcom/android/camera/ui/V6GestureRecognizer;)V
 
     return-void
@@ -46,7 +46,7 @@
 .method public onScale(Landroid/view/ScaleGestureDetector;)Z
     .locals 3
 
-    .line 420
+    .line 422
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyScaleListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {v0}, Lcom/android/camera/ui/V6GestureRecognizer;->access$1300(Lcom/android/camera/ui/V6GestureRecognizer;)Z
@@ -57,10 +57,10 @@
 
     if-nez v0, :cond_0
 
-    .line 421
+    .line 423
     return v1
 
-    .line 423
+    .line 425
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyScaleListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
@@ -82,18 +82,18 @@
 
     goto :goto_0
 
-    .line 432
+    .line 434
     :cond_1
     return v1
 
-    .line 424
+    .line 426
     :cond_2
     :goto_0
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyScaleListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-virtual {v0, v2}, Lcom/android/camera/ui/V6GestureRecognizer;->setGesture(I)V
 
-    .line 425
+    .line 427
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyScaleListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {v0}, Lcom/android/camera/ui/V6GestureRecognizer;->access$700(Lcom/android/camera/ui/V6GestureRecognizer;)Lcom/android/camera/module/Module;
@@ -104,7 +104,7 @@
 
     move-result v1
 
-    .line 426
+    .line 428
     invoke-virtual {p1}, Landroid/view/ScaleGestureDetector;->getFocusY()F
 
     move-result v2
@@ -113,20 +113,20 @@
 
     move-result p1
 
-    .line 425
+    .line 427
     invoke-interface {v0, v1, v2, p1}, Lcom/android/camera/module/Module;->onScale(FFF)Z
 
     move-result p1
 
-    .line 427
+    .line 429
     iget-boolean v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyScaleListener;->mZoomScaled:Z
 
     if-nez v0, :cond_3
 
-    .line 428
+    .line 430
     iput-boolean p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyScaleListener;->mZoomScaled:Z
 
-    .line 430
+    .line 432
     :cond_3
     return p1
 .end method
@@ -134,7 +134,7 @@
 .method public onScaleBegin(Landroid/view/ScaleGestureDetector;)Z
     .locals 2
 
-    .line 411
+    .line 413
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyScaleListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {v0}, Lcom/android/camera/ui/V6GestureRecognizer;->access$1300(Lcom/android/camera/ui/V6GestureRecognizer;)Z
@@ -159,11 +159,11 @@
 
     goto :goto_0
 
-    .line 414
+    .line 416
     :cond_0
     iput-boolean v1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyScaleListener;->mZoomScaled:Z
 
-    .line 415
+    .line 417
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyScaleListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {v0}, Lcom/android/camera/ui/V6GestureRecognizer;->access$700(Lcom/android/camera/ui/V6GestureRecognizer;)Lcom/android/camera/module/Module;
@@ -184,7 +184,7 @@
 
     return p1
 
-    .line 412
+    .line 414
     :cond_1
     :goto_0
     return v1
@@ -193,22 +193,22 @@
 .method public onScaleEnd(Landroid/view/ScaleGestureDetector;)V
     .locals 0
 
-    .line 437
+    .line 439
     iget-boolean p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyScaleListener;->mZoomScaled:Z
 
     if-eqz p1, :cond_0
 
-    .line 438
+    .line 440
     const-string p1, "\u624b\u52bf"
 
     invoke-static {p1}, Lcom/android/camera/statistic/CameraStatUtil;->trackZoomAdjusted(Ljava/lang/String;)V
 
-    .line 439
+    .line 441
     const/4 p1, 0x0
 
     iput-boolean p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyScaleListener;->mZoomScaled:Z
 
-    .line 442
+    .line 444
     :cond_0
     iget-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyScaleListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
@@ -218,7 +218,7 @@
 
     if-eqz p1, :cond_1
 
-    .line 443
+    .line 445
     iget-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyScaleListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {p1}, Lcom/android/camera/ui/V6GestureRecognizer;->access$700(Lcom/android/camera/ui/V6GestureRecognizer;)Lcom/android/camera/module/Module;
@@ -227,7 +227,7 @@
 
     invoke-interface {p1}, Lcom/android/camera/module/Module;->onScaleEnd()V
 
-    .line 445
+    .line 447
     :cond_1
     return-void
 .end method

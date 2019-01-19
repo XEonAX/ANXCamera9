@@ -19,12 +19,12 @@ public class SupportRequestManagerFragment extends Fragment {
     @Nullable
     private i X;
     @Nullable
-    private SupportRequestManagerFragment mG;
+    private SupportRequestManagerFragment mF;
     @Nullable
-    private Fragment mH;
-    private final a mo;
-    private final m mp;
-    private final Set<SupportRequestManagerFragment> mq;
+    private Fragment mG;
+    private final a mn;
+    private final m mo;
+    private final Set<SupportRequestManagerFragment> mp;
 
     private class a implements m {
         a() {
@@ -59,9 +59,9 @@ public class SupportRequestManagerFragment extends Fragment {
     @VisibleForTesting
     @SuppressLint({"ValidFragment"})
     public SupportRequestManagerFragment(@NonNull a aVar) {
-        this.mp = new a();
-        this.mq = new HashSet();
-        this.mo = aVar;
+        this.mo = new a();
+        this.mp = new HashSet();
+        this.mn = aVar;
     }
 
     public void c(@Nullable i iVar) {
@@ -70,7 +70,7 @@ public class SupportRequestManagerFragment extends Fragment {
 
     @NonNull
     a cR() {
-        return this.mo;
+        return this.mn;
     }
 
     @Nullable
@@ -80,27 +80,27 @@ public class SupportRequestManagerFragment extends Fragment {
 
     @NonNull
     public m cT() {
-        return this.mp;
+        return this.mo;
     }
 
     private void a(SupportRequestManagerFragment supportRequestManagerFragment) {
-        this.mq.add(supportRequestManagerFragment);
+        this.mp.add(supportRequestManagerFragment);
     }
 
     private void b(SupportRequestManagerFragment supportRequestManagerFragment) {
-        this.mq.remove(supportRequestManagerFragment);
+        this.mp.remove(supportRequestManagerFragment);
     }
 
     @NonNull
     Set<SupportRequestManagerFragment> cU() {
-        if (this.mG == null) {
+        if (this.mF == null) {
             return Collections.emptySet();
         }
-        if (equals(this.mG)) {
-            return Collections.unmodifiableSet(this.mq);
+        if (equals(this.mF)) {
+            return Collections.unmodifiableSet(this.mp);
         }
         Set hashSet = new HashSet();
-        for (SupportRequestManagerFragment supportRequestManagerFragment : this.mG.cU()) {
+        for (SupportRequestManagerFragment supportRequestManagerFragment : this.mF.cU()) {
             if (d(supportRequestManagerFragment.cZ())) {
                 hashSet.add(supportRequestManagerFragment);
             }
@@ -109,7 +109,7 @@ public class SupportRequestManagerFragment extends Fragment {
     }
 
     void c(@Nullable Fragment fragment) {
-        this.mH = fragment;
+        this.mG = fragment;
         if (fragment != null && fragment.getActivity() != null) {
             d(fragment.getActivity());
         }
@@ -118,7 +118,7 @@ public class SupportRequestManagerFragment extends Fragment {
     @Nullable
     private Fragment cZ() {
         Fragment parentFragment = getParentFragment();
-        return parentFragment != null ? parentFragment : this.mH;
+        return parentFragment != null ? parentFragment : this.mG;
     }
 
     private boolean d(@NonNull Fragment fragment) {
@@ -137,16 +137,16 @@ public class SupportRequestManagerFragment extends Fragment {
 
     private void d(@NonNull FragmentActivity fragmentActivity) {
         cW();
-        this.mG = c.b((Context) fragmentActivity).k().c(fragmentActivity);
-        if (!equals(this.mG)) {
-            this.mG.a(this);
+        this.mF = c.b((Context) fragmentActivity).k().c(fragmentActivity);
+        if (!equals(this.mF)) {
+            this.mF.a(this);
         }
     }
 
     private void cW() {
-        if (this.mG != null) {
-            this.mG.b(this);
-            this.mG = null;
+        if (this.mF != null) {
+            this.mF.b(this);
+            this.mF = null;
         }
     }
 
@@ -163,23 +163,23 @@ public class SupportRequestManagerFragment extends Fragment {
 
     public void onDetach() {
         super.onDetach();
-        this.mH = null;
+        this.mG = null;
         cW();
     }
 
     public void onStart() {
         super.onStart();
-        this.mo.onStart();
+        this.mn.onStart();
     }
 
     public void onStop() {
         super.onStop();
-        this.mo.onStop();
+        this.mn.onStop();
     }
 
     public void onDestroy() {
         super.onDestroy();
-        this.mo.onDestroy();
+        this.mn.onDestroy();
         cW();
     }
 

@@ -7,28 +7,28 @@ import com.bumptech.glide.load.DataSource;
 
 /* compiled from: BitmapContainerTransitionFactory */
 public abstract class a<R> implements g<R> {
-    private final g<Drawable> oP;
+    private final g<Drawable> oO;
 
     /* compiled from: BitmapContainerTransitionFactory */
     private final class a implements f<R> {
-        private final f<Drawable> oQ;
+        private final f<Drawable> oP;
 
         a(f<Drawable> fVar) {
-            this.oQ = fVar;
+            this.oP = fVar;
         }
 
         public boolean a(R r, com.bumptech.glide.request.a.f.a aVar) {
-            return this.oQ.a(new BitmapDrawable(aVar.getView().getResources(), a.this.w(r)), aVar);
+            return this.oP.a(new BitmapDrawable(aVar.getView().getResources(), a.this.w(r)), aVar);
         }
     }
 
     protected abstract Bitmap w(R r);
 
     public a(g<Drawable> gVar) {
-        this.oP = gVar;
+        this.oO = gVar;
     }
 
     public f<R> a(DataSource dataSource, boolean z) {
-        return new a(this.oP.a(dataSource, z));
+        return new a(this.oO.a(dataSource, z));
     }
 }

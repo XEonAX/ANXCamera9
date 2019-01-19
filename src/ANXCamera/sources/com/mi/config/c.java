@@ -49,4 +49,14 @@ interface c {
     public static final String rx = "s_v_f_m";
     public static final String ry = "s_f_z_i";
     public static final String rz = "s_s_n";
+    public static final String sb = "c_0x0d";
+    public static final String sc = "c_0x0e";
+    public static final String se = "c_0x0f";
+    public static final String sf = "c_0x10";
+    public static final String sg = "c_0x11";
+    public static final String sh = "c_0x12";
+    public static final String si = "c_0x13";
+    public static final String sj = "c_0x14";
+    public static final String sk = "c_0x15";
+    public static final String sl = "c_0x16";
 }

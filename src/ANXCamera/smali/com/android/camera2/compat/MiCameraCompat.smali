@@ -12,7 +12,7 @@
     .locals 1
 
     .line 23
-    invoke-static {}, Lcom/mi/config/b;->fZ()Z
+    invoke-static {}, Lcom/mi/config/b;->gk()Z
 
     move-result v0
 
@@ -29,7 +29,7 @@
 
     .line 25
     :cond_0
-    invoke-static {}, Lcom/mi/config/b;->gd()Z
+    invoke-static {}, Lcom/mi/config/b;->isMTKPlatform()Z
 
     move-result v0
 

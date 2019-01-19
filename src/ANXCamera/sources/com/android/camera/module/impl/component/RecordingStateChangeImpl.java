@@ -66,9 +66,14 @@ public class RecordingStateChangeImpl implements RecordState {
             }
         }
         ((PanoramaProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(176)).setShootUI();
-        DualController dualController = (DualController) ModeCoordinatorImpl.getInstance().getAttachProtocol(182);
-        if (dualController != null) {
-            dualController.hideZoomButton();
+        if (DataRepository.dataItemFeature().fI()) {
+            DualController dualController = (DualController) ModeCoordinatorImpl.getInstance().getAttachProtocol(182);
+            if (dualController != null) {
+                dualController.hideZoomButton();
+                if (topAlert != null) {
+                    topAlert.alertUpdateValue(2);
+                }
+            }
         }
         BottomPopupTips bottomPopupTips = (BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175);
         bottomPopupTips.hideTipImage();
@@ -78,10 +83,16 @@ public class RecordingStateChangeImpl implements RecordState {
     }
 
     public void onStart() {
+        Log.d(TAG, "onStart");
         ((ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162)).processingStart();
+        TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
+        if (getCurrentModuleIndex() == 174) {
+            topAlert.alertMusicClose(false);
+        }
     }
 
     public void onPause() {
+        Log.d(TAG, "onPause");
         TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
         ((ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162)).processingPause();
         if (getCurrentModuleIndex() != 174) {
@@ -89,12 +100,12 @@ public class RecordingStateChangeImpl implements RecordState {
             return;
         }
         ((BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175)).reInitTipImage();
-        topAlert.setConfigItemVisible(225, 4, false);
+        topAlert.disableMenuItem(225, 245);
         topAlert.showConfigMenu();
-        topAlert.setConfigItemVisible(245, 8, false);
     }
 
     public void onResume() {
+        Log.d(TAG, "onResume");
         TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
         ((ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162)).processingResume();
         if (getCurrentModuleIndex() != 174) {
@@ -114,6 +125,7 @@ public class RecordingStateChangeImpl implements RecordState {
     }
 
     public void onFinish() {
+        Log.d(TAG, "onFinish");
         TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
         topAlert.showConfigMenu();
         ((BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175)).reInitTipImage();
@@ -122,11 +134,12 @@ public class RecordingStateChangeImpl implements RecordState {
             topAlert.setRecordingTimeState(2);
             return;
         }
-        topAlert.setConfigItemVisible(225, 0, false);
-        topAlert.setConfigItemVisible(245, 0, false);
+        topAlert.enableMenuItem(225, 245);
+        topAlert.alertMusicClose(true);
     }
 
     public void onPostSavingStart() {
+        Log.d(TAG, "onPostSaving");
         ActionProcessing actionProcessing = (ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162);
         TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
         topAlert.showConfigMenu();
@@ -136,9 +149,14 @@ public class RecordingStateChangeImpl implements RecordState {
         if (currentModuleIndex == 166) {
             actionProcessing.processingFinish();
             actionProcessing.updateLoading(false);
-            dualController = (DualController) ModeCoordinatorImpl.getInstance().getAttachProtocol(182);
-            if (dualController != null) {
-                dualController.showZoomButton();
+            if (DataRepository.dataItemFeature().fI()) {
+                dualController = (DualController) ModeCoordinatorImpl.getInstance().getAttachProtocol(182);
+                if (dualController != null) {
+                    dualController.showZoomButton();
+                    if (topAlert != null) {
+                        topAlert.clearAlertStatus();
+                    }
+                }
             }
             ((PanoramaProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(176)).resetShootUI();
         } else if (currentModuleIndex != 173) {
@@ -149,6 +167,9 @@ public class RecordingStateChangeImpl implements RecordState {
             dualController = (DualController) ModeCoordinatorImpl.getInstance().getAttachProtocol(182);
             if (dualController != null) {
                 dualController.showZoomButton();
+                if (topAlert != null) {
+                    topAlert.clearAlertStatus();
+                }
             }
             BottomPopupTips bottomPopupTips = (BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175);
             if (bottomPopupTips != null) {
@@ -158,6 +179,7 @@ public class RecordingStateChangeImpl implements RecordState {
     }
 
     public void onPostSavingFinish() {
+        Log.d(TAG, "onPostSavingFinish");
         if (getCurrentModuleIndex() != 166) {
             ((ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162)).processingFinish();
             return;
@@ -171,25 +193,29 @@ public class RecordingStateChangeImpl implements RecordState {
     }
 
     public void onFailed() {
+        Log.d(TAG, "onFailed");
         onFinish();
         ((ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162)).processingFailed();
     }
 
     public void onPostPreview() {
+        Log.d(TAG, "onPostPreview");
         ((BackStack) ModeCoordinatorImpl.getInstance().getAttachProtocol(171)).handleBackStackFromShutter();
+        ((TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172)).hideConfigMenu();
         ((ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162)).processingWorkspace(false);
     }
 
     public void onPostPreviewBack() {
+        Log.d(TAG, "onPostPreviewBack");
         ((ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162)).processingWorkspace(true);
         ((BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175)).reInitTipImage();
         TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
-        topAlert.setConfigItemVisible(225, 0, false);
+        topAlert.enableMenuItem(225, 245);
         topAlert.showConfigMenu();
     }
 
     private boolean isFPS960() {
-        if (getCurrentModuleIndex() == 172 && DataRepository.dataItemFeature().fr()) {
+        if (getCurrentModuleIndex() == 172 && DataRepository.dataItemFeature().fs()) {
             return DataRepository.dataItemConfig().getComponentConfigSlowMotion().isSlowMotionFps960();
         }
         return false;

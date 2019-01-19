@@ -236,7 +236,7 @@
     .line 75
     iget-object v0, p0, Lcom/android/camera/fragment/beauty/LiveBeautyFilterFragment;->mView:Landroid/view/View;
 
-    const v1, 0x7f0d0056
+    const v1, 0x7f0d0055
 
     invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -374,7 +374,7 @@
 
     move-result-object v0
 
-    const v1, 0x7f090025
+    const v1, 0x7f0a0025
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -636,7 +636,7 @@
 
     move-result-object v0
 
-    const v1, 0x7f090129
+    const v1, 0x7f0a0132
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimension(I)F
 
@@ -647,7 +647,7 @@
 
     move-result-object v1
 
-    const v2, 0x7f09012a
+    const v2, 0x7f0a0133
 
     invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimension(I)F
 
@@ -939,7 +939,7 @@
 
     move-result-object p1
 
-    const p2, 0x7f040039
+    const p2, 0x7f04003b
 
     const/4 p3, 0x0
 

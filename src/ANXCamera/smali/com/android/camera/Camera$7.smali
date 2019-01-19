@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/Camera;)V
     .locals 0
 
-    .line 1408
+    .line 1413
     iput-object p1, p0, Lcom/android/camera/Camera$7;->this$0:Lcom/android/camera/Camera;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public run()V
     .locals 3
 
-    .line 1411
+    .line 1416
     iget-object v0, p0, Lcom/android/camera/Camera$7;->this$0:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->isActivityPaused()Z
@@ -47,52 +47,52 @@
 
     if-eqz v0, :cond_0
 
-    .line 1412
+    .line 1417
     return-void
 
-    .line 1414
+    .line 1419
     :cond_0
     new-instance v0, Lcom/android/camera/fragment/dialog/UltraWideNewbieDialogFragment;
 
     invoke-direct {v0}, Lcom/android/camera/fragment/dialog/UltraWideNewbieDialogFragment;-><init>()V
 
-    .line 1415
+    .line 1420
     const/4 v1, 0x2
 
     const v2, 0x7f0c001e
 
     invoke-virtual {v0, v1, v2}, Landroid/support/v4/app/DialogFragment;->setStyle(II)V
 
-    .line 1416
+    .line 1421
     iget-object v1, p0, Lcom/android/camera/Camera$7;->this$0:Lcom/android/camera/Camera;
 
     invoke-virtual {v1}, Lcom/android/camera/Camera;->getSupportFragmentManager()Landroid/support/v4/app/FragmentManager;
 
     move-result-object v1
 
-    .line 1417
+    .line 1422
     invoke-virtual {v1}, Landroid/support/v4/app/FragmentManager;->beginTransaction()Landroid/support/v4/app/FragmentTransaction;
 
     move-result-object v1
 
     const-string v2, "UltraWideHint"
 
-    .line 1418
+    .line 1423
     invoke-virtual {v1, v0, v2}, Landroid/support/v4/app/FragmentTransaction;->add(Landroid/support/v4/app/Fragment;Ljava/lang/String;)Landroid/support/v4/app/FragmentTransaction;
 
     move-result-object v0
 
-    .line 1419
+    .line 1424
     invoke-virtual {v0}, Landroid/support/v4/app/FragmentTransaction;->commitAllowingStateLoss()I
 
-    .line 1420
+    .line 1425
     iget-object v0, p0, Lcom/android/camera/Camera$7;->this$0:Lcom/android/camera/Camera;
 
     const-string v1, "UltraWideHint"
 
     invoke-static {v0, v1}, Lcom/android/camera/Camera;->access$1302(Lcom/android/camera/Camera;Ljava/lang/String;)Ljava/lang/String;
 
-    .line 1421
+    .line 1426
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
 
     move-result-object v0
@@ -105,14 +105,14 @@
 
     const/4 v2, 0x0
 
-    .line 1422
+    .line 1427
     invoke-interface {v0, v1, v2}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->putBoolean(Ljava/lang/String;Z)Lcom/android/camera/data/provider/DataProvider$ProviderEditor;
 
     move-result-object v0
 
-    .line 1423
+    .line 1428
     invoke-interface {v0}, Lcom/android/camera/data/provider/DataProvider$ProviderEditor;->apply()V
 
-    .line 1424
+    .line 1429
     return-void
 .end method

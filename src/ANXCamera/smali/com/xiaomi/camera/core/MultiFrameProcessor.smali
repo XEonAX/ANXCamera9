@@ -6,6 +6,7 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
+        Lcom/xiaomi/camera/core/MultiFrameProcessor$WorkerHandler;,
         Lcom/xiaomi/camera/core/MultiFrameProcessor$MultiFrameProcessorHolder;
     }
 .end annotation
@@ -18,6 +19,10 @@
 
 
 # instance fields
+.field private final MSG_PROCESS_DATA:I
+
+.field private mHandler:Landroid/os/Handler;
+
 .field private final mObjLock:Ljava/lang/Object;
 
 .field private mProcessResultListener:Lcom/xiaomi/camera/processor/ProcessResultListener;
@@ -26,12 +31,14 @@
 
 .field private mReprocessing:Z
 
+.field private mWorkThread:Landroid/os/HandlerThread;
+
 
 # direct methods
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 27
+    .line 30
     const-class v0, Lcom/xiaomi/camera/core/MultiFrameProcessor;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -44,33 +51,65 @@
 .end method
 
 .method private constructor <init>()V
-    .locals 1
+    .locals 2
 
-    .line 35
+    .line 41
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 33
+    .line 36
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
 
     iput-object v0, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mObjLock:Ljava/lang/Object;
 
-    .line 47
+    .line 55
     new-instance v0, Lcom/xiaomi/camera/core/MultiFrameProcessor$1;
 
     invoke-direct {v0, p0}, Lcom/xiaomi/camera/core/MultiFrameProcessor$1;-><init>(Lcom/xiaomi/camera/core/MultiFrameProcessor;)V
 
     iput-object v0, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mProcessResultListener:Lcom/xiaomi/camera/processor/ProcessResultListener;
 
-    .line 37
+    .line 158
+    const/4 v0, 0x1
+
+    iput v0, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->MSG_PROCESS_DATA:I
+
+    .line 42
+    new-instance v0, Landroid/os/HandlerThread;
+
+    const-string v1, "MultiFrameProcessorThread"
+
+    invoke-direct {v0, v1}, Landroid/os/HandlerThread;-><init>(Ljava/lang/String;)V
+
+    iput-object v0, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mWorkThread:Landroid/os/HandlerThread;
+
+    .line 43
+    iget-object v0, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mWorkThread:Landroid/os/HandlerThread;
+
+    invoke-virtual {v0}, Landroid/os/HandlerThread;->start()V
+
+    .line 44
+    new-instance v0, Lcom/xiaomi/camera/core/MultiFrameProcessor$WorkerHandler;
+
+    iget-object v1, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mWorkThread:Landroid/os/HandlerThread;
+
+    invoke-virtual {v1}, Landroid/os/HandlerThread;->getLooper()Landroid/os/Looper;
+
+    move-result-object v1
+
+    invoke-direct {v0, p0, v1}, Lcom/xiaomi/camera/core/MultiFrameProcessor$WorkerHandler;-><init>(Lcom/xiaomi/camera/core/MultiFrameProcessor;Landroid/os/Looper;)V
+
+    iput-object v0, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mHandler:Landroid/os/Handler;
+
+    .line 45
     return-void
 .end method
 
 .method synthetic constructor <init>(Lcom/xiaomi/camera/core/MultiFrameProcessor$1;)V
     .locals 0
 
-    .line 26
+    .line 29
     invoke-direct {p0}, Lcom/xiaomi/camera/core/MultiFrameProcessor;-><init>()V
 
     return-void
@@ -79,7 +118,7 @@
 .method static synthetic access$100()Ljava/lang/String;
     .locals 1
 
-    .line 26
+    .line 29
     sget-object v0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->TAG:Ljava/lang/String;
 
     return-object v0
@@ -88,7 +127,7 @@
 .method static synthetic access$200(Lcom/xiaomi/camera/core/MultiFrameProcessor;Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;)V
     .locals 0
 
-    .line 26
+    .line 29
     invoke-direct {p0, p1}, Lcom/xiaomi/camera/core/MultiFrameProcessor;->reprocessImage(Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;)V
 
     return-void
@@ -97,7 +136,7 @@
 .method static synthetic access$300(Lcom/xiaomi/camera/core/MultiFrameProcessor;)Ljava/lang/Object;
     .locals 0
 
-    .line 26
+    .line 29
     iget-object p0, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mObjLock:Ljava/lang/Object;
 
     return-object p0
@@ -106,7 +145,7 @@
 .method static synthetic access$402(Lcom/xiaomi/camera/core/MultiFrameProcessor;Z)Z
     .locals 0
 
-    .line 26
+    .line 29
     iput-boolean p1, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mReprocessing:Z
 
     return p1
@@ -115,16 +154,114 @@
 .method static synthetic access$500(Lcom/xiaomi/camera/core/MultiFrameProcessor;)J
     .locals 2
 
-    .line 26
+    .line 29
     iget-wide v0, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mReprocessStartTime:J
 
     return-wide v0
 .end method
 
+.method static synthetic access$600(Lcom/xiaomi/camera/core/MultiFrameProcessor;Lcom/xiaomi/camera/core/CaptureData;)V
+    .locals 0
+
+    .line 29
+    invoke-direct {p0, p1}, Lcom/xiaomi/camera/core/MultiFrameProcessor;->doProcess(Lcom/xiaomi/camera/core/CaptureData;)V
+
+    return-void
+.end method
+
+.method private doProcess(Lcom/xiaomi/camera/core/CaptureData;)V
+    .locals 3
+
+    .line 99
+    sget-object v0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->TAG:Ljava/lang/String;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "doProcess: start process task with: "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p1}, Ljava/lang/Object;->hashCode()I
+
+    move-result v2
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 100
+    invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData;->getAlgoType()I
+
+    move-result v0
+
+    .line 101
+    const/4 v1, 0x2
+
+    if-ne v0, v1, :cond_0
+
+    .line 102
+    new-instance v0, Lcom/xiaomi/camera/processor/ClearShotProcessor;
+
+    invoke-direct {v0}, Lcom/xiaomi/camera/processor/ClearShotProcessor;-><init>()V
+
+    iget-object v1, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mProcessResultListener:Lcom/xiaomi/camera/processor/ProcessResultListener;
+
+    invoke-virtual {v0, p1, v1}, Lcom/xiaomi/camera/processor/ClearShotProcessor;->doProcess(Lcom/xiaomi/camera/core/CaptureData;Lcom/xiaomi/camera/processor/ProcessResultListener;)V
+
+    goto :goto_0
+
+    .line 103
+    :cond_0
+    const/4 v1, 0x5
+
+    if-ne v0, v1, :cond_1
+
+    .line 104
+    new-instance v0, Lcom/xiaomi/camera/processor/GroupShotProcessor;
+
+    invoke-direct {v0}, Lcom/xiaomi/camera/processor/GroupShotProcessor;-><init>()V
+
+    iget-object v1, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mProcessResultListener:Lcom/xiaomi/camera/processor/ProcessResultListener;
+
+    invoke-virtual {v0, p1, v1}, Lcom/xiaomi/camera/processor/GroupShotProcessor;->doProcess(Lcom/xiaomi/camera/core/CaptureData;Lcom/xiaomi/camera/processor/ProcessResultListener;)V
+
+    .line 108
+    :goto_0
+    return-void
+
+    .line 106
+    :cond_1
+    new-instance p1, Ljava/lang/RuntimeException;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "unknown multi-frame process algorithm type:"
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-direct {p1, v0}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;)V
+
+    throw p1
+.end method
+
 .method public static getInstance()Lcom/xiaomi/camera/core/MultiFrameProcessor;
     .locals 1
 
-    .line 44
+    .line 52
     sget-object v0, Lcom/xiaomi/camera/core/MultiFrameProcessor$MultiFrameProcessorHolder;->INSTANCE:Lcom/xiaomi/camera/core/MultiFrameProcessor;
 
     return-object v0
@@ -133,17 +270,17 @@
 .method private reprocessImage(Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;)V
     .locals 12
 
-    .line 96
+    .line 114
     new-instance v8, Lcom/xiaomi/camera/core/MultiFrameProcessor$2;
 
     invoke-direct {v8, p0, p1}, Lcom/xiaomi/camera/core/MultiFrameProcessor$2;-><init>(Lcom/xiaomi/camera/core/MultiFrameProcessor;Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;)V
 
-    .line 114
+    .line 132
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;->getMainImage()Landroid/media/Image;
 
     move-result-object v1
 
-    .line 115
+    .line 133
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -170,20 +307,20 @@
 
     move-result-object v2
 
-    .line 117
+    .line 135
     nop
 
-    .line 118
+    .line 136
     invoke-virtual {v1}, Landroid/media/Image;->getWidth()I
 
     move-result v5
 
-    .line 119
+    .line 137
     invoke-virtual {v1}, Landroid/media/Image;->getHeight()I
 
     move-result v6
 
-    .line 120
+    .line 138
     sget-object v0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->TAG:Ljava/lang/String;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -206,12 +343,12 @@
 
     invoke-static {v0, v3}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 122
+    .line 140
     iget-object v10, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mObjLock:Ljava/lang/Object;
 
     monitor-enter v10
 
-    .line 123
+    .line 141
     :try_start_0
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
@@ -219,12 +356,12 @@
 
     iput-wide v3, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mReprocessStartTime:J
 
-    .line 124
+    .line 142
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mReprocessing:Z
 
-    .line 125
+    .line 143
     new-instance v11, Lcom/xiaomi/camera/imagecodec/ReprocessData;
 
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;->getResult()Lcom/xiaomi/protocol/ICustomCaptureResult;
@@ -239,7 +376,7 @@
 
     invoke-direct/range {v0 .. v8}, Lcom/xiaomi/camera/imagecodec/ReprocessData;-><init>(Landroid/media/Image;Ljava/lang/String;Lcom/xiaomi/protocol/ICustomCaptureResult;ZIIILcom/xiaomi/camera/imagecodec/ReprocessData$OnDataAvailableListener;)V
 
-    .line 127
+    .line 145
     invoke-static {}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->instance()Lcom/xiaomi/camera/imagecodec/JpegEncoder;
 
     move-result-object p1
@@ -248,14 +385,14 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 130
+    .line 148
     :goto_0
     :try_start_1
     iget-boolean p1, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mReprocessing:Z
 
     if-eqz p1, :cond_0
 
-    .line 131
+    .line 149
     iget-object p1, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mObjLock:Ljava/lang/Object;
 
     const-wide/16 v0, 0x1f40
@@ -268,19 +405,19 @@
 
     goto :goto_0
 
-    .line 136
+    .line 154
     :cond_0
     goto :goto_1
 
-    .line 133
+    .line 151
     :catch_0
     move-exception p1
 
-    .line 134
+    .line 152
     :try_start_2
     iput-boolean v9, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mReprocessing:Z
 
-    .line 135
+    .line 153
     sget-object v0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->TAG:Ljava/lang/String;
 
     invoke-virtual {p1}, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
@@ -289,14 +426,14 @@
 
     invoke-static {v0, v1, p1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 137
+    .line 155
     :goto_1
     monitor-exit v10
 
-    .line 138
+    .line 156
     return-void
 
-    .line 137
+    .line 155
     :catchall_0
     move-exception p1
 
@@ -312,7 +449,7 @@
 .method public processData(Lcom/xiaomi/camera/core/CaptureData;)V
     .locals 3
 
-    .line 76
+    .line 84
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData;->getBurstNum()I
 
     move-result v0
@@ -325,91 +462,74 @@
 
     move-result v1
 
-    if-ne v0, v1, :cond_2
+    if-ne v0, v1, :cond_1
 
-    .line 81
+    .line 89
+    iget-object v0, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mWorkThread:Landroid/os/HandlerThread;
+
+    invoke-virtual {v0}, Landroid/os/HandlerThread;->isAlive()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    iget-object v0, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mHandler:Landroid/os/Handler;
+
+    if-eqz v0, :cond_0
+
+    .line 90
     sget-object v0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v2, "processData: start process task with: "
+    const-string v2, "processData: queue data: "
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    invoke-virtual {p1}, Ljava/lang/Object;->hashCode()I
+
+    move-result v2
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v1
 
-    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 82
-    invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData;->getAlgoType()I
+    .line 91
+    iget-object v0, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mHandler:Landroid/os/Handler;
 
-    move-result v0
+    const/4 v1, 0x1
 
-    .line 83
-    const/4 v1, 0x2
+    invoke-virtual {v0, v1, p1}, Landroid/os/Handler;->obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
 
-    if-ne v0, v1, :cond_0
+    move-result-object p1
 
-    .line 84
-    new-instance v0, Lcom/xiaomi/camera/processor/ClearShotProcessor;
-
-    invoke-direct {v0}, Lcom/xiaomi/camera/processor/ClearShotProcessor;-><init>()V
-
-    iget-object v1, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mProcessResultListener:Lcom/xiaomi/camera/processor/ProcessResultListener;
-
-    invoke-virtual {v0, p1, v1}, Lcom/xiaomi/camera/processor/ClearShotProcessor;->doProcess(Lcom/xiaomi/camera/core/CaptureData;Lcom/xiaomi/camera/processor/ProcessResultListener;)V
+    invoke-virtual {p1}, Landroid/os/Message;->sendToTarget()V
 
     goto :goto_0
 
-    .line 85
+    .line 93
     :cond_0
-    const/4 v1, 0x5
+    sget-object v0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->TAG:Ljava/lang/String;
 
-    if-ne v0, v1, :cond_1
+    const-string v1, "processData: sync mode"
 
-    .line 86
-    new-instance v0, Lcom/xiaomi/camera/processor/GroupShotProcessor;
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    invoke-direct {v0}, Lcom/xiaomi/camera/processor/GroupShotProcessor;-><init>()V
+    .line 94
+    invoke-direct {p0, p1}, Lcom/xiaomi/camera/core/MultiFrameProcessor;->doProcess(Lcom/xiaomi/camera/core/CaptureData;)V
 
-    iget-object v1, p0, Lcom/xiaomi/camera/core/MultiFrameProcessor;->mProcessResultListener:Lcom/xiaomi/camera/processor/ProcessResultListener;
-
-    invoke-virtual {v0, p1, v1}, Lcom/xiaomi/camera/processor/GroupShotProcessor;->doProcess(Lcom/xiaomi/camera/core/CaptureData;Lcom/xiaomi/camera/processor/ProcessResultListener;)V
-
-    .line 90
+    .line 96
     :goto_0
     return-void
 
-    .line 88
+    .line 85
     :cond_1
-    new-instance p1, Ljava/lang/RuntimeException;
-
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v2, "unknown multi-frame process algorithm type:"
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v0
-
-    invoke-direct {p1, v0}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;)V
-
-    throw p1
-
-    .line 77
-    :cond_2
     new-instance v0, Ljava/lang/RuntimeException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -430,7 +550,7 @@
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 78
+    .line 86
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData;->getCaptureDataBeanList()Ljava/util/List;
 
     move-result-object p1

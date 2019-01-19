@@ -8,7 +8,6 @@ import com.ss.android.ugc.effectmanager.EffectConfiguration;
 import com.ss.android.ugc.effectmanager.common.EffectConstants;
 import com.ss.android.ugc.effectmanager.common.EffectRequest;
 import com.ss.android.ugc.effectmanager.common.ErrorConstants;
-import com.ss.android.ugc.effectmanager.common.exception.StatusCodeException;
 import com.ss.android.ugc.effectmanager.common.task.ExceptionResult;
 import com.ss.android.ugc.effectmanager.common.task.NormalTask;
 import com.ss.android.ugc.effectmanager.common.utils.EffectUtils;
@@ -31,7 +30,7 @@ public class DownloadEffectTask extends NormalTask {
         this.mEffect = effect;
         this.mEffectContext = effectContext;
         this.mConfiguration = effectContext.getEffectConfiguration();
-        this.mCurCnt = effectContext.getEffectConfiguration().getRetryCount();
+        this.mCurCnt = effectContext.getEffectConfiguration().getRetryCount() + 1;
     }
 
     public void execute() {
@@ -72,10 +71,9 @@ public class DownloadEffectTask extends NormalTask {
                 }
                 i++;
             } catch (Exception e) {
-                if (i == size - 1 || (e instanceof StatusCodeException)) {
+                if (i == size - 1) {
                     e.printStackTrace();
                     sendMessage(15, new EffectTaskResult(this.mEffect, new ExceptionResult(e)));
-                    break;
                 }
             }
         }

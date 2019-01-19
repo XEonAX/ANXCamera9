@@ -28,21 +28,21 @@
 .method constructor <init>(Lcom/android/camera/fragment/live/FragmentLiveSticker;Z)V
     .locals 0
 
-    .line 105
+    .line 131
     iput-object p1, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$2;->this$0:Lcom/android/camera/fragment/live/FragmentLiveSticker;
 
     iput-boolean p2, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$2;->val$isRTL:Z
 
     invoke-direct {p0}, Landroid/support/v7/widget/RecyclerView$ItemDecoration;-><init>()V
 
-    .line 106
+    .line 132
     iget-object p1, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$2;->this$0:Lcom/android/camera/fragment/live/FragmentLiveSticker;
 
     invoke-virtual {p1}, Lcom/android/camera/fragment/live/FragmentLiveSticker;->getResources()Landroid/content/res/Resources;
 
     move-result-object p1
 
-    const p2, 0x7f090113
+    const p2, 0x7f0a0118
 
     invoke-virtual {p1, p2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -50,14 +50,14 @@
 
     iput p1, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$2;->mLeftMargin:I
 
-    .line 107
+    .line 133
     iget-object p1, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$2;->this$0:Lcom/android/camera/fragment/live/FragmentLiveSticker;
 
     invoke-virtual {p1}, Lcom/android/camera/fragment/live/FragmentLiveSticker;->getResources()Landroid/content/res/Resources;
 
     move-result-object p1
 
-    const p2, 0x7f090114
+    const p2, 0x7f0a0119
 
     invoke-virtual {p1, p2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -73,29 +73,29 @@
 .method public getItemOffsets(Landroid/graphics/Rect;Landroid/view/View;Landroid/support/v7/widget/RecyclerView;Landroid/support/v7/widget/RecyclerView$State;)V
     .locals 1
 
-    .line 111
+    .line 137
     invoke-virtual {p3, p2}, Landroid/support/v7/widget/RecyclerView;->getChildAdapterPosition(Landroid/view/View;)I
 
     move-result p2
 
-    .line 112
+    .line 138
     iget-boolean p4, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$2;->val$isRTL:Z
 
     const/4 v0, 0x0
 
     if-eqz p4, :cond_1
 
-    .line 113
+    .line 139
     if-nez p2, :cond_0
 
-    .line 114
+    .line 140
     iget p2, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$2;->mLeftMargin:I
 
     invoke-virtual {p1, v0, v0, p2, v0}, Landroid/graphics/Rect;->set(IIII)V
 
     goto :goto_0
 
-    .line 115
+    .line 141
     :cond_0
     add-int/lit8 p2, p2, 0x1
 
@@ -109,25 +109,25 @@
 
     if-ne p2, p3, :cond_3
 
-    .line 116
+    .line 142
     iget p2, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$2;->mRightMargin:I
 
     invoke-virtual {p1, p2, v0, v0, v0}, Landroid/graphics/Rect;->set(IIII)V
 
     goto :goto_0
 
-    .line 119
+    .line 145
     :cond_1
     if-nez p2, :cond_2
 
-    .line 120
+    .line 146
     iget p2, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$2;->mLeftMargin:I
 
     invoke-virtual {p1, p2, v0, v0, v0}, Landroid/graphics/Rect;->set(IIII)V
 
     goto :goto_0
 
-    .line 121
+    .line 147
     :cond_2
     add-int/lit8 p2, p2, 0x1
 
@@ -141,12 +141,12 @@
 
     if-ne p2, p3, :cond_3
 
-    .line 122
+    .line 148
     iget p2, p0, Lcom/android/camera/fragment/live/FragmentLiveSticker$2;->mRightMargin:I
 
     invoke-virtual {p1, v0, v0, p2, v0}, Landroid/graphics/Rect;->set(IIII)V
 
-    .line 125
+    .line 151
     :cond_3
     :goto_0
     return-void

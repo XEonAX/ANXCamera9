@@ -30,7 +30,7 @@
 .method constructor <init>()V
     .locals 0
 
-    .line 116
+    .line 119
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -41,7 +41,7 @@
 .method public createFromParcel(Landroid/os/Parcel;)Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
     .locals 1
 
-    .line 119
+    .line 122
     invoke-static {}, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;->values()[Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
     move-result-object v0
@@ -58,7 +58,7 @@
 .method public bridge synthetic createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
     .locals 0
 
-    .line 116
+    .line 119
     invoke-virtual {p0, p1}, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL$1;->createFromParcel(Landroid/os/Parcel;)Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
     move-result-object p1
@@ -69,7 +69,7 @@
 .method public newArray(I)[Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
     .locals 0
 
-    .line 124
+    .line 127
     new-array p1, p1, [Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
     return-object p1
@@ -78,7 +78,7 @@
 .method public bridge synthetic newArray(I)[Ljava/lang/Object;
     .locals 0
 
-    .line 116
+    .line 119
     invoke-virtual {p0, p1}, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL$1;->newArray(I)[Lcom/ss/android/vesdk/VECameraSettings$CAMERA_HW_LEVEL;
 
     move-result-object p1

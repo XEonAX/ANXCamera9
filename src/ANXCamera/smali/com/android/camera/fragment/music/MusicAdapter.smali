@@ -116,7 +116,7 @@
     invoke-virtual {v0, p2}, Landroid/view/View;->setTag(Ljava/lang/Object;)V
 
     .line 49
-    const v0, 0x7f0d0088
+    const v0, 0x7f0d0091
 
     invoke-virtual {p1, v0}, Lcom/android/camera/fragment/CommonRecyclerViewHolder;->getView(I)Landroid/view/View;
 
@@ -130,7 +130,7 @@
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
     .line 52
-    const v0, 0x7f0d0087
+    const v0, 0x7f0d0090
 
     invoke-virtual {p1, v0}, Lcom/android/camera/fragment/CommonRecyclerViewHolder;->getView(I)Landroid/view/View;
 
@@ -144,7 +144,7 @@
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
     .line 55
-    const v0, 0x7f0d0084
+    const v0, 0x7f0d008d
 
     invoke-virtual {p1, v0}, Lcom/android/camera/fragment/CommonRecyclerViewHolder;->getView(I)Landroid/view/View;
 
@@ -184,7 +184,7 @@
     invoke-virtual {v1, v0}, Lcom/bumptech/glide/h;->a(Landroid/widget/ImageView;)Lcom/bumptech/glide/request/target/ViewTarget;
 
     .line 58
-    const v0, 0x7f0d0085
+    const v0, 0x7f0d008e
 
     invoke-virtual {p1, v0}, Lcom/android/camera/fragment/CommonRecyclerViewHolder;->getView(I)Landroid/view/View;
 
@@ -201,7 +201,7 @@
     invoke-virtual {v0, p2}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
 
     .line 62
-    const v0, 0x7f0d0086
+    const v0, 0x7f0d008f
 
     invoke-virtual {p1, v0}, Lcom/android/camera/fragment/CommonRecyclerViewHolder;->getView(I)Landroid/view/View;
 
@@ -213,7 +213,7 @@
     invoke-virtual {v0, p2}, Landroid/widget/ProgressBar;->setTag(Ljava/lang/Object;)V
 
     .line 65
-    const v0, 0x7f0d0089
+    const v0, 0x7f0d0092
 
     invoke-virtual {p1, v0}, Lcom/android/camera/fragment/CommonRecyclerViewHolder;->getView(I)Landroid/view/View;
 
@@ -268,7 +268,7 @@
     move-result-object p2
 
     .line 39
-    const v0, 0x7f040028
+    const v0, 0x7f04002a
 
     const/4 v1, 0x0
 

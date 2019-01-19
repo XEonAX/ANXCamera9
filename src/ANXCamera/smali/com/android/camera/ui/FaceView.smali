@@ -260,7 +260,7 @@
 
     move-result-object v2
 
-    const v3, 0x7f09004f
+    const v3, 0x7f0a004f
 
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -1265,7 +1265,7 @@
     iput-object v1, p0, Lcom/android/camera/ui/FaceView;->configuration:Landroid/content/res/Configuration;
 
     .line 205
-    const v1, 0x7f0b0148
+    const v1, 0x7f090148
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -1274,7 +1274,7 @@
     iput-object v1, p0, Lcom/android/camera/ui/FaceView;->mFaceAgeFormat:Ljava/lang/String;
 
     .line 206
-    const v1, 0x7f0b0149
+    const v1, 0x7f090149
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -1283,7 +1283,7 @@
     iput-object v1, p0, Lcom/android/camera/ui/FaceView;->mFaceScoreInfoFormat:Ljava/lang/String;
 
     .line 208
-    const v1, 0x7f020187
+    const v1, 0x7f02019a
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
 
@@ -1292,7 +1292,7 @@
     iput-object v1, p0, Lcom/android/camera/ui/FaceView;->mMaleAgeInfoPop:Landroid/graphics/drawable/Drawable;
 
     .line 209
-    const v1, 0x7f020040
+    const v1, 0x7f020041
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
 
@@ -1301,7 +1301,7 @@
     iput-object v1, p0, Lcom/android/camera/ui/FaceView;->mFemaleAgeInfoPop:Landroid/graphics/drawable/Drawable;
 
     .line 210
-    const v1, 0x7f020146
+    const v1, 0x7f020157
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
 
@@ -1310,7 +1310,7 @@
     iput-object v1, p0, Lcom/android/camera/ui/FaceView;->mSexMaleIc:Landroid/graphics/drawable/Drawable;
 
     .line 211
-    const v1, 0x7f020145
+    const v1, 0x7f020156
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
 
@@ -1340,7 +1340,7 @@
     invoke-virtual {v1, v3}, Landroid/graphics/Paint;->setColor(I)V
 
     .line 216
-    const v1, 0x7f090046
+    const v1, 0x7f0a0046
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimension(I)F
 
@@ -1417,7 +1417,7 @@
 
     .line 228
     :cond_2
-    const v1, 0x7f020185
+    const v1, 0x7f020198
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
 
@@ -1426,7 +1426,7 @@
     iput-object v1, p0, Lcom/android/camera/ui/FaceView;->mMagicMirrorInfoPop:Landroid/graphics/drawable/Drawable;
 
     .line 229
-    const v1, 0x7f0200bd
+    const v1, 0x7f0200be
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
 
@@ -1435,7 +1435,7 @@
     iput-object v1, p0, Lcom/android/camera/ui/FaceView;->mBeautyScoreIc:Landroid/graphics/drawable/Drawable;
 
     .line 231
-    const v1, 0x7f090049
+    const v1, 0x7f0a0049
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -1444,7 +1444,7 @@
     iput v1, p0, Lcom/android/camera/ui/FaceView;->mAgeVerPadding:I
 
     .line 232
-    const v1, 0x7f09004b
+    const v1, 0x7f0a004b
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -1453,7 +1453,7 @@
     iput v1, p0, Lcom/android/camera/ui/FaceView;->mGap:I
 
     .line 233
-    const v1, 0x7f09004c
+    const v1, 0x7f0a004c
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelOffset(I)I
 
@@ -1462,7 +1462,7 @@
     iput v1, p0, Lcom/android/camera/ui/FaceView;->mCorrection:I
 
     .line 234
-    const v1, 0x7f09004a
+    const v1, 0x7f0a004a
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -1471,7 +1471,7 @@
     iput v1, p0, Lcom/android/camera/ui/FaceView;->mPopBottomMargin:I
 
     .line 235
-    const v1, 0x7f09004d
+    const v1, 0x7f0a004d
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -1480,7 +1480,7 @@
     iput v1, p0, Lcom/android/camera/ui/FaceView;->mScoreHonPadding:I
 
     .line 236
-    const v1, 0x7f09004e
+    const v1, 0x7f0a004e
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -1489,7 +1489,7 @@
     iput v1, p0, Lcom/android/camera/ui/FaceView;->mScoreVerPadding:I
 
     .line 237
-    const v1, 0x7f090047
+    const v1, 0x7f0a0047
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -1498,7 +1498,7 @@
     iput v1, p0, Lcom/android/camera/ui/FaceView;->mAgeMaleHonPadding:I
 
     .line 238
-    const v1, 0x7f090048
+    const v1, 0x7f0a0048
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 

@@ -24,7 +24,7 @@
 .method constructor <init>(Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;Lcom/android/camera/fragment/bottom/BottomAnimationConfig;)V
     .locals 0
 
-    .line 373
+    .line 377
     iput-object p1, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$7;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     iput-object p2, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$7;->val$animationConfig:Lcom/android/camera/fragment/bottom/BottomAnimationConfig;
@@ -39,12 +39,12 @@
 .method public getInterpolation(F)F
     .locals 5
 
-    .line 376
+    .line 380
     const/high16 v0, 0x43b40000    # 360.0f
 
     mul-float v1, v0, p1
 
-    .line 377
+    .line 381
     iget-object v2, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$7;->val$animationConfig:Lcom/android/camera/fragment/bottom/BottomAnimationConfig;
 
     iget v2, v2, Lcom/android/camera/fragment/bottom/BottomAnimationConfig;->mCurrentMode:I
@@ -53,7 +53,7 @@
 
     if-ne v2, v3, :cond_0
 
-    .line 378
+    .line 382
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v1
@@ -66,7 +66,7 @@
 
     sub-long/2addr v1, v3
 
-    .line 379
+    .line 383
     const-wide/high16 v3, 0x3ff0000000000000L    # 1.0
 
     long-to-double v1, v1
@@ -93,7 +93,7 @@
 
     add-long/2addr v1, v3
 
-    .line 380
+    .line 384
     long-to-float v1, v1
 
     mul-float/2addr v1, v0
@@ -106,15 +106,15 @@
 
     div-float/2addr v1, v2
 
-    .line 381
+    .line 385
     cmpl-float v2, v1, v0
 
     if-lez v2, :cond_0
 
-    .line 382
+    .line 386
     nop
 
-    .line 385
+    .line 389
     move v1, v0
 
     :cond_0
@@ -126,16 +126,16 @@
 
     iput v1, v0, Lcom/android/camera/ui/drawable/CameraPaintBase;->timeAngle:F
 
-    .line 386
+    .line 390
     invoke-super {p0, p1}, Landroid/view/animation/LinearInterpolator;->getInterpolation(F)F
 
     move-result p1
 
-    .line 387
+    .line 391
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$7;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;->invalidateSelf()V
 
-    .line 388
+    .line 392
     return p1
 .end method

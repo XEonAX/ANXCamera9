@@ -55,7 +55,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 44
+    .line 45
     const/16 v0, 0x64
 
     sput v0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->SEEKBAR_PROGRESS_MAX:I
@@ -66,7 +66,7 @@
 .method public constructor <init>()V
     .locals 0
 
-    .line 37
+    .line 38
     invoke-direct {p0}, Lcom/android/camera/fragment/BaseFragment;-><init>()V
 
     return-void
@@ -75,7 +75,7 @@
 .method static synthetic access$000(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)Lio/reactivex/FlowableEmitter;
     .locals 0
 
-    .line 37
+    .line 38
     iget-object p0, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mFlowableEmitter:Lio/reactivex/FlowableEmitter;
 
     return-object p0
@@ -84,7 +84,7 @@
 .method static synthetic access$002(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;Lio/reactivex/FlowableEmitter;)Lio/reactivex/FlowableEmitter;
     .locals 0
 
-    .line 37
+    .line 38
     iput-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mFlowableEmitter:Lio/reactivex/FlowableEmitter;
 
     return-object p1
@@ -93,7 +93,7 @@
 .method static synthetic access$100()I
     .locals 1
 
-    .line 37
+    .line 38
     sget v0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->SEEKBAR_PROGRESS_MAX:I
 
     return v0
@@ -102,7 +102,7 @@
 .method static synthetic access$200(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)I
     .locals 0
 
-    .line 37
+    .line 38
     iget p0, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mActiveProgress:I
 
     return p0
@@ -111,7 +111,7 @@
 .method static synthetic access$202(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;I)I
     .locals 0
 
-    .line 37
+    .line 38
     iput p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mActiveProgress:I
 
     return p1
@@ -120,7 +120,7 @@
 .method static synthetic access$300(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)Lcom/android/camera/ui/SeekBarCompat;
     .locals 0
 
-    .line 37
+    .line 38
     iget-object p0, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mSeekBar:Lcom/android/camera/ui/SeekBarCompat;
 
     return-object p0
@@ -129,7 +129,7 @@
 .method static synthetic access$400(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)Z
     .locals 0
 
-    .line 37
+    .line 38
     iget-boolean p0, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mIsRTL:Z
 
     return p0
@@ -138,7 +138,7 @@
 .method static synthetic access$500(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;I)I
     .locals 0
 
-    .line 37
+    .line 38
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->centerSeekbarValueMap(I)I
 
     move-result p0
@@ -149,7 +149,7 @@
 .method private centerSeekbarValueMap(I)I
     .locals 1
 
-    .line 172
+    .line 173
     sget v0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->SEEKBAR_PROGRESS_MAX:I
 
     div-int/lit8 v0, v0, 0x2
@@ -173,14 +173,14 @@
         }
     .end annotation
 
-    .line 296
+    .line 297
     invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
 
     move-result p1
 
     invoke-static {p1}, Lcom/android/camera/fragment/beauty/BeautyHelper;->setProgress(I)V
 
-    .line 297
+    .line 298
     return-void
 .end method
 
@@ -196,7 +196,7 @@
         }
     .end annotation
 
-    .line 37
+    .line 38
     check-cast p1, Ljava/lang/Integer;
 
     invoke-virtual {p0, p1}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->accept(Ljava/lang/Integer;)V
@@ -207,7 +207,7 @@
 .method public getFragmentInto()I
     .locals 1
 
-    .line 199
+    .line 200
     const/16 v0, 0xfc
 
     return v0
@@ -216,8 +216,8 @@
 .method protected getLayoutResourceId()I
     .locals 1
 
-    .line 194
-    const v0, 0x7f04002b
+    .line 195
+    const v0, 0x7f04002d
 
     return v0
 .end method
@@ -225,7 +225,7 @@
 .method protected initView(Landroid/view/View;)V
     .locals 4
 
-    .line 59
+    .line 60
     invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->getContext()Landroid/content/Context;
 
     move-result-object v0
@@ -236,20 +236,20 @@
 
     iput-boolean v0, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mIsRTL:Z
 
-    .line 60
+    .line 61
     iput-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mRootView:Landroid/view/View;
 
-    .line 62
+    .line 63
     nop
 
-    .line 63
+    .line 64
     invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object v0
 
     check-cast v0, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    .line 64
+    .line 65
     invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
@@ -262,7 +262,7 @@
 
     move-result-object v2
 
-    const v3, 0x7f0900d5
+    const v3, 0x7f0a00d5
 
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -272,14 +272,14 @@
 
     iput v1, v0, Landroid/view/ViewGroup$MarginLayoutParams;->bottomMargin:I
 
-    .line 66
+    .line 67
     new-instance v0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$1;
 
     invoke-direct {v0, p0}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$1;-><init>(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)V
 
     invoke-virtual {p1, v0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 74
+    .line 75
     new-instance v0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$3;
 
     invoke-direct {v0, p0}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$3;-><init>(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)V
@@ -290,7 +290,7 @@
 
     move-result-object v0
 
-    .line 80
+    .line 81
     invoke-static {}, Lio/reactivex/schedulers/Schedulers;->computation()Lio/reactivex/Scheduler;
 
     move-result-object v1
@@ -303,19 +303,19 @@
 
     invoke-direct {v1, p0}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$2;-><init>(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)V
 
-    .line 81
+    .line 82
     invoke-virtual {v0, v1}, Lio/reactivex/Flowable;->onBackpressureDrop(Lio/reactivex/functions/Consumer;)Lio/reactivex/Flowable;
 
     move-result-object v0
 
-    .line 88
+    .line 89
     invoke-virtual {v0, p0}, Lio/reactivex/Flowable;->subscribe(Lio/reactivex/functions/Consumer;)Lio/reactivex/disposables/Disposable;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mDisposable:Lio/reactivex/disposables/Disposable;
 
-    .line 89
+    .line 90
     invoke-static {}, Lcom/android/camera/fragment/beauty/BeautyHelper;->getProgress()I
 
     move-result v0
@@ -326,8 +326,8 @@
 
     iput v0, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mActiveProgress:I
 
-    .line 91
-    const v0, 0x7f0d008c
+    .line 92
+    const v0, 0x7f0d0095
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -337,34 +337,34 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mSeekBar:Lcom/android/camera/ui/SeekBarCompat;
 
-    .line 92
+    .line 93
     invoke-static {}, Lcom/android/camera/fragment/beauty/BeautyHelper;->getCurrentBeautyParameterType()Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
     move-result-object v0
 
-    .line 93
+    .line 94
     iget-object v2, v0, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->beautyParamType:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 94
+    .line 95
     invoke-static {v2}, Lcom/android/camera/fragment/beauty/BeautyParameters;->isSupportTwoWayAdjustable(Lcom/android/camera/fragment/beauty/BeautyParameters$Type;)Z
 
     move-result v2
 
-    .line 95
+    .line 96
     if-eqz v2, :cond_0
 
-    .line 96
+    .line 97
     const/4 v1, 0x2
 
     invoke-virtual {p0, v1}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->setSeekBarMode(I)V
 
     goto :goto_0
 
-    .line 98
+    .line 99
     :cond_0
     invoke-virtual {p0, v1}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->setSeekBarMode(I)V
 
-    .line 100
+    .line 101
     :goto_0
     iget v0, v0, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->beautyType:I
 
@@ -372,12 +372,12 @@
 
     if-ne v0, v1, :cond_1
 
-    .line 101
+    .line 102
     const/16 v0, 0x8
 
     invoke-virtual {p1, v0}, Landroid/view/View;->setVisibility(I)V
 
-    .line 103
+    .line 104
     :cond_1
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mSeekBar:Lcom/android/camera/ui/SeekBarCompat;
 
@@ -385,7 +385,7 @@
 
     move-result-object v0
 
-    const v1, 0x7f0201a2
+    const v1, 0x7f0201b5
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
 
@@ -393,7 +393,7 @@
 
     invoke-virtual {p1, v0}, Lcom/android/camera/ui/SeekBarCompat;->setProgressDrawable(Landroid/graphics/drawable/Drawable;)V
 
-    .line 104
+    .line 105
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mSeekBar:Lcom/android/camera/ui/SeekBarCompat;
 
     new-instance v0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$4;
@@ -402,7 +402,7 @@
 
     invoke-virtual {p1, v0}, Lcom/android/camera/ui/SeekBarCompat;->setOnSeekBarChangeListener(Lcom/android/camera/ui/SeekBarCompat$OnSeekBarCompatChangeListener;)V
 
-    .line 125
+    .line 126
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mSeekBar:Lcom/android/camera/ui/SeekBarCompat;
 
     new-instance v0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$5;
@@ -411,14 +411,14 @@
 
     invoke-virtual {p1, v0}, Lcom/android/camera/ui/SeekBarCompat;->setOnSeekBarCompatTouchListener(Lcom/android/camera/ui/SeekBarCompat$OnSeekBarCompatTouchListener;)V
 
-    .line 169
+    .line 170
     return-void
 .end method
 
 .method public isShow()Z
     .locals 1
 
-    .line 301
+    .line 302
     iget-boolean v0, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mIsShow:Z
 
     return v0
@@ -427,36 +427,36 @@
 .method public onMakeupItemSelected()V
     .locals 2
 
-    .line 259
+    .line 260
     invoke-static {}, Lcom/android/camera/fragment/beauty/BeautyHelper;->getCurrentBeautyParameterType()Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
     move-result-object v0
 
-    .line 260
+    .line 261
     iget-object v1, v0, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->beautyParamType:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 261
+    .line 262
     invoke-static {v1}, Lcom/android/camera/fragment/beauty/BeautyParameters;->isSupportTwoWayAdjustable(Lcom/android/camera/fragment/beauty/BeautyParameters$Type;)Z
 
     move-result v1
 
-    .line 262
+    .line 263
     if-eqz v1, :cond_0
 
-    .line 263
+    .line 264
     const/4 v1, 0x2
 
     invoke-virtual {p0, v1}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->setSeekBarMode(I)V
 
     goto :goto_0
 
-    .line 265
+    .line 266
     :cond_0
     const/4 v1, 0x1
 
     invoke-virtual {p0, v1}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->setSeekBarMode(I)V
 
-    .line 267
+    .line 268
     :goto_0
     iget v0, v0, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->beautyType:I
 
@@ -464,7 +464,7 @@
 
     if-ne v0, v1, :cond_1
 
-    .line 268
+    .line 269
     iget-object v0, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mRootView:Landroid/view/View;
 
     const/16 v1, 0x8
@@ -473,7 +473,7 @@
 
     goto :goto_1
 
-    .line 270
+    .line 271
     :cond_1
     iget-object v0, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mRootView:Landroid/view/View;
 
@@ -481,26 +481,26 @@
 
     invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
 
-    .line 272
+    .line 273
     :goto_1
     return-void
 .end method
 
-.method public provideAnimateElement(ILjava/util/List;Z)V
+.method public provideAnimateElement(ILjava/util/List;I)V
     .locals 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
             "Ljava/util/List<",
             "Lio/reactivex/Completable;",
-            ">;Z)V"
+            ">;I)V"
         }
     .end annotation
 
-    .line 205
-    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;Z)V
+    .line 206
+    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;I)V
 
-    .line 208
+    .line 209
     const/16 p3, 0xa3
 
     const/4 v0, 0x1
@@ -513,22 +513,22 @@
 
     if-eq p1, p3, :cond_0
 
-    .line 214
+    .line 215
     nop
 
-    .line 218
+    .line 219
     move p1, v1
 
     goto :goto_0
 
-    .line 211
+    .line 212
     :cond_0
     nop
 
-    .line 212
+    .line 213
     nop
 
-    .line 218
+    .line 219
     move p1, v0
 
     :goto_0
@@ -558,10 +558,10 @@
 
     if-ne p3, p1, :cond_1
 
-    .line 219
+    .line 220
     return-void
 
-    .line 221
+    .line 222
     :cond_1
     invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->getView()Landroid/view/View;
 
@@ -573,7 +573,7 @@
 
     invoke-virtual {p3, v2}, Landroid/view/View;->setTag(Ljava/lang/Object;)V
 
-    .line 222
+    .line 223
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p3
@@ -586,7 +586,7 @@
 
     check-cast p3, Lcom/android/camera/protocol/ModeProtocol$MiBeautyProtocol;
 
-    .line 223
+    .line 224
     if-eqz p3, :cond_2
 
     invoke-interface {p3}, Lcom/android/camera/protocol/ModeProtocol$MiBeautyProtocol;->isBeautyPanelShow()Z
@@ -595,11 +595,11 @@
 
     if-nez p3, :cond_3
 
-    .line 224
+    .line 225
     :cond_2
     nop
 
-    .line 226
+    .line 227
     move p1, v1
 
     :cond_3
@@ -607,7 +607,7 @@
 
     if-ne p1, v0, :cond_6
 
-    .line 227
+    .line 228
     invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->getView()Landroid/view/View;
 
     move-result-object p1
@@ -618,7 +618,7 @@
 
     if-eqz p1, :cond_4
 
-    .line 228
+    .line 229
     invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->getView()Landroid/view/View;
 
     move-result-object p1
@@ -627,18 +627,18 @@
 
     invoke-virtual {p1, v0}, Landroid/view/View;->setVisibility(I)V
 
-    .line 231
+    .line 232
     :cond_4
     if-nez p2, :cond_5
 
-    .line 232
+    .line 233
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mSeekBar:Lcom/android/camera/ui/SeekBarCompat;
 
     invoke-static {p1, p3}, Lcom/android/camera/animation/type/SlideInOnSubscribe;->directSetResult(Landroid/view/View;I)V
 
     goto :goto_1
 
-    .line 234
+    .line 235
     :cond_5
     new-instance p1, Lcom/android/camera/animation/type/SlideInOnSubscribe;
 
@@ -646,28 +646,28 @@
 
     invoke-direct {p1, v0, p3}, Lcom/android/camera/animation/type/SlideInOnSubscribe;-><init>(Landroid/view/View;I)V
 
-    .line 235
+    .line 236
     invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object p1
 
-    .line 234
+    .line 235
     invoke-interface {p2, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     goto :goto_1
 
-    .line 238
+    .line 239
     :cond_6
     if-nez p2, :cond_7
 
-    .line 239
+    .line 240
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mSeekBar:Lcom/android/camera/ui/SeekBarCompat;
 
     invoke-static {p1, p3}, Lcom/android/camera/animation/type/SlideOutOnSubscribe;->directSetResult(Landroid/view/View;I)V
 
     goto :goto_1
 
-    .line 241
+    .line 242
     :cond_7
     new-instance p1, Lcom/android/camera/animation/type/SlideOutOnSubscribe;
 
@@ -675,15 +675,15 @@
 
     invoke-direct {p1, v0, p3}, Lcom/android/camera/animation/type/SlideOutOnSubscribe;-><init>(Landroid/view/View;I)V
 
-    .line 242
+    .line 243
     invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object p1
 
-    .line 241
+    .line 242
     invoke-interface {p2, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 245
+    .line 246
     :goto_1
     return-void
 .end method
@@ -691,7 +691,7 @@
 .method protected provideEnterAnimation(I)Landroid/view/animation/Animation;
     .locals 2
 
-    .line 249
+    .line 250
     const/4 p1, 0x1
 
     new-array p1, p1, [I
@@ -712,7 +712,7 @@
 .method protected provideExitAnimation()Landroid/view/animation/Animation;
     .locals 3
 
-    .line 254
+    .line 255
     const/4 v0, 0x1
 
     new-array v0, v0, [I
@@ -733,30 +733,30 @@
 .method protected register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 1
 
-    .line 177
+    .line 178
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 178
+    .line 179
     const/16 v0, 0xb4
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 179
+    .line 180
     const/4 p1, 0x1
 
     iput-boolean p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mIsShow:Z
 
-    .line 180
+    .line 181
     return-void
 .end method
 
 .method public setSeekBarMode(I)V
     .locals 4
 
-    .line 276
+    .line 277
     nop
 
-    .line 277
+    .line 278
     const/4 v0, 0x1
 
     const/4 v1, 0x0
@@ -765,23 +765,23 @@
 
     goto :goto_0
 
-    .line 284
+    .line 285
     :pswitch_0
     const/16 p1, 0xc8
 
     sput p1, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->SEEKBAR_PROGRESS_MAX:I
 
-    .line 285
+    .line 286
     nop
 
-    .line 286
+    .line 287
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mSeekBar:Lcom/android/camera/ui/SeekBarCompat;
 
     invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
 
-    const v2, 0x7f020021
+    const v2, 0x7f020022
 
     invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
 
@@ -789,28 +789,28 @@
 
     invoke-virtual {p1, v1}, Lcom/android/camera/ui/SeekBarCompat;->setProgressDrawable(Landroid/graphics/drawable/Drawable;)V
 
-    .line 289
+    .line 290
     move v1, v0
 
     goto :goto_0
 
-    .line 279
+    .line 280
     :pswitch_1
     const/16 p1, 0x64
 
     sput p1, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->SEEKBAR_PROGRESS_MAX:I
 
-    .line 280
+    .line 281
     nop
 
-    .line 281
+    .line 282
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mSeekBar:Lcom/android/camera/ui/SeekBarCompat;
 
     invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->getResources()Landroid/content/res/Resources;
 
     move-result-object v2
 
-    const v3, 0x7f0201a2
+    const v3, 0x7f0201b5
 
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
 
@@ -818,10 +818,10 @@
 
     invoke-virtual {p1, v2}, Lcom/android/camera/ui/SeekBarCompat;->setProgressDrawable(Landroid/graphics/drawable/Drawable;)V
 
-    .line 282
+    .line 283
     nop
 
-    .line 289
+    .line 290
     :goto_0
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mSeekBar:Lcom/android/camera/ui/SeekBarCompat;
 
@@ -829,12 +829,12 @@
 
     invoke-virtual {p1, v2}, Lcom/android/camera/ui/SeekBarCompat;->setMax(I)V
 
-    .line 290
+    .line 291
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mSeekBar:Lcom/android/camera/ui/SeekBarCompat;
 
     invoke-virtual {p1, v1}, Lcom/android/camera/ui/SeekBarCompat;->setCenterSeekbarMode(Z)V
 
-    .line 291
+    .line 292
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mSeekBar:Lcom/android/camera/ui/SeekBarCompat;
 
     invoke-static {}, Lcom/android/camera/fragment/beauty/BeautyHelper;->getProgress()I
@@ -845,7 +845,7 @@
 
     invoke-virtual {p1, v1}, Lcom/android/camera/ui/SeekBarCompat;->setProgress(I)V
 
-    .line 292
+    .line 293
     return-void
 
     nop
@@ -860,15 +860,15 @@
 .method protected unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 1
 
-    .line 184
+    .line 185
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 185
+    .line 186
     const/16 v0, 0xb4
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 186
+    .line 187
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mDisposable:Lio/reactivex/disposables/Disposable;
 
     if-eqz p1, :cond_0
@@ -881,17 +881,17 @@
 
     if-nez p1, :cond_0
 
-    .line 187
+    .line 188
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mDisposable:Lio/reactivex/disposables/Disposable;
 
     invoke-interface {p1}, Lio/reactivex/disposables/Disposable;->dispose()V
 
-    .line 189
+    .line 190
     :cond_0
     const/4 p1, 0x0
 
     iput-boolean p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->mIsShow:Z
 
-    .line 190
+    .line 191
     return-void
 .end method

@@ -6,27 +6,27 @@ import java.util.List;
 
 /* compiled from: TranscoderRegistry */
 public class f {
-    private final List<a<?, ?>> md = new ArrayList();
+    private final List<a<?, ?>> mc = new ArrayList();
 
     /* compiled from: TranscoderRegistry */
     private static final class a<Z, R> {
         final e<Z, R> fh;
-        private final Class<Z> me;
-        private final Class<R> mf;
+        private final Class<Z> md;
+        private final Class<R> me;
 
         a(@NonNull Class<Z> cls, @NonNull Class<R> cls2, @NonNull e<Z, R> eVar) {
-            this.me = cls;
-            this.mf = cls2;
+            this.md = cls;
+            this.me = cls2;
             this.fh = eVar;
         }
 
         public boolean d(@NonNull Class<?> cls, @NonNull Class<?> cls2) {
-            return this.me.isAssignableFrom(cls) && cls2.isAssignableFrom(this.mf);
+            return this.md.isAssignableFrom(cls) && cls2.isAssignableFrom(this.me);
         }
     }
 
     public synchronized <Z, R> void b(@NonNull Class<Z> cls, @NonNull Class<R> cls2, @NonNull e<Z, R> eVar) {
-        this.md.add(new a(cls, cls2, eVar));
+        this.mc.add(new a(cls, cls2, eVar));
     }
 
     @NonNull
@@ -34,7 +34,7 @@ public class f {
         if (cls2.isAssignableFrom(cls)) {
             return g.cP();
         }
-        for (a aVar : this.md) {
+        for (a aVar : this.mc) {
             if (aVar.d(cls, cls2)) {
                 return aVar.fh;
             }
@@ -54,7 +54,7 @@ public class f {
             arrayList.add(cls2);
             return arrayList;
         }
-        for (a d : this.md) {
+        for (a d : this.mc) {
             if (d.d(cls, cls2)) {
                 arrayList.add(cls2);
             }

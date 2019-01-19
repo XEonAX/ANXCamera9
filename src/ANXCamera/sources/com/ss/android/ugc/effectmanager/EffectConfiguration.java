@@ -1,7 +1,6 @@
 package com.ss.android.ugc.effectmanager;
 
 import android.content.Context;
-import android.os.statistics.E2EScenario;
 import com.ss.android.ugc.effectmanager.common.TaskManager;
 import com.ss.android.ugc.effectmanager.common.listener.ICache;
 import com.ss.android.ugc.effectmanager.common.listener.IEffectNetWorker;
@@ -15,8 +14,6 @@ import java.util.List;
 public class EffectConfiguration {
     private static final String API_ADDRESS = "/effect/api";
     public static final String KEY_ACCESS_KEY = "access_key";
-    public static final String KEY_APP_ID = "aid";
-    public static final String KEY_APP_LANGUAGE = "app_language";
     public static final String KEY_APP_VERSION = "app_version";
     public static final String KEY_CHANNEL = "channel";
     public static final String KEY_DEVICE_ID = "device_id";
@@ -26,15 +23,12 @@ public class EffectConfiguration {
     public static final String KEY_PANEL = "panel";
     public static final String KEY_REGION = "region";
     public static final String KEY_SDK_VERSION = "sdk_version";
-    public static final String KEY_SYS_LANGUAGE = "language";
     public static final String KEY_TYPE = "type";
     public static final String KEY_VERSION = "version";
     private IJsonConverter jsonConverter;
     private ListenerManger listenerManger;
     private String mAccessKey;
     private String mApiAddress;
-    private String mAppID;
-    private String mAppLanguage;
     private String mAppVersion;
     private ICache mCache;
     private String mChannel;
@@ -47,13 +41,10 @@ public class EffectConfiguration {
     private String mRegion;
     private int mRetryCount;
     private String mSdkVersion;
-    private String mSysLanguage;
     private TaskManager mTaskManager;
 
     public static final class Builder {
         private String accessKey;
-        private String appID;
-        private String appLanguage;
         private String appVersion;
         private ICache cache;
         private String channel;
@@ -67,7 +58,6 @@ public class EffectConfiguration {
         private String region;
         private int retryCount = 3;
         private String sdkVersion;
-        private String sysLanguage;
 
         public Builder accessKey(String str) {
             this.accessKey = str;
@@ -137,21 +127,6 @@ public class EffectConfiguration {
             return this;
         }
 
-        public Builder appID(String str) {
-            this.appID = str;
-            return this;
-        }
-
-        public Builder appLanguage(String str) {
-            this.appLanguage = str;
-            return this;
-        }
-
-        public Builder sysLanguage(String str) {
-            this.sysLanguage = str;
-            return this;
-        }
-
         public Builder speedApi(String str) {
             this.mLinkSelectorConfiguration.setSpeedApi(str);
             return this;
@@ -193,7 +168,7 @@ public class EffectConfiguration {
     }
 
     private EffectConfiguration(Builder builder) {
-        this.mChannel = E2EScenario.DEFAULT_CATEGORY;
+        this.mChannel = "default";
         this.mRetryCount = 3;
         this.mApiAddress = API_ADDRESS;
         this.mAccessKey = builder.accessKey;
@@ -209,9 +184,6 @@ public class EffectConfiguration {
         this.mCache = builder.cache;
         this.mRetryCount = builder.retryCount;
         this.jsonConverter = builder.jsonConverter;
-        this.mAppID = builder.appID;
-        this.mAppLanguage = builder.appLanguage;
-        this.mSysLanguage = builder.sysLanguage;
         this.mLinkSelectorConfiguration = builder.mLinkSelectorConfiguration;
         this.listenerManger = new ListenerManger();
     }
@@ -258,18 +230,6 @@ public class EffectConfiguration {
 
     public String getRegion() {
         return this.mRegion;
-    }
-
-    public String getAppID() {
-        return this.mAppID;
-    }
-
-    public String getAppLanguage() {
-        return this.mAppLanguage;
-    }
-
-    public String getSysLanguage() {
-        return this.mSysLanguage;
     }
 
     public IJsonConverter getJsonConverter() {

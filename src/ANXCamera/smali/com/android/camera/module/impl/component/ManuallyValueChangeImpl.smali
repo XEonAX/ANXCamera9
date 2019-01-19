@@ -74,10 +74,10 @@
 .method public onBokehFNumberValueChanged(Ljava/lang/String;)V
     .locals 3
 
-    .line 172
+    .line 178
     invoke-static {p1}, Lcom/android/camera/CameraSettings;->writeFNumber(Ljava/lang/String;)V
 
-    .line 173
+    .line 179
     invoke-virtual {p0}, Lcom/android/camera/module/impl/component/ManuallyValueChangeImpl;->getBaseModule()Lcom/android/camera/module/BaseModule;
 
     move-result-object p1
@@ -94,7 +94,7 @@
 
     invoke-virtual {p1, v0}, Lcom/android/camera/module/BaseModule;->updatePreferenceInWorkThread([I)V
 
-    .line 174
+    .line 180
     return-void
 .end method
 
@@ -123,41 +123,56 @@
 
     invoke-static {p2, p1}, Lcom/android/camera/CameraSettings;->setUltraWideConfig(IZ)V
 
-    .line 152
+    .line 154
+    const-string p1, "wide"
+
+    invoke-virtual {p1, v0}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result p1
+
+    if-nez p1, :cond_0
+
+    .line 155
+    const/4 p1, 0x0
+
+    invoke-static {p1}, Lcom/android/camera/CameraSettings;->setUltraPixelPhotographyConfig(Z)V
+
+    .line 158
+    :cond_0
     invoke-static {v0}, Lcom/android/camera/statistic/CameraStatUtil;->trackLensChanged(Ljava/lang/String;)V
 
-    .line 156
+    .line 162
     iget-object p1, p0, Lcom/android/camera/module/impl/component/ManuallyValueChangeImpl;->mActivity:Lcom/android/camera/ActivityBase;
 
     invoke-static {p2}, Lcom/android/camera/module/loader/StartControl;->create(I)Lcom/android/camera/module/loader/StartControl;
 
     move-result-object p2
 
-    .line 157
     const/4 v0, 0x5
 
+    .line 163
     invoke-virtual {p2, v0}, Lcom/android/camera/module/loader/StartControl;->setResetType(I)Lcom/android/camera/module/loader/StartControl;
 
     move-result-object p2
 
-    .line 158
     const/4 v0, 0x2
 
+    .line 164
     invoke-virtual {p2, v0}, Lcom/android/camera/module/loader/StartControl;->setViewConfigType(I)Lcom/android/camera/module/loader/StartControl;
 
     move-result-object p2
 
-    .line 159
     const/4 v0, 0x1
 
+    .line 165
     invoke-virtual {p2, v0}, Lcom/android/camera/module/loader/StartControl;->setNeedBlurAnimation(Z)Lcom/android/camera/module/loader/StartControl;
 
     move-result-object p2
 
-    .line 156
+    .line 162
     invoke-virtual {p1, p2}, Lcom/android/camera/ActivityBase;->onModeSelected(Lcom/android/camera/module/loader/StartControl;)V
 
-    .line 160
+    .line 166
     return-void
 .end method
 
@@ -270,7 +285,7 @@
 .method public onDualZoomValueChanged(FZ)V
     .locals 1
 
-    .line 164
+    .line 170
     invoke-virtual {p0}, Lcom/android/camera/module/impl/component/ManuallyValueChangeImpl;->getBaseModule()Lcom/android/camera/module/BaseModule;
 
     move-result-object v0
@@ -281,10 +296,10 @@
 
     if-nez v0, :cond_0
 
-    .line 165
+    .line 171
     return-void
 
-    .line 167
+    .line 173
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/impl/component/ManuallyValueChangeImpl;->getBaseModule()Lcom/android/camera/module/BaseModule;
 
@@ -292,7 +307,7 @@
 
     invoke-virtual {v0, p1, p2}, Lcom/android/camera/module/BaseModule;->onZoomRatioChanged(FZ)V
 
-    .line 168
+    .line 174
     return-void
 .end method
 
@@ -382,7 +397,7 @@
     move-result p1
 
     .line 82
-    invoke-static {}, Lcom/mi/config/b;->gF()Z
+    invoke-static {}, Lcom/mi/config/b;->gO()Z
 
     move-result p2
 

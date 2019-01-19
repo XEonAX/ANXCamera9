@@ -2,7 +2,6 @@ package com.xiaomi.camera.processor;
 
 import android.media.Image;
 import android.support.annotation.NonNull;
-import com.android.camera.Util;
 import com.android.camera.log.Log;
 import com.xiaomi.camera.base.PerformanceTracker;
 import com.xiaomi.camera.core.CaptureData;
@@ -50,34 +49,25 @@ public class ClearShotProcessor implements AlgoProcessor {
         Image mainImage = ((CaptureDataBean) captureDataBeanList.get(0)).getMainImage();
         mainImage = ImagePool.getInstance().getAnEmptyImage(new ImageFormat(mainImage.getWidth(), mainImage.getHeight(), mainImage.getFormat()));
         long timestamp = mainImage.getTimestamp();
-        int i = captureData.getStreamNum() == 1 ? 2 : true;
-        if (captureData.getStreamNum() != 1) {
-            Throwable runtimeException = new RuntimeException("MFNR should not be enabled for portrait mode!");
-            if (Util.isDebugOsBuild()) {
-                throw runtimeException;
-            }
-            Log.e(TAG, "doProcess: exception", runtimeException);
-            i = 2;
-        }
-        i = MiaNodeJNI.getInstance().process(arrayList, mainImage, i);
-        if (i > arrayList.size() || i < 0) {
+        int process = MiaNodeJNI.getInstance().process(arrayList, mainImage, 2, captureData.getStreamNum() == 2);
+        if (process > arrayList.size() || process < 0) {
             str = TAG;
             stringBuilder = new StringBuilder();
             stringBuilder.append("doProcess: returned a error baseIndex: ");
-            stringBuilder.append(i);
+            stringBuilder.append(process);
             Log.w(str, stringBuilder.toString());
-            i = 0;
+            process = 0;
         }
         PerformanceTracker.trackAlgorithmProcess("[CLEARSHOT]", 1);
         str = TAG;
         stringBuilder = new StringBuilder();
         stringBuilder.append("doProcess: ClearShot algorithm has been processed, index is ");
-        stringBuilder.append(i);
+        stringBuilder.append(process);
         Log.d(str, stringBuilder.toString());
         ImagePool.getInstance().queueImage(mainImage);
         captureDataBean.setImage(ImagePool.getInstance().getImage(timestamp), 0);
         CaptureDataListener captureDataListener = captureData.getCaptureDataListener();
-        CaptureDataBean captureDataBean3 = (CaptureDataBean) captureDataBeanList.get(i);
+        CaptureDataBean captureDataBean3 = (CaptureDataBean) captureDataBeanList.get(process);
         for (CaptureDataBean captureDataBean22 : captureDataBeanList) {
             if (captureDataBean22 != captureDataBean3) {
                 Image mainImage2 = captureDataBean22.getMainImage();

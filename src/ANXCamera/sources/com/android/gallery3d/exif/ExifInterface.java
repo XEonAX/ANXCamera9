@@ -126,7 +126,6 @@ public class ExifInterface {
     public static final int TAG_JPEG_INTERCHANGE_FORMAT = defineTag(1, (short) 513);
     public static final int TAG_JPEG_INTERCHANGE_FORMAT_LENGTH = defineTag(1, (short) 514);
     public static final int TAG_LIGHT_SOURCE = defineTag(2, (short) -28152);
-    public static final int TAG_LIVESHOT = defineTag(2, (short) -30569);
     public static final int TAG_MAKE = defineTag(0, (short) 271);
     public static final int TAG_MAKER_NOTE = defineTag(2, (short) -28036);
     public static final int TAG_MAX_APERTURE_VALUE = defineTag(2, (short) -28155);
@@ -170,6 +169,8 @@ public class ExifInterface {
     public static final int TAG_WHITE_BALANCE = defineTag(2, (short) -23549);
     public static final int TAG_WHITE_POINT = defineTag(0, (short) 318);
     public static final int TAG_XIAOMI_COMMENT = defineTag(2, (short) -26215);
+    public static final int TAG_XIAOMI_DEPTHMAP_VERSION = defineTag(2, (short) -30568);
+    public static final int TAG_XIAOMI_LIVESHOT_PHOTO = defineTag(2, (short) -30569);
     public static final int TAG_X_RESOLUTION = defineTag(0, (short) 282);
     public static final int TAG_Y_CB_CR_COEFFICIENTS = defineTag(0, (short) 529);
     public static final int TAG_Y_CB_CR_POSITIONING = defineTag(0, (short) 531);
@@ -634,7 +635,7 @@ public class ExifInterface {
         throw new IllegalArgumentException(NULL_ARGUMENT_STRING);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:25:0x0060 A:{ExcHandler: all (th java.lang.Throwable), Splitter: B:1:0x0003} */
+    /* JADX WARNING: Removed duplicated region for block: B:25:0x0060 A:{Splitter: B:1:0x0003, ExcHandler: all (th java.lang.Throwable)} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:25:0x0060, code:
             r11 = th;
@@ -1204,6 +1205,10 @@ public class ExifInterface {
         deleteTag(TAG_PARALLEL_PROCESS_COMMENT);
     }
 
+    public boolean addXiaomiDepthmapVersion(int i) {
+        return addExifTag(TAG_XIAOMI_DEPTHMAP_VERSION, Integer.valueOf(i));
+    }
+
     public boolean addDepthMapFocusPoint(Point point) {
         return addExifTag(TAG_DEPTH_MAP_FOCUS_POINT, point.toString());
     }
@@ -1233,7 +1238,7 @@ public class ExifInterface {
     }
 
     public boolean addFileTypeLiveShot(boolean z) {
-        return addExifTag(TAG_LIVESHOT, Byte.valueOf(z));
+        return addExifTag(TAG_XIAOMI_LIVESHOT_PHOTO, Byte.valueOf(z));
     }
 
     private boolean addExifTag(int i, Object obj) {
@@ -1536,7 +1541,8 @@ public class ExifInterface {
         this.mTagInfo.put(TAG_PORTRAIT_LIGHTING_PATTERN, i8);
         this.mTagInfo.put(TAG_AI_TYPE, i8);
         this.mTagInfo.put(TAG_FRONT_MIRROR, i8);
-        this.mTagInfo.put(TAG_LIVESHOT, flagsFromAllowedIfds2 | 1);
+        this.mTagInfo.put(TAG_XIAOMI_LIVESHOT_PHOTO, flagsFromAllowedIfds2 | 1);
+        this.mTagInfo.put(TAG_XIAOMI_DEPTHMAP_VERSION, i8);
         this.mTagInfo.put(TAG_XIAOMI_COMMENT, i11);
         int flagsFromAllowedIfds3 = getFlagsFromAllowedIfds(new int[]{4}) << 24;
         i12 = 65536 | flagsFromAllowedIfds3;

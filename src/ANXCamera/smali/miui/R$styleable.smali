@@ -1178,20 +1178,19 @@
 
     :array_2a6
     .array-data 4
-        0x100100da
         0x100100db
         0x100100dc
         0x100100dd
         0x100100de
         0x100100df
         0x100100e0
+        0x100100e1
     .end array-data
 
     :array_2b8
     .array-data 4
         0x10010087
         0x10010088
-        0x100100e5
         0x100100e6
         0x100100e7
         0x100100e8
@@ -1201,11 +1200,11 @@
         0x100100ec
         0x100100ed
         0x100100ee
+        0x100100ef
     .end array-data
 
     :array_2d4
     .array-data 4
-        0x100100b7
         0x100100b8
         0x100100b9
         0x100100ba
@@ -1214,6 +1213,7 @@
         0x100100bd
         0x100100be
         0x100100bf
+        0x100100c0
     .end array-data
 
     :array_2ea
@@ -1222,12 +1222,12 @@
         0x1001003b
         0x1001003c
         0x1001003d
-        0x100100d4
         0x100100d5
         0x100100d6
         0x100100d7
         0x100100d8
         0x100100d9
+        0x100100da
     .end array-data
 
     :array_302
@@ -1266,10 +1266,10 @@
         0x1010031
         0x1010095
         0x1010098
-        0x100100c0
         0x100100c1
         0x100100c2
         0x100100c3
+        0x100100c4
     .end array-data
 
     :array_342
@@ -1295,14 +1295,14 @@
         0x101012f
         0x1010130
         0x1010131
-        0x101052f
+        0x100100b7
     .end array-data
 
     :array_36a
     .array-data 4
         0x1010098
         0x101014f
-        0x10010101
+        0x10010102
     .end array-data
 
     :array_374
@@ -1352,10 +1352,10 @@
         0x101009a
         0x101014f
         0x1010235
-        0x100100d0
         0x100100d1
         0x100100d2
         0x100100d3
+        0x100100d4
     .end array-data
 
     :array_3c6
@@ -1375,8 +1375,8 @@
     :array_3da
     .array-data 4
         0x10010034
-        0x100100cb
         0x100100cc
+        0x100100cd
     .end array-data
 
     :array_3e4
@@ -1409,13 +1409,13 @@
     :array_40a
     .array-data 4
         0x10100d4
-        0x100100c4
         0x100100c5
         0x100100c6
         0x100100c7
         0x100100c8
         0x100100c9
         0x100100ca
+        0x100100cb
     .end array-data
 
     :array_41e

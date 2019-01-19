@@ -27,25 +27,25 @@
 .method public constructor <init>(Lcom/ss/android/ugc/effectmanager/effect/model/Effect;Lcom/ss/android/ugc/effectmanager/context/EffectContext;Ljava/lang/String;Landroid/os/Handler;)V
     .locals 1
 
-    .line 40
+    .line 39
     const-string v0, "NETWORK"
 
     invoke-direct {p0, p4, p3, v0}, Lcom/ss/android/ugc/effectmanager/common/task/NormalTask;-><init>(Landroid/os/Handler;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 41
+    .line 40
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mEffect:Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
-    .line 42
+    .line 41
     iput-object p2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
-    .line 43
+    .line 42
     invoke-virtual {p2}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
     move-result-object p1
 
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
-    .line 44
+    .line 43
     invoke-virtual {p2}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
     move-result-object p1
@@ -54,9 +54,11 @@
 
     move-result p1
 
+    add-int/lit8 p1, p1, 0x1
+
     iput p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mCurCnt:I
 
-    .line 45
+    .line 44
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mEffect:Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;->getFileUrl()Lcom/ss/android/ugc/effectmanager/common/model/UrlModel;
@@ -69,7 +71,7 @@
 
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mDownLoadUrl:Ljava/util/List;
 
-    .line 46
+    .line 45
     return-void
 .end method
 
@@ -81,14 +83,14 @@
         }
     .end annotation
 
-    .line 84
+    .line 82
     new-instance v0, Lcom/ss/android/ugc/effectmanager/common/EffectRequest;
 
     const-string v1, "GET"
 
     invoke-direct {v0, v1, p1}, Lcom/ss/android/ugc/effectmanager/common/EffectRequest;-><init>(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 85
+    .line 83
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -103,18 +105,18 @@
 
     move-result-object p1
 
-    .line 86
+    .line 84
     if-eqz p1, :cond_0
 
-    .line 89
+    .line 87
     invoke-static {p1, p2}, Lcom/ss/android/ugc/effectmanager/common/utils/EffectUtils;->convertStreamToFile(Ljava/io/InputStream;Ljava/lang/String;)Ljava/io/File;
 
-    .line 90
+    .line 88
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mEffect:Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
     return-object p1
 
-    .line 87
+    .line 85
     :cond_0
     new-instance p1, Landroid/accounts/NetworkErrorException;
 
@@ -128,9 +130,9 @@
 
 # virtual methods
 .method public execute()V
-    .locals 7
+    .locals 8
 
-    .line 50
+    .line 49
     new-instance v0, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;
 
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mEffect:Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
@@ -143,16 +145,16 @@
 
     invoke-virtual {p0, v1, v0}, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->sendMessage(ILcom/ss/android/ugc/effectmanager/common/task/BaseTaskResult;)V
 
-    .line 51
+    .line 50
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mEffect:Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
     const/16 v1, 0xf
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_7
 
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mDownLoadUrl:Ljava/util/List;
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_7
 
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mDownLoadUrl:Ljava/util/List;
 
@@ -160,7 +162,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_8
+    if-nez v0, :cond_7
 
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mEffect:Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
@@ -174,9 +176,9 @@
 
     if-eqz v0, :cond_0
 
-    goto/16 :goto_4
+    goto/16 :goto_3
 
-    .line 56
+    .line 55
     :cond_0
     const/4 v0, 0x0
 
@@ -187,16 +189,16 @@
     move-result v3
 
     :goto_0
-    if-ge v0, v3, :cond_7
+    if-ge v0, v3, :cond_6
 
-    .line 58
+    .line 57
     invoke-virtual {p0}, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->isCanceled()Z
 
     move-result v4
 
     if-eqz v4, :cond_1
 
-    .line 59
+    .line 58
     new-instance v0, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mEffect:Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
@@ -211,10 +213,10 @@
 
     invoke-virtual {p0, v1, v0}, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->sendMessage(ILcom/ss/android/ugc/effectmanager/common/task/BaseTaskResult;)V
 
-    .line 60
-    goto/16 :goto_3
+    .line 59
+    goto/16 :goto_2
 
-    .line 63
+    .line 62
     :cond_1
     :try_start_0
     iget-object v4, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mEffect:Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
@@ -241,7 +243,7 @@
 
     if-eqz v4, :cond_3
 
-    .line 64
+    .line 63
     :cond_2
     iget-object v4, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mEffect:Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
@@ -279,7 +281,7 @@
 
     invoke-virtual {v4, v5}, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;->setZipPath(Ljava/lang/String;)V
 
-    .line 65
+    .line 64
     iget-object v4, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mEffect:Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
     new-instance v5, Ljava/lang/StringBuilder;
@@ -312,7 +314,7 @@
 
     invoke-virtual {v4, v5}, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;->setUnzipPath(Ljava/lang/String;)V
 
-    .line 67
+    .line 66
     :cond_3
     iget-object v4, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mDownLoadUrl:Ljava/util/List;
 
@@ -332,10 +334,10 @@
 
     move-result-object v4
 
-    .line 68
+    .line 67
     if-eqz v4, :cond_4
 
-    .line 69
+    .line 68
     invoke-virtual {v4}, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;->getZipPath()Ljava/lang/String;
 
     move-result-object v5
@@ -346,7 +348,7 @@
 
     invoke-static {v5, v6}, Lcom/ss/android/ugc/effectmanager/common/utils/FileUtils;->unZip(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 70
+    .line 69
     new-instance v5, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;
 
     invoke-direct {v5, v4, v2}, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;-><init>(Lcom/ss/android/ugc/effectmanager/effect/model/Effect;Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
@@ -355,64 +357,53 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 71
-    goto :goto_3
+    .line 70
+    goto :goto_2
 
-    .line 79
+    .line 77
     :cond_4
     goto :goto_1
 
-    .line 73
+    .line 72
     :catch_0
     move-exception v4
 
-    .line 74
+    .line 73
     add-int/lit8 v5, v3, -0x1
 
-    if-eq v0, v5, :cond_6
+    if-ne v0, v5, :cond_5
 
-    instance-of v5, v4, Lcom/ss/android/ugc/effectmanager/common/exception/StatusCodeException;
+    .line 74
+    invoke-virtual {v4}, Ljava/lang/Exception;->printStackTrace()V
 
-    if-eqz v5, :cond_5
+    .line 75
+    new-instance v5, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;
 
-    goto :goto_2
+    iget-object v6, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mEffect:Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
-    .line 56
+    new-instance v7, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
+
+    invoke-direct {v7, v4}, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;-><init>(Ljava/lang/Exception;)V
+
+    invoke-direct {v5, v6, v7}, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;-><init>(Lcom/ss/android/ugc/effectmanager/effect/model/Effect;Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
+
+    invoke-virtual {p0, v1, v5}, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->sendMessage(ILcom/ss/android/ugc/effectmanager/common/task/BaseTaskResult;)V
+
+    .line 55
     :cond_5
     :goto_1
     add-int/lit8 v0, v0, 0x1
 
     goto/16 :goto_0
 
-    .line 75
+    .line 79
     :cond_6
     :goto_2
-    invoke-virtual {v4}, Ljava/lang/Exception;->printStackTrace()V
-
-    .line 76
-    new-instance v0, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;
-
-    iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mEffect:Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
-
-    new-instance v3, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
-
-    invoke-direct {v3, v4}, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;-><init>(Ljava/lang/Exception;)V
-
-    invoke-direct {v0, v2, v3}, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;-><init>(Lcom/ss/android/ugc/effectmanager/effect/model/Effect;Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
-
-    invoke-virtual {p0, v1, v0}, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->sendMessage(ILcom/ss/android/ugc/effectmanager/common/task/BaseTaskResult;)V
-
-    .line 77
-    nop
-
-    .line 81
-    :cond_7
-    :goto_3
     return-void
 
-    .line 52
-    :cond_8
-    :goto_4
+    .line 51
+    :cond_7
+    :goto_3
     new-instance v0, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectTaskResult;
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->mEffect:Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
@@ -427,6 +418,6 @@
 
     invoke-virtual {p0, v1, v0}, Lcom/ss/android/ugc/effectmanager/effect/task/task/DownloadEffectTask;->sendMessage(ILcom/ss/android/ugc/effectmanager/common/task/BaseTaskResult;)V
 
-    .line 53
+    .line 52
     return-void
 .end method

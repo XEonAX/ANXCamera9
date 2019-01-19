@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/module/Camera2Module;)V
     .locals 0
 
-    .line 2578
+    .line 2666
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module$15;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,10 +38,10 @@
 .method public onImagePostProcessStart(Lcom/xiaomi/camera/core/ParallelTaskData;)V
     .locals 3
 
-    .line 2581
+    .line 2669
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$15;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    invoke-static {v0}, Lcom/android/camera/module/Camera2Module;->access$900(Lcom/android/camera/module/Camera2Module;)Z
+    invoke-static {v0}, Lcom/android/camera/module/Camera2Module;->access$1000(Lcom/android/camera/module/Camera2Module;)Z
 
     move-result v0
 
@@ -49,17 +49,17 @@
 
     if-nez v0, :cond_0
 
-    .line 2582
+    .line 2670
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$15;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module;->onPictureTakenFinished(Z)V
 
-    .line 2584
+    .line 2672
     :cond_0
     invoke-static {v1}, Lcom/xiaomi/camera/base/PerformanceTracker;->trackPictureCapture(I)V
 
-    .line 2585
-    invoke-static {}, Lcom/android/camera/module/Camera2Module;->access$1300()Ljava/lang/String;
+    .line 2673
+    invoke-static {}, Lcom/android/camera/module/Camera2Module;->access$1400()Ljava/lang/String;
 
     move-result-object v0
 
@@ -79,6 +79,6 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2586
+    .line 2674
     return-void
 .end method

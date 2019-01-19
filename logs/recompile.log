@@ -1,4 +1,4 @@
-PS J:\ROOT\GitHub\ANXMiuiCamera10> java  -jar .\tools\apktool.jar b -p .\tools\MiuiFrameworks -o .\out\ANXCamera-Unsigned.apk .\src\ANXCamera
+PS J:\ROOT\GitHub\ANXCamera10>java  -jar ..\ANXMiuiPortTools\apktool.jar b -p ..\ANXMiuiPortTools\MiuiFrameworks -o .\out\ANXCamera-Unsigned.apk .\src\ANXCamera
 I: Using Apktool 2.3.4
 I: Checking whether sources has changed...
 I: Smaling smali folder into classes.dex...
@@ -15,8 +15,12 @@ W: warning: string 'accessibility_mode_dismiss_button' has no default translatio
 W: warning: string 'accessibility_seek_bar_line' has no default translation.
 W: warning: string 'accessibility_setting_button' has no default translation.
 W: warning: string 'accessibility_skin_beautify_button' has no default translation.
+W: warning: string 'accessibility_video_btn_play' has no default translation.
 W: warning: string 'accessibility_video_module_picker' has no default translation.
 W: warning: string 'audio_focus_exit_button_text' has no default translation.
+W: warning: string 'autozoom_click_hint' has no default translation.
+W: warning: string 'autozoom_disabled_hint' has no default translation.
+W: warning: string 'autozoom_hint' has no default translation.
 W: warning: string 'back_bokeh_use_hint' has no default translation.
 W: warning: string 'bokeh_use_hint' has no default translation.
 W: warning: string 'burst_shoot_exit_button_text' has no default translation.
@@ -117,7 +121,6 @@ W: warning: string 'pref_camera_panoramamode_title' has no default translation.
 W: warning: string 'pref_camera_peak_entry_off' has no default translation.
 W: warning: string 'pref_camera_peak_entry_on' has no default translation.
 W: warning: string 'pref_camera_peak_title' has no default translation.
-W: warning: string 'pref_camera_picture_format_entry_jpeg' has no default translation.
 W: warning: string 'pref_camera_picturesize_entry_fullscreen' has no default translation.
 W: warning: string 'pref_camera_picturesize_entry_standard' has no default translation.
 W: warning: string 'pref_camera_portrait_mode_entry_off' has no default translation.
@@ -151,8 +154,6 @@ W: warning: string 'pref_camera_whitebalance_entry_manual' has no default transl
 W: warning: string 'pref_camera_whitebalance_entry_measure' has no default translation.
 W: warning: string 'pref_camera_zoom_mode_entry_high_pixel' has no default translation.
 W: warning: string 'pref_camera_zoom_mode_entry_standard' has no default translation.
-W: warning: string 'pref_camera_zoom_ratio_tele' has no default translation.
-W: warning: string 'pref_camera_zoom_ratio_wide' has no default translation.
 W: warning: string 'pref_camera_zsl_entry_off' has no default translation.
 W: warning: string 'pref_camera_zsl_entry_on' has no default translation.
 W: warning: string 'pref_face_beauty_title' has no default translation.
@@ -197,6 +198,4 @@ W: warning: string 'width' has no default translation.
 I: Building apk file...
 I: Copying unknown files/dir...
 I: Built apk...
-PS J:\ROOT\GitHub\ANXMiuiCamera10>
-PS J:\ROOT\GitHub\ANXMiuiCamera10> java  -jar .\tools\SignApk.jar .\tools\testkey.x509.pem .\tools\testkey.pk8 .\out\ANXCamera-Unsigned.apk
-.\out\ANXCamera.apk
+PS J:\ROOT\GitHub\ANXCamera10>

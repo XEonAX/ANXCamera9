@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import com.google.android.apps.photos.api.PhotosOemApi;
 import com.ss.android.vesdk.VECameraSettings;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -223,7 +222,7 @@ public class LocalBroadcastManager {
                                         str2 = VECameraSettings.SCENE_MODE_ACTION;
                                         break;
                                     case -2:
-                                        str2 = PhotosOemApi.PATH_SPECIAL_TYPE_DATA;
+                                        str2 = "data";
                                         break;
                                     case -1:
                                         str2 = "type";

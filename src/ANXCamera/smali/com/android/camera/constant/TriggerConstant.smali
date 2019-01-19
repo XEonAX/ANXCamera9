@@ -20,6 +20,8 @@
 
 .field public static final MODE_FOCUS_SHOOT:I = 0x50
 
+.field public static final MODE_HAND_GESTURE:I = 0x64
+
 .field public static final MODE_KEYCODE_CAMERA:I = 0x28
 
 .field public static final MODE_KEYCODE_DPAD:I = 0x32

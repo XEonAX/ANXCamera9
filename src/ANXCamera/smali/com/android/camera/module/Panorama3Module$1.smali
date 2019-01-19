@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/module/Panorama3Module;)V
     .locals 0
 
-    .line 1007
+    .line 1008
     iput-object p1, p0, Lcom/android/camera/module/Panorama3Module$1;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     invoke-direct {p0}, Lcom/android/camera2/Camera2Proxy$PictureCallbackWrapper;-><init>()V
@@ -35,7 +35,7 @@
 .method public onPictureTakenFinished(Z)V
     .locals 3
 
-    .line 1027
+    .line 1028
     invoke-static {}, Lcom/android/camera/module/Panorama3Module;->access$100()Ljava/lang/String;
 
     move-result-object v0
@@ -56,14 +56,14 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1029
+    .line 1030
     return-void
 .end method
 
 .method public onPictureTakenImageConsumed(Landroid/media/Image;)Z
     .locals 3
 
-    .line 1010
+    .line 1011
     invoke-static {}, Lcom/android/camera/module/Panorama3Module;->access$100()Ljava/lang/String;
 
     move-result-object v0
@@ -84,7 +84,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1011
+    .line 1012
     iget-object v0, p0, Lcom/android/camera/module/Panorama3Module$1;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     iget-object v0, v0, Lcom/android/camera/module/Panorama3Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
@@ -93,19 +93,19 @@
 
     if-nez v0, :cond_0
 
-    .line 1012
+    .line 1013
     invoke-virtual {p1}, Landroid/media/Image;->close()V
 
-    .line 1013
+    .line 1014
     return v1
 
-    .line 1016
+    .line 1017
     :cond_0
     new-instance v0, Lcom/android/camera/panorama/Camera2Image;
 
     invoke-direct {v0, p1}, Lcom/android/camera/panorama/Camera2Image;-><init>(Landroid/media/Image;)V
 
-    .line 1018
+    .line 1019
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$1;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     invoke-static {p1}, Lcom/android/camera/module/Panorama3Module;->access$500(Lcom/android/camera/module/Panorama3Module;)Lcom/android/camera/panorama/PanoramaState;
@@ -118,7 +118,7 @@
 
     if-nez p1, :cond_1
 
-    .line 1019
+    .line 1020
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$1;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     new-instance v0, Lcom/android/camera/panorama/PanoramaState;
@@ -127,7 +127,7 @@
 
     invoke-static {p1, v0}, Lcom/android/camera/module/Panorama3Module;->access$502(Lcom/android/camera/module/Panorama3Module;Lcom/android/camera/panorama/PanoramaState;)Lcom/android/camera/panorama/PanoramaState;
 
-    .line 1022
+    .line 1023
     :cond_1
     return v1
 .end method

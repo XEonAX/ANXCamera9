@@ -40,7 +40,7 @@
 .method public genComposedVideoPath()Ljava/lang/String;
     .locals 3
 
-    .line 84
+    .line 87
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -59,7 +59,7 @@
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 86
+    .line 89
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v1
@@ -82,14 +82,14 @@
 
     move-result-object v0
 
-    .line 90
+    .line 93
     return-object v0
 .end method
 
 .method public genReverseVideoPath(I)Ljava/lang/String;
     .locals 3
 
-    .line 101
+    .line 104
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -127,4 +127,13 @@
     move-result-object p1
 
     return-object p1
+.end method
+
+.method public getWorkspace()Ljava/lang/String;
+    .locals 1
+
+    .line 77
+    iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VEEditorResManager;->mWorkSpace:Ljava/lang/String;
+
+    return-object v0
 .end method

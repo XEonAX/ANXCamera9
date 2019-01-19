@@ -22,13 +22,13 @@
 .method public constructor <init>(Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;Landroid/os/Looper;)V
     .locals 0
 
-    .line 251
+    .line 271
     iput-object p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$EventHandler;->this$0:Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;
 
-    .line 252
+    .line 272
     invoke-direct {p0, p2}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
 
-    .line 253
+    .line 273
     return-void
 .end method
 
@@ -37,12 +37,12 @@
 .method public handleMessage(Landroid/os/Message;)V
     .locals 3
 
-    .line 257
+    .line 277
     iget v0, p1, Landroid/os/Message;->what:I
 
     packed-switch v0, :pswitch_data_0
 
-    .line 288
+    .line 308
     invoke-static {}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->access$000()Ljava/lang/String;
 
     move-result-object v0
@@ -67,94 +67,94 @@
 
     goto :goto_0
 
-    .line 278
+    .line 298
     :pswitch_0
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$EventHandler;->this$0:Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;
 
     invoke-virtual {v0}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->doRelease()V
 
-    .line 280
+    .line 300
     iget-object p1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast p1, Landroid/os/Handler;
 
-    .line 281
+    .line 301
     invoke-virtual {p1}, Landroid/os/Handler;->obtainMessage()Landroid/os/Message;
 
     move-result-object p1
 
-    .line 282
+    .line 302
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
 
     iput-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
-    .line 283
+    .line 303
     invoke-virtual {p1}, Landroid/os/Message;->sendToTarget()V
 
-    .line 284
+    .line 304
     goto :goto_0
 
-    .line 268
+    .line 288
     :pswitch_1
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$EventHandler;->this$0:Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;
 
     invoke-virtual {v0}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->doStop()V
 
-    .line 270
+    .line 290
     iget-object p1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast p1, Landroid/os/Handler;
 
-    .line 271
+    .line 291
     invoke-virtual {p1}, Landroid/os/Handler;->obtainMessage()Landroid/os/Message;
 
     move-result-object p1
 
-    .line 272
+    .line 292
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
 
     iput-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
-    .line 273
+    .line 293
     invoke-virtual {p1}, Landroid/os/Message;->sendToTarget()V
 
-    .line 274
+    .line 294
     goto :goto_0
 
-    .line 259
+    .line 279
     :pswitch_2
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$EventHandler;->this$0:Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;
 
     invoke-virtual {v0}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder;->doStart()V
 
-    .line 261
+    .line 281
     iget-object p1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast p1, Landroid/os/Handler;
 
-    .line 262
+    .line 282
     invoke-virtual {p1}, Landroid/os/Handler;->obtainMessage()Landroid/os/Message;
 
     move-result-object p1
 
-    .line 263
+    .line 283
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
 
     iput-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
-    .line 264
+    .line 284
     invoke-virtual {p1}, Landroid/os/Message;->sendToTarget()V
 
-    .line 265
+    .line 285
     nop
 
-    .line 291
+    .line 311
     :goto_0
     return-void
 

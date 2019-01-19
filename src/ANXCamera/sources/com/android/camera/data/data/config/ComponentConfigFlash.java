@@ -147,8 +147,8 @@ public class ComponentConfigFlash extends ComponentData {
                                 if (CameraSettings.isBackCamera()) {
                                     this.mItems.add(new ComponentDataItem(getFlashOnRes(), getFlashOnRes(), R.string.pref_camera_flashmode_entry_on, "1"));
                                 }
-                                if (!CameraSettings.isFrontCamera() || !b.hq()) {
-                                    if (b.gy()) {
+                                if (!CameraSettings.isFrontCamera() || !b.hz()) {
+                                    if (b.gH()) {
                                         this.mItems.add(new ComponentDataItem(getFlashTorchRes(), getFlashTorchRes(), R.string.pref_camera_flashmode_entry_torch, "2"));
                                         break;
                                     }
@@ -162,7 +162,7 @@ public class ComponentConfigFlash extends ComponentData {
             this.mItems.add(new ComponentDataItem(getFlashTorchRes(), getFlashTorchRes(), R.string.pref_camera_flashmode_entry_torch, "2"));
             return this.mItems;
         }
-        if (i2 == 1 && b.hw() && (i == 163 || i == 165 || i == 171)) {
+        if (i2 == 1 && b.hF() && (i == 163 || i == 165 || i == 171)) {
             this.mItems.add(new ComponentDataItem(getFlashOffRes(), getFlashOffRes(), R.string.pref_camera_flashmode_entry_off, "0"));
             this.mItems.add(new ComponentDataItem(getFlashAutoRes(), getFlashAutoRes(), R.string.pref_camera_flashmode_entry_auto, FLASH_VALUE_SCREEN_LIGHT_AUTO));
             this.mItems.add(new ComponentDataItem(getFlashOnRes(), getFlashOnRes(), R.string.pref_camera_flashmode_entry_on, FLASH_VALUE_SCREEN_LIGHT_ON));

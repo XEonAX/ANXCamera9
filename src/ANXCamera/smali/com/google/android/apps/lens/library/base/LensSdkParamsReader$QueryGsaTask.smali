@@ -9,7 +9,7 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x2
+    accessFlags = 0xa
     name = "QueryGsaTask"
 .end annotation
 
@@ -25,26 +25,39 @@
 
 
 # instance fields
-.field final synthetic this$0:Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;
+.field mLensSdkParamsReaderRef:Ljava/lang/ref/SoftReference;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/lang/ref/SoftReference<",
+            "Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;",
+            ">;"
+        }
+    .end annotation
+.end field
 
 
 # direct methods
 .method private constructor <init>(Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;)V
-    .locals 0
+    .locals 1
 
-    .line 106
-    iput-object p1, p0, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$QueryGsaTask;->this$0:Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;
-
+    .line 110
     invoke-direct {p0}, Landroid/os/AsyncTask;-><init>()V
 
-    .line 107
+    .line 111
+    new-instance v0, Ljava/lang/ref/SoftReference;
+
+    invoke-direct {v0, p1}, Ljava/lang/ref/SoftReference;-><init>(Ljava/lang/Object;)V
+
+    iput-object v0, p0, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$QueryGsaTask;->mLensSdkParamsReaderRef:Ljava/lang/ref/SoftReference;
+
+    .line 112
     return-void
 .end method
 
 .method synthetic constructor <init>(Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$1;)V
     .locals 0
 
-    .line 105
+    .line 108
     invoke-direct {p0, p1}, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$QueryGsaTask;-><init>(Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;)V
 
     return-void
@@ -55,17 +68,41 @@
 .method protected varargs doInBackground([Ljava/lang/Void;)Ljava/lang/Integer;
     .locals 8
 
-    .line 110
+    .line 115
     nop
 
-    .line 114
+    .line 119
     const/4 p1, 0x4
 
     const/4 v0, 0x0
 
     :try_start_0
-    iget-object v1, p0, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$QueryGsaTask;->this$0:Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;
+    iget-object v1, p0, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$QueryGsaTask;->mLensSdkParamsReaderRef:Ljava/lang/ref/SoftReference;
 
+    invoke-virtual {v1}, Ljava/lang/ref/SoftReference;->get()Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;
+
+    .line 120
+    if-nez v1, :cond_0
+
+    .line 121
+    const/4 v1, -0x1
+
+    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v1
+
+    .line 140
+    nop
+
+    .line 121
+    return-object v1
+
+    .line 123
+    :cond_0
     invoke-static {v1}, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;->access$100(Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;)Landroid/content/Context;
 
     move-result-object v1
@@ -103,20 +140,20 @@
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
     .catchall {:try_start_0 .. :try_end_0} :catchall_1
 
-    .line 115
-    if-eqz v1, :cond_2
+    .line 124
+    if-eqz v1, :cond_3
 
     :try_start_1
     invoke-interface {v1}, Landroid/database/Cursor;->getCount()I
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_3
 
-    .line 116
+    .line 125
     invoke-interface {v1}, Landroid/database/Cursor;->moveToFirst()Z
 
-    .line 117
+    .line 126
     const/4 v0, 0x0
 
     invoke-interface {v1, v0}, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
@@ -127,18 +164,18 @@
 
     move-result v0
 
-    .line 118
+    .line 127
     const/4 v2, 0x6
 
-    if-le v0, v2, :cond_0
+    if-le v0, v2, :cond_1
 
-    .line 119
+    .line 128
     nop
 
-    .line 122
+    .line 131
     move v0, v2
 
-    :cond_0
+    :cond_1
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v0
@@ -146,20 +183,20 @@
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 123
+    .line 132
     nop
 
-    .line 131
-    if-eqz v1, :cond_1
+    .line 140
+    if-eqz v1, :cond_2
 
-    .line 132
+    .line 141
     invoke-interface {v1}, Landroid/database/Cursor;->close()V
 
-    .line 123
-    :cond_1
+    .line 132
+    :cond_2
     return-object v0
 
-    .line 131
+    .line 140
     :catchall_0
     move-exception p1
 
@@ -167,7 +204,7 @@
 
     goto :goto_2
 
-    .line 127
+    .line 136
     :catch_0
     move-exception v0
 
@@ -175,8 +212,8 @@
 
     goto :goto_0
 
-    .line 126
-    :cond_2
+    .line 135
+    :cond_3
     :try_start_2
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
@@ -185,29 +222,29 @@
     .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_0
     .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
-    .line 131
-    if-eqz v1, :cond_3
+    .line 140
+    if-eqz v1, :cond_4
 
-    .line 132
+    .line 141
     invoke-interface {v1}, Landroid/database/Cursor;->close()V
 
-    .line 136
-    :cond_3
+    .line 145
+    :cond_4
     move-object p1, v0
 
     goto :goto_1
 
-    .line 131
+    .line 140
     :catchall_1
     move-exception p1
 
     goto :goto_2
 
-    .line 127
+    .line 136
     :catch_1
     move-exception v1
 
-    .line 129
+    .line 138
     :goto_0
     :try_start_3
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -216,32 +253,32 @@
     :try_end_3
     .catchall {:try_start_3 .. :try_end_3} :catchall_1
 
-    .line 131
-    if-eqz v0, :cond_4
+    .line 140
+    if-eqz v0, :cond_5
 
-    .line 132
+    .line 141
     invoke-interface {v0}, Landroid/database/Cursor;->close()V
 
-    .line 136
-    :cond_4
+    .line 145
+    :cond_5
     :goto_1
     return-object p1
 
-    .line 131
+    .line 140
     :goto_2
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_6
 
-    .line 132
+    .line 141
     invoke-interface {v0}, Landroid/database/Cursor;->close()V
 
-    :cond_5
+    :cond_6
     throw p1
 .end method
 
 .method protected bridge synthetic doInBackground([Ljava/lang/Object;)Ljava/lang/Object;
     .locals 0
 
-    .line 105
+    .line 108
     check-cast p1, [Ljava/lang/Void;
 
     invoke-virtual {p0, p1}, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$QueryGsaTask;->doInBackground([Ljava/lang/Void;)Ljava/lang/Integer;
@@ -252,48 +289,61 @@
 .end method
 
 .method protected onPostExecute(Ljava/lang/Integer;)V
-    .locals 5
+    .locals 6
 
-    .line 140
+    .line 149
     invoke-static {p1}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 141
-    const-string v1, "LensSdkParamsReader"
+    .line 150
+    iget-object v1, p0, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$QueryGsaTask;->mLensSdkParamsReaderRef:Ljava/lang/ref/SoftReference;
 
-    new-instance v2, Ljava/lang/StringBuilder;
+    invoke-virtual {v1}, Ljava/lang/ref/SoftReference;->get()Ljava/lang/Object;
 
-    invoke-static {v0}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
+    move-result-object v1
 
-    move-result-object v3
+    check-cast v1, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;
 
-    invoke-virtual {v3}, Ljava/lang/String;->length()I
+    .line 151
+    if-nez v1, :cond_0
 
-    move-result v3
+    .line 152
+    return-void
+
+    .line 154
+    :cond_0
+    const-string v2, "LensSdkParamsReader"
+
+    new-instance v3, Ljava/lang/StringBuilder;
 
     const/16 v4, 0x19
 
-    add-int/2addr v4, v3
+    invoke-virtual {v0}, Ljava/lang/String;->length()I
 
-    invoke-direct {v2, v4}, Ljava/lang/StringBuilder;-><init>(I)V
+    move-result v5
 
-    const-string v3, "Lens availability result:"
+    add-int/2addr v4, v5
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-direct {v3, v4}, Ljava/lang/StringBuilder;-><init>(I)V
 
-    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const-string v4, "Lens availability result:"
 
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    .line 155
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 156
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v0
 
-    invoke-static {v1, v0}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+    .line 154
+    invoke-static {v2, v0}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 142
-    iget-object v0, p0, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$QueryGsaTask;->this$0:Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;
-
-    invoke-static {v0}, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;->access$200(Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;)Lcom/google/android/apps/lens/library/base/proto/nano/LensSdkParamsProto$LensSdkParams;
+    .line 157
+    invoke-static {v1}, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;->access$200(Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;)Lcom/google/android/apps/lens/library/base/proto/nano/LensSdkParamsProto$LensSdkParams;
 
     move-result-object v0
 
@@ -303,17 +353,13 @@
 
     iput p1, v0, Lcom/google/android/apps/lens/library/base/proto/nano/LensSdkParamsProto$LensSdkParams;->lensAvailabilityStatus:I
 
-    .line 143
-    iget-object p1, p0, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$QueryGsaTask;->this$0:Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;
+    .line 158
+    const/4 p1, 0x1
 
-    const/4 v0, 0x1
+    invoke-static {v1, p1}, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;->access$302(Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;Z)Z
 
-    invoke-static {p1, v0}, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;->access$302(Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;Z)Z
-
-    .line 144
-    iget-object p1, p0, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$QueryGsaTask;->this$0:Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;
-
-    invoke-static {p1}, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;->access$400(Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;)Ljava/util/List;
+    .line 160
+    invoke-static {v1}, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;->access$400(Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;)Ljava/util/List;
 
     move-result-object p1
 
@@ -321,51 +367,45 @@
 
     move-result-object p1
 
-    .line 146
     :goto_0
     invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1
 
-    .line 147
     invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$LensSdkParamsCallback;
 
-    .line 148
-    iget-object v1, p0, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$QueryGsaTask;->this$0:Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;
-
+    .line 161
     invoke-static {v1}, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;->access$200(Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;)Lcom/google/android/apps/lens/library/base/proto/nano/LensSdkParamsProto$LensSdkParams;
 
-    move-result-object v1
+    move-result-object v2
 
-    invoke-interface {v0, v1}, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$LensSdkParamsCallback;->onLensSdkParamsAvailable(Lcom/google/android/apps/lens/library/base/proto/nano/LensSdkParamsProto$LensSdkParams;)V
+    invoke-interface {v0, v2}, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$LensSdkParamsCallback;->onLensSdkParamsAvailable(Lcom/google/android/apps/lens/library/base/proto/nano/LensSdkParamsProto$LensSdkParams;)V
 
-    .line 149
+    .line 162
     goto :goto_0
 
-    .line 151
-    :cond_0
-    iget-object p1, p0, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$QueryGsaTask;->this$0:Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;
-
-    invoke-static {p1}, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;->access$400(Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;)Ljava/util/List;
+    .line 164
+    :cond_1
+    invoke-static {v1}, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;->access$400(Lcom/google/android/apps/lens/library/base/LensSdkParamsReader;)Ljava/util/List;
 
     move-result-object p1
 
     invoke-interface {p1}, Ljava/util/List;->clear()V
 
-    .line 152
+    .line 165
     return-void
 .end method
 
 .method protected bridge synthetic onPostExecute(Ljava/lang/Object;)V
     .locals 0
 
-    .line 105
+    .line 108
     check-cast p1, Ljava/lang/Integer;
 
     invoke-virtual {p0, p1}, Lcom/google/android/apps/lens/library/base/LensSdkParamsReader$QueryGsaTask;->onPostExecute(Ljava/lang/Integer;)V

@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/module/LiveModule$1;)V
     .locals 0
 
-    .line 244
+    .line 279
     iput-object p1, p0, Lcom/android/camera/module/LiveModule$1$1;->this$1:Lcom/android/camera/module/LiveModule$1;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public onClick(Landroid/content/DialogInterface;I)V
     .locals 1
 
-    .line 247
+    .line 282
     iget-object p1, p0, Lcom/android/camera/module/LiveModule$1$1;->this$1:Lcom/android/camera/module/LiveModule$1;
 
     iget-object p1, p1, Lcom/android/camera/module/LiveModule$1;->this$0:Lcom/android/camera/module/LiveModule;
@@ -53,6 +53,6 @@
 
     invoke-virtual {p1, p2}, Lcom/android/camera/Camera;->startActivity(Landroid/content/Intent;)V
 
-    .line 248
+    .line 283
     return-void
 .end method

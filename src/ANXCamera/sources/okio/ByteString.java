@@ -1,6 +1,5 @@
 package okio;
 
-import com.google.android.apps.photos.api.PhotosOemApi;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -522,7 +521,7 @@ public class ByteString implements Serializable, Comparable<ByteString> {
     private void readObject(ObjectInputStream objectInputStream) throws IOException {
         ByteString read = read(objectInputStream, objectInputStream.readInt());
         try {
-            Field declaredField = ByteString.class.getDeclaredField(PhotosOemApi.PATH_SPECIAL_TYPE_DATA);
+            Field declaredField = ByteString.class.getDeclaredField("data");
             declaredField.setAccessible(true);
             declaredField.set(this, read.data);
         } catch (NoSuchFieldException e) {

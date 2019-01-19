@@ -39,7 +39,7 @@
 .method constructor <init>(Lcom/android/camera/Camera;)V
     .locals 0
 
-    .line 183
+    .line 185
     iput-object p1, p0, Lcom/android/camera/Camera$3;->this$0:Lcom/android/camera/Camera;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -79,12 +79,12 @@
         }
     .end annotation
 
-    .line 187
+    .line 189
     invoke-virtual {p2}, Lcom/android/camera/module/loader/camera2/Camera2Result;->getResult()I
 
     move-result v0
 
-    .line 188
+    .line 190
     invoke-static {}, Lcom/android/camera/Camera;->access$400()Ljava/lang/String;
 
     move-result-object v1
@@ -105,12 +105,12 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 189
+    .line 191
     packed-switch v0, :pswitch_data_0
 
     goto :goto_0
 
-    .line 195
+    .line 197
     :pswitch_0
     invoke-virtual {p1}, Lcom/android/camera/module/loader/NullHolder;->isPresent()Z
 
@@ -118,17 +118,17 @@
 
     if-eqz v0, :cond_0
 
-    .line 196
+    .line 198
     invoke-virtual {p1}, Lcom/android/camera/module/loader/NullHolder;->get()Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/camera/module/BaseModule;
 
-    .line 197
+    .line 199
     invoke-virtual {v0}, Lcom/android/camera/module/BaseModule;->setDeparted()V
 
-    .line 200
+    .line 202
     :cond_0
     iget-object v0, p0, Lcom/android/camera/Camera$3;->this$0:Lcom/android/camera/Camera;
 
@@ -140,11 +140,11 @@
 
     goto :goto_0
 
-    .line 192
+    .line 194
     :pswitch_1
     nop
 
-    .line 203
+    .line 205
     :goto_0
     return-object p1
 
@@ -173,7 +173,7 @@
         }
     .end annotation
 
-    .line 183
+    .line 185
     check-cast p1, Lcom/android/camera/module/loader/NullHolder;
 
     check-cast p2, Lcom/android/camera/module/loader/camera2/Camera2Result;

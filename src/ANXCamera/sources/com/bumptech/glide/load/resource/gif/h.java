@@ -19,16 +19,16 @@ public class h implements g<InputStream, b> {
     private static final String TAG = "StreamGifDecoder";
     private final List<ImageHeaderParser> dL;
     private final b du;
-    private final g<ByteBuffer, b> lZ;
+    private final g<ByteBuffer, b> lY;
 
     public h(List<ImageHeaderParser> list, g<ByteBuffer, b> gVar, b bVar) {
         this.dL = list;
-        this.lZ = gVar;
+        this.lY = gVar;
         this.du = bVar;
     }
 
     public boolean a(@NonNull InputStream inputStream, @NonNull f fVar) throws IOException {
-        return !((Boolean) fVar.a(g.lY)).booleanValue() && com.bumptech.glide.load.b.a(this.dL, inputStream, this.du) == ImageType.GIF;
+        return !((Boolean) fVar.a(g.lX)).booleanValue() && com.bumptech.glide.load.b.a(this.dL, inputStream, this.du) == ImageType.GIF;
     }
 
     public p<b> a(@NonNull InputStream inputStream, int i, int i2, @NonNull f fVar) throws IOException {
@@ -36,7 +36,7 @@ public class h implements g<InputStream, b> {
         if (f == null) {
             return null;
         }
-        return this.lZ.a(ByteBuffer.wrap(f), i, i2, fVar);
+        return this.lY.a(ByteBuffer.wrap(f), i, i2, fVar);
     }
 
     private static byte[] f(InputStream inputStream) {

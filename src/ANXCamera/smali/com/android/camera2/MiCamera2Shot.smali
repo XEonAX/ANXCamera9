@@ -147,7 +147,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1
 
     iget-object v0, p0, Lcom/android/camera2/MiCamera2Shot;->mMiCamera:Lcom/android/camera2/MiCamera2;
 
@@ -162,13 +162,29 @@
 
     const v1, 0x8007
 
-    if-ne v0, v1, :cond_0
+    if-eq v0, v1, :cond_0
 
+    iget-object v0, p0, Lcom/android/camera2/MiCamera2Shot;->mMiCamera:Lcom/android/camera2/MiCamera2;
+
+    .line 74
+    invoke-virtual {v0}, Lcom/android/camera2/MiCamera2;->getCapabilities()Lcom/android/camera2/CameraCapabilities;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/camera2/CameraCapabilities;->getOperatingMode()I
+
+    move-result v0
+
+    const v1, 0x80f5
+
+    if-ne v0, v1, :cond_1
+
+    :cond_0
     const/4 v0, 0x1
 
     goto :goto_0
 
-    :cond_0
+    :cond_1
     const/4 v0, 0x0
 
     .line 72

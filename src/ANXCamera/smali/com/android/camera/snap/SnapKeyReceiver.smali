@@ -57,7 +57,7 @@
     if-lt v0, v1, :cond_7
 
     .line 27
-    invoke-static {}, Lcom/mi/config/b;->gR()Z
+    invoke-static {}, Lcom/mi/config/b;->ha()Z
 
     move-result v0
 
