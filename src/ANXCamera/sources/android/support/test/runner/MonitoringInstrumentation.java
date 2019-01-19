@@ -152,9 +152,9 @@ public class MonitoringInstrumentation extends ExposedInstrumentationApi {
         useDefaultInterceptingActivityFactory();
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:17:0x0052 A:{ExcHandler: java.lang.ClassNotFoundException (e java.lang.ClassNotFoundException), Splitter: B:2:0x0006} */
-    /* JADX WARNING: Removed duplicated region for block: B:12:0x0040 A:{ExcHandler: java.lang.reflect.InvocationTargetException (r0_4 'e' java.lang.Throwable), Splitter: B:2:0x0006} */
-    /* JADX WARNING: Removed duplicated region for block: B:9:0x0037 A:{ExcHandler: java.lang.IllegalAccessException (r0_3 'e' java.lang.Throwable), Splitter: B:2:0x0006} */
+    /* JADX WARNING: Removed duplicated region for block: B:17:0x0052 A:{Splitter: B:2:0x0006, ExcHandler: java.lang.ClassNotFoundException (e java.lang.ClassNotFoundException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:12:0x0040 A:{Splitter: B:2:0x0006, ExcHandler: java.lang.reflect.InvocationTargetException (r0_4 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:9:0x0037 A:{Splitter: B:2:0x0006, ExcHandler: java.lang.IllegalAccessException (r0_3 'e' java.lang.Throwable)} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:9:0x0037, code:
             r0 = move-exception;
@@ -516,8 +516,8 @@ public class MonitoringInstrumentation extends ExposedInstrumentationApi {
     private void tryLoadingJsBridge(final String str) {
         if (str != null) {
             runOnMainSync(new Runnable() {
-                /* JADX WARNING: Removed duplicated region for block: B:5:0x0029 A:{ExcHandler: java.lang.ClassNotFoundException (e java.lang.ClassNotFoundException), Splitter: B:0:0x0000} */
-                /* JADX WARNING: Removed duplicated region for block: B:2:0x0020 A:{ExcHandler: java.lang.reflect.InvocationTargetException (r0_5 'e' java.lang.Throwable), Splitter: B:0:0x0000} */
+                /* JADX WARNING: Removed duplicated region for block: B:5:0x0029 A:{Splitter: B:0:0x0000, ExcHandler: java.lang.ClassNotFoundException (e java.lang.ClassNotFoundException)} */
+                /* JADX WARNING: Removed duplicated region for block: B:2:0x0020 A:{Splitter: B:0:0x0000, ExcHandler: java.lang.reflect.InvocationTargetException (r0_5 'e' java.lang.Throwable)} */
                 /* JADX WARNING: Missing block: B:2:0x0020, code:
             r0 = move-exception;
      */
