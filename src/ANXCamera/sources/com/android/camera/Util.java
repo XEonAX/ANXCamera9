@@ -51,7 +51,6 @@ import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.provider.MiuiSettings;
-import android.provider.MiuiSettings.Global;
 import android.provider.MiuiSettings.ScreenEffect;
 import android.provider.Settings.Secure;
 import android.provider.Settings.SettingNotFoundException;
@@ -1957,7 +1956,7 @@ public final class Util {
     }
 
     public static boolean isFullScreenNavBarHidden(Context context) {
-        return Global.getBoolean(context.getContentResolver(), Global.FORCE_FSG_NAV_BAR);
+        return false;
     }
 
     public static boolean isPackageAvailable(Context context, String str) {

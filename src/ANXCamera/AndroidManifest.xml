@@ -2,9 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
     android:compileSdkVersion="28" 
     android:compileSdkVersionCodename="9" 
+    android:versionCode="9" 
+    android:versionName="9.GregariousBarrenPiglet" 
     package="com.android.camera" 
     platformBuildVersionCode="28" 
     platformBuildVersionName="9">
+    <uses-sdk android:minSdkVersion="26" 
+        android:targetSdkVersion="28"/>
     <original-package android:name="com.android.camera"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-feature android:name="android.hardware.camera"/>
@@ -39,21 +43,27 @@
     <application android:allowBackup="true" 
         android:backupAgent="miui.app.backup.FullBackupAgent" 
         android:hardwareAccelerated="true" 
-        android:icon="@mipmap/ic_launcher_camera" 
+        android:icon="@mipmap/ic_launcher" 
         android:label="@string/camera_label" 
         android:name="com.android.camera.CameraAppImpl" 
         android:networkSecurityConfig="@xml/network_security_config" 
+        android:roundIcon="@mipmap/ic_launcher_round" 
         android:supportsRtl="true" 
         android:theme="@style/ThemeCamera">
         <meta-data android:name="android.max_aspect" 
             android:value="2.2"/>
         <uses-library android:name="zxing.jar" 
             android:required="false"/>
-        <uses-library android:name="miui-stat.jar"/>
-        <uses-library android:name="android-support-v13.jar"/>
-        <uses-library android:name="android-support-v7-recyclerview.jar"/>
-        <uses-library android:name="cloud-common.jar"/>
-        <uses-library android:name="volley.jar"/>
+        <uses-library android:name="miui-stat.jar" 
+            android:required="false"/>
+        <uses-library android:name="android-support-v13.jar" 
+            android:required="false"/>
+        <uses-library android:name="android-support-v7-recyclerview.jar" 
+            android:required="false"/>
+        <uses-library android:name="cloud-common.jar" 
+            android:required="false"/>
+        <uses-library android:name="volley.jar" 
+            android:required="false"/>
         <service android:exported="false" 
             android:name="com.android.camera.snap.SnapService" 
             android:permission="android.permission.BIND_JOB_SERVICE"/>
@@ -143,7 +153,7 @@
         <activity android:label="@string/custom_watermark_words" 
             android:launchMode="singleTop" 
             android:name="com.android.camera.UserDefineWatermarkActivity" 
-            android:theme="@miui:style/Theme.Light"/>
+            android:theme="@android:style/Theme.Material.Light"/>
         <service android:exported="true" 
             android:name="com.android.camera.backup.CameraSettingsBackupService" 
             android:permission="com.xiaomi.permission.CLOUD_MANAGER">
@@ -158,7 +168,7 @@
                 <action android:name="miui.action.CAMERA_EMPTY_SERVICE"/>
             </intent-filter>
         </service>
-        <provider android:authorities="@string/provider_authority" 
+        <provider android:authorities="com.xiaomi.camera.parallelservice.provider.SpecialTypesProvider" 
             android:exported="true" 
             android:grantUriPermissions="true" 
             android:name="com.xiaomi.camera.parallelservice.provider.ParallelProcessProvider" 

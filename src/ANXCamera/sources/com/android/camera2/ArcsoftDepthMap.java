@@ -78,7 +78,7 @@ public class ArcsoftDepthMap {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:109:0x0274 A:{Splitter: B:69:0x0227, ExcHandler: java.io.IOException (e java.io.IOException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:108:0x0272 A:{Splitter: B:78:0x0248, ExcHandler: java.io.IOException (e java.io.IOException), PHI: r10 } */
+    /* JADX WARNING: Removed duplicated region for block: B:108:0x0272 A:{PHI: r10 , Splitter: B:78:0x0248, ExcHandler: java.io.IOException (e java.io.IOException)} */
     /* JADX WARNING: Missing block: B:110:0x0275, code:
             r10 = null;
      */

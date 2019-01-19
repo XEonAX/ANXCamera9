@@ -11,7 +11,7 @@
     <!--whether the device supports torch-->
     <bool name="support_torch">true</bool>
     <!--whether install the fm app-->
-    <bool name="support_fm">true</bool>
+    <bool name="support_fm">false</bool>
     <!--whether the device supports oldman mode-->
     <bool name="support_oldman_mode">false</bool>
     <!--whether the device is dual sim card-->
@@ -83,7 +83,7 @@
     <!--whether the device supports steps_provider-->
     <bool name="support_steps_provider">true</bool>
     <!--whether the device support hall sensor-->
-    <bool name="support_hall_sensor">true</bool>
+    <bool name="support_hall_sensor">false</bool>
     <!--whether the device supports hifi-->
     <bool name="support_hifi">false</bool>
     <!--whether the device supports agps parameters-->
@@ -93,9 +93,7 @@
     <!--whether the device supports IR-->
     <!-- Support Dual Gps-->
     <bool name="support_dual_gps">true</bool>
-    <!-- Support Android Flashlight Controller -->
-    <bool name="support_android_flashlight">true</bool>
-    <bool name="support_ir">true</bool>
+    <bool name="support_ir">false</bool>
     <!-- whether the device supports app hiding-->
     <bool name="support_app_hiding">true</bool>
     <!--whether the device can read cpu4 freq-->
@@ -141,7 +139,7 @@
     <!--whether taking full size effect image in camera-->
     <bool name="is_full_size_effect">true</bool>
     <!--whether support aohdr in camera-->
-    <bool name="support_camera_aohdr">true</bool>
+    <bool name="support_camera_aohdr">false</bool>
     <!--whether support high frame recording in camera-->
     <bool name="support_camera_hfr">true</bool>
     <!--whether support chroma flash in camera-->
@@ -196,8 +194,12 @@
     <bool name="support_aod">true</bool>
     <!-- whether support edge handgrip -->
     <bool name="support_edge_handgrip">false</bool>
+    <!-- whether the device app permission detail show in provision-->
+    <bool name="support_provision_app_permission">true</bool>
+    <!--whether support pre-installed application-->
+    <bool name="support_pre_installed_application">true</bool>
     <!--wheater support validate device when syste upadte -->
-    <bool name="support_ota_validate">false</bool>
+    <bool name="support_ota_validate">true</bool>
     <!--whether show basic info items-->
     <bool name="support_show_basic_items">true</bool>
     <!--whether show my device-->
@@ -207,9 +209,9 @@
     <!--wheater support show credentials-->
     <bool name="support_credentials">true</bool>
     <!--whether support main show XiaoAi-->
-    <bool name="support_main_xiaoai">false</bool>
+    <bool name="support_main_xiaoai">true</bool>
     <!--battery capacity typ of the device-->
-    <string name="battery_capacity_typ">3400</string>
+    <string name="battery_capacity_typ">3200</string>
     <!--the vendor feature, it's value may be qcom,mediatek,leadcore or nvidia-->
     <string name="vendor">qcom</string>
     <!--release time for the device, should be an unix timestamp-->
@@ -250,9 +252,7 @@
     </string-array>
     <bool name="support_tap_fingerprint_sensor_to_home">false</bool>
     <!-- type of soter finger pay, config by owner of soter -->
-    <integer name="type_soter_finger_pay">1</integer>
-    <!-- finger record, config by owner -->
-    <integer name="type_mqs_finger_record">3</integer>
+    <integer name="type_soter_finger_pay">2</integer>
     <!--wheater the device supports persist screen color in driver-->
     <bool name="support_screen_color_persist">true</bool>
     <!--cpu combination -->
@@ -279,6 +279,12 @@
     <bool name="support_se_route">true</bool>
     <!--whether the device supports screen key position swap-->
     <bool name="support_screen_key_swap">false</bool>
+    <!--In these app access camera, add beautify parameter -->
+    <string-array name="add_still_beautify_list">
+        <item>com.tencent.mm</item>
+        <item>com.tencent.mobileqq</item>
+        <item>com.skype.rover</item>
+    </string-array>
     <!--These app has permission to access aux camera -->
     <string-array name="camera_aux_package_list">
         <item>org.codeaurora.snapcam</item>
@@ -287,9 +293,6 @@
         <item>com.qualcomm.qti.qmmi</item>
         <item>com.android.keyguard</item>
         <item>com.android.systemui</item>
-        <item>com.phonetest.application</item>
-        <item>com.phonetest.application.test</item>
-        <item>com.miui.face</item>
     </string-array>
     <!--still beautify value for 3rd party call-->
     <string name="extra_still_beautify_value">i:2</string>
@@ -323,7 +326,6 @@
         <item>com.miui.yellowpage</item>
         <item>com.xiaomi.midrop</item>
         <item>com.android.midrive</item>
-        <item>com.xiaomi.drivemode</item>
     </string-array>
     <!--system data-app path list -->
     <string-array name="system_data_path_list">
@@ -344,10 +346,9 @@
         <item>/system/data-app/YellowPage/YellowPage.apk</item>
         <item>/system/data-app/MiDrop/MiDrop.apk</item>
         <item>/system/data-app/MiDrive/MiDrive.apk</item>
-        <item>/system/data-app/MiuiDriveMode/MiuiDriveMode.apk</item>
     </string-array>
-    <!--whether surpport paper mode animation-->
-    <bool name="support_papermode_animation">true</bool>
+    <!--whether battery led default value on-->
+    <bool name="default_battery_led_on">false</bool>
     <!--whether support optical zoom in camera-->
     <bool name="is_support_optical_zoom">true</bool>
     <!--whether support portrait in camera-->
@@ -367,24 +368,24 @@
     <!--whether camera support 3D face beauty-->
     <bool name="support_3d_face_beauty">true</bool>
     <!--whether camera support HFR video mode-->
-    <bool name="support_video_hfr_mode">true</bool>
+    <bool name="support_video_hfr_mode">false</bool>
     <!--whether camera support superresolution mode-->
     <bool name="support_super_resolution">true</bool>
+    <!--whether camera support front flash-->
+    <bool name="support_front_flash">true</bool>
+    <!--whether support psensor in pocket mode (true by default)-->
+    <bool name="support_psensor_pocket_mode">false</bool>
+    <!--whether camera support realtime manual exposure time-->
+    <bool name="support_realtime_manual_exposure_time">true</bool>
+    <!--whether sensor_has_latency-->
+    <bool name="sensor_has_latency">true</bool>
     <!-- whether support bluetooth fast startup -->
     <bool name="support_bluetooth_boost">true</bool>
     <string name="bluetooth_boost_value">0x000011C0</string>
-    <!-- Support ARCore, This feature is subjected to change if google defines a standard feature.-->
-    <bool name="support_ar_core">true</bool>
-    <!--whether support freeform mode in game mode-->
-    <bool name="support_freeform_reply">true</bool>
     <!-- whether support fast connect bluetooth device -->
     <bool name="support_bluetooth_fast_connect">true</bool>
-    <!--whether sensor_has_latency-->
-    <bool name="sensor_has_latency">true</bool>
-    <!--wether support ime xiaoai voice input-->
-    <bool name="surpport_ime_xiaoai_voice">false</bool>
-    <!--These region support face unlock-->
-    <string-array name="support_face_unlock_region_dom">
-        <item>CN</item>
-    </string-array>
+    <!-- whether support ai task button -->
+    <bool name="support_ai_task">true</bool>
+    <!-- whether support extreme mode -->
+    <bool name="support_extreme_battery_saver">true</bool>
 </features>
