@@ -107,8 +107,8 @@ public class FeatureParser {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:78:0x01bc A:{PHI: r1 , Splitter: B:1:0x0003, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:72:0x01b3 A:{PHI: r1 , Splitter: B:12:0x003d, ExcHandler: all (th java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:78:0x01bc A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), PHI: r1 , Splitter: B:1:0x0003} */
+    /* JADX WARNING: Removed duplicated region for block: B:72:0x01b3 A:{ExcHandler: all (th java.lang.Throwable), PHI: r1 , Splitter: B:12:0x003d} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:73:0x01b4, code:
             if (r1 != null) goto L_0x01b6;

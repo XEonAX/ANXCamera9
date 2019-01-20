@@ -77,8 +77,8 @@ public class ArcsoftDepthMap {
         return getBytes(this.mDepthMapOriginalData, 152, getDepthMapLength());
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:109:0x0274 A:{Splitter: B:69:0x0227, ExcHandler: java.io.IOException (e java.io.IOException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:108:0x0272 A:{PHI: r10 , Splitter: B:78:0x0248, ExcHandler: java.io.IOException (e java.io.IOException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:109:0x0274 A:{ExcHandler: java.io.IOException (e java.io.IOException), Splitter: B:69:0x0227} */
+    /* JADX WARNING: Removed duplicated region for block: B:108:0x0272 A:{ExcHandler: java.io.IOException (e java.io.IOException), PHI: r10 , Splitter: B:78:0x0248} */
     /* JADX WARNING: Missing block: B:110:0x0275, code:
             r10 = null;
      */
