@@ -1,19 +1,33 @@
-<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<?xml version="1.0" encoding="utf-8"?>
 <exceptions>
-
-    <exception package="com.android.camera">
-        <!-- Camera -->
-        <permission name="android.permission.CAMERA" fixed="false"/>
-        <!-- Location -->
-        <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false"/>
-        <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false"/>
-        <!-- Microphone -->
-        <permission name="android.permission.RECORD_AUDIO" fixed="false"/>
-        <!-- Phone -->
-        <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
-        <!-- Storage -->
-        <permission name="android.permission.READ_EXTERNAL_STORAGE" fixed="false"/>
-        <permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="false"/>
-    </exception>
-
+  <exception package="com.android.camera">
+    <!-- Camera -->
+    <permission name="android.permission.CAMERA"
+        fixed="true" />
+    <!-- Location -->
+    <permission name="android.permission.ACCESS_FINE_LOCATION"
+        fixed="true" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION"
+        fixed="true" />
+    <!-- Microphone -->
+    <permission name="android.permission.RECORD_AUDIO"
+        fixed="true" />
+    <!-- Phone -->
+    <permission name="android.permission.READ_PHONE_STATE"
+        fixed="true" />
+    <!-- Storage -->
+    <permission name="android.permission.READ_EXTERNAL_STORAGE"
+        fixed="true" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE"
+        fixed="true" />
+    <!-- Omni -->
+    <permission name="android.permission.INTERACT_ACROSS_USERS"
+        fixed="true" />
+    <permission name="android.permission.WRITE_MEDIA_STORAGE"
+        fixed="true" />
+    <permission name="android.permission.WRITE_SECURE_SETTINGS"
+        fixed="true" />
+    <permission name="android.permission.PACKAGE_USAGE_STATS"
+        fixed="true" />
+  </exception>
 </exceptions>
