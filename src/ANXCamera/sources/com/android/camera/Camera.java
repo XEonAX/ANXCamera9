@@ -30,6 +30,7 @@ import android.view.Window;
 import android.view.WindowManager.LayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.aeonax.PermissionsAsker;
 import com.android.camera.LocalParallelService.LocalBinder;
 import com.android.camera.constant.GlobalConstant;
 import com.android.camera.data.DataRepository;
@@ -291,6 +292,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
         this.mCameraIntentManager.setReferer(this);
         if (CompatibilityUtils.isInMultiWindowMode(this)) {
             super.onCreate(null);
+            PermissionsAsker.Ask(this);
             ToastUtils.showToast((Context) this, (int) R.string.multi_window_mode_not_supported);
             Log.d(TAG, "isInMultiWindowMode call finish");
             finish();
@@ -299,6 +301,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
                 CameraStatUtil.trackVoiceControl(getIntent());
             }
             super.onCreate(bundle);
+            PermissionsAsker.Ask(this);
             Completable.create(new CompletablePreFixCamera2Setup(null, null, null, getIntent(), startFromSecureKeyguard(), this.mCameraIntentManager.checkCallerLegality())).subscribeOn(GlobalConstant.sCameraSetupScheduler).subscribe();
             if (ProximitySensorLock.enabled() && isFromKeyguard()) {
                 if (Util.isNonUIEnabled() && this.mCameraIntentManager.isFromVolumeKey().booleanValue()) {
@@ -350,6 +353,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
             stringBuilder.append(" use VOICE_CONTROL_INTENT!");
             Log.e(str, stringBuilder.toString());
             super.onCreate(null);
+            PermissionsAsker.Ask(this);
             finish();
         }
     }
@@ -699,9 +703,9 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
         Log.d(TAG, "onStop end");
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{Splitter: B:16:0x0035, ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable)} */
-    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{Splitter: B:16:0x0035, ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable)} */
-    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{Splitter: B:16:0x0035, ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable), Splitter: B:16:0x0035} */
+    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable), Splitter: B:16:0x0035} */
+    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable), Splitter: B:16:0x0035} */
     /* JADX WARNING: Missing block: B:18:0x007a, code:
             r0 = move-exception;
      */

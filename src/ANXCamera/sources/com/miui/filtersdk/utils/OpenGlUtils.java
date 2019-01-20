@@ -155,7 +155,7 @@ public class OpenGlUtils {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:24:0x0038 A:{SYNTHETIC, Splitter: B:24:0x0038} */
-    /* JADX WARNING: Removed duplicated region for block: B:14:0x0026 A:{Splitter: B:3:0x000f, ExcHandler: all (th java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:14:0x0026 A:{ExcHandler: all (th java.lang.Throwable), Splitter: B:3:0x000f} */
     /* JADX WARNING: Removed duplicated region for block: B:24:0x0038 A:{SYNTHETIC, Splitter: B:24:0x0038} */
     /* JADX WARNING: Removed duplicated region for block: B:28:0x003f A:{SYNTHETIC, Splitter: B:28:0x003f} */
     /* JADX WARNING: Failed to process nested try/catch */
