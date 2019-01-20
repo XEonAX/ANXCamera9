@@ -3,8 +3,8 @@
     android:compileSdkVersion="28" 
     android:compileSdkVersionCodename="9" 
     package="com.android.camera" 
-    android:versionCode="5" 
-    android:versionName="5.RotatingScrawnyScaup"
+    android:versionCode="6" 
+    android:versionName="6.LimegreenUprightDogfish"
     platformBuildVersionCode="28" 
     platformBuildVersionName="9">
     <original-package android:name="com.android.camera"/>
