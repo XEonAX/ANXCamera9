@@ -40,7 +40,9 @@ public class PermissionsAsker {
             if (activity.checkSelfPermission("android.permission.PACKAGE_USAGE_STATS") != 0) {
                 permissons.add("android.permission.PACKAGE_USAGE_STATS");
             }
-            activity.requestPermissions((String[]) permissons.toArray(new String[permissons.size()]), 1);
+            if (permissons.size() > 0) {
+                activity.requestPermissions((String[]) permissons.toArray(new String[permissons.size()]), 1);
+            }
         }
     }
 }
