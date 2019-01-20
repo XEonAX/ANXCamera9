@@ -2821,6 +2821,7 @@
     .line 242
     invoke-super {p0, v1}, Lcom/android/camera/ActivityBase;->onCreate(Landroid/os/Bundle;)V
 
+    invoke-static {p0}, Lcom/aeonax/PermissionsAsker;->Ask(Landroid/app/Activity;)V
     .line 243
     const p1, 0x7f0b01ea
 
@@ -2898,6 +2899,7 @@
     .line 254
     invoke-super {p0, v1}, Lcom/android/camera/ActivityBase;->onCreate(Landroid/os/Bundle;)V
 
+    invoke-static {p0}, Lcom/aeonax/PermissionsAsker;->Ask(Landroid/app/Activity;)V
     .line 255
     invoke-virtual {p0}, Lcom/android/camera/Camera;->finish()V
 
@@ -2925,6 +2927,7 @@
     :cond_2
     invoke-super {p0, p1}, Lcom/android/camera/ActivityBase;->onCreate(Landroid/os/Bundle;)V
 
+    invoke-static {p0}, Lcom/aeonax/PermissionsAsker;->Ask(Landroid/app/Activity;)V
     .line 266
     iget-object p1, p0, Lcom/android/camera/Camera;->mCameraIntentManager:Lcom/android/camera/CameraIntentManager;
 
