@@ -194,8 +194,15 @@
 
     invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 50
+    .line 49
     :cond_b
+    invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
+
+    move-result v1
+
+    if-lez v1, :cond_c
+
+    .line 50
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
 
     move-result v1
@@ -214,6 +221,8 @@
 
     invoke-virtual {p0, v1, v2}, Landroid/app/Activity;->requestPermissions([Ljava/lang/String;I)V
 
-    .line 52
+    .line 53
+    .end local v1    # "items":[Ljava/lang/String;
+    :cond_c
     return-void
 .end method
