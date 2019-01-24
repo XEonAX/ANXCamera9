@@ -598,8 +598,8 @@ public class JpegEncoder {
         Log.d(TAG, "initReprocessImageReader<<");
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:4:0x0017 A:{Splitter: B:1:0x0002, ExcHandler: java.lang.ClassNotFoundException (r2_2 'e' java.lang.Throwable)} */
-    /* JADX WARNING: Removed duplicated region for block: B:4:0x0017 A:{Splitter: B:1:0x0002, ExcHandler: java.lang.ClassNotFoundException (r2_2 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:4:0x0017 A:{ExcHandler: java.lang.ClassNotFoundException (r2_2 'e' java.lang.Throwable), Splitter: B:1:0x0002} */
+    /* JADX WARNING: Removed duplicated region for block: B:4:0x0017 A:{ExcHandler: java.lang.ClassNotFoundException (r2_2 'e' java.lang.Throwable), Splitter: B:1:0x0002} */
     /* JADX WARNING: Missing block: B:4:0x0017, code:
             r2 = move-exception;
      */

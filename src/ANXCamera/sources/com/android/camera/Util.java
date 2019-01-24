@@ -2146,11 +2146,11 @@ public final class Util {
 
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0040  */
     /* JADX WARNING: Removed duplicated region for block: B:28:0x007c A:{Catch:{ XmlPullParserException -> 0x0123, IOException -> 0x011a, all -> 0x010c }} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0035 A:{Splitter: B:6:0x001c, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0035 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:6:0x001c} */
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0040  */
     /* JADX WARNING: Removed duplicated region for block: B:28:0x007c A:{Catch:{ XmlPullParserException -> 0x0123, IOException -> 0x011a, all -> 0x010c }} */
-    /* JADX WARNING: Removed duplicated region for block: B:13:0x0032 A:{Splitter: B:8:0x0021, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:12:0x0030 A:{Splitter: B:10:0x002c, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:13:0x0032 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:8:0x0021} */
+    /* JADX WARNING: Removed duplicated region for block: B:12:0x0030 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:10:0x002c} */
     /* JADX WARNING: Missing block: B:12:0x0030, code:
             r4 = e;
      */
@@ -2569,7 +2569,7 @@ public final class Util {
         return bitmap2;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:7:0x0028 A:{Splitter: B:4:0x001f, ExcHandler: java.lang.OutOfMemoryError (r1_2 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:7:0x0028 A:{ExcHandler: java.lang.OutOfMemoryError (r1_2 'e' java.lang.Throwable), Splitter: B:4:0x001f} */
     /* JADX WARNING: Missing block: B:7:0x0028, code:
             r1 = move-exception;
      */
