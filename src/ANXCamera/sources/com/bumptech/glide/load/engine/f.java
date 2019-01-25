@@ -54,8 +54,8 @@ public class f<DataType, ResourceType, Transcode> {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:8:0x0027 A:{ExcHandler: java.io.IOException (r4_4 'e' java.lang.Throwable), Splitter: B:3:0x0013} */
-    /* JADX WARNING: Removed duplicated region for block: B:8:0x0027 A:{ExcHandler: java.io.IOException (r4_4 'e' java.lang.Throwable), Splitter: B:3:0x0013} */
+    /* JADX WARNING: Removed duplicated region for block: B:8:0x0027 A:{Splitter: B:3:0x0013, ExcHandler: java.io.IOException (r4_4 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:8:0x0027 A:{Splitter: B:3:0x0013, ExcHandler: java.io.IOException (r4_4 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:8:0x0027, code:
             r4 = move-exception;
      */
