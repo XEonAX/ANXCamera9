@@ -3,8 +3,8 @@
     android:compileSdkVersion="28" 
     android:compileSdkVersionCodename="9" 
     package="com.android.camera" 
-    android:versionCode="4" 
-    android:versionName="4.RegalMediumpurpleBadger" 
+    android:versionCode="5" 
+    android:versionName="5.OldShamefulAnt" 
     platformBuildVersionCode="28" 
     platformBuildVersionName="9">
     <uses-sdk android:minSdkVersion="26" 
