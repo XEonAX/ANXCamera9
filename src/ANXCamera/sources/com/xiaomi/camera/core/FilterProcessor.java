@@ -1,8 +1,8 @@
 package com.xiaomi.camera.core;
 
 import android.util.Log;
+import com.aeonax.camera.R;
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.effect.EffectController;
 import com.android.camera.effect.FilterInfo;
 import com.android.camera.effect.draw_mode.DrawYuvAttribute;

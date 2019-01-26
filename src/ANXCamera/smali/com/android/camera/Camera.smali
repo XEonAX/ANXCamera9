@@ -476,7 +476,7 @@
 
     new-array v4, v4, [Ljava/lang/Object;
 
-    const-string v5, "com.android.camera"
+    const-string v5, "com.aeonax.camera"
 
     aput-object v5, v4, v2
 

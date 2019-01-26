@@ -17,8 +17,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.aeonax.camera.R;
 import com.android.camera.sensitive.SensitiveFilter;
-import miui.R;
 
 public class UserDefineWatermarkActivity extends Activity implements TextWatcher {
     private static final int MSG_BG_FILTER_WORDS = 1;
@@ -96,11 +96,11 @@ public class UserDefineWatermarkActivity extends Activity implements TextWatcher
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setDisplayOptions(16, 16);
-            actionBar.setCustomView(R.layout.edit_mode_title);
+            actionBar.setCustomView(miui.R.layout.edit_mode_title);
             View customView = actionBar.getCustomView();
             ((TextView) customView.findViewById(16908310)).setText(getTitle());
             TextView textView = (TextView) customView.findViewById(16908313);
-            textView.setBackgroundResource(R.drawable.action_mode_title_button_cancel_light);
+            textView.setBackgroundResource(miui.R.drawable.action_mode_title_button_cancel_light);
             textView.setText(null);
             textView.setContentDescription(getText(17039360));
             textView.setOnClickListener(new OnClickListener() {
@@ -109,7 +109,7 @@ public class UserDefineWatermarkActivity extends Activity implements TextWatcher
                 }
             });
             TextView textView2 = (TextView) customView.findViewById(16908314);
-            textView2.setBackgroundResource(R.drawable.action_mode_title_button_confirm_light);
+            textView2.setBackgroundResource(miui.R.drawable.action_mode_title_button_confirm_light);
             textView2.setText(null);
             textView2.setContentDescription(getText(17039370));
             textView2.setOnClickListener(new OnClickListener() {

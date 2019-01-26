@@ -8,7 +8,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import com.android.camera.constant.ColorConstant;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.fragment.CommonRecyclerViewHolder;

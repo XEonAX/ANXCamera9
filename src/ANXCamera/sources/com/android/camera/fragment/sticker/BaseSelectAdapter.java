@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import java.util.List;
 
 public abstract class BaseSelectAdapter<T> extends Adapter<BaseSelectHolder> implements OnClickListener {

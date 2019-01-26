@@ -31,6 +31,7 @@ import android.view.WindowManager.LayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.aeonax.PermissionsAsker;
+import com.aeonax.camera.R;
 import com.android.camera.LocalParallelService.LocalBinder;
 import com.android.camera.constant.GlobalConstant;
 import com.android.camera.data.DataRepository;
@@ -719,7 +720,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
             LocalBinder localBinder = AlgoConnector.getInstance().getLocalBinder();
             if (!(localBinder == null || localBinder.isIdle())) {
                 try {
-                    Class.forName("miui.process.ProcessManager").getDeclaredMethod("adjBoost", new Class[]{String.class, Integer.TYPE, Long.TYPE, Integer.TYPE}).invoke(null, new Object[]{"com.android.camera", Integer.valueOf(0), Long.valueOf(60000), Integer.valueOf(UserHandle.myUserId())});
+                    Class.forName("miui.process.ProcessManager").getDeclaredMethod("adjBoost", new Class[]{String.class, Integer.TYPE, Long.TYPE, Integer.TYPE}).invoke(null, new Object[]{"com.aeonax.camera", Integer.valueOf(0), Long.valueOf(60000), Integer.valueOf(UserHandle.myUserId())});
                 } catch (Throwable e) {
                 }
             }

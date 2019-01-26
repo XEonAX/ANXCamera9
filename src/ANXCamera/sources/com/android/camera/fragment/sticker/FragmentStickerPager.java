@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.provider.DataProvider.ProviderEditor;
 import com.android.camera.effect.EffectController;

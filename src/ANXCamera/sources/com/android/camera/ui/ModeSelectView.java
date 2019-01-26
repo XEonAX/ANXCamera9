@@ -9,7 +9,7 @@ import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.LinearLayout;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import com.android.camera.Util;
 import com.android.camera.animation.type.TranslateXOnSubscribe;
 import com.android.camera.constant.ColorConstant;

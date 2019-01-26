@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import com.aeonax.camera.R;
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.constant.ColorConstant;
 import com.android.camera.data.DataRepository;
@@ -64,8 +64,8 @@ public class ExtraAdapter extends Adapter<CommonRecyclerViewHolder> {
             r0 = r6;
      */
     /* JADX WARNING: Missing block: B:28:0x014c, code:
-            r3 = (android.widget.TextView) r8.getView(com.android.camera.R.id.extra_item_text);
-            r4 = (com.android.camera.ui.ColorImageView) r8.getView(com.android.camera.R.id.extra_item_image);
+            r3 = (android.widget.TextView) r8.getView(com.aeonax.camera.R.id.extra_item_text);
+            r4 = (com.android.camera.ui.ColorImageView) r8.getView(com.aeonax.camera.R.id.extra_item_image);
             r3.setText(r2);
      */
     /* JADX WARNING: Missing block: B:29:0x0161, code:
@@ -108,10 +108,10 @@ public class ExtraAdapter extends Adapter<CommonRecyclerViewHolder> {
             if (r1 == false) goto L_0x01a7;
      */
     /* JADX WARNING: Missing block: B:43:0x0196, code:
-            r9.append(r8.itemView.getResources().getString(com.android.camera.R.string.accessibility_open));
+            r9.append(r8.itemView.getResources().getString(com.aeonax.camera.R.string.accessibility_open));
      */
     /* JADX WARNING: Missing block: B:44:0x01a7, code:
-            r9.append(r8.itemView.getResources().getString(com.android.camera.R.string.accessibility_closed));
+            r9.append(r8.itemView.getResources().getString(com.aeonax.camera.R.string.accessibility_closed));
      */
     /* JADX WARNING: Missing block: B:45:0x01b7, code:
             r8.itemView.setContentDescription(r9);

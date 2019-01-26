@@ -3,7 +3,7 @@ package com.android.camera.fragment.sticker;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import com.android.camera.fragment.sticker.BaseSelectAdapter.BaseSelectHolder;
 import com.android.camera.fragment.sticker.download.DownloadView;
 import com.android.camera.network.imageloader.ImageLoaderManager;

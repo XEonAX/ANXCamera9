@@ -4,8 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import com.aeonax.camera.R;
 import com.android.camera.CameraAppImpl;
-import com.android.camera.R;
 
 public class PriorityStorageBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {

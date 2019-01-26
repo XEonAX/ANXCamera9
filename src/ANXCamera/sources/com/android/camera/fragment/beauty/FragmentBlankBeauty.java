@@ -2,7 +2,7 @@ package com.android.camera.fragment.beauty;
 
 import android.view.View;
 import android.view.animation.Animation;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import com.android.camera.fragment.BaseFragment;
 
 @Deprecated

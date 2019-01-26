@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.net.Uri.Builder;
 import android.os.Bundle;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 
 public final class PhotosOemApi {
     public static final int INITIAL_VERSION = 1;

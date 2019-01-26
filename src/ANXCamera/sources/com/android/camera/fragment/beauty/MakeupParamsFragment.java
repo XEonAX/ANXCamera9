@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import com.android.camera.fragment.beauty.MakeupSingleCheckAdapter.MakeupItem;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BaseDelegate;

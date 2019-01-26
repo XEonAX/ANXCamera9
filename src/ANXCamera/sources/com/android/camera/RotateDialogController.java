@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import com.aeonax.camera.R;
 import com.android.camera.ui.Rotatable;
 import com.android.camera.ui.RotateLayout;
 

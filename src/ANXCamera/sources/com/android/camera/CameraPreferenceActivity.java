@@ -11,6 +11,7 @@ import android.provider.MiuiSettings.Key;
 import android.provider.Settings.Secure;
 import android.provider.Settings.System;
 import android.widget.Toast;
+import com.aeonax.camera.R;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.PreviewListPreference;
 import com.mi.config.b;

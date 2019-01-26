@@ -28,7 +28,7 @@ public class j implements d<InputStream> {
     private final g dl;
     private final b dm;
     /* renamed from: do */
-    private InputStream f2do;
+    private InputStream f1do;
     private volatile boolean dp;
     private final int timeout;
     private HttpURLConnection urlConnection;
@@ -111,7 +111,7 @@ public class j implements d<InputStream> {
             this.urlConnection.setDoInput(true);
             this.urlConnection.setInstanceFollowRedirects(false);
             this.urlConnection.connect();
-            this.f2do = this.urlConnection.getInputStream();
+            this.f1do = this.urlConnection.getInputStream();
             if (this.dp) {
                 return null;
             }
@@ -146,7 +146,7 @@ public class j implements d<InputStream> {
 
     private InputStream a(HttpURLConnection httpURLConnection) throws IOException {
         if (TextUtils.isEmpty(httpURLConnection.getContentEncoding())) {
-            this.f2do = com.bumptech.glide.util.b.a(httpURLConnection.getInputStream(), (long) httpURLConnection.getContentLength());
+            this.f1do = com.bumptech.glide.util.b.a(httpURLConnection.getInputStream(), (long) httpURLConnection.getContentLength());
         } else {
             if (Log.isLoggable(TAG, 3)) {
                 String str = TAG;
@@ -155,15 +155,15 @@ public class j implements d<InputStream> {
                 stringBuilder.append(httpURLConnection.getContentEncoding());
                 Log.d(str, stringBuilder.toString());
             }
-            this.f2do = httpURLConnection.getInputStream();
+            this.f1do = httpURLConnection.getInputStream();
         }
-        return this.f2do;
+        return this.f1do;
     }
 
     public void cleanup() {
-        if (this.f2do != null) {
+        if (this.f1do != null) {
             try {
-                this.f2do.close();
+                this.f1do.close();
             } catch (IOException e) {
             }
         }

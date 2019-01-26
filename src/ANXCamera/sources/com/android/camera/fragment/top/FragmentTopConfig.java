@@ -20,10 +20,10 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
+import com.aeonax.camera.R;
 import com.android.camera.ActivityBase;
 import com.android.camera.Camera;
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.animation.type.AlphaInOnSubscribe;
 import com.android.camera.animation.type.AlphaOutOnSubscribe;
@@ -823,7 +823,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
     /* JADX WARNING: Missing block: B:26:0x0072, code:
             r15 = (android.widget.ImageView) r7.mConfigViews.get(r14);
             r15.setEnabled(r11);
-            r16 = r15.getTag(com.android.camera.R.id.tag_config_view_margin_key);
+            r16 = r15.getTag(com.aeonax.camera.R.id.tag_config_view_margin_key);
      */
     /* JADX WARNING: Missing block: B:27:0x0085, code:
             if (r16 == null) goto L_0x0091;
@@ -849,7 +849,7 @@ public class FragmentTopConfig extends BaseFragment implements OnClickListener, 
     /* JADX WARNING: Missing block: B:34:0x00a0, code:
             r11 = r4;
             r12 = r5;
-            r8 = com.android.camera.R.id.tag_config_view_margin_key;
+            r8 = com.aeonax.camera.R.id.tag_config_view_margin_key;
             r0 = setTopImageResource(r4, r15, r8, r13, r14, r17);
      */
     /* JADX WARNING: Missing block: B:35:0x00b0, code:

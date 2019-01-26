@@ -1,8 +1,8 @@
 package com.android.camera.effect.renders;
 
 import android.graphics.Color;
+import com.aeonax.camera.R;
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.runing.DataItemRunning;
 import com.android.camera.effect.EffectController;

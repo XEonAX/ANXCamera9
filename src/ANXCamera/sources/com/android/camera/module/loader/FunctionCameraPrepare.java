@@ -1,10 +1,10 @@
 package com.android.camera.module.loader;
 
 import android.text.TextUtils;
+import com.aeonax.camera.R;
 import com.android.camera.Camera;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.constant.GlobalConstant;
 import com.android.camera.data.DataRepository;

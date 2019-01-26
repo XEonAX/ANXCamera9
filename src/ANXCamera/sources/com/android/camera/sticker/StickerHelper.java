@@ -2,7 +2,7 @@ package com.android.camera.sticker;
 
 import android.content.Context;
 import android.widget.Toast;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

@@ -20,6 +20,7 @@ import android.provider.Settings.System;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.Toast;
+import com.aeonax.camera.R;
 import com.android.camera.constant.BeautyConstant;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.config.DataItemConfig;

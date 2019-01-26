@@ -1,6 +1,6 @@
 package com.android.camera.fragment.beauty;
 
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BaseDelegate;
 import com.android.camera.protocol.ModeProtocol.BottomMenuProtocol;

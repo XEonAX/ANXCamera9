@@ -25,7 +25,7 @@ public class ScenarioTrackUtil {
     private static final E2EScenarioSettings scenarioSettings = new E2EScenarioSettings();
 
     public static class CameraEventScenario {
-        private static final String CAMERA_PACKAGE = "com.android.camera";
+        private static final String CAMERA_PACKAGE = "com.aeonax.camera";
         private static final String CATEGORY_PERFORMANCE = "Performance";
         E2EScenario e2eScenario;
         public volatile boolean isTrackStarted = false;

@@ -6,8 +6,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import com.aeonax.camera.R;
 import com.android.camera.ActivityBase;
-import com.android.camera.R;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.PlayVideoProtocol;
 

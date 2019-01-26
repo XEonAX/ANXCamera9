@@ -21,6 +21,7 @@ import android.view.KeyEvent;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.aeonax.camera.R;
 import com.android.camera.CameraScreenNail.NailListener;
 import com.android.camera.CameraScreenNail.RequestRenderListener;
 import com.android.camera.data.DataRepository;

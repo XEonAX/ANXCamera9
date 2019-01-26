@@ -8,7 +8,7 @@ import android.util.SparseArray;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import com.android.camera.fragment.beauty.MenuItem;
 import com.android.camera.ui.EdgeHorizonScrollView;
 import com.android.camera.ui.ModeSelectView;

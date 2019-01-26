@@ -93,7 +93,7 @@ public class PreviewListPreference extends ListPreference {
         }
         TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.PreviewListPreference, 0, 0);
         this.mLabels = obtainStyledAttributes.getTextArray(0);
-        this.mExtraPaddingEnd = context.getResources().getDimensionPixelSize(R.dimen.preference_entry_padding_end);
+        this.mExtraPaddingEnd = context.getResources().getDimensionPixelSize(com.aeonax.camera.R.dimen.preference_entry_padding_end);
         obtainStyledAttributes.recycle();
     }
 
@@ -150,7 +150,7 @@ public class PreviewListPreference extends ListPreference {
 
     protected void onBindView(View view) {
         super.onBindView(view);
-        TextView textView = (TextView) view.findViewById(R.id.value_right);
+        TextView textView = (TextView) view.findViewById(com.aeonax.camera.R.id.value_right);
         if (textView != null) {
             CharSequence entry;
             if (this.mLabels == null) {

@@ -3,6 +3,7 @@ package com.android.camera;
 import android.app.Activity;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.aeonax.camera.R;
 
 public class OnScreenHint {
     private ViewGroup mHintView;

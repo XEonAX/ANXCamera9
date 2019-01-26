@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Handler;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import com.android.camera.Util;
 
 public class RotateTextToast {

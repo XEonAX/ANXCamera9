@@ -3,7 +3,7 @@ package com.android.camera.fragment.beauty;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import com.android.camera.fragment.beauty.BeautyParameters.Type;
 import com.android.camera.fragment.beauty.MakeupSingleCheckAdapter.MakeupItem;
 import com.android.camera.protocol.ModeCoordinatorImpl;

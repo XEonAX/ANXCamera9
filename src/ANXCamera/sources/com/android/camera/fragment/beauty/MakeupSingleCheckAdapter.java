@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import com.android.camera.Util;
 import com.android.camera.ui.ColorImageView;
 import java.util.List;

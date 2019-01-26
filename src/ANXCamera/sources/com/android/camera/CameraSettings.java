@@ -17,6 +17,7 @@ import android.text.TextUtils;
 import android.util.Range;
 import android.util.SparseArray;
 import android.util.TypedValue;
+import com.aeonax.camera.R;
 import com.android.camera.constant.AutoFocus;
 import com.android.camera.constant.BeautyConstant;
 import com.android.camera.constant.CameraScene;

@@ -1,5 +1,6 @@
 package com.android.camera;
 
+import com.aeonax.camera.R;
 import com.android.camera.data.DataRepository;
 import com.android.camera.module.ModuleManager;
 import com.mi.config.b;

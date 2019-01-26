@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.view.View;
 import android.widget.ListAdapter;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import com.android.camera.animation.type.SlideInOnSubscribe;
 import com.android.camera.animation.type.SlideOutOnSubscribe;
 import com.android.camera.data.DataRepository;

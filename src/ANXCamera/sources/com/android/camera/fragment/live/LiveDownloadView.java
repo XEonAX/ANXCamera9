@@ -2,7 +2,7 @@ package com.android.camera.fragment.live;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import com.android.camera.fragment.sticker.download.DownloadView;
 
 public class LiveDownloadView extends DownloadView {

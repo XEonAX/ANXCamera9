@@ -2,7 +2,7 @@ package com.android.camera.data.data.config;
 
 import android.text.TextUtils;
 import android.util.SparseBooleanArray;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import com.android.camera.constant.BeautyConstant;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;

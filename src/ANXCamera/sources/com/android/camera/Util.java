@@ -82,6 +82,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
 import com.adobe.xmp.XMPMeta;
+import com.aeonax.camera.R;
 import com.android.camera.data.DataRepository;
 import com.android.camera.effect.FilterInfo;
 import com.android.camera.effect.renders.CustomTextWaterMark;
@@ -132,7 +133,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-import miui.R;
 import miui.hardware.display.DisplayFeatureManager;
 import miui.os.Build;
 import miui.reflect.Field;
@@ -663,7 +663,7 @@ public final class Util {
                 broadcastKillService(activity);
             }
             final Button button = show.getButton(-3);
-            button.setTextAppearance(R.style.Widget_Button_Dialog);
+            button.setTextAppearance(miui.R.style.Widget_Button_Dialog);
             button.setEnabled(false);
             final Activity activity2 = activity;
             final CountDownTimer start = new CountDownTimer(5000, 1000) {

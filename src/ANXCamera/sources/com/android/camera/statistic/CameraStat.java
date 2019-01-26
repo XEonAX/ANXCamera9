@@ -3,7 +3,7 @@ package com.android.camera.statistic;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.SystemProperties;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import com.android.camera.log.Log;
 import com.xiaomi.mistatistic.sdk.CustomSettings;
 import com.xiaomi.mistatistic.sdk.MiStatInterface;

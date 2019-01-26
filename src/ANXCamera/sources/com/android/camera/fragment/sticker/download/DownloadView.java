@@ -11,7 +11,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
-import com.android.camera.R;
+import com.aeonax.camera.R;
 import miui.view.animation.CubicEaseOutInterpolator;
 
 public class DownloadView extends RelativeLayout {

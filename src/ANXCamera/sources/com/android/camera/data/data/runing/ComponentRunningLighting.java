@@ -1,7 +1,7 @@
 package com.android.camera.data.data.runing;
 
+import com.aeonax.camera.R;
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.constant.LightingConstant;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
