@@ -266,31 +266,31 @@
 
     invoke-static/range {v11 .. v19}, Landroid/opengl/GLES20;->glTexImage2D(IIIIIIIILjava/nio/Buffer;)V
 
-    .line 183
+    .line 182
     const/16 v3, 0x2800
 
     const v6, 0x46180400    # 9729.0f
 
     invoke-static {v4, v3, v6}, Landroid/opengl/GLES20;->glTexParameterf(IIF)V
 
-    .line 185
+    .line 183
     const/16 v3, 0x2801
 
     invoke-static {v4, v3, v6}, Landroid/opengl/GLES20;->glTexParameterf(IIF)V
 
-    .line 187
+    .line 184
     const/16 v3, 0x2802
 
     const v6, 0x47012f00    # 33071.0f
 
     invoke-static {v4, v3, v6}, Landroid/opengl/GLES20;->glTexParameterf(IIF)V
 
-    .line 189
+    .line 185
     const/16 v3, 0x2803
 
     invoke-static {v4, v3, v6}, Landroid/opengl/GLES20;->glTexParameterf(IIF)V
 
-    .line 192
+    .line 187
     iget-object v3, v1, Lcom/android/camera/effect/renders/PipeRender;->mFrameBuffers:[I
 
     aget v3, v3, v2
@@ -299,7 +299,7 @@
 
     invoke-static {v6, v3}, Landroid/opengl/GLES20;->glBindFramebuffer(II)V
 
-    .line 193
+    .line 188
     const v3, 0x8ce0
 
     iget-object v7, v1, Lcom/android/camera/effect/renders/PipeRender;->mFrameBufferTextures:[I
@@ -308,7 +308,7 @@
 
     invoke-static {v6, v3, v4, v7, v8}, Landroid/opengl/GLES20;->glFramebufferTexture2D(IIIII)V
 
-    .line 195
+    .line 189
     sget-object v3, Lcom/android/camera/effect/renders/PipeRender;->TAG:Ljava/lang/String;
 
     sget-object v7, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
@@ -317,7 +317,6 @@
 
     new-array v12, v5, [Ljava/lang/Object;
 
-    .line 196
     invoke-static {v2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v13
@@ -344,17 +343,16 @@
 
     aput-object v13, v12, v10
 
-    .line 195
     invoke-static {v7, v11, v12}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v7
 
     invoke-static {v3, v7}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 198
+    .line 191
     invoke-static {v4, v8}, Landroid/opengl/GLES20;->glBindTexture(II)V
 
-    .line 199
+    .line 192
     invoke-static {v6, v8}, Landroid/opengl/GLES20;->glBindFramebuffer(II)V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -364,7 +362,7 @@
 
     goto/16 :goto_0
 
-    .line 201
+    .line 194
     :cond_1
     monitor-exit p0
 
@@ -601,10 +599,18 @@
     nop
 
     .line 69
-    iget v7, v6, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mWidth:I
+    iget-object v7, v6, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mPictureSize:Landroid/util/Size;
+
+    invoke-virtual {v7}, Landroid/util/Size;->getWidth()I
+
+    move-result v7
 
     .line 70
-    iget v6, v6, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mHeight:I
+    iget-object v6, v6, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mPictureSize:Landroid/util/Size;
+
+    invoke-virtual {v6}, Landroid/util/Size;->getHeight()I
+
+    move-result v6
 
     .line 71
     nop

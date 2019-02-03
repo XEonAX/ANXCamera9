@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 27
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getObbDir(Landroid/content/Context;)Ljava/io/File;
-    .locals 1
+    .registers 2
     .param p0, "context"    # Landroid/content/Context;
 
     .line 34
@@ -26,7 +26,7 @@
 .end method
 
 .method static startActivities(Landroid/content/Context;[Landroid/content/Intent;)V
-    .locals 0
+    .registers 2
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "intents"    # [Landroid/content/Intent;
 

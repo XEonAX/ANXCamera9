@@ -50,7 +50,7 @@ public final class E2EScenario implements Parcelable, Serializable {
             this.namespace = TextUtils.isEmpty(packageName) ? "android" : packageName;
         }
         if (TextUtils.isEmpty(this.category)) {
-            this.category = DEFAULT_CATEGORY;
+            this.category = "default";
         }
     }
 

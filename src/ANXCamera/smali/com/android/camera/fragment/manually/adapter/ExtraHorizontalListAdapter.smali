@@ -239,7 +239,7 @@
 
     move-result-object p2
 
-    const p3, 0x7f040024
+    const p3, 0x7f040027
 
     .line 67
     const/4 v2, 0x0
@@ -254,7 +254,7 @@
     invoke-direct {p3, v2}, Lcom/android/camera/fragment/manually/adapter/ExtraHorizontalListAdapter$ViewHolder;-><init>(Lcom/android/camera/fragment/manually/adapter/ExtraHorizontalListAdapter$1;)V
 
     .line 69
-    const v2, 0x7f0d0073
+    const v2, 0x7f0d0086
 
     invoke-virtual {p2, v2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -265,7 +265,7 @@
     invoke-static {p3, v2}, Lcom/android/camera/fragment/manually/adapter/ExtraHorizontalListAdapter$ViewHolder;->access$102(Lcom/android/camera/fragment/manually/adapter/ExtraHorizontalListAdapter$ViewHolder;Lcom/android/camera/ui/ColorImageView;)Lcom/android/camera/ui/ColorImageView;
 
     .line 70
-    const v2, 0x7f0d0074
+    const v2, 0x7f0d0087
 
     invoke-virtual {p2, v2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 

@@ -47,7 +47,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v7/util/MessageThreadUtil;Landroid/support/v7/util/ThreadUtil$MainThreadCallback;)V
-    .locals 0
+    .registers 3
 
     .line 29
     .local p0, "this":Landroid/support/v7/util/MessageThreadUtil$1;, "Landroid/support/v7/util/MessageThreadUtil.1;"
@@ -86,7 +86,7 @@
 .end method
 
 .method static synthetic access$000(Landroid/support/v7/util/MessageThreadUtil$1;)Landroid/support/v7/util/MessageThreadUtil$MessageQueue;
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v7/util/MessageThreadUtil$1;
 
     .line 29
@@ -96,7 +96,7 @@
 .end method
 
 .method private sendMessage(Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;)V
-    .locals 2
+    .registers 4
     .param p1, "msg"    # Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
 
     .line 53
@@ -119,7 +119,7 @@
 
 # virtual methods
 .method public addTile(ILandroid/support/v7/util/TileList$Tile;)V
-    .locals 1
+    .registers 4
     .param p1, "generation"    # I
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -145,7 +145,7 @@
 .end method
 
 .method public removeTile(II)V
-    .locals 1
+    .registers 4
     .param p1, "generation"    # I
     .param p2, "position"    # I
 
@@ -164,7 +164,7 @@
 .end method
 
 .method public updateItemCount(II)V
-    .locals 1
+    .registers 4
     .param p1, "generation"    # I
     .param p2, "itemCount"    # I
 

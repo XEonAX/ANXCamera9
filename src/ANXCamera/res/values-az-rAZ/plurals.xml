@@ -5,7 +5,7 @@
         <item quantity="one">Fokuslandı. %d üz aşkarlandı</item>
     </plurals>
     <plurals name="toast_burst_snap_finished_summary">
-        <item quantity="other">Burst shot done, %1$s photos taken</item>
-        <item quantity="one">Burst shot done, %1$s photo taken</item>
+        <item quantity="other">Ardıcıl çəkiliş hazırdır,%1$s şəkil çəkildi</item>
+        <item quantity="one">Ardıcıl çəkiliş hazırdır,%1$s şəkil çəkildi</item>
     </plurals>
 </resources>

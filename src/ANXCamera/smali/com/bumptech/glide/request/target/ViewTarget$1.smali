@@ -18,7 +18,7 @@
 
 
 # instance fields
-.field final synthetic oK:Lcom/bumptech/glide/request/target/ViewTarget;
+.field final synthetic oJ:Lcom/bumptech/glide/request/target/ViewTarget;
 
 
 # direct methods
@@ -26,7 +26,7 @@
     .locals 0
 
     .line 111
-    iput-object p1, p0, Lcom/bumptech/glide/request/target/ViewTarget$1;->oK:Lcom/bumptech/glide/request/target/ViewTarget;
+    iput-object p1, p0, Lcom/bumptech/glide/request/target/ViewTarget$1;->oJ:Lcom/bumptech/glide/request/target/ViewTarget;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -39,7 +39,7 @@
     .locals 0
 
     .line 114
-    iget-object p1, p0, Lcom/bumptech/glide/request/target/ViewTarget$1;->oK:Lcom/bumptech/glide/request/target/ViewTarget;
+    iget-object p1, p0, Lcom/bumptech/glide/request/target/ViewTarget$1;->oJ:Lcom/bumptech/glide/request/target/ViewTarget;
 
     invoke-virtual {p1}, Lcom/bumptech/glide/request/target/ViewTarget;->eo()V
 
@@ -51,7 +51,7 @@
     .locals 0
 
     .line 119
-    iget-object p1, p0, Lcom/bumptech/glide/request/target/ViewTarget$1;->oK:Lcom/bumptech/glide/request/target/ViewTarget;
+    iget-object p1, p0, Lcom/bumptech/glide/request/target/ViewTarget$1;->oJ:Lcom/bumptech/glide/request/target/ViewTarget;
 
     invoke-virtual {p1}, Lcom/bumptech/glide/request/target/ViewTarget;->ep()V
 

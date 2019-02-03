@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder;)V
     .locals 0
 
-    .line 396
+    .line 388
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder$1;->this$1:Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public run()V
     .locals 2
 
-    .line 399
+    .line 391
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder$1;->this$1:Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder;
 
     iget-object v0, v0, Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder;->this$0:Lcom/android/camera/fragment/FragmentFilter;
@@ -49,7 +49,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 400
+    .line 392
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder$1;->this$1:Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder;
 
     iget-object v0, v0, Lcom/android/camera/fragment/FragmentFilter$EffectStillItemHolder;->itemView:Landroid/view/View;
@@ -58,7 +58,7 @@
 
     invoke-virtual {v0, v1}, Landroid/view/View;->sendAccessibilityEvent(I)V
 
-    .line 402
+    .line 394
     :cond_0
     return-void
 .end method

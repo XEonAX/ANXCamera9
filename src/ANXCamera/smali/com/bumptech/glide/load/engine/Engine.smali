@@ -525,7 +525,7 @@
     if-eqz v1, :cond_2
 
     .line 176
-    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cw:Lcom/bumptech/glide/load/DataSource;
+    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cx:Lcom/bumptech/glide/load/DataSource;
 
     invoke-interface {v7, v1, v0}, Lcom/bumptech/glide/request/g;->c(Lcom/bumptech/glide/load/engine/p;Lcom/bumptech/glide/load/DataSource;)V
 
@@ -553,7 +553,7 @@
     if-eqz v1, :cond_4
 
     .line 185
-    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cw:Lcom/bumptech/glide/load/DataSource;
+    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cx:Lcom/bumptech/glide/load/DataSource;
 
     invoke-interface {v7, v1, v0}, Lcom/bumptech/glide/request/g;->c(Lcom/bumptech/glide/load/engine/p;Lcom/bumptech/glide/load/DataSource;)V
 

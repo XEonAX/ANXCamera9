@@ -23,7 +23,7 @@
 
 
 # instance fields
-.field private final dL:Ljava/util/List;
+.field private final dM:Ljava/util/List;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/List<",
@@ -33,9 +33,9 @@
     .end annotation
 .end field
 
-.field private final du:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+.field private final dv:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
-.field private final lZ:Lcom/bumptech/glide/load/g;
+.field private final lY:Lcom/bumptech/glide/load/g;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/g<",
@@ -69,13 +69,13 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 32
-    iput-object p1, p0, Lcom/bumptech/glide/load/resource/gif/h;->dL:Ljava/util/List;
+    iput-object p1, p0, Lcom/bumptech/glide/load/resource/gif/h;->dM:Ljava/util/List;
 
     .line 33
-    iput-object p2, p0, Lcom/bumptech/glide/load/resource/gif/h;->lZ:Lcom/bumptech/glide/load/g;
+    iput-object p2, p0, Lcom/bumptech/glide/load/resource/gif/h;->lY:Lcom/bumptech/glide/load/g;
 
     .line 34
-    iput-object p3, p0, Lcom/bumptech/glide/load/resource/gif/h;->du:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iput-object p3, p0, Lcom/bumptech/glide/load/resource/gif/h;->dv:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     .line 35
     return-void
@@ -211,7 +211,7 @@
     move-result-object p1
 
     .line 51
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/h;->lZ:Lcom/bumptech/glide/load/g;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/h;->lY:Lcom/bumptech/glide/load/g;
 
     invoke-interface {v0, p1, p2, p3, p4}, Lcom/bumptech/glide/load/g;->a(Ljava/lang/Object;IILcom/bumptech/glide/load/f;)Lcom/bumptech/glide/load/engine/p;
 
@@ -263,7 +263,7 @@
     .end annotation
 
     .line 39
-    sget-object v0, Lcom/bumptech/glide/load/resource/gif/g;->lY:Lcom/bumptech/glide/load/e;
+    sget-object v0, Lcom/bumptech/glide/load/resource/gif/g;->lX:Lcom/bumptech/glide/load/e;
 
     invoke-virtual {p2, v0}, Lcom/bumptech/glide/load/f;->a(Lcom/bumptech/glide/load/e;)Ljava/lang/Object;
 
@@ -277,16 +277,16 @@
 
     if-nez p2, :cond_0
 
-    iget-object p2, p0, Lcom/bumptech/glide/load/resource/gif/h;->dL:Ljava/util/List;
+    iget-object p2, p0, Lcom/bumptech/glide/load/resource/gif/h;->dM:Ljava/util/List;
 
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/h;->du:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/h;->dv:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     .line 40
     invoke-static {p2, p1, v0}, Lcom/bumptech/glide/load/b;->a(Ljava/util/List;Ljava/io/InputStream;Lcom/bumptech/glide/load/engine/bitmap_recycle/b;)Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     move-result-object p1
 
-    sget-object p2, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cI:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object p2, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cJ:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     if-ne p1, p2, :cond_0
 

@@ -15,7 +15,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-    .locals 1
+    .registers 5
     .param p1, "networkEncryption"    # Ljava/lang/String;
     .param p2, "ssid"    # Ljava/lang/String;
     .param p3, "password"    # Ljava/lang/String;
@@ -30,7 +30,7 @@
 .end method
 
 .method public constructor <init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)V
-    .locals 1
+    .registers 6
     .param p1, "networkEncryption"    # Ljava/lang/String;
     .param p2, "ssid"    # Ljava/lang/String;
     .param p3, "password"    # Ljava/lang/String;
@@ -60,7 +60,7 @@
 
 # virtual methods
 .method public getDisplayResult()Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 59
     new-instance v0, Ljava/lang/StringBuilder;
@@ -103,7 +103,7 @@
 .end method
 
 .method public getNetworkEncryption()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 46
     iget-object v0, p0, Lcom/google/zxing/client/result/WifiParsedResult;->networkEncryption:Ljava/lang/String;
@@ -112,7 +112,7 @@
 .end method
 
 .method public getPassword()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 50
     iget-object v0, p0, Lcom/google/zxing/client/result/WifiParsedResult;->password:Ljava/lang/String;
@@ -121,7 +121,7 @@
 .end method
 
 .method public getSsid()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 42
     iget-object v0, p0, Lcom/google/zxing/client/result/WifiParsedResult;->ssid:Ljava/lang/String;
@@ -130,7 +130,7 @@
 .end method
 
 .method public isHidden()Z
-    .locals 1
+    .registers 2
 
     .line 54
     iget-boolean v0, p0, Lcom/google/zxing/client/result/WifiParsedResult;->hidden:Z

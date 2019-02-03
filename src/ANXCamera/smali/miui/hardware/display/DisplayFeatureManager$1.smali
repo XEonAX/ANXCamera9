@@ -23,10 +23,10 @@
 
 # direct methods
 .method constructor <init>(Lmiui/hardware/display/DisplayFeatureManager;)V
-    .locals 0
+    .registers 2
     .param p1, "this$0"    # Lmiui/hardware/display/DisplayFeatureManager;
 
-    .line 119
+    .line 132
     iput-object p1, p0, Lmiui/hardware/display/DisplayFeatureManager$1;->this$0:Lmiui/hardware/display/DisplayFeatureManager;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -37,20 +37,22 @@
 
 # virtual methods
 .method public serviceDied(J)V
-    .locals 3
+    .registers 6
     .param p1, "cookie"    # J
 
-    .line 122
+    .line 135
     iget-object v0, p0, Lmiui/hardware/display/DisplayFeatureManager$1;->this$0:Lmiui/hardware/display/DisplayFeatureManager;
 
+    # getter for: Lmiui/hardware/display/DisplayFeatureManager;->mLock:Ljava/lang/Object;
     invoke-static {v0}, Lmiui/hardware/display/DisplayFeatureManager;->access$000(Lmiui/hardware/display/DisplayFeatureManager;)Ljava/lang/Object;
 
     move-result-object v0
 
     monitor-enter v0
 
-    .line 123
-    :try_start_0
+    .line 136
+    :try_start_7
+    # getter for: Lmiui/hardware/display/DisplayFeatureManager;->TAG:Ljava/lang/String;
     invoke-static {}, Lmiui/hardware/display/DisplayFeatureManager;->access$100()Ljava/lang/String;
 
     move-result-object v1
@@ -59,26 +61,27 @@
 
     invoke-static {v1, v2}, Landroid/util/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 124
+    .line 137
     iget-object v1, p0, Lmiui/hardware/display/DisplayFeatureManager$1;->this$0:Lmiui/hardware/display/DisplayFeatureManager;
 
     const/4 v2, 0x0
 
+    # setter for: Lmiui/hardware/display/DisplayFeatureManager;->mProxy:Lmiui/hardware/display/DisplayFeatureServiceProxy;
     invoke-static {v1, v2}, Lmiui/hardware/display/DisplayFeatureManager;->access$202(Lmiui/hardware/display/DisplayFeatureManager;Lmiui/hardware/display/DisplayFeatureServiceProxy;)Lmiui/hardware/display/DisplayFeatureServiceProxy;
 
-    .line 125
+    .line 138
     monitor-exit v0
 
-    .line 126
+    .line 139
     return-void
 
-    .line 125
-    :catchall_0
+    .line 138
+    :catchall_18
     move-exception v1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1a
+    .catchall {:try_start_7 .. :try_end_1a} :catchall_18
 
     throw v1
 .end method

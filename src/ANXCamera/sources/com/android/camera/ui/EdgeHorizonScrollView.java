@@ -48,7 +48,7 @@ public class EdgeHorizonScrollView extends HorizontalScrollView {
         this.mEdgePaint.setAntiAlias(true);
         this.mEdgePaint.setStyle(Style.FILL);
         this.mEdgePaint.setXfermode(new PorterDuffXfermode(Mode.DST_OUT));
-        this.mEdgePaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, (float) this.mEdgeWidth, new int[]{ViewCompat.MEASURED_STATE_MASK, ViewCompat.MEASURED_STATE_MASK, 0}, new float[]{0.0f, 0.2f, 1.0f}, TileMode.CLAMP));
+        this.mEdgePaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, (float) this.mEdgeWidth, new int[]{ViewCompat.MEASURED_STATE_MASK, -939524096, 0}, new float[]{0.0f, 0.2f, 1.0f}, TileMode.CLAMP));
         setFocusable(false);
     }
 
@@ -98,10 +98,10 @@ public class EdgeHorizonScrollView extends HorizontalScrollView {
                 float x = motionEvent.getX() - this.mDownX;
                 ModeChangeController modeChangeController = (ModeChangeController) ModeCoordinatorImpl.getInstance().getAttachProtocol(179);
                 if (!this.mScrolled) {
-                    if (x > ((float) Util.dpToPixel(17.0f))) {
+                    if (x > ((float) Util.dpToPixel(17.0f)) && modeChangeController.canSwipeChangeMode()) {
                         modeChangeController.selectMode(3, 0);
                         this.mScrolled = true;
-                    } else if (x < ((float) (-Util.dpToPixel(17.0f)))) {
+                    } else if (x < ((float) (-Util.dpToPixel(17.0f))) && modeChangeController.canSwipeChangeMode()) {
                         modeChangeController.selectMode(5, 0);
                         this.mScrolled = true;
                     }

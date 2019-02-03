@@ -229,7 +229,7 @@
     .end annotation
 
     .line 97
-    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cr:Lcom/bumptech/glide/load/DataSource;
+    sget-object v0, Lcom/bumptech/glide/load/DataSource;->ct:Lcom/bumptech/glide/load/DataSource;
 
     return-object v0
 .end method

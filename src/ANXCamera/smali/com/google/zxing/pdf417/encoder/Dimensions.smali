@@ -15,7 +15,7 @@
 
 # direct methods
 .method public constructor <init>(IIII)V
-    .locals 0
+    .registers 5
     .param p1, "minCols"    # I
     .param p2, "maxCols"    # I
     .param p3, "minRows"    # I
@@ -43,7 +43,7 @@
 
 # virtual methods
 .method public getMaxCols()I
-    .locals 1
+    .registers 2
 
     .line 43
     iget v0, p0, Lcom/google/zxing/pdf417/encoder/Dimensions;->maxCols:I
@@ -52,7 +52,7 @@
 .end method
 
 .method public getMaxRows()I
-    .locals 1
+    .registers 2
 
     .line 51
     iget v0, p0, Lcom/google/zxing/pdf417/encoder/Dimensions;->maxRows:I
@@ -61,7 +61,7 @@
 .end method
 
 .method public getMinCols()I
-    .locals 1
+    .registers 2
 
     .line 39
     iget v0, p0, Lcom/google/zxing/pdf417/encoder/Dimensions;->minCols:I
@@ -70,7 +70,7 @@
 .end method
 
 .method public getMinRows()I
-    .locals 1
+    .registers 2
 
     .line 47
     iget v0, p0, Lcom/google/zxing/pdf417/encoder/Dimensions;->minRows:I

@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 21
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getOverScrollMode(Landroid/view/View;)I
-    .locals 1
+    .registers 2
     .param p0, "v"    # Landroid/view/View;
 
     .line 23
@@ -26,7 +26,7 @@
 .end method
 
 .method public static setOverScrollMode(Landroid/view/View;I)V
-    .locals 0
+    .registers 2
     .param p0, "v"    # Landroid/view/View;
     .param p1, "mode"    # I
 

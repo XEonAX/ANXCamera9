@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/ss/android/vesdk/VEEditor;)V
     .locals 0
 
-    .line 277
+    .line 291
     iput-object p1, p0, Lcom/ss/android/vesdk/VEEditor$2;->this$0:Lcom/ss/android/vesdk/VEEditor;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public surfaceChanged(Landroid/view/SurfaceHolder;III)V
     .locals 3
 
-    .line 291
+    .line 305
     const-string p1, "VEEditor"
 
     const-string v0, "surfaceChanged: pixel format [%d], size [%d, %d]"
@@ -77,64 +77,69 @@
 
     invoke-static {p1, p2}, Lcom/ss/android/ttve/common/TELogUtil;->d(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 292
+    .line 306
     iget-object p1, p0, Lcom/ss/android/vesdk/VEEditor$2;->this$0:Lcom/ss/android/vesdk/VEEditor;
 
     invoke-static {p1, p3}, Lcom/ss/android/vesdk/VEEditor;->access$302(Lcom/ss/android/vesdk/VEEditor;I)I
 
-    .line 293
+    .line 307
     iget-object p1, p0, Lcom/ss/android/vesdk/VEEditor$2;->this$0:Lcom/ss/android/vesdk/VEEditor;
 
     invoke-static {p1, p4}, Lcom/ss/android/vesdk/VEEditor;->access$402(Lcom/ss/android/vesdk/VEEditor;I)I
 
-    .line 294
+    .line 308
     iget-object p1, p0, Lcom/ss/android/vesdk/VEEditor$2;->this$0:Lcom/ss/android/vesdk/VEEditor;
 
     invoke-static {p1}, Lcom/ss/android/vesdk/VEEditor;->access$500(Lcom/ss/android/vesdk/VEEditor;)V
 
-    .line 295
+    .line 310
+    iget-object p1, p0, Lcom/ss/android/vesdk/VEEditor$2;->this$0:Lcom/ss/android/vesdk/VEEditor;
+
+    invoke-static {p1, p3, p4}, Lcom/ss/android/vesdk/VEEditor;->access$700(Lcom/ss/android/vesdk/VEEditor;II)V
+
+    .line 311
     return-void
 .end method
 
 .method public surfaceCreated(Landroid/view/SurfaceHolder;)V
     .locals 1
 
-    .line 285
+    .line 299
     invoke-interface {p1}, Landroid/view/SurfaceHolder;->getSurface()Landroid/view/Surface;
 
     move-result-object p1
 
-    .line 286
+    .line 300
     iget-object v0, p0, Lcom/ss/android/vesdk/VEEditor$2;->this$0:Lcom/ss/android/vesdk/VEEditor;
 
     invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEEditor;->access$200(Lcom/ss/android/vesdk/VEEditor;Landroid/view/Surface;)V
 
-    .line 287
+    .line 301
     return-void
 .end method
 
 .method public surfaceDestroyed(Landroid/view/SurfaceHolder;)V
     .locals 0
 
-    .line 299
+    .line 315
     iget-object p1, p0, Lcom/ss/android/vesdk/VEEditor$2;->this$0:Lcom/ss/android/vesdk/VEEditor;
 
     invoke-static {p1}, Lcom/ss/android/vesdk/VEEditor;->access$600(Lcom/ss/android/vesdk/VEEditor;)V
 
-    .line 300
+    .line 316
     return-void
 .end method
 
 .method public surfaceRedrawNeeded(Landroid/view/SurfaceHolder;)V
     .locals 1
 
-    .line 280
+    .line 294
     const-string p1, "VEEditor"
 
     const-string v0, "surfaceRedrawNeeded..."
 
     invoke-static {p1, v0}, Lcom/ss/android/ttve/common/TELogUtil;->d(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 281
+    .line 295
     return-void
 .end method

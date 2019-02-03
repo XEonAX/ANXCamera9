@@ -25,6 +25,8 @@
 # static fields
 .field private static final synthetic $VALUES:[Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
+.field public static final enum BEAUTY_RESET:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
 .field public static final enum BLUSHER_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
 .field public static final enum BODY_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -42,6 +44,12 @@
 .field public static final enum LEG_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
 .field public static final enum LIPS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
+.field public static final enum LIVE_ENLARGE_EYE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
+.field public static final enum LIVE_SHRINK_FACE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
+.field public static final enum LIVE_SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
 .field public static final enum NECK_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
@@ -68,305 +76,373 @@
 .method static constructor <clinit>()V
     .locals 17
 
-    .line 35
+    .line 38
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "WHITEN_STRENGTH"
+    const-string v1, "BEAUTY_RESET"
 
     const/4 v2, 0x0
 
     invoke-direct {v0, v1, v2}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->WHITEN_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->BEAUTY_RESET:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 36
+    .line 42
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "SHRINK_FACE_RATIO"
+    const-string v1, "WHITEN_STRENGTH"
 
     const/4 v3, 0x1
 
     invoke-direct {v0, v1, v3}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SHRINK_FACE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->WHITEN_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 37
+    .line 43
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "ENLARGE_EYE_RATIO"
+    const-string v1, "SHRINK_FACE_RATIO"
 
     const/4 v4, 0x2
 
     invoke-direct {v0, v1, v4}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->ENLARGE_EYE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SHRINK_FACE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 38
+    .line 44
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "SMOOTH_STRENGTH"
+    const-string v1, "ENLARGE_EYE_RATIO"
 
     const/4 v5, 0x3
 
     invoke-direct {v0, v1, v5}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->ENLARGE_EYE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 39
+    .line 45
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "NOSE_RATIO"
+    const-string v1, "SMOOTH_STRENGTH"
 
     const/4 v6, 0x4
 
     invoke-direct {v0, v1, v6}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->NOSE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 40
+    .line 46
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "RISORIUS_RATIO"
+    const-string v1, "NOSE_RATIO"
 
     const/4 v7, 0x5
 
     invoke-direct {v0, v1, v7}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->RISORIUS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->NOSE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 41
+    .line 47
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "LIPS_RATIO"
+    const-string v1, "RISORIUS_RATIO"
 
     const/4 v8, 0x6
 
     invoke-direct {v0, v1, v8}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIPS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->RISORIUS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 42
+    .line 48
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "CHIN_RATIO"
+    const-string v1, "LIPS_RATIO"
 
     const/4 v9, 0x7
 
     invoke-direct {v0, v1, v9}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->CHIN_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIPS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 43
+    .line 49
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "NECK_RATIO"
+    const-string v1, "CHIN_RATIO"
 
     const/16 v10, 0x8
 
     invoke-direct {v0, v1, v10}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->NECK_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->CHIN_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 44
+    .line 50
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "SMILE_RATIO"
+    const-string v1, "NECK_RATIO"
 
     const/16 v11, 0x9
 
     invoke-direct {v0, v1, v11}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SMILE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->NECK_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 45
+    .line 51
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "SLIM_NOSE_RATIO"
+    const-string v1, "SMILE_RATIO"
 
     const/16 v12, 0xa
 
     invoke-direct {v0, v1, v12}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SLIM_NOSE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SMILE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 47
+    .line 52
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "EYEBROW_DYE_RATIO"
+    const-string v1, "SLIM_NOSE_RATIO"
 
     const/16 v13, 0xb
 
     invoke-direct {v0, v1, v13}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->EYEBROW_DYE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SLIM_NOSE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 48
+    .line 56
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "PUPIL_LINE_RATIO"
+    const-string v1, "EYEBROW_DYE_RATIO"
 
     const/16 v14, 0xc
 
     invoke-direct {v0, v1, v14}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->PUPIL_LINE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->EYEBROW_DYE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 49
+    .line 57
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "JELLY_LIPS_RATIO"
+    const-string v1, "PUPIL_LINE_RATIO"
 
     const/16 v15, 0xd
 
     invoke-direct {v0, v1, v15}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->JELLY_LIPS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->PUPIL_LINE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 50
+    .line 58
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "BLUSHER_RATIO"
+    const-string v1, "JELLY_LIPS_RATIO"
 
     const/16 v15, 0xe
 
     invoke-direct {v0, v1, v15}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->BLUSHER_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->JELLY_LIPS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 52
+    .line 59
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "HEAD_SLIM_RATIO"
+    const-string v1, "BLUSHER_RATIO"
 
     const/16 v15, 0xf
 
     invoke-direct {v0, v1, v15}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->HEAD_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->BLUSHER_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 53
+    .line 63
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "BODY_SLIM_RATIO"
+    const-string v1, "HEAD_SLIM_RATIO"
 
     const/16 v15, 0x10
 
     invoke-direct {v0, v1, v15}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->BODY_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->HEAD_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 54
+    .line 64
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "SHOULDER_SLIM_RATIO"
+    const-string v1, "BODY_SLIM_RATIO"
 
     const/16 v15, 0x11
 
     invoke-direct {v0, v1, v15}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SHOULDER_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->BODY_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 55
+    .line 65
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    const-string v1, "LEG_SLIM_RATIO"
+    const-string v1, "SHOULDER_SLIM_RATIO"
 
     const/16 v15, 0x12
 
     invoke-direct {v0, v1, v15}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
 
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SHOULDER_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
+    .line 66
+    new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
+    const-string v1, "LEG_SLIM_RATIO"
+
+    const/16 v15, 0x13
+
+    invoke-direct {v0, v1, v15}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
+
     sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LEG_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
+    .line 70
+    new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
+    const-string v1, "LIVE_SHRINK_FACE_RATIO"
+
+    const/16 v15, 0x14
+
+    invoke-direct {v0, v1, v15}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
+
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIVE_SHRINK_FACE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
+    .line 71
+    new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
+    const-string v1, "LIVE_ENLARGE_EYE_RATIO"
+
+    const/16 v15, 0x15
+
+    invoke-direct {v0, v1, v15}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
+
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIVE_ENLARGE_EYE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
+    .line 72
+    new-instance v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
+    const-string v1, "LIVE_SMOOTH_STRENGTH"
+
+    const/16 v15, 0x16
+
+    invoke-direct {v0, v1, v15}, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;-><init>(Ljava/lang/String;I)V
+
+    sput-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIVE_SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
     .line 34
-    const/16 v0, 0x13
+    const/16 v0, 0x17
 
     new-array v0, v0, [Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->WHITEN_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->BEAUTY_RESET:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SHRINK_FACE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->WHITEN_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     aput-object v1, v0, v3
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->ENLARGE_EYE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SHRINK_FACE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     aput-object v1, v0, v4
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->ENLARGE_EYE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     aput-object v1, v0, v5
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->NOSE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     aput-object v1, v0, v6
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->RISORIUS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->NOSE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     aput-object v1, v0, v7
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIPS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->RISORIUS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     aput-object v1, v0, v8
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->CHIN_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIPS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     aput-object v1, v0, v9
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->NECK_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->CHIN_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     aput-object v1, v0, v10
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SMILE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->NECK_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     aput-object v1, v0, v11
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SLIM_NOSE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SMILE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     aput-object v1, v0, v12
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->EYEBROW_DYE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SLIM_NOSE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     aput-object v1, v0, v13
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->PUPIL_LINE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->EYEBROW_DYE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     aput-object v1, v0, v14
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->JELLY_LIPS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->PUPIL_LINE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     const/16 v2, 0xd
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->BLUSHER_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->JELLY_LIPS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     const/16 v2, 0xe
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->HEAD_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->BLUSHER_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     const/16 v2, 0xf
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->BODY_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->HEAD_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     const/16 v2, 0x10
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SHOULDER_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->BODY_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     const/16 v2, 0x11
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LEG_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SHOULDER_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
     const/16 v2, 0x12
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LEG_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
+    const/16 v2, 0x13
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIVE_SHRINK_FACE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
+    const/16 v2, 0x14
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIVE_ENLARGE_EYE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
+    const/16 v2, 0x15
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIVE_SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
+
+    const/16 v2, 0x16
 
     aput-object v1, v0, v2
 

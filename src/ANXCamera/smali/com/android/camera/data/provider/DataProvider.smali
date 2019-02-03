@@ -63,6 +63,16 @@
     .end annotation
 .end method
 
+.method public abstract dataLive()Lcom/android/camera/data/provider/DataProvider$ProviderEvent;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "<P::",
+            "Lcom/android/camera/data/provider/DataProvider$ProviderEvent;",
+            ">()TP;"
+        }
+    .end annotation
+.end method
+
 .method public abstract dataNormalConfig()Lcom/android/camera/data/provider/DataProvider$ProviderEvent;
     .annotation system Ldalvik/annotation/Signature;
         value = {

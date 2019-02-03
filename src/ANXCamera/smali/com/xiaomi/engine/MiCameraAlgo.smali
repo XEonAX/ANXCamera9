@@ -11,7 +11,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 34
+    .line 33
     const-class v0, Lcom/xiaomi/engine/MiCameraAlgo;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -26,7 +26,7 @@
 .method public constructor <init>()V
     .locals 0
 
-    .line 33
+    .line 32
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -55,34 +55,34 @@
         }
     .end annotation
 
-    .line 83
+    .line 85
     sget-object v0, Lcom/xiaomi/engine/MiCameraAlgo;->TAG:Ljava/lang/String;
 
     const-string v1, "createSessionByOutputConfigurations: start"
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 84
+    .line 86
     nop
 
-    .line 85
+    .line 87
     invoke-static {p0, p1, p2}, Lcom/xiaomi/engine/MiCamAlgoInterfaceJNI;->createSessionByOutputConfigurations(Lcom/xiaomi/engine/BufferFormat;Ljava/util/List;Lcom/xiaomi/engine/TaskSession$SessionStatusCallback;)J
 
     move-result-wide p0
 
-    .line 86
+    .line 88
     const-wide/16 v0, 0x0
 
     cmp-long p2, p0, v0
 
     if-eqz p2, :cond_0
 
-    .line 89
+    .line 91
     new-instance p2, Lcom/xiaomi/engine/TaskSession;
 
     invoke-direct {p2, p0, p1}, Lcom/xiaomi/engine/TaskSession;-><init>(J)V
 
-    .line 90
+    .line 92
     sget-object p0, Lcom/xiaomi/engine/MiCameraAlgo;->TAG:Ljava/lang/String;
 
     new-instance p1, Ljava/lang/StringBuilder;
@@ -101,10 +101,10 @@
 
     invoke-static {p0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 91
+    .line 93
     return-object p2
 
-    .line 87
+    .line 89
     :cond_0
     new-instance p0, Ljava/lang/RuntimeException;
 
@@ -138,33 +138,33 @@
         }
     .end annotation
 
-    .line 62
+    .line 63
     sget-object v0, Lcom/xiaomi/engine/MiCameraAlgo;->TAG:Ljava/lang/String;
 
     const-string v1, "createSessionWithSurfaces: start"
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 63
+    .line 64
     invoke-static {p0, p1, p2}, Lcom/xiaomi/engine/MiCamAlgoInterfaceJNI;->createSessionWithSurfaces(Lcom/xiaomi/engine/BufferFormat;Ljava/util/List;Lcom/xiaomi/engine/TaskSession$SessionStatusCallback;)J
 
     move-result-wide p0
 
-    .line 64
+    .line 65
     const-wide/16 v0, 0x0
 
     cmp-long p2, p0, v0
 
     if-eqz p2, :cond_0
 
-    .line 67
+    .line 68
     new-instance p2, Lcom/xiaomi/engine/TaskSession;
 
     invoke-direct {p2, p0, p1}, Lcom/xiaomi/engine/TaskSession;-><init>(J)V
 
     return-object p2
 
-    .line 65
+    .line 66
     :cond_0
     new-instance p0, Ljava/lang/RuntimeException;
 
@@ -178,22 +178,22 @@
 .method public static deInit()V
     .locals 2
 
-    .line 98
+    .line 100
     sget-object v0, Lcom/xiaomi/engine/MiCameraAlgo;->TAG:Ljava/lang/String;
 
     const-string v1, "deInit: start"
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 99
+    .line 101
     invoke-static {}, Lcom/xiaomi/engine/MiCamAlgoInterfaceJNI;->deInit()I
 
     move-result v0
 
-    .line 100
+    .line 102
     invoke-static {v0}, Lcom/xiaomi/engine/Util;->assertOrNot(I)V
 
-    .line 101
+    .line 103
     return-void
 .end method
 

@@ -19,12 +19,14 @@ public class ErrorConstants {
     public static final int CODE_SDK_ERROR = 10005;
     public static final int CODE_UNKNOW = 1;
     public static final int CODE_UNZIP_FAIL = 10013;
+    public static final int CODE_URL_NOT_EXIST = 10015;
     public static final int EFFECT_NOT_FOUND = 2004;
     public static final int EFFECT_NOT_IN_WHITE_LIST = 2005;
     public static final int EFFECT_NOT_SUPPORT = 2003;
     public static final int EFFECT_UNAVAILABLE = 2002;
     public static final String EXCEPTION_CANCEL_DOWNLOAD = "Cancel download";
     public static final String EXCEPTION_DOWNLOAD_ERROR = "Download error";
+    public static final String EXCEPTION_DOWNLOAD_URL_ERROR = "File url is empty";
     public static final String EXCEPTION_EFFECT_NULL = "Sticker is null";
     public static final String EXCEPTION_INVALID_EFFECT_CACHE = "Invalid effect list cache !!!";
     public static final String EXCEPTION_JSON_CONVERT = "Json convert fail";

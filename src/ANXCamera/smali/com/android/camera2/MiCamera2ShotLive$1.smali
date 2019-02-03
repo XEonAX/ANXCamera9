@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera2/MiCamera2ShotLive;)V
     .locals 0
 
-    .line 59
+    .line 58
     iput-object p1, p0, Lcom/android/camera2/MiCamera2ShotLive$1;->this$0:Lcom/android/camera2/MiCamera2ShotLive;
 
     invoke-direct {p0}, Landroid/hardware/camera2/CameraCaptureSession$CaptureCallback;-><init>()V
@@ -48,7 +48,7 @@
     .end param
 
     .line 96
-    invoke-static {}, Lcom/android/camera2/MiCamera2ShotLive;->access$100()Ljava/lang/String;
+    invoke-static {}, Lcom/android/camera2/MiCamera2ShotLive;->access$000()Ljava/lang/String;
 
     move-result-object p1
 
@@ -56,7 +56,7 @@
 
     invoke-direct {p2}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v0, "onCaptureCompleted(): frameNbr = "
+    const-string v0, "onCaptureCompleted: frameNumber="
 
     invoke-virtual {p2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -104,7 +104,7 @@
     invoke-super {p0, p1, p2, p3}, Landroid/hardware/camera2/CameraCaptureSession$CaptureCallback;->onCaptureFailed(Landroid/hardware/camera2/CameraCaptureSession;Landroid/hardware/camera2/CaptureRequest;Landroid/hardware/camera2/CaptureFailure;)V
 
     .line 105
-    invoke-static {}, Lcom/android/camera2/MiCamera2ShotLive;->access$100()Ljava/lang/String;
+    invoke-static {}, Lcom/android/camera2/MiCamera2ShotLive;->access$000()Ljava/lang/String;
 
     move-result-object p1
 
@@ -112,7 +112,7 @@
 
     invoke-direct {p2}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v0, "onCaptureFailed(): reason = "
+    const-string v0, "onCaptureFailed: reason="
 
     invoke-virtual {p2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -146,7 +146,7 @@
 .end method
 
 .method public onCaptureStarted(Landroid/hardware/camera2/CameraCaptureSession;Landroid/hardware/camera2/CaptureRequest;JJ)V
-    .locals 0
+    .locals 3
     .param p1    # Landroid/hardware/camera2/CameraCaptureSession;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -156,10 +156,52 @@
         .end annotation
     .end param
 
+    .line 65
+    invoke-static {}, Lcom/android/camera2/MiCamera2ShotLive;->access$000()Ljava/lang/String;
+
+    move-result-object v0
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "onCaptureStarted: frameNumber="
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p5, p6}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
     .line 66
     invoke-super/range {p0 .. p6}, Landroid/hardware/camera2/CameraCaptureSession$CaptureCallback;->onCaptureStarted(Landroid/hardware/camera2/CameraCaptureSession;Landroid/hardware/camera2/CaptureRequest;JJ)V
 
     .line 67
+    iget-object p1, p0, Lcom/android/camera2/MiCamera2ShotLive$1;->this$0:Lcom/android/camera2/MiCamera2ShotLive;
+
+    invoke-static {p1}, Lcom/android/camera2/MiCamera2ShotLive;->access$100(Lcom/android/camera2/MiCamera2ShotLive;)Lcom/xiaomi/camera/core/ParallelTaskData;
+
+    move-result-object p1
+
+    if-nez p1, :cond_0
+
+    .line 68
+    iget-object p1, p0, Lcom/android/camera2/MiCamera2ShotLive$1;->this$0:Lcom/android/camera2/MiCamera2ShotLive;
+
+    iget-object p2, p0, Lcom/android/camera2/MiCamera2ShotLive$1;->this$0:Lcom/android/camera2/MiCamera2ShotLive;
+
+    invoke-virtual {p2, p3, p4}, Lcom/android/camera2/MiCamera2ShotLive;->generateParallelTaskData(J)Lcom/xiaomi/camera/core/ParallelTaskData;
+
+    move-result-object p2
+
+    invoke-static {p1, p2}, Lcom/android/camera2/MiCamera2ShotLive;->access$102(Lcom/android/camera2/MiCamera2ShotLive;Lcom/xiaomi/camera/core/ParallelTaskData;)Lcom/xiaomi/camera/core/ParallelTaskData;
+
+    .line 71
+    :cond_0
     iget-object p1, p0, Lcom/android/camera2/MiCamera2ShotLive$1;->this$0:Lcom/android/camera2/MiCamera2ShotLive;
 
     iget-object p1, p1, Lcom/android/camera2/MiCamera2ShotLive;->mMiCamera:Lcom/android/camera2/MiCamera2;
@@ -168,38 +210,8 @@
 
     move-result-object p1
 
-    .line 68
-    iget-object p2, p0, Lcom/android/camera2/MiCamera2ShotLive$1;->this$0:Lcom/android/camera2/MiCamera2ShotLive;
-
-    invoke-static {p2}, Lcom/android/camera2/MiCamera2ShotLive;->access$000(Lcom/android/camera2/MiCamera2ShotLive;)Lcom/xiaomi/camera/core/ParallelTaskData;
-
-    move-result-object p2
-
-    if-nez p2, :cond_0
-
-    .line 69
-    iget-object p2, p0, Lcom/android/camera2/MiCamera2ShotLive$1;->this$0:Lcom/android/camera2/MiCamera2ShotLive;
-
-    iget-object p5, p0, Lcom/android/camera2/MiCamera2ShotLive$1;->this$0:Lcom/android/camera2/MiCamera2ShotLive;
-
-    invoke-virtual {p5, p3, p4}, Lcom/android/camera2/MiCamera2ShotLive;->generateParallelTaskData(J)Lcom/xiaomi/camera/core/ParallelTaskData;
-
-    move-result-object p3
-
-    invoke-static {p2, p3}, Lcom/android/camera2/MiCamera2ShotLive;->access$002(Lcom/android/camera2/MiCamera2ShotLive;Lcom/xiaomi/camera/core/ParallelTaskData;)Lcom/xiaomi/camera/core/ParallelTaskData;
-
-    .line 71
-    :cond_0
-    if-eqz p1, :cond_3
-
     .line 72
-    invoke-static {}, Lcom/android/camera2/MiCamera2ShotLive;->access$100()Ljava/lang/String;
-
-    move-result-object p2
-
-    const-string p3, "onCaptureStarted()"
-
-    invoke-static {p2, p3}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    if-eqz p1, :cond_3
 
     .line 73
     instance-of p2, p1, Lcom/android/camera/module/Camera2Module;

@@ -9,33 +9,33 @@ import java.util.Map;
 
 /* compiled from: ResourceDecoderRegistry */
 public class e {
-    private final List<String> mT = new ArrayList();
-    private final Map<String, List<a<?, ?>>> mU = new HashMap();
+    private final List<String> mS = new ArrayList();
+    private final Map<String, List<a<?, ?>>> mT = new HashMap();
 
     /* compiled from: ResourceDecoderRegistry */
     private static class a<T, R> {
         private final Class<T> dataClass;
-        final Class<R> ei;
+        final Class<R> ej;
         final g<T, R> jR;
 
         public a(@NonNull Class<T> cls, @NonNull Class<R> cls2, g<T, R> gVar) {
             this.dataClass = cls;
-            this.ei = cls2;
+            this.ej = cls2;
             this.jR = gVar;
         }
 
         public boolean d(@NonNull Class<?> cls, @NonNull Class<?> cls2) {
-            return this.dataClass.isAssignableFrom(cls) && cls2.isAssignableFrom(this.ei);
+            return this.dataClass.isAssignableFrom(cls) && cls2.isAssignableFrom(this.ej);
         }
     }
 
     public synchronized void d(@NonNull List<String> list) {
-        List<String> arrayList = new ArrayList(this.mT);
-        this.mT.clear();
-        this.mT.addAll(list);
+        List<String> arrayList = new ArrayList(this.mS);
+        this.mS.clear();
+        this.mS.addAll(list);
         for (String str : arrayList) {
             if (!list.contains(str)) {
-                this.mT.add(str);
+                this.mS.add(str);
             }
         }
     }
@@ -44,8 +44,8 @@ public class e {
     public synchronized <T, R> List<g<T, R>> h(@NonNull Class<T> cls, @NonNull Class<R> cls2) {
         List<g<T, R>> arrayList;
         arrayList = new ArrayList();
-        for (String str : this.mT) {
-            List<a> list = (List) this.mU.get(str);
+        for (String str : this.mS) {
+            List<a> list = (List) this.mT.get(str);
             if (list != null) {
                 for (a aVar : list) {
                     if (aVar.d(cls, cls2)) {
@@ -61,12 +61,12 @@ public class e {
     public synchronized <T, R> List<Class<R>> i(@NonNull Class<T> cls, @NonNull Class<R> cls2) {
         List<Class<R>> arrayList;
         arrayList = new ArrayList();
-        for (String str : this.mT) {
-            List<a> list = (List) this.mU.get(str);
+        for (String str : this.mS) {
+            List<a> list = (List) this.mT.get(str);
             if (list != null) {
                 for (a aVar : list) {
-                    if (aVar.d(cls, cls2) && !arrayList.contains(aVar.ei)) {
-                        arrayList.add(aVar.ei);
+                    if (aVar.d(cls, cls2) && !arrayList.contains(aVar.ej)) {
+                        arrayList.add(aVar.ej);
                     }
                 }
             }
@@ -85,13 +85,13 @@ public class e {
     @NonNull
     private synchronized List<a<?, ?>> t(@NonNull String str) {
         List<a<?, ?>> list;
-        if (!this.mT.contains(str)) {
-            this.mT.add(str);
+        if (!this.mS.contains(str)) {
+            this.mS.add(str);
         }
-        list = (List) this.mU.get(str);
+        list = (List) this.mT.get(str);
         if (list == null) {
             list = new ArrayList();
-            this.mU.put(str, list);
+            this.mT.put(str, list);
         }
         return list;
     }

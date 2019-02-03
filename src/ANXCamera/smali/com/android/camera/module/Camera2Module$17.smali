@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/module/Camera2Module;->updateEyeLight()V
+    value = Lcom/android/camera/module/Camera2Module;->onPictureTakenFinished(Z)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -20,17 +20,13 @@
 # instance fields
 .field final synthetic this$0:Lcom/android/camera/module/Camera2Module;
 
-.field final synthetic val$alert:Lcom/android/camera/protocol/ModeProtocol$TopAlert;
-
 
 # direct methods
-.method constructor <init>(Lcom/android/camera/module/Camera2Module;Lcom/android/camera/protocol/ModeProtocol$TopAlert;)V
+.method constructor <init>(Lcom/android/camera/module/Camera2Module;)V
     .locals 0
 
-    .line 3442
+    .line 3062
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module$17;->this$0:Lcom/android/camera/module/Camera2Module;
-
-    iput-object p2, p0, Lcom/android/camera/module/Camera2Module$17;->val$alert:Lcom/android/camera/protocol/ModeProtocol$TopAlert;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -40,17 +36,29 @@
 
 # virtual methods
 .method public run()V
-    .locals 3
+    .locals 2
 
-    .line 3445
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module$17;->val$alert:Lcom/android/camera/protocol/ModeProtocol$TopAlert;
+    .line 3065
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
-    const/16 v1, 0x8
+    move-result-object v0
 
-    const/4 v2, 0x0
+    .line 3066
+    const/16 v1, 0xd4
 
-    invoke-interface {v0, v1, v2}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertTopHint(II)V
+    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
-    .line 3446
+    move-result-object v0
+
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$RecordState;
+
+    .line 3067
+    if-eqz v0, :cond_0
+
+    .line 3068
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$RecordState;->onPostSavingFinish()V
+
+    .line 3070
+    :cond_0
     return-void
 .end method

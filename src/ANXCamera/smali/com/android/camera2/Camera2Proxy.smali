@@ -6,6 +6,7 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
+        Lcom/android/camera2/Camera2Proxy$BeautyBodySlimCountCallback;,
         Lcom/android/camera2/Camera2Proxy$UltraWideCheckCallback;,
         Lcom/android/camera2/Camera2Proxy$VideoRecordStateCallback;,
         Lcom/android/camera2/Camera2Proxy$CameraPreviewCallback;,
@@ -23,45 +24,45 @@
 
 
 # instance fields
-.field protected final mCallbackLock:Ljava/lang/Object;
+.field private final mCallbackLock:Ljava/lang/Object;
 
-.field protected final mCameraId:I
+.field final mCameraId:I
 
 .field protected mErrorCallback:Lcom/android/camera2/Camera2Proxy$CameraErrorCallback;
 
-.field protected mFocusCallback:Lcom/android/camera2/Camera2Proxy$FocusCallback;
+.field private mFocusCallback:Lcom/android/camera2/Camera2Proxy$FocusCallback;
 
-.field protected mMetadataCallback:Lcom/android/camera2/Camera2Proxy$CameraMetaDataCallback;
+.field private mMetadataCallback:Lcom/android/camera2/Camera2Proxy$CameraMetaDataCallback;
 
-.field protected mParallelCallback:Lcom/xiaomi/camera/core/ParallelCallback;
+.field private mParallelCallback:Lcom/xiaomi/camera/core/ParallelCallback;
 
 .field private mPictureCallBack:Lcom/android/camera2/Camera2Proxy$PictureCallback;
 
 .field private mPreviewCallback:Lcom/android/camera2/Camera2Proxy$PreviewCallback;
 
-.field protected mRawCallBack:Lcom/android/camera2/Camera2Proxy$PictureCallback;
+.field private mRawCallBack:Lcom/android/camera2/Camera2Proxy$PictureCallback;
 
-.field protected mScreenLightCallback:Lcom/android/camera2/Camera2Proxy$ScreenLightCallback;
+.field private mScreenLightCallback:Lcom/android/camera2/Camera2Proxy$ScreenLightCallback;
 
 
 # direct methods
 .method public constructor <init>(I)V
     .locals 1
 
-    .line 57
+    .line 48
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 41
+    .line 39
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
 
     iput-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mCallbackLock:Ljava/lang/Object;
 
-    .line 58
+    .line 49
     iput p1, p0, Lcom/android/camera2/Camera2Proxy;->mCameraId:I
 
-    .line 59
+    .line 50
     return-void
 .end method
 
@@ -87,7 +88,7 @@
     .end param
 .end method
 
-.method public abstract captureGroupShotPictures(Lcom/android/camera2/Camera2Proxy$PictureCallback;Lcom/xiaomi/camera/core/ParallelCallback;ILcom/android/camera/groupshot/GroupShot;)V
+.method public abstract captureGroupShotPictures(Lcom/android/camera2/Camera2Proxy$PictureCallback;Lcom/xiaomi/camera/core/ParallelCallback;ILandroid/content/Context;)V
     .param p1    # Lcom/android/camera2/Camera2Proxy$PictureCallback;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -102,6 +103,9 @@
 .end method
 
 .method public abstract close()V
+.end method
+
+.method public abstract forceTurnFlashOffAndPausePreview()V
 .end method
 
 .method protected abstract getCameraConfigs()Lcom/android/camera2/CameraConfigs;
@@ -128,27 +132,81 @@
 .method public abstract getFlashMode()I
 .end method
 
+.method getFocusCallback()Lcom/android/camera2/Camera2Proxy$FocusCallback;
+    .locals 2
+
+    .line 599
+    iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mCallbackLock:Ljava/lang/Object;
+
+    monitor-enter v0
+
+    .line 600
+    :try_start_0
+    iget-object v1, p0, Lcom/android/camera2/Camera2Proxy;->mFocusCallback:Lcom/android/camera2/Camera2Proxy$FocusCallback;
+
+    monitor-exit v0
+
+    return-object v1
+
+    .line 601
+    :catchall_0
+    move-exception v1
+
+    monitor-exit v0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v1
+.end method
+
 .method public abstract getFocusMode()I
 .end method
 
 .method public getId()I
     .locals 1
 
-    .line 212
+    .line 211
     iget v0, p0, Lcom/android/camera2/Camera2Proxy;->mCameraId:I
 
     return v0
 .end method
 
-.method getParallelCallback()Lcom/xiaomi/camera/core/ParallelCallback;
+.method getMetadataCallback()Lcom/android/camera2/Camera2Proxy$CameraMetaDataCallback;
     .locals 2
 
-    .line 564
+    .line 611
     iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mCallbackLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 565
+    .line 612
+    :try_start_0
+    iget-object v1, p0, Lcom/android/camera2/Camera2Proxy;->mMetadataCallback:Lcom/android/camera2/Camera2Proxy$CameraMetaDataCallback;
+
+    monitor-exit v0
+
+    return-object v1
+
+    .line 613
+    :catchall_0
+    move-exception v1
+
+    monitor-exit v0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v1
+.end method
+
+.method getParallelCallback()Lcom/xiaomi/camera/core/ParallelCallback;
+    .locals 2
+
+    .line 575
+    iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mCallbackLock:Ljava/lang/Object;
+
+    monitor-enter v0
+
+    .line 576
     :try_start_0
     iget-object v1, p0, Lcom/android/camera2/Camera2Proxy;->mParallelCallback:Lcom/xiaomi/camera/core/ParallelCallback;
 
@@ -156,7 +214,7 @@
 
     return-object v1
 
-    .line 566
+    .line 577
     :catchall_0
     move-exception v1
 
@@ -173,12 +231,12 @@
 .method getPictureCallback()Lcom/android/camera2/Camera2Proxy$PictureCallback;
     .locals 2
 
-    .line 540
+    .line 551
     iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mCallbackLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 541
+    .line 552
     :try_start_0
     iget-object v1, p0, Lcom/android/camera2/Camera2Proxy;->mPictureCallBack:Lcom/android/camera2/Camera2Proxy$PictureCallback;
 
@@ -186,7 +244,7 @@
 
     return-object v1
 
-    .line 542
+    .line 553
     :catchall_0
     move-exception v1
 
@@ -212,12 +270,12 @@
 .method getPreviewCallback()Lcom/android/camera2/Camera2Proxy$PreviewCallback;
     .locals 2
 
-    .line 552
+    .line 563
     iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mCallbackLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 553
+    .line 564
     :try_start_0
     iget-object v1, p0, Lcom/android/camera2/Camera2Proxy;->mPreviewCallback:Lcom/android/camera2/Camera2Proxy$PreviewCallback;
 
@@ -225,7 +283,7 @@
 
     return-object v1
 
-    .line 554
+    .line 565
     :catchall_0
     move-exception v1
 
@@ -251,10 +309,64 @@
 .method protected abstract getPreviewSurface()Landroid/view/Surface;
 .end method
 
+.method public getRawCallBack()Lcom/android/camera2/Camera2Proxy$PictureCallback;
+    .locals 2
+
+    .line 623
+    iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mCallbackLock:Ljava/lang/Object;
+
+    monitor-enter v0
+
+    .line 624
+    :try_start_0
+    iget-object v1, p0, Lcom/android/camera2/Camera2Proxy;->mRawCallBack:Lcom/android/camera2/Camera2Proxy$PictureCallback;
+
+    monitor-exit v0
+
+    return-object v1
+
+    .line 625
+    :catchall_0
+    move-exception v1
+
+    monitor-exit v0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v1
+.end method
+
 .method protected abstract getRecordSurface()Landroid/view/Surface;
 .end method
 
 .method public abstract getSceneMode()I
+.end method
+
+.method getScreenLightCallback()Lcom/android/camera2/Camera2Proxy$ScreenLightCallback;
+    .locals 2
+
+    .line 587
+    iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mCallbackLock:Ljava/lang/Object;
+
+    monitor-enter v0
+
+    .line 588
+    :try_start_0
+    iget-object v1, p0, Lcom/android/camera2/Camera2Proxy;->mScreenLightCallback:Lcom/android/camera2/Camera2Proxy$ScreenLightCallback;
+
+    monitor-exit v0
+
+    return-object v1
+
+    .line 589
+    :catchall_0
+    move-exception v1
+
+    monitor-exit v0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v1
 .end method
 
 .method public abstract getShotSavePath()Ljava/lang/String;
@@ -278,6 +390,12 @@
 .method public abstract isNeedPreviewThumbnail()Z
 .end method
 
+.method public abstract isPreviewReady()Z
+.end method
+
+.method public abstract isQcfaEnable()Z
+.end method
+
 .method public abstract isSessionReady()Z
 .end method
 
@@ -287,17 +405,17 @@
 .method protected notifyOnError(I)V
     .locals 1
 
-    .line 257
+    .line 258
     iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mErrorCallback:Lcom/android/camera2/Camera2Proxy$CameraErrorCallback;
 
     if-eqz v0, :cond_0
 
-    .line 258
+    .line 259
     iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mErrorCallback:Lcom/android/camera2/Camera2Proxy$CameraErrorCallback;
 
     invoke-interface {v0, p0, p1}, Lcom/android/camera2/Camera2Proxy$CameraErrorCallback;->onCameraError(Lcom/android/camera2/Camera2Proxy;I)V
 
-    .line 260
+    .line 261
     :cond_0
     return-void
 .end method
@@ -342,6 +460,9 @@
 .method public abstract setASDPeriod(I)V
 .end method
 
+.method public abstract setASDScene(I)V
+.end method
+
 .method public abstract setAWBLock(Z)V
 .end method
 
@@ -349,6 +470,18 @@
 .end method
 
 .method public abstract setAntiBanding(I)V
+.end method
+
+.method public abstract setAutoZoomMode(I)V
+.end method
+
+.method public abstract setAutoZoomScaleOffset(F)V
+.end method
+
+.method public abstract setAutoZoomStartCapture([F)V
+.end method
+
+.method public abstract setAutoZoomStopCapture(I)V
 .end method
 
 .method public abstract setBeautyValues(Lcom/android/camera/fragment/beauty/BeautyValues;)V
@@ -397,10 +530,10 @@
         .end annotation
     .end param
 
-    .line 243
+    .line 244
     iput-object p1, p0, Lcom/android/camera2/Camera2Proxy;->mErrorCallback:Lcom/android/camera2/Camera2Proxy$CameraErrorCallback;
 
-    .line 244
+    .line 245
     return-void
 .end method
 
@@ -434,7 +567,33 @@
 .method public abstract setFlashMode(I)V
 .end method
 
-.method public abstract setFocusCallback(Lcom/android/camera2/Camera2Proxy$FocusCallback;)V
+.method public setFocusCallback(Lcom/android/camera2/Camera2Proxy$FocusCallback;)V
+    .locals 1
+
+    .line 593
+    iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mCallbackLock:Ljava/lang/Object;
+
+    monitor-enter v0
+
+    .line 594
+    :try_start_0
+    iput-object p1, p0, Lcom/android/camera2/Camera2Proxy;->mFocusCallback:Lcom/android/camera2/Camera2Proxy$FocusCallback;
+
+    .line 595
+    monitor-exit v0
+
+    .line 596
+    return-void
+
+    .line 595
+    :catchall_0
+    move-exception p1
+
+    monitor-exit v0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw p1
 .end method
 
 .method public abstract setFocusDistance(F)V
@@ -484,7 +643,33 @@
 .method public abstract setLensDirtyDetect(Z)V
 .end method
 
-.method public abstract setMetaDataCallback(Lcom/android/camera2/Camera2Proxy$CameraMetaDataCallback;)V
+.method public setMetaDataCallback(Lcom/android/camera2/Camera2Proxy$CameraMetaDataCallback;)V
+    .locals 1
+
+    .line 605
+    iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mCallbackLock:Ljava/lang/Object;
+
+    monitor-enter v0
+
+    .line 606
+    :try_start_0
+    iput-object p1, p0, Lcom/android/camera2/Camera2Proxy;->mMetadataCallback:Lcom/android/camera2/Camera2Proxy$CameraMetaDataCallback;
+
+    .line 607
+    monitor-exit v0
+
+    .line 608
+    return-void
+
+    .line 607
+    :catchall_0
+    move-exception p1
+
+    monitor-exit v0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw p1
 .end method
 
 .method public abstract setMfnr(Z)V
@@ -505,22 +690,22 @@
 .method setParallelCallback(Lcom/xiaomi/camera/core/ParallelCallback;)V
     .locals 1
 
-    .line 558
+    .line 569
     iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mCallbackLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 559
+    .line 570
     :try_start_0
     iput-object p1, p0, Lcom/android/camera2/Camera2Proxy;->mParallelCallback:Lcom/xiaomi/camera/core/ParallelCallback;
 
-    .line 560
+    .line 571
     monitor-exit v0
 
-    .line 561
+    .line 572
     return-void
 
-    .line 560
+    .line 571
     :catchall_0
     move-exception p1
 
@@ -534,22 +719,22 @@
 .method setPictureCallback(Lcom/android/camera2/Camera2Proxy$PictureCallback;)V
     .locals 1
 
-    .line 534
+    .line 545
     iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mCallbackLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 535
+    .line 546
     :try_start_0
     iput-object p1, p0, Lcom/android/camera2/Camera2Proxy;->mPictureCallBack:Lcom/android/camera2/Camera2Proxy$PictureCallback;
 
-    .line 536
+    .line 547
     monitor-exit v0
 
-    .line 537
+    .line 548
     return-void
 
-    .line 536
+    .line 547
     :catchall_0
     move-exception p1
 
@@ -575,22 +760,22 @@
 .method setPreviewCallback(Lcom/android/camera2/Camera2Proxy$PreviewCallback;)V
     .locals 1
 
-    .line 546
+    .line 557
     iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mCallbackLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 547
+    .line 558
     :try_start_0
     iput-object p1, p0, Lcom/android/camera2/Camera2Proxy;->mPreviewCallback:Lcom/android/camera2/Camera2Proxy$PreviewCallback;
 
-    .line 548
+    .line 559
     monitor-exit v0
 
-    .line 549
+    .line 560
     return-void
 
-    .line 548
+    .line 559
     :catchall_0
     move-exception p1
 
@@ -610,13 +795,71 @@
 .method public abstract setPreviewSize(Lcom/android/camera/CameraSize;)V
 .end method
 
+.method public abstract setQcfaEnable(Z)V
+.end method
+
+.method public setRawCallBack(Lcom/android/camera2/Camera2Proxy$PictureCallback;)V
+    .locals 1
+
+    .line 617
+    iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mCallbackLock:Ljava/lang/Object;
+
+    monitor-enter v0
+
+    .line 618
+    :try_start_0
+    iput-object p1, p0, Lcom/android/camera2/Camera2Proxy;->mRawCallBack:Lcom/android/camera2/Camera2Proxy$PictureCallback;
+
+    .line 619
+    monitor-exit v0
+
+    .line 620
+    return-void
+
+    .line 619
+    :catchall_0
+    move-exception p1
+
+    monitor-exit v0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw p1
+.end method
+
 .method public abstract setSaturation(I)V
 .end method
 
 .method public abstract setSceneMode(I)V
 .end method
 
-.method public abstract setScreenLightCallback(Lcom/android/camera2/Camera2Proxy$ScreenLightCallback;)V
+.method public setScreenLightCallback(Lcom/android/camera2/Camera2Proxy$ScreenLightCallback;)V
+    .locals 1
+
+    .line 581
+    iget-object v0, p0, Lcom/android/camera2/Camera2Proxy;->mCallbackLock:Ljava/lang/Object;
+
+    monitor-enter v0
+
+    .line 582
+    :try_start_0
+    iput-object p1, p0, Lcom/android/camera2/Camera2Proxy;->mScreenLightCallback:Lcom/android/camera2/Camera2Proxy$ScreenLightCallback;
+
+    .line 583
+    monitor-exit v0
+
+    .line 584
+    return-void
+
+    .line 583
+    :catchall_0
+    move-exception p1
+
+    monitor-exit v0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw p1
 .end method
 
 .method public abstract setSharpness(I)V
@@ -720,10 +963,10 @@
     .end param
 .end method
 
-.method public abstract startPreviewSession(Landroid/view/Surface;ZZILcom/android/camera2/Camera2Proxy$CameraPreviewCallback;)V
+.method public abstract startPreviewSession(Landroid/view/Surface;ZZIZLcom/android/camera2/Camera2Proxy$CameraPreviewCallback;)V
 .end method
 
-.method public abstract startPreviewSession(Landroid/view/Surface;ZZILcom/android/camera2/Camera2Proxy$CameraPreviewCallback;Landroid/os/Handler;)V
+.method public abstract startPreviewSession(Landroid/view/Surface;ZZIZLcom/android/camera2/Camera2Proxy$CameraPreviewCallback;Landroid/os/Handler;)V
     .param p1    # Landroid/view/Surface;
         .annotation build Landroid/support/annotation/Nullable;
         .end annotation
@@ -773,7 +1016,7 @@
 .method public toString()Ljava/lang/String;
     .locals 2
 
-    .line 248
+    .line 249
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -799,4 +1042,10 @@
     move-result-object v0
 
     return-object v0
+.end method
+
+.method public abstract unlockExposure()V
+.end method
+
+.method public abstract updateDeferPreviewSession(Landroid/view/Surface;)Z
 .end method

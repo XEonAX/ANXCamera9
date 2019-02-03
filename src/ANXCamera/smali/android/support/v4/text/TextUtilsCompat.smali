@@ -24,7 +24,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 3
+    .registers 3
 
     .line 114
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -35,7 +35,7 @@
 
     const/16 v2, 0x11
 
-    if-lt v0, v2, :cond_0
+    if-lt v0, v2, :cond_f
 
     .line 116
     new-instance v2, Landroid/support/v4/text/TextUtilsCompat$TextUtilsCompatJellybeanMr1Impl;
@@ -44,10 +44,10 @@
 
     sput-object v2, Landroid/support/v4/text/TextUtilsCompat;->IMPL:Landroid/support/v4/text/TextUtilsCompat$TextUtilsCompatImpl;
 
-    goto :goto_0
+    goto :goto_16
 
     .line 118
-    :cond_0
+    :cond_f
     new-instance v2, Landroid/support/v4/text/TextUtilsCompat$TextUtilsCompatImpl;
 
     invoke-direct {v2, v1}, Landroid/support/v4/text/TextUtilsCompat$TextUtilsCompatImpl;-><init>(Landroid/support/v4/text/TextUtilsCompat$1;)V
@@ -56,7 +56,7 @@
 
     .line 146
     .end local v0    # "version":I
-    :goto_0
+    :goto_16
     new-instance v0, Ljava/util/Locale;
 
     const-string v1, ""
@@ -81,7 +81,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -91,7 +91,7 @@
 .end method
 
 .method static synthetic access$000()Ljava/lang/String;
-    .locals 1
+    .registers 1
 
     .line 26
     sget-object v0, Landroid/support/v4/text/TextUtilsCompat;->ARAB_SCRIPT_SUBTAG:Ljava/lang/String;
@@ -100,7 +100,7 @@
 .end method
 
 .method static synthetic access$100()Ljava/lang/String;
-    .locals 1
+    .registers 1
 
     .line 26
     sget-object v0, Landroid/support/v4/text/TextUtilsCompat;->HEBR_SCRIPT_SUBTAG:Ljava/lang/String;
@@ -109,7 +109,7 @@
 .end method
 
 .method public static getLayoutDirectionFromLocale(Ljava/util/Locale;)I
-    .locals 1
+    .registers 2
     .param p0, "locale"    # Ljava/util/Locale;
         .annotation build Landroid/support/annotation/Nullable;
         .end annotation
@@ -126,7 +126,7 @@
 .end method
 
 .method public static htmlEncode(Ljava/lang/String;)Ljava/lang/String;
-    .locals 1
+    .registers 2
     .param p0, "s"    # Ljava/lang/String;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation

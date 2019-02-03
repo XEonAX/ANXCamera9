@@ -12,7 +12,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 32
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -29,7 +29,7 @@
 .end method
 
 .method private static preencode(Ljava/lang/String;)Ljava/lang/String;
-    .locals 7
+    .registers 8
     .param p0, "contents"    # Ljava/lang/String;
 
     .line 59
@@ -43,7 +43,7 @@
 
     const/16 v2, 0xb
 
-    if-ne v0, v2, :cond_2
+    if-ne v0, v2, :cond_34
 
     .line 62
     const/4 v3, 0x0
@@ -53,8 +53,8 @@
     const/4 v4, 0x0
 
     .local v4, "i":I
-    :goto_0
-    if-lt v4, v2, :cond_0
+    :goto_c
+    if-lt v4, v2, :cond_23
 
     .line 66
     .end local v4    # "i":I
@@ -78,12 +78,12 @@
 
     .line 67
     .end local v3    # "sum":I
-    goto :goto_2
+    goto :goto_38
 
     .line 64
     .restart local v3    # "sum":I
     .restart local v4    # "i":I
-    :cond_0
+    :cond_23
     invoke-virtual {p0, v4}, Ljava/lang/String;->charAt(I)C
 
     move-result v5
@@ -92,16 +92,16 @@
 
     rem-int/lit8 v6, v4, 0x2
 
-    if-nez v6, :cond_1
+    if-nez v6, :cond_2e
 
     const/4 v6, 0x3
 
-    goto :goto_1
+    goto :goto_2f
 
-    :cond_1
+    :cond_2e
     const/4 v6, 0x1
 
-    :goto_1
+    :goto_2f
     mul-int/2addr v5, v6
 
     add-int/2addr v3, v5
@@ -109,18 +109,18 @@
     .line 63
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_0
+    goto :goto_c
 
     .line 67
     .end local v3    # "sum":I
     .end local v4    # "i":I
-    :cond_2
+    :cond_34
     const/16 v2, 0xc
 
-    if-ne v0, v2, :cond_3
+    if-ne v0, v2, :cond_49
 
     .line 71
-    :goto_2
+    :goto_38
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-static {v1}, Ljava/lang/String;->valueOf(C)Ljava/lang/String;
@@ -138,7 +138,7 @@
     return-object v1
 
     .line 68
-    :cond_3
+    :cond_49
     new-instance v1, Ljava/lang/IllegalArgumentException;
 
     .line 69
@@ -167,7 +167,7 @@
 
 # virtual methods
 .method public encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;II)Lcom/google/zxing/common/BitMatrix;
-    .locals 6
+    .registers 11
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "format"    # Lcom/google/zxing/BarcodeFormat;
     .param p3, "width"    # I
@@ -199,7 +199,7 @@
 .end method
 
 .method public encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;IILjava/util/Map;)Lcom/google/zxing/common/BitMatrix;
-    .locals 7
+    .registers 13
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "format"    # Lcom/google/zxing/BarcodeFormat;
     .param p3, "width"    # I
@@ -227,7 +227,7 @@
     .local p5, "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/EncodeHintType;*>;"
     sget-object v0, Lcom/google/zxing/BarcodeFormat;->UPC_A:Lcom/google/zxing/BarcodeFormat;
 
-    if-ne p2, v0, :cond_0
+    if-ne p2, v0, :cond_14
 
     .line 51
     iget-object v1, p0, Lcom/google/zxing/oned/UPCAWriter;->subWriter:Lcom/google/zxing/oned/EAN13Writer;
@@ -251,7 +251,7 @@
     return-object v0
 
     .line 49
-    :cond_0
+    :cond_14
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;

@@ -25,7 +25,7 @@
 .method constructor <init>(Landroid/content/Context;)V
     .locals 0
 
-    .line 109
+    .line 151
     iput-object p1, p0, Lcom/android/camera/fragment/CtaNoticeFragment$3;->val$context:Landroid/content/Context;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public onClick()V
     .locals 2
 
-    .line 112
+    .line 154
     iget-object v0, p0, Lcom/android/camera/fragment/CtaNoticeFragment$3;->val$context:Landroid/content/Context;
 
     invoke-static {}, Lcom/android/camera/fragment/CtaNoticeFragment$Licence;->getUserAgreementIntent()Landroid/content/Intent;
@@ -47,6 +47,6 @@
 
     invoke-virtual {v0, v1}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
 
-    .line 113
+    .line 155
     return-void
 .end method

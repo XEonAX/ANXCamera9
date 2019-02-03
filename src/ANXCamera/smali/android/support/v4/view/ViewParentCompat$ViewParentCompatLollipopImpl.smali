@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 154
     invoke-direct {p0}, Landroid/support/v4/view/ViewParentCompat$ViewParentCompatKitKatImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public onNestedFling(Landroid/view/ViewParent;Landroid/view/View;FFZ)Z
-    .locals 1
+    .registers 7
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "target"    # Landroid/view/View;
     .param p3, "velocityX"    # F
@@ -43,7 +43,7 @@
 .end method
 
 .method public onNestedPreFling(Landroid/view/ViewParent;Landroid/view/View;FF)Z
-    .locals 1
+    .registers 6
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "target"    # Landroid/view/View;
     .param p3, "velocityX"    # F
@@ -58,7 +58,7 @@
 .end method
 
 .method public onNestedPreScroll(Landroid/view/ViewParent;Landroid/view/View;II[I)V
-    .locals 0
+    .registers 6
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "target"    # Landroid/view/View;
     .param p3, "dx"    # I
@@ -73,7 +73,7 @@
 .end method
 
 .method public onNestedScroll(Landroid/view/ViewParent;Landroid/view/View;IIII)V
-    .locals 0
+    .registers 7
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "target"    # Landroid/view/View;
     .param p3, "dxConsumed"    # I
@@ -89,7 +89,7 @@
 .end method
 
 .method public onNestedScrollAccepted(Landroid/view/ViewParent;Landroid/view/View;Landroid/view/View;I)V
-    .locals 0
+    .registers 5
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "child"    # Landroid/view/View;
     .param p3, "target"    # Landroid/view/View;
@@ -103,7 +103,7 @@
 .end method
 
 .method public onStartNestedScroll(Landroid/view/ViewParent;Landroid/view/View;Landroid/view/View;I)Z
-    .locals 1
+    .registers 6
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "child"    # Landroid/view/View;
     .param p3, "target"    # Landroid/view/View;
@@ -118,7 +118,7 @@
 .end method
 
 .method public onStopNestedScroll(Landroid/view/ViewParent;Landroid/view/View;)V
-    .locals 0
+    .registers 3
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "target"    # Landroid/view/View;
 

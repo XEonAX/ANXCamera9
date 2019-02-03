@@ -39,7 +39,7 @@ public class BeautyValues implements Parcelable {
     public int mBeautySmile;
 
     public String toString() {
-        if (b.hA()) {
+        if (b.hR()) {
             return String.format(Locale.ENGLISH, "3d beauty level: %s | sf: %d | ee: %d | ns: %d | rs: %d | lp: %d | cn: %d | nk: %d | se: %d | sn: %d | ed: %d | pl: %d | jl: %d | blusher: %d| headSlim: %d | bodySlim: %d | shoulderSlim: %d | legSlim: %d ", new Object[]{this.mBeautyLevel, Integer.valueOf(this.mBeautySlimFace), Integer.valueOf(this.mBeautyEnlargeEye), Integer.valueOf(this.mBeautyNose), Integer.valueOf(this.mBeautyRisorius), Integer.valueOf(this.mBeautyLips), Integer.valueOf(this.mBeautyChin), Integer.valueOf(this.mBeautyNeck), Integer.valueOf(this.mBeautySmile), Integer.valueOf(this.mBeautySlimNose), Integer.valueOf(this.mBeautyEyebrowDye), Integer.valueOf(this.mBeautyPupilLine), Integer.valueOf(this.mBeautyJellyLips), Integer.valueOf(this.mBeautyBlusher), Integer.valueOf(this.mBeautyHeadSlim), Integer.valueOf(this.mBeautyBodySlim), Integer.valueOf(this.mBeautyShoulderSlim), Integer.valueOf(this.mBeautyLegSlim)});
         }
         return String.format(Locale.ENGLISH, "beauty level: %s | sc: %d | sf: %d | ss: %d | ee: %d ", new Object[]{this.mBeautyLevel, Integer.valueOf(this.mBeautySkinColor), Integer.valueOf(this.mBeautySlimFace), Integer.valueOf(this.mBeautySkinSmooth), Integer.valueOf(this.mBeautyEnlargeEye)});
@@ -51,7 +51,7 @@ public class BeautyValues implements Parcelable {
 
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(this.mBeautyLevel);
-        if (b.hA()) {
+        if (b.hR()) {
             parcel.writeInt(this.mBeautySlimFace);
             parcel.writeInt(this.mBeautyEnlargeEye);
             parcel.writeInt(this.mBeautyNose);
@@ -104,7 +104,7 @@ public class BeautyValues implements Parcelable {
 
     protected BeautyValues(Parcel parcel) {
         this.mBeautyLevel = parcel.readString();
-        if (b.hA()) {
+        if (b.hR()) {
             this.mBeautySlimFace = parcel.readInt();
             this.mBeautyEnlargeEye = parcel.readInt();
             this.mBeautyNose = parcel.readInt();

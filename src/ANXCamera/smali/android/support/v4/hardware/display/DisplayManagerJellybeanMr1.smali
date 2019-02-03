@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getDisplay(Ljava/lang/Object;I)Landroid/view/Display;
-    .locals 1
+    .registers 3
     .param p0, "displayManagerObj"    # Ljava/lang/Object;
     .param p1, "displayId"    # I
 
@@ -31,7 +31,7 @@
 .end method
 
 .method public static getDisplayManager(Landroid/content/Context;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "context"    # Landroid/content/Context;
 
     .line 24
@@ -45,7 +45,7 @@
 .end method
 
 .method public static getDisplays(Ljava/lang/Object;)[Landroid/view/Display;
-    .locals 1
+    .registers 2
     .param p0, "displayManagerObj"    # Ljava/lang/Object;
 
     .line 32
@@ -61,7 +61,7 @@
 .end method
 
 .method public static getDisplays(Ljava/lang/Object;Ljava/lang/String;)[Landroid/view/Display;
-    .locals 1
+    .registers 3
     .param p0, "displayManagerObj"    # Ljava/lang/Object;
     .param p1, "category"    # Ljava/lang/String;
 

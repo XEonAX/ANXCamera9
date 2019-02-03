@@ -8,7 +8,7 @@ import java.security.MessageDigest;
 /* compiled from: CenterInside */
 public class k extends g {
     private static final String ID = "com.bumptech.glide.load.resource.bitmap.CenterInside";
-    private static final byte[] jW = ID.getBytes(cT);
+    private static final byte[] jW = ID.getBytes(cU);
 
     protected Bitmap transform(@NonNull d dVar, @NonNull Bitmap bitmap, int i, int i2) {
         return w.c(dVar, bitmap, i, i2);

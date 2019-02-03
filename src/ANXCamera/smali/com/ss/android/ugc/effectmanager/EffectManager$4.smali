@@ -27,7 +27,7 @@
 .method constructor <init>(Lcom/ss/android/ugc/effectmanager/EffectManager;Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListener;)V
     .locals 0
 
-    .line 319
+    .line 332
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$4;->this$0:Lcom/ss/android/ugc/effectmanager/EffectManager;
 
     iput-object p2, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$4;->val$iFetchEffectListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListener;
@@ -42,14 +42,14 @@
 .method public onFail(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
     .locals 2
 
-    .line 331
+    .line 344
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$4;->val$iFetchEffectListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListener;
 
     const/4 v1, 0x0
 
     invoke-interface {v0, v1, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListener;->onFail(Lcom/ss/android/ugc/effectmanager/effect/model/Effect;Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 332
+    .line 345
     return-void
 .end method
 
@@ -64,14 +64,14 @@
         }
     .end annotation
 
-    .line 322
+    .line 335
     invoke-interface {p1}, Ljava/util/List;->isEmpty()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 323
+    .line 336
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$4;->val$iFetchEffectListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListener;
 
     const/4 v1, 0x0
@@ -86,7 +86,7 @@
 
     goto :goto_0
 
-    .line 325
+    .line 338
     :cond_0
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$4;->val$iFetchEffectListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListener;
 
@@ -100,7 +100,7 @@
 
     invoke-interface {p1, v0, v1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListener;->onFail(Lcom/ss/android/ugc/effectmanager/effect/model/Effect;Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 327
+    .line 340
     :goto_0
     return-void
 .end method

@@ -37,7 +37,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/content/AsyncTaskLoader;)V
-    .locals 1
+    .registers 3
 
     .line 42
     .local p0, "this":Landroid/support/v4/content/AsyncTaskLoader$LoadTask;, "Landroid/support/v4/content/AsyncTaskLoader<TD;>.LoadTask;"
@@ -60,7 +60,7 @@
 
 # virtual methods
 .method protected bridge synthetic doInBackground([Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p1, "x0"    # [Ljava/lang/Object;
 
     .line 42
@@ -77,7 +77,7 @@
 .end method
 
 .method protected varargs doInBackground([Ljava/lang/Void;)Ljava/lang/Object;
-    .locals 2
+    .registers 4
     .param p1, "params"    # [Ljava/lang/Void;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -95,8 +95,8 @@
     invoke-virtual {v0}, Landroid/support/v4/content/AsyncTaskLoader;->onLoadInBackground()Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_0
-    .catch Landroid/support/v4/os/OperationCanceledException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_6
+    .catch Landroid/support/v4/os/OperationCanceledException; {:try_start_0 .. :try_end_6} :catch_7
 
     .line 56
     .local v0, "data":Ljava/lang/Object;, "TD;"
@@ -104,7 +104,7 @@
 
     .line 57
     .end local v0    # "data":Ljava/lang/Object;, "TD;"
-    :catch_0
+    :catch_7
     move-exception v0
 
     .line 58
@@ -113,7 +113,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_10
 
     .line 68
     const/4 v1, 0x0
@@ -121,12 +121,12 @@
     return-object v1
 
     .line 65
-    :cond_0
+    :cond_10
     throw v0
 .end method
 
 .method protected onCancelled(Ljava/lang/Object;)V
-    .locals 2
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TD;)V"
@@ -140,8 +140,8 @@
     iget-object v0, p0, Landroid/support/v4/content/AsyncTaskLoader$LoadTask;->this$0:Landroid/support/v4/content/AsyncTaskLoader;
 
     invoke-virtual {v0, p0, p1}, Landroid/support/v4/content/AsyncTaskLoader;->dispatchOnCancelled(Landroid/support/v4/content/AsyncTaskLoader$LoadTask;Ljava/lang/Object;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_5
+    .catchall {:try_start_0 .. :try_end_5} :catchall_c
 
     .line 90
     iget-object v0, p0, Landroid/support/v4/content/AsyncTaskLoader$LoadTask;->mDone:Ljava/util/concurrent/CountDownLatch;
@@ -155,7 +155,7 @@
     return-void
 
     .line 90
-    :catchall_0
+    :catchall_c
     move-exception v0
 
     iget-object v1, p0, Landroid/support/v4/content/AsyncTaskLoader$LoadTask;->mDone:Ljava/util/concurrent/CountDownLatch;
@@ -166,7 +166,7 @@
 .end method
 
 .method protected onPostExecute(Ljava/lang/Object;)V
-    .locals 2
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TD;)V"
@@ -180,8 +180,8 @@
     iget-object v0, p0, Landroid/support/v4/content/AsyncTaskLoader$LoadTask;->this$0:Landroid/support/v4/content/AsyncTaskLoader;
 
     invoke-virtual {v0, p0, p1}, Landroid/support/v4/content/AsyncTaskLoader;->dispatchOnLoadComplete(Landroid/support/v4/content/AsyncTaskLoader$LoadTask;Ljava/lang/Object;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_5
+    .catchall {:try_start_0 .. :try_end_5} :catchall_c
 
     .line 79
     iget-object v0, p0, Landroid/support/v4/content/AsyncTaskLoader$LoadTask;->mDone:Ljava/util/concurrent/CountDownLatch;
@@ -195,7 +195,7 @@
     return-void
 
     .line 79
-    :catchall_0
+    :catchall_c
     move-exception v0
 
     iget-object v1, p0, Landroid/support/v4/content/AsyncTaskLoader$LoadTask;->mDone:Ljava/util/concurrent/CountDownLatch;
@@ -206,7 +206,7 @@
 .end method
 
 .method public run()V
-    .locals 1
+    .registers 2
 
     .line 98
     .local p0, "this":Landroid/support/v4/content/AsyncTaskLoader$LoadTask;, "Landroid/support/v4/content/AsyncTaskLoader<TD;>.LoadTask;"
@@ -224,7 +224,7 @@
 .end method
 
 .method public waitForLoader()V
-    .locals 1
+    .registers 2
 
     .line 105
     .local p0, "this":Landroid/support/v4/content/AsyncTaskLoader$LoadTask;, "Landroid/support/v4/content/AsyncTaskLoader<TD;>.LoadTask;"
@@ -232,17 +232,17 @@
     iget-object v0, p0, Landroid/support/v4/content/AsyncTaskLoader$LoadTask;->mDone:Ljava/util/concurrent/CountDownLatch;
 
     invoke-virtual {v0}, Ljava/util/concurrent/CountDownLatch;->await()V
-    :try_end_0
-    .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_5
+    .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_5} :catch_6
 
     .line 108
-    goto :goto_0
+    goto :goto_7
 
     .line 106
-    :catch_0
+    :catch_6
     move-exception v0
 
     .line 109
-    :goto_0
+    :goto_7
     return-void
 .end method

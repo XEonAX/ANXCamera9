@@ -32,7 +32,7 @@
 
 
 # instance fields
-.field private final aF:Landroid/support/v4/util/Pools$Pool;
+.field private final aG:Landroid/support/v4/util/Pools$Pool;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Landroid/support/v4/util/Pools$Pool<",
@@ -43,7 +43,7 @@
     .end annotation
 .end field
 
-.field private en:Lcom/bumptech/glide/Priority;
+.field private eo:Lcom/bumptech/glide/Priority;
 
 .field private exceptions:Ljava/util/List;
     .annotation build Landroid/support/annotation/Nullable;
@@ -108,7 +108,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 87
-    iput-object p2, p0, Lcom/bumptech/glide/load/model/p$a;->aF:Landroid/support/v4/util/Pools$Pool;
+    iput-object p2, p0, Lcom/bumptech/glide/load/model/p$a;->aG:Landroid/support/v4/util/Pools$Pool;
 
     .line 88
     invoke-static {p1}, Lcom/bumptech/glide/util/i;->b(Ljava/util/Collection;)Ljava/util/Collection;
@@ -149,7 +149,7 @@
     iput v0, p0, Lcom/bumptech/glide/load/model/p$a;->jw:I
 
     .line 150
-    iget-object v0, p0, Lcom/bumptech/glide/load/model/p$a;->en:Lcom/bumptech/glide/Priority;
+    iget-object v0, p0, Lcom/bumptech/glide/load/model/p$a;->eo:Lcom/bumptech/glide/Priority;
 
     iget-object v1, p0, Lcom/bumptech/glide/load/model/p$a;->jx:Lcom/bumptech/glide/load/a/d$a;
 
@@ -207,13 +207,13 @@
     .end annotation
 
     .line 96
-    iput-object p1, p0, Lcom/bumptech/glide/load/model/p$a;->en:Lcom/bumptech/glide/Priority;
+    iput-object p1, p0, Lcom/bumptech/glide/load/model/p$a;->eo:Lcom/bumptech/glide/Priority;
 
     .line 97
     iput-object p2, p0, Lcom/bumptech/glide/load/model/p$a;->jx:Lcom/bumptech/glide/load/a/d$a;
 
     .line 98
-    iget-object p2, p0, Lcom/bumptech/glide/load/model/p$a;->aF:Landroid/support/v4/util/Pools$Pool;
+    iget-object p2, p0, Lcom/bumptech/glide/load/model/p$a;->aG:Landroid/support/v4/util/Pools$Pool;
 
     invoke-interface {p2}, Landroid/support/v4/util/Pools$Pool;->acquire()Ljava/lang/Object;
 
@@ -362,7 +362,7 @@
     if-eqz v0, :cond_0
 
     .line 105
-    iget-object v0, p0, Lcom/bumptech/glide/load/model/p$a;->aF:Landroid/support/v4/util/Pools$Pool;
+    iget-object v0, p0, Lcom/bumptech/glide/load/model/p$a;->aG:Landroid/support/v4/util/Pools$Pool;
 
     iget-object v1, p0, Lcom/bumptech/glide/load/model/p$a;->exceptions:Ljava/util/List;
 

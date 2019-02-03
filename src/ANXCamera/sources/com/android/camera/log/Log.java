@@ -8,10 +8,10 @@ import com.android.camera.Util;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-public class Log {
+public final class Log {
     public static final int ASSERT = 7;
     private static final String CAMERA_LOGTAG_PREFIX = "CAM_";
-    public static final String CONTINUAL = "CONTINUAL_";
+    public static final String CONTINUAL = "C_";
     public static final int DEBUG = 3;
     private static final int DEFAULT = -1;
     public static final String EFFECT_TAG = "EFFECT_";
@@ -66,7 +66,7 @@ public class Log {
         stringBuilder.append(CONTINUAL);
         stringBuilder.append(str);
         str = tagFormat(stringBuilder.toString());
-        if (shouldLogForDebug("CAM_CONTINUAL_", 2)) {
+        if (shouldLogForDebug("CAM_C_", 2)) {
             return android.util.Log.v(str, str2);
         }
         return -1;

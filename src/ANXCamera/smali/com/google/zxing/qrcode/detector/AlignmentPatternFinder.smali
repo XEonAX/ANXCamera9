@@ -33,7 +33,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/zxing/common/BitMatrix;IIIIFLcom/google/zxing/ResultPointCallback;)V
-    .locals 2
+    .registers 10
     .param p1, "image"    # Lcom/google/zxing/common/BitMatrix;
     .param p2, "startX"    # I
     .param p3, "startY"    # I
@@ -87,7 +87,7 @@
 .end method
 
 .method private static centerFromEnd([II)F
-    .locals 3
+    .registers 5
     .param p0, "stateCount"    # [I
     .param p1, "end"    # I
 
@@ -116,7 +116,7 @@
 .end method
 
 .method private crossCheckVertical(IIII)F
-    .locals 9
+    .registers 14
     .param p1, "startI"    # I
     .param p2, "centerJ"    # I
     .param p3, "maxCount"    # I
@@ -156,23 +156,23 @@
 
     .line 203
     .local v6, "i":I
-    :goto_0
-    if-ltz v6, :cond_1
+    :goto_12
+    if-ltz v6, :cond_27
 
     invoke-virtual {v0, p2, v6}, Lcom/google/zxing/common/BitMatrix;->get(II)Z
 
     move-result v7
 
-    if-eqz v7, :cond_1
+    if-eqz v7, :cond_27
 
     aget v7, v2, v4
 
-    if-le v7, p3, :cond_0
+    if-le v7, p3, :cond_1f
 
-    goto :goto_1
+    goto :goto_27
 
     .line 204
-    :cond_0
+    :cond_1f
     aget v7, v2, v4
 
     add-int/2addr v7, v4
@@ -182,40 +182,40 @@
     .line 205
     add-int/lit8 v6, v6, -0x1
 
-    goto :goto_0
+    goto :goto_12
 
     .line 208
-    :cond_1
-    :goto_1
-    const/high16 v7, 0x7fc00000    # NaNf
+    :cond_27
+    :goto_27
+    const/high16 v7, 0x7fc00000    # Float.NaN
 
-    if-ltz v6, :cond_f
+    if-ltz v6, :cond_a4
 
     aget v8, v2, v4
 
-    if-le v8, p3, :cond_2
+    if-le v8, p3, :cond_31
 
-    goto/16 :goto_9
+    goto/16 :goto_a4
 
     .line 211
-    :cond_2
-    :goto_2
-    if-ltz v6, :cond_4
+    :cond_31
+    :goto_31
+    if-ltz v6, :cond_46
 
     invoke-virtual {v0, p2, v6}, Lcom/google/zxing/common/BitMatrix;->get(II)Z
 
     move-result v8
 
-    if-nez v8, :cond_4
+    if-nez v8, :cond_46
 
     aget v8, v2, v3
 
-    if-le v8, p3, :cond_3
+    if-le v8, p3, :cond_3e
 
-    goto :goto_3
+    goto :goto_46
 
     .line 212
-    :cond_3
+    :cond_3e
     aget v8, v2, v3
 
     add-int/2addr v8, v4
@@ -225,40 +225,40 @@
     .line 213
     add-int/lit8 v6, v6, -0x1
 
-    goto :goto_2
+    goto :goto_31
 
     .line 215
-    :cond_4
-    :goto_3
+    :cond_46
+    :goto_46
     aget v8, v2, v3
 
-    if-le v8, p3, :cond_5
+    if-le v8, p3, :cond_4b
 
     .line 216
     return v7
 
     .line 220
-    :cond_5
+    :cond_4b
     add-int/lit8 v6, p1, 0x1
 
     .line 221
-    :goto_4
-    if-ge v6, v1, :cond_7
+    :goto_4d
+    if-ge v6, v1, :cond_62
 
     invoke-virtual {v0, p2, v6}, Lcom/google/zxing/common/BitMatrix;->get(II)Z
 
     move-result v8
 
-    if-eqz v8, :cond_7
+    if-eqz v8, :cond_62
 
     aget v8, v2, v4
 
-    if-le v8, p3, :cond_6
+    if-le v8, p3, :cond_5a
 
-    goto :goto_5
+    goto :goto_62
 
     .line 222
-    :cond_6
+    :cond_5a
     aget v8, v2, v4
 
     add-int/2addr v8, v4
@@ -268,38 +268,38 @@
     .line 223
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_4
+    goto :goto_4d
 
     .line 225
-    :cond_7
-    :goto_5
-    if-eq v6, v1, :cond_e
+    :cond_62
+    :goto_62
+    if-eq v6, v1, :cond_a3
 
     aget v8, v2, v4
 
-    if-le v8, p3, :cond_8
+    if-le v8, p3, :cond_69
 
-    goto :goto_8
+    goto :goto_a3
 
     .line 228
-    :cond_8
-    :goto_6
-    if-ge v6, v1, :cond_a
+    :cond_69
+    :goto_69
+    if-ge v6, v1, :cond_7e
 
     invoke-virtual {v0, p2, v6}, Lcom/google/zxing/common/BitMatrix;->get(II)Z
 
     move-result v8
 
-    if-nez v8, :cond_a
+    if-nez v8, :cond_7e
 
     aget v8, v2, v5
 
-    if-le v8, p3, :cond_9
+    if-le v8, p3, :cond_76
 
-    goto :goto_7
+    goto :goto_7e
 
     .line 229
-    :cond_9
+    :cond_76
     aget v8, v2, v5
 
     add-int/2addr v8, v4
@@ -309,20 +309,20 @@
     .line 230
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_6
+    goto :goto_69
 
     .line 232
-    :cond_a
-    :goto_7
+    :cond_7e
+    :goto_7e
     aget v8, v2, v5
 
-    if-le v8, p3, :cond_b
+    if-le v8, p3, :cond_83
 
     .line 233
     return v7
 
     .line 236
-    :cond_b
+    :cond_83
     aget v3, v2, v3
 
     aget v4, v2, v4
@@ -347,18 +347,18 @@
 
     mul-int/2addr v5, p4
 
-    if-lt v4, v5, :cond_c
+    if-lt v4, v5, :cond_97
 
     .line 238
     return v7
 
     .line 241
-    :cond_c
+    :cond_97
     invoke-direct {p0, v2}, Lcom/google/zxing/qrcode/detector/AlignmentPatternFinder;->foundPatternCross([I)Z
 
     move-result v4
 
-    if-eqz v4, :cond_d
+    if-eqz v4, :cond_a2
 
     invoke-static {v2, v6}, Lcom/google/zxing/qrcode/detector/AlignmentPatternFinder;->centerFromEnd([II)F
 
@@ -366,23 +366,23 @@
 
     nop
 
-    :cond_d
+    :cond_a2
     return v7
 
     .line 226
     .end local v3    # "stateCountTotal":I
-    :cond_e
-    :goto_8
+    :cond_a3
+    :goto_a3
     return v7
 
     .line 209
-    :cond_f
-    :goto_9
+    :cond_a4
+    :goto_a4
     return v7
 .end method
 
 .method private foundPatternCross([I)Z
-    .locals 4
+    .registers 6
     .param p1, "stateCount"    # [I
 
     .line 170
@@ -399,10 +399,10 @@
     const/4 v2, 0x0
 
     .local v2, "i":I
-    :goto_0
+    :goto_7
     const/4 v3, 0x3
 
-    if-lt v2, v3, :cond_0
+    if-lt v2, v3, :cond_c
 
     .line 177
     .end local v2    # "i":I
@@ -412,7 +412,7 @@
 
     .line 173
     .restart local v2    # "i":I
-    :cond_0
+    :cond_c
     aget v3, p1, v2
 
     int-to-float v3, v3
@@ -425,7 +425,7 @@
 
     cmpl-float v3, v3, v1
 
-    if-ltz v3, :cond_1
+    if-ltz v3, :cond_1b
 
     .line 174
     const/4 v3, 0x0
@@ -433,14 +433,14 @@
     return v3
 
     .line 172
-    :cond_1
+    :cond_1b
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_7
 .end method
 
 .method private handlePossibleCenter([III)Lcom/google/zxing/qrcode/detector/AlignmentPattern;
-    .locals 7
+    .registers 11
     .param p1, "stateCount"    # [I
     .param p2, "i"    # I
     .param p3, "j"    # I
@@ -486,7 +486,7 @@
 
     move-result v6
 
-    if-nez v6, :cond_2
+    if-nez v6, :cond_5a
 
     .line 260
     aget v0, p1, v0
@@ -513,12 +513,12 @@
 
     move-result-object v2
 
-    :cond_0
+    :cond_2f
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-nez v3, :cond_1
+    if-nez v3, :cond_49
 
     .line 268
     new-instance v2, Lcom/google/zxing/qrcode/detector/AlignmentPattern;
@@ -534,7 +534,7 @@
     .line 270
     iget-object v3, p0, Lcom/google/zxing/qrcode/detector/AlignmentPatternFinder;->resultPointCallback:Lcom/google/zxing/ResultPointCallback;
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_5a
 
     .line 271
     iget-object v3, p0, Lcom/google/zxing/qrcode/detector/AlignmentPatternFinder;->resultPointCallback:Lcom/google/zxing/ResultPointCallback;
@@ -543,11 +543,11 @@
 
     .end local v0    # "estimatedModuleSize":F
     .end local v2    # "point":Lcom/google/zxing/qrcode/detector/AlignmentPattern;
-    goto :goto_0
+    goto :goto_5a
 
     .line 261
     .restart local v0    # "estimatedModuleSize":F
-    :cond_1
+    :cond_49
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v3
@@ -560,7 +560,7 @@
 
     move-result v6
 
-    if-eqz v6, :cond_0
+    if-eqz v6, :cond_2f
 
     .line 264
     invoke-virtual {v3, v5, v4, v0}, Lcom/google/zxing/qrcode/detector/AlignmentPattern;->combineEstimate(FFF)Lcom/google/zxing/qrcode/detector/AlignmentPattern;
@@ -572,8 +572,8 @@
     .line 274
     .end local v0    # "estimatedModuleSize":F
     .end local v3    # "center":Lcom/google/zxing/qrcode/detector/AlignmentPattern;
-    :cond_2
-    :goto_0
+    :cond_5a
+    :goto_5a
     const/4 v0, 0x0
 
     return-object v0
@@ -582,7 +582,7 @@
 
 # virtual methods
 .method find()Lcom/google/zxing/qrcode/detector/AlignmentPattern;
-    .locals 13
+    .registers 14
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lcom/google/zxing/NotFoundException;
@@ -621,10 +621,10 @@
     const/4 v5, 0x0
 
     .local v5, "iGen":I
-    :goto_0
+    :goto_10
     const/4 v6, 0x0
 
-    if-lt v5, v1, :cond_1
+    if-lt v5, v1, :cond_29
 
     .line 149
     .end local v5    # "iGen":I
@@ -634,7 +634,7 @@
 
     move-result v5
 
-    if-nez v5, :cond_0
+    if-nez v5, :cond_24
 
     .line 150
     iget-object v5, p0, Lcom/google/zxing/qrcode/detector/AlignmentPatternFinder;->possibleCenters:Ljava/util/List;
@@ -648,7 +648,7 @@
     return-object v5
 
     .line 153
-    :cond_0
+    :cond_24
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v5
@@ -657,27 +657,27 @@
 
     .line 97
     .restart local v5    # "iGen":I
-    :cond_1
+    :cond_29
     and-int/lit8 v7, v5, 0x1
 
     const/4 v8, 0x2
 
-    if-nez v7, :cond_2
+    if-nez v7, :cond_32
 
     add-int/lit8 v7, v5, 0x1
 
     div-int/2addr v7, v8
 
-    goto :goto_1
+    goto :goto_36
 
-    :cond_2
+    :cond_32
     add-int/lit8 v7, v5, 0x1
 
     div-int/2addr v7, v8
 
     neg-int v7, v7
 
-    :goto_1
+    :goto_36
     add-int/2addr v7, v3
 
     .line 98
@@ -697,8 +697,8 @@
 
     .line 105
     .local v10, "j":I
-    :goto_2
-    if-ge v10, v2, :cond_4
+    :goto_3f
+    if-ge v10, v2, :cond_4d
 
     iget-object v11, p0, Lcom/google/zxing/qrcode/detector/AlignmentPatternFinder;->image:Lcom/google/zxing/common/BitMatrix;
 
@@ -706,32 +706,32 @@
 
     move-result v11
 
-    if-eqz v11, :cond_3
+    if-eqz v11, :cond_4a
 
-    goto :goto_3
+    goto :goto_4d
 
     .line 106
-    :cond_3
+    :cond_4a
     add-int/lit8 v10, v10, 0x1
 
-    goto :goto_2
+    goto :goto_3f
 
     .line 108
-    :cond_4
-    :goto_3
+    :cond_4d
+    :goto_4d
     const/4 v11, 0x0
 
     .line 109
     .local v11, "currentState":I
-    :goto_4
-    if-lt v10, v2, :cond_6
+    :goto_4e
+    if-lt v10, v2, :cond_60
 
     .line 138
     invoke-direct {p0, v4}, Lcom/google/zxing/qrcode/detector/AlignmentPatternFinder;->foundPatternCross([I)Z
 
     move-result v6
 
-    if-eqz v6, :cond_5
+    if-eqz v6, :cond_5d
 
     .line 139
     invoke-direct {p0, v4, v7, v2}, Lcom/google/zxing/qrcode/detector/AlignmentPatternFinder;->handlePossibleCenter([III)Lcom/google/zxing/qrcode/detector/AlignmentPattern;
@@ -740,7 +740,7 @@
 
     .line 140
     .local v6, "confirmed":Lcom/google/zxing/qrcode/detector/AlignmentPattern;
-    if-eqz v6, :cond_5
+    if-eqz v6, :cond_5d
 
     .line 141
     return-object v6
@@ -750,26 +750,26 @@
     .end local v7    # "i":I
     .end local v10    # "j":I
     .end local v11    # "currentState":I
-    :cond_5
+    :cond_5d
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_0
+    goto :goto_10
 
     .line 110
     .restart local v7    # "i":I
     .restart local v10    # "j":I
     .restart local v11    # "currentState":I
-    :cond_6
+    :cond_60
     iget-object v12, p0, Lcom/google/zxing/qrcode/detector/AlignmentPatternFinder;->image:Lcom/google/zxing/common/BitMatrix;
 
     invoke-virtual {v12, v10, v7}, Lcom/google/zxing/common/BitMatrix;->get(II)Z
 
     move-result v12
 
-    if-eqz v12, :cond_a
+    if-eqz v12, :cond_91
 
     .line 112
-    if-ne v11, v9, :cond_7
+    if-ne v11, v9, :cond_70
 
     .line 113
     aget v12, v4, v11
@@ -779,18 +779,18 @@
     aput v12, v4, v11
 
     .line 114
-    goto :goto_5
+    goto :goto_9a
 
     .line 115
-    :cond_7
-    if-ne v11, v8, :cond_9
+    :cond_70
+    if-ne v11, v8, :cond_89
 
     .line 116
     invoke-direct {p0, v4}, Lcom/google/zxing/qrcode/detector/AlignmentPatternFinder;->foundPatternCross([I)Z
 
     move-result v12
 
-    if-eqz v12, :cond_8
+    if-eqz v12, :cond_7f
 
     .line 117
     invoke-direct {p0, v4, v7, v10}, Lcom/google/zxing/qrcode/detector/AlignmentPatternFinder;->handlePossibleCenter([III)Lcom/google/zxing/qrcode/detector/AlignmentPattern;
@@ -799,14 +799,14 @@
 
     .line 118
     .local v12, "confirmed":Lcom/google/zxing/qrcode/detector/AlignmentPattern;
-    if-eqz v12, :cond_8
+    if-eqz v12, :cond_7f
 
     .line 119
     return-object v12
 
     .line 122
     .end local v12    # "confirmed":Lcom/google/zxing/qrcode/detector/AlignmentPattern;
-    :cond_8
+    :cond_7f
     aget v12, v4, v8
 
     aput v12, v4, v6
@@ -821,10 +821,10 @@
     const/4 v11, 0x1
 
     .line 126
-    goto :goto_5
+    goto :goto_9a
 
     .line 127
-    :cond_9
+    :cond_89
     add-int/lit8 v11, v11, 0x1
 
     aget v12, v4, v11
@@ -834,17 +834,17 @@
     aput v12, v4, v11
 
     .line 130
-    goto :goto_5
+    goto :goto_9a
 
     .line 131
-    :cond_a
-    if-ne v11, v9, :cond_b
+    :cond_91
+    if-ne v11, v9, :cond_95
 
     .line 132
     add-int/lit8 v11, v11, 0x1
 
     .line 134
-    :cond_b
+    :cond_95
     aget v12, v4, v11
 
     add-int/2addr v12, v9
@@ -852,8 +852,8 @@
     aput v12, v4, v11
 
     .line 136
-    :goto_5
+    :goto_9a
     add-int/lit8 v10, v10, 0x1
 
-    goto :goto_4
+    goto :goto_4e
 .end method

@@ -35,7 +35,7 @@
 .method constructor <init>(Lcom/android/camera/module/Camera2Module;)V
     .locals 0
 
-    .line 463
+    .line 486
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module$3;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -53,12 +53,12 @@
         }
     .end annotation
 
-    .line 468
+    .line 491
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 469
+    .line 492
     const/16 v1, 0xb8
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -67,14 +67,14 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$SnapShotIndicator;
 
-    .line 471
+    .line 494
     invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
 
     move-result v1
 
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$SnapShotIndicator;->setSnapNumValue(I)V
 
-    .line 472
+    .line 495
     return-object p1
 .end method
 
@@ -86,7 +86,7 @@
         }
     .end annotation
 
-    .line 463
+    .line 486
     check-cast p1, Ljava/lang/Integer;
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module$3;->apply(Ljava/lang/Integer;)Ljava/lang/Integer;

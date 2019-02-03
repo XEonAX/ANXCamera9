@@ -18,7 +18,7 @@ public class TEOAuth {
     }
 
     public static TEOAuthResult activate(Context context, @NonNull String str, @NonNull String str2, @Nullable String str3) {
-        return TEOAuthResult.from(nativeActivate(str, str2, context.getApplicationInfo().packageName, "Android", Build.MODEL, str3));
+        return TEOAuthResult.from(nativeActivate(str, str2, context.getApplicationInfo().packageName, "Android", Build.DEVICE, str3));
     }
 
     public static String getActivationCode() {

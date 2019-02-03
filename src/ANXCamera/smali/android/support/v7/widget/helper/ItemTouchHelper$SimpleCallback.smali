@@ -22,7 +22,7 @@
 
 # direct methods
 .method public constructor <init>(II)V
-    .locals 0
+    .registers 3
     .param p1, "dragDirs"    # I
     .param p2, "swipeDirs"    # I
 
@@ -42,7 +42,7 @@
 
 # virtual methods
 .method public getDragDirs(Landroid/support/v7/widget/RecyclerView;Landroid/support/v7/widget/RecyclerView$ViewHolder;)I
-    .locals 1
+    .registers 4
     .param p1, "recyclerView"    # Landroid/support/v7/widget/RecyclerView;
     .param p2, "viewHolder"    # Landroid/support/v7/widget/RecyclerView$ViewHolder;
 
@@ -53,7 +53,7 @@
 .end method
 
 .method public getMovementFlags(Landroid/support/v7/widget/RecyclerView;Landroid/support/v7/widget/RecyclerView$ViewHolder;)I
-    .locals 2
+    .registers 5
     .param p1, "recyclerView"    # Landroid/support/v7/widget/RecyclerView;
     .param p2, "viewHolder"    # Landroid/support/v7/widget/RecyclerView$ViewHolder;
 
@@ -74,7 +74,7 @@
 .end method
 
 .method public getSwipeDirs(Landroid/support/v7/widget/RecyclerView;Landroid/support/v7/widget/RecyclerView$ViewHolder;)I
-    .locals 1
+    .registers 4
     .param p1, "recyclerView"    # Landroid/support/v7/widget/RecyclerView;
     .param p2, "viewHolder"    # Landroid/support/v7/widget/RecyclerView$ViewHolder;
 
@@ -85,7 +85,7 @@
 .end method
 
 .method public setDefaultDragDirs(I)V
-    .locals 0
+    .registers 2
     .param p1, "defaultDragDirs"    # I
 
     .line 2145
@@ -96,7 +96,7 @@
 .end method
 
 .method public setDefaultSwipeDirs(I)V
-    .locals 0
+    .registers 2
     .param p1, "defaultSwipeDirs"    # I
 
     .line 2135

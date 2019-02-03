@@ -9,7 +9,7 @@ import com.bumptech.glide.request.c;
 
 /* compiled from: Target */
 public interface n<R> extends i {
-    public static final int oD = Integer.MIN_VALUE;
+    public static final int oC = Integer.MIN_VALUE;
 
     void a(@NonNull m mVar);
 

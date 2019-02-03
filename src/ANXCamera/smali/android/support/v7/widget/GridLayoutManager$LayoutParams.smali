@@ -26,7 +26,7 @@
 
 # direct methods
 .method public constructor <init>(II)V
-    .locals 1
+    .registers 4
     .param p1, "width"    # I
     .param p2, "height"    # I
 
@@ -48,7 +48,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
-    .locals 1
+    .registers 4
     .param p1, "c"    # Landroid/content/Context;
     .param p2, "attrs"    # Landroid/util/AttributeSet;
 
@@ -70,7 +70,7 @@
 .end method
 
 .method public constructor <init>(Landroid/support/v7/widget/RecyclerView$LayoutParams;)V
-    .locals 1
+    .registers 3
     .param p1, "source"    # Landroid/support/v7/widget/RecyclerView$LayoutParams;
 
     .line 880
@@ -91,7 +91,7 @@
 .end method
 
 .method public constructor <init>(Landroid/view/ViewGroup$LayoutParams;)V
-    .locals 1
+    .registers 3
     .param p1, "source"    # Landroid/view/ViewGroup$LayoutParams;
 
     .line 876
@@ -112,7 +112,7 @@
 .end method
 
 .method public constructor <init>(Landroid/view/ViewGroup$MarginLayoutParams;)V
-    .locals 1
+    .registers 3
     .param p1, "source"    # Landroid/view/ViewGroup$MarginLayoutParams;
 
     .line 872
@@ -133,7 +133,7 @@
 .end method
 
 .method static synthetic access$000(Landroid/support/v7/widget/GridLayoutManager$LayoutParams;)I
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v7/widget/GridLayoutManager$LayoutParams;
 
     .line 852
@@ -143,7 +143,7 @@
 .end method
 
 .method static synthetic access$002(Landroid/support/v7/widget/GridLayoutManager$LayoutParams;I)I
-    .locals 0
+    .registers 2
     .param p0, "x0"    # Landroid/support/v7/widget/GridLayoutManager$LayoutParams;
     .param p1, "x1"    # I
 
@@ -154,7 +154,7 @@
 .end method
 
 .method static synthetic access$100(Landroid/support/v7/widget/GridLayoutManager$LayoutParams;)I
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v7/widget/GridLayoutManager$LayoutParams;
 
     .line 852
@@ -164,7 +164,7 @@
 .end method
 
 .method static synthetic access$102(Landroid/support/v7/widget/GridLayoutManager$LayoutParams;I)I
-    .locals 0
+    .registers 2
     .param p0, "x0"    # Landroid/support/v7/widget/GridLayoutManager$LayoutParams;
     .param p1, "x1"    # I
 
@@ -177,7 +177,7 @@
 
 # virtual methods
 .method public getSpanIndex()I
-    .locals 1
+    .registers 2
 
     .line 897
     iget v0, p0, Landroid/support/v7/widget/GridLayoutManager$LayoutParams;->mSpanIndex:I
@@ -186,7 +186,7 @@
 .end method
 
 .method public getSpanSize()I
-    .locals 1
+    .registers 2
 
     .line 907
     iget v0, p0, Landroid/support/v7/widget/GridLayoutManager$LayoutParams;->mSpanSize:I

@@ -59,11 +59,11 @@
 
     iget-object v1, p0, Lcom/bumptech/glide/load/engine/Engine$DecodeJobFactory$1;->fA:Lcom/bumptech/glide/load/engine/Engine$DecodeJobFactory;
 
-    iget-object v1, v1, Lcom/bumptech/glide/load/engine/Engine$DecodeJobFactory;->ej:Lcom/bumptech/glide/load/engine/DecodeJob$d;
+    iget-object v1, v1, Lcom/bumptech/glide/load/engine/Engine$DecodeJobFactory;->ek:Lcom/bumptech/glide/load/engine/DecodeJob$d;
 
     iget-object v2, p0, Lcom/bumptech/glide/load/engine/Engine$DecodeJobFactory$1;->fA:Lcom/bumptech/glide/load/engine/Engine$DecodeJobFactory;
 
-    iget-object v2, v2, Lcom/bumptech/glide/load/engine/Engine$DecodeJobFactory;->eu:Landroid/support/v4/util/Pools$Pool;
+    iget-object v2, v2, Lcom/bumptech/glide/load/engine/Engine$DecodeJobFactory;->ev:Landroid/support/v4/util/Pools$Pool;
 
     invoke-direct {v0, v1, v2}, Lcom/bumptech/glide/load/engine/DecodeJob;-><init>(Lcom/bumptech/glide/load/engine/DecodeJob$d;Landroid/support/v4/util/Pools$Pool;)V
 

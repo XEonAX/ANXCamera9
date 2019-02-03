@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Stack;
 
 public class BackStackImpl implements BackStack {
+    private static final String TAG = "BackStack";
     private ActivityBase mActivity;
     private Stack<HandleBackTrace> mStacks = new Stack();
 
@@ -53,8 +54,16 @@ public class BackStackImpl implements BackStack {
         return false;
     }
 
-    public boolean handleBackStackFromShutter() {
-        return handleBackStack(3);
+    public void handleBackStackFromShutter() {
+        if (!this.mStacks.isEmpty()) {
+            Iterator it = this.mStacks.iterator();
+            while (it.hasNext()) {
+                HandleBackTrace handleBackTrace = (HandleBackTrace) it.next();
+                if (handleBackTrace.canProvide()) {
+                    handleBackTrace.onBackEvent(3);
+                }
+            }
+        }
     }
 
     public boolean handleBackStackFromKeyBack() {

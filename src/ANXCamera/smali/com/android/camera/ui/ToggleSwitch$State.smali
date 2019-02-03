@@ -38,7 +38,7 @@
 .method static constructor <clinit>()V
     .locals 6
 
-    .line 93
+    .line 92
     new-instance v0, Lcom/android/camera/ui/ToggleSwitch$State;
 
     const-string v1, "SWITCHING_ANIM_OFF"
@@ -79,7 +79,7 @@
 
     sput-object v0, Lcom/android/camera/ui/ToggleSwitch$State;->SWITCH_OFF:Lcom/android/camera/ui/ToggleSwitch$State;
 
-    .line 92
+    .line 91
     const/4 v0, 0x4
 
     new-array v0, v0, [Lcom/android/camera/ui/ToggleSwitch$State;
@@ -113,7 +113,7 @@
         }
     .end annotation
 
-    .line 92
+    .line 91
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -122,7 +122,7 @@
 .method public static valueOf(Ljava/lang/String;)Lcom/android/camera/ui/ToggleSwitch$State;
     .locals 1
 
-    .line 92
+    .line 91
     const-class v0, Lcom/android/camera/ui/ToggleSwitch$State;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -137,7 +137,7 @@
 .method public static values()[Lcom/android/camera/ui/ToggleSwitch$State;
     .locals 1
 
-    .line 92
+    .line 91
     sget-object v0, Lcom/android/camera/ui/ToggleSwitch$State;->$VALUES:[Lcom/android/camera/ui/ToggleSwitch$State;
 
     invoke-virtual {v0}, [Lcom/android/camera/ui/ToggleSwitch$State;->clone()Ljava/lang/Object;

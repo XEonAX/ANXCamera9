@@ -18,7 +18,7 @@
 .method constructor <init>()V
     .locals 0
 
-    .line 688
+    .line 695
     invoke-direct {p0}, Lcom/android/camera/FileCompat$LollipopFileCompatImpl;-><init>()V
 
     return-void

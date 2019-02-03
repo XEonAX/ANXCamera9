@@ -172,7 +172,7 @@
     invoke-virtual {p1, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
     .line 39
-    const p2, 0x7f0d003e
+    const p2, 0x7f0d0041
 
     invoke-virtual {p1, p2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -206,20 +206,20 @@
     :goto_0
     if-eqz p3, :cond_1
 
-    const p3, 0x7f0b01f7
+    const p3, 0x7f090200
 
     goto :goto_1
 
     .line 43
     :cond_1
-    const p3, 0x7f0b01f6
+    const p3, 0x7f0901ff
 
     .line 42
     :goto_1
     invoke-virtual {p2, p3}, Landroid/widget/TextView;->setText(I)V
 
     .line 44
-    const p2, 0x7f0d003d
+    const p2, 0x7f0d0040
 
     invoke-virtual {p1, p2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 

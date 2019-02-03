@@ -18,9 +18,9 @@
 
 .field private final notificationId:I
 
-.field private final oA:Landroid/app/Notification;
+.field private final oy:Ljava/lang/String;
 
-.field private final oz:Ljava/lang/String;
+.field private final oz:Landroid/app/Notification;
 
 .field private final remoteViews:Landroid/widget/RemoteViews;
 
@@ -55,7 +55,7 @@
 
     check-cast p1, Landroid/app/Notification;
 
-    iput-object p1, p0, Lcom/bumptech/glide/request/target/j;->oA:Landroid/app/Notification;
+    iput-object p1, p0, Lcom/bumptech/glide/request/target/j;->oz:Landroid/app/Notification;
 
     .line 92
     const-string p1, "RemoteViews object can not be null!"
@@ -76,7 +76,7 @@
     iput p7, p0, Lcom/bumptech/glide/request/target/j;->notificationId:I
 
     .line 96
-    iput-object p8, p0, Lcom/bumptech/glide/request/target/j;->oz:Ljava/lang/String;
+    iput-object p8, p0, Lcom/bumptech/glide/request/target/j;->oy:Ljava/lang/String;
 
     .line 97
     return-void
@@ -156,11 +156,11 @@
 
     check-cast v0, Landroid/app/NotificationManager;
 
-    iget-object v1, p0, Lcom/bumptech/glide/request/target/j;->oz:Ljava/lang/String;
+    iget-object v1, p0, Lcom/bumptech/glide/request/target/j;->oy:Ljava/lang/String;
 
     iget v2, p0, Lcom/bumptech/glide/request/target/j;->notificationId:I
 
-    iget-object v3, p0, Lcom/bumptech/glide/request/target/j;->oA:Landroid/app/Notification;
+    iget-object v3, p0, Lcom/bumptech/glide/request/target/j;->oz:Landroid/app/Notification;
 
     .line 106
     invoke-virtual {v0, v1, v2, v3}, Landroid/app/NotificationManager;->notify(Ljava/lang/String;ILandroid/app/Notification;)V

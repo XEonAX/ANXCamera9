@@ -29,7 +29,7 @@
 .method constructor <init>(Lcom/ss/android/ugc/effectmanager/EffectManager;ZLcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;)V
     .locals 0
 
-    .line 387
+    .line 400
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$6;->this$0:Lcom/ss/android/ugc/effectmanager/EffectManager;
 
     iput-boolean p2, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$6;->val$downloadAfterFetch:Z
@@ -46,12 +46,12 @@
 .method public onFail(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
     .locals 1
 
-    .line 399
+    .line 412
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$6;->val$iFetchEffectListListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;
 
     invoke-interface {v0, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;->onFail(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 400
+    .line 413
     return-void
 .end method
 
@@ -66,27 +66,27 @@
         }
     .end annotation
 
-    .line 390
+    .line 403
     iget-boolean v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$6;->val$downloadAfterFetch:Z
 
     if-eqz v0, :cond_0
 
-    .line 391
+    .line 404
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$6;->this$0:Lcom/ss/android/ugc/effectmanager/EffectManager;
 
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$6;->val$iFetchEffectListListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;
 
-    invoke-static {v0, p1, v1}, Lcom/ss/android/ugc/effectmanager/EffectManager;->access$400(Lcom/ss/android/ugc/effectmanager/EffectManager;Ljava/util/List;Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;)V
+    invoke-static {v0, p1, v1}, Lcom/ss/android/ugc/effectmanager/EffectManager;->access$200(Lcom/ss/android/ugc/effectmanager/EffectManager;Ljava/util/List;Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;)V
 
     goto :goto_0
 
-    .line 393
+    .line 406
     :cond_0
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$6;->val$iFetchEffectListListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;
 
     invoke-interface {v0, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;->onSuccess(Ljava/util/List;)V
 
-    .line 395
+    .line 408
     :goto_0
     return-void
 .end method

@@ -18,9 +18,9 @@ public final class RenderThread extends Thread {
     public static final int MSG_QUIT_REQUESTED = 48;
     private static final String TAG = RenderThread.class.getSimpleName();
     private VideoRecorderCanvas mCanvas;
+    private DrawExtTexAttribute mDrawExtTexAttribute = new DrawExtTexAttribute();
     private EglCore mEglCore;
     private EglSurfaceBase mEglSurfaceBase;
-    private DrawExtTexAttribute mExtTexture = new DrawExtTexAttribute();
     private RenderHandler mHandler;
     private boolean mIsRecordable;
     private final Object mLock = new Object();
@@ -119,7 +119,7 @@ public final class RenderThread extends Thread {
             if (this.mRequestRelease) {
                 return;
             }
-            this.mExtTexture.init(drawExtTexAttribute.mExtTexture, drawExtTexAttribute.mTextureTransform, 0, 0, this.mPreviewWidth, this.mPreviewHeight);
+            this.mDrawExtTexAttribute.init(drawExtTexAttribute.mExtTexture, drawExtTexAttribute.mTextureTransform, 0, 0, this.mPreviewWidth, this.mPreviewHeight);
             this.mRequestDraw++;
             this.mHandler.obtainMessage(16).sendToTarget();
         }
@@ -156,9 +156,9 @@ public final class RenderThread extends Thread {
                     this.mRequestDraw--;
                 }
             }
-            if (!(i == 0 || this.mEglCore == null || this.mExtTexture == null)) {
+            if (!(i == 0 || this.mEglCore == null || this.mDrawExtTexAttribute == null)) {
                 this.mEglSurfaceBase.makeCurrent();
-                this.mCanvas.draw(this.mExtTexture);
+                this.mCanvas.draw(this.mDrawExtTexAttribute);
                 this.mEglSurfaceBase.swapBuffers();
             }
         }

@@ -35,7 +35,7 @@ public class FragmentPopupBeauty extends BaseFragment implements OnClickListener
         this.mIconBeauty = view.findViewById(R.id.icon_beauty);
         this.mIconSticker.setOnClickListener(this);
         this.mIconBeauty.setOnClickListener(this);
-        provideAnimateElement(this.mCurrentMode, null, false);
+        provideAnimateElement(this.mCurrentMode, null, 2);
     }
 
     protected int getLayoutResourceId() {
@@ -46,8 +46,8 @@ public class FragmentPopupBeauty extends BaseFragment implements OnClickListener
         return 249;
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
         if (i == 163 || i == 165) {
             i = 1;
         } else {
@@ -77,14 +77,14 @@ public class FragmentPopupBeauty extends BaseFragment implements OnClickListener
         if (isEnableClick()) {
             BaseDelegate baseDelegate;
             switch (view.getId()) {
-                case R.id.icon_sticker /*2131558525*/:
+                case R.id.icon_sticker /*2131558547*/:
                     baseDelegate = (BaseDelegate) ModeCoordinatorImpl.getInstance().getAttachProtocol(160);
                     if (baseDelegate != null) {
                         baseDelegate.delegateEvent(4);
                         break;
                     }
                     return;
-                case R.id.icon_beauty /*2131558526*/:
+                case R.id.icon_beauty /*2131558548*/:
                     baseDelegate = (BaseDelegate) ModeCoordinatorImpl.getInstance().getAttachProtocol(160);
                     if (baseDelegate != null) {
                         baseDelegate.delegateEvent(2);

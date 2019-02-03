@@ -12,7 +12,7 @@ public final class c extends OutputStream {
     private int index;
     @NonNull
     private final OutputStream out;
-    private b r;
+    private b v;
 
     public c(@NonNull OutputStream outputStream, @NonNull b bVar) {
         this(outputStream, bVar, 65536);
@@ -21,7 +21,7 @@ public final class c extends OutputStream {
     @VisibleForTesting
     c(@NonNull OutputStream outputStream, b bVar, int i) {
         this.out = outputStream;
-        this.r = bVar;
+        this.v = bVar;
         this.buffer = (byte[]) bVar.a(i, byte[].class);
     }
 
@@ -84,7 +84,7 @@ public final class c extends OutputStream {
 
     private void release() {
         if (this.buffer != null) {
-            this.r.put(this.buffer);
+            this.v.put(this.buffer);
             this.buffer = null;
         }
     }

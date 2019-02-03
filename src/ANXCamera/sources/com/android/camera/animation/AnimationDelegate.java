@@ -40,7 +40,7 @@ public class AnimationDelegate {
 
         void notifyDataChanged(int i, int i2);
 
-        void provideAnimateElement(int i, List<Completable> list, boolean z);
+        void provideAnimateElement(int i, List<Completable> list, int i2);
 
         void provideRotateItem(List<View> list, int i);
 

@@ -5,27 +5,27 @@ import android.media.Image;
 import android.media.ImageReader;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
-import android.util.Log;
 import android.view.Surface;
+import com.android.camera.log.Log;
+import com.xiaomi.camera.core.CaptureData.CaptureDataBean;
 import com.xiaomi.engine.BufferFormat;
 import com.xiaomi.engine.TaskSession;
-import com.xiaomi.protocol.ICustomCaptureResult;
 import java.util.List;
 
 public abstract class ImageProcessor {
     private static final int DEFAULT_IMAGE_BUFFER_QUEUE_SIZE = 4;
-    private static final int MSG_CAPTURE_RESULT_RECEIVED = 2;
     private static final int MSG_IMAGE_RECEIVED = 1;
     private static final String TAG = ImageProcessor.class.getSimpleName();
+    ImageReader mDepthImageReaderHolder;
+    ImageReader mEffectImageReaderHolder;
     private Handler mHandler;
-    int mImageBufferQueueSize = 4;
+    private int mImageBufferQueueSize = 4;
     ImageProcessorStatusCallback mImageProcessorStatusCallback;
-    List<ImageReader> mImageReaderList;
+    boolean mIsBokehMode;
+    private boolean mIsNeedStopWork;
+    ImageReader mRawImageReaderHolder;
     TaskSession mTaskSession;
     private HandlerThread mWorkThread = new HandlerThread("ImageProcessor");
 
@@ -39,62 +39,20 @@ public abstract class ImageProcessor {
         void onOriginalImageClosed(Image image);
     }
 
-    private class TaskHandler extends Handler {
-        public TaskHandler(Looper looper) {
-            super(looper);
-        }
-
-        public void handleMessage(Message message) {
-            String access$000 = ImageProcessor.TAG;
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("handleMessage: ");
-            stringBuilder.append(message);
-            Log.d(access$000, stringBuilder.toString());
-            switch (message.what) {
-                case 1:
-                    if (message.obj instanceof Image) {
-                        ImageProcessor.this.onImageReceived((Image) message.obj, message.arg1);
-                        return;
-                    }
-                    stringBuilder = new StringBuilder();
-                    stringBuilder.append("Unknown message data:");
-                    stringBuilder.append(message.obj);
-                    throw new RuntimeException(stringBuilder.toString());
-                case 2:
-                    if (message.obj instanceof ICustomCaptureResult) {
-                        ImageProcessor.this.onCaptureReceived((ICustomCaptureResult) message.obj, message.arg1);
-                        return;
-                    }
-                    stringBuilder = new StringBuilder();
-                    stringBuilder.append("Unknown message data:");
-                    stringBuilder.append(message.obj);
-                    throw new RuntimeException(stringBuilder.toString());
-                default:
-                    return;
-            }
-        }
-    }
-
     public abstract List<OutputConfiguration> configOutputConfigurations(BufferFormat bufferFormat);
 
     public abstract List<Surface> configOutputSurfaces(BufferFormat bufferFormat);
 
-    @WorkerThread
-    abstract void onCaptureReceived(ICustomCaptureResult iCustomCaptureResult, int i);
+    abstract boolean isIdle();
 
-    @WorkerThread
-    abstract void onImageReceived(Image image, int i);
+    abstract void processImage(CaptureDataBean captureDataBean);
 
-    @WorkerThread
-    abstract void processImage();
-
-    public abstract void releaseResource();
-
-    public ImageProcessor(ImageProcessorStatusCallback imageProcessorStatusCallback) {
+    public ImageProcessor(ImageProcessorStatusCallback imageProcessorStatusCallback, boolean z) {
         this.mImageProcessorStatusCallback = imageProcessorStatusCallback;
+        this.mIsBokehMode = z;
     }
 
-    public void setTaskSession(TaskSession taskSession) {
+    public void setTaskSession(@NonNull TaskSession taskSession) {
         this.mTaskSession = taskSession;
     }
 
@@ -102,44 +60,80 @@ public abstract class ImageProcessor {
         this.mImageBufferQueueSize = i;
     }
 
-    public boolean isAlive() {
+    int getImageBufferQueueSize() {
+        return this.mImageBufferQueueSize;
+    }
+
+    private boolean isAlive() {
         return this.mWorkThread != null && this.mWorkThread.isAlive();
     }
 
-    public Handler getHandler() {
+    Handler getHandler() {
         return this.mHandler;
     }
 
     public void startWork() {
         this.mWorkThread.start();
-        this.mHandler = new TaskHandler(this.mWorkThread.getLooper());
+        this.mHandler = new Handler(this.mWorkThread.getLooper()) {
+            public void handleMessage(Message message) {
+                if (message.what != 1) {
+                    String access$000 = ImageProcessor.TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("handleMessage: unknown message: ");
+                    stringBuilder.append(message.what);
+                    Log.d(access$000, stringBuilder.toString());
+                    return;
+                }
+                ImageProcessor.this.processImage((CaptureDataBean) message.obj);
+            }
+        };
     }
 
-    public void goOffWork() {
+    public void stopWork() {
         this.mWorkThread.quitSafely();
+        this.mHandler.removeCallbacksAndMessages(null);
         this.mHandler = null;
+        this.mTaskSession.close();
         releaseResource();
     }
 
-    public void dispatchImage(@NonNull Image image, @Nullable int i) {
-        if (!this.mWorkThread.isAlive() || this.mHandler == null) {
-            throw new RuntimeException("Thread already die!");
+    public void tryToStopWork() {
+        if (this.mIsNeedStopWork && isIdle()) {
+            stopWork();
         }
-        Message obtainMessage = this.mHandler.obtainMessage();
-        obtainMessage.what = 1;
-        obtainMessage.arg1 = i;
-        obtainMessage.obj = image;
-        this.mHandler.sendMessage(obtainMessage);
     }
 
-    public void dispatchCaptureResult(@NonNull ICustomCaptureResult iCustomCaptureResult, @Nullable int i) {
-        if (!this.mWorkThread.isAlive() || this.mHandler == null) {
+    public void stopWorkWhenIdle() {
+        this.mIsNeedStopWork = true;
+        tryToStopWork();
+    }
+
+    public void releaseResource() {
+        this.mImageProcessorStatusCallback = null;
+        if (this.mEffectImageReaderHolder != null) {
+            this.mEffectImageReaderHolder.close();
+            this.mEffectImageReaderHolder = null;
+        }
+        if (this.mRawImageReaderHolder != null) {
+            this.mRawImageReaderHolder.close();
+            this.mRawImageReaderHolder = null;
+        }
+        if (this.mDepthImageReaderHolder != null) {
+            this.mDepthImageReaderHolder.close();
+            this.mDepthImageReaderHolder = null;
+        }
+    }
+
+    public void dispatchTask(CaptureDataBean captureDataBean) {
+        if (captureDataBean == null) {
+            Log.w(TAG, "dispatchTask: data is null");
+        } else if (isAlive()) {
+            Message obtainMessage = this.mHandler.obtainMessage();
+            obtainMessage.what = 1;
+            obtainMessage.obj = captureDataBean;
+            this.mHandler.sendMessage(obtainMessage);
+        } else {
             throw new RuntimeException("Thread already die!");
         }
-        Message obtainMessage = this.mHandler.obtainMessage();
-        obtainMessage.what = 2;
-        obtainMessage.arg1 = i;
-        obtainMessage.obj = iCustomCaptureResult;
-        this.mHandler.sendMessage(obtainMessage);
     }
 }

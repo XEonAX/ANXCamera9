@@ -39,7 +39,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v4/media/session/MediaSessionCompatApi14$Callback;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -61,7 +61,7 @@
 
 # virtual methods
 .method public onPlaybackPositionUpdate(J)V
-    .locals 1
+    .registers 4
     .param p1, "newPositionMs"    # J
 
     .line 90

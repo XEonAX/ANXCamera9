@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/module/BaseModule;->showDebug(Landroid/hardware/camera2/CaptureResult;Z)V
+    value = Lcom/android/camera/module/BaseModule;->retryOnceIfCameraError(Landroid/os/Handler;)Z
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -20,21 +20,13 @@
 # instance fields
 .field final synthetic this$0:Lcom/android/camera/module/BaseModule;
 
-.field final synthetic val$isShow:Z
-
-.field final synthetic val$result:Landroid/hardware/camera2/CaptureResult;
-
 
 # direct methods
-.method constructor <init>(Lcom/android/camera/module/BaseModule;ZLandroid/hardware/camera2/CaptureResult;)V
+.method constructor <init>(Lcom/android/camera/module/BaseModule;)V
     .locals 0
 
-    .line 1210
+    .line 570
     iput-object p1, p0, Lcom/android/camera/module/BaseModule$2;->this$0:Lcom/android/camera/module/BaseModule;
-
-    iput-boolean p2, p0, Lcom/android/camera/module/BaseModule$2;->val$isShow:Z
-
-    iput-object p3, p0, Lcom/android/camera/module/BaseModule$2;->val$result:Landroid/hardware/camera2/CaptureResult;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -44,39 +36,43 @@
 
 # virtual methods
 .method public run()V
-    .locals 2
+    .locals 4
 
-    .line 1213
-    iget-boolean v0, p0, Lcom/android/camera/module/BaseModule$2;->val$isShow:Z
-
-    if-eqz v0, :cond_0
-
-    .line 1214
+    .line 573
     iget-object v0, p0, Lcom/android/camera/module/BaseModule$2;->this$0:Lcom/android/camera/module/BaseModule;
 
     iget-object v0, v0, Lcom/android/camera/module/BaseModule;->mActivity:Lcom/android/camera/Camera;
 
-    iget-object v1, p0, Lcom/android/camera/module/BaseModule$2;->val$result:Landroid/hardware/camera2/CaptureResult;
+    iget-object v1, p0, Lcom/android/camera/module/BaseModule$2;->this$0:Lcom/android/camera/module/BaseModule;
 
-    invoke-static {v1}, Lcom/android/camera/Util;->getDebugInformation(Landroid/hardware/camera2/CaptureResult;)Ljava/lang/String;
+    iget v1, v1, Lcom/android/camera/module/BaseModule;->mModuleIndex:I
+
+    invoke-static {v1}, Lcom/android/camera/module/loader/StartControl;->create(I)Lcom/android/camera/module/loader/StartControl;
 
     move-result-object v1
 
-    invoke-virtual {v0, v1}, Lcom/android/camera/Camera;->showDebugInfo(Ljava/lang/String;)V
+    .line 574
+    const/4 v2, 0x1
 
-    goto :goto_0
+    invoke-virtual {v1, v2}, Lcom/android/camera/module/loader/StartControl;->setViewConfigType(I)Lcom/android/camera/module/loader/StartControl;
 
-    .line 1216
-    :cond_0
-    iget-object v0, p0, Lcom/android/camera/module/BaseModule$2;->this$0:Lcom/android/camera/module/BaseModule;
+    move-result-object v1
 
-    iget-object v0, v0, Lcom/android/camera/module/BaseModule;->mActivity:Lcom/android/camera/Camera;
+    .line 575
+    const/4 v3, 0x0
 
-    const-string v1, ""
+    invoke-virtual {v1, v3}, Lcom/android/camera/module/loader/StartControl;->setNeedBlurAnimation(Z)Lcom/android/camera/module/loader/StartControl;
 
-    invoke-virtual {v0, v1}, Lcom/android/camera/Camera;->showDebugInfo(Ljava/lang/String;)V
+    move-result-object v1
 
-    .line 1218
-    :goto_0
+    .line 576
+    invoke-virtual {v1, v2}, Lcom/android/camera/module/loader/StartControl;->setNeedReConfigureCamera(Z)Lcom/android/camera/module/loader/StartControl;
+
+    move-result-object v1
+
+    .line 573
+    invoke-virtual {v0, v1}, Lcom/android/camera/Camera;->onModeSelected(Lcom/android/camera/module/loader/StartControl;)V
+
+    .line 577
     return-void
 .end method

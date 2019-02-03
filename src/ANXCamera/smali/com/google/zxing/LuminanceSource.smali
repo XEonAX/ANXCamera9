@@ -11,7 +11,7 @@
 
 # direct methods
 .method protected constructor <init>(II)V
-    .locals 0
+    .registers 3
     .param p1, "width"    # I
     .param p2, "height"    # I
 
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method public crop(IIII)Lcom/google/zxing/LuminanceSource;
-    .locals 2
+    .registers 7
     .param p1, "left"    # I
     .param p2, "top"    # I
     .param p3, "width"    # I
@@ -48,7 +48,7 @@
 .end method
 
 .method public final getHeight()I
-    .locals 1
+    .registers 2
 
     .line 73
     iget v0, p0, Lcom/google/zxing/LuminanceSource;->height:I
@@ -63,7 +63,7 @@
 .end method
 
 .method public final getWidth()I
-    .locals 1
+    .registers 2
 
     .line 66
     iget v0, p0, Lcom/google/zxing/LuminanceSource;->width:I
@@ -72,7 +72,7 @@
 .end method
 
 .method public invert()Lcom/google/zxing/LuminanceSource;
-    .locals 1
+    .registers 2
 
     .line 109
     new-instance v0, Lcom/google/zxing/InvertedLuminanceSource;
@@ -83,7 +83,7 @@
 .end method
 
 .method public isCropSupported()Z
-    .locals 1
+    .registers 2
 
     .line 80
     const/4 v0, 0x0
@@ -92,7 +92,7 @@
 .end method
 
 .method public isRotateSupported()Z
-    .locals 1
+    .registers 2
 
     .line 101
     const/4 v0, 0x0
@@ -101,7 +101,7 @@
 .end method
 
 .method public rotateCounterClockwise()Lcom/google/zxing/LuminanceSource;
-    .locals 2
+    .registers 3
 
     .line 119
     new-instance v0, Ljava/lang/UnsupportedOperationException;
@@ -114,7 +114,7 @@
 .end method
 
 .method public rotateCounterClockwise45()Lcom/google/zxing/LuminanceSource;
-    .locals 2
+    .registers 3
 
     .line 129
     new-instance v0, Ljava/lang/UnsupportedOperationException;
@@ -127,7 +127,7 @@
 .end method
 
 .method public final toString()Ljava/lang/String;
-    .locals 6
+    .registers 7
 
     .line 134
     iget v0, p0, Lcom/google/zxing/LuminanceSource;->width:I
@@ -153,10 +153,10 @@
     const/4 v2, 0x0
 
     .local v2, "y":I
-    :goto_0
+    :goto_11
     iget v3, p0, Lcom/google/zxing/LuminanceSource;->height:I
 
-    if-lt v2, v3, :cond_0
+    if-lt v2, v3, :cond_1a
 
     .line 154
     .end local v2    # "y":I
@@ -168,7 +168,7 @@
 
     .line 137
     .restart local v2    # "y":I
-    :cond_0
+    :cond_1a
     invoke-virtual {p0, v2, v0}, Lcom/google/zxing/LuminanceSource;->getRow(I[B)[B
 
     move-result-object v0
@@ -177,10 +177,10 @@
     const/4 v3, 0x0
 
     .local v3, "x":I
-    :goto_1
+    :goto_1f
     iget v4, p0, Lcom/google/zxing/LuminanceSource;->width:I
 
-    if-lt v3, v4, :cond_1
+    if-lt v3, v4, :cond_2b
 
     .line 152
     .end local v3    # "x":I
@@ -191,11 +191,11 @@
     .line 136
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_11
 
     .line 139
     .restart local v3    # "x":I
-    :cond_1
+    :cond_2b
     aget-byte v4, v0, v3
 
     and-int/lit16 v4, v4, 0xff
@@ -204,49 +204,49 @@
     .local v4, "luminance":I
     const/16 v5, 0x40
 
-    if-ge v4, v5, :cond_2
+    if-ge v4, v5, :cond_36
 
     .line 142
     const/16 v5, 0x23
 
     .line 143
     .local v5, "c":C
-    goto :goto_2
+    goto :goto_46
 
     .end local v5    # "c":C
-    :cond_2
+    :cond_36
     const/16 v5, 0x80
 
-    if-ge v4, v5, :cond_3
+    if-ge v4, v5, :cond_3d
 
     .line 144
     const/16 v5, 0x2b
 
     .line 145
     .restart local v5    # "c":C
-    goto :goto_2
+    goto :goto_46
 
     .end local v5    # "c":C
-    :cond_3
+    :cond_3d
     const/16 v5, 0xc0
 
-    if-ge v4, v5, :cond_4
+    if-ge v4, v5, :cond_44
 
     .line 146
     const/16 v5, 0x2e
 
     .line 147
     .restart local v5    # "c":C
-    goto :goto_2
+    goto :goto_46
 
     .line 148
     .end local v5    # "c":C
-    :cond_4
+    :cond_44
     const/16 v5, 0x20
 
     .line 150
     .restart local v5    # "c":C
-    :goto_2
+    :goto_46
     invoke-virtual {v1, v5}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 138
@@ -254,5 +254,5 @@
     .end local v5    # "c":C
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_1
+    goto :goto_1f
 .end method

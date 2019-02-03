@@ -13,7 +13,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -23,7 +23,7 @@
 .end method
 
 .method public static addAccessibilityStateChangeListener(Landroid/view/accessibility/AccessibilityManager;Ljava/lang/Object;)Z
-    .locals 1
+    .registers 3
     .param p0, "manager"    # Landroid/view/accessibility/AccessibilityManager;
     .param p1, "listener"    # Ljava/lang/Object;
 
@@ -40,7 +40,7 @@
 .end method
 
 .method public static getEnabledAccessibilityServiceList(Landroid/view/accessibility/AccessibilityManager;I)Ljava/util/List;
-    .locals 1
+    .registers 3
     .param p0, "manager"    # Landroid/view/accessibility/AccessibilityManager;
     .param p1, "feedbackTypeFlags"    # I
     .annotation system Ldalvik/annotation/Signature;
@@ -63,7 +63,7 @@
 .end method
 
 .method public static getInstalledAccessibilityServiceList(Landroid/view/accessibility/AccessibilityManager;)Ljava/util/List;
-    .locals 1
+    .registers 2
     .param p0, "manager"    # Landroid/view/accessibility/AccessibilityManager;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -85,7 +85,7 @@
 .end method
 
 .method public static isTouchExplorationEnabled(Landroid/view/accessibility/AccessibilityManager;)Z
-    .locals 1
+    .registers 2
     .param p0, "manager"    # Landroid/view/accessibility/AccessibilityManager;
 
     .line 67
@@ -97,7 +97,7 @@
 .end method
 
 .method public static newAccessibilityStateChangeListener(Landroid/support/v4/view/accessibility/AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "bridge"    # Landroid/support/v4/view/accessibility/AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge;
 
     .line 36
@@ -109,7 +109,7 @@
 .end method
 
 .method public static removeAccessibilityStateChangeListener(Landroid/view/accessibility/AccessibilityManager;Ljava/lang/Object;)Z
-    .locals 1
+    .registers 3
     .param p0, "manager"    # Landroid/view/accessibility/AccessibilityManager;
     .param p1, "listener"    # Ljava/lang/Object;
 

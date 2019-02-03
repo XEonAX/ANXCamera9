@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;)V
-    .locals 1
+    .registers 3
     .param p1, "context"    # Landroid/content/Context;
 
     .line 135
@@ -40,7 +40,7 @@
 
 # virtual methods
 .method public getDisplay(I)Landroid/view/Display;
-    .locals 1
+    .registers 3
     .param p1, "displayId"    # I
 
     .line 141
@@ -54,7 +54,7 @@
 .end method
 
 .method public getDisplays()[Landroid/view/Display;
-    .locals 1
+    .registers 2
 
     .line 146
     iget-object v0, p0, Landroid/support/v4/hardware/display/DisplayManagerCompat$JellybeanMr1Impl;->mDisplayManagerObj:Ljava/lang/Object;
@@ -67,7 +67,7 @@
 .end method
 
 .method public getDisplays(Ljava/lang/String;)[Landroid/view/Display;
-    .locals 1
+    .registers 3
     .param p1, "category"    # Ljava/lang/String;
 
     .line 151

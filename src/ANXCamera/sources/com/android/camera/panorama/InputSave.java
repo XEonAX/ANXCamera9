@@ -20,41 +20,39 @@ public class InputSave {
 
     private class InputSaveRunnable implements Runnable {
         final String imageFormat;
-        CaptureImage srcImage;
+        byte[] mImageBytes;
 
         public InputSaveRunnable(CaptureImage captureImage, String str) {
             this.imageFormat = str;
-            this.srcImage = captureImage;
-        }
-
-        public void run() {
-            Image image = this.srcImage.image();
+            Image image = captureImage.mImage;
             if (image == null) {
                 Log.w(InputSave.TAG, "save failed, image is null");
                 return;
             }
-            byte[] image2bytes;
-            String str = InputSave.TAG;
+            String str2 = InputSave.TAG;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(image.getWidth());
             stringBuilder.append("X");
             stringBuilder.append(image.getHeight());
             stringBuilder.append(", imageFormat = ");
             stringBuilder.append(this.imageFormat);
-            Log.d(str, stringBuilder.toString());
+            Log.d(str2, stringBuilder.toString());
             if (PanoramaGP3ImageFormat.YUV420_PLANAR.equals(this.imageFormat)) {
-                image2bytes = new ConvertFromYuv420Planar().image2bytes(image);
+                this.mImageBytes = new ConvertFromYuv420Planar().image2bytes(image);
             } else if (PanoramaGP3ImageFormat.YUV420_SEMIPLANAR.equals(this.imageFormat)) {
-                image2bytes = new ConvertFromYuv420SemiPlanar().image2bytes(image);
+                this.mImageBytes = new ConvertFromYuv420SemiPlanar().image2bytes(image);
             } else if (PanoramaGP3ImageFormat.YVU420_SEMIPLANAR.equals(this.imageFormat)) {
-                image2bytes = new ConvertFromYvu420SemiPlanar().image2bytes(image);
+                this.mImageBytes = new ConvertFromYvu420SemiPlanar().image2bytes(image);
             } else {
+                this.mImageBytes = null;
                 Log.e(InputSave.TAG, "Image format error.");
-                this.srcImage.close();
-                return;
             }
-            this.srcImage.close();
-            InputSave.this.saveImage(image2bytes, this.imageFormat);
+        }
+
+        public void run() {
+            if (this.mImageBytes != null) {
+                InputSave.this.saveImage(this.mImageBytes, this.imageFormat);
+            }
         }
     }
 

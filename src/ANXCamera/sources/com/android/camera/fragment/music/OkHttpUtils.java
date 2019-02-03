@@ -1,6 +1,6 @@
 package com.android.camera.fragment.music;
 
-import com.android.camera.fragment.live.FragmentLiveMusic.Mp3DownloadCallback;
+import com.android.camera.fragment.music.FragmentLiveMusic.Mp3DownloadCallback;
 import com.android.camera.log.Log;
 import java.io.IOException;
 import java.io.PrintStream;

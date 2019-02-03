@@ -206,7 +206,7 @@ public class TEBufferedAudioRecorder {
     /* JADX WARNING: Missing block: B:12:0x0021, code:
             return true;
      */
-    /* JADX WARNING: Missing block: B:18:0x0033, code:
+    /* JADX WARNING: Missing block: B:18:0x0034, code:
             return false;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */

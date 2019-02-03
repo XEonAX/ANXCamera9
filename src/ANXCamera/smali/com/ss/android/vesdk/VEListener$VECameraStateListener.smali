@@ -15,7 +15,7 @@
 
 
 # virtual methods
-.method public abstract cameraOpenFailed(ILjava/lang/String;)V
+.method public abstract cameraOpenFailed(I)V
 .end method
 
 .method public abstract cameraOpenSuccess()V

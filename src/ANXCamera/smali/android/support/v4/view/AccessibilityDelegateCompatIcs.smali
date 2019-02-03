@@ -13,7 +13,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -23,7 +23,7 @@
 .end method
 
 .method public static dispatchPopulateAccessibilityEvent(Ljava/lang/Object;Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)Z
-    .locals 1
+    .registers 4
     .param p0, "delegate"    # Ljava/lang/Object;
     .param p1, "host"    # Landroid/view/View;
     .param p2, "event"    # Landroid/view/accessibility/AccessibilityEvent;
@@ -41,7 +41,7 @@
 .end method
 
 .method public static newAccessibilityDelegateBridge(Landroid/support/v4/view/AccessibilityDelegateCompatIcs$AccessibilityDelegateBridge;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "bridge"    # Landroid/support/v4/view/AccessibilityDelegateCompatIcs$AccessibilityDelegateBridge;
 
     .line 46
@@ -53,7 +53,7 @@
 .end method
 
 .method public static newAccessibilityDelegateDefaultImpl()Ljava/lang/Object;
-    .locals 1
+    .registers 1
 
     .line 42
     new-instance v0, Landroid/view/View$AccessibilityDelegate;
@@ -64,7 +64,7 @@
 .end method
 
 .method public static onInitializeAccessibilityEvent(Ljava/lang/Object;Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
-    .locals 1
+    .registers 4
     .param p0, "delegate"    # Ljava/lang/Object;
     .param p1, "host"    # Landroid/view/View;
     .param p2, "event"    # Landroid/view/accessibility/AccessibilityEvent;
@@ -81,7 +81,7 @@
 .end method
 
 .method public static onInitializeAccessibilityNodeInfo(Ljava/lang/Object;Landroid/view/View;Ljava/lang/Object;)V
-    .locals 2
+    .registers 5
     .param p0, "delegate"    # Ljava/lang/Object;
     .param p1, "host"    # Landroid/view/View;
     .param p2, "info"    # Ljava/lang/Object;
@@ -102,7 +102,7 @@
 .end method
 
 .method public static onPopulateAccessibilityEvent(Ljava/lang/Object;Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
-    .locals 1
+    .registers 4
     .param p0, "delegate"    # Ljava/lang/Object;
     .param p1, "host"    # Landroid/view/View;
     .param p2, "event"    # Landroid/view/accessibility/AccessibilityEvent;
@@ -119,7 +119,7 @@
 .end method
 
 .method public static onRequestSendAccessibilityEvent(Ljava/lang/Object;Landroid/view/ViewGroup;Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)Z
-    .locals 1
+    .registers 5
     .param p0, "delegate"    # Ljava/lang/Object;
     .param p1, "host"    # Landroid/view/ViewGroup;
     .param p2, "child"    # Landroid/view/View;
@@ -138,7 +138,7 @@
 .end method
 
 .method public static sendAccessibilityEvent(Ljava/lang/Object;Landroid/view/View;I)V
-    .locals 1
+    .registers 4
     .param p0, "delegate"    # Ljava/lang/Object;
     .param p1, "host"    # Landroid/view/View;
     .param p2, "eventType"    # I
@@ -155,7 +155,7 @@
 .end method
 
 .method public static sendAccessibilityEventUnchecked(Ljava/lang/Object;Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
-    .locals 1
+    .registers 4
     .param p0, "delegate"    # Ljava/lang/Object;
     .param p1, "host"    # Landroid/view/View;
     .param p2, "event"    # Landroid/view/accessibility/AccessibilityEvent;

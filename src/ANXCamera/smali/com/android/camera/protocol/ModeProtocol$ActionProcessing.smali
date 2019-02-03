@@ -49,6 +49,9 @@
 .method public abstract processingPostAction()V
 .end method
 
+.method public abstract processingPrepare()V
+.end method
+
 .method public abstract processingResume()V
 .end method
 
@@ -59,9 +62,6 @@
 .end method
 
 .method public abstract setLightingViewStatus(Z)V
-.end method
-
-.method public abstract setRecordingTimeState(I)V
 .end method
 
 .method public abstract showOrHideBottomViewWithAnim(Z)V

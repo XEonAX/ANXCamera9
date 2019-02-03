@@ -21,7 +21,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 33
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -33,13 +33,13 @@
 
 # virtual methods
 .method public clearInterpolator(Landroid/view/View;)V
-    .locals 2
+    .registers 4
     .param p1, "view"    # Landroid/view/View;
 
     .line 130
     iget-object v0, p0, Landroid/support/v4/animation/HoneycombMr1AnimatorCompatProvider;->mDefaultInterpolator:Landroid/animation/TimeInterpolator;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_f
 
     .line 131
     new-instance v0, Landroid/animation/ValueAnimator;
@@ -53,7 +53,7 @@
     iput-object v0, p0, Landroid/support/v4/animation/HoneycombMr1AnimatorCompatProvider;->mDefaultInterpolator:Landroid/animation/TimeInterpolator;
 
     .line 133
-    :cond_0
+    :cond_f
     invoke-virtual {p1}, Landroid/view/View;->animate()Landroid/view/ViewPropertyAnimator;
 
     move-result-object v0
@@ -67,7 +67,7 @@
 .end method
 
 .method public emptyValueAnimator()Landroid/support/v4/animation/ValueAnimatorCompat;
-    .locals 2
+    .registers 3
 
     .line 39
     new-instance v0, Landroid/support/v4/animation/HoneycombMr1AnimatorCompatProvider$HoneycombValueAnimatorCompat;
@@ -76,7 +76,7 @@
 
     new-array v1, v1, [F
 
-    fill-array-data v1, :array_0
+    fill-array-data v1, :array_10
 
     invoke-static {v1}, Landroid/animation/ValueAnimator;->ofFloat([F)Landroid/animation/ValueAnimator;
 
@@ -86,7 +86,7 @@
 
     return-object v0
 
-    :array_0
+    :array_10
     .array-data 4
         0x0
         0x3f800000    # 1.0f

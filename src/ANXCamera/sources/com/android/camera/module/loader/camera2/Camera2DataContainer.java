@@ -76,8 +76,8 @@ public class Camera2DataContainer {
                 try {
                     int parseInt = Integer.parseInt(str);
                     CameraCharacteristics cameraCharacteristics = cameraManager.getCameraCharacteristics(str);
-                    this.mCapabilities.put(parseInt, new CameraCapabilities(cameraCharacteristics));
-                    if (!(DataRepository.dataItemFeature().fu() && (21 == parseInt || 63 == parseInt))) {
+                    this.mCapabilities.put(parseInt, new CameraCapabilities(cameraCharacteristics, parseInt));
+                    if (!(DataRepository.dataItemFeature().fx() && (21 == parseInt || 63 == parseInt))) {
                         Integer num = (Integer) cameraCharacteristics.get(CameraCharacteristics.LENS_FACING);
                         int i3;
                         if (num == null) {
@@ -143,7 +143,7 @@ public class Camera2DataContainer {
         Log.d(TAG, "====================================================================");
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(" BACK: [main, aux, mux, bokeh, virtual, infrared] = ");
+        stringBuilder.append("BACK: [main, aux, mux, bokeh, virtual, infrared] = ");
         stringBuilder.append(Arrays.toString(iArr));
         Log.d(str, stringBuilder.toString());
         str = TAG;
@@ -190,7 +190,7 @@ public class Camera2DataContainer {
         if (isInitialized()) {
             return 63;
         }
-        Log.d(TAG, "Warning: getBokehCameraId(): #init() failed.");
+        Log.d(TAG, "Warning: getUltraWideBokehCameraId(): #init() failed.");
         return -1;
     }
 
@@ -297,18 +297,23 @@ public class Camera2DataContainer {
                         case 161:
                         case 162:
                         case 173:
-                            if (DataRepository.dataItemFeature().fu() && CameraSettings.isUltraWideConfigOpen()) {
+                        case 174:
+                            if (CameraSettings.isUltraWideConfigOpen(i2)) {
                                 ultraWideCameraId = getUltraWideCameraId();
                                 break;
                             }
                         case 163:
+                            if (CameraSettings.isRearMenuUltraPixelPhotographyOn()) {
+                                ultraWideCameraId = getMainBackCameraId();
+                                break;
+                            }
                         case 165:
                             if (!CameraSettings.isDualCameraSatEnable() || !b.isSupportedOpticalZoom()) {
-                                if (DataRepository.dataItemFeature().fu() && CameraSettings.isUltraWideConfigOpen()) {
+                                if (CameraSettings.isUltraWideConfigOpen(i2)) {
                                     ultraWideCameraId = getUltraWideCameraId();
                                     break;
                                 }
-                            } else if (!b.fu() || !CameraSettings.isUltraWideConfigOpen()) {
+                            } else if (!CameraSettings.isUltraWideConfigOpen(i2)) {
                                 ultraWideCameraId = getMuxCameraId();
                                 break;
                             } else {
@@ -336,7 +341,7 @@ public class Camera2DataContainer {
                                 break;
                             }
                         case 171:
-                            if (!CameraSettings.isUltraWideBokehOn() || getUltraWideBokehCameraId() == -1) {
+                            if (!DataRepository.dataItemRunning().isSwitchOn("pref_ultra_wide_bokeh_enabled") || getUltraWideBokehCameraId() == -1) {
                                 if (getBokehCameraId() == -1) {
                                     ultraWideCameraId = getMuxCameraId();
                                     break;
@@ -345,7 +350,6 @@ public class Camera2DataContainer {
                                 break;
                             }
                             ultraWideCameraId = getUltraWideBokehCameraId();
-                            break;
                             break;
                         default:
                             ultraWideCameraId = i;

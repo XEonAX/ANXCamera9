@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 27
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method static dump(Landroid/app/Activity;Ljava/lang/String;Ljava/io/FileDescriptor;Ljava/io/PrintWriter;[Ljava/lang/String;)V
-    .locals 0
+    .registers 5
     .param p0, "activity"    # Landroid/app/Activity;
     .param p1, "prefix"    # Ljava/lang/String;
     .param p2, "fd"    # Ljava/io/FileDescriptor;
@@ -29,7 +29,7 @@
 .end method
 
 .method static invalidateOptionsMenu(Landroid/app/Activity;)V
-    .locals 0
+    .registers 1
     .param p0, "activity"    # Landroid/app/Activity;
 
     .line 29

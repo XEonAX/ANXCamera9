@@ -150,7 +150,7 @@
     .end annotation
 
     .line 23
-    sget-object p1, Lcom/bumptech/glide/load/EncodeStrategy;->cD:Lcom/bumptech/glide/load/EncodeStrategy;
+    sget-object p1, Lcom/bumptech/glide/load/EncodeStrategy;->cE:Lcom/bumptech/glide/load/EncodeStrategy;
 
     return-object p1
 .end method

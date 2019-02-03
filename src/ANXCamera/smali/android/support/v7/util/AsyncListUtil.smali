@@ -116,7 +116,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/Class;ILandroid/support/v7/util/AsyncListUtil$DataCallback;Landroid/support/v7/util/AsyncListUtil$ViewCallback;)V
-    .locals 2
+    .registers 7
     .param p2, "tileSize"    # I
     .param p4, "viewCallback"    # Landroid/support/v7/util/AsyncListUtil$ViewCallback;
     .annotation system Ldalvik/annotation/Signature;
@@ -244,7 +244,7 @@
 .end method
 
 .method static synthetic access$002(Landroid/support/v7/util/AsyncListUtil;I)I
-    .locals 0
+    .registers 2
     .param p0, "x0"    # Landroid/support/v7/util/AsyncListUtil;
     .param p1, "x1"    # I
 
@@ -255,7 +255,7 @@
 .end method
 
 .method static synthetic access$102(Landroid/support/v7/util/AsyncListUtil;Z)Z
-    .locals 0
+    .registers 2
     .param p0, "x0"    # Landroid/support/v7/util/AsyncListUtil;
     .param p1, "x1"    # Z
 
@@ -266,7 +266,7 @@
 .end method
 
 .method static synthetic access$200(Landroid/support/v7/util/AsyncListUtil;)V
-    .locals 0
+    .registers 1
     .param p0, "x0"    # Landroid/support/v7/util/AsyncListUtil;
 
     .line 46
@@ -276,7 +276,7 @@
 .end method
 
 .method static synthetic access$300(Landroid/support/v7/util/AsyncListUtil;)Landroid/util/SparseIntArray;
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v7/util/AsyncListUtil;
 
     .line 46
@@ -286,7 +286,7 @@
 .end method
 
 .method private isRefreshPending()Z
-    .locals 2
+    .registers 3
 
     .line 104
     .local p0, "this":Landroid/support/v7/util/AsyncListUtil;, "Landroid/support/v7/util/AsyncListUtil<TT;>;"
@@ -294,21 +294,21 @@
 
     iget v1, p0, Landroid/support/v7/util/AsyncListUtil;->mDisplayedGeneration:I
 
-    if-eq v0, v1, :cond_0
+    if-eq v0, v1, :cond_8
 
     const/4 v0, 0x1
 
-    goto :goto_0
+    goto :goto_9
 
-    :cond_0
+    :cond_8
     const/4 v0, 0x0
 
-    :goto_0
+    :goto_9
     return v0
 .end method
 
 .method private varargs log(Ljava/lang/String;[Ljava/lang/Object;)V
-    .locals 3
+    .registers 6
     .param p1, "s"    # Ljava/lang/String;
     .param p2, "args"    # [Ljava/lang/Object;
 
@@ -341,7 +341,7 @@
 .end method
 
 .method private updateRange()V
-    .locals 10
+    .registers 11
 
     .line 175
     .local p0, "this":Landroid/support/v7/util/AsyncListUtil;, "Landroid/support/v7/util/AsyncListUtil<TT;>;"
@@ -364,42 +364,42 @@
 
     aget v2, v2, v3
 
-    if-gt v0, v2, :cond_7
+    if-gt v0, v2, :cond_bb
 
     iget-object v0, p0, Landroid/support/v7/util/AsyncListUtil;->mTmpRange:[I
 
     aget v0, v0, v1
 
-    if-gez v0, :cond_0
+    if-gez v0, :cond_1b
 
-    goto/16 :goto_2
+    goto/16 :goto_bb
 
     .line 179
-    :cond_0
+    :cond_1b
     iget-object v0, p0, Landroid/support/v7/util/AsyncListUtil;->mTmpRange:[I
 
     aget v0, v0, v3
 
     iget v2, p0, Landroid/support/v7/util/AsyncListUtil;->mItemCount:I
 
-    if-lt v0, v2, :cond_1
+    if-lt v0, v2, :cond_24
 
     .line 181
     return-void
 
     .line 184
-    :cond_1
+    :cond_24
     iget-boolean v0, p0, Landroid/support/v7/util/AsyncListUtil;->mAllowScrollHints:Z
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_2b
 
     .line 185
     iput v1, p0, Landroid/support/v7/util/AsyncListUtil;->mScrollHint:I
 
-    goto :goto_1
+    goto :goto_5d
 
     .line 186
-    :cond_2
+    :cond_2b
     iget-object v0, p0, Landroid/support/v7/util/AsyncListUtil;->mTmpRange:[I
 
     aget v0, v0, v1
@@ -408,7 +408,7 @@
 
     aget v2, v2, v3
 
-    if-gt v0, v2, :cond_5
+    if-gt v0, v2, :cond_5b
 
     iget-object v0, p0, Landroid/support/v7/util/AsyncListUtil;->mPrevRange:[I
 
@@ -418,12 +418,12 @@
 
     aget v2, v2, v3
 
-    if-le v0, v2, :cond_3
+    if-le v0, v2, :cond_40
 
-    goto :goto_0
+    goto :goto_5b
 
     .line 189
-    :cond_3
+    :cond_40
     iget-object v0, p0, Landroid/support/v7/util/AsyncListUtil;->mTmpRange:[I
 
     aget v0, v0, v1
@@ -432,15 +432,15 @@
 
     aget v2, v2, v1
 
-    if-ge v0, v2, :cond_4
+    if-ge v0, v2, :cond_4d
 
     .line 190
     iput v3, p0, Landroid/support/v7/util/AsyncListUtil;->mScrollHint:I
 
-    goto :goto_1
+    goto :goto_5d
 
     .line 191
-    :cond_4
+    :cond_4d
     iget-object v0, p0, Landroid/support/v7/util/AsyncListUtil;->mTmpRange:[I
 
     aget v0, v0, v1
@@ -449,23 +449,23 @@
 
     aget v2, v2, v1
 
-    if-le v0, v2, :cond_6
+    if-le v0, v2, :cond_5d
 
     .line 192
     const/4 v0, 0x2
 
     iput v0, p0, Landroid/support/v7/util/AsyncListUtil;->mScrollHint:I
 
-    goto :goto_1
+    goto :goto_5d
 
     .line 188
-    :cond_5
-    :goto_0
+    :cond_5b
+    :goto_5b
     iput v1, p0, Landroid/support/v7/util/AsyncListUtil;->mScrollHint:I
 
     .line 195
-    :cond_6
-    :goto_1
+    :cond_5d
+    :goto_5d
     iget-object v0, p0, Landroid/support/v7/util/AsyncListUtil;->mPrevRange:[I
 
     iget-object v2, p0, Landroid/support/v7/util/AsyncListUtil;->mTmpRange:[I
@@ -567,15 +567,15 @@
     return-void
 
     .line 177
-    :cond_7
-    :goto_2
+    :cond_bb
+    :goto_bb
     return-void
 .end method
 
 
 # virtual methods
 .method public getItem(I)Ljava/lang/Object;
-    .locals 3
+    .registers 5
     .param p1, "position"    # I
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -585,11 +585,11 @@
 
     .line 151
     .local p0, "this":Landroid/support/v7/util/AsyncListUtil;, "Landroid/support/v7/util/AsyncListUtil<TT;>;"
-    if-ltz p1, :cond_1
+    if-ltz p1, :cond_1b
 
     iget v0, p0, Landroid/support/v7/util/AsyncListUtil;->mItemCount:I
 
-    if-ge p1, v0, :cond_1
+    if-ge p1, v0, :cond_1b
 
     .line 154
     iget-object v0, p0, Landroid/support/v7/util/AsyncListUtil;->mTileList:Landroid/support/v7/util/TileList;
@@ -600,13 +600,13 @@
 
     .line 155
     .local v0, "item":Ljava/lang/Object;, "TT;"
-    if-nez v0, :cond_0
+    if-nez v0, :cond_1a
 
     invoke-direct {p0}, Landroid/support/v7/util/AsyncListUtil;->isRefreshPending()Z
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_1a
 
     .line 156
     iget-object v1, p0, Landroid/support/v7/util/AsyncListUtil;->mMissingPositions:Landroid/util/SparseIntArray;
@@ -616,12 +616,12 @@
     invoke-virtual {v1, p1, v2}, Landroid/util/SparseIntArray;->put(II)V
 
     .line 158
-    :cond_0
+    :cond_1a
     return-object v0
 
     .line 152
     .end local v0    # "item":Ljava/lang/Object;, "TT;"
-    :cond_1
+    :cond_1b
     new-instance v0, Ljava/lang/IndexOutOfBoundsException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -648,7 +648,7 @@
 .end method
 
 .method public getItemCount()I
-    .locals 1
+    .registers 2
 
     .line 171
     .local p0, "this":Landroid/support/v7/util/AsyncListUtil;, "Landroid/support/v7/util/AsyncListUtil<TT;>;"
@@ -658,7 +658,7 @@
 .end method
 
 .method public onRangeChanged()V
-    .locals 1
+    .registers 2
 
     .line 116
     .local p0, "this":Landroid/support/v7/util/AsyncListUtil;, "Landroid/support/v7/util/AsyncListUtil<TT;>;"
@@ -666,13 +666,13 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_7
 
     .line 117
     return-void
 
     .line 119
-    :cond_0
+    :cond_7
     invoke-direct {p0}, Landroid/support/v7/util/AsyncListUtil;->updateRange()V
 
     .line 120
@@ -685,7 +685,7 @@
 .end method
 
 .method public refresh()V
-    .locals 2
+    .registers 3
 
     .line 130
     .local p0, "this":Landroid/support/v7/util/AsyncListUtil;, "Landroid/support/v7/util/AsyncListUtil<TT;>;"

@@ -24,7 +24,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/String;Landroid/os/Bundle;Landroid/os/ResultReceiver;)V
-    .locals 0
+    .registers 4
     .param p1, "command"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
     .param p3, "stub"    # Landroid/os/ResultReceiver;

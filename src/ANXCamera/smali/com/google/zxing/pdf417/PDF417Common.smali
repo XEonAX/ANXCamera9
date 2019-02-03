@@ -27,7 +27,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 38
     const/4 v0, 0x0
@@ -41,7 +41,7 @@
 
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_0
+    fill-array-data v1, :array_18c
 
     .line 81
     nop
@@ -748,7 +748,7 @@
     .line 318
     new-array v0, v0, [I
 
-    fill-array-data v0, :array_1
+    fill-array-data v0, :array_1756
 
     .line 319
     nop
@@ -1178,7 +1178,7 @@
 
     nop
 
-    :array_0
+    :array_18c
     .array-data 4
         0x1025e
         0x1027a
@@ -3969,7 +3969,7 @@
         0x1fbda
     .end array-data
 
-    :array_1
+    :array_1756
     .array-data 4
         0xa43
         0x71b
@@ -6762,7 +6762,7 @@
 .end method
 
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 40
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -6772,7 +6772,7 @@
 .end method
 
 .method public static getBitCountSum([I)I
-    .locals 4
+    .registers 5
     .param p0, "moduleBitCount"    # [I
 
     .line 44
@@ -6784,14 +6784,14 @@
 
     const/4 v2, 0x0
 
-    :goto_0
-    if-lt v2, v1, :cond_0
+    :goto_3
+    if-lt v2, v1, :cond_6
 
     .line 48
     return v0
 
     .line 45
-    :cond_0
+    :cond_6
     aget v3, p0, v2
 
     .line 46
@@ -6802,11 +6802,11 @@
     .end local v3    # "count":I
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_3
 .end method
 
 .method public static getCodeword(I)I
-    .locals 2
+    .registers 3
     .param p0, "symbol"    # I
 
     .line 68
@@ -6822,7 +6822,7 @@
 
     .line 69
     .local v0, "i":I
-    if-gez v0, :cond_0
+    if-gez v0, :cond_e
 
     .line 70
     const/4 v1, -0x1
@@ -6830,7 +6830,7 @@
     return v1
 
     .line 72
-    :cond_0
+    :cond_e
     sget-object v1, Lcom/google/zxing/pdf417/PDF417Common;->CODEWORD_TABLE:[I
 
     aget v1, v1, v0
@@ -6843,7 +6843,7 @@
 .end method
 
 .method public static toIntArray(Ljava/util/Collection;)[I
-    .locals 6
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -6855,18 +6855,18 @@
 
     .line 52
     .local p0, "list":Ljava/util/Collection;, "Ljava/util/Collection<Ljava/lang/Integer;>;"
-    if-eqz p0, :cond_2
+    if-eqz p0, :cond_2b
 
     invoke-interface {p0}, Ljava/util/Collection;->isEmpty()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_9
 
-    goto :goto_1
+    goto :goto_2b
 
     .line 55
-    :cond_0
+    :cond_9
     invoke-interface {p0}, Ljava/util/Collection;->size()I
 
     move-result v0
@@ -6883,18 +6883,18 @@
 
     move-result-object v2
 
-    :goto_0
+    :goto_14
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-nez v3, :cond_1
+    if-nez v3, :cond_1b
 
     .line 60
     return-object v0
 
     .line 57
-    :cond_1
+    :cond_1b
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v3
@@ -6917,13 +6917,13 @@
     .end local v3    # "integer":Ljava/lang/Integer;
     move v1, v4
 
-    goto :goto_0
+    goto :goto_14
 
     .line 53
     .end local v0    # "result":[I
     .end local v4    # "i":I
-    :cond_2
-    :goto_1
+    :cond_2b
+    :goto_2b
     sget-object v0, Lcom/google/zxing/pdf417/PDF417Common;->EMPTY_INT_ARRAY:[I
 
     return-object v0

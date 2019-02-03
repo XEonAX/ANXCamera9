@@ -15,10 +15,10 @@
 .method public constructor <init>()V
     .locals 1
 
-    .line 17
+    .line 18
     invoke-direct {p0}, Lcom/android/camera/BasePreferenceActivity;-><init>()V
 
-    .line 80
+    .line 81
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/CameraPreferenceActivity;->mDoubleConfirmActionChooseDialog:Landroid/app/AlertDialog;
@@ -29,7 +29,7 @@
 .method static synthetic access$000(Lcom/android/camera/CameraPreferenceActivity;)Landroid/app/AlertDialog;
     .locals 0
 
-    .line 17
+    .line 18
     iget-object p0, p0, Lcom/android/camera/CameraPreferenceActivity;->mDoubleConfirmActionChooseDialog:Landroid/app/AlertDialog;
 
     return-object p0
@@ -38,7 +38,7 @@
 .method static synthetic access$002(Lcom/android/camera/CameraPreferenceActivity;Landroid/app/AlertDialog;)Landroid/app/AlertDialog;
     .locals 0
 
-    .line 17
+    .line 18
     iput-object p1, p0, Lcom/android/camera/CameraPreferenceActivity;->mDoubleConfirmActionChooseDialog:Landroid/app/AlertDialog;
 
     return-object p1
@@ -47,72 +47,81 @@
 .method private bringUpDoubleConfirmDlg(Lcom/android/camera/ui/PreviewListPreference;Ljava/lang/String;)V
     .locals 1
 
-    .line 83
+    .line 84
     iget-object v0, p0, Lcom/android/camera/CameraPreferenceActivity;->mDoubleConfirmActionChooseDialog:Landroid/app/AlertDialog;
 
     if-eqz v0, :cond_0
 
-    .line 84
+    .line 85
     return-void
 
-    .line 87
+    .line 88
     :cond_0
     new-instance v0, Lcom/android/camera/CameraPreferenceActivity$1;
 
     invoke-direct {v0, p0, p2, p1}, Lcom/android/camera/CameraPreferenceActivity$1;-><init>(Lcom/android/camera/CameraPreferenceActivity;Ljava/lang/String;Lcom/android/camera/ui/PreviewListPreference;)V
 
-    .line 103
-    new-instance p1, Landroid/app/AlertDialog$Builder;
-
-    invoke-direct {p1, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
-
-    const p2, 0x7f0b01aa
-
-    .line 104
-    invoke-virtual {p1, p2}, Landroid/app/AlertDialog$Builder;->setTitle(I)Landroid/app/AlertDialog$Builder;
+    invoke-static {v0}, Lcom/android/camera2/DetachableClickListener;->wrap(Landroid/content/DialogInterface$OnClickListener;)Lcom/android/camera2/DetachableClickListener;
 
     move-result-object p1
-
-    const p2, 0x7f0b01ab
-
-    .line 105
-    invoke-virtual {p1, p2}, Landroid/app/AlertDialog$Builder;->setMessage(I)Landroid/app/AlertDialog$Builder;
-
-    move-result-object p1
-
-    const p2, 0x7f0b01ac
 
     .line 106
-    invoke-virtual {p1, p2, v0}, Landroid/app/AlertDialog$Builder;->setPositiveButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+    new-instance p2, Landroid/app/AlertDialog$Builder;
 
-    move-result-object p1
+    invoke-direct {p2, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
 
-    const p2, 0x7f0b01ad
+    const v0, 0x7f0901b1
 
     .line 107
-    invoke-virtual {p1, p2, v0}, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+    invoke-virtual {p2, v0}, Landroid/app/AlertDialog$Builder;->setTitle(I)Landroid/app/AlertDialog$Builder;
 
-    move-result-object p1
+    move-result-object p2
 
-    const/4 p2, 0x0
+    const v0, 0x7f0901b2
 
     .line 108
-    invoke-virtual {p1, p2}, Landroid/app/AlertDialog$Builder;->setCancelable(Z)Landroid/app/AlertDialog$Builder;
+    invoke-virtual {p2, v0}, Landroid/app/AlertDialog$Builder;->setMessage(I)Landroid/app/AlertDialog$Builder;
 
-    move-result-object p1
+    move-result-object p2
 
-    invoke-virtual {p1}, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
-
-    move-result-object p1
-
-    iput-object p1, p0, Lcom/android/camera/CameraPreferenceActivity;->mDoubleConfirmActionChooseDialog:Landroid/app/AlertDialog;
+    const v0, 0x7f0901b3
 
     .line 109
+    invoke-virtual {p2, v0, p1}, Landroid/app/AlertDialog$Builder;->setPositiveButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+
+    move-result-object p2
+
+    const v0, 0x7f0901b4
+
+    .line 110
+    invoke-virtual {p2, v0, p1}, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+
+    move-result-object p2
+
+    const/4 v0, 0x0
+
+    .line 111
+    invoke-virtual {p2, v0}, Landroid/app/AlertDialog$Builder;->setCancelable(Z)Landroid/app/AlertDialog$Builder;
+
+    move-result-object p2
+
+    invoke-virtual {p2}, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
+
+    move-result-object p2
+
+    iput-object p2, p0, Lcom/android/camera/CameraPreferenceActivity;->mDoubleConfirmActionChooseDialog:Landroid/app/AlertDialog;
+
+    .line 112
+    iget-object p2, p0, Lcom/android/camera/CameraPreferenceActivity;->mDoubleConfirmActionChooseDialog:Landroid/app/AlertDialog;
+
+    invoke-virtual {p1, p2}, Lcom/android/camera2/DetachableClickListener;->clearOnDetach(Landroid/app/Dialog;)V
+
+    .line 113
     iget-object p1, p0, Lcom/android/camera/CameraPreferenceActivity;->mDoubleConfirmActionChooseDialog:Landroid/app/AlertDialog;
 
     invoke-virtual {p1}, Landroid/app/AlertDialog;->show()V
 
-    .line 110
+    .line 114
     return-void
 .end method
 
@@ -121,17 +130,17 @@
 .method public changeRequestOrientation()V
     .locals 1
 
-    .line 70
-    invoke-static {}, Lcom/mi/config/b;->hk()Z
+    .line 71
+    invoke-static {}, Lcom/mi/config/b;->hC()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 71
+    .line 72
     return-void
 
-    .line 73
+    .line 74
     :cond_0
     invoke-static {}, Lcom/android/camera/CameraSettings;->isFrontCamera()Z
 
@@ -139,20 +148,20 @@
 
     if-eqz v0, :cond_1
 
-    .line 74
+    .line 75
     const/4 v0, 0x7
 
     invoke-virtual {p0, v0}, Lcom/android/camera/CameraPreferenceActivity;->setRequestedOrientation(I)V
 
     goto :goto_0
 
-    .line 76
+    .line 77
     :cond_1
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Lcom/android/camera/CameraPreferenceActivity;->setRequestedOrientation(I)V
 
-    .line 78
+    .line 79
     :goto_0
     return-void
 .end method
@@ -160,7 +169,7 @@
 .method protected getPreferenceXml()I
     .locals 1
 
-    .line 22
+    .line 23
     const/high16 v0, 0x7f070000
 
     return v0
@@ -169,20 +178,43 @@
 .method public onCreate(Landroid/os/Bundle;)V
     .locals 1
 
-    .line 61
+    .line 62
     invoke-super {p0, p1}, Lcom/android/camera/BasePreferenceActivity;->onCreate(Landroid/os/Bundle;)V
 
-    .line 66
-    invoke-virtual {p0}, Lcom/android/camera/CameraPreferenceActivity;->changeRequestOrientation()V
+    .line 63
+    invoke-virtual {p0}, Lcom/android/camera/CameraPreferenceActivity;->getIntent()Landroid/content/Intent;
+
+    move-result-object p1
+
+    const-string v0, ":miui:starting_window_label"
+
+    invoke-virtual {p1, v0}, Landroid/content/Intent;->getCharSequenceExtra(Ljava/lang/String;)Ljava/lang/CharSequence;
+
+    move-result-object p1
+
+    if-eqz p1, :cond_0
+
+    .line 64
+    invoke-virtual {p0}, Lcom/android/camera/CameraPreferenceActivity;->getActionBar()Lmiui/app/ActionBar;
+
+    move-result-object p1
+
+    const v0, 0x7f090045
+
+    invoke-virtual {p1, v0}, Lmiui/app/ActionBar;->setTitle(I)V
 
     .line 67
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/camera/CameraPreferenceActivity;->changeRequestOrientation()V
+
+    .line 68
     return-void
 .end method
 
 .method public onPreferenceChange(Landroid/preference/Preference;Ljava/lang/Object;)Z
     .locals 5
 
-    .line 32
+    .line 33
     invoke-virtual {p1}, Landroid/preference/Preference;->getKey()Ljava/lang/String;
 
     move-result-object v0
@@ -197,7 +229,7 @@
 
     if-eqz p2, :cond_3
 
-    .line 34
+    .line 35
     invoke-virtual {p0}, Lcom/android/camera/CameraPreferenceActivity;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -214,22 +246,22 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 36
-    const p1, 0x7f0b0186
+    .line 37
+    const p1, 0x7f09018d
 
     invoke-static {p0, p1, v2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;II)Landroid/widget/Toast;
 
     move-result-object p1
 
-    .line 37
+    .line 38
     invoke-virtual {p1}, Landroid/widget/Toast;->show()V
 
-    .line 38
+    .line 39
     return v2
 
-    .line 40
+    .line 41
     :cond_0
-    const v0, 0x7f0b0183
+    const v0, 0x7f09018a
 
     invoke-virtual {p0, v0}, Lcom/android/camera/CameraPreferenceActivity;->getString(I)Ljava/lang/String;
 
@@ -241,9 +273,9 @@
 
     if-nez v0, :cond_1
 
-    const v0, 0x7f0b0184
+    const v0, 0x7f09018b
 
-    .line 41
+    .line 42
     invoke-virtual {p0, v0}, Lcom/android/camera/CameraPreferenceActivity;->getString(I)Ljava/lang/String;
 
     move-result-object v0
@@ -254,11 +286,11 @@
 
     if-eqz v0, :cond_2
 
-    .line 42
+    .line 43
     :cond_1
     const-string v0, "public_transportation_shortcuts"
 
-    .line 43
+    .line 44
     invoke-virtual {p0}, Lcom/android/camera/CameraPreferenceActivity;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v3
@@ -269,24 +301,24 @@
 
     move-result-object v3
 
-    .line 42
+    .line 43
     invoke-virtual {v0, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
     if-eqz v0, :cond_2
 
-    .line 45
+    .line 46
     check-cast p1, Lcom/android/camera/ui/PreviewListPreference;
 
     check-cast p2, Ljava/lang/String;
 
     invoke-direct {p0, p1, p2}, Lcom/android/camera/CameraPreferenceActivity;->bringUpDoubleConfirmDlg(Lcom/android/camera/ui/PreviewListPreference;Ljava/lang/String;)V
 
-    .line 46
+    .line 47
     return v2
 
-    .line 49
+    .line 50
     :cond_2
     invoke-virtual {p0}, Lcom/android/camera/CameraPreferenceActivity;->getContentResolver()Landroid/content/ContentResolver;
 
@@ -298,23 +330,23 @@
 
     check-cast v2, Ljava/lang/String;
 
-    .line 51
+    .line 52
     invoke-static {v2}, Lcom/android/camera/CameraSettings;->getMiuiSettingsKeyForStreetSnap(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v2
 
-    .line 49
+    .line 50
     invoke-static {p1, v0, v2}, Landroid/provider/Settings$Secure;->putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
 
-    .line 52
+    .line 53
     const-string p1, "pref_camera_snap_key"
 
     invoke-static {p1, p2}, Lcom/android/camera/statistic/CameraStatUtil;->trackPreferenceChange(Ljava/lang/String;Ljava/lang/Object;)V
 
-    .line 53
+    .line 54
     return v1
 
-    .line 55
+    .line 56
     :cond_3
     invoke-super {p0, p1, p2}, Lcom/android/camera/BasePreferenceActivity;->onPreferenceChange(Landroid/preference/Preference;Ljava/lang/Object;)Z
 
@@ -326,11 +358,11 @@
 .method protected onSettingChanged(I)V
     .locals 1
 
-    .line 27
+    .line 28
     sget-object v0, Lcom/android/camera/CameraSettings;->sCameraChangeManager:Lcom/android/camera/ChangeManager;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ChangeManager;->request(I)V
 
-    .line 28
+    .line 29
     return-void
 .end method

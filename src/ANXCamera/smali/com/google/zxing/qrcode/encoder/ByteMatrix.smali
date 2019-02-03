@@ -13,7 +13,7 @@
 
 # direct methods
 .method public constructor <init>(II)V
-    .locals 2
+    .registers 5
     .param p1, "width"    # I
     .param p2, "height"    # I
 
@@ -48,17 +48,17 @@
 
 # virtual methods
 .method public clear(B)V
-    .locals 3
+    .registers 5
     .param p1, "value"    # B
 
     .line 69
     const/4 v0, 0x0
 
     .local v0, "y":I
-    :goto_0
+    :goto_1
     iget v1, p0, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->height:I
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_6
 
     .line 74
     .end local v0    # "y":I
@@ -66,24 +66,24 @@
 
     .line 70
     .restart local v0    # "y":I
-    :cond_0
+    :cond_6
     const/4 v1, 0x0
 
     .local v1, "x":I
-    :goto_1
+    :goto_7
     iget v2, p0, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->width:I
 
-    if-lt v1, v2, :cond_1
+    if-lt v1, v2, :cond_e
 
     .line 69
     .end local v1    # "x":I
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_1
 
     .line 71
     .restart local v1    # "x":I
-    :cond_1
+    :cond_e
     iget-object v2, p0, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->bytes:[[B
 
     aget-object v2, v2, v0
@@ -93,11 +93,11 @@
     .line 70
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_1
+    goto :goto_7
 .end method
 
 .method public get(II)B
-    .locals 1
+    .registers 4
     .param p1, "x"    # I
     .param p2, "y"    # I
 
@@ -112,7 +112,7 @@
 .end method
 
 .method public getArray()[[B
-    .locals 1
+    .registers 2
 
     .line 53
     iget-object v0, p0, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->bytes:[[B
@@ -121,7 +121,7 @@
 .end method
 
 .method public getHeight()I
-    .locals 1
+    .registers 2
 
     .line 38
     iget v0, p0, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->height:I
@@ -130,7 +130,7 @@
 .end method
 
 .method public getWidth()I
-    .locals 1
+    .registers 2
 
     .line 42
     iget v0, p0, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->width:I
@@ -139,7 +139,7 @@
 .end method
 
 .method public set(IIB)V
-    .locals 1
+    .registers 5
     .param p1, "x"    # I
     .param p2, "y"    # I
     .param p3, "value"    # B
@@ -156,7 +156,7 @@
 .end method
 
 .method public set(III)V
-    .locals 2
+    .registers 6
     .param p1, "x"    # I
     .param p2, "y"    # I
     .param p3, "value"    # I
@@ -175,7 +175,7 @@
 .end method
 
 .method public set(IIZ)V
-    .locals 2
+    .registers 6
     .param p1, "x"    # I
     .param p2, "y"    # I
     .param p3, "value"    # Z
@@ -194,7 +194,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 4
+    .registers 5
 
     .line 78
     new-instance v0, Ljava/lang/StringBuilder;
@@ -218,10 +218,10 @@
     const/4 v1, 0x0
 
     .local v1, "y":I
-    :goto_0
+    :goto_e
     iget v2, p0, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->height:I
 
-    if-lt v1, v2, :cond_0
+    if-lt v1, v2, :cond_17
 
     .line 95
     .end local v1    # "y":I
@@ -233,14 +233,14 @@
 
     .line 80
     .restart local v1    # "y":I
-    :cond_0
+    :cond_17
     const/4 v2, 0x0
 
     .local v2, "x":I
-    :goto_1
+    :goto_18
     iget v3, p0, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->width:I
 
-    if-lt v2, v3, :cond_1
+    if-lt v2, v3, :cond_24
 
     .line 93
     .end local v2    # "x":I
@@ -251,37 +251,37 @@
     .line 79
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_e
 
     .line 81
     .restart local v2    # "x":I
-    :cond_1
+    :cond_24
     iget-object v3, p0, Lcom/google/zxing/qrcode/encoder/ByteMatrix;->bytes:[[B
 
     aget-object v3, v3, v1
 
     aget-byte v3, v3, v2
 
-    packed-switch v3, :pswitch_data_0
+    packed-switch v3, :pswitch_data_42
 
     .line 89
     const-string v3, "  "
 
     invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    goto :goto_2
+    goto :goto_3f
 
     .line 86
-    :pswitch_0
+    :pswitch_33
     const-string v3, " 1"
 
     invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 87
-    goto :goto_2
+    goto :goto_3f
 
     .line 83
-    :pswitch_1
+    :pswitch_39
     const-string v3, " 0"
 
     invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
@@ -290,14 +290,14 @@
     nop
 
     .line 80
-    :goto_2
+    :goto_3f
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_1
+    goto :goto_18
 
-    :pswitch_data_0
+    :pswitch_data_42
     .packed-switch 0x0
-        :pswitch_1
-        :pswitch_0
+        :pswitch_39
+        :pswitch_33
     .end packed-switch
 .end method

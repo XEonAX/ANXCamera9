@@ -1,9 +1,9 @@
 package com.ss.android.ugc.effectmanager.link.model.configuration;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import com.ss.android.ugc.effectmanager.link.model.host.Host;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
 public class LinkSelectorConfiguration {
     public static final int MS_OF_ONE_MIN = 60000;
@@ -69,16 +69,16 @@ public class LinkSelectorConfiguration {
         this.mRepeatTime = i;
     }
 
-    public void setContext(@NotNull Context context) {
+    public void setContext(@NonNull Context context) {
         this.mContext = context.getApplicationContext();
     }
 
-    public void setSpeedApi(@NotNull String str) {
+    public void setSpeedApi(@NonNull String str) {
         this.mEnableLinkSelector = true;
         this.mSpeedApi = str;
     }
 
-    public void setOriginHosts(@NotNull List<Host> list) {
+    public void setOriginHosts(@NonNull List<Host> list) {
         boolean z = true;
         if (list.size() <= 1) {
             z = false;

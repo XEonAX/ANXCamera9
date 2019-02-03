@@ -16,7 +16,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 46
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -25,7 +25,7 @@
 .end method
 
 .method public static build(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "builderObj"    # Ljava/lang/Object;
 
     .line 72
@@ -41,7 +41,7 @@
 .end method
 
 .method public static newInstance()Ljava/lang/Object;
-    .locals 1
+    .registers 1
 
     .line 48
     new-instance v0, Landroid/media/MediaMetadata$Builder;
@@ -52,7 +52,7 @@
 .end method
 
 .method public static putBitmap(Ljava/lang/Object;Ljava/lang/String;Landroid/graphics/Bitmap;)V
-    .locals 1
+    .registers 4
     .param p0, "builderObj"    # Ljava/lang/Object;
     .param p1, "key"    # Ljava/lang/String;
     .param p2, "value"    # Landroid/graphics/Bitmap;
@@ -69,7 +69,7 @@
 .end method
 
 .method public static putLong(Ljava/lang/Object;Ljava/lang/String;J)V
-    .locals 1
+    .registers 5
     .param p0, "builderObj"    # Ljava/lang/Object;
     .param p1, "key"    # Ljava/lang/String;
     .param p2, "value"    # J
@@ -86,7 +86,7 @@
 .end method
 
 .method public static putRating(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/Object;)V
-    .locals 2
+    .registers 5
     .param p0, "builderObj"    # Ljava/lang/Object;
     .param p1, "key"    # Ljava/lang/String;
     .param p2, "ratingObj"    # Ljava/lang/Object;
@@ -107,7 +107,7 @@
 .end method
 
 .method public static putString(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/String;)V
-    .locals 1
+    .registers 4
     .param p0, "builderObj"    # Ljava/lang/Object;
     .param p1, "key"    # Ljava/lang/String;
     .param p2, "value"    # Ljava/lang/String;
@@ -124,7 +124,7 @@
 .end method
 
 .method public static putText(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/CharSequence;)V
-    .locals 1
+    .registers 4
     .param p0, "builderObj"    # Ljava/lang/Object;
     .param p1, "key"    # Ljava/lang/String;
     .param p2, "value"    # Ljava/lang/CharSequence;

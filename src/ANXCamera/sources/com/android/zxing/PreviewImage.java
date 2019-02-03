@@ -1,31 +1,51 @@
 package com.android.zxing;
 
 import android.media.Image;
-import android.util.Log;
+import com.android.camera.log.Log;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 public class PreviewImage {
+    public static final int PREVIEW_STATUS_NORMAL = 2;
+    public static final int PREVIEW_STATUS_START = 1;
+    public static final int PREVIEW_STATUS_STOP = 3;
+    public static final int PREVIEW_STATUS_UNKNOWN = 0;
     private static final String TAG = "PreviewImage";
+    private int mCameraId;
     private byte[] mData;
     private int mFormat;
     private int mHeight;
+    private int mOrientation;
+    private int mPreviewStatus;
     private long mTimestamp;
     private int mWidth;
 
-    public PreviewImage(Image image, int i, int i2) {
+    public PreviewImage(int i, int i2) {
+        this.mPreviewStatus = 0;
+        this.mPreviewStatus = i;
+        this.mCameraId = i2;
+    }
+
+    public PreviewImage(Image image, int i, int i2, int i3) {
+        this.mPreviewStatus = 0;
         long currentTimeMillis = System.currentTimeMillis();
         this.mTimestamp = image.getTimestamp();
         this.mWidth = image.getWidth();
         this.mHeight = image.getHeight();
         this.mFormat = image.getFormat();
         this.mData = convertYUV420ToNV21(image, i, i2);
+        this.mOrientation = i3;
+        this.mPreviewStatus = 2;
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("QRCodeManager convertYUV420ToNV21: cost = ");
+        stringBuilder.append("PreviewDecodeManager convertYUV420ToNV21: cost = ");
         stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
         stringBuilder.append("ms");
         Log.d(str, stringBuilder.toString());
+    }
+
+    public PreviewImage(Image image, int i) {
+        this(image, image.getWidth(), image.getHeight(), i);
     }
 
     public byte[] getData() {
@@ -46,6 +66,14 @@ public class PreviewImage {
 
     public int getFormat() {
         return this.mFormat;
+    }
+
+    public int getOrientation() {
+        return this.mOrientation;
+    }
+
+    public int getCameraId() {
+        return this.mCameraId;
     }
 
     public String toString() {
@@ -89,7 +117,6 @@ public class PreviewImage {
         buffer2.get(bArr, limit, limit2);
         double d = ((double) (i * i2)) * 1.5d;
         if (((double) bArr.length) <= d) {
-            Log.d(TAG, "removePadding: no padding found in data");
             return bArr;
         }
         int rowStride = image.getPlanes()[0].getRowStride();
@@ -122,5 +149,9 @@ public class PreviewImage {
             i4 += i;
             i3++;
         }
+    }
+
+    public int getPreviewStatus() {
+        return this.mPreviewStatus;
     }
 }

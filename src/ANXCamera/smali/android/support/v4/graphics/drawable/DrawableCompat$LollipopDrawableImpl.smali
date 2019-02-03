@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 153
     invoke-direct {p0}, Landroid/support/v4/graphics/drawable/DrawableCompat$KitKatDrawableImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public setHotspot(Landroid/graphics/drawable/Drawable;FF)V
-    .locals 0
+    .registers 4
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
     .param p2, "x"    # F
     .param p3, "y"    # F
@@ -40,7 +40,7 @@
 .end method
 
 .method public setHotspotBounds(Landroid/graphics/drawable/Drawable;IIII)V
-    .locals 0
+    .registers 6
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
     .param p2, "left"    # I
     .param p3, "top"    # I
@@ -55,7 +55,7 @@
 .end method
 
 .method public setTint(Landroid/graphics/drawable/Drawable;I)V
-    .locals 0
+    .registers 3
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
     .param p2, "tint"    # I
 
@@ -67,7 +67,7 @@
 .end method
 
 .method public setTintList(Landroid/graphics/drawable/Drawable;Landroid/content/res/ColorStateList;)V
-    .locals 0
+    .registers 3
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
     .param p2, "tint"    # Landroid/content/res/ColorStateList;
 
@@ -79,7 +79,7 @@
 .end method
 
 .method public setTintMode(Landroid/graphics/drawable/Drawable;Landroid/graphics/PorterDuff$Mode;)V
-    .locals 0
+    .registers 3
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
     .param p2, "tintMode"    # Landroid/graphics/PorterDuff$Mode;
 
@@ -91,7 +91,7 @@
 .end method
 
 .method public wrap(Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
-    .locals 1
+    .registers 3
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 181

@@ -1,6 +1,6 @@
 .class public final Lmiui/R$dimen;
 .super Ljava/lang/Object;
-.source "SourceFile"
+.source "R.java"
 
 
 # annotations
@@ -54,94 +54,94 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
-    .line 1259
+    .line 1281
     const v0, 0x100a0004
 
     sput v0, Lmiui/R$dimen;->button_text_size:I
 
-    .line 1263
+    .line 1285
     const v0, 0x100a0005
 
     sput v0, Lmiui/R$dimen;->dialog_custom_vertical_padding:I
 
-    .line 1270
+    .line 1292
     const v0, 0x100a0001
 
     sput v0, Lmiui/R$dimen;->large_text_size:I
 
-    .line 1301
+    .line 1323
     const v0, 0x100a000a
 
     sput v0, Lmiui/R$dimen;->list_preferred_item_height:I
 
-    .line 1302
+    .line 1324
     const v0, 0x100a000b
 
     sput v0, Lmiui/R$dimen;->list_preferred_item_height_large:I
 
-    .line 1303
+    .line 1325
     const v0, 0x100a0009
 
     sput v0, Lmiui/R$dimen;->list_preferred_item_height_small:I
 
-    .line 1310
+    .line 1332
     const v0, 0x100a0007
 
     sput v0, Lmiui/R$dimen;->listview_horizontal_padding:I
 
-    .line 1332
+    .line 1354
     const/high16 v0, 0x100a0000
 
     sput v0, Lmiui/R$dimen;->normal_text_size:I
 
-    .line 1333
+    .line 1355
     const v0, 0x100a000e
 
     sput v0, Lmiui/R$dimen;->preference_child_padding_side:I
 
-    .line 1340
+    .line 1362
     const v0, 0x100a0006
 
     sput v0, Lmiui/R$dimen;->preference_custom_widget_margin_right:I
 
-    .line 1341
+    .line 1363
     const v0, 0x100a0010
 
     sput v0, Lmiui/R$dimen;->preference_dialog_edittext_padding_side:I
 
-    .line 1342
+    .line 1364
     const v0, 0x100a0008
 
     sput v0, Lmiui/R$dimen;->preference_horizontal_extra_padding:I
 
-    .line 1343
+    .line 1365
     const v0, 0x100a000c
 
     sput v0, Lmiui/R$dimen;->preference_item_padding_inner:I
 
-    .line 1350
+    .line 1372
     const v0, 0x100a000d
 
     sput v0, Lmiui/R$dimen;->preference_item_padding_side:I
 
-    .line 1351
+    .line 1373
     const v0, 0x100a0011
 
     sput v0, Lmiui/R$dimen;->preference_screen_padding_bottom:I
 
-    .line 1352
+    .line 1374
     const v0, 0x100a000f
 
     sput v0, Lmiui/R$dimen;->preference_widget_width:I
 
-    .line 1369
+    .line 1391
     const v0, 0x100a0003
 
     sput v0, Lmiui/R$dimen;->secondary_text_size:I
 
-    .line 1378
+    .line 1400
     const v0, 0x100a0002
 
     sput v0, Lmiui/R$dimen;->small_text_size:I
@@ -150,9 +150,9 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
-    .line 1250
+    .line 1272
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

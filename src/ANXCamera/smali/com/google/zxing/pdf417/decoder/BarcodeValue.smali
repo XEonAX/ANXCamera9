@@ -18,7 +18,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 30
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -37,7 +37,7 @@
 
 # virtual methods
 .method public getConfidence(I)Ljava/lang/Integer;
-    .locals 2
+    .registers 4
     .param p1, "value"    # I
 
     .line 65
@@ -57,7 +57,7 @@
 .end method
 
 .method getValue()[I
-    .locals 5
+    .registers 6
 
     .line 50
     const/4 v0, -0x1
@@ -80,13 +80,13 @@
 
     move-result-object v2
 
-    :cond_0
-    :goto_0
+    :cond_10
+    :goto_10
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-nez v3, :cond_1
+    if-nez v3, :cond_1b
 
     .line 61
     invoke-static {v1}, Lcom/google/zxing/pdf417/PDF417Common;->toIntArray(Ljava/util/Collection;)[I
@@ -96,7 +96,7 @@
     return-object v2
 
     .line 52
-    :cond_1
+    :cond_1b
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v3
@@ -115,7 +115,7 @@
 
     move-result v4
 
-    if-le v4, v0, :cond_2
+    if-le v4, v0, :cond_44
 
     .line 54
     invoke-interface {v3}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
@@ -141,9 +141,9 @@
     invoke-interface {v1, v4}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
 
     .line 57
-    goto :goto_0
+    goto :goto_10
 
-    :cond_2
+    :cond_44
     invoke-interface {v3}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
 
     move-result-object v4
@@ -154,7 +154,7 @@
 
     move-result v4
 
-    if-ne v4, v0, :cond_0
+    if-ne v4, v0, :cond_10
 
     .line 58
     invoke-interface {v3}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
@@ -166,11 +166,11 @@
     invoke-interface {v1, v4}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
 
     .end local v3    # "entry":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Ljava/lang/Integer;Ljava/lang/Integer;>;"
-    goto :goto_0
+    goto :goto_10
 .end method
 
 .method setValue(I)V
-    .locals 3
+    .registers 5
     .param p1, "value"    # I
 
     .line 37
@@ -188,7 +188,7 @@
 
     .line 38
     .local v0, "confidence":Ljava/lang/Integer;
-    if-nez v0, :cond_0
+    if-nez v0, :cond_13
 
     .line 39
     const/4 v1, 0x0
@@ -198,7 +198,7 @@
     move-result-object v0
 
     .line 41
-    :cond_0
+    :cond_13
     invoke-virtual {v0}, Ljava/lang/Integer;->intValue()I
 
     move-result v1

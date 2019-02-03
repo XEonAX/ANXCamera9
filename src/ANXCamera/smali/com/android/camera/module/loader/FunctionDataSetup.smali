@@ -18,10 +18,10 @@
 .method public constructor <init>(I)V
     .locals 0
 
-    .line 26
+    .line 27
     invoke-direct {p0, p1}, Lcom/android/camera/module/loader/Func1Base;-><init>(I)V
 
-    .line 27
+    .line 28
     return-void
 .end method
 
@@ -51,17 +51,17 @@
         }
     .end annotation
 
-    .line 37
+    .line 38
     invoke-virtual {p1}, Lcom/android/camera/module/loader/NullHolder;->isPresent()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 38
+    .line 39
     return-object p1
 
-    .line 41
+    .line 42
     :cond_0
     invoke-virtual {p1}, Lcom/android/camera/module/loader/NullHolder;->get()Ljava/lang/Object;
 
@@ -69,14 +69,14 @@
 
     check-cast v0, Lcom/android/camera/module/BaseModule;
 
-    .line 43
+    .line 44
     invoke-virtual {v0}, Lcom/android/camera/module/BaseModule;->isDeparted()Z
 
     move-result v1
 
     if-eqz v1, :cond_1
 
-    .line 44
+    .line 45
     const/16 p1, 0xe1
 
     invoke-static {v0, p1}, Lcom/android/camera/module/loader/NullHolder;->ofNullable(Ljava/lang/Object;I)Lcom/android/camera/module/loader/NullHolder;
@@ -85,7 +85,7 @@
 
     return-object p1
 
-    .line 48
+    .line 49
     :cond_1
     invoke-virtual {v0}, Lcom/android/camera/module/BaseModule;->isCreated()Z
 
@@ -93,21 +93,21 @@
 
     if-nez v1, :cond_2
 
-    .line 49
+    .line 50
     return-object p1
 
-    .line 52
+    .line 53
     :cond_2
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
 
     move-result-object v1
 
-    .line 53
+    .line 54
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
 
     move-result-object v2
 
-    .line 56
+    .line 57
     iget v3, p0, Lcom/android/camera/module/loader/FunctionDataSetup;->mTargetMode:I
 
     invoke-virtual {v0}, Lcom/android/camera/module/BaseModule;->getCameraCapabilities()Lcom/android/camera2/CameraCapabilities;
@@ -116,15 +116,15 @@
 
     invoke-virtual {v2, v3, v4}, Lcom/android/camera/data/data/config/DataItemConfig;->reInitComponent(ILcom/android/camera2/CameraCapabilities;)V
 
-    .line 59
+    .line 60
     invoke-virtual {v1}, Lcom/android/camera/data/data/global/DataItemGlobal;->reInit()V
 
-    .line 62
+    .line 63
     invoke-virtual {v0}, Lcom/android/camera/module/BaseModule;->getPreviewSize()Lcom/android/camera/CameraSize;
 
     move-result-object v0
 
-    .line 63
+    .line 64
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
     move-result-object v1
@@ -133,15 +133,15 @@
 
     iget v0, v0, Lcom/android/camera/CameraSize;->height:I
 
-    .line 64
+    .line 65
     invoke-static {v2, v0}, Lcom/android/camera/CameraSettings;->getUIStyleByPreview(II)I
 
     move-result v0
 
-    .line 63
+    .line 64
     invoke-virtual {v1, v0}, Lcom/android/camera/data/data/runing/DataItemRunning;->setUiStyle(I)V
 
-    .line 66
+    .line 67
     return-object p1
 .end method
 
@@ -157,7 +157,7 @@
         }
     .end annotation
 
-    .line 23
+    .line 24
     check-cast p1, Lcom/android/camera/module/loader/NullHolder;
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/loader/FunctionDataSetup;->apply(Lcom/android/camera/module/loader/NullHolder;)Lcom/android/camera/module/loader/NullHolder;
@@ -170,7 +170,7 @@
 .method public getWorkThread()Lio/reactivex/Scheduler;
     .locals 1
 
-    .line 31
+    .line 32
     sget-object v0, Lcom/android/camera/constant/GlobalConstant;->sCameraSetupScheduler:Lio/reactivex/Scheduler;
 
     return-object v0

@@ -28,7 +28,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 1275
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -39,7 +39,7 @@
 
 # virtual methods
 .method public createFromParcel(Landroid/os/Parcel;Ljava/lang/ClassLoader;)Landroid/support/v4/view/ViewPager$SavedState;
-    .locals 1
+    .registers 4
     .param p1, "in"    # Landroid/os/Parcel;
     .param p2, "loader"    # Ljava/lang/ClassLoader;
 
@@ -52,7 +52,7 @@
 .end method
 
 .method public bridge synthetic createFromParcel(Landroid/os/Parcel;Ljava/lang/ClassLoader;)Ljava/lang/Object;
-    .locals 1
+    .registers 4
     .param p1, "x0"    # Landroid/os/Parcel;
     .param p2, "x1"    # Ljava/lang/ClassLoader;
 
@@ -65,7 +65,7 @@
 .end method
 
 .method public newArray(I)[Landroid/support/v4/view/ViewPager$SavedState;
-    .locals 1
+    .registers 3
     .param p1, "size"    # I
 
     .line 1282
@@ -75,7 +75,7 @@
 .end method
 
 .method public bridge synthetic newArray(I)[Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p1, "x0"    # I
 
     .line 1275

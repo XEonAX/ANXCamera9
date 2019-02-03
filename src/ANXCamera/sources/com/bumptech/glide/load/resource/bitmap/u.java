@@ -11,7 +11,7 @@ import java.security.MessageDigest;
 /* compiled from: RoundedCorners */
 public final class u extends g {
     private static final String ID = "com.bumptech.glide.load.resource.bitmap.RoundedCorners";
-    private static final byte[] jW = ID.getBytes(cT);
+    private static final byte[] jW = ID.getBytes(cU);
     private final int la;
 
     public u(int i) {

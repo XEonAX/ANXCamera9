@@ -32,7 +32,7 @@
     .end annotation
 .end field
 
-.field private final dv:Landroid/content/ContentResolver;
+.field private final dw:Landroid/content/ContentResolver;
 
 .field private final uri:Landroid/net/Uri;
 
@@ -45,7 +45,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 36
-    iput-object p1, p0, Lcom/bumptech/glide/load/a/l;->dv:Landroid/content/ContentResolver;
+    iput-object p1, p0, Lcom/bumptech/glide/load/a/l;->dw:Landroid/content/ContentResolver;
 
     .line 37
     iput-object p2, p0, Lcom/bumptech/glide/load/a/l;->uri:Landroid/net/Uri;
@@ -79,7 +79,7 @@
     :try_start_0
     iget-object p1, p0, Lcom/bumptech/glide/load/a/l;->uri:Landroid/net/Uri;
 
-    iget-object v0, p0, Lcom/bumptech/glide/load/a/l;->dv:Landroid/content/ContentResolver;
+    iget-object v0, p0, Lcom/bumptech/glide/load/a/l;->dw:Landroid/content/ContentResolver;
 
     invoke-virtual {p0, p1, v0}, Lcom/bumptech/glide/load/a/l;->b(Landroid/net/Uri;Landroid/content/ContentResolver;)Ljava/lang/Object;
 
@@ -136,7 +136,7 @@
     .end annotation
 
     .line 74
-    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cr:Lcom/bumptech/glide/load/DataSource;
+    sget-object v0, Lcom/bumptech/glide/load/DataSource;->ct:Lcom/bumptech/glide/load/DataSource;
 
     return-object v0
 .end method

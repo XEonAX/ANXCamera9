@@ -13,20 +13,20 @@
     return-void
 .end method
 
-.method public static getSuperClassGenricType(Ljava/lang/Class;)Ljava/lang/Class;
+.method public static getSuperClassGenericType(Ljava/lang/Class;)Ljava/lang/Class;
     .locals 1
 
     .line 15
     const/4 v0, 0x0
 
-    invoke-static {p0, v0}, Lcom/ss/android/ugc/effectmanager/common/utils/GenericsUtils;->getSuperClassGenricType(Ljava/lang/Class;I)Ljava/lang/Class;
+    invoke-static {p0, v0}, Lcom/ss/android/ugc/effectmanager/common/utils/GenericsUtils;->getSuperClassGenericType(Ljava/lang/Class;I)Ljava/lang/Class;
 
     move-result-object p0
 
     return-object p0
 .end method
 
-.method public static getSuperClassGenricType(Ljava/lang/Class;I)Ljava/lang/Class;
+.method public static getSuperClassGenericType(Ljava/lang/Class;I)Ljava/lang/Class;
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
         value = {

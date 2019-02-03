@@ -25,7 +25,7 @@
 .method private constructor <init>(Lcom/android/camera/fragment/live/FragmentLiveBase;)V
     .locals 0
 
-    .line 63
+    .line 64
     iput-object p1, p0, Lcom/android/camera/fragment/live/FragmentLiveBase$ExitAnimationListener;->this$0:Lcom/android/camera/fragment/live/FragmentLiveBase;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -36,7 +36,7 @@
 .method synthetic constructor <init>(Lcom/android/camera/fragment/live/FragmentLiveBase;Lcom/android/camera/fragment/live/FragmentLiveBase$1;)V
     .locals 0
 
-    .line 63
+    .line 64
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/live/FragmentLiveBase$ExitAnimationListener;-><init>(Lcom/android/camera/fragment/live/FragmentLiveBase;)V
 
     return-void
@@ -47,7 +47,7 @@
 .method public onAnimationEnd(Landroid/view/animation/Animation;)V
     .locals 2
 
-    .line 71
+    .line 72
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
@@ -60,12 +60,12 @@
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;
 
-    .line 72
+    .line 73
     if-eqz p1, :cond_0
 
-    const v0, 0x7f0d0018
+    const v0, 0x7f0d001a
 
-    .line 73
+    .line 74
     invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->getActiveFragment(I)I
 
     move-result v0
@@ -74,12 +74,12 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 75
+    .line 76
     const/16 v0, 0xa
 
     invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->delegateEvent(I)V
 
-    .line 77
+    .line 78
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/live/FragmentLiveBase$ExitAnimationListener;->this$0:Lcom/android/camera/fragment/live/FragmentLiveBase;
 
@@ -87,7 +87,7 @@
 
     if-eqz p1, :cond_2
 
-    .line 78
+    .line 79
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
@@ -100,7 +100,7 @@
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$CameraAction;
 
-    .line 80
+    .line 81
     if-eqz p1, :cond_1
 
     invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$CameraAction;->isDoingAction()Z
@@ -109,7 +109,7 @@
 
     if-nez p1, :cond_1
 
-    .line 82
+    .line 83
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
@@ -122,10 +122,10 @@
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;
 
-    .line 83
+    .line 84
     invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->reInitTipImage()V
 
-    .line 85
+    .line 86
     :cond_1
     iget-object p1, p0, Lcom/android/camera/fragment/live/FragmentLiveBase$ExitAnimationListener;->this$0:Lcom/android/camera/fragment/live/FragmentLiveBase;
 
@@ -133,7 +133,7 @@
 
     iput-boolean v0, p1, Lcom/android/camera/fragment/live/FragmentLiveBase;->mRemoveFragment:Z
 
-    .line 87
+    .line 88
     :cond_2
     return-void
 .end method
@@ -141,13 +141,13 @@
 .method public onAnimationRepeat(Landroid/view/animation/Animation;)V
     .locals 0
 
-    .line 92
+    .line 93
     return-void
 .end method
 
 .method public onAnimationStart(Landroid/view/animation/Animation;)V
     .locals 0
 
-    .line 66
+    .line 67
     return-void
 .end method

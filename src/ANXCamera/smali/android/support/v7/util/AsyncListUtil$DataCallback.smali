@@ -25,7 +25,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 447
     .local p0, "this":Landroid/support/v7/util/AsyncListUtil$DataCallback;, "Landroid/support/v7/util/AsyncListUtil$DataCallback<TT;>;"
@@ -48,7 +48,7 @@
 .end method
 
 .method public getMaxCachedTiles()I
-    .locals 1
+    .registers 2
     .annotation build Landroid/support/annotation/WorkerThread;
     .end annotation
 
@@ -60,7 +60,7 @@
 .end method
 
 .method public recycleData([Ljava/lang/Object;I)V
-    .locals 0
+    .registers 3
     .param p2, "itemCount"    # I
     .annotation build Landroid/support/annotation/WorkerThread;
     .end annotation

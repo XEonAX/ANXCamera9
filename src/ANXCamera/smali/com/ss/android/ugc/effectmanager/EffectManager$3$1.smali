@@ -29,7 +29,7 @@
 .method constructor <init>(Lcom/ss/android/ugc/effectmanager/EffectManager$3;Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;Ljava/lang/String;)V
     .locals 0
 
-    .line 202
+    .line 215
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$3$1;->this$1:Lcom/ss/android/ugc/effectmanager/EffectManager$3;
 
     iput-object p2, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$3$1;->val$response:Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;
@@ -46,21 +46,21 @@
 .method public onFail(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
     .locals 1
 
-    .line 216
+    .line 229
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$3$1;->this$1:Lcom/ss/android/ugc/effectmanager/EffectManager$3;
 
     iget-object v0, v0, Lcom/ss/android/ugc/effectmanager/EffectManager$3;->val$iFetchEffectChannelListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectChannelListener;
 
     if-eqz v0, :cond_0
 
-    .line 217
+    .line 230
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$3$1;->this$1:Lcom/ss/android/ugc/effectmanager/EffectManager$3;
 
     iget-object v0, v0, Lcom/ss/android/ugc/effectmanager/EffectManager$3;->val$iFetchEffectChannelListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectChannelListener;
 
     invoke-interface {v0, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectChannelListener;->onFail(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 218
+    .line 231
     :cond_0
     return-void
 .end method
@@ -76,40 +76,38 @@
         }
     .end annotation
 
-    .line 206
+    .line 219
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$3$1;->this$1:Lcom/ss/android/ugc/effectmanager/EffectManager$3;
 
     iget-object v0, v0, Lcom/ss/android/ugc/effectmanager/EffectManager$3;->this$0:Lcom/ss/android/ugc/effectmanager/EffectManager;
 
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$3$1;->val$response:Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;
 
-    invoke-static {v0, v1, p1}, Lcom/ss/android/ugc/effectmanager/EffectManager;->access$300(Lcom/ss/android/ugc/effectmanager/EffectManager;Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;Ljava/util/List;)Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;
+    invoke-static {v0, v1, p1}, Lcom/ss/android/ugc/effectmanager/EffectManager;->access$100(Lcom/ss/android/ugc/effectmanager/EffectManager;Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;Ljava/util/List;)Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;
 
     move-result-object p1
 
-    .line 207
+    .line 220
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$3$1;->this$1:Lcom/ss/android/ugc/effectmanager/EffectManager$3;
 
     iget-object v0, v0, Lcom/ss/android/ugc/effectmanager/EffectManager$3;->val$iFetchEffectChannelListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectChannelListener;
 
     if-eqz v0, :cond_0
 
-    .line 208
+    .line 221
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$3$1;->this$1:Lcom/ss/android/ugc/effectmanager/EffectManager$3;
 
     iget-object v0, v0, Lcom/ss/android/ugc/effectmanager/EffectManager$3;->val$iFetchEffectChannelListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectChannelListener;
 
     invoke-interface {v0, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectChannelListener;->onSuccess(Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;)V
 
-    .line 210
+    .line 223
     :cond_0
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$3$1;->this$1:Lcom/ss/android/ugc/effectmanager/EffectManager$3;
 
     iget-object p1, p1, Lcom/ss/android/ugc/effectmanager/EffectManager$3;->this$0:Lcom/ss/android/ugc/effectmanager/EffectManager;
 
-    invoke-static {p1}, Lcom/ss/android/ugc/effectmanager/EffectManager;->access$100(Lcom/ss/android/ugc/effectmanager/EffectManager;)Lcom/ss/android/ugc/effectmanager/common/listener/ICache;
-
-    move-result-object p1
+    iget-object p1, p1, Lcom/ss/android/ugc/effectmanager/EffectManager;->mCache:Lcom/ss/android/ugc/effectmanager/common/listener/ICache;
 
     new-instance v0, Ljava/lang/StringBuilder;
 
@@ -135,6 +133,6 @@
 
     invoke-interface {p1, v0, v1}, Lcom/ss/android/ugc/effectmanager/common/listener/ICache;->save(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 211
+    .line 224
     return-void
 .end method

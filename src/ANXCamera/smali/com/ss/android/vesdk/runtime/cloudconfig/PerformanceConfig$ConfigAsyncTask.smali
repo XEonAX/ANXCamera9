@@ -28,7 +28,7 @@
 .method private constructor <init>()V
     .locals 0
 
-    .line 390
+    .line 552
     invoke-direct {p0}, Landroid/os/AsyncTask;-><init>()V
 
     return-void
@@ -37,7 +37,7 @@
 .method synthetic constructor <init>(Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig$1;)V
     .locals 0
 
-    .line 390
+    .line 552
     invoke-direct {p0}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig$ConfigAsyncTask;-><init>()V
 
     return-void
@@ -48,7 +48,7 @@
 .method protected bridge synthetic doInBackground([Ljava/lang/Object;)Ljava/lang/Object;
     .locals 0
 
-    .line 390
+    .line 552
     check-cast p1, [Ljava/lang/Void;
 
     invoke-virtual {p0, p1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig$ConfigAsyncTask;->doInBackground([Ljava/lang/Void;)Ljava/lang/Void;
@@ -59,9 +59,9 @@
 .end method
 
 .method protected varargs doInBackground([Ljava/lang/Void;)Ljava/lang/Void;
-    .locals 5
+    .locals 7
 
-    .line 395
+    .line 557
     :try_start_0
     invoke-static {}, Lcom/ss/android/vesdk/runtime/VERuntime;->getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
 
@@ -71,36 +71,36 @@
 
     move-result-object p1
 
-    .line 396
+    .line 558
     invoke-static {}, Lcom/ss/android/vesdk/runtime/cloudconfig/DeviceInfoDetector;->toMap()Ljava/util/Map;
 
     move-result-object v0
 
-    .line 397
+    .line 559
     invoke-virtual {p1}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
 
     move-result-object p1
 
-    .line 398
+    .line 560
     const-string v1, "package_name"
 
     invoke-interface {v0, v1, p1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 399
+    .line 561
     const-string p1, "model"
 
     sget-object v1, Landroid/os/Build;->MODEL:Ljava/lang/String;
 
     invoke-interface {v0, p1, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 400
+    .line 562
     const-string p1, "os_version"
 
     sget-object v1, Landroid/os/Build$VERSION;->RELEASE:Ljava/lang/String;
 
     invoke-interface {v0, p1, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 403
+    .line 565
     const-string p1, "local"
 
     invoke-static {}, Ljava/util/Locale;->getDefault()Ljava/util/Locale;
@@ -113,29 +113,29 @@
 
     invoke-interface {v0, p1, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 404
+    .line 566
     const-string p1, "platform"
 
     const-string v1, "android"
 
     invoke-interface {v0, p1, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 406
+    .line 568
     const-string p1, "https://effect.snssdk.com/devicehub/getSettings?"
 
-    .line 407
+    .line 569
     const/4 v1, 0x1
 
     invoke-static {p1, v0, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/HttpRequest;->get(Ljava/lang/CharSequence;Ljava/util/Map;Z)Lcom/ss/android/vesdk/runtime/cloudconfig/HttpRequest;
 
     move-result-object p1
 
-    .line 411
+    .line 573
     invoke-virtual {p1}, Lcom/ss/android/vesdk/runtime/cloudconfig/HttpRequest;->body()Ljava/lang/String;
 
     move-result-object p1
 
-    .line 412
+    .line 574
     const-string v0, "PerfConfig"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -156,34 +156,34 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
 
-    .line 414
+    .line 576
     :try_start_1
     new-instance v0, Lorg/json/JSONObject;
 
     invoke-direct {v0, p1}, Lorg/json/JSONObject;-><init>(Ljava/lang/String;)V
 
-    .line 415
+    .line 577
     const-string p1, "code"
 
     invoke-virtual {v0, p1}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
 
     move-result p1
 
-    if-nez p1, :cond_4
+    if-nez p1, :cond_2
 
-    .line 416
+    .line 578
     const-string p1, "data"
 
     invoke-virtual {v0, p1}, Lorg/json/JSONObject;->getJSONObject(Ljava/lang/String;)Lorg/json/JSONObject;
 
     move-result-object p1
 
-    .line 417
+    .line 579
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
-    .line 418
+    .line 580
     sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
@@ -195,7 +195,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_3
+    if-eqz v3, :cond_1
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -203,7 +203,7 @@
 
     check-cast v3, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
-    .line 419
+    .line 581
     iget-object v4, v3, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
 
     invoke-virtual {p1, v4}, Lorg/json/JSONObject;->has(Ljava/lang/String;)Z
@@ -212,34 +212,32 @@
 
     if-nez v4, :cond_0
 
-    .line 420
+    .line 582
+    const-string v4, "PerfConfig"
+
+    new-instance v5, Ljava/lang/StringBuilder;
+
+    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v6, "Configuration field not available for this config:"
+
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget-object v3, v3, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    invoke-virtual {v5, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v4, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 583
     goto :goto_0
 
-    .line 422
+    .line 585
     :cond_0
-    iget v4, v3, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->type:I
-
-    if-eqz v4, :cond_2
-
-    iget v4, v3, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->type:I
-
-    if-ne v4, v1, :cond_1
-
-    goto :goto_1
-
-    .line 425
-    :cond_1
-    new-instance p1, Ljava/lang/IllegalStateException;
-
-    const-string v0, "Not supported"
-
-    invoke-direct {p1, v0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
-
-    throw p1
-
-    .line 423
-    :cond_2
-    :goto_1
     iget-object v4, v3, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
 
     invoke-static {v3, p1, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->doubtingFilter(Lcom/ss/android/vesdk/runtime/cloudconfig/Config;Lorg/json/JSONObject;Z)Ljava/lang/String;
@@ -248,11 +246,11 @@
 
     invoke-interface {v0, v4, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 427
+    .line 586
     goto :goto_0
 
-    .line 428
-    :cond_3
+    .line 587
+    :cond_1
     invoke-static {}, Lcom/ss/android/vesdk/runtime/VERuntime;->getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
 
     move-result-object p1
@@ -263,11 +261,11 @@
 
     invoke-static {p1, v0}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->setPerformanceConfig(Landroid/content/Context;Ljava/util/Map;)V
 
-    .line 430
-    goto :goto_2
+    .line 589
+    goto :goto_1
 
-    .line 431
-    :cond_4
+    .line 590
+    :cond_2
     const-string p1, "PerfConfig"
 
     const-string v1, "Config return code not 0."
@@ -301,15 +299,15 @@
     .catch Lorg/json/JSONException; {:try_start_1 .. :try_end_1} :catch_0
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
 
-    .line 436
-    :goto_2
-    goto :goto_3
+    .line 595
+    :goto_1
+    goto :goto_2
 
-    .line 433
+    .line 592
     :catch_0
     move-exception p1
 
-    .line 434
+    .line 593
     :try_start_2
     const-string v0, "PerfConfig"
 
@@ -317,28 +315,28 @@
 
     invoke-static {v0, v1, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 435
+    .line 594
     invoke-virtual {p1}, Lorg/json/JSONException;->printStackTrace()V
     :try_end_2
     .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
 
-    .line 439
-    :goto_3
-    goto :goto_4
+    .line 598
+    :goto_2
+    goto :goto_3
 
-    .line 437
+    .line 596
     :catch_1
     move-exception p1
 
-    .line 438
+    .line 597
     const-string v0, "PerfConfig"
 
     const-string v1, "Fetch config failed! "
 
     invoke-static {v0, v1, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 440
-    :goto_4
+    .line 599
+    :goto_3
     const/4 p1, 0x0
 
     return-object p1
@@ -347,7 +345,7 @@
 .method protected bridge synthetic onPostExecute(Ljava/lang/Object;)V
     .locals 0
 
-    .line 390
+    .line 552
     check-cast p1, Ljava/lang/Void;
 
     invoke-virtual {p0, p1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig$ConfigAsyncTask;->onPostExecute(Ljava/lang/Void;)V
@@ -358,6 +356,6 @@
 .method protected onPostExecute(Ljava/lang/Void;)V
     .locals 0
 
-    .line 446
+    .line 605
     return-void
 .end method

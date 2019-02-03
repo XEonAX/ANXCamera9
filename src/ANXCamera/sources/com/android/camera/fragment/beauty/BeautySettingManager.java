@@ -1,11 +1,13 @@
 package com.android.camera.fragment.beauty;
 
+import android.util.Log;
 import android.util.SparseArray;
 import com.android.camera.fragment.beauty.BeautyParameters.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BeautySettingManager {
+    private static final String TAG = BeautySettingManager.class.getSimpleName();
     private static List<Type> mBackSupportedBeautyType;
     private static List<Type> mFrontSupportedBeautyType;
     private static List<Type> mLegacySupportedBeautyType;
@@ -30,28 +32,37 @@ public class BeautySettingManager {
         this.mCurrentBeautySetting = (IBeautySettingBusiness) this.mBeautySettingBusinessArray.get(this.mBeautyType);
         if (this.mCurrentBeautySetting == null) {
             int i = this.mBeautyType;
-            IBeautySettingBusiness beautyModeSettingBusiness;
-            if (i != 5) {
+            IBeautySettingBusiness beautyBodySettingBusiness;
+            if (i == 5) {
+                beautyBodySettingBusiness = new BeautyBodySettingBusiness();
+                this.mCurrentBeautySetting = beautyBodySettingBusiness;
+                this.mBeautySettingBusinessArray.put(this.mBeautyType, beautyBodySettingBusiness);
+            } else if (i != 7) {
                 switch (i) {
                     case 2:
-                        beautyModeSettingBusiness = new BeautyModeSettingBusiness();
-                        this.mCurrentBeautySetting = beautyModeSettingBusiness;
-                        this.mBeautySettingBusinessArray.put(this.mBeautyType, beautyModeSettingBusiness);
+                        beautyBodySettingBusiness = new BeautyModeSettingBusiness();
+                        this.mCurrentBeautySetting = beautyBodySettingBusiness;
+                        this.mBeautySettingBusinessArray.put(this.mBeautyType, beautyBodySettingBusiness);
                         break;
                     case 3:
-                        beautyModeSettingBusiness = new BeautyMakeupSettingBusiness();
-                        this.mCurrentBeautySetting = beautyModeSettingBusiness;
-                        this.mBeautySettingBusinessArray.put(this.mBeautyType, beautyModeSettingBusiness);
+                        beautyBodySettingBusiness = new BeautyMakeupSettingBusiness();
+                        this.mCurrentBeautySetting = beautyBodySettingBusiness;
+                        this.mBeautySettingBusinessArray.put(this.mBeautyType, beautyBodySettingBusiness);
                         break;
                 }
+            } else {
+                beautyBodySettingBusiness = new LiveBeautyModeSetting();
+                this.mCurrentBeautySetting = beautyBodySettingBusiness;
+                this.mBeautySettingBusinessArray.put(this.mBeautyType, beautyBodySettingBusiness);
             }
-            beautyModeSettingBusiness = new BeautyBodySettingBusiness();
-            this.mCurrentBeautySetting = beautyModeSettingBusiness;
-            this.mBeautySettingBusinessArray.put(this.mBeautyType, beautyModeSettingBusiness);
         }
     }
 
     public IBeautySettingBusiness getCurrentBeautySettingBusiness() {
+        if (this.mCurrentBeautySetting == null) {
+            Log.w(TAG, "The current BeautySetting is empty!!!!!!!!");
+            updateBeautySettingBusiness();
+        }
         return this.mCurrentBeautySetting;
     }
 

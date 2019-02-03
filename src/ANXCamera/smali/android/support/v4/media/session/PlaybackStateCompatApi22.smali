@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 25
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getExtras(Ljava/lang/Object;)Landroid/os/Bundle;
-    .locals 1
+    .registers 2
     .param p0, "stateObj"    # Ljava/lang/Object;
 
     .line 27
@@ -30,7 +30,7 @@
 .end method
 
 .method public static newInstance(IJJFJLjava/lang/CharSequence;JLjava/util/List;JLandroid/os/Bundle;)Ljava/lang/Object;
-    .locals 10
+    .registers 25
     .param p0, "state"    # I
     .param p1, "position"    # J
     .param p3, "bufferedPosition"    # J
@@ -95,12 +95,12 @@
     move-result-object v6
 
     .local v6, "i$":Ljava/util/Iterator;
-    :goto_0
+    :goto_20
     invoke-interface {v6}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v7
 
-    if-eqz v7, :cond_0
+    if-eqz v7, :cond_31
 
     invoke-interface {v6}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -116,11 +116,11 @@
 
     .line 41
     .end local v7    # "customAction":Ljava/lang/Object;
-    goto :goto_0
+    goto :goto_20
 
     .line 42
     .end local v6    # "i$":Ljava/util/Iterator;
-    :cond_0
+    :cond_31
     move-wide/from16 v6, p12
 
     invoke-virtual {v0, v6, v7}, Landroid/media/session/PlaybackState$Builder;->setActiveQueueItemId(J)Landroid/media/session/PlaybackState$Builder;

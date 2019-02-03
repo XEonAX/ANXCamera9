@@ -6,12 +6,18 @@ import com.android.camera.data.data.config.ComponentConfigFilter;
 import com.android.camera.log.Log;
 
 public class DataItemRunning extends DataItemBase {
+    public static final String DATA_RUNING_HAND_GESTURE = "pref_hand_gesture";
+    public static final String DATA_RUNING_MENU_ULTRA_PIXEL_PHOTOGRAPHY_FRONT = "pref_menu_ultra_pixel_photography_front";
+    public static final String DATA_RUNING_MENU_ULTRA_PIXEL_PHOTOGRAPHY_REAR = "pref_menu_ultra_pixel_photography_rear";
+    public static final String DATA_RUNNING_AUTO_ZOOM = "pref_camera_auto_zoom";
     public static final String DATA_RUNNING_FILTER_INDEX = "pref_camera_shader_coloreffect_key";
     public static final String DATA_RUNNING_FOCUS_PEAK = "pref_camera_peak_key";
     public static final String DATA_RUNNING_GENDER_AGE = "pref_camera_show_gender_age_key";
     public static final String DATA_RUNNING_GRADIENTER = "pref_camera_gradienter_key";
     public static final String DATA_RUNNING_GROUP_SELFIES = "pref_camera_groupshot_mode_key";
     public static final String DATA_RUNNING_HHT = "pref_camera_hand_night_key";
+    public static final String DATA_RUNNING_LIVE_CONFIG_IS_NEED_RESTORE = "pref_live_config_is_need_restore";
+    public static final String DATA_RUNNING_LIVE_MUSIC_FIRST_REQUEST_TIME = "pref_key_live_music_first_request_time";
     public static final String DATA_RUNNING_LIVE_SHOT = "pref_live_shot_enabled";
     public static final String DATA_RUNNING_MAGIC_FOCUS = "pref_camera_ubifocus_key";
     public static final String DATA_RUNNING_MAGIC_MIRROR = "pref_camera_magic_mirror_key";
@@ -31,7 +37,6 @@ public class DataItemRunning extends DataItemBase {
     public static final String DATA_RUNNING_VIDEO_FAST = "pref_video_speed_fast_key";
     public static final String DATA_RUNNING_VIDEO_HFR = "pref_video_speed_hfr_key";
     public static final String DATA_RUNNING_VIDEO_SLOW = "pref_video_speed_slow_key";
-    public static final String DATA_RUNNINT_LIVE_CONFIG_IS_NEED_RESTORE = "pref_live_config_is_need_restore";
     private static final String KEY = "camera_running";
     private ComponentRunningTiltValue componentRunningTiltValue;
     private ComponentConfigFilter mComponentConfigFilter;
@@ -144,18 +149,18 @@ public class DataItemRunning extends DataItemBase {
     }
 
     public void setLiveConfigIsNeedRestore(boolean z) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("setLiveConfigIsNeedRestore = ");
-        stringBuilder.append(z);
-        Log.d("DataItemRunning", stringBuilder.toString());
         putBoolean("pref_live_config_is_need_restore", z);
     }
 
     public boolean getLiveConfigIsNeedRestore() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("getLiveConfigIsNeedRestore = ");
-        stringBuilder.append(getBoolean("pref_live_config_is_need_restore", false));
-        Log.d("DataItemRunning", stringBuilder.toString());
         return getBoolean("pref_live_config_is_need_restore", false);
+    }
+
+    public void setLiveMusicFirstRequestTime(long j) {
+        putLong("pref_key_live_music_first_request_time", j);
+    }
+
+    public long getLiveMusicFirstRequestTime() {
+        return getLong("pref_key_live_music_first_request_time", -1);
     }
 }

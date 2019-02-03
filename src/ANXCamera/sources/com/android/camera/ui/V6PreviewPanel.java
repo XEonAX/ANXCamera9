@@ -10,8 +10,10 @@ import com.android.camera.ActivityBase;
 import com.android.camera.R;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.PlayVideoProtocol;
+import com.android.camera2.autozoom.AutoZoomView;
 
 public class V6PreviewPanel extends V6RelativeLayout implements OnClickListener {
+    public AutoZoomView mAutoZoomView;
     public V6EffectCropView mCropView;
     public FaceView mFaceView;
     public FocusView mFocusView;
@@ -40,6 +42,7 @@ public class V6PreviewPanel extends V6RelativeLayout implements OnClickListener 
         this.mCropView = (V6EffectCropView) findChildrenById(R.id.v6_effect_crop_view);
         this.mVideoReviewImage = (ImageView) findViewById(R.id.v6_video_review_image);
         this.mPreviewCover = findViewById(R.id.preview_cover);
+        this.mAutoZoomView = (AutoZoomView) findChildrenById(R.id.autozoom_overlay);
         this.mVideoReviewImage.setBackgroundColor(ViewCompat.MEASURED_STATE_MASK);
         this.mVideoReviewPlay.setOnClickListener(this);
     }
@@ -52,6 +55,7 @@ public class V6PreviewPanel extends V6RelativeLayout implements OnClickListener 
         super.onPause();
         this.mFaceView.clear();
         this.mObjectView.clear();
+        this.mAutoZoomView.clear(0);
         removeCallbacks(this.mHidePreviewCover);
         this.mPreviewCover.setVisibility(8);
     }

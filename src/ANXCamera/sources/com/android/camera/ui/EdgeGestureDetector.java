@@ -6,12 +6,13 @@ import android.view.MotionEvent;
 import android.view.MotionEvent.PointerCoords;
 import com.android.camera.Util;
 import com.android.camera.log.Log;
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import java.util.ArrayList;
 import java.util.Locale;
 
 public class EdgeGestureDetector {
     private static final String TAG = "EdgeGestureDetector";
-    private final int TAP_TIMEOUT = SystemProperties.getInt("tap_timeout", 400);
+    private final int TAP_TIMEOUT = SystemProperties.getInt("tap_timeout", MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME);
     private final int TAP_TO_TOUCH_TIME = SystemProperties.getInt("tap_to_touch_min_time", 100);
     private final int TOUCH_SLOP_SQUARE = SystemProperties.getInt("edgetouch_slop_quare", Util.dpToPixel(66.67f) * Util.dpToPixel(66.67f));
     private boolean mCurDown;

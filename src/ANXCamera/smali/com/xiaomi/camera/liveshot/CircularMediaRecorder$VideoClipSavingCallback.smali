@@ -16,6 +16,8 @@
 
 # virtual methods
 .method public abstract onVideoClipSavingCancelled()V
+    .annotation build Landroid/support/annotation/WorkerThread;
+    .end annotation
 .end method
 
 .method public abstract onVideoClipSavingCompleted([BJ)V
@@ -23,6 +25,8 @@
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
+    .annotation build Landroid/support/annotation/WorkerThread;
+    .end annotation
 .end method
 
 .method public abstract onVideoClipSavingException(Ljava/lang/Throwable;)V
@@ -30,4 +34,6 @@
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
+    .annotation build Landroid/support/annotation/WorkerThread;
+    .end annotation
 .end method

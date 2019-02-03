@@ -8,21 +8,21 @@ import java.io.InputStream;
 
 /* compiled from: InputStreamRewinder */
 public final class k implements e<InputStream> {
-    private static final int dq = 5242880;
-    private final RecyclableBufferedInputStream dt;
+    private static final int dt = 5242880;
+    private final RecyclableBufferedInputStream du;
 
     /* compiled from: InputStreamRewinder */
     public static final class a implements com.bumptech.glide.load.a.e.a<InputStream> {
-        private final b du;
+        private final b dv;
 
         public a(b bVar) {
-            this.du = bVar;
+            this.dv = bVar;
         }
 
         @NonNull
         /* renamed from: c */
         public e<InputStream> j(InputStream inputStream) {
-            return new k(inputStream, this.du);
+            return new k(inputStream, this.dv);
         }
 
         @NonNull
@@ -32,18 +32,18 @@ public final class k implements e<InputStream> {
     }
 
     k(InputStream inputStream, b bVar) {
-        this.dt = new RecyclableBufferedInputStream(inputStream, bVar);
-        this.dt.mark(dq);
+        this.du = new RecyclableBufferedInputStream(inputStream, bVar);
+        this.du.mark(dt);
     }
 
     @NonNull
     /* renamed from: ah */
     public InputStream ag() throws IOException {
-        this.dt.reset();
-        return this.dt;
+        this.du.reset();
+        return this.du;
     }
 
     public void cleanup() {
-        this.dt.release();
+        this.du.release();
     }
 }

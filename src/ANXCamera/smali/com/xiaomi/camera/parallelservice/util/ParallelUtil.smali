@@ -74,13 +74,13 @@
     .locals 3
 
     .line 32
-    const-string v0, "algo db:"
+    sget-object v0, Lcom/xiaomi/camera/parallelservice/util/ParallelUtil;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v2, "first:"
+    const-string v2, "algo db: first: "
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -96,7 +96,7 @@
 
     move-result-object v1
 
-    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 34
     new-instance v0, Landroid/content/ContentValues;
@@ -134,13 +134,13 @@
     move-result-object p0
 
     .line 40
-    const-string p1, "algo db:"
+    sget-object p1, Lcom/xiaomi/camera/parallelservice/util/ParallelUtil;->TAG:Ljava/lang/String;
 
     new-instance p2, Ljava/lang/StringBuilder;
 
     invoke-direct {p2}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string p3, "uri:"
+    const-string p3, "algo db: uri: "
 
     invoke-virtual {p2, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -154,7 +154,7 @@
 
     move-result-object p0
 
-    invoke-static {p1, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {p1, p0}, Lcom/android/camera/log/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
@@ -170,7 +170,7 @@
 
     const-string p1, "Error! insert to parallel provider failed!!!"
 
-    invoke-static {p0, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {p0, p1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 44
     :goto_0
@@ -181,11 +181,15 @@
     .locals 3
 
     .line 24
-    const-string v0, "algo markfinish:"
+    sget-object v0, Lcom/xiaomi/camera/parallelservice/util/ParallelUtil;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "algo db: finish: "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     invoke-virtual {p1}, Lcom/android/camera/db/element/SaveTask;->getMediaStoreId()Ljava/lang/Long;
 
@@ -207,7 +211,7 @@
 
     move-result-object v1
 
-    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 25
     if-eqz p2, :cond_0

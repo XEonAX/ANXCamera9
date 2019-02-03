@@ -13,7 +13,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 3
+    .registers 3
 
     .line 61
     const/16 v0, 0xa
@@ -83,7 +83,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 67
     invoke-direct {p0}, Lcom/google/zxing/oned/UPCEANReader;-><init>()V
@@ -100,7 +100,7 @@
 .end method
 
 .method private static determineFirstDigit(Ljava/lang/StringBuilder;I)V
-    .locals 3
+    .registers 5
     .param p0, "resultString"    # Ljava/lang/StringBuilder;
     .param p1, "lgPatternFound"    # I
     .annotation system Ldalvik/annotation/Throws;
@@ -113,17 +113,17 @@
     const/4 v0, 0x0
 
     .local v0, "d":I
-    :goto_0
+    :goto_1
     const/16 v1, 0xa
 
-    if-ge v0, v1, :cond_1
+    if-ge v0, v1, :cond_17
 
     .line 130
     sget-object v1, Lcom/google/zxing/oned/EAN13Reader;->FIRST_DIGIT_ENCODINGS:[I
 
     aget v1, v1, v0
 
-    if-ne p1, v1, :cond_0
+    if-ne p1, v1, :cond_14
 
     .line 131
     const/4 v1, 0x0
@@ -140,14 +140,14 @@
     return-void
 
     .line 129
-    :cond_0
+    :cond_14
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_1
 
     .line 135
     .end local v0    # "d":I
-    :cond_1
+    :cond_17
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v0
@@ -158,7 +158,7 @@
 
 # virtual methods
 .method protected decodeMiddle(Lcom/google/zxing/common/BitArray;[ILjava/lang/StringBuilder;)I
-    .locals 16
+    .registers 20
     .param p1, "row"    # Lcom/google/zxing/common/BitArray;
     .param p2, "startRange"    # [I
     .param p3, "resultString"    # Ljava/lang/StringBuilder;
@@ -216,21 +216,21 @@
     const/4 v9, 0x0
 
     .local v9, "x":I
-    :goto_0
+    :goto_1c
     const/16 v10, 0x30
 
     const/4 v11, 0x6
 
-    if-ge v9, v11, :cond_3
+    if-ge v9, v11, :cond_4a
 
-    if-lt v7, v6, :cond_0
+    if-lt v7, v6, :cond_24
 
     .end local v9    # "x":I
-    goto :goto_2
+    goto :goto_4a
 
     .line 86
     .restart local v9    # "x":I
-    :cond_0
+    :cond_24
     sget-object v11, Lcom/google/zxing/oned/EAN13Reader;->L_AND_G_PATTERNS:[[I
 
     invoke-static {v0, v3, v7, v11}, Lcom/google/zxing/oned/EAN13Reader;->decodeDigit(Lcom/google/zxing/common/BitArray;[II[[I)I
@@ -256,13 +256,13 @@
 
     .end local v7    # "rowOffset":I
     .local v10, "rowOffset":I
-    :goto_1
-    if-lt v7, v13, :cond_2
+    :goto_34
+    if-lt v7, v13, :cond_44
 
     .line 91
     const/16 v7, 0xa
 
-    if-lt v12, v7, :cond_1
+    if-lt v12, v7, :cond_40
 
     .line 92
     rsub-int/lit8 v7, v9, 0x5
@@ -279,16 +279,16 @@
 
     .end local v7    # "lgPatternFound":I
     .restart local v8    # "lgPatternFound":I
-    :cond_1
+    :cond_40
     add-int/lit8 v9, v9, 0x1
 
     move v7, v10
 
-    goto :goto_0
+    goto :goto_1c
 
     .line 88
     .restart local v12    # "bestMatch":I
-    :cond_2
+    :cond_44
     aget v11, v3, v7
 
     .line 89
@@ -299,15 +299,15 @@
     .end local v11    # "counter":I
     add-int/lit8 v7, v7, 0x1
 
-    goto :goto_1
+    goto :goto_34
 
     .line 96
     .end local v9    # "x":I
     .end local v10    # "rowOffset":I
     .end local v12    # "bestMatch":I
     .local v7, "rowOffset":I
-    :cond_3
-    :goto_2
+    :cond_4a
+    :goto_4a
     invoke-static {v1, v8}, Lcom/google/zxing/oned/EAN13Reader;->determineFirstDigit(Ljava/lang/StringBuilder;I)V
 
     .line 98
@@ -327,17 +327,17 @@
     const/4 v7, 0x0
 
     .local v7, "x":I
-    :goto_3
-    if-ge v7, v11, :cond_6
+    :goto_56
+    if-ge v7, v11, :cond_76
 
-    if-lt v5, v6, :cond_4
+    if-lt v5, v6, :cond_5b
 
     .end local v7    # "x":I
-    goto :goto_5
+    goto :goto_76
 
     .line 102
     .restart local v7    # "x":I
-    :cond_4
+    :cond_5b
     sget-object v12, Lcom/google/zxing/oned/EAN13Reader;->L_PATTERNS:[[I
 
     invoke-static {v0, v3, v5, v12}, Lcom/google/zxing/oned/EAN13Reader;->decodeDigit(Lcom/google/zxing/common/BitArray;[II[[I)I
@@ -361,8 +361,8 @@
 
     .end local v5    # "rowOffset":I
     .local v14, "rowOffset":I
-    :goto_4
-    if-lt v5, v13, :cond_5
+    :goto_6a
+    if-lt v5, v13, :cond_70
 
     .line 101
     .end local v12    # "bestMatch":I
@@ -370,11 +370,11 @@
 
     move v5, v14
 
-    goto :goto_3
+    goto :goto_56
 
     .line 104
     .restart local v12    # "bestMatch":I
-    :cond_5
+    :cond_70
     aget v15, v3, v5
 
     .line 105
@@ -385,20 +385,20 @@
     .end local v15    # "counter":I
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_4
+    goto :goto_6a
 
     .line 109
     .end local v7    # "x":I
     .end local v12    # "bestMatch":I
     .end local v14    # "rowOffset":I
     .restart local v5    # "rowOffset":I
-    :cond_6
-    :goto_5
+    :cond_76
+    :goto_76
     return v5
 .end method
 
 .method getBarcodeFormat()Lcom/google/zxing/BarcodeFormat;
-    .locals 1
+    .registers 2
 
     .line 114
     sget-object v0, Lcom/google/zxing/BarcodeFormat;->EAN_13:Lcom/google/zxing/BarcodeFormat;

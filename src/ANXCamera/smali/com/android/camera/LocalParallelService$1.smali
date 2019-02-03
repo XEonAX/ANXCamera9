@@ -45,16 +45,26 @@
 
     move-result-object v0
 
-    invoke-interface {v0, p1}, Lcom/android/camera/LocalParallelService$ServiceStatusListener;->onImagePostProcessStart(Lcom/xiaomi/camera/core/ParallelTaskData;)V
+    if-eqz v0, :cond_0
 
     .line 35
+    iget-object v0, p0, Lcom/android/camera/LocalParallelService$1;->this$0:Lcom/android/camera/LocalParallelService;
+
+    invoke-static {v0}, Lcom/android/camera/LocalParallelService;->access$000(Lcom/android/camera/LocalParallelService;)Lcom/android/camera/LocalParallelService$ServiceStatusListener;
+
+    move-result-object v0
+
+    invoke-interface {v0, p1}, Lcom/android/camera/LocalParallelService$ServiceStatusListener;->onImagePostProcessStart(Lcom/xiaomi/camera/core/ParallelTaskData;)V
+
+    .line 37
+    :cond_0
     return-void
 .end method
 
 .method public onPostProcessorClosed(Lcom/xiaomi/camera/core/PostProcessor;)V
     .locals 1
 
-    .line 39
+    .line 41
     iget-object v0, p0, Lcom/android/camera/LocalParallelService$1;->this$0:Lcom/android/camera/LocalParallelService;
 
     invoke-static {v0}, Lcom/android/camera/LocalParallelService;->access$100(Lcom/android/camera/LocalParallelService;)Lcom/android/camera/LocalParallelService$LocalBinder;
@@ -63,7 +73,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 40
+    .line 42
     iget-object v0, p0, Lcom/android/camera/LocalParallelService$1;->this$0:Lcom/android/camera/LocalParallelService;
 
     invoke-static {v0}, Lcom/android/camera/LocalParallelService;->access$100(Lcom/android/camera/LocalParallelService;)Lcom/android/camera/LocalParallelService$LocalBinder;
@@ -72,7 +82,7 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/LocalParallelService$LocalBinder;->access$200(Lcom/android/camera/LocalParallelService$LocalBinder;Lcom/xiaomi/camera/core/PostProcessor;)V
 
-    .line 42
+    .line 44
     :cond_0
     return-void
 .end method

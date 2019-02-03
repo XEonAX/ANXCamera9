@@ -61,14 +61,14 @@
     .line 65
     iget-object v0, p0, Lcom/android/camera/ui/RotateTextToast;->mLayoutRoot:Landroid/view/ViewGroup;
 
-    const v1, 0x7f04003c
+    const v1, 0x7f040041
 
     invoke-virtual {p1, v1, v0}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;)Landroid/view/View;
 
     move-result-object p1
 
     .line 66
-    const v0, 0x7f0d00c4
+    const v0, 0x7f0d00dd
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -150,7 +150,7 @@
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/RotateTextToast;->mToast:Lcom/android/camera/ui/RotateLayout;
 
-    const v1, 0x7f0d00b0
+    const v1, 0x7f0d00c8
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/RotateLayout;->findViewById(I)Landroid/view/View;
 

@@ -81,15 +81,15 @@
 .method private getSharedPreferences()Landroid/content/SharedPreferences;
     .locals 1
 
-    .line 343
+    .line 345
     iget-object v0, p0, Lcom/android/camera/data/data/DataItemBase;->mPreferences:Landroid/content/SharedPreferences;
 
     if-nez v0, :cond_0
 
-    .line 344
+    .line 346
     invoke-direct {p0}, Lcom/android/camera/data/data/DataItemBase;->initPreferences()V
 
-    .line 346
+    .line 348
     :cond_0
     iget-object v0, p0, Lcom/android/camera/data/data/DataItemBase;->mPreferences:Landroid/content/SharedPreferences;
 
@@ -99,19 +99,19 @@
 .method private initPreferences()V
     .locals 3
 
-    .line 350
+    .line 352
     invoke-virtual {p0}, Lcom/android/camera/data/data/DataItemBase;->isTransient()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 351
+    .line 353
     invoke-static {}, Lcom/android/camera/CameraAppImpl;->getAndroidContext()Landroid/content/Context;
 
     move-result-object v0
 
-    .line 352
+    .line 354
     invoke-virtual {p0}, Lcom/android/camera/data/data/DataItemBase;->provideKey()Ljava/lang/String;
 
     move-result-object v1
@@ -124,7 +124,7 @@
 
     iput-object v0, p0, Lcom/android/camera/data/data/DataItemBase;->mPreferences:Landroid/content/SharedPreferences;
 
-    .line 354
+    .line 356
     :cond_0
     return-void
 .end method
@@ -238,24 +238,24 @@
 .method public clearArrayMap()V
     .locals 2
 
-    .line 373
+    .line 375
     iget-object v0, p0, Lcom/android/camera/data/data/DataItemBase;->mLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 374
+    .line 376
     :try_start_0
     iget-object v1, p0, Lcom/android/camera/data/data/DataItemBase;->mValues:Landroid/support/v4/util/SimpleArrayMap;
 
     invoke-virtual {v1}, Landroid/support/v4/util/SimpleArrayMap;->clear()V
 
-    .line 375
+    .line 377
     monitor-exit v0
 
-    .line 376
+    .line 378
     return-void
 
-    .line 375
+    .line 377
     :catchall_0
     move-exception v1
 
@@ -269,28 +269,28 @@
 .method public cloneValues()Landroid/support/v4/util/SimpleArrayMap;
     .locals 3
 
-    .line 388
+    .line 390
     iget-object v0, p0, Lcom/android/camera/data/data/DataItemBase;->mLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 389
+    .line 391
     :try_start_0
     new-instance v1, Landroid/support/v4/util/SimpleArrayMap;
 
     invoke-direct {v1}, Landroid/support/v4/util/SimpleArrayMap;-><init>()V
 
-    .line 390
+    .line 392
     iget-object v2, p0, Lcom/android/camera/data/data/DataItemBase;->mValues:Landroid/support/v4/util/SimpleArrayMap;
 
     invoke-virtual {v1, v2}, Landroid/support/v4/util/SimpleArrayMap;->putAll(Landroid/support/v4/util/SimpleArrayMap;)V
 
-    .line 391
+    .line 393
     monitor-exit v0
 
     return-object v1
 
-    .line 392
+    .line 394
     :catchall_0
     move-exception v1
 
@@ -925,12 +925,12 @@
         }
     .end annotation
 
-    .line 367
+    .line 369
     iget-object v0, p0, Lcom/android/camera/data/data/DataItemBase;->mLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 368
+    .line 370
     :try_start_0
     iget-object v1, p0, Lcom/android/camera/data/data/DataItemBase;->mValues:Landroid/support/v4/util/SimpleArrayMap;
 
@@ -938,7 +938,7 @@
 
     return-object v1
 
-    .line 369
+    .line 371
     :catchall_0
     move-exception v1
 
@@ -952,17 +952,17 @@
 .method public injectCloud(Lcom/android/camera/data/cloud/DataCloud$CloudItem;)V
     .locals 0
 
-    .line 397
+    .line 399
     iput-object p1, p0, Lcom/android/camera/data/data/DataItemBase;->mDataCloudItem:Lcom/android/camera/data/cloud/DataCloud$CloudItem;
 
-    .line 398
+    .line 400
     return-void
 .end method
 
 .method protected isMutable()Z
     .locals 1
 
-    .line 401
+    .line 403
     const/4 v0, 0x1
 
     return v0
@@ -1242,29 +1242,29 @@
         }
     .end annotation
 
-    .line 379
+    .line 381
     iget-object v0, p0, Lcom/android/camera/data/data/DataItemBase;->mLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 380
+    .line 382
     :try_start_0
     iget-object v1, p0, Lcom/android/camera/data/data/DataItemBase;->mValues:Landroid/support/v4/util/SimpleArrayMap;
 
     invoke-virtual {v1}, Landroid/support/v4/util/SimpleArrayMap;->clear()V
 
-    .line 381
+    .line 383
     iget-object v1, p0, Lcom/android/camera/data/data/DataItemBase;->mValues:Landroid/support/v4/util/SimpleArrayMap;
 
     invoke-virtual {v1, p1}, Landroid/support/v4/util/SimpleArrayMap;->putAll(Landroid/support/v4/util/SimpleArrayMap;)V
 
-    .line 382
+    .line 384
     monitor-exit v0
 
-    .line 383
+    .line 385
     return-void
 
-    .line 382
+    .line 384
     :catchall_0
     move-exception p1
 

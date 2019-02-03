@@ -26,7 +26,7 @@
 
 
 # instance fields
-.field private final oX:Lcom/bumptech/glide/request/a/k$a;
+.field private final oW:Lcom/bumptech/glide/request/a/k$a;
 
 
 # direct methods
@@ -37,7 +37,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 23
-    iput-object p1, p0, Lcom/bumptech/glide/request/a/k;->oX:Lcom/bumptech/glide/request/a/k$a;
+    iput-object p1, p0, Lcom/bumptech/glide/request/a/k;->oW:Lcom/bumptech/glide/request/a/k$a;
 
     .line 24
     return-void
@@ -67,13 +67,13 @@
     invoke-virtual {p1}, Landroid/view/View;->clearAnimation()V
 
     .line 42
-    iget-object p2, p0, Lcom/bumptech/glide/request/a/k;->oX:Lcom/bumptech/glide/request/a/k$a;
+    iget-object p2, p0, Lcom/bumptech/glide/request/a/k;->oW:Lcom/bumptech/glide/request/a/k$a;
 
     invoke-virtual {p1}, Landroid/view/View;->getContext()Landroid/content/Context;
 
     move-result-object v0
 
-    invoke-interface {p2, v0}, Lcom/bumptech/glide/request/a/k$a;->m(Landroid/content/Context;)Landroid/view/animation/Animation;
+    invoke-interface {p2, v0}, Lcom/bumptech/glide/request/a/k$a;->l(Landroid/content/Context;)Landroid/view/animation/Animation;
 
     move-result-object p2
 

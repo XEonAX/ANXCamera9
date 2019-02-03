@@ -22,7 +22,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/app/FragmentManagerImpl;Landroid/view/View;Landroid/view/animation/Animation;Landroid/support/v4/app/Fragment;)V
-    .locals 0
+    .registers 5
     .param p2, "x0"    # Landroid/view/View;
     .param p3, "x1"    # Landroid/view/animation/Animation;
 
@@ -39,7 +39,7 @@
 
 # virtual methods
 .method public onAnimationEnd(Landroid/view/animation/Animation;)V
-    .locals 8
+    .registers 10
     .param p1, "animation"    # Landroid/view/animation/Animation;
 
     .line 1108
@@ -50,7 +50,7 @@
 
     iget-object v0, v0, Landroid/support/v4/app/Fragment;->mAnimatingAway:Landroid/view/View;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1c
 
     .line 1110
     iget-object v0, p0, Landroid/support/v4/app/FragmentManagerImpl$5;->val$fragment:Landroid/support/v4/app/Fragment;
@@ -77,6 +77,6 @@
     invoke-virtual/range {v2 .. v7}, Landroid/support/v4/app/FragmentManagerImpl;->moveToState(Landroid/support/v4/app/Fragment;IIIZ)V
 
     .line 1114
-    :cond_0
+    :cond_1c
     return-void
 .end method

@@ -30,12 +30,12 @@
 .method private constructor <init>(Lcom/android/camera/module/Panorama3Module;)V
     .locals 0
 
-    .line 1813
+    .line 1800
     iput-object p1, p0, Lcom/android/camera/module/Panorama3Module$DecideDirection;->this$0:Lcom/android/camera/module/Panorama3Module;
 
     invoke-direct {p0}, Lcom/android/camera/panorama/PanoramaState;-><init>()V
 
-    .line 1814
+    .line 1801
     const/4 p1, 0x0
 
     iput-boolean p1, p0, Lcom/android/camera/module/Panorama3Module$DecideDirection;->mHasSubmit:Z
@@ -46,7 +46,7 @@
 .method synthetic constructor <init>(Lcom/android/camera/module/Panorama3Module;Lcom/android/camera/module/Panorama3Module$1;)V
     .locals 0
 
-    .line 1813
+    .line 1800
     invoke-direct {p0, p1}, Lcom/android/camera/module/Panorama3Module$DecideDirection;-><init>(Lcom/android/camera/module/Panorama3Module;)V
 
     return-void
@@ -57,19 +57,19 @@
 .method public onSaveImage(Lcom/android/camera/panorama/CaptureImage;)Z
     .locals 3
 
-    .line 1999
+    .line 1986
     iget-object v0, p0, Lcom/android/camera/module/Panorama3Module$DecideDirection;->this$0:Lcom/android/camera/module/Panorama3Module;
 
-    invoke-static {v0, p1}, Lcom/android/camera/module/Panorama3Module;->access$4600(Lcom/android/camera/module/Panorama3Module;Lcom/android/camera/panorama/CaptureImage;)V
+    invoke-static {v0, p1}, Lcom/android/camera/module/Panorama3Module;->access$4100(Lcom/android/camera/module/Panorama3Module;Lcom/android/camera/panorama/CaptureImage;)V
 
-    .line 2000
+    .line 1987
     iget-boolean p1, p0, Lcom/android/camera/module/Panorama3Module$DecideDirection;->mHasSubmit:Z
 
     const/4 v0, 0x1
 
     if-nez p1, :cond_0
 
-    .line 2001
+    .line 1988
     invoke-static {}, Lcom/android/camera/module/Panorama3Module;->access$100()Ljava/lang/String;
 
     move-result-object p1
@@ -78,10 +78,10 @@
 
     invoke-static {p1, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2002
+    .line 1989
     iget-object p1, p0, Lcom/android/camera/module/Panorama3Module$DecideDirection;->this$0:Lcom/android/camera/module/Panorama3Module;
 
-    invoke-static {p1}, Lcom/android/camera/module/Panorama3Module;->access$4800(Lcom/android/camera/module/Panorama3Module;)Ljava/util/concurrent/ExecutorService;
+    invoke-static {p1}, Lcom/android/camera/module/Panorama3Module;->access$4300(Lcom/android/camera/module/Panorama3Module;)Ljava/util/concurrent/ExecutorService;
 
     move-result-object p1
 
@@ -93,10 +93,10 @@
 
     invoke-interface {p1, v1}, Ljava/util/concurrent/ExecutorService;->submit(Ljava/lang/Runnable;)Ljava/util/concurrent/Future;
 
-    .line 2003
+    .line 1990
     iput-boolean v0, p0, Lcom/android/camera/module/Panorama3Module$DecideDirection;->mHasSubmit:Z
 
-    .line 2006
+    .line 1993
     :cond_0
     return v0
 .end method

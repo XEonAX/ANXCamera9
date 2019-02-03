@@ -25,7 +25,7 @@
 .method private constructor <init>(Lcom/android/camera/ui/V6GestureRecognizer;)V
     .locals 0
 
-    .line 448
+    .line 457
     iput-object p1, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyEdgeGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -36,7 +36,7 @@
 .method synthetic constructor <init>(Lcom/android/camera/ui/V6GestureRecognizer;Lcom/android/camera/ui/V6GestureRecognizer$1;)V
     .locals 0
 
-    .line 448
+    .line 457
     invoke-direct {p0, p1}, Lcom/android/camera/ui/V6GestureRecognizer$MyEdgeGestureListener;-><init>(Lcom/android/camera/ui/V6GestureRecognizer;)V
 
     return-void
@@ -47,7 +47,7 @@
 .method public onEdgeTap(II)Z
     .locals 3
 
-    .line 452
+    .line 461
     const-string v0, "CameraGestureRecognizer"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -72,7 +72,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 453
+    .line 462
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyEdgeGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {v0}, Lcom/android/camera/ui/V6GestureRecognizer;->access$1300(Lcom/android/camera/ui/V6GestureRecognizer;)Z
@@ -83,7 +83,7 @@
 
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyEdgeGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
-    .line 454
+    .line 463
     invoke-static {v0}, Lcom/android/camera/ui/V6GestureRecognizer;->access$700(Lcom/android/camera/ui/V6GestureRecognizer;)Lcom/android/camera/module/Module;
 
     move-result-object v0
@@ -94,21 +94,21 @@
 
     if-nez v0, :cond_0
 
-    .line 455
+    .line 464
     invoke-static {}, Lcom/android/camera/module/ModuleManager;->isCameraModule()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 456
+    .line 465
     const-string v0, "CameraGestureRecognizer"
 
     const-string v1, "EdgeGesture detectTap success"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 457
+    .line 466
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyEdgeGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {v0}, Lcom/android/camera/ui/V6GestureRecognizer;->access$1400(Lcom/android/camera/ui/V6GestureRecognizer;)Lcom/android/camera/Camera;
@@ -125,7 +125,7 @@
 
     return p1
 
-    .line 459
+    .line 468
     :cond_0
     const/4 p1, 0x0
 
@@ -135,7 +135,7 @@
 .method public onEdgeTouch(II)Z
     .locals 3
 
-    .line 464
+    .line 473
     const-string v0, "CameraGestureRecognizer"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -160,7 +160,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 465
+    .line 474
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyEdgeGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {v0}, Lcom/android/camera/ui/V6GestureRecognizer;->access$1300(Lcom/android/camera/ui/V6GestureRecognizer;)Z
@@ -171,7 +171,7 @@
 
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyEdgeGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
-    .line 466
+    .line 475
     invoke-static {v0}, Lcom/android/camera/ui/V6GestureRecognizer;->access$700(Lcom/android/camera/ui/V6GestureRecognizer;)Lcom/android/camera/module/Module;
 
     move-result-object v0
@@ -182,21 +182,21 @@
 
     if-nez v0, :cond_0
 
-    .line 467
+    .line 476
     invoke-static {}, Lcom/android/camera/module/ModuleManager;->isCameraModule()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 468
+    .line 477
     const-string v0, "CameraGestureRecognizer"
 
     const-string v1, "EdgeGesture detectTouch success"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 469
+    .line 478
     iget-object v0, p0, Lcom/android/camera/ui/V6GestureRecognizer$MyEdgeGestureListener;->this$0:Lcom/android/camera/ui/V6GestureRecognizer;
 
     invoke-static {v0}, Lcom/android/camera/ui/V6GestureRecognizer;->access$1400(Lcom/android/camera/ui/V6GestureRecognizer;)Lcom/android/camera/Camera;
@@ -213,7 +213,7 @@
 
     return p1
 
-    .line 471
+    .line 480
     :cond_0
     const/4 p1, 0x0
 

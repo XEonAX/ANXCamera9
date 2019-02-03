@@ -3,10 +3,12 @@ package com.android.camera;
 import android.location.Location;
 import android.media.ExifInterface;
 import android.os.Build;
+import android.text.TextUtils;
 import com.android.camera.log.Log;
 import com.android.gallery3d.exif.ExifInterface.GpsLongitudeRef;
 import com.mi.config.b;
 import java.io.File;
+import java.io.FileDescriptor;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
@@ -26,46 +28,59 @@ public class ExifHelper {
         mGPSTimeStampFormat.setTimeZone(timeZone);
     }
 
-    public static void writeExif(String str, int i, Location location, long j) {
+    public static void writeExifByFilePath(String str, int i, Location location, long j) {
+        writeExif(str, null, i, location, j);
+    }
+
+    public static void writeExifByFd(FileDescriptor fileDescriptor, int i, Location location, long j) {
+        writeExif(null, fileDescriptor, i, location, j);
+    }
+
+    private static void writeExif(String str, FileDescriptor fileDescriptor, int i, Location location, long j) {
         try {
-            if (!Util.isPathExist(str) || new File(str).length() == 0) {
-                String str2 = TAG;
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("writeExif. the file:[");
-                stringBuilder.append(str);
-                stringBuilder.append("] is not exist or empty");
-                Log.e(str2, stringBuilder.toString());
+            if (TextUtils.isEmpty(str) || (Util.isPathExist(str) && new File(str).length() != 0)) {
+                ExifInterface exifInterface;
+                if (fileDescriptor == null) {
+                    exifInterface = new ExifInterface(str);
+                } else {
+                    exifInterface = new ExifInterface(fileDescriptor);
+                }
+                exifInterface.setAttribute("GPSDateStamp", mGPSDateStampFormat.format(Long.valueOf(j)));
+                exifInterface.setAttribute("GPSTimeStamp", mGPSTimeStampFormat.format(Long.valueOf(j)));
+                exifInterface.setAttribute("DateTime", mDateTimeStampFormat.format(Long.valueOf(j)));
+                exifInterface.setAttribute("Orientation", getExifOrientation(i));
+                exifInterface.setAttribute("Make", Build.MANUFACTURER);
+                if (location != null) {
+                    double latitude = location.getLatitude();
+                    double longitude = location.getLongitude();
+                    exifInterface.setAttribute("GPSLatitude", convertDoubleToLaLon(latitude));
+                    exifInterface.setAttribute("GPSLongitude", convertDoubleToLaLon(longitude));
+                    if (latitude > 0.0d) {
+                        exifInterface.setAttribute("GPSLatitudeRef", "N");
+                    } else {
+                        exifInterface.setAttribute("GPSLatitudeRef", "S");
+                    }
+                    if (longitude > 0.0d) {
+                        exifInterface.setAttribute("GPSLongitudeRef", GpsLongitudeRef.EAST);
+                    } else {
+                        exifInterface.setAttribute("GPSLongitudeRef", GpsLongitudeRef.WEST);
+                    }
+                }
+                if (b.pM || b.IS_MI2A) {
+                    exifInterface.setAttribute("Model", "MiTwo");
+                    exifInterface.setAttribute("FocalLength", String.valueOf("354/100"));
+                } else {
+                    exifInterface.setAttribute("Model", b.pL);
+                }
+                exifInterface.saveAttributes();
                 return;
             }
-            ExifInterface exifInterface = new ExifInterface(str);
-            exifInterface.setAttribute("GPSDateStamp", mGPSDateStampFormat.format(Long.valueOf(j)));
-            exifInterface.setAttribute("GPSTimeStamp", mGPSTimeStampFormat.format(Long.valueOf(j)));
-            exifInterface.setAttribute("DateTime", mDateTimeStampFormat.format(Long.valueOf(j)));
-            exifInterface.setAttribute("Orientation", getExifOrientation(i));
-            exifInterface.setAttribute("Make", Build.MANUFACTURER);
-            if (location != null) {
-                double latitude = location.getLatitude();
-                double longitude = location.getLongitude();
-                exifInterface.setAttribute("GPSLatitude", convertDoubleToLaLon(latitude));
-                exifInterface.setAttribute("GPSLongitude", convertDoubleToLaLon(longitude));
-                if (latitude > 0.0d) {
-                    exifInterface.setAttribute("GPSLatitudeRef", "N");
-                } else {
-                    exifInterface.setAttribute("GPSLatitudeRef", "S");
-                }
-                if (longitude > 0.0d) {
-                    exifInterface.setAttribute("GPSLongitudeRef", GpsLongitudeRef.EAST);
-                } else {
-                    exifInterface.setAttribute("GPSLongitudeRef", GpsLongitudeRef.WEST);
-                }
-            }
-            if (b.pN || b.IS_MI2A) {
-                exifInterface.setAttribute("Model", "MiTwo");
-                exifInterface.setAttribute("FocalLength", String.valueOf("354/100"));
-            } else {
-                exifInterface.setAttribute("Model", b.pM);
-            }
-            exifInterface.saveAttributes();
+            String str2 = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("writeExif. the file:[");
+            stringBuilder.append(str);
+            stringBuilder.append("] is not exist or empty");
+            Log.e(str2, stringBuilder.toString());
         } catch (Throwable e) {
             String str3 = TAG;
             StringBuilder stringBuilder2 = new StringBuilder();

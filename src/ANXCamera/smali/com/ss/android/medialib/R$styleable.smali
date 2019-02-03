@@ -51,6 +51,8 @@
 
 .field public static final PreviewListPreference_labelList:I = 0x0
 
+.field public static final PreviewListPreference_showArrow:I = 0x1
+
 .field public static final RecyclerView:[I
 
 .field public static final RecyclerView_android_orientation:I = 0x0
@@ -100,31 +102,31 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 4
+    .locals 3
 
-    .line 2867
+    .line 3009
     const/4 v0, 0x1
 
+    new-array v0, v0, [I
+
+    const/4 v1, 0x0
+
+    const v2, 0x7f010004
+
+    aput v2, v0, v1
+
+    sput-object v0, Lcom/ss/android/medialib/R$styleable;->CameraPreference:[I
+
+    .line 3038
+    const/4 v0, 0x2
+
     new-array v1, v0, [I
-
-    const/4 v2, 0x0
-
-    const v3, 0x7f010004
-
-    aput v3, v1, v2
-
-    sput-object v1, Lcom/ss/android/medialib/R$styleable;->CameraPreference:[I
-
-    .line 2896
-    const/4 v1, 0x2
-
-    new-array v1, v1, [I
 
     fill-array-data v1, :array_0
 
     sput-object v1, Lcom/ss/android/medialib/R$styleable;->IconIndicator:[I
 
-    .line 2935
+    .line 3077
     const/4 v1, 0x4
 
     new-array v1, v1, [I
@@ -133,37 +135,35 @@
 
     sput-object v1, Lcom/ss/android/medialib/R$styleable;->IconListPreference:[I
 
-    .line 2998
+    .line 3140
     const/4 v1, 0x5
 
-    new-array v3, v1, [I
+    new-array v2, v1, [I
 
-    fill-array-data v3, :array_2
+    fill-array-data v2, :array_2
 
-    sput-object v3, Lcom/ss/android/medialib/R$styleable;->ListPreference:[I
+    sput-object v2, Lcom/ss/android/medialib/R$styleable;->ListPreference:[I
 
-    .line 3071
+    .line 3215
     new-array v0, v0, [I
-
-    const v3, 0x7f01000f
-
-    aput v3, v0, v2
-
-    sput-object v0, Lcom/ss/android/medialib/R$styleable;->PreviewListPreference:[I
-
-    .line 3102
-    new-array v0, v1, [I
 
     fill-array-data v0, :array_3
 
+    sput-object v0, Lcom/ss/android/medialib/R$styleable;->PreviewListPreference:[I
+
+    .line 3260
+    new-array v0, v1, [I
+
+    fill-array-data v0, :array_4
+
     sput-object v0, Lcom/ss/android/medialib/R$styleable;->RecyclerView:[I
 
-    .line 3218
+    .line 3376
     const/16 v0, 0x10
 
     new-array v0, v0, [I
 
-    fill-array-data v0, :array_4
+    fill-array-data v0, :array_5
 
     sput-object v0, Lcom/ss/android/medialib/R$styleable;->ToggleSwitch:[I
 
@@ -196,6 +196,12 @@
 
     :array_3
     .array-data 4
+        0x7f01000f
+        0x7f010010
+    .end array-data
+
+    :array_4
+    .array-data 4
         0x10100c4
         0x7f010000
         0x7f010001
@@ -203,9 +209,8 @@
         0x7f010003
     .end array-data
 
-    :array_4
+    :array_5
     .array-data 4
-        0x7f010010
         0x7f010011
         0x7f010012
         0x7f010013
@@ -221,13 +226,14 @@
         0x7f01001d
         0x7f01001e
         0x7f01001f
+        0x7f010020
     .end array-data
 .end method
 
 .method public constructor <init>()V
     .locals 0
 
-    .line 2856
+    .line 2998
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

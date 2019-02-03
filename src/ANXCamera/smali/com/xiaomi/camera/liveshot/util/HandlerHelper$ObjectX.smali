@@ -24,15 +24,15 @@
 .method public constructor <init>(Ljava/lang/Object;Landroid/os/Handler;)V
     .locals 0
 
-    .line 91
+    .line 93
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 92
+    .line 94
     iput-object p1, p0, Lcom/xiaomi/camera/liveshot/util/HandlerHelper$ObjectX;->object:Ljava/lang/Object;
 
-    .line 93
+    .line 95
     iput-object p2, p0, Lcom/xiaomi/camera/liveshot/util/HandlerHelper$ObjectX;->handler:Landroid/os/Handler;
 
-    .line 94
+    .line 96
     return-void
 .end method

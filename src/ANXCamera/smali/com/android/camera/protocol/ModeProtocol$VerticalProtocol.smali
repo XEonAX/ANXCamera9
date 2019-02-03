@@ -25,5 +25,8 @@
 .method public abstract alertLightingHint(I)V
 .end method
 
+.method public abstract isAnyViewVisible()Z
+.end method
+
 .method public abstract setLightingPattern(Ljava/lang/String;)V
 .end method

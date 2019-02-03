@@ -2,6 +2,12 @@
 <LinearLayout android:orientation="vertical" android:background="@color/fullscreen_background" android:layout_width="fill_parent" android:layout_height="wrap_content"
   xmlns:android="http://schemas.android.com/apk/res/android">
     <View android:background="@color/effect_divider_color" android:layout_width="fill_parent" android:layout_height="1.0px" />
-    <android.support.v7.widget.RecyclerView android:layout_gravity="center_vertical" android:id="@id/live_sticker_list" android:focusable="false" android:layout_width="fill_parent" android:layout_height="@dimen/live_sticker_list_height" />
+    <FrameLayout android:layout_width="fill_parent" android:layout_height="@dimen/live_sticker_list_height">
+        <android.support.v7.widget.RecyclerView android:layout_gravity="center_vertical" android:id="@id/live_sticker_list" android:focusable="false" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/live_sticker_updating" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <ProgressBar android:layout_width="20.0dip" android:layout_height="20.0dip" android:indeterminateDrawable="@drawable/post_process_progress" android:indeterminateDuration="700" style="?android:attr/progressBarStyleLarge" />
+            <TextView android:textSize="@dimen/live_speed_item_textSize" android:textColor="@android:color/white" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/live_sticker_updating" android:layout_marginStart="20.0dip" />
+        </LinearLayout>
+    </FrameLayout>
     <View android:background="@color/effect_divider_color" android:layout_width="fill_parent" android:layout_height="1.0px" />
 </LinearLayout>

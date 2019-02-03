@@ -24,7 +24,7 @@
 
 # direct methods
 .method private constructor <init>(Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;I)V
-    .locals 0
+    .registers 4
     .param p1, "from"    # Lcom/google/zxing/ResultPoint;
     .param p2, "to"    # Lcom/google/zxing/ResultPoint;
     .param p3, "transitions"    # I
@@ -46,7 +46,7 @@
 .end method
 
 .method synthetic constructor <init>(Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;ILcom/google/zxing/datamatrix/detector/Detector$ResultPointsAndTransitions;)V
-    .locals 0
+    .registers 5
 
     .line 405
     invoke-direct {p0, p1, p2, p3}, Lcom/google/zxing/datamatrix/detector/Detector$ResultPointsAndTransitions;-><init>(Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;I)V
@@ -57,7 +57,7 @@
 
 # virtual methods
 .method getFrom()Lcom/google/zxing/ResultPoint;
-    .locals 1
+    .registers 2
 
     .line 412
     iget-object v0, p0, Lcom/google/zxing/datamatrix/detector/Detector$ResultPointsAndTransitions;->from:Lcom/google/zxing/ResultPoint;
@@ -66,7 +66,7 @@
 .end method
 
 .method getTo()Lcom/google/zxing/ResultPoint;
-    .locals 1
+    .registers 2
 
     .line 416
     iget-object v0, p0, Lcom/google/zxing/datamatrix/detector/Detector$ResultPointsAndTransitions;->to:Lcom/google/zxing/ResultPoint;
@@ -75,7 +75,7 @@
 .end method
 
 .method public getTransitions()I
-    .locals 1
+    .registers 2
 
     .line 420
     iget v0, p0, Lcom/google/zxing/datamatrix/detector/Detector$ResultPointsAndTransitions;->transitions:I
@@ -84,7 +84,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 425
     new-instance v0, Ljava/lang/StringBuilder;

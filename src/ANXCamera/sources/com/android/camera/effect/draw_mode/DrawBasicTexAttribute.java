@@ -11,18 +11,23 @@ public class DrawBasicTexAttribute extends DrawAttribute {
     public int mX;
     public int mY;
 
+    public DrawBasicTexAttribute() {
+        this.mTarget = 5;
+    }
+
+    public DrawBasicTexAttribute(BasicTexture basicTexture) {
+        init(basicTexture);
+        this.mTarget = 5;
+    }
+
     public DrawBasicTexAttribute(BasicTexture basicTexture, int i, int i2, int i3, int i4) {
         this.mX = i;
         this.mY = i2;
         this.mWidth = i3;
         this.mHeight = i4;
         this.mBasicTexture = basicTexture;
-        this.mTarget = 5;
         this.mIsSnapshot = false;
-    }
-
-    public DrawBasicTexAttribute(BasicTexture basicTexture) {
-        init(basicTexture);
+        this.mTarget = 5;
     }
 
     public DrawBasicTexAttribute init(BasicTexture basicTexture) {
@@ -31,7 +36,6 @@ public class DrawBasicTexAttribute extends DrawAttribute {
         this.mWidth = basicTexture.getWidth();
         this.mHeight = basicTexture.getHeight();
         this.mBasicTexture = basicTexture;
-        this.mTarget = 5;
         this.mIsSnapshot = false;
         return this;
     }
@@ -42,7 +46,6 @@ public class DrawBasicTexAttribute extends DrawAttribute {
         this.mWidth = i3;
         this.mHeight = i4;
         this.mBasicTexture = basicTexture;
-        this.mTarget = 5;
         this.mIsSnapshot = false;
         return this;
     }
@@ -53,7 +56,6 @@ public class DrawBasicTexAttribute extends DrawAttribute {
         this.mWidth = i3;
         this.mHeight = i4;
         this.mBasicTexture = basicTexture;
-        this.mTarget = 5;
         this.mIsSnapshot = z;
         return this;
     }
@@ -63,8 +65,8 @@ public class DrawBasicTexAttribute extends DrawAttribute {
         this.mY = i2;
         this.mWidth = i3;
         this.mHeight = i4;
+        this.mIsSnapshot = z;
         this.mBasicTexture = basicTexture;
-        this.mTarget = 5;
         this.mUseMiddleBuffer = z2;
         return this;
     }

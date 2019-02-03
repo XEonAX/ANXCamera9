@@ -58,13 +58,15 @@
 
 .field public static final TYPE_AREA_FOCUS_AND_METERING:I = 0x3
 
+.field public static final TYPE_AUTO_ZOOM_MODE:I = 0x33
+
 .field public static final TYPE_BEAUTY:I = 0xd
 
 .field public static final TYPE_BOKEH:I = 0x25
 
-.field public static final TYPE_CHANGED_OPERATEMODE:I = 0x29
-
 .field public static final TYPE_CONTRAST:I = 0x1a
+
+.field public static final TYPE_DECODE_PREVIEW:I = 0x17
 
 .field public static final TYPE_DEVICE_ORIENTATION:I = 0x23
 
@@ -120,8 +122,6 @@
 
 .field public static final TYPE_PORTRAIT_LIGHTING:I = 0x2b
 
-.field public static final TYPE_QR:I = 0x17
-
 .field public static final TYPE_SATURATION:I = 0x1b
 
 .field public static final TYPE_SCENE:I = 0x4
@@ -137,6 +137,8 @@
 .field public static final TYPE_SUPER_RESOLUTION:I = 0x1e
 
 .field public static final TYPE_SW_MFNR:I = 0x2a
+
+.field public static final TYPE_ULTRA_PIXEL:I = 0x32
 
 .field public static final TYPE_ULTRA_WIDE_LDC:I = 0x2f
 
@@ -166,109 +168,117 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 4
+    .locals 3
 
-    .line 270
-    const/16 v0, 0xa
+    .line 277
+    const/4 v0, 0x2
+
+    new-array v0, v0, [I
+
+    fill-array-data v0, :array_0
+
+    sput-object v0, Lcom/android/camera/constant/UpdateConstant;->CAMERA_TYPES_INIT:[I
+
+    .line 287
+    const/16 v0, 0x1e
+
+    new-array v0, v0, [I
+
+    fill-array-data v0, :array_1
+
+    sput-object v0, Lcom/android/camera/constant/UpdateConstant;->CAMERA_TYPES_ON_PREVIEW_SUCCESS:[I
+
+    .line 322
+    const/4 v0, 0x3
+
+    new-array v0, v0, [I
+
+    fill-array-data v0, :array_2
+
+    sput-object v0, Lcom/android/camera/constant/UpdateConstant;->CAMERA_TYPES_MANUALLY:[I
+
+    .line 332
+    const/4 v0, 0x1
 
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_0
+    const/4 v2, 0x0
 
-    sput-object v1, Lcom/android/camera/constant/UpdateConstant;->CAMERA_TYPES_INIT:[I
+    aput v0, v1, v2
 
-    .line 287
-    const/16 v1, 0x17
+    sput-object v1, Lcom/android/camera/constant/UpdateConstant;->VIDEO_TYPES_INIT:[I
 
-    new-array v1, v1, [I
-
-    fill-array-data v1, :array_1
-
-    sput-object v1, Lcom/android/camera/constant/UpdateConstant;->CAMERA_TYPES_ON_PREVIEW_SUCCESS:[I
-
-    .line 314
-    const/4 v1, 0x3
+    .line 341
+    const/16 v1, 0xb
 
     new-array v1, v1, [I
 
-    fill-array-data v1, :array_2
+    fill-array-data v1, :array_3
 
-    sput-object v1, Lcom/android/camera/constant/UpdateConstant;->CAMERA_TYPES_MANUALLY:[I
+    sput-object v1, Lcom/android/camera/constant/UpdateConstant;->VIDEO_TYPES_ON_PREVIEW_SUCCESS:[I
 
-    .line 324
+    .line 360
     const/4 v1, 0x5
 
-    new-array v2, v1, [I
+    new-array v1, v1, [I
 
-    fill-array-data v2, :array_3
+    fill-array-data v1, :array_4
 
-    sput-object v2, Lcom/android/camera/constant/UpdateConstant;->VIDEO_TYPES_INIT:[I
+    sput-object v1, Lcom/android/camera/constant/UpdateConstant;->VIDEO_TYPES_RECORD:[I
 
-    .line 336
-    const/4 v2, 0x6
+    .line 372
+    new-array v1, v0, [I
 
-    new-array v3, v2, [I
+    aput v0, v1, v2
 
-    fill-array-data v3, :array_4
+    sput-object v1, Lcom/android/camera/constant/UpdateConstant;->FUN_TYPES_INIT:[I
 
-    sput-object v3, Lcom/android/camera/constant/UpdateConstant;->VIDEO_TYPES_ON_PREVIEW_SUCCESS:[I
+    .line 380
+    const/16 v1, 0xc
 
-    .line 349
     new-array v1, v1, [I
 
     fill-array-data v1, :array_5
 
-    sput-object v1, Lcom/android/camera/constant/UpdateConstant;->VIDEO_TYPES_RECORD:[I
-
-    .line 361
-    new-array v1, v2, [I
-
-    fill-array-data v1, :array_6
-
-    sput-object v1, Lcom/android/camera/constant/UpdateConstant;->FUN_TYPES_INIT:[I
-
-    .line 374
-    const/4 v1, 0x7
-
-    new-array v1, v1, [I
-
-    fill-array-data v1, :array_7
-
     sput-object v1, Lcom/android/camera/constant/UpdateConstant;->FUN_TYPES_ON_PREVIEW_SUCCESS:[I
 
-    .line 388
-    const/4 v1, 0x1
+    .line 400
+    new-array v1, v0, [I
 
-    new-array v2, v1, [I
+    aput v0, v1, v2
 
-    const/4 v3, 0x0
+    sput-object v1, Lcom/android/camera/constant/UpdateConstant;->PANORAMA_TYPES_INIT:[I
 
-    aput v1, v2, v3
-
-    sput-object v2, Lcom/android/camera/constant/UpdateConstant;->PANORAMA_TYPES_INIT:[I
-
-    .line 396
-    new-array v1, v1, [I
-
-    const/16 v2, 0x20
-
-    aput v2, v1, v3
-
-    sput-object v1, Lcom/android/camera/constant/UpdateConstant;->PANORAMA_ON_PREVIEW_SUCCESS:[I
-
-    .line 401
+    .line 408
     new-array v0, v0, [I
 
-    fill-array-data v0, :array_8
+    const/16 v1, 0x20
+
+    aput v1, v0, v2
+
+    sput-object v0, Lcom/android/camera/constant/UpdateConstant;->PANORAMA_ON_PREVIEW_SUCCESS:[I
+
+    .line 413
+    const/16 v0, 0xa
+
+    new-array v0, v0, [I
+
+    fill-array-data v0, :array_6
 
     sput-object v0, Lcom/android/camera/constant/UpdateConstant;->AI_SCENE_CONFIG:[I
 
     return-void
 
+    nop
+
     :array_0
     .array-data 4
         0x2c
         0x1
+    .end array-data
+
+    :array_1
+    .array-data 4
         0x2
         0x1a
         0x1b
@@ -276,11 +286,6 @@
         0x1d
         0x2e
         0x2f
-        0x1d
-    .end array-data
-
-    :array_1
-    .array-data 4
         0x7
         0x8
         0xa
@@ -315,24 +320,20 @@
 
     :array_3
     .array-data 4
-        0x1
         0x1d
         0xd
         0x23
         0x13
-    .end array-data
-
-    :array_4
-    .array-data 4
+        0x2f
+        0x1f
         0x5
         0x9
         0xa
         0xe
         0x19
-        0x1f
     .end array-data
 
-    :array_5
+    :array_4
     .array-data 4
         0x13
         0x1f
@@ -341,28 +342,23 @@
         0x21
     .end array-data
 
-    :array_6
+    :array_5
     .array-data 4
-        0x1
         0x2
         0x1d
         0x23
         0xd
         0x13
-    .end array-data
-
-    :array_7
-    .array-data 4
+        0x2f
         0x5
         0x9
         0xa
         0xe
         0x19
         0x1f
-        0x13
     .end array-data
 
-    :array_8
+    :array_6
     .array-data 4
         0xd
         0xb

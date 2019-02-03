@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 65
     invoke-direct {p0}, Landroid/support/v4/content/IntentCompat$IntentCompatImplBase;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public makeMainActivity(Landroid/content/ComponentName;)Landroid/content/Intent;
-    .locals 1
+    .registers 3
     .param p1, "componentName"    # Landroid/content/ComponentName;
 
     .line 68
@@ -39,7 +39,7 @@
 .end method
 
 .method public makeRestartActivityTask(Landroid/content/ComponentName;)Landroid/content/Intent;
-    .locals 1
+    .registers 3
     .param p1, "componentName"    # Landroid/content/ComponentName;
 
     .line 72

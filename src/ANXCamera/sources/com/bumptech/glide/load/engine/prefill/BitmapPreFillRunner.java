@@ -25,7 +25,7 @@ final class BitmapPreFillRunner implements Runnable {
     private static final Clock io = new Clock();
     static final int ip = 4;
     static final long iq = TimeUnit.SECONDS.toMillis(1);
-    private boolean dp;
+    private boolean dq;
     private final Handler handler;
     private final d i;
     private final b ir;
@@ -69,7 +69,7 @@ final class BitmapPreFillRunner implements Runnable {
     }
 
     public void cancel() {
-        this.dp = true;
+        this.dq = true;
     }
 
     @VisibleForTesting
@@ -104,7 +104,7 @@ final class BitmapPreFillRunner implements Runnable {
                 Log.d(str, stringBuilder.toString());
             }
         }
-        return (this.dp || this.ir.isEmpty()) ? false : true;
+        return (this.dq || this.ir.isEmpty()) ? false : true;
     }
 
     private boolean b(long j) {

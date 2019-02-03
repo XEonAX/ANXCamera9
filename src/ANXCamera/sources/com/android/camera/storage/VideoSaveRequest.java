@@ -76,7 +76,7 @@ public class VideoSaveRequest implements SaveRequest {
                     this.saverCallback.postHideThumbnailProgressing();
                 }
             }
-            this.saverCallback.notifyNewVideo(this.mUri);
+            this.saverCallback.notifyNewMediaData(this.mUri, this.mContentValues.getAsString("title"), 21);
             Context context = this.context;
             String str2 = this.mVideoPath;
             if (!(this.mContentValues.get("latitude") == null && this.mContentValues.get("longitude") == null)) {
@@ -99,6 +99,7 @@ public class VideoSaveRequest implements SaveRequest {
 
     public void onFinish() {
         Log.d(TAG, "onFinish: runnable process finished");
+        this.saverCallback.onSaveFinish(getSize());
     }
 
     private Uri addVideoToMediaStore(String str, ContentValues contentValues) {

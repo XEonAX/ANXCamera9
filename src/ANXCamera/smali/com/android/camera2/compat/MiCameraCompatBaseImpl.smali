@@ -531,12 +531,22 @@
     .end annotation
 .end field
 
+.field public static final XIAOMI_BACKWARD_CAPTURE_HINT:Landroid/hardware/camera2/CaptureRequest$Key;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Landroid/hardware/camera2/CaptureRequest$Key<",
+            "Ljava/lang/Byte;",
+            ">;"
+        }
+    .end annotation
+.end field
+
 
 # direct methods
 .method static constructor <clinit>()V
     .locals 3
 
-    .line 25
+    .line 26
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.hdr.enabled"
@@ -547,7 +557,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->HDR_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 28
+    .line 29
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.hdr.hdrChecker.enabled"
@@ -558,7 +568,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->HDR_CHECKER_ENABLE:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 34
+    .line 35
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.parallel.path"
@@ -569,7 +579,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->PARALLEL_PATH:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 40
+    .line 41
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.parallel.enabled"
@@ -580,7 +590,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->PARALLEL_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 46
+    .line 47
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.hht.enabled"
@@ -591,7 +601,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->HHT_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 52
+    .line 53
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.superResolution.enabled"
@@ -602,7 +612,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->SUPER_RESOLUTION_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 55
+    .line 56
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.mfnr.enabled"
@@ -613,7 +623,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->MFNR_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 61
+    .line 62
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.swmf.enabled"
@@ -624,7 +634,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->SW_MFNR_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 64
+    .line 65
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.bokeh.enabled"
@@ -635,7 +645,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->MFNR_BOKEH:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 67
+    .line 68
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.bokeh.fNumberApplied"
@@ -646,7 +656,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BOKEH_F_NUMBER:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 70
+    .line 71
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.smoothTransition.fastZoomIn"
@@ -657,7 +667,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->ST_FAST_ZOOM_IN:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 73
+    .line 74
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.ai.add.enabled"
@@ -668,7 +678,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->LENS_DIRTY_DETECT:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 76
+    .line 77
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.portrait.lighting"
@@ -679,7 +689,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->PORTRAIT_LIGHTING:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 82
+    .line 83
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.ai.segment.enabled"
@@ -690,7 +700,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->CAMERA_AI_30:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 85
+    .line 86
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.depurple.enabled"
@@ -701,7 +711,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->DEPURPLE_TAG:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 91
+    .line 92
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.faceGenderAndAge.enabled"
@@ -712,7 +722,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->FACE_AGE_ANALYZE_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 94
+    .line 95
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.faceScore.enabled"
@@ -723,7 +733,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->FACE_SCORE_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 97
+    .line 98
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.device.orientation"
@@ -734,7 +744,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->DEVICE_ORIENTATION:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 100
+    .line 101
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.beautyLevelApplied"
@@ -745,7 +755,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_LEVEL:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 103
+    .line 104
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.skinColorRatio"
@@ -756,7 +766,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_SKIN_COLOR:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 106
+    .line 107
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.slimFaceRatio"
@@ -767,7 +777,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_SLIM_FACE:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 109
+    .line 110
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.skinSmoothRatio"
@@ -778,7 +788,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_SKIN_SMOOTH:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 112
+    .line 113
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.enlargeEyeRatio"
@@ -789,7 +799,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_ENLARGE_EYE:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 115
+    .line 116
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.noseRatio"
@@ -800,7 +810,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_NOSE:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 118
+    .line 119
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.risoriusRatio"
@@ -811,7 +821,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_RISORIUS:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 121
+    .line 122
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.lipsRatio"
@@ -822,7 +832,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_LIPS:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 124
+    .line 125
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.chinRatio"
@@ -833,7 +843,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_CHIN:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 127
+    .line 128
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.neckRatio"
@@ -844,7 +854,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_NECK:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 130
+    .line 131
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.smileRatio"
@@ -855,7 +865,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_SMILE:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 133
+    .line 134
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.slimNoseRatio"
@@ -866,7 +876,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_SLIM_NOSE:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 136
+    .line 137
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.watermark.availableType"
@@ -877,7 +887,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->WATERMARK_AVAILABLETYPE:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 139
+    .line 140
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.watermark.typeApplied"
@@ -888,7 +898,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->WATERMARK_APPLIEDTYPE:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 142
+    .line 143
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.watermark.time"
@@ -899,7 +909,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->WATERMARK_TIME:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 145
+    .line 146
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.watermark.face"
@@ -910,7 +920,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->WATERMARK_FACE:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 148
+    .line 149
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.snapshotTorch.enabled"
@@ -921,7 +931,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->SNAP_SHOT_TORCH:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 151
+    .line 152
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.flip.enabled"
@@ -932,7 +942,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->FRONT_MIRROR:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 154
+    .line 155
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.burst.captureHint"
@@ -943,7 +953,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BURST_CAPTURE_HINT:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 157
+    .line 158
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.burst.shootFPS"
@@ -954,7 +964,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BURST_SHOOT_FPS:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 160
+    .line 161
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.eyeBrowDyeRatio"
@@ -965,7 +975,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_EYEBROW_DYE:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 163
+    .line 164
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.pupilLineRatio"
@@ -976,7 +986,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_PUPIL_LINE:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 166
+    .line 167
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.lipGlossRatio"
@@ -987,7 +997,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_JELLY_LIPS:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 169
+    .line 170
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.blushRatio"
@@ -998,7 +1008,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_BLUSHER:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 172
+    .line 173
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.eyeLightType"
@@ -1009,7 +1019,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->EYE_LIGHT_TYPE:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 175
+    .line 176
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.eyeLightStrength"
@@ -1020,7 +1030,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->EYE_LIGHT_STRENGTH:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 178
+    .line 179
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.supernight.enabled"
@@ -1031,7 +1041,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->SUPER_NIGHT_SCENE_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 183
+    .line 184
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.headSlimRatio"
@@ -1042,7 +1052,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_HEAD_SLIM:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 188
+    .line 189
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.bodySlimRatio"
@@ -1053,7 +1063,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_BODY_SLIM:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 193
+    .line 194
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.shoulderSlimRatio"
@@ -1064,7 +1074,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_SHOULDER_SLIM:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 198
+    .line 199
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.beauty.legSlimRatio"
@@ -1075,7 +1085,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_LEG_SLIM:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 204
+    .line 205
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.distortion.distortionLevelApplied"
@@ -1086,7 +1096,7 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->NORMAL_WIDE_LENS_DISTORTION_CORRECTION_LEVEL:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 210
+    .line 211
     new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
 
     const-string v1, "xiaomi.distortion.ultraWideDistortionLevel"
@@ -1097,14 +1107,25 @@
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->ULTRA_WIDE_LENS_DISTORTION_CORRECTION_LEVEL:Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 213
+    .line 219
+    new-instance v0, Landroid/hardware/camera2/CaptureRequest$Key;
+
+    const-string v1, "xiaomi.snapshot.backwardfetchframe.enabled"
+
+    const-class v2, Ljava/lang/Byte;
+
+    invoke-direct {v0, v1, v2}, Landroid/hardware/camera2/CaptureRequest$Key;-><init>(Ljava/lang/String;Ljava/lang/Class;)V
+
+    sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->XIAOMI_BACKWARD_CAPTURE_HINT:Landroid/hardware/camera2/CaptureRequest$Key;
+
+    .line 222
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
     sput-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
-    .line 217
+    .line 226
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->WHITEN_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1113,7 +1134,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 218
+    .line 227
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SHRINK_FACE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1122,7 +1143,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 219
+    .line 228
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->ENLARGE_EYE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1131,7 +1152,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 220
+    .line 229
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1140,7 +1161,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 221
+    .line 230
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->NOSE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1149,7 +1170,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 222
+    .line 231
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->RISORIUS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1158,7 +1179,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 223
+    .line 232
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LIPS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1167,7 +1188,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 224
+    .line 233
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->CHIN_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1176,7 +1197,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 225
+    .line 234
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->NECK_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1185,7 +1206,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 226
+    .line 235
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SMILE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1194,7 +1215,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 227
+    .line 236
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SLIM_NOSE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1203,7 +1224,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 228
+    .line 237
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->EYEBROW_DYE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1212,7 +1233,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 229
+    .line 238
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->PUPIL_LINE_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1221,7 +1242,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 230
+    .line 239
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->JELLY_LIPS_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1230,7 +1251,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 231
+    .line 240
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->BLUSHER_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1239,7 +1260,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 232
+    .line 241
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->HEAD_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1248,7 +1269,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 233
+    .line 242
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->BODY_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1257,7 +1278,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 234
+    .line 243
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->SHOULDER_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1266,7 +1287,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 235
+    .line 244
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     sget-object v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;->LEG_SLIM_RATIO:Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
@@ -1275,14 +1296,14 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 236
+    .line 245
     return-void
 .end method
 
 .method public constructor <init>()V
     .locals 0
 
-    .line 20
+    .line 21
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -1293,7 +1314,7 @@
 .method public applyASDEnable(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 0
 
-    .line 296
+    .line 305
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "unSupported action"
@@ -1303,10 +1324,10 @@
     throw p1
 .end method
 
-.method public applyASDScene(Landroid/hardware/camera2/CaptureRequest$Builder;Ljava/lang/String;)V
+.method public applyASDScene(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
     .locals 0
 
-    .line 300
+    .line 309
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "unSupported action"
@@ -1319,7 +1340,7 @@
 .method public applyAiScenePeriod(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
     .locals 0
 
-    .line 304
+    .line 313
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "unSupported action"
@@ -1329,24 +1350,80 @@
     throw p1
 .end method
 
+.method public applyAutoZoomMode(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
+    .locals 1
+
+    .line 400
+    sget-object v0, Lcom/android/camera2/autozoom/AutoZoomTags$TAG;->MODE:Lcom/android/camera2/autozoom/AutoZoomTags$TAG;
+
+    invoke-virtual {v0}, Lcom/android/camera2/autozoom/AutoZoomTags$TAG;->toCaptureRequestKey()Landroid/hardware/camera2/CaptureRequest$Key;
+
+    move-result-object v0
+
+    invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object p2
+
+    invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
+
+    .line 401
+    return-void
+.end method
+
+.method public applyAutoZoomScaleOffset(Landroid/hardware/camera2/CaptureRequest$Builder;F)V
+    .locals 1
+
+    .line 404
+    sget-object v0, Lcom/android/camera2/autozoom/AutoZoomTags$TAG;->SCALE_OFFSET:Lcom/android/camera2/autozoom/AutoZoomTags$TAG;
+
+    invoke-virtual {v0}, Lcom/android/camera2/autozoom/AutoZoomTags$TAG;->toCaptureRequestKey()Landroid/hardware/camera2/CaptureRequest$Key;
+
+    move-result-object v0
+
+    invoke-static {p2}, Ljava/lang/Float;->valueOf(F)Ljava/lang/Float;
+
+    move-result-object p2
+
+    invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
+
+    .line 405
+    return-void
+.end method
+
+.method public applyBackwardCaptureHint(Landroid/hardware/camera2/CaptureRequest$Builder;B)V
+    .locals 1
+
+    .line 486
+    sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->XIAOMI_BACKWARD_CAPTURE_HINT:Landroid/hardware/camera2/CaptureRequest$Key;
+
+    invoke-static {p2}, Ljava/lang/Byte;->valueOf(B)Ljava/lang/Byte;
+
+    move-result-object p2
+
+    invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
+
+    .line 487
+    return-void
+.end method
+
 .method public applyBeautyParameter(Landroid/hardware/camera2/CaptureRequest$Builder;Lcom/android/camera/fragment/beauty/BeautyValues;)V
     .locals 3
 
-    .line 373
+    .line 382
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_LEVEL:Landroid/hardware/camera2/CaptureRequest$Key;
 
     iget-object v1, p2, Lcom/android/camera/fragment/beauty/BeautyValues;->mBeautyLevel:Ljava/lang/String;
 
     invoke-virtual {p1, v0, v1}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 375
-    invoke-static {}, Lcom/mi/config/b;->hA()Z
+    .line 384
+    invoke-static {}, Lcom/mi/config/b;->hR()Z
 
     move-result v0
 
     if-eqz v0, :cond_1
 
-    .line 376
+    .line 385
     invoke-static {}, Lcom/android/camera/fragment/beauty/BeautyParameters;->getInstance()Lcom/android/camera/fragment/beauty/BeautyParameters;
 
     move-result-object v0
@@ -1372,7 +1449,7 @@
 
     check-cast v1, Lcom/android/camera/fragment/beauty/BeautyParameters$Type;
 
-    .line 377
+    .line 386
     sget-object v2, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     invoke-virtual {v2, v1}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
@@ -1381,7 +1458,7 @@
 
     if-eqz v2, :cond_0
 
-    .line 378
+    .line 387
     sget-object v2, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     invoke-virtual {v2, v1}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -1390,7 +1467,7 @@
 
     check-cast v2, Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 379
+    .line 388
     invoke-virtual {p2, v1}, Lcom/android/camera/fragment/beauty/BeautyValues;->get(Lcom/android/camera/fragment/beauty/BeautyParameters$Type;)I
 
     move-result v1
@@ -1401,11 +1478,11 @@
 
     invoke-virtual {p1, v2, v1}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 381
+    .line 390
     :cond_0
     goto :goto_0
 
-    .line 383
+    .line 392
     :cond_1
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_SKIN_COLOR:Landroid/hardware/camera2/CaptureRequest$Key;
 
@@ -1417,7 +1494,7 @@
 
     invoke-virtual {p1, v0, v1}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 384
+    .line 393
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_SLIM_FACE:Landroid/hardware/camera2/CaptureRequest$Key;
 
     iget v1, p2, Lcom/android/camera/fragment/beauty/BeautyValues;->mBeautySlimFace:I
@@ -1428,7 +1505,7 @@
 
     invoke-virtual {p1, v0, v1}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 385
+    .line 394
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_SKIN_SMOOTH:Landroid/hardware/camera2/CaptureRequest$Key;
 
     iget v1, p2, Lcom/android/camera/fragment/beauty/BeautyValues;->mBeautySkinSmooth:I
@@ -1439,7 +1516,7 @@
 
     invoke-virtual {p1, v0, v1}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 386
+    .line 395
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_ENLARGE_EYE:Landroid/hardware/camera2/CaptureRequest$Key;
 
     iget p2, p2, Lcom/android/camera/fragment/beauty/BeautyValues;->mBeautyEnlargeEye:I
@@ -1450,7 +1527,7 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 388
+    .line 397
     :cond_2
     return-void
 .end method
@@ -1458,7 +1535,7 @@
 .method public applyBokeh(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 1
 
-    .line 353
+    .line 362
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->MFNR_BOKEH:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -1467,14 +1544,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 354
+    .line 363
     return-void
 .end method
 
 .method public applyBurstFps(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
     .locals 1
 
-    .line 408
+    .line 425
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BURST_SHOOT_FPS:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1483,14 +1560,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 409
+    .line 426
     return-void
 .end method
 
 .method public applyBurstHint(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
     .locals 1
 
-    .line 404
+    .line 421
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BURST_CAPTURE_HINT:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1499,14 +1576,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 405
+    .line 422
     return-void
 .end method
 
 .method public applyCameraAi30Enable(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 0
 
-    .line 280
+    .line 289
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "unSupported action"
@@ -1519,7 +1596,7 @@
 .method public applyContrast(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
     .locals 0
 
-    .line 259
+    .line 268
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "unSupported Contrast"
@@ -1532,7 +1609,7 @@
 .method public applyCustomWB(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
     .locals 0
 
-    .line 255
+    .line 264
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "unSupported CustomWb"
@@ -1545,7 +1622,7 @@
 .method public applyDepurpleEnable(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 0
 
-    .line 292
+    .line 301
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "unSupported action"
@@ -1558,7 +1635,7 @@
 .method public applyDeviceOrientation(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
     .locals 1
 
-    .line 369
+    .line 378
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->DEVICE_ORIENTATION:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1567,14 +1644,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 370
+    .line 379
     return-void
 .end method
 
 .method public applyExposureMeteringMode(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
     .locals 0
 
-    .line 272
+    .line 281
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "unSupported ExposureMeteringMode"
@@ -1587,14 +1664,14 @@
 .method public applyExposureTime(Landroid/hardware/camera2/CaptureRequest$Builder;J)V
     .locals 2
 
-    .line 243
+    .line 252
     const-wide/16 v0, 0x0
 
     cmp-long v0, p2, v0
 
     if-lez v0, :cond_0
 
-    .line 244
+    .line 253
     sget-object v0, Landroid/hardware/camera2/CaptureRequest;->CONTROL_MODE:Landroid/hardware/camera2/CaptureRequest$Key;
 
     const/4 v1, 0x0
@@ -1605,7 +1682,7 @@
 
     invoke-virtual {p1, v0, v1}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 248
+    .line 257
     sget-object v0, Landroid/hardware/camera2/CaptureRequest;->SENSOR_EXPOSURE_TIME:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2, p3}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
@@ -1616,7 +1693,7 @@
 
     goto :goto_0
 
-    .line 250
+    .line 259
     :cond_0
     sget-object p2, Landroid/hardware/camera2/CaptureRequest;->CONTROL_MODE:Landroid/hardware/camera2/CaptureRequest$Key;
 
@@ -1630,7 +1707,7 @@
 
     invoke-virtual {p1, p2, p3}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 252
+    .line 261
     :goto_0
     return-void
 .end method
@@ -1638,7 +1715,7 @@
 .method public applyEyeLight(Landroid/hardware/camera2/CaptureRequest$Builder;II)V
     .locals 1
 
-    .line 424
+    .line 441
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->EYE_LIGHT_TYPE:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1647,7 +1724,7 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 425
+    .line 442
     sget-object p2, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->EYE_LIGHT_STRENGTH:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1656,26 +1733,26 @@
 
     invoke-virtual {p1, p2, p3}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 426
+    .line 443
     return-void
 .end method
 
 .method public applyFNumber(Landroid/hardware/camera2/CaptureRequest$Builder;Ljava/lang/String;)V
     .locals 1
 
-    .line 441
+    .line 458
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BOKEH_F_NUMBER:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 442
+    .line 459
     return-void
 .end method
 
 .method public applyFaceAnalyzeAge(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 1
 
-    .line 361
+    .line 370
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->FACE_AGE_ANALYZE_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -1684,14 +1761,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 362
+    .line 371
     return-void
 .end method
 
 .method public applyFaceScore(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 1
 
-    .line 365
+    .line 374
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->FACE_SCORE_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -1700,26 +1777,26 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 366
+    .line 375
     return-void
 .end method
 
 .method public applyFaceWaterMark(Landroid/hardware/camera2/CaptureRequest$Builder;Ljava/lang/String;)V
     .locals 1
 
-    .line 341
+    .line 350
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->WATERMARK_FACE:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 342
+    .line 351
     return-void
 .end method
 
 .method public applyFrontMirror(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 1
 
-    .line 399
+    .line 416
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->FRONT_MIRROR:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -1728,14 +1805,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 400
+    .line 417
     return-void
 .end method
 
 .method public applyHDR(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 1
 
-    .line 312
+    .line 321
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->HDR_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -1744,14 +1821,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 313
+    .line 322
     return-void
 .end method
 
 .method public applyHDRCheckerEnable(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 1
 
-    .line 316
+    .line 325
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->HDR_CHECKER_ENABLE:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -1760,14 +1837,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 317
+    .line 326
     return-void
 .end method
 
 .method public applyHHT(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 1
 
-    .line 308
+    .line 317
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->HHT_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -1776,14 +1853,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 309
+    .line 318
     return-void
 .end method
 
 .method public applyHdrBracketMode(Landroid/hardware/camera2/CaptureRequest$Builder;B)V
     .locals 0
 
-    .line 433
+    .line 450
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "unSupported action"
@@ -1796,7 +1873,7 @@
 .method public applyISO(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
     .locals 1
 
-    .line 239
+    .line 248
     sget-object v0, Landroid/hardware/camera2/CaptureRequest;->SENSOR_SENSITIVITY:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1805,21 +1882,21 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 240
+    .line 249
     return-void
 .end method
 
 .method public applyIsHfrPreview(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 0
 
-    .line 413
+    .line 430
     return-void
 .end method
 
 .method public applyLensDirtyDetect(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 1
 
-    .line 416
+    .line 433
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->LENS_DIRTY_DETECT:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -1828,14 +1905,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 417
+    .line 434
     return-void
 .end method
 
 .method public applyMfnr(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 1
 
-    .line 345
+    .line 354
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->MFNR_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -1844,14 +1921,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 346
+    .line 355
     return-void
 .end method
 
 .method public applyMultiFrameInputNum(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
     .locals 0
 
-    .line 437
+    .line 454
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "unSupported action"
@@ -1864,7 +1941,7 @@
 .method public applyNormalWideLDC(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 0
 
-    .line 284
+    .line 293
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "unSupported action"
@@ -1877,7 +1954,7 @@
 .method public applyParallelProcessEnable(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 1
 
-    .line 325
+    .line 334
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->PARALLEL_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -1886,31 +1963,31 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 326
+    .line 335
     return-void
 .end method
 
 .method public applyParallelProcessPath(Landroid/hardware/camera2/CaptureRequest$Builder;Ljava/lang/String;)V
     .locals 1
 
-    .line 320
+    .line 329
     invoke-virtual {p2}, Ljava/lang/String;->getBytes()[B
 
     move-result-object p2
 
-    .line 321
+    .line 330
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->PARALLEL_PATH:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 322
+    .line 331
     return-void
 .end method
 
 .method public applyPortraitLighting(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
     .locals 1
 
-    .line 420
+    .line 437
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->PORTRAIT_LIGHTING:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1919,14 +1996,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 421
+    .line 438
     return-void
 .end method
 
 .method public applySaturation(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
     .locals 0
 
-    .line 263
+    .line 272
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "unSupported Saturation"
@@ -1939,7 +2016,7 @@
 .method public applySharpness(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
     .locals 0
 
-    .line 267
+    .line 276
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "unSupported Sharpness"
@@ -1952,7 +2029,7 @@
 .method public applySnapshotTorch(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 1
 
-    .line 391
+    .line 408
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->SNAP_SHOT_TORCH:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -1961,14 +2038,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 392
+    .line 409
     return-void
 .end method
 
 .method public applyStFastZoomIn(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 1
 
-    .line 357
+    .line 366
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->ST_FAST_ZOOM_IN:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -1977,14 +2054,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 358
+    .line 367
     return-void
 .end method
 
 .method public applySuperNightScene(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 1
 
-    .line 429
+    .line 446
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->SUPER_NIGHT_SCENE_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -1993,14 +2070,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 430
+    .line 447
     return-void
 .end method
 
 .method public applySuperResolution(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 1
 
-    .line 329
+    .line 338
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->SUPER_RESOLUTION_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -2009,14 +2086,14 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 330
+    .line 339
     return-void
 .end method
 
 .method public applySwMfnr(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 1
 
-    .line 349
+    .line 358
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->SW_MFNR_ENABLED:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {p2}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
@@ -2025,26 +2102,26 @@
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 350
+    .line 359
     return-void
 .end method
 
 .method public applyTimeWaterMark(Landroid/hardware/camera2/CaptureRequest$Builder;Ljava/lang/String;)V
     .locals 1
 
-    .line 337
+    .line 346
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->WATERMARK_TIME:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 338
+    .line 347
     return-void
 .end method
 
 .method public applyUltraWideLDC(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 0
 
-    .line 288
+    .line 297
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "unSupported action"
@@ -2057,31 +2134,31 @@
 .method public applyVideoStreamState(Landroid/hardware/camera2/CaptureRequest$Builder;Z)V
     .locals 0
 
-    .line 277
+    .line 286
     return-void
 .end method
 
 .method public applyWaterMarkAppliedList(Landroid/hardware/camera2/CaptureRequest$Builder;Ljava/lang/String;)V
     .locals 1
 
-    .line 333
+    .line 342
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->WATERMARK_APPLIEDTYPE:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 334
+    .line 343
     return-void
 .end method
 
 .method public applyWaterMarkType(Landroid/hardware/camera2/CaptureRequest$Builder;Ljava/lang/String;)V
     .locals 1
 
-    .line 395
+    .line 412
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->WATERMARK_APPLIEDTYPE:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 396
+    .line 413
     return-void
 .end method
 
@@ -2098,7 +2175,7 @@
         }
     .end annotation
 
-    .line 453
+    .line 470
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     invoke-virtual {v0, p2}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
@@ -2107,7 +2184,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 454
+    .line 471
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->BEAUTY_TYPE_MAP:Ljava/util/HashMap;
 
     invoke-virtual {v0, p2}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -2116,7 +2193,7 @@
 
     check-cast p2, Landroid/hardware/camera2/CaptureRequest$Key;
 
-    .line 455
+    .line 472
     invoke-virtual {p2}, Landroid/hardware/camera2/CaptureRequest$Key;->getName()Ljava/lang/String;
 
     move-result-object p2
@@ -2127,7 +2204,7 @@
 
     return p1
 
-    .line 457
+    .line 474
     :cond_0
     const/4 p1, 0x0
 
@@ -2145,7 +2222,7 @@
         }
     .end annotation
 
-    .line 445
+    .line 462
     const/4 p1, 0x0
 
     return p1
@@ -2162,7 +2239,7 @@
         }
     .end annotation
 
-    .line 461
+    .line 478
     const/4 p1, 0x0
 
     return p1
@@ -2179,7 +2256,7 @@
         }
     .end annotation
 
-    .line 465
+    .line 482
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->EYE_LIGHT_TYPE:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-virtual {v0}, Landroid/hardware/camera2/CaptureRequest$Key;->getName()Ljava/lang/String;
@@ -2204,7 +2281,7 @@
         }
     .end annotation
 
-    .line 449
+    .line 466
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatBaseImpl;->LENS_DIRTY_DETECT:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-virtual {v0}, Landroid/hardware/camera2/CaptureRequest$Key;->getName()Ljava/lang/String;

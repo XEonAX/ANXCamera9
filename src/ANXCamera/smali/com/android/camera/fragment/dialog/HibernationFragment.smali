@@ -205,7 +205,7 @@
 
     move-result p1
 
-    const v0, 0x7f0d003b
+    const v0, 0x7f0d003e
 
     if-eq p1, v0, :cond_0
 
@@ -270,7 +270,7 @@
     move-result-object p1
 
     .line 32
-    const p2, 0x7f0d003b
+    const p2, 0x7f0d003e
 
     invoke-virtual {p1, p2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -279,7 +279,7 @@
     invoke-virtual {p2, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
     .line 33
-    const p2, 0x7f0d003c
+    const p2, 0x7f0d003f
 
     invoke-virtual {p1, p2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 

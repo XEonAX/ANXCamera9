@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/beauty/BeautyEyeLightFragment;)V
     .locals 0
 
-    .line 130
+    .line 131
     iput-object p1, p0, Lcom/android/camera/fragment/beauty/BeautyEyeLightFragment$2;->this$0:Lcom/android/camera/fragment/beauty/BeautyEyeLightFragment;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -47,11 +47,11 @@
         }
     .end annotation
 
-    .line 133
+    .line 134
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/BeautyEyeLightFragment$2;->this$0:Lcom/android/camera/fragment/beauty/BeautyEyeLightFragment;
 
     invoke-static {p1, p3}, Lcom/android/camera/fragment/beauty/BeautyEyeLightFragment;->access$000(Lcom/android/camera/fragment/beauty/BeautyEyeLightFragment;I)V
 
-    .line 134
+    .line 135
     return-void
 .end method

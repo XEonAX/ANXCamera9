@@ -26,7 +26,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 434
     const/4 v0, 0x0
@@ -54,7 +54,7 @@
 .end method
 
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 433
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -63,7 +63,7 @@
 .end method
 
 .method static binarySearch([III)I
-    .locals 4
+    .registers 7
     .param p0, "array"    # [I
     .param p1, "size"    # I
     .param p2, "value"    # I
@@ -77,8 +77,8 @@
 
     .line 444
     .local v1, "hi":I
-    :goto_0
-    if-gt v0, v1, :cond_2
+    :goto_3
+    if-gt v0, v1, :cond_16
 
     .line 445
     add-int v2, v0, v1
@@ -91,16 +91,16 @@
 
     .line 448
     .local v3, "midVal":I
-    if-ge v3, p2, :cond_0
+    if-ge v3, p2, :cond_10
 
     .line 449
     add-int/lit8 v0, v2, 0x1
 
-    goto :goto_1
+    goto :goto_14
 
     .line 450
-    :cond_0
-    if-le v3, p2, :cond_1
+    :cond_10
+    if-le v3, p2, :cond_15
 
     .line 451
     add-int/lit8 v1, v2, -0x1
@@ -108,19 +108,19 @@
     .line 455
     .end local v2    # "mid":I
     .end local v3    # "midVal":I
-    :goto_1
-    goto :goto_0
+    :goto_14
+    goto :goto_3
 
     .line 453
     .restart local v2    # "mid":I
     .restart local v3    # "midVal":I
-    :cond_1
+    :cond_15
     return v2
 
     .line 456
     .end local v2    # "mid":I
     .end local v3    # "midVal":I
-    :cond_2
+    :cond_16
     not-int v2, v0
 
     return v2

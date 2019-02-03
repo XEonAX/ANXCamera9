@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera2/MiCamera2;)V
     .locals 0
 
-    .line 336
+    .line 390
     iput-object p1, p0, Lcom/android/camera2/MiCamera2$6;->this$0:Lcom/android/camera2/MiCamera2;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,41 +38,54 @@
 .method public onImageAvailable(Landroid/media/ImageReader;)V
     .locals 2
 
-    .line 339
+    .line 393
     invoke-virtual {p1}, Landroid/media/ImageReader;->acquireNextImage()Landroid/media/Image;
 
     move-result-object p1
 
-    .line 340
-    if-eqz p1, :cond_1
+    .line 394
+    if-nez p1, :cond_0
 
-    iget-object v0, p0, Lcom/android/camera2/MiCamera2$6;->this$0:Lcom/android/camera2/MiCamera2;
+    .line 395
+    return-void
 
-    invoke-static {v0}, Lcom/android/camera2/MiCamera2;->access$200(Lcom/android/camera2/MiCamera2;)Lcom/android/camera2/MiCamera2Shot;
-
-    move-result-object v0
-
-    if-nez v0, :cond_0
-
-    goto :goto_0
-
-    .line 343
+    .line 397
     :cond_0
     iget-object v0, p0, Lcom/android/camera2/MiCamera2$6;->this$0:Lcom/android/camera2/MiCamera2;
 
-    invoke-static {v0}, Lcom/android/camera2/MiCamera2;->access$200(Lcom/android/camera2/MiCamera2;)Lcom/android/camera2/MiCamera2Shot;
+    invoke-static {v0}, Lcom/android/camera2/MiCamera2;->access$500(Lcom/android/camera2/MiCamera2;)Lcom/android/camera2/MiCamera2Shot;
 
     move-result-object v0
 
-    const/4 v1, 0x3
+    if-nez v0, :cond_1
+
+    .line 398
+    invoke-static {}, Lcom/android/camera2/MiCamera2;->access$000()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "onImageAvailable: NO depth image processor!"
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 399
+    invoke-virtual {p1}, Landroid/media/Image;->close()V
+
+    .line 400
+    return-void
+
+    .line 402
+    :cond_1
+    iget-object v0, p0, Lcom/android/camera2/MiCamera2$6;->this$0:Lcom/android/camera2/MiCamera2;
+
+    invoke-static {v0}, Lcom/android/camera2/MiCamera2;->access$500(Lcom/android/camera2/MiCamera2;)Lcom/android/camera2/MiCamera2Shot;
+
+    move-result-object v0
+
+    const/4 v1, 0x2
 
     invoke-virtual {v0, p1, v1}, Lcom/android/camera2/MiCamera2Shot;->onImageReceived(Landroid/media/Image;I)V
 
-    .line 344
-    return-void
-
-    .line 341
-    :cond_1
-    :goto_0
+    .line 403
     return-void
 .end method

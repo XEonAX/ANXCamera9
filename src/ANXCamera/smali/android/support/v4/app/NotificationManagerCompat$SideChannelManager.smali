@@ -67,7 +67,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;)V
-    .locals 2
+    .registers 4
     .param p1, "context"    # Landroid/content/Context;
 
     .line 294
@@ -122,13 +122,13 @@
 .end method
 
 .method private ensureServiceBound(Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;)Z
-    .locals 4
+    .registers 6
     .param p1, "record"    # Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;
 
     .line 434
     iget-boolean v0, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->bound:Z
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_6
 
     .line 435
     const/4 v0, 0x1
@@ -136,7 +136,7 @@
     return v0
 
     .line 437
-    :cond_0
+    :cond_6
     new-instance v0, Landroid/content/Intent;
 
     const-string v1, "android.support.BIND_NOTIFICATION_SIDE_CHANNEL"
@@ -153,6 +153,7 @@
     .local v0, "intent":Landroid/content/Intent;
     iget-object v1, p0, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager;->mContext:Landroid/content/Context;
 
+    # getter for: Landroid/support/v4/app/NotificationManagerCompat;->SIDE_CHANNEL_BIND_FLAGS:I
     invoke-static {}, Landroid/support/v4/app/NotificationManagerCompat;->access$000()I
 
     move-result v2
@@ -166,17 +167,17 @@
     .line 439
     iget-boolean v1, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->bound:Z
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_27
 
     .line 440
     const/4 v1, 0x0
 
     iput v1, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->retryCount:I
 
-    goto :goto_0
+    goto :goto_44
 
     .line 442
-    :cond_1
+    :cond_27
     const-string v1, "NotifManCompat"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -203,20 +204,20 @@
     invoke-virtual {v1, p0}, Landroid/content/Context;->unbindService(Landroid/content/ServiceConnection;)V
 
     .line 445
-    :goto_0
+    :goto_44
     iget-boolean v1, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->bound:Z
 
     return v1
 .end method
 
 .method private ensureServiceUnbound(Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;)V
-    .locals 1
+    .registers 3
     .param p1, "record"    # Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;
 
     .line 452
     iget-boolean v0, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->bound:Z
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_c
 
     .line 453
     iget-object v0, p0, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager;->mContext:Landroid/content/Context;
@@ -229,7 +230,7 @@
     iput-boolean v0, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->bound:Z
 
     .line 456
-    :cond_0
+    :cond_c
     const/4 v0, 0x0
 
     iput-object v0, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->service:Landroid/support/v4/app/INotificationSideChannel;
@@ -239,7 +240,7 @@
 .end method
 
 .method private handleQueueTask(Landroid/support/v4/app/NotificationManagerCompat$Task;)V
-    .locals 3
+    .registers 5
     .param p1, "task"    # Landroid/support/v4/app/NotificationManagerCompat$Task;
 
     .line 330
@@ -257,12 +258,12 @@
     move-result-object v0
 
     .local v0, "i$":Ljava/util/Iterator;
-    :goto_0
+    :goto_d
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_22
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -281,16 +282,16 @@
 
     .line 334
     .end local v1    # "record":Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;
-    goto :goto_0
+    goto :goto_d
 
     .line 335
     .end local v0    # "i$":Ljava/util/Iterator;
-    :cond_0
+    :cond_22
     return-void
 .end method
 
 .method private handleRetryListenerQueue(Landroid/content/ComponentName;)V
-    .locals 1
+    .registers 3
     .param p1, "componentName"    # Landroid/content/ComponentName;
 
     .line 354
@@ -304,18 +305,18 @@
 
     .line 355
     .local v0, "record":Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_d
 
     .line 356
     invoke-direct {p0, v0}, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager;->processListenerQueue(Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;)V
 
     .line 358
-    :cond_0
+    :cond_d
     return-void
 .end method
 
 .method private handleServiceConnected(Landroid/content/ComponentName;Landroid/os/IBinder;)V
-    .locals 2
+    .registers 5
     .param p1, "componentName"    # Landroid/content/ComponentName;
     .param p2, "iBinder"    # Landroid/os/IBinder;
 
@@ -330,7 +331,7 @@
 
     .line 339
     .local v0, "record":Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_16
 
     .line 340
     invoke-static {p2}, Landroid/support/v4/app/INotificationSideChannel$Stub;->asInterface(Landroid/os/IBinder;)Landroid/support/v4/app/INotificationSideChannel;
@@ -348,12 +349,12 @@
     invoke-direct {p0, v0}, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager;->processListenerQueue(Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;)V
 
     .line 344
-    :cond_0
+    :cond_16
     return-void
 .end method
 
 .method private handleServiceDisconnected(Landroid/content/ComponentName;)V
-    .locals 1
+    .registers 3
     .param p1, "componentName"    # Landroid/content/ComponentName;
 
     .line 347
@@ -367,18 +368,18 @@
 
     .line 348
     .local v0, "record":Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_d
 
     .line 349
     invoke-direct {p0, v0}, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager;->ensureServiceUnbound(Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;)V
 
     .line 351
-    :cond_0
+    :cond_d
     return-void
 .end method
 
 .method private processListenerQueue(Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;)V
-    .locals 5
+    .registers 7
     .param p1, "record"    # Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;
 
     .line 488
@@ -390,7 +391,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_34
 
     .line 489
     const-string v0, "NotifManCompat"
@@ -430,35 +431,35 @@
     invoke-static {v0, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 492
-    :cond_0
+    :cond_34
     iget-object v0, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->taskQueue:Ljava/util/LinkedList;
 
     invoke-virtual {v0}, Ljava/util/LinkedList;->isEmpty()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_3d
 
     .line 493
     return-void
 
     .line 495
-    :cond_1
+    :cond_3d
     invoke-direct {p0, p1}, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager;->ensureServiceBound(Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_7
+    if-eqz v0, :cond_c6
 
     iget-object v0, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->service:Landroid/support/v4/app/INotificationSideChannel;
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_49
 
-    goto/16 :goto_2
+    goto/16 :goto_c6
 
     .line 502
-    :cond_2
-    :goto_0
+    :cond_49
+    :goto_49
     iget-object v0, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->taskQueue:Ljava/util/LinkedList;
 
     invoke-virtual {v0}, Ljava/util/LinkedList;->peek()Ljava/lang/Object;
@@ -469,21 +470,21 @@
 
     .line 503
     .local v0, "task":Landroid/support/v4/app/NotificationManagerCompat$Task;
-    if-nez v0, :cond_3
+    if-nez v0, :cond_54
 
     .line 504
-    goto :goto_1
+    goto :goto_ba
 
     .line 507
-    :cond_3
-    :try_start_0
+    :cond_54
+    :try_start_54
     const-string v2, "NotifManCompat"
 
     invoke-static {v2, v1}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
 
     move-result v2
 
-    if-eqz v2, :cond_4
+    if-eqz v2, :cond_72
 
     .line 508
     const-string v2, "NotifManCompat"
@@ -505,7 +506,7 @@
     invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 510
-    :cond_4
+    :cond_72
     iget-object v2, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->service:Landroid/support/v4/app/INotificationSideChannel;
 
     invoke-interface {v0, v2}, Landroid/support/v4/app/NotificationManagerCompat$Task;->send(Landroid/support/v4/app/INotificationSideChannel;)V
@@ -514,20 +515,20 @@
     iget-object v2, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->taskQueue:Ljava/util/LinkedList;
 
     invoke-virtual {v2}, Ljava/util/LinkedList;->remove()Ljava/lang/Object;
-    :try_end_0
-    .catch Landroid/os/DeadObjectException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_7c
+    .catch Landroid/os/DeadObjectException; {:try_start_54 .. :try_end_7c} :catch_98
+    .catch Landroid/os/RemoteException; {:try_start_54 .. :try_end_7c} :catch_7e
 
     .line 520
     nop
 
     .line 521
     .end local v0    # "task":Landroid/support/v4/app/NotificationManagerCompat$Task;
-    goto :goto_0
+    goto :goto_49
 
     .line 517
     .restart local v0    # "task":Landroid/support/v4/app/NotificationManagerCompat$Task;
-    :catch_0
+    :catch_7e
     move-exception v1
 
     .line 518
@@ -553,11 +554,11 @@
     invoke-static {v2, v3, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 519
-    goto :goto_1
+    goto :goto_ba
 
     .line 512
     .end local v1    # "e":Landroid/os/RemoteException;
-    :catch_1
+    :catch_98
     move-exception v2
 
     .line 513
@@ -568,7 +569,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_5
+    if-eqz v1, :cond_b9
 
     .line 514
     const-string v1, "NotifManCompat"
@@ -592,31 +593,31 @@
     invoke-static {v1, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 516
-    :cond_5
+    :cond_b9
     nop
 
     .line 522
     .end local v0    # "task":Landroid/support/v4/app/NotificationManagerCompat$Task;
     .end local v2    # "e":Landroid/os/DeadObjectException;
-    :goto_1
+    :goto_ba
     iget-object v0, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->taskQueue:Ljava/util/LinkedList;
 
     invoke-virtual {v0}, Ljava/util/LinkedList;->isEmpty()Z
 
     move-result v0
 
-    if-nez v0, :cond_6
+    if-nez v0, :cond_c5
 
     .line 524
     invoke-direct {p0, p1}, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager;->scheduleListenerRetry(Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;)V
 
     .line 526
-    :cond_6
+    :cond_c5
     return-void
 
     .line 497
-    :cond_7
-    :goto_2
+    :cond_c6
+    :goto_c6
     invoke-direct {p0, p1}, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager;->scheduleListenerRetry(Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;)V
 
     .line 498
@@ -624,7 +625,7 @@
 .end method
 
 .method private scheduleListenerRetry(Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;)V
-    .locals 5
+    .registers 7
     .param p1, "record"    # Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;
 
     .line 465
@@ -638,13 +639,13 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_c
 
     .line 466
     return-void
 
     .line 468
-    :cond_0
+    :cond_c
     iget v0, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->retryCount:I
 
     const/4 v1, 0x1
@@ -658,7 +659,7 @@
 
     const/4 v3, 0x6
 
-    if-le v0, v3, :cond_1
+    if-le v0, v3, :cond_52
 
     .line 470
     const-string v0, "NotifManCompat"
@@ -714,7 +715,7 @@
     return-void
 
     .line 475
-    :cond_1
+    :cond_52
     const/16 v0, 0x3e8
 
     iget v3, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->retryCount:I
@@ -733,7 +734,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_7c
 
     .line 477
     const-string v1, "NotifManCompat"
@@ -759,7 +760,7 @@
     invoke-static {v1, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 479
-    :cond_2
+    :cond_7c
     iget-object v1, p0, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager;->mHandler:Landroid/os/Handler;
 
     iget-object v3, p1, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;->componentName:Landroid/content/ComponentName;
@@ -781,7 +782,7 @@
 .end method
 
 .method private updateListenerMap()V
-    .locals 9
+    .registers 10
 
     .line 383
     iget-object v0, p0, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager;->mContext:Landroid/content/Context;
@@ -798,13 +799,13 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_f
 
     .line 386
     return-void
 
     .line 388
-    :cond_0
+    :cond_f
     iput-object v0, p0, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager;->mCachedEnabledPackages:Ljava/util/Set;
 
     .line 389
@@ -843,12 +844,12 @@
     move-result-object v3
 
     .local v3, "i$":Ljava/util/Iterator;
-    :goto_0
+    :goto_30
     invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
-    if-eqz v4, :cond_3
+    if-eqz v4, :cond_7a
 
     invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -866,13 +867,13 @@
 
     move-result v5
 
-    if-nez v5, :cond_1
+    if-nez v5, :cond_47
 
     .line 394
-    goto :goto_0
+    goto :goto_30
 
     .line 396
-    :cond_1
+    :cond_47
     new-instance v5, Landroid/content/ComponentName;
 
     iget-object v6, v4, Landroid/content/pm/ResolveInfo;->serviceInfo:Landroid/content/pm/ServiceInfo;
@@ -891,7 +892,7 @@
 
     iget-object v6, v6, Landroid/content/pm/ServiceInfo;->permission:Ljava/lang/String;
 
-    if-eqz v6, :cond_2
+    if-eqz v6, :cond_76
 
     .line 399
     const-string v6, "NotifManCompat"
@@ -917,33 +918,33 @@
     invoke-static {v6, v7}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 401
-    goto :goto_0
+    goto :goto_30
 
     .line 403
-    :cond_2
+    :cond_76
     invoke-interface {v2, v5}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
     .line 404
     .end local v4    # "resolveInfo":Landroid/content/pm/ResolveInfo;
     .end local v5    # "componentName":Landroid/content/ComponentName;
-    goto :goto_0
+    goto :goto_30
 
     .line 406
     .end local v3    # "i$":Ljava/util/Iterator;
-    :cond_3
+    :cond_7a
     invoke-interface {v2}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v3
 
     .restart local v3    # "i$":Ljava/util/Iterator;
-    :goto_1
+    :goto_7e
     invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
     const/4 v5, 0x3
 
-    if-eqz v4, :cond_6
+    if-eqz v4, :cond_bc
 
     invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -959,7 +960,7 @@
 
     move-result v6
 
-    if-nez v6, :cond_5
+    if-nez v6, :cond_bb
 
     .line 408
     const-string v6, "NotifManCompat"
@@ -968,7 +969,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_4
+    if-eqz v5, :cond_b1
 
     .line 409
     const-string v5, "NotifManCompat"
@@ -990,7 +991,7 @@
     invoke-static {v5, v6}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 411
-    :cond_4
+    :cond_b1
     iget-object v5, p0, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager;->mRecordMap:Ljava/util/Map;
 
     new-instance v6, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;
@@ -1001,12 +1002,12 @@
 
     .line 413
     .end local v4    # "componentName":Landroid/content/ComponentName;
-    :cond_5
-    goto :goto_1
+    :cond_bb
+    goto :goto_7e
 
     .line 415
     .end local v3    # "i$":Ljava/util/Iterator;
-    :cond_6
+    :cond_bc
     iget-object v3, p0, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager;->mRecordMap:Ljava/util/Map;
 
     invoke-interface {v3}, Ljava/util/Map;->entrySet()Ljava/util/Set;
@@ -1019,12 +1020,12 @@
 
     .line 417
     .local v3, "it":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/util/Map$Entry<Landroid/content/ComponentName;Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;>;>;"
-    :goto_2
+    :goto_c6
     invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
-    if-eqz v4, :cond_9
+    if-eqz v4, :cond_10b
 
     .line 418
     invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
@@ -1043,7 +1044,7 @@
 
     move-result v6
 
-    if-nez v6, :cond_8
+    if-nez v6, :cond_10a
 
     .line 420
     const-string v6, "NotifManCompat"
@@ -1052,7 +1053,7 @@
 
     move-result v6
 
-    if-eqz v6, :cond_7
+    if-eqz v6, :cond_fe
 
     .line 421
     const-string v6, "NotifManCompat"
@@ -1078,7 +1079,7 @@
     invoke-static {v6, v7}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 423
-    :cond_7
+    :cond_fe
     invoke-interface {v4}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
 
     move-result-object v6
@@ -1092,18 +1093,18 @@
 
     .line 426
     .end local v4    # "entry":Ljava/util/Map$Entry;, "Ljava/util/Map$Entry<Landroid/content/ComponentName;Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager$ListenerRecord;>;"
-    :cond_8
-    goto :goto_2
+    :cond_10a
+    goto :goto_c6
 
     .line 427
-    :cond_9
+    :cond_10b
     return-void
 .end method
 
 
 # virtual methods
 .method public handleMessage(Landroid/os/Message;)Z
-    .locals 4
+    .registers 6
     .param p1, "msg"    # Landroid/os/Message;
 
     .line 311
@@ -1111,7 +1112,7 @@
 
     const/4 v1, 0x1
 
-    packed-switch v0, :pswitch_data_0
+    packed-switch v0, :pswitch_data_2c
 
     .line 326
     const/4 v0, 0x0
@@ -1119,7 +1120,7 @@
     return v0
 
     .line 323
-    :pswitch_0
+    :pswitch_8
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast v0, Landroid/content/ComponentName;
@@ -1130,7 +1131,7 @@
     return v1
 
     .line 320
-    :pswitch_1
+    :pswitch_10
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast v0, Landroid/content/ComponentName;
@@ -1141,7 +1142,7 @@
     return v1
 
     .line 316
-    :pswitch_2
+    :pswitch_18
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast v0, Landroid/support/v4/app/NotificationManagerCompat$ServiceConnectedEvent;
@@ -1159,7 +1160,7 @@
 
     .line 313
     .end local v0    # "event":Landroid/support/v4/app/NotificationManagerCompat$ServiceConnectedEvent;
-    :pswitch_3
+    :pswitch_24
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast v0, Landroid/support/v4/app/NotificationManagerCompat$Task;
@@ -1169,17 +1170,17 @@
     .line 314
     return v1
 
-    :pswitch_data_0
+    :pswitch_data_2c
     .packed-switch 0x0
-        :pswitch_3
-        :pswitch_2
-        :pswitch_1
-        :pswitch_0
+        :pswitch_24
+        :pswitch_18
+        :pswitch_10
+        :pswitch_8
     .end packed-switch
 .end method
 
 .method public onServiceConnected(Landroid/content/ComponentName;Landroid/os/IBinder;)V
-    .locals 3
+    .registers 6
     .param p1, "componentName"    # Landroid/content/ComponentName;
     .param p2, "iBinder"    # Landroid/os/IBinder;
 
@@ -1192,7 +1193,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1f
 
     .line 363
     const-string v0, "NotifManCompat"
@@ -1214,7 +1215,7 @@
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 365
-    :cond_0
+    :cond_1f
     iget-object v0, p0, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x1
@@ -1234,7 +1235,7 @@
 .end method
 
 .method public onServiceDisconnected(Landroid/content/ComponentName;)V
-    .locals 3
+    .registers 5
     .param p1, "componentName"    # Landroid/content/ComponentName;
 
     .line 372
@@ -1246,7 +1247,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1f
 
     .line 373
     const-string v0, "NotifManCompat"
@@ -1268,7 +1269,7 @@
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 375
-    :cond_0
+    :cond_1f
     iget-object v0, p0, Landroid/support/v4/app/NotificationManagerCompat$SideChannelManager;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x2
@@ -1284,7 +1285,7 @@
 .end method
 
 .method public queueTask(Landroid/support/v4/app/NotificationManagerCompat$Task;)V
-    .locals 2
+    .registers 4
     .param p1, "task"    # Landroid/support/v4/app/NotificationManagerCompat$Task;
 
     .line 306

@@ -4,9 +4,11 @@
 
 
 # static fields
+.field public static final AAR_ABI:Ljava/lang/String; = "arm64-v8a"
+
 .field public static final AAR_POM_ARTIFACT_ID:Ljava/lang/String; = "medialib_oem"
 
-.field public static final AAR_VERSION_NAME:Ljava/lang/String; = "2.9.0.14_20181129172835_2fdc4b2b5"
+.field public static final AAR_VERSION_NAME:Ljava/lang/String; = "2.9.0.14_20190117213025_xiaomi_4d1563c8f_v8a"
 
 .field public static final APPLICATION_ID:Ljava/lang/String; = "com.ss.android.medialib"
 
@@ -15,6 +17,8 @@
 .field public static final DEBUG:Z = false
 
 .field public static final FLAVOR:Ljava/lang/String; = ""
+
+.field public static final OEM:Ljava/lang/String; = "xiaomi"
 
 .field public static final VERSION_CODE:I = 0x1
 

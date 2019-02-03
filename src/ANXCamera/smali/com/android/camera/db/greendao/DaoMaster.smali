@@ -15,63 +15,89 @@
 # static fields
 .field public static final SCHEMA_VERSION:I = 0x1
 
+.field private static final TAG:Ljava/lang/String;
+
 
 # direct methods
+.method static constructor <clinit>()V
+    .locals 1
+
+    .line 21
+    const-class v0, Lcom/android/camera/db/greendao/DaoMaster;
+
+    invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
+
+    move-result-object v0
+
+    sput-object v0, Lcom/android/camera/db/greendao/DaoMaster;->TAG:Ljava/lang/String;
+
+    return-void
+.end method
+
 .method public constructor <init>(Landroid/database/sqlite/SQLiteDatabase;)V
     .locals 1
 
-    .line 43
+    .line 45
     new-instance v0, Lorg/greenrobot/greendao/database/StandardDatabase;
 
     invoke-direct {v0, p1}, Lorg/greenrobot/greendao/database/StandardDatabase;-><init>(Landroid/database/sqlite/SQLiteDatabase;)V
 
     invoke-direct {p0, v0}, Lcom/android/camera/db/greendao/DaoMaster;-><init>(Lorg/greenrobot/greendao/database/Database;)V
 
-    .line 44
+    .line 46
     return-void
 .end method
 
 .method public constructor <init>(Lorg/greenrobot/greendao/database/Database;)V
     .locals 1
 
-    .line 47
+    .line 49
     const/4 v0, 0x1
 
     invoke-direct {p0, p1, v0}, Lorg/greenrobot/greendao/AbstractDaoMaster;-><init>(Lorg/greenrobot/greendao/database/Database;I)V
 
-    .line 48
+    .line 50
     const-class p1, Lcom/android/camera/db/greendao/SaveTaskDao;
 
     invoke-virtual {p0, p1}, Lcom/android/camera/db/greendao/DaoMaster;->registerDaoClass(Ljava/lang/Class;)V
 
-    .line 49
+    .line 51
     return-void
+.end method
+
+.method static synthetic access$000()Ljava/lang/String;
+    .locals 1
+
+    .line 20
+    sget-object v0, Lcom/android/camera/db/greendao/DaoMaster;->TAG:Ljava/lang/String;
+
+    return-object v0
 .end method
 
 .method public static createAllTables(Lorg/greenrobot/greendao/database/Database;Z)V
     .locals 0
 
-    .line 24
+    .line 26
     invoke-static {p0, p1}, Lcom/android/camera/db/greendao/SaveTaskDao;->createTable(Lorg/greenrobot/greendao/database/Database;Z)V
 
-    .line 25
+    .line 27
     return-void
 .end method
 
 .method public static dropAllTables(Lorg/greenrobot/greendao/database/Database;Z)V
     .locals 0
 
-    .line 29
+    .line 31
     invoke-static {p0, p1}, Lcom/android/camera/db/greendao/SaveTaskDao;->dropTable(Lorg/greenrobot/greendao/database/Database;Z)V
 
-    .line 30
+    .line 32
     return-void
 .end method
 
 .method public static newDevSession(Landroid/content/Context;Ljava/lang/String;)Lcom/android/camera/db/greendao/DaoSession;
     .locals 1
 
-    .line 37
+    .line 39
     new-instance v0, Lcom/android/camera/db/greendao/DaoMaster$DevOpenHelper;
 
     invoke-direct {v0, p0, p1}, Lcom/android/camera/db/greendao/DaoMaster$DevOpenHelper;-><init>(Landroid/content/Context;Ljava/lang/String;)V
@@ -80,12 +106,12 @@
 
     move-result-object p0
 
-    .line 38
+    .line 40
     new-instance p1, Lcom/android/camera/db/greendao/DaoMaster;
 
     invoke-direct {p1, p0}, Lcom/android/camera/db/greendao/DaoMaster;-><init>(Lorg/greenrobot/greendao/database/Database;)V
 
-    .line 39
+    .line 41
     invoke-virtual {p1}, Lcom/android/camera/db/greendao/DaoMaster;->newSession()Lcom/android/camera/db/greendao/DaoSession;
 
     move-result-object p0
@@ -98,7 +124,7 @@
 .method public newSession()Lcom/android/camera/db/greendao/DaoSession;
     .locals 4
 
-    .line 52
+    .line 54
     new-instance v0, Lcom/android/camera/db/greendao/DaoSession;
 
     iget-object v1, p0, Lcom/android/camera/db/greendao/DaoMaster;->db:Lorg/greenrobot/greendao/database/Database;
@@ -115,7 +141,7 @@
 .method public newSession(Lorg/greenrobot/greendao/identityscope/IdentityScopeType;)Lcom/android/camera/db/greendao/DaoSession;
     .locals 3
 
-    .line 56
+    .line 58
     new-instance v0, Lcom/android/camera/db/greendao/DaoSession;
 
     iget-object v1, p0, Lcom/android/camera/db/greendao/DaoMaster;->db:Lorg/greenrobot/greendao/database/Database;
@@ -130,7 +156,7 @@
 .method public bridge synthetic newSession()Lorg/greenrobot/greendao/AbstractDaoSession;
     .locals 1
 
-    .line 19
+    .line 20
     invoke-virtual {p0}, Lcom/android/camera/db/greendao/DaoMaster;->newSession()Lcom/android/camera/db/greendao/DaoSession;
 
     move-result-object v0
@@ -141,7 +167,7 @@
 .method public bridge synthetic newSession(Lorg/greenrobot/greendao/identityscope/IdentityScopeType;)Lorg/greenrobot/greendao/AbstractDaoSession;
     .locals 0
 
-    .line 19
+    .line 20
     invoke-virtual {p0, p1}, Lcom/android/camera/db/greendao/DaoMaster;->newSession(Lorg/greenrobot/greendao/identityscope/IdentityScopeType;)Lcom/android/camera/db/greendao/DaoSession;
 
     move-result-object p1

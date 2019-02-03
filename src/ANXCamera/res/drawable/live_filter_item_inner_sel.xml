@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:shape="rectangle"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="@dimen/live_filter_item_corners_size" />
+    <stroke android:width="@dimen/live_filter_item_sel_stroke_width" android:color="@color/black" />
+    <solid android:color="@color/transparent" />
+    <size android:height="@dimen/live_filter_item_size" android:width="@dimen/live_filter_item_size" />
+</shape>

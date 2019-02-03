@@ -22,7 +22,7 @@
 .method static constructor <clinit>()V
     .locals 3
 
-    .line 194
+    .line 193
     invoke-static {}, Lcom/android/camera/ui/ToggleSwitch$State;->values()[Lcom/android/camera/ui/ToggleSwitch$State;
 
     move-result-object v0

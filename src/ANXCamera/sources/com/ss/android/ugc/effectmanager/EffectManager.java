@@ -1,11 +1,11 @@
 package com.ss.android.ugc.effectmanager;
 
-import android.os.statistics.E2EScenario;
 import android.text.TextUtils;
 import android.util.Log;
 import com.android.camera.module.impl.component.FileUtils;
 import com.ss.android.ugc.effectmanager.common.EffectConstants;
 import com.ss.android.ugc.effectmanager.common.ErrorConstants;
+import com.ss.android.ugc.effectmanager.common.Preconditions;
 import com.ss.android.ugc.effectmanager.common.SimpleThreadFactory;
 import com.ss.android.ugc.effectmanager.common.TaskManager;
 import com.ss.android.ugc.effectmanager.common.TaskManager.TaskManagerConfig;
@@ -33,6 +33,7 @@ import com.ss.android.ugc.effectmanager.effect.repository.EffectStore;
 import com.ss.android.ugc.effectmanager.effect.repository.FavoriteRepository;
 import com.ss.android.ugc.effectmanager.effect.repository.UpdateTagRepository;
 import com.ss.android.ugc.effectmanager.link.LinkSelector;
+import com.ss.android.ugc.effectmanager.link.model.configuration.LinkSelectorConfiguration;
 import com.ss.android.ugc.effectmanager.link.model.host.Host;
 import com.ss.android.ugc.effectmanager.network.interceptor.BaseInterceptor;
 import com.ss.android.ugc.effectmanager.network.interceptor.LinkSelectorInterceptor;
@@ -43,15 +44,15 @@ import java.util.concurrent.Executors;
 
 public class EffectManager {
     private static final String SDK_TAG = "EffectManager";
-    private ICache mCache;
-    private EffectChannelRepository mEffectChannelRepository;
-    private EffectContext mEffectContext;
-    private EffectRepository mEffectRepository;
-    private EffectStore mEffectStore;
-    private FavoriteRepository mFavoriteRepository;
-    private boolean mInited = false;
-    private LinkSelector mLinkSelector;
-    private UpdateTagRepository mUpdateTagRepository;
+    ICache mCache;
+    EffectChannelRepository mEffectChannelRepository;
+    EffectContext mEffectContext;
+    EffectRepository mEffectRepository;
+    EffectStore mEffectStore;
+    FavoriteRepository mFavoriteRepository;
+    boolean mInited = false;
+    LinkSelector mLinkSelector;
+    UpdateTagRepository mUpdateTagRepository;
 
     private void initTaskManager() {
         TaskManager taskManager = new TaskManager();
@@ -72,6 +73,9 @@ public class EffectManager {
     }
 
     public boolean init(EffectConfiguration effectConfiguration) {
+        if (needLinkSelector(effectConfiguration)) {
+            Preconditions.checkUiThread();
+        }
         if (!checkConfiguration(effectConfiguration)) {
             return false;
         }
@@ -86,6 +90,18 @@ public class EffectManager {
             linkSelectorStart();
         }
         return true;
+    }
+
+    private boolean needLinkSelector(EffectConfiguration effectConfiguration) {
+        boolean z = false;
+        if (effectConfiguration == null) {
+            return false;
+        }
+        LinkSelectorConfiguration linkSelectorConfiguration = effectConfiguration.getLinkSelectorConfiguration();
+        if (linkSelectorConfiguration != null && linkSelectorConfiguration.getOriginHosts().size() > 1 && linkSelectorConfiguration.isNetworkChangeMonitor()) {
+            z = true;
+        }
+        return z;
     }
 
     private boolean checkConfiguration(EffectConfiguration effectConfiguration) {
@@ -139,27 +155,27 @@ public class EffectManager {
         IFetchEffectChannelListener anonymousClass3 = new IFetchEffectChannelListener() {
             public void onSuccess(final EffectChannelResponse effectChannelResponse) {
                 if (z) {
-                    ICache access$100 = EffectManager.this.mCache;
+                    ICache iCache = EffectManager.this.mCache;
                     StringBuilder stringBuilder = new StringBuilder();
                     stringBuilder.append(EffectConstants.KEY_EFFECT_CHANNEL);
                     stringBuilder.append(effectChannelResponse.getPanel());
-                    final String queryToString = access$100.queryToString(stringBuilder.toString());
-                    ICache access$1002 = EffectManager.this.mCache;
+                    final String queryToString = iCache.queryToString(stringBuilder.toString());
+                    ICache iCache2 = EffectManager.this.mCache;
                     StringBuilder stringBuilder2 = new StringBuilder();
                     stringBuilder2.append(EffectConstants.KEY_EFFECT_CHANNEL);
                     stringBuilder2.append(effectChannelResponse.getPanel());
-                    access$1002.remove(stringBuilder2.toString());
+                    iCache2.remove(stringBuilder2.toString());
                     EffectManager.this.downloadEffectList(EffectManager.this.getNeedDownloadEffectList(effectChannelResponse.getAllCategoryEffects()), new IFetchEffectListListener() {
                         public void onSuccess(List<Effect> list) {
-                            EffectChannelResponse access$300 = EffectManager.this.divideEffectList(effectChannelResponse, list);
+                            EffectChannelResponse access$100 = EffectManager.this.divideEffectList(effectChannelResponse, list);
                             if (iFetchEffectChannelListener != null) {
-                                iFetchEffectChannelListener.onSuccess(access$300);
+                                iFetchEffectChannelListener.onSuccess(access$100);
                             }
-                            ICache access$100 = EffectManager.this.mCache;
+                            ICache iCache = EffectManager.this.mCache;
                             StringBuilder stringBuilder = new StringBuilder();
                             stringBuilder.append(EffectConstants.KEY_EFFECT_CHANNEL);
                             stringBuilder.append(effectChannelResponse.getPanel());
-                            access$100.save(stringBuilder.toString(), queryToString);
+                            iCache.save(stringBuilder.toString(), queryToString);
                         }
 
                         public void onFail(ExceptionResult exceptionResult) {
@@ -182,7 +198,7 @@ public class EffectManager {
         String currentTaskID = getCurrentTaskID();
         this.mEffectContext.getEffectConfiguration().getListenerManger().setFetchEffectChannelListener(currentTaskID, anonymousClass3);
         if (TextUtils.isEmpty(str)) {
-            this.mEffectChannelRepository.fetchList(E2EScenario.DEFAULT_CATEGORY, currentTaskID, false);
+            this.mEffectChannelRepository.fetchList("default", currentTaskID, false);
         } else {
             this.mEffectChannelRepository.fetchList(str, currentTaskID, false);
         }
@@ -198,7 +214,7 @@ public class EffectManager {
         String currentTaskID = getCurrentTaskID();
         this.mEffectContext.getEffectConfiguration().getListenerManger().setFetchEffectChannelListener(currentTaskID, iFetchEffectChannelListener);
         if (TextUtils.isEmpty(str)) {
-            this.mEffectChannelRepository.fetchList(E2EScenario.DEFAULT_CATEGORY, currentTaskID, true);
+            this.mEffectChannelRepository.fetchList("default", currentTaskID, true);
         } else {
             this.mEffectChannelRepository.fetchList(str, currentTaskID, true);
         }
@@ -214,7 +230,7 @@ public class EffectManager {
         String currentTaskID = getCurrentTaskID();
         this.mEffectContext.getEffectConfiguration().getListenerManger().setFetchEffectChannelListener(currentTaskID, iFetchEffectChannelListener);
         if (TextUtils.isEmpty(str)) {
-            this.mEffectChannelRepository.fetchExistEffectList(E2EScenario.DEFAULT_CATEGORY, currentTaskID);
+            this.mEffectChannelRepository.fetchExistEffectList("default", currentTaskID);
         } else {
             this.mEffectChannelRepository.fetchExistEffectList(str, currentTaskID);
         }
@@ -380,7 +396,7 @@ public class EffectManager {
         if (this.mInited && this.mEffectContext != null) {
             this.mEffectContext.getEffectConfiguration().getTaskManager().destroy();
             this.mEffectContext.getEffectConfiguration().getListenerManger().destroy();
-            this.mLinkSelector.destory();
+            this.mLinkSelector.destroy();
             this.mInited = false;
         }
     }
@@ -422,7 +438,7 @@ public class EffectManager {
         return effectChannelResponse;
     }
 
-    private String getCurrentTaskID() {
+    String getCurrentTaskID() {
         return UUID.randomUUID().toString();
     }
 
@@ -492,5 +508,11 @@ public class EffectManager {
 
     public void updateDeviceId(String str) {
         this.mEffectContext.getEffectConfiguration().setDeviceId(str);
+    }
+
+    public void removeListener() {
+        if (this.mEffectContext != null) {
+            this.mEffectContext.getEffectConfiguration().getListenerManger().destroy();
+        }
     }
 }

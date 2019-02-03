@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 1308
     invoke-direct {p0}, Landroid/support/v4/view/ViewCompat$JBViewCompatImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getLabelFor(Landroid/view/View;)I
-    .locals 1
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
 
     .line 1312
@@ -39,7 +39,7 @@
 .end method
 
 .method public getLayoutDirection(Landroid/view/View;)I
-    .locals 1
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
 
     .line 1327
@@ -51,7 +51,7 @@
 .end method
 
 .method public getPaddingEnd(Landroid/view/View;)I
-    .locals 1
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
 
     .line 1342
@@ -63,7 +63,7 @@
 .end method
 
 .method public getPaddingStart(Landroid/view/View;)I
-    .locals 1
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
 
     .line 1337
@@ -75,7 +75,7 @@
 .end method
 
 .method public getWindowSystemUiVisibility(Landroid/view/View;)I
-    .locals 1
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
 
     .line 1352
@@ -87,7 +87,7 @@
 .end method
 
 .method public isPaddingRelative(Landroid/view/View;)Z
-    .locals 1
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
 
     .line 1357
@@ -99,7 +99,7 @@
 .end method
 
 .method public setLabelFor(Landroid/view/View;I)V
-    .locals 0
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
     .param p2, "id"    # I
 
@@ -111,7 +111,7 @@
 .end method
 
 .method public setLayerPaint(Landroid/view/View;Landroid/graphics/Paint;)V
-    .locals 0
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
     .param p2, "paint"    # Landroid/graphics/Paint;
 
@@ -123,7 +123,7 @@
 .end method
 
 .method public setLayoutDirection(Landroid/view/View;I)V
-    .locals 0
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
     .param p2, "layoutDirection"    # I
 
@@ -135,7 +135,7 @@
 .end method
 
 .method public setPaddingRelative(Landroid/view/View;IIII)V
-    .locals 0
+    .registers 6
     .param p1, "view"    # Landroid/view/View;
     .param p2, "start"    # I
     .param p3, "top"    # I

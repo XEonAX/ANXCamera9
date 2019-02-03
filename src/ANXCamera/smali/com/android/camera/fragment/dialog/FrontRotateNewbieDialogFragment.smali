@@ -120,7 +120,7 @@
     .end annotation
 
     .line 35
-    const p3, 0x7f040034
+    const p3, 0x7f040037
 
     const/4 v0, 0x0
 
@@ -132,7 +132,7 @@
     invoke-virtual {p0, p1}, Lcom/android/camera/fragment/dialog/FrontRotateNewbieDialogFragment;->initViewOnTouchListener(Landroid/view/View;)V
 
     .line 37
-    const p2, 0x7f0d00ab
+    const p2, 0x7f0d00c2
 
     invoke-virtual {p1, p2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 

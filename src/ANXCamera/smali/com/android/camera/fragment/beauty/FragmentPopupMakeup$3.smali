@@ -34,7 +34,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)V
     .locals 0
 
-    .line 73
+    .line 75
     iput-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$3;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -61,11 +61,11 @@
         }
     .end annotation
 
-    .line 76
+    .line 78
     iget-object v0, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$3;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     invoke-static {v0, p1}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$002(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;Lio/reactivex/FlowableEmitter;)Lio/reactivex/FlowableEmitter;
 
-    .line 77
+    .line 79
     return-void
 .end method

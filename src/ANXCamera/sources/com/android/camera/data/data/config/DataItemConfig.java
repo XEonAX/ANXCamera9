@@ -15,18 +15,25 @@ public class DataItemConfig extends DataItemBase {
     public static final String DATA_CONFIG_VIDEO_BEAUTY = "pref_video_face_beauty_key";
     public static final String DATA_CONFIG_VIDEO_BOKEH = "pref_video_bokeh_key";
     public static final String KEY = "camera_settings_simple_mode_local_";
+    private final ComponentConfigBeautyBody mBeautyBody;
     private int mCameraId;
-    private ComponentConfigBeauty mComponentConfigBeauty = new ComponentConfigBeauty(this);
+    private ComponentConfigBeauty mComponentConfigBeauty;
+    private ComponentConfigUltraWide mComponentConfigUltraWide;
     private ComponentConfigFlash mComponentFlash = new ComponentConfigFlash(this);
     private ComponentConfigHdr mComponentHdr = new ComponentConfigHdr(this);
+    private ComponentConfigUltraPixel mFrontUltraPixel;
     private int mIntentType;
     private ComponentManuallyDualLens mManuallyDualLens;
     private ComponentManuallyFocus mManuallyFocus;
-    private ComponentConfigSlowMotion mSlowMotion = new ComponentConfigSlowMotion(this);
+    private ComponentConfigUltraPixel mRearUltraPixel;
+    private ComponentConfigSlowMotion mSlowMotion;
 
     public DataItemConfig(int i, int i2) {
         this.mCameraId = i;
         this.mIntentType = i2;
+        this.mComponentConfigBeauty = new ComponentConfigBeauty(this, i);
+        this.mSlowMotion = new ComponentConfigSlowMotion(this);
+        this.mBeautyBody = new ComponentConfigBeautyBody(this);
     }
 
     public static int provideLocalId(int i, int i2) {
@@ -48,7 +55,8 @@ public class DataItemConfig extends DataItemBase {
     }
 
     public void reInitComponent(int i, CameraCapabilities cameraCapabilities) {
-        this.mComponentFlash.reInit(i, this.mCameraId, cameraCapabilities);
+        getComponentConfigUltraWide().reInit(i, this.mCameraId, cameraCapabilities);
+        this.mComponentFlash.reInit(i, this.mCameraId, cameraCapabilities, getComponentConfigUltraWide());
         this.mComponentHdr.reInit(i, this.mCameraId, cameraCapabilities);
     }
 
@@ -68,6 +76,10 @@ public class DataItemConfig extends DataItemBase {
         return this.mSlowMotion;
     }
 
+    public ComponentConfigBeautyBody getComponentConfigBeautyBody() {
+        return this.mBeautyBody;
+    }
+
     public ComponentManuallyFocus getManuallyFocus() {
         if (this.mManuallyFocus == null) {
             this.mManuallyFocus = new ComponentManuallyFocus(this);
@@ -80,6 +92,20 @@ public class DataItemConfig extends DataItemBase {
             this.mManuallyDualLens = new ComponentManuallyDualLens(this);
         }
         return this.mManuallyDualLens;
+    }
+
+    public ComponentConfigUltraPixel getRearComponentConfigUltraPixel() {
+        if (this.mRearUltraPixel == null) {
+            this.mRearUltraPixel = new ComponentConfigUltraPixel(this);
+        }
+        return this.mRearUltraPixel;
+    }
+
+    public ComponentConfigUltraPixel getFrontComponentConfigUltraPixel() {
+        if (this.mFrontUltraPixel == null) {
+            this.mFrontUltraPixel = new ComponentConfigUltraPixel(this);
+        }
+        return this.mFrontUltraPixel;
     }
 
     public boolean supportFlash() {
@@ -127,7 +153,7 @@ public class DataItemConfig extends DataItemBase {
                                             str = ComponentConfigFlash.FLASH_VALUE_SCREEN_LIGHT_AUTO;
                                             break;
                                         }
-                                    } else if (!b.gj()) {
+                                    } else if (!b.gB()) {
                                         str = "0";
                                         break;
                                     } else {
@@ -239,7 +265,7 @@ public class DataItemConfig extends DataItemBase {
         String persistValue = getComponentHdr().getPersistValue(i);
         if ("3".equals(str) || ComponentConfigFlash.FLASH_VALUE_SCREEN_LIGHT_AUTO.equals(str)) {
             if ("normal".equals(persistValue) || ComponentConfigHdr.HDR_VALUE_LIVE.equals(persistValue)) {
-                str = b.gl() ? "auto" : "off";
+                str = b.gD() ? "auto" : "off";
                 if (str != null || persistValue.equals(str)) {
                     return false;
                 }
@@ -294,5 +320,12 @@ public class DataItemConfig extends DataItemBase {
 
     public void switchOff(String str) {
         putBoolean(str, false);
+    }
+
+    public ComponentConfigUltraWide getComponentConfigUltraWide() {
+        if (this.mComponentConfigUltraWide == null) {
+            this.mComponentConfigUltraWide = new ComponentConfigUltraWide(this);
+        }
+        return this.mComponentConfigUltraWide;
     }
 }

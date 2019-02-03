@@ -33,7 +33,7 @@
     .locals 2
 
     .line 54
-    const v0, 0x7f0a003e
+    const v0, 0x7f0b003e
 
     const/16 v1, 0xa5
 
@@ -72,7 +72,7 @@
 
     .line 69
     :cond_1
-    const p2, 0x7f0a0049
+    const p2, 0x7f0b0049
 
     invoke-virtual {p1, p2}, Landroid/view/View;->setBackgroundResource(I)V
 
@@ -136,7 +136,7 @@
     invoke-direct {p0, v0, v1}, Lcom/android/camera/fragment/FragmentBottomIntentDone;->adjustViewBackground(Landroid/view/View;I)V
 
     .line 44
-    const v0, 0x7f0d002d
+    const v0, 0x7f0d002f
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -147,7 +147,7 @@
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentBottomIntentDone;->mRetryView:Landroid/widget/ImageView;
 
     .line 45
-    const v0, 0x7f0d002e
+    const v0, 0x7f0d0030
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -316,7 +316,7 @@
     return-void
 
     :pswitch_data_0
-    .packed-switch 0x7f0d002d
+    .packed-switch 0x7f0d002f
         :pswitch_1
         :pswitch_0
     .end packed-switch

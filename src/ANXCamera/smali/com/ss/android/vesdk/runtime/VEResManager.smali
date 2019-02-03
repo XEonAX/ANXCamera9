@@ -181,12 +181,70 @@
     return-object p0
 .end method
 
+.method public static getFolderByName(Ljava/lang/String;)Ljava/lang/String;
+    .locals 4
+
+    .line 51
+    new-instance v0, Ljava/io/File;
+
+    invoke-direct {v0, p0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    .line 52
+    invoke-virtual {v0}, Ljava/io/File;->exists()Z
+
+    move-result v1
+
+    if-nez v1, :cond_1
+
+    .line 53
+    invoke-virtual {v0}, Ljava/io/File;->mkdirs()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    goto :goto_0
+
+    .line 54
+    :cond_0
+    new-instance v0, Lcom/ss/android/vesdk/VEException;
+
+    const/16 v1, -0x64
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "mkdirs failed, folder path:"
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p0
+
+    invoke-direct {v0, v1, p0}, Lcom/ss/android/vesdk/VEException;-><init>(ILjava/lang/String;)V
+
+    throw v0
+
+    .line 57
+    :cond_1
+    :goto_0
+    invoke-virtual {v0}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
 
 # virtual methods
 .method public genRecordAacPath()Ljava/lang/String;
     .locals 3
 
-    .line 73
+    .line 83
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -203,7 +261,7 @@
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 75
+    .line 85
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v1
@@ -226,14 +284,14 @@
 
     move-result-object v0
 
-    .line 79
+    .line 89
     return-object v0
 .end method
 
 .method public genRecordWavPath()Ljava/lang/String;
     .locals 3
 
-    .line 57
+    .line 67
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -250,7 +308,7 @@
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 59
+    .line 69
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v1
@@ -273,6 +331,6 @@
 
     move-result-object v0
 
-    .line 63
+    .line 73
     return-object v0
 .end method

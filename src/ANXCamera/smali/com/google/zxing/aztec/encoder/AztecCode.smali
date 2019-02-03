@@ -17,7 +17,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 
 # virtual methods
 .method public getCodeWords()I
-    .locals 1
+    .registers 2
 
     .line 71
     iget v0, p0, Lcom/google/zxing/aztec/encoder/AztecCode;->codeWords:I
@@ -37,7 +37,7 @@
 .end method
 
 .method public getLayers()I
-    .locals 1
+    .registers 2
 
     .line 60
     iget v0, p0, Lcom/google/zxing/aztec/encoder/AztecCode;->layers:I
@@ -46,7 +46,7 @@
 .end method
 
 .method public getMatrix()Lcom/google/zxing/common/BitMatrix;
-    .locals 1
+    .registers 2
 
     .line 82
     iget-object v0, p0, Lcom/google/zxing/aztec/encoder/AztecCode;->matrix:Lcom/google/zxing/common/BitMatrix;
@@ -55,7 +55,7 @@
 .end method
 
 .method public getSize()I
-    .locals 1
+    .registers 2
 
     .line 49
     iget v0, p0, Lcom/google/zxing/aztec/encoder/AztecCode;->size:I
@@ -64,7 +64,7 @@
 .end method
 
 .method public isCompact()Z
-    .locals 1
+    .registers 2
 
     .line 38
     iget-boolean v0, p0, Lcom/google/zxing/aztec/encoder/AztecCode;->compact:Z
@@ -73,7 +73,7 @@
 .end method
 
 .method public setCodeWords(I)V
-    .locals 0
+    .registers 2
     .param p1, "codeWords"    # I
 
     .line 75
@@ -84,7 +84,7 @@
 .end method
 
 .method public setCompact(Z)V
-    .locals 0
+    .registers 2
     .param p1, "compact"    # Z
 
     .line 42
@@ -95,7 +95,7 @@
 .end method
 
 .method public setLayers(I)V
-    .locals 0
+    .registers 2
     .param p1, "layers"    # I
 
     .line 64
@@ -106,7 +106,7 @@
 .end method
 
 .method public setMatrix(Lcom/google/zxing/common/BitMatrix;)V
-    .locals 0
+    .registers 2
     .param p1, "matrix"    # Lcom/google/zxing/common/BitMatrix;
 
     .line 86
@@ -117,7 +117,7 @@
 .end method
 
 .method public setSize(I)V
-    .locals 0
+    .registers 2
     .param p1, "size"    # I
 
     .line 53

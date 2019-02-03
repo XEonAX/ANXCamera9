@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static canScrollHorizontally(Landroid/view/View;I)Z
-    .locals 1
+    .registers 3
     .param p0, "v"    # Landroid/view/View;
     .param p1, "direction"    # I
 
@@ -27,7 +27,7 @@
 .end method
 
 .method public static canScrollVertically(Landroid/view/View;I)Z
-    .locals 1
+    .registers 3
     .param p0, "v"    # Landroid/view/View;
     .param p1, "direction"    # I
 
@@ -40,7 +40,7 @@
 .end method
 
 .method public static onInitializeAccessibilityEvent(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
-    .locals 0
+    .registers 2
     .param p0, "v"    # Landroid/view/View;
     .param p1, "event"    # Landroid/view/accessibility/AccessibilityEvent;
 
@@ -52,7 +52,7 @@
 .end method
 
 .method public static onInitializeAccessibilityNodeInfo(Landroid/view/View;Ljava/lang/Object;)V
-    .locals 1
+    .registers 3
     .param p0, "v"    # Landroid/view/View;
     .param p1, "info"    # Ljava/lang/Object;
 
@@ -68,7 +68,7 @@
 .end method
 
 .method public static onPopulateAccessibilityEvent(Landroid/view/View;Landroid/view/accessibility/AccessibilityEvent;)V
-    .locals 0
+    .registers 2
     .param p0, "v"    # Landroid/view/View;
     .param p1, "event"    # Landroid/view/accessibility/AccessibilityEvent;
 
@@ -80,7 +80,7 @@
 .end method
 
 .method public static setAccessibilityDelegate(Landroid/view/View;Ljava/lang/Object;)V
-    .locals 1
+    .registers 3
     .param p0, "v"    # Landroid/view/View;
     .param p1, "delegate"    # Ljava/lang/Object;
         .annotation build Landroid/support/annotation/Nullable;
@@ -99,7 +99,7 @@
 .end method
 
 .method public static setFitsSystemWindows(Landroid/view/View;Z)V
-    .locals 0
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "fitSystemWindows"    # Z
 

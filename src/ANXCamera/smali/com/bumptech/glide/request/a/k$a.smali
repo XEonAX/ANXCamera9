@@ -15,5 +15,5 @@
 
 
 # virtual methods
-.method public abstract m(Landroid/content/Context;)Landroid/view/animation/Animation;
+.method public abstract l(Landroid/content/Context;)Landroid/view/animation/Animation;
 .end method

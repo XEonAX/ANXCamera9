@@ -32,12 +32,8 @@ public class DrawJPEGAttribute extends DrawAttribute {
     public String mTimeWaterMarkText;
     public String mTitle;
     public Uri mUri;
-    private List<WaterMarkData> mWaterInfos;
+    public List<WaterMarkData> mWaterInfos;
     public int mWidth;
-
-    public DrawJPEGAttribute(byte[] bArr, boolean z, int i, int i2, int i3, int i4, int i5, EffectRectAttribute effectRectAttribute, Location location, String str, long j, int i6, int i7, float f, boolean z2, String str2, PictureInfo pictureInfo) {
-        DrawJPEGAttribute drawJPEGAttribute = new DrawJPEGAttribute(bArr, z, i, i2, i3, i4, i5, effectRectAttribute, location, str, j, i6, i7, f, z2, str2, true, pictureInfo, null, false, null, false);
-    }
 
     public DrawJPEGAttribute(byte[] bArr, boolean z, int i, int i2, int i3, int i4, int i5, EffectRectAttribute effectRectAttribute, Location location, String str, long j, int i6, int i7, float f, boolean z2, String str2, boolean z3, PictureInfo pictureInfo, List<WaterMarkData> list, boolean z4, String str3, boolean z5) {
         this.mPreviewWidth = i;
@@ -55,7 +51,6 @@ public class DrawJPEGAttribute extends DrawAttribute {
         this.mJpegOrientation = i7;
         this.mShootRotation = f;
         this.mMirror = z2;
-        this.mTarget = 9;
         this.mFinalImage = true;
         this.mAlgorithmName = str2;
         this.mApplyWaterMark = z3;
@@ -64,17 +59,10 @@ public class DrawJPEGAttribute extends DrawAttribute {
         this.mDualCameraWaterMarkEnabled = z4;
         this.mTimeWaterMarkText = str3;
         this.mIsPortraitRawData = z5;
+        this.mTarget = 9;
     }
 
     protected void finalize() throws Throwable {
         super.finalize();
-    }
-
-    public List<WaterMarkData> getWaterInfos() {
-        return this.mWaterInfos;
-    }
-
-    public void setWaterInfos(List<WaterMarkData> list) {
-        this.mWaterInfos = list;
     }
 }

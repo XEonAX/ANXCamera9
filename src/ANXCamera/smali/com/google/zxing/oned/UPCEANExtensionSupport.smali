@@ -15,14 +15,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 26
     const/4 v0, 0x3
 
     new-array v0, v0, [I
 
-    fill-array-data v0, :array_0
+    fill-array-data v0, :array_a
 
     sput-object v0, Lcom/google/zxing/oned/UPCEANExtensionSupport;->EXTENSION_START_PATTERN:[I
 
@@ -30,7 +30,7 @@
 
     nop
 
-    :array_0
+    :array_a
     .array-data 4
         0x1
         0x1
@@ -39,7 +39,7 @@
 .end method
 
 .method constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 24
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -65,7 +65,7 @@
 
 # virtual methods
 .method decodeRow(ILcom/google/zxing/common/BitArray;I)Lcom/google/zxing/Result;
-    .locals 3
+    .registers 7
     .param p1, "rowNumber"    # I
     .param p2, "row"    # Lcom/google/zxing/common/BitArray;
     .param p3, "rowOffset"    # I
@@ -86,19 +86,19 @@
 
     .line 34
     .local v0, "extensionStartRange":[I
-    :try_start_0
+    :try_start_7
     iget-object v1, p0, Lcom/google/zxing/oned/UPCEANExtensionSupport;->fiveSupport:Lcom/google/zxing/oned/UPCEANExtension5Support;
 
     invoke-virtual {v1, p1, p2, v0}, Lcom/google/zxing/oned/UPCEANExtension5Support;->decodeRow(ILcom/google/zxing/common/BitArray;[I)Lcom/google/zxing/Result;
 
     move-result-object v1
-    :try_end_0
-    .catch Lcom/google/zxing/ReaderException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Lcom/google/zxing/ReaderException; {:try_start_7 .. :try_end_d} :catch_e
 
     return-object v1
 
     .line 35
-    :catch_0
+    :catch_e
     move-exception v1
 
     .line 36

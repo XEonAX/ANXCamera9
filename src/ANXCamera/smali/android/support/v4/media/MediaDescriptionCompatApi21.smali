@@ -13,7 +13,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 24
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -23,7 +23,7 @@
 .end method
 
 .method public static fromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "in"    # Landroid/os/Parcel;
 
     .line 59
@@ -37,7 +37,7 @@
 .end method
 
 .method public static getDescription(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .locals 1
+    .registers 2
     .param p0, "descriptionObj"    # Ljava/lang/Object;
 
     .line 39
@@ -53,7 +53,7 @@
 .end method
 
 .method public static getExtras(Ljava/lang/Object;)Landroid/os/Bundle;
-    .locals 1
+    .registers 2
     .param p0, "descriptionObj"    # Ljava/lang/Object;
 
     .line 51
@@ -69,7 +69,7 @@
 .end method
 
 .method public static getIconBitmap(Ljava/lang/Object;)Landroid/graphics/Bitmap;
-    .locals 1
+    .registers 2
     .param p0, "descriptionObj"    # Ljava/lang/Object;
 
     .line 43
@@ -85,7 +85,7 @@
 .end method
 
 .method public static getIconUri(Ljava/lang/Object;)Landroid/net/Uri;
-    .locals 1
+    .registers 2
     .param p0, "descriptionObj"    # Ljava/lang/Object;
 
     .line 47
@@ -101,7 +101,7 @@
 .end method
 
 .method public static getMediaId(Ljava/lang/Object;)Ljava/lang/String;
-    .locals 1
+    .registers 2
     .param p0, "descriptionObj"    # Ljava/lang/Object;
 
     .line 27
@@ -117,7 +117,7 @@
 .end method
 
 .method public static getSubtitle(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .locals 1
+    .registers 2
     .param p0, "descriptionObj"    # Ljava/lang/Object;
 
     .line 35
@@ -133,7 +133,7 @@
 .end method
 
 .method public static getTitle(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .locals 1
+    .registers 2
     .param p0, "descriptionObj"    # Ljava/lang/Object;
 
     .line 31
@@ -149,7 +149,7 @@
 .end method
 
 .method public static writeToParcel(Ljava/lang/Object;Landroid/os/Parcel;I)V
-    .locals 1
+    .registers 4
     .param p0, "descriptionObj"    # Ljava/lang/Object;
     .param p1, "dest"    # Landroid/os/Parcel;
     .param p2, "flags"    # I

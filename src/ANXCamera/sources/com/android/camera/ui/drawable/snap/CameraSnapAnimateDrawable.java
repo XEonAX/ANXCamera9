@@ -307,56 +307,61 @@ public class CameraSnapAnimateDrawable extends Drawable implements Animatable {
         LiveConfigChanges liveConfigChanges = (LiveConfigChanges) ModeCoordinatorImpl.getInstance().getAttachProtocol(201);
         if (liveConfigChanges != null) {
             this.mLiveSpeed = liveConfigChanges.getRecordSpeed();
-            this.mLiveTotalTime = liveConfigChanges.getTotalRecordintTime();
-            this.mLiveStartTime = liveConfigChanges.getStartRecordintTime();
+            this.mLiveTotalTime = liveConfigChanges.getTotalRecordingTime();
+            this.mLiveStartTime = liveConfigChanges.getStartRecordingTime();
         }
     }
 
     public void startRecord(final BottomAnimationConfig bottomAnimationConfig) {
-        cancelAnimation();
-        this.mTimeAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
-        if (bottomAnimationConfig.mCurrentMode == 174) {
-            updateLiveAnimationConfig();
-        }
-        this.mTimeAnimator.setDuration((long) bottomAnimationConfig.mDuration);
-        this.mTimeAnimator.setInterpolator(new LinearInterpolator() {
-            public float getInterpolation(float f) {
-                float f2 = 360.0f * f;
-                if (bottomAnimationConfig.mCurrentMode == 174) {
-                    f2 = (360.0f * ((float) (((long) ((1.0d * ((double) (System.currentTimeMillis() - CameraSnapAnimateDrawable.this.mLiveStartTime))) / ((double) CameraSnapAnimateDrawable.this.mLiveSpeed))) + CameraSnapAnimateDrawable.this.mLiveTotalTime))) / ((float) bottomAnimationConfig.mDuration);
+        if (this.mRecordingPaint != null) {
+            cancelAnimation();
+            this.mTimeAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+            if (bottomAnimationConfig.mCurrentMode == 174) {
+                updateLiveAnimationConfig();
+            }
+            this.mTimeAnimator.setDuration((long) bottomAnimationConfig.mDuration);
+            this.mTimeAnimator.setInterpolator(new LinearInterpolator() {
+                public float getInterpolation(float f) {
+                    float f2 = 360.0f * f;
+                    if (bottomAnimationConfig.mCurrentMode == 174) {
+                        f2 = (((float) (((long) ((1.0d * ((double) (System.currentTimeMillis() - CameraSnapAnimateDrawable.this.mLiveStartTime))) / ((double) CameraSnapAnimateDrawable.this.mLiveSpeed))) + CameraSnapAnimateDrawable.this.mLiveTotalTime)) * 360.0f) / ((float) bottomAnimationConfig.mDuration);
+                        if (f2 > 360.0f) {
+                            f2 = 360.0f;
+                        }
+                    }
+                    CameraSnapAnimateDrawable.this.mRecordingPaint.timeAngle = f2;
+                    f = super.getInterpolation(f);
+                    CameraSnapAnimateDrawable.this.invalidateSelf();
+                    return f;
                 }
-                CameraSnapAnimateDrawable.this.mRecordingPaint.timeAngle = f2;
-                f = super.getInterpolation(f);
-                CameraSnapAnimateDrawable.this.invalidateSelf();
-                return f;
-            }
-        });
-        this.mTimeAnimator.removeAllListeners();
-        this.mTimeAnimator.addListener(new AnimatorListener() {
-            public void onAnimationStart(Animator animator) {
-                CameraSnapAnimateDrawable.this.mRecordingPaint.isRecording = true;
-                CameraSnapAnimateDrawable.this.mRoundPaintItem.isRecording = true;
-                CameraSnapAnimateDrawable.this.mRoundPaintItem.isRecordingCircle = bottomAnimationConfig.mIsRecordingCircle;
-                CameraSnapAnimateDrawable.this.mCirclePaintItem.setNeedSplit(true);
-            }
-
-            public void onAnimationEnd(Animator animator) {
-            }
-
-            public void onAnimationCancel(Animator animator) {
-            }
-
-            public void onAnimationRepeat(Animator animator) {
-                if (bottomAnimationConfig.mCurrentMode != 174) {
-                    CameraSnapAnimateDrawable.this.mRecordingPaint.reverseClock();
+            });
+            this.mTimeAnimator.removeAllListeners();
+            this.mTimeAnimator.addListener(new AnimatorListener() {
+                public void onAnimationStart(Animator animator) {
+                    CameraSnapAnimateDrawable.this.mRecordingPaint.isRecording = true;
+                    CameraSnapAnimateDrawable.this.mRoundPaintItem.isRecording = true;
+                    CameraSnapAnimateDrawable.this.mRoundPaintItem.isRecordingCircle = bottomAnimationConfig.mIsRecordingCircle;
+                    CameraSnapAnimateDrawable.this.mCirclePaintItem.setNeedSplit(true);
                 }
+
+                public void onAnimationEnd(Animator animator) {
+                }
+
+                public void onAnimationCancel(Animator animator) {
+                }
+
+                public void onAnimationRepeat(Animator animator) {
+                    if (bottomAnimationConfig.mCurrentMode != 174) {
+                        CameraSnapAnimateDrawable.this.mRecordingPaint.reverseClock();
+                    }
+                }
+            });
+            if (bottomAnimationConfig.mShouldRepeat) {
+                this.mTimeAnimator.setRepeatMode(1);
+                this.mTimeAnimator.setRepeatCount(-1);
             }
-        });
-        if (bottomAnimationConfig.mShouldRepeat) {
-            this.mTimeAnimator.setRepeatMode(1);
-            this.mTimeAnimator.setRepeatCount(-1);
+            this.mTimeAnimator.start();
         }
-        this.mTimeAnimator.start();
     }
 
     public void pauseRecording() {
@@ -373,8 +378,14 @@ public class CameraSnapAnimateDrawable extends Drawable implements Animatable {
     }
 
     public void addSegmentNow() {
-        this.mCirclePaintItem.addSegmentNow(this.mTimeAnimator.getCurrentPlayTime());
-        invalidateSelf();
+        if (this.mTimeAnimator != null) {
+            this.mCirclePaintItem.addSegmentNow(this.mTimeAnimator.getCurrentPlayTime());
+            invalidateSelf();
+        }
+    }
+
+    public boolean hasSegments() {
+        return this.mCirclePaintItem.hasSegments();
     }
 
     public void removeLastSegment() {

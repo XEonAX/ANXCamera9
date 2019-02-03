@@ -4,8 +4,8 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 import com.android.camera.db.element.SaveTask;
+import com.android.camera.log.Log;
 import com.google.android.apps.photos.api.ProcessingMetadataQuery;
 
 public class ParallelUtil {
@@ -33,7 +33,7 @@ public class ParallelUtil {
             if (context != null) {
                 String access$000 = ParallelUtil.TAG;
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("deleteInProvider resultUri:");
+                stringBuilder.append("deleteInProvider resultUri: ");
                 stringBuilder.append(uri);
                 Log.v(access$000, stringBuilder.toString());
                 context.getContentResolver().delete(uri, null, null);
@@ -51,11 +51,13 @@ public class ParallelUtil {
     }
 
     public static void markTaskFinish(Context context, SaveTask saveTask, boolean z) {
+        String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("algo db: finish: ");
         stringBuilder.append(saveTask.getMediaStoreId());
         stringBuilder.append(" | ");
         stringBuilder.append(saveTask.getPath());
-        Log.e("algo markfinish:", stringBuilder.toString());
+        Log.d(str, stringBuilder.toString());
         if (z) {
             ParallelExifUtil.updateExif(saveTask.getPath());
         }
@@ -63,21 +65,23 @@ public class ParallelUtil {
     }
 
     public static void insertImageToParallelService(Context context, long j, String str) {
+        String str2 = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("first:");
+        stringBuilder.append("algo db: first: ");
         stringBuilder.append(j);
         stringBuilder.append(" | ");
         stringBuilder.append(str);
-        Log.e("algo db:", stringBuilder.toString());
+        Log.i(str2, stringBuilder.toString());
         ContentValues contentValues = new ContentValues();
         contentValues.put(ProcessingMetadataQuery.MEDIA_STORE_ID, Long.valueOf(j));
         contentValues.put(ProcessingMetadataQuery.MEDIA_PATH, str);
         try {
             Uri insert = context.getContentResolver().insert(Uri.parse(PROCESSING_URI), contentValues);
+            String str3 = TAG;
             StringBuilder stringBuilder2 = new StringBuilder();
-            stringBuilder2.append("uri:");
+            stringBuilder2.append("algo db: uri: ");
             stringBuilder2.append(insert.toString());
-            Log.e("algo db:", stringBuilder2.toString());
+            Log.i(str3, stringBuilder2.toString());
         } catch (Exception e) {
             Log.e(TAG, "Error! insert to parallel provider failed!!!");
         }

@@ -30,14 +30,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 33
     const/16 v0, 0x22
 
     new-array v0, v0, [I
 
-    fill-array-data v0, :array_0
+    fill-array-data v0, :array_18
 
     .line 34
     nop
@@ -74,7 +74,7 @@
 
     nop
 
-    :array_0
+    :array_18
     .array-data 4
         0x7c94
         0x85bc
@@ -114,7 +114,7 @@
 .end method
 
 .method private varargs constructor <init>(I[I[Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;)V
-    .locals 8
+    .registers 12
     .param p1, "versionNumber"    # I
     .param p2, "alignmentPatternCenters"    # [I
     .param p3, "ecBlocks"    # [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
@@ -156,8 +156,8 @@
     .local v3, "ecbArray":[Lcom/google/zxing/qrcode/decoder/Version$ECB;
     array-length v4, v3
 
-    :goto_0
-    if-lt v1, v4, :cond_0
+    :goto_18
+    if-lt v1, v4, :cond_1d
 
     .line 62
     iput v0, p0, Lcom/google/zxing/qrcode/decoder/Version;->totalCodewords:I
@@ -166,7 +166,7 @@
     return-void
 
     .line 59
-    :cond_0
+    :cond_1d
     aget-object v5, v3, v1
 
     .line 60
@@ -189,11 +189,11 @@
     .end local v5    # "ecBlock":Lcom/google/zxing/qrcode/decoder/Version$ECB;
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_18
 .end method
 
 .method private static buildVersions()[Lcom/google/zxing/qrcode/decoder/Version;
-    .locals 17
+    .registers 17
 
     .line 246
     const/16 v0, 0x28
@@ -303,7 +303,7 @@
 
     new-array v3, v8, [I
 
-    fill-array-data v3, :array_0
+    fill-array-data v3, :array_1468
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -385,7 +385,7 @@
 
     new-array v3, v8, [I
 
-    fill-array-data v3, :array_1
+    fill-array-data v3, :array_1470
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -473,7 +473,7 @@
 
     new-array v3, v8, [I
 
-    fill-array-data v3, :array_2
+    fill-array-data v3, :array_1478
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -561,7 +561,7 @@
 
     new-array v3, v8, [I
 
-    fill-array-data v3, :array_3
+    fill-array-data v3, :array_1480
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -667,7 +667,7 @@
 
     new-array v3, v8, [I
 
-    fill-array-data v3, :array_4
+    fill-array-data v3, :array_1488
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -755,7 +755,7 @@
 
     new-array v3, v10, [I
 
-    fill-array-data v3, :array_5
+    fill-array-data v3, :array_1490
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -865,7 +865,7 @@
 
     new-array v3, v10, [I
 
-    fill-array-data v3, :array_6
+    fill-array-data v3, :array_149a
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -985,7 +985,7 @@
 
     new-array v3, v10, [I
 
-    fill-array-data v3, :array_7
+    fill-array-data v3, :array_14a4
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -1107,7 +1107,7 @@
 
     new-array v3, v10, [I
 
-    fill-array-data v3, :array_8
+    fill-array-data v3, :array_14ae
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -1237,7 +1237,7 @@
 
     new-array v3, v10, [I
 
-    fill-array-data v3, :array_9
+    fill-array-data v3, :array_14b8
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -1361,7 +1361,7 @@
 
     new-array v3, v10, [I
 
-    fill-array-data v3, :array_a
+    fill-array-data v3, :array_14c2
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -1495,7 +1495,7 @@
 
     new-array v3, v10, [I
 
-    fill-array-data v3, :array_b
+    fill-array-data v3, :array_14cc
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -1621,7 +1621,7 @@
 
     new-array v3, v4, [I
 
-    fill-array-data v3, :array_c
+    fill-array-data v3, :array_14d6
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -1761,7 +1761,7 @@
 
     new-array v3, v4, [I
 
-    fill-array-data v3, :array_d
+    fill-array-data v3, :array_14e2
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -1899,7 +1899,7 @@
 
     new-array v3, v4, [I
 
-    fill-array-data v3, :array_e
+    fill-array-data v3, :array_14ee
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -2035,7 +2035,7 @@
 
     new-array v3, v4, [I
 
-    fill-array-data v3, :array_f
+    fill-array-data v3, :array_14fa
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -2177,7 +2177,7 @@
 
     new-array v3, v4, [I
 
-    fill-array-data v3, :array_10
+    fill-array-data v3, :array_1506
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -2319,7 +2319,7 @@
 
     new-array v3, v4, [I
 
-    fill-array-data v3, :array_11
+    fill-array-data v3, :array_1512
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -2461,7 +2461,7 @@
 
     new-array v3, v4, [I
 
-    fill-array-data v3, :array_12
+    fill-array-data v3, :array_151e
 
     new-array v5, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -2603,7 +2603,7 @@
 
     new-array v5, v3, [I
 
-    fill-array-data v5, :array_13
+    fill-array-data v5, :array_152a
 
     new-array v3, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -2737,7 +2737,7 @@
 
     new-array v5, v3, [I
 
-    fill-array-data v5, :array_14
+    fill-array-data v5, :array_1538
 
     new-array v3, v4, [Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
 
@@ -2855,7 +2855,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_15
+    fill-array-data v4, :array_1546
 
     const/4 v3, 0x4
 
@@ -3001,7 +3001,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_16
+    fill-array-data v4, :array_1554
 
     const/4 v3, 0x4
 
@@ -3139,7 +3139,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_17
+    fill-array-data v4, :array_1562
 
     const/4 v3, 0x4
 
@@ -3283,7 +3283,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_18
+    fill-array-data v4, :array_1570
 
     const/4 v3, 0x4
 
@@ -3429,7 +3429,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_19
+    fill-array-data v4, :array_157e
 
     const/4 v3, 0x4
 
@@ -3579,7 +3579,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_1a
+    fill-array-data v4, :array_158c
 
     const/4 v3, 0x4
 
@@ -3725,7 +3725,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_1b
+    fill-array-data v4, :array_159c
 
     const/4 v3, 0x4
 
@@ -3873,7 +3873,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_1c
+    fill-array-data v4, :array_15ac
 
     const/4 v3, 0x4
 
@@ -4017,7 +4017,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_1d
+    fill-array-data v4, :array_15bc
 
     const/4 v3, 0x4
 
@@ -4159,7 +4159,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_1e
+    fill-array-data v4, :array_15cc
 
     const/4 v3, 0x4
 
@@ -4297,7 +4297,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_1f
+    fill-array-data v4, :array_15dc
 
     const/4 v3, 0x4
 
@@ -4445,7 +4445,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_20
+    fill-array-data v4, :array_15ec
 
     const/4 v3, 0x4
 
@@ -4593,7 +4593,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_21
+    fill-array-data v4, :array_15fc
 
     const/4 v3, 0x4
 
@@ -4743,7 +4743,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_22
+    fill-array-data v4, :array_160e
 
     const/4 v3, 0x4
 
@@ -4891,7 +4891,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_23
+    fill-array-data v4, :array_1620
 
     const/4 v3, 0x4
 
@@ -5039,7 +5039,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_24
+    fill-array-data v4, :array_1632
 
     const/4 v3, 0x4
 
@@ -5187,7 +5187,7 @@
 
     new-array v4, v3, [I
 
-    fill-array-data v4, :array_25
+    fill-array-data v4, :array_1644
 
     const/4 v3, 0x4
 
@@ -5337,7 +5337,7 @@
 
     new-array v3, v3, [I
 
-    fill-array-data v3, :array_26
+    fill-array-data v3, :array_1656
 
     const/4 v4, 0x4
 
@@ -5481,86 +5481,86 @@
     .line 246
     return-object v0
 
-    :array_0
+    :array_1468
     .array-data 4
         0x6
         0x12
     .end array-data
 
-    :array_1
+    :array_1470
     .array-data 4
         0x6
         0x16
     .end array-data
 
-    :array_2
+    :array_1478
     .array-data 4
         0x6
         0x1a
     .end array-data
 
-    :array_3
+    :array_1480
     .array-data 4
         0x6
         0x1e
     .end array-data
 
-    :array_4
+    :array_1488
     .array-data 4
         0x6
         0x22
     .end array-data
 
-    :array_5
+    :array_1490
     .array-data 4
         0x6
         0x16
         0x26
     .end array-data
 
-    :array_6
+    :array_149a
     .array-data 4
         0x6
         0x18
         0x2a
     .end array-data
 
-    :array_7
+    :array_14a4
     .array-data 4
         0x6
         0x1a
         0x2e
     .end array-data
 
-    :array_8
+    :array_14ae
     .array-data 4
         0x6
         0x1c
         0x32
     .end array-data
 
-    :array_9
+    :array_14b8
     .array-data 4
         0x6
         0x1e
         0x36
     .end array-data
 
-    :array_a
+    :array_14c2
     .array-data 4
         0x6
         0x20
         0x3a
     .end array-data
 
-    :array_b
+    :array_14cc
     .array-data 4
         0x6
         0x22
         0x3e
     .end array-data
 
-    :array_c
+    :array_14d6
     .array-data 4
         0x6
         0x1a
@@ -5568,7 +5568,7 @@
         0x42
     .end array-data
 
-    :array_d
+    :array_14e2
     .array-data 4
         0x6
         0x1a
@@ -5576,7 +5576,7 @@
         0x46
     .end array-data
 
-    :array_e
+    :array_14ee
     .array-data 4
         0x6
         0x1a
@@ -5584,7 +5584,7 @@
         0x4a
     .end array-data
 
-    :array_f
+    :array_14fa
     .array-data 4
         0x6
         0x1e
@@ -5592,7 +5592,7 @@
         0x4e
     .end array-data
 
-    :array_10
+    :array_1506
     .array-data 4
         0x6
         0x1e
@@ -5600,7 +5600,7 @@
         0x52
     .end array-data
 
-    :array_11
+    :array_1512
     .array-data 4
         0x6
         0x1e
@@ -5608,7 +5608,7 @@
         0x56
     .end array-data
 
-    :array_12
+    :array_151e
     .array-data 4
         0x6
         0x22
@@ -5616,7 +5616,7 @@
         0x5a
     .end array-data
 
-    :array_13
+    :array_152a
     .array-data 4
         0x6
         0x1c
@@ -5625,7 +5625,7 @@
         0x5e
     .end array-data
 
-    :array_14
+    :array_1538
     .array-data 4
         0x6
         0x1a
@@ -5634,7 +5634,7 @@
         0x62
     .end array-data
 
-    :array_15
+    :array_1546
     .array-data 4
         0x6
         0x1e
@@ -5643,7 +5643,7 @@
         0x66
     .end array-data
 
-    :array_16
+    :array_1554
     .array-data 4
         0x6
         0x1c
@@ -5652,7 +5652,7 @@
         0x6a
     .end array-data
 
-    :array_17
+    :array_1562
     .array-data 4
         0x6
         0x20
@@ -5661,7 +5661,7 @@
         0x6e
     .end array-data
 
-    :array_18
+    :array_1570
     .array-data 4
         0x6
         0x1e
@@ -5670,7 +5670,7 @@
         0x72
     .end array-data
 
-    :array_19
+    :array_157e
     .array-data 4
         0x6
         0x22
@@ -5679,7 +5679,7 @@
         0x76
     .end array-data
 
-    :array_1a
+    :array_158c
     .array-data 4
         0x6
         0x1a
@@ -5689,7 +5689,7 @@
         0x7a
     .end array-data
 
-    :array_1b
+    :array_159c
     .array-data 4
         0x6
         0x1e
@@ -5699,7 +5699,7 @@
         0x7e
     .end array-data
 
-    :array_1c
+    :array_15ac
     .array-data 4
         0x6
         0x1a
@@ -5709,7 +5709,7 @@
         0x82
     .end array-data
 
-    :array_1d
+    :array_15bc
     .array-data 4
         0x6
         0x1e
@@ -5719,7 +5719,7 @@
         0x86
     .end array-data
 
-    :array_1e
+    :array_15cc
     .array-data 4
         0x6
         0x22
@@ -5729,7 +5729,7 @@
         0x8a
     .end array-data
 
-    :array_1f
+    :array_15dc
     .array-data 4
         0x6
         0x1e
@@ -5739,7 +5739,7 @@
         0x8e
     .end array-data
 
-    :array_20
+    :array_15ec
     .array-data 4
         0x6
         0x22
@@ -5749,7 +5749,7 @@
         0x92
     .end array-data
 
-    :array_21
+    :array_15fc
     .array-data 4
         0x6
         0x1e
@@ -5760,7 +5760,7 @@
         0x96
     .end array-data
 
-    :array_22
+    :array_160e
     .array-data 4
         0x6
         0x18
@@ -5771,7 +5771,7 @@
         0x9a
     .end array-data
 
-    :array_23
+    :array_1620
     .array-data 4
         0x6
         0x1c
@@ -5782,7 +5782,7 @@
         0x9e
     .end array-data
 
-    :array_24
+    :array_1632
     .array-data 4
         0x6
         0x20
@@ -5793,7 +5793,7 @@
         0xa2
     .end array-data
 
-    :array_25
+    :array_1644
     .array-data 4
         0x6
         0x1a
@@ -5804,7 +5804,7 @@
         0xa6
     .end array-data
 
-    :array_26
+    :array_1656
     .array-data 4
         0x6
         0x1e
@@ -5817,7 +5817,7 @@
 .end method
 
 .method static decodeVersionInformation(I)Lcom/google/zxing/qrcode/decoder/Version;
-    .locals 5
+    .registers 6
     .param p0, "versionBits"    # I
 
     .line 111
@@ -5832,18 +5832,18 @@
     const/4 v2, 0x0
 
     .local v2, "i":I
-    :goto_0
+    :goto_5
     sget-object v3, Lcom/google/zxing/qrcode/decoder/Version;->VERSION_DECODE_INFO:[I
 
     array-length v3, v3
 
-    if-lt v2, v3, :cond_1
+    if-lt v2, v3, :cond_14
 
     .line 129
     .end local v2    # "i":I
     const/4 v2, 0x3
 
-    if-gt v0, v2, :cond_0
+    if-gt v0, v2, :cond_12
 
     .line 130
     invoke-static {v1}, Lcom/google/zxing/qrcode/decoder/Version;->getVersionForNumber(I)Lcom/google/zxing/qrcode/decoder/Version;
@@ -5853,21 +5853,21 @@
     return-object v2
 
     .line 133
-    :cond_0
+    :cond_12
     const/4 v2, 0x0
 
     return-object v2
 
     .line 114
     .restart local v2    # "i":I
-    :cond_1
+    :cond_14
     sget-object v3, Lcom/google/zxing/qrcode/decoder/Version;->VERSION_DECODE_INFO:[I
 
     aget v3, v3, v2
 
     .line 116
     .local v3, "targetVersion":I
-    if-ne v3, p0, :cond_2
+    if-ne v3, p0, :cond_21
 
     .line 117
     add-int/lit8 v4, v2, 0x7
@@ -5879,14 +5879,14 @@
     return-object v4
 
     .line 121
-    :cond_2
+    :cond_21
     invoke-static {p0, v3}, Lcom/google/zxing/qrcode/decoder/FormatInformation;->numBitsDiffering(II)I
 
     move-result v4
 
     .line 122
     .local v4, "bitsDifference":I
-    if-ge v4, v0, :cond_3
+    if-ge v4, v0, :cond_2a
 
     .line 123
     add-int/lit8 v1, v2, 0x7
@@ -5897,14 +5897,14 @@
     .line 113
     .end local v3    # "targetVersion":I
     .end local v4    # "bitsDifference":I
-    :cond_3
+    :cond_2a
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_5
 .end method
 
 .method public static getProvisionalVersionForDimension(I)Lcom/google/zxing/qrcode/decoder/Version;
-    .locals 2
+    .registers 3
     .param p0, "dimension"    # I
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -5917,24 +5917,24 @@
 
     const/4 v1, 0x1
 
-    if-ne v0, v1, :cond_0
+    if-ne v0, v1, :cond_14
 
     .line 97
     add-int/lit8 v0, p0, -0x11
 
-    :try_start_0
+    :try_start_7
     div-int/lit8 v0, v0, 0x4
 
     invoke-static {v0}, Lcom/google/zxing/qrcode/decoder/Version;->getVersionForNumber(I)Lcom/google/zxing/qrcode/decoder/Version;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_7 .. :try_end_d} :catch_e
 
     return-object v0
 
     .line 98
-    :catch_0
+    :catch_e
     move-exception v0
 
     .line 99
@@ -5947,7 +5947,7 @@
 
     .line 94
     .end local v0    # "ignored":Ljava/lang/IllegalArgumentException;
-    :cond_0
+    :cond_14
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v0
@@ -5956,17 +5956,17 @@
 .end method
 
 .method public static getVersionForNumber(I)Lcom/google/zxing/qrcode/decoder/Version;
-    .locals 2
+    .registers 3
     .param p0, "versionNumber"    # I
 
     .line 104
     const/4 v0, 0x1
 
-    if-lt p0, v0, :cond_0
+    if-lt p0, v0, :cond_e
 
     const/16 v0, 0x28
 
-    if-gt p0, v0, :cond_0
+    if-gt p0, v0, :cond_e
 
     .line 107
     sget-object v0, Lcom/google/zxing/qrcode/decoder/Version;->VERSIONS:[Lcom/google/zxing/qrcode/decoder/Version;
@@ -5978,7 +5978,7 @@
     return-object v0
 
     .line 105
-    :cond_0
+    :cond_e
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     invoke-direct {v0}, Ljava/lang/IllegalArgumentException;-><init>()V
@@ -5989,7 +5989,7 @@
 
 # virtual methods
 .method buildFunctionPattern()Lcom/google/zxing/common/BitMatrix;
-    .locals 10
+    .registers 11
 
     .line 140
     invoke-virtual {p0}, Lcom/google/zxing/qrcode/decoder/Version;->getDimensionForVersion()I
@@ -6032,8 +6032,8 @@
     const/4 v5, 0x0
 
     .local v5, "x":I
-    :goto_0
-    if-lt v5, v4, :cond_1
+    :goto_1f
+    if-lt v5, v4, :cond_3d
 
     .line 164
     .end local v5    # "x":I
@@ -6053,7 +6053,7 @@
     .line 168
     iget v2, p0, Lcom/google/zxing/qrcode/decoder/Version;->versionNumber:I
 
-    if-le v2, v6, :cond_0
+    if-le v2, v6, :cond_3c
 
     .line 170
     add-int/lit8 v2, v0, -0xb
@@ -6068,12 +6068,12 @@
     invoke-virtual {v1, v3, v2, v6, v5}, Lcom/google/zxing/common/BitMatrix;->setRegion(IIII)V
 
     .line 175
-    :cond_0
+    :cond_3c
     return-object v1
 
     .line 153
     .restart local v5    # "x":I
-    :cond_1
+    :cond_3d
     iget-object v6, p0, Lcom/google/zxing/qrcode/decoder/Version;->alignmentPatternCenters:[I
 
     aget v6, v6, v5
@@ -6085,40 +6085,40 @@
     const/4 v7, 0x0
 
     .local v7, "y":I
-    :goto_1
-    if-lt v7, v4, :cond_2
+    :goto_44
+    if-lt v7, v4, :cond_49
 
     .line 152
     .end local v6    # "i":I
     .end local v7    # "y":I
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_0
+    goto :goto_1f
 
     .line 155
     .restart local v6    # "i":I
     .restart local v7    # "y":I
-    :cond_2
-    if-nez v5, :cond_3
+    :cond_49
+    if-nez v5, :cond_51
 
-    if-eqz v7, :cond_5
+    if-eqz v7, :cond_62
 
     add-int/lit8 v8, v4, -0x1
 
-    if-eq v7, v8, :cond_5
+    if-eq v7, v8, :cond_62
 
-    :cond_3
+    :cond_51
     add-int/lit8 v8, v4, -0x1
 
-    if-ne v5, v8, :cond_4
+    if-ne v5, v8, :cond_58
 
-    if-nez v7, :cond_4
+    if-nez v7, :cond_58
 
     .line 157
-    goto :goto_2
+    goto :goto_62
 
     .line 159
-    :cond_4
+    :cond_58
     iget-object v8, p0, Lcom/google/zxing/qrcode/decoder/Version;->alignmentPatternCenters:[I
 
     aget v8, v8, v7
@@ -6130,15 +6130,15 @@
     invoke-virtual {v1, v8, v6, v9, v9}, Lcom/google/zxing/common/BitMatrix;->setRegion(IIII)V
 
     .line 154
-    :cond_5
-    :goto_2
+    :cond_62
+    :goto_62
     add-int/lit8 v7, v7, 0x1
 
-    goto :goto_1
+    goto :goto_44
 .end method
 
 .method public getAlignmentPatternCenters()[I
-    .locals 1
+    .registers 2
 
     .line 70
     iget-object v0, p0, Lcom/google/zxing/qrcode/decoder/Version;->alignmentPatternCenters:[I
@@ -6147,7 +6147,7 @@
 .end method
 
 .method public getDimensionForVersion()I
-    .locals 2
+    .registers 3
 
     .line 78
     iget v0, p0, Lcom/google/zxing/qrcode/decoder/Version;->versionNumber:I
@@ -6164,7 +6164,7 @@
 .end method
 
 .method public getECBlocksForLevel(Lcom/google/zxing/qrcode/decoder/ErrorCorrectionLevel;)Lcom/google/zxing/qrcode/decoder/Version$ECBlocks;
-    .locals 2
+    .registers 4
     .param p1, "ecLevel"    # Lcom/google/zxing/qrcode/decoder/ErrorCorrectionLevel;
 
     .line 82
@@ -6180,7 +6180,7 @@
 .end method
 
 .method public getTotalCodewords()I
-    .locals 1
+    .registers 2
 
     .line 74
     iget v0, p0, Lcom/google/zxing/qrcode/decoder/Version;->totalCodewords:I
@@ -6189,7 +6189,7 @@
 .end method
 
 .method public getVersionNumber()I
-    .locals 1
+    .registers 2
 
     .line 66
     iget v0, p0, Lcom/google/zxing/qrcode/decoder/Version;->versionNumber:I
@@ -6198,7 +6198,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 239
     iget v0, p0, Lcom/google/zxing/qrcode/decoder/Version;->versionNumber:I

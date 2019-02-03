@@ -1,12 +1,27 @@
 package com.ss.android.ugc.effectmanager.effect.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import com.ss.android.ugc.effectmanager.common.model.UrlModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Effect {
+public class Effect implements Parcelable {
+    public static final Creator<Effect> CREATOR = new Creator<Effect>() {
+        public Effect createFromParcel(Parcel parcel) {
+            return new Effect(parcel);
+        }
+
+        public Effect[] newArray(int i) {
+            return new Effect[i];
+        }
+    };
     private String app_version;
+    @Nullable
+    private List<Effect> childEffects;
     private List<String> children;
     private String designer_id;
     private String device_platform;
@@ -30,14 +45,6 @@ public class Effect {
     private String unzipPath;
     private String zipPath;
 
-    public UrlModel getHintIcon() {
-        return this.hint_icon;
-    }
-
-    public void setHintIcon(UrlModel urlModel) {
-        this.hint_icon = urlModel;
-    }
-
     public String getName() {
         return this.name;
     }
@@ -52,6 +59,14 @@ public class Effect {
 
     public void setHint(String str) {
         this.hint = str;
+    }
+
+    public UrlModel getHintIcon() {
+        return this.hint_icon;
+    }
+
+    public void setHintIcon(UrlModel urlModel) {
+        this.hint_icon = urlModel;
     }
 
     public String getSdkVersion() {
@@ -154,8 +169,16 @@ public class Effect {
         return this.tags == null ? new ArrayList() : this.tags;
     }
 
+    public void setTags(List<String> list) {
+        this.tags = list;
+    }
+
     public String getTagsUpdatedAt() {
         return this.tags_updated_at;
+    }
+
+    public void setTagsUpdatedAt(String str) {
+        this.tags_updated_at = str;
     }
 
     public List<String> getChildren() {
@@ -164,6 +187,14 @@ public class Effect {
 
     public void setChildren(List<String> list) {
         this.children = list;
+    }
+
+    public List<Effect> getChildEffects() {
+        return this.childEffects;
+    }
+
+    public void setChildEffects(List<Effect> list) {
+        this.childEffects = list;
     }
 
     public int getEffectType() {
@@ -235,5 +266,63 @@ public class Effect {
         stringBuilder.append(this.parent);
         stringBuilder.append('}');
         return stringBuilder.toString();
+    }
+
+    public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(this.name);
+        parcel.writeString(this.hint);
+        parcel.writeString(this.sdk_version);
+        parcel.writeString(this.app_version);
+        parcel.writeParcelable(this.file_url, i);
+        parcel.writeParcelable(this.icon_url, i);
+        parcel.writeString(this.id);
+        parcel.writeString(this.effect_id);
+        parcel.writeString(this.type);
+        parcel.writeStringList(this.types);
+        parcel.writeString(this.device_platform);
+        parcel.writeString(this.zipPath);
+        parcel.writeString(this.unzipPath);
+        parcel.writeByte(this.downloaded);
+        parcel.writeStringList(this.tags);
+        parcel.writeString(this.tags_updated_at);
+        parcel.writeParcelable(this.hint_icon, i);
+        parcel.writeStringList(this.children);
+        parcel.writeTypedList(this.childEffects);
+        parcel.writeInt(this.effect_type);
+        parcel.writeString(this.parent);
+        parcel.writeInt(this.source);
+        parcel.writeString(this.designer_id);
+        parcel.writeString(this.schema);
+    }
+
+    protected Effect(Parcel parcel) {
+        this.name = parcel.readString();
+        this.hint = parcel.readString();
+        this.sdk_version = parcel.readString();
+        this.app_version = parcel.readString();
+        this.file_url = (UrlModel) parcel.readParcelable(UrlModel.class.getClassLoader());
+        this.icon_url = (UrlModel) parcel.readParcelable(UrlModel.class.getClassLoader());
+        this.id = parcel.readString();
+        this.effect_id = parcel.readString();
+        this.type = parcel.readString();
+        this.types = parcel.createStringArrayList();
+        this.device_platform = parcel.readString();
+        this.zipPath = parcel.readString();
+        this.unzipPath = parcel.readString();
+        this.downloaded = parcel.readByte() != (byte) 0;
+        this.tags = parcel.createStringArrayList();
+        this.tags_updated_at = parcel.readString();
+        this.hint_icon = (UrlModel) parcel.readParcelable(UrlModel.class.getClassLoader());
+        this.children = parcel.createStringArrayList();
+        this.childEffects = parcel.createTypedArrayList(CREATOR);
+        this.effect_type = parcel.readInt();
+        this.parent = parcel.readString();
+        this.source = parcel.readInt();
+        this.designer_id = parcel.readString();
+        this.schema = parcel.readString();
     }
 }

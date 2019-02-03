@@ -32,7 +32,7 @@
 .method constructor <init>(Lcom/android/camera/BasePreferenceActivity;)V
     .locals 0
 
-    .line 536
+    .line 574
     iput-object p1, p0, Lcom/android/camera/BasePreferenceActivity$3;->this$0:Lcom/android/camera/BasePreferenceActivity;
 
     invoke-direct {p0}, Landroid/os/AsyncTask;-><init>()V
@@ -45,7 +45,7 @@
 .method protected bridge synthetic doInBackground([Ljava/lang/Object;)Ljava/lang/Object;
     .locals 0
 
-    .line 536
+    .line 574
     check-cast p1, [Ljava/lang/Void;
 
     invoke-virtual {p0, p1}, Lcom/android/camera/BasePreferenceActivity$3;->doInBackground([Ljava/lang/Void;)Ljava/lang/Void;
@@ -58,7 +58,7 @@
 .method protected varargs doInBackground([Ljava/lang/Void;)Ljava/lang/Void;
     .locals 4
 
-    .line 539
+    .line 577
     invoke-static {}, Lcom/android/camera/BasePreferenceActivity;->access$200()Ljava/lang/String;
 
     move-result-object p1
@@ -67,26 +67,26 @@
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 540
+    .line 578
     iget-object p1, p0, Lcom/android/camera/BasePreferenceActivity$3;->this$0:Lcom/android/camera/BasePreferenceActivity;
 
     const-string v0, "com.xiaomi.scanner"
 
     iget-object v1, p0, Lcom/android/camera/BasePreferenceActivity$3;->this$0:Lcom/android/camera/BasePreferenceActivity;
 
-    .line 542
+    .line 580
     invoke-static {v1}, Lcom/android/camera/BasePreferenceActivity;->access$300(Lcom/android/camera/BasePreferenceActivity;)Lcom/android/camera/lib/compatibility/util/CompatibilityUtils$PackageInstallerListener;
 
     move-result-object v1
 
-    .line 540
+    .line 578
     const/4 v2, 0x0
 
     const/4 v3, 0x1
 
     invoke-static {p1, v0, v1, v2, v3}, Lcom/android/camera/Util;->installPackage(Landroid/content/Context;Ljava/lang/String;Lcom/android/camera/lib/compatibility/util/CompatibilityUtils$PackageInstallerListener;ZZ)V
 
-    .line 543
+    .line 581
     const/4 p1, 0x0
 
     return-object p1

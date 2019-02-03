@@ -13,6 +13,10 @@ abstract class WaterMark {
 
     public abstract int getHeight();
 
+    public abstract int getPaddingX();
+
+    public abstract int getPaddingY();
+
     public abstract BasicTexture getTexture();
 
     public abstract int getWidth();

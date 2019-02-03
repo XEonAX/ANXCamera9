@@ -4,9 +4,9 @@
 
 
 # static fields
-.field private static final dC:I = 0x200
+.field private static final dD:I = 0x200
 
-.field private static final dD:I = 0x180
+.field private static final dE:I = 0x180
 
 
 # direct methods

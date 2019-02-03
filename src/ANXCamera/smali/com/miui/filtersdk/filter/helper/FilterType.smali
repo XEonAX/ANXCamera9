@@ -86,6 +86,16 @@
 
 .field public static final enum BI_MONO:Lcom/miui/filtersdk/filter/helper/FilterType;
 
+.field public static final enum BI_M_DUSK:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+.field public static final enum BI_M_LILT:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+.field public static final enum BI_M_SEPIA:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+.field public static final enum BI_M_TEA:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+.field public static final enum BI_M_WHITEANDBLACK:Lcom/miui/filtersdk/filter/helper/FilterType;
+
 .field public static final enum BI_PINK:Lcom/miui/filtersdk/filter/helper/FilterType;
 
 .field public static final enum BI_PORTRAIT:Lcom/miui/filtersdk/filter/helper/FilterType;
@@ -115,6 +125,14 @@
 .field public static final enum B_MOOD:Lcom/miui/filtersdk/filter/helper/FilterType;
 
 .field public static final enum B_MOVIE:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+.field public static final enum B_M_LILT:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+.field public static final enum B_M_SEPIA:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+.field public static final enum B_M_TEA:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+.field public static final enum B_M_WHITEANDBLACK:Lcom/miui/filtersdk/filter/helper/FilterType;
 
 .field public static final enum B_NATURE:Lcom/miui/filtersdk/filter/helper/FilterType;
 
@@ -1115,59 +1133,59 @@
     .line 82
     new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    const-string v1, "BI_SUNNY"
+    const-string v1, "B_M_TEA"
 
-    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
+    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
 
     const/16 v15, 0x47
 
     invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
 
-    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_SUNNY:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->B_M_TEA:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     .line 83
     new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    const-string v1, "BI_PINK"
+    const-string v1, "B_M_LILT"
 
-    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
+    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
 
     const/16 v15, 0x48
 
     invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
 
-    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_PINK:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->B_M_LILT:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     .line 84
     new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    const-string v1, "BI_MEMORY"
+    const-string v1, "B_M_SEPIA"
 
-    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
+    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
 
     const/16 v15, 0x49
 
     invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
 
-    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_MEMORY:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->B_M_SEPIA:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     .line 85
     new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    const-string v1, "BI_STRONG"
+    const-string v1, "B_M_WHITEANDBLACK"
 
-    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
+    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
 
     const/16 v15, 0x4a
 
     invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
 
-    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_STRONG:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->B_M_WHITEANDBLACK:Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    .line 86
+    .line 89
     new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    const-string v1, "BI_WARM"
+    const-string v1, "BI_SUNNY"
 
     sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
 
@@ -1175,12 +1193,12 @@
 
     invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
 
-    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_WARM:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_SUNNY:Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    .line 87
+    .line 90
     new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    const-string v1, "BI_SWEET"
+    const-string v1, "BI_PINK"
 
     sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
 
@@ -1188,12 +1206,12 @@
 
     invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
 
-    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_SWEET:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_PINK:Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    .line 88
+    .line 91
     new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    const-string v1, "BI_PORTRAIT"
+    const-string v1, "BI_MEMORY"
 
     sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
 
@@ -1201,12 +1219,12 @@
 
     invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
 
-    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_PORTRAIT:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_MEMORY:Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    .line 89
+    .line 92
     new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    const-string v1, "BI_RETRO"
+    const-string v1, "BI_STRONG"
 
     sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
 
@@ -1214,12 +1232,12 @@
 
     invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
 
-    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_RETRO:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_STRONG:Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    .line 90
+    .line 93
     new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    const-string v1, "BI_YOUNG"
+    const-string v1, "BI_WARM"
 
     sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
 
@@ -1227,12 +1245,12 @@
 
     invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
 
-    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_YOUNG:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_WARM:Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    .line 91
+    .line 94
     new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    const-string v1, "BI_ROMANTIC"
+    const-string v1, "BI_SWEET"
 
     sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
 
@@ -1240,12 +1258,12 @@
 
     invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
 
-    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_ROMANTIC:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_SWEET:Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    .line 92
+    .line 95
     new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    const-string v1, "BI_MONO"
+    const-string v1, "BI_PORTRAIT"
 
     sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
 
@@ -1253,10 +1271,127 @@
 
     invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
 
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_PORTRAIT:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    .line 96
+    new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const-string v1, "BI_RETRO"
+
+    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
+
+    const/16 v15, 0x52
+
+    invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
+
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_RETRO:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    .line 97
+    new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const-string v1, "BI_YOUNG"
+
+    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
+
+    const/16 v15, 0x53
+
+    invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
+
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_YOUNG:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    .line 98
+    new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const-string v1, "BI_ROMANTIC"
+
+    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
+
+    const/16 v15, 0x54
+
+    invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
+
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_ROMANTIC:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    .line 99
+    new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const-string v1, "BI_MONO"
+
+    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
+
+    const/16 v15, 0x55
+
+    invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
+
     sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_MONO:Lcom/miui/filtersdk/filter/helper/FilterType;
 
+    .line 101
+    new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const-string v1, "BI_M_DUSK"
+
+    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
+
+    const/16 v15, 0x56
+
+    invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
+
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_M_DUSK:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    .line 102
+    new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const-string v1, "BI_M_LILT"
+
+    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
+
+    const/16 v15, 0x57
+
+    invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
+
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_M_LILT:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    .line 103
+    new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const-string v1, "BI_M_TEA"
+
+    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
+
+    const/16 v15, 0x58
+
+    invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
+
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_M_TEA:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    .line 104
+    new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const-string v1, "BI_M_SEPIA"
+
+    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
+
+    const/16 v15, 0x59
+
+    invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
+
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_M_SEPIA:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    .line 105
+    new-instance v0, Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const-string v1, "BI_M_WHITEANDBLACK"
+
+    sget-object v2, Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;->BEAUTY_INDIA:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
+
+    const/16 v15, 0x5a
+
+    invoke-direct {v0, v1, v15, v2}, Lcom/miui/filtersdk/filter/helper/FilterType;-><init>(Ljava/lang/String;ILcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)V
+
+    sput-object v0, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_M_WHITEANDBLACK:Lcom/miui/filtersdk/filter/helper/FilterType;
+
     .line 3
-    const/16 v0, 0x52
+    const/16 v0, 0x5b
 
     new-array v0, v0, [Lcom/miui/filtersdk/filter/helper/FilterType;
 
@@ -1662,69 +1797,123 @@
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_SUNNY:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->B_M_TEA:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     const/16 v2, 0x47
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_PINK:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->B_M_LILT:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     const/16 v2, 0x48
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_MEMORY:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->B_M_SEPIA:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     const/16 v2, 0x49
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_STRONG:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->B_M_WHITEANDBLACK:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     const/16 v2, 0x4a
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_WARM:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_SUNNY:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     const/16 v2, 0x4b
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_SWEET:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_PINK:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     const/16 v2, 0x4c
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_PORTRAIT:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_MEMORY:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     const/16 v2, 0x4d
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_RETRO:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_STRONG:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     const/16 v2, 0x4e
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_YOUNG:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_WARM:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     const/16 v2, 0x4f
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_ROMANTIC:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_SWEET:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     const/16 v2, 0x50
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_MONO:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_PORTRAIT:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     const/16 v2, 0x51
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_RETRO:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const/16 v2, 0x52
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_YOUNG:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const/16 v2, 0x53
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_ROMANTIC:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const/16 v2, 0x54
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_MONO:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const/16 v2, 0x55
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_M_DUSK:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const/16 v2, 0x56
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_M_LILT:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const/16 v2, 0x57
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_M_TEA:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const/16 v2, 0x58
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_M_SEPIA:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const/16 v2, 0x59
+
+    aput-object v1, v0, v2
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_M_WHITEANDBLACK:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    const/16 v2, 0x5a
 
     aput-object v1, v0, v2
 
@@ -1743,13 +1932,13 @@
         }
     .end annotation
 
-    .line 96
+    .line 110
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
-    .line 97
+    .line 111
     iput-object p3, p0, Lcom/miui/filtersdk/filter/helper/FilterType;->mScene:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
 
-    .line 98
+    .line 112
     return-void
 .end method
 
@@ -1788,7 +1977,7 @@
 .method public getFilterScene()Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
     .locals 1
 
-    .line 101
+    .line 115
     iget-object v0, p0, Lcom/miui/filtersdk/filter/helper/FilterType;->mScene:Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
 
     return-object v0

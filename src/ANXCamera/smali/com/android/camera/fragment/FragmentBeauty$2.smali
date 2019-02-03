@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/FragmentBeauty;)V
     .locals 0
 
-    .line 358
+    .line 376
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentBeauty$2;->this$0:Lcom/android/camera/fragment/FragmentBeauty;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,29 +38,29 @@
 .method public onAnimationCancel(Landroid/view/View;)V
     .locals 0
 
-    .line 372
+    .line 390
     return-void
 .end method
 
 .method public onAnimationEnd(Landroid/view/View;)V
     .locals 0
 
-    .line 366
+    .line 384
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBeauty$2;->this$0:Lcom/android/camera/fragment/FragmentBeauty;
 
-    invoke-static {p1}, Lcom/android/camera/fragment/FragmentBeauty;->access$400(Lcom/android/camera/fragment/FragmentBeauty;)Lcom/android/camera/fragment/beauty/BeautyEyeLightFragment;
+    invoke-static {p1}, Lcom/android/camera/fragment/FragmentBeauty;->access$300(Lcom/android/camera/fragment/FragmentBeauty;)Lcom/android/camera/fragment/beauty/BeautyEyeLightFragment;
 
     move-result-object p1
 
     invoke-virtual {p1}, Lcom/android/camera/fragment/beauty/BeautyEyeLightFragment;->userVisibleHint()V
 
-    .line 367
+    .line 385
     return-void
 .end method
 
 .method public onAnimationStart(Landroid/view/View;)V
     .locals 0
 
-    .line 362
+    .line 380
     return-void
 .end method

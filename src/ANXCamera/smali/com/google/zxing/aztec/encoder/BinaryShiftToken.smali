@@ -11,7 +11,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/zxing/aztec/encoder/Token;II)V
-    .locals 1
+    .registers 5
     .param p1, "previous"    # Lcom/google/zxing/aztec/encoder/Token;
     .param p2, "binaryShiftStart"    # I
     .param p3, "binaryShiftByteCount"    # I
@@ -36,7 +36,7 @@
 
 # virtual methods
 .method public appendTo(Lcom/google/zxing/common/BitArray;[B)V
-    .locals 5
+    .registers 8
     .param p1, "bitArray"    # Lcom/google/zxing/common/BitArray;
     .param p2, "text"    # [B
 
@@ -44,10 +44,10 @@
     const/4 v0, 0x0
 
     .local v0, "i":I
-    :goto_0
+    :goto_1
     iget-short v1, p0, Lcom/google/zxing/aztec/encoder/BinaryShiftToken;->binaryShiftByteCount:S
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_6
 
     .line 53
     .end local v0    # "i":I
@@ -55,21 +55,21 @@
 
     .line 37
     .restart local v0    # "i":I
-    :cond_0
+    :cond_6
     const/16 v1, 0x3e
 
     const/16 v2, 0x1f
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_12
 
-    if-ne v0, v2, :cond_4
+    if-ne v0, v2, :cond_35
 
     iget-short v3, p0, Lcom/google/zxing/aztec/encoder/BinaryShiftToken;->binaryShiftByteCount:S
 
-    if-gt v3, v1, :cond_4
+    if-gt v3, v1, :cond_35
 
     .line 40
-    :cond_1
+    :cond_12
     const/4 v3, 0x5
 
     invoke-virtual {p1, v2, v3}, Lcom/google/zxing/common/BitArray;->appendBits(II)V
@@ -77,7 +77,7 @@
     .line 41
     iget-short v4, p0, Lcom/google/zxing/aztec/encoder/BinaryShiftToken;->binaryShiftByteCount:S
 
-    if-le v4, v1, :cond_2
+    if-le v4, v1, :cond_23
 
     .line 42
     iget-short v1, p0, Lcom/google/zxing/aztec/encoder/BinaryShiftToken;->binaryShiftByteCount:S
@@ -89,10 +89,10 @@
     invoke-virtual {p1, v1, v2}, Lcom/google/zxing/common/BitArray;->appendBits(II)V
 
     .line 43
-    goto :goto_1
+    goto :goto_35
 
-    :cond_2
-    if-nez v0, :cond_3
+    :cond_23
+    if-nez v0, :cond_2f
 
     .line 45
     iget-short v1, p0, Lcom/google/zxing/aztec/encoder/BinaryShiftToken;->binaryShiftByteCount:S
@@ -104,10 +104,10 @@
     invoke-virtual {p1, v1, v3}, Lcom/google/zxing/common/BitArray;->appendBits(II)V
 
     .line 46
-    goto :goto_1
+    goto :goto_35
 
     .line 48
-    :cond_3
+    :cond_2f
     iget-short v1, p0, Lcom/google/zxing/aztec/encoder/BinaryShiftToken;->binaryShiftByteCount:S
 
     sub-int/2addr v1, v2
@@ -115,8 +115,8 @@
     invoke-virtual {p1, v1, v3}, Lcom/google/zxing/common/BitArray;->appendBits(II)V
 
     .line 51
-    :cond_4
-    :goto_1
+    :cond_35
+    :goto_35
     iget-short v1, p0, Lcom/google/zxing/aztec/encoder/BinaryShiftToken;->binaryShiftStart:S
 
     add-int/2addr v1, v0
@@ -130,11 +130,11 @@
     .line 36
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_1
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 3
+    .registers 4
 
     .line 57
     new-instance v0, Ljava/lang/StringBuilder;

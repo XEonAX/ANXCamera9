@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 238
     invoke-direct {p0}, Landroid/support/v4/widget/ScrollerCompat$ScrollerCompatImplGingerbread;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getCurrVelocity(Ljava/lang/Object;)F
-    .locals 1
+    .registers 3
     .param p1, "scroller"    # Ljava/lang/Object;
 
     .line 241

@@ -5,7 +5,6 @@ import android.content.SharedPreferences.Editor;
 import android.os.Build;
 import android.provider.MiuiSettings.SettingsCloudData;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.SparseArray;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraSettings;
@@ -13,8 +12,10 @@ import com.android.camera.data.DataRepository;
 import com.android.camera.data.cloud.DataCloud.CloudFeature;
 import com.android.camera.data.cloud.DataCloud.CloudItem;
 import com.android.camera.data.cloud.DataCloud.CloudManager;
+import com.android.camera.log.Log;
 import com.android.camera.network.util.NetworkUtils;
 import com.android.camera.sensitive.SensitiveFilter;
+import com.ss.android.ugc.effectmanager.effect.model.ComposerHelper;
 import io.reactivex.Completable;
 import io.reactivex.CompletableEmitter;
 import io.reactivex.CompletableOnSubscribe;
@@ -159,7 +160,7 @@ public class DataCloudMgr implements CloudManager {
 
     private void updateSettingsFromCloudData(String str) {
         try {
-            Object cloudDataString = getCloudDataString(str, "content", null);
+            Object cloudDataString = getCloudDataString(str, ComposerHelper.COMPOSER_CONTENT, null);
             int i = 0;
             if (!TextUtils.isEmpty(cloudDataString)) {
                 JSONArray jSONArray = new JSONArray(cloudDataString);
@@ -217,8 +218,7 @@ public class DataCloudMgr implements CloudManager {
     }
 
     private static final String getCloudDataString(String str, String str2, String str3) {
-        Log.w("getCloudDataString", str2);
-        return str3;
+        return SettingsCloudData.getCloudDataString(CameraAppImpl.getAndroidContext().getContentResolver(), str, str2, str3);
     }
 
     private static final int getCloudDataInt(String str, String str2, int i) {

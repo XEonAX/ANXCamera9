@@ -42,7 +42,7 @@
 .method static constructor <clinit>()V
     .locals 8
 
-    .line 86
+    .line 89
     new-instance v0, Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
 
     const-string v1, "VIDEO_OUT_RATIO_1_1"
@@ -53,7 +53,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;->VIDEO_OUT_RATIO_1_1:Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
 
-    .line 90
+    .line 93
     new-instance v0, Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
 
     const-string v1, "VIDEO_OUT_RATIO_4_3"
@@ -64,7 +64,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;->VIDEO_OUT_RATIO_4_3:Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
 
-    .line 94
+    .line 97
     new-instance v0, Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
 
     const-string v1, "VIDEO_OUT_RATIO_3_4"
@@ -75,7 +75,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;->VIDEO_OUT_RATIO_3_4:Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
 
-    .line 98
+    .line 101
     new-instance v0, Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
 
     const-string v1, "VIDEO_OUT_RATIO_16_9"
@@ -86,7 +86,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;->VIDEO_OUT_RATIO_16_9:Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
 
-    .line 102
+    .line 105
     new-instance v0, Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
 
     const-string v1, "VIDEO_OUT_RATIO_9_16"
@@ -97,7 +97,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;->VIDEO_OUT_RATIO_9_16:Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
 
-    .line 106
+    .line 109
     new-instance v0, Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
 
     const-string v1, "VIDEO_OUT_RATIO_ORIGINAL"
@@ -108,7 +108,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;->VIDEO_OUT_RATIO_ORIGINAL:Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
 
-    .line 82
+    .line 85
     const/4 v0, 0x6
 
     new-array v0, v0, [Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
@@ -150,7 +150,7 @@
         }
     .end annotation
 
-    .line 82
+    .line 85
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -159,7 +159,7 @@
 .method public static valueOf(Ljava/lang/String;)Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
     .locals 1
 
-    .line 82
+    .line 85
     const-class v0, Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -174,7 +174,7 @@
 .method public static values()[Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
     .locals 1
 
-    .line 82
+    .line 85
     sget-object v0, Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;->$VALUES:[Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;
 
     invoke-virtual {v0}, [Lcom/ss/android/vesdk/VEEditor$VIDEO_RATIO;->clone()Ljava/lang/Object;

@@ -126,7 +126,7 @@
     :cond_0
     sget-wide v0, Lcom/android/camera/AutoLockManager;->MILLIS_IN_MINUTE:J
 
-    invoke-static {}, Lcom/mi/config/b;->gH()I
+    invoke-static {}, Lcom/mi/config/b;->gZ()I
 
     move-result v2
 

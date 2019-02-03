@@ -30,7 +30,7 @@
 .method constructor <init>()V
     .locals 0
 
-    .line 37
+    .line 93
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -41,7 +41,7 @@
 .method public createFromParcel(Landroid/os/Parcel;)Lcom/xiaomi/protocol/IImageReaderParameterSets;
     .locals 1
 
-    .line 40
+    .line 96
     new-instance v0, Lcom/xiaomi/protocol/IImageReaderParameterSets;
 
     invoke-direct {v0, p1}, Lcom/xiaomi/protocol/IImageReaderParameterSets;-><init>(Landroid/os/Parcel;)V
@@ -52,7 +52,7 @@
 .method public bridge synthetic createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
     .locals 0
 
-    .line 37
+    .line 93
     invoke-virtual {p0, p1}, Lcom/xiaomi/protocol/IImageReaderParameterSets$1;->createFromParcel(Landroid/os/Parcel;)Lcom/xiaomi/protocol/IImageReaderParameterSets;
 
     move-result-object p1
@@ -63,7 +63,7 @@
 .method public newArray(I)[Lcom/xiaomi/protocol/IImageReaderParameterSets;
     .locals 0
 
-    .line 45
+    .line 101
     new-array p1, p1, [Lcom/xiaomi/protocol/IImageReaderParameterSets;
 
     return-object p1
@@ -72,7 +72,7 @@
 .method public bridge synthetic newArray(I)[Ljava/lang/Object;
     .locals 0
 
-    .line 37
+    .line 93
     invoke-virtual {p0, p1}, Lcom/xiaomi/protocol/IImageReaderParameterSets$1;->newArray(I)[Lcom/xiaomi/protocol/IImageReaderParameterSets;
 
     move-result-object p1

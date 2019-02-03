@@ -5,7 +5,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 21
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -15,7 +15,7 @@
 .end method
 
 .method public static distance(FFFF)F
-    .locals 4
+    .registers 8
     .param p0, "aX"    # F
     .param p1, "aY"    # F
     .param p2, "bX"    # F
@@ -48,7 +48,7 @@
 .end method
 
 .method public static distance(IIII)F
-    .locals 4
+    .registers 8
     .param p0, "aX"    # I
     .param p1, "aY"    # I
     .param p2, "bX"    # I
@@ -81,7 +81,7 @@
 .end method
 
 .method public static round(F)I
-    .locals 1
+    .registers 2
     .param p0, "d"    # F
 
     .line 34
@@ -89,16 +89,16 @@
 
     cmpg-float v0, p0, v0
 
-    if-gez v0, :cond_0
+    if-gez v0, :cond_8
 
     const/high16 v0, -0x41000000    # -0.5f
 
-    goto :goto_0
+    goto :goto_a
 
-    :cond_0
+    :cond_8
     const/high16 v0, 0x3f000000    # 0.5f
 
-    :goto_0
+    :goto_a
     add-float/2addr v0, p0
 
     float-to-int v0, v0

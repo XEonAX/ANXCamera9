@@ -199,6 +199,54 @@
     return-object p1
 .end method
 
+.method public getBackupSwitchState(ILjava/lang/String;I)Z
+    .locals 1
+
+    .line 185
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p1}, Lcom/android/camera/data/data/global/DataItemGlobal;->getDataBackUpKey(I)I
+
+    move-result p1
+
+    .line 186
+    invoke-virtual {p0, p1, p3}, Lcom/android/camera/data/backup/DataActionBackUpImpl;->getBackupRunning(II)Landroid/support/v4/util/SimpleArrayMap;
+
+    move-result-object p1
+
+    .line 187
+    const/4 p3, 0x0
+
+    if-nez p1, :cond_0
+
+    .line 188
+    return p3
+
+    .line 190
+    :cond_0
+    invoke-virtual {p1, p2}, Landroid/support/v4/util/SimpleArrayMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object p1
+
+    .line 191
+    if-nez p1, :cond_1
+
+    .line 192
+    return p3
+
+    .line 194
+    :cond_1
+    check-cast p1, Ljava/lang/Boolean;
+
+    invoke-virtual {p1}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result p1
+
+    return p1
+.end method
+
 .method public isLastVideoFastMotion()Z
     .locals 3
 

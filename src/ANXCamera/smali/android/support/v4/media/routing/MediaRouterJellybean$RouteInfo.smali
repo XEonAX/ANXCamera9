@@ -16,7 +16,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 114
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -25,7 +25,7 @@
 .end method
 
 .method public static getCategory(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "routeObj"    # Ljava/lang/Object;
 
     .line 128
@@ -41,7 +41,7 @@
 .end method
 
 .method public static getGroup(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "routeObj"    # Ljava/lang/Object;
 
     .line 172
@@ -57,7 +57,7 @@
 .end method
 
 .method public static getIconDrawable(Ljava/lang/Object;)Landroid/graphics/drawable/Drawable;
-    .locals 1
+    .registers 2
     .param p0, "routeObj"    # Ljava/lang/Object;
 
     .line 132
@@ -73,7 +73,7 @@
 .end method
 
 .method public static getName(Ljava/lang/Object;Landroid/content/Context;)Ljava/lang/CharSequence;
-    .locals 1
+    .registers 3
     .param p0, "routeObj"    # Ljava/lang/Object;
     .param p1, "context"    # Landroid/content/Context;
 
@@ -90,7 +90,7 @@
 .end method
 
 .method public static getPlaybackStream(Ljava/lang/Object;)I
-    .locals 1
+    .registers 2
     .param p0, "routeObj"    # Ljava/lang/Object;
 
     .line 140
@@ -106,7 +106,7 @@
 .end method
 
 .method public static getPlaybackType(Ljava/lang/Object;)I
-    .locals 1
+    .registers 2
     .param p0, "routeObj"    # Ljava/lang/Object;
 
     .line 136
@@ -122,7 +122,7 @@
 .end method
 
 .method public static getStatus(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .locals 1
+    .registers 2
     .param p0, "routeObj"    # Ljava/lang/Object;
 
     .line 120
@@ -138,7 +138,7 @@
 .end method
 
 .method public static getSupportedTypes(Ljava/lang/Object;)I
-    .locals 1
+    .registers 2
     .param p0, "routeObj"    # Ljava/lang/Object;
 
     .line 124
@@ -154,7 +154,7 @@
 .end method
 
 .method public static getTag(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "routeObj"    # Ljava/lang/Object;
 
     .line 156
@@ -170,7 +170,7 @@
 .end method
 
 .method public static getVolume(Ljava/lang/Object;)I
-    .locals 1
+    .registers 2
     .param p0, "routeObj"    # Ljava/lang/Object;
 
     .line 144
@@ -186,7 +186,7 @@
 .end method
 
 .method public static getVolumeHandling(Ljava/lang/Object;)I
-    .locals 1
+    .registers 2
     .param p0, "routeObj"    # Ljava/lang/Object;
 
     .line 152
@@ -202,7 +202,7 @@
 .end method
 
 .method public static getVolumeMax(Ljava/lang/Object;)I
-    .locals 1
+    .registers 2
     .param p0, "routeObj"    # Ljava/lang/Object;
 
     .line 148
@@ -218,7 +218,7 @@
 .end method
 
 .method public static isGroup(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 2
     .param p0, "routeObj"    # Ljava/lang/Object;
 
     .line 176
@@ -228,7 +228,7 @@
 .end method
 
 .method public static requestSetVolume(Ljava/lang/Object;I)V
-    .locals 1
+    .registers 3
     .param p0, "routeObj"    # Ljava/lang/Object;
     .param p1, "volume"    # I
 
@@ -244,7 +244,7 @@
 .end method
 
 .method public static requestUpdateVolume(Ljava/lang/Object;I)V
-    .locals 1
+    .registers 3
     .param p0, "routeObj"    # Ljava/lang/Object;
     .param p1, "direction"    # I
 
@@ -260,7 +260,7 @@
 .end method
 
 .method public static setTag(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 1
+    .registers 3
     .param p0, "routeObj"    # Ljava/lang/Object;
     .param p1, "tag"    # Ljava/lang/Object;
 

@@ -7,6 +7,7 @@ import com.android.camera.module.impl.component.ConfigChangeImpl;
 import com.android.camera.module.impl.component.LiveConfigChangeTTImpl;
 import com.android.camera.module.impl.component.LiveVideoEditorTTImpl;
 import com.android.camera.module.impl.component.ManuallyValueChangeImpl;
+import com.android.camera.module.impl.component.RecordingStateChangeImpl;
 import com.android.camera.protocol.ModeProtocol.BaseProtocol;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,29 +42,31 @@ public class ImplFactory {
     private void initTypes(ActivityBase activityBase, List<BaseProtocol> list, int... iArr) {
         if (!this.mReleased) {
             for (int i : iArr) {
-                BaseProtocol baseProtocol = null;
+                BaseProtocol create;
                 if (i == 164) {
-                    baseProtocol = ConfigChangeImpl.create(activityBase);
+                    create = ConfigChangeImpl.create(activityBase);
                 } else if (i == 171) {
-                    baseProtocol = BackStackImpl.create(activityBase);
+                    create = BackStackImpl.create(activityBase);
                 } else if (i == 201) {
-                    baseProtocol = LiveConfigChangeTTImpl.create(activityBase);
-                } else if (i != 209) {
+                    create = LiveConfigChangeTTImpl.create(activityBase);
+                } else if (i == 209) {
+                    create = LiveVideoEditorTTImpl.create(activityBase);
+                } else if (i != 212) {
                     switch (i) {
                         case 173:
-                            baseProtocol = BeautyRecordingImpl.create();
+                            create = BeautyRecordingImpl.create();
                             break;
                         case 174:
-                            baseProtocol = ManuallyValueChangeImpl.create(activityBase);
+                            create = ManuallyValueChangeImpl.create(activityBase);
                             break;
                         default:
-                            break;
+                            throw new RuntimeException("unknown protocol type");
                     }
                 } else {
-                    baseProtocol = LiveVideoEditorTTImpl.create(activityBase);
+                    create = RecordingStateChangeImpl.create(activityBase);
                 }
-                baseProtocol.registerProtocol();
-                list.add(baseProtocol);
+                create.registerProtocol();
+                list.add(create);
             }
         }
     }
@@ -76,7 +79,7 @@ public class ImplFactory {
         detach(this.mPersistentProtocolList);
     }
 
-    private void detachBase() {
+    public void detachBase() {
         detach(this.mBaseProtocolList);
     }
 
@@ -89,6 +92,7 @@ public class ImplFactory {
         }
     }
 
+    @Deprecated
     public void release() {
         if (!this.mReleased) {
             detachAdditional();

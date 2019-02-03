@@ -23,9 +23,9 @@ public class TENativeLibsLoader {
     public static void loadLibrary() {
         if (!sLibraryLoaded) {
             safeLoadSo("ttffmpeg");
-            safeLoadSo("effect");
-            safeLoadSo("yuv");
-            safeLoadSo("audioeffect");
+            safeLoadSo("tt_effect");
+            safeLoadSo("ttyuv");
+            safeLoadSo("ttaudioeffect");
             safeLoadSo("ttvideoeditor");
             sLibraryLoaded = true;
         }

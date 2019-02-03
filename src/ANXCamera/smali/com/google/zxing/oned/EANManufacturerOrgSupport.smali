@@ -26,7 +26,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 31
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -50,7 +50,7 @@
 .end method
 
 .method private add([ILjava/lang/String;)V
-    .locals 1
+    .registers 4
     .param p1, "range"    # [I
     .param p2, "id"    # Ljava/lang/String;
 
@@ -69,21 +69,21 @@
 .end method
 
 .method private declared-synchronized initIfNeeded()V
-    .locals 5
+    .registers 6
 
     monitor-enter p0
 
     .line 60
-    :try_start_0
+    :try_start_1
     iget-object v0, p0, Lcom/google/zxing/oned/EANManufacturerOrgSupport;->ranges:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
 
     move-result v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_7
+    .catchall {:try_start_1 .. :try_end_7} :catchall_485
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_b
 
     .line 61
     monitor-exit p0
@@ -91,10 +91,10 @@
     return-void
 
     .line 63
-    :cond_0
+    :cond_b
     const/4 v0, 0x2
 
-    :try_start_1
+    :try_start_c
     new-array v1, v0, [I
 
     const/16 v2, 0x13
@@ -110,7 +110,7 @@
     .line 64
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_0
+    fill-array-data v1, :array_488
 
     const-string v2, "US"
 
@@ -119,7 +119,7 @@
     .line 65
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_1
+    fill-array-data v1, :array_490
 
     const-string v2, "US/CA"
 
@@ -128,7 +128,7 @@
     .line 66
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_2
+    fill-array-data v1, :array_498
 
     const-string v2, "FR"
 
@@ -183,7 +183,7 @@
     .line 71
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_3
+    fill-array-data v1, :array_4a0
 
     const-string v2, "DE"
 
@@ -192,7 +192,7 @@
     .line 72
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_4
+    fill-array-data v1, :array_4a8
 
     const-string v2, "JP"
 
@@ -201,7 +201,7 @@
     .line 73
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_5
+    fill-array-data v1, :array_4b0
 
     const-string v2, "RU"
 
@@ -375,7 +375,7 @@
     .line 89
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_6
+    fill-array-data v1, :array_4b8
 
     const-string v2, "JP"
 
@@ -384,7 +384,7 @@
     .line 90
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_7
+    fill-array-data v1, :array_4c0
 
     const-string v2, "GB"
 
@@ -459,7 +459,7 @@
     .line 97
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_8
+    fill-array-data v1, :array_4c8
 
     const-string v2, "BE/LU"
 
@@ -490,7 +490,7 @@
     .line 100
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_9
+    fill-array-data v1, :array_4d0
 
     const-string v2, "DK"
 
@@ -532,7 +532,7 @@
     .line 104
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_a
+    fill-array-data v1, :array_4d8
 
     const-string v2, "ZA"
 
@@ -717,7 +717,7 @@
     .line 121
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_b
+    fill-array-data v1, :array_4e0
 
     const-string v2, "FI"
 
@@ -726,7 +726,7 @@
     .line 122
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_c
+    fill-array-data v1, :array_4e8
 
     const-string v2, "CN"
 
@@ -735,7 +735,7 @@
     .line 123
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_d
+    fill-array-data v1, :array_4f0
 
     const-string v2, "NO"
 
@@ -755,7 +755,7 @@
     .line 125
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_e
+    fill-array-data v1, :array_4f8
 
     const-string v2, "SE"
 
@@ -852,7 +852,7 @@
     .line 134
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_f
+    fill-array-data v1, :array_500
 
     const-string v2, "CA"
 
@@ -872,7 +872,7 @@
     .line 136
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_10
+    fill-array-data v1, :array_508
 
     const-string v2, "CH"
 
@@ -980,7 +980,7 @@
     .line 146
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_11
+    fill-array-data v1, :array_510
 
     const-string v2, "BR"
 
@@ -989,7 +989,7 @@
     .line 147
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_12
+    fill-array-data v1, :array_518
 
     const-string v2, "IT"
 
@@ -998,7 +998,7 @@
     .line 148
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_13
+    fill-array-data v1, :array_520
 
     const-string v2, "ES"
 
@@ -1073,7 +1073,7 @@
     .line 155
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_14
+    fill-array-data v1, :array_528
 
     const-string v2, "TR"
 
@@ -1082,7 +1082,7 @@
     .line 156
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_15
+    fill-array-data v1, :array_530
 
     const-string v2, "NL"
 
@@ -1168,7 +1168,7 @@
     .line 164
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_16
+    fill-array-data v1, :array_538
 
     const-string v2, "AT"
 
@@ -1177,7 +1177,7 @@
     .line 165
     new-array v1, v0, [I
 
-    fill-array-data v1, :array_17
+    fill-array-data v1, :array_540
 
     const-string v2, "AU"
 
@@ -1186,7 +1186,7 @@
     .line 166
     new-array v0, v0, [I
 
-    fill-array-data v0, :array_18
+    fill-array-data v0, :array_548
 
     const-string v1, "AZ"
 
@@ -1213,8 +1213,8 @@
     const-string v1, "MO"
 
     invoke-direct {p0, v0, v1}, Lcom/google/zxing/oned/EANManufacturerOrgSupport;->add([ILjava/lang/String;)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_483
+    .catchall {:try_start_c .. :try_end_483} :catchall_485
 
     .line 169
     monitor-exit p0
@@ -1222,7 +1222,7 @@
     return-void
 
     .line 59
-    :catchall_0
+    :catchall_485
     move-exception v0
 
     monitor-exit p0
@@ -1230,151 +1230,151 @@
     .end local p0    # "this":Lcom/google/zxing/oned/EANManufacturerOrgSupport;
     throw v0
 
-    :array_0
+    :array_488
     .array-data 4
         0x1e
         0x27
     .end array-data
 
-    :array_1
+    :array_490
     .array-data 4
         0x3c
         0x8b
     .end array-data
 
-    :array_2
+    :array_498
     .array-data 4
         0x12c
         0x17b
     .end array-data
 
-    :array_3
+    :array_4a0
     .array-data 4
         0x190
         0x1b8
     .end array-data
 
-    :array_4
+    :array_4a8
     .array-data 4
         0x1c2
         0x1cb
     .end array-data
 
-    :array_5
+    :array_4b0
     .array-data 4
         0x1cc
         0x1d5
     .end array-data
 
-    :array_6
+    :array_4b8
     .array-data 4
         0x1ea
         0x1f3
     .end array-data
 
-    :array_7
+    :array_4c0
     .array-data 4
         0x1f4
         0x1fd
     .end array-data
 
-    :array_8
+    :array_4c8
     .array-data 4
         0x21c
         0x225
     .end array-data
 
-    :array_9
+    :array_4d0
     .array-data 4
         0x23a
         0x243
     .end array-data
 
-    :array_a
+    :array_4d8
     .array-data 4
         0x258
         0x259
     .end array-data
 
-    :array_b
+    :array_4e0
     .array-data 4
         0x280
         0x289
     .end array-data
 
-    :array_c
+    :array_4e8
     .array-data 4
         0x2b2
         0x2b7
     .end array-data
 
-    :array_d
+    :array_4f0
     .array-data 4
         0x2bc
         0x2c5
     .end array-data
 
-    :array_e
+    :array_4f8
     .array-data 4
         0x2da
         0x2e3
     .end array-data
 
-    :array_f
+    :array_500
     .array-data 4
         0x2f2
         0x2f3
     .end array-data
 
-    :array_10
+    :array_508
     .array-data 4
         0x2f8
         0x301
     .end array-data
 
-    :array_11
+    :array_510
     .array-data 4
         0x315
         0x316
     .end array-data
 
-    :array_12
+    :array_518
     .array-data 4
         0x320
         0x347
     .end array-data
 
-    :array_13
+    :array_520
     .array-data 4
         0x348
         0x351
     .end array-data
 
-    :array_14
+    :array_528
     .array-data 4
         0x364
         0x365
     .end array-data
 
-    :array_15
+    :array_530
     .array-data 4
         0x366
         0x36f
     .end array-data
 
-    :array_16
+    :array_538
     .array-data 4
         0x384
         0x397
     .end array-data
 
-    :array_17
+    :array_540
     .array-data 4
         0x3a2
         0x3ab
     .end array-data
 
-    :array_18
+    :array_548
     .array-data 4
         0x3ac
         0x3b5
@@ -1384,7 +1384,7 @@
 
 # virtual methods
 .method lookupCountryIdentifier(Ljava/lang/String;)Ljava/lang/String;
-    .locals 8
+    .registers 10
     .param p1, "productCode"    # Ljava/lang/String;
 
     .line 37
@@ -1416,10 +1416,10 @@
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_0
+    :goto_14
     const/4 v4, 0x0
 
-    if-lt v3, v2, :cond_0
+    if-lt v3, v2, :cond_18
 
     .line 51
     .end local v3    # "i":I
@@ -1427,7 +1427,7 @@
 
     .line 41
     .restart local v3    # "i":I
-    :cond_0
+    :cond_18
     iget-object v5, p0, Lcom/google/zxing/oned/EANManufacturerOrgSupport;->ranges:Ljava/util/List;
 
     invoke-interface {v5, v3}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -1442,30 +1442,30 @@
 
     .line 43
     .local v6, "start":I
-    if-ge v1, v6, :cond_1
+    if-ge v1, v6, :cond_25
 
     .line 44
     return-object v4
 
     .line 46
-    :cond_1
+    :cond_25
     array-length v4, v5
 
     const/4 v7, 0x1
 
-    if-ne v4, v7, :cond_2
+    if-ne v4, v7, :cond_2b
 
     move v4, v6
 
-    goto :goto_1
+    goto :goto_2d
 
-    :cond_2
+    :cond_2b
     aget v4, v5, v7
 
     .line 47
     .local v4, "end":I
-    :goto_1
-    if-gt v1, v4, :cond_3
+    :goto_2d
+    if-gt v1, v4, :cond_38
 
     .line 48
     iget-object v0, p0, Lcom/google/zxing/oned/EANManufacturerOrgSupport;->countryIdentifiers:Ljava/util/List;
@@ -1482,8 +1482,8 @@
     .end local v4    # "end":I
     .end local v5    # "range":[I
     .end local v6    # "start":I
-    :cond_3
+    :cond_38
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_14
 .end method

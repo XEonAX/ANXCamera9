@@ -11,7 +11,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/zxing/common/BitArray;)V
-    .locals 0
+    .registers 2
     .param p1, "information"    # Lcom/google/zxing/common/BitArray;
 
     .line 41
@@ -24,7 +24,7 @@
 
 # virtual methods
 .method public parseInformation()Ljava/lang/String;
-    .locals 3
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lcom/google/zxing/NotFoundException;
@@ -42,7 +42,7 @@
 
     const/16 v1, 0x3c
 
-    if-ne v0, v1, :cond_0
+    if-ne v0, v1, :cond_21
 
     .line 50
     new-instance v0, Ljava/lang/StringBuilder;
@@ -71,7 +71,7 @@
 
     .line 47
     .end local v0    # "buf":Ljava/lang/StringBuilder;
-    :cond_0
+    :cond_21
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v0

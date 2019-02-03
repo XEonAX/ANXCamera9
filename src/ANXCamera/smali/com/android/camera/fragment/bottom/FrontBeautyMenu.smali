@@ -41,7 +41,7 @@
 .method private isCameraSwitch()Z
     .locals 2
 
-    .line 181
+    .line 180
     invoke-static {}, Lcom/android/camera/data/DataRepository;->provider()Lcom/android/camera/data/provider/DataProvider;
 
     move-result-object v0
@@ -52,26 +52,26 @@
 
     check-cast v0, Lcom/android/camera/data/data/global/DataItemGlobal;
 
-    .line 182
+    .line 181
     invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentCameraId()I
 
     move-result v0
 
-    .line 183
+    .line 182
     iget v1, p0, Lcom/android/camera/fragment/bottom/FrontBeautyMenu;->mLastCamerId:I
 
     if-eq v1, v0, :cond_0
 
-    .line 184
+    .line 183
     const/4 v0, 0x1
 
     return v0
 
-    .line 186
+    .line 185
     :cond_0
     iput v0, p0, Lcom/android/camera/fragment/bottom/FrontBeautyMenu;->mLastCamerId:I
 
-    .line 187
+    .line 186
     const/4 v0, 0x0
 
     return v0
@@ -80,17 +80,17 @@
 .method private isJustBeautyTab()Z
     .locals 2
 
-    .line 170
+    .line 169
     invoke-static {}, Lcom/android/camera/fragment/beauty/BeautyParameters;->isCurrentModeSupportVideoBeauty()Z
 
     move-result v0
 
-    .line 171
+    .line 170
     invoke-static {}, Lcom/android/camera/CameraSettings;->isFrontPortrait()Z
 
     move-result v1
 
-    .line 172
+    .line 171
     if-nez v0, :cond_1
 
     if-eqz v1, :cond_0
@@ -238,7 +238,7 @@
 
     move-result-object v6
 
-    const v7, 0x7f0200d3
+    const v7, 0x7f0200e4
 
     invoke-virtual {v6, v7}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
 
@@ -251,7 +251,7 @@
 
     move-result-object v7
 
-    const v8, 0x7f09006a
+    const v8, 0x7f0a006a
 
     invoke-virtual {v7, v8}, Landroid/content/res/Resources;->getDimensionPixelOffset(I)I
 
@@ -352,7 +352,7 @@
 .method getDefaultType()I
     .locals 1
 
-    .line 135
+    .line 134
     const/4 v0, 0x1
 
     return v0
@@ -400,7 +400,7 @@
 
     move-result-object v0
 
-    const v1, 0x7f0b01ca
+    const v1, 0x7f0901d1
 
     invoke-virtual {v0, v1}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
@@ -411,7 +411,7 @@
 
     move-result-object v1
 
-    const v2, 0x7f0b01cb
+    const v2, 0x7f0901d2
 
     invoke-virtual {v1, v2}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
@@ -422,14 +422,14 @@
 
     move-result-object v2
 
-    const v3, 0x7f0b0226
+    const v3, 0x7f090231
 
     invoke-virtual {v2, v3}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
     move-result-object v2
 
     .line 104
-    invoke-static {}, Lcom/mi/config/b;->hA()Z
+    invoke-static {}, Lcom/mi/config/b;->hR()Z
 
     move-result v3
 
@@ -440,7 +440,7 @@
 
     move-result-object v0
 
-    const v1, 0x7f0b01cc
+    const v1, 0x7f0901d3
 
     invoke-virtual {v0, v1}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
@@ -451,7 +451,7 @@
 
     move-result-object v1
 
-    const v3, 0x7f0b01cd
+    const v3, 0x7f0901d4
 
     invoke-virtual {v1, v3}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
@@ -507,7 +507,7 @@
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/mi/config/a;->fl()Z
+    invoke-virtual {v0}, Lcom/mi/config/a;->fn()Z
 
     move-result v0
 
@@ -534,23 +534,14 @@
     iput-object v2, v0, Lcom/android/camera/fragment/beauty/MenuItem;->text:Ljava/lang/String;
 
     .line 126
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isBeautyMakeupClicked()Z
-
-    move-result v2
-
-    xor-int/2addr v2, v4
-
-    iput-boolean v2, v0, Lcom/android/camera/fragment/beauty/MenuItem;->redDot:Z
-
-    .line 127
     iput v5, v0, Lcom/android/camera/fragment/beauty/MenuItem;->number:I
 
-    .line 128
+    .line 127
     iget-object v2, p0, Lcom/android/camera/fragment/bottom/FrontBeautyMenu;->mFrontBeautyMenuTabList:Landroid/util/SparseArray;
 
     invoke-virtual {v2, v1, v0}, Landroid/util/SparseArray;->put(ILjava/lang/Object;)V
 
-    .line 130
+    .line 129
     :cond_2
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FrontBeautyMenu;->mFrontBeautyMenuTabList:Landroid/util/SparseArray;
 
@@ -560,7 +551,7 @@
 .method public isRefreshUI()Z
     .locals 1
 
-    .line 192
+    .line 191
     invoke-direct {p0}, Lcom/android/camera/fragment/bottom/FrontBeautyMenu;->isCameraSwitch()Z
 
     move-result v0
@@ -591,7 +582,7 @@
 .method public onClick(Landroid/view/View;)V
     .locals 2
 
-    .line 154
+    .line 153
     invoke-virtual {p1}, Landroid/view/View;->getTag()Ljava/lang/Object;
 
     move-result-object p1
@@ -602,10 +593,10 @@
 
     move-result p1
 
-    .line 155
+    .line 154
     invoke-virtual {p0, p1}, Lcom/android/camera/fragment/bottom/FrontBeautyMenu;->selectBeautyType(I)V
 
-    .line 156
+    .line 155
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -618,10 +609,10 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$MiBeautyProtocol;
 
-    .line 157
+    .line 156
     invoke-interface {v0, p1}, Lcom/android/camera/protocol/ModeProtocol$MiBeautyProtocol;->switchBeautyType(I)V
 
-    .line 158
+    .line 157
     const/4 v0, 0x3
 
     if-ne p1, v0, :cond_0
@@ -632,17 +623,17 @@
 
     if-nez p1, :cond_0
 
-    .line 159
+    .line 158
     invoke-static {}, Lcom/android/camera/CameraSettings;->setBeautyMakeupClicked()V
 
-    .line 160
+    .line 159
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FrontBeautyMenu;->mCurrentBeautyTextView:Lcom/android/camera/ui/ColorActivateTextView;
 
     const/4 v0, 0x0
 
     invoke-virtual {p1, v0, v0, v0, v0}, Lcom/android/camera/ui/ColorActivateTextView;->setCompoundDrawablesWithIntrinsicBounds(Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
 
-    .line 162
+    .line 161
     :cond_0
     return-void
 .end method
@@ -650,48 +641,48 @@
 .method switchMenu()V
     .locals 1
 
-    .line 140
+    .line 139
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FrontBeautyMenu;->mBeautyMenuAnimator:Lcom/android/camera/fragment/bottom/BeautyMenuAnimator;
 
     if-eqz v0, :cond_0
 
-    .line 141
+    .line 140
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FrontBeautyMenu;->mBeautyMenuAnimator:Lcom/android/camera/fragment/bottom/BeautyMenuAnimator;
 
     invoke-virtual {v0}, Lcom/android/camera/fragment/bottom/BeautyMenuAnimator;->resetAll()V
 
-    .line 143
+    .line 142
     :cond_0
     iget-object v0, p0, Lcom/android/camera/fragment/bottom/FrontBeautyMenu;->mContainerView:Landroid/widget/LinearLayout;
 
     invoke-virtual {v0}, Landroid/widget/LinearLayout;->removeAllViews()V
 
-    .line 144
+    .line 143
     invoke-virtual {p0}, Lcom/android/camera/fragment/bottom/FrontBeautyMenu;->addAllView()V
 
-    .line 145
+    .line 144
     invoke-virtual {p0}, Lcom/android/camera/fragment/bottom/FrontBeautyMenu;->getDefaultType()I
 
     move-result v0
 
     invoke-virtual {p0, v0}, Lcom/android/camera/fragment/bottom/FrontBeautyMenu;->selectBeautyType(I)V
 
-    .line 146
+    .line 145
     invoke-static {}, Lcom/android/camera/CameraSettings;->getFaceBeautifyValue()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 147
+    .line 146
     invoke-static {v0}, Lcom/android/camera/CameraSettings;->isFaceBeautyOn(Ljava/lang/String;)Z
 
     move-result v0
 
     if-nez v0, :cond_1
 
-    .line 148
+    .line 147
     invoke-virtual {p0}, Lcom/android/camera/fragment/bottom/FrontBeautyMenu;->hideAdvance()V
 
-    .line 150
+    .line 149
     :cond_1
     return-void
 .end method

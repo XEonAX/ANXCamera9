@@ -13,7 +13,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -23,7 +23,7 @@
 .end method
 
 .method static addAction(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 2
+    .registers 4
     .param p0, "info"    # Ljava/lang/Object;
     .param p1, "action"    # Ljava/lang/Object;
 
@@ -43,7 +43,7 @@
 .end method
 
 .method static getAccessibilityActionId(Ljava/lang/Object;)I
-    .locals 1
+    .registers 2
     .param p0, "action"    # Ljava/lang/Object;
 
     .line 93
@@ -59,7 +59,7 @@
 .end method
 
 .method static getAccessibilityActionLabel(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .locals 1
+    .registers 2
     .param p0, "action"    # Ljava/lang/Object;
 
     .line 97
@@ -75,7 +75,7 @@
 .end method
 
 .method static getActionList(Ljava/lang/Object;)Ljava/util/List;
-    .locals 2
+    .registers 3
     .param p0, "info"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -107,7 +107,7 @@
 .end method
 
 .method public static getError(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .locals 1
+    .registers 2
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 55
@@ -123,7 +123,7 @@
 .end method
 
 .method public static getMaxTextLength(Ljava/lang/Object;)I
-    .locals 1
+    .registers 2
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 67
@@ -139,7 +139,7 @@
 .end method
 
 .method public static getWindow(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 71
@@ -155,7 +155,7 @@
 .end method
 
 .method static newAccessibilityAction(ILjava/lang/CharSequence;)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p0, "actionId"    # I
     .param p1, "label"    # Ljava/lang/CharSequence;
 
@@ -168,7 +168,7 @@
 .end method
 
 .method public static obtainCollectionInfo(IIZI)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .param p0, "rowCount"    # I
     .param p1, "columnCount"    # I
     .param p2, "hierarchical"    # Z
@@ -183,7 +183,7 @@
 .end method
 
 .method public static obtainCollectionItemInfo(IIIIZZ)Ljava/lang/Object;
-    .locals 1
+    .registers 7
     .param p0, "rowIndex"    # I
     .param p1, "rowSpan"    # I
     .param p2, "columnIndex"    # I
@@ -200,7 +200,7 @@
 .end method
 
 .method public static removeAction(Ljava/lang/Object;Ljava/lang/Object;)Z
-    .locals 2
+    .registers 4
     .param p0, "info"    # Ljava/lang/Object;
     .param p1, "action"    # Ljava/lang/Object;
 
@@ -221,7 +221,7 @@
 .end method
 
 .method public static removeChild(Ljava/lang/Object;Landroid/view/View;)Z
-    .locals 1
+    .registers 3
     .param p0, "info"    # Ljava/lang/Object;
     .param p1, "child"    # Landroid/view/View;
 
@@ -238,7 +238,7 @@
 .end method
 
 .method public static removeChild(Ljava/lang/Object;Landroid/view/View;I)Z
-    .locals 1
+    .registers 4
     .param p0, "info"    # Ljava/lang/Object;
     .param p1, "root"    # Landroid/view/View;
     .param p2, "virtualDescendantId"    # I
@@ -256,7 +256,7 @@
 .end method
 
 .method public static setError(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .locals 1
+    .registers 3
     .param p0, "info"    # Ljava/lang/Object;
     .param p1, "error"    # Ljava/lang/CharSequence;
 
@@ -272,7 +272,7 @@
 .end method
 
 .method public static setMaxTextLength(Ljava/lang/Object;I)V
-    .locals 1
+    .registers 3
     .param p0, "info"    # Ljava/lang/Object;
     .param p1, "max"    # I
 

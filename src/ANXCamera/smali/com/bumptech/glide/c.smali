@@ -17,9 +17,11 @@
 
 
 # instance fields
-.field private final A:Lcom/bumptech/glide/manager/d;
+.field private final A:Lcom/bumptech/glide/manager/l;
 
-.field private final C:Ljava/util/List;
+.field private final C:Lcom/bumptech/glide/manager/d;
+
+.field private final D:Ljava/util/List;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/List<",
@@ -29,7 +31,7 @@
     .end annotation
 .end field
 
-.field private D:Lcom/bumptech/glide/MemoryCategory;
+.field private E:Lcom/bumptech/glide/MemoryCategory;
 
 .field private final h:Lcom/bumptech/glide/load/engine/Engine;
 
@@ -39,13 +41,11 @@
 
 .field private final l:Lcom/bumptech/glide/load/engine/prefill/a;
 
-.field private final o:Lcom/bumptech/glide/e;
+.field private final q:Lcom/bumptech/glide/e;
 
-.field private final q:Lcom/bumptech/glide/Registry;
+.field private final r:Lcom/bumptech/glide/Registry;
 
-.field private final r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
-
-.field private final v:Lcom/bumptech/glide/manager/l;
+.field private final v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
 
 # direct methods
@@ -125,12 +125,12 @@
 
     invoke-direct {v5}, Ljava/util/ArrayList;-><init>()V
 
-    iput-object v5, v0, Lcom/bumptech/glide/c;->C:Ljava/util/List;
+    iput-object v5, v0, Lcom/bumptech/glide/c;->D:Ljava/util/List;
 
     .line 115
-    sget-object v5, Lcom/bumptech/glide/MemoryCategory;->aj:Lcom/bumptech/glide/MemoryCategory;
+    sget-object v5, Lcom/bumptech/glide/MemoryCategory;->ak:Lcom/bumptech/glide/MemoryCategory;
 
-    iput-object v5, v0, Lcom/bumptech/glide/c;->D:Lcom/bumptech/glide/MemoryCategory;
+    iput-object v5, v0, Lcom/bumptech/glide/c;->E:Lcom/bumptech/glide/MemoryCategory;
 
     .line 321
     move-object/from16 v8, p2
@@ -141,7 +141,7 @@
     iput-object v3, v0, Lcom/bumptech/glide/c;->i:Lcom/bumptech/glide/load/engine/bitmap_recycle/d;
 
     .line 323
-    iput-object v4, v0, Lcom/bumptech/glide/c;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iput-object v4, v0, Lcom/bumptech/glide/c;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     .line 324
     iput-object v1, v0, Lcom/bumptech/glide/c;->k:Lcom/bumptech/glide/load/engine/a/j;
@@ -149,12 +149,12 @@
     .line 325
     move-object/from16 v5, p6
 
-    iput-object v5, v0, Lcom/bumptech/glide/c;->v:Lcom/bumptech/glide/manager/l;
+    iput-object v5, v0, Lcom/bumptech/glide/c;->A:Lcom/bumptech/glide/manager/l;
 
     .line 326
     move-object/from16 v5, p7
 
-    iput-object v5, v0, Lcom/bumptech/glide/c;->A:Lcom/bumptech/glide/manager/d;
+    iput-object v5, v0, Lcom/bumptech/glide/c;->C:Lcom/bumptech/glide/manager/d;
 
     .line 328
     invoke-virtual/range {p9 .. p9}, Lcom/bumptech/glide/request/f;->at()Lcom/bumptech/glide/load/f;
@@ -186,10 +186,10 @@
 
     invoke-direct {v5}, Lcom/bumptech/glide/Registry;-><init>()V
 
-    iput-object v5, v0, Lcom/bumptech/glide/c;->q:Lcom/bumptech/glide/Registry;
+    iput-object v5, v0, Lcom/bumptech/glide/c;->r:Lcom/bumptech/glide/Registry;
 
     .line 334
-    iget-object v5, v0, Lcom/bumptech/glide/c;->q:Lcom/bumptech/glide/Registry;
+    iget-object v5, v0, Lcom/bumptech/glide/c;->r:Lcom/bumptech/glide/Registry;
 
     new-instance v6, Lcom/bumptech/glide/load/resource/bitmap/m;
 
@@ -200,7 +200,7 @@
     .line 336
     new-instance v5, Lcom/bumptech/glide/load/resource/bitmap/n;
 
-    iget-object v6, v0, Lcom/bumptech/glide/c;->q:Lcom/bumptech/glide/Registry;
+    iget-object v6, v0, Lcom/bumptech/glide/c;->r:Lcom/bumptech/glide/Registry;
 
     invoke-virtual {v6}, Lcom/bumptech/glide/Registry;->q()Ljava/util/List;
 
@@ -216,7 +216,7 @@
     .line 338
     new-instance v6, Lcom/bumptech/glide/load/resource/gif/ByteBufferGifDecoder;
 
-    iget-object v7, v0, Lcom/bumptech/glide/c;->q:Lcom/bumptech/glide/Registry;
+    iget-object v7, v0, Lcom/bumptech/glide/c;->r:Lcom/bumptech/glide/Registry;
 
     .line 339
     invoke-virtual {v7}, Lcom/bumptech/glide/Registry;->q()Ljava/util/List;
@@ -295,7 +295,7 @@
     .line 361
     move-object/from16 v18, v8
 
-    iget-object v8, v0, Lcom/bumptech/glide/c;->q:Lcom/bumptech/glide/Registry;
+    iget-object v8, v0, Lcom/bumptech/glide/c;->r:Lcom/bumptech/glide/Registry;
 
     const-class v2, Ljava/nio/ByteBuffer;
 
@@ -473,7 +473,7 @@
 
     new-instance v10, Lcom/bumptech/glide/load/resource/gif/h;
 
-    iget-object v12, v0, Lcom/bumptech/glide/c;->q:Lcom/bumptech/glide/Registry;
+    iget-object v12, v0, Lcom/bumptech/glide/c;->r:Lcom/bumptech/glide/Registry;
 
     .line 403
     invoke-virtual {v12}, Lcom/bumptech/glide/Registry;->q()Ljava/util/List;
@@ -1074,7 +1074,7 @@
     .line 498
     new-instance v10, Lcom/bumptech/glide/e;
 
-    iget-object v6, v0, Lcom/bumptech/glide/c;->q:Lcom/bumptech/glide/Registry;
+    iget-object v6, v0, Lcom/bumptech/glide/c;->r:Lcom/bumptech/glide/Registry;
 
     move-object v1, v10
 
@@ -1094,7 +1094,7 @@
 
     invoke-direct/range {v1 .. v9}, Lcom/bumptech/glide/e;-><init>(Landroid/content/Context;Lcom/bumptech/glide/load/engine/bitmap_recycle/b;Lcom/bumptech/glide/Registry;Lcom/bumptech/glide/request/target/i;Lcom/bumptech/glide/request/f;Ljava/util/Map;Lcom/bumptech/glide/load/engine/Engine;I)V
 
-    iput-object v10, v0, Lcom/bumptech/glide/c;->o:Lcom/bumptech/glide/e;
+    iput-object v10, v0, Lcom/bumptech/glide/c;->q:Lcom/bumptech/glide/e;
 
     .line 508
     return-void
@@ -1586,7 +1586,7 @@
     check-cast v2, Lcom/bumptech/glide/c/c;
 
     .line 266
-    iget-object v3, p1, Lcom/bumptech/glide/c;->q:Lcom/bumptech/glide/Registry;
+    iget-object v3, p1, Lcom/bumptech/glide/c;->r:Lcom/bumptech/glide/Registry;
 
     invoke-interface {v2, p0, p1, v3}, Lcom/bumptech/glide/c/c;->a(Landroid/content/Context;Lcom/bumptech/glide/c;Lcom/bumptech/glide/Registry;)V
 
@@ -1598,7 +1598,7 @@
     if-eqz v0, :cond_a
 
     .line 269
-    iget-object v1, p1, Lcom/bumptech/glide/c;->q:Lcom/bumptech/glide/Registry;
+    iget-object v1, p1, Lcom/bumptech/glide/c;->r:Lcom/bumptech/glide/Registry;
 
     invoke-virtual {v0, p0, p1, v1}, Lcom/bumptech/glide/a;->a(Landroid/content/Context;Lcom/bumptech/glide/c;Lcom/bumptech/glide/Registry;)V
 
@@ -1888,7 +1888,7 @@
 
     move-result-object v0
 
-    invoke-virtual {v0, p0}, Lcom/bumptech/glide/manager/l;->j(Landroid/content/Context;)Lcom/bumptech/glide/i;
+    invoke-virtual {v0, p0}, Lcom/bumptech/glide/manager/l;->i(Landroid/content/Context;)Lcom/bumptech/glide/i;
 
     move-result-object p0
 
@@ -2076,10 +2076,10 @@
     invoke-interface {v0, v1}, Lcom/bumptech/glide/load/engine/bitmap_recycle/d;->b(F)V
 
     .line 657
-    iget-object v0, p0, Lcom/bumptech/glide/c;->D:Lcom/bumptech/glide/MemoryCategory;
+    iget-object v0, p0, Lcom/bumptech/glide/c;->E:Lcom/bumptech/glide/MemoryCategory;
 
     .line 658
-    iput-object p1, p0, Lcom/bumptech/glide/c;->D:Lcom/bumptech/glide/MemoryCategory;
+    iput-object p1, p0, Lcom/bumptech/glide/c;->E:Lcom/bumptech/glide/MemoryCategory;
 
     .line 659
     return-object v0
@@ -2089,13 +2089,13 @@
     .locals 2
 
     .line 804
-    iget-object v0, p0, Lcom/bumptech/glide/c;->C:Ljava/util/List;
+    iget-object v0, p0, Lcom/bumptech/glide/c;->D:Ljava/util/List;
 
     monitor-enter v0
 
     .line 805
     :try_start_0
-    iget-object v1, p0, Lcom/bumptech/glide/c;->C:Ljava/util/List;
+    iget-object v1, p0, Lcom/bumptech/glide/c;->D:Ljava/util/List;
 
     invoke-interface {v1, p1}, Ljava/util/List;->contains(Ljava/lang/Object;)Z
 
@@ -2104,7 +2104,7 @@
     if-nez v1, :cond_0
 
     .line 808
-    iget-object v1, p0, Lcom/bumptech/glide/c;->C:Ljava/util/List;
+    iget-object v1, p0, Lcom/bumptech/glide/c;->D:Ljava/util/List;
 
     invoke-interface {v1, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
@@ -2166,13 +2166,13 @@
     .end annotation
 
     .line 792
-    iget-object v0, p0, Lcom/bumptech/glide/c;->C:Ljava/util/List;
+    iget-object v0, p0, Lcom/bumptech/glide/c;->D:Ljava/util/List;
 
     monitor-enter v0
 
     .line 793
     :try_start_0
-    iget-object v1, p0, Lcom/bumptech/glide/c;->C:Ljava/util/List;
+    iget-object v1, p0, Lcom/bumptech/glide/c;->D:Ljava/util/List;
 
     invoke-interface {v1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
@@ -2233,13 +2233,13 @@
     .locals 2
 
     .line 813
-    iget-object v0, p0, Lcom/bumptech/glide/c;->C:Ljava/util/List;
+    iget-object v0, p0, Lcom/bumptech/glide/c;->D:Ljava/util/List;
 
     monitor-enter v0
 
     .line 814
     :try_start_0
-    iget-object v1, p0, Lcom/bumptech/glide/c;->C:Ljava/util/List;
+    iget-object v1, p0, Lcom/bumptech/glide/c;->D:Ljava/util/List;
 
     invoke-interface {v1, p1}, Ljava/util/List;->contains(Ljava/lang/Object;)Z
 
@@ -2248,7 +2248,7 @@
     if-eqz v1, :cond_0
 
     .line 817
-    iget-object v1, p0, Lcom/bumptech/glide/c;->C:Ljava/util/List;
+    iget-object v1, p0, Lcom/bumptech/glide/c;->D:Ljava/util/List;
 
     invoke-interface {v1, p1}, Ljava/util/List;->remove(Ljava/lang/Object;)Z
 
@@ -2296,7 +2296,7 @@
     .end annotation
 
     .line 536
-    iget-object v0, p0, Lcom/bumptech/glide/c;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v0, p0, Lcom/bumptech/glide/c;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     return-object v0
 .end method
@@ -2305,7 +2305,7 @@
     .locals 1
 
     .line 548
-    iget-object v0, p0, Lcom/bumptech/glide/c;->A:Lcom/bumptech/glide/manager/d;
+    iget-object v0, p0, Lcom/bumptech/glide/c;->C:Lcom/bumptech/glide/manager/d;
 
     return-object v0
 .end method
@@ -2316,7 +2316,7 @@
     .end annotation
 
     .line 544
-    iget-object v0, p0, Lcom/bumptech/glide/c;->o:Lcom/bumptech/glide/e;
+    iget-object v0, p0, Lcom/bumptech/glide/c;->q:Lcom/bumptech/glide/e;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/e;->getBaseContext()Landroid/content/Context;
 
@@ -2331,7 +2331,7 @@
     .end annotation
 
     .line 553
-    iget-object v0, p0, Lcom/bumptech/glide/c;->o:Lcom/bumptech/glide/e;
+    iget-object v0, p0, Lcom/bumptech/glide/c;->q:Lcom/bumptech/glide/e;
 
     return-object v0
 .end method
@@ -2353,7 +2353,7 @@
     invoke-interface {v0}, Lcom/bumptech/glide/load/engine/bitmap_recycle/d;->i()V
 
     .line 598
-    iget-object v0, p0, Lcom/bumptech/glide/c;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v0, p0, Lcom/bumptech/glide/c;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     invoke-interface {v0}, Lcom/bumptech/glide/load/engine/bitmap_recycle/b;->i()V
 
@@ -2382,7 +2382,7 @@
     .end annotation
 
     .line 634
-    iget-object v0, p0, Lcom/bumptech/glide/c;->v:Lcom/bumptech/glide/manager/l;
+    iget-object v0, p0, Lcom/bumptech/glide/c;->A:Lcom/bumptech/glide/manager/l;
 
     return-object v0
 .end method
@@ -2393,7 +2393,7 @@
     .end annotation
 
     .line 788
-    iget-object v0, p0, Lcom/bumptech/glide/c;->q:Lcom/bumptech/glide/Registry;
+    iget-object v0, p0, Lcom/bumptech/glide/c;->r:Lcom/bumptech/glide/Registry;
 
     return-object v0
 .end method
@@ -2442,7 +2442,7 @@
     invoke-interface {v0, p1}, Lcom/bumptech/glide/load/engine/bitmap_recycle/d;->trimMemory(I)V
 
     .line 612
-    iget-object v0, p0, Lcom/bumptech/glide/c;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v0, p0, Lcom/bumptech/glide/c;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     invoke-interface {v0, p1}, Lcom/bumptech/glide/load/engine/bitmap_recycle/b;->trimMemory(I)V
 

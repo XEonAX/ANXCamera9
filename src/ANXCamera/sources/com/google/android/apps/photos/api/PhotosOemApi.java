@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.net.Uri.Builder;
 import android.os.Bundle;
 import com.android.camera.R;
+import com.ss.android.ugc.effectmanager.effect.model.ComposerHelper;
 
 public final class PhotosOemApi {
     public static final int INITIAL_VERSION = 1;
@@ -17,7 +18,7 @@ public final class PhotosOemApi {
     public static final String PATH_SPECIAL_TYPE_ID = "type";
 
     public static int getVersion(Context context) {
-        Bundle call = context.getContentResolver().call(new Builder().scheme("content").authority(getAuthority(context)).build(), "version", null, null);
+        Bundle call = context.getContentResolver().call(new Builder().scheme(ComposerHelper.COMPOSER_CONTENT).authority(getAuthority(context)).build(), "version", null, null);
         if (call == null) {
             return 1;
         }
@@ -69,7 +70,7 @@ public final class PhotosOemApi {
     }
 
     public static Uri getQueryDataUri(Context context, String str) {
-        return getBaseBuilder(context).appendPath(PATH_SPECIAL_TYPE_DATA).appendEncodedPath(Uri.encode(str)).build();
+        return getBaseBuilder(context).appendPath("data").appendEncodedPath(Uri.encode(str)).build();
     }
 
     public static Uri getDeleteUri(Context context, long j) {
@@ -77,6 +78,6 @@ public final class PhotosOemApi {
     }
 
     private static Builder getBaseBuilder(Context context) {
-        return new Builder().scheme("content").authority(getAuthority(context));
+        return new Builder().scheme(ComposerHelper.COMPOSER_CONTENT).authority(getAuthority(context));
     }
 }

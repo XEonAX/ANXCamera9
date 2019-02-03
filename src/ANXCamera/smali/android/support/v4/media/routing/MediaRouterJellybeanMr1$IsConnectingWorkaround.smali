@@ -22,7 +22,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 4
+    .registers 5
 
     .line 129
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -32,10 +32,10 @@
 
     const/16 v1, 0x11
 
-    if-ne v0, v1, :cond_0
+    if-ne v0, v1, :cond_2d
 
     .line 135
-    :try_start_0
+    :try_start_9
     const-class v0, Landroid/media/MediaRouter$RouteInfo;
 
     const-string v1, "STATUS_CONNECTING"
@@ -68,40 +68,40 @@
     move-result-object v1
 
     iput-object v1, p0, Landroid/support/v4/media/routing/MediaRouterJellybeanMr1$IsConnectingWorkaround;->mGetStatusCodeMethod:Ljava/lang/reflect/Method;
-    :try_end_0
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_25
+    .catch Ljava/lang/NoSuchFieldException; {:try_start_9 .. :try_end_25} :catch_2a
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_9 .. :try_end_25} :catch_28
+    .catch Ljava/lang/IllegalAccessException; {:try_start_9 .. :try_end_25} :catch_26
 
     .end local v0    # "statusConnectingField":Ljava/lang/reflect/Field;
-    goto :goto_0
+    goto :goto_2b
 
     .line 142
-    :catch_0
+    :catch_26
     move-exception v0
 
-    goto :goto_1
+    goto :goto_2c
 
     .line 141
-    :catch_1
+    :catch_28
     move-exception v0
 
-    goto :goto_0
+    goto :goto_2b
 
     .line 140
-    :catch_2
+    :catch_2a
     move-exception v0
 
     .line 143
-    :goto_0
+    :goto_2b
     nop
 
     .line 144
-    :goto_1
+    :goto_2c
     return-void
 
     .line 131
-    :cond_0
+    :cond_2d
     new-instance v0, Ljava/lang/UnsupportedOperationException;
 
     invoke-direct {v0}, Ljava/lang/UnsupportedOperationException;-><init>()V
@@ -112,7 +112,7 @@
 
 # virtual methods
 .method public isConnecting(Ljava/lang/Object;)Z
-    .locals 4
+    .registers 6
     .param p1, "routeObj"    # Ljava/lang/Object;
 
     .line 147
@@ -126,10 +126,10 @@
 
     const/4 v2, 0x0
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_21
 
     .line 152
-    :try_start_0
+    :try_start_8
     iget-object v1, p0, Landroid/support/v4/media/routing/MediaRouterJellybeanMr1$IsConnectingWorkaround;->mGetStatusCodeMethod:Ljava/lang/reflect/Method;
 
     new-array v3, v2, [Ljava/lang/Object;
@@ -147,35 +147,35 @@
     .line 153
     .local v1, "statusCode":I
     iget v3, p0, Landroid/support/v4/media/routing/MediaRouterJellybeanMr1$IsConnectingWorkaround;->mStatusConnecting:I
-    :try_end_0
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_18
+    .catch Ljava/lang/IllegalAccessException; {:try_start_8 .. :try_end_18} :catch_1f
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_8 .. :try_end_18} :catch_1d
 
-    if-ne v1, v3, :cond_0
+    if-ne v1, v3, :cond_1c
 
     const/4 v2, 0x1
 
     nop
 
-    :cond_0
+    :cond_1c
     return v2
 
     .line 155
     .end local v1    # "statusCode":I
-    :catch_0
+    :catch_1d
     move-exception v1
 
-    goto :goto_0
+    goto :goto_21
 
     .line 154
-    :catch_1
+    :catch_1f
     move-exception v1
 
     .line 156
     nop
 
     .line 160
-    :cond_1
-    :goto_0
+    :cond_21
+    :goto_21
     return v2
 .end method

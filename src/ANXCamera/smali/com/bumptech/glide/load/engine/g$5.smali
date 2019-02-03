@@ -32,17 +32,17 @@
     .line 132
     if-eqz p1, :cond_0
 
-    sget-object p1, Lcom/bumptech/glide/load/DataSource;->cu:Lcom/bumptech/glide/load/DataSource;
+    sget-object p1, Lcom/bumptech/glide/load/DataSource;->cv:Lcom/bumptech/glide/load/DataSource;
 
     if-eq p2, p1, :cond_1
 
     :cond_0
-    sget-object p1, Lcom/bumptech/glide/load/DataSource;->cr:Lcom/bumptech/glide/load/DataSource;
+    sget-object p1, Lcom/bumptech/glide/load/DataSource;->ct:Lcom/bumptech/glide/load/DataSource;
 
     if-ne p2, p1, :cond_2
 
     :cond_1
-    sget-object p1, Lcom/bumptech/glide/load/EncodeStrategy;->cE:Lcom/bumptech/glide/load/EncodeStrategy;
+    sget-object p1, Lcom/bumptech/glide/load/EncodeStrategy;->cF:Lcom/bumptech/glide/load/EncodeStrategy;
 
     if-ne p3, p1, :cond_2
 
@@ -79,7 +79,7 @@
     .locals 1
 
     .line 126
-    sget-object v0, Lcom/bumptech/glide/load/DataSource;->ct:Lcom/bumptech/glide/load/DataSource;
+    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cu:Lcom/bumptech/glide/load/DataSource;
 
     if-ne p1, v0, :cond_0
 

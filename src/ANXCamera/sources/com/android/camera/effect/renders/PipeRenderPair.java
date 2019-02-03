@@ -142,7 +142,7 @@ public final class PipeRenderPair extends RenderGroup {
                 endBindFrameBuffer();
             }
             if (EffectController.getInstance().isMainFrameDisplay()) {
-                if (b.gB() && EffectController.getInstance().isBackGroundBlur()) {
+                if (b.gT() && EffectController.getInstance().isBackGroundBlur()) {
                     copyBlurTexture(drawExtTexAttribute);
                     drawBlurTexture(drawExtTexAttribute);
                 } else {

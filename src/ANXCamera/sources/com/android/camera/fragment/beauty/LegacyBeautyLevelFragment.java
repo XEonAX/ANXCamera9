@@ -14,7 +14,7 @@ import java.util.List;
 public class LegacyBeautyLevelFragment extends BeautyLevelFragment {
     protected List<LevelItem> initBeautyItems() {
         List<LevelItem> arrayList = new ArrayList();
-        arrayList.add(new LevelItem((int) R.drawable.ff));
+        arrayList.add(new LevelItem((int) R.drawable.ic_config_front_beauty_off));
         arrayList.add(new LevelItem((int) R.drawable.f1));
         arrayList.add(new LevelItem((int) R.drawable.f2));
         arrayList.add(new LevelItem((int) R.drawable.f3));

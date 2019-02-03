@@ -3,7 +3,9 @@ package com.android.camera.data.data.config;
 import android.text.TextUtils;
 import android.util.SparseBooleanArray;
 import com.android.camera.R;
+import com.android.camera.Util;
 import com.android.camera.constant.BeautyConstant;
+import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
 import com.android.camera.log.Log;
@@ -15,7 +17,7 @@ import java.util.Locale;
 public class ComponentConfigBeauty extends ComponentData implements BeautyConstant {
     private static final String[] SWITCHABLE_BEAUTY_LEVELS;
     private static final String TAG = ComponentConfigBeauty.class.getSimpleName();
-    private static final boolean sIsLegacyFaceBeauty = b.hp();
+    private static final boolean sIsLegacyFaceBeauty = b.hG();
     private SparseBooleanArray mIsClosed;
 
     static {
@@ -26,7 +28,7 @@ public class ComponentConfigBeauty extends ComponentData implements BeautyConsta
         SWITCHABLE_BEAUTY_LEVELS = new String[]{LEVEL_CLOSE, LEVEL_HIGH, LEVEL_XXXHIGH};
     }
 
-    public ComponentConfigBeauty(DataItemConfig dataItemConfig) {
+    public ComponentConfigBeauty(DataItemConfig dataItemConfig, int i) {
         super(dataItemConfig);
         this.mItems = new ArrayList();
         this.mItems.add(new ComponentDataItem(R.drawable.ic_config_beauty_off, R.drawable.ic_config_beauty_off, R.string.pref_camera_beauty, SWITCHABLE_BEAUTY_LEVELS[0]));
@@ -61,7 +63,16 @@ public class ComponentConfigBeauty extends ComponentData implements BeautyConsta
     }
 
     public String getDefaultValue(int i) {
-        return LEVEL_CLOSE;
+        if (DataRepository.dataItemGlobal().getCurrentCameraId() == 0) {
+            return BeautyConstant.LEVEL_CLOSE;
+        }
+        if (b.hG()) {
+            return BeautyConstant.LEVEL_MEDIUM;
+        }
+        if (i == 162 || i == 161) {
+            return DataRepository.dataItemFeature().fS();
+        }
+        return BeautyConstant.LEVEL_XHIGH;
     }
 
     public String getPersistValue(int i) {
@@ -75,16 +86,18 @@ public class ComponentConfigBeauty extends ComponentData implements BeautyConsta
         }
         String componentValue = super.getComponentValue(i);
         logd("2: getComponentValue()", i, componentValue);
-        if (sIsLegacyFaceBeauty) {
-            if (LEVEL_MEDIUM.equals(componentValue)) {
+        if (!Util.UI_DEBUG()) {
+            if (sIsLegacyFaceBeauty) {
+                if (LEVEL_MEDIUM.equals(componentValue)) {
+                    componentValue = LEVEL_HIGH;
+                } else if (LEVEL_XHIGH.equals(componentValue) || LEVEL_XXHIGH.equals(componentValue) || LEVEL_XXXHIGH.equals(componentValue)) {
+                    componentValue = LEVEL_CLOSE;
+                }
+            } else if (LEVEL_LOW.equals(componentValue) || LEVEL_MEDIUM.equals(componentValue)) {
                 componentValue = LEVEL_HIGH;
-            } else if (LEVEL_XHIGH.equals(componentValue) || LEVEL_XXHIGH.equals(componentValue) || LEVEL_XXXHIGH.equals(componentValue)) {
-                componentValue = LEVEL_CLOSE;
+            } else if (LEVEL_XHIGH.equals(componentValue) || LEVEL_XXHIGH.equals(componentValue)) {
+                componentValue = LEVEL_XXXHIGH;
             }
-        } else if (LEVEL_LOW.equals(componentValue) || LEVEL_MEDIUM.equals(componentValue)) {
-            componentValue = LEVEL_HIGH;
-        } else if (LEVEL_XHIGH.equals(componentValue) || LEVEL_XXHIGH.equals(componentValue)) {
-            componentValue = LEVEL_XXXHIGH;
         }
         logd("3: getComponentValue()", i, componentValue);
         return componentValue;

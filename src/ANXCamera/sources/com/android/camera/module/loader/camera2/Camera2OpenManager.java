@@ -15,6 +15,7 @@ import com.android.camera.constant.ExceptionConstant;
 import com.android.camera.constant.GlobalConstant;
 import com.android.camera.log.Log;
 import com.android.camera2.Camera2Proxy;
+import com.android.camera2.CameraCapabilities;
 import com.android.camera2.MiCamera2;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -46,26 +47,25 @@ public class Camera2OpenManager {
     private final StateCallback mCameraOpenCallback = new StateCallback() {
         public void onOpened(@NonNull CameraDevice cameraDevice) {
             int parseInt = Integer.parseInt(cameraDevice.getId());
-            CameraDevice cameraDevice2 = cameraDevice;
-            int i = parseInt;
-            Camera2OpenManager.this.mCamera2Device = new MiCamera2(cameraDevice2, i, Camera2DataContainer.getInstance().getCapabilities(parseInt), Camera2OpenManager.this.getCameraHandler(), Camera2OpenManager.this.getCameraMainThreadHandler());
-            Camera2DataContainer.getInstance().setCurrentOpenedCameraId(parseInt);
+            CameraCapabilities capabilities = Camera2DataContainer.getInstance().getCapabilities(parseInt);
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("CameraOpenCallback: camera ");
             stringBuilder.append(parseInt);
             stringBuilder.append(" was opened successfully");
             String stringBuilder2 = stringBuilder.toString();
-            if (Camera2OpenManager.this.mCamera2Device.getCapabilities() == null) {
-                StringBuilder stringBuilder3 = new StringBuilder();
-                stringBuilder3.append(stringBuilder2);
-                stringBuilder3.append(", but corresponding CameraCapabilities is null");
-                stringBuilder2 = stringBuilder3.toString();
+            if (capabilities != null) {
+                Camera2OpenManager.this.mCamera2Device = new MiCamera2(cameraDevice, parseInt, capabilities, Camera2OpenManager.this.getCameraHandler(), Camera2OpenManager.this.getCameraMainThreadHandler());
+                Camera2DataContainer.getInstance().setCurrentOpenedCameraId(parseInt);
                 Log.d(Camera2OpenManager.TAG, stringBuilder2);
-                Camera2OpenManager.this.onCameraOpenFailed(231, stringBuilder2);
+                Camera2OpenManager.this.mCameraHandler.sendEmptyMessage(4);
                 return;
             }
-            Log.d(Camera2OpenManager.TAG, stringBuilder2);
-            Camera2OpenManager.this.mCameraHandler.sendEmptyMessage(4);
+            StringBuilder stringBuilder3 = new StringBuilder();
+            stringBuilder3.append(stringBuilder2);
+            stringBuilder3.append(", but corresponding CameraCapabilities is null");
+            String stringBuilder4 = stringBuilder3.toString();
+            Log.e(Camera2OpenManager.TAG, stringBuilder4);
+            Camera2OpenManager.this.onCameraOpenFailed(231, stringBuilder4);
         }
 
         public void onClosed(@NonNull CameraDevice cameraDevice) {
@@ -86,12 +86,18 @@ public class Camera2OpenManager {
         }
 
         public void onError(@NonNull CameraDevice cameraDevice, int i) {
-            String access$200 = Camera2OpenManager.TAG;
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("CameraOpenCallback: onError ");
+            stringBuilder.append("onError: cameraId=");
             stringBuilder.append(cameraDevice.getId());
-            Log.d(access$200, stringBuilder.toString());
-            Camera2OpenManager.this.onCameraOpenFailed(ExceptionConstant.transFromCamera2Error(i), "onError");
+            stringBuilder.append(" error=");
+            stringBuilder.append(i);
+            String stringBuilder2 = stringBuilder.toString();
+            String access$200 = Camera2OpenManager.TAG;
+            StringBuilder stringBuilder3 = new StringBuilder();
+            stringBuilder3.append("CameraOpenCallback: ");
+            stringBuilder3.append(stringBuilder2);
+            Log.e(access$200, stringBuilder3.toString());
+            Camera2OpenManager.this.onCameraOpenFailed(ExceptionConstant.transFromCamera2Error(i), stringBuilder2);
         }
     };
     private ObservableEmitter<Camera2Result> mCameraResultEmitter;
@@ -132,6 +138,10 @@ public class Camera2OpenManager {
         return camera2OpenManager;
     }
 
+    public static void preload() {
+        Log.i(TAG, "preload");
+    }
+
     public Handler getCameraHandler() {
         return this.mCameraHandler;
     }
@@ -149,23 +159,18 @@ public class Camera2OpenManager {
     }
 
     private void abandonOpenObservableIfExists() {
-        Log.d(TAG, "abandonOpenObservableIfExists: start...");
         synchronized (this.mEmitterLock) {
-            Log.d(TAG, "abandonOpenObservableIfExists: in Lock...");
             if (!(this.mCameraResultEmitter == null || this.mCameraResultEmitter.isDisposed())) {
                 this.mCameraResultEmitter.onNext(Camera2Result.create(3).setCameraError(225));
                 this.mCameraResultEmitter.onComplete();
                 this.mCameraResultEmitter = null;
             }
         }
-        Log.d(TAG, "abandonOpenObservableIfExists: end...");
     }
 
     private boolean attachInObservable(Observer<Camera2Result> observer) {
         boolean z;
-        Log.d(TAG, "attachInObservable: start...");
         synchronized (this.mEmitterLock) {
-            Log.d(TAG, "attachInObservable: in lock...");
             if (this.mCameraResultEmitter == null || this.mCameraResultEmitter.isDisposed()) {
                 this.mCameraResultObservable = Observable.create(new ObservableOnSubscribe<Camera2Result>() {
                     public void subscribe(ObservableEmitter<Camera2Result> observableEmitter) {
@@ -192,7 +197,6 @@ public class Camera2OpenManager {
                 z = true;
             }
         }
-        Log.d(TAG, "attachInObservable: end...");
         return z;
     }
 
@@ -234,102 +238,100 @@ public class Camera2OpenManager {
         this.mCameraHandler.sendEmptyMessage(2);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:31:0x0124 A:{ExcHandler: android.hardware.camera2.CameraAccessException (r0_32 'e' java.lang.Throwable), Splitter: B:29:0x010a} */
-    /* JADX WARNING: Removed duplicated region for block: B:31:0x0124 A:{ExcHandler: android.hardware.camera2.CameraAccessException (r0_32 'e' java.lang.Throwable), Splitter: B:29:0x010a} */
-    /* JADX WARNING: Missing block: B:31:0x0124, code:
-            r0 = move-exception;
+    /* JADX WARNING: Removed duplicated region for block: B:31:0x010e A:{ExcHandler: android.hardware.camera2.CameraAccessException (r5_32 'e' java.lang.Throwable), Splitter: B:29:0x00f4} */
+    /* JADX WARNING: Removed duplicated region for block: B:31:0x010e A:{ExcHandler: android.hardware.camera2.CameraAccessException (r5_32 'e' java.lang.Throwable), Splitter: B:29:0x00f4} */
+    /* JADX WARNING: Missing block: B:31:0x010e, code:
+            r5 = move-exception;
      */
-    /* JADX WARNING: Missing block: B:32:0x0125, code:
-            r0.printStackTrace();
-            onCameraOpenFailed(230, r0.getClass().getSimpleName());
-            r1 = TAG;
-            r2 = new java.lang.StringBuilder();
-            r2.append("openCamera: failed to open camera ");
-            r2.append(r5.mPendingCameraId.get());
-            com.android.camera.log.Log.e(r1, r2.toString(), r0);
+    /* JADX WARNING: Missing block: B:32:0x010f, code:
+            r5.printStackTrace();
+            onCameraOpenFailed(230, r5.getClass().getSimpleName());
+            r0 = TAG;
+            r1 = new java.lang.StringBuilder();
+            r1.append("openCamera: failed to open camera ");
+            r1.append(r4.mPendingCameraId.get());
+            com.android.camera.log.Log.e(r0, r1.toString(), r5);
+     */
+    /* JADX WARNING: Missing block: B:33:?, code:
+            return;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     private void onMessage(Message message) {
-        String str = TAG;
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("handleMessage: start... msg = ");
-        stringBuilder.append(message);
-        Log.d(str, stringBuilder.toString());
         switch (message.what) {
             case 1:
-                if (this.mPendingCameraId.get() >= 0) {
-                    if (this.mCamera2Device != null && this.mCamera2Device.getId() == this.mPendingCameraId.get()) {
-                        StringBuilder stringBuilder2 = new StringBuilder();
-                        stringBuilder2.append("Camera ");
-                        stringBuilder2.append(this.mCamera2Device.getId());
-                        stringBuilder2.append(" was opened successfully");
-                        str = stringBuilder2.toString();
-                        if (this.mCamera2Device.getCapabilities() != null) {
-                            Log.d(TAG, str);
-                            onCameraOpenSuccess();
-                            break;
-                        }
-                        stringBuilder = new StringBuilder();
-                        stringBuilder.append(str);
-                        stringBuilder.append(", but corresponding CameraCapabilities is null");
-                        str = stringBuilder.toString();
-                        Log.d(TAG, str);
-                        onCameraOpenFailed(231, str);
-                        break;
-                    } else if (this.mCamera2Device != null) {
+                if (this.mPendingCameraId.get() < 0) {
+                    if (this.mCamera2Device != null) {
                         setManagerState(2);
                         Log.e(TAG, "close start");
                         this.mCamera2Device.close();
                         this.mCamera2Device = null;
-                        break;
-                    } else if (getManagerState() == 1) {
-                        try {
-                            setManagerState(3);
-                            Log.e(TAG, "open start");
-                            this.mCamera2Service.openCamera(String.valueOf(this.mPendingCameraId), this.mCameraOpenCallback, this.mCameraHandler);
-                            break;
-                        } catch (Throwable e) {
-                        }
+                        return;
                     }
+                    return;
+                } else if (this.mCamera2Device != null && this.mCamera2Device.getId() == this.mPendingCameraId.get()) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("Camera ");
+                    stringBuilder.append(this.mCamera2Device.getId());
+                    stringBuilder.append(" was opened successfully");
+                    String stringBuilder2 = stringBuilder.toString();
+                    if (this.mCamera2Device.getCapabilities() == null) {
+                        StringBuilder stringBuilder3 = new StringBuilder();
+                        stringBuilder3.append(stringBuilder2);
+                        stringBuilder3.append(", but corresponding CameraCapabilities is null");
+                        stringBuilder2 = stringBuilder3.toString();
+                        Log.d(TAG, stringBuilder2);
+                        onCameraOpenFailed(231, stringBuilder2);
+                        return;
+                    }
+                    Log.d(TAG, stringBuilder2);
+                    onCameraOpenSuccess();
+                    return;
                 } else if (this.mCamera2Device != null) {
                     setManagerState(2);
-                    Log.e(TAG, "close start");
+                    Log.d(TAG, "close start");
                     this.mCamera2Device.close();
                     this.mCamera2Device = null;
-                    break;
+                    return;
+                } else if (getManagerState() == 1) {
+                    try {
+                        setManagerState(3);
+                        Log.d(TAG, "open start");
+                        this.mCamera2Service.openCamera(String.valueOf(this.mPendingCameraId), this.mCameraOpenCallback, this.mCameraHandler);
+                        return;
+                    } catch (Throwable e) {
+                    }
+                } else {
+                    return;
                 }
                 break;
             case 2:
-                if (this.mCamera2Device != null) {
-                    if (getManagerState() == 1) {
-                        setManagerState(2);
-                        Log.e(TAG, "force close start");
-                        this.mCamera2Device.releasePreview();
-                        this.mCamera2Device.resetConfigs();
-                        this.mCamera2Device.close();
-                        this.mCamera2Device = null;
-                        break;
-                    }
+                if (this.mCamera2Device == null) {
+                    this.mCameraHandler.sendEmptyMessage(1);
+                    return;
+                } else if (getManagerState() == 1) {
+                    setManagerState(2);
+                    Log.e(TAG, "force close start");
+                    this.mCamera2Device.releasePreview();
+                    this.mCamera2Device.resetConfigs();
+                    this.mCamera2Device.close();
+                    this.mCamera2Device = null;
+                    return;
+                } else {
+                    return;
                 }
-                this.mCameraHandler.sendEmptyMessage(1);
-                break;
-                break;
             case 3:
                 Log.e(TAG, "close finish");
                 setManagerState(1);
                 this.mCameraHandler.sendEmptyMessage(1);
-                break;
+                return;
             case 4:
                 Log.e(TAG, "open finish");
                 setManagerState(1);
                 this.mCameraHandler.sendEmptyMessage(1);
-                break;
+                return;
+            default:
+                return;
         }
-        str = TAG;
-        stringBuilder = new StringBuilder();
-        stringBuilder.append("handleMessage: End...msg = ");
-        stringBuilder.append(message);
-        Log.d(str, stringBuilder.toString());
     }
 
     private void setManagerState(@ManagerState int i) {

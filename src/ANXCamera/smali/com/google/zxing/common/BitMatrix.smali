@@ -18,7 +18,7 @@
 
 # direct methods
 .method public constructor <init>(I)V
-    .locals 0
+    .registers 2
     .param p1, "dimension"    # I
 
     .line 45
@@ -29,7 +29,7 @@
 .end method
 
 .method public constructor <init>(II)V
-    .locals 2
+    .registers 5
     .param p1, "width"    # I
     .param p2, "height"    # I
 
@@ -39,9 +39,9 @@
     .line 49
     const/4 v0, 0x1
 
-    if-lt p1, v0, :cond_0
+    if-lt p1, v0, :cond_1a
 
-    if-lt p2, v0, :cond_0
+    if-lt p2, v0, :cond_1a
 
     .line 52
     iput p1, p0, Lcom/google/zxing/common/BitMatrix;->width:I
@@ -69,7 +69,7 @@
     return-void
 
     .line 50
-    :cond_0
+    :cond_1a
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "Both dimensions must be greater than 0"
@@ -80,7 +80,7 @@
 .end method
 
 .method private constructor <init>(III[I)V
-    .locals 0
+    .registers 5
     .param p1, "width"    # I
     .param p2, "height"    # I
     .param p3, "rowSize"    # I
@@ -108,7 +108,7 @@
 
 # virtual methods
 .method public clear()V
-    .locals 4
+    .registers 5
 
     .line 103
     iget-object v0, p0, Lcom/google/zxing/common/BitMatrix;->bits:[I
@@ -120,8 +120,8 @@
     const/4 v1, 0x0
 
     .local v1, "i":I
-    :goto_0
-    if-lt v1, v0, :cond_0
+    :goto_4
+    if-lt v1, v0, :cond_7
 
     .line 107
     .end local v1    # "i":I
@@ -129,7 +129,7 @@
 
     .line 105
     .restart local v1    # "i":I
-    :cond_0
+    :cond_7
     iget-object v2, p0, Lcom/google/zxing/common/BitMatrix;->bits:[I
 
     const/4 v3, 0x0
@@ -139,11 +139,11 @@
     .line 104
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_4
 .end method
 
 .method public clone()Lcom/google/zxing/common/BitMatrix;
-    .locals 5
+    .registers 6
 
     .line 332
     new-instance v0, Lcom/google/zxing/common/BitMatrix;
@@ -168,7 +168,7 @@
 .end method
 
 .method public bridge synthetic clone()Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/CloneNotSupportedException;
@@ -184,7 +184,7 @@
 .end method
 
 .method public equals(Ljava/lang/Object;)Z
-    .locals 4
+    .registers 6
     .param p1, "o"    # Ljava/lang/Object;
 
     .line 300
@@ -192,13 +192,13 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_6
 
     .line 301
     return v1
 
     .line 303
-    :cond_0
+    :cond_6
     move-object v0, p1
 
     check-cast v0, Lcom/google/zxing/common/BitMatrix;
@@ -209,19 +209,19 @@
 
     iget v3, v0, Lcom/google/zxing/common/BitMatrix;->width:I
 
-    if-ne v2, v3, :cond_1
+    if-ne v2, v3, :cond_26
 
     iget v2, p0, Lcom/google/zxing/common/BitMatrix;->height:I
 
     iget v3, v0, Lcom/google/zxing/common/BitMatrix;->height:I
 
-    if-ne v2, v3, :cond_1
+    if-ne v2, v3, :cond_26
 
     iget v2, p0, Lcom/google/zxing/common/BitMatrix;->rowSize:I
 
     iget v3, v0, Lcom/google/zxing/common/BitMatrix;->rowSize:I
 
-    if-ne v2, v3, :cond_1
+    if-ne v2, v3, :cond_26
 
     .line 305
     iget-object v2, p0, Lcom/google/zxing/common/BitMatrix;->bits:[I
@@ -232,17 +232,17 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_26
 
     .line 304
     const/4 v1, 0x1
 
-    :cond_1
+    :cond_26
     return v1
 .end method
 
 .method public flip(II)V
-    .locals 5
+    .registers 8
     .param p1, "x"    # I
     .param p2, "y"    # I
 
@@ -276,7 +276,7 @@
 .end method
 
 .method public get(II)Z
-    .locals 3
+    .registers 6
     .param p1, "x"    # I
     .param p2, "y"    # I
 
@@ -303,18 +303,18 @@
 
     and-int/2addr v1, v2
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_12
 
     return v2
 
-    :cond_0
+    :cond_12
     const/4 v1, 0x0
 
     return v1
 .end method
 
 .method public getBottomRightOnBit()[I
-    .locals 8
+    .registers 9
 
     .line 263
     iget-object v0, p0, Lcom/google/zxing/common/BitMatrix;->bits:[I
@@ -327,27 +327,27 @@
 
     .line 264
     .local v0, "bitsOffset":I
-    :goto_0
-    if-ltz v0, :cond_1
+    :goto_5
+    if-ltz v0, :cond_11
 
     iget-object v2, p0, Lcom/google/zxing/common/BitMatrix;->bits:[I
 
     aget v2, v2, v0
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_e
 
-    goto :goto_1
+    goto :goto_11
 
     .line 265
-    :cond_0
+    :cond_e
     add-int/lit8 v0, v0, -0x1
 
-    goto :goto_0
+    goto :goto_5
 
     .line 267
-    :cond_1
-    :goto_1
-    if-gez v0, :cond_2
+    :cond_11
+    :goto_11
+    if-gez v0, :cond_15
 
     .line 268
     const/4 v1, 0x0
@@ -355,7 +355,7 @@
     return-object v1
 
     .line 271
-    :cond_2
+    :cond_15
     iget v2, p0, Lcom/google/zxing/common/BitMatrix;->rowSize:I
 
     div-int v2, v0, v2
@@ -380,10 +380,10 @@
 
     .line 276
     .local v5, "bit":I
-    :goto_2
+    :goto_25
     ushr-int v6, v4, v5
 
-    if-eqz v6, :cond_3
+    if-eqz v6, :cond_33
 
     .line 279
     add-int/2addr v3, v5
@@ -402,14 +402,14 @@
     return-object v6
 
     .line 277
-    :cond_3
+    :cond_33
     add-int/lit8 v5, v5, -0x1
 
-    goto :goto_2
+    goto :goto_25
 .end method
 
 .method public getEnclosingRectangle()[I
-    .locals 9
+    .registers 10
 
     .line 190
     iget v0, p0, Lcom/google/zxing/common/BitMatrix;->width:I
@@ -431,10 +431,10 @@
     const/4 v4, 0x0
 
     .local v4, "y":I
-    :goto_0
+    :goto_7
     iget v5, p0, Lcom/google/zxing/common/BitMatrix;->height:I
 
-    if-lt v4, v5, :cond_2
+    if-lt v4, v5, :cond_26
 
     .line 227
     .end local v4    # "y":I
@@ -446,14 +446,14 @@
 
     .line 230
     .local v5, "height":I
-    if-ltz v4, :cond_1
+    if-ltz v4, :cond_24
 
-    if-gez v5, :cond_0
+    if-gez v5, :cond_14
 
-    goto :goto_1
+    goto :goto_24
 
     .line 234
-    :cond_0
+    :cond_14
     const/4 v6, 0x4
 
     new-array v6, v6, [I
@@ -477,8 +477,8 @@
     return-object v6
 
     .line 231
-    :cond_1
-    :goto_1
+    :cond_24
+    :goto_24
     const/4 v6, 0x0
 
     return-object v6
@@ -486,24 +486,24 @@
     .line 196
     .end local v5    # "height":I
     .local v4, "y":I
-    :cond_2
+    :cond_26
     const/4 v5, 0x0
 
     .local v5, "x32":I
-    :goto_2
+    :goto_27
     iget v6, p0, Lcom/google/zxing/common/BitMatrix;->rowSize:I
 
-    if-lt v5, v6, :cond_3
+    if-lt v5, v6, :cond_2e
 
     .line 195
     .end local v5    # "x32":I
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_0
+    goto :goto_7
 
     .line 197
     .restart local v5    # "x32":I
-    :cond_3
+    :cond_2e
     iget-object v6, p0, Lcom/google/zxing/common/BitMatrix;->bits:[I
 
     iget v7, p0, Lcom/google/zxing/common/BitMatrix;->rowSize:I
@@ -516,45 +516,45 @@
 
     .line 198
     .local v6, "theBits":I
-    if-eqz v6, :cond_9
+    if-eqz v6, :cond_6f
 
     .line 199
-    if-ge v4, v1, :cond_4
+    if-ge v4, v1, :cond_3b
 
     .line 200
     move v1, v4
 
     .line 202
-    :cond_4
-    if-le v4, v3, :cond_5
+    :cond_3b
+    if-le v4, v3, :cond_3e
 
     .line 203
     move v3, v4
 
     .line 205
-    :cond_5
+    :cond_3e
     mul-int/lit8 v7, v5, 0x20
 
-    if-ge v7, v0, :cond_7
+    if-ge v7, v0, :cond_56
 
     .line 206
     const/4 v7, 0x0
 
     .line 207
     .local v7, "bit":I
-    :goto_3
+    :goto_43
     rsub-int/lit8 v8, v7, 0x1f
 
     shl-int v8, v6, v8
 
-    if-eqz v8, :cond_6
+    if-eqz v8, :cond_53
 
     .line 210
     mul-int/lit8 v8, v5, 0x20
 
     add-int/2addr v8, v7
 
-    if-ge v8, v0, :cond_7
+    if-ge v8, v0, :cond_56
 
     .line 211
     mul-int/lit8 v8, v5, 0x20
@@ -567,43 +567,43 @@
     .local v8, "left":I
     move v0, v8
 
-    goto :goto_4
+    goto :goto_56
 
     .line 208
     .end local v8    # "left":I
     .restart local v0    # "left":I
     .restart local v7    # "bit":I
-    :cond_6
+    :cond_53
     add-int/lit8 v7, v7, 0x1
 
-    goto :goto_3
+    goto :goto_43
 
     .line 214
     .end local v7    # "bit":I
-    :cond_7
-    :goto_4
+    :cond_56
+    :goto_56
     mul-int/lit8 v7, v5, 0x20
 
     add-int/lit8 v7, v7, 0x1f
 
-    if-le v7, v2, :cond_9
+    if-le v7, v2, :cond_6f
 
     .line 215
     const/16 v7, 0x1f
 
     .line 216
     .restart local v7    # "bit":I
-    :goto_5
+    :goto_5e
     ushr-int v8, v6, v7
 
-    if-eqz v8, :cond_8
+    if-eqz v8, :cond_6c
 
     .line 219
     mul-int/lit8 v8, v5, 0x20
 
     add-int/2addr v8, v7
 
-    if-le v8, v2, :cond_9
+    if-le v8, v2, :cond_6f
 
     .line 220
     mul-int/lit8 v8, v5, 0x20
@@ -612,28 +612,28 @@
 
     .end local v6    # "theBits":I
     .end local v7    # "bit":I
-    goto :goto_6
+    goto :goto_6f
 
     .line 217
     .restart local v6    # "theBits":I
     .restart local v7    # "bit":I
-    :cond_8
+    :cond_6c
     add-int/lit8 v7, v7, -0x1
 
-    goto :goto_5
+    goto :goto_5e
 
     .line 196
     .end local v6    # "theBits":I
     .end local v7    # "bit":I
-    :cond_9
-    :goto_6
+    :cond_6f
+    :goto_6f
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_2
+    goto :goto_27
 .end method
 
 .method public getHeight()I
-    .locals 1
+    .registers 2
 
     .line 295
     iget v0, p0, Lcom/google/zxing/common/BitMatrix;->height:I
@@ -642,12 +642,12 @@
 .end method
 
 .method public getRow(ILcom/google/zxing/common/BitArray;)Lcom/google/zxing/common/BitArray;
-    .locals 5
+    .registers 8
     .param p1, "y"    # I
     .param p2, "row"    # Lcom/google/zxing/common/BitArray;
 
     .line 146
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_f
 
     invoke-virtual {p2}, Lcom/google/zxing/common/BitArray;->getSize()I
 
@@ -655,19 +655,19 @@
 
     iget v1, p0, Lcom/google/zxing/common/BitMatrix;->width:I
 
-    if-ge v0, v1, :cond_0
+    if-ge v0, v1, :cond_b
 
-    goto :goto_0
+    goto :goto_f
 
     .line 149
-    :cond_0
+    :cond_b
     invoke-virtual {p2}, Lcom/google/zxing/common/BitArray;->clear()V
 
-    goto :goto_1
+    goto :goto_18
 
     .line 147
-    :cond_1
-    :goto_0
+    :cond_f
+    :goto_f
     new-instance v0, Lcom/google/zxing/common/BitArray;
 
     iget v1, p0, Lcom/google/zxing/common/BitMatrix;->width:I
@@ -680,7 +680,7 @@
     nop
 
     .line 151
-    :goto_1
+    :goto_18
     iget v0, p0, Lcom/google/zxing/common/BitMatrix;->rowSize:I
 
     mul-int/2addr v0, p1
@@ -690,10 +690,10 @@
     const/4 v1, 0x0
 
     .local v1, "x":I
-    :goto_2
+    :goto_1c
     iget v2, p0, Lcom/google/zxing/common/BitMatrix;->rowSize:I
 
-    if-lt v1, v2, :cond_2
+    if-lt v1, v2, :cond_21
 
     .line 155
     .end local v1    # "x":I
@@ -701,7 +701,7 @@
 
     .line 153
     .restart local v1    # "x":I
-    :cond_2
+    :cond_21
     mul-int/lit8 v2, v1, 0x20
 
     iget-object v3, p0, Lcom/google/zxing/common/BitMatrix;->bits:[I
@@ -715,46 +715,46 @@
     .line 152
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_2
+    goto :goto_1c
 .end method
 
 .method public getTopLeftOnBit()[I
-    .locals 7
+    .registers 8
 
     .line 243
     const/4 v0, 0x0
 
     .line 244
     .local v0, "bitsOffset":I
-    :goto_0
-    iget-object v1, p0, Lcom/google/zxing/common/BitMatrix;->bits:[I
-
-    array-length v1, v1
-
-    if-ge v0, v1, :cond_1
-
-    iget-object v1, p0, Lcom/google/zxing/common/BitMatrix;->bits:[I
-
-    aget v1, v1, v0
-
-    if-eqz v1, :cond_0
-
-    goto :goto_1
-
-    .line 245
-    :cond_0
-    add-int/lit8 v0, v0, 0x1
-
-    goto :goto_0
-
-    .line 247
-    :cond_1
     :goto_1
     iget-object v1, p0, Lcom/google/zxing/common/BitMatrix;->bits:[I
 
     array-length v1, v1
 
-    if-ne v0, v1, :cond_2
+    if-ge v0, v1, :cond_10
+
+    iget-object v1, p0, Lcom/google/zxing/common/BitMatrix;->bits:[I
+
+    aget v1, v1, v0
+
+    if-eqz v1, :cond_d
+
+    goto :goto_10
+
+    .line 245
+    :cond_d
+    add-int/lit8 v0, v0, 0x1
+
+    goto :goto_1
+
+    .line 247
+    :cond_10
+    :goto_10
+    iget-object v1, p0, Lcom/google/zxing/common/BitMatrix;->bits:[I
+
+    array-length v1, v1
+
+    if-ne v0, v1, :cond_17
 
     .line 248
     const/4 v1, 0x0
@@ -762,7 +762,7 @@
     return-object v1
 
     .line 250
-    :cond_2
+    :cond_17
     iget v1, p0, Lcom/google/zxing/common/BitMatrix;->rowSize:I
 
     div-int v1, v0, v1
@@ -787,12 +787,12 @@
 
     .line 255
     .local v4, "bit":I
-    :goto_2
+    :goto_26
     rsub-int/lit8 v5, v4, 0x1f
 
     shl-int v5, v3, v5
 
-    if-eqz v5, :cond_3
+    if-eqz v5, :cond_37
 
     .line 258
     add-int/2addr v2, v4
@@ -813,14 +813,14 @@
     return-object v5
 
     .line 256
-    :cond_3
+    :cond_37
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_2
+    goto :goto_26
 .end method
 
 .method public getWidth()I
-    .locals 1
+    .registers 2
 
     .line 288
     iget v0, p0, Lcom/google/zxing/common/BitMatrix;->width:I
@@ -829,7 +829,7 @@
 .end method
 
 .method public hashCode()I
-    .locals 4
+    .registers 5
 
     .line 310
     iget v0, p0, Lcom/google/zxing/common/BitMatrix;->width:I
@@ -882,7 +882,7 @@
 .end method
 
 .method public rotate180()V
-    .locals 6
+    .registers 7
 
     .line 170
     invoke-virtual {p0}, Lcom/google/zxing/common/BitMatrix;->getWidth()I
@@ -912,12 +912,12 @@
     const/4 v4, 0x0
 
     .local v4, "i":I
-    :goto_0
+    :goto_13
     add-int/lit8 v5, v1, 0x1
 
     div-int/lit8 v5, v5, 0x2
 
-    if-lt v4, v5, :cond_0
+    if-lt v4, v5, :cond_1a
 
     .line 182
     .end local v4    # "i":I
@@ -925,7 +925,7 @@
 
     .line 175
     .restart local v4    # "i":I
-    :cond_0
+    :cond_1a
     invoke-virtual {p0, v4, v2}, Lcom/google/zxing/common/BitMatrix;->getRow(ILcom/google/zxing/common/BitArray;)Lcom/google/zxing/common/BitArray;
 
     move-result-object v2
@@ -958,11 +958,11 @@
     .line 174
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_0
+    goto :goto_13
 .end method
 
 .method public set(II)V
-    .locals 5
+    .registers 8
     .param p1, "x"    # I
     .param p2, "y"    # I
 
@@ -996,23 +996,23 @@
 .end method
 
 .method public setRegion(IIII)V
-    .locals 10
+    .registers 15
     .param p1, "left"    # I
     .param p2, "top"    # I
     .param p3, "width"    # I
     .param p4, "height"    # I
 
     .line 118
-    if-ltz p2, :cond_4
+    if-ltz p2, :cond_43
 
-    if-ltz p1, :cond_4
+    if-ltz p1, :cond_43
 
     .line 121
     const/4 v0, 0x1
 
-    if-lt p4, v0, :cond_3
+    if-lt p4, v0, :cond_3b
 
-    if-lt p3, v0, :cond_3
+    if-lt p3, v0, :cond_3b
 
     .line 124
     add-int v1, p1, p3
@@ -1025,18 +1025,18 @@
     .local v2, "bottom":I
     iget v3, p0, Lcom/google/zxing/common/BitMatrix;->height:I
 
-    if-gt v2, v3, :cond_2
+    if-gt v2, v3, :cond_33
 
     iget v3, p0, Lcom/google/zxing/common/BitMatrix;->width:I
 
-    if-gt v1, v3, :cond_2
+    if-gt v1, v3, :cond_33
 
     .line 129
     move v3, p2
 
     .local v3, "y":I
-    :goto_0
-    if-lt v3, v2, :cond_0
+    :goto_16
+    if-lt v3, v2, :cond_19
 
     .line 135
     .end local v3    # "y":I
@@ -1044,7 +1044,7 @@
 
     .line 130
     .restart local v3    # "y":I
-    :cond_0
+    :cond_19
     iget v4, p0, Lcom/google/zxing/common/BitMatrix;->rowSize:I
 
     mul-int/2addr v4, v3
@@ -1054,20 +1054,20 @@
     move v5, p1
 
     .local v5, "x":I
-    :goto_1
-    if-lt v5, v1, :cond_1
+    :goto_1d
+    if-lt v5, v1, :cond_22
 
     .line 129
     .end local v4    # "offset":I
     .end local v5    # "x":I
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_16
 
     .line 132
     .restart local v4    # "offset":I
     .restart local v5    # "x":I
-    :cond_1
+    :cond_22
     iget-object v6, p0, Lcom/google/zxing/common/BitMatrix;->bits:[I
 
     div-int/lit8 v7, v5, 0x20
@@ -1087,13 +1087,13 @@
     .line 131
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_1
+    goto :goto_1d
 
     .line 127
     .end local v3    # "y":I
     .end local v4    # "offset":I
     .end local v5    # "x":I
-    :cond_2
+    :cond_33
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v3, "The region must fit inside the matrix"
@@ -1105,7 +1105,7 @@
     .line 122
     .end local v1    # "right":I
     .end local v2    # "bottom":I
-    :cond_3
+    :cond_3b
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "Height and width must be at least 1"
@@ -1115,7 +1115,7 @@
     throw v0
 
     .line 119
-    :cond_4
+    :cond_43
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "Left and top must be nonnegative"
@@ -1126,7 +1126,7 @@
 .end method
 
 .method public setRow(ILcom/google/zxing/common/BitArray;)V
-    .locals 5
+    .registers 8
     .param p1, "y"    # I
     .param p2, "row"    # Lcom/google/zxing/common/BitArray;
 
@@ -1152,7 +1152,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 4
+    .registers 5
 
     .line 320
     new-instance v0, Ljava/lang/StringBuilder;
@@ -1172,10 +1172,10 @@
     const/4 v1, 0x0
 
     .local v1, "y":I
-    :goto_0
+    :goto_d
     iget v2, p0, Lcom/google/zxing/common/BitMatrix;->height:I
 
-    if-lt v1, v2, :cond_0
+    if-lt v1, v2, :cond_16
 
     .line 327
     .end local v1    # "y":I
@@ -1187,14 +1187,14 @@
 
     .line 322
     .restart local v1    # "y":I
-    :cond_0
+    :cond_16
     const/4 v2, 0x0
 
     .local v2, "x":I
-    :goto_1
+    :goto_17
     iget v3, p0, Lcom/google/zxing/common/BitMatrix;->width:I
 
-    if-lt v2, v3, :cond_1
+    if-lt v2, v3, :cond_23
 
     .line 325
     .end local v2    # "x":I
@@ -1205,29 +1205,29 @@
     .line 321
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_d
 
     .line 323
     .restart local v2    # "x":I
-    :cond_1
+    :cond_23
     invoke-virtual {p0, v2, v1}, Lcom/google/zxing/common/BitMatrix;->get(II)Z
 
     move-result v3
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_2c
 
     const-string v3, "X "
 
-    goto :goto_2
+    goto :goto_2e
 
-    :cond_2
+    :cond_2c
     const-string v3, "  "
 
-    :goto_2
+    :goto_2e
     invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 322
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_1
+    goto :goto_17
 .end method

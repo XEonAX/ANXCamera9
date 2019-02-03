@@ -27,7 +27,7 @@
 .method constructor <init>(Lcom/ss/android/ugc/effectmanager/EffectManager;Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;)V
     .locals 0
 
-    .line 354
+    .line 367
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$5;->this$0:Lcom/ss/android/ugc/effectmanager/EffectManager;
 
     iput-object p2, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$5;->val$iFetchEffectListListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;
@@ -42,12 +42,12 @@
 .method public onFail(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
     .locals 1
 
-    .line 362
+    .line 375
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$5;->val$iFetchEffectListListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;
 
     invoke-interface {v0, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;->onFail(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 363
+    .line 376
     return-void
 .end method
 
@@ -62,13 +62,13 @@
         }
     .end annotation
 
-    .line 357
+    .line 370
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$5;->this$0:Lcom/ss/android/ugc/effectmanager/EffectManager;
 
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$5;->val$iFetchEffectListListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;
 
-    invoke-static {v0, p1, v1}, Lcom/ss/android/ugc/effectmanager/EffectManager;->access$400(Lcom/ss/android/ugc/effectmanager/EffectManager;Ljava/util/List;Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;)V
+    invoke-static {v0, p1, v1}, Lcom/ss/android/ugc/effectmanager/EffectManager;->access$200(Lcom/ss/android/ugc/effectmanager/EffectManager;Ljava/util/List;Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;)V
 
-    .line 358
+    .line 371
     return-void
 .end method

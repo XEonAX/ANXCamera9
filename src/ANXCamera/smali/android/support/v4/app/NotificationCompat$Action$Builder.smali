@@ -36,7 +36,7 @@
 
 # direct methods
 .method public constructor <init>(ILjava/lang/CharSequence;Landroid/app/PendingIntent;)V
-    .locals 1
+    .registers 5
     .param p1, "icon"    # I
     .param p2, "title"    # Ljava/lang/CharSequence;
     .param p3, "intent"    # Landroid/app/PendingIntent;
@@ -53,7 +53,7 @@
 .end method
 
 .method private constructor <init>(ILjava/lang/CharSequence;Landroid/app/PendingIntent;Landroid/os/Bundle;)V
-    .locals 1
+    .registers 6
     .param p1, "icon"    # I
     .param p2, "title"    # Ljava/lang/CharSequence;
     .param p3, "intent"    # Landroid/app/PendingIntent;
@@ -83,7 +83,7 @@
 .end method
 
 .method public constructor <init>(Landroid/support/v4/app/NotificationCompat$Action;)V
-    .locals 5
+    .registers 7
     .param p1, "action"    # Landroid/support/v4/app/NotificationCompat$Action;
 
     .line 1897
@@ -95,6 +95,7 @@
 
     new-instance v3, Landroid/os/Bundle;
 
+    # getter for: Landroid/support/v4/app/NotificationCompat$Action;->mExtras:Landroid/os/Bundle;
     invoke-static {p1}, Landroid/support/v4/app/NotificationCompat$Action;->access$300(Landroid/support/v4/app/NotificationCompat$Action;)Landroid/os/Bundle;
 
     move-result-object v4
@@ -110,11 +111,11 @@
 
 # virtual methods
 .method public addExtras(Landroid/os/Bundle;)Landroid/support/v4/app/NotificationCompat$Action$Builder;
-    .locals 1
+    .registers 3
     .param p1, "extras"    # Landroid/os/Bundle;
 
     .line 1915
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_7
 
     .line 1916
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompat$Action$Builder;->mExtras:Landroid/os/Bundle;
@@ -122,18 +123,18 @@
     invoke-virtual {v0, p1}, Landroid/os/Bundle;->putAll(Landroid/os/Bundle;)V
 
     .line 1918
-    :cond_0
+    :cond_7
     return-object p0
 .end method
 
 .method public addRemoteInput(Landroid/support/v4/app/RemoteInput;)Landroid/support/v4/app/NotificationCompat$Action$Builder;
-    .locals 1
+    .registers 3
     .param p1, "remoteInput"    # Landroid/support/v4/app/RemoteInput;
 
     .line 1938
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompat$Action$Builder;->mRemoteInputs:Ljava/util/ArrayList;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_b
 
     .line 1939
     new-instance v0, Ljava/util/ArrayList;
@@ -143,7 +144,7 @@
     iput-object v0, p0, Landroid/support/v4/app/NotificationCompat$Action$Builder;->mRemoteInputs:Ljava/util/ArrayList;
 
     .line 1941
-    :cond_0
+    :cond_b
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompat$Action$Builder;->mRemoteInputs:Ljava/util/ArrayList;
 
     invoke-virtual {v0, p1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
@@ -153,12 +154,12 @@
 .end method
 
 .method public build()Landroid/support/v4/app/NotificationCompat$Action;
-    .locals 8
+    .registers 9
 
     .line 1960
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompat$Action$Builder;->mRemoteInputs:Ljava/util/ArrayList;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_16
 
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompat$Action$Builder;->mRemoteInputs:Ljava/util/ArrayList;
 
@@ -176,19 +177,19 @@
 
     check-cast v0, [Landroid/support/v4/app/RemoteInput;
 
-    :goto_0
+    :goto_14
     move-object v6, v0
 
-    goto :goto_1
+    goto :goto_18
 
-    :cond_0
+    :cond_16
     const/4 v0, 0x0
 
-    goto :goto_0
+    goto :goto_14
 
     .line 1962
     .local v6, "remoteInputs":[Landroid/support/v4/app/RemoteInput;
-    :goto_1
+    :goto_18
     new-instance v0, Landroid/support/v4/app/NotificationCompat$Action;
 
     iget v2, p0, Landroid/support/v4/app/NotificationCompat$Action$Builder;->mIcon:I
@@ -209,7 +210,7 @@
 .end method
 
 .method public extend(Landroid/support/v4/app/NotificationCompat$Action$Extender;)Landroid/support/v4/app/NotificationCompat$Action$Builder;
-    .locals 0
+    .registers 2
     .param p1, "extender"    # Landroid/support/v4/app/NotificationCompat$Action$Extender;
 
     .line 1950
@@ -220,7 +221,7 @@
 .end method
 
 .method public getExtras()Landroid/os/Bundle;
-    .locals 1
+    .registers 2
 
     .line 1927
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompat$Action$Builder;->mExtras:Landroid/os/Bundle;

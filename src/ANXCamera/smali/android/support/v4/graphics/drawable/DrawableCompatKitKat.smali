@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static isAutoMirrored(Landroid/graphics/drawable/Drawable;)Z
-    .locals 1
+    .registers 2
     .param p0, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 32
@@ -26,7 +26,7 @@
 .end method
 
 .method public static setAutoMirrored(Landroid/graphics/drawable/Drawable;Z)V
-    .locals 0
+    .registers 2
     .param p0, "drawable"    # Landroid/graphics/drawable/Drawable;
     .param p1, "mirrored"    # Z
 
@@ -38,13 +38,13 @@
 .end method
 
 .method public static wrapForTinting(Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
-    .locals 1
+    .registers 2
     .param p0, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 36
     instance-of v0, p0, Landroid/support/v4/graphics/drawable/DrawableWrapperKitKat;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_a
 
     .line 37
     new-instance v0, Landroid/support/v4/graphics/drawable/DrawableWrapperKitKat;
@@ -54,6 +54,6 @@
     return-object v0
 
     .line 39
-    :cond_0
+    :cond_a
     return-object p0
 .end method

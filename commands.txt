@@ -1,35 +1,47 @@
 MIUI Frameworks
-J:\ROOT\GitHub\ANXMiuiCamera>java  -jar .\tools\apktool.jar if -p .\tools\MiuiFrameworks .\orig\MiuiFrameworks\framework-res.apk
+J:\ROOT\GitHub\ANXMiuiCamera>java  -jar ..\ANXMiuiPortTools\apktool.jar if -p ..\ANXMiuiPortTools\MiuiFrameworks .\orig\MiuiFrameworks\framework-res.apk
 
-J:\ROOT\GitHub\ANXMiuiCamera>java  -jar .\tools\apktool.jar if -p .\tools\MiuiFrameworks .\orig\MiuiFrameworks\miui.apk
+J:\ROOT\GitHub\ANXMiuiCamera>java  -jar ..\ANXMiuiPortTools\apktool.jar if -p ..\ANXMiuiPortTools\MiuiFrameworks .\orig\MiuiFrameworks\miui.apk
 
-J:\ROOT\GitHub\ANXMiuiCamera>java  -jar .\tools\apktool.jar if -p .\tools\MiuiFrameworks .\orig\MiuiFrameworks\framework-ext-res.apk
+J:\ROOT\GitHub\ANXMiuiCamera>java  -jar ..\ANXMiuiPortTools\apktool.jar if -p ..\ANXMiuiPortTools\MiuiFrameworks .\orig\MiuiFrameworks\framework-ext-res.apk
 
-J:\ROOT\GitHub\ANXMiuiCamera>java  -jar .\tools\apktool.jar if -p .\tools\MiuiFrameworks .\orig\MiuiFrameworks\miuisystem.apk
+J:\ROOT\GitHub\ANXMiuiCamera>java  -jar ..\ANXMiuiPortTools\apktool.jar if -p ..\ANXMiuiPortTools\MiuiFrameworks .\orig\MiuiFrameworks\miuisystem.apk
 
 
 Resurrection Remix Frameworks
-J:\ROOT\GitHub\ANXMiuiCamera>java  -jar .\tools\apktool.jar if -p .\tools\RROFrameworks .\orig\RROFrameworks\framework-res.apk
+J:\ROOT\GitHub\ANXMiuiCamera>java  -jar ..\ANXMiuiPortTools\apktool.jar if -p ..\ANXMiuiPortTools\RROFrameworks .\orig\RROFrameworks\framework-res.apk
 
-J:\ROOT\GitHub\ANXMiuiCamera>java  -jar .\tools\apktool.jar if -p .\tools\RROFrameworks .\orig\RROFrameworks\org.lineageos.platform-res.apk
+J:\ROOT\GitHub\ANXMiuiCamera>java  -jar ..\ANXMiuiPortTools\apktool.jar if -p ..\ANXMiuiPortTools\RROFrameworks .\orig\RROFrameworks\org.lineageos.platform-res.apk
 
 
 Decompile
-java  -jar .\tools\apktool.jar d -p .\tools\MiuiFrameworks -f -o .\src\ANXCamera .\orig\MiuiCamera.apk
+java  -jar ..\ANXMiuiPortTools\apktool.jar d -p ..\ANXMiuiPortTools\MiuiFrameworks -f -o .\src\ANXCamera .\orig\MiuiCamera.apk
+
+Decompile Miui ROM
+java -jar baksmali-2.2.5.jar d -o android-support-v7-recyclerview G:\Downloads\Android\system109124\vdexExtractor_deodexed\android-support-v7-recyclerview\android-support-v7-recyclerview_classes.dex.dex
+java -jar baksmali-2.2.5.jar d -o android-support-v13 G:\Downloads\Android\system109124\vdexExtractor_deodexed\android-support-v13\android-support-v13_classes.dex.dex
+java -jar baksmali-2.2.5.jar d -o boot-framework G:\Downloads\Android\system109124\vdexExtractor_deodexed\boot-framework\boot-framework_classes.dex
+java -jar baksmali-2.2.5.jar d -o boot-framework2 G:\Downloads\Android\system109124\vdexExtractor_deodexed\boot-framework\boot-framework_classes2.dex
+java -jar baksmali-2.2.5.jar d -o boot-framework3 G:\Downloads\Android\system109124\vdexExtractor_deodexed\boot-framework\boot-framework_classes3.dex
+java -jar baksmali-2.2.5.jar d -o boot-miui G:\Downloads\Android\system109124\vdexExtractor_deodexed\boot-miui\boot-miui_classes.dex
+java -jar baksmali-2.2.5.jar d -o boot-miuisystem G:\Downloads\Android\system109124\vdexExtractor_deodexed\boot-miuisystem\boot-miuisystem_classes.dex
+java -jar baksmali-2.2.5.jar d -o gson G:\Downloads\Android\system109124\vdexExtractor_deodexed\gson\gson_classes.dex.dex
+java -jar baksmali-2.2.5.jar d -o volley G:\Downloads\Android\system109124\vdexExtractor_deodexed\volley\volley_classes.dex.dex
+java -jar baksmali-2.2.5.jar d -o zxing G:\Downloads\Android\system109124\vdexExtractor_deodexed\zxing\zxing_classes.dex.dex
 
 
 Recompile
-java  -jar .\tools\apktool.jar b -p .\tools\MiuiFrameworks -o .\out\ANXCamera-Unsigned.apk .\src\ANXCamera
+java  -jar ..\ANXMiuiPortTools\apktool.jar b -p ..\ANXMiuiPortTools\MiuiFrameworks -o .\out\ANXCamera-Unsigned.apk .\src\ANXCamera
 
 ReDecompile
-java  -jar .\tools\apktool.jar d -p .\tools\MiuiFrameworks -f -o .\src\ANXCamera .\out\ANXCamera.apk
+java  -jar ..\ANXMiuiPortTools\apktool.jar d -p ..\ANXMiuiPortTools\MiuiFrameworks -f -o .\src\ANXCamera .\out\ANXCamera.apk
 
 Sign
-java  -jar .\tools\SignApk.jar .\tools\testkey.x509.pem .\tools\testkey.pk8 .\out\ANXCamera-Unsigned.apk .\out\ANXCamera.apk
+java  -jar ..\ANXMiuiPortTools\SignApk.jar ..\ANXMiuiPortTools\testkey.x509.pem ..\ANXMiuiPortTools\testkey.pk8 .\out\ANXCamera-Unsigned.apk .\out\ANXCamera.apk
 
 
 Jadx
-.\tools\jadx\bin\jadx -d .\src\ANXCamera -r .\out\ANXCamera.apk --show-bad-code
+..\ANXMiuiPortTools\jadx\bin\jadx -d .\src\ANXCamera -r .\out\ANXCamera.apk --show-bad-code
 
 
 Install

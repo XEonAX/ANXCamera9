@@ -67,6 +67,8 @@
 
 .field public static final SnapTipTextStyle:I = 0x7f0c0013
 
+.field public static final TTMusicDialogFragment:I = 0x7f0c0020
+
 .field public static final ThemeCamera:I = 0x7f0c0001
 
 .field public static final ThemeCameraSettings:I = 0x7f0c0002
@@ -84,7 +86,7 @@
 .method public constructor <init>()V
     .locals 0
 
-    .line 2804
+    .line 2945
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

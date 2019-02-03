@@ -456,9 +456,14 @@ public class FileCompat {
         LollipopFileCompatImpl() {
         }
 
-        /* JADX WARNING: Removed duplicated region for block: B:45:0x00cf  */
+        /* JADX WARNING: Removed duplicated region for block: B:48:0x00f8  */
         /* Code decompiled incorrectly, please refer to instructions dump. */
         public DocumentFile getDocumentFileByPath(String str, boolean z, String str2, boolean z2) {
+            DocumentFile findFile;
+            Throwable e;
+            String str3;
+            StringBuilder stringBuilder;
+            Log.d(FileCompat.TAG, "getDocumentFileByPath start>>");
             String access$000 = FileCompat.getSDPath(str);
             if (access$000 == null) {
                 return null;
@@ -468,11 +473,11 @@ public class FileCompat {
                 return null;
             }
             DocumentFile fromTreeUri = DocumentFile.fromTreeUri(CameraAppImpl.getAndroidContext(), access$100);
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(access$000);
-            stringBuilder.append(File.separator);
-            stringBuilder.append(Environment.DIRECTORY_DCIM);
-            access$000 = stringBuilder.toString();
+            StringBuilder stringBuilder2 = new StringBuilder();
+            stringBuilder2.append(access$000);
+            stringBuilder2.append(File.separator);
+            stringBuilder2.append(Environment.DIRECTORY_DCIM);
+            access$000 = stringBuilder2.toString();
             if (str.equals(access$000)) {
                 return fromTreeUri;
             }
@@ -480,10 +485,10 @@ public class FileCompat {
             if (TextUtils.isEmpty(substring)) {
                 return null;
             }
-            StringBuilder stringBuilder2 = new StringBuilder();
-            stringBuilder2.append("\\");
-            stringBuilder2.append(File.separator);
-            substring = substring.split(stringBuilder2.toString());
+            StringBuilder stringBuilder3 = new StringBuilder();
+            stringBuilder3.append("\\");
+            stringBuilder3.append(File.separator);
+            substring = substring.split(stringBuilder3.toString());
             Object obj = new String[(substring.length - 1)];
             System.arraycopy(substring, 0, obj, 0, substring.length - 1);
             int length = obj.length;
@@ -491,20 +496,20 @@ public class FileCompat {
             int i = 0;
             int i2 = i;
             while (i < length) {
-                String str3 = obj[i];
+                String str4 = obj[i];
                 if (documentFile == null) {
                     break;
                 }
                 if (i2 != 0) {
-                    documentFile = documentFile.createDirectory(str3);
+                    documentFile = documentFile.createDirectory(str4);
                 } else {
-                    DocumentFile findFile = documentFile.findFile(str3);
-                    if (findFile != null) {
-                        documentFile = findFile;
+                    DocumentFile findFile2 = documentFile.findFile(str4);
+                    if (findFile2 != null) {
+                        documentFile = findFile2;
                     } else if (!z) {
                         return null;
                     } else {
-                        documentFile = documentFile.createDirectory(str3);
+                        documentFile = documentFile.createDirectory(str4);
                         i2 = 1;
                     }
                 }
@@ -514,39 +519,69 @@ public class FileCompat {
                 return null;
             }
             str = substring[substring.length - 1];
-            DocumentFile findFile2 = documentFile.findFile(str);
-            if (findFile2 != null || !z) {
-                return findFile2;
-            }
-            if (z2) {
+            access$000 = FileCompat.TAG;
+            StringBuilder stringBuilder4 = new StringBuilder();
+            stringBuilder4.append("getDocumentFileByPath>> DocumentFile findFile or createFile, createIfNotFound = ");
+            stringBuilder4.append(z);
+            Log.d(access$000, stringBuilder4.toString());
+            long currentTimeMillis = System.currentTimeMillis();
+            if (!z) {
+                findFile = documentFile.findFile(str);
+            } else if (z2) {
+                DocumentFile findFile3;
                 try {
-                    return documentFile.createDirectory(str);
-                } catch (Throwable e) {
-                    Log.w(FileCompat.TAG, "createFile error", e);
-                    return null;
-                }
-            }
-            String substring2;
-            int indexOf = str.indexOf(".");
-            if (TextUtils.isEmpty(str2) && indexOf > 0) {
-                str2 = FileCompat.getMimeTypeFromPath(str);
-                if (!TextUtils.isEmpty(str2)) {
-                    substring2 = str.substring(0, indexOf);
-                    if (substring2 != null) {
-                        str = substring2;
+                    findFile3 = documentFile.findFile(str);
+                    if (findFile3 == null) {
+                        try {
+                            findFile = documentFile.createDirectory(str);
+                        } catch (Exception e2) {
+                            e = e2;
+                        }
+                    } else {
+                        findFile = findFile3;
                     }
-                    return documentFile.createFile(str2, str);
+                } catch (Exception e3) {
+                    e = e3;
+                    findFile3 = null;
+                    Log.w(FileCompat.TAG, "createFile error", e);
+                    findFile = findFile3;
+                    str3 = FileCompat.TAG;
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("getDocumentFileByPath end<< cost time= ");
+                    stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
+                    stringBuilder.append(" ms");
+                    Log.d(str3, stringBuilder.toString());
+                    return findFile;
+                }
+            } else {
+                int indexOf = str.indexOf(".");
+                if (TextUtils.isEmpty(str2) && indexOf > 0) {
+                    str2 = FileCompat.getMimeTypeFromPath(str);
+                    if (!TextUtils.isEmpty(str2)) {
+                        str3 = str.substring(0, indexOf);
+                        if (str3 != null) {
+                            str = str3;
+                        }
+                        findFile = documentFile.createFile(str2, str);
+                    }
+                }
+                str3 = null;
+                if (str3 != null) {
+                }
+                try {
+                    findFile = documentFile.createFile(str2, str);
+                } catch (Throwable e4) {
+                    Log.w(FileCompat.TAG, "createFile error", e4);
+                    findFile = null;
                 }
             }
-            substring2 = null;
-            if (substring2 != null) {
-            }
-            try {
-                return documentFile.createFile(str2, str);
-            } catch (Throwable e2) {
-                Log.w(FileCompat.TAG, "createFile error", e2);
-                return null;
-            }
+            str3 = FileCompat.TAG;
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("getDocumentFileByPath end<< cost time= ");
+            stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
+            stringBuilder.append(" ms");
+            Log.d(str3, stringBuilder.toString());
+            return findFile;
         }
 
         public OutputStream getFileOutputStream(String str, boolean z) {

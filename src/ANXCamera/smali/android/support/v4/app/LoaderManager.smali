@@ -13,7 +13,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 39
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -23,7 +23,7 @@
 .end method
 
 .method public static enableDebugLogging(Z)V
-    .locals 0
+    .registers 1
     .param p0, "enabled"    # Z
 
     .line 177
@@ -54,7 +54,7 @@
 .end method
 
 .method public hasRunningLoaders()Z
-    .locals 1
+    .registers 2
 
     .line 184
     const/4 v0, 0x0

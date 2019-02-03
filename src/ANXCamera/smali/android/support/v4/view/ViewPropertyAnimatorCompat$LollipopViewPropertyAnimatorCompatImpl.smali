@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 621
     invoke-direct {p0}, Landroid/support/v4/view/ViewPropertyAnimatorCompat$KitKatViewPropertyAnimatorCompatImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public translationZ(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .locals 0
+    .registers 4
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -40,7 +40,7 @@
 .end method
 
 .method public translationZBy(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .locals 0
+    .registers 4
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -53,7 +53,7 @@
 .end method
 
 .method public z(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .locals 0
+    .registers 4
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F
@@ -66,7 +66,7 @@
 .end method
 
 .method public zBy(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;F)V
-    .locals 0
+    .registers 4
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "value"    # F

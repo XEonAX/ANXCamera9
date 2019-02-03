@@ -95,7 +95,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 326
     new-instance v0, Landroid/support/v4/widget/ViewDragHelper$1;
@@ -108,7 +108,7 @@
 .end method
 
 .method private constructor <init>(Landroid/content/Context;Landroid/view/ViewGroup;Landroid/support/v4/widget/ViewDragHelper$Callback;)V
-    .locals 4
+    .registers 8
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "forParent"    # Landroid/view/ViewGroup;
     .param p3, "cb"    # Landroid/support/v4/widget/ViewDragHelper$Callback;
@@ -129,10 +129,10 @@
     iput-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mSetIdleRunnable:Ljava/lang/Runnable;
 
     .line 374
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_51
 
     .line 377
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_49
 
     .line 381
     iput-object p2, p0, Landroid/support/v4/widget/ViewDragHelper;->mParentView:Landroid/view/ViewGroup;
@@ -211,7 +211,7 @@
     .line 378
     .end local v0    # "vc":Landroid/view/ViewConfiguration;
     .end local v1    # "density":F
-    :cond_0
+    :cond_49
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "Callback may not be null"
@@ -221,7 +221,7 @@
     throw v0
 
     .line 375
-    :cond_1
+    :cond_51
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "Parent view may not be null"
@@ -232,7 +232,7 @@
 .end method
 
 .method private checkNewEdgeDrag(FFII)Z
-    .locals 5
+    .registers 10
     .param p1, "delta"    # F
     .param p2, "odelta"    # F
     .param p3, "pointerId"    # I
@@ -259,13 +259,13 @@
 
     const/4 v3, 0x0
 
-    if-ne v2, p4, :cond_3
+    if-ne v2, p4, :cond_5a
 
     iget v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mTrackingEdges:I
 
     and-int/2addr v2, p4
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_5a
 
     iget-object v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mEdgeDragsLocked:[I
 
@@ -273,7 +273,7 @@
 
     and-int/2addr v2, p4
 
-    if-eq v2, p4, :cond_3
+    if-eq v2, p4, :cond_5a
 
     iget-object v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mEdgeDragsInProgress:[I
 
@@ -281,7 +281,7 @@
 
     and-int/2addr v2, p4
 
-    if-eq v2, p4, :cond_3
+    if-eq v2, p4, :cond_5a
 
     iget v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mTouchSlop:I
 
@@ -289,7 +289,7 @@
 
     cmpg-float v2, v0, v2
 
-    if-gtz v2, :cond_0
+    if-gtz v2, :cond_32
 
     iget v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mTouchSlop:I
 
@@ -297,19 +297,19 @@
 
     cmpg-float v2, v1, v2
 
-    if-gtz v2, :cond_0
+    if-gtz v2, :cond_32
 
-    goto :goto_0
+    goto :goto_5a
 
     .line 1260
-    :cond_0
+    :cond_32
     const/high16 v2, 0x3f000000    # 0.5f
 
     mul-float/2addr v2, v1
 
     cmpg-float v2, v0, v2
 
-    if-gez v2, :cond_1
+    if-gez v2, :cond_49
 
     iget-object v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mCallback:Landroid/support/v4/widget/ViewDragHelper$Callback;
 
@@ -317,7 +317,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_49
 
     .line 1261
     iget-object v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mEdgeDragsLocked:[I
@@ -332,14 +332,14 @@
     return v3
 
     .line 1264
-    :cond_1
+    :cond_49
     iget-object v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mEdgeDragsInProgress:[I
 
     aget v2, v2, p3
 
     and-int/2addr v2, p4
 
-    if-nez v2, :cond_2
+    if-nez v2, :cond_59
 
     iget v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mTouchSlop:I
 
@@ -347,23 +347,23 @@
 
     cmpl-float v2, v0, v2
 
-    if-lez v2, :cond_2
+    if-lez v2, :cond_59
 
     const/4 v3, 0x1
 
     nop
 
-    :cond_2
+    :cond_59
     return v3
 
     .line 1258
-    :cond_3
-    :goto_0
+    :cond_5a
+    :goto_5a
     return v3
 .end method
 
 .method private checkTouchSlop(Landroid/view/View;FF)Z
-    .locals 7
+    .registers 11
     .param p1, "child"    # Landroid/view/View;
     .param p2, "dx"    # F
     .param p3, "dy"    # F
@@ -371,13 +371,13 @@
     .line 1278
     const/4 v0, 0x0
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_4
 
     .line 1279
     return v0
 
     .line 1281
-    :cond_0
+    :cond_4
     iget-object v1, p0, Landroid/support/v4/widget/ViewDragHelper;->mCallback:Landroid/support/v4/widget/ViewDragHelper$Callback;
 
     invoke-virtual {v1, p1}, Landroid/support/v4/widget/ViewDragHelper$Callback;->getViewHorizontalDragRange(Landroid/view/View;)I
@@ -386,39 +386,39 @@
 
     const/4 v2, 0x1
 
-    if-lez v1, :cond_1
+    if-lez v1, :cond_f
 
     move v1, v2
 
-    goto :goto_0
+    goto :goto_10
 
-    :cond_1
+    :cond_f
     move v1, v0
 
     .line 1282
     .local v1, "checkHorizontal":Z
-    :goto_0
+    :goto_10
     iget-object v3, p0, Landroid/support/v4/widget/ViewDragHelper;->mCallback:Landroid/support/v4/widget/ViewDragHelper$Callback;
 
     invoke-virtual {v3, p1}, Landroid/support/v4/widget/ViewDragHelper$Callback;->getViewVerticalDragRange(Landroid/view/View;)I
 
     move-result v3
 
-    if-lez v3, :cond_2
+    if-lez v3, :cond_1a
 
     move v3, v2
 
-    goto :goto_1
+    goto :goto_1b
 
-    :cond_2
+    :cond_1a
     move v3, v0
 
     .line 1284
     .local v3, "checkVertical":Z
-    :goto_1
-    if-eqz v1, :cond_4
+    :goto_1b
+    if-eqz v1, :cond_31
 
-    if-eqz v3, :cond_4
+    if-eqz v3, :cond_31
 
     .line 1285
     mul-float v4, p2, p2
@@ -437,18 +437,18 @@
 
     cmpl-float v4, v4, v5
 
-    if-lez v4, :cond_3
+    if-lez v4, :cond_30
 
     move v0, v2
 
     nop
 
-    :cond_3
+    :cond_30
     return v0
 
     .line 1286
-    :cond_4
-    if-eqz v1, :cond_6
+    :cond_31
+    if-eqz v1, :cond_41
 
     .line 1287
     invoke-static {p2}, Ljava/lang/Math;->abs(F)F
@@ -461,18 +461,18 @@
 
     cmpl-float v4, v4, v5
 
-    if-lez v4, :cond_5
+    if-lez v4, :cond_40
 
     move v0, v2
 
     nop
 
-    :cond_5
+    :cond_40
     return v0
 
     .line 1288
-    :cond_6
-    if-eqz v3, :cond_8
+    :cond_41
+    if-eqz v3, :cond_51
 
     .line 1289
     invoke-static {p3}, Ljava/lang/Math;->abs(F)F
@@ -485,22 +485,22 @@
 
     cmpl-float v4, v4, v5
 
-    if-lez v4, :cond_7
+    if-lez v4, :cond_50
 
     move v0, v2
 
     nop
 
-    :cond_7
+    :cond_50
     return v0
 
     .line 1291
-    :cond_8
+    :cond_51
     return v0
 .end method
 
 .method private clampMag(FFF)F
-    .locals 3
+    .registers 7
     .param p1, "value"    # F
     .param p2, "absMin"    # F
     .param p3, "absMax"    # F
@@ -516,37 +516,37 @@
 
     const/4 v2, 0x0
 
-    if-gez v1, :cond_0
+    if-gez v1, :cond_a
 
     return v2
 
     .line 676
-    :cond_0
+    :cond_a
     cmpl-float v1, v0, p3
 
-    if-lez v1, :cond_2
+    if-lez v1, :cond_16
 
     cmpl-float v1, p1, v2
 
-    if-lez v1, :cond_1
+    if-lez v1, :cond_14
 
     move v1, p3
 
-    goto :goto_0
+    goto :goto_15
 
-    :cond_1
+    :cond_14
     neg-float v1, p3
 
-    :goto_0
+    :goto_15
     return v1
 
     .line 677
-    :cond_2
+    :cond_16
     return p1
 .end method
 
 .method private clampMag(III)I
-    .locals 2
+    .registers 6
     .param p1, "value"    # I
     .param p2, "absMin"    # I
     .param p3, "absMax"    # I
@@ -558,46 +558,46 @@
 
     .line 658
     .local v0, "absValue":I
-    if-ge v0, p2, :cond_0
+    if-ge v0, p2, :cond_8
 
     const/4 v1, 0x0
 
     return v1
 
     .line 659
-    :cond_0
-    if-le v0, p3, :cond_2
+    :cond_8
+    if-le v0, p3, :cond_10
 
-    if-lez p1, :cond_1
+    if-lez p1, :cond_e
 
     move v1, p3
 
-    goto :goto_0
+    goto :goto_f
 
-    :cond_1
+    :cond_e
     neg-int v1, p3
 
-    :goto_0
+    :goto_f
     return v1
 
     .line 660
-    :cond_2
+    :cond_10
     return p1
 .end method
 
 .method private clearMotionHistory()V
-    .locals 2
+    .registers 3
 
     .line 777
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mInitialMotionX:[F
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_5
 
     .line 778
     return-void
 
     .line 780
-    :cond_0
+    :cond_5
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mInitialMotionX:[F
 
     const/4 v1, 0x0
@@ -644,19 +644,19 @@
 .end method
 
 .method private clearMotionHistory(I)V
-    .locals 2
+    .registers 4
     .param p1, "pointerId"    # I
 
     .line 791
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mInitialMotionX:[F
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_5
 
     .line 792
     return-void
 
     .line 794
-    :cond_0
+    :cond_5
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mInitialMotionX:[F
 
     const/4 v1, 0x0
@@ -713,13 +713,13 @@
 .end method
 
 .method private computeAxisDuration(III)I
-    .locals 7
+    .registers 11
     .param p1, "delta"    # I
     .param p2, "velocity"    # I
     .param p3, "motionRange"    # I
 
     .line 625
-    if-nez p1, :cond_0
+    if-nez p1, :cond_4
 
     .line 626
     const/4 v0, 0x0
@@ -727,7 +727,7 @@
     return v0
 
     .line 629
-    :cond_0
+    :cond_4
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mParentView:Landroid/view/ViewGroup;
 
     invoke-virtual {v0}, Landroid/view/ViewGroup;->getWidth()I
@@ -777,7 +777,7 @@
     move-result p2
 
     .line 637
-    if-lez p2, :cond_1
+    if-lez p2, :cond_38
 
     .line 638
     const/4 v3, 0x4
@@ -801,11 +801,11 @@
     mul-int/2addr v3, v5
 
     .local v3, "duration":I
-    goto :goto_0
+    goto :goto_44
 
     .line 640
     .end local v3    # "duration":I
-    :cond_1
+    :cond_38
     invoke-static {p1}, Ljava/lang/Math;->abs(I)I
 
     move-result v5
@@ -829,7 +829,7 @@
     .line 643
     .end local v5    # "range":F
     .restart local v3    # "duration":I
-    :goto_0
+    :goto_44
     const/16 v5, 0x258
 
     invoke-static {v3, v5}, Ljava/lang/Math;->min(II)I
@@ -840,7 +840,7 @@
 .end method
 
 .method private computeSettleDuration(Landroid/view/View;IIII)I
-    .locals 17
+    .registers 23
     .param p1, "child"    # Landroid/view/View;
     .param p2, "dx"    # I
     .param p3, "dy"    # I
@@ -918,48 +918,48 @@
 
     .line 613
     .local v9, "addedDistance":I
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_36
 
     int-to-float v10, v6
 
     int-to-float v11, v8
 
-    :goto_0
+    :goto_34
     div-float/2addr v10, v11
 
-    goto :goto_1
+    goto :goto_39
 
-    :cond_0
+    :cond_36
     int-to-float v10, v4
 
     int-to-float v11, v9
 
-    goto :goto_0
+    goto :goto_34
 
     .line 615
     .local v10, "xweight":F
-    :goto_1
-    if-eqz v3, :cond_1
+    :goto_39
+    if-eqz v3, :cond_3f
 
     int-to-float v11, v7
 
     int-to-float v12, v8
 
-    :goto_2
+    :goto_3d
     div-float/2addr v11, v12
 
-    goto :goto_3
+    goto :goto_42
 
-    :cond_1
+    :cond_3f
     int-to-float v11, v5
 
     int-to-float v12, v9
 
-    goto :goto_2
+    goto :goto_3d
 
     .line 618
     .local v11, "yweight":F
-    :goto_3
+    :goto_42
     iget-object v12, v0, Landroid/support/v4/widget/ViewDragHelper;->mCallback:Landroid/support/v4/widget/ViewDragHelper$Callback;
 
     invoke-virtual {v12, v1}, Landroid/support/v4/widget/ViewDragHelper$Callback;->getViewHorizontalDragRange(Landroid/view/View;)I
@@ -1004,7 +1004,7 @@
 .end method
 
 .method public static create(Landroid/view/ViewGroup;FLandroid/support/v4/widget/ViewDragHelper$Callback;)Landroid/support/v4/widget/ViewDragHelper;
-    .locals 3
+    .registers 6
     .param p0, "forParent"    # Landroid/view/ViewGroup;
     .param p1, "sensitivity"    # F
     .param p2, "cb"    # Landroid/support/v4/widget/ViewDragHelper$Callback;
@@ -1035,7 +1035,7 @@
 .end method
 
 .method public static create(Landroid/view/ViewGroup;Landroid/support/v4/widget/ViewDragHelper$Callback;)Landroid/support/v4/widget/ViewDragHelper;
-    .locals 2
+    .registers 4
     .param p0, "forParent"    # Landroid/view/ViewGroup;
     .param p1, "cb"    # Landroid/support/v4/widget/ViewDragHelper$Callback;
 
@@ -1052,7 +1052,7 @@
 .end method
 
 .method private dispatchViewReleased(FF)V
-    .locals 3
+    .registers 6
     .param p1, "xvel"    # F
     .param p2, "yvel"    # F
 
@@ -1076,18 +1076,18 @@
     .line 770
     iget v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
 
-    if-ne v2, v0, :cond_0
+    if-ne v2, v0, :cond_14
 
     .line 772
     invoke-virtual {p0, v1}, Landroid/support/v4/widget/ViewDragHelper;->setDragState(I)V
 
     .line 774
-    :cond_0
+    :cond_14
     return-void
 .end method
 
 .method private distanceInfluenceForSnapDuration(F)F
-    .locals 4
+    .registers 6
     .param p1, "f"    # F
 
     .line 681
@@ -1117,7 +1117,7 @@
 .end method
 
 .method private dragTo(IIII)V
-    .locals 16
+    .registers 21
     .param p1, "left"    # I
     .param p2, "top"    # I
     .param p3, "dx"    # I
@@ -1154,7 +1154,7 @@
 
     .line 1403
     .local v6, "oldTop":I
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_2a
 
     .line 1404
     iget-object v7, v0, Landroid/support/v4/widget/ViewDragHelper;->mCallback:Landroid/support/v4/widget/ViewDragHelper$Callback;
@@ -1174,14 +1174,14 @@
 
     invoke-virtual {v7, v8}, Landroid/view/View;->offsetLeftAndRight(I)V
 
-    goto :goto_0
+    goto :goto_2c
 
     .line 1407
-    :cond_0
+    :cond_2a
     move/from16 v9, p1
 
-    :goto_0
-    if-eqz v2, :cond_1
+    :goto_2c
+    if-eqz v2, :cond_40
 
     .line 1408
     iget-object v7, v0, Landroid/support/v4/widget/ViewDragHelper;->mCallback:Landroid/support/v4/widget/ViewDragHelper$Callback;
@@ -1201,19 +1201,19 @@
 
     invoke-virtual {v7, v8}, Landroid/view/View;->offsetTopAndBottom(I)V
 
-    goto :goto_1
+    goto :goto_42
 
     .line 1412
-    :cond_1
+    :cond_40
     move/from16 v15, p2
 
-    :goto_1
-    if-nez v1, :cond_2
+    :goto_42
+    if-nez v1, :cond_46
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_55
 
     .line 1413
-    :cond_2
+    :cond_46
     sub-int v7, v3, v5
 
     .line 1414
@@ -1239,27 +1239,27 @@
     .line 1418
     .end local v7    # "clampedDx":I
     .end local v8    # "clampedDy":I
-    :cond_3
+    :cond_55
     return-void
 .end method
 
 .method private ensureMotionHistorySizeForId(I)V
-    .locals 10
+    .registers 12
     .param p1, "pointerId"    # I
 
     .line 805
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mInitialMotionX:[F
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_9
 
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mInitialMotionX:[F
 
     array-length v0, v0
 
-    if-gt v0, p1, :cond_2
+    if-gt v0, p1, :cond_70
 
     .line 806
-    :cond_0
+    :cond_9
     add-int/lit8 v0, p1, 0x1
 
     new-array v0, v0, [F
@@ -1304,7 +1304,7 @@
     .local v6, "edl":[I
     iget-object v7, p0, Landroid/support/v4/widget/ViewDragHelper;->mInitialMotionX:[F
 
-    if-eqz v7, :cond_1
+    if-eqz v7, :cond_62
 
     .line 815
     iget-object v7, p0, Landroid/support/v4/widget/ViewDragHelper;->mInitialMotionX:[F
@@ -1372,7 +1372,7 @@
     invoke-static {v7, v9, v6, v9, v8}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
 
     .line 824
-    :cond_1
+    :cond_62
     iput-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mInitialMotionX:[F
 
     .line 825
@@ -1401,12 +1401,12 @@
     .end local v4    # "iit":[I
     .end local v5    # "edip":[I
     .end local v6    # "edl":[I
-    :cond_2
+    :cond_70
     return-void
 .end method
 
 .method private forceSettleCapturedViewAt(IIII)Z
-    .locals 11
+    .registers 16
     .param p1, "finalLeft"    # I
     .param p2, "finalTop"    # I
     .param p3, "xvel"    # I
@@ -1437,9 +1437,9 @@
 
     .line 589
     .local v9, "dy":I
-    if-nez v8, :cond_0
+    if-nez v8, :cond_1e
 
-    if-nez v9, :cond_0
+    if-nez v9, :cond_1e
 
     .line 591
     iget-object v1, p0, Landroid/support/v4/widget/ViewDragHelper;->mScroller:Landroid/support/v4/widget/ScrollerCompat;
@@ -1455,7 +1455,7 @@
     return v1
 
     .line 596
-    :cond_0
+    :cond_1e
     iget-object v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mCapturedView:Landroid/view/View;
 
     move-object v1, p0
@@ -1500,7 +1500,7 @@
 .end method
 
 .method private getEdgesTouched(II)I
-    .locals 3
+    .registers 6
     .param p1, "x"    # I
     .param p2, "y"    # I
 
@@ -1519,12 +1519,12 @@
 
     add-int/2addr v1, v2
 
-    if-ge p1, v1, :cond_0
+    if-ge p1, v1, :cond_e
 
     or-int/lit8 v0, v0, 0x1
 
     .line 1476
-    :cond_0
+    :cond_e
     iget-object v1, p0, Landroid/support/v4/widget/ViewDragHelper;->mParentView:Landroid/view/ViewGroup;
 
     invoke-virtual {v1}, Landroid/view/ViewGroup;->getTop()I
@@ -1535,12 +1535,12 @@
 
     add-int/2addr v1, v2
 
-    if-ge p2, v1, :cond_1
+    if-ge p2, v1, :cond_1b
 
     or-int/lit8 v0, v0, 0x4
 
     .line 1477
-    :cond_1
+    :cond_1b
     iget-object v1, p0, Landroid/support/v4/widget/ViewDragHelper;->mParentView:Landroid/view/ViewGroup;
 
     invoke-virtual {v1}, Landroid/view/ViewGroup;->getRight()I
@@ -1551,12 +1551,12 @@
 
     sub-int/2addr v1, v2
 
-    if-le p1, v1, :cond_2
+    if-le p1, v1, :cond_28
 
     or-int/lit8 v0, v0, 0x2
 
     .line 1478
-    :cond_2
+    :cond_28
     iget-object v1, p0, Landroid/support/v4/widget/ViewDragHelper;->mParentView:Landroid/view/ViewGroup;
 
     invoke-virtual {v1}, Landroid/view/ViewGroup;->getBottom()I
@@ -1567,17 +1567,17 @@
 
     sub-int/2addr v1, v2
 
-    if-le p2, v1, :cond_3
+    if-le p2, v1, :cond_35
 
     or-int/lit8 v0, v0, 0x8
 
     .line 1480
-    :cond_3
+    :cond_35
     return v0
 .end method
 
 .method private releaseViewForPointerUp()V
-    .locals 4
+    .registers 5
 
     .line 1388
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mVelocityTracker:Landroid/view/VelocityTracker;
@@ -1632,7 +1632,7 @@
 .end method
 
 .method private reportNewEdgeDrags(FFI)V
-    .locals 3
+    .registers 7
     .param p1, "dx"    # F
     .param p2, "dy"    # F
     .param p3, "pointerId"    # I
@@ -1648,53 +1648,53 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_a
 
     .line 1232
     or-int/lit8 v0, v0, 0x1
 
     .line 1234
-    :cond_0
+    :cond_a
     const/4 v1, 0x4
 
     invoke-direct {p0, p2, p1, p3, v1}, Landroid/support/v4/widget/ViewDragHelper;->checkNewEdgeDrag(FFII)Z
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_13
 
     .line 1235
     or-int/lit8 v0, v0, 0x4
 
     .line 1237
-    :cond_1
+    :cond_13
     const/4 v1, 0x2
 
     invoke-direct {p0, p1, p2, p3, v1}, Landroid/support/v4/widget/ViewDragHelper;->checkNewEdgeDrag(FFII)Z
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_1c
 
     .line 1238
     or-int/lit8 v0, v0, 0x2
 
     .line 1240
-    :cond_2
+    :cond_1c
     const/16 v1, 0x8
 
     invoke-direct {p0, p2, p1, p3, v1}, Landroid/support/v4/widget/ViewDragHelper;->checkNewEdgeDrag(FFII)Z
 
     move-result v1
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_26
 
     .line 1241
     or-int/lit8 v0, v0, 0x8
 
     .line 1244
-    :cond_3
-    if-eqz v0, :cond_4
+    :cond_26
+    if-eqz v0, :cond_34
 
     .line 1245
     iget-object v1, p0, Landroid/support/v4/widget/ViewDragHelper;->mEdgeDragsInProgress:[I
@@ -1711,12 +1711,12 @@
     invoke-virtual {v1, v0, p3}, Landroid/support/v4/widget/ViewDragHelper$Callback;->onEdgeDragStarted(II)V
 
     .line 1248
-    :cond_4
+    :cond_34
     return-void
 .end method
 
 .method private saveInitialMotion(FFI)V
-    .locals 3
+    .registers 7
     .param p1, "x"    # F
     .param p2, "y"    # F
     .param p3, "pointerId"    # I
@@ -1771,7 +1771,7 @@
 .end method
 
 .method private saveLastMotion(Landroid/view/MotionEvent;)V
-    .locals 6
+    .registers 8
     .param p1, "ev"    # Landroid/view/MotionEvent;
 
     .line 843
@@ -1784,8 +1784,8 @@
     const/4 v1, 0x0
 
     .local v1, "i":I
-    :goto_0
-    if-ge v1, v0, :cond_0
+    :goto_5
+    if-ge v1, v0, :cond_1e
 
     .line 845
     invoke-static {p1, v1}, Landroid/support/v4/view/MotionEventCompat;->getPointerId(Landroid/view/MotionEvent;I)I
@@ -1821,18 +1821,18 @@
     .end local v4    # "y":F
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_5
 
     .line 851
     .end local v1    # "i":I
-    :cond_0
+    :cond_1e
     return-void
 .end method
 
 
 # virtual methods
 .method public abort()V
-    .locals 10
+    .registers 11
 
     .line 512
     invoke-virtual {p0}, Landroid/support/v4/widget/ViewDragHelper;->cancel()V
@@ -1842,7 +1842,7 @@
 
     const/4 v1, 0x2
 
-    if-ne v0, v1, :cond_0
+    if-ne v0, v1, :cond_32
 
     .line 514
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mScroller:Landroid/support/v4/widget/ScrollerCompat;
@@ -1901,7 +1901,7 @@
     .end local v1    # "oldY":I
     .end local v2    # "newX":I
     .end local v9    # "newY":I
-    :cond_0
+    :cond_32
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Landroid/support/v4/widget/ViewDragHelper;->setDragState(I)V
@@ -1911,7 +1911,7 @@
 .end method
 
 .method protected canScroll(Landroid/view/View;ZIIII)Z
-    .locals 16
+    .registers 23
     .param p1, "v"    # Landroid/view/View;
     .param p2, "checkV"    # Z
     .param p3, "dx"    # I
@@ -1926,7 +1926,7 @@
 
     const/4 v2, 0x1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_62
 
     .line 917
     move-object v1, v0
@@ -1956,8 +1956,8 @@
     add-int/lit8 v6, v5, -0x1
 
     .local v6, "i":I
-    :goto_0
-    if-ltz v6, :cond_1
+    :goto_18
+    if-ltz v6, :cond_62
 
     .line 925
     invoke-virtual {v1, v6}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
@@ -1972,7 +1972,7 @@
 
     move-result v8
 
-    if-lt v7, v8, :cond_0
+    if-lt v7, v8, :cond_5f
 
     add-int v7, p5, v3
 
@@ -1980,7 +1980,7 @@
 
     move-result v8
 
-    if-ge v7, v8, :cond_0
+    if-ge v7, v8, :cond_5f
 
     add-int v7, p6, v4
 
@@ -1988,7 +1988,7 @@
 
     move-result v8
 
-    if-lt v7, v8, :cond_0
+    if-lt v7, v8, :cond_5f
 
     add-int v7, p6, v4
 
@@ -1996,7 +1996,7 @@
 
     move-result v8
 
-    if-ge v7, v8, :cond_0
+    if-ge v7, v8, :cond_5f
 
     const/4 v9, 0x1
 
@@ -2034,17 +2034,17 @@
 
     move-result v7
 
-    if-eqz v7, :cond_0
+    if-eqz v7, :cond_5f
 
     .line 930
     return v2
 
     .line 922
     .end local v15    # "child":Landroid/view/View;
-    :cond_0
+    :cond_5f
     add-int/lit8 v6, v6, -0x1
 
-    goto :goto_0
+    goto :goto_18
 
     .line 935
     .end local v1    # "group":Landroid/view/ViewGroup;
@@ -2052,8 +2052,8 @@
     .end local v4    # "scrollY":I
     .end local v5    # "count":I
     .end local v6    # "i":I
-    :cond_1
-    if-eqz p2, :cond_3
+    :cond_62
+    if-eqz p2, :cond_7a
 
     move/from16 v3, p3
 
@@ -2063,7 +2063,7 @@
 
     move-result v4
 
-    if-nez v4, :cond_2
+    if-nez v4, :cond_77
 
     move/from16 v4, p4
 
@@ -2073,30 +2073,30 @@
 
     move-result v5
 
-    if-eqz v5, :cond_4
+    if-eqz v5, :cond_7e
 
-    goto :goto_1
+    goto :goto_79
 
-    :cond_2
+    :cond_77
     move/from16 v4, p4
 
-    :goto_1
-    goto :goto_2
+    :goto_79
+    goto :goto_7f
 
-    :cond_3
+    :cond_7a
     move/from16 v3, p3
 
     move/from16 v4, p4
 
-    :cond_4
+    :cond_7e
     const/4 v2, 0x0
 
-    :goto_2
+    :goto_7f
     return v2
 .end method
 
 .method public cancel()V
-    .locals 1
+    .registers 2
 
     .line 498
     const/4 v0, -0x1
@@ -2109,7 +2109,7 @@
     .line 501
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mVelocityTracker:Landroid/view/VelocityTracker;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_12
 
     .line 502
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mVelocityTracker:Landroid/view/VelocityTracker;
@@ -2122,12 +2122,12 @@
     iput-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mVelocityTracker:Landroid/view/VelocityTracker;
 
     .line 505
-    :cond_0
+    :cond_12
     return-void
 .end method
 
 .method public captureChildView(Landroid/view/View;I)V
-    .locals 3
+    .registers 6
     .param p1, "childView"    # Landroid/view/View;
     .param p2, "activePointerId"    # I
 
@@ -2138,7 +2138,7 @@
 
     iget-object v1, p0, Landroid/support/v4/widget/ViewDragHelper;->mParentView:Landroid/view/ViewGroup;
 
-    if-ne v0, v1, :cond_0
+    if-ne v0, v1, :cond_16
 
     .line 465
     iput-object p1, p0, Landroid/support/v4/widget/ViewDragHelper;->mCapturedView:Landroid/view/View;
@@ -2160,7 +2160,7 @@
     return-void
 
     .line 461
-    :cond_0
+    :cond_16
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -2189,7 +2189,7 @@
 .end method
 
 .method public checkTouchSlop(I)Z
-    .locals 4
+    .registers 6
     .param p1, "directions"    # I
 
     .line 1309
@@ -2204,15 +2204,15 @@
     move v2, v1
 
     .local v2, "i":I
-    :goto_0
-    if-ge v2, v0, :cond_1
+    :goto_5
+    if-ge v2, v0, :cond_12
 
     .line 1311
     invoke-virtual {p0, p1, v2}, Landroid/support/v4/widget/ViewDragHelper;->checkTouchSlop(II)Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_f
 
     .line 1312
     const/4 v1, 0x1
@@ -2220,19 +2220,19 @@
     return v1
 
     .line 1310
-    :cond_0
+    :cond_f
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_5
 
     .line 1315
     .end local v2    # "i":I
-    :cond_1
+    :cond_12
     return v1
 .end method
 
 .method public checkTouchSlop(II)Z
-    .locals 9
+    .registers 12
     .param p1, "directions"    # I
     .param p2, "pointerId"    # I
 
@@ -2243,45 +2243,45 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_8
 
     .line 1335
     return v1
 
     .line 1338
-    :cond_0
+    :cond_8
     and-int/lit8 v0, p1, 0x1
 
     const/4 v2, 0x1
 
-    if-ne v0, v2, :cond_1
+    if-ne v0, v2, :cond_f
 
     move v0, v2
 
-    goto :goto_0
+    goto :goto_10
 
-    :cond_1
+    :cond_f
     move v0, v1
 
     .line 1339
     .local v0, "checkHorizontal":Z
-    :goto_0
+    :goto_10
     and-int/lit8 v3, p1, 0x2
 
     const/4 v4, 0x2
 
-    if-ne v3, v4, :cond_2
+    if-ne v3, v4, :cond_17
 
     move v3, v2
 
-    goto :goto_1
+    goto :goto_18
 
-    :cond_2
+    :cond_17
     move v3, v1
 
     .line 1341
     .local v3, "checkVertical":Z
-    :goto_1
+    :goto_18
     iget-object v4, p0, Landroid/support/v4/widget/ViewDragHelper;->mLastMotionX:[F
 
     aget v4, v4, p2
@@ -2306,9 +2306,9 @@
 
     .line 1344
     .local v5, "dy":F
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_40
 
-    if-eqz v3, :cond_4
+    if-eqz v3, :cond_40
 
     .line 1345
     mul-float v6, v4, v4
@@ -2327,18 +2327,18 @@
 
     cmpl-float v6, v6, v7
 
-    if-lez v6, :cond_3
+    if-lez v6, :cond_3f
 
     move v1, v2
 
     nop
 
-    :cond_3
+    :cond_3f
     return v1
 
     .line 1346
-    :cond_4
-    if-eqz v0, :cond_6
+    :cond_40
+    if-eqz v0, :cond_50
 
     .line 1347
     invoke-static {v4}, Ljava/lang/Math;->abs(F)F
@@ -2351,18 +2351,18 @@
 
     cmpl-float v6, v6, v7
 
-    if-lez v6, :cond_5
+    if-lez v6, :cond_4f
 
     move v1, v2
 
     nop
 
-    :cond_5
+    :cond_4f
     return v1
 
     .line 1348
-    :cond_6
-    if-eqz v3, :cond_8
+    :cond_50
+    if-eqz v3, :cond_60
 
     .line 1349
     invoke-static {v5}, Ljava/lang/Math;->abs(F)F
@@ -2375,22 +2375,22 @@
 
     cmpl-float v6, v6, v7
 
-    if-lez v6, :cond_7
+    if-lez v6, :cond_5f
 
     move v1, v2
 
     nop
 
-    :cond_7
+    :cond_5f
     return v1
 
     .line 1351
-    :cond_8
+    :cond_60
     return v1
 .end method
 
 .method public continueSettling(Z)Z
-    .locals 13
+    .registers 15
     .param p1, "deferCallbacks"    # Z
 
     .line 722
@@ -2400,7 +2400,7 @@
 
     const/4 v2, 0x2
 
-    if-ne v0, v2, :cond_6
+    if-ne v0, v2, :cond_6c
 
     .line 723
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mScroller:Landroid/support/v4/widget/ScrollerCompat;
@@ -2447,7 +2447,7 @@
 
     .line 729
     .local v12, "dy":I
-    if-eqz v11, :cond_0
+    if-eqz v11, :cond_2f
 
     .line 730
     iget-object v4, p0, Landroid/support/v4/widget/ViewDragHelper;->mCapturedView:Landroid/view/View;
@@ -2455,8 +2455,8 @@
     invoke-virtual {v4, v11}, Landroid/view/View;->offsetLeftAndRight(I)V
 
     .line 732
-    :cond_0
-    if-eqz v12, :cond_1
+    :cond_2f
+    if-eqz v12, :cond_36
 
     .line 733
     iget-object v4, p0, Landroid/support/v4/widget/ViewDragHelper;->mCapturedView:Landroid/view/View;
@@ -2464,13 +2464,13 @@
     invoke-virtual {v4, v12}, Landroid/view/View;->offsetTopAndBottom(I)V
 
     .line 736
-    :cond_1
-    if-nez v11, :cond_2
+    :cond_36
+    if-nez v11, :cond_3a
 
-    if-eqz v12, :cond_3
+    if-eqz v12, :cond_45
 
     .line 737
-    :cond_2
+    :cond_3a
     iget-object v4, p0, Landroid/support/v4/widget/ViewDragHelper;->mCallback:Landroid/support/v4/widget/ViewDragHelper$Callback;
 
     iget-object v5, p0, Landroid/support/v4/widget/ViewDragHelper;->mCapturedView:Landroid/view/View;
@@ -2486,8 +2486,8 @@
     invoke-virtual/range {v4 .. v9}, Landroid/support/v4/widget/ViewDragHelper$Callback;->onViewPositionChanged(Landroid/view/View;IIII)V
 
     .line 740
-    :cond_3
-    if-eqz v0, :cond_4
+    :cond_45
+    if-eqz v0, :cond_5d
 
     iget-object v4, p0, Landroid/support/v4/widget/ViewDragHelper;->mScroller:Landroid/support/v4/widget/ScrollerCompat;
 
@@ -2495,7 +2495,7 @@
 
     move-result v4
 
-    if-ne v3, v4, :cond_4
+    if-ne v3, v4, :cond_5d
 
     iget-object v4, p0, Landroid/support/v4/widget/ViewDragHelper;->mScroller:Landroid/support/v4/widget/ScrollerCompat;
 
@@ -2503,7 +2503,7 @@
 
     move-result v4
 
-    if-ne v10, v4, :cond_4
+    if-ne v10, v4, :cond_5d
 
     .line 743
     iget-object v4, p0, Landroid/support/v4/widget/ViewDragHelper;->mScroller:Landroid/support/v4/widget/ScrollerCompat;
@@ -2514,11 +2514,11 @@
     const/4 v0, 0x0
 
     .line 747
-    :cond_4
-    if-nez v0, :cond_6
+    :cond_5d
+    if-nez v0, :cond_6c
 
     .line 748
-    if-eqz p1, :cond_5
+    if-eqz p1, :cond_69
 
     .line 749
     iget-object v4, p0, Landroid/support/v4/widget/ViewDragHelper;->mParentView:Landroid/view/ViewGroup;
@@ -2527,10 +2527,10 @@
 
     invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->post(Ljava/lang/Runnable;)Z
 
-    goto :goto_0
+    goto :goto_6c
 
     .line 751
-    :cond_5
+    :cond_69
     invoke-virtual {p0, v1}, Landroid/support/v4/widget/ViewDragHelper;->setDragState(I)V
 
     .line 756
@@ -2539,22 +2539,22 @@
     .end local v10    # "y":I
     .end local v11    # "dx":I
     .end local v12    # "dy":I
-    :cond_6
-    :goto_0
+    :cond_6c
+    :goto_6c
     iget v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
 
-    if-ne v0, v2, :cond_7
+    if-ne v0, v2, :cond_72
 
     const/4 v1, 0x1
 
     nop
 
-    :cond_7
+    :cond_72
     return v1
 .end method
 
 .method public findTopChildUnder(II)Landroid/view/View;
-    .locals 4
+    .registers 7
     .param p1, "x"    # I
     .param p2, "y"    # I
 
@@ -2570,8 +2570,8 @@
     add-int/lit8 v1, v0, -0x1
 
     .local v1, "i":I
-    :goto_0
-    if-ltz v1, :cond_1
+    :goto_8
+    if-ltz v1, :cond_32
 
     .line 1463
     iget-object v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mParentView:Landroid/view/ViewGroup;
@@ -2592,46 +2592,46 @@
 
     move-result v3
 
-    if-lt p1, v3, :cond_0
+    if-lt p1, v3, :cond_2f
 
     invoke-virtual {v2}, Landroid/view/View;->getRight()I
 
     move-result v3
 
-    if-ge p1, v3, :cond_0
+    if-ge p1, v3, :cond_2f
 
     invoke-virtual {v2}, Landroid/view/View;->getTop()I
 
     move-result v3
 
-    if-lt p2, v3, :cond_0
+    if-lt p2, v3, :cond_2f
 
     invoke-virtual {v2}, Landroid/view/View;->getBottom()I
 
     move-result v3
 
-    if-ge p2, v3, :cond_0
+    if-ge p2, v3, :cond_2f
 
     .line 1466
     return-object v2
 
     .line 1462
     .end local v2    # "child":Landroid/view/View;
-    :cond_0
+    :cond_2f
     add-int/lit8 v1, v1, -0x1
 
-    goto :goto_0
+    goto :goto_8
 
     .line 1469
     .end local v1    # "i":I
-    :cond_1
+    :cond_32
     const/4 v1, 0x0
 
     return-object v1
 .end method
 
 .method public flingCapturedView(IIII)V
-    .locals 10
+    .registers 15
     .param p1, "minLeft"    # I
     .param p2, "minTop"    # I
     .param p3, "maxLeft"    # I
@@ -2640,7 +2640,7 @@
     .line 697
     iget-boolean v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mReleaseInProgress:Z
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_30
 
     .line 702
     iget-object v1, p0, Landroid/support/v4/widget/ViewDragHelper;->mScroller:Landroid/support/v4/widget/ScrollerCompat;
@@ -2696,7 +2696,7 @@
     return-void
 
     .line 698
-    :cond_0
+    :cond_30
     new-instance v0, Ljava/lang/IllegalStateException;
 
     const-string v1, "Cannot flingCapturedView outside of a call to Callback#onViewReleased"
@@ -2707,7 +2707,7 @@
 .end method
 
 .method public getActivePointerId()I
-    .locals 1
+    .registers 2
 
     .line 483
     iget v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mActivePointerId:I
@@ -2716,7 +2716,7 @@
 .end method
 
 .method public getCapturedView()Landroid/view/View;
-    .locals 1
+    .registers 2
 
     .line 475
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mCapturedView:Landroid/view/View;
@@ -2725,7 +2725,7 @@
 .end method
 
 .method public getEdgeSize()I
-    .locals 1
+    .registers 2
 
     .line 448
     iget v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mEdgeSize:I
@@ -2734,7 +2734,7 @@
 .end method
 
 .method public getMinVelocity()F
-    .locals 1
+    .registers 2
 
     .line 412
     iget v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mMinVelocity:F
@@ -2743,7 +2743,7 @@
 .end method
 
 .method public getTouchSlop()I
-    .locals 1
+    .registers 2
 
     .line 490
     iget v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mTouchSlop:I
@@ -2752,7 +2752,7 @@
 .end method
 
 .method public getViewDragState()I
-    .locals 1
+    .registers 2
 
     .line 421
     iget v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
@@ -2761,7 +2761,7 @@
 .end method
 
 .method public isCapturedViewUnder(II)Z
-    .locals 1
+    .registers 4
     .param p1, "x"    # I
     .param p2, "y"    # I
 
@@ -2776,7 +2776,7 @@
 .end method
 
 .method public isEdgeTouched(I)Z
-    .locals 4
+    .registers 6
     .param p1, "edges"    # I
 
     .line 1364
@@ -2791,15 +2791,15 @@
     move v2, v1
 
     .local v2, "i":I
-    :goto_0
-    if-ge v2, v0, :cond_1
+    :goto_5
+    if-ge v2, v0, :cond_12
 
     .line 1366
     invoke-virtual {p0, p1, v2}, Landroid/support/v4/widget/ViewDragHelper;->isEdgeTouched(II)Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_f
 
     .line 1367
     const/4 v1, 0x1
@@ -2807,19 +2807,19 @@
     return v1
 
     .line 1365
-    :cond_0
+    :cond_f
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_5
 
     .line 1370
     .end local v2    # "i":I
-    :cond_1
+    :cond_12
     return v1
 .end method
 
 .method public isEdgeTouched(II)Z
-    .locals 1
+    .registers 4
     .param p1, "edges"    # I
     .param p2, "pointerId"    # I
 
@@ -2828,7 +2828,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_f
 
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mInitialEdgesTouched:[I
 
@@ -2836,21 +2836,21 @@
 
     and-int/2addr v0, p1
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_f
 
     const/4 v0, 0x1
 
-    goto :goto_0
+    goto :goto_10
 
-    :cond_0
+    :cond_f
     const/4 v0, 0x0
 
-    :goto_0
+    :goto_10
     return v0
 .end method
 
 .method public isPointerDown(I)Z
-    .locals 3
+    .registers 5
     .param p1, "pointerId"    # I
 
     .line 867
@@ -2862,19 +2862,19 @@
 
     and-int/2addr v0, v2
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_9
 
-    goto :goto_0
+    goto :goto_a
 
-    :cond_0
+    :cond_9
     const/4 v1, 0x0
 
-    :goto_0
+    :goto_a
     return v1
 .end method
 
 .method public isViewUnder(Landroid/view/View;II)Z
-    .locals 2
+    .registers 6
     .param p1, "view"    # Landroid/view/View;
     .param p2, "x"    # I
     .param p3, "y"    # I
@@ -2882,47 +2882,47 @@
     .line 1443
     const/4 v0, 0x0
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_4
 
     .line 1444
     return v0
 
     .line 1446
-    :cond_0
+    :cond_4
     invoke-virtual {p1}, Landroid/view/View;->getLeft()I
 
     move-result v1
 
-    if-lt p2, v1, :cond_1
+    if-lt p2, v1, :cond_1e
 
     invoke-virtual {p1}, Landroid/view/View;->getRight()I
 
     move-result v1
 
-    if-ge p2, v1, :cond_1
+    if-ge p2, v1, :cond_1e
 
     invoke-virtual {p1}, Landroid/view/View;->getTop()I
 
     move-result v1
 
-    if-lt p3, v1, :cond_1
+    if-lt p3, v1, :cond_1e
 
     invoke-virtual {p1}, Landroid/view/View;->getBottom()I
 
     move-result v1
 
-    if-ge p3, v1, :cond_1
+    if-ge p3, v1, :cond_1e
 
     const/4 v0, 0x1
 
     nop
 
-    :cond_1
+    :cond_1e
     return v0
 .end method
 
 .method public processTouchEvent(Landroid/view/MotionEvent;)V
-    .locals 12
+    .registers 14
     .param p1, "ev"    # Landroid/view/MotionEvent;
 
     .line 1079
@@ -2938,16 +2938,16 @@
 
     .line 1082
     .local v1, "actionIndex":I
-    if-nez v0, :cond_0
+    if-nez v0, :cond_d
 
     .line 1085
     invoke-virtual {p0}, Landroid/support/v4/widget/ViewDragHelper;->cancel()V
 
     .line 1088
-    :cond_0
+    :cond_d
     iget-object v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mVelocityTracker:Landroid/view/VelocityTracker;
 
-    if-nez v2, :cond_1
+    if-nez v2, :cond_17
 
     .line 1089
     invoke-static {}, Landroid/view/VelocityTracker;->obtain()Landroid/view/VelocityTracker;
@@ -2957,7 +2957,7 @@
     iput-object v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mVelocityTracker:Landroid/view/VelocityTracker;
 
     .line 1091
-    :cond_1
+    :cond_17
     iget-object v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mVelocityTracker:Landroid/view/VelocityTracker;
 
     invoke-virtual {v2, p1}, Landroid/view/VelocityTracker;->addMovement(Landroid/view/MotionEvent;)V
@@ -2967,13 +2967,13 @@
 
     const/4 v3, 0x1
 
-    packed-switch v0, :pswitch_data_0
+    packed-switch v0, :pswitch_data_166
 
-    :pswitch_0
-    goto/16 :goto_5
+    :pswitch_21
+    goto/16 :goto_165
 
     .line 1181
-    :pswitch_1
+    :pswitch_23
     invoke-static {p1, v1}, Landroid/support/v4/view/MotionEventCompat;->getPointerId(Landroid/view/MotionEvent;I)I
 
     move-result v4
@@ -2982,11 +2982,11 @@
     .local v4, "pointerId":I
     iget v5, p0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
 
-    if-ne v5, v3, :cond_5
+    if-ne v5, v3, :cond_66
 
     iget v3, p0, Landroid/support/v4/widget/ViewDragHelper;->mActivePointerId:I
 
-    if-ne v4, v3, :cond_5
+    if-ne v4, v3, :cond_66
 
     .line 1184
     const/4 v3, -0x1
@@ -3002,8 +3002,8 @@
     nop
 
     .local v2, "i":I
-    :goto_0
-    if-ge v2, v5, :cond_4
+    :goto_35
+    if-ge v2, v5, :cond_60
 
     .line 1187
     invoke-static {p1, v2}, Landroid/support/v4/view/MotionEventCompat;->getPointerId(Landroid/view/MotionEvent;I)I
@@ -3014,13 +3014,13 @@
     .local v6, "id":I
     iget v7, p0, Landroid/support/v4/widget/ViewDragHelper;->mActivePointerId:I
 
-    if-ne v6, v7, :cond_2
+    if-ne v6, v7, :cond_40
 
     .line 1190
-    goto :goto_1
+    goto :goto_5d
 
     .line 1193
-    :cond_2
+    :cond_40
     invoke-static {p1, v2}, Landroid/support/v4/view/MotionEventCompat;->getX(Landroid/view/MotionEvent;I)F
 
     move-result v7
@@ -3043,7 +3043,7 @@
 
     iget-object v10, p0, Landroid/support/v4/widget/ViewDragHelper;->mCapturedView:Landroid/view/View;
 
-    if-ne v9, v10, :cond_3
+    if-ne v9, v10, :cond_5d
 
     iget-object v9, p0, Landroid/support/v4/widget/ViewDragHelper;->mCapturedView:Landroid/view/View;
 
@@ -3051,31 +3051,31 @@
 
     move-result v9
 
-    if-eqz v9, :cond_3
+    if-eqz v9, :cond_5d
 
     .line 1197
     iget v3, p0, Landroid/support/v4/widget/ViewDragHelper;->mActivePointerId:I
 
     .line 1198
-    goto :goto_2
+    goto :goto_60
 
     .line 1186
     .end local v6    # "id":I
     .end local v7    # "x":F
     .end local v8    # "y":F
-    :cond_3
-    :goto_1
+    :cond_5d
+    :goto_5d
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_35
 
     .line 1202
     .end local v2    # "i":I
-    :cond_4
-    :goto_2
+    :cond_60
+    :goto_60
     const/4 v2, -0x1
 
-    if-ne v3, v2, :cond_5
+    if-ne v3, v2, :cond_66
 
     .line 1204
     invoke-direct {p0}, Landroid/support/v4/widget/ViewDragHelper;->releaseViewForPointerUp()V
@@ -3083,15 +3083,15 @@
     .line 1207
     .end local v3    # "newActivePointer":I
     .end local v5    # "pointerCount":I
-    :cond_5
+    :cond_66
     invoke-direct {p0, v4}, Landroid/support/v4/widget/ViewDragHelper;->clearMotionHistory(I)V
 
     .line 1208
-    goto/16 :goto_5
+    goto/16 :goto_165
 
     .line 1115
     .end local v4    # "pointerId":I
-    :pswitch_2
+    :pswitch_6b
     invoke-static {p1, v1}, Landroid/support/v4/view/MotionEventCompat;->getPointerId(Landroid/view/MotionEvent;I)I
 
     move-result v2
@@ -3115,7 +3115,7 @@
     .line 1122
     iget v5, p0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
 
-    if-nez v5, :cond_7
+    if-nez v5, :cond_9a
 
     .line 1125
     float-to-int v5, v3
@@ -3141,7 +3141,7 @@
 
     and-int/2addr v7, v6
 
-    if-eqz v7, :cond_6
+    if-eqz v7, :cond_98
 
     .line 1130
     iget-object v7, p0, Landroid/support/v4/widget/ViewDragHelper;->mCallback:Landroid/support/v4/widget/ViewDragHelper$Callback;
@@ -3155,10 +3155,10 @@
     .line 1132
     .end local v5    # "toCapture":Landroid/view/View;
     .end local v6    # "edgesTouched":I
-    :cond_6
-    goto/16 :goto_5
+    :cond_98
+    goto/16 :goto_165
 
-    :cond_7
+    :cond_9a
     float-to-int v5, v3
 
     float-to-int v6, v4
@@ -3167,23 +3167,23 @@
 
     move-result v5
 
-    if-eqz v5, :cond_e
+    if-eqz v5, :cond_165
 
     .line 1137
     iget-object v5, p0, Landroid/support/v4/widget/ViewDragHelper;->mCapturedView:Landroid/view/View;
 
     invoke-virtual {p0, v5, v2}, Landroid/support/v4/widget/ViewDragHelper;->tryCaptureViewForDrag(Landroid/view/View;I)Z
 
-    goto/16 :goto_5
+    goto/16 :goto_165
 
     .line 1220
     .end local v2    # "pointerId":I
     .end local v3    # "x":F
     .end local v4    # "y":F
-    :pswitch_3
+    :pswitch_a9
     iget v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
 
-    if-ne v2, v3, :cond_8
+    if-ne v2, v3, :cond_b1
 
     .line 1221
     const/4 v2, 0x0
@@ -3191,16 +3191,16 @@
     invoke-direct {p0, v2, v2}, Landroid/support/v4/widget/ViewDragHelper;->dispatchViewReleased(FF)V
 
     .line 1223
-    :cond_8
+    :cond_b1
     invoke-virtual {p0}, Landroid/support/v4/widget/ViewDragHelper;->cancel()V
 
-    goto/16 :goto_5
+    goto/16 :goto_165
 
     .line 1143
-    :pswitch_4
+    :pswitch_b6
     iget v4, p0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
 
-    if-ne v4, v3, :cond_9
+    if-ne v4, v3, :cond_f0
 
     .line 1144
     iget v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mActivePointerId:I
@@ -3274,10 +3274,10 @@
     .end local v4    # "y":F
     .end local v5    # "idx":I
     .end local v6    # "idy":I
-    goto/16 :goto_5
+    goto/16 :goto_165
 
     .line 1155
-    :cond_9
+    :cond_f0
     invoke-static {p1}, Landroid/support/v4/view/MotionEventCompat;->getPointerCount(Landroid/view/MotionEvent;)I
 
     move-result v4
@@ -3287,8 +3287,8 @@
     nop
 
     .local v2, "i":I
-    :goto_3
-    if-ge v2, v4, :cond_c
+    :goto_f5
+    if-ge v2, v4, :cond_12d
 
     .line 1157
     invoke-static {p1, v2}, Landroid/support/v4/view/MotionEventCompat;->getPointerId(Landroid/view/MotionEvent;I)I
@@ -3330,13 +3330,13 @@
     .line 1164
     iget v10, p0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
 
-    if-ne v10, v3, :cond_a
+    if-ne v10, v3, :cond_117
 
     .line 1166
-    goto :goto_4
+    goto :goto_12d
 
     .line 1169
-    :cond_a
+    :cond_117
     float-to-int v10, v6
 
     float-to-int v11, v7
@@ -3351,16 +3351,16 @@
 
     move-result v11
 
-    if-eqz v11, :cond_b
+    if-eqz v11, :cond_12a
 
     invoke-virtual {p0, v10, v5}, Landroid/support/v4/widget/ViewDragHelper;->tryCaptureViewForDrag(Landroid/view/View;I)Z
 
     move-result v11
 
-    if-eqz v11, :cond_b
+    if-eqz v11, :cond_12a
 
     .line 1172
-    goto :goto_4
+    goto :goto_12d
 
     .line 1156
     .end local v5    # "pointerId":I
@@ -3369,39 +3369,39 @@
     .end local v8    # "dx":F
     .end local v9    # "dy":F
     .end local v10    # "toCapture":Landroid/view/View;
-    :cond_b
+    :cond_12a
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_3
+    goto :goto_f5
 
     .line 1175
     .end local v2    # "i":I
-    :cond_c
-    :goto_4
+    :cond_12d
+    :goto_12d
     invoke-direct {p0, p1}, Landroid/support/v4/widget/ViewDragHelper;->saveLastMotion(Landroid/view/MotionEvent;)V
 
     .line 1177
     .end local v4    # "pointerCount":I
-    goto :goto_5
+    goto :goto_165
 
     .line 1212
-    :pswitch_5
+    :pswitch_131
     iget v2, p0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
 
-    if-ne v2, v3, :cond_d
+    if-ne v2, v3, :cond_138
 
     .line 1213
     invoke-direct {p0}, Landroid/support/v4/widget/ViewDragHelper;->releaseViewForPointerUp()V
 
     .line 1215
-    :cond_d
+    :cond_138
     invoke-virtual {p0}, Landroid/support/v4/widget/ViewDragHelper;->cancel()V
 
     .line 1216
-    goto :goto_5
+    goto :goto_165
 
     .line 1095
-    :pswitch_6
+    :pswitch_13c
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getX()F
 
     move-result v3
@@ -3446,7 +3446,7 @@
 
     and-int/2addr v7, v6
 
-    if-eqz v7, :cond_e
+    if-eqz v7, :cond_165
 
     .line 1109
     iget-object v7, p0, Landroid/support/v4/widget/ViewDragHelper;->mCallback:Landroid/support/v4/widget/ViewDragHelper$Callback;
@@ -3463,24 +3463,24 @@
     .end local v4    # "y":F
     .end local v5    # "toCapture":Landroid/view/View;
     .end local v6    # "edgesTouched":I
-    :cond_e
-    :goto_5
+    :cond_165
+    :goto_165
     return-void
 
-    :pswitch_data_0
+    :pswitch_data_166
     .packed-switch 0x0
-        :pswitch_6
-        :pswitch_5
-        :pswitch_4
-        :pswitch_3
-        :pswitch_0
-        :pswitch_2
-        :pswitch_1
+        :pswitch_13c
+        :pswitch_131
+        :pswitch_b6
+        :pswitch_a9
+        :pswitch_21
+        :pswitch_6b
+        :pswitch_23
     .end packed-switch
 .end method
 
 .method setDragState(I)V
-    .locals 2
+    .registers 4
     .param p1, "state"    # I
 
     .line 871
@@ -3493,7 +3493,7 @@
     .line 872
     iget v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
 
-    if-eq v0, p1, :cond_0
+    if-eq v0, p1, :cond_19
 
     .line 873
     iput p1, p0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
@@ -3506,7 +3506,7 @@
     .line 875
     iget v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_19
 
     .line 876
     const/4 v0, 0x0
@@ -3514,12 +3514,12 @@
     iput-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mCapturedView:Landroid/view/View;
 
     .line 879
-    :cond_0
+    :cond_19
     return-void
 .end method
 
 .method public setEdgeTrackingEnabled(I)V
-    .locals 0
+    .registers 2
     .param p1, "edgeFlags"    # I
 
     .line 437
@@ -3530,7 +3530,7 @@
 .end method
 
 .method public setMinVelocity(F)V
-    .locals 0
+    .registers 2
     .param p1, "minVel"    # F
 
     .line 401
@@ -3541,14 +3541,14 @@
 .end method
 
 .method public settleCapturedViewAt(II)Z
-    .locals 3
+    .registers 6
     .param p1, "finalLeft"    # I
     .param p2, "finalTop"    # I
 
     .line 564
     iget-boolean v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mReleaseInProgress:Z
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1b
 
     .line 569
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mVelocityTracker:Landroid/view/VelocityTracker;
@@ -3578,7 +3578,7 @@
     return v0
 
     .line 565
-    :cond_0
+    :cond_1b
     new-instance v0, Ljava/lang/IllegalStateException;
 
     const-string v1, "Cannot settleCapturedViewAt outside of a call to Callback#onViewReleased"
@@ -3589,7 +3589,7 @@
 .end method
 
 .method public shouldInterceptTouchEvent(Landroid/view/MotionEvent;)Z
-    .locals 21
+    .registers 23
     .param p1, "ev"    # Landroid/view/MotionEvent;
 
     move-object/from16 v0, p0
@@ -3609,16 +3609,16 @@
 
     .line 950
     .local v3, "actionIndex":I
-    if-nez v2, :cond_0
+    if-nez v2, :cond_11
 
     .line 953
     invoke-virtual/range {p0 .. p0}, Landroid/support/v4/widget/ViewDragHelper;->cancel()V
 
     .line 956
-    :cond_0
+    :cond_11
     iget-object v4, v0, Landroid/support/v4/widget/ViewDragHelper;->mVelocityTracker:Landroid/view/VelocityTracker;
 
-    if-nez v4, :cond_1
+    if-nez v4, :cond_1b
 
     .line 957
     invoke-static {}, Landroid/view/VelocityTracker;->obtain()Landroid/view/VelocityTracker;
@@ -3628,7 +3628,7 @@
     iput-object v4, v0, Landroid/support/v4/widget/ViewDragHelper;->mVelocityTracker:Landroid/view/VelocityTracker;
 
     .line 959
-    :cond_1
+    :cond_1b
     iget-object v4, v0, Landroid/support/v4/widget/ViewDragHelper;->mVelocityTracker:Landroid/view/VelocityTracker;
 
     invoke-virtual {v4, v1}, Landroid/view/VelocityTracker;->addMovement(Landroid/view/MotionEvent;)V
@@ -3636,11 +3636,11 @@
     .line 961
     const/4 v4, 0x2
 
-    packed-switch v2, :pswitch_data_0
+    packed-switch v2, :pswitch_data_15c
 
     .line 1069
-    :cond_2
-    :pswitch_0
+    :cond_24
+    :pswitch_24
     move/from16 v16, v2
 
     move/from16 v17, v3
@@ -3651,14 +3651,14 @@
     .end local v3    # "actionIndex":I
     .local v16, "action":I
     .local v17, "actionIndex":I
-    goto/16 :goto_5
+    goto/16 :goto_153
 
     .line 1057
     .end local v16    # "action":I
     .end local v17    # "actionIndex":I
     .restart local v2    # "action":I
     .restart local v3    # "actionIndex":I
-    :pswitch_1
+    :pswitch_2b
     invoke-static {v1, v3}, Landroid/support/v4/view/MotionEventCompat;->getPointerId(Landroid/view/MotionEvent;I)I
 
     move-result v4
@@ -3676,20 +3676,20 @@
     .end local v4    # "pointerId":I
     .restart local v16    # "action":I
     .restart local v17    # "actionIndex":I
-    :cond_3
-    :goto_0
+    :cond_33
+    :goto_33
     move/from16 v16, v2
 
     move/from16 v17, v3
 
-    goto/16 :goto_4
+    goto/16 :goto_11b
 
     .line 983
     .end local v16    # "action":I
     .end local v17    # "actionIndex":I
     .restart local v2    # "action":I
     .restart local v3    # "actionIndex":I
-    :pswitch_2
+    :pswitch_39
     invoke-static {v1, v3}, Landroid/support/v4/view/MotionEventCompat;->getPointerId(Landroid/view/MotionEvent;I)I
 
     move-result v7
@@ -3713,7 +3713,7 @@
     .line 990
     iget v10, v0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
 
-    if-nez v10, :cond_5
+    if-nez v10, :cond_5e
 
     .line 991
     iget-object v4, v0, Landroid/support/v4/widget/ViewDragHelper;->mInitialEdgesTouched:[I
@@ -3726,7 +3726,7 @@
 
     and-int/2addr v10, v4
 
-    if-eqz v10, :cond_4
+    if-eqz v10, :cond_5d
 
     .line 993
     iget-object v10, v0, Landroid/support/v4/widget/ViewDragHelper;->mCallback:Landroid/support/v4/widget/ViewDragHelper$Callback;
@@ -3739,13 +3739,13 @@
 
     .line 995
     .end local v4    # "edgesTouched":I
-    :cond_4
-    goto :goto_0
+    :cond_5d
+    goto :goto_33
 
-    :cond_5
+    :cond_5e
     iget v10, v0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
 
-    if-ne v10, v4, :cond_3
+    if-ne v10, v4, :cond_33
 
     .line 997
     float-to-int v4, v8
@@ -3760,33 +3760,33 @@
     .local v4, "toCapture":Landroid/view/View;
     iget-object v10, v0, Landroid/support/v4/widget/ViewDragHelper;->mCapturedView:Landroid/view/View;
 
-    if-ne v4, v10, :cond_6
+    if-ne v4, v10, :cond_6f
 
     .line 999
     invoke-virtual {v0, v4, v7}, Landroid/support/v4/widget/ViewDragHelper;->tryCaptureViewForDrag(Landroid/view/View;I)Z
 
     .line 1001
     .end local v4    # "toCapture":Landroid/view/View;
-    :cond_6
-    goto :goto_0
+    :cond_6f
+    goto :goto_33
 
     .line 1006
     .end local v7    # "pointerId":I
     .end local v8    # "x":F
     .end local v9    # "y":F
-    :pswitch_3
+    :pswitch_70
     iget-object v4, v0, Landroid/support/v4/widget/ViewDragHelper;->mInitialMotionX:[F
 
-    if-eqz v4, :cond_2
+    if-eqz v4, :cond_24
 
     iget-object v4, v0, Landroid/support/v4/widget/ViewDragHelper;->mInitialMotionY:[F
 
-    if-nez v4, :cond_7
+    if-nez v4, :cond_79
 
-    goto :goto_0
+    goto :goto_33
 
     .line 1009
-    :cond_7
+    :cond_79
     invoke-static/range {p1 .. p1}, Landroid/support/v4/view/MotionEventCompat;->getPointerCount(Landroid/view/MotionEvent;)I
 
     move-result v4
@@ -3796,8 +3796,8 @@
     const/4 v7, 0x0
 
     .local v7, "i":I
-    :goto_1
-    if-ge v7, v4, :cond_e
+    :goto_7e
+    if-ge v7, v4, :cond_10a
 
     .line 1011
     invoke-static {v1, v7}, Landroid/support/v4/view/MotionEventCompat;->getPointerId(Landroid/view/MotionEvent;I)I
@@ -3844,25 +3844,25 @@
 
     .line 1018
     .local v13, "toCapture":Landroid/view/View;
-    if-eqz v13, :cond_8
+    if-eqz v13, :cond_a8
 
     invoke-direct {v0, v13, v11, v12}, Landroid/support/v4/widget/ViewDragHelper;->checkTouchSlop(Landroid/view/View;FF)Z
 
     move-result v14
 
-    if-eqz v14, :cond_8
+    if-eqz v14, :cond_a8
 
     const/4 v14, 0x1
 
-    goto :goto_2
+    goto :goto_a9
 
-    :cond_8
+    :cond_a8
     const/4 v14, 0x0
 
     .line 1019
     .local v14, "pastSlop":Z
-    :goto_2
-    if-eqz v14, :cond_a
+    :goto_a9
+    if-eqz v14, :cond_e8
 
     .line 1025
     invoke-virtual {v13}, Landroid/view/View;->getLeft()I
@@ -3945,21 +3945,21 @@
 
     .line 1036
     .local v3, "verticalDragRange":I
-    if-eqz v5, :cond_9
+    if-eqz v5, :cond_e1
 
-    if-lez v5, :cond_b
+    if-lez v5, :cond_ee
 
-    if-ne v2, v15, :cond_b
+    if-ne v2, v15, :cond_ee
 
-    :cond_9
-    if-eqz v3, :cond_f
+    :cond_e1
+    if-eqz v3, :cond_110
 
-    if-lez v3, :cond_b
+    if-lez v3, :cond_ee
 
-    if-ne v4, v6, :cond_b
+    if-ne v4, v6, :cond_ee
 
     .line 1039
-    goto :goto_3
+    goto :goto_110
 
     .line 1042
     .end local v5    # "horizontalDragRange":I
@@ -3973,7 +3973,7 @@
     .local v2, "action":I
     .local v3, "actionIndex":I
     .local v4, "pointerCount":I
-    :cond_a
+    :cond_e8
     move/from16 v16, v2
 
     move/from16 v17, v3
@@ -3986,7 +3986,7 @@
     .restart local v16    # "action":I
     .restart local v17    # "actionIndex":I
     .restart local v18    # "pointerCount":I
-    :cond_b
+    :cond_ee
     invoke-direct {v0, v11, v12, v8}, Landroid/support/v4/widget/ViewDragHelper;->reportNewEdgeDrags(FFI)V
 
     .line 1043
@@ -3994,23 +3994,23 @@
 
     const/4 v3, 0x1
 
-    if-ne v2, v3, :cond_c
+    if-ne v2, v3, :cond_f7
 
     .line 1045
-    goto :goto_3
+    goto :goto_110
 
     .line 1048
-    :cond_c
-    if-eqz v14, :cond_d
+    :cond_f7
+    if-eqz v14, :cond_100
 
     invoke-virtual {v0, v13, v8}, Landroid/support/v4/widget/ViewDragHelper;->tryCaptureViewForDrag(Landroid/view/View;I)Z
 
     move-result v2
 
-    if-eqz v2, :cond_d
+    if-eqz v2, :cond_100
 
     .line 1049
-    goto :goto_3
+    goto :goto_110
 
     .line 1010
     .end local v8    # "pointerId":I
@@ -4020,7 +4020,7 @@
     .end local v12    # "dy":F
     .end local v13    # "toCapture":Landroid/view/View;
     .end local v14    # "pastSlop":Z
-    :cond_d
+    :cond_100
     add-int/lit8 v7, v7, 0x1
 
     move/from16 v2, v16
@@ -4029,7 +4029,7 @@
 
     move/from16 v4, v18
 
-    goto/16 :goto_1
+    goto/16 :goto_7e
 
     .line 1052
     .end local v7    # "i":I
@@ -4039,7 +4039,7 @@
     .restart local v2    # "action":I
     .restart local v3    # "actionIndex":I
     .restart local v4    # "pointerCount":I
-    :cond_e
+    :cond_10a
     move/from16 v16, v2
 
     move/from16 v17, v3
@@ -4052,12 +4052,12 @@
     .restart local v16    # "action":I
     .restart local v17    # "actionIndex":I
     .restart local v18    # "pointerCount":I
-    :cond_f
-    :goto_3
+    :cond_110
+    :goto_110
     invoke-direct/range {p0 .. p1}, Landroid/support/v4/widget/ViewDragHelper;->saveLastMotion(Landroid/view/MotionEvent;)V
 
     .line 1053
-    goto :goto_4
+    goto :goto_11b
 
     .line 1064
     .end local v16    # "action":I
@@ -4065,7 +4065,7 @@
     .end local v18    # "pointerCount":I
     .restart local v2    # "action":I
     .restart local v3    # "actionIndex":I
-    :pswitch_4
+    :pswitch_114
     move/from16 v16, v2
 
     move/from16 v17, v3
@@ -4077,17 +4077,17 @@
     invoke-virtual/range {p0 .. p0}, Landroid/support/v4/widget/ViewDragHelper;->cancel()V
 
     .line 1069
-    :goto_4
+    :goto_11b
     const/4 v5, 0x0
 
-    goto :goto_5
+    goto :goto_153
 
     .line 963
     .end local v16    # "action":I
     .end local v17    # "actionIndex":I
     .restart local v2    # "action":I
     .restart local v3    # "actionIndex":I
-    :pswitch_5
+    :pswitch_11d
     move/from16 v16, v2
 
     move/from16 v17, v3
@@ -4131,17 +4131,17 @@
     .local v7, "toCapture":Landroid/view/View;
     iget-object v8, v0, Landroid/support/v4/widget/ViewDragHelper;->mCapturedView:Landroid/view/View;
 
-    if-ne v7, v8, :cond_10
+    if-ne v7, v8, :cond_142
 
     iget v8, v0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
 
-    if-ne v8, v4, :cond_10
+    if-ne v8, v4, :cond_142
 
     .line 972
     invoke-virtual {v0, v7, v6}, Landroid/support/v4/widget/ViewDragHelper;->tryCaptureViewForDrag(Landroid/view/View;I)Z
 
     .line 975
-    :cond_10
+    :cond_142
     iget-object v4, v0, Landroid/support/v4/widget/ViewDragHelper;->mInitialEdgesTouched:[I
 
     aget v4, v4, v6
@@ -4152,7 +4152,7 @@
 
     and-int/2addr v8, v4
 
-    if-eqz v8, :cond_11
+    if-eqz v8, :cond_153
 
     .line 977
     iget-object v8, v0, Landroid/support/v4/widget/ViewDragHelper;->mCallback:Landroid/support/v4/widget/ViewDragHelper$Callback;
@@ -4169,38 +4169,38 @@
     .end local v4    # "edgesTouched":I
     .end local v6    # "pointerId":I
     .end local v7    # "toCapture":Landroid/view/View;
-    :cond_11
-    :goto_5
+    :cond_153
+    :goto_153
     iget v2, v0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
 
     const/4 v3, 0x1
 
-    if-ne v2, v3, :cond_12
+    if-ne v2, v3, :cond_159
 
-    goto :goto_6
+    goto :goto_15a
 
-    :cond_12
+    :cond_159
     move v3, v5
 
-    :goto_6
+    :goto_15a
     return v3
 
     nop
 
-    :pswitch_data_0
+    :pswitch_data_15c
     .packed-switch 0x0
-        :pswitch_5
-        :pswitch_4
-        :pswitch_3
-        :pswitch_4
-        :pswitch_0
-        :pswitch_2
-        :pswitch_1
+        :pswitch_11d
+        :pswitch_114
+        :pswitch_70
+        :pswitch_114
+        :pswitch_24
+        :pswitch_39
+        :pswitch_2b
     .end packed-switch
 .end method
 
 .method public smoothSlideViewTo(Landroid/view/View;II)Z
-    .locals 2
+    .registers 6
     .param p1, "child"    # Landroid/view/View;
     .param p2, "finalLeft"    # I
     .param p3, "finalTop"    # I
@@ -4222,15 +4222,15 @@
 
     .line 543
     .local v0, "continueSliding":Z
-    if-nez v0, :cond_0
+    if-nez v0, :cond_17
 
     iget v1, p0, Landroid/support/v4/widget/ViewDragHelper;->mDragState:I
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_17
 
     iget-object v1, p0, Landroid/support/v4/widget/ViewDragHelper;->mCapturedView:Landroid/view/View;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_17
 
     .line 546
     const/4 v1, 0x0
@@ -4238,12 +4238,12 @@
     iput-object v1, p0, Landroid/support/v4/widget/ViewDragHelper;->mCapturedView:Landroid/view/View;
 
     .line 549
-    :cond_0
+    :cond_17
     return v0
 .end method
 
 .method tryCaptureViewForDrag(Landroid/view/View;I)Z
-    .locals 2
+    .registers 5
     .param p1, "toCapture"    # Landroid/view/View;
     .param p2, "pointerId"    # I
 
@@ -4252,18 +4252,18 @@
 
     const/4 v1, 0x1
 
-    if-ne p1, v0, :cond_0
+    if-ne p1, v0, :cond_a
 
     iget v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mActivePointerId:I
 
-    if-ne v0, p2, :cond_0
+    if-ne v0, p2, :cond_a
 
     .line 893
     return v1
 
     .line 895
-    :cond_0
-    if-eqz p1, :cond_1
+    :cond_a
+    if-eqz p1, :cond_1a
 
     iget-object v0, p0, Landroid/support/v4/widget/ViewDragHelper;->mCallback:Landroid/support/v4/widget/ViewDragHelper$Callback;
 
@@ -4271,7 +4271,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_1a
 
     .line 896
     iput p2, p0, Landroid/support/v4/widget/ViewDragHelper;->mActivePointerId:I
@@ -4283,7 +4283,7 @@
     return v1
 
     .line 900
-    :cond_1
+    :cond_1a
     const/4 v0, 0x0
 
     return v0

@@ -4,17 +4,17 @@
 
 
 # static fields
-.field private static final de:I = 0x2
+.field private static final df:I = 0x2
 
-.field private static final df:[B
-
-.field private static final dg:I
+.field private static final dg:[B
 
 .field private static final dh:I
 
+.field private static final di:I
+
 
 # instance fields
-.field private final di:B
+.field private final dj:B
 
 .field private position:I
 
@@ -30,21 +30,21 @@
 
     fill-array-data v0, :array_0
 
-    sput-object v0, Lcom/bumptech/glide/load/a/g;->df:[B
+    sput-object v0, Lcom/bumptech/glide/load/a/g;->dg:[B
 
     .line 61
-    sget-object v0, Lcom/bumptech/glide/load/a/g;->df:[B
+    sget-object v0, Lcom/bumptech/glide/load/a/g;->dg:[B
 
     array-length v0, v0
 
-    sput v0, Lcom/bumptech/glide/load/a/g;->dg:I
+    sput v0, Lcom/bumptech/glide/load/a/g;->dh:I
 
     .line 62
-    sget v0, Lcom/bumptech/glide/load/a/g;->dg:I
+    sget v0, Lcom/bumptech/glide/load/a/g;->dh:I
 
     add-int/lit8 v0, v0, 0x2
 
-    sput v0, Lcom/bumptech/glide/load/a/g;->dh:I
+    sput v0, Lcom/bumptech/glide/load/a/g;->di:I
 
     return-void
 
@@ -102,7 +102,7 @@
     .line 71
     int-to-byte p1, p2
 
-    iput-byte p1, p0, Lcom/bumptech/glide/load/a/g;->di:B
+    iput-byte p1, p0, Lcom/bumptech/glide/load/a/g;->dj:B
 
     .line 72
     return-void
@@ -169,7 +169,7 @@
 
     iget v0, p0, Lcom/bumptech/glide/load/a/g;->position:I
 
-    sget v2, Lcom/bumptech/glide/load/a/g;->dh:I
+    sget v2, Lcom/bumptech/glide/load/a/g;->di:I
 
     if-le v0, v2, :cond_0
 
@@ -179,18 +179,18 @@
     :cond_0
     iget v0, p0, Lcom/bumptech/glide/load/a/g;->position:I
 
-    sget v2, Lcom/bumptech/glide/load/a/g;->dh:I
+    sget v2, Lcom/bumptech/glide/load/a/g;->di:I
 
     if-ne v0, v2, :cond_1
 
     .line 92
-    iget-byte v0, p0, Lcom/bumptech/glide/load/a/g;->di:B
+    iget-byte v0, p0, Lcom/bumptech/glide/load/a/g;->dj:B
 
     goto :goto_1
 
     .line 94
     :cond_1
-    sget-object v0, Lcom/bumptech/glide/load/a/g;->df:[B
+    sget-object v0, Lcom/bumptech/glide/load/a/g;->dg:[B
 
     iget v2, p0, Lcom/bumptech/glide/load/a/g;->position:I
 
@@ -242,7 +242,7 @@
     .line 105
     iget v0, p0, Lcom/bumptech/glide/load/a/g;->position:I
 
-    sget v1, Lcom/bumptech/glide/load/a/g;->dh:I
+    sget v1, Lcom/bumptech/glide/load/a/g;->di:I
 
     if-le v0, v1, :cond_0
 
@@ -257,12 +257,12 @@
     :cond_0
     iget v0, p0, Lcom/bumptech/glide/load/a/g;->position:I
 
-    sget v1, Lcom/bumptech/glide/load/a/g;->dh:I
+    sget v1, Lcom/bumptech/glide/load/a/g;->di:I
 
     if-ne v0, v1, :cond_1
 
     .line 108
-    iget-byte p3, p0, Lcom/bumptech/glide/load/a/g;->di:B
+    iget-byte p3, p0, Lcom/bumptech/glide/load/a/g;->dj:B
 
     aput-byte p3, p1, p2
 
@@ -292,7 +292,7 @@
 
     .line 113
     :cond_2
-    sget v0, Lcom/bumptech/glide/load/a/g;->dh:I
+    sget v0, Lcom/bumptech/glide/load/a/g;->di:I
 
     iget v2, p0, Lcom/bumptech/glide/load/a/g;->position:I
 
@@ -303,7 +303,7 @@
     move-result p3
 
     .line 114
-    sget-object v0, Lcom/bumptech/glide/load/a/g;->df:[B
+    sget-object v0, Lcom/bumptech/glide/load/a/g;->dg:[B
 
     iget v2, p0, Lcom/bumptech/glide/load/a/g;->position:I
 

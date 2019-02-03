@@ -14,7 +14,7 @@
     .end annotation
 .end field
 
-.field public static final lY:Lcom/bumptech/glide/load/e;
+.field public static final lX:Lcom/bumptech/glide/load/e;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/e<",
@@ -32,7 +32,7 @@
     .line 18
     const-string v0, "com.bumptech.glide.load.resource.gif.GifOptions.DecodeFormat"
 
-    sget-object v1, Lcom/bumptech/glide/load/DecodeFormat;->cB:Lcom/bumptech/glide/load/DecodeFormat;
+    sget-object v1, Lcom/bumptech/glide/load/DecodeFormat;->cC:Lcom/bumptech/glide/load/DecodeFormat;
 
     invoke-static {v0, v1}, Lcom/bumptech/glide/load/e;->a(Ljava/lang/String;Ljava/lang/Object;)Lcom/bumptech/glide/load/e;
 
@@ -55,7 +55,7 @@
 
     move-result-object v0
 
-    sput-object v0, Lcom/bumptech/glide/load/resource/gif/g;->lY:Lcom/bumptech/glide/load/e;
+    sput-object v0, Lcom/bumptech/glide/load/resource/gif/g;->lX:Lcom/bumptech/glide/load/e;
 
     return-void
 .end method

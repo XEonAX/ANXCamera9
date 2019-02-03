@@ -1,5 +1,6 @@
 package com.android.camera2;
 
+import android.content.Context;
 import android.graphics.RectF;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraDevice;
@@ -18,33 +19,32 @@ import android.view.Surface;
 import com.android.camera.CameraSize;
 import com.android.camera.effect.FaceAnalyzeInfo;
 import com.android.camera.fragment.beauty.BeautyValues;
-import com.android.camera.groupshot.GroupShot;
 import com.android.camera.module.loader.camera2.FocusTask;
 import com.xiaomi.camera.core.ParallelCallback;
 import com.xiaomi.camera.core.ParallelTaskData;
 
 public abstract class Camera2Proxy {
-    protected final Object mCallbackLock = new Object();
-    protected final int mCameraId;
+    private final Object mCallbackLock = new Object();
+    final int mCameraId;
     protected CameraErrorCallback mErrorCallback;
-    protected FocusCallback mFocusCallback;
-    protected CameraMetaDataCallback mMetadataCallback;
-    protected ParallelCallback mParallelCallback;
+    private FocusCallback mFocusCallback;
+    private CameraMetaDataCallback mMetadataCallback;
+    private ParallelCallback mParallelCallback;
     private PictureCallback mPictureCallBack;
     private PreviewCallback mPreviewCallback;
-    protected PictureCallback mRawCallBack;
-    protected ScreenLightCallback mScreenLightCallback;
+    private PictureCallback mRawCallBack;
+    private ScreenLightCallback mScreenLightCallback;
 
     public interface CameraErrorCallback {
         void onCameraError(Camera2Proxy camera2Proxy, int i);
     }
 
     public interface CameraMetaDataCallback {
-        void onCameraMetaData(CaptureResult captureResult);
+        void onPreviewMetaDataUpdate(CaptureResult captureResult);
     }
 
     public interface PictureCallback {
-        ParallelTaskData onCaptureStart(long j, int i, String str);
+        ParallelTaskData onCaptureStart(ParallelTaskData parallelTaskData, CameraSize cameraSize);
 
         void onPictureTaken(byte[] bArr);
 
@@ -54,7 +54,7 @@ public abstract class Camera2Proxy {
     }
 
     public static class PictureCallbackWrapper implements PictureCallback {
-        public ParallelTaskData onCaptureStart(long j, int i, String str) {
+        public ParallelTaskData onCaptureStart(ParallelTaskData parallelTaskData, CameraSize cameraSize) {
             return null;
         }
 
@@ -67,6 +67,12 @@ public abstract class Camera2Proxy {
 
         public void onPictureTakenFinished(boolean z) {
         }
+    }
+
+    public interface BeautyBodySlimCountCallback {
+        boolean isBeautyBodySlimCountDetectStarted();
+
+        void onBeautyBodySlimCountChange(boolean z);
     }
 
     public interface CameraPreviewCallback {
@@ -112,7 +118,7 @@ public abstract class Camera2Proxy {
     }
 
     public interface PreviewCallback {
-        void onPreviewFrame(Image image, Camera2Proxy camera2Proxy);
+        void onPreviewFrame(Image image, Camera2Proxy camera2Proxy, int i);
     }
 
     public abstract void cancelContinuousShot();
@@ -123,11 +129,13 @@ public abstract class Camera2Proxy {
 
     public abstract void captureBurstPictures(int i, @NonNull PictureCallback pictureCallback, @NonNull ParallelCallback parallelCallback);
 
-    public abstract void captureGroupShotPictures(@NonNull PictureCallback pictureCallback, @NonNull ParallelCallback parallelCallback, int i, GroupShot groupShot);
+    public abstract void captureGroupShotPictures(@NonNull PictureCallback pictureCallback, @NonNull ParallelCallback parallelCallback, int i, Context context);
 
     public abstract void captureVideoSnapshot(PictureCallback pictureCallback);
 
     public abstract void close();
+
+    public abstract void forceTurnFlashOffAndPausePreview();
 
     protected abstract CameraConfigs getCameraConfigs();
 
@@ -185,6 +193,10 @@ public abstract class Camera2Proxy {
 
     public abstract boolean isNeedPreviewThumbnail();
 
+    public abstract boolean isPreviewReady();
+
+    public abstract boolean isQcfaEnable();
+
     public abstract boolean isSessionReady();
 
     public abstract void lockExposure(boolean z);
@@ -213,11 +225,21 @@ public abstract class Camera2Proxy {
 
     public abstract void setASDPeriod(int i);
 
+    public abstract void setASDScene(int i);
+
     public abstract void setAWBLock(boolean z);
 
     public abstract void setAWBMode(int i);
 
     public abstract void setAntiBanding(int i);
+
+    public abstract void setAutoZoomMode(int i);
+
+    public abstract void setAutoZoomScaleOffset(float f);
+
+    public abstract void setAutoZoomStartCapture(float[] fArr);
+
+    public abstract void setAutoZoomStopCapture(int i);
 
     public abstract void setBeautyValues(BeautyValues beautyValues);
 
@@ -265,8 +287,6 @@ public abstract class Camera2Proxy {
 
     public abstract void setFlashMode(int i);
 
-    public abstract void setFocusCallback(FocusCallback focusCallback);
-
     public abstract void setFocusDistance(float f);
 
     public abstract void setFocusMode(int i);
@@ -293,8 +313,6 @@ public abstract class Camera2Proxy {
 
     public abstract void setLensDirtyDetect(boolean z);
 
-    public abstract void setMetaDataCallback(CameraMetaDataCallback cameraMetaDataCallback);
-
     public abstract void setMfnr(boolean z);
 
     public abstract void setNeedPausePreview(boolean z);
@@ -319,11 +337,11 @@ public abstract class Camera2Proxy {
 
     public abstract void setPreviewSize(CameraSize cameraSize);
 
+    public abstract void setQcfaEnable(boolean z);
+
     public abstract void setSaturation(int i);
 
     public abstract void setSceneMode(int i);
-
-    public abstract void setScreenLightCallback(ScreenLightCallback screenLightCallback);
 
     public abstract void setSharpness(int i);
 
@@ -365,9 +383,9 @@ public abstract class Camera2Proxy {
 
     public abstract void startPreviewCallback(@NonNull PreviewCallback previewCallback);
 
-    public abstract void startPreviewSession(Surface surface, boolean z, boolean z2, int i, CameraPreviewCallback cameraPreviewCallback);
+    public abstract void startPreviewSession(Surface surface, boolean z, boolean z2, int i, boolean z3, CameraPreviewCallback cameraPreviewCallback);
 
-    public abstract void startPreviewSession(@Nullable Surface surface, boolean z, boolean z2, int i, CameraPreviewCallback cameraPreviewCallback, Handler handler);
+    public abstract void startPreviewSession(@Nullable Surface surface, boolean z, boolean z2, int i, boolean z3, CameraPreviewCallback cameraPreviewCallback, Handler handler);
 
     public abstract void startRecordPreview();
 
@@ -384,6 +402,10 @@ public abstract class Camera2Proxy {
     public abstract void stopRecording(VideoRecordStateCallback videoRecordStateCallback);
 
     public abstract void takePicture(@NonNull PictureCallback pictureCallback, @NonNull ParallelCallback parallelCallback);
+
+    public abstract void unlockExposure();
+
+    public abstract boolean updateDeferPreviewSession(Surface surface);
 
     public Camera2Proxy(int i) {
         this.mCameraId = i;
@@ -451,5 +473,61 @@ public abstract class Camera2Proxy {
             parallelCallback = this.mParallelCallback;
         }
         return parallelCallback;
+    }
+
+    public void setScreenLightCallback(ScreenLightCallback screenLightCallback) {
+        synchronized (this.mCallbackLock) {
+            this.mScreenLightCallback = screenLightCallback;
+        }
+    }
+
+    ScreenLightCallback getScreenLightCallback() {
+        ScreenLightCallback screenLightCallback;
+        synchronized (this.mCallbackLock) {
+            screenLightCallback = this.mScreenLightCallback;
+        }
+        return screenLightCallback;
+    }
+
+    public void setFocusCallback(FocusCallback focusCallback) {
+        synchronized (this.mCallbackLock) {
+            this.mFocusCallback = focusCallback;
+        }
+    }
+
+    FocusCallback getFocusCallback() {
+        FocusCallback focusCallback;
+        synchronized (this.mCallbackLock) {
+            focusCallback = this.mFocusCallback;
+        }
+        return focusCallback;
+    }
+
+    public void setMetaDataCallback(CameraMetaDataCallback cameraMetaDataCallback) {
+        synchronized (this.mCallbackLock) {
+            this.mMetadataCallback = cameraMetaDataCallback;
+        }
+    }
+
+    CameraMetaDataCallback getMetadataCallback() {
+        CameraMetaDataCallback cameraMetaDataCallback;
+        synchronized (this.mCallbackLock) {
+            cameraMetaDataCallback = this.mMetadataCallback;
+        }
+        return cameraMetaDataCallback;
+    }
+
+    public void setRawCallBack(PictureCallback pictureCallback) {
+        synchronized (this.mCallbackLock) {
+            this.mRawCallBack = pictureCallback;
+        }
+    }
+
+    public PictureCallback getRawCallBack() {
+        PictureCallback pictureCallback;
+        synchronized (this.mCallbackLock) {
+            pictureCallback = this.mRawCallBack;
+        }
+        return pictureCallback;
     }
 }

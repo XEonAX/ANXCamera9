@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/ThermalDetector;)V
     .locals 0
 
-    .line 48
+    .line 47
     iput-object p1, p0, Lcom/android/camera/ThermalDetector$1;->this$0:Lcom/android/camera/ThermalDetector;
 
     invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
@@ -35,13 +35,13 @@
 .method public onReceive(Landroid/content/Context;Landroid/content/Intent;)V
     .locals 2
 
-    .line 51
+    .line 50
     if-nez p2, :cond_0
 
-    .line 52
+    .line 51
     return-void
 
-    .line 54
+    .line 53
     :cond_0
     invoke-virtual {p2}, Landroid/content/Intent;->getAction()Ljava/lang/String;
 
@@ -55,10 +55,10 @@
 
     if-nez p1, :cond_1
 
-    .line 55
+    .line 54
     return-void
 
-    .line 57
+    .line 56
     :cond_1
     iget-object p1, p0, Lcom/android/camera/ThermalDetector$1;->this$0:Lcom/android/camera/ThermalDetector;
 
@@ -72,7 +72,7 @@
 
     invoke-static {p1, p2}, Lcom/android/camera/ThermalDetector;->access$202(Lcom/android/camera/ThermalDetector;I)I
 
-    .line 58
+    .line 57
     invoke-static {}, Lcom/android/camera/ThermalDetector;->access$300()Ljava/lang/String;
 
     move-result-object p1
@@ -99,7 +99,7 @@
 
     invoke-static {p1, p2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 61
+    .line 60
     iget-object p1, p0, Lcom/android/camera/ThermalDetector$1;->this$0:Lcom/android/camera/ThermalDetector;
 
     iget-object p2, p0, Lcom/android/camera/ThermalDetector$1;->this$0:Lcom/android/camera/ThermalDetector;
@@ -110,6 +110,6 @@
 
     invoke-static {p1, p2}, Lcom/android/camera/ThermalDetector;->access$400(Lcom/android/camera/ThermalDetector;I)V
 
-    .line 62
+    .line 61
     return-void
 .end method

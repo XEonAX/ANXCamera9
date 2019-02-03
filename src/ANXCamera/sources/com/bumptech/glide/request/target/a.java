@@ -14,7 +14,7 @@ import com.bumptech.glide.util.i;
 public class a extends l<Bitmap> {
     private final ComponentName componentName;
     private final Context context;
-    private final int[] or;
+    private final int[] oq;
     private final RemoteViews remoteViews;
     private final int viewId;
 
@@ -23,7 +23,7 @@ public class a extends l<Bitmap> {
         if (iArr.length != 0) {
             this.context = (Context) i.a((Object) context, "Context can not be null!");
             this.remoteViews = (RemoteViews) i.a((Object) remoteViews, "RemoteViews object can not be null!");
-            this.or = (int[]) i.a((Object) iArr, "WidgetIds can not be null!");
+            this.oq = (int[]) i.a((Object) iArr, "WidgetIds can not be null!");
             this.viewId = i3;
             this.componentName = null;
             return;
@@ -41,7 +41,7 @@ public class a extends l<Bitmap> {
         this.remoteViews = (RemoteViews) i.a((Object) remoteViews, "RemoteViews object can not be null!");
         this.componentName = (ComponentName) i.a((Object) componentName, "ComponentName can not be null!");
         this.viewId = i3;
-        this.or = null;
+        this.oq = null;
     }
 
     public a(Context context, int i, RemoteViews remoteViews, ComponentName componentName) {
@@ -53,7 +53,7 @@ public class a extends l<Bitmap> {
         if (this.componentName != null) {
             instance.updateAppWidget(this.componentName, this.remoteViews);
         } else {
-            instance.updateAppWidget(this.or, this.remoteViews);
+            instance.updateAppWidget(this.oq, this.remoteViews);
         }
     }
 

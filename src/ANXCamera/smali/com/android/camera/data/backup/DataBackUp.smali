@@ -16,6 +16,9 @@
 .method public abstract getBackupRunning(II)Landroid/support/v4/util/SimpleArrayMap;
 .end method
 
+.method public abstract getBackupSwitchState(ILjava/lang/String;I)Z
+.end method
+
 .method public abstract isLastVideoFastMotion()Z
 .end method
 

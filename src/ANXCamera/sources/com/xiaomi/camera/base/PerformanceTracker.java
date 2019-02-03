@@ -1,11 +1,12 @@
 package com.xiaomi.camera.base;
 
-import android.util.Log;
+import com.android.camera.log.Log;
 
-public class PerformanceTracker {
+public final class PerformanceTracker {
     public static final int END = 1;
     private static final String END_TAG = "[  END]";
     private static final String EVENT_ALGORITHM_PROCESS = "[AlgorithmProcess]";
+    private static final String EVENT_CLEAR_SHOT = "[       ClearShot]";
     private static final String EVENT_IMAGE_SAVER = "[      ImageSaver]";
     private static final String EVENT_JPEG_REPROCESS = "[   JpegReprocess]";
     private static final String EVENT_PICTURE_CAPTURE = "[    PictureTaken]";
@@ -62,17 +63,43 @@ public class PerformanceTracker {
         }
     }
 
+    public static synchronized void trackClearShotProcess(String str, int i) {
+        synchronized (PerformanceTracker.class) {
+            String str2;
+            StringBuilder stringBuilder;
+            if (i == 0) {
+                str2 = TAG;
+                stringBuilder = new StringBuilder();
+                stringBuilder.append("[       ClearShot][START]");
+                stringBuilder.append(str);
+                stringBuilder.append("[");
+                stringBuilder.append(System.currentTimeMillis());
+                stringBuilder.append("]");
+                Log.i(str2, stringBuilder.toString());
+            } else if (i == 1) {
+                str2 = TAG;
+                stringBuilder = new StringBuilder();
+                stringBuilder.append("[       ClearShot][  END]");
+                stringBuilder.append(str);
+                stringBuilder.append("[");
+                stringBuilder.append(System.currentTimeMillis());
+                stringBuilder.append("]");
+                Log.i(str2, stringBuilder.toString());
+            }
+        }
+    }
+
     public static synchronized void trackJpegReprocess(int i, int i2) {
         synchronized (PerformanceTracker.class) {
             String str = null;
             switch (i) {
-                case 1:
+                case 0:
                     str = "[EFFECT]";
                     break;
-                case 2:
+                case 1:
                     str = "[   RAW]";
                     break;
-                case 3:
+                case 2:
                     str = "[ DEPTH]";
                     break;
             }

@@ -19,7 +19,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 8079
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public onInterceptTouchEvent(Landroid/support/v7/widget/RecyclerView;Landroid/view/MotionEvent;)Z
-    .locals 1
+    .registers 4
     .param p1, "rv"    # Landroid/support/v7/widget/RecyclerView;
     .param p2, "e"    # Landroid/view/MotionEvent;
 
@@ -41,7 +41,7 @@
 .end method
 
 .method public onRequestDisallowInterceptTouchEvent(Z)V
-    .locals 0
+    .registers 2
     .param p1, "disallowIntercept"    # Z
 
     .line 8091
@@ -49,7 +49,7 @@
 .end method
 
 .method public onTouchEvent(Landroid/support/v7/widget/RecyclerView;Landroid/view/MotionEvent;)V
-    .locals 0
+    .registers 3
     .param p1, "rv"    # Landroid/support/v7/widget/RecyclerView;
     .param p2, "e"    # Landroid/view/MotionEvent;
 

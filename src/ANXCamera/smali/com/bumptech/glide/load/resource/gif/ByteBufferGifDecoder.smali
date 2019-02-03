@@ -36,7 +36,7 @@
 # instance fields
 .field private final context:Landroid/content/Context;
 
-.field private final dL:Ljava/util/List;
+.field private final dM:Ljava/util/List;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/List<",
@@ -181,7 +181,7 @@
     iput-object p1, p0, Lcom/bumptech/glide/load/resource/gif/ByteBufferGifDecoder;->context:Landroid/content/Context;
 
     .line 68
-    iput-object p2, p0, Lcom/bumptech/glide/load/resource/gif/ByteBufferGifDecoder;->dL:Ljava/util/List;
+    iput-object p2, p0, Lcom/bumptech/glide/load/resource/gif/ByteBufferGifDecoder;->dM:Ljava/util/List;
 
     .line 69
     iput-object p6, p0, Lcom/bumptech/glide/load/resource/gif/ByteBufferGifDecoder;->ly:Lcom/bumptech/glide/load/resource/gif/ByteBufferGifDecoder$GifDecoderFactory;
@@ -364,7 +364,7 @@
 
     move-result-object v5
 
-    sget-object v7, Lcom/bumptech/glide/load/DecodeFormat;->cA:Lcom/bumptech/glide/load/DecodeFormat;
+    sget-object v7, Lcom/bumptech/glide/load/DecodeFormat;->cB:Lcom/bumptech/glide/load/DecodeFormat;
 
     if-ne v5, v7, :cond_1
 
@@ -662,7 +662,7 @@
     .end annotation
 
     .line 76
-    sget-object v0, Lcom/bumptech/glide/load/resource/gif/g;->lY:Lcom/bumptech/glide/load/e;
+    sget-object v0, Lcom/bumptech/glide/load/resource/gif/g;->lX:Lcom/bumptech/glide/load/e;
 
     invoke-virtual {p2, v0}, Lcom/bumptech/glide/load/f;->a(Lcom/bumptech/glide/load/e;)Ljava/lang/Object;
 
@@ -676,14 +676,14 @@
 
     if-nez p2, :cond_0
 
-    iget-object p2, p0, Lcom/bumptech/glide/load/resource/gif/ByteBufferGifDecoder;->dL:Ljava/util/List;
+    iget-object p2, p0, Lcom/bumptech/glide/load/resource/gif/ByteBufferGifDecoder;->dM:Ljava/util/List;
 
     .line 77
     invoke-static {p2, p1}, Lcom/bumptech/glide/load/b;->a(Ljava/util/List;Ljava/nio/ByteBuffer;)Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     move-result-object p1
 
-    sget-object p2, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cI:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object p2, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cJ:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     if-ne p1, p2, :cond_0
 

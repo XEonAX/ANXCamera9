@@ -22,7 +22,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/ComponentName;Landroid/os/IBinder;)V
-    .locals 0
+    .registers 3
     .param p1, "componentName"    # Landroid/content/ComponentName;
     .param p2, "iBinder"    # Landroid/os/IBinder;
 

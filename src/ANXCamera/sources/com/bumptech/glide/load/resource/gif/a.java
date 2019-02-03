@@ -11,7 +11,7 @@ import com.bumptech.glide.load.engine.bitmap_recycle.d;
 public final class a implements com.bumptech.glide.b.a.a {
     private final d i;
     @Nullable
-    private final b r;
+    private final b v;
 
     public a(d dVar) {
         this(dVar, null);
@@ -19,7 +19,7 @@ public final class a implements com.bumptech.glide.b.a.a {
 
     public a(d dVar, @Nullable b bVar) {
         this.i = dVar;
-        this.r = bVar;
+        this.v = bVar;
     }
 
     @NonNull
@@ -33,29 +33,29 @@ public final class a implements com.bumptech.glide.b.a.a {
 
     @NonNull
     public byte[] i(int i) {
-        if (this.r == null) {
+        if (this.v == null) {
             return new byte[i];
         }
-        return (byte[]) this.r.a(i, byte[].class);
+        return (byte[]) this.v.a(i, byte[].class);
     }
 
     public void c(@NonNull byte[] bArr) {
-        if (this.r != null) {
-            this.r.put(bArr);
+        if (this.v != null) {
+            this.v.put(bArr);
         }
     }
 
     @NonNull
     public int[] j(int i) {
-        if (this.r == null) {
+        if (this.v == null) {
             return new int[i];
         }
-        return (int[]) this.r.a(i, int[].class);
+        return (int[]) this.v.a(i, int[].class);
     }
 
     public void a(@NonNull int[] iArr) {
-        if (this.r != null) {
-            this.r.put(iArr);
+        if (this.v != null) {
+            this.v.put(iArr);
         }
     }
 }

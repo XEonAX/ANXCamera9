@@ -21,17 +21,17 @@ import java.nio.ByteBuffer;
 
 /* compiled from: GifDrawable */
 public class b extends Drawable implements Animatable, com.bumptech.glide.load.resource.gif.GifFrameLoader.a {
+    private static final int GRAVITY = 119;
     public static final int lA = -1;
     public static final int lB = 0;
-    private static final int lC = 119;
     private boolean fZ;
     private boolean isRunning;
-    private final a lD;
+    private final a lC;
+    private boolean lD;
     private boolean lE;
-    private boolean lF;
-    private int lG;
-    private boolean lH;
-    private Rect lI;
+    private int lF;
+    private boolean lG;
+    private Rect lH;
     private int loopCount;
     private Paint paint;
 
@@ -69,9 +69,9 @@ public class b extends Drawable implements Animatable, com.bumptech.glide.load.r
     }
 
     b(a aVar) {
-        this.lF = true;
-        this.lG = -1;
-        this.lD = (a) com.bumptech.glide.util.i.checkNotNull(aVar);
+        this.lE = true;
+        this.lF = -1;
+        this.lC = (a) com.bumptech.glide.util.i.checkNotNull(aVar);
     }
 
     @VisibleForTesting
@@ -81,31 +81,31 @@ public class b extends Drawable implements Animatable, com.bumptech.glide.load.r
     }
 
     public int getSize() {
-        return this.lD.frameLoader.getSize();
+        return this.lC.frameLoader.getSize();
     }
 
     public Bitmap cA() {
-        return this.lD.frameLoader.cA();
+        return this.lC.frameLoader.cA();
     }
 
     public void a(i<Bitmap> iVar, Bitmap bitmap) {
-        this.lD.frameLoader.a(iVar, bitmap);
+        this.lC.frameLoader.a(iVar, bitmap);
     }
 
     public i<Bitmap> cB() {
-        return this.lD.frameLoader.cB();
+        return this.lC.frameLoader.cB();
     }
 
     public ByteBuffer getBuffer() {
-        return this.lD.frameLoader.getBuffer();
+        return this.lC.frameLoader.getBuffer();
     }
 
     public int getFrameCount() {
-        return this.lD.frameLoader.getFrameCount();
+        return this.lC.frameLoader.getFrameCount();
     }
 
     public int cC() {
-        return this.lD.frameLoader.getCurrentIndex();
+        return this.lC.frameLoader.getCurrentIndex();
     }
 
     private void cD() {
@@ -114,56 +114,56 @@ public class b extends Drawable implements Animatable, com.bumptech.glide.load.r
 
     public void cE() {
         com.bumptech.glide.util.i.a(this.isRunning ^ 1, "You cannot restart a currently running animation.");
-        this.lD.frameLoader.cM();
+        this.lC.frameLoader.cM();
         start();
     }
 
     public void start() {
-        this.lE = true;
+        this.lD = true;
         cD();
-        if (this.lF) {
+        if (this.lE) {
             cF();
         }
     }
 
     public void stop() {
-        this.lE = false;
+        this.lD = false;
         stopRunning();
     }
 
     private void cF() {
         com.bumptech.glide.util.i.a(this.fZ ^ true, "You cannot start a recycled Drawable. Ensure thatyou clear any references to the Drawable when clearing the corresponding request.");
-        if (this.lD.frameLoader.getFrameCount() == 1) {
+        if (this.lC.frameLoader.getFrameCount() == 1) {
             invalidateSelf();
         } else if (!this.isRunning) {
             this.isRunning = true;
-            this.lD.frameLoader.a(this);
+            this.lC.frameLoader.a(this);
             invalidateSelf();
         }
     }
 
     private void stopRunning() {
         this.isRunning = false;
-        this.lD.frameLoader.b(this);
+        this.lC.frameLoader.b(this);
     }
 
     public boolean setVisible(boolean z, boolean z2) {
         com.bumptech.glide.util.i.a(this.fZ ^ 1, "Cannot change the visibility of a recycled resource. Ensure that you unset the Drawable from your View before changing the View's visibility.");
-        this.lF = z;
+        this.lE = z;
         if (!z) {
             stopRunning();
-        } else if (this.lE) {
+        } else if (this.lD) {
             cF();
         }
         return super.setVisible(z, z2);
     }
 
     public int getIntrinsicWidth() {
-        return this.lD.frameLoader.getWidth();
+        return this.lC.frameLoader.getWidth();
     }
 
     public int getIntrinsicHeight() {
-        return this.lD.frameLoader.getHeight();
+        return this.lC.frameLoader.getHeight();
     }
 
     public boolean isRunning() {
@@ -176,16 +176,16 @@ public class b extends Drawable implements Animatable, com.bumptech.glide.load.r
 
     protected void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        this.lH = true;
+        this.lG = true;
     }
 
     public void draw(@NonNull Canvas canvas) {
         if (!this.fZ) {
-            if (this.lH) {
+            if (this.lG) {
                 Gravity.apply(119, getIntrinsicWidth(), getIntrinsicHeight(), getBounds(), cG());
-                this.lH = false;
+                this.lG = false;
             }
-            canvas.drawBitmap(this.lD.frameLoader.cJ(), null, cG(), getPaint());
+            canvas.drawBitmap(this.lC.frameLoader.cJ(), null, cG(), getPaint());
         }
     }
 
@@ -198,10 +198,10 @@ public class b extends Drawable implements Animatable, com.bumptech.glide.load.r
     }
 
     private Rect cG() {
-        if (this.lI == null) {
-            this.lI = new Rect();
+        if (this.lH == null) {
+            this.lH = new Rect();
         }
-        return this.lI;
+        return this.lH;
     }
 
     private Paint getPaint() {
@@ -233,18 +233,18 @@ public class b extends Drawable implements Animatable, com.bumptech.glide.load.r
         if (cC() == getFrameCount() - 1) {
             this.loopCount++;
         }
-        if (this.lG != -1 && this.loopCount >= this.lG) {
+        if (this.lF != -1 && this.loopCount >= this.lF) {
             stop();
         }
     }
 
     public ConstantState getConstantState() {
-        return this.lD;
+        return this.lC;
     }
 
     public void recycle() {
         this.fZ = true;
-        this.lD.frameLoader.clear();
+        this.lC.frameLoader.clear();
     }
 
     boolean isRecycled() {
@@ -255,13 +255,13 @@ public class b extends Drawable implements Animatable, com.bumptech.glide.load.r
         if (i <= 0 && i != -1 && i != 0) {
             throw new IllegalArgumentException("Loop count must be greater than 0, or equal to GlideDrawable.LOOP_FOREVER, or equal to GlideDrawable.LOOP_INTRINSIC");
         } else if (i == 0) {
-            i = this.lD.frameLoader.getLoopCount();
+            i = this.lC.frameLoader.getLoopCount();
             if (i == 0) {
                 i = -1;
             }
-            this.lG = i;
+            this.lF = i;
         } else {
-            this.lG = i;
+            this.lF = i;
         }
     }
 }

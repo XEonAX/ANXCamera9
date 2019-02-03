@@ -1,9 +1,8 @@
 package com.android.camera.effect.renders;
 
 import android.graphics.Color;
-import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.data.DataRepository;
+import com.android.camera.data.data.runing.ComponentRunningTiltValue;
 import com.android.camera.data.data.runing.DataItemRunning;
 import com.android.camera.effect.EffectController;
 import com.android.camera.effect.EffectController.EffectChangedListener;
@@ -131,11 +130,6 @@ public class EffectRenderGroup extends RenderGroup implements EffectChangedListe
         this.mRenderCaches.removeRender(i);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:42:0x00b0  */
-    /* JADX WARNING: Removed duplicated region for block: B:48:0x00c9  */
-    /* JADX WARNING: Removed duplicated region for block: B:51:0x00d6  */
-    /* JADX WARNING: Removed duplicated region for block: B:50:0x00d0  */
-    /* Code decompiled incorrectly, please refer to instructions dump. */
     private boolean updatePreviewSecondRender() {
         if (!this.mRenderChanged.booleanValue()) {
             return false;
@@ -161,7 +155,6 @@ public class EffectRenderGroup extends RenderGroup implements EffectChangedListe
             } else {
                 Render fetchRender2;
                 Render fetchRender3;
-                Render fetchRender4;
                 Render render = null;
                 if (this.mIsMakeupEnabled) {
                     fetchRender = fetchRender(FilterInfo.RENDER_ID_MAKEUP);
@@ -178,41 +171,39 @@ public class EffectRenderGroup extends RenderGroup implements EffectChangedListe
                 } else {
                     fetchRender3 = null;
                 }
-                if (this.mTiltShiftMode != null) {
-                    if (CameraSettings.getString(R.string.pref_camera_tilt_shift_entryvalue_circle).equals(this.mTiltShiftMode)) {
-                        fetchRender4 = fetchRender(FilterInfo.FILTER_ID_GAUSSIAN);
-                    } else if (CameraSettings.getString(R.string.pref_camera_tilt_shift_entryvalue_parallel).equals(this.mTiltShiftMode)) {
-                        fetchRender4 = fetchRender(FilterInfo.FILTER_ID_TILTSHIFT);
-                    }
-                    if (this.mIsFocusPeakEnabled) {
-                        render = fetchRender(FilterInfo.FILTER_ID_PEAKINGMF);
-                    }
-                    if (fetchRender != null && EffectController.getInstance().isBeautyFrameReady()) {
-                        this.mPreviewSecondRender.addRender(fetchRender);
-                    }
-                    if (fetchRender2 != null) {
-                        this.mPreviewSecondRender.addRender(fetchRender2);
-                    }
-                    if (fetchRender3 == null) {
-                        this.mPreviewSecondRender.addRender(fetchRender3);
-                    } else if (fetchRender4 != null) {
-                        this.mPreviewSecondRender.addRender(fetchRender4);
-                    } else if (render != null) {
-                        this.mPreviewSecondRender.addRender(render);
-                    }
-                }
-                fetchRender4 = null;
+                Render tiltShitRender = getTiltShitRender();
                 if (this.mIsFocusPeakEnabled) {
+                    render = fetchRender(FilterInfo.FILTER_ID_PEAKINGMF);
                 }
-                this.mPreviewSecondRender.addRender(fetchRender);
+                if (fetchRender != null && EffectController.getInstance().isBeautyFrameReady()) {
+                    this.mPreviewSecondRender.addRender(fetchRender);
+                }
                 if (fetchRender2 != null) {
+                    this.mPreviewSecondRender.addRender(fetchRender2);
                 }
-                if (fetchRender3 == null) {
+                if (fetchRender3 != null) {
+                    this.mPreviewSecondRender.addRender(fetchRender3);
+                } else if (tiltShitRender != null) {
+                    this.mPreviewSecondRender.addRender(tiltShitRender);
+                } else if (render != null) {
+                    this.mPreviewSecondRender.addRender(render);
                 }
             }
             this.mPreviewSecondRender.setFrameBufferSize(this.mPreviewWidth, this.mPreviewHeight);
             this.mRenderChanged = Boolean.valueOf(false);
         }
         return true;
+    }
+
+    private Render getTiltShitRender() {
+        if (this.mTiltShiftMode != null) {
+            if (ComponentRunningTiltValue.TILT_CIRCLE.equals(this.mTiltShiftMode)) {
+                return fetchRender(FilterInfo.FILTER_ID_GAUSSIAN);
+            }
+            if (ComponentRunningTiltValue.TILT_PARALLEL.equals(this.mTiltShiftMode)) {
+                return fetchRender(FilterInfo.FILTER_ID_TILTSHIFT);
+            }
+        }
+        return null;
     }
 }

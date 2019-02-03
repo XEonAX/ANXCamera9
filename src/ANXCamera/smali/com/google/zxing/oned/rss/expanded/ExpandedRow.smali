@@ -21,7 +21,7 @@
 
 # direct methods
 .method constructor <init>(Ljava/util/List;IZ)V
-    .locals 1
+    .registers 5
     .param p2, "rowNumber"    # I
     .param p3, "wasReversed"    # Z
     .annotation system Ldalvik/annotation/Signature;
@@ -57,7 +57,7 @@
 
 # virtual methods
 .method public equals(Ljava/lang/Object;)Z
-    .locals 4
+    .registers 6
     .param p1, "o"    # Ljava/lang/Object;
 
     .line 64
@@ -65,13 +65,13 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_6
 
     .line 65
     return v1
 
     .line 67
-    :cond_0
+    :cond_6
     move-object v0, p1
 
     check-cast v0, Lcom/google/zxing/oned/rss/expanded/ExpandedRow;
@@ -88,22 +88,22 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_1c
 
     iget-boolean v2, p0, Lcom/google/zxing/oned/rss/expanded/ExpandedRow;->wasReversed:Z
 
     iget-boolean v3, v0, Lcom/google/zxing/oned/rss/expanded/ExpandedRow;->wasReversed:Z
 
-    if-ne v2, v3, :cond_1
+    if-ne v2, v3, :cond_1c
 
     const/4 v1, 0x1
 
-    :cond_1
+    :cond_1c
     return v1
 .end method
 
 .method getPairs()Ljava/util/List;
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -120,7 +120,7 @@
 .end method
 
 .method getRowNumber()I
-    .locals 1
+    .registers 2
 
     .line 43
     iget v0, p0, Lcom/google/zxing/oned/rss/expanded/ExpandedRow;->rowNumber:I
@@ -129,7 +129,7 @@
 .end method
 
 .method public hashCode()I
-    .locals 2
+    .registers 3
 
     .line 73
     iget-object v0, p0, Lcom/google/zxing/oned/rss/expanded/ExpandedRow;->pairs:Ljava/util/List;
@@ -154,7 +154,7 @@
 .end method
 
 .method isEquivalent(Ljava/util/List;)Z
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -176,7 +176,7 @@
 .end method
 
 .method isReversed()Z
-    .locals 1
+    .registers 2
 
     .line 47
     iget-boolean v0, p0, Lcom/google/zxing/oned/rss/expanded/ExpandedRow;->wasReversed:Z
@@ -185,7 +185,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 56
     new-instance v0, Ljava/lang/StringBuilder;

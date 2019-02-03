@@ -8,8 +8,8 @@ import java.io.InputStream;
 /* compiled from: MarkEnforcingInputStream */
 public class g extends FilterInputStream {
     private static final int UNSET = Integer.MIN_VALUE;
-    private static final int po = -1;
-    private int pp = Integer.MIN_VALUE;
+    private static final int pn = -1;
+    private int po = Integer.MIN_VALUE;
 
     public g(@NonNull InputStream inputStream) {
         super(inputStream);
@@ -17,7 +17,7 @@ public class g extends FilterInputStream {
 
     public synchronized void mark(int i) {
         super.mark(i);
-        this.pp = i;
+        this.po = i;
     }
 
     public int read() throws IOException {
@@ -41,7 +41,7 @@ public class g extends FilterInputStream {
 
     public synchronized void reset() throws IOException {
         super.reset();
-        this.pp = Integer.MIN_VALUE;
+        this.po = Integer.MIN_VALUE;
     }
 
     public long skip(long j) throws IOException {
@@ -55,25 +55,25 @@ public class g extends FilterInputStream {
     }
 
     public int available() throws IOException {
-        if (this.pp == Integer.MIN_VALUE) {
+        if (this.po == Integer.MIN_VALUE) {
             return super.available();
         }
-        return Math.min(this.pp, super.available());
+        return Math.min(this.po, super.available());
     }
 
     private long f(long j) {
-        if (this.pp == 0) {
+        if (this.po == 0) {
             return -1;
         }
-        if (this.pp == Integer.MIN_VALUE || j <= ((long) this.pp)) {
+        if (this.po == Integer.MIN_VALUE || j <= ((long) this.po)) {
             return j;
         }
-        return (long) this.pp;
+        return (long) this.po;
     }
 
     private void g(long j) {
-        if (this.pp != Integer.MIN_VALUE && j != -1) {
-            this.pp = (int) (((long) this.pp) - j);
+        if (this.po != Integer.MIN_VALUE && j != -1) {
+            this.po = (int) (((long) this.po) - j);
         }
     }
 }

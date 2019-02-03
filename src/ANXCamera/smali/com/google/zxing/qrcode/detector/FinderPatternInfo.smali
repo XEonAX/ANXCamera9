@@ -13,7 +13,7 @@
 
 # direct methods
 .method public constructor <init>([Lcom/google/zxing/qrcode/detector/FinderPattern;)V
-    .locals 1
+    .registers 3
     .param p1, "patternCenters"    # [Lcom/google/zxing/qrcode/detector/FinderPattern;
 
     .line 31
@@ -47,7 +47,7 @@
 
 # virtual methods
 .method public getBottomLeft()Lcom/google/zxing/qrcode/detector/FinderPattern;
-    .locals 1
+    .registers 2
 
     .line 38
     iget-object v0, p0, Lcom/google/zxing/qrcode/detector/FinderPatternInfo;->bottomLeft:Lcom/google/zxing/qrcode/detector/FinderPattern;
@@ -56,7 +56,7 @@
 .end method
 
 .method public getTopLeft()Lcom/google/zxing/qrcode/detector/FinderPattern;
-    .locals 1
+    .registers 2
 
     .line 42
     iget-object v0, p0, Lcom/google/zxing/qrcode/detector/FinderPatternInfo;->topLeft:Lcom/google/zxing/qrcode/detector/FinderPattern;
@@ -65,7 +65,7 @@
 .end method
 
 .method public getTopRight()Lcom/google/zxing/qrcode/detector/FinderPattern;
-    .locals 1
+    .registers 2
 
     .line 46
     iget-object v0, p0, Lcom/google/zxing/qrcode/detector/FinderPatternInfo;->topRight:Lcom/google/zxing/qrcode/detector/FinderPattern;

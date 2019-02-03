@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 144
     invoke-direct {p0}, Landroid/support/v4/view/ViewParentCompat$ViewParentCompatICSImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public notifySubtreeAccessibilityStateChanged(Landroid/view/ViewParent;Landroid/view/View;Landroid/view/View;I)V
-    .locals 0
+    .registers 5
     .param p1, "parent"    # Landroid/view/ViewParent;
     .param p2, "child"    # Landroid/view/View;
     .param p3, "source"    # Landroid/view/View;

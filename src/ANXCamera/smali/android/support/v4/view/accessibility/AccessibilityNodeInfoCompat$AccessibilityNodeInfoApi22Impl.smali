@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 1844
     invoke-direct {p0}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoApi21Impl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getTraversalAfter(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1862
@@ -39,7 +39,7 @@
 .end method
 
 .method public getTraversalBefore(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1847
@@ -51,7 +51,7 @@
 .end method
 
 .method public setTraversalAfter(Ljava/lang/Object;Landroid/view/View;)V
-    .locals 0
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "view"    # Landroid/view/View;
 
@@ -63,7 +63,7 @@
 .end method
 
 .method public setTraversalAfter(Ljava/lang/Object;Landroid/view/View;I)V
-    .locals 0
+    .registers 4
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "root"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I
@@ -76,7 +76,7 @@
 .end method
 
 .method public setTraversalBefore(Ljava/lang/Object;Landroid/view/View;)V
-    .locals 0
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "view"    # Landroid/view/View;
 
@@ -88,7 +88,7 @@
 .end method
 
 .method public setTraversalBefore(Ljava/lang/Object;Landroid/view/View;I)V
-    .locals 0
+    .registers 4
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "root"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I

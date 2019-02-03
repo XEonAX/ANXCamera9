@@ -44,7 +44,7 @@ public class AiSceneNewbieDialogFragment extends BaseDialogFragment {
         return isAdded();
     }
 
-    private void adjustViewHeight(View view) {
+    protected void adjustViewHeight(View view) {
         int i = (int) (((float) getResources().getDisplayMetrics().widthPixels) / 0.75f);
         int dialogTopMargin = Util.getDialogTopMargin((Util.sWindowHeight - i) - Util.getBottomHeight(getContext().getResources()));
         MarginLayoutParams marginLayoutParams = (MarginLayoutParams) view.getLayoutParams();

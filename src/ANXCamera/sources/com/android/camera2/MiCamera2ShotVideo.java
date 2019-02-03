@@ -14,6 +14,8 @@ import com.android.camera.log.Log;
 import com.android.camera2.Camera2Proxy.PictureCallback;
 
 public class MiCamera2ShotVideo extends MiCamera2Shot<byte[]> {
+    private static final String TAG = MiCamera2ShotVideo.class.getSimpleName();
+
     public MiCamera2ShotVideo(MiCamera2 miCamera2) {
         super(miCamera2);
     }
@@ -21,13 +23,13 @@ public class MiCamera2ShotVideo extends MiCamera2Shot<byte[]> {
     protected void prepare() {
     }
 
-    protected void startShot() {
+    protected void startSessionCapture() {
         try {
             Builder generateRequestBuilder = generateRequestBuilder();
             this.mMiCamera.getCaptureSession().capture(generateRequestBuilder.build(), generateCaptureCallback(), this.mCameraHandler);
         } catch (CameraAccessException e) {
             e.printStackTrace();
-            Log.e(TAG, "cannot capture a video snapshot");
+            Log.e(TAG, "Cannot capture a video snapshot");
             this.mMiCamera.notifyOnError(e.getReason());
         } catch (Throwable e2) {
             Log.e(TAG, "Failed to capture a video snapshot, IllegalState", e2);
@@ -38,7 +40,11 @@ public class MiCamera2ShotVideo extends MiCamera2Shot<byte[]> {
     protected CaptureCallback generateCaptureCallback() {
         return new CaptureCallback() {
             public void onCaptureCompleted(@NonNull CameraCaptureSession cameraCaptureSession, @NonNull CaptureRequest captureRequest, @NonNull TotalCaptureResult totalCaptureResult) {
-                Log.d(MiCamera2Shot.TAG, "captureVideoSnapshot completed");
+                String access$000 = MiCamera2ShotVideo.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("onCaptureCompleted: ");
+                stringBuilder.append(totalCaptureResult.getFrameNumber());
+                Log.d(access$000, stringBuilder.toString());
             }
         };
     }
@@ -54,7 +60,7 @@ public class MiCamera2ShotVideo extends MiCamera2Shot<byte[]> {
         createCaptureRequest.addTarget(videoSnapshotImageReader.getSurface());
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("captureVideoSnapshot: size=");
+        stringBuilder.append("size=");
         stringBuilder.append(videoSnapshotImageReader.getWidth());
         stringBuilder.append("x");
         stringBuilder.append(videoSnapshotImageReader.getHeight());

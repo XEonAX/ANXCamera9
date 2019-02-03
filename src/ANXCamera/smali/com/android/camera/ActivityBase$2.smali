@@ -30,7 +30,7 @@
 .method constructor <init>(Lcom/android/camera/ActivityBase;)V
     .locals 0
 
-    .line 307
+    .line 309
     iput-object p1, p0, Lcom/android/camera/ActivityBase$2;->this$0:Lcom/android/camera/ActivityBase;
 
     invoke-direct {p0}, Lio/reactivex/Single;-><init>()V
@@ -52,17 +52,17 @@
         }
     .end annotation
 
-    .line 310
+    .line 312
     nop
 
-    .line 311
+    .line 313
     iget-object v0, p0, Lcom/android/camera/ActivityBase$2;->this$0:Lcom/android/camera/ActivityBase;
 
     iget-object v0, v0, Lcom/android/camera/ActivityBase;->mCameraScreenNail:Lcom/android/camera/CameraScreenNail;
 
     if-eqz v0, :cond_0
 
-    .line 312
+    .line 314
     iget-object v0, p0, Lcom/android/camera/ActivityBase$2;->this$0:Lcom/android/camera/ActivityBase;
 
     iget-object v0, v0, Lcom/android/camera/ActivityBase;->mCameraScreenNail:Lcom/android/camera/CameraScreenNail;
@@ -73,7 +73,7 @@
 
     goto :goto_0
 
-    .line 314
+    .line 316
     :cond_0
     const/4 v0, 0x0
 
@@ -88,7 +88,7 @@
 
     goto :goto_1
 
-    .line 319
+    .line 321
     :cond_1
     const-string v1, "ActivityBase"
 
@@ -98,7 +98,7 @@
 
     goto :goto_2
 
-    .line 315
+    .line 317
     :cond_2
     :goto_1
     new-instance v0, Ljava/io/File;
@@ -113,27 +113,27 @@
 
     invoke-direct {v0, v1, v2}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
 
-    .line 316
+    .line 318
     invoke-virtual {v0}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 315
+    .line 317
     invoke-static {v0}, Landroid/graphics/BitmapFactory;->decodeFile(Ljava/lang/String;)Landroid/graphics/Bitmap;
 
     move-result-object v0
 
-    .line 317
+    .line 319
     const-string v1, "ActivityBase"
 
     const-string v2, "showBlurCover: blur bitmap from user blur file!"
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 321
+    .line 323
     :goto_2
     invoke-interface {p1, v0}, Lio/reactivex/SingleObserver;->onSuccess(Ljava/lang/Object;)V
 
-    .line 322
+    .line 324
     return-void
 .end method

@@ -29,4 +29,8 @@ public class LiveDownloadView extends DownloadView {
                 return 0;
         }
     }
+
+    protected float getAlphaNormal() {
+        return 0.9f;
+    }
 }

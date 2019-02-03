@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/network/resource/LiveResourceDownloadManager;)V
     .locals 0
 
-    .line 71
+    .line 73
     iput-object p1, p0, Lcom/android/camera/network/resource/LiveResourceDownloadManager$1;->this$0:Lcom/android/camera/network/resource/LiveResourceDownloadManager;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public onRequestComplete(Lcom/android/camera/network/download/Request;I)V
     .locals 3
 
-    .line 74
+    .line 76
     const-string v0, "LiveResourceDownloadManager"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -57,12 +57,12 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 75
+    .line 77
     invoke-virtual {p1}, Lcom/android/camera/network/download/Request;->getTag()Ljava/lang/String;
 
     move-result-object p1
 
-    .line 76
+    .line 78
     iget-object v0, p0, Lcom/android/camera/network/resource/LiveResourceDownloadManager$1;->this$0:Lcom/android/camera/network/resource/LiveResourceDownloadManager;
 
     invoke-static {v0}, Lcom/android/camera/network/resource/LiveResourceDownloadManager;->access$100(Lcom/android/camera/network/resource/LiveResourceDownloadManager;)Ljava/lang/Object;
@@ -71,7 +71,7 @@
 
     monitor-enter v0
 
-    .line 77
+    .line 79
     :try_start_0
     iget-object v1, p0, Lcom/android/camera/network/resource/LiveResourceDownloadManager$1;->this$0:Lcom/android/camera/network/resource/LiveResourceDownloadManager;
 
@@ -81,15 +81,15 @@
 
     invoke-interface {v1, p1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 78
+    .line 80
     monitor-exit v0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 79
+    .line 81
     if-nez p2, :cond_0
 
-    .line 80
+    .line 82
     iget-object p2, p0, Lcom/android/camera/network/resource/LiveResourceDownloadManager$1;->this$0:Lcom/android/camera/network/resource/LiveResourceDownloadManager;
 
     const/4 v0, 0x3
@@ -98,7 +98,7 @@
 
     goto :goto_0
 
-    .line 82
+    .line 84
     :cond_0
     iget-object p2, p0, Lcom/android/camera/network/resource/LiveResourceDownloadManager$1;->this$0:Lcom/android/camera/network/resource/LiveResourceDownloadManager;
 
@@ -106,11 +106,11 @@
 
     invoke-static {p2, p1, v0}, Lcom/android/camera/network/resource/LiveResourceDownloadManager;->access$300(Lcom/android/camera/network/resource/LiveResourceDownloadManager;Ljava/lang/String;I)V
 
-    .line 84
+    .line 86
     :goto_0
     return-void
 
-    .line 78
+    .line 80
     :catchall_0
     move-exception p1
 

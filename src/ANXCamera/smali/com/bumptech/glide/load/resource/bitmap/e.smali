@@ -42,7 +42,7 @@
 
 
 # instance fields
-.field private final r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+.field private final v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 .end field
@@ -92,7 +92,7 @@
     .line 67
     const/4 v0, 0x0
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/resource/bitmap/e;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iput-object v0, p0, Lcom/bumptech/glide/load/resource/bitmap/e;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     .line 68
     return-void
@@ -109,7 +109,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 59
-    iput-object p1, p0, Lcom/bumptech/glide/load/resource/bitmap/e;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iput-object p1, p0, Lcom/bumptech/glide/load/resource/bitmap/e;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     .line 60
     return-void
@@ -253,14 +253,14 @@
 
     .line 85
     :try_start_2
-    iget-object p2, p0, Lcom/bumptech/glide/load/resource/bitmap/e;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object p2, p0, Lcom/bumptech/glide/load/resource/bitmap/e;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     if-eqz p2, :cond_0
 
     .line 86
     new-instance p2, Lcom/bumptech/glide/load/a/c;
 
-    iget-object v5, p0, Lcom/bumptech/glide/load/resource/bitmap/e;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v5, p0, Lcom/bumptech/glide/load/resource/bitmap/e;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     invoke-direct {p2, v6, v5}, Lcom/bumptech/glide/load/a/c;-><init>(Ljava/io/OutputStream;Lcom/bumptech/glide/load/engine/bitmap_recycle/b;)V
     :try_end_2
@@ -530,7 +530,7 @@
     .end annotation
 
     .line 131
-    sget-object p1, Lcom/bumptech/glide/load/EncodeStrategy;->cE:Lcom/bumptech/glide/load/EncodeStrategy;
+    sget-object p1, Lcom/bumptech/glide/load/EncodeStrategy;->cF:Lcom/bumptech/glide/load/EncodeStrategy;
 
     return-object p1
 .end method

@@ -35,7 +35,7 @@
 .method constructor <init>(Lcom/android/camera/Camera;)V
     .locals 0
 
-    .line 162
+    .line 165
     iput-object p1, p0, Lcom/android/camera/Camera$2;->this$0:Lcom/android/camera/Camera;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -66,7 +66,7 @@
         }
     .end annotation
 
-    .line 165
+    .line 168
     invoke-virtual {p1}, Lcom/android/camera/module/loader/NullHolder;->isPresent()Z
 
     move-result v0
@@ -75,7 +75,7 @@
 
     if-nez v0, :cond_0
 
-    .line 166
+    .line 169
     iget-object v0, p0, Lcom/android/camera/Camera$2;->this$0:Lcom/android/camera/Camera;
 
     invoke-virtual {p1}, Lcom/android/camera/module/loader/NullHolder;->getException()I
@@ -84,14 +84,14 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/Camera;->access$100(Lcom/android/camera/Camera;I)V
 
-    .line 167
+    .line 170
     iget-object p1, p0, Lcom/android/camera/Camera$2;->this$0:Lcom/android/camera/Camera;
 
     iput-object v1, p1, Lcom/android/camera/Camera;->mCurrentModule:Lcom/android/camera/module/Module;
 
     goto :goto_0
 
-    .line 169
+    .line 172
     :cond_0
     iget-object v0, p0, Lcom/android/camera/Camera$2;->this$0:Lcom/android/camera/Camera;
 
@@ -107,7 +107,7 @@
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/V6GestureRecognizer;->setCurrentModule(Lcom/android/camera/module/Module;)V
 
-    .line 172
+    .line 175
     :goto_0
     iget-object p1, p0, Lcom/android/camera/Camera$2;->this$0:Lcom/android/camera/Camera;
 
@@ -117,26 +117,26 @@
 
     invoke-virtual {p1}, Lcom/android/camera/CameraScreenNail;->resetFrameAvailableFlag()V
 
-    .line 173
+    .line 176
     iget-object p1, p0, Lcom/android/camera/Camera$2;->this$0:Lcom/android/camera/Camera;
 
     const/4 v0, 0x0
 
     invoke-virtual {p1, v0}, Lcom/android/camera/Camera;->setSwitchingModule(Z)V
 
-    .line 174
+    .line 177
     iget-object p1, p0, Lcom/android/camera/Camera$2;->this$0:Lcom/android/camera/Camera;
 
     invoke-static {p1, v1}, Lcom/android/camera/Camera;->access$202(Lcom/android/camera/Camera;Lio/reactivex/disposables/Disposable;)Lio/reactivex/disposables/Disposable;
 
-    .line 175
+    .line 178
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataCloudMgr()Lcom/android/camera/data/cloud/DataCloud$CloudManager;
 
     move-result-object p1
 
     invoke-interface {p1}, Lcom/android/camera/data/cloud/DataCloud$CloudManager;->fillCloudValues()V
 
-    .line 176
+    .line 179
     iget-object p1, p0, Lcom/android/camera/Camera$2;->this$0:Lcom/android/camera/Camera;
 
     invoke-static {p1}, Lcom/android/camera/AutoLockManager;->getInstance(Landroid/content/Context;)Lcom/android/camera/AutoLockManager;
@@ -145,12 +145,12 @@
 
     invoke-virtual {p1}, Lcom/android/camera/AutoLockManager;->hibernateDelayed()V
 
-    .line 177
+    .line 180
     iget-object p1, p0, Lcom/android/camera/Camera$2;->this$0:Lcom/android/camera/Camera;
 
     invoke-static {p1}, Lcom/android/camera/Camera;->access$300(Lcom/android/camera/Camera;)V
 
-    .line 178
+    .line 181
     invoke-static {}, Lcom/android/camera/Camera;->access$400()Ljava/lang/String;
 
     move-result-object p1
@@ -159,7 +159,7 @@
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 179
+    .line 182
     return-void
 .end method
 
@@ -175,7 +175,7 @@
         }
     .end annotation
 
-    .line 162
+    .line 165
     check-cast p1, Lcom/android/camera/module/loader/NullHolder;
 
     invoke-virtual {p0, p1}, Lcom/android/camera/Camera$2;->accept(Lcom/android/camera/module/loader/NullHolder;)V

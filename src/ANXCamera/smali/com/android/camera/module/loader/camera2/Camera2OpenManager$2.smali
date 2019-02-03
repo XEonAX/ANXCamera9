@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)V
     .locals 0
 
-    .line 125
+    .line 130
     iput-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$2;->this$0:Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
 
     invoke-direct {p0}, Landroid/hardware/camera2/CameraDevice$StateCallback;-><init>()V
@@ -39,7 +39,7 @@
         .end annotation
     .end param
 
-    .line 153
+    .line 158
     invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$200()Ljava/lang/String;
 
     move-result-object v0
@@ -64,10 +64,10 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 154
+    .line 159
     iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$2;->this$0:Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
 
-    invoke-static {p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$400(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)Landroid/os/Handler;
+    invoke-static {p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$300(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)Landroid/os/Handler;
 
     move-result-object p1
 
@@ -75,7 +75,7 @@
 
     invoke-virtual {p1, v0}, Landroid/os/Handler;->sendEmptyMessage(I)Z
 
-    .line 155
+    .line 160
     return-void
 .end method
 
@@ -86,7 +86,7 @@
         .end annotation
     .end param
 
-    .line 159
+    .line 164
     invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$200()Ljava/lang/String;
 
     move-result-object v0
@@ -111,7 +111,7 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 160
+    .line 165
     return-void
 .end method
 
@@ -122,7 +122,32 @@
         .end annotation
     .end param
 
-    .line 164
+    .line 169
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "onError: cameraId="
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p1}, Landroid/hardware/camera2/CameraDevice;->getId()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string p1, " error="
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 170
     invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$200()Ljava/lang/String;
 
     move-result-object v0
@@ -131,45 +156,39 @@
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v2, "CameraOpenCallback: onError "
+    const-string v2, "CameraOpenCallback: "
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {p1}, Landroid/hardware/camera2/CameraDevice;->getId()Ljava/lang/String;
-
-    move-result-object p1
 
     invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object p1
+    move-result-object v1
 
-    invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 165
-    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$2;->this$0:Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
+    .line 171
+    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$2;->this$0:Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
 
     invoke-static {p2}, Lcom/android/camera/constant/ExceptionConstant;->transFromCamera2Error(I)I
 
     move-result p2
 
-    const-string v0, "onError"
+    invoke-static {v0, p2, p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$400(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;ILjava/lang/String;)V
 
-    invoke-static {p1, p2, v0}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$300(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;ILjava/lang/String;)V
-
-    .line 166
+    .line 172
     return-void
 .end method
 
 .method public onOpened(Landroid/hardware/camera2/CameraDevice;)V
-    .locals 9
+    .locals 10
     .param p1    # Landroid/hardware/camera2/CameraDevice;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
 
-    .line 129
+    .line 134
     invoke-virtual {p1}, Landroid/hardware/camera2/CameraDevice;->getId()Ljava/lang/String;
 
     move-result-object v0
@@ -178,7 +197,7 @@
 
     move-result v0
 
-    .line 130
+    .line 135
     invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2DataContainer;
 
     move-result-object v1
@@ -187,10 +206,32 @@
 
     move-result-object v4
 
-    .line 131
-    iget-object v7, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$2;->this$0:Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
+    .line 139
+    new-instance v1, Ljava/lang/StringBuilder;
 
-    new-instance v8, Lcom/android/camera2/MiCamera2;
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "CameraOpenCallback: camera "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v2, " was opened successfully"
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v7
+
+    .line 140
+    if-eqz v4, :cond_0
+
+    .line 141
+    iget-object v8, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$2;->this$0:Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
+
+    new-instance v9, Lcom/android/camera2/MiCamera2;
 
     iget-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$2;->this$0:Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
 
@@ -204,7 +245,7 @@
 
     move-result-object v6
 
-    move-object v1, v8
+    move-object v1, v9
 
     move-object v2, p1
 
@@ -212,90 +253,26 @@
 
     invoke-direct/range {v1 .. v6}, Lcom/android/camera2/MiCamera2;-><init>(Landroid/hardware/camera2/CameraDevice;ILcom/android/camera2/CameraCapabilities;Landroid/os/Handler;Landroid/os/Handler;)V
 
-    invoke-static {v7, v8}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$102(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;Lcom/android/camera2/Camera2Proxy;)Lcom/android/camera2/Camera2Proxy;
+    invoke-static {v8, v9}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$102(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;Lcom/android/camera2/Camera2Proxy;)Lcom/android/camera2/Camera2Proxy;
 
-    .line 132
+    .line 142
     invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2DataContainer;
 
     move-result-object p1
 
     invoke-virtual {p1, v0}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->setCurrentOpenedCameraId(I)V
 
-    .line 136
-    new-instance p1, Ljava/lang/StringBuilder;
-
-    invoke-direct {p1}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v1, "CameraOpenCallback: camera "
-
-    invoke-virtual {p1, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    const-string v0, " was opened successfully"
-
-    invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object p1
-
-    .line 137
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$2;->this$0:Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
-
-    invoke-static {v0}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$100(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)Lcom/android/camera2/Camera2Proxy;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->getCapabilities()Lcom/android/camera2/CameraCapabilities;
-
-    move-result-object v0
-
-    if-nez v0, :cond_0
-
-    .line 138
-    new-instance v0, Ljava/lang/StringBuilder;
-
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-
-    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    const-string p1, ", but corresponding CameraCapabilities is null"
-
-    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object p1
-
-    .line 139
+    .line 143
     invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$200()Ljava/lang/String;
 
-    move-result-object v0
+    move-result-object p1
 
-    invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {p1, v7}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 144
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$2;->this$0:Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
-
-    const/16 v1, 0xe7
-
-    invoke-static {v0, v1, p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$300(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;ILjava/lang/String;)V
-
-    goto :goto_0
-
-    .line 146
-    :cond_0
-    invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$200()Ljava/lang/String;
-
-    move-result-object v0
-
-    invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 147
     iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$2;->this$0:Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
 
-    invoke-static {p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$400(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)Landroid/os/Handler;
+    invoke-static {p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$300(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)Landroid/os/Handler;
 
     move-result-object p1
 
@@ -303,7 +280,39 @@
 
     invoke-virtual {p1, v0}, Landroid/os/Handler;->sendEmptyMessage(I)Z
 
-    .line 149
+    goto :goto_0
+
+    .line 146
+    :cond_0
+    new-instance p1, Ljava/lang/StringBuilder;
+
+    invoke-direct {p1}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {p1, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string v0, ", but corresponding CameraCapabilities is null"
+
+    invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 147
+    invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$200()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v0, p1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 152
+    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$2;->this$0:Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
+
+    const/16 v1, 0xe7
+
+    invoke-static {v0, v1, p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$400(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;ILjava/lang/String;)V
+
+    .line 154
     :goto_0
     return-void
 .end method

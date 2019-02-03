@@ -18,7 +18,7 @@
 
 
 # instance fields
-.field private final aZ:Lcom/bumptech/glide/manager/n;
+.field private final ba:Lcom/bumptech/glide/manager/n;
 
 
 # direct methods
@@ -33,7 +33,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 636
-    iput-object p1, p0, Lcom/bumptech/glide/i$b;->aZ:Lcom/bumptech/glide/manager/n;
+    iput-object p1, p0, Lcom/bumptech/glide/i$b;->ba:Lcom/bumptech/glide/manager/n;
 
     .line 637
     return-void
@@ -48,7 +48,7 @@
     if-eqz p1, :cond_0
 
     .line 642
-    iget-object p1, p0, Lcom/bumptech/glide/i$b;->aZ:Lcom/bumptech/glide/manager/n;
+    iget-object p1, p0, Lcom/bumptech/glide/i$b;->ba:Lcom/bumptech/glide/manager/n;
 
     invoke-virtual {p1}, Lcom/bumptech/glide/manager/n;->cY()V
 

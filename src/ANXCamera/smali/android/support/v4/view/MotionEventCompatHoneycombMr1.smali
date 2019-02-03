@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 24
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method static getAxisValue(Landroid/view/MotionEvent;I)F
-    .locals 1
+    .registers 3
     .param p0, "event"    # Landroid/view/MotionEvent;
     .param p1, "axis"    # I
 
@@ -27,7 +27,7 @@
 .end method
 
 .method static getAxisValue(Landroid/view/MotionEvent;II)F
-    .locals 1
+    .registers 4
     .param p0, "event"    # Landroid/view/MotionEvent;
     .param p1, "axis"    # I
     .param p2, "pointerIndex"    # I

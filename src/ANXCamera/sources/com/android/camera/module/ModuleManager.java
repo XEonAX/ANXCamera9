@@ -49,6 +49,10 @@ public class ModuleManager {
         return sCurrentModuleIndex == 161;
     }
 
+    public static boolean isLiveModule() {
+        return sCurrentModuleIndex == 174;
+    }
+
     public static boolean isVideoModule() {
         return sCurrentModuleIndex == 162;
     }

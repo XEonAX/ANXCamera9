@@ -29,15 +29,15 @@
 .method public constructor <init>(Lcom/android/camera/ui/PreviewListPreference;Landroid/widget/ListAdapter;)V
     .locals 0
 
-    .line 152
+    .line 166
     iput-object p1, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->this$0:Lcom/android/camera/ui/PreviewListPreference;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 153
+    .line 167
     iput-object p2, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mAdapter:Landroid/widget/ListAdapter;
 
-    .line 154
+    .line 168
     return-void
 .end method
 
@@ -46,7 +46,7 @@
 .method public areAllItemsEnabled()Z
     .locals 1
 
-    .line 215
+    .line 229
     iget-object v0, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mAdapter:Landroid/widget/ListAdapter;
 
     invoke-interface {v0}, Landroid/widget/ListAdapter;->areAllItemsEnabled()Z
@@ -59,7 +59,7 @@
 .method public getCount()I
     .locals 1
 
-    .line 168
+    .line 182
     iget-object v0, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mAdapter:Landroid/widget/ListAdapter;
 
     invoke-interface {v0}, Landroid/widget/ListAdapter;->getCount()I
@@ -72,7 +72,7 @@
 .method public getItem(I)Ljava/lang/Object;
     .locals 1
 
-    .line 173
+    .line 187
     iget-object v0, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mAdapter:Landroid/widget/ListAdapter;
 
     invoke-interface {v0, p1}, Landroid/widget/ListAdapter;->getItem(I)Ljava/lang/Object;
@@ -85,7 +85,7 @@
 .method public getItemId(I)J
     .locals 2
 
-    .line 178
+    .line 192
     iget-object v0, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mAdapter:Landroid/widget/ListAdapter;
 
     invoke-interface {v0, p1}, Landroid/widget/ListAdapter;->getItemId(I)J
@@ -98,7 +98,7 @@
 .method public getItemViewType(I)I
     .locals 1
 
-    .line 200
+    .line 214
     iget-object v0, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mAdapter:Landroid/widget/ListAdapter;
 
     invoke-interface {v0, p1}, Landroid/widget/ListAdapter;->getItemViewType(I)I
@@ -111,7 +111,7 @@
 .method public getView(ILandroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;
     .locals 2
 
-    .line 188
+    .line 202
     iget-object v0, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mAdapter:Landroid/widget/ListAdapter;
 
     invoke-interface {v0, p1, p2, p3}, Landroid/widget/ListAdapter;->getView(ILandroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;
@@ -120,12 +120,12 @@
 
     check-cast p1, Landroid/widget/TextView;
 
-    .line 189
+    .line 203
     iget p2, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mPaddingEnd:I
 
     if-nez p2, :cond_0
 
-    .line 190
+    .line 204
     invoke-virtual {p1}, Landroid/widget/TextView;->getPaddingEnd()I
 
     move-result p2
@@ -140,13 +140,13 @@
 
     iput p2, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mPaddingEnd:I
 
-    .line 192
+    .line 206
     :cond_0
     const/4 p2, 0x0
 
     invoke-virtual {p1, p2}, Landroid/widget/TextView;->setSingleLine(Z)V
 
-    .line 193
+    .line 207
     invoke-virtual {p1}, Landroid/widget/TextView;->getPaddingStart()I
 
     move-result p2
@@ -157,22 +157,22 @@
 
     iget v0, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mPaddingEnd:I
 
-    .line 194
+    .line 208
     invoke-virtual {p1}, Landroid/widget/TextView;->getPaddingBottom()I
 
     move-result v1
 
-    .line 193
+    .line 207
     invoke-virtual {p1, p2, p3, v0, v1}, Landroid/widget/TextView;->setPadding(IIII)V
 
-    .line 195
+    .line 209
     return-object p1
 .end method
 
 .method public getViewTypeCount()I
     .locals 1
 
-    .line 205
+    .line 219
     iget-object v0, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mAdapter:Landroid/widget/ListAdapter;
 
     invoke-interface {v0}, Landroid/widget/ListAdapter;->getViewTypeCount()I
@@ -185,7 +185,7 @@
 .method public hasStableIds()Z
     .locals 1
 
-    .line 183
+    .line 197
     iget-object v0, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mAdapter:Landroid/widget/ListAdapter;
 
     invoke-interface {v0}, Landroid/widget/ListAdapter;->hasStableIds()Z
@@ -198,7 +198,7 @@
 .method public isEmpty()Z
     .locals 1
 
-    .line 210
+    .line 224
     iget-object v0, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mAdapter:Landroid/widget/ListAdapter;
 
     invoke-interface {v0}, Landroid/widget/ListAdapter;->isEmpty()Z
@@ -211,7 +211,7 @@
 .method public isEnabled(I)Z
     .locals 1
 
-    .line 220
+    .line 234
     iget-object v0, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mAdapter:Landroid/widget/ListAdapter;
 
     invoke-interface {v0, p1}, Landroid/widget/ListAdapter;->isEnabled(I)Z
@@ -224,23 +224,23 @@
 .method public registerDataSetObserver(Landroid/database/DataSetObserver;)V
     .locals 1
 
-    .line 158
+    .line 172
     iget-object v0, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mAdapter:Landroid/widget/ListAdapter;
 
     invoke-interface {v0, p1}, Landroid/widget/ListAdapter;->registerDataSetObserver(Landroid/database/DataSetObserver;)V
 
-    .line 159
+    .line 173
     return-void
 .end method
 
 .method public unregisterDataSetObserver(Landroid/database/DataSetObserver;)V
     .locals 1
 
-    .line 163
+    .line 177
     iget-object v0, p0, Lcom/android/camera/ui/PreviewListPreference$PreviewListAdapter;->mAdapter:Landroid/widget/ListAdapter;
 
     invoke-interface {v0, p1}, Landroid/widget/ListAdapter;->unregisterDataSetObserver(Landroid/database/DataSetObserver;)V
 
-    .line 164
+    .line 178
     return-void
 .end method

@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 29
     invoke-direct {p0}, Lcom/google/zxing/client/result/ResultParser;-><init>()V
@@ -16,7 +16,7 @@
 
 # virtual methods
 .method public parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/EmailAddressParsedResult;
-    .locals 7
+    .registers 9
     .param p1, "result"    # Lcom/google/zxing/Result;
 
     .line 33
@@ -32,7 +32,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_32
 
     const-string v1, "MAILTO:"
 
@@ -40,25 +40,25 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_15
 
-    goto :goto_0
+    goto :goto_32
 
     .line 55
-    :cond_0
+    :cond_15
     invoke-static {v0}, Lcom/google/zxing/client/result/EmailDoCoMoResultParser;->isBasicallyValidEmailAddress(Ljava/lang/String;)Z
 
     move-result v1
 
     const/4 v2, 0x0
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_1d
 
     .line 56
     return-object v2
 
     .line 58
-    :cond_1
+    :cond_1d
     move-object v1, v0
 
     .line 59
@@ -83,8 +83,8 @@
 
     .line 37
     .end local v1    # "emailAddress":Ljava/lang/String;
-    :cond_2
-    :goto_0
+    :cond_32
+    :goto_32
     const/4 v1, 0x7
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->substring(I)Ljava/lang/String;
@@ -101,7 +101,7 @@
 
     .line 39
     .local v2, "queryStart":I
-    if-ltz v2, :cond_3
+    if-ltz v2, :cond_44
 
     .line 40
     const/4 v3, 0x0
@@ -111,7 +111,7 @@
     move-result-object v1
 
     .line 42
-    :cond_3
+    :cond_44
     invoke-static {v1}, Lcom/google/zxing/client/result/EmailAddressResultParser;->urlDecode(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
@@ -131,14 +131,14 @@
 
     .line 46
     .local v5, "body":Ljava/lang/String;
-    if-eqz v3, :cond_5
+    if-eqz v3, :cond_71
 
     .line 47
     invoke-virtual {v1}, Ljava/lang/String;->isEmpty()Z
 
     move-result v6
 
-    if-eqz v6, :cond_4
+    if-eqz v6, :cond_5f
 
     .line 48
     const-string v6, "to"
@@ -152,7 +152,7 @@
     check-cast v1, Ljava/lang/String;
 
     .line 50
-    :cond_4
+    :cond_5f
     const-string v6, "subject"
 
     invoke-interface {v3, v6}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -175,7 +175,7 @@
     check-cast v5, Ljava/lang/String;
 
     .line 53
-    :cond_5
+    :cond_71
     new-instance v6, Lcom/google/zxing/client/result/EmailAddressParsedResult;
 
     invoke-direct {v6, v1, v4, v5, v0}, Lcom/google/zxing/client/result/EmailAddressParsedResult;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
@@ -184,7 +184,7 @@
 .end method
 
 .method public bridge synthetic parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ParsedResult;
-    .locals 0
+    .registers 2
 
     .line 1
     invoke-virtual {p0, p1}, Lcom/google/zxing/client/result/EmailAddressResultParser;->parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/EmailAddressParsedResult;

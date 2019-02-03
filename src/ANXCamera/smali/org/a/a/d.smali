@@ -28,7 +28,7 @@
 
 .field sampleRateInHz:I
 
-.field ud:Lorg/a/a/c;
+.field uw:Lorg/a/a/c;
 
 
 # direct methods
@@ -109,7 +109,7 @@
     iput-boolean v1, p0, Lorg/a/a/d;->isRecording:Z
 
     .line 41
-    iput-object p1, p0, Lorg/a/a/d;->ud:Lorg/a/a/c;
+    iput-object p1, p0, Lorg/a/a/d;->uw:Lorg/a/a/c;
 
     .line 43
     const-string p1, "SM919"
@@ -204,7 +204,7 @@
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 176
-    iget-object v0, p0, Lorg/a/a/d;->ud:Lorg/a/a/c;
+    iget-object v0, p0, Lorg/a/a/d;->uw:Lorg/a/a/c;
 
     iget v1, p0, Lorg/a/a/d;->sampleRateInHz:I
 
@@ -820,7 +820,7 @@
 
     .line 251
     :cond_1
-    iget-object v0, p0, Lorg/a/a/d;->ud:Lorg/a/a/c;
+    iget-object v0, p0, Lorg/a/a/d;->uw:Lorg/a/a/c;
 
     invoke-interface {v0}, Lorg/a/a/c;->closeWavFile()I
 

@@ -57,7 +57,7 @@ public class ManuallyValueChangeImpl implements ManuallyValueChanged {
         if (!CameraSettings.getMappingFocusMode(Integer.valueOf(str).intValue()).equals(CameraSettings.getMappingFocusMode(Integer.valueOf(str2).intValue()))) {
             CameraSettings.setFocusModeSwitching(true);
             boolean equals = str2.equals(componentManuallyFocus.getDefaultValue(167));
-            if (b.gC()) {
+            if (b.gU()) {
                 TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
                 if (equals) {
                     topAlert.removeConfigItem(199);
@@ -100,7 +100,10 @@ public class ManuallyValueChangeImpl implements ManuallyValueChanged {
     public void onDualLensSwitch(ComponentManuallyDualLens componentManuallyDualLens, int i) {
         String next = ComponentManuallyDualLens.next(componentManuallyDualLens.getComponentValue(i), i);
         componentManuallyDualLens.setComponentValue(i, next);
-        CameraSettings.setUltraWideConfig(ComponentManuallyDualLens.LENS_ULTRA.equalsIgnoreCase(next));
+        CameraSettings.setUltraWideConfig(i, ComponentManuallyDualLens.LENS_ULTRA.equalsIgnoreCase(next));
+        if (!ComponentManuallyDualLens.LENS_WIDE.equalsIgnoreCase(next)) {
+            CameraSettings.setUltraPixelPhotographyConfig(false);
+        }
         CameraStatUtil.trackLensChanged(next);
         this.mActivity.onModeSelected(StartControl.create(i).setResetType(5).setViewConfigType(2).setNeedBlurAnimation(true));
     }

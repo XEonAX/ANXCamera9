@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 115
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -25,7 +25,7 @@
 .end method
 
 .method static getColumnCount(Ljava/lang/Object;)I
-    .locals 1
+    .registers 2
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 117
@@ -41,7 +41,7 @@
 .end method
 
 .method static getRowCount(Ljava/lang/Object;)I
-    .locals 1
+    .registers 2
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 121
@@ -57,7 +57,7 @@
 .end method
 
 .method static isHierarchical(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 2
     .param p0, "info"    # Ljava/lang/Object;
 
     .line 125

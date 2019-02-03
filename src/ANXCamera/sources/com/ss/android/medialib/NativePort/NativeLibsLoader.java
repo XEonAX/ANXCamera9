@@ -1,7 +1,7 @@
 package com.ss.android.medialib.NativePort;
 
 import android.util.Log;
-import java.util.ArrayList;
+import com.ss.android.medialib.LibsConfig;
 import java.util.List;
 
 public class NativeLibsLoader {
@@ -18,17 +18,13 @@ public class NativeLibsLoader {
             if (sLibraryLoaded) {
                 return;
             }
-            List<String> arrayList = new ArrayList();
-            arrayList.add("ttffmpeg");
-            arrayList.add("yuv");
-            arrayList.add("effect");
-            arrayList.add("ttffmpeg-invoker");
+            List<String> list = LibsConfig.LIBS;
             if (mLibraryLoader != null) {
-                mLibraryLoader.onLoadNativeLibs(arrayList);
+                mLibraryLoader.onLoadNativeLibs(list);
                 sLibraryLoaded = true;
                 return;
             }
-            for (String safeLoadSo : arrayList) {
+            for (String safeLoadSo : list) {
                 safeLoadSo(safeLoadSo);
             }
             sLibraryLoaded = true;

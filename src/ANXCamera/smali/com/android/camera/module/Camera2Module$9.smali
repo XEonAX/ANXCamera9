@@ -36,7 +36,7 @@
 .method constructor <init>(Lcom/android/camera/module/Camera2Module;I)V
     .locals 0
 
-    .line 1515
+    .line 1735
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module$9;->this$0:Lcom/android/camera/module/Camera2Module;
 
     iput p2, p0, Lcom/android/camera/module/Camera2Module$9;->val$time:I
@@ -51,12 +51,12 @@
 .method public onComplete()V
     .locals 3
 
-    .line 1546
+    .line 1766
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$9;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-virtual {v0}, Lcom/android/camera/module/Camera2Module;->tryRemoveCountDownMessage()V
 
-    .line 1547
+    .line 1767
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$9;->this$0:Lcom/android/camera/module/Camera2Module;
 
     const/4 v1, 0x1
@@ -65,44 +65,44 @@
 
     invoke-virtual {v0, v1, v2}, Lcom/android/camera/module/Camera2Module;->onShutterButtonFocus(ZI)V
 
-    .line 1548
+    .line 1768
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$9;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module$9;->this$0:Lcom/android/camera/module/Camera2Module;
+    iget-object v2, p0, Lcom/android/camera/module/Camera2Module$9;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    invoke-virtual {v1}, Lcom/android/camera/module/Camera2Module;->getTriggerMode()I
+    invoke-virtual {v2}, Lcom/android/camera/module/Camera2Module;->getTriggerMode()I
 
-    move-result v1
+    move-result v2
 
-    invoke-static {v0, v1}, Lcom/android/camera/module/Camera2Module;->access$1700(Lcom/android/camera/module/Camera2Module;I)V
+    invoke-static {v0, v2}, Lcom/android/camera/module/Camera2Module;->access$3200(Lcom/android/camera/module/Camera2Module;I)V
 
-    .line 1549
+    .line 1769
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$9;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    const/4 v1, 0x0
+    const/4 v2, 0x0
 
-    invoke-virtual {v0, v1, v1}, Lcom/android/camera/module/Camera2Module;->onShutterButtonFocus(ZI)V
+    invoke-virtual {v0, v2, v2}, Lcom/android/camera/module/Camera2Module;->onShutterButtonFocus(ZI)V
 
-    .line 1551
+    .line 1771
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    const/16 v1, 0xac
+    const/16 v2, 0xac
 
-    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+    invoke-virtual {v0, v2}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
 
-    .line 1552
+    .line 1772
     if-eqz v0, :cond_0
 
-    .line 1553
-    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->reInitAlert()V
+    .line 1773
+    invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->reInitAlert(Z)V
 
-    .line 1555
+    .line 1775
     :cond_0
     return-void
 .end method
@@ -110,14 +110,14 @@
 .method public onError(Ljava/lang/Throwable;)V
     .locals 0
 
-    .line 1542
+    .line 1762
     return-void
 .end method
 
 .method public onNext(Ljava/lang/Long;)V
     .locals 2
 
-    .line 1532
+    .line 1752
     iget v0, p0, Lcom/android/camera/module/Camera2Module$9;->val$time:I
 
     invoke-virtual {p1}, Ljava/lang/Long;->intValue()I
@@ -128,24 +128,24 @@
 
     sub-int/2addr v0, p1
 
-    .line 1533
+    .line 1753
     if-lez v0, :cond_0
 
-    .line 1534
+    .line 1754
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$9;->this$0:Lcom/android/camera/module/Camera2Module;
 
     const/4 v1, 0x5
 
-    invoke-virtual {p1, v1}, Lcom/android/camera/module/Camera2Module;->playSound(I)V
+    invoke-virtual {p1, v1}, Lcom/android/camera/module/Camera2Module;->playCameraSound(I)V
 
-    .line 1535
+    .line 1755
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$9;->this$0:Lcom/android/camera/module/Camera2Module;
 
     iget-object p1, p1, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->showDelayNumber(I)V
 
-    .line 1537
+    .line 1757
     :cond_0
     return-void
 .end method
@@ -153,7 +153,7 @@
 .method public bridge synthetic onNext(Ljava/lang/Object;)V
     .locals 0
 
-    .line 1515
+    .line 1735
     check-cast p1, Ljava/lang/Long;
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module$9;->onNext(Ljava/lang/Long;)V
@@ -164,19 +164,19 @@
 .method public onSubscribe(Lio/reactivex/disposables/Disposable;)V
     .locals 2
 
-    .line 1519
+    .line 1739
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$9;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    invoke-static {v0, p1}, Lcom/android/camera/module/Camera2Module;->access$1602(Lcom/android/camera/module/Camera2Module;Lio/reactivex/disposables/Disposable;)Lio/reactivex/disposables/Disposable;
+    invoke-static {v0, p1}, Lcom/android/camera/module/Camera2Module;->access$3102(Lcom/android/camera/module/Camera2Module;Lio/reactivex/disposables/Disposable;)Lio/reactivex/disposables/Disposable;
 
-    .line 1520
+    .line 1740
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$9;->this$0:Lcom/android/camera/module/Camera2Module;
 
     const/4 v0, 0x7
 
-    invoke-virtual {p1, v0}, Lcom/android/camera/module/Camera2Module;->playSound(I)V
+    invoke-virtual {p1, v0}, Lcom/android/camera/module/Camera2Module;->playCameraSound(I)V
 
-    .line 1522
+    .line 1742
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
@@ -189,13 +189,13 @@
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
 
-    .line 1523
+    .line 1743
     if-eqz p1, :cond_0
 
-    .line 1524
+    .line 1744
     invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->hideAlert()V
 
-    .line 1526
+    .line 1746
     :cond_0
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$9;->this$0:Lcom/android/camera/module/Camera2Module;
 
@@ -203,7 +203,7 @@
 
     invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->clearFocusView(I)V
 
-    .line 1527
+    .line 1747
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module$9;->this$0:Lcom/android/camera/module/Camera2Module;
 
     iget-object p1, p1, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
@@ -212,6 +212,6 @@
 
     invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->showDelayNumber(I)V
 
-    .line 1528
+    .line 1748
     return-void
 .end method

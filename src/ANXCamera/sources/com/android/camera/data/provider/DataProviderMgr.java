@@ -3,6 +3,7 @@ package com.android.camera.data.provider;
 import android.util.SparseArray;
 import com.android.camera.data.cloud.DataCloud.CloudManager;
 import com.android.camera.data.data.config.DataItemConfig;
+import com.android.camera.data.data.extra.DataItemLive;
 import com.android.camera.data.data.global.DataItemGlobal;
 import com.android.camera.data.data.runing.DataItemRunning;
 import com.mi.config.a;
@@ -15,6 +16,7 @@ public class DataProviderMgr {
         private DataItemGlobal mDataGlobal = new DataItemGlobal();
         private SparseArray<DataItemConfig> mDataItemConfigs;
         private a mDataItemFeature;
+        private DataItemLive mDataItemLive;
         private DataItemRunning mDataRunning;
 
         public DataProviderImpl(CloudManager cloudManager) {
@@ -59,6 +61,13 @@ public class DataProviderMgr {
 
         public a dataFeature() {
             return this.mDataItemFeature;
+        }
+
+        public DataItemLive dataLive() {
+            if (this.mDataItemLive == null) {
+                this.mDataItemLive = new DataItemLive();
+            }
+            return this.mDataItemLive;
         }
     }
 

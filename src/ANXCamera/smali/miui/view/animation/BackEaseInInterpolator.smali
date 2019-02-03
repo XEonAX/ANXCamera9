@@ -7,12 +7,12 @@
 
 
 # instance fields
-.field private final NS:F
+.field private final Od:F
 
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 20
     const/4 v0, 0x0
@@ -24,13 +24,13 @@
 .end method
 
 .method public constructor <init>(F)V
-    .locals 0
+    .registers 2
 
     .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 27
-    iput p1, p0, Lmiui/view/animation/BackEaseInInterpolator;->NS:F
+    iput p1, p0, Lmiui/view/animation/BackEaseInInterpolator;->Od:F
 
     .line 28
     return-void
@@ -39,26 +39,26 @@
 
 # virtual methods
 .method public getInterpolation(F)F
-    .locals 3
+    .registers 5
 
     .line 32
-    iget v0, p0, Lmiui/view/animation/BackEaseInInterpolator;->NS:F
+    iget v0, p0, Lmiui/view/animation/BackEaseInInterpolator;->Od:F
 
     const/4 v1, 0x0
 
     cmpl-float v0, v0, v1
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_b
 
     const v0, 0x3fd9cd60
 
-    goto :goto_0
+    goto :goto_d
 
-    :cond_0
-    iget v0, p0, Lmiui/view/animation/BackEaseInInterpolator;->NS:F
+    :cond_b
+    iget v0, p0, Lmiui/view/animation/BackEaseInInterpolator;->Od:F
 
     .line 33
-    :goto_0
+    :goto_d
     mul-float v1, p1, p1
 
     const/high16 v2, 0x3f800000    # 1.0f

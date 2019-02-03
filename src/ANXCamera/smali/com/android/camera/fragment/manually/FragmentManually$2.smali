@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/manually/FragmentManually;)V
     .locals 0
 
-    .line 185
+    .line 186
     iput-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually$2;->this$0:Lcom/android/camera/fragment/manually/FragmentManually;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public run()V
     .locals 2
 
-    .line 188
+    .line 189
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually$2;->this$0:Lcom/android/camera/fragment/manually/FragmentManually;
 
     invoke-static {v0}, Lcom/android/camera/fragment/manually/FragmentManually;->access$200(Lcom/android/camera/fragment/manually/FragmentManually;)Landroid/widget/ImageView;
@@ -49,7 +49,7 @@
 
     invoke-static {v0, v1}, Landroid/support/v4/view/ViewCompat;->setTranslationY(Landroid/view/View;F)V
 
-    .line 189
+    .line 190
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually$2;->this$0:Lcom/android/camera/fragment/manually/FragmentManually;
 
     invoke-static {v0}, Lcom/android/camera/fragment/manually/FragmentManually;->access$200(Lcom/android/camera/fragment/manually/FragmentManually;)Landroid/widget/ImageView;
@@ -60,6 +60,6 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 190
+    .line 191
     return-void
 .end method

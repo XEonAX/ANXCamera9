@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/module/Camera2Module;->onUltraWideChanged(Z)V
+    value = Lcom/android/camera/module/Camera2Module;->stopScreenLight()V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -20,17 +20,13 @@
 # instance fields
 .field final synthetic this$0:Lcom/android/camera/module/Camera2Module;
 
-.field final synthetic val$isOpenUltraWide:Z
-
 
 # direct methods
-.method constructor <init>(Lcom/android/camera/module/Camera2Module;Z)V
+.method constructor <init>(Lcom/android/camera/module/Camera2Module;)V
     .locals 0
 
-    .line 5341
+    .line 5701
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module$32;->this$0:Lcom/android/camera/module/Camera2Module;
-
-    iput-boolean p2, p0, Lcom/android/camera/module/Camera2Module$32;->val$isOpenUltraWide:Z
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -40,44 +36,76 @@
 
 # virtual methods
 .method public run()V
-    .locals 5
+    .locals 4
 
-    .line 5344
+    .line 5704
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module$32;->this$0:Lcom/android/camera/module/Camera2Module;
+
+    iget-object v0, v0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
+
+    if-eqz v0, :cond_0
+
+    .line 5705
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module$32;->this$0:Lcom/android/camera/module/Camera2Module;
+
+    iget-object v0, v0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
+
+    invoke-virtual {v0}, Lcom/android/camera/Camera;->restoreWindowBrightness()V
+
+    .line 5708
+    :cond_0
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    const/16 v1, 0xac
+    const/16 v1, 0xc4
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v0
 
-    check-cast v0, Lcom/android/camera/fragment/top/FragmentTopConfig;
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$FullScreenProtocol;
 
-    .line 5345
+    .line 5709
+    invoke-static {}, Lcom/android/camera/module/Camera2Module;->access$1400()Ljava/lang/String;
+
+    move-result-object v1
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "stopScreenLight: protocol = "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    const-string v3, ", mHandler = "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget-object v3, p0, Lcom/android/camera/module/Camera2Module$32;->this$0:Lcom/android/camera/module/Camera2Module;
+
+    invoke-static {v3}, Lcom/android/camera/module/Camera2Module;->access$3600(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/module/Camera2Module$MainHandler;
+
+    move-result-object v3
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 5710
     if-eqz v0, :cond_1
 
-    .line 5346
-    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module$32;->val$isOpenUltraWide:Z
+    .line 5711
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$FullScreenProtocol;->hideScreenLight()V
 
-    if-eqz v1, :cond_0
-
-    const/4 v1, 0x0
-
-    goto :goto_0
-
-    :cond_0
-    const/16 v1, 0x8
-
-    :goto_0
-    const v2, 0x7f0b0235
-
-    const-wide/16 v3, 0x7d0
-
-    invoke-virtual {v0, v1, v2, v3, v4}, Lcom/android/camera/fragment/top/FragmentTopConfig;->alertAiDetectTipHint(IIJ)V
-
-    .line 5348
+    .line 5713
     :cond_1
     return-void
 .end method

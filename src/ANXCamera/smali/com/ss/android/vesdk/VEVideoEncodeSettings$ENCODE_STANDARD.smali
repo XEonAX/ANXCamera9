@@ -50,7 +50,7 @@
 .method static constructor <clinit>()V
     .locals 5
 
-    .line 68
+    .line 70
     new-instance v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;
 
     const-string v1, "ENCODE_STANDARD_H264"
@@ -61,7 +61,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;->ENCODE_STANDARD_H264:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;
 
-    .line 69
+    .line 71
     new-instance v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;
 
     const-string v1, "ENCODE_STANDARD_H265"
@@ -72,7 +72,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;->ENCODE_STANDARD_H265:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;
 
-    .line 70
+    .line 72
     new-instance v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;
 
     const-string v1, "ENCODE_STANDARD_MPEG4"
@@ -83,7 +83,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;->ENCODE_STANDARD_MPEG4:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;
 
-    .line 67
+    .line 69
     const/4 v0, 0x3
 
     new-array v0, v0, [Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;
@@ -102,7 +102,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;->$VALUES:[Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;
 
-    .line 82
+    .line 84
     new-instance v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD$1;
 
     invoke-direct {v0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD$1;-><init>()V
@@ -120,7 +120,7 @@
         }
     .end annotation
 
-    .line 67
+    .line 69
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -129,7 +129,7 @@
 .method public static valueOf(Ljava/lang/String;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;
     .locals 1
 
-    .line 67
+    .line 69
     const-class v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -144,7 +144,7 @@
 .method public static values()[Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;
     .locals 1
 
-    .line 67
+    .line 69
     sget-object v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;->$VALUES:[Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;
 
     invoke-virtual {v0}, [Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;->clone()Ljava/lang/Object;
@@ -161,7 +161,7 @@
 .method public describeContents()I
     .locals 1
 
-    .line 79
+    .line 81
     const/4 v0, 0x0
 
     return v0
@@ -170,13 +170,13 @@
 .method public writeToParcel(Landroid/os/Parcel;I)V
     .locals 0
 
-    .line 74
+    .line 76
     invoke-virtual {p0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;->ordinal()I
 
     move-result p2
 
     invoke-virtual {p1, p2}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 75
+    .line 77
     return-void
 .end method

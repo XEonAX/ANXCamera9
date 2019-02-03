@@ -30,7 +30,7 @@
 .method constructor <init>()V
     .locals 0
 
-    .line 115
+    .line 117
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -41,7 +41,7 @@
 .method public createFromParcel(Landroid/os/Parcel;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PROFILE;
     .locals 1
 
-    .line 118
+    .line 120
     invoke-static {}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PROFILE;->values()[Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PROFILE;
 
     move-result-object v0
@@ -58,7 +58,7 @@
 .method public bridge synthetic createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
     .locals 0
 
-    .line 115
+    .line 117
     invoke-virtual {p0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PROFILE$1;->createFromParcel(Landroid/os/Parcel;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PROFILE;
 
     move-result-object p1
@@ -69,7 +69,7 @@
 .method public newArray(I)[Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PROFILE;
     .locals 0
 
-    .line 123
+    .line 125
     new-array p1, p1, [Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PROFILE;
 
     return-object p1
@@ -78,7 +78,7 @@
 .method public bridge synthetic newArray(I)[Ljava/lang/Object;
     .locals 0
 
-    .line 115
+    .line 117
     invoke-virtual {p0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PROFILE$1;->newArray(I)[Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PROFILE;
 
     move-result-object p1

@@ -57,11 +57,11 @@
     .locals 1
 
     .line 70
-    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cu:Lcom/bumptech/glide/load/DataSource;
+    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cv:Lcom/bumptech/glide/load/DataSource;
 
     if-eq p1, v0, :cond_0
 
-    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cw:Lcom/bumptech/glide/load/DataSource;
+    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cx:Lcom/bumptech/glide/load/DataSource;
 
     if-eq p1, v0, :cond_0
 

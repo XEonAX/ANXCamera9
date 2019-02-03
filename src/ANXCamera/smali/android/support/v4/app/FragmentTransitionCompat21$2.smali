@@ -35,7 +35,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/view/View;Landroid/transition/Transition;Landroid/view/View;Landroid/support/v4/app/FragmentTransitionCompat21$ViewRetriever;Ljava/util/Map;Ljava/util/Map;Ljava/util/ArrayList;)V
-    .locals 0
+    .registers 8
 
     .line 124
     iput-object p1, p0, Landroid/support/v4/app/FragmentTransitionCompat21$2;->val$container:Landroid/view/View;
@@ -60,7 +60,7 @@
 
 # virtual methods
 .method public onPreDraw()Z
-    .locals 6
+    .registers 7
 
     .line 126
     iget-object v0, p0, Landroid/support/v4/app/FragmentTransitionCompat21$2;->val$container:Landroid/view/View;
@@ -74,7 +74,7 @@
     .line 127
     iget-object v0, p0, Landroid/support/v4/app/FragmentTransitionCompat21$2;->val$enterTransition:Landroid/transition/Transition;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_14
 
     .line 128
     iget-object v0, p0, Landroid/support/v4/app/FragmentTransitionCompat21$2;->val$enterTransition:Landroid/transition/Transition;
@@ -84,7 +84,7 @@
     invoke-virtual {v0, v1}, Landroid/transition/Transition;->removeTarget(Landroid/view/View;)Landroid/transition/Transition;
 
     .line 130
-    :cond_0
+    :cond_14
     iget-object v0, p0, Landroid/support/v4/app/FragmentTransitionCompat21$2;->val$inFragment:Landroid/support/v4/app/FragmentTransitionCompat21$ViewRetriever;
 
     invoke-interface {v0}, Landroid/support/v4/app/FragmentTransitionCompat21$ViewRetriever;->getView()Landroid/view/View;
@@ -93,7 +93,7 @@
 
     .line 131
     .local v0, "fragmentView":Landroid/view/View;
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_8a
 
     .line 132
     iget-object v1, p0, Landroid/support/v4/app/FragmentTransitionCompat21$2;->val$nameOverrides:Ljava/util/Map;
@@ -102,7 +102,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_68
 
     .line 133
     iget-object v1, p0, Landroid/support/v4/app/FragmentTransitionCompat21$2;->val$renamedViews:Ljava/util/Map;
@@ -136,12 +136,12 @@
     move-result-object v1
 
     .local v1, "i$":Ljava/util/Iterator;
-    :goto_0
+    :goto_42
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_68
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -169,7 +169,7 @@
 
     .line 138
     .local v4, "view":Landroid/view/View;
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_67
 
     .line 139
     invoke-interface {v2}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
@@ -187,19 +187,20 @@
     .end local v3    # "to":Ljava/lang/String;
     .end local v4    # "view":Landroid/view/View;
     .end local v5    # "from":Ljava/lang/String;
-    :cond_1
-    goto :goto_0
+    :cond_67
+    goto :goto_42
 
     .line 144
     .end local v1    # "i$":Ljava/util/Iterator;
-    :cond_2
+    :cond_68
     iget-object v1, p0, Landroid/support/v4/app/FragmentTransitionCompat21$2;->val$enterTransition:Landroid/transition/Transition;
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_8a
 
     .line 145
     iget-object v1, p0, Landroid/support/v4/app/FragmentTransitionCompat21$2;->val$enteringViews:Ljava/util/ArrayList;
 
+    # invokes: Landroid/support/v4/app/FragmentTransitionCompat21;->captureTransitioningViews(Ljava/util/ArrayList;Landroid/view/View;)V
     invoke-static {v1, v0}, Landroid/support/v4/app/FragmentTransitionCompat21;->access$000(Ljava/util/ArrayList;Landroid/view/View;)V
 
     .line 146
@@ -228,7 +229,7 @@
     invoke-static {v1, v2}, Landroid/support/v4/app/FragmentTransitionCompat21;->addTargets(Ljava/lang/Object;Ljava/util/ArrayList;)V
 
     .line 151
-    :cond_3
+    :cond_8a
     const/4 v1, 0x1
 
     return v1

@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/snap/SnapCamera;Landroid/content/Context;I)V
     .locals 0
 
-    .line 301
+    .line 299
     iput-object p1, p0, Lcom/android/camera/snap/SnapCamera$4;->this$0:Lcom/android/camera/snap/SnapCamera;
 
     invoke-direct {p0, p2, p3}, Landroid/view/OrientationEventListener;-><init>(Landroid/content/Context;I)V
@@ -35,7 +35,7 @@
 .method public onOrientationChanged(I)V
     .locals 2
 
-    .line 305
+    .line 303
     iget-object v0, p0, Lcom/android/camera/snap/SnapCamera$4;->this$0:Lcom/android/camera/snap/SnapCamera;
 
     iget-object v1, p0, Lcom/android/camera/snap/SnapCamera$4;->this$0:Lcom/android/camera/snap/SnapCamera;
@@ -50,6 +50,6 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/snap/SnapCamera;->access$702(Lcom/android/camera/snap/SnapCamera;I)I
 
-    .line 306
+    .line 304
     return-void
 .end method

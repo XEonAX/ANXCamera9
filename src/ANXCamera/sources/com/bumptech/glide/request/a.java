@@ -5,68 +5,68 @@ import android.support.annotation.Nullable;
 /* compiled from: ErrorRequestCoordinator */
 public final class a implements c, d {
     @Nullable
-    private final d mV;
+    private final d mU;
+    private c mV;
     private c mW;
-    private c mZ;
 
     public a(@Nullable d dVar) {
-        this.mV = dVar;
+        this.mU = dVar;
     }
 
     public void a(c cVar, c cVar2) {
-        this.mW = cVar;
-        this.mZ = cVar2;
+        this.mV = cVar;
+        this.mW = cVar2;
     }
 
     public void begin() {
-        if (!this.mW.isRunning()) {
-            this.mW.begin();
+        if (!this.mV.isRunning()) {
+            this.mV.begin();
         }
     }
 
     public void pause() {
-        if (!this.mW.isFailed()) {
-            this.mW.pause();
+        if (!this.mV.isFailed()) {
+            this.mV.pause();
         }
-        if (this.mZ.isRunning()) {
-            this.mZ.pause();
+        if (this.mW.isRunning()) {
+            this.mW.pause();
         }
     }
 
     public void clear() {
-        this.mW.clear();
-        if (this.mZ.isRunning()) {
-            this.mZ.clear();
+        this.mV.clear();
+        if (this.mW.isRunning()) {
+            this.mW.clear();
         }
     }
 
     public boolean isPaused() {
-        return (this.mW.isFailed() ? this.mZ : this.mW).isPaused();
+        return (this.mV.isFailed() ? this.mW : this.mV).isPaused();
     }
 
     public boolean isRunning() {
-        return (this.mW.isFailed() ? this.mZ : this.mW).isRunning();
+        return (this.mV.isFailed() ? this.mW : this.mV).isRunning();
     }
 
     public boolean isComplete() {
-        return (this.mW.isFailed() ? this.mZ : this.mW).isComplete();
+        return (this.mV.isFailed() ? this.mW : this.mV).isComplete();
     }
 
     public boolean dd() {
-        return (this.mW.isFailed() ? this.mZ : this.mW).dd();
+        return (this.mV.isFailed() ? this.mW : this.mV).dd();
     }
 
     public boolean isCancelled() {
-        return (this.mW.isFailed() ? this.mZ : this.mW).isCancelled();
+        return (this.mV.isFailed() ? this.mW : this.mV).isCancelled();
     }
 
     public boolean isFailed() {
-        return this.mW.isFailed() && this.mZ.isFailed();
+        return this.mV.isFailed() && this.mW.isFailed();
     }
 
     public void recycle() {
+        this.mV.recycle();
         this.mW.recycle();
-        this.mZ.recycle();
     }
 
     public boolean c(c cVar) {
@@ -75,7 +75,7 @@ public final class a implements c, d {
             return false;
         }
         a aVar = (a) cVar;
-        if (this.mW.c(aVar.mW) && this.mZ.c(aVar.mZ)) {
+        if (this.mV.c(aVar.mV) && this.mW.c(aVar.mW)) {
             z = true;
         }
         return z;
@@ -86,7 +86,7 @@ public final class a implements c, d {
     }
 
     private boolean de() {
-        return this.mV == null || this.mV.d(this);
+        return this.mU == null || this.mU.d(this);
     }
 
     public boolean e(c cVar) {
@@ -98,15 +98,15 @@ public final class a implements c, d {
     }
 
     private boolean df() {
-        return this.mV == null || this.mV.f(this);
+        return this.mU == null || this.mU.f(this);
     }
 
     private boolean dg() {
-        return this.mV == null || this.mV.e(this);
+        return this.mU == null || this.mU.e(this);
     }
 
     private boolean g(c cVar) {
-        return cVar.equals(this.mW) || (this.mW.isFailed() && cVar.equals(this.mZ));
+        return cVar.equals(this.mV) || (this.mV.isFailed() && cVar.equals(this.mW));
     }
 
     public boolean dh() {
@@ -114,24 +114,24 @@ public final class a implements c, d {
     }
 
     private boolean di() {
-        return this.mV != null && this.mV.dh();
+        return this.mU != null && this.mU.dh();
     }
 
     public void h(c cVar) {
-        if (this.mV != null) {
-            this.mV.h(this);
+        if (this.mU != null) {
+            this.mU.h(this);
         }
     }
 
     public void i(c cVar) {
-        if (cVar.equals(this.mZ)) {
-            if (this.mV != null) {
-                this.mV.i(this);
+        if (cVar.equals(this.mW)) {
+            if (this.mU != null) {
+                this.mU.i(this);
             }
             return;
         }
-        if (!this.mZ.isRunning()) {
-            this.mZ.begin();
+        if (!this.mW.isRunning()) {
+            this.mW.begin();
         }
     }
 }

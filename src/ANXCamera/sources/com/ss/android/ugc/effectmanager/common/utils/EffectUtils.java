@@ -1,9 +1,11 @@
 package com.ss.android.ugc.effectmanager.common.utils;
 
+import android.accounts.NetworkErrorException;
 import com.ss.android.ugc.effectmanager.EffectConfiguration;
 import com.ss.android.ugc.effectmanager.common.EffectRequest;
 import com.ss.android.ugc.effectmanager.common.ErrorConstants;
 import com.ss.android.ugc.effectmanager.common.exception.MD5Exception;
+import com.ss.android.ugc.effectmanager.common.exception.UrlNotExistException;
 import com.ss.android.ugc.effectmanager.common.model.UrlModel;
 import com.ss.android.ugc.effectmanager.effect.model.Effect;
 import java.io.BufferedReader;
@@ -149,8 +151,8 @@ public class EffectUtils {
 
     public static void downloadEffect(EffectConfiguration effectConfiguration, Effect effect) throws Exception {
         List url = getUrl(effect.getFileUrl());
-        if (url == null || url.isEmpty() || isUrlModelEmpty(effect.getFileUrl())) {
-            throw new Exception(ErrorConstants.EXCEPTION_DOWNLOAD_ERROR);
+        if (url == null || url.isEmpty()) {
+            throw new UrlNotExistException(ErrorConstants.EXCEPTION_DOWNLOAD_URL_ERROR);
         }
         int i = 0;
         while (i < url.size()) {
@@ -174,17 +176,18 @@ public class EffectUtils {
             } catch (Exception e) {
                 e.printStackTrace();
                 if (i == url.size() - 1) {
+                    FileUtils.removeDir(effect.getUnzipPath());
                     throw e;
                 }
             }
         }
     }
 
-    private static File download(EffectConfiguration effectConfiguration, String str, String str2) throws Exception {
+    static File download(EffectConfiguration effectConfiguration, String str, String str2) throws Exception {
         InputStream execute = effectConfiguration.getEffectNetWorker().execute(new EffectRequest("GET", str));
         if (execute != null) {
             return convertStreamToFile(execute, str2);
         }
-        throw new Exception(ErrorConstants.EXCEPTION_DOWNLOAD_ERROR);
+        throw new NetworkErrorException(ErrorConstants.EXCEPTION_DOWNLOAD_ERROR);
     }
 }

@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import com.ss.android.ugc.effectmanager.common.WeakHandler;
 import com.ss.android.ugc.effectmanager.common.WeakHandler.IHandler;
 import com.ss.android.ugc.effectmanager.common.task.ExceptionResult;
@@ -23,7 +24,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
 public class LinkSelector implements IHandler {
     private static final String TAG = "HostSelector";
@@ -65,7 +65,7 @@ public class LinkSelector implements IHandler {
         this.mReceiver = null;
     }
 
-    public void linkSelectorConfigure(@NotNull LinkSelectorConfiguration linkSelectorConfiguration) {
+    public void linkSelectorConfigure(@NonNull LinkSelectorConfiguration linkSelectorConfiguration) {
         this.mSpeedTimeOut = linkSelectorConfiguration.getSpeedTimeOut();
         this.mRepeatTime = linkSelectorConfiguration.getRepeatTime();
         this.mIsEnableLinkSelector = linkSelectorConfiguration.isEnableLinkSelector();
@@ -88,7 +88,7 @@ public class LinkSelector implements IHandler {
         return this.mRepeatTime;
     }
 
-    public boolean isLinkSelectorAvilable() {
+    public boolean isLinkSelectorAvailable() {
         return this.mIsEnableLinkSelector && this.mOriginHosts.size() > 1;
     }
 
@@ -122,7 +122,7 @@ public class LinkSelector implements IHandler {
     }
 
     public void updateBestHost() {
-        if (isLinkSelectorAvilable()) {
+        if (isLinkSelectorAvailable()) {
             Host host = null;
             for (int i = 0; i < this.mOptedHosts.size(); i++) {
                 Host host2 = (Host) this.mOptedHosts.get(i);
@@ -158,7 +158,7 @@ public class LinkSelector implements IHandler {
     }
 
     public void startOptHosts() {
-        if (isLinkSelectorAvilable() && !this.isRun && isNetworkAvailable()) {
+        if (isLinkSelectorAvailable() && !this.isRun && isNetworkAvailable()) {
             LogUtils.e(TAG, "hosts measure start");
             this.mEffectContext.getEffectConfiguration().getTaskManager().commit(new HostListStatusUpdateTask(this, this.mHandler, TASK_FLAG));
             this.isRun = true;
@@ -166,7 +166,7 @@ public class LinkSelector implements IHandler {
     }
 
     private void setNetworkChangeOpt() {
-        if (this.mIsNetworkChangeMonitor && this.mReceiver == null && isLinkSelectorAvilable()) {
+        if (this.mIsNetworkChangeMonitor && this.mReceiver == null && isLinkSelectorAvailable()) {
             this.mReceiver = new NetworkChangeReceiver();
             this.mContext.registerReceiver(this.mReceiver, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
         }
@@ -230,7 +230,7 @@ public class LinkSelector implements IHandler {
         LogUtils.d(str2, stringBuilder.toString());
     }
 
-    public void destory() {
+    public void destroy() {
         if (this.mReceiver != null && this.mContext != null) {
             this.mContext.unregisterReceiver(this.mReceiver);
         }

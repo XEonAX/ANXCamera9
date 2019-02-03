@@ -12,7 +12,7 @@ import java.util.List;
 public final class a {
     private static final int DEFAULT_POOL_SIZE = 20;
     private static final String TAG = "FactoryPools";
-    private static final d<Object> py = new d<Object>() {
+    private static final d<Object> px = new d<Object>() {
         public void reset(@NonNull Object obj) {
         }
     };
@@ -35,20 +35,20 @@ public final class a {
 
     /* compiled from: FactoryPools */
     private static final class b<T> implements Pool<T> {
-        private final Pool<T> eu;
-        private final d<T> pA;
-        private final a<T> pz;
+        private final Pool<T> ev;
+        private final a<T> py;
+        private final d<T> pz;
 
         b(@NonNull Pool<T> pool, @NonNull a<T> aVar, @NonNull d<T> dVar) {
-            this.eu = pool;
-            this.pz = aVar;
-            this.pA = dVar;
+            this.ev = pool;
+            this.py = aVar;
+            this.pz = dVar;
         }
 
         public T acquire() {
-            T acquire = this.eu.acquire();
+            T acquire = this.ev.acquire();
             if (acquire == null) {
-                acquire = this.pz.create();
+                acquire = this.py.create();
                 if (Log.isLoggable(a.TAG, 2)) {
                     String str = a.TAG;
                     StringBuilder stringBuilder = new StringBuilder();
@@ -67,8 +67,8 @@ public final class a {
             if (t instanceof c) {
                 ((c) t).aK().m(true);
             }
-            this.pA.reset(t);
-            return this.eu.release(t);
+            this.pz.reset(t);
+            return this.ev.release(t);
         }
     }
 
@@ -118,6 +118,6 @@ public final class a {
 
     @NonNull
     private static <T> d<T> eK() {
-        return py;
+        return px;
     }
 }

@@ -8,7 +8,6 @@ import android.os.IHwBinder;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemProperties;
-import android.os.statistics.E2EScenario;
 import android.util.Slog;
 import miui.os.DeviceFeature;
 import miui.util.FeatureParser;
@@ -18,6 +17,7 @@ public class DisplayFeatureManager {
     public static final int DEFALUT_GAMUT_MODE = 0;
     public static final int DEFALUT_SCREEN_COLOR = 2;
     private static final String DISPLAY_FEATURE_SERVICE = "DisplayFeatureControl";
+    public static final int DISPLAY_INFO_GRAY = 0;
     public static final int EXT_COLOR_PROC_STATE = 15;
     private static final String HIDL_SERVICENAME_DEFAULT = "vendor.xiaomi.hardware.displayfeature@1.0::IDisplayFeature";
     public static final String PROPERTY_ASSERTIVE_DISPLAY = "persist.sys.ltm_enable";
@@ -27,6 +27,7 @@ public class DisplayFeatureManager {
     public static final int SCREEN_ADAPT = 0;
     public static final int SCREEN_ENHANCE = 1;
     public static final int SCREEN_EYECARE = 3;
+    public static final int SCREEN_GAME_HDR = 19;
     public static final int SCREEN_HIGHLIGHT = 11;
     public static final int SCREEN_MONOCHROME = 4;
     public static final int SCREEN_NIGHTLIGHT = 9;
@@ -76,6 +77,17 @@ public class DisplayFeatureManager {
         }
     }
 
+    public void registerCallback(Object callback) {
+        synchronized (this.mLock) {
+            if (this.mProxy == null) {
+                initProxyLocked();
+            }
+            if (this.mProxy != null) {
+                this.mProxy.registerCallback(0, callback);
+            }
+        }
+    }
+
     private void initProxyLocked() {
         try {
             if (DeviceFeature.SUPPORT_DISPLAYFEATURE_HIDL) {
@@ -87,7 +99,7 @@ public class DisplayFeatureManager {
                 stringBuilder.append(" hidlServiceName = ");
                 stringBuilder.append(hidlServiceName);
                 Slog.d(str, stringBuilder.toString());
-                IHwBinder hb = HwBinder.getService(hidlServiceName, E2EScenario.DEFAULT_CATEGORY);
+                IHwBinder hb = HwBinder.getService(hidlServiceName, "default");
                 if (hb != null) {
                     hb.linkToDeath(this.mHwBinderDeathHandler, 10001);
                     this.mProxy = new DisplayFeatureServiceProxy(hb);

@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;)V
-    .locals 0
+    .registers 2
     .param p1, "context"    # Landroid/content/Context;
 
     .line 45
@@ -16,7 +16,7 @@
 .end method
 
 .method static wrap(Landroid/view/View;)Landroid/view/ViewGroup;
-    .locals 4
+    .registers 5
     .param p0, "child"    # Landroid/view/View;
 
     .line 32
@@ -36,13 +36,13 @@
 
     .line 34
     .local v1, "childParams":Landroid/view/ViewGroup$LayoutParams;
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_12
 
     .line 35
     invoke-virtual {v0, v1}, Landroid/support/v4/app/NoSaveStateFrameLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 37
-    :cond_0
+    :cond_12
     new-instance v2, Landroid/widget/FrameLayout$LayoutParams;
 
     const/4 v3, -0x1
@@ -63,7 +63,7 @@
 
 # virtual methods
 .method protected dispatchRestoreInstanceState(Landroid/util/SparseArray;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -82,7 +82,7 @@
 .end method
 
 .method protected dispatchSaveInstanceState(Landroid/util/SparseArray;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",

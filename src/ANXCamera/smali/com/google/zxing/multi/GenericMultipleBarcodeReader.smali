@@ -18,7 +18,7 @@
 
 # direct methods
 .method public constructor <init>(Lcom/google/zxing/Reader;)V
-    .locals 0
+    .registers 2
     .param p1, "delegate"    # Lcom/google/zxing/Reader;
 
     .line 52
@@ -32,7 +32,7 @@
 .end method
 
 .method private doDecodeMultiple(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;Ljava/util/List;III)V
-    .locals 27
+    .registers 34
     .param p1, "image"    # Lcom/google/zxing/BinaryBitmap;
     .param p4, "xOffset"    # I
     .param p5, "yOffset"    # I
@@ -63,28 +63,28 @@
 
     const/4 v0, 0x4
 
-    if-le v11, v0, :cond_0
+    if-le v11, v0, :cond_c
 
     .line 79
     return-void
 
     .line 84
-    :cond_0
+    :cond_c
     move-object/from16 v12, p0
 
-    :try_start_0
+    :try_start_e
     iget-object v0, v12, Lcom/google/zxing/multi/GenericMultipleBarcodeReader;->delegate:Lcom/google/zxing/Reader;
-    :try_end_0
-    .catch Lcom/google/zxing/ReaderException; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_10
+    .catch Lcom/google/zxing/ReaderException; {:try_start_e .. :try_end_10} :catch_16c
 
     move-object/from16 v13, p2
 
-    :try_start_1
+    :try_start_12
     invoke-interface {v0, v1, v13}, Lcom/google/zxing/Reader;->decode(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;)Lcom/google/zxing/Result;
 
     move-result-object v0
-    :try_end_1
-    .catch Lcom/google/zxing/ReaderException; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_16
+    .catch Lcom/google/zxing/ReaderException; {:try_start_12 .. :try_end_16} :catch_16a
 
     .line 85
     .local v0, "result":Lcom/google/zxing/Result;
@@ -102,25 +102,25 @@
 
     move-result-object v3
 
-    :goto_0
+    :goto_1d
     invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
-    if-nez v4, :cond_1
+    if-nez v4, :cond_25
 
     .line 95
     .end local v2    # "alreadyFound":Z
     .local v14, "alreadyFound":Z
-    :goto_1
+    :goto_23
     move v14, v2
 
-    goto :goto_2
+    goto :goto_3b
 
     .line 89
     .end local v14    # "alreadyFound":Z
     .restart local v2    # "alreadyFound":Z
-    :cond_1
+    :cond_25
     invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v4
@@ -141,20 +141,20 @@
 
     move-result v5
 
-    if-eqz v5, :cond_e
+    if-eqz v5, :cond_166
 
     .line 91
     const/4 v2, 0x1
 
     .line 92
-    goto :goto_1
+    goto :goto_23
 
     .line 95
     .end local v2    # "alreadyFound":Z
     .end local v4    # "existingResult":Lcom/google/zxing/Result;
     .restart local v14    # "alreadyFound":Z
-    :goto_2
-    if-nez v14, :cond_2
+    :goto_3b
+    if-nez v14, :cond_47
 
     .line 96
     invoke-static {v0, v9, v10}, Lcom/google/zxing/multi/GenericMultipleBarcodeReader;->translateResultPoints(Lcom/google/zxing/Result;II)Lcom/google/zxing/Result;
@@ -165,24 +165,24 @@
 
     invoke-interface {v15, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    goto :goto_3
+    goto :goto_49
 
     .line 98
-    :cond_2
+    :cond_47
     move-object/from16 v15, p3
 
-    :goto_3
+    :goto_49
     invoke-virtual {v0}, Lcom/google/zxing/Result;->getResultPoints()[Lcom/google/zxing/ResultPoint;
 
     move-result-object v8
 
     .line 99
     .local v8, "resultPoints":[Lcom/google/zxing/ResultPoint;
-    if-eqz v8, :cond_d
+    if-eqz v8, :cond_15f
 
     array-length v2, v8
 
-    if-nez v2, :cond_3
+    if-nez v2, :cond_5a
 
     .line 100
     move-object/from16 v16, v0
@@ -191,10 +191,10 @@
 
     move/from16 v17, v14
 
-    goto/16 :goto_b
+    goto/16 :goto_165
 
     .line 102
-    :cond_3
+    :cond_5a
     invoke-virtual/range {p1 .. p1}, Lcom/google/zxing/BinaryBitmap;->getWidth()I
 
     move-result v7
@@ -252,15 +252,15 @@
     .local v4, "minY":F
     .local v5, "minX":F
     .local v18, "maxY":F
-    :goto_4
-    if-lt v2, v0, :cond_8
+    :goto_75
+    if-lt v2, v0, :cond_11c
 
     .line 126
     const/high16 v0, 0x42c80000    # 100.0f
 
     cmpl-float v2, v5, v0
 
-    if-lez v2, :cond_4
+    if-lez v2, :cond_9e
 
     .line 127
     float-to-int v2, v5
@@ -319,7 +319,7 @@
     .local v24, "resultPoints":[Lcom/google/zxing/ResultPoint;
     invoke-direct/range {v2 .. v8}, Lcom/google/zxing/multi/GenericMultipleBarcodeReader;->doDecodeMultiple(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;Ljava/util/List;III)V
 
-    goto :goto_5
+    goto :goto_a9
 
     .line 133
     .end local v14    # "minY":F
@@ -334,7 +334,7 @@
     .restart local v6    # "height":I
     .restart local v7    # "width":I
     .restart local v8    # "resultPoints":[Lcom/google/zxing/ResultPoint;
-    :cond_4
+    :cond_9e
     move/from16 v21, v3
 
     move v14, v4
@@ -359,10 +359,10 @@
     .restart local v22    # "height":I
     .restart local v23    # "width":I
     .restart local v24    # "resultPoints":[Lcom/google/zxing/ResultPoint;
-    :goto_5
+    :goto_a9
     cmpl-float v0, v14, v0
 
-    if-lez v0, :cond_5
+    if-lez v0, :cond_c6
 
     .line 134
     float-to-int v0, v14
@@ -408,13 +408,13 @@
     .local v25, "minY":F
     invoke-direct/range {v2 .. v8}, Lcom/google/zxing/multi/GenericMultipleBarcodeReader;->doDecodeMultiple(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;Ljava/util/List;III)V
 
-    goto :goto_6
+    goto :goto_ca
 
     .line 140
     .end local v25    # "minY":F
     .local v14, "minY":F
     .restart local v23    # "width":I
-    :cond_5
+    :cond_c6
     move/from16 v25, v14
 
     move/from16 v14, v23
@@ -422,7 +422,7 @@
     .end local v23    # "width":I
     .local v14, "width":I
     .restart local v25    # "minY":F
-    :goto_6
+    :goto_ca
     add-int/lit8 v7, v14, -0x64
 
     int-to-float v0, v7
@@ -433,7 +433,7 @@
 
     .end local v21    # "maxX":F
     .local v8, "maxX":F
-    if-gez v0, :cond_6
+    if-gez v0, :cond_f2
 
     .line 141
     float-to-int v0, v8
@@ -486,13 +486,13 @@
     .local v22, "maxX":F
     invoke-direct/range {v2 .. v8}, Lcom/google/zxing/multi/GenericMultipleBarcodeReader;->doDecodeMultiple(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;Ljava/util/List;III)V
 
-    goto :goto_7
+    goto :goto_f6
 
     .line 147
     .end local v21    # "height":I
     .restart local v8    # "maxX":F
     .local v22, "height":I
-    :cond_6
+    :cond_f2
     move/from16 v21, v22
 
     move/from16 v22, v8
@@ -500,7 +500,7 @@
     .end local v8    # "maxX":F
     .restart local v21    # "height":I
     .local v22, "maxX":F
-    :goto_7
+    :goto_f6
     add-int/lit8 v6, v21, -0x64
 
     int-to-float v0, v6
@@ -511,7 +511,7 @@
 
     .end local v18    # "maxY":F
     .local v8, "maxY":F
-    if-gez v0, :cond_7
+    if-gez v0, :cond_119
 
     .line 148
     float-to-int v0, v8
@@ -554,17 +554,17 @@
     .restart local v18    # "maxY":F
     invoke-direct/range {v2 .. v8}, Lcom/google/zxing/multi/GenericMultipleBarcodeReader;->doDecodeMultiple(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;Ljava/util/List;III)V
 
-    goto :goto_8
+    goto :goto_11b
 
     .line 153
     .end local v18    # "maxY":F
     .restart local v8    # "maxY":F
-    :cond_7
+    :cond_119
     move/from16 v18, v8
 
     .end local v8    # "maxY":F
     .restart local v18    # "maxY":F
-    :goto_8
+    :goto_11b
     return-void
 
     .line 108
@@ -580,7 +580,7 @@
     .restart local v6    # "height":I
     .restart local v7    # "width":I
     .local v8, "resultPoints":[Lcom/google/zxing/ResultPoint;
-    :cond_8
+    :cond_11c
     move/from16 v22, v3
 
     move/from16 v25, v4
@@ -625,47 +625,47 @@
     .local v6, "y":F
     cmpg-float v7, v5, v19
 
-    if-gez v7, :cond_9
+    if-gez v7, :cond_138
 
     .line 112
     move v7, v5
 
     .end local v19    # "minX":F
     .local v7, "minX":F
-    goto :goto_9
+    goto :goto_13a
 
     .line 114
     .end local v7    # "minX":F
     .restart local v19    # "minX":F
-    :cond_9
+    :cond_138
     move/from16 v7, v19
 
     .end local v19    # "minX":F
     .restart local v7    # "minX":F
-    :goto_9
+    :goto_13a
     cmpg-float v8, v6, v25
 
-    if-gez v8, :cond_a
+    if-gez v8, :cond_140
 
     .line 115
     move v8, v6
 
     .end local v25    # "minY":F
     .local v8, "minY":F
-    goto :goto_a
+    goto :goto_142
 
     .line 117
     .end local v8    # "minY":F
     .restart local v25    # "minY":F
-    :cond_a
+    :cond_140
     move/from16 v8, v25
 
     .end local v25    # "minY":F
     .restart local v8    # "minY":F
-    :goto_a
+    :goto_142
     cmpl-float v19, v5, v22
 
-    if-lez v19, :cond_b
+    if-lez v19, :cond_14a
 
     .line 118
     move/from16 v19, v5
@@ -677,10 +677,10 @@
 
     .end local v19    # "maxX":F
     .restart local v22    # "maxX":F
-    :cond_b
+    :cond_14a
     cmpl-float v19, v6, v18
 
-    if-lez v19, :cond_c
+    if-lez v19, :cond_151
 
     .line 121
     move v4, v6
@@ -694,7 +694,7 @@
 
     .end local v4    # "maxY":F
     .restart local v18    # "maxY":F
-    :cond_c
+    :cond_151
     add-int/lit8 v2, v2, 0x1
 
     move v5, v7
@@ -711,7 +711,7 @@
 
     move/from16 v3, v22
 
-    goto/16 :goto_4
+    goto/16 :goto_75
 
     .line 100
     .end local v7    # "minX":F
@@ -724,7 +724,7 @@
     .restart local v0    # "result":Lcom/google/zxing/Result;
     .local v8, "resultPoints":[Lcom/google/zxing/ResultPoint;
     .local v14, "alreadyFound":Z
-    :cond_d
+    :cond_15f
     move-object/from16 v16, v0
 
     move-object/from16 v24, v8
@@ -737,7 +737,7 @@
     .restart local v16    # "result":Lcom/google/zxing/Result;
     .restart local v17    # "alreadyFound":Z
     .restart local v24    # "resultPoints":[Lcom/google/zxing/ResultPoint;
-    :goto_b
+    :goto_165
     return-void
 
     .line 89
@@ -746,27 +746,27 @@
     .end local v24    # "resultPoints":[Lcom/google/zxing/ResultPoint;
     .restart local v0    # "result":Lcom/google/zxing/Result;
     .local v2, "alreadyFound":Z
-    :cond_e
+    :cond_166
     move-object/from16 v15, p3
 
     .end local v0    # "result":Lcom/google/zxing/Result;
     .restart local v16    # "result":Lcom/google/zxing/Result;
-    goto/16 :goto_0
+    goto/16 :goto_1d
 
     .line 85
     .end local v2    # "alreadyFound":Z
     .end local v16    # "result":Lcom/google/zxing/Result;
-    :catch_0
+    :catch_16a
     move-exception v0
 
-    goto :goto_c
+    goto :goto_16f
 
-    :catch_1
+    :catch_16c
     move-exception v0
 
     move-object/from16 v13, p2
 
-    :goto_c
+    :goto_16f
     move-object/from16 v15, p3
 
     .line 86
@@ -775,7 +775,7 @@
 .end method
 
 .method private static translateResultPoints(Lcom/google/zxing/Result;II)Lcom/google/zxing/Result;
-    .locals 8
+    .registers 11
     .param p0, "result"    # Lcom/google/zxing/Result;
     .param p1, "xOffset"    # I
     .param p2, "yOffset"    # I
@@ -787,13 +787,13 @@
 
     .line 157
     .local v0, "oldResultPoints":[Lcom/google/zxing/ResultPoint;
-    if-nez v0, :cond_0
+    if-nez v0, :cond_7
 
     .line 158
     return-object p0
 
     .line 160
-    :cond_0
+    :cond_7
     array-length v1, v0
 
     new-array v1, v1, [Lcom/google/zxing/ResultPoint;
@@ -803,10 +803,10 @@
     const/4 v2, 0x0
 
     .local v2, "i":I
-    :goto_0
+    :goto_b
     array-length v3, v0
 
-    if-lt v2, v3, :cond_1
+    if-lt v2, v3, :cond_27
 
     .line 165
     .end local v2    # "i":I
@@ -839,7 +839,7 @@
 
     .line 162
     .local v2, "i":I
-    :cond_1
+    :cond_27
     aget-object v3, v0, v2
 
     .line 163
@@ -870,13 +870,13 @@
     .end local v3    # "oldPoint":Lcom/google/zxing/ResultPoint;
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_b
 .end method
 
 
 # virtual methods
 .method public decodeMultiple(Lcom/google/zxing/BinaryBitmap;)[Lcom/google/zxing/Result;
-    .locals 1
+    .registers 3
     .param p1, "image"    # Lcom/google/zxing/BinaryBitmap;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -895,7 +895,7 @@
 .end method
 
 .method public decodeMultiple(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;)[Lcom/google/zxing/Result;
-    .locals 8
+    .registers 11
     .param p1, "image"    # Lcom/google/zxing/BinaryBitmap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -943,7 +943,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_22
 
     .line 69
     invoke-interface {v0}, Ljava/util/List;->size()I
@@ -961,7 +961,7 @@
     return-object v1
 
     .line 67
-    :cond_0
+    :cond_22
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v1

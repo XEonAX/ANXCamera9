@@ -25,7 +25,7 @@
     .locals 2
 
     .line 55
-    const v0, 0x7f0d00af
+    const v0, 0x7f0d00c7
 
     invoke-virtual {p0, v0}, Landroid/app/Activity;->findViewById(I)Landroid/view/View;
 
@@ -39,7 +39,7 @@
     invoke-direct {v0, p0}, Lcom/android/camera/OnScreenHint;-><init>(Landroid/view/ViewGroup;)V
 
     .line 57
-    const v1, 0x7f0d00b0
+    const v1, 0x7f0d00c8
 
     invoke-virtual {p0, v1}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
 
@@ -92,7 +92,7 @@
     .line 67
     iget-object v0, p0, Lcom/android/camera/OnScreenHint;->mHintView:Landroid/view/ViewGroup;
 
-    const v1, 0x7f0d00b0
+    const v1, 0x7f0d00c8
 
     invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
 

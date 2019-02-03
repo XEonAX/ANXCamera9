@@ -29,32 +29,32 @@
 .method public constructor <init>(Lcom/ss/android/ugc/effectmanager/context/EffectContext;)V
     .locals 1
 
-    .line 32
+    .line 31
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 27
+    .line 26
     const-string v0, "UpdateTagRepository"
 
     iput-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->TAG:Ljava/lang/String;
 
-    .line 33
+    .line 32
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
-    .line 34
+    .line 33
     new-instance p1, Lcom/ss/android/ugc/effectmanager/common/WeakHandler;
 
     invoke-direct {p1, p0}, Lcom/ss/android/ugc/effectmanager/common/WeakHandler;-><init>(Lcom/ss/android/ugc/effectmanager/common/WeakHandler$IHandler;)V
 
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mHandler:Landroid/os/Handler;
 
-    .line 35
+    .line 34
     return-void
 .end method
 
 .method static synthetic access$000(Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;)V
     .locals 0
 
-    .line 26
+    .line 25
     invoke-direct {p0, p1, p2, p3, p4}, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->requestWriteTask(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;)V
 
     return-void
@@ -63,7 +63,7 @@
 .method static synthetic access$100(Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IIsTagNeedUpdatedListener;)V
     .locals 0
 
-    .line 26
+    .line 25
     invoke-direct {p0, p1, p2, p3}, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->checkedTagInHashMap(Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IIsTagNeedUpdatedListener;)V
 
     return-void
@@ -72,18 +72,18 @@
 .method private checkedTagInHashMap(Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IIsTagNeedUpdatedListener;)V
     .locals 4
 
-    .line 91
+    .line 90
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mTagsCachedMap:Ljava/util/HashMap;
 
     if-nez v0, :cond_0
 
-    .line 92
+    .line 91
     invoke-interface {p3}, Lcom/ss/android/ugc/effectmanager/effect/listener/IIsTagNeedUpdatedListener;->onTagNeedUpdate()V
 
-    .line 93
+    .line 92
     return-void
 
-    .line 95
+    .line 94
     :cond_0
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mTagsCachedMap:Ljava/util/HashMap;
 
@@ -93,7 +93,7 @@
 
     if-eqz v0, :cond_2
 
-    .line 96
+    .line 95
     const-wide/16 v0, -0x1
 
     invoke-static {p2, v0, v1}, Lcom/ss/android/ugc/effectmanager/common/utils/ValueConvertUtil;->ConvertStringToLong(Ljava/lang/String;J)J
@@ -116,22 +116,22 @@
 
     if-lez p1, :cond_1
 
-    .line 98
+    .line 97
     invoke-interface {p3}, Lcom/ss/android/ugc/effectmanager/effect/listener/IIsTagNeedUpdatedListener;->onTagNeedUpdate()V
 
     goto :goto_0
 
-    .line 100
+    .line 99
     :cond_1
     invoke-interface {p3}, Lcom/ss/android/ugc/effectmanager/effect/listener/IIsTagNeedUpdatedListener;->onTagNeedNotUpdate()V
 
     goto :goto_0
 
-    .line 103
+    .line 102
     :cond_2
     invoke-interface {p3}, Lcom/ss/android/ugc/effectmanager/effect/listener/IIsTagNeedUpdatedListener;->onTagNeedUpdate()V
 
-    .line 105
+    .line 104
     :goto_0
     return-void
 .end method
@@ -139,37 +139,37 @@
 .method private requestWriteTask(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;)V
     .locals 2
 
-    .line 38
+    .line 37
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     if-nez v0, :cond_1
 
-    .line 39
+    .line 38
     if-eqz p4, :cond_0
 
-    .line 40
+    .line 39
     invoke-interface {p4}, Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;->onFinally()V
 
-    .line 42
+    .line 41
     :cond_0
     return-void
 
-    .line 44
+    .line 43
     :cond_1
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mTagsCachedMap:Ljava/util/HashMap;
 
     if-nez v0, :cond_2
 
-    .line 45
+    .line 44
     invoke-interface {p4}, Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;->onFinally()V
 
-    .line 47
+    .line 46
     :cond_2
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mTagsCachedMap:Ljava/util/HashMap;
 
     invoke-virtual {v0, p2, p3}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 48
+    .line 47
     iget-object p2, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {p2}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -186,7 +186,7 @@
 
     invoke-virtual {p2, p1, p3}, Lcom/ss/android/ugc/effectmanager/ListenerManger;->setWriteUpdateTagListener(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IWriteUpdateTagListener;)V
 
-    .line 56
+    .line 55
     iget-object p2, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {p2}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -209,7 +209,7 @@
 
     invoke-virtual {p2, p3}, Lcom/ss/android/ugc/effectmanager/common/TaskManager;->commit(Lcom/ss/android/ugc/effectmanager/common/task/BaseTask;)V
 
-    .line 57
+    .line 56
     return-void
 .end method
 
@@ -218,12 +218,12 @@
 .method public handleMsg(Landroid/os/Message;)V
     .locals 2
 
-    .line 142
+    .line 141
     iget v0, p1, Landroid/os/Message;->what:I
 
     packed-switch v0, :pswitch_data_0
 
-    .line 181
+    .line 180
     const-string p1, "UpdateTagRepository"
 
     const-string v0, "\u672a\u77e5\u9519\u8bef"
@@ -232,7 +232,7 @@
 
     goto/16 :goto_1
 
-    .line 144
+    .line 143
     :pswitch_0
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
@@ -240,20 +240,20 @@
 
     if-eqz v0, :cond_7
 
-    .line 145
+    .line 144
     iget-object p1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast p1, Lcom/ss/android/ugc/effectmanager/effect/task/result/ReadTagTaskResult;
 
-    .line 146
+    .line 145
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     if-nez v0, :cond_0
 
-    .line 147
+    .line 146
     return-void
 
-    .line 149
+    .line 148
     :cond_0
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
@@ -269,23 +269,23 @@
 
     move-result-object v1
 
-    invoke-virtual {v0, v1}, Lcom/ss/android/ugc/effectmanager/ListenerManger;->getReadUpdateTagistener(Ljava/lang/String;)Lcom/ss/android/ugc/effectmanager/effect/listener/IReadUpdateTagListener;
+    invoke-virtual {v0, v1}, Lcom/ss/android/ugc/effectmanager/ListenerManger;->getReadUpdateTagListener(Ljava/lang/String;)Lcom/ss/android/ugc/effectmanager/effect/listener/IReadUpdateTagListener;
 
     move-result-object v0
 
-    .line 150
+    .line 149
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mTagsCachedMap:Ljava/util/HashMap;
 
     if-nez v1, :cond_1
 
-    .line 151
+    .line 150
     new-instance v1, Ljava/util/HashMap;
 
     invoke-direct {v1}, Ljava/util/HashMap;-><init>()V
 
     iput-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mTagsCachedMap:Ljava/util/HashMap;
 
-    .line 153
+    .line 152
     :cond_1
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/task/result/ReadTagTaskResult;->getException()Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
 
@@ -293,7 +293,7 @@
 
     if-nez v1, :cond_2
 
-    .line 154
+    .line 153
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mTagsCachedMap:Ljava/util/HashMap;
 
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/task/result/ReadTagTaskResult;->getTagsCachedMap()Ljava/util/HashMap;
@@ -302,38 +302,38 @@
 
     invoke-virtual {v1, p1}, Ljava/util/HashMap;->putAll(Ljava/util/Map;)V
 
-    .line 155
+    .line 154
     if-eqz v0, :cond_3
 
-    .line 156
+    .line 155
     invoke-interface {v0}, Lcom/ss/android/ugc/effectmanager/effect/listener/IReadUpdateTagListener;->onSuccess()V
 
     goto :goto_0
 
-    .line 159
+    .line 158
     :cond_2
     if-eqz v0, :cond_3
 
-    .line 160
+    .line 159
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/task/result/ReadTagTaskResult;->getException()Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
 
     move-result-object p1
 
     invoke-interface {v0, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IReadUpdateTagListener;->onFailed(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 163
+    .line 162
     :cond_3
     :goto_0
     if-eqz v0, :cond_4
 
-    .line 164
+    .line 163
     invoke-interface {v0}, Lcom/ss/android/ugc/effectmanager/effect/listener/IReadUpdateTagListener;->onFinally()V
 
-    .line 166
+    .line 165
     :cond_4
     goto :goto_1
 
-    .line 169
+    .line 168
     :pswitch_1
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
@@ -341,20 +341,20 @@
 
     if-eqz v0, :cond_7
 
-    .line 170
+    .line 169
     iget-object p1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast p1, Lcom/ss/android/ugc/effectmanager/effect/task/result/WriteTagTaskResult;
 
-    .line 171
+    .line 170
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     if-nez v0, :cond_5
 
-    .line 172
+    .line 171
     return-void
 
-    .line 174
+    .line 173
     :cond_5
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
@@ -374,17 +374,17 @@
 
     move-result-object p1
 
-    .line 175
+    .line 174
     if-eqz p1, :cond_6
 
-    .line 176
+    .line 175
     invoke-interface {p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IWriteUpdateTagListener;->onFinally()V
 
-    .line 178
+    .line 177
     :cond_6
     nop
 
-    .line 183
+    .line 182
     :cond_7
     :goto_1
     return-void
@@ -399,27 +399,27 @@
 .method public isTagUpdated(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IIsTagNeedUpdatedListener;)V
     .locals 7
 
-    .line 109
+    .line 108
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mTagsCachedMap:Ljava/util/HashMap;
 
     if-nez v0, :cond_2
 
-    .line 110
+    .line 109
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     if-nez v0, :cond_1
 
-    .line 111
+    .line 110
     if-eqz p4, :cond_0
 
-    .line 112
+    .line 111
     invoke-interface {p4}, Lcom/ss/android/ugc/effectmanager/effect/listener/IIsTagNeedUpdatedListener;->onTagNeedNotUpdate()V
 
-    .line 114
+    .line 113
     :cond_0
     return-void
 
-    .line 116
+    .line 115
     :cond_1
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
@@ -437,7 +437,7 @@
 
     invoke-virtual {v0, p1, v1}, Lcom/ss/android/ugc/effectmanager/ListenerManger;->setReadUpdateTagListener(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IReadUpdateTagListener;)V
 
-    .line 134
+    .line 133
     iget-object p4, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {p4}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -468,11 +468,11 @@
 
     goto :goto_0
 
-    .line 136
+    .line 135
     :cond_2
     invoke-direct {p0, p2, p3, p4}, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->checkedTagInHashMap(Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IIsTagNeedUpdatedListener;)V
 
-    .line 138
+    .line 137
     :goto_0
     return-void
 .end method
@@ -480,27 +480,27 @@
 .method public updateTag(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;)V
     .locals 8
 
-    .line 61
+    .line 60
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mTagsCachedMap:Ljava/util/HashMap;
 
     if-nez v0, :cond_2
 
-    .line 62
+    .line 61
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     if-nez v0, :cond_1
 
-    .line 63
+    .line 62
     if-eqz p4, :cond_0
 
-    .line 64
+    .line 63
     invoke-interface {p4}, Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;->onFinally()V
 
-    .line 66
+    .line 65
     :cond_0
     return-void
 
-    .line 68
+    .line 67
     :cond_1
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
@@ -530,7 +530,7 @@
 
     invoke-virtual {v0, p1, v7}, Lcom/ss/android/ugc/effectmanager/ListenerManger;->setReadUpdateTagListener(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IReadUpdateTagListener;)V
 
-    .line 84
+    .line 83
     iget-object p4, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {p4}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -555,11 +555,11 @@
 
     goto :goto_0
 
-    .line 86
+    .line 85
     :cond_2
     invoke-direct {p0, p1, p2, p3, p4}, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->requestWriteTask(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;)V
 
-    .line 88
+    .line 87
     :goto_0
     return-void
 .end method

@@ -24,7 +24,7 @@
 
 
 # instance fields
-.field Mg:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
+.field Mp:Lmiui/util/concurrent/ConcurrentRingQueue$Node;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lmiui/util/concurrent/ConcurrentRingQueue$Node<",
@@ -44,7 +44,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 14
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -53,7 +53,7 @@
 .end method
 
 .method synthetic constructor <init>(Lmiui/util/concurrent/ConcurrentRingQueue$1;)V
-    .locals 0
+    .registers 2
 
     .line 14
     invoke-direct {p0}, Lmiui/util/concurrent/ConcurrentRingQueue$Node;-><init>()V

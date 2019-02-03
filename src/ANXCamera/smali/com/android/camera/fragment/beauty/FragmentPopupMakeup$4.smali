@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)V
     .locals 0
 
-    .line 103
+    .line 105
     iput-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$4;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public onProgressChanged(Landroid/widget/SeekBar;IZ)V
     .locals 0
 
-    .line 106
+    .line 108
     if-eqz p2, :cond_0
 
     invoke-static {}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$100()I
@@ -49,7 +49,7 @@
 
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$4;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
-    .line 107
+    .line 109
     invoke-static {p1}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$200(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)I
 
     move-result p1
@@ -64,13 +64,13 @@
 
     if-le p1, p3, :cond_1
 
-    .line 108
+    .line 110
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$4;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     invoke-static {p1, p2}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$202(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;I)I
 
-    .line 109
+    .line 111
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup$4;->this$0:Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;
 
     invoke-static {p1}, Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;->access$000(Lcom/android/camera/fragment/beauty/FragmentPopupMakeup;)Lio/reactivex/FlowableEmitter;
@@ -85,7 +85,7 @@
 
     invoke-interface {p1, p2}, Lio/reactivex/FlowableEmitter;->onNext(Ljava/lang/Object;)V
 
-    .line 111
+    .line 113
     :cond_1
     return-void
 .end method
@@ -93,13 +93,13 @@
 .method public onStartTrackingTouch(Landroid/widget/SeekBar;)V
     .locals 0
 
-    .line 116
+    .line 118
     return-void
 .end method
 
 .method public onStopTrackingTouch(Landroid/widget/SeekBar;)V
     .locals 0
 
-    .line 121
+    .line 123
     return-void
 .end method

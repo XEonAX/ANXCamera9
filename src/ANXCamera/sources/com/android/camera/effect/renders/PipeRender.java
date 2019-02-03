@@ -79,8 +79,8 @@ public class PipeRender extends RenderGroup {
             i5 = id;
         } else {
             DrawYuvAttribute drawYuvAttribute = (DrawYuvAttribute) drawAttribute2;
-            i = drawYuvAttribute.mWidth;
-            i4 = drawYuvAttribute.mHeight;
+            i = drawYuvAttribute.mPictureSize.getWidth();
+            i4 = drawYuvAttribute.mPictureSize.getHeight();
             i3 = i;
             i5 = 0;
             i = 0;

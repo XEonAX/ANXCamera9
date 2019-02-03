@@ -9,12 +9,12 @@ import java.util.Collection;
 
 /* compiled from: MultiTransformation */
 public class d<T> implements i<T> {
-    private final Collection<? extends i<T>> cU;
+    private final Collection<? extends i<T>> cV;
 
     @SafeVarargs
     public d(@NonNull i<T>... iVarArr) {
         if (iVarArr.length != 0) {
-            this.cU = Arrays.asList(iVarArr);
+            this.cV = Arrays.asList(iVarArr);
             return;
         }
         throw new IllegalArgumentException("MultiTransformation must contain at least one Transformation");
@@ -24,13 +24,13 @@ public class d<T> implements i<T> {
         if (collection.isEmpty()) {
             throw new IllegalArgumentException("MultiTransformation must contain at least one Transformation");
         }
-        this.cU = collection;
+        this.cV = collection;
     }
 
     @NonNull
     public p<T> transform(@NonNull Context context, @NonNull p<T> pVar, int i, int i2) {
         p<T> pVar2 = pVar;
-        for (i transform : this.cU) {
+        for (i transform : this.cV) {
             p<T> transform2 = transform.transform(context, pVar2, i, i2);
             if (!(pVar2 == null || pVar2.equals(pVar) || pVar2.equals(transform2))) {
                 pVar2.recycle();
@@ -44,15 +44,15 @@ public class d<T> implements i<T> {
         if (!(obj instanceof d)) {
             return false;
         }
-        return this.cU.equals(((d) obj).cU);
+        return this.cV.equals(((d) obj).cV);
     }
 
     public int hashCode() {
-        return this.cU.hashCode();
+        return this.cV.hashCode();
     }
 
     public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
-        for (i updateDiskCacheKey : this.cU) {
+        for (i updateDiskCacheKey : this.cV) {
             updateDiskCacheKey.updateDiskCacheKey(messageDigest);
         }
     }

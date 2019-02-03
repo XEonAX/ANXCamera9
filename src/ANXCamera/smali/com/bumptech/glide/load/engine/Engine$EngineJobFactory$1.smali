@@ -59,11 +59,11 @@
 
     iget-object v0, p0, Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory$1;->fD:Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory;
 
-    iget-object v1, v0, Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory;->H:Lcom/bumptech/glide/load/engine/b/a;
+    iget-object v1, v0, Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory;->I:Lcom/bumptech/glide/load/engine/b/a;
 
     iget-object v0, p0, Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory$1;->fD:Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory;
 
-    iget-object v2, v0, Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory;->F:Lcom/bumptech/glide/load/engine/b/a;
+    iget-object v2, v0, Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory;->H:Lcom/bumptech/glide/load/engine/b/a;
 
     iget-object v0, p0, Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory$1;->fD:Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory;
 
@@ -71,7 +71,7 @@
 
     iget-object v0, p0, Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory$1;->fD:Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory;
 
-    iget-object v4, v0, Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory;->Q:Lcom/bumptech/glide/load/engine/b/a;
+    iget-object v4, v0, Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory;->S:Lcom/bumptech/glide/load/engine/b/a;
 
     iget-object v0, p0, Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory$1;->fD:Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory;
 
@@ -79,7 +79,7 @@
 
     iget-object v0, p0, Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory$1;->fD:Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory;
 
-    iget-object v6, v0, Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory;->eu:Landroid/support/v4/util/Pools$Pool;
+    iget-object v6, v0, Lcom/bumptech/glide/load/engine/Engine$EngineJobFactory;->ev:Landroid/support/v4/util/Pools$Pool;
 
     move-object v0, v7
 

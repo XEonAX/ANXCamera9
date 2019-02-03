@@ -1,6 +1,6 @@
 .class public final Lmiui/R$drawable;
 .super Ljava/lang/Object;
-.source "SourceFile"
+.source "R.java"
 
 
 # annotations
@@ -165,17 +165,27 @@
 
 .field public static btn_favorite_bg_light:I
 
+.field public static btn_inline_delete_dark:I
+
 .field public static btn_inline_delete_light:I
+
+.field public static btn_inline_detail_dark:I
 
 .field public static btn_inline_detail_light:I
 
 .field public static btn_share_bg_light:I
 
+.field public static edit_text_bg_spinner_dark:I
+
 .field public static edit_text_bg_spinner_light:I
 
 .field public static edit_text_search_bg_light:I
 
+.field public static expander_close_dark:I
+
 .field public static expander_close_light:I
+
+.field public static expander_open_dark:I
 
 .field public static expander_open_light:I
 
@@ -267,6 +277,8 @@
 
 .field public static icon_settings_light:I
 
+.field public static list_item_bg_dialog_dark:I
+
 .field public static list_item_bg_dialog_light:I
 
 .field public static loading_view_bg:I
@@ -287,6 +299,8 @@
 
 .field public static scroll_divider_light:I
 
+.field public static spinner_bg_edit_dark:I
+
 .field public static spinner_bg_edit_light:I
 
 .field public static window_bg_secondary_dark:I
@@ -296,699 +310,734 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
-    .line 1381
+    .line 1403
     const v0, 0x1002006e
 
     sput v0, Lmiui/R$drawable;->action_bar_back_dark:I
 
-    .line 1382
+    .line 1404
     const v0, 0x1002006d
 
     sput v0, Lmiui/R$drawable;->action_bar_back_light:I
 
-    .line 1385
+    .line 1407
     const v0, 0x10020048
 
     sput v0, Lmiui/R$drawable;->action_button_blacklist_dark:I
 
-    .line 1388
+    .line 1410
     const v0, 0x10020047
 
     sput v0, Lmiui/R$drawable;->action_button_blacklist_light:I
 
-    .line 1391
+    .line 1413
     const v0, 0x10020002
 
     sput v0, Lmiui/R$drawable;->action_button_copy_dark:I
 
-    .line 1394
+    .line 1416
     const v0, 0x10020001
 
     sput v0, Lmiui/R$drawable;->action_button_copy_light:I
 
-    .line 1397
+    .line 1419
     const v0, 0x10020004
 
     sput v0, Lmiui/R$drawable;->action_button_cut_dark:I
 
-    .line 1400
+    .line 1422
     const v0, 0x10020003
 
     sput v0, Lmiui/R$drawable;->action_button_cut_light:I
 
-    .line 1403
+    .line 1425
     const v0, 0x10020006
 
     sput v0, Lmiui/R$drawable;->action_button_delete_dark:I
 
-    .line 1406
+    .line 1428
     const v0, 0x10020005
 
     sput v0, Lmiui/R$drawable;->action_button_delete_light:I
 
-    .line 1409
+    .line 1431
     const v0, 0x10020008
 
     sput v0, Lmiui/R$drawable;->action_button_discard_dark:I
 
-    .line 1412
+    .line 1434
     const v0, 0x10020007    # 2.5638E-29f
 
     sput v0, Lmiui/R$drawable;->action_button_discard_light:I
 
-    .line 1415
+    .line 1437
     const v0, 0x1002000a
 
     sput v0, Lmiui/R$drawable;->action_button_edit_dark:I
 
-    .line 1418
+    .line 1440
     const v0, 0x10020009
 
     sput v0, Lmiui/R$drawable;->action_button_edit_light:I
 
-    .line 1421
+    .line 1443
     const v0, 0x1002004c
 
     sput v0, Lmiui/R$drawable;->action_button_edit_message_dark:I
 
-    .line 1424
+    .line 1446
     const v0, 0x1002004b
 
     sput v0, Lmiui/R$drawable;->action_button_edit_message_light:I
 
-    .line 1427
+    .line 1449
     const v0, 0x1002000c
 
     sput v0, Lmiui/R$drawable;->action_button_favorite_dark:I
 
-    .line 1430
+    .line 1452
     const v0, 0x1002000b
 
     sput v0, Lmiui/R$drawable;->action_button_favorite_light:I
 
-    .line 1431
+    .line 1453
     const v0, 0x1002007f
 
     sput v0, Lmiui/R$drawable;->action_button_main_delete_light:I
 
-    .line 1432
+    .line 1454
     const v0, 0x10020076
 
     sput v0, Lmiui/R$drawable;->action_button_main_edit_light:I
 
-    .line 1433
+    .line 1455
     const v0, 0x10020075
 
     sput v0, Lmiui/R$drawable;->action_button_main_new_light:I
 
-    .line 1436
+    .line 1458
     const v0, 0x1002000e
 
     sput v0, Lmiui/R$drawable;->action_button_move_dark:I
 
-    .line 1439
+    .line 1461
     const v0, 0x1002000d
 
     sput v0, Lmiui/R$drawable;->action_button_move_light:I
 
-    .line 1442
+    .line 1464
     const v0, 0x10020010
 
     sput v0, Lmiui/R$drawable;->action_button_new_dark:I
 
-    .line 1445
+    .line 1467
     const v0, 0x1002000f
 
     sput v0, Lmiui/R$drawable;->action_button_new_light:I
 
-    .line 1448
+    .line 1470
     const v0, 0x10020012
 
     sput v0, Lmiui/R$drawable;->action_button_paste_dark:I
 
-    .line 1451
+    .line 1473
     const v0, 0x10020011
 
     sput v0, Lmiui/R$drawable;->action_button_paste_light:I
 
-    .line 1454
+    .line 1476
     const v0, 0x10020014
 
     sput v0, Lmiui/R$drawable;->action_button_pause_dark:I
 
-    .line 1457
+    .line 1479
     const v0, 0x10020013
 
     sput v0, Lmiui/R$drawable;->action_button_pause_light:I
 
-    .line 1460
+    .line 1482
     const v0, 0x10020016
 
     sput v0, Lmiui/R$drawable;->action_button_refresh_dark:I
 
-    .line 1463
+    .line 1485
     const v0, 0x10020015
 
     sput v0, Lmiui/R$drawable;->action_button_refresh_light:I
 
-    .line 1466
+    .line 1488
     const v0, 0x1002004a
 
     sput v0, Lmiui/R$drawable;->action_button_remove_blacklist_dark:I
 
-    .line 1469
+    .line 1491
     const v0, 0x10020049
 
     sput v0, Lmiui/R$drawable;->action_button_remove_blacklist_light:I
 
-    .line 1472
+    .line 1494
     const v0, 0x10020018
 
     sput v0, Lmiui/R$drawable;->action_button_rename_dark:I
 
-    .line 1475
+    .line 1497
     const v0, 0x10020017
 
     sput v0, Lmiui/R$drawable;->action_button_rename_light:I
 
-    .line 1478
+    .line 1500
     const v0, 0x1002001a
 
     sput v0, Lmiui/R$drawable;->action_button_save_dark:I
 
-    .line 1481
+    .line 1503
     const v0, 0x10020019
 
     sput v0, Lmiui/R$drawable;->action_button_save_light:I
 
-    .line 1484
+    .line 1506
     const v0, 0x1002001c
 
     sput v0, Lmiui/R$drawable;->action_button_search_dark:I
 
-    .line 1487
+    .line 1509
     const v0, 0x1002001b
 
     sput v0, Lmiui/R$drawable;->action_button_search_light:I
 
-    .line 1490
+    .line 1512
     const v0, 0x1002001e
 
     sput v0, Lmiui/R$drawable;->action_button_send_dark:I
 
-    .line 1493
+    .line 1515
     const v0, 0x1002001d
 
     sput v0, Lmiui/R$drawable;->action_button_send_light:I
 
-    .line 1496
+    .line 1518
     const v0, 0x10020020
 
     sput v0, Lmiui/R$drawable;->action_button_setting_dark:I
 
-    .line 1499
+    .line 1521
     const v0, 0x1002001f
 
     sput v0, Lmiui/R$drawable;->action_button_setting_light:I
 
-    .line 1502
+    .line 1524
     const v0, 0x10020022
 
     sput v0, Lmiui/R$drawable;->action_button_share_dark:I
 
-    .line 1505
+    .line 1527
     const v0, 0x10020021
 
     sput v0, Lmiui/R$drawable;->action_button_share_light:I
 
-    .line 1508
+    .line 1530
     const v0, 0x10020024
 
     sput v0, Lmiui/R$drawable;->action_button_start_dark:I
 
-    .line 1511
+    .line 1533
     const v0, 0x10020023
 
     sput v0, Lmiui/R$drawable;->action_button_start_light:I
 
-    .line 1514
+    .line 1536
     const v0, 0x10020042
 
     sput v0, Lmiui/R$drawable;->action_button_stick_dark:I
 
-    .line 1517
+    .line 1539
     const v0, 0x10020041
 
     sput v0, Lmiui/R$drawable;->action_button_stick_light:I
 
-    .line 1520
+    .line 1542
     const v0, 0x10020026
 
     sput v0, Lmiui/R$drawable;->action_button_unfavorite_dark:I
 
-    .line 1523
+    .line 1545
     const v0, 0x10020025
 
     sput v0, Lmiui/R$drawable;->action_button_unfavorite_light:I
 
-    .line 1526
+    .line 1548
     const v0, 0x10020044
 
     sput v0, Lmiui/R$drawable;->action_button_unstick_dark:I
 
-    .line 1529
+    .line 1551
     const v0, 0x10020043
 
     sput v0, Lmiui/R$drawable;->action_button_unstick_light:I
 
-    .line 1532
+    .line 1554
     const v0, 0x10020046
 
     sput v0, Lmiui/R$drawable;->action_button_update_dark:I
 
-    .line 1535
+    .line 1557
     const v0, 0x10020045
 
     sput v0, Lmiui/R$drawable;->action_button_update_light:I
 
-    .line 1536
+    .line 1558
     const v0, 0x10020072
 
     sput v0, Lmiui/R$drawable;->action_mode_button_bg_dark:I
 
-    .line 1539
+    .line 1561
     const v0, 0x10020050
 
     sput v0, Lmiui/R$drawable;->action_mode_immersion_close_dark:I
 
-    .line 1542
+    .line 1564
     const v0, 0x1002004f
 
     sput v0, Lmiui/R$drawable;->action_mode_immersion_close_light:I
 
-    .line 1545
+    .line 1567
     const v0, 0x10020052
 
     sput v0, Lmiui/R$drawable;->action_mode_immersion_done_dark:I
 
-    .line 1548
+    .line 1570
     const v0, 0x10020051
 
     sput v0, Lmiui/R$drawable;->action_mode_immersion_done_light:I
 
-    .line 1551
+    .line 1573
     const v0, 0x1002004e
 
     sput v0, Lmiui/R$drawable;->action_mode_immersion_more_dark:I
 
-    .line 1554
+    .line 1576
     const v0, 0x1002004d
 
     sput v0, Lmiui/R$drawable;->action_mode_immersion_more_light:I
 
-    .line 1555
+    .line 1577
     const v0, 0x10020086
 
     sput v0, Lmiui/R$drawable;->action_mode_title_button_cancel_dark:I
 
-    .line 1556
+    .line 1578
     const v0, 0x10020080
 
     sput v0, Lmiui/R$drawable;->action_mode_title_button_cancel_light:I
 
-    .line 1557
+    .line 1579
     const v0, 0x10020087
 
     sput v0, Lmiui/R$drawable;->action_mode_title_button_confirm_dark:I
 
-    .line 1558
+    .line 1580
     const v0, 0x10020081
 
     sput v0, Lmiui/R$drawable;->action_mode_title_button_confirm_light:I
 
-    .line 1559
+    .line 1581
     const v0, 0x10020090
 
     sput v0, Lmiui/R$drawable;->action_mode_title_button_delete_dark:I
 
-    .line 1560
+    .line 1582
     const v0, 0x10020085
 
     sput v0, Lmiui/R$drawable;->action_mode_title_button_delete_light:I
 
-    .line 1561
+    .line 1583
     const v0, 0x10020088
 
     sput v0, Lmiui/R$drawable;->action_mode_title_button_deselect_all_dark:I
 
-    .line 1562
+    .line 1584
     const v0, 0x10020082
 
     sput v0, Lmiui/R$drawable;->action_mode_title_button_deselect_all_light:I
 
-    .line 1563
+    .line 1585
     const v0, 0x10020089
 
     sput v0, Lmiui/R$drawable;->action_mode_title_button_select_all_dark:I
 
-    .line 1564
+    .line 1586
     const v0, 0x10020083
 
     sput v0, Lmiui/R$drawable;->action_mode_title_button_select_all_light:I
 
-    .line 1567
+    .line 1589
     const v0, 0x10020068
 
     sput v0, Lmiui/R$drawable;->arrow_right:I
 
-    .line 1570
+    .line 1592
     const v0, 0x1002005c
 
     sput v0, Lmiui/R$drawable;->btn_comment_bg_light:I
 
-    .line 1573
+    .line 1595
     const v0, 0x1002005d
 
     sput v0, Lmiui/R$drawable;->btn_favorite_bg_light:I
 
-    .line 1574
+    .line 1596
+    const v0, 0x1002009b
+
+    sput v0, Lmiui/R$drawable;->btn_inline_delete_dark:I
+
+    .line 1597
     const v0, 0x10020071
 
     sput v0, Lmiui/R$drawable;->btn_inline_delete_light:I
 
-    .line 1575
+    .line 1598
+    const v0, 0x1002009a
+
+    sput v0, Lmiui/R$drawable;->btn_inline_detail_dark:I
+
+    .line 1599
     const v0, 0x10020070
 
     sput v0, Lmiui/R$drawable;->btn_inline_detail_light:I
 
-    .line 1578
+    .line 1602
     const v0, 0x1002005e
 
     sput v0, Lmiui/R$drawable;->btn_share_bg_light:I
 
-    .line 1579
+    .line 1603
+    const v0, 0x100200a0
+
+    sput v0, Lmiui/R$drawable;->edit_text_bg_spinner_dark:I
+
+    .line 1604
     const v0, 0x1002006f
 
     sput v0, Lmiui/R$drawable;->edit_text_bg_spinner_light:I
 
-    .line 1582
+    .line 1607
     const v0, 0x10020060
 
     sput v0, Lmiui/R$drawable;->edit_text_search_bg_light:I
 
-    .line 1583
+    .line 1608
+    const v0, 0x1002009d
+
+    sput v0, Lmiui/R$drawable;->expander_close_dark:I
+
+    .line 1609
     const v0, 0x1002006b
 
     sput v0, Lmiui/R$drawable;->expander_close_light:I
 
-    .line 1584
+    .line 1610
+    const v0, 0x1002009c
+
+    sput v0, Lmiui/R$drawable;->expander_open_dark:I
+
+    .line 1611
     const v0, 0x1002006a
 
     sput v0, Lmiui/R$drawable;->expander_open_light:I
 
-    .line 1587
+    .line 1614
     const v0, 0x1002005b
 
     sput v0, Lmiui/R$drawable;->file_icon_3gpp:I
 
-    .line 1590
+    .line 1617
     const v0, 0x10020054
 
     sput v0, Lmiui/R$drawable;->file_icon_aac:I
 
-    .line 1593
+    .line 1620
     const v0, 0x10020028
 
     sput v0, Lmiui/R$drawable;->file_icon_amr:I
 
-    .line 1596
+    .line 1623
     const v0, 0x10020055
 
     sput v0, Lmiui/R$drawable;->file_icon_ape:I
 
-    .line 1599
+    .line 1626
     const v0, 0x10020029
 
     sput v0, Lmiui/R$drawable;->file_icon_apk:I
 
-    .line 1602
+    .line 1629
     const v0, 0x10020058
 
     sput v0, Lmiui/R$drawable;->file_icon_audio:I
 
-    .line 1605
+    .line 1632
     const v0, 0x10020040
 
     sput v0, Lmiui/R$drawable;->file_icon_default:I
 
-    .line 1608
+    .line 1635
     const v0, 0x1002002a
 
     sput v0, Lmiui/R$drawable;->file_icon_doc:I
 
-    .line 1611
+    .line 1638
     const v0, 0x1002002b
 
     sput v0, Lmiui/R$drawable;->file_icon_dps:I
 
-    .line 1614
+    .line 1641
     const v0, 0x1002002c
 
     sput v0, Lmiui/R$drawable;->file_icon_dpt:I
 
-    .line 1617
+    .line 1644
     const v0, 0x1002002d
 
     sput v0, Lmiui/R$drawable;->file_icon_et:I
 
-    .line 1620
+    .line 1647
     const v0, 0x1002002e
 
     sput v0, Lmiui/R$drawable;->file_icon_ett:I
 
-    .line 1623
+    .line 1650
     const v0, 0x10020053
 
     sput v0, Lmiui/R$drawable;->file_icon_flac:I
 
-    .line 1626
+    .line 1653
     const v0, 0x10020059
 
     sput v0, Lmiui/R$drawable;->file_icon_html:I
 
-    .line 1629
+    .line 1656
     const v0, 0x10020056
 
     sput v0, Lmiui/R$drawable;->file_icon_m4a:I
 
-    .line 1632
+    .line 1659
     const v0, 0x1002002f
 
     sput v0, Lmiui/R$drawable;->file_icon_mid:I
 
-    .line 1635
+    .line 1662
     const v0, 0x10020030
 
     sput v0, Lmiui/R$drawable;->file_icon_mp3:I
 
-    .line 1638
+    .line 1665
     const v0, 0x10020057
 
     sput v0, Lmiui/R$drawable;->file_icon_ogg:I
 
-    .line 1641
+    .line 1668
     const v0, 0x10020031
 
     sput v0, Lmiui/R$drawable;->file_icon_pdf:I
 
-    .line 1644
+    .line 1671
     const v0, 0x10020032
 
     sput v0, Lmiui/R$drawable;->file_icon_picture:I
 
-    .line 1647
+    .line 1674
     const v0, 0x10020033
 
     sput v0, Lmiui/R$drawable;->file_icon_pps:I
 
-    .line 1650
+    .line 1677
     const v0, 0x10020034
 
     sput v0, Lmiui/R$drawable;->file_icon_ppt:I
 
-    .line 1653
+    .line 1680
     const v0, 0x10020035
 
     sput v0, Lmiui/R$drawable;->file_icon_rar:I
 
-    .line 1656
+    .line 1683
     const v0, 0x10020036
 
     sput v0, Lmiui/R$drawable;->file_icon_theme:I
 
-    .line 1659
+    .line 1686
     const v0, 0x10020037
 
     sput v0, Lmiui/R$drawable;->file_icon_txt:I
 
-    .line 1662
+    .line 1689
     const v0, 0x10020038
 
     sput v0, Lmiui/R$drawable;->file_icon_vcf:I
 
-    .line 1665
+    .line 1692
     const v0, 0x10020039
 
     sput v0, Lmiui/R$drawable;->file_icon_video:I
 
-    .line 1668
+    .line 1695
     const v0, 0x1002003a
 
     sput v0, Lmiui/R$drawable;->file_icon_wav:I
 
-    .line 1671
+    .line 1698
     const v0, 0x1002003b
 
     sput v0, Lmiui/R$drawable;->file_icon_wma:I
 
-    .line 1674
+    .line 1701
     const v0, 0x1002003c
 
     sput v0, Lmiui/R$drawable;->file_icon_wps:I
 
-    .line 1677
+    .line 1704
     const v0, 0x1002003d
 
     sput v0, Lmiui/R$drawable;->file_icon_wpt:I
 
-    .line 1680
+    .line 1707
     const v0, 0x1002003e
 
     sput v0, Lmiui/R$drawable;->file_icon_xls:I
 
-    .line 1683
+    .line 1710
     const v0, 0x1002005a
 
     sput v0, Lmiui/R$drawable;->file_icon_xml:I
 
-    .line 1686
+    .line 1713
     const v0, 0x1002003f
 
     sput v0, Lmiui/R$drawable;->file_icon_zip:I
 
-    .line 1689
+    .line 1716
     const/high16 v0, 0x10020000
 
     sput v0, Lmiui/R$drawable;->ic_main:I
 
-    .line 1690
+    .line 1717
     const v0, 0x10020084
 
     sput v0, Lmiui/R$drawable;->icon_favorite_light:I
 
-    .line 1691
+    .line 1718
     const v0, 0x1002007e
 
     sput v0, Lmiui/R$drawable;->icon_info_dark:I
 
-    .line 1694
+    .line 1721
     const v0, 0x10020061
 
     sput v0, Lmiui/R$drawable;->icon_info_light:I
 
-    .line 1697
+    .line 1724
     const v0, 0x10020062
 
     sput v0, Lmiui/R$drawable;->icon_personal_light:I
 
-    .line 1698
+    .line 1725
     const v0, 0x1002007b
 
     sput v0, Lmiui/R$drawable;->icon_scan_dark:I
 
-    .line 1699
+    .line 1726
     const v0, 0x1002007a
 
     sput v0, Lmiui/R$drawable;->icon_scan_light:I
 
-    .line 1702
+    .line 1729
     const v0, 0x10020063
 
     sput v0, Lmiui/R$drawable;->icon_search_light:I
 
-    .line 1705
+    .line 1732
     const v0, 0x10020065
 
     sput v0, Lmiui/R$drawable;->icon_settings_dark:I
 
-    .line 1708
+    .line 1735
     const v0, 0x10020064
 
     sput v0, Lmiui/R$drawable;->icon_settings_light:I
 
-    .line 1709
+    .line 1736
+    const v0, 0x1002009e
+
+    sput v0, Lmiui/R$drawable;->list_item_bg_dialog_dark:I
+
+    .line 1737
     const v0, 0x10020069
 
     sput v0, Lmiui/R$drawable;->list_item_bg_dialog_light:I
 
-    .line 1712
+    .line 1740
     const v0, 0x1002005f
 
     sput v0, Lmiui/R$drawable;->loading_view_bg:I
 
-    .line 1713
+    .line 1741
     const v0, 0x1002006c
 
     sput v0, Lmiui/R$drawable;->preference_category_background:I
 
-    .line 1714
+    .line 1742
     const v0, 0x10020077
 
     sput v0, Lmiui/R$drawable;->preference_category_background_first:I
 
-    .line 1715
+    .line 1743
     const v0, 0x10020079
 
     sput v0, Lmiui/R$drawable;->preference_category_background_first_no_title:I
 
-    .line 1716
+    .line 1744
     const v0, 0x10020078
 
     sput v0, Lmiui/R$drawable;->preference_category_background_no_title:I
 
-    .line 1719
+    .line 1747
     const v0, 0x10020027
 
     sput v0, Lmiui/R$drawable;->preference_item_bg:I
 
-    .line 1722
+    .line 1750
     const v0, 0x10020066
 
     sput v0, Lmiui/R$drawable;->screen_view_seek_point_selector:I
 
-    .line 1723
+    .line 1751
     const v0, 0x10020074
 
     sput v0, Lmiui/R$drawable;->scroll_divider_dark:I
 
-    .line 1724
+    .line 1752
     const v0, 0x10020073
 
     sput v0, Lmiui/R$drawable;->scroll_divider_light:I
 
-    .line 1727
+    .line 1753
+    const v0, 0x1002009f
+
+    sput v0, Lmiui/R$drawable;->spinner_bg_edit_dark:I
+
+    .line 1756
     const v0, 0x10020067
 
     sput v0, Lmiui/R$drawable;->spinner_bg_edit_light:I
 
-    .line 1728
+    .line 1757
     const v0, 0x1002007d
 
     sput v0, Lmiui/R$drawable;->window_bg_secondary_dark:I
 
-    .line 1729
+    .line 1758
     const v0, 0x1002007c
 
     sput v0, Lmiui/R$drawable;->window_bg_secondary_light:I
@@ -997,9 +1046,9 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
-    .line 1380
+    .line 1402
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

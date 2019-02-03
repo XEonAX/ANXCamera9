@@ -121,7 +121,7 @@
 .method public static copyFile(Ljava/lang/String;Ljava/lang/String;)Z
     .locals 1
 
-    .line 732
+    .line 739
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_OPERATE:Lcom/android/camera/FileCompat$FileCompatOperateImpl;
 
     invoke-interface {v0, p0, p1}, Lcom/android/camera/FileCompat$FileCompatOperateImpl;->copyFile(Ljava/lang/String;Ljava/lang/String;)Z
@@ -134,7 +134,7 @@
 .method public static createNewFile(Ljava/lang/String;)Z
     .locals 1
 
-    .line 705
+    .line 712
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_OPERATE:Lcom/android/camera/FileCompat$FileCompatOperateImpl;
 
     invoke-interface {v0, p0}, Lcom/android/camera/FileCompat$FileCompatOperateImpl;->createNewFile(Ljava/lang/String;)Z
@@ -147,7 +147,7 @@
 .method public static createNewFileFixPath(Ljava/lang/String;)Ljava/lang/String;
     .locals 1
 
-    .line 701
+    .line 708
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_OPERATE:Lcom/android/camera/FileCompat$FileCompatOperateImpl;
 
     invoke-interface {v0, p0}, Lcom/android/camera/FileCompat$FileCompatOperateImpl;->createNewFileFixPath(Ljava/lang/String;)Ljava/lang/String;
@@ -160,7 +160,7 @@
 .method public static deleteFile(Ljava/lang/String;)Z
     .locals 1
 
-    .line 709
+    .line 716
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_OPERATE:Lcom/android/camera/FileCompat$FileCompatOperateImpl;
 
     invoke-interface {v0, p0}, Lcom/android/camera/FileCompat$FileCompatOperateImpl;->deleteFile(Ljava/lang/String;)Z
@@ -173,7 +173,7 @@
 .method public static exists(Ljava/lang/String;)Z
     .locals 1
 
-    .line 696
+    .line 703
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_OPERATE:Lcom/android/camera/FileCompat$FileCompatOperateImpl;
 
     invoke-interface {v0, p0}, Lcom/android/camera/FileCompat$FileCompatOperateImpl;->exists(Ljava/lang/String;)Z
@@ -186,7 +186,7 @@
 .method public static getFileOutputStream(Ljava/lang/String;Z)Ljava/io/OutputStream;
     .locals 1
 
-    .line 722
+    .line 729
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_OPERATE:Lcom/android/camera/FileCompat$FileCompatOperateImpl;
 
     invoke-interface {v0, p0, p1}, Lcom/android/camera/FileCompat$FileCompatOperateImpl;->getFileOutputStream(Ljava/lang/String;Z)Ljava/io/OutputStream;
@@ -199,22 +199,22 @@
 .method private static getMimeTypeFromPath(Ljava/lang/String;)Ljava/lang/String;
     .locals 2
 
-    .line 748
+    .line 755
     const-string v0, "."
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->lastIndexOf(Ljava/lang/String;)I
 
     move-result v0
 
-    .line 749
+    .line 756
     const/4 v1, 0x0
 
     if-gez v0, :cond_0
 
-    .line 750
+    .line 757
     return-object v1
 
-    .line 752
+    .line 759
     :cond_0
     add-int/lit8 v0, v0, 0x1
 
@@ -228,7 +228,7 @@
 
     move-result-object p0
 
-    .line 755
+    .line 762
     const-string v0, "jpg"
 
     invoke-virtual {v0, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -247,7 +247,7 @@
 
     goto :goto_0
 
-    .line 757
+    .line 764
     :cond_1
     const-string v0, "png"
 
@@ -257,12 +257,12 @@
 
     if-eqz v0, :cond_2
 
-    .line 758
+    .line 765
     const-string p0, "image/png"
 
     return-object p0
 
-    .line 759
+    .line 766
     :cond_2
     const-string v0, "mp4"
 
@@ -272,16 +272,16 @@
 
     if-eqz p0, :cond_3
 
-    .line 760
+    .line 767
     const-string p0, "video/mp4"
 
     return-object p0
 
-    .line 763
+    .line 770
     :cond_3
     return-object v1
 
-    .line 756
+    .line 763
     :cond_4
     :goto_0
     const-string p0, "image/jpeg"
@@ -297,7 +297,7 @@
         }
     .end annotation
 
-    .line 728
+    .line 735
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_OPERATE:Lcom/android/camera/FileCompat$FileCompatOperateImpl;
 
     invoke-interface {v0, p0, p1}, Lcom/android/camera/FileCompat$FileCompatOperateImpl;->getParcelFileDescriptor(Ljava/lang/String;Z)Landroid/os/ParcelFileDescriptor;
@@ -310,7 +310,7 @@
 .method private static getSDPath(Ljava/lang/String;)Ljava/lang/String;
     .locals 1
 
-    .line 740
+    .line 747
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_COMMON:Lcom/android/camera/FileCompat$FileCompatCommonImpl;
 
     invoke-interface {v0, p0}, Lcom/android/camera/FileCompat$FileCompatCommonImpl;->getSDPath(Ljava/lang/String;)Ljava/lang/String;
@@ -326,7 +326,7 @@
         value = 0x15
     .end annotation
 
-    .line 780
+    .line 787
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_COMMON:Lcom/android/camera/FileCompat$FileCompatCommonImpl;
 
     invoke-interface {v0, p0, p1}, Lcom/android/camera/FileCompat$FileCompatCommonImpl;->getStorageAccessForLOLLIPOP(Landroid/app/Activity;Ljava/lang/String;)Z
@@ -339,7 +339,7 @@
 .method private static getTreeUri(Ljava/lang/String;)Landroid/net/Uri;
     .locals 1
 
-    .line 744
+    .line 751
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_COMMON:Lcom/android/camera/FileCompat$FileCompatCommonImpl;
 
     invoke-interface {v0, p0}, Lcom/android/camera/FileCompat$FileCompatCommonImpl;->getTreeUri(Ljava/lang/String;)Landroid/net/Uri;
@@ -355,7 +355,7 @@
         value = 0x15
     .end annotation
 
-    .line 785
+    .line 792
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_COMMON:Lcom/android/camera/FileCompat$FileCompatCommonImpl;
 
     invoke-interface {v0, p0, p1, p2, p3}, Lcom/android/camera/FileCompat$FileCompatCommonImpl;->handleActivityResult(Landroid/app/Activity;IILandroid/content/Intent;)Z
@@ -371,7 +371,7 @@
         value = 0x15
     .end annotation
 
-    .line 775
+    .line 782
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_COMMON:Lcom/android/camera/FileCompat$FileCompatCommonImpl;
 
     invoke-interface {v0, p0}, Lcom/android/camera/FileCompat$FileCompatCommonImpl;->hasStoragePermission(Ljava/lang/String;)Z
@@ -387,7 +387,7 @@
         value = 0x13
     .end annotation
 
-    .line 769
+    .line 776
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_COMMON:Lcom/android/camera/FileCompat$FileCompatCommonImpl;
 
     invoke-interface {v0, p0}, Lcom/android/camera/FileCompat$FileCompatCommonImpl;->isExternalSDFile(Ljava/lang/String;)Z
@@ -400,7 +400,7 @@
 .method public static mkdirs(Ljava/lang/String;)Z
     .locals 1
 
-    .line 717
+    .line 724
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_OPERATE:Lcom/android/camera/FileCompat$FileCompatOperateImpl;
 
     invoke-interface {v0, p0}, Lcom/android/camera/FileCompat$FileCompatOperateImpl;->mkdirs(Ljava/lang/String;)Z
@@ -418,7 +418,7 @@
         }
     .end annotation
 
-    .line 713
+    .line 720
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_OPERATE:Lcom/android/camera/FileCompat$FileCompatOperateImpl;
 
     invoke-interface {v0, p0, p1}, Lcom/android/camera/FileCompat$FileCompatOperateImpl;->renameFile(Ljava/lang/String;Ljava/lang/String;)Z
@@ -434,11 +434,11 @@
         value = 0x15
     .end annotation
 
-    .line 790
+    .line 797
     sget-object v0, Lcom/android/camera/FileCompat;->IMPL_COMMON:Lcom/android/camera/FileCompat$FileCompatCommonImpl;
 
     invoke-interface {v0}, Lcom/android/camera/FileCompat$FileCompatCommonImpl;->updateSDPath()V
 
-    .line 791
+    .line 798
     return-void
 .end method

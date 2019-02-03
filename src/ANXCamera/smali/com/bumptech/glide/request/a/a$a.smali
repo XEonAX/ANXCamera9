@@ -26,7 +26,7 @@
 
 
 # instance fields
-.field private final oQ:Lcom/bumptech/glide/request/a/f;
+.field private final oP:Lcom/bumptech/glide/request/a/f;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/request/a/f<",
@@ -36,7 +36,7 @@
     .end annotation
 .end field
 
-.field final synthetic oR:Lcom/bumptech/glide/request/a/a;
+.field final synthetic oQ:Lcom/bumptech/glide/request/a/a;
 
 
 # direct methods
@@ -52,12 +52,12 @@
     .end annotation
 
     .line 45
-    iput-object p1, p0, Lcom/bumptech/glide/request/a/a$a;->oR:Lcom/bumptech/glide/request/a/a;
+    iput-object p1, p0, Lcom/bumptech/glide/request/a/a$a;->oQ:Lcom/bumptech/glide/request/a/a;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 46
-    iput-object p2, p0, Lcom/bumptech/glide/request/a/a$a;->oQ:Lcom/bumptech/glide/request/a/f;
+    iput-object p2, p0, Lcom/bumptech/glide/request/a/a$a;->oP:Lcom/bumptech/glide/request/a/f;
 
     .line 47
     return-void
@@ -87,7 +87,7 @@
     .line 52
     new-instance v1, Landroid/graphics/drawable/BitmapDrawable;
 
-    iget-object v2, p0, Lcom/bumptech/glide/request/a/a$a;->oR:Lcom/bumptech/glide/request/a/a;
+    iget-object v2, p0, Lcom/bumptech/glide/request/a/a$a;->oQ:Lcom/bumptech/glide/request/a/a;
 
     invoke-virtual {v2, p1}, Lcom/bumptech/glide/request/a/a;->w(Ljava/lang/Object;)Landroid/graphics/Bitmap;
 
@@ -96,7 +96,7 @@
     invoke-direct {v1, v0, p1}, Landroid/graphics/drawable/BitmapDrawable;-><init>(Landroid/content/res/Resources;Landroid/graphics/Bitmap;)V
 
     .line 53
-    iget-object p1, p0, Lcom/bumptech/glide/request/a/a$a;->oQ:Lcom/bumptech/glide/request/a/f;
+    iget-object p1, p0, Lcom/bumptech/glide/request/a/a$a;->oP:Lcom/bumptech/glide/request/a/f;
 
     invoke-interface {p1, v1, p2}, Lcom/bumptech/glide/request/a/f;->a(Ljava/lang/Object;Lcom/bumptech/glide/request/a/f$a;)Z
 

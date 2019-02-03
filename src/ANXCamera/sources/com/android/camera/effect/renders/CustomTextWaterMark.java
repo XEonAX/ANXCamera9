@@ -7,6 +7,8 @@ import android.graphics.Paint.FontMetricsInt;
 import android.os.Build.VERSION;
 import android.text.TextPaint;
 import com.android.camera.CameraAppImpl;
+import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.lib.compatibility.util.CompatibilityUtils;
 import com.android.camera.log.Log;
@@ -20,7 +22,7 @@ public class CustomTextWaterMark {
     private static final int TEXT_COLOR = -1;
     private static final int TYPE_CN = 1;
     private static final int TYPE_EN = 2;
-    private static final float WATER_MARK_SHADOW_Y = 3.0f;
+    private static final float WATER_MARK_SHADOW_Y = 2.0f;
     private static final int WATER_MARK_SHADOW_Y_COLOR = 771751936;
     private final TextPaint mCNPaint;
     private final TextPaint mENPaint;
@@ -51,7 +53,7 @@ public class CustomTextWaterMark {
             textPaint.setFakeBoldText(true);
             textPaint.setTypeface(Util.getMFYueYuanTypeface(CameraAppImpl.getAndroidContext()));
         }
-        textPaint.setShadowLayer(0.1f, 3.0f, 3.0f, 771751936);
+        textPaint.setShadowLayer(0.1f, 0.0f, 2.0f, 771751936);
         setLongshotMode(textPaint, 0.05f);
         return textPaint;
     }
@@ -63,8 +65,9 @@ public class CustomTextWaterMark {
     }
 
     public static CustomTextWaterMark newInstance(Bitmap bitmap, float f, float f2, String str) {
-        TextPaint defaultPaint = getDefaultPaint(70.0f, -1, 1);
-        TextPaint defaultPaint2 = getDefaultPaint(77.0f, -1, 2);
+        float resourceFloat = CameraSettings.getResourceFloat(R.dimen.custom_watermark_text_size_ratio, 1.0f);
+        TextPaint defaultPaint = getDefaultPaint((float) ((int) (70.0f * resourceFloat)), -1, 1);
+        TextPaint defaultPaint2 = getDefaultPaint((float) ((int) (77.0f * resourceFloat)), -1, 2);
         return new CustomTextWaterMark(bitmap, f, f2, str, defaultPaint, defaultPaint2, defaultPaint2.getFontMetricsInt());
     }
 

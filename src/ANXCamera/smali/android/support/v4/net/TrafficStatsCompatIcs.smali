@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 27
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static clearThreadStatsTag()V
-    .locals 0
+    .registers 0
 
     .line 29
     invoke-static {}, Landroid/net/TrafficStats;->clearThreadStatsTag()V
@@ -24,7 +24,7 @@
 .end method
 
 .method public static getThreadStatsTag()I
-    .locals 1
+    .registers 1
 
     .line 33
     invoke-static {}, Landroid/net/TrafficStats;->getThreadStatsTag()I
@@ -35,7 +35,7 @@
 .end method
 
 .method public static incrementOperationCount(I)V
-    .locals 0
+    .registers 1
     .param p0, "operationCount"    # I
 
     .line 37
@@ -46,7 +46,7 @@
 .end method
 
 .method public static incrementOperationCount(II)V
-    .locals 0
+    .registers 2
     .param p0, "tag"    # I
     .param p1, "operationCount"    # I
 
@@ -58,7 +58,7 @@
 .end method
 
 .method public static setThreadStatsTag(I)V
-    .locals 0
+    .registers 1
     .param p0, "tag"    # I
 
     .line 45
@@ -69,7 +69,7 @@
 .end method
 
 .method public static tagSocket(Ljava/net/Socket;)V
-    .locals 0
+    .registers 1
     .param p0, "socket"    # Ljava/net/Socket;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -85,7 +85,7 @@
 .end method
 
 .method public static untagSocket(Ljava/net/Socket;)V
-    .locals 0
+    .registers 1
     .param p0, "socket"    # Ljava/net/Socket;
     .annotation system Ldalvik/annotation/Throws;
         value = {

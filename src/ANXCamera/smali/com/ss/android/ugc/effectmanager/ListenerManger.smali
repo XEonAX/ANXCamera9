@@ -603,7 +603,7 @@
     return-object p1
 .end method
 
-.method public getReadUpdateTagistener(Ljava/lang/String;)Lcom/ss/android/ugc/effectmanager/effect/listener/IReadUpdateTagListener;
+.method public getReadUpdateTagListener(Ljava/lang/String;)Lcom/ss/android/ugc/effectmanager/effect/listener/IReadUpdateTagListener;
     .locals 1
 
     .line 142

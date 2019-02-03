@@ -30,11 +30,11 @@
     .locals 0
 
     .line 24
-    sget-object p1, Lcom/bumptech/glide/load/DataSource;->cv:Lcom/bumptech/glide/load/DataSource;
+    sget-object p1, Lcom/bumptech/glide/load/DataSource;->cw:Lcom/bumptech/glide/load/DataSource;
 
     if-eq p2, p1, :cond_0
 
-    sget-object p1, Lcom/bumptech/glide/load/DataSource;->cw:Lcom/bumptech/glide/load/DataSource;
+    sget-object p1, Lcom/bumptech/glide/load/DataSource;->cx:Lcom/bumptech/glide/load/DataSource;
 
     if-eq p2, p1, :cond_0
 
@@ -71,7 +71,7 @@
     .locals 1
 
     .line 18
-    sget-object v0, Lcom/bumptech/glide/load/DataSource;->ct:Lcom/bumptech/glide/load/DataSource;
+    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cu:Lcom/bumptech/glide/load/DataSource;
 
     if-ne p1, v0, :cond_0
 

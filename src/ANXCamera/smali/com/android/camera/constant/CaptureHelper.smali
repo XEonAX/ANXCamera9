@@ -21,21 +21,27 @@
 
 .field public static final APPLY_PRE_CAPTURE:I = 0x6
 
-.field public static final STATE_FOCUSING:I = 0x1
+.field public static final STATE_FOCUSING:I = 0x2
 
-.field public static final STATE_PICTURE_TAKEN:I = 0x6
+.field public static final STATE_PICTURE_TAKEN:I = 0x7
 
-.field public static final STATE_PREVIEW:I = 0x0
+.field public static final STATE_PREVIEWING:I = 0x1
 
-.field public static final STATE_WAITING_AE_LOCK:I = 0x3
+.field public static final STATE_WAITING_AE_LOCK:I = 0x4
 
-.field public static final STATE_WAITING_AF_LOCK:I = 0x2
+.field public static final STATE_WAITING_AF_LOCK:I = 0x3
 
-.field public static final STATE_WAITING_FLASH_CLOSE:I = 0x7
+.field public static final STATE_WAITING_FLASH_CLOSE:I = 0x8
 
-.field public static final STATE_WAITING_FLASH_FIRED:I = 0x8
+.field public static final STATE_WAITING_FLASH_CLOSE_AND_STOP_PREVIEW:I = 0xa
 
-.field public static final STATE_WAITING_PRECAPTURE:I = 0x4
+.field public static final STATE_WAITING_FLASH_FIRED:I = 0x9
+
+.field public static final STATE_WAITING_NON_PRECAPTURE:I = 0x6
+
+.field public static final STATE_WAITING_PRECAPTURE:I = 0x5
+
+.field public static final STATE_WAITING_PREVIEW:I
 
 
 # direct methods

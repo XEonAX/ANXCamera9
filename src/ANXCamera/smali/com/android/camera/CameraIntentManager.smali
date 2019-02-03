@@ -178,15 +178,15 @@
 .method private parseReferer(Landroid/content/Intent;)Landroid/net/Uri;
     .locals 2
 
-    .line 436
+    .line 440
     const/4 v0, 0x0
 
     if-nez p1, :cond_0
 
-    .line 437
+    .line 441
     return-object v0
 
-    .line 440
+    .line 444
     :cond_0
     :try_start_0
     const-string v1, "android.intent.extra.REFERRER"
@@ -197,13 +197,13 @@
 
     check-cast v1, Landroid/net/Uri;
 
-    .line 441
+    .line 445
     if-eqz v1, :cond_1
 
-    .line 442
+    .line 446
     return-object v1
 
-    .line 444
+    .line 448
     :cond_1
     const-string v1, "android.intent.extra.REFERRER_NAME"
 
@@ -211,10 +211,10 @@
 
     move-result-object p1
 
-    .line 445
+    .line 449
     if-eqz p1, :cond_2
 
-    .line 446
+    .line 450
     invoke-static {p1}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
 
     move-result-object p1
@@ -223,22 +223,22 @@
 
     return-object p1
 
-    .line 451
+    .line 455
     :cond_2
     goto :goto_0
 
-    .line 448
+    .line 452
     :catch_0
     move-exception p1
 
-    .line 449
+    .line 453
     sget-object p1, Lcom/android/camera/CameraIntentManager;->TAG:Ljava/lang/String;
 
     const-string v1, "Cannot read referrer from intent; intent extras contain unknown custom Parcelable objects"
 
     invoke-static {p1, v1}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 452
+    .line 456
     :goto_0
     return-object v0
 .end method
@@ -272,12 +272,12 @@
 .method public checkCallerLegality()Z
     .locals 5
 
-    .line 472
+    .line 476
     invoke-virtual {p0}, Lcom/android/camera/CameraIntentManager;->getCaller()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 473
+    .line 477
     sget-object v1, Lcom/android/camera/CameraIntentManager;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -296,15 +296,15 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 474
+    .line 478
     const/4 v1, 0x0
 
     if-nez v0, :cond_0
 
-    .line 476
+    .line 480
     return v1
 
-    .line 478
+    .line 482
     :cond_0
     const/4 v2, -0x1
 
@@ -385,7 +385,7 @@
     :goto_0
     packed-switch v2, :pswitch_data_0
 
-    .line 486
+    .line 490
     sget-object v2, Lcom/android/camera/CameraIntentManager;->TAG:Ljava/lang/String;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -404,10 +404,10 @@
 
     invoke-static {v2, v0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 487
+    .line 491
     return v1
 
-    .line 484
+    .line 488
     :pswitch_0
     return v4
 
@@ -452,12 +452,12 @@
 .method public getCaller()Ljava/lang/String;
     .locals 1
 
-    .line 462
+    .line 466
     iget-object v0, p0, Lcom/android/camera/CameraIntentManager;->mReferer:Landroid/net/Uri;
 
     if-nez v0, :cond_0
 
-    .line 463
+    .line 467
     iget-object v0, p0, Lcom/android/camera/CameraIntentManager;->mIntent:Landroid/content/Intent;
 
     invoke-direct {p0, v0}, Lcom/android/camera/CameraIntentManager;->parseReferer(Landroid/content/Intent;)Landroid/net/Uri;
@@ -466,18 +466,18 @@
 
     iput-object v0, p0, Lcom/android/camera/CameraIntentManager;->mReferer:Landroid/net/Uri;
 
-    .line 465
+    .line 469
     :cond_0
     iget-object v0, p0, Lcom/android/camera/CameraIntentManager;->mReferer:Landroid/net/Uri;
 
     if-nez v0, :cond_1
 
-    .line 466
+    .line 470
     const/4 v0, 0x0
 
     return-object v0
 
-    .line 468
+    .line 472
     :cond_1
     iget-object v0, p0, Lcom/android/camera/CameraIntentManager;->mReferer:Landroid/net/Uri;
 
@@ -491,7 +491,7 @@
 .method public getCameraFacing()I
     .locals 3
 
-    .line 503
+    .line 507
     iget-object v0, p0, Lcom/android/camera/CameraIntentManager;->mIntent:Landroid/content/Intent;
 
     const-string v1, "android.intent.extras.CAMERA_FACING"
@@ -779,47 +779,47 @@
     :goto_1
     packed-switch v0, :pswitch_data_0
 
-    .line 388
+    .line 391
     const/16 v0, 0xa0
 
     return v0
 
-    .line 386
+    .line 389
     :pswitch_0
     const/16 v0, 0xad
 
     return v0
 
-    .line 379
+    .line 382
     :pswitch_1
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/mi/config/a;->fp()Z
+    invoke-virtual {v0}, Lcom/mi/config/a;->fs()Z
 
     move-result v0
 
     if-eqz v0, :cond_1
 
-    .line 381
+    .line 384
     const/16 v0, 0xac
 
     return v0
 
-    .line 384
+    .line 387
     :cond_1
     const/16 v0, 0xa8
 
     return v0
 
-    .line 377
+    .line 380
     :pswitch_2
     const/16 v0, 0xa9
 
     return v0
 
-    .line 375
+    .line 378
     :pswitch_3
     const/16 v0, 0xa2
 
@@ -827,6 +827,23 @@
 
     .line 373
     :pswitch_4
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/mi/config/a;->fF()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 374
+    const/16 v0, 0xae
+
+    return v0
+
+    .line 376
+    :cond_2
     const/16 v0, 0xa1
 
     return v0
@@ -860,8 +877,6 @@
     const/16 v0, 0xa3
 
     return v0
-
-    nop
 
     :sswitch_data_0
     .sparse-switch
@@ -899,7 +914,7 @@
 .method public getCameraSubMode()Ljava/lang/String;
     .locals 2
 
-    .line 398
+    .line 401
     iget-object v0, p0, Lcom/android/camera/CameraIntentManager;->mIntent:Landroid/content/Intent;
 
     const-string v1, "android.intent.extra.CAMERA_SUB_MODE"
@@ -1011,7 +1026,7 @@
 .method public getFilterMode()I
     .locals 3
 
-    .line 424
+    .line 428
     iget-object v0, p0, Lcom/android/camera/CameraIntentManager;->mIntent:Landroid/content/Intent;
 
     const-string v1, "android.intent.extra.CAMERA_FILTER_MODE"
@@ -1028,7 +1043,7 @@
 .method public getFlashMode()Ljava/lang/String;
     .locals 2
 
-    .line 432
+    .line 436
     iget-object v0, p0, Lcom/android/camera/CameraIntentManager;->mIntent:Landroid/content/Intent;
 
     const-string v1, "android.intent.extra.CAMERA_FLASH_MODE"
@@ -1043,7 +1058,7 @@
 .method public getHdrMode()Ljava/lang/String;
     .locals 2
 
-    .line 428
+    .line 432
     iget-object v0, p0, Lcom/android/camera/CameraIntentManager;->mIntent:Landroid/content/Intent;
 
     const-string v1, "android.intent.extra.CAMERA_HDR_MODE"
@@ -1180,7 +1195,7 @@
 .method public getVoiceControlAction()Ljava/lang/String;
     .locals 2
 
-    .line 492
+    .line 496
     iget-object v0, p0, Lcom/android/camera/CameraIntentManager;->mIntent:Landroid/content/Intent;
 
     const-string v1, "android.intent.extras.VOICE_CONTROL_ACTION"
@@ -1191,12 +1206,12 @@
 
     if-nez v0, :cond_0
 
-    .line 493
+    .line 497
     const-string v0, "NONE"
 
     return-object v0
 
-    .line 495
+    .line 499
     :cond_0
     iget-object v0, p0, Lcom/android/camera/CameraIntentManager;->mIntent:Landroid/content/Intent;
 
@@ -1206,15 +1221,15 @@
 
     move-result-object v0
 
-    .line 496
+    .line 500
     if-nez v0, :cond_1
 
-    .line 497
+    .line 501
     const-string v0, "NONE"
 
     return-object v0
 
-    .line 499
+    .line 503
     :cond_1
     return-object v0
 .end method
@@ -1316,17 +1331,17 @@
 .method public isOpenOnly()Z
     .locals 3
 
-    .line 403
+    .line 406
     nop
 
-    .line 404
+    .line 407
     iget-object v0, p0, Lcom/android/camera/CameraIntentManager;->mIntent:Landroid/content/Intent;
 
     invoke-virtual {v0}, Landroid/content/Intent;->getAction()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 405
+    .line 408
     const-string v1, "android.media.action.VOICE_COMMAND"
 
     invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -1337,10 +1352,10 @@
 
     if-eqz v1, :cond_0
 
-    .line 406
+    .line 409
     goto :goto_0
 
-    .line 407
+    .line 410
     :cond_0
     const-string v1, "android.intent.action.MAIN"
 
@@ -1350,10 +1365,10 @@
 
     if-eqz v1, :cond_1
 
-    .line 410
+    .line 413
     goto :goto_0
 
-    .line 411
+    .line 414
     :cond_1
     const-string v1, "android.media.action.STILL_IMAGE_CAMERA"
 
@@ -1363,10 +1378,23 @@
 
     if-eqz v1, :cond_2
 
-    .line 414
+    .line 418
+    const-string v0, "com.google.android.googlequicksearchbox"
+
+    invoke-virtual {p0}, Lcom/android/camera/CameraIntentManager;->getCaller()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    .line 424
+    xor-int/2addr v2, v0
+
     goto :goto_0
 
-    .line 415
+    .line 419
     :cond_2
     const-string v1, "android.media.action.STILL_IMAGE_CAMERA_SECURE"
 
@@ -1376,10 +1404,10 @@
 
     if-eqz v0, :cond_3
 
-    .line 418
+    .line 422
     goto :goto_0
 
-    .line 420
+    .line 424
     :cond_3
     const/4 v2, 0x0
 
@@ -1526,17 +1554,17 @@
 .method public setReferer(Landroid/app/Activity;)V
     .locals 0
 
-    .line 456
+    .line 460
     if-eqz p1, :cond_0
 
-    .line 457
+    .line 461
     invoke-virtual {p1}, Landroid/app/Activity;->getReferrer()Landroid/net/Uri;
 
     move-result-object p1
 
     iput-object p1, p0, Lcom/android/camera/CameraIntentManager;->mReferer:Landroid/net/Uri;
 
-    .line 459
+    .line 463
     :cond_0
     return-void
 .end method

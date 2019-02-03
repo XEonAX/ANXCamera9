@@ -21,7 +21,7 @@
 
 
 # instance fields
-.field private oy:Landroid/graphics/drawable/Animatable;
+.field private ox:Landroid/graphics/drawable/Animatable;
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 .end field
@@ -92,10 +92,10 @@
     .line 133
     check-cast p1, Landroid/graphics/drawable/Animatable;
 
-    iput-object p1, p0, Lcom/bumptech/glide/request/target/h;->oy:Landroid/graphics/drawable/Animatable;
+    iput-object p1, p0, Lcom/bumptech/glide/request/target/h;->ox:Landroid/graphics/drawable/Animatable;
 
     .line 134
-    iget-object p1, p0, Lcom/bumptech/glide/request/target/h;->oy:Landroid/graphics/drawable/Animatable;
+    iget-object p1, p0, Lcom/bumptech/glide/request/target/h;->ox:Landroid/graphics/drawable/Animatable;
 
     invoke-interface {p1}, Landroid/graphics/drawable/Animatable;->start()V
 
@@ -105,7 +105,7 @@
     :cond_0
     const/4 p1, 0x0
 
-    iput-object p1, p0, Lcom/bumptech/glide/request/target/h;->oy:Landroid/graphics/drawable/Animatable;
+    iput-object p1, p0, Lcom/bumptech/glide/request/target/h;->ox:Landroid/graphics/drawable/Animatable;
 
     .line 138
     :goto_0
@@ -170,12 +170,12 @@
     invoke-super {p0, p1}, Lcom/bumptech/glide/request/target/ViewTarget;->d(Landroid/graphics/drawable/Drawable;)V
 
     .line 94
-    iget-object v0, p0, Lcom/bumptech/glide/request/target/h;->oy:Landroid/graphics/drawable/Animatable;
+    iget-object v0, p0, Lcom/bumptech/glide/request/target/h;->ox:Landroid/graphics/drawable/Animatable;
 
     if-eqz v0, :cond_0
 
     .line 95
-    iget-object v0, p0, Lcom/bumptech/glide/request/target/h;->oy:Landroid/graphics/drawable/Animatable;
+    iget-object v0, p0, Lcom/bumptech/glide/request/target/h;->ox:Landroid/graphics/drawable/Animatable;
 
     invoke-interface {v0}, Landroid/graphics/drawable/Animatable;->stop()V
 
@@ -257,12 +257,12 @@
     .locals 1
 
     .line 112
-    iget-object v0, p0, Lcom/bumptech/glide/request/target/h;->oy:Landroid/graphics/drawable/Animatable;
+    iget-object v0, p0, Lcom/bumptech/glide/request/target/h;->ox:Landroid/graphics/drawable/Animatable;
 
     if-eqz v0, :cond_0
 
     .line 113
-    iget-object v0, p0, Lcom/bumptech/glide/request/target/h;->oy:Landroid/graphics/drawable/Animatable;
+    iget-object v0, p0, Lcom/bumptech/glide/request/target/h;->ox:Landroid/graphics/drawable/Animatable;
 
     invoke-interface {v0}, Landroid/graphics/drawable/Animatable;->start()V
 
@@ -275,12 +275,12 @@
     .locals 1
 
     .line 119
-    iget-object v0, p0, Lcom/bumptech/glide/request/target/h;->oy:Landroid/graphics/drawable/Animatable;
+    iget-object v0, p0, Lcom/bumptech/glide/request/target/h;->ox:Landroid/graphics/drawable/Animatable;
 
     if-eqz v0, :cond_0
 
     .line 120
-    iget-object v0, p0, Lcom/bumptech/glide/request/target/h;->oy:Landroid/graphics/drawable/Animatable;
+    iget-object v0, p0, Lcom/bumptech/glide/request/target/h;->ox:Landroid/graphics/drawable/Animatable;
 
     invoke-interface {v0}, Landroid/graphics/drawable/Animatable;->stop()V
 

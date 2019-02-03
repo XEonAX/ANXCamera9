@@ -18,7 +18,7 @@
 
 
 # instance fields
-.field private final dt:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
+.field private final du:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
 
 .field private final lb:Lcom/bumptech/glide/util/c;
 
@@ -31,7 +31,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 81
-    iput-object p1, p0, Lcom/bumptech/glide/load/resource/bitmap/v$a;->dt:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
+    iput-object p1, p0, Lcom/bumptech/glide/load/resource/bitmap/v$a;->du:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
 
     .line 82
     iput-object p2, p0, Lcom/bumptech/glide/load/resource/bitmap/v$a;->lb:Lcom/bumptech/glide/util/c;
@@ -79,7 +79,7 @@
     .locals 1
 
     .line 90
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/bitmap/v$a;->dt:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/bitmap/v$a;->du:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;->ct()V
 

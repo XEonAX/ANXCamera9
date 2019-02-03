@@ -13,37 +13,83 @@
 
 
 # static fields
-.field public static final BASE_URL:Ljava/lang/String; = "https://effect.snssdk.com/devicehub/getSettings?"
+.field public static final BASE_URL_CHINA:Ljava/lang/String; = "https://effect.snssdk.com/devicehub/getSettings?"
 
-.field public static final BASE_URL_TEST:Ljava/lang/String; = "http://10.1.10.91:6789/devicehub/getSettings?"
+.field public static final BASE_URL_SINGAPORE:Ljava/lang/String; = "https://sg-effect.byteoversea.com/devicehub/getSetting?"
+
+.field public static final BASE_URL_TEST:Ljava/lang/String; = "https://effect.snssdk.com/devicehub/getSettings/?"
+
+.field public static final BASE_URL_US:Ljava/lang/String; = "https://va-effect.byteoversea.com/devicehub/getSettings?"
 
 .field public static final DISABLE:I = 0x2
 
 .field public static final ENABLE:I = 0x1
 
-.field public static final KEY_F_IMPORT_VIDEO_HW_BITRATE:Ljava/lang/String; = "import_video_hw_bitrate"
+.field public static final KEY_I_EARPHONE_ECHO_AAUDIO:Ljava/lang/String; = "earphone_echo_aaudio"
 
-.field public static final KEY_F_RECORD_VIDEO_HW_BITRATE:Ljava/lang/String; = "record_video_hw_bitrate"
+.field public static final KEY_I_EARPHONE_ECHO_HUAWEI:Ljava/lang/String; = "earphone_echo_huawei"
 
-.field public static final KEY_F_SYNTHETIC_VIDEO_HW_BITRATE:Ljava/lang/String; = "synthetic_video_hw_bitrate"
+.field public static final KEY_I_EARPHONE_ECHO_NORMAL:Ljava/lang/String; = "earphone_echo_normal"
 
 .field public static final KEY_I_IMPORT_ENCODE_MODE:Ljava/lang/String; = "import_encode_mode"
 
+.field public static final KEY_I_IMPORT_HW_BITRATE_MODE:Ljava/lang/String; = "import_hw_bitrate_mode"
+
+.field public static final KEY_I_IMPORT_HW_PROFILE:Ljava/lang/String; = "import_hw_profile"
+
 .field public static final KEY_I_IMPORT_SHORTER_PIXELS:Ljava/lang/String; = "import_shorter_pixels"
 
+.field public static final KEY_I_IMPORT_SW_BITRATE_MODE:Ljava/lang/String; = "import_sw_bitrate_mode"
+
+.field public static final KEY_I_IMPORT_VIDEO_HW_BITRATE:Ljava/lang/String; = "import_video_hw_bitrate"
+
 .field public static final KEY_I_IMPORT_VIDEO_SW_CRF:Ljava/lang/String; = "import_video_sw_crf"
+
+.field public static final KEY_I_IMPORT_VIDEO_SW_GOP:Ljava/lang/String; = "import_video_sw_gop"
+
+.field public static final KEY_I_IMPORT_VIDEO_SW_MAXRATE:Ljava/lang/String; = "import_video_sw_maxrate"
+
+.field public static final KEY_I_IMPORT_VIDEO_SW_PRESET:Ljava/lang/String; = "import_video_sw_preset"
+
+.field public static final KEY_I_IMPORT_VIDEO_SW_QP:Ljava/lang/String; = "import_video_sw_qp"
+
+.field public static final KEY_I_RECORD_CAMERA_COMPAT_LEVEL:Ljava/lang/String; = "record_camera_compat_level"
 
 .field public static final KEY_I_RECORD_CAMERA_TYPE:Ljava/lang/String; = "record_camera_type"
 
 .field public static final KEY_I_RECORD_ENCODE_MODE:Ljava/lang/String; = "record_encode_mode"
 
+.field public static final KEY_I_RECORD_HW_BITRATE_MODE:Ljava/lang/String; = "record_hw_bitrate_mode"
+
+.field public static final KEY_I_RECORD_HW_PROFILE:Ljava/lang/String; = "record_hw_profile"
+
 .field public static final KEY_I_RECORD_RESOLUTION_HEIGHT:Ljava/lang/String; = "record_resolution_height"
 
 .field public static final KEY_I_RECORD_RESOLUTION_WIDTH:Ljava/lang/String; = "record_resolution_width"
 
+.field public static final KEY_I_RECORD_SW_BITRATE_MODE:Ljava/lang/String; = "record_sw_bitrate_mode"
+
+.field public static final KEY_I_RECORD_VIDEO_HW_BITRATE:Ljava/lang/String; = "record_video_hw_bitrate"
+
 .field public static final KEY_I_RECORD_VIDEO_SW_CRF:Ljava/lang/String; = "record_video_sw_crf"
 
+.field public static final KEY_I_RECORD_VIDEO_SW_GOP:Ljava/lang/String; = "record_video_sw_gop"
+
+.field public static final KEY_I_RECORD_VIDEO_SW_MAXRATE:Ljava/lang/String; = "record_video_sw_maxrate"
+
+.field public static final KEY_I_RECORD_VIDEO_SW_PRESET:Ljava/lang/String; = "record_video_sw_preset"
+
+.field public static final KEY_I_RECORD_VIDEO_SW_QP:Ljava/lang/String; = "record_video_sw_qp"
+
 .field public static final KEY_I_SYNTHETIC_ENCODE_MODE:Ljava/lang/String; = "synthetic_encode_mode"
+
+.field public static final KEY_I_SYNTHETIC_HW_BITRATE_MODE:Ljava/lang/String; = "synthetic_hw_bitrate_mode"
+
+.field public static final KEY_I_SYNTHETIC_HW_PROFILE:Ljava/lang/String; = "synthetic_hw_profile"
+
+.field public static final KEY_I_SYNTHETIC_SW_BITRATE_MODE:Ljava/lang/String; = "synthetic_sw_bitrate_mode"
+
+.field public static final KEY_I_SYNTHETIC_VIDEO_HW_BITRATE:Ljava/lang/String; = "synthetic_video_hw_bitrate"
 
 .field public static final KEY_I_SYNTHETIC_VIDEO_SW_CRF:Ljava/lang/String; = "synthetic_video_sw_crf"
 
@@ -53,7 +99,7 @@
 
 .field public static final KEY_I_SYNTHETIC_VIDEO_SW_PRESET:Ljava/lang/String; = "synthetic_video_sw_preset"
 
-.field public static final KEY_I_USE_OPENSL:Ljava/lang/String; = "use_opensl"
+.field public static final KEY_I_SYNTHETIC_VIDEO_SW_QP:Ljava/lang/String; = "synthetic_video_sw_qp"
 
 .field private static final TAG:Ljava/lang/String; = "PerfConfig"
 
@@ -73,14 +119,21 @@
 
 .field private static final sPerfConfigPrefix:Ljava/lang/String; = "PerfConfig_"
 
-.field public static sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+.field public static final sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 8
+    .locals 12
 
-    .line 116
+    .line 55
+    new-instance v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    invoke-direct {v0}, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;-><init>()V
+
+    sput-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    .line 173
     new-instance v0, Ljava/util/ArrayList;
 
     const/16 v1, 0x14
@@ -89,41 +142,26 @@
 
     sput-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
-    .line 120
-    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
-
-    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
-
-    const-string v2, "use_opensl"
-
-    const/4 v3, 0x0
-
-    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v4
-
-    invoke-direct {v1, v2, v3, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
-
-    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    .line 121
+    .line 177
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
     const-string v2, "record_camera_type"
 
-    const/4 v4, 0x1
+    const/4 v3, 0x1
 
-    invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v4
 
-    invoke-direct {v1, v2, v3, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    const/4 v5, 0x0
+
+    invoke-direct {v1, v2, v5, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 122
+    .line 178
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
@@ -134,109 +172,235 @@
 
     invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    move-result-object v5
+    move-result-object v6
 
-    invoke-direct {v1, v2, v3, v5}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    invoke-direct {v1, v2, v5, v6}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 123
+    .line 179
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
     const-string v2, "record_video_hw_bitrate"
 
-    const/16 v5, 0x1000
+    const/high16 v6, 0x400000
 
-    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v6}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    move-result-object v6
+    move-result-object v7
 
-    invoke-direct {v1, v2, v3, v6}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    invoke-direct {v1, v2, v5, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 124
+    .line 180
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
     const-string v2, "record_encode_mode"
 
-    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    move-result-object v6
+    move-result-object v7
 
-    invoke-direct {v1, v2, v3, v6}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    invoke-direct {v1, v2, v5, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 125
+    .line 181
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
     const-string v2, "record_resolution_width"
 
-    const/16 v6, 0x240
+    const/16 v7, 0x240
 
-    invoke-static {v6}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v7}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    move-result-object v7
+    move-result-object v8
 
-    invoke-direct {v1, v2, v3, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    invoke-direct {v1, v2, v5, v8}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 126
+    .line 182
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
     const-string v2, "record_resolution_height"
 
-    const/16 v7, 0x400
+    const/16 v8, 0x400
 
-    invoke-static {v7}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v8}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    move-result-object v7
+    move-result-object v8
 
-    invoke-direct {v1, v2, v3, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    invoke-direct {v1, v2, v5, v8}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 127
+    .line 183
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "record_camera_compat_level"
+
+    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v8
+
+    invoke-direct {v1, v2, v5, v8}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 184
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "record_video_sw_maxrate"
+
+    const v8, 0x4c4b40
+
+    invoke-static {v8}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v9
+
+    invoke-direct {v1, v2, v5, v9}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 185
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "record_video_sw_preset"
+
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v9
+
+    invoke-direct {v1, v2, v5, v9}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 186
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "record_video_sw_gop"
+
+    const/16 v9, 0x23
+
+    invoke-static {v9}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v10
+
+    invoke-direct {v1, v2, v5, v10}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 187
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "record_video_sw_qp"
+
+    const/4 v10, 0x2
+
+    invoke-static {v10}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v11
+
+    invoke-direct {v1, v2, v5, v11}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 188
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "record_sw_bitrate_mode"
+
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v11
+
+    invoke-direct {v1, v2, v5, v11}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 189
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "record_hw_bitrate_mode"
+
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v11
+
+    invoke-direct {v1, v2, v5, v11}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 190
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "record_hw_profile"
+
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v11
+
+    invoke-direct {v1, v2, v5, v11}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 191
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
     const-string v2, "import_encode_mode"
 
-    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    move-result-object v7
+    move-result-object v11
 
-    invoke-direct {v1, v2, v3, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    invoke-direct {v1, v2, v5, v11}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 128
+    .line 192
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
     const-string v2, "import_shorter_pixels"
 
-    invoke-static {v6}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v7}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    move-result-object v6
+    move-result-object v7
 
-    invoke-direct {v1, v2, v3, v6}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    invoke-direct {v1, v2, v5, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 129
+    .line 193
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
@@ -245,43 +409,148 @@
 
     invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    move-result-object v6
+    move-result-object v7
 
-    invoke-direct {v1, v2, v3, v6}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    invoke-direct {v1, v2, v5, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 130
+    .line 194
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
     const-string v2, "import_video_hw_bitrate"
 
-    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v6}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    move-result-object v6
+    move-result-object v7
 
-    invoke-direct {v1, v2, v3, v6}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    invoke-direct {v1, v2, v5, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 131
+    .line 195
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "import_video_sw_maxrate"
+
+    invoke-static {v8}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v7
+
+    invoke-direct {v1, v2, v5, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 196
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "import_video_sw_preset"
+
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v7
+
+    invoke-direct {v1, v2, v5, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 197
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "import_video_sw_gop"
+
+    invoke-static {v9}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v7
+
+    invoke-direct {v1, v2, v5, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 198
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "import_video_sw_qp"
+
+    invoke-static {v10}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v7
+
+    invoke-direct {v1, v2, v5, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 199
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "import_sw_bitrate_mode"
+
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v7
+
+    invoke-direct {v1, v2, v5, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 200
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "import_hw_bitrate_mode"
+
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v7
+
+    invoke-direct {v1, v2, v5, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 201
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "import_hw_profile"
+
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v7
+
+    invoke-direct {v1, v2, v5, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 202
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
     const-string v2, "synthetic_encode_mode"
 
-    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    move-result-object v6
+    move-result-object v7
 
-    invoke-direct {v1, v2, v3, v6}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    invoke-direct {v1, v2, v5, v7}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 132
+    .line 203
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
@@ -292,101 +561,202 @@
 
     move-result-object v4
 
-    invoke-direct {v1, v2, v3, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    invoke-direct {v1, v2, v5, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 133
+    .line 204
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
     const-string v2, "synthetic_video_hw_bitrate"
 
-    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v6}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v4
 
-    invoke-direct {v1, v2, v3, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    invoke-direct {v1, v2, v5, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 134
+    .line 205
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
     const-string v2, "synthetic_video_sw_maxrate"
 
-    const v4, 0x4c4b40
-
-    invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v8}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v4
 
-    invoke-direct {v1, v2, v3, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    invoke-direct {v1, v2, v5, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 135
+    .line 206
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
     const-string v2, "synthetic_video_sw_preset"
 
-    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v4
 
-    invoke-direct {v1, v2, v3, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    invoke-direct {v1, v2, v5, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 136
+    .line 207
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
     const-string v2, "synthetic_video_sw_gop"
 
-    const/16 v4, 0x23
-
-    invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v9}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v4
 
-    invoke-direct {v1, v2, v3, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+    invoke-direct {v1, v2, v5, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 137
+    .line 208
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "synthetic_video_sw_qp"
+
+    invoke-static {v10}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v4
+
+    invoke-direct {v1, v2, v5, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 209
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "synthetic_sw_bitrate_mode"
+
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v4
+
+    invoke-direct {v1, v2, v5, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 210
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "synthetic_hw_bitrate_mode"
+
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v4
+
+    invoke-direct {v1, v2, v5, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 211
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "synthetic_hw_profile"
+
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v4
+
+    invoke-direct {v1, v2, v5, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 212
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "earphone_echo_normal"
+
+    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v4
+
+    invoke-direct {v1, v2, v5, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 213
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "earphone_echo_aaudio"
+
+    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v4
+
+    invoke-direct {v1, v2, v5, v4}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 214
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
+
+    new-instance v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
+
+    const-string v2, "earphone_echo_huawei"
+
+    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v3
+
+    invoke-direct {v1, v2, v5, v3}, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;-><init>(Ljava/lang/String;ILjava/lang/Object;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 215
     return-void
 .end method
 
 .method public constructor <init>()V
     .locals 0
 
-    .line 35
+    .line 34
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
 .end method
 
 .method public static doubtingFilter(Lcom/ss/android/vesdk/runtime/cloudconfig/Config;Lorg/json/JSONObject;Z)Ljava/lang/String;
-    .locals 17
+    .locals 16
 
     move-object/from16 v1, p0
 
     move-object/from16 v0, p1
 
-    .line 450
-    if-eqz v0, :cond_d
+    .line 609
+    if-eqz v0, :cond_c
 
-    .line 453
+    .line 612
     iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
 
-    .line 454
+    .line 613
     invoke-virtual {v0, v3}, Lorg/json/JSONObject;->has(Ljava/lang/String;)Z
 
     move-result v4
@@ -395,7 +765,7 @@
 
     if-nez v4, :cond_1
 
-    .line 455
+    .line 614
     const-string v0, "PerfConfig"
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -414,34 +784,36 @@
 
     invoke-static {v0, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 456
+    .line 615
     if-eqz p2, :cond_0
 
-    .line 457
-    invoke-virtual/range {p0 .. p0}, Ljava/lang/Object;->toString()Ljava/lang/String;
+    .line 616
+    iget-object v0, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    invoke-virtual {v0}, Ljava/lang/Object;->toString()Ljava/lang/String;
 
     move-result-object v0
 
     return-object v0
 
-    .line 459
+    .line 618
     :cond_0
     return-object v5
 
-    .line 463
+    .line 622
     :cond_1
     nop
 
-    .line 464
+    .line 623
     nop
 
-    .line 466
+    .line 625
     nop
 
-    .line 467
+    .line 626
     const-wide/high16 v6, -0x4010000000000000L    # -1.0
 
-    .line 469
+    .line 628
     const/4 v4, -0x1
 
     const/4 v8, 0x0
@@ -453,14 +825,16 @@
 
     move-result v10
 
-    const/16 v11, 0x9
+    const/4 v11, 0x2
+
+    const/16 v12, 0x9
 
     sparse-switch v10, :sswitch_data_0
 
     goto/16 :goto_0
 
     :sswitch_0
-    const-string v10, "import_shorter_pixels"
+    const-string v10, "record_video_sw_qp"
 
     invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -468,12 +842,12 @@
 
     if-eqz v10, :cond_2
 
-    const/16 v10, 0x8
+    const/16 v10, 0x1d
 
     goto/16 :goto_1
 
     :sswitch_1
-    const-string v10, "synthetic_video_sw_preset"
+    const-string v10, "import_sw_bitrate_mode"
 
     invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -481,12 +855,38 @@
 
     if-eqz v10, :cond_2
 
-    const/16 v10, 0xf
+    const/16 v10, 0x21
 
     goto/16 :goto_1
 
     :sswitch_2
-    const-string v10, "synthetic_video_sw_maxrate"
+    const-string v10, "import_video_sw_qp"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x1e
+
+    goto/16 :goto_1
+
+    :sswitch_3
+    const-string v10, "synthetic_hw_profile"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x19
+
+    goto/16 :goto_1
+
+    :sswitch_4
+    const-string v10, "import_video_sw_maxrate"
 
     invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -498,7 +898,72 @@
 
     goto/16 :goto_1
 
-    :sswitch_3
+    :sswitch_5
+    const-string v10, "import_shorter_pixels"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0xc
+
+    goto/16 :goto_1
+
+    :sswitch_6
+    const-string v10, "synthetic_video_sw_preset"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x10
+
+    goto/16 :goto_1
+
+    :sswitch_7
+    const-string v10, "synthetic_hw_bitrate_mode"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x15
+
+    goto/16 :goto_1
+
+    :sswitch_8
+    const-string v10, "synthetic_video_sw_maxrate"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0xf
+
+    goto/16 :goto_1
+
+    :sswitch_9
+    const-string v10, "record_camera_compat_level"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x13
+
+    goto/16 :goto_1
+
+    :sswitch_a
     const-string v10, "synthetic_encode_mode"
 
     invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -507,11 +972,24 @@
 
     if-eqz v10, :cond_2
 
-    const/16 v10, 0xb
+    move v10, v12
 
     goto/16 :goto_1
 
-    :sswitch_4
+    :sswitch_b
+    const-string v10, "synthetic_sw_bitrate_mode"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x22
+
+    goto/16 :goto_1
+
+    :sswitch_c
     const-string v10, "record_video_hw_bitrate"
 
     invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -520,11 +998,63 @@
 
     if-eqz v10, :cond_2
 
-    const/4 v10, 0x3
+    const/4 v10, 0x4
 
     goto/16 :goto_1
 
-    :sswitch_5
+    :sswitch_d
+    const-string v10, "record_video_sw_preset"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x11
+
+    goto/16 :goto_1
+
+    :sswitch_e
+    const-string v10, "record_hw_bitrate_mode"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x14
+
+    goto/16 :goto_1
+
+    :sswitch_f
+    const-string v10, "synthetic_video_sw_qp"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x1f
+
+    goto/16 :goto_1
+
+    :sswitch_10
+    const-string v10, "import_video_sw_gop"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x1b
+
+    goto/16 :goto_1
+
+    :sswitch_11
     const-string v10, "import_video_sw_crf"
 
     invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -537,7 +1067,46 @@
 
     goto/16 :goto_1
 
-    :sswitch_6
+    :sswitch_12
+    const-string v10, "record_sw_bitrate_mode"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x20
+
+    goto/16 :goto_1
+
+    :sswitch_13
+    const-string v10, "import_hw_profile"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x18
+
+    goto/16 :goto_1
+
+    :sswitch_14
+    const-string v10, "record_video_sw_gop"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x1a
+
+    goto/16 :goto_1
+
+    :sswitch_15
     const-string v10, "record_video_sw_crf"
 
     invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -546,12 +1115,90 @@
 
     if-eqz v10, :cond_2
 
-    const/4 v10, 0x2
+    move v10, v9
 
     goto/16 :goto_1
 
-    :sswitch_7
+    :sswitch_16
+    const-string v10, "record_video_sw_maxrate"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0xd
+
+    goto/16 :goto_1
+
+    :sswitch_17
     const-string v10, "record_resolution_width"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0xa
+
+    goto/16 :goto_1
+
+    :sswitch_18
+    const-string v10, "synthetic_video_sw_gop"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x1c
+
+    goto/16 :goto_1
+
+    :sswitch_19
+    const-string v10, "synthetic_video_sw_crf"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/4 v10, 0x3
+
+    goto/16 :goto_1
+
+    :sswitch_1a
+    const-string v10, "record_hw_profile"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x17
+
+    goto/16 :goto_1
+
+    :sswitch_1b
+    const-string v10, "record_resolution_height"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0xb
+
+    goto/16 :goto_1
+
+    :sswitch_1c
+    const-string v10, "import_video_hw_bitrate"
 
     invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -563,73 +1210,8 @@
 
     goto/16 :goto_1
 
-    :sswitch_8
-    const-string v10, "synthetic_video_sw_gop"
-
-    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v10
-
-    if-eqz v10, :cond_2
-
-    const/16 v10, 0x10
-
-    goto :goto_1
-
-    :sswitch_9
-    const-string v10, "synthetic_video_sw_crf"
-
-    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v10
-
-    if-eqz v10, :cond_2
-
-    const/16 v10, 0xc
-
-    goto :goto_1
-
-    :sswitch_a
-    const-string v10, "record_resolution_height"
-
-    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v10
-
-    if-eqz v10, :cond_2
-
-    const/4 v10, 0x6
-
-    goto :goto_1
-
-    :sswitch_b
-    const-string v10, "import_video_hw_bitrate"
-
-    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v10
-
-    if-eqz v10, :cond_2
-
-    const/16 v10, 0xa
-
-    goto :goto_1
-
-    :sswitch_c
+    :sswitch_1d
     const-string v10, "record_camera_type"
-
-    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v10
-
-    if-eqz v10, :cond_2
-
-    move v10, v9
-
-    goto :goto_1
-
-    :sswitch_d
-    const-string v10, "use_opensl"
 
     invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -641,8 +1223,8 @@
 
     goto :goto_1
 
-    :sswitch_e
-    const-string v10, "record_encode_mode"
+    :sswitch_1e
+    const-string v10, "earphone_echo_normal"
 
     invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -650,12 +1232,38 @@
 
     if-eqz v10, :cond_2
 
-    const/4 v10, 0x4
+    const/16 v10, 0x23
 
     goto :goto_1
 
-    :sswitch_f
-    const-string v10, "import_encode_mode"
+    :sswitch_1f
+    const-string v10, "import_video_sw_preset"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x12
+
+    goto :goto_1
+
+    :sswitch_20
+    const-string v10, "import_hw_bitrate_mode"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x16
+
+    goto :goto_1
+
+    :sswitch_21
+    const-string v10, "record_encode_mode"
 
     invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -667,7 +1275,46 @@
 
     goto :goto_1
 
-    :sswitch_10
+    :sswitch_22
+    const-string v10, "earphone_echo_huawei"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x25
+
+    goto :goto_1
+
+    :sswitch_23
+    const-string v10, "import_encode_mode"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x8
+
+    goto :goto_1
+
+    :sswitch_24
+    const-string v10, "earphone_echo_aaudio"
+
+    invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v10
+
+    if-eqz v10, :cond_2
+
+    const/16 v10, 0x24
+
+    goto :goto_1
+
+    :sswitch_25
     const-string v10, "synthetic_video_hw_bitrate"
 
     invoke-virtual {v3, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -676,7 +1323,7 @@
 
     if-eqz v10, :cond_2
 
-    const/16 v10, 0xd
+    const/4 v10, 0x6
 
     goto :goto_1
 
@@ -685,37 +1332,34 @@
     move v10, v4
 
     :goto_1
-    const/16 v12, 0xa00
+    const/16 v13, 0x32
 
-    const/16 v13, 0xa0
+    const/16 v14, 0x1400
 
-    const/16 v14, 0x32
-
-    const-wide/16 v15, 0x0
+    const/16 v15, 0xa0
 
     packed-switch v10, :pswitch_data_0
 
-    .line 607
+    .line 796
     new-instance v0, Ljava/lang/IllegalStateException;
 
-    goto/16 :goto_4
+    goto/16 :goto_3
 
-    .line 599
+    .line 788
     :pswitch_0
     invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
 
     move-result v10
     :try_end_0
-    .catch Lorg/json/JSONException; {:try_start_0 .. :try_end_0} :catch_2
+    .catch Lorg/json/JSONException; {:try_start_0 .. :try_end_0} :catch_1
 
-    .line 600
-    if-ltz v10, :cond_7
+    .line 789
+    if-eqz v10, :cond_3
 
-    const/16 v0, 0x3e8
+    if-ne v10, v9, :cond_7
 
-    if-gt v10, v0, :cond_7
-
-    .line 601
+    .line 790
+    :cond_3
     :try_start_1
     invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
@@ -723,23 +1367,24 @@
     :try_end_1
     .catch Lorg/json/JSONException; {:try_start_1 .. :try_end_1} :catch_0
 
-    goto/16 :goto_3
+    goto/16 :goto_2
 
-    .line 591
+    .line 780
     :pswitch_1
     :try_start_2
     invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
 
     move-result v10
     :try_end_2
-    .catch Lorg/json/JSONException; {:try_start_2 .. :try_end_2} :catch_2
+    .catch Lorg/json/JSONException; {:try_start_2 .. :try_end_2} :catch_1
 
-    .line 592
-    if-ltz v10, :cond_7
+    .line 781
+    if-eqz v10, :cond_4
 
-    if-gt v10, v11, :cond_7
+    if-ne v10, v9, :cond_7
 
-    .line 593
+    .line 782
+    :cond_4
     :try_start_3
     invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
@@ -747,18 +1392,203 @@
     :try_end_3
     .catch Lorg/json/JSONException; {:try_start_3 .. :try_end_3} :catch_0
 
-    goto/16 :goto_3
+    goto/16 :goto_2
 
-    .line 583
+    .line 772
     :pswitch_2
     :try_start_4
     invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
 
     move-result v10
     :try_end_4
-    .catch Lorg/json/JSONException; {:try_start_4 .. :try_end_4} :catch_2
+    .catch Lorg/json/JSONException; {:try_start_4 .. :try_end_4} :catch_1
 
-    .line 584
+    .line 773
+    if-eqz v10, :cond_5
+
+    if-ne v10, v9, :cond_7
+
+    .line 774
+    :cond_5
+    :try_start_5
+    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v0
+    :try_end_5
+    .catch Lorg/json/JSONException; {:try_start_5 .. :try_end_5} :catch_0
+
+    goto/16 :goto_2
+
+    .line 764
+    :pswitch_3
+    :try_start_6
+    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
+
+    move-result v10
+    :try_end_6
+    .catch Lorg/json/JSONException; {:try_start_6 .. :try_end_6} :catch_1
+
+    .line 765
+    if-ltz v10, :cond_7
+
+    if-gt v10, v11, :cond_7
+
+    .line 766
+    :try_start_7
+    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v0
+    :try_end_7
+    .catch Lorg/json/JSONException; {:try_start_7 .. :try_end_7} :catch_0
+
+    goto/16 :goto_2
+
+    .line 754
+    :pswitch_4
+    :try_start_8
+    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
+
+    move-result v10
+    :try_end_8
+    .catch Lorg/json/JSONException; {:try_start_8 .. :try_end_8} :catch_1
+
+    .line 755
+    if-lt v10, v9, :cond_7
+
+    if-gt v10, v13, :cond_7
+
+    .line 756
+    :try_start_9
+    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v0
+    :try_end_9
+    .catch Lorg/json/JSONException; {:try_start_9 .. :try_end_9} :catch_0
+
+    goto/16 :goto_2
+
+    .line 744
+    :pswitch_5
+    :try_start_a
+    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
+
+    move-result v10
+    :try_end_a
+    .catch Lorg/json/JSONException; {:try_start_a .. :try_end_a} :catch_1
+
+    .line 745
+    if-lt v10, v9, :cond_7
+
+    .line 746
+    :try_start_b
+    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v0
+    :try_end_b
+    .catch Lorg/json/JSONException; {:try_start_b .. :try_end_b} :catch_0
+
+    goto/16 :goto_2
+
+    .line 733
+    :pswitch_6
+    :try_start_c
+    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
+
+    move-result v10
+    :try_end_c
+    .catch Lorg/json/JSONException; {:try_start_c .. :try_end_c} :catch_1
+
+    .line 734
+    if-ltz v10, :cond_7
+
+    .line 735
+    :try_start_d
+    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v0
+    :try_end_d
+    .catch Lorg/json/JSONException; {:try_start_d .. :try_end_d} :catch_0
+
+    goto/16 :goto_2
+
+    .line 723
+    :pswitch_7
+    :try_start_e
+    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
+
+    move-result v10
+    :try_end_e
+    .catch Lorg/json/JSONException; {:try_start_e .. :try_end_e} :catch_1
+
+    .line 724
+    if-ltz v10, :cond_7
+
+    .line 725
+    :try_start_f
+    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v0
+    :try_end_f
+    .catch Lorg/json/JSONException; {:try_start_f .. :try_end_f} :catch_0
+
+    goto/16 :goto_2
+
+    .line 713
+    :pswitch_8
+    :try_start_10
+    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
+
+    move-result v10
+    :try_end_10
+    .catch Lorg/json/JSONException; {:try_start_10 .. :try_end_10} :catch_1
+
+    .line 714
+    if-ltz v10, :cond_7
+
+    .line 715
+    :try_start_11
+    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v0
+    :try_end_11
+    .catch Lorg/json/JSONException; {:try_start_11 .. :try_end_11} :catch_0
+
+    goto/16 :goto_2
+
+    .line 705
+    :pswitch_9
+    :try_start_12
+    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
+
+    move-result v10
+    :try_end_12
+    .catch Lorg/json/JSONException; {:try_start_12 .. :try_end_12} :catch_1
+
+    .line 706
+    if-ltz v10, :cond_7
+
+    if-gt v10, v12, :cond_7
+
+    .line 707
+    :try_start_13
+    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v0
+    :try_end_13
+    .catch Lorg/json/JSONException; {:try_start_13 .. :try_end_13} :catch_0
+
+    goto/16 :goto_2
+
+    .line 695
+    :pswitch_a
+    :try_start_14
+    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
+
+    move-result v10
+    :try_end_14
+    .catch Lorg/json/JSONException; {:try_start_14 .. :try_end_14} :catch_1
+
+    .line 696
     const v0, 0x186a0
 
     if-lt v10, v0, :cond_7
@@ -767,335 +1597,122 @@
 
     if-gt v10, v0, :cond_7
 
-    .line 585
-    :try_start_5
-    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
-
-    move-result-object v0
-    :try_end_5
-    .catch Lorg/json/JSONException; {:try_start_5 .. :try_end_5} :catch_0
-
-    goto/16 :goto_3
-
-    .line 575
-    :pswitch_3
-    :try_start_6
-    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getDouble(Ljava/lang/String;)D
-
-    move-result-wide v10
-    :try_end_6
-    .catch Lorg/json/JSONException; {:try_start_6 .. :try_end_6} :catch_2
-
-    .line 576
-    cmpl-double v0, v10, v15
-
-    if-lez v0, :cond_6
-
-    .line 577
-    :try_start_7
-    invoke-static {v10, v11}, Ljava/lang/String;->valueOf(D)Ljava/lang/String;
-
-    move-result-object v0
-    :try_end_7
-    .catch Lorg/json/JSONException; {:try_start_7 .. :try_end_7} :catch_1
-
-    goto/16 :goto_2
-
-    .line 567
-    :pswitch_4
-    :try_start_8
-    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
-
-    move-result v10
-    :try_end_8
-    .catch Lorg/json/JSONException; {:try_start_8 .. :try_end_8} :catch_2
-
-    .line 568
-    if-lt v10, v9, :cond_7
-
-    if-gt v10, v14, :cond_7
-
-    .line 569
-    :try_start_9
-    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
-
-    move-result-object v0
-    :try_end_9
-    .catch Lorg/json/JSONException; {:try_start_9 .. :try_end_9} :catch_0
-
-    goto/16 :goto_3
-
-    .line 559
-    :pswitch_5
-    :try_start_a
-    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
-
-    move-result v10
-    :try_end_a
-    .catch Lorg/json/JSONException; {:try_start_a .. :try_end_a} :catch_2
-
-    .line 560
-    if-eqz v10, :cond_3
-
-    if-ne v10, v9, :cond_7
-
-    .line 561
-    :cond_3
-    :try_start_b
-    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
-
-    move-result-object v0
-    :try_end_b
-    .catch Lorg/json/JSONException; {:try_start_b .. :try_end_b} :catch_0
-
-    goto/16 :goto_3
-
-    .line 551
-    :pswitch_6
-    :try_start_c
-    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getDouble(Ljava/lang/String;)D
-
-    move-result-wide v10
-    :try_end_c
-    .catch Lorg/json/JSONException; {:try_start_c .. :try_end_c} :catch_2
-
-    .line 552
-    cmpl-double v0, v10, v15
-
-    if-lez v0, :cond_6
-
-    .line 553
-    :try_start_d
-    invoke-static {v10, v11}, Ljava/lang/String;->valueOf(D)Ljava/lang/String;
-
-    move-result-object v0
-    :try_end_d
-    .catch Lorg/json/JSONException; {:try_start_d .. :try_end_d} :catch_1
-
-    goto/16 :goto_2
-
-    .line 543
-    :pswitch_7
-    :try_start_e
-    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
-
-    move-result v10
-    :try_end_e
-    .catch Lorg/json/JSONException; {:try_start_e .. :try_end_e} :catch_2
-
-    .line 544
-    if-lt v10, v9, :cond_7
-
-    if-gt v10, v14, :cond_7
-
-    .line 545
-    :try_start_f
-    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
-
-    move-result-object v0
-    :try_end_f
-    .catch Lorg/json/JSONException; {:try_start_f .. :try_end_f} :catch_0
-
-    goto/16 :goto_3
-
-    .line 535
-    :pswitch_8
-    :try_start_10
-    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
-
-    move-result v10
-    :try_end_10
-    .catch Lorg/json/JSONException; {:try_start_10 .. :try_end_10} :catch_2
-
-    .line 536
-    :try_start_11
-    rem-int/lit8 v0, v10, 0x10
-
-    if-nez v0, :cond_7
-
-    if-lt v10, v13, :cond_7
-
-    if-gt v10, v12, :cond_7
-
-    .line 537
-    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
-
-    move-result-object v0
-    :try_end_11
-    .catch Lorg/json/JSONException; {:try_start_11 .. :try_end_11} :catch_0
-
-    goto/16 :goto_3
-
-    .line 527
-    :pswitch_9
-    :try_start_12
-    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
-
-    move-result v10
-    :try_end_12
-    .catch Lorg/json/JSONException; {:try_start_12 .. :try_end_12} :catch_2
-
-    .line 528
-    if-eqz v10, :cond_4
-
-    if-ne v10, v9, :cond_7
-
-    .line 529
-    :cond_4
-    :try_start_13
-    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
-
-    move-result-object v0
-    :try_end_13
-    .catch Lorg/json/JSONException; {:try_start_13 .. :try_end_13} :catch_0
-
-    goto/16 :goto_3
-
-    .line 519
-    :pswitch_a
-    :try_start_14
-    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
-
-    move-result v10
-    :try_end_14
-    .catch Lorg/json/JSONException; {:try_start_14 .. :try_end_14} :catch_2
-
-    .line 520
+    .line 697
     :try_start_15
-    rem-int/lit8 v0, v10, 0x10
-
-    if-nez v0, :cond_7
-
-    if-lt v10, v13, :cond_7
-
-    if-gt v10, v12, :cond_7
-
-    .line 521
     invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
     move-result-object v0
     :try_end_15
     .catch Lorg/json/JSONException; {:try_start_15 .. :try_end_15} :catch_0
 
-    goto/16 :goto_3
+    goto/16 :goto_2
 
-    .line 511
+    .line 685
     :pswitch_b
     :try_start_16
     invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
 
     move-result v10
     :try_end_16
-    .catch Lorg/json/JSONException; {:try_start_16 .. :try_end_16} :catch_2
+    .catch Lorg/json/JSONException; {:try_start_16 .. :try_end_16} :catch_1
 
-    .line 512
+    .line 686
     :try_start_17
     rem-int/lit8 v0, v10, 0x10
 
     if-nez v0, :cond_7
 
-    if-lt v10, v13, :cond_7
+    if-lt v10, v15, :cond_7
 
-    if-gt v10, v12, :cond_7
+    if-gt v10, v14, :cond_7
 
-    .line 513
+    .line 687
     invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
     move-result-object v0
     :try_end_17
     .catch Lorg/json/JSONException; {:try_start_17 .. :try_end_17} :catch_0
 
-    goto :goto_3
+    goto :goto_2
 
-    .line 610
-    :catch_0
-    move-exception v0
-
-    goto :goto_6
-
-    .line 503
+    .line 676
     :pswitch_c
     :try_start_18
     invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
 
     move-result v10
     :try_end_18
-    .catch Lorg/json/JSONException; {:try_start_18 .. :try_end_18} :catch_2
+    .catch Lorg/json/JSONException; {:try_start_18 .. :try_end_18} :catch_1
 
-    .line 504
-    if-eqz v10, :cond_5
-
-    if-ne v10, v9, :cond_7
-
-    .line 505
-    :cond_5
+    .line 677
     :try_start_19
+    rem-int/lit8 v0, v10, 0x10
+
+    if-nez v0, :cond_7
+
+    if-lt v10, v15, :cond_7
+
+    if-gt v10, v14, :cond_7
+
+    .line 678
     invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
     move-result-object v0
     :try_end_19
     .catch Lorg/json/JSONException; {:try_start_19 .. :try_end_19} :catch_0
 
-    goto :goto_3
+    goto :goto_2
 
-    .line 495
+    .line 668
     :pswitch_d
     :try_start_1a
-    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getDouble(Ljava/lang/String;)D
+    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
 
-    move-result-wide v10
+    move-result v10
     :try_end_1a
-    .catch Lorg/json/JSONException; {:try_start_1a .. :try_end_1a} :catch_2
+    .catch Lorg/json/JSONException; {:try_start_1a .. :try_end_1a} :catch_1
 
-    .line 496
-    cmpl-double v0, v10, v15
-
-    if-lez v0, :cond_6
-
-    .line 497
+    .line 669
     :try_start_1b
-    invoke-static {v10, v11}, Ljava/lang/String;->valueOf(D)Ljava/lang/String;
+    rem-int/lit8 v0, v10, 0x10
+
+    if-nez v0, :cond_7
+
+    if-lt v10, v15, :cond_7
+
+    if-gt v10, v14, :cond_7
+
+    .line 670
+    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
     move-result-object v0
     :try_end_1b
-    .catch Lorg/json/JSONException; {:try_start_1b .. :try_end_1b} :catch_1
+    .catch Lorg/json/JSONException; {:try_start_1b .. :try_end_1b} :catch_0
 
     goto :goto_2
 
-    .line 610
-    :catch_1
+    .line 799
+    :catch_0
     move-exception v0
 
-    move-wide v6, v10
+    goto :goto_4
 
-    goto :goto_5
-
-    .line 614
-    :cond_6
-    move-object v0, v5
-
-    :goto_2
-    move-wide v6, v10
-
-    move v10, v4
-
-    goto :goto_3
-
-    .line 487
+    .line 660
     :pswitch_e
     :try_start_1c
     invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
 
     move-result v10
     :try_end_1c
-    .catch Lorg/json/JSONException; {:try_start_1c .. :try_end_1c} :catch_2
+    .catch Lorg/json/JSONException; {:try_start_1c .. :try_end_1c} :catch_1
 
-    .line 488
-    if-lt v10, v9, :cond_7
+    .line 661
+    if-eqz v10, :cond_6
 
-    if-gt v10, v14, :cond_7
+    if-ne v10, v9, :cond_7
 
-    .line 489
+    .line 662
+    :cond_6
     :try_start_1d
     invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
@@ -1103,21 +1720,21 @@
     :try_end_1d
     .catch Lorg/json/JSONException; {:try_start_1d .. :try_end_1d} :catch_0
 
-    goto :goto_3
+    goto :goto_2
 
-    .line 479
+    .line 650
     :pswitch_f
     :try_start_1e
     invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
 
     move-result v10
     :try_end_1e
-    .catch Lorg/json/JSONException; {:try_start_1e .. :try_end_1e} :catch_2
+    .catch Lorg/json/JSONException; {:try_start_1e .. :try_end_1e} :catch_1
 
-    .line 480
-    if-lt v10, v9, :cond_7
+    .line 651
+    if-lez v10, :cond_7
 
-    .line 481
+    .line 652
     :try_start_1f
     invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
@@ -1125,30 +1742,23 @@
     :try_end_1f
     .catch Lorg/json/JSONException; {:try_start_1f .. :try_end_1f} :catch_0
 
-    goto :goto_3
+    goto :goto_2
 
-    .line 614
-    :cond_7
-    move-object v0, v5
-
-    goto :goto_3
-
-    .line 471
+    .line 640
     :pswitch_10
     :try_start_20
     invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
 
     move-result v10
     :try_end_20
-    .catch Lorg/json/JSONException; {:try_start_20 .. :try_end_20} :catch_2
+    .catch Lorg/json/JSONException; {:try_start_20 .. :try_end_20} :catch_1
 
-    .line 472
-    if-eqz v10, :cond_8
+    .line 641
+    if-lt v10, v9, :cond_7
 
-    if-ne v10, v9, :cond_7
+    if-gt v10, v13, :cond_7
 
-    .line 473
-    :cond_8
+    .line 642
     :try_start_21
     invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
@@ -1156,58 +1766,84 @@
     :try_end_21
     .catch Lorg/json/JSONException; {:try_start_21 .. :try_end_21} :catch_0
 
-    .line 614
-    :goto_3
-    goto :goto_7
+    goto :goto_2
 
-    .line 607
-    :goto_4
+    .line 630
+    :pswitch_11
     :try_start_22
+    invoke-virtual {v0, v3}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
+
+    move-result v10
+    :try_end_22
+    .catch Lorg/json/JSONException; {:try_start_22 .. :try_end_22} :catch_1
+
+    .line 631
+    if-lt v10, v9, :cond_7
+
+    .line 632
+    :try_start_23
+    invoke-static {v10}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v0
+    :try_end_23
+    .catch Lorg/json/JSONException; {:try_start_23 .. :try_end_23} :catch_0
+
+    goto :goto_2
+
+    .line 803
+    :cond_7
+    move-object v0, v5
+
+    :goto_2
+    goto :goto_5
+
+    .line 796
+    :goto_3
+    :try_start_24
     const-string v8, "Shouldn\'t reach here. Unmatched config.key case"
 
     invoke-direct {v0, v8}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
 
     throw v0
-    :try_end_22
-    .catch Lorg/json/JSONException; {:try_start_22 .. :try_end_22} :catch_2
+    :try_end_24
+    .catch Lorg/json/JSONException; {:try_start_24 .. :try_end_24} :catch_1
 
-    .line 610
-    :catch_2
+    .line 799
+    :catch_1
     move-exception v0
 
-    :goto_5
     move v10, v4
 
-    .line 611
-    :goto_6
+    .line 800
+    :goto_4
     const-string v4, "PerfConfig"
 
     const-string v8, "Parse json result failed! "
 
     invoke-static {v4, v8, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 612
+    .line 801
     invoke-virtual {v0}, Lorg/json/JSONException;->printStackTrace()V
 
-    .line 613
+    .line 802
     nop
 
-    .line 616
+    .line 805
     move-object v0, v5
 
     move v8, v9
 
-    :goto_7
-    if-nez v8, :cond_a
+    :goto_5
+    if-nez v8, :cond_9
 
-    if-nez v0, :cond_a
+    if-nez v0, :cond_9
 
-    .line 617
+    .line 806
     iget v4, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->type:I
 
-    if-nez v4, :cond_9
+    if-nez v4, :cond_8
 
-    .line 618
+    .line 807
     const-string v4, "doubtingFilter report: "
 
     new-instance v6, Ljava/lang/StringBuilder;
@@ -1234,15 +1870,15 @@
 
     invoke-static {v4, v6}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_8
+    goto :goto_6
 
-    .line 619
-    :cond_9
+    .line 808
+    :cond_8
     iget v4, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->type:I
 
-    if-ne v4, v9, :cond_a
+    if-ne v4, v9, :cond_9
 
-    .line 620
+    .line 809
     const-string v4, "doubtingFilter report: "
 
     new-instance v8, Ljava/lang/StringBuilder;
@@ -1269,13 +1905,13 @@
 
     invoke-static {v4, v6}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 623
-    :cond_a
-    :goto_8
-    if-nez v0, :cond_c
+    .line 812
+    :cond_9
+    :goto_6
+    if-nez v0, :cond_b
 
-    .line 624
-    if-eqz p2, :cond_b
+    .line 813
+    if-eqz p2, :cond_a
 
     iget-object v0, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
 
@@ -1285,11 +1921,11 @@
 
     nop
 
-    :cond_b
+    :cond_a
     return-object v5
 
-    .line 626
-    :cond_c
+    .line 815
+    :cond_b
     const-string v1, "doubtingFilter report: "
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1310,57 +1946,97 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 627
+    .line 816
     return-object v0
 
-    .line 451
-    :cond_d
+    .line 610
+    :cond_c
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
-    const-string v1, "fetchedConfigs == null"
+    const-string v1, "fetchedRawConfigs == null"
 
     invoke-direct {v0, v1}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
 
     throw v0
 
-    nop
-
     :sswitch_data_0
     .sparse-switch
-        -0x777dcbc5 -> :sswitch_10
-        -0x6c3a6b6e -> :sswitch_f
-        -0x650114c2 -> :sswitch_e
-        -0x5ea6f425 -> :sswitch_d
-        -0x5cdd72da -> :sswitch_c
-        -0x520c0c25 -> :sswitch_b
-        -0x4db68054 -> :sswitch_a
-        -0x49b5df86 -> :sswitch_9
-        -0x49b5d0d5 -> :sswitch_8
-        -0x43bd255f -> :sswitch_7
-        -0x1b41d112 -> :sswitch_6
-        0x4ccb01a -> :sswitch_5
-        0x28a1e8af -> :sswitch_4
-        0x3ea89832 -> :sswitch_3
-        0x40203567 -> :sswitch_2
-        0x52699d5c -> :sswitch_1
-        0x5370a55d -> :sswitch_0
+        -0x777dcbc5 -> :sswitch_25
+        -0x776b4a78 -> :sswitch_24
+        -0x6c3a6b6e -> :sswitch_23
+        -0x6a6858a6 -> :sswitch_22
+        -0x650114c2 -> :sswitch_21
+        -0x63704035 -> :sswitch_20
+        -0x620e9644 -> :sswitch_1f
+        -0x60783da6 -> :sswitch_1e
+        -0x5cdd72da -> :sswitch_1d
+        -0x520c0c25 -> :sswitch_1c
+        -0x4db68054 -> :sswitch_1b
+        -0x4a6a84d9 -> :sswitch_1a
+        -0x49b5df86 -> :sswitch_19
+        -0x49b5d0d5 -> :sswitch_18
+        -0x43bd255f -> :sswitch_17
+        -0x1fc01625 -> :sswitch_16
+        -0x1b41d112 -> :sswitch_15
+        -0x1b41c261 -> :sswitch_14
+        -0x895a8ad -> :sswitch_13
+        0x1137142 -> :sswitch_12
+        0x4ccb01a -> :sswitch_11
+        0x4ccbecb -> :sswitch_10
+        0x1ea78f1c -> :sswitch_f
+        0x24a5e077 -> :sswitch_e
+        0x26078a68 -> :sswitch_d
+        0x28a1e8af -> :sswitch_c
+        0x2d758436 -> :sswitch_b
+        0x3ea89832 -> :sswitch_a
+        0x3faa5a73 -> :sswitch_9
+        0x40203567 -> :sswitch_8
+        0x5107f36b -> :sswitch_7
+        0x52699d5c -> :sswitch_6
+        0x5370a55d -> :sswitch_5
+        0x6591f507 -> :sswitch_4
+        0x68485fb3 -> :sswitch_3
+        0x73c48b7c -> :sswitch_2
+        0x78fd5096 -> :sswitch_1
+        0x7afde228 -> :sswitch_0
     .end sparse-switch
 
     :pswitch_data_0
     .packed-switch 0x0
+        :pswitch_11
+        :pswitch_10
+        :pswitch_10
         :pswitch_10
         :pswitch_f
+        :pswitch_f
+        :pswitch_f
+        :pswitch_e
+        :pswitch_e
         :pswitch_e
         :pswitch_d
         :pswitch_c
         :pswitch_b
         :pswitch_a
+        :pswitch_a
+        :pswitch_a
+        :pswitch_9
+        :pswitch_9
         :pswitch_9
         :pswitch_8
         :pswitch_7
+        :pswitch_7
+        :pswitch_7
+        :pswitch_6
+        :pswitch_6
         :pswitch_6
         :pswitch_5
+        :pswitch_5
+        :pswitch_5
         :pswitch_4
+        :pswitch_4
+        :pswitch_4
+        :pswitch_3
+        :pswitch_3
         :pswitch_3
         :pswitch_2
         :pswitch_1
@@ -1371,7 +2047,7 @@
 .method public static fetch()V
     .locals 2
 
-    .line 288
+    .line 450
     new-instance v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig$ConfigAsyncTask;
 
     const/4 v1, 0x0
@@ -1384,14 +2060,14 @@
 
     invoke-virtual {v0, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig$ConfigAsyncTask;->execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
 
-    .line 289
+    .line 451
     return-void
 .end method
 
 .method private static getDefaultFloat(Ljava/lang/String;)F
     .locals 3
 
-    .line 382
+    .line 544
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
@@ -1411,7 +2087,7 @@
 
     check-cast v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
-    .line 383
+    .line 545
     iget-object v2, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
 
     invoke-virtual {v2, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -1420,7 +2096,7 @@
 
     if-eqz v2, :cond_0
 
-    .line 384
+    .line 546
     iget-object p0, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
 
     check-cast p0, Ljava/lang/Float;
@@ -1431,11 +2107,11 @@
 
     return p0
 
-    .line 386
+    .line 548
     :cond_0
     goto :goto_0
 
-    .line 387
+    .line 549
     :cond_1
     const/high16 p0, -0x40800000    # -1.0f
 
@@ -1445,7 +2121,7 @@
 .method private static getDefaultInt(Ljava/lang/String;)I
     .locals 3
 
-    .line 373
+    .line 535
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
@@ -1465,7 +2141,7 @@
 
     check-cast v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
-    .line 374
+    .line 536
     iget-object v2, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
 
     invoke-virtual {v2, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -1474,7 +2150,7 @@
 
     if-eqz v2, :cond_0
 
-    .line 375
+    .line 537
     iget-object p0, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
 
     check-cast p0, Ljava/lang/Integer;
@@ -1485,11 +2161,11 @@
 
     return p0
 
-    .line 377
+    .line 539
     :cond_0
     goto :goto_0
 
-    .line 378
+    .line 540
     :cond_1
     const/4 p0, -0x1
 
@@ -1510,15 +2186,15 @@
         }
     .end annotation
 
-    .line 247
+    .line 409
     if-nez p0, :cond_0
 
-    .line 248
+    .line 410
     const/4 p0, 0x0
 
     return p0
 
-    .line 250
+    .line 412
     :cond_0
     invoke-interface {p0, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -1526,7 +2202,7 @@
 
     check-cast p0, Ljava/lang/String;
 
-    .line 252
+    .line 414
     :try_start_0
     invoke-static {p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -1534,7 +2210,7 @@
 
     if-nez p1, :cond_1
 
-    .line 253
+    .line 415
     invoke-static {p0}, Ljava/lang/Float;->parseFloat(Ljava/lang/String;)F
 
     move-result p0
@@ -1543,22 +2219,22 @@
 
     return p0
 
-    .line 257
+    .line 419
     :cond_1
     goto :goto_0
 
-    .line 255
+    .line 417
     :catch_0
     move-exception p0
 
-    .line 256
+    .line 418
     const-string p1, "PerfConfig"
 
     const-string v0, "getIntConfig: error"
 
     invoke-static {p1, v0, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 258
+    .line 420
     :goto_0
     return p2
 .end method
@@ -1577,15 +2253,15 @@
         }
     .end annotation
 
-    .line 229
+    .line 391
     if-nez p0, :cond_0
 
-    .line 230
+    .line 392
     const/4 p0, 0x0
 
     return p0
 
-    .line 232
+    .line 394
     :cond_0
     invoke-interface {p0, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -1593,7 +2269,7 @@
 
     check-cast p0, Ljava/lang/String;
 
-    .line 234
+    .line 396
     :try_start_0
     invoke-static {p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -1601,7 +2277,7 @@
 
     if-nez p1, :cond_1
 
-    .line 235
+    .line 397
     invoke-static {p0}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
 
     move-result p0
@@ -1610,22 +2286,22 @@
 
     return p0
 
-    .line 239
+    .line 401
     :cond_1
     goto :goto_0
 
-    .line 237
+    .line 399
     :catch_0
     move-exception p0
 
-    .line 238
+    .line 400
     const-string p1, "PerfConfig"
 
     const-string v0, "getIntConfig: error"
 
     invoke-static {p1, v0, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 240
+    .line 402
     :goto_0
     return p2
 .end method
@@ -1644,12 +2320,12 @@
         }
     .end annotation
 
-    .line 660
+    .line 849
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
-    .line 662
+    .line 851
     const-string v1, "ShortVideoConfig"
 
     const/4 v2, 0x0
@@ -1658,12 +2334,12 @@
 
     move-result-object p0
 
-    .line 663
+    .line 852
     invoke-interface {p0}, Landroid/content/SharedPreferences;->getAll()Ljava/util/Map;
 
     move-result-object p0
 
-    .line 664
+    .line 853
     invoke-interface {p0}, Ljava/util/Map;->entrySet()Ljava/util/Set;
 
     move-result-object p0
@@ -1685,7 +2361,7 @@
 
     check-cast v1, Ljava/util/Map$Entry;
 
-    .line 665
+    .line 854
     invoke-interface {v1}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
 
     move-result-object v2
@@ -1700,7 +2376,7 @@
 
     if-eqz v2, :cond_0
 
-    .line 666
+    .line 855
     invoke-interface {v1}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
 
     move-result-object v2
@@ -1725,11 +2401,11 @@
 
     invoke-interface {v0, v2, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 668
+    .line 857
     :cond_0
     goto :goto_0
 
-    .line 669
+    .line 858
     :cond_1
     return-object v0
 .end method
@@ -1742,7 +2418,7 @@
         }
     .end annotation
 
-    .line 144
+    .line 222
     invoke-static {}, Lcom/ss/android/vesdk/runtime/VERuntime;->getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
 
     move-result-object v0
@@ -1753,7 +2429,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 147
+    .line 225
     invoke-static {}, Lcom/ss/android/vesdk/runtime/VERuntime;->getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
 
     move-result-object v0
@@ -1768,10 +2444,10 @@
 
     invoke-static {v0}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->setConfigsFromMap(Ljava/util/Map;)V
 
-    .line 148
+    .line 226
     return-void
 
-    .line 145
+    .line 223
     :cond_0
     new-instance v0, Ljava/lang/IllegalStateException;
 
@@ -1794,119 +2470,19 @@
         }
     .end annotation
 
-    .line 167
-    new-instance v0, Landroid/os/Bundle;
-
-    invoke-direct {v0}, Landroid/os/Bundle;-><init>()V
-
-    .line 168
-    sget-object v1, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
-
-    invoke-interface {v1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
-
-    move-result-object v1
-
-    :goto_0
-    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_2
-
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v2
-
-    check-cast v2, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
-
-    .line 169
-    iget v3, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->type:I
-
-    if-nez v3, :cond_0
-
-    .line 170
-    iget-object v3, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    iget-object v4, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    iget-object v2, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
-
-    check-cast v2, Ljava/lang/Integer;
-
-    invoke-virtual {v2}, Ljava/lang/Integer;->intValue()I
-
-    move-result v2
-
-    invoke-static {p0, v4, v2}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
-
-    move-result v2
-
-    invoke-virtual {v0, v3, v2}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
-
-    goto :goto_1
-
-    .line 171
-    :cond_0
-    iget v3, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->type:I
-
-    const/4 v4, 0x1
-
-    if-ne v3, v4, :cond_1
-
-    .line 172
-    iget-object v3, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    iget-object v4, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    iget-object v2, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
-
-    check-cast v2, Ljava/lang/Float;
-
-    invoke-virtual {v2}, Ljava/lang/Float;->floatValue()F
-
-    move-result v2
-
-    invoke-static {p0, v4, v2}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getFloatConfig(Ljava/util/Map;Ljava/lang/String;F)F
-
-    move-result v2
-
-    invoke-virtual {v0, v3, v2}, Landroid/os/Bundle;->putFloat(Ljava/lang/String;F)V
-
-    .line 176
-    :goto_1
-    goto :goto_0
-
-    .line 174
-    :cond_1
-    new-instance p0, Ljava/lang/IllegalStateException;
-
-    const-string v0, "Not support"
-
-    invoke-direct {p0, v0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
-
-    throw p0
-
-    .line 178
-    :cond_2
-    new-instance v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
-
-    invoke-direct {v0}, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;-><init>()V
-
-    sput-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
-
-    .line 179
+    .line 256
     sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sConfigList:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v0
 
-    :goto_2
+    :goto_0
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_13
+    if-eqz v1, :cond_1
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1914,18 +2490,540 @@
 
     check-cast v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;
 
-    .line 180
-    const-string v2, "record_camera_type"
+    .line 257
+    iget-object v2, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
 
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+    const/4 v3, -0x1
 
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v2}, Ljava/lang/String;->hashCode()I
+
+    move-result v4
+
+    sparse-switch v4, :sswitch_data_0
+
+    goto/16 :goto_1
+
+    :sswitch_0
+    const-string v4, "record_video_sw_qp"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v2
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_0
 
-    .line 181
+    const/16 v3, 0xa
+
+    goto/16 :goto_1
+
+    :sswitch_1
+    const-string v4, "import_sw_bitrate_mode"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x16
+
+    goto/16 :goto_1
+
+    :sswitch_2
+    const-string v4, "import_video_sw_qp"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x15
+
+    goto/16 :goto_1
+
+    :sswitch_3
+    const-string v4, "synthetic_hw_profile"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x22
+
+    goto/16 :goto_1
+
+    :sswitch_4
+    const-string v4, "import_video_sw_maxrate"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x12
+
+    goto/16 :goto_1
+
+    :sswitch_5
+    const-string v4, "import_shorter_pixels"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0xf
+
+    goto/16 :goto_1
+
+    :sswitch_6
+    const-string v4, "synthetic_video_sw_preset"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x1d
+
+    goto/16 :goto_1
+
+    :sswitch_7
+    const-string v4, "synthetic_hw_bitrate_mode"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x21
+
+    goto/16 :goto_1
+
+    :sswitch_8
+    const-string v4, "synthetic_video_sw_maxrate"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x1c
+
+    goto/16 :goto_1
+
+    :sswitch_9
+    const-string v4, "record_camera_compat_level"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/4 v3, 0x6
+
+    goto/16 :goto_1
+
+    :sswitch_a
+    const-string v4, "synthetic_encode_mode"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x19
+
+    goto/16 :goto_1
+
+    :sswitch_b
+    const-string v4, "synthetic_sw_bitrate_mode"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x20
+
+    goto/16 :goto_1
+
+    :sswitch_c
+    const-string v4, "record_video_hw_bitrate"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/4 v3, 0x2
+
+    goto/16 :goto_1
+
+    :sswitch_d
+    const-string v4, "record_video_sw_preset"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x8
+
+    goto/16 :goto_1
+
+    :sswitch_e
+    const-string v4, "record_hw_bitrate_mode"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0xc
+
+    goto/16 :goto_1
+
+    :sswitch_f
+    const-string v4, "synthetic_video_sw_qp"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x1f
+
+    goto/16 :goto_1
+
+    :sswitch_10
+    const-string v4, "import_video_sw_gop"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x14
+
+    goto/16 :goto_1
+
+    :sswitch_11
+    const-string v4, "import_video_sw_crf"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x10
+
+    goto/16 :goto_1
+
+    :sswitch_12
+    const-string v4, "record_sw_bitrate_mode"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0xb
+
+    goto/16 :goto_1
+
+    :sswitch_13
+    const-string v4, "import_hw_profile"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x18
+
+    goto/16 :goto_1
+
+    :sswitch_14
+    const-string v4, "record_video_sw_gop"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x9
+
+    goto/16 :goto_1
+
+    :sswitch_15
+    const-string v4, "record_video_sw_crf"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/4 v3, 0x1
+
+    goto/16 :goto_1
+
+    :sswitch_16
+    const-string v4, "record_video_sw_maxrate"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/4 v3, 0x7
+
+    goto/16 :goto_1
+
+    :sswitch_17
+    const-string v4, "record_resolution_width"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/4 v3, 0x4
+
+    goto/16 :goto_1
+
+    :sswitch_18
+    const-string v4, "synthetic_video_sw_gop"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x1e
+
+    goto/16 :goto_1
+
+    :sswitch_19
+    const-string v4, "synthetic_video_sw_crf"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x1a
+
+    goto/16 :goto_1
+
+    :sswitch_1a
+    const-string v4, "record_hw_profile"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0xd
+
+    goto/16 :goto_1
+
+    :sswitch_1b
+    const-string v4, "record_resolution_height"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/4 v3, 0x5
+
+    goto/16 :goto_1
+
+    :sswitch_1c
+    const-string v4, "import_video_hw_bitrate"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x11
+
+    goto :goto_1
+
+    :sswitch_1d
+    const-string v4, "record_camera_type"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/4 v3, 0x0
+
+    goto :goto_1
+
+    :sswitch_1e
+    const-string v4, "earphone_echo_normal"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x23
+
+    goto :goto_1
+
+    :sswitch_1f
+    const-string v4, "import_video_sw_preset"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x13
+
+    goto :goto_1
+
+    :sswitch_20
+    const-string v4, "import_hw_bitrate_mode"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x17
+
+    goto :goto_1
+
+    :sswitch_21
+    const-string v4, "record_encode_mode"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/4 v3, 0x3
+
+    goto :goto_1
+
+    :sswitch_22
+    const-string v4, "earphone_echo_huawei"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x25
+
+    goto :goto_1
+
+    :sswitch_23
+    const-string v4, "import_encode_mode"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0xe
+
+    goto :goto_1
+
+    :sswitch_24
+    const-string v4, "earphone_echo_aaudio"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x24
+
+    goto :goto_1
+
+    :sswitch_25
+    const-string v4, "synthetic_video_hw_bitrate"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/16 v3, 0x1b
+
+    :cond_0
+    :goto_1
+    packed-switch v3, :pswitch_data_0
+
+    .line 373
+    new-instance p0, Ljava/lang/IllegalStateException;
+
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "Unexpected Config.key = "
+
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-direct {p0, v0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+
+    .line 370
+    :pswitch_0
     sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
     iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
@@ -1942,23 +3040,13 @@
 
     move-result v1
 
-    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordCameraType:I
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mEarphoneEchoHuawei:I
 
-    goto/16 :goto_3
+    .line 371
+    goto/16 :goto_2
 
-    .line 182
-    :cond_3
-    const-string v2, "record_video_sw_crf"
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_4
-
-    .line 183
+    .line 367
+    :pswitch_1
     sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
     iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
@@ -1975,23 +3063,13 @@
 
     move-result v1
 
-    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordSWEncodeCRF:I
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mEarphoneEchoAAudio:I
 
-    goto/16 :goto_3
+    .line 368
+    goto/16 :goto_2
 
-    .line 184
-    :cond_4
-    const-string v2, "record_video_hw_bitrate"
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_5
-
-    .line 185
+    .line 364
+    :pswitch_2
     sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
     iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
@@ -2008,23 +3086,13 @@
 
     move-result v1
 
-    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordHWEncodeBPS:I
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mEarphoneEchoNormal:I
 
-    goto/16 :goto_3
+    .line 365
+    goto/16 :goto_2
 
-    .line 186
-    :cond_5
-    const-string v2, "record_encode_mode"
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_6
-
-    .line 187
+    .line 361
+    :pswitch_3
     sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
     iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
@@ -2041,23 +3109,13 @@
 
     move-result v1
 
-    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordEncodeMode:I
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileHwProfile:I
 
-    goto/16 :goto_3
+    .line 362
+    goto/16 :goto_2
 
-    .line 188
-    :cond_6
-    const-string v2, "record_resolution_width"
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_7
-
-    .line 189
+    .line 358
+    :pswitch_4
     sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
     iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
@@ -2074,23 +3132,13 @@
 
     move-result v1
 
-    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordResolutionWidth:I
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileHwBitrateMode:I
 
-    goto/16 :goto_3
+    .line 359
+    goto/16 :goto_2
 
-    .line 190
-    :cond_7
-    const-string v2, "record_resolution_height"
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_8
-
-    .line 191
+    .line 355
+    :pswitch_5
     sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
     iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
@@ -2107,23 +3155,13 @@
 
     move-result v1
 
-    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordResolutionHeight:I
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileSWBitrateMode:I
 
-    goto/16 :goto_3
+    .line 356
+    goto/16 :goto_2
 
-    .line 192
-    :cond_8
-    const-string v2, "import_encode_mode"
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_9
-
-    .line 193
+    .line 352
+    :pswitch_6
     sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
     iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
@@ -2140,23 +3178,13 @@
 
     move-result v1
 
-    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportEncodeMode:I
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileVideoSWQP:I
 
-    goto/16 :goto_3
+    .line 353
+    goto/16 :goto_2
 
-    .line 194
-    :cond_9
-    const-string v2, "import_shorter_pixels"
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_a
-
-    .line 195
+    .line 349
+    :pswitch_7
     sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
     iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
@@ -2173,221 +3201,13 @@
 
     move-result v1
 
-    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportShortEdgeValue:I
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeSWGOP:I
 
-    goto/16 :goto_3
+    .line 350
+    goto/16 :goto_2
 
-    .line 196
-    :cond_a
-    const-string v2, "import_video_sw_crf"
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_b
-
-    .line 197
-    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
-
-    check-cast v1, Ljava/lang/Integer;
-
-    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
-
-    move-result v1
-
-    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
-
-    move-result v1
-
-    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportSWEncodeCRF:I
-
-    goto/16 :goto_3
-
-    .line 198
-    :cond_b
-    const-string v2, "import_video_hw_bitrate"
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_c
-
-    .line 199
-    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
-
-    check-cast v1, Ljava/lang/Integer;
-
-    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
-
-    move-result v1
-
-    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
-
-    move-result v1
-
-    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportHWEncodeBPS:I
-
-    goto/16 :goto_3
-
-    .line 200
-    :cond_c
-    const-string v2, "synthetic_encode_mode"
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_d
-
-    .line 201
-    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
-
-    check-cast v1, Ljava/lang/Integer;
-
-    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
-
-    move-result v1
-
-    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
-
-    move-result v1
-
-    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeMode:I
-
-    goto/16 :goto_3
-
-    .line 202
-    :cond_d
-    const-string v2, "synthetic_video_sw_crf"
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_e
-
-    .line 203
-    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
-
-    check-cast v1, Ljava/lang/Integer;
-
-    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
-
-    move-result v1
-
-    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
-
-    move-result v1
-
-    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeSWCRF:I
-
-    goto/16 :goto_3
-
-    .line 204
-    :cond_e
-    const-string v2, "synthetic_video_hw_bitrate"
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_f
-
-    .line 205
-    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
-
-    check-cast v1, Ljava/lang/Integer;
-
-    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
-
-    move-result v1
-
-    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
-
-    move-result v1
-
-    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeHWBPS:I
-
-    goto :goto_3
-
-    .line 206
-    :cond_f
-    const-string v2, "synthetic_video_sw_maxrate"
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_10
-
-    .line 207
-    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
-
-    check-cast v1, Ljava/lang/Integer;
-
-    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
-
-    move-result v1
-
-    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
-
-    move-result v1
-
-    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeSWCRFMax:I
-
-    goto :goto_3
-
-    .line 208
-    :cond_10
-    const-string v2, "synthetic_video_sw_preset"
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_11
-
-    .line 209
+    .line 346
+    :pswitch_8
     sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
     iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
@@ -2406,21 +3226,11 @@
 
     iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeSWCRFPreset:I
 
-    goto :goto_3
+    .line 347
+    goto/16 :goto_2
 
-    .line 210
-    :cond_11
-    const-string v2, "synthetic_video_sw_gop"
-
-    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_12
-
-    .line 211
+    .line 343
+    :pswitch_9
     sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
     iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
@@ -2437,16 +3247,748 @@
 
     move-result v1
 
-    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeGOP:I
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeSWMaxrate:I
 
-    .line 213
-    :cond_12
-    :goto_3
+    .line 344
     goto/16 :goto_2
 
-    .line 216
-    :cond_13
+    .line 340
+    :pswitch_a
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeHWBPS:I
+
+    .line 341
+    goto/16 :goto_2
+
+    .line 337
+    :pswitch_b
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeSWCRF:I
+
+    .line 338
+    goto/16 :goto_2
+
+    .line 334
+    :pswitch_c
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeMode:I
+
+    .line 335
+    goto/16 :goto_2
+
+    .line 331
+    :pswitch_d
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportHwProfile:I
+
+    .line 332
+    goto/16 :goto_2
+
+    .line 328
+    :pswitch_e
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportHwBitrateMode:I
+
+    .line 329
+    goto/16 :goto_2
+
+    .line 325
+    :pswitch_f
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportSWBitrateMode:I
+
+    .line 326
+    goto/16 :goto_2
+
+    .line 322
+    :pswitch_10
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportVideoSWQP:I
+
+    .line 323
+    goto/16 :goto_2
+
+    .line 319
+    :pswitch_11
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportVideoSWGop:I
+
+    .line 320
+    goto/16 :goto_2
+
+    .line 316
+    :pswitch_12
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportVideoSWPreset:I
+
+    .line 317
+    goto/16 :goto_2
+
+    .line 313
+    :pswitch_13
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportVideoSWMaxrate:I
+
+    .line 314
+    goto/16 :goto_2
+
+    .line 310
+    :pswitch_14
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportHWEncodeBPS:I
+
+    .line 311
+    goto/16 :goto_2
+
+    .line 307
+    :pswitch_15
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportSWEncodeCRF:I
+
+    .line 308
+    goto/16 :goto_2
+
+    .line 304
+    :pswitch_16
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportShortEdgeValue:I
+
+    .line 305
+    goto/16 :goto_2
+
+    .line 301
+    :pswitch_17
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportEncodeMode:I
+
+    .line 302
+    goto/16 :goto_2
+
+    .line 298
+    :pswitch_18
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordHwProfile:I
+
+    .line 299
+    goto/16 :goto_2
+
+    .line 295
+    :pswitch_19
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordHwBitrateMode:I
+
+    .line 296
+    goto/16 :goto_2
+
+    .line 292
+    :pswitch_1a
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordSWBitrateMode:I
+
+    .line 293
+    goto/16 :goto_2
+
+    .line 289
+    :pswitch_1b
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordVideoSWQP:I
+
+    .line 290
+    goto/16 :goto_2
+
+    .line 286
+    :pswitch_1c
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordVideoSWGop:I
+
+    .line 287
+    goto/16 :goto_2
+
+    .line 283
+    :pswitch_1d
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordVideoSWPreset:I
+
+    .line 284
+    goto/16 :goto_2
+
+    .line 280
+    :pswitch_1e
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordVideoSWMaxrate:I
+
+    .line 281
+    goto/16 :goto_2
+
+    .line 277
+    :pswitch_1f
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordCameraCompatLevel:I
+
+    .line 278
+    goto :goto_2
+
+    .line 274
+    :pswitch_20
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordResolutionHeight:I
+
+    .line 275
+    goto :goto_2
+
+    .line 271
+    :pswitch_21
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordResolutionWidth:I
+
+    .line 272
+    goto :goto_2
+
+    .line 268
+    :pswitch_22
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordEncodeMode:I
+
+    .line 269
+    goto :goto_2
+
+    .line 265
+    :pswitch_23
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordHWEncodeBPS:I
+
+    .line 266
+    goto :goto_2
+
+    .line 262
+    :pswitch_24
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordSWEncodeCRF:I
+
+    .line 263
+    goto :goto_2
+
+    .line 259
+    :pswitch_25
+    sget-object v2, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
+
+    iget-object v3, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->key:Ljava/lang/String;
+
+    iget-object v1, v1, Lcom/ss/android/vesdk/runtime/cloudconfig/Config;->defaultValue:Ljava/lang/Object;
+
+    check-cast v1, Ljava/lang/Integer;
+
+    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
+
+    move-result v1
+
+    invoke-static {p0, v3, v1}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->getIntConfig(Ljava/util/Map;Ljava/lang/String;I)I
+
+    move-result v1
+
+    iput v1, v2, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordCameraType:I
+
+    .line 260
+    nop
+
+    .line 375
+    :goto_2
+    goto/16 :goto_0
+
+    .line 378
+    :cond_1
     return-void
+
+    nop
+
+    :sswitch_data_0
+    .sparse-switch
+        -0x777dcbc5 -> :sswitch_25
+        -0x776b4a78 -> :sswitch_24
+        -0x6c3a6b6e -> :sswitch_23
+        -0x6a6858a6 -> :sswitch_22
+        -0x650114c2 -> :sswitch_21
+        -0x63704035 -> :sswitch_20
+        -0x620e9644 -> :sswitch_1f
+        -0x60783da6 -> :sswitch_1e
+        -0x5cdd72da -> :sswitch_1d
+        -0x520c0c25 -> :sswitch_1c
+        -0x4db68054 -> :sswitch_1b
+        -0x4a6a84d9 -> :sswitch_1a
+        -0x49b5df86 -> :sswitch_19
+        -0x49b5d0d5 -> :sswitch_18
+        -0x43bd255f -> :sswitch_17
+        -0x1fc01625 -> :sswitch_16
+        -0x1b41d112 -> :sswitch_15
+        -0x1b41c261 -> :sswitch_14
+        -0x895a8ad -> :sswitch_13
+        0x1137142 -> :sswitch_12
+        0x4ccb01a -> :sswitch_11
+        0x4ccbecb -> :sswitch_10
+        0x1ea78f1c -> :sswitch_f
+        0x24a5e077 -> :sswitch_e
+        0x26078a68 -> :sswitch_d
+        0x28a1e8af -> :sswitch_c
+        0x2d758436 -> :sswitch_b
+        0x3ea89832 -> :sswitch_a
+        0x3faa5a73 -> :sswitch_9
+        0x40203567 -> :sswitch_8
+        0x5107f36b -> :sswitch_7
+        0x52699d5c -> :sswitch_6
+        0x5370a55d -> :sswitch_5
+        0x6591f507 -> :sswitch_4
+        0x68485fb3 -> :sswitch_3
+        0x73c48b7c -> :sswitch_2
+        0x78fd5096 -> :sswitch_1
+        0x7afde228 -> :sswitch_0
+    .end sparse-switch
+
+    :pswitch_data_0
+    .packed-switch 0x0
+        :pswitch_25
+        :pswitch_24
+        :pswitch_23
+        :pswitch_22
+        :pswitch_21
+        :pswitch_20
+        :pswitch_1f
+        :pswitch_1e
+        :pswitch_1d
+        :pswitch_1c
+        :pswitch_1b
+        :pswitch_1a
+        :pswitch_19
+        :pswitch_18
+        :pswitch_17
+        :pswitch_16
+        :pswitch_15
+        :pswitch_14
+        :pswitch_13
+        :pswitch_12
+        :pswitch_11
+        :pswitch_10
+        :pswitch_f
+        :pswitch_e
+        :pswitch_d
+        :pswitch_c
+        :pswitch_b
+        :pswitch_a
+        :pswitch_9
+        :pswitch_8
+        :pswitch_7
+        :pswitch_6
+        :pswitch_5
+        :pswitch_4
+        :pswitch_3
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
+    .end packed-switch
 .end method
 
 .method public static setPerformanceConfig(Landroid/content/Context;Ljava/util/Map;)V
@@ -2462,19 +4004,19 @@
         }
     .end annotation
 
-    .line 641
+    .line 830
     if-nez p1, :cond_0
 
-    .line 642
+    .line 831
     return-void
 
-    .line 644
+    .line 833
     :cond_0
     invoke-interface {p1}, Ljava/util/Map;->entrySet()Ljava/util/Set;
 
     move-result-object p1
 
-    .line 645
+    .line 834
     const-string v0, "ShortVideoConfig"
 
     const/4 v1, 0x0
@@ -2483,12 +4025,12 @@
 
     move-result-object p0
 
-    .line 646
+    .line 835
     invoke-interface {p0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
 
     move-result-object p0
 
-    .line 647
+    .line 836
     invoke-interface {p1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object p1
@@ -2506,7 +4048,7 @@
 
     check-cast v0, Ljava/util/Map$Entry;
 
-    .line 648
+    .line 837
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -2535,14 +4077,14 @@
 
     invoke-interface {p0, v1, v0}, Landroid/content/SharedPreferences$Editor;->putString(Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
 
-    .line 649
+    .line 838
     goto :goto_0
 
-    .line 650
+    .line 839
     :cond_1
     invoke-interface {p0}, Landroid/content/SharedPreferences$Editor;->apply()V
 
-    .line 651
+    .line 840
     return-void
 .end method
 
@@ -2564,10 +4106,10 @@
         }
     .end annotation
 
-    .line 156
+    .line 234
     invoke-static {p0}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->setConfigsFromMap(Ljava/util/Map;)V
 
-    .line 158
+    .line 236
     invoke-static {}, Lcom/ss/android/vesdk/runtime/VERuntime;->getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
 
     move-result-object v0
@@ -2578,6 +4120,6 @@
 
     invoke-static {v0, p0}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->setPerformanceConfig(Landroid/content/Context;Ljava/util/Map;)V
 
-    .line 159
+    .line 237
     return-void
 .end method

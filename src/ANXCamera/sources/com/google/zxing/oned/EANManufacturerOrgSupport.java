@@ -2,8 +2,10 @@ package com.google.zxing.oned;
 
 import android.provider.MiuiSettings.System;
 import com.android.camera.Util;
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import com.google.zxing.client.result.ExpandedProductParsedResult;
 import com.ss.android.ugc.effectmanager.common.EffectTypeConstants;
+import com.xiaomi.engine.CameraCombinationMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +50,7 @@ final class EANManufacturerOrgSupport {
             add(new int[]{383}, "SI");
             add(new int[]{385}, "HR");
             add(new int[]{387}, "BA");
-            add(new int[]{400, 440}, "DE");
+            add(new int[]{MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME, 440}, "DE");
             add(new int[]{450, 459}, "JP");
             add(new int[]{460, 469}, "RU");
             add(new int[]{471}, "TW");
@@ -113,8 +115,8 @@ final class EANManufacturerOrgSupport {
             add(new int[]{750}, "MX");
             add(new int[]{754, 755}, "CA");
             add(new int[]{759}, "VE");
-            add(new int[]{760, 769}, "CH");
-            add(new int[]{770}, "CO");
+            add(new int[]{760, CameraCombinationMode.CAM_COMBINATION_MODE_REAR_BOKEH_WT}, "CH");
+            add(new int[]{CameraCombinationMode.CAM_COMBINATION_MODE_REAR_BOKEH_WU}, "CO");
             add(new int[]{773}, "UY");
             add(new int[]{775}, "PE");
             add(new int[]{777}, "BO");

@@ -42,6 +42,7 @@ public class AiSceneModeConstant {
     public static final int AI_SCENE_MODE_SUNRISE_SUNSET = 6;
     public static final int AI_SCENE_MODE_TEMPLE = 31;
     public static final int AI_SCENE_MODE_TOWER = 34;
+    public static final int AI_SCENE_UNKNOWN = -2;
 
     @Retention(RetentionPolicy.SOURCE)
     public @interface AiSceneMode {

@@ -14,7 +14,7 @@ final class o<Z> implements p<Z>, c {
             return new o();
         }
     });
-    private final com.bumptech.glide.util.a.c et = com.bumptech.glide.util.a.c.eM();
+    private final com.bumptech.glide.util.a.c eu = com.bumptech.glide.util.a.c.eM();
     private boolean fZ;
     private p<Z> gi;
     private boolean isLocked;
@@ -41,7 +41,7 @@ final class o<Z> implements p<Z>, c {
     }
 
     synchronized void unlock() {
-        this.et.eN();
+        this.eu.eN();
         if (this.isLocked) {
             this.isLocked = false;
             if (this.fZ) {
@@ -67,7 +67,7 @@ final class o<Z> implements p<Z>, c {
     }
 
     public synchronized void recycle() {
-        this.et.eN();
+        this.eu.eN();
         this.fZ = true;
         if (!this.isLocked) {
             this.gi.recycle();
@@ -77,6 +77,6 @@ final class o<Z> implements p<Z>, c {
 
     @NonNull
     public com.bumptech.glide.util.a.c aK() {
-        return this.et;
+        return this.eu;
     }
 }

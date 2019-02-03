@@ -23,7 +23,7 @@ public class VEListener {
     }
 
     public interface VECameraStateListener {
-        void cameraOpenFailed(int i, String str);
+        void cameraOpenFailed(int i);
 
         void cameraOpenSuccess();
     }

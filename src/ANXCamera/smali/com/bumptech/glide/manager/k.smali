@@ -19,16 +19,16 @@
 
 
 # instance fields
-.field private X:Lcom/bumptech/glide/i;
+.field private Z:Lcom/bumptech/glide/i;
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 .end field
 
-.field private final mo:Lcom/bumptech/glide/manager/a;
+.field private final mn:Lcom/bumptech/glide/manager/a;
 
-.field private final mp:Lcom/bumptech/glide/manager/m;
+.field private final mo:Lcom/bumptech/glide/manager/m;
 
-.field private final mq:Ljava/util/Set;
+.field private final mp:Ljava/util/Set;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/Set<",
@@ -38,12 +38,12 @@
     .end annotation
 .end field
 
-.field private mr:Lcom/bumptech/glide/manager/k;
+.field private mq:Lcom/bumptech/glide/manager/k;
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 .end field
 
-.field private ms:Landroid/app/Fragment;
+.field private mr:Landroid/app/Fragment;
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 .end field
@@ -87,17 +87,17 @@
 
     invoke-direct {v0, p0}, Lcom/bumptech/glide/manager/k$a;-><init>(Lcom/bumptech/glide/manager/k;)V
 
-    iput-object v0, p0, Lcom/bumptech/glide/manager/k;->mp:Lcom/bumptech/glide/manager/m;
+    iput-object v0, p0, Lcom/bumptech/glide/manager/k;->mo:Lcom/bumptech/glide/manager/m;
 
     .line 35
     new-instance v0, Ljava/util/HashSet;
 
     invoke-direct {v0}, Ljava/util/HashSet;-><init>()V
 
-    iput-object v0, p0, Lcom/bumptech/glide/manager/k;->mq:Ljava/util/Set;
+    iput-object v0, p0, Lcom/bumptech/glide/manager/k;->mp:Ljava/util/Set;
 
     .line 51
-    iput-object p1, p0, Lcom/bumptech/glide/manager/k;->mo:Lcom/bumptech/glide/manager/a;
+    iput-object p1, p0, Lcom/bumptech/glide/manager/k;->mn:Lcom/bumptech/glide/manager/a;
 
     .line 52
     return-void
@@ -107,7 +107,7 @@
     .locals 1
 
     .line 86
-    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mq:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mp:Ljava/util/Set;
 
     invoke-interface {v0, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
@@ -141,10 +141,10 @@
 
     move-result-object p1
 
-    iput-object p1, p0, Lcom/bumptech/glide/manager/k;->mr:Lcom/bumptech/glide/manager/k;
+    iput-object p1, p0, Lcom/bumptech/glide/manager/k;->mq:Lcom/bumptech/glide/manager/k;
 
     .line 166
-    iget-object p1, p0, Lcom/bumptech/glide/manager/k;->mr:Lcom/bumptech/glide/manager/k;
+    iget-object p1, p0, Lcom/bumptech/glide/manager/k;->mq:Lcom/bumptech/glide/manager/k;
 
     invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/k;->equals(Ljava/lang/Object;)Z
 
@@ -153,7 +153,7 @@
     if-nez p1, :cond_0
 
     .line 167
-    iget-object p1, p0, Lcom/bumptech/glide/manager/k;->mr:Lcom/bumptech/glide/manager/k;
+    iget-object p1, p0, Lcom/bumptech/glide/manager/k;->mq:Lcom/bumptech/glide/manager/k;
 
     invoke-direct {p1, p0}, Lcom/bumptech/glide/manager/k;->a(Lcom/bumptech/glide/manager/k;)V
 
@@ -166,7 +166,7 @@
     .locals 1
 
     .line 91
-    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mq:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mp:Ljava/util/Set;
 
     invoke-interface {v0, p1}, Ljava/util/Set;->remove(Ljava/lang/Object;)Z
 
@@ -258,7 +258,7 @@
     goto :goto_1
 
     :cond_1
-    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->ms:Landroid/app/Fragment;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mr:Landroid/app/Fragment;
 
     :goto_1
     return-object v0
@@ -268,19 +268,19 @@
     .locals 1
 
     .line 172
-    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mr:Lcom/bumptech/glide/manager/k;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mq:Lcom/bumptech/glide/manager/k;
 
     if-eqz v0, :cond_0
 
     .line 173
-    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mr:Lcom/bumptech/glide/manager/k;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mq:Lcom/bumptech/glide/manager/k;
 
     invoke-direct {v0, p0}, Lcom/bumptech/glide/manager/k;->b(Lcom/bumptech/glide/manager/k;)V
 
     .line 174
     const/4 v0, 0x0
 
-    iput-object v0, p0, Lcom/bumptech/glide/manager/k;->mr:Lcom/bumptech/glide/manager/k;
+    iput-object v0, p0, Lcom/bumptech/glide/manager/k;->mq:Lcom/bumptech/glide/manager/k;
 
     .line 176
     :cond_0
@@ -297,7 +297,7 @@
     .end param
 
     .line 127
-    iput-object p1, p0, Lcom/bumptech/glide/manager/k;->ms:Landroid/app/Fragment;
+    iput-object p1, p0, Lcom/bumptech/glide/manager/k;->mr:Landroid/app/Fragment;
 
     .line 128
     if-eqz p1, :cond_0
@@ -328,7 +328,7 @@
     .end param
 
     .line 60
-    iput-object p1, p0, Lcom/bumptech/glide/manager/k;->X:Lcom/bumptech/glide/i;
+    iput-object p1, p0, Lcom/bumptech/glide/manager/k;->Z:Lcom/bumptech/glide/i;
 
     .line 61
     return-void
@@ -340,7 +340,7 @@
     .end annotation
 
     .line 65
-    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mo:Lcom/bumptech/glide/manager/a;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mn:Lcom/bumptech/glide/manager/a;
 
     return-object v0
 .end method
@@ -351,7 +351,7 @@
     .end annotation
 
     .line 73
-    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->X:Lcom/bumptech/glide/i;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->Z:Lcom/bumptech/glide/i;
 
     return-object v0
 .end method
@@ -362,7 +362,7 @@
     .end annotation
 
     .line 81
-    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mp:Lcom/bumptech/glide/manager/m;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mo:Lcom/bumptech/glide/manager/m;
 
     return-object v0
 .end method
@@ -386,7 +386,7 @@
     .end annotation
 
     .line 103
-    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mr:Lcom/bumptech/glide/manager/k;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mq:Lcom/bumptech/glide/manager/k;
 
     invoke-virtual {p0, v0}, Lcom/bumptech/glide/manager/k;->equals(Ljava/lang/Object;)Z
 
@@ -395,7 +395,7 @@
     if-eqz v0, :cond_0
 
     .line 104
-    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mq:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mp:Ljava/util/Set;
 
     invoke-static {v0}, Ljava/util/Collections;->unmodifiableSet(Ljava/util/Set;)Ljava/util/Set;
 
@@ -405,7 +405,7 @@
 
     .line 105
     :cond_0
-    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mr:Lcom/bumptech/glide/manager/k;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mq:Lcom/bumptech/glide/manager/k;
 
     if-eqz v0, :cond_4
 
@@ -424,7 +424,7 @@
     invoke-direct {v0}, Ljava/util/HashSet;-><init>()V
 
     .line 112
-    iget-object v1, p0, Lcom/bumptech/glide/manager/k;->mr:Lcom/bumptech/glide/manager/k;
+    iget-object v1, p0, Lcom/bumptech/glide/manager/k;->mq:Lcom/bumptech/glide/manager/k;
 
     .line 113
     invoke-virtual {v1}, Lcom/bumptech/glide/manager/k;->cU()Ljava/util/Set;
@@ -535,7 +535,7 @@
     invoke-super {p0}, Landroid/app/Fragment;->onDestroy()V
 
     .line 213
-    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mo:Lcom/bumptech/glide/manager/a;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mn:Lcom/bumptech/glide/manager/a;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/a;->onDestroy()V
 
@@ -566,7 +566,7 @@
     invoke-super {p0}, Landroid/app/Fragment;->onStart()V
 
     .line 201
-    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mo:Lcom/bumptech/glide/manager/a;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mn:Lcom/bumptech/glide/manager/a;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/a;->onStart()V
 
@@ -581,7 +581,7 @@
     invoke-super {p0}, Landroid/app/Fragment;->onStop()V
 
     .line 207
-    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mo:Lcom/bumptech/glide/manager/a;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/k;->mn:Lcom/bumptech/glide/manager/a;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/a;->onStop()V
 

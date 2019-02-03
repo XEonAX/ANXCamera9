@@ -25,7 +25,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/widget/MaterialProgressDrawable;Landroid/support/v4/widget/MaterialProgressDrawable$Ring;)V
-    .locals 0
+    .registers 3
 
     .line 419
     iput-object p1, p0, Landroid/support/v4/widget/MaterialProgressDrawable$2;->this$0:Landroid/support/v4/widget/MaterialProgressDrawable;
@@ -40,7 +40,7 @@
 
 # virtual methods
 .method public onAnimationEnd(Landroid/view/animation/Animation;)V
-    .locals 0
+    .registers 2
     .param p1, "animation"    # Landroid/view/animation/Animation;
 
     .line 429
@@ -48,7 +48,7 @@
 .end method
 
 .method public onAnimationRepeat(Landroid/view/animation/Animation;)V
-    .locals 4
+    .registers 6
     .param p1, "animation"    # Landroid/view/animation/Animation;
 
     .line 433
@@ -77,7 +77,7 @@
 
     iget-boolean v0, v0, Landroid/support/v4/widget/MaterialProgressDrawable;->mFinishing:Z
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_2b
 
     .line 439
     iget-object v0, p0, Landroid/support/v4/widget/MaterialProgressDrawable$2;->this$0:Landroid/support/v4/widget/MaterialProgressDrawable;
@@ -96,14 +96,15 @@
 
     invoke-virtual {v0, v1}, Landroid/support/v4/widget/MaterialProgressDrawable$Ring;->setShowArrow(Z)V
 
-    goto :goto_0
+    goto :goto_3c
 
     .line 443
-    :cond_0
+    :cond_2b
     iget-object v0, p0, Landroid/support/v4/widget/MaterialProgressDrawable$2;->this$0:Landroid/support/v4/widget/MaterialProgressDrawable;
 
     iget-object v1, p0, Landroid/support/v4/widget/MaterialProgressDrawable$2;->this$0:Landroid/support/v4/widget/MaterialProgressDrawable;
 
+    # getter for: Landroid/support/v4/widget/MaterialProgressDrawable;->mRotationCount:F
     invoke-static {v1}, Landroid/support/v4/widget/MaterialProgressDrawable;->access$400(Landroid/support/v4/widget/MaterialProgressDrawable;)F
 
     move-result v1
@@ -116,15 +117,16 @@
 
     rem-float/2addr v1, v2
 
+    # setter for: Landroid/support/v4/widget/MaterialProgressDrawable;->mRotationCount:F
     invoke-static {v0, v1}, Landroid/support/v4/widget/MaterialProgressDrawable;->access$402(Landroid/support/v4/widget/MaterialProgressDrawable;F)F
 
     .line 445
-    :goto_0
+    :goto_3c
     return-void
 .end method
 
 .method public onAnimationStart(Landroid/view/animation/Animation;)V
-    .locals 2
+    .registers 4
     .param p1, "animation"    # Landroid/view/animation/Animation;
 
     .line 423
@@ -132,6 +134,7 @@
 
     const/4 v1, 0x0
 
+    # setter for: Landroid/support/v4/widget/MaterialProgressDrawable;->mRotationCount:F
     invoke-static {v0, v1}, Landroid/support/v4/widget/MaterialProgressDrawable;->access$402(Landroid/support/v4/widget/MaterialProgressDrawable;F)F
 
     .line 424

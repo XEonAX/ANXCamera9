@@ -51,7 +51,7 @@
 .method private static getCameraByDevice()Lcom/android/camera/module/Module;
     .locals 1
 
-    .line 130
+    .line 134
     new-instance v0, Lcom/android/camera/module/Camera2Module;
 
     invoke-direct {v0}, Lcom/android/camera/module/Camera2Module;-><init>()V
@@ -137,7 +137,7 @@
 .method private static getVideoByDevice()Lcom/android/camera/module/Module;
     .locals 1
 
-    .line 134
+    .line 138
     new-instance v0, Lcom/android/camera/module/VideoModule;
 
     invoke-direct {v0}, Lcom/android/camera/module/VideoModule;-><init>()V
@@ -157,7 +157,7 @@
 .method public static isCameraModule()Z
     .locals 2
 
-    .line 83
+    .line 87
     sget v0, Lcom/android/camera/module/ModuleManager;->sCurrentModuleIndex:I
 
     const/16 v1, 0xa3
@@ -178,7 +178,7 @@
 .method public static isCapture()Z
     .locals 1
 
-    .line 107
+    .line 111
     invoke-static {}, Lcom/android/camera/module/ModuleManager;->isCameraModule()Z
 
     move-result v0
@@ -221,7 +221,7 @@
 .method public static isFastMotionModule()Z
     .locals 2
 
-    .line 79
+    .line 83
     sget v0, Lcom/android/camera/module/ModuleManager;->sCurrentModuleIndex:I
 
     const/16 v1, 0xa9
@@ -260,10 +260,31 @@
     return v0
 .end method
 
+.method public static isLiveModule()Z
+    .locals 2
+
+    .line 62
+    sget v0, Lcom/android/camera/module/ModuleManager;->sCurrentModuleIndex:I
+
+    const/16 v1, 0xae
+
+    if-ne v0, v1, :cond_0
+
+    const/4 v0, 0x1
+
+    goto :goto_0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    :goto_0
+    return v0
+.end method
+
 .method public static isManualModule()Z
     .locals 2
 
-    .line 95
+    .line 99
     sget v0, Lcom/android/camera/module/ModuleManager;->sCurrentModuleIndex:I
 
     const/16 v1, 0xa7
@@ -284,7 +305,7 @@
 .method public static isPanoramaModule()Z
     .locals 2
 
-    .line 91
+    .line 95
     sget v0, Lcom/android/camera/module/ModuleManager;->sCurrentModuleIndex:I
 
     const/16 v1, 0xa6
@@ -305,7 +326,7 @@
 .method public static isPortraitModule()Z
     .locals 2
 
-    .line 103
+    .line 107
     sget v0, Lcom/android/camera/module/ModuleManager;->sCurrentModuleIndex:I
 
     const/16 v1, 0xab
@@ -326,7 +347,7 @@
 .method public static isSlowMotionModule()Z
     .locals 2
 
-    .line 66
+    .line 70
     sget v0, Lcom/android/camera/module/ModuleManager;->sCurrentModuleIndex:I
 
     const/16 v1, 0xa8
@@ -347,7 +368,7 @@
 .method public static isSquareModule()Z
     .locals 2
 
-    .line 87
+    .line 91
     sget v0, Lcom/android/camera/module/ModuleManager;->sCurrentModuleIndex:I
 
     const/16 v1, 0xa5
@@ -368,7 +389,7 @@
 .method public static isSuperNightScene()Z
     .locals 2
 
-    .line 126
+    .line 130
     sget v0, Lcom/android/camera/module/ModuleManager;->sCurrentModuleIndex:I
 
     const/16 v1, 0xad
@@ -389,7 +410,7 @@
 .method public static isVideoCategory(I)Z
     .locals 1
 
-    .line 111
+    .line 115
     const/16 v0, 0xac
 
     if-eq p0, v0, :cond_0
@@ -402,12 +423,12 @@
 
     packed-switch p0, :pswitch_data_1
 
-    .line 121
+    .line 125
     const/4 p0, 0x0
 
     return p0
 
-    .line 119
+    .line 123
     :cond_0
     :pswitch_0
     const/4 p0, 0x1
@@ -431,7 +452,7 @@
 .method public static isVideoHFRModule()Z
     .locals 2
 
-    .line 70
+    .line 74
     sget v0, Lcom/android/camera/module/ModuleManager;->sCurrentModuleIndex:I
 
     const/16 v1, 0xaa
@@ -452,7 +473,7 @@
 .method public static isVideoModule()Z
     .locals 2
 
-    .line 62
+    .line 66
     sget v0, Lcom/android/camera/module/ModuleManager;->sCurrentModuleIndex:I
 
     const/16 v1, 0xa2
@@ -473,7 +494,7 @@
 .method public static isVideoNewSlowMotion()Z
     .locals 2
 
-    .line 75
+    .line 79
     sget v0, Lcom/android/camera/module/ModuleManager;->sCurrentModuleIndex:I
 
     const/16 v1, 0xac

@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 31
     invoke-direct {p0}, Lcom/google/zxing/oned/UPCEANWriter;-><init>()V
@@ -20,7 +20,7 @@
 
 # virtual methods
 .method public encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;IILjava/util/Map;)Lcom/google/zxing/common/BitMatrix;
-    .locals 3
+    .registers 9
     .param p1, "contents"    # Ljava/lang/String;
     .param p2, "format"    # Lcom/google/zxing/BarcodeFormat;
     .param p3, "width"    # I
@@ -48,7 +48,7 @@
     .local p5, "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/EncodeHintType;*>;"
     sget-object v0, Lcom/google/zxing/BarcodeFormat;->EAN_8:Lcom/google/zxing/BarcodeFormat;
 
-    if-ne p2, v0, :cond_0
+    if-ne p2, v0, :cond_9
 
     .line 50
     invoke-super/range {p0 .. p5}, Lcom/google/zxing/oned/UPCEANWriter;->encode(Ljava/lang/String;Lcom/google/zxing/BarcodeFormat;IILjava/util/Map;)Lcom/google/zxing/common/BitMatrix;
@@ -58,7 +58,7 @@
     return-object v0
 
     .line 46
-    :cond_0
+    :cond_9
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -81,7 +81,7 @@
 .end method
 
 .method public encode(Ljava/lang/String;)[Z
-    .locals 7
+    .registers 9
     .param p1, "contents"    # Ljava/lang/String;
 
     .line 58
@@ -91,7 +91,7 @@
 
     const/16 v1, 0x8
 
-    if-ne v0, v1, :cond_2
+    if-ne v0, v1, :cond_57
 
     .line 63
     const/16 v0, 0x43
@@ -118,12 +118,12 @@
     const/4 v2, 0x0
 
     .local v2, "i":I
-    :goto_0
+    :goto_16
     const/4 v4, 0x3
 
     const/4 v5, 0x0
 
-    if-le v2, v4, :cond_1
+    if-le v2, v4, :cond_41
 
     .line 73
     .end local v2    # "i":I
@@ -139,10 +139,10 @@
     const/4 v2, 0x4
 
     .restart local v2    # "i":I
-    :goto_1
+    :goto_22
     const/4 v4, 0x7
 
-    if-le v2, v4, :cond_0
+    if-le v2, v4, :cond_2b
 
     .line 79
     .end local v2    # "i":I
@@ -155,7 +155,7 @@
 
     .line 76
     .restart local v2    # "i":I
-    :cond_0
+    :cond_2b
     add-int/lit8 v4, v2, 0x1
 
     invoke-virtual {p1, v2, v4}, Ljava/lang/String;->substring(II)Ljava/lang/String;
@@ -182,10 +182,10 @@
     .end local v4    # "digit":I
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_1
+    goto :goto_22
 
     .line 69
-    :cond_1
+    :cond_41
     add-int/lit8 v4, v2, 0x1
 
     invoke-virtual {p1, v2, v4}, Ljava/lang/String;->substring(II)Ljava/lang/String;
@@ -212,13 +212,13 @@
     .end local v4    # "digit":I
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_16
 
     .line 59
     .end local v0    # "result":[Z
     .end local v1    # "pos":I
     .end local v2    # "i":I
-    :cond_2
+    :cond_57
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     .line 60

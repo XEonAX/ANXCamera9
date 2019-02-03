@@ -22,41 +22,41 @@
 
 .field private static final TAG:Ljava/lang/String; = "RMRetriever"
 
-.field private static final mC:Lcom/bumptech/glide/manager/l$a;
+.field private static final mB:Lcom/bumptech/glide/manager/l$a;
 
-.field private static final mu:I = 0x1
+.field private static final mt:I = 0x1
 
-.field private static final mv:I = 0x2
+.field private static final mu:I = 0x2
 
-.field private static final mw:Ljava/lang/String; = "key"
+.field private static final mv:Ljava/lang/String; = "key"
 
 
 # instance fields
 .field private final handler:Landroid/os/Handler;
 
-.field private final mA:Landroid/support/v4/util/ArrayMap;
+.field private final mA:Landroid/os/Bundle;
+
+.field private volatile mw:Lcom/bumptech/glide/i;
+
+.field private final mx:Lcom/bumptech/glide/manager/l$a;
+
+.field private final my:Landroid/support/v4/util/ArrayMap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Landroid/support/v4/util/ArrayMap<",
             "Landroid/view/View;",
-            "Landroid/app/Fragment;",
+            "Landroid/support/v4/app/Fragment;",
             ">;"
         }
     .end annotation
 .end field
-
-.field private final mB:Landroid/os/Bundle;
-
-.field private volatile mx:Lcom/bumptech/glide/i;
-
-.field private final my:Lcom/bumptech/glide/manager/l$a;
 
 .field private final mz:Landroid/support/v4/util/ArrayMap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Landroid/support/v4/util/ArrayMap<",
             "Landroid/view/View;",
-            "Landroid/support/v4/app/Fragment;",
+            "Landroid/app/Fragment;",
             ">;"
         }
     .end annotation
@@ -100,7 +100,7 @@
 
     invoke-direct {v0}, Lcom/bumptech/glide/manager/l$1;-><init>()V
 
-    sput-object v0, Lcom/bumptech/glide/manager/l;->mC:Lcom/bumptech/glide/manager/l$a;
+    sput-object v0, Lcom/bumptech/glide/manager/l;->mB:Lcom/bumptech/glide/manager/l$a;
 
     return-void
 .end method
@@ -134,21 +134,21 @@
 
     invoke-direct {v0}, Landroid/support/v4/util/ArrayMap;-><init>()V
 
-    iput-object v0, p0, Lcom/bumptech/glide/manager/l;->mz:Landroid/support/v4/util/ArrayMap;
+    iput-object v0, p0, Lcom/bumptech/glide/manager/l;->my:Landroid/support/v4/util/ArrayMap;
 
     .line 76
     new-instance v0, Landroid/support/v4/util/ArrayMap;
 
     invoke-direct {v0}, Landroid/support/v4/util/ArrayMap;-><init>()V
 
-    iput-object v0, p0, Lcom/bumptech/glide/manager/l;->mA:Landroid/support/v4/util/ArrayMap;
+    iput-object v0, p0, Lcom/bumptech/glide/manager/l;->mz:Landroid/support/v4/util/ArrayMap;
 
     .line 77
     new-instance v0, Landroid/os/Bundle;
 
     invoke-direct {v0}, Landroid/os/Bundle;-><init>()V
 
-    iput-object v0, p0, Lcom/bumptech/glide/manager/l;->mB:Landroid/os/Bundle;
+    iput-object v0, p0, Lcom/bumptech/glide/manager/l;->mA:Landroid/os/Bundle;
 
     .line 80
     if-eqz p1, :cond_0
@@ -156,10 +156,10 @@
     goto :goto_0
 
     :cond_0
-    sget-object p1, Lcom/bumptech/glide/manager/l;->mC:Lcom/bumptech/glide/manager/l$a;
+    sget-object p1, Lcom/bumptech/glide/manager/l;->mB:Lcom/bumptech/glide/manager/l$a;
 
     :goto_0
-    iput-object p1, p0, Lcom/bumptech/glide/manager/l;->my:Lcom/bumptech/glide/manager/l$a;
+    iput-object p1, p0, Lcom/bumptech/glide/manager/l;->mx:Lcom/bumptech/glide/manager/l$a;
 
     .line 81
     new-instance p1, Landroid/os/Handler;
@@ -193,7 +193,7 @@
     .end annotation
 
     .line 241
-    iget-object v0, p0, Lcom/bumptech/glide/manager/l;->mA:Landroid/support/v4/util/ArrayMap;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/l;->mz:Landroid/support/v4/util/ArrayMap;
 
     invoke-virtual {v0}, Landroid/support/v4/util/ArrayMap;->clear()V
 
@@ -202,7 +202,7 @@
 
     move-result-object v0
 
-    iget-object v1, p0, Lcom/bumptech/glide/manager/l;->mA:Landroid/support/v4/util/ArrayMap;
+    iget-object v1, p0, Lcom/bumptech/glide/manager/l;->mz:Landroid/support/v4/util/ArrayMap;
 
     invoke-direct {p0, v0, v1}, Lcom/bumptech/glide/manager/l;->a(Landroid/app/FragmentManager;Landroid/support/v4/util/ArrayMap;)V
 
@@ -230,7 +230,7 @@
     if-nez v1, :cond_1
 
     .line 249
-    iget-object v0, p0, Lcom/bumptech/glide/manager/l;->mA:Landroid/support/v4/util/ArrayMap;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/l;->mz:Landroid/support/v4/util/ArrayMap;
 
     invoke-virtual {v0, p1}, Landroid/support/v4/util/ArrayMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -266,7 +266,7 @@
     .line 259
     :cond_1
     :goto_1
-    iget-object p1, p0, Lcom/bumptech/glide/manager/l;->mA:Landroid/support/v4/util/ArrayMap;
+    iget-object p1, p0, Lcom/bumptech/glide/manager/l;->mz:Landroid/support/v4/util/ArrayMap;
 
     invoke-virtual {p1}, Landroid/support/v4/util/ArrayMap;->clear()V
 
@@ -288,7 +288,7 @@
     .end annotation
 
     .line 215
-    iget-object v0, p0, Lcom/bumptech/glide/manager/l;->mz:Landroid/support/v4/util/ArrayMap;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/l;->my:Landroid/support/v4/util/ArrayMap;
 
     invoke-virtual {v0}, Landroid/support/v4/util/ArrayMap;->clear()V
 
@@ -304,7 +304,7 @@
 
     move-result-object v0
 
-    iget-object v1, p0, Lcom/bumptech/glide/manager/l;->mz:Landroid/support/v4/util/ArrayMap;
+    iget-object v1, p0, Lcom/bumptech/glide/manager/l;->my:Landroid/support/v4/util/ArrayMap;
 
     .line 216
     invoke-static {v0, v1}, Lcom/bumptech/glide/manager/l;->a(Ljava/util/Collection;Ljava/util/Map;)V
@@ -333,7 +333,7 @@
     if-nez v1, :cond_1
 
     .line 222
-    iget-object v0, p0, Lcom/bumptech/glide/manager/l;->mz:Landroid/support/v4/util/ArrayMap;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/l;->my:Landroid/support/v4/util/ArrayMap;
 
     invoke-virtual {v0, p1}, Landroid/support/v4/util/ArrayMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -369,7 +369,7 @@
     .line 233
     :cond_1
     :goto_1
-    iget-object p1, p0, Lcom/bumptech/glide/manager/l;->mz:Landroid/support/v4/util/ArrayMap;
+    iget-object p1, p0, Lcom/bumptech/glide/manager/l;->my:Landroid/support/v4/util/ArrayMap;
 
     invoke-virtual {p1}, Landroid/support/v4/util/ArrayMap;->clear()V
 
@@ -416,7 +416,7 @@
     move-result-object p3
 
     .line 387
-    iget-object p4, p0, Lcom/bumptech/glide/manager/l;->my:Lcom/bumptech/glide/manager/l$a;
+    iget-object p4, p0, Lcom/bumptech/glide/manager/l;->mx:Lcom/bumptech/glide/manager/l$a;
 
     .line 389
     invoke-virtual {p2}, Lcom/bumptech/glide/manager/k;->cR()Lcom/bumptech/glide/manager/a;
@@ -479,7 +479,7 @@
     move-result-object p3
 
     .line 440
-    iget-object p4, p0, Lcom/bumptech/glide/manager/l;->my:Lcom/bumptech/glide/manager/l$a;
+    iget-object p4, p0, Lcom/bumptech/glide/manager/l;->mx:Lcom/bumptech/glide/manager/l$a;
 
     .line 442
     invoke-virtual {p2}, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->cR()Lcom/bumptech/glide/manager/a;
@@ -894,7 +894,7 @@
     const/4 v0, 0x0
 
     :goto_0
-    iget-object v1, p0, Lcom/bumptech/glide/manager/l;->mB:Landroid/os/Bundle;
+    iget-object v1, p0, Lcom/bumptech/glide/manager/l;->mA:Landroid/os/Bundle;
 
     const-string v2, "key"
 
@@ -907,7 +907,7 @@
 
     .line 293
     :try_start_0
-    iget-object v1, p0, Lcom/bumptech/glide/manager/l;->mB:Landroid/os/Bundle;
+    iget-object v1, p0, Lcom/bumptech/glide/manager/l;->mA:Landroid/os/Bundle;
 
     const-string v2, "key"
 
@@ -1032,7 +1032,7 @@
     return p0
 .end method
 
-.method private i(Landroid/content/Context;)Lcom/bumptech/glide/i;
+.method private h(Landroid/content/Context;)Lcom/bumptech/glide/i;
     .locals 4
     .param p1    # Landroid/content/Context;
         .annotation build Landroid/support/annotation/NonNull;
@@ -1042,7 +1042,7 @@
     .end annotation
 
     .line 87
-    iget-object v0, p0, Lcom/bumptech/glide/manager/l;->mx:Lcom/bumptech/glide/i;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/l;->mw:Lcom/bumptech/glide/i;
 
     if-nez v0, :cond_1
 
@@ -1051,7 +1051,7 @@
 
     .line 89
     :try_start_0
-    iget-object v0, p0, Lcom/bumptech/glide/manager/l;->mx:Lcom/bumptech/glide/i;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/l;->mw:Lcom/bumptech/glide/i;
 
     if-nez v0, :cond_0
 
@@ -1065,7 +1065,7 @@
     move-result-object v0
 
     .line 97
-    iget-object v1, p0, Lcom/bumptech/glide/manager/l;->my:Lcom/bumptech/glide/manager/l$a;
+    iget-object v1, p0, Lcom/bumptech/glide/manager/l;->mx:Lcom/bumptech/glide/manager/l$a;
 
     new-instance v2, Lcom/bumptech/glide/manager/b;
 
@@ -1085,7 +1085,7 @@
 
     move-result-object p1
 
-    iput-object p1, p0, Lcom/bumptech/glide/manager/l;->mx:Lcom/bumptech/glide/i;
+    iput-object p1, p0, Lcom/bumptech/glide/manager/l;->mw:Lcom/bumptech/glide/i;
 
     .line 104
     :cond_0
@@ -1105,12 +1105,12 @@
     .line 107
     :cond_1
     :goto_0
-    iget-object p1, p0, Lcom/bumptech/glide/manager/l;->mx:Lcom/bumptech/glide/i;
+    iget-object p1, p0, Lcom/bumptech/glide/manager/l;->mw:Lcom/bumptech/glide/i;
 
     return-object p1
 .end method
 
-.method private k(Landroid/content/Context;)Landroid/app/Activity;
+.method private j(Landroid/content/Context;)Landroid/app/Activity;
     .locals 1
     .param p1    # Landroid/content/Context;
         .annotation build Landroid/support/annotation/NonNull;
@@ -1142,7 +1142,7 @@
 
     move-result-object p1
 
-    invoke-direct {p0, p1}, Lcom/bumptech/glide/manager/l;->k(Landroid/content/Context;)Landroid/app/Activity;
+    invoke-direct {p0, p1}, Lcom/bumptech/glide/manager/l;->j(Landroid/content/Context;)Landroid/app/Activity;
 
     move-result-object p1
 
@@ -1191,7 +1191,7 @@
 
     move-result-object p1
 
-    invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/l;->j(Landroid/content/Context;)Lcom/bumptech/glide/i;
+    invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/l;->i(Landroid/content/Context;)Lcom/bumptech/glide/i;
 
     move-result-object p1
 
@@ -1240,7 +1240,7 @@
 
     move-result-object p1
 
-    invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/l;->j(Landroid/content/Context;)Lcom/bumptech/glide/i;
+    invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/l;->i(Landroid/content/Context;)Lcom/bumptech/glide/i;
 
     move-result-object p1
 
@@ -1292,7 +1292,7 @@
 
     move-result-object p1
 
-    invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/l;->j(Landroid/content/Context;)Lcom/bumptech/glide/i;
+    invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/l;->i(Landroid/content/Context;)Lcom/bumptech/glide/i;
 
     move-result-object p1
 
@@ -1348,7 +1348,7 @@
 
     move-result-object p1
 
-    invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/l;->j(Landroid/content/Context;)Lcom/bumptech/glide/i;
+    invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/l;->i(Landroid/content/Context;)Lcom/bumptech/glide/i;
 
     move-result-object p1
 
@@ -1372,7 +1372,7 @@
 
     move-result-object v0
 
-    invoke-direct {p0, v0}, Lcom/bumptech/glide/manager/l;->k(Landroid/content/Context;)Landroid/app/Activity;
+    invoke-direct {p0, v0}, Lcom/bumptech/glide/manager/l;->j(Landroid/content/Context;)Landroid/app/Activity;
 
     move-result-object v0
 
@@ -1388,7 +1388,7 @@
 
     move-result-object p1
 
-    invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/l;->j(Landroid/content/Context;)Lcom/bumptech/glide/i;
+    invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/l;->i(Landroid/content/Context;)Lcom/bumptech/glide/i;
 
     move-result-object p1
 
@@ -1548,7 +1548,7 @@
 
     move-result-object p1
 
-    invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/l;->j(Landroid/content/Context;)Lcom/bumptech/glide/i;
+    invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/l;->i(Landroid/content/Context;)Lcom/bumptech/glide/i;
 
     move-result-object p1
 
@@ -1714,7 +1714,7 @@
     .end packed-switch
 .end method
 
-.method public j(Landroid/content/Context;)Lcom/bumptech/glide/i;
+.method public i(Landroid/content/Context;)Lcom/bumptech/glide/i;
     .locals 1
     .param p1    # Landroid/content/Context;
         .annotation build Landroid/support/annotation/NonNull;
@@ -1779,7 +1779,7 @@
 
     move-result-object p1
 
-    invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/l;->j(Landroid/content/Context;)Lcom/bumptech/glide/i;
+    invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/l;->i(Landroid/content/Context;)Lcom/bumptech/glide/i;
 
     move-result-object p1
 
@@ -1787,7 +1787,7 @@
 
     .line 124
     :cond_2
-    invoke-direct {p0, p1}, Lcom/bumptech/glide/manager/l;->i(Landroid/content/Context;)Lcom/bumptech/glide/i;
+    invoke-direct {p0, p1}, Lcom/bumptech/glide/manager/l;->h(Landroid/content/Context;)Lcom/bumptech/glide/i;
 
     move-result-object p1
 

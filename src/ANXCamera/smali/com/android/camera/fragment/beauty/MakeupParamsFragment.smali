@@ -4,24 +4,24 @@
 
 
 # instance fields
-.field private mHeaderImageView:Landroid/widget/ImageView;
+.field private mHeaderImageView:Lcom/android/camera/ui/ColorImageView;
 
 
 # direct methods
 .method public constructor <init>()V
     .locals 0
 
-    .line 24
+    .line 25
     invoke-direct {p0}, Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment;-><init>()V
 
     return-void
 .end method
 
-.method static synthetic access$000(Lcom/android/camera/fragment/beauty/MakeupParamsFragment;)Landroid/widget/ImageView;
+.method static synthetic access$000(Lcom/android/camera/fragment/beauty/MakeupParamsFragment;)Lcom/android/camera/ui/ColorImageView;
     .locals 0
 
-    .line 24
-    iget-object p0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Landroid/widget/ImageView;
+    .line 25
+    iget-object p0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Lcom/android/camera/ui/ColorImageView;
 
     return-object p0
 .end method
@@ -31,14 +31,14 @@
 .method protected customItemWidth()I
     .locals 2
 
-    .line 131
+    .line 133
     invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->isNeedScroll()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 132
+    .line 134
     invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->getContext()Landroid/content/Context;
 
     move-result-object v0
@@ -47,7 +47,7 @@
 
     move-result-object v0
 
-    const v1, 0x7f0900e4
+    const v1, 0x7f0a00e8
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -55,7 +55,7 @@
 
     return v0
 
-    .line 134
+    .line 136
     :cond_0
     invoke-super {p0}, Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment;->customItemWidth()I
 
@@ -67,7 +67,7 @@
 .method protected getClassString()Ljava/lang/String;
     .locals 1
 
-    .line 139
+    .line 141
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v0
@@ -82,7 +82,7 @@
 .method protected getHeaderView()Landroid/view/View;
     .locals 4
 
-    .line 85
+    .line 86
     invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->getContext()Landroid/content/Context;
 
     move-result-object v0
@@ -99,26 +99,41 @@
 
     move-result-object v0
 
-    .line 86
-    const v1, 0x7f0d0009
+    .line 87
+    const v1, 0x7f0d000a
 
     invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
     move-result-object v1
 
-    check-cast v1, Landroid/widget/ImageView;
+    check-cast v1, Lcom/android/camera/ui/ColorImageView;
 
-    iput-object v1, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Landroid/widget/ImageView;
-
-    .line 87
-    iget-object v1, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Landroid/widget/ImageView;
-
-    const v2, 0x7f020151
-
-    invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setImageResource(I)V
+    iput-object v1, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Lcom/android/camera/ui/ColorImageView;
 
     .line 88
-    const v1, 0x7f0d000a
+    iget-object v1, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Lcom/android/camera/ui/ColorImageView;
+
+    invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v2
+
+    const v3, 0x7f0b0059
+
+    invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getColor(I)I
+
+    move-result v2
+
+    invoke-virtual {v1, v2}, Lcom/android/camera/ui/ColorImageView;->setColor(I)V
+
+    .line 89
+    iget-object v1, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Lcom/android/camera/ui/ColorImageView;
+
+    const v2, 0x7f020175
+
+    invoke-virtual {v1, v2}, Lcom/android/camera/ui/ColorImageView;->setImageResource(I)V
+
+    .line 90
+    const v1, 0x7f0d000b
 
     invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -126,17 +141,17 @@
 
     check-cast v1, Landroid/widget/TextView;
 
-    .line 89
-    const v2, 0x7f0b020a
+    .line 91
+    const v2, 0x7f090213
 
     invoke-virtual {v1, v2}, Landroid/widget/TextView;->setText(I)V
 
-    .line 90
+    .line 92
     invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->getResources()Landroid/content/res/Resources;
 
     move-result-object v2
 
-    const v3, 0x7f0a005b
+    const v3, 0x7f0b005b
 
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getColor(I)I
 
@@ -144,7 +159,7 @@
 
     invoke-virtual {v1, v2}, Landroid/widget/TextView;->setTextColor(I)V
 
-    .line 91
+    .line 93
     return-object v0
 .end method
 
@@ -159,32 +174,19 @@
         }
     .end annotation
 
-    .line 30
+    .line 31
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 31
+    .line 32
     new-instance v1, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;
 
     sget-object v2, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->SHRINK_FACE_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v3, 0x7f02015b
+    const v3, 0x7f02017e
 
-    const v4, 0x7f0b01d1
-
-    invoke-direct {v1, v3, v4, v2}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
-
-    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    .line 32
-    new-instance v1, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;
-
-    sget-object v2, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->ENLARGE_EYE_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
-
-    const v3, 0x7f020158
-
-    const v4, 0x7f0b01d0
+    const v4, 0x7f0901d8
 
     invoke-direct {v1, v3, v4, v2}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
@@ -193,11 +195,11 @@
     .line 33
     new-instance v1, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;
 
-    sget-object v2, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->WHITEN_STRENGTH:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
+    sget-object v2, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->ENLARGE_EYE_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v3, 0x7f020168
+    const v3, 0x7f02017b
 
-    const v4, 0x7f0b01ce
+    const v4, 0x7f0901d7
 
     invoke-direct {v1, v3, v4, v2}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
@@ -206,37 +208,50 @@
     .line 34
     new-instance v1, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;
 
-    sget-object v2, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
+    sget-object v2, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->WHITEN_STRENGTH:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v3, 0x7f02016a
+    const v3, 0x7f02018b
 
-    const v4, 0x7f0b01cf
+    const v4, 0x7f0901d5
 
     invoke-direct {v1, v3, v4, v2}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .line 35
+    new-instance v1, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;
+
+    sget-object v2, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->SMOOTH_STRENGTH:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
+
+    const v3, 0x7f02018d
+
+    const v4, 0x7f0901d6
+
+    invoke-direct {v1, v3, v4, v2}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 36
     return-object v0
 .end method
 
 .method protected initView(Landroid/view/View;)V
     .locals 0
 
-    .line 96
+    .line 98
     invoke-super {p0, p1}, Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment;->initView(Landroid/view/View;)V
 
-    .line 97
+    .line 99
     invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->getUserVisibleHint()Z
 
     move-result p1
 
     if-eqz p1, :cond_0
 
-    .line 98
+    .line 100
     invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->reSelectItem()V
 
-    .line 100
+    .line 102
     :cond_0
     return-void
 .end method
@@ -244,7 +259,7 @@
 .method protected isCustomWidth()Z
     .locals 1
 
-    .line 126
+    .line 128
     const/4 v0, 0x1
 
     return v0
@@ -253,7 +268,7 @@
 .method protected onAdapterItemClick(Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;)V
     .locals 2
 
-    .line 40
+    .line 41
     invoke-virtual {p1}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;->getCameraBeautyParameterType()Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
     move-result-object v0
@@ -264,7 +279,7 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 41
+    .line 42
     invoke-virtual {p1}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;->getCameraBeautyParameterType()Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
     move-result-object p1
@@ -273,27 +288,27 @@
 
     invoke-static {p1}, Lcom/android/camera/fragment/beauty/BeautyHelper;->setType(Lcom/miui/filtersdk/beauty/BeautyParameterType;)V
 
-    .line 43
+    .line 44
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
 
     const/16 v0, 0xb4
 
-    .line 44
+    .line 45
     invoke-virtual {p1, v0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object p1
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$MakeupProtocol;
 
-    .line 45
+    .line 46
     if-eqz p1, :cond_0
 
-    .line 46
+    .line 47
     invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$MakeupProtocol;->onMakeupItemSelected()V
 
-    .line 49
+    .line 50
     :cond_0
     return-void
 .end method
@@ -301,25 +316,25 @@
 .method protected onHeaderClick()V
     .locals 3
 
-    .line 53
-    iget-object v0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Landroid/widget/ImageView;
+    .line 54
+    iget-object v0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Lcom/android/camera/ui/ColorImageView;
 
     if-eqz v0, :cond_0
 
-    .line 54
-    iget-object v0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Landroid/widget/ImageView;
-
-    invoke-virtual {v0}, Landroid/widget/ImageView;->clearAnimation()V
-
     .line 55
-    iget-object v0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Landroid/widget/ImageView;
+    iget-object v0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Lcom/android/camera/ui/ColorImageView;
+
+    invoke-virtual {v0}, Lcom/android/camera/ui/ColorImageView;->clearAnimation()V
+
+    .line 56
+    iget-object v0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Lcom/android/camera/ui/ColorImageView;
 
     const/4 v1, 0x0
 
-    invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setRotation(F)V
+    invoke-virtual {v0, v1}, Lcom/android/camera/ui/ColorImageView;->setRotation(F)V
 
-    .line 56
-    iget-object v0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Landroid/widget/ImageView;
+    .line 57
+    iget-object v0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mHeaderImageView:Lcom/android/camera/ui/ColorImageView;
 
     invoke-static {v0}, Landroid/support/v4/view/ViewCompat;->animate(Landroid/view/View;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
@@ -345,45 +360,45 @@
 
     move-result-object v0
 
-    .line 62
+    .line 63
     invoke-virtual {v0}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->start()V
 
-    .line 64
+    .line 65
     :cond_0
     invoke-static {}, Lcom/android/camera/fragment/beauty/BeautyHelper;->resetBeauty()V
 
-    .line 65
+    .line 66
     sget-object v0, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->SHRINK_FACE_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
     iget-object v0, v0, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->beautyModelParameterType:Lcom/miui/filtersdk/beauty/BeautyParameterType;
 
     invoke-static {v0}, Lcom/android/camera/fragment/beauty/BeautyHelper;->setType(Lcom/miui/filtersdk/beauty/BeautyParameterType;)V
 
-    .line 66
+    .line 67
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mSelectedParam:I
 
-    .line 67
+    .line 68
     iget-object v0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mMakeupAdapter:Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter;
 
     iget v1, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mSelectedParam:I
 
     invoke-virtual {v0, v1}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter;->setSelectedPosition(I)V
 
-    .line 68
+    .line 69
     iget-object v0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mLayoutManager:Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment$MyLayoutManager;
 
     iget v1, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mSelectedParam:I
 
     invoke-virtual {v0, v1}, Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment$MyLayoutManager;->scrollToPosition(I)V
 
-    .line 70
+    .line 71
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 71
+    .line 72
     const/16 v1, 0xb4
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -392,19 +407,19 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$MakeupProtocol;
 
-    .line 72
+    .line 73
     if-eqz v0, :cond_1
 
-    .line 73
+    .line 74
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$MakeupProtocol;->onMakeupItemSelected()V
 
-    .line 75
+    .line 76
     :cond_1
     iget-object v0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mMakeupAdapter:Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter;
 
     invoke-virtual {v0}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter;->notifyDataSetChanged()V
 
-    .line 76
+    .line 77
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -415,21 +430,21 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$MakeupProtocol;
 
-    .line 77
+    .line 78
     if-eqz v0, :cond_2
 
-    .line 78
+    .line 79
     const/4 v1, 0x1
 
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$MakeupProtocol;->setSeekBarMode(I)V
 
-    .line 80
+    .line 81
     :cond_2
     invoke-virtual {p0}, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
 
-    const v1, 0x7f0b0219
+    const v1, 0x7f090222
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -437,14 +452,14 @@
 
     invoke-virtual {p0, v0}, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->toast(Ljava/lang/String;)V
 
-    .line 81
+    .line 82
     return-void
 .end method
 
 .method protected reSelectItem()V
     .locals 2
 
-    .line 118
+    .line 120
     iget-object v0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mItemList:Ljava/util/List;
 
     if-eqz v0, :cond_0
@@ -459,7 +474,7 @@
 
     if-ge v0, v1, :cond_0
 
-    .line 119
+    .line 121
     iget-object v0, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mItemList:Ljava/util/List;
 
     iget v1, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->mSelectedParam:I
@@ -470,7 +485,7 @@
 
     check-cast v0, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;
 
-    .line 120
+    .line 122
     invoke-virtual {v0}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;->getCameraBeautyParameterType()Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
     move-result-object v0
@@ -479,7 +494,7 @@
 
     invoke-static {v0}, Lcom/android/camera/fragment/beauty/BeautyHelper;->setType(Lcom/miui/filtersdk/beauty/BeautyParameterType;)V
 
-    .line 122
+    .line 124
     :cond_0
     return-void
 .end method
@@ -487,15 +502,15 @@
 .method public setUserVisibleHint(Z)V
     .locals 5
 
-    .line 104
+    .line 106
     invoke-super {p0, p1}, Lcom/android/camera/fragment/beauty/BaseBeautyMakeupFragment;->setUserVisibleHint(Z)V
 
-    .line 105
+    .line 107
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 106
+    .line 108
     const/16 v1, 0xa0
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -504,19 +519,19 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;
 
-    .line 107
+    .line 109
     if-nez v0, :cond_0
 
-    .line 108
+    .line 110
     return-void
 
-    .line 110
+    .line 112
     :cond_0
     const/4 v1, 0x3
 
     const/16 v2, 0xfc
 
-    const v3, 0x7f0d00e1
+    const v3, 0x7f0d00fe
 
     if-nez p1, :cond_1
 
@@ -526,12 +541,12 @@
 
     if-ne v4, v2, :cond_1
 
-    .line 111
+    .line 113
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->delegateEvent(I)V
 
     goto :goto_0
 
-    .line 112
+    .line 114
     :cond_1
     if-eqz p1, :cond_2
 
@@ -541,10 +556,10 @@
 
     if-eq p1, v2, :cond_2
 
-    .line 113
+    .line 115
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->delegateEvent(I)V
 
-    .line 115
+    .line 117
     :cond_2
     :goto_0
     return-void

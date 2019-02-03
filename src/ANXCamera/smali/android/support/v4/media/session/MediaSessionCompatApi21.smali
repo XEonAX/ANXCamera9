@@ -15,7 +15,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 37
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -25,7 +25,7 @@
 .end method
 
 .method public static createCallback(Landroid/support/v4/media/session/MediaSessionCompatApi21$Callback;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "callback"    # Landroid/support/v4/media/session/MediaSessionCompatApi21$Callback;
 
     .line 57
@@ -37,7 +37,7 @@
 .end method
 
 .method public static createSession(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "tag"    # Ljava/lang/String;
 
@@ -50,7 +50,7 @@
 .end method
 
 .method public static getSessionToken(Ljava/lang/Object;)Landroid/os/Parcelable;
-    .locals 1
+    .registers 2
     .param p0, "sessionObj"    # Ljava/lang/Object;
 
     .line 96
@@ -66,7 +66,7 @@
 .end method
 
 .method public static isActive(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 2
     .param p0, "sessionObj"    # Ljava/lang/Object;
 
     .line 84
@@ -82,7 +82,7 @@
 .end method
 
 .method public static release(Ljava/lang/Object;)V
-    .locals 1
+    .registers 2
     .param p0, "sessionObj"    # Ljava/lang/Object;
 
     .line 92
@@ -97,7 +97,7 @@
 .end method
 
 .method public static sendSessionEvent(Ljava/lang/Object;Ljava/lang/String;Landroid/os/Bundle;)V
-    .locals 1
+    .registers 4
     .param p0, "sessionObj"    # Ljava/lang/Object;
     .param p1, "event"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
@@ -114,7 +114,7 @@
 .end method
 
 .method public static setActive(Ljava/lang/Object;Z)V
-    .locals 1
+    .registers 3
     .param p0, "sessionObj"    # Ljava/lang/Object;
     .param p1, "active"    # Z
 
@@ -130,7 +130,7 @@
 .end method
 
 .method public static setCallback(Ljava/lang/Object;Ljava/lang/Object;Landroid/os/Handler;)V
-    .locals 2
+    .registers 5
     .param p0, "sessionObj"    # Ljava/lang/Object;
     .param p1, "callbackObj"    # Ljava/lang/Object;
     .param p2, "handler"    # Landroid/os/Handler;
@@ -151,7 +151,7 @@
 .end method
 
 .method public static setExtras(Ljava/lang/Object;Landroid/os/Bundle;)V
-    .locals 1
+    .registers 3
     .param p0, "sessionObj"    # Ljava/lang/Object;
     .param p1, "extras"    # Landroid/os/Bundle;
 
@@ -167,7 +167,7 @@
 .end method
 
 .method public static setFlags(Ljava/lang/Object;I)V
-    .locals 1
+    .registers 3
     .param p0, "sessionObj"    # Ljava/lang/Object;
     .param p1, "flags"    # I
 
@@ -183,7 +183,7 @@
 .end method
 
 .method public static setMediaButtonReceiver(Ljava/lang/Object;Landroid/app/PendingIntent;)V
-    .locals 1
+    .registers 3
     .param p0, "sessionObj"    # Ljava/lang/Object;
     .param p1, "pi"    # Landroid/app/PendingIntent;
 
@@ -199,7 +199,7 @@
 .end method
 
 .method public static setMetadata(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 2
+    .registers 4
     .param p0, "sessionObj"    # Ljava/lang/Object;
     .param p1, "metadataObj"    # Ljava/lang/Object;
 
@@ -219,7 +219,7 @@
 .end method
 
 .method public static setPlaybackState(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 2
+    .registers 4
     .param p0, "sessionObj"    # Ljava/lang/Object;
     .param p1, "stateObj"    # Ljava/lang/Object;
 
@@ -239,7 +239,7 @@
 .end method
 
 .method public static setPlaybackToLocal(Ljava/lang/Object;I)V
-    .locals 3
+    .registers 5
     .param p0, "sessionObj"    # Ljava/lang/Object;
     .param p1, "stream"    # I
 
@@ -268,7 +268,7 @@
 .end method
 
 .method public static setPlaybackToRemote(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 2
+    .registers 4
     .param p0, "sessionObj"    # Ljava/lang/Object;
     .param p1, "volumeProviderObj"    # Ljava/lang/Object;
 
@@ -288,7 +288,7 @@
 .end method
 
 .method public static setQueue(Ljava/lang/Object;Ljava/util/List;)V
-    .locals 4
+    .registers 6
     .param p0, "sessionObj"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -302,7 +302,7 @@
 
     .line 116
     .local p1, "queueObjs":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Object;>;"
-    if-nez p1, :cond_0
+    if-nez p1, :cond_a
 
     .line 117
     move-object v0, p0
@@ -317,7 +317,7 @@
     return-void
 
     .line 120
-    :cond_0
+    :cond_a
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
@@ -329,12 +329,12 @@
     move-result-object v1
 
     .local v1, "i$":Ljava/util/Iterator;
-    :goto_0
+    :goto_13
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_24
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -350,11 +350,11 @@
 
     .line 123
     .end local v2    # "itemObj":Ljava/lang/Object;
-    goto :goto_0
+    goto :goto_13
 
     .line 124
     .end local v1    # "i$":Ljava/util/Iterator;
-    :cond_1
+    :cond_24
     move-object v1, p0
 
     check-cast v1, Landroid/media/session/MediaSession;
@@ -366,7 +366,7 @@
 .end method
 
 .method public static setQueueTitle(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .locals 1
+    .registers 3
     .param p0, "sessionObj"    # Ljava/lang/Object;
     .param p1, "title"    # Ljava/lang/CharSequence;
 
@@ -382,7 +382,7 @@
 .end method
 
 .method public static setSessionActivity(Ljava/lang/Object;Landroid/app/PendingIntent;)V
-    .locals 1
+    .registers 3
     .param p0, "sessionObj"    # Ljava/lang/Object;
     .param p1, "pi"    # Landroid/app/PendingIntent;
 
@@ -398,19 +398,19 @@
 .end method
 
 .method public static verifySession(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 3
     .param p0, "mediaSession"    # Ljava/lang/Object;
 
     .line 43
     instance-of v0, p0, Landroid/media/session/MediaSession;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_5
 
     .line 44
     return-object p0
 
     .line 46
-    :cond_0
+    :cond_5
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "mediaSession is not a valid MediaSession object"
@@ -421,19 +421,19 @@
 .end method
 
 .method public static verifyToken(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 3
     .param p0, "token"    # Ljava/lang/Object;
 
     .line 50
     instance-of v0, p0, Landroid/media/session/MediaSession$Token;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_5
 
     .line 51
     return-object p0
 
     .line 53
-    :cond_0
+    :cond_5
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "token is not a valid MediaSession.Token object"

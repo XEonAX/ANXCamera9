@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 1534
     invoke-direct {p0}, Landroid/support/v4/widget/SlidingPaneLayout$SlidingPanelLayoutImplBase;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public invalidateChildRegion(Landroid/support/v4/widget/SlidingPaneLayout;Landroid/view/View;)V
-    .locals 1
+    .registers 4
     .param p1, "parent"    # Landroid/support/v4/widget/SlidingPaneLayout;
     .param p2, "child"    # Landroid/view/View;
 

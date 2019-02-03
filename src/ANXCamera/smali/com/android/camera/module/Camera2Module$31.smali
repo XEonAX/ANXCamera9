@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/module/Camera2Module;->stopScreenLight()V
+    value = Lcom/android/camera/module/Camera2Module;->startScreenLight(II)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -20,13 +20,21 @@
 # instance fields
 .field final synthetic this$0:Lcom/android/camera/module/Camera2Module;
 
+.field final synthetic val$brightness:I
+
+.field final synthetic val$color:I
+
 
 # direct methods
-.method constructor <init>(Lcom/android/camera/module/Camera2Module;)V
+.method constructor <init>(Lcom/android/camera/module/Camera2Module;II)V
     .locals 0
 
-    .line 5231
+    .line 5684
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module$31;->this$0:Lcom/android/camera/module/Camera2Module;
+
+    iput p2, p0, Lcom/android/camera/module/Camera2Module$31;->val$brightness:I
+
+    iput p3, p0, Lcom/android/camera/module/Camera2Module$31;->val$color:I
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -36,23 +44,25 @@
 
 # virtual methods
 .method public run()V
-    .locals 4
+    .locals 2
 
-    .line 5234
+    .line 5687
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$31;->this$0:Lcom/android/camera/module/Camera2Module;
 
     iget-object v0, v0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     if-eqz v0, :cond_0
 
-    .line 5235
+    .line 5688
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$31;->this$0:Lcom/android/camera/module/Camera2Module;
 
     iget-object v0, v0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
-    invoke-virtual {v0}, Lcom/android/camera/Camera;->restoreWindowBrightness()V
+    iget v1, p0, Lcom/android/camera/module/Camera2Module$31;->val$brightness:I
 
-    .line 5238
+    invoke-virtual {v0, v1}, Lcom/android/camera/Camera;->setWindowBrightness(I)V
+
+    .line 5691
     :cond_0
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -66,46 +76,18 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$FullScreenProtocol;
 
-    .line 5239
-    invoke-static {}, Lcom/android/camera/module/Camera2Module;->access$1500()Ljava/lang/String;
-
-    move-result-object v1
-
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "stopScreenLight: protocol = "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    const-string v3, ", mHandler = "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    iget-object v3, p0, Lcom/android/camera/module/Camera2Module$31;->this$0:Lcom/android/camera/module/Camera2Module;
-
-    invoke-static {v3}, Lcom/android/camera/module/Camera2Module;->access$2100(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/module/Camera2Module$MainHandler;
-
-    move-result-object v3
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 5240
+    .line 5692
     if-eqz v0, :cond_1
 
-    .line 5241
-    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$FullScreenProtocol;->hideScreenLight()V
+    .line 5693
+    iget v1, p0, Lcom/android/camera/module/Camera2Module$31;->val$color:I
 
-    .line 5243
+    invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$FullScreenProtocol;->setScreenLightColor(I)V
+
+    .line 5694
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$FullScreenProtocol;->showScreenLight()V
+
+    .line 5696
     :cond_1
     return-void
 .end method

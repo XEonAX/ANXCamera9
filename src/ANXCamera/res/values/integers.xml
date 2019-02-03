@@ -8,4 +8,7 @@
     <integer name="record_progress_delay_time">500</integer>
     <integer name="camera_skip_frame_num">1</integer>
     <integer name="music_thumbnail_radius">16</integer>
+    <integer name="custom_watermark_startx">350</integer>
+    <integer name="custom_watermark_starty">100</integer>
+    <integer name="default_manual_whitebalance_value">4200</integer>
 </resources>

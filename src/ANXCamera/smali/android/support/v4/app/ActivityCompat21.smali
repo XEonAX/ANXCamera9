@@ -14,7 +14,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 32
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -24,7 +24,7 @@
 .end method
 
 .method private static createCallback(Landroid/support/v4/app/ActivityCompat21$SharedElementCallback21;)Landroid/app/SharedElementCallback;
-    .locals 2
+    .registers 3
     .param p0, "callback"    # Landroid/support/v4/app/ActivityCompat21$SharedElementCallback21;
 
     .line 73
@@ -32,7 +32,7 @@
 
     .line 74
     .local v0, "newListener":Landroid/app/SharedElementCallback;
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_9
 
     .line 75
     new-instance v1, Landroid/support/v4/app/ActivityCompat21$SharedElementCallbackImpl;
@@ -42,12 +42,12 @@
     move-object v0, v1
 
     .line 77
-    :cond_0
+    :cond_9
     return-object v0
 .end method
 
 .method public static finishAfterTransition(Landroid/app/Activity;)V
-    .locals 0
+    .registers 1
     .param p0, "activity"    # Landroid/app/Activity;
 
     .line 35
@@ -58,7 +58,7 @@
 .end method
 
 .method public static postponeEnterTransition(Landroid/app/Activity;)V
-    .locals 0
+    .registers 1
     .param p0, "activity"    # Landroid/app/Activity;
 
     .line 49
@@ -69,7 +69,7 @@
 .end method
 
 .method public static setEnterSharedElementCallback(Landroid/app/Activity;Landroid/support/v4/app/ActivityCompat21$SharedElementCallback21;)V
-    .locals 1
+    .registers 3
     .param p0, "activity"    # Landroid/app/Activity;
     .param p1, "callback"    # Landroid/support/v4/app/ActivityCompat21$SharedElementCallback21;
 
@@ -85,7 +85,7 @@
 .end method
 
 .method public static setExitSharedElementCallback(Landroid/app/Activity;Landroid/support/v4/app/ActivityCompat21$SharedElementCallback21;)V
-    .locals 1
+    .registers 3
     .param p0, "activity"    # Landroid/app/Activity;
     .param p1, "callback"    # Landroid/support/v4/app/ActivityCompat21$SharedElementCallback21;
 
@@ -101,7 +101,7 @@
 .end method
 
 .method public static startPostponedEnterTransition(Landroid/app/Activity;)V
-    .locals 0
+    .registers 1
     .param p0, "activity"    # Landroid/app/Activity;
 
     .line 53

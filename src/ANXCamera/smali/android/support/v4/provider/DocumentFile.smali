@@ -13,7 +13,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/provider/DocumentFile;)V
-    .locals 0
+    .registers 2
     .param p1, "parent"    # Landroid/support/v4/provider/DocumentFile;
 
     .line 83
@@ -27,7 +27,7 @@
 .end method
 
 .method public static fromFile(Ljava/io/File;)Landroid/support/v4/provider/DocumentFile;
-    .locals 2
+    .registers 3
     .param p0, "file"    # Ljava/io/File;
 
     .line 96
@@ -41,7 +41,7 @@
 .end method
 
 .method public static fromSingleUri(Landroid/content/Context;Landroid/net/Uri;)Landroid/support/v4/provider/DocumentFile;
-    .locals 3
+    .registers 5
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "singleUri"    # Landroid/net/Uri;
 
@@ -54,7 +54,7 @@
 
     const/16 v2, 0x13
 
-    if-lt v0, v2, :cond_0
+    if-lt v0, v2, :cond_d
 
     .line 112
     new-instance v2, Landroid/support/v4/provider/SingleDocumentFile;
@@ -64,12 +64,12 @@
     return-object v2
 
     .line 114
-    :cond_0
+    :cond_d
     return-object v1
 .end method
 
 .method public static fromTreeUri(Landroid/content/Context;Landroid/net/Uri;)Landroid/support/v4/provider/DocumentFile;
-    .locals 4
+    .registers 6
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "treeUri"    # Landroid/net/Uri;
 
@@ -82,7 +82,7 @@
 
     const/16 v2, 0x15
 
-    if-lt v0, v2, :cond_0
+    if-lt v0, v2, :cond_11
 
     .line 130
     new-instance v2, Landroid/support/v4/provider/TreeDocumentFile;
@@ -96,12 +96,12 @@
     return-object v2
 
     .line 133
-    :cond_0
+    :cond_11
     return-object v1
 .end method
 
 .method public static isDocumentUri(Landroid/content/Context;Landroid/net/Uri;)Z
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "uri"    # Landroid/net/Uri;
 
@@ -112,7 +112,7 @@
     .local v0, "version":I
     const/16 v1, 0x13
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_b
 
     .line 144
     invoke-static {p0, p1}, Landroid/support/v4/provider/DocumentsContractApi19;->isDocumentUri(Landroid/content/Context;Landroid/net/Uri;)Z
@@ -122,7 +122,7 @@
     return v1
 
     .line 146
-    :cond_0
+    :cond_b
     const/4 v1, 0x0
 
     return v1
@@ -149,7 +149,7 @@
 .end method
 
 .method public findFile(Ljava/lang/String;)Landroid/support/v4/provider/DocumentFile;
-    .locals 5
+    .registers 7
     .param p1, "displayName"    # Ljava/lang/String;
 
     .line 316
@@ -164,8 +164,8 @@
     const/4 v2, 0x0
 
     .local v2, "i$":I
-    :goto_0
-    if-ge v2, v1, :cond_1
+    :goto_6
+    if-ge v2, v1, :cond_18
 
     aget-object v3, v0, v2
 
@@ -179,23 +179,23 @@
 
     move-result v4
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_15
 
     .line 318
     return-object v3
 
     .line 316
     .end local v3    # "doc":Landroid/support/v4/provider/DocumentFile;
-    :cond_0
+    :cond_15
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_6
 
     .line 321
     .end local v0    # "arr$":[Landroid/support/v4/provider/DocumentFile;
     .end local v1    # "len$":I
     .end local v2    # "i$":I
-    :cond_1
+    :cond_18
     const/4 v0, 0x0
 
     return-object v0
@@ -205,7 +205,7 @@
 .end method
 
 .method public getParentFile()Landroid/support/v4/provider/DocumentFile;
-    .locals 1
+    .registers 2
 
     .line 217
     iget-object v0, p0, Landroid/support/v4/provider/DocumentFile;->mParent:Landroid/support/v4/provider/DocumentFile;

@@ -32,26 +32,27 @@ public class CameraSnapView extends View {
     private static final String TAG = CameraSnapView.class.getSimpleName();
     private CameraSnapAnimateDrawable cameraSnapAnimateDrawable;
     private int mCurrentMode;
+    private boolean mEnableSnapClick = true;
     private Bitmap mExtraBitmap;
     private Matrix mExtraBitmapMatrix;
     private Paint mExtraBitmapPaint;
     private Handler mHandler = new Handler() {
         public void handleMessage(Message message) {
-            switch (message.what) {
-                case 1:
-                    CameraSnapView.this.mSnapListener.onSnapClick();
-                    return;
-                case 2:
-                    CameraSnapView.this.mSnapListener.onSnapLongPress();
-                    return;
-                case 3:
-                    CameraSnapView.this.mSnapListener.onSnapLongPressCancelOut();
-                    return;
-                case 4:
-                    CameraSnapView.this.mSnapListener.onSnapLongPressCancelIn();
-                    return;
-                default:
-                    return;
+            if (CameraSnapView.this.mSnapListener != null) {
+                switch (message.what) {
+                    case 1:
+                        CameraSnapView.this.mSnapListener.onSnapClick();
+                        break;
+                    case 2:
+                        CameraSnapView.this.mSnapListener.onSnapLongPress();
+                        break;
+                    case 3:
+                        CameraSnapView.this.mSnapListener.onSnapLongPressCancelOut();
+                        break;
+                    case 4:
+                        CameraSnapView.this.mSnapListener.onSnapLongPressCancelIn();
+                        break;
+                }
             }
         }
     };
@@ -201,6 +202,10 @@ public class CameraSnapView extends View {
         this.cameraSnapAnimateDrawable.addSegmentNow();
     }
 
+    public boolean hasSegments() {
+        return this.cameraSnapAnimateDrawable.hasSegments();
+    }
+
     public void removeLastSegment() {
         this.cameraSnapAnimateDrawable.removeLastSegment();
     }
@@ -210,7 +215,7 @@ public class CameraSnapView extends View {
     }
 
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (isEnabled()) {
+        if (isSnapEnableClick()) {
             int action = motionEvent.getAction();
             long j = 0;
             if (action != 6) {
@@ -355,5 +360,18 @@ public class CameraSnapView extends View {
         this.mHandler.removeCallbacksAndMessages(null);
         this.mHandler.sendEmptyMessage(1);
         return true;
+    }
+
+    public void setSnapClickEnable(boolean z) {
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("setClickEnable: ");
+        stringBuilder.append(z);
+        Log.d(str, stringBuilder.toString());
+        this.mEnableSnapClick = z;
+    }
+
+    public boolean isSnapEnableClick() {
+        return this.mEnableSnapClick;
     }
 }

@@ -6,6 +6,7 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
+        Lcom/android/camera/protocol/ModeProtocol$RecordState;,
         Lcom/android/camera/protocol/ModeProtocol$UltraWideProtocol;,
         Lcom/android/camera/protocol/ModeProtocol$OnFaceBeautyChangedProtocol;,
         Lcom/android/camera/protocol/ModeProtocol$VerticalProtocol;,
@@ -47,6 +48,8 @@
         Lcom/android/camera/protocol/ModeProtocol$TopAlert;,
         Lcom/android/camera/protocol/ModeProtocol$LiveConfigChanges;,
         Lcom/android/camera/protocol/ModeProtocol$LiveVideoEditor;,
+        Lcom/android/camera/protocol/ModeProtocol$AutoZoomModuleProtocol;,
+        Lcom/android/camera/protocol/ModeProtocol$AutoZoomViewProtocol;,
         Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;,
         Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;,
         Lcom/android/camera/protocol/ModeProtocol$EventType;,
@@ -96,9 +99,15 @@
 
 .field public static final PROTOCOL_ACTION_TRACK:I = 0xba
 
+.field public static final PROTOCOL_AUTO_ZOOM_MODULE:I = 0xd7
+
+.field public static final PROTOCOL_AUTO_ZOOM_VIEW:I = 0xd6
+
 .field public static final PROTOCOL_BACK_STACK:I = 0xab
 
 .field public static final PROTOCOL_BEAUTY_RECORDING:I = 0xad
+
+.field public static final PROTOCOL_BEAUTY_SHOW_STATUS:I = 0xd5
 
 .field public static final PROTOCOL_BOKEH_F_NUMBER:I = 0xd2
 
@@ -147,6 +156,8 @@
 .field public static final PROTOCOL_PLAY_VIDEO:I = 0xa7
 
 .field public static final PROTOCOL_PREVIEW_CHANGED:I = 0xa8
+
+.field public static final PROTOCOL_RECORDING_STATE:I = 0xd4
 
 .field public static final PROTOCOL_SCREEN_LIGHT:I = 0xc4
 

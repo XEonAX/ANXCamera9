@@ -16,7 +16,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 29
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -25,7 +25,7 @@
 .end method
 
 .method public static getDescription(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .locals 1
+    .registers 2
     .param p0, "routeObj"    # Ljava/lang/Object;
 
     .line 31
@@ -41,7 +41,7 @@
 .end method
 
 .method public static isConnecting(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 2
     .param p0, "routeObj"    # Ljava/lang/Object;
 
     .line 35

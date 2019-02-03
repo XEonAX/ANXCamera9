@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 19
     invoke-direct {p0}, Lcom/google/zxing/datamatrix/encoder/C40Encoder;-><init>()V
@@ -16,7 +16,7 @@
 
 # virtual methods
 .method encodeChar(CLjava/lang/StringBuilder;)I
-    .locals 3
+    .registers 6
     .param p1, "c"    # C
     .param p2, "sb"    # Ljava/lang/StringBuilder;
 
@@ -25,7 +25,7 @@
 
     const/16 v1, 0x20
 
-    if-ne p1, v1, :cond_0
+    if-ne p1, v1, :cond_a
 
     .line 29
     const/4 v1, 0x3
@@ -36,14 +36,14 @@
     return v0
 
     .line 32
-    :cond_0
+    :cond_a
     const/16 v1, 0x30
 
-    if-lt p1, v1, :cond_1
+    if-lt p1, v1, :cond_1b
 
     const/16 v1, 0x39
 
-    if-gt p1, v1, :cond_1
+    if-gt p1, v1, :cond_1b
 
     .line 33
     add-int/lit8 v1, p1, -0x30
@@ -58,14 +58,14 @@
     return v0
 
     .line 36
-    :cond_1
+    :cond_1b
     const/16 v1, 0x61
 
-    if-lt p1, v1, :cond_2
+    if-lt p1, v1, :cond_2c
 
     const/16 v1, 0x7a
 
-    if-gt p1, v1, :cond_2
+    if-gt p1, v1, :cond_2c
 
     .line 37
     add-int/lit8 v1, p1, -0x61
@@ -80,14 +80,14 @@
     return v0
 
     .line 40
-    :cond_2
+    :cond_2c
     const/4 v1, 0x2
 
-    if-ltz p1, :cond_3
+    if-ltz p1, :cond_3b
 
     const/16 v2, 0x1f
 
-    if-gt p1, v2, :cond_3
+    if-gt p1, v2, :cond_3b
 
     .line 41
     const/4 v0, 0x0
@@ -101,14 +101,14 @@
     return v1
 
     .line 45
-    :cond_3
+    :cond_3b
     const/16 v2, 0x21
 
-    if-lt p1, v2, :cond_4
+    if-lt p1, v2, :cond_4d
 
     const/16 v2, 0x2f
 
-    if-gt p1, v2, :cond_4
+    if-gt p1, v2, :cond_4d
 
     .line 46
     invoke-virtual {p2, v0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -124,14 +124,14 @@
     return v1
 
     .line 50
-    :cond_4
+    :cond_4d
     const/16 v2, 0x3a
 
-    if-lt p1, v2, :cond_5
+    if-lt p1, v2, :cond_61
 
     const/16 v2, 0x40
 
-    if-gt p1, v2, :cond_5
+    if-gt p1, v2, :cond_61
 
     .line 51
     invoke-virtual {p2, v0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -149,14 +149,14 @@
     return v1
 
     .line 55
-    :cond_5
+    :cond_61
     const/16 v2, 0x5b
 
-    if-lt p1, v2, :cond_6
+    if-lt p1, v2, :cond_75
 
     const/16 v2, 0x5f
 
-    if-gt p1, v2, :cond_6
+    if-gt p1, v2, :cond_75
 
     .line 56
     invoke-virtual {p2, v0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -174,10 +174,10 @@
     return v1
 
     .line 60
-    :cond_6
+    :cond_75
     const/16 v2, 0x60
 
-    if-ne p1, v2, :cond_7
+    if-ne p1, v2, :cond_83
 
     .line 61
     invoke-virtual {p2, v1}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -193,14 +193,14 @@
     return v1
 
     .line 65
-    :cond_7
+    :cond_83
     const/16 v2, 0x41
 
-    if-lt p1, v2, :cond_8
+    if-lt p1, v2, :cond_96
 
     const/16 v2, 0x5a
 
-    if-gt p1, v2, :cond_8
+    if-gt p1, v2, :cond_96
 
     .line 66
     invoke-virtual {p2, v1}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -218,14 +218,14 @@
     return v1
 
     .line 70
-    :cond_8
+    :cond_96
     const/16 v0, 0x7b
 
-    if-lt p1, v0, :cond_9
+    if-lt p1, v0, :cond_aa
 
     const/16 v0, 0x7f
 
-    if-gt p1, v0, :cond_9
+    if-gt p1, v0, :cond_aa
 
     .line 71
     invoke-virtual {p2, v1}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -243,10 +243,10 @@
     return v1
 
     .line 75
-    :cond_9
+    :cond_aa
     const/16 v0, 0x80
 
-    if-lt p1, v0, :cond_a
+    if-lt p1, v0, :cond_bd
 
     .line 76
     const-string v0, "\u0001\u001e"
@@ -273,7 +273,7 @@
 
     .line 81
     .end local v0    # "len":I
-    :cond_a
+    :cond_bd
     invoke-static {p1}, Lcom/google/zxing/datamatrix/encoder/HighLevelEncoder;->illegalCharacter(C)V
 
     .line 82
@@ -283,7 +283,7 @@
 .end method
 
 .method public getEncodingMode()I
-    .locals 1
+    .registers 2
 
     .line 23
     const/4 v0, 0x2

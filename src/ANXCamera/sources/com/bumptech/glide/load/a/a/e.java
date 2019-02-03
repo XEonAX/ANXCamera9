@@ -17,23 +17,23 @@ import java.util.List;
 /* compiled from: ThumbnailStreamOpener */
 class e {
     private static final String TAG = "ThumbStreamOpener";
-    private static final a dI = new a();
-    private final a dJ;
-    private final d dK;
-    private final List<ImageHeaderParser> dL;
-    private final b du;
-    private final ContentResolver dv;
+    private static final a dJ = new a();
+    private final a dK;
+    private final d dL;
+    private final List<ImageHeaderParser> dM;
+    private final b dv;
+    private final ContentResolver dw;
 
     e(List<ImageHeaderParser> list, d dVar, b bVar, ContentResolver contentResolver) {
-        this(list, dI, dVar, bVar, contentResolver);
+        this(list, dJ, dVar, bVar, contentResolver);
     }
 
     e(List<ImageHeaderParser> list, a aVar, d dVar, b bVar, ContentResolver contentResolver) {
-        this.dJ = aVar;
-        this.dK = dVar;
-        this.du = bVar;
-        this.dv = contentResolver;
-        this.dL = list;
+        this.dK = aVar;
+        this.dL = dVar;
+        this.dv = bVar;
+        this.dw = contentResolver;
+        this.dM = list;
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:13:0x001d A:{ExcHandler: java.io.IOException (r1_3 'e' java.lang.Throwable), Splitter: B:1:0x0002} */
@@ -75,9 +75,9 @@ class e {
     int h(Uri uri) {
         InputStream openInputStream;
         try {
-            openInputStream = this.dv.openInputStream(uri);
+            openInputStream = this.dw.openInputStream(uri);
             try {
-                int b = com.bumptech.glide.load.b.b(this.dL, openInputStream, this.du);
+                int b = com.bumptech.glide.load.b.b(this.dM, openInputStream, this.dv);
                 if (openInputStream != null) {
                     try {
                         openInputStream.close();
@@ -107,13 +107,13 @@ class e {
         if (TextUtils.isEmpty(j)) {
             return null;
         }
-        File h = this.dJ.h(j);
+        File h = this.dK.h(j);
         if (!e(h)) {
             return null;
         }
         Uri fromFile = Uri.fromFile(h);
         try {
-            return this.dv.openInputStream(fromFile);
+            return this.dw.openInputStream(fromFile);
         } catch (Throwable e) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("NPE opening uri: ");
@@ -126,7 +126,7 @@ class e {
 
     @Nullable
     private String j(@NonNull Uri uri) {
-        Cursor g = this.dK.g(uri);
+        Cursor g = this.dL.g(uri);
         if (g != null) {
             try {
                 if (g.moveToFirst()) {
@@ -146,6 +146,6 @@ class e {
     }
 
     private boolean e(File file) {
-        return this.dJ.exists(file) && 0 < this.dJ.d(file);
+        return this.dK.exists(file) && 0 < this.dK.d(file);
     }
 }

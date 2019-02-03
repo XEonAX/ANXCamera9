@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/module/Camera2Module;)V
     .locals 0
 
-    .line 692
+    .line 667
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module$4;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,12 +38,12 @@
 .method public run()V
     .locals 2
 
-    .line 695
+    .line 670
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 696
+    .line 671
     const/16 v1, 0xac
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -52,13 +52,13 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
 
-    .line 697
+    .line 672
     if-eqz v0, :cond_0
 
-    .line 698
+    .line 673
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->startLiveShotAnimation()V
 
-    .line 700
+    .line 675
     :cond_0
     return-void
 .end method

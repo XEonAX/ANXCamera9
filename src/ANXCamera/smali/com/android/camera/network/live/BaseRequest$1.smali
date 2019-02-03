@@ -27,7 +27,7 @@
 .method constructor <init>(Lcom/android/camera/network/live/BaseRequest;Lcom/android/camera/network/net/base/ResponseListener;)V
     .locals 0
 
-    .line 38
+    .line 47
     iput-object p1, p0, Lcom/android/camera/network/live/BaseRequest$1;->this$0:Lcom/android/camera/network/live/BaseRequest;
 
     iput-object p2, p0, Lcom/android/camera/network/live/BaseRequest$1;->val$listener:Lcom/android/camera/network/net/base/ResponseListener;
@@ -42,14 +42,14 @@
 .method public onFailure(Lokhttp3/Call;Ljava/io/IOException;)V
     .locals 2
 
-    .line 41
+    .line 50
     const-string p1, "BaseRequest"
 
     const-string v0, "execute failed"
 
     invoke-static {p1, v0, p2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 42
+    .line 51
     iget-object p1, p0, Lcom/android/camera/network/live/BaseRequest$1;->val$listener:Lcom/android/camera/network/net/base/ResponseListener;
 
     sget-object v0, Lcom/android/camera/network/net/base/ErrorCode;->NET_ERROR:Lcom/android/camera/network/net/base/ErrorCode;
@@ -60,21 +60,21 @@
 
     invoke-interface {p1, v0, v1, p2}, Lcom/android/camera/network/net/base/ResponseListener;->onResponseError(Lcom/android/camera/network/net/base/ErrorCode;Ljava/lang/String;Ljava/lang/Object;)V
 
-    .line 43
+    .line 52
     return-void
 .end method
 
 .method public onResponse(Lokhttp3/Call;Lokhttp3/Response;)V
     .locals 3
 
-    .line 47
+    .line 56
     invoke-virtual {p2}, Lokhttp3/Response;->isSuccessful()Z
 
     move-result p1
 
     if-nez p1, :cond_0
 
-    .line 48
+    .line 57
     iget-object p1, p0, Lcom/android/camera/network/live/BaseRequest$1;->val$listener:Lcom/android/camera/network/net/base/ResponseListener;
 
     sget-object v0, Lcom/android/camera/network/net/base/ErrorCode;->SERVER_ERROR:Lcom/android/camera/network/net/base/ErrorCode;
@@ -87,7 +87,7 @@
 
     goto :goto_1
 
-    .line 51
+    .line 60
     :cond_0
     :try_start_0
     iget-object p1, p0, Lcom/android/camera/network/live/BaseRequest$1;->this$0:Lcom/android/camera/network/live/BaseRequest;
@@ -104,7 +104,7 @@
 
     move-result-object p1
 
-    .line 52
+    .line 61
     iget-object v0, p0, Lcom/android/camera/network/live/BaseRequest$1;->val$listener:Lcom/android/camera/network/net/base/ResponseListener;
 
     const/4 v1, 0x1
@@ -122,18 +122,18 @@
 
     goto :goto_0
 
-    .line 56
+    .line 65
     :catch_0
     move-exception p1
 
-    .line 57
+    .line 66
     const-string v0, "BaseRequest"
 
     const-string v1, "execute process failed"
 
     invoke-static {v0, v1, p1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 58
+    .line 67
     iget-object v0, p0, Lcom/android/camera/network/live/BaseRequest$1;->val$listener:Lcom/android/camera/network/net/base/ResponseListener;
 
     sget-object v1, Lcom/android/camera/network/net/base/ErrorCode;->NET_ERROR:Lcom/android/camera/network/net/base/ErrorCode;
@@ -146,18 +146,18 @@
 
     goto :goto_1
 
-    .line 53
+    .line 62
     :catch_1
     move-exception p1
 
-    .line 54
+    .line 63
     const-string v0, "BaseRequest"
 
     const-string v1, "execute process failed"
 
     invoke-static {v0, v1, p1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 55
+    .line 64
     iget-object v0, p0, Lcom/android/camera/network/live/BaseRequest$1;->val$listener:Lcom/android/camera/network/net/base/ResponseListener;
 
     invoke-virtual {p1}, Lcom/android/camera/network/live/BaseRequestException;->getErrorCode()Lcom/android/camera/network/net/base/ErrorCode;
@@ -170,14 +170,14 @@
 
     invoke-interface {v0, v1, p1, p2}, Lcom/android/camera/network/net/base/ResponseListener;->onResponseError(Lcom/android/camera/network/net/base/ErrorCode;Ljava/lang/String;Ljava/lang/Object;)V
 
-    .line 59
+    .line 68
     :goto_0
     nop
 
-    .line 61
+    .line 70
     :goto_1
     invoke-virtual {p2}, Lokhttp3/Response;->close()V
 
-    .line 62
+    .line 71
     return-void
 .end method

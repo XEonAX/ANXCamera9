@@ -30,26 +30,26 @@
 .method public constructor <init>(Lcom/android/camera/ActivityBase;)V
     .locals 1
 
-    .line 143
+    .line 142
     invoke-direct {p0}, Landroid/os/Handler;-><init>()V
 
-    .line 144
+    .line 143
     new-instance v0, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v0, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
     iput-object v0, p0, Lcom/android/camera/ActivityBase$ActivityHandler;->mActivity:Ljava/lang/ref/WeakReference;
 
-    .line 145
+    .line 144
     return-void
 .end method
 
 
 # virtual methods
 .method public handleMessage(Landroid/os/Message;)V
-    .locals 5
+    .locals 8
 
-    .line 149
+    .line 148
     iget-object v0, p0, Lcom/android/camera/ActivityBase$ActivityHandler;->mActivity:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -58,17 +58,19 @@
 
     check-cast v0, Lcom/android/camera/ActivityBase;
 
-    .line 150
+    .line 149
     if-nez v0, :cond_0
 
-    .line 151
+    .line 150
     return-void
 
-    .line 153
+    .line 152
     :cond_0
     iget v1, p1, Landroid/os/Message;->what:I
 
     const/16 v2, 0xa
+
+    const/4 v3, 0x1
 
     if-eq v1, v2, :cond_1
 
@@ -76,7 +78,7 @@
 
     goto :goto_1
 
-    .line 162
+    .line 161
     :pswitch_0
     const-string p1, "ActivityBase"
 
@@ -84,15 +86,13 @@
 
     invoke-static {p1, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
+    .line 162
+    invoke-static {v0, v3}, Lcom/android/camera/ActivityBase;->access$002(Lcom/android/camera/ActivityBase;Z)Z
+
     .line 163
-    const/4 p1, 0x1
-
-    invoke-static {v0, p1}, Lcom/android/camera/ActivityBase;->access$002(Lcom/android/camera/ActivityBase;Z)Z
-
-    .line 164
     goto :goto_1
 
-    .line 155
+    .line 154
     :pswitch_1
     invoke-virtual {v0}, Lcom/android/camera/ActivityBase;->isActivityPaused()Z
 
@@ -100,7 +100,7 @@
 
     if-nez v1, :cond_4
 
-    .line 156
+    .line 155
     iget-object p1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast p1, Ljava/lang/String;
@@ -109,71 +109,73 @@
 
     goto :goto_1
 
-    .line 168
+    .line 167
     :cond_1
     iget v1, p1, Landroid/os/Message;->arg1:I
 
-    .line 169
+    .line 168
     const-string v2, "ActivityBase"
 
-    new-instance v3, Ljava/lang/StringBuilder;
+    sget-object v4, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
 
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+    const-string v5, "msg = %s , exception = 0x%x"
 
-    const-string v4, "msg = "
+    const/4 v6, 0x2
 
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    new-array v6, v6, [Ljava/lang/Object;
 
-    invoke-virtual {v3, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    const/4 v7, 0x0
 
-    const-string p1, ", exception = "
+    aput-object p1, v6, v7
 
-    invoke-virtual {v3, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    move-result-object p1
 
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    aput-object p1, v6, v3
+
+    invoke-static {v4, v5, v6}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object p1
 
     invoke-static {v2, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 170
+    .line 169
     packed-switch v1, :pswitch_data_1
 
-    .line 172
+    .line 171
     :pswitch_2
     goto :goto_1
 
-    .line 175
+    .line 174
     :pswitch_3
-    const p1, 0x7f0b0008
+    const p1, 0x7f090008
 
     invoke-static {v0, p1}, Lcom/android/camera/Util;->showErrorAndFinish(Landroid/app/Activity;I)V
 
-    .line 176
+    .line 175
     invoke-virtual {v0}, Lcom/android/camera/ActivityBase;->showErrorDialog()V
 
-    .line 177
+    .line 176
     goto :goto_1
 
-    .line 185
+    .line 184
     :pswitch_4
     nop
 
-    .line 186
+    .line 185
     invoke-static {v0}, Lcom/android/camera/Util;->isInVideoCall(Landroid/app/Activity;)Z
 
     move-result p1
 
     if-eqz p1, :cond_2
 
-    .line 187
-    const p1, 0x7f0b01af
+    .line 186
+    const p1, 0x7f0901b6
 
     goto :goto_0
 
-    .line 188
+    .line 187
     :cond_2
     invoke-static {}, Lcom/android/camera/CameraSettings;->updateOpenCameraFailTimes()J
 
@@ -185,26 +187,28 @@
 
     if-lez p1, :cond_3
 
-    .line 189
-    const p1, 0x7f0b0007
+    .line 188
+    const p1, 0x7f090007
 
     goto :goto_0
 
-    .line 190
+    .line 189
     :cond_3
-    const p1, 0x7f0b0006
+    const p1, 0x7f090006
 
-    .line 185
+    .line 184
     :goto_0
     invoke-static {v0, p1}, Lcom/android/camera/Util;->showErrorAndFinish(Landroid/app/Activity;I)V
 
-    .line 191
+    .line 190
     invoke-virtual {v0}, Lcom/android/camera/ActivityBase;->showErrorDialog()V
 
-    .line 196
+    .line 195
     :cond_4
     :goto_1
     return-void
+
+    nop
 
     :pswitch_data_0
     .packed-switch 0x0

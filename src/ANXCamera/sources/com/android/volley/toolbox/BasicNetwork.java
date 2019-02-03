@@ -128,7 +128,7 @@ public class BasicNetwork implements Network {
             if (r0 == 401) goto L_0x012a;
      */
     /* JADX WARNING: Missing block: B:55:0x00f8, code:
-            if (r0 < 400) goto L_0x0105;
+            if (r0 < com.bytedance.frameworks.core.monitor.MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME) goto L_0x0105;
      */
     /* JADX WARNING: Missing block: B:59:0x0104, code:
             throw new com.android.volley.ClientError(r13);

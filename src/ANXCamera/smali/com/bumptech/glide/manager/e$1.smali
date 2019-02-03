@@ -15,7 +15,7 @@
 
 
 # instance fields
-.field final synthetic mm:Lcom/bumptech/glide/manager/e;
+.field final synthetic ml:Lcom/bumptech/glide/manager/e;
 
 
 # direct methods
@@ -23,7 +23,7 @@
     .locals 0
 
     .line 26
-    iput-object p1, p0, Lcom/bumptech/glide/manager/e$1;->mm:Lcom/bumptech/glide/manager/e;
+    iput-object p1, p0, Lcom/bumptech/glide/manager/e$1;->ml:Lcom/bumptech/glide/manager/e;
 
     invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
 
@@ -40,23 +40,23 @@
     .end param
 
     .line 29
-    iget-object p2, p0, Lcom/bumptech/glide/manager/e$1;->mm:Lcom/bumptech/glide/manager/e;
+    iget-object p2, p0, Lcom/bumptech/glide/manager/e$1;->ml:Lcom/bumptech/glide/manager/e;
 
     iget-boolean p2, p2, Lcom/bumptech/glide/manager/e;->isConnected:Z
 
     .line 30
-    iget-object v0, p0, Lcom/bumptech/glide/manager/e$1;->mm:Lcom/bumptech/glide/manager/e;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/e$1;->ml:Lcom/bumptech/glide/manager/e;
 
-    iget-object v1, p0, Lcom/bumptech/glide/manager/e$1;->mm:Lcom/bumptech/glide/manager/e;
+    iget-object v1, p0, Lcom/bumptech/glide/manager/e$1;->ml:Lcom/bumptech/glide/manager/e;
 
-    invoke-virtual {v1, p1}, Lcom/bumptech/glide/manager/e;->h(Landroid/content/Context;)Z
+    invoke-virtual {v1, p1}, Lcom/bumptech/glide/manager/e;->isConnected(Landroid/content/Context;)Z
 
     move-result p1
 
     iput-boolean p1, v0, Lcom/bumptech/glide/manager/e;->isConnected:Z
 
     .line 31
-    iget-object p1, p0, Lcom/bumptech/glide/manager/e$1;->mm:Lcom/bumptech/glide/manager/e;
+    iget-object p1, p0, Lcom/bumptech/glide/manager/e$1;->ml:Lcom/bumptech/glide/manager/e;
 
     iget-boolean p1, p1, Lcom/bumptech/glide/manager/e;->isConnected:Z
 
@@ -84,7 +84,7 @@
 
     invoke-virtual {p2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iget-object v0, p0, Lcom/bumptech/glide/manager/e$1;->mm:Lcom/bumptech/glide/manager/e;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/e$1;->ml:Lcom/bumptech/glide/manager/e;
 
     iget-boolean v0, v0, Lcom/bumptech/glide/manager/e;->isConnected:Z
 
@@ -98,11 +98,11 @@
 
     .line 36
     :cond_0
-    iget-object p1, p0, Lcom/bumptech/glide/manager/e$1;->mm:Lcom/bumptech/glide/manager/e;
+    iget-object p1, p0, Lcom/bumptech/glide/manager/e$1;->ml:Lcom/bumptech/glide/manager/e;
 
-    iget-object p1, p1, Lcom/bumptech/glide/manager/e;->mj:Lcom/bumptech/glide/manager/c$a;
+    iget-object p1, p1, Lcom/bumptech/glide/manager/e;->mi:Lcom/bumptech/glide/manager/c$a;
 
-    iget-object p2, p0, Lcom/bumptech/glide/manager/e$1;->mm:Lcom/bumptech/glide/manager/e;
+    iget-object p2, p0, Lcom/bumptech/glide/manager/e$1;->ml:Lcom/bumptech/glide/manager/e;
 
     iget-boolean p2, p2, Lcom/bumptech/glide/manager/e;->isConnected:Z
 

@@ -23,9 +23,9 @@
 
 
 # instance fields
-.field ag:I
-
 .field ah:I
+
+.field ai:I
 
 
 # direct methods
@@ -48,9 +48,9 @@
     .end param
 
     .line 261
-    iget v0, p0, Lcom/bumptech/glide/f$c;->ah:I
+    iget v0, p0, Lcom/bumptech/glide/f$c;->ai:I
 
-    iget v1, p0, Lcom/bumptech/glide/f$c;->ag:I
+    iget v1, p0, Lcom/bumptech/glide/f$c;->ah:I
 
     invoke-interface {p1, v0, v1}, Lcom/bumptech/glide/request/target/m;->m(II)V
 

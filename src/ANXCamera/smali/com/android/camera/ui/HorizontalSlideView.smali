@@ -13,6 +13,10 @@
 .end annotation
 
 
+# static fields
+.field private static final TAG:Ljava/lang/String; = "HSlideView"
+
+
 # instance fields
 .field private mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
 
@@ -49,115 +53,115 @@
 .method public constructor <init>(Landroid/content/Context;)V
     .locals 1
 
-    .line 76
+    .line 80
     invoke-direct {p0, p1}, Landroid/view/View;-><init>(Landroid/content/Context;)V
 
-    .line 17
+    .line 21
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
-    .line 26
+    .line 30
     iput v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMinX:I
 
-    .line 27
+    .line 31
     iput v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMaxX:I
 
-    .line 28
+    .line 32
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mJustifyEnabled:Z
 
-    .line 34
+    .line 38
     new-instance v0, Lcom/android/camera/ui/HorizontalSlideView$1;
 
     invoke-direct {v0, p0}, Lcom/android/camera/ui/HorizontalSlideView$1;-><init>(Lcom/android/camera/ui/HorizontalSlideView;)V
 
     iput-object v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mGestureListener:Landroid/view/GestureDetector$OnGestureListener;
 
-    .line 77
+    .line 81
     invoke-virtual {p0, p1}, Lcom/android/camera/ui/HorizontalSlideView;->init(Landroid/content/Context;)V
 
-    .line 78
+    .line 82
     return-void
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
     .locals 0
 
-    .line 81
+    .line 85
     invoke-direct {p0, p1, p2}, Landroid/view/View;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
 
-    .line 17
+    .line 21
     const/4 p2, 0x0
 
     iput p2, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
-    .line 26
+    .line 30
     iput p2, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMinX:I
 
-    .line 27
+    .line 31
     iput p2, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMaxX:I
 
-    .line 28
+    .line 32
     const/4 p2, 0x1
 
     iput-boolean p2, p0, Lcom/android/camera/ui/HorizontalSlideView;->mJustifyEnabled:Z
 
-    .line 34
+    .line 38
     new-instance p2, Lcom/android/camera/ui/HorizontalSlideView$1;
 
     invoke-direct {p2, p0}, Lcom/android/camera/ui/HorizontalSlideView$1;-><init>(Lcom/android/camera/ui/HorizontalSlideView;)V
 
     iput-object p2, p0, Lcom/android/camera/ui/HorizontalSlideView;->mGestureListener:Landroid/view/GestureDetector$OnGestureListener;
 
-    .line 82
+    .line 86
     invoke-virtual {p0, p1}, Lcom/android/camera/ui/HorizontalSlideView;->init(Landroid/content/Context;)V
 
-    .line 83
+    .line 87
     return-void
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
     .locals 0
 
-    .line 86
+    .line 90
     invoke-direct {p0, p1, p2, p3}, Landroid/view/View;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
-    .line 17
+    .line 21
     const/4 p2, 0x0
 
     iput p2, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
-    .line 26
+    .line 30
     iput p2, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMinX:I
 
-    .line 27
+    .line 31
     iput p2, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMaxX:I
 
-    .line 28
+    .line 32
     const/4 p2, 0x1
 
     iput-boolean p2, p0, Lcom/android/camera/ui/HorizontalSlideView;->mJustifyEnabled:Z
 
-    .line 34
+    .line 38
     new-instance p2, Lcom/android/camera/ui/HorizontalSlideView$1;
 
     invoke-direct {p2, p0}, Lcom/android/camera/ui/HorizontalSlideView$1;-><init>(Lcom/android/camera/ui/HorizontalSlideView;)V
 
     iput-object p2, p0, Lcom/android/camera/ui/HorizontalSlideView;->mGestureListener:Landroid/view/GestureDetector$OnGestureListener;
 
-    .line 87
+    .line 91
     invoke-virtual {p0, p1}, Lcom/android/camera/ui/HorizontalSlideView;->init(Landroid/content/Context;)V
 
-    .line 88
+    .line 92
     return-void
 .end method
 
 .method static synthetic access$002(Lcom/android/camera/ui/HorizontalSlideView;Z)Z
     .locals 0
 
-    .line 16
+    .line 17
     iput-boolean p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mNeedJustify:Z
 
     return p1
@@ -166,7 +170,7 @@
 .method static synthetic access$100(Lcom/android/camera/ui/HorizontalSlideView;I)V
     .locals 0
 
-    .line 16
+    .line 17
     invoke-direct {p0, p1}, Lcom/android/camera/ui/HorizontalSlideView;->scroll(I)V
 
     return-void
@@ -175,7 +179,7 @@
 .method static synthetic access$202(Lcom/android/camera/ui/HorizontalSlideView;Z)Z
     .locals 0
 
-    .line 16
+    .line 17
     iput-boolean p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mIsScrollingPerformed:Z
 
     return p1
@@ -184,7 +188,7 @@
 .method static synthetic access$300(Lcom/android/camera/ui/HorizontalSlideView;)I
     .locals 0
 
-    .line 16
+    .line 17
     iget p0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMinX:I
 
     return p0
@@ -193,7 +197,7 @@
 .method static synthetic access$400(Lcom/android/camera/ui/HorizontalSlideView;)I
     .locals 0
 
-    .line 16
+    .line 17
     iget p0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMaxX:I
 
     return p0
@@ -202,7 +206,7 @@
 .method static synthetic access$500(Lcom/android/camera/ui/HorizontalSlideView;I)V
     .locals 0
 
-    .line 16
+    .line 17
     invoke-direct {p0, p1}, Lcom/android/camera/ui/HorizontalSlideView;->setPositionX(I)V
 
     return-void
@@ -211,7 +215,7 @@
 .method static synthetic access$600(Lcom/android/camera/ui/HorizontalSlideView;I)V
     .locals 0
 
-    .line 16
+    .line 17
     invoke-direct {p0, p1}, Lcom/android/camera/ui/HorizontalSlideView;->flingX(I)V
 
     return-void
@@ -222,29 +226,29 @@
 
     move-object/from16 v0, p0
 
-    .line 103
-    nop
-
-    .line 104
-    nop
-
-    .line 105
-    iget v1, v0, Lcom/android/camera/ui/HorizontalSlideView;->mOriginX:F
-
-    .line 106
-    nop
-
     .line 107
     nop
 
+    .line 108
+    nop
+
     .line 109
+    iget v1, v0, Lcom/android/camera/ui/HorizontalSlideView;->mOriginX:F
+
+    .line 110
+    nop
+
+    .line 111
+    nop
+
+    .line 113
     iget-object v2, v0, Lcom/android/camera/ui/HorizontalSlideView;->mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
 
     const/4 v3, 0x0
 
     if-eqz v2, :cond_b
 
-    .line 110
+    .line 114
     invoke-virtual/range {p0 .. p0}, Lcom/android/camera/ui/HorizontalSlideView;->getContext()Landroid/content/Context;
 
     move-result-object v2
@@ -253,7 +257,7 @@
 
     move-result v2
 
-    .line 111
+    .line 115
     const/4 v4, 0x0
 
     const/4 v5, 0x1
@@ -270,19 +274,19 @@
 
     goto :goto_0
 
-    .line 112
+    .line 116
     :cond_0
     move v6, v4
 
     :goto_0
     if-eqz v2, :cond_1
 
-    .line 113
+    .line 117
     move v7, v4
 
     goto :goto_1
 
-    .line 112
+    .line 116
     :cond_1
     iget-object v7, v0, Lcom/android/camera/ui/HorizontalSlideView;->mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
 
@@ -292,7 +296,7 @@
 
     sub-int/2addr v7, v5
 
-    .line 113
+    .line 117
     :goto_1
     if-eqz v2, :cond_2
 
@@ -300,7 +304,7 @@
 
     goto :goto_2
 
-    .line 114
+    .line 118
     :cond_2
     move v2, v5
 
@@ -322,39 +326,39 @@
 
     if-ge v8, v12, :cond_a
 
-    .line 115
+    .line 119
     mul-int v12, v8, v2
 
     add-int/2addr v12, v6
 
-    .line 116
+    .line 120
     if-ne v12, v6, :cond_3
 
-    .line 117
+    .line 121
     move v13, v5
 
     goto :goto_4
 
-    .line 116
+    .line 120
     :cond_3
     nop
 
-    .line 117
+    .line 121
     move v13, v4
 
     :goto_4
     if-ne v12, v7, :cond_4
 
-    .line 118
+    .line 122
     move v14, v5
 
     goto :goto_5
 
-    .line 117
+    .line 121
     :cond_4
     nop
 
-    .line 118
+    .line 122
     move v14, v4
 
     :goto_5
@@ -362,32 +366,32 @@
 
     move-result v15
 
-    .line 119
+    .line 123
     const/high16 v16, 0x40000000    # 2.0f
 
     div-float v16, v15, v16
 
-    .line 121
+    .line 125
     if-eqz v13, :cond_5
 
     iget v11, v0, Lcom/android/camera/ui/HorizontalSlideView;->mOriginX:F
 
     sub-float v11, v11, v16
 
-    .line 122
+    .line 126
     :cond_5
     if-eqz v13, :cond_6
 
-    .line 124
+    .line 128
     move v13, v1
 
     goto :goto_6
 
-    .line 122
+    .line 126
     :cond_6
     add-float v13, v11, v16
 
-    .line 124
+    .line 128
     :goto_6
     if-eqz v14, :cond_7
 
@@ -405,31 +409,31 @@
     :goto_7
     add-float/2addr v11, v14
 
-    .line 126
+    .line 130
     move/from16 v14, p1
 
     if-ne v12, v14, :cond_8
 
-    .line 127
+    .line 131
     nop
 
-    .line 114
+    .line 118
     move/from16 v15, p2
 
     move v9, v13
 
     goto :goto_8
 
-    .line 128
+    .line 132
     :cond_8
     move/from16 v15, p2
 
     if-ne v12, v15, :cond_9
 
-    .line 129
+    .line 133
     nop
 
-    .line 114
+    .line 118
     move v10, v13
 
     :cond_9
@@ -438,7 +442,7 @@
 
     goto :goto_3
 
-    .line 134
+    .line 138
     :cond_a
     move v3, v10
 
@@ -460,12 +464,12 @@
 .method private flingX(I)V
     .locals 10
 
-    .line 248
+    .line 264
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mIsScrollingPerformed:Z
 
-    .line 249
+    .line 265
     iget-object v1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mScroller:Landroid/widget/Scroller;
 
     iget v2, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
@@ -486,17 +490,17 @@
 
     invoke-virtual/range {v1 .. v9}, Landroid/widget/Scroller;->fling(IIIIIIII)V
 
-    .line 250
+    .line 266
     invoke-virtual {p0}, Lcom/android/camera/ui/HorizontalSlideView;->invalidate()V
 
-    .line 251
+    .line 267
     return-void
 .end method
 
 .method private getItemGap(I)F
     .locals 1
 
-    .line 267
+    .line 283
     iget-object v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;->measureGap(I)F
@@ -509,7 +513,7 @@
 .method private getItemWidth(I)F
     .locals 1
 
-    .line 271
+    .line 287
     iget-object v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;->measureWidth(I)F
@@ -522,10 +526,10 @@
 .method private scroll(I)V
     .locals 3
 
-    .line 254
+    .line 270
     if-eqz p1, :cond_2
 
-    .line 255
+    .line 271
     iget v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
     add-int/2addr v0, p1
@@ -534,7 +538,7 @@
 
     if-ge v0, v1, :cond_0
 
-    .line 256
+    .line 272
     iget p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMinX:I
 
     iget v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
@@ -543,7 +547,7 @@
 
     goto :goto_0
 
-    .line 257
+    .line 273
     :cond_0
     iget v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
@@ -553,21 +557,21 @@
 
     if-le v0, v1, :cond_1
 
-    .line 258
+    .line 274
     iget p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMaxX:I
 
     iget v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
     sub-int/2addr p1, v0
 
-    .line 260
+    .line 276
     :cond_1
     :goto_0
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mIsScrollingPerformed:Z
 
-    .line 261
+    .line 277
     iget-object v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mScroller:Landroid/widget/Scroller;
 
     iget v1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
@@ -576,10 +580,10 @@
 
     invoke-virtual {v0, v1, v2, p1, v2}, Landroid/widget/Scroller;->startScroll(IIII)V
 
-    .line 262
+    .line 278
     invoke-virtual {p0}, Lcom/android/camera/ui/HorizontalSlideView;->invalidate()V
 
-    .line 264
+    .line 280
     :cond_2
     return-void
 .end method
@@ -587,7 +591,7 @@
 .method private select(I)V
     .locals 2
 
-    .line 197
+    .line 207
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -600,7 +604,7 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$CameraAction;
 
-    .line 198
+    .line 208
     if-eqz v0, :cond_0
 
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$CameraAction;->isDoingAction()Z
@@ -609,10 +613,17 @@
 
     if-eqz v0, :cond_0
 
-    .line 199
+    .line 209
+    const-string p1, "HSlideView"
+
+    const-string v0, "is doing action, ignore select."
+
+    invoke-static {p1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 210
     return-void
 
-    .line 201
+    .line 212
     :cond_0
     iget v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mSelectedItemIndex:I
 
@@ -624,29 +635,29 @@
 
     if-nez v0, :cond_2
 
-    .line 202
+    .line 213
     :cond_1
     iput p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mSelectedItemIndex:I
 
-    .line 203
+    .line 214
     iget-object p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mOnItemSelectListener:Lcom/android/camera/ui/HorizontalSlideView$OnItemSelectListener;
 
     if-eqz p1, :cond_2
 
-    .line 204
+    .line 215
     iget-object p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mOnItemSelectListener:Lcom/android/camera/ui/HorizontalSlideView$OnItemSelectListener;
 
     iget v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mSelectedItemIndex:I
 
     invoke-interface {p1, p0, v0}, Lcom/android/camera/ui/HorizontalSlideView$OnItemSelectListener;->onItemSelect(Lcom/android/camera/ui/HorizontalSlideView;I)V
 
-    .line 207
+    .line 218
     :cond_2
     iget-object p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mOnPositionSelectListener:Lcom/android/camera/ui/HorizontalSlideView$OnPositionSelectListener;
 
     if-eqz p1, :cond_4
 
-    .line 208
+    .line 219
     iget p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
     int-to-float p1, p1
@@ -661,10 +672,10 @@
 
     div-float/2addr p1, v0
 
-    .line 209
+    .line 220
     iget-object v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mOnPositionSelectListener:Lcom/android/camera/ui/HorizontalSlideView$OnPositionSelectListener;
 
-    .line 210
+    .line 221
     invoke-virtual {p0}, Lcom/android/camera/ui/HorizontalSlideView;->getContext()Landroid/content/Context;
 
     move-result-object v1
@@ -679,11 +690,11 @@
 
     sub-float p1, v1, p1
 
-    .line 209
+    .line 220
     :cond_3
     invoke-interface {v0, p0, p1}, Lcom/android/camera/ui/HorizontalSlideView$OnPositionSelectListener;->onPositionSelect(Lcom/android/camera/ui/HorizontalSlideView;F)V
 
-    .line 212
+    .line 223
     :cond_4
     return-void
 .end method
@@ -691,24 +702,24 @@
 .method private setPositionX(I)V
     .locals 1
 
-    .line 238
+    .line 254
     iput p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
-    .line 239
+    .line 255
     iget p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
     iget v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMinX:I
 
     if-ge p1, v0, :cond_0
 
-    .line 240
+    .line 256
     iget p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMinX:I
 
     iput p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
     goto :goto_0
 
-    .line 241
+    .line 257
     :cond_0
     iget p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
@@ -716,26 +727,35 @@
 
     if-le p1, v0, :cond_1
 
-    .line 242
+    .line 258
     iget p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMaxX:I
 
     iput p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
-    .line 244
+    .line 260
     :cond_1
     :goto_0
     invoke-virtual {p0}, Lcom/android/camera/ui/HorizontalSlideView;->invalidate()V
 
-    .line 245
+    .line 261
     return-void
 .end method
 
 
 # virtual methods
+.method public canPositionScroll()Z
+    .locals 1
+
+    .line 382
+    const/4 v0, 0x1
+
+    return v0
+.end method
+
 .method public getSelectedItemIndex()I
     .locals 1
 
-    .line 191
+    .line 201
     iget v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mSelectedItemIndex:I
 
     return v0
@@ -744,7 +764,7 @@
 .method protected init(Landroid/content/Context;)V
     .locals 2
 
-    .line 70
+    .line 74
     new-instance v0, Landroid/view/GestureDetector;
 
     iget-object v1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mGestureListener:Landroid/view/GestureDetector$OnGestureListener;
@@ -753,28 +773,28 @@
 
     iput-object v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mGestureDetector:Landroid/view/GestureDetector;
 
-    .line 71
+    .line 75
     iget-object v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mGestureDetector:Landroid/view/GestureDetector;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Landroid/view/GestureDetector;->setIsLongpressEnabled(Z)V
 
-    .line 72
+    .line 76
     new-instance v0, Landroid/widget/Scroller;
 
     invoke-direct {v0, p1}, Landroid/widget/Scroller;-><init>(Landroid/content/Context;)V
 
     iput-object v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mScroller:Landroid/widget/Scroller;
 
-    .line 73
+    .line 77
     return-void
 .end method
 
 .method public isScrolling()Z
     .locals 1
 
-    .line 358
+    .line 374
     iget-boolean v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mIsScrollingPerformed:Z
 
     return v0
@@ -785,7 +805,7 @@
 
     move-object/from16 v0, p0
 
-    .line 276
+    .line 292
     move-object/from16 v1, p1
 
     iget-object v2, v0, Lcom/android/camera/ui/HorizontalSlideView;->mScroller:Landroid/widget/Scroller;
@@ -796,7 +816,7 @@
 
     if-eqz v2, :cond_0
 
-    .line 277
+    .line 293
     iget-object v2, v0, Lcom/android/camera/ui/HorizontalSlideView;->mScroller:Landroid/widget/Scroller;
 
     invoke-virtual {v2}, Landroid/widget/Scroller;->getCurrX()I
@@ -805,10 +825,10 @@
 
     iput v2, v0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
-    .line 278
+    .line 294
     invoke-virtual/range {p0 .. p0}, Lcom/android/camera/ui/HorizontalSlideView;->invalidate()V
 
-    .line 280
+    .line 296
     :cond_0
     iget-object v2, v0, Lcom/android/camera/ui/HorizontalSlideView;->mScroller:Landroid/widget/Scroller;
 
@@ -824,10 +844,10 @@
 
     if-nez v2, :cond_1
 
-    .line 281
+    .line 297
     iput-boolean v3, v0, Lcom/android/camera/ui/HorizontalSlideView;->mIsScrollingPerformed:Z
 
-    .line 284
+    .line 300
     :cond_1
     iget v2, v0, Lcom/android/camera/ui/HorizontalSlideView;->mOriginX:F
 
@@ -837,13 +857,13 @@
 
     sub-float/2addr v2, v4
 
-    .line 285
+    .line 301
     nop
 
-    .line 286
+    .line 302
     nop
 
-    .line 287
+    .line 303
     invoke-virtual/range {p0 .. p0}, Lcom/android/camera/ui/HorizontalSlideView;->getHeight()I
 
     move-result v4
@@ -854,23 +874,23 @@
 
     div-float/2addr v4, v5
 
-    .line 288
+    .line 304
     nop
 
-    .line 289
+    .line 305
     nop
 
-    .line 291
+    .line 307
     nop
 
-    .line 292
+    .line 308
     iget-object v6, v0, Lcom/android/camera/ui/HorizontalSlideView;->mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
 
     const/4 v7, 0x0
 
     if-eqz v6, :cond_1a
 
-    .line 293
+    .line 309
     invoke-virtual/range {p0 .. p0}, Lcom/android/camera/ui/HorizontalSlideView;->getContext()Landroid/content/Context;
 
     move-result-object v6
@@ -879,7 +899,7 @@
 
     move-result v6
 
-    .line 294
+    .line 310
     const/4 v8, 0x1
 
     if-eqz v6, :cond_2
@@ -894,19 +914,19 @@
 
     goto :goto_0
 
-    .line 295
+    .line 311
     :cond_2
     move v9, v3
 
     :goto_0
     if-eqz v6, :cond_3
 
-    .line 296
+    .line 312
     move v10, v3
 
     goto :goto_1
 
-    .line 295
+    .line 311
     :cond_3
     iget-object v10, v0, Lcom/android/camera/ui/HorizontalSlideView;->mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
 
@@ -916,7 +936,7 @@
 
     sub-int/2addr v10, v8
 
-    .line 296
+    .line 312
     :goto_1
     if-eqz v6, :cond_4
 
@@ -924,7 +944,7 @@
 
     goto :goto_2
 
-    .line 297
+    .line 313
     :cond_4
     move v6, v8
 
@@ -950,39 +970,39 @@
 
     if-ge v11, v8, :cond_f
 
-    .line 298
+    .line 314
     mul-int v8, v11, v6
 
     add-int/2addr v8, v9
 
-    .line 299
+    .line 315
     if-ne v8, v9, :cond_5
 
-    .line 300
+    .line 316
     const/4 v12, 0x1
 
     goto :goto_4
 
-    .line 299
+    .line 315
     :cond_5
     nop
 
-    .line 300
+    .line 316
     move v12, v3
 
     :goto_4
     if-ne v8, v10, :cond_6
 
-    .line 301
+    .line 317
     const/16 v17, 0x1
 
     goto :goto_5
 
-    .line 300
+    .line 316
     :cond_6
     nop
 
-    .line 301
+    .line 317
     move/from16 v17, v3
 
     :goto_5
@@ -990,24 +1010,24 @@
 
     move-result v18
 
-    .line 302
+    .line 318
     div-float v19, v18, v5
 
-    .line 303
+    .line 319
     if-eqz v12, :cond_7
 
-    .line 304
+    .line 320
     move v13, v7
 
     :cond_7
     if-eqz v17, :cond_8
 
-    .line 306
+    .line 322
     move/from16 v20, v7
 
     goto :goto_6
 
-    .line 304
+    .line 320
     :cond_8
     invoke-direct {v0, v8}, Lcom/android/camera/ui/HorizontalSlideView;->getItemGap(I)F
 
@@ -1015,35 +1035,35 @@
 
     div-float v20, v20, v5
 
-    .line 306
+    .line 322
     :goto_6
     if-eqz v12, :cond_9
 
     sub-float v14, v2, v19
 
-    .line 307
+    .line 323
     :cond_9
     if-eqz v12, :cond_a
 
-    .line 309
+    .line 325
     move v12, v2
 
     goto :goto_7
 
-    .line 307
+    .line 323
     :cond_a
     add-float v12, v14, v19
 
-    .line 309
+    .line 325
     :goto_7
     if-eqz v15, :cond_d
 
-    .line 310
+    .line 326
     iget v3, v0, Lcom/android/camera/ui/HorizontalSlideView;->mOriginX:F
 
     sub-float v3, v12, v3
 
-    .line 311
+    .line 327
     cmpg-float v21, v3, v7
 
     if-gtz v21, :cond_b
@@ -1067,17 +1087,17 @@
 
     if-gtz v5, :cond_d
 
-    .line 313
+    .line 329
     :cond_c
     invoke-direct {v0, v8}, Lcom/android/camera/ui/HorizontalSlideView;->select(I)V
 
-    .line 314
+    .line 330
     nop
 
-    .line 315
+    .line 331
     nop
 
-    .line 319
+    .line 335
     move/from16 v16, v3
 
     const/4 v15, 0x0
@@ -1099,7 +1119,7 @@
     :goto_8
     add-float/2addr v14, v3
 
-    .line 297
+    .line 313
     add-int/lit8 v11, v11, 0x1
 
     move/from16 v13, v20
@@ -1112,7 +1132,7 @@
 
     goto :goto_3
 
-    .line 322
+    .line 338
     :cond_f
     sub-float/2addr v12, v2
 
@@ -1120,7 +1140,7 @@
 
     iput v3, v0, Lcom/android/camera/ui/HorizontalSlideView;->mMaxX:I
 
-    .line 324
+    .line 340
     const/4 v3, 0x0
 
     :goto_9
@@ -1132,39 +1152,39 @@
 
     if-ge v3, v5, :cond_19
 
-    .line 325
+    .line 341
     mul-int v5, v3, v6
 
     add-int/2addr v5, v9
 
-    .line 326
+    .line 342
     if-ne v5, v9, :cond_10
 
-    .line 327
+    .line 343
     const/4 v8, 0x1
 
     goto :goto_a
 
-    .line 326
+    .line 342
     :cond_10
     nop
 
-    .line 327
+    .line 343
     const/4 v8, 0x0
 
     :goto_a
     if-ne v5, v10, :cond_11
 
-    .line 328
+    .line 344
     const/4 v11, 0x1
 
     goto :goto_b
 
-    .line 327
+    .line 343
     :cond_11
     nop
 
-    .line 328
+    .line 344
     const/4 v11, 0x0
 
     :goto_b
@@ -1172,30 +1192,30 @@
 
     move-result v12
 
-    .line 329
+    .line 345
     const/high16 v13, 0x40000000    # 2.0f
 
     div-float v15, v12, v13
 
-    .line 331
+    .line 347
     if-eqz v8, :cond_12
 
     sub-float v14, v2, v15
 
-    .line 332
+    .line 348
     :cond_12
     if-eqz v8, :cond_13
 
-    .line 334
+    .line 350
     move v8, v2
 
     goto :goto_c
 
-    .line 332
+    .line 348
     :cond_13
     add-float v8, v14, v15
 
-    .line 334
+    .line 350
     :goto_c
     add-float v15, v14, v12
 
@@ -1213,10 +1233,10 @@
 
     if-gtz v7, :cond_17
 
-    .line 335
+    .line 351
     invoke-virtual/range {p1 .. p1}, Landroid/graphics/Canvas;->save()I
 
-    .line 336
+    .line 352
     iget-object v7, v0, Lcom/android/camera/ui/HorizontalSlideView;->mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
 
     invoke-virtual {v7, v5}, Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;->getAlign(I)Landroid/graphics/Paint$Align;
@@ -1227,12 +1247,12 @@
 
     if-ne v7, v13, :cond_14
 
-    .line 337
+    .line 353
     invoke-virtual {v1, v14, v4}, Landroid/graphics/Canvas;->translate(FF)V
 
     goto :goto_d
 
-    .line 338
+    .line 354
     :cond_14
     iget-object v7, v0, Lcom/android/camera/ui/HorizontalSlideView;->mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
 
@@ -1244,16 +1264,16 @@
 
     if-ne v7, v13, :cond_15
 
-    .line 339
+    .line 355
     invoke-virtual {v1, v8, v4}, Landroid/graphics/Canvas;->translate(FF)V
 
     goto :goto_d
 
-    .line 341
+    .line 357
     :cond_15
     invoke-virtual {v1, v15, v4}, Landroid/graphics/Canvas;->translate(FF)V
 
-    .line 343
+    .line 359
     :goto_d
     iget-object v7, v0, Lcom/android/camera/ui/HorizontalSlideView;->mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
 
@@ -1271,10 +1291,10 @@
     :goto_e
     invoke-virtual {v7, v5, v1, v8}, Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;->draw(ILandroid/graphics/Canvas;Z)V
 
-    .line 344
+    .line 360
     invoke-virtual/range {p1 .. p1}, Landroid/graphics/Canvas;->restore()V
 
-    .line 347
+    .line 363
     :cond_17
     if-eqz v11, :cond_18
 
@@ -1292,14 +1312,14 @@
     :goto_f
     add-float/2addr v14, v7
 
-    .line 324
+    .line 340
     add-int/lit8 v3, v3, 0x1
 
     const/4 v7, 0x0
 
     goto :goto_9
 
-    .line 351
+    .line 367
     :cond_19
     move/from16 v1, v16
 
@@ -1325,17 +1345,17 @@
 
     if-eqz v2, :cond_1b
 
-    .line 352
+    .line 368
     const/4 v2, 0x0
 
     iput-boolean v2, v0, Lcom/android/camera/ui/HorizontalSlideView;->mNeedJustify:Z
 
-    .line 353
+    .line 369
     float-to-int v1, v1
 
     invoke-direct {v0, v1}, Lcom/android/camera/ui/HorizontalSlideView;->scroll(I)V
 
-    .line 355
+    .line 371
     :cond_1b
     return-void
 .end method
@@ -1343,10 +1363,10 @@
 .method protected onSizeChanged(IIII)V
     .locals 0
 
-    .line 216
+    .line 227
     invoke-super {p0, p1, p2, p3, p4}, Landroid/view/View;->onSizeChanged(IIII)V
 
-    .line 217
+    .line 228
     int-to-float p1, p1
 
     const/high16 p2, 0x40000000    # 2.0f
@@ -1355,28 +1375,30 @@
 
     iput p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mOriginX:F
 
-    .line 218
+    .line 229
     return-void
 .end method
 
 .method public onTouchEvent(Landroid/view/MotionEvent;)Z
-    .locals 3
+    .locals 4
 
-    .line 222
+    .line 233
     iget-object v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mGestureDetector:Landroid/view/GestureDetector;
 
     invoke-virtual {v0, p1}, Landroid/view/GestureDetector;->onTouchEvent(Landroid/view/MotionEvent;)Z
 
     move-result v0
 
-    .line 223
+    .line 234
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getAction()I
 
     move-result p1
 
     const/4 v1, 0x3
 
-    const/4 v2, 0x1
+    const/4 v2, 0x0
+
+    const/4 v3, 0x1
 
     if-eq p1, v1, :cond_0
 
@@ -1384,29 +1406,44 @@
 
     goto :goto_0
 
-    .line 225
+    .line 236
     :pswitch_0
-    iput-boolean v2, p0, Lcom/android/camera/ui/HorizontalSlideView;->mTouchDown:Z
+    iput-boolean v3, p0, Lcom/android/camera/ui/HorizontalSlideView;->mTouchDown:Z
 
-    .line 226
-    goto :goto_0
+    .line 237
+    invoke-virtual {p0}, Lcom/android/camera/ui/HorizontalSlideView;->canPositionScroll()Z
 
-    .line 229
+    move-result p1
+
+    if-nez p1, :cond_1
+
+    .line 239
+    const-string p1, "HSlideView"
+
+    const-string v0, "cannot scroll, do not process the down event."
+
+    invoke-static {p1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 240
+    return v2
+
+    .line 245
     :cond_0
     :pswitch_1
-    const/4 p1, 0x0
+    iput-boolean v2, p0, Lcom/android/camera/ui/HorizontalSlideView;->mTouchDown:Z
 
-    iput-boolean p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mTouchDown:Z
+    .line 246
+    iput-boolean v3, p0, Lcom/android/camera/ui/HorizontalSlideView;->mNeedJustify:Z
 
-    .line 230
-    iput-boolean v2, p0, Lcom/android/camera/ui/HorizontalSlideView;->mNeedJustify:Z
-
-    .line 231
+    .line 247
     invoke-virtual {p0}, Lcom/android/camera/ui/HorizontalSlideView;->invalidate()V
 
-    .line 234
+    .line 250
+    :cond_1
     :goto_0
     return v0
+
+    nop
 
     :pswitch_data_0
     .packed-switch 0x0
@@ -1418,30 +1455,30 @@
 .method public setDrawAdapter(Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;)V
     .locals 3
 
-    .line 138
+    .line 142
     iput-object p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
 
-    .line 139
+    .line 143
     const/4 p1, 0x0
 
     iput-boolean p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mNeedJustify:Z
 
-    .line 140
+    .line 144
     iput p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mSelectedItemIndex:I
 
-    .line 141
+    .line 145
     iget-object v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mScroller:Landroid/widget/Scroller;
 
     const/4 v1, 0x1
 
     invoke-virtual {v0, v1}, Landroid/widget/Scroller;->forceFinished(Z)V
 
-    .line 143
+    .line 147
     iget-object v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
 
     if-eqz v0, :cond_0
 
-    .line 144
+    .line 148
     iget v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMinX:I
 
     iget-object v2, p0, Lcom/android/camera/ui/HorizontalSlideView;->mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
@@ -1462,7 +1499,7 @@
 
     iput v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMaxX:I
 
-    .line 146
+    .line 150
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/ui/HorizontalSlideView;->getContext()Landroid/content/Context;
 
@@ -1474,61 +1511,61 @@
 
     if-eqz p1, :cond_1
 
-    .line 147
+    .line 151
     iget p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMaxX:I
 
     iput p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
     goto :goto_0
 
-    .line 149
+    .line 153
     :cond_1
     iget p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMinX:I
 
     iput p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
-    .line 152
+    .line 156
     :goto_0
     invoke-virtual {p0}, Lcom/android/camera/ui/HorizontalSlideView;->invalidate()V
 
-    .line 153
+    .line 157
     return-void
 .end method
 
 .method public setJustifyEnabled(Z)V
     .locals 0
 
-    .line 99
+    .line 103
     iput-boolean p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mJustifyEnabled:Z
 
-    .line 100
+    .line 104
     return-void
 .end method
 
 .method public setOnItemSelectListener(Lcom/android/camera/ui/HorizontalSlideView$OnItemSelectListener;)V
     .locals 0
 
-    .line 91
+    .line 95
     iput-object p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mOnItemSelectListener:Lcom/android/camera/ui/HorizontalSlideView$OnItemSelectListener;
 
-    .line 92
+    .line 96
     return-void
 .end method
 
 .method public setOnPositionSelectListener(Lcom/android/camera/ui/HorizontalSlideView$OnPositionSelectListener;)V
     .locals 0
 
-    .line 95
+    .line 99
     iput-object p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mOnPositionSelectListener:Lcom/android/camera/ui/HorizontalSlideView$OnPositionSelectListener;
 
-    .line 96
+    .line 100
     return-void
 .end method
 
 .method public setSelection(F)V
     .locals 2
 
-    .line 179
+    .line 189
     invoke-virtual {p0}, Lcom/android/camera/ui/HorizontalSlideView;->getContext()Landroid/content/Context;
 
     move-result-object v0
@@ -1543,25 +1580,25 @@
 
     if-eqz v0, :cond_0
 
-    .line 180
+    .line 190
     const/high16 v0, 0x3f800000    # 1.0f
 
     sub-float p1, v0, p1
 
-    .line 183
+    .line 193
     :cond_0
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mNeedJustify:Z
 
-    .line 184
+    .line 194
     iget-object v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mScroller:Landroid/widget/Scroller;
 
     const/4 v1, 0x1
 
     invoke-virtual {v0, v1}, Landroid/widget/Scroller;->forceFinished(Z)V
 
-    .line 186
+    .line 196
     iget v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMaxX:I
 
     iget v1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMinX:I
@@ -1576,43 +1613,43 @@
 
     iput p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
-    .line 187
+    .line 197
     invoke-virtual {p0}, Lcom/android/camera/ui/HorizontalSlideView;->invalidate()V
 
-    .line 188
+    .line 198
     return-void
 .end method
 
 .method public setSelection(I)V
     .locals 3
 
-    .line 156
+    .line 166
     iget v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mSelectedItemIndex:I
 
     if-ne v0, p1, :cond_0
 
-    .line 157
+    .line 167
     return-void
 
-    .line 160
+    .line 170
     :cond_0
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mNeedJustify:Z
 
-    .line 161
+    .line 171
     iget-object v1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mScroller:Landroid/widget/Scroller;
 
     const/4 v2, 0x1
 
     invoke-virtual {v1, v2}, Landroid/widget/Scroller;->forceFinished(Z)V
 
-    .line 163
+    .line 173
     iget-object v1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
 
     if-eqz v1, :cond_3
 
-    .line 164
+    .line 174
     iget-object v1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
 
     invoke-virtual {v1}, Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;->getCount()I
@@ -1621,7 +1658,7 @@
 
     if-lt p1, v1, :cond_1
 
-    .line 165
+    .line 175
     iget-object p1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mDrawAdapter:Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;->getCount()I
@@ -1630,7 +1667,7 @@
 
     sub-int/2addr p1, v2
 
-    .line 167
+    .line 177
     :cond_1
     invoke-virtual {p0}, Lcom/android/camera/ui/HorizontalSlideView;->getContext()Landroid/content/Context;
 
@@ -1642,7 +1679,7 @@
 
     if-eqz v1, :cond_2
 
-    .line 168
+    .line 178
     iget v1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMaxX:I
 
     invoke-direct {p0, v0, p1}, Lcom/android/camera/ui/HorizontalSlideView;->calculateLength(II)F
@@ -1657,7 +1694,7 @@
 
     goto :goto_0
 
-    .line 170
+    .line 180
     :cond_2
     iget v1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mMinX:I
 
@@ -1671,14 +1708,34 @@
 
     iput v1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mPositionX:I
 
-    .line 174
+    .line 184
     :cond_3
     :goto_0
     invoke-direct {p0, p1}, Lcom/android/camera/ui/HorizontalSlideView;->select(I)V
 
-    .line 175
+    .line 185
     invoke-virtual {p0}, Lcom/android/camera/ui/HorizontalSlideView;->invalidate()V
 
-    .line 176
+    .line 186
+    return-void
+.end method
+
+.method public stopScroll()V
+    .locals 2
+
+    .line 160
+    const/4 v0, 0x1
+
+    iput-boolean v0, p0, Lcom/android/camera/ui/HorizontalSlideView;->mNeedJustify:Z
+
+    .line 161
+    iget-object v1, p0, Lcom/android/camera/ui/HorizontalSlideView;->mScroller:Landroid/widget/Scroller;
+
+    invoke-virtual {v1, v0}, Landroid/widget/Scroller;->forceFinished(Z)V
+
+    .line 162
+    invoke-virtual {p0}, Lcom/android/camera/ui/HorizontalSlideView;->invalidate()V
+
+    .line 163
     return-void
 .end method

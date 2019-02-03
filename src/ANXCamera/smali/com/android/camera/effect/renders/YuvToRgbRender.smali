@@ -4,7 +4,7 @@
 
 
 # static fields
-.field private static final FRAG:Ljava/lang/String; = "precision highp float; \nvarying vec2 vTexCoord; \nuniform sampler2D uYTexture; \nuniform sampler2D uUVTexture; \nvoid main (void){ \n   float r, g, b, y, u, v; \n   y = texture2D(uYTexture, vTexCoord).r; \n   u = texture2D(uUVTexture, vTexCoord).a - 0.5; \n   v = texture2D(uUVTexture, vTexCoord).r - 0.5; \n   r = y + 1.402 * v;\n   g = y - 0.34414 * u - 0.71414 * v;\n   b = y + 1.772 * u;\n   gl_FragColor = vec4(r, g, b, 1); \n} \n"
+.field private static final FRAG:Ljava/lang/String; = "precision highp float; \nvarying vec2 vTexCoord; \nuniform sampler2D uYTexture; \nuniform sampler2D uUVTexture; \nvoid main (void){ \n   float r, g, b, y, u, v; \n   y = texture2D(uYTexture, vTexCoord).r; \n   v = texture2D(uUVTexture, vTexCoord).a - 0.5; \n   u = texture2D(uUVTexture, vTexCoord).r - 0.5; \n   r = y + 1.402 * v;\n   g = y - 0.34414 * u - 0.71414 * v;\n   b = y + 1.772 * u;\n   gl_FragColor = vec4(r, g, b, 1); \n} \n"
 
 .field private static final TAG:Ljava/lang/String;
 
@@ -25,7 +25,7 @@
 .method static constructor <clinit>()V
     .locals 2
 
-    .line 16
+    .line 18
     const-class v0, Lcom/android/camera/effect/renders/YuvToRgbRender;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -34,7 +34,7 @@
 
     sput-object v0, Lcom/android/camera/effect/renders/YuvToRgbRender;->TAG:Ljava/lang/String;
 
-    .line 18
+    .line 20
     const/16 v0, 0x8
 
     new-array v1, v0, [F
@@ -43,7 +43,7 @@
 
     sput-object v1, Lcom/android/camera/effect/renders/YuvToRgbRender;->VERTICES:[F
 
-    .line 19
+    .line 21
     new-array v0, v0, [F
 
     fill-array-data v0, :array_1
@@ -82,30 +82,30 @@
 .method public constructor <init>(Lcom/android/gallery3d/ui/GLCanvas;I)V
     .locals 0
 
-    .line 27
+    .line 29
     invoke-direct {p0, p1, p2}, Lcom/android/camera/effect/renders/ShaderRender;-><init>(Lcom/android/gallery3d/ui/GLCanvas;I)V
 
-    .line 28
+    .line 30
     return-void
 .end method
 
 .method private drawTexture([IFFFF)V
     .locals 3
 
-    .line 102
+    .line 104
     iget v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mProgram:I
 
     invoke-static {v0}, Landroid/opengl/GLES20;->glUseProgram(I)V
 
-    .line 104
+    .line 106
     invoke-virtual {p0}, Lcom/android/camera/effect/renders/YuvToRgbRender;->updateViewport()V
 
-    .line 107
+    .line 109
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Lcom/android/camera/effect/renders/YuvToRgbRender;->setBlendEnabled(Z)V
 
-    .line 108
+    .line 110
     iget-object v1, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mGLCanvas:Lcom/android/gallery3d/ui/GLCanvas;
 
     invoke-interface {v1}, Lcom/android/gallery3d/ui/GLCanvas;->getState()Lcom/android/camera/effect/GLCanvasState;
@@ -114,7 +114,7 @@
 
     invoke-virtual {v1}, Lcom/android/camera/effect/GLCanvasState;->pushState()V
 
-    .line 109
+    .line 111
     iget-object v1, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mGLCanvas:Lcom/android/gallery3d/ui/GLCanvas;
 
     invoke-interface {v1}, Lcom/android/gallery3d/ui/GLCanvas;->getState()Lcom/android/camera/effect/GLCanvasState;
@@ -125,7 +125,7 @@
 
     invoke-virtual {v1, p2, p3, v2}, Lcom/android/camera/effect/GLCanvasState;->translate(FFF)V
 
-    .line 110
+    .line 112
     iget-object p2, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mGLCanvas:Lcom/android/gallery3d/ui/GLCanvas;
 
     invoke-interface {p2}, Lcom/android/gallery3d/ui/GLCanvas;->getState()Lcom/android/camera/effect/GLCanvasState;
@@ -136,7 +136,7 @@
 
     invoke-virtual {p2, p4, p5, p3}, Lcom/android/camera/effect/GLCanvasState;->scale(FFF)V
 
-    .line 112
+    .line 114
     aget p2, p1, v0
 
     const/16 p3, 0xde1
@@ -145,22 +145,22 @@
 
     if-eq p2, p4, :cond_0
 
-    .line 113
+    .line 115
     const p2, 0x84c0
 
     invoke-static {p2}, Landroid/opengl/GLES20;->glActiveTexture(I)V
 
-    .line 114
+    .line 116
     aget p2, p1, v0
 
     invoke-static {p3, p2}, Landroid/opengl/GLES20;->glBindTexture(II)V
 
-    .line 115
+    .line 117
     iget p2, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mUniformYTexture:I
 
     invoke-static {p2, v0}, Landroid/opengl/GLES20;->glUniform1i(II)V
 
-    .line 118
+    .line 120
     :cond_0
     const/4 p2, 0x1
 
@@ -168,33 +168,33 @@
 
     if-eq p5, p4, :cond_1
 
-    .line 119
+    .line 121
     const p4, 0x84c1
 
     invoke-static {p4}, Landroid/opengl/GLES20;->glActiveTexture(I)V
 
-    .line 120
+    .line 122
     aget p1, p1, p2
 
     invoke-static {p3, p1}, Landroid/opengl/GLES20;->glBindTexture(II)V
 
-    .line 121
+    .line 123
     iget p1, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mUniformUVTexture:I
 
     invoke-static {p1, p2}, Landroid/opengl/GLES20;->glUniform1i(II)V
 
-    .line 123
+    .line 125
     :cond_1
     invoke-virtual {p0}, Lcom/android/camera/effect/renders/YuvToRgbRender;->initShaderValue()V
 
-    .line 125
+    .line 127
     const/4 p1, 0x5
 
     const/4 p2, 0x4
 
     invoke-static {p1, v0, p2}, Landroid/opengl/GLES20;->glDrawArrays(III)V
 
-    .line 126
+    .line 128
     iget-object p1, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mGLCanvas:Lcom/android/gallery3d/ui/GLCanvas;
 
     invoke-interface {p1}, Lcom/android/gallery3d/ui/GLCanvas;->getState()Lcom/android/camera/effect/GLCanvasState;
@@ -203,16 +203,16 @@
 
     invoke-virtual {p1}, Lcom/android/camera/effect/GLCanvasState;->popState()V
 
-    .line 127
+    .line 129
     return-void
 .end method
 
 
 # virtual methods
 .method public draw(Lcom/android/camera/effect/draw_mode/DrawAttribute;)Z
-    .locals 14
+    .locals 12
 
-    .line 80
+    .line 82
     invoke-virtual {p1}, Lcom/android/camera/effect/draw_mode/DrawAttribute;->getTarget()I
 
     move-result v0
@@ -225,7 +225,7 @@
 
     if-nez v0, :cond_0
 
-    .line 81
+    .line 83
     sget-object v0, Lcom/android/camera/effect/renders/YuvToRgbRender;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -248,10 +248,10 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 82
+    .line 84
     return v1
 
-    .line 85
+    .line 87
     :cond_0
     invoke-virtual {p1}, Lcom/android/camera/effect/draw_mode/DrawAttribute;->getTarget()I
 
@@ -263,7 +263,7 @@
 
     if-eq v0, v2, :cond_1
 
-    .line 96
+    .line 98
     sget-object v0, Lcom/android/camera/effect/renders/YuvToRgbRender;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -288,75 +288,61 @@
 
     goto :goto_0
 
-    .line 87
+    .line 89
     :cond_1
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v4
 
-    .line 88
+    .line 90
     check-cast p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;
 
-    .line 89
-    iget-object v0, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mYBuffer:Ljava/nio/ByteBuffer;
-
-    iget-object v2, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mUVBuffer:Ljava/nio/ByteBuffer;
-
-    iget v6, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mWidth:I
-
-    iget v7, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mHeight:I
-
-    invoke-virtual {p0, v0, v2, v6, v7}, Lcom/android/camera/effect/renders/YuvToRgbRender;->genYUVTextures(Ljava/nio/ByteBuffer;Ljava/nio/ByteBuffer;II)V
-
-    .line 90
-    iget-object v9, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mYuvTextureIds:[I
-
-    const/4 v10, 0x0
-
-    const/4 v11, 0x0
-
-    iget v0, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mWidth:I
-
-    int-to-float v12, v0
-
-    iget v0, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mHeight:I
-
-    int-to-float v13, v0
-
-    move-object v8, p0
-
-    invoke-direct/range {v8 .. v13}, Lcom/android/camera/effect/renders/YuvToRgbRender;->drawTexture([IFFFF)V
+    .line 91
+    invoke-virtual {p0, p1}, Lcom/android/camera/effect/renders/YuvToRgbRender;->genYUVTextures(Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;)V
 
     .line 92
+    iget-object v7, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mYuvTextureIds:[I
+
+    const/4 v8, 0x0
+
+    const/4 v9, 0x0
+
+    iget-object v0, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mPictureSize:Landroid/util/Size;
+
+    invoke-virtual {v0}, Landroid/util/Size;->getWidth()I
+
+    move-result v0
+
+    int-to-float v10, v0
+
+    iget-object v0, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mPictureSize:Landroid/util/Size;
+
+    invoke-virtual {v0}, Landroid/util/Size;->getHeight()I
+
+    move-result v0
+
+    int-to-float v11, v0
+
+    move-object v6, p0
+
+    invoke-direct/range {v6 .. v11}, Lcom/android/camera/effect/renders/YuvToRgbRender;->drawTexture([IFFFF)V
+
+    .line 94
     sget-object v0, Lcom/android/camera/effect/renders/YuvToRgbRender;->TAG:Ljava/lang/String;
 
     sget-object v2, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
 
-    const-string v6, "draw: size=%dx%d time=%d"
+    const-string v6, "draw: size=%s time=%d"
 
-    const/4 v7, 0x3
+    const/4 v7, 0x2
 
     new-array v7, v7, [Ljava/lang/Object;
 
-    iget v8, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mWidth:I
+    iget-object p1, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mPictureSize:Landroid/util/Size;
 
-    .line 93
-    invoke-static {v8}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    aput-object p1, v7, v1
 
-    move-result-object v8
-
-    aput-object v8, v7, v1
-
-    iget p1, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mHeight:I
-
-    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object p1
-
-    aput-object p1, v7, v3
-
-    const/4 p1, 0x2
-
+    .line 95
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v8
@@ -365,42 +351,119 @@
 
     invoke-static {v8, v9}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
 
-    move-result-object v1
+    move-result-object p1
 
-    aput-object v1, v7, p1
+    aput-object p1, v7, v3
 
-    .line 92
+    .line 94
     invoke-static {v2, v6, v7}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object p1
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 94
+    .line 96
     nop
 
-    .line 98
+    .line 100
     :goto_0
     return v3
 .end method
 
-.method public genYUVTextures(Ljava/nio/ByteBuffer;Ljava/nio/ByteBuffer;II)V
-    .locals 1
-
-    .line 131
-    iget-object v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mYuvTextureIds:[I
-
-    invoke-static {p1, p2, p3, p4, v0}, Lcom/android/camera/effect/ShaderUtil;->loadYuvToTextures(Ljava/nio/Buffer;Ljava/nio/Buffer;II[I)V
+.method public genYUVTextures(Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;)V
+    .locals 5
 
     .line 132
+    iget-object v0, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mImage:Landroid/media/Image;
+
+    invoke-virtual {v0}, Landroid/media/Image;->getWidth()I
+
+    move-result v0
+
+    .line 133
+    iget-object v1, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mImage:Landroid/media/Image;
+
+    invoke-virtual {v1}, Landroid/media/Image;->getHeight()I
+
+    move-result v1
+
+    .line 134
+    iget-object p1, p1, Lcom/android/camera/effect/draw_mode/DrawYuvAttribute;->mImage:Landroid/media/Image;
+
+    invoke-virtual {p1}, Landroid/media/Image;->getPlanes()[Landroid/media/Image$Plane;
+
+    move-result-object p1
+
+    .line 135
+    const/4 v2, 0x0
+
+    aget-object v2, p1, v2
+
+    .line 136
+    const/4 v3, 0x2
+
+    aget-object p1, p1, v3
+
+    .line 138
+    invoke-virtual {v2}, Landroid/media/Image$Plane;->getRowStride()I
+
+    move-result v3
+
+    if-ne v3, v0, :cond_0
+
+    .line 139
+    invoke-virtual {v2}, Landroid/media/Image$Plane;->getBuffer()Ljava/nio/ByteBuffer;
+
+    move-result-object v2
+
+    goto :goto_0
+
+    .line 141
+    :cond_0
+    invoke-static {v2, v0, v1}, Lcom/xiaomi/camera/base/ImageUtil;->removePadding(Landroid/media/Image$Plane;II)Ljava/nio/ByteBuffer;
+
+    move-result-object v2
+
+    .line 145
+    :goto_0
+    invoke-virtual {p1}, Landroid/media/Image$Plane;->getRowStride()I
+
+    move-result v3
+
+    if-ne v3, v0, :cond_1
+
+    .line 146
+    invoke-virtual {p1}, Landroid/media/Image$Plane;->getBuffer()Ljava/nio/ByteBuffer;
+
+    move-result-object p1
+
+    goto :goto_1
+
+    .line 148
+    :cond_1
+    div-int/lit8 v3, v0, 0x2
+
+    div-int/lit8 v4, v1, 0x2
+
+    invoke-static {p1, v3, v4}, Lcom/xiaomi/camera/base/ImageUtil;->removePadding(Landroid/media/Image$Plane;II)Ljava/nio/ByteBuffer;
+
+    move-result-object p1
+
+    .line 151
+    :goto_1
+    iget-object v3, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mYuvTextureIds:[I
+
+    invoke-static {v2, p1, v0, v1, v3}, Lcom/android/camera/effect/ShaderUtil;->loadYuvToTextures(Ljava/nio/Buffer;Ljava/nio/Buffer;II[I)V
+
+    .line 152
     return-void
 .end method
 
 .method public getFragShaderString()Ljava/lang/String;
     .locals 1
 
-    .line 136
-    const-string v0, "precision highp float; \nvarying vec2 vTexCoord; \nuniform sampler2D uYTexture; \nuniform sampler2D uUVTexture; \nvoid main (void){ \n   float r, g, b, y, u, v; \n   y = texture2D(uYTexture, vTexCoord).r; \n   u = texture2D(uUVTexture, vTexCoord).a - 0.5; \n   v = texture2D(uUVTexture, vTexCoord).r - 0.5; \n   r = y + 1.402 * v;\n   g = y - 0.34414 * u - 0.71414 * v;\n   b = y + 1.772 * u;\n   gl_FragColor = vec4(r, g, b, 1); \n} \n"
+    .line 156
+    const-string v0, "precision highp float; \nvarying vec2 vTexCoord; \nuniform sampler2D uYTexture; \nuniform sampler2D uUVTexture; \nvoid main (void){ \n   float r, g, b, y, u, v; \n   y = texture2D(uYTexture, vTexCoord).r; \n   v = texture2D(uUVTexture, vTexCoord).a - 0.5; \n   u = texture2D(uUVTexture, vTexCoord).r - 0.5; \n   r = y + 1.402 * v;\n   g = y - 0.34414 * u - 0.71414 * v;\n   b = y + 1.772 * u;\n   gl_FragColor = vec4(r, g, b, 1); \n} \n"
 
     return-object v0
 .end method
@@ -408,7 +471,7 @@
 .method protected initShader()V
     .locals 6
 
-    .line 32
+    .line 34
     invoke-virtual {p0}, Lcom/android/camera/effect/renders/YuvToRgbRender;->getVertexShaderString()Ljava/lang/String;
 
     move-result-object v0
@@ -423,17 +486,17 @@
 
     iput v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mProgram:I
 
-    .line 33
+    .line 35
     iget v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mProgram:I
 
     if-eqz v0, :cond_0
 
-    .line 34
+    .line 36
     iget v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mProgram:I
 
     invoke-static {v0}, Landroid/opengl/GLES20;->glUseProgram(I)V
 
-    .line 35
+    .line 37
     iget v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mProgram:I
 
     const-string v1, "uMVPMatrix"
@@ -444,7 +507,7 @@
 
     iput v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mUniformMVPMatrixH:I
 
-    .line 36
+    .line 38
     iget v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mProgram:I
 
     const-string v1, "uSTMatrix"
@@ -455,7 +518,7 @@
 
     iput v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mUniformSTMatrixH:I
 
-    .line 37
+    .line 39
     iget v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mProgram:I
 
     const-string v1, "aPosition"
@@ -466,7 +529,7 @@
 
     iput v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mAttributePositionH:I
 
-    .line 38
+    .line 40
     iget v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mProgram:I
 
     const-string v1, "aTexCoord"
@@ -477,7 +540,7 @@
 
     iput v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mAttributeTexCoorH:I
 
-    .line 39
+    .line 41
     iget v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mProgram:I
 
     const-string v1, "uYTexture"
@@ -488,7 +551,7 @@
 
     iput v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mUniformYTexture:I
 
-    .line 40
+    .line 42
     iget v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mProgram:I
 
     const-string v1, "uUVTexture"
@@ -499,21 +562,21 @@
 
     iput v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mUniformUVTexture:I
 
-    .line 42
+    .line 44
     const/4 v0, 0x2
 
     new-array v1, v0, [I
 
     iput-object v1, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mYuvTextureIds:[I
 
-    .line 43
+    .line 45
     iget-object v1, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mYuvTextureIds:[I
 
     const/4 v2, 0x0
 
     invoke-static {v0, v1, v2}, Landroid/opengl/GLES20;->glGenTextures(I[II)V
 
-    .line 44
+    .line 46
     sget-object v1, Lcom/android/camera/effect/renders/YuvToRgbRender;->TAG:Ljava/lang/String;
 
     sget-object v3, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
@@ -526,7 +589,7 @@
 
     aget v5, v5, v2
 
-    .line 45
+    .line 47
     invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v5
@@ -545,17 +608,17 @@
 
     aput-object v2, v0, v5
 
-    .line 44
+    .line 46
     invoke-static {v3, v4, v0}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v0
 
     invoke-static {v1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 49
+    .line 51
     return-void
 
-    .line 47
+    .line 49
     :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
@@ -585,7 +648,7 @@
 .method protected initShaderValue()V
     .locals 12
 
-    .line 68
+    .line 70
     iget v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mAttributePositionH:I
 
     iget-object v5, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mVertexBuffer:Ljava/nio/FloatBuffer;
@@ -600,7 +663,7 @@
 
     invoke-static/range {v0 .. v5}, Landroid/opengl/GLES20;->glVertexAttribPointer(IIIZILjava/nio/Buffer;)V
 
-    .line 69
+    .line 71
     iget v6, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mAttributeTexCoorH:I
 
     iget-object v11, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mTexCoorBuffer:Ljava/nio/FloatBuffer;
@@ -615,17 +678,17 @@
 
     invoke-static/range {v6 .. v11}, Landroid/opengl/GLES20;->glVertexAttribPointer(IIIZILjava/nio/Buffer;)V
 
-    .line 71
+    .line 73
     iget v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mAttributePositionH:I
 
     invoke-static {v0}, Landroid/opengl/GLES20;->glEnableVertexAttribArray(I)V
 
-    .line 72
+    .line 74
     iget v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mAttributeTexCoorH:I
 
     invoke-static {v0}, Landroid/opengl/GLES20;->glEnableVertexAttribArray(I)V
 
-    .line 74
+    .line 76
     iget v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mUniformMVPMatrixH:I
 
     iget-object v1, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mGLCanvas:Lcom/android/gallery3d/ui/GLCanvas;
@@ -642,7 +705,7 @@
 
     invoke-static {v0, v2, v3, v1, v3}, Landroid/opengl/GLES20;->glUniformMatrix4fv(IIZ[FI)V
 
-    .line 75
+    .line 77
     iget v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mUniformSTMatrixH:I
 
     iget-object v1, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mGLCanvas:Lcom/android/gallery3d/ui/GLCanvas;
@@ -657,14 +720,14 @@
 
     invoke-static {v0, v2, v3, v1, v3}, Landroid/opengl/GLES20;->glUniformMatrix4fv(IIZ[FI)V
 
-    .line 76
+    .line 78
     return-void
 .end method
 
 .method protected initSupportAttriList()V
     .locals 2
 
-    .line 64
+    .line 66
     iget-object v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mAttriSupportedList:Ljava/util/ArrayList;
 
     const/16 v1, 0xb
@@ -675,14 +738,14 @@
 
     invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 65
+    .line 67
     return-void
 .end method
 
 .method protected initVertexData()V
     .locals 3
 
-    .line 53
+    .line 55
     sget-object v0, Lcom/android/camera/effect/renders/YuvToRgbRender;->VERTICES:[F
 
     array-length v0, v0
@@ -701,21 +764,21 @@
 
     iput-object v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mVertexBuffer:Ljava/nio/FloatBuffer;
 
-    .line 54
+    .line 56
     iget-object v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mVertexBuffer:Ljava/nio/FloatBuffer;
 
     sget-object v1, Lcom/android/camera/effect/renders/YuvToRgbRender;->VERTICES:[F
 
     invoke-virtual {v0, v1}, Ljava/nio/FloatBuffer;->put([F)Ljava/nio/FloatBuffer;
 
-    .line 55
+    .line 57
     iget-object v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mVertexBuffer:Ljava/nio/FloatBuffer;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Ljava/nio/FloatBuffer;->position(I)Ljava/nio/Buffer;
 
-    .line 57
+    .line 59
     sget-object v0, Lcom/android/camera/effect/renders/YuvToRgbRender;->TEXTURES:[F
 
     array-length v0, v0
@@ -734,18 +797,18 @@
 
     iput-object v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mTexCoorBuffer:Ljava/nio/FloatBuffer;
 
-    .line 58
+    .line 60
     iget-object v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mTexCoorBuffer:Ljava/nio/FloatBuffer;
 
     sget-object v2, Lcom/android/camera/effect/renders/YuvToRgbRender;->TEXTURES:[F
 
     invoke-virtual {v0, v2}, Ljava/nio/FloatBuffer;->put([F)Ljava/nio/FloatBuffer;
 
-    .line 59
+    .line 61
     iget-object v0, p0, Lcom/android/camera/effect/renders/YuvToRgbRender;->mTexCoorBuffer:Ljava/nio/FloatBuffer;
 
     invoke-virtual {v0, v1}, Ljava/nio/FloatBuffer;->position(I)Ljava/nio/Buffer;
 
-    .line 60
+    .line 62
     return-void
 .end method

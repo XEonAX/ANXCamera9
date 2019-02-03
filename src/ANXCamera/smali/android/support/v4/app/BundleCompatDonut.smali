@@ -17,7 +17,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 29
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -26,7 +26,7 @@
 .end method
 
 .method public static getBinder(Landroid/os/Bundle;Ljava/lang/String;)Landroid/os/IBinder;
-    .locals 6
+    .registers 8
     .param p0, "bundle"    # Landroid/os/Bundle;
     .param p1, "key"    # Ljava/lang/String;
 
@@ -37,10 +37,10 @@
 
     const/4 v2, 0x1
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_26
 
     .line 41
-    :try_start_0
+    :try_start_6
     const-class v0, Landroid/os/Bundle;
 
     const-string v3, "getIBinder"
@@ -61,14 +61,14 @@
     sget-object v0, Landroid/support/v4/app/BundleCompatDonut;->sGetIBinderMethod:Ljava/lang/reflect/Method;
 
     invoke-virtual {v0, v2}, Ljava/lang/reflect/Method;->setAccessible(Z)V
-    :try_end_0
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1b
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_6 .. :try_end_1b} :catch_1c
 
     .line 45
-    goto :goto_0
+    goto :goto_24
 
     .line 43
-    :catch_0
+    :catch_1c
     move-exception v0
 
     .line 44
@@ -81,19 +81,19 @@
 
     .line 46
     .end local v0    # "e":Ljava/lang/NoSuchMethodException;
-    :goto_0
+    :goto_24
     sput-boolean v2, Landroid/support/v4/app/BundleCompatDonut;->sGetIBinderMethodFetched:Z
 
     .line 49
-    :cond_0
+    :cond_26
     sget-object v0, Landroid/support/v4/app/BundleCompatDonut;->sGetIBinderMethod:Ljava/lang/reflect/Method;
 
     const/4 v3, 0x0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_59
 
     .line 51
-    :try_start_1
+    :try_start_2b
     sget-object v0, Landroid/support/v4/app/BundleCompatDonut;->sGetIBinderMethod:Ljava/lang/reflect/Method;
 
     new-array v2, v2, [Ljava/lang/Object;
@@ -105,15 +105,15 @@
     move-result-object v0
 
     check-cast v0, Landroid/os/IBinder;
-    :try_end_1
-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_1 .. :try_end_1} :catch_3
-    .catch Ljava/lang/IllegalAccessException; {:try_start_1 .. :try_end_1} :catch_2
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_37
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_2b .. :try_end_37} :catch_4e
+    .catch Ljava/lang/IllegalAccessException; {:try_start_2b .. :try_end_37} :catch_43
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_2b .. :try_end_37} :catch_38
 
     return-object v0
 
     .line 58
-    :catch_1
+    :catch_38
     move-exception v0
 
     .line 59
@@ -128,10 +128,10 @@
     sput-object v3, Landroid/support/v4/app/BundleCompatDonut;->sGetIBinderMethod:Ljava/lang/reflect/Method;
 
     .end local v0    # "e":Ljava/lang/IllegalArgumentException;
-    goto :goto_2
+    goto :goto_59
 
     .line 55
-    :catch_2
+    :catch_43
     move-exception v0
 
     .line 56
@@ -146,10 +146,10 @@
     sput-object v3, Landroid/support/v4/app/BundleCompatDonut;->sGetIBinderMethod:Ljava/lang/reflect/Method;
 
     .end local v0    # "e":Ljava/lang/IllegalAccessException;
-    goto :goto_1
+    goto :goto_58
 
     .line 52
-    :catch_3
+    :catch_4e
     move-exception v0
 
     .line 53
@@ -165,17 +165,17 @@
 
     .line 61
     .end local v0    # "e":Ljava/lang/reflect/InvocationTargetException;
-    :goto_1
+    :goto_58
     nop
 
     .line 63
-    :cond_1
-    :goto_2
+    :cond_59
+    :goto_59
     return-object v3
 .end method
 
 .method public static putBinder(Landroid/os/Bundle;Ljava/lang/String;Landroid/os/IBinder;)V
-    .locals 7
+    .registers 10
     .param p0, "bundle"    # Landroid/os/Bundle;
     .param p1, "key"    # Ljava/lang/String;
     .param p2, "binder"    # Landroid/os/IBinder;
@@ -189,10 +189,10 @@
 
     const/4 v3, 0x1
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_2b
 
     .line 69
-    :try_start_0
+    :try_start_7
     const-class v0, Landroid/os/Bundle;
 
     const-string v4, "putIBinder"
@@ -217,14 +217,14 @@
     sget-object v0, Landroid/support/v4/app/BundleCompatDonut;->sPutIBinderMethod:Ljava/lang/reflect/Method;
 
     invoke-virtual {v0, v3}, Ljava/lang/reflect/Method;->setAccessible(Z)V
-    :try_end_0
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_20
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_7 .. :try_end_20} :catch_21
 
     .line 74
-    goto :goto_0
+    goto :goto_29
 
     .line 72
-    :catch_0
+    :catch_21
     move-exception v0
 
     .line 73
@@ -237,19 +237,19 @@
 
     .line 75
     .end local v0    # "e":Ljava/lang/NoSuchMethodException;
-    :goto_0
+    :goto_29
     sput-boolean v3, Landroid/support/v4/app/BundleCompatDonut;->sPutIBinderMethodFetched:Z
 
     .line 78
-    :cond_0
+    :cond_2b
     sget-object v0, Landroid/support/v4/app/BundleCompatDonut;->sPutIBinderMethod:Ljava/lang/reflect/Method;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_5d
 
     .line 80
     const/4 v0, 0x0
 
-    :try_start_1
+    :try_start_30
     sget-object v4, Landroid/support/v4/app/BundleCompatDonut;->sPutIBinderMethod:Ljava/lang/reflect/Method;
 
     new-array v2, v2, [Ljava/lang/Object;
@@ -259,15 +259,15 @@
     aput-object p2, v2, v3
 
     invoke-virtual {v4, p0, v2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_1
-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_1 .. :try_end_1} :catch_3
-    .catch Ljava/lang/IllegalAccessException; {:try_start_1 .. :try_end_1} :catch_2
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_3b
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_30 .. :try_end_3b} :catch_52
+    .catch Ljava/lang/IllegalAccessException; {:try_start_30 .. :try_end_3b} :catch_47
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_30 .. :try_end_3b} :catch_3c
 
-    goto :goto_1
+    goto :goto_5c
 
     .line 87
-    :catch_1
+    :catch_3c
     move-exception v1
 
     .line 88
@@ -282,10 +282,10 @@
     sput-object v0, Landroid/support/v4/app/BundleCompatDonut;->sPutIBinderMethod:Ljava/lang/reflect/Method;
 
     .end local v1    # "e":Ljava/lang/IllegalArgumentException;
-    goto :goto_2
+    goto :goto_5d
 
     .line 84
-    :catch_2
+    :catch_47
     move-exception v1
 
     .line 85
@@ -300,10 +300,10 @@
     sput-object v0, Landroid/support/v4/app/BundleCompatDonut;->sPutIBinderMethod:Ljava/lang/reflect/Method;
 
     .end local v1    # "e":Ljava/lang/IllegalAccessException;
-    goto :goto_1
+    goto :goto_5c
 
     .line 81
-    :catch_3
+    :catch_52
     move-exception v1
 
     .line 82
@@ -319,11 +319,11 @@
 
     .line 90
     .end local v1    # "e":Ljava/lang/reflect/InvocationTargetException;
-    :goto_1
+    :goto_5c
     nop
 
     .line 92
-    :cond_1
-    :goto_2
+    :cond_5d
+    :goto_5d
     return-void
 .end method

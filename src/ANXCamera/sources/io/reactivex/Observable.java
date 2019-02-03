@@ -1,5 +1,6 @@
 package io.reactivex;
 
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import io.reactivex.annotations.BackpressureKind;
 import io.reactivex.annotations.BackpressureSupport;
 import io.reactivex.annotations.CheckReturnValue;
@@ -1440,7 +1441,7 @@ public abstract class Observable<T> implements ObservableSource<T> {
     @CheckReturnValue
     @SchedulerSupport("none")
     public final <U extends Collection<? super T>> Observable<U> buffer(int i, int i2, Callable<U> callable) {
-        ObjectHelper.verifyPositive(i, "count");
+        ObjectHelper.verifyPositive(i, MonitorCommonConstants.COUNT_TYPE);
         ObjectHelper.verifyPositive(i2, "skip");
         ObjectHelper.requireNonNull(callable, "bufferSupplier is null");
         return RxJavaPlugins.onAssembly(new ObservableBuffer(this, i, i2, callable));
@@ -1504,7 +1505,7 @@ public abstract class Observable<T> implements ObservableSource<T> {
         Callable<U> callable2 = callable;
         ObjectHelper.requireNonNull(callable2, "bufferSupplier is null");
         int i2 = i;
-        ObjectHelper.verifyPositive(i2, "count");
+        ObjectHelper.verifyPositive(i2, MonitorCommonConstants.COUNT_TYPE);
         return RxJavaPlugins.onAssembly(new ObservableBufferTimed(this, j, j, timeUnit2, scheduler2, callable2, i2, z));
     }
 
@@ -3401,7 +3402,7 @@ public abstract class Observable<T> implements ObservableSource<T> {
     @CheckReturnValue
     @SchedulerSupport("none")
     public final Observable<Observable<T>> window(long j, long j2, int i) {
-        ObjectHelper.verifyPositive(j, "count");
+        ObjectHelper.verifyPositive(j, MonitorCommonConstants.COUNT_TYPE);
         ObjectHelper.verifyPositive(j2, "skip");
         ObjectHelper.verifyPositive(i, "bufferSize");
         return RxJavaPlugins.onAssembly(new ObservableWindow(this, j, j2, i));
@@ -3481,7 +3482,7 @@ public abstract class Observable<T> implements ObservableSource<T> {
         TimeUnit timeUnit2 = timeUnit;
         ObjectHelper.requireNonNull(timeUnit2, "unit is null");
         long j3 = j2;
-        ObjectHelper.verifyPositive(j3, "count");
+        ObjectHelper.verifyPositive(j3, MonitorCommonConstants.COUNT_TYPE);
         return RxJavaPlugins.onAssembly(new ObservableWindowTimed(this, j, j, timeUnit2, scheduler2, j3, i2, z));
     }
 

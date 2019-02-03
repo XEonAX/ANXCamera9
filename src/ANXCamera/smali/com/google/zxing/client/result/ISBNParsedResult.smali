@@ -9,7 +9,7 @@
 
 # direct methods
 .method constructor <init>(Ljava/lang/String;)V
-    .locals 1
+    .registers 3
     .param p1, "isbn"    # Ljava/lang/String;
 
     .line 27
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getDisplayResult()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 37
     iget-object v0, p0, Lcom/google/zxing/client/result/ISBNParsedResult;->isbn:Ljava/lang/String;
@@ -36,7 +36,7 @@
 .end method
 
 .method public getISBN()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 32
     iget-object v0, p0, Lcom/google/zxing/client/result/ISBNParsedResult;->isbn:Ljava/lang/String;

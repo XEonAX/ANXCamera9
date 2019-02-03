@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 23
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getExternalCacheDir(Landroid/content/Context;)Ljava/io/File;
-    .locals 1
+    .registers 2
     .param p0, "context"    # Landroid/content/Context;
 
     .line 25
@@ -26,7 +26,7 @@
 .end method
 
 .method public static getExternalFilesDir(Landroid/content/Context;Ljava/lang/String;)Ljava/io/File;
-    .locals 1
+    .registers 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "type"    # Ljava/lang/String;
 

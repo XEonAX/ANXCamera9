@@ -189,6 +189,13 @@ public class RotateDialogController implements Rotatable {
         textView.setClickable(true);
         textView.setText(spannableString);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
+        if (Util.isAccessible()) {
+            textView.setOnClickListener(new OnClickListener() {
+                public void onClick(View view) {
+                    ActivityLauncher.launchPrivacyPolicyWebpage(context);
+                }
+            });
+        }
         final CheckBox checkBox = (CheckBox) inflate.findViewById(R.id.alert_declaration_checkbox);
         checkBox.setText(str3);
         builder.setOnKeyListener(anonymousClass5);

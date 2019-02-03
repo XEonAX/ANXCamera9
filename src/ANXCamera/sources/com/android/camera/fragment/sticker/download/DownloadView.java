@@ -23,7 +23,13 @@ public class DownloadView extends RelativeLayout {
     private static final float SCALE_MIN = 0.6f;
     private static final float SCALE_NORMAL = 1.0f;
     private ImageView mImageView;
+    private OnDownloadSuccessListener mListener;
     private ObjectAnimator mRotationAnimal;
+    protected int mState;
+
+    public interface OnDownloadSuccessListener {
+        void onDownloadSuccess(DownloadView downloadView);
+    }
 
     private abstract class MyAnimalListener implements AnimatorListener {
         private MyAnimalListener() {
@@ -59,6 +65,10 @@ public class DownloadView extends RelativeLayout {
         ((LayoutParams) this.mImageView.getLayoutParams()).addRule(13);
     }
 
+    public void setOnDownloadSuccessListener(OnDownloadSuccessListener onDownloadSuccessListener) {
+        this.mListener = onDownloadSuccessListener;
+    }
+
     public void startDownload() {
         clearAnimation();
         hide(this.mImageView, new MyAnimalListener() {
@@ -72,7 +82,9 @@ public class DownloadView extends RelativeLayout {
         this.mImageView.setImageResource(getStateImageResource(2));
         show(this.mImageView, new MyAnimalListener() {
             public void onAnimationEnd(Animator animator) {
-                DownloadView.this.rotation();
+                if (DownloadView.this.mState == 2) {
+                    DownloadView.this.rotation();
+                }
             }
         });
     }
@@ -88,7 +100,17 @@ public class DownloadView extends RelativeLayout {
                     }
 
                     public void onAnimationEnd(Animator animator) {
-                        DownloadView.this.hide(DownloadView.this, null);
+                        DownloadView.this.hide(DownloadView.this, new MyAnimalListener() {
+                            {
+                                DownloadView downloadView = DownloadView.this;
+                            }
+
+                            public void onAnimationEnd(Animator animator) {
+                                if (DownloadView.this.mListener != null) {
+                                    DownloadView.this.mListener.onDownloadSuccess(DownloadView.this);
+                                }
+                            }
+                        });
                     }
                 });
             }
@@ -101,7 +123,7 @@ public class DownloadView extends RelativeLayout {
         if (this.mRotationAnimal != null) {
             this.mRotationAnimal.end();
         }
-        setAlpha(1.0f);
+        setAlpha(getAlphaNormal());
         setScaleX(1.0f);
         setScaleY(1.0f);
     }
@@ -122,7 +144,12 @@ public class DownloadView extends RelativeLayout {
         }
     }
 
+    protected float getAlphaNormal() {
+        return 1.0f;
+    }
+
     public void setStateImage(int i) {
+        this.mState = i;
         switch (i) {
             case 0:
                 clearAnimation();
@@ -130,6 +157,7 @@ public class DownloadView extends RelativeLayout {
                 this.mImageView.setImageResource(getStateImageResource(i));
                 return;
             case 1:
+            case 5:
                 clearAnimation();
                 setVisibility(8);
                 return;
@@ -153,7 +181,7 @@ public class DownloadView extends RelativeLayout {
     }
 
     private void show(View view, AnimatorListener animatorListener) {
-        PropertyValuesHolder ofFloat = PropertyValuesHolder.ofFloat("alpha", new float[]{0.0f, 1.0f});
+        PropertyValuesHolder ofFloat = PropertyValuesHolder.ofFloat("alpha", new float[]{0.0f, getAlphaNormal()});
         PropertyValuesHolder ofFloat2 = PropertyValuesHolder.ofFloat("scaleX", new float[]{0.6f, 1.0f});
         PropertyValuesHolder ofFloat3 = PropertyValuesHolder.ofFloat("scaleY", new float[]{0.6f, 1.0f});
         ObjectAnimator ofPropertyValuesHolder = ObjectAnimator.ofPropertyValuesHolder(view, new PropertyValuesHolder[]{ofFloat, ofFloat2, ofFloat3});
@@ -165,7 +193,7 @@ public class DownloadView extends RelativeLayout {
     }
 
     private void hide(View view, AnimatorListener animatorListener) {
-        PropertyValuesHolder ofFloat = PropertyValuesHolder.ofFloat("alpha", new float[]{1.0f, 0.0f});
+        PropertyValuesHolder ofFloat = PropertyValuesHolder.ofFloat("alpha", new float[]{getAlphaNormal(), 0.0f});
         PropertyValuesHolder ofFloat2 = PropertyValuesHolder.ofFloat("scaleX", new float[]{1.0f, 0.6f});
         PropertyValuesHolder ofFloat3 = PropertyValuesHolder.ofFloat("scaleY", new float[]{1.0f, 0.6f});
         ObjectAnimator ofPropertyValuesHolder = ObjectAnimator.ofPropertyValuesHolder(view, new PropertyValuesHolder[]{ofFloat, ofFloat2, ofFloat3});

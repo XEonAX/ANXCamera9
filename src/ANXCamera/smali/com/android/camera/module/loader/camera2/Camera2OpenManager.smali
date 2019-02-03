@@ -135,7 +135,7 @@
 
     iput v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCurrentState:I
 
-    .line 125
+    .line 130
     new-instance v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$2;
 
     invoke-direct {v0, p0}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$2;-><init>(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)V
@@ -152,27 +152,13 @@
 .method private abandonOpenObservableIfExists()V
     .locals 4
 
-    .line 176
-    sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
-
-    const-string v1, "abandonOpenObservableIfExists: start..."
-
-    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 177
+    .line 182
     iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mEmitterLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 178
+    .line 183
     :try_start_0
-    sget-object v1, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
-
-    const-string v2, "abandonOpenObservableIfExists: in Lock..."
-
-    invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 179
     iget-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraResultEmitter:Lio/reactivex/ObservableEmitter;
 
     if-eqz v1, :cond_0
@@ -185,7 +171,7 @@
 
     if-nez v1, :cond_0
 
-    .line 180
+    .line 184
     iget-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraResultEmitter:Lio/reactivex/ObservableEmitter;
 
     const/4 v2, 0x3
@@ -196,48 +182,38 @@
 
     const/16 v3, 0xe1
 
-    .line 181
+    .line 185
     invoke-virtual {v2, v3}, Lcom/android/camera/module/loader/camera2/Camera2Result;->setCameraError(I)Lcom/android/camera/module/loader/camera2/Camera2Result;
 
     move-result-object v2
 
-    .line 180
+    .line 184
     invoke-interface {v1, v2}, Lio/reactivex/ObservableEmitter;->onNext(Ljava/lang/Object;)V
 
-    .line 182
+    .line 186
     iget-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraResultEmitter:Lio/reactivex/ObservableEmitter;
 
     invoke-interface {v1}, Lio/reactivex/ObservableEmitter;->onComplete()V
 
-    .line 183
+    .line 187
     const/4 v1, 0x0
 
     iput-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraResultEmitter:Lio/reactivex/ObservableEmitter;
 
-    .line 185
+    .line 189
     :cond_0
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 186
-    sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
-
-    const-string v1, "abandonOpenObservableIfExists: end..."
-
-    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 187
+    .line 190
     return-void
 
-    .line 185
+    .line 189
     :catchall_0
     move-exception v1
 
-    :try_start_1
     monitor-exit v0
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     throw v1
 .end method
@@ -249,15 +225,6 @@
     invoke-direct {p0, p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->onMessage(Landroid/os/Message;)V
 
     return-void
-.end method
-
-.method static synthetic access$100(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)Lcom/android/camera2/Camera2Proxy;
-    .locals 0
-
-    .line 42
-    iget-object p0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    return-object p0
 .end method
 
 .method static synthetic access$102(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;Lcom/android/camera2/Camera2Proxy;)Lcom/android/camera2/Camera2Proxy;
@@ -278,22 +245,22 @@
     return-object v0
 .end method
 
-.method static synthetic access$300(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;ILjava/lang/String;)V
-    .locals 0
-
-    .line 42
-    invoke-direct {p0, p1, p2}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->onCameraOpenFailed(ILjava/lang/String;)V
-
-    return-void
-.end method
-
-.method static synthetic access$400(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)Landroid/os/Handler;
+.method static synthetic access$300(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)Landroid/os/Handler;
     .locals 0
 
     .line 42
     iget-object p0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraHandler:Landroid/os/Handler;
 
     return-object p0
+.end method
+
+.method static synthetic access$400(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;ILjava/lang/String;)V
+    .locals 0
+
+    .line 42
+    invoke-direct {p0, p1, p2}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->onCameraOpenFailed(ILjava/lang/String;)V
+
+    return-void
 .end method
 
 .method static synthetic access$502(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;Lio/reactivex/ObservableEmitter;)Lio/reactivex/ObservableEmitter;
@@ -316,27 +283,13 @@
         }
     .end annotation
 
-    .line 190
-    sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
-
-    const-string v1, "attachInObservable: start..."
-
-    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 192
+    .line 194
     iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mEmitterLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 193
+    .line 195
     :try_start_0
-    sget-object v1, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
-
-    const-string v2, "attachInObservable: in lock..."
-
-    invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 194
     iget-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraResultEmitter:Lio/reactivex/ObservableEmitter;
 
     if-eqz v1, :cond_1
@@ -351,18 +304,18 @@
 
     goto :goto_0
 
-    .line 227
+    .line 228
     :cond_0
     iget-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraResultObservable:Lio/reactivex/observables/ConnectableObservable;
 
     invoke-virtual {v1, p1}, Lio/reactivex/observables/ConnectableObservable;->subscribe(Lio/reactivex/Observer;)V
 
-    .line 228
+    .line 229
     const/4 p1, 0x1
 
     goto :goto_1
 
-    .line 195
+    .line 196
     :cond_1
     :goto_0
     new-instance v1, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$4;
@@ -377,7 +330,7 @@
 
     sget-object v4, Ljava/util/concurrent/TimeUnit;->MILLISECONDS:Ljava/util/concurrent/TimeUnit;
 
-    .line 202
+    .line 203
     invoke-virtual {v1, v2, v3, v4}, Lio/reactivex/Observable;->timeout(JLjava/util/concurrent/TimeUnit;)Lio/reactivex/Observable;
 
     move-result-object v1
@@ -392,58 +345,48 @@
 
     sget-object v2, Lcom/android/camera/constant/GlobalConstant;->sCameraSetupScheduler:Lio/reactivex/Scheduler;
 
-    .line 216
+    .line 217
     invoke-virtual {v1, v2}, Lio/reactivex/Observable;->observeOn(Lio/reactivex/Scheduler;)Lio/reactivex/Observable;
 
     move-result-object v1
 
-    .line 218
+    .line 219
     invoke-virtual {v1}, Lio/reactivex/Observable;->publish()Lio/reactivex/observables/ConnectableObservable;
 
     move-result-object v1
 
     iput-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraResultObservable:Lio/reactivex/observables/ConnectableObservable;
 
-    .line 219
+    .line 220
     iget-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraResultObservable:Lio/reactivex/observables/ConnectableObservable;
 
     invoke-virtual {v1, p1}, Lio/reactivex/observables/ConnectableObservable;->subscribe(Lio/reactivex/Observer;)V
 
-    .line 221
+    .line 222
     iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraResultObservable:Lio/reactivex/observables/ConnectableObservable;
 
     invoke-virtual {p1}, Lio/reactivex/observables/ConnectableObservable;->connect()Lio/reactivex/disposables/Disposable;
 
-    .line 225
+    .line 226
     const/4 p1, 0x0
 
-    .line 226
+    .line 227
     nop
 
-    .line 230
+    .line 231
     :goto_1
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
-
-    .line 231
-    sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
-
-    const-string v1, "attachInObservable: end..."
-
-    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 232
     return p1
 
-    .line 230
+    .line 231
     :catchall_0
     move-exception p1
 
-    :try_start_1
     monitor-exit v0
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     throw p1
 .end method
@@ -492,7 +435,7 @@
     .annotation build Lcom/android/camera/module/loader/camera2/Camera2OpenManager$ManagerState;
     .end annotation
 
-    .line 377
+    .line 375
     iget v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCurrentState:I
 
     return v0
@@ -563,7 +506,7 @@
 .method private onCameraOpenFailed(ILjava/lang/String;)V
     .locals 3
 
-    .line 391
+    .line 389
     sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -588,28 +531,28 @@
 
     invoke-static {v0, p2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 392
+    .line 390
     const/4 p2, 0x1
 
     invoke-direct {p0, p2}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->setManagerState(I)V
 
-    .line 393
+    .line 391
     iget-object p2, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mEmitterLock:Ljava/lang/Object;
 
     monitor-enter p2
 
-    .line 394
+    .line 392
     :try_start_0
     iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraResultEmitter:Lio/reactivex/ObservableEmitter;
 
     if-eqz v0, :cond_0
 
-    .line 395
+    .line 393
     iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraResultEmitter:Lio/reactivex/ObservableEmitter;
 
     const/4 v1, 0x3
 
-    .line 396
+    .line 394
     invoke-static {v1}, Lcom/android/camera/module/loader/camera2/Camera2Result;->create(I)Lcom/android/camera/module/loader/camera2/Camera2Result;
 
     move-result-object v1
@@ -618,22 +561,22 @@
 
     move-result-object p1
 
-    .line 395
+    .line 393
     invoke-interface {v0, p1}, Lio/reactivex/ObservableEmitter;->onNext(Ljava/lang/Object;)V
 
-    .line 397
+    .line 395
     iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraResultEmitter:Lio/reactivex/ObservableEmitter;
 
     invoke-interface {p1}, Lio/reactivex/ObservableEmitter;->onComplete()V
 
-    .line 399
+    .line 397
     :cond_0
     monitor-exit p2
 
-    .line 400
+    .line 398
     return-void
 
-    .line 399
+    .line 397
     :catchall_0
     move-exception p1
 
@@ -647,23 +590,23 @@
 .method private onCameraOpenSuccess()V
     .locals 3
 
-    .line 381
+    .line 379
     const/4 v0, 0x1
 
     invoke-direct {p0, v0}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->setManagerState(I)V
 
-    .line 382
+    .line 380
     iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mEmitterLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 383
+    .line 381
     :try_start_0
     iget-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraResultEmitter:Lio/reactivex/ObservableEmitter;
 
     if-eqz v1, :cond_0
 
-    .line 384
+    .line 382
     iget-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraResultEmitter:Lio/reactivex/ObservableEmitter;
 
     const/4 v2, 0x2
@@ -674,19 +617,19 @@
 
     invoke-interface {v1, v2}, Lio/reactivex/ObservableEmitter;->onNext(Ljava/lang/Object;)V
 
-    .line 385
+    .line 383
     iget-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraResultEmitter:Lio/reactivex/ObservableEmitter;
 
     invoke-interface {v1}, Lio/reactivex/ObservableEmitter;->onComplete()V
 
-    .line 387
+    .line 385
     :cond_0
     monitor-exit v0
 
-    .line 388
+    .line 386
     return-void
 
-    .line 387
+    .line 385
     :catchall_0
     move-exception v1
 
@@ -698,367 +641,162 @@
 .end method
 
 .method private onMessage(Landroid/os/Message;)V
-    .locals 5
+    .locals 4
 
     .line 282
-    sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
+    iget p1, p1, Landroid/os/Message;->what:I
 
-    new-instance v1, Ljava/lang/StringBuilder;
+    const/4 v0, 0x0
 
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+    const/4 v1, 0x2
 
-    const-string v2, "handleMessage: start... msg = "
+    const/4 v2, 0x1
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 283
-    iget v0, p1, Landroid/os/Message;->what:I
-
-    const/4 v1, 0x0
-
-    const/4 v2, 0x2
-
-    const/4 v3, 0x1
-
-    packed-switch v0, :pswitch_data_0
+    packed-switch p1, :pswitch_data_0
 
     goto/16 :goto_0
+
+    .line 362
+    :pswitch_0
+    sget-object p1, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
+
+    const-string v0, "open finish"
+
+    invoke-static {p1, v0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 363
-    :pswitch_0
-    sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
-
-    const-string v1, "open finish"
-
-    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-direct {p0, v2}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->setManagerState(I)V
 
     .line 364
-    invoke-direct {p0, v3}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->setManagerState(I)V
+    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraHandler:Landroid/os/Handler;
 
-    .line 365
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraHandler:Landroid/os/Handler;
-
-    invoke-virtual {v0, v3}, Landroid/os/Handler;->sendEmptyMessage(I)Z
+    invoke-virtual {p1, v2}, Landroid/os/Handler;->sendEmptyMessage(I)Z
 
     goto/16 :goto_0
+
+    .line 356
+    :pswitch_1
+    sget-object p1, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
+
+    const-string v0, "close finish"
+
+    invoke-static {p1, v0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 357
-    :pswitch_1
-    sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
-
-    const-string v1, "close finish"
-
-    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-direct {p0, v2}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->setManagerState(I)V
 
     .line 358
-    invoke-direct {p0, v3}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->setManagerState(I)V
+    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraHandler:Landroid/os/Handler;
+
+    invoke-virtual {p1, v2}, Landroid/os/Handler;->sendEmptyMessage(I)Z
 
     .line 359
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraHandler:Landroid/os/Handler;
-
-    invoke-virtual {v0, v3}, Landroid/os/Handler;->sendEmptyMessage(I)Z
-
-    .line 360
     goto/16 :goto_0
+
+    .line 337
+    :pswitch_2
+    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    if-nez p1, :cond_0
 
     .line 338
-    :pswitch_2
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraHandler:Landroid/os/Handler;
 
-    if-nez v0, :cond_0
+    invoke-virtual {p1, v2}, Landroid/os/Handler;->sendEmptyMessage(I)Z
 
     .line 339
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraHandler:Landroid/os/Handler;
-
-    invoke-virtual {v0, v3}, Landroid/os/Handler;->sendEmptyMessage(I)Z
-
-    .line 340
     goto/16 :goto_0
 
-    .line 343
+    .line 342
     :cond_0
     invoke-direct {p0}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->getManagerState()I
 
-    move-result v0
+    move-result p1
 
-    if-eq v0, v3, :cond_1
+    if-eq p1, v2, :cond_1
 
-    .line 344
+    .line 343
     goto/16 :goto_0
+
+    .line 346
+    :cond_1
+    invoke-direct {p0, v1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->setManagerState(I)V
 
     .line 347
-    :cond_1
-    invoke-direct {p0, v2}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->setManagerState(I)V
+    sget-object p1, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
+
+    const-string v1, "force close start"
+
+    invoke-static {p1, v1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 348
-    sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
+    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    const-string v2, "force close start"
-
-    invoke-static {v0, v2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-virtual {p1}, Lcom/android/camera2/Camera2Proxy;->releasePreview()V
 
     .line 349
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->releasePreview()V
+    invoke-virtual {p1}, Lcom/android/camera2/Camera2Proxy;->resetConfigs()V
 
     .line 350
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->resetConfigs()V
+    invoke-virtual {p1}, Lcom/android/camera2/Camera2Proxy;->close()V
 
     .line 351
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->close()V
+    iput-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     .line 352
-    iput-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    .line 353
     goto/16 :goto_0
 
-    .line 286
+    .line 285
     :pswitch_3
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mPendingCameraId:Ljava/util/concurrent/atomic/AtomicInteger;
+    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mPendingCameraId:Ljava/util/concurrent/atomic/AtomicInteger;
 
-    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
+    invoke-virtual {p1}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
 
-    move-result v0
+    move-result p1
 
-    if-gez v0, :cond_2
+    if-gez p1, :cond_2
+
+    .line 288
+    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    if-eqz p1, :cond_7
 
     .line 289
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    if-eqz v0, :cond_7
+    invoke-direct {p0, v1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->setManagerState(I)V
 
     .line 290
-    invoke-direct {p0, v2}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->setManagerState(I)V
+    sget-object p1, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
+
+    const-string v1, "close start"
+
+    invoke-static {p1, v1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 291
-    sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
+    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    const-string v2, "close start"
-
-    invoke-static {v0, v2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-virtual {p1}, Lcom/android/camera2/Camera2Proxy;->close()V
 
     .line 292
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->close()V
+    iput-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     .line 293
-    iput-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    .line 294
     goto/16 :goto_0
 
-    .line 298
+    .line 297
     :cond_2
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    if-eqz v0, :cond_4
+    if-eqz p1, :cond_4
 
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->getId()I
+    invoke-virtual {p1}, Lcom/android/camera2/Camera2Proxy;->getId()I
 
-    move-result v0
-
-    iget-object v4, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mPendingCameraId:Ljava/util/concurrent/atomic/AtomicInteger;
-
-    invoke-virtual {v4}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
-
-    move-result v4
-
-    if-ne v0, v4, :cond_4
-
-    .line 299
-    new-instance v0, Ljava/lang/StringBuilder;
-
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v1, "Camera "
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    iget-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    invoke-virtual {v1}, Lcom/android/camera2/Camera2Proxy;->getId()I
-
-    move-result v1
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    const-string v1, " was opened successfully"
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 302
-    iget-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    invoke-virtual {v1}, Lcom/android/camera2/Camera2Proxy;->getCapabilities()Lcom/android/camera2/CameraCapabilities;
-
-    move-result-object v1
-
-    if-nez v1, :cond_3
-
-    .line 303
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    const-string v0, ", but corresponding CameraCapabilities is null"
-
-    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 304
-    sget-object v1, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
-
-    invoke-static {v1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 305
-    const/16 v1, 0xe7
-
-    invoke-direct {p0, v1, v0}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->onCameraOpenFailed(ILjava/lang/String;)V
-
-    goto :goto_0
-
-    .line 307
-    :cond_3
-    sget-object v1, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
-
-    invoke-static {v1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 308
-    invoke-direct {p0}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->onCameraOpenSuccess()V
-
-    .line 310
-    goto :goto_0
-
-    .line 313
-    :cond_4
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    if-eqz v0, :cond_5
-
-    .line 314
-    invoke-direct {p0, v2}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->setManagerState(I)V
-
-    .line 315
-    sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
-
-    const-string v2, "close start"
-
-    invoke-static {v0, v2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 316
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->close()V
-
-    .line 317
-    iput-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    .line 318
-    goto :goto_0
-
-    .line 321
-    :cond_5
-    invoke-direct {p0}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->getManagerState()I
-
-    move-result v0
-
-    if-eq v0, v3, :cond_6
-
-    .line 322
-    goto :goto_0
-
-    .line 326
-    :cond_6
-    const/4 v0, 0x3
-
-    :try_start_0
-    invoke-direct {p0, v0}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->setManagerState(I)V
-
-    .line 327
-    sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
-
-    const-string v1, "open start"
-
-    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 328
-    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Service:Landroid/hardware/camera2/CameraManager;
-
-    iget-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mPendingCameraId:Ljava/util/concurrent/atomic/AtomicInteger;
-
-    invoke-static {v1}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object v1
-
-    iget-object v2, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraOpenCallback:Landroid/hardware/camera2/CameraDevice$StateCallback;
-
-    iget-object v3, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraHandler:Landroid/os/Handler;
-
-    invoke-virtual {v0, v1, v2, v3}, Landroid/hardware/camera2/CameraManager;->openCamera(Ljava/lang/String;Landroid/hardware/camera2/CameraDevice$StateCallback;Landroid/os/Handler;)V
-    :try_end_0
-    .catch Landroid/hardware/camera2/CameraAccessException; {:try_start_0 .. :try_end_0} :catch_0
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
-    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 334
-    goto :goto_0
-
-    .line 330
-    :catch_0
-    move-exception v0
-
-    .line 331
-    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
-
-    .line 332
-    const/16 v1, 0xe6
-
-    invoke-virtual {v0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-direct {p0, v1, v2}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->onCameraOpenFailed(ILjava/lang/String;)V
-
-    .line 333
-    sget-object v1, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
-
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "openCamera: failed to open camera "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result p1
 
     iget-object v3, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mPendingCameraId:Ljava/util/concurrent/atomic/AtomicInteger;
 
@@ -1066,39 +804,206 @@
 
     move-result v3
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    if-ne p1, v3, :cond_4
 
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    .line 298
+    new-instance p1, Ljava/lang/StringBuilder;
 
-    move-result-object v2
+    invoke-direct {p1}, Ljava/lang/StringBuilder;-><init>()V
 
-    invoke-static {v1, v2, v0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+    const-string v0, "Camera "
 
-    .line 335
-    nop
+    invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 368
-    :cond_7
-    :goto_0
+    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->getId()I
+
+    move-result v0
+
+    invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v0, " was opened successfully"
+
+    invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 301
+    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->getCapabilities()Lcom/android/camera2/CameraCapabilities;
+
+    move-result-object v0
+
+    if-nez v0, :cond_3
+
+    .line 302
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string p1, ", but corresponding CameraCapabilities is null"
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 303
+    sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
+
+    invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 304
+    const/16 v0, 0xe7
+
+    invoke-direct {p0, v0, p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->onCameraOpenFailed(ILjava/lang/String;)V
+
+    goto :goto_0
+
+    .line 306
+    :cond_3
+    sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
+
+    invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 307
+    invoke-direct {p0}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->onCameraOpenSuccess()V
+
+    .line 309
+    goto :goto_0
+
+    .line 312
+    :cond_4
+    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    if-eqz p1, :cond_5
+
+    .line 313
+    invoke-direct {p0, v1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->setManagerState(I)V
+
+    .line 314
+    sget-object p1, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
+
+    const-string v1, "close start"
+
+    invoke-static {p1, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 315
+    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    invoke-virtual {p1}, Lcom/android/camera2/Camera2Proxy;->close()V
+
+    .line 316
+    iput-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    .line 317
+    goto :goto_0
+
+    .line 320
+    :cond_5
+    invoke-direct {p0}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->getManagerState()I
+
+    move-result p1
+
+    if-eq p1, v2, :cond_6
+
+    .line 321
+    goto :goto_0
+
+    .line 325
+    :cond_6
+    const/4 p1, 0x3
+
+    :try_start_0
+    invoke-direct {p0, p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->setManagerState(I)V
+
+    .line 326
+    sget-object p1, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
+
+    const-string v0, "open start"
+
+    invoke-static {p1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 327
+    iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Service:Landroid/hardware/camera2/CameraManager;
+
+    iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mPendingCameraId:Ljava/util/concurrent/atomic/AtomicInteger;
+
+    invoke-static {v0}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraOpenCallback:Landroid/hardware/camera2/CameraDevice$StateCallback;
+
+    iget-object v2, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraHandler:Landroid/os/Handler;
+
+    invoke-virtual {p1, v0, v1, v2}, Landroid/hardware/camera2/CameraManager;->openCamera(Ljava/lang/String;Landroid/hardware/camera2/CameraDevice$StateCallback;Landroid/os/Handler;)V
+    :try_end_0
+    .catch Landroid/hardware/camera2/CameraAccessException; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 333
+    goto :goto_0
+
+    .line 329
+    :catch_0
+    move-exception p1
+
+    .line 330
+    invoke-virtual {p1}, Ljava/lang/Exception;->printStackTrace()V
+
+    .line 331
+    const/16 v0, 0xe6
+
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-direct {p0, v0, v1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->onCameraOpenFailed(ILjava/lang/String;)V
+
+    .line 332
     sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v2, "handleMessage: End...msg = "
+    const-string v2, "openCamera: failed to open camera "
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    iget-object v2, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mPendingCameraId:Ljava/util/concurrent/atomic/AtomicInteger;
+
+    invoke-virtual {v2}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
+
+    move-result v2
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object p1
+    move-result-object v1
 
-    invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v0, v1, p1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 369
+    .line 334
+    nop
+
+    .line 367
+    :cond_7
+    :goto_0
     return-void
 
     nop
@@ -1112,6 +1017,20 @@
     .end packed-switch
 .end method
 
+.method public static preload()V
+    .locals 2
+
+    .line 108
+    sget-object v0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->TAG:Ljava/lang/String;
+
+    const-string v1, "preload"
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 109
+    return-void
+.end method
+
 .method private setManagerState(I)V
     .locals 0
     .param p1    # I
@@ -1119,10 +1038,10 @@
         .end annotation
     .end param
 
-    .line 372
+    .line 370
     iput p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCurrentState:I
 
-    .line 373
+    .line 371
     return-void
 .end method
 
@@ -1131,7 +1050,7 @@
 .method public getCameraHandler()Landroid/os/Handler;
     .locals 1
 
-    .line 108
+    .line 113
     iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraHandler:Landroid/os/Handler;
 
     return-object v0
@@ -1140,7 +1059,7 @@
 .method public getCameraMainThreadHandler()Landroid/os/Handler;
     .locals 1
 
-    .line 112
+    .line 117
     iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCameraMainThreadHandler:Landroid/os/Handler;
 
     return-object v0
@@ -1149,7 +1068,7 @@
 .method public getCurrentCamera2Device()Lcom/android/camera2/Camera2Proxy;
     .locals 1
 
-    .line 116
+    .line 121
     iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     return-object v0
@@ -1158,7 +1077,7 @@
 .method public getPendingCameraId()I
     .locals 1
 
-    .line 120
+    .line 125
     iget-object v0, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->mPendingCameraId:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I

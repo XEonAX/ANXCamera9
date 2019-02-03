@@ -9,7 +9,7 @@
 
 # direct methods
 .method protected constructor <init>(Lcom/google/zxing/LuminanceSource;)V
-    .locals 0
+    .registers 2
     .param p1, "source"    # Lcom/google/zxing/LuminanceSource;
 
     .line 34
@@ -44,7 +44,7 @@
 .end method
 
 .method public final getHeight()I
-    .locals 1
+    .registers 2
 
     .line 84
     iget-object v0, p0, Lcom/google/zxing/Binarizer;->source:Lcom/google/zxing/LuminanceSource;
@@ -57,7 +57,7 @@
 .end method
 
 .method public final getLuminanceSource()Lcom/google/zxing/LuminanceSource;
-    .locals 1
+    .registers 2
 
     .line 39
     iget-object v0, p0, Lcom/google/zxing/Binarizer;->source:Lcom/google/zxing/LuminanceSource;
@@ -66,7 +66,7 @@
 .end method
 
 .method public final getWidth()I
-    .locals 1
+    .registers 2
 
     .line 80
     iget-object v0, p0, Lcom/google/zxing/Binarizer;->source:Lcom/google/zxing/LuminanceSource;

@@ -18,79 +18,79 @@ import java.util.Map.Entry;
 
 /* compiled from: DecodeHelper */
 final class e<Transcode> {
-    private Class<Transcode> aH;
-    private Object aK;
-    private final List<c> dV = new ArrayList();
-    private c ee;
-    private f eg;
-    private final List<a<?>> eh = new ArrayList();
-    private Class<?> ei;
-    private d ej;
-    private Map<Class<?>, i<?>> ek;
-    private boolean el;
+    private Class<Transcode> aI;
+    private Object aL;
+    private final List<c> dW = new ArrayList();
+    private c ef;
+    private f eh;
+    private final List<a<?>> ei = new ArrayList();
+    private Class<?> ej;
+    private d ek;
+    private Map<Class<?>, i<?>> el;
     private boolean em;
-    private Priority en;
-    private g eo;
-    private boolean ep;
+    private boolean en;
+    private Priority eo;
+    private g ep;
     private boolean eq;
+    private boolean er;
     private int height;
-    private com.bumptech.glide.e o;
+    private com.bumptech.glide.e q;
     private int width;
 
     e() {
     }
 
     <R> void a(com.bumptech.glide.e eVar, Object obj, c cVar, int i, int i2, g gVar, Class<?> cls, Class<R> cls2, Priority priority, f fVar, Map<Class<?>, i<?>> map, boolean z, boolean z2, d dVar) {
-        this.o = eVar;
-        this.aK = obj;
-        this.ee = cVar;
+        this.q = eVar;
+        this.aL = obj;
+        this.ef = cVar;
         this.width = i;
         this.height = i2;
-        this.eo = gVar;
-        this.ei = cls;
-        this.ej = dVar;
-        this.aH = cls2;
-        this.en = priority;
-        this.eg = fVar;
-        this.ek = map;
-        this.ep = z;
-        this.eq = z2;
+        this.ep = gVar;
+        this.ej = cls;
+        this.ek = dVar;
+        this.aI = cls2;
+        this.eo = priority;
+        this.eh = fVar;
+        this.el = map;
+        this.eq = z;
+        this.er = z2;
     }
 
     void clear() {
-        this.o = null;
-        this.aK = null;
-        this.ee = null;
-        this.ei = null;
-        this.aH = null;
-        this.eg = null;
-        this.en = null;
-        this.ek = null;
+        this.q = null;
+        this.aL = null;
+        this.ef = null;
+        this.ej = null;
+        this.aI = null;
+        this.eh = null;
         this.eo = null;
-        this.eh.clear();
-        this.el = false;
-        this.dV.clear();
+        this.el = null;
+        this.ep = null;
+        this.ei.clear();
         this.em = false;
+        this.dW.clear();
+        this.en = false;
     }
 
     com.bumptech.glide.load.engine.a.a aq() {
-        return this.ej.aq();
+        return this.ek.aq();
     }
 
     g ar() {
-        return this.eo;
+        return this.ep;
     }
 
     Priority as() {
-        return this.en;
+        return this.eo;
     }
 
     f at() {
-        return this.eg;
+        return this.eh;
     }
 
     c au() {
-        return this.ee;
+        return this.ef;
     }
 
     int getWidth() {
@@ -102,19 +102,19 @@ final class e<Transcode> {
     }
 
     b f() {
-        return this.o.f();
+        return this.q.f();
     }
 
     Class<?> av() {
-        return this.aH;
+        return this.aI;
     }
 
     Class<?> aw() {
-        return this.aK.getClass();
+        return this.aL.getClass();
     }
 
     List<Class<?>> ax() {
-        return this.o.l().c(this.aK.getClass(), this.ei, this.aH);
+        return this.q.l().c(this.aL.getClass(), this.ej, this.aI);
     }
 
     boolean c(Class<?> cls) {
@@ -122,17 +122,17 @@ final class e<Transcode> {
     }
 
     <Data> n<Data, ?, Transcode> d(Class<Data> cls) {
-        return this.o.l().a((Class) cls, this.ei, this.aH);
+        return this.q.l().a((Class) cls, this.ej, this.aI);
     }
 
     boolean ay() {
-        return this.eq;
+        return this.er;
     }
 
     <Z> i<Z> e(Class<Z> cls) {
-        i<Z> iVar = (i) this.ek.get(cls);
+        i<Z> iVar = (i) this.el.get(cls);
         if (iVar == null) {
-            for (Entry entry : this.ek.entrySet()) {
+            for (Entry entry : this.el.entrySet()) {
                 if (((Class) entry.getKey()).isAssignableFrom(cls)) {
                     iVar = (i) entry.getValue();
                     break;
@@ -142,7 +142,7 @@ final class e<Transcode> {
         if (iVar != null) {
             return iVar;
         }
-        if (!this.ek.isEmpty() || !this.ep) {
+        if (!this.el.isEmpty() || !this.eq) {
             return com.bumptech.glide.load.resource.b.cf();
         }
         StringBuilder stringBuilder = new StringBuilder();
@@ -153,22 +153,22 @@ final class e<Transcode> {
     }
 
     boolean a(p<?> pVar) {
-        return this.o.l().a((p) pVar);
+        return this.q.l().a((p) pVar);
     }
 
     <Z> h<Z> b(p<Z> pVar) {
-        return this.o.l().b((p) pVar);
+        return this.q.l().b((p) pVar);
     }
 
     List<m<File, ?>> g(File file) throws NoModelLoaderAvailableException {
-        return this.o.l().d(file);
+        return this.q.l().d(file);
     }
 
     boolean c(c cVar) {
         List az = az();
         int size = az.size();
         for (int i = 0; i < size; i++) {
-            if (((a) az.get(i)).dZ.equals(cVar)) {
+            if (((a) az.get(i)).ea.equals(cVar)) {
                 return true;
             }
         }
@@ -176,43 +176,43 @@ final class e<Transcode> {
     }
 
     List<a<?>> az() {
-        if (!this.el) {
-            this.el = true;
-            this.eh.clear();
-            List d = this.o.l().d(this.aK);
+        if (!this.em) {
+            this.em = true;
+            this.ei.clear();
+            List d = this.q.l().d(this.aL);
             int size = d.size();
             for (int i = 0; i < size; i++) {
-                a b = ((m) d.get(i)).b(this.aK, this.width, this.height, this.eg);
+                a b = ((m) d.get(i)).b(this.aL, this.width, this.height, this.eh);
                 if (b != null) {
-                    this.eh.add(b);
+                    this.ei.add(b);
                 }
             }
         }
-        return this.eh;
+        return this.ei;
     }
 
     List<c> aA() {
-        if (!this.em) {
-            this.em = true;
-            this.dV.clear();
+        if (!this.en) {
+            this.en = true;
+            this.dW.clear();
             List az = az();
             int size = az.size();
             for (int i = 0; i < size; i++) {
                 a aVar = (a) az.get(i);
-                if (!this.dV.contains(aVar.dZ)) {
-                    this.dV.add(aVar.dZ);
+                if (!this.dW.contains(aVar.ea)) {
+                    this.dW.add(aVar.ea);
                 }
                 for (int i2 = 0; i2 < aVar.jo.size(); i2++) {
-                    if (!this.dV.contains(aVar.jo.get(i2))) {
-                        this.dV.add(aVar.jo.get(i2));
+                    if (!this.dW.contains(aVar.jo.get(i2))) {
+                        this.dW.add(aVar.jo.get(i2));
                     }
                 }
             }
         }
-        return this.dV;
+        return this.dW;
     }
 
     <X> com.bumptech.glide.load.a<X> b(X x) throws NoSourceEncoderAvailableException {
-        return this.o.l().b((Object) x);
+        return this.q.l().b((Object) x);
     }
 }

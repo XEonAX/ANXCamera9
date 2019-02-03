@@ -32,7 +32,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 9352
     new-instance v0, Landroid/support/v7/widget/RecyclerView$SavedState$1;
@@ -45,7 +45,7 @@
 .end method
 
 .method constructor <init>(Landroid/os/Parcel;)V
-    .locals 1
+    .registers 3
     .param p1, "in"    # Landroid/os/Parcel;
 
     .line 9331
@@ -69,7 +69,7 @@
 .end method
 
 .method constructor <init>(Landroid/os/Parcelable;)V
-    .locals 0
+    .registers 2
     .param p1, "superState"    # Landroid/os/Parcelable;
 
     .line 9339
@@ -80,7 +80,7 @@
 .end method
 
 .method static synthetic access$1500(Landroid/support/v7/widget/RecyclerView$SavedState;Landroid/support/v7/widget/RecyclerView$SavedState;)V
-    .locals 0
+    .registers 2
     .param p0, "x0"    # Landroid/support/v7/widget/RecyclerView$SavedState;
     .param p1, "x1"    # Landroid/support/v7/widget/RecyclerView$SavedState;
 
@@ -91,7 +91,7 @@
 .end method
 
 .method private copyFrom(Landroid/support/v7/widget/RecyclerView$SavedState;)V
-    .locals 1
+    .registers 3
     .param p1, "other"    # Landroid/support/v7/widget/RecyclerView$SavedState;
 
     .line 9349
@@ -106,7 +106,7 @@
 
 # virtual methods
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 2
+    .registers 5
     .param p1, "dest"    # Landroid/os/Parcel;
     .param p2, "flags"    # I
 

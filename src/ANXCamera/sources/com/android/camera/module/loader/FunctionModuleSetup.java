@@ -6,6 +6,7 @@ import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.global.DataItemGlobal;
 import com.android.camera.data.data.runing.DataItemRunning;
 import com.android.camera.effect.EffectController;
+import com.android.camera.log.Log;
 import com.android.camera.module.BaseModule;
 import com.android.camera.module.loader.camera2.Camera2OpenManager;
 import com.mi.config.b;
@@ -13,6 +14,8 @@ import io.reactivex.Scheduler;
 import io.reactivex.annotations.NonNull;
 
 public class FunctionModuleSetup extends Func1Base<BaseModule, BaseModule> {
+    private static final String TAG = FunctionModuleSetup.class.getSimpleName();
+
     public FunctionModuleSetup(int i) {
         super(i);
     }
@@ -22,6 +25,11 @@ public class FunctionModuleSetup extends Func1Base<BaseModule, BaseModule> {
     }
 
     public NullHolder<BaseModule> apply(@NonNull NullHolder<BaseModule> nullHolder) throws Exception {
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("apply: module isPresent = ");
+        stringBuilder.append(nullHolder.isPresent());
+        Log.d(str, stringBuilder.toString());
         if (!nullHolder.isPresent()) {
             return nullHolder;
         }
@@ -40,13 +48,23 @@ public class FunctionModuleSetup extends Func1Base<BaseModule, BaseModule> {
                 dataItemRunning.switchOff("pref_video_speed_hfr_key");
                 break;
             case 163:
-                if (baseModule.getActivity().isNewBieAlive(3)) {
+                if (DataRepository.dataItemFeature().fx()) {
+                    if (baseModule.getActivity().isNewBieAlive(4)) {
+                        return nullHolder;
+                    }
+                    if (dataItemGlobal.getBoolean("pref_camera_first_ultra_wide_use_hint_shown_key", true)) {
+                        baseModule.getActivity().showNewBie(4);
+                        return nullHolder;
+                    }
+                } else if (baseModule.getActivity().isNewBieAlive(3)) {
                     return nullHolder;
+                } else {
+                    if (dataItemGlobal.getBoolean("pref_camera_first_ai_scene_use_hint_shown_key", true) && b.gF()) {
+                        baseModule.getActivity().showNewBie(3);
+                        return nullHolder;
+                    }
                 }
-                if (dataItemGlobal.getBoolean("pref_camera_first_ai_scene_use_hint_shown_key", true) && b.gn()) {
-                    baseModule.getActivity().showNewBie(3);
-                    return nullHolder;
-                }
+                break;
             case 165:
                 dataItemRunning.switchOn("pref_camera_square_mode_key");
                 break;
@@ -82,6 +100,12 @@ public class FunctionModuleSetup extends Func1Base<BaseModule, BaseModule> {
                     dataItemGlobal.editor().putBoolean("pref_camera_first_portrait_use_hint_shown_key", false).apply();
                     return nullHolder;
                 }
+            case 174:
+                if (activity.startFromKeyguard()) {
+                    dataItemRunning.setLiveConfigIsNeedRestore(false);
+                    break;
+                }
+                break;
         }
         baseModule.getActivity().removeNewBie();
         if (baseModule.isDeparted() || activity.isActivityPaused()) {
@@ -95,7 +119,7 @@ public class FunctionModuleSetup extends Func1Base<BaseModule, BaseModule> {
                 baseModule.registerProtocol();
             }
             return nullHolder;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
             baseModule.setDeparted();
             return NullHolder.ofNullable(null, 237);

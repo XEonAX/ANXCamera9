@@ -33,21 +33,21 @@ public class Engine implements com.bumptech.glide.load.engine.a.j.a, h, a {
 
     @VisibleForTesting
     static class DecodeJobFactory {
-        final d ej;
-        final Pool<DecodeJob<?>> eu = com.bumptech.glide.util.a.a.a(150, new com.bumptech.glide.util.a.a.a<DecodeJob<?>>() {
+        final d ek;
+        final Pool<DecodeJob<?>> ev = com.bumptech.glide.util.a.a.a(150, new com.bumptech.glide.util.a.a.a<DecodeJob<?>>() {
             /* renamed from: aQ */
             public DecodeJob<?> create() {
-                return new DecodeJob(DecodeJobFactory.this.ej, DecodeJobFactory.this.eu);
+                return new DecodeJob(DecodeJobFactory.this.ek, DecodeJobFactory.this.ev);
             }
         });
         private int fz;
 
         DecodeJobFactory(d dVar) {
-            this.ej = dVar;
+            this.ek = dVar;
         }
 
         <R> DecodeJob<R> a(e eVar, Object obj, i iVar, c cVar, int i, int i2, Class<?> cls, Class<R> cls2, Priority priority, g gVar, Map<Class<?>, i<?>> map, boolean z, boolean z2, boolean z3, f fVar, a<R> aVar) {
-            DecodeJob decodeJob = (DecodeJob) com.bumptech.glide.util.i.checkNotNull((DecodeJob) this.eu.acquire());
+            DecodeJob decodeJob = (DecodeJob) com.bumptech.glide.util.i.checkNotNull((DecodeJob) this.ev.acquire());
             int i3 = this.fz;
             this.fz = i3 + 1;
             return decodeJob.a(eVar, obj, iVar, cVar, i, i2, cls, cls2, priority, gVar, map, z, z2, z3, fVar, aVar, i3);
@@ -56,36 +56,36 @@ public class Engine implements com.bumptech.glide.load.engine.a.j.a, h, a {
 
     @VisibleForTesting
     static class EngineJobFactory {
-        final com.bumptech.glide.load.engine.b.a F;
         final com.bumptech.glide.load.engine.b.a H;
-        final com.bumptech.glide.load.engine.b.a Q;
-        final Pool<EngineJob<?>> eu = com.bumptech.glide.util.a.a.a(150, new com.bumptech.glide.util.a.a.a<EngineJob<?>>() {
+        final com.bumptech.glide.load.engine.b.a I;
+        final com.bumptech.glide.load.engine.b.a S;
+        final Pool<EngineJob<?>> ev = com.bumptech.glide.util.a.a.a(150, new com.bumptech.glide.util.a.a.a<EngineJob<?>>() {
             /* renamed from: aR */
             public EngineJob<?> create() {
-                return new EngineJob(EngineJobFactory.this.H, EngineJobFactory.this.F, EngineJobFactory.this.fB, EngineJobFactory.this.Q, EngineJobFactory.this.fC, EngineJobFactory.this.eu);
+                return new EngineJob(EngineJobFactory.this.I, EngineJobFactory.this.H, EngineJobFactory.this.fB, EngineJobFactory.this.S, EngineJobFactory.this.fC, EngineJobFactory.this.ev);
             }
         });
         final com.bumptech.glide.load.engine.b.a fB;
         final h fC;
 
         EngineJobFactory(com.bumptech.glide.load.engine.b.a aVar, com.bumptech.glide.load.engine.b.a aVar2, com.bumptech.glide.load.engine.b.a aVar3, com.bumptech.glide.load.engine.b.a aVar4, h hVar) {
-            this.H = aVar;
-            this.F = aVar2;
+            this.I = aVar;
+            this.H = aVar2;
             this.fB = aVar3;
-            this.Q = aVar4;
+            this.S = aVar4;
             this.fC = hVar;
         }
 
         @VisibleForTesting
         void shutdown() {
+            a(this.I);
             a(this.H);
-            a(this.F);
             a(this.fB);
-            a(this.Q);
+            a(this.S);
         }
 
         <R> EngineJob<R> a(c cVar, boolean z, boolean z2, boolean z3, boolean z4) {
-            return ((EngineJob) com.bumptech.glide.util.i.checkNotNull((EngineJob) this.eu.acquire())).init(cVar, z, z2, z3, z4);
+            return ((EngineJob) com.bumptech.glide.util.i.checkNotNull((EngineJob) this.ev.acquire())).init(cVar, z, z2, z3, z4);
         }
 
         private static void a(ExecutorService executorService) {

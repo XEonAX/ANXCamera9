@@ -23,6 +23,10 @@ import com.ss.android.ugc.effectmanager.effect.model.EffectChannelResponse;
 import com.ss.android.ugc.effectmanager.effect.model.net.EffectNetListResponse;
 import com.ss.android.ugc.effectmanager.effect.task.result.EffectChannelTaskResult;
 import java.io.File;
+import java.net.InetAddress;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +40,9 @@ public class FetchEffectChannelTask extends NormalTask {
     private EffectContext mEffectContext;
     private ICache mFileCache = this.mConfiguration.getCache();
     private IJsonConverter mJsonConverter = this.mConfiguration.getJsonConverter();
+    private String mRemoteIp;
+    private String mRequestedUrl;
+    private String mSelectedHost;
     private String panel;
 
     public FetchEffectChannelTask(EffectContext effectContext, String str, String str2, Handler handler) {
@@ -51,8 +58,11 @@ public class FetchEffectChannelTask extends NormalTask {
             this.mCurCnt = i - 1;
             if (i != 0) {
                 try {
+                    ExceptionResult exceptionResult;
                     if (isCanceled()) {
-                        sendMessage(14, new EffectChannelTaskResult(new EffectChannelResponse(this.panel), new ExceptionResult((int) ErrorConstants.CODE_CANCEL_DOWNLOAD)));
+                        exceptionResult = new ExceptionResult((int) ErrorConstants.CODE_CANCEL_DOWNLOAD);
+                        exceptionResult.setTrackParams(this.mRequestedUrl, this.mSelectedHost, this.mRemoteIp);
+                        sendMessage(14, new EffectChannelTaskResult(new EffectChannelResponse(this.panel), exceptionResult));
                         return;
                     }
                     EffectNetListResponse effectNetListResponse = (EffectNetListResponse) this.mConfiguration.getEffectNetWorker().execute(buildEffectListRequest, this.mJsonConverter, EffectNetListResponse.class);
@@ -63,7 +73,9 @@ public class FetchEffectChannelTask extends NormalTask {
                         sendMessage(14, new EffectChannelTaskResult(buildChannelResponse, null));
                         return;
                     } else if (this.mCurCnt == 0) {
-                        sendMessage(14, new EffectChannelTaskResult(new EffectChannelResponse(this.panel), new ExceptionResult((int) ErrorConstants.CODE_DOWNLOAD_ERROR)));
+                        exceptionResult = new ExceptionResult((int) ErrorConstants.CODE_DOWNLOAD_ERROR);
+                        exceptionResult.setTrackParams(this.mRequestedUrl, this.mSelectedHost, this.mRemoteIp);
+                        sendMessage(14, new EffectChannelTaskResult(new EffectChannelResponse(this.panel), exceptionResult));
                         return;
                     }
                 } catch (Exception e) {
@@ -249,7 +261,7 @@ public class FetchEffectChannelTask extends NormalTask {
             hashMap.put(EffectConfiguration.KEY_DEVICE_TYPE, this.mConfiguration.getDeviceType());
         }
         if (!TextUtils.isEmpty(this.mConfiguration.getAppID())) {
-            hashMap.put(EffectConfiguration.KEY_APP_ID, this.mConfiguration.getAppID());
+            hashMap.put("aid", this.mConfiguration.getAppID());
         }
         if (!TextUtils.isEmpty(this.mConfiguration.getAppLanguage())) {
             hashMap.put(EffectConfiguration.KEY_APP_LANGUAGE, this.mConfiguration.getAppLanguage());
@@ -257,10 +269,20 @@ public class FetchEffectChannelTask extends NormalTask {
         if (!TextUtils.isEmpty(this.mConfiguration.getSysLanguage())) {
             hashMap.put(EffectConfiguration.KEY_SYS_LANGUAGE, this.mConfiguration.getSysLanguage());
         }
+        this.mSelectedHost = this.mEffectContext.getLinkSelector().getBestHostUrl();
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(this.mEffectContext.getLinkSelector().getBestHostUrl());
+        stringBuilder.append(this.mSelectedHost);
         stringBuilder.append(this.mConfiguration.getApiAdress());
         stringBuilder.append(EffectConstants.ROUTE_EFFECT_LIST);
-        return new EffectRequest("GET", NetworkUtils.buildRequestUrl(hashMap, stringBuilder.toString()));
+        String buildRequestUrl = NetworkUtils.buildRequestUrl(hashMap, stringBuilder.toString());
+        this.mRequestedUrl = buildRequestUrl;
+        try {
+            this.mRemoteIp = InetAddress.getByName(new URL(buildRequestUrl).getHost()).getHostAddress();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e2) {
+            e2.printStackTrace();
+        }
+        return new EffectRequest("GET", buildRequestUrl);
     }
 }

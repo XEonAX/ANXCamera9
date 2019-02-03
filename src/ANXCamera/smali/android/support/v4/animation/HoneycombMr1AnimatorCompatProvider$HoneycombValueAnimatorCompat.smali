@@ -23,7 +23,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/animation/Animator;)V
-    .locals 0
+    .registers 2
     .param p1, "wrapped"    # Landroid/animation/Animator;
 
     .line 46
@@ -39,7 +39,7 @@
 
 # virtual methods
 .method public addListener(Landroid/support/v4/animation/AnimatorListenerCompat;)V
-    .locals 2
+    .registers 4
     .param p1, "listener"    # Landroid/support/v4/animation/AnimatorListenerCompat;
 
     .line 57
@@ -56,7 +56,7 @@
 .end method
 
 .method public addUpdateListener(Landroid/support/v4/animation/AnimatorUpdateListenerCompat;)V
-    .locals 2
+    .registers 4
     .param p1, "animatorUpdateListener"    # Landroid/support/v4/animation/AnimatorUpdateListenerCompat;
 
     .line 77
@@ -64,7 +64,7 @@
 
     instance-of v0, v0, Landroid/animation/ValueAnimator;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_12
 
     .line 78
     iget-object v0, p0, Landroid/support/v4/animation/HoneycombMr1AnimatorCompatProvider$HoneycombValueAnimatorCompat;->mWrapped:Landroid/animation/Animator;
@@ -78,12 +78,12 @@
     invoke-virtual {v0, v1}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
 
     .line 87
-    :cond_0
+    :cond_12
     return-void
 .end method
 
 .method public cancel()V
-    .locals 1
+    .registers 2
 
     .line 72
     iget-object v0, p0, Landroid/support/v4/animation/HoneycombMr1AnimatorCompatProvider$HoneycombValueAnimatorCompat;->mWrapped:Landroid/animation/Animator;
@@ -95,7 +95,7 @@
 .end method
 
 .method public getAnimatedFraction()F
-    .locals 1
+    .registers 2
 
     .line 91
     iget-object v0, p0, Landroid/support/v4/animation/HoneycombMr1AnimatorCompatProvider$HoneycombValueAnimatorCompat;->mWrapped:Landroid/animation/Animator;
@@ -110,7 +110,7 @@
 .end method
 
 .method public setDuration(J)V
-    .locals 1
+    .registers 4
     .param p1, "duration"    # J
 
     .line 62
@@ -123,7 +123,7 @@
 .end method
 
 .method public setTarget(Landroid/view/View;)V
-    .locals 1
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
 
     .line 52
@@ -136,7 +136,7 @@
 .end method
 
 .method public start()V
-    .locals 1
+    .registers 2
 
     .line 67
     iget-object v0, p0, Landroid/support/v4/animation/HoneycombMr1AnimatorCompatProvider$HoneycombValueAnimatorCompat;->mWrapped:Landroid/animation/Animator;

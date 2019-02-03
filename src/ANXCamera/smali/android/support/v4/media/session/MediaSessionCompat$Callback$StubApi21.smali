@@ -23,7 +23,7 @@
 
 # direct methods
 .method private constructor <init>(Landroid/support/v4/media/session/MediaSessionCompat$Callback;)V
-    .locals 0
+    .registers 2
 
     .line 604
     iput-object p1, p0, Landroid/support/v4/media/session/MediaSessionCompat$Callback$StubApi21;->this$0:Landroid/support/v4/media/session/MediaSessionCompat$Callback;
@@ -34,7 +34,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v4/media/session/MediaSessionCompat$Callback;Landroid/support/v4/media/session/MediaSessionCompat$1;)V
-    .locals 0
+    .registers 3
     .param p1, "x0"    # Landroid/support/v4/media/session/MediaSessionCompat$Callback;
     .param p2, "x1"    # Landroid/support/v4/media/session/MediaSessionCompat$1;
 
@@ -47,7 +47,7 @@
 
 # virtual methods
 .method public onCommand(Ljava/lang/String;Landroid/os/Bundle;Landroid/os/ResultReceiver;)V
-    .locals 1
+    .registers 5
     .param p1, "command"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
     .param p3, "cb"    # Landroid/os/ResultReceiver;
@@ -62,7 +62,7 @@
 .end method
 
 .method public onCustomAction(Ljava/lang/String;Landroid/os/Bundle;)V
-    .locals 1
+    .registers 4
     .param p1, "action"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
 
@@ -76,7 +76,7 @@
 .end method
 
 .method public onFastForward()V
-    .locals 1
+    .registers 2
 
     .line 653
     iget-object v0, p0, Landroid/support/v4/media/session/MediaSessionCompat$Callback$StubApi21;->this$0:Landroid/support/v4/media/session/MediaSessionCompat$Callback;
@@ -88,7 +88,7 @@
 .end method
 
 .method public onMediaButtonEvent(Landroid/content/Intent;)Z
-    .locals 1
+    .registers 3
     .param p1, "mediaButtonIntent"    # Landroid/content/Intent;
 
     .line 613
@@ -102,7 +102,7 @@
 .end method
 
 .method public onPause()V
-    .locals 1
+    .registers 2
 
     .line 638
     iget-object v0, p0, Landroid/support/v4/media/session/MediaSessionCompat$Callback$StubApi21;->this$0:Landroid/support/v4/media/session/MediaSessionCompat$Callback;
@@ -114,7 +114,7 @@
 .end method
 
 .method public onPlay()V
-    .locals 1
+    .registers 2
 
     .line 618
     iget-object v0, p0, Landroid/support/v4/media/session/MediaSessionCompat$Callback$StubApi21;->this$0:Landroid/support/v4/media/session/MediaSessionCompat$Callback;
@@ -126,7 +126,7 @@
 .end method
 
 .method public onPlayFromMediaId(Ljava/lang/String;Landroid/os/Bundle;)V
-    .locals 1
+    .registers 4
     .param p1, "mediaId"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
 
@@ -140,7 +140,7 @@
 .end method
 
 .method public onPlayFromSearch(Ljava/lang/String;Landroid/os/Bundle;)V
-    .locals 1
+    .registers 4
     .param p1, "search"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
 
@@ -154,7 +154,7 @@
 .end method
 
 .method public onRewind()V
-    .locals 1
+    .registers 2
 
     .line 658
     iget-object v0, p0, Landroid/support/v4/media/session/MediaSessionCompat$Callback$StubApi21;->this$0:Landroid/support/v4/media/session/MediaSessionCompat$Callback;
@@ -166,7 +166,7 @@
 .end method
 
 .method public onSeekTo(J)V
-    .locals 1
+    .registers 4
     .param p1, "pos"    # J
 
     .line 668
@@ -179,7 +179,7 @@
 .end method
 
 .method public onSetRating(Ljava/lang/Object;)V
-    .locals 2
+    .registers 4
     .param p1, "ratingObj"    # Ljava/lang/Object;
 
     .line 673
@@ -196,7 +196,7 @@
 .end method
 
 .method public onSkipToNext()V
-    .locals 1
+    .registers 2
 
     .line 643
     iget-object v0, p0, Landroid/support/v4/media/session/MediaSessionCompat$Callback$StubApi21;->this$0:Landroid/support/v4/media/session/MediaSessionCompat$Callback;
@@ -208,7 +208,7 @@
 .end method
 
 .method public onSkipToPrevious()V
-    .locals 1
+    .registers 2
 
     .line 648
     iget-object v0, p0, Landroid/support/v4/media/session/MediaSessionCompat$Callback$StubApi21;->this$0:Landroid/support/v4/media/session/MediaSessionCompat$Callback;
@@ -220,7 +220,7 @@
 .end method
 
 .method public onSkipToQueueItem(J)V
-    .locals 1
+    .registers 4
     .param p1, "id"    # J
 
     .line 633
@@ -233,7 +233,7 @@
 .end method
 
 .method public onStop()V
-    .locals 1
+    .registers 2
 
     .line 663
     iget-object v0, p0, Landroid/support/v4/media/session/MediaSessionCompat$Callback$StubApi21;->this$0:Landroid/support/v4/media/session/MediaSessionCompat$Callback;

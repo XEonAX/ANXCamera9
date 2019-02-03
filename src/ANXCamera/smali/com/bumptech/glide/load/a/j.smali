@@ -32,19 +32,19 @@
 
 .field private static final TAG:Ljava/lang/String; = "HttpUrlFetcher"
 
-.field private static final dj:I = 0x5
+.field private static final dk:I = 0x5
 
-.field private static final dk:I = -0x1
+.field private static final dl:I = -0x1
 
 
 # instance fields
-.field private final dl:Lcom/bumptech/glide/load/model/g;
+.field private final dm:Lcom/bumptech/glide/load/model/g;
 
-.field private final dm:Lcom/bumptech/glide/load/a/j$b;
+.field private final do:Lcom/bumptech/glide/load/a/j$b;
 
-.field private do:Ljava/io/InputStream;
+.field private dp:Ljava/io/InputStream;
 
-.field private volatile dp:Z
+.field private volatile dq:Z
 
 .field private final timeout:I
 
@@ -86,13 +86,13 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 49
-    iput-object p1, p0, Lcom/bumptech/glide/load/a/j;->dl:Lcom/bumptech/glide/load/model/g;
+    iput-object p1, p0, Lcom/bumptech/glide/load/a/j;->dm:Lcom/bumptech/glide/load/model/g;
 
     .line 50
     iput p2, p0, Lcom/bumptech/glide/load/a/j;->timeout:I
 
     .line 51
-    iput-object p3, p0, Lcom/bumptech/glide/load/a/j;->dm:Lcom/bumptech/glide/load/a/j$b;
+    iput-object p3, p0, Lcom/bumptech/glide/load/a/j;->do:Lcom/bumptech/glide/load/a/j$b;
 
     .line 52
     return-void
@@ -133,7 +133,7 @@
 
     move-result-object p1
 
-    iput-object p1, p0, Lcom/bumptech/glide/load/a/j;->do:Ljava/io/InputStream;
+    iput-object p1, p0, Lcom/bumptech/glide/load/a/j;->dp:Ljava/io/InputStream;
 
     .line 145
     goto :goto_0
@@ -179,11 +179,11 @@
 
     move-result-object p1
 
-    iput-object p1, p0, Lcom/bumptech/glide/load/a/j;->do:Ljava/io/InputStream;
+    iput-object p1, p0, Lcom/bumptech/glide/load/a/j;->dp:Ljava/io/InputStream;
 
     .line 151
     :goto_0
-    iget-object p1, p0, Lcom/bumptech/glide/load/a/j;->do:Ljava/io/InputStream;
+    iget-object p1, p0, Lcom/bumptech/glide/load/a/j;->dp:Ljava/io/InputStream;
 
     return-object p1
 .end method
@@ -260,7 +260,7 @@
 
     .line 90
     :goto_1
-    iget-object p3, p0, Lcom/bumptech/glide/load/a/j;->dm:Lcom/bumptech/glide/load/a/j$b;
+    iget-object p3, p0, Lcom/bumptech/glide/load/a/j;->do:Lcom/bumptech/glide/load/a/j$b;
 
     invoke-interface {p3, p1}, Lcom/bumptech/glide/load/a/j$b;->c(Ljava/net/URL;)Ljava/net/HttpURLConnection;
 
@@ -356,10 +356,10 @@
 
     move-result-object p3
 
-    iput-object p3, p0, Lcom/bumptech/glide/load/a/j;->do:Ljava/io/InputStream;
+    iput-object p3, p0, Lcom/bumptech/glide/load/a/j;->dp:Ljava/io/InputStream;
 
     .line 107
-    iget-boolean p3, p0, Lcom/bumptech/glide/load/a/j;->dp:Z
+    iget-boolean p3, p0, Lcom/bumptech/glide/load/a/j;->dq:Z
 
     if-eqz p3, :cond_3
 
@@ -555,7 +555,7 @@
     const/4 p1, 0x2
 
     :try_start_0
-    iget-object v2, p0, Lcom/bumptech/glide/load/a/j;->dl:Lcom/bumptech/glide/load/model/g;
+    iget-object v2, p0, Lcom/bumptech/glide/load/a/j;->dm:Lcom/bumptech/glide/load/model/g;
 
     invoke-virtual {v2}, Lcom/bumptech/glide/load/model/g;->toURL()Ljava/net/URL;
 
@@ -565,7 +565,7 @@
 
     const/4 v4, 0x0
 
-    iget-object v5, p0, Lcom/bumptech/glide/load/a/j;->dl:Lcom/bumptech/glide/load/model/g;
+    iget-object v5, p0, Lcom/bumptech/glide/load/a/j;->dm:Lcom/bumptech/glide/load/model/g;
 
     invoke-virtual {v5}, Lcom/bumptech/glide/load/model/g;->getHeaders()Ljava/util/Map;
 
@@ -734,7 +734,7 @@
     .end annotation
 
     .line 185
-    sget-object v0, Lcom/bumptech/glide/load/DataSource;->ct:Lcom/bumptech/glide/load/DataSource;
+    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cu:Lcom/bumptech/glide/load/DataSource;
 
     return-object v0
 .end method
@@ -745,7 +745,7 @@
     .line 173
     const/4 v0, 0x1
 
-    iput-boolean v0, p0, Lcom/bumptech/glide/load/a/j;->dp:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/load/a/j;->dq:Z
 
     .line 174
     return-void
@@ -755,13 +755,13 @@
     .locals 1
 
     .line 156
-    iget-object v0, p0, Lcom/bumptech/glide/load/a/j;->do:Ljava/io/InputStream;
+    iget-object v0, p0, Lcom/bumptech/glide/load/a/j;->dp:Ljava/io/InputStream;
 
     if-eqz v0, :cond_0
 
     .line 158
     :try_start_0
-    iget-object v0, p0, Lcom/bumptech/glide/load/a/j;->do:Ljava/io/InputStream;
+    iget-object v0, p0, Lcom/bumptech/glide/load/a/j;->dp:Ljava/io/InputStream;
 
     invoke-virtual {v0}, Ljava/io/InputStream;->close()V
     :try_end_0

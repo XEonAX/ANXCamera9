@@ -33,7 +33,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 118
     new-instance v0, Landroid/os/statistics/E2EScenario$1;
@@ -46,7 +46,7 @@
 .end method
 
 .method protected constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 32
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -71,7 +71,7 @@
 .end method
 
 .method public constructor <init>(Landroid/os/Parcel;)V
-    .locals 4
+    .registers 6
     .param p1, "source"    # Landroid/os/Parcel;
 
     .line 47
@@ -96,42 +96,42 @@
 
     .line 51
     .local v2, "_name":Ljava/lang/String;
-    if-nez v0, :cond_0
+    if-nez v0, :cond_14
 
     const-string v3, ""
 
-    goto :goto_0
+    goto :goto_15
 
-    :cond_0
+    :cond_14
     move-object v3, v0
 
-    :goto_0
+    :goto_15
     iput-object v3, p0, Landroid/os/statistics/E2EScenario;->namespace:Ljava/lang/String;
 
     .line 52
-    if-nez v1, :cond_1
+    if-nez v1, :cond_1c
 
     const-string v3, ""
 
-    goto :goto_1
+    goto :goto_1d
 
-    :cond_1
+    :cond_1c
     move-object v3, v1
 
-    :goto_1
+    :goto_1d
     iput-object v3, p0, Landroid/os/statistics/E2EScenario;->category:Ljava/lang/String;
 
     .line 53
-    if-nez v2, :cond_2
+    if-nez v2, :cond_24
 
     const-string v3, ""
 
-    goto :goto_2
+    goto :goto_25
 
-    :cond_2
+    :cond_24
     move-object v3, v2
 
-    :goto_2
+    :goto_25
     iput-object v3, p0, Landroid/os/statistics/E2EScenario;->name:Ljava/lang/String;
 
     .line 54
@@ -139,7 +139,7 @@
 .end method
 
 .method public constructor <init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-    .locals 1
+    .registers 5
     .param p1, "namespace"    # Ljava/lang/String;
     .param p2, "category"    # Ljava/lang/String;
     .param p3, "name"    # Ljava/lang/String;
@@ -148,42 +148,42 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 39
-    if-nez p1, :cond_0
+    if-nez p1, :cond_8
 
     const-string v0, ""
 
-    goto :goto_0
+    goto :goto_9
 
-    :cond_0
+    :cond_8
     move-object v0, p1
 
-    :goto_0
+    :goto_9
     iput-object v0, p0, Landroid/os/statistics/E2EScenario;->namespace:Ljava/lang/String;
 
     .line 40
-    if-nez p2, :cond_1
+    if-nez p2, :cond_10
 
     const-string v0, ""
 
-    goto :goto_1
+    goto :goto_11
 
-    :cond_1
+    :cond_10
     move-object v0, p2
 
-    :goto_1
+    :goto_11
     iput-object v0, p0, Landroid/os/statistics/E2EScenario;->category:Ljava/lang/String;
 
     .line 41
-    if-nez p3, :cond_2
+    if-nez p3, :cond_18
 
     const-string v0, ""
 
-    goto :goto_2
+    goto :goto_19
 
-    :cond_2
+    :cond_18
     move-object v0, p3
 
-    :goto_2
+    :goto_19
     iput-object v0, p0, Landroid/os/statistics/E2EScenario;->name:Ljava/lang/String;
 
     .line 42
@@ -193,7 +193,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     .line 93
     const/4 v0, 0x0
@@ -202,22 +202,22 @@
 .end method
 
 .method public equals(Ljava/lang/Object;)Z
-    .locals 4
+    .registers 6
     .param p1, "obj"    # Ljava/lang/Object;
 
     .line 70
     const/4 v0, 0x0
 
-    if-eqz p1, :cond_2
+    if-eqz p1, :cond_2c
 
     instance-of v1, p1, Landroid/os/statistics/E2EScenario;
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_8
 
-    goto :goto_0
+    goto :goto_2c
 
     .line 73
-    :cond_0
+    :cond_8
     move-object v1, p1
 
     check-cast v1, Landroid/os/statistics/E2EScenario;
@@ -232,7 +232,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_2b
 
     iget-object v2, p0, Landroid/os/statistics/E2EScenario;->category:Ljava/lang/String;
 
@@ -243,7 +243,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_2b
 
     iget-object v2, p0, Landroid/os/statistics/E2EScenario;->name:Ljava/lang/String;
 
@@ -254,25 +254,25 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_2b
 
     const/4 v0, 0x1
 
     nop
 
     .line 74
-    :cond_1
+    :cond_2b
     return v0
 
     .line 71
     .end local v1    # "other":Landroid/os/statistics/E2EScenario;
-    :cond_2
-    :goto_0
+    :cond_2c
+    :goto_2c
     return v0
 .end method
 
 .method public hashCode()I
-    .locals 2
+    .registers 3
 
     .line 81
     iget-object v0, p0, Landroid/os/statistics/E2EScenario;->namespace:Ljava/lang/String;
@@ -301,7 +301,7 @@
 .end method
 
 .method public isValid()Z
-    .locals 1
+    .registers 2
 
     .line 88
     iget-object v0, p0, Landroid/os/statistics/E2EScenario;->name:Ljava/lang/String;
@@ -316,7 +316,7 @@
 .end method
 
 .method public normalize(Ljava/lang/String;)V
-    .locals 1
+    .registers 3
     .param p1, "packageName"    # Ljava/lang/String;
 
     .line 60
@@ -326,34 +326,34 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_14
 
     .line 61
     invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_11
 
     const-string v0, "android"
 
-    goto :goto_0
+    goto :goto_12
 
-    :cond_0
+    :cond_11
     move-object v0, p1
 
-    :goto_0
+    :goto_12
     iput-object v0, p0, Landroid/os/statistics/E2EScenario;->namespace:Ljava/lang/String;
 
     .line 63
-    :cond_1
+    :cond_14
     iget-object v0, p0, Landroid/os/statistics/E2EScenario;->category:Ljava/lang/String;
 
     invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_20
 
     .line 64
     const-string v0, "default"
@@ -361,12 +361,12 @@
     iput-object v0, p0, Landroid/os/statistics/E2EScenario;->category:Ljava/lang/String;
 
     .line 66
-    :cond_2
+    :cond_20
     return-void
 .end method
 
 .method public toJson()Lorg/json/JSONObject;
-    .locals 3
+    .registers 4
 
     .line 107
     new-instance v0, Lorg/json/JSONObject;
@@ -375,7 +375,7 @@
 
     .line 109
     .local v0, "json":Lorg/json/JSONObject;
-    :try_start_0
+    :try_start_5
     const-string/jumbo v1, "namespace"
 
     iget-object v2, p0, Landroid/os/statistics/E2EScenario;->namespace:Ljava/lang/String;
@@ -395,14 +395,14 @@
     iget-object v2, p0, Landroid/os/statistics/E2EScenario;->name:Ljava/lang/String;
 
     invoke-virtual {v0, v1, v2}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
-    :try_end_0
-    .catch Lorg/json/JSONException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1c
+    .catch Lorg/json/JSONException; {:try_start_5 .. :try_end_1c} :catch_1d
 
     .line 114
-    goto :goto_0
+    goto :goto_21
 
     .line 112
-    :catch_0
+    :catch_1d
     move-exception v1
 
     .line 113
@@ -411,12 +411,12 @@
 
     .line 115
     .end local v1    # "e":Lorg/json/JSONException;
-    :goto_0
+    :goto_21
     return-object v0
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 1
+    .registers 4
     .param p1, "dest"    # Landroid/os/Parcel;
     .param p2, "flags"    # I
 

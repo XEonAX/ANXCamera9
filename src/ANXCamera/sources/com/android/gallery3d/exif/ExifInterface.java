@@ -126,7 +126,6 @@ public class ExifInterface {
     public static final int TAG_JPEG_INTERCHANGE_FORMAT = defineTag(1, (short) 513);
     public static final int TAG_JPEG_INTERCHANGE_FORMAT_LENGTH = defineTag(1, (short) 514);
     public static final int TAG_LIGHT_SOURCE = defineTag(2, (short) -28152);
-    public static final int TAG_LIVESHOT = defineTag(2, (short) -30569);
     public static final int TAG_MAKE = defineTag(0, (short) 271);
     public static final int TAG_MAKER_NOTE = defineTag(2, (short) -28036);
     public static final int TAG_MAX_APERTURE_VALUE = defineTag(2, (short) -28155);
@@ -170,6 +169,8 @@ public class ExifInterface {
     public static final int TAG_WHITE_BALANCE = defineTag(2, (short) -23549);
     public static final int TAG_WHITE_POINT = defineTag(0, (short) 318);
     public static final int TAG_XIAOMI_COMMENT = defineTag(2, (short) -26215);
+    public static final int TAG_XIAOMI_DEPTHMAP_VERSION = defineTag(2, (short) -30568);
+    public static final int TAG_XIAOMI_LIVESHOT_PHOTO = defineTag(2, (short) -30569);
     public static final int TAG_X_RESOLUTION = defineTag(0, (short) 282);
     public static final int TAG_Y_CB_CR_COEFFICIENTS = defineTag(0, (short) 529);
     public static final int TAG_Y_CB_CR_POSITIONING = defineTag(0, (short) 531);
@@ -207,6 +208,17 @@ public class ExifInterface {
         public static final short HARD = (short) 2;
         public static final short NORMAL = (short) 0;
         public static final short SOFT = (short) 1;
+    }
+
+    public interface ExifOrientationFlag {
+        public static final short BOTTOM_LEFT = (short) 3;
+        public static final short BOTTOM_RIGHT = (short) 4;
+        public static final short LEFT_BOTTOM = (short) 7;
+        public static final short LEFT_TOP = (short) 5;
+        public static final short RIGHT_BOTTOM = (short) 8;
+        public static final short RIGHT_TOP = (short) 6;
+        public static final short TOP_LEFT = (short) 1;
+        public static final short TOP_RIGHT = (short) 2;
     }
 
     public interface ExposureMode {
@@ -329,17 +341,6 @@ public class ExifInterface {
         public static final short PATTERN = (short) 5;
         public static final short SPOT = (short) 3;
         public static final short UNKNOWN = (short) 0;
-    }
-
-    public interface Orientation {
-        public static final short BOTTOM_LEFT = (short) 3;
-        public static final short BOTTOM_RIGHT = (short) 4;
-        public static final short LEFT_BOTTOM = (short) 7;
-        public static final short LEFT_TOP = (short) 5;
-        public static final short RIGHT_BOTTOM = (short) 8;
-        public static final short RIGHT_TOP = (short) 6;
-        public static final short TOP_LEFT = (short) 1;
-        public static final short TOP_RIGHT = (short) 2;
     }
 
     public interface PhotometricInterpretation {
@@ -1169,15 +1170,16 @@ public class ExifInterface {
     }
 
     public boolean addParallelProcessComment(String str, int i, int i2, int i3) {
+        String str2 = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("addParallel ");
+        stringBuilder.append("algo exif: addParallel ");
         stringBuilder.append(str);
-        Log.e("algo exif:", stringBuilder.toString());
-        return addExifTag(TAG_PARALLEL_PROCESS_COMMENT, str) && addExifTag(TAG_ORIENTATION, Integer.valueOf(i)) && addExifTag(TAG_IMAGE_WIDTH, Integer.valueOf(i2)) && addExifTag(TAG_IMAGE_LENGTH, Integer.valueOf(i3));
+        Log.i(str2, stringBuilder.toString());
+        return addExifTag(TAG_PARALLEL_PROCESS_COMMENT, str) && addExifTag(TAG_ORIENTATION, Short.valueOf(getExifOrientationValue(i))) && addExifTag(TAG_IMAGE_WIDTH, Integer.valueOf(i2)) && addExifTag(TAG_IMAGE_LENGTH, Integer.valueOf(i3));
     }
 
     public static byte[] removeParallelProcessComment(byte[] bArr) {
-        Log.e("algo exif:", "removeParallel ");
+        Log.i(TAG, "algo exif: removeParallel");
         long currentTimeMillis = System.currentTimeMillis();
         OutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {
@@ -1201,6 +1203,10 @@ public class ExifInterface {
 
     public void removeParallelProcessComment() {
         deleteTag(TAG_PARALLEL_PROCESS_COMMENT);
+    }
+
+    public boolean addXiaomiDepthmapVersion(int i) {
+        return addExifTag(TAG_XIAOMI_DEPTHMAP_VERSION, Integer.valueOf(i));
     }
 
     public boolean addDepthMapFocusPoint(Point point) {
@@ -1232,7 +1238,7 @@ public class ExifInterface {
     }
 
     public boolean addFileTypeLiveShot(boolean z) {
-        return addExifTag(TAG_LIVESHOT, Byte.valueOf(z));
+        return addExifTag(TAG_XIAOMI_LIVESHOT_PHOTO, Byte.valueOf(z));
     }
 
     private boolean addExifTag(int i, Object obj) {
@@ -1252,7 +1258,7 @@ public class ExifInterface {
         return this.mData.getXiaomiComment();
     }
 
-    public static short getOrientationValueForRotation(int i) {
+    public static short getExifOrientationValue(int i) {
         i %= ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         if (i < 0) {
             i += ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
@@ -1269,7 +1275,7 @@ public class ExifInterface {
         return (short) 8;
     }
 
-    public static int getRotationForOrientationValue(short s) {
+    public static int getRotation(short s) {
         if (s == (short) 1) {
             return 0;
         }
@@ -1535,7 +1541,8 @@ public class ExifInterface {
         this.mTagInfo.put(TAG_PORTRAIT_LIGHTING_PATTERN, i8);
         this.mTagInfo.put(TAG_AI_TYPE, i8);
         this.mTagInfo.put(TAG_FRONT_MIRROR, i8);
-        this.mTagInfo.put(TAG_LIVESHOT, flagsFromAllowedIfds2 | 1);
+        this.mTagInfo.put(TAG_XIAOMI_LIVESHOT_PHOTO, flagsFromAllowedIfds2 | 1);
+        this.mTagInfo.put(TAG_XIAOMI_DEPTHMAP_VERSION, i8);
         this.mTagInfo.put(TAG_XIAOMI_COMMENT, i11);
         int flagsFromAllowedIfds3 = getFlagsFromAllowedIfds(new int[]{4}) << 24;
         i12 = 65536 | flagsFromAllowedIfds3;

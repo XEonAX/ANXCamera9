@@ -18,9 +18,9 @@
 
 
 # instance fields
-.field final synthetic aS:Lcom/bumptech/glide/request/RequestFutureTarget;
+.field final synthetic aT:Lcom/bumptech/glide/request/RequestFutureTarget;
 
-.field final synthetic aT:Lcom/bumptech/glide/h;
+.field final synthetic aU:Lcom/bumptech/glide/h;
 
 
 # direct methods
@@ -28,9 +28,9 @@
     .locals 0
 
     .line 743
-    iput-object p1, p0, Lcom/bumptech/glide/h$1;->aT:Lcom/bumptech/glide/h;
+    iput-object p1, p0, Lcom/bumptech/glide/h$1;->aU:Lcom/bumptech/glide/h;
 
-    iput-object p2, p0, Lcom/bumptech/glide/h$1;->aS:Lcom/bumptech/glide/request/RequestFutureTarget;
+    iput-object p2, p0, Lcom/bumptech/glide/h$1;->aT:Lcom/bumptech/glide/request/RequestFutureTarget;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -43,7 +43,7 @@
     .locals 3
 
     .line 746
-    iget-object v0, p0, Lcom/bumptech/glide/h$1;->aS:Lcom/bumptech/glide/request/RequestFutureTarget;
+    iget-object v0, p0, Lcom/bumptech/glide/h$1;->aT:Lcom/bumptech/glide/request/RequestFutureTarget;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/request/RequestFutureTarget;->isCancelled()Z
 
@@ -52,11 +52,11 @@
     if-nez v0, :cond_0
 
     .line 747
-    iget-object v0, p0, Lcom/bumptech/glide/h$1;->aT:Lcom/bumptech/glide/h;
+    iget-object v0, p0, Lcom/bumptech/glide/h$1;->aU:Lcom/bumptech/glide/h;
 
-    iget-object v1, p0, Lcom/bumptech/glide/h$1;->aS:Lcom/bumptech/glide/request/RequestFutureTarget;
+    iget-object v1, p0, Lcom/bumptech/glide/h$1;->aT:Lcom/bumptech/glide/request/RequestFutureTarget;
 
-    iget-object v2, p0, Lcom/bumptech/glide/h$1;->aS:Lcom/bumptech/glide/request/RequestFutureTarget;
+    iget-object v2, p0, Lcom/bumptech/glide/h$1;->aT:Lcom/bumptech/glide/request/RequestFutureTarget;
 
     invoke-virtual {v0, v1, v2}, Lcom/bumptech/glide/h;->a(Lcom/bumptech/glide/request/target/n;Lcom/bumptech/glide/request/e;)Lcom/bumptech/glide/request/target/n;
 

@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/widget/ListView;)V
-    .locals 0
+    .registers 2
     .param p1, "target"    # Landroid/widget/ListView;
 
     .line 30
@@ -25,7 +25,7 @@
 
 # virtual methods
 .method public canTargetScrollHorizontally(I)Z
-    .locals 1
+    .registers 3
     .param p1, "direction"    # I
 
     .line 55
@@ -35,7 +35,7 @@
 .end method
 
 .method public canTargetScrollVertically(I)Z
-    .locals 9
+    .registers 11
     .param p1, "direction"    # I
 
     .line 60
@@ -51,13 +51,13 @@
     .local v1, "itemCount":I
     const/4 v2, 0x0
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_a
 
     .line 63
     return v2
 
     .line 66
-    :cond_0
+    :cond_a
     invoke-virtual {v0}, Landroid/widget/ListView;->getChildCount()I
 
     move-result v3
@@ -74,10 +74,10 @@
 
     .line 70
     .local v5, "lastPosition":I
-    if-lez p1, :cond_2
+    if-lez p1, :cond_2a
 
     .line 72
-    if-lt v5, v1, :cond_4
+    if-lt v5, v1, :cond_3a
 
     .line 73
     add-int/lit8 v6, v3, -0x1
@@ -96,22 +96,22 @@
 
     move-result v8
 
-    if-gt v7, v8, :cond_1
+    if-gt v7, v8, :cond_29
 
     .line 75
     return v2
 
     .line 77
     .end local v6    # "lastView":Landroid/view/View;
-    :cond_1
-    goto :goto_0
+    :cond_29
+    goto :goto_3a
 
     .line 78
-    :cond_2
-    if-gez p1, :cond_5
+    :cond_2a
+    if-gez p1, :cond_3c
 
     .line 80
-    if-gtz v4, :cond_4
+    if-gtz v4, :cond_3a
 
     .line 81
     invoke-virtual {v0, v2}, Landroid/widget/ListView;->getChildAt(I)Landroid/view/View;
@@ -124,30 +124,30 @@
 
     move-result v7
 
-    if-ltz v7, :cond_3
+    if-ltz v7, :cond_39
 
     .line 83
     return v2
 
     .line 85
     .end local v6    # "firstView":Landroid/view/View;
-    :cond_3
+    :cond_39
     nop
 
     .line 92
-    :cond_4
-    :goto_0
+    :cond_3a
+    :goto_3a
     const/4 v2, 0x1
 
     return v2
 
     .line 89
-    :cond_5
+    :cond_3c
     return v2
 .end method
 
 .method public scrollTargetBy(II)V
-    .locals 4
+    .registers 7
     .param p1, "deltaX"    # I
     .param p2, "deltaY"    # I
 
@@ -164,13 +164,13 @@
     .local v1, "firstPosition":I
     const/4 v2, -0x1
 
-    if-ne v1, v2, :cond_0
+    if-ne v1, v2, :cond_a
 
     .line 40
     return-void
 
     .line 43
-    :cond_0
+    :cond_a
     const/4 v2, 0x0
 
     invoke-virtual {v0, v2}, Landroid/widget/ListView;->getChildAt(I)Landroid/view/View;
@@ -179,13 +179,13 @@
 
     .line 44
     .local v2, "firstView":Landroid/view/View;
-    if-nez v2, :cond_1
+    if-nez v2, :cond_12
 
     .line 45
     return-void
 
     .line 48
-    :cond_1
+    :cond_12
     invoke-virtual {v2}, Landroid/view/View;->getTop()I
 
     move-result v3

@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>(Lcom/google/zxing/common/BitMatrix;Ljava/util/List;)V
-    .locals 0
+    .registers 3
     .param p1, "bits"    # Lcom/google/zxing/common/BitMatrix;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -50,7 +50,7 @@
 
 # virtual methods
 .method public getBits()Lcom/google/zxing/common/BitMatrix;
-    .locals 1
+    .registers 2
 
     .line 38
     iget-object v0, p0, Lcom/google/zxing/pdf417/detector/PDF417DetectorResult;->bits:Lcom/google/zxing/common/BitMatrix;
@@ -59,7 +59,7 @@
 .end method
 
 .method public getPoints()Ljava/util/List;
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",

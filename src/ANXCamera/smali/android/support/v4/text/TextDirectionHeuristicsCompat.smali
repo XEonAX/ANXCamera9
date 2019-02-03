@@ -38,7 +38,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 5
+    .registers 5
 
     .line 33
     new-instance v0, Landroid/support/v4/text/TextDirectionHeuristicsCompat$TextDirectionHeuristicInternal;
@@ -96,7 +96,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -106,7 +106,7 @@
 .end method
 
 .method static synthetic access$100(I)I
-    .locals 1
+    .registers 2
     .param p0, "x0"    # I
 
     .line 28
@@ -118,7 +118,7 @@
 .end method
 
 .method static synthetic access$200(I)I
-    .locals 1
+    .registers 2
     .param p0, "x0"    # I
 
     .line 28
@@ -130,11 +130,11 @@
 .end method
 
 .method private static isRtlText(I)I
-    .locals 1
+    .registers 2
     .param p0, "directionality"    # I
 
     .line 79
-    packed-switch p0, :pswitch_data_0
+    packed-switch p0, :pswitch_data_a
 
     .line 86
     const/4 v0, 0x2
@@ -142,35 +142,35 @@
     return v0
 
     .line 84
-    :pswitch_0
+    :pswitch_5
     const/4 v0, 0x0
 
     return v0
 
     .line 81
-    :pswitch_1
+    :pswitch_7
     const/4 v0, 0x1
 
     return v0
 
     nop
 
-    :pswitch_data_0
+    :pswitch_data_a
     .packed-switch 0x0
-        :pswitch_1
-        :pswitch_0
-        :pswitch_0
+        :pswitch_7
+        :pswitch_5
+        :pswitch_5
     .end packed-switch
 .end method
 
 .method private static isRtlTextOrFormat(I)I
-    .locals 1
+    .registers 2
     .param p0, "directionality"    # I
 
     .line 91
-    packed-switch p0, :pswitch_data_0
+    packed-switch p0, :pswitch_data_c
 
-    packed-switch p0, :pswitch_data_1
+    packed-switch p0, :pswitch_data_16
 
     .line 102
     const/4 v0, 0x2
@@ -178,29 +178,29 @@
     return v0
 
     .line 100
-    :pswitch_0
+    :pswitch_8
     const/4 v0, 0x0
 
     return v0
 
     .line 95
-    :pswitch_1
+    :pswitch_a
     const/4 v0, 0x1
 
     return v0
 
-    :pswitch_data_0
+    :pswitch_data_c
     .packed-switch 0x0
-        :pswitch_1
-        :pswitch_0
-        :pswitch_0
+        :pswitch_a
+        :pswitch_8
+        :pswitch_8
     .end packed-switch
 
-    :pswitch_data_1
+    :pswitch_data_16
     .packed-switch 0xe
-        :pswitch_1
-        :pswitch_1
-        :pswitch_0
-        :pswitch_0
+        :pswitch_a
+        :pswitch_a
+        :pswitch_8
+        :pswitch_8
     .end packed-switch
 .end method

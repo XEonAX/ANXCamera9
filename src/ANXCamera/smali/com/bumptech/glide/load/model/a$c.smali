@@ -32,7 +32,7 @@
 
 
 # instance fields
-.field private final da:Landroid/content/res/AssetManager;
+.field private final dc:Landroid/content/res/AssetManager;
 
 
 # direct methods
@@ -43,7 +43,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 67
-    iput-object p1, p0, Lcom/bumptech/glide/load/model/a$c;->da:Landroid/content/res/AssetManager;
+    iput-object p1, p0, Lcom/bumptech/glide/load/model/a$c;->dc:Landroid/content/res/AssetManager;
 
     .line 68
     return-void
@@ -71,7 +71,7 @@
     .line 73
     new-instance p1, Lcom/bumptech/glide/load/model/a;
 
-    iget-object v0, p0, Lcom/bumptech/glide/load/model/a$c;->da:Landroid/content/res/AssetManager;
+    iget-object v0, p0, Lcom/bumptech/glide/load/model/a$c;->dc:Landroid/content/res/AssetManager;
 
     invoke-direct {p1, v0, p0}, Lcom/bumptech/glide/load/model/a;-><init>(Landroid/content/res/AssetManager;Lcom/bumptech/glide/load/model/a$a;)V
 

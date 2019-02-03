@@ -34,8 +34,8 @@ import java.util.Set;
 /* compiled from: Downsampler */
 public final class n {
     static final String TAG = "Downsampler";
-    private static final int cR = 10485760;
-    public static final e<DecodeFormat> kE = e.a("com.bumptech.glide.load.resource.bitmap.Downsampler.DecodeFormat", DecodeFormat.cB);
+    private static final int cS = 10485760;
+    public static final e<DecodeFormat> kE = e.a("com.bumptech.glide.load.resource.bitmap.Downsampler.DecodeFormat", DecodeFormat.cC);
     @Deprecated
     public static final e<DownsampleStrategy> kF = DownsampleStrategy.kA;
     public static final e<Boolean> kG = e.a("com.bumptech.glide.load.resource.bitmap.Downsampler.FixBitmapSize", Boolean.valueOf(false));
@@ -52,8 +52,8 @@ public final class n {
     };
     private static final Set<ImageType> kM = Collections.unmodifiableSet(EnumSet.of(ImageType.JPEG, ImageType.PNG_A, ImageType.PNG));
     private static final Queue<Options> kN = k.U(0);
-    private final List<ImageHeaderParser> dL;
-    private final b du;
+    private final List<ImageHeaderParser> dM;
+    private final b dv;
     private final DisplayMetrics hM;
     private final d i;
     private final r kO = r.cp();
@@ -66,10 +66,10 @@ public final class n {
     }
 
     public n(List<ImageHeaderParser> list, DisplayMetrics displayMetrics, d dVar, b bVar) {
-        this.dL = list;
+        this.dM = list;
         this.hM = (DisplayMetrics) i.checkNotNull(displayMetrics);
         this.i = (d) i.checkNotNull(dVar);
-        this.du = (b) i.checkNotNull(bVar);
+        this.dv = (b) i.checkNotNull(bVar);
     }
 
     public boolean e(InputStream inputStream) {
@@ -88,7 +88,7 @@ public final class n {
         boolean z;
         f fVar2 = fVar;
         i.a(inputStream.markSupported(), "You must provide an InputStream that supports mark()");
-        byte[] bArr = (byte[]) this.du.a(65536, byte[].class);
+        byte[] bArr = (byte[]) this.dv.a(65536, byte[].class);
         Options cm = cm();
         cm.inTempStorage = bArr;
         DecodeFormat decodeFormat = (DecodeFormat) fVar2.a(kE);
@@ -104,7 +104,7 @@ public final class n {
             return a;
         } finally {
             c(cm);
-            this.du.put(bArr);
+            this.dv.put(bArr);
         }
     }
 
@@ -120,14 +120,14 @@ public final class n {
         int i6 = a[1];
         String str = options2.outMimeType;
         boolean z3 = (i5 == -1 || i6 == -1) ? false : z;
-        int b = com.bumptech.glide.load.b.b(this.dL, inputStream2, this.du);
+        int b = com.bumptech.glide.load.b.b(this.dM, inputStream2, this.dv);
         int A = w.A(b);
         boolean B = w.B(b);
         int i7 = i;
         int i8 = i7 == Integer.MIN_VALUE ? i5 : i7;
         int i9 = i2;
         int i10 = i9 == Integer.MIN_VALUE ? i6 : i9;
-        ImageType a2 = com.bumptech.glide.load.b.a(this.dL, inputStream2, this.du);
+        ImageType a2 = com.bumptech.glide.load.b.a(this.dM, inputStream2, this.dv);
         ImageType imageType = a2;
         a(a2, inputStream2, aVar2, this.i, downsampleStrategy, A, i5, i6, i8, i10, options2);
         i7 = b;
@@ -375,7 +375,7 @@ public final class n {
             }
             boolean hasAlpha;
             try {
-                hasAlpha = com.bumptech.glide.load.b.a(this.dL, inputStream, this.du).hasAlpha();
+                hasAlpha = com.bumptech.glide.load.b.a(this.dM, inputStream, this.dv).hasAlpha();
             } catch (Throwable e) {
                 if (Log.isLoggable(TAG, 3)) {
                     String str = TAG;
@@ -403,7 +403,7 @@ public final class n {
     private static Bitmap b(InputStream inputStream, Options options, a aVar, d dVar) throws IOException {
         Throwable a;
         if (options.inJustDecodeBounds) {
-            inputStream.mark(cR);
+            inputStream.mark(cS);
         } else {
             aVar.cn();
         }

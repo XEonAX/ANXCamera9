@@ -35,7 +35,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 349
     new-instance v0, Landroid/support/v4/app/Fragment$SavedState$1;
@@ -48,7 +48,7 @@
 .end method
 
 .method constructor <init>(Landroid/os/Bundle;)V
-    .locals 0
+    .registers 2
     .param p1, "state"    # Landroid/os/Bundle;
 
     .line 328
@@ -62,7 +62,7 @@
 .end method
 
 .method constructor <init>(Landroid/os/Parcel;Ljava/lang/ClassLoader;)V
-    .locals 1
+    .registers 4
     .param p1, "in"    # Landroid/os/Parcel;
     .param p2, "loader"    # Ljava/lang/ClassLoader;
 
@@ -77,11 +77,11 @@
     iput-object v0, p0, Landroid/support/v4/app/Fragment$SavedState;->mState:Landroid/os/Bundle;
 
     .line 334
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_14
 
     iget-object v0, p0, Landroid/support/v4/app/Fragment$SavedState;->mState:Landroid/os/Bundle;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_14
 
     .line 335
     iget-object v0, p0, Landroid/support/v4/app/Fragment$SavedState;->mState:Landroid/os/Bundle;
@@ -89,14 +89,14 @@
     invoke-virtual {v0, p2}, Landroid/os/Bundle;->setClassLoader(Ljava/lang/ClassLoader;)V
 
     .line 337
-    :cond_0
+    :cond_14
     return-void
 .end method
 
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     .line 341
     const/4 v0, 0x0
@@ -105,7 +105,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 1
+    .registers 4
     .param p1, "dest"    # Landroid/os/Parcel;
     .param p2, "flags"    # I
 

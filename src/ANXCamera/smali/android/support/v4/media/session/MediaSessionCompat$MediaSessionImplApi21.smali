@@ -27,7 +27,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;Ljava/lang/String;)V
-    .locals 2
+    .registers 5
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "tag"    # Ljava/lang/String;
 
@@ -59,7 +59,7 @@
 .end method
 
 .method public constructor <init>(Ljava/lang/Object;)V
-    .locals 2
+    .registers 4
     .param p1, "mediaSession"    # Ljava/lang/Object;
 
     .line 1924
@@ -92,7 +92,7 @@
 
 # virtual methods
 .method public getMediaSession()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 2029
     iget-object v0, p0, Landroid/support/v4/media/session/MediaSessionCompat$MediaSessionImplApi21;->mSessionObj:Ljava/lang/Object;
@@ -101,7 +101,7 @@
 .end method
 
 .method public getRemoteControlClient()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 2034
     const/4 v0, 0x0
@@ -110,7 +110,7 @@
 .end method
 
 .method public getSessionToken()Landroid/support/v4/media/session/MediaSessionCompat$Token;
-    .locals 1
+    .registers 2
 
     .line 1972
     iget-object v0, p0, Landroid/support/v4/media/session/MediaSessionCompat$MediaSessionImplApi21;->mToken:Landroid/support/v4/media/session/MediaSessionCompat$Token;
@@ -119,7 +119,7 @@
 .end method
 
 .method public isActive()Z
-    .locals 1
+    .registers 2
 
     .line 1957
     iget-object v0, p0, Landroid/support/v4/media/session/MediaSessionCompat$MediaSessionImplApi21;->mSessionObj:Ljava/lang/Object;
@@ -132,7 +132,7 @@
 .end method
 
 .method public release()V
-    .locals 1
+    .registers 2
 
     .line 1967
     iget-object v0, p0, Landroid/support/v4/media/session/MediaSessionCompat$MediaSessionImplApi21;->mSessionObj:Ljava/lang/Object;
@@ -144,7 +144,7 @@
 .end method
 
 .method public sendSessionEvent(Ljava/lang/String;Landroid/os/Bundle;)V
-    .locals 1
+    .registers 4
     .param p1, "event"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
 
@@ -158,7 +158,7 @@
 .end method
 
 .method public setActive(Z)V
-    .locals 1
+    .registers 3
     .param p1, "active"    # Z
 
     .line 1952
@@ -171,7 +171,7 @@
 .end method
 
 .method public setCallback(Landroid/support/v4/media/session/MediaSessionCompat$Callback;Landroid/os/Handler;)V
-    .locals 2
+    .registers 5
     .param p1, "callback"    # Landroid/support/v4/media/session/MediaSessionCompat$Callback;
     .param p2, "handler"    # Landroid/os/Handler;
 
@@ -187,7 +187,7 @@
 .end method
 
 .method public setExtras(Landroid/os/Bundle;)V
-    .locals 1
+    .registers 3
     .param p1, "extras"    # Landroid/os/Bundle;
 
     .line 2024
@@ -200,7 +200,7 @@
 .end method
 
 .method public setFlags(I)V
-    .locals 1
+    .registers 3
     .param p1, "flags"    # I
 
     .line 1936
@@ -213,7 +213,7 @@
 .end method
 
 .method public setMediaButtonReceiver(Landroid/app/PendingIntent;)V
-    .locals 1
+    .registers 3
     .param p1, "mbr"    # Landroid/app/PendingIntent;
 
     .line 1992
@@ -229,7 +229,7 @@
 .end method
 
 .method public setMetadata(Landroid/support/v4/media/MediaMetadataCompat;)V
-    .locals 2
+    .registers 4
     .param p1, "metadata"    # Landroid/support/v4/media/MediaMetadataCompat;
 
     .line 1982
@@ -246,7 +246,7 @@
 .end method
 
 .method public setPlaybackState(Landroid/support/v4/media/session/PlaybackStateCompat;)V
-    .locals 2
+    .registers 4
     .param p1, "state"    # Landroid/support/v4/media/session/PlaybackStateCompat;
 
     .line 1977
@@ -263,7 +263,7 @@
 .end method
 
 .method public setPlaybackToLocal(I)V
-    .locals 1
+    .registers 3
     .param p1, "stream"    # I
 
     .line 1941
@@ -276,7 +276,7 @@
 .end method
 
 .method public setPlaybackToRemote(Landroid/support/v4/media/VolumeProviderCompat;)V
-    .locals 2
+    .registers 4
     .param p1, "volumeProvider"    # Landroid/support/v4/media/VolumeProviderCompat;
 
     .line 1946
@@ -293,7 +293,7 @@
 .end method
 
 .method public setQueue(Ljava/util/List;)V
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -309,7 +309,7 @@
 
     .line 1999
     .local v0, "queueObjs":Ljava/util/List;, "Ljava/util/List<Ljava/lang/Object;>;"
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_21
 
     .line 2000
     new-instance v1, Ljava/util/ArrayList;
@@ -324,12 +324,12 @@
     move-result-object v1
 
     .local v1, "i$":Ljava/util/Iterator;
-    :goto_0
+    :goto_d
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_21
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -347,11 +347,11 @@
 
     .line 2003
     .end local v2    # "item":Landroid/support/v4/media/session/MediaSessionCompat$QueueItem;
-    goto :goto_0
+    goto :goto_d
 
     .line 2005
     .end local v1    # "i$":Ljava/util/Iterator;
-    :cond_0
+    :cond_21
     iget-object v1, p0, Landroid/support/v4/media/session/MediaSessionCompat$MediaSessionImplApi21;->mSessionObj:Ljava/lang/Object;
 
     invoke-static {v1, v0}, Landroid/support/v4/media/session/MediaSessionCompatApi21;->setQueue(Ljava/lang/Object;Ljava/util/List;)V
@@ -361,7 +361,7 @@
 .end method
 
 .method public setQueueTitle(Ljava/lang/CharSequence;)V
-    .locals 1
+    .registers 3
     .param p1, "title"    # Ljava/lang/CharSequence;
 
     .line 2010
@@ -374,7 +374,7 @@
 .end method
 
 .method public setRatingType(I)V
-    .locals 2
+    .registers 4
     .param p1, "type"    # I
 
     .line 2015
@@ -382,23 +382,23 @@
 
     const/16 v1, 0x16
 
-    if-ge v0, v1, :cond_0
+    if-ge v0, v1, :cond_7
 
-    goto :goto_0
+    goto :goto_c
 
     .line 2018
-    :cond_0
+    :cond_7
     iget-object v0, p0, Landroid/support/v4/media/session/MediaSessionCompat$MediaSessionImplApi21;->mSessionObj:Ljava/lang/Object;
 
     invoke-static {v0, p1}, Landroid/support/v4/media/session/MediaSessionCompatApi22;->setRatingType(Ljava/lang/Object;I)V
 
     .line 2020
-    :goto_0
+    :goto_c
     return-void
 .end method
 
 .method public setSessionActivity(Landroid/app/PendingIntent;)V
-    .locals 1
+    .registers 3
     .param p1, "pi"    # Landroid/app/PendingIntent;
 
     .line 1987

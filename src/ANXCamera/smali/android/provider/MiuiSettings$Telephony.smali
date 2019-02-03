@@ -110,19 +110,19 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
-    .line 4718
+    .line 4724
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
 .end method
 
 .method public static getAutoAnswerCallDelayTime(Landroid/content/ContentResolver;)I
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5613
+    .line 5619
     const-string v0, "auto_answer_delay_time"
 
     const/4 v1, 0x3
@@ -135,10 +135,10 @@
 .end method
 
 .method public static getAutoAnswerCallScenario(Landroid/content/ContentResolver;)I
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5627
+    .line 5633
     const-string v0, "auto_answer_scenario"
 
     const/4 v1, 0x0
@@ -151,11 +151,11 @@
 .end method
 
 .method public static getAutoIpPrefix(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "defaultPrefix"    # Ljava/lang/String;
 
-    .line 5065
+    .line 5071
     const/4 v0, -0x1
 
     invoke-static {p0, p1, v0}, Landroid/provider/MiuiSettings$Telephony;->getAutoIpPrefix(Landroid/content/ContentResolver;Ljava/lang/String;I)Ljava/lang/String;
@@ -166,19 +166,19 @@
 .end method
 
 .method public static getAutoIpPrefix(Landroid/content/ContentResolver;Ljava/lang/String;I)Ljava/lang/String;
-    .locals 2
+    .registers 5
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "defaultPrefix"    # Ljava/lang/String;
     .param p2, "slotId"    # I
 
-    .line 5089
+    .line 5095
     const-string v0, "autoip_prefix"
 
-    .line 5090
+    .line 5096
     .local v0, "prefix":Ljava/lang/String;
-    if-ltz p2, :cond_0
+    if-ltz p2, :cond_13
 
-    .line 5091
+    .line 5097
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -191,8 +191,8 @@
 
     move-result-object v0
 
-    .line 5093
-    :cond_0
+    .line 5099
+    :cond_13
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->getString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
@@ -201,10 +201,10 @@
 .end method
 
 .method public static getCallWaitingTone(Landroid/content/Context;)I
-    .locals 3
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 4986
+    .line 4992
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -217,7 +217,7 @@
 
     move-result v0
 
-    .line 4988
+    .line 4994
     .local v0, "index":I
     const-string/jumbo v1, "lithium"
 
@@ -227,25 +227,25 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_1a
 
     const/4 v1, 0x2
 
-    if-ne v0, v1, :cond_0
+    if-ne v0, v1, :cond_1a
 
-    .line 4989
+    .line 4995
     const/4 v0, 0x0
 
-    .line 4991
-    :cond_0
+    .line 4997
+    :cond_1a
     return v0
 .end method
 
 .method public static getContactCountrycode(Landroid/content/ContentResolver;)Ljava/lang/String;
-    .locals 1
+    .registers 2
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5045
+    .line 5051
     const-string/jumbo v0, "persist.radio.countrycode"
 
     invoke-static {p0, v0}, Landroid/provider/MiuiSettings$System;->getString(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
@@ -256,18 +256,18 @@
 .end method
 
 .method public static getCurrentAeraCode(Landroid/content/ContentResolver;I)Ljava/lang/String;
-    .locals 2
+    .registers 4
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "slotId"    # I
 
-    .line 5015
+    .line 5021
     const-string v0, "current_areacode"
 
-    .line 5016
+    .line 5022
     .local v0, "prefix":Ljava/lang/String;
-    if-ltz p1, :cond_0
+    if-ltz p1, :cond_13
 
-    .line 5017
+    .line 5023
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -280,8 +280,8 @@
 
     move-result-object v0
 
-    .line 5019
-    :cond_0
+    .line 5025
+    :cond_13
     invoke-static {p0, v0}, Landroid/provider/MiuiSettings$System;->getString(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
@@ -290,10 +290,10 @@
 .end method
 
 .method public static getEnabledAutoRedial(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5232
+    .line 5238
     const-string v0, "button_auto_redial"
 
     const/4 v1, 0x0
@@ -306,10 +306,10 @@
 .end method
 
 .method public static getEnabledVoiceService(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5589
+    .line 5595
     const-string v0, "button_voice_service"
 
     const/4 v1, 0x0
@@ -322,11 +322,11 @@
 .end method
 
 .method public static getIVRParameterValue(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "key"    # Ljava/lang/String;
 
-    .line 5397
+    .line 5403
     const-string v0, ""
 
     invoke-static {p0, p1, v0}, Landroid/provider/MiuiSettings$System;->getString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
@@ -337,10 +337,10 @@
 .end method
 
 .method public static getMissedCallNotifyTimes(Landroid/content/ContentResolver;)I
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5213
+    .line 5219
     const-string v0, "button_missed_call_notify_times"
 
     const/4 v1, 0x0
@@ -353,10 +353,10 @@
 .end method
 
 .method public static getRecordScenario(Landroid/content/ContentResolver;)I
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5310
+    .line 5316
     const-string/jumbo v0, "radio_record_scenario"
 
     const-string v1, "0"
@@ -377,10 +377,10 @@
 .end method
 
 .method public static getRecordWhiteList(Landroid/content/ContentResolver;)Ljava/lang/String;
-    .locals 1
+    .registers 2
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5330
+    .line 5336
     const-string/jumbo v0, "record_white_list"
 
     invoke-static {p0, v0}, Landroid/provider/MiuiSettings$System;->getString(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
@@ -391,12 +391,12 @@
 .end method
 
 .method public static getRejectViaSmsResponse(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-    .locals 1
+    .registers 4
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "key"    # Ljava/lang/String;
     .param p2, "defValue"    # Ljava/lang/String;
 
-    .line 5562
+    .line 5568
     invoke-static {p0, p1, p2}, Landroid/provider/MiuiSettings$System;->getString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
@@ -405,10 +405,10 @@
 .end method
 
 .method public static getVibrateKey(Landroid/content/ContentResolver;)Ljava/lang/String;
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5194
+    .line 5200
     const-string v0, "button_connect_disconnect_vibrate"
 
     const-string v1, "100"
@@ -421,10 +421,10 @@
 .end method
 
 .method public static isAntispamStangerEnabled(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5175
+    .line 5181
     const-string v0, "button_antispam_strange"
 
     const/4 v1, 0x0
@@ -437,18 +437,18 @@
 .end method
 
 .method public static isAutoAddZeroPrefix(Landroid/content/ContentResolver;I)Z
-    .locals 2
+    .registers 4
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "slotId"    # I
 
-    .line 5467
+    .line 5473
     const-string v0, "button_add_zero_prefix"
 
-    .line 5468
+    .line 5474
     .local v0, "prefix":Ljava/lang/String;
-    if-ltz p1, :cond_0
+    if-ltz p1, :cond_13
 
-    .line 5469
+    .line 5475
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -461,8 +461,8 @@
 
     move-result-object v0
 
-    .line 5471
-    :cond_0
+    .line 5477
+    :cond_13
     const/4 v1, 0x0
 
     invoke-static {p0, v0, v1}, Landroid/provider/MiuiSettings$System;->getBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
@@ -473,10 +473,10 @@
 .end method
 
 .method public static isAutoAnswerCall(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5597
+    .line 5603
     const-string v0, "button_auto_answer"
 
     const/4 v1, 0x0
@@ -489,10 +489,10 @@
 .end method
 
 .method public static isAutoCountryCodeEnable(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5424
+    .line 5430
     const-string v0, "auto_country_code"
 
     const/4 v1, 0x0
@@ -505,18 +505,18 @@
 .end method
 
 .method public static isAutoIpEnable(Landroid/content/ContentResolver;I)Z
-    .locals 2
+    .registers 4
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "slotId"    # I
 
-    .line 5441
+    .line 5447
     const-string v0, "button_autoip"
 
-    .line 5442
+    .line 5448
     .local v0, "prefix":Ljava/lang/String;
-    if-ltz p1, :cond_0
+    if-ltz p1, :cond_13
 
-    .line 5443
+    .line 5449
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -529,8 +529,8 @@
 
     move-result-object v0
 
-    .line 5445
-    :cond_0
+    .line 5451
+    :cond_13
     const/4 v1, 0x0
 
     invoke-static {p0, v0, v1}, Landroid/provider/MiuiSettings$System;->getBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
@@ -541,18 +541,18 @@
 .end method
 
 .method public static isAutoIpSupportLocalNum(Landroid/content/ContentResolver;I)Z
-    .locals 2
+    .registers 4
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "slotId"    # I
 
-    .line 5494
+    .line 5500
     const-string v0, "button_auto_ip_support_local_numbers"
 
-    .line 5495
+    .line 5501
     .local v0, "prefix":Ljava/lang/String;
-    if-ltz p1, :cond_0
+    if-ltz p1, :cond_13
 
-    .line 5496
+    .line 5502
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -565,8 +565,8 @@
 
     move-result-object v0
 
-    .line 5498
-    :cond_0
+    .line 5504
+    :cond_13
     const/4 v1, 0x0
 
     invoke-static {p0, v0, v1}, Landroid/provider/MiuiSettings$System;->getBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
@@ -577,10 +577,10 @@
 .end method
 
 .method public static isAutoRecordEnabled(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5290
+    .line 5296
     const-string v0, "button_auto_record_call"
 
     const/4 v1, 0x0
@@ -593,10 +593,10 @@
 .end method
 
 .method public static isCrescendoRingerEnable(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5156
+    .line 5162
     const-string v0, "button_crescendo_ringer"
 
     const/4 v1, 0x0
@@ -609,10 +609,10 @@
 .end method
 
 .method public static isHandonRingerEnabled(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5137
+    .line 5143
     const-string v0, "button_handon_ringer"
 
     const/4 v1, 0x0
@@ -625,10 +625,10 @@
 .end method
 
 .method public static isIncomingVideoShowEnabled(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5251
+    .line 5257
     const-string v0, "button_incoming_video_show"
 
     const/4 v1, 0x1
@@ -641,10 +641,10 @@
 .end method
 
 .method public static isProximitySensorEnable(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5520
+    .line 5526
     const-string v0, "button_enable_proximity"
 
     const/4 v1, 0x1
@@ -657,10 +657,10 @@
 .end method
 
 .method public static isRecordNotificationEnabled(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5270
+    .line 5276
     const-string v0, "button_call_recording_notification"
 
     const/4 v1, 0x1
@@ -673,10 +673,10 @@
 .end method
 
 .method public static isRejectViaSmsEnable(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5537
+    .line 5543
     const-string v0, "button_enable_reject_via_sms"
 
     const/4 v1, 0x1
@@ -689,10 +689,10 @@
 .end method
 
 .method public static isTelocationEnable(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5405
+    .line 5411
     const-string v0, "enable_telocation"
 
     const/4 v1, 0x1
@@ -705,10 +705,10 @@
 .end method
 
 .method public static isTurnOverMuteEnabled(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5118
+    .line 5124
     const-string v0, "button_turn_over_mute"
 
     const/4 v1, 0x0
@@ -721,10 +721,10 @@
 .end method
 
 .method public static isUnknownNumberRecordEnabled(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5350
+    .line 5356
     const-string v0, "button_record_unknown_number"
 
     const/4 v1, 0x0
@@ -737,10 +737,10 @@
 .end method
 
 .method public static isYellowpageRecordEnabled(Landroid/content/ContentResolver;)Z
-    .locals 2
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
 
-    .line 5369
+    .line 5375
     const-string v0, "button_record_yellowpage_number"
 
     const/4 v1, 0x0
@@ -753,33 +753,33 @@
 .end method
 
 .method public static setAntispamStangerEnabled(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "enabled"    # Z
 
-    .line 5185
+    .line 5191
     const-string v0, "button_antispam_strange"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5186
+    .line 5192
     return-void
 .end method
 
 .method public static setAutoAddZeroPrefixEnable(Landroid/content/ContentResolver;ZI)V
-    .locals 2
+    .registers 5
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "enable"    # Z
     .param p2, "slotId"    # I
 
-    .line 5481
+    .line 5487
     const-string v0, "button_add_zero_prefix"
 
-    .line 5482
+    .line 5488
     .local v0, "prefix":Ljava/lang/String;
-    if-ltz p2, :cond_0
+    if-ltz p2, :cond_13
 
-    .line 5483
+    .line 5489
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -792,84 +792,84 @@
 
     move-result-object v0
 
-    .line 5485
-    :cond_0
+    .line 5491
+    :cond_13
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5486
+    .line 5492
     return-void
 .end method
 
 .method public static setAutoAnswerCall(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "enable"    # Z
 
-    .line 5606
+    .line 5612
     const-string v0, "button_auto_answer"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5607
+    .line 5613
     return-void
 .end method
 
 .method public static setAutoAnswerCallDelayTime(Landroid/content/ContentResolver;I)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "value"    # I
 
-    .line 5620
+    .line 5626
     const-string v0, "auto_answer_delay_time"
 
     invoke-static {p0, v0, p1}, Landroid/provider/Settings$System;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
 
-    .line 5621
+    .line 5627
     return-void
 .end method
 
 .method public static setAutoAnswerCallScenario(Landroid/content/ContentResolver;I)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "value"    # I
 
-    .line 5642
+    .line 5648
     const-string v0, "auto_answer_scenario"
 
     invoke-static {p0, v0, p1}, Landroid/provider/Settings$System;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
 
-    .line 5643
+    .line 5649
     return-void
 .end method
 
 .method public static setAutoCountryCodeEnable(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "enable"    # Z
 
-    .line 5433
+    .line 5439
     const-string v0, "auto_country_code"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5434
+    .line 5440
     return-void
 .end method
 
 .method public static setAutoIpEnable(Landroid/content/ContentResolver;ZI)V
-    .locals 2
+    .registers 5
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "enable"    # Z
     .param p2, "slotId"    # I
 
-    .line 5454
+    .line 5460
     const-string v0, "button_autoip"
 
-    .line 5455
+    .line 5461
     .local v0, "prefix":Ljava/lang/String;
-    if-ltz p2, :cond_0
+    if-ltz p2, :cond_13
 
-    .line 5456
+    .line 5462
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -882,42 +882,42 @@
 
     move-result-object v0
 
-    .line 5458
-    :cond_0
+    .line 5464
+    :cond_13
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5459
+    .line 5465
     return-void
 .end method
 
 .method public static setAutoIpPrefix(Landroid/content/ContentResolver;Ljava/lang/String;)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "IpPrefix"    # Ljava/lang/String;
 
-    .line 5076
+    .line 5082
     const/4 v0, -0x1
 
     invoke-static {p0, p1, v0}, Landroid/provider/MiuiSettings$Telephony;->setAutoIpPrefix(Landroid/content/ContentResolver;Ljava/lang/String;I)V
 
-    .line 5077
+    .line 5083
     return-void
 .end method
 
 .method public static setAutoIpPrefix(Landroid/content/ContentResolver;Ljava/lang/String;I)V
-    .locals 2
+    .registers 5
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "IpPrefix"    # Ljava/lang/String;
     .param p2, "slotId"    # I
 
-    .line 5105
+    .line 5111
     const-string v0, "autoip_prefix"
 
-    .line 5106
+    .line 5112
     .local v0, "prefix":Ljava/lang/String;
-    if-ltz p2, :cond_0
+    if-ltz p2, :cond_13
 
-    .line 5107
+    .line 5113
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -930,28 +930,28 @@
 
     move-result-object v0
 
-    .line 5109
-    :cond_0
+    .line 5115
+    :cond_13
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
 
-    .line 5110
+    .line 5116
     return-void
 .end method
 
 .method public static setAutoIpSupportLocalNumEnable(Landroid/content/ContentResolver;ZI)V
-    .locals 2
+    .registers 5
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "enable"    # Z
     .param p2, "slotId"    # I
 
-    .line 5508
+    .line 5514
     const-string v0, "button_auto_ip_support_local_numbers"
 
-    .line 5509
+    .line 5515
     .local v0, "prefix":Ljava/lang/String;
-    if-ltz p2, :cond_0
+    if-ltz p2, :cond_13
 
-    .line 5510
+    .line 5516
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -964,48 +964,48 @@
 
     move-result-object v0
 
-    .line 5512
-    :cond_0
+    .line 5518
+    :cond_13
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5513
+    .line 5519
     return-void
 .end method
 
 .method public static setAutoRecordEnabled(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "isEnabledAutoRecord"    # Z
 
-    .line 5301
+    .line 5307
     const-string v0, "button_auto_record_call"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5302
+    .line 5308
     return-void
 .end method
 
 .method public static setAutoRedialEnabled(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "isEnabledRedial"    # Z
 
-    .line 5242
+    .line 5248
     const-string v0, "button_auto_redial"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5243
+    .line 5249
     return-void
 .end method
 
 .method public static setCallWaitingTone(Landroid/content/Context;I)V
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "callWaitingToneType"    # I
 
-    .line 5004
+    .line 5010
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -1014,52 +1014,52 @@
 
     invoke-static {v0, v1, p1}, Landroid/provider/Settings$System;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
 
-    .line 5006
+    .line 5012
     return-void
 .end method
 
 .method public static setContactCountrycode(Landroid/content/ContentResolver;Ljava/lang/String;)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "countryCode"    # Ljava/lang/String;
 
-    .line 5056
+    .line 5062
     const-string/jumbo v0, "persist.radio.countrycode"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
 
-    .line 5057
+    .line 5063
     return-void
 .end method
 
 .method public static setCrescendoRingerEnable(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "enabled"    # Z
 
-    .line 5166
+    .line 5172
     const-string v0, "button_crescendo_ringer"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5167
+    .line 5173
     return-void
 .end method
 
 .method public static setCurrentAeraCode(Landroid/content/ContentResolver;Ljava/lang/String;I)V
-    .locals 2
+    .registers 5
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "aeraCode"    # Ljava/lang/String;
     .param p2, "slotId"    # I
 
-    .line 5030
+    .line 5036
     const-string v0, "current_areacode"
 
-    .line 5031
+    .line 5037
     .local v0, "prefix":Ljava/lang/String;
-    if-ltz p2, :cond_0
+    if-ltz p2, :cond_13
 
-    .line 5032
+    .line 5038
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -1072,103 +1072,103 @@
 
     move-result-object v0
 
-    .line 5034
-    :cond_0
+    .line 5040
+    :cond_13
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
 
-    .line 5035
+    .line 5041
     return-void
 .end method
 
 .method public static setHandonRingerEnabled(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "enabled"    # Z
 
-    .line 5147
+    .line 5153
     const-string v0, "button_handon_ringer"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5148
+    .line 5154
     return-void
 .end method
 
 .method public static setIVRParameterValue(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)V
-    .locals 0
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "key"    # Ljava/lang/String;
     .param p2, "value"    # Ljava/lang/String;
 
-    .line 5388
+    .line 5394
     invoke-static {p0, p1, p2}, Landroid/provider/MiuiSettings$System;->putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
 
-    .line 5389
+    .line 5395
     return-void
 .end method
 
 .method public static setIncomingVideoShowEnabled(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "isVideoShowEnabled"    # Z
 
-    .line 5261
+    .line 5267
     const-string v0, "button_incoming_video_show"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5262
+    .line 5268
     return-void
 .end method
 
 .method public static setMissedCallNotifyTimes(Landroid/content/ContentResolver;I)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "notifyTimes"    # I
 
-    .line 5223
+    .line 5229
     const-string v0, "button_missed_call_notify_times"
 
     invoke-static {p0, v0, p1}, Landroid/provider/Settings$System;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
 
-    .line 5224
+    .line 5230
     return-void
 .end method
 
 .method public static setProximitySensorEnable(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "enable"    # Z
 
-    .line 5529
+    .line 5535
     const-string v0, "button_enable_proximity"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5530
+    .line 5536
     return-void
 .end method
 
 .method public static setRecordNotificationEnabled(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "isEnabledRecordNotify"    # Z
 
-    .line 5281
+    .line 5287
     const-string v0, "button_call_recording_notification"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5282
+    .line 5288
     return-void
 .end method
 
 .method public static setRecordScenario(Landroid/content/ContentResolver;I)V
-    .locals 2
+    .registers 4
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "recordScenario"    # I
 
-    .line 5320
+    .line 5326
     const-string/jumbo v0, "radio_record_scenario"
 
     invoke-static {p1}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
@@ -1177,131 +1177,131 @@
 
     invoke-static {p0, v0, v1}, Landroid/provider/MiuiSettings$System;->putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
 
-    .line 5321
+    .line 5327
     return-void
 .end method
 
 .method public static setRecordWhiteList(Landroid/content/ContentResolver;Ljava/lang/String;)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "recordWhiteList"    # Ljava/lang/String;
 
-    .line 5341
+    .line 5347
     const-string/jumbo v0, "record_white_list"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
 
-    .line 5342
+    .line 5348
     return-void
 .end method
 
 .method public static setRejectViaSmsEnable(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "enable"    # Z
 
-    .line 5546
+    .line 5552
     const-string v0, "button_enable_reject_via_sms"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5547
+    .line 5553
     return-void
 .end method
 
 .method public static setRejectViaSmsRespone(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)V
-    .locals 0
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "key"    # Ljava/lang/String;
     .param p2, "value"    # Ljava/lang/String;
 
-    .line 5572
+    .line 5578
     invoke-static {p0, p1, p2}, Landroid/provider/MiuiSettings$System;->putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
 
-    .line 5573
+    .line 5579
     return-void
 .end method
 
 .method public static setTelocationEnable(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "enable"    # Z
 
-    .line 5414
+    .line 5420
     const-string v0, "enable_telocation"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5415
+    .line 5421
     return-void
 .end method
 
 .method public static setTurnOverMuteEnabled(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "enable"    # Z
 
-    .line 5128
+    .line 5134
     const-string v0, "button_turn_over_mute"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5129
+    .line 5135
     return-void
 .end method
 
 .method public static setUnknownNumberRecordEnabled(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "enabledUnknownNumberRecord"    # Z
 
-    .line 5360
+    .line 5366
     const-string v0, "button_record_unknown_number"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5361
+    .line 5367
     return-void
 .end method
 
 .method public static setVibrateKey(Landroid/content/ContentResolver;Ljava/lang/String;)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "vibrateKey"    # Ljava/lang/String;
 
-    .line 5204
+    .line 5210
     const-string v0, "button_connect_disconnect_vibrate"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
 
-    .line 5205
+    .line 5211
     return-void
 .end method
 
 .method public static setVoiceServiceEnabled(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "isEnabledVoiceService"    # Z
 
-    .line 5581
+    .line 5587
     const-string v0, "button_voice_service"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5582
+    .line 5588
     return-void
 .end method
 
 .method public static setYellowpageRecordEnabled(Landroid/content/ContentResolver;Z)V
-    .locals 1
+    .registers 3
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "enabledYellowpageRecord"    # Z
 
-    .line 5379
+    .line 5385
     const-string v0, "button_record_yellowpage_number"
 
     invoke-static {p0, v0, p1}, Landroid/provider/MiuiSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5380
+    .line 5386
     return-void
 .end method

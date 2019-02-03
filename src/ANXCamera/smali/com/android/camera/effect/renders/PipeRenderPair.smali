@@ -874,7 +874,7 @@
     if-eqz v0, :cond_5
 
     .line 179
-    invoke-static {}, Lcom/mi/config/b;->gB()Z
+    invoke-static {}, Lcom/mi/config/b;->gT()Z
 
     move-result v0
 
