@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/Object;)V
-    .locals 0
+    .registers 2
     .param p1, "controlsObj"    # Ljava/lang/Object;
 
     .line 1267
@@ -36,7 +36,7 @@
 
 # virtual methods
 .method public fastForward()V
-    .locals 1
+    .registers 2
 
     .line 1293
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsApi21;->mControlsObj:Ljava/lang/Object;
@@ -48,7 +48,7 @@
 .end method
 
 .method public pause()V
-    .locals 1
+    .registers 2
 
     .line 1278
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsApi21;->mControlsObj:Ljava/lang/Object;
@@ -60,7 +60,7 @@
 .end method
 
 .method public play()V
-    .locals 1
+    .registers 2
 
     .line 1273
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsApi21;->mControlsObj:Ljava/lang/Object;
@@ -72,7 +72,7 @@
 .end method
 
 .method public playFromMediaId(Ljava/lang/String;Landroid/os/Bundle;)V
-    .locals 1
+    .registers 4
     .param p1, "mediaId"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
 
@@ -86,7 +86,7 @@
 .end method
 
 .method public playFromSearch(Ljava/lang/String;Landroid/os/Bundle;)V
-    .locals 1
+    .registers 4
     .param p1, "query"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
 
@@ -100,7 +100,7 @@
 .end method
 
 .method public playFromUri(Landroid/net/Uri;Landroid/os/Bundle;)V
-    .locals 0
+    .registers 3
     .param p1, "uri"    # Landroid/net/Uri;
     .param p2, "extras"    # Landroid/os/Bundle;
 
@@ -109,7 +109,7 @@
 .end method
 
 .method public rewind()V
-    .locals 1
+    .registers 2
 
     .line 1298
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsApi21;->mControlsObj:Ljava/lang/Object;
@@ -121,7 +121,7 @@
 .end method
 
 .method public seekTo(J)V
-    .locals 1
+    .registers 4
     .param p1, "pos"    # J
 
     .line 1288
@@ -134,7 +134,7 @@
 .end method
 
 .method public sendCustomAction(Landroid/support/v4/media/session/PlaybackStateCompat$CustomAction;Landroid/os/Bundle;)V
-    .locals 2
+    .registers 5
     .param p1, "customAction"    # Landroid/support/v4/media/session/PlaybackStateCompat$CustomAction;
     .param p2, "args"    # Landroid/os/Bundle;
 
@@ -152,7 +152,7 @@
 .end method
 
 .method public sendCustomAction(Ljava/lang/String;Landroid/os/Bundle;)V
-    .locals 1
+    .registers 4
     .param p1, "action"    # Ljava/lang/String;
     .param p2, "args"    # Landroid/os/Bundle;
 
@@ -166,24 +166,24 @@
 .end method
 
 .method public setRating(Landroid/support/v4/media/RatingCompat;)V
-    .locals 2
+    .registers 4
     .param p1, "rating"    # Landroid/support/v4/media/RatingCompat;
 
     .line 1313
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsApi21;->mControlsObj:Ljava/lang/Object;
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_9
 
     invoke-virtual {p1}, Landroid/support/v4/media/RatingCompat;->getRating()Ljava/lang/Object;
 
     move-result-object v1
 
-    goto :goto_0
+    goto :goto_a
 
-    :cond_0
+    :cond_9
     const/4 v1, 0x0
 
-    :goto_0
+    :goto_a
     invoke-static {v0, v1}, Landroid/support/v4/media/session/MediaControllerCompatApi21$TransportControls;->setRating(Ljava/lang/Object;Ljava/lang/Object;)V
 
     .line 1315
@@ -191,7 +191,7 @@
 .end method
 
 .method public skipToNext()V
-    .locals 1
+    .registers 2
 
     .line 1303
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsApi21;->mControlsObj:Ljava/lang/Object;
@@ -203,7 +203,7 @@
 .end method
 
 .method public skipToPrevious()V
-    .locals 1
+    .registers 2
 
     .line 1308
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsApi21;->mControlsObj:Ljava/lang/Object;
@@ -215,7 +215,7 @@
 .end method
 
 .method public skipToQueueItem(J)V
-    .locals 1
+    .registers 4
     .param p1, "id"    # J
 
     .line 1335
@@ -228,7 +228,7 @@
 .end method
 
 .method public stop()V
-    .locals 1
+    .registers 2
 
     .line 1283
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsApi21;->mControlsObj:Ljava/lang/Object;

@@ -15,567 +15,1134 @@
 
 
 # instance fields
-.field private bitrateMode:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+.field private exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-.field private bps:I
+.field private mIsEncodeModeDeclared:Z
 
-.field public compileType:Lcom/ss/android/vesdk/VEVideoEncodeSettings$COMPILE_TYPE;
-
-.field private encodeLevel:I
-
-.field private encodeProfile:I
-
-.field private encodeStand:I
-
-.field private fps:I
-
-.field private gopSize:I
-
-.field private hasBFrame:Z
-
-.field private mIsUseCloudConfig:Z
-
-.field private outputSize:Lcom/ss/android/vesdk/VESize;
-
-.field private resizeMode:I
-
-.field private resizeX:F
-
-.field private resizeY:F
-
-.field private rotate:I
-
-.field private speed:F
-
-.field private swCRF:I
-
-.field private swQP:I
-
-.field private usage:I
-
-.field private useHWEncoder:Z
+.field private mUsage:I
 
 
 # direct methods
 .method public constructor <init>()V
-    .locals 4
+    .locals 2
 
-    .line 945
+    .line 734
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 952
-    sget-object v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$COMPILE_TYPE;->COMPILE_TYPE_MP4:Lcom/ss/android/vesdk/VEVideoEncodeSettings$COMPILE_TYPE;
-
-    iput-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->compileType:Lcom/ss/android/vesdk/VEVideoEncodeSettings$COMPILE_TYPE;
-
-    .line 960
+    .line 729
     const/4 v0, 0x0
 
-    iput v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->rotate:I
+    iput-boolean v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->mIsEncodeModeDeclared:Z
 
-    .line 967
-    iput v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->resizeMode:I
+    .line 735
+    const/4 v0, 0x1
 
-    .line 974
+    iput v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->mUsage:I
+
+    .line 736
+    new-instance v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
     const/4 v1, 0x0
 
-    iput v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->resizeX:F
+    invoke-direct {v0, v1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;-><init>(Lcom/ss/android/vesdk/VEVideoEncodeSettings$1;)V
 
-    .line 981
-    iput v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->resizeY:F
+    iput-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 988
-    const/high16 v1, 0x3f800000    # 1.0f
-
-    iput v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->speed:F
-
-    .line 995
-    new-instance v1, Lcom/ss/android/vesdk/VESize;
-
-    const/16 v2, 0x240
-
-    const/16 v3, 0x400
-
-    invoke-direct {v1, v2, v3}, Lcom/ss/android/vesdk/VESize;-><init>(II)V
-
-    iput-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->outputSize:Lcom/ss/android/vesdk/VESize;
-
-    .line 1002
-    sget-object v1, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->ENCODE_BITRATE_CRF:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
-
-    iput-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->bitrateMode:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
-
-    .line 1010
-    iput v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->bps:I
-
-    .line 1019
-    const/16 v1, 0xf
-
-    iput v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->swCRF:I
-
-    .line 1028
-    const/4 v1, 0x2
-
-    iput v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->swQP:I
-
-    .line 1035
-    const/16 v1, 0x1e
-
-    iput v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->fps:I
-
-    .line 1042
-    const/16 v1, 0x3c
-
-    iput v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->gopSize:I
-
-    .line 1049
-    sget-object v1, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_LEVEL;->ENCODE_LEVEL_ULTRAFAST:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_LEVEL;
-
-    invoke-virtual {v1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_LEVEL;->ordinal()I
-
-    move-result v1
-
-    iput v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->encodeLevel:I
-
-    .line 1056
-    sget-object v1, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;->ENCODE_STANDARD_H264:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;
-
-    invoke-virtual {v1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;->ordinal()I
-
-    move-result v1
-
-    iput v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->encodeStand:I
-
-    .line 1063
-    sget-object v1, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PROFILE;->ENCODE_PROFILE_BASELINE:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PROFILE;
-
-    invoke-virtual {v1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PROFILE;->ordinal()I
-
-    move-result v1
-
-    iput v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->encodeProfile:I
-
-    .line 1070
-    const/4 v1, 0x1
-
-    iput-boolean v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->useHWEncoder:Z
-
-    .line 1077
-    iput-boolean v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->hasBFrame:Z
-
-    .line 1087
-    iput v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->usage:I
-
-    .line 1094
-    iput-boolean v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->mIsUseCloudConfig:Z
-
+    .line 737
     return-void
 .end method
 
-.method static synthetic access$000(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)Lcom/ss/android/vesdk/VESize;
-    .locals 0
+.method public constructor <init>(I)V
+    .locals 1
+    .param p1    # I
+        .annotation build Landroid/support/annotation/IntRange;
+            from = 0x1L
+            to = 0x3L
+        .end annotation
+    .end param
 
-    .line 945
-    iget-object p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->outputSize:Lcom/ss/android/vesdk/VESize;
+    .line 743
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    return-object p0
+    .line 729
+    const/4 v0, 0x0
+
+    iput-boolean v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->mIsEncodeModeDeclared:Z
+
+    .line 744
+    iput p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->mUsage:I
+
+    .line 745
+    new-instance p1, Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    const/4 v0, 0x0
+
+    invoke-direct {p1, v0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;-><init>(Lcom/ss/android/vesdk/VEVideoEncodeSettings$1;)V
+
+    iput-object p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    .line 746
+    return-void
 .end method
 
-.method static synthetic access$100(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)Z
-    .locals 0
+.method public constructor <init>(ILcom/ss/android/vesdk/VEVideoEncodeSettings;)V
+    .locals 1
+    .param p1    # I
+        .annotation build Landroid/support/annotation/IntRange;
+            from = 0x1L
+            to = 0x3L
+        .end annotation
+    .end param
+    .param p2    # Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
 
-    .line 945
-    iget-boolean p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->useHWEncoder:Z
+    .line 753
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    return p0
+    .line 729
+    const/4 v0, 0x0
+
+    iput-boolean v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->mIsEncodeModeDeclared:Z
+
+    .line 754
+    iput p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->mUsage:I
+
+    .line 755
+    iput-object p2, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    .line 756
+    const/4 p1, 0x1
+
+    iput-boolean p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->mIsEncodeModeDeclared:Z
+
+    .line 757
+    return-void
 .end method
 
-.method static synthetic access$1000(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)I
-    .locals 0
+.method private getCompileHardwareBitrateModeFromCloud()Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+    .locals 1
 
-    .line 945
-    iget p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->rotate:I
+    .line 1145
+    sget-object v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->ENCODE_BITRATE_ABR:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
 
-    return p0
+    return-object v0
 .end method
 
-.method static synthetic access$1100(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)I
-    .locals 0
+.method private getImportHardwareBitrateModeFromCloud()Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+    .locals 1
 
-    .line 945
-    iget p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->encodeProfile:I
+    .line 1129
+    sget-object v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->ENCODE_BITRATE_ABR:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
 
-    return p0
+    return-object v0
 .end method
 
-.method static synthetic access$1200(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)I
-    .locals 0
+.method private getRecordHardwareBitrateModeFromCloud()Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+    .locals 1
 
-    .line 945
-    iget p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->encodeStand:I
+    .line 1113
+    sget-object v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->ENCODE_BITRATE_ABR:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
 
-    return p0
+    return-object v0
 .end method
 
-.method static synthetic access$1300(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)I
-    .locals 0
+.method private overrideWithCloudConfigForCompile()V
+    .locals 6
 
-    .line 945
-    iget p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->resizeMode:I
+    .line 1094
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
-    return p0
+    .line 1096
+    iget v1, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeMode:I
+
+    const/4 v2, 0x1
+
+    if-ne v1, v2, :cond_0
+
+    goto :goto_0
+
+    :cond_0
+    const/4 v2, 0x0
+
+    .line 1097
+    :goto_0
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v1, v2}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1102(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Z)Z
+
+    .line 1099
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    new-instance v3, Lcom/ss/android/vesdk/VESize;
+
+    iget v4, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCameraPreviewResolutionWidth:I
+
+    iget v5, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCameraPreviewResolutionHeight:I
+
+    invoke-direct {v3, v4, v5}, Lcom/ss/android/vesdk/VESize;-><init>(II)V
+
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$602(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Lcom/ss/android/vesdk/VESize;)Lcom/ss/android/vesdk/VESize;
+
+    .line 1100
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeSWCRF:I
+
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$402(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1101
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeSWCRFPreset:I
+
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1302(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1103
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_1
+
+    invoke-direct {p0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->getCompileHardwareBitrateModeFromCloud()Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+
+    move-result-object v3
+
+    goto :goto_1
+
+    :cond_1
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileSWBitrateMode:I
+
+    invoke-static {v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->fromInteger(I)Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+
+    move-result-object v3
+
+    :goto_1
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$202(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+
+    .line 1104
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_2
+
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeHWBPS:I
+
+    goto :goto_2
+
+    :cond_2
+    iget-object v3, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$300(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)I
+
+    move-result v3
+
+    :goto_2
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$302(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1105
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_3
+
+    iget-object v3, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1200(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)I
+
+    move-result v3
+
+    goto :goto_3
+
+    :cond_3
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeSWGOP:I
+
+    :goto_3
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1202(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1106
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_4
+
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileHwProfile:I
+
+    goto :goto_4
+
+    :cond_4
+    iget-object v3, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1400(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)I
+
+    move-result v3
+
+    :goto_4
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1402(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1107
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_5
+
+    iget-object v3, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1500(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)I
+
+    move-result v3
+
+    goto :goto_5
+
+    :cond_5
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileEncodeSWMaxrate:I
+
+    :goto_5
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1502(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1108
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_6
+
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$500(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)I
+
+    move-result v0
+
+    goto :goto_6
+
+    :cond_6
+    iget v0, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCompileVideoSWQP:I
+
+    :goto_6
+    invoke-static {v1, v0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$502(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1109
+    return-void
 .end method
 
-.method static synthetic access$1400(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)F
-    .locals 0
+.method private overrideWithCloudConfigForImport()V
+    .locals 6
 
-    .line 945
-    iget p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->resizeX:F
+    .line 1076
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
-    return p0
+    .line 1078
+    iget v1, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportEncodeMode:I
+
+    const/4 v2, 0x1
+
+    if-ne v1, v2, :cond_0
+
+    goto :goto_0
+
+    :cond_0
+    const/4 v2, 0x0
+
+    .line 1079
+    :goto_0
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v1, v2}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1102(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Z)Z
+
+    .line 1081
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    new-instance v3, Lcom/ss/android/vesdk/VESize;
+
+    iget v4, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCameraPreviewResolutionWidth:I
+
+    iget v5, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCameraPreviewResolutionHeight:I
+
+    invoke-direct {v3, v4, v5}, Lcom/ss/android/vesdk/VESize;-><init>(II)V
+
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$602(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Lcom/ss/android/vesdk/VESize;)Lcom/ss/android/vesdk/VESize;
+
+    .line 1082
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportSWEncodeCRF:I
+
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$402(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1083
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportVideoSWPreset:I
+
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1302(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1085
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_1
+
+    invoke-direct {p0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->getImportHardwareBitrateModeFromCloud()Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+
+    move-result-object v3
+
+    goto :goto_1
+
+    :cond_1
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportSWBitrateMode:I
+
+    invoke-static {v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->fromInteger(I)Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+
+    move-result-object v3
+
+    :goto_1
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$202(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+
+    .line 1086
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_2
+
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportHWEncodeBPS:I
+
+    goto :goto_2
+
+    :cond_2
+    iget-object v3, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$300(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)I
+
+    move-result v3
+
+    :goto_2
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$302(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1087
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_3
+
+    iget-object v3, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1200(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)I
+
+    move-result v3
+
+    goto :goto_3
+
+    :cond_3
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportVideoSWGop:I
+
+    :goto_3
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1202(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1088
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_4
+
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportHwProfile:I
+
+    goto :goto_4
+
+    :cond_4
+    iget-object v3, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1400(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)I
+
+    move-result v3
+
+    :goto_4
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1402(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1089
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_5
+
+    iget-object v3, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1500(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)I
+
+    move-result v3
+
+    goto :goto_5
+
+    :cond_5
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportVideoSWMaxrate:I
+
+    :goto_5
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1502(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1090
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_6
+
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$500(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)I
+
+    move-result v0
+
+    goto :goto_6
+
+    :cond_6
+    iget v0, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mImportVideoSWQP:I
+
+    :goto_6
+    invoke-static {v1, v0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$502(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1091
+    return-void
 .end method
 
-.method static synthetic access$1500(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)F
-    .locals 0
+.method private overrideWithCloudConfigForRecord()V
+    .locals 6
 
-    .line 945
-    iget p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->resizeY:F
+    .line 1058
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
-    return p0
-.end method
+    .line 1060
+    iget v1, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordEncodeMode:I
 
-.method static synthetic access$1600(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)F
-    .locals 0
+    const/4 v2, 0x1
 
-    .line 945
-    iget p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->speed:F
+    if-ne v1, v2, :cond_0
 
-    return p0
-.end method
+    goto :goto_0
 
-.method static synthetic access$1700(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)I
-    .locals 0
+    :cond_0
+    const/4 v2, 0x0
 
-    .line 945
-    iget p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->usage:I
+    .line 1061
+    :goto_0
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    return p0
-.end method
+    invoke-static {v1, v2}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1102(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Z)Z
 
-.method static synthetic access$1800(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)Z
-    .locals 0
+    .line 1063
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 945
-    iget-boolean p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->mIsUseCloudConfig:Z
+    new-instance v3, Lcom/ss/android/vesdk/VESize;
 
-    return p0
-.end method
+    iget v4, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCameraPreviewResolutionWidth:I
 
-.method static synthetic access$200(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
-    .locals 0
+    iget v5, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mCameraPreviewResolutionHeight:I
 
-    .line 945
-    iget-object p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->bitrateMode:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+    invoke-direct {v3, v4, v5}, Lcom/ss/android/vesdk/VESize;-><init>(II)V
 
-    return-object p0
-.end method
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$602(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Lcom/ss/android/vesdk/VESize;)Lcom/ss/android/vesdk/VESize;
 
-.method static synthetic access$300(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)I
-    .locals 0
+    .line 1064
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 945
-    iget p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->fps:I
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordSWEncodeCRF:I
 
-    return p0
-.end method
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$402(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
 
-.method static synthetic access$400(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)I
-    .locals 0
+    .line 1065
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 945
-    iget p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->swQP:I
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordVideoSWPreset:I
 
-    return p0
-.end method
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1302(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
 
-.method static synthetic access$500(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)I
-    .locals 0
+    .line 1067
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 945
-    iget p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->swCRF:I
+    if-eqz v2, :cond_1
 
-    return p0
-.end method
+    invoke-direct {p0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->getRecordHardwareBitrateModeFromCloud()Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
 
-.method static synthetic access$600(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)I
-    .locals 0
+    move-result-object v3
 
-    .line 945
-    iget p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->gopSize:I
+    goto :goto_1
 
-    return p0
-.end method
+    :cond_1
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordSWBitrateMode:I
 
-.method static synthetic access$700(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)I
-    .locals 0
+    invoke-static {v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->fromInteger(I)Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
 
-    .line 945
-    iget p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->bps:I
+    move-result-object v3
 
-    return p0
-.end method
+    :goto_1
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$202(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
 
-.method static synthetic access$800(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)I
-    .locals 0
+    .line 1068
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 945
-    iget p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->encodeLevel:I
+    if-eqz v2, :cond_2
 
-    return p0
-.end method
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordHWEncodeBPS:I
 
-.method static synthetic access$900(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;)Z
-    .locals 0
+    goto :goto_2
 
-    .line 945
-    iget-boolean p0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->hasBFrame:Z
+    :cond_2
+    iget-object v3, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    return p0
+    invoke-static {v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$300(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)I
+
+    move-result v3
+
+    :goto_2
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$302(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1069
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_3
+
+    iget-object v3, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1200(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)I
+
+    move-result v3
+
+    goto :goto_3
+
+    :cond_3
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordVideoSWGop:I
+
+    :goto_3
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1202(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1070
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_4
+
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordHwProfile:I
+
+    goto :goto_4
+
+    :cond_4
+    iget-object v3, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1400(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)I
+
+    move-result v3
+
+    :goto_4
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1402(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1071
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_5
+
+    iget-object v3, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1500(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)I
+
+    move-result v3
+
+    goto :goto_5
+
+    :cond_5
+    iget v3, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordVideoSWMaxrate:I
+
+    :goto_5
+    invoke-static {v1, v3}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1502(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1072
+    iget-object v1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    if-eqz v2, :cond_6
+
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$500(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)I
+
+    move-result v0
+
+    goto :goto_6
+
+    :cond_6
+    iget v0, v0, Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;->mRecordVideoSWQP:I
+
+    :goto_6
+    invoke-static {v1, v0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$502(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 1073
+    return-void
 .end method
 
 
 # virtual methods
 .method public build()Lcom/ss/android/vesdk/VEVideoEncodeSettings;
-    .locals 2
+    .locals 1
 
-    .line 1325
-    new-instance v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings;
-
-    const/4 v1, 0x0
-
-    invoke-direct {v0, p0, v1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;-><init>(Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;Lcom/ss/android/vesdk/VEVideoEncodeSettings$1;)V
+    .line 1024
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
     return-object v0
 .end method
 
-.method public isUseCloudConfig(Z)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
-    .locals 0
+.method public overrideWithCloudConfig()Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
+    .locals 3
 
-    .line 1314
-    iput-boolean p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->mIsUseCloudConfig:Z
+    .line 1034
+    sget-object v0, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->sVECloudConfig:Lcom/ss/android/vesdk/runtime/cloudconfig/VECloudConfig;
 
-    .line 1315
+    if-nez v0, :cond_0
+
+    .line 1035
+    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "Override with Cloud Configs failed. CloudConfig == null"
+
+    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1036
     return-object p0
+
+    .line 1039
+    :cond_0
+    iget v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->mUsage:I
+
+    packed-switch v0, :pswitch_data_0
+
+    .line 1050
+    new-instance v0, Ljava/lang/IllegalStateException;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "CompileTime BUG, Unexpected usage = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget v2, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->mUsage:I
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-direct {v0, v1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw v0
+
+    .line 1044
+    :pswitch_0
+    invoke-direct {p0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->overrideWithCloudConfigForImport()V
+
+    .line 1045
+    goto :goto_0
+
+    .line 1047
+    :pswitch_1
+    invoke-direct {p0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->overrideWithCloudConfigForCompile()V
+
+    .line 1048
+    goto :goto_0
+
+    .line 1041
+    :pswitch_2
+    invoke-direct {p0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->overrideWithCloudConfigForRecord()V
+
+    .line 1042
+    nop
+
+    .line 1053
+    :goto_0
+    const/4 v0, 0x1
+
+    iput-boolean v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->mIsEncodeModeDeclared:Z
+
+    .line 1054
+    return-object p0
+
+    :pswitch_data_0
+    .packed-switch 0x1
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
+    .end packed-switch
 .end method
 
 .method public setBps(I)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
-    .locals 1
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
+    .locals 2
 
-    .line 1137
-    sget-object v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->ENCODE_BITRATE_ABR:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+    .line 816
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    iput-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->bitrateMode:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+    sget-object v1, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->ENCODE_BITRATE_ABR:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
 
-    .line 1138
-    iput p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->bps:I
+    invoke-static {v0, v1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$202(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
 
-    .line 1139
+    .line 817
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$302(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 818
     return-object p0
 .end method
 
 .method public setCompileType(Lcom/ss/android/vesdk/VEVideoEncodeSettings$COMPILE_TYPE;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
-    .locals 0
+    .locals 1
     .param p1    # Lcom/ss/android/vesdk/VEVideoEncodeSettings$COMPILE_TYPE;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
 
-    .line 1280
-    iput-object p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->compileType:Lcom/ss/android/vesdk/VEVideoEncodeSettings$COMPILE_TYPE;
+    .line 962
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 1281
+    iput-object p1, v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->compileType:Lcom/ss/android/vesdk/VEVideoEncodeSettings$COMPILE_TYPE;
+
+    .line 963
     return-object p0
 .end method
 
-.method public setEncodeLevel(Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_LEVEL;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
-    .locals 0
-    .param p1    # Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_LEVEL;
+.method public setEncodePreset(Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PRESET;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
+    .locals 1
+    .param p1    # Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PRESET;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
 
-    .line 1258
-    invoke-virtual {p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_LEVEL;->ordinal()I
+    .line 940
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-virtual {p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PRESET;->ordinal()I
 
     move-result p1
 
-    iput p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->encodeLevel:I
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1302(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
 
-    .line 1259
+    .line 941
     return-object p0
 .end method
 
 .method public setEncodeProfile(Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PROFILE;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
-    .locals 0
+    .locals 1
     .param p1    # Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PROFILE;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
 
-    .line 1269
+    .line 951
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
     invoke-virtual {p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_PROFILE;->ordinal()I
 
     move-result p1
 
-    iput p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->encodeProfile:I
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1402(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
 
-    .line 1270
+    .line 952
+    return-object p0
+.end method
+
+.method public setEncodeStandard(Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
+    .locals 1
+
+    .line 993
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-virtual {p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_STANDARD;->ordinal()I
+
+    move-result p1
+
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1702(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 994
     return-object p0
 .end method
 
 .method public setFps(I)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
-    .locals 0
+    .locals 1
 
-    .line 1103
-    iput p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->fps:I
+    .line 766
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 1104
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$102(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 767
     return-object p0
 .end method
 
 .method public setGopSize(I)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
-    .locals 0
+    .locals 1
 
-    .line 1247
-    iput p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->gopSize:I
+    .line 929
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 1248
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1202(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 930
+    return-object p0
+.end method
+
+.method public setHasBFrame(Z)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
+    .locals 1
+
+    .line 1003
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1802(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Z)Z
+
+    .line 1004
     return-object p0
 .end method
 
 .method public setHwEnc(Z)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
-    .locals 0
+    .locals 1
 
-    .line 1236
-    iput-boolean p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->useHWEncoder:Z
+    .line 917
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 1237
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1102(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Z)Z
+
+    .line 918
+    const/4 p1, 0x1
+
+    iput-boolean p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->mIsEncodeModeDeclared:Z
+
+    .line 919
+    return-object p0
+.end method
+
+.method public setQP(I)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
+    .locals 2
+
+    .line 845
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    sget-object v1, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->ENCODE_BITRATE_QP:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+
+    invoke-static {v0, v1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$202(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+
+    .line 846
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$502(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 847
     return-object p0
 .end method
 
 .method public setResizeMode(I)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
-    .locals 0
+    .locals 1
 
-    .line 1200
-    iput p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->resizeMode:I
+    .line 881
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 1201
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$802(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 882
     return-object p0
 .end method
 
 .method public setResizeX(F)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
-    .locals 0
+    .locals 1
 
-    .line 1212
-    iput p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->resizeX:F
+    .line 893
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 1213
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$902(Lcom/ss/android/vesdk/VEVideoEncodeSettings;F)F
+
+    .line 894
     return-object p0
 .end method
 
 .method public setResizeY(F)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
-    .locals 0
+    .locals 1
 
-    .line 1224
-    iput p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->resizeY:F
+    .line 905
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 1225
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1002(Lcom/ss/android/vesdk/VEVideoEncodeSettings;F)F
+
+    .line 906
     return-object p0
 .end method
 
 .method public setRotate(I)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
-    .locals 0
+    .locals 1
 
-    .line 1189
-    iput p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->rotate:I
+    .line 870
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 1190
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$702(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 871
     return-object p0
 .end method
 
-.method public setUsage(I)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
-    .locals 0
+.method public setSWCRF(I)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
+    .locals 2
 
-    .line 1293
-    iput p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->usage:I
+    .line 831
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 1294
+    sget-object v1, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->ENCODE_BITRATE_CRF:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+
+    invoke-static {v0, v1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$202(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+
+    .line 832
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$402(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 833
+    return-object p0
+.end method
+
+.method public setSpeed(F)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
+    .locals 1
+
+    .line 983
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1602(Lcom/ss/android/vesdk/VEVideoEncodeSettings;F)F
+
+    .line 984
+    return-object p0
+.end method
+
+.method public setSwMaxrate(I)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
+    .locals 1
+
+    .line 973
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1502(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 974
     return-object p0
 .end method
 
 .method public setVideoBitrate(Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;I)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
-    .locals 1
+    .locals 2
 
-    .line 1116
-    iput-object p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->bitrateMode:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+    .line 779
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 1117
-    iget-object p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->bitrateMode:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$202(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
 
-    sget-object v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->ENCODE_BITRATE_ABR:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+    .line 780
+    sget-object v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$2;->$SwitchMap$com$ss$android$vesdk$VEVideoEncodeSettings$ENCODE_BITRATE_MODE:[I
 
-    if-ne p1, v0, :cond_0
+    invoke-virtual {p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->ordinal()I
 
-    .line 1118
-    iput p2, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->bps:I
+    move-result v1
 
+    aget v0, v0, v1
+
+    packed-switch v0, :pswitch_data_0
+
+    .line 802
+    new-instance p2, Ljava/lang/IllegalStateException;
+
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "CompileTime BUG. Unhandled enum value "
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-direct {p2, p1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw p2
+
+    .line 797
+    :pswitch_0
+    iget-object p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {p1, p2}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$302(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 799
     goto :goto_0
 
-    .line 1119
-    :cond_0
-    iget-object p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->bitrateMode:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+    .line 792
+    :pswitch_1
+    iget-object p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    sget-object v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->ENCODE_BITRATE_CRF:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+    invoke-static {p1, p2}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$502(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
 
-    if-ne p1, v0, :cond_1
-
-    .line 1120
-    iput p2, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->swCRF:I
-
+    .line 794
     goto :goto_0
 
-    .line 1121
-    :cond_1
-    iget-object p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->bitrateMode:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+    .line 787
+    :pswitch_2
+    iget-object p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    sget-object v0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;->ENCODE_BITRATE_QP:Lcom/ss/android/vesdk/VEVideoEncodeSettings$ENCODE_BITRATE_MODE;
+    invoke-static {p1, p2}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$402(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
 
-    if-ne p1, v0, :cond_2
+    .line 789
+    goto :goto_0
 
-    .line 1122
-    iput p2, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->swQP:I
+    .line 782
+    :pswitch_3
+    iget-object p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
 
-    .line 1124
-    :cond_2
+    invoke-static {p1, p2}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$302(Lcom/ss/android/vesdk/VEVideoEncodeSettings;I)I
+
+    .line 784
+    nop
+
+    .line 804
     :goto_0
     return-object p0
+
+    :pswitch_data_0
+    .packed-switch 0x1
+        :pswitch_3
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
+    .end packed-switch
 .end method
 
 .method public setVideoRes(II)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
     .locals 1
 
-    .line 1177
-    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->outputSize:Lcom/ss/android/vesdk/VESize;
+    .line 858
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v0}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$600(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)Lcom/ss/android/vesdk/VESize;
+
+    move-result-object v0
 
     iput p1, v0, Lcom/ss/android/vesdk/VESize;->width:I
 
-    .line 1178
-    iget-object p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->outputSize:Lcom/ss/android/vesdk/VESize;
+    .line 859
+    iget-object p1, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$600(Lcom/ss/android/vesdk/VEVideoEncodeSettings;)Lcom/ss/android/vesdk/VESize;
+
+    move-result-object p1
 
     iput p2, p1, Lcom/ss/android/vesdk/VESize;->height:I
 
-    .line 1179
+    .line 860
+    return-object p0
+.end method
+
+.method public setWatermarkParam(Lcom/ss/android/vesdk/VEWatermarkParam;)Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;
+    .locals 1
+
+    .line 1013
+    iget-object v0, p0, Lcom/ss/android/vesdk/VEVideoEncodeSettings$Builder;->exportVideoEncodeSettings:Lcom/ss/android/vesdk/VEVideoEncodeSettings;
+
+    invoke-static {v0, p1}, Lcom/ss/android/vesdk/VEVideoEncodeSettings;->access$1902(Lcom/ss/android/vesdk/VEVideoEncodeSettings;Lcom/ss/android/vesdk/VEWatermarkParam;)Lcom/ss/android/vesdk/VEWatermarkParam;
+
+    .line 1014
     return-object p0
 .end method

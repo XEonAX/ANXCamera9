@@ -1,11 +1,14 @@
 .class Lcom/android/camera/Camera$9;
-.super Landroid/content/BroadcastReceiver;
+.super Ljava/lang/Object;
 .source "Camera.java"
+
+# interfaces
+.implements Ljava/lang/Runnable;
 
 
 # annotations
-.annotation system Ldalvik/annotation/EnclosingClass;
-    value = Lcom/android/camera/Camera;
+.annotation system Ldalvik/annotation/EnclosingMethod;
+    value = Lcom/android/camera/Camera;->showFirstUseHintIfNeeded()V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -22,38 +25,56 @@
 .method constructor <init>(Lcom/android/camera/Camera;)V
     .locals 0
 
-    .line 1575
+    .line 1570
     iput-object p1, p0, Lcom/android/camera/Camera$9;->this$0:Lcom/android/camera/Camera;
 
-    invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public onReceive(Landroid/content/Context;Landroid/content/Intent;)V
+.method public run()V
     .locals 1
 
-    .line 1579
+    .line 1573
     iget-object v0, p0, Lcom/android/camera/Camera$9;->this$0:Lcom/android/camera/Camera;
 
-    iget-object v0, v0, Lcom/android/camera/Camera;->mCurrentModule:Lcom/android/camera/module/Module;
-
-    invoke-interface {v0}, Lcom/android/camera/module/Module;->isDeparted()Z
+    invoke-virtual {v0}, Lcom/android/camera/Camera;->isActivityPaused()Z
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-eqz v0, :cond_0
 
-    .line 1580
+    .line 1574
+    return-void
+
+    .line 1576
+    :cond_0
     iget-object v0, p0, Lcom/android/camera/Camera$9;->this$0:Lcom/android/camera/Camera;
 
-    iget-object v0, v0, Lcom/android/camera/Camera;->mCurrentModule:Lcom/android/camera/module/Module;
+    invoke-virtual {v0}, Lcom/android/camera/Camera;->getScreenHint()Lcom/android/camera/ui/ScreenHint;
 
-    invoke-interface {v0, p1, p2}, Lcom/android/camera/module/Module;->onBroadcastReceived(Landroid/content/Context;Landroid/content/Intent;)V
+    move-result-object v0
 
-    .line 1582
-    :cond_0
+    invoke-virtual {v0}, Lcom/android/camera/ui/ScreenHint;->showFirstUseHint()V
+
+    .line 1577
+    iget-object v0, p0, Lcom/android/camera/Camera$9;->this$0:Lcom/android/camera/Camera;
+
+    iget-object v0, v0, Lcom/android/camera/Camera;->mCameraRootView:Lcom/android/camera/ui/CameraRootView;
+
+    if-eqz v0, :cond_1
+
+    .line 1578
+    iget-object v0, p0, Lcom/android/camera/Camera$9;->this$0:Lcom/android/camera/Camera;
+
+    iget-object v0, v0, Lcom/android/camera/Camera;->mCameraRootView:Lcom/android/camera/ui/CameraRootView;
+
+    invoke-virtual {v0}, Lcom/android/camera/ui/CameraRootView;->enableTouchEvent()V
+
+    .line 1580
+    :cond_1
     return-void
 .end method

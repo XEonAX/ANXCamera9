@@ -1,6 +1,6 @@
 .class public final Lmiui/R$raw;
 .super Ljava/lang/Object;
-.source "SourceFile"
+.source "R.java"
 
 
 # annotations
@@ -16,9 +16,9 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
-    .line 1807
+    .line 1836
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

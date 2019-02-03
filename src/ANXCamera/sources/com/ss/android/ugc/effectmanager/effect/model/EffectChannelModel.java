@@ -10,6 +10,7 @@ public class EffectChannelModel {
     private String front_effect_id;
     private EffectPanelModel panel;
     private String rear_effect_id;
+    private List<String> url_prefix;
     private String version;
 
     public EffectChannelModel(String str, List<Effect> list, List<EffectCategoryModel> list2) {
@@ -21,6 +22,7 @@ public class EffectChannelModel {
     public EffectChannelModel() {
         this.effects = new ArrayList();
         this.category = new ArrayList();
+        this.url_prefix = new ArrayList();
     }
 
     public String getVersion() {
@@ -63,6 +65,14 @@ public class EffectChannelModel {
         return this.front_effect_id;
     }
 
+    public void setUrlPrefix(List<String> list) {
+        this.url_prefix = list;
+    }
+
+    public List<String> getUrlPrefix() {
+        return this.url_prefix;
+    }
+
     public void setPanel(EffectPanelModel effectPanelModel) {
         this.panel = effectPanelModel;
     }
@@ -88,6 +98,9 @@ public class EffectChannelModel {
         }
         if (this.panel == null) {
             this.panel = new EffectPanelModel();
+        }
+        if (this.collection == null) {
+            this.collection = new ArrayList();
         }
         this.panel.checkValued();
         return true;

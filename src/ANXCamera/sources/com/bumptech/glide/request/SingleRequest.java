@@ -29,33 +29,33 @@ public final class SingleRequest<R> implements c, g, m, c {
             return new SingleRequest();
         }
     });
-    private static final String nV = "Glide";
-    private static final boolean nX = Log.isLoggable(TAG, 2);
-    private Class<R> aH;
-    private f aI;
+    private static final String nU = "Glide";
+    private static final boolean nW = Log.isLoggable(TAG, 2);
+    private Class<R> aI;
+    private f aJ;
     @Nullable
-    private Object aK;
-    private e<R> aL;
+    private Object aL;
+    private e<R> aM;
     private Context context;
-    private p<R> dU;
-    private Priority en;
-    private final com.bumptech.glide.util.a.c et;
+    private p<R> dV;
+    private Priority eo;
+    private final com.bumptech.glide.util.a.c eu;
     private Engine h;
     private int height;
-    private Drawable nL;
+    private Drawable nK;
+    private int nM;
     private int nN;
-    private int nO;
-    private Drawable nQ;
-    private boolean nW;
+    private Drawable nP;
+    private boolean nV;
     @Nullable
-    private e<R> nY;
-    private d nZ;
-    private e o;
-    private n<R> oa;
-    private g<? super R> ob;
-    private b oc;
-    private Status od;
-    private Drawable oe;
+    private e<R> nX;
+    private d nY;
+    private n<R> nZ;
+    private g<? super R> oa;
+    private b ob;
+    private Status oc;
+    private Drawable od;
+    private e q;
     private long startTime;
     @Nullable
     private final String tag;
@@ -82,51 +82,51 @@ public final class SingleRequest<R> implements c, g, m, c {
     }
 
     SingleRequest() {
-        this.tag = nX ? String.valueOf(super.hashCode()) : null;
-        this.et = com.bumptech.glide.util.a.c.eM();
+        this.tag = nW ? String.valueOf(super.hashCode()) : null;
+        this.eu = com.bumptech.glide.util.a.c.eM();
     }
 
     private void b(Context context, e eVar, Object obj, Class<R> cls, f fVar, int i, int i2, Priority priority, n<R> nVar, e<R> eVar2, e<R> eVar3, d dVar, Engine engine, g<? super R> gVar) {
         this.context = context;
-        this.o = eVar;
-        this.aK = obj;
-        this.aH = cls;
-        this.aI = fVar;
-        this.nO = i;
-        this.nN = i2;
-        this.en = priority;
-        this.oa = nVar;
-        this.nY = eVar2;
-        this.aL = eVar3;
-        this.nZ = dVar;
+        this.q = eVar;
+        this.aL = obj;
+        this.aI = cls;
+        this.aJ = fVar;
+        this.nN = i;
+        this.nM = i2;
+        this.eo = priority;
+        this.nZ = nVar;
+        this.nX = eVar2;
+        this.aM = eVar3;
+        this.nY = dVar;
         this.h = engine;
-        this.ob = gVar;
-        this.od = Status.PENDING;
+        this.oa = gVar;
+        this.oc = Status.PENDING;
     }
 
     @NonNull
     public com.bumptech.glide.util.a.c aK() {
-        return this.et;
+        return this.eu;
     }
 
     public void recycle() {
         ec();
         this.context = null;
-        this.o = null;
-        this.aK = null;
-        this.aH = null;
-        this.aI = null;
-        this.nO = -1;
-        this.nN = -1;
-        this.oa = null;
+        this.q = null;
         this.aL = null;
-        this.nY = null;
+        this.aI = null;
+        this.aJ = null;
+        this.nN = -1;
+        this.nM = -1;
         this.nZ = null;
+        this.aM = null;
+        this.nX = null;
+        this.nY = null;
+        this.oa = null;
         this.ob = null;
-        this.oc = null;
-        this.oe = null;
-        this.nL = null;
-        this.nQ = null;
+        this.od = null;
+        this.nK = null;
+        this.nP = null;
         this.width = -1;
         this.height = -1;
         gh.release(this);
@@ -134,29 +134,29 @@ public final class SingleRequest<R> implements c, g, m, c {
 
     public void begin() {
         ec();
-        this.et.eN();
+        this.eu.eN();
         this.startTime = com.bumptech.glide.util.e.eE();
-        if (this.aK == null) {
-            if (k.p(this.nO, this.nN)) {
-                this.width = this.nO;
-                this.height = this.nN;
+        if (this.aL == null) {
+            if (k.p(this.nN, this.nM)) {
+                this.width = this.nN;
+                this.height = this.nM;
             }
             a(new GlideException("Received null model"), dS() == null ? 5 : 3);
-        } else if (this.od == Status.RUNNING) {
+        } else if (this.oc == Status.RUNNING) {
             throw new IllegalArgumentException("Cannot restart a running request");
-        } else if (this.od == Status.COMPLETE) {
-            c(this.dU, DataSource.MEMORY_CACHE);
+        } else if (this.oc == Status.COMPLETE) {
+            c(this.dV, DataSource.MEMORY_CACHE);
         } else {
-            this.od = Status.WAITING_FOR_SIZE;
-            if (k.p(this.nO, this.nN)) {
-                m(this.nO, this.nN);
+            this.oc = Status.WAITING_FOR_SIZE;
+            if (k.p(this.nN, this.nM)) {
+                m(this.nN, this.nM);
             } else {
-                this.oa.a(this);
+                this.nZ.a(this);
             }
-            if ((this.od == Status.RUNNING || this.od == Status.WAITING_FOR_SIZE) && eh()) {
-                this.oa.e(dQ());
+            if ((this.oc == Status.RUNNING || this.oc == Status.WAITING_FOR_SIZE) && eh()) {
+                this.nZ.e(dQ());
             }
-            if (nX) {
+            if (nW) {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("finished run method in ");
                 stringBuilder.append(com.bumptech.glide.util.e.e(this.startTime));
@@ -167,17 +167,17 @@ public final class SingleRequest<R> implements c, g, m, c {
 
     void cancel() {
         ec();
-        this.et.eN();
-        this.oa.b(this);
-        this.od = Status.CANCELLED;
-        if (this.oc != null) {
-            this.oc.cancel();
-            this.oc = null;
+        this.eu.eN();
+        this.nZ.b(this);
+        this.oc = Status.CANCELLED;
+        if (this.ob != null) {
+            this.ob.cancel();
+            this.ob = null;
         }
     }
 
     private void ec() {
-        if (this.nW) {
+        if (this.nV) {
             throw new IllegalStateException("You can't start or clear loads in RequestListener or Target callbacks. If you're trying to start a fallback request when a load fails, use RequestBuilder#error(RequestBuilder). Otherwise consider posting your into() or clear() calls to the main thread using a Handler instead.");
         }
     }
@@ -185,39 +185,39 @@ public final class SingleRequest<R> implements c, g, m, c {
     public void clear() {
         k.eF();
         ec();
-        this.et.eN();
-        if (this.od != Status.CLEARED) {
+        this.eu.eN();
+        if (this.oc != Status.CLEARED) {
             cancel();
-            if (this.dU != null) {
-                m(this.dU);
+            if (this.dV != null) {
+                m(this.dV);
             }
             if (eg()) {
-                this.oa.d(dQ());
+                this.nZ.d(dQ());
             }
-            this.od = Status.CLEARED;
+            this.oc = Status.CLEARED;
         }
     }
 
     public boolean isPaused() {
-        return this.od == Status.PAUSED;
+        return this.oc == Status.PAUSED;
     }
 
     public void pause() {
         clear();
-        this.od = Status.PAUSED;
+        this.oc = Status.PAUSED;
     }
 
     private void m(p<?> pVar) {
         this.h.d((p) pVar);
-        this.dU = null;
+        this.dV = null;
     }
 
     public boolean isRunning() {
-        return this.od == Status.RUNNING || this.od == Status.WAITING_FOR_SIZE;
+        return this.oc == Status.RUNNING || this.oc == Status.WAITING_FOR_SIZE;
     }
 
     public boolean isComplete() {
-        return this.od == Status.COMPLETE;
+        return this.oc == Status.COMPLETE;
     }
 
     public boolean dd() {
@@ -225,51 +225,51 @@ public final class SingleRequest<R> implements c, g, m, c {
     }
 
     public boolean isCancelled() {
-        return this.od == Status.CANCELLED || this.od == Status.CLEARED;
+        return this.oc == Status.CANCELLED || this.oc == Status.CLEARED;
     }
 
     public boolean isFailed() {
-        return this.od == Status.FAILED;
+        return this.oc == Status.FAILED;
     }
 
     private Drawable ed() {
-        if (this.oe == null) {
-            this.oe = this.aI.dN();
-            if (this.oe == null && this.aI.dO() > 0) {
-                this.oe = P(this.aI.dO());
+        if (this.od == null) {
+            this.od = this.aJ.dN();
+            if (this.od == null && this.aJ.dO() > 0) {
+                this.od = P(this.aJ.dO());
             }
         }
-        return this.oe;
+        return this.od;
     }
 
     private Drawable dQ() {
-        if (this.nL == null) {
-            this.nL = this.aI.dQ();
-            if (this.nL == null && this.aI.dP() > 0) {
-                this.nL = P(this.aI.dP());
+        if (this.nK == null) {
+            this.nK = this.aJ.dQ();
+            if (this.nK == null && this.aJ.dP() > 0) {
+                this.nK = P(this.aJ.dP());
             }
         }
-        return this.nL;
+        return this.nK;
     }
 
     private Drawable dS() {
-        if (this.nQ == null) {
-            this.nQ = this.aI.dS();
-            if (this.nQ == null && this.aI.dR() > 0) {
-                this.nQ = P(this.aI.dR());
+        if (this.nP == null) {
+            this.nP = this.aJ.dS();
+            if (this.nP == null && this.aJ.dR() > 0) {
+                this.nP = P(this.aJ.dR());
             }
         }
-        return this.nQ;
+        return this.nP;
     }
 
     private Drawable P(@DrawableRes int i) {
-        return com.bumptech.glide.load.resource.b.a.a(this.o, i, this.aI.getTheme() != null ? this.aI.getTheme() : this.context.getTheme());
+        return com.bumptech.glide.load.resource.b.a.a(this.q, i, this.aJ.getTheme() != null ? this.aJ.getTheme() : this.context.getTheme());
     }
 
     private void ee() {
         if (eh()) {
             Drawable drawable = null;
-            if (this.aK == null) {
+            if (this.aL == null) {
                 drawable = dS();
             }
             if (drawable == null) {
@@ -278,36 +278,36 @@ public final class SingleRequest<R> implements c, g, m, c {
             if (drawable == null) {
                 drawable = dQ();
             }
-            this.oa.f(drawable);
+            this.nZ.f(drawable);
         }
     }
 
     public void m(int i, int i2) {
         StringBuilder stringBuilder;
-        this.et.eN();
-        if (nX) {
+        this.eu.eN();
+        if (nW) {
             stringBuilder = new StringBuilder();
             stringBuilder.append("Got onSizeReady in ");
             stringBuilder.append(com.bumptech.glide.util.e.e(this.startTime));
             u(stringBuilder.toString());
         }
-        if (this.od == Status.WAITING_FOR_SIZE) {
-            this.od = Status.RUNNING;
-            float dY = this.aI.dY();
+        if (this.oc == Status.WAITING_FOR_SIZE) {
+            this.oc = Status.RUNNING;
+            float dY = this.aJ.dY();
             this.width = a(i, dY);
             this.height = a(i2, dY);
-            if (nX) {
+            if (nW) {
                 stringBuilder = new StringBuilder();
                 stringBuilder.append("finished setup for calling load in ");
                 stringBuilder.append(com.bumptech.glide.util.e.e(this.startTime));
                 u(stringBuilder.toString());
             }
-            b a = this.h.a(this.o, this.aK, this.aI.au(), this.width, this.height, this.aI.aZ(), this.aH, this.en, this.aI.ar(), this.aI.dL(), this.aI.dM(), this.aI.ay(), this.aI.at(), this.aI.dT(), this.aI.dZ(), this.aI.ea(), this.aI.eb(), this);
-            this.oc = a;
-            if (this.od != Status.RUNNING) {
-                this.oc = null;
+            b a = this.h.a(this.q, this.aL, this.aJ.au(), this.width, this.height, this.aJ.aZ(), this.aI, this.eo, this.aJ.ar(), this.aJ.dL(), this.aJ.dM(), this.aJ.ay(), this.aJ.at(), this.aJ.dT(), this.aJ.dZ(), this.aJ.ea(), this.aJ.eb(), this);
+            this.ob = a;
+            if (this.oc != Status.RUNNING) {
+                this.ob = null;
             }
-            if (nX) {
+            if (nW) {
                 stringBuilder = new StringBuilder();
                 stringBuilder.append("finished onSizeReady in ");
                 stringBuilder.append(com.bumptech.glide.util.e.e(this.startTime));
@@ -321,50 +321,50 @@ public final class SingleRequest<R> implements c, g, m, c {
     }
 
     private boolean ef() {
-        return this.nZ == null || this.nZ.d(this);
+        return this.nY == null || this.nY.d(this);
     }
 
     private boolean eg() {
-        return this.nZ == null || this.nZ.f(this);
+        return this.nY == null || this.nY.f(this);
     }
 
     private boolean eh() {
-        return this.nZ == null || this.nZ.e(this);
+        return this.nY == null || this.nY.e(this);
     }
 
     private boolean ei() {
-        return this.nZ == null || !this.nZ.dh();
+        return this.nY == null || !this.nY.dh();
     }
 
     private void ej() {
-        if (this.nZ != null) {
-            this.nZ.h(this);
+        if (this.nY != null) {
+            this.nY.h(this);
         }
     }
 
     private void ek() {
-        if (this.nZ != null) {
-            this.nZ.i(this);
+        if (this.nY != null) {
+            this.nY.i(this);
         }
     }
 
     public void c(p<?> pVar, DataSource dataSource) {
-        this.et.eN();
-        this.oc = null;
+        this.eu.eN();
+        this.ob = null;
         if (pVar == null) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("Expected to receive a Resource<R> with an object of ");
-            stringBuilder.append(this.aH);
+            stringBuilder.append(this.aI);
             stringBuilder.append(" inside, but instead got null.");
             a(new GlideException(stringBuilder.toString()));
             return;
         }
         Object obj = pVar.get();
-        if (obj == null || !this.aH.isAssignableFrom(obj.getClass())) {
+        if (obj == null || !this.aI.isAssignableFrom(obj.getClass())) {
             m(pVar);
             StringBuilder stringBuilder2 = new StringBuilder();
             stringBuilder2.append("Expected to receive an object of ");
-            stringBuilder2.append(this.aH);
+            stringBuilder2.append(this.aI);
             stringBuilder2.append(" but instead got ");
             stringBuilder2.append(obj != null ? obj.getClass() : "");
             stringBuilder2.append("{");
@@ -378,30 +378,30 @@ public final class SingleRequest<R> implements c, g, m, c {
             a(pVar, obj, dataSource);
         } else {
             m(pVar);
-            this.od = Status.COMPLETE;
+            this.oc = Status.COMPLETE;
         }
     }
 
-    /* JADX WARNING: Missing block: B:8:0x007f, code:
-            if (r7.aL.a(r9, r7.aK, r7.oa, r10, r6) == false) goto L_0x0081;
+    /* JADX WARNING: Missing block: B:8:0x0080, code:
+            if (r7.aM.a(r9, r7.aL, r7.nZ, r10, r6) == false) goto L_0x0082;
      */
-    /* JADX WARNING: Missing block: B:12:0x0092, code:
-            if (r7.nY.a(r9, r7.aK, r7.oa, r10, r6) == false) goto L_0x0094;
+    /* JADX WARNING: Missing block: B:12:0x0093, code:
+            if (r7.nX.a(r9, r7.aL, r7.nZ, r10, r6) == false) goto L_0x0095;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     private void a(p<R> pVar, R r, DataSource dataSource) {
         boolean ei = ei();
-        this.od = Status.COMPLETE;
-        this.dU = pVar;
-        if (this.o.getLogLevel() <= 3) {
-            String str = nV;
+        this.oc = Status.COMPLETE;
+        this.dV = pVar;
+        if (this.q.getLogLevel() <= 3) {
+            String str = nU;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("Finished loading ");
             stringBuilder.append(r.getClass().getSimpleName());
             stringBuilder.append(" from ");
             stringBuilder.append(dataSource);
             stringBuilder.append(" for ");
-            stringBuilder.append(this.aK);
+            stringBuilder.append(this.aL);
             stringBuilder.append(" with size [");
             stringBuilder.append(this.width);
             stringBuilder.append("x");
@@ -411,17 +411,17 @@ public final class SingleRequest<R> implements c, g, m, c {
             stringBuilder.append(" ms");
             Log.d(str, stringBuilder.toString());
         }
-        this.nW = true;
+        this.nV = true;
         try {
-            if (this.aL != null) {
+            if (this.aM != null) {
             }
-            if (this.nY != null) {
+            if (this.nX != null) {
             }
-            this.oa.a(r, this.ob.a(dataSource, ei));
-            this.nW = false;
+            this.nZ.a(r, this.oa.a(dataSource, ei));
+            this.nV = false;
             ej();
         } catch (Throwable th) {
-            this.nW = false;
+            this.nV = false;
         }
     }
 
@@ -430,13 +430,13 @@ public final class SingleRequest<R> implements c, g, m, c {
     }
 
     private void a(GlideException glideException, int i) {
-        this.et.eN();
-        int logLevel = this.o.getLogLevel();
+        this.eu.eN();
+        int logLevel = this.q.getLogLevel();
         if (logLevel <= i) {
-            String str = nV;
+            String str = nU;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("Load failed for ");
-            stringBuilder.append(this.aK);
+            stringBuilder.append(this.aL);
             stringBuilder.append(" with size [");
             stringBuilder.append(this.width);
             stringBuilder.append("x");
@@ -444,20 +444,20 @@ public final class SingleRequest<R> implements c, g, m, c {
             stringBuilder.append("]");
             Log.w(str, stringBuilder.toString(), glideException);
             if (logLevel <= 4) {
-                glideException.j(nV);
+                glideException.j(nU);
             }
         }
-        this.oc = null;
-        this.od = Status.FAILED;
-        this.nW = true;
+        this.ob = null;
+        this.oc = Status.FAILED;
+        this.nV = true;
         try {
-            if ((this.aL == null || !this.aL.a(glideException, this.aK, this.oa, ei())) && (this.nY == null || !this.nY.a(glideException, this.aK, this.oa, ei()))) {
+            if ((this.aM == null || !this.aM.a(glideException, this.aL, this.nZ, ei())) && (this.nX == null || !this.nX.a(glideException, this.aL, this.nZ, ei()))) {
                 ee();
             }
-            this.nW = false;
+            this.nV = false;
             ek();
         } catch (Throwable th) {
-            this.nW = false;
+            this.nV = false;
         }
     }
 
@@ -467,7 +467,7 @@ public final class SingleRequest<R> implements c, g, m, c {
             return false;
         }
         SingleRequest singleRequest = (SingleRequest) cVar;
-        if (this.nO == singleRequest.nO && this.nN == singleRequest.nN && k.c(this.aK, singleRequest.aK) && this.aH.equals(singleRequest.aH) && this.aI.equals(singleRequest.aI) && this.en == singleRequest.en && (this.aL == null ? singleRequest.aL != null : singleRequest.aL == null)) {
+        if (this.nN == singleRequest.nN && this.nM == singleRequest.nM && k.c(this.aL, singleRequest.aL) && this.aI.equals(singleRequest.aI) && this.aJ.equals(singleRequest.aJ) && this.eo == singleRequest.eo && (this.aM == null ? singleRequest.aM != null : singleRequest.aM == null)) {
             z = true;
         }
         return z;

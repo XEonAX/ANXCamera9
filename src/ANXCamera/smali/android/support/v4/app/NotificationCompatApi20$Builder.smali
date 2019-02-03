@@ -26,7 +26,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;Landroid/app/Notification;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Landroid/widget/RemoteViews;ILandroid/app/PendingIntent;Landroid/app/PendingIntent;Landroid/graphics/Bitmap;IIZZZILjava/lang/CharSequence;ZLjava/util/ArrayList;Landroid/os/Bundle;Ljava/lang/String;ZLjava/lang/String;)V
-    .locals 17
+    .registers 41
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "n"    # Landroid/app/Notification;
     .param p3, "contentTitle"    # Ljava/lang/CharSequence;
@@ -161,16 +161,16 @@
 
     const/4 v10, 0x1
 
-    if-eqz v7, :cond_0
+    if-eqz v7, :cond_56
 
     move v7, v10
 
-    goto :goto_0
+    goto :goto_57
 
-    :cond_0
+    :cond_56
     move v7, v9
 
-    :goto_0
+    :goto_57
     invoke-virtual {v4, v7}, Landroid/app/Notification$Builder;->setOngoing(Z)Landroid/app/Notification$Builder;
 
     move-result-object v4
@@ -179,16 +179,16 @@
 
     and-int/lit8 v7, v7, 0x8
 
-    if-eqz v7, :cond_1
+    if-eqz v7, :cond_63
 
     move v7, v10
 
-    goto :goto_1
+    goto :goto_64
 
-    :cond_1
+    :cond_63
     move v7, v9
 
-    :goto_1
+    :goto_64
     invoke-virtual {v4, v7}, Landroid/app/Notification$Builder;->setOnlyAlertOnce(Z)Landroid/app/Notification$Builder;
 
     move-result-object v4
@@ -197,16 +197,16 @@
 
     and-int/lit8 v7, v7, 0x10
 
-    if-eqz v7, :cond_2
+    if-eqz v7, :cond_70
 
     move v7, v10
 
-    goto :goto_2
+    goto :goto_71
 
-    :cond_2
+    :cond_70
     move v7, v9
 
-    :goto_2
+    :goto_71
     invoke-virtual {v4, v7}, Landroid/app/Notification$Builder;->setAutoCancel(Z)Landroid/app/Notification$Builder;
 
     move-result-object v4
@@ -257,13 +257,13 @@
 
     and-int/lit16 v15, v15, 0x80
 
-    if-eqz v15, :cond_3
+    if-eqz v15, :cond_a7
 
     move v9, v10
 
     nop
 
-    :cond_3
+    :cond_a7
     move-object/from16 v10, p9
 
     invoke-virtual {v4, v10, v9}, Landroid/app/Notification$Builder;->setFullScreenIntent(Landroid/app/PendingIntent;Z)Landroid/app/Notification$Builder;
@@ -338,7 +338,7 @@
     iput-object v4, v0, Landroid/support/v4/app/NotificationCompatApi20$Builder;->mExtras:Landroid/os/Bundle;
 
     .line 75
-    if-eqz v3, :cond_4
+    if-eqz v3, :cond_f7
 
     .line 76
     iget-object v4, v0, Landroid/support/v4/app/NotificationCompatApi20$Builder;->mExtras:Landroid/os/Bundle;
@@ -346,14 +346,14 @@
     invoke-virtual {v4, v3}, Landroid/os/Bundle;->putAll(Landroid/os/Bundle;)V
 
     .line 78
-    :cond_4
-    if-eqz v2, :cond_5
+    :cond_f7
+    if-eqz v2, :cond_112
 
     invoke-virtual/range {p19 .. p19}, Ljava/util/ArrayList;->isEmpty()Z
 
     move-result v4
 
-    if-nez v4, :cond_5
+    if-nez v4, :cond_112
 
     .line 79
     iget-object v4, v0, Landroid/support/v4/app/NotificationCompatApi20$Builder;->mExtras:Landroid/os/Bundle;
@@ -375,14 +375,14 @@
     invoke-virtual {v4, v0, v1}, Landroid/os/Bundle;->putStringArray(Ljava/lang/String;[Ljava/lang/String;)V
 
     .line 82
-    :cond_5
+    :cond_112
     return-void
 .end method
 
 
 # virtual methods
 .method public addAction(Landroid/support/v4/app/NotificationCompatBase$Action;)V
-    .locals 1
+    .registers 3
     .param p1, "action"    # Landroid/support/v4/app/NotificationCompatBase$Action;
 
     .line 86
@@ -395,7 +395,7 @@
 .end method
 
 .method public build()Landroid/app/Notification;
-    .locals 2
+    .registers 3
 
     .line 96
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompatApi20$Builder;->b:Landroid/app/Notification$Builder;
@@ -415,7 +415,7 @@
 .end method
 
 .method public getBuilder()Landroid/app/Notification$Builder;
-    .locals 1
+    .registers 2
 
     .line 91
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompatApi20$Builder;->b:Landroid/app/Notification$Builder;

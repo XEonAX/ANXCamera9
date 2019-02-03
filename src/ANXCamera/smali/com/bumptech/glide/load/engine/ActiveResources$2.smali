@@ -18,7 +18,7 @@
 
 
 # instance fields
-.field final synthetic dS:Lcom/bumptech/glide/load/engine/ActiveResources;
+.field final synthetic dT:Lcom/bumptech/glide/load/engine/ActiveResources;
 
 
 # direct methods
@@ -26,7 +26,7 @@
     .locals 0
 
     .line 114
-    iput-object p1, p0, Lcom/bumptech/glide/load/engine/ActiveResources$2;->dS:Lcom/bumptech/glide/load/engine/ActiveResources;
+    iput-object p1, p0, Lcom/bumptech/glide/load/engine/ActiveResources$2;->dT:Lcom/bumptech/glide/load/engine/ActiveResources;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -44,7 +44,7 @@
     invoke-static {v0}, Landroid/os/Process;->setThreadPriority(I)V
 
     .line 119
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/ActiveResources$2;->dS:Lcom/bumptech/glide/load/engine/ActiveResources;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/ActiveResources$2;->dT:Lcom/bumptech/glide/load/engine/ActiveResources;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/load/engine/ActiveResources;->ak()V
 

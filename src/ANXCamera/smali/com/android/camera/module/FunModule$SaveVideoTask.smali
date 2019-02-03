@@ -26,17 +26,17 @@
 .method public constructor <init>(Lcom/android/camera/module/FunModule;Ljava/lang/String;Landroid/content/ContentValues;)V
     .locals 0
 
-    .line 478
+    .line 476
     iput-object p1, p0, Lcom/android/camera/module/FunModule$SaveVideoTask;->this$0:Lcom/android/camera/module/FunModule;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 479
+    .line 477
     iput-object p2, p0, Lcom/android/camera/module/FunModule$SaveVideoTask;->videoPath:Ljava/lang/String;
 
-    .line 480
+    .line 478
     iput-object p3, p0, Lcom/android/camera/module/FunModule$SaveVideoTask;->contentValues:Landroid/content/ContentValues;
 
-    .line 481
+    .line 479
     return-void
 .end method

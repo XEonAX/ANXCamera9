@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 import com.android.camera.db.element.SaveTask;
 import com.google.android.apps.photos.api.ProcessingMetadataQuery;
+import com.ss.android.ugc.effectmanager.effect.model.ComposerHelper;
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.database.Database;
@@ -17,7 +18,7 @@ public class SaveTaskDao extends AbstractDao<SaveTask, Long> {
         public static final Property Id = new Property(0, Long.class, "id", true, "_id");
         public static final Property JpegRotation = new Property(6, Integer.TYPE, "jpegRotation", false, "jpeg_rotation");
         public static final Property MediaStoreId = new Property(2, Long.class, "mediaStoreId", false, ProcessingMetadataQuery.MEDIA_STORE_ID);
-        public static final Property Path = new Property(3, String.class, "path", false, ProcessingMetadataQuery.MEDIA_PATH);
+        public static final Property Path = new Property(3, String.class, ComposerHelper.CONFIG_PATH, false, ProcessingMetadataQuery.MEDIA_PATH);
         public static final Property Percentage = new Property(5, Integer.TYPE, "percentage", false, ProcessingMetadataQuery.PROGRESS_PERCENTAGE);
         public static final Property StartTime = new Property(1, Long.class, "startTime", false, ProcessingMetadataQuery.START_TIME);
         public static final Property Status = new Property(4, Integer.TYPE, "status", false, ProcessingMetadataQuery.PROGRESS_STATUS);

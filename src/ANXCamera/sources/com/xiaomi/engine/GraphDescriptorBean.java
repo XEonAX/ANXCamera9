@@ -15,7 +15,7 @@ public final class GraphDescriptorBean implements Parcelable {
             return new GraphDescriptorBean[i];
         }
     };
-    private boolean mIsFrontCamera;
+    private int mCameraCombinationMode;
     private boolean mIsSnapshot;
     private int mOperationModeID;
     private int mStreamNumber;
@@ -24,14 +24,14 @@ public final class GraphDescriptorBean implements Parcelable {
         this.mOperationModeID = 0;
         this.mStreamNumber = 0;
         this.mIsSnapshot = true;
-        this.mIsFrontCamera = false;
+        this.mCameraCombinationMode = 0;
     }
 
-    public GraphDescriptorBean(int i, int i2, boolean z, boolean z2) {
+    public GraphDescriptorBean(int i, int i2, boolean z, int i3) {
         this.mOperationModeID = i;
         this.mStreamNumber = i2;
         this.mIsSnapshot = z;
-        this.mIsFrontCamera = z2;
+        this.mCameraCombinationMode = i3;
     }
 
     public int getOperationModeID() {
@@ -46,8 +46,8 @@ public final class GraphDescriptorBean implements Parcelable {
         return this.mIsSnapshot;
     }
 
-    public boolean isFrontCamera() {
-        return this.mIsFrontCamera;
+    public int getCameraCombinationMode() {
+        return this.mCameraCombinationMode;
     }
 
     public void setOperationModeID(int i) {
@@ -62,8 +62,8 @@ public final class GraphDescriptorBean implements Parcelable {
         this.mIsSnapshot = z;
     }
 
-    public void setFrontCamera(boolean z) {
-        this.mIsFrontCamera = z;
+    public void setCameraCombinationMode(int i) {
+        this.mCameraCombinationMode = i;
     }
 
     public int describeContents() {
@@ -74,18 +74,14 @@ public final class GraphDescriptorBean implements Parcelable {
         parcel.writeInt(this.mOperationModeID);
         parcel.writeInt(this.mStreamNumber);
         parcel.writeByte(this.mIsSnapshot);
-        parcel.writeByte(this.mIsFrontCamera);
+        parcel.writeInt(this.mCameraCombinationMode);
     }
 
     protected GraphDescriptorBean(Parcel parcel) {
         this.mOperationModeID = parcel.readInt();
         this.mStreamNumber = parcel.readInt();
-        boolean z = false;
         this.mIsSnapshot = parcel.readByte() != (byte) 0;
-        if (parcel.readByte() != (byte) 0) {
-            z = true;
-        }
-        this.mIsFrontCamera = z;
+        this.mCameraCombinationMode = parcel.readInt();
     }
 
     public boolean equals(Object obj) {
@@ -97,13 +93,13 @@ public final class GraphDescriptorBean implements Parcelable {
             return false;
         }
         GraphDescriptorBean graphDescriptorBean = (GraphDescriptorBean) obj;
-        if (!(this.mOperationModeID == graphDescriptorBean.mOperationModeID && this.mStreamNumber == graphDescriptorBean.mStreamNumber && this.mIsSnapshot == graphDescriptorBean.mIsSnapshot && this.mIsFrontCamera == graphDescriptorBean.mIsFrontCamera)) {
+        if (!(this.mOperationModeID == graphDescriptorBean.mOperationModeID && this.mStreamNumber == graphDescriptorBean.mStreamNumber && this.mIsSnapshot == graphDescriptorBean.mIsSnapshot && this.mCameraCombinationMode == graphDescriptorBean.mCameraCombinationMode)) {
             z = false;
         }
         return z;
     }
 
     public int hashCode() {
-        return Objects.hash(new Object[]{Integer.valueOf(this.mOperationModeID), Integer.valueOf(this.mStreamNumber), Boolean.valueOf(this.mIsSnapshot), Boolean.valueOf(this.mIsFrontCamera)});
+        return Objects.hash(new Object[]{Integer.valueOf(this.mOperationModeID), Integer.valueOf(this.mStreamNumber), Boolean.valueOf(this.mIsSnapshot), Integer.valueOf(this.mCameraCombinationMode)});
     }
 }

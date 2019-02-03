@@ -27,17 +27,17 @@ import java.net.URL;
 
 /* compiled from: RequestManager */
 public class i implements g<h<Drawable>>, com.bumptech.glide.manager.i {
-    private static final f aG = f.a(g.fm).c(Priority.LOW).k(true);
-    private static final f aW = f.o(Bitmap.class).dF();
-    private static final f aX = f.o(com.bumptech.glide.load.resource.gif.b.class).dF();
-    private final Handler T;
-    private f aI;
-    final h aY;
-    private final n aZ;
-    private final m ba;
-    private final o bb;
-    private final Runnable bc;
-    private final c bd;
+    private static final f aH = f.a(g.fm).c(Priority.LOW).k(true);
+    private static final f aX = f.o(Bitmap.class).dF();
+    private static final f aY = f.o(com.bumptech.glide.load.resource.gif.b.class).dF();
+    private final Handler U;
+    private f aJ;
+    final h aZ;
+    private final n ba;
+    private final m bb;
+    private final o bc;
+    private final Runnable bd;
+    private final c be;
     protected final c c;
     protected final Context context;
 
@@ -53,15 +53,15 @@ public class i implements g<h<Drawable>>, com.bumptech.glide.manager.i {
 
     /* compiled from: RequestManager */
     private static class b implements com.bumptech.glide.manager.c.a {
-        private final n aZ;
+        private final n ba;
 
         b(@NonNull n nVar) {
-            this.aZ = nVar;
+            this.ba = nVar;
         }
 
         public void b(boolean z) {
             if (z) {
-                this.aZ.cY();
+                this.ba.cY();
             }
         }
     }
@@ -71,35 +71,35 @@ public class i implements g<h<Drawable>>, com.bumptech.glide.manager.i {
     }
 
     i(c cVar, h hVar, m mVar, n nVar, d dVar, Context context) {
-        this.bb = new o();
-        this.bc = new Runnable() {
+        this.bc = new o();
+        this.bd = new Runnable() {
             public void run() {
-                i.this.aY.a(i.this);
+                i.this.aZ.a(i.this);
             }
         };
-        this.T = new Handler(Looper.getMainLooper());
+        this.U = new Handler(Looper.getMainLooper());
         this.c = cVar;
-        this.aY = hVar;
-        this.ba = mVar;
-        this.aZ = nVar;
+        this.aZ = hVar;
+        this.bb = mVar;
+        this.ba = nVar;
         this.context = context;
-        this.bd = dVar.a(context.getApplicationContext(), new b(nVar));
+        this.be = dVar.a(context.getApplicationContext(), new b(nVar));
         if (k.eI()) {
-            this.T.post(this.bc);
+            this.U.post(this.bd);
         } else {
             hVar.a(this);
         }
-        hVar.a(this.bd);
+        hVar.a(this.be);
         c(cVar.h().m());
         cVar.a(this);
     }
 
     protected void c(@NonNull f fVar) {
-        this.aI = fVar.clone().dG();
+        this.aJ = fVar.clone().dG();
     }
 
     private void d(@NonNull f fVar) {
-        this.aI = this.aI.g(fVar);
+        this.aJ = this.aJ.g(fVar);
     }
 
     @NonNull
@@ -116,73 +116,73 @@ public class i implements g<h<Drawable>>, com.bumptech.glide.manager.i {
 
     public boolean isPaused() {
         k.eF();
-        return this.aZ.isPaused();
+        return this.ba.isPaused();
     }
 
     public void w() {
         k.eF();
-        this.aZ.w();
+        this.ba.w();
     }
 
     public void x() {
         k.eF();
-        this.aZ.x();
+        this.ba.x();
     }
 
     public void y() {
         k.eF();
         w();
-        for (i w : this.ba.cQ()) {
+        for (i w : this.bb.cQ()) {
             w.w();
         }
     }
 
     public void z() {
         k.eF();
-        this.aZ.z();
+        this.ba.z();
     }
 
     public void A() {
         k.eF();
         z();
-        for (i z : this.ba.cQ()) {
+        for (i z : this.bb.cQ()) {
             z.z();
         }
     }
 
     public void onStart() {
         z();
-        this.bb.onStart();
+        this.bc.onStart();
     }
 
     public void onStop() {
         w();
-        this.bb.onStop();
+        this.bc.onStop();
     }
 
     public void onDestroy() {
-        this.bb.onDestroy();
-        for (com.bumptech.glide.request.target.n d : this.bb.getAll()) {
+        this.bc.onDestroy();
+        for (com.bumptech.glide.request.target.n d : this.bc.getAll()) {
             d(d);
         }
-        this.bb.clear();
-        this.aZ.cX();
-        this.aY.b(this);
-        this.aY.b(this.bd);
-        this.T.removeCallbacks(this.bc);
+        this.bc.clear();
+        this.ba.cX();
+        this.aZ.b(this);
+        this.aZ.b(this.be);
+        this.U.removeCallbacks(this.bd);
         this.c.b(this);
     }
 
     @CheckResult
     @NonNull
     public h<Bitmap> B() {
-        return b(Bitmap.class).b(aW);
+        return b(Bitmap.class).b(aX);
     }
 
     @CheckResult
     @NonNull
     public h<com.bumptech.glide.load.resource.gif.b> C() {
-        return b(com.bumptech.glide.load.resource.gif.b.class).b(aX);
+        return b(com.bumptech.glide.load.resource.gif.b.class).b(aY);
     }
 
     @CheckResult
@@ -257,7 +257,7 @@ public class i implements g<h<Drawable>>, com.bumptech.glide.manager.i {
     @CheckResult
     @NonNull
     public h<File> E() {
-        return b(File.class).b(aG);
+        return b(File.class).b(aH);
     }
 
     @CheckResult
@@ -287,7 +287,7 @@ public class i implements g<h<Drawable>>, com.bumptech.glide.manager.i {
             if (k.eH()) {
                 e((com.bumptech.glide.request.target.n) nVar);
             } else {
-                this.T.post(new Runnable() {
+                this.U.post(new Runnable() {
                     public void run() {
                         i.this.d(nVar);
                     }
@@ -309,21 +309,21 @@ public class i implements g<h<Drawable>>, com.bumptech.glide.manager.i {
         if (dj == null) {
             return true;
         }
-        if (!this.aZ.b(dj)) {
+        if (!this.ba.b(dj)) {
             return false;
         }
-        this.bb.h(nVar);
+        this.bc.h(nVar);
         nVar.j(null);
         return true;
     }
 
     void a(@NonNull com.bumptech.glide.request.target.n<?> nVar, @NonNull com.bumptech.glide.request.c cVar) {
-        this.bb.g(nVar);
-        this.aZ.a(cVar);
+        this.bc.g(nVar);
+        this.ba.a(cVar);
     }
 
     f m() {
-        return this.aI;
+        return this.aJ;
     }
 
     @NonNull
@@ -335,9 +335,9 @@ public class i implements g<h<Drawable>>, com.bumptech.glide.manager.i {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(super.toString());
         stringBuilder.append("{tracker=");
-        stringBuilder.append(this.aZ);
-        stringBuilder.append(", treeNode=");
         stringBuilder.append(this.ba);
+        stringBuilder.append(", treeNode=");
+        stringBuilder.append(this.bb);
         stringBuilder.append("}");
         return stringBuilder.toString();
     }

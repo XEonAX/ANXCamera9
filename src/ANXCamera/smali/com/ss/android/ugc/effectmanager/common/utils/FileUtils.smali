@@ -43,7 +43,7 @@
 .method public static combineFilePath(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
     .locals 2
 
-    .line 150
+    .line 151
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -183,12 +183,12 @@
 .method public static getFileContent(Ljava/lang/String;)Ljava/lang/String;
     .locals 5
 
-    .line 154
+    .line 155
     new-instance v0, Ljava/io/File;
 
     invoke-direct {v0, p0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
 
-    .line 155
+    .line 156
     invoke-virtual {v0}, Ljava/io/File;->getPath()Ljava/lang/String;
 
     move-result-object p0
@@ -199,16 +199,16 @@
 
     if-eqz p0, :cond_5
 
-    .line 156
-    const-string p0, ""
-
     .line 157
-    nop
+    const-string p0, ""
 
     .line 158
     nop
 
-    .line 160
+    .line 159
+    nop
+
+    .line 161
     const/4 v1, 0x0
 
     :try_start_0
@@ -219,7 +219,7 @@
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_4
     .catchall {:try_start_0 .. :try_end_0} :catchall_1
 
-    .line 161
+    .line 162
     :try_start_1
     new-instance v0, Ljava/io/BufferedReader;
 
@@ -228,7 +228,7 @@
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_3
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 163
+    .line 164
     :goto_0
     :try_start_2
     invoke-virtual {v0}, Ljava/io/BufferedReader;->readLine()Ljava/lang/String;
@@ -237,7 +237,7 @@
 
     if-eqz v1, :cond_0
 
-    .line 164
+    .line 165
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -253,64 +253,64 @@
     .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_2
 
-    .line 163
+    .line 164
     move-object p0, v1
 
     goto :goto_0
 
-    .line 166
+    .line 167
     :cond_0
     nop
 
-    .line 170
+    .line 171
     nop
 
-    .line 172
+    .line 173
     :try_start_3
     invoke-virtual {v2}, Ljava/io/FileReader;->close()V
     :try_end_3
     .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3} :catch_0
 
-    .line 175
+    .line 176
     goto :goto_1
 
-    .line 173
+    .line 174
     :catch_0
     move-exception v1
 
-    .line 174
+    .line 175
     invoke-virtual {v1}, Ljava/io/IOException;->printStackTrace()V
 
-    .line 177
+    .line 178
     :goto_1
     nop
 
-    .line 179
+    .line 180
     :try_start_4
     invoke-virtual {v0}, Ljava/io/BufferedReader;->close()V
     :try_end_4
     .catch Ljava/io/IOException; {:try_start_4 .. :try_end_4} :catch_1
 
-    .line 182
+    .line 183
     :goto_2
     goto :goto_5
 
-    .line 180
+    .line 181
     :catch_1
     move-exception v0
 
-    .line 181
+    .line 182
     invoke-virtual {v0}, Ljava/io/IOException;->printStackTrace()V
 
     goto :goto_2
 
-    .line 167
+    .line 168
     :catch_2
     move-exception v1
 
     goto :goto_3
 
-    .line 170
+    .line 171
     :catchall_0
     move-exception p0
 
@@ -318,7 +318,7 @@
 
     goto :goto_6
 
-    .line 167
+    .line 168
     :catch_3
     move-exception v0
 
@@ -330,7 +330,7 @@
 
     goto :goto_3
 
-    .line 170
+    .line 171
     :catchall_1
     move-exception p0
 
@@ -340,7 +340,7 @@
 
     goto :goto_6
 
-    .line 167
+    .line 168
     :catch_4
     move-exception v0
 
@@ -350,38 +350,38 @@
 
     move-object v0, v2
 
-    .line 168
+    .line 169
     :goto_3
     :try_start_5
     invoke-virtual {v1}, Ljava/lang/Exception;->printStackTrace()V
     :try_end_5
     .catchall {:try_start_5 .. :try_end_5} :catchall_2
 
-    .line 170
+    .line 171
     if-eqz v2, :cond_1
 
-    .line 172
+    .line 173
     :try_start_6
     invoke-virtual {v2}, Ljava/io/FileReader;->close()V
     :try_end_6
     .catch Ljava/io/IOException; {:try_start_6 .. :try_end_6} :catch_5
 
-    .line 175
+    .line 176
     goto :goto_4
 
-    .line 173
+    .line 174
     :catch_5
     move-exception v1
 
-    .line 174
+    .line 175
     invoke-virtual {v1}, Ljava/io/IOException;->printStackTrace()V
 
-    .line 177
+    .line 178
     :cond_1
     :goto_4
     if-eqz v0, :cond_2
 
-    .line 179
+    .line 180
     :try_start_7
     invoke-virtual {v0}, Ljava/io/BufferedReader;->close()V
     :try_end_7
@@ -389,61 +389,61 @@
 
     goto :goto_2
 
-    .line 185
+    .line 186
     :cond_2
     :goto_5
     return-object p0
 
-    .line 170
+    .line 171
     :catchall_2
     move-exception p0
 
     :goto_6
     if-eqz v2, :cond_3
 
-    .line 172
+    .line 173
     :try_start_8
     invoke-virtual {v2}, Ljava/io/FileReader;->close()V
     :try_end_8
     .catch Ljava/io/IOException; {:try_start_8 .. :try_end_8} :catch_6
 
-    .line 175
+    .line 176
     goto :goto_7
 
-    .line 173
+    .line 174
     :catch_6
     move-exception v1
 
-    .line 174
+    .line 175
     invoke-virtual {v1}, Ljava/io/IOException;->printStackTrace()V
 
-    .line 177
+    .line 178
     :cond_3
     :goto_7
     if-eqz v0, :cond_4
 
-    .line 179
+    .line 180
     :try_start_9
     invoke-virtual {v0}, Ljava/io/BufferedReader;->close()V
     :try_end_9
     .catch Ljava/io/IOException; {:try_start_9 .. :try_end_9} :catch_7
 
-    .line 182
+    .line 183
     goto :goto_8
 
-    .line 180
+    .line 181
     :catch_7
     move-exception v0
 
-    .line 181
+    .line 182
     invoke-virtual {v0}, Ljava/io/IOException;->printStackTrace()V
 
-    .line 182
+    .line 183
     :cond_4
     :goto_8
     throw p0
 
-    .line 187
+    .line 188
     :cond_5
     const-string p0, ""
 
@@ -453,12 +453,12 @@
 .method public static getFileStream(Ljava/lang/String;)Ljava/io/InputStream;
     .locals 2
 
-    .line 192
+    .line 193
     new-instance v0, Ljava/io/File;
 
     invoke-direct {v0, p0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
 
-    .line 193
+    .line 194
     invoke-virtual {v0}, Ljava/io/File;->getPath()Ljava/lang/String;
 
     move-result-object p0
@@ -471,10 +471,10 @@
 
     if-eqz p0, :cond_0
 
-    .line 194
+    .line 195
     nop
 
-    .line 196
+    .line 197
     :try_start_0
     new-instance p0, Ljava/io/FileInputStream;
 
@@ -482,23 +482,23 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 199
+    .line 200
     goto :goto_0
 
-    .line 197
+    .line 198
     :catch_0
     move-exception p0
 
-    .line 198
+    .line 199
     invoke-virtual {p0}, Ljava/lang/Exception;->printStackTrace()V
 
-    .line 200
+    .line 201
     move-object p0, v1
 
     :goto_0
     return-object p0
 
-    .line 202
+    .line 203
     :cond_0
     return-object v1
 .end method
@@ -575,69 +575,98 @@
 .end method
 
 .method public static removeDir(Ljava/io/File;)V
-    .locals 4
+    .locals 5
 
-    .line 207
+    .line 208
+    if-eqz p0, :cond_4
+
+    invoke-virtual {p0}, Ljava/io/File;->exists()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_4
+
     invoke-virtual {p0}, Ljava/io/File;->isDirectory()Z
 
     move-result v0
 
-    if-eqz v0, :cond_3
-
-    .line 208
-    invoke-virtual {p0}, Ljava/io/File;->listFiles()[Ljava/io/File;
-
-    move-result-object p0
+    if-eqz v0, :cond_4
 
     .line 209
-    if-eqz p0, :cond_2
+    invoke-virtual {p0}, Ljava/io/File;->listFiles()[Ljava/io/File;
 
-    array-length v0, p0
+    move-result-object v0
 
-    if-nez v0, :cond_0
+    .line 210
+    if-eqz v0, :cond_3
+
+    array-length v1, v0
+
+    if-nez v1, :cond_0
 
     goto :goto_2
 
-    .line 212
+    .line 213
     :cond_0
-    array-length v0, p0
+    array-length v1, v0
 
-    const/4 v1, 0x0
+    const/4 v2, 0x0
 
     :goto_0
-    if-ge v1, v0, :cond_3
+    if-ge v2, v1, :cond_2
 
-    aget-object v2, p0, v1
-
-    .line 213
-    invoke-virtual {v2}, Ljava/io/File;->isDirectory()Z
-
-    move-result v3
-
-    if-eqz v3, :cond_1
+    aget-object v3, v0, v2
 
     .line 214
-    invoke-static {v2}, Lcom/ss/android/ugc/effectmanager/common/utils/FileUtils;->removeDir(Ljava/io/File;)V
+    invoke-virtual {v3}, Ljava/io/File;->isDirectory()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_1
+
+    .line 215
+    invoke-static {v3}, Lcom/ss/android/ugc/effectmanager/common/utils/FileUtils;->removeDir(Ljava/io/File;)V
 
     goto :goto_1
 
-    .line 216
+    .line 217
     :cond_1
-    invoke-virtual {v2}, Ljava/io/File;->delete()Z
+    invoke-virtual {v3}, Ljava/io/File;->delete()Z
 
-    .line 212
+    .line 213
     :goto_1
-    add-int/lit8 v1, v1, 0x1
+    add-int/lit8 v2, v2, 0x1
 
     goto :goto_0
 
-    .line 210
+    .line 220
     :cond_2
+    invoke-virtual {p0}, Ljava/io/File;->delete()Z
+
+    goto :goto_3
+
+    .line 211
+    :cond_3
     :goto_2
     return-void
 
-    .line 221
-    :cond_3
+    .line 222
+    :cond_4
+    :goto_3
+    return-void
+.end method
+
+.method public static removeDir(Ljava/lang/String;)V
+    .locals 1
+
+    .line 225
+    new-instance v0, Ljava/io/File;
+
+    invoke-direct {v0, p0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    invoke-static {v0}, Lcom/ss/android/ugc/effectmanager/common/utils/FileUtils;->removeDir(Ljava/io/File;)V
+
+    .line 226
     return-void
 .end method
 
@@ -864,81 +893,84 @@
     .line 130
     :cond_2
     invoke-virtual {v2}, Ljava/io/BufferedOutputStream;->flush()V
+
+    .line 131
+    invoke-virtual {v2}, Ljava/io/BufferedOutputStream;->close()V
     :try_end_2
     .catch Ljava/io/IOException; {:try_start_2 .. :try_end_2} :catch_0
     .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
-    .line 132
+    .line 133
     move-object v0, v2
 
     :goto_3
     goto :goto_0
 
-    .line 136
+    .line 137
     :catchall_0
     move-exception p0
 
     goto :goto_a
 
-    .line 133
+    .line 134
     :catch_0
     move-exception p0
 
     goto :goto_8
 
-    .line 137
+    .line 138
     :cond_3
     nop
 
-    .line 138
+    .line 139
     :try_start_3
     invoke-virtual {v1}, Ljava/util/zip/ZipInputStream;->close()V
 
     goto :goto_4
 
-    .line 143
+    .line 144
     :catch_1
     move-exception p0
 
     goto :goto_5
 
-    .line 140
+    .line 141
     :goto_4
     if-eqz v0, :cond_4
 
-    .line 141
+    .line 142
     invoke-virtual {v0}, Ljava/io/BufferedOutputStream;->close()V
     :try_end_3
     .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3} :catch_1
 
     goto :goto_6
 
-    .line 143
+    .line 144
     :goto_5
     nop
 
-    .line 144
+    .line 145
     invoke-virtual {p0}, Ljava/io/IOException;->printStackTrace()V
 
-    .line 146
+    .line 147
     goto :goto_7
 
-    .line 145
+    .line 146
     :cond_4
     :goto_6
     nop
 
-    .line 147
+    .line 148
     :goto_7
     return-void
 
-    .line 136
+    .line 137
     :catchall_1
     move-exception p0
 
     goto :goto_b
 
-    .line 133
+    .line 134
     :catch_2
     move-exception p0
 
@@ -949,7 +981,7 @@
 
     goto :goto_9
 
-    .line 136
+    .line 137
     :catchall_2
     move-exception p0
 
@@ -957,13 +989,13 @@
 
     goto :goto_b
 
-    .line 133
+    .line 134
     :catch_3
     move-exception p0
 
     move-object v2, v0
 
-    .line 134
+    .line 135
     :goto_9
     :try_start_4
     new-instance p1, Lcom/ss/android/ugc/effectmanager/common/exception/UnzipException;
@@ -978,7 +1010,7 @@
     :try_end_4
     .catchall {:try_start_4 .. :try_end_4} :catchall_3
 
-    .line 136
+    .line 137
     :catchall_3
     move-exception p0
 
@@ -987,44 +1019,44 @@
     :goto_a
     move-object v0, v2
 
-    .line 137
+    .line 138
     :goto_b
     if-eqz v1, :cond_5
 
-    .line 138
+    .line 139
     :try_start_5
     invoke-virtual {v1}, Ljava/util/zip/ZipInputStream;->close()V
 
     goto :goto_c
 
-    .line 143
+    .line 144
     :catch_4
     move-exception p1
 
     goto :goto_d
 
-    .line 140
+    .line 141
     :cond_5
     :goto_c
     if-eqz v0, :cond_6
 
-    .line 141
+    .line 142
     invoke-virtual {v0}, Ljava/io/BufferedOutputStream;->close()V
     :try_end_5
     .catch Ljava/io/IOException; {:try_start_5 .. :try_end_5} :catch_4
 
     goto :goto_e
 
-    .line 143
+    .line 144
     :goto_d
     nop
 
-    .line 144
+    .line 145
     invoke-virtual {p1}, Ljava/io/IOException;->printStackTrace()V
 
     nop
 
-    .line 145
+    .line 146
     :cond_6
     :goto_e
     throw p0

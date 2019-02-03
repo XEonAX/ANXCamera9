@@ -35,7 +35,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 20
     invoke-direct {p0}, Landroid/os/Binder;-><init>()V
@@ -50,11 +50,11 @@
 .end method
 
 .method public static asInterface(Landroid/os/IBinder;)Landroid/support/v4/app/INotificationSideChannel;
-    .locals 2
+    .registers 3
     .param p0, "obj"    # Landroid/os/IBinder;
 
     .line 29
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     .line 30
     const/4 v0, 0x0
@@ -62,7 +62,7 @@
     return-object v0
 
     .line 32
-    :cond_0
+    :cond_4
     const-string v0, "android.support.v4.app.INotificationSideChannel"
 
     invoke-interface {p0, v0}, Landroid/os/IBinder;->queryLocalInterface(Ljava/lang/String;)Landroid/os/IInterface;
@@ -71,11 +71,11 @@
 
     .line 33
     .local v0, "iin":Landroid/os/IInterface;
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_14
 
     instance-of v1, v0, Landroid/support/v4/app/INotificationSideChannel;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_14
 
     .line 34
     move-object v1, v0
@@ -85,7 +85,7 @@
     return-object v1
 
     .line 36
-    :cond_1
+    :cond_14
     new-instance v1, Landroid/support/v4/app/INotificationSideChannel$Stub$Proxy;
 
     invoke-direct {v1, p0}, Landroid/support/v4/app/INotificationSideChannel$Stub$Proxy;-><init>(Landroid/os/IBinder;)V
@@ -96,14 +96,14 @@
 
 # virtual methods
 .method public asBinder()Landroid/os/IBinder;
-    .locals 0
+    .registers 1
 
     .line 40
     return-object p0
 .end method
 
 .method public onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    .locals 5
+    .registers 10
     .param p1, "code"    # I
     .param p2, "data"    # Landroid/os/Parcel;
     .param p3, "reply"    # Landroid/os/Parcel;
@@ -119,9 +119,9 @@
 
     const/4 v1, 0x1
 
-    if-eq p1, v0, :cond_1
+    if-eq p1, v0, :cond_55
 
-    packed-switch p1, :pswitch_data_0
+    packed-switch p1, :pswitch_data_5c
 
     .line 91
     invoke-super {p0, p1, p2, p3, p4}, Landroid/os/Binder;->onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
@@ -131,7 +131,7 @@
     return v0
 
     .line 84
-    :pswitch_0
+    :pswitch_e
     const-string v0, "android.support.v4.app.INotificationSideChannel"
 
     invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
@@ -150,7 +150,7 @@
 
     .line 72
     .end local v0    # "_arg0":Ljava/lang/String;
-    :pswitch_1
+    :pswitch_1b
     const-string v0, "android.support.v4.app.INotificationSideChannel"
 
     invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
@@ -183,7 +183,7 @@
     .end local v0    # "_arg0":Ljava/lang/String;
     .end local v2    # "_arg1":I
     .end local v3    # "_arg2":Ljava/lang/String;
-    :pswitch_2
+    :pswitch_30
     const-string v0, "android.support.v4.app.INotificationSideChannel"
 
     invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
@@ -211,7 +211,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_50
 
     .line 62
     sget-object v4, Landroid/app/Notification;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -223,16 +223,16 @@
     check-cast v4, Landroid/app/Notification;
 
     .local v4, "_arg3":Landroid/app/Notification;
-    goto :goto_0
+    goto :goto_51
 
     .line 65
     .end local v4    # "_arg3":Landroid/app/Notification;
-    :cond_0
+    :cond_50
     const/4 v4, 0x0
 
     .line 67
     .restart local v4    # "_arg3":Landroid/app/Notification;
-    :goto_0
+    :goto_51
     invoke-virtual {p0, v0, v2, v3, v4}, Landroid/support/v4/app/INotificationSideChannel$Stub;->notify(Ljava/lang/String;ILjava/lang/String;Landroid/app/Notification;)V
 
     .line 68
@@ -243,7 +243,7 @@
     .end local v2    # "_arg1":I
     .end local v3    # "_arg2":Ljava/lang/String;
     .end local v4    # "_arg3":Landroid/app/Notification;
-    :cond_1
+    :cond_55
     const-string v0, "android.support.v4.app.INotificationSideChannel"
 
     invoke-virtual {p3, v0}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
@@ -253,10 +253,10 @@
 
     nop
 
-    :pswitch_data_0
+    :pswitch_data_5c
     .packed-switch 0x1
-        :pswitch_2
-        :pswitch_1
-        :pswitch_0
+        :pswitch_30
+        :pswitch_1b
+        :pswitch_e
     .end packed-switch
 .end method

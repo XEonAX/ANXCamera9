@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera2/MiCamera2ShotBurst;)V
     .locals 0
 
-    .line 58
+    .line 56
     iput-object p1, p0, Lcom/android/camera2/MiCamera2ShotBurst$1;->this$0:Lcom/android/camera2/MiCamera2ShotBurst;
 
     invoke-direct {p0}, Landroid/hardware/camera2/CameraCaptureSession$CaptureCallback;-><init>()V
@@ -33,7 +33,7 @@
 
 # virtual methods
 .method public onCaptureFailed(Landroid/hardware/camera2/CameraCaptureSession;Landroid/hardware/camera2/CaptureRequest;Landroid/hardware/camera2/CaptureFailure;)V
-    .locals 3
+    .locals 1
     .param p1    # Landroid/hardware/camera2/CameraCaptureSession;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -47,62 +47,70 @@
         .end annotation
     .end param
 
-    .line 64
+    .line 62
     invoke-super {p0, p1, p2, p3}, Landroid/hardware/camera2/CameraCaptureSession$CaptureCallback;->onCaptureFailed(Landroid/hardware/camera2/CameraCaptureSession;Landroid/hardware/camera2/CaptureRequest;Landroid/hardware/camera2/CaptureFailure;)V
 
-    .line 65
-    sget-object p1, Lcom/android/camera2/MiCamera2Shot;->TAG:Ljava/lang/String;
+    .line 63
+    invoke-static {}, Lcom/android/camera2/MiCamera2ShotBurst;->access$000()Ljava/lang/String;
 
-    sget-object p2, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
+    move-result-object p1
 
-    const-string v0, "captureBurst onCaptureFailed %d"
+    new-instance p2, Ljava/lang/StringBuilder;
 
-    const/4 v1, 0x1
+    invoke-direct {p2}, Ljava/lang/StringBuilder;-><init>()V
 
-    new-array v1, v1, [Ljava/lang/Object;
+    const-string v0, "onCaptureFailed: "
 
-    .line 66
+    invoke-virtual {p2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
     invoke-virtual {p3}, Landroid/hardware/camera2/CaptureFailure;->getReason()I
 
     move-result p3
 
-    invoke-static {p3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-virtual {p2, p3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    move-result-object p3
-
-    const/4 v2, 0x0
-
-    aput-object p3, v1, v2
-
-    .line 65
-    invoke-static {p2, v0, v1}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    invoke-virtual {p2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object p2
 
     invoke-static {p1, p2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 68
+    .line 64
     return-void
 .end method
 
 .method public onCaptureSequenceAborted(Landroid/hardware/camera2/CameraCaptureSession;I)V
-    .locals 0
+    .locals 2
     .param p1    # Landroid/hardware/camera2/CameraCaptureSession;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
 
-    .line 88
+    .line 85
     invoke-super {p0, p1, p2}, Landroid/hardware/camera2/CameraCaptureSession$CaptureCallback;->onCaptureSequenceAborted(Landroid/hardware/camera2/CameraCaptureSession;I)V
 
-    .line 89
-    sget-object p1, Lcom/android/camera2/MiCamera2Shot;->TAG:Ljava/lang/String;
+    .line 86
+    invoke-static {}, Lcom/android/camera2/MiCamera2ShotBurst;->access$000()Ljava/lang/String;
 
-    const-string p2, "captureBurst onCaptureSequenceAborted"
+    move-result-object p1
 
-    invoke-static {p1, p2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    new-instance v0, Ljava/lang/StringBuilder;
 
-    .line 91
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "onCaptureSequenceAborted: "
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p2
+
+    invoke-static {p1, p2}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 88
     iget-object p1, p0, Lcom/android/camera2/MiCamera2ShotBurst$1;->this$0:Lcom/android/camera2/MiCamera2ShotBurst;
 
     iget-object p1, p1, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
@@ -111,14 +119,14 @@
 
     invoke-virtual {p1, p2}, Lcom/android/camera2/MiCamera2;->setAWBLock(Z)V
 
-    .line 92
+    .line 89
     iget-object p1, p0, Lcom/android/camera2/MiCamera2ShotBurst$1;->this$0:Lcom/android/camera2/MiCamera2ShotBurst;
 
     iget-object p1, p1, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
 
     invoke-virtual {p1}, Lcom/android/camera2/MiCamera2;->resumePreview()V
 
-    .line 93
+    .line 90
     iget-object p1, p0, Lcom/android/camera2/MiCamera2ShotBurst$1;->this$0:Lcom/android/camera2/MiCamera2ShotBurst;
 
     iget-object p1, p1, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
@@ -127,65 +135,85 @@
 
     move-result-object p1
 
-    .line 94
+    .line 91
     if-eqz p1, :cond_0
 
-    .line 95
+    .line 92
     invoke-interface {p1, p2}, Lcom/android/camera2/Camera2Proxy$PictureCallback;->onPictureTakenFinished(Z)V
 
-    .line 97
+    .line 94
     :cond_0
     return-void
 .end method
 
 .method public onCaptureSequenceCompleted(Landroid/hardware/camera2/CameraCaptureSession;IJ)V
-    .locals 0
+    .locals 2
     .param p1    # Landroid/hardware/camera2/CameraCaptureSession;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
 
+    .line 70
+    invoke-static {}, Lcom/android/camera2/MiCamera2ShotBurst;->access$000()Ljava/lang/String;
+
+    move-result-object p1
+
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "onCaptureSequenceCompleted: sequenceId="
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string p2, " frameNumber="
+
+    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0, p3, p4}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p2
+
+    invoke-static {p1, p2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 73
+    iget-object p1, p0, Lcom/android/camera2/MiCamera2ShotBurst$1;->this$0:Lcom/android/camera2/MiCamera2ShotBurst;
+
+    iget-object p1, p1, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
+
+    const/4 p2, 0x0
+
+    invoke-virtual {p1, p2}, Lcom/android/camera2/MiCamera2;->setAWBLock(Z)V
+
     .line 74
-    sget-object p1, Lcom/android/camera2/MiCamera2Shot;->TAG:Ljava/lang/String;
+    iget-object p1, p0, Lcom/android/camera2/MiCamera2ShotBurst$1;->this$0:Lcom/android/camera2/MiCamera2ShotBurst;
 
-    const-string p2, "captureBurst onCaptureSequenceCompleted"
+    iget-object p1, p1, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
 
-    invoke-static {p1, p2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-virtual {p1}, Lcom/android/camera2/MiCamera2;->resumePreview()V
 
     .line 76
     iget-object p1, p0, Lcom/android/camera2/MiCamera2ShotBurst$1;->this$0:Lcom/android/camera2/MiCamera2ShotBurst;
 
     iget-object p1, p1, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
 
-    const/4 p2, 0x0
-
-    invoke-virtual {p1, p2}, Lcom/android/camera2/MiCamera2;->setAWBLock(Z)V
-
-    .line 77
-    iget-object p1, p0, Lcom/android/camera2/MiCamera2ShotBurst$1;->this$0:Lcom/android/camera2/MiCamera2ShotBurst;
-
-    iget-object p1, p1, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
-
-    invoke-virtual {p1}, Lcom/android/camera2/MiCamera2;->resumePreview()V
-
-    .line 79
-    iget-object p1, p0, Lcom/android/camera2/MiCamera2ShotBurst$1;->this$0:Lcom/android/camera2/MiCamera2ShotBurst;
-
-    iget-object p1, p1, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
-
     invoke-virtual {p1}, Lcom/android/camera2/MiCamera2;->getPictureCallback()Lcom/android/camera2/Camera2Proxy$PictureCallback;
 
     move-result-object p1
 
-    .line 80
+    .line 77
     if-eqz p1, :cond_0
 
-    .line 81
+    .line 78
     const/4 p2, 0x1
 
     invoke-interface {p1, p2}, Lcom/android/camera2/Camera2Proxy$PictureCallback;->onPictureTakenFinished(Z)V
 
-    .line 83
+    .line 80
     :cond_0
     return-void
 .end method

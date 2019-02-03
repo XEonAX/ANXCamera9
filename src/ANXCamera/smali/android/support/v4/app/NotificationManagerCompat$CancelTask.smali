@@ -29,7 +29,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/String;)V
-    .locals 1
+    .registers 3
     .param p1, "packageName"    # Ljava/lang/String;
 
     .line 595
@@ -58,7 +58,7 @@
 .end method
 
 .method public constructor <init>(Ljava/lang/String;ILjava/lang/String;)V
-    .locals 1
+    .registers 5
     .param p1, "packageName"    # Ljava/lang/String;
     .param p2, "id"    # I
     .param p3, "tag"    # Ljava/lang/String;
@@ -87,7 +87,7 @@
 
 # virtual methods
 .method public send(Landroid/support/v4/app/INotificationSideChannel;)V
-    .locals 3
+    .registers 5
     .param p1, "service"    # Landroid/support/v4/app/INotificationSideChannel;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -98,17 +98,17 @@
     .line 611
     iget-boolean v0, p0, Landroid/support/v4/app/NotificationManagerCompat$CancelTask;->all:Z
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_a
 
     .line 612
     iget-object v0, p0, Landroid/support/v4/app/NotificationManagerCompat$CancelTask;->packageName:Ljava/lang/String;
 
     invoke-interface {p1, v0}, Landroid/support/v4/app/INotificationSideChannel;->cancelAll(Ljava/lang/String;)V
 
-    goto :goto_0
+    goto :goto_13
 
     .line 614
-    :cond_0
+    :cond_a
     iget-object v0, p0, Landroid/support/v4/app/NotificationManagerCompat$CancelTask;->packageName:Ljava/lang/String;
 
     iget v1, p0, Landroid/support/v4/app/NotificationManagerCompat$CancelTask;->id:I
@@ -118,12 +118,12 @@
     invoke-interface {p1, v0, v1, v2}, Landroid/support/v4/app/INotificationSideChannel;->cancel(Ljava/lang/String;ILjava/lang/String;)V
 
     .line 616
-    :goto_0
+    :goto_13
     return-void
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 619
     new-instance v0, Ljava/lang/StringBuilder;

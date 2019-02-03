@@ -6,7 +6,7 @@
 # static fields
 .field private static final TAG:Ljava/lang/String; = "AppVersionSignature"
 
-.field private static final pc:Ljava/util/concurrent/ConcurrentMap;
+.field private static final pb:Ljava/util/concurrent/ConcurrentMap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/concurrent/ConcurrentMap<",
@@ -27,7 +27,7 @@
 
     invoke-direct {v0}, Ljava/util/concurrent/ConcurrentHashMap;-><init>()V
 
-    sput-object v0, Lcom/bumptech/glide/e/a;->pc:Ljava/util/concurrent/ConcurrentMap;
+    sput-object v0, Lcom/bumptech/glide/e/a;->pb:Ljava/util/concurrent/ConcurrentMap;
 
     return-void
 .end method
@@ -78,7 +78,7 @@
     return-object p0
 .end method
 
-.method public static n(Landroid/content/Context;)Lcom/bumptech/glide/load/c;
+.method public static m(Landroid/content/Context;)Lcom/bumptech/glide/load/c;
     .locals 2
     .param p0    # Landroid/content/Context;
         .annotation build Landroid/support/annotation/NonNull;
@@ -93,7 +93,7 @@
     move-result-object v0
 
     .line 30
-    sget-object v1, Lcom/bumptech/glide/e/a;->pc:Ljava/util/concurrent/ConcurrentMap;
+    sget-object v1, Lcom/bumptech/glide/e/a;->pb:Ljava/util/concurrent/ConcurrentMap;
 
     invoke-interface {v1, v0}, Ljava/util/concurrent/ConcurrentMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -105,12 +105,12 @@
     if-nez v1, :cond_1
 
     .line 32
-    invoke-static {p0}, Lcom/bumptech/glide/e/a;->o(Landroid/content/Context;)Lcom/bumptech/glide/load/c;
+    invoke-static {p0}, Lcom/bumptech/glide/e/a;->n(Landroid/content/Context;)Lcom/bumptech/glide/load/c;
 
     move-result-object v1
 
     .line 33
-    sget-object p0, Lcom/bumptech/glide/e/a;->pc:Ljava/util/concurrent/ConcurrentMap;
+    sget-object p0, Lcom/bumptech/glide/e/a;->pb:Ljava/util/concurrent/ConcurrentMap;
 
     invoke-interface {p0, v0, v1}, Ljava/util/concurrent/ConcurrentMap;->putIfAbsent(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -133,7 +133,7 @@
     return-object v1
 .end method
 
-.method private static o(Landroid/content/Context;)Lcom/bumptech/glide/load/c;
+.method private static n(Landroid/content/Context;)Lcom/bumptech/glide/load/c;
     .locals 1
     .param p0    # Landroid/content/Context;
         .annotation build Landroid/support/annotation/NonNull;
@@ -143,7 +143,7 @@
     .end annotation
 
     .line 50
-    invoke-static {p0}, Lcom/bumptech/glide/e/a;->p(Landroid/content/Context;)Landroid/content/pm/PackageInfo;
+    invoke-static {p0}, Lcom/bumptech/glide/e/a;->o(Landroid/content/Context;)Landroid/content/pm/PackageInfo;
 
     move-result-object p0
 
@@ -160,7 +160,7 @@
     return-object v0
 .end method
 
-.method private static p(Landroid/content/Context;)Landroid/content/pm/PackageInfo;
+.method private static o(Landroid/content/Context;)Landroid/content/pm/PackageInfo;
     .locals 4
     .param p0    # Landroid/content/Context;
         .annotation build Landroid/support/annotation/NonNull;
@@ -228,7 +228,7 @@
     .end annotation
 
     .line 45
-    sget-object v0, Lcom/bumptech/glide/e/a;->pc:Ljava/util/concurrent/ConcurrentMap;
+    sget-object v0, Lcom/bumptech/glide/e/a;->pb:Ljava/util/concurrent/ConcurrentMap;
 
     invoke-interface {v0}, Ljava/util/concurrent/ConcurrentMap;->clear()V
 

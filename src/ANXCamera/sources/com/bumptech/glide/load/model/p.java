@@ -16,13 +16,13 @@ import java.util.List;
 
 /* compiled from: MultiModelLoader */
 class p<Model, Data> implements m<Model, Data> {
-    private final List<m<Model, Data>> ea;
+    private final List<m<Model, Data>> eb;
     private final Pool<List<Throwable>> ju;
 
     /* compiled from: MultiModelLoader */
     static class a<Data> implements com.bumptech.glide.load.a.d.a<Data>, d<Data> {
-        private final Pool<List<Throwable>> aF;
-        private Priority en;
+        private final Pool<List<Throwable>> aG;
+        private Priority eo;
         @Nullable
         private List<Throwable> exceptions;
         private final List<d<Data>> jv;
@@ -30,21 +30,21 @@ class p<Model, Data> implements m<Model, Data> {
         private com.bumptech.glide.load.a.d.a<? super Data> jx;
 
         a(@NonNull List<d<Data>> list, @NonNull Pool<List<Throwable>> pool) {
-            this.aF = pool;
+            this.aG = pool;
             i.b(list);
             this.jv = list;
         }
 
         public void a(@NonNull Priority priority, @NonNull com.bumptech.glide.load.a.d.a<? super Data> aVar) {
-            this.en = priority;
+            this.eo = priority;
             this.jx = aVar;
-            this.exceptions = (List) this.aF.acquire();
+            this.exceptions = (List) this.aG.acquire();
             ((d) this.jv.get(this.jw)).a(priority, this);
         }
 
         public void cleanup() {
             if (this.exceptions != null) {
-                this.aF.release(this.exceptions);
+                this.aG.release(this.exceptions);
             }
             this.exceptions = null;
             for (d cleanup : this.jv) {
@@ -84,7 +84,7 @@ class p<Model, Data> implements m<Model, Data> {
         private void cb() {
             if (this.jw < this.jv.size() - 1) {
                 this.jw++;
-                a(this.en, this.jx);
+                a(this.eo, this.jx);
                 return;
             }
             i.checkNotNull(this.exceptions);
@@ -93,20 +93,20 @@ class p<Model, Data> implements m<Model, Data> {
     }
 
     p(@NonNull List<m<Model, Data>> list, @NonNull Pool<List<Throwable>> pool) {
-        this.ea = list;
+        this.eb = list;
         this.ju = pool;
     }
 
     public com.bumptech.glide.load.model.m.a<Data> b(@NonNull Model model, int i, int i2, @NonNull f fVar) {
-        int size = this.ea.size();
+        int size = this.eb.size();
         List arrayList = new ArrayList(size);
         c cVar = null;
         for (int i3 = 0; i3 < size; i3++) {
-            m mVar = (m) this.ea.get(i3);
+            m mVar = (m) this.eb.get(i3);
             if (mVar.o(model)) {
                 com.bumptech.glide.load.model.m.a b = mVar.b(model, i, i2, fVar);
                 if (b != null) {
-                    cVar = b.dZ;
+                    cVar = b.ea;
                     arrayList.add(b.jp);
                 }
             }
@@ -118,7 +118,7 @@ class p<Model, Data> implements m<Model, Data> {
     }
 
     public boolean o(@NonNull Model model) {
-        for (m o : this.ea) {
+        for (m o : this.eb) {
             if (o.o(model)) {
                 return true;
             }
@@ -129,7 +129,7 @@ class p<Model, Data> implements m<Model, Data> {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("MultiModelLoader{modelLoaders=");
-        stringBuilder.append(Arrays.toString(this.ea.toArray()));
+        stringBuilder.append(Arrays.toString(this.eb.toArray()));
         stringBuilder.append('}');
         return stringBuilder.toString();
     }

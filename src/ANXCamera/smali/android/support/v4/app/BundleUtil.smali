@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 11
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getBundleArrayFromBundle(Landroid/os/Bundle;Ljava/lang/String;)[Landroid/os/Bundle;
-    .locals 3
+    .registers 5
     .param p0, "bundle"    # Landroid/os/Bundle;
     .param p1, "key"    # Ljava/lang/String;
 
@@ -27,14 +27,14 @@
     .local v0, "array":[Landroid/os/Parcelable;
     instance-of v1, v0, [Landroid/os/Bundle;
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_18
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_b
 
-    goto :goto_0
+    goto :goto_18
 
     .line 22
-    :cond_0
+    :cond_b
     array-length v1, v0
 
     const-class v2, [Landroid/os/Bundle;
@@ -54,8 +54,8 @@
 
     .line 20
     .end local v1    # "typedArray":[Landroid/os/Bundle;
-    :cond_1
-    :goto_0
+    :cond_18
+    :goto_18
     move-object v1, v0
 
     check-cast v1, [Landroid/os/Bundle;

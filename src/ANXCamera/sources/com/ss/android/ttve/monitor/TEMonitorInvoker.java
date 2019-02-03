@@ -19,6 +19,8 @@ public class TEMonitorInvoker {
 
     public static native void nativePerfRational(String str, float f, float f2);
 
+    public static native void nativePerfString(String str, String str2);
+
     public static native void nativeReset();
 
     static {

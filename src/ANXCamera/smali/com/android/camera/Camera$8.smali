@@ -3,12 +3,12 @@
 .source "Camera.java"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Landroid/content/ServiceConnection;
 
 
 # annotations
-.annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/Camera;->showFirstUseHintIfNeeded()V
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/android/camera/Camera;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/Camera;)V
     .locals 0
 
-    .line 1520
+    .line 1536
     iput-object p1, p0, Lcom/android/camera/Camera$8;->this$0:Lcom/android/camera/Camera;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -35,46 +35,16 @@
 
 
 # virtual methods
-.method public run()V
-    .locals 1
+.method public onServiceConnected(Landroid/content/ComponentName;Landroid/os/IBinder;)V
+    .locals 0
 
-    .line 1523
-    iget-object v0, p0, Lcom/android/camera/Camera$8;->this$0:Lcom/android/camera/Camera;
-
-    invoke-virtual {v0}, Lcom/android/camera/Camera;->isActivityPaused()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    .line 1524
+    .line 1539
     return-void
+.end method
 
-    .line 1526
-    :cond_0
-    iget-object v0, p0, Lcom/android/camera/Camera$8;->this$0:Lcom/android/camera/Camera;
+.method public onServiceDisconnected(Landroid/content/ComponentName;)V
+    .locals 0
 
-    invoke-virtual {v0}, Lcom/android/camera/Camera;->getScreenHint()Lcom/android/camera/ui/ScreenHint;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Lcom/android/camera/ui/ScreenHint;->showFirstUseHint()V
-
-    .line 1527
-    iget-object v0, p0, Lcom/android/camera/Camera$8;->this$0:Lcom/android/camera/Camera;
-
-    iget-object v0, v0, Lcom/android/camera/Camera;->mCameraRootView:Lcom/android/camera/ui/CameraRootView;
-
-    if-eqz v0, :cond_1
-
-    .line 1528
-    iget-object v0, p0, Lcom/android/camera/Camera$8;->this$0:Lcom/android/camera/Camera;
-
-    iget-object v0, v0, Lcom/android/camera/Camera;->mCameraRootView:Lcom/android/camera/ui/CameraRootView;
-
-    invoke-virtual {v0}, Lcom/android/camera/ui/CameraRootView;->enableTouchEvent()V
-
-    .line 1530
-    :cond_1
+    .line 1543
     return-void
 .end method

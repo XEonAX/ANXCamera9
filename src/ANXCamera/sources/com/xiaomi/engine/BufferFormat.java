@@ -63,8 +63,11 @@ public final class BufferFormat implements Parcelable {
         this.mGraphDescriptor = graphDescriptorBean;
     }
 
-    public boolean isFrontCamera() {
-        return this.mGraphDescriptor != null && this.mGraphDescriptor.isFrontCamera();
+    public int getCameraCombinationMode() {
+        if (this.mGraphDescriptor != null) {
+            return this.mGraphDescriptor.getCameraCombinationMode();
+        }
+        return 0;
     }
 
     public String toString() {

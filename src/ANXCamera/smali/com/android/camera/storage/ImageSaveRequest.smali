@@ -1,4 +1,4 @@
-.class public Lcom/android/camera/storage/ImageSaveRequest;
+.class public final Lcom/android/camera/storage/ImageSaveRequest;
 .super Ljava/lang/Object;
 .source "ImageSaveRequest.java"
 
@@ -35,8 +35,6 @@
 
 .field private loc:Landroid/location/Location;
 
-.field private mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
-
 .field private mirror:Z
 
 .field private needThumbnail:Z
@@ -57,17 +55,17 @@
 
 
 # direct methods
-.method public constructor <init>()V
+.method constructor <init>()V
     .locals 0
 
-    .line 47
+    .line 44
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 49
+    .line 46
     return-void
 .end method
 
-.method public constructor <init>([BZLjava/lang/String;Ljava/lang/String;JLandroid/net/Uri;Landroid/location/Location;IILcom/android/gallery3d/exif/ExifInterface;IZZZZZLjava/lang/String;Lcom/xiaomi/camera/core/PictureInfo;)V
+.method constructor <init>([BZLjava/lang/String;Ljava/lang/String;JLandroid/net/Uri;Landroid/location/Location;IILcom/android/gallery3d/exif/ExifInterface;IZZZZZLjava/lang/String;Lcom/xiaomi/camera/core/PictureInfo;)V
     .locals 5
 
     move-object v0, p0
@@ -76,38 +74,38 @@
 
     move-object v2, p8
 
-    .line 147
+    .line 72
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
 
-    .line 148
+    .line 73
     iput-object v1, v0, Lcom/android/camera/storage/ImageSaveRequest;->data:[B
 
-    .line 149
+    .line 74
     move v3, p2
 
     iput-boolean v3, v0, Lcom/android/camera/storage/ImageSaveRequest;->needThumbnail:Z
 
-    .line 150
+    .line 75
     move-wide v3, p5
 
     iput-wide v3, v0, Lcom/android/camera/storage/ImageSaveRequest;->date:J
 
-    .line 151
+    .line 76
     move-object v3, p7
 
     iput-object v3, v0, Lcom/android/camera/storage/ImageSaveRequest;->uri:Landroid/net/Uri;
 
-    .line 152
+    .line 77
     move-object v3, p3
 
     iput-object v3, v0, Lcom/android/camera/storage/ImageSaveRequest;->title:Ljava/lang/String;
 
-    .line 153
+    .line 78
     move-object v3, p4
 
     iput-object v3, v0, Lcom/android/camera/storage/ImageSaveRequest;->oldTitle:Ljava/lang/String;
 
-    .line 154
+    .line 79
     if-nez v2, :cond_0
 
     const/4 v2, 0x0
@@ -124,57 +122,57 @@
     :goto_0
     iput-object v2, v0, Lcom/android/camera/storage/ImageSaveRequest;->loc:Landroid/location/Location;
 
-    .line 155
+    .line 80
     move v2, p9
 
     iput v2, v0, Lcom/android/camera/storage/ImageSaveRequest;->width:I
 
-    .line 156
+    .line 81
     move v2, p10
 
     iput v2, v0, Lcom/android/camera/storage/ImageSaveRequest;->height:I
 
-    .line 157
+    .line 82
     move-object/from16 v2, p11
 
     iput-object v2, v0, Lcom/android/camera/storage/ImageSaveRequest;->exif:Lcom/android/gallery3d/exif/ExifInterface;
 
-    .line 158
+    .line 83
     move/from16 v2, p12
 
     iput v2, v0, Lcom/android/camera/storage/ImageSaveRequest;->orientation:I
 
-    .line 159
+    .line 84
     move/from16 v2, p13
 
     iput-boolean v2, v0, Lcom/android/camera/storage/ImageSaveRequest;->isHide:Z
 
-    .line 160
+    .line 85
     move/from16 v2, p14
 
     iput-boolean v2, v0, Lcom/android/camera/storage/ImageSaveRequest;->isMap:Z
 
-    .line 161
+    .line 86
     move/from16 v2, p15
 
     iput-boolean v2, v0, Lcom/android/camera/storage/ImageSaveRequest;->finalImage:Z
 
-    .line 162
+    .line 87
     move/from16 v2, p16
 
     iput-boolean v2, v0, Lcom/android/camera/storage/ImageSaveRequest;->mirror:Z
 
-    .line 163
+    .line 88
     move/from16 v2, p17
 
     iput-boolean v2, v0, Lcom/android/camera/storage/ImageSaveRequest;->isParallelProcess:Z
 
-    .line 164
+    .line 89
     move-object/from16 v2, p18
 
     iput-object v2, v0, Lcom/android/camera/storage/ImageSaveRequest;->algorithmName:Ljava/lang/String;
 
-    .line 165
+    .line 90
     if-nez v1, :cond_1
 
     const/4 v1, 0x0
@@ -187,28 +185,21 @@
     :goto_1
     iput v1, v0, Lcom/android/camera/storage/ImageSaveRequest;->size:I
 
-    .line 166
+    .line 91
     move-object/from16 v1, p19
 
     iput-object v1, v0, Lcom/android/camera/storage/ImageSaveRequest;->info:Lcom/xiaomi/camera/core/PictureInfo;
 
-    .line 167
+    .line 92
     return-void
 .end method
 
 
 # virtual methods
-.method public fillCommonParameter()V
-    .locals 0
-
-    .line 53
-    return-void
-.end method
-
 .method public getSize()I
     .locals 1
 
-    .line 109
+    .line 148
     iget v0, p0, Lcom/android/camera/storage/ImageSaveRequest;->size:I
 
     return v0
@@ -217,7 +208,7 @@
 .method public isFinal()Z
     .locals 1
 
-    .line 114
+    .line 153
     iget-boolean v0, p0, Lcom/android/camera/storage/ImageSaveRequest;->finalImage:Z
 
     return v0
@@ -226,12 +217,12 @@
 .method public onFinish()V
     .locals 2
 
-    .line 119
+    .line 158
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/storage/ImageSaveRequest;->data:[B
 
-    .line 120
+    .line 159
     iget-object v0, p0, Lcom/android/camera/storage/ImageSaveRequest;->saverCallback:Lcom/android/camera/storage/SaverCallback;
 
     invoke-virtual {p0}, Lcom/android/camera/storage/ImageSaveRequest;->getSize()I
@@ -240,34 +231,34 @@
 
     invoke-interface {v0, v1}, Lcom/android/camera/storage/SaverCallback;->onSaveFinish(I)V
 
-    .line 121
+    .line 160
     return-void
 .end method
 
 .method public run()V
     .locals 0
 
-    .line 57
+    .line 96
     invoke-virtual {p0}, Lcom/android/camera/storage/ImageSaveRequest;->save()V
 
-    .line 58
+    .line 97
     invoke-virtual {p0}, Lcom/android/camera/storage/ImageSaveRequest;->onFinish()V
 
-    .line 59
+    .line 98
     return-void
 .end method
 
 .method public save()V
     .locals 19
 
-    .line 63
+    .line 102
     move-object/from16 v0, p0
 
     iget-object v1, v0, Lcom/android/camera/storage/ImageSaveRequest;->uri:Landroid/net/Uri;
 
     if-eqz v1, :cond_0
 
-    .line 64
+    .line 103
     iget-object v2, v0, Lcom/android/camera/storage/ImageSaveRequest;->context:Landroid/content/Context;
 
     iget-object v3, v0, Lcom/android/camera/storage/ImageSaveRequest;->data:[B
@@ -300,13 +291,13 @@
 
     goto :goto_0
 
-    .line 67
+    .line 106
     :cond_0
     iget-object v1, v0, Lcom/android/camera/storage/ImageSaveRequest;->data:[B
 
     if-eqz v1, :cond_1
 
-    .line 68
+    .line 107
     iget-object v2, v0, Lcom/android/camera/storage/ImageSaveRequest;->context:Landroid/content/Context;
 
     iget-object v3, v0, Lcom/android/camera/storage/ImageSaveRequest;->title:Ljava/lang/String;
@@ -347,12 +338,12 @@
 
     iput-object v1, v0, Lcom/android/camera/storage/ImageSaveRequest;->uri:Landroid/net/Uri;
 
-    .line 74
+    .line 113
     :cond_1
     :goto_0
     invoke-static {}, Lcom/android/camera/storage/Storage;->getAvailableSpace()J
 
-    .line 75
+    .line 114
     iget-boolean v1, v0, Lcom/android/camera/storage/ImageSaveRequest;->needThumbnail:Z
 
     const/4 v2, 0x1
@@ -371,25 +362,25 @@
 
     if-eqz v1, :cond_2
 
-    .line 76
+    .line 115
     move v1, v2
 
     goto :goto_1
 
-    .line 75
+    .line 114
     :cond_2
     const/4 v1, 0x0
 
-    .line 76
+    .line 115
     :goto_1
     iget-object v3, v0, Lcom/android/camera/storage/ImageSaveRequest;->uri:Landroid/net/Uri;
 
     if-eqz v3, :cond_6
 
-    .line 77
+    .line 116
     if-eqz v1, :cond_5
 
-    .line 80
+    .line 119
     iget v1, v0, Lcom/android/camera/storage/ImageSaveRequest;->width:I
 
     int-to-double v3, v1
@@ -412,17 +403,17 @@
 
     double-to-int v1, v3
 
-    .line 81
+    .line 120
     invoke-static {v1}, Ljava/lang/Integer;->highestOneBit(I)I
 
     move-result v1
 
-    .line 82
+    .line 121
     iget-boolean v3, v0, Lcom/android/camera/storage/ImageSaveRequest;->isMap:Z
 
     if-eqz v3, :cond_3
 
-    .line 83
+    .line 122
     iget-object v1, v0, Lcom/android/camera/storage/ImageSaveRequest;->context:Landroid/content/Context;
 
     invoke-virtual {v1}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
@@ -439,7 +430,7 @@
 
     goto :goto_2
 
-    .line 84
+    .line 123
     :cond_3
     iget-object v3, v0, Lcom/android/camera/storage/ImageSaveRequest;->data:[B
 
@@ -453,28 +444,28 @@
 
     move-result-object v1
 
-    .line 85
+    .line 124
     :goto_2
     if-eqz v1, :cond_4
 
-    .line 86
+    .line 125
     iget-object v3, v0, Lcom/android/camera/storage/ImageSaveRequest;->saverCallback:Lcom/android/camera/storage/SaverCallback;
 
     invoke-interface {v3, v1, v2}, Lcom/android/camera/storage/SaverCallback;->postUpdateThumbnail(Lcom/android/camera/Thumbnail;Z)V
 
     goto :goto_3
 
-    .line 88
+    .line 127
     :cond_4
     iget-object v1, v0, Lcom/android/camera/storage/ImageSaveRequest;->saverCallback:Lcom/android/camera/storage/SaverCallback;
 
     invoke-interface {v1}, Lcom/android/camera/storage/SaverCallback;->postHideThumbnailProgressing()V
 
-    .line 90
+    .line 129
     :goto_3
     goto :goto_4
 
-    .line 91
+    .line 130
     :cond_5
     iget-object v1, v0, Lcom/android/camera/storage/ImageSaveRequest;->saverCallback:Lcom/android/camera/storage/SaverCallback;
 
@@ -482,21 +473,21 @@
 
     invoke-interface {v1, v2}, Lcom/android/camera/storage/SaverCallback;->updatePreviewThumbnailUri(Landroid/net/Uri;)V
 
-    .line 94
+    .line 133
     :goto_4
     iget-object v1, v0, Lcom/android/camera/storage/ImageSaveRequest;->saverCallback:Lcom/android/camera/storage/SaverCallback;
 
     iget-object v2, v0, Lcom/android/camera/storage/ImageSaveRequest;->uri:Landroid/net/Uri;
 
-    invoke-virtual/range {p0 .. p0}, Lcom/android/camera/storage/ImageSaveRequest;->isFinal()Z
+    iget-object v0, v0, Lcom/android/camera/storage/ImageSaveRequest;->title:Ljava/lang/String;
 
-    move-result v0
+    const/16 v3, 0x1f
 
-    invoke-interface {v1, v2, v0}, Lcom/android/camera/storage/SaverCallback;->notifyNewImage(Landroid/net/Uri;Z)V
+    invoke-interface {v1, v2, v0, v3}, Lcom/android/camera/storage/SaverCallback;->notifyNewMediaData(Landroid/net/Uri;Ljava/lang/String;I)V
 
     goto :goto_5
 
-    .line 97
+    .line 136
     :cond_6
     const-string v2, "ImageSaveRequest"
 
@@ -504,17 +495,17 @@
 
     invoke-static {v2, v3}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 98
+    .line 137
     if-eqz v1, :cond_7
 
-    .line 99
+    .line 138
     iget-object v0, v0, Lcom/android/camera/storage/ImageSaveRequest;->saverCallback:Lcom/android/camera/storage/SaverCallback;
 
     invoke-interface {v0}, Lcom/android/camera/storage/SaverCallback;->postHideThumbnailProgressing()V
 
     goto :goto_5
 
-    .line 101
+    .line 140
     :cond_7
     const-string v1, "ImageSaveRequest"
 
@@ -522,14 +513,14 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 102
+    .line 141
     iget-object v0, v0, Lcom/android/camera/storage/ImageSaveRequest;->saverCallback:Lcom/android/camera/storage/SaverCallback;
 
     const/4 v1, 0x0
 
     invoke-interface {v0, v1}, Lcom/android/camera/storage/SaverCallback;->updatePreviewThumbnailUri(Landroid/net/Uri;)V
 
-    .line 105
+    .line 144
     :goto_5
     return-void
 .end method
@@ -537,12 +528,12 @@
 .method public setContextAndCallback(Landroid/content/Context;Lcom/android/camera/storage/SaverCallback;)V
     .locals 0
 
-    .line 42
+    .line 40
     iput-object p1, p0, Lcom/android/camera/storage/ImageSaveRequest;->context:Landroid/content/Context;
 
-    .line 43
+    .line 41
     iput-object p2, p0, Lcom/android/camera/storage/ImageSaveRequest;->saverCallback:Lcom/android/camera/storage/SaverCallback;
 
-    .line 44
+    .line 42
     return-void
 .end method

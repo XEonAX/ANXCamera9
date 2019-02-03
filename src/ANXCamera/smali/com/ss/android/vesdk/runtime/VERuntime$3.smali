@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/ss/android/vesdk/runtime/VERuntime;)V
     .locals 0
 
-    .line 147
+    .line 156
     iput-object p1, p0, Lcom/ss/android/vesdk/runtime/VERuntime$3;->this$0:Lcom/ss/android/vesdk/runtime/VERuntime;
 
     invoke-direct {p0}, Ljava/lang/Thread;-><init>()V
@@ -35,7 +35,7 @@
 .method public run()V
     .locals 3
 
-    .line 151
+    .line 160
     :try_start_0
     iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime$3;->this$0:Lcom/ss/android/vesdk/runtime/VERuntime;
 
@@ -43,7 +43,7 @@
 
     invoke-static {v0}, Lcom/ss/android/vesdk/runtime/cloudconfig/DeviceInfoDetector;->init(Landroid/content/Context;)V
 
-    .line 152
+    .line 161
     const-string v0, "on"
 
     const-string v1, "off"
@@ -54,30 +54,30 @@
 
     if-eqz v0, :cond_0
 
-    .line 153
+    .line 162
     invoke-static {}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->restoreFromCache()V
 
-    .line 154
+    .line 163
     invoke-static {}, Lcom/ss/android/vesdk/runtime/cloudconfig/PerformanceConfig;->fetch()V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 158
+    .line 167
     :cond_0
     goto :goto_0
 
-    .line 156
+    .line 165
     :catch_0
     move-exception v0
 
-    .line 157
+    .line 166
     const-string v1, "VERuntime"
 
     const-string v2, "PerformanceConfig failed"
 
     invoke-static {v1, v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 159
+    .line 168
     :goto_0
     return-void
 .end method

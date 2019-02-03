@@ -28,13 +28,13 @@
 
 
 # instance fields
-.field private final V:I
+.field private final W:I
 
-.field private final W:Lcom/bumptech/glide/f$d;
+.field private final X:Lcom/bumptech/glide/f$d;
 
-.field private final X:Lcom/bumptech/glide/i;
+.field private final Z:Lcom/bumptech/glide/i;
 
-.field private final Z:Lcom/bumptech/glide/f$a;
+.field private final aa:Lcom/bumptech/glide/f$a;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/f$a<",
@@ -43,7 +43,7 @@
     .end annotation
 .end field
 
-.field private final aa:Lcom/bumptech/glide/f$b;
+.field private final ab:Lcom/bumptech/glide/f$b;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/f$b<",
@@ -52,15 +52,15 @@
     .end annotation
 .end field
 
-.field private ab:I
-
 .field private ac:I
 
 .field private ad:I
 
 .field private ae:I
 
-.field private af:Z
+.field private af:I
+
+.field private ag:Z
 
 
 # direct methods
@@ -95,24 +95,24 @@
     .line 36
     const/4 v0, -0x1
 
-    iput v0, p0, Lcom/bumptech/glide/f;->ad:I
+    iput v0, p0, Lcom/bumptech/glide/f;->ae:I
 
     .line 39
     const/4 v0, 0x1
 
-    iput-boolean v0, p0, Lcom/bumptech/glide/f;->af:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/f;->ag:Z
 
     .line 125
-    iput-object p1, p0, Lcom/bumptech/glide/f;->X:Lcom/bumptech/glide/i;
+    iput-object p1, p0, Lcom/bumptech/glide/f;->Z:Lcom/bumptech/glide/i;
 
     .line 126
-    iput-object p2, p0, Lcom/bumptech/glide/f;->Z:Lcom/bumptech/glide/f$a;
+    iput-object p2, p0, Lcom/bumptech/glide/f;->aa:Lcom/bumptech/glide/f$a;
 
     .line 127
-    iput-object p3, p0, Lcom/bumptech/glide/f;->aa:Lcom/bumptech/glide/f$b;
+    iput-object p3, p0, Lcom/bumptech/glide/f;->ab:Lcom/bumptech/glide/f$b;
 
     .line 128
-    iput p4, p0, Lcom/bumptech/glide/f;->V:I
+    iput p4, p0, Lcom/bumptech/glide/f;->W:I
 
     .line 129
     new-instance p1, Lcom/bumptech/glide/f$d;
@@ -121,7 +121,7 @@
 
     invoke-direct {p1, p4}, Lcom/bumptech/glide/f$d;-><init>(I)V
 
-    iput-object p1, p0, Lcom/bumptech/glide/f;->W:Lcom/bumptech/glide/f$d;
+    iput-object p1, p0, Lcom/bumptech/glide/f;->X:Lcom/bumptech/glide/f$d;
 
     .line 130
     return-void
@@ -134,7 +134,7 @@
     if-ge p1, p2, :cond_0
 
     .line 161
-    iget v0, p0, Lcom/bumptech/glide/f;->ab:I
+    iget v0, p0, Lcom/bumptech/glide/f;->ac:I
 
     invoke-static {v0, p1}, Ljava/lang/Math;->max(II)I
 
@@ -155,7 +155,7 @@
     nop
 
     .line 165
-    iget v0, p0, Lcom/bumptech/glide/f;->ac:I
+    iget v0, p0, Lcom/bumptech/glide/f;->ad:I
 
     invoke-static {v0, p1}, Ljava/lang/Math;->min(II)I
 
@@ -165,14 +165,14 @@
     move v1, p2
 
     :goto_0
-    iget v2, p0, Lcom/bumptech/glide/f;->ae:I
+    iget v2, p0, Lcom/bumptech/glide/f;->af:I
 
     invoke-static {v2, v0}, Ljava/lang/Math;->min(II)I
 
     move-result v0
 
     .line 168
-    iget v2, p0, Lcom/bumptech/glide/f;->ae:I
+    iget v2, p0, Lcom/bumptech/glide/f;->af:I
 
     const/4 v3, 0x0
 
@@ -194,7 +194,7 @@
     if-ge p1, v0, :cond_2
 
     .line 173
-    iget-object p2, p0, Lcom/bumptech/glide/f;->Z:Lcom/bumptech/glide/f$a;
+    iget-object p2, p0, Lcom/bumptech/glide/f;->aa:Lcom/bumptech/glide/f$a;
 
     invoke-interface {p2, p1}, Lcom/bumptech/glide/f$a;->c(I)Ljava/util/List;
 
@@ -217,7 +217,7 @@
     if-lt p1, v1, :cond_2
 
     .line 178
-    iget-object p2, p0, Lcom/bumptech/glide/f;->Z:Lcom/bumptech/glide/f$a;
+    iget-object p2, p0, Lcom/bumptech/glide/f;->aa:Lcom/bumptech/glide/f$a;
 
     invoke-interface {p2, p1}, Lcom/bumptech/glide/f$a;->c(I)Ljava/util/List;
 
@@ -232,10 +232,10 @@
 
     .line 182
     :cond_2
-    iput v1, p0, Lcom/bumptech/glide/f;->ac:I
+    iput v1, p0, Lcom/bumptech/glide/f;->ad:I
 
     .line 183
-    iput v0, p0, Lcom/bumptech/glide/f;->ab:I
+    iput v0, p0, Lcom/bumptech/glide/f;->ac:I
 
     .line 184
     return-void
@@ -245,12 +245,12 @@
     .locals 1
 
     .line 150
-    iget-boolean v0, p0, Lcom/bumptech/glide/f;->af:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/f;->ag:Z
 
     if-eq v0, p2, :cond_0
 
     .line 151
-    iput-boolean p2, p0, Lcom/bumptech/glide/f;->af:Z
+    iput-boolean p2, p0, Lcom/bumptech/glide/f;->ag:Z
 
     .line 152
     invoke-direct {p0}, Lcom/bumptech/glide/f;->cancelAll()V
@@ -259,12 +259,12 @@
     :cond_0
     if-eqz p2, :cond_1
 
-    iget p2, p0, Lcom/bumptech/glide/f;->V:I
+    iget p2, p0, Lcom/bumptech/glide/f;->W:I
 
     goto :goto_0
 
     :cond_1
-    iget p2, p0, Lcom/bumptech/glide/f;->V:I
+    iget p2, p0, Lcom/bumptech/glide/f;->W:I
 
     neg-int p2, p2
 
@@ -297,7 +297,7 @@
 
     .line 204
     :cond_0
-    iget-object v0, p0, Lcom/bumptech/glide/f;->aa:Lcom/bumptech/glide/f$b;
+    iget-object v0, p0, Lcom/bumptech/glide/f;->ab:Lcom/bumptech/glide/f$b;
 
     .line 205
     invoke-interface {v0, p1, p2, p3}, Lcom/bumptech/glide/f$b;->b(Ljava/lang/Object;II)[I
@@ -312,7 +312,7 @@
 
     .line 209
     :cond_1
-    iget-object p3, p0, Lcom/bumptech/glide/f;->Z:Lcom/bumptech/glide/f$a;
+    iget-object p3, p0, Lcom/bumptech/glide/f;->aa:Lcom/bumptech/glide/f$a;
 
     .line 210
     invoke-interface {p3, p1}, Lcom/bumptech/glide/f$a;->a(Ljava/lang/Object;)Lcom/bumptech/glide/h;
@@ -327,7 +327,7 @@
 
     .line 215
     :cond_2
-    iget-object p3, p0, Lcom/bumptech/glide/f;->W:Lcom/bumptech/glide/f$d;
+    iget-object p3, p0, Lcom/bumptech/glide/f;->X:Lcom/bumptech/glide/f$d;
 
     const/4 v0, 0x0
 
@@ -416,14 +416,14 @@
     move v1, v0
 
     :goto_0
-    iget v2, p0, Lcom/bumptech/glide/f;->V:I
+    iget v2, p0, Lcom/bumptech/glide/f;->W:I
 
     if-ge v1, v2, :cond_0
 
     .line 220
-    iget-object v2, p0, Lcom/bumptech/glide/f;->X:Lcom/bumptech/glide/i;
+    iget-object v2, p0, Lcom/bumptech/glide/f;->Z:Lcom/bumptech/glide/i;
 
-    iget-object v3, p0, Lcom/bumptech/glide/f;->W:Lcom/bumptech/glide/f$d;
+    iget-object v3, p0, Lcom/bumptech/glide/f;->X:Lcom/bumptech/glide/f$d;
 
     invoke-virtual {v3, v0, v0}, Lcom/bumptech/glide/f$d;->b(II)Lcom/bumptech/glide/f$c;
 
@@ -447,10 +447,10 @@
     .locals 0
 
     .line 140
-    iput p4, p0, Lcom/bumptech/glide/f;->ae:I
+    iput p4, p0, Lcom/bumptech/glide/f;->af:I
 
     .line 141
-    iget p1, p0, Lcom/bumptech/glide/f;->ad:I
+    iget p1, p0, Lcom/bumptech/glide/f;->ae:I
 
     if-le p2, p1, :cond_0
 
@@ -465,7 +465,7 @@
 
     .line 143
     :cond_0
-    iget p1, p0, Lcom/bumptech/glide/f;->ad:I
+    iget p1, p0, Lcom/bumptech/glide/f;->ae:I
 
     if-ge p2, p1, :cond_1
 
@@ -477,7 +477,7 @@
     .line 146
     :cond_1
     :goto_0
-    iput p2, p0, Lcom/bumptech/glide/f;->ad:I
+    iput p2, p0, Lcom/bumptech/glide/f;->ae:I
 
     .line 147
     return-void

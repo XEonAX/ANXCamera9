@@ -6,9 +6,11 @@ public class VEResult {
     public static final int TER_BAD_FRAME_BUFFER = -305;
     public static final int TER_BAD_GLBUFFER = -306;
     public static final int TER_BAD_TEXTURE = -304;
+    public static final int TER_BAD_TIME_STAMP = -208;
     public static final int TER_BUFFER_EMPTY = -111;
     public static final int TER_BUFFER_FULL = -110;
     public static final int TER_DECODER_ERROR = -206;
+    public static final int TER_DEVICE_ERROR = -209;
     public static final int TER_EGL_BAD_ACCESS = -352;
     public static final int TER_EGL_BAD_ALLOC = -353;
     public static final int TER_EGL_BAD_ATTRIBUTE = -354;

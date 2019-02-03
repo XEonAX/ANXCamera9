@@ -353,7 +353,7 @@
 
     move-result-object v5
 
-    invoke-static {v4, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v4, v5}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 69
     invoke-virtual {p0}, Lcom/android/camera/ui/SeekBarCompat;->getMax()I
@@ -465,7 +465,7 @@
 
     move-result-object v0
 
-    const v1, 0x7f0900d2
+    const v1, 0x7f0a00d6
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -642,7 +642,7 @@
 
     move-result-object p1
 
-    const v0, 0x7f02001f
+    const v0, 0x7f020024
 
     invoke-virtual {p1, v0}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
 

@@ -17,7 +17,7 @@ import java.util.Set;
 public class q {
     private static final c jy = new c();
     private static final m<Object, Object> jz = new a();
-    private final Pool<List<Throwable>> aF;
+    private final Pool<List<Throwable>> aG;
     private final List<b<?, ?>> jA;
     private final c jB;
     private final Set<b<?, ?>> jC;
@@ -77,7 +77,7 @@ public class q {
     q(@NonNull Pool<List<Throwable>> pool, @NonNull c cVar) {
         this.jA = new ArrayList();
         this.jC = new HashSet();
-        this.aF = pool;
+        this.aG = pool;
         this.jB = cVar;
     }
 
@@ -163,7 +163,7 @@ public class q {
                 }
             }
             if (arrayList.size() > 1) {
-                return this.jB.a(arrayList, this.aF);
+                return this.jB.a(arrayList, this.aG);
             } else if (arrayList.size() == 1) {
                 return (m) arrayList.get(0);
             } else if (i != 0) {

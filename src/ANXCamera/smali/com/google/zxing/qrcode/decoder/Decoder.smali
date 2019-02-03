@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 40
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 .end method
 
 .method private correctErrors([BI)V
-    .locals 5
+    .registers 8
     .param p1, "codewordBytes"    # [B
     .param p2, "numDataCodewords"    # I
     .annotation system Ldalvik/annotation/Throws;
@@ -49,8 +49,8 @@
     const/4 v2, 0x0
 
     .local v2, "i":I
-    :goto_0
-    if-lt v2, v0, :cond_1
+    :goto_4
+    if-lt v2, v0, :cond_20
 
     .line 200
     .end local v2    # "i":I
@@ -60,12 +60,12 @@
 
     .line 202
     .local v2, "numECCodewords":I
-    :try_start_0
+    :try_start_8
     iget-object v3, p0, Lcom/google/zxing/qrcode/decoder/Decoder;->rsDecoder:Lcom/google/zxing/common/reedsolomon/ReedSolomonDecoder;
 
     invoke-virtual {v3, v1, v2}, Lcom/google/zxing/common/reedsolomon/ReedSolomonDecoder;->decode([II)V
-    :try_end_0
-    .catch Lcom/google/zxing/common/reedsolomon/ReedSolomonException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Lcom/google/zxing/common/reedsolomon/ReedSolomonException; {:try_start_8 .. :try_end_d} :catch_1a
 
     .line 203
     nop
@@ -74,8 +74,8 @@
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_1
-    if-lt v3, p2, :cond_0
+    :goto_f
+    if-lt v3, p2, :cond_12
 
     .line 211
     .end local v3    # "i":I
@@ -83,7 +83,7 @@
 
     .line 209
     .restart local v3    # "i":I
-    :cond_0
+    :cond_12
     aget v4, v1, v3
 
     int-to-byte v4, v4
@@ -93,11 +93,11 @@
     .line 208
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_1
+    goto :goto_f
 
     .line 203
     .end local v3    # "i":I
-    :catch_0
+    :catch_1a
     move-exception v3
 
     .line 204
@@ -111,7 +111,7 @@
     .line 198
     .end local v3    # "ignored":Lcom/google/zxing/common/reedsolomon/ReedSolomonException;
     .local v2, "i":I
-    :cond_1
+    :cond_20
     aget-byte v3, p1, v2
 
     and-int/lit16 v3, v3, 0xff
@@ -121,11 +121,11 @@
     .line 197
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_4
 .end method
 
 .method private decode(Lcom/google/zxing/qrcode/decoder/BitMatrixParser;Ljava/util/Map;)Lcom/google/zxing/common/DecoderResult;
-    .locals 17
+    .registers 20
     .param p1, "parser"    # Lcom/google/zxing/qrcode/decoder/BitMatrixParser;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -189,8 +189,8 @@
 
     .end local v4    # "totalBytes":I
     .local v7, "totalBytes":I
-    :goto_0
-    if-lt v4, v5, :cond_2
+    :goto_19
+    if-lt v4, v5, :cond_4a
 
     .line 168
     new-array v8, v7, [B
@@ -205,8 +205,8 @@
 
     move v10, v6
 
-    :goto_1
-    if-lt v10, v9, :cond_0
+    :goto_20
+    if-lt v10, v9, :cond_29
 
     .line 182
     move-object/from16 v11, p2
@@ -218,7 +218,7 @@
     return-object v5
 
     .line 172
-    :cond_0
+    :cond_29
     move-object/from16 v11, p2
 
     aget-object v12, v3, v10
@@ -245,8 +245,8 @@
     const/4 v5, 0x0
 
     .local v5, "i":I
-    :goto_2
-    if-lt v5, v14, :cond_1
+    :goto_3b
+    if-lt v5, v14, :cond_40
 
     .line 172
     .end local v5    # "i":I
@@ -255,14 +255,14 @@
     .end local v14    # "numDataCodewords":I
     add-int/lit8 v10, v10, 0x1
 
-    goto :goto_1
+    goto :goto_20
 
     .line 177
     .restart local v5    # "i":I
     .restart local v12    # "dataBlock":Lcom/google/zxing/qrcode/decoder/DataBlock;
     .restart local v13    # "codewordBytes":[B
     .restart local v14    # "numDataCodewords":I
-    :cond_1
+    :cond_40
     add-int/lit8 v6, v4, 0x1
 
     .local v6, "resultOffset":I
@@ -276,7 +276,7 @@
 
     move v4, v6
 
-    goto :goto_2
+    goto :goto_3b
 
     .line 165
     .end local v5    # "i":I
@@ -285,7 +285,7 @@
     .end local v12    # "dataBlock":Lcom/google/zxing/qrcode/decoder/DataBlock;
     .end local v13    # "codewordBytes":[B
     .end local v14    # "numDataCodewords":I
-    :cond_2
+    :cond_4a
     move-object/from16 v15, p0
 
     move-object/from16 v11, p2
@@ -304,13 +304,13 @@
     .end local v8    # "dataBlock":Lcom/google/zxing/qrcode/decoder/DataBlock;
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_0
+    goto :goto_19
 .end method
 
 
 # virtual methods
 .method public decode(Lcom/google/zxing/common/BitMatrix;)Lcom/google/zxing/common/DecoderResult;
-    .locals 1
+    .registers 3
     .param p1, "bits"    # Lcom/google/zxing/common/BitMatrix;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -330,7 +330,7 @@
 .end method
 
 .method public decode(Lcom/google/zxing/common/BitMatrix;Ljava/util/Map;)Lcom/google/zxing/common/DecoderResult;
-    .locals 6
+    .registers 9
     .param p1, "bits"    # Lcom/google/zxing/common/BitMatrix;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -366,18 +366,18 @@
 
     .line 93
     .local v2, "ce":Lcom/google/zxing/ChecksumException;
-    :try_start_0
+    :try_start_7
     invoke-direct {p0, v0, p2}, Lcom/google/zxing/qrcode/decoder/Decoder;->decode(Lcom/google/zxing/qrcode/decoder/BitMatrixParser;Ljava/util/Map;)Lcom/google/zxing/common/DecoderResult;
 
     move-result-object v3
-    :try_end_0
-    .catch Lcom/google/zxing/FormatException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Lcom/google/zxing/ChecksumException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_b
+    .catch Lcom/google/zxing/FormatException; {:try_start_7 .. :try_end_b} :catch_f
+    .catch Lcom/google/zxing/ChecksumException; {:try_start_7 .. :try_end_b} :catch_c
 
     return-object v3
 
     .line 96
-    :catch_0
+    :catch_c
     move-exception v3
 
     .line 97
@@ -385,10 +385,10 @@
     move-object v2, v3
 
     .end local v3    # "e":Lcom/google/zxing/ChecksumException;
-    goto :goto_0
+    goto :goto_11
 
     .line 94
-    :catch_1
+    :catch_f
     move-exception v3
 
     .line 95
@@ -397,8 +397,8 @@
 
     .line 103
     .end local v3    # "e":Lcom/google/zxing/FormatException;
-    :goto_0
-    :try_start_1
+    :goto_11
+    :try_start_11
     invoke-virtual {v0}, Lcom/google/zxing/qrcode/decoder/BitMatrixParser;->remask()V
 
     .line 106
@@ -427,62 +427,62 @@
     invoke-direct {v5, v3}, Lcom/google/zxing/qrcode/decoder/QRCodeDecoderMetaData;-><init>(Z)V
 
     invoke-virtual {v4, v5}, Lcom/google/zxing/common/DecoderResult;->setOther(Ljava/lang/Object;)V
-    :try_end_1
-    .catch Lcom/google/zxing/FormatException; {:try_start_1 .. :try_end_1} :catch_3
-    .catch Lcom/google/zxing/ChecksumException; {:try_start_1 .. :try_end_1} :catch_2
+    :try_end_2d
+    .catch Lcom/google/zxing/FormatException; {:try_start_11 .. :try_end_2d} :catch_36
+    .catch Lcom/google/zxing/ChecksumException; {:try_start_11 .. :try_end_2d} :catch_2e
 
     .line 128
     return-object v4
 
     .line 140
     .end local v4    # "result":Lcom/google/zxing/common/DecoderResult;
-    :catch_2
+    :catch_2e
     move-exception v3
 
     .line 142
     .local v3, "e":Lcom/google/zxing/ChecksumException;
-    if-nez v1, :cond_1
+    if-nez v1, :cond_35
 
     .line 145
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_34
 
     .line 146
     throw v2
 
     .line 148
-    :cond_0
+    :cond_34
     throw v3
 
     .line 143
-    :cond_1
+    :cond_35
     throw v1
 
     .line 130
     .end local v3    # "e":Lcom/google/zxing/ChecksumException;
-    :catch_3
+    :catch_36
     move-exception v3
 
     .line 132
     .local v3, "e":Lcom/google/zxing/FormatException;
-    if-nez v1, :cond_3
+    if-nez v1, :cond_3d
 
     .line 135
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_3c
 
     .line 136
     throw v2
 
     .line 138
-    :cond_2
+    :cond_3c
     throw v3
 
     .line 133
-    :cond_3
+    :cond_3d
     throw v1
 .end method
 
 .method public decode([[Z)Lcom/google/zxing/common/DecoderResult;
-    .locals 1
+    .registers 3
     .param p1, "image"    # [[Z
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -502,7 +502,7 @@
 .end method
 
 .method public decode([[ZLjava/util/Map;)Lcom/google/zxing/common/DecoderResult;
-    .locals 5
+    .registers 8
     .param p1, "image"    # [[Z
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -536,8 +536,8 @@
     const/4 v2, 0x0
 
     .local v2, "i":I
-    :goto_0
-    if-lt v2, v0, :cond_0
+    :goto_7
+    if-lt v2, v0, :cond_e
 
     .line 69
     .end local v2    # "i":I
@@ -549,34 +549,34 @@
 
     .line 63
     .restart local v2    # "i":I
-    :cond_0
+    :cond_e
     const/4 v3, 0x0
 
     .local v3, "j":I
-    :goto_1
-    if-lt v3, v0, :cond_1
+    :goto_f
+    if-lt v3, v0, :cond_14
 
     .line 62
     .end local v3    # "j":I
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_7
 
     .line 64
     .restart local v3    # "j":I
-    :cond_1
+    :cond_14
     aget-object v4, p1, v2
 
     aget-boolean v4, v4, v3
 
-    if-eqz v4, :cond_2
+    if-eqz v4, :cond_1d
 
     .line 65
     invoke-virtual {v1, v3, v2}, Lcom/google/zxing/common/BitMatrix;->set(II)V
 
     .line 63
-    :cond_2
+    :cond_1d
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_1
+    goto :goto_f
 .end method

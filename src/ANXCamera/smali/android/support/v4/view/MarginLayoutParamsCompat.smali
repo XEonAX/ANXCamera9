@@ -19,7 +19,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 127
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -28,7 +28,7 @@
     .local v0, "version":I
     const/16 v1, 0x11
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_e
 
     .line 129
     new-instance v1, Landroid/support/v4/view/MarginLayoutParamsCompat$MarginLayoutParamsCompatImplJbMr1;
@@ -37,10 +37,10 @@
 
     sput-object v1, Landroid/support/v4/view/MarginLayoutParamsCompat;->IMPL:Landroid/support/v4/view/MarginLayoutParamsCompat$MarginLayoutParamsCompatImpl;
 
-    goto :goto_0
+    goto :goto_15
 
     .line 131
-    :cond_0
+    :cond_e
     new-instance v1, Landroid/support/v4/view/MarginLayoutParamsCompat$MarginLayoutParamsCompatImplBase;
 
     invoke-direct {v1}, Landroid/support/v4/view/MarginLayoutParamsCompat$MarginLayoutParamsCompatImplBase;-><init>()V
@@ -49,12 +49,12 @@
 
     .line 133
     .end local v0    # "version":I
-    :goto_0
+    :goto_15
     return-void
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 27
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -64,7 +64,7 @@
 .end method
 
 .method public static getLayoutDirection(Landroid/view/ViewGroup$MarginLayoutParams;)I
-    .locals 1
+    .registers 2
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
 
     .line 211
@@ -78,7 +78,7 @@
 .end method
 
 .method public static getMarginEnd(Landroid/view/ViewGroup$MarginLayoutParams;)I
-    .locals 1
+    .registers 2
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
 
     .line 162
@@ -92,7 +92,7 @@
 .end method
 
 .method public static getMarginStart(Landroid/view/ViewGroup$MarginLayoutParams;)I
-    .locals 1
+    .registers 2
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
 
     .line 147
@@ -106,7 +106,7 @@
 .end method
 
 .method public static isMarginRelative(Landroid/view/ViewGroup$MarginLayoutParams;)Z
-    .locals 1
+    .registers 2
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
 
     .line 201
@@ -120,7 +120,7 @@
 .end method
 
 .method public static resolveLayoutDirection(Landroid/view/ViewGroup$MarginLayoutParams;I)V
-    .locals 1
+    .registers 3
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
     .param p1, "layoutDirection"    # I
 
@@ -134,7 +134,7 @@
 .end method
 
 .method public static setLayoutDirection(Landroid/view/ViewGroup$MarginLayoutParams;I)V
-    .locals 1
+    .registers 3
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
     .param p1, "layoutDirection"    # I
 
@@ -148,7 +148,7 @@
 .end method
 
 .method public static setMarginEnd(Landroid/view/ViewGroup$MarginLayoutParams;I)V
-    .locals 1
+    .registers 3
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
     .param p1, "marginEnd"    # I
 
@@ -162,7 +162,7 @@
 .end method
 
 .method public static setMarginStart(Landroid/view/ViewGroup$MarginLayoutParams;I)V
-    .locals 1
+    .registers 3
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
     .param p1, "marginStart"    # I
 

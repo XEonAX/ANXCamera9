@@ -7,6 +7,7 @@ import android.hardware.camera2.CaptureRequest.Key;
 import com.android.camera.fragment.beauty.BeautyParameters;
 import com.android.camera.fragment.beauty.BeautyParameters.Type;
 import com.android.camera.fragment.beauty.BeautyValues;
+import com.android.camera2.autozoom.AutoZoomTags.TAG;
 import com.mi.config.b;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -65,6 +66,7 @@ public class MiCameraCompatBaseImpl {
     public static final Key<String> WATERMARK_AVAILABLETYPE = new Key("xiaomi.watermark.availableType", String.class);
     public static final Key<String> WATERMARK_FACE = new Key("xiaomi.watermark.face", String.class);
     public static final Key<String> WATERMARK_TIME = new Key("xiaomi.watermark.time", String.class);
+    public static final Key<Byte> XIAOMI_BACKWARD_CAPTURE_HINT = new Key("xiaomi.snapshot.backwardfetchframe.enabled", Byte.class);
 
     static {
         BEAUTY_TYPE_MAP.put(Type.WHITEN_STRENGTH, BEAUTY_SKIN_COLOR);
@@ -144,7 +146,7 @@ public class MiCameraCompatBaseImpl {
         throw new RuntimeException("unSupported action");
     }
 
-    public void applyASDScene(Builder builder, String str) {
+    public void applyASDScene(Builder builder, int i) {
         throw new RuntimeException("unSupported action");
     }
 
@@ -218,7 +220,7 @@ public class MiCameraCompatBaseImpl {
 
     public void applyBeautyParameter(Builder builder, BeautyValues beautyValues) {
         builder.set(BEAUTY_LEVEL, beautyValues.mBeautyLevel);
-        if (b.hA()) {
+        if (b.hR()) {
             for (Type type : BeautyParameters.getInstance().getAdjustableTypes()) {
                 if (BEAUTY_TYPE_MAP.containsKey(type)) {
                     builder.set((Key) BEAUTY_TYPE_MAP.get(type), Integer.valueOf(beautyValues.get(type)));
@@ -230,6 +232,14 @@ public class MiCameraCompatBaseImpl {
         builder.set(BEAUTY_SLIM_FACE, Integer.valueOf(beautyValues.mBeautySlimFace));
         builder.set(BEAUTY_SKIN_SMOOTH, Integer.valueOf(beautyValues.mBeautySkinSmooth));
         builder.set(BEAUTY_ENLARGE_EYE, Integer.valueOf(beautyValues.mBeautyEnlargeEye));
+    }
+
+    public void applyAutoZoomMode(Builder builder, int i) {
+        builder.set(TAG.MODE.toCaptureRequestKey(), Integer.valueOf(i));
+    }
+
+    public void applyAutoZoomScaleOffset(Builder builder, float f) {
+        builder.set(TAG.SCALE_OFFSET.toCaptureRequestKey(), Float.valueOf(f));
     }
 
     public void applySnapshotTorch(Builder builder, boolean z) {
@@ -305,5 +315,9 @@ public class MiCameraCompatBaseImpl {
 
     public boolean supportEyeLight(HashSet<String> hashSet) {
         return hashSet.contains(EYE_LIGHT_TYPE.getName());
+    }
+
+    public void applyBackwardCaptureHint(Builder builder, byte b) {
+        builder.set(XIAOMI_BACKWARD_CAPTURE_HINT, Byte.valueOf(b));
     }
 }

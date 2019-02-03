@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 498
     invoke-direct {p0}, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordIcsMr1Impl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public setSource(Ljava/lang/Object;Landroid/view/View;I)V
-    .locals 0
+    .registers 4
     .param p1, "record"    # Ljava/lang/Object;
     .param p2, "root"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I

@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/ui/V6PreviewPanel;)V
     .locals 0
 
-    .line 134
+    .line 133
     iput-object p1, p0, Lcom/android/camera/ui/V6PreviewPanel$1;->this$0:Lcom/android/camera/ui/V6PreviewPanel;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public run()V
     .locals 2
 
-    .line 137
+    .line 136
     iget-object v0, p0, Lcom/android/camera/ui/V6PreviewPanel$1;->this$0:Lcom/android/camera/ui/V6PreviewPanel;
 
     invoke-static {v0}, Lcom/android/camera/ui/V6PreviewPanel;->access$000(Lcom/android/camera/ui/V6PreviewPanel;)Landroid/view/View;
@@ -49,6 +49,6 @@
 
     invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
 
-    .line 138
+    .line 137
     return-void
 .end method

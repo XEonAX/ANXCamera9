@@ -19,9 +19,9 @@
 
 
 # instance fields
-.field private hasDestroyed:Z
+.field private mHasDestroyed:Z
 
-.field private hasFlushed:Z
+.field private mHasFlushed:Z
 
 .field private final mSessionHandle:J
 
@@ -59,7 +59,7 @@
     .locals 2
 
     .line 91
-    iget-boolean v0, p0, Lcom/xiaomi/engine/TaskSession;->hasDestroyed:Z
+    iget-boolean v0, p0, Lcom/xiaomi/engine/TaskSession;->mHasDestroyed:Z
 
     if-eqz v0, :cond_0
 
@@ -83,7 +83,7 @@
     .line 97
     const/4 v0, 0x1
 
-    iput-boolean v0, p0, Lcom/xiaomi/engine/TaskSession;->hasDestroyed:Z
+    iput-boolean v0, p0, Lcom/xiaomi/engine/TaskSession;->mHasDestroyed:Z
 
     .line 99
     :cond_1
@@ -94,7 +94,7 @@
     .locals 2
 
     .line 102
-    iget-boolean v0, p0, Lcom/xiaomi/engine/TaskSession;->hasFlushed:Z
+    iget-boolean v0, p0, Lcom/xiaomi/engine/TaskSession;->mHasFlushed:Z
 
     if-eqz v0, :cond_0
 
@@ -118,7 +118,7 @@
     .line 108
     const/4 v0, 0x1
 
-    iput-boolean v0, p0, Lcom/xiaomi/engine/TaskSession;->hasFlushed:Z
+    iput-boolean v0, p0, Lcom/xiaomi/engine/TaskSession;->mHasFlushed:Z
 
     .line 110
     :cond_1
@@ -143,7 +143,7 @@
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v2, "close: session has closed : "
+    const-string v2, "close: session has closed: "
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 

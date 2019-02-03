@@ -50,7 +50,7 @@
 .method static constructor <clinit>()V
     .locals 5
 
-    .line 27
+    .line 30
     new-instance v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
 
     const-string v1, "FACING_BACK"
@@ -61,7 +61,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;->FACING_BACK:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
 
-    .line 28
+    .line 31
     new-instance v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
 
     const-string v1, "FACING_FRONT"
@@ -72,7 +72,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;->FACING_FRONT:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
 
-    .line 29
+    .line 32
     new-instance v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
 
     const-string v1, "FACING_3RD"
@@ -83,7 +83,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;->FACING_3RD:Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
 
-    .line 26
+    .line 29
     const/4 v0, 0x3
 
     new-array v0, v0, [Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
@@ -102,7 +102,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;->$VALUES:[Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
 
-    .line 41
+    .line 44
     new-instance v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID$1;
 
     invoke-direct {v0}, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID$1;-><init>()V
@@ -120,7 +120,7 @@
         }
     .end annotation
 
-    .line 26
+    .line 29
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -129,7 +129,7 @@
 .method public static valueOf(Ljava/lang/String;)Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
     .locals 1
 
-    .line 26
+    .line 29
     const-class v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -144,7 +144,7 @@
 .method public static values()[Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
     .locals 1
 
-    .line 26
+    .line 29
     sget-object v0, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;->$VALUES:[Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;
 
     invoke-virtual {v0}, [Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;->clone()Ljava/lang/Object;
@@ -161,7 +161,7 @@
 .method public describeContents()I
     .locals 1
 
-    .line 38
+    .line 41
     const/4 v0, 0x0
 
     return v0
@@ -170,13 +170,13 @@
 .method public writeToParcel(Landroid/os/Parcel;I)V
     .locals 0
 
-    .line 33
+    .line 36
     invoke-virtual {p0}, Lcom/ss/android/vesdk/VECameraSettings$CAMERA_FACING_ID;->ordinal()I
 
     move-result p2
 
     invoke-virtual {p1, p2}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 34
+    .line 37
     return-void
 .end method

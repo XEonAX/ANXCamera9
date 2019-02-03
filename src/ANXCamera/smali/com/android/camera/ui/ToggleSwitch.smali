@@ -105,7 +105,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 31
+    .line 30
     const-class v0, Lcom/android/camera/ui/ToggleSwitch;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -120,30 +120,30 @@
 .method public constructor <init>(Landroid/content/Context;)V
     .locals 1
 
-    .line 99
+    .line 98
     invoke-direct {p0, p1}, Landroid/widget/CompoundButton;-><init>(Landroid/content/Context;)V
 
-    .line 70
+    .line 69
     const-string p1, "ON"
 
     iput-object p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOn:Ljava/lang/String;
 
-    .line 71
+    .line 70
     const-string p1, "OFF"
 
     iput-object p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOff:Ljava/lang/String;
 
-    .line 100
+    .line 99
     const/high16 p1, -0x78000000
 
     iput p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mSwitchBackgroundColor:I
 
-    .line 101
+    .line 100
     const p1, -0x4c000001
 
     iput p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mSwitchBackgroundStrokeColor:I
 
-    .line 102
+    .line 101
     const/high16 p1, 0x3f800000    # 1.0f
 
     invoke-virtual {p0, p1}, Lcom/android/camera/ui/ToggleSwitch;->dp2px(F)I
@@ -152,17 +152,17 @@
 
     iput p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mStrokeWidth:I
 
-    .line 103
+    .line 102
     const p1, -0xcc5501
 
     iput p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbColor:I
 
-    .line 104
+    .line 103
     const/high16 p1, 0x4d000000    # 1.34217728E8f
 
     iput p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbShadowColor:I
 
-    .line 105
+    .line 104
     const p1, 0x3faa3d71    # 1.33f
 
     invoke-virtual {p0, p1}, Lcom/android/camera/ui/ToggleSwitch;->dp2pxFloat(F)F
@@ -171,19 +171,19 @@
 
     iput v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbShadowRadius:F
 
-    .line 106
+    .line 105
     const/high16 v0, -0x41000000    # -0.5f
 
     iput v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOffShadowColor:I
 
-    .line 107
+    .line 106
     invoke-virtual {p0, p1}, Lcom/android/camera/ui/ToggleSwitch;->dp2pxFloat(F)F
 
     move-result p1
 
     iput p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOffShadowRadius:F
 
-    .line 108
+    .line 107
     const/high16 p1, 0x40000000    # 2.0f
 
     invoke-virtual {p0, p1}, Lcom/android/camera/ui/ToggleSwitch;->dp2px(F)I
@@ -192,12 +192,12 @@
 
     iput p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbPadding:I
 
-    .line 109
+    .line 108
     const/16 p1, 0x12c
 
     iput p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mAnimDuration:I
 
-    .line 110
+    .line 109
     iget-boolean p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mChecked:Z
 
     if-eqz p1, :cond_0
@@ -212,39 +212,39 @@
     :goto_0
     iput-object p1, p0, Lcom/android/camera/ui/ToggleSwitch;->state:Lcom/android/camera/ui/ToggleSwitch$State;
 
-    .line 111
+    .line 110
     const/4 p1, 0x1
 
     invoke-virtual {p0, p1}, Lcom/android/camera/ui/ToggleSwitch;->setClickable(Z)V
 
-    .line 112
+    .line 111
     return-void
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
     .locals 5
 
-    .line 115
+    .line 114
     invoke-direct {p0, p1, p2}, Landroid/widget/CompoundButton;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
 
-    .line 70
+    .line 69
     const-string v0, "ON"
 
     iput-object v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOn:Ljava/lang/String;
 
-    .line 71
+    .line 70
     const-string v0, "OFF"
 
     iput-object v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOff:Ljava/lang/String;
 
-    .line 116
+    .line 115
     sget-object v0, Lcom/android/camera/R$styleable;->ToggleSwitch:[I
 
     invoke-virtual {p1, p2, v0}, Landroid/content/Context;->obtainStyledAttributes(Landroid/util/AttributeSet;[I)Landroid/content/res/TypedArray;
 
     move-result-object p1
 
-    .line 117
+    .line 116
     const/4 p2, 0x0
 
     const/high16 v0, -0x78000000
@@ -255,7 +255,7 @@
 
     iput v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mSwitchBackgroundColor:I
 
-    .line 118
+    .line 117
     const v0, -0x4c000001
 
     const/4 v1, 0x1
@@ -266,7 +266,7 @@
 
     iput v2, p0, Lcom/android/camera/ui/ToggleSwitch;->mSwitchBackgroundStrokeColor:I
 
-    .line 119
+    .line 118
     const/high16 v2, 0x3f800000    # 1.0f
 
     invoke-virtual {p0, v2}, Lcom/android/camera/ui/ToggleSwitch;->dp2px(F)I
@@ -281,7 +281,7 @@
 
     iput v2, p0, Lcom/android/camera/ui/ToggleSwitch;->mStrokeWidth:I
 
-    .line 120
+    .line 119
     const/4 v2, 0x4
 
     const v3, -0xcc5501
@@ -292,7 +292,7 @@
 
     iput v2, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbColor:I
 
-    .line 121
+    .line 120
     const/4 v2, 0x5
 
     const/high16 v3, 0x4d000000    # 1.34217728E8f
@@ -303,7 +303,7 @@
 
     iput v2, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbShadowColor:I
 
-    .line 122
+    .line 121
     const v2, 0x3faa3d71    # 1.33f
 
     invoke-virtual {p0, v2}, Lcom/android/camera/ui/ToggleSwitch;->dp2pxFloat(F)F
@@ -318,7 +318,7 @@
 
     iput v3, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbShadowRadius:F
 
-    .line 123
+    .line 122
     const/high16 v3, 0x40000000    # 2.0f
 
     invoke-virtual {p0, v3}, Lcom/android/camera/ui/ToggleSwitch;->dp2px(F)I
@@ -333,7 +333,7 @@
 
     iput v3, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbPadding:I
 
-    .line 124
+    .line 123
     const/4 v3, 0x7
 
     invoke-virtual {p1, v3}, Landroid/content/res/TypedArray;->getText(I)Ljava/lang/CharSequence;
@@ -344,7 +344,7 @@
 
     iput-object v3, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOn:Ljava/lang/String;
 
-    .line 125
+    .line 124
     const/16 v3, 0x9
 
     invoke-virtual {p1, v3}, Landroid/content/res/TypedArray;->getText(I)Ljava/lang/CharSequence;
@@ -355,7 +355,7 @@
 
     iput-object v3, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOff:Ljava/lang/String;
 
-    .line 126
+    .line 125
     const/16 v3, 0x8
 
     const/4 v4, -0x1
@@ -366,7 +366,7 @@
 
     iput v3, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOnColor:I
 
-    .line 127
+    .line 126
     const/16 v3, 0xa
 
     invoke-virtual {p1, v3, v0}, Landroid/content/res/TypedArray;->getInteger(II)I
@@ -375,7 +375,7 @@
 
     iput v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOffColor:I
 
-    .line 128
+    .line 127
     const/16 v0, 0xb
 
     const/high16 v3, -0x41000000    # -0.5f
@@ -386,7 +386,7 @@
 
     iput v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOffShadowColor:I
 
-    .line 129
+    .line 128
     invoke-virtual {p0, v2}, Lcom/android/camera/ui/ToggleSwitch;->dp2pxFloat(F)F
 
     move-result v0
@@ -399,7 +399,7 @@
 
     iput v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOffShadowRadius:F
 
-    .line 130
+    .line 129
     const/16 v0, 0xc
 
     const/16 v2, 0x30
@@ -410,7 +410,7 @@
 
     iput v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextSize:I
 
-    .line 131
+    .line 130
     const/16 v0, 0xe
 
     const/16 v2, 0x12c
@@ -421,7 +421,7 @@
 
     iput v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mAnimDuration:I
 
-    .line 132
+    .line 131
     const/16 v0, 0xf
 
     invoke-virtual {p1, v0, p2}, Landroid/content/res/TypedArray;->getBoolean(IZ)Z
@@ -430,13 +430,13 @@
 
     iput-boolean p2, p0, Lcom/android/camera/ui/ToggleSwitch;->mChecked:Z
 
-    .line 133
+    .line 132
     invoke-virtual {p1}, Landroid/content/res/TypedArray;->recycle()V
 
-    .line 135
+    .line 134
     invoke-direct {p0}, Lcom/android/camera/ui/ToggleSwitch;->caculateTextWidth()V
 
-    .line 137
+    .line 136
     iget-boolean p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mChecked:Z
 
     if-eqz p1, :cond_0
@@ -451,17 +451,17 @@
     :goto_0
     iput-object p1, p0, Lcom/android/camera/ui/ToggleSwitch;->state:Lcom/android/camera/ui/ToggleSwitch$State;
 
-    .line 138
+    .line 137
     invoke-virtual {p0, v1}, Lcom/android/camera/ui/ToggleSwitch;->setClickable(Z)V
 
-    .line 139
+    .line 138
     return-void
 .end method
 
 .method static synthetic access$002(Lcom/android/camera/ui/ToggleSwitch;F)F
     .locals 0
 
-    .line 30
+    .line 29
     iput p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mCurrentPos:F
 
     return p1
@@ -470,7 +470,7 @@
 .method static synthetic access$102(Lcom/android/camera/ui/ToggleSwitch;Z)Z
     .locals 0
 
-    .line 30
+    .line 29
     iput-boolean p1, p0, Lcom/android/camera/ui/ToggleSwitch;->isMoving:Z
 
     return p1
@@ -479,7 +479,7 @@
 .method private animateToCheckedState()V
     .locals 3
 
-    .line 443
+    .line 442
     const/4 v0, 0x2
 
     new-array v0, v0, [F
@@ -492,7 +492,7 @@
 
     iput-object v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mValueAnimator:Landroid/animation/ValueAnimator;
 
-    .line 444
+    .line 443
     iget-object v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mValueAnimator:Landroid/animation/ValueAnimator;
 
     iget v1, p0, Lcom/android/camera/ui/ToggleSwitch;->mAnimDuration:I
@@ -501,7 +501,7 @@
 
     invoke-virtual {v0, v1, v2}, Landroid/animation/ValueAnimator;->setDuration(J)Landroid/animation/ValueAnimator;
 
-    .line 445
+    .line 444
     iget-object v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mValueAnimator:Landroid/animation/ValueAnimator;
 
     new-instance v1, Lmiui/view/animation/QuarticEaseInOutInterpolator;
@@ -510,7 +510,7 @@
 
     invoke-virtual {v0, v1}, Landroid/animation/ValueAnimator;->setInterpolator(Landroid/animation/TimeInterpolator;)V
 
-    .line 446
+    .line 445
     iget-object v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mValueAnimator:Landroid/animation/ValueAnimator;
 
     new-instance v1, Lcom/android/camera/ui/ToggleSwitch$1;
@@ -519,7 +519,7 @@
 
     invoke-virtual {v0, v1}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
 
-    .line 454
+    .line 453
     iget-object v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mValueAnimator:Landroid/animation/ValueAnimator;
 
     new-instance v1, Lcom/android/camera/ui/ToggleSwitch$2;
@@ -528,7 +528,7 @@
 
     invoke-virtual {v0, v1}, Landroid/animation/ValueAnimator;->addListener(Landroid/animation/Animator$AnimatorListener;)V
 
-    .line 468
+    .line 467
     iget-object v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mValueAnimator:Landroid/animation/ValueAnimator;
 
     invoke-virtual {v0}, Landroid/animation/ValueAnimator;->isRunning()Z
@@ -537,17 +537,17 @@
 
     if-nez v0, :cond_0
 
-    .line 469
+    .line 468
     iget-object v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mValueAnimator:Landroid/animation/ValueAnimator;
 
     invoke-virtual {v0}, Landroid/animation/ValueAnimator;->start()V
 
-    .line 470
+    .line 469
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mCurrentPos:F
 
-    .line 472
+    .line 471
     :cond_0
     return-void
 
@@ -563,29 +563,29 @@
 .method private caculateTextWidth()V
     .locals 6
 
-    .line 142
+    .line 141
     new-instance v0, Landroid/graphics/Rect;
 
     invoke-direct {v0}, Landroid/graphics/Rect;-><init>()V
 
-    .line 143
+    .line 142
     new-instance v1, Landroid/graphics/Rect;
 
     invoke-direct {v1}, Landroid/graphics/Rect;-><init>()V
 
-    .line 144
+    .line 143
     new-instance v2, Landroid/graphics/Paint;
 
     invoke-direct {v2}, Landroid/graphics/Paint;-><init>()V
 
-    .line 145
+    .line 144
     iget v3, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextSize:I
 
     int-to-float v3, v3
 
     invoke-virtual {v2, v3}, Landroid/graphics/Paint;->setTextSize(F)V
 
-    .line 146
+    .line 145
     iget-object v3, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOn:Ljava/lang/String;
 
     iget-object v4, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOn:Ljava/lang/String;
@@ -598,7 +598,7 @@
 
     invoke-virtual {v2, v3, v5, v4, v0}, Landroid/graphics/Paint;->getTextBounds(Ljava/lang/String;IILandroid/graphics/Rect;)V
 
-    .line 147
+    .line 146
     iget-object v3, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOff:Ljava/lang/String;
 
     iget-object v4, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOff:Ljava/lang/String;
@@ -609,38 +609,38 @@
 
     invoke-virtual {v2, v3, v5, v4, v1}, Landroid/graphics/Paint;->getTextBounds(Ljava/lang/String;IILandroid/graphics/Rect;)V
 
-    .line 149
+    .line 148
     invoke-virtual {v0}, Landroid/graphics/Rect;->width()I
 
     move-result v0
 
     iput v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOnWidth:I
 
-    .line 150
+    .line 149
     invoke-virtual {v1}, Landroid/graphics/Rect;->width()I
 
     move-result v0
 
     iput v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOffWidth:I
 
-    .line 151
+    .line 150
     return-void
 .end method
 
 .method private cancelPositionAnimator()V
     .locals 1
 
-    .line 437
+    .line 436
     iget-object v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mValueAnimator:Landroid/animation/ValueAnimator;
 
     if-eqz v0, :cond_0
 
-    .line 438
+    .line 437
     iget-object v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mValueAnimator:Landroid/animation/ValueAnimator;
 
     invoke-virtual {v0}, Landroid/animation/ValueAnimator;->cancel()V
 
-    .line 440
+    .line 439
     :cond_0
     return-void
 .end method
@@ -648,42 +648,42 @@
 .method private compBackgroundRoundRectAttr()[F
     .locals 6
 
-    .line 355
+    .line 354
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getWidth()I
 
     move-result v0
 
-    .line 356
+    .line 355
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getHeight()I
 
     move-result v1
 
-    .line 358
+    .line 357
     nop
 
-    .line 359
+    .line 358
     int-to-float v0, v0
 
     const/4 v2, 0x0
 
     sub-float/2addr v0, v2
 
-    .line 360
+    .line 359
     nop
 
-    .line 361
+    .line 360
     int-to-float v1, v1
 
     sub-float/2addr v1, v2
 
-    .line 362
+    .line 361
     sub-float v3, v1, v2
 
     const/high16 v4, 0x3f000000    # 0.5f
 
     mul-float/2addr v3, v4
 
-    .line 364
+    .line 363
     const/4 v4, 0x5
 
     new-array v4, v4, [F
@@ -714,17 +714,17 @@
 .method private compThumbRoundRectAttr(F)[F
     .locals 7
 
-    .line 373
+    .line 372
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getWidth()I
 
     move-result v0
 
-    .line 374
+    .line 373
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getHeight()I
 
     move-result v1
 
-    .line 375
+    .line 374
     iget v2, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbPadding:I
 
     const/4 v3, 0x2
@@ -733,7 +733,7 @@
 
     sub-int/2addr v1, v2
 
-    .line 377
+    .line 376
     iget v2, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbPadding:I
 
     iget v4, p0, Lcom/android/camera/ui/ToggleSwitch;->mStrokeWidth:I
@@ -766,7 +766,7 @@
 
     add-float/2addr v2, v5
 
-    .line 378
+    .line 377
     iget p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mStrokeWidth:I
 
     int-to-float p1, p1
@@ -787,7 +787,7 @@
 
     add-float/2addr v0, v2
 
-    .line 379
+    .line 378
     iget p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbPadding:I
 
     iget v4, p0, Lcom/android/camera/ui/ToggleSwitch;->mStrokeWidth:I
@@ -796,7 +796,7 @@
 
     int-to-float p1, p1
 
-    .line 380
+    .line 379
     int-to-float v1, v1
 
     add-float/2addr v1, p1
@@ -809,14 +809,14 @@
 
     sub-float/2addr v1, v4
 
-    .line 381
+    .line 380
     sub-float v4, v1, p1
 
     const/high16 v5, 0x3f000000    # 0.5f
 
     mul-float/2addr v4, v5
 
-    .line 383
+    .line 382
     const/4 v5, 0x5
 
     new-array v5, v5, [F
@@ -845,35 +845,35 @@
 .method private drawRoundRect(Landroid/graphics/Canvas;I[FZ)V
     .locals 4
 
-    .line 264
+    .line 263
     new-instance v0, Landroid/graphics/Paint;
 
     const/4 v1, 0x1
 
     invoke-direct {v0, v1}, Landroid/graphics/Paint;-><init>(I)V
 
-    .line 265
+    .line 264
     sget-object v2, Landroid/graphics/Paint$Style;->FILL:Landroid/graphics/Paint$Style;
 
     invoke-virtual {v0, v2}, Landroid/graphics/Paint;->setStyle(Landroid/graphics/Paint$Style;)V
 
-    .line 266
+    .line 265
     sget-object v2, Landroid/graphics/Paint$Cap;->SQUARE:Landroid/graphics/Paint$Cap;
 
     invoke-virtual {v0, v2}, Landroid/graphics/Paint;->setStrokeCap(Landroid/graphics/Paint$Cap;)V
 
-    .line 267
+    .line 266
     new-instance v2, Landroid/graphics/RectF;
 
     invoke-direct {v2}, Landroid/graphics/RectF;-><init>()V
 
-    .line 268
+    .line 267
     invoke-virtual {v0, p2}, Landroid/graphics/Paint;->setColor(I)V
 
-    .line 269
+    .line 268
     if-eqz p4, :cond_0
 
-    .line 270
+    .line 269
     iget p2, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbShadowRadius:F
 
     iget p4, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbShadowColor:I
@@ -882,7 +882,7 @@
 
     invoke-virtual {v0, p2, v3, v3, p4}, Landroid/graphics/Paint;->setShadowLayer(FFFI)V
 
-    .line 272
+    .line 271
     :cond_0
     const/4 p2, 0x0
 
@@ -900,7 +900,7 @@
 
     invoke-virtual {v2, p2, p4, v1, v3}, Landroid/graphics/RectF;->set(FFFF)V
 
-    .line 273
+    .line 272
     const/4 p2, 0x4
 
     aget p4, p3, p2
@@ -909,33 +909,33 @@
 
     invoke-virtual {p1, v2, p4, p2, v0}, Landroid/graphics/Canvas;->drawRoundRect(Landroid/graphics/RectF;FFLandroid/graphics/Paint;)V
 
-    .line 274
+    .line 273
     return-void
 .end method
 
 .method private drawRoundRectStroke(Landroid/graphics/Canvas;I)V
     .locals 7
 
-    .line 328
+    .line 327
     iget v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mStrokeWidth:I
 
     if-gtz v0, :cond_0
 
-    .line 329
+    .line 328
     return-void
 
-    .line 331
+    .line 330
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getWidth()I
 
     move-result v0
 
-    .line 332
+    .line 331
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getHeight()I
 
     move-result v1
 
-    .line 334
+    .line 333
     iget v2, p0, Lcom/android/camera/ui/ToggleSwitch;->mStrokeWidth:I
 
     int-to-float v2, v2
@@ -944,129 +944,129 @@
 
     div-float/2addr v2, v3
 
-    .line 335
+    .line 334
     int-to-float v0, v0
 
     sub-float/2addr v0, v2
 
-    .line 336
+    .line 335
     iget v4, p0, Lcom/android/camera/ui/ToggleSwitch;->mStrokeWidth:I
 
     int-to-float v4, v4
 
     div-float/2addr v4, v3
 
-    .line 337
+    .line 336
     int-to-float v1, v1
 
     sub-float/2addr v1, v4
 
-    .line 338
+    .line 337
     sub-float v3, v1, v4
 
     const/high16 v5, 0x3f000000    # 0.5f
 
     mul-float/2addr v3, v5
 
-    .line 340
+    .line 339
     new-instance v5, Landroid/graphics/Paint;
 
     const/4 v6, 0x1
 
     invoke-direct {v5, v6}, Landroid/graphics/Paint;-><init>(I)V
 
-    .line 341
+    .line 340
     sget-object v6, Landroid/graphics/Paint$Style;->STROKE:Landroid/graphics/Paint$Style;
 
     invoke-virtual {v5, v6}, Landroid/graphics/Paint;->setStyle(Landroid/graphics/Paint$Style;)V
 
-    .line 342
+    .line 341
     invoke-virtual {v5, p2}, Landroid/graphics/Paint;->setColor(I)V
 
-    .line 343
+    .line 342
     iget p2, p0, Lcom/android/camera/ui/ToggleSwitch;->mStrokeWidth:I
 
     int-to-float p2, p2
 
     invoke-virtual {v5, p2}, Landroid/graphics/Paint;->setStrokeWidth(F)V
 
-    .line 345
+    .line 344
     new-instance p2, Landroid/graphics/RectF;
 
     invoke-direct {p2}, Landroid/graphics/RectF;-><init>()V
 
-    .line 346
+    .line 345
     invoke-virtual {p2, v2, v4, v0, v1}, Landroid/graphics/RectF;->set(FFFF)V
 
-    .line 347
+    .line 346
     invoke-virtual {p1, p2, v3, v3, v5}, Landroid/graphics/Canvas;->drawRoundRect(Landroid/graphics/RectF;FFLandroid/graphics/Paint;)V
 
-    .line 348
+    .line 347
     return-void
 .end method
 
 .method private drawSwitchOff(Landroid/graphics/Canvas;)V
     .locals 3
 
-    .line 222
+    .line 221
     invoke-direct {p0}, Lcom/android/camera/ui/ToggleSwitch;->compBackgroundRoundRectAttr()[F
 
     move-result-object v0
 
-    .line 223
+    .line 222
     iget v1, p0, Lcom/android/camera/ui/ToggleSwitch;->mSwitchBackgroundColor:I
 
     const/4 v2, 0x0
 
     invoke-direct {p0, p1, v1, v0, v2}, Lcom/android/camera/ui/ToggleSwitch;->drawRoundRect(Landroid/graphics/Canvas;I[FZ)V
 
-    .line 225
+    .line 224
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lcom/android/camera/ui/ToggleSwitch;->compThumbRoundRectAttr(F)[F
 
     move-result-object v0
 
-    .line 226
+    .line 225
     iget v1, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbColor:I
 
     const/4 v2, 0x1
 
     invoke-direct {p0, p1, v1, v0, v2}, Lcom/android/camera/ui/ToggleSwitch;->drawRoundRect(Landroid/graphics/Canvas;I[FZ)V
 
-    .line 228
+    .line 227
     iget v1, p0, Lcom/android/camera/ui/ToggleSwitch;->mSwitchBackgroundStrokeColor:I
 
     invoke-direct {p0, p1, v1}, Lcom/android/camera/ui/ToggleSwitch;->drawRoundRectStroke(Landroid/graphics/Canvas;I)V
 
-    .line 229
+    .line 228
     invoke-direct {p0, p1, v0}, Lcom/android/camera/ui/ToggleSwitch;->drawText(Landroid/graphics/Canvas;[F)V
 
-    .line 230
+    .line 229
     return-void
 .end method
 
 .method private drawSwitchOffAnim(Landroid/graphics/Canvas;)V
     .locals 3
 
-    .line 246
+    .line 245
     invoke-direct {p0}, Lcom/android/camera/ui/ToggleSwitch;->compBackgroundRoundRectAttr()[F
 
     move-result-object v0
 
-    .line 247
+    .line 246
     iget v1, p0, Lcom/android/camera/ui/ToggleSwitch;->mSwitchBackgroundColor:I
 
     const/4 v2, 0x0
 
     invoke-direct {p0, p1, v1, v0, v2}, Lcom/android/camera/ui/ToggleSwitch;->drawRoundRect(Landroid/graphics/Canvas;I[FZ)V
 
-    .line 249
+    .line 248
     iget v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mSwitchBackgroundStrokeColor:I
 
     invoke-direct {p0, p1, v0}, Lcom/android/camera/ui/ToggleSwitch;->drawRoundRectStroke(Landroid/graphics/Canvas;I)V
 
-    .line 251
+    .line 250
     iget v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mCurrentPos:F
 
     const/high16 v1, 0x3f800000    # 1.0f
@@ -1077,106 +1077,106 @@
 
     move-result-object v0
 
-    .line 252
+    .line 251
     iget v1, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbColor:I
 
     const/4 v2, 0x1
 
     invoke-direct {p0, p1, v1, v0, v2}, Lcom/android/camera/ui/ToggleSwitch;->drawRoundRect(Landroid/graphics/Canvas;I[FZ)V
 
-    .line 254
+    .line 253
     invoke-direct {p0, p1, v0}, Lcom/android/camera/ui/ToggleSwitch;->drawText(Landroid/graphics/Canvas;[F)V
 
-    .line 255
+    .line 254
     return-void
 .end method
 
 .method private drawSwitchOn(Landroid/graphics/Canvas;)V
     .locals 3
 
-    .line 211
+    .line 210
     invoke-direct {p0}, Lcom/android/camera/ui/ToggleSwitch;->compBackgroundRoundRectAttr()[F
 
     move-result-object v0
 
-    .line 212
+    .line 211
     iget v1, p0, Lcom/android/camera/ui/ToggleSwitch;->mSwitchBackgroundColor:I
 
     const/4 v2, 0x0
 
     invoke-direct {p0, p1, v1, v0, v2}, Lcom/android/camera/ui/ToggleSwitch;->drawRoundRect(Landroid/graphics/Canvas;I[FZ)V
 
-    .line 214
+    .line 213
     const/high16 v0, 0x3f800000    # 1.0f
 
     invoke-direct {p0, v0}, Lcom/android/camera/ui/ToggleSwitch;->compThumbRoundRectAttr(F)[F
 
     move-result-object v0
 
-    .line 215
+    .line 214
     iget v1, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbColor:I
 
     const/4 v2, 0x1
 
     invoke-direct {p0, p1, v1, v0, v2}, Lcom/android/camera/ui/ToggleSwitch;->drawRoundRect(Landroid/graphics/Canvas;I[FZ)V
 
-    .line 217
+    .line 216
     iget v1, p0, Lcom/android/camera/ui/ToggleSwitch;->mSwitchBackgroundStrokeColor:I
 
     invoke-direct {p0, p1, v1}, Lcom/android/camera/ui/ToggleSwitch;->drawRoundRectStroke(Landroid/graphics/Canvas;I)V
 
-    .line 218
+    .line 217
     invoke-direct {p0, p1, v0}, Lcom/android/camera/ui/ToggleSwitch;->drawText(Landroid/graphics/Canvas;[F)V
 
-    .line 219
+    .line 218
     return-void
 .end method
 
 .method private drawSwitchOnAnim(Landroid/graphics/Canvas;)V
     .locals 3
 
-    .line 234
+    .line 233
     invoke-direct {p0}, Lcom/android/camera/ui/ToggleSwitch;->compBackgroundRoundRectAttr()[F
 
     move-result-object v0
 
-    .line 235
+    .line 234
     iget v1, p0, Lcom/android/camera/ui/ToggleSwitch;->mSwitchBackgroundColor:I
 
     const/4 v2, 0x0
 
     invoke-direct {p0, p1, v1, v0, v2}, Lcom/android/camera/ui/ToggleSwitch;->drawRoundRect(Landroid/graphics/Canvas;I[FZ)V
 
-    .line 237
+    .line 236
     iget v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mSwitchBackgroundStrokeColor:I
 
     invoke-direct {p0, p1, v0}, Lcom/android/camera/ui/ToggleSwitch;->drawRoundRectStroke(Landroid/graphics/Canvas;I)V
 
-    .line 239
+    .line 238
     iget v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mCurrentPos:F
 
     invoke-direct {p0, v0}, Lcom/android/camera/ui/ToggleSwitch;->compThumbRoundRectAttr(F)[F
 
     move-result-object v0
 
-    .line 240
+    .line 239
     iget v1, p0, Lcom/android/camera/ui/ToggleSwitch;->mThumbColor:I
 
     const/4 v2, 0x1
 
     invoke-direct {p0, p1, v1, v0, v2}, Lcom/android/camera/ui/ToggleSwitch;->drawRoundRect(Landroid/graphics/Canvas;I[FZ)V
 
-    .line 242
+    .line 241
     invoke-direct {p0, p1, v0}, Lcom/android/camera/ui/ToggleSwitch;->drawText(Landroid/graphics/Canvas;[F)V
 
-    .line 243
+    .line 242
     return-void
 .end method
 
 .method private drawText(Landroid/graphics/Canvas;[F)V
     .locals 7
 
-    .line 283
+    .line 282
     iget-object p2, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOff:Ljava/lang/String;
 
     const/4 v0, 0x1
@@ -1189,29 +1189,29 @@
 
     if-eqz p2, :cond_1
 
-    .line 284
+    .line 283
     new-instance p2, Landroid/graphics/Paint;
 
     invoke-direct {p2, v0}, Landroid/graphics/Paint;-><init>(I)V
 
-    .line 285
+    .line 284
     sget-object v4, Landroid/graphics/Paint$Align;->LEFT:Landroid/graphics/Paint$Align;
 
     invoke-virtual {p2, v4}, Landroid/graphics/Paint;->setTextAlign(Landroid/graphics/Paint$Align;)V
 
-    .line 286
+    .line 285
     iget v4, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextSize:I
 
     int-to-float v4, v4
 
     invoke-virtual {p2, v4}, Landroid/graphics/Paint;->setTextSize(F)V
 
-    .line 287
+    .line 286
     invoke-virtual {p2}, Landroid/graphics/Paint;->getFontMetricsInt()Landroid/graphics/Paint$FontMetricsInt;
 
     move-result-object v4
 
-    .line 288
+    .line 287
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getMeasuredHeight()I
 
     move-result v5
@@ -1230,17 +1230,17 @@
 
     sub-int/2addr v5, v4
 
-    .line 290
+    .line 289
     iget-boolean v4, p0, Lcom/android/camera/ui/ToggleSwitch;->mChecked:Z
 
     if-eqz v4, :cond_0
 
-    .line 291
+    .line 290
     iget v4, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOffColor:I
 
     invoke-virtual {p2, v4}, Landroid/graphics/Paint;->setColor(I)V
 
-    .line 293
+    .line 292
     iget v4, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOffShadowRadius:F
 
     iget v6, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOffShadowColor:I
@@ -1249,13 +1249,13 @@
 
     goto :goto_0
 
-    .line 295
+    .line 294
     :cond_0
     iget v4, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOnColor:I
 
     invoke-virtual {p2, v4}, Landroid/graphics/Paint;->setColor(I)V
 
-    .line 298
+    .line 297
     :goto_0
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getWidth()I
 
@@ -1287,42 +1287,42 @@
 
     mul-float/2addr v4, v2
 
-    .line 299
+    .line 298
     iget-object v6, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOff:Ljava/lang/String;
 
     int-to-float v5, v5
 
     invoke-virtual {p1, v6, v4, v5, p2}, Landroid/graphics/Canvas;->drawText(Ljava/lang/String;FFLandroid/graphics/Paint;)V
 
-    .line 302
+    .line 301
     :cond_1
     iget-object p2, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOn:Ljava/lang/String;
 
     if-eqz p2, :cond_3
 
-    .line 303
+    .line 302
     new-instance p2, Landroid/graphics/Paint;
 
     invoke-direct {p2, v0}, Landroid/graphics/Paint;-><init>(I)V
 
-    .line 304
+    .line 303
     sget-object v0, Landroid/graphics/Paint$Align;->LEFT:Landroid/graphics/Paint$Align;
 
     invoke-virtual {p2, v0}, Landroid/graphics/Paint;->setTextAlign(Landroid/graphics/Paint$Align;)V
 
-    .line 305
+    .line 304
     iget v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextSize:I
 
     int-to-float v0, v0
 
     invoke-virtual {p2, v0}, Landroid/graphics/Paint;->setTextSize(F)V
 
-    .line 306
+    .line 305
     invoke-virtual {p2}, Landroid/graphics/Paint;->getFontMetricsInt()Landroid/graphics/Paint$FontMetricsInt;
 
     move-result-object v0
 
-    .line 307
+    .line 306
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getMeasuredHeight()I
 
     move-result v4
@@ -1341,32 +1341,32 @@
 
     sub-int/2addr v4, v0
 
-    .line 309
+    .line 308
     iget-boolean v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mChecked:Z
 
     if-eqz v0, :cond_2
 
-    .line 310
+    .line 309
     iget v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOnColor:I
 
     invoke-virtual {p2, v0}, Landroid/graphics/Paint;->setColor(I)V
 
     goto :goto_1
 
-    .line 312
+    .line 311
     :cond_2
     iget v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOffColor:I
 
     invoke-virtual {p2, v0}, Landroid/graphics/Paint;->setColor(I)V
 
-    .line 314
+    .line 313
     iget v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOffShadowRadius:F
 
     iget v5, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOffShadowColor:I
 
     invoke-virtual {p2, v0, v3, v3, v5}, Landroid/graphics/Paint;->setShadowLayer(FFFI)V
 
-    .line 317
+    .line 316
     :goto_1
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getWidth()I
 
@@ -1402,14 +1402,14 @@
 
     mul-float/2addr v0, v2
 
-    .line 318
+    .line 317
     iget-object v1, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOn:Ljava/lang/String;
 
     int-to-float v2, v4
 
     invoke-virtual {p1, v1, v0, v2, p2}, Landroid/graphics/Canvas;->drawText(Ljava/lang/String;FFLandroid/graphics/Paint;)V
 
-    .line 320
+    .line 319
     :cond_3
     return-void
 .end method
@@ -1419,7 +1419,7 @@
 .method public dp2px(F)I
     .locals 1
 
-    .line 387
+    .line 386
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
@@ -1430,7 +1430,7 @@
 
     iget v0, v0, Landroid/util/DisplayMetrics;->density:F
 
-    .line 388
+    .line 387
     mul-float/2addr p1, v0
 
     const/high16 v0, 0x3f000000    # 0.5f
@@ -1445,7 +1445,7 @@
 .method public dp2pxFloat(F)F
     .locals 1
 
-    .line 392
+    .line 391
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
@@ -1456,7 +1456,7 @@
 
     iget v0, v0, Landroid/util/DisplayMetrics;->density:F
 
-    .line 393
+    .line 392
     mul-float/2addr p1, v0
 
     const/high16 v0, 0x3f000000    # 0.5f
@@ -1469,7 +1469,7 @@
 .method public isChecked()Z
     .locals 1
 
-    .line 480
+    .line 479
     iget-boolean v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mChecked:Z
 
     return v0
@@ -1478,88 +1478,88 @@
 .method protected onDraw(Landroid/graphics/Canvas;)V
     .locals 6
 
-    .line 177
+    .line 176
     invoke-super {p0, p1}, Landroid/widget/CompoundButton;->onDraw(Landroid/graphics/Canvas;)V
 
-    .line 178
+    .line 177
     const/4 v0, 0x1
 
     const/4 v1, 0x0
 
     invoke-virtual {p0, v0, v1}, Lcom/android/camera/ui/ToggleSwitch;->setLayerType(ILandroid/graphics/Paint;)V
 
-    .line 179
+    .line 178
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getWidth()I
 
     move-result v0
 
-    .line 180
+    .line 179
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getHeight()I
 
     move-result v1
 
-    .line 181
+    .line 180
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getPaddingLeft()I
 
     move-result v2
 
-    .line 182
+    .line 181
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getPaddingTop()I
 
     move-result v3
 
-    .line 183
+    .line 182
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getPaddingRight()I
 
     move-result v4
 
-    .line 184
+    .line 183
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getPaddingBottom()I
 
     move-result v5
 
-    .line 185
+    .line 184
     sub-int/2addr v0, v2
 
     sub-int/2addr v0, v4
 
-    .line 186
+    .line 185
     sub-int/2addr v1, v3
 
     sub-int/2addr v1, v5
 
-    .line 187
+    .line 186
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getWidth()I
 
     move-result v4
 
-    .line 188
+    .line 187
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getHeight()I
 
     move-result v5
 
-    .line 190
+    .line 189
     sub-int/2addr v0, v4
 
     div-int/lit8 v0, v0, 0x2
 
     add-int/2addr v2, v0
 
-    .line 191
+    .line 190
     sub-int/2addr v1, v5
 
     div-int/lit8 v1, v1, 0x2
 
     add-int/2addr v3, v1
 
-    .line 192
+    .line 191
     int-to-float v0, v2
 
     int-to-float v1, v3
 
     invoke-virtual {p1, v0, v1}, Landroid/graphics/Canvas;->translate(FF)V
 
-    .line 194
+    .line 193
     sget-object v0, Lcom/android/camera/ui/ToggleSwitch$3;->$SwitchMap$com$android$camera$ui$ToggleSwitch$State:[I
 
     iget-object v1, p0, Lcom/android/camera/ui/ToggleSwitch;->state:Lcom/android/camera/ui/ToggleSwitch$State;
@@ -1574,34 +1574,34 @@
 
     goto :goto_0
 
-    .line 205
+    .line 204
     :pswitch_0
     invoke-direct {p0, p1}, Lcom/android/camera/ui/ToggleSwitch;->drawSwitchOffAnim(Landroid/graphics/Canvas;)V
 
     goto :goto_0
 
-    .line 202
+    .line 201
     :pswitch_1
     invoke-direct {p0, p1}, Lcom/android/camera/ui/ToggleSwitch;->drawSwitchOnAnim(Landroid/graphics/Canvas;)V
 
-    .line 203
+    .line 202
     goto :goto_0
 
-    .line 199
+    .line 198
     :pswitch_2
     invoke-direct {p0, p1}, Lcom/android/camera/ui/ToggleSwitch;->drawSwitchOff(Landroid/graphics/Canvas;)V
 
-    .line 200
+    .line 199
     goto :goto_0
 
-    .line 196
+    .line 195
     :pswitch_3
     invoke-direct {p0, p1}, Lcom/android/camera/ui/ToggleSwitch;->drawSwitchOn(Landroid/graphics/Canvas;)V
 
-    .line 197
+    .line 196
     nop
 
-    .line 208
+    .line 207
     :goto_0
     return-void
 
@@ -1617,27 +1617,27 @@
 .method public onMeasure(II)V
     .locals 5
 
-    .line 155
+    .line 154
     invoke-static {p1}, Landroid/view/View$MeasureSpec;->getSize(I)I
 
     move-result v0
 
-    .line 156
+    .line 155
     invoke-static {p2}, Landroid/view/View$MeasureSpec;->getSize(I)I
 
     move-result v1
 
-    .line 157
+    .line 156
     invoke-static {p1}, Landroid/view/View$MeasureSpec;->getMode(I)I
 
     move-result p1
 
-    .line 158
+    .line 157
     invoke-static {p2}, Landroid/view/View$MeasureSpec;->getMode(I)I
 
     move-result p2
 
-    .line 161
+    .line 160
     const/high16 v2, 0x42580000    # 54.0f
 
     invoke-virtual {p0, v2}, Lcom/android/camera/ui/ToggleSwitch;->dp2px(F)I
@@ -1652,7 +1652,7 @@
 
     add-int/2addr v2, v3
 
-    .line 162
+    .line 161
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->getPaddingLeft()I
 
     move-result v3
@@ -1665,7 +1665,7 @@
 
     add-int/2addr v2, v3
 
-    .line 163
+    .line 162
     const/high16 v3, 0x41e00000    # 28.0f
 
     invoke-virtual {p0, v3}, Lcom/android/camera/ui/ToggleSwitch;->dp2px(F)I
@@ -1684,114 +1684,114 @@
 
     add-int/2addr v3, v4
 
-    .line 164
+    .line 163
     const/high16 v4, -0x80000000
 
     if-eq p1, v4, :cond_0
 
-    .line 165
+    .line 164
     invoke-static {v2, v0}, Ljava/lang/Math;->max(II)I
 
     move-result v2
 
-    .line 168
+    .line 167
     :cond_0
     if-eq p2, v4, :cond_1
 
-    .line 169
+    .line 168
     invoke-static {v3, v1}, Ljava/lang/Math;->max(II)I
 
     move-result v3
 
-    .line 172
+    .line 171
     :cond_1
     invoke-virtual {p0, v2, v3}, Lcom/android/camera/ui/ToggleSwitch;->setMeasuredDimension(II)V
 
-    .line 173
+    .line 172
     return-void
 .end method
 
 .method public setAnimDuration(I)V
     .locals 0
 
-    .line 475
+    .line 474
     iput p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mAnimDuration:I
 
-    .line 476
+    .line 475
     return-void
 .end method
 
 .method public setChecked(Z)V
     .locals 1
 
-    .line 402
+    .line 401
     iget-boolean v0, p0, Lcom/android/camera/ui/ToggleSwitch;->isMoving:Z
 
     if-eqz v0, :cond_0
 
-    .line 403
+    .line 402
     return-void
 
-    .line 406
+    .line 405
     :cond_0
     iget-boolean v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mChecked:Z
 
     if-eq v0, p1, :cond_5
 
-    .line 407
+    .line 406
     iput-boolean p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mChecked:Z
 
-    .line 410
+    .line 409
     iget-boolean p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mBroadcasting:Z
 
     if-eqz p1, :cond_1
 
-    .line 411
+    .line 410
     return-void
 
-    .line 414
+    .line 413
     :cond_1
     const/4 p1, 0x1
 
     iput-boolean p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mBroadcasting:Z
 
-    .line 415
+    .line 414
     iget-object p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mOnCheckedChangeListener:Lcom/android/camera/ui/ToggleSwitch$OnCheckedChangeListener;
 
     if-eqz p1, :cond_2
 
-    .line 416
+    .line 415
     iget-object p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mOnCheckedChangeListener:Lcom/android/camera/ui/ToggleSwitch$OnCheckedChangeListener;
 
     iget-boolean v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mChecked:Z
 
     invoke-interface {p1, p0, v0}, Lcom/android/camera/ui/ToggleSwitch$OnCheckedChangeListener;->onCheckedChanged(Lcom/android/camera/ui/ToggleSwitch;Z)V
 
-    .line 418
+    .line 417
     :cond_2
     const/4 p1, 0x0
 
     iput-boolean p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mBroadcasting:Z
 
-    .line 420
+    .line 419
     iget-boolean p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mChecked:Z
 
     if-eqz p1, :cond_3
 
-    .line 421
+    .line 420
     sget-object p1, Lcom/android/camera/ui/ToggleSwitch$State;->SWITCHING_ANIM_ON:Lcom/android/camera/ui/ToggleSwitch$State;
 
     iput-object p1, p0, Lcom/android/camera/ui/ToggleSwitch;->state:Lcom/android/camera/ui/ToggleSwitch$State;
 
     goto :goto_0
 
-    .line 423
+    .line 422
     :cond_3
     sget-object p1, Lcom/android/camera/ui/ToggleSwitch$State;->SWITCHING_ANIM_OFF:Lcom/android/camera/ui/ToggleSwitch$State;
 
     iput-object p1, p0, Lcom/android/camera/ui/ToggleSwitch;->state:Lcom/android/camera/ui/ToggleSwitch$State;
 
-    .line 426
+    .line 425
     :goto_0
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->isAttachedToWindow()Z
 
@@ -1805,21 +1805,21 @@
 
     if-eqz p1, :cond_4
 
-    .line 427
+    .line 426
     invoke-direct {p0}, Lcom/android/camera/ui/ToggleSwitch;->animateToCheckedState()V
 
     goto :goto_1
 
-    .line 430
+    .line 429
     :cond_4
     invoke-direct {p0}, Lcom/android/camera/ui/ToggleSwitch;->cancelPositionAnimator()V
 
-    .line 431
+    .line 430
     const/4 p1, 0x0
 
     iput p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mCurrentPos:F
 
-    .line 434
+    .line 433
     :cond_5
     :goto_1
     return-void
@@ -1828,41 +1828,41 @@
 .method public setOnCheckedChangeListener(Lcom/android/camera/ui/ToggleSwitch$OnCheckedChangeListener;)V
     .locals 0
 
-    .line 397
+    .line 396
     iput-object p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mOnCheckedChangeListener:Lcom/android/camera/ui/ToggleSwitch$OnCheckedChangeListener;
 
-    .line 398
+    .line 397
     return-void
 .end method
 
 .method public setTextOnAndOff(Ljava/lang/String;Ljava/lang/String;)V
     .locals 0
 
-    .line 507
+    .line 506
     iput-object p1, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOn:Ljava/lang/String;
 
-    .line 508
+    .line 507
     iput-object p2, p0, Lcom/android/camera/ui/ToggleSwitch;->mTextOff:Ljava/lang/String;
 
-    .line 509
+    .line 508
     invoke-direct {p0}, Lcom/android/camera/ui/ToggleSwitch;->caculateTextWidth()V
 
-    .line 510
+    .line 509
     invoke-virtual {p0}, Lcom/android/camera/ui/ToggleSwitch;->requestLayout()V
 
-    .line 511
+    .line 510
     return-void
 .end method
 
 .method public toggle()V
     .locals 2
 
-    .line 487
+    .line 486
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 488
+    .line 487
     const/16 v1, 0xa1
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -1871,7 +1871,7 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$CameraAction;
 
-    .line 489
+    .line 488
     if-eqz v0, :cond_0
 
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$CameraAction;->isDoingAction()Z
@@ -1880,10 +1880,10 @@
 
     if-eqz v0, :cond_0
 
-    .line 490
+    .line 489
     return-void
 
-    .line 493
+    .line 492
     :cond_0
     iget-boolean v0, p0, Lcom/android/camera/ui/ToggleSwitch;->mChecked:Z
 
@@ -1891,6 +1891,6 @@
 
     invoke-virtual {p0, v0}, Lcom/android/camera/ui/ToggleSwitch;->setChecked(Z)V
 
-    .line 494
+    .line 493
     return-void
 .end method

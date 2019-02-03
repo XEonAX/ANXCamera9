@@ -11,7 +11,7 @@
 # static fields
 .field private static final TAG:Ljava/lang/String; = "ManifestParser"
 
-.field private static final mL:Ljava/lang/String; = "GlideModule"
+.field private static final mK:Ljava/lang/String; = "GlideModule"
 
 
 # instance fields

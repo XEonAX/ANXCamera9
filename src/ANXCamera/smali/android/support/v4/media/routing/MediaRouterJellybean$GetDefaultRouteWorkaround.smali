@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 3
+    .registers 4
 
     .line 335
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,16 +30,16 @@
 
     const/16 v1, 0x10
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_1f
 
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x11
 
-    if-gt v0, v1, :cond_0
+    if-gt v0, v1, :cond_1f
 
     .line 340
-    :try_start_0
+    :try_start_f
     const-class v0, Landroid/media/MediaRouter;
 
     const-string v1, "getSystemAudioRoute"
@@ -53,22 +53,22 @@
     move-result-object v0
 
     iput-object v0, p0, Landroid/support/v4/media/routing/MediaRouterJellybean$GetDefaultRouteWorkaround;->mGetSystemAudioRouteMethod:Ljava/lang/reflect/Method;
-    :try_end_0
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1c
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_f .. :try_end_1c} :catch_1d
 
     .line 343
-    goto :goto_0
+    goto :goto_1e
 
     .line 342
-    :catch_0
+    :catch_1d
     move-exception v0
 
     .line 344
-    :goto_0
+    :goto_1e
     return-void
 
     .line 337
-    :cond_0
+    :cond_1f
     new-instance v0, Ljava/lang/UnsupportedOperationException;
 
     invoke-direct {v0}, Ljava/lang/UnsupportedOperationException;-><init>()V
@@ -79,7 +79,7 @@
 
 # virtual methods
 .method public getDefaultRoute(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 6
     .param p1, "routerObj"    # Ljava/lang/Object;
 
     .line 347
@@ -93,10 +93,10 @@
 
     const/4 v2, 0x0
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_15
 
     .line 351
-    :try_start_0
+    :try_start_8
     iget-object v1, p0, Landroid/support/v4/media/routing/MediaRouterJellybean$GetDefaultRouteWorkaround;->mGetSystemAudioRouteMethod:Ljava/lang/reflect/Method;
 
     new-array v3, v2, [Ljava/lang/Object;
@@ -104,28 +104,28 @@
     invoke-virtual {v1, v0, v3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
-    :try_end_0
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_10
+    .catch Ljava/lang/IllegalAccessException; {:try_start_8 .. :try_end_10} :catch_13
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_8 .. :try_end_10} :catch_11
 
     return-object v1
 
     .line 353
-    :catch_0
+    :catch_11
     move-exception v1
 
-    goto :goto_0
+    goto :goto_15
 
     .line 352
-    :catch_1
+    :catch_13
     move-exception v1
 
     .line 354
     nop
 
     .line 359
-    :cond_0
-    :goto_0
+    :cond_15
+    :goto_15
     invoke-virtual {v0, v2}, Landroid/media/MediaRouter;->getRouteAt(I)Landroid/media/MediaRouter$RouteInfo;
 
     move-result-object v1

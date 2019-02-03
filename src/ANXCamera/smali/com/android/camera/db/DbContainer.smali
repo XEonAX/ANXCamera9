@@ -147,7 +147,12 @@
 
     invoke-direct {v0, v1, v2, v3}, Lcom/android/camera/db/greendao/DaoMaster$DevOpenHelper;-><init>(Landroid/content/Context;Ljava/lang/String;Landroid/database/sqlite/SQLiteDatabase$CursorFactory;)V
 
-    .line 61
+    .line 60
+    const/4 v1, 0x0
+
+    invoke-virtual {v0, v1}, Lcom/android/camera/db/greendao/DaoMaster$OpenHelper;->setLoadSQLCipherNativeLibs(Z)V
+
+    .line 62
     new-instance v1, Lcom/android/camera/db/greendao/DaoMaster;
 
     invoke-virtual {v0}, Lcom/android/camera/db/greendao/DaoMaster$OpenHelper;->getWritableDb()Lorg/greenrobot/greendao/database/Database;
@@ -158,7 +163,7 @@
 
     iput-object v1, p0, Lcom/android/camera/db/DbContainer;->daoMaster:Lcom/android/camera/db/greendao/DaoMaster;
 
-    .line 63
+    .line 64
     :cond_1
     iget-object v0, p0, Lcom/android/camera/db/DbContainer;->daoMaster:Lcom/android/camera/db/greendao/DaoMaster;
 
@@ -168,19 +173,19 @@
 .method public getDaoSession()Lcom/android/camera/db/greendao/DaoSession;
     .locals 1
 
-    .line 67
+    .line 68
     iget-object v0, p0, Lcom/android/camera/db/DbContainer;->daoSession:Lcom/android/camera/db/greendao/DaoSession;
 
     if-nez v0, :cond_0
 
-    .line 68
+    .line 69
     invoke-virtual {p0}, Lcom/android/camera/db/DbContainer;->getDaoMaster()Lcom/android/camera/db/greendao/DaoMaster;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/android/camera/db/DbContainer;->daoMaster:Lcom/android/camera/db/greendao/DaoMaster;
 
-    .line 69
+    .line 70
     iget-object v0, p0, Lcom/android/camera/db/DbContainer;->daoMaster:Lcom/android/camera/db/greendao/DaoMaster;
 
     invoke-virtual {v0}, Lcom/android/camera/db/greendao/DaoMaster;->newSession()Lcom/android/camera/db/greendao/DaoSession;
@@ -189,7 +194,7 @@
 
     iput-object v0, p0, Lcom/android/camera/db/DbContainer;->daoSession:Lcom/android/camera/db/greendao/DaoSession;
 
-    .line 71
+    .line 72
     :cond_0
     iget-object v0, p0, Lcom/android/camera/db/DbContainer;->daoSession:Lcom/android/camera/db/greendao/DaoSession;
 

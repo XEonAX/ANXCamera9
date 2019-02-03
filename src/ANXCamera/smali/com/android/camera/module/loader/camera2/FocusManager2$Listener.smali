@@ -27,7 +27,7 @@
 .method public abstract onWaitingFocusFinished()Z
 .end method
 
-.method public abstract playSound(I)V
+.method public abstract playFocusSound(I)V
 .end method
 
 .method public abstract startFaceDetection()V

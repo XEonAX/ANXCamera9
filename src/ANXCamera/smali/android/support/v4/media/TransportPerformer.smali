@@ -19,7 +19,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 29
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public onAudioFocusChange(I)V
-    .locals 12
+    .registers 14
     .param p1, "focusChange"    # I
 
     .line 188
@@ -40,17 +40,17 @@
     .local v0, "keyCode":I
     const/4 v1, -0x1
 
-    if-eq p1, v1, :cond_0
+    if-eq p1, v1, :cond_5
 
-    goto :goto_0
+    goto :goto_7
 
     .line 193
-    :cond_0
+    :cond_5
     const/16 v0, 0x7f
 
     .line 196
-    :goto_0
-    if-eqz v0, :cond_1
+    :goto_7
+    if-eqz v0, :cond_25
 
     .line 197
     invoke-static {}, Landroid/os/SystemClock;->uptimeMillis()J
@@ -90,12 +90,12 @@
 
     .line 201
     .end local v9    # "now":J
-    :cond_1
+    :cond_25
     return-void
 .end method
 
 .method public onGetBufferPercentage()I
-    .locals 1
+    .registers 2
 
     .line 76
     const/16 v0, 0x64
@@ -110,7 +110,7 @@
 .end method
 
 .method public onGetTransportControlFlags()I
-    .locals 1
+    .registers 2
 
     .line 98
     const/16 v0, 0x3c
@@ -122,73 +122,73 @@
 .end method
 
 .method public onMediaButtonDown(ILandroid/view/KeyEvent;)Z
-    .locals 2
+    .registers 5
     .param p1, "keyCode"    # I
     .param p2, "event"    # Landroid/view/KeyEvent;
 
     .line 127
     const/4 v0, 0x1
 
-    sparse-switch p1, :sswitch_data_0
+    sparse-switch p1, :sswitch_data_20
 
-    goto :goto_0
+    goto :goto_1e
 
     .line 132
-    :sswitch_0
+    :sswitch_5
     invoke-virtual {p0}, Landroid/support/v4/media/TransportPerformer;->onPause()V
 
     .line 133
     return v0
 
     .line 129
-    :sswitch_1
+    :sswitch_9
     invoke-virtual {p0}, Landroid/support/v4/media/TransportPerformer;->onStart()V
 
     .line 130
     return v0
 
     .line 135
-    :sswitch_2
+    :sswitch_d
     invoke-virtual {p0}, Landroid/support/v4/media/TransportPerformer;->onStop()V
 
     .line 136
     return v0
 
     .line 139
-    :sswitch_3
+    :sswitch_11
     invoke-virtual {p0}, Landroid/support/v4/media/TransportPerformer;->onIsPlaying()Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_1b
 
     .line 140
     invoke-virtual {p0}, Landroid/support/v4/media/TransportPerformer;->onPause()V
 
-    goto :goto_0
+    goto :goto_1e
 
     .line 142
-    :cond_0
+    :cond_1b
     invoke-virtual {p0}, Landroid/support/v4/media/TransportPerformer;->onStart()V
 
     .line 145
-    :goto_0
+    :goto_1e
     return v0
 
     nop
 
-    :sswitch_data_0
+    :sswitch_data_20
     .sparse-switch
-        0x4f -> :sswitch_3
-        0x55 -> :sswitch_3
-        0x56 -> :sswitch_2
-        0x7e -> :sswitch_1
-        0x7f -> :sswitch_0
+        0x4f -> :sswitch_11
+        0x55 -> :sswitch_11
+        0x56 -> :sswitch_d
+        0x7e -> :sswitch_9
+        0x7f -> :sswitch_5
     .end sparse-switch
 .end method
 
 .method public onMediaButtonUp(ILandroid/view/KeyEvent;)Z
-    .locals 1
+    .registers 4
     .param p1, "keyCode"    # I
     .param p2, "event"    # Landroid/view/KeyEvent;
 

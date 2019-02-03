@@ -41,7 +41,7 @@
     iput-object p3, p0, Lcom/android/camera/fragment/beauty/SingleCheckAdapter$SingleCheckViewHolder;->mAdapter:Lcom/android/camera/fragment/beauty/SingleCheckAdapter;
 
     .line 108
-    const p3, 0x7f0d000c
+    const p3, 0x7f0d000d
 
     invoke-virtual {p2, p3}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -52,7 +52,7 @@
     iput-object p3, p0, Lcom/android/camera/fragment/beauty/SingleCheckAdapter$SingleCheckViewHolder;->mText:Landroid/widget/TextView;
 
     .line 109
-    const p3, 0x7f0d000b
+    const p3, 0x7f0d000c
 
     invoke-virtual {p2, p3}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -424,7 +424,7 @@
 
     move-result-object v2
 
-    const v3, 0x7f0900cd
+    const v3, 0x7f0a00d1
 
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -522,7 +522,7 @@
 
     move-result-object p2
 
-    const v0, 0x7f0b00ed
+    const v0, 0x7f0900f2
 
     invoke-virtual {p2, v0}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
@@ -538,7 +538,7 @@
 
     move-result-object p2
 
-    const v0, 0x7f0b00ec
+    const v0, 0x7f0900f1
 
     invoke-virtual {p2, v0}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
@@ -575,7 +575,7 @@
 
     move-result-object p2
 
-    const v1, 0x7f0b00ea
+    const v1, 0x7f0900ef
 
     invoke-virtual {p2, v1}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
@@ -603,7 +603,7 @@
 
     move-result-object p2
 
-    const v1, 0x7f0b00eb
+    const v1, 0x7f0900f0
 
     invoke-virtual {p2, v1}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 

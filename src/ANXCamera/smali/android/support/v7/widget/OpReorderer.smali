@@ -17,7 +17,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v7/widget/OpReorderer$Callback;)V
-    .locals 0
+    .registers 2
     .param p1, "callback"    # Landroid/support/v7/widget/OpReorderer$Callback;
 
     .line 31
@@ -31,7 +31,7 @@
 .end method
 
 .method private getLastMoveOutOfOrder(Ljava/util/List;)I
-    .locals 5
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -54,8 +54,8 @@
     add-int/lit8 v1, v1, -0x1
 
     .local v1, "i":I
-    :goto_0
-    if-ltz v1, :cond_2
+    :goto_7
+    if-ltz v1, :cond_1b
 
     .line 220
     invoke-interface {p1, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -70,35 +70,35 @@
 
     const/4 v4, 0x3
 
-    if-ne v3, v4, :cond_0
+    if-ne v3, v4, :cond_17
 
     .line 222
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_18
 
     .line 223
     return v1
 
     .line 226
-    :cond_0
+    :cond_17
     const/4 v0, 0x1
 
     .line 219
     .end local v2    # "op1":Landroid/support/v7/widget/AdapterHelper$UpdateOp;
-    :cond_1
+    :cond_18
     add-int/lit8 v1, v1, -0x1
 
-    goto :goto_0
+    goto :goto_7
 
     .line 229
     .end local v1    # "i":I
-    :cond_2
+    :cond_1b
     const/4 v1, -0x1
 
     return v1
 .end method
 
 .method private swapMoveAdd(Ljava/util/List;ILandroid/support/v7/widget/AdapterHelper$UpdateOp;ILandroid/support/v7/widget/AdapterHelper$UpdateOp;)V
-    .locals 3
+    .registers 9
     .param p2, "move"    # I
     .param p3, "moveOp"    # Landroid/support/v7/widget/AdapterHelper$UpdateOp;
     .param p4, "add"    # I
@@ -126,29 +126,29 @@
 
     iget v2, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-ge v1, v2, :cond_0
+    if-ge v1, v2, :cond_9
 
     .line 164
     add-int/lit8 v0, v0, -0x1
 
     .line 166
-    :cond_0
+    :cond_9
     iget v1, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     iget v2, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-ge v1, v2, :cond_1
+    if-ge v1, v2, :cond_11
 
     .line 167
     add-int/lit8 v0, v0, 0x1
 
     .line 169
-    :cond_1
+    :cond_11
     iget v1, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     iget v2, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-gt v1, v2, :cond_2
+    if-gt v1, v2, :cond_1e
 
     .line 170
     iget v1, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
@@ -160,12 +160,12 @@
     iput v1, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     .line 172
-    :cond_2
+    :cond_1e
     iget v1, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     iget v2, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
-    if-gt v1, v2, :cond_3
+    if-gt v1, v2, :cond_2b
 
     .line 173
     iget v1, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
@@ -177,7 +177,7 @@
     iput v1, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
     .line 175
-    :cond_3
+    :cond_2b
     iget v1, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     add-int/2addr v1, v0
@@ -195,7 +195,7 @@
 .end method
 
 .method private swapMoveOp(Ljava/util/List;II)V
-    .locals 8
+    .registers 12
     .param p2, "badMove"    # I
     .param p3, "next"    # I
     .annotation system Ldalvik/annotation/Signature;
@@ -229,12 +229,12 @@
     .local v7, "nextOp":Landroid/support/v7/widget/AdapterHelper$UpdateOp;
     iget v1, v7, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->cmd:I
 
-    packed-switch v1, :pswitch_data_0
+    packed-switch v1, :pswitch_data_32
 
-    goto :goto_0
+    goto :goto_31
 
     .line 55
-    :pswitch_0
+    :pswitch_13
     move-object v1, p0
 
     move-object v2, p1
@@ -249,10 +249,10 @@
 
     invoke-virtual/range {v1 .. v6}, Landroid/support/v7/widget/OpReorderer;->swapMoveUpdate(Ljava/util/List;ILandroid/support/v7/widget/AdapterHelper$UpdateOp;ILandroid/support/v7/widget/AdapterHelper$UpdateOp;)V
 
-    goto :goto_0
+    goto :goto_31
 
     .line 49
-    :pswitch_1
+    :pswitch_1d
     move-object v1, p0
 
     move-object v2, p1
@@ -268,10 +268,10 @@
     invoke-virtual/range {v1 .. v6}, Landroid/support/v7/widget/OpReorderer;->swapMoveRemove(Ljava/util/List;ILandroid/support/v7/widget/AdapterHelper$UpdateOp;ILandroid/support/v7/widget/AdapterHelper$UpdateOp;)V
 
     .line 50
-    goto :goto_0
+    goto :goto_31
 
     .line 52
-    :pswitch_2
+    :pswitch_27
     move-object v1, p0
 
     move-object v2, p1
@@ -290,21 +290,21 @@
     nop
 
     .line 58
-    :goto_0
+    :goto_31
     return-void
 
-    :pswitch_data_0
+    :pswitch_data_32
     .packed-switch 0x0
-        :pswitch_2
-        :pswitch_1
-        :pswitch_0
+        :pswitch_27
+        :pswitch_1d
+        :pswitch_13
     .end packed-switch
 .end method
 
 
 # virtual methods
 .method reorderOps(Ljava/util/List;)V
-    .locals 3
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -326,7 +326,7 @@
     .local v1, "badMove":I
     const/4 v2, -0x1
 
-    if-eq v0, v2, :cond_0
+    if-eq v0, v2, :cond_e
 
     .line 40
     add-int/lit8 v0, v1, 0x1
@@ -336,12 +336,12 @@
     goto :goto_0
 
     .line 42
-    :cond_0
+    :cond_e
     return-void
 .end method
 
 .method swapMoveRemove(Ljava/util/List;ILandroid/support/v7/widget/AdapterHelper$UpdateOp;ILandroid/support/v7/widget/AdapterHelper$UpdateOp;)V
-    .locals 8
+    .registers 14
     .param p2, "movePos"    # I
     .param p3, "moveOp"    # Landroid/support/v7/widget/AdapterHelper$UpdateOp;
     .param p4, "removePos"    # I
@@ -375,7 +375,7 @@
 
     const/4 v4, 0x1
 
-    if-ge v2, v3, :cond_0
+    if-ge v2, v3, :cond_1b
 
     .line 68
     const/4 v2, 0x0
@@ -386,7 +386,7 @@
 
     iget v5, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-ne v3, v5, :cond_1
+    if-ne v3, v5, :cond_2d
 
     iget v3, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
@@ -396,16 +396,16 @@
 
     sub-int/2addr v5, v6
 
-    if-ne v3, v5, :cond_1
+    if-ne v3, v5, :cond_2d
 
     .line 71
     const/4 v1, 0x1
 
-    goto :goto_0
+    goto :goto_2d
 
     .line 74
     .end local v2    # "moveIsBackwards":Z
-    :cond_0
+    :cond_1b
     const/4 v2, 0x1
 
     .line 75
@@ -416,7 +416,7 @@
 
     add-int/2addr v5, v4
 
-    if-ne v3, v5, :cond_1
+    if-ne v3, v5, :cond_2d
 
     iget v3, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
@@ -426,19 +426,19 @@
 
     sub-int/2addr v5, v6
 
-    if-ne v3, v5, :cond_1
+    if-ne v3, v5, :cond_2d
 
     .line 77
     const/4 v1, 0x1
 
     .line 82
-    :cond_1
-    :goto_0
+    :cond_2d
+    :goto_2d
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
     iget v5, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-ge v3, v5, :cond_2
+    if-ge v3, v5, :cond_39
 
     .line 83
     iget v3, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
@@ -447,10 +447,10 @@
 
     iput v3, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    goto :goto_1
+    goto :goto_58
 
     .line 84
-    :cond_2
+    :cond_39
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
     iget v5, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
@@ -459,7 +459,7 @@
 
     add-int/2addr v5, v6
 
-    if-ge v3, v5, :cond_4
+    if-ge v3, v5, :cond_58
 
     .line 86
     iget v3, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
@@ -477,7 +477,7 @@
     .line 89
     iget v3, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
-    if-nez v3, :cond_3
+    if-nez v3, :cond_57
 
     .line 90
     invoke-interface {p1, p4}, Ljava/util/List;->remove(I)Ljava/lang/Object;
@@ -488,17 +488,17 @@
     invoke-interface {v3, p5}, Landroid/support/v7/widget/OpReorderer$Callback;->recycleUpdateOp(Landroid/support/v7/widget/AdapterHelper$UpdateOp;)V
 
     .line 94
-    :cond_3
+    :cond_57
     return-void
 
     .line 98
-    :cond_4
-    :goto_1
+    :cond_58
+    :goto_58
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     iget v5, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-gt v3, v5, :cond_5
+    if-gt v3, v5, :cond_64
 
     .line 99
     iget v3, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
@@ -507,10 +507,10 @@
 
     iput v3, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    goto :goto_2
+    goto :goto_86
 
     .line 100
-    :cond_5
+    :cond_64
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     iget v5, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
@@ -519,7 +519,7 @@
 
     add-int/2addr v5, v6
 
-    if-ge v3, v5, :cond_6
+    if-ge v3, v5, :cond_86
 
     .line 101
     iget v3, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
@@ -557,9 +557,9 @@
 
     .line 108
     .end local v3    # "remaining":I
-    :cond_6
-    :goto_2
-    if-eqz v1, :cond_7
+    :cond_86
+    :goto_86
+    if-eqz v1, :cond_94
 
     .line 109
     invoke-interface {p1, p2, p5}, Ljava/util/List;->set(ILjava/lang/Object;)Ljava/lang/Object;
@@ -576,18 +576,18 @@
     return-void
 
     .line 116
-    :cond_7
-    if-eqz v2, :cond_b
+    :cond_94
+    if-eqz v2, :cond_cd
 
     .line 117
-    if-eqz v0, :cond_9
+    if-eqz v0, :cond_b2
 
     .line 118
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     iget v4, v0, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-le v3, v4, :cond_8
+    if-le v3, v4, :cond_a5
 
     .line 119
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
@@ -599,12 +599,12 @@
     iput v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     .line 121
-    :cond_8
+    :cond_a5
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
     iget v4, v0, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-le v3, v4, :cond_9
+    if-le v3, v4, :cond_b2
 
     .line 122
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
@@ -616,12 +616,12 @@
     iput v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
     .line 125
-    :cond_9
+    :cond_b2
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     iget v4, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-le v3, v4, :cond_a
+    if-le v3, v4, :cond_bf
 
     .line 126
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
@@ -633,12 +633,12 @@
     iput v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     .line 128
-    :cond_a
+    :cond_bf
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
     iget v4, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-le v3, v4, :cond_f
+    if-le v3, v4, :cond_103
 
     .line 129
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
@@ -649,18 +649,18 @@
 
     iput v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
-    goto :goto_3
+    goto :goto_103
 
     .line 132
-    :cond_b
-    if-eqz v0, :cond_d
+    :cond_cd
+    if-eqz v0, :cond_e9
 
     .line 133
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     iget v4, v0, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-lt v3, v4, :cond_c
+    if-lt v3, v4, :cond_dc
 
     .line 134
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
@@ -672,12 +672,12 @@
     iput v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     .line 136
-    :cond_c
+    :cond_dc
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
     iget v4, v0, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-lt v3, v4, :cond_d
+    if-lt v3, v4, :cond_e9
 
     .line 137
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
@@ -689,12 +689,12 @@
     iput v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
     .line 140
-    :cond_d
+    :cond_e9
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     iget v4, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-lt v3, v4, :cond_e
+    if-lt v3, v4, :cond_f6
 
     .line 141
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
@@ -706,12 +706,12 @@
     iput v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     .line 143
-    :cond_e
+    :cond_f6
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
     iget v4, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-lt v3, v4, :cond_f
+    if-lt v3, v4, :cond_103
 
     .line 144
     iget v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
@@ -723,8 +723,8 @@
     iput v3, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
     .line 148
-    :cond_f
-    :goto_3
+    :cond_103
+    :goto_103
     invoke-interface {p1, p2, p5}, Ljava/util/List;->set(ILjava/lang/Object;)Ljava/lang/Object;
 
     .line 149
@@ -732,31 +732,31 @@
 
     iget v4, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
-    if-eq v3, v4, :cond_10
+    if-eq v3, v4, :cond_110
 
     .line 150
     invoke-interface {p1, p4, p3}, Ljava/util/List;->set(ILjava/lang/Object;)Ljava/lang/Object;
 
-    goto :goto_4
+    goto :goto_113
 
     .line 152
-    :cond_10
+    :cond_110
     invoke-interface {p1, p4}, Ljava/util/List;->remove(I)Ljava/lang/Object;
 
     .line 154
-    :goto_4
-    if-eqz v0, :cond_11
+    :goto_113
+    if-eqz v0, :cond_118
 
     .line 155
     invoke-interface {p1, p2, v0}, Ljava/util/List;->add(ILjava/lang/Object;)V
 
     .line 157
-    :cond_11
+    :cond_118
     return-void
 .end method
 
 .method swapMoveUpdate(Ljava/util/List;ILandroid/support/v7/widget/AdapterHelper$UpdateOp;ILandroid/support/v7/widget/AdapterHelper$UpdateOp;)V
-    .locals 7
+    .registers 13
     .param p2, "move"    # I
     .param p3, "moveOp"    # Landroid/support/v7/widget/AdapterHelper$UpdateOp;
     .param p4, "update"    # I
@@ -792,7 +792,7 @@
 
     const/4 v5, 0x1
 
-    if-ge v2, v3, :cond_0
+    if-ge v2, v3, :cond_10
 
     .line 186
     iget v2, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
@@ -801,10 +801,10 @@
 
     iput v2, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    goto :goto_0
+    goto :goto_28
 
     .line 187
-    :cond_0
+    :cond_10
     iget v2, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
     iget v3, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
@@ -813,7 +813,7 @@
 
     add-int/2addr v3, v6
 
-    if-ge v2, v3, :cond_1
+    if-ge v2, v3, :cond_28
 
     .line 189
     iget v2, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
@@ -834,13 +834,13 @@
     move-result-object v0
 
     .line 193
-    :cond_1
-    :goto_0
+    :cond_28
+    :goto_28
     iget v2, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     iget v3, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    if-gt v2, v3, :cond_2
+    if-gt v2, v3, :cond_34
 
     .line 194
     iget v2, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
@@ -849,10 +849,10 @@
 
     iput v2, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
-    goto :goto_1
+    goto :goto_55
 
     .line 195
-    :cond_2
+    :cond_34
     iget v2, p3, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
 
     iget v3, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
@@ -861,7 +861,7 @@
 
     add-int/2addr v3, v6
 
-    if-ge v2, v3, :cond_3
+    if-ge v2, v3, :cond_55
 
     .line 196
     iget v2, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->positionStart:I
@@ -897,22 +897,22 @@
 
     .line 202
     .end local v2    # "remaining":I
-    :cond_3
-    :goto_1
+    :cond_55
+    :goto_55
     invoke-interface {p1, p4, p3}, Ljava/util/List;->set(ILjava/lang/Object;)Ljava/lang/Object;
 
     .line 203
     iget v2, p5, Landroid/support/v7/widget/AdapterHelper$UpdateOp;->itemCount:I
 
-    if-lez v2, :cond_4
+    if-lez v2, :cond_60
 
     .line 204
     invoke-interface {p1, p2, p5}, Ljava/util/List;->set(ILjava/lang/Object;)Ljava/lang/Object;
 
-    goto :goto_2
+    goto :goto_68
 
     .line 206
-    :cond_4
+    :cond_60
     invoke-interface {p1, p2}, Ljava/util/List;->remove(I)Ljava/lang/Object;
 
     .line 207
@@ -921,20 +921,20 @@
     invoke-interface {v2, p5}, Landroid/support/v7/widget/OpReorderer$Callback;->recycleUpdateOp(Landroid/support/v7/widget/AdapterHelper$UpdateOp;)V
 
     .line 209
-    :goto_2
-    if-eqz v0, :cond_5
+    :goto_68
+    if-eqz v0, :cond_6d
 
     .line 210
     invoke-interface {p1, p2, v0}, Ljava/util/List;->add(ILjava/lang/Object;)V
 
     .line 212
-    :cond_5
-    if-eqz v1, :cond_6
+    :cond_6d
+    if-eqz v1, :cond_72
 
     .line 213
     invoke-interface {p1, p2, v1}, Ljava/util/List;->add(ILjava/lang/Object;)V
 
     .line 215
-    :cond_6
+    :cond_72
     return-void
 .end method

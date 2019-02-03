@@ -48,7 +48,7 @@
     if-lez v0, :cond_0
 
     .line 1583
-    const-string v0, "CONTINUAL_"
+    const-string v0, "C_"
 
     iget-object v1, p0, Lcom/android/camera/ui/GLTextureView$LogWriter;->mBuilder:Ljava/lang/StringBuilder;
 

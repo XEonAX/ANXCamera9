@@ -15,17 +15,17 @@ import java.util.List;
 /* compiled from: SourceGenerator */
 class t implements a<Object>, d.a, d {
     private static final String TAG = "SourceGenerator";
-    private final e<?> dW;
-    private final d.a dX;
-    private volatile m.a<?> ec;
+    private final e<?> dX;
+    private final d.a dY;
+    private volatile m.a<?> ed;
     private int gq;
     private a gr;
     private Object gs;
     private b gt;
 
     t(e<?> eVar, d.a aVar) {
-        this.dW = eVar;
-        this.dX = aVar;
+        this.dX = eVar;
+        this.dY = aVar;
     }
 
     public boolean am() {
@@ -38,15 +38,15 @@ class t implements a<Object>, d.a, d {
             return true;
         }
         this.gr = null;
-        this.ec = null;
+        this.ed = null;
         boolean z = false;
         while (!z && an()) {
-            List az = this.dW.az();
+            List az = this.dX.az();
             int i = this.gq;
             this.gq = i + 1;
-            this.ec = (m.a) az.get(i);
-            if (this.ec != null && (this.dW.ar().b(this.ec.jp.ae()) || this.dW.c(this.ec.jp.ad()))) {
-                this.ec.jp.a(this.dW.as(), this);
+            this.ed = (m.a) az.get(i);
+            if (this.ed != null && (this.dX.ar().b(this.ed.jp.ae()) || this.dX.c(this.ed.jp.ad()))) {
+                this.ed.jp.a(this.dX.as(), this);
                 z = true;
             }
         }
@@ -54,16 +54,16 @@ class t implements a<Object>, d.a, d {
     }
 
     private boolean an() {
-        return this.gq < this.dW.az().size();
+        return this.gq < this.dX.az().size();
     }
 
     private void k(Object obj) {
         long eE = e.eE();
         try {
-            com.bumptech.glide.load.a b = this.dW.b(obj);
-            b cVar = new c(b, obj, this.dW.at());
-            this.gt = new b(this.ec.dZ, this.dW.au());
-            this.dW.aq().a(this.gt, cVar);
+            com.bumptech.glide.load.a b = this.dX.b(obj);
+            b cVar = new c(b, obj, this.dX.at());
+            this.gt = new b(this.ed.ea, this.dX.au());
+            this.dX.aq().a(this.gt, cVar);
             if (Log.isLoggable(TAG, 2)) {
                 String str = TAG;
                 StringBuilder stringBuilder = new StringBuilder();
@@ -77,32 +77,32 @@ class t implements a<Object>, d.a, d {
                 stringBuilder.append(e.e(eE));
                 Log.v(str, stringBuilder.toString());
             }
-            this.ec.jp.cleanup();
-            this.gr = new a(Collections.singletonList(this.ec.dZ), this.dW, this);
+            this.ed.jp.cleanup();
+            this.gr = new a(Collections.singletonList(this.ed.ea), this.dX, this);
         } catch (Throwable th) {
-            this.ec.jp.cleanup();
+            this.ed.jp.cleanup();
         }
     }
 
     public void cancel() {
-        m.a aVar = this.ec;
+        m.a aVar = this.ed;
         if (aVar != null) {
             aVar.jp.cancel();
         }
     }
 
     public void i(Object obj) {
-        g ar = this.dW.ar();
-        if (obj == null || !ar.b(this.ec.jp.ae())) {
-            this.dX.a(this.ec.dZ, obj, this.ec.jp, this.ec.jp.ae(), this.gt);
+        g ar = this.dX.ar();
+        if (obj == null || !ar.b(this.ed.jp.ae())) {
+            this.dY.a(this.ed.ea, obj, this.ed.jp, this.ed.jp.ae(), this.gt);
             return;
         }
         this.gs = obj;
-        this.dX.ap();
+        this.dY.ap();
     }
 
     public void b(@NonNull Exception exception) {
-        this.dX.a(this.gt, exception, this.ec.jp, this.ec.jp.ae());
+        this.dY.a(this.gt, exception, this.ed.jp, this.ed.jp.ae());
     }
 
     public void ap() {
@@ -110,10 +110,10 @@ class t implements a<Object>, d.a, d {
     }
 
     public void a(c cVar, Object obj, d<?> dVar, DataSource dataSource, c cVar2) {
-        this.dX.a(cVar, obj, dVar, this.ec.jp.ae(), cVar);
+        this.dY.a(cVar, obj, dVar, this.ed.jp.ae(), cVar);
     }
 
     public void a(c cVar, Exception exception, d<?> dVar, DataSource dataSource) {
-        this.dX.a(cVar, exception, dVar, this.ec.jp.ae());
+        this.dY.a(cVar, exception, dVar, this.ed.jp.ae());
     }
 }

@@ -25,7 +25,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/app/BackStackRecord;Landroid/support/v4/app/Fragment;)V
-    .locals 0
+    .registers 3
 
     .line 1188
     iput-object p1, p0, Landroid/support/v4/app/BackStackRecord$1;->this$0:Landroid/support/v4/app/BackStackRecord;
@@ -40,7 +40,7 @@
 
 # virtual methods
 .method public getView()Landroid/view/View;
-    .locals 1
+    .registers 2
 
     .line 1191
     iget-object v0, p0, Landroid/support/v4/app/BackStackRecord$1;->val$inFragment:Landroid/support/v4/app/Fragment;

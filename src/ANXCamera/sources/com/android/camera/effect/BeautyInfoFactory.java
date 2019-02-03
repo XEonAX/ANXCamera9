@@ -47,25 +47,10 @@ public class BeautyInfoFactory {
                     i3 = R.string.portait_effect_entry_fairytale;
                     i4 = R.drawable.portait_effect_image_fairytale;
                     break;
-                case B_MOOD:
-                    i2 = 60;
-                    i3 = R.string.portait_effect_entry_mood;
-                    i4 = R.drawable.portait_effect_image_mood;
-                    break;
-                case B_ROMANCE:
-                    i2 = 70;
-                    i3 = R.string.portait_effect_entry_romance;
-                    i4 = R.drawable.portait_effect_image_romance;
-                    break;
                 case B_MAZE:
                     i2 = 80;
                     i3 = R.string.portait_effect_entry_maze;
                     i4 = R.drawable.portait_effect_image_maze;
-                    break;
-                case B_MINT:
-                    i2 = 90;
-                    i3 = R.string.portait_effect_entry_cool;
-                    i4 = R.drawable.portait_effect_image_cool;
                     break;
                 case B_RIDDLE:
                     i2 = 100;
@@ -77,10 +62,25 @@ public class BeautyInfoFactory {
                     i3 = R.string.portait_effect_entry_movie;
                     i4 = R.drawable.portait_effect_image_movie;
                     break;
-                case B_WHITEANDBLACK:
+                case B_M_TEA:
                     i2 = 120;
+                    i3 = R.string.portait_effect_entry_tea;
+                    i4 = R.drawable.portait_effect_image_m_tea;
+                    break;
+                case B_M_LILT:
+                    i2 = 130;
+                    i3 = R.string.portait_effect_entry_lilt;
+                    i4 = R.drawable.portait_effect_image_m_lilt;
+                    break;
+                case B_M_SEPIA:
+                    i2 = 140;
+                    i3 = R.string.portait_effect_entry_sepia;
+                    i4 = R.drawable.portait_effect_image_m_sepia;
+                    break;
+                case B_M_WHITEANDBLACK:
+                    i2 = 150;
                     i3 = R.string.portait_effect_entry_blackwhite;
-                    i4 = R.drawable.portait_effect_image_blackwhite;
+                    i4 = R.drawable.portait_effect_image_m_blackwhite;
                     break;
                 default:
                     i5 = i2;
@@ -144,35 +144,40 @@ public class BeautyInfoFactory {
                     i3 = R.string.portrait_india_effect_entry_warm;
                     i4 = R.drawable.portrait_india_effect_image_warm;
                     break;
-                case BI_SWEET:
-                    i2 = 60;
-                    i3 = R.string.portrait_india_effect_entry_sweet;
-                    i4 = R.drawable.portrait_india_effect_image_sweet;
-                    break;
-                case BI_PORTRAIT:
-                    i2 = 70;
-                    i3 = R.string.portrait_india_effect_entry_portrait;
-                    i4 = R.drawable.portrait_india_effect_image_portrait;
-                    break;
                 case BI_RETRO:
                     i2 = 80;
                     i3 = R.string.portrait_india_effect_entry_retro;
                     i4 = R.drawable.portrait_india_effect_image_retro;
-                    break;
-                case BI_YOUNG:
-                    i2 = 90;
-                    i3 = R.string.portrait_india_effect_entry_young;
-                    i4 = R.drawable.portrait_india_effect_image_young;
                     break;
                 case BI_ROMANTIC:
                     i2 = 100;
                     i3 = R.string.portrait_india_effect_entry_romantic;
                     i4 = R.drawable.portrait_india_effect_image_romantic;
                     break;
-                case BI_MONO:
-                    i2 = 110;
-                    i3 = R.string.portrait_india_effect_entry_mono;
-                    i4 = R.drawable.portrait_india_effect_image_mono;
+                case BI_M_DUSK:
+                    i2 = 120;
+                    i3 = R.string.portait_effect_entry_dusk;
+                    i4 = R.drawable.portrait_india_effect_image_m_dusk;
+                    break;
+                case BI_M_LILT:
+                    i2 = 130;
+                    i3 = R.string.portait_effect_entry_lilt;
+                    i4 = R.drawable.portrait_india_effect_image_m_lilt;
+                    break;
+                case BI_M_TEA:
+                    i2 = 140;
+                    i3 = R.string.portait_effect_entry_tea;
+                    i4 = R.drawable.portrait_india_effect_image_m_tea;
+                    break;
+                case BI_M_SEPIA:
+                    i2 = 150;
+                    i3 = R.string.portait_effect_entry_sepia;
+                    i4 = R.drawable.portrait_india_effect_image_m_sepia;
+                    break;
+                case BI_M_WHITEANDBLACK:
+                    i2 = 160;
+                    i3 = R.string.portait_effect_entry_blackwhite;
+                    i4 = R.drawable.portrait_india_effect_image_m_blackwhite;
                     break;
                 default:
                     i5 = i2;
@@ -203,16 +208,16 @@ public class BeautyInfoFactory {
             return 70;
         }
         switch (i) {
-            case 24:
-                return 60;
             case 25:
-                return 70;
+                return 60;
             case 26:
+                return 70;
             case 27:
             case 28:
             case 29:
             case 30:
             case 31:
+            case 32:
                 return 80;
             default:
                 return 100;
@@ -224,21 +229,20 @@ public class BeautyInfoFactory {
         if (i == 13 || i == 16) {
             return 80;
         }
-        if (i == 18) {
-            return 70;
-        }
         switch (i) {
-            case 24:
-                return 60;
             case 25:
-                return 70;
+                return 60;
             case 26:
+                return 70;
             case 27:
             case 28:
             case 29:
             case 30:
             case 31:
+            case 32:
                 return 80;
+            case 33:
+                return 70;
             default:
                 return 100;
         }

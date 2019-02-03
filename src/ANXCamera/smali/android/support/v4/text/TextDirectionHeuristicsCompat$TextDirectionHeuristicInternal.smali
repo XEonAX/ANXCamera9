@@ -20,7 +20,7 @@
 
 # direct methods
 .method private constructor <init>(Landroid/support/v4/text/TextDirectionHeuristicsCompat$TextDirectionAlgorithm;Z)V
-    .locals 0
+    .registers 3
     .param p1, "algorithm"    # Landroid/support/v4/text/TextDirectionHeuristicsCompat$TextDirectionAlgorithm;
     .param p2, "defaultIsRtl"    # Z
 
@@ -35,7 +35,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v4/text/TextDirectionHeuristicsCompat$TextDirectionAlgorithm;ZLandroid/support/v4/text/TextDirectionHeuristicsCompat$1;)V
-    .locals 0
+    .registers 4
     .param p1, "x0"    # Landroid/support/v4/text/TextDirectionHeuristicsCompat$TextDirectionAlgorithm;
     .param p2, "x1"    # Z
     .param p3, "x2"    # Landroid/support/v4/text/TextDirectionHeuristicsCompat$1;
@@ -49,7 +49,7 @@
 
 # virtual methods
 .method protected defaultIsRtl()Z
-    .locals 1
+    .registers 2
 
     .line 162
     iget-boolean v0, p0, Landroid/support/v4/text/TextDirectionHeuristicsCompat$TextDirectionHeuristicInternal;->mDefaultIsRtl:Z

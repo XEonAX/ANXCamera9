@@ -41,16 +41,16 @@
         }
     .end annotation
 
-    .line 152
+    .line 153
     iput-object p1, p0, Lcom/android/camera/fragment/sticker/FragmentSticker$StickerPagerAdapter;->this$0:Lcom/android/camera/fragment/sticker/FragmentSticker;
 
-    .line 153
+    .line 154
     invoke-direct {p0, p2}, Landroid/support/v4/app/FragmentPagerAdapter;-><init>(Landroid/support/v4/app/FragmentManager;)V
 
-    .line 154
+    .line 155
     iput-object p3, p0, Lcom/android/camera/fragment/sticker/FragmentSticker$StickerPagerAdapter;->mFragmentList:Ljava/util/List;
 
-    .line 155
+    .line 156
     return-void
 .end method
 
@@ -59,7 +59,7 @@
 .method public getCount()I
     .locals 1
 
-    .line 164
+    .line 165
     iget-object v0, p0, Lcom/android/camera/fragment/sticker/FragmentSticker$StickerPagerAdapter;->mFragmentList:Ljava/util/List;
 
     if-nez v0, :cond_0
@@ -82,7 +82,7 @@
 .method public getItem(I)Landroid/support/v4/app/Fragment;
     .locals 1
 
-    .line 159
+    .line 160
     iget-object v0, p0, Lcom/android/camera/fragment/sticker/FragmentSticker$StickerPagerAdapter;->mFragmentList:Ljava/util/List;
 
     invoke-interface {v0, p1}, Ljava/util/List;->get(I)Ljava/lang/Object;

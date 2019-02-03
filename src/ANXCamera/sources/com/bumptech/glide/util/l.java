@@ -11,8 +11,8 @@ import java.util.Arrays;
 
 /* compiled from: ViewPreloadSizeProvider */
 public class l<T> implements b<T>, m {
-    private int[] pl;
-    private a px;
+    private int[] pk;
+    private a pw;
 
     /* compiled from: ViewPreloadSizeProvider */
     private static final class a extends ViewTarget<View, Object> {
@@ -26,25 +26,25 @@ public class l<T> implements b<T>, m {
     }
 
     public l(@NonNull View view) {
-        this.px = new a(view, this);
+        this.pw = new a(view, this);
     }
 
     @Nullable
     public int[] b(@NonNull T t, int i, int i2) {
-        if (this.pl == null) {
+        if (this.pk == null) {
             return null;
         }
-        return Arrays.copyOf(this.pl, this.pl.length);
+        return Arrays.copyOf(this.pk, this.pk.length);
     }
 
     public void m(int i, int i2) {
-        this.pl = new int[]{i, i2};
-        this.px = null;
+        this.pk = new int[]{i, i2};
+        this.pw = null;
     }
 
     public void setView(@NonNull View view) {
-        if (this.pl == null && this.px == null) {
-            this.px = new a(view, this);
+        if (this.pk == null && this.pw == null) {
+            this.pw = new a(view, this);
         }
     }
 }

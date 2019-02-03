@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 21
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static translationZ(Landroid/view/View;F)V
-    .locals 1
+    .registers 3
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -30,7 +30,7 @@
 .end method
 
 .method public static translationZBy(Landroid/view/View;F)V
-    .locals 1
+    .registers 3
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -46,7 +46,7 @@
 .end method
 
 .method public static z(Landroid/view/View;F)V
-    .locals 1
+    .registers 3
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -62,7 +62,7 @@
 .end method
 
 .method public static zBy(Landroid/view/View;F)V
-    .locals 1
+    .registers 3
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 

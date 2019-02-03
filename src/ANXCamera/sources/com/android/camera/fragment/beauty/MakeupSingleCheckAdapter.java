@@ -17,6 +17,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 import com.android.camera.R;
 import com.android.camera.Util;
+import com.android.camera.constant.ColorConstant;
 import com.android.camera.ui.ColorImageView;
 import java.util.List;
 
@@ -82,17 +83,13 @@ public class MakeupSingleCheckAdapter extends Adapter<SingleCheckViewHolder> {
         }
 
         public void setDataToView(MakeupItem makeupItem, int i) throws Exception {
-            int color;
             this.itemView.setTag(makeupItem);
             Resources resources = MakeupSingleCheckAdapter.this.mContext.getResources();
             this.mText.setText(resources.getString(makeupItem.getTextResource()));
             TextView textView = this.mText;
-            if (i == MakeupSingleCheckAdapter.this.mSelectedItem) {
-                color = resources.getColor(R.color.beautycamera_beauty_advanced_item_text_pressed);
-            } else {
-                color = resources.getColor(R.color.beautycamera_beauty_advanced_item_text_normal);
-            }
-            textView.setTextColor(color);
+            int access$500 = MakeupSingleCheckAdapter.this.mSelectedItem;
+            int i2 = ColorConstant.COLOR_COMMON_SELECTED;
+            textView.setTextColor(i == access$500 ? ColorConstant.COLOR_COMMON_SELECTED : resources.getColor(R.color.beautycamera_beauty_advanced_item_text_normal));
             if (Util.isAccessible()) {
                 CharSequence stringBuilder;
                 textView = this.mText;
@@ -112,12 +109,10 @@ public class MakeupSingleCheckAdapter extends Adapter<SingleCheckViewHolder> {
             }
             this.mBase.setImageResource(makeupItem.getImageResource());
             ColorImageView colorImageView = this.mBase;
-            if (i == MakeupSingleCheckAdapter.this.mSelectedItem) {
-                i = resources.getColor(R.color.beautycamera_beauty_advanced_item_backgroud_pressed);
-            } else {
-                i = resources.getColor(R.color.beautycamera_beauty_advanced_item_backgroud_normal);
+            if (i != MakeupSingleCheckAdapter.this.mSelectedItem) {
+                i2 = resources.getColor(R.color.beautycamera_beauty_advanced_item_backgroud_normal);
             }
-            colorImageView.setColor(i);
+            colorImageView.setColor(i2);
         }
 
         public void onClick(View view) {
@@ -132,13 +127,17 @@ public class MakeupSingleCheckAdapter extends Adapter<SingleCheckViewHolder> {
             SingleCheckViewHolder singleCheckViewHolder2 = (SingleCheckViewHolder) MakeupSingleCheckAdapter.this.mRecyclerView.findViewHolderForAdapterPosition(MakeupSingleCheckAdapter.this.mSelectedItem);
             Resources resources = MakeupSingleCheckAdapter.this.mContext.getResources();
             if (singleCheckViewHolder != null) {
-                colorAnimate(singleCheckViewHolder.mBase, resources.getColor(R.color.beautycamera_beauty_advanced_item_backgroud_pressed), resources.getColor(R.color.beautycamera_beauty_advanced_item_backgroud_normal));
+                colorAnimate(singleCheckViewHolder.mBase, ColorConstant.COLOR_COMMON_SELECTED, resources.getColor(R.color.beautycamera_beauty_advanced_item_backgroud_normal));
             }
-            colorAnimate(singleCheckViewHolder2.mBase, resources.getColor(R.color.beautycamera_beauty_advanced_item_backgroud_normal), resources.getColor(R.color.beautycamera_beauty_advanced_item_backgroud_pressed));
+            if (singleCheckViewHolder2 != null) {
+                colorAnimate(singleCheckViewHolder2.mBase, resources.getColor(R.color.beautycamera_beauty_advanced_item_backgroud_normal), ColorConstant.COLOR_COMMON_SELECTED);
+            }
             if (singleCheckViewHolder != null) {
-                textColorAnimate(singleCheckViewHolder.mText, resources.getColor(R.color.beautycamera_beauty_advanced_item_text_pressed), resources.getColor(R.color.beautycamera_beauty_advanced_item_text_normal));
+                textColorAnimate(singleCheckViewHolder.mText, ColorConstant.COLOR_COMMON_SELECTED, resources.getColor(R.color.beautycamera_beauty_advanced_item_text_normal));
             }
-            textColorAnimate(singleCheckViewHolder2.mText, resources.getColor(R.color.beautycamera_beauty_advanced_item_text_normal), resources.getColor(R.color.beautycamera_beauty_advanced_item_text_pressed));
+            if (singleCheckViewHolder2 != null) {
+                textColorAnimate(singleCheckViewHolder2.mText, resources.getColor(R.color.beautycamera_beauty_advanced_item_text_normal), ColorConstant.COLOR_COMMON_SELECTED);
+            }
             if (singleCheckViewHolder == null) {
                 this.mAdapter.notifyItemChanged(MakeupSingleCheckAdapter.this.mPreSelectedItem);
             }

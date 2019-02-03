@@ -40,7 +40,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 20
+    .line 21
     new-instance v0, Lmiui/view/animation/CubicEaseOutInterpolator;
 
     invoke-direct {v0}, Lmiui/view/animation/CubicEaseOutInterpolator;-><init>()V
@@ -53,7 +53,7 @@
 .method public constructor <init>()V
     .locals 0
 
-    .line 17
+    .line 18
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

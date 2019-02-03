@@ -113,4 +113,16 @@ public class DataActionBackUpImpl implements DataBackUp {
         }
         return str;
     }
+
+    public boolean getBackupSwitchState(int i, String str, int i2) {
+        SimpleArrayMap backupRunning = getBackupRunning(DataRepository.dataItemGlobal().getDataBackUpKey(i), i2);
+        if (backupRunning == null) {
+            return false;
+        }
+        Object obj = backupRunning.get(str);
+        if (obj == null) {
+            return false;
+        }
+        return ((Boolean) obj).booleanValue();
+    }
 }

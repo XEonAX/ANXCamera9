@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import com.bumptech.glide.load.a.i;
 import com.bumptech.glide.load.a.n;
 import com.bumptech.glide.load.f;
+import com.ss.android.ugc.effectmanager.effect.model.ComposerHelper;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,7 +17,7 @@ import java.util.Set;
 
 /* compiled from: UriLoader */
 public class v<Data> implements m<Uri, Data> {
-    private static final Set<String> jJ = Collections.unmodifiableSet(new HashSet(Arrays.asList(new String[]{"file", "android.resource", "content"})));
+    private static final Set<String> jJ = Collections.unmodifiableSet(new HashSet(Arrays.asList(new String[]{ComposerHelper.COMPOSER_PATH, "android.resource", ComposerHelper.COMPOSER_CONTENT})));
     private final c<Data> jK;
 
     /* compiled from: UriLoader */
@@ -26,10 +27,10 @@ public class v<Data> implements m<Uri, Data> {
 
     /* compiled from: UriLoader */
     public static final class a implements n<Uri, AssetFileDescriptor>, c<AssetFileDescriptor> {
-        private final ContentResolver dv;
+        private final ContentResolver dw;
 
         public a(ContentResolver contentResolver) {
-            this.dv = contentResolver;
+            this.dw = contentResolver;
         }
 
         public m<Uri, AssetFileDescriptor> a(q qVar) {
@@ -40,20 +41,20 @@ public class v<Data> implements m<Uri, Data> {
         }
 
         public com.bumptech.glide.load.a.d<AssetFileDescriptor> l(Uri uri) {
-            return new com.bumptech.glide.load.a.a(this.dv, uri);
+            return new com.bumptech.glide.load.a.a(this.dw, uri);
         }
     }
 
     /* compiled from: UriLoader */
     public static class b implements n<Uri, ParcelFileDescriptor>, c<ParcelFileDescriptor> {
-        private final ContentResolver dv;
+        private final ContentResolver dw;
 
         public b(ContentResolver contentResolver) {
-            this.dv = contentResolver;
+            this.dw = contentResolver;
         }
 
         public com.bumptech.glide.load.a.d<ParcelFileDescriptor> l(Uri uri) {
-            return new i(this.dv, uri);
+            return new i(this.dw, uri);
         }
 
         @NonNull
@@ -67,14 +68,14 @@ public class v<Data> implements m<Uri, Data> {
 
     /* compiled from: UriLoader */
     public static class d implements n<Uri, InputStream>, c<InputStream> {
-        private final ContentResolver dv;
+        private final ContentResolver dw;
 
         public d(ContentResolver contentResolver) {
-            this.dv = contentResolver;
+            this.dw = contentResolver;
         }
 
         public com.bumptech.glide.load.a.d<InputStream> l(Uri uri) {
-            return new n(this.dv, uri);
+            return new n(this.dw, uri);
         }
 
         @NonNull

@@ -4,9 +4,9 @@
 
 
 # static fields
-.field private static final EO:Ljava/lang/String; = "this$0"
+.field private static final Fa:Ljava/lang/String; = "this$0"
 
-.field private static EP:[Ljava/lang/Class; = null
+.field private static Fb:[Ljava/lang/Class; = null
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "[",
@@ -16,9 +16,9 @@
     .end annotation
 .end field
 
-.field private static EQ:[Ljava/lang/String; = null
+.field private static Fc:[Ljava/lang/String; = null
 
-.field private static final EU:Ljava/util/WeakHashMap;
+.field private static final Fd:Ljava/util/WeakHashMap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/WeakHashMap<",
@@ -36,7 +36,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 12
+    .registers 12
 
     .line 16
     const/16 v0, 0x9
@@ -97,7 +97,7 @@
 
     aput-object v1, v0, v2
 
-    sput-object v0, Lmiui/reflect/ReflectUtils;->EP:[Ljava/lang/Class;
+    sput-object v0, Lmiui/reflect/ReflectUtils;->Fb:[Ljava/lang/Class;
 
     .line 28
     const-string v3, "Z"
@@ -122,20 +122,20 @@
 
     move-result-object v0
 
-    sput-object v0, Lmiui/reflect/ReflectUtils;->EQ:[Ljava/lang/String;
+    sput-object v0, Lmiui/reflect/ReflectUtils;->Fc:[Ljava/lang/String;
 
     .line 40
     new-instance v0, Ljava/util/WeakHashMap;
 
     invoke-direct {v0}, Ljava/util/WeakHashMap;-><init>()V
 
-    sput-object v0, Lmiui/reflect/ReflectUtils;->EU:Ljava/util/WeakHashMap;
+    sput-object v0, Lmiui/reflect/ReflectUtils;->Fd:Ljava/util/WeakHashMap;
 
     return-void
 .end method
 
 .method protected constructor <init>()V
-    .locals 2
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/InstantiationException;
@@ -156,22 +156,22 @@
 .end method
 
 .method public static getAdditionalField(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
-    .locals 2
+    .registers 4
 
     .line 194
-    if-eqz p0, :cond_2
+    if-eqz p0, :cond_2a
 
     .line 198
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_22
 
     .line 203
-    sget-object v0, Lmiui/reflect/ReflectUtils;->EU:Ljava/util/WeakHashMap;
+    sget-object v0, Lmiui/reflect/ReflectUtils;->Fd:Ljava/util/WeakHashMap;
 
     monitor-enter v0
 
     .line 204
-    :try_start_0
-    sget-object v1, Lmiui/reflect/ReflectUtils;->EU:Ljava/util/WeakHashMap;
+    :try_start_7
+    sget-object v1, Lmiui/reflect/ReflectUtils;->Fd:Ljava/util/WeakHashMap;
 
     invoke-virtual {v1, p0}, Ljava/util/WeakHashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -180,7 +180,7 @@
     check-cast p0, Ljava/util/HashMap;
 
     .line 205
-    if-nez p0, :cond_0
+    if-nez p0, :cond_14
 
     .line 206
     const/4 p0, 0x0
@@ -190,16 +190,16 @@
     return-object p0
 
     .line 208
-    :cond_0
+    :cond_14
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    :try_end_15
+    .catchall {:try_start_7 .. :try_end_15} :catchall_1f
 
     .line 210
     monitor-enter p0
 
     .line 211
-    :try_start_1
+    :try_start_16
     invoke-virtual {p0, p1}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
@@ -209,28 +209,28 @@
     return-object p1
 
     .line 212
-    :catchall_0
+    :catchall_1c
     move-exception p1
 
     monitor-exit p0
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_1e
+    .catchall {:try_start_16 .. :try_end_1e} :catchall_1c
 
     throw p1
 
     .line 208
-    :catchall_1
+    :catchall_1f
     move-exception p0
 
-    :try_start_2
+    :try_start_20
     monitor-exit v0
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+    :try_end_21
+    .catchall {:try_start_20 .. :try_end_21} :catchall_1f
 
     throw p0
 
     .line 199
-    :cond_1
+    :cond_22
     new-instance p0, Ljava/lang/NullPointerException;
 
     const-string p1, "fieldName must not be null"
@@ -240,7 +240,7 @@
     throw p0
 
     .line 195
-    :cond_2
+    :cond_2a
     new-instance p0, Ljava/lang/NullPointerException;
 
     const-string p1, "object must not be null"
@@ -251,7 +251,7 @@
 .end method
 
 .method public static getSignature(Ljava/lang/Class;)Ljava/lang/String;
-    .locals 2
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -264,35 +264,35 @@
     .line 71
     const/4 v0, 0x0
 
-    :goto_0
-    sget-object v1, Lmiui/reflect/ReflectUtils;->EP:[Ljava/lang/Class;
+    :goto_1
+    sget-object v1, Lmiui/reflect/ReflectUtils;->Fb:[Ljava/lang/Class;
 
     array-length v1, v1
 
-    if-ge v0, v1, :cond_1
+    if-ge v0, v1, :cond_14
 
     .line 72
-    sget-object v1, Lmiui/reflect/ReflectUtils;->EP:[Ljava/lang/Class;
+    sget-object v1, Lmiui/reflect/ReflectUtils;->Fb:[Ljava/lang/Class;
 
     aget-object v1, v1, v0
 
-    if-ne p0, v1, :cond_0
+    if-ne p0, v1, :cond_11
 
     .line 73
-    sget-object p0, Lmiui/reflect/ReflectUtils;->EQ:[Ljava/lang/String;
+    sget-object p0, Lmiui/reflect/ReflectUtils;->Fc:[Ljava/lang/String;
 
     aget-object p0, p0, v0
 
     return-object p0
 
     .line 71
-    :cond_0
+    :cond_11
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_1
 
     .line 77
-    :cond_1
+    :cond_14
     invoke-virtual {p0}, Ljava/lang/Class;->getName()Ljava/lang/String;
 
     move-result-object p0
@@ -305,20 +305,20 @@
 .end method
 
 .method public static getSignature(Ljava/lang/String;)Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 86
     const/4 v0, 0x0
 
-    :goto_0
-    sget-object v1, Lmiui/reflect/ReflectUtils;->EP:[Ljava/lang/Class;
+    :goto_1
+    sget-object v1, Lmiui/reflect/ReflectUtils;->Fb:[Ljava/lang/Class;
 
     array-length v1, v1
 
-    if-ge v0, v1, :cond_1
+    if-ge v0, v1, :cond_1b
 
     .line 87
-    sget-object v1, Lmiui/reflect/ReflectUtils;->EP:[Ljava/lang/Class;
+    sget-object v1, Lmiui/reflect/ReflectUtils;->Fb:[Ljava/lang/Class;
 
     aget-object v1, v1, v0
 
@@ -330,21 +330,21 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_18
 
     .line 88
-    sget-object p0, Lmiui/reflect/ReflectUtils;->EQ:[Ljava/lang/String;
+    sget-object p0, Lmiui/reflect/ReflectUtils;->Fc:[Ljava/lang/String;
 
     aget-object p0, p0, v0
 
     .line 86
-    :cond_0
+    :cond_18
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_1
 
     .line 92
-    :cond_1
+    :cond_1b
     const-string v0, "."
 
     const-string v1, "/"
@@ -360,11 +360,11 @@
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_2c
 
-    goto :goto_1
+    goto :goto_42
 
-    :cond_2
+    :cond_2c
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -383,12 +383,12 @@
 
     move-result-object p0
 
-    :goto_1
+    :goto_42
     return-object p0
 .end method
 
 .method public static getSignature([Ljava/lang/Class;Ljava/lang/Class;)Ljava/lang/String;
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "([",
@@ -411,15 +411,15 @@
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 105
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_1c
 
     .line 106
     array-length v1, p0
 
     const/4 v2, 0x0
 
-    :goto_0
-    if-ge v2, v1, :cond_0
+    :goto_e
+    if-ge v2, v1, :cond_1c
 
     aget-object v3, p0, v2
 
@@ -433,10 +433,10 @@
     .line 106
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_e
 
     .line 110
-    :cond_0
+    :cond_1c
     const/16 p0, 0x29
 
     invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -457,7 +457,7 @@
 .end method
 
 .method public static getSurroundingThis(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 3
+    .registers 4
 
     .line 61
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
@@ -490,22 +490,22 @@
 .end method
 
 .method public static removeAdditionalField(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
-    .locals 2
+    .registers 4
 
     .line 224
-    if-eqz p0, :cond_2
+    if-eqz p0, :cond_2a
 
     .line 228
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_22
 
     .line 233
-    sget-object v0, Lmiui/reflect/ReflectUtils;->EU:Ljava/util/WeakHashMap;
+    sget-object v0, Lmiui/reflect/ReflectUtils;->Fd:Ljava/util/WeakHashMap;
 
     monitor-enter v0
 
     .line 234
-    :try_start_0
-    sget-object v1, Lmiui/reflect/ReflectUtils;->EU:Ljava/util/WeakHashMap;
+    :try_start_7
+    sget-object v1, Lmiui/reflect/ReflectUtils;->Fd:Ljava/util/WeakHashMap;
 
     invoke-virtual {v1, p0}, Ljava/util/WeakHashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -514,7 +514,7 @@
     check-cast p0, Ljava/util/HashMap;
 
     .line 235
-    if-nez p0, :cond_0
+    if-nez p0, :cond_14
 
     .line 236
     const/4 p0, 0x0
@@ -524,16 +524,16 @@
     return-object p0
 
     .line 238
-    :cond_0
+    :cond_14
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    :try_end_15
+    .catchall {:try_start_7 .. :try_end_15} :catchall_1f
 
     .line 240
     monitor-enter p0
 
     .line 241
-    :try_start_1
+    :try_start_16
     invoke-virtual {p0, p1}, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
@@ -543,28 +543,28 @@
     return-object p1
 
     .line 242
-    :catchall_0
+    :catchall_1c
     move-exception p1
 
     monitor-exit p0
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_1e
+    .catchall {:try_start_16 .. :try_end_1e} :catchall_1c
 
     throw p1
 
     .line 238
-    :catchall_1
+    :catchall_1f
     move-exception p0
 
-    :try_start_2
+    :try_start_20
     monitor-exit v0
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+    :try_end_21
+    .catchall {:try_start_20 .. :try_end_21} :catchall_1f
 
     throw p0
 
     .line 229
-    :cond_1
+    :cond_22
     new-instance p0, Ljava/lang/NullPointerException;
 
     const-string p1, "fieldName must not be null"
@@ -574,7 +574,7 @@
     throw p0
 
     .line 225
-    :cond_2
+    :cond_2a
     new-instance p0, Ljava/lang/NullPointerException;
 
     const-string p1, "object must not be null"
@@ -585,22 +585,22 @@
 .end method
 
 .method public static setAdditionalField(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 3
+    .registers 6
 
     .line 163
-    if-eqz p0, :cond_2
+    if-eqz p0, :cond_31
 
     .line 167
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_29
 
     .line 172
-    sget-object v0, Lmiui/reflect/ReflectUtils;->EU:Ljava/util/WeakHashMap;
+    sget-object v0, Lmiui/reflect/ReflectUtils;->Fd:Ljava/util/WeakHashMap;
 
     monitor-enter v0
 
     .line 173
-    :try_start_0
-    sget-object v1, Lmiui/reflect/ReflectUtils;->EU:Ljava/util/WeakHashMap;
+    :try_start_7
+    sget-object v1, Lmiui/reflect/ReflectUtils;->Fd:Ljava/util/WeakHashMap;
 
     invoke-virtual {v1, p0}, Ljava/util/WeakHashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -609,7 +609,7 @@
     check-cast v1, Ljava/util/HashMap;
 
     .line 174
-    if-nez v1, :cond_0
+    if-nez v1, :cond_1b
 
     .line 175
     new-instance v1, Ljava/util/HashMap;
@@ -617,21 +617,21 @@
     invoke-direct {v1}, Ljava/util/HashMap;-><init>()V
 
     .line 176
-    sget-object v2, Lmiui/reflect/ReflectUtils;->EU:Ljava/util/WeakHashMap;
+    sget-object v2, Lmiui/reflect/ReflectUtils;->Fd:Ljava/util/WeakHashMap;
 
     invoke-virtual {v2, p0, v1}, Ljava/util/WeakHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 178
-    :cond_0
+    :cond_1b
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    :try_end_1c
+    .catchall {:try_start_7 .. :try_end_1c} :catchall_26
 
     .line 180
     monitor-enter v1
 
     .line 181
-    :try_start_1
+    :try_start_1d
     invoke-virtual {v1, p1, p2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p0
@@ -641,28 +641,28 @@
     return-object p0
 
     .line 182
-    :catchall_0
+    :catchall_23
     move-exception p0
 
     monitor-exit v1
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_25
+    .catchall {:try_start_1d .. :try_end_25} :catchall_23
 
     throw p0
 
     .line 178
-    :catchall_1
+    :catchall_26
     move-exception p0
 
-    :try_start_2
+    :try_start_27
     monitor-exit v0
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+    :try_end_28
+    .catchall {:try_start_27 .. :try_end_28} :catchall_26
 
     throw p0
 
     .line 168
-    :cond_1
+    :cond_29
     new-instance p0, Ljava/lang/NullPointerException;
 
     const-string p1, "fieldName must not be null"
@@ -672,7 +672,7 @@
     throw p0
 
     .line 164
-    :cond_2
+    :cond_31
     new-instance p0, Ljava/lang/NullPointerException;
 
     const-string p1, "object must not be null"
@@ -683,7 +683,7 @@
 .end method
 
 .method public static updateField(Ljava/lang/Class;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -703,14 +703,14 @@
     .end annotation
 
     .line 130
-    if-nez p0, :cond_1
+    if-nez p0, :cond_d
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_5
 
-    goto :goto_0
+    goto :goto_d
 
     .line 131
-    :cond_0
+    :cond_5
     new-instance p0, Lmiui/reflect/IllegalArgumentException;
 
     const-string p1, "clazz and holder cannot be all null"
@@ -720,9 +720,9 @@
     throw p0
 
     .line 134
-    :cond_1
-    :goto_0
-    if-nez p0, :cond_2
+    :cond_d
+    :goto_d
+    if-nez p0, :cond_13
 
     .line 135
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
@@ -730,9 +730,9 @@
     move-result-object p0
 
     .line 138
-    :cond_2
-    :goto_1
-    if-eqz p0, :cond_5
+    :cond_13
+    :goto_13
+    if-eqz p0, :cond_3c
 
     .line 139
     invoke-virtual {p0}, Ljava/lang/Class;->getDeclaredFields()[Ljava/lang/reflect/Field;
@@ -743,8 +743,8 @@
 
     const/4 v2, 0x0
 
-    :goto_2
-    if-ge v2, v1, :cond_4
+    :goto_1b
+    if-ge v2, v1, :cond_37
 
     aget-object v3, v0, v2
 
@@ -754,29 +754,29 @@
     invoke-virtual {v3, v4}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
     .line 142
-    :try_start_0
+    :try_start_23
     invoke-virtual {v3, p1}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v4
 
-    if-ne v4, p2, :cond_3
+    if-ne v4, p2, :cond_2c
 
     .line 143
     invoke-virtual {v3, p1, p3}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
-    :try_end_0
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_2c
+    .catch Ljava/lang/IllegalAccessException; {:try_start_23 .. :try_end_2c} :catch_30
 
     .line 148
-    :cond_3
+    :cond_2c
     nop
 
     .line 139
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_2
+    goto :goto_1b
 
     .line 145
-    :catch_0
+    :catch_30
     move-exception p0
 
     .line 147
@@ -787,14 +787,14 @@
     throw p1
 
     .line 138
-    :cond_4
+    :cond_37
     invoke-virtual {p0}, Ljava/lang/Class;->getSuperclass()Ljava/lang/Class;
 
     move-result-object p0
 
-    goto :goto_1
+    goto :goto_13
 
     .line 151
-    :cond_5
+    :cond_3c
     return-void
 .end method

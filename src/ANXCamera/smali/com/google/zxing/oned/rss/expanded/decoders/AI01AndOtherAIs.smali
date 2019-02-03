@@ -9,7 +9,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/zxing/common/BitArray;)V
-    .locals 0
+    .registers 2
     .param p1, "information"    # Lcom/google/zxing/common/BitArray;
 
     .line 42
@@ -22,7 +22,7 @@
 
 # virtual methods
 .method public parseInformation()Ljava/lang/String;
-    .locals 5
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lcom/google/zxing/NotFoundException;,

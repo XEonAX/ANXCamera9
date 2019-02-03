@@ -16,14 +16,14 @@ import java.util.concurrent.atomic.AtomicReference;
 /* compiled from: ByteBufferUtil */
 public final class a {
     private static final int BUFFER_SIZE = 16384;
-    private static final AtomicReference<byte[]> pf = new AtomicReference();
+    private static final AtomicReference<byte[]> pe = new AtomicReference();
 
     /* compiled from: ByteBufferUtil */
     private static class a extends InputStream {
         private static final int UNSET = -1;
         @NonNull
         private final ByteBuffer byteBuffer;
-        private int pg = -1;
+        private int pf = -1;
 
         a(@NonNull ByteBuffer byteBuffer) {
             this.byteBuffer = byteBuffer;
@@ -41,7 +41,7 @@ public final class a {
         }
 
         public synchronized void mark(int i) {
-            this.pg = this.byteBuffer.position();
+            this.pf = this.byteBuffer.position();
         }
 
         public boolean markSupported() {
@@ -58,8 +58,8 @@ public final class a {
         }
 
         public synchronized void reset() throws IOException {
-            if (this.pg != -1) {
-                this.byteBuffer.position(this.pg);
+            if (this.pf != -1) {
+                this.byteBuffer.position(this.pf);
             } else {
                 throw new IOException("Cannot reset to unset mark position");
             }
@@ -234,7 +234,7 @@ public final class a {
             outputStream.write(h.data, h.offset, h.offset + h.limit);
             return;
         }
-        Object obj = (byte[]) pf.getAndSet(null);
+        Object obj = (byte[]) pe.getAndSet(null);
         if (obj == null) {
             obj = new byte[16384];
         }
@@ -243,7 +243,7 @@ public final class a {
             byteBuffer.get(obj, 0, min);
             outputStream.write(obj, 0, min);
         }
-        pf.set(obj);
+        pe.set(obj);
     }
 
     @NonNull
@@ -267,7 +267,7 @@ public final class a {
     @NonNull
     public static ByteBuffer g(@NonNull InputStream inputStream) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(16384);
-        Object obj = (byte[]) pf.getAndSet(null);
+        Object obj = (byte[]) pe.getAndSet(null);
         if (obj == null) {
             obj = new byte[16384];
         }
@@ -276,7 +276,7 @@ public final class a {
             if (read >= 0) {
                 byteArrayOutputStream.write(obj, 0, read);
             } else {
-                pf.set(obj);
+                pe.set(obj);
                 byte[] toByteArray = byteArrayOutputStream.toByteArray();
                 return (ByteBuffer) ByteBuffer.allocateDirect(toByteArray.length).put(toByteArray).position(0);
             }

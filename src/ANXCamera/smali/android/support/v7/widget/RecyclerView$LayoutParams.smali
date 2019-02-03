@@ -26,7 +26,7 @@
 
 # direct methods
 .method public constructor <init>(II)V
-    .locals 1
+    .registers 4
     .param p1, "width"    # I
     .param p2, "height"    # I
 
@@ -55,7 +55,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
-    .locals 1
+    .registers 4
     .param p1, "c"    # Landroid/content/Context;
     .param p2, "attrs"    # Landroid/util/AttributeSet;
 
@@ -84,7 +84,7 @@
 .end method
 
 .method public constructor <init>(Landroid/support/v7/widget/RecyclerView$LayoutParams;)V
-    .locals 1
+    .registers 3
     .param p1, "source"    # Landroid/support/v7/widget/RecyclerView$LayoutParams;
 
     .line 8746
@@ -112,7 +112,7 @@
 .end method
 
 .method public constructor <init>(Landroid/view/ViewGroup$LayoutParams;)V
-    .locals 1
+    .registers 3
     .param p1, "source"    # Landroid/view/ViewGroup$LayoutParams;
 
     .line 8742
@@ -140,7 +140,7 @@
 .end method
 
 .method public constructor <init>(Landroid/view/ViewGroup$MarginLayoutParams;)V
-    .locals 1
+    .registers 3
     .param p1, "source"    # Landroid/view/ViewGroup$MarginLayoutParams;
 
     .line 8738
@@ -170,7 +170,7 @@
 
 # virtual methods
 .method public getViewAdapterPosition()I
-    .locals 1
+    .registers 2
 
     .line 8817
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$LayoutParams;->mViewHolder:Landroid/support/v7/widget/RecyclerView$ViewHolder;
@@ -183,7 +183,7 @@
 .end method
 
 .method public getViewLayoutPosition()I
-    .locals 1
+    .registers 2
 
     .line 8805
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$LayoutParams;->mViewHolder:Landroid/support/v7/widget/RecyclerView$ViewHolder;
@@ -196,7 +196,7 @@
 .end method
 
 .method public getViewPosition()I
-    .locals 1
+    .registers 2
 
     .line 8795
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$LayoutParams;->mViewHolder:Landroid/support/v7/widget/RecyclerView$ViewHolder;
@@ -209,7 +209,7 @@
 .end method
 
 .method public isItemChanged()Z
-    .locals 1
+    .registers 2
 
     .line 8788
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$LayoutParams;->mViewHolder:Landroid/support/v7/widget/RecyclerView$ViewHolder;
@@ -222,7 +222,7 @@
 .end method
 
 .method public isItemRemoved()Z
-    .locals 1
+    .registers 2
 
     .line 8777
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$LayoutParams;->mViewHolder:Landroid/support/v7/widget/RecyclerView$ViewHolder;
@@ -235,7 +235,7 @@
 .end method
 
 .method public isViewInvalid()Z
-    .locals 1
+    .registers 2
 
     .line 8766
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$LayoutParams;->mViewHolder:Landroid/support/v7/widget/RecyclerView$ViewHolder;
@@ -248,7 +248,7 @@
 .end method
 
 .method public viewNeedsUpdate()Z
-    .locals 1
+    .registers 2
 
     .line 8756
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$LayoutParams;->mViewHolder:Landroid/support/v7/widget/RecyclerView$ViewHolder;

@@ -35,3 +35,9 @@
 
 .method public abstract onDeviceOrientationChanged(FZ)V
 .end method
+
+.method public abstract onDeviceRotationChanged([F)V
+.end method
+
+.method public abstract onSensorChanged(Landroid/hardware/SensorEvent;)V
+.end method

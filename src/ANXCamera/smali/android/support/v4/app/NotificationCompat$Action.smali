@@ -40,7 +40,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 2171
     new-instance v0, Landroid/support/v4/app/NotificationCompat$Action$1;
@@ -53,7 +53,7 @@
 .end method
 
 .method public constructor <init>(ILjava/lang/CharSequence;Landroid/app/PendingIntent;)V
-    .locals 6
+    .registers 10
     .param p1, "icon"    # I
     .param p2, "title"    # Ljava/lang/CharSequence;
     .param p3, "intent"    # Landroid/app/PendingIntent;
@@ -80,7 +80,7 @@
 .end method
 
 .method private constructor <init>(ILjava/lang/CharSequence;Landroid/app/PendingIntent;Landroid/os/Bundle;[Landroid/support/v4/app/RemoteInput;)V
-    .locals 1
+    .registers 7
     .param p1, "icon"    # I
     .param p2, "title"    # Ljava/lang/CharSequence;
     .param p3, "intent"    # Landroid/app/PendingIntent;
@@ -104,18 +104,18 @@
     iput-object p3, p0, Landroid/support/v4/app/NotificationCompat$Action;->actionIntent:Landroid/app/PendingIntent;
 
     .line 1835
-    if-eqz p4, :cond_0
+    if-eqz p4, :cond_11
 
     move-object v0, p4
 
-    goto :goto_0
+    goto :goto_16
 
-    :cond_0
+    :cond_11
     new-instance v0, Landroid/os/Bundle;
 
     invoke-direct {v0}, Landroid/os/Bundle;-><init>()V
 
-    :goto_0
+    :goto_16
     iput-object v0, p0, Landroid/support/v4/app/NotificationCompat$Action;->mExtras:Landroid/os/Bundle;
 
     .line 1836
@@ -126,7 +126,7 @@
 .end method
 
 .method synthetic constructor <init>(ILjava/lang/CharSequence;Landroid/app/PendingIntent;Landroid/os/Bundle;[Landroid/support/v4/app/RemoteInput;Landroid/support/v4/app/NotificationCompat$1;)V
-    .locals 0
+    .registers 7
     .param p1, "x0"    # I
     .param p2, "x1"    # Ljava/lang/CharSequence;
     .param p3, "x2"    # Landroid/app/PendingIntent;
@@ -141,7 +141,7 @@
 .end method
 
 .method static synthetic access$300(Landroid/support/v4/app/NotificationCompat$Action;)Landroid/os/Bundle;
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/app/NotificationCompat$Action;
 
     .line 1808
@@ -153,7 +153,7 @@
 
 # virtual methods
 .method public getActionIntent()Landroid/app/PendingIntent;
-    .locals 1
+    .registers 2
 
     .line 1851
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompat$Action;->actionIntent:Landroid/app/PendingIntent;
@@ -162,7 +162,7 @@
 .end method
 
 .method public getExtras()Landroid/os/Bundle;
-    .locals 1
+    .registers 2
 
     .line 1859
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompat$Action;->mExtras:Landroid/os/Bundle;
@@ -171,7 +171,7 @@
 .end method
 
 .method public getIcon()I
-    .locals 1
+    .registers 2
 
     .line 1841
     iget v0, p0, Landroid/support/v4/app/NotificationCompat$Action;->icon:I
@@ -180,7 +180,7 @@
 .end method
 
 .method public getRemoteInputs()[Landroid/support/v4/app/RemoteInput;
-    .locals 1
+    .registers 2
 
     .line 1868
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompat$Action;->mRemoteInputs:[Landroid/support/v4/app/RemoteInput;
@@ -189,7 +189,7 @@
 .end method
 
 .method public bridge synthetic getRemoteInputs()[Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput;
-    .locals 1
+    .registers 2
 
     .line 1808
     invoke-virtual {p0}, Landroid/support/v4/app/NotificationCompat$Action;->getRemoteInputs()[Landroid/support/v4/app/RemoteInput;
@@ -200,7 +200,7 @@
 .end method
 
 .method public getTitle()Ljava/lang/CharSequence;
-    .locals 1
+    .registers 2
 
     .line 1846
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompat$Action;->title:Ljava/lang/CharSequence;

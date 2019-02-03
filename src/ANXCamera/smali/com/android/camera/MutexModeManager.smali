@@ -237,7 +237,7 @@
 
     .line 167
     :cond_0
-    invoke-static {}, Lcom/mi/config/b;->hC()Z
+    invoke-static {}, Lcom/mi/config/b;->hT()Z
 
     move-result v0
 
@@ -598,7 +598,7 @@
     .locals 2
 
     .line 89
-    invoke-static {}, Lcom/mi/config/b;->gv()Z
+    invoke-static {}, Lcom/mi/config/b;->gN()Z
 
     move-result v0
 

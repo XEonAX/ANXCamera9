@@ -416,25 +416,29 @@ public class V6GestureRecognizer {
     private boolean checkControlView(MotionEvent motionEvent) {
         MainContentProtocol mainContentProtocol = (MainContentProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(166);
         if (mainContentProtocol != null) {
-            if (mainContentProtocol.isEffectViewVisible()) {
-                mainContentProtocol.onViewTouchEvent(R.id.v6_effect_crop_view, motionEvent);
-                if (mainContentProtocol.isEffectViewMoved()) {
-                    if (isGestureDetecting()) {
-                        this.mGesture += 6;
+            if (mainContentProtocol.isAutoZoomViewEnabled()) {
+                mainContentProtocol.onViewTouchEvent(R.id.autozoom_overlay, motionEvent);
+            } else {
+                if (mainContentProtocol.isEffectViewVisible()) {
+                    mainContentProtocol.onViewTouchEvent(R.id.v6_effect_crop_view, motionEvent);
+                    if (mainContentProtocol.isEffectViewMoved()) {
+                        if (isGestureDetecting()) {
+                            this.mGesture += 6;
+                        }
+                    } else if (!mainContentProtocol.isEffectViewMoved() && getCurrentGesture() == 6) {
+                        setGesture(0);
                     }
-                } else if (!mainContentProtocol.isEffectViewMoved() && getCurrentGesture() == 6) {
-                    setGesture(0);
                 }
-            }
-            if (mainContentProtocol.isIndicatorVisible(2)) {
-                boolean isEvAdjusted = mainContentProtocol.isEvAdjusted(false);
-                mainContentProtocol.onViewTouchEvent(R.id.v6_focus_view, motionEvent);
-                if (mainContentProtocol.isEvAdjusted(false)) {
-                    if (isGestureDetecting()) {
-                        this.mGesture += 7;
+                if (mainContentProtocol.isIndicatorVisible(2)) {
+                    boolean isEvAdjusted = mainContentProtocol.isEvAdjusted(false);
+                    mainContentProtocol.onViewTouchEvent(R.id.v6_focus_view, motionEvent);
+                    if (mainContentProtocol.isEvAdjusted(false)) {
+                        if (isGestureDetecting()) {
+                            this.mGesture += 7;
+                        }
+                    } else if (!isEvAdjusted && getCurrentGesture() == 7) {
+                        setGesture(0);
                     }
-                } else if (!isEvAdjusted && getCurrentGesture() == 7) {
-                    setGesture(0);
                 }
             }
         }

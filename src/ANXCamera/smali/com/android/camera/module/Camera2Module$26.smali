@@ -3,12 +3,12 @@
 .source "Camera2Module.java"
 
 # interfaces
-.implements Lio/reactivex/functions/Consumer;
+.implements Lio/reactivex/FlowableOnSubscribe;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/module/Camera2Module;->initAiSceneParser()V
+    value = Lcom/android/camera/module/Camera2Module;->initMetaParser()V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -19,8 +19,8 @@
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "Lio/reactivex/functions/Consumer<",
-        "Ljava/lang/Integer;",
+        "Lio/reactivex/FlowableOnSubscribe<",
+        "Landroid/hardware/camera2/CaptureResult;",
         ">;"
     }
 .end annotation
@@ -34,7 +34,7 @@
 .method constructor <init>(Lcom/android/camera/module/Camera2Module;)V
     .locals 0
 
-    .line 4886
+    .line 5134
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module$26;->this$0:Lcom/android/camera/module/Camera2Module;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -44,36 +44,28 @@
 
 
 # virtual methods
-.method public accept(Ljava/lang/Integer;)V
-    .locals 2
+.method public subscribe(Lio/reactivex/FlowableEmitter;)V
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lio/reactivex/FlowableEmitter<",
+            "Landroid/hardware/camera2/CaptureResult;",
+            ">;)V"
+        }
+    .end annotation
 
-    .line 4889
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module$26;->this$0:Lcom/android/camera/module/Camera2Module;
-
-    invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
-
-    move-result p1
-
-    const/4 v1, 0x0
-
-    invoke-static {v0, p1, v1}, Lcom/android/camera/module/Camera2Module;->access$3000(Lcom/android/camera/module/Camera2Module;IZ)V
-
-    .line 4890
-    return-void
-.end method
-
-.method public bridge synthetic accept(Ljava/lang/Object;)V
-    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Exception;
         }
     .end annotation
 
-    .line 4886
-    check-cast p1, Ljava/lang/Integer;
+    .line 5137
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module$26;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module$26;->accept(Ljava/lang/Integer;)V
+    invoke-static {v0, p1}, Lcom/android/camera/module/Camera2Module;->access$4402(Lcom/android/camera/module/Camera2Module;Lio/reactivex/FlowableEmitter;)Lio/reactivex/FlowableEmitter;
 
+    .line 5138
     return-void
 .end method

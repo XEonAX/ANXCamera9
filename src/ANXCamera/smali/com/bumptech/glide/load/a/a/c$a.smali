@@ -18,13 +18,13 @@
 
 
 # static fields
-.field private static final dG:[Ljava/lang/String;
+.field private static final dH:[Ljava/lang/String;
 
-.field private static final dH:Ljava/lang/String; = "kind = 1 AND image_id = ?"
+.field private static final dI:Ljava/lang/String; = "kind = 1 AND image_id = ?"
 
 
 # instance fields
-.field private final dv:Landroid/content/ContentResolver;
+.field private final dw:Landroid/content/ContentResolver;
 
 
 # direct methods
@@ -38,7 +38,7 @@
 
     move-result-object v0
 
-    sput-object v0, Lcom/bumptech/glide/load/a/a/c$a;->dG:[Ljava/lang/String;
+    sput-object v0, Lcom/bumptech/glide/load/a/a/c$a;->dH:[Ljava/lang/String;
 
     return-void
 .end method
@@ -50,7 +50,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 145
-    iput-object p1, p0, Lcom/bumptech/glide/load/a/a/c$a;->dv:Landroid/content/ContentResolver;
+    iput-object p1, p0, Lcom/bumptech/glide/load/a/a/c$a;->dw:Landroid/content/ContentResolver;
 
     .line 146
     return-void
@@ -67,11 +67,11 @@
     move-result-object p1
 
     .line 158
-    iget-object v0, p0, Lcom/bumptech/glide/load/a/a/c$a;->dv:Landroid/content/ContentResolver;
+    iget-object v0, p0, Lcom/bumptech/glide/load/a/a/c$a;->dw:Landroid/content/ContentResolver;
 
     sget-object v1, Landroid/provider/MediaStore$Images$Thumbnails;->EXTERNAL_CONTENT_URI:Landroid/net/Uri;
 
-    sget-object v2, Lcom/bumptech/glide/load/a/a/c$a;->dG:[Ljava/lang/String;
+    sget-object v2, Lcom/bumptech/glide/load/a/a/c$a;->dH:[Ljava/lang/String;
 
     const-string v3, "kind = 1 AND image_id = ?"
 

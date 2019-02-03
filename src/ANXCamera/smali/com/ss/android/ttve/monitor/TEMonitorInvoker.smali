@@ -12,10 +12,10 @@
 .method static constructor <clinit>()V
     .locals 0
 
-    .line 26
+    .line 27
     invoke-static {}, Lcom/ss/android/ttve/nativePort/TENativeLibsLoader;->loadLibrary()V
 
-    .line 27
+    .line 28
     return-void
 .end method
 
@@ -55,35 +55,38 @@
 .method public static native nativePerfRational(Ljava/lang/String;FF)V
 .end method
 
+.method public static native nativePerfString(Ljava/lang/String;Ljava/lang/String;)V
+.end method
+
 .method public static native nativeReset()V
 .end method
 
 .method public static onNativeCallback_onMonitorLogFloat(Ljava/lang/String;Ljava/lang/String;F)V
     .locals 0
 
-    .line 34
+    .line 35
     invoke-static {p0, p1, p2}, Lcom/ss/android/ttve/monitor/TEMonitor;->monitorTELog(Ljava/lang/String;Ljava/lang/String;F)Z
 
-    .line 35
+    .line 36
     return-void
 .end method
 
 .method public static onNativeCallback_onMonitorLogInt(Ljava/lang/String;Ljava/lang/String;J)V
     .locals 0
 
-    .line 30
+    .line 31
     invoke-static {p0, p1, p2, p3}, Lcom/ss/android/ttve/monitor/TEMonitor;->monitorTELog(Ljava/lang/String;Ljava/lang/String;J)Z
 
-    .line 31
+    .line 32
     return-void
 .end method
 
 .method public static onNativeCallback_onMonitorLogMap(Ljava/lang/String;Ljava/lang/String;Ljava/util/HashMap;)V
     .locals 0
 
-    .line 38
+    .line 39
     invoke-static {p0, p1, p2}, Lcom/ss/android/ttve/monitor/TEMonitor;->monitorTELog(Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Z
 
-    .line 39
+    .line 40
     return-void
 .end method

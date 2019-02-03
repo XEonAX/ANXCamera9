@@ -41,15 +41,15 @@
 
 
 # instance fields
-.field private final F:Lcom/bumptech/glide/load/engine/b/a;
-
 .field private final H:Lcom/bumptech/glide/load/engine/b/a;
 
-.field private final Q:Lcom/bumptech/glide/load/engine/b/a;
+.field private final I:Lcom/bumptech/glide/load/engine/b/a;
 
-.field private dT:Z
+.field private final S:Lcom/bumptech/glide/load/engine/b/a;
 
-.field private dU:Lcom/bumptech/glide/load/engine/p;
+.field private dU:Z
+
+.field private dV:Lcom/bumptech/glide/load/engine/p;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/engine/p<",
@@ -60,13 +60,13 @@
 
 .field private dataSource:Lcom/bumptech/glide/load/DataSource;
 
-.field private volatile dp:Z
+.field private volatile dq:Z
 
-.field private eC:Z
+.field private eD:Z
 
-.field private final et:Lcom/bumptech/glide/util/a/c;
+.field private final eu:Lcom/bumptech/glide/util/a/c;
 
-.field private final eu:Landroid/support/v4/util/Pools$Pool;
+.field private final ev:Landroid/support/v4/util/Pools$Pool;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Landroid/support/v4/util/Pools$Pool<",
@@ -241,25 +241,25 @@
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->et:Lcom/bumptech/glide/util/a/c;
+    iput-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->eu:Lcom/bumptech/glide/util/a/c;
 
     .line 91
-    iput-object p1, p0, Lcom/bumptech/glide/load/engine/EngineJob;->H:Lcom/bumptech/glide/load/engine/b/a;
+    iput-object p1, p0, Lcom/bumptech/glide/load/engine/EngineJob;->I:Lcom/bumptech/glide/load/engine/b/a;
 
     .line 92
-    iput-object p2, p0, Lcom/bumptech/glide/load/engine/EngineJob;->F:Lcom/bumptech/glide/load/engine/b/a;
+    iput-object p2, p0, Lcom/bumptech/glide/load/engine/EngineJob;->H:Lcom/bumptech/glide/load/engine/b/a;
 
     .line 93
     iput-object p3, p0, Lcom/bumptech/glide/load/engine/EngineJob;->fB:Lcom/bumptech/glide/load/engine/b/a;
 
     .line 94
-    iput-object p4, p0, Lcom/bumptech/glide/load/engine/EngineJob;->Q:Lcom/bumptech/glide/load/engine/b/a;
+    iput-object p4, p0, Lcom/bumptech/glide/load/engine/EngineJob;->S:Lcom/bumptech/glide/load/engine/b/a;
 
     .line 95
     iput-object p5, p0, Lcom/bumptech/glide/load/engine/EngineJob;->fC:Lcom/bumptech/glide/load/engine/h;
 
     .line 96
-    iput-object p6, p0, Lcom/bumptech/glide/load/engine/EngineJob;->eu:Landroid/support/v4/util/Pools$Pool;
+    iput-object p6, p0, Lcom/bumptech/glide/load/engine/EngineJob;->ev:Landroid/support/v4/util/Pools$Pool;
 
     .line 97
     iput-object p7, p0, Lcom/bumptech/glide/load/engine/EngineJob;->fO:Lcom/bumptech/glide/load/engine/EngineJob$EngineResourceFactory;
@@ -286,12 +286,12 @@
 
     if-eqz v0, :cond_1
 
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->Q:Lcom/bumptech/glide/load/engine/b/a;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->S:Lcom/bumptech/glide/load/engine/b/a;
 
     goto :goto_0
 
     :cond_1
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->F:Lcom/bumptech/glide/load/engine/b/a;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->H:Lcom/bumptech/glide/load/engine/b/a;
 
     .line 153
     :goto_0
@@ -382,7 +382,7 @@
     iput-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->fV:Lcom/bumptech/glide/load/engine/k;
 
     .line 242
-    iput-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dU:Lcom/bumptech/glide/load/engine/p;
+    iput-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dV:Lcom/bumptech/glide/load/engine/p;
 
     .line 243
     iget-object v1, p0, Lcom/bumptech/glide/load/engine/EngineJob;->fU:Ljava/util/List;
@@ -401,7 +401,7 @@
     iput-boolean v1, p0, Lcom/bumptech/glide/load/engine/EngineJob;->fT:Z
 
     .line 247
-    iput-boolean v1, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dp:Z
+    iput-boolean v1, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dq:Z
 
     .line 248
     iput-boolean v1, p0, Lcom/bumptech/glide/load/engine/EngineJob;->fR:Z
@@ -421,7 +421,7 @@
     iput-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dataSource:Lcom/bumptech/glide/load/DataSource;
 
     .line 253
-    iget-object p1, p0, Lcom/bumptech/glide/load/engine/EngineJob;->eu:Landroid/support/v4/util/Pools$Pool;
+    iget-object p1, p0, Lcom/bumptech/glide/load/engine/EngineJob;->ev:Landroid/support/v4/util/Pools$Pool;
 
     invoke-interface {p1, p0}, Landroid/support/v4/util/Pools$Pool;->release(Ljava/lang/Object;)Z
 
@@ -459,7 +459,7 @@
     invoke-static {}, Lcom/bumptech/glide/util/k;->eF()V
 
     .line 125
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->et:Lcom/bumptech/glide/util/a/c;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->eu:Lcom/bumptech/glide/util/a/c;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/util/a/c;->eN()V
 
@@ -507,7 +507,7 @@
     .end annotation
 
     .line 303
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->et:Lcom/bumptech/glide/util/a/c;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->eu:Lcom/bumptech/glide/util/a/c;
 
     return-object v0
 .end method
@@ -516,7 +516,7 @@
     .locals 1
 
     .line 149
-    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->eC:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->eD:Z
 
     return v0
 .end method
@@ -525,19 +525,19 @@
     .locals 6
 
     .line 195
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->et:Lcom/bumptech/glide/util/a/c;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->eu:Lcom/bumptech/glide/util/a/c;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/util/a/c;->eN()V
 
     .line 196
-    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dp:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dq:Z
 
     const/4 v1, 0x0
 
     if-eqz v0, :cond_0
 
     .line 197
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dU:Lcom/bumptech/glide/load/engine/p;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dV:Lcom/bumptech/glide/load/engine/p;
 
     invoke-interface {v0}, Lcom/bumptech/glide/load/engine/p;->recycle()V
 
@@ -565,9 +565,9 @@
     .line 205
     iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->fO:Lcom/bumptech/glide/load/engine/EngineJob$EngineResourceFactory;
 
-    iget-object v2, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dU:Lcom/bumptech/glide/load/engine/p;
+    iget-object v2, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dV:Lcom/bumptech/glide/load/engine/p;
 
-    iget-boolean v3, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dT:Z
+    iget-boolean v3, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dU:Z
 
     invoke-virtual {v0, v2, v3}, Lcom/bumptech/glide/load/engine/EngineJob$EngineResourceFactory;->a(Lcom/bumptech/glide/load/engine/p;Z)Lcom/bumptech/glide/load/engine/k;
 
@@ -677,12 +677,12 @@
     .locals 2
 
     .line 229
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->et:Lcom/bumptech/glide/util/a/c;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->eu:Lcom/bumptech/glide/util/a/c;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/util/a/c;->eN()V
 
     .line 230
-    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dp:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dq:Z
 
     if-eqz v0, :cond_0
 
@@ -716,12 +716,12 @@
     .locals 4
 
     .line 278
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->et:Lcom/bumptech/glide/util/a/c;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->eu:Lcom/bumptech/glide/util/a/c;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/util/a/c;->eN()V
 
     .line 279
-    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dp:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dq:Z
 
     const/4 v1, 0x0
 
@@ -854,7 +854,7 @@
     invoke-static {}, Lcom/bumptech/glide/util/k;->eF()V
 
     .line 137
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->et:Lcom/bumptech/glide/util/a/c;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->eu:Lcom/bumptech/glide/util/a/c;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/util/a/c;->eN()V
 
@@ -921,7 +921,7 @@
     if-eqz v0, :cond_0
 
     .line 118
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->H:Lcom/bumptech/glide/load/engine/b/a;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->I:Lcom/bumptech/glide/load/engine/b/a;
 
     goto :goto_0
 
@@ -952,7 +952,7 @@
     .end annotation
 
     .line 258
-    iput-object p1, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dU:Lcom/bumptech/glide/load/engine/p;
+    iput-object p1, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dV:Lcom/bumptech/glide/load/engine/p;
 
     .line 259
     iput-object p2, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dataSource:Lcom/bumptech/glide/load/DataSource;
@@ -984,7 +984,7 @@
 
     if-nez v0, :cond_1
 
-    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dp:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dq:Z
 
     if-eqz v0, :cond_0
 
@@ -994,7 +994,7 @@
     :cond_0
     const/4 v0, 0x1
 
-    iput-boolean v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dp:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dq:Z
 
     .line 182
     iget-object v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->fW:Lcom/bumptech/glide/load/engine/DecodeJob;
@@ -1036,7 +1036,7 @@
     iput-object p1, p0, Lcom/bumptech/glide/load/engine/EngineJob;->key:Lcom/bumptech/glide/load/c;
 
     .line 108
-    iput-boolean p2, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dT:Z
+    iput-boolean p2, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dU:Z
 
     .line 109
     iput-boolean p3, p0, Lcom/bumptech/glide/load/engine/EngineJob;->fP:Z
@@ -1045,7 +1045,7 @@
     iput-boolean p4, p0, Lcom/bumptech/glide/load/engine/EngineJob;->fQ:Z
 
     .line 111
-    iput-boolean p5, p0, Lcom/bumptech/glide/load/engine/EngineJob;->eC:Z
+    iput-boolean p5, p0, Lcom/bumptech/glide/load/engine/EngineJob;->eD:Z
 
     .line 112
     return-object p0
@@ -1055,7 +1055,7 @@
     .locals 1
 
     .line 190
-    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dp:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/EngineJob;->dq:Z
 
     return v0
 .end method

@@ -15,13 +15,13 @@
 
 
 # static fields
-.field private static final oU:I = 0x12c
+.field private static final oT:I = 0x12c
 
 
 # instance fields
 .field private final durationMillis:I
 
-.field private oS:Z
+.field private oR:Z
 
 
 # direct methods
@@ -60,7 +60,7 @@
 
     iget v1, p0, Lcom/bumptech/glide/request/a/c$a;->durationMillis:I
 
-    iget-boolean v2, p0, Lcom/bumptech/glide/request/a/c$a;->oS:Z
+    iget-boolean v2, p0, Lcom/bumptech/glide/request/a/c$a;->oR:Z
 
     invoke-direct {v0, v1, v2}, Lcom/bumptech/glide/request/a/c;-><init>(IZ)V
 
@@ -71,7 +71,7 @@
     .locals 0
 
     .line 74
-    iput-boolean p1, p0, Lcom/bumptech/glide/request/a/c$a;->oS:Z
+    iput-boolean p1, p0, Lcom/bumptech/glide/request/a/c$a;->oR:Z
 
     .line 75
     return-object p0

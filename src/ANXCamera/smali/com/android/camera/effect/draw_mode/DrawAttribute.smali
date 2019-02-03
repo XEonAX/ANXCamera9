@@ -3,6 +3,14 @@
 .source "DrawAttribute.java"
 
 
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lcom/android/camera/effect/draw_mode/DrawAttribute$Target;
+    }
+.end annotation
+
+
 # static fields
 .field public static final BASIC_TEXTURE:I = 0x5
 
@@ -39,10 +47,10 @@
 .method public constructor <init>()V
     .locals 1
 
-    .line 3
+    .line 8
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 18
+    .line 84
     const/4 v0, -0x1
 
     iput v0, p0, Lcom/android/camera/effect/draw_mode/DrawAttribute;->mTarget:I
@@ -55,7 +63,7 @@
 .method public getTarget()I
     .locals 1
 
-    .line 21
+    .line 88
     iget v0, p0, Lcom/android/camera/effect/draw_mode/DrawAttribute;->mTarget:I
 
     return v0

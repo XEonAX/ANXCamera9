@@ -29,13 +29,13 @@ public class BottomAnimationConfig {
         if (this.mIsFPS960) {
             this.mDuration = 2000;
         } else if (this.mCurrentMode == 173) {
-            this.mDuration = 7000;
+            this.mDuration = 2000;
         } else if (this.mCurrentMode == 162 && this.mIsVideoBokeh) {
             this.mDuration = 30000;
         } else if (this.mCurrentMode == 161) {
-            this.mDuration = 15000;
+            this.mDuration = DurationConstant.DURATION_VIDEO_RECORDING_FUN;
         } else if (this.mCurrentMode == 174) {
-            this.mDuration = 15000;
+            this.mDuration = DurationConstant.DURATION_LIVE_RECORD;
         } else {
             this.mDuration = DurationConstant.DURATION_VIDEO_RECORDING_CIRCLE;
         }

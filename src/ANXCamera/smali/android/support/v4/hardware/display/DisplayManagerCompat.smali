@@ -29,7 +29,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 30
     new-instance v0, Ljava/util/WeakHashMap;
@@ -42,7 +42,7 @@
 .end method
 
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 47
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -52,7 +52,7 @@
 .end method
 
 .method public static getInstance(Landroid/content/Context;)Landroid/support/v4/hardware/display/DisplayManagerCompat;
-    .locals 4
+    .registers 5
     .param p0, "context"    # Landroid/content/Context;
 
     .line 54
@@ -61,7 +61,7 @@
     monitor-enter v0
 
     .line 55
-    :try_start_0
+    :try_start_3
     sget-object v1, Landroid/support/v4/hardware/display/DisplayManagerCompat;->sInstances:Ljava/util/WeakHashMap;
 
     invoke-virtual {v1, p0}, Ljava/util/WeakHashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -72,7 +72,7 @@
 
     .line 56
     .local v1, "instance":Landroid/support/v4/hardware/display/DisplayManagerCompat;
-    if-nez v1, :cond_1
+    if-nez v1, :cond_25
 
     .line 57
     sget v2, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -81,7 +81,7 @@
     .local v2, "version":I
     const/16 v3, 0x11
 
-    if-lt v2, v3, :cond_0
+    if-lt v2, v3, :cond_1a
 
     .line 59
     new-instance v3, Landroid/support/v4/hardware/display/DisplayManagerCompat$JellybeanMr1Impl;
@@ -90,10 +90,10 @@
 
     move-object v1, v3
 
-    goto :goto_0
+    goto :goto_20
 
     .line 61
-    :cond_0
+    :cond_1a
     new-instance v3, Landroid/support/v4/hardware/display/DisplayManagerCompat$LegacyImpl;
 
     invoke-direct {v3, p0}, Landroid/support/v4/hardware/display/DisplayManagerCompat$LegacyImpl;-><init>(Landroid/content/Context;)V
@@ -101,26 +101,26 @@
     move-object v1, v3
 
     .line 63
-    :goto_0
+    :goto_20
     sget-object v3, Landroid/support/v4/hardware/display/DisplayManagerCompat;->sInstances:Ljava/util/WeakHashMap;
 
     invoke-virtual {v3, p0, v1}, Ljava/util/WeakHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 65
     .end local v2    # "version":I
-    :cond_1
+    :cond_25
     monitor-exit v0
 
     return-object v1
 
     .line 66
     .end local v1    # "instance":Landroid/support/v4/hardware/display/DisplayManagerCompat;
-    :catchall_0
+    :catchall_27
     move-exception v1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_29
+    .catchall {:try_start_3 .. :try_end_29} :catchall_27
 
     throw v1
 .end method

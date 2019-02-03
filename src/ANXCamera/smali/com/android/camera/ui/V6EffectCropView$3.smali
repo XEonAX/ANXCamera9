@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/ui/V6EffectCropView;Landroid/os/Looper;)V
     .locals 0
 
-    .line 708
+    .line 707
     iput-object p1, p0, Lcom/android/camera/ui/V6EffectCropView$3;->this$0:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-direct {p0, p2}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
@@ -35,7 +35,7 @@
 .method public dispatchMessage(Landroid/os/Message;)V
     .locals 7
 
-    .line 711
+    .line 710
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
@@ -48,10 +48,10 @@
 
     sub-long/2addr v0, v2
 
-    .line 712
+    .line 711
     nop
 
-    .line 713
+    .line 712
     iget p1, p1, Landroid/os/Message;->what:I
 
     const-wide/16 v2, 0x1e
@@ -64,13 +64,13 @@
 
     goto/16 :goto_2
 
-    .line 726
+    .line 725
     :pswitch_0
     cmp-long p1, v0, v4
 
     if-gez p1, :cond_0
 
-    .line 727
+    .line 726
     iget-object p1, p0, Lcom/android/camera/ui/V6EffectCropView$3;->this$0:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-static {p1}, Lcom/android/camera/ui/V6EffectCropView;->access$500(Lcom/android/camera/ui/V6EffectCropView;)Landroid/view/animation/Interpolator;
@@ -93,20 +93,20 @@
 
     move-result v6
 
-    .line 729
+    .line 728
     const/4 p1, 0x2
 
     invoke-virtual {p0, p1, v2, v3}, Lcom/android/camera/ui/V6EffectCropView$3;->sendEmptyMessageDelayed(IJ)Z
 
     goto :goto_0
 
-    .line 731
+    .line 730
     :cond_0
     iget-object p1, p0, Lcom/android/camera/ui/V6EffectCropView$3;->this$0:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-static {p1}, Lcom/android/camera/ui/V6EffectCropView;->access$600(Lcom/android/camera/ui/V6EffectCropView;)V
 
-    .line 733
+    .line 732
     :goto_0
     iget-object p1, p0, Lcom/android/camera/ui/V6EffectCropView$3;->this$0:Lcom/android/camera/ui/V6EffectCropView;
 
@@ -118,7 +118,7 @@
 
     move-result p1
 
-    .line 734
+    .line 733
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView$3;->this$0:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-static {v0}, Lcom/android/camera/ui/V6EffectCropView;->access$1100(Lcom/android/camera/ui/V6EffectCropView;)Landroid/graphics/RectF;
@@ -129,7 +129,7 @@
 
     move-result v0
 
-    .line 735
+    .line 734
     iget-object v1, p0, Lcom/android/camera/ui/V6EffectCropView$3;->this$0:Lcom/android/camera/ui/V6EffectCropView;
 
     iget-object v2, p0, Lcom/android/camera/ui/V6EffectCropView$3;->this$0:Lcom/android/camera/ui/V6EffectCropView;
@@ -154,7 +154,7 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/ui/V6EffectCropView;->access$1202(Lcom/android/camera/ui/V6EffectCropView;I)I
 
-    .line 736
+    .line 735
     iget-object v1, p0, Lcom/android/camera/ui/V6EffectCropView$3;->this$0:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-static {v1}, Lcom/android/camera/ui/V6EffectCropView;->access$1500(Lcom/android/camera/ui/V6EffectCropView;)Landroid/graphics/RectF;
@@ -183,7 +183,7 @@
 
     iget-object v4, p0, Lcom/android/camera/ui/V6EffectCropView$3;->this$0:Lcom/android/camera/ui/V6EffectCropView;
 
-    .line 737
+    .line 736
     invoke-static {v4}, Lcom/android/camera/ui/V6EffectCropView;->access$1200(Lcom/android/camera/ui/V6EffectCropView;)I
 
     move-result v4
@@ -202,24 +202,24 @@
 
     add-float/2addr v0, v4
 
-    .line 736
+    .line 735
     invoke-virtual {v1, v2, v3, p1, v0}, Landroid/graphics/RectF;->set(FFFF)V
 
-    .line 738
+    .line 737
     iget-object p1, p0, Lcom/android/camera/ui/V6EffectCropView$3;->this$0:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-static {p1}, Lcom/android/camera/ui/V6EffectCropView;->access$1000(Lcom/android/camera/ui/V6EffectCropView;)V
 
-    .line 739
+    .line 738
     goto :goto_2
 
-    .line 715
+    .line 714
     :pswitch_1
     cmp-long p1, v0, v4
 
     if-gez p1, :cond_1
 
-    .line 716
+    .line 715
     iget-object p1, p0, Lcom/android/camera/ui/V6EffectCropView$3;->this$0:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-static {p1}, Lcom/android/camera/ui/V6EffectCropView;->access$500(Lcom/android/camera/ui/V6EffectCropView;)Landroid/view/animation/Interpolator;
@@ -242,20 +242,20 @@
 
     move-result v6
 
-    .line 718
+    .line 717
     const/4 p1, 0x1
 
     invoke-virtual {p0, p1, v2, v3}, Lcom/android/camera/ui/V6EffectCropView$3;->sendEmptyMessageDelayed(IJ)Z
 
     goto :goto_1
 
-    .line 720
+    .line 719
     :cond_1
     iget-object p1, p0, Lcom/android/camera/ui/V6EffectCropView$3;->this$0:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-static {p1}, Lcom/android/camera/ui/V6EffectCropView;->access$600(Lcom/android/camera/ui/V6EffectCropView;)V
 
-    .line 722
+    .line 721
     :goto_1
     iget-object p1, p0, Lcom/android/camera/ui/V6EffectCropView$3;->this$0:Lcom/android/camera/ui/V6EffectCropView;
 
@@ -281,15 +281,15 @@
 
     invoke-static {p1, v0}, Lcom/android/camera/ui/V6EffectCropView;->access$702(Lcom/android/camera/ui/V6EffectCropView;I)I
 
-    .line 723
+    .line 722
     iget-object p1, p0, Lcom/android/camera/ui/V6EffectCropView$3;->this$0:Lcom/android/camera/ui/V6EffectCropView;
 
     invoke-static {p1}, Lcom/android/camera/ui/V6EffectCropView;->access$1000(Lcom/android/camera/ui/V6EffectCropView;)V
 
-    .line 724
+    .line 723
     nop
 
-    .line 743
+    .line 742
     :goto_2
     return-void
 

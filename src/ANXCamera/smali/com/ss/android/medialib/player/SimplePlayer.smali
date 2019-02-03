@@ -343,7 +343,7 @@
     .line 120
     iget-object v0, p0, Lcom/ss/android/medialib/player/SimplePlayer;->mAudioPlayer:Lorg/a/a/a;
 
-    invoke-virtual {v0}, Lorg/a/a/a;->hI()V
+    invoke-virtual {v0}, Lorg/a/a/a;->ia()V
 
     .line 122
     :cond_0
@@ -463,7 +463,7 @@
     .line 78
     iget-object v0, p0, Lcom/ss/android/medialib/player/SimplePlayer;->mAudioPlayer:Lorg/a/a/a;
 
-    invoke-virtual {v0}, Lorg/a/a/a;->hJ()V
+    invoke-virtual {v0}, Lorg/a/a/a;->ib()V
 
     .line 80
     :cond_0
@@ -495,7 +495,7 @@
     .line 110
     iget-object v0, p0, Lcom/ss/android/medialib/player/SimplePlayer;->mAudioPlayer:Lorg/a/a/a;
 
-    invoke-virtual {v0}, Lorg/a/a/a;->hK()V
+    invoke-virtual {v0}, Lorg/a/a/a;->ic()V
 
     .line 112
     :cond_0

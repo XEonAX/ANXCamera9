@@ -24,7 +24,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 3
+    .registers 3
 
     .line 83
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -33,7 +33,7 @@
 
     const/16 v2, 0x17
 
-    if-lt v0, v2, :cond_0
+    if-lt v0, v2, :cond_f
 
     .line 84
     new-instance v0, Landroid/support/v4/app/AppOpsManagerCompat$AppOpsManager23;
@@ -42,10 +42,10 @@
 
     sput-object v0, Landroid/support/v4/app/AppOpsManagerCompat;->IMPL:Landroid/support/v4/app/AppOpsManagerCompat$AppOpsManagerImpl;
 
-    goto :goto_0
+    goto :goto_16
 
     .line 86
-    :cond_0
+    :cond_f
     new-instance v0, Landroid/support/v4/app/AppOpsManagerCompat$AppOpsManagerImpl;
 
     invoke-direct {v0, v1}, Landroid/support/v4/app/AppOpsManagerCompat$AppOpsManagerImpl;-><init>(Landroid/support/v4/app/AppOpsManagerCompat$1;)V
@@ -53,12 +53,12 @@
     sput-object v0, Landroid/support/v4/app/AppOpsManagerCompat;->IMPL:Landroid/support/v4/app/AppOpsManagerCompat$AppOpsManagerImpl;
 
     .line 88
-    :goto_0
+    :goto_16
     return-void
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 27
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -68,7 +68,7 @@
 .end method
 
 .method public static noteOp(Landroid/content/Context;Ljava/lang/String;ILjava/lang/String;)I
-    .locals 1
+    .registers 5
     .param p0, "context"    # Landroid/content/Context;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -94,7 +94,7 @@
 .end method
 
 .method public static noteProxyOp(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)I
-    .locals 1
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -119,7 +119,7 @@
 .end method
 
 .method public static permissionToOp(Ljava/lang/String;)Ljava/lang/String;
-    .locals 1
+    .registers 2
     .param p0, "permission"    # Ljava/lang/String;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation

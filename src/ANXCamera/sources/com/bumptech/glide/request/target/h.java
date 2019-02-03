@@ -11,7 +11,7 @@ import com.bumptech.glide.request.a.f.a;
 /* compiled from: ImageViewTarget */
 public abstract class h<Z> extends ViewTarget<ImageView, Z> implements a {
     @Nullable
-    private Animatable oy;
+    private Animatable ox;
 
     protected abstract void s(@Nullable Z z);
 
@@ -47,8 +47,8 @@ public abstract class h<Z> extends ViewTarget<ImageView, Z> implements a {
 
     public void d(@Nullable Drawable drawable) {
         super.d(drawable);
-        if (this.oy != null) {
-            this.oy.stop();
+        if (this.ox != null) {
+            this.ox.stop();
         }
         u(null);
         setDrawable(drawable);
@@ -63,14 +63,14 @@ public abstract class h<Z> extends ViewTarget<ImageView, Z> implements a {
     }
 
     public void onStart() {
-        if (this.oy != null) {
-            this.oy.start();
+        if (this.ox != null) {
+            this.ox.start();
         }
     }
 
     public void onStop() {
-        if (this.oy != null) {
-            this.oy.stop();
+        if (this.ox != null) {
+            this.ox.stop();
         }
     }
 
@@ -81,10 +81,10 @@ public abstract class h<Z> extends ViewTarget<ImageView, Z> implements a {
 
     private void v(@Nullable Z z) {
         if (z instanceof Animatable) {
-            this.oy = (Animatable) z;
-            this.oy.start();
+            this.ox = (Animatable) z;
+            this.ox.start();
             return;
         }
-        this.oy = null;
+        this.ox = null;
     }
 }

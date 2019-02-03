@@ -10,14 +10,16 @@ public class FrameData {
     private Parcelable mCaptureResultMetadataNative;
     private long mFrameNumber;
     private FrameStatusCallback mFrameStatusCallback;
-    private int mStreamIndex;
+    private int mImageFlag;
+    private int mSequenceId;
 
     public interface FrameStatusCallback {
         void onFrameImageClosed(Image image);
     }
 
-    public FrameData(int i, long j, Parcelable parcelable, Image image) {
-        this.mStreamIndex = i;
+    public FrameData(int i, int i2, long j, Parcelable parcelable, Image image) {
+        this.mImageFlag = i;
+        this.mSequenceId = i2;
         this.mFrameNumber = j;
         this.mCaptureResultMetadataNative = parcelable;
         this.mBufferImage = image;
@@ -37,12 +39,12 @@ public class FrameData {
         }
     }
 
-    public int getStreamIndex() {
-        return this.mStreamIndex;
+    public int getImageFlag() {
+        return this.mImageFlag;
     }
 
-    public void setStreamIndex(int i) {
-        this.mStreamIndex = i;
+    public void setImageFlag(int i) {
+        this.mImageFlag = i;
     }
 
     public long getFrameNumber() {
@@ -51,6 +53,14 @@ public class FrameData {
 
     public void setFrameNumber(long j) {
         this.mFrameNumber = j;
+    }
+
+    public int getSequenceId() {
+        return this.mSequenceId;
+    }
+
+    public void setSequenceId(int i) {
+        this.mSequenceId = i;
     }
 
     public Parcelable getCaptureResultMetaDataNative() {
@@ -79,8 +89,8 @@ public class FrameData {
 
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("FrameData{ mStreamIndex=");
-        stringBuilder.append(this.mStreamIndex);
+        stringBuilder.append("FrameData{ mImageFlag=");
+        stringBuilder.append(this.mImageFlag);
         stringBuilder.append(", mFrameNumber=");
         stringBuilder.append(this.mFrameNumber);
         stringBuilder.append(", mCaptureResultMetadataNative=");

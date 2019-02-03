@@ -11,9 +11,9 @@ import android.support.annotation.NonNull;
 import com.android.camera.Util;
 import com.android.camera.log.Log;
 import com.android.camera2.Camera2Proxy.PictureCallback;
-import java.util.Locale;
 
 public class MiCamera2ShotBurst extends MiCamera2Shot<byte[]> {
+    private static final String TAG = MiCamera2ShotBurst.class.getSimpleName();
     private int mBurstNum;
 
     public MiCamera2ShotBurst(MiCamera2 miCamera2, int i) {
@@ -25,8 +25,8 @@ public class MiCamera2ShotBurst extends MiCamera2Shot<byte[]> {
         this.mMiCamera.setAWBLock(true);
     }
 
-    protected void startShot() {
-        Log.d(TAG, "captureBurstPictures");
+    protected void startSessionCapture() {
+        Log.d(TAG, "startSessionCapture");
         this.mMiCamera.pausePreview();
         try {
             this.mMiCamera.getCaptureSession().setRepeatingRequest(generateRequestBuilder().build(), generateCaptureCallback(), this.mCameraHandler);
@@ -43,11 +43,21 @@ public class MiCamera2ShotBurst extends MiCamera2Shot<byte[]> {
         return new CaptureCallback() {
             public void onCaptureFailed(@NonNull CameraCaptureSession cameraCaptureSession, @NonNull CaptureRequest captureRequest, @NonNull CaptureFailure captureFailure) {
                 super.onCaptureFailed(cameraCaptureSession, captureRequest, captureFailure);
-                Log.e(MiCamera2Shot.TAG, String.format(Locale.ENGLISH, "captureBurst onCaptureFailed %d", new Object[]{Integer.valueOf(captureFailure.getReason())}));
+                String access$000 = MiCamera2ShotBurst.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("onCaptureFailed: ");
+                stringBuilder.append(captureFailure.getReason());
+                Log.e(access$000, stringBuilder.toString());
             }
 
             public void onCaptureSequenceCompleted(@NonNull CameraCaptureSession cameraCaptureSession, int i, long j) {
-                Log.e(MiCamera2Shot.TAG, "captureBurst onCaptureSequenceCompleted");
+                String access$000 = MiCamera2ShotBurst.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("onCaptureSequenceCompleted: sequenceId=");
+                stringBuilder.append(i);
+                stringBuilder.append(" frameNumber=");
+                stringBuilder.append(j);
+                Log.d(access$000, stringBuilder.toString());
                 MiCamera2ShotBurst.this.mMiCamera.setAWBLock(false);
                 MiCamera2ShotBurst.this.mMiCamera.resumePreview();
                 PictureCallback pictureCallback = MiCamera2ShotBurst.this.mMiCamera.getPictureCallback();
@@ -58,7 +68,11 @@ public class MiCamera2ShotBurst extends MiCamera2Shot<byte[]> {
 
             public void onCaptureSequenceAborted(@NonNull CameraCaptureSession cameraCaptureSession, int i) {
                 super.onCaptureSequenceAborted(cameraCaptureSession, i);
-                Log.e(MiCamera2Shot.TAG, "captureBurst onCaptureSequenceAborted");
+                String access$000 = MiCamera2ShotBurst.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("onCaptureSequenceAborted: ");
+                stringBuilder.append(i);
+                Log.w(access$000, stringBuilder.toString());
                 MiCamera2ShotBurst.this.mMiCamera.setAWBLock(false);
                 MiCamera2ShotBurst.this.mMiCamera.resumePreview();
                 PictureCallback pictureCallback = MiCamera2ShotBurst.this.mMiCamera.getPictureCallback();
@@ -90,6 +104,9 @@ public class MiCamera2ShotBurst extends MiCamera2Shot<byte[]> {
     }
 
     protected void notifyResultData(byte[] bArr) {
-        this.mMiCamera.getPictureCallback().onPictureTaken(bArr);
+        PictureCallback pictureCallback = this.mMiCamera.getPictureCallback();
+        if (pictureCallback != null) {
+            pictureCallback.onPictureTaken(bArr);
+        }
     }
 }

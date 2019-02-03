@@ -33,7 +33,7 @@
 .method constructor <init>(Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;)V
     .locals 0
 
-    .line 68
+    .line 67
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository$2;->this$0:Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;
 
     iput-object p2, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository$2;->val$taskID:Ljava/lang/String;
@@ -54,14 +54,14 @@
 .method public onFailed(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
     .locals 0
 
-    .line 77
+    .line 76
     return-void
 .end method
 
 .method public onFinally()V
     .locals 5
 
-    .line 81
+    .line 80
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository$2;->this$0:Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;
 
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository$2;->val$taskID:Ljava/lang/String;
@@ -74,13 +74,13 @@
 
     invoke-static {v0, v1, v2, v3, v4}, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;->access$000(Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;)V
 
-    .line 82
+    .line 81
     return-void
 .end method
 
 .method public onSuccess()V
     .locals 0
 
-    .line 72
+    .line 71
     return-void
 .end method

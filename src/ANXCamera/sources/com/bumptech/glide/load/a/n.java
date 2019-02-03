@@ -11,20 +11,20 @@ import java.io.InputStream;
 
 /* compiled from: StreamLocalUriFetcher */
 public class n extends l<InputStream> {
-    private static final int dA = 5;
-    private static final UriMatcher dB = new UriMatcher(-1);
-    private static final int dw = 1;
-    private static final int dx = 2;
-    private static final int dy = 3;
-    private static final int dz = 4;
+    private static final int dA = 4;
+    private static final int dB = 5;
+    private static final UriMatcher dC = new UriMatcher(-1);
+    private static final int dx = 1;
+    private static final int dy = 2;
+    private static final int dz = 3;
 
     static {
-        dB.addURI("com.android.contacts", "contacts/lookup/*/#", 1);
-        dB.addURI("com.android.contacts", "contacts/lookup/*", 1);
-        dB.addURI("com.android.contacts", "contacts/#/photo", 2);
-        dB.addURI("com.android.contacts", "contacts/#", 3);
-        dB.addURI("com.android.contacts", "contacts/#/display_photo", 4);
-        dB.addURI("com.android.contacts", "phone_lookup/*", 5);
+        dC.addURI("com.android.contacts", "contacts/lookup/*/#", 1);
+        dC.addURI("com.android.contacts", "contacts/lookup/*", 1);
+        dC.addURI("com.android.contacts", "contacts/#/photo", 2);
+        dC.addURI("com.android.contacts", "contacts/#", 3);
+        dC.addURI("com.android.contacts", "contacts/#/display_photo", 4);
+        dC.addURI("com.android.contacts", "phone_lookup/*", 5);
     }
 
     public n(ContentResolver contentResolver, Uri uri) {
@@ -44,7 +44,7 @@ public class n extends l<InputStream> {
     }
 
     private InputStream e(Uri uri, ContentResolver contentResolver) throws FileNotFoundException {
-        int match = dB.match(uri);
+        int match = dC.match(uri);
         if (match != 1) {
             if (match == 3) {
                 return openContactPhotoInputStream(contentResolver, uri);

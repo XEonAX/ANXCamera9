@@ -11,14 +11,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 45
     const/16 v0, 0x2d
 
     new-array v0, v0, [C
 
-    fill-array-data v0, :array_0
+    fill-array-data v0, :array_e
 
     .line 46
     nop
@@ -38,7 +38,7 @@
     .line 51
     return-void
 
-    :array_0
+    :array_e
     .array-data 2
         0x30s
         0x31s
@@ -89,7 +89,7 @@
 .end method
 
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 53
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -99,7 +99,7 @@
 .end method
 
 .method static decode([BLcom/google/zxing/qrcode/decoder/Version;Lcom/google/zxing/qrcode/decoder/ErrorCorrectionLevel;Ljava/util/Map;)Lcom/google/zxing/common/DecoderResult;
-    .locals 17
+    .registers 21
     .param p0, "bytes"    # [B
     .param p1, "version"    # Lcom/google/zxing/qrcode/decoder/Version;
     .param p2, "ecLevel"    # Lcom/google/zxing/qrcode/decoder/ErrorCorrectionLevel;
@@ -181,31 +181,31 @@
     .local v4, "fc1InEffect":Z
     .local v13, "symbolSequence":I
     .local v14, "parityData":I
-    :goto_0
+    :goto_20
     move v15, v4
 
     .line 72
     .end local v4    # "fc1InEffect":Z
     .local v15, "fc1InEffect":Z
-    :try_start_0
+    :try_start_21
     invoke-virtual {v10}, Lcom/google/zxing/common/BitSource;->available()I
 
     move-result v2
 
     const/4 v3, 0x4
 
-    if-ge v2, v3, :cond_0
+    if-ge v2, v3, :cond_2b
 
     .line 74
     sget-object v2, Lcom/google/zxing/qrcode/decoder/Mode;->TERMINATOR:Lcom/google/zxing/qrcode/decoder/Mode;
 
     .line 75
     .local v2, "mode":Lcom/google/zxing/qrcode/decoder/Mode;
-    goto :goto_1
+    goto :goto_33
 
     .line 76
     .end local v2    # "mode":Lcom/google/zxing/qrcode/decoder/Mode;
-    :cond_0
+    :cond_2b
     invoke-virtual {v10, v3}, Lcom/google/zxing/common/BitSource;->readBits(I)I
 
     move-result v2
@@ -215,7 +215,7 @@
     move-result-object v2
 
     .restart local v2    # "mode":Lcom/google/zxing/qrcode/decoder/Mode;
-    :goto_1
+    :goto_33
     move-object v7, v2
 
     .line 78
@@ -223,29 +223,29 @@
     .local v7, "mode":Lcom/google/zxing/qrcode/decoder/Mode;
     sget-object v2, Lcom/google/zxing/qrcode/decoder/Mode;->TERMINATOR:Lcom/google/zxing/qrcode/decoder/Mode;
 
-    if-eq v7, v2, :cond_d
+    if-eq v7, v2, :cond_dc
 
     .line 79
     sget-object v2, Lcom/google/zxing/qrcode/decoder/Mode;->FNC1_FIRST_POSITION:Lcom/google/zxing/qrcode/decoder/Mode;
 
-    if-eq v7, v2, :cond_c
+    if-eq v7, v2, :cond_d5
 
     sget-object v2, Lcom/google/zxing/qrcode/decoder/Mode;->FNC1_SECOND_POSITION:Lcom/google/zxing/qrcode/decoder/Mode;
 
-    if-ne v7, v2, :cond_1
+    if-ne v7, v2, :cond_45
 
     .line 81
     move-object/from16 v16, v0
 
     move-object v0, v7
 
-    goto/16 :goto_4
+    goto/16 :goto_d8
 
     .line 82
-    :cond_1
+    :cond_45
     sget-object v2, Lcom/google/zxing/qrcode/decoder/Mode;->STRUCTURED_APPEND:Lcom/google/zxing/qrcode/decoder/Mode;
 
-    if-ne v7, v2, :cond_3
+    if-ne v7, v2, :cond_68
 
     .line 83
     invoke-virtual {v10}, Lcom/google/zxing/common/BitSource;->available()I
@@ -254,7 +254,7 @@
 
     const/16 v3, 0x10
 
-    if-lt v2, v3, :cond_2
+    if-lt v2, v3, :cond_63
 
     .line 88
     const/16 v2, 0x8
@@ -287,10 +287,10 @@
     .restart local v4    # "fc1InEffect":Z
     .restart local v14    # "parityData":I
     .local v16, "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
-    :goto_2
+    :goto_60
     move-object v0, v7
 
-    goto/16 :goto_5
+    goto/16 :goto_df
 
     .line 84
     .end local v4    # "fc1InEffect":Z
@@ -298,7 +298,7 @@
     .local v0, "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
     .restart local v7    # "mode":Lcom/google/zxing/qrcode/decoder/Mode;
     .restart local v15    # "fc1InEffect":Z
-    :cond_2
+    :cond_63
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v2
@@ -306,10 +306,10 @@
     throw v2
 
     .line 90
-    :cond_3
+    :cond_68
     sget-object v2, Lcom/google/zxing/qrcode/decoder/Mode;->ECI:Lcom/google/zxing/qrcode/decoder/Mode;
 
-    if-ne v7, v2, :cond_5
+    if-ne v7, v2, :cond_7f
 
     .line 92
     invoke-static {v10}, Lcom/google/zxing/qrcode/decoder/DecodedBitStreamParser;->parseECIValue(Lcom/google/zxing/common/BitSource;)I
@@ -325,17 +325,17 @@
     move-object v0, v3
 
     .line 94
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_7a
 
     .line 124
     .end local v2    # "value":I
     move-object/from16 v16, v0
 
-    goto :goto_2
+    goto :goto_60
 
     .line 95
     .restart local v2    # "value":I
-    :cond_4
+    :cond_7a
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v3
@@ -344,10 +344,10 @@
 
     .line 99
     .end local v2    # "value":I
-    :cond_5
+    :cond_7f
     sget-object v2, Lcom/google/zxing/qrcode/decoder/Mode;->HANZI:Lcom/google/zxing/qrcode/decoder/Mode;
 
-    if-ne v7, v2, :cond_7
+    if-ne v7, v2, :cond_98
 
     .line 101
     invoke-virtual {v10, v3}, Lcom/google/zxing/common/BitSource;->readBits(I)I
@@ -366,7 +366,7 @@
 
     .line 103
     .local v3, "countHanzi":I
-    if-ne v2, v8, :cond_6
+    if-ne v2, v8, :cond_95
 
     .line 104
     invoke-static {v10, v11, v3}, Lcom/google/zxing/qrcode/decoder/DecodedBitStreamParser;->decodeHanziSegment(Lcom/google/zxing/common/BitSource;Ljava/lang/StringBuilder;I)V
@@ -380,17 +380,17 @@
     .end local v7    # "mode":Lcom/google/zxing/qrcode/decoder/Mode;
     .local v0, "mode":Lcom/google/zxing/qrcode/decoder/Mode;
     .restart local v16    # "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
-    :cond_6
-    :goto_3
+    :cond_95
+    :goto_95
     move-object/from16 v16, v0
 
-    goto :goto_2
+    goto :goto_60
 
     .line 109
     .end local v16    # "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
     .local v0, "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
     .restart local v7    # "mode":Lcom/google/zxing/qrcode/decoder/Mode;
-    :cond_7
+    :cond_98
     invoke-virtual {v7, v1}, Lcom/google/zxing/qrcode/decoder/Mode;->getCharacterCountBits(Lcom/google/zxing/qrcode/decoder/Version;)I
 
     move-result v2
@@ -405,29 +405,29 @@
     .local v6, "count":I
     sget-object v2, Lcom/google/zxing/qrcode/decoder/Mode;->NUMERIC:Lcom/google/zxing/qrcode/decoder/Mode;
 
-    if-ne v7, v2, :cond_8
+    if-ne v7, v2, :cond_a9
 
     .line 111
     invoke-static {v10, v11, v6}, Lcom/google/zxing/qrcode/decoder/DecodedBitStreamParser;->decodeNumericSegment(Lcom/google/zxing/common/BitSource;Ljava/lang/StringBuilder;I)V
 
     .line 112
-    goto :goto_3
+    goto :goto_95
 
-    :cond_8
+    :cond_a9
     sget-object v2, Lcom/google/zxing/qrcode/decoder/Mode;->ALPHANUMERIC:Lcom/google/zxing/qrcode/decoder/Mode;
 
-    if-ne v7, v2, :cond_9
+    if-ne v7, v2, :cond_b1
 
     .line 113
     invoke-static {v10, v11, v6, v15}, Lcom/google/zxing/qrcode/decoder/DecodedBitStreamParser;->decodeAlphanumericSegment(Lcom/google/zxing/common/BitSource;Ljava/lang/StringBuilder;IZ)V
 
     .line 114
-    goto :goto_3
+    goto :goto_95
 
-    :cond_9
+    :cond_b1
     sget-object v2, Lcom/google/zxing/qrcode/decoder/Mode;->BYTE:Lcom/google/zxing/qrcode/decoder/Mode;
 
-    if-ne v7, v2, :cond_a
+    if-ne v7, v2, :cond_c4
 
     .line 115
     move-object v2, v10
@@ -456,14 +456,14 @@
     invoke-static/range {v2 .. v7}, Lcom/google/zxing/qrcode/decoder/DecodedBitStreamParser;->decodeByteSegment(Lcom/google/zxing/common/BitSource;Ljava/lang/StringBuilder;ILcom/google/zxing/common/CharacterSetECI;Ljava/util/Collection;Ljava/util/Map;)V
 
     .line 116
-    goto :goto_5
+    goto :goto_df
 
     .end local v8    # "count":I
     .end local v16    # "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
     .local v0, "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
     .restart local v6    # "count":I
     .restart local v7    # "mode":Lcom/google/zxing/qrcode/decoder/Mode;
-    :cond_a
+    :cond_c4
     move-object/from16 v16, v0
 
     move v8, v6
@@ -477,16 +477,16 @@
     .restart local v16    # "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
     sget-object v2, Lcom/google/zxing/qrcode/decoder/Mode;->KANJI:Lcom/google/zxing/qrcode/decoder/Mode;
 
-    if-ne v0, v2, :cond_b
+    if-ne v0, v2, :cond_d0
 
     .line 117
     invoke-static {v10, v11, v8}, Lcom/google/zxing/qrcode/decoder/DecodedBitStreamParser;->decodeKanjiSegment(Lcom/google/zxing/common/BitSource;Ljava/lang/StringBuilder;I)V
 
     .line 118
-    goto :goto_5
+    goto :goto_df
 
     .line 119
-    :cond_b
+    :cond_d0
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v2
@@ -498,7 +498,7 @@
     .end local v16    # "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
     .local v0, "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
     .restart local v7    # "mode":Lcom/google/zxing/qrcode/decoder/Mode;
-    :cond_c
+    :cond_d5
     move-object/from16 v16, v0
 
     move-object v0, v7
@@ -506,7 +506,7 @@
     .end local v7    # "mode":Lcom/google/zxing/qrcode/decoder/Mode;
     .local v0, "mode":Lcom/google/zxing/qrcode/decoder/Mode;
     .restart local v16    # "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
-    :goto_4
+    :goto_d8
     const/4 v2, 0x1
 
     .line 82
@@ -517,14 +517,14 @@
     .line 124
     move v4, v2
 
-    goto :goto_6
+    goto :goto_e0
 
     .end local v2    # "fc1InEffect":Z
     .end local v16    # "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
     .local v0, "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
     .restart local v7    # "mode":Lcom/google/zxing/qrcode/decoder/Mode;
     .restart local v15    # "fc1InEffect":Z
-    :cond_d
+    :cond_dc
     move-object/from16 v16, v0
 
     move-object v0, v7
@@ -534,15 +534,15 @@
     .local v0, "mode":Lcom/google/zxing/qrcode/decoder/Mode;
     .restart local v4    # "fc1InEffect":Z
     .restart local v16    # "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
-    :goto_5
+    :goto_df
     move v4, v15
 
-    :goto_6
+    :goto_e0
     sget-object v2, Lcom/google/zxing/qrcode/decoder/Mode;->TERMINATOR:Lcom/google/zxing/qrcode/decoder/Mode;
-    :try_end_0
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e2
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_21 .. :try_end_e2} :catch_10c
 
-    if-ne v0, v2, :cond_10
+    if-ne v0, v2, :cond_107
 
     .line 125
     .end local v0    # "mode":Lcom/google/zxing/qrcode/decoder/Mode;
@@ -565,26 +565,26 @@
 
     const/4 v3, 0x0
 
-    if-eqz v2, :cond_e
+    if-eqz v2, :cond_f4
 
     .line 133
     move-object v5, v3
 
-    goto :goto_7
+    goto :goto_f5
 
-    :cond_e
+    :cond_f4
     move-object v5, v12
 
-    :goto_7
-    if-nez p2, :cond_f
+    :goto_f5
+    if-nez p2, :cond_f9
 
     .line 134
     move-object v6, v3
 
-    goto :goto_8
+    goto :goto_fe
 
     .line 133
-    :cond_f
+    :cond_f9
     invoke-virtual/range {p2 .. p2}, Lcom/google/zxing/qrcode/decoder/ErrorCorrectionLevel;->toString()Ljava/lang/String;
 
     move-result-object v2
@@ -593,7 +593,7 @@
     move-object v6, v2
 
     .line 135
-    :goto_8
+    :goto_fe
     nop
 
     .line 130
@@ -612,17 +612,17 @@
     .line 68
     .restart local v4    # "fc1InEffect":Z
     .restart local v16    # "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
-    :cond_10
+    :cond_107
     move-object/from16 v0, v16
 
     const/4 v8, 0x1
 
-    goto/16 :goto_0
+    goto/16 :goto_20
 
     .line 125
     .end local v4    # "fc1InEffect":Z
     .end local v16    # "currentCharacterSetECI":Lcom/google/zxing/common/CharacterSetECI;
-    :catch_0
+    :catch_10c
     move-exception v0
 
     .line 127
@@ -635,7 +635,7 @@
 .end method
 
 .method private static decodeAlphanumericSegment(Lcom/google/zxing/common/BitSource;Ljava/lang/StringBuilder;IZ)V
-    .locals 5
+    .registers 9
     .param p0, "bits"    # Lcom/google/zxing/common/BitSource;
     .param p1, "result"    # Ljava/lang/StringBuilder;
     .param p2, "count"    # I
@@ -653,13 +653,13 @@
 
     .line 260
     .local v0, "start":I
-    :goto_0
+    :goto_4
     const/4 v1, 0x1
 
-    if-gt p2, v1, :cond_6
+    if-gt p2, v1, :cond_51
 
     .line 269
-    if-ne p2, v1, :cond_1
+    if-ne p2, v1, :cond_21
 
     .line 271
     invoke-virtual {p0}, Lcom/google/zxing/common/BitSource;->available()I
@@ -668,7 +668,7 @@
 
     const/4 v3, 0x6
 
-    if-lt v2, v3, :cond_0
+    if-lt v2, v3, :cond_1c
 
     .line 274
     invoke-virtual {p0, v3}, Lcom/google/zxing/common/BitSource;->readBits(I)I
@@ -681,10 +681,10 @@
 
     invoke-virtual {p1, v2}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    goto :goto_1
+    goto :goto_21
 
     .line 272
-    :cond_0
+    :cond_1c
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v1
@@ -692,34 +692,34 @@
     throw v1
 
     .line 277
-    :cond_1
-    :goto_1
-    if-eqz p3, :cond_5
+    :cond_21
+    :goto_21
+    if-eqz p3, :cond_50
 
     .line 279
     move v2, v0
 
     .local v2, "i":I
-    :goto_2
+    :goto_24
     invoke-virtual {p1}, Ljava/lang/StringBuilder;->length()I
 
     move-result v3
 
-    if-lt v2, v3, :cond_2
+    if-lt v2, v3, :cond_2b
 
     .end local v2    # "i":I
-    goto :goto_4
+    goto :goto_50
 
     .line 280
     .restart local v2    # "i":I
-    :cond_2
+    :cond_2b
     invoke-virtual {p1, v2}, Ljava/lang/StringBuilder;->charAt(I)C
 
     move-result v3
 
     const/16 v4, 0x25
 
-    if-ne v3, v4, :cond_4
+    if-ne v3, v4, :cond_4d
 
     .line 281
     invoke-virtual {p1}, Ljava/lang/StringBuilder;->length()I
@@ -728,7 +728,7 @@
 
     sub-int/2addr v3, v1
 
-    if-ge v2, v3, :cond_3
+    if-ge v2, v3, :cond_48
 
     add-int/lit8 v3, v2, 0x1
 
@@ -736,7 +736,7 @@
 
     move-result v3
 
-    if-ne v3, v4, :cond_3
+    if-ne v3, v4, :cond_48
 
     .line 283
     add-int/lit8 v3, v2, 0x1
@@ -744,36 +744,36 @@
     invoke-virtual {p1, v3}, Ljava/lang/StringBuilder;->deleteCharAt(I)Ljava/lang/StringBuilder;
 
     .line 284
-    goto :goto_3
+    goto :goto_4d
 
     .line 286
-    :cond_3
+    :cond_48
     const/16 v3, 0x1d
 
     invoke-virtual {p1, v2, v3}, Ljava/lang/StringBuilder;->setCharAt(IC)V
 
     .line 279
-    :cond_4
-    :goto_3
+    :cond_4d
+    :goto_4d
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_2
+    goto :goto_24
 
     .line 291
     .end local v2    # "i":I
-    :cond_5
-    :goto_4
+    :cond_50
+    :goto_50
     return-void
 
     .line 261
-    :cond_6
+    :cond_51
     invoke-virtual {p0}, Lcom/google/zxing/common/BitSource;->available()I
 
     move-result v1
 
     const/16 v2, 0xb
 
-    if-lt v1, v2, :cond_7
+    if-lt v1, v2, :cond_72
 
     .line 264
     invoke-virtual {p0, v2}, Lcom/google/zxing/common/BitSource;->readBits(I)I
@@ -803,10 +803,10 @@
     add-int/lit8 p2, p2, -0x2
 
     .end local v1    # "nextTwoCharsBits":I
-    goto :goto_0
+    goto :goto_4
 
     .line 262
-    :cond_7
+    :cond_72
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v1
@@ -815,7 +815,7 @@
 .end method
 
 .method private static decodeByteSegment(Lcom/google/zxing/common/BitSource;Ljava/lang/StringBuilder;ILcom/google/zxing/common/CharacterSetECI;Ljava/util/Collection;Ljava/util/Map;)V
-    .locals 4
+    .registers 10
     .param p0, "bits"    # Lcom/google/zxing/common/BitSource;
     .param p1, "result"    # Ljava/lang/StringBuilder;
     .param p2, "count"    # I
@@ -852,7 +852,7 @@
 
     move-result v2
 
-    if-gt v1, v2, :cond_2
+    if-gt v1, v2, :cond_37
 
     .line 224
     new-array v1, p2, [B
@@ -862,12 +862,12 @@
     const/4 v2, 0x0
 
     .local v2, "i":I
-    :goto_0
-    if-lt v2, p2, :cond_1
+    :goto_d
+    if-lt v2, p2, :cond_2d
 
     .line 229
     .end local v2    # "i":I
-    if-nez p3, :cond_0
+    if-nez p3, :cond_16
 
     .line 235
     invoke-static {v1, p5}, Lcom/google/zxing/common/StringUtils;->guessEncoding([BLjava/util/Map;)Ljava/lang/String;
@@ -876,26 +876,26 @@
 
     .line 236
     .local v0, "encoding":Ljava/lang/String;
-    goto :goto_1
+    goto :goto_1a
 
     .line 237
     .end local v0    # "encoding":Ljava/lang/String;
-    :cond_0
+    :cond_16
     invoke-virtual {p3}, Lcom/google/zxing/common/CharacterSetECI;->name()Ljava/lang/String;
 
     move-result-object v0
 
     .line 240
     .restart local v0    # "encoding":Ljava/lang/String;
-    :goto_1
-    :try_start_0
+    :goto_1a
+    :try_start_1a
     new-instance v2, Ljava/lang/String;
 
     invoke-direct {v2, v1, v0}, Ljava/lang/String;-><init>([BLjava/lang/String;)V
 
     invoke-virtual {p1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    :try_end_0
-    .catch Ljava/io/UnsupportedEncodingException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_22
+    .catch Ljava/io/UnsupportedEncodingException; {:try_start_1a .. :try_end_22} :catch_27
 
     .line 241
     nop
@@ -907,7 +907,7 @@
     return-void
 
     .line 241
-    :catch_0
+    :catch_27
     move-exception v2
 
     .line 242
@@ -921,7 +921,7 @@
     .line 226
     .end local v0    # "encoding":Ljava/lang/String;
     .local v2, "i":I
-    :cond_1
+    :cond_2d
     invoke-virtual {p0, v0}, Lcom/google/zxing/common/BitSource;->readBits(I)I
 
     move-result v3
@@ -933,12 +933,12 @@
     .line 225
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_d
 
     .line 221
     .end local v1    # "readBytes":[B
     .end local v2    # "i":I
-    :cond_2
+    :cond_37
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v0
@@ -947,7 +947,7 @@
 .end method
 
 .method private static decodeHanziSegment(Lcom/google/zxing/common/BitSource;Ljava/lang/StringBuilder;I)V
-    .locals 6
+    .registers 9
     .param p0, "bits"    # Lcom/google/zxing/common/BitSource;
     .param p1, "result"    # Ljava/lang/StringBuilder;
     .param p2, "count"    # I
@@ -964,7 +964,7 @@
 
     move-result v1
 
-    if-gt v0, v1, :cond_2
+    if-gt v0, v1, :cond_4e
 
     .line 151
     const/4 v0, 0x2
@@ -979,11 +979,11 @@
 
     .line 153
     .local v1, "offset":I
-    :goto_0
-    if-gtz p2, :cond_0
+    :goto_d
+    if-gtz p2, :cond_21
 
     .line 171
-    :try_start_0
+    :try_start_f
     new-instance v2, Ljava/lang/String;
 
     const-string v3, "GB2312"
@@ -991,8 +991,8 @@
     invoke-direct {v2, v0, v3}, Ljava/lang/String;-><init>([BLjava/lang/String;)V
 
     invoke-virtual {p1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    :try_end_0
-    .catch Ljava/io/UnsupportedEncodingException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_19
+    .catch Ljava/io/UnsupportedEncodingException; {:try_start_f .. :try_end_19} :catch_1b
 
     .line 172
     nop
@@ -1001,7 +1001,7 @@
     return-void
 
     .line 172
-    :catch_0
+    :catch_1b
     move-exception v2
 
     .line 173
@@ -1014,7 +1014,7 @@
 
     .line 155
     .end local v2    # "ignored":Ljava/io/UnsupportedEncodingException;
-    :cond_0
+    :cond_21
     const/16 v2, 0xd
 
     invoke-virtual {p0, v2}, Lcom/google/zxing/common/BitSource;->readBits(I)I
@@ -1035,7 +1035,7 @@
     .local v3, "assembledTwoBytes":I
     const/16 v4, 0x3bf
 
-    if-ge v3, v4, :cond_1
+    if-ge v3, v4, :cond_37
 
     .line 159
     const v4, 0xa1a1
@@ -1043,16 +1043,16 @@
     add-int/2addr v3, v4
 
     .line 160
-    goto :goto_1
+    goto :goto_3b
 
     .line 162
-    :cond_1
+    :cond_37
     const v4, 0xa6a1
 
     add-int/2addr v3, v4
 
     .line 164
-    :goto_1
+    :goto_3b
     shr-int/lit8 v4, v3, 0x8
 
     and-int/lit16 v4, v4, 0xff
@@ -1078,12 +1078,12 @@
 
     .end local v2    # "twoBytes":I
     .end local v3    # "assembledTwoBytes":I
-    goto :goto_0
+    goto :goto_d
 
     .line 146
     .end local v0    # "buffer":[B
     .end local v1    # "offset":I
-    :cond_2
+    :cond_4e
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v0
@@ -1092,7 +1092,7 @@
 .end method
 
 .method private static decodeKanjiSegment(Lcom/google/zxing/common/BitSource;Ljava/lang/StringBuilder;I)V
-    .locals 6
+    .registers 9
     .param p0, "bits"    # Lcom/google/zxing/common/BitSource;
     .param p1, "result"    # Ljava/lang/StringBuilder;
     .param p2, "count"    # I
@@ -1109,7 +1109,7 @@
 
     move-result v1
 
-    if-gt v0, v1, :cond_2
+    if-gt v0, v1, :cond_4a
 
     .line 187
     const/4 v0, 0x2
@@ -1124,11 +1124,11 @@
 
     .line 189
     .local v1, "offset":I
-    :goto_0
-    if-gtz p2, :cond_0
+    :goto_d
+    if-gtz p2, :cond_21
 
     .line 207
-    :try_start_0
+    :try_start_f
     new-instance v2, Ljava/lang/String;
 
     const-string v3, "SJIS"
@@ -1136,8 +1136,8 @@
     invoke-direct {v2, v0, v3}, Ljava/lang/String;-><init>([BLjava/lang/String;)V
 
     invoke-virtual {p1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    :try_end_0
-    .catch Ljava/io/UnsupportedEncodingException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_19
+    .catch Ljava/io/UnsupportedEncodingException; {:try_start_f .. :try_end_19} :catch_1b
 
     .line 208
     nop
@@ -1146,7 +1146,7 @@
     return-void
 
     .line 208
-    :catch_0
+    :catch_1b
     move-exception v2
 
     .line 209
@@ -1159,7 +1159,7 @@
 
     .line 191
     .end local v2    # "ignored":Ljava/io/UnsupportedEncodingException;
-    :cond_0
+    :cond_21
     const/16 v2, 0xd
 
     invoke-virtual {p0, v2}, Lcom/google/zxing/common/BitSource;->readBits(I)I
@@ -1180,7 +1180,7 @@
     .local v3, "assembledTwoBytes":I
     const/16 v4, 0x1f00
 
-    if-ge v3, v4, :cond_1
+    if-ge v3, v4, :cond_37
 
     .line 195
     const v4, 0x8140
@@ -1188,16 +1188,16 @@
     add-int/2addr v3, v4
 
     .line 196
-    goto :goto_1
+    goto :goto_3b
 
     .line 198
-    :cond_1
+    :cond_37
     const v4, 0xc140
 
     add-int/2addr v3, v4
 
     .line 200
-    :goto_1
+    :goto_3b
     shr-int/lit8 v4, v3, 0x8
 
     int-to-byte v4, v4
@@ -1219,12 +1219,12 @@
 
     .end local v2    # "twoBytes":I
     .end local v3    # "assembledTwoBytes":I
-    goto :goto_0
+    goto :goto_d
 
     .line 182
     .end local v0    # "buffer":[B
     .end local v1    # "offset":I
-    :cond_2
+    :cond_4a
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v0
@@ -1233,7 +1233,7 @@
 .end method
 
 .method private static decodeNumericSegment(Lcom/google/zxing/common/BitSource;Ljava/lang/StringBuilder;I)V
-    .locals 3
+    .registers 6
     .param p0, "bits"    # Lcom/google/zxing/common/BitSource;
     .param p1, "result"    # Ljava/lang/StringBuilder;
     .param p2, "count"    # I
@@ -1249,12 +1249,12 @@
 
     const/16 v1, 0xa
 
-    if-ge p2, v0, :cond_6
+    if-ge p2, v0, :cond_57
 
     .line 311
     const/4 v0, 0x2
 
-    if-ne p2, v0, :cond_2
+    if-ne p2, v0, :cond_34
 
     .line 313
     invoke-virtual {p0}, Lcom/google/zxing/common/BitSource;->available()I
@@ -1263,7 +1263,7 @@
 
     const/4 v1, 0x7
 
-    if-lt v0, v1, :cond_1
+    if-lt v0, v1, :cond_2f
 
     .line 316
     invoke-virtual {p0, v1}, Lcom/google/zxing/common/BitSource;->readBits(I)I
@@ -1274,7 +1274,7 @@
     .local v0, "twoDigitsBits":I
     const/16 v1, 0x64
 
-    if-ge v0, v1, :cond_0
+    if-ge v0, v1, :cond_2a
 
     .line 320
     div-int/lit8 v1, v0, 0xa
@@ -1296,11 +1296,11 @@
 
     .line 322
     .end local v0    # "twoDigitsBits":I
-    goto :goto_1
+    goto :goto_56
 
     .line 318
     .restart local v0    # "twoDigitsBits":I
-    :cond_0
+    :cond_2a
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v1
@@ -1309,7 +1309,7 @@
 
     .line 314
     .end local v0    # "twoDigitsBits":I
-    :cond_1
+    :cond_2f
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v0
@@ -1317,10 +1317,10 @@
     throw v0
 
     .line 322
-    :cond_2
+    :cond_34
     const/4 v0, 0x1
 
-    if-ne p2, v0, :cond_5
+    if-ne p2, v0, :cond_56
 
     .line 324
     invoke-virtual {p0}, Lcom/google/zxing/common/BitSource;->available()I
@@ -1329,7 +1329,7 @@
 
     const/4 v2, 0x4
 
-    if-lt v0, v2, :cond_4
+    if-lt v0, v2, :cond_51
 
     .line 327
     invoke-virtual {p0, v2}, Lcom/google/zxing/common/BitSource;->readBits(I)I
@@ -1338,7 +1338,7 @@
 
     .line 328
     .local v0, "digitBits":I
-    if-ge v0, v1, :cond_3
+    if-ge v0, v1, :cond_4c
 
     .line 331
     invoke-static {v0}, Lcom/google/zxing/qrcode/decoder/DecodedBitStreamParser;->toAlphaNumericChar(I)C
@@ -1348,11 +1348,11 @@
     invoke-virtual {p1, v1}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .end local v0    # "digitBits":I
-    goto :goto_1
+    goto :goto_56
 
     .line 329
     .restart local v0    # "digitBits":I
-    :cond_3
+    :cond_4c
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v1
@@ -1361,7 +1361,7 @@
 
     .line 325
     .end local v0    # "digitBits":I
-    :cond_4
+    :cond_51
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v0
@@ -1369,17 +1369,17 @@
     throw v0
 
     .line 333
-    :cond_5
-    :goto_1
+    :cond_56
+    :goto_56
     return-void
 
     .line 299
-    :cond_6
+    :cond_57
     invoke-virtual {p0}, Lcom/google/zxing/common/BitSource;->available()I
 
     move-result v0
 
-    if-lt v0, v1, :cond_8
+    if-lt v0, v1, :cond_8a
 
     .line 302
     invoke-virtual {p0, v1}, Lcom/google/zxing/common/BitSource;->readBits(I)I
@@ -1390,7 +1390,7 @@
     .local v0, "threeDigitsBits":I
     const/16 v2, 0x3e8
 
-    if-ge v0, v2, :cond_7
+    if-ge v0, v2, :cond_85
 
     .line 306
     div-int/lit8 v2, v0, 0x64
@@ -1429,7 +1429,7 @@
 
     .line 304
     .restart local v0    # "threeDigitsBits":I
-    :cond_7
+    :cond_85
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v1
@@ -1438,7 +1438,7 @@
 
     .line 300
     .end local v0    # "threeDigitsBits":I
-    :cond_8
+    :cond_8a
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v0
@@ -1447,7 +1447,7 @@
 .end method
 
 .method private static parseECIValue(Lcom/google/zxing/common/BitSource;)I
-    .locals 4
+    .registers 5
     .param p0, "bits"    # Lcom/google/zxing/common/BitSource;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -1466,7 +1466,7 @@
     .local v1, "firstByte":I
     and-int/lit16 v2, v1, 0x80
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_d
 
     .line 339
     and-int/lit8 v0, v1, 0x7f
@@ -1474,12 +1474,12 @@
     return v0
 
     .line 341
-    :cond_0
+    :cond_d
     and-int/lit16 v2, v1, 0xc0
 
     const/16 v3, 0x80
 
-    if-ne v2, v3, :cond_1
+    if-ne v2, v3, :cond_1d
 
     .line 343
     invoke-virtual {p0, v0}, Lcom/google/zxing/common/BitSource;->readBits(I)I
@@ -1498,12 +1498,12 @@
 
     .line 346
     .end local v2    # "secondByte":I
-    :cond_1
+    :cond_1d
     and-int/lit16 v0, v1, 0xe0
 
     const/16 v2, 0xc0
 
-    if-ne v0, v2, :cond_2
+    if-ne v0, v2, :cond_2f
 
     .line 348
     const/16 v0, 0x10
@@ -1524,7 +1524,7 @@
 
     .line 351
     .end local v2    # "secondThirdBytes":I
-    :cond_2
+    :cond_2f
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v0
@@ -1533,7 +1533,7 @@
 .end method
 
 .method private static toAlphaNumericChar(I)C
-    .locals 1
+    .registers 2
     .param p0, "value"    # I
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -1546,7 +1546,7 @@
 
     array-length v0, v0
 
-    if-ge p0, v0, :cond_0
+    if-ge p0, v0, :cond_a
 
     .line 251
     sget-object v0, Lcom/google/zxing/qrcode/decoder/DecodedBitStreamParser;->ALPHANUMERIC_CHARS:[C
@@ -1556,7 +1556,7 @@
     return v0
 
     .line 249
-    :cond_0
+    :cond_a
     invoke-static {}, Lcom/google/zxing/FormatException;->getFormatInstance()Lcom/google/zxing/FormatException;
 
     move-result-object v0

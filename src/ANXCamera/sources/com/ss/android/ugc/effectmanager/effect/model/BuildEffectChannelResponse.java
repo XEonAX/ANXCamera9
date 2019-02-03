@@ -21,8 +21,12 @@ public class BuildEffectChannelResponse {
     public EffectChannelResponse buildChannelResponse(EffectChannelModel effectChannelModel) {
         System.currentTimeMillis();
         Map hashMap = new HashMap();
+        Map hashMap2 = new HashMap();
         for (Effect effect : effectChannelModel.getEffects()) {
             hashMap.put(effect.getEffectId(), effect);
+        }
+        for (Effect effect2 : effectChannelModel.getCollection()) {
+            hashMap2.put(effect2.getEffectId(), effect2);
         }
         EffectChannelResponse effectChannelResponse = new EffectChannelResponse();
         effectChannelResponse.setPanel(this.mPanel);
@@ -30,6 +34,7 @@ public class BuildEffectChannelResponse {
         effectChannelResponse.setAllCategoryEffects(effectChannelModel.getEffects());
         effectChannelResponse.setCollections(effectChannelModel.getCollection());
         effectChannelResponse.setCategoryResponseList(initCategory(effectChannelModel, hashMap));
+        getChildEffect(effectChannelModel.getEffects(), hashMap2);
         effectChannelResponse.setPanelModel(effectChannelModel.getPanel());
         effectChannelResponse.setFrontEffect(getEffect(effectChannelModel.getFront_effect_id(), hashMap));
         effectChannelResponse.setRearEffect(getEffect(effectChannelModel.getRear_effect_id(), hashMap));
@@ -47,6 +52,7 @@ public class BuildEffectChannelResponse {
                 EffectCategoryResponse effectCategoryResponse = new EffectCategoryResponse();
                 effectCategoryResponse.setId(effectCategoryModel.getId());
                 effectCategoryResponse.setName(effectCategoryModel.getName());
+                effectCategoryResponse.setKey(effectCategoryModel.getKey());
                 if (!effectCategoryModel.getIcon().getUrl_list().isEmpty()) {
                     effectCategoryResponse.setIcon_normal_url((String) effectCategoryModel.getIcon().getUrl_list().get(0));
                 }
@@ -76,6 +82,21 @@ public class BuildEffectChannelResponse {
             }
         }
         return arrayList;
+    }
+
+    private void getChildEffect(List<Effect> list, Map<String, Effect> map) {
+        for (Effect effect : list) {
+            if (effect.getEffectType() == 1) {
+                List arrayList = new ArrayList();
+                for (String str : effect.getChildren()) {
+                    Effect effect2 = (Effect) map.get(str);
+                    if (effect2 != null) {
+                        arrayList.add(effect2);
+                    }
+                }
+                effect.setChildEffects(arrayList);
+            }
+        }
     }
 
     private void fillEffectPath(List<Effect> list) {

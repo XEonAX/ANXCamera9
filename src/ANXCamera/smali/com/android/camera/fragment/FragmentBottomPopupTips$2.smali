@@ -3,12 +3,12 @@
 .source "FragmentBottomPopupTips.java"
 
 # interfaces
-.implements Landroid/animation/ValueAnimator$AnimatorUpdateListener;
+.implements Ljava/lang/Runnable;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/fragment/FragmentBottomPopupTips;->initBeautyIntroAnimator()V
+    value = Lcom/android/camera/fragment/FragmentBottomPopupTips;->showTips(III)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;)V
     .locals 0
 
-    .line 221
+    .line 554
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$2;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -35,24 +35,30 @@
 
 
 # virtual methods
-.method public onAnimationUpdate(Landroid/animation/ValueAnimator;)V
-    .locals 1
+.method public run()V
+    .locals 2
 
-    .line 224
+    .line 557
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$2;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
-    invoke-virtual {p1}, Landroid/animation/ValueAnimator;->getAnimatedValue()Ljava/lang/Object;
+    invoke-virtual {v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->isAdded()Z
 
-    move-result-object p1
+    move-result v0
 
-    check-cast p1, Ljava/lang/Integer;
+    if-eqz v0, :cond_0
 
-    invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
+    .line 558
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$2;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
-    move-result p1
+    invoke-static {v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->access$000(Lcom/android/camera/fragment/FragmentBottomPopupTips;)Landroid/widget/TextView;
 
-    invoke-static {v0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->access$400(Lcom/android/camera/fragment/FragmentBottomPopupTips;I)V
+    move-result-object v0
 
-    .line 225
+    const/4 v1, 0x4
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->sendAccessibilityEvent(I)V
+
+    .line 560
+    :cond_0
     return-void
 .end method

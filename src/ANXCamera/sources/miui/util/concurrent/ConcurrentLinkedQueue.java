@@ -4,22 +4,22 @@ import java.util.Iterator;
 import miui.util.concurrent.Queue.Predicate;
 
 public class ConcurrentLinkedQueue<T> implements Queue<T> {
-    private final java.util.concurrent.ConcurrentLinkedQueue<T> LW = new java.util.concurrent.ConcurrentLinkedQueue();
+    private final java.util.concurrent.ConcurrentLinkedQueue<T> Mg = new java.util.concurrent.ConcurrentLinkedQueue();
 
     public boolean put(T t) {
-        return this.LW.offer(t);
+        return this.Mg.offer(t);
     }
 
     public T get() {
-        return this.LW.poll();
+        return this.Mg.poll();
     }
 
     public boolean remove(T t) {
-        return this.LW.remove(t);
+        return this.Mg.remove(t);
     }
 
     public int remove(Predicate<T> predicate) {
-        Iterator it = this.LW.iterator();
+        Iterator it = this.Mg.iterator();
         int i = 0;
         while (it.hasNext()) {
             if (predicate.apply(it.next())) {
@@ -31,13 +31,13 @@ public class ConcurrentLinkedQueue<T> implements Queue<T> {
     }
 
     public int clear() {
-        int size = this.LW.size();
-        this.LW.clear();
+        int size = this.Mg.size();
+        this.Mg.clear();
         return size;
     }
 
     public boolean isEmpty() {
-        return this.LW.isEmpty();
+        return this.Mg.isEmpty();
     }
 
     public int getCapacity() {

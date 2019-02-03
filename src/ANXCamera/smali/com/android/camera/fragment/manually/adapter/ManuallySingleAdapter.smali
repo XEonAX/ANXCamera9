@@ -169,7 +169,7 @@
     invoke-virtual {v1, v0}, Landroid/view/View;->setTag(Ljava/lang/Object;)V
 
     .line 59
-    const v1, 0x7f0d0075
+    const v1, 0x7f0d0088
 
     invoke-virtual {p1, v1}, Lcom/android/camera/fragment/CommonRecyclerViewHolder;->getView(I)Landroid/view/View;
 
@@ -178,7 +178,7 @@
     check-cast v1, Landroid/widget/TextView;
 
     .line 60
-    const v2, 0x7f0d0076
+    const v2, 0x7f0d0089
 
     invoke-virtual {p1, v2}, Lcom/android/camera/fragment/CommonRecyclerViewHolder;->getView(I)Landroid/view/View;
 
@@ -189,7 +189,7 @@
     invoke-virtual {v2, v3}, Landroid/view/View;->setVisibility(I)V
 
     .line 61
-    const v2, 0x7f0d0077
+    const v2, 0x7f0d008a
 
     invoke-virtual {p1, v2}, Lcom/android/camera/fragment/CommonRecyclerViewHolder;->getView(I)Landroid/view/View;
 
@@ -308,7 +308,7 @@
     move-result-object p2
 
     .line 43
-    const v0, 0x7f040025
+    const v0, 0x7f040028
 
     const/4 v1, 0x0
 

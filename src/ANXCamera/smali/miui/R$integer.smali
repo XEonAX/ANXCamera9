@@ -1,6 +1,6 @@
 .class public final Lmiui/R$integer;
 .super Ljava/lang/Object;
-.source "SourceFile"
+.source "R.java"
 
 
 # annotations
@@ -20,9 +20,9 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
-    .line 1774
+    .line 1803
     const v0, 0x10080001
 
     sput v0, Lmiui/R$integer;->button_exit_fade_duration:I
@@ -31,9 +31,9 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
-    .line 1771
+    .line 1800
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

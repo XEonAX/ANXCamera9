@@ -18,7 +18,7 @@
 
 
 # instance fields
-.field final synthetic be:Lcom/bumptech/glide/i;
+.field final synthetic bf:Lcom/bumptech/glide/i;
 
 
 # direct methods
@@ -26,7 +26,7 @@
     .locals 0
 
     .line 64
-    iput-object p1, p0, Lcom/bumptech/glide/i$1;->be:Lcom/bumptech/glide/i;
+    iput-object p1, p0, Lcom/bumptech/glide/i$1;->bf:Lcom/bumptech/glide/i;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -39,11 +39,11 @@
     .locals 2
 
     .line 67
-    iget-object v0, p0, Lcom/bumptech/glide/i$1;->be:Lcom/bumptech/glide/i;
+    iget-object v0, p0, Lcom/bumptech/glide/i$1;->bf:Lcom/bumptech/glide/i;
 
-    iget-object v0, v0, Lcom/bumptech/glide/i;->aY:Lcom/bumptech/glide/manager/h;
+    iget-object v0, v0, Lcom/bumptech/glide/i;->aZ:Lcom/bumptech/glide/manager/h;
 
-    iget-object v1, p0, Lcom/bumptech/glide/i$1;->be:Lcom/bumptech/glide/i;
+    iget-object v1, p0, Lcom/bumptech/glide/i$1;->bf:Lcom/bumptech/glide/i;
 
     invoke-interface {v0, v1}, Lcom/bumptech/glide/manager/h;->a(Lcom/bumptech/glide/manager/i;)V
 

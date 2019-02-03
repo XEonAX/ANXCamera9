@@ -20,14 +20,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 166
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xb
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_e
 
     .line 167
     new-instance v0, Landroid/support/v4/view/KeyEventCompat$HoneycombKeyEventVersionImpl;
@@ -36,10 +36,10 @@
 
     sput-object v0, Landroid/support/v4/view/KeyEventCompat;->IMPL:Landroid/support/v4/view/KeyEventCompat$KeyEventVersionImpl;
 
-    goto :goto_0
+    goto :goto_15
 
     .line 169
-    :cond_0
+    :cond_e
     new-instance v0, Landroid/support/v4/view/KeyEventCompat$BaseKeyEventVersionImpl;
 
     invoke-direct {v0}, Landroid/support/v4/view/KeyEventCompat$BaseKeyEventVersionImpl;-><init>()V
@@ -47,12 +47,12 @@
     sput-object v0, Landroid/support/v4/view/KeyEventCompat;->IMPL:Landroid/support/v4/view/KeyEventCompat$KeyEventVersionImpl;
 
     .line 171
-    :goto_0
+    :goto_15
     return-void
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -62,7 +62,7 @@
 .end method
 
 .method public static dispatch(Landroid/view/KeyEvent;Landroid/view/KeyEvent$Callback;Ljava/lang/Object;Ljava/lang/Object;)Z
-    .locals 1
+    .registers 5
     .param p0, "event"    # Landroid/view/KeyEvent;
     .param p1, "receiver"    # Landroid/view/KeyEvent$Callback;
     .param p2, "state"    # Ljava/lang/Object;
@@ -79,7 +79,7 @@
 .end method
 
 .method public static getKeyDispatcherState(Landroid/view/View;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 204
@@ -93,7 +93,7 @@
 .end method
 
 .method public static hasModifiers(Landroid/view/KeyEvent;I)Z
-    .locals 2
+    .registers 4
     .param p0, "event"    # Landroid/view/KeyEvent;
     .param p1, "modifiers"    # I
 
@@ -112,7 +112,7 @@
 .end method
 
 .method public static hasNoModifiers(Landroid/view/KeyEvent;)Z
-    .locals 2
+    .registers 3
     .param p0, "event"    # Landroid/view/KeyEvent;
 
     .line 192
@@ -130,7 +130,7 @@
 .end method
 
 .method public static isTracking(Landroid/view/KeyEvent;)Z
-    .locals 1
+    .registers 2
     .param p0, "event"    # Landroid/view/KeyEvent;
 
     .line 200
@@ -144,7 +144,7 @@
 .end method
 
 .method public static metaStateHasModifiers(II)Z
-    .locals 1
+    .registers 3
     .param p0, "metaState"    # I
     .param p1, "modifiers"    # I
 
@@ -159,7 +159,7 @@
 .end method
 
 .method public static metaStateHasNoModifiers(I)Z
-    .locals 1
+    .registers 2
     .param p0, "metaState"    # I
 
     .line 184
@@ -173,7 +173,7 @@
 .end method
 
 .method public static normalizeMetaState(I)I
-    .locals 1
+    .registers 2
     .param p0, "metaState"    # I
 
     .line 176
@@ -187,7 +187,7 @@
 .end method
 
 .method public static startTracking(Landroid/view/KeyEvent;)V
-    .locals 1
+    .registers 2
     .param p0, "event"    # Landroid/view/KeyEvent;
 
     .line 196

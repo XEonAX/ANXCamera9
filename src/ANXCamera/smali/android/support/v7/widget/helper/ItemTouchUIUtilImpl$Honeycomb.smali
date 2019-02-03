@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 74
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public clearView(Landroid/view/View;)V
-    .locals 1
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
 
     .line 78
@@ -46,7 +46,7 @@
 .end method
 
 .method public onDraw(Landroid/graphics/Canvas;Landroid/support/v7/widget/RecyclerView;Landroid/view/View;FFIZ)V
-    .locals 0
+    .registers 8
     .param p1, "c"    # Landroid/graphics/Canvas;
     .param p2, "recyclerView"    # Landroid/support/v7/widget/RecyclerView;
     .param p3, "view"    # Landroid/view/View;
@@ -66,7 +66,7 @@
 .end method
 
 .method public onDrawOver(Landroid/graphics/Canvas;Landroid/support/v7/widget/RecyclerView;Landroid/view/View;FFIZ)V
-    .locals 0
+    .registers 8
     .param p1, "c"    # Landroid/graphics/Canvas;
     .param p2, "recyclerView"    # Landroid/support/v7/widget/RecyclerView;
     .param p3, "view"    # Landroid/view/View;
@@ -80,7 +80,7 @@
 .end method
 
 .method public onSelected(Landroid/view/View;)V
-    .locals 0
+    .registers 2
     .param p1, "view"    # Landroid/view/View;
 
     .line 85

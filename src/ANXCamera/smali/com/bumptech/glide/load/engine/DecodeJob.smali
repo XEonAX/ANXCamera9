@@ -43,27 +43,29 @@
 
 
 # instance fields
-.field private aK:Ljava/lang/Object;
+.field private aL:Ljava/lang/Object;
 
-.field private volatile dp:Z
+.field private volatile dq:Z
 
-.field private eA:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
+.field private eA:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
-.field private eB:J
+.field private eB:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
 
-.field private eC:Z
+.field private eC:J
 
-.field private eD:Ljava/lang/Thread;
+.field private eD:Z
 
-.field private eE:Lcom/bumptech/glide/load/c;
+.field private eE:Ljava/lang/Thread;
 
 .field private eF:Lcom/bumptech/glide/load/c;
 
-.field private eG:Ljava/lang/Object;
+.field private eG:Lcom/bumptech/glide/load/c;
 
-.field private eH:Lcom/bumptech/glide/load/DataSource;
+.field private eH:Ljava/lang/Object;
 
-.field private eI:Lcom/bumptech/glide/load/a/d;
+.field private eI:Lcom/bumptech/glide/load/DataSource;
+
+.field private eJ:Lcom/bumptech/glide/load/a/d;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/a/d<",
@@ -72,21 +74,21 @@
     .end annotation
 .end field
 
-.field private volatile eJ:Lcom/bumptech/glide/load/engine/d;
+.field private volatile eK:Lcom/bumptech/glide/load/engine/d;
 
-.field private volatile eK:Z
+.field private volatile eL:Z
 
-.field private ee:Lcom/bumptech/glide/load/c;
+.field private ef:Lcom/bumptech/glide/load/c;
 
-.field private eg:Lcom/bumptech/glide/load/f;
+.field private eh:Lcom/bumptech/glide/load/f;
 
-.field private final ej:Lcom/bumptech/glide/load/engine/DecodeJob$d;
+.field private final ek:Lcom/bumptech/glide/load/engine/DecodeJob$d;
 
-.field private en:Lcom/bumptech/glide/Priority;
+.field private eo:Lcom/bumptech/glide/Priority;
 
-.field private eo:Lcom/bumptech/glide/load/engine/g;
+.field private ep:Lcom/bumptech/glide/load/engine/g;
 
-.field private final er:Lcom/bumptech/glide/load/engine/e;
+.field private final es:Lcom/bumptech/glide/load/engine/e;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/engine/e<",
@@ -95,7 +97,7 @@
     .end annotation
 .end field
 
-.field private final es:Ljava/util/List;
+.field private final et:Ljava/util/List;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/List<",
@@ -105,9 +107,9 @@
     .end annotation
 .end field
 
-.field private final et:Lcom/bumptech/glide/util/a/c;
+.field private final eu:Lcom/bumptech/glide/util/a/c;
 
-.field private final eu:Landroid/support/v4/util/Pools$Pool;
+.field private final ev:Landroid/support/v4/util/Pools$Pool;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Landroid/support/v4/util/Pools$Pool<",
@@ -117,7 +119,7 @@
     .end annotation
 .end field
 
-.field private final ev:Lcom/bumptech/glide/load/engine/DecodeJob$c;
+.field private final ew:Lcom/bumptech/glide/load/engine/DecodeJob$c;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/engine/DecodeJob$c<",
@@ -126,11 +128,11 @@
     .end annotation
 .end field
 
-.field private final ew:Lcom/bumptech/glide/load/engine/DecodeJob$e;
+.field private final ex:Lcom/bumptech/glide/load/engine/DecodeJob$e;
 
-.field private ex:Lcom/bumptech/glide/load/engine/i;
+.field private ey:Lcom/bumptech/glide/load/engine/i;
 
-.field private ey:Lcom/bumptech/glide/load/engine/DecodeJob$a;
+.field private ez:Lcom/bumptech/glide/load/engine/DecodeJob$a;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/engine/DecodeJob$a<",
@@ -139,13 +141,11 @@
     .end annotation
 .end field
 
-.field private ez:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
-
 .field private height:I
 
-.field private o:Lcom/bumptech/glide/e;
-
 .field private order:I
+
+.field private q:Lcom/bumptech/glide/e;
 
 .field private width:I
 
@@ -171,41 +171,41 @@
 
     invoke-direct {v0}, Lcom/bumptech/glide/load/engine/e;-><init>()V
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->er:Lcom/bumptech/glide/load/engine/e;
+    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Lcom/bumptech/glide/load/engine/e;
 
     .line 45
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Ljava/util/List;
+    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->et:Ljava/util/List;
 
     .line 46
     invoke-static {}, Lcom/bumptech/glide/util/a/c;->eM()Lcom/bumptech/glide/util/a/c;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->et:Lcom/bumptech/glide/util/a/c;
+    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eu:Lcom/bumptech/glide/util/a/c;
 
     .line 49
     new-instance v0, Lcom/bumptech/glide/load/engine/DecodeJob$c;
 
     invoke-direct {v0}, Lcom/bumptech/glide/load/engine/DecodeJob$c;-><init>()V
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ev:Lcom/bumptech/glide/load/engine/DecodeJob$c;
+    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ew:Lcom/bumptech/glide/load/engine/DecodeJob$c;
 
     .line 50
     new-instance v0, Lcom/bumptech/glide/load/engine/DecodeJob$e;
 
     invoke-direct {v0}, Lcom/bumptech/glide/load/engine/DecodeJob$e;-><init>()V
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ew:Lcom/bumptech/glide/load/engine/DecodeJob$e;
+    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ex:Lcom/bumptech/glide/load/engine/DecodeJob$e;
 
     .line 80
-    iput-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ej:Lcom/bumptech/glide/load/engine/DecodeJob$d;
+    iput-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ek:Lcom/bumptech/glide/load/engine/DecodeJob$d;
 
     .line 81
-    iput-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eu:Landroid/support/v4/util/Pools$Pool;
+    iput-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ev:Landroid/support/v4/util/Pools$Pool;
 
     .line 82
     return-void
@@ -215,7 +215,7 @@
     .locals 3
 
     .line 341
-    sget-object v0, Lcom/bumptech/glide/load/engine/DecodeJob$1;->eM:[I
+    sget-object v0, Lcom/bumptech/glide/load/engine/DecodeJob$1;->eN:[I
 
     invoke-virtual {p1}, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->ordinal()I
 
@@ -248,7 +248,7 @@
 
     .line 343
     :pswitch_0
-    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eo:Lcom/bumptech/glide/load/engine/g;
+    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ep:Lcom/bumptech/glide/load/engine/g;
 
     invoke-virtual {p1}, Lcom/bumptech/glide/load/engine/g;->aO()Z
 
@@ -257,12 +257,12 @@
     if-eqz p1, :cond_0
 
     .line 344
-    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->eZ:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fa:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     goto :goto_0
 
     :cond_0
-    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->eZ:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fa:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     invoke-direct {p0, p1}, Lcom/bumptech/glide/load/engine/DecodeJob;->a(Lcom/bumptech/glide/load/engine/DecodeJob$Stage;)Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
@@ -274,29 +274,29 @@
 
     .line 353
     :pswitch_1
-    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fd:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fe:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     return-object p1
 
     .line 350
     :pswitch_2
-    iget-boolean p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eC:Z
+    iget-boolean p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eD:Z
 
     if-eqz p1, :cond_1
 
-    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fd:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fe:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     goto :goto_1
 
     :cond_1
-    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fb:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fc:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     :goto_1
     return-object p1
 
     .line 346
     :pswitch_3
-    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eo:Lcom/bumptech/glide/load/engine/g;
+    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ep:Lcom/bumptech/glide/load/engine/g;
 
     invoke-virtual {p1}, Lcom/bumptech/glide/load/engine/g;->aP()Z
 
@@ -305,12 +305,12 @@
     if-eqz p1, :cond_2
 
     .line 347
-    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fa:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fb:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     goto :goto_2
 
     :cond_2
-    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fa:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fb:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     invoke-direct {p0, p1}, Lcom/bumptech/glide/load/engine/DecodeJob;->a(Lcom/bumptech/glide/load/engine/DecodeJob$Stage;)Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
@@ -448,7 +448,7 @@
     .end annotation
 
     .line 471
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->er:Lcom/bumptech/glide/load/engine/e;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Lcom/bumptech/glide/load/engine/e;
 
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
@@ -495,7 +495,7 @@
     move-result-object v2
 
     .line 498
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->o:Lcom/bumptech/glide/e;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->q:Lcom/bumptech/glide/e;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/e;->l()Lcom/bumptech/glide/Registry;
 
@@ -546,7 +546,7 @@
     .end annotation
 
     .line 477
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eg:Lcom/bumptech/glide/load/f;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eh:Lcom/bumptech/glide/load/f;
 
     .line 478
     sget v1, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -573,11 +573,11 @@
 
     .line 486
     :cond_1
-    sget-object v1, Lcom/bumptech/glide/load/DataSource;->cv:Lcom/bumptech/glide/load/DataSource;
+    sget-object v1, Lcom/bumptech/glide/load/DataSource;->cw:Lcom/bumptech/glide/load/DataSource;
 
     if-eq p1, v1, :cond_2
 
-    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->er:Lcom/bumptech/glide/load/engine/e;
+    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Lcom/bumptech/glide/load/engine/e;
 
     .line 487
     invoke-virtual {p1}, Lcom/bumptech/glide/load/engine/e;->ay()Z
@@ -593,7 +593,7 @@
     invoke-direct {v0}, Lcom/bumptech/glide/load/f;-><init>()V
 
     .line 489
-    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eg:Lcom/bumptech/glide/load/f;
+    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eh:Lcom/bumptech/glide/load/f;
 
     invoke-virtual {v0, p1}, Lcom/bumptech/glide/load/f;->a(Lcom/bumptech/glide/load/f;)V
 
@@ -629,7 +629,7 @@
     invoke-direct {p0}, Lcom/bumptech/glide/load/engine/DecodeJob;->aI()V
 
     .line 329
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ey:Lcom/bumptech/glide/load/engine/DecodeJob$a;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$a;
 
     invoke-interface {v0, p1, p2}, Lcom/bumptech/glide/load/engine/DecodeJob$a;->c(Lcom/bumptech/glide/load/engine/p;Lcom/bumptech/glide/load/DataSource;)V
 
@@ -663,7 +663,7 @@
 
     invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ex:Lcom/bumptech/glide/load/engine/i;
+    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ey:Lcom/bumptech/glide/load/engine/i;
 
     invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
@@ -722,7 +722,7 @@
     .locals 1
 
     .line 159
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ew:Lcom/bumptech/glide/load/engine/DecodeJob$e;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ex:Lcom/bumptech/glide/load/engine/DecodeJob$e;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/load/engine/DecodeJob$e;->aM()Z
 
@@ -742,7 +742,7 @@
     .locals 1
 
     .line 168
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ew:Lcom/bumptech/glide/load/engine/DecodeJob$e;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ex:Lcom/bumptech/glide/load/engine/DecodeJob$e;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/load/engine/DecodeJob$e;->aN()Z
 
@@ -762,84 +762,84 @@
     .locals 4
 
     .line 174
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ew:Lcom/bumptech/glide/load/engine/DecodeJob$e;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ex:Lcom/bumptech/glide/load/engine/DecodeJob$e;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/load/engine/DecodeJob$e;->reset()V
 
     .line 175
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ev:Lcom/bumptech/glide/load/engine/DecodeJob$c;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ew:Lcom/bumptech/glide/load/engine/DecodeJob$c;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/load/engine/DecodeJob$c;->clear()V
 
     .line 176
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->er:Lcom/bumptech/glide/load/engine/e;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Lcom/bumptech/glide/load/engine/e;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/load/engine/e;->clear()V
 
     .line 177
     const/4 v0, 0x0
 
-    iput-boolean v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eK:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eL:Z
 
     .line 178
     const/4 v1, 0x0
 
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->o:Lcom/bumptech/glide/e;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->q:Lcom/bumptech/glide/e;
 
     .line 179
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ee:Lcom/bumptech/glide/load/c;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ef:Lcom/bumptech/glide/load/c;
 
     .line 180
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eg:Lcom/bumptech/glide/load/f;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eh:Lcom/bumptech/glide/load/f;
 
     .line 181
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->en:Lcom/bumptech/glide/Priority;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eo:Lcom/bumptech/glide/Priority;
 
     .line 182
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ex:Lcom/bumptech/glide/load/engine/i;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ey:Lcom/bumptech/glide/load/engine/i;
 
     .line 183
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ey:Lcom/bumptech/glide/load/engine/DecodeJob$a;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$a;
 
     .line 184
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     .line 185
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eJ:Lcom/bumptech/glide/load/engine/d;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eK:Lcom/bumptech/glide/load/engine/d;
 
     .line 186
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eD:Ljava/lang/Thread;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eE:Ljava/lang/Thread;
 
     .line 187
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eE:Lcom/bumptech/glide/load/c;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eF:Lcom/bumptech/glide/load/c;
 
     .line 188
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eG:Ljava/lang/Object;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eH:Ljava/lang/Object;
 
     .line 189
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eH:Lcom/bumptech/glide/load/DataSource;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eI:Lcom/bumptech/glide/load/DataSource;
 
     .line 190
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eI:Lcom/bumptech/glide/load/a/d;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eJ:Lcom/bumptech/glide/load/a/d;
 
     .line 191
     const-wide/16 v2, 0x0
 
-    iput-wide v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eB:J
+    iput-wide v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eC:J
 
     .line 192
-    iput-boolean v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->dp:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->dq:Z
 
     .line 193
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->aK:Ljava/lang/Object;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->aL:Ljava/lang/Object;
 
     .line 194
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Ljava/util/List;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->et:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->clear()V
 
     .line 195
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eu:Landroid/support/v4/util/Pools$Pool;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ev:Landroid/support/v4/util/Pools$Pool;
 
     invoke-interface {v0, p0}, Landroid/support/v4/util/Pools$Pool;->release(Ljava/lang/Object;)Z
 
@@ -851,9 +851,9 @@
     .locals 3
 
     .line 265
-    sget-object v0, Lcom/bumptech/glide/load/engine/DecodeJob$1;->eL:[I
+    sget-object v0, Lcom/bumptech/glide/load/engine/DecodeJob$1;->eM:[I
 
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eB:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
 
     invoke-virtual {v1}, Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;->ordinal()I
 
@@ -874,7 +874,7 @@
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
+    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eB:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
@@ -902,20 +902,20 @@
 
     .line 267
     :pswitch_2
-    sget-object v0, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->eY:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    sget-object v0, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->eZ:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     invoke-direct {p0, v0}, Lcom/bumptech/glide/load/engine/DecodeJob;->a(Lcom/bumptech/glide/load/engine/DecodeJob$Stage;)Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     .line 268
     invoke-direct {p0}, Lcom/bumptech/glide/load/engine/DecodeJob;->aG()Lcom/bumptech/glide/load/engine/d;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eJ:Lcom/bumptech/glide/load/engine/d;
+    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eK:Lcom/bumptech/glide/load/engine/d;
 
     .line 269
     invoke-direct {p0}, Lcom/bumptech/glide/load/engine/DecodeJob;->aH()V
@@ -941,9 +941,9 @@
     .locals 3
 
     .line 283
-    sget-object v0, Lcom/bumptech/glide/load/engine/DecodeJob$1;->eM:[I
+    sget-object v0, Lcom/bumptech/glide/load/engine/DecodeJob$1;->eN:[I
 
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     invoke-virtual {v1}, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->ordinal()I
 
@@ -964,7 +964,7 @@
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
@@ -986,7 +986,7 @@
     :pswitch_1
     new-instance v0, Lcom/bumptech/glide/load/engine/t;
 
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->er:Lcom/bumptech/glide/load/engine/e;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Lcom/bumptech/glide/load/engine/e;
 
     invoke-direct {v0, v1, p0}, Lcom/bumptech/glide/load/engine/t;-><init>(Lcom/bumptech/glide/load/engine/e;Lcom/bumptech/glide/load/engine/d$a;)V
 
@@ -996,7 +996,7 @@
     :pswitch_2
     new-instance v0, Lcom/bumptech/glide/load/engine/a;
 
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->er:Lcom/bumptech/glide/load/engine/e;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Lcom/bumptech/glide/load/engine/e;
 
     invoke-direct {v0, v1, p0}, Lcom/bumptech/glide/load/engine/a;-><init>(Lcom/bumptech/glide/load/engine/e;Lcom/bumptech/glide/load/engine/d$a;)V
 
@@ -1006,7 +1006,7 @@
     :pswitch_3
     new-instance v0, Lcom/bumptech/glide/load/engine/q;
 
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->er:Lcom/bumptech/glide/load/engine/e;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Lcom/bumptech/glide/load/engine/e;
 
     invoke-direct {v0, v1, p0}, Lcom/bumptech/glide/load/engine/q;-><init>(Lcom/bumptech/glide/load/engine/e;Lcom/bumptech/glide/load/engine/d$a;)V
 
@@ -1029,14 +1029,14 @@
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eD:Ljava/lang/Thread;
+    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eE:Ljava/lang/Thread;
 
     .line 299
     invoke-static {}, Lcom/bumptech/glide/util/e;->eE()J
 
     move-result-wide v0
 
-    iput-wide v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eB:J
+    iput-wide v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eC:J
 
     .line 300
     nop
@@ -1045,15 +1045,15 @@
     const/4 v0, 0x0
 
     :cond_0
-    iget-boolean v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->dp:Z
+    iget-boolean v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->dq:Z
 
     if-nez v1, :cond_1
 
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eJ:Lcom/bumptech/glide/load/engine/d;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eK:Lcom/bumptech/glide/load/engine/d;
 
     if-eqz v1, :cond_1
 
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eJ:Lcom/bumptech/glide/load/engine/d;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eK:Lcom/bumptech/glide/load/engine/d;
 
     .line 302
     invoke-interface {v0}, Lcom/bumptech/glide/load/engine/d;->am()Z
@@ -1063,25 +1063,25 @@
     if-nez v0, :cond_1
 
     .line 303
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     invoke-direct {p0, v1}, Lcom/bumptech/glide/load/engine/DecodeJob;->a(Lcom/bumptech/glide/load/engine/DecodeJob$Stage;)Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     move-result-object v1
 
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     .line 304
     invoke-direct {p0}, Lcom/bumptech/glide/load/engine/DecodeJob;->aG()Lcom/bumptech/glide/load/engine/d;
 
     move-result-object v1
 
-    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eJ:Lcom/bumptech/glide/load/engine/d;
+    iput-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eK:Lcom/bumptech/glide/load/engine/d;
 
     .line 306
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
-    sget-object v2, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fb:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    sget-object v2, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fc:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     if-ne v1, v2, :cond_0
 
@@ -1093,13 +1093,13 @@
 
     .line 312
     :cond_1
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
-    sget-object v2, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fd:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    sget-object v2, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fe:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     if-eq v1, v2, :cond_2
 
-    iget-boolean v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->dp:Z
+    iget-boolean v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->dq:Z
 
     if-eqz v1, :cond_3
 
@@ -1118,19 +1118,19 @@
     .locals 2
 
     .line 333
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->et:Lcom/bumptech/glide/util/a/c;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eu:Lcom/bumptech/glide/util/a/c;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/util/a/c;->eN()V
 
     .line 334
-    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eK:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eL:Z
 
     if-nez v0, :cond_0
 
     .line 337
     const/4 v0, 0x1
 
-    iput-boolean v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eK:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eL:Z
 
     .line 338
     return-void
@@ -1163,7 +1163,7 @@
     .line 403
     const-string v0, "Retrieved data"
 
-    iget-wide v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eB:J
+    iget-wide v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eC:J
 
     new-instance v3, Ljava/lang/StringBuilder;
 
@@ -1173,7 +1173,7 @@
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iget-object v4, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eG:Ljava/lang/Object;
+    iget-object v4, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eH:Ljava/lang/Object;
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
@@ -1181,7 +1181,7 @@
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iget-object v4, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eE:Lcom/bumptech/glide/load/c;
+    iget-object v4, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eF:Lcom/bumptech/glide/load/c;
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
@@ -1189,7 +1189,7 @@
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iget-object v4, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eI:Lcom/bumptech/glide/load/a/d;
+    iget-object v4, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eJ:Lcom/bumptech/glide/load/a/d;
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
@@ -1205,11 +1205,11 @@
 
     .line 410
     :try_start_0
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eI:Lcom/bumptech/glide/load/a/d;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eJ:Lcom/bumptech/glide/load/a/d;
 
-    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eG:Ljava/lang/Object;
+    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eH:Ljava/lang/Object;
 
-    iget-object v3, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eH:Lcom/bumptech/glide/load/DataSource;
+    iget-object v3, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eI:Lcom/bumptech/glide/load/DataSource;
 
     invoke-direct {p0, v1, v2, v3}, Lcom/bumptech/glide/load/engine/DecodeJob;->a(Lcom/bumptech/glide/load/a/d;Ljava/lang/Object;Lcom/bumptech/glide/load/DataSource;)Lcom/bumptech/glide/load/engine/p;
 
@@ -1230,14 +1230,14 @@
     move-exception v1
 
     .line 412
-    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eF:Lcom/bumptech/glide/load/c;
+    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eG:Lcom/bumptech/glide/load/c;
 
-    iget-object v3, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eH:Lcom/bumptech/glide/load/DataSource;
+    iget-object v3, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eI:Lcom/bumptech/glide/load/DataSource;
 
     invoke-virtual {v1, v2, v3}, Lcom/bumptech/glide/load/engine/GlideException;->a(Lcom/bumptech/glide/load/c;Lcom/bumptech/glide/load/DataSource;)V
 
     .line 413
-    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Ljava/util/List;
+    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->et:Ljava/util/List;
 
     invoke-interface {v2, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
@@ -1246,7 +1246,7 @@
     if-eqz v0, :cond_1
 
     .line 416
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eH:Lcom/bumptech/glide/load/DataSource;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eI:Lcom/bumptech/glide/load/DataSource;
 
     invoke-direct {p0, v0, v1}, Lcom/bumptech/glide/load/engine/DecodeJob;->b(Lcom/bumptech/glide/load/engine/p;Lcom/bumptech/glide/load/DataSource;)V
 
@@ -1293,7 +1293,7 @@
     const/4 v0, 0x0
 
     .line 429
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ev:Lcom/bumptech/glide/load/engine/DecodeJob$c;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ew:Lcom/bumptech/glide/load/engine/DecodeJob$c;
 
     invoke-virtual {v1}, Lcom/bumptech/glide/load/engine/DecodeJob$c;->aL()Z
 
@@ -1316,13 +1316,13 @@
     invoke-direct {p0, p1, p2}, Lcom/bumptech/glide/load/engine/DecodeJob;->a(Lcom/bumptech/glide/load/engine/p;Lcom/bumptech/glide/load/DataSource;)V
 
     .line 436
-    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fc:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fd:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
-    iput-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    iput-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     .line 438
     :try_start_0
-    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ev:Lcom/bumptech/glide/load/engine/DecodeJob$c;
+    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ew:Lcom/bumptech/glide/load/engine/DecodeJob$c;
 
     invoke-virtual {p1}, Lcom/bumptech/glide/load/engine/DecodeJob$c;->aL()Z
 
@@ -1331,11 +1331,11 @@
     if-eqz p1, :cond_2
 
     .line 439
-    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ev:Lcom/bumptech/glide/load/engine/DecodeJob$c;
+    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ew:Lcom/bumptech/glide/load/engine/DecodeJob$c;
 
-    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ej:Lcom/bumptech/glide/load/engine/DecodeJob$d;
+    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ek:Lcom/bumptech/glide/load/engine/DecodeJob$d;
 
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eg:Lcom/bumptech/glide/load/f;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eh:Lcom/bumptech/glide/load/f;
 
     invoke-virtual {p1, p2, v1}, Lcom/bumptech/glide/load/engine/DecodeJob$c;->a(Lcom/bumptech/glide/load/engine/DecodeJob$d;Lcom/bumptech/glide/load/f;)V
     :try_end_0
@@ -1384,7 +1384,7 @@
     .locals 1
 
     .line 208
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->en:Lcom/bumptech/glide/Priority;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eo:Lcom/bumptech/glide/Priority;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/Priority;->ordinal()I
 
@@ -1406,14 +1406,14 @@
 
     new-instance v2, Ljava/util/ArrayList;
 
-    iget-object v3, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Ljava/util/List;
+    iget-object v3, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->et:Ljava/util/List;
 
     invoke-direct {v2, v3}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
 
     invoke-direct {v0, v1, v2}, Lcom/bumptech/glide/load/engine/GlideException;-><init>(Ljava/lang/String;Ljava/util/List;)V
 
     .line 323
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ey:Lcom/bumptech/glide/load/engine/DecodeJob$a;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$a;
 
     invoke-interface {v1, v0}, Lcom/bumptech/glide/load/engine/DecodeJob$a;->a(Lcom/bumptech/glide/load/engine/GlideException;)V
 
@@ -1498,9 +1498,9 @@
     move-object/from16 v0, p0
 
     .line 102
-    iget-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->er:Lcom/bumptech/glide/load/engine/e;
+    iget-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Lcom/bumptech/glide/load/engine/e;
 
-    iget-object v15, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->ej:Lcom/bumptech/glide/load/engine/DecodeJob$d;
+    iget-object v15, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->ek:Lcom/bumptech/glide/load/engine/DecodeJob$d;
 
     move-object/from16 v2, p1
 
@@ -1533,22 +1533,22 @@
     .line 117
     move-object/from16 v1, p1
 
-    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->o:Lcom/bumptech/glide/e;
+    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->q:Lcom/bumptech/glide/e;
 
     .line 118
     move-object/from16 v1, p4
 
-    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->ee:Lcom/bumptech/glide/load/c;
+    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->ef:Lcom/bumptech/glide/load/c;
 
     .line 119
     move-object/from16 v1, p9
 
-    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->en:Lcom/bumptech/glide/Priority;
+    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->eo:Lcom/bumptech/glide/Priority;
 
     .line 120
     move-object/from16 v1, p3
 
-    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->ex:Lcom/bumptech/glide/load/engine/i;
+    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->ey:Lcom/bumptech/glide/load/engine/i;
 
     .line 121
     move/from16 v1, p5
@@ -1563,22 +1563,22 @@
     .line 123
     move-object/from16 v1, p10
 
-    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->eo:Lcom/bumptech/glide/load/engine/g;
+    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->ep:Lcom/bumptech/glide/load/engine/g;
 
     .line 124
     move/from16 v1, p14
 
-    iput-boolean v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->eC:Z
+    iput-boolean v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->eD:Z
 
     .line 125
     move-object/from16 v1, p15
 
-    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->eg:Lcom/bumptech/glide/load/f;
+    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->eh:Lcom/bumptech/glide/load/f;
 
     .line 126
     move-object/from16 v1, p16
 
-    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->ey:Lcom/bumptech/glide/load/engine/DecodeJob$a;
+    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$a;
 
     .line 127
     move/from16 v1, p17
@@ -1586,14 +1586,14 @@
     iput v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->order:I
 
     .line 128
-    sget-object v1, Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;->eU:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
+    sget-object v1, Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;->eV:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
 
-    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
+    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->eB:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
 
     .line 129
     move-object/from16 v1, p2
 
-    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->aK:Ljava/lang/Object;
+    iput-object v1, v0, Lcom/bumptech/glide/load/engine/DecodeJob;->aL:Ljava/lang/Object;
 
     .line 130
     return-object v0
@@ -1637,21 +1637,21 @@
     nop
 
     .line 532
-    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cv:Lcom/bumptech/glide/load/DataSource;
+    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cw:Lcom/bumptech/glide/load/DataSource;
 
     const/4 v1, 0x0
 
     if-eq p1, v0, :cond_0
 
     .line 533
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->er:Lcom/bumptech/glide/load/engine/e;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Lcom/bumptech/glide/load/engine/e;
 
     invoke-virtual {v0, v8}, Lcom/bumptech/glide/load/engine/e;->e(Ljava/lang/Class;)Lcom/bumptech/glide/load/i;
 
     move-result-object v0
 
     .line 534
-    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->o:Lcom/bumptech/glide/e;
+    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->q:Lcom/bumptech/glide/e;
 
     iget v3, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->width:I
 
@@ -1685,7 +1685,7 @@
 
     .line 543
     :cond_1
-    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->er:Lcom/bumptech/glide/load/engine/e;
+    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Lcom/bumptech/glide/load/engine/e;
 
     invoke-virtual {p2, v0}, Lcom/bumptech/glide/load/engine/e;->a(Lcom/bumptech/glide/load/engine/p;)Z
 
@@ -1694,14 +1694,14 @@
     if-eqz p2, :cond_2
 
     .line 544
-    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->er:Lcom/bumptech/glide/load/engine/e;
+    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Lcom/bumptech/glide/load/engine/e;
 
     invoke-virtual {p2, v0}, Lcom/bumptech/glide/load/engine/e;->b(Lcom/bumptech/glide/load/engine/p;)Lcom/bumptech/glide/load/h;
 
     move-result-object v1
 
     .line 545
-    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eg:Lcom/bumptech/glide/load/f;
+    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eh:Lcom/bumptech/glide/load/f;
 
     invoke-interface {v1, p2}, Lcom/bumptech/glide/load/h;->b(Lcom/bumptech/glide/load/f;)Lcom/bumptech/glide/load/EncodeStrategy;
 
@@ -1718,7 +1718,7 @@
     nop
 
     .line 548
-    sget-object p2, Lcom/bumptech/glide/load/EncodeStrategy;->cF:Lcom/bumptech/glide/load/EncodeStrategy;
+    sget-object p2, Lcom/bumptech/glide/load/EncodeStrategy;->cG:Lcom/bumptech/glide/load/EncodeStrategy;
 
     goto :goto_1
 
@@ -1727,9 +1727,9 @@
     nop
 
     .line 552
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->er:Lcom/bumptech/glide/load/engine/e;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Lcom/bumptech/glide/load/engine/e;
 
-    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eE:Lcom/bumptech/glide/load/c;
+    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eF:Lcom/bumptech/glide/load/c;
 
     invoke-virtual {v1, v2}, Lcom/bumptech/glide/load/engine/e;->c(Lcom/bumptech/glide/load/c;)Z
 
@@ -1738,7 +1738,7 @@
     .line 553
     xor-int/lit8 v1, v1, 0x1
 
-    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eo:Lcom/bumptech/glide/load/engine/g;
+    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ep:Lcom/bumptech/glide/load/engine/g;
 
     invoke-virtual {v2, v1, p1, p2}, Lcom/bumptech/glide/load/engine/g;->a(ZLcom/bumptech/glide/load/DataSource;Lcom/bumptech/glide/load/EncodeStrategy;)Z
 
@@ -1750,7 +1750,7 @@
     if-eqz v10, :cond_3
 
     .line 559
-    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$1;->eN:[I
+    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$1;->eO:[I
 
     invoke-virtual {p2}, Lcom/bumptech/glide/load/EncodeStrategy;->ordinal()I
 
@@ -1785,22 +1785,22 @@
     :pswitch_0
     new-instance p1, Lcom/bumptech/glide/load/engine/r;
 
-    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->er:Lcom/bumptech/glide/load/engine/e;
+    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Lcom/bumptech/glide/load/engine/e;
 
     .line 566
     invoke-virtual {p2}, Lcom/bumptech/glide/load/engine/e;->f()Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     move-result-object v2
 
-    iget-object v3, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eE:Lcom/bumptech/glide/load/c;
+    iget-object v3, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eF:Lcom/bumptech/glide/load/c;
 
-    iget-object v4, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ee:Lcom/bumptech/glide/load/c;
+    iget-object v4, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ef:Lcom/bumptech/glide/load/c;
 
     iget v5, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->width:I
 
     iget v6, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->height:I
 
-    iget-object v9, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eg:Lcom/bumptech/glide/load/f;
+    iget-object v9, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eh:Lcom/bumptech/glide/load/f;
 
     move-object v1, p1
 
@@ -1813,9 +1813,9 @@
     :pswitch_1
     new-instance p1, Lcom/bumptech/glide/load/engine/b;
 
-    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eE:Lcom/bumptech/glide/load/c;
+    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eF:Lcom/bumptech/glide/load/c;
 
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ee:Lcom/bumptech/glide/load/c;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ef:Lcom/bumptech/glide/load/c;
 
     invoke-direct {p1, p2, v1}, Lcom/bumptech/glide/load/engine/b;-><init>(Lcom/bumptech/glide/load/c;Lcom/bumptech/glide/load/c;)V
 
@@ -1829,7 +1829,7 @@
     move-result-object v0
 
     .line 580
-    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ev:Lcom/bumptech/glide/load/engine/DecodeJob$c;
+    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ew:Lcom/bumptech/glide/load/engine/DecodeJob$c;
 
     invoke-virtual {p2, p1, v10, v0}, Lcom/bumptech/glide/load/engine/DecodeJob$c;->a(Lcom/bumptech/glide/load/c;Lcom/bumptech/glide/load/h;Lcom/bumptech/glide/load/engine/o;)V
 
@@ -1896,7 +1896,7 @@
     invoke-virtual {v0, p1, p4, p2}, Lcom/bumptech/glide/load/engine/GlideException;->a(Lcom/bumptech/glide/load/c;Lcom/bumptech/glide/load/DataSource;Ljava/lang/Class;)V
 
     .line 392
-    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Ljava/util/List;
+    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->et:Ljava/util/List;
 
     invoke-interface {p1, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
@@ -1905,17 +1905,17 @@
 
     move-result-object p1
 
-    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eD:Ljava/lang/Thread;
+    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eE:Ljava/lang/Thread;
 
     if-eq p1, p2, :cond_0
 
     .line 394
-    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;->eV:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
+    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;->eW:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
 
-    iput-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
+    iput-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eB:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
 
     .line 395
-    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ey:Lcom/bumptech/glide/load/engine/DecodeJob$a;
+    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$a;
 
     invoke-interface {p1, p0}, Lcom/bumptech/glide/load/engine/DecodeJob$a;->b(Lcom/bumptech/glide/load/engine/DecodeJob;)V
 
@@ -1946,36 +1946,36 @@
     .end annotation
 
     .line 368
-    iput-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eE:Lcom/bumptech/glide/load/c;
+    iput-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eF:Lcom/bumptech/glide/load/c;
 
     .line 369
-    iput-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eG:Ljava/lang/Object;
+    iput-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eH:Ljava/lang/Object;
 
     .line 370
-    iput-object p3, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eI:Lcom/bumptech/glide/load/a/d;
+    iput-object p3, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eJ:Lcom/bumptech/glide/load/a/d;
 
     .line 371
-    iput-object p4, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eH:Lcom/bumptech/glide/load/DataSource;
+    iput-object p4, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eI:Lcom/bumptech/glide/load/DataSource;
 
     .line 372
-    iput-object p5, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eF:Lcom/bumptech/glide/load/c;
+    iput-object p5, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eG:Lcom/bumptech/glide/load/c;
 
     .line 373
     invoke-static {}, Ljava/lang/Thread;->currentThread()Ljava/lang/Thread;
 
     move-result-object p1
 
-    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eD:Ljava/lang/Thread;
+    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eE:Ljava/lang/Thread;
 
     if-eq p1, p2, :cond_0
 
     .line 374
-    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;->eW:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
+    sget-object p1, Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;->eX:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
 
-    iput-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
+    iput-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eB:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
 
     .line 375
-    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ey:Lcom/bumptech/glide/load/engine/DecodeJob$a;
+    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$a;
 
     invoke-interface {p1, p0}, Lcom/bumptech/glide/load/engine/DecodeJob$a;->b(Lcom/bumptech/glide/load/engine/DecodeJob;)V
 
@@ -2016,18 +2016,18 @@
     .locals 2
 
     .line 138
-    sget-object v0, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->eY:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    sget-object v0, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->eZ:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     invoke-direct {p0, v0}, Lcom/bumptech/glide/load/engine/DecodeJob;->a(Lcom/bumptech/glide/load/engine/DecodeJob$Stage;)Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     move-result-object v0
 
     .line 139
-    sget-object v1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->eZ:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    sget-object v1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fa:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     if-eq v0, v1, :cond_1
 
-    sget-object v1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fa:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    sget-object v1, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fb:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     if-ne v0, v1, :cond_0
 
@@ -2052,7 +2052,7 @@
     .end annotation
 
     .line 521
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->et:Lcom/bumptech/glide/util/a/c;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eu:Lcom/bumptech/glide/util/a/c;
 
     return-object v0
 .end method
@@ -2061,12 +2061,12 @@
     .locals 1
 
     .line 361
-    sget-object v0, Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;->eV:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
+    sget-object v0, Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;->eW:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
+    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eB:Lcom/bumptech/glide/load/engine/DecodeJob$RunReason;
 
     .line 362
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ey:Lcom/bumptech/glide/load/engine/DecodeJob$a;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$a;
 
     invoke-interface {v0, p0}, Lcom/bumptech/glide/load/engine/DecodeJob$a;->b(Lcom/bumptech/glide/load/engine/DecodeJob;)V
 
@@ -2080,10 +2080,10 @@
     .line 212
     const/4 v0, 0x1
 
-    iput-boolean v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->dp:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->dq:Z
 
     .line 213
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eJ:Lcom/bumptech/glide/load/engine/d;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eK:Lcom/bumptech/glide/load/engine/d;
 
     .line 214
     if-eqz v0, :cond_0
@@ -2117,7 +2117,7 @@
     .locals 1
 
     .line 149
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ew:Lcom/bumptech/glide/load/engine/DecodeJob$e;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ex:Lcom/bumptech/glide/load/engine/DecodeJob$e;
 
     invoke-virtual {v0, p1}, Lcom/bumptech/glide/load/engine/DecodeJob$e;->c(Z)Z
 
@@ -2139,16 +2139,16 @@
     .line 224
     const-string v0, "DecodeJob#run(model=%s)"
 
-    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->aK:Ljava/lang/Object;
+    iget-object v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->aL:Ljava/lang/Object;
 
     invoke-static {v0, v1}, Lcom/bumptech/glide/util/a/b;->b(Ljava/lang/String;Ljava/lang/Object;)V
 
     .line 227
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eI:Lcom/bumptech/glide/load/a/d;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eJ:Lcom/bumptech/glide/load/a/d;
 
     .line 229
     :try_start_0
-    iget-boolean v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->dp:Z
+    iget-boolean v1, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->dq:Z
 
     if-eqz v1, :cond_1
 
@@ -2226,7 +2226,7 @@
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iget-boolean v4, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->dp:Z
+    iget-boolean v4, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->dq:Z
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
 
@@ -2234,7 +2234,7 @@
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iget-object v4, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    iget-object v4, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
@@ -2246,14 +2246,14 @@
 
     .line 247
     :cond_3
-    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->ez:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->eA:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
-    sget-object v3, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fc:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
+    sget-object v3, Lcom/bumptech/glide/load/engine/DecodeJob$Stage;->fd:Lcom/bumptech/glide/load/engine/DecodeJob$Stage;
 
     if-eq v2, v3, :cond_4
 
     .line 248
-    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->es:Ljava/util/List;
+    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->et:Ljava/util/List;
 
     invoke-interface {v2, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
@@ -2262,7 +2262,7 @@
 
     .line 251
     :cond_4
-    iget-boolean v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->dp:Z
+    iget-boolean v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob;->dq:Z
 
     if-eqz v2, :cond_5
 

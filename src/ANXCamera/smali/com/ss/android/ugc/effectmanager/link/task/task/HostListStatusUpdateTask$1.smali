@@ -34,7 +34,7 @@
 .method constructor <init>(Lcom/ss/android/ugc/effectmanager/link/task/task/HostListStatusUpdateTask;)V
     .locals 0
 
-    .line 105
+    .line 110
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/link/task/task/HostListStatusUpdateTask$1;->this$0:Lcom/ss/android/ugc/effectmanager/link/task/task/HostListStatusUpdateTask;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -47,7 +47,7 @@
 .method public compare(Lcom/ss/android/ugc/effectmanager/link/model/host/Host;Lcom/ss/android/ugc/effectmanager/link/model/host/Host;)I
     .locals 2
 
-    .line 108
+    .line 113
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/link/model/host/Host;->getSortTime()J
 
     move-result-wide v0
@@ -66,7 +66,7 @@
 .method public bridge synthetic compare(Ljava/lang/Object;Ljava/lang/Object;)I
     .locals 0
 
-    .line 105
+    .line 110
     check-cast p1, Lcom/ss/android/ugc/effectmanager/link/model/host/Host;
 
     check-cast p2, Lcom/ss/android/ugc/effectmanager/link/model/host/Host;

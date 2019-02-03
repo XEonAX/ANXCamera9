@@ -11,6 +11,7 @@
 .implements Lcom/android/camera/protocol/ModeProtocol$OnFaceBeautyChangedProtocol;
 .implements Lcom/android/camera/protocol/ModeProtocol$TopConfigProtocol;
 .implements Lcom/android/camera/ui/ObjectView$ObjectViewListener;
+.implements Lcom/android/camera2/Camera2Proxy$BeautyBodySlimCountCallback;
 .implements Lcom/android/camera2/Camera2Proxy$CameraMetaDataCallback;
 .implements Lcom/android/camera2/Camera2Proxy$CameraPreviewCallback;
 .implements Lcom/android/camera2/Camera2Proxy$FaceDetectionCallback;
@@ -29,7 +30,8 @@
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
         Lcom/android/camera/module/Camera2Module$MainHandler;,
-        Lcom/android/camera/module/Camera2Module$JpegQuickPictureCallback;
+        Lcom/android/camera/module/Camera2Module$JpegQuickPictureCallback;,
+        Lcom/android/camera/module/Camera2Module$JpegRepeatingCaptureCallback;
     }
 .end annotation
 
@@ -38,8 +40,6 @@
 .field private static final BURST_SHOOTING_DELAY:I = 0x0
 
 .field private static final CAPTURE_DURATION_THRESHOLD:J = 0x1f40L
-
-.field private static final GROUP_SHOT_GAP:I = 0x64
 
 .field private static final REQUEST_CROP:I = 0x3e8
 
@@ -52,8 +52,6 @@
 
 # instance fields
 .field private volatile isDetectedInHDR:Z
-
-.field private isMicrophoneEnabled:Z
 
 .field private volatile isResetFromMutex:Z
 
@@ -111,7 +109,11 @@
 
 .field private mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
+.field private mEnableParallelSession:Z
+
 .field private mEnabledPreviewThumbnail:Z
+
+.field private mEnteringMoonMode:Z
 
 .field private mFaceDetectionEnabled:Z
 
@@ -121,15 +123,15 @@
 
 .field private mFunctionParseAiScene:Lcom/android/camera/module/loader/FunctionParseAiScene;
 
-.field private mGroupFaceNum:I
-
-.field private mGroupShot:Lcom/android/camera/groupshot/GroupShot;
-
 .field private mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
 .field private mHasAiSceneFilterEffect:Z
 
 .field private mHdrCheckEnabled:Z
+
+.field private mIsBeautyBodySlimOn:Z
+
+.field private mIsCurrentTaskIsParallel:Z
 
 .field private mIsGenderAgeOn:Z
 
@@ -141,7 +143,9 @@
 
 .field private mIsMagicMirrorOn:Z
 
-.field private mIsParallelProcess:Z
+.field private mIsMicrophoneEnabled:Z
+
+.field private mIsMoonMode:Z
 
 .field private mIsPortraitLightingOn:Z
 
@@ -187,8 +191,6 @@
 
 .field private mOperatingMode:I
 
-.field private mParallelProcessingFilePath:Ljava/lang/String;
-
 .field private mPendingMultiCapture:Z
 
 .field private mQuickCapture:Z
@@ -207,6 +209,8 @@
 
 .field private mShootRotation:F
 
+.field private mShouldDoMFNR:Z
+
 .field private mShutterCallbackTime:J
 
 .field private mShutterLag:J
@@ -221,12 +225,14 @@
 
 .field private mVolumeLongPress:Z
 
+.field private mWaitingSuperNightResult:Z
+
 
 # direct methods
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 179
+    .line 200
     const-class v0, Lcom/android/camera/module/Camera2Module;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -241,78 +247,73 @@
 .method public constructor <init>()V
     .locals 5
 
-    .line 160
+    .line 180
     invoke-direct {p0}, Lcom/android/camera/module/BaseModule;-><init>()V
 
-    .line 218
+    .line 239
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStatus:Z
 
-    .line 219
+    .line 240
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStopRequest:Z
 
-    .line 220
+    .line 241
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mVolumeLongPress:Z
 
-    .line 221
+    .line 242
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mUpdateImageTitle:Z
 
-    .line 224
+    .line 245
     const-wide/16 v1, 0x0
 
     iput-wide v1, p0, Lcom/android/camera/module/Camera2Module;->mBurstNextDelayTime:J
 
-    .line 226
+    .line 247
     const/4 v3, 0x1
 
     iput v3, p0, Lcom/android/camera/module/Camera2Module;->mTotalJpegCallbackNum:I
 
-    .line 227
+    .line 248
     iput v0, p0, Lcom/android/camera/module/Camera2Module;->mReceivedJpegCallbackNum:I
 
-    .line 242
-    const/16 v4, 0xa
-
-    iput v4, p0, Lcom/android/camera/module/Camera2Module;->mGroupFaceNum:I
-
-    .line 254
+    .line 268
     const/4 v4, -0x1
 
     iput v4, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAsdScene:I
 
-    .line 284
+    .line 299
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsLensServiceBound:Z
 
-    .line 285
+    .line 300
     iput v3, p0, Lcom/android/camera/module/Camera2Module;->mLensStatus:I
 
-    .line 302
+    .line 322
     new-instance v4, Ljava/lang/Object;
 
     invoke-direct {v4}, Ljava/lang/Object;-><init>()V
 
     iput-object v4, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorderStateLock:Ljava/lang/Object;
 
-    .line 303
+    .line 323
     const/4 v4, 0x0
 
     iput-object v4, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
-    .line 304
-    iput-boolean v3, p0, Lcom/android/camera/module/Camera2Module;->isMicrophoneEnabled:Z
+    .line 324
+    iput-boolean v3, p0, Lcom/android/camera/module/Camera2Module;->mIsMicrophoneEnabled:Z
 
-    .line 4262
-    new-instance v3, Lcom/android/camera/module/Camera2Module$22;
+    .line 4686
+    new-instance v3, Lcom/android/camera/module/Camera2Module$23;
 
-    invoke-direct {v3, p0}, Lcom/android/camera/module/Camera2Module$22;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v3, p0}, Lcom/android/camera/module/Camera2Module$23;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
     iput-object v3, p0, Lcom/android/camera/module/Camera2Module;->mSensorStateListener:Lcom/android/camera/SensorStateManager$SensorStateListener;
 
-    .line 4848
+    .line 5294
     iput-wide v1, p0, Lcom/android/camera/module/Camera2Module;->mLastChangeSceneTime:J
 
-    .line 4864
+    .line 5310
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->isResetFromMutex:Z
 
     return-void
@@ -321,7 +322,7 @@
 .method static synthetic access$000(Lcom/android/camera/module/Camera2Module;)Lio/reactivex/ObservableEmitter;
     .locals 0
 
-    .line 160
+    .line 180
     iget-object p0, p0, Lcom/android/camera/module/Camera2Module;->mBurstEmitter:Lio/reactivex/ObservableEmitter;
 
     return-object p0
@@ -330,63 +331,114 @@
 .method static synthetic access$002(Lcom/android/camera/module/Camera2Module;Lio/reactivex/ObservableEmitter;)Lio/reactivex/ObservableEmitter;
     .locals 0
 
-    .line 160
+    .line 180
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module;->mBurstEmitter:Lio/reactivex/ObservableEmitter;
 
     return-object p1
 .end method
 
-.method static synthetic access$1000(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/module/loader/camera2/FocusManager2;
+.method static synthetic access$1000(Lcom/android/camera/module/Camera2Module;)Z
     .locals 0
 
-    .line 160
-    iget-object p0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
+    .line 180
+    iget-boolean p0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStatus:Z
 
-    return-object p0
+    return p0
 .end method
 
 .method static synthetic access$102(Lcom/android/camera/module/Camera2Module;J)J
     .locals 0
 
-    .line 160
+    .line 180
     iput-wide p1, p0, Lcom/android/camera/module/Camera2Module;->mBurstStartTime:J
 
     return-wide p1
 .end method
 
-.method static synthetic access$1100(Lcom/android/camera/module/Camera2Module;)Ljava/lang/String;
+.method static synthetic access$1100(Lcom/android/camera/module/Camera2Module;)Z
     .locals 0
 
-    .line 160
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getCurrentAiSceneName()Ljava/lang/String;
+    .line 180
+    iget-boolean p0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStopRequest:Z
+
+    return p0
+.end method
+
+.method static synthetic access$1200(Lcom/android/camera/module/Camera2Module;)Z
+    .locals 0
+
+    .line 180
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->is3ALocked()Z
+
+    move-result p0
+
+    return p0
+.end method
+
+.method static synthetic access$1300(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/module/loader/camera2/FocusManager2;
+    .locals 0
+
+    .line 180
+    iget-object p0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
+
+    return-object p0
+.end method
+
+.method static synthetic access$1400()Ljava/lang/String;
+    .locals 1
+
+    .line 180
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    return-object v0
+.end method
+
+.method static synthetic access$1500(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/effect/renders/DualWatermarkParam;
+    .locals 0
+
+    .line 180
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getDualWaterMarkParam()Lcom/android/camera/effect/renders/DualWatermarkParam;
 
     move-result-object p0
 
     return-object p0
 .end method
 
-.method static synthetic access$1200(Lcom/android/camera/module/Camera2Module;)V
-    .locals 0
+.method static synthetic access$1600()Ljava/lang/String;
+    .locals 1
 
-    .line 160
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->stopMultiSnap()V
+    .line 180
+    invoke-static {}, Lcom/android/camera/module/Camera2Module;->getTiltShiftMode()Ljava/lang/String;
 
-    return-void
+    move-result-object v0
+
+    return-object v0
 .end method
 
-.method static synthetic access$1300(Lcom/android/camera/module/Camera2Module;)I
+.method static synthetic access$1700(Lcom/android/camera/module/Camera2Module;)Z
     .locals 0
 
-    .line 160
-    iget p0, p0, Lcom/android/camera/module/Camera2Module;->mJpegRotation:I
+    .line 180
+    iget-boolean p0, p0, Lcom/android/camera/module/Camera2Module;->mIsGradienterOn:Z
 
     return p0
 .end method
 
-.method static synthetic access$1400(Lcom/android/camera/module/Camera2Module;)Lcom/xiaomi/camera/core/PictureInfo;
+.method static synthetic access$1800(Lcom/android/camera/module/Camera2Module;)Ljava/lang/String;
     .locals 0
 
-    .line 160
+    .line 180
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getSuffix()Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method static synthetic access$1900(Lcom/android/camera/module/Camera2Module;)Lcom/xiaomi/camera/core/PictureInfo;
+    .locals 0
+
+    .line 180
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
 
     move-result-object p0
@@ -394,137 +446,76 @@
     return-object p0
 .end method
 
-.method static synthetic access$1500()Ljava/lang/String;
-    .locals 1
-
-    .line 160
-    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
-
-    return-object v0
-.end method
-
-.method static synthetic access$1602(Lcom/android/camera/module/Camera2Module;Lio/reactivex/disposables/Disposable;)Lio/reactivex/disposables/Disposable;
+.method static synthetic access$2000(Lcom/android/camera/module/Camera2Module;)Ljava/lang/String;
     .locals 0
 
-    .line 160
-    iput-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCountdownDisposable:Lio/reactivex/disposables/Disposable;
-
-    return-object p1
-.end method
-
-.method static synthetic access$1700(Lcom/android/camera/module/Camera2Module;I)V
-    .locals 0
-
-    .line 160
-    invoke-direct {p0, p1}, Lcom/android/camera/module/Camera2Module;->startNormalCapture(I)V
-
-    return-void
-.end method
-
-.method static synthetic access$1800(Lcom/android/camera/module/Camera2Module;)Lcom/google/lens/sdk/LensApi;
-    .locals 0
-
-    .line 160
-    iget-object p0, p0, Lcom/android/camera/module/Camera2Module;->mLensApi:Lcom/google/lens/sdk/LensApi;
+    .line 180
+    iget-object p0, p0, Lcom/android/camera/module/Camera2Module;->mAlgorithmName:Ljava/lang/String;
 
     return-object p0
-.end method
-
-.method static synthetic access$1900(Lcom/android/camera/module/Camera2Module;)Z
-    .locals 0
-
-    .line 160
-    iget-boolean p0, p0, Lcom/android/camera/module/Camera2Module;->mIsLensServiceBound:Z
-
-    return p0
-.end method
-
-.method static synthetic access$1902(Lcom/android/camera/module/Camera2Module;Z)Z
-    .locals 0
-
-    .line 160
-    iput-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mIsLensServiceBound:Z
-
-    return p1
-.end method
-
-.method static synthetic access$2000(Lcom/android/camera/module/Camera2Module;)J
-    .locals 2
-
-    .line 160
-    iget-wide v0, p0, Lcom/android/camera/module/Camera2Module;->mOnResumeTime:J
-
-    return-wide v0
 .end method
 
 .method static synthetic access$202(Lcom/android/camera/module/Camera2Module;Lio/reactivex/disposables/Disposable;)Lio/reactivex/disposables/Disposable;
     .locals 0
 
-    .line 160
+    .line 180
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module;->mBurstDisposable:Lio/reactivex/disposables/Disposable;
 
     return-object p1
 .end method
 
-.method static synthetic access$2100(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/module/Camera2Module$MainHandler;
+.method static synthetic access$2100(Lcom/android/camera/module/Camera2Module;)Landroid/location/Location;
     .locals 0
 
-    .line 160
-    iget-object p0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
+    .line 180
+    iget-object p0, p0, Lcom/android/camera/module/Camera2Module;->mLocation:Landroid/location/Location;
 
     return-object p0
 .end method
 
-.method static synthetic access$2200(Lcom/android/camera/module/Camera2Module;II)V
+.method static synthetic access$2200(Lcom/android/camera/module/Camera2Module;)I
     .locals 0
 
-    .line 160
-    invoke-direct {p0, p1, p2}, Lcom/android/camera/module/Camera2Module;->setOrientation(II)V
-
-    return-void
-.end method
-
-.method static synthetic access$2300(Lcom/android/camera/module/Camera2Module;)V
-    .locals 0
-
-    .line 160
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->setOrientationParameter()V
-
-    return-void
-.end method
-
-.method static synthetic access$2400(Lcom/android/camera/module/Camera2Module;ZZ)V
-    .locals 0
-
-    .line 160
-    invoke-direct {p0, p1, p2}, Lcom/android/camera/module/Camera2Module;->handleUpdateFaceView(ZZ)V
-
-    return-void
-.end method
-
-.method static synthetic access$2500(Lcom/android/camera/module/Camera2Module;)I
-    .locals 0
-
-    .line 160
-    iget p0, p0, Lcom/android/camera/module/Camera2Module;->mLensStatus:I
+    .line 180
+    iget p0, p0, Lcom/android/camera/module/Camera2Module;->mShootOrientation:I
 
     return p0
 .end method
 
-.method static synthetic access$2502(Lcom/android/camera/module/Camera2Module;I)I
+.method static synthetic access$2300(Lcom/android/camera/module/Camera2Module;)F
     .locals 0
 
-    .line 160
-    iput p1, p0, Lcom/android/camera/module/Camera2Module;->mLensStatus:I
+    .line 180
+    iget p0, p0, Lcom/android/camera/module/Camera2Module;->mShootRotation:F
 
-    return p1
+    return p0
 .end method
 
-.method static synthetic access$2600(Lcom/android/camera/module/Camera2Module;)V
+.method static synthetic access$2400(Lcom/android/camera/module/Camera2Module;)I
     .locals 0
 
-    .line 160
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateSceneModeUI()V
+    .line 180
+    iget p0, p0, Lcom/android/camera/module/Camera2Module;->mJpegRotation:I
+
+    return p0
+.end method
+
+.method static synthetic access$2500(Lcom/android/camera/module/Camera2Module;)Z
+    .locals 0
+
+    .line 180
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isFrontMirror()Z
+
+    move-result p0
+
+    return p0
+.end method
+
+.method static synthetic access$2600(Lcom/android/camera/module/Camera2Module;Lcom/xiaomi/camera/core/ParallelTaskData;Z)V
+    .locals 0
+
+    .line 180
+    invoke-direct {p0, p1, p2}, Lcom/android/camera/module/Camera2Module;->beginParallelProcess(Lcom/xiaomi/camera/core/ParallelTaskData;Z)V
 
     return-void
 .end method
@@ -532,88 +523,261 @@
 .method static synthetic access$2700(Lcom/android/camera/module/Camera2Module;)V
     .locals 0
 
-    .line 160
+    .line 180
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->stopMultiSnap()V
+
+    return-void
+.end method
+
+.method static synthetic access$2800(Lcom/android/camera/module/Camera2Module;)Ljava/lang/String;
+    .locals 0
+
+    .line 180
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getCurrentAiSceneName()Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method static synthetic access$2900(Lcom/android/camera/module/Camera2Module;)Z
+    .locals 0
+
+    .line 180
+    iget-boolean p0, p0, Lcom/android/camera/module/Camera2Module;->mEnteringMoonMode:Z
+
+    return p0
+.end method
+
+.method static synthetic access$3000(Lcom/android/camera/module/Camera2Module;)Z
+    .locals 0
+
+    .line 180
+    iget-boolean p0, p0, Lcom/android/camera/module/Camera2Module;->mIsMoonMode:Z
+
+    return p0
+.end method
+
+.method static synthetic access$3102(Lcom/android/camera/module/Camera2Module;Lio/reactivex/disposables/Disposable;)Lio/reactivex/disposables/Disposable;
+    .locals 0
+
+    .line 180
+    iput-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCountdownDisposable:Lio/reactivex/disposables/Disposable;
+
+    return-object p1
+.end method
+
+.method static synthetic access$3200(Lcom/android/camera/module/Camera2Module;I)V
+    .locals 0
+
+    .line 180
+    invoke-direct {p0, p1}, Lcom/android/camera/module/Camera2Module;->startNormalCapture(I)V
+
+    return-void
+.end method
+
+.method static synthetic access$3300(Lcom/android/camera/module/Camera2Module;)Lcom/google/lens/sdk/LensApi;
+    .locals 0
+
+    .line 180
+    iget-object p0, p0, Lcom/android/camera/module/Camera2Module;->mLensApi:Lcom/google/lens/sdk/LensApi;
+
+    return-object p0
+.end method
+
+.method static synthetic access$3400(Lcom/android/camera/module/Camera2Module;)Z
+    .locals 0
+
+    .line 180
+    iget-boolean p0, p0, Lcom/android/camera/module/Camera2Module;->mIsLensServiceBound:Z
+
+    return p0
+.end method
+
+.method static synthetic access$3402(Lcom/android/camera/module/Camera2Module;Z)Z
+    .locals 0
+
+    .line 180
+    iput-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mIsLensServiceBound:Z
+
+    return p1
+.end method
+
+.method static synthetic access$3500(Lcom/android/camera/module/Camera2Module;)J
+    .locals 2
+
+    .line 180
+    iget-wide v0, p0, Lcom/android/camera/module/Camera2Module;->mOnResumeTime:J
+
+    return-wide v0
+.end method
+
+.method static synthetic access$3600(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/module/Camera2Module$MainHandler;
+    .locals 0
+
+    .line 180
+    iget-object p0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
+
+    return-object p0
+.end method
+
+.method static synthetic access$3700(Lcom/android/camera/module/Camera2Module;II)V
+    .locals 0
+
+    .line 180
+    invoke-direct {p0, p1, p2}, Lcom/android/camera/module/Camera2Module;->setOrientation(II)V
+
+    return-void
+.end method
+
+.method static synthetic access$3800(Lcom/android/camera/module/Camera2Module;)V
+    .locals 0
+
+    .line 180
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->setOrientationParameter()V
+
+    return-void
+.end method
+
+.method static synthetic access$3900(Lcom/android/camera/module/Camera2Module;ZZ)V
+    .locals 0
+
+    .line 180
+    invoke-direct {p0, p1, p2}, Lcom/android/camera/module/Camera2Module;->handleUpdateFaceView(ZZ)V
+
+    return-void
+.end method
+
+.method static synthetic access$4000(Lcom/android/camera/module/Camera2Module;)I
+    .locals 0
+
+    .line 180
+    iget p0, p0, Lcom/android/camera/module/Camera2Module;->mLensStatus:I
+
+    return p0
+.end method
+
+.method static synthetic access$4002(Lcom/android/camera/module/Camera2Module;I)I
+    .locals 0
+
+    .line 180
+    iput p1, p0, Lcom/android/camera/module/Camera2Module;->mLensStatus:I
+
+    return p1
+.end method
+
+.method static synthetic access$402(Lcom/android/camera/module/Camera2Module;Z)Z
+    .locals 0
+
+    .line 180
+    iput-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mWaitingSuperNightResult:Z
+
+    return p1
+.end method
+
+.method static synthetic access$4100(Lcom/android/camera/module/Camera2Module;)V
+    .locals 0
+
+    .line 180
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateSceneModeUI()V
+
+    return-void
+.end method
+
+.method static synthetic access$4200(Lcom/android/camera/module/Camera2Module;)V
+    .locals 0
+
+    .line 180
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->startLensActivity()V
 
     return-void
 .end method
 
-.method static synthetic access$2800(Lcom/android/camera/module/Camera2Module;I)V
+.method static synthetic access$4300(Lcom/android/camera/module/Camera2Module;I)V
     .locals 0
 
-    .line 160
+    .line 180
     invoke-direct {p0, p1}, Lcom/android/camera/module/Camera2Module;->consumeAsdSceneResult(I)V
 
     return-void
 .end method
 
-.method static synthetic access$2902(Lcom/android/camera/module/Camera2Module;Lio/reactivex/FlowableEmitter;)Lio/reactivex/FlowableEmitter;
+.method static synthetic access$4402(Lcom/android/camera/module/Camera2Module;Lio/reactivex/FlowableEmitter;)Lio/reactivex/FlowableEmitter;
     .locals 0
 
-    .line 160
+    .line 180
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module;->mMetaDataFlowableEmitter:Lio/reactivex/FlowableEmitter;
 
     return-object p1
 .end method
 
-.method static synthetic access$300(Lcom/android/camera/module/Camera2Module;)V
+.method static synthetic access$4500(Lcom/android/camera/module/Camera2Module;IZ)V
     .locals 0
 
-    .line 160
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->animateCapture()V
-
-    return-void
-.end method
-
-.method static synthetic access$3000(Lcom/android/camera/module/Camera2Module;IZ)V
-    .locals 0
-
-    .line 160
+    .line 180
     invoke-direct {p0, p1, p2}, Lcom/android/camera/module/Camera2Module;->consumeAiSceneResult(IZ)V
 
     return-void
 .end method
 
-.method static synthetic access$3102(Lcom/android/camera/module/Camera2Module;Lio/reactivex/FlowableEmitter;)Lio/reactivex/FlowableEmitter;
+.method static synthetic access$4602(Lcom/android/camera/module/Camera2Module;Lio/reactivex/FlowableEmitter;)Lio/reactivex/FlowableEmitter;
     .locals 0
 
-    .line 160
+    .line 180
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneFlowableEmitter:Lio/reactivex/FlowableEmitter;
 
     return-object p1
 .end method
 
-.method static synthetic access$3202(Lcom/android/camera/module/Camera2Module;Z)Z
+.method static synthetic access$4702(Lcom/android/camera/module/Camera2Module;Z)Z
     .locals 0
 
-    .line 160
+    .line 180
     iput-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->isResetFromMutex:Z
 
     return p1
 .end method
 
-.method static synthetic access$400(Lcom/android/camera/module/Camera2Module;)Z
+.method static synthetic access$4800(Lcom/android/camera/module/Camera2Module;II)V
     .locals 0
 
-    .line 160
+    .line 180
+    invoke-direct {p0, p1, p2}, Lcom/android/camera/module/Camera2Module;->trackAISceneChanged(II)V
+
+    return-void
+.end method
+
+.method static synthetic access$500(Lcom/android/camera/module/Camera2Module;)V
+    .locals 0
+
+    .line 180
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->animateCapture()V
+
+    return-void
+.end method
+
+.method static synthetic access$600(Lcom/android/camera/module/Camera2Module;)Z
+    .locals 0
+
+    .line 180
     iget-boolean p0, p0, Lcom/android/camera/module/Camera2Module;->mUpdateImageTitle:Z
 
     return p0
 .end method
 
-.method static synthetic access$500(Lcom/android/camera/module/Camera2Module;)I
+.method static synthetic access$700(Lcom/android/camera/module/Camera2Module;)I
     .locals 0
 
-    .line 160
+    .line 180
     iget p0, p0, Lcom/android/camera/module/Camera2Module;->mReceivedJpegCallbackNum:I
 
     return p0
 .end method
 
-.method static synthetic access$504(Lcom/android/camera/module/Camera2Module;)I
+.method static synthetic access$704(Lcom/android/camera/module/Camera2Module;)I
     .locals 1
 
-    .line 160
+    .line 180
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mReceivedJpegCallbackNum:I
 
     add-int/lit8 v0, v0, 0x1
@@ -623,40 +787,20 @@
     return v0
 .end method
 
-.method static synthetic access$600(Lcom/android/camera/module/Camera2Module;)I
-    .locals 0
-
-    .line 160
-    iget p0, p0, Lcom/android/camera/module/Camera2Module;->mTotalJpegCallbackNum:I
-
-    return p0
-.end method
-
-.method static synthetic access$700(Lcom/android/camera/module/Camera2Module;)Z
-    .locals 0
-
-    .line 160
-    iget-boolean p0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStatus:Z
-
-    return p0
-.end method
-
 .method static synthetic access$800(Lcom/android/camera/module/Camera2Module;)Z
     .locals 0
 
-    .line 160
-    iget-boolean p0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStopRequest:Z
+    .line 180
+    iget-boolean p0, p0, Lcom/android/camera/module/Camera2Module;->mIsCurrentTaskIsParallel:Z
 
     return p0
 .end method
 
-.method static synthetic access$900(Lcom/android/camera/module/Camera2Module;)Z
+.method static synthetic access$900(Lcom/android/camera/module/Camera2Module;)I
     .locals 0
 
-    .line 160
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->is3ALocked()Z
-
-    move-result p0
+    .line 180
+    iget p0, p0, Lcom/android/camera/module/Camera2Module;->mTotalJpegCallbackNum:I
 
     return p0
 .end method
@@ -664,12 +808,12 @@
 .method private animateCapture()V
     .locals 2
 
-    .line 1365
+    .line 1584
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsImageCaptureIntent:Z
 
     if-nez v0, :cond_0
 
-    .line 1366
+    .line 1585
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getCameraScreenNail()Lcom/android/camera/CameraScreenNail;
@@ -682,7 +826,7 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/CameraScreenNail;->animateCapture(I)V
 
-    .line 1368
+    .line 1587
     :cond_0
     return-void
 .end method
@@ -690,37 +834,41 @@
 .method private applyBacklightEffect()V
     .locals 2
 
-    .line 5202
+    .line 5672
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     const/16 v1, 0x17
 
     invoke-direct {p0, v0, v1}, Lcom/android/camera/module/Camera2Module;->trackAISceneChanged(II)V
 
-    .line 5203
+    .line 5673
     invoke-direct {p0, v1}, Lcom/android/camera/module/Camera2Module;->setAiSceneEffect(I)V
 
-    .line 5205
+    .line 5675
     const-string v0, "normal"
 
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->updateHDR(Ljava/lang/String;)V
 
-    .line 5206
+    .line 5676
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->resetEvValue()V
 
-    .line 5207
+    .line 5677
     return-void
 .end method
 
-.method private beginParallelProcess(Lcom/xiaomi/camera/core/ParallelTaskData;)V
-    .locals 4
+.method private beginParallelProcess(Lcom/xiaomi/camera/core/ParallelTaskData;Z)V
+    .locals 3
 
-    .line 2366
-    const-string v0, "algo begin:"
+    .line 2699
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "algo begin: "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getSavePath()Ljava/lang/String;
 
@@ -746,135 +894,225 @@
 
     move-result-object v1
 
-    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2368
+    .line 2701
+    if-eqz p2, :cond_0
+
+    .line 2703
     invoke-static {}, Lcom/android/camera/db/DbRepository;->dbItemSaveTask()Lcom/android/camera/db/item/DbItemSaveTask;
 
-    move-result-object v0
+    move-result-object p2
 
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
-    move-result-wide v1
+    move-result-wide v0
 
-    invoke-virtual {v0, v1, v2}, Lcom/android/camera/db/item/DbItemSaveTask;->generateItem(J)Ljava/lang/Object;
+    invoke-virtual {p2, v0, v1}, Lcom/android/camera/db/item/DbItemSaveTask;->generateItem(J)Ljava/lang/Object;
 
-    move-result-object v0
+    move-result-object p2
 
-    check-cast v0, Lcom/android/camera/db/element/SaveTask;
+    check-cast p2, Lcom/android/camera/db/element/SaveTask;
 
-    .line 2369
+    .line 2704
     invoke-virtual {p1}, Lcom/xiaomi/camera/core/ParallelTaskData;->getSavePath()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object p1
 
-    invoke-virtual {v0, v1}, Lcom/android/camera/db/element/SaveTask;->setPath(Ljava/lang/String;)V
+    invoke-virtual {p2, p1}, Lcom/android/camera/db/element/SaveTask;->setPath(Ljava/lang/String;)V
 
-    .line 2370
+    .line 2705
     invoke-static {}, Lcom/android/camera/db/DbRepository;->dbItemSaveTask()Lcom/android/camera/db/item/DbItemSaveTask;
 
-    move-result-object v1
+    move-result-object p1
 
-    const-wide/16 v2, 0x0
+    const-wide/16 v0, 0x0
 
-    invoke-virtual {v1, v0, v2, v3}, Lcom/android/camera/db/item/DbItemSaveTask;->endItemAndInsert(Ljava/lang/Object;J)J
+    invoke-virtual {p1, p2, v0, v1}, Lcom/android/camera/db/item/DbItemSaveTask;->endItemAndInsert(Ljava/lang/Object;J)J
 
-    .line 2372
-    invoke-static {}, Lcom/android/camera/parallel/AlgoConnector;->getInstance()Lcom/android/camera/parallel/AlgoConnector;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Lcom/android/camera/parallel/AlgoConnector;->getLocalBinder()Lcom/android/camera/LocalParallelService$LocalBinder;
-
-    move-result-object v0
-
-    invoke-virtual {v0, p1}, Lcom/android/camera/LocalParallelService$LocalBinder;->onCaptureStart(Lcom/xiaomi/camera/core/ParallelTaskData;)V
-
-    .line 2374
+    .line 2708
+    :cond_0
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mServiceStatusListener:Lcom/android/camera/LocalParallelService$ServiceStatusListener;
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_1
 
-    .line 2375
-    new-instance p1, Lcom/android/camera/module/Camera2Module$15;
+    .line 2709
+    new-instance p1, Lcom/android/camera/module/Camera2Module$16;
 
-    invoke-direct {p1, p0}, Lcom/android/camera/module/Camera2Module$15;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {p1, p0}, Lcom/android/camera/module/Camera2Module$16;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module;->mServiceStatusListener:Lcom/android/camera/LocalParallelService$ServiceStatusListener;
 
-    .line 2390
+    .line 2720
     invoke-static {}, Lcom/android/camera/parallel/AlgoConnector;->getInstance()Lcom/android/camera/parallel/AlgoConnector;
 
     move-result-object p1
 
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mServiceStatusListener:Lcom/android/camera/LocalParallelService$ServiceStatusListener;
+    iget-object p2, p0, Lcom/android/camera/module/Camera2Module;->mServiceStatusListener:Lcom/android/camera/LocalParallelService$ServiceStatusListener;
 
-    invoke-virtual {p1, v0}, Lcom/android/camera/parallel/AlgoConnector;->setServiceStatusListener(Lcom/android/camera/LocalParallelService$ServiceStatusListener;)V
+    invoke-virtual {p1, p2}, Lcom/android/camera/parallel/AlgoConnector;->setServiceStatusListener(Lcom/android/camera/LocalParallelService$ServiceStatusListener;)V
 
-    .line 2392
-    :cond_0
+    .line 2722
+    :cond_1
     return-void
+.end method
+
+.method private calculateTimeout(I)J
+    .locals 6
+
+    .line 1167
+    const-wide/16 v0, 0x1f40
+
+    const/16 v2, 0xa7
+
+    if-ne p1, v2, :cond_1
+
+    .line 1168
+    const-string p1, "pref_qc_camera_exposuretime_key"
+
+    const v2, 0x7f090136
+
+    .line 1169
+    invoke-virtual {p0, v2}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 1168
+    invoke-direct {p0, p1, v2}, Lcom/android/camera/module/Camera2Module;->getManualValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 1170
+    invoke-static {p1}, Ljava/lang/Long;->parseLong(Ljava/lang/String;)J
+
+    move-result-wide v2
+
+    .line 1171
+    const-wide/32 v4, 0xf4240
+
+    div-long/2addr v2, v4
+
+    .line 1172
+    cmp-long p1, v2, v0
+
+    if-lez p1, :cond_0
+
+    add-long/2addr v0, v2
+
+    nop
+
+    :cond_0
+    return-wide v0
+
+    .line 1174
+    :cond_1
+    const/16 v2, 0xad
+
+    if-ne p1, v2, :cond_2
+
+    const-wide/16 v0, 0x3e80
+
+    nop
+
+    :cond_2
+    return-wide v0
 .end method
 
 .method private checkCloseMoonMode(II)V
     .locals 2
 
-    .line 5079
+    .line 5525
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mEnteringMoonMode:Z
+
+    if-nez v0, :cond_0
+
+    .line 5527
+    return-void
+
+    .line 5530
+    :cond_0
+    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
+
+    const/16 v1, 0xa
+
+    if-eq v0, v1, :cond_1
+
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
     const/16 v1, 0x23
 
-    if-ne v0, v1, :cond_1
+    if-eq v0, v1, :cond_1
 
-    if-eq p1, v1, :cond_1
+    .line 5533
+    return-void
 
-    .line 5081
+    .line 5536
+    :cond_1
+    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
+
+    if-ne p1, v0, :cond_2
+
+    .line 5538
+    return-void
+
+    .line 5540
+    :cond_2
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
 
     const/16 v0, 0xac
 
-    .line 5082
+    .line 5541
     invoke-virtual {p1, v0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object p1
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
 
-    .line 5083
-    if-eqz p1, :cond_0
+    .line 5542
+    const/4 v0, 0x0
 
-    .line 5084
+    if-eqz p1, :cond_3
+
+    .line 5543
     invoke-interface {p1, p2}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertMoonModeSelector(I)V
 
-    .line 5086
-    :cond_0
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->resetEvValue()V
+    .line 5544
+    if-eqz p2, :cond_3
 
-    .line 5087
-    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
+    .line 5545
+    iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mEnteringMoonMode:Z
 
-    invoke-static {}, Lcom/android/camera/CameraSettings;->getFocusMode()Ljava/lang/String;
+    .line 5548
+    :cond_3
+    invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->updateMoon(Z)V
 
-    move-result-object p2
+    .line 5549
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
-    invoke-virtual {p1, p2}, Lcom/android/camera/module/loader/camera2/FocusManager2;->setFocusMode(Ljava/lang/String;)Ljava/lang/String;
+    invoke-virtual {p1}, Lcom/android/camera/MutexModeManager;->isSuperResolution()Z
 
-    move-result-object p1
+    move-result p1
 
-    .line 5088
-    invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->setFocusMode(Ljava/lang/String;)V
+    if-eqz p1, :cond_4
 
-    .line 5090
-    :cond_1
+    .line 5550
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    const/4 p2, 0x1
+
+    invoke-virtual {p1, p2}, Lcom/android/camera2/Camera2Proxy;->setSuperResolution(Z)V
+
+    .line 5552
+    :cond_4
     return-void
 .end method
 
 .method private checkShutterCondition()Z
     .locals 2
 
-    .line 1039
+    .line 1054
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDoingAction()Z
 
     move-result v0
@@ -891,7 +1129,7 @@
 
     goto :goto_0
 
-    .line 1042
+    .line 1057
     :cond_0
     invoke-static {}, Lcom/android/camera/storage/Storage;->isLowStorageAtLastPoint()Z
 
@@ -899,10 +1137,10 @@
 
     if-eqz v0, :cond_1
 
-    .line 1043
+    .line 1058
     return v1
 
-    .line 1045
+    .line 1060
     :cond_1
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
@@ -918,10 +1156,10 @@
 
     if-eqz v0, :cond_2
 
-    .line 1046
+    .line 1061
     return v1
 
-    .line 1049
+    .line 1064
     :cond_2
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -929,26 +1167,26 @@
 
     const/16 v1, 0xab
 
-    .line 1050
+    .line 1065
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BackStack;
 
-    .line 1051
+    .line 1066
     if-eqz v0, :cond_3
 
-    .line 1052
-    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$BackStack;->handleBackStackFromShutter()Z
+    .line 1067
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$BackStack;->handleBackStackFromShutter()V
 
-    .line 1055
+    .line 1070
     :cond_3
     const/4 v0, 0x1
 
     return v0
 
-    .line 1040
+    .line 1055
     :cond_4
     :goto_0
     return v1
@@ -957,55 +1195,138 @@
 .method private configParallelSession()V
     .locals 6
 
-    .line 2130
+    .line 2402
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isPortraitMode()Z
 
     move-result v0
 
     const/4 v1, 0x1
 
+    if-eqz v0, :cond_2
+
+    .line 2403
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDualFrontCamera()Z
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDualCamera()Z
+
+    move-result v0
+
     if-eqz v0, :cond_0
-
-    .line 2131
-    new-instance v0, Lcom/xiaomi/engine/GraphDescriptorBean;
-
-    const v2, 0x8002
-
-    const/4 v3, 0x2
-
-    .line 2133
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
-
-    move-result v4
-
-    invoke-direct {v0, v2, v3, v1, v4}, Lcom/xiaomi/engine/GraphDescriptorBean;-><init>(IIZZ)V
 
     goto :goto_0
 
-    .line 2135
+    .line 2404
     :cond_0
-    new-instance v0, Lcom/xiaomi/engine/GraphDescriptorBean;
+    move v0, v1
 
-    const/4 v2, 0x0
+    goto :goto_1
 
-    .line 2137
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
+    .line 2403
+    :cond_1
+    :goto_0
+    const/4 v0, 0x2
+
+    .line 2404
+    :goto_1
+    sget-object v2, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "configParallelSession: inputStreamNum = "
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v2, v3}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2405
+    new-instance v2, Lcom/xiaomi/engine/GraphDescriptorBean;
+
+    const v3, 0x8002
+
+    iget v4, p0, Lcom/android/camera/module/Camera2Module;->mActualCameraId:I
+
+    .line 2406
+    invoke-static {v4}, Lcom/xiaomi/camera/base/CameraDeviceUtil;->getCameraCombinationMode(I)I
+
+    move-result v4
+
+    invoke-direct {v2, v3, v0, v1, v4}, Lcom/xiaomi/engine/GraphDescriptorBean;-><init>(IIZI)V
+
+    .line 2407
+    goto :goto_2
+
+    .line 2408
+    :cond_2
+    new-instance v2, Lcom/xiaomi/engine/GraphDescriptorBean;
+
+    const/4 v0, 0x0
+
+    iget v3, p0, Lcom/android/camera/module/Camera2Module;->mActualCameraId:I
+
+    .line 2409
+    invoke-static {v3}, Lcom/xiaomi/camera/base/CameraDeviceUtil;->getCameraCombinationMode(I)I
 
     move-result v3
 
-    invoke-direct {v0, v2, v1, v1, v3}, Lcom/xiaomi/engine/GraphDescriptorBean;-><init>(IIZZ)V
+    invoke-direct {v2, v0, v1, v1, v3}, Lcom/xiaomi/engine/GraphDescriptorBean;-><init>(IIZI)V
 
-    .line 2139
-    :goto_0
-    invoke-static {}, Lcom/android/camera/parallel/AlgoConnector;->getInstance()Lcom/android/camera/parallel/AlgoConnector;
+    .line 2412
+    :goto_2
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
-    move-result-object v1
+    new-instance v3, Ljava/lang/StringBuilder;
 
-    invoke-virtual {v1}, Lcom/android/camera/parallel/AlgoConnector;->getLocalBinder()Lcom/android/camera/LocalParallelService$LocalBinder;
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    move-result-object v1
+    const-string v4, "[QCFA] configParallelSession: mPictureSize = "
 
-    new-instance v2, Lcom/xiaomi/engine/BufferFormat;
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v0, v3}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2413
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "[QCFA] configParallelSession: mOutPutSize = "
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v0, v3}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2414
+    new-instance v0, Lcom/xiaomi/engine/BufferFormat;
 
     iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
 
@@ -1017,43 +1338,56 @@
 
     const/16 v5, 0x23
 
-    invoke-direct {v2, v3, v4, v5, v0}, Lcom/xiaomi/engine/BufferFormat;-><init>(IIILcom/xiaomi/engine/GraphDescriptorBean;)V
+    invoke-direct {v0, v3, v4, v5, v2}, Lcom/xiaomi/engine/BufferFormat;-><init>(IIILcom/xiaomi/engine/GraphDescriptorBean;)V
 
-    invoke-virtual {v1, v2}, Lcom/android/camera/LocalParallelService$LocalBinder;->configCaptureSession(Lcom/xiaomi/engine/BufferFormat;)V
-
-    .line 2141
+    .line 2416
     invoke-static {}, Lcom/android/camera/parallel/AlgoConnector;->getInstance()Lcom/android/camera/parallel/AlgoConnector;
 
-    move-result-object v0
+    move-result-object v2
 
-    invoke-virtual {v0}, Lcom/android/camera/parallel/AlgoConnector;->getLocalBinder()Lcom/android/camera/LocalParallelService$LocalBinder;
-
-    move-result-object v0
-
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
-
-    invoke-virtual {v1}, Lcom/android/camera/Camera;->getImageSaver()Lcom/android/camera/storage/ImageSaver;
+    invoke-virtual {v2, v1}, Lcom/android/camera/parallel/AlgoConnector;->getLocalBinder(Z)Lcom/android/camera/LocalParallelService$LocalBinder;
 
     move-result-object v1
 
-    invoke-virtual {v0, v1}, Lcom/android/camera/LocalParallelService$LocalBinder;->setImageSaver(Lcom/android/camera/storage/ImageSaver;)V
+    .line 2417
+    invoke-virtual {v1, v0}, Lcom/android/camera/LocalParallelService$LocalBinder;->configCaptureSession(Lcom/xiaomi/engine/BufferFormat;)V
 
-    .line 2142
+    .line 2418
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
+
+    invoke-virtual {v0}, Lcom/android/camera/Camera;->getImageSaver()Lcom/android/camera/storage/ImageSaver;
+
+    move-result-object v0
+
+    invoke-virtual {v1, v0}, Lcom/android/camera/LocalParallelService$LocalBinder;->setImageSaver(Lcom/android/camera/storage/ImageSaver;)V
+
+    .line 2419
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
+
+    iget v0, v0, Lcom/android/camera/CameraSize;->width:I
+
+    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
+
+    iget v2, v2, Lcom/android/camera/CameraSize;->height:I
+
+    invoke-virtual {v1, v0, v2}, Lcom/android/camera/LocalParallelService$LocalBinder;->setJpegOutputSize(II)V
+
+    .line 2420
     return-void
 .end method
 
 .method private consumeAiSceneResult(IZ)V
     .locals 9
 
-    .line 4896
+    .line 5342
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
     if-ne v0, p1, :cond_0
 
-    .line 4897
+    .line 5343
     return-void
 
-    .line 4900
+    .line 5346
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDoingAction()Z
 
@@ -1077,7 +1411,7 @@
 
     goto/16 :goto_3
 
-    .line 4904
+    .line 5350
     :cond_1
     if-eqz p2, :cond_2
 
@@ -1085,19 +1419,19 @@
 
     if-eqz v0, :cond_2
 
-    .line 4905
+    .line 5351
     return-void
 
-    .line 4908
+    .line 5354
     :cond_2
     const/4 v0, 0x0
 
     if-nez p2, :cond_3
 
-    .line 4909
+    .line 5355
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->isResetFromMutex:Z
 
-    .line 4911
+    .line 5357
     :cond_3
     sget-object v1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
@@ -1123,35 +1457,35 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 4912
+    .line 5358
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v1
 
     const/16 v2, 0xac
 
-    .line 4913
+    .line 5359
     invoke-virtual {v1, v2}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v1
 
     check-cast v1, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
 
-    .line 4915
+    .line 5361
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v2
 
     const/16 v3, 0xa4
 
-    .line 4916
+    .line 5362
     invoke-virtual {v2, v3}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v2
 
     check-cast v2, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;
 
-    .line 4917
+    .line 5363
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v3
@@ -1162,7 +1496,7 @@
 
     if-nez v3, :cond_5
 
-    .line 4918
+    .line 5364
     iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     if-ne p1, v4, :cond_4
@@ -1177,16 +1511,16 @@
     :goto_0
     invoke-virtual {v3, v6}, Lcom/android/camera2/Camera2Proxy;->setCameraAI30(Z)V
 
-    .line 4921
+    .line 5367
     :cond_5
     const/16 v3, 0x8
 
     invoke-direct {p0, p1, v3}, Lcom/android/camera/module/Camera2Module;->checkCloseMoonMode(II)V
 
-    .line 4922
+    .line 5368
     nop
 
-    .line 4923
+    .line 5369
     const/4 v6, -0x1
 
     const/16 v7, 0xc1
@@ -1219,145 +1553,150 @@
 
     packed-switch p1, :pswitch_data_2
 
-    .line 5034
+    .line 5481
     const-string v0, "e"
 
     invoke-interface {v2, v0}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->restoreAllMutexElement(Ljava/lang/String;)V
 
-    .line 5035
+    .line 5482
     sget-object v0, Lcom/android/camera/constant/UpdateConstant;->AI_SCENE_CONFIG:[I
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->updatePreferenceInWorkThread([I)V
 
     goto/16 :goto_1
 
-    .line 4999
+    .line 5445
     :pswitch_0
     nop
 
-    .line 5000
-    iput p1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
-
-    .line 5001
+    .line 5446
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->showMoonMode()Z
 
     move-result v2
 
-    .line 5002
+    .line 5447
     if-eqz v2, :cond_d
 
-    .line 5003
+    .line 5448
     invoke-interface {v1, p1}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->setAiSceneImageLevel(I)V
 
-    .line 5004
-    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+    .line 5449
+    iget-object p2, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    invoke-virtual {p1, v5}, Lcom/android/camera2/Camera2Proxy;->setASD(Z)V
+    invoke-virtual {p2, v5}, Lcom/android/camera2/Camera2Proxy;->setASD(Z)V
 
-    .line 5005
+    .line 5450
+    iget p2, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    invoke-direct {p0, p2, p1}, Lcom/android/camera/module/Camera2Module;->trackAISceneChanged(II)V
+
+    .line 5451
+    iput p1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
+
+    .line 5452
     return-void
 
-    .line 5010
+    .line 5457
     :pswitch_1
     nop
 
-    .line 5011
+    .line 5458
     iput p1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
-    .line 5012
+    .line 5459
     goto/16 :goto_2
 
-    .line 5020
+    .line 5467
     :pswitch_2
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object v4
 
-    invoke-virtual {v4}, Lcom/mi/config/a;->eS()Z
+    invoke-virtual {v4}, Lcom/mi/config/a;->eT()Z
 
     move-result v4
 
     if-eqz v4, :cond_6
 
-    .line 5021
+    .line 5468
     iput p1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
-    .line 5022
+    .line 5469
     const-string v0, "e"
 
     invoke-interface {v2, v0}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->restoreAllMutexElement(Ljava/lang/String;)V
 
     goto/16 :goto_1
 
-    .line 5025
+    .line 5472
     :cond_6
     nop
 
-    .line 5026
+    .line 5473
     const-string p1, "e"
 
     invoke-interface {v2, p1}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->restoreAllMutexElement(Ljava/lang/String;)V
 
-    .line 5027
+    .line 5474
     sget-object p1, Lcom/android/camera/constant/UpdateConstant;->AI_SCENE_CONFIG:[I
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->updatePreferenceInWorkThread([I)V
 
-    .line 5030
+    .line 5477
     nop
 
-    .line 5039
+    .line 5486
     move p1, v0
 
     goto/16 :goto_1
 
-    .line 4941
+    .line 5387
     :pswitch_3
     iget p2, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     invoke-direct {p0, p2, v4}, Lcom/android/camera/module/Camera2Module;->trackAISceneChanged(II)V
 
-    .line 4942
+    .line 5388
     invoke-interface {v1, v4}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->setAiSceneImageLevel(I)V
 
-    .line 4943
+    .line 5389
     invoke-interface {v1, v3}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertAiSceneSelector(I)V
 
-    .line 4944
+    .line 5390
     invoke-direct {p0, v4}, Lcom/android/camera/module/Camera2Module;->setAiSceneEffect(I)V
 
-    .line 4945
+    .line 5391
     iput p1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
-    .line 4946
+    .line 5392
     const-string p1, "e"
 
     invoke-interface {v2, p1}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->restoreAllMutexElement(Ljava/lang/String;)V
 
-    .line 4948
+    .line 5394
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {p1, v0}, Lcom/android/camera2/Camera2Proxy;->setASD(Z)V
 
-    .line 4949
+    .line 5395
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->resumePreviewInWorkThread()V
 
-    .line 4950
+    .line 5396
     return-void
 
-    .line 4994
+    .line 5440
     :pswitch_4
     iput p1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
-    .line 4995
+    .line 5441
     const-string v0, "e"
 
     invoke-interface {v2, v0}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->restoreAllMutexElement(Ljava/lang/String;)V
 
-    .line 4997
+    .line 5443
     goto :goto_1
 
-    .line 4984
+    .line 5430
     :cond_7
     invoke-static {}, Lcom/android/camera/CameraSettings;->getSharpness()Ljava/lang/String;
 
@@ -1367,30 +1706,30 @@
 
     move-result v0
 
-    .line 4985
+    .line 5431
     if-ge v0, v6, :cond_8
 
-    .line 4986
+    .line 5432
     add-int/lit8 v0, v0, 0x1
 
-    .line 4988
+    .line 5434
     :cond_8
     iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v4, v0}, Lcom/android/camera2/Camera2Proxy;->setSharpness(I)V
 
-    .line 4989
+    .line 5435
     iput p1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
-    .line 4990
+    .line 5436
     const-string v0, "e"
 
     invoke-interface {v2, v0}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->restoreAllMutexElement(Ljava/lang/String;)V
 
-    .line 4991
+    .line 5437
     goto :goto_1
 
-    .line 4953
+    .line 5399
     :cond_9
     const-string v4, "e"
 
@@ -1400,21 +1739,21 @@
 
     invoke-interface {v2, v4, v6}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->closeMutexElement(Ljava/lang/String;[I)V
 
-    .line 4962
+    .line 5408
     const-string v0, "0"
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->setFlashMode(Ljava/lang/String;)V
 
-    .line 4963
+    .line 5409
     invoke-direct {p0, v5}, Lcom/android/camera/module/Camera2Module;->updateMfnr(Z)V
 
-    .line 4964
+    .line 5410
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateOIS()V
 
-    .line 4965
+    .line 5411
     goto :goto_1
 
-    .line 4976
+    .line 5422
     :cond_a
     invoke-static {}, Lcom/android/camera/CameraSettings;->getContrast()Ljava/lang/String;
 
@@ -1424,26 +1763,26 @@
 
     move-result v0
 
-    .line 4977
+    .line 5423
     iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v4, v0}, Lcom/android/camera2/Camera2Proxy;->setContrast(I)V
 
-    .line 4978
+    .line 5424
     iput p1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
-    .line 4979
+    .line 5425
     const-string v0, "e"
 
     invoke-interface {v2, v0}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->restoreAllMutexElement(Ljava/lang/String;)V
 
-    .line 4980
+    .line 5426
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateSuperResolution()V
 
-    .line 4981
+    .line 5427
     goto :goto_1
 
-    .line 4967
+    .line 5413
     :cond_b
     invoke-static {}, Lcom/android/camera/CameraSettings;->getSharpness()Ljava/lang/String;
 
@@ -1453,30 +1792,30 @@
 
     move-result v0
 
-    .line 4968
+    .line 5414
     if-ge v0, v6, :cond_c
 
-    .line 4969
+    .line 5415
     add-int/lit8 v0, v0, 0x1
 
-    .line 4971
+    .line 5417
     :cond_c
     iput p1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
-    .line 4972
+    .line 5418
     const-string v4, "e"
 
     invoke-interface {v2, v4}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->restoreAllMutexElement(Ljava/lang/String;)V
 
-    .line 4973
+    .line 5419
     iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v2, v0}, Lcom/android/camera2/Camera2Proxy;->setSharpness(I)V
 
-    .line 4974
+    .line 5420
     nop
 
-    .line 5039
+    .line 5486
     :goto_1
     move v0, v5
 
@@ -1486,41 +1825,41 @@
 
     invoke-direct {p0, v2, p1}, Lcom/android/camera/module/Camera2Module;->trackAISceneChanged(II)V
 
-    .line 5040
+    .line 5487
     invoke-interface {v1, p1}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->setAiSceneImageLevel(I)V
 
-    .line 5041
+    .line 5488
     invoke-interface {v1, v3}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertAiSceneSelector(I)V
 
-    .line 5042
+    .line 5489
     if-eqz v0, :cond_e
 
-    .line 5043
+    .line 5490
     invoke-direct {p0, p1}, Lcom/android/camera/module/Camera2Module;->setAiSceneEffect(I)V
 
-    .line 5045
+    .line 5492
     :cond_e
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, v5}, Lcom/android/camera2/Camera2Proxy;->setASD(Z)V
 
-    .line 5046
+    .line 5493
     if-nez p2, :cond_f
 
-    .line 5047
+    .line 5494
     iput p1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
-    .line 5049
+    .line 5496
     :cond_f
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateBeauty()V
 
-    .line 5050
+    .line 5497
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->resumePreviewInWorkThread()V
 
-    .line 5051
+    .line 5498
     return-void
 
-    .line 4925
+    .line 5371
     :cond_10
     const-string p2, "e"
 
@@ -1530,38 +1869,40 @@
 
     invoke-interface {v2, p2, v4}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->closeMutexElement(Ljava/lang/String;[I)V
 
-    .line 4932
+    .line 5378
     const/16 p2, 0x17
 
     invoke-interface {v1, p2}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->setAiSceneImageLevel(I)V
 
-    .line 4933
+    .line 5379
     invoke-interface {v1, v3, v0, v0}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertHDR(IZZ)V
 
-    .line 4934
+    .line 5380
     invoke-interface {v1, v0}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertAiSceneSelector(I)V
 
-    .line 4935
+    .line 5381
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->applyBacklightEffect()V
 
-    .line 4936
+    .line 5382
     iget-object p2, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {p2, v0}, Lcom/android/camera2/Camera2Proxy;->setASD(Z)V
 
-    .line 4937
+    .line 5383
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->resumePreviewInWorkThread()V
 
-    .line 4938
+    .line 5384
     iput p1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
-    .line 4939
+    .line 5385
     return-void
 
-    .line 4901
+    .line 5347
     :cond_11
     :goto_3
     return-void
+
+    nop
 
     :pswitch_data_0
     .packed-switch 0x7
@@ -1591,15 +1932,15 @@
 .method private consumeAsdSceneResult(I)V
     .locals 1
 
-    .line 4733
+    .line 5179
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAsdScene:I
 
     if-ne v0, p1, :cond_0
 
-    .line 4734
+    .line 5180
     return-void
 
-    .line 4737
+    .line 5183
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDoingAction()Z
 
@@ -1623,22 +1964,22 @@
 
     goto :goto_0
 
-    .line 4741
+    .line 5187
     :cond_1
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAsdScene:I
 
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->exitAsdScene(I)V
 
-    .line 4742
+    .line 5188
     invoke-direct {p0, p1}, Lcom/android/camera/module/Camera2Module;->enterAsdScene(I)V
 
-    .line 4743
+    .line 5189
     iput p1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAsdScene:I
 
-    .line 4744
+    .line 5190
     return-void
 
-    .line 4738
+    .line 5184
     :cond_2
     :goto_0
     return-void
@@ -1647,15 +1988,15 @@
 .method private doAttach()V
     .locals 6
 
-    .line 2748
+    .line 3128
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mPaused:Z
 
     if-eqz v0, :cond_0
 
-    .line 2749
+    .line 3129
     return-void
 
-    .line 2751
+    .line 3131
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
@@ -1667,12 +2008,12 @@
 
     move-result-object v0
 
-    .line 2752
+    .line 3132
     iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mIsSaveCaptureImage:Z
 
     if-eqz v1, :cond_1
 
-    .line 2753
+    .line 3133
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v1}, Lcom/android/camera/Camera;->getImageSaver()Lcom/android/camera/storage/ImageSaver;
@@ -1681,7 +2022,7 @@
 
     invoke-virtual {v1}, Lcom/android/camera/storage/ImageSaver;->saveStoredData()V
 
-    .line 2755
+    .line 3135
     :cond_1
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCropValue:Ljava/lang/String;
 
@@ -1689,17 +2030,17 @@
 
     if-nez v1, :cond_3
 
-    .line 2760
+    .line 3140
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mSaveUri:Landroid/net/Uri;
 
     const/4 v3, -0x1
 
     if-eqz v1, :cond_2
 
-    .line 2761
+    .line 3141
     nop
 
-    .line 2763
+    .line 3143
     :try_start_0
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mContentResolver:Landroid/content/ContentResolver;
 
@@ -1712,14 +2053,14 @@
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
     .catchall {:try_start_0 .. :try_end_0} :catchall_1
 
-    .line 2764
+    .line 3144
     :try_start_1
     invoke-virtual {v1, v0}, Ljava/io/OutputStream;->write([B)V
 
-    .line 2765
+    .line 3145
     invoke-virtual {v1}, Ljava/io/OutputStream;->close()V
 
-    .line 2767
+    .line 3147
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0, v3}, Lcom/android/camera/Camera;->setResult(I)V
@@ -1727,17 +2068,17 @@
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 2772
+    .line 3152
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->finish()V
 
-    .line 2773
+    .line 3153
     invoke-static {v1}, Lcom/android/camera/Util;->closeSilently(Ljava/io/Closeable;)V
 
     goto :goto_1
 
-    .line 2772
+    .line 3152
     :catchall_0
     move-exception v0
 
@@ -1745,7 +2086,7 @@
 
     goto :goto_2
 
-    .line 2768
+    .line 3148
     :catch_0
     move-exception v0
 
@@ -1753,17 +2094,17 @@
 
     goto :goto_0
 
-    .line 2772
+    .line 3152
     :catchall_1
     move-exception v0
 
     goto :goto_2
 
-    .line 2768
+    .line 3148
     :catch_1
     move-exception v0
 
-    .line 2770
+    .line 3150
     :goto_0
     :try_start_2
     sget-object v1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
@@ -1774,33 +2115,33 @@
     :try_end_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_1
 
-    .line 2772
+    .line 3152
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->finish()V
 
-    .line 2773
+    .line 3153
     invoke-static {v2}, Lcom/android/camera/Util;->closeSilently(Ljava/io/Closeable;)V
 
-    .line 2774
+    .line 3154
     :goto_1
     nop
 
-    .line 2775
+    .line 3155
     goto/16 :goto_4
 
-    .line 2772
+    .line 3152
     :goto_2
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v1}, Lcom/android/camera/Camera;->finish()V
 
-    .line 2773
+    .line 3153
     invoke-static {v2}, Lcom/android/camera/Util;->closeSilently(Ljava/io/Closeable;)V
 
     throw v0
 
-    .line 2776
+    .line 3156
     :cond_2
     const v1, 0xc800
 
@@ -1808,17 +2149,17 @@
 
     move-result-object v1
 
-    .line 2777
+    .line 3157
     invoke-static {v0}, Lcom/android/camera/Exif;->getOrientation([B)I
 
     move-result v0
 
-    .line 2778
+    .line 3158
     invoke-static {v1, v0}, Lcom/android/camera/Util;->rotate(Landroid/graphics/Bitmap;I)Landroid/graphics/Bitmap;
 
     move-result-object v0
 
-    .line 2779
+    .line 3159
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     new-instance v2, Landroid/content/Intent;
@@ -1829,30 +2170,30 @@
 
     const-string v4, "data"
 
-    .line 2780
+    .line 3160
     invoke-virtual {v2, v4, v0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 2779
+    .line 3159
     invoke-virtual {v1, v3, v0}, Lcom/android/camera/Camera;->setResult(ILandroid/content/Intent;)V
 
-    .line 2781
+    .line 3161
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->finish()V
 
-    .line 2782
+    .line 3162
     goto :goto_4
 
-    .line 2785
+    .line 3165
     :cond_3
     nop
 
-    .line 2786
+    .line 3166
     nop
 
-    .line 2788
+    .line 3168
     const/4 v1, 0x0
 
     :try_start_3
@@ -1864,10 +2205,10 @@
 
     move-result-object v3
 
-    .line 2789
+    .line 3169
     invoke-virtual {v3}, Ljava/io/File;->delete()Z
 
-    .line 2790
+    .line 3170
     iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     const-string v5, "crop-temp"
@@ -1880,21 +2221,21 @@
     .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3} :catch_4
     .catchall {:try_start_3 .. :try_end_3} :catchall_3
 
-    .line 2791
+    .line 3171
     :try_start_4
     invoke-virtual {v4, v0}, Ljava/io/FileOutputStream;->write([B)V
 
-    .line 2792
+    .line 3172
     invoke-virtual {v4}, Ljava/io/FileOutputStream;->close()V
     :try_end_4
     .catch Ljava/io/FileNotFoundException; {:try_start_4 .. :try_end_4} :catch_3
     .catch Ljava/io/IOException; {:try_start_4 .. :try_end_4} :catch_2
     .catchall {:try_start_4 .. :try_end_4} :catchall_2
 
-    .line 2793
+    .line 3173
     nop
 
-    .line 2794
+    .line 3174
     :try_start_5
     invoke-static {v3}, Landroid/net/Uri;->fromFile(Ljava/io/File;)Landroid/net/Uri;
 
@@ -1904,18 +2245,18 @@
     .catch Ljava/io/IOException; {:try_start_5 .. :try_end_5} :catch_4
     .catchall {:try_start_5 .. :try_end_5} :catchall_3
 
-    .line 2804
+    .line 3184
     invoke-static {v2}, Lcom/android/camera/Util;->closeSilently(Ljava/io/Closeable;)V
 
-    .line 2805
+    .line 3185
     nop
 
-    .line 2806
+    .line 3186
     new-instance v1, Landroid/os/Bundle;
 
     invoke-direct {v1}, Landroid/os/Bundle;-><init>()V
 
-    .line 2807
+    .line 3187
     const-string v2, "circle"
 
     iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mCropValue:Ljava/lang/String;
@@ -1926,20 +2267,20 @@
 
     if-eqz v2, :cond_4
 
-    .line 2808
+    .line 3188
     const-string v2, "circleCrop"
 
     const-string v3, "true"
 
     invoke-virtual {v1, v2, v3}, Landroid/os/Bundle;->putString(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 2810
+    .line 3190
     :cond_4
     iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mSaveUri:Landroid/net/Uri;
 
     if-eqz v2, :cond_5
 
-    .line 2811
+    .line 3191
     const-string v2, "output"
 
     iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mSaveUri:Landroid/net/Uri;
@@ -1948,7 +2289,7 @@
 
     goto :goto_3
 
-    .line 2813
+    .line 3193
     :cond_5
     const-string v2, "return-data"
 
@@ -1956,7 +2297,7 @@
 
     invoke-virtual {v1, v2, v3}, Landroid/os/Bundle;->putBoolean(Ljava/lang/String;Z)V
 
-    .line 2816
+    .line 3196
     :goto_3
     new-instance v2, Landroid/content/Intent;
 
@@ -1964,24 +2305,24 @@
 
     invoke-direct {v2, v3}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
 
-    .line 2818
+    .line 3198
     invoke-virtual {v2, v0}, Landroid/content/Intent;->setData(Landroid/net/Uri;)Landroid/content/Intent;
 
-    .line 2819
+    .line 3199
     invoke-virtual {v2, v1}, Landroid/content/Intent;->putExtras(Landroid/os/Bundle;)Landroid/content/Intent;
 
-    .line 2821
+    .line 3201
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     const/16 v1, 0x3e8
 
     invoke-virtual {v0, v2, v1}, Lcom/android/camera/Camera;->startActivityForResult(Landroid/content/Intent;I)V
 
-    .line 2823
+    .line 3203
     :goto_4
     return-void
 
-    .line 2804
+    .line 3184
     :catchall_2
     move-exception v0
 
@@ -1989,7 +2330,7 @@
 
     goto :goto_7
 
-    .line 2799
+    .line 3179
     :catch_2
     move-exception v0
 
@@ -1997,7 +2338,7 @@
 
     goto :goto_5
 
-    .line 2795
+    .line 3175
     :catch_3
     move-exception v0
 
@@ -2005,61 +2346,61 @@
 
     goto :goto_6
 
-    .line 2804
+    .line 3184
     :catchall_3
     move-exception v0
 
     goto :goto_7
 
-    .line 2799
+    .line 3179
     :catch_4
     move-exception v0
 
-    .line 2800
+    .line 3180
     :goto_5
     :try_start_6
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0, v1}, Lcom/android/camera/Camera;->setResult(I)V
 
-    .line 2801
+    .line 3181
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->finish()V
     :try_end_6
     .catchall {:try_start_6 .. :try_end_6} :catchall_3
 
-    .line 2804
+    .line 3184
     invoke-static {v2}, Lcom/android/camera/Util;->closeSilently(Ljava/io/Closeable;)V
 
-    .line 2802
+    .line 3182
     return-void
 
-    .line 2795
+    .line 3175
     :catch_5
     move-exception v0
 
-    .line 2796
+    .line 3176
     :goto_6
     :try_start_7
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0, v1}, Lcom/android/camera/Camera;->setResult(I)V
 
-    .line 2797
+    .line 3177
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->finish()V
     :try_end_7
     .catchall {:try_start_7 .. :try_end_7} :catchall_3
 
-    .line 2804
+    .line 3184
     invoke-static {v2}, Lcom/android/camera/Util;->closeSilently(Ljava/io/Closeable;)V
 
-    .line 2798
+    .line 3178
     return-void
 
-    .line 2804
+    .line 3184
     :goto_7
     invoke-static {v2}, Lcom/android/camera/Util;->closeSilently(Ljava/io/Closeable;)V
 
@@ -2069,28 +2410,28 @@
 .method private doLaterReleaseIfNeed()V
     .locals 4
 
-    .line 1809
+    .line 2049
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     if-nez v0, :cond_0
 
-    .line 1810
+    .line 2050
     return-void
 
-    .line 1813
+    .line 2053
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     if-eqz v0, :cond_1
 
-    .line 1814
+    .line 2054
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v1, 0x32
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeMessages(I)V
 
-    .line 1817
+    .line 2057
     :cond_1
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
@@ -2100,7 +2441,7 @@
 
     if-eqz v0, :cond_4
 
-    .line 1818
+    .line 2058
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     const/4 v1, 0x1
@@ -2115,20 +2456,20 @@
 
     if-eqz v0, :cond_2
 
-    .line 1819
+    .line 2059
     move v0, v1
 
     goto :goto_0
 
-    .line 1818
+    .line 2058
     :cond_2
     const/4 v0, 0x0
 
-    .line 1819
+    .line 2059
     :goto_0
     if-eqz v0, :cond_3
 
-    .line 1820
+    .line 2060
     sget-object v2, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v3, "doLaterRelease"
@@ -2137,7 +2478,7 @@
 
     goto :goto_1
 
-    .line 1822
+    .line 2062
     :cond_3
     sget-object v2, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
@@ -2145,16 +2486,16 @@
 
     invoke-static {v2, v3}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1824
+    .line 2064
     :goto_1
     iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v2, v1, v0}, Lcom/android/camera/Camera;->releaseAll(ZZ)V
 
-    .line 1825
+    .line 2065
     return-void
 
-    .line 1828
+    .line 2068
     :cond_4
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDeparted()Z
 
@@ -2162,44 +2503,11 @@
 
     if-eqz v0, :cond_5
 
-    .line 1829
+    .line 2069
     return-void
 
-    .line 1832
+    .line 2072
     :cond_5
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
-
-    new-instance v1, Lcom/android/camera/module/Camera2Module$12;
-
-    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$12;-><init>(Lcom/android/camera/module/Camera2Module;)V
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
-
-    .line 1839
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
-
-    invoke-virtual {v0}, Lcom/android/camera/Camera;->getCameraScreenNail()Lcom/android/camera/CameraScreenNail;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Lcom/android/camera/CameraScreenNail;->getSurfaceCreatedTimestamp()J
-
-    move-result-wide v0
-
-    iget-wide v2, p0, Lcom/android/camera/module/Camera2Module;->mSurfaceCreatedTimestamp:J
-
-    cmp-long v0, v0, v2
-
-    if-eqz v0, :cond_6
-
-    .line 1841
-    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
-
-    const-string v1, "surfaceTexture expired, restartModule"
-
-    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 1842
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     new-instance v1, Lcom/android/camera/module/Camera2Module$13;
@@ -2208,10 +2516,33 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
 
-    .line 1848
+    .line 2079
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isTextureExpired()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_6
+
+    .line 2081
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    const-string v1, "surfaceTexture expired, restartModule"
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2082
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
+
+    new-instance v1, Lcom/android/camera/module/Camera2Module$14;
+
+    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$14;-><init>(Lcom/android/camera/module/Camera2Module;)V
+
+    invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
+
+    .line 2088
     return-void
 
-    .line 1851
+    .line 2091
     :cond_6
     return-void
 .end method
@@ -2219,7 +2550,7 @@
 .method private enablePreviewAsThumbnail()Z
     .locals 4
 
-    .line 2413
+    .line 2743
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isAlive()Z
 
     move-result v0
@@ -2228,30 +2559,30 @@
 
     if-nez v0, :cond_0
 
-    .line 2414
+    .line 2744
     return v1
 
-    .line 2418
+    .line 2748
     :cond_0
-    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsParallelProcess:Z
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsCurrentTaskIsParallel:Z
 
     const/4 v2, 0x1
 
     if-eqz v0, :cond_1
 
-    .line 2419
+    .line 2749
     return v2
 
-    .line 2423
+    .line 2753
     :cond_1
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsPortraitLightingOn:Z
 
     if-eqz v0, :cond_2
 
-    .line 2424
+    .line 2754
     return v1
 
-    .line 2427
+    .line 2757
     :cond_2
     invoke-static {}, Lcom/android/camera/CameraSettings;->isLiveShotOn()Z
 
@@ -2259,10 +2590,10 @@
 
     if-eqz v0, :cond_3
 
-    .line 2428
+    .line 2758
     return v2
 
-    .line 2432
+    .line 2762
     :cond_3
     invoke-static {}, Lcom/android/camera/CameraSettings;->isGradienterOn()Z
 
@@ -2270,74 +2601,99 @@
 
     if-eqz v0, :cond_4
 
-    .line 2433
+    .line 2763
     return v1
 
-    .line 2437
+    .line 2767
     :cond_4
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isGroupShotOn()Z
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isPortraitModeBackOn()Z
 
     move-result v0
 
     if-eqz v0, :cond_5
 
-    .line 2438
-    return v1
-
-    .line 2441
-    :cond_5
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isPortraitModeBackOn()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_6
-
-    .line 2442
+    .line 2768
     return v2
 
-    .line 2445
-    :cond_6
+    .line 2771
+    :cond_5
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     const/16 v3, 0xa7
 
-    if-ne v0, v3, :cond_7
+    if-ne v0, v3, :cond_6
 
-    .line 2446
+    .line 2772
     return v1
 
-    .line 2449
-    :cond_7
+    .line 2775
+    :cond_6
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     const/16 v3, 0xad
 
-    if-ne v0, v3, :cond_8
+    if-ne v0, v3, :cond_7
 
-    .line 2450
+    .line 2776
     return v1
 
-    .line 2454
-    :cond_8
+    .line 2780
+    :cond_7
     invoke-static {}, Lcom/android/camera/CameraSettings;->showGenderAge()Z
 
     move-result v0
 
-    if-nez v0, :cond_b
+    if-nez v0, :cond_c
 
     invoke-static {}, Lcom/android/camera/CameraSettings;->isMagicMirrorOn()Z
 
     move-result v0
 
-    if-eqz v0, :cond_9
+    if-eqz v0, :cond_8
 
     goto :goto_0
 
-    .line 2459
+    .line 2785
+    :cond_8
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
+
+    if-eqz v0, :cond_9
+
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
+
+    .line 2786
+    invoke-static {v0}, Lcom/android/camera/CameraSettings;->isSupportedUltraPixelPhotography(Lcom/android/camera2/CameraCapabilities;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_9
+
+    .line 2787
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isRearMenuUltraPixelPhotographyOn()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_9
+
+    .line 2788
+    return v1
+
+    .line 2792
     :cond_9
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isFrontMenuUltraPixelPhotographyOn()Z
+
+    move-result v0
 
     if-eqz v0, :cond_a
+
+    .line 2793
+    return v1
+
+    .line 2797
+    :cond_a
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    if-eqz v0, :cond_b
 
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
@@ -2345,17 +2701,17 @@
 
     move-result v0
 
-    if-eqz v0, :cond_a
+    if-eqz v0, :cond_b
 
     move v1, v2
 
     nop
 
-    :cond_a
+    :cond_b
     return v1
 
-    .line 2455
-    :cond_b
+    .line 2781
+    :cond_c
     :goto_0
     return v1
 .end method
@@ -2363,12 +2719,12 @@
 .method private enterAsdScene(I)V
     .locals 5
 
-    .line 4784
+    .line 5230
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 4785
+    .line 5231
     const/16 v1, 0xac
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -2377,7 +2733,7 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
 
-    .line 4786
+    .line 5232
     const/4 v1, 0x0
 
     if-eqz p1, :cond_2
@@ -2394,57 +2750,57 @@
 
     goto :goto_0
 
-    .line 4800
+    .line 5246
     :pswitch_0
     iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->m3ALocked:Z
 
     if-nez p1, :cond_3
 
-    .line 4801
+    .line 5247
     invoke-direct {p0, v1}, Lcom/android/camera/module/Camera2Module;->setPortraitSuccessHintVisible(I)V
 
     goto :goto_0
 
-    .line 4819
+    .line 5265
     :pswitch_1
     iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->m3ALocked:Z
 
     if-nez p1, :cond_3
 
-    .line 4820
-    const p1, 0x7f0b0195
+    .line 5266
+    const p1, 0x7f09019c
 
     invoke-virtual {p0, v2, p1, v0}, Lcom/android/camera/module/Camera2Module;->updateTipMessage(III)V
 
     goto :goto_0
 
-    .line 4812
+    .line 5258
     :pswitch_2
     iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->m3ALocked:Z
 
     if-nez p1, :cond_3
 
-    .line 4813
-    const p1, 0x7f0b0197
+    .line 5259
+    const p1, 0x7f09019e
 
     invoke-virtual {p0, v2, p1, v0}, Lcom/android/camera/module/Camera2Module;->updateTipMessage(III)V
 
     goto :goto_0
 
-    .line 4805
+    .line 5251
     :pswitch_3
     iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->m3ALocked:Z
 
     if-nez p1, :cond_3
 
-    .line 4806
-    const p1, 0x7f0b0196
+    .line 5252
+    const p1, 0x7f09019d
 
     invoke-virtual {p0, v2, p1, v0}, Lcom/android/camera/module/Camera2Module;->updateTipMessage(III)V
 
     goto :goto_0
 
-    .line 4791
+    .line 5237
     :cond_0
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
 
@@ -2460,7 +2816,7 @@
 
     move-result-object p1
 
-    .line 4792
+    .line 5238
     const-string v2, "3"
 
     invoke-virtual {v2, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -2473,7 +2829,7 @@
 
     if-eqz v2, :cond_1
 
-    .line 4793
+    .line 5239
     new-array p1, v4, [I
 
     aput v3, p1, v1
@@ -2482,7 +2838,7 @@
 
     goto :goto_0
 
-    .line 4794
+    .line 5240
     :cond_1
     const-string v2, "103"
 
@@ -2492,10 +2848,10 @@
 
     if-eqz p1, :cond_3
 
-    .line 4795
+    .line 5241
     invoke-interface {v0, v1, v1, v1}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertFlash(IZZ)V
 
-    .line 4796
+    .line 5242
     new-array p1, v4, [I
 
     aput v3, p1, v1
@@ -2504,14 +2860,14 @@
 
     goto :goto_0
 
-    .line 4788
+    .line 5234
     :cond_2
     invoke-interface {v0, v1, v1, v1}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertFlash(IZZ)V
 
-    .line 4789
+    .line 5235
     nop
 
-    .line 4826
+    .line 5272
     :cond_3
     :goto_0
     return-void
@@ -2530,12 +2886,12 @@
 .method private exitAsdScene(I)V
     .locals 5
 
-    .line 4748
+    .line 5194
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 4749
+    .line 5195
     const/16 v1, 0xac
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -2544,7 +2900,7 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
 
-    .line 4750
+    .line 5196
     const/16 v1, 0x8
 
     const/4 v2, 0x0
@@ -2559,33 +2915,33 @@
 
     goto :goto_0
 
-    .line 4774
+    .line 5220
     :pswitch_0
     iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->m3ALocked:Z
 
     if-nez p1, :cond_3
 
-    .line 4775
+    .line 5221
     invoke-direct {p0, v1}, Lcom/android/camera/module/Camera2Module;->setPortraitSuccessHintVisible(I)V
 
     goto :goto_0
 
-    .line 4769
+    .line 5215
     :pswitch_1
     iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->m3ALocked:Z
 
     if-nez p1, :cond_3
 
-    .line 4770
+    .line 5216
     invoke-virtual {p0, v2}, Lcom/android/camera/module/Camera2Module;->hideTipMessage(I)V
 
     goto :goto_0
 
-    .line 4760
+    .line 5206
     :cond_0
     const-string p1, "103"
 
-    .line 4761
+    .line 5207
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
 
     move-result-object v3
@@ -2600,17 +2956,17 @@
 
     move-result-object v3
 
-    .line 4760
+    .line 5206
     invoke-virtual {p1, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
 
     if-eqz p1, :cond_1
 
-    .line 4762
+    .line 5208
     invoke-interface {v0, v1, v2, v2}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertFlash(IZZ)V
 
-    .line 4764
+    .line 5210
     :cond_1
     const/4 p1, 0x1
 
@@ -2622,10 +2978,10 @@
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->updatePreferenceInWorkThread([I)V
 
-    .line 4765
+    .line 5211
     goto :goto_0
 
-    .line 4753
+    .line 5199
     :cond_2
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
 
@@ -2641,7 +2997,7 @@
 
     move-result-object p1
 
-    .line 4754
+    .line 5200
     const-string v3, "1"
 
     invoke-virtual {v3, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -2652,17 +3008,17 @@
 
     const-string v3, "101"
 
-    .line 4755
+    .line 5201
     invoke-virtual {v3, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
 
     if-nez p1, :cond_3
 
-    .line 4756
+    .line 5202
     invoke-interface {v0, v1, v2, v2}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertFlash(IZZ)V
 
-    .line 4780
+    .line 5226
     :cond_3
     :goto_0
     return-void
@@ -2678,15 +3034,54 @@
     .end packed-switch
 .end method
 
-.method private getCountDownTimes()I
+.method private getCalibrationDataFileName(I)Ljava/lang/String;
+    .locals 1
+
+    .line 3264
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 3265
+    const-string p1, "front_dual_camera_caldata.bin"
+
+    return-object p1
+
+    .line 3267
+    :cond_0
+    invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2DataContainer;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getUltraWideBokehCameraId()I
+
+    move-result v0
+
+    if-ne p1, v0, :cond_1
+
+    .line 3268
+    const-string p1, "back_dual_camera_caldata_wu.bin"
+
+    return-object p1
+
+    .line 3270
+    :cond_1
+    const-string p1, "back_dual_camera_caldata.bin"
+
+    return-object p1
+.end method
+
+.method private getCountDownTimes(I)I
     .locals 3
 
-    .line 1012
+    .line 1025
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mBroadcastIntent:Landroid/content/Intent;
 
     if-eqz v0, :cond_0
 
-    .line 1013
+    .line 1026
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mBroadcastIntent:Landroid/content/Intent;
 
     invoke-static {v0}, Lcom/android/camera/CameraIntentManager;->getInstance(Landroid/content/Intent;)Lcom/android/camera/CameraIntentManager;
@@ -2699,7 +3094,7 @@
 
     goto :goto_0
 
-    .line 1015
+    .line 1028
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
@@ -2711,80 +3106,108 @@
 
     move-result v0
 
-    .line 1017
+    .line 1030
     :goto_0
     const/4 v1, -0x1
 
+    const/4 v2, 0x3
+
     if-eq v0, v1, :cond_4
 
-    .line 1019
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mBroadcastIntent:Landroid/content/Intent;
+    .line 1032
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mBroadcastIntent:Landroid/content/Intent;
 
-    if-eqz v1, :cond_1
+    if-eqz p1, :cond_1
 
-    .line 1020
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mBroadcastIntent:Landroid/content/Intent;
+    .line 1033
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mBroadcastIntent:Landroid/content/Intent;
 
-    const-string v2, "android.intent.extra.TIMER_DURATION_SECONDS"
+    const-string v1, "android.intent.extra.TIMER_DURATION_SECONDS"
 
-    invoke-virtual {v1, v2}, Landroid/content/Intent;->removeExtra(Ljava/lang/String;)V
+    invoke-virtual {p1, v1}, Landroid/content/Intent;->removeExtra(Ljava/lang/String;)V
 
     goto :goto_1
 
-    .line 1022
+    .line 1035
     :cond_1
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
-    invoke-virtual {v1}, Lcom/android/camera/Camera;->getIntent()Landroid/content/Intent;
+    invoke-virtual {p1}, Lcom/android/camera/Camera;->getIntent()Landroid/content/Intent;
 
-    move-result-object v1
+    move-result-object p1
 
-    const-string v2, "android.intent.extra.TIMER_DURATION_SECONDS"
+    const-string v1, "android.intent.extra.TIMER_DURATION_SECONDS"
 
-    invoke-virtual {v1, v2}, Landroid/content/Intent;->removeExtra(Ljava/lang/String;)V
+    invoke-virtual {p1, v1}, Landroid/content/Intent;->removeExtra(Ljava/lang/String;)V
 
-    .line 1024
+    .line 1037
     :goto_1
     if-eqz v0, :cond_3
 
-    const/4 v1, 0x5
+    const/4 p1, 0x5
 
-    if-eq v0, v1, :cond_2
+    if-eq v0, p1, :cond_2
 
-    .line 1030
-    const/4 v0, 0x3
+    .line 1043
+    return v2
 
-    return v0
-
-    .line 1028
+    .line 1041
     :cond_2
-    return v1
+    return p1
 
-    .line 1026
+    .line 1039
     :cond_3
-    const/4 v0, 0x0
+    const/4 p1, 0x0
 
-    return v0
+    return p1
 
-    .line 1033
+    .line 1045
     :cond_4
+    const/16 v0, 0x64
+
+    if-ne p1, v0, :cond_6
+
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isHangGestureOpen()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_6
+
+    .line 1046
     invoke-static {}, Lcom/android/camera/CameraSettings;->getCountDownTimes()I
 
-    move-result v0
+    move-result p1
 
-    return v0
+    .line 1047
+    if-eqz p1, :cond_5
+
+    goto :goto_2
+
+    :cond_5
+    move p1, v2
+
+    :goto_2
+    return p1
+
+    .line 1049
+    :cond_6
+    invoke-static {}, Lcom/android/camera/CameraSettings;->getCountDownTimes()I
+
+    move-result p1
+
+    return p1
 .end method
 
 .method private getCurrentAiSceneName()Ljava/lang/String;
     .locals 4
 
-    .line 5320
+    .line 5795
     nop
 
-    .line 5321
+    .line 5796
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
-    .line 5322
+    .line 5797
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     const/16 v2, 0xa3
@@ -2799,33 +3222,33 @@
 
     goto :goto_0
 
-    .line 5336
+    .line 5811
     :cond_0
     const/4 v0, 0x0
 
     goto :goto_3
 
-    .line 5323
+    .line 5798
     :cond_1
     :goto_0
     const-string v1, "off"
 
-    .line 5324
+    .line 5799
     invoke-static {}, Lcom/android/camera/CameraSettings;->getAiSceneOpen()Z
 
     move-result v2
 
     if-eqz v2, :cond_5
 
-    .line 5325
+    .line 5800
     const-string v1, "\u672a\u77e5"
 
-    .line 5326
+    .line 5801
     const/4 v2, -0x1
 
     if-ne v0, v2, :cond_3
 
-    .line 5327
+    .line 5802
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->isSilhouette:Z
 
     if-eqz v0, :cond_2
@@ -2837,7 +3260,7 @@
     :cond_2
     const/16 v0, 0x17
 
-    .line 5329
+    .line 5804
     :cond_3
     :goto_1
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getResources()Landroid/content/res/Resources;
@@ -2850,7 +3273,7 @@
 
     move-result-object v2
 
-    .line 5330
+    .line 5805
     if-ltz v0, :cond_4
 
     invoke-virtual {v2}, Landroid/content/res/TypedArray;->length()I
@@ -2859,14 +3282,14 @@
 
     if-ge v0, v3, :cond_4
 
-    .line 5331
+    .line 5806
     invoke-virtual {v2, v0}, Landroid/content/res/TypedArray;->getString(I)Ljava/lang/String;
 
     move-result-object v0
 
     goto :goto_2
 
-    .line 5333
+    .line 5808
     :cond_4
     move-object v0, v1
 
@@ -2875,7 +3298,7 @@
 
     goto :goto_3
 
-    .line 5336
+    .line 5811
     :cond_5
     move-object v0, v1
 
@@ -2883,108 +3306,198 @@
     return-object v0
 .end method
 
+.method private getDualWaterMarkParam()Lcom/android/camera/effect/renders/DualWatermarkParam;
+    .locals 7
+
+    .line 1427
+    new-instance v6, Lcom/android/camera/effect/renders/DualWatermarkParam;
+
+    .line 1428
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isDualCameraWaterMarkOpen()Z
+
+    move-result v1
+
+    .line 1429
+    invoke-static {}, Lcom/android/camera/CameraSettings;->getDualCameraWaterMarkFilePathVendor()Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 1430
+    const/4 v0, 0x0
+
+    const v3, 0x7f0a00ad
+
+    invoke-static {v3, v0}, Lcom/android/camera/CameraSettings;->getResourceFloat(IF)F
+
+    move-result v3
+
+    .line 1431
+    const v4, 0x7f0a00ae
+
+    invoke-static {v4, v0}, Lcom/android/camera/CameraSettings;->getResourceFloat(IF)F
+
+    move-result v4
+
+    .line 1432
+    const v5, 0x7f0a00af
+
+    invoke-static {v5, v0}, Lcom/android/camera/CameraSettings;->getResourceFloat(IF)F
+
+    move-result v5
+
+    move-object v0, v6
+
+    invoke-direct/range {v0 .. v5}, Lcom/android/camera/effect/renders/DualWatermarkParam;-><init>(ZLjava/lang/String;FFF)V
+
+    .line 1427
+    return-object v6
+.end method
+
 .method private getManualValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
     .locals 2
 
-    .line 4443
+    .line 4894
     invoke-static {}, Lcom/android/camera/preferences/CameraSettingPreferences;->instance()Lcom/android/camera/preferences/CameraSettingPreferences;
 
     move-result-object v0
 
-    .line 4444
+    .line 4895
     invoke-static {}, Lcom/android/camera/module/ModuleManager;->isManualModule()Z
 
     move-result v1
 
     if-eqz v1, :cond_0
 
-    .line 4445
+    .line 4896
     invoke-virtual {v0, p1, p2}, Lcom/android/camera/preferences/CameraSettingPreferences;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object p2
 
-    .line 4444
+    .line 4895
     :cond_0
     return-object p2
 .end method
 
-.method private getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
-    .locals 3
+.method private getMaxPictureSize(II)Lcom/android/camera/CameraSize;
+    .locals 1
 
-    .line 5307
+    .line 3644
+    nop
+
+    .line 3645
+    invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2DataContainer;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p1}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getCapabilities(I)Lcom/android/camera2/CameraCapabilities;
+
+    move-result-object p1
+
+    .line 3646
+    if-eqz p1, :cond_0
+
+    .line 3647
+    invoke-virtual {p1, p2}, Lcom/android/camera2/CameraCapabilities;->getSupportedOutputSize(I)Ljava/util/List;
+
+    move-result-object p1
+
+    .line 3648
+    invoke-static {p1}, Lcom/android/camera/PictureSizeManager;->getBestPictureSize(Ljava/util/List;)Lcom/android/camera/CameraSize;
+
+    move-result-object p1
+
+    goto :goto_0
+
+    .line 3650
+    :cond_0
+    const/4 p1, 0x0
+
+    :goto_0
+    return-object p1
+.end method
+
+.method private getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
+    .locals 2
+
+    .line 5781
     new-instance v0, Lcom/xiaomi/camera/core/PictureInfo;
 
     invoke-direct {v0}, Lcom/xiaomi/camera/core/PictureInfo;-><init>()V
 
-    .line 5308
+    .line 5782
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isFrontMirror()Z
 
     move-result v1
 
     invoke-virtual {v0, v1}, Lcom/xiaomi/camera/core/PictureInfo;->setFrontMirror(Z)Lcom/xiaomi/camera/core/PictureInfo;
 
-    .line 5309
+    .line 5783
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v1
 
     invoke-virtual {v0, v1}, Lcom/xiaomi/camera/core/PictureInfo;->setSensorType(Z)Lcom/xiaomi/camera/core/PictureInfo;
 
-    .line 5310
+    .line 5784
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isBokehFrontCamera()Z
 
     move-result v1
 
     invoke-virtual {v0, v1}, Lcom/xiaomi/camera/core/PictureInfo;->setBokehFrontCamera(Z)Lcom/xiaomi/camera/core/PictureInfo;
 
-    .line 5312
-    iget v1, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+    .line 5786
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isPortraitMode()Z
 
-    const/16 v2, 0xab
+    move-result v1
 
-    if-ne v1, v2, :cond_0
+    if-eqz v1, :cond_0
 
-    .line 5313
+    .line 5787
+    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneEnabled:Z
+
+    invoke-virtual {v0, v1}, Lcom/xiaomi/camera/core/PictureInfo;->setAiEnabled(Z)Lcom/xiaomi/camera/core/PictureInfo;
+
+    .line 5788
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
     invoke-virtual {v0, v1}, Lcom/xiaomi/camera/core/PictureInfo;->setAiType(I)Lcom/xiaomi/camera/core/PictureInfo;
 
-    .line 5315
+    .line 5790
     :cond_0
     invoke-virtual {v0}, Lcom/xiaomi/camera/core/PictureInfo;->end()V
 
-    .line 5316
+    .line 5791
     return-object v0
 .end method
 
 .method private getRequestFlashMode()Ljava/lang/String;
     .locals 3
 
-    .line 4013
+    .line 4440
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isSupportSceneMode()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 4014
+    .line 4441
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mSceneMode:Ljava/lang/String;
 
     invoke-static {v0}, Lcom/android/camera/CameraSettings;->getFlashModeByScene(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 4015
+    .line 4442
     invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v1
 
     if-nez v1, :cond_0
 
-    .line 4016
+    .line 4443
     return-object v0
 
-    .line 4020
+    .line 4447
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
@@ -3002,12 +3515,12 @@
 
     if-nez v0, :cond_1
 
-    .line 4021
+    .line 4448
     const-string v0, "0"
 
     return-object v0
 
-    .line 4023
+    .line 4450
     :cond_1
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
 
@@ -3023,14 +3536,14 @@
 
     move-result-object v0
 
-    .line 4024
+    .line 4451
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAsdScene:I
 
     const/16 v2, 0x9
 
     if-ne v1, v2, :cond_3
 
-    .line 4025
+    .line 4452
     const-string v1, "3"
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -3039,12 +3552,12 @@
 
     if-eqz v1, :cond_2
 
-    .line 4026
+    .line 4453
     const-string v0, "2"
 
     return-object v0
 
-    .line 4027
+    .line 4454
     :cond_2
     const-string v1, "103"
 
@@ -3054,20 +3567,83 @@
 
     if-eqz v1, :cond_3
 
-    .line 4028
+    .line 4455
     const-string v0, "101"
 
     return-object v0
 
-    .line 4031
+    .line 4458
     :cond_3
     return-object v0
+.end method
+
+.method private getSubPictureSize(IZ)Lcom/android/camera/CameraSize;
+    .locals 2
+
+    .line 3636
+    if-eqz p2, :cond_0
+
+    invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2DataContainer;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getAuxFrontCameraId()I
+
+    move-result v0
+
+    goto :goto_0
+
+    .line 3637
+    :cond_0
+    invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2DataContainer;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getAuxCameraId()I
+
+    move-result v0
+
+    .line 3638
+    :goto_0
+    invoke-direct {p0, v0, p1}, Lcom/android/camera/module/Camera2Module;->getMaxPictureSize(II)Lcom/android/camera/CameraSize;
+
+    move-result-object p1
+
+    .line 3639
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    if-eqz p2, :cond_1
+
+    const-string p2, "frontSubSize: "
+
+    goto :goto_1
+
+    :cond_1
+    const-string p2, "backSubSize: "
+
+    :goto_1
+    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p2
+
+    invoke-static {v0, p2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 3640
+    return-object p1
 .end method
 
 .method private getSuffix()Ljava/lang/String;
     .locals 1
 
-    .line 4005
+    .line 4432
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
     invoke-virtual {v0}, Lcom/android/camera/MutexModeManager;->isNormal()Z
@@ -3076,7 +3652,7 @@
 
     if-nez v0, :cond_0
 
-    .line 4006
+    .line 4433
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
     invoke-virtual {v0}, Lcom/android/camera/MutexModeManager;->getSuffix()Ljava/lang/String;
@@ -3085,25 +3661,64 @@
 
     return-object v0
 
-    .line 4008
+    .line 4435
     :cond_0
     const-string v0, ""
 
     return-object v0
 .end method
 
+.method private static getTiltShiftMode()Ljava/lang/String;
+    .locals 2
+
+    .line 1436
+    nop
+
+    .line 1437
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isTiltShiftOn()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 1439
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/camera/data/data/runing/DataItemRunning;->getComponentRunningTiltValue()Lcom/android/camera/data/data/runing/ComponentRunningTiltValue;
+
+    move-result-object v0
+
+    .line 1440
+    const/16 v1, 0xa0
+
+    invoke-virtual {v0, v1}, Lcom/android/camera/data/data/runing/ComponentRunningTiltValue;->getComponentValue(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 1442
+    :cond_0
+    const/4 v0, 0x0
+
+    :goto_0
+    return-object v0
+.end method
+
 .method private handleUpdateFaceView(ZZ)V
     .locals 6
 
-    .line 957
+    .line 969
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v3
 
-    .line 958
+    .line 970
     if-eqz p1, :cond_1
 
-    .line 960
+    .line 972
     iget-boolean p2, p0, Lcom/android/camera/module/Camera2Module;->mFaceDetectionStarted:Z
 
     if-nez p2, :cond_0
@@ -3119,14 +3734,14 @@
 
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    .line 961
+    .line 973
     invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->getFocusMode()I
 
     move-result v0
 
     if-eq p2, v0, :cond_2
 
-    .line 962
+    .line 974
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     const/4 v2, 0x1
@@ -3141,7 +3756,7 @@
 
     goto :goto_0
 
-    .line 966
+    .line 978
     :cond_1
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
@@ -3155,7 +3770,7 @@
 
     invoke-interface/range {v0 .. v5}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->updateFaceView(ZZZZI)V
 
-    .line 968
+    .line 980
     :cond_2
     :goto_0
     return-void
@@ -3164,12 +3779,12 @@
 .method private hidePostCaptureAlert()V
     .locals 2
 
-    .line 2731
+    .line 3111
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->enableCameraControls(Z)V
 
-    .line 2732
+    .line 3112
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1}, Lcom/android/camera2/Camera2Proxy;->isSessionReady()Z
@@ -3178,22 +3793,22 @@
 
     if-eqz v1, :cond_0
 
-    .line 2733
+    .line 3113
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->resumePreview()V
 
     goto :goto_0
 
-    .line 2735
+    .line 3115
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->startPreview()V
 
-    .line 2737
+    .line 3117
     :goto_0
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     invoke-interface {v1, v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->setEffectViewVisible(Z)V
 
-    .line 2741
+    .line 3121
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -3206,35 +3821,33 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;
 
-    .line 2743
+    .line 3123
     const/4 v1, 0x6
 
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->delegateEvent(I)V
 
-    .line 2745
+    .line 3125
     return-void
 .end method
 
 .method private hideSceneSelector()V
     .locals 2
 
-    .line 794
+    .line 798
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
-    new-instance v1, Lcom/android/camera/module/Camera2Module$5;
-
-    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$5;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    sget-object v1, Lcom/android/camera/module/-$$Lambda$Camera2Module$6MhBAG8t9gKD6JetAb6jENHe1rY;->INSTANCE:Lcom/android/camera/module/-$$Lambda$Camera2Module$6MhBAG8t9gKD6JetAb6jENHe1rY;
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
 
-    .line 802
+    .line 805
     return-void
 .end method
 
 .method private initAiSceneParser()V
     .locals 2
 
-    .line 4871
+    .line 5317
     new-instance v0, Lcom/android/camera/module/loader/FunctionParseAiScene;
 
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
@@ -3243,28 +3856,28 @@
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFunctionParseAiScene:Lcom/android/camera/module/loader/FunctionParseAiScene;
 
-    .line 4872
-    new-instance v0, Lcom/android/camera/module/Camera2Module$27;
+    .line 5318
+    new-instance v0, Lcom/android/camera/module/Camera2Module$28;
 
-    invoke-direct {v0, p0}, Lcom/android/camera/module/Camera2Module$27;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v0, p0}, Lcom/android/camera/module/Camera2Module$28;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
     sget-object v1, Lio/reactivex/BackpressureStrategy;->DROP:Lio/reactivex/BackpressureStrategy;
 
-    .line 4873
+    .line 5319
     invoke-static {v0, v1}, Lio/reactivex/Flowable;->create(Lio/reactivex/FlowableOnSubscribe;Lio/reactivex/BackpressureStrategy;)Lio/reactivex/Flowable;
 
     move-result-object v0
 
     sget-object v1, Lcom/android/camera/constant/GlobalConstant;->sCameraSetupScheduler:Lio/reactivex/Scheduler;
 
-    .line 4880
+    .line 5326
     invoke-virtual {v0, v1}, Lio/reactivex/Flowable;->observeOn(Lio/reactivex/Scheduler;)Lio/reactivex/Flowable;
 
     move-result-object v0
 
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mFunctionParseAiScene:Lcom/android/camera/module/loader/FunctionParseAiScene;
 
-    .line 4883
+    .line 5329
     invoke-virtual {v0, v1}, Lio/reactivex/Flowable;->map(Lio/reactivex/functions/Function;)Lio/reactivex/Flowable;
 
     move-result-object v0
@@ -3273,12 +3886,12 @@
 
     invoke-direct {v1, p0}, Lcom/android/camera/module/loader/PredicateFilterAiScene;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
-    .line 4884
+    .line 5330
     invoke-virtual {v0, v1}, Lio/reactivex/Flowable;->filter(Lio/reactivex/functions/Predicate;)Lio/reactivex/Flowable;
 
     move-result-object v0
 
-    .line 4885
+    .line 5331
     invoke-static {}, Lio/reactivex/android/schedulers/AndroidSchedulers;->mainThread()Lio/reactivex/Scheduler;
 
     move-result-object v1
@@ -3287,30 +3900,30 @@
 
     move-result-object v0
 
-    new-instance v1, Lcom/android/camera/module/Camera2Module$26;
+    new-instance v1, Lcom/android/camera/module/Camera2Module$27;
 
-    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$26;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$27;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
-    .line 4886
+    .line 5332
     invoke-virtual {v0, v1}, Lio/reactivex/Flowable;->subscribe(Lio/reactivex/functions/Consumer;)Lio/reactivex/disposables/Disposable;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneDisposable:Lio/reactivex/disposables/Disposable;
 
-    .line 4892
+    .line 5338
     return-void
 .end method
 
 .method private initFlashAutoStateForTrack(Z)V
     .locals 2
 
-    .line 5293
+    .line 5767
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFlashAutoModeState:Ljava/lang/String;
 
-    .line 5294
+    .line 5768
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
 
     move-result-object v0
@@ -3325,7 +3938,7 @@
 
     move-result-object v0
 
-    .line 5295
+    .line 5769
     const-string v1, "3"
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -3336,14 +3949,14 @@
 
     const-string v1, "103"
 
-    .line 5296
+    .line 5770
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
     if-eqz v0, :cond_3
 
-    .line 5297
+    .line 5771
     :cond_0
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAsdScene:I
 
@@ -3355,7 +3968,7 @@
 
     goto :goto_0
 
-    .line 5301
+    .line 5775
     :cond_1
     const-string p1, "auto-off"
 
@@ -3363,14 +3976,14 @@
 
     goto :goto_1
 
-    .line 5299
+    .line 5773
     :cond_2
     :goto_0
     const-string p1, "auto-on"
 
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module;->mFlashAutoModeState:Ljava/lang/String;
 
-    .line 5304
+    .line 5778
     :cond_3
     :goto_1
     return-void
@@ -3379,28 +3992,28 @@
 .method private initMetaParser()V
     .locals 4
 
-    .line 4690
-    new-instance v0, Lcom/android/camera/module/Camera2Module$25;
+    .line 5133
+    new-instance v0, Lcom/android/camera/module/Camera2Module$26;
 
-    invoke-direct {v0, p0}, Lcom/android/camera/module/Camera2Module$25;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v0, p0}, Lcom/android/camera/module/Camera2Module$26;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
     sget-object v1, Lio/reactivex/BackpressureStrategy;->DROP:Lio/reactivex/BackpressureStrategy;
 
-    .line 4691
+    .line 5134
     invoke-static {v0, v1}, Lio/reactivex/Flowable;->create(Lio/reactivex/FlowableOnSubscribe;Lio/reactivex/BackpressureStrategy;)Lio/reactivex/Flowable;
 
     move-result-object v0
 
     sget-object v1, Lcom/android/camera/constant/GlobalConstant;->sCameraSetupScheduler:Lio/reactivex/Scheduler;
 
-    .line 4697
+    .line 5140
     invoke-virtual {v0, v1}, Lio/reactivex/Flowable;->observeOn(Lio/reactivex/Scheduler;)Lio/reactivex/Flowable;
 
     move-result-object v0
 
     new-instance v1, Lcom/android/camera/module/loader/FunctionParseAsdFace;
 
-    .line 4699
+    .line 5142
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v2
@@ -3415,7 +4028,7 @@
 
     invoke-direct {v1, p0}, Lcom/android/camera/module/loader/FunctionParseAsdHdr;-><init>(Lcom/android/camera2/Camera2Proxy$HDRCheckerCallback;)V
 
-    .line 4701
+    .line 5144
     invoke-virtual {v0, v1}, Lio/reactivex/Flowable;->map(Lio/reactivex/functions/Function;)Lio/reactivex/Flowable;
 
     move-result-object v0
@@ -3424,14 +4037,14 @@
 
     invoke-direct {v1, p0}, Lcom/android/camera/module/loader/FunctionParseAsdUltraWide;-><init>(Lcom/android/camera2/Camera2Proxy$UltraWideCheckCallback;)V
 
-    .line 4703
+    .line 5146
     invoke-virtual {v0, v1}, Lio/reactivex/Flowable;->map(Lio/reactivex/functions/Function;)Lio/reactivex/Flowable;
 
     move-result-object v0
 
     sget-object v1, Ljava/util/concurrent/TimeUnit;->MILLISECONDS:Ljava/util/concurrent/TimeUnit;
 
-    .line 4704
+    .line 5150
     const-wide/16 v2, 0x1f4
 
     invoke-virtual {v0, v2, v3, v1}, Lio/reactivex/Flowable;->sample(JLjava/util/concurrent/TimeUnit;)Lio/reactivex/Flowable;
@@ -3440,7 +4053,7 @@
 
     sget-object v1, Lcom/android/camera/constant/GlobalConstant;->sCameraSetupScheduler:Lio/reactivex/Scheduler;
 
-    .line 4705
+    .line 5151
     invoke-virtual {v0, v1}, Lio/reactivex/Flowable;->observeOn(Lio/reactivex/Scheduler;)Lio/reactivex/Flowable;
 
     move-result-object v0
@@ -3449,12 +4062,12 @@
 
     invoke-direct {v1, p0}, Lcom/android/camera/module/loader/FunctionParseAsdScene;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
-    .line 4720
+    .line 5166
     invoke-virtual {v0, v1}, Lio/reactivex/Flowable;->map(Lio/reactivex/functions/Function;)Lio/reactivex/Flowable;
 
     move-result-object v0
 
-    .line 4722
+    .line 5168
     invoke-static {}, Lio/reactivex/android/schedulers/AndroidSchedulers;->mainThread()Lio/reactivex/Scheduler;
 
     move-result-object v1
@@ -3463,42 +4076,42 @@
 
     move-result-object v0
 
-    .line 4723
+    .line 5169
     invoke-virtual {v0}, Lio/reactivex/Flowable;->onTerminateDetach()Lio/reactivex/Flowable;
 
     move-result-object v0
 
-    new-instance v1, Lcom/android/camera/module/Camera2Module$24;
+    new-instance v1, Lcom/android/camera/module/Camera2Module$25;
 
-    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$24;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$25;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
-    .line 4724
+    .line 5170
     invoke-virtual {v0, v1}, Lio/reactivex/Flowable;->subscribe(Lio/reactivex/functions/Consumer;)Lio/reactivex/disposables/Disposable;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMetaDataDisposable:Lio/reactivex/disposables/Disposable;
 
-    .line 4730
+    .line 5176
     return-void
 .end method
 
 .method private initializeFocusManager()V
     .locals 4
 
-    .line 2904
+    .line 3288
     new-instance v0, Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
 
-    .line 2907
+    .line 3291
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v2
 
     iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
-    .line 2908
+    .line 3292
     invoke-virtual {v3}, Lcom/android/camera/Camera;->getMainLooper()Landroid/os/Looper;
 
     move-result-object v3
@@ -3507,10 +4120,10 @@
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
-    .line 2911
+    .line 3295
     nop
 
-    .line 2912
+    .line 3296
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getCameraScreenNail()Lcom/android/camera/CameraScreenNail;
@@ -3519,7 +4132,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 2913
+    .line 3297
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getCameraScreenNail()Lcom/android/camera/CameraScreenNail;
@@ -3532,7 +4145,7 @@
 
     goto :goto_0
 
-    .line 2915
+    .line 3299
     :cond_0
     const/4 v0, 0x0
 
@@ -3545,7 +4158,7 @@
 
     if-lez v1, :cond_1
 
-    .line 2916
+    .line 3300
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
@@ -3560,7 +4173,7 @@
 
     iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
-    .line 2917
+    .line 3301
     invoke-virtual {v3}, Lcom/android/camera/Camera;->getCameraScreenNail()Lcom/android/camera/CameraScreenNail;
 
     move-result-object v3
@@ -3569,10 +4182,10 @@
 
     move-result v3
 
-    .line 2916
+    .line 3300
     invoke-virtual {v1, v2, v3}, Lcom/android/camera/module/loader/camera2/FocusManager2;->setRenderSize(II)V
 
-    .line 2918
+    .line 3302
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {v0}, Landroid/graphics/Rect;->width()I
@@ -3587,7 +4200,7 @@
 
     goto :goto_1
 
-    .line 2923
+    .line 3307
     :cond_1
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
@@ -3597,7 +4210,7 @@
 
     invoke-virtual {v0, v1, v2}, Lcom/android/camera/module/loader/camera2/FocusManager2;->setRenderSize(II)V
 
-    .line 2924
+    .line 3308
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     sget v1, Lcom/android/camera/Util;->sWindowWidth:I
@@ -3606,7 +4219,7 @@
 
     invoke-virtual {v0, v1, v2}, Lcom/android/camera/module/loader/camera2/FocusManager2;->setPreviewSize(II)V
 
-    .line 2926
+    .line 3310
     :goto_1
     return-void
 .end method
@@ -3614,26 +4227,75 @@
 .method private is3ALocked()Z
     .locals 1
 
-    .line 4242
+    .line 4657
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->m3ALocked:Z
 
+    return v0
+.end method
+
+.method private isEnableQcfa()Z
+    .locals 2
+
+    .line 2440
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
+
+    invoke-virtual {v0}, Lcom/android/camera2/CameraCapabilities;->isSupportedQcfa()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 2441
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 2442
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getModuleIndex()I
+
+    move-result v0
+
+    const/16 v1, 0xa3
+
+    if-eq v0, v1, :cond_0
+
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getModuleIndex()I
+
+    move-result v0
+
+    const/16 v1, 0xa5
+
+    if-ne v0, v1, :cond_1
+
+    :cond_0
+    const/4 v0, 0x1
+
+    goto :goto_0
+
+    :cond_1
+    const/4 v0, 0x0
+
+    .line 2440
+    :goto_0
     return v0
 .end method
 
 .method private isFaceBeautyOn(Lcom/android/camera/fragment/beauty/BeautyValues;)Z
     .locals 3
 
-    .line 5269
+    .line 5743
     const/4 v0, 0x0
 
     if-nez p1, :cond_0
 
-    .line 5270
+    .line 5744
     return v0
 
-    .line 5273
+    .line 5747
     :cond_0
-    invoke-static {}, Lcom/mi/config/b;->hp()Z
+    invoke-static {}, Lcom/mi/config/b;->hG()Z
 
     move-result v1
 
@@ -3641,14 +4303,14 @@
 
     if-eqz v1, :cond_4
 
-    .line 5274
+    .line 5748
     invoke-static {}, Lcom/android/camera/CameraSettings;->isAdvancedBeautyOn()Z
 
     move-result v1
 
     if-eqz v1, :cond_3
 
-    .line 5275
+    .line 5749
     iget v1, p1, Lcom/android/camera/fragment/beauty/BeautyValues;->mBeautySkinSmooth:I
 
     if-gtz v1, :cond_2
@@ -3673,7 +4335,7 @@
     :goto_1
     return v0
 
-    .line 5279
+    .line 5753
     :cond_3
     sget-object v0, Lcom/android/camera/constant/BeautyConstant;->LEVEL_CLOSE:Ljava/lang/String;
 
@@ -3687,7 +4349,7 @@
 
     return p1
 
-    .line 5282
+    .line 5756
     :cond_4
     sget-object v0, Lcom/android/camera/constant/BeautyConstant;->LEVEL_CLOSE:Ljava/lang/String;
 
@@ -3705,19 +4367,19 @@
 .method private isFrontMirror()Z
     .locals 1
 
-    .line 2699
+    .line 3078
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 2700
+    .line 3079
     const/4 v0, 0x0
 
     return v0
 
-    .line 2703
+    .line 3083
     :cond_0
     invoke-static {}, Lcom/android/camera/CameraSettings;->isLiveShotOn()Z
 
@@ -3725,12 +4387,12 @@
 
     if-eqz v0, :cond_1
 
-    .line 2704
+    .line 3084
     const/4 v0, 0x1
 
     return v0
 
-    .line 2706
+    .line 3086
     :cond_1
     invoke-static {}, Lcom/android/camera/CameraSettings;->isFrontMirror()Z
 
@@ -3742,7 +4404,7 @@
 .method private isInCountDown()Z
     .locals 1
 
-    .line 1560
+    .line 1780
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCountdownDisposable:Lio/reactivex/disposables/Disposable;
 
     if-eqz v0, :cond_0
@@ -3769,32 +4431,32 @@
 .method private isLaunchedByMainIntent()Z
     .locals 2
 
-    .line 1783
+    .line 2005
     nop
 
-    .line 1784
+    .line 2006
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     if-eqz v0, :cond_0
 
-    .line 1785
+    .line 2007
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getIntent()Landroid/content/Intent;
 
     move-result-object v0
 
-    .line 1786
+    .line 2008
     if-eqz v0, :cond_0
 
-    .line 1787
+    .line 2009
     invoke-virtual {v0}, Landroid/content/Intent;->getAction()Ljava/lang/String;
 
     move-result-object v0
 
     goto :goto_0
 
-    .line 1790
+    .line 2012
     :cond_0
     const/4 v0, 0x0
 
@@ -3809,9 +4471,9 @@
 .end method
 
 .method private isNeedRawStream()Z
-    .locals 5
+    .locals 4
 
-    .line 2146
+    .line 2424
     invoke-static {}, Lcom/android/camera/module/ModuleManager;->isManualModule()Z
 
     move-result v0
@@ -3824,17 +4486,17 @@
 
     if-eqz v0, :cond_1
 
-    .line 2147
+    .line 2425
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
 
     const/16 v1, 0x25
 
-    .line 2148
+    .line 2426
     invoke-virtual {v0, v1}, Lcom/android/camera2/CameraCapabilities;->getSupportedOutputSize(I)Ljava/util/List;
 
     move-result-object v0
 
-    .line 2149
+    .line 2427
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v0
@@ -3852,56 +4514,7 @@
 
     check-cast v1, Lcom/android/camera/CameraSize;
 
-    .line 2150
-    sget-object v2, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
-
-    new-instance v3, Ljava/lang/StringBuilder;
-
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v4, ""
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    iget v4, v1, Lcom/android/camera/CameraSize;->width:I
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    const-string v4, "x"
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    iget v4, v1, Lcom/android/camera/CameraSize;->height:I
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    const-string v4, " "
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
-
-    iget v4, v4, Lcom/android/camera/CameraSize;->width:I
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    const-string v4, "x"
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
-
-    iget v4, v4, Lcom/android/camera/CameraSize;->height:I
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-static {v2, v3}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 2152
+    .line 2428
     iget v2, v1, Lcom/android/camera/CameraSize;->width:I
 
     iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
@@ -3918,16 +4531,16 @@
 
     if-ne v1, v2, :cond_0
 
-    .line 2154
+    .line 2429
     const/4 v0, 0x1
 
     return v0
 
-    .line 2156
+    .line 2431
     :cond_0
     goto :goto_0
 
-    .line 2158
+    .line 2433
     :cond_1
     const/4 v0, 0x0
 
@@ -3937,17 +4550,17 @@
 .method private isParallelQueueFull()Z
     .locals 3
 
-    .line 2344
-    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsParallelProcess:Z
+    .line 2671
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsCurrentTaskIsParallel:Z
 
     const/4 v1, 0x0
 
     if-nez v0, :cond_0
 
-    .line 2345
+    .line 2672
     return v1
 
-    .line 2348
+    .line 2675
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
@@ -3959,26 +4572,26 @@
 
     move-result v0
 
-    .line 2349
+    .line 2676
     if-eqz v0, :cond_1
 
-    .line 2350
+    .line 2677
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v1, "isParallelQueueFull: ImageSaver queue is full"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2351
+    .line 2678
     const/4 v0, 0x1
 
     return v0
 
-    .line 2354
+    .line 2681
     :cond_1
     nop
 
-    .line 2355
+    .line 2682
     invoke-static {}, Lcom/android/camera/parallel/AlgoConnector;->getInstance()Lcom/android/camera/parallel/AlgoConnector;
 
     move-result-object v0
@@ -3987,17 +4600,17 @@
 
     move-result-object v0
 
-    .line 2356
+    .line 2683
     if-eqz v0, :cond_2
 
-    .line 2357
+    .line 2684
     invoke-virtual {v0}, Lcom/android/camera/LocalParallelService$LocalBinder;->needWaitProcess()Z
 
     move-result v1
 
     goto :goto_0
 
-    .line 2359
+    .line 2686
     :cond_2
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
@@ -4005,20 +4618,64 @@
 
     invoke-static {v0, v2}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2362
+    .line 2689
     :goto_0
     return v1
+.end method
+
+.method private isParallelSessionEnable()Z
+    .locals 2
+
+    .line 3573
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isCameraParallelProcessEnable()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 3574
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getModuleIndex()I
+
+    move-result v0
+
+    const/16 v1, 0xad
+
+    if-eq v0, v1, :cond_0
+
+    .line 3575
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getModuleIndex()I
+
+    move-result v0
+
+    const/16 v1, 0xa7
+
+    if-eq v0, v1, :cond_0
+
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsImageCaptureIntent:Z
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x1
+
+    goto :goto_0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    .line 3573
+    :goto_0
+    return v0
 .end method
 
 .method private isPortraitSuccessHintShowing()Z
     .locals 2
 
-    .line 4830
+    .line 5276
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 4831
+    .line 5277
     const/16 v1, 0xaf
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -4027,7 +4684,7 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;
 
-    .line 4832
+    .line 5278
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->isPortraitHintVisible()Z
 
     move-result v0
@@ -4035,72 +4692,200 @@
     return v0
 .end method
 
-.method private isSelectingCapturedImage()Z
-    .locals 3
+.method private isTriggerQcfaModeChange(ZZ)Z
+    .locals 5
 
-    .line 1598
-    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsImageCaptureIntent:Z
+    .line 683
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
+
+    invoke-virtual {v0}, Lcom/android/camera2/CameraCapabilities;->isSupportedQcfa()Z
+
+    move-result v0
 
     const/4 v1, 0x0
 
     if-nez v0, :cond_0
 
-    .line 1599
+    .line 684
     return v1
 
-    .line 1603
+    .line 686
     :cond_0
-    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
-    move-result-object v0
-
-    const/16 v2, 0xa0
-
-    invoke-virtual {v0, v2}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;
-
-    .line 1604
-    if-eqz v0, :cond_1
-
-    const v2, 0x7f0d0019
-
-    invoke-interface {v0, v2}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->getActiveFragment(I)I
-
-    move-result v0
-
-    const/16 v2, 0xff3
+    const/16 v2, 0xab
 
     if-ne v0, v2, :cond_1
 
-    const/4 v1, 0x1
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isBokehFrontCamera()Z
 
-    nop
+    move-result v0
 
+    if-eqz v0, :cond_1
+
+    .line 687
+    return v1
+
+    .line 690
     :cond_1
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/mi/config/a;->fQ()I
+
+    move-result v0
+
+    if-lez v0, :cond_2
+
+    .line 691
+    return v1
+
+    .line 693
+    :cond_2
+    invoke-static {}, Lcom/android/camera/fragment/beauty/BeautyParameters;->isFaceBeautyOn()Z
+
+    move-result v0
+
+    .line 694
+    const v2, 0x8005
+
+    const v3, 0x8007
+
+    const/4 v4, 0x1
+
+    if-eqz p1, :cond_5
+
+    .line 695
+    sget-boolean p1, Lcom/android/camera/module/Camera2Module;->mIsBeautyFrontOn:Z
+
+    if-eq p1, v0, :cond_8
+
+    .line 698
+    if-eqz v0, :cond_3
+
+    iget p1, p0, Lcom/android/camera/module/Camera2Module;->mOperatingMode:I
+
+    if-ne p1, v3, :cond_3
+
+    .line 699
+    return v4
+
+    .line 701
+    :cond_3
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentHdr()Lcom/android/camera/data/data/config/ComponentConfigHdr;
+
+    move-result-object p1
+
+    iget p2, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    invoke-virtual {p1, p2}, Lcom/android/camera/data/data/config/ComponentConfigHdr;->getComponentValue(I)Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 703
+    if-nez v0, :cond_4
+
+    const-string p2, "off"
+
+    invoke-virtual {p1, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result p1
+
+    if-eqz p1, :cond_4
+
+    iget p1, p0, Lcom/android/camera/module/Camera2Module;->mOperatingMode:I
+
+    if-ne p1, v2, :cond_4
+
+    .line 705
+    return v4
+
+    .line 707
+    :cond_4
+    goto :goto_0
+
+    .line 708
+    :cond_5
+    if-eqz p2, :cond_8
+
+    if-nez v0, :cond_8
+
+    .line 709
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentHdr()Lcom/android/camera/data/data/config/ComponentConfigHdr;
+
+    move-result-object p1
+
+    iget p2, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    invoke-virtual {p1, p2}, Lcom/android/camera/data/data/config/ComponentConfigHdr;->getComponentValue(I)Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 710
+    iget p2, p0, Lcom/android/camera/module/Camera2Module;->mOperatingMode:I
+
+    if-ne p2, v2, :cond_6
+
+    const-string p2, "off"
+
+    .line 711
+    invoke-virtual {p1, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result p2
+
+    if-nez p2, :cond_7
+
+    :cond_6
+    iget p2, p0, Lcom/android/camera/module/Camera2Module;->mOperatingMode:I
+
+    if-ne p2, v3, :cond_8
+
+    const-string p2, "off"
+
+    .line 713
+    invoke-virtual {p1, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result p1
+
+    if-nez p1, :cond_8
+
+    .line 714
+    :cond_7
+    return v4
+
+    .line 717
+    :cond_8
+    :goto_0
     return v1
 .end method
 
 .method private isUseSwMfnr()Z
     .locals 6
 
-    .line 3762
+    .line 4172
     invoke-static {}, Lcom/android/camera/CameraSettings;->isMfnrSatEnable()Z
 
     move-result v0
 
-    .line 3763
+    .line 4173
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object v1
 
-    invoke-virtual {v1}, Lcom/mi/config/a;->eV()Z
+    invoke-virtual {v1}, Lcom/mi/config/a;->eX()Z
 
     move-result v1
 
-    .line 3764
+    .line 4174
     invoke-static {}, Lcom/android/camera/CameraSettings;->isGroupShotOn()Z
 
     move-result v2
@@ -4109,17 +4894,17 @@
 
     if-eqz v2, :cond_0
 
-    .line 3765
+    .line 4175
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v1, "GroupShot is on"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3766
+    .line 4176
     return v3
 
-    .line 3770
+    .line 4180
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isUltraWideBackCamera()Z
 
@@ -4127,45 +4912,45 @@
 
     if-eqz v2, :cond_1
 
-    .line 3771
+    .line 4181
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v1, "SwMfnr force off for ultra wide camera"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3772
+    .line 4182
     return v3
 
-    .line 3774
+    .line 4184
     :cond_1
     if-nez v0, :cond_2
 
-    .line 3775
+    .line 4185
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v1, "Mfnr not enabled"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3776
+    .line 4186
     return v3
 
-    .line 3778
+    .line 4188
     :cond_2
     if-nez v1, :cond_3
 
-    .line 3779
+    .line 4189
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v1, "SwMfnr is not supported"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3780
+    .line 4190
     return v3
 
-    .line 3782
+    .line 4192
     :cond_3
     iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
@@ -4175,23 +4960,23 @@
 
     if-nez v2, :cond_4
 
-    .line 3783
+    .line 4193
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v1, "Mutex mode is not normal"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3784
+    .line 4194
     return v3
 
-    .line 3787
+    .line 4197
     :cond_4
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object v2
 
-    invoke-virtual {v2}, Lcom/mi/config/a;->eW()Z
+    invoke-virtual {v2}, Lcom/mi/config/a;->eY()Z
 
     move-result v2
 
@@ -4205,10 +4990,23 @@
 
     if-eq v2, v5, :cond_5
 
-    .line 3788
+    iget v2, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    const/16 v5, 0xad
+
+    if-eq v2, v5, :cond_5
+
+    .line 4200
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    const-string v1, "For the devices does not have hardware MFNR, use software MFNR"
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 4201
     return v4
 
-    .line 3790
+    .line 4203
     :cond_5
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
@@ -4216,15 +5014,15 @@
 
     if-eqz v2, :cond_7
 
-    .line 3791
+    .line 4204
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDualFrontCamera()Z
 
     move-result v2
 
     if-nez v2, :cond_7
 
-    .line 3792
-    invoke-static {}, Lcom/mi/config/b;->hw()Z
+    .line 4205
+    invoke-static {}, Lcom/mi/config/b;->hN()Z
 
     move-result v2
 
@@ -4236,24 +5034,24 @@
 
     if-eq v2, v5, :cond_6
 
-    .line 3796
+    .line 4209
     invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
 
     move-result v2
 
     if-eqz v2, :cond_7
 
-    .line 3797
+    .line 4210
     :cond_6
     move v3, v4
 
     goto :goto_0
 
-    .line 3796
+    .line 4209
     :cond_7
     nop
 
-    .line 3797
+    .line 4210
     :goto_0
     sget-object v2, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
@@ -4271,7 +5069,7 @@
 
     invoke-virtual {v4, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 3798
+    .line 4211
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v1
@@ -4294,17 +5092,17 @@
 
     move-result-object v0
 
-    .line 3797
+    .line 4210
     invoke-static {v2, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3801
+    .line 4214
     return v3
 .end method
 
 .method private keepScreenOnAwhile()V
     .locals 4
 
-    .line 4462
+    .line 4913
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v1, 0x11
@@ -4313,54 +5111,84 @@
 
     invoke-virtual {v0, v1, v2, v3}, Lcom/android/camera/module/Camera2Module$MainHandler;->sendEmptyMessageDelayed(IJ)Z
 
-    .line 4463
+    .line 4914
+    return-void
+.end method
+
+.method static synthetic lambda$hideSceneSelector$0()V
+    .locals 2
+
+    .line 799
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object v0
+
+    .line 800
+    const/16 v1, 0xac
+
+    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
+
+    .line 801
+    if-eqz v0, :cond_0
+
+    .line 802
+    const/16 v1, 0x8
+
+    invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertAiSceneSelector(I)V
+
+    .line 804
+    :cond_0
     return-void
 .end method
 
 .method private lockAEAF()V
     .locals 2
 
-    .line 4233
+    .line 4648
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v1, "lockAEAF"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 4234
+    .line 4649
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     const/4 v1, 0x1
 
     if-eqz v0, :cond_0
 
-    .line 4235
+    .line 4650
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->setAeAwbLock(Z)V
 
-    .line 4238
+    .line 4653
     :cond_0
     iput-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->m3ALocked:Z
 
-    .line 4239
+    .line 4654
     return-void
 .end method
 
 .method private needShowThumbProgressImmediately()Z
     .locals 4
 
-    .line 4581
+    .line 5032
     const-string v0, "pref_qc_camera_exposuretime_key"
 
-    .line 4582
-    const v1, 0x7f0b012f
+    .line 5033
+    const v1, 0x7f090136
 
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 4581
+    .line 5032
     invoke-direct {p0, v0, v1}, Lcom/android/camera/module/Camera2Module;->getManualValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
@@ -4393,126 +5221,69 @@
 .end method
 
 .method private onBeautyParameterChanged()V
-    .locals 4
+    .locals 3
 
-    .line 709
-    invoke-static {}, Lcom/android/camera/fragment/beauty/BeautyParameters;->isFaceBeautyOn()Z
+    .line 721
+    const/4 v0, 0x0
 
-    move-result v0
+    const/4 v1, 0x1
 
-    .line 710
-    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentHdr()Lcom/android/camera/data/data/config/ComponentConfigHdr;
-
-    move-result-object v1
-
-    .line 711
-    iget v2, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
-
-    invoke-virtual {v1, v2}, Lcom/android/camera/data/data/config/ComponentConfigHdr;->getComponentValue(I)Ljava/lang/String;
-
-    move-result-object v1
-
-    .line 712
-    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
-
-    invoke-virtual {v2}, Lcom/android/camera2/CameraCapabilities;->isSupportedQcfa()Z
+    invoke-direct {p0, v1, v0}, Lcom/android/camera/module/Camera2Module;->isTriggerQcfaModeChange(ZZ)Z
 
     move-result v2
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_0
 
-    sget-boolean v2, Lcom/android/camera/module/Camera2Module;->mIsBeautyFrontOn:Z
-
-    if-eq v2, v0, :cond_3
-
-    iget v2, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
-
-    const/16 v3, 0xab
-
-    if-ne v2, v3, :cond_0
-
-    .line 713
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isBokehFrontCamera()Z
-
-    move-result v2
-
-    if-nez v2, :cond_3
-
-    :cond_0
-    if-eqz v0, :cond_1
-
-    iget v2, p0, Lcom/android/camera/module/Camera2Module;->mOperatingMode:I
-
-    const v3, 0x8007
-
-    if-eq v2, v3, :cond_2
-
-    :cond_1
-    if-nez v0, :cond_3
-
-    const-string v2, "off"
-
-    .line 717
-    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v1
-
-    if-eqz v1, :cond_3
-
-    iget v1, p0, Lcom/android/camera/module/Camera2Module;->mOperatingMode:I
-
-    const v2, 0x8005
-
-    if-ne v1, v2, :cond_3
-
-    .line 719
-    :cond_2
+    .line 722
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->restartModule()V
 
     goto :goto_0
 
-    .line 720
-    :cond_3
-    invoke-static {}, Lcom/mi/config/b;->hw()Z
+    .line 723
+    :cond_0
+    invoke-static {}, Lcom/mi/config/b;->hN()Z
 
-    move-result v1
+    move-result v2
 
-    if-eqz v1, :cond_4
+    if-eqz v2, :cond_1
 
-    .line 721
-    const/4 v1, 0x3
+    .line 724
+    const/4 v0, 0x3
 
-    new-array v1, v1, [I
+    new-array v0, v0, [I
 
-    fill-array-data v1, :array_0
+    fill-array-data v0, :array_0
 
-    invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->updatePreferenceInWorkThread([I)V
+    invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->updatePreferenceInWorkThread([I)V
 
     goto :goto_0
 
-    .line 723
-    :cond_4
-    const/4 v1, 0x1
-
+    .line 726
+    :cond_1
     new-array v1, v1, [I
 
-    const/4 v2, 0x0
+    const/16 v2, 0xd
 
-    const/16 v3, 0xd
-
-    aput v3, v1, v2
+    aput v2, v1, v0
 
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->updatePreferenceInWorkThread([I)V
 
-    .line 725
+    .line 728
     :goto_0
+    invoke-static {}, Lcom/android/camera/fragment/beauty/BeautyParameters;->isFaceBeautyOn()Z
+
+    move-result v0
+
     sput-boolean v0, Lcom/android/camera/module/Camera2Module;->mIsBeautyFrontOn:Z
 
-    .line 726
+    .line 729
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isBeautyBodySlimOn()Z
+
+    move-result v0
+
+    iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsBeautyBodySlimOn:Z
+
+    .line 730
     return-void
 
     :array_0
@@ -4526,7 +5297,7 @@
 .method private onFilterChanged()V
     .locals 4
 
-    .line 551
+    .line 578
     const/4 v0, 0x1
 
     new-array v1, v0, [I
@@ -4539,7 +5310,7 @@
 
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->updatePreferenceTrampoline([I)V
 
-    .line 553
+    .line 580
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v1
@@ -4552,7 +5323,7 @@
 
     check-cast v1, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
 
-    .line 554
+    .line 581
     new-array v0, v0, [I
 
     const/16 v3, 0xc4
@@ -4561,29 +5332,29 @@
 
     invoke-interface {v1, v0}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->updateConfigItem([I)V
 
-    .line 555
+    .line 582
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->updateEffectViewVisible()V
 
-    .line 556
+    .line 583
     return-void
 .end method
 
 .method private onShutter()V
     .locals 4
 
-    .line 2604
+    .line 2972
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 2605
+    .line 2973
     return-void
 
-    .line 2607
+    .line 2975
     :cond_0
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
@@ -4591,7 +5362,7 @@
 
     iput-wide v0, p0, Lcom/android/camera/module/Camera2Module;->mShutterCallbackTime:J
 
-    .line 2608
+    .line 2976
     iget-wide v0, p0, Lcom/android/camera/module/Camera2Module;->mShutterCallbackTime:J
 
     iget-wide v2, p0, Lcom/android/camera/module/Camera2Module;->mCaptureStartTime:J
@@ -4600,7 +5371,7 @@
 
     iput-wide v0, p0, Lcom/android/camera/module/Camera2Module;->mShutterLag:J
 
-    .line 2609
+    .line 2977
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -4625,24 +5396,24 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2611
+    .line 2979
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mReceivedJpegCallbackNum:I
 
     if-nez v0, :cond_2
 
-    .line 2612
+    .line 2980
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->enablePreviewAsThumbnail()Z
 
     move-result v0
 
     if-eqz v0, :cond_1
 
-    .line 2613
+    .line 2981
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mEnabledPreviewThumbnail:Z
 
-    .line 2614
+    .line 2982
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getCameraScreenNail()Lcom/android/camera/CameraScreenNail;
@@ -4653,7 +5424,7 @@
 
     goto :goto_0
 
-    .line 2617
+    .line 2985
     :cond_1
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
@@ -4661,18 +5432,18 @@
 
     if-eq v0, v1, :cond_2
 
-    .line 2618
+    .line 2986
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->updateThumbProgress(Z)V
 
-    .line 2619
+    .line 2987
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->animateCapture()V
 
-    .line 2620
-    invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->playSound(I)V
+    .line 2988
+    invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->playCameraSound(I)V
 
-    .line 2624
+    .line 2992
     :cond_2
     :goto_0
     return-void
@@ -4681,29 +5452,29 @@
 .method private parseIntent()V
     .locals 2
 
-    .line 1995
+    .line 2244
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getCameraIntentManager()Lcom/android/camera/CameraIntentManager;
 
     move-result-object v0
 
-    .line 1996
+    .line 2245
     invoke-virtual {v0}, Lcom/android/camera/CameraIntentManager;->isImageCaptureIntent()Z
 
     move-result v1
 
     iput-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mIsImageCaptureIntent:Z
 
-    .line 1998
+    .line 2247
     iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mIsImageCaptureIntent:Z
 
     if-nez v1, :cond_0
 
-    .line 1999
+    .line 2248
     return-void
 
-    .line 2001
+    .line 2250
     :cond_0
     invoke-virtual {v0}, Lcom/android/camera/CameraIntentManager;->getExtraSavedUri()Landroid/net/Uri;
 
@@ -4711,14 +5482,14 @@
 
     iput-object v1, p0, Lcom/android/camera/module/Camera2Module;->mSaveUri:Landroid/net/Uri;
 
-    .line 2002
+    .line 2251
     invoke-virtual {v0}, Lcom/android/camera/CameraIntentManager;->getExtraCropValue()Ljava/lang/String;
 
     move-result-object v1
 
     iput-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCropValue:Ljava/lang/String;
 
-    .line 2003
+    .line 2252
     invoke-virtual {v0}, Lcom/android/camera/CameraIntentManager;->getExtraShouldSaveCapture()Ljava/lang/Boolean;
 
     move-result-object v1
@@ -4729,7 +5500,7 @@
 
     iput-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mIsSaveCaptureImage:Z
 
-    .line 2004
+    .line 2253
     invoke-virtual {v0}, Lcom/android/camera/CameraIntentManager;->isQuickCapture()Ljava/lang/Boolean;
 
     move-result-object v0
@@ -4740,19 +5511,19 @@
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mQuickCapture:Z
 
-    .line 2005
+    .line 2254
     return-void
 .end method
 
 .method private prepareEffectProcessor(I)V
     .locals 3
 
-    .line 3315
+    .line 3737
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
     if-nez v0, :cond_0
 
-    .line 3316
+    .line 3738
     new-instance v0, Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
@@ -4763,7 +5534,7 @@
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
-    .line 3317
+    .line 3739
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
@@ -4774,12 +5545,12 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/effect/renders/SnapshotEffectRender;->setImageSaver(Lcom/android/camera/storage/ImageSaver;)V
 
-    .line 3318
+    .line 3740
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/effect/renders/SnapshotEffectRender;->prepareEffectRender(I)V
 
-    .line 3319
+    .line 3741
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStatus:Z
@@ -4790,69 +5561,31 @@
 
     invoke-virtual {p1, v0}, Lcom/android/camera/effect/renders/SnapshotEffectRender;->setQuality(I)V
 
-    .line 3321
+    .line 3743
     :cond_0
-    return-void
-.end method
-
-.method private prepareGroupShot()V
-    .locals 2
-
-    .line 624
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getGroupShotNum()I
-
-    move-result v0
-
-    iput v0, p0, Lcom/android/camera/module/Camera2Module;->mTotalJpegCallbackNum:I
-
-    .line 625
-    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mTotalJpegCallbackNum:I
-
-    invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->initGroupShot(I)V
-
-    .line 626
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mGroupShot:Lcom/android/camera/groupshot/GroupShot;
-
-    const/4 v1, 0x1
-
-    if-eqz v0, :cond_0
-
-    .line 627
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mGroupShot:Lcom/android/camera/groupshot/GroupShot;
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/groupshot/GroupShot;->attach_start(I)I
-
-    goto :goto_0
-
-    .line 629
-    :cond_0
-    iput v1, p0, Lcom/android/camera/module/Camera2Module;->mTotalJpegCallbackNum:I
-
-    .line 631
-    :goto_0
     return-void
 .end method
 
 .method private prepareMultiCapture()V
     .locals 2
 
-    .line 1154
+    .line 1178
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStatus:Z
 
-    .line 1155
+    .line 1179
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStopRequest:Z
 
-    .line 1156
+    .line 1180
     invoke-static {}, Lcom/android/camera/Util;->clearMemoryLimit()V
 
-    .line 1157
+    .line 1181
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->prepareNormalCapture()V
 
-    .line 1158
+    .line 1182
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
 
     invoke-static {}, Lcom/android/camera2/CameraCapabilities;->getBurstShootCount()I
@@ -4861,28 +5594,41 @@
 
     iput v0, p0, Lcom/android/camera/module/Camera2Module;->mTotalJpegCallbackNum:I
 
-    .line 1159
+    .line 1183
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v1, 0x31
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeMessages(I)V
 
-    .line 1160
+    .line 1185
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->is3ALocked()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    .line 1186
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
+
+    invoke-virtual {v0}, Lcom/android/camera/module/loader/camera2/FocusManager2;->onShutter()V
+
+    .line 1188
+    :cond_0
     return-void
 .end method
 
 .method private prepareNormalCapture()V
-    .locals 4
+    .locals 5
 
-    .line 1084
+    .line 1100
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v1, "prepareNormalCapture"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1085
+    .line 1101
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->isNeedFlashOn()Z
@@ -4891,27 +5637,27 @@
 
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->initFlashAutoStateForTrack(Z)V
 
-    .line 1086
+    .line 1102
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mEnabledPreviewThumbnail:Z
 
-    .line 1087
+    .line 1103
     const/4 v1, 0x1
 
     iput v1, p0, Lcom/android/camera/module/Camera2Module;->mTotalJpegCallbackNum:I
 
-    .line 1088
+    .line 1104
     iput v0, p0, Lcom/android/camera/module/Camera2Module;->mReceivedJpegCallbackNum:I
 
-    .line 1089
+    .line 1105
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v1
 
     iput-wide v1, p0, Lcom/android/camera/module/Camera2Module;->mCaptureStartTime:J
 
-    .line 1090
+    .line 1106
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v1
@@ -4920,17 +5666,17 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/statistic/ScenarioTrackUtil;->trackCaptureTimeStart(ZI)V
 
-    .line 1091
+    .line 1107
     iget-wide v1, p0, Lcom/android/camera/module/Camera2Module;->mCaptureStartTime:J
 
     iput-wide v1, p0, Lcom/android/camera/module/Camera2Module;->mLastCaptureTime:J
 
-    .line 1092
+    .line 1108
     const/4 v1, 0x3
 
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->setCameraState(I)V
 
-    .line 1095
+    .line 1111
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mBogusCameraId:I
 
     iget v2, p0, Lcom/android/camera/module/Camera2Module;->mOrientation:I
@@ -4941,14 +5687,43 @@
 
     iput v1, p0, Lcom/android/camera/module/Camera2Module;->mJpegRotation:I
 
-    .line 1096
+    .line 1112
+    sget-object v1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "prepareNormalCapture: mOrientation = "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget v3, p0, Lcom/android/camera/module/Camera2Module;->mOrientation:I
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v3, ", mJpegRotation = "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget v3, p0, Lcom/android/camera/module/Camera2Module;->mJpegRotation:I
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1113
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     iget v2, p0, Lcom/android/camera/module/Camera2Module;->mJpegRotation:I
 
     invoke-virtual {v1, v2}, Lcom/android/camera2/Camera2Proxy;->setJpegRotation(I)V
 
-    .line 1099
+    .line 1116
     invoke-static {}, Lcom/android/camera/LocationManager;->instance()Lcom/android/camera/LocationManager;
 
     move-result-object v1
@@ -4957,136 +5732,136 @@
 
     move-result-object v1
 
-    .line 1100
+    .line 1117
     iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v2, v1}, Lcom/android/camera2/Camera2Proxy;->setGpsLocation(Landroid/location/Location;)V
 
-    .line 1101
+    .line 1118
     iput-object v1, p0, Lcom/android/camera/module/Camera2Module;->mLocation:Landroid/location/Location;
 
-    .line 1104
+    .line 1121
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateFrontMirror()V
 
-    .line 1108
+    .line 1125
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateBeauty()V
 
-    .line 1110
+    .line 1127
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateShotDetermine()V
 
-    .line 1113
-    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mIsParallelProcess:Z
+    .line 1129
+    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mIsCurrentTaskIsParallel:Z
 
     if-eqz v1, :cond_0
 
-    .line 1115
-    new-instance v1, Ljava/lang/StringBuilder;
+    .line 1130
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+    new-instance v2, Ljava/lang/StringBuilder;
 
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    .line 1131
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
-    move-result-wide v2
+    move-result-wide v3
 
-    invoke-static {v2, v3}, Lcom/android/camera/Util;->createJpegName(J)Ljava/lang/String;
+    invoke-static {v3, v4}, Lcom/android/camera/Util;->createJpegName(J)Ljava/lang/String;
 
-    move-result-object v2
+    move-result-object v3
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getSuffix()Ljava/lang/String;
 
+    move-result-object v3
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
     move-result-object v2
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-static {v2}, Lcom/android/camera/storage/Storage;->generateFilepath(Ljava/lang/String;)Ljava/lang/String;
 
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v2
 
-    move-result-object v1
-
-    invoke-static {v1}, Lcom/android/camera/storage/Storage;->generateFilepath(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v1
-
-    iput-object v1, p0, Lcom/android/camera/module/Camera2Module;->mParallelProcessingFilePath:Ljava/lang/String;
-
-    .line 1116
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mParallelProcessingFilePath:Ljava/lang/String;
-
+    .line 1130
     invoke-virtual {v1, v2}, Lcom/android/camera2/Camera2Proxy;->setShotSavePath(Ljava/lang/String;)V
 
-    .line 1120
+    .line 1135
     :cond_0
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->setWaterMark()V
 
-    .line 1121
+    .line 1136
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->setPictureOrientation()V
 
-    .line 1124
+    .line 1139
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateJpegQuality()V
 
-    .line 1127
+    .line 1142
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateAlgorithmName()V
 
-    .line 1130
+    .line 1145
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->needShowThumbProgressImmediately()Z
 
     move-result v1
 
     if-eqz v1, :cond_1
 
-    .line 1131
+    .line 1146
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->updateThumbProgress(Z)V
 
-    .line 1135
+    .line 1150
     :cond_1
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->prepareSuperNight()V
 
-    .line 1136
+    .line 1151
     return-void
 .end method
 
 .method private prepareSuperNight()V
     .locals 2
 
-    .line 1164
+    .line 1191
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     const/16 v1, 0xad
 
     if-eq v0, v1, :cond_0
 
-    .line 1165
+    .line 1192
     return-void
 
-    .line 1168
+    .line 1195
     :cond_0
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    const/16 v1, 0xa2
+    const/16 v1, 0xd4
 
-    .line 1169
+    .line 1196
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v0
 
-    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$RecordState;
 
-    .line 1170
-    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;->processingStart()V
+    .line 1197
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$RecordState;->onPrepare()V
 
-    .line 1172
+    .line 1198
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$RecordState;->onStart()V
+
+    .line 1200
     const/16 v0, 0x12c
 
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v0
 
-    const/16 v1, 0x1b58
+    const/16 v1, 0x7d0
 
     invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
@@ -5096,16 +5871,16 @@
 
     move-result-object v0
 
-    new-instance v1, Lcom/android/camera/module/Camera2Module$8;
+    new-instance v1, Lcom/android/camera/module/Camera2Module$7;
 
-    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$8;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$7;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
-    .line 1173
+    .line 1201
     invoke-virtual {v0, v1}, Lio/reactivex/Observable;->flatMap(Lio/reactivex/functions/Function;)Lio/reactivex/Observable;
 
     move-result-object v0
 
-    .line 1179
+    .line 1207
     invoke-static {}, Lio/reactivex/android/schedulers/AndroidSchedulers;->mainThread()Lio/reactivex/Scheduler;
 
     move-result-object v1
@@ -5114,52 +5889,52 @@
 
     move-result-object v0
 
-    new-instance v1, Lcom/android/camera/module/Camera2Module$7;
+    new-instance v1, Lcom/android/camera/module/Camera2Module$6;
 
-    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$7;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$6;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
-    .line 1180
+    .line 1208
     invoke-virtual {v0, v1}, Lio/reactivex/Observable;->subscribe(Lio/reactivex/functions/Consumer;)Lio/reactivex/disposables/Disposable;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mSuperNightDisposable:Lio/reactivex/disposables/Disposable;
 
-    .line 1219
+    .line 1242
     return-void
 .end method
 
 .method private previewWhenSessionSuccess()V
     .locals 1
 
-    .line 2246
+    .line 2565
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->setCameraState(I)V
 
-    .line 2248
+    .line 2567
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mFaceDetectionEnabled:Z
 
-    .line 2249
+    .line 2568
     sget-object v0, Lcom/android/camera/constant/UpdateConstant;->CAMERA_TYPES_ON_PREVIEW_SUCCESS:[I
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->updatePreferenceInWorkThread([I)V
 
-    .line 2250
+    .line 2569
     invoke-static {}, Lcom/android/camera/module/ModuleManager;->isManualModule()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 2251
+    .line 2570
     sget-object v0, Lcom/android/camera/constant/UpdateConstant;->CAMERA_TYPES_MANUALLY:[I
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->updatePreferenceInWorkThread([I)V
 
-    .line 2253
+    .line 2572
     :cond_0
     return-void
 .end method
@@ -5167,22 +5942,22 @@
 .method private releaseEffectProcessor()V
     .locals 1
 
-    .line 4474
+    .line 4925
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
     if-eqz v0, :cond_0
 
-    .line 4475
+    .line 4926
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
     invoke-virtual {v0}, Lcom/android/camera/effect/renders/SnapshotEffectRender;->releaseIfNeeded()V
 
-    .line 4476
+    .line 4927
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mEffectProcessor:Lcom/android/camera/effect/renders/SnapshotEffectRender;
 
-    .line 4478
+    .line 4929
     :cond_0
     return-void
 .end method
@@ -5190,7 +5965,7 @@
 .method private resetAiSceneInHdrOrFlashOn()V
     .locals 2
 
-    .line 5160
+    .line 5630
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneEnabled:Z
 
     if-eqz v0, :cond_3
@@ -5205,7 +5980,7 @@
 
     goto :goto_0
 
-    .line 5165
+    .line 5635
     :cond_0
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
@@ -5219,21 +5994,21 @@
 
     if-ne v0, v1, :cond_2
 
-    .line 5170
+    .line 5640
     :cond_1
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
-    new-instance v1, Lcom/android/camera/module/Camera2Module$28;
+    new-instance v1, Lcom/android/camera/module/Camera2Module$29;
 
-    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$28;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$29;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
 
-    .line 5178
+    .line 5648
     :cond_2
     return-void
 
-    .line 5162
+    .line 5632
     :cond_3
     :goto_0
     return-void
@@ -5242,8 +6017,8 @@
 .method private resetAsdSceneInHdrOrFlashChange()V
     .locals 2
 
-    .line 5181
-    invoke-static {}, Lcom/mi/config/b;->hu()Z
+    .line 5651
+    invoke-static {}, Lcom/mi/config/b;->hL()Z
 
     move-result v0
 
@@ -5263,7 +6038,7 @@
 
     goto :goto_0
 
-    .line 5186
+    .line 5656
     :cond_0
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAsdScene:I
 
@@ -5271,20 +6046,20 @@
 
     if-ne v0, v1, :cond_1
 
-    .line 5187
+    .line 5657
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
-    new-instance v1, Lcom/android/camera/module/Camera2Module$29;
+    new-instance v1, Lcom/android/camera/module/Camera2Module$30;
 
-    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$29;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$30;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
 
-    .line 5194
+    .line 5664
     :cond_1
     return-void
 
-    .line 5183
+    .line 5653
     :cond_2
     :goto_0
     return-void
@@ -5293,14 +6068,14 @@
 .method private resetGradienter()V
     .locals 2
 
-    .line 4449
+    .line 4900
     invoke-static {}, Lcom/android/camera/CameraSettings;->isGradienterOn()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 4450
+    .line 4901
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getSensorStateManager()Lcom/android/camera/SensorStateManager;
@@ -5311,7 +6086,7 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/SensorStateManager;->setGradienterEnabled(Z)V
 
-    .line 4452
+    .line 4903
     :cond_0
     return-void
 .end method
@@ -5319,26 +6094,26 @@
 .method private resetScreenOn()V
     .locals 2
 
-    .line 4455
+    .line 4906
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     if-eqz v0, :cond_0
 
-    .line 4456
+    .line 4907
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v1, 0x11
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeMessages(I)V
 
-    .line 4457
+    .line 4908
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/4 v1, 0x2
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeMessages(I)V
 
-    .line 4459
+    .line 4910
     :cond_0
     return-void
 .end method
@@ -5346,21 +6121,21 @@
 .method private resumePreviewInWorkThread()V
     .locals 1
 
-    .line 2338
+    .line 2662
     const/4 v0, 0x0
 
     new-array v0, v0, [I
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->updatePreferenceInWorkThread([I)V
 
-    .line 2339
+    .line 2663
     return-void
 .end method
 
 .method private setAiSceneEffect(I)V
     .locals 4
 
-    .line 3250
+    .line 3672
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -5379,12 +6154,12 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3252
+    .line 3674
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/mi/config/a;->ff()Z
+    invoke-virtual {v0}, Lcom/mi/config/a;->fh()Z
 
     move-result v0
 
@@ -5400,17 +6175,17 @@
 
     if-ne p1, v0, :cond_0
 
-    .line 3254
+    .line 3676
     sget-object p1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v0, "supportAi30: AI 3.0 back camera in HUMAN SCENE not apply filter!"
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3255
+    .line 3677
     return-void
 
-    .line 3257
+    .line 3679
     :cond_0
     invoke-static {}, Lcom/android/camera/CameraSettings;->isFrontCamera()Z
 
@@ -5418,27 +6193,27 @@
 
     if-nez v0, :cond_1
 
-    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isPortraitMode()Z
 
-    const/16 v1, 0xab
+    move-result v0
 
-    if-ne v0, v1, :cond_3
+    if-eqz v0, :cond_3
 
-    .line 3258
+    .line 3680
     :cond_1
     if-eqz p1, :cond_2
 
-    .line 3259
+    .line 3681
     sget-object p1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v0, "setAiSceneEffect: front camera or portrait mode nonsupport!"
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3260
+    .line 3682
     return-void
 
-    .line 3261
+    .line 3683
     :cond_2
     invoke-static {}, Lcom/android/camera/CameraSettings;->getPortraitLightingPattern()I
 
@@ -5446,17 +6221,17 @@
 
     if-eqz v0, :cond_3
 
-    .line 3263
+    .line 3685
     sget-object p1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v0, "setAiSceneEffect: scene = 0 but portrait lighting is on..."
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3264
+    .line 3686
     return-void
 
-    .line 3269
+    .line 3691
     :cond_3
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
@@ -5468,7 +6243,7 @@
 
     move-result-object v0
 
-    .line 3270
+    .line 3692
     if-ltz p1, :cond_8
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
@@ -5479,28 +6254,28 @@
 
     goto :goto_1
 
-    .line 3276
+    .line 3698
     :cond_4
     invoke-static {}, Lcom/android/camera/CameraSettings;->getShaderEffect()I
 
     move-result v2
 
-    .line 3277
+    .line 3699
     invoke-static {v2}, Lcom/android/camera/effect/FilterInfo;->getCategory(I)I
 
     move-result v3
 
-    .line 3278
+    .line 3700
     if-eq v3, v1, :cond_5
 
     sget v1, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_NONE:I
 
     if-eq v2, v1, :cond_5
 
-    .line 3279
+    .line 3701
     return-void
 
-    .line 3281
+    .line 3703
     :cond_5
     invoke-virtual {v0, p1}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
 
@@ -5512,14 +6287,14 @@
 
     move-result p1
 
-    .line 3283
+    .line 3705
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v0
 
     invoke-virtual {v0, p1}, Lcom/android/camera/effect/EffectController;->setAiSceneEffect(I)V
 
-    .line 3284
+    .line 3706
     sget v0, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_NONE:I
 
     if-eq p1, v0, :cond_6
@@ -5534,7 +6309,7 @@
     :goto_0
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mHasAiSceneFilterEffect:Z
 
-    .line 3286
+    .line 3708
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v0
@@ -5545,14 +6320,14 @@
 
     if-eqz v0, :cond_7
 
-    .line 3287
+    .line 3709
     invoke-direct {p0, p1}, Lcom/android/camera/module/Camera2Module;->prepareEffectProcessor(I)V
 
-    .line 3289
+    .line 3711
     :cond_7
     return-void
 
-    .line 3271
+    .line 3693
     :cond_8
     :goto_1
     sget-object p1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
@@ -5561,14 +6336,14 @@
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3272
+    .line 3694
     return-void
 .end method
 
 .method private setEffectFilter(I)V
     .locals 3
 
-    .line 3237
+    .line 3659
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -5587,24 +6362,24 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3238
+    .line 3660
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v0
 
     invoke-virtual {v0, p1}, Lcom/android/camera/effect/EffectController;->setEffect(I)V
 
-    .line 3240
+    .line 3662
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
     if-eqz v0, :cond_0
 
-    .line 3241
+    .line 3663
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
     invoke-virtual {v0, p1}, Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;->setFilterId(I)V
 
-    .line 3244
+    .line 3666
     :cond_0
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
@@ -5616,10 +6391,10 @@
 
     if-eqz v0, :cond_1
 
-    .line 3245
+    .line 3667
     invoke-direct {p0, p1}, Lcom/android/camera/module/Camera2Module;->prepareEffectProcessor(I)V
 
-    .line 3247
+    .line 3669
     :cond_1
     return-void
 .end method
@@ -5627,17 +6402,17 @@
 .method private setLightingEffect()V
     .locals 4
 
-    .line 3293
+    .line 3715
     invoke-static {}, Lcom/android/camera/CameraSettings;->getShaderEffect()I
 
     move-result v0
 
-    .line 3294
+    .line 3716
     invoke-static {v0}, Lcom/android/camera/effect/FilterInfo;->getCategory(I)I
 
     move-result v1
 
-    .line 3295
+    .line 3717
     const/4 v2, 0x5
 
     if-eq v1, v2, :cond_0
@@ -5646,16 +6421,16 @@
 
     if-eq v0, v1, :cond_0
 
-    .line 3296
+    .line 3718
     return-void
 
-    .line 3299
+    .line 3721
     :cond_0
     invoke-static {}, Lcom/android/camera/CameraSettings;->getPortraitLightingPattern()I
 
     move-result v0
 
-    .line 3301
+    .line 3723
     sget-object v1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -5674,7 +6449,7 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3304
+    .line 3726
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v1
@@ -5685,7 +6460,7 @@
 
     move-result-object v1
 
-    .line 3306
+    .line 3728
     invoke-virtual {v1, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
 
     move-result-object v0
@@ -5696,14 +6471,14 @@
 
     move-result v0
 
-    .line 3307
+    .line 3729
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v1
 
     invoke-virtual {v1, v0}, Lcom/android/camera/effect/EffectController;->setLightingEffect(I)V
 
-    .line 3309
+    .line 3731
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v1
@@ -5714,10 +6489,10 @@
 
     if-eqz v1, :cond_1
 
-    .line 3310
+    .line 3732
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->prepareEffectProcessor(I)V
 
-    .line 3312
+    .line 3734
     :cond_1
     return-void
 .end method
@@ -5725,19 +6500,19 @@
 .method private setOrientation(II)V
     .locals 2
 
-    .line 4109
+    .line 4522
     const/4 v0, -0x1
 
     if-ne p1, v0, :cond_0
 
-    .line 4110
+    .line 4523
     return-void
 
-    .line 4113
+    .line 4526
     :cond_0
     iput p1, p0, Lcom/android/camera/module/Camera2Module;->mOrientation:I
 
-    .line 4114
+    .line 4527
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object p1
@@ -5746,29 +6521,29 @@
 
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mOrientation:I
 
-    .line 4115
+    .line 4528
     invoke-static {v0, v1}, Lcom/android/camera/Util;->getShootOrientation(Landroid/app/Activity;I)I
 
     move-result v0
 
-    .line 4114
+    .line 4527
     invoke-virtual {p1, v0}, Lcom/android/camera/effect/EffectController;->setOrientation(I)V
 
-    .line 4116
+    .line 4529
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->checkActivityOrientation()V
 
-    .line 4120
+    .line 4533
     iget p1, p0, Lcom/android/camera/module/Camera2Module;->mOrientationCompensation:I
 
     if-eq p1, p2, :cond_1
 
-    .line 4121
+    .line 4534
     iput p2, p0, Lcom/android/camera/module/Camera2Module;->mOrientationCompensation:I
 
-    .line 4122
+    .line 4535
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->setOrientationParameter()V
 
-    .line 4124
+    .line 4537
     :cond_1
     return-void
 .end method
@@ -5776,17 +6551,17 @@
 .method private setOrientationParameter()V
     .locals 3
 
-    .line 4127
+    .line 4540
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDeparted()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 4128
+    .line 4541
     return-void
 
-    .line 4130
+    .line 4543
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
@@ -5798,7 +6573,7 @@
 
     if-eq v0, v1, :cond_2
 
-    .line 4131
+    .line 4544
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
     move-result v0
@@ -5807,7 +6582,7 @@
 
     if-ne v0, v1, :cond_1
 
-    .line 4132
+    .line 4545
     new-array v0, v1, [I
 
     const/4 v1, 0x0
@@ -5820,7 +6595,7 @@
 
     goto :goto_0
 
-    .line 4134
+    .line 4547
     :cond_1
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
@@ -5828,21 +6603,21 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setDeviceOrientation(I)V
 
-    .line 4137
+    .line 4550
     :cond_2
     :goto_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
     if-eqz v0, :cond_3
 
-    .line 4138
+    .line 4551
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mOrientationCompensation:I
 
     invoke-virtual {v0, v1}, Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;->setOrientationHint(I)V
 
-    .line 4140
+    .line 4553
     :cond_3
     return-void
 .end method
@@ -5850,7 +6625,7 @@
 .method private setPictureOrientation()V
     .locals 2
 
-    .line 4064
+    .line 4477
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getSensorStateManager()Lcom/android/camera/SensorStateManager;
@@ -5873,7 +6648,7 @@
     :goto_0
     iput v0, p0, Lcom/android/camera/module/Camera2Module;->mShootRotation:F
 
-    .line 4065
+    .line 4478
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mOrientation:I
 
     const/4 v1, -0x1
@@ -5890,19 +6665,19 @@
     :goto_1
     iput v0, p0, Lcom/android/camera/module/Camera2Module;->mShootOrientation:I
 
-    .line 4066
+    .line 4479
     return-void
 .end method
 
 .method private setPortraitSuccessHintVisible(I)V
     .locals 2
 
-    .line 4837
+    .line 5283
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 4838
+    .line 5284
     const/16 v1, 0xaf
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -5911,56 +6686,24 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;
 
-    .line 4839
+    .line 5285
     invoke-interface {v0, p1}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->setPortraitHintVisible(I)V
 
-    .line 4840
-    return-void
-.end method
-
-.method private setPreviewFrameLayoutAspectRatio()V
-    .locals 3
-
-    .line 2894
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
-
-    if-eqz v0, :cond_0
-
-    .line 2895
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
-
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
-
-    iget v1, v1, Lcom/android/camera/CameraSize;->width:I
-
-    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
-
-    iget v2, v2, Lcom/android/camera/CameraSize;->height:I
-
-    .line 2896
-    invoke-static {v1, v2}, Lcom/android/camera/CameraSettings;->getPreviewAspectRatio(II)F
-
-    move-result v1
-
-    .line 2895
-    invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->setPreviewAspectRatio(F)V
-
-    .line 2898
-    :cond_0
+    .line 5286
     return-void
 .end method
 
 .method private setSceneMode(Ljava/lang/String;)Z
     .locals 4
 
-    .line 3995
+    .line 4422
     const/4 v0, -0x1
 
     invoke-static {p1, v0}, Lcom/android/camera/Util;->parseInt(Ljava/lang/String;I)I
 
     move-result v0
 
-    .line 3996
+    .line 4423
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
 
     invoke-virtual {v1}, Lcom/android/camera2/CameraCapabilities;->getSupportedSceneModes()[I
@@ -5973,7 +6716,7 @@
 
     if-eqz v1, :cond_0
 
-    .line 3997
+    .line 4424
     sget-object v1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -5992,17 +6735,17 @@
 
     invoke-static {v1, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3998
+    .line 4425
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {p1, v0}, Lcom/android/camera2/Camera2Proxy;->setSceneMode(I)V
 
-    .line 3999
+    .line 4426
     const/4 p1, 0x1
 
     return p1
 
-    .line 4001
+    .line 4428
     :cond_0
     const/4 p1, 0x0
 
@@ -6012,14 +6755,14 @@
 .method private setVideoSize(II)V
     .locals 1
 
-    .line 682
+    .line 657
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraDisplayOrientation:I
 
     rem-int/lit16 v0, v0, 0xb4
 
     if-nez v0, :cond_0
 
-    .line 683
+    .line 658
     new-instance v0, Lcom/android/camera/CameraSize;
 
     invoke-direct {v0, p1, p2}, Lcom/android/camera/CameraSize;-><init>(II)V
@@ -6028,7 +6771,7 @@
 
     goto :goto_0
 
-    .line 685
+    .line 660
     :cond_0
     new-instance v0, Lcom/android/camera/CameraSize;
 
@@ -6036,7 +6779,7 @@
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mVideoSize:Lcom/android/camera/CameraSize;
 
-    .line 687
+    .line 662
     :goto_0
     return-void
 .end method
@@ -6044,7 +6787,7 @@
 .method private setWaterMark()V
     .locals 3
 
-    .line 4070
+    .line 4483
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStatus:Z
 
     const/4 v1, 0x0
@@ -6057,14 +6800,14 @@
 
     if-eq v0, v2, :cond_3
 
-    .line 4072
+    .line 4485
     invoke-static {}, Lcom/android/camera/CameraSettings;->isGradienterOn()Z
 
     move-result v0
 
     if-nez v0, :cond_3
 
-    .line 4073
+    .line 4486
     invoke-static {}, Lcom/android/camera/CameraSettings;->getShaderEffect()I
 
     move-result v0
@@ -6077,19 +6820,19 @@
 
     if-nez v0, :cond_3
 
-    .line 4075
+    .line 4488
     invoke-static {}, Lcom/android/camera/CameraSettings;->isTiltShiftOn()Z
 
     move-result v0
 
     if-nez v0, :cond_3
 
-    .line 4076
+    .line 4489
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/mi/config/a;->fc()Z
+    invoke-virtual {v0}, Lcom/mi/config/a;->fe()Z
 
     move-result v0
 
@@ -6097,7 +6840,7 @@
 
     goto :goto_2
 
-    .line 4081
+    .line 4494
     :cond_0
     invoke-static {}, Lcom/android/camera/CameraSettings;->isDualCameraWaterMarkOpen()Z
 
@@ -6107,20 +6850,20 @@
 
     if-eqz v0, :cond_1
 
-    .line 4082
+    .line 4495
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, v2}, Lcom/android/camera2/Camera2Proxy;->setDualCamWaterMarkEnable(Z)V
 
     goto :goto_0
 
-    .line 4084
+    .line 4497
     :cond_1
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setDualCamWaterMarkEnable(Z)V
 
-    .line 4086
+    .line 4499
     :goto_0
     invoke-static {}, Lcom/android/camera/CameraSettings;->isTimeWaterMarkOpen()Z
 
@@ -6128,19 +6871,19 @@
 
     if-eqz v0, :cond_2
 
-    .line 4087
+    .line 4500
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, v2}, Lcom/android/camera2/Camera2Proxy;->setTimeWaterMarkEnable(Z)V
 
-    .line 4088
+    .line 4501
     invoke-static {}, Lcom/android/camera/Util;->getTimeWatermark()Ljava/lang/String;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCaptureWaterMarkStr:Ljava/lang/String;
 
-    .line 4089
+    .line 4502
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCaptureWaterMarkStr:Ljava/lang/String;
@@ -6149,65 +6892,55 @@
 
     goto :goto_1
 
-    .line 4091
+    .line 4504
     :cond_2
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCaptureWaterMarkStr:Ljava/lang/String;
 
-    .line 4092
+    .line 4505
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setTimeWaterMarkEnable(Z)V
 
-    .line 4094
+    .line 4507
     :goto_1
     return-void
 
-    .line 4077
+    .line 4490
     :cond_3
     :goto_2
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setDualCamWaterMarkEnable(Z)V
 
-    .line 4078
+    .line 4491
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setTimeWaterMarkEnable(Z)V
 
-    .line 4079
+    .line 4492
     return-void
 .end method
 
 .method private shouldApplyNormalWideLDC()Z
     .locals 3
 
-    .line 3915
+    .line 4339
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    invoke-static {v0}, Lcom/android/camera/CameraSettings;->shouldNormalWideLDCBeVisibleInMode(I)Z
+
+    move-result v0
 
     const/4 v1, 0x0
 
-    const/16 v2, 0xa3
+    if-nez v0, :cond_0
 
-    if-eq v0, v2, :cond_0
-
-    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
-
-    const/16 v2, 0xa5
-
-    if-eq v0, v2, :cond_0
-
-    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
-
-    const/16 v2, 0xa7
-
-    if-eq v0, v2, :cond_0
-
-    .line 3918
+    .line 4340
     return v1
 
-    .line 3920
+    .line 4342
     :cond_0
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mActualCameraId:I
 
@@ -6221,11 +6954,33 @@
 
     if-ne v0, v2, :cond_1
 
-    .line 3922
+    .line 4344
     return v1
 
-    .line 3924
+    .line 4346
     :cond_1
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isRearMenuUltraPixelPhotographyOn()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 4347
+    return v1
+
+    .line 4349
+    :cond_2
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isUltraPixelPhotographyOn()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    .line 4350
+    return v1
+
+    .line 4352
+    :cond_3
     invoke-static {}, Lcom/android/camera/CameraSettings;->isNormalWideLDCEnabled()Z
 
     move-result v0
@@ -6236,31 +6991,21 @@
 .method private shouldApplyUltraWideLDC()Z
     .locals 3
 
-    .line 3935
+    .line 4363
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    invoke-static {v0}, Lcom/android/camera/CameraSettings;->shouldUltraWideLDCBeVisibleInMode(I)Z
+
+    move-result v0
 
     const/4 v1, 0x0
 
-    const/16 v2, 0xa3
+    if-nez v0, :cond_0
 
-    if-eq v0, v2, :cond_0
-
-    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
-
-    const/16 v2, 0xa5
-
-    if-eq v0, v2, :cond_0
-
-    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
-
-    const/16 v2, 0xa7
-
-    if-eq v0, v2, :cond_0
-
-    .line 3938
+    .line 4364
     return v1
 
-    .line 3940
+    .line 4366
     :cond_0
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mActualCameraId:I
 
@@ -6274,10 +7019,10 @@
 
     if-eq v0, v2, :cond_1
 
-    .line 3942
+    .line 4368
     return v1
 
-    .line 3944
+    .line 4370
     :cond_1
     invoke-static {}, Lcom/android/camera/CameraSettings;->isUltraWideLDCEnabled()Z
 
@@ -6289,7 +7034,7 @@
 .method private shouldChangeAiScene(I)Z
     .locals 6
 
-    .line 5145
+    .line 5615
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDoingAction()Z
 
     move-result v0
@@ -6306,7 +7051,7 @@
 
     goto :goto_0
 
-    .line 5150
+    .line 5620
     :cond_0
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mCurrentDetectedScene:I
 
@@ -6326,40 +7071,107 @@
 
     if-lez v0, :cond_1
 
-    .line 5151
+    .line 5621
     iput p1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentDetectedScene:I
 
-    .line 5152
+    .line 5622
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
 
     iput-wide v0, p0, Lcom/android/camera/module/Camera2Module;->mLastChangeSceneTime:J
 
-    .line 5153
+    .line 5623
     const/4 p1, 0x1
 
     return p1
 
-    .line 5156
+    .line 5626
     :cond_1
     return v1
 
-    .line 5146
+    .line 5616
     :cond_2
     :goto_0
     return v1
 .end method
 
-.method private showMoonMode()Z
-    .locals 2
+.method private shouldDoMultiFrameCapture()Z
+    .locals 4
 
-    .line 5094
+    .line 3580
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
+
+    invoke-virtual {v0}, Lcom/android/camera/MutexModeManager;->isHdr()Z
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mShouldDoMFNR:Z
+
+    if-nez v0, :cond_1
+
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
+
+    .line 3582
+    invoke-virtual {v0}, Lcom/android/camera/MutexModeManager;->isSuperResolution()Z
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    .line 3583
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isGroupShotOn()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    goto :goto_0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_1
+
+    :cond_1
+    :goto_0
+    const/4 v0, 0x1
+
+    .line 3584
+    :goto_1
+    sget-object v1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "shouldDoMultiFrameCapture: "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 3585
+    return v0
+.end method
+
+.method private showMoonMode()Z
+    .locals 3
+
+    .line 5556
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 5095
+    .line 5557
     const/16 v1, 0xac
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -6368,20 +7180,26 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
 
-    .line 5096
+    .line 5558
     const/4 v1, 0x0
 
     if-eqz v0, :cond_0
 
-    .line 5097
+    .line 5559
+    const/4 v2, 0x1
+
+    iput-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mEnteringMoonMode:Z
+
+    .line 5560
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertMoonModeSelector(I)V
 
-    .line 5098
-    const/4 v0, 0x1
+    .line 5562
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->updateMoonNight()V
 
-    return v0
+    .line 5563
+    return v2
 
-    .line 5100
+    .line 5565
     :cond_0
     return v1
 .end method
@@ -6389,30 +7207,30 @@
 .method private showPostCaptureAlert()V
     .locals 2
 
-    .line 2710
+    .line 3090
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->enableCameraControls(Z)V
 
-    .line 2711
+    .line 3091
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {v1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->removeMessages()V
 
-    .line 2713
+    .line 3093
     const/4 v1, 0x1
 
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->stopFaceDetection(Z)V
 
-    .line 2714
+    .line 3094
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->pausePreview()V
 
-    .line 2716
+    .line 3096
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     invoke-interface {v1, v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->setEffectViewVisible(Z)V
 
-    .line 2720
+    .line 3100
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -6425,39 +7243,39 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;
 
-    .line 2722
+    .line 3102
     const/4 v1, 0x6
 
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->delegateEvent(I)V
 
-    .line 2727
+    .line 3107
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->resetMetaDataManager()V
 
-    .line 2728
+    .line 3108
     return-void
 .end method
 
 .method private startCount(II)V
     .locals 2
 
-    .line 1505
+    .line 1725
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->checkShutterCondition()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 1506
+    .line 1726
     return-void
 
-    .line 1508
+    .line 1728
     :cond_0
     invoke-virtual {p0, p2}, Lcom/android/camera/module/Camera2Module;->setTriggerMode(I)V
 
-    .line 1510
+    .line 1730
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->tryRemoveCountDownMessage()V
 
-    .line 1511
+    .line 1731
     sget-object p2, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -6476,7 +7294,7 @@
 
     invoke-static {p2, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1513
+    .line 1733
     const-wide/16 v0, 0x1
 
     sget-object p2, Ljava/util/concurrent/TimeUnit;->SECONDS:Ljava/util/concurrent/TimeUnit;
@@ -6491,7 +7309,7 @@
 
     move-result-object p2
 
-    .line 1514
+    .line 1734
     invoke-static {}, Lio/reactivex/android/schedulers/AndroidSchedulers;->mainThread()Lio/reactivex/Scheduler;
 
     move-result-object v0
@@ -6504,55 +7322,55 @@
 
     invoke-direct {v0, p0, p1}, Lcom/android/camera/module/Camera2Module$9;-><init>(Lcom/android/camera/module/Camera2Module;I)V
 
-    .line 1515
+    .line 1735
     invoke-virtual {p2, v0}, Lio/reactivex/Observable;->subscribe(Lio/reactivex/Observer;)V
 
-    .line 1557
+    .line 1777
     return-void
 .end method
 
 .method private startLensActivity()V
     .locals 3
 
-    .line 4620
+    .line 5057
     invoke-static {}, Lcom/android/camera/Util;->isGlobalVersion()Z
 
     move-result v0
 
     if-eqz v0, :cond_2
 
-    .line 4621
+    .line 5058
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mLensApi:Lcom/google/lens/sdk/LensApi;
 
     if-nez v0, :cond_0
 
-    .line 4622
+    .line 5059
     return-void
 
-    .line 4624
+    .line 5061
     :cond_0
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mLensStatus:I
 
     if-eqz v0, :cond_1
 
-    .line 4625
+    .line 5062
     return-void
 
-    .line 4627
+    .line 5064
     :cond_1
     const/4 v0, 0x0
 
-    .line 4628
+    .line 5065
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mLensApi:Lcom/google/lens/sdk/LensApi;
 
     iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v1, v2, v0}, Lcom/google/lens/sdk/LensApi;->launchLensActivity(Landroid/app/Activity;I)V
 
-    .line 4629
+    .line 5066
     goto :goto_0
 
-    .line 4630
+    .line 5067
     :cond_2
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
@@ -6560,23 +7378,23 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 4632
+    .line 5069
     :try_start_0
     new-instance v0, Landroid/content/Intent;
 
     invoke-direct {v0}, Landroid/content/Intent;-><init>()V
 
-    .line 4633
+    .line 5070
     const-string v1, "android.media.action.XIAOAI_CONTROL"
 
     invoke-virtual {v0, v1}, Landroid/content/Intent;->setAction(Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 4634
+    .line 5071
     const-string v1, "com.xiaomi.lens"
 
     invoke-virtual {v0, v1}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 4635
+    .line 5072
     const-string v1, "preview_width"
 
     iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
@@ -6585,7 +7403,7 @@
 
     invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
-    .line 4636
+    .line 5073
     const-string v1, "preview_height"
 
     iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
@@ -6594,14 +7412,14 @@
 
     invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
-    .line 4637
+    .line 5074
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getActivity()Lcom/android/camera/Camera;
 
     move-result-object v1
 
     invoke-virtual {v1, v0}, Lcom/android/camera/Camera;->startActivity(Landroid/content/Intent;)V
 
-    .line 4638
+    .line 5075
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getActivity()Lcom/android/camera/Camera;
 
     move-result-object v0
@@ -6614,21 +7432,21 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 4641
+    .line 5078
     goto :goto_0
 
-    .line 4639
+    .line 5076
     :catch_0
     move-exception v0
 
-    .line 4640
+    .line 5077
     sget-object v1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v2, "onClick: occur a exception"
 
     invoke-static {v1, v2, v0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 4643
+    .line 5080
     :goto_0
     return-void
 .end method
@@ -6636,12 +7454,12 @@
 .method private startLiveShotAnimation()V
     .locals 3
 
-    .line 690
+    .line 665
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorderStateLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 691
+    .line 666
     :try_start_0
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
@@ -6651,7 +7469,7 @@
 
     if-eqz v1, :cond_0
 
-    .line 692
+    .line 667
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     new-instance v2, Lcom/android/camera/module/Camera2Module$4;
@@ -6660,14 +7478,14 @@
 
     invoke-virtual {v1, v2}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
 
-    .line 703
+    .line 678
     :cond_0
     monitor-exit v0
 
-    .line 704
+    .line 679
     return-void
 
-    .line 703
+    .line 678
     :catchall_0
     move-exception v1
 
@@ -6681,20 +7499,42 @@
 .method private startNormalCapture(I)V
     .locals 3
 
-    .line 1139
+    .line 1154
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "startNormalCapture mode -> "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1155
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->prepareNormalCapture()V
 
-    .line 1140
+    .line 1156
     invoke-static {}, Lcom/android/camera/CameraSettings;->isGroupShotOn()Z
 
     move-result p1
 
     if-eqz p1, :cond_0
 
-    .line 1141
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->prepareGroupShot()V
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isParallelSessionEnable()Z
 
-    .line 1142
+    move-result p1
+
+    if-nez p1, :cond_0
+
+    .line 1157
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
@@ -6705,38 +7545,27 @@
 
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mTotalJpegCallbackNum:I
 
-    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mGroupShot:Lcom/android/camera/groupshot/GroupShot;
+    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
-    invoke-virtual {p1, p0, v0, v1, v2}, Lcom/android/camera2/Camera2Proxy;->captureGroupShotPictures(Lcom/android/camera2/Camera2Proxy$PictureCallback;Lcom/xiaomi/camera/core/ParallelCallback;ILcom/android/camera/groupshot/GroupShot;)V
+    invoke-virtual {p1, p0, v0, v1, v2}, Lcom/android/camera2/Camera2Proxy;->captureGroupShotPictures(Lcom/android/camera2/Camera2Proxy$PictureCallback;Lcom/xiaomi/camera/core/ParallelCallback;ILandroid/content/Context;)V
 
-    goto :goto_1
+    goto :goto_0
 
-    .line 1146
+    .line 1161
     :cond_0
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v0, 0x32
 
-    .line 1147
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
-    const/16 v2, 0xad
+    invoke-direct {p0, v1}, Lcom/android/camera/module/Camera2Module;->calculateTimeout(I)J
 
-    if-ne v1, v2, :cond_1
+    move-result-wide v1
 
-    const-wide/16 v1, 0x3e80
-
-    goto :goto_0
-
-    .line 1148
-    :cond_1
-    const-wide/16 v1, 0x1f40
-
-    .line 1146
-    :goto_0
     invoke-virtual {p1, v0, v1, v2}, Lcom/android/camera/module/Camera2Module$MainHandler;->sendEmptyMessageDelayed(IJ)Z
 
-    .line 1149
+    .line 1162
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
@@ -6747,30 +7576,37 @@
 
     invoke-virtual {p1, p0, v0}, Lcom/android/camera2/Camera2Proxy;->takePicture(Lcom/android/camera2/Camera2Proxy$PictureCallback;Lcom/xiaomi/camera/core/ParallelCallback;)V
 
-    .line 1151
-    :goto_1
+    .line 1164
+    :goto_0
     return-void
 .end method
 
 .method private stopMultiSnap()V
-    .locals 5
+    .locals 10
 
-    .line 526
+    .line 553
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    const-string v1, "stopMultiSnap: start"
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 554
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v1, 0x31
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeMessages(I)V
 
-    .line 527
+    .line 555
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStatus:Z
 
     if-nez v0, :cond_0
 
-    .line 528
+    .line 556
     return-void
 
-    .line 530
+    .line 558
     :cond_0
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
@@ -6778,24 +7614,17 @@
 
     iput-wide v0, p0, Lcom/android/camera/module/Camera2Module;->mLastCaptureTime:J
 
-    .line 531
+    .line 559
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStatus:Z
 
-    .line 533
-    sget-object v1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
-
-    const-string v2, "burst: stopMultiSnap | "
-
-    invoke-static {v1, v2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 535
+    .line 562
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1}, Lcom/android/camera2/Camera2Proxy;->captureAbortBurst()V
 
-    .line 539
+    .line 566
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
     invoke-virtual {v1}, Lcom/android/camera/MutexModeManager;->isUbiFocus()Z
@@ -6808,48 +7637,62 @@
 
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mReceivedJpegCallbackNum:I
 
+    .line 567
+    move v4, v1
+
     goto :goto_0
 
-    .line 540
+    .line 566
     :cond_1
-    move v1, v2
+    nop
+
+    .line 567
+    move v4, v2
 
     :goto_0
-    iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
-    invoke-virtual {v3}, Lcom/android/camera/MutexModeManager;->isUbiFocus()Z
+    invoke-virtual {v1}, Lcom/android/camera/MutexModeManager;->isUbiFocus()Z
 
-    move-result v3
+    move-result v1
 
-    .line 541
-    xor-int/2addr v3, v2
+    .line 568
+    xor-int/lit8 v5, v1, 0x1
 
-    invoke-virtual {p0, v1, v3}, Lcom/android/camera/module/Camera2Module;->trackGeneralInfo(IZ)V
+    invoke-virtual {p0, v4, v5}, Lcom/android/camera/module/Camera2Module;->trackGeneralInfo(IZ)V
 
-    .line 542
-    iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mLocation:Landroid/location/Location;
+    .line 569
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mLocation:Landroid/location/Location;
 
-    if-eqz v4, :cond_2
+    if-eqz v1, :cond_2
+
+    move v6, v2
 
     goto :goto_1
 
     :cond_2
-    move v2, v0
+    move v6, v0
 
     :goto_1
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getCurrentAiSceneName()Ljava/lang/String;
 
-    move-result-object v4
+    move-result-object v7
 
-    invoke-virtual {p0, v1, v3, v2, v4}, Lcom/android/camera/module/Camera2Module;->trackPictureTaken(IZZLjava/lang/String;)V
+    iget-boolean v8, p0, Lcom/android/camera/module/Camera2Module;->mEnteringMoonMode:Z
 
-    .line 544
+    iget-boolean v9, p0, Lcom/android/camera/module/Camera2Module;->mIsMoonMode:Z
+
+    move-object v3, p0
+
+    invoke-virtual/range {v3 .. v9}, Lcom/android/camera/module/Camera2Module;->trackPictureTaken(IZZLjava/lang/String;ZZ)V
+
+    .line 571
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->animateCapture()V
 
-    .line 546
+    .line 573
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mUpdateImageTitle:Z
 
-    .line 547
+    .line 574
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v1, 0x30
@@ -6858,31 +7701,31 @@
 
     invoke-virtual {v0, v1, v2, v3}, Lcom/android/camera/module/Camera2Module$MainHandler;->sendEmptyMessageDelayed(IJ)Z
 
-    .line 548
+    .line 575
     return-void
 .end method
 
 .method private trackAISceneChanged(II)V
     .locals 1
 
-    .line 5198
+    .line 5668
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
 
     invoke-static {p1, p2, v0}, Lcom/android/camera/statistic/CameraStatUtil;->trackAISceneChanged(IILandroid/content/res/Resources;)V
 
-    .line 5199
+    .line 5669
     return-void
 .end method
 
 .method private trackBeautyInfo(IZLcom/android/camera/fragment/beauty/BeautyValues;)V
     .locals 0
 
-    .line 5287
+    .line 5761
     nop
 
-    .line 5288
+    .line 5762
     if-eqz p2, :cond_0
 
     const-string p2, "\u524d\u6444"
@@ -6892,108 +7735,113 @@
     :cond_0
     const-string p2, "\u540e\u6444"
 
-    .line 5287
+    .line 5761
     :goto_0
     invoke-static {p1, p2, p3}, Lcom/android/camera/statistic/CameraStatUtil;->trackBeautyInfo(ILjava/lang/String;Lcom/android/camera/fragment/beauty/BeautyValues;)V
 
-    .line 5290
+    .line 5764
     return-void
 .end method
 
 .method private trackManualInfo(I)V
     .locals 4
 
-    .line 5259
+    .line 5732
     const-string v0, "pref_camera_whitebalance_key"
 
-    .line 5260
-    const v1, 0x7f0b0063
+    .line 5733
+    const v1, 0x7f090064
 
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 5259
+    .line 5732
     invoke-direct {p0, v0, v1}, Lcom/android/camera/module/Camera2Module;->getManualValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 5261
+    .line 5734
     const-string v1, "pref_qc_camera_exposuretime_key"
 
-    .line 5262
-    const v2, 0x7f0b012f
+    .line 5735
+    const v2, 0x7f090136
 
     invoke-virtual {p0, v2}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
     move-result-object v2
 
-    .line 5261
+    .line 5734
     invoke-direct {p0, v1, v2}, Lcom/android/camera/module/Camera2Module;->getManualValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 5263
+    .line 5736
     const-string v2, "pref_qc_camera_iso_key"
 
-    .line 5264
-    const v3, 0x7f0b00a5
+    .line 5737
+    const v3, 0x7f0900aa
 
     invoke-virtual {p0, v3}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
     move-result-object v3
 
-    .line 5263
+    .line 5736
     invoke-direct {p0, v2, v3}, Lcom/android/camera/module/Camera2Module;->getManualValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v2
 
-    .line 5265
+    .line 5738
     iget v3, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     invoke-static {p1, v0, v1, v2, v3}, Lcom/android/camera/statistic/CameraStatUtil;->trackPictureTakenInManual(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V
 
-    .line 5266
+    .line 5739
+    iget p1, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    invoke-static {p1}, Lcom/android/camera/statistic/CameraStatUtil;->trackUltraWideManualTaken(I)V
+
+    .line 5740
     return-void
 .end method
 
 .method private unlockAEAF()V
     .locals 2
 
-    .line 4222
+    .line 4637
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v1, "unlockAEAF"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 4223
+    .line 4638
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->m3ALocked:Z
 
-    .line 4224
+    .line 4639
     iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mAeLockSupported:Z
 
     if-eqz v1, :cond_0
 
-    .line 4225
+    .line 4640
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->lockExposure(Z)V
+    invoke-virtual {v1}, Lcom/android/camera2/Camera2Proxy;->unlockExposure()V
 
-    .line 4227
+    .line 4642
     :cond_0
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     if-eqz v1, :cond_1
 
-    .line 4228
+    .line 4643
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {v1, v0}, Lcom/android/camera/module/loader/camera2/FocusManager2;->setAeAwbLock(Z)V
 
-    .line 4230
+    .line 4645
     :cond_1
     return-void
 .end method
@@ -7001,30 +7849,30 @@
 .method private updateAiScene()V
     .locals 3
 
-    .line 729
+    .line 733
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFunctionParseAiScene:Lcom/android/camera/module/loader/FunctionParseAiScene;
 
     if-eqz v0, :cond_0
 
-    .line 730
+    .line 734
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFunctionParseAiScene:Lcom/android/camera/module/loader/FunctionParseAiScene;
 
     invoke-virtual {v0}, Lcom/android/camera/module/loader/FunctionParseAiScene;->resetScene()V
 
-    .line 732
+    .line 736
     :cond_0
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
-    .line 733
+    .line 737
     invoke-static {}, Lcom/android/camera/CameraSettings;->getAiSceneOpen()Z
 
     move-result v1
 
     iput-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneEnabled:Z
 
-    .line 734
+    .line 738
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v1
@@ -7039,10 +7887,10 @@
 
     if-eqz v1, :cond_1
 
-    .line 735
+    .line 739
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneEnabled:Z
 
-    .line 738
+    .line 742
     :cond_1
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
@@ -7050,35 +7898,42 @@
 
     invoke-virtual {v1, v2}, Lcom/android/camera2/Camera2Proxy;->setASD(Z)V
 
-    .line 739
+    .line 744
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-eqz v1, :cond_2
 
-    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneEnabled:Z
+    invoke-static {}, Lcom/android/camera/module/ModuleManager;->isCapture()Z
+
+    move-result v1
 
     if-nez v1, :cond_3
 
-    .line 740
     :cond_2
+    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneEnabled:Z
+
+    if-nez v1, :cond_4
+
+    .line 745
+    :cond_3
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     iget-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneEnabled:Z
 
     invoke-virtual {v1, v2}, Lcom/android/camera2/Camera2Proxy;->setCameraAI30(Z)V
 
-    .line 742
-    :cond_3
+    .line 747
+    :cond_4
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->setAiSceneEffect(I)V
 
-    .line 743
+    .line 748
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneEnabled:Z
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_5
 
-    .line 744
+    .line 749
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     const/16 v1, 0x12c
@@ -7087,89 +7942,108 @@
 
     goto :goto_0
 
-    .line 746
-    :cond_4
+    .line 751
+    :cond_5
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->hideSceneSelector()V
 
-    .line 747
+    .line 752
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->updateHDRPreference()V
 
-    .line 748
+    .line 753
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->updateFlashPreference()V
 
-    .line 749
+    .line 754
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateBeauty()V
 
-    .line 751
+    .line 756
     :goto_0
     return-void
 .end method
 
 .method private updateAlgorithmName()V
-    .locals 2
+    .locals 1
 
-    .line 2538
+    .line 2889
     nop
 
-    .line 2539
-    invoke-static {}, Lcom/mi/config/b;->hC()Z
+    .line 2890
+    invoke-static {}, Lcom/mi/config/b;->hT()Z
 
     move-result v0
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_3
 
-    .line 2540
+    .line 2891
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->isBokehEnabled()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1
 
-    .line 2541
+    .line 2892
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/mi/config/a;->fM()I
+
+    move-result v0
+
+    .line 2893
+    if-lez v0, :cond_0
+
+    .line 2894
+    const-string v0, "soft-portrait-enc"
+
+    goto :goto_0
+
+    .line 2896
+    :cond_0
     const-string v0, "soft-portrait"
 
-    goto :goto_0
+    .line 2898
+    :goto_0
+    goto :goto_1
 
-    .line 2542
-    :cond_0
-    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+    :cond_1
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isPortraitMode()Z
 
-    const/16 v1, 0xab
+    move-result v0
 
-    if-ne v0, v1, :cond_1
+    if-eqz v0, :cond_2
 
-    .line 2543
+    .line 2899
     const-string v0, "portrait"
 
-    goto :goto_0
+    goto :goto_1
 
-    .line 2545
-    :cond_1
+    .line 2901
+    :cond_2
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
     invoke-virtual {v0}, Lcom/android/camera/MutexModeManager;->getAlgorithmName()Ljava/lang/String;
 
     move-result-object v0
 
-    goto :goto_0
+    goto :goto_1
 
-    .line 2548
-    :cond_2
+    .line 2904
+    :cond_3
     const/4 v0, 0x0
 
-    :goto_0
+    :goto_1
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mAlgorithmName:Ljava/lang/String;
 
-    .line 2549
+    .line 2905
     return-void
 .end method
 
 .method private updateBeauty()V
-    .locals 7
+    .locals 6
 
-    .line 3566
+    .line 3972
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     const/16 v1, 0xa3
@@ -7188,23 +8062,23 @@
 
     if-eq v0, v1, :cond_0
 
-    .line 3569
+    .line 3975
     return-void
 
-    .line 3572
+    .line 3978
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mBeautyValues:Lcom/android/camera/fragment/beauty/BeautyValues;
 
     if-nez v0, :cond_1
 
-    .line 3573
+    .line 3979
     new-instance v0, Lcom/android/camera/fragment/beauty/BeautyValues;
 
     invoke-direct {v0}, Lcom/android/camera/fragment/beauty/BeautyValues;-><init>()V
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mBeautyValues:Lcom/android/camera/fragment/beauty/BeautyValues;
 
-    .line 3578
+    .line 3984
     :cond_1
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mBeautyValues:Lcom/android/camera/fragment/beauty/BeautyValues;
 
@@ -7214,135 +8088,111 @@
 
     iput-object v1, v0, Lcom/android/camera/fragment/beauty/BeautyValues;->mBeautyLevel:Ljava/lang/String;
 
-    .line 3580
-    nop
-
-    .line 3581
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isPortraitModeBackOn()Z
-
-    move-result v0
-
-    const/4 v1, 0x0
-
-    const/4 v2, 0x1
-
-    if-eqz v0, :cond_3
-
-    .line 3582
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isCameraPortraitWithFaceBeauty()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_2
-
-    .line 3584
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
-
-    invoke-interface {v0, v2}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->isFaceExists(I)Z
-
-    move-result v0
-
-    goto :goto_0
-
-    .line 3590
-    :cond_2
-    move v0, v1
-
-    goto :goto_0
-
-    .line 3587
-    :cond_3
-    nop
-
-    .line 3590
-    move v0, v2
-
-    :goto_0
+    .line 3986
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
 
-    move-result-object v3
+    move-result-object v0
 
-    invoke-virtual {v3}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentConfigBeauty()Lcom/android/camera/data/data/config/ComponentConfigBeauty;
+    invoke-virtual {v0}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentConfigBeauty()Lcom/android/camera/data/data/config/ComponentConfigBeauty;
 
-    move-result-object v3
+    move-result-object v0
 
-    .line 3592
-    iget v4, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+    .line 3988
+    iget v1, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
-    invoke-virtual {v3, v4}, Lcom/android/camera/data/data/config/ComponentConfigBeauty;->isClosed(I)Z
-
-    move-result v3
-
-    .line 3593
-    if-eqz v0, :cond_4
-
-    if-nez v3, :cond_4
-
-    .line 3594
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mBeautyValues:Lcom/android/camera/fragment/beauty/BeautyValues;
-
-    invoke-static {}, Lcom/mi/config/b;->hp()Z
-
-    move-result v3
-
-    invoke-static {v0, v3}, Lcom/android/camera/CameraSettings;->initBeautyValues(Lcom/android/camera/fragment/beauty/BeautyValues;Z)V
-
-    .line 3596
-    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
-
-    const/16 v3, 0x19
-
-    if-ne v0, v3, :cond_4
-
-    sget-object v0, Lcom/android/camera/constant/BeautyConstant;->LEVEL_CLOSE:Ljava/lang/String;
-
-    iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mBeautyValues:Lcom/android/camera/fragment/beauty/BeautyValues;
-
-    iget-object v3, v3, Lcom/android/camera/fragment/beauty/BeautyValues;->mBeautyLevel:Ljava/lang/String;
-
-    .line 3598
-    invoke-virtual {v0, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v0, v1}, Lcom/android/camera/data/data/config/ComponentConfigBeauty;->isClosed(I)Z
 
     move-result v0
 
-    if-eqz v0, :cond_4
+    .line 3989
+    if-nez v0, :cond_2
 
-    .line 3599
+    .line 3990
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mBeautyValues:Lcom/android/camera/fragment/beauty/BeautyValues;
 
-    sget-object v3, Lcom/android/camera/constant/BeautyConstant;->LEVEL_LOW:Ljava/lang/String;
+    invoke-static {}, Lcom/mi/config/b;->hG()Z
 
-    iput-object v3, v0, Lcom/android/camera/fragment/beauty/BeautyValues;->mBeautyLevel:Ljava/lang/String;
+    move-result v1
 
-    .line 3600
-    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+    invoke-static {v0, v1}, Lcom/android/camera/CameraSettings;->initBeautyValues(Lcom/android/camera/fragment/beauty/BeautyValues;Z)V
 
-    sget-object v3, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
+    .line 3992
+    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
-    const-string v4, "Human scene mode detected, auto set beauty level from %s to %s"
+    const/16 v1, 0x19
 
-    const/4 v5, 0x2
+    if-ne v0, v1, :cond_2
 
-    new-array v5, v5, [Ljava/lang/Object;
-
-    sget-object v6, Lcom/android/camera/constant/BeautyConstant;->LEVEL_CLOSE:Ljava/lang/String;
-
-    aput-object v6, v5, v1
+    sget-object v0, Lcom/android/camera/constant/BeautyConstant;->LEVEL_CLOSE:Ljava/lang/String;
 
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mBeautyValues:Lcom/android/camera/fragment/beauty/BeautyValues;
 
     iget-object v1, v1, Lcom/android/camera/fragment/beauty/BeautyValues;->mBeautyLevel:Ljava/lang/String;
 
-    aput-object v1, v5, v2
+    .line 3994
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    invoke-static {v3, v4, v5}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 3995
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mBeautyValues:Lcom/android/camera/fragment/beauty/BeautyValues;
+
+    sget-object v1, Lcom/android/camera/constant/BeautyConstant;->LEVEL_LOW:Ljava/lang/String;
+
+    iput-object v1, v0, Lcom/android/camera/fragment/beauty/BeautyValues;->mBeautyLevel:Ljava/lang/String;
+
+    .line 3996
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    sget-object v1, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
+
+    const-string v2, "Human scene mode detected, auto set beauty level from %s to %s"
+
+    const/4 v3, 0x2
+
+    new-array v3, v3, [Ljava/lang/Object;
+
+    const/4 v4, 0x0
+
+    sget-object v5, Lcom/android/camera/constant/BeautyConstant;->LEVEL_CLOSE:Ljava/lang/String;
+
+    aput-object v5, v3, v4
+
+    const/4 v4, 0x1
+
+    iget-object v5, p0, Lcom/android/camera/module/Camera2Module;->mBeautyValues:Lcom/android/camera/fragment/beauty/BeautyValues;
+
+    iget-object v5, v5, Lcom/android/camera/fragment/beauty/BeautyValues;->mBeautyLevel:Ljava/lang/String;
+
+    aput-object v5, v3, v4
+
+    invoke-static {v1, v2, v3}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v1
 
-    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3606
-    :cond_4
+    .line 4003
+    :cond_2
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/mi/config/a;->isSupportBeautyBody()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    .line 4004
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mBeautyValues:Lcom/android/camera/fragment/beauty/BeautyValues;
+
+    invoke-static {v0}, Lcom/android/camera/CameraSettings;->initBeautyBody(Lcom/android/camera/fragment/beauty/BeautyValues;)V
+
+    .line 4007
+    :cond_3
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -7363,24 +8213,24 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3607
+    .line 4008
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mBeautyValues:Lcom/android/camera/fragment/beauty/BeautyValues;
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setBeautyValues(Lcom/android/camera/fragment/beauty/BeautyValues;)V
 
-    .line 3608
+    .line 4009
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateFaceAgeAnalyze()V
 
-    .line 3609
+    .line 4010
     return-void
 .end method
 
 .method private updateBokeh()V
     .locals 2
 
-    .line 754
+    .line 759
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v0
@@ -7393,15 +8243,15 @@
 
     if-nez v0, :cond_0
 
-    .line 755
+    .line 760
     invoke-static {}, Lcom/android/camera/module/ModuleManager;->isPortraitModule()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 756
-    invoke-static {}, Lcom/mi/config/b;->hb()Z
+    .line 761
+    invoke-static {}, Lcom/mi/config/b;->ht()Z
 
     move-result v0
 
@@ -7414,20 +8264,20 @@
     :cond_0
     const/4 v0, 0x0
 
-    .line 757
+    .line 762
     :goto_0
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->setBokeh(Z)V
 
-    .line 758
+    .line 763
     return-void
 .end method
 
 .method private updateContrast()V
     .locals 2
 
-    .line 3951
+    .line 4377
     invoke-static {}, Lcom/android/camera/CameraSettings;->getContrast()Ljava/lang/String;
 
     move-result-object v0
@@ -7436,48 +8286,135 @@
 
     move-result v0
 
-    .line 3952
+    .line 4378
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->setContrast(I)V
 
-    .line 3953
+    .line 4379
+    return-void
+.end method
+
+.method private updateDecodePreview()V
+    .locals 3
+
+    .line 4398
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->scanQRCodeEnabled()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    invoke-static {}, Lcom/mi/config/b;->fR()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 4400
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->scanQRCodeEnabled()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 4401
+    invoke-static {}, Lcom/android/zxing/PreviewDecodeManager;->getInstance()Lcom/android/zxing/PreviewDecodeManager;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
+
+    iget v1, v1, Lcom/android/camera/CameraSize;->width:I
+
+    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
+
+    iget v2, v2, Lcom/android/camera/CameraSize;->height:I
+
+    invoke-virtual {v0, v1, v2}, Lcom/android/zxing/PreviewDecodeManager;->setPreviewSize(II)V
+
+    .line 4403
+    :cond_1
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "updateDecodePreview: PreviewDecodeManager mPreviewSize = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 4405
+    invoke-static {}, Lcom/android/zxing/PreviewDecodeManager;->getInstance()Lcom/android/zxing/PreviewDecodeManager;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/zxing/PreviewDecodeManager;->getPreviewCallback()Lcom/android/camera2/Camera2Proxy$PreviewCallback;
+
+    move-result-object v0
+
+    .line 4406
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->startPreviewCallback(Lcom/android/camera2/Camera2Proxy$PreviewCallback;)V
+
+    .line 4407
+    invoke-static {}, Lcom/android/zxing/PreviewDecodeManager;->getInstance()Lcom/android/zxing/PreviewDecodeManager;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/zxing/PreviewDecodeManager;->startDecode()V
+
+    .line 4409
+    :cond_2
     return-void
 .end method
 
 .method private updateDeviceOrientation()V
     .locals 2
 
-    .line 3991
+    .line 4418
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mOrientation:I
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setDeviceOrientation(I)V
 
-    .line 3992
+    .line 4419
     return-void
 .end method
 
 .method private updateExposureTime()V
     .locals 4
 
-    .line 3862
+    .line 4286
     const-string v0, "pref_qc_camera_exposuretime_key"
 
-    .line 3863
-    const v1, 0x7f0b012f
+    .line 4287
+    const v1, 0x7f090136
 
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 3862
+    .line 4286
     invoke-direct {p0, v0, v1}, Lcom/android/camera/module/Camera2Module;->getManualValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 3864
+    .line 4288
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-static {v0}, Ljava/lang/Long;->parseLong(Ljava/lang/String;)J
@@ -7486,17 +8423,17 @@
 
     invoke-virtual {v1, v2, v3}, Lcom/android/camera2/Camera2Proxy;->setExposureTime(J)V
 
-    .line 3865
+    .line 4289
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->updateManualEvAdjust()V
 
-    .line 3866
+    .line 4290
     return-void
 .end method
 
 .method private updateEyeLight()V
     .locals 4
 
-    .line 3435
+    .line 3843
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v0
@@ -7507,13 +8444,13 @@
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/mi/config/a;->fq()Z
+    invoke-virtual {v0}, Lcom/mi/config/a;->ft()Z
 
     move-result v0
 
     if-eqz v0, :cond_3
 
-    .line 3436
+    .line 3844
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mBeautyValues:Lcom/android/camera/fragment/beauty/BeautyValues;
 
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->isFaceBeautyOn(Lcom/android/camera/fragment/beauty/BeautyValues;)Z
@@ -7531,7 +8468,7 @@
     :cond_0
     const-string v0, "-1"
 
-    .line 3438
+    .line 3846
     :goto_0
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -7539,17 +8476,17 @@
 
     const/16 v2, 0xac
 
-    .line 3439
+    .line 3847
     invoke-virtual {v1, v2}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v1
 
     check-cast v1, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
 
-    .line 3440
+    .line 3848
     if-eqz v1, :cond_2
 
-    .line 3441
+    .line 3849
     const-string v2, "-1"
 
     invoke-virtual {v2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -7558,19 +8495,7 @@
 
     if-eqz v2, :cond_1
 
-    .line 3442
-    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
-
-    new-instance v3, Lcom/android/camera/module/Camera2Module$17;
-
-    invoke-direct {v3, p0, v1}, Lcom/android/camera/module/Camera2Module$17;-><init>(Lcom/android/camera/module/Camera2Module;Lcom/android/camera/protocol/ModeProtocol$TopAlert;)V
-
-    invoke-virtual {v2, v3}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
-
-    goto :goto_1
-
-    .line 3449
-    :cond_1
+    .line 3850
     iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     new-instance v3, Lcom/android/camera/module/Camera2Module$18;
@@ -7579,19 +8504,31 @@
 
     invoke-virtual {v2, v3}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
 
-    .line 3458
+    goto :goto_1
+
+    .line 3857
+    :cond_1
+    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
+
+    new-instance v3, Lcom/android/camera/module/Camera2Module$19;
+
+    invoke-direct {v3, p0, v1}, Lcom/android/camera/module/Camera2Module$19;-><init>(Lcom/android/camera/module/Camera2Module;Lcom/android/camera/protocol/ModeProtocol$TopAlert;)V
+
+    invoke-virtual {v2, v3}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
+
+    .line 3866
     :cond_2
     :goto_1
     invoke-static {v0}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
 
     move-result v0
 
-    .line 3459
+    .line 3867
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->setEyeLight(I)V
 
-    .line 3461
+    .line 3869
     :cond_3
     return-void
 .end method
@@ -7599,27 +8536,27 @@
 .method private updateFNumber()V
     .locals 2
 
-    .line 3464
+    .line 3872
     invoke-static {}, Lcom/android/camera/CameraSettings;->readFNumber()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 3465
+    .line 3873
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->setFNumber(Ljava/lang/String;)V
 
-    .line 3466
+    .line 3874
     return-void
 .end method
 
 .method private updateFace()V
     .locals 6
 
-    .line 3670
+    .line 4079
     nop
 
-    .line 3671
+    .line 4080
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStatus:Z
 
     const/4 v1, 0x0
@@ -7638,7 +8575,7 @@
 
     goto :goto_1
 
-    .line 3673
+    .line 4082
     :cond_0
     invoke-static {}, Lcom/android/camera/CameraSettings;->isMagicMirrorOn()Z
 
@@ -7646,21 +8583,21 @@
 
     if-nez v0, :cond_3
 
-    .line 3674
+    .line 4083
     invoke-static {}, Lcom/android/camera/CameraSettings;->isPortraitModeBackOn()Z
 
     move-result v0
 
     if-nez v0, :cond_3
 
-    .line 3675
+    .line 4084
     invoke-static {}, Lcom/android/camera/CameraSettings;->isGroupShotOn()Z
 
     move-result v0
 
     if-nez v0, :cond_3
 
-    .line 3676
+    .line 4085
     invoke-static {}, Lcom/android/camera/CameraSettings;->showGenderAge()Z
 
     move-result v0
@@ -7669,7 +8606,7 @@
 
     goto :goto_0
 
-    .line 3679
+    .line 4088
     :cond_1
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
 
@@ -7677,7 +8614,7 @@
 
     const-string v3, "pref_camera_facedetection_key"
 
-    .line 3681
+    .line 4090
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getResources()Landroid/content/res/Resources;
 
     move-result-object v4
@@ -7688,12 +8625,12 @@
 
     move-result v4
 
-    .line 3679
+    .line 4088
     invoke-virtual {v0, v3, v4}, Lcom/android/camera/data/data/global/DataItemGlobal;->getBoolean(Ljava/lang/String;Z)Z
 
     move-result v0
 
-    .line 3682
+    .line 4091
     invoke-static {}, Lcom/android/camera/CameraSettings;->isGradienterOn()Z
 
     move-result v3
@@ -7706,33 +8643,33 @@
 
     if-eqz v3, :cond_5
 
-    .line 3683
+    .line 4092
     :cond_2
     nop
 
-    .line 3687
+    .line 4096
     move v3, v1
 
     goto :goto_2
 
-    .line 3677
+    .line 4086
     :cond_3
     :goto_0
     nop
 
-    .line 3687
+    .line 4096
     move v0, v2
 
     move v3, v0
 
     goto :goto_2
 
-    .line 3672
+    .line 4081
     :cond_4
     :goto_1
     nop
 
-    .line 3687
+    .line 4096
     move v0, v1
 
     :cond_5
@@ -7743,7 +8680,7 @@
 
     if-eqz v4, :cond_8
 
-    .line 3688
+    .line 4097
     iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     if-eqz v0, :cond_7
@@ -7764,36 +8701,36 @@
     :goto_4
     invoke-interface {v4, v3}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->setSkipDrawFace(Z)V
 
-    .line 3690
+    .line 4099
     :cond_8
     if-eqz v0, :cond_9
 
-    .line 3691
+    .line 4100
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mFaceDetectionEnabled:Z
 
     if-nez v0, :cond_a
 
-    .line 3692
+    .line 4101
     iput-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mFaceDetectionEnabled:Z
 
-    .line 3693
+    .line 4102
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->startFaceDetection()V
 
     goto :goto_5
 
-    .line 3696
+    .line 4105
     :cond_9
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mFaceDetectionEnabled:Z
 
     if-eqz v0, :cond_a
 
-    .line 3697
+    .line 4106
     invoke-virtual {p0, v2}, Lcom/android/camera/module/Camera2Module;->stopFaceDetection(Z)V
 
-    .line 3698
+    .line 4107
     iput-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mFaceDetectionEnabled:Z
 
-    .line 3701
+    .line 4110
     :cond_a
     :goto_5
     return-void
@@ -7802,10 +8739,10 @@
 .method private updateFaceAgeAnalyze()V
     .locals 3
 
-    .line 770
+    .line 774
     nop
 
-    .line 771
+    .line 775
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
     move-result-object v0
@@ -7818,23 +8755,23 @@
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsGenderAgeOn:Z
 
-    .line 772
+    .line 776
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsGenderAgeOn:Z
 
     const/4 v1, 0x1
 
     if-eqz v0, :cond_0
 
-    .line 773
+    .line 777
     goto :goto_0
 
-    .line 774
+    .line 778
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mBeautyValues:Lcom/android/camera/fragment/beauty/BeautyValues;
 
     if-eqz v0, :cond_1
 
-    .line 775
+    .line 779
     invoke-static {}, Lcom/android/camera/CameraSettings;->getFaceBeautyCloseValue()Ljava/lang/String;
 
     move-result-object v0
@@ -7847,7 +8784,7 @@
 
     move-result v0
 
-    .line 777
+    .line 781
     xor-int/2addr v1, v0
 
     goto :goto_0
@@ -7860,7 +8797,7 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setFaceAgeAnalyze(Z)V
 
-    .line 778
+    .line 782
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v0
@@ -7871,12 +8808,12 @@
 
     if-eqz v0, :cond_2
 
-    .line 779
+    .line 783
     sget v0, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_NONE:I
 
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->prepareEffectProcessor(I)V
 
-    .line 781
+    .line 785
     :cond_2
     return-void
 .end method
@@ -7884,7 +8821,7 @@
 .method private updateFaceScore()V
     .locals 2
 
-    .line 762
+    .line 766
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
     move-result-object v0
@@ -7897,14 +8834,14 @@
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsMagicMirrorOn:Z
 
-    .line 763
+    .line 767
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mIsMagicMirrorOn:Z
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setFaceScore(Z)V
 
-    .line 764
+    .line 768
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v0
@@ -7915,12 +8852,12 @@
 
     if-eqz v0, :cond_0
 
-    .line 765
+    .line 769
     sget v0, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_NONE:I
 
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->prepareEffectProcessor(I)V
 
-    .line 767
+    .line 771
     :cond_0
     return-void
 .end method
@@ -7928,22 +8865,22 @@
 .method private updateFilter()V
     .locals 1
 
-    .line 3232
+    .line 3654
     invoke-static {}, Lcom/android/camera/CameraSettings;->getShaderEffect()I
 
     move-result v0
 
-    .line 3233
+    .line 3655
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->setEffectFilter(I)V
 
-    .line 3234
+    .line 3656
     return-void
 .end method
 
 .method private updateFocusArea()V
     .locals 4
 
-    .line 3470
+    .line 3878
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     if-eqz v0, :cond_3
@@ -7964,18 +8901,18 @@
 
     goto :goto_2
 
-    .line 3491
+    .line 3899
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCropRegion()Landroid/graphics/Rect;
 
     move-result-object v0
 
-    .line 3492
+    .line 3900
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getActiveArraySize()Landroid/graphics/Rect;
 
     move-result-object v1
 
-    .line 3493
+    .line 3901
     iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v2}, Lcom/android/camera/Camera;->getSensorStateManager()Lcom/android/camera/SensorStateManager;
@@ -7984,7 +8921,7 @@
 
     iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
-    .line 3494
+    .line 3902
     invoke-virtual {v3, v0, v1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->getMeteringAreas(Landroid/graphics/Rect;Landroid/graphics/Rect;)[Landroid/hardware/camera2/params/MeteringRectangle;
 
     move-result-object v3
@@ -7998,11 +8935,11 @@
     :cond_1
     const/4 v3, 0x0
 
-    .line 3493
+    .line 3901
     :goto_0
     invoke-virtual {v2, v3}, Lcom/android/camera/SensorStateManager;->setFocusSensorEnabled(Z)V
 
-    .line 3496
+    .line 3904
     iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
@@ -8013,12 +8950,12 @@
 
     invoke-virtual {v2, v3}, Lcom/android/camera2/Camera2Proxy;->setAERegions([Landroid/hardware/camera2/params/MeteringRectangle;)V
 
-    .line 3498
+    .line 3906
     iget-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mFocusAreaSupported:Z
 
     if-eqz v2, :cond_2
 
-    .line 3499
+    .line 3907
     iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
@@ -8031,17 +8968,17 @@
 
     goto :goto_1
 
-    .line 3501
+    .line 3909
     :cond_2
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->resumePreview()V
 
-    .line 3503
+    .line 3911
     :goto_1
     return-void
 
-    .line 3471
+    .line 3879
     :cond_3
     :goto_2
     return-void
@@ -8050,7 +8987,24 @@
 .method private updateFocusMode()V
     .locals 2
 
-    .line 3617
+    .line 4018
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsMoonMode:Z
+
+    if-eqz v0, :cond_0
+
+    .line 4020
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
+
+    const-string v1, "manual"
+
+    invoke-virtual {v0, v1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->setFocusMode(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 4022
+    :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-static {}, Lcom/android/camera/CameraSettings;->getFocusMode()Ljava/lang/String;
@@ -8061,55 +9015,56 @@
 
     move-result-object v0
 
-    .line 3618
+    .line 4024
+    :goto_0
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->setFocusMode(Ljava/lang/String;)V
 
-    .line 3620
+    .line 4025
     invoke-static {}, Lcom/android/camera/CameraSettings;->isFocusModeSwitching()Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_1
 
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isBackCamera()Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_1
 
-    .line 3621
+    .line 4026
     const/4 v1, 0x0
 
     invoke-static {v1}, Lcom/android/camera/CameraSettings;->setFocusModeSwitching(Z)V
 
-    .line 3622
+    .line 4027
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {v1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->resetFocusStateIfNeeded()V
 
-    .line 3629
-    :cond_0
+    .line 4034
+    :cond_1
     const-string v1, "manual"
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_3
 
-    .line 3630
+    .line 4035
     invoke-static {}, Lcom/android/camera/CameraSettings;->getFocusPosition()I
 
     move-result v0
 
-    .line 3631
+    .line 4036
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
 
     invoke-virtual {v1}, Lcom/android/camera2/CameraCapabilities;->getMinimumFocusDistance()F
 
     move-result v1
 
-    .line 3633
+    .line 4038
     int-to-float v0, v0
 
     mul-float/2addr v1, v0
@@ -8118,32 +9073,41 @@
 
     div-float/2addr v1, v0
 
-    .line 3634
+    .line 4040
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsMoonMode:Z
+
+    if-eqz v0, :cond_2
+
+    .line 4041
+    const/4 v1, 0x0
+
+    .line 4043
+    :cond_2
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setFocusDistance(F)V
 
-    .line 3639
-    :cond_1
+    .line 4048
+    :cond_3
     return-void
 .end method
 
 .method private updateFpsRange()V
     .locals 7
 
-    .line 3648
+    .line 4057
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
 
     invoke-virtual {v0}, Lcom/android/camera2/CameraCapabilities;->getSupportedFpsRange()[Landroid/util/Range;
 
     move-result-object v0
 
-    .line 3649
+    .line 4058
     const/4 v1, 0x0
 
     aget-object v2, v0, v1
 
-    .line 3650
+    .line 4059
     array-length v3, v0
 
     :goto_0
@@ -8151,7 +9115,7 @@
 
     aget-object v4, v0, v1
 
-    .line 3651
+    .line 4060
     invoke-virtual {v2}, Landroid/util/Range;->getUpper()Ljava/lang/Comparable;
 
     move-result-object v5
@@ -8174,10 +9138,10 @@
 
     if-ge v5, v6, :cond_0
 
-    .line 3652
+    .line 4061
     goto :goto_1
 
-    .line 3653
+    .line 4062
     :cond_0
     invoke-virtual {v2}, Landroid/util/Range;->getUpper()Ljava/lang/Comparable;
 
@@ -8189,7 +9153,7 @@
 
     if-ne v5, v6, :cond_1
 
-    .line 3654
+    .line 4063
     invoke-virtual {v2}, Landroid/util/Range;->getLower()Ljava/lang/Comparable;
 
     move-result-object v5
@@ -8212,10 +9176,10 @@
 
     if-ge v5, v6, :cond_1
 
-    .line 3655
+    .line 4064
     nop
 
-    .line 3650
+    .line 4059
     :goto_1
     move-object v2, v4
 
@@ -8224,7 +9188,7 @@
 
     goto :goto_0
 
-    .line 3659
+    .line 4068
     :cond_2
     sget-boolean v0, Lcom/mi/config/b;->qU:Z
 
@@ -8236,7 +9200,7 @@
 
     if-eqz v0, :cond_3
 
-    .line 3660
+    .line 4069
     new-instance v0, Landroid/util/Range;
 
     const/16 v1, 0x1e
@@ -8251,15 +9215,15 @@
 
     invoke-direct {v0, v2, v1}, Landroid/util/Range;-><init>(Ljava/lang/Comparable;Ljava/lang/Comparable;)V
 
-    .line 3664
+    .line 4073
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->setFpsRange(Landroid/util/Range;)V
 
-    .line 3665
+    .line 4074
     return-void
 
-    .line 3662
+    .line 4071
     :cond_3
     return-void
 .end method
@@ -8267,38 +9231,38 @@
 .method private updateFrontMirror()V
     .locals 2
 
-    .line 785
+    .line 789
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 786
+    .line 790
     const/4 v0, 0x0
 
     goto :goto_0
 
-    .line 788
+    .line 792
     :cond_0
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isFrontMirror()Z
 
     move-result v0
 
-    .line 790
+    .line 794
     :goto_0
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->setFrontMirror(Z)V
 
-    .line 791
+    .line 795
     return-void
 .end method
 
 .method private updateHDR(Ljava/lang/String;)V
     .locals 3
 
-    .line 3393
+    .line 3814
     const-string v0, "auto"
 
     invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -8309,31 +9273,31 @@
 
     if-eqz v0, :cond_0
 
-    .line 3395
+    .line 3816
     iput-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->isDetectedInHDR:Z
 
-    .line 3397
+    .line 3818
     :cond_0
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->getMutexHdrMode(Ljava/lang/String;)I
 
     move-result p1
 
-    .line 3398
+    .line 3819
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->stopObjectTracking(Z)V
 
-    .line 3400
+    .line 3821
     if-eqz p1, :cond_1
 
-    .line 3401
+    .line 3822
     iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
     invoke-virtual {v2, p1}, Lcom/android/camera/MutexModeManager;->setMutexMode(I)V
 
     goto :goto_0
 
-    .line 3402
+    .line 3823
     :cond_1
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
@@ -8343,10 +9307,10 @@
 
     if-eqz p1, :cond_2
 
-    .line 3403
+    .line 3824
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->resetMutexModeManually()V
 
-    .line 3407
+    .line 3828
     :cond_2
     :goto_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
@@ -8355,24 +9319,20 @@
 
     if-eqz p1, :cond_3
 
-    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
-
-    invoke-virtual {p1}, Lcom/android/camera2/CameraCapabilities;->isSupportedQcfa()Z
+    invoke-direct {p0, v1, v0}, Lcom/android/camera/module/Camera2Module;->isTriggerQcfaModeChange(ZZ)Z
 
     move-result p1
 
     if-eqz p1, :cond_3
 
-    .line 3408
-    new-array p1, v0, [I
+    .line 3829
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
-    const/16 v0, 0x29
+    const/16 v0, 0x2c
 
-    aput v0, p1, v1
+    invoke-virtual {p1, v0}, Lcom/android/camera/module/Camera2Module$MainHandler;->sendEmptyMessage(I)Z
 
-    invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->updatePreferenceInWorkThread([I)V
-
-    .line 3410
+    .line 3831
     :cond_3
     return-void
 .end method
@@ -8380,21 +9340,21 @@
 .method private updateISO()V
     .locals 3
 
-    .line 3849
-    const v0, 0x7f0b00a5
+    .line 4273
+    const v0, 0x7f0900aa
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 3850
+    .line 4274
     const-string v1, "pref_qc_camera_iso_key"
 
     invoke-direct {p0, v1, v0}, Lcom/android/camera/module/Camera2Module;->getManualValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 3852
+    .line 4276
     const/4 v2, 0x0
 
     if-eqz v1, :cond_0
@@ -8405,7 +9365,7 @@
 
     if-nez v0, :cond_0
 
-    .line 3854
+    .line 4278
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-static {v1, v2}, Lcom/android/camera/Util;->parseInt(Ljava/lang/String;I)I
@@ -8426,53 +9386,53 @@
 
     goto :goto_0
 
-    .line 3856
+    .line 4280
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, v2}, Lcom/android/camera2/Camera2Proxy;->setISO(I)V
 
-    .line 3858
+    .line 4282
     :goto_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->updateManualEvAdjust()V
 
-    .line 3859
+    .line 4283
     return-void
 .end method
 
 .method private updateJpegQuality()V
     .locals 2
 
-    .line 3704
+    .line 4113
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStatus:Z
 
     invoke-static {v0}, Lcom/android/camera/module/Camera2Module;->getJpegQuality(Z)I
 
     move-result v0
 
-    .line 3705
+    .line 4114
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->setJpegQuality(I)V
 
-    .line 3706
+    .line 4115
     return-void
 .end method
 
 .method private updateJpegThumbnailSize()V
     .locals 4
 
-    .line 3985
+    .line 4412
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getJpegThumbnailSize()Lcom/android/camera/CameraSize;
 
     move-result-object v0
 
-    .line 3986
+    .line 4413
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->setJpegThumbnailSize(Lcom/android/camera/CameraSize;)V
 
-    .line 3987
+    .line 4414
     sget-object v1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -8491,19 +9451,19 @@
 
     invoke-static {v1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3988
+    .line 4415
     return-void
 .end method
 
 .method private updateLiveShot()V
     .locals 2
 
-    .line 671
+    .line 646
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/mi/config/a;->fy()Z
+    invoke-virtual {v0}, Lcom/mi/config/a;->fC()Z
 
     move-result v0
 
@@ -8515,25 +9475,25 @@
 
     if-ne v0, v1, :cond_1
 
-    .line 673
+    .line 648
     invoke-static {}, Lcom/android/camera/CameraSettings;->isLiveShotOn()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 674
+    .line 649
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->startLiveShot()V
 
     goto :goto_0
 
-    .line 676
+    .line 651
     :cond_0
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->stopLiveShot(Z)V
 
-    .line 679
+    .line 654
     :cond_1
     :goto_0
     return-void
@@ -8542,7 +9502,7 @@
 .method private updateMfnr(Z)V
     .locals 3
 
-    .line 3742
+    .line 4151
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     const/4 v1, 0x0
@@ -8555,7 +9515,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 3743
+    .line 4152
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDualCamera()Z
 
     move-result v0
@@ -8565,24 +9525,31 @@
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
-    .line 3744
+    .line 4153
     invoke-virtual {v0}, Lcom/android/camera/MutexModeManager;->isNormal()Z
 
     move-result v0
 
     if-eqz v0, :cond_3
 
+    .line 4154
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isGroupShotOn()Z
+
+    move-result v0
+
+    if-nez v0, :cond_3
+
     if-eqz p1, :cond_3
 
-    .line 3746
+    .line 4156
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result p1
 
     if-eqz p1, :cond_1
 
-    .line 3747
-    invoke-static {}, Lcom/mi/config/b;->hw()Z
+    .line 4157
+    invoke-static {}, Lcom/mi/config/b;->hN()Z
 
     move-result p1
 
@@ -8594,13 +9561,13 @@
 
     if-ne p1, v0, :cond_3
 
-    .line 3749
+    .line 4159
     :cond_1
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
     move-result-object p1
 
-    invoke-virtual {p1}, Lcom/mi/config/a;->eT()Z
+    invoke-virtual {p1}, Lcom/mi/config/a;->eV()Z
 
     move-result p1
 
@@ -8614,7 +9581,7 @@
 
     if-eqz p1, :cond_2
 
-    .line 3751
+    .line 4161
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isUltraWideBackCamera()Z
 
     move-result p1
@@ -8626,7 +9593,7 @@
 
     goto :goto_0
 
-    .line 3752
+    .line 4162
     :cond_3
     move p1, v1
 
@@ -8637,10 +9604,10 @@
 
     if-eqz v0, :cond_4
 
-    .line 3753
+    .line 4163
     nop
 
-    .line 3755
+    .line 4165
     move p1, v1
 
     :cond_4
@@ -8648,7 +9615,7 @@
 
     if-eqz v0, :cond_5
 
-    .line 3756
+    .line 4166
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -8667,12 +9634,12 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3757
+    .line 4167
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, p1}, Lcom/android/camera2/Camera2Proxy;->setMfnr(Z)V
 
-    .line 3759
+    .line 4169
     :cond_5
     return-void
 .end method
@@ -8680,14 +9647,14 @@
 .method private updateMute()V
     .locals 0
 
-    .line 3734
+    .line 4143
     return-void
 .end method
 
 .method private updateNormalWideLDC()V
     .locals 2
 
-    .line 3911
+    .line 4335
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->shouldApplyNormalWideLDC()Z
@@ -8696,14 +9663,14 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setNormalWideLDC(Z)V
 
-    .line 3912
+    .line 4336
     return-void
 .end method
 
 .method private updateOIS()V
     .locals 8
 
-    .line 3709
+    .line 4118
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDualCamera()Z
 
     move-result v0
@@ -8722,16 +9689,16 @@
 
     if-lez v0, :cond_0
 
-    .line 3712
+    .line 4121
     move v0, v2
 
     goto :goto_0
 
-    .line 3709
+    .line 4118
     :cond_0
     nop
 
-    .line 3712
+    .line 4121
     move v0, v1
 
     :goto_0
@@ -8739,32 +9706,32 @@
 
     move-result v3
 
-    .line 3713
+    .line 4122
     nop
 
-    .line 3715
+    .line 4124
     iget v4, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     const/16 v5, 0xa7
 
     if-ne v4, v5, :cond_1
 
-    .line 3716
+    .line 4125
     const-string v4, "pref_qc_camera_exposuretime_key"
 
-    const v5, 0x7f0b012f
+    const v5, 0x7f090136
 
-    .line 3717
+    .line 4126
     invoke-virtual {p0, v5}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
     move-result-object v5
 
-    .line 3716
+    .line 4125
     invoke-direct {p0, v4, v5}, Lcom/android/camera/module/Camera2Module;->getManualValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v4
 
-    .line 3718
+    .line 4127
     invoke-static {v4}, Ljava/lang/Long;->parseLong(Ljava/lang/String;)J
 
     move-result-wide v4
@@ -8775,10 +9742,10 @@
 
     if-lez v4, :cond_1
 
-    .line 3719
+    .line 4128
     nop
 
-    .line 3723
+    .line 4132
     move v4, v2
 
     goto :goto_1
@@ -8795,7 +9762,7 @@
 
     goto :goto_2
 
-    .line 3728
+    .line 4137
     :cond_2
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
@@ -8803,94 +9770,23 @@
 
     goto :goto_3
 
-    .line 3726
+    .line 4135
     :cond_3
     :goto_2
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setEnableOIS(Z)V
 
-    .line 3730
+    .line 4139
     :goto_3
-    return-void
-.end method
-
-.method private updateOperatingMode()V
-    .locals 3
-
-    .line 3413
-    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentHdr()Lcom/android/camera/data/data/config/ComponentConfigHdr;
-
-    move-result-object v0
-
-    .line 3414
-    iget v1, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/data/data/config/ComponentConfigHdr;->getComponentValue(I)Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 3415
-    invoke-static {}, Lcom/android/camera/fragment/beauty/BeautyParameters;->isFaceBeautyOn()Z
-
-    move-result v1
-
-    if-nez v1, :cond_2
-
-    .line 3416
-    iget v1, p0, Lcom/android/camera/module/Camera2Module;->mOperatingMode:I
-
-    const v2, 0x8005
-
-    if-ne v1, v2, :cond_0
-
-    const-string v1, "off"
-
-    .line 3417
-    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v1
-
-    if-nez v1, :cond_1
-
-    :cond_0
-    iget v1, p0, Lcom/android/camera/module/Camera2Module;->mOperatingMode:I
-
-    const v2, 0x8007
-
-    if-ne v1, v2, :cond_2
-
-    const-string v1, "off"
-
-    .line 3419
-    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    if-nez v0, :cond_2
-
-    .line 3420
-    :cond_1
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
-
-    const/16 v1, 0x2c
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->sendEmptyMessage(I)Z
-
-    .line 3423
-    :cond_2
     return-void
 .end method
 
 .method private updatePictureAndPreviewSize()V
     .locals 9
 
-    .line 3180
-    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsParallelProcess:Z
+    .line 3590
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mEnableParallelSession:Z
 
     const/16 v1, 0x100
 
@@ -8898,208 +9794,243 @@
 
     if-eqz v0, :cond_0
 
-    .line 3181
+    .line 3591
     nop
 
-    .line 3186
+    .line 3596
     move v0, v2
 
     goto :goto_0
 
-    .line 3183
+    .line 3593
     :cond_0
     nop
 
-    .line 3186
+    .line 3596
     move v0, v1
 
     :goto_0
     iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
 
-    .line 3187
+    .line 3597
     invoke-virtual {v3, v0}, Lcom/android/camera2/CameraCapabilities;->getSupportedOutputSize(I)Ljava/util/List;
 
+    move-result-object v0
+
+    .line 3598
+    invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->getBestPictureSize(Ljava/util/List;)Lcom/android/camera/CameraSize;
+
+    move-result-object v0
+
+    .line 3599
+    iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
+
+    .line 3601
+    iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
+
+    const-class v4, Landroid/graphics/SurfaceTexture;
+
+    .line 3602
+    invoke-virtual {v3, v4}, Lcom/android/camera2/CameraCapabilities;->getSupportedOutputSize(Ljava/lang/Class;)Ljava/util/List;
+
     move-result-object v3
 
-    .line 3188
-    invoke-virtual {p0, v3}, Lcom/android/camera/module/Camera2Module;->getBestPictureSize(Ljava/util/List;)Lcom/android/camera/CameraSize;
+    .line 3603
+    iget v4, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    iget v5, p0, Lcom/android/camera/module/Camera2Module;->mBogusCameraId:I
+
+    iget v6, v0, Lcom/android/camera/CameraSize;->width:I
+
+    iget v7, v0, Lcom/android/camera/CameraSize;->height:I
+
+    .line 3604
+    invoke-static {v6, v7}, Lcom/android/camera/CameraSettings;->getPreviewAspectRatio(II)F
+
+    move-result v6
+
+    float-to-double v6, v6
+
+    .line 3603
+    invoke-static {v4, v5, v3, v6, v7}, Lcom/android/camera/Util;->getOptimalPreviewSize(IILjava/util/List;D)Lcom/android/camera/CameraSize;
 
     move-result-object v3
 
-    .line 3190
-    iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
+    iput-object v3, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
 
-    const-class v5, Landroid/graphics/SurfaceTexture;
+    .line 3605
+    iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    .line 3191
-    invoke-virtual {v4, v5}, Lcom/android/camera2/CameraCapabilities;->getSupportedOutputSize(Ljava/lang/Class;)Ljava/util/List;
+    iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
 
-    move-result-object v4
+    invoke-virtual {v3, v4}, Lcom/android/camera2/Camera2Proxy;->setPreviewSize(Lcom/android/camera/CameraSize;)V
 
-    .line 3192
-    iget v5, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+    .line 3606
+    iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    iget v6, p0, Lcom/android/camera/module/Camera2Module;->mBogusCameraId:I
+    invoke-virtual {v3, v2}, Lcom/android/camera2/Camera2Proxy;->setPreviewFormat(I)V
 
-    iget v7, v3, Lcom/android/camera/CameraSize;->width:I
+    .line 3608
+    iget-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mEnableParallelSession:Z
 
-    iget v8, v3, Lcom/android/camera/CameraSize;->height:I
+    const/4 v3, 0x1
 
-    .line 3193
-    invoke-static {v7, v8}, Lcom/android/camera/CameraSettings;->getPreviewAspectRatio(II)F
+    const/4 v4, 0x0
 
-    move-result v7
-
-    float-to-double v7, v7
-
-    .line 3192
-    invoke-static {v5, v6, v4, v7, v8}, Lcom/android/camera/Util;->getOptimalPreviewSize(IILjava/util/List;D)Lcom/android/camera/CameraSize;
-
-    move-result-object v4
-
-    .line 3195
-    iput-object v3, p0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
-
-    .line 3196
-    iput-object v4, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
-
-    .line 3197
-    iget-object v5, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    invoke-virtual {v5}, Lcom/android/camera2/Camera2Proxy;->getPreviewSize()Lcom/android/camera/CameraSize;
-
-    move-result-object v5
-
-    .line 3198
-    invoke-virtual {v4, v5}, Lcom/android/camera/CameraSize;->equals(Ljava/lang/Object;)Z
-
-    move-result v5
-
-    if-nez v5, :cond_1
-
-    .line 3199
-    iget-object v5, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    invoke-virtual {v5, v4}, Lcom/android/camera2/Camera2Proxy;->setPreviewSize(Lcom/android/camera/CameraSize;)V
-
-    .line 3202
-    :cond_1
-    iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    invoke-virtual {v4, v2}, Lcom/android/camera2/Camera2Proxy;->setPreviewFormat(I)V
-
-    .line 3204
-    iget-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mIsParallelProcess:Z
+    const/4 v5, 0x2
 
     if-eqz v2, :cond_4
 
-    .line 3205
-    invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2DataContainer;
+    .line 3610
+    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
 
-    move-result-object v2
+    .line 3611
+    invoke-virtual {v2, v1}, Lcom/android/camera2/CameraCapabilities;->getSupportedOutputSize(I)Ljava/util/List;
 
-    invoke-virtual {v2}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getAuxFrontCameraId()I
+    move-result-object v1
 
-    move-result v2
+    .line 3612
+    iget v2, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
-    .line 3206
-    if-lez v2, :cond_3
+    const/16 v6, 0xa5
 
-    .line 3207
-    invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2DataContainer;
+    if-ne v2, v6, :cond_2
 
-    move-result-object v4
+    .line 3613
+    invoke-static {v1}, Lcom/android/camera/PictureSizeManager;->getBestSquareSize(Ljava/util/List;)Lcom/android/camera/CameraSize;
 
-    invoke-virtual {v4, v2}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getCapabilities(I)Lcom/android/camera2/CameraCapabilities;
+    move-result-object v1
 
-    move-result-object v2
+    iput-object v1, p0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
 
-    .line 3208
-    if-eqz v2, :cond_3
+    .line 3614
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
 
-    .line 3209
-    invoke-virtual {v2, v0}, Lcom/android/camera2/CameraCapabilities;->getSupportedOutputSize(I)Ljava/util/List;
+    invoke-virtual {v1}, Lcom/android/camera/CameraSize;->getWidth()I
+
+    move-result v1
+
+    if-nez v1, :cond_3
+
+    .line 3615
+    iget v1, v0, Lcom/android/camera/CameraSize;->width:I
+
+    iget v2, v0, Lcom/android/camera/CameraSize;->height:I
+
+    if-le v1, v2, :cond_1
+
+    iget v0, v0, Lcom/android/camera/CameraSize;->height:I
+
+    goto :goto_1
+
+    :cond_1
+    iget v0, v0, Lcom/android/camera/CameraSize;->width:I
+
+    .line 3616
+    :goto_1
+    new-instance v1, Ljava/lang/RuntimeException;
+
+    sget-object v2, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
+
+    new-array v5, v5, [Ljava/lang/Object;
+
+    .line 3617
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v6
+
+    aput-object v6, v5, v4
+
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v0
 
-    .line 3210
-    invoke-static {v0}, Lcom/android/camera/PictureSizeManager;->getBestPictureSize(Ljava/util/List;)Lcom/android/camera/CameraSize;
+    aput-object v0, v5, v3
+
+    .line 3616
+    const-string v0, "size %dx%d is not supported!"
+
+    invoke-static {v2, v0, v5}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mSubPictureSize:Lcom/android/camera/CameraSize;
+    invoke-direct {v1, v0}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;)V
 
-    .line 3211
-    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+    throw v1
+
+    .line 3620
+    :cond_2
+    invoke-static {v1}, Lcom/android/camera/PictureSizeManager;->getBestPictureSize(Ljava/util/List;)Lcom/android/camera/CameraSize;
+
+    move-result-object v1
+
+    iput-object v1, p0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
+
+    .line 3622
+    :cond_3
+    sget-object v1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v4, "subSize: "
+    const-string v6, "outputSize: "
 
-    invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mSubPictureSize:Lcom/android/camera/CameraSize;
+    iget-object v6, p0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
 
-    if-nez v4, :cond_2
-
-    const-string v4, "null"
-
-    goto :goto_1
-
-    :cond_2
-    iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mSubPictureSize:Lcom/android/camera/CameraSize;
-
-    :goto_1
-    invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
     invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v2
 
-    invoke-static {v0, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v1, v2}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3215
-    :cond_3
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
-
-    .line 3216
-    invoke-virtual {v0, v1}, Lcom/android/camera2/CameraCapabilities;->getSupportedOutputSize(I)Ljava/util/List;
-
-    move-result-object v0
-
-    .line 3217
-    invoke-static {v0}, Lcom/android/camera/PictureSizeManager;->getBestPictureSize(Ljava/util/List;)Lcom/android/camera/CameraSize;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
-
-    .line 3220
+    .line 3625
     :cond_4
-    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+    sget-object v1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
-    sget-object v1, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
+    sget-object v2, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
 
-    const-string v2, "updateSize: %dx%d %dx%d"
+    const-string v6, "updateSize: %dx%d %dx%d"
 
-    const/4 v4, 0x4
+    const/4 v7, 0x4
 
-    new-array v4, v4, [Ljava/lang/Object;
+    new-array v7, v7, [Ljava/lang/Object;
 
-    const/4 v5, 0x0
+    iget v8, v0, Lcom/android/camera/CameraSize;->width:I
 
-    iget v6, v3, Lcom/android/camera/CameraSize;->width:I
+    .line 3626
+    invoke-static {v8}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    .line 3221
-    invoke-static {v6}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    move-result-object v8
 
-    move-result-object v6
+    aput-object v8, v7, v4
 
-    aput-object v6, v4, v5
+    iget v0, v0, Lcom/android/camera/CameraSize;->height:I
 
-    const/4 v5, 0x1
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    aput-object v0, v7, v3
+
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
+
+    iget v0, v0, Lcom/android/camera/CameraSize;->width:I
+
+    .line 3627
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    aput-object v0, v7, v5
+
+    const/4 v0, 0x3
+
+    iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
 
     iget v3, v3, Lcom/android/camera/CameraSize;->height:I
 
@@ -9107,41 +10038,16 @@
 
     move-result-object v3
 
-    aput-object v3, v4, v5
+    aput-object v3, v7, v0
 
-    const/4 v3, 0x2
+    .line 3625
+    invoke-static {v2, v6, v7}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
-    iget-object v5, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
+    move-result-object v0
 
-    iget v5, v5, Lcom/android/camera/CameraSize;->width:I
+    invoke-static {v1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3222
-    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v5
-
-    aput-object v5, v4, v3
-
-    const/4 v3, 0x3
-
-    iget-object v5, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
-
-    iget v5, v5, Lcom/android/camera/CameraSize;->height:I
-
-    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v5
-
-    aput-object v5, v4, v3
-
-    .line 3220
-    invoke-static {v1, v2, v4}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 3224
+    .line 3629
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
 
     iget v0, v0, Lcom/android/camera/CameraSize;->width:I
@@ -9152,10 +10058,10 @@
 
     invoke-virtual {p0, v0, v1}, Lcom/android/camera/module/Camera2Module;->updateCameraScreenNailSize(II)V
 
-    .line 3227
+    .line 3631
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->checkDisplayOrientation()V
 
-    .line 3228
+    .line 3632
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
 
     iget v0, v0, Lcom/android/camera/CameraSize;->width:I
@@ -9166,14 +10072,14 @@
 
     invoke-direct {p0, v0, v1}, Lcom/android/camera/module/Camera2Module;->setVideoSize(II)V
 
-    .line 3229
+    .line 3633
     return-void
 .end method
 
 .method private updatePortraitLighting()V
     .locals 2
 
-    .line 3426
+    .line 3834
     invoke-static {}, Lcom/android/camera/CameraSettings;->getPortraitLightingPattern()I
 
     move-result v0
@@ -9182,7 +10088,7 @@
 
     move-result-object v0
 
-    .line 3427
+    .line 3835
     const-string v1, "0"
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -9193,102 +10099,27 @@
 
     iput-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mIsPortraitLightingOn:Z
 
-    .line 3428
+    .line 3836
     invoke-static {v0}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
 
     move-result v0
 
-    .line 3429
+    .line 3837
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->setPortraitLighting(I)V
 
-    .line 3431
+    .line 3839
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->setLightingEffect()V
 
-    .line 3432
-    return-void
-.end method
-
-.method private updateQr()V
-    .locals 3
-
-    .line 3972
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->scanQRCodeEnabled()Z
-
-    move-result v0
-
-    if-nez v0, :cond_0
-
-    .line 3973
-    return-void
-
-    .line 3976
-    :cond_0
-    invoke-static {}, Lcom/android/zxing/QRCodeManager;->getInstance()Lcom/android/zxing/QRCodeManager;
-
-    move-result-object v0
-
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
-
-    iget v1, v1, Lcom/android/camera/CameraSize;->width:I
-
-    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
-
-    iget v2, v2, Lcom/android/camera/CameraSize;->height:I
-
-    invoke-virtual {v0, v1, v2}, Lcom/android/zxing/QRCodeManager;->setPreviewSize(II)V
-
-    .line 3977
-    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
-
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v2, "updateQr: QRCodeManager mPreviewSize = "
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 3979
-    invoke-static {}, Lcom/android/zxing/QRCodeManager;->getInstance()Lcom/android/zxing/QRCodeManager;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Lcom/android/zxing/QRCodeManager;->getPreviewCallback()Lcom/android/camera2/Camera2Proxy$PreviewCallback;
-
-    move-result-object v0
-
-    .line 3980
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->startPreviewCallback(Lcom/android/camera2/Camera2Proxy$PreviewCallback;)V
-
-    .line 3981
-    invoke-static {}, Lcom/android/zxing/QRCodeManager;->getInstance()Lcom/android/zxing/QRCodeManager;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Lcom/android/zxing/QRCodeManager;->startDecode()V
-
-    .line 3982
+    .line 3840
     return-void
 .end method
 
 .method private updateSaturation()V
     .locals 2
 
-    .line 3959
+    .line 4385
     invoke-static {}, Lcom/android/camera/CameraSettings;->getSaturation()Ljava/lang/String;
 
     move-result-object v0
@@ -9297,24 +10128,24 @@
 
     move-result v0
 
-    .line 3960
+    .line 4386
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->setSaturation(I)V
 
-    .line 3961
+    .line 4387
     return-void
 .end method
 
 .method private updateScene()V
     .locals 3
 
-    .line 3506
+    .line 3914
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
     move-result-object v0
 
-    .line 3507
+    .line 3915
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
     invoke-virtual {v1}, Lcom/android/camera/MutexModeManager;->isSceneHdr()Z
@@ -9323,14 +10154,14 @@
 
     if-eqz v1, :cond_0
 
-    .line 3508
+    .line 3916
     const-string v0, "18"
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mSceneMode:Ljava/lang/String;
 
     goto :goto_0
 
-    .line 3509
+    .line 3917
     :cond_0
     const-string v1, "pref_camera_scenemode_setting_key"
 
@@ -9340,14 +10171,14 @@
 
     if-nez v1, :cond_1
 
-    .line 3510
+    .line 3918
     const-string v0, "0"
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mSceneMode:Ljava/lang/String;
 
     goto :goto_0
 
-    .line 3512
+    .line 3920
     :cond_1
     invoke-virtual {v0}, Lcom/android/camera/data/data/runing/DataItemRunning;->getComponentRunningSceneValue()Lcom/android/camera/data/data/runing/ComponentRunningSceneValue;
 
@@ -9361,7 +10192,7 @@
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mSceneMode:Ljava/lang/String;
 
-    .line 3514
+    .line 3922
     :goto_0
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
@@ -9395,7 +10226,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3515
+    .line 3923
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mSceneMode:Ljava/lang/String;
 
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->setSceneMode(Ljava/lang/String;)Z
@@ -9404,22 +10235,22 @@
 
     if-nez v0, :cond_2
 
-    .line 3516
+    .line 3924
     const-string v0, "0"
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mSceneMode:Ljava/lang/String;
 
-    .line 3518
+    .line 3926
     :cond_2
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
-    new-instance v1, Lcom/android/camera/module/Camera2Module$19;
+    new-instance v1, Lcom/android/camera/module/Camera2Module$20;
 
-    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$19;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$20;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
 
-    .line 3525
+    .line 3933
     const-string v0, "0"
 
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mSceneMode:Ljava/lang/String;
@@ -9440,10 +10271,10 @@
 
     if-nez v0, :cond_3
 
-    .line 3526
+    .line 3934
     return-void
 
-    .line 3528
+    .line 3936
     :cond_3
     return-void
 .end method
@@ -9451,7 +10282,7 @@
 .method private updateSceneModeUI()V
     .locals 7
 
-    .line 3531
+    .line 3939
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
     move-result-object v0
@@ -9462,7 +10293,7 @@
 
     move-result v0
 
-    .line 3532
+    .line 3940
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v1
@@ -9475,14 +10306,12 @@
 
     check-cast v1, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
 
-    .line 3533
+    .line 3941
     const/4 v2, 0x2
-
-    const/4 v3, 0x0
 
     if-eqz v0, :cond_2
 
-    .line 3535
+    .line 3943
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
 
     move-result-object v0
@@ -9491,98 +10320,90 @@
 
     move-result-object v0
 
-    const/16 v4, 0xa3
+    const/16 v3, 0xa3
 
-    const-string v5, "off"
+    const-string v4, "off"
 
-    .line 3536
-    invoke-virtual {v0, v4, v5}, Lcom/android/camera/data/data/config/ComponentConfigHdr;->setComponentValue(ILjava/lang/String;)V
+    .line 3944
+    invoke-virtual {v0, v3, v4}, Lcom/android/camera/data/data/config/ComponentConfigHdr;->setComponentValue(ILjava/lang/String;)V
 
-    .line 3538
+    .line 3946
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mSceneMode:Ljava/lang/String;
 
     invoke-static {v0}, Lcom/android/camera/CameraSettings;->getFlashModeByScene(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 3540
+    .line 3948
     if-eqz v1, :cond_1
 
-    .line 3541
-    new-array v4, v2, [I
+    .line 3949
+    const/4 v3, 0x1
 
-    fill-array-data v4, :array_0
+    new-array v4, v3, [I
 
-    invoke-interface {v1, v4}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->updateConfigItem([I)V
+    const/16 v5, 0xc2
 
-    .line 3542
-    const/4 v4, 0x1
+    const/4 v6, 0x0
 
-    new-array v5, v4, [I
+    aput v5, v4, v6
 
-    const/16 v6, 0xc2
+    invoke-interface {v1, v4}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->disableMenuItem([I)V
 
-    aput v6, v5, v3
-
-    invoke-interface {v1, v5}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->disableMenuItem([I)V
-
-    .line 3543
-    const/16 v5, 0xc1
+    .line 3950
+    const/16 v4, 0xc1
 
     if-eqz v0, :cond_0
 
-    .line 3544
-    new-array v0, v4, [I
+    .line 3951
+    new-array v0, v3, [I
 
-    aput v5, v0, v3
+    aput v4, v0, v6
 
     invoke-interface {v1, v0}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->disableMenuItem([I)V
 
     goto :goto_0
 
-    .line 3546
+    .line 3953
     :cond_0
-    new-array v0, v4, [I
+    new-array v0, v3, [I
 
-    aput v5, v0, v3
+    aput v4, v0, v6
 
     invoke-interface {v1, v0}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->enableMenuItem([I)V
 
-    .line 3548
+    .line 3955
     :goto_0
     invoke-interface {v1}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->hideExtraMenu()V
 
-    .line 3550
+    .line 3957
     :cond_1
     goto :goto_1
 
-    .line 3551
+    .line 3958
     :cond_2
     if-eqz v1, :cond_3
 
-    .line 3552
-    new-array v0, v3, [I
+    .line 3959
+    new-array v0, v2, [I
+
+    fill-array-data v0, :array_0
 
     invoke-interface {v1, v0}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->enableMenuItem([I)V
 
-    .line 3553
-    new-array v0, v2, [I
-
-    fill-array-data v0, :array_1
-
-    invoke-interface {v1, v0}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->updateConfigItem([I)V
-
-    .line 3556
+    .line 3962
     :cond_3
     :goto_1
     new-array v0, v2, [I
 
-    fill-array-data v0, :array_2
+    fill-array-data v0, :array_1
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->updatePreferenceInWorkThread([I)V
 
-    .line 3557
+    .line 3963
     return-void
+
+    nop
 
     :array_0
     .array-data 4
@@ -9592,12 +10413,6 @@
 
     :array_1
     .array-data 4
-        0xc1
-        0xc2
-    .end array-data
-
-    :array_2
-    .array-data 4
         0xb
         0xa
     .end array-data
@@ -9606,7 +10421,7 @@
 .method private updateSharpness()V
     .locals 2
 
-    .line 3967
+    .line 4393
     invoke-static {}, Lcom/android/camera/CameraSettings;->getSharpness()Ljava/lang/String;
 
     move-result-object v0
@@ -9615,241 +10430,353 @@
 
     move-result v0
 
-    .line 3968
+    .line 4394
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->setSharpness(I)V
 
-    .line 3969
+    .line 4395
     return-void
 .end method
 
 .method private updateShotDetermine()V
-    .locals 5
+    .locals 7
 
-    .line 3132
-    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsImageCaptureIntent:Z
+    .line 3513
+    nop
 
-    const/4 v1, 0x1
+    .line 3514
+    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    const/16 v1, 0xab
 
     const/4 v2, 0x0
 
-    if-eqz v0, :cond_0
+    if-ne v0, v1, :cond_3
 
-    .line 3133
-    const/4 v0, -0x2
-
-    .line 3172
-    :goto_0
-    move v2, v0
-
-    goto :goto_3
-
-    .line 3135
-    :cond_0
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isCameraParallelProcessEnable()Z
+    .line 3515
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isBackCamera()Z
 
     move-result v0
 
-    .line 3137
-    iget v3, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+    if-eqz v0, :cond_2
 
-    const/16 v4, 0xa3
+    .line 3517
+    invoke-static {}, Lcom/mi/config/b;->hM()Z
 
-    if-eq v3, v4, :cond_7
+    move-result v0
 
-    const/16 v4, 0xa5
+    if-nez v0, :cond_1
 
-    if-eq v3, v4, :cond_7
-
-    const/16 v4, 0xab
-
-    if-eq v3, v4, :cond_1
-
-    .line 3139
-    return-void
-
-    .line 3157
-    :cond_1
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isBackCamera()Z
-
-    move-result v3
-
-    if-eqz v3, :cond_4
-
-    .line 3159
-    invoke-static {}, Lcom/mi/config/b;->hv()Z
-
-    move-result v3
-
-    if-nez v3, :cond_3
-
+    .line 3518
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
-    move-result-object v3
+    move-result-object v0
 
-    invoke-virtual {v3}, Lcom/mi/config/a;->eX()Z
+    invoke-virtual {v0}, Lcom/mi/config/a;->eZ()Z
 
-    move-result v3
+    move-result v0
 
-    if-eqz v3, :cond_2
+    if-eqz v0, :cond_0
 
+    goto :goto_0
+
+    :cond_0
     goto :goto_1
 
-    .line 3163
+    :cond_1
+    :goto_0
+    const/4 v0, 0x1
+
+    goto :goto_2
+
+    .line 3520
     :cond_2
-    move v3, v2
-
-    goto :goto_2
-
-    .line 3159
-    :cond_3
-    :goto_1
-    nop
-
-    .line 3163
-    move v3, v1
-
-    goto :goto_2
-
-    .line 3161
-    :cond_4
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
 
-    move-result-object v3
+    move-result-object v0
 
-    invoke-virtual {v3}, Lcom/mi/config/a;->eY()Z
+    invoke-virtual {v0}, Lcom/mi/config/a;->fa()Z
 
-    move-result v3
+    move-result v0
 
-    .line 3163
+    goto :goto_2
+
+    .line 3525
+    :cond_3
+    :goto_1
+    move v0, v2
+
     :goto_2
-    if-eqz v3, :cond_6
+    iget-boolean v3, p0, Lcom/android/camera/module/Camera2Module;->mIsImageCaptureIntent:Z
 
-    .line 3164
-    if-eqz v0, :cond_5
+    const/16 v4, 0x8
+
+    if-eqz v3, :cond_5
+
+    .line 3526
+    if-eqz v0, :cond_4
+
+    const/4 v0, -0x3
+
+    .line 3564
+    :goto_3
+    move v4, v0
+
+    goto/16 :goto_7
+
+    .line 3526
+    :cond_4
+    const/4 v0, -0x2
+
+    goto :goto_3
+
+    .line 3529
+    :cond_5
+    iput-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mEnableParallelSession:Z
+
+    .line 3531
+    iget v3, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    const/16 v5, 0xa3
+
+    const/4 v6, 0x5
+
+    if-eq v3, v5, :cond_e
+
+    const/16 v5, 0xa5
+
+    if-eq v3, v5, :cond_e
+
+    if-eq v3, v1, :cond_6
+
+    .line 3533
+    return-void
+
+    .line 3546
+    :cond_6
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isParallelSessionEnable()Z
+
+    move-result v1
+
+    iput-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mEnableParallelSession:Z
+
+    .line 3547
+    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mEnableParallelSession:Z
+
+    if-eqz v1, :cond_c
+
+    .line 3549
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->shouldDoMultiFrameCapture()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_7
+
+    .line 3550
+    goto :goto_7
+
+    .line 3552
+    :cond_7
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDualFrontCamera()Z
+
+    move-result v1
+
+    if-nez v1, :cond_a
+
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDualCamera()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_8
+
+    goto :goto_5
+
+    .line 3555
+    :cond_8
+    if-eqz v0, :cond_9
+
+    const/4 v0, 0x7
+
+    goto :goto_3
+
+    .line 3564
+    :cond_9
+    :goto_4
+    move v4, v6
+
+    goto :goto_7
+
+    .line 3553
+    :cond_a
+    :goto_5
+    if-eqz v0, :cond_b
 
     const/4 v0, 0x6
 
-    goto :goto_0
-
-    :cond_5
-    const/4 v0, 0x2
-
-    goto :goto_0
-
-    .line 3166
-    :cond_6
     goto :goto_3
 
-    .line 3143
-    :cond_7
+    :cond_b
+    goto :goto_4
+
+    .line 3559
+    :cond_c
+    if-eqz v0, :cond_d
+
+    const/4 v2, 0x2
+
+    .line 3564
+    :goto_6
+    move v4, v2
+
+    goto :goto_7
+
+    .line 3559
+    :cond_d
+    goto :goto_6
+
+    .line 3537
+    :cond_e
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isParallelSessionEnable()Z
+
+    move-result v0
+
+    iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mEnableParallelSession:Z
+
+    .line 3538
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mEnableParallelSession:Z
+
+    if-nez v0, :cond_f
+
+    .line 3539
     invoke-static {}, Lcom/android/camera/CameraSettings;->isLiveShotOn()Z
 
-    move-result v0
+    move-result v4
 
-    if-eqz v0, :cond_8
+    goto :goto_7
 
-    .line 3144
-    nop
-
-    .line 3172
-    move v2, v1
-
-    goto :goto_3
-
-    .line 3145
-    :cond_8
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isGroupShotOn()Z
+    .line 3542
+    :cond_f
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->shouldDoMultiFrameCapture()Z
 
     move-result v0
 
-    if-eqz v0, :cond_9
+    if-eqz v0, :cond_10
 
-    .line 3146
-    goto :goto_3
+    goto :goto_7
 
-    .line 3151
-    :cond_9
-    nop
+    .line 3544
+    :cond_10
+    move v4, v6
 
-    .line 3154
-    nop
+    .line 3564
+    :goto_7
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
-    .line 3172
-    :goto_3
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "enableParallel="
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mEnableParallelSession:Z
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    const-string v2, " shotType="
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, v4}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 3565
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    invoke-virtual {v0, v2}, Lcom/android/camera2/Camera2Proxy;->setShotType(I)V
+    invoke-virtual {v0, v4}, Lcom/android/camera2/Camera2Proxy;->setShotType(I)V
 
-    .line 3173
-    invoke-static {v2}, Lcom/xiaomi/camera/core/ShotConstant;->isParallelEnabled(I)Z
+    .line 3566
+    invoke-static {v4}, Lcom/xiaomi/camera/base/Constants;->isParallelEnabled(I)Z
 
     move-result v0
 
-    if-eqz v0, :cond_a
+    iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsCurrentTaskIsParallel:Z
 
-    .line 3174
-    iput-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mIsParallelProcess:Z
-
-    .line 3176
-    :cond_a
+    .line 3567
     return-void
 .end method
 
 .method private updateSuperResolution()V
     .locals 2
 
-    .line 3811
+    .line 4224
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 3812
+    .line 4225
     return-void
 
-    .line 3817
+    .line 4229
     :cond_0
+    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    const/16 v1, 0xad
+
+    if-ne v0, v1, :cond_1
+
+    .line 4230
+    return-void
+
+    .line 4235
+    :cond_1
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isUltraWideBackCamera()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_2
 
-    .line 3818
+    .line 4236
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v1, "SR force off for ultra wide camera"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3819
+    .line 4237
     return-void
 
-    .line 3822
-    :cond_1
+    .line 4240
+    :cond_2
     invoke-static {}, Lcom/android/camera/CameraSettings;->isSREnable()Z
 
     move-result v0
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_3
 
-    .line 3823
+    .line 4241
     return-void
 
-    .line 3826
-    :cond_2
+    .line 4244
+    :cond_3
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mZoomValue:F
 
     const/high16 v1, 0x3f800000    # 1.0f
 
     cmpl-float v0, v0, v1
 
-    if-nez v0, :cond_4
+    if-nez v0, :cond_5
 
-    .line 3827
+    .line 4245
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
     move-result-object v0
@@ -9860,31 +10787,31 @@
 
     move-result v0
 
-    if-nez v0, :cond_5
+    if-nez v0, :cond_7
 
-    .line 3828
+    .line 4246
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
     invoke-virtual {v0}, Lcom/android/camera/MutexModeManager;->isSuperResolution()Z
 
     move-result v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_4
 
-    .line 3829
+    .line 4247
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
     invoke-virtual {v0}, Lcom/android/camera/MutexModeManager;->resetMutexMode()V
 
     goto :goto_0
 
-    .line 3831
-    :cond_3
+    .line 4249
+    :cond_4
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_7
 
-    .line 3832
+    .line 4250
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     const/4 v1, 0x0
@@ -9893,25 +10820,49 @@
 
     goto :goto_0
 
-    .line 3837
-    :cond_4
+    .line 4255
+    :cond_5
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isGroupShotOn()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_6
+
+    .line 4256
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
+
+    invoke-virtual {v0}, Lcom/android/camera/MutexModeManager;->isSuperResolution()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_7
+
+    .line 4257
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
+
+    invoke-virtual {v0}, Lcom/android/camera/MutexModeManager;->resetMutexMode()V
+
+    goto :goto_0
+
+    .line 4260
+    :cond_6
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
     invoke-virtual {v0}, Lcom/android/camera/MutexModeManager;->isNormal()Z
 
     move-result v0
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_7
 
-    .line 3838
+    .line 4261
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
     const/16 v1, 0xa
 
     invoke-virtual {v0, v1}, Lcom/android/camera/MutexModeManager;->setMutexMode(I)V
 
-    .line 3841
-    :cond_5
+    .line 4265
+    :cond_7
     :goto_0
     return-void
 .end method
@@ -9919,12 +10870,12 @@
 .method private updateSwMfnr()V
     .locals 4
 
-    .line 3805
+    .line 4218
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isUseSwMfnr()Z
 
     move-result v0
 
-    .line 3806
+    .line 4219
     sget-object v1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -9943,24 +10894,24 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3807
+    .line 4220
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->setSwMfnr(Z)V
 
-    .line 3808
+    .line 4221
     return-void
 .end method
 
 .method private updateThumbProgress(Z)V
     .locals 2
 
-    .line 4588
+    .line 5039
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 4589
+    .line 5040
     const/16 v1, 0xa2
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -9969,13 +10920,13 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;
 
-    .line 4590
+    .line 5041
     if-eqz v0, :cond_0
 
-    .line 4591
+    .line 5042
     invoke-interface {v0, p1}, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;->updateLoading(Z)V
 
-    .line 4593
+    .line 5044
     :cond_0
     return-void
 .end method
@@ -9983,7 +10934,7 @@
 .method private updateUltraWideLDC()V
     .locals 2
 
-    .line 3931
+    .line 4359
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->shouldApplyUltraWideLDC()Z
@@ -9992,14 +10943,14 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setUltraWideLDC(Z)V
 
-    .line 3932
+    .line 4360
     return-void
 .end method
 
 .method private updateWhiteBalance()V
     .locals 2
 
-    .line 3844
+    .line 4268
     const-string v0, "pref_camera_whitebalance_key"
 
     const-string v1, "1"
@@ -10008,17 +10959,17 @@
 
     move-result-object v0
 
-    .line 3845
+    .line 4269
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->setAWBMode(Ljava/lang/String;)V
 
-    .line 3846
+    .line 4270
     return-void
 .end method
 
 .method private updateZsl()V
     .locals 2
 
-    .line 3737
+    .line 4146
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     const/16 v1, 0xa7
@@ -10032,13 +10983,13 @@
     :cond_0
     const/4 v0, 0x0
 
-    .line 3738
+    .line 4147
     :goto_0
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->setEnableZsl(Z)V
 
-    .line 3739
+    .line 4148
     return-void
 .end method
 
@@ -10047,17 +10998,17 @@
 .method public cancelFocus(Z)V
     .locals 1
 
-    .line 377
+    .line 401
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isAlive()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 378
+    .line 402
     return-void
 
-    .line 381
+    .line 405
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrameAvailable()Z
 
@@ -10065,10 +11016,10 @@
 
     if-nez v0, :cond_1
 
-    .line 382
+    .line 406
     return-void
 
-    .line 385
+    .line 409
     :cond_1
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
@@ -10076,26 +11027,26 @@
 
     if-nez v0, :cond_2
 
-    .line 386
+    .line 410
     return-void
 
-    .line 389
+    .line 413
     :cond_2
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     if-eqz v0, :cond_4
 
-    .line 390
+    .line 414
     if-eqz p1, :cond_3
 
-    .line 391
+    .line 415
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     const/4 v0, 0x4
 
     invoke-virtual {p1, v0}, Lcom/android/camera2/Camera2Proxy;->setFocusMode(I)V
 
-    .line 393
+    .line 417
     :cond_3
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
@@ -10103,7 +11054,7 @@
 
     invoke-virtual {p1, v0}, Lcom/android/camera2/Camera2Proxy;->cancelFocus(I)V
 
-    .line 396
+    .line 420
     :cond_4
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
@@ -10113,12 +11064,12 @@
 
     if-eq p1, v0, :cond_5
 
-    .line 397
+    .line 421
     const/4 p1, 0x1
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->setCameraState(I)V
 
-    .line 399
+    .line 423
     :cond_5
     return-void
 .end method
@@ -10126,46 +11077,46 @@
 .method public checkDisplayOrientation()V
     .locals 2
 
-    .line 4144
+    .line 4557
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isCreated()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 4145
+    .line 4558
     return-void
 
-    .line 4147
+    .line 4560
     :cond_0
     invoke-super {p0}, Lcom/android/camera/module/BaseModule;->checkDisplayOrientation()V
 
-    .line 4148
+    .line 4561
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     if-eqz v0, :cond_1
 
-    .line 4149
+    .line 4562
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mCameraDisplayOrientation:I
 
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->setCameraDisplayOrientation(I)V
 
-    .line 4152
+    .line 4565
     :cond_1
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     if-eqz v0, :cond_2
 
-    .line 4153
+    .line 4566
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mCameraDisplayOrientation:I
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->setDisplayOrientation(I)V
 
-    .line 4155
+    .line 4568
     :cond_2
     return-void
 .end method
@@ -10173,187 +11124,194 @@
 .method public closeCamera()V
     .locals 4
 
-    .line 2012
+    .line 2261
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->setCameraState(I)V
 
-    .line 2013
+    .line 2262
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->scanQRCodeEnabled()Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-nez v1, :cond_0
 
-    .line 2014
-    invoke-static {}, Lcom/android/zxing/QRCodeManager;->getInstance()Lcom/android/zxing/QRCodeManager;
+    invoke-static {}, Lcom/mi/config/b;->fR()Z
 
-    move-result-object v1
-
-    invoke-virtual {v1}, Lcom/android/zxing/QRCodeManager;->stopDecode()V
-
-    .line 2015
-    invoke-static {}, Lcom/android/zxing/QRCodeManager;->getInstance()Lcom/android/zxing/QRCodeManager;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Lcom/android/zxing/QRCodeManager;->quit()V
-
-    .line 2017
-    :cond_0
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    if-eqz v1, :cond_9
-
-    .line 2019
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mBurstDisposable:Lio/reactivex/disposables/Disposable;
+    move-result v1
 
     if-eqz v1, :cond_1
 
-    .line 2020
+    .line 2263
+    :cond_0
+    invoke-static {}, Lcom/android/zxing/PreviewDecodeManager;->getInstance()Lcom/android/zxing/PreviewDecodeManager;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/android/zxing/PreviewDecodeManager;->quit()V
+
+    .line 2265
+    :cond_1
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    if-eqz v1, :cond_b
+
+    .line 2267
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mBurstDisposable:Lio/reactivex/disposables/Disposable;
+
+    if-eqz v1, :cond_2
+
+    .line 2268
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mBurstDisposable:Lio/reactivex/disposables/Disposable;
 
     invoke-interface {v1}, Lio/reactivex/disposables/Disposable;->dispose()V
 
-    .line 2023
-    :cond_1
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mMetaDataFlowableEmitter:Lio/reactivex/FlowableEmitter;
-
-    if-eqz v1, :cond_2
-
-    .line 2024
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mMetaDataFlowableEmitter:Lio/reactivex/FlowableEmitter;
-
-    invoke-interface {v1}, Lio/reactivex/FlowableEmitter;->onComplete()V
-
-    .line 2027
+    .line 2271
     :cond_2
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mMetaDataDisposable:Lio/reactivex/disposables/Disposable;
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mMetaDataFlowableEmitter:Lio/reactivex/FlowableEmitter;
 
     if-eqz v1, :cond_3
 
-    .line 2028
+    .line 2272
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mMetaDataFlowableEmitter:Lio/reactivex/FlowableEmitter;
+
+    invoke-interface {v1}, Lio/reactivex/FlowableEmitter;->onComplete()V
+
+    .line 2275
+    :cond_3
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mMetaDataDisposable:Lio/reactivex/disposables/Disposable;
+
+    if-eqz v1, :cond_4
+
+    .line 2276
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mMetaDataDisposable:Lio/reactivex/disposables/Disposable;
 
     invoke-interface {v1}, Lio/reactivex/disposables/Disposable;->dispose()V
 
-    .line 2031
-    :cond_3
+    .line 2279
+    :cond_4
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneFlowableEmitter:Lio/reactivex/FlowableEmitter;
 
-    if-eqz v1, :cond_4
+    if-eqz v1, :cond_5
 
-    .line 2032
+    .line 2280
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneFlowableEmitter:Lio/reactivex/FlowableEmitter;
 
     invoke-interface {v1}, Lio/reactivex/FlowableEmitter;->onComplete()V
 
-    .line 2034
-    :cond_4
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneDisposable:Lio/reactivex/disposables/Disposable;
-
-    if-eqz v1, :cond_5
-
-    .line 2035
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneDisposable:Lio/reactivex/disposables/Disposable;
-
-    invoke-interface {v1}, Lio/reactivex/disposables/Disposable;->dispose()V
-
-    .line 2037
+    .line 2282
     :cond_5
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mSuperNightDisposable:Lio/reactivex/disposables/Disposable;
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneDisposable:Lio/reactivex/disposables/Disposable;
 
     if-eqz v1, :cond_6
 
-    .line 2038
+    .line 2283
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneDisposable:Lio/reactivex/disposables/Disposable;
+
+    invoke-interface {v1}, Lio/reactivex/disposables/Disposable;->dispose()V
+
+    .line 2285
+    :cond_6
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mSuperNightDisposable:Lio/reactivex/disposables/Disposable;
+
+    if-eqz v1, :cond_7
+
+    .line 2286
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mSuperNightDisposable:Lio/reactivex/disposables/Disposable;
 
     invoke-interface {v1}, Lio/reactivex/disposables/Disposable;->dispose()V
 
-    .line 2040
-    :cond_6
+    .line 2288
+    :cond_7
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     const/4 v2, 0x0
 
     invoke-virtual {v1, v2}, Lcom/android/camera2/Camera2Proxy;->setScreenLightCallback(Lcom/android/camera2/Camera2Proxy$ScreenLightCallback;)V
 
-    .line 2041
+    .line 2289
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v2}, Lcom/android/camera2/Camera2Proxy;->setMetaDataCallback(Lcom/android/camera2/Camera2Proxy$CameraMetaDataCallback;)V
 
-    .line 2044
+    .line 2292
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v2}, Lcom/android/camera2/Camera2Proxy;->setErrorCallback(Lcom/android/camera2/Camera2Proxy$CameraErrorCallback;)V
 
-    .line 2048
+    .line 2296
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v2}, Lcom/android/camera2/Camera2Proxy;->releaseCameraPreviewCallback(Lcom/android/camera2/Camera2Proxy$CameraPreviewCallback;)V
 
-    .line 2049
+    .line 2297
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v2}, Lcom/android/camera2/Camera2Proxy;->setFocusCallback(Lcom/android/camera2/Camera2Proxy$FocusCallback;)V
 
-    .line 2050
+    .line 2298
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->setASD(Z)V
 
-    .line 2051
+    .line 2299
     iput-object v2, p0, Lcom/android/camera/module/Camera2Module;->mMetaDataFlowableEmitter:Lio/reactivex/FlowableEmitter;
 
-    .line 2052
+    .line 2300
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->scanQRCodeEnabled()Z
 
     move-result v1
 
-    if-eqz v1, :cond_7
+    if-nez v1, :cond_8
 
-    .line 2053
+    invoke-static {}, Lcom/mi/config/b;->fR()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_9
+
+    .line 2301
+    :cond_8
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     const/4 v3, 0x1
 
     invoke-virtual {v1, v3}, Lcom/android/camera2/Camera2Proxy;->stopPreviewCallback(Z)V
 
-    .line 2056
-    :cond_7
-    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mFaceDetectionStarted:Z
-
-    if-eqz v1, :cond_8
-
-    .line 2057
-    iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mFaceDetectionStarted:Z
-
-    .line 2080
-    :cond_8
-    iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->m3ALocked:Z
-
-    .line 2082
-    iput-object v2, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    .line 2085
+    .line 2304
     :cond_9
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
+    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mFaceDetectionStarted:Z
 
     if-eqz v1, :cond_a
 
-    .line 2086
+    .line 2305
+    iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mFaceDetectionStarted:Z
+
+    .line 2328
+    :cond_a
+    iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->m3ALocked:Z
+
+    .line 2330
+    iput-object v2, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    .line 2333
+    :cond_b
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
+
+    if-eqz v1, :cond_c
+
+    .line 2334
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {v1, v0}, Lcom/android/camera/module/loader/camera2/FocusManager2;->setAeAwbLock(Z)V
 
-    .line 2087
+    .line 2335
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {v0}, Lcom/android/camera/module/loader/camera2/FocusManager2;->destroy()V
 
-    .line 2089
-    :cond_a
+    .line 2337
+    :cond_c
     return-void
 .end method
 
@@ -10364,7 +11322,7 @@
         .end annotation
     .end param
 
-    .line 2938
+    .line 3322
     array-length v0, p1
 
     const/4 v1, 0x0
@@ -10374,10 +11332,10 @@
 
     aget v2, p1, v1
 
-    .line 2939
+    .line 3323
     packed-switch v2, :pswitch_data_0
 
-    .line 3118
+    .line 3501
     :pswitch_0
     new-instance p1, Ljava/lang/RuntimeException;
 
@@ -10399,112 +11357,109 @@
 
     throw p1
 
-    .line 3111
+    .line 3499
     :pswitch_1
+    goto/16 :goto_1
+
+    .line 3491
+    :pswitch_2
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateLiveShot()V
 
-    .line 3112
+    .line 3492
     goto/16 :goto_1
 
-    .line 3115
-    :pswitch_2
+    .line 3495
+    :pswitch_3
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateFNumber()V
 
-    .line 3116
+    .line 3496
     goto/16 :goto_1
 
-    .line 3055
-    :pswitch_3
+    .line 3439
+    :pswitch_4
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateUltraWideLDC()V
 
-    .line 3056
+    .line 3440
     goto/16 :goto_1
 
-    .line 3051
-    :pswitch_4
+    .line 3435
+    :pswitch_5
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateNormalWideLDC()V
 
-    .line 3052
+    .line 3436
     goto/16 :goto_1
 
-    .line 3107
-    :pswitch_5
+    .line 3487
+    :pswitch_6
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateEyeLight()V
 
-    .line 3108
+    .line 3488
     goto/16 :goto_1
 
-    .line 2942
-    :pswitch_6
+    .line 3326
+    :pswitch_7
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateShotDetermine()V
 
-    .line 2943
+    .line 3327
     goto/16 :goto_1
 
-    .line 3103
-    :pswitch_7
+    .line 3483
+    :pswitch_8
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updatePortraitLighting()V
 
-    .line 3104
+    .line 3484
     goto/16 :goto_1
 
-    .line 3019
-    :pswitch_8
+    .line 3403
+    :pswitch_9
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateSwMfnr()V
 
-    .line 3020
+    .line 3404
     goto/16 :goto_1
 
-    .line 3099
-    :pswitch_9
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateOperatingMode()V
-
-    .line 3100
-    goto/16 :goto_1
-
-    .line 3095
+    .line 3479
     :pswitch_a
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateFrontMirror()V
 
-    .line 3096
+    .line 3480
     goto/16 :goto_1
 
-    .line 3087
+    .line 3471
     :pswitch_b
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateFaceScore()V
 
-    .line 3088
+    .line 3472
     goto/16 :goto_1
 
-    .line 3083
+    .line 3467
     :pswitch_c
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateFaceAgeAnalyze()V
 
-    .line 3084
+    .line 3468
     goto/16 :goto_1
 
-    .line 3079
+    .line 3463
     :pswitch_d
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateBokeh()V
 
-    .line 3080
+    .line 3464
     goto/16 :goto_1
 
-    .line 3075
+    .line 3459
     :pswitch_e
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateAiScene()V
 
-    .line 3076
+    .line 3460
     goto/16 :goto_1
 
-    .line 3071
+    .line 3455
     :pswitch_f
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateDeviceOrientation()V
 
-    .line 3072
+    .line 3456
     goto/16 :goto_1
 
-    .line 3015
+    .line 3399
     :pswitch_10
     invoke-static {}, Lcom/android/camera/CameraSettings;->isMfnrSatEnable()Z
 
@@ -10512,52 +11467,52 @@
 
     invoke-direct {p0, v2}, Lcom/android/camera/module/Camera2Module;->updateMfnr(Z)V
 
-    .line 3016
+    .line 3400
     goto/16 :goto_1
 
-    .line 3023
+    .line 3407
     :pswitch_11
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateSuperResolution()V
 
-    .line 3024
+    .line 3408
     goto/16 :goto_1
 
-    .line 3067
+    .line 3451
     :pswitch_12
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->updateExposureMeteringMode()V
 
-    .line 3068
+    .line 3452
     goto/16 :goto_1
 
-    .line 3063
+    .line 3447
     :pswitch_13
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateSharpness()V
 
-    .line 3064
+    .line 3448
     goto/16 :goto_1
 
-    .line 3059
+    .line 3443
     :pswitch_14
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateSaturation()V
 
-    .line 3060
+    .line 3444
     goto/16 :goto_1
 
-    .line 3047
+    .line 3431
     :pswitch_15
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateContrast()V
 
-    .line 3048
+    .line 3432
     goto/16 :goto_1
 
-    .line 3043
+    .line 3427
     :pswitch_16
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->focusCenter()V
 
-    .line 3044
+    .line 3428
     goto/16 :goto_1
 
-    .line 3039
+    .line 3423
     :pswitch_17
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getZoomValue()F
 
@@ -10565,97 +11520,97 @@
 
     invoke-virtual {p0, v2}, Lcom/android/camera/module/Camera2Module;->setZoomRatio(F)V
 
-    .line 3040
+    .line 3424
     goto/16 :goto_1
 
-    .line 2999
+    .line 3383
     :pswitch_18
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateQr()V
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateDecodePreview()V
 
-    .line 3000
-    goto/16 :goto_1
+    .line 3384
+    goto :goto_1
 
-    .line 3011
+    .line 3395
     :pswitch_19
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateZsl()V
 
-    .line 3012
+    .line 3396
     goto :goto_1
 
-    .line 3007
+    .line 3391
     :pswitch_1a
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateMute()V
 
-    .line 3008
+    .line 3392
     goto :goto_1
 
-    .line 3003
+    .line 3387
     :pswitch_1b
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateOIS()V
 
-    .line 3004
+    .line 3388
     goto :goto_1
 
-    .line 2987
+    .line 3371
     :pswitch_1c
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateFpsRange()V
 
-    .line 2988
+    .line 3372
     goto :goto_1
 
-    .line 3035
+    .line 3419
     :pswitch_1d
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateExposureTime()V
 
-    .line 3036
+    .line 3420
     goto :goto_1
 
-    .line 3031
+    .line 3415
     :pswitch_1e
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateISO()V
 
-    .line 3032
+    .line 3416
     goto :goto_1
 
-    .line 2983
+    .line 3367
     :pswitch_1f
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateFocusMode()V
 
-    .line 2984
+    .line 3368
     goto :goto_1
 
-    .line 2978
+    .line 3362
     :pswitch_20
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateBeauty()V
 
-    .line 2979
+    .line 3363
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateEyeLight()V
 
-    .line 2980
+    .line 3364
     goto :goto_1
 
-    .line 3091
+    .line 3475
     :pswitch_21
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->setEvValue()V
 
-    .line 3092
+    .line 3476
     goto :goto_1
 
-    .line 2966
+    .line 3350
     :pswitch_22
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->updateHDRPreference()V
 
-    .line 2967
+    .line 3351
     goto :goto_1
 
-    .line 2962
+    .line 3346
     :pswitch_23
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->updateFlashPreference()V
 
-    .line 2963
+    .line 3347
     goto :goto_1
 
-    .line 2995
+    .line 3379
     :pswitch_24
     invoke-static {}, Lcom/android/camera/CameraSettings;->getAntiBanding()Ljava/lang/String;
 
@@ -10663,74 +11618,73 @@
 
     invoke-virtual {p0, v2}, Lcom/android/camera/module/Camera2Module;->updateAntiBanding(Ljava/lang/String;)V
 
-    .line 2996
+    .line 3380
     goto :goto_1
 
-    .line 2958
+    .line 3342
     :pswitch_25
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateJpegThumbnailSize()V
 
-    .line 2959
+    .line 3343
     goto :goto_1
 
-    .line 2954
+    .line 3338
     :pswitch_26
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateJpegQuality()V
 
-    .line 2955
+    .line 3339
     goto :goto_1
 
-    .line 3027
+    .line 3411
     :pswitch_27
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateWhiteBalance()V
 
-    .line 3028
+    .line 3412
     goto :goto_1
 
-    .line 2991
+    .line 3375
     :pswitch_28
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateFace()V
 
-    .line 2992
+    .line 3376
     goto :goto_1
 
-    .line 2974
+    .line 3359
     :pswitch_29
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateScene()V
-
-    .line 2975
     goto :goto_1
 
-    .line 2970
+    .line 3354
     :pswitch_2a
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateFocusArea()V
 
-    .line 2971
+    .line 3355
     goto :goto_1
 
-    .line 2950
+    .line 3334
     :pswitch_2b
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateFilter()V
 
-    .line 2951
+    .line 3335
     goto :goto_1
 
-    .line 2946
+    .line 3330
     :pswitch_2c
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updatePictureAndPreviewSize()V
 
-    .line 2947
+    .line 3331
     nop
 
-    .line 2938
+    .line 3322
     :goto_1
     add-int/lit8 v1, v1, 0x1
 
     goto/16 :goto_0
 
-    .line 3121
+    .line 3504
     :cond_0
     return-void
+
+    nop
 
     :pswitch_data_0
     .packed-switch 0x1
@@ -10774,6 +11728,7 @@
         :pswitch_c
         :pswitch_b
         :pswitch_a
+        :pswitch_0
         :pswitch_9
         :pswitch_8
         :pswitch_7
@@ -10789,22 +11744,22 @@
 .method public enterMutexMode(I)V
     .locals 2
 
-    .line 4538
+    .line 4989
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     if-nez v0, :cond_0
 
-    .line 4539
+    .line 4990
     sget-object p1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v0, "enterMutexMode error, mCamera2Device is null"
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 4540
+    .line 4991
     return-void
 
-    .line 4542
+    .line 4993
     :cond_0
     const/4 v0, 0x1
 
@@ -10820,7 +11775,7 @@
 
     goto :goto_0
 
-    .line 4552
+    .line 5003
     :cond_1
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
@@ -10828,25 +11783,25 @@
 
     goto :goto_0
 
-    .line 4548
+    .line 4999
     :cond_2
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {p1, v0}, Lcom/android/camera2/Camera2Proxy;->setHHT(Z)V
 
-    .line 4549
+    .line 5000
     goto :goto_0
 
-    .line 4544
+    .line 4995
     :cond_3
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {p1, v0}, Lcom/android/camera2/Camera2Proxy;->setHDR(Z)V
 
-    .line 4545
+    .line 4996
     nop
 
-    .line 4555
+    .line 5006
     :goto_0
     invoke-static {}, Lcom/android/camera/CameraSettings;->isMfnrSatEnable()Z
 
@@ -10854,17 +11809,17 @@
 
     invoke-direct {p0, p1}, Lcom/android/camera/module/Camera2Module;->updateMfnr(Z)V
 
-    .line 4556
+    .line 5007
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateSwMfnr()V
 
-    .line 4557
+    .line 5008
     return-void
 .end method
 
 .method public exitMutexMode(I)V
     .locals 2
 
-    .line 4561
+    .line 5012
     const/4 v0, 0x1
 
     const/4 v1, 0x0
@@ -10881,7 +11836,7 @@
 
     goto :goto_0
 
-    .line 4572
+    .line 5023
     :cond_0
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
@@ -10889,28 +11844,28 @@
 
     goto :goto_0
 
-    .line 4568
+    .line 5019
     :cond_1
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {p1, v1}, Lcom/android/camera2/Camera2Proxy;->setHHT(Z)V
 
-    .line 4569
+    .line 5020
     goto :goto_0
 
-    .line 4563
+    .line 5014
     :cond_2
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {p1, v1}, Lcom/android/camera2/Camera2Proxy;->setHDR(Z)V
 
-    .line 4564
+    .line 5015
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateSuperResolution()V
 
-    .line 4565
+    .line 5016
     nop
 
-    .line 4575
+    .line 5026
     :goto_0
     invoke-static {}, Lcom/android/camera/CameraSettings;->isMfnrSatEnable()Z
 
@@ -10918,17 +11873,17 @@
 
     invoke-direct {p0, p1}, Lcom/android/camera/module/Camera2Module;->updateMfnr(Z)V
 
-    .line 4576
+    .line 5027
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateSwMfnr()V
 
-    .line 4577
+    .line 5028
     return-void
 .end method
 
 .method protected focusCenter()V
     .locals 0
 
-    .line 3644
+    .line 4053
     return-void
 .end method
 
@@ -10944,14 +11899,14 @@
         }
     .end annotation
 
-    .line 4039
+    .line 4466
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getMaxPictureSize()I
 
     move-result v0
 
     invoke-static {p1, v0}, Lcom/android/camera/PictureSizeManager;->initialize(Ljava/util/List;I)V
 
-    .line 4041
+    .line 4468
     invoke-static {}, Lcom/android/camera/PictureSizeManager;->getBestPictureSize()Lcom/android/camera/CameraSize;
 
     move-result-object p1
@@ -10962,22 +11917,22 @@
 .method public getCircularMediaRecorder()Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
     .locals 2
 
-    .line 637
+    .line 612
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorderStateLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 638
+    .line 613
     :try_start_0
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
-    .line 639
+    .line 614
     monitor-exit v0
 
-    .line 640
+    .line 615
     return-object v1
 
-    .line 639
+    .line 614
     :catchall_0
     move-exception v1
 
@@ -10988,71 +11943,10 @@
     throw v1
 .end method
 
-.method public getGroupShotMaxImage()I
-    .locals 3
-
-    .line 598
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
-
-    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->getFaces()[Lcom/android/camera2/CameraHardwareFace;
-
-    move-result-object v0
-
-    .line 599
-    if-eqz v0, :cond_0
-
-    array-length v0, v0
-
-    goto :goto_0
-
-    :cond_0
-    const/4 v0, 0x0
-
-    .line 600
-    :goto_0
-    add-int/lit8 v0, v0, 0x1
-
-    const/4 v1, 0x2
-
-    const/4 v2, 0x4
-
-    invoke-static {v0, v1, v2}, Lcom/android/camera/Util;->clamp(III)I
-
-    move-result v0
-
-    return v0
-.end method
-
-.method public getGroupShotNum()I
-    .locals 1
-
-    .line 584
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
-
-    invoke-static {v0}, Lcom/android/camera/Util;->isMemoryRich(Landroid/content/Context;)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    .line 585
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getGroupShotMaxImage()I
-
-    move-result v0
-
-    return v0
-
-    .line 587
-    :cond_0
-    const/4 v0, 0x1
-
-    return v0
-.end method
-
 .method protected getMaxPictureSize()I
     .locals 1
 
-    .line 4058
+    .line 4472
     const/4 v0, 0x0
 
     return v0
@@ -11061,7 +11955,7 @@
 .method protected getMutexHdrMode(Ljava/lang/String;)I
     .locals 1
 
-    .line 4494
+    .line 4945
     const-string v0, "normal"
 
     invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -11070,14 +11964,14 @@
 
     if-eqz v0, :cond_2
 
-    .line 4495
-    invoke-static {}, Lcom/mi/config/b;->fZ()Z
+    .line 4946
+    invoke-static {}, Lcom/mi/config/b;->isMTKPlatform()Z
 
     move-result p1
 
     if-eqz p1, :cond_1
 
-    invoke-static {}, Lcom/mi/config/b;->gl()Z
+    invoke-static {}, Lcom/mi/config/b;->gD()Z
 
     move-result p1
 
@@ -11085,24 +11979,24 @@
 
     goto :goto_0
 
-    .line 4497
+    .line 4948
     :cond_0
     const/4 p1, 0x5
 
     goto :goto_1
 
-    .line 4496
+    .line 4947
     :cond_1
     :goto_0
     const/4 p1, 0x1
 
-    .line 4495
+    .line 4946
     :goto_1
     return p1
 
-    .line 4498
+    .line 4949
     :cond_2
-    invoke-static {}, Lcom/mi/config/b;->gd()Z
+    invoke-static {}, Lcom/mi/config/b;->gv()Z
 
     move-result v0
 
@@ -11116,12 +12010,12 @@
 
     if-eqz p1, :cond_3
 
-    .line 4499
+    .line 4950
     const/4 p1, 0x2
 
     return p1
 
-    .line 4501
+    .line 4952
     :cond_3
     const/4 p1, 0x0
 
@@ -11131,216 +12025,376 @@
 .method protected getOperatingMode()I
     .locals 7
 
-    .line 2162
-    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsParallelProcess:Z
+    .line 2447
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isParallelSessionEnable()Z
 
-    if-eqz v0, :cond_1
+    move-result v0
 
-    .line 2163
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isPortraitMode()Z
+    const/16 v1, 0xab
+
+    if-eqz v0, :cond_3
+
+    .line 2449
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isEnableQcfa()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    const v0, 0x9000
+    .line 2450
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
-    goto :goto_0
+    const-string v1, "getOperatingMode: SESSION_OPERATION_MODE_ALGO_UP_QCFA"
 
-    .line 2164
-    :cond_0
-    const v0, 0x9002
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2163
-    :goto_0
+    .line 2451
+    const v0, 0x9001
+
     return v0
 
-    .line 2169
-    :cond_1
+    .line 2453
+    :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getModuleIndex()I
 
     move-result v0
 
-    .line 2170
+    if-ne v1, v0, :cond_2
+
+    .line 2455
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
-
-    move-result v1
-
-    const v2, 0x8007
-
-    const v3, 0x8002
-
-    const/16 v4, 0xab
-
-    if-eqz v1, :cond_6
-
-    .line 2171
-    invoke-static {}, Lcom/android/camera/fragment/beauty/BeautyParameters;->isFaceBeautyOn()Z
-
-    move-result v1
-
-    sput-boolean v1, Lcom/android/camera/module/Camera2Module;->mIsBeautyFrontOn:Z
-
-    .line 2172
-    if-ne v0, v4, :cond_3
-
-    .line 2173
-    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Lcom/mi/config/a;->eY()Z
-
-    move-result v1
-
-    if-eqz v1, :cond_3
-
-    .line 2174
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isBokehFrontCamera()Z
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_1
 
-    .line 2175
-    goto :goto_1
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDualFrontCamera()Z
 
-    .line 2177
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    .line 2456
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    const-string v1, "getOperatingMode: SESSION_OPERATION_MODE_ALGO_UP_SINGLE_BOKEH"
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2457
+    const v0, 0x9003
+
+    return v0
+
+    .line 2459
+    :cond_1
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    const-string v1, "getOperatingMode: SESSION_OPERATION_MODE_ALGO_UP_DUAL_BOKEH"
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2460
+    const v0, 0x9000
+
+    return v0
+
+    .line 2463
     :cond_2
-    const v2, 0x80f1
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
-    goto :goto_2
+    const-string v1, "getOperatingMode: SESSION_OPERATION_MODE_ALGO_UP_SAT"
 
-    .line 2179
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2464
+    const v0, 0x9002
+
+    return v0
+
+    .line 2470
     :cond_3
-    if-ne v0, v4, :cond_4
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
+    move-result v0
+
+    const v2, 0x8001
+
+    const/16 v3, 0xa3
+
+    const v4, 0x8007
+
+    const v5, 0x8002
+
+    if-eqz v0, :cond_8
+
+    .line 2471
+    invoke-static {}, Lcom/android/camera/fragment/beauty/BeautyParameters;->isFaceBeautyOn()Z
+
+    move-result v0
+
+    sput-boolean v0, Lcom/android/camera/module/Camera2Module;->mIsBeautyFrontOn:Z
+
+    .line 2472
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isPortraitMode()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_5
+
+    .line 2473
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/mi/config/a;->fa()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_5
+
+    .line 2474
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isBokehFrontCamera()Z
 
     move-result v0
 
     if-eqz v0, :cond_4
 
-    .line 2181
-    goto :goto_1
+    .line 2475
+    nop
 
-    .line 2182
+    .line 2492
+    :goto_0
+    move v2, v5
+
+    goto :goto_2
+
+    .line 2477
     :cond_4
+    const v0, 0x80f1
+
+    .line 2492
+    :goto_1
+    move v2, v0
+
+    goto :goto_2
+
+    .line 2479
+    :cond_5
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isPortraitMode()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_6
+
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isBokehFrontCamera()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_6
+
+    .line 2481
+    goto :goto_0
+
+    .line 2482
+    :cond_6
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
 
     invoke-virtual {v0}, Lcom/android/camera2/CameraCapabilities;->isSupportedQcfa()Z
 
     move-result v0
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_7
 
     sget-boolean v0, Lcom/android/camera/module/Camera2Module;->mIsBeautyFrontOn:Z
 
-    if-nez v0, :cond_5
+    if-nez v0, :cond_7
 
     const-string v0, "off"
 
-    .line 2183
+    .line 2483
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
 
     move-result-object v1
 
-    .line 2184
+    .line 2484
     invoke-virtual {v1}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentHdr()Lcom/android/camera/data/data/config/ComponentConfigHdr;
 
     move-result-object v1
 
-    iget v3, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+    iget v2, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
-    invoke-virtual {v1, v3}, Lcom/android/camera/data/data/config/ComponentConfigHdr;->getComponentValue(I)Ljava/lang/String;
+    invoke-virtual {v1, v2}, Lcom/android/camera/data/data/config/ComponentConfigHdr;->getComponentValue(I)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 2183
+    .line 2483
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_7
 
-    .line 2186
+    .line 2485
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/mi/config/a;->fQ()I
+
+    move-result v0
+
+    if-gtz v0, :cond_7
+
+    .line 2487
+    nop
+
+    .line 2492
+    move v2, v4
+
     goto :goto_2
 
-    .line 2188
-    :cond_5
-    const v2, 0x8005
+    .line 2489
+    :cond_7
+    const v0, 0x8005
 
-    goto :goto_2
+    goto :goto_1
 
-    .line 2191
-    :cond_6
-    const/16 v1, 0xa7
+    .line 2492
+    :goto_2
+    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
-    if-eq v0, v1, :cond_9
+    if-ne v0, v3, :cond_f
 
-    if-eq v0, v4, :cond_8
+    .line 2493
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isFrontMenuUltraPixelPhotographyOn()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_f
+
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
+
+    .line 2494
+    invoke-static {v0}, Lcom/android/camera/CameraSettings;->isFrontSupportedUltraPixelPhotography(Lcom/android/camera2/CameraCapabilities;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_f
+
+    .line 2495
+    nop
+
+    .line 2527
+    move v2, v4
+
+    goto :goto_3
+
+    .line 2498
+    :cond_8
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getModuleIndex()I
+
+    move-result v0
+
+    .line 2499
+    if-eq v0, v3, :cond_d
+
+    const/16 v3, 0xa7
+
+    if-eq v0, v3, :cond_b
+
+    if-eq v0, v1, :cond_a
 
     const/16 v1, 0xad
 
-    if-eq v0, v1, :cond_7
+    if-eq v0, v1, :cond_9
 
-    .line 2207
-    const v2, 0x8001
+    .line 2523
+    goto :goto_3
 
-    goto :goto_2
-
-    .line 2204
-    :cond_7
+    .line 2512
+    :cond_9
     const v2, 0x800a
 
-    .line 2205
-    goto :goto_2
+    .line 2513
+    goto :goto_3
 
-    .line 2193
-    :cond_8
+    .line 2501
+    :cond_a
     nop
 
-    .line 2194
+    .line 2502
     nop
 
-    .line 2211
-    :goto_1
-    move v2, v3
+    .line 2527
+    move v2, v5
 
-    goto :goto_2
+    goto :goto_3
 
-    .line 2196
-    :cond_9
+    .line 2504
+    :cond_b
     invoke-static {}, Lcom/android/camera/CameraSettings;->isUltraPixelPhotographyOn()Z
 
     move-result v0
 
-    if-eqz v0, :cond_a
+    if-eqz v0, :cond_c
 
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
 
-    .line 2197
-    invoke-virtual {v0}, Lcom/android/camera2/CameraCapabilities;->isUltraPixelPhotographySupported()Z
+    .line 2505
+    invoke-static {v0}, Lcom/android/camera/CameraSettings;->isSupportedUltraPixelPhotography(Lcom/android/camera2/CameraCapabilities;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_a
+    if-eqz v0, :cond_c
 
-    .line 2198
-    goto :goto_2
+    .line 2506
+    const v2, 0x80f5
 
-    .line 2200
-    :cond_a
+    goto :goto_3
+
+    .line 2508
+    :cond_c
     const v2, 0x8003
 
-    .line 2202
+    .line 2510
+    goto :goto_3
+
+    .line 2515
+    :cond_d
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isRearMenuUltraPixelPhotographyOn()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_e
+
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
+
+    .line 2516
+    invoke-static {v0}, Lcom/android/camera/CameraSettings;->isSupportedUltraPixelPhotography(Lcom/android/camera2/CameraCapabilities;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_e
+
+    .line 2517
+    const v2, 0x80f3
+
+    goto :goto_3
+
+    .line 2519
+    :cond_e
     nop
 
-    .line 2211
-    :goto_2
+    .line 2521
+    nop
+
+    .line 2527
+    :cond_f
+    :goto_3
     iput v2, p0, Lcom/android/camera/module/Camera2Module;->mOperatingMode:I
 
-    .line 2212
+    .line 2528
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -11377,137 +12431,25 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2213
+    .line 2529
     return v2
-.end method
-
-.method public initGroupShot(I)V
-    .locals 16
-
-    move-object/from16 v0, p0
-
-    .line 604
-    iget-object v1, v0, Lcom/android/camera/module/Camera2Module;->mGroupShot:Lcom/android/camera/groupshot/GroupShot;
-
-    if-eqz v1, :cond_0
-
-    iget-object v1, v0, Lcom/android/camera/module/Camera2Module;->mGroupShot:Lcom/android/camera/groupshot/GroupShot;
-
-    invoke-virtual {v1}, Lcom/android/camera/groupshot/GroupShot;->isUsed()Z
-
-    move-result v1
-
-    if-eqz v1, :cond_1
-
-    .line 605
-    :cond_0
-    new-instance v1, Lcom/android/camera/groupshot/GroupShot;
-
-    invoke-direct {v1}, Lcom/android/camera/groupshot/GroupShot;-><init>()V
-
-    iput-object v1, v0, Lcom/android/camera/module/Camera2Module;->mGroupShot:Lcom/android/camera/groupshot/GroupShot;
-
-    .line 608
-    :cond_1
-    iget v1, v0, Lcom/android/camera/module/Camera2Module;->mOrientation:I
-
-    rem-int/lit16 v1, v1, 0xb4
-
-    if-nez v1, :cond_2
-
-    invoke-static {}, Lcom/mi/config/b;->hh()Z
-
-    move-result v1
-
-    if-eqz v1, :cond_2
-
-    .line 609
-    iget-object v2, v0, Lcom/android/camera/module/Camera2Module;->mGroupShot:Lcom/android/camera/groupshot/GroupShot;
-
-    iget v4, v0, Lcom/android/camera/module/Camera2Module;->mGroupFaceNum:I
-
-    iget-object v1, v0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
-
-    .line 610
-    invoke-virtual {v1}, Lcom/android/camera/CameraSize;->getHeight()I
-
-    move-result v5
-
-    iget-object v1, v0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
-
-    .line 611
-    invoke-virtual {v1}, Lcom/android/camera/CameraSize;->getWidth()I
-
-    move-result v6
-
-    iget-object v1, v0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
-
-    iget v7, v1, Lcom/android/camera/CameraSize;->height:I
-
-    iget-object v0, v0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
-
-    iget v8, v0, Lcom/android/camera/CameraSize;->width:I
-
-    .line 609
-    move/from16 v3, p1
-
-    invoke-virtual/range {v2 .. v8}, Lcom/android/camera/groupshot/GroupShot;->initialize(IIIIII)I
-
-    goto :goto_0
-
-    .line 615
-    :cond_2
-    iget-object v9, v0, Lcom/android/camera/module/Camera2Module;->mGroupShot:Lcom/android/camera/groupshot/GroupShot;
-
-    iget v11, v0, Lcom/android/camera/module/Camera2Module;->mGroupFaceNum:I
-
-    iget-object v1, v0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
-
-    .line 616
-    invoke-virtual {v1}, Lcom/android/camera/CameraSize;->getWidth()I
-
-    move-result v12
-
-    iget-object v1, v0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
-
-    .line 617
-    invoke-virtual {v1}, Lcom/android/camera/CameraSize;->getHeight()I
-
-    move-result v13
-
-    iget-object v1, v0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
-
-    iget v14, v1, Lcom/android/camera/CameraSize;->width:I
-
-    iget-object v0, v0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
-
-    iget v15, v0, Lcom/android/camera/CameraSize;->height:I
-
-    .line 615
-    move/from16 v10, p1
-
-    invoke-virtual/range {v9 .. v15}, Lcom/android/camera/groupshot/GroupShot;->initialize(IIIIII)I
-
-    .line 621
-    :goto_0
-    return-void
 .end method
 
 .method public initializeCapabilities()V
     .locals 2
 
-    .line 2884
+    .line 3277
     invoke-super {p0}, Lcom/android/camera/module/BaseModule;->initializeCapabilities()V
 
-    .line 2885
+    .line 3278
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
 
-    .line 2887
+    .line 3280
     invoke-virtual {v0}, Lcom/android/camera2/CameraCapabilities;->getSupportedFocusModes()[I
 
     move-result-object v0
 
-    .line 2885
+    .line 3278
     const/4 v1, 0x4
 
     invoke-static {v1, v0}, Lcom/android/camera/Util;->isSupported(I[I)Z
@@ -11516,7 +12458,7 @@
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mContinuousFocusSupported:Z
 
-    .line 2888
+    .line 3281
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
 
     invoke-virtual {v0}, Lcom/android/camera2/CameraCapabilities;->getMaxFaceCount()I
@@ -11525,15 +12467,24 @@
 
     iput v0, p0, Lcom/android/camera/module/Camera2Module;->mMaxFaceCount:I
 
-    .line 2889
+    .line 3282
     return-void
 .end method
 
 .method protected isAutoRestartInNonZSL()Z
     .locals 1
 
-    .line 2534
+    .line 2885
     const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public isBeautyBodySlimCountDetectStarted()Z
+    .locals 1
+
+    .line 1264
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsBeautyBodySlimOn:Z
 
     return v0
 .end method
@@ -11541,7 +12492,7 @@
 .method protected isDetectedHHT()Z
     .locals 1
 
-    .line 4489
+    .line 4940
     const/4 v0, 0x0
 
     return v0
@@ -11550,7 +12501,7 @@
 .method public isDoingAction()Z
     .locals 2
 
-    .line 1472
+    .line 1693
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mPaused:Z
 
     if-nez v0, :cond_1
@@ -11559,7 +12510,7 @@
 
     if-nez v0, :cond_1
 
-    .line 1474
+    .line 1695
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isKeptBitmapTexture()Z
 
     move-result v0
@@ -11570,14 +12521,14 @@
 
     if-nez v0, :cond_1
 
-    .line 1476
+    .line 1697
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
     move-result v0
 
     if-eqz v0, :cond_1
 
-    .line 1477
+    .line 1698
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
     move-result v0
@@ -11586,14 +12537,14 @@
 
     if-eq v0, v1, :cond_1
 
-    .line 1478
+    .line 1699
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isParallelQueueFull()Z
 
     move-result v0
 
     if-nez v0, :cond_1
 
-    .line 1479
+    .line 1700
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isInCountDown()Z
 
     move-result v0
@@ -11611,7 +12562,7 @@
     :goto_0
     const/4 v0, 0x1
 
-    .line 1472
+    .line 1693
     :goto_1
     return v0
 .end method
@@ -11619,7 +12570,7 @@
 .method protected isFaceBeautyMode()Z
     .locals 1
 
-    .line 972
+    .line 983
     const/4 v0, 0x0
 
     return v0
@@ -11628,7 +12579,7 @@
 .method public isFaceDetectStarted()Z
     .locals 1
 
-    .line 940
+    .line 952
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mFaceDetectionStarted:Z
 
     return v0
@@ -11637,7 +12588,7 @@
 .method public isHdrDetectStarted()Z
     .locals 1
 
-    .line 852
+    .line 855
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mHdrCheckEnabled:Z
 
     return v0
@@ -11646,7 +12597,7 @@
 .method public isKeptBitmapTexture()Z
     .locals 1
 
-    .line 1574
+    .line 1801
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mKeepBitmapTexture:Z
 
     return v0
@@ -11655,17 +12606,17 @@
 .method public isMeteringAreaOnly()Z
     .locals 3
 
-    .line 4526
+    .line 4977
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     const/4 v1, 0x0
 
     if-nez v0, :cond_0
 
-    .line 4527
+    .line 4978
     return v1
 
-    .line 4530
+    .line 4981
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
@@ -11673,7 +12624,7 @@
 
     move-result v0
 
-    .line 4531
+    .line 4982
     iget-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mFocusAreaSupported:Z
 
     if-nez v2, :cond_1
@@ -11702,10 +12653,69 @@
     return v1
 .end method
 
+.method public isNeedMute()Z
+    .locals 1
+
+    .line 1005
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isLiveShotOn()Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public isSelectingCapturedResult()Z
+    .locals 3
+
+    .line 1825
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsImageCaptureIntent:Z
+
+    const/4 v1, 0x0
+
+    if-nez v0, :cond_0
+
+    .line 1826
+    return v1
+
+    .line 1830
+    :cond_0
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object v0
+
+    const/16 v2, 0xa0
+
+    invoke-virtual {v0, v2}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;
+
+    .line 1831
+    if-eqz v0, :cond_1
+
+    const v2, 0x7f0d001b
+
+    invoke-interface {v0, v2}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->getActiveFragment(I)I
+
+    move-result v0
+
+    const/16 v2, 0xff3
+
+    if-ne v0, v2, :cond_1
+
+    const/4 v1, 0x1
+
+    nop
+
+    :cond_1
+    return v1
+.end method
+
 .method public isShowAeAfLockIndicator()Z
     .locals 1
 
-    .line 4514
+    .line 4965
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->m3ALocked:Z
 
     return v0
@@ -11714,7 +12724,7 @@
 .method public isShowCaptureButton()Z
     .locals 1
 
-    .line 4509
+    .line 4960
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
     invoke-virtual {v0}, Lcom/android/camera/MutexModeManager;->isBurstShoot()Z
@@ -11743,26 +12753,26 @@
 .method public isSupportFocusShoot()Z
     .locals 2
 
-    .line 4519
+    .line 4970
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
 
     move-result-object v0
 
     const-string v1, "pref_camera_focus_shoot_key"
 
-    .line 4520
+    .line 4971
     invoke-virtual {v0, v1}, Lcom/android/camera/data/data/global/DataItemGlobal;->isGlobalSwitchOn(Ljava/lang/String;)Z
 
     move-result v0
 
-    .line 4519
+    .line 4970
     return v0
 .end method
 
 .method protected isSupportSceneMode()Z
     .locals 1
 
-    .line 4035
+    .line 4462
     const/4 v0, 0x0
 
     return v0
@@ -11771,7 +12781,7 @@
 .method public isUltraWideDetectStarted()Z
     .locals 1
 
-    .line 5354
+    .line 5854
     const/4 v0, 0x1
 
     return v0
@@ -11780,26 +12790,26 @@
 .method public isUnInterruptable()Z
     .locals 2
 
-    .line 1484
+    .line 1705
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mUnInterruptableReason:Ljava/lang/String;
 
-    .line 1485
+    .line 1706
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isKeptBitmapTexture()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 1486
+    .line 1707
     const-string v0, "bitmap cover"
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mUnInterruptableReason:Ljava/lang/String;
 
     goto :goto_0
 
-    .line 1487
+    .line 1708
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
@@ -11809,12 +12819,12 @@
 
     if-ne v0, v1, :cond_1
 
-    .line 1488
+    .line 1709
     const-string v0, "snapshot"
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mUnInterruptableReason:Ljava/lang/String;
 
-    .line 1490
+    .line 1711
     :cond_1
     :goto_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mUnInterruptableReason:Ljava/lang/String;
@@ -11835,7 +12845,7 @@
 .method public isUseFaceInfo()Z
     .locals 1
 
-    .line 945
+    .line 957
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsGenderAgeOn:Z
 
     if-nez v0, :cond_1
@@ -11862,7 +12872,7 @@
 .method protected isZoomEnabled()Z
     .locals 2
 
-    .line 4435
+    .line 4870
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
     move-result v0
@@ -11873,29 +12883,43 @@
 
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
-    .line 4436
+    .line 4871
     invoke-virtual {v0}, Lcom/android/camera/MutexModeManager;->isUbiFocus()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 4437
+    .line 4872
     invoke-static {}, Lcom/android/camera/CameraSettings;->isStereoModeOn()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 4438
+    .line 4873
     invoke-static {}, Lcom/android/camera/CameraSettings;->isPortraitModeBackOn()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 4439
+    .line 4874
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    .line 4875
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isRearMenuUltraPixelPhotographyOn()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    .line 4876
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isUltraPixelPhotographyOn()Z
 
     move-result v0
 
@@ -11908,7 +12932,7 @@
     :cond_0
     const/4 v0, 0x0
 
-    .line 4435
+    .line 4870
     :goto_0
     return v0
 .end method
@@ -11916,7 +12940,7 @@
 .method public multiCapture()Z
     .locals 5
 
-    .line 417
+    .line 441
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDoingAction()Z
 
     move-result v0
@@ -11925,23 +12949,23 @@
 
     if-eqz v0, :cond_0
 
-    .line 418
+    .line 442
     return v1
 
-    .line 422
+    .line 446
     :cond_0
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mPendingMultiCapture:Z
 
     if-nez v0, :cond_1
 
-    .line 423
+    .line 447
     return v1
 
-    .line 425
+    .line 449
     :cond_1
     iput-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mPendingMultiCapture:Z
 
-    .line 427
+    .line 451
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getScreenHint()Lcom/android/camera/ui/ScreenHint;
@@ -11950,14 +12974,14 @@
 
     invoke-virtual {v0}, Lcom/android/camera/ui/ScreenHint;->updateHint()V
 
-    .line 428
+    .line 452
     invoke-static {}, Lcom/android/camera/storage/Storage;->isLowStorageAtLastPoint()Z
 
     move-result v0
 
     if-eqz v0, :cond_2
 
-    .line 429
+    .line 453
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -11968,7 +12992,7 @@
 
     invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 430
+    .line 454
     invoke-static {}, Lcom/android/camera/storage/Storage;->getLeftSpace()J
 
     move-result-wide v3
@@ -11979,13 +13003,13 @@
 
     move-result-object v2
 
-    .line 429
+    .line 453
     invoke-static {v0, v2}, Lcom/android/camera/log/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 431
+    .line 455
     return v1
 
-    .line 434
+    .line 458
     :cond_2
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
@@ -11999,28 +13023,28 @@
 
     if-eqz v0, :cond_3
 
-    .line 435
+    .line 459
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v2, "ImageSaver is busy, wait for a moment!"
 
     invoke-static {v0, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 436
+    .line 460
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-static {v0}, Lcom/android/camera/ui/RotateTextToast;->getInstance(Landroid/app/Activity;)Lcom/android/camera/ui/RotateTextToast;
 
     move-result-object v0
 
-    const v2, 0x7f0b01ae
+    const v2, 0x7f0901b5
 
     invoke-virtual {v0, v2, v1}, Lcom/android/camera/ui/RotateTextToast;->show(II)V
 
-    .line 437
+    .line 461
     return v1
 
-    .line 442
+    .line 466
     :cond_3
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -12034,7 +13058,7 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;
 
-    .line 443
+    .line 467
     const-string v1, "d"
 
     const/4 v2, 0x6
@@ -12045,10 +13069,10 @@
 
     invoke-interface {v0, v1, v2}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->closeMutexElement(Ljava/lang/String;[I)V
 
-    .line 452
+    .line 475
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->prepareMultiCapture()V
 
-    .line 454
+    .line 477
     new-instance v0, Lcom/android/camera/module/Camera2Module$1;
 
     invoke-direct {v0, p0}, Lcom/android/camera/module/Camera2Module$1;-><init>(Lcom/android/camera/module/Camera2Module;)V
@@ -12057,7 +13081,7 @@
 
     move-result-object v0
 
-    .line 459
+    .line 482
     invoke-static {}, Lio/reactivex/android/schedulers/AndroidSchedulers;->mainThread()Lio/reactivex/Scheduler;
 
     move-result-object v1
@@ -12066,7 +13090,7 @@
 
     move-result-object v0
 
-    .line 463
+    .line 486
     new-instance v1, Lcom/android/camera/module/Camera2Module$3;
 
     invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$3;-><init>(Lcom/android/camera/module/Camera2Module;)V
@@ -12079,29 +13103,67 @@
 
     invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$2;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
-    .line 482
+    .line 505
     invoke-virtual {v0, v1}, Lio/reactivex/Observable;->subscribe(Lio/reactivex/Observer;)V
 
-    .line 514
+    .line 536
     const-wide/16 v0, 0x0
 
     iput-wide v0, p0, Lcom/android/camera/module/Camera2Module;->mBurstNextDelayTime:J
 
-    .line 515
+    .line 537
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isParallelSessionEnable()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_4
+
+    .line 538
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    const/16 v1, 0x9
+
+    invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setShotType(I)V
+
+    .line 539
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    iget v1, p0, Lcom/android/camera/module/Camera2Module;->mTotalJpegCallbackNum:I
+
+    new-instance v2, Lcom/android/camera/module/Camera2Module$JpegRepeatingCaptureCallback;
+
+    const/4 v3, 0x0
+
+    invoke-direct {v2, p0, v3}, Lcom/android/camera/module/Camera2Module$JpegRepeatingCaptureCallback;-><init>(Lcom/android/camera/module/Camera2Module;Lcom/android/camera/module/Camera2Module$1;)V
+
+    iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
+
+    .line 541
+    invoke-virtual {v3}, Lcom/android/camera/Camera;->getImageSaver()Lcom/android/camera/storage/ImageSaver;
+
+    move-result-object v3
+
+    .line 539
+    invoke-virtual {v0, v1, v2, v3}, Lcom/android/camera2/Camera2Proxy;->captureBurstPictures(ILcom/android/camera2/Camera2Proxy$PictureCallback;Lcom/xiaomi/camera/core/ParallelCallback;)V
+
+    goto :goto_0
+
+    .line 543
+    :cond_4
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     const/4 v1, 0x3
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setShotType(I)V
 
-    .line 516
+    .line 544
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mTotalJpegCallbackNum:I
 
     new-instance v2, Lcom/android/camera/module/Camera2Module$JpegQuickPictureCallback;
 
-    .line 517
+    .line 545
     invoke-static {}, Lcom/android/camera/LocationManager;->instance()Lcom/android/camera/LocationManager;
 
     move-result-object v3
@@ -12114,20 +13176,19 @@
 
     iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
-    .line 518
+    .line 546
     invoke-virtual {v3}, Lcom/android/camera/Camera;->getImageSaver()Lcom/android/camera/storage/ImageSaver;
 
     move-result-object v3
 
-    .line 516
+    .line 544
     invoke-virtual {v0, v1, v2, v3}, Lcom/android/camera2/Camera2Proxy;->captureBurstPictures(ILcom/android/camera2/Camera2Proxy$PictureCallback;Lcom/xiaomi/camera/core/ParallelCallback;)V
 
-    .line 521
+    .line 549
+    :goto_0
     const/4 v0, 0x1
 
     return v0
-
-    nop
 
     :array_0
     .array-data 4
@@ -12143,7 +13204,7 @@
 .method public notifyFocusAreaUpdate()V
     .locals 3
 
-    .line 983
+    .line 994
     const/4 v0, 0x1
 
     new-array v0, v0, [I
@@ -12156,15 +13217,15 @@
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->updatePreferenceTrampoline([I)V
 
-    .line 984
+    .line 995
     return-void
 .end method
 
 .method public onBackPressed()Z
     .locals 7
 
-    .line 1641
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isCreated()Z
+    .line 1865
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrameAvailable()Z
 
     move-result v0
 
@@ -12172,27 +13233,27 @@
 
     if-nez v0, :cond_0
 
-    .line 1642
+    .line 1866
     return v1
 
-    .line 1645
+    .line 1869
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->tryRemoveCountDownMessage()V
 
-    .line 1647
+    .line 1871
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStatus:Z
 
     const/4 v2, 0x1
 
     if-eqz v0, :cond_1
 
-    .line 1648
+    .line 1872
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->onShutterButtonLongClickCancel(Z)V
 
-    .line 1649
+    .line 1873
     return v2
 
-    .line 1652
+    .line 1876
     :cond_1
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
@@ -12202,19 +13263,19 @@
 
     if-ne v0, v1, :cond_3
 
-    .line 1653
+    .line 1877
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
 
-    .line 1654
+    .line 1878
     iget v3, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     const/16 v4, 0xad
 
     if-ne v3, v4, :cond_2
 
-    .line 1655
+    .line 1879
     iget-wide v3, p0, Lcom/android/camera/module/Camera2Module;->mLastBackPressedTime:J
 
     sub-long v3, v0, v3
@@ -12225,20 +13286,20 @@
 
     if-lez v3, :cond_3
 
-    .line 1656
+    .line 1880
     iput-wide v0, p0, Lcom/android/camera/module/Camera2Module;->mLastBackPressedTime:J
 
-    .line 1657
+    .line 1881
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
-    const v1, 0x7f0b011b
+    const v1, 0x7f090123
 
     invoke-static {v0, v1}, Lcom/android/camera/ToastUtils;->showToast(Landroid/content/Context;I)V
 
-    .line 1658
+    .line 1882
     return v2
 
-    .line 1661
+    .line 1885
     :cond_2
     iget-wide v3, p0, Lcom/android/camera/module/Camera2Module;->mLastCaptureTime:J
 
@@ -12250,10 +13311,10 @@
 
     if-gez v0, :cond_3
 
-    .line 1662
+    .line 1886
     return v2
 
-    .line 1667
+    .line 1891
     :cond_3
     invoke-super {p0}, Lcom/android/camera/module/BaseModule;->onBackPressed()Z
 
@@ -12262,20 +13323,36 @@
     return v0
 .end method
 
+.method public onBeautyBodySlimCountChange(Z)V
+    .locals 2
+
+    .line 1246
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
+
+    new-instance v1, Lcom/android/camera/module/Camera2Module$8;
+
+    invoke-direct {v1, p0, p1}, Lcom/android/camera/module/Camera2Module$8;-><init>(Lcom/android/camera/module/Camera2Module;Z)V
+
+    invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
+
+    .line 1260
+    return-void
+.end method
+
 .method public onBeautyChanged()V
     .locals 0
 
-    .line 866
+    .line 869
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->onBeautyParameterChanged()V
 
-    .line 867
+    .line 870
     return-void
 .end method
 
 .method public onBroadcastReceived(Landroid/content/Context;Landroid/content/Intent;)V
     .locals 4
 
-    .line 560
+    .line 587
     if-eqz p2, :cond_5
 
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isAlive()Z
@@ -12286,7 +13363,7 @@
 
     goto :goto_2
 
-    .line 563
+    .line 590
     :cond_0
     const-string v0, "android.media.action.VOICE_COMMAND"
 
@@ -12300,14 +13377,14 @@
 
     if-eqz v0, :cond_4
 
-    .line 564
+    .line 591
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v1, "on Receive voice control broadcast action intent"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 565
+    .line 592
     invoke-static {p2}, Lcom/android/camera/CameraIntentManager;->getInstance(Landroid/content/Intent;)Lcom/android/camera/CameraIntentManager;
 
     move-result-object v0
@@ -12316,10 +13393,10 @@
 
     move-result-object v0
 
-    .line 566
+    .line 593
     iput-object p2, p0, Lcom/android/camera/module/Camera2Module;->mBroadcastIntent:Landroid/content/Intent;
 
-    .line 567
+    .line 594
     const/4 v1, -0x1
 
     invoke-virtual {v0}, Ljava/lang/String;->hashCode()I
@@ -12349,7 +13426,7 @@
 
     goto :goto_1
 
-    .line 569
+    .line 596
     :cond_3
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getTriggerMode()I
 
@@ -12357,97 +13434,47 @@
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->onShutterButtonClick(I)V
 
-    .line 570
+    .line 597
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mBroadcastIntent:Landroid/content/Intent;
 
-    .line 571
+    .line 598
     nop
 
-    .line 576
+    .line 603
     :goto_1
     invoke-static {p2}, Lcom/android/camera/CameraIntentManager;->removeInstance(Landroid/content/Intent;)V
 
-    .line 578
+    .line 605
     :cond_4
     invoke-super {p0, p1, p2}, Lcom/android/camera/module/BaseModule;->onBroadcastReceived(Landroid/content/Context;Landroid/content/Intent;)V
 
-    .line 579
+    .line 606
     return-void
 
-    .line 561
+    .line 588
     :cond_5
     :goto_2
-    return-void
-.end method
-
-.method public onCameraMetaData(Landroid/hardware/camera2/CaptureResult;)V
-    .locals 1
-
-    .line 4674
-    if-nez p1, :cond_0
-
-    .line 4675
-    return-void
-
-    .line 4678
-    :cond_0
-    invoke-super {p0, p1}, Lcom/android/camera/module/BaseModule;->onCameraMetaData(Landroid/hardware/camera2/CaptureResult;)V
-
-    .line 4680
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMetaDataFlowableEmitter:Lio/reactivex/FlowableEmitter;
-
-    if-eqz v0, :cond_1
-
-    .line 4681
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMetaDataFlowableEmitter:Lio/reactivex/FlowableEmitter;
-
-    invoke-interface {v0, p1}, Lio/reactivex/FlowableEmitter;->onNext(Ljava/lang/Object;)V
-
-    .line 4684
-    :cond_1
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneFlowableEmitter:Lio/reactivex/FlowableEmitter;
-
-    if-eqz v0, :cond_2
-
-    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneEnabled:Z
-
-    if-eqz v0, :cond_2
-
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    if-eqz v0, :cond_2
-
-    .line 4685
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneFlowableEmitter:Lio/reactivex/FlowableEmitter;
-
-    invoke-interface {v0, p1}, Lio/reactivex/FlowableEmitter;->onNext(Ljava/lang/Object;)V
-
-    .line 4687
-    :cond_2
     return-void
 .end method
 
 .method protected onCameraOpened()V
     .locals 2
 
-    .line 2856
+    .line 3236
     invoke-super {p0}, Lcom/android/camera/module/BaseModule;->onCameraOpened()V
 
-    .line 2857
+    .line 3237
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->initializeFocusManager()V
 
-    .line 2859
+    .line 3239
     sget-object v0, Lcom/android/camera/constant/UpdateConstant;->CAMERA_TYPES_INIT:[I
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->updatePreferenceTrampoline([I)V
 
-    .line 2861
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->setPreviewFrameLayoutAspectRatio()V
-
-    .line 2863
-    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsParallelProcess:Z
+    .line 3244
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mEnableParallelSession:Z
 
     if-eqz v0, :cond_0
 
@@ -12457,21 +13484,23 @@
 
     if-eqz v0, :cond_0
 
-    .line 2865
+    .line 3246
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCameraCapabilities:Lcom/android/camera2/CameraCapabilities;
 
     invoke-virtual {v0}, Lcom/android/camera2/CameraCapabilities;->getCameraCalibrationData()[B
 
     move-result-object v0
 
-    .line 2866
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
+    .line 3247
+    iget v1, p0, Lcom/android/camera/module/Camera2Module;->mActualCameraId:I
 
-    move-result v1
+    invoke-direct {p0, v1}, Lcom/android/camera/module/Camera2Module;->getCalibrationDataFileName(I)Ljava/lang/String;
 
-    invoke-static {v0, v1}, Lcom/android/camera/Util;->saveCameraCalibrationToFile([BZ)Z
+    move-result-object v1
 
-    .line 2869
+    invoke-static {v0, v1}, Lcom/android/camera/Util;->saveCameraCalibrationToFile([BLjava/lang/String;)Z
+
+    .line 3250
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isKeptBitmapTexture()Z
 
@@ -12479,24 +13508,24 @@
 
     if-nez v0, :cond_1
 
-    .line 2870
+    .line 3251
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->startPreview()V
 
-    .line 2872
+    .line 3253
     :cond_1
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->initMetaParser()V
 
-    .line 2873
-    invoke-static {}, Lcom/mi/config/b;->gn()Z
+    .line 3254
+    invoke-static {}, Lcom/mi/config/b;->gF()Z
 
     move-result v0
 
     if-eqz v0, :cond_2
 
-    .line 2874
+    .line 3255
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->initAiSceneParser()V
 
-    .line 2877
+    .line 3258
     :cond_2
     invoke-static {}, Landroid/os/SystemClock;->uptimeMillis()J
 
@@ -12504,340 +13533,446 @@
 
     iput-wide v0, p0, Lcom/android/camera/module/Camera2Module;->mOnResumeTime:J
 
-    .line 2878
+    .line 3259
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/4 v1, 0x4
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->sendEmptyMessage(I)Z
 
-    .line 2879
+    .line 3260
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v1, 0x1f
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->sendEmptyMessage(I)Z
 
-    .line 2880
+    .line 3261
     return-void
 .end method
 
-.method public onCaptureStart(JILjava/lang/String;)Lcom/xiaomi/camera/core/ParallelTaskData;
-    .locals 30
+.method public onCaptureStart(Lcom/xiaomi/camera/core/ParallelTaskData;Lcom/android/camera/CameraSize;)Lcom/xiaomi/camera/core/ParallelTaskData;
+    .locals 5
 
-    move-object/from16 v0, p0
-
-    .line 2553
+    .line 2909
     invoke-static {}, Lcom/android/camera/CameraSettings;->isLiveShotOn()Z
 
-    move-result v1
+    move-result v0
 
-    if-eqz v1, :cond_0
+    if-eqz v0, :cond_0
 
-    .line 2554
-    invoke-direct/range {p0 .. p0}, Lcom/android/camera/module/Camera2Module;->startLiveShotAnimation()V
+    .line 2910
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->startLiveShotAnimation()V
 
-    .line 2557
+    .line 2913
     :cond_0
-    invoke-direct/range {p0 .. p0}, Lcom/android/camera/module/Camera2Module;->onShutter()V
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->onShutter()V
 
-    .line 2559
+    .line 2915
     nop
 
-    .line 2560
+    .line 2916
     invoke-static {}, Lcom/android/camera/CameraSettings;->isAgeGenderAndMagicMirrorWaterOpen()Z
 
-    move-result v1
+    move-result v0
 
-    const/4 v2, 0x0
+    const/4 v1, 0x0
 
-    if-eqz v1, :cond_1
+    if-eqz v0, :cond_1
 
-    .line 2561
+    .line 2917
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
-    move-result-object v1
+    move-result-object v0
 
-    const/16 v3, 0xa6
+    const/16 v2, 0xa6
 
-    invoke-virtual {v1, v3}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+    .line 2918
+    invoke-virtual {v0, v2}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
-    move-result-object v1
+    move-result-object v0
 
-    check-cast v1, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
-    .line 2562
-    invoke-interface {v1}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->getFaceWaterMarkInfos()Ljava/util/List;
+    .line 2919
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->getFaceWaterMarkInfos()Ljava/util/List;
 
-    move-result-object v1
+    move-result-object v0
 
-    .line 2563
-    if-eqz v1, :cond_1
+    .line 2920
+    if-eqz v0, :cond_1
 
-    invoke-interface {v1}, Ljava/util/List;->isEmpty()Z
+    invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
 
-    move-result v3
+    move-result v2
 
-    if-nez v3, :cond_1
+    if-nez v2, :cond_1
 
-    .line 2564
-    new-instance v3, Ljava/util/ArrayList;
+    .line 2921
+    new-instance v2, Ljava/util/ArrayList;
 
-    invoke-direct {v3, v1}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
-
-    .line 2568
-    move-object/from16 v19, v3
+    invoke-direct {v2, v0}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
 
     goto :goto_0
 
+    .line 2924
     :cond_1
-    move-object/from16 v19, v2
+    move-object v2, v1
 
     :goto_0
-    new-instance v1, Lcom/xiaomi/camera/core/ParallelTaskData;
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
-    move-wide/from16 v3, p1
+    new-instance v3, Ljava/lang/StringBuilder;
 
-    move/from16 v5, p3
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    move-object/from16 v6, p4
+    const-string v4, "onCaptureStart: "
 
-    invoke-direct {v1, v3, v4, v5, v6}, Lcom/xiaomi/camera/core/ParallelTaskData;-><init>(JILjava/lang/String;)V
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 2569
-    nop
+    iget v4, p2, Lcom/android/camera/CameraSize;->width:I
 
-    .line 2570
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isDualCameraWaterMarkOpen()Z
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    move-result v5
+    const-string v4, "x"
 
-    .line 2571
-    invoke-direct/range {p0 .. p0}, Lcom/android/camera/module/Camera2Module;->isFrontMirror()Z
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result v6
+    iget v4, p2, Lcom/android/camera/CameraSize;->height:I
 
-    .line 2572
-    invoke-static {}, Lcom/android/camera/CameraSettings;->getPortraitLightingPattern()I
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    move-result v7
-
-    iget-object v3, v0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
-
-    iget v8, v3, Lcom/android/camera/CameraSize;->width:I
-
-    iget-object v3, v0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
-
-    iget v9, v3, Lcom/android/camera/CameraSize;->height:I
-
-    iget-object v3, v0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
-
-    iget v10, v3, Lcom/android/camera/CameraSize;->width:I
-
-    iget-object v3, v0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
-
-    iget v11, v3, Lcom/android/camera/CameraSize;->height:I
-
-    .line 2577
-    invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v3
 
-    const/4 v4, 0x0
+    invoke-static {v0, v3}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    invoke-virtual {v3, v4}, Lcom/android/camera/effect/EffectController;->getEffectForSaving(Z)I
+    .line 2927
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
 
-    move-result v12
+    if-nez v0, :cond_2
 
-    .line 2578
-    const/4 v3, -0x1
+    .line 2928
+    invoke-virtual {p2}, Lcom/android/camera/CameraSize;->toSizeObject()Landroid/util/Size;
 
-    iget v13, v0, Lcom/android/camera/module/Camera2Module;->mOrientation:I
-
-    if-ne v3, v13, :cond_2
-
-    move v13, v4
+    move-result-object v0
 
     goto :goto_1
 
+    .line 2930
     :cond_2
-    iget v3, v0, Lcom/android/camera/module/Camera2Module;->mOrientation:I
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
 
-    move v13, v3
+    invoke-virtual {v0}, Lcom/android/camera/CameraSize;->toSizeObject()Landroid/util/Size;
 
+    move-result-object v0
+
+    .line 2933
     :goto_1
-    iget v14, v0, Lcom/android/camera/module/Camera2Module;->mJpegRotation:I
+    new-instance v3, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
-    .line 2580
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isGradienterOn()Z
+    iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
 
-    move-result v3
+    .line 2934
+    invoke-virtual {v4}, Lcom/android/camera/CameraSize;->toSizeObject()Landroid/util/Size;
 
-    if-eqz v3, :cond_3
+    move-result-object v4
 
-    iget v3, v0, Lcom/android/camera/module/Camera2Module;->mShootRotation:F
+    invoke-virtual {p2}, Lcom/android/camera/CameraSize;->toSizeObject()Landroid/util/Size;
 
-    const/high16 v4, -0x40800000    # -1.0f
+    move-result-object p2
 
-    cmpl-float v3, v3, v4
+    invoke-direct {v3, v4, p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;-><init>(Landroid/util/Size;Landroid/util/Size;Landroid/util/Size;)V
 
-    if-nez v3, :cond_3
+    .line 2935
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isDualCameraWaterMarkOpen()Z
+
+    move-result p2
+
+    invoke-virtual {v3, p2}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setHasDualWaterMark(Z)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    move-result-object p2
+
+    .line 2936
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isFrontMirror()Z
+
+    move-result v0
+
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setMirror(Z)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    move-result-object p2
+
+    .line 2937
+    invoke-static {}, Lcom/android/camera/CameraSettings;->getPortraitLightingPattern()I
+
+    move-result v0
+
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setLightingPattern(I)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    move-result-object p2
+
+    .line 2938
+    invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
+
+    move-result-object v0
 
     const/4 v3, 0x0
+
+    invoke-virtual {v0, v3}, Lcom/android/camera/effect/EffectController;->getEffectForSaving(Z)I
+
+    move-result v0
+
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setFilterId(I)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    move-result-object p2
+
+    .line 2939
+    const/4 v0, -0x1
+
+    iget v4, p0, Lcom/android/camera/module/Camera2Module;->mOrientation:I
+
+    if-ne v0, v4, :cond_3
+
+    move v0, v3
 
     goto :goto_2
 
     :cond_3
-    iget v3, v0, Lcom/android/camera/module/Camera2Module;->mShootRotation:F
+    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mOrientation:I
 
     :goto_2
-    move v15, v3
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setOrientation(I)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
-    iget v3, v0, Lcom/android/camera/module/Camera2Module;->mShootOrientation:I
+    move-result-object p2
 
-    iget-object v4, v0, Lcom/android/camera/module/Camera2Module;->mLocation:Landroid/location/Location;
+    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mJpegRotation:I
 
-    .line 2583
+    .line 2940
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setJpegRotation(I)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    move-result-object p2
+
+    .line 2941
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isGradienterOn()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_4
+
+    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mShootRotation:F
+
+    const/high16 v4, -0x40800000    # -1.0f
+
+    cmpl-float v0, v0, v4
+
+    if-nez v0, :cond_4
+
+    const/4 v0, 0x0
+
+    goto :goto_3
+
+    :cond_4
+    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mShootRotation:F
+
+    :goto_3
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setShootRotation(F)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    move-result-object p2
+
+    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mShootOrientation:I
+
+    .line 2942
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setShootOrientation(I)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    move-result-object p2
+
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mLocation:Landroid/location/Location;
+
+    .line 2943
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setLocation(Landroid/location/Location;)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    move-result-object p2
+
+    .line 2944
     invoke-static {}, Lcom/android/camera/CameraSettings;->isTimeWaterMarkOpen()Z
 
-    move-result v16
+    move-result v0
 
-    if-eqz v16, :cond_4
+    if-eqz v0, :cond_5
 
     invoke-static {}, Lcom/android/camera/Util;->getTimeWatermark()Ljava/lang/String;
 
-    move-result-object v2
+    move-result-object v1
 
-    .line 2585
-    :goto_3
-    move-object/from16 v18, v2
+    nop
 
-    goto :goto_4
+    :cond_5
+    invoke-virtual {p2, v1}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setTimeWaterMarkString(Ljava/lang/String;)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
-    .line 2583
-    :cond_4
-    goto :goto_3
+    move-result-object p2
 
-    .line 2585
-    :goto_4
+    .line 2945
+    invoke-virtual {p2, v2}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setFaceWaterMarkList(Ljava/util/List;)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    move-result-object p2
+
+    .line 2946
     invoke-static {}, Lcom/android/camera/CameraSettings;->isAgeGenderAndMagicMirrorWaterOpen()Z
 
-    move-result v20
+    move-result v0
 
-    .line 2586
-    invoke-virtual/range {p0 .. p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setAgeGenderAndMagicMirrorWater(Z)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
-    move-result v21
+    move-result-object p2
 
-    .line 2587
-    iget-object v2, v0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
+    .line 2947
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
-    if-nez v2, :cond_5
+    move-result v0
 
-    iget-object v2, v0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setFrontCamera(Z)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
-    iget v2, v2, Lcom/android/camera/CameraSize;->width:I
+    move-result-object p2
 
-    .line 2588
-    :goto_5
-    move/from16 v22, v2
+    .line 2948
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isBokehFrontCamera()Z
 
-    goto :goto_6
+    move-result v0
 
-    .line 2587
-    :cond_5
-    iget-object v2, v0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setBokehFrontCamera(Z)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
-    invoke-virtual {v2}, Lcom/android/camera/CameraSize;->getWidth()I
+    move-result-object p2
 
-    move-result v2
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mAlgorithmName:Ljava/lang/String;
 
-    goto :goto_5
+    .line 2949
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setAlgorithmName(Ljava/lang/String;)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
-    .line 2588
-    :goto_6
-    iget-object v2, v0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
+    move-result-object p2
 
-    if-nez v2, :cond_6
+    .line 2950
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
 
-    iget-object v2, v0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
+    move-result-object v0
 
-    iget v2, v2, Lcom/android/camera/CameraSize;->height:I
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setPictureInfo(Lcom/xiaomi/camera/core/PictureInfo;)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
-    .line 2589
-    :goto_7
-    move/from16 v23, v2
+    move-result-object p2
 
-    goto :goto_8
+    .line 2951
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getSuffix()Ljava/lang/String;
 
-    .line 2588
+    move-result-object v0
+
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setSuffix(Ljava/lang/String;)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    move-result-object p2
+
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsGradienterOn:Z
+
+    .line 2952
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setGradienterOn(Z)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    move-result-object p2
+
+    .line 2953
+    invoke-static {}, Lcom/android/camera/module/Camera2Module;->getTiltShiftMode()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setTiltShiftMode(Ljava/lang/String;)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    move-result-object p2
+
+    .line 2954
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isSaveGroushotPrimitiveOn()Z
+
+    move-result v0
+
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setSaveGroupshotPrimitive(Z)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    move-result-object p2
+
+    .line 2955
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getDualWaterMarkParam()Lcom/android/camera/effect/renders/DualWatermarkParam;
+
+    move-result-object v0
+
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setDualWatermarkParam(Lcom/android/camera/effect/renders/DualWatermarkParam;)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    move-result-object p2
+
+    .line 2956
+    invoke-static {v3}, Lcom/android/camera/module/Camera2Module;->getJpegQuality(Z)I
+
+    move-result v0
+
+    invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setJpegQuality(I)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
+
+    move-result-object p2
+
+    .line 2957
+    invoke-virtual {p2}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->build()Lcom/xiaomi/camera/core/ParallelTaskDataParameter;
+
+    move-result-object p2
+
+    .line 2959
+    invoke-virtual {p1, p2}, Lcom/xiaomi/camera/core/ParallelTaskData;->fillParameter(Lcom/xiaomi/camera/core/ParallelTaskDataParameter;)V
+
+    .line 2960
+    iget-boolean p2, p0, Lcom/android/camera/module/Camera2Module;->mEnabledPreviewThumbnail:Z
+
+    const/4 v0, 0x1
+
+    xor-int/2addr p2, v0
+
+    invoke-virtual {p1, p2}, Lcom/xiaomi/camera/core/ParallelTaskData;->setNeedThumbnail(Z)V
+
+    .line 2962
+    sget-object p2, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "onCaptureStart: "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mIsCurrentTaskIsParallel:Z
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {p2, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2963
+    iget-boolean p2, p0, Lcom/android/camera/module/Camera2Module;->mIsCurrentTaskIsParallel:Z
+
+    if-eqz p2, :cond_6
+
+    .line 2964
+    invoke-direct {p0, p1, v0}, Lcom/android/camera/module/Camera2Module;->beginParallelProcess(Lcom/xiaomi/camera/core/ParallelTaskData;Z)V
+
+    .line 2967
     :cond_6
-    iget-object v2, v0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
-
-    invoke-virtual {v2}, Lcom/android/camera/CameraSize;->getHeight()I
-
-    move-result v2
-
-    goto :goto_7
-
-    .line 2589
-    :goto_8
-    invoke-virtual/range {p0 .. p0}, Lcom/android/camera/module/Camera2Module;->isBokehFrontCamera()Z
-
-    move-result v24
-
-    iget-object v2, v0, Lcom/android/camera/module/Camera2Module;->mAlgorithmName:Ljava/lang/String;
-
-    .line 2591
-    invoke-direct/range {p0 .. p0}, Lcom/android/camera/module/Camera2Module;->getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
-
-    move-result-object v26
-
-    .line 2592
-    invoke-direct/range {p0 .. p0}, Lcom/android/camera/module/Camera2Module;->getSuffix()Ljava/lang/String;
-
-    move-result-object v27
-
-    move-object/from16 v29, v4
-
-    iget-boolean v4, v0, Lcom/android/camera/module/Camera2Module;->mEnabledPreviewThumbnail:Z
-
-    .line 2569
-    xor-int/lit8 v28, v4, 0x1
-
-    move-object/from16 v17, v29
-
-    move-object v4, v1
-
-    move/from16 v16, v3
-
-    move-object/from16 v25, v2
-
-    invoke-virtual/range {v4 .. v28}, Lcom/xiaomi/camera/core/ParallelTaskData;->fillParameter(ZZIIIIIIIIFILandroid/location/Location;Ljava/lang/String;Ljava/util/List;ZZIIZLjava/lang/String;Lcom/xiaomi/camera/core/PictureInfo;Ljava/lang/String;Z)V
-
-    .line 2595
-    iget-boolean v2, v0, Lcom/android/camera/module/Camera2Module;->mIsParallelProcess:Z
-
-    if-eqz v2, :cond_7
-
-    .line 2596
-    invoke-direct {v0, v1}, Lcom/android/camera/module/Camera2Module;->beginParallelProcess(Lcom/xiaomi/camera/core/ParallelTaskData;)V
-
-    .line 2599
-    :cond_7
-    return-object v1
+    return-object p1
 .end method
 
 .method public onCreate(II)V
     .locals 0
 
-    .line 1974
+    .line 2223
     invoke-super {p0, p1, p2}, Lcom/android/camera/module/BaseModule;->onCreate(II)V
 
-    .line 1976
+    .line 2225
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->parseIntent()V
 
-    .line 1978
+    .line 2227
     new-instance p1, Lcom/android/camera/module/Camera2Module$MainHandler;
 
     iget-object p2, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
@@ -12850,7 +13985,7 @@
 
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
-    .line 1979
+    .line 2228
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {p1}, Lcom/android/camera/Camera;->getSensorStateManager()Lcom/android/camera/SensorStateManager;
@@ -12861,10 +13996,10 @@
 
     invoke-virtual {p1, p2}, Lcom/android/camera/SensorStateManager;->setSensorStateListener(Lcom/android/camera/SensorStateManager$SensorStateListener;)V
 
-    .line 1981
+    .line 2230
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->onCameraOpened()V
 
-    .line 1983
+    .line 2232
     new-instance p1, Lcom/google/lens/sdk/LensApi;
 
     iget-object p2, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
@@ -12873,38 +14008,38 @@
 
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module;->mLensApi:Lcom/google/lens/sdk/LensApi;
 
-    .line 1984
+    .line 2233
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mLensApi:Lcom/google/lens/sdk/LensApi;
 
-    new-instance p2, Lcom/android/camera/module/Camera2Module$14;
+    new-instance p2, Lcom/android/camera/module/Camera2Module$15;
 
-    invoke-direct {p2, p0}, Lcom/android/camera/module/Camera2Module$14;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {p2, p0}, Lcom/android/camera/module/Camera2Module$15;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
     invoke-virtual {p1, p2}, Lcom/google/lens/sdk/LensApi;->checkLensAvailability(Lcom/google/lens/sdk/LensApi$LensAvailabilityCallback;)V
 
-    .line 1992
+    .line 2241
     return-void
 .end method
 
 .method public onDestroy()V
     .locals 2
 
-    .line 1776
+    .line 1998
     invoke-super {p0}, Lcom/android/camera/module/BaseModule;->onDestroy()V
 
-    .line 1777
+    .line 1999
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     if-eqz v0, :cond_0
 
-    .line 1778
+    .line 2000
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v1, 0x2d
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->sendEmptyMessage(I)Z
 
-    .line 1780
+    .line 2002
     :cond_0
     return-void
 .end method
@@ -12912,7 +14047,7 @@
 .method public onFaceBeautySwitched(Z)V
     .locals 0
 
-    .line 858
+    .line 861
     if-eqz p1, :cond_0
 
     const-string p1, "pref_camera_face_beauty_advanced_key"
@@ -12922,21 +14057,21 @@
     :cond_0
     const-string p1, "pref_camera_face_beauty_key"
 
-    .line 857
+    .line 860
     :goto_0
     invoke-static {p1}, Lcom/android/camera/CameraSettings;->setFaceBeautySwitch(Ljava/lang/String;)V
 
-    .line 859
-    invoke-static {}, Lcom/mi/config/b;->hp()Z
+    .line 862
+    invoke-static {}, Lcom/mi/config/b;->hG()Z
 
     move-result p1
 
     if-eqz p1, :cond_1
 
-    .line 860
+    .line 863
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->onBeautyChanged()V
 
-    .line 862
+    .line 865
     :cond_1
     return-void
 .end method
@@ -12944,12 +14079,12 @@
 .method public onFaceDetected([Lcom/android/camera2/CameraHardwareFace;Lcom/android/camera/effect/FaceAnalyzeInfo;)V
     .locals 3
 
-    .line 907
+    .line 910
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isAlive()Z
 
     move-result p2
 
-    if-eqz p2, :cond_5
+    if-eqz p2, :cond_7
 
     iget-object p2, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
@@ -12965,16 +14100,16 @@
 
     goto :goto_1
 
-    .line 910
+    .line 913
     :cond_0
     if-nez p1, :cond_1
 
-    .line 911
+    .line 914
     return-void
 
-    .line 915
+    .line 918
     :cond_1
-    invoke-static {}, Lcom/mi/config/b;->gg()Z
+    invoke-static {}, Lcom/mi/config/b;->gy()Z
 
     move-result p2
 
@@ -12994,12 +14129,12 @@
 
     if-ne p2, v0, :cond_2
 
-    .line 917
+    .line 920
     iget-boolean p2, p0, Lcom/android/camera/module/Camera2Module;->mObjectTrackingStarted:Z
 
-    if-eqz p2, :cond_4
+    if-eqz p2, :cond_6
 
-    .line 918
+    .line 921
     iget-object p2, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     const/4 v0, 0x3
@@ -13014,45 +14149,88 @@
 
     goto :goto_0
 
-    .line 922
+    .line 925
     :cond_2
     iget-object p2, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
-    const/4 v0, 0x1
-
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getActiveArraySize()Landroid/graphics/Rect;
 
-    move-result-object v1
+    move-result-object v0
 
-    iget v2, p0, Lcom/android/camera/module/Camera2Module;->mZoomValue:F
+    iget v1, p0, Lcom/android/camera/module/Camera2Module;->mZoomValue:F
 
-    invoke-interface {p2, v0, p1, v1, v2}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->setFaces(I[Lcom/android/camera2/CameraHardwareFace;Landroid/graphics/Rect;F)Z
+    const/4 v2, 0x1
+
+    invoke-interface {p2, v2, p1, v0, v1}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->setFaces(I[Lcom/android/camera2/CameraHardwareFace;Landroid/graphics/Rect;F)Z
 
     move-result p2
 
     if-nez p2, :cond_3
 
-    .line 923
+    .line 926
     return-void
 
-    .line 926
+    .line 929
     :cond_3
     iget-boolean p2, p0, Lcom/android/camera/module/Camera2Module;->mIsPortraitLightingOn:Z
 
     if-eqz p2, :cond_4
 
-    .line 927
+    .line 930
     iget-object p2, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     invoke-interface {p2, p1}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->lightingDetectFace([Lcom/android/camera2/CameraHardwareFace;)V
 
-    .line 936
+    .line 939
     :cond_4
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
+
+    invoke-interface {p1, v2}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->isFaceExists(I)Z
+
+    move-result p1
+
+    const/16 p2, 0x38
+
+    if-eqz p1, :cond_5
+
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
+
+    .line 940
+    invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->isFocusViewVisible()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_5
+
+    .line 941
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
+
+    invoke-virtual {p1, p2}, Lcom/android/camera/module/Camera2Module$MainHandler;->hasMessages(I)Z
+
+    move-result p1
+
+    if-nez p1, :cond_6
+
+    .line 942
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
+
+    invoke-virtual {p1, p2}, Lcom/android/camera/module/Camera2Module$MainHandler;->sendEmptyMessage(I)Z
+
+    goto :goto_0
+
+    .line 945
+    :cond_5
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
+
+    invoke-virtual {p1, p2}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeMessages(I)V
+
+    .line 948
+    :cond_6
     :goto_0
     return-void
 
-    .line 908
-    :cond_5
+    .line 911
+    :cond_7
     :goto_1
     return-void
 .end method
@@ -13060,7 +14238,7 @@
 .method public onFilterChanged(II)V
     .locals 3
 
-    .line 1633
+    .line 1858
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -13085,7 +14263,7 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1634
+    .line 1859
     const/4 p1, 0x1
 
     new-array p1, p1, [I
@@ -13098,29 +14276,29 @@
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->updatePreferenceTrampoline([I)V
 
-    .line 1635
+    .line 1860
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->updateEffectViewVisible()V
 
-    .line 1636
+    .line 1861
     return-void
 .end method
 
 .method public onFocusStateChanged(Lcom/android/camera/module/loader/camera2/FocusTask;)V
     .locals 9
 
-    .line 2271
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isAlive()Z
+    .line 2595
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrameAvailable()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 2272
+    .line 2596
     return-void
 
-    .line 2275
+    .line 2599
     :cond_0
     invoke-virtual {p1}, Lcom/android/camera/module/loader/camera2/FocusTask;->getFocusTrigger()I
 
@@ -13136,36 +14314,36 @@
 
     goto/16 :goto_1
 
-    .line 2296
+    .line 2620
     :pswitch_0
     invoke-virtual {p1}, Lcom/android/camera/module/loader/camera2/FocusTask;->isFocusing()Z
 
     move-result v0
 
-    .line 2297
+    .line 2621
     nop
 
-    .line 2298
+    .line 2622
     const/4 v4, 0x0
 
-    .line 2299
+    .line 2623
     if-eqz v0, :cond_1
 
-    .line 2300
+    .line 2624
     const-string v4, "onAutoFocusMoving start"
 
-    .line 2301
+    .line 2625
     iput v1, p0, Lcom/android/camera/module/Camera2Module;->mAFEndLogTimes:I
 
     goto :goto_0
 
-    .line 2302
+    .line 2626
     :cond_1
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mAFEndLogTimes:I
 
     if-nez v0, :cond_2
 
-    .line 2303
+    .line 2627
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -13184,17 +14362,17 @@
 
     move-result-object v4
 
-    .line 2304
+    .line 2628
     nop
 
-    .line 2305
+    .line 2629
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mAFEndLogTimes:I
 
     add-int/2addr v0, v3
 
     iput v0, p0, Lcom/android/camera/module/Camera2Module;->mAFEndLogTimes:I
 
-    .line 2307
+    .line 2631
     :cond_2
     :goto_0
     sget-boolean v0, Lcom/android/camera/Util;->sIsDumpLog:Z
@@ -13203,12 +14381,12 @@
 
     if-eqz v4, :cond_3
 
-    .line 2308
+    .line 2632
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     invoke-static {v0, v4}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2312
+    .line 2636
     :cond_3
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
@@ -13216,27 +14394,27 @@
 
     if-ne v0, v2, :cond_4
 
-    .line 2313
+    .line 2637
     invoke-virtual {p1}, Lcom/android/camera/module/loader/camera2/FocusTask;->getFocusTrigger()I
 
     move-result v0
 
     if-ne v0, v2, :cond_6
 
-    .line 2314
+    .line 2638
     :cond_4
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->m3ALocked:Z
 
     if-nez v0, :cond_6
 
-    .line 2315
+    .line 2639
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->onFocusResult(Lcom/android/camera/module/loader/camera2/FocusTask;)V
 
     goto :goto_1
 
-    .line 2277
+    .line 2601
     :pswitch_1
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
@@ -13248,7 +14426,7 @@
 
     new-array v6, v6, [Ljava/lang/Object;
 
-    .line 2278
+    .line 2602
     invoke-virtual {p1}, Lcom/android/camera/module/loader/camera2/FocusTask;->getElapsedTime()J
 
     move-result-wide v7
@@ -13269,14 +14447,14 @@
 
     aput-object v1, v6, v3
 
-    .line 2277
+    .line 2601
     invoke-static {v4, v5, v6}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v1
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2280
+    .line 2604
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {v0}, Lcom/android/camera/module/loader/camera2/FocusManager2;->isFocusingSnapOnFinish()Z
@@ -13285,23 +14463,23 @@
 
     if-nez v0, :cond_5
 
-    .line 2281
+    .line 2605
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
     move-result v0
 
     if-eq v0, v2, :cond_5
 
-    .line 2282
+    .line 2606
     invoke-virtual {p0, v3}, Lcom/android/camera/module/Camera2Module;->setCameraState(I)V
 
-    .line 2286
+    .line 2610
     :cond_5
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->onFocusResult(Lcom/android/camera/module/loader/camera2/FocusTask;)V
 
-    .line 2287
+    .line 2611
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getSensorStateManager()Lcom/android/camera/SensorStateManager;
@@ -13310,7 +14488,7 @@
 
     invoke-virtual {v0}, Lcom/android/camera/SensorStateManager;->reset()V
 
-    .line 2289
+    .line 2613
     invoke-virtual {p1}, Lcom/android/camera/module/loader/camera2/FocusTask;->isSuccess()Z
 
     move-result p1
@@ -13321,12 +14499,12 @@
 
     if-eqz p1, :cond_6
 
-    .line 2290
+    .line 2614
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {p1, v3}, Lcom/android/camera2/Camera2Proxy;->lockExposure(Z)V
 
-    .line 2320
+    .line 2644
     :cond_6
     :goto_1
     return-void
@@ -13344,10 +14522,10 @@
 .method public onGradienterSwitched(Z)V
     .locals 1
 
-    .line 4246
+    .line 4661
     iput-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mIsGradienterOn:Z
 
-    .line 4247
+    .line 4662
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getSensorStateManager()Lcom/android/camera/SensorStateManager;
@@ -13356,7 +14534,7 @@
 
     invoke-virtual {v0, p1}, Lcom/android/camera/SensorStateManager;->setGradienterEnabled(Z)V
 
-    .line 4248
+    .line 4663
     const/4 p1, 0x2
 
     new-array p1, p1, [I
@@ -13365,7 +14543,7 @@
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->updatePreferenceTrampoline([I)V
 
-    .line 4249
+    .line 4664
     return-void
 
     nop
@@ -13380,7 +14558,7 @@
 .method public onHDRSceneChanged(Z)V
     .locals 3
 
-    .line 806
+    .line 809
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->isDetectedInHDR:Z
 
     if-eq v0, p1, :cond_7
@@ -13391,7 +14569,7 @@
 
     goto/16 :goto_1
 
-    .line 810
+    .line 813
     :cond_0
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
 
@@ -13401,17 +14579,17 @@
 
     move-result-object v0
 
-    .line 811
+    .line 814
     invoke-virtual {v0}, Lcom/android/camera/data/data/config/ComponentConfigHdr;->isEmpty()Z
 
     move-result v1
 
     if-eqz v1, :cond_1
 
-    .line 812
+    .line 815
     return-void
 
-    .line 814
+    .line 817
     :cond_1
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
@@ -13419,7 +14597,7 @@
 
     move-result-object v0
 
-    .line 815
+    .line 818
     const-string v1, "auto"
 
     invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -13428,14 +14606,14 @@
 
     if-nez v0, :cond_2
 
-    .line 816
+    .line 819
     return-void
 
-    .line 822
+    .line 825
     :cond_2
     if-eqz p1, :cond_4
 
-    .line 823
+    .line 826
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mZoomValue:F
 
     const/high16 v1, 0x3f800000    # 1.0f
@@ -13456,31 +14634,31 @@
 
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    .line 825
+    .line 828
     invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->isNeedFlashOn()Z
 
     move-result v0
 
     if-eqz v0, :cond_4
 
-    .line 826
+    .line 829
     :cond_3
     return-void
 
-    .line 829
+    .line 832
     :cond_4
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
-    new-instance v1, Lcom/android/camera/module/Camera2Module$6;
+    new-instance v1, Lcom/android/camera/module/Camera2Module$5;
 
-    invoke-direct {v1, p0, p1}, Lcom/android/camera/module/Camera2Module$6;-><init>(Lcom/android/camera/module/Camera2Module;Z)V
+    invoke-direct {v1, p0, p1}, Lcom/android/camera/module/Camera2Module$5;-><init>(Lcom/android/camera/module/Camera2Module;Z)V
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
 
-    .line 838
+    .line 841
     if-eqz p1, :cond_5
 
-    .line 839
+    .line 842
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
     invoke-virtual {v0}, Lcom/android/camera/MutexModeManager;->isNormal()Z
@@ -13489,7 +14667,7 @@
 
     if-eqz v0, :cond_6
 
-    .line 840
+    .line 843
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
     const/4 v1, 0x1
@@ -13498,7 +14676,7 @@
 
     goto :goto_0
 
-    .line 842
+    .line 845
     :cond_5
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
@@ -13508,17 +14686,17 @@
 
     if-eqz v0, :cond_6
 
-    .line 843
+    .line 846
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
     invoke-virtual {v0}, Lcom/android/camera/MutexModeManager;->resetMutexMode()V
 
-    .line 846
+    .line 849
     :cond_6
     :goto_0
     iput-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->isDetectedInHDR:Z
 
-    .line 847
+    .line 850
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -13537,19 +14715,132 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 848
+    .line 851
     return-void
 
-    .line 807
+    .line 810
     :cond_7
     :goto_1
+    return-void
+.end method
+
+.method public onHanGestureSwitched(Z)V
+    .locals 2
+
+    .line 4677
+    const/4 v0, 0x1
+
+    if-eqz p1, :cond_0
+
+    .line 4678
+    invoke-static {}, Lcom/android/zxing/PreviewDecodeManager;->getInstance()Lcom/android/zxing/PreviewDecodeManager;
+
+    move-result-object p1
+
+    iget v1, p0, Lcom/android/camera/module/Camera2Module;->mBogusCameraId:I
+
+    invoke-virtual {p1, v1, v0}, Lcom/android/zxing/PreviewDecodeManager;->init(II)V
+
+    .line 4679
+    invoke-static {}, Lcom/android/zxing/PreviewDecodeManager;->getInstance()Lcom/android/zxing/PreviewDecodeManager;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/zxing/PreviewDecodeManager;->startDecode()V
+
+    goto :goto_0
+
+    .line 4681
+    :cond_0
+    invoke-static {}, Lcom/android/zxing/PreviewDecodeManager;->getInstance()Lcom/android/zxing/PreviewDecodeManager;
+
+    move-result-object p1
+
+    invoke-virtual {p1, v0}, Lcom/android/zxing/PreviewDecodeManager;->stopDecode(I)V
+
+    .line 4683
+    :goto_0
+    return-void
+.end method
+
+.method public onHostStopAndNotifyActionStop()V
+    .locals 3
+
+    .line 2032
+    invoke-super {p0}, Lcom/android/camera/module/BaseModule;->onHostStopAndNotifyActionStop()V
+
+    .line 2033
+    nop
+
+    .line 2034
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mSuperNightDisposable:Lio/reactivex/disposables/Disposable;
+
+    const/4 v1, 0x0
+
+    if-eqz v0, :cond_0
+
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mSuperNightDisposable:Lio/reactivex/disposables/Disposable;
+
+    invoke-interface {v0}, Lio/reactivex/disposables/Disposable;->isDisposed()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    .line 2035
+    const/4 v0, 0x1
+
+    .line 2036
+    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mSuperNightDisposable:Lio/reactivex/disposables/Disposable;
+
+    invoke-interface {v2}, Lio/reactivex/disposables/Disposable;->dispose()V
+
+    goto :goto_0
+
+    .line 2038
+    :cond_0
+    move v0, v1
+
+    :goto_0
+    if-nez v0, :cond_1
+
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mWaitingSuperNightResult:Z
+
+    if-eqz v0, :cond_2
+
+    .line 2039
+    :cond_1
+    iput-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mWaitingSuperNightResult:Z
+
+    .line 2040
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object v0
+
+    const/16 v1, 0xd4
+
+    .line 2041
+    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$RecordState;
+
+    .line 2042
+    if-eqz v0, :cond_2
+
+    .line 2043
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$RecordState;->onPostSavingFinish()V
+
+    .line 2046
+    :cond_2
     return-void
 .end method
 
 .method public onKeyDown(ILandroid/view/KeyEvent;)Z
     .locals 3
 
-    .line 4332
+    .line 4767
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrameAvailable()Z
 
     move-result v0
@@ -13558,10 +14849,10 @@
 
     if-nez v0, :cond_0
 
-    .line 4333
+    .line 4768
     return v1
 
-    .line 4336
+    .line 4771
     :cond_0
     const/4 v0, 0x1
 
@@ -13569,7 +14860,7 @@
 
     goto :goto_3
 
-    .line 4338
+    .line 4773
     :sswitch_0
     invoke-virtual {p2}, Landroid/view/KeyEvent;->getRepeatCount()I
 
@@ -13577,14 +14868,14 @@
 
     if-nez p1, :cond_1
 
-    .line 4339
+    .line 4774
     invoke-virtual {p0, v0, v0}, Lcom/android/camera/module/Camera2Module;->onShutterButtonFocus(ZI)V
 
-    .line 4341
+    .line 4776
     :cond_1
     return v0
 
-    .line 4344
+    .line 4779
     :sswitch_1
     invoke-virtual {p2}, Landroid/view/KeyEvent;->getRepeatCount()I
 
@@ -13592,39 +14883,39 @@
 
     if-nez p1, :cond_3
 
-    .line 4345
+    .line 4780
     invoke-static {p2}, Lcom/android/camera/Util;->isFingerPrintKeyEvent(Landroid/view/KeyEvent;)Z
 
     move-result p1
 
     if-eqz p1, :cond_2
 
-    .line 4346
+    .line 4781
     invoke-static {}, Lcom/android/camera/CameraSettings;->isFingerprintCaptureEnable()Z
 
     move-result p1
 
     if-eqz p1, :cond_3
 
-    .line 4347
+    .line 4782
     const/16 p1, 0x1e
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->onShutterButtonClick(I)V
 
     goto :goto_0
 
-    .line 4350
+    .line 4785
     :cond_2
     const/16 p1, 0x28
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->onShutterButtonClick(I)V
 
-    .line 4353
+    .line 4788
     :cond_3
     :goto_0
     return v0
 
-    .line 4358
+    .line 4793
     :sswitch_2
     const/16 v2, 0x18
 
@@ -13643,23 +14934,23 @@
     :goto_1
     move v1, v0
 
-    .line 4361
+    .line 4796
     :goto_2
     invoke-virtual {p2}, Landroid/view/KeyEvent;->getRepeatCount()I
 
     move-result v2
 
-    .line 4358
+    .line 4793
     invoke-virtual {p0, v1, v0, v2}, Lcom/android/camera/module/Camera2Module;->handleVolumeKeyEvent(ZZI)Z
 
     move-result v1
 
     if-eqz v1, :cond_6
 
-    .line 4362
+    .line 4797
     return v0
 
-    .line 4367
+    .line 4802
     :cond_6
     :goto_3
     invoke-super {p0, p1, p2}, Lcom/android/camera/module/BaseModule;->onKeyDown(ILandroid/view/KeyEvent;)Z
@@ -13683,14 +14974,14 @@
 .method public onKeyUp(ILandroid/view/KeyEvent;)Z
     .locals 4
 
-    .line 4372
+    .line 4807
     const/4 v0, 0x1
 
     sparse-switch p1, :sswitch_data_0
 
     goto :goto_2
 
-    .line 4377
+    .line 4812
     :sswitch_0
     const/16 v1, 0x18
 
@@ -13713,23 +15004,23 @@
     :goto_0
     move v1, v0
 
-    .line 4380
+    .line 4815
     :goto_1
     invoke-virtual {p2}, Landroid/view/KeyEvent;->getRepeatCount()I
 
     move-result v3
 
-    .line 4377
+    .line 4812
     invoke-virtual {p0, v1, v2, v3}, Lcom/android/camera/module/Camera2Module;->handleVolumeKeyEvent(ZZI)Z
 
     move-result v1
 
     if-eqz v1, :cond_2
 
-    .line 4381
+    .line 4816
     return v0
 
-    .line 4387
+    .line 4822
     :sswitch_1
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -13737,24 +15028,24 @@
 
     const/16 v2, 0xab
 
-    .line 4388
+    .line 4823
     invoke-virtual {v1, v2}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v1
 
     check-cast v1, Lcom/android/camera/protocol/ModeProtocol$BackStack;
 
-    .line 4389
+    .line 4824
     invoke-interface {v1}, Lcom/android/camera/protocol/ModeProtocol$BackStack;->handleBackStackFromKeyBack()Z
 
     move-result v1
 
     if-eqz v1, :cond_2
 
-    .line 4390
+    .line 4825
     return v0
 
-    .line 4394
+    .line 4829
     :cond_2
     :goto_2
     invoke-super {p0, p1, p2}, Lcom/android/camera/module/BaseModule;->onKeyUp(ILandroid/view/KeyEvent;)Z
@@ -13778,31 +15069,37 @@
 .method public onLongPress(II)V
     .locals 1
 
-    .line 1378
+    .line 1596
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/module/Camera2Module;->isInTapableRect(II)Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 1379
+    .line 1597
     return-void
 
-    .line 1381
+    .line 1599
     :cond_0
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/module/Camera2Module;->onSingleTapUp(II)V
 
-    .line 1384
+    .line 1602
     invoke-static {}, Lcom/android/camera/CameraSettings;->isAEAFLockSupport()Z
 
     move-result p1
 
     if-eqz p1, :cond_1
 
-    .line 1385
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isBackCamera()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_1
+
+    .line 1603
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->lockAEAF()V
 
-    .line 1387
+    .line 1605
     :cond_1
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isSupportFocusShoot()Z
 
@@ -13816,19 +15113,19 @@
 
     if-nez p1, :cond_2
 
-    .line 1388
+    .line 1606
     const/16 p1, 0x50
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->setTriggerMode(I)V
 
-    .line 1389
+    .line 1607
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getTriggerMode()I
 
     move-result p1
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->onShutterButtonClick(I)V
 
-    .line 1391
+    .line 1609
     :cond_2
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
@@ -13836,62 +15133,62 @@
 
     invoke-interface {p1, p2}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->performHapticFeedback(I)V
 
-    .line 1392
+    .line 1610
     return-void
 .end method
 
 .method public onObjectStable()V
     .locals 0
 
-    .line 1003
+    .line 1016
     return-void
 .end method
 
 .method public onOrientationChanged(II)V
     .locals 1
 
-    .line 4100
+    .line 4513
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsGradienterOn:Z
 
     if-nez v0, :cond_0
 
-    .line 4101
+    .line 4514
     invoke-direct {p0, p1, p2}, Lcom/android/camera/module/Camera2Module;->setOrientation(II)V
 
-    .line 4103
+    .line 4516
     :cond_0
     return-void
 .end method
 
 .method public onPause()V
-    .locals 3
+    .locals 2
 
-    .line 1717
+    .line 1940
     invoke-super {p0}, Lcom/android/camera/module/BaseModule;->onPause()V
 
-    .line 1719
+    .line 1942
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->stopLiveShot(Z)V
 
-    .line 1725
+    .line 1948
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     if-eqz v0, :cond_0
 
-    .line 1726
+    .line 1949
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {v0}, Lcom/android/camera/module/loader/camera2/FocusManager2;->removeMessages()V
 
-    .line 1729
+    .line 1952
     :cond_0
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->resetGradienter()V
 
-    .line 1730
+    .line 1953
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->tryRemoveCountDownMessage()V
 
-    .line 1731
+    .line 1954
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getSensorStateManager()Lcom/android/camera/SensorStateManager;
@@ -13900,46 +15197,37 @@
 
     invoke-virtual {v0}, Lcom/android/camera/SensorStateManager;->reset()V
 
-    .line 1732
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
-
-    invoke-virtual {v0}, Lcom/android/camera/Camera;->getSensorStateManager()Lcom/android/camera/SensorStateManager;
-
-    move-result-object v0
-
-    const/4 v1, 0x0
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/SensorStateManager;->setSensorStateListener(Lcom/android/camera/SensorStateManager$SensorStateListener;)V
-
-    .line 1735
+    .line 1957
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->resetScreenOn()V
 
-    .line 1737
+    .line 1959
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->closeCamera()V
 
-    .line 1738
+    .line 1960
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->releaseEffectProcessor()V
 
-    .line 1740
+    .line 1962
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
-    new-instance v2, Lcom/android/camera/module/Camera2Module$11;
+    new-instance v1, Lcom/android/camera/module/Camera2Module$12;
 
-    invoke-direct {v2, p0}, Lcom/android/camera/module/Camera2Module$11;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$12;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
-    invoke-virtual {v0, v2}, Lcom/android/camera/Camera;->runOnUiThread(Ljava/lang/Runnable;)V
+    invoke-virtual {v0, v1}, Lcom/android/camera/Camera;->runOnUiThread(Ljava/lang/Runnable;)V
 
-    .line 1761
+    .line 1983
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     if-eqz v0, :cond_1
 
-    .line 1762
+    .line 1984
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
+
+    const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 1764
+    .line 1986
     :cond_1
     return-void
 .end method
@@ -13947,163 +15235,14 @@
 .method public onPictureTaken([B)V
     .locals 0
 
-    .line 2634
+    .line 3002
     return-void
 .end method
 
 .method public onPictureTakenFinished(Z)V
-    .locals 7
+    .locals 9
 
-    .line 2639
-    const/4 v0, 0x1
-
-    if-eqz p1, :cond_3
-
-    .line 2641
-    const/4 v1, 0x0
-
-    invoke-virtual {p0, v0, v1}, Lcom/android/camera/module/Camera2Module;->trackGeneralInfo(IZ)V
-
-    .line 2642
-    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mLocation:Landroid/location/Location;
-
-    if-eqz v2, :cond_0
-
-    move v2, v0
-
-    goto :goto_0
-
-    :cond_0
-    move v2, v1
-
-    :goto_0
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getCurrentAiSceneName()Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-virtual {p0, v0, v1, v2, v3}, Lcom/android/camera/module/Camera2Module;->trackPictureTaken(IZZLjava/lang/String;)V
-
-    .line 2644
-    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
-
-    move-result-wide v2
-
-    .line 2647
-    iget-wide v4, p0, Lcom/android/camera/module/Camera2Module;->mCaptureStartTime:J
-
-    sub-long/2addr v2, v4
-
-    .line 2648
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
-
-    move-result v4
-
-    iget v5, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
-
-    invoke-static {v2, v3, v4, v5}, Lcom/android/camera/statistic/CameraStatUtil;->trackTakePictureCost(JZI)V
-
-    .line 2649
-    invoke-static {}, Lcom/android/camera/statistic/ScenarioTrackUtil;->trackCaptureTimeEnd()V
-
-    .line 2651
-    sget-object v4, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
-
-    new-instance v5, Ljava/lang/StringBuilder;
-
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v6, "mCaptureStartTime(from onShutterButtonClick start to jpegCallback finished) = "
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v5, v2, v3}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
-
-    const-string v2, "ms"
-
-    invoke-virtual {v5, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-static {v4, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 2655
-    iget-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mIsImageCaptureIntent:Z
-
-    if-eqz v2, :cond_2
-
-    .line 2656
-    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mQuickCapture:Z
-
-    if-nez v1, :cond_1
-
-    .line 2657
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isAlive()Z
-
-    move-result v1
-
-    if-eqz v1, :cond_3
-
-    .line 2658
-    iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mKeepBitmapTexture:Z
-
-    .line 2659
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->showPostCaptureAlert()V
-
-    goto :goto_1
-
-    .line 2662
-    :cond_1
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->doAttach()V
-
-    goto :goto_1
-
-    .line 2665
-    :cond_2
-    iget-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mLongPressedAutoFocus:Z
-
-    if-eqz v2, :cond_3
-
-    .line 2666
-    iput-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mLongPressedAutoFocus:Z
-
-    .line 2667
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
-
-    invoke-virtual {v1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->cancelLongPressedAutoFocus()V
-
-    .line 2673
-    :cond_3
-    :goto_1
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isKeptBitmapTexture()Z
-
-    move-result v1
-
-    if-nez v1, :cond_4
-
-    .line 2674
-    invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->setCameraState(I)V
-
-    .line 2675
-    invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->enableCameraControls(Z)V
-
-    .line 2678
-    :cond_4
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
-
-    const/16 v1, 0x32
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeMessages(I)V
-
-    .line 2680
-    iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
-
-    const/16 v1, 0xad
-
-    if-ne v0, v1, :cond_6
-
-    .line 2681
+    .line 3007
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -14118,14 +15257,216 @@
 
     invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
+    move-result-object v1
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 3008
+    const/4 v0, 0x0
+
+    const/4 v1, 0x1
+
+    if-eqz p1, :cond_4
+
+    .line 3010
+    invoke-virtual {p0, v1, v0}, Lcom/android/camera/module/Camera2Module;->trackGeneralInfo(IZ)V
+
+    .line 3011
+    const/4 v3, 0x1
+
+    const/4 v4, 0x0
+
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mLocation:Landroid/location/Location;
+
+    if-eqz p1, :cond_0
+
+    move v5, v1
+
+    goto :goto_0
+
+    :cond_0
+    move v5, v0
+
+    :goto_0
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getCurrentAiSceneName()Ljava/lang/String;
+
+    move-result-object v6
+
+    iget-boolean v7, p0, Lcom/android/camera/module/Camera2Module;->mEnteringMoonMode:Z
+
+    iget-boolean v8, p0, Lcom/android/camera/module/Camera2Module;->mIsMoonMode:Z
+
+    move-object v2, p0
+
+    invoke-virtual/range {v2 .. v8}, Lcom/android/camera/module/Camera2Module;->trackPictureTaken(IZZLjava/lang/String;ZZ)V
+
+    .line 3013
+    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+
+    move-result-wide v2
+
+    .line 3016
+    iget-wide v4, p0, Lcom/android/camera/module/Camera2Module;->mCaptureStartTime:J
+
+    sub-long/2addr v2, v4
+
+    .line 3017
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
+
+    move-result p1
+
+    iget v4, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    invoke-static {v2, v3, p1, v4}, Lcom/android/camera/statistic/CameraStatUtil;->trackTakePictureCost(JZI)V
+
+    .line 3019
+    iget p1, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    const/16 v4, 0xab
+
+    if-ne p1, v4, :cond_1
+
+    .line 3020
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
     move-result-object p1
 
-    invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-virtual {p1}, Lcom/mi/config/a;->isSupportBokehAdjust()Z
 
-    .line 2682
-    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mSuperNightDisposable:Lio/reactivex/disposables/Disposable;
+    move-result p1
+
+    if-eqz p1, :cond_1
+
+    .line 3021
+    invoke-static {}, Lcom/android/camera/statistic/CameraStatUtil;->trackBokehTaken()V
+
+    .line 3024
+    :cond_1
+    invoke-static {}, Lcom/android/camera/statistic/ScenarioTrackUtil;->trackCaptureTimeEnd()V
+
+    .line 3026
+    sget-object p1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "mCaptureStartTime(from onShutterButtonClick start to jpegCallback finished) = "
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4, v2, v3}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+
+    const-string v2, "ms"
+
+    invoke-virtual {v4, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {p1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 3029
+    iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mIsImageCaptureIntent:Z
+
+    if-eqz p1, :cond_3
+
+    .line 3030
+    iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mQuickCapture:Z
+
+    if-nez p1, :cond_2
+
+    .line 3031
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isAlive()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_4
+
+    .line 3032
+    iput-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mKeepBitmapTexture:Z
+
+    .line 3033
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->showPostCaptureAlert()V
+
+    goto :goto_1
+
+    .line 3036
+    :cond_2
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->doAttach()V
+
+    goto :goto_1
+
+    .line 3039
+    :cond_3
+    iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mLongPressedAutoFocus:Z
+
+    if-eqz p1, :cond_4
+
+    .line 3040
+    iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mLongPressedAutoFocus:Z
+
+    .line 3041
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
+
+    invoke-virtual {p1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->cancelLongPressedAutoFocus()V
+
+    .line 3047
+    :cond_4
+    :goto_1
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isKeptBitmapTexture()Z
+
+    move-result p1
+
+    if-nez p1, :cond_5
+
+    iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStatus:Z
+
+    if-nez p1, :cond_5
+
+    .line 3048
+    invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->setCameraState(I)V
+
+    .line 3049
+    invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->enableCameraControls(Z)V
+
+    .line 3050
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isHangGestureOpen()Z
+
+    move-result p1
 
     if-eqz p1, :cond_5
+
+    .line 3051
+    invoke-static {}, Lcom/android/zxing/PreviewDecodeManager;->getInstance()Lcom/android/zxing/PreviewDecodeManager;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/zxing/PreviewDecodeManager;->reset()V
+
+    .line 3055
+    :cond_5
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
+
+    const/16 v1, 0x32
+
+    invoke-virtual {p1, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeMessages(I)V
+
+    .line 3057
+    iget p1, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    const/16 v1, 0xad
+
+    if-ne p1, v1, :cond_7
+
+    .line 3058
+    iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mWaitingSuperNightResult:Z
+
+    .line 3059
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mSuperNightDisposable:Lio/reactivex/disposables/Disposable;
+
+    if-eqz p1, :cond_6
 
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mSuperNightDisposable:Lio/reactivex/disposables/Disposable;
 
@@ -14133,35 +15474,35 @@
 
     move-result p1
 
-    if-nez p1, :cond_5
+    if-nez p1, :cond_6
 
-    .line 2683
+    .line 3060
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mSuperNightDisposable:Lio/reactivex/disposables/Disposable;
 
     invoke-interface {p1}, Lio/reactivex/disposables/Disposable;->dispose()V
 
-    .line 2685
-    :cond_5
+    .line 3062
+    :cond_6
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
-    new-instance v0, Lcom/android/camera/module/Camera2Module$16;
+    new-instance v0, Lcom/android/camera/module/Camera2Module$17;
 
-    invoke-direct {v0, p0}, Lcom/android/camera/module/Camera2Module$16;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v0, p0}, Lcom/android/camera/module/Camera2Module$17;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
     invoke-virtual {p1, v0}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
 
-    .line 2695
-    :cond_6
+    .line 3074
+    :cond_7
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->doLaterReleaseIfNeed()V
 
-    .line 2696
+    .line 3075
     return-void
 .end method
 
 .method public onPictureTakenImageConsumed(Landroid/media/Image;)Z
     .locals 0
 
-    .line 2628
+    .line 2996
     const/4 p1, 0x0
 
     return p1
@@ -14170,12 +15511,12 @@
 .method public onPreviewLayoutChanged(Landroid/graphics/Rect;)V
     .locals 3
 
-    .line 1613
+    .line 1839
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/Camera;->onLayoutChange(Landroid/graphics/Rect;)V
 
-    .line 1614
+    .line 1840
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     if-eqz v0, :cond_0
@@ -14188,7 +15529,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 1615
+    .line 1841
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
@@ -14203,7 +15544,7 @@
 
     iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
-    .line 1616
+    .line 1842
     invoke-virtual {v2}, Lcom/android/camera/Camera;->getCameraScreenNail()Lcom/android/camera/CameraScreenNail;
 
     move-result-object v2
@@ -14212,10 +15553,10 @@
 
     move-result v2
 
-    .line 1615
+    .line 1841
     invoke-virtual {v0, v1, v2}, Lcom/android/camera/module/loader/camera2/FocusManager2;->setRenderSize(II)V
 
-    .line 1617
+    .line 1843
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {p1}, Landroid/graphics/Rect;->width()I
@@ -14228,37 +15569,139 @@
 
     invoke-virtual {v0, v1, p1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->setPreviewSize(II)V
 
-    .line 1619
+    .line 1845
     :cond_0
+    return-void
+.end method
+
+.method public onPreviewMetaDataUpdate(Landroid/hardware/camera2/CaptureResult;)V
+    .locals 4
+
+    .line 5112
+    if-nez p1, :cond_0
+
+    .line 5113
+    return-void
+
+    .line 5116
+    :cond_0
+    invoke-super {p0, p1}, Lcom/android/camera/module/BaseModule;->onPreviewMetaDataUpdate(Landroid/hardware/camera2/CaptureResult;)V
+
+    .line 5119
+    sget-object v0, Landroid/hardware/camera2/CaptureResult;->SENSOR_SENSITIVITY:Landroid/hardware/camera2/CaptureResult$Key;
+
+    invoke-virtual {p1, v0}, Landroid/hardware/camera2/CaptureResult;->get(Landroid/hardware/camera2/CaptureResult$Key;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Ljava/lang/Integer;
+
+    .line 5120
+    sget-object v1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "onPreviewMetaDataUpdate: ISO="
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Lcom/android/camera/log/Log;->c(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 5121
+    if-eqz v0, :cond_1
+
+    invoke-virtual {v0}, Ljava/lang/Integer;->intValue()I
+
+    move-result v0
+
+    const/16 v1, 0x320
+
+    if-lt v0, v1, :cond_1
+
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    const/4 v0, 0x1
+
+    goto :goto_0
+
+    :cond_1
+    const/4 v0, 0x0
+
+    :goto_0
+    iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mShouldDoMFNR:Z
+
+    .line 5123
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMetaDataFlowableEmitter:Lio/reactivex/FlowableEmitter;
+
+    if-eqz v0, :cond_2
+
+    .line 5124
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMetaDataFlowableEmitter:Lio/reactivex/FlowableEmitter;
+
+    invoke-interface {v0, p1}, Lio/reactivex/FlowableEmitter;->onNext(Ljava/lang/Object;)V
+
+    .line 5127
+    :cond_2
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneFlowableEmitter:Lio/reactivex/FlowableEmitter;
+
+    if-eqz v0, :cond_3
+
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneEnabled:Z
+
+    if-eqz v0, :cond_3
+
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    if-eqz v0, :cond_3
+
+    .line 5128
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mAiSceneFlowableEmitter:Lio/reactivex/FlowableEmitter;
+
+    invoke-interface {v0, p1}, Lio/reactivex/FlowableEmitter;->onNext(Ljava/lang/Object;)V
+
+    .line 5130
+    :cond_3
     return-void
 .end method
 
 .method public onPreviewPixelsRead([BII)V
     .locals 5
 
-    .line 2468
+    .line 2806
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->animateCapture()V
 
-    .line 2469
+    .line 2807
     const/4 v0, 0x0
 
-    invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->playSound(I)V
+    invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->playCameraSound(I)V
 
-    .line 2471
+    .line 2809
     sget-object v1, Landroid/graphics/Bitmap$Config;->ARGB_8888:Landroid/graphics/Bitmap$Config;
 
     invoke-static {p2, p3, v1}, Landroid/graphics/Bitmap;->createBitmap(IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;
 
     move-result-object p2
 
-    .line 2472
+    .line 2810
     invoke-static {p1}, Ljava/nio/ByteBuffer;->wrap([B)Ljava/nio/ByteBuffer;
 
     move-result-object p1
 
     invoke-virtual {p2, p1}, Landroid/graphics/Bitmap;->copyPixelsFromBuffer(Ljava/nio/Buffer;)V
 
-    .line 2474
+    .line 2812
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result p1
@@ -14273,38 +15716,38 @@
 
     if-nez p1, :cond_0
 
-    .line 2475
+    .line 2813
     move p1, p3
 
     goto :goto_0
 
-    .line 2474
+    .line 2812
     :cond_0
     nop
 
-    .line 2475
+    .line 2813
     move p1, v0
 
-    .line 2477
+    .line 2815
     :goto_0
-    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mIsParallelProcess:Z
+    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mIsCurrentTaskIsParallel:Z
 
     const/4 v2, 0x0
 
     if-eqz v1, :cond_2
 
-    .line 2478
+    .line 2816
     if-eqz p1, :cond_1
 
-    .line 2479
+    .line 2817
     invoke-static {p2}, Lcom/android/camera/Util;->flipBitmap(Landroid/graphics/Bitmap;)Landroid/graphics/Bitmap;
 
     move-result-object p2
 
-    .line 2480
+    .line 2818
     nop
 
-    .line 2483
+    .line 2821
     move p1, v0
 
     :cond_1
@@ -14314,7 +15757,7 @@
 
     goto :goto_1
 
-    .line 2486
+    .line 2824
     :cond_2
     move-object v1, v2
 
@@ -14325,52 +15768,63 @@
 
     sub-int/2addr v3, v4
 
-    .line 2487
+    .line 2825
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v4
 
     if-eqz v4, :cond_3
 
-    .line 2488
-    invoke-static {}, Lcom/mi/config/b;->hk()Z
+    .line 2826
+    invoke-static {}, Lcom/mi/config/b;->hC()Z
 
     move-result v4
 
     if-eqz v4, :cond_3
 
-    .line 2490
+    .line 2828
     rem-int/lit16 v4, v3, 0xb4
 
     if-nez v4, :cond_3
 
-    .line 2491
-    goto :goto_2
+    .line 2829
+    nop
 
-    .line 2496
+    .line 2834
+    move v3, v0
+
     :cond_3
-    move v0, v3
-
-    :goto_2
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isAlive()Z
 
-    move-result v3
+    move-result v4
 
-    if-nez v3, :cond_4
+    if-eqz v4, :cond_6
 
-    .line 2497
-    return-void
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDeviceAlive()Z
 
-    .line 2500
+    move-result v4
+
+    if-nez v4, :cond_4
+
+    goto :goto_2
+
+    .line 2837
     :cond_4
-    invoke-static {v2, p2, v0, p1}, Lcom/android/camera/Thumbnail;->createThumbnail(Landroid/net/Uri;Landroid/graphics/Bitmap;IZ)Lcom/android/camera/Thumbnail;
+    iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    invoke-virtual {v4}, Lcom/android/camera2/Camera2Proxy;->getShotSavePath()Ljava/lang/String;
+
+    move-result-object v4
+
+    .line 2838
+    invoke-static {v2, p2, v3, p1}, Lcom/android/camera/Thumbnail;->createThumbnail(Landroid/net/Uri;Landroid/graphics/Bitmap;IZ)Lcom/android/camera/Thumbnail;
 
     move-result-object p1
 
-    .line 2501
+    .line 2839
     invoke-virtual {p1}, Lcom/android/camera/Thumbnail;->startWaitingForUri()V
 
-    .line 2502
+    .line 2840
     iget-object p2, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {p2}, Lcom/android/camera/Camera;->getThumbnailUpdater()Lcom/android/camera/ThumbnailUpdater;
@@ -14379,30 +15833,56 @@
 
     invoke-virtual {p2, p1, p3, p3}, Lcom/android/camera/ThumbnailUpdater;->setThumbnail(Lcom/android/camera/Thumbnail;ZZ)V
 
-    .line 2505
+    .line 2843
+    sget-object p1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    new-instance p2, Ljava/lang/StringBuilder;
+
+    invoke-direct {p2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string p3, "onPreviewPixelsRead: "
+
+    invoke-virtual {p2, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    const-string p3, "--"
+
+    invoke-virtual {p2, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget-boolean p3, p0, Lcom/android/camera/module/Camera2Module;->mIsCurrentTaskIsParallel:Z
+
+    invoke-virtual {p2, p3}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p2
+
+    invoke-static {p1, p2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2844
     if-eqz v1, :cond_5
 
-    iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mIsParallelProcess:Z
+    iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mIsCurrentTaskIsParallel:Z
 
     if-eqz p1, :cond_5
 
-    .line 2506
+    .line 2845
     new-instance p1, Lcom/xiaomi/camera/core/ParallelTaskData;
 
+    .line 2846
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
-    move-result-wide v2
+    move-result-wide p2
 
-    const/4 p2, -0x1
+    const/4 v2, -0x1
 
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mParallelProcessingFilePath:Ljava/lang/String;
+    invoke-direct {p1, p2, p3, v2, v4}, Lcom/xiaomi/camera/core/ParallelTaskData;-><init>(JILjava/lang/String;)V
 
-    invoke-direct {p1, v2, v3, p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskData;-><init>(JILjava/lang/String;)V
+    .line 2847
+    invoke-virtual {p1, v1, v0}, Lcom/xiaomi/camera/core/ParallelTaskData;->fillJpegData([BI)V
 
-    .line 2508
-    invoke-virtual {p1, v1, p3}, Lcom/xiaomi/camera/core/ParallelTaskData;->fillJpegData([BI)V
-
-    .line 2509
+    .line 2848
     iget-object p2, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {p2}, Lcom/android/camera/Camera;->getImageSaver()Lcom/android/camera/storage/ImageSaver;
@@ -14411,67 +15891,112 @@
 
     invoke-virtual {p2, p1}, Lcom/android/camera/storage/ImageSaver;->onParallelProcessFinish(Lcom/xiaomi/camera/core/ParallelTaskData;)V
 
-    .line 2511
+    .line 2850
     :cond_5
+    return-void
+
+    .line 2835
+    :cond_6
+    :goto_2
     return-void
 .end method
 
 .method public onPreviewSessionClosed(Landroid/hardware/camera2/CameraCaptureSession;)V
     .locals 1
 
-    .line 2263
+    .line 2587
     sget-object p1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v0, "onPreviewSessionClosed: "
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2266
+    .line 2590
     const/4 p1, 0x0
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->setCameraState(I)V
 
-    .line 2267
+    .line 2591
     return-void
 .end method
 
 .method public onPreviewSessionFailed(Landroid/hardware/camera2/CameraCaptureSession;)V
     .locals 1
 
-    .line 2258
+    .line 2578
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isTextureExpired()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_0
+
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
+
+    invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->retryOnceIfCameraError(Landroid/os/Handler;)Z
+
+    move-result p1
+
+    if-eqz p1, :cond_0
+
+    .line 2579
+    sget-object p1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    const-string v0, "sessionFailed due to surfaceTexture expired, retry"
+
+    invoke-static {p1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2580
+    return-void
+
+    .line 2582
+    :cond_0
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v0, 0x33
 
     invoke-virtual {p1, v0}, Lcom/android/camera/module/Camera2Module$MainHandler;->sendEmptyMessage(I)Z
 
-    .line 2259
+    .line 2583
     return-void
 .end method
 
 .method public onPreviewSessionSuccess(Landroid/hardware/camera2/CameraCaptureSession;)V
     .locals 3
 
-    .line 2218
-    const-string v0, "onPreviewSessionSuccess:"
+    .line 2534
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "onPreviewSessionSuccess: "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     invoke-static {}, Ljava/lang/Thread;->currentThread()Ljava/lang/Thread;
 
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/Thread;->getName()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
     move-result-object v1
 
-    invoke-virtual {v1}, Ljava/lang/Thread;->getName()Ljava/lang/String;
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    move-result-object v1
-
-    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 2219
+    .line 2535
     if-nez p1, :cond_0
 
-    .line 2220
+    .line 2536
     return-void
 
-    .line 2222
+    .line 2538
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isAlive()Z
 
@@ -14479,10 +16004,10 @@
 
     if-nez p1, :cond_1
 
-    .line 2223
+    .line 2539
     return-void
 
-    .line 2226
+    .line 2542
     :cond_1
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isKeptBitmapTexture()Z
 
@@ -14490,18 +16015,27 @@
 
     if-nez p1, :cond_2
 
-    .line 2227
+    .line 2543
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v0, 0x9
 
     invoke-virtual {p1, v0}, Lcom/android/camera/module/Camera2Module$MainHandler;->sendEmptyMessage(I)Z
 
-    .line 2231
+    .line 2546
     :cond_2
+    iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mEnableParallelSession:Z
+
+    if-eqz p1, :cond_3
+
+    .line 2547
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->configParallelSession()V
+
+    .line 2550
+    :cond_3
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->previewWhenSessionSuccess()V
 
-    .line 2232
+    .line 2551
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {p1}, Lcom/android/camera/Camera;->getCameraIntentManager()Lcom/android/camera/CameraIntentManager;
@@ -14512,9 +16046,9 @@
 
     move-result p1
 
-    if-eqz p1, :cond_4
+    if-eqz p1, :cond_5
 
-    .line 2234
+    .line 2553
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {p1}, Lcom/android/camera/Camera;->getCameraIntentManager()Lcom/android/camera/CameraIntentManager;
@@ -14525,9 +16059,9 @@
 
     move-result p1
 
-    if-nez p1, :cond_3
+    if-nez p1, :cond_4
 
-    .line 2236
+    .line 2555
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {p1}, Lcom/android/camera/Camera;->getIntent()Landroid/content/Intent;
@@ -14538,7 +16072,7 @@
 
     invoke-virtual {p1, v0}, Landroid/content/Intent;->removeExtra(Ljava/lang/String;)V
 
-    .line 2238
+    .line 2557
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v0, 0x34
@@ -14549,8 +16083,8 @@
 
     goto :goto_0
 
-    .line 2240
-    :cond_3
+    .line 2559
+    :cond_4
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {p1}, Lcom/android/camera/Camera;->getIntent()Landroid/content/Intent;
@@ -14561,8 +16095,8 @@
 
     invoke-virtual {p1, v0}, Landroid/content/Intent;->removeExtra(Ljava/lang/String;)V
 
-    .line 2243
-    :cond_4
+    .line 2562
+    :cond_5
     :goto_0
     return-void
 .end method
@@ -14570,17 +16104,17 @@
 .method public onPreviewSizeChanged(II)V
     .locals 1
 
-    .line 1623
+    .line 1849
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     if-eqz v0, :cond_0
 
-    .line 1624
+    .line 1850
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {v0, p1, p2}, Lcom/android/camera/module/loader/camera2/FocusManager2;->setPreviewSize(II)V
 
-    .line 1626
+    .line 1852
     :cond_0
     return-void
 .end method
@@ -14588,34 +16122,29 @@
 .method public onResume()V
     .locals 2
 
-    .line 1674
+    .line 1898
     invoke-super {p0}, Lcom/android/camera/module/BaseModule;->onResume()V
 
-    .line 1675
+    .line 1899
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v1, 0x32
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeMessages(I)V
 
-    .line 1676
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
-
-    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->initEffectCropView()V
-
-    .line 1677
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isSelectingCapturedImage()Z
+    .line 1900
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isSelectingCapturedResult()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 1678
+    .line 1901
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mKeepBitmapTexture:Z
 
-    .line 1679
+    .line 1902
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getCameraScreenNail()Lcom/android/camera/CameraScreenNail;
@@ -14624,39 +16153,39 @@
 
     invoke-virtual {v0}, Lcom/android/camera/CameraScreenNail;->releaseBitmapIfNeeded()V
 
-    .line 1682
+    .line 1905
     :cond_0
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->keepScreenOnAwhile()V
 
-    .line 1684
+    .line 1907
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
-    new-instance v1, Lcom/android/camera/module/Camera2Module$10;
+    new-instance v1, Lcom/android/camera/module/Camera2Module$11;
 
-    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$10;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$11;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
     invoke-virtual {v0, v1}, Lcom/android/camera/Camera;->runOnUiThread(Ljava/lang/Runnable;)V
 
-    .line 1700
+    .line 1923
     return-void
 .end method
 
 .method public onReviewCancelClicked()V
     .locals 3
 
-    .line 1584
+    .line 1811
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mKeepBitmapTexture:Z
 
-    .line 1585
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isSelectingCapturedImage()Z
+    .line 1812
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isSelectingCapturedResult()Z
 
     move-result v1
 
     if-eqz v1, :cond_0
 
-    .line 1586
+    .line 1813
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getCameraScreenNail()Lcom/android/camera/CameraScreenNail;
@@ -14665,12 +16194,12 @@
 
     invoke-virtual {v0}, Lcom/android/camera/CameraScreenNail;->releaseBitmapIfNeeded()V
 
-    .line 1587
+    .line 1814
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->hidePostCaptureAlert()V
 
     goto :goto_0
 
-    .line 1591
+    .line 1818
     :cond_0
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
@@ -14680,12 +16209,12 @@
 
     invoke-virtual {v1, v0, v2}, Lcom/android/camera/Camera;->setResult(ILandroid/content/Intent;)V
 
-    .line 1592
+    .line 1819
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->finish()V
 
-    .line 1594
+    .line 1821
     :goto_0
     return-void
 .end method
@@ -14693,31 +16222,83 @@
 .method public onReviewDoneClicked()V
     .locals 0
 
-    .line 1579
+    .line 1806
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->doAttach()V
 
-    .line 1580
+    .line 1807
+    return-void
+.end method
+
+.method public onScaleEnd()V
+    .locals 4
+
+    .line 4881
+    invoke-super {p0}, Lcom/android/camera/module/BaseModule;->onScaleEnd()V
+
+    .line 4883
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isRearMenuUltraPixelPhotographyOn()Z
+
+    move-result v0
+
+    .line 4884
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isUltraPixelPhotographyOn()Z
+
+    move-result v1
+
+    .line 4885
+    if-nez v0, :cond_0
+
+    if-eqz v1, :cond_1
+
+    .line 4886
+    :cond_0
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object v0
+
+    const/16 v1, 0xaf
+
+    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;
+
+    .line 4887
+    if-eqz v0, :cond_1
+
+    .line 4888
+    const/16 v1, 0xf
+
+    const v2, 0x7f09027e
+
+    const/4 v3, 0x1
+
+    invoke-interface {v0, v1, v2, v3}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->showTips(III)V
+
+    .line 4891
+    :cond_1
     return-void
 .end method
 
 .method public onShutterButtonClick(I)V
     .locals 2
 
-    .line 1060
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getCountDownTimes()I
+    .line 1075
+    invoke-direct {p0, p1}, Lcom/android/camera/module/Camera2Module;->getCountDownTimes(I)I
 
     move-result v0
 
-    .line 1061
+    .line 1076
     if-lez v0, :cond_0
 
-    .line 1062
+    .line 1077
     invoke-direct {p0, v0, p1}, Lcom/android/camera/module/Camera2Module;->startCount(II)V
 
-    .line 1063
+    .line 1078
     return-void
 
-    .line 1066
+    .line 1081
     :cond_0
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->checkShutterCondition()Z
 
@@ -14725,14 +16306,14 @@
 
     if-nez v0, :cond_1
 
-    .line 1067
+    .line 1082
     return-void
 
-    .line 1070
+    .line 1085
     :cond_1
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->setTriggerMode(I)V
 
-    .line 1071
+    .line 1086
     sget-object p1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -14759,7 +16340,7 @@
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1076
+    .line 1092
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mNeedAutoFocus:Z
@@ -14768,12 +16349,12 @@
 
     invoke-virtual {p1, v0, v1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->prepareCapture(ZI)V
 
-    .line 1077
+    .line 1093
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {p1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->doSnap()V
 
-    .line 1078
+    .line 1094
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {p1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->isFocusingSnapOnFinish()Z
@@ -14782,12 +16363,12 @@
 
     if-eqz p1, :cond_2
 
-    .line 1079
+    .line 1095
     const/4 p1, 0x0
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->enableCameraControls(Z)V
 
-    .line 1081
+    .line 1097
     :cond_2
     return-void
 .end method
@@ -14795,14 +16376,14 @@
 .method public onShutterButtonFocus(ZI)V
     .locals 0
 
-    .line 1374
+    .line 1592
     return-void
 .end method
 
 .method public onShutterButtonLongClick()Z
     .locals 4
 
-    .line 1396
+    .line 1614
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDoingAction()Z
 
     move-result v0
@@ -14811,41 +16392,20 @@
 
     if-eqz v0, :cond_0
 
-    .line 1397
+    .line 1615
     return v1
 
-    .line 1400
+    .line 1618
     :cond_0
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsImageCaptureIntent:Z
 
     if-eqz v0, :cond_1
 
-    .line 1401
+    .line 1619
     return v1
 
-    .line 1404
+    .line 1622
     :cond_1
-    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
-
-    move-result-object v0
-
-    const/16 v2, 0xab
-
-    .line 1405
-    invoke-virtual {v0, v2}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BackStack;
-
-    .line 1406
-    if-eqz v0, :cond_2
-
-    .line 1407
-    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$BackStack;->handleBackStackFromShutter()Z
-
-    .line 1410
-    :cond_2
     invoke-static {}, Lcom/android/camera/CameraSettings;->isBurstShootingEnable()Z
 
     move-result v0
@@ -14854,7 +16414,7 @@
 
     if-eqz v0, :cond_4
 
-    .line 1411
+    .line 1623
     invoke-static {}, Lcom/android/camera/module/ModuleManager;->isCameraModule()Z
 
     move-result v0
@@ -14865,28 +16425,28 @@
 
     if-nez v0, :cond_4
 
-    .line 1414
+    .line 1626
     invoke-static {}, Lcom/android/camera/CameraSettings;->isGroupShotOn()Z
 
     move-result v0
 
     if-nez v0, :cond_4
 
-    .line 1415
+    .line 1627
     invoke-static {}, Lcom/android/camera/CameraSettings;->isGradienterOn()Z
 
     move-result v0
 
     if-nez v0, :cond_4
 
-    .line 1416
+    .line 1628
     invoke-static {}, Lcom/android/camera/CameraSettings;->isTiltShiftOn()Z
 
     move-result v0
 
     if-nez v0, :cond_4
 
-    .line 1417
+    .line 1629
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
     move-result-object v0
@@ -14899,21 +16459,21 @@
 
     if-nez v0, :cond_4
 
-    .line 1418
+    .line 1630
     invoke-static {}, Lcom/android/camera/CameraSettings;->isStereoModeOn()Z
 
     move-result v0
 
     if-nez v0, :cond_4
 
-    .line 1419
+    .line 1631
     invoke-static {}, Lcom/android/camera/CameraSettings;->isPortraitModeBackOn()Z
 
     move-result v0
 
     if-nez v0, :cond_4
 
-    .line 1420
+    .line 1632
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isBackCamera()Z
 
     move-result v0
@@ -14928,7 +16488,7 @@
 
     const/16 v3, 0x18
 
-    .line 1422
+    .line 1634
     invoke-virtual {v0, v3}, Lcom/android/camera/module/Camera2Module$MainHandler;->hasMessages(I)Z
 
     move-result v0
@@ -14939,43 +16499,78 @@
 
     if-nez v0, :cond_4
 
-    .line 1425
-    invoke-static {}, Lcom/mi/config/b;->gu()Z
+    .line 1636
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isUltraWideBackCamera()Z
+
+    move-result v0
+
+    if-nez v0, :cond_4
+
+    .line 1637
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isRearMenuUltraPixelPhotographyOn()Z
+
+    move-result v0
+
+    if-nez v0, :cond_4
+
+    .line 1640
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object v0
+
+    const/16 v1, 0xab
+
+    .line 1641
+    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BackStack;
+
+    .line 1642
+    if-eqz v0, :cond_2
+
+    .line 1643
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$BackStack;->handleBackStackFromShutter()V
+
+    .line 1646
+    :cond_2
+    invoke-static {}, Lcom/mi/config/b;->gM()Z
 
     move-result v0
 
     if-eqz v0, :cond_3
 
-    .line 1426
+    .line 1647
     iput-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mUpdateImageTitle:Z
 
-    .line 1429
+    .line 1650
     :cond_3
     iput-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mPendingMultiCapture:Z
 
-    .line 1430
+    .line 1651
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {v0, v2}, Lcom/android/camera/module/loader/camera2/FocusManager2;->doMultiSnap(Z)V
 
-    .line 1432
+    .line 1653
     return v2
 
-    .line 1436
+    .line 1657
     :cond_4
     iput-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mLongPressedAutoFocus:Z
 
-    .line 1437
+    .line 1658
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->setFocusViewType(Z)V
 
-    .line 1438
+    .line 1659
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {v0}, Lcom/android/camera/module/loader/camera2/FocusManager2;->requestAutoFocus()V
 
-    .line 1439
+    .line 1660
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getScreenHint()Lcom/android/camera/ui/ScreenHint;
@@ -14984,63 +16579,70 @@
 
     invoke-virtual {v0}, Lcom/android/camera/ui/ScreenHint;->updateHint()V
 
-    .line 1440
+    .line 1661
     return v1
 .end method
 
 .method public onShutterButtonLongClickCancel(Z)V
     .locals 5
 
-    .line 1452
+    .line 1667
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    const-string v1, "onShutterButtonLongClickCancel: start"
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1673
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mPendingMultiCapture:Z
 
-    .line 1454
+    .line 1675
     iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStatus:Z
 
     if-eqz v1, :cond_0
 
-    .line 1455
+    .line 1676
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v2, 0x31
 
-    const-wide/16 v3, 0x1b58
+    const-wide/16 v3, 0x7d0
 
     invoke-virtual {v1, v2, v3, v4}, Lcom/android/camera/module/Camera2Module$MainHandler;->sendEmptyMessageDelayed(IJ)Z
 
-    .line 1458
+    .line 1679
     :cond_0
     const/4 v1, 0x1
 
     iput-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStopRequest:Z
 
-    .line 1460
+    .line 1681
     iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mLongPressedAutoFocus:Z
 
     if-eqz v1, :cond_2
 
-    .line 1461
+    .line 1682
     if-eqz p1, :cond_1
 
-    .line 1462
+    .line 1683
     const/16 p1, 0xa
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->onShutterButtonClick(I)V
 
     goto :goto_0
 
-    .line 1464
+    .line 1685
     :cond_1
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mLongPressedAutoFocus:Z
 
-    .line 1465
+    .line 1686
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {p1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->cancelLongPressedAutoFocus()V
 
-    .line 1468
+    .line 1689
     :cond_2
     :goto_0
     return-void
@@ -15049,7 +16651,7 @@
 .method public onSingleTapUp(II)V
     .locals 3
 
-    .line 4160
+    .line 4573
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -15076,7 +16678,7 @@
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 4161
+    .line 4574
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isInCountDown()Z
 
     move-result v2
@@ -15087,7 +16689,7 @@
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 4162
+    .line 4575
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
     move-result v2
@@ -15112,10 +16714,10 @@
 
     move-result-object v1
 
-    .line 4160
+    .line 4573
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 4166
+    .line 4579
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mPaused:Z
 
     if-nez v0, :cond_8
@@ -15126,21 +16728,30 @@
 
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    .line 4168
+    .line 4581
     invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->isSessionReady()Z
 
     move-result v0
 
     if-eqz v0, :cond_8
 
-    .line 4169
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    .line 4582
+    invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->isPreviewReady()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_8
+
+    .line 4583
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/module/Camera2Module;->isInTapableRect(II)Z
 
     move-result v0
 
     if-eqz v0, :cond_8
 
-    .line 4170
+    .line 4584
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
     move-result v0
@@ -15149,7 +16760,7 @@
 
     if-eq v0, v1, :cond_8
 
-    .line 4171
+    .line 4585
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
     move-result v0
@@ -15158,14 +16769,14 @@
 
     if-eq v0, v1, :cond_8
 
-    .line 4172
+    .line 4586
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
     move-result v0
 
     if-eqz v0, :cond_8
 
-    .line 4173
+    .line 4587
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isInCountDown()Z
 
     move-result v0
@@ -15174,11 +16785,15 @@
 
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStatus:Z
 
+    if-nez v0, :cond_8
+
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsMoonMode:Z
+
     if-eqz v0, :cond_0
 
     goto/16 :goto_0
 
-    .line 4179
+    .line 4594
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrameAvailable()Z
 
@@ -15186,10 +16801,10 @@
 
     if-nez v0, :cond_1
 
-    .line 4180
+    .line 4595
     return-void
 
-    .line 4183
+    .line 4598
     :cond_1
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
@@ -15205,10 +16820,10 @@
 
     if-eqz v0, :cond_2
 
-    .line 4184
+    .line 4599
     return-void
 
-    .line 4188
+    .line 4603
     :cond_2
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -15222,21 +16837,21 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BackStack;
 
-    .line 4189
+    .line 4604
     invoke-interface {v0, p1, p2}, Lcom/android/camera/protocol/ModeProtocol$BackStack;->handleBackStackFromTapDown(II)Z
 
     move-result v0
 
     if-eqz v0, :cond_3
 
-    .line 4190
+    .line 4605
     return-void
 
-    .line 4193
+    .line 4608
     :cond_3
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->tryRemoveCountDownMessage()V
 
-    .line 4195
+    .line 4610
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusAreaSupported:Z
 
     if-nez v0, :cond_4
@@ -15245,10 +16860,10 @@
 
     if-nez v0, :cond_4
 
-    .line 4196
+    .line 4611
     return-void
 
-    .line 4200
+    .line 4615
     :cond_4
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
@@ -15258,10 +16873,10 @@
 
     if-eqz v0, :cond_5
 
-    .line 4201
+    .line 4616
     return-void
 
-    .line 4203
+    .line 4618
     :cond_5
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mObjectTrackingStarted:Z
 
@@ -15269,32 +16884,32 @@
 
     if-eqz v0, :cond_6
 
-    .line 4204
+    .line 4619
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->stopObjectTracking(Z)V
 
-    .line 4206
+    .line 4621
     :cond_6
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->setFocusViewType(Z)V
 
-    .line 4208
+    .line 4623
     new-instance v0, Landroid/graphics/Point;
 
     invoke-direct {v0, p1, p2}, Landroid/graphics/Point;-><init>(II)V
 
-    .line 4209
+    .line 4624
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->mapTapCoordinate(Ljava/lang/Object;)V
 
-    .line 4211
+    .line 4626
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->unlockAEAF()V
 
-    .line 4212
+    .line 4627
     const/4 p1, 0x2
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->setCameraState(I)V
 
-    .line 4213
+    .line 4628
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     iget p2, v0, Landroid/graphics/Point;->x:I
@@ -15303,7 +16918,7 @@
 
     invoke-virtual {p1, p2, v0}, Lcom/android/camera/module/loader/camera2/FocusManager2;->onSingleTapUp(II)V
 
-    .line 4216
+    .line 4631
     iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mFocusAreaSupported:Z
 
     if-nez p1, :cond_7
@@ -15312,7 +16927,7 @@
 
     if-eqz p1, :cond_7
 
-    .line 4217
+    .line 4632
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {p1}, Lcom/android/camera/Camera;->getSensorStateManager()Lcom/android/camera/SensorStateManager;
@@ -15321,11 +16936,11 @@
 
     invoke-virtual {p1}, Lcom/android/camera/SensorStateManager;->reset()V
 
-    .line 4219
+    .line 4634
     :cond_7
     return-void
 
-    .line 4175
+    .line 4590
     :cond_8
     :goto_0
     return-void
@@ -15334,52 +16949,54 @@
 .method public onStop()V
     .locals 2
 
-    .line 1768
+    .line 1990
     invoke-super {p0}, Lcom/android/camera/module/BaseModule;->onStop()V
 
-    .line 1769
+    .line 1991
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     if-eqz v0, :cond_0
 
-    .line 1770
+    .line 1992
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 1772
+    .line 1994
     :cond_0
     return-void
 .end method
 
 .method public onSurfaceTextureReleased()V
-    .locals 1
+    .locals 2
 
-    .line 2529
-    const/4 v0, 0x1
+    .line 2875
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
-    invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->stopLiveShot(Z)V
+    const-string v1, "onSurfaceTextureReleased: no further preview frame will be available"
 
-    .line 2530
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2881
     return-void
 .end method
 
 .method public onSurfaceTextureUpdated(Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;)V
     .locals 1
 
-    .line 2518
+    .line 2863
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
     if-eqz v0, :cond_0
 
-    .line 2519
+    .line 2864
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
     invoke-virtual {v0, p1}, Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;->onSurfaceTextureUpdated(Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;)V
 
-    .line 2521
+    .line 2867
     :cond_0
     return-void
 .end method
@@ -15387,17 +17004,17 @@
 .method public onThumbnailClicked(Landroid/view/View;)V
     .locals 0
 
-    .line 1495
+    .line 1716
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDoingAction()Z
 
     move-result p1
 
     if-eqz p1, :cond_0
 
-    .line 1496
+    .line 1717
     return-void
 
-    .line 1498
+    .line 1719
     :cond_0
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
@@ -15411,12 +17028,12 @@
 
     if-eqz p1, :cond_1
 
-    .line 1499
+    .line 1720
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {p1}, Lcom/android/camera/Camera;->gotoGallery()V
 
-    .line 1501
+    .line 1722
     :cond_1
     return-void
 .end method
@@ -15424,19 +17041,19 @@
 .method public onTiltShiftSwitched(Z)V
     .locals 1
 
-    .line 4252
+    .line 4667
     if-eqz p1, :cond_0
 
-    .line 4253
+    .line 4668
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->resetEvValue()V
 
-    .line 4255
+    .line 4670
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->initEffectCropView()V
 
-    .line 4256
+    .line 4671
     const/4 v0, 0x2
 
     new-array v0, v0, [I
@@ -15445,19 +17062,19 @@
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->updatePreferenceTrampoline([I)V
 
-    .line 4257
+    .line 4672
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->updateEffectViewVisible()V
 
-    .line 4258
+    .line 4673
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     xor-int/lit8 p1, p1, 0x1
 
     invoke-interface {v0, p1}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->setEvAdjustable(Z)V
 
-    .line 4259
+    .line 4674
     return-void
 
     :array_0
@@ -15470,36 +17087,36 @@
 .method public onUltraWideChanged(Z)V
     .locals 2
 
-    .line 5341
+    .line 5816
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
-    new-instance v1, Lcom/android/camera/module/Camera2Module$32;
+    new-instance v1, Lcom/android/camera/module/Camera2Module$33;
 
-    invoke-direct {v1, p0, p1}, Lcom/android/camera/module/Camera2Module$32;-><init>(Lcom/android/camera/module/Camera2Module;Z)V
+    invoke-direct {v1, p0, p1}, Lcom/android/camera/module/Camera2Module$33;-><init>(Lcom/android/camera/module/Camera2Module;Z)V
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
 
-    .line 5350
+    .line 5850
     return-void
 .end method
 
 .method public onUserInteraction()V
     .locals 1
 
-    .line 4467
+    .line 4918
     invoke-super {p0}, Lcom/android/camera/module/BaseModule;->onUserInteraction()V
 
-    .line 4468
+    .line 4919
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDoingAction()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 4469
+    .line 4920
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->keepScreenOnAwhile()V
 
-    .line 4471
+    .line 4922
     :cond_0
     return-void
 .end method
@@ -15507,7 +17124,7 @@
 .method public onWaitingFocusFinished()Z
     .locals 2
 
-    .line 403
+    .line 427
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDoingAction()Z
 
     move-result v0
@@ -15516,10 +17133,10 @@
 
     if-eqz v0, :cond_0
 
-    .line 404
+    .line 428
     return v1
 
-    .line 406
+    .line 430
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isAlive()Z
 
@@ -15527,10 +17144,10 @@
 
     if-nez v0, :cond_1
 
-    .line 407
+    .line 431
     return v1
 
-    .line 410
+    .line 434
     :cond_1
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getTriggerMode()I
 
@@ -15538,7 +17155,7 @@
 
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->startNormalCapture(I)V
 
-    .line 411
+    .line 435
     const/4 v0, 0x1
 
     return v0
@@ -15547,50 +17164,50 @@
 .method protected openSettingActivity()V
     .locals 4
 
-    .line 2837
+    .line 3217
     new-instance v0, Landroid/content/Intent;
 
     invoke-direct {v0}, Landroid/content/Intent;-><init>()V
 
-    .line 2838
+    .line 3218
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     const-class v2, Lcom/android/camera/CameraPreferenceActivity;
 
     invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->setClass(Landroid/content/Context;Ljava/lang/Class;)Landroid/content/Intent;
 
-    .line 2839
+    .line 3219
     const-string v1, "from_where"
 
     iget v2, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
-    .line 2840
+    .line 3220
     const-string v1, "IsCaptureIntent"
 
     iget-boolean v2, p0, Lcom/android/camera/module/Camera2Module;->mIsImageCaptureIntent:Z
 
     invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
 
-    .line 2842
+    .line 3222
     const-string v1, ":miui:starting_window_label"
 
-    .line 2843
+    .line 3223
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getResources()Landroid/content/res/Resources;
 
     move-result-object v2
 
-    const v3, 0x7f0b0044
+    const v3, 0x7f090045
 
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
     move-result-object v2
 
-    .line 2842
+    .line 3222
     invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 2845
+    .line 3225
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v1}, Lcom/android/camera/Camera;->startFromKeyguard()Z
@@ -15599,63 +17216,63 @@
 
     if-eqz v1, :cond_0
 
-    .line 2846
+    .line 3226
     const-string v1, "StartActivityWhenLocked"
 
     const/4 v2, 0x1
 
     invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
 
-    .line 2848
+    .line 3228
     :cond_0
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v1, v0}, Lcom/android/camera/Camera;->startActivity(Landroid/content/Intent;)V
 
-    .line 2849
+    .line 3229
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     const/4 v1, 0x2
 
     invoke-virtual {v0, v1}, Lcom/android/camera/Camera;->setJumpFlag(I)V
 
-    .line 2851
+    .line 3231
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     invoke-static {v0}, Lcom/android/camera/statistic/CameraStatUtil;->trackGotoSettings(I)V
 
-    .line 2852
+    .line 3232
     return-void
 .end method
 
 .method public pausePreview()V
     .locals 2
 
-    .line 2325
+    .line 2649
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v1, "pausePreview"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2326
+    .line 2650
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->pausePreview()V
 
-    .line 2327
+    .line 2651
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->setCameraState(I)V
 
-    .line 2328
+    .line 2652
     return-void
 .end method
 
 .method protected performVolumeKeyClicked(Ljava/lang/String;IZ)V
     .locals 1
 
-    .line 4399
+    .line 4834
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mPaused:Z
 
     if-nez v0, :cond_6
@@ -15668,7 +17285,7 @@
 
     goto :goto_1
 
-    .line 4402
+    .line 4837
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDoingAction()Z
 
@@ -15676,23 +17293,23 @@
 
     if-nez v0, :cond_1
 
-    .line 4403
+    .line 4838
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->restoreBottom()V
 
-    .line 4405
+    .line 4840
     :cond_1
     const/4 v0, 0x1
 
     if-nez p2, :cond_4
 
-    .line 4406
+    .line 4841
     if-eqz p3, :cond_3
 
-    .line 4407
+    .line 4842
     invoke-virtual {p0, v0, v0}, Lcom/android/camera/module/Camera2Module;->onShutterButtonFocus(ZI)V
 
-    .line 4408
-    const p2, 0x7f0b0116
+    .line 4843
+    const p2, 0x7f09011d
 
     invoke-virtual {p0, p2}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
@@ -15706,39 +17323,39 @@
 
     if-eqz p1, :cond_2
 
-    .line 4409
+    .line 4844
     const/4 p1, 0x2
 
     invoke-direct {p0, p1, p2}, Lcom/android/camera/module/Camera2Module;->startCount(II)V
 
     goto :goto_0
 
-    .line 4411
+    .line 4846
     :cond_2
     invoke-virtual {p0, p2}, Lcom/android/camera/module/Camera2Module;->onShutterButtonClick(I)V
 
     goto :goto_0
 
-    .line 4415
+    .line 4850
     :cond_3
     const/4 p1, 0x0
 
     invoke-virtual {p0, p1, p1}, Lcom/android/camera/module/Camera2Module;->onShutterButtonFocus(ZI)V
 
-    .line 4416
+    .line 4851
     iget-boolean p2, p0, Lcom/android/camera/module/Camera2Module;->mVolumeLongPress:Z
 
     if-eqz p2, :cond_5
 
-    .line 4417
+    .line 4852
     iput-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mVolumeLongPress:Z
 
-    .line 4418
+    .line 4853
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->onShutterButtonLongClickCancel(Z)V
 
     goto :goto_0
 
-    .line 4422
+    .line 4857
     :cond_4
     if-eqz p3, :cond_5
 
@@ -15746,17 +17363,17 @@
 
     if-nez p1, :cond_5
 
-    .line 4423
+    .line 4858
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mUpdateImageTitle:Z
 
-    .line 4424
+    .line 4859
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->onShutterButtonLongClick()Z
 
     move-result p1
 
     iput-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mVolumeLongPress:Z
 
-    .line 4425
+    .line 4860
     iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mVolumeLongPress:Z
 
     if-nez p1, :cond_5
@@ -15765,48 +17382,37 @@
 
     if-eqz p1, :cond_5
 
-    .line 4426
+    .line 4861
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mVolumeLongPress:Z
 
-    .line 4430
+    .line 4865
     :cond_5
     :goto_0
     return-void
 
-    .line 4400
+    .line 4835
     :cond_6
     :goto_1
     return-void
 .end method
 
-.method public playSound(I)V
-    .locals 1
+.method public playFocusSound(I)V
+    .locals 0
 
-    .line 988
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isLiveShotOn()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    .line 990
-    return-void
-
-    .line 992
-    :cond_0
+    .line 999
     invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->playCameraSound(I)V
 
-    .line 993
+    .line 1000
     return-void
 .end method
 
 .method public registerProtocol()V
-    .locals 3
+    .locals 5
 
-    .line 309
+    .line 332
     invoke-super {p0}, Lcom/android/camera/module/BaseModule;->registerProtocol()V
 
-    .line 310
+    .line 333
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -15815,7 +17421,7 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 311
+    .line 334
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -15824,7 +17430,7 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 312
+    .line 335
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -15833,7 +17439,7 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 313
+    .line 336
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -15842,7 +17448,7 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 314
+    .line 337
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -15851,14 +17457,14 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 315
-    invoke-static {}, Lcom/mi/config/b;->hp()Z
+    .line 338
+    invoke-static {}, Lcom/mi/config/b;->hG()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 316
+    .line 339
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -15867,7 +17473,7 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 318
+    .line 341
     :cond_0
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -15877,7 +17483,7 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 319
+    .line 342
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getActivity()Lcom/android/camera/Camera;
 
     move-result-object v0
@@ -15898,8 +17504,45 @@
 
     invoke-virtual {v0, v1, v2}, Lcom/android/camera/module/impl/ImplFactory;->initAdditional(Lcom/android/camera/ActivityBase;[I)V
 
-    .line 322
+    .line 345
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getModuleIndex()I
+
+    move-result v0
+
+    const/16 v1, 0xad
+
+    if-ne v0, v1, :cond_1
+
+    .line 346
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getActivity()Lcom/android/camera/Camera;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/camera/Camera;->getImplFactory()Lcom/android/camera/module/impl/ImplFactory;
+
+    move-result-object v0
+
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getActivity()Lcom/android/camera/Camera;
+
+    move-result-object v1
+
+    const/4 v2, 0x1
+
+    new-array v2, v2, [I
+
+    const/4 v3, 0x0
+
+    const/16 v4, 0xd4
+
+    aput v4, v2, v3
+
+    invoke-virtual {v0, v1, v2}, Lcom/android/camera/module/impl/ImplFactory;->initAdditional(Lcom/android/camera/ActivityBase;[I)V
+
+    .line 349
+    :cond_1
     return-void
+
+    nop
 
     :array_0
     .array-data 4
@@ -15911,160 +17554,154 @@
 .method protected resetMetaDataManager()V
     .locals 0
 
-    .line 2827
+    .line 3207
     invoke-static {}, Lcom/android/camera/CameraSettings;->isSupportedMetadata()Z
 
-    .line 2830
+    .line 3210
     return-void
 .end method
 
 .method public resumePreview()V
     .locals 2
 
-    .line 2332
+    .line 2656
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v1, "resumePreview"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2333
+    .line 2657
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->previewWhenSessionSuccess()V
 
-    .line 2334
+    .line 2658
     return-void
 .end method
 
 .method public scanQRCodeEnabled()Z
-    .locals 3
+    .locals 2
 
-    .line 340
-    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsParallelProcess:Z
-
-    const/4 v1, 0x0
-
-    if-eqz v0, :cond_0
-
-    .line 341
-    return v1
-
-    .line 351
-    :cond_0
+    .line 375
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-static {v0}, Lcom/android/camera/CameraSettings;->isScanQRCode(Landroid/content/Context;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_0
 
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
-    const/16 v2, 0xa3
+    const/16 v1, 0xa3
 
-    if-ne v0, v2, :cond_1
+    if-ne v0, v1, :cond_0
 
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsImageCaptureIntent:Z
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_0
 
-    .line 354
+    .line 378
     invoke-static {}, Lcom/android/camera/CameraSettings;->isBackCamera()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_0
 
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mMultiSnapStatus:Z
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_0
 
-    .line 356
+    .line 380
     invoke-static {}, Lcom/android/camera/CameraSettings;->isStereoModeOn()Z
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_0
 
-    .line 357
+    .line 381
     invoke-static {}, Lcom/android/camera/CameraSettings;->isPortraitModeBackOn()Z
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_0
 
-    const/4 v1, 0x1
+    const/4 v0, 0x1
 
-    nop
+    goto :goto_0
 
-    .line 351
-    :cond_1
-    return v1
+    :cond_0
+    const/4 v0, 0x0
+
+    .line 375
+    :goto_0
+    return v0
 .end method
 
 .method protected sendOpenFailMessage()V
     .locals 2
 
-    .line 4667
+    .line 5105
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v1, 0xa
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->sendEmptyMessage(I)Z
 
-    .line 4668
+    .line 5106
     return-void
 .end method
 
 .method public setFrameAvailable(Z)V
     .locals 1
 
-    .line 1704
+    .line 1927
     invoke-super {p0, p1}, Lcom/android/camera/module/BaseModule;->setFrameAvailable(Z)V
 
-    .line 1706
+    .line 1929
+    if-eqz p1, :cond_0
+
     invoke-static {}, Lcom/android/camera/CameraSettings;->isCameraSoundOpen()Z
 
     move-result p1
 
     if-eqz p1, :cond_0
 
-    .line 1707
+    .line 1930
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     const/4 v0, 0x1
 
     invoke-virtual {p1, v0}, Lcom/android/camera/Camera;->loadCameraSound(I)V
 
-    .line 1708
+    .line 1931
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     const/4 v0, 0x0
 
     invoke-virtual {p1, v0}, Lcom/android/camera/Camera;->loadCameraSound(I)V
 
-    .line 1709
+    .line 1932
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     const/4 v0, 0x4
 
     invoke-virtual {p1, v0}, Lcom/android/camera/Camera;->loadCameraSound(I)V
 
-    .line 1710
+    .line 1933
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     const/4 v0, 0x5
 
     invoke-virtual {p1, v0}, Lcom/android/camera/Camera;->loadCameraSound(I)V
 
-    .line 1711
+    .line 1934
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     const/4 v0, 0x7
 
     invoke-virtual {p1, v0}, Lcom/android/camera/Camera;->loadCameraSound(I)V
 
-    .line 1713
+    .line 1936
     :cond_0
     return-void
 .end method
@@ -16072,12 +17709,12 @@
 .method public shouldReleaseLater()Z
     .locals 3
 
-    .line 1795
+    .line 2017
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsImageCaptureIntent:Z
 
     if-nez v0, :cond_2
 
-    .line 1796
+    .line 2018
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
     move-result v0
@@ -16098,7 +17735,7 @@
 
     const/16 v1, 0x30
 
-    .line 1799
+    .line 2021
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->hasMessages(I)Z
 
     move-result v0
@@ -16109,7 +17746,7 @@
 
     const/16 v1, 0x31
 
-    .line 1800
+    .line 2022
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->hasMessages(I)Z
 
     move-result v0
@@ -16119,7 +17756,7 @@
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
-    .line 1802
+    .line 2024
     invoke-virtual {v0}, Lcom/android/camera/module/loader/camera2/FocusManager2;->isFocusing()Z
 
     move-result v0
@@ -16134,19 +17771,19 @@
 
     const-string v0, "pref_qc_camera_exposuretime_key"
 
-    .line 1805
-    const v1, 0x7f0b012f
+    .line 2027
+    const v1, 0x7f090136
 
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
     move-result-object v2
 
-    .line 1804
+    .line 2026
     invoke-direct {p0, v0, v2}, Lcom/android/camera/module/Camera2Module;->getManualValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 1805
+    .line 2027
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
     move-result-object v1
@@ -16165,7 +17802,7 @@
     :cond_2
     const/4 v0, 0x0
 
-    .line 1795
+    .line 2017
     :goto_0
     return v0
 .end method
@@ -16173,25 +17810,25 @@
 .method public showQRCodeResult()V
     .locals 4
 
-    .line 4647
+    .line 5084
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mPaused:Z
 
     if-eqz v0, :cond_0
 
-    .line 4648
+    .line 5085
     return-void
 
-    .line 4650
+    .line 5087
     :cond_0
-    invoke-static {}, Lcom/android/zxing/QRCodeManager;->getInstance()Lcom/android/zxing/QRCodeManager;
+    invoke-static {}, Lcom/android/zxing/PreviewDecodeManager;->getInstance()Lcom/android/zxing/PreviewDecodeManager;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/android/zxing/QRCodeManager;->getScanResult()Ljava/lang/String;
+    invoke-virtual {v0}, Lcom/android/zxing/PreviewDecodeManager;->getScanResult()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 4651
+    .line 5088
     if-eqz v0, :cond_2
 
     invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
@@ -16202,47 +17839,54 @@
 
     goto :goto_0
 
-    .line 4655
+    .line 5092
     :cond_1
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
-    .line 4656
+    .line 5093
     invoke-virtual {v1}, Lcom/android/camera/ActivityBase;->dismissKeyguard()V
 
-    .line 4657
+    .line 5094
     new-instance v2, Landroid/content/Intent;
 
     const-string v3, "com.xiaomi.scanner.receiver.senderbarcodescanner"
 
     invoke-direct {v2, v3}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
 
-    .line 4658
+    .line 5095
     const/16 v3, 0x20
 
     invoke-virtual {v2, v3}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
-    .line 4659
+    .line 5096
     const-string v3, "com.xiaomi.scanner"
 
     invoke-virtual {v2, v3}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 4660
+    .line 5097
     const-string v3, "result"
 
     invoke-virtual {v2, v3, v0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 4661
+    .line 5098
     invoke-virtual {v1, v2}, Lcom/android/camera/ActivityBase;->sendBroadcast(Landroid/content/Intent;)V
 
-    .line 4662
+    .line 5099
     const/4 v0, 0x3
 
     invoke-virtual {v1, v0}, Lcom/android/camera/ActivityBase;->setJumpFlag(I)V
 
-    .line 4663
+    .line 5100
+    invoke-static {}, Lcom/android/zxing/PreviewDecodeManager;->getInstance()Lcom/android/zxing/PreviewDecodeManager;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/zxing/PreviewDecodeManager;->resetScanResult()V
+
+    .line 5101
     return-void
 
-    .line 4652
+    .line 5089
     :cond_2
     :goto_0
     sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
@@ -16251,32 +17895,32 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 4653
+    .line 5090
     return-void
 .end method
 
 .method public startAiLens()V
     .locals 4
 
-    .line 4611
+    .line 5048
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
-    new-instance v1, Lcom/android/camera/module/Camera2Module$23;
+    new-instance v1, Lcom/android/camera/module/Camera2Module$24;
 
-    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$23;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$24;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
     const-wide/16 v2, 0x12c
 
     invoke-virtual {v0, v1, v2, v3}, Lcom/android/camera/module/Camera2Module$MainHandler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 4617
+    .line 5054
     return-void
 .end method
 
 .method public startFaceDetection()V
     .locals 2
 
-    .line 875
+    .line 878
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mFaceDetectionEnabled:Z
 
     if-eqz v0, :cond_2
@@ -16291,7 +17935,7 @@
 
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
-    .line 876
+    .line 879
     invoke-virtual {v0}, Lcom/android/camera/Camera;->isActivityPaused()Z
 
     move-result v0
@@ -16306,7 +17950,7 @@
 
     goto :goto_0
 
-    .line 879
+    .line 882
     :cond_0
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mMaxFaceCount:I
 
@@ -16316,29 +17960,29 @@
 
     if-eqz v0, :cond_1
 
-    .line 880
+    .line 883
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mFaceDetectionStarted:Z
 
-    .line 881
+    .line 884
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     invoke-interface {v1, v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->setActiveIndicator(I)V
 
-    .line 883
+    .line 886
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v1}, Lcom/android/camera2/Camera2Proxy;->startFaceDetection()V
 
-    .line 884
+    .line 887
     invoke-virtual {p0, v0, v0}, Lcom/android/camera/module/Camera2Module;->updateFaceView(ZZ)V
 
-    .line 886
+    .line 889
     :cond_1
     return-void
 
-    .line 877
+    .line 880
     :cond_2
     :goto_0
     return-void
@@ -16347,17 +17991,17 @@
 .method public startFocus()V
     .locals 3
 
-    .line 362
+    .line 386
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDeviceAlive()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 363
+    .line 387
     return-void
 
-    .line 365
+    .line 389
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrameAvailable()Z
 
@@ -16365,16 +18009,16 @@
 
     if-nez v0, :cond_1
 
-    .line 366
+    .line 390
     return-void
 
-    .line 368
+    .line 392
     :cond_1
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusAreaSupported:Z
 
     if-eqz v0, :cond_2
 
-    .line 369
+    .line 393
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     const/4 v1, 0x1
@@ -16389,13 +18033,13 @@
 
     goto :goto_0
 
-    .line 371
+    .line 395
     :cond_2
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->resumePreview()V
 
-    .line 373
+    .line 397
     :goto_0
     return-void
 .end method
@@ -16403,18 +18047,18 @@
 .method public startLiveShot()V
     .locals 6
 
-    .line 644
+    .line 619
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorderStateLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 645
+    .line 620
     :try_start_0
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
     if-nez v1, :cond_0
 
-    .line 646
+    .line 621
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getActivity()Lcom/android/camera/Camera;
 
     move-result-object v1
@@ -16427,7 +18071,7 @@
 
     move-result-object v1
 
-    .line 647
+    .line 622
     new-instance v2, Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
     iget-object v3, p0, Lcom/android/camera/module/Camera2Module;->mVideoSize:Lcom/android/camera/CameraSize;
@@ -16438,13 +18082,20 @@
 
     iget v4, v4, Lcom/android/camera/CameraSize;->height:I
 
-    iget-boolean v5, p0, Lcom/android/camera/module/Camera2Module;->isMicrophoneEnabled:Z
+    iget-boolean v5, p0, Lcom/android/camera/module/Camera2Module;->mIsMicrophoneEnabled:Z
 
     invoke-direct {v2, v3, v4, v1, v5}, Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;-><init>(IILandroid/opengl/EGLContext;Z)V
 
     iput-object v2, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
-    .line 653
+    .line 626
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
+
+    const/high16 v2, 0x41700000    # 15.0f
+
+    invoke-virtual {v1, v2}, Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;->setFpsReduction(F)V
+
+    .line 628
     :cond_0
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
@@ -16452,18 +18103,18 @@
 
     invoke-virtual {v1, v2}, Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;->setOrientationHint(I)V
 
-    .line 654
+    .line 629
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
     invoke-virtual {v1}, Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;->start()V
 
-    .line 655
+    .line 630
     monitor-exit v0
 
-    .line 656
+    .line 631
     return-void
 
-    .line 655
+    .line 630
     :catchall_0
     move-exception v1
 
@@ -16477,81 +18128,238 @@
 .method public startObjectTracking()V
     .locals 0
 
-    .line 998
+    .line 1011
     return-void
 .end method
 
 .method public startPreview()V
-    .locals 9
+    .locals 14
 
-    .line 2093
+    .line 2356
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_9
 
-    .line 2094
+    .line 2357
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, p0}, Lcom/android/camera2/Camera2Proxy;->setFocusCallback(Lcom/android/camera2/Camera2Proxy$FocusCallback;)V
 
-    .line 2095
+    .line 2358
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, p0}, Lcom/android/camera2/Camera2Proxy;->setMetaDataCallback(Lcom/android/camera2/Camera2Proxy$CameraMetaDataCallback;)V
 
-    .line 2096
+    .line 2359
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, p0}, Lcom/android/camera2/Camera2Proxy;->setScreenLightCallback(Lcom/android/camera2/Camera2Proxy$ScreenLightCallback;)V
 
-    .line 2097
+    .line 2360
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mErrorCallback:Lcom/android/camera/CameraErrorCallbackImpl;
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setErrorCallback(Lcom/android/camera2/Camera2Proxy$CameraErrorCallback;)V
 
-    .line 2098
+    .line 2361
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "startPreview: "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2362
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setPictureSize(Lcom/android/camera/CameraSize;)V
 
-    .line 2099
-    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsParallelProcess:Z
-
-    if-eqz v0, :cond_1
-
-    .line 2100
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
-
-    move-result v0
+    .line 2363
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mEnableParallelSession:Z
 
     if-eqz v0, :cond_0
 
-    .line 2101
+    .line 2364
+    const/16 v0, 0x23
+
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
+
+    move-result v1
+
+    invoke-direct {p0, v0, v1}, Lcom/android/camera/module/Camera2Module;->getSubPictureSize(IZ)Lcom/android/camera/CameraSize;
+
+    move-result-object v0
+
+    .line 2365
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    invoke-virtual {v1, v0}, Lcom/android/camera2/Camera2Proxy;->setSubPictureSize(Lcom/android/camera/CameraSize;)V
+
+    .line 2367
+    :cond_0
+    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mEnableParallelSession:Z
+
+    const/4 v1, 0x0
+
+    const/4 v2, 0x1
+
+    if-eqz v0, :cond_1
+
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isEnableQcfa()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 2368
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    const-string v3, "[QCFA] startPreview: set qcfa enable"
+
+    invoke-static {v0, v3}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2369
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mSubPictureSize:Lcom/android/camera/CameraSize;
-
-    invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setSubPictureSize(Lcom/android/camera/CameraSize;)V
+    invoke-virtual {v0, v2}, Lcom/android/camera2/Camera2Proxy;->setQcfaEnable(Z)V
 
     goto :goto_0
 
-    .line 2103
-    :cond_0
+    .line 2371
+    :cond_1
+    sget-object v0, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
+
+    const-string v3, "[QCFA] startPreview: set qcfa disable"
+
+    invoke-static {v0, v3}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2372
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mPictureSize:Lcom/android/camera/CameraSize;
+    invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setQcfaEnable(Z)V
 
-    invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setSubPictureSize(Lcom/android/camera/CameraSize;)V
-
-    .line 2106
-    :cond_1
+    .line 2375
     :goto_0
-    new-instance v3, Landroid/view/Surface;
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
+    invoke-virtual {v0}, Lcom/android/camera/Camera;->getCameraScreenNail()Lcom/android/camera/CameraScreenNail;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/camera/CameraScreenNail;->getSurfaceCreatedTimestamp()J
+
+    move-result-wide v3
+
+    iput-wide v3, p0, Lcom/android/camera/module/Camera2Module;->mSurfaceCreatedTimestamp:J
+
+    .line 2377
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->scanQRCodeEnabled()Z
+
+    move-result v0
+
+    .line 2378
+    if-eqz v0, :cond_2
+
+    .line 2379
+    invoke-static {}, Lcom/android/zxing/PreviewDecodeManager;->getInstance()Lcom/android/zxing/PreviewDecodeManager;
+
+    move-result-object v3
+
+    iget v4, p0, Lcom/android/camera/module/Camera2Module;->mBogusCameraId:I
+
+    invoke-virtual {v3, v4, v1}, Lcom/android/zxing/PreviewDecodeManager;->init(II)V
+
+    .line 2381
+    :cond_2
+    invoke-static {}, Lcom/mi/config/b;->fR()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_4
+
+    .line 2382
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_4
+
+    iget v3, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    const/16 v4, 0xa3
+
+    if-eq v3, v4, :cond_3
+
+    iget v3, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    const/16 v4, 0xab
+
+    if-ne v3, v4, :cond_4
+
+    .line 2384
+    :cond_3
+    move v3, v2
+
+    goto :goto_1
+
+    .line 2382
+    :cond_4
+    nop
+
+    .line 2384
+    move v3, v1
+
+    :goto_1
+    if-eqz v3, :cond_5
+
+    .line 2385
+    invoke-static {}, Lcom/android/zxing/PreviewDecodeManager;->getInstance()Lcom/android/zxing/PreviewDecodeManager;
+
+    move-result-object v4
+
+    iget v5, p0, Lcom/android/camera/module/Camera2Module;->mBogusCameraId:I
+
+    invoke-virtual {v4, v5, v2}, Lcom/android/zxing/PreviewDecodeManager;->init(II)V
+
+    .line 2387
+    :cond_5
+    if-nez v0, :cond_7
+
+    if-eqz v3, :cond_6
+
+    goto :goto_2
+
+    .line 2388
+    :cond_6
+    move v8, v1
+
+    goto :goto_3
+
+    .line 2387
+    :cond_7
+    :goto_2
+    nop
+
+    .line 2388
+    move v8, v2
+
+    :goto_3
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->getCameraScreenNail()Lcom/android/camera/CameraScreenNail;
@@ -16562,108 +18370,88 @@
 
     move-result-object v0
 
-    invoke-direct {v3, v0}, Landroid/view/Surface;-><init>(Landroid/graphics/SurfaceTexture;)V
+    .line 2389
+    if-eqz v0, :cond_8
 
-    .line 2107
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
+    new-instance v1, Landroid/view/Surface;
 
-    invoke-virtual {v0}, Lcom/android/camera/Camera;->getCameraScreenNail()Lcom/android/camera/CameraScreenNail;
+    invoke-direct {v1, v0}, Landroid/view/Surface;-><init>(Landroid/graphics/SurfaceTexture;)V
 
-    move-result-object v0
+    .line 2390
+    move-object v7, v1
 
-    invoke-virtual {v0}, Lcom/android/camera/CameraScreenNail;->getSurfaceCreatedTimestamp()J
+    goto :goto_4
 
-    move-result-wide v0
+    .line 2389
+    :cond_8
+    const/4 v0, 0x0
 
-    iput-wide v0, p0, Lcom/android/camera/module/Camera2Module;->mSurfaceCreatedTimestamp:J
+    .line 2390
+    move-object v7, v0
 
-    .line 2113
-    nop
+    :goto_4
+    iget-object v6, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    .line 2115
-    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->scanQRCodeEnabled()Z
-
-    move-result v4
-
-    .line 2116
-    if-eqz v4, :cond_2
-
-    .line 2117
-    invoke-static {}, Lcom/android/zxing/QRCodeManager;->getInstance()Lcom/android/zxing/QRCodeManager;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Lcom/android/zxing/QRCodeManager;->init()V
-
-    .line 2119
-    :cond_2
-    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    .line 2120
+    .line 2392
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isNeedRawStream()Z
 
-    move-result v5
+    move-result v9
 
-    .line 2121
+    .line 2393
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getOperatingMode()I
 
-    move-result v6
+    move-result v10
 
-    invoke-static {}, Lcom/android/zxing/QRCodeManager;->getInstance()Lcom/android/zxing/QRCodeManager;
+    iget-boolean v11, p0, Lcom/android/camera/module/Camera2Module;->mEnableParallelSession:Z
+
+    .line 2396
+    invoke-static {}, Lcom/android/zxing/PreviewDecodeManager;->getInstance()Lcom/android/zxing/PreviewDecodeManager;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lcom/android/zxing/QRCodeManager;->getHandler()Landroid/os/Handler;
+    invoke-virtual {v0}, Lcom/android/zxing/PreviewDecodeManager;->getHandler()Landroid/os/Handler;
 
-    move-result-object v8
+    move-result-object v13
 
-    .line 2119
-    move-object v7, p0
+    .line 2390
+    move-object v12, p0
 
-    invoke-virtual/range {v2 .. v8}, Lcom/android/camera2/Camera2Proxy;->startPreviewSession(Landroid/view/Surface;ZZILcom/android/camera2/Camera2Proxy$CameraPreviewCallback;Landroid/os/Handler;)V
+    invoke-virtual/range {v6 .. v13}, Lcom/android/camera2/Camera2Proxy;->startPreviewSession(Landroid/view/Surface;ZZIZLcom/android/camera2/Camera2Proxy$CameraPreviewCallback;Landroid/os/Handler;)V
 
-    .line 2122
-    iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsParallelProcess:Z
-
-    if-eqz v0, :cond_3
-
-    .line 2123
-    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->configParallelSession()V
-
-    .line 2126
-    :cond_3
+    .line 2398
+    :cond_9
     return-void
 .end method
 
 .method public startScreenLight(II)V
     .locals 2
 
-    .line 5211
+    .line 5681
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mPaused:Z
 
     if-eqz v0, :cond_0
 
-    .line 5212
+    .line 5682
     return-void
 
-    .line 5214
+    .line 5684
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
-    new-instance v1, Lcom/android/camera/module/Camera2Module$30;
+    new-instance v1, Lcom/android/camera/module/Camera2Module$31;
 
-    invoke-direct {v1, p0, p2, p1}, Lcom/android/camera/module/Camera2Module$30;-><init>(Lcom/android/camera/module/Camera2Module;II)V
+    invoke-direct {v1, p0, p2, p1}, Lcom/android/camera/module/Camera2Module$31;-><init>(Lcom/android/camera/module/Camera2Module;II)V
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
 
-    .line 5228
+    .line 5698
     return-void
 .end method
 
 .method public stopFaceDetection(Z)V
     .locals 3
 
-    .line 890
+    .line 893
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mFaceDetectionEnabled:Z
 
     if-eqz v0, :cond_3
@@ -16674,15 +18462,15 @@
 
     goto :goto_0
 
-    .line 894
+    .line 897
     :cond_0
-    invoke-static {}, Lcom/mi/config/b;->fZ()Z
+    invoke-static {}, Lcom/mi/config/b;->isMTKPlatform()Z
 
     move-result v0
 
     if-eqz v0, :cond_1
 
-    .line 895
+    .line 898
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
     move-result v0
@@ -16691,39 +18479,39 @@
 
     if-eq v0, v1, :cond_2
 
-    .line 896
+    .line 899
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getCameraState()I
 
     move-result v0
 
     if-eqz v0, :cond_2
 
-    .line 897
+    .line 900
     :cond_1
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->stopFaceDetection()V
 
-    .line 899
+    .line 902
     :cond_2
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mFaceDetectionStarted:Z
 
-    .line 900
+    .line 903
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
     const/4 v2, 0x2
 
     invoke-interface {v1, v2}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->setActiveIndicator(I)V
 
-    .line 901
+    .line 904
     invoke-virtual {p0, v0, p1}, Lcom/android/camera/module/Camera2Module;->updateFaceView(ZZ)V
 
-    .line 902
+    .line 905
     return-void
 
-    .line 891
+    .line 894
     :cond_3
     :goto_0
     return-void
@@ -16732,43 +18520,43 @@
 .method public stopLiveShot(Z)V
     .locals 2
 
-    .line 659
+    .line 634
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorderStateLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 660
+    .line 635
     :try_start_0
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
     if-eqz v1, :cond_0
 
-    .line 661
+    .line 636
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
     invoke-virtual {v1}, Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;->stop()V
 
-    .line 662
+    .line 637
     if-eqz p1, :cond_0
 
-    .line 663
+    .line 638
     iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
     invoke-virtual {p1}, Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;->release()V
 
-    .line 664
+    .line 639
     const/4 p1, 0x0
 
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
 
-    .line 667
+    .line 642
     :cond_0
     monitor-exit v0
 
-    .line 668
+    .line 643
     return-void
 
-    .line 667
+    .line 642
     :catchall_0
     move-exception p1
 
@@ -16782,50 +18570,50 @@
 .method public stopObjectTracking(Z)V
     .locals 0
 
-    .line 979
+    .line 990
     return-void
 .end method
 
 .method public stopScreenLight()V
     .locals 2
 
-    .line 5231
+    .line 5701
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
-    new-instance v1, Lcom/android/camera/module/Camera2Module$31;
+    new-instance v1, Lcom/android/camera/module/Camera2Module$32;
 
-    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$31;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$32;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
 
-    .line 5245
+    .line 5715
     return-void
 .end method
 
 .method protected trackModeCustomInfo(I)V
     .locals 3
 
-    .line 5249
+    .line 5719
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     const/16 v1, 0xa7
 
     if-ne v0, v1, :cond_0
 
-    .line 5250
+    .line 5720
     invoke-direct {p0, p1}, Lcom/android/camera/module/Camera2Module;->trackManualInfo(I)V
 
     goto :goto_0
 
-    .line 5251
+    .line 5721
     :cond_0
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     const/16 v1, 0xa3
 
-    if-ne v0, v1, :cond_1
+    if-ne v0, v1, :cond_2
 
-    .line 5252
+    .line 5722
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mBeautyValues:Lcom/android/camera/fragment/beauty/BeautyValues;
 
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->isFaceBeautyOn(Lcom/android/camera/fragment/beauty/BeautyValues;)Z
@@ -16834,7 +18622,7 @@
 
     if-eqz v0, :cond_1
 
-    .line 5253
+    .line 5723
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v0
@@ -16847,16 +18635,33 @@
 
     invoke-direct {p0, p1, v0, v1}, Lcom/android/camera/module/Camera2Module;->trackBeautyInfo(IZLcom/android/camera/fragment/beauty/BeautyValues;)V
 
-    .line 5256
+    .line 5725
     :cond_1
+    invoke-static {}, Lcom/android/camera/statistic/CameraStatUtil;->trackUltraWidePictureTaken()V
+
+    goto :goto_0
+
+    .line 5726
+    :cond_2
+    iget p1, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
+
+    const/16 v0, 0xa5
+
+    if-ne p1, v0, :cond_3
+
+    .line 5727
+    invoke-static {}, Lcom/android/camera/statistic/CameraStatUtil;->trackUltraWidePictureTaken()V
+
+    .line 5729
+    :cond_3
     :goto_0
     return-void
 .end method
 
 .method public tryRemoveCountDownMessage()V
-    .locals 1
+    .locals 2
 
-    .line 1565
+    .line 1785
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCountdownDisposable:Lio/reactivex/disposables/Disposable;
 
     if-eqz v0, :cond_0
@@ -16869,22 +18674,26 @@
 
     if-nez v0, :cond_0
 
-    .line 1566
+    .line 1786
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCountdownDisposable:Lio/reactivex/disposables/Disposable;
 
     invoke-interface {v0}, Lio/reactivex/disposables/Disposable;->dispose()V
 
-    .line 1567
+    .line 1787
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCountdownDisposable:Lio/reactivex/disposables/Disposable;
 
-    .line 1568
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
+    .line 1789
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
-    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->hideDelayNumber()V
+    new-instance v1, Lcom/android/camera/module/Camera2Module$10;
 
-    .line 1570
+    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$10;-><init>(Lcom/android/camera/module/Camera2Module;)V
+
+    invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
+
+    .line 1797
     :cond_0
     return-void
 .end method
@@ -16892,10 +18701,10 @@
 .method public unRegisterProtocol()V
     .locals 2
 
-    .line 326
+    .line 353
     invoke-super {p0}, Lcom/android/camera/module/BaseModule;->unRegisterProtocol()V
 
-    .line 327
+    .line 354
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -16904,7 +18713,7 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 328
+    .line 355
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -16913,7 +18722,7 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 329
+    .line 356
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -16922,7 +18731,7 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 330
+    .line 357
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -16931,7 +18740,7 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 331
+    .line 358
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -16940,14 +18749,14 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 332
-    invoke-static {}, Lcom/mi/config/b;->hp()Z
+    .line 359
+    invoke-static {}, Lcom/mi/config/b;->hG()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 333
+    .line 360
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -16956,7 +18765,7 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 335
+    .line 362
     :cond_0
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -16966,7 +18775,7 @@
 
     invoke-virtual {v0, v1, p0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 336
+    .line 363
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->getActivity()Lcom/android/camera/Camera;
 
     move-result-object v0
@@ -16977,14 +18786,14 @@
 
     invoke-virtual {v0}, Lcom/android/camera/module/impl/ImplFactory;->detachAdditional()V
 
-    .line 337
+    .line 364
     return-void
 .end method
 
 .method public updateBacklight()V
     .locals 1
 
-    .line 5054
+    .line 5501
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDoingAction()Z
 
     move-result v0
@@ -16999,22 +18808,22 @@
 
     goto :goto_0
 
-    .line 5057
+    .line 5504
     :cond_0
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->isSilhouette:Z
 
-    .line 5058
+    .line 5505
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->applyBacklightEffect()V
 
-    .line 5059
+    .line 5506
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->resumePreviewInWorkThread()V
 
-    .line 5060
+    .line 5507
     return-void
 
-    .line 5055
+    .line 5502
     :cond_1
     :goto_0
     return-void
@@ -17023,7 +18832,7 @@
 .method protected updateFaceView(ZZ)V
     .locals 2
 
-    .line 949
+    .line 961
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v1, 0x23
@@ -17034,34 +18843,34 @@
 
     if-eqz v0, :cond_0
 
-    .line 950
+    .line 962
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeMessages(I)V
 
-    .line 952
+    .line 964
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
-    .line 953
+    .line 965
     nop
 
-    .line 952
+    .line 964
     invoke-virtual {v0, v1, p1, p2}, Lcom/android/camera/module/Camera2Module$MainHandler;->obtainMessage(III)Landroid/os/Message;
 
     move-result-object p1
 
-    .line 953
+    .line 965
     invoke-virtual {p1}, Landroid/os/Message;->sendToTarget()V
 
-    .line 954
+    .line 966
     return-void
 .end method
 
 .method public updateFlashPreference()V
     .locals 4
 
-    .line 3325
+    .line 3747
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
 
     move-result-object v0
@@ -17076,12 +18885,12 @@
 
     move-result-object v0
 
-    .line 3327
+    .line 3749
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getRequestFlashMode()Ljava/lang/String;
 
     move-result-object v1
 
-    .line 3329
+    .line 3751
     const/4 v2, 0x0
 
     invoke-static {v1, v2}, Lcom/android/camera/Util;->parseInt(Ljava/lang/String;I)I
@@ -17090,14 +18899,14 @@
 
     if-eqz v3, :cond_0
 
-    .line 3330
+    .line 3752
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->resetAiSceneInHdrOrFlashOn()V
 
-    .line 3332
+    .line 3754
     :cond_0
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->setFlashMode(Ljava/lang/String;)V
 
-    .line 3335
+    .line 3757
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mLastFlashMode:Ljava/lang/String;
 
     invoke-static {v0, v1}, Landroid/text/TextUtils;->equals(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
@@ -17106,7 +18915,7 @@
 
     if-nez v1, :cond_2
 
-    .line 3336
+    .line 3758
     invoke-static {v0, v2}, Lcom/android/camera/Util;->parseInt(Ljava/lang/String;I)I
 
     move-result v1
@@ -17115,34 +18924,34 @@
 
     if-eq v1, v3, :cond_1
 
-    .line 3337
+    .line 3759
     invoke-static {v0, v2}, Lcom/android/camera/Util;->parseInt(Ljava/lang/String;I)I
 
     move-result v1
 
     if-nez v1, :cond_2
 
-    .line 3338
+    .line 3760
     :cond_1
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->resetAsdSceneInHdrOrFlashChange()V
 
-    .line 3341
+    .line 3763
     :cond_2
     iput-object v0, p0, Lcom/android/camera/module/Camera2Module;->mLastFlashMode:Ljava/lang/String;
 
-    .line 3353
+    .line 3775
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->stopObjectTracking(Z)V
 
-    .line 3354
+    .line 3776
     return-void
 .end method
 
 .method public updateHDRPreference()V
     .locals 4
 
-    .line 3359
+    .line 3781
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
 
     move-result-object v0
@@ -17151,17 +18960,17 @@
 
     move-result-object v0
 
-    .line 3360
+    .line 3782
     invoke-virtual {v0}, Lcom/android/camera/data/data/config/ComponentConfigHdr;->isEmpty()Z
 
     move-result v1
 
     if-eqz v1, :cond_0
 
-    .line 3361
+    .line 3783
     return-void
 
-    .line 3363
+    .line 3785
     :cond_0
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
@@ -17169,7 +18978,7 @@
 
     move-result-object v0
 
-    .line 3365
+    .line 3787
     iget v1, p0, Lcom/android/camera/module/Camera2Module;->mZoomValue:F
 
     const/high16 v2, 0x3f800000    # 1.0f
@@ -17180,7 +18989,7 @@
 
     if-lez v1, :cond_1
 
-    .line 3366
+    .line 3788
     iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mMutexModePicker:Lcom/android/camera/MutexModeManager;
 
     invoke-virtual {v1}, Lcom/android/camera/MutexModeManager;->isHdr()Z
@@ -17191,21 +19000,20 @@
 
     const-string v1, "auto"
 
-    .line 3367
     invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
     if-eqz v1, :cond_1
 
-    .line 3368
+    .line 3789
     invoke-virtual {p0, v3}, Lcom/android/camera/module/Camera2Module;->onHDRSceneChanged(Z)V
 
-    .line 3373
+    .line 3794
     :cond_1
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->updateHDR(Ljava/lang/String;)V
 
-    .line 3375
+    .line 3796
     const-string v1, "off"
 
     invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -17225,25 +19033,25 @@
 
     if-lez v1, :cond_4
 
-    .line 3377
+    .line 3798
     :cond_3
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, v3}, Lcom/android/camera2/Camera2Proxy;->setHDRCheckerEnable(Z)V
 
-    .line 3378
+    .line 3799
     iput-boolean v3, p0, Lcom/android/camera/module/Camera2Module;->mHdrCheckEnabled:Z
 
     goto :goto_1
 
-    .line 3380
+    .line 3801
     :cond_4
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->resetAiSceneInHdrOrFlashOn()V
 
-    .line 3381
+    .line 3802
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->resetAsdSceneInHdrOrFlashChange()V
 
-    .line 3382
+    .line 3803
     const-string v1, "auto"
 
     invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -17254,22 +19062,22 @@
 
     if-eqz v0, :cond_5
 
-    .line 3383
+    .line 3804
     iput-boolean v1, p0, Lcom/android/camera/module/Camera2Module;->mHdrCheckEnabled:Z
 
     goto :goto_0
 
-    .line 3386
+    .line 3807
     :cond_5
     iput-boolean v3, p0, Lcom/android/camera/module/Camera2Module;->mHdrCheckEnabled:Z
 
-    .line 3388
+    .line 3809
     :goto_0
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setHDRCheckerEnable(Z)V
 
-    .line 3390
+    .line 3811
     :goto_1
     return-void
 .end method
@@ -17277,44 +19085,44 @@
 .method public updateManualEvAdjust()V
     .locals 8
 
-    .line 3872
+    .line 4296
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     const/16 v1, 0xa7
 
     if-ne v0, v1, :cond_5
 
-    .line 3874
+    .line 4298
     const-string v0, "pref_qc_camera_exposuretime_key"
 
-    .line 3875
-    const v1, 0x7f0b012f
+    .line 4299
+    const v1, 0x7f090136
 
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
     move-result-object v2
 
-    .line 3874
+    .line 4298
     invoke-direct {p0, v0, v2}, Lcom/android/camera/module/Camera2Module;->getManualValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 3876
+    .line 4300
     const-string v2, "pref_qc_camera_iso_key"
 
-    .line 3877
-    const v3, 0x7f0b00a5
+    .line 4301
+    const v3, 0x7f0900aa
 
     invoke-virtual {p0, v3}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
     move-result-object v4
 
-    .line 3876
+    .line 4300
     invoke-direct {p0, v2, v4}, Lcom/android/camera/module/Camera2Module;->getManualValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v2
 
-    .line 3878
+    .line 4302
     sget-object v4, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v5, Ljava/lang/StringBuilder;
@@ -17339,8 +19147,8 @@
 
     invoke-static {v4, v5}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3879
-    invoke-static {}, Lcom/mi/config/b;->hD()Z
+    .line 4303
+    invoke-static {}, Lcom/mi/config/b;->hU()Z
 
     move-result v4
 
@@ -17348,7 +19156,7 @@
 
     if-eqz v4, :cond_0
 
-    .line 3880
+    .line 4304
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
     move-result-object v4
@@ -17359,7 +19167,7 @@
 
     goto :goto_1
 
-    .line 3881
+    .line 4305
     :cond_0
     invoke-virtual {p0, v3}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
@@ -17371,7 +19179,7 @@
 
     if-nez v4, :cond_2
 
-    .line 3882
+    .line 4306
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
     move-result-object v4
@@ -17389,7 +19197,7 @@
 
     goto :goto_1
 
-    .line 3883
+    .line 4307
     :cond_2
     :goto_0
     move v4, v5
@@ -17399,16 +19207,16 @@
 
     if-eqz v6, :cond_3
 
-    .line 3884
+    .line 4308
     iget-object v6, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
-    new-instance v7, Lcom/android/camera/module/Camera2Module$20;
+    new-instance v7, Lcom/android/camera/module/Camera2Module$21;
 
-    invoke-direct {v7, p0, v4}, Lcom/android/camera/module/Camera2Module$20;-><init>(Lcom/android/camera/module/Camera2Module;Z)V
+    invoke-direct {v7, p0, v4}, Lcom/android/camera/module/Camera2Module$21;-><init>(Lcom/android/camera/module/Camera2Module;Z)V
 
     invoke-virtual {v6, v7}, Lcom/android/camera/module/Camera2Module$MainHandler;->post(Ljava/lang/Runnable;)Z
 
-    .line 3892
+    .line 4316
     :cond_3
     iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
@@ -17422,7 +19230,7 @@
 
     if-eqz v4, :cond_5
 
-    .line 3894
+    .line 4318
     invoke-virtual {p0, v1}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
     move-result-object v1
@@ -17433,7 +19241,7 @@
 
     if-eqz v0, :cond_4
 
-    .line 3895
+    .line 4319
     invoke-virtual {p0, v3}, Lcom/android/camera/module/Camera2Module;->getString(I)Ljava/lang/String;
 
     move-result-object v0
@@ -17444,137 +19252,115 @@
 
     if-nez v0, :cond_5
 
-    .line 3896
+    .line 4320
     :cond_4
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
 
-    new-instance v1, Lcom/android/camera/module/Camera2Module$21;
+    new-instance v1, Lcom/android/camera/module/Camera2Module$22;
 
-    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$21;-><init>(Lcom/android/camera/module/Camera2Module;)V
+    invoke-direct {v1, p0}, Lcom/android/camera/module/Camera2Module$22;-><init>(Lcom/android/camera/module/Camera2Module;)V
 
     invoke-virtual {v0, v1}, Lcom/android/camera/Camera;->runOnUiThread(Ljava/lang/Runnable;)V
 
-    .line 3902
+    .line 4326
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->unlockAEAF()V
 
-    .line 3905
+    .line 4329
     :cond_5
     return-void
 .end method
 
-.method public updateMoon()V
-    .locals 3
+.method public updateMoon(Z)V
+    .locals 1
 
-    .line 5127
-    nop
+    .line 5592
+    const/4 v0, 0x0
 
-    .line 5128
+    if-eqz p1, :cond_0
+
+    .line 5594
+    const/4 p1, 0x1
+
+    iput-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mIsMoonMode:Z
+
+    .line 5595
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    invoke-virtual {p1, v0}, Lcom/android/camera2/Camera2Proxy;->setSuperResolution(Z)V
+
+    .line 5597
+    invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateFocusMode()V
+
+    .line 5598
+    const/16 p1, 0x23
+
+    iput p1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
+
+    .line 5600
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
 
-    invoke-virtual {v0}, Lcom/android/camera2/Camera2Proxy;->getCapabilities()Lcom/android/camera2/CameraCapabilities;
+    invoke-virtual {v0, p1}, Lcom/android/camera2/Camera2Proxy;->setASDScene(I)V
 
-    move-result-object v0
-
-    invoke-virtual {v0}, Lcom/android/camera2/CameraCapabilities;->getExposureCompensationRange()Landroid/util/Range;
-
-    move-result-object v0
-
-    .line 5129
-    invoke-virtual {v0}, Landroid/util/Range;->getLower()Ljava/lang/Comparable;
-
-    move-result-object v1
-
-    check-cast v1, Ljava/lang/Integer;
-
-    invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
-
-    move-result v1
-
-    const/16 v2, -0x18
-
-    if-ge v2, v1, :cond_0
-
-    .line 5130
-    invoke-virtual {v0}, Landroid/util/Range;->getLower()Ljava/lang/Comparable;
-
-    move-result-object v0
-
-    check-cast v0, Ljava/lang/Integer;
-
-    invoke-virtual {v0}, Ljava/lang/Integer;->intValue()I
-
-    move-result v2
-
-    .line 5132
-    :cond_0
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    invoke-virtual {v0, v2}, Lcom/android/camera2/Camera2Proxy;->setExposureCompensation(I)V
-
-    .line 5133
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    const/4 v1, 0x1
-
-    invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setAWBLock(Z)V
-
-    .line 5135
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
-
-    const-string v1, "manual"
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->setFocusMode(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 5136
-    invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->setFocusMode(Ljava/lang/String;)V
-
-    .line 5137
-    const-string v1, "manual"
-
-    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_1
-
-    .line 5138
-    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
-
-    const/4 v1, 0x0
-
-    invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->setFocusDistance(F)V
-
-    .line 5140
-    :cond_1
-    const/16 v0, 0x23
-
-    iput v0, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
-
-    .line 5141
+    .line 5601
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->resumePreviewInWorkThread()V
 
-    .line 5142
+    goto :goto_0
+
+    .line 5604
+    :cond_0
+    iget-boolean p1, p0, Lcom/android/camera/module/Camera2Module;->mIsMoonMode:Z
+
+    if-eqz p1, :cond_1
+
+    .line 5605
+    iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsMoonMode:Z
+
+    .line 5606
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
+
+    invoke-static {}, Lcom/android/camera/CameraSettings;->getFocusMode()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {p1, v0}, Lcom/android/camera/module/loader/camera2/FocusManager2;->setFocusMode(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    .line 5607
+    invoke-virtual {p0, p1}, Lcom/android/camera/module/Camera2Module;->setFocusMode(Ljava/lang/String;)V
+
+    .line 5609
+    iget-object p1, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    const/16 v0, -0x23
+
+    invoke-virtual {p1, v0}, Lcom/android/camera2/Camera2Proxy;->setASDScene(I)V
+
+    .line 5612
+    :cond_1
+    :goto_0
     return-void
 .end method
 
 .method public updateMoonNight()V
     .locals 7
 
-    .line 5104
+    .line 5569
     const/4 v0, 0x0
 
+    iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsMoonMode:Z
+
+    .line 5570
     const/16 v1, 0xa
 
     invoke-direct {p0, v1, v0}, Lcom/android/camera/module/Camera2Module;->checkCloseMoonMode(II)V
 
-    .line 5105
+    .line 5571
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v2
 
-    .line 5106
+    .line 5572
     const/16 v3, 0xa4
 
     invoke-virtual {v2, v3}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -17583,7 +19369,7 @@
 
     check-cast v2, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;
 
-    .line 5108
+    .line 5574
     const-string v3, "e"
 
     const/4 v4, 0x1
@@ -17596,34 +19382,110 @@
 
     invoke-interface {v2, v3, v5}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->closeMutexElement(Ljava/lang/String;[I)V
 
-    .line 5117
+    .line 5583
     const-string v0, "0"
 
     invoke-virtual {p0, v0}, Lcom/android/camera/module/Camera2Module;->setFlashMode(Ljava/lang/String;)V
 
-    .line 5118
+    .line 5584
     invoke-direct {p0, v4}, Lcom/android/camera/module/Camera2Module;->updateMfnr(Z)V
 
-    .line 5119
+    .line 5585
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->updateOIS()V
 
-    .line 5120
+    .line 5586
     invoke-direct {p0, v1}, Lcom/android/camera/module/Camera2Module;->setAiSceneEffect(I)V
 
-    .line 5121
+    .line 5587
     iput v1, p0, Lcom/android/camera/module/Camera2Module;->mCurrentAiScene:I
 
-    .line 5122
+    .line 5588
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->resumePreviewInWorkThread()V
 
-    .line 5123
+    .line 5589
+    return-void
+.end method
+
+.method public updatePreviewSurface()V
+    .locals 3
+
+    .line 2341
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
+
+    if-eqz v0, :cond_0
+
+    .line 2342
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
+
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->initEffectCropView()V
+
+    .line 2344
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->checkDisplayOrientation()V
+
+    .line 2345
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
+
+    invoke-virtual {v0}, Lcom/android/camera/Camera;->getCameraScreenNail()Lcom/android/camera/CameraScreenNail;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/camera/CameraScreenNail;->getSurfaceCreatedTimestamp()J
+
+    move-result-wide v0
+
+    iput-wide v0, p0, Lcom/android/camera/module/Camera2Module;->mSurfaceCreatedTimestamp:J
+
+    .line 2346
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
+
+    if-eqz v0, :cond_1
+
+    .line 2347
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
+
+    iget v0, v0, Lcom/android/camera/CameraSize;->width:I
+
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
+
+    iget v1, v1, Lcom/android/camera/CameraSize;->height:I
+
+    invoke-virtual {p0, v0, v1}, Lcom/android/camera/module/Camera2Module;->updateCameraScreenNailSize(II)V
+
+    .line 2349
+    :cond_1
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    if-eqz v0, :cond_2
+
+    .line 2350
+    iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mCamera2Device:Lcom/android/camera2/Camera2Proxy;
+
+    new-instance v1, Landroid/view/Surface;
+
+    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
+
+    invoke-virtual {v2}, Lcom/android/camera/Camera;->getCameraScreenNail()Lcom/android/camera/CameraScreenNail;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Lcom/android/camera/CameraScreenNail;->getSurfaceTexture()Landroid/graphics/SurfaceTexture;
+
+    move-result-object v2
+
+    invoke-direct {v1, v2}, Landroid/view/Surface;-><init>(Landroid/graphics/SurfaceTexture;)V
+
+    invoke-virtual {v0, v1}, Lcom/android/camera2/Camera2Proxy;->updateDeferPreviewSession(Landroid/view/Surface;)Z
+
+    .line 2352
+    :cond_2
     return-void
 .end method
 
 .method public updateSilhouette()V
     .locals 2
 
-    .line 5063
+    .line 5510
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDoingAction()Z
 
     move-result v0
@@ -17638,34 +19500,34 @@
 
     goto :goto_0
 
-    .line 5066
+    .line 5513
     :cond_0
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->isSilhouette:Z
 
-    .line 5067
+    .line 5514
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     const/16 v1, 0x18
 
     invoke-direct {p0, v0, v1}, Lcom/android/camera/module/Camera2Module;->trackAISceneChanged(II)V
 
-    .line 5068
+    .line 5515
     invoke-direct {p0, v1}, Lcom/android/camera/module/Camera2Module;->setAiSceneEffect(I)V
 
-    .line 5069
+    .line 5516
     const-string v0, "off"
 
     invoke-direct {p0, v0}, Lcom/android/camera/module/Camera2Module;->updateHDR(Ljava/lang/String;)V
 
-    .line 5073
+    .line 5520
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->resumePreviewInWorkThread()V
 
-    .line 5074
+    .line 5521
     return-void
 
-    .line 5064
+    .line 5511
     :cond_1
     :goto_0
     return-void

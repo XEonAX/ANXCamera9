@@ -307,13 +307,16 @@ public class CameraIntentManager {
             case 6:
                 return 165;
             case 7:
+                if (DataRepository.dataItemFeature().fF()) {
+                    return 174;
+                }
                 return 161;
             case 8:
                 return 162;
             case 9:
                 return 169;
             case 10:
-                if (DataRepository.dataItemFeature().fp()) {
+                if (DataRepository.dataItemFeature().fs()) {
                     return 172;
                 }
                 return 168;
@@ -331,8 +334,12 @@ public class CameraIntentManager {
     public boolean isOpenOnly() {
         String action = this.mIntent.getAction();
         boolean z = true;
-        if (!(ACTION_VOICE_CONTROL.equals(action) || "android.intent.action.MAIN".equals(action) || "android.media.action.STILL_IMAGE_CAMERA".equals(action) || "android.media.action.STILL_IMAGE_CAMERA_SECURE".equals(action))) {
-            z = false;
+        if (!(ACTION_VOICE_CONTROL.equals(action) || "android.intent.action.MAIN".equals(action))) {
+            if ("android.media.action.STILL_IMAGE_CAMERA".equals(action)) {
+                z = true ^ CALLER_GOOGLE_ASSISTANT.equals(getCaller());
+            } else if (!"android.media.action.STILL_IMAGE_CAMERA_SECURE".equals(action)) {
+                z = false;
+            }
         }
         return this.mIntent.getBooleanExtra(CameraExtras.CAMERA_OPEN_ONLY, z);
     }

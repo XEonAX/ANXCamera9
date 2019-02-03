@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 41
     invoke-direct {p0}, Lcom/google/zxing/client/result/ResultParser;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method private static findAIvalue(ILjava/lang/String;)Ljava/lang/String;
-    .locals 7
+    .registers 9
     .param p0, "i"    # I
     .param p1, "rawText"    # Ljava/lang/String;
 
@@ -29,13 +29,13 @@
 
     const/16 v2, 0x28
 
-    if-eq v0, v2, :cond_0
+    if-eq v0, v2, :cond_a
 
     .line 142
     return-object v1
 
     .line 145
-    :cond_0
+    :cond_a
     add-int/lit8 v2, p0, 0x1
 
     invoke-virtual {p1, v2}, Ljava/lang/String;->substring(I)Ljava/lang/String;
@@ -53,12 +53,12 @@
     const/4 v4, 0x0
 
     .local v4, "index":I
-    :goto_0
+    :goto_16
     invoke-interface {v2}, Ljava/lang/CharSequence;->length()I
 
     move-result v5
 
-    if-lt v4, v5, :cond_1
+    if-lt v4, v5, :cond_21
 
     .line 158
     .end local v4    # "index":I
@@ -70,7 +70,7 @@
 
     .line 149
     .restart local v4    # "index":I
-    :cond_1
+    :cond_21
     invoke-interface {v2, v4}, Ljava/lang/CharSequence;->charAt(I)C
 
     move-result v5
@@ -79,7 +79,7 @@
     .local v5, "currentChar":C
     const/16 v6, 0x29
 
-    if-ne v5, v6, :cond_2
+    if-ne v5, v6, :cond_2e
 
     .line 151
     invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
@@ -89,14 +89,14 @@
     return-object v1
 
     .line 152
-    :cond_2
+    :cond_2e
     const/16 v6, 0x30
 
-    if-lt v5, v6, :cond_3
+    if-lt v5, v6, :cond_3d
 
     const/16 v6, 0x39
 
-    if-gt v5, v6, :cond_3
+    if-gt v5, v6, :cond_3d
 
     .line 153
     invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -108,16 +108,16 @@
     .end local v5    # "currentChar":C
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_0
+    goto :goto_16
 
     .line 155
     .restart local v5    # "currentChar":C
-    :cond_3
+    :cond_3d
     return-object v1
 .end method
 
 .method private static findValue(ILjava/lang/String;)Ljava/lang/String;
-    .locals 6
+    .registers 8
     .param p0, "i"    # I
     .param p1, "rawText"    # Ljava/lang/String;
 
@@ -137,19 +137,19 @@
     const/4 v2, 0x0
 
     .local v2, "index":I
-    :goto_0
+    :goto_a
     invoke-virtual {v1}, Ljava/lang/String;->length()I
 
     move-result v3
 
-    if-lt v2, v3, :cond_0
+    if-lt v2, v3, :cond_11
 
     .end local v2    # "index":I
-    goto :goto_1
+    goto :goto_23
 
     .line 166
     .restart local v2    # "index":I
-    :cond_0
+    :cond_11
     invoke-virtual {v1, v2}, Ljava/lang/String;->charAt(I)C
 
     move-result v3
@@ -158,26 +158,26 @@
     .local v3, "c":C
     const/16 v4, 0x28
 
-    if-ne v3, v4, :cond_2
+    if-ne v3, v4, :cond_28
 
     .line 170
     invoke-static {v2, v1}, Lcom/google/zxing/client/result/ExpandedProductResultParser;->findAIvalue(ILjava/lang/String;)Ljava/lang/String;
 
     move-result-object v5
 
-    if-nez v5, :cond_1
+    if-nez v5, :cond_23
 
     .line 171
     invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 175
-    goto :goto_2
+    goto :goto_2b
 
     .line 179
     .end local v2    # "index":I
     .end local v3    # "c":C
-    :cond_1
-    :goto_1
+    :cond_23
+    :goto_23
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v2
@@ -187,21 +187,21 @@
     .line 176
     .restart local v2    # "index":I
     .restart local v3    # "c":C
-    :cond_2
+    :cond_28
     invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .line 165
     .end local v3    # "c":C
-    :goto_2
+    :goto_2b
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_a
 .end method
 
 
 # virtual methods
 .method public parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ExpandedProductParsedResult;
-    .locals 34
+    .registers 36
     .param p1, "result"    # Lcom/google/zxing/Result;
 
     .line 45
@@ -215,13 +215,13 @@
 
     const/4 v2, 0x0
 
-    if-eq v0, v1, :cond_0
+    if-eq v0, v1, :cond_a
 
     .line 48
     return-object v2
 
     .line 50
-    :cond_0
+    :cond_a
     invoke-static/range {p1 .. p1}, Lcom/google/zxing/client/result/ExpandedProductResultParser;->getMassagedText(Lcom/google/zxing/Result;)Ljava/lang/String;
 
     move-result-object v1
@@ -345,12 +345,12 @@
     .local v30, "price":Ljava/lang/String;
     .local v31, "priceIncrement":Ljava/lang/String;
     .local v32, "priceCurrency":Ljava/lang/String;
-    :goto_0
+    :goto_3e
     invoke-virtual {v1}, Ljava/lang/String;->length()I
 
     move-result v3
 
-    if-lt v15, v3, :cond_1
+    if-lt v15, v3, :cond_7a
 
     .line 121
     new-instance v19, Lcom/google/zxing/client/result/ExpandedProductParsedResult;
@@ -445,7 +445,7 @@
     .end local v33    # "format":Lcom/google/zxing/BarcodeFormat;
     .local v0, "format":Lcom/google/zxing/BarcodeFormat;
     .restart local v15    # "i":I
-    :cond_1
+    :cond_7a
     move-object/from16 v33, v0
 
     move v0, v15
@@ -459,7 +459,7 @@
 
     .line 71
     .local v3, "ai":Ljava/lang/String;
-    if-nez v3, :cond_2
+    if-nez v3, :cond_85
 
     .line 74
     const/4 v4, 0x0
@@ -467,7 +467,7 @@
     return-object v4
 
     .line 76
-    :cond_2
+    :cond_85
     invoke-virtual {v3}, Ljava/lang/String;->length()I
 
     move-result v4
@@ -494,7 +494,7 @@
     .line 81
     const-string v4, "00"
 
-    if-ne v3, v4, :cond_3
+    if-ne v3, v4, :cond_a0
 
     .line 82
     move-object/from16 v21, v0
@@ -506,230 +506,230 @@
     .end local v3    # "ai":Ljava/lang/String;
     .end local v33    # "format":Lcom/google/zxing/BarcodeFormat;
     .local v0, "format":Lcom/google/zxing/BarcodeFormat;
-    :goto_1
+    :goto_9d
     move-object/from16 v0, v33
 
-    goto :goto_0
+    goto :goto_3e
 
     .line 83
     .local v0, "value":Ljava/lang/String;
     .restart local v3    # "ai":Ljava/lang/String;
     .restart local v33    # "format":Lcom/google/zxing/BarcodeFormat;
-    :cond_3
+    :cond_a0
     const-string v4, "01"
 
-    if-ne v3, v4, :cond_4
+    if-ne v3, v4, :cond_a7
 
     .line 84
     move-object/from16 v20, v0
 
     .line 85
-    goto :goto_1
+    goto :goto_9d
 
-    :cond_4
+    :cond_a7
     const-string v4, "10"
 
-    if-ne v3, v4, :cond_5
+    if-ne v3, v4, :cond_ae
 
     .line 86
     move-object/from16 v22, v0
 
     .line 87
-    goto :goto_1
+    goto :goto_9d
 
-    :cond_5
+    :cond_ae
     const-string v4, "11"
 
-    if-ne v3, v4, :cond_6
+    if-ne v3, v4, :cond_b5
 
     .line 88
     move-object/from16 v23, v0
 
     .line 89
-    goto :goto_1
+    goto :goto_9d
 
-    :cond_6
+    :cond_b5
     const-string v4, "13"
 
-    if-ne v3, v4, :cond_7
+    if-ne v3, v4, :cond_bc
 
     .line 90
     move-object/from16 v24, v0
 
     .line 91
-    goto :goto_1
+    goto :goto_9d
 
-    :cond_7
+    :cond_bc
     const-string v4, "15"
 
-    if-ne v3, v4, :cond_8
+    if-ne v3, v4, :cond_c3
 
     .line 92
     move-object/from16 v25, v0
 
     .line 93
-    goto :goto_1
+    goto :goto_9d
 
-    :cond_8
+    :cond_c3
     const-string v4, "17"
 
-    if-ne v3, v4, :cond_9
+    if-ne v3, v4, :cond_ca
 
     .line 94
     move-object/from16 v26, v0
 
     .line 95
-    goto :goto_1
+    goto :goto_9d
 
-    :cond_9
+    :cond_ca
     const-string v4, "3100"
 
     const/4 v5, 0x3
 
-    if-eq v3, v4, :cond_12
+    if-eq v3, v4, :cond_172
 
     const-string v4, "3101"
 
-    if-eq v3, v4, :cond_12
+    if-eq v3, v4, :cond_172
 
     const-string v4, "3102"
 
-    if-eq v3, v4, :cond_12
+    if-eq v3, v4, :cond_172
 
     const-string v4, "3103"
 
-    if-eq v3, v4, :cond_12
+    if-eq v3, v4, :cond_172
 
     const-string v4, "3104"
 
-    if-eq v3, v4, :cond_12
+    if-eq v3, v4, :cond_172
 
     const-string v4, "3105"
 
-    if-eq v3, v4, :cond_12
+    if-eq v3, v4, :cond_172
 
     const-string v4, "3106"
 
-    if-eq v3, v4, :cond_12
+    if-eq v3, v4, :cond_172
 
     const-string v4, "3107"
 
-    if-eq v3, v4, :cond_12
+    if-eq v3, v4, :cond_172
 
     const-string v4, "3108"
 
-    if-eq v3, v4, :cond_12
+    if-eq v3, v4, :cond_172
 
     const-string v4, "3109"
 
-    if-ne v3, v4, :cond_a
+    if-ne v3, v4, :cond_f5
 
-    goto/16 :goto_5
+    goto/16 :goto_172
 
     .line 99
-    :cond_a
+    :cond_f5
     const-string v4, "3200"
 
-    if-eq v3, v4, :cond_11
+    if-eq v3, v4, :cond_167
 
     const-string v4, "3201"
 
-    if-eq v3, v4, :cond_11
+    if-eq v3, v4, :cond_167
 
     const-string v4, "3202"
 
-    if-eq v3, v4, :cond_11
+    if-eq v3, v4, :cond_167
 
     const-string v4, "3203"
 
-    if-eq v3, v4, :cond_11
+    if-eq v3, v4, :cond_167
 
     const-string v4, "3204"
 
-    if-eq v3, v4, :cond_11
+    if-eq v3, v4, :cond_167
 
     const-string v4, "3205"
 
-    if-eq v3, v4, :cond_11
+    if-eq v3, v4, :cond_167
 
     const-string v4, "3206"
 
-    if-eq v3, v4, :cond_11
+    if-eq v3, v4, :cond_167
 
     const-string v4, "3207"
 
-    if-eq v3, v4, :cond_11
+    if-eq v3, v4, :cond_167
 
     const-string v4, "3208"
 
-    if-eq v3, v4, :cond_11
+    if-eq v3, v4, :cond_167
 
     const-string v4, "3209"
 
-    if-ne v3, v4, :cond_b
+    if-ne v3, v4, :cond_11e
 
-    goto :goto_4
+    goto :goto_167
 
     .line 103
-    :cond_b
+    :cond_11e
     const-string v4, "3920"
 
-    if-eq v3, v4, :cond_10
+    if-eq v3, v4, :cond_15e
 
     const-string v4, "3921"
 
-    if-eq v3, v4, :cond_10
+    if-eq v3, v4, :cond_15e
 
     const-string v4, "3922"
 
-    if-eq v3, v4, :cond_10
+    if-eq v3, v4, :cond_15e
 
     const-string v4, "3923"
 
-    if-ne v3, v4, :cond_c
+    if-ne v3, v4, :cond_12f
 
-    goto :goto_3
+    goto :goto_15e
 
     .line 106
-    :cond_c
+    :cond_12f
     const-string v4, "3930"
 
-    if-eq v3, v4, :cond_e
+    if-eq v3, v4, :cond_145
 
     const-string v4, "3931"
 
-    if-eq v3, v4, :cond_e
+    if-eq v3, v4, :cond_145
 
     const-string v4, "3932"
 
-    if-eq v3, v4, :cond_e
+    if-eq v3, v4, :cond_145
 
     const-string v4, "3933"
 
-    if-ne v3, v4, :cond_d
+    if-ne v3, v4, :cond_140
 
-    goto :goto_2
+    goto :goto_145
 
     .line 118
-    :cond_d
+    :cond_140
     invoke-interface {v2, v3, v0}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .end local v0    # "value":Ljava/lang/String;
     .end local v3    # "ai":Ljava/lang/String;
-    goto/16 :goto_1
+    goto/16 :goto_9d
 
     .line 107
     .restart local v0    # "value":Ljava/lang/String;
     .restart local v3    # "ai":Ljava/lang/String;
-    :cond_e
-    :goto_2
+    :cond_145
+    :goto_145
     invoke-virtual {v0}, Ljava/lang/String;->length()I
 
     move-result v4
 
     const/4 v6, 0x4
 
-    if-ge v4, v6, :cond_f
+    if-ge v4, v6, :cond_14e
 
     .line 111
     const/4 v4, 0x0
@@ -737,7 +737,7 @@
     return-object v4
 
     .line 113
-    :cond_f
+    :cond_14e
     const/4 v4, 0x0
 
     invoke-virtual {v0, v5}, Ljava/lang/String;->substring(I)Ljava/lang/String;
@@ -757,11 +757,11 @@
     move-result-object v31
 
     .line 116
-    goto/16 :goto_1
+    goto/16 :goto_9d
 
     .line 104
-    :cond_10
-    :goto_3
+    :cond_15e
+    :goto_15e
     const/4 v4, 0x0
 
     move-object/from16 v30, v0
@@ -772,11 +772,11 @@
     move-result-object v31
 
     .line 106
-    goto/16 :goto_1
+    goto/16 :goto_9d
 
     .line 100
-    :cond_11
-    :goto_4
+    :cond_167
+    :goto_167
     const/4 v4, 0x0
 
     move-object/from16 v27, v0
@@ -790,11 +790,11 @@
     move-result-object v29
 
     .line 103
-    goto/16 :goto_1
+    goto/16 :goto_9d
 
     .line 96
-    :cond_12
-    :goto_5
+    :cond_172
+    :goto_172
     const/4 v4, 0x0
 
     move-object/from16 v27, v0
@@ -808,11 +808,11 @@
     move-result-object v29
 
     .line 99
-    goto/16 :goto_1
+    goto/16 :goto_9d
 .end method
 
 .method public bridge synthetic parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ParsedResult;
-    .locals 0
+    .registers 2
 
     .line 1
     invoke-virtual {p0, p1}, Lcom/google/zxing/client/result/ExpandedProductResultParser;->parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ExpandedProductParsedResult;

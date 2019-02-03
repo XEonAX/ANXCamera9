@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 61
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public abortAnimation(Ljava/lang/Object;)V
-    .locals 1
+    .registers 3
     .param p1, "scroller"    # Ljava/lang/Object;
 
     .line 119
@@ -45,7 +45,7 @@
 .end method
 
 .method public computeScrollOffset(Ljava/lang/Object;)Z
-    .locals 2
+    .registers 4
     .param p1, "scroller"    # Ljava/lang/Object;
 
     .line 90
@@ -63,30 +63,30 @@
 .end method
 
 .method public createScroller(Landroid/content/Context;Landroid/view/animation/Interpolator;)Ljava/lang/Object;
-    .locals 1
+    .registers 4
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "interpolator"    # Landroid/view/animation/Interpolator;
 
     .line 64
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_8
 
     new-instance v0, Landroid/widget/Scroller;
 
     invoke-direct {v0, p1, p2}, Landroid/widget/Scroller;-><init>(Landroid/content/Context;Landroid/view/animation/Interpolator;)V
 
-    goto :goto_0
+    goto :goto_d
 
-    :cond_0
+    :cond_8
     new-instance v0, Landroid/widget/Scroller;
 
     invoke-direct {v0, p1}, Landroid/widget/Scroller;-><init>(Landroid/content/Context;)V
 
-    :goto_0
+    :goto_d
     return-object v0
 .end method
 
 .method public fling(Ljava/lang/Object;IIIIIIII)V
-    .locals 9
+    .registers 19
     .param p1, "scroller"    # Ljava/lang/Object;
     .param p2, "startX"    # I
     .param p3, "startY"    # I
@@ -125,7 +125,7 @@
 .end method
 
 .method public fling(Ljava/lang/Object;IIIIIIIIII)V
-    .locals 9
+    .registers 21
     .param p1, "scroller"    # Ljava/lang/Object;
     .param p2, "startX"    # I
     .param p3, "startY"    # I
@@ -166,7 +166,7 @@
 .end method
 
 .method public getCurrVelocity(Ljava/lang/Object;)F
-    .locals 1
+    .registers 3
     .param p1, "scroller"    # Ljava/lang/Object;
 
     .line 85
@@ -176,7 +176,7 @@
 .end method
 
 .method public getCurrX(Ljava/lang/Object;)I
-    .locals 1
+    .registers 3
     .param p1, "scroller"    # Ljava/lang/Object;
 
     .line 75
@@ -192,7 +192,7 @@
 .end method
 
 .method public getCurrY(Ljava/lang/Object;)I
-    .locals 1
+    .registers 3
     .param p1, "scroller"    # Ljava/lang/Object;
 
     .line 80
@@ -208,7 +208,7 @@
 .end method
 
 .method public getFinalX(Ljava/lang/Object;)I
-    .locals 1
+    .registers 3
     .param p1, "scroller"    # Ljava/lang/Object;
 
     .line 141
@@ -224,7 +224,7 @@
 .end method
 
 .method public getFinalY(Ljava/lang/Object;)I
-    .locals 1
+    .registers 3
     .param p1, "scroller"    # Ljava/lang/Object;
 
     .line 146
@@ -240,7 +240,7 @@
 .end method
 
 .method public isFinished(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 3
     .param p1, "scroller"    # Ljava/lang/Object;
 
     .line 70
@@ -256,7 +256,7 @@
 .end method
 
 .method public isOverScrolled(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 3
     .param p1, "scroller"    # Ljava/lang/Object;
 
     .line 136
@@ -266,7 +266,7 @@
 .end method
 
 .method public notifyHorizontalEdgeReached(Ljava/lang/Object;III)V
-    .locals 0
+    .registers 5
     .param p1, "scroller"    # Ljava/lang/Object;
     .param p2, "startX"    # I
     .param p3, "finalX"    # I
@@ -277,7 +277,7 @@
 .end method
 
 .method public notifyVerticalEdgeReached(Ljava/lang/Object;III)V
-    .locals 0
+    .registers 5
     .param p1, "scroller"    # Ljava/lang/Object;
     .param p2, "startY"    # I
     .param p3, "finalY"    # I
@@ -288,7 +288,7 @@
 .end method
 
 .method public startScroll(Ljava/lang/Object;IIII)V
-    .locals 1
+    .registers 7
     .param p1, "scroller"    # Ljava/lang/Object;
     .param p2, "startX"    # I
     .param p3, "startY"    # I
@@ -307,7 +307,7 @@
 .end method
 
 .method public startScroll(Ljava/lang/Object;IIIII)V
-    .locals 6
+    .registers 13
     .param p1, "scroller"    # Ljava/lang/Object;
     .param p2, "startX"    # I
     .param p3, "startY"    # I

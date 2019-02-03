@@ -7,13 +7,13 @@ import android.graphics.Paint.Style;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import com.android.camera.R;
+import com.android.camera.log.Log;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 

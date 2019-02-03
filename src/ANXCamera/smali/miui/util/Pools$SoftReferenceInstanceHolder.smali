@@ -29,9 +29,9 @@
 
 
 # instance fields
-.field private volatile Hf:I
+.field private volatile Ho:I
 
-.field private final JB:Ljava/lang/Class;
+.field private final JL:Ljava/lang/Class;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/lang/Class<",
@@ -40,7 +40,7 @@
     .end annotation
 .end field
 
-.field private volatile JD:[Ljava/lang/ref/SoftReference;
+.field private volatile JQ:[Ljava/lang/ref/SoftReference;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "[",
@@ -55,7 +55,7 @@
 
 # direct methods
 .method constructor <init>(Ljava/lang/Class;I)V
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -68,16 +68,16 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 178
-    iput-object p1, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->JB:Ljava/lang/Class;
+    iput-object p1, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->JL:Ljava/lang/Class;
 
     .line 179
-    iput p2, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->Hf:I
+    iput p2, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->Ho:I
 
     .line 180
     new-array p1, p2, [Ljava/lang/ref/SoftReference;
 
     .line 182
-    iput-object p1, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->JD:[Ljava/lang/ref/SoftReference;
+    iput-object p1, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->JQ:[Ljava/lang/ref/SoftReference;
 
     .line 183
     const/4 p1, 0x0
@@ -90,8 +90,8 @@
 
 
 # virtual methods
-.method public dD()Ljava/lang/Class;
-    .locals 1
+.method public dE()Ljava/lang/Class;
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -101,13 +101,13 @@
     .end annotation
 
     .line 188
-    iget-object v0, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->JB:Ljava/lang/Class;
+    iget-object v0, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->JL:Ljava/lang/Class;
 
     return-object v0
 .end method
 
 .method public declared-synchronized get()Ljava/lang/Object;
-    .locals 4
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()TT;"
@@ -117,18 +117,18 @@
     monitor-enter p0
 
     .line 219
-    :try_start_0
+    :try_start_1
     iget v0, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->mIndex:I
 
     .line 220
-    iget-object v1, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->JD:[Ljava/lang/ref/SoftReference;
+    iget-object v1, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->JQ:[Ljava/lang/ref/SoftReference;
 
     .line 221
-    :cond_0
-    :goto_0
+    :cond_5
+    :goto_5
     const/4 v2, 0x0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_1d
 
     .line 222
     add-int/lit8 v0, v0, -0x1
@@ -136,7 +136,7 @@
     .line 223
     aget-object v3, v1, v0
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_5
 
     .line 224
     aget-object v3, v1, v0
@@ -149,12 +149,12 @@
     aput-object v2, v1, v0
 
     .line 227
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_1c
 
     .line 228
     iput v0, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->mIndex:I
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1a
+    .catchall {:try_start_1 .. :try_end_1a} :catchall_1f
 
     .line 229
     monitor-exit p0
@@ -162,17 +162,17 @@
     return-object v3
 
     .line 231
-    :cond_1
-    goto :goto_0
+    :cond_1c
+    goto :goto_5
 
     .line 234
-    :cond_2
+    :cond_1d
     monitor-exit p0
 
     return-object v2
 
     .line 218
-    :catchall_0
+    :catchall_1f
     move-exception v0
 
     monitor-exit p0
@@ -181,16 +181,16 @@
 .end method
 
 .method public getSize()I
-    .locals 1
+    .registers 2
 
     .line 193
-    iget v0, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->Hf:I
+    iget v0, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->Ho:I
 
     return v0
 .end method
 
 .method public declared-synchronized put(Ljava/lang/Object;)Z
-    .locals 6
+    .registers 8
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)Z"
@@ -200,31 +200,31 @@
     monitor-enter p0
 
     .line 239
-    :try_start_0
+    :try_start_1
     iget v0, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->mIndex:I
 
     .line 240
-    iget-object v1, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->JD:[Ljava/lang/ref/SoftReference;
+    iget-object v1, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->JQ:[Ljava/lang/ref/SoftReference;
 
     .line 242
-    iget v2, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->Hf:I
+    iget v2, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->Ho:I
 
     const/4 v3, 0x1
 
-    if-lt v0, v2, :cond_3
+    if-lt v0, v2, :cond_29
 
     .line 243
     const/4 v2, 0x0
 
     move v4, v2
 
-    :goto_0
-    if-ge v4, v0, :cond_2
+    :goto_c
+    if-ge v4, v0, :cond_27
 
     .line 244
     aget-object v5, v1, v4
 
-    if-eqz v5, :cond_1
+    if-eqz v5, :cond_1e
 
     aget-object v5, v1, v4
 
@@ -232,26 +232,26 @@
 
     move-result-object v5
 
-    if-nez v5, :cond_0
+    if-nez v5, :cond_1b
 
-    goto :goto_1
+    goto :goto_1e
 
     .line 243
-    :cond_0
+    :cond_1b
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_0
+    goto :goto_c
 
     .line 245
-    :cond_1
-    :goto_1
+    :cond_1e
+    :goto_1e
     new-instance v0, Ljava/lang/ref/SoftReference;
 
     invoke-direct {v0, p1}, Ljava/lang/ref/SoftReference;-><init>(Ljava/lang/Object;)V
 
     aput-object v0, v1, v4
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_25
+    .catchall {:try_start_1 .. :try_end_25} :catchall_35
 
     .line 246
     monitor-exit p0
@@ -259,14 +259,14 @@
     return v3
 
     .line 249
-    :cond_2
+    :cond_27
     monitor-exit p0
 
     return v2
 
     .line 252
-    :cond_3
-    :try_start_1
+    :cond_29
+    :try_start_29
     new-instance v2, Ljava/lang/ref/SoftReference;
 
     invoke-direct {v2, p1}, Ljava/lang/ref/SoftReference;-><init>(Ljava/lang/Object;)V
@@ -277,8 +277,8 @@
     add-int/2addr v0, v3
 
     iput v0, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->mIndex:I
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_33
+    .catchall {:try_start_29 .. :try_end_33} :catchall_35
 
     .line 254
     monitor-exit p0
@@ -286,7 +286,7 @@
     return v3
 
     .line 238
-    :catchall_0
+    :catchall_35
     move-exception p1
 
     monitor-exit p0
@@ -295,35 +295,35 @@
 .end method
 
 .method public declared-synchronized resize(I)V
-    .locals 3
+    .registers 5
 
     monitor-enter p0
 
     .line 198
-    :try_start_0
-    iget v0, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->Hf:I
+    :try_start_1
+    iget v0, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->Ho:I
 
     add-int/2addr p1, v0
 
     .line 199
-    if-gtz p1, :cond_0
+    if-gtz p1, :cond_1c
 
     .line 200
-    invoke-static {}, Lmiui/util/Pools;->dC()Ljava/util/HashMap;
+    invoke-static {}, Lmiui/util/Pools;->dD()Ljava/util/HashMap;
 
     move-result-object p1
 
     monitor-enter p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    :try_end_b
+    .catchall {:try_start_1 .. :try_end_b} :catchall_2f
 
     .line 201
-    :try_start_1
-    invoke-static {}, Lmiui/util/Pools;->dC()Ljava/util/HashMap;
+    :try_start_b
+    invoke-static {}, Lmiui/util/Pools;->dD()Ljava/util/HashMap;
 
     move-result-object v0
 
-    invoke-virtual {p0}, Lmiui/util/Pools$SoftReferenceInstanceHolder;->dD()Ljava/lang/Class;
+    invoke-virtual {p0}, Lmiui/util/Pools$SoftReferenceInstanceHolder;->dE()Ljava/lang/Class;
 
     move-result-object v1
 
@@ -331,8 +331,8 @@
 
     .line 202
     monitor-exit p1
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_17
+    .catchall {:try_start_b .. :try_end_17} :catchall_19
 
     .line 203
     monitor-exit p0
@@ -340,23 +340,23 @@
     return-void
 
     .line 202
-    :catchall_0
+    :catchall_19
     move-exception v0
 
-    :try_start_2
+    :try_start_1a
     monitor-exit p1
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_1b
+    .catchall {:try_start_1a .. :try_end_1b} :catchall_19
 
-    :try_start_3
+    :try_start_1b
     throw v0
 
     .line 206
-    :cond_0
-    iput p1, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->Hf:I
+    :cond_1c
+    iput p1, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->Ho:I
 
     .line 207
-    iget-object v0, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->JD:[Ljava/lang/ref/SoftReference;
+    iget-object v0, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->JQ:[Ljava/lang/ref/SoftReference;
 
     .line 208
     iget v1, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->mIndex:I
@@ -364,7 +364,7 @@
     .line 209
     array-length v2, v0
 
-    if-le p1, v2, :cond_1
+    if-le p1, v2, :cond_2d
 
     .line 210
     new-array p1, p1, [Ljava/lang/ref/SoftReference;
@@ -375,18 +375,18 @@
     invoke-static {v0, v2, p1, v2, v1}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
 
     .line 213
-    iput-object p1, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->JD:[Ljava/lang/ref/SoftReference;
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_1
+    iput-object p1, p0, Lmiui/util/Pools$SoftReferenceInstanceHolder;->JQ:[Ljava/lang/ref/SoftReference;
+    :try_end_2d
+    .catchall {:try_start_1b .. :try_end_2d} :catchall_2f
 
     .line 215
-    :cond_1
+    :cond_2d
     monitor-exit p0
 
     return-void
 
     .line 197
-    :catchall_1
+    :catchall_2f
     move-exception p1
 
     monitor-exit p0

@@ -47,7 +47,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 52
     new-instance v0, Landroid/support/v4/view/animation/FastOutSlowInInterpolator;
@@ -60,7 +60,7 @@
 .end method
 
 .method public constructor <init>(Landroid/view/View;)V
-    .locals 1
+    .registers 3
     .param p1, "parent"    # Landroid/view/View;
 
     .line 70
@@ -115,7 +115,7 @@
 .end method
 
 .method private drawCircle(Landroid/graphics/Canvas;FFIF)V
-    .locals 3
+    .registers 9
     .param p1, "canvas"    # Landroid/graphics/Canvas;
     .param p2, "cx"    # F
     .param p3, "cy"    # F
@@ -159,7 +159,7 @@
 .end method
 
 .method private drawTrigger(Landroid/graphics/Canvas;II)V
-    .locals 4
+    .registers 8
     .param p1, "canvas"    # Landroid/graphics/Canvas;
     .param p2, "cx"    # I
     .param p3, "cy"    # I
@@ -193,7 +193,7 @@
 
 # virtual methods
 .method draw(Landroid/graphics/Canvas;)V
-    .locals 31
+    .registers 33
     .param p1, "canvas"    # Landroid/graphics/Canvas;
 
     move-object/from16 v6, p0
@@ -246,23 +246,23 @@
 
     const/4 v13, 0x0
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_40
 
     iget-wide v4, v6, Landroid/support/v4/widget/SwipeProgressBar;->mFinishTime:J
 
     cmp-long v1, v4, v2
 
-    if-lez v1, :cond_0
+    if-lez v1, :cond_2c
 
-    goto :goto_0
+    goto :goto_40
 
     .line 236
-    :cond_0
+    :cond_2c
     iget v1, v6, Landroid/support/v4/widget/SwipeProgressBar;->mTriggerPercentage:F
 
     cmpl-float v1, v1, v13
 
-    if-lez v1, :cond_e
+    if-lez v1, :cond_19c
 
     iget v1, v6, Landroid/support/v4/widget/SwipeProgressBar;->mTriggerPercentage:F
 
@@ -272,16 +272,16 @@
 
     cmpg-double v1, v1, v3
 
-    if-gtz v1, :cond_e
+    if-gtz v1, :cond_19c
 
     .line 237
     invoke-direct {v6, v7, v10, v11}, Landroid/support/v4/widget/SwipeProgressBar;->drawTrigger(Landroid/graphics/Canvas;II)V
 
-    goto/16 :goto_4
+    goto/16 :goto_19c
 
     .line 148
-    :cond_1
-    :goto_0
+    :cond_40
+    :goto_40
     invoke-static {}, Landroid/view/animation/AnimationUtils;->currentAnimationTimeMillis()J
 
     move-result-wide v14
@@ -318,7 +318,7 @@
 
     const/high16 v21, 0x42c80000    # 100.0f
 
-    if-nez v1, :cond_3
+    if-nez v1, :cond_a2
 
     .line 158
     iget-wide v1, v6, Landroid/support/v4/widget/SwipeProgressBar;->mFinishTime:J
@@ -329,7 +329,7 @@
 
     cmp-long v1, v1, v22
 
-    if-ltz v1, :cond_2
+    if-ltz v1, :cond_6c
 
     .line 159
     const-wide/16 v1, 0x0
@@ -340,7 +340,7 @@
     return-void
 
     .line 166
-    :cond_2
+    :cond_6c
     iget-wide v1, v6, Landroid/support/v4/widget/SwipeProgressBar;->mFinishTime:J
 
     sub-long v1, v14, v1
@@ -430,11 +430,11 @@
     .local v0, "drawTriggerWhileFinishing":Z
     move/from16 v24, v0
 
-    goto :goto_1
+    goto :goto_a6
 
     .end local v29    # "elapsed":J
     .restart local v4    # "elapsed":J
-    :cond_3
+    :cond_a2
     move/from16 v24, v0
 
     move-wide/from16 v29, v4
@@ -443,7 +443,7 @@
     .end local v4    # "elapsed":J
     .restart local v24    # "drawTriggerWhileFinishing":Z
     .restart local v29    # "elapsed":J
-    :goto_1
+    :goto_a6
     const-wide/16 v0, 0x0
 
     cmp-long v0, v16, v0
@@ -454,87 +454,87 @@
 
     const/high16 v19, 0x41c80000    # 25.0f
 
-    if-nez v0, :cond_4
+    if-nez v0, :cond_b8
 
     .line 182
     iget v0, v6, Landroid/support/v4/widget/SwipeProgressBar;->mColor1:I
 
     invoke-virtual {v7, v0}, Landroid/graphics/Canvas;->drawColor(I)V
 
-    goto :goto_2
+    goto :goto_e8
 
     .line 184
-    :cond_4
+    :cond_b8
     const/4 v0, 0x0
 
     cmpl-float v1, v20, v0
 
-    if-ltz v1, :cond_5
+    if-ltz v1, :cond_c7
 
     cmpg-float v0, v20, v19
 
-    if-gez v0, :cond_5
+    if-gez v0, :cond_c7
 
     .line 185
     iget v0, v6, Landroid/support/v4/widget/SwipeProgressBar;->mColor4:I
 
     invoke-virtual {v7, v0}, Landroid/graphics/Canvas;->drawColor(I)V
 
-    goto :goto_2
+    goto :goto_e8
 
     .line 186
-    :cond_5
+    :cond_c7
     cmpl-float v0, v20, v19
 
-    if-ltz v0, :cond_6
+    if-ltz v0, :cond_d5
 
     cmpg-float v0, v20, v18
 
-    if-gez v0, :cond_6
+    if-gez v0, :cond_d5
 
     .line 187
     iget v0, v6, Landroid/support/v4/widget/SwipeProgressBar;->mColor1:I
 
     invoke-virtual {v7, v0}, Landroid/graphics/Canvas;->drawColor(I)V
 
-    goto :goto_2
+    goto :goto_e8
 
     .line 188
-    :cond_6
+    :cond_d5
     cmpl-float v0, v20, v18
 
-    if-ltz v0, :cond_7
+    if-ltz v0, :cond_e3
 
     cmpg-float v0, v20, v13
 
-    if-gez v0, :cond_7
+    if-gez v0, :cond_e3
 
     .line 189
     iget v0, v6, Landroid/support/v4/widget/SwipeProgressBar;->mColor2:I
 
     invoke-virtual {v7, v0}, Landroid/graphics/Canvas;->drawColor(I)V
 
-    goto :goto_2
+    goto :goto_e8
 
     .line 191
-    :cond_7
+    :cond_e3
     iget v0, v6, Landroid/support/v4/widget/SwipeProgressBar;->mColor3:I
 
     invoke-virtual {v7, v0}, Landroid/graphics/Canvas;->drawColor(I)V
 
     .line 201
-    :goto_2
+    :goto_e8
     const/4 v0, 0x0
 
     cmpl-float v1, v20, v0
 
     const/high16 v22, 0x40000000    # 2.0f
 
-    if-ltz v1, :cond_8
+    if-ltz v1, :cond_107
 
     cmpg-float v0, v20, v19
 
-    if-gtz v0, :cond_8
+    if-gtz v0, :cond_107
 
     .line 202
     add-float v0, v20, v19
@@ -564,26 +564,26 @@
     invoke-direct/range {v0 .. v5}, Landroid/support/v4/widget/SwipeProgressBar;->drawCircle(Landroid/graphics/Canvas;FFIF)V
 
     .end local v23    # "pct":F
-    goto :goto_3
+    goto :goto_109
 
     .line 205
     .end local v25    # "elapsed":J
     .restart local v29    # "elapsed":J
-    :cond_8
+    :cond_107
     move-wide/from16 v25, v29
 
     .end local v29    # "elapsed":J
     .restart local v25    # "elapsed":J
-    :goto_3
+    :goto_109
     const/4 v0, 0x0
 
     cmpl-float v1, v20, v0
 
-    if-ltz v1, :cond_9
+    if-ltz v1, :cond_121
 
     cmpg-float v0, v20, v18
 
-    if-gtz v0, :cond_9
+    if-gtz v0, :cond_121
 
     .line 206
     mul-float v0, v20, v22
@@ -608,14 +608,14 @@
 
     .line 209
     .end local v23    # "pct":F
-    :cond_9
+    :cond_121
     cmpl-float v0, v20, v19
 
-    if-ltz v0, :cond_a
+    if-ltz v0, :cond_13a
 
     cmpg-float v0, v20, v13
 
-    if-gtz v0, :cond_a
+    if-gtz v0, :cond_13a
 
     .line 210
     sub-float v0, v20, v19
@@ -642,14 +642,14 @@
 
     .line 213
     .end local v19    # "pct":F
-    :cond_a
+    :cond_13a
     cmpl-float v0, v20, v18
 
-    if-ltz v0, :cond_b
+    if-ltz v0, :cond_153
 
     cmpg-float v0, v20, v21
 
-    if-gtz v0, :cond_b
+    if-gtz v0, :cond_153
 
     .line 214
     sub-float v0, v20, v18
@@ -676,14 +676,14 @@
 
     .line 217
     .end local v18    # "pct":F
-    :cond_b
+    :cond_153
     cmpl-float v0, v20, v13
 
-    if-ltz v0, :cond_c
+    if-ltz v0, :cond_16b
 
     cmpg-float v0, v20, v21
 
-    if-gtz v0, :cond_c
+    if-gtz v0, :cond_16b
 
     .line 218
     sub-float v0, v20, v13
@@ -710,16 +710,16 @@
 
     .line 221
     .end local v13    # "pct":F
-    :cond_c
+    :cond_16b
     iget v0, v6, Landroid/support/v4/widget/SwipeProgressBar;->mTriggerPercentage:F
 
     const/4 v1, 0x0
 
     cmpl-float v0, v0, v1
 
-    if-lez v0, :cond_d
+    if-lez v0, :cond_184
 
-    if-eqz v24, :cond_d
+    if-eqz v24, :cond_184
 
     .line 226
     invoke-virtual {v7, v12}, Landroid/graphics/Canvas;->restoreToCount(I)V
@@ -744,7 +744,7 @@
 
     .end local v0    # "restoreCount":I
     .restart local v12    # "restoreCount":I
-    :cond_d
+    :cond_184
     iget-object v0, v6, Landroid/support/v4/widget/SwipeProgressBar;->mParent:Landroid/view/View;
 
     iget-object v1, v6, Landroid/support/v4/widget/SwipeProgressBar;->mBounds:Landroid/graphics/Rect;
@@ -777,8 +777,8 @@
 
     .end local v24    # "drawTriggerWhileFinishing":Z
     .local v0, "drawTriggerWhileFinishing":Z
-    :cond_e
-    :goto_4
+    :cond_19c
+    :goto_19c
     invoke-virtual {v7, v12}, Landroid/graphics/Canvas;->restoreToCount(I)V
 
     .line 241
@@ -786,12 +786,12 @@
 .end method
 
 .method isRunning()Z
-    .locals 4
+    .registers 5
 
     .line 135
     iget-boolean v0, p0, Landroid/support/v4/widget/SwipeProgressBar;->mRunning:Z
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_f
 
     iget-wide v0, p0, Landroid/support/v4/widget/SwipeProgressBar;->mFinishTime:J
 
@@ -799,25 +799,25 @@
 
     cmp-long v0, v0, v2
 
-    if-lez v0, :cond_0
+    if-lez v0, :cond_d
 
-    goto :goto_0
+    goto :goto_f
 
-    :cond_0
+    :cond_d
     const/4 v0, 0x0
 
-    goto :goto_1
+    goto :goto_10
 
-    :cond_1
-    :goto_0
+    :cond_f
+    :goto_f
     const/4 v0, 0x1
 
-    :goto_1
+    :goto_10
     return v0
 .end method
 
 .method setBounds(IIII)V
-    .locals 1
+    .registers 6
     .param p1, "left"    # I
     .param p2, "top"    # I
     .param p3, "right"    # I
@@ -848,7 +848,7 @@
 .end method
 
 .method setColorScheme(IIII)V
-    .locals 0
+    .registers 5
     .param p1, "color1"    # I
     .param p2, "color2"    # I
     .param p3, "color3"    # I
@@ -871,7 +871,7 @@
 .end method
 
 .method setTriggerPercentage(F)V
-    .locals 5
+    .registers 7
     .param p1, "triggerPercentage"    # F
 
     .line 101
@@ -908,12 +908,12 @@
 .end method
 
 .method start()V
-    .locals 2
+    .registers 3
 
     .line 111
     iget-boolean v0, p0, Landroid/support/v4/widget/SwipeProgressBar;->mRunning:Z
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_15
 
     .line 112
     const/4 v0, 0x0
@@ -938,17 +938,17 @@
     invoke-virtual {v0}, Landroid/view/View;->postInvalidate()V
 
     .line 117
-    :cond_0
+    :cond_15
     return-void
 .end method
 
 .method stop()V
-    .locals 2
+    .registers 3
 
     .line 123
     iget-boolean v0, p0, Landroid/support/v4/widget/SwipeProgressBar;->mRunning:Z
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_15
 
     .line 124
     const/4 v0, 0x0
@@ -973,6 +973,6 @@
     invoke-virtual {v0}, Landroid/view/View;->postInvalidate()V
 
     .line 129
-    :cond_0
+    :cond_15
     return-void
 .end method

@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 36
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public appendRecord(Landroid/view/accessibility/AccessibilityEvent;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
     .param p1, "event"    # Landroid/view/accessibility/AccessibilityEvent;
     .param p2, "record"    # Ljava/lang/Object;
 
@@ -39,7 +39,7 @@
 .end method
 
 .method public getContentChangeTypes(Landroid/view/accessibility/AccessibilityEvent;)I
-    .locals 1
+    .registers 3
     .param p1, "event"    # Landroid/view/accessibility/AccessibilityEvent;
 
     .line 60
@@ -49,7 +49,7 @@
 .end method
 
 .method public getRecord(Landroid/view/accessibility/AccessibilityEvent;I)Ljava/lang/Object;
-    .locals 1
+    .registers 4
     .param p1, "event"    # Landroid/view/accessibility/AccessibilityEvent;
     .param p2, "index"    # I
 
@@ -60,7 +60,7 @@
 .end method
 
 .method public getRecordCount(Landroid/view/accessibility/AccessibilityEvent;)I
-    .locals 1
+    .registers 3
     .param p1, "event"    # Landroid/view/accessibility/AccessibilityEvent;
 
     .line 55
@@ -70,7 +70,7 @@
 .end method
 
 .method public setContentChangeTypes(Landroid/view/accessibility/AccessibilityEvent;I)V
-    .locals 0
+    .registers 3
     .param p1, "event"    # Landroid/view/accessibility/AccessibilityEvent;
     .param p2, "types"    # I
 

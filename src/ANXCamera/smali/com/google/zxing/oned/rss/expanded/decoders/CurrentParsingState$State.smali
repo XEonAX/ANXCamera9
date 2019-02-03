@@ -34,7 +34,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 5
+    .registers 5
 
     .line 38
     new-instance v0, Lcom/google/zxing/oned/rss/expanded/decoders/CurrentParsingState$State;
@@ -92,7 +92,7 @@
 .end method
 
 .method private constructor <init>(Ljava/lang/String;I)V
-    .locals 0
+    .registers 3
 
     .line 37
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
@@ -101,7 +101,7 @@
 .end method
 
 .method public static valueOf(Ljava/lang/String;)Lcom/google/zxing/oned/rss/expanded/decoders/CurrentParsingState$State;
-    .locals 1
+    .registers 2
 
     .line 1
     const-class v0, Lcom/google/zxing/oned/rss/expanded/decoders/CurrentParsingState$State;
@@ -116,7 +116,7 @@
 .end method
 
 .method public static values()[Lcom/google/zxing/oned/rss/expanded/decoders/CurrentParsingState$State;
-    .locals 4
+    .registers 4
 
     .line 1
     sget-object v0, Lcom/google/zxing/oned/rss/expanded/decoders/CurrentParsingState$State;->ENUM$VALUES:[Lcom/google/zxing/oned/rss/expanded/decoders/CurrentParsingState$State;

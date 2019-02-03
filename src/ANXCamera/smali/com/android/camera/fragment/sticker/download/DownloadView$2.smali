@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/sticker/download/DownloadView;)V
     .locals 1
 
-    .line 66
+    .line 71
     iput-object p1, p0, Lcom/android/camera/fragment/sticker/download/DownloadView$2;->this$0:Lcom/android/camera/fragment/sticker/download/DownloadView;
 
     const/4 v0, 0x0
@@ -35,13 +35,23 @@
 
 # virtual methods
 .method public onAnimationEnd(Landroid/animation/Animator;)V
-    .locals 0
+    .locals 1
 
-    .line 69
+    .line 74
+    iget-object p1, p0, Lcom/android/camera/fragment/sticker/download/DownloadView$2;->this$0:Lcom/android/camera/fragment/sticker/download/DownloadView;
+
+    iget p1, p1, Lcom/android/camera/fragment/sticker/download/DownloadView;->mState:I
+
+    const/4 v0, 0x2
+
+    if-ne p1, v0, :cond_0
+
+    .line 75
     iget-object p1, p0, Lcom/android/camera/fragment/sticker/download/DownloadView$2;->this$0:Lcom/android/camera/fragment/sticker/download/DownloadView;
 
     invoke-static {p1}, Lcom/android/camera/fragment/sticker/download/DownloadView;->access$200(Lcom/android/camera/fragment/sticker/download/DownloadView;)V
 
-    .line 70
+    .line 77
+    :cond_0
     return-void
 .end method

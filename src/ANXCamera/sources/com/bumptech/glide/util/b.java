@@ -13,7 +13,7 @@ public final class b extends FilterInputStream {
     private static final String TAG = "ContentLengthStream";
     private static final int UNKNOWN = -1;
     private final long contentLength;
-    private int ph;
+    private int pg;
 
     @NonNull
     public static InputStream a(@NonNull InputStream inputStream, @Nullable String str) {
@@ -48,7 +48,7 @@ public final class b extends FilterInputStream {
     }
 
     public synchronized int available() throws IOException {
-        return (int) Math.max(this.contentLength - ((long) this.ph), (long) this.in.available());
+        return (int) Math.max(this.contentLength - ((long) this.pg), (long) this.in.available());
     }
 
     public synchronized int read() throws IOException {
@@ -68,13 +68,13 @@ public final class b extends FilterInputStream {
 
     private int S(int i) throws IOException {
         if (i >= 0) {
-            this.ph += i;
-        } else if (this.contentLength - ((long) this.ph) > 0) {
+            this.pg += i;
+        } else if (this.contentLength - ((long) this.pg) > 0) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("Failed to read all expected data, expected: ");
             stringBuilder.append(this.contentLength);
             stringBuilder.append(", but read: ");
-            stringBuilder.append(this.ph);
+            stringBuilder.append(this.pg);
             throw new IOException(stringBuilder.toString());
         }
         return i;

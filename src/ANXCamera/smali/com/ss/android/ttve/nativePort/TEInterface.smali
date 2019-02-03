@@ -26,82 +26,97 @@
 .method static constructor <clinit>()V
     .locals 0
 
-    .line 20
+    .line 26
     invoke-static {}, Lcom/ss/android/ttve/nativePort/TENativeLibsLoader;->loadLibrary()V
 
-    .line 21
+    .line 27
     return-void
 .end method
 
 .method private constructor <init>()V
     .locals 2
 
-    .line 33
+    .line 39
     invoke-direct {p0}, Lcom/ss/android/ttve/nativePort/TENativeServiceBase;-><init>()V
 
-    .line 27
+    .line 33
     const-wide/16 v0, 0x0
 
     iput-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
-    .line 28
+    .line 34
     const/4 v0, -0x1
 
     iput v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mHostTrackIndex:I
 
-    .line 35
+    .line 41
     return-void
 .end method
 
 .method public static createEngine()Lcom/ss/android/ttve/nativePort/TEInterface;
     .locals 5
 
-    .line 47
+    .line 53
     new-instance v0, Lcom/ss/android/ttve/nativePort/TEInterface;
 
     invoke-direct {v0}, Lcom/ss/android/ttve/nativePort/TEInterface;-><init>()V
 
-    .line 48
+    .line 54
     invoke-direct {v0}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeCreateEngine()J
 
     move-result-wide v1
 
-    .line 49
+    .line 55
     const-wide/16 v3, 0x0
 
     cmp-long v3, v1, v3
 
     if-nez v3, :cond_0
 
-    .line 50
+    .line 56
     const/4 v0, 0x0
 
     return-object v0
 
-    .line 53
+    .line 59
     :cond_0
     iput-wide v1, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
-    .line 54
+    .line 60
     return-object v0
 .end method
 
 .method private native nativeAddAudioTrack(JLjava/lang/String;IIIIZ)I
 .end method
 
-.method private native nativeAddExternalTrack(J[Ljava/lang/String;[Ljava/lang/String;[I[IDDDDII)I
+.method private native nativeAddAudioTrack2(JLjava/lang/String;IIIIZII)I
+.end method
+
+.method private native nativeAddExternalTrack(J[Ljava/lang/String;[Ljava/lang/String;[I[I[I[IDDDDII)I
 .end method
 
 .method private native nativeAddFilters(J[I[Ljava/lang/String;[I[I[I[I)[I
 .end method
 
+.method private native nativeAddInfoSticker(JLjava/lang/String;[Ljava/lang/String;)I
+.end method
+
+.method private native nativeAddMetaData(JLjava/lang/String;Ljava/lang/String;)V
+.end method
+
 .method private native nativeAdjustFilterInOut(JIII)I
+.end method
+
+.method private native nativeClearDisplay(JI)V
 .end method
 
 .method private native nativeCreateEngine()J
 .end method
 
-.method private native nativeCreateScene(J[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[[Ljava/lang/String;I)I
+.method private native nativeCreateScene(JLjava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[[Ljava/lang/String;I)I
+.end method
+
+.method private native nativeCreateScene2(J[Ljava/lang/String;[I[I[Ljava/lang/String;[I[I[Ljava/lang/String;[[Ljava/lang/String;I)I
 .end method
 
 .method private native nativeCreateTimeline(J)I
@@ -134,6 +149,9 @@
 .method private native nativeGetExternalTrackFilter(JI)I
 .end method
 
+.method private native nativeGetInfoStickerBoundingBox(JI)[F
+.end method
+
 .method private native nativeGetInitResolution(J)[I
 .end method
 
@@ -155,6 +173,15 @@
 .method private native nativeRemoveFilter(J[I)I
 .end method
 
+.method private native nativeRemoveInfoSticker(JI)I
+.end method
+
+.method private native nativeRestore(JLjava/lang/String;)I
+.end method
+
+.method private native nativeSave(J)Ljava/lang/String;
+.end method
+
 .method private native nativeSeek(JIIII)I
 .end method
 
@@ -162,6 +189,9 @@
 .end method
 
 .method private native nativeSetDisplayState(JFFFFIII)V
+.end method
+
+.method private native nativeSetExpandLastFrame(JZ)V
 .end method
 
 .method private native nativeSetFilterParam(JILjava/lang/String;Lcom/ss/android/vesdk/VEStickerAnimator;)I
@@ -179,10 +209,19 @@
 .method private native nativeSetOption(JILjava/lang/String;Ljava/lang/String;)V
 .end method
 
+.method private native nativeSetOptionArray(JI[Ljava/lang/String;[J)V
+.end method
+
 .method private native nativeSetPreviewScaleMode(JI)I
 .end method
 
 .method private native nativeSetPreviewSurface(JLandroid/view/Surface;)V
+.end method
+
+.method private native nativeSetSpeedRatio(JF)V
+.end method
+
+.method private native nativeSetSurfaceSize(JII)V
 .end method
 
 .method private native nativeSetTrackVolume(JIIF)Z
@@ -191,13 +230,22 @@
 .method private native nativeSetViewPort(JIIII)V
 .end method
 
+.method private native nativeSetWaterMark(J[Ljava/lang/String;IIIII)V
+.end method
+
 .method private native nativeStart(J)I
 .end method
 
 .method private native nativeStop(J)I
 .end method
 
+.method private native nativeTestSerialization(J)Z
+.end method
+
 .method private native nativeUpdateAudioTrack(JIIIIIZ)I
+.end method
+
+.method private native nativeUpdateAudioTrack2(JIIIIIZII)I
 .end method
 
 .method private native nativeUpdateTrackClip(JII[Ljava/lang/String;)I
@@ -211,7 +259,7 @@
 .method public addAudioTrack(Ljava/lang/String;IIIIZ)I
     .locals 9
 
-    .line 114
+    .line 183
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -220,12 +268,12 @@
 
     if-nez v0, :cond_0
 
-    .line 115
+    .line 184
     const/4 p1, -0x1
 
     return p1
 
-    .line 116
+    .line 185
     :cond_0
     invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -233,12 +281,12 @@
 
     if-eqz v0, :cond_1
 
-    .line 117
+    .line 186
     const/16 p1, -0x64
 
     return p1
 
-    .line 120
+    .line 189
     :cond_1
     iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -263,10 +311,69 @@
     return p1
 .end method
 
+.method public addAudioTrack(Ljava/lang/String;IIIIZII)I
+    .locals 11
+
+    move-object v0, p0
+
+    .line 207
+    iget-wide v1, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v3, 0x0
+
+    cmp-long v1, v1, v3
+
+    if-nez v1, :cond_0
+
+    .line 208
+    const/4 v0, -0x1
+
+    return v0
+
+    .line 209
+    :cond_0
+    invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_1
+
+    .line 210
+    const/16 v0, -0x64
+
+    return v0
+
+    .line 213
+    :cond_1
+    iget-wide v1, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    move-object v3, p1
+
+    move v4, p2
+
+    move v5, p3
+
+    move v6, p4
+
+    move/from16 v7, p5
+
+    move/from16 v8, p6
+
+    move/from16 v9, p7
+
+    move/from16 v10, p8
+
+    invoke-direct/range {v0 .. v10}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeAddAudioTrack2(JLjava/lang/String;IIIIZII)I
+
+    move-result v0
+
+    return v0
+.end method
+
 .method public addFilters([I[Ljava/lang/String;[I[I[I[I)[I
     .locals 9
 
-    .line 236
+    .line 404
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -275,7 +382,7 @@
 
     if-nez v0, :cond_0
 
-    .line 237
+    .line 405
     const/4 p1, 0x1
 
     new-array p1, p1, [I
@@ -288,7 +395,7 @@
 
     return-object p1
 
-    .line 239
+    .line 407
     :cond_0
     iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -313,12 +420,76 @@
     return-object p1
 .end method
 
-.method public addSticker([Ljava/lang/String;[Ljava/lang/String;[I[IDDDD)I
-    .locals 17
+.method public addInfoSticker(Ljava/lang/String;[Ljava/lang/String;)I
+    .locals 4
+
+    .line 344
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    .line 345
+    const/16 p1, -0x70
+
+    return p1
+
+    .line 346
+    :cond_0
+    iget v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mHostTrackIndex:I
+
+    if-gez v0, :cond_1
+
+    .line 347
+    const/16 p1, -0x69
+
+    return p1
+
+    .line 350
+    :cond_1
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    invoke-direct {p0, v0, v1, p1, p2}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeAddInfoSticker(JLjava/lang/String;[Ljava/lang/String;)I
+
+    move-result p1
+
+    return p1
+.end method
+
+.method public addMetaData(Ljava/lang/String;Ljava/lang/String;)V
+    .locals 4
+
+    .line 769
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    .line 770
+    return-void
+
+    .line 772
+    :cond_0
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    invoke-direct {p0, v0, v1, p1, p2}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeAddMetaData(JLjava/lang/String;Ljava/lang/String;)V
+
+    .line 773
+    return-void
+.end method
+
+.method public addSticker([Ljava/lang/String;[Ljava/lang/String;[I[I[I[IDDDD)I
+    .locals 19
 
     move-object/from16 v0, p0
 
-    .line 199
+    .line 316
     iget-wide v1, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v3, 0x0
@@ -327,29 +498,29 @@
 
     if-nez v1, :cond_0
 
-    .line 200
+    .line 317
     const/16 v0, -0x70
 
     return v0
 
-    .line 201
+    .line 318
     :cond_0
     iget v1, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mHostTrackIndex:I
 
     if-gez v1, :cond_1
 
-    .line 202
+    .line 319
     const/16 v0, -0x69
 
     return v0
 
-    .line 205
+    .line 322
     :cond_1
     iget-wide v1, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
-    const/4 v15, 0x0
+    const/16 v17, 0x0
 
-    iget v13, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mHostTrackIndex:I
+    iget v15, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mHostTrackIndex:I
 
     move-object/from16 v3, p1
 
@@ -359,17 +530,21 @@
 
     move-object/from16 v6, p4
 
-    move-wide/from16 v7, p5
+    move-object/from16 v7, p5
+
+    move-object/from16 v8, p6
 
     move-wide/from16 v9, p7
 
     move-wide/from16 v11, p9
 
-    move/from16 v16, v13
-
     move-wide/from16 v13, p11
 
-    invoke-direct/range {v0 .. v16}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeAddExternalTrack(J[Ljava/lang/String;[Ljava/lang/String;[I[IDDDDII)I
+    move/from16 v18, v15
+
+    move-wide/from16 v15, p13
+
+    invoke-direct/range {v0 .. v18}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeAddExternalTrack(J[Ljava/lang/String;[Ljava/lang/String;[I[I[I[IDDDDII)I
 
     move-result v0
 
@@ -377,11 +552,11 @@
 .end method
 
 .method public addWaterMark([Ljava/lang/String;[Ljava/lang/String;[I[IDDDD)I
-    .locals 17
+    .locals 19
 
     move-object/from16 v0, p0
 
-    .line 173
+    .line 288
     iget-wide v1, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v3, 0x0
@@ -390,29 +565,29 @@
 
     if-nez v1, :cond_0
 
-    .line 174
+    .line 289
     const/16 v0, -0x70
 
     return v0
 
-    .line 175
+    .line 290
     :cond_0
     iget v1, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mHostTrackIndex:I
 
     if-gez v1, :cond_1
 
-    .line 176
+    .line 291
     const/16 v0, -0x69
 
     return v0
 
-    .line 179
+    .line 294
     :cond_1
     iget-wide v1, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
-    const/4 v15, 0x5
+    const/16 v17, 0x5
 
-    iget v13, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mHostTrackIndex:I
+    iget v15, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mHostTrackIndex:I
 
     move-object/from16 v3, p1
 
@@ -422,17 +597,21 @@
 
     move-object/from16 v6, p4
 
-    move-wide/from16 v7, p5
+    move-object/from16 v7, p3
 
-    move-wide/from16 v9, p7
+    move-object/from16 v8, p4
 
-    move-wide/from16 v11, p9
+    move-wide/from16 v9, p5
 
-    move/from16 v16, v13
+    move-wide/from16 v11, p7
 
-    move-wide/from16 v13, p11
+    move-wide/from16 v13, p9
 
-    invoke-direct/range {v0 .. v16}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeAddExternalTrack(J[Ljava/lang/String;[Ljava/lang/String;[I[IDDDDII)I
+    move/from16 v18, v15
+
+    move-wide/from16 v15, p11
+
+    invoke-direct/range {v0 .. v18}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeAddExternalTrack(J[Ljava/lang/String;[Ljava/lang/String;[I[I[I[IDDDDII)I
 
     move-result v0
 
@@ -442,7 +621,7 @@
 .method public adjustFilterInOut(III)I
     .locals 6
 
-    .line 258
+    .line 429
     iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     move-object v0, p0
@@ -460,10 +639,22 @@
     return p1
 .end method
 
-.method public createScene([Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[[Ljava/lang/String;I)I
-    .locals 8
+.method public clearDisplay(I)V
+    .locals 2
 
-    .line 88
+    .line 706
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    invoke-direct {p0, v0, v1, p1}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeClearDisplay(JI)V
+
+    .line 707
+    return-void
+.end method
+
+.method public createScene(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[[Ljava/lang/String;I)I
+    .locals 9
+
+    .line 98
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -472,12 +663,12 @@
 
     if-nez v0, :cond_0
 
-    .line 89
+    .line 99
     const/16 p1, -0x70
 
     return p1
 
-    .line 92
+    .line 102
     :cond_0
     iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -491,32 +682,112 @@
 
     move-object v6, p4
 
-    move v7, p5
+    move-object v7, p5
 
-    invoke-direct/range {v0 .. v7}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeCreateScene(J[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[[Ljava/lang/String;I)I
+    move v8, p6
+
+    invoke-direct/range {v0 .. v8}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeCreateScene(JLjava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[[Ljava/lang/String;I)I
 
     move-result p1
 
-    .line 93
+    .line 103
     if-gez p1, :cond_1
 
-    .line 94
+    .line 104
     return p1
 
-    .line 96
+    .line 106
     :cond_1
     iput p1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mHostTrackIndex:I
 
-    .line 97
+    .line 107
     const/4 p1, 0x0
 
     return p1
 .end method
 
-.method public createTimeline()I
-    .locals 2
+.method public createScene2([Ljava/lang/String;[I[I[Ljava/lang/String;[I[I[Ljava/lang/String;[[Ljava/lang/String;I)I
+    .locals 13
 
-    .line 542
+    move-object v12, p0
+
+    .line 155
+    iget-wide v0, v12, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    .line 156
+    const/16 v0, -0x70
+
+    return v0
+
+    .line 159
+    :cond_0
+    iget-wide v1, v12, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    move-object v0, v12
+
+    move-object v3, p1
+
+    move-object v4, p2
+
+    move-object/from16 v5, p3
+
+    move-object/from16 v6, p4
+
+    move-object/from16 v7, p5
+
+    move-object/from16 v8, p6
+
+    move-object/from16 v9, p7
+
+    move-object/from16 v10, p8
+
+    move/from16 v11, p9
+
+    invoke-direct/range {v0 .. v11}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeCreateScene2(J[Ljava/lang/String;[I[I[Ljava/lang/String;[I[I[Ljava/lang/String;[[Ljava/lang/String;I)I
+
+    move-result v0
+
+    .line 162
+    if-gez v0, :cond_1
+
+    .line 163
+    return v0
+
+    .line 165
+    :cond_1
+    iput v0, v12, Lcom/ss/android/ttve/nativePort/TEInterface;->mHostTrackIndex:I
+
+    .line 166
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public createTimeline()I
+    .locals 4
+
+    .line 832
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    .line 833
+    const/16 v0, -0x70
+
+    return v0
+
+    .line 835
+    :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     invoke-direct {p0, v0, v1}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeCreateTimeline(J)I
@@ -529,7 +800,7 @@
 .method public deleteAudioTrack(I)I
     .locals 4
 
-    .line 152
+    .line 267
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -538,12 +809,12 @@
 
     if-nez v0, :cond_0
 
-    .line 153
+    .line 268
     const/4 p1, -0x1
 
     return p1
 
-    .line 155
+    .line 270
     :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -557,7 +828,7 @@
 .method public deleteSticker(I)I
     .locals 4
 
-    .line 262
+    .line 433
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -566,21 +837,21 @@
 
     if-nez v0, :cond_0
 
-    .line 263
+    .line 434
     const/16 p1, -0x70
 
     return p1
 
-    .line 266
+    .line 437
     :cond_0
     if-gez p1, :cond_1
 
-    .line 267
+    .line 438
     const/16 p1, -0x64
 
     return p1
 
-    .line 269
+    .line 440
     :cond_1
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -594,7 +865,7 @@
 .method public deleteWatermark(I)I
     .locals 4
 
-    .line 273
+    .line 444
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -603,21 +874,21 @@
 
     if-nez v0, :cond_0
 
-    .line 274
+    .line 445
     const/16 p1, -0x70
 
     return p1
 
-    .line 277
+    .line 448
     :cond_0
     if-gez p1, :cond_1
 
-    .line 278
+    .line 449
     const/16 p1, -0x64
 
     return p1
 
-    .line 280
+    .line 451
     :cond_1
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -631,7 +902,7 @@
 .method public destroyEngine()I
     .locals 4
 
-    .line 63
+    .line 73
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -640,12 +911,12 @@
 
     if-nez v0, :cond_0
 
-    .line 64
+    .line 74
     const/16 v0, -0x70
 
     return v0
 
-    .line 66
+    .line 76
     :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -653,17 +924,17 @@
 
     move-result v0
 
-    .line 67
+    .line 77
     iput-wide v2, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
-    .line 68
+    .line 78
     return v0
 .end method
 
 .method public getCurPosition()I
     .locals 4
 
-    .line 499
+    .line 754
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -672,12 +943,12 @@
 
     if-nez v0, :cond_0
 
-    .line 500
+    .line 755
     const/4 v0, -0x1
 
     return v0
 
-    .line 502
+    .line 757
     :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -691,7 +962,7 @@
 .method public getCurState()I
     .locals 4
 
-    .line 507
+    .line 762
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -700,12 +971,12 @@
 
     if-nez v0, :cond_0
 
-    .line 508
+    .line 763
     const/4 v0, -0x1
 
     return v0
 
-    .line 510
+    .line 765
     :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -717,9 +988,23 @@
 .end method
 
 .method public getDisplayImage([B)I
-    .locals 2
+    .locals 4
 
-    .line 446
+    .line 690
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    const/16 p1, -0x70
+
+    return p1
+
+    .line 691
+    :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeGetDisplayImage(J[B)I
@@ -732,19 +1017,35 @@
 .method public getDisplayRect()Lcom/ss/android/vesdk/VERect;
     .locals 6
 
-    .line 450
+    .line 695
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
-    invoke-direct {p0, v0, v1}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeGetDisplayDumpSize(J)[I
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    const/4 v1, 0x0
+
+    if-nez v0, :cond_0
+
+    new-instance v0, Lcom/ss/android/vesdk/VERect;
+
+    invoke-direct {v0, v1, v1, v1, v1}, Lcom/ss/android/vesdk/VERect;-><init>(IIII)V
+
+    return-object v0
+
+    .line 696
+    :cond_0
+    iget-wide v2, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    invoke-direct {p0, v2, v3}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeGetDisplayDumpSize(J)[I
 
     move-result-object v0
 
-    .line 451
-    new-instance v1, Lcom/ss/android/vesdk/VERect;
+    .line 697
+    new-instance v2, Lcom/ss/android/vesdk/VERect;
 
-    const/4 v2, 0x0
-
-    aget v2, v0, v2
+    aget v1, v0, v1
 
     const/4 v3, 0x1
 
@@ -758,15 +1059,15 @@
 
     aget v0, v0, v5
 
-    invoke-direct {v1, v2, v3, v4, v0}, Lcom/ss/android/vesdk/VERect;-><init>(IIII)V
+    invoke-direct {v2, v1, v3, v4, v0}, Lcom/ss/android/vesdk/VERect;-><init>(IIII)V
 
-    return-object v1
+    return-object v2
 .end method
 
 .method public getDuration()I
     .locals 4
 
-    .line 492
+    .line 747
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -775,12 +1076,12 @@
 
     if-nez v0, :cond_0
 
-    .line 493
+    .line 748
     const/4 v0, -0x1
 
     return v0
 
-    .line 495
+    .line 750
     :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -791,20 +1092,133 @@
     return v0
 .end method
 
+.method public getInfoStickerBoundingBox(I)[F
+    .locals 5
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Lcom/ss/android/vesdk/VEException;
+        }
+    .end annotation
+
+    .line 371
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-eqz v0, :cond_2
+
+    .line 374
+    iget v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mHostTrackIndex:I
+
+    if-ltz v0, :cond_1
+
+    .line 378
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    invoke-direct {p0, v0, v1, p1}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeGetInfoStickerBoundingBox(JI)[F
+
+    move-result-object p1
+
+    .line 379
+    const/4 v0, 0x0
+
+    aget v1, p1, v0
+
+    const/4 v2, 0x0
+
+    cmpl-float v1, v1, v2
+
+    if-nez v1, :cond_0
+
+    .line 382
+    const/4 v1, 0x4
+
+    new-array v2, v1, [F
+
+    .line 383
+    const/4 v3, 0x1
+
+    invoke-static {p1, v3, v2, v0, v1}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+
+    .line 384
+    return-object v2
+
+    .line 380
+    :cond_0
+    new-instance v1, Lcom/ss/android/vesdk/VEException;
+
+    const/4 v2, -0x1
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "native getInfoStickerBoundingBox failed: "
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    aget p1, p1, v0
+
+    invoke-virtual {v3, p1}, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-direct {v1, v2, p1}, Lcom/ss/android/vesdk/VEException;-><init>(ILjava/lang/String;)V
+
+    throw v1
+
+    .line 375
+    :cond_1
+    new-instance p1, Lcom/ss/android/vesdk/VEException;
+
+    const/16 v0, -0x64
+
+    const-string v1, ""
+
+    invoke-direct {p1, v0, v1}, Lcom/ss/android/vesdk/VEException;-><init>(ILjava/lang/String;)V
+
+    throw p1
+
+    .line 372
+    :cond_2
+    new-instance p1, Lcom/ss/android/vesdk/VEException;
+
+    const/16 v0, -0x70
+
+    const-string v1, ""
+
+    invoke-direct {p1, v0, v1}, Lcom/ss/android/vesdk/VEException;-><init>(ILjava/lang/String;)V
+
+    throw p1
+.end method
+
 .method public getInitResolution()[I
     .locals 5
 
-    .line 459
+    .line 710
     const/4 v0, 0x4
 
     new-array v0, v0, [I
 
     fill-array-data v0, :array_0
 
-    .line 460
+    .line 711
     nop
 
-    .line 461
+    .line 712
+    nop
+
+    .line 713
+    nop
+
+    .line 714
+    nop
+
+    .line 715
     iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v3, 0x0
@@ -813,10 +1227,10 @@
 
     if-nez v1, :cond_0
 
-    .line 462
+    .line 716
     return-object v0
 
-    .line 464
+    .line 718
     :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -825,8 +1239,6 @@
     move-result-object v0
 
     return-object v0
-
-    nop
 
     :array_0
     .array-data 4
@@ -837,10 +1249,19 @@
     .end array-data
 .end method
 
+.method public getNativeHandler()J
+    .locals 2
+
+    .line 64
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    return-wide v0
+.end method
+
 .method public getStickerFilterIndex(I)I
     .locals 4
 
-    .line 211
+    .line 328
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -849,21 +1270,21 @@
 
     if-nez v0, :cond_0
 
-    .line 212
+    .line 329
     const/16 p1, -0x70
 
     return p1
 
-    .line 213
+    .line 330
     :cond_0
     if-gez p1, :cond_1
 
-    .line 214
+    .line 331
     const/16 p1, -0x64
 
     return p1
 
-    .line 216
+    .line 333
     :cond_1
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -877,7 +1298,22 @@
 .method public getTrackVolume(III)F
     .locals 6
 
-    .line 530
+    .line 811
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    .line 812
+    const/4 p1, 0x0
+
+    return p1
+
+    .line 814
+    :cond_0
     iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     move-object v0, p0
@@ -898,7 +1334,7 @@
 .method public pause()I
     .locals 4
 
-    .line 472
+    .line 727
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -911,7 +1347,7 @@
 
     return v0
 
-    .line 473
+    .line 728
     :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -925,7 +1361,7 @@
 .method public pauseSync()I
     .locals 4
 
-    .line 477
+    .line 732
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -938,7 +1374,7 @@
 
     return v0
 
-    .line 478
+    .line 733
     :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -952,7 +1388,7 @@
 .method public prepareEngine(IIILjava/lang/String;)I
     .locals 7
 
-    .line 292
+    .line 463
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -961,12 +1397,12 @@
 
     if-nez v0, :cond_0
 
-    .line 293
+    .line 464
     const/16 p1, -0x70
 
     return p1
 
-    .line 294
+    .line 465
     :cond_0
     invoke-static {p4}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -974,10 +1410,10 @@
 
     if-eqz v0, :cond_1
 
-    .line 295
+    .line 466
     const-string p4, ""
 
-    .line 298
+    .line 469
     :cond_1
     move-object v6, p4
 
@@ -1001,7 +1437,7 @@
 .method public releasePreviewSurface()V
     .locals 4
 
-    .line 430
+    .line 660
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1012,20 +1448,34 @@
 
     return-void
 
-    .line 431
+    .line 661
     :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     invoke-direct {p0, v0, v1}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeReleasePreviewSurface(J)V
 
-    .line 432
+    .line 662
     return-void
 .end method
 
 .method public removeFilter([I)I
-    .locals 2
+    .locals 4
 
-    .line 246
+    .line 414
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    const/16 p1, -0x70
+
+    return p1
+
+    .line 415
+    :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeRemoveFilter(J[I)I
@@ -1035,10 +1485,10 @@
     return p1
 .end method
 
-.method public seek(IIII)I
-    .locals 7
+.method public removeInfoSticker(I)I
+    .locals 4
 
-    .line 418
+    .line 361
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1047,12 +1497,119 @@
 
     if-nez v0, :cond_0
 
-    .line 419
+    .line 362
     const/16 p1, -0x70
 
     return p1
 
-    .line 421
+    .line 363
+    :cond_0
+    iget v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mHostTrackIndex:I
+
+    if-gez v0, :cond_1
+
+    .line 364
+    const/16 p1, -0x69
+
+    return p1
+
+    .line 367
+    :cond_1
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    invoke-direct {p0, v0, v1, p1}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeRemoveInfoSticker(JI)I
+
+    move-result p1
+
+    return p1
+.end method
+
+.method public restore(Ljava/lang/String;)I
+    .locals 4
+
+    .line 125
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    .line 126
+    const/16 p1, -0x70
+
+    return p1
+
+    .line 129
+    :cond_0
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    invoke-direct {p0, v0, v1, p1}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeRestore(JLjava/lang/String;)I
+
+    move-result p1
+
+    return p1
+.end method
+
+.method public save()Ljava/lang/String;
+    .locals 4
+    .annotation build Landroid/support/annotation/Nullable;
+    .end annotation
+
+    .line 116
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    const/4 v1, 0x0
+
+    if-nez v0, :cond_0
+
+    .line 117
+    return-object v1
+
+    .line 120
+    :cond_0
+    iget-wide v2, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    invoke-direct {p0, v2, v3}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSave(J)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 121
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_1
+
+    move-object v0, v1
+
+    :cond_1
+    return-object v0
+.end method
+
+.method public seek(IIII)I
+    .locals 7
+
+    .line 643
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    .line 644
+    const/16 p1, -0x70
+
+    return p1
+
+    .line 646
     :cond_0
     iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -1074,31 +1631,66 @@
 .end method
 
 .method public setBackGroundColor(FFFF)V
-    .locals 7
+    .locals 8
 
-    .line 455
-    iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+    .line 701
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
-    move-object v0, p0
+    const-wide/16 v2, 0x0
 
-    move v3, p1
+    cmp-long v0, v0, v2
 
-    move v4, p2
+    if-nez v0, :cond_0
 
-    move v5, p3
+    return-void
 
-    move v6, p4
+    .line 702
+    :cond_0
+    iget-wide v2, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
-    invoke-direct/range {v0 .. v6}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetBackGroundColor(JFFFF)V
+    move-object v1, p0
 
-    .line 456
+    move v4, p1
+
+    move v5, p2
+
+    move v6, p3
+
+    move v7, p4
+
+    invoke-direct/range {v1 .. v7}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetBackGroundColor(JFFFF)V
+
+    .line 703
+    return-void
+.end method
+
+.method public setCompileCommonEncodeOptions(II)V
+    .locals 3
+
+    .line 508
+    const-string v0, "CompileBitrateMode"
+
+    int-to-long v1, p1
+
+    const/4 p1, 0x0
+
+    invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
+
+    .line 509
+    const-string v0, "CompileEncodeProfile"
+
+    int-to-long v1, p2
+
+    invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
+
+    .line 510
     return-void
 .end method
 
 .method public setCompileFps(I)V
     .locals 3
 
-    .line 324
+    .line 539
     const-string v0, "CompileFps"
 
     int-to-long v1, p1
@@ -1107,14 +1699,67 @@
 
     invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
-    .line 325
+    .line 540
+    return-void
+.end method
+
+.method public setCompileHardwareEncodeOptions(I)V
+    .locals 3
+
+    .line 498
+    const-string v0, "CompileHardwareBitrate"
+
+    int-to-long v1, p1
+
+    const/4 p1, 0x0
+
+    invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
+
+    .line 499
+    return-void
+.end method
+
+.method public setCompileSoftwareEncodeOptions(IIII)V
+    .locals 3
+
+    .line 521
+    const-string v0, "CompileSoftwareCrf"
+
+    int-to-long v1, p1
+
+    const/4 p1, 0x0
+
+    invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
+
+    .line 522
+    const-string v0, "CompileSoftwareMaxrate"
+
+    int-to-long v1, p2
+
+    invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
+
+    .line 523
+    const-string p2, "CompileSoftwarePreset"
+
+    int-to-long v0, p3
+
+    invoke-virtual {p0, p1, p2, v0, v1}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
+
+    .line 524
+    const-string p2, "CompileSoftwareQp"
+
+    int-to-long p3, p4
+
+    invoke-virtual {p0, p1, p2, p3, p4}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
+
+    .line 525
     return-void
 .end method
 
 .method public setCompileType(I)V
     .locals 3
 
-    .line 341
+    .line 561
     const-string v0, "CompileType"
 
     int-to-long v1, p1
@@ -1123,46 +1768,82 @@
 
     invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
-    .line 342
+    .line 562
+    return-void
+.end method
+
+.method public setCompileWatermark(Lcom/ss/android/vesdk/VEWatermarkParam;)V
+    .locals 2
+
+    .line 551
+    const-string v0, "CompilePathWatermark"
+
+    iget-object p1, p1, Lcom/ss/android/vesdk/VEWatermarkParam;->extFile:Ljava/lang/String;
+
+    const/4 v1, 0x0
+
+    invoke-virtual {p0, v1, v0, p1}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;Ljava/lang/String;)V
+
+    .line 552
+    const-string p1, "CompilePathWavWatermark"
+
+    const-string v0, ""
+
+    invoke-virtual {p0, v1, p1, v0}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;Ljava/lang/String;)V
+
+    .line 553
     return-void
 .end method
 
 .method public setCrop(IIII)V
-    .locals 3
+    .locals 4
 
-    .line 377
+    .line 597
     const-string v0, "engine crop x"
 
-    int-to-long v1, p1
+    const-string v1, "engine crop y"
+
+    const-string v2, "engine crop width"
+
+    const-string v3, "engine crop height"
+
+    filled-new-array {v0, v1, v2, v3}, [Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 598
+    const/4 v1, 0x4
+
+    new-array v1, v1, [J
+
+    int-to-long v2, p1
 
     const/4 p1, 0x0
 
-    invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
+    aput-wide v2, v1, p1
 
-    .line 378
-    const-string v0, "engine crop y"
+    int-to-long p1, p2
 
-    int-to-long v1, p2
+    const/4 v2, 0x1
 
-    invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
+    aput-wide p1, v1, v2
 
-    .line 379
-    const-string p2, "engine crop width"
+    int-to-long p1, p3
 
-    int-to-long v0, p3
+    const/4 p3, 0x2
 
-    invoke-virtual {p0, p1, p2, v0, v1}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
+    aput-wide p1, v1, p3
 
-    .line 380
-    const-string p1, "engine crop height"
+    int-to-long p1, p4
 
-    int-to-long p2, p4
+    const/4 p3, 0x3
 
-    const/4 p4, 0x1
+    aput-wide p1, v1, p3
 
-    invoke-virtual {p0, p4, p1, p2, p3}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
+    .line 599
+    invoke-virtual {p0, v2, v0, v1}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(I[Ljava/lang/String;[J)V
 
-    .line 381
+    .line 600
     return-void
 .end method
 
@@ -1171,7 +1852,7 @@
 
     move-object v0, p0
 
-    .line 441
+    .line 685
     iget-wide v1, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v3, 0x0
@@ -1182,7 +1863,7 @@
 
     return-void
 
-    .line 442
+    .line 686
     :cond_0
     iget-wide v1, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -1202,14 +1883,14 @@
 
     invoke-direct/range {v0 .. v9}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetDisplayState(JFFFFIII)V
 
-    .line 443
+    .line 687
     return-void
 .end method
 
 .method public setEncGopSize(I)V
     .locals 3
 
-    .line 332
+    .line 547
     const-string v0, "video gop size"
 
     int-to-long v1, p1
@@ -1218,33 +1899,71 @@
 
     invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
-    .line 333
+    .line 548
     return-void
 .end method
 
 .method public setEngineCompilePath(Ljava/lang/String;Ljava/lang/String;)V
     .locals 2
 
-    .line 313
+    .line 528
     const-string v0, "CompilePath"
 
     const/4 v1, 0x0
 
     invoke-virtual {p0, v1, v0, p1}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;Ljava/lang/String;)V
 
-    .line 314
+    .line 529
     const-string p1, "CompilePathWav"
 
     invoke-virtual {p0, v1, p1, p2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;Ljava/lang/String;)V
 
-    .line 315
+    .line 530
+    return-void
+.end method
+
+.method public setExpandLastFrame(Z)V
+    .locals 4
+
+    .line 655
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    return-void
+
+    .line 656
+    :cond_0
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    invoke-direct {p0, v0, v1, p1}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetExpandLastFrame(JZ)V
+
+    .line 657
     return-void
 .end method
 
 .method public setFilterParam(ILjava/lang/String;Lcom/ss/android/vesdk/VEStickerAnimator;)I
     .locals 6
 
-    .line 254
+    .line 424
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    const/16 p1, -0x70
+
+    return p1
+
+    .line 425
+    :cond_0
     iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     move-object v0, p0
@@ -1265,7 +1984,21 @@
 .method public setFilterParam(ILjava/lang/String;Ljava/lang/String;)I
     .locals 6
 
-    .line 250
+    .line 419
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    const/16 p1, -0x70
+
+    return p1
+
+    .line 420
+    :cond_0
     iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     move-object v0, p0
@@ -1286,7 +2019,7 @@
 .method public setLooping(Z)V
     .locals 3
 
-    .line 372
+    .line 592
     if-eqz p1, :cond_0
 
     const-wide/16 v0, 0x1
@@ -1296,7 +2029,7 @@
     :cond_0
     const-wide/16 v0, 0x0
 
-    .line 373
+    .line 593
     :goto_0
     const/4 p1, 0x1
 
@@ -1304,74 +2037,14 @@
 
     invoke-virtual {p0, p1, v2, v0, v1}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
-    .line 374
+    .line 594
     return-void
 .end method
 
 .method public setOption(ILjava/lang/String;F)V
-    .locals 6
-
-    .line 522
-    iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
-
-    move-object v0, p0
-
-    move v3, p1
-
-    move-object v4, p2
-
-    move v5, p3
-
-    invoke-direct/range {v0 .. v5}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetOption(JILjava/lang/String;F)V
-
-    .line 523
-    return-void
-.end method
-
-.method public setOption(ILjava/lang/String;J)V
     .locals 7
 
-    .line 518
-    iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
-
-    move-object v0, p0
-
-    move v3, p1
-
-    move-object v4, p2
-
-    move-wide v5, p3
-
-    invoke-direct/range {v0 .. v6}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetOption(JILjava/lang/String;J)V
-
-    .line 519
-    return-void
-.end method
-
-.method public setOption(ILjava/lang/String;Ljava/lang/String;)V
-    .locals 6
-
-    .line 514
-    iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
-
-    move-object v0, p0
-
-    move v3, p1
-
-    move-object v4, p2
-
-    move-object v5, p3
-
-    invoke-direct/range {v0 .. v5}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetOption(JILjava/lang/String;Ljava/lang/String;)V
-
-    .line 515
-    return-void
-.end method
-
-.method public setPreviewScaleMode(I)I
-    .locals 4
-
-    .line 402
+    .line 790
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1380,12 +2053,144 @@
 
     if-nez v0, :cond_0
 
-    .line 403
+    .line 791
+    return-void
+
+    .line 793
+    :cond_0
+    iget-wide v2, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    move-object v1, p0
+
+    move v4, p1
+
+    move-object v5, p2
+
+    move v6, p3
+
+    invoke-direct/range {v1 .. v6}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetOption(JILjava/lang/String;F)V
+
+    .line 794
+    return-void
+.end method
+
+.method public setOption(ILjava/lang/String;J)V
+    .locals 8
+
+    .line 783
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    .line 784
+    return-void
+
+    .line 786
+    :cond_0
+    iget-wide v2, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    move-object v1, p0
+
+    move v4, p1
+
+    move-object v5, p2
+
+    move-wide v6, p3
+
+    invoke-direct/range {v1 .. v7}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetOption(JILjava/lang/String;J)V
+
+    .line 787
+    return-void
+.end method
+
+.method public setOption(ILjava/lang/String;Ljava/lang/String;)V
+    .locals 7
+
+    .line 776
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    .line 777
+    return-void
+
+    .line 779
+    :cond_0
+    iget-wide v2, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    move-object v1, p0
+
+    move v4, p1
+
+    move-object v5, p2
+
+    move-object v6, p3
+
+    invoke-direct/range {v1 .. v6}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetOption(JILjava/lang/String;Ljava/lang/String;)V
+
+    .line 780
+    return-void
+.end method
+
+.method public setOption(I[Ljava/lang/String;[J)V
+    .locals 7
+
+    .line 797
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    .line 798
+    return-void
+
+    .line 800
+    :cond_0
+    iget-wide v2, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    move-object v1, p0
+
+    move v4, p1
+
+    move-object v5, p2
+
+    move-object v6, p3
+
+    invoke-direct/range {v1 .. v6}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetOptionArray(JI[Ljava/lang/String;[J)V
+
+    .line 801
+    return-void
+.end method
+
+.method public setPreviewScaleMode(I)I
+    .locals 4
+
+    .line 627
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    .line 628
     const/16 p1, -0x70
 
     return p1
 
-    .line 406
+    .line 631
     :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -1399,7 +2204,7 @@
 .method public setPreviewSurface(Landroid/view/Surface;)V
     .locals 4
 
-    .line 425
+    .line 650
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1410,20 +2215,20 @@
 
     return-void
 
-    .line 426
+    .line 651
     :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetPreviewSurface(JLandroid/view/Surface;)V
 
-    .line 427
+    .line 652
     return-void
 .end method
 
 .method public setResizer(IFF)V
     .locals 3
 
-    .line 318
+    .line 533
     const-string v0, "filter mode"
 
     int-to-long v1, p1
@@ -1432,24 +2237,24 @@
 
     invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
-    .line 319
+    .line 534
     const-string v0, "resizer offset x percent"
 
     invoke-virtual {p0, p1, v0, p2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;F)V
 
-    .line 320
+    .line 535
     const-string p2, "resizer offset y percent"
 
     invoke-virtual {p0, p1, p2, p3}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;F)V
 
-    .line 321
+    .line 536
     return-void
 .end method
 
 .method public setScaleMode(I)V
     .locals 3
 
-    .line 384
+    .line 609
     const-string v0, "filter mode"
 
     int-to-long v1, p1
@@ -1458,14 +2263,77 @@
 
     invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
-    .line 385
+    .line 610
+    return-void
+.end method
+
+.method public setSpeedRatio(F)V
+    .locals 4
+
+    .line 680
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    return-void
+
+    .line 681
+    :cond_0
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    invoke-direct {p0, v0, v1, p1}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetSpeedRatio(JF)V
+
+    .line 682
+    return-void
+.end method
+
+.method public setSurfaceSize(II)V
+    .locals 4
+
+    .line 675
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    return-void
+
+    .line 676
+    :cond_0
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    invoke-direct {p0, v0, v1, p1, p2}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetSurfaceSize(JII)V
+
+    .line 677
     return-void
 .end method
 
 .method public setTrackVolume(IIF)Z
     .locals 6
 
-    .line 526
+    .line 804
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    .line 805
+    const/4 p1, 0x0
+
+    return p1
+
+    .line 807
+    :cond_0
     iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     move-object v0, p0
@@ -1486,7 +2354,7 @@
 .method public setUseHwEnc(Z)V
     .locals 3
 
-    .line 328
+    .line 543
     const-string v0, "HardwareVideo"
 
     if-eqz p1, :cond_0
@@ -1503,14 +2371,38 @@
 
     invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
-    .line 329
+    .line 544
+    return-void
+.end method
+
+.method public setUseLargeMattingModel(Z)V
+    .locals 3
+
+    .line 477
+    const-string v0, "UseLargeMattingModel"
+
+    if-eqz p1, :cond_0
+
+    const-wide/16 v1, 0x1
+
+    goto :goto_0
+
+    :cond_0
+    const-wide/16 v1, 0x0
+
+    :goto_0
+    const/4 p1, 0x0
+
+    invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
+
+    .line 478
     return-void
 .end method
 
 .method public setUsrRotate(I)V
     .locals 4
 
-    .line 352
+    .line 572
     const-wide/16 v0, 0x0
 
     const/4 v2, 0x0
@@ -1529,14 +2421,14 @@
 
     if-eq p1, v3, :cond_0
 
-    .line 366
+    .line 586
     const-string p1, "usr rotate"
 
     invoke-virtual {p0, v2, p1, v0, v1}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
     goto :goto_0
 
-    .line 363
+    .line 583
     :cond_0
     const-string p1, "usr rotate"
 
@@ -1544,10 +2436,10 @@
 
     invoke-virtual {p0, v2, p1, v0, v1}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
-    .line 364
+    .line 584
     goto :goto_0
 
-    .line 360
+    .line 580
     :cond_1
     const-string p1, "usr rotate"
 
@@ -1555,10 +2447,10 @@
 
     invoke-virtual {p0, v2, p1, v0, v1}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
-    .line 361
+    .line 581
     goto :goto_0
 
-    .line 357
+    .line 577
     :cond_2
     const-string p1, "usr rotate"
 
@@ -1566,19 +2458,19 @@
 
     invoke-virtual {p0, v2, p1, v0, v1}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
-    .line 358
+    .line 578
     goto :goto_0
 
-    .line 354
+    .line 574
     :cond_3
     const-string p1, "usr rotate"
 
     invoke-virtual {p0, v2, p1, v0, v1}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
-    .line 355
+    .line 575
     nop
 
-    .line 369
+    .line 589
     :goto_0
     return-void
 .end method
@@ -1586,7 +2478,7 @@
 .method public setVideoCompileBitrate(II)V
     .locals 3
 
-    .line 308
+    .line 488
     const-string v0, "CompileBitrateMode"
 
     int-to-long v1, p1
@@ -1595,21 +2487,21 @@
 
     invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
-    .line 309
+    .line 489
     const-string v0, "CompileBitrateValue"
 
     int-to-long v1, p2
 
     invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
-    .line 310
+    .line 490
     return-void
 .end method
 
 .method public setViewPort(IIII)V
     .locals 8
 
-    .line 435
+    .line 670
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1620,7 +2512,7 @@
 
     return-void
 
-    .line 436
+    .line 671
     :cond_0
     iget-wide v2, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -1636,14 +2528,52 @@
 
     invoke-direct/range {v1 .. v7}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetViewPort(JIIII)V
 
-    .line 437
+    .line 672
+    return-void
+.end method
+
+.method public setWaterMark([Ljava/lang/String;IIIII)V
+    .locals 9
+
+    .line 665
+    iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v3, 0x0
+
+    cmp-long v1, v1, v3
+
+    if-nez v1, :cond_0
+
+    return-void
+
+    .line 666
+    :cond_0
+    iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    move-object v0, p0
+
+    move-object v3, p1
+
+    move v4, p2
+
+    move v5, p3
+
+    move v6, p4
+
+    move v7, p5
+
+    move v8, p6
+
+    invoke-direct/range {v0 .. v8}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeSetWaterMark(J[Ljava/lang/String;IIIII)V
+
+    .line 667
     return-void
 .end method
 
 .method public setWidthHeight(II)V
     .locals 3
 
-    .line 389
+    .line 614
     const-string v0, "engine compile width"
 
     int-to-long v1, p1
@@ -1652,21 +2582,21 @@
 
     invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
-    .line 390
+    .line 615
     const-string v0, "engine compile height"
 
     int-to-long v1, p2
 
     invoke-virtual {p0, p1, v0, v1, v2}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(ILjava/lang/String;J)V
 
-    .line 391
+    .line 616
     return-void
 .end method
 
 .method public start()I
     .locals 4
 
-    .line 467
+    .line 722
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1679,7 +2609,7 @@
 
     return v0
 
-    .line 468
+    .line 723
     :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -1693,7 +2623,7 @@
 .method public stop()I
     .locals 4
 
-    .line 482
+    .line 737
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1706,7 +2636,7 @@
 
     return v0
 
-    .line 483
+    .line 738
     :cond_0
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -1720,10 +2650,23 @@
 .method public native stringFromJNI()Ljava/lang/String;
 .end method
 
+.method public testSerialization()Z
+    .locals 2
+
+    .line 839
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    invoke-direct {p0, v0, v1}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeTestSerialization(J)Z
+
+    move-result v0
+
+    return v0
+.end method
+
 .method public updateAudioTrack(IIIIIZ)I
     .locals 9
 
-    .line 137
+    .line 229
     iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1732,21 +2675,21 @@
 
     if-nez v0, :cond_0
 
-    .line 138
+    .line 230
     const/4 p1, -0x1
 
     return p1
 
-    .line 139
+    .line 231
     :cond_0
     if-gez p1, :cond_1
 
-    .line 140
+    .line 232
     const/16 p1, -0x64
 
     return p1
 
-    .line 142
+    .line 234
     :cond_1
     iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
@@ -1771,10 +2714,132 @@
     return p1
 .end method
 
+.method public updateAudioTrack(IIIIIZII)I
+    .locals 11
+
+    move-object v0, p0
+
+    .line 252
+    iget-wide v1, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v3, 0x0
+
+    cmp-long v1, v1, v3
+
+    if-nez v1, :cond_0
+
+    .line 253
+    const/4 v0, -0x1
+
+    return v0
+
+    .line 254
+    :cond_0
+    if-gez p1, :cond_1
+
+    .line 255
+    const/16 v0, -0x64
+
+    return v0
+
+    .line 257
+    :cond_1
+    iget-wide v1, v0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    move v3, p1
+
+    move v4, p2
+
+    move v5, p3
+
+    move v6, p4
+
+    move/from16 v7, p5
+
+    move/from16 v8, p6
+
+    move/from16 v9, p7
+
+    move/from16 v10, p8
+
+    invoke-direct/range {v0 .. v10}, Lcom/ss/android/ttve/nativePort/TEInterface;->nativeUpdateAudioTrack2(JIIIIIZII)I
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public updateResolution(IIII)V
+    .locals 4
+
+    .line 603
+    const-string v0, "engine preivew width"
+
+    const-string v1, "engine preivew height"
+
+    const-string v2, "engine preivew width percent"
+
+    const-string v3, "engine preivew height percent"
+
+    filled-new-array {v0, v1, v2, v3}, [Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 604
+    const/4 v1, 0x4
+
+    new-array v1, v1, [J
+
+    int-to-long v2, p1
+
+    const/4 p1, 0x0
+
+    aput-wide v2, v1, p1
+
+    int-to-long p1, p2
+
+    const/4 v2, 0x1
+
+    aput-wide p1, v1, v2
+
+    int-to-long p1, p3
+
+    const/4 p3, 0x2
+
+    aput-wide p1, v1, p3
+
+    int-to-long p1, p4
+
+    const/4 p3, 0x3
+
+    aput-wide p1, v1, p3
+
+    .line 605
+    invoke-virtual {p0, v2, v0, v1}, Lcom/ss/android/ttve/nativePort/TEInterface;->setOption(I[Ljava/lang/String;[J)V
+
+    .line 606
+    return-void
+.end method
+
 .method public updateTrackClips(II[Ljava/lang/String;)I
     .locals 6
 
-    .line 534
+    .line 818
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    .line 819
+    const/16 p1, -0x70
+
+    return p1
+
+    .line 821
+    :cond_0
     iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     move-object v0, p0
@@ -1795,7 +2860,22 @@
 .method public updateTrackFilter(IIZ)I
     .locals 6
 
-    .line 538
+    .line 825
+    iget-wide v0, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
+
+    const-wide/16 v2, 0x0
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    .line 826
+    const/16 p1, -0x70
+
+    return p1
+
+    .line 828
+    :cond_0
     iget-wide v1, p0, Lcom/ss/android/ttve/nativePort/TEInterface;->mNative:J
 
     move-object v0, p0

@@ -12,6 +12,7 @@ import android.os.Build.VERSION;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import com.google.android.apps.lens.library.base.proto.nano.LensSdkParamsProto.LensSdkParams;
+import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,20 +35,27 @@ public class LensSdkParamsReader {
         void onLensSdkParamsAvailable(LensSdkParams lensSdkParams);
     }
 
-    private class QueryGsaTask extends AsyncTask<Void, Void, Integer> {
-        private QueryGsaTask() {
+    private static class QueryGsaTask extends AsyncTask<Void, Void, Integer> {
+        SoftReference<LensSdkParamsReader> mLensSdkParamsReaderRef;
+
+        private QueryGsaTask(LensSdkParamsReader lensSdkParamsReader) {
+            this.mLensSdkParamsReaderRef = new SoftReference(lensSdkParamsReader);
         }
 
-        /* JADX WARNING: Removed duplicated region for block: B:31:0x0067  */
-        /* JADX WARNING: Removed duplicated region for block: B:28:0x0061  */
+        /* JADX WARNING: Removed duplicated region for block: B:35:0x0076  */
+        /* JADX WARNING: Removed duplicated region for block: B:32:0x0070  */
         /* Code decompiled incorrectly, please refer to instructions dump. */
         protected Integer doInBackground(Void... voidArr) {
             Integer valueOf;
             Throwable th;
             Cursor cursor = null;
             try {
+                LensSdkParamsReader lensSdkParamsReader = (LensSdkParamsReader) this.mLensSdkParamsReaderRef.get();
+                if (lensSdkParamsReader == null) {
+                    return Integer.valueOf(-1);
+                }
                 Integer valueOf2;
-                Cursor query = LensSdkParamsReader.this.context.getContentResolver().query(Uri.parse(LensSdkParamsReader.LENS_AVAILABILITY_PROVIDER_URI), (String[]) null, (String) null, (String[]) null, (String) null);
+                Cursor query = lensSdkParamsReader.context.getContentResolver().query(Uri.parse(LensSdkParamsReader.LENS_AVAILABILITY_PROVIDER_URI), (String[]) null, (String) null, (String[]) null, (String) null);
                 if (query != null) {
                     try {
                         if (query.getCount() != 0) {
@@ -90,28 +98,31 @@ public class LensSdkParamsReader {
                     query.close();
                 }
                 valueOf = valueOf2;
+                return valueOf;
             } catch (Exception e2) {
                 valueOf = Integer.valueOf(4);
                 if (cursor != null) {
                 }
                 return valueOf;
             }
-            return valueOf;
         }
 
         protected void onPostExecute(Integer num) {
             String valueOf = String.valueOf(num);
-            String str = LensSdkParamsReader.TAG;
-            StringBuilder stringBuilder = new StringBuilder(25 + String.valueOf(valueOf).length());
-            stringBuilder.append("Lens availability result:");
-            stringBuilder.append(valueOf);
-            Log.i(str, stringBuilder.toString());
-            LensSdkParamsReader.this.lensSdkParams.lensAvailabilityStatus = num.intValue();
-            LensSdkParamsReader.this.lensSdkParamsReady = true;
-            for (LensSdkParamsCallback onLensSdkParamsAvailable : LensSdkParamsReader.this.callbacks) {
-                onLensSdkParamsAvailable.onLensSdkParamsAvailable(LensSdkParamsReader.this.lensSdkParams);
+            LensSdkParamsReader lensSdkParamsReader = (LensSdkParamsReader) this.mLensSdkParamsReaderRef.get();
+            if (lensSdkParamsReader != null) {
+                String str = LensSdkParamsReader.TAG;
+                StringBuilder stringBuilder = new StringBuilder(25 + valueOf.length());
+                stringBuilder.append("Lens availability result:");
+                stringBuilder.append(valueOf);
+                Log.i(str, stringBuilder.toString());
+                lensSdkParamsReader.lensSdkParams.lensAvailabilityStatus = num.intValue();
+                lensSdkParamsReader.lensSdkParamsReady = true;
+                for (LensSdkParamsCallback onLensSdkParamsAvailable : lensSdkParamsReader.callbacks) {
+                    onLensSdkParamsAvailable.onLensSdkParamsAvailable(lensSdkParamsReader.lensSdkParams);
+                }
+                lensSdkParamsReader.callbacks.clear();
             }
-            LensSdkParamsReader.this.callbacks.clear();
         }
     }
 

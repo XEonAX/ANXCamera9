@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 66
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public isActiveNetworkMetered(Landroid/net/ConnectivityManager;)Z
-    .locals 1
+    .registers 3
     .param p1, "cm"    # Landroid/net/ConnectivityManager;
 
     .line 70

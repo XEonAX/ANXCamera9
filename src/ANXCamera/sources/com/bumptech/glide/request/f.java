@@ -46,65 +46,65 @@ public class f implements Cloneable {
     private static f nE = null;
     @Nullable
     private static f nF = null;
+    private static final int nf = 2;
+    private static final int ng = 4;
+    private static final int nh = 16;
+    private static final int ni = 32;
+    private static final int nj = 64;
+    private static final int nk = 128;
+    private static final int nl = 256;
+    private static final int nm = 512;
+    private static final int nn = 1024;
+    private static final int no = 2048;
+    private static final int np = 4096;
+    private static final int nq = 8192;
+    private static final int nr = 16384;
+    private static final int ns = 32768;
+    private static final int nt = 65536;
+    private static final int nu = 131072;
+    private static final int nv = 262144;
+    private static final int nw = 524288;
+    private static final int nx = 1048576;
     @Nullable
-    private static f nG = null;
-    private static final int ng = 2;
-    private static final int nh = 4;
-    private static final int ni = 16;
-    private static final int nj = 32;
-    private static final int nk = 64;
-    private static final int nl = 128;
-    private static final int nm = 256;
-    private static final int nn = 512;
-    private static final int no = 1024;
-    private static final int np = 2048;
-    private static final int nq = 4096;
-    private static final int nr = 8192;
-    private static final int ns = 16384;
-    private static final int nt = 32768;
-    private static final int nu = 65536;
-    private static final int nv = 131072;
-    private static final int nw = 262144;
-    private static final int nx = 524288;
-    private static final int ny = 1048576;
+    private static f ny;
     @Nullable
     private static f nz;
-    private boolean dT = true;
-    private boolean eC;
+    private boolean dU = true;
+    private boolean eD;
     @NonNull
-    private c ee = b.eB();
+    private c ef = b.eB();
     @NonNull
-    private com.bumptech.glide.load.f eg = new com.bumptech.glide.load.f();
+    private com.bumptech.glide.load.f eh = new com.bumptech.glide.load.f();
     @NonNull
-    private Class<?> ei = Object.class;
+    private Class<?> ej = Object.class;
     @NonNull
-    private Map<Class<?>, i<?>> ek = new CachedHashCodeArrayMap();
+    private Map<Class<?>, i<?>> el = new CachedHashCodeArrayMap();
     @NonNull
-    private Priority en = Priority.NORMAL;
+    private Priority eo = Priority.NORMAL;
     @NonNull
-    private g eo = g.fo;
-    private boolean ep;
-    private boolean eq = true;
+    private g ep = g.fo;
+    private boolean eq;
+    private boolean er = true;
     private boolean fQ;
     private boolean isLocked;
-    private int nH;
-    private float nI = 1.0f;
+    private int nG;
+    private float nH = 1.0f;
     @Nullable
-    private Drawable nJ;
-    private int nK;
+    private Drawable nI;
+    private int nJ;
     @Nullable
-    private Drawable nL;
-    private int nM;
+    private Drawable nK;
+    private int nL;
+    private int nM = -1;
     private int nN = -1;
-    private int nO = -1;
-    private boolean nP = true;
+    private boolean nO = true;
     @Nullable
-    private Drawable nQ;
-    private int nR;
+    private Drawable nP;
+    private int nQ;
     @Nullable
-    private Theme nS;
+    private Theme nR;
+    private boolean nS;
     private boolean nT;
-    private boolean nU;
 
     @CheckResult
     @NonNull
@@ -152,15 +152,15 @@ public class f implements Cloneable {
     @NonNull
     public static f g(boolean z) {
         if (z) {
-            if (nz == null) {
-                nz = new f().k(true).dG();
+            if (ny == null) {
+                ny = new f().k(true).dG();
             }
-            return nz;
+            return ny;
         }
-        if (nA == null) {
-            nA = new f().k(false).dG();
+        if (nz == null) {
+            nz = new f().k(false).dG();
         }
-        return nA;
+        return nz;
     }
 
     @CheckResult
@@ -184,38 +184,38 @@ public class f implements Cloneable {
     @CheckResult
     @NonNull
     public static f dl() {
+        if (nA == null) {
+            nA = new f().dy().dG();
+        }
+        return nA;
+    }
+
+    @CheckResult
+    @NonNull
+    public static f dm() {
         if (nB == null) {
-            nB = new f().dy().dG();
+            nB = new f().dA().dG();
         }
         return nB;
     }
 
     @CheckResult
     @NonNull
-    public static f dm() {
+    public static f dn() {
         if (nC == null) {
-            nC = new f().dA().dG();
+            nC = new f().dw().dG();
         }
         return nC;
     }
 
     @CheckResult
     @NonNull
-    public static f dn() {
-        if (nD == null) {
-            nD = new f().dw().dG();
-        }
-        return nD;
-    }
-
-    @CheckResult
-    @NonNull
     /* renamed from: do */
     public static f m0do() {
-        if (nE == null) {
-            nE = new f().dC().dG();
+        if (nD == null) {
+            nD = new f().dC().dG();
         }
-        return nE;
+        return nD;
     }
 
     @CheckResult
@@ -227,10 +227,10 @@ public class f implements Cloneable {
     @CheckResult
     @NonNull
     public static f dp() {
-        if (nF == null) {
-            nF = new f().dD().dG();
+        if (nE == null) {
+            nE = new f().dD().dG();
         }
-        return nF;
+        return nE;
     }
 
     @CheckResult
@@ -284,10 +284,10 @@ public class f implements Cloneable {
     @CheckResult
     @NonNull
     public static f dq() {
-        if (nG == null) {
-            nG = new f().dE().dG();
+        if (nF == null) {
+            nF = new f().dE().dG();
         }
-        return nG;
+        return nF;
     }
 
     private static boolean k(int i, int i2) {
@@ -297,169 +297,169 @@ public class f implements Cloneable {
     @CheckResult
     @NonNull
     public f h(@FloatRange(from = 0.0d, to = 1.0d) float f) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().h(f);
         }
         if (f < 0.0f || f > 1.0f) {
             throw new IllegalArgumentException("sizeMultiplier must be between 0 and 1");
         }
-        this.nI = f;
-        this.nH |= 2;
+        this.nH = f;
+        this.nG |= 2;
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f h(boolean z) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().h(z);
         }
-        this.nU = z;
-        this.nH |= 262144;
+        this.nT = z;
+        this.nG |= 262144;
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f i(boolean z) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().i(z);
         }
         this.fQ = z;
-        this.nH |= 1048576;
+        this.nG |= 1048576;
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f j(boolean z) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().j(z);
         }
-        this.eC = z;
-        this.nH |= 524288;
+        this.eD = z;
+        this.nG |= 524288;
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f b(@NonNull g gVar) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().b(gVar);
         }
-        this.eo = (g) com.bumptech.glide.util.i.checkNotNull(gVar);
-        this.nH |= 4;
+        this.ep = (g) com.bumptech.glide.util.i.checkNotNull(gVar);
+        this.nG |= 4;
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f c(@NonNull Priority priority) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().c(priority);
         }
-        this.en = (Priority) com.bumptech.glide.util.i.checkNotNull(priority);
-        this.nH |= 8;
+        this.eo = (Priority) com.bumptech.glide.util.i.checkNotNull(priority);
+        this.nG |= 8;
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f i(@Nullable Drawable drawable) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().i(drawable);
         }
-        this.nL = drawable;
-        this.nH |= 64;
+        this.nK = drawable;
+        this.nG |= 64;
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f J(@DrawableRes int i) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().J(i);
         }
-        this.nM = i;
-        this.nH |= 128;
+        this.nL = i;
+        this.nG |= 128;
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f j(@Nullable Drawable drawable) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().j(drawable);
         }
-        this.nQ = drawable;
-        this.nH |= 8192;
+        this.nP = drawable;
+        this.nG |= 8192;
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f K(@DrawableRes int i) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().K(i);
         }
-        this.nR = i;
-        this.nH |= 16384;
+        this.nQ = i;
+        this.nG |= 16384;
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f k(@Nullable Drawable drawable) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().k(drawable);
         }
-        this.nJ = drawable;
-        this.nH |= 16;
+        this.nI = drawable;
+        this.nG |= 16;
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f L(@DrawableRes int i) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().L(i);
         }
-        this.nK = i;
-        this.nH |= 32;
+        this.nJ = i;
+        this.nG |= 32;
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f a(@Nullable Theme theme) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().a(theme);
         }
-        this.nS = theme;
-        this.nH |= 32768;
+        this.nR = theme;
+        this.nG |= 32768;
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f k(boolean z) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().k(true);
         }
-        this.dT = z ^ true;
-        this.nH |= 256;
+        this.dU = z ^ true;
+        this.nG |= 256;
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f l(int i, int i2) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().l(i, i2);
         }
-        this.nO = i;
-        this.nN = i2;
-        this.nH |= 512;
+        this.nN = i;
+        this.nM = i2;
+        this.nG |= 512;
         return dH();
     }
 
@@ -472,11 +472,11 @@ public class f implements Cloneable {
     @CheckResult
     @NonNull
     public f k(@NonNull c cVar) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().k(cVar);
         }
-        this.ee = (c) com.bumptech.glide.util.i.checkNotNull(cVar);
-        this.nH |= 1024;
+        this.ef = (c) com.bumptech.glide.util.i.checkNotNull(cVar);
+        this.nG |= 1024;
         return dH();
     }
 
@@ -485,12 +485,12 @@ public class f implements Cloneable {
     public f clone() {
         try {
             f fVar = (f) super.clone();
-            fVar.eg = new com.bumptech.glide.load.f();
-            fVar.eg.a(this.eg);
-            fVar.ek = new CachedHashCodeArrayMap();
-            fVar.ek.putAll(this.ek);
+            fVar.eh = new com.bumptech.glide.load.f();
+            fVar.eh.a(this.eh);
+            fVar.el = new CachedHashCodeArrayMap();
+            fVar.el.putAll(this.el);
             fVar.isLocked = false;
-            fVar.nT = false;
+            fVar.nS = false;
             return fVar;
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -500,28 +500,28 @@ public class f implements Cloneable {
     @CheckResult
     @NonNull
     public <T> f c(@NonNull e<T> eVar, @NonNull T t) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().c((e) eVar, (Object) t);
         }
         com.bumptech.glide.util.i.checkNotNull(eVar);
         com.bumptech.glide.util.i.checkNotNull(t);
-        this.eg.a(eVar, t);
+        this.eh.a(eVar, t);
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f p(@NonNull Class<?> cls) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().p(cls);
         }
-        this.ei = (Class) com.bumptech.glide.util.i.checkNotNull(cls);
-        this.nH |= 4096;
+        this.ej = (Class) com.bumptech.glide.util.i.checkNotNull(cls);
+        this.nG |= 4096;
         return dH();
     }
 
     public final boolean ds() {
-        return this.nP;
+        return this.nO;
     }
 
     public final boolean dt() {
@@ -625,7 +625,7 @@ public class f implements Cloneable {
 
     @NonNull
     final f a(@NonNull DownsampleStrategy downsampleStrategy, @NonNull i<Bitmap> iVar) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().a(downsampleStrategy, (i) iVar);
         }
         b(downsampleStrategy);
@@ -635,7 +635,7 @@ public class f implements Cloneable {
     @CheckResult
     @NonNull
     final f b(@NonNull DownsampleStrategy downsampleStrategy, @NonNull i<Bitmap> iVar) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().b(downsampleStrategy, (i) iVar);
         }
         b(downsampleStrategy);
@@ -655,7 +655,7 @@ public class f implements Cloneable {
     @NonNull
     private f a(@NonNull DownsampleStrategy downsampleStrategy, @NonNull i<Bitmap> iVar, boolean z) {
         f b = z ? b(downsampleStrategy, (i) iVar) : a(downsampleStrategy, (i) iVar);
-        b.eq = true;
+        b.er = true;
         return b;
     }
 
@@ -679,7 +679,7 @@ public class f implements Cloneable {
 
     @NonNull
     private f a(@NonNull i<Bitmap> iVar, boolean z) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().a((i) iVar, z);
         }
         i pVar = new p(iVar, z);
@@ -698,19 +698,19 @@ public class f implements Cloneable {
 
     @NonNull
     private <T> f a(@NonNull Class<T> cls, @NonNull i<T> iVar, boolean z) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().a((Class) cls, (i) iVar, z);
         }
         com.bumptech.glide.util.i.checkNotNull(cls);
         com.bumptech.glide.util.i.checkNotNull(iVar);
-        this.ek.put(cls, iVar);
-        this.nH |= 2048;
-        this.nP = true;
-        this.nH |= 65536;
-        this.eq = false;
+        this.el.put(cls, iVar);
+        this.nG |= 2048;
+        this.nO = true;
+        this.nG |= 65536;
+        this.er = false;
         if (z) {
-            this.nH |= 131072;
-            this.ep = true;
+            this.nG |= 131072;
+            this.eq = true;
         }
         return dH();
     }
@@ -724,102 +724,102 @@ public class f implements Cloneable {
     @CheckResult
     @NonNull
     public f dD() {
-        if (this.nT) {
+        if (this.nS) {
             return clone().dD();
         }
-        this.ek.clear();
-        this.nH &= -2049;
-        this.ep = false;
-        this.nH &= -131073;
-        this.nP = false;
-        this.nH |= 65536;
-        this.eq = true;
+        this.el.clear();
+        this.nG &= -2049;
+        this.eq = false;
+        this.nG &= -131073;
+        this.nO = false;
+        this.nG |= 65536;
+        this.er = true;
         return dH();
     }
 
     @CheckResult
     @NonNull
     public f dE() {
-        return c(com.bumptech.glide.load.resource.gif.g.lY, Boolean.valueOf(true));
+        return c(com.bumptech.glide.load.resource.gif.g.lX, Boolean.valueOf(true));
     }
 
     @CheckResult
     @NonNull
     public f g(@NonNull f fVar) {
-        if (this.nT) {
+        if (this.nS) {
             return clone().g(fVar);
         }
-        if (k(fVar.nH, 2)) {
-            this.nI = fVar.nI;
+        if (k(fVar.nG, 2)) {
+            this.nH = fVar.nH;
         }
-        if (k(fVar.nH, 262144)) {
-            this.nU = fVar.nU;
+        if (k(fVar.nG, 262144)) {
+            this.nT = fVar.nT;
         }
-        if (k(fVar.nH, 1048576)) {
+        if (k(fVar.nG, 1048576)) {
             this.fQ = fVar.fQ;
         }
-        if (k(fVar.nH, 4)) {
-            this.eo = fVar.eo;
-        }
-        if (k(fVar.nH, 8)) {
-            this.en = fVar.en;
-        }
-        if (k(fVar.nH, 16)) {
-            this.nJ = fVar.nJ;
-        }
-        if (k(fVar.nH, 32)) {
-            this.nK = fVar.nK;
-        }
-        if (k(fVar.nH, 64)) {
-            this.nL = fVar.nL;
-        }
-        if (k(fVar.nH, 128)) {
-            this.nM = fVar.nM;
-        }
-        if (k(fVar.nH, 256)) {
-            this.dT = fVar.dT;
-        }
-        if (k(fVar.nH, 512)) {
-            this.nO = fVar.nO;
-            this.nN = fVar.nN;
-        }
-        if (k(fVar.nH, 1024)) {
-            this.ee = fVar.ee;
-        }
-        if (k(fVar.nH, 4096)) {
-            this.ei = fVar.ei;
-        }
-        if (k(fVar.nH, 8192)) {
-            this.nQ = fVar.nQ;
-        }
-        if (k(fVar.nH, 16384)) {
-            this.nR = fVar.nR;
-        }
-        if (k(fVar.nH, 32768)) {
-            this.nS = fVar.nS;
-        }
-        if (k(fVar.nH, 65536)) {
-            this.nP = fVar.nP;
-        }
-        if (k(fVar.nH, 131072)) {
+        if (k(fVar.nG, 4)) {
             this.ep = fVar.ep;
         }
-        if (k(fVar.nH, 2048)) {
-            this.ek.putAll(fVar.ek);
+        if (k(fVar.nG, 8)) {
+            this.eo = fVar.eo;
+        }
+        if (k(fVar.nG, 16)) {
+            this.nI = fVar.nI;
+        }
+        if (k(fVar.nG, 32)) {
+            this.nJ = fVar.nJ;
+        }
+        if (k(fVar.nG, 64)) {
+            this.nK = fVar.nK;
+        }
+        if (k(fVar.nG, 128)) {
+            this.nL = fVar.nL;
+        }
+        if (k(fVar.nG, 256)) {
+            this.dU = fVar.dU;
+        }
+        if (k(fVar.nG, 512)) {
+            this.nN = fVar.nN;
+            this.nM = fVar.nM;
+        }
+        if (k(fVar.nG, 1024)) {
+            this.ef = fVar.ef;
+        }
+        if (k(fVar.nG, 4096)) {
+            this.ej = fVar.ej;
+        }
+        if (k(fVar.nG, 8192)) {
+            this.nP = fVar.nP;
+        }
+        if (k(fVar.nG, 16384)) {
+            this.nQ = fVar.nQ;
+        }
+        if (k(fVar.nG, 32768)) {
+            this.nR = fVar.nR;
+        }
+        if (k(fVar.nG, 65536)) {
+            this.nO = fVar.nO;
+        }
+        if (k(fVar.nG, 131072)) {
             this.eq = fVar.eq;
         }
-        if (k(fVar.nH, 524288)) {
-            this.eC = fVar.eC;
+        if (k(fVar.nG, 2048)) {
+            this.el.putAll(fVar.el);
+            this.er = fVar.er;
         }
-        if (!this.nP) {
-            this.ek.clear();
-            this.nH &= -2049;
-            this.ep = false;
-            this.nH &= -131073;
-            this.eq = true;
+        if (k(fVar.nG, 524288)) {
+            this.eD = fVar.eD;
         }
-        this.nH |= fVar.nH;
-        this.eg.a(fVar.eg);
+        if (!this.nO) {
+            this.el.clear();
+            this.nG &= -2049;
+            this.eq = false;
+            this.nG &= -131073;
+            this.er = true;
+        }
+        this.nG |= fVar.nG;
+        this.eh.a(fVar.eh);
         return dH();
     }
 
@@ -829,14 +829,14 @@ public class f implements Cloneable {
             return false;
         }
         f fVar = (f) obj;
-        if (Float.compare(fVar.nI, this.nI) == 0 && this.nK == fVar.nK && com.bumptech.glide.util.k.b(this.nJ, fVar.nJ) && this.nM == fVar.nM && com.bumptech.glide.util.k.b(this.nL, fVar.nL) && this.nR == fVar.nR && com.bumptech.glide.util.k.b(this.nQ, fVar.nQ) && this.dT == fVar.dT && this.nN == fVar.nN && this.nO == fVar.nO && this.ep == fVar.ep && this.nP == fVar.nP && this.nU == fVar.nU && this.eC == fVar.eC && this.eo.equals(fVar.eo) && this.en == fVar.en && this.eg.equals(fVar.eg) && this.ek.equals(fVar.ek) && this.ei.equals(fVar.ei) && com.bumptech.glide.util.k.b(this.ee, fVar.ee) && com.bumptech.glide.util.k.b(this.nS, fVar.nS)) {
+        if (Float.compare(fVar.nH, this.nH) == 0 && this.nJ == fVar.nJ && com.bumptech.glide.util.k.b(this.nI, fVar.nI) && this.nL == fVar.nL && com.bumptech.glide.util.k.b(this.nK, fVar.nK) && this.nQ == fVar.nQ && com.bumptech.glide.util.k.b(this.nP, fVar.nP) && this.dU == fVar.dU && this.nM == fVar.nM && this.nN == fVar.nN && this.eq == fVar.eq && this.nO == fVar.nO && this.nT == fVar.nT && this.eD == fVar.eD && this.ep.equals(fVar.ep) && this.eo == fVar.eo && this.eh.equals(fVar.eh) && this.el.equals(fVar.el) && this.ej.equals(fVar.ej) && com.bumptech.glide.util.k.b(this.ef, fVar.ef) && com.bumptech.glide.util.k.b(this.nR, fVar.nR)) {
             z = true;
         }
         return z;
     }
 
     public int hashCode() {
-        return com.bumptech.glide.util.k.a(this.nS, com.bumptech.glide.util.k.a(this.ee, com.bumptech.glide.util.k.a(this.ei, com.bumptech.glide.util.k.a(this.ek, com.bumptech.glide.util.k.a(this.eg, com.bumptech.glide.util.k.a(this.en, com.bumptech.glide.util.k.a(this.eo, com.bumptech.glide.util.k.a(this.eC, com.bumptech.glide.util.k.a(this.nU, com.bumptech.glide.util.k.a(this.nP, com.bumptech.glide.util.k.a(this.ep, com.bumptech.glide.util.k.q(this.nO, com.bumptech.glide.util.k.q(this.nN, com.bumptech.glide.util.k.a(this.dT, com.bumptech.glide.util.k.a(this.nQ, com.bumptech.glide.util.k.q(this.nR, com.bumptech.glide.util.k.a(this.nL, com.bumptech.glide.util.k.q(this.nM, com.bumptech.glide.util.k.a(this.nJ, com.bumptech.glide.util.k.q(this.nK, com.bumptech.glide.util.k.hashCode(this.nI)))))))))))))))))))));
+        return com.bumptech.glide.util.k.a(this.nR, com.bumptech.glide.util.k.a(this.ef, com.bumptech.glide.util.k.a(this.ej, com.bumptech.glide.util.k.a(this.el, com.bumptech.glide.util.k.a(this.eh, com.bumptech.glide.util.k.a(this.eo, com.bumptech.glide.util.k.a(this.ep, com.bumptech.glide.util.k.a(this.eD, com.bumptech.glide.util.k.a(this.nT, com.bumptech.glide.util.k.a(this.nO, com.bumptech.glide.util.k.a(this.eq, com.bumptech.glide.util.k.q(this.nN, com.bumptech.glide.util.k.q(this.nM, com.bumptech.glide.util.k.a(this.dU, com.bumptech.glide.util.k.a(this.nP, com.bumptech.glide.util.k.q(this.nQ, com.bumptech.glide.util.k.a(this.nK, com.bumptech.glide.util.k.q(this.nL, com.bumptech.glide.util.k.a(this.nI, com.bumptech.glide.util.k.q(this.nJ, com.bumptech.glide.util.k.hashCode(this.nH)))))))))))))))))))));
     }
 
     @NonNull
@@ -847,8 +847,8 @@ public class f implements Cloneable {
 
     @NonNull
     public f dG() {
-        if (!this.isLocked || this.nT) {
-            this.nT = true;
+        if (!this.isLocked || this.nS) {
+            this.nS = true;
             return dF();
         }
         throw new IllegalStateException("You cannot auto lock an already locked options object, try clone() first");
@@ -863,7 +863,7 @@ public class f implements Cloneable {
     }
 
     protected boolean dI() {
-        return this.nT;
+        return this.nS;
     }
 
     public final boolean dJ() {
@@ -876,67 +876,67 @@ public class f implements Cloneable {
 
     @NonNull
     public final Map<Class<?>, i<?>> dL() {
-        return this.ek;
+        return this.el;
     }
 
     public final boolean dM() {
-        return this.ep;
+        return this.eq;
     }
 
     @NonNull
     public final com.bumptech.glide.load.f at() {
-        return this.eg;
+        return this.eh;
     }
 
     @NonNull
     public final Class<?> aZ() {
-        return this.ei;
+        return this.ej;
     }
 
     @NonNull
     public final g ar() {
-        return this.eo;
+        return this.ep;
     }
 
     @Nullable
     public final Drawable dN() {
-        return this.nJ;
+        return this.nI;
     }
 
     public final int dO() {
-        return this.nK;
+        return this.nJ;
     }
 
     public final int dP() {
-        return this.nM;
+        return this.nL;
     }
 
     @Nullable
     public final Drawable dQ() {
-        return this.nL;
+        return this.nK;
     }
 
     public final int dR() {
-        return this.nR;
-    }
-
-    @Nullable
-    public final Drawable dS() {
         return this.nQ;
     }
 
     @Nullable
+    public final Drawable dS() {
+        return this.nP;
+    }
+
+    @Nullable
     public final Theme getTheme() {
-        return this.nS;
+        return this.nR;
     }
 
     public final boolean dT() {
-        return this.dT;
+        return this.dU;
     }
 
     @NonNull
     public final c au() {
-        return this.ee;
+        return this.ef;
     }
 
     public final boolean dU() {
@@ -945,35 +945,35 @@ public class f implements Cloneable {
 
     @NonNull
     public final Priority as() {
-        return this.en;
+        return this.eo;
     }
 
     public final int dV() {
-        return this.nO;
-    }
-
-    public final boolean dW() {
-        return com.bumptech.glide.util.k.p(this.nO, this.nN);
-    }
-
-    public final int dX() {
         return this.nN;
     }
 
+    public final boolean dW() {
+        return com.bumptech.glide.util.k.p(this.nN, this.nM);
+    }
+
+    public final int dX() {
+        return this.nM;
+    }
+
     public final float dY() {
-        return this.nI;
+        return this.nH;
     }
 
     boolean ay() {
-        return this.eq;
+        return this.er;
     }
 
     private boolean isSet(int i) {
-        return k(this.nH, i);
+        return k(this.nG, i);
     }
 
     public final boolean dZ() {
-        return this.nU;
+        return this.nT;
     }
 
     public final boolean ea() {
@@ -981,6 +981,6 @@ public class f implements Cloneable {
     }
 
     public final boolean eb() {
-        return this.eC;
+        return this.eD;
     }
 }

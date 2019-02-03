@@ -1,6 +1,6 @@
 .class public final Lmiui/R$styleable;
 .super Ljava/lang/Object;
-.source "SourceFile"
+.source "R.java"
 
 
 # annotations
@@ -376,202 +376,202 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 17
+    .registers 17
 
-    .line 2459
+    .line 2526
     const/16 v0, 0x17
 
     new-array v0, v0, [I
 
-    fill-array-data v0, :array_0
+    fill-array-data v0, :array_25c
 
     sput-object v0, Lmiui/R$styleable;->ActionBar:[I
 
-    .line 2475
+    .line 2542
     const/4 v0, 0x1
 
     sput v0, Lmiui/R$styleable;->ActionBar_android_background:I
 
-    .line 2484
+    .line 2551
     const/16 v1, 0x10
 
     sput v1, Lmiui/R$styleable;->ActionBar_android_backgroundSplit:I
 
-    .line 2493
+    .line 2560
     const/16 v1, 0xf
 
     sput v1, Lmiui/R$styleable;->ActionBar_android_backgroundStacked:I
 
-    .line 2502
+    .line 2569
     const/16 v2, 0x9
 
     sput v2, Lmiui/R$styleable;->ActionBar_android_customNavigationLayout:I
 
-    .line 2511
+    .line 2578
     const/4 v3, 0x7
 
     sput v3, Lmiui/R$styleable;->ActionBar_android_displayOptions:I
 
-    .line 2520
+    .line 2587
     const/4 v4, 0x2
 
     sput v4, Lmiui/R$styleable;->ActionBar_android_divider:I
 
-    .line 2529
+    .line 2596
     const/4 v5, 0x3
 
     sput v5, Lmiui/R$styleable;->ActionBar_android_height:I
 
-    .line 2538
+    .line 2605
     const/16 v6, 0xd
 
     sput v6, Lmiui/R$styleable;->ActionBar_android_homeLayout:I
 
-    .line 2547
+    .line 2614
     const/4 v7, 0x0
 
     sput v7, Lmiui/R$styleable;->ActionBar_android_icon:I
 
-    .line 2557
+    .line 2624
     const/16 v8, 0xe
 
     sput v8, Lmiui/R$styleable;->ActionBar_android_itemPadding:I
 
-    .line 2566
+    .line 2633
     const/4 v9, 0x5
 
     sput v9, Lmiui/R$styleable;->ActionBar_android_logo:I
 
-    .line 2575
+    .line 2642
     const/4 v10, 0x6
 
     sput v10, Lmiui/R$styleable;->ActionBar_android_navigationMode:I
 
-    .line 2584
+    .line 2651
     const/16 v11, 0xc
 
     sput v11, Lmiui/R$styleable;->ActionBar_android_progressBarPadding:I
 
-    .line 2593
+    .line 2660
     const/16 v12, 0x8
 
     sput v12, Lmiui/R$styleable;->ActionBar_android_subtitle:I
 
-    .line 2602
+    .line 2669
     const/16 v13, 0xb
 
     sput v13, Lmiui/R$styleable;->ActionBar_android_subtitleTextStyle:I
 
-    .line 2611
+    .line 2678
     const/4 v13, 0x4
 
     sput v13, Lmiui/R$styleable;->ActionBar_android_title:I
 
-    .line 2620
+    .line 2687
     const/16 v14, 0xa
 
     sput v14, Lmiui/R$styleable;->ActionBar_android_titleTextStyle:I
 
-    .line 2637
+    .line 2704
     const/16 v15, 0x13
 
     sput v15, Lmiui/R$styleable;->ActionBar_customViewAutoFitSystemWindow:I
 
-    .line 2646
+    .line 2713
     const/16 v15, 0x14
 
     sput v15, Lmiui/R$styleable;->ActionBar_miui_actionBarEmbededTabsBackground:I
 
-    .line 2655
+    .line 2722
     const/16 v15, 0x15
 
     sput v15, Lmiui/R$styleable;->ActionBar_miui_actionBarStackedBackground:I
 
-    .line 2668
+    .line 2735
     const/16 v15, 0x11
 
     sput v15, Lmiui/R$styleable;->ActionBar_tabIndicator:I
 
-    .line 2685
+    .line 2752
     const/16 v15, 0x12
 
     sput v15, Lmiui/R$styleable;->ActionBar_translucentTabIndicator:I
 
-    .line 2700
+    .line 2767
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_1
+    fill-array-data v15, :array_28e
 
     sput-object v15, Lmiui/R$styleable;->ActionBarMovableLayout:[I
 
-    .line 2721
+    .line 2788
     sput v7, Lmiui/R$styleable;->ActionBarMovableLayout_overScrollRange:I
 
-    .line 2740
+    .line 2807
     sput v0, Lmiui/R$styleable;->ActionBarMovableLayout_scrollRange:I
 
-    .line 2759
+    .line 2826
     sput v4, Lmiui/R$styleable;->ActionBarMovableLayout_scrollStart:I
 
-    .line 2768
+    .line 2835
     new-array v15, v0, [I
 
-    const v16, 0x100100a9
+    const v16, 0x100100ad
 
     aput v16, v15, v7
 
     sput-object v15, Lmiui/R$styleable;->ActionMenu:[I
 
-    .line 2789
+    .line 2856
     new-array v15, v9, [I
 
-    fill-array-data v15, :array_2
+    fill-array-data v15, :array_298
 
     sput-object v15, Lmiui/R$styleable;->ActionMode:[I
 
-    .line 2801
+    .line 2868
     sput v7, Lmiui/R$styleable;->ActionMode_android_background:I
 
-    .line 2810
+    .line 2877
     sput v13, Lmiui/R$styleable;->ActionMode_android_backgroundSplit:I
 
-    .line 2819
+    .line 2886
     sput v0, Lmiui/R$styleable;->ActionMode_android_height:I
 
-    .line 2828
+    .line 2895
     sput v5, Lmiui/R$styleable;->ActionMode_android_subtitleTextStyle:I
 
-    .line 2837
+    .line 2904
     sput v4, Lmiui/R$styleable;->ActionMode_android_titleTextStyle:I
 
-    .line 2846
+    .line 2913
     new-array v15, v3, [I
 
-    fill-array-data v15, :array_3
+    fill-array-data v15, :array_2a6
 
     sput-object v15, Lmiui/R$styleable;->AlertDialog:[I
 
-    .line 2864
+    .line 2931
     new-array v15, v11, [I
 
-    fill-array-data v15, :array_4
+    fill-array-data v15, :array_2b8
 
     sput-object v15, Lmiui/R$styleable;->AlphabetFastIndexer:[I
 
-    .line 2882
+    .line 2949
     sput v0, Lmiui/R$styleable;->AlphabetFastIndexer_drawOverlay:I
 
-    .line 2894
+    .line 2961
     sput v7, Lmiui/R$styleable;->AlphabetFastIndexer_indexerTextHighlightColor:I
 
-    .line 2903
+    .line 2970
     new-array v15, v2, [I
 
-    fill-array-data v15, :array_5
+    fill-array-data v15, :array_2d4
 
     sput-object v15, Lmiui/R$styleable;->ArrowPopupView:[I
 
-    .line 2918
+    .line 2985
     new-array v15, v0, [I
 
     const v16, 0x1001007b
@@ -580,10 +580,10 @@
 
     sput-object v15, Lmiui/R$styleable;->AutoScaleTextView:[I
 
-    .line 2933
+    .line 3000
     sput v7, Lmiui/R$styleable;->AutoScaleTextView_minTextSize:I
 
-    .line 2944
+    .line 3011
     new-array v15, v0, [I
 
     const v16, 0x1001005e
@@ -592,29 +592,29 @@
 
     sput-object v15, Lmiui/R$styleable;->DataUpdate:[I
 
-    .line 2960
+    .line 3027
     sput v7, Lmiui/R$styleable;->DataUpdate_serviceName:I
 
-    .line 2977
+    .line 3044
     new-array v15, v14, [I
 
-    fill-array-data v15, :array_6
+    fill-array-data v15, :array_2ea
 
     sput-object v15, Lmiui/R$styleable;->DatePicker:[I
 
-    .line 2998
+    .line 3065
     sput v7, Lmiui/R$styleable;->DatePicker_lunarCalendar:I
 
-    .line 3015
+    .line 3082
     sput v5, Lmiui/R$styleable;->DatePicker_showDay:I
 
-    .line 3032
+    .line 3099
     sput v4, Lmiui/R$styleable;->DatePicker_showMonth:I
 
-    .line 3049
+    .line 3116
     sput v0, Lmiui/R$styleable;->DatePicker_showYear:I
 
-    .line 3060
+    .line 3127
     new-array v15, v0, [I
 
     const v16, 0x1001003a
@@ -623,270 +623,270 @@
 
     sput-object v15, Lmiui/R$styleable;->DateTimePicker:[I
 
-    .line 3079
+    .line 3146
     sput v7, Lmiui/R$styleable;->DateTimePicker_lunarCalendar:I
 
-    .line 3126
+    .line 3193
     new-array v15, v12, [I
 
-    fill-array-data v15, :array_7
+    fill-array-data v15, :array_302
 
     sput-object v15, Lmiui/R$styleable;->DrawableStates:[I
 
-    .line 3147
+    .line 3214
     sput v7, Lmiui/R$styleable;->DrawableStates_state_first_h:I
 
-    .line 3165
+    .line 3232
     sput v13, Lmiui/R$styleable;->DrawableStates_state_first_v:I
 
-    .line 3183
+    .line 3250
     sput v4, Lmiui/R$styleable;->DrawableStates_state_last_h:I
 
-    .line 3201
+    .line 3268
     sput v10, Lmiui/R$styleable;->DrawableStates_state_last_v:I
 
-    .line 3219
+    .line 3286
     sput v0, Lmiui/R$styleable;->DrawableStates_state_middle_h:I
 
-    .line 3237
+    .line 3304
     sput v9, Lmiui/R$styleable;->DrawableStates_state_middle_v:I
 
-    .line 3255
+    .line 3322
     sput v5, Lmiui/R$styleable;->DrawableStates_state_single_h:I
 
-    .line 3273
+    .line 3340
     sput v3, Lmiui/R$styleable;->DrawableStates_state_single_v:I
 
-    .line 3288
+    .line 3355
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_8
+    fill-array-data v15, :array_316
 
     sput-object v15, Lmiui/R$styleable;->DynamicExtension:[I
 
-    .line 3307
+    .line 3374
     sput v0, Lmiui/R$styleable;->DynamicExtension_extensionAction:I
 
-    .line 3324
+    .line 3391
     sput v4, Lmiui/R$styleable;->DynamicExtension_extensionInvoker:I
 
-    .line 3341
+    .line 3408
     sput v7, Lmiui/R$styleable;->DynamicExtension_extensionTarget:I
 
-    .line 3354
+    .line 3421
     new-array v15, v4, [I
 
-    fill-array-data v15, :array_9
+    fill-array-data v15, :array_320
 
     sput-object v15, Lmiui/R$styleable;->FilterSortView:[I
 
-    .line 3362
+    .line 3429
     sput v7, Lmiui/R$styleable;->FilterSortView_android_text:I
 
-    .line 3376
+    .line 3443
     sput v0, Lmiui/R$styleable;->FilterSortView_descending:I
 
-    .line 3389
+    .line 3456
     new-array v15, v4, [I
 
-    fill-array-data v15, :array_a
+    fill-array-data v15, :array_328
 
     sput-object v15, Lmiui/R$styleable;->FloatingActionButton:[I
 
-    .line 3403
+    .line 3470
     sput v7, Lmiui/R$styleable;->FloatingActionButton_fabColor:I
 
-    .line 3417
+    .line 3484
     sput v0, Lmiui/R$styleable;->FloatingActionButton_fabShadowEnabled:I
 
-    .line 3432
+    .line 3499
     new-array v15, v3, [I
 
-    fill-array-data v15, :array_b
+    fill-array-data v15, :array_330
 
     sput-object v15, Lmiui/R$styleable;->GuidePopupView:[I
 
-    .line 3444
+    .line 3511
     sput v7, Lmiui/R$styleable;->GuidePopupView_android_colorBackground:I
 
-    .line 3453
+    .line 3520
     sput v4, Lmiui/R$styleable;->GuidePopupView_android_textColor:I
 
-    .line 3462
+    .line 3529
     sput v0, Lmiui/R$styleable;->GuidePopupView_android_textSize:I
 
-    .line 3477
+    .line 3544
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_c
+    fill-array-data v15, :array_342
 
     sput-object v15, Lmiui/R$styleable;->HybridViewStyle:[I
 
-    .line 3496
+    .line 3563
     sput v0, Lmiui/R$styleable;->HybridViewStyle_hybridErrorPage:I
 
-    .line 3517
+    .line 3584
     sput v7, Lmiui/R$styleable;->HybridViewStyle_hybridProgressBar:I
 
-    .line 3534
+    .line 3601
     sput v4, Lmiui/R$styleable;->HybridViewStyle_hybridPullable:I
 
-    .line 3549
+    .line 3616
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_d
+    fill-array-data v15, :array_34c
 
     sput-object v15, Lmiui/R$styleable;->Level:[I
 
-    .line 3570
+    .line 3637
     sput v4, Lmiui/R$styleable;->Level_maxLevel:I
 
-    .line 3588
+    .line 3655
     sput v7, Lmiui/R$styleable;->Level_minLevel:I
 
-    .line 3606
+    .line 3673
     sput v0, Lmiui/R$styleable;->Level_targetLevel:I
 
-    .line 3629
+    .line 3696
     new-array v15, v12, [I
 
-    fill-array-data v15, :array_e
+    fill-array-data v15, :array_356
 
     sput-object v15, Lmiui/R$styleable;->MenuView:[I
 
-    .line 3641
+    .line 3708
     sput v13, Lmiui/R$styleable;->MenuView_android_headerBackground:I
 
-    .line 3650
+    .line 3717
     sput v4, Lmiui/R$styleable;->MenuView_android_horizontalDivider:I
 
-    .line 3659
+    .line 3726
     sput v9, Lmiui/R$styleable;->MenuView_android_itemBackground:I
 
-    .line 3668
+    .line 3735
     sput v10, Lmiui/R$styleable;->MenuView_android_itemIconDisabledAlpha:I
 
-    .line 3677
+    .line 3744
     sput v0, Lmiui/R$styleable;->MenuView_android_itemTextAppearance:I
 
-    .line 3686
+    .line 3753
     sput v5, Lmiui/R$styleable;->MenuView_android_verticalDivider:I
 
-    .line 3695
+    .line 3762
     sput v7, Lmiui/R$styleable;->MenuView_android_windowAnimationStyle:I
 
-    .line 3708
+    .line 3775
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_f
+    fill-array-data v15, :array_36a
 
     sput-object v15, Lmiui/R$styleable;->MessageView:[I
 
-    .line 3716
+    .line 3783
     sput v0, Lmiui/R$styleable;->MessageView_android_text:I
 
-    .line 3722
+    .line 3789
     sput v7, Lmiui/R$styleable;->MessageView_android_textColor:I
 
-    .line 3737
+    .line 3804
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_10
+    fill-array-data v15, :array_374
 
     sput-object v15, Lmiui/R$styleable;->MiuiManifest:[I
 
-    .line 3756
+    .line 3823
     sput v0, Lmiui/R$styleable;->MiuiManifest_level:I
 
-    .line 3778
+    .line 3845
     sput v4, Lmiui/R$styleable;->MiuiManifest_moduleContent:I
 
-    .line 3795
+    .line 3862
     sput v7, Lmiui/R$styleable;->MiuiManifest_name:I
 
-    .line 3814
+    .line 3881
     new-array v15, v9, [I
 
-    fill-array-data v15, :array_11
+    fill-array-data v15, :array_37e
 
     sput-object v15, Lmiui/R$styleable;->MiuiManifestModule:[I
 
-    .line 3838
+    .line 3905
     sput v13, Lmiui/R$styleable;->MiuiManifestModule_dependencyType:I
 
-    .line 3857
+    .line 3924
     sput v5, Lmiui/R$styleable;->MiuiManifestModule_maxLevel:I
 
-    .line 3875
+    .line 3942
     sput v0, Lmiui/R$styleable;->MiuiManifestModule_minLevel:I
 
-    .line 3892
+    .line 3959
     sput v7, Lmiui/R$styleable;->MiuiManifestModule_name:I
 
-    .line 3910
+    .line 3977
     sput v4, Lmiui/R$styleable;->MiuiManifestModule_targetLevel:I
 
-    .line 3925
+    .line 3992
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_12
+    fill-array-data v15, :array_38c
 
     sput-object v15, Lmiui/R$styleable;->MiuiManifestUsesSdk:[I
 
-    .line 3946
+    .line 4013
     sput v4, Lmiui/R$styleable;->MiuiManifestUsesSdk_maxLevel:I
 
-    .line 3964
+    .line 4031
     sput v7, Lmiui/R$styleable;->MiuiManifestUsesSdk_minLevel:I
 
-    .line 3982
+    .line 4049
     sput v0, Lmiui/R$styleable;->MiuiManifestUsesSdk_targetLevel:I
 
-    .line 4007
+    .line 4074
     new-array v15, v12, [I
 
-    fill-array-data v15, :array_13
+    fill-array-data v15, :array_396
 
     sput-object v15, Lmiui/R$styleable;->NavigationLayout:[I
 
-    .line 4031
+    .line 4098
     sput v13, Lmiui/R$styleable;->NavigationLayout_drawerEnabledOrientation:I
 
-    .line 4052
+    .line 4119
     sput v3, Lmiui/R$styleable;->NavigationLayout_drawerMode:I
 
-    .line 4075
+    .line 4142
     sput v5, Lmiui/R$styleable;->NavigationLayout_landscapeNavigationWidth:I
 
-    .line 4090
+    .line 4157
     sput v7, Lmiui/R$styleable;->NavigationLayout_navigationDivider:I
 
-    .line 4106
+    .line 4173
     sput v0, Lmiui/R$styleable;->NavigationLayout_navigationDividerWidth:I
 
-    .line 4121
+    .line 4188
     sput v10, Lmiui/R$styleable;->NavigationLayout_navigationScrimColor:I
 
-    .line 4134
+    .line 4201
     sput v9, Lmiui/R$styleable;->NavigationLayout_navigationShadow:I
 
-    .line 4157
+    .line 4224
     sput v4, Lmiui/R$styleable;->NavigationLayout_portraitNavigationWidth:I
 
-    .line 4170
+    .line 4237
     new-array v15, v4, [I
 
-    fill-array-data v15, :array_14
+    fill-array-data v15, :array_3aa
 
     sput-object v15, Lmiui/R$styleable;->NestedHeaderLayout:[I
 
-    .line 4182
+    .line 4249
     sput v7, Lmiui/R$styleable;->NestedHeaderLayout_headerView:I
 
-    .line 4198
+    .line 4265
     sput v0, Lmiui/R$styleable;->NestedHeaderLayout_rangeOffset:I
 
-    .line 4209
+    .line 4276
     new-array v15, v0, [I
 
     const v16, 0x10010077
@@ -895,170 +895,170 @@
 
     sput-object v15, Lmiui/R$styleable;->NestedScrollingLayout:[I
 
-    .line 4225
+    .line 4292
     sput v7, Lmiui/R$styleable;->NestedScrollingLayout_scrollableView:I
 
-    .line 4242
+    .line 4309
     new-array v15, v12, [I
 
-    fill-array-data v15, :array_15
+    fill-array-data v15, :array_3b2
 
     sput-object v15, Lmiui/R$styleable;->NumberPicker:[I
 
-    .line 4251
+    .line 4318
     sput v5, Lmiui/R$styleable;->NumberPicker_android_labelTextSize:I
 
-    .line 4257
+    .line 4324
     sput v4, Lmiui/R$styleable;->NumberPicker_android_text:I
 
-    .line 4263
+    .line 4330
     sput v7, Lmiui/R$styleable;->NumberPicker_android_textColorHighlight:I
 
-    .line 4269
+    .line 4336
     sput v0, Lmiui/R$styleable;->NumberPicker_android_textColorHint:I
 
-    .line 4286
+    .line 4353
     new-array v15, v13, [I
 
-    fill-array-data v15, :array_16
+    fill-array-data v15, :array_3c6
 
     sput-object v15, Lmiui/R$styleable;->PlaceholderDrawablePadding:[I
 
-    .line 4297
+    .line 4364
     sput v5, Lmiui/R$styleable;->PlaceholderDrawablePadding_android_bottom:I
 
-    .line 4306
+    .line 4373
     sput v7, Lmiui/R$styleable;->PlaceholderDrawablePadding_android_left:I
 
-    .line 4315
+    .line 4382
     sput v4, Lmiui/R$styleable;->PlaceholderDrawablePadding_android_right:I
 
-    .line 4324
+    .line 4391
     sput v0, Lmiui/R$styleable;->PlaceholderDrawablePadding_android_top:I
 
-    .line 4337
+    .line 4404
     new-array v15, v4, [I
 
-    fill-array-data v15, :array_17
+    fill-array-data v15, :array_3d2
 
     sput-object v15, Lmiui/R$styleable;->PlaceholderDrawableSize:[I
 
-    .line 4348
+    .line 4415
     sput v7, Lmiui/R$styleable;->PlaceholderDrawableSize_android_height:I
 
-    .line 4357
+    .line 4424
     sput v0, Lmiui/R$styleable;->PlaceholderDrawableSize_android_width:I
 
-    .line 4368
+    .line 4435
     new-array v15, v5, [I
 
-    fill-array-data v15, :array_18
+    fill-array-data v15, :array_3da
 
     sput-object v15, Lmiui/R$styleable;->ProgressBar:[I
 
-    .line 4383
+    .line 4450
     sput v7, Lmiui/R$styleable;->ProgressBar_progressMask:I
 
-    .line 4396
+    .line 4463
     new-array v15, v4, [I
 
-    fill-array-data v15, :array_19
+    fill-array-data v15, :array_3e4
 
     sput-object v15, Lmiui/R$styleable;->RadioButtonPreference:[I
 
-    .line 4404
+    .line 4471
     sput v7, Lmiui/R$styleable;->RadioButtonPreference_android_layout:I
 
-    .line 4410
+    .line 4477
     sput v0, Lmiui/R$styleable;->RadioButtonPreference_android_widgetLayout:I
 
-    .line 4423
+    .line 4490
     new-array v15, v4, [I
 
-    fill-array-data v15, :array_1a
+    fill-array-data v15, :array_3ec
 
     sput-object v15, Lmiui/R$styleable;->Rotation3DLayout:[I
 
-    .line 4442
+    .line 4509
     sput v0, Lmiui/R$styleable;->Rotation3DLayout_autoGravityRotation:I
 
-    .line 4459
+    .line 4526
     sput v7, Lmiui/R$styleable;->Rotation3DLayout_maxRotationDegree:I
 
-    .line 4472
+    .line 4539
     new-array v15, v4, [I
 
-    fill-array-data v15, :array_1b
+    fill-array-data v15, :array_3f4
 
     sput-object v15, Lmiui/R$styleable;->Rotation3DLayout_Layout:[I
 
-    .line 4480
+    .line 4547
     sput v7, Lmiui/R$styleable;->Rotation3DLayout_Layout_android_layout_gravity:I
 
-    .line 4497
+    .line 4564
     sput v0, Lmiui/R$styleable;->Rotation3DLayout_Layout_layout_zdistance:I
 
-    .line 4516
+    .line 4583
     new-array v15, v9, [I
 
-    fill-array-data v15, :array_1c
+    fill-array-data v15, :array_3fc
 
     sput-object v15, Lmiui/R$styleable;->ScrollableViewDrawer:[I
 
-    .line 4533
+    .line 4600
     sput v7, Lmiui/R$styleable;->ScrollableViewDrawer_contentView:I
 
-    .line 4547
+    .line 4614
     sput v5, Lmiui/R$styleable;->ScrollableViewDrawer_dragEnabled:I
 
-    .line 4557
+    .line 4624
     sput v13, Lmiui/R$styleable;->ScrollableViewDrawer_scrollDivider:I
 
-    .line 4571
+    .line 4638
     sput v4, Lmiui/R$styleable;->ScrollableViewDrawer_scrollableView:I
 
-    .line 4585
+    .line 4652
     sput v0, Lmiui/R$styleable;->ScrollableViewDrawer_targetView:I
 
-    .line 4598
+    .line 4665
     new-array v15, v12, [I
 
-    fill-array-data v15, :array_1d
+    fill-array-data v15, :array_40a
 
     sput-object v15, Lmiui/R$styleable;->SlidingButton:[I
 
-    .line 4607
+    .line 4674
     sput v7, Lmiui/R$styleable;->SlidingButton_android_background:I
 
-    .line 4630
+    .line 4697
     new-array v15, v3, [I
 
-    fill-array-data v15, :array_1e
+    fill-array-data v15, :array_41e
 
     sput-object v15, Lmiui/R$styleable;->TriggerViewDrawer:[I
 
-    .line 4647
+    .line 4714
     sput v7, Lmiui/R$styleable;->TriggerViewDrawer_contentView:I
 
-    .line 4661
+    .line 4728
     sput v5, Lmiui/R$styleable;->TriggerViewDrawer_dragEnabled:I
 
-    .line 4671
+    .line 4738
     sput v13, Lmiui/R$styleable;->TriggerViewDrawer_scrollDivider:I
 
-    .line 4685
+    .line 4752
     sput v4, Lmiui/R$styleable;->TriggerViewDrawer_scrollableView:I
 
-    .line 4699
+    .line 4766
     sput v0, Lmiui/R$styleable;->TriggerViewDrawer_targetView:I
 
-    .line 4715
+    .line 4782
     sput v10, Lmiui/R$styleable;->TriggerViewDrawer_triggerDistance:I
 
-    .line 4729
+    .line 4796
     sput v9, Lmiui/R$styleable;->TriggerViewDrawer_triggerView:I
 
-    .line 4740
+    .line 4807
     new-array v15, v0, [I
 
     const v16, 0x1010209
@@ -1067,73 +1067,73 @@
 
     sput-object v15, Lmiui/R$styleable;->VolumePreference:[I
 
-    .line 4751
+    .line 4818
     sput v7, Lmiui/R$styleable;->VolumePreference_android_streamType:I
 
-    .line 4800
+    .line 4867
     const/16 v15, 0x1c
 
     new-array v15, v15, [I
 
-    fill-array-data v15, :array_1f
+    fill-array-data v15, :array_430
 
     sput-object v15, Lmiui/R$styleable;->Window:[I
 
-    .line 4825
+    .line 4892
     sput v5, Lmiui/R$styleable;->Window_contentAutoFitSystemWindow:I
 
-    .line 4837
+    .line 4904
     sput v13, Lmiui/R$styleable;->Window_contentHeaderBackground:I
 
-    .line 4854
+    .line 4921
     sput v9, Lmiui/R$styleable;->Window_immersionMenuEnabled:I
 
-    .line 4875
+    .line 4942
     sput v11, Lmiui/R$styleable;->Window_immersionStatusBarStyle:I
 
-    .line 4890
+    .line 4957
     sput v6, Lmiui/R$styleable;->Window_immersionWindowBackground:I
 
-    .line 4903
+    .line 4970
     sput v1, Lmiui/R$styleable;->Window_startingWindowOverlay:I
 
-    .line 4920
+    .line 4987
     sput v0, Lmiui/R$styleable;->Window_windowActionBar:I
 
-    .line 4938
+    .line 5005
     sput v4, Lmiui/R$styleable;->Window_windowActionBarOverlay:I
 
-    .line 4955
+    .line 5022
     sput v8, Lmiui/R$styleable;->Window_windowDisablePreview:I
 
-    .line 4979
+    .line 5046
     sput v12, Lmiui/R$styleable;->Window_windowFixedHeightMajor:I
 
-    .line 5003
+    .line 5070
     sput v2, Lmiui/R$styleable;->Window_windowFixedHeightMinor:I
 
-    .line 5027
+    .line 5094
     sput v10, Lmiui/R$styleable;->Window_windowFixedWidthMajor:I
 
-    .line 5051
+    .line 5118
     sput v3, Lmiui/R$styleable;->Window_windowFixedWidthMinor:I
 
-    .line 5071
+    .line 5138
     const/16 v0, 0xb
 
     sput v0, Lmiui/R$styleable;->Window_windowLayoutMode:I
 
-    .line 5088
+    .line 5155
     sput v7, Lmiui/R$styleable;->Window_windowSplitActionBar:I
 
-    .line 5109
+    .line 5176
     sput v14, Lmiui/R$styleable;->Window_windowTranslucentStatus:I
 
     return-void
 
     nop
 
-    :array_0
+    :array_25c
     .array-data 4
         0x1010002
         0x10100d4
@@ -1157,17 +1157,17 @@
         0x10010048
         0x1001005c
         0x1001005d
-        0x100100a7
+        0x100100ab
     .end array-data
 
-    :array_1
+    :array_28e
     .array-data 4
         0x10010040
         0x10010041
         0x10010042
     .end array-data
 
-    :array_2
+    :array_298
     .array-data 4
         0x10100d4
         0x1010155
@@ -1176,61 +1176,61 @@
         0x101038b
     .end array-data
 
-    :array_3
+    :array_2a6
     .array-data 4
+        0x100100e0
+        0x100100e1
+        0x100100e2
+        0x100100e3
+        0x100100e4
+        0x100100e5
+        0x100100e6
+    .end array-data
+
+    :array_2b8
+    .array-data 4
+        0x10010087
+        0x10010088
+        0x100100eb
+        0x100100ec
+        0x100100ed
+        0x100100ee
+        0x100100ef
+        0x100100f0
+        0x100100f1
+        0x100100f2
+        0x100100f3
+        0x100100f4
+    .end array-data
+
+    :array_2d4
+    .array-data 4
+        0x100100bc
+        0x100100bd
+        0x100100be
+        0x100100bf
+        0x100100c0
+        0x100100c1
+        0x100100c2
+        0x100100c3
+        0x100100c4
+    .end array-data
+
+    :array_2ea
+    .array-data 4
+        0x1001003a
+        0x1001003b
+        0x1001003c
+        0x1001003d
         0x100100da
         0x100100db
         0x100100dc
         0x100100dd
         0x100100de
         0x100100df
-        0x100100e0
     .end array-data
 
-    :array_4
-    .array-data 4
-        0x10010087
-        0x10010088
-        0x100100e5
-        0x100100e6
-        0x100100e7
-        0x100100e8
-        0x100100e9
-        0x100100ea
-        0x100100eb
-        0x100100ec
-        0x100100ed
-        0x100100ee
-    .end array-data
-
-    :array_5
-    .array-data 4
-        0x100100b7
-        0x100100b8
-        0x100100b9
-        0x100100ba
-        0x100100bb
-        0x100100bc
-        0x100100bd
-        0x100100be
-        0x100100bf
-    .end array-data
-
-    :array_6
-    .array-data 4
-        0x1001003a
-        0x1001003b
-        0x1001003c
-        0x1001003d
-        0x100100d4
-        0x100100d5
-        0x100100d6
-        0x100100d7
-        0x100100d8
-        0x100100d9
-    .end array-data
-
-    :array_7
+    :array_302
     .array-data 4
         0x1001000d
         0x1001000e
@@ -1242,51 +1242,51 @@
         0x10010014
     .end array-data
 
-    :array_8
+    :array_316
     .array-data 4
         0x10010090
         0x10010091
         0x10010092
     .end array-data
 
-    :array_9
+    :array_320
     .array-data 4
         0x101014f
         0x1001007e
     .end array-data
 
-    :array_a
+    :array_328
     .array-data 4
         0x10010096
         0x10010097
     .end array-data
 
-    :array_b
+    :array_330
     .array-data 4
         0x1010031
         0x1010095
         0x1010098
-        0x100100c0
-        0x100100c1
-        0x100100c2
-        0x100100c3
+        0x100100c5
+        0x100100c6
+        0x100100c7
+        0x100100c8
     .end array-data
 
-    :array_c
+    :array_342
     .array-data 4
         0x1001007f
         0x10010080
         0x10010081
     .end array-data
 
-    :array_d
+    :array_34c
     .array-data 4
         0x10010063
         0x10010064
         0x10010065
     .end array-data
 
-    :array_e
+    :array_356
     .array-data 4
         0x10100ae
         0x101012c
@@ -1295,24 +1295,24 @@
         0x101012f
         0x1010130
         0x1010131
-        0x101052f
+        0x100100bb
     .end array-data
 
-    :array_f
+    :array_36a
     .array-data 4
         0x1010098
         0x101014f
-        0x10010101
+        0x1001010c
     .end array-data
 
-    :array_10
+    :array_374
     .array-data 4
         0x10010061
         0x10010062
         0x10010066
     .end array-data
 
-    :array_11
+    :array_37e
     .array-data 4
         0x10010061
         0x10010063
@@ -1321,14 +1321,14 @@
         0x10010082
     .end array-data
 
-    :array_12
+    :array_38c
     .array-data 4
         0x10010063
         0x10010064
         0x10010065
     .end array-data
 
-    :array_13
+    :array_396
     .array-data 4
         0x10010016
         0x10010017
@@ -1340,25 +1340,25 @@
         0x10010067
     .end array-data
 
-    :array_14
+    :array_3aa
     .array-data 4
         0x10010099
         0x1001009a
     .end array-data
 
-    :array_15
+    :array_3b2
     .array-data 4
         0x1010099
         0x101009a
         0x101014f
         0x1010235
-        0x100100d0
-        0x100100d1
-        0x100100d2
-        0x100100d3
+        0x100100d6
+        0x100100d7
+        0x100100d8
+        0x100100d9
     .end array-data
 
-    :array_16
+    :array_3c6
     .array-data 4
         0x10101ad
         0x10101ae
@@ -1366,38 +1366,38 @@
         0x10101b0
     .end array-data
 
-    :array_17
+    :array_3d2
     .array-data 4
         0x1010155
         0x1010159
     .end array-data
 
-    :array_18
+    :array_3da
     .array-data 4
         0x10010034
-        0x100100cb
-        0x100100cc
+        0x100100d0
+        0x100100d1
     .end array-data
 
-    :array_19
+    :array_3e4
     .array-data 4
         0x10100f2
         0x10101eb
     .end array-data
 
-    :array_1a
+    :array_3ec
     .array-data 4
         0x10010044
         0x10010045
     .end array-data
 
-    :array_1b
+    :array_3f4
     .array-data 4
         0x10100b3
         0x10010043
     .end array-data
 
-    :array_1c
+    :array_3fc
     .array-data 4
         0x10010075
         0x10010076
@@ -1406,19 +1406,19 @@
         0x1001007d
     .end array-data
 
-    :array_1d
+    :array_40a
     .array-data 4
         0x10100d4
-        0x100100c4
-        0x100100c5
-        0x100100c6
-        0x100100c7
-        0x100100c8
         0x100100c9
         0x100100ca
+        0x100100cb
+        0x100100cc
+        0x100100cd
+        0x100100ce
+        0x100100cf
     .end array-data
 
-    :array_1e
+    :array_41e
     .array-data 4
         0x10010075
         0x10010076
@@ -1429,7 +1429,7 @@
         0x1001008e
     .end array-data
 
-    :array_1f
+    :array_430
     .array-data 4
         0x1001000a
         0x1001000b
@@ -1448,10 +1448,6 @@
         0x10010073
         0x10010074
         0x10010094
-        0x1001009b
-        0x1001009c
-        0x1001009d
-        0x1001009e
         0x1001009f
         0x100100a0
         0x100100a1
@@ -1459,13 +1455,17 @@
         0x100100a3
         0x100100a4
         0x100100a5
+        0x100100a6
+        0x100100a7
+        0x100100a8
+        0x100100a9
     .end array-data
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
-    .line 2399
+    .line 2466
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

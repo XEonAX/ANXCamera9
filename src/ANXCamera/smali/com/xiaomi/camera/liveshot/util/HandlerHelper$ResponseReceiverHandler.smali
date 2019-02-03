@@ -26,20 +26,20 @@
 .method private constructor <init>(Landroid/os/Looper;Ljava/lang/Object;)V
     .locals 0
 
-    .line 73
+    .line 75
     invoke-direct {p0, p1}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
 
-    .line 74
+    .line 76
     iput-object p2, p0, Lcom/xiaomi/camera/liveshot/util/HandlerHelper$ResponseReceiverHandler;->lock:Ljava/lang/Object;
 
-    .line 75
+    .line 77
     return-void
 .end method
 
 .method synthetic constructor <init>(Landroid/os/Looper;Ljava/lang/Object;Lcom/xiaomi/camera/liveshot/util/HandlerHelper$1;)V
     .locals 0
 
-    .line 66
+    .line 68
     invoke-direct {p0, p1, p2}, Lcom/xiaomi/camera/liveshot/util/HandlerHelper$ResponseReceiverHandler;-><init>(Landroid/os/Looper;Ljava/lang/Object;)V
 
     return-void
@@ -48,7 +48,7 @@
 .method static synthetic access$100(Lcom/xiaomi/camera/liveshot/util/HandlerHelper$ResponseReceiverHandler;)Ljava/lang/Object;
     .locals 0
 
-    .line 66
+    .line 68
     iget-object p0, p0, Lcom/xiaomi/camera/liveshot/util/HandlerHelper$ResponseReceiverHandler;->lock:Ljava/lang/Object;
 
     return-object p0
@@ -59,29 +59,29 @@
 .method public handleMessage(Landroid/os/Message;)V
     .locals 1
 
-    .line 79
+    .line 81
     iget-object p1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     iput-object p1, p0, Lcom/xiaomi/camera/liveshot/util/HandlerHelper$ResponseReceiverHandler;->reply:Ljava/lang/Object;
 
-    .line 80
+    .line 82
     iget-object p1, p0, Lcom/xiaomi/camera/liveshot/util/HandlerHelper$ResponseReceiverHandler;->lock:Ljava/lang/Object;
 
     monitor-enter p1
 
-    .line 81
+    .line 83
     :try_start_0
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/util/HandlerHelper$ResponseReceiverHandler;->lock:Ljava/lang/Object;
 
     invoke-virtual {v0}, Ljava/lang/Object;->notifyAll()V
 
-    .line 82
+    .line 84
     monitor-exit p1
 
-    .line 83
+    .line 85
     return-void
 
-    .line 82
+    .line 84
     :catchall_0
     move-exception v0
 

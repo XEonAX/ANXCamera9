@@ -1,13 +1,10 @@
 package com.android.camera.watermark;
 
 import android.graphics.Bitmap;
-import android.util.Log;
-import com.android.camera.CameraSettings;
+import com.android.camera.log.Log;
 import java.util.List;
 
 public class WaterMarkBitmap {
-    private static final int AGE_GENDER_WATER_MARK = 2;
-    private static final int MAGIC_MIRROR_WATER_MARK = 1;
     private static final String TAG = WaterMarkBitmap.class.getSimpleName();
     private List<WaterMarkData> mWaterInfos;
     private WaterMarkData mWaterMarkData = generateWaterMarkData();
@@ -27,13 +24,8 @@ public class WaterMarkBitmap {
             Log.e(TAG, "The watermark data is empty.");
             return null;
         }
-        boolean isAgeGenderWaterMarkOpen = CameraSettings.isAgeGenderWaterMarkOpen();
-        boolean isMagicMirrorWaterMarkOpen = CameraSettings.isMagicMirrorWaterMarkOpen();
-        Object obj = 2;
-        if (!isAgeGenderWaterMarkOpen && isMagicMirrorWaterMarkOpen) {
-            obj = 1;
-        }
-        switch (obj) {
+        int watermarkType = ((WaterMarkData) this.mWaterInfos.get(0)).getWatermarkType();
+        switch (watermarkType) {
             case 1:
                 this.mWaterMarkDrawable = new MagicMirrorWaterMarkDrawable(this.mWaterInfos);
                 waterMarkData = this.mWaterMarkDrawable.getWaterMarkData();
@@ -41,6 +33,13 @@ public class WaterMarkBitmap {
             case 2:
                 this.mWaterMarkDrawable = new AgeGenderWaterMarkDrawable(this.mWaterInfos);
                 waterMarkData = this.mWaterMarkDrawable.getWaterMarkData();
+                break;
+            default:
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("unexpected watermark type ");
+                stringBuilder.append(watermarkType);
+                Log.w(str, stringBuilder.toString());
                 break;
         }
         return waterMarkData;

@@ -27,15 +27,25 @@
 
 .field private static final ANIM_SHOW:I = 0x2
 
+.field private static final CALL_TYPE_NOTIFY:I = 0x1
+
+.field private static final CALL_TYPE_PROVIDE:I = 0x0
+
 .field private static final CENTER_TIP_IMAGE_SPEED:I = 0x21
 
 .field public static final FRAGMENT_INFO:I = 0xff1
 
-.field private static final LEFT_TIP_IAMAGE_FILETER:I = 0x11
+.field private static final LEFT_TIP_IMAGE_CLOSE:I = 0x14
+
+.field private static final LEFT_TIP_IMAGE_LIGHTING:I = 0x13
 
 .field private static final LEFT_TIP_IMAGE_STICKER:I = 0x12
 
+.field private static final LEFT_TIP_IMAGE_ULTRA_WIDE:I = 0x15
+
 .field private static final MSG_HIDE_TIP:I = 0x1
+
+.field private static final TIP_BACK_FACING_IMAGE_BEAUTY:I = 0x4
 
 .field private static final TIP_IMAGE_BEAUTY:I = 0x3
 
@@ -45,17 +55,9 @@
 
 
 # instance fields
-.field private mBeautyIntroButton:Landroid/view/View;
+.field private mBottomTipHeight:I
 
-.field private mBeautyIntroRadius:I
-
-.field private mBeautyIntroShowAnimator:Landroid/animation/AnimatorSet;
-
-.field private mBeautyIntroText:Landroid/widget/TextView;
-
-.field private mBeautyIntroWidth:I
-
-.field private mCenterTipImage:Landroid/view/ViewGroup;
+.field private mCenterTipImage:Landroid/widget/ImageView;
 
 .field private mCloseIv:Landroid/widget/ImageView;
 
@@ -70,12 +72,24 @@
 
 .field private mHandler:Landroid/os/Handler;
 
+.field private mIsShowLeftImageIntro:Z
+
 .field private mLastTipMessage:I
     .annotation build Landroid/support/annotation/StringRes;
     .end annotation
 .end field
 
 .field private mLastTipType:I
+
+.field private mLeftImageIntro:Landroid/widget/FrameLayout;
+
+.field private mLeftImageIntroAnimator:Landroid/animation/AnimatorSet;
+
+.field private mLeftImageIntroContent:Landroid/widget/TextView;
+
+.field private mLeftImageIntroRadius:I
+
+.field private mLeftImageIntroWidth:I
 
 .field private mLeftTipImage:Landroid/widget/ImageView;
 
@@ -87,7 +101,7 @@
 
 .field private mRootView:Landroid/view/View;
 
-.field private mShowBeautyIntro:Z
+.field private mSpeedTipImage:Landroid/view/ViewGroup;
 
 .field private mTipImage:Landroid/widget/ImageView;
 
@@ -100,15 +114,15 @@
 .method public constructor <init>()V
     .locals 1
 
-    .line 65
+    .line 71
     invoke-direct {p0}, Lcom/android/camera/fragment/BaseFragment;-><init>()V
 
-    .line 120
+    .line 132
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseType:I
 
-    .line 122
+    .line 137
     new-instance v0, Lcom/android/camera/fragment/FragmentBottomPopupTips$1;
 
     invoke-direct {v0, p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips$1;-><init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;)V
@@ -121,7 +135,7 @@
 .method static synthetic access$000(Lcom/android/camera/fragment/FragmentBottomPopupTips;)Landroid/widget/TextView;
     .locals 0
 
-    .line 65
+    .line 71
     iget-object p0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipMessage:Landroid/widget/TextView;
 
     return-object p0
@@ -130,7 +144,7 @@
 .method static synthetic access$100(Lcom/android/camera/fragment/FragmentBottomPopupTips;)I
     .locals 0
 
-    .line 65
+    .line 71
     iget p0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLastTipType:I
 
     return p0
@@ -139,7 +153,7 @@
 .method static synthetic access$102(Lcom/android/camera/fragment/FragmentBottomPopupTips;I)I
     .locals 0
 
-    .line 65
+    .line 71
     iput p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLastTipType:I
 
     return p1
@@ -148,7 +162,7 @@
 .method static synthetic access$200(Lcom/android/camera/fragment/FragmentBottomPopupTips;)I
     .locals 0
 
-    .line 65
+    .line 71
     iget p0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentTipType:I
 
     return p0
@@ -157,52 +171,52 @@
 .method static synthetic access$300(Lcom/android/camera/fragment/FragmentBottomPopupTips;)I
     .locals 0
 
-    .line 65
+    .line 71
     iget p0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLastTipMessage:I
 
     return p0
 .end method
 
-.method static synthetic access$400(Lcom/android/camera/fragment/FragmentBottomPopupTips;I)V
+.method static synthetic access$400(Lcom/android/camera/fragment/FragmentBottomPopupTips;)Landroid/widget/TextView;
     .locals 0
 
-    .line 65
-    invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->setBeautyIntroButtonWidth(I)V
-
-    return-void
-.end method
-
-.method static synthetic access$500(Lcom/android/camera/fragment/FragmentBottomPopupTips;)Landroid/view/View;
-    .locals 0
-
-    .line 65
-    iget-object p0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
-
-    return-object p0
-.end method
-
-.method static synthetic access$600(Lcom/android/camera/fragment/FragmentBottomPopupTips;)Landroid/widget/ImageView;
-    .locals 0
-
-    .line 65
-    iget-object p0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
-
-    return-object p0
-.end method
-
-.method static synthetic access$700(Lcom/android/camera/fragment/FragmentBottomPopupTips;)Landroid/widget/TextView;
-    .locals 0
-
-    .line 65
+    .line 71
     iget-object p0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mQrCodeButton:Landroid/widget/TextView;
 
     return-object p0
 .end method
 
+.method static synthetic access$500(Lcom/android/camera/fragment/FragmentBottomPopupTips;)Landroid/widget/FrameLayout;
+    .locals 0
+
+    .line 71
+    iget-object p0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntro:Landroid/widget/FrameLayout;
+
+    return-object p0
+.end method
+
+.method static synthetic access$600(Lcom/android/camera/fragment/FragmentBottomPopupTips;Landroid/view/View;I)V
+    .locals 0
+
+    .line 71
+    invoke-direct {p0, p1, p2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->setBeautyIntroButtonWidth(Landroid/view/View;I)V
+
+    return-void
+.end method
+
+.method static synthetic access$700(Lcom/android/camera/fragment/FragmentBottomPopupTips;)V
+    .locals 0
+
+    .line 71
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->directHideLeftImageIntro()V
+
+    return-void
+.end method
+
 .method private adjustViewBackground(I)V
     .locals 1
 
-    .line 1293
+    .line 1506
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
     move-result-object p1
@@ -211,7 +225,7 @@
 
     move-result p1
 
-    .line 1294
+    .line 1507
     const/4 v0, 0x1
 
     if-eq p1, v0, :cond_0
@@ -220,40 +234,73 @@
 
     if-eq p1, v0, :cond_0
 
-    .line 1297
+    .line 1510
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mQrCodeButton:Landroid/widget/TextView;
 
-    const v0, 0x7f020014
+    const v0, 0x7f020019
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setBackgroundResource(I)V
 
-    .line 1298
+    .line 1511
     goto :goto_0
 
-    .line 1302
+    .line 1515
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mQrCodeButton:Landroid/widget/TextView;
 
-    const v0, 0x7f020015
+    const v0, 0x7f02001a
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setBackgroundResource(I)V
 
-    .line 1305
+    .line 1518
     :goto_0
     return-void
+.end method
+
+.method private checkLeftImageTipClose(I)I
+    .locals 2
+
+    .line 1213
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object v0
+
+    const/16 v1, 0xa2
+
+    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;
+
+    .line 1214
+    if-eqz v0, :cond_0
+
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;->isShowLightingView()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 1215
+    const/16 p1, 0x14
+
+    .line 1217
+    :cond_0
+    return p1
 .end method
 
 .method private closeFilter()V
     .locals 2
 
-    .line 437
+    .line 460
     const/4 v0, 0x1
 
     const/4 v1, 0x0
 
     invoke-virtual {p0, v0, v1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->showCloseTip(IZ)V
 
-    .line 438
+    .line 461
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -266,13 +313,13 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;
 
-    .line 439
+    .line 462
     if-eqz v0, :cond_0
 
-    .line 440
+    .line 463
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->showOrHideFilter()V
 
-    .line 442
+    .line 465
     :cond_0
     return-void
 .end method
@@ -280,14 +327,14 @@
 .method private closeLight()V
     .locals 3
 
-    .line 429
+    .line 448
     const/4 v0, 0x0
 
     const/4 v1, 0x2
 
     invoke-virtual {p0, v1, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->showCloseTip(IZ)V
 
-    .line 430
+    .line 449
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v1
@@ -300,45 +347,138 @@
 
     check-cast v1, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;
 
-    .line 431
+    .line 450
     if-eqz v1, :cond_0
 
-    .line 432
+    .line 451
     invoke-interface {v1, v0}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->showOrHideLighting(Z)V
 
-    .line 434
+    .line 454
+    :cond_0
+    invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 455
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateLeftTipImage()V
+
+    .line 457
+    :cond_1
+    return-void
+.end method
+
+.method private directHideLeftImageIntro()V
+    .locals 1
+
+    .line 1689
+    const/4 v0, 0x0
+
+    iput-boolean v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mIsShowLeftImageIntro:Z
+
+    .line 1690
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntro:Landroid/widget/FrameLayout;
+
+    invoke-virtual {v0}, Landroid/widget/FrameLayout;->getVisibility()I
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    .line 1691
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntro:Landroid/widget/FrameLayout;
+
+    invoke-static {v0}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
+
+    .line 1693
     :cond_0
     return-void
+.end method
+
+.method private getLeftImageIntroWide()I
+    .locals 4
+
+    .line 217
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroContent:Landroid/widget/TextView;
+
+    const/4 v1, 0x0
+
+    invoke-virtual {v0, v1, v1}, Landroid/widget/TextView;->measure(II)V
+
+    .line 218
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroContent:Landroid/widget/TextView;
+
+    invoke-virtual {v0}, Landroid/widget/TextView;->getMeasuredWidth()I
+
+    move-result v0
+
+    .line 219
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v1
+
+    const v2, 0x7f0a009f
+
+    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v1
+
+    .line 220
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v2
+
+    const v3, 0x7f0a00a0
+
+    invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v2
+
+    .line 221
+    add-int/2addr v0, v1
+
+    add-int/2addr v0, v2
+
+    iget v2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroRadius:I
+
+    sub-int/2addr v2, v1
+
+    mul-int/lit8 v2, v2, 0x2
+
+    add-int/2addr v0, v2
+
+    return v0
 .end method
 
 .method private hideAllTipImage()V
     .locals 1
 
-    .line 445
+    .line 468
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideTipImage()V
 
-    .line 446
-    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideTipBeautyIntro()V
-
-    .line 447
+    .line 469
     invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 448
+    .line 470
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideLeftTipImage()V
 
-    .line 449
-    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideCenterTipImage()V
+    .line 471
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideSpeedTipImage()V
 
-    .line 450
+    .line 472
     iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
 
     invoke-direct {p0, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideZoomTipImage(I)V
 
-    .line 452
+    .line 473
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideCenterTipImage()V
+
+    .line 475
     :cond_0
     return-void
 .end method
@@ -346,7 +486,7 @@
 .method private hideTip(Landroid/view/View;)Z
     .locals 2
 
-    .line 770
+    .line 824
     invoke-virtual {p1}, Landroid/view/View;->getVisibility()I
 
     move-result v0
@@ -355,83 +495,25 @@
 
     if-eq v0, v1, :cond_0
 
-    .line 771
+    .line 825
     invoke-virtual {p1, v1}, Landroid/view/View;->setVisibility(I)V
 
-    .line 772
+    .line 826
     const/4 p1, 0x1
 
     return p1
 
-    .line 774
+    .line 828
     :cond_0
     const/4 p1, 0x0
 
     return p1
 .end method
 
-.method private hideTipBeautyIntro()V
-    .locals 3
-
-    .line 478
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
-
-    invoke-virtual {v0}, Landroid/view/View;->getVisibility()I
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    .line 479
-    return-void
-
-    .line 481
-    :cond_0
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
-
-    const/4 v1, -0x1
-
-    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v2
-
-    invoke-virtual {v0, v2}, Landroid/view/View;->setTag(Ljava/lang/Object;)V
-
-    .line 482
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
-
-    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v1
-
-    invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
-
-    .line 483
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroShowAnimator:Landroid/animation/AnimatorSet;
-
-    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->pause()V
-
-    .line 484
-    new-instance v0, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
-
-    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
-
-    invoke-direct {v0, v1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;-><init>(Landroid/view/View;)V
-
-    invoke-static {v0}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
-
-    .line 485
-    return-void
-.end method
-
 .method private hideZoomTipImage(I)V
     .locals 1
 
-    .line 387
+    .line 395
     const/16 v0, 0xa3
 
     if-eq p1, v0, :cond_0
@@ -444,9 +526,24 @@
 
     goto :goto_0
 
-    .line 392
-    :cond_0
+    .line 397
     :pswitch_0
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/mi/config/a;->fK()Z
+
+    move-result p1
+
+    if-nez p1, :cond_0
+
+    .line 398
+    return-void
+
+    .line 403
+    :cond_0
+    :pswitch_1
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
@@ -459,149 +556,179 @@
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$DualController;
 
-    .line 393
-    if-eqz p1, :cond_1
+    .line 404
+    if-eqz p1, :cond_2
 
-    .line 394
+    .line 405
     invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$DualController;->hideZoomButton()V
 
-    .line 400
+    .line 407
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object p1
+
+    const/16 v0, 0xac
+
+    invoke-virtual {p1, v0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/camera/protocol/ModeProtocol$TopAlert;
+
+    .line 409
+    if-eqz p1, :cond_1
+
+    .line 410
+    const/4 v0, 0x2
+
+    invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$TopAlert;->alertUpdateValue(I)V
+
+    .line 412
     :cond_1
+    nop
+
+    .line 417
+    :cond_2
     :goto_0
     return-void
 
     :pswitch_data_0
     .packed-switch 0xa5
-        :pswitch_0
+        :pswitch_1
         :pswitch_0
     .end packed-switch
 .end method
 
-.method private initBeautyIntroAnimator()V
-    .locals 7
+.method private isPortraitSuccessHintVisible()Z
+    .locals 1
 
-    .line 216
-    const/4 v0, 0x2
+    .line 602
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mPortraitSuccessHint:Landroid/view/View;
 
-    new-array v1, v0, [I
+    invoke-virtual {v0}, Landroid/view/View;->getVisibility()I
 
-    iget v2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroWidth:I
+    move-result v0
 
-    const/4 v3, 0x0
+    if-nez v0, :cond_0
 
-    aput v2, v1, v3
+    const/4 v0, 0x1
 
-    iget v2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroRadius:I
+    goto :goto_0
 
-    mul-int/2addr v2, v0
+    :cond_0
+    const/4 v0, 0x0
 
-    const/4 v4, 0x1
-
-    aput v2, v1, v4
-
-    invoke-static {v1}, Landroid/animation/ValueAnimator;->ofInt([I)Landroid/animation/ValueAnimator;
-
-    move-result-object v1
-
-    .line 217
-    const-wide/16 v5, 0x12c
-
-    invoke-virtual {v1, v5, v6}, Landroid/animation/ValueAnimator;->setDuration(J)Landroid/animation/ValueAnimator;
-
-    .line 218
-    iget-object v2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroText:Landroid/widget/TextView;
-
-    const-string v5, "alpha"
-
-    new-array v6, v0, [F
-
-    fill-array-data v6, :array_0
-
-    invoke-static {v2, v5, v6}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Ljava/lang/String;[F)Landroid/animation/ObjectAnimator;
-
-    move-result-object v2
-
-    .line 219
-    const-wide/16 v5, 0xfa
-
-    invoke-virtual {v2, v5, v6}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
-
-    .line 221
-    new-instance v5, Lcom/android/camera/fragment/FragmentBottomPopupTips$2;
-
-    invoke-direct {v5, p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips$2;-><init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;)V
-
-    .line 227
-    invoke-virtual {v1, v5}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
-
-    .line 229
-    new-instance v5, Landroid/animation/AnimatorSet;
-
-    invoke-direct {v5}, Landroid/animation/AnimatorSet;-><init>()V
-
-    iput-object v5, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroShowAnimator:Landroid/animation/AnimatorSet;
-
-    .line 230
-    iget-object v5, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroShowAnimator:Landroid/animation/AnimatorSet;
-
-    new-array v0, v0, [Landroid/animation/Animator;
-
-    aput-object v1, v0, v3
-
-    aput-object v2, v0, v4
-
-    invoke-virtual {v5, v0}, Landroid/animation/AnimatorSet;->playTogether([Landroid/animation/Animator;)V
-
-    .line 231
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroShowAnimator:Landroid/animation/AnimatorSet;
-
-    new-instance v1, Landroid/view/animation/PathInterpolator;
-
-    const v2, 0x3dcccccd    # 0.1f
-
-    const/high16 v3, 0x3e800000    # 0.25f
-
-    invoke-direct {v1, v3, v2, v3, v2}, Landroid/view/animation/PathInterpolator;-><init>(FFFF)V
-
-    invoke-virtual {v0, v1}, Landroid/animation/AnimatorSet;->setInterpolator(Landroid/animation/TimeInterpolator;)V
-
-    .line 232
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroShowAnimator:Landroid/animation/AnimatorSet;
-
-    const-wide/16 v1, 0x7d0
-
-    invoke-virtual {v0, v1, v2}, Landroid/animation/AnimatorSet;->setStartDelay(J)V
-
-    .line 233
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroShowAnimator:Landroid/animation/AnimatorSet;
-
-    new-instance v1, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;
-
-    invoke-direct {v1, p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;-><init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;)V
-
-    invoke-virtual {v0, v1}, Landroid/animation/AnimatorSet;->addListener(Landroid/animation/Animator$AnimatorListener;)V
-
-    .line 254
-    return-void
-
-    :array_0
-    .array-data 4
-        0x3f800000    # 1.0f
-        0x0
-    .end array-data
+    :goto_0
+    return v0
 .end method
 
-.method private reIntTipViewMarginBottom(Landroid/view/View;)V
-    .locals 8
+.method private onLeftImageClick(Landroid/view/View;)V
+    .locals 2
 
-    .line 573
+    .line 351
+    invoke-virtual {p1}, Landroid/view/View;->getTag()Ljava/lang/Object;
+
+    move-result-object p1
+
+    check-cast p1, Ljava/lang/Integer;
+
+    invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
+
+    move-result p1
+
+    .line 353
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object v0
+
+    const/16 v1, 0xa4
+
+    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;
+
+    .line 355
+    packed-switch p1, :pswitch_data_0
+
+    goto :goto_0
+
+    .line 374
+    :pswitch_0
+    if-eqz v0, :cond_0
+
+    .line 375
+    const/16 p1, 0xcd
+
+    invoke-interface {v0, p1}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->onConfigChanged(I)V
+
+    goto :goto_0
+
+    .line 357
+    :pswitch_1
+    iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseType:I
+
+    packed-switch p1, :pswitch_data_1
+
+    .line 365
+    goto :goto_0
+
+    .line 362
+    :pswitch_2
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->closeLight()V
+
+    .line 363
+    goto :goto_0
+
+    .line 359
+    :pswitch_3
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->closeFilter()V
+
+    .line 360
+    goto :goto_0
+
+    .line 369
+    :pswitch_4
+    if-eqz v0, :cond_0
+
+    .line 370
+    const/4 p1, 0x1
+
+    invoke-interface {v0, p1}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->showOrHideLighting(Z)V
+
+    .line 379
+    :cond_0
+    :goto_0
+    return-void
+
+    nop
+
+    :pswitch_data_0
+    .packed-switch 0x13
+        :pswitch_4
+        :pswitch_1
+        :pswitch_0
+    .end packed-switch
+
+    :pswitch_data_1
+    .packed-switch 0x1
+        :pswitch_3
+        :pswitch_2
+    .end packed-switch
+.end method
+
+.method private reIntTipViewMarginBottom(Landroid/view/View;I)V
+    .locals 9
+
+    .line 611
     invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object v0
 
     check-cast v0, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    .line 575
+    .line 613
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v1
@@ -614,7 +741,7 @@
 
     check-cast v1, Lcom/android/camera/protocol/ModeProtocol$DualController;
 
-    .line 577
+    .line 615
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v2
@@ -627,7 +754,7 @@
 
     check-cast v2, Lcom/android/camera/protocol/ModeProtocol$ManuallyAdjust;
 
-    .line 578
+    .line 616
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v3
@@ -640,7 +767,7 @@
 
     check-cast v3, Lcom/android/camera/protocol/ModeProtocol$MiBeautyProtocol;
 
-    .line 580
+    .line 618
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v4
@@ -653,155 +780,230 @@
 
     check-cast v4, Lcom/android/camera/protocol/ModeProtocol$BokehFNumberController;
 
-    .line 582
-    nop
-
-    .line 583
-    iget v5, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
-
-    const v6, 0x7f090096
-
-    const/16 v7, 0xa5
-
-    if-ne v5, v7, :cond_0
-
-    .line 584
-    sget v1, Lcom/android/camera/Util;->sWindowWidth:I
-
-    int-to-float v1, v1
-
-    const/high16 v2, 0x3f400000    # 0.75f
-
-    div-float/2addr v1, v2
-
-    float-to-int v1, v1
-
-    sget v2, Lcom/android/camera/Util;->sWindowWidth:I
-
-    sub-int/2addr v1, v2
-
-    div-int/lit8 v1, v1, 0x2
-
-    .line 585
+    .line 619
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
 
-    move-result-object v2
+    move-result-object v5
 
-    invoke-virtual {v2, v6}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+    const v6, 0x7f0a013d
 
-    move-result v2
-
-    add-int/2addr v1, v2
-
-    goto/16 :goto_0
-
-    .line 586
-    :cond_0
-    if-eqz v2, :cond_1
-
-    invoke-interface {v2}, Lcom/android/camera/protocol/ModeProtocol$ManuallyAdjust;->visibleHeight()I
+    invoke-virtual {v5, v6}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
     move-result v5
 
-    if-lez v5, :cond_1
+    .line 620
+    nop
 
-    .line 587
+    .line 621
+    iget v6, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    const v7, 0x7f0a0096
+
+    const/16 v8, 0xa5
+
+    if-ne v6, v8, :cond_1
+
+    .line 623
+    iget v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    invoke-static {v1}, Lcom/android/camera/CameraSettings;->isUltraWideConfigOpen(I)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
+
+    if-eqz v1, :cond_0
+
+    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
+
+    .line 624
+    invoke-virtual {v1}, Landroid/widget/ImageView;->getVisibility()I
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 625
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v7}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v1
+
+    .line 626
+    div-int/lit8 v1, v1, 0x2
+
+    div-int/lit8 p2, p2, 0x2
+
+    sub-int/2addr v1, p2
+
+    .line 627
+    goto/16 :goto_1
+
+    .line 628
+    :cond_0
+    sget p2, Lcom/android/camera/Util;->sWindowWidth:I
+
+    int-to-float p2, p2
+
+    const/high16 v1, 0x3f400000    # 0.75f
+
+    div-float/2addr p2, v1
+
+    float-to-int p2, p2
+
+    sget v1, Lcom/android/camera/Util;->sWindowWidth:I
+
+    sub-int/2addr p2, v1
+
+    div-int/lit8 p2, p2, 0x2
+
+    .line 629
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v1
+
+    const v2, 0x7f0a009a
+
+    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v1
+
+    add-int/2addr v1, p2
+
+    goto/16 :goto_1
+
+    .line 631
+    :cond_1
+    if-eqz v2, :cond_2
+
+    invoke-interface {v2}, Lcom/android/camera/protocol/ModeProtocol$ManuallyAdjust;->visibleHeight()I
+
+    move-result v6
+
+    if-lez v6, :cond_2
+
+    .line 632
     invoke-interface {v2}, Lcom/android/camera/protocol/ModeProtocol$ManuallyAdjust;->visibleHeight()I
 
     move-result v1
 
-    goto/16 :goto_0
+    goto/16 :goto_1
 
-    .line 588
-    :cond_1
+    .line 633
+    :cond_2
+    invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
+
+    move-result v2
+
+    const v6, 0x7f0a00d5
+
+    if-eqz v2, :cond_3
+
+    iget-object v2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
+
+    invoke-virtual {v2}, Landroid/widget/ImageView;->getVisibility()I
+
+    move-result v2
+
+    if-nez v2, :cond_5
+
+    goto :goto_0
+
+    :cond_3
     iget-object v2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
     invoke-virtual {v2}, Landroid/widget/ImageView;->getVisibility()I
 
     move-result v2
 
-    const v5, 0x7f0900d1
+    if-nez v2, :cond_5
 
-    if-nez v2, :cond_3
-
-    .line 589
-    if-eqz v3, :cond_2
+    .line 636
+    :goto_0
+    if-eqz v3, :cond_4
 
     invoke-interface {v3}, Lcom/android/camera/protocol/ModeProtocol$MiBeautyProtocol;->isBeautyPanelShow()Z
 
-    move-result v1
+    move-result p2
 
-    if-eqz v1, :cond_2
+    if-eqz p2, :cond_4
 
-    .line 590
+    .line 637
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
 
-    move-result-object v1
+    move-result-object p2
 
-    invoke-virtual {v1, v5}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+    invoke-virtual {p2, v6}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result p2
+
+    add-int v1, p2, v5
+
+    goto/16 :goto_1
+
+    .line 639
+    :cond_4
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
+
+    invoke-virtual {p2}, Landroid/widget/ImageView;->getHeight()I
 
     move-result v1
 
-    add-int/lit8 v1, v1, 0x14
+    goto/16 :goto_1
 
-    goto :goto_0
-
-    .line 592
-    :cond_2
-    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
-
-    invoke-virtual {v1}, Landroid/widget/ImageView;->getHeight()I
-
-    move-result v1
-
-    goto :goto_0
-
-    .line 594
-    :cond_3
-    if-eqz v1, :cond_4
+    .line 641
+    :cond_5
+    if-eqz v1, :cond_6
 
     invoke-interface {v1}, Lcom/android/camera/protocol/ModeProtocol$DualController;->isZoomVisible()Z
 
     move-result v2
 
-    if-eqz v2, :cond_4
+    if-eqz v2, :cond_6
 
-    .line 595
+    .line 642
     invoke-interface {v1}, Lcom/android/camera/protocol/ModeProtocol$DualController;->visibleHeight()I
 
     move-result v1
 
-    goto :goto_0
+    goto :goto_1
 
-    .line 596
-    :cond_4
-    if-eqz v4, :cond_5
+    .line 643
+    :cond_6
+    if-eqz v4, :cond_7
 
     invoke-interface {v4}, Lcom/android/camera/protocol/ModeProtocol$BokehFNumberController;->isFNumberVisible()Z
 
     move-result v1
 
-    if-eqz v1, :cond_5
+    if-eqz v1, :cond_7
 
-    .line 597
+    .line 644
     invoke-interface {v4}, Lcom/android/camera/protocol/ModeProtocol$BokehFNumberController;->visibleHeight()I
+
+    move-result p2
+
+    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mRootView:Landroid/view/View;
+
+    invoke-virtual {v1}, Landroid/view/View;->getTranslationY()F
 
     move-result v1
 
-    iget-object v2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mRootView:Landroid/view/View;
+    float-to-int v1, v1
 
-    invoke-virtual {v2}, Landroid/view/View;->getTranslationY()F
+    add-int/2addr p2, v1
 
-    move-result v2
+    add-int v1, p2, v5
 
-    float-to-int v2, v2
+    goto :goto_1
 
-    add-int/2addr v1, v2
-
-    goto :goto_0
-
-    .line 600
-    :cond_5
+    .line 647
+    :cond_7
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v1
@@ -814,10 +1016,10 @@
 
     check-cast v1, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;
 
-    .line 602
-    if-eqz v1, :cond_6
+    .line 649
+    if-eqz v1, :cond_8
 
-    const v2, 0x7f0d00e1
+    const v2, 0x7f0d00fe
 
     invoke-interface {v1, v2}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->getActiveFragment(I)I
 
@@ -825,153 +1027,150 @@
 
     const/16 v2, 0xfc
 
-    if-ne v1, v2, :cond_6
+    if-ne v1, v2, :cond_8
 
-    .line 603
+    .line 651
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p2
+
+    invoke-virtual {p2, v6}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result p2
+
+    .line 652
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
 
-    const v2, 0x7f09006d
+    const v2, 0x7f0a006d
 
     invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
     move-result v1
 
-    goto :goto_0
+    add-int/2addr v1, p2
 
-    .line 604
-    :cond_6
-    if-eqz v3, :cond_7
+    .line 653
+    goto :goto_1
+
+    :cond_8
+    if-eqz v3, :cond_9
 
     invoke-interface {v3}, Lcom/android/camera/protocol/ModeProtocol$MiBeautyProtocol;->isBeautyPanelShow()Z
 
     move-result v1
 
-    if-eqz v1, :cond_7
+    if-eqz v1, :cond_9
 
-    .line 606
+    .line 655
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p2
+
+    invoke-virtual {p2, v6}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result p2
+
+    add-int v1, p2, v5
+
+    goto :goto_1
+
+    .line 657
+    :cond_9
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
 
-    invoke-virtual {v1, v5}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+    invoke-virtual {v1, v7}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
     move-result v1
 
-    add-int/lit8 v1, v1, 0x14
+    .line 659
+    div-int/lit8 v1, v1, 0x2
 
-    goto :goto_0
+    div-int/lit8 p2, p2, 0x2
 
-    .line 608
-    :cond_7
-    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
+    sub-int/2addr v1, p2
 
-    move-result-object v1
+    .line 663
+    :goto_1
+    iget p2, v0, Landroid/view/ViewGroup$MarginLayoutParams;->bottomMargin:I
 
-    invoke-virtual {v1, v6}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+    if-eq p2, v1, :cond_a
 
-    move-result v1
-
-    .line 613
-    :goto_0
-    iget v2, v0, Landroid/view/ViewGroup$MarginLayoutParams;->bottomMargin:I
-
-    if-eq v2, v1, :cond_8
-
-    .line 614
+    .line 664
     iput v1, v0, Landroid/view/ViewGroup$MarginLayoutParams;->bottomMargin:I
 
-    .line 615
+    .line 665
     invoke-virtual {p1, v0}, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 617
-    :cond_8
+    .line 667
+    :cond_a
     return-void
 .end method
 
-.method private resetBeautyIntro()V
-    .locals 2
-
-    .line 210
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroShowAnimator:Landroid/animation/AnimatorSet;
-
-    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->cancel()V
-
-    .line 211
-    iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroWidth:I
-
-    invoke-direct {p0, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->setBeautyIntroButtonWidth(I)V
-
-    .line 212
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroText:Landroid/widget/TextView;
-
-    const/high16 v1, 0x3f800000    # 1.0f
-
-    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setAlpha(F)V
-
-    .line 213
-    return-void
-.end method
-
-.method private setBeautyIntroButtonWidth(I)V
+.method private setBeautyIntroButtonWidth(Landroid/view/View;I)V
     .locals 1
 
-    .line 808
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
+    .line 863
+    if-nez p1, :cond_0
 
-    invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+    .line 864
+    return-void
+
+    .line 866
+    :cond_0
+    invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object v0
 
-    .line 809
-    iput p1, v0, Landroid/view/ViewGroup$LayoutParams;->width:I
+    .line 867
+    iput p2, v0, Landroid/view/ViewGroup$LayoutParams;->width:I
 
-    .line 810
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
-
+    .line 868
     invoke-virtual {p1, v0}, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 811
+    .line 869
     return-void
 .end method
 
 .method private showBeauty(I)V
     .locals 1
 
-    .line 374
+    .line 382
     invoke-static {p1}, Lcom/android/camera/fragment/beauty/MiBeauty;->showBeautyActionFromMode(I)V
 
-    .line 376
+    .line 384
     iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
 
     const/16 v0, 0xab
 
     if-ne p1, v0, :cond_0
 
-    .line 378
+    .line 386
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
 
     const/16 v0, 0xd2
 
-    .line 379
+    .line 387
     invoke-virtual {p1, v0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object p1
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$BokehFNumberController;
 
-    .line 380
+    .line 388
     if-eqz p1, :cond_0
 
-    .line 381
+    .line 389
     const/4 v0, 0x0
 
-    invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$BokehFNumberController;->hideFNumberPanel(Z)V
+    invoke-interface {p1, v0, v0}, Lcom/android/camera/protocol/ModeProtocol$BokehFNumberController;->hideFNumberPanel(ZZ)V
 
-    .line 384
+    .line 392
     :cond_0
     return-void
 .end method
@@ -979,7 +1178,12 @@
 .method private showLiveSpeed()V
     .locals 2
 
-    .line 416
+    .line 434
+    const-string v0, "live_speed"
+
+    invoke-static {v0}, Lcom/android/camera/statistic/CameraStatUtil;->trackLiveClick(Ljava/lang/String;)V
+
+    .line 435
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -992,15 +1196,15 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BottomMenuProtocol;
 
-    .line 418
+    .line 437
     if-eqz v0, :cond_0
 
-    .line 419
+    .line 438
     const/16 v1, 0xa5
 
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$BottomMenuProtocol;->onSwitchLiveActionMenu(I)V
 
-    .line 421
+    .line 440
     :cond_0
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -1008,22 +1212,22 @@
 
     const/16 v1, 0xa0
 
-    .line 422
+    .line 441
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;
 
-    .line 423
+    .line 442
     if-eqz v0, :cond_1
 
-    .line 424
+    .line 443
     const/16 v1, 0xd
 
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->delegateEvent(I)V
 
-    .line 426
+    .line 445
     :cond_1
     return-void
 .end method
@@ -1031,7 +1235,12 @@
 .method private showLiveSticker()V
     .locals 2
 
-    .line 403
+    .line 420
+    const-string v0, "live_sticker"
+
+    invoke-static {v0}, Lcom/android/camera/statistic/CameraStatUtil;->trackLiveClick(Ljava/lang/String;)V
+
+    .line 421
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -1044,15 +1253,15 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BottomMenuProtocol;
 
-    .line 405
+    .line 423
     if-eqz v0, :cond_0
 
-    .line 406
+    .line 424
     const/16 v1, 0xa4
 
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$BottomMenuProtocol;->onSwitchLiveActionMenu(I)V
 
-    .line 408
+    .line 426
     :cond_0
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -1060,117 +1269,194 @@
 
     const/16 v1, 0xa0
 
-    .line 409
+    .line 427
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;
 
-    .line 410
+    .line 428
     if-eqz v0, :cond_1
 
-    .line 411
+    .line 429
     const/16 v1, 0xc
 
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->delegateEvent(I)V
 
-    .line 413
+    .line 431
     :cond_1
     return-void
 .end method
 
-.method private startBeautyIntroShowAnimation()V
-    .locals 2
+.method private startLeftImageIntroAnim(I)V
+    .locals 6
 
-    .line 814
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
-
-    const/4 v1, 0x3
-
-    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v1
-
-    invoke-virtual {v0, v1}, Landroid/view/View;->setTag(Ljava/lang/Object;)V
-
-    .line 815
-    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->resetBeautyIntro()V
-
-    .line 816
-    new-instance v0, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
-
-    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
-
-    invoke-direct {v0, v1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;-><init>(Landroid/view/View;)V
-
-    invoke-static {v0}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
-
-    .line 817
-    invoke-static {}, Lcom/android/camera/CameraSettings;->addPopupTipBeautyIntroShowTimes()V
-
-    .line 818
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroShowAnimator:Landroid/animation/AnimatorSet;
-
-    invoke-virtual {v0}, Landroid/animation/AnimatorSet;->start()V
-
-    .line 819
-    return-void
-.end method
-
-.method private tipShowIntercept(I)Z
-    .locals 2
-
-    .line 1204
-    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
-
-    move-result-object v0
-
-    .line 1205
-    const/16 v1, 0xa0
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;
-
-    .line 1206
-    if-eqz v0, :cond_0
-
-    const v1, 0x7f0d0018
-
-    .line 1207
-    invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->getActiveFragment(I)I
-
-    move-result v0
-
-    const/16 v1, 0xfb
-
-    if-ne v0, v1, :cond_0
-
-    const v0, 0x7f0200af
+    .line 1631
+    const/4 v0, 0x1
 
     if-ne p1, v0, :cond_0
 
-    .line 1209
-    const/4 p1, 0x1
+    .line 1632
+    return-void
 
-    return p1
-
-    .line 1211
+    .line 1634
     :cond_0
     const/4 p1, 0x0
 
-    return p1
+    invoke-virtual {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->directShowOrHideLeftTipImage(Z)V
+
+    .line 1635
+    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntro:Landroid/widget/FrameLayout;
+
+    invoke-virtual {v1, p1}, Landroid/widget/FrameLayout;->setVisibility(I)V
+
+    .line 1636
+    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroAnimator:Landroid/animation/AnimatorSet;
+
+    if-nez v1, :cond_1
+
+    .line 1637
+    const/4 v1, 0x2
+
+    new-array v2, v1, [I
+
+    iget v3, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroWidth:I
+
+    aput v3, v2, p1
+
+    iget v3, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroRadius:I
+
+    mul-int/2addr v3, v1
+
+    aput v3, v2, v0
+
+    invoke-static {v2}, Landroid/animation/ValueAnimator;->ofInt([I)Landroid/animation/ValueAnimator;
+
+    move-result-object v2
+
+    .line 1638
+    const-wide/16 v3, 0x12c
+
+    invoke-virtual {v2, v3, v4}, Landroid/animation/ValueAnimator;->setDuration(J)Landroid/animation/ValueAnimator;
+
+    .line 1639
+    iget-object v3, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroContent:Landroid/widget/TextView;
+
+    const-string v4, "alpha"
+
+    new-array v5, v1, [F
+
+    fill-array-data v5, :array_0
+
+    invoke-static {v3, v4, v5}, Landroid/animation/ObjectAnimator;->ofFloat(Ljava/lang/Object;Ljava/lang/String;[F)Landroid/animation/ObjectAnimator;
+
+    move-result-object v3
+
+    .line 1640
+    const-wide/16 v4, 0xfa
+
+    invoke-virtual {v3, v4, v5}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
+
+    .line 1642
+    new-instance v4, Lcom/android/camera/fragment/FragmentBottomPopupTips$5;
+
+    invoke-direct {v4, p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips$5;-><init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;)V
+
+    .line 1649
+    invoke-virtual {v2, v4}, Landroid/animation/ValueAnimator;->addUpdateListener(Landroid/animation/ValueAnimator$AnimatorUpdateListener;)V
+
+    .line 1650
+    new-instance v4, Landroid/animation/AnimatorSet;
+
+    invoke-direct {v4}, Landroid/animation/AnimatorSet;-><init>()V
+
+    iput-object v4, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroAnimator:Landroid/animation/AnimatorSet;
+
+    .line 1651
+    iget-object v4, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroAnimator:Landroid/animation/AnimatorSet;
+
+    new-array v1, v1, [Landroid/animation/Animator;
+
+    aput-object v2, v1, p1
+
+    aput-object v3, v1, v0
+
+    invoke-virtual {v4, v1}, Landroid/animation/AnimatorSet;->playTogether([Landroid/animation/Animator;)V
+
+    .line 1652
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroAnimator:Landroid/animation/AnimatorSet;
+
+    new-instance v0, Landroid/view/animation/PathInterpolator;
+
+    const v1, 0x3dcccccd    # 0.1f
+
+    const/high16 v2, 0x3e800000    # 0.25f
+
+    invoke-direct {v0, v2, v1, v2, v1}, Landroid/view/animation/PathInterpolator;-><init>(FFFF)V
+
+    invoke-virtual {p1, v0}, Landroid/animation/AnimatorSet;->setInterpolator(Landroid/animation/TimeInterpolator;)V
+
+    .line 1653
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroAnimator:Landroid/animation/AnimatorSet;
+
+    const-wide/16 v0, 0x7d0
+
+    invoke-virtual {p1, v0, v1}, Landroid/animation/AnimatorSet;->setStartDelay(J)V
+
+    .line 1654
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroAnimator:Landroid/animation/AnimatorSet;
+
+    new-instance v0, Lcom/android/camera/fragment/FragmentBottomPopupTips$6;
+
+    invoke-direct {v0, p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips$6;-><init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;)V
+
+    invoke-virtual {p1, v0}, Landroid/animation/AnimatorSet;->addListener(Landroid/animation/Animator$AnimatorListener;)V
+
+    .line 1678
+    goto :goto_0
+
+    .line 1679
+    :cond_1
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntro:Landroid/widget/FrameLayout;
+
+    const/high16 v0, 0x3f800000    # 1.0f
+
+    invoke-virtual {p1, v0}, Landroid/widget/FrameLayout;->setAlpha(F)V
+
+    .line 1680
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroContent:Landroid/widget/TextView;
+
+    invoke-virtual {p1}, Landroid/widget/TextView;->clearAnimation()V
+
+    .line 1681
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroAnimator:Landroid/animation/AnimatorSet;
+
+    invoke-virtual {p1}, Landroid/animation/AnimatorSet;->cancel()V
+
+    .line 1683
+    :goto_0
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroAnimator:Landroid/animation/AnimatorSet;
+
+    invoke-virtual {p1}, Landroid/animation/AnimatorSet;->start()V
+
+    .line 1684
+    invoke-static {}, Lcom/android/camera/CameraSettings;->addPopupUltraWideIntroShowTimes()V
+
+    .line 1685
+    return-void
+
+    nop
+
+    :array_0
+    .array-data 4
+        0x3f800000    # 1.0f
+        0x0
+    .end array-data
 .end method
 
 .method private updateCenterTipImage(IILjava/util/List;)V
-    .locals 9
+    .locals 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(II",
@@ -1180,581 +1466,117 @@
         }
     .end annotation
 
-    .line 1108
+    .line 1227
     nop
 
-    .line 1109
-    const/4 v0, -0x1
+    .line 1228
+    const/16 v0, 0x12
 
-    const/16 v1, 0x21
+    const/4 v1, -0x1
 
     const/16 v2, 0xae
 
     if-eq p1, v2, :cond_0
 
-    .line 1115
-    move p1, v0
-
-    goto :goto_0
-
-    .line 1111
-    :cond_0
-    nop
-
-    .line 1115
-    move p1, v1
-
-    .line 1116
-    :goto_0
-    nop
-
-    .line 1117
-    const/4 v2, 0x1
-
-    const/4 v3, 0x0
-
-    if-eq p1, v0, :cond_2
-
-    if-eq p1, v1, :cond_1
-
-    .line 1126
-    move v4, v2
-
-    move v0, v3
-
-    goto :goto_1
-
-    .line 1122
-    :cond_1
-    const v0, 0x7f040003
-
-    .line 1126
-    move v4, v2
-
-    goto :goto_1
-
-    .line 1119
-    :cond_2
-    nop
-
-    .line 1120
-    nop
-
-    .line 1126
-    move v0, v3
-
-    move v4, v0
-
-    .line 1127
-    :goto_1
-    iget-object v5, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
-
-    invoke-virtual {v5}, Landroid/view/ViewGroup;->getTag()Ljava/lang/Object;
-
-    move-result-object v5
-
-    if-eqz v5, :cond_3
-
-    .line 1128
-    iget-object v5, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
-
-    invoke-virtual {v5}, Landroid/view/ViewGroup;->getTag()Ljava/lang/Object;
-
-    move-result-object v5
-
-    check-cast v5, Ljava/lang/Integer;
-
-    invoke-virtual {v5}, Ljava/lang/Integer;->intValue()I
-
-    move-result v5
-
-    .line 1129
-    if-ne v5, p1, :cond_3
-
-    .line 1130
-    nop
-
-    .line 1134
-    move v5, v3
-
-    goto :goto_2
-
-    :cond_3
-    move v5, v2
-
-    :goto_2
-    if-eqz v5, :cond_4
-
-    .line 1135
-    iget-object v6, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
-
-    invoke-virtual {v6}, Landroid/view/ViewGroup;->removeAllViews()V
-
-    .line 1136
-    if-lez v0, :cond_4
-
-    .line 1137
-    iget-object v6, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
-
-    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getContext()Landroid/content/Context;
-
-    move-result-object v7
-
-    invoke-static {v7}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
-
-    move-result-object v7
-
-    const/4 v8, 0x0
-
-    invoke-virtual {v7, v0, v8}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;)Landroid/view/View;
-
-    move-result-object v0
-
-    invoke-virtual {v6, v0}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
-
-    .line 1140
-    :cond_4
-    if-ne p1, v1, :cond_5
-
-    .line 1141
-    invoke-static {}, Lcom/android/camera/CameraSettings;->getCurrentLiveSpeedText()Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 1142
-    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
-
-    const v6, 0x7f0d000e
-
-    invoke-virtual {v1, v6}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
-
-    move-result-object v1
-
-    check-cast v1, Landroid/widget/TextView;
-
-    .line 1143
-    invoke-virtual {v1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 1145
-    :cond_5
-    if-nez v5, :cond_6
-
-    .line 1146
-    return-void
-
-    .line 1149
-    :cond_6
-    if-eqz v4, :cond_7
-
-    .line 1150
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
-
-    iget v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mDegree:I
-
-    int-to-float v1, v1
-
-    invoke-static {v0, v1}, Landroid/support/v4/view/ViewCompat;->setRotation(Landroid/view/View;F)V
-
-    .line 1153
-    :cond_7
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
-
-    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object p1
-
-    invoke-virtual {v0, p1}, Landroid/view/ViewGroup;->setTag(Ljava/lang/Object;)V
-
-    .line 1156
-    if-nez p3, :cond_9
-
-    .line 1157
-    if-eqz v4, :cond_8
-
-    .line 1158
-    nop
-
-    .line 1178
-    :goto_3
-    move v2, v3
-
-    goto :goto_4
-
-    .line 1160
-    :cond_8
-    goto :goto_4
-
-    .line 1163
-    :cond_9
-    if-eqz v4, :cond_c
-
-    .line 1164
-    const/16 p1, 0xa3
-
-    if-ne p2, p1, :cond_b
-
-    .line 1165
-    invoke-static {}, Lcom/mi/config/b;->isSupportedOpticalZoom()Z
-
-    move-result p1
-
-    if-eqz p1, :cond_a
-
-    .line 1166
-    goto :goto_3
-
-    .line 1168
-    :cond_a
-    const/4 v2, 0x3
-
-    goto :goto_4
-
-    .line 1171
-    :cond_b
-    const/4 v2, 0x2
-
-    goto :goto_4
-
-    .line 1174
-    :cond_c
-    const/4 v2, 0x4
-
-    .line 1178
-    :goto_4
-    packed-switch v2, :pswitch_data_0
-
-    goto :goto_5
-
-    .line 1189
-    :pswitch_0
-    new-instance p1, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
-
-    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
-
-    invoke-direct {p1, p2}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;-><init>(Landroid/view/View;)V
-
-    invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
-
-    move-result-object p1
-
-    invoke-interface {p3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    .line 1190
-    goto :goto_5
-
-    .line 1192
-    :pswitch_1
-    new-instance p1, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
-
-    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
-
-    invoke-direct {p1, p2}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;-><init>(Landroid/view/View;)V
-
-    .line 1193
-    const/16 p2, 0x96
-
-    invoke-virtual {p1, p2}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->setStartDelayTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
-
-    move-result-object p1
-
-    .line 1194
-    invoke-virtual {p1, p2}, Lcom/android/camera/animation/type/BaseOnSubScribe;->setDurationTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
-
-    move-result-object p1
-
-    .line 1192
-    invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
-
-    move-result-object p1
-
-    invoke-interface {p3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    goto :goto_5
-
-    .line 1186
-    :pswitch_2
-    new-instance p1, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
-
-    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
-
-    invoke-direct {p1, p2}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;-><init>(Landroid/view/View;)V
-
-    invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
-
-    move-result-object p1
-
-    invoke-interface {p3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    .line 1187
-    goto :goto_5
-
-    .line 1183
-    :pswitch_3
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
-
-    invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
-
-    .line 1184
-    goto :goto_5
-
-    .line 1180
-    :pswitch_4
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
-
-    invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
-
-    .line 1181
-    nop
-
-    .line 1197
-    :goto_5
-    return-void
-
-    :pswitch_data_0
-    .packed-switch 0x0
-        :pswitch_4
-        :pswitch_3
-        :pswitch_2
-        :pswitch_1
-        :pswitch_0
-    .end packed-switch
-.end method
-
-.method private updateImageBgColor(ILandroid/view/View;)V
-    .locals 1
-
-    .line 975
-    const/16 v0, 0xa5
-
-    if-eq p1, v0, :cond_0
-
-    .line 980
-    const p1, 0x7f020007
-
-    invoke-virtual {p2, p1}, Landroid/view/View;->setBackgroundResource(I)V
-
-    goto :goto_0
-
-    .line 977
-    :cond_0
-    const p1, 0x7f02019b
-
-    invoke-virtual {p2, p1}, Landroid/view/View;->setBackgroundResource(I)V
-
-    .line 978
-    nop
-
-    .line 983
-    :goto_0
-    return-void
-.end method
-
-.method private updateLeftTipImage(IILjava/util/List;)V
-    .locals 7
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(II",
-            "Ljava/util/List<",
-            "Lio/reactivex/Completable;",
-            ">;)V"
-        }
-    .end annotation
-
-    .line 992
-    nop
-
-    .line 993
-    const/16 v0, 0xa1
-
-    const/4 v1, -0x1
-
-    const/16 v2, 0x11
-
-    const/16 v3, 0xa5
-
-    if-eq p1, v0, :cond_3
-
-    const/16 v0, 0xa3
-
-    if-eq p1, v0, :cond_2
-
-    if-eq p1, v3, :cond_2
-
-    const/16 v0, 0xab
-
-    if-eq p1, v0, :cond_1
-
-    const/16 v0, 0xae
-
-    if-eq p1, v0, :cond_0
-
-    .line 1010
+    .line 1234
     move v2, v1
 
     goto :goto_0
 
-    .line 1006
+    .line 1230
     :cond_0
-    const/16 v0, 0x12
+    nop
 
-    .line 1010
+    .line 1234
     move v2, v0
 
-    goto :goto_0
-
-    .line 1000
-    :cond_1
-    nop
-
-    .line 1001
-    goto :goto_0
-
-    .line 997
-    :cond_2
-    nop
-
-    .line 998
-    goto :goto_0
-
-    .line 1003
-    :cond_3
-    nop
-
-    .line 1004
-    nop
-
-    .line 1010
+    .line 1235
     :goto_0
     nop
 
-    .line 1011
-    nop
-
-    .line 1012
-    const/4 v0, 0x1
+    .line 1236
+    const/4 v3, 0x1
 
     const/4 v4, 0x0
 
-    if-eq v2, v1, :cond_7
+    if-eq v2, v1, :cond_3
 
-    packed-switch v2, :pswitch_data_0
+    if-eq v2, v0, :cond_1
 
-    .line 1034
-    move v5, v0
+    .line 1249
+    move v1, v3
 
-    move v1, v4
+    move v0, v4
 
-    goto :goto_3
+    goto :goto_2
 
-    .line 1026
-    :pswitch_0
+    .line 1241
+    :cond_1
     invoke-static {}, Lcom/android/camera/CameraSettings;->getCurrentLiveSticker()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v0
 
-    .line 1027
-    const-string v5, ""
+    .line 1242
+    const-string v1, ""
 
-    invoke-virtual {v5, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result v1
+    move-result v0
 
-    if-eqz v1, :cond_4
+    if-eqz v0, :cond_2
 
-    .line 1028
-    const v1, 0x7f020100
+    .line 1243
+    const v0, 0x7f020120
 
-    goto :goto_2
-
-    .line 1030
-    :cond_4
-    const v1, 0x7f020101
+    .line 1249
+    :goto_1
+    move v1, v3
 
     goto :goto_2
 
-    .line 1017
-    :pswitch_1
-    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Lcom/android/camera/data/data/runing/DataItemRunning;->getComponentConfigFilter()Lcom/android/camera/data/data/config/ComponentConfigFilter;
-
-    move-result-object v1
-
-    invoke-virtual {v1, p1}, Lcom/android/camera/data/data/config/ComponentConfigFilter;->getComponentValue(I)Ljava/lang/String;
-
-    move-result-object v1
-
-    .line 1018
-    invoke-static {v1}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
-
-    move-result v1
-
-    .line 1019
-    sget v5, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_NONE:I
-
-    if-eq v1, v5, :cond_6
-
-    if-gtz v1, :cond_5
+    .line 1245
+    :cond_2
+    const v0, 0x7f020121
 
     goto :goto_1
 
-    .line 1022
-    :cond_5
-    const v1, 0x7f0200e1
+    .line 1238
+    :cond_3
+    nop
 
-    .line 1024
-    goto :goto_2
+    .line 1239
+    nop
 
-    .line 1020
-    :cond_6
-    :goto_1
-    const v1, 0x7f0200e0
+    .line 1249
+    move v0, v4
 
-    .line 1034
+    move v1, v0
+
     :goto_2
-    move v5, v0
+    if-lez v0, :cond_4
 
-    goto :goto_3
+    .line 1250
+    iget-object v5, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
 
-    .line 1014
-    :cond_7
-    nop
+    invoke-virtual {v5, v0}, Landroid/widget/ImageView;->setImageResource(I)V
 
-    .line 1015
-    nop
+    .line 1253
+    :cond_4
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
 
-    .line 1034
-    move v1, v4
+    invoke-direct {p0, p1, v0, v3}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateImageBgColor(ILandroid/view/View;Z)V
 
-    move v5, v1
-
-    :goto_3
-    if-lez v1, :cond_8
-
-    .line 1035
-    iget-object v6, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
-
-    invoke-virtual {v6, v1}, Landroid/widget/ImageView;->setImageResource(I)V
-
-    .line 1038
-    :cond_8
-    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
-
-    invoke-direct {p0, p1, v1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateImageBgColor(ILandroid/view/View;)V
-
-    .line 1039
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+    .line 1254
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
 
     invoke-virtual {p1}, Landroid/widget/ImageView;->getTag()Ljava/lang/Object;
 
     move-result-object p1
 
-    if-eqz p1, :cond_9
+    if-eqz p1, :cond_5
 
-    .line 1040
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+    .line 1255
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
 
     invoke-virtual {p1}, Landroid/widget/ImageView;->getTag()Ljava/lang/Object;
 
@@ -1766,112 +1588,745 @@
 
     move-result p1
 
-    .line 1041
-    if-ne p1, v2, :cond_9
+    .line 1256
+    if-ne p1, v2, :cond_5
 
-    .line 1042
+    .line 1257
     return-void
 
-    .line 1046
-    :cond_9
-    if-eqz v5, :cond_a
+    .line 1261
+    :cond_5
+    if-eqz v1, :cond_6
 
-    .line 1047
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+    .line 1262
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
 
-    iget v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mDegree:I
+    iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mDegree:I
 
-    int-to-float v1, v1
+    int-to-float v0, v0
 
-    invoke-static {p1, v1}, Landroid/support/v4/view/ViewCompat;->setRotation(Landroid/view/View;F)V
+    invoke-static {p1, v0}, Landroid/support/v4/view/ViewCompat;->setRotation(Landroid/view/View;F)V
 
-    .line 1050
-    :cond_a
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+    .line 1265
+    :cond_6
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
 
     invoke-static {v2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    move-result-object v1
+    move-result-object v0
 
-    invoke-virtual {p1, v1}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
+    invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
 
-    .line 1053
-    if-nez p3, :cond_c
+    .line 1268
+    if-nez p3, :cond_8
 
-    .line 1054
-    if-eqz v5, :cond_b
+    .line 1269
+    if-eqz v1, :cond_7
 
-    .line 1055
+    .line 1270
     nop
 
-    .line 1080
-    :goto_4
-    move v0, v4
+    .line 1295
+    :goto_3
+    move v3, v4
 
-    goto :goto_6
+    goto :goto_5
 
-    .line 1057
-    :cond_b
-    goto :goto_6
+    .line 1272
+    :cond_7
+    goto :goto_5
 
-    .line 1060
-    :cond_c
-    if-eqz v5, :cond_f
+    .line 1275
+    :cond_8
+    const/16 p1, 0xa5
 
-    .line 1061
-    if-ne p2, v3, :cond_e
+    if-eqz v1, :cond_b
 
-    .line 1063
+    .line 1276
+    if-ne p2, p1, :cond_a
+
+    .line 1278
     invoke-static {}, Lcom/mi/config/b;->isSupportedOpticalZoom()Z
 
     move-result p1
 
-    if-eqz p1, :cond_d
+    if-eqz p1, :cond_9
 
-    .line 1064
-    goto :goto_4
+    .line 1279
+    goto :goto_3
 
-    .line 1066
-    :cond_d
-    const/4 v0, 0x3
-
-    goto :goto_6
-
-    .line 1069
-    :cond_e
-    const/4 v0, 0x2
-
-    goto :goto_6
-
-    .line 1072
-    :cond_f
-    if-eq p2, v3, :cond_11
-
-    iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
-
-    if-ne p1, v3, :cond_10
+    .line 1281
+    :cond_9
+    const/4 v3, 0x3
 
     goto :goto_5
 
-    .line 1075
-    :cond_10
-    const/4 v0, 0x4
+    .line 1284
+    :cond_a
+    const/4 v3, 0x2
+
+    goto :goto_5
+
+    .line 1287
+    :cond_b
+    if-eq p2, p1, :cond_d
+
+    iget p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    if-ne p2, p1, :cond_c
+
+    goto :goto_4
+
+    .line 1290
+    :cond_c
+    const/4 v3, 0x4
+
+    goto :goto_5
+
+    .line 1288
+    :cond_d
+    :goto_4
+    nop
+
+    .line 1295
+    :goto_5
+    packed-switch v3, :pswitch_data_0
 
     goto :goto_6
 
-    .line 1073
-    :cond_11
-    :goto_5
+    .line 1306
+    :pswitch_0
+    new-instance p1, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
+
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
+
+    invoke-direct {p1, p2}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;-><init>(Landroid/view/View;)V
+
+    invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
+
+    move-result-object p1
+
+    invoke-interface {p3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 1307
+    goto :goto_6
+
+    .line 1309
+    :pswitch_1
+    new-instance p1, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
+
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+
+    invoke-direct {p1, p2}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;-><init>(Landroid/view/View;)V
+
+    .line 1310
+    const/16 p2, 0x96
+
+    invoke-virtual {p1, p2}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->setStartDelayTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
+
+    move-result-object p1
+
+    .line 1311
+    invoke-virtual {p1, p2}, Lcom/android/camera/animation/type/BaseOnSubScribe;->setDurationTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
+
+    move-result-object p1
+
+    .line 1309
+    invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
+
+    move-result-object p1
+
+    invoke-interface {p3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    goto :goto_6
+
+    .line 1303
+    :pswitch_2
+    new-instance p1, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
+
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
+
+    invoke-direct {p1, p2}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;-><init>(Landroid/view/View;)V
+
+    invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
+
+    move-result-object p1
+
+    invoke-interface {p3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 1304
+    goto :goto_6
+
+    .line 1300
+    :pswitch_3
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
+
+    invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
+
+    .line 1301
+    goto :goto_6
+
+    .line 1297
+    :pswitch_4
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
+
+    invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
+
+    .line 1298
     nop
 
-    .line 1080
+    .line 1314
     :goto_6
+    return-void
+
+    :pswitch_data_0
+    .packed-switch 0x0
+        :pswitch_4
+        :pswitch_3
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
+    .end packed-switch
+.end method
+
+.method private updateImageBgColor(ILandroid/view/View;Z)V
+    .locals 2
+
+    .line 1033
+    if-eqz p3, :cond_0
+
+    .line 1034
+    const p3, 0x7f020007
+
+    .line 1035
+    const v0, 0x7f0201cc
+
+    goto :goto_0
+
+    .line 1037
+    :cond_0
+    const p3, 0x7f02000a
+
+    .line 1038
+    const v0, 0x7f0201cd
+
+    .line 1040
+    :goto_0
+    const/16 v1, 0xa5
+
+    if-eq p1, v1, :cond_1
+
+    .line 1045
+    invoke-virtual {p2, p3}, Landroid/view/View;->setBackgroundResource(I)V
+
+    goto :goto_1
+
+    .line 1042
+    :cond_1
+    invoke-virtual {p2, v0}, Landroid/view/View;->setBackgroundResource(I)V
+
+    .line 1043
+    nop
+
+    .line 1048
+    :goto_1
+    return-void
+.end method
+
+.method private updateLeftTipImage(IIILjava/util/List;)V
+    .locals 7
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(III",
+            "Ljava/util/List<",
+            "Lio/reactivex/Completable;",
+            ">;)V"
+        }
+    .end annotation
+
+    .line 1057
+    nop
+
+    .line 1058
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCurrentCameraId()I
+
+    move-result v0
+
+    .line 1059
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/android/camera/data/data/global/DataItemGlobal;->isNormalIntent()Z
+
+    move-result v1
+
+    .line 1060
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Lcom/mi/config/a;->fx()Z
+
+    move-result v2
+
+    .line 1061
+    invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2DataContainer;
+
+    move-result-object v3
+
+    iget v4, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    invoke-virtual {v3, v0, v4}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getCapabilitiesByBogusCameraId(II)Lcom/android/camera2/CameraCapabilities;
+
+    move-result-object v3
+
+    .line 1062
+    const/4 v4, -0x1
+
+    const/16 v5, 0x15
+
+    packed-switch p2, :pswitch_data_0
+
+    :pswitch_0
+    goto :goto_3
+
+    .line 1064
+    :pswitch_1
+    if-eqz v1, :cond_4
+
+    .line 1065
+    const/16 p1, 0x13
+
     packed-switch v0, :pswitch_data_1
+
+    goto :goto_0
+
+    .line 1072
+    :pswitch_2
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/mi/config/a;->fa()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 1073
+    goto :goto_1
+
+    .line 1067
+    :pswitch_3
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemFeature()Lcom/mi/config/a;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/mi/config/a;->eZ()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 1068
+    goto :goto_1
+
+    .line 1075
+    :cond_0
+    :goto_0
+    move p1, v4
+
+    :goto_1
+    goto :goto_4
+
+    .line 1082
+    :pswitch_4
+    invoke-static {v3}, Lcom/android/camera/CameraSettings;->isSupportedUltraPixelPhotography(Lcom/android/camera2/CameraCapabilities;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_2
+
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isRearMenuUltraPixelPhotographyOn()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_2
+
+    .line 1083
+    goto :goto_3
+
+    .line 1100
+    :pswitch_5
+    if-nez v0, :cond_4
+
+    if-eqz v1, :cond_4
+
+    if-eqz v2, :cond_4
+
+    .line 1101
+    iget-boolean v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mIsShowLeftImageIntro:Z
+
+    if-eqz v0, :cond_1
+
+    .line 1102
+    invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->startLeftImageIntroAnim(I)V
+
+    .line 1103
+    return-void
+
+    .line 1105
+    :cond_1
+    goto :goto_2
+
+    .line 1087
+    :cond_2
+    :pswitch_6
+    if-eqz v2, :cond_4
+
+    if-nez v0, :cond_4
+
+    .line 1088
+    iget-boolean v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mIsShowLeftImageIntro:Z
+
+    if-eqz v0, :cond_3
+
+    .line 1089
+    invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->startLeftImageIntroAnim(I)V
+
+    .line 1090
+    return-void
+
+    .line 1092
+    :cond_3
+    nop
+
+    .line 1110
+    :goto_2
+    move p1, v5
+
+    goto :goto_4
+
+    :cond_4
+    :goto_3
+    move p1, v4
+
+    :goto_4
+    invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->checkLeftImageTipClose(I)I
+
+    move-result p1
+
+    .line 1111
+    nop
+
+    .line 1112
+    nop
+
+    .line 1113
+    nop
+
+    .line 1114
+    const/4 v0, 0x1
+
+    const/4 v1, 0x0
+
+    if-eq p1, v4, :cond_9
+
+    if-eq p1, v5, :cond_6
+
+    packed-switch p1, :pswitch_data_2
+
+    .line 1136
+    move v4, v0
+
+    move v2, v1
+
+    move v3, v2
+
+    goto :goto_8
+
+    .line 1127
+    :pswitch_7
+    const v2, 0x7f0200f9
+
+    .line 1128
+    const v3, 0x7f090265
+
+    .line 1129
+    nop
+
+    .line 1136
+    move v4, v0
+
+    goto :goto_8
+
+    .line 1119
+    :pswitch_8
+    invoke-static {}, Lcom/android/camera/CameraSettings;->getCurrentLiveSticker()Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 1120
+    const-string v3, ""
+
+    invoke-virtual {v3, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_5
+
+    .line 1121
+    const v2, 0x7f020120
+
+    .line 1136
+    :goto_5
+    move v4, v0
+
+    move v3, v1
+
+    goto :goto_8
+
+    .line 1123
+    :cond_5
+    const v2, 0x7f020121
+
+    .line 1125
+    goto :goto_5
+
+    .line 1131
+    :cond_6
+    iget v2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    invoke-static {v2}, Lcom/android/camera/CameraSettings;->isUltraWideConfigOpen(I)Z
+
+    move-result v2
+
+    .line 1132
+    if-eqz v2, :cond_7
+
+    const v3, 0x7f02017a
+
+    goto :goto_6
+
+    :cond_7
+    const v3, 0x7f020179
+
+    .line 1133
+    :goto_6
+    if-eqz v2, :cond_8
+
+    const v2, 0x7f090247
 
     goto :goto_7
 
-    .line 1091
-    :pswitch_2
+    :cond_8
+    const v2, 0x7f090248
+
+    .line 1136
+    :goto_7
+    move v4, v0
+
+    move v6, v3
+
+    move v3, v2
+
+    move v2, v6
+
+    goto :goto_8
+
+    .line 1116
+    :cond_9
+    nop
+
+    .line 1117
+    nop
+
+    .line 1136
+    move v2, v1
+
+    move v3, v2
+
+    move v4, v3
+
+    :goto_8
+    if-lez v2, :cond_a
+
+    .line 1137
+    iget-object v5, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+
+    invoke-virtual {v5, v2}, Landroid/widget/ImageView;->setImageResource(I)V
+
+    .line 1139
+    :cond_a
+    if-lez v3, :cond_b
+
+    invoke-static {}, Lcom/android/camera/Util;->isAccessible()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_b
+
+    .line 1140
+    iget-object v2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+
+    invoke-virtual {p0, v3}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getString(I)Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {v2, v3}, Landroid/widget/ImageView;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    .line 1143
+    :cond_b
+    iget-object v2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+
+    invoke-direct {p0, p2, v2, v1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateImageBgColor(ILandroid/view/View;Z)V
+
+    .line 1144
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+
+    invoke-virtual {p2}, Landroid/widget/ImageView;->getTag()Ljava/lang/Object;
+
+    move-result-object p2
+
+    if-eqz p2, :cond_c
+
+    .line 1145
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+
+    invoke-virtual {p2}, Landroid/widget/ImageView;->getTag()Ljava/lang/Object;
+
+    move-result-object p2
+
+    check-cast p2, Ljava/lang/Integer;
+
+    invoke-virtual {p2}, Ljava/lang/Integer;->intValue()I
+
+    move-result p2
+
+    .line 1146
+    if-ne p2, p1, :cond_c
+
+    .line 1147
+    return-void
+
+    .line 1151
+    :cond_c
+    if-eqz v4, :cond_d
+
+    .line 1152
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+
+    iget v2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mDegree:I
+
+    int-to-float v2, v2
+
+    invoke-static {p2, v2}, Landroid/support/v4/view/ViewCompat;->setRotation(Landroid/view/View;F)V
+
+    .line 1155
+    :cond_d
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+
+    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object p1
+
+    invoke-virtual {p2, p1}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
+
+    .line 1158
+    if-nez p4, :cond_f
+
+    .line 1159
+    if-eqz v4, :cond_e
+
+    .line 1160
+    nop
+
+    .line 1186
+    move v0, v1
+
+    goto :goto_c
+
+    .line 1162
+    :cond_e
+    goto :goto_c
+
+    .line 1165
+    :cond_f
+    const/16 p1, 0xa5
+
+    if-eqz v4, :cond_12
+
+    .line 1166
+    if-ne p3, p1, :cond_11
+
+    .line 1168
+    invoke-static {}, Lcom/mi/config/b;->isSupportedOpticalZoom()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_10
+
+    .line 1169
+    nop
+
+    .line 1176
+    move v0, v1
+
+    goto :goto_a
+
+    .line 1171
+    :cond_10
+    const/4 p1, 0x3
+
+    goto :goto_9
+
+    .line 1174
+    :cond_11
+    const/4 p1, 0x2
+
+    .line 1176
+    :goto_9
+    move v0, p1
+
+    :goto_a
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->directHideLeftImageIntro()V
+
+    goto :goto_c
+
+    .line 1178
+    :cond_12
+    if-eq p3, p1, :cond_14
+
+    iget p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    if-ne p2, p1, :cond_13
+
+    goto :goto_b
+
+    .line 1181
+    :cond_13
+    const/4 v0, 0x4
+
+    goto :goto_c
+
+    .line 1179
+    :cond_14
+    :goto_b
+    nop
+
+    .line 1186
+    :goto_c
+    packed-switch v0, :pswitch_data_3
+
+    goto :goto_d
+
+    .line 1197
+    :pswitch_9
     new-instance p1, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
 
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
@@ -1882,42 +2337,42 @@
 
     move-result-object p1
 
-    invoke-interface {p3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+    invoke-interface {p4, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 1092
-    goto :goto_7
+    .line 1198
+    goto :goto_d
 
-    .line 1094
-    :pswitch_3
+    .line 1200
+    :pswitch_a
     new-instance p1, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
 
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
     invoke-direct {p1, p2}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;-><init>(Landroid/view/View;)V
 
-    .line 1095
+    .line 1201
     const/16 p2, 0x96
 
     invoke-virtual {p1, p2}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->setStartDelayTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object p1
 
-    .line 1096
+    .line 1202
     invoke-virtual {p1, p2}, Lcom/android/camera/animation/type/BaseOnSubScribe;->setDurationTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object p1
 
-    .line 1094
+    .line 1200
     invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object p1
 
-    invoke-interface {p3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+    invoke-interface {p4, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    goto :goto_7
+    goto :goto_d
 
-    .line 1088
-    :pswitch_4
+    .line 1194
+    :pswitch_b
     new-instance p1, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
 
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
@@ -1928,63 +2383,87 @@
 
     move-result-object p1
 
-    invoke-interface {p3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+    invoke-interface {p4, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 1089
-    goto :goto_7
+    .line 1195
+    goto :goto_d
 
-    .line 1085
-    :pswitch_5
+    .line 1191
+    :pswitch_c
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 1086
-    goto :goto_7
+    .line 1192
+    goto :goto_d
 
-    .line 1082
-    :pswitch_6
+    .line 1188
+    :pswitch_d
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 1083
+    .line 1189
     nop
 
-    .line 1099
-    :goto_7
+    .line 1205
+    :goto_d
     return-void
 
     nop
 
     :pswitch_data_0
-    .packed-switch 0x11
+    .packed-switch 0xa1
+        :pswitch_6
+        :pswitch_5
+        :pswitch_4
+        :pswitch_0
+        :pswitch_6
+        :pswitch_0
+        :pswitch_0
+        :pswitch_5
+        :pswitch_5
+        :pswitch_5
         :pswitch_1
         :pswitch_0
+        :pswitch_0
+        :pswitch_4
     .end packed-switch
 
     :pswitch_data_1
     .packed-switch 0x0
-        :pswitch_6
-        :pswitch_5
-        :pswitch_4
         :pswitch_3
         :pswitch_2
+    .end packed-switch
+
+    :pswitch_data_2
+    .packed-switch 0x12
+        :pswitch_8
+        :pswitch_7
+    .end packed-switch
+
+    :pswitch_data_3
+    .packed-switch 0x0
+        :pswitch_d
+        :pswitch_c
+        :pswitch_b
+        :pswitch_a
+        :pswitch_9
     .end packed-switch
 .end method
 
 .method private updateLightingPattern(ZZ)V
     .locals 1
 
-    .line 1246
+    .line 1463
     if-eqz p1, :cond_0
 
-    .line 1247
+    .line 1464
     const/4 p1, -0x2
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->stringLightingRes:I
 
-    .line 1249
+    .line 1466
     :cond_0
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
@@ -1996,12 +2475,12 @@
 
     const/16 v0, 0xab
 
-    .line 1250
+    .line 1467
     invoke-virtual {p1, v0}, Lcom/android/camera/data/data/runing/ComponentRunningLighting;->getComponentValue(I)Ljava/lang/String;
 
     move-result-object p1
 
-    .line 1251
+    .line 1468
     const-string v0, "0"
 
     invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -2010,10 +2489,10 @@
 
     if-eqz p1, :cond_1
 
-    .line 1252
+    .line 1469
     return-void
 
-    .line 1254
+    .line 1471
     :cond_1
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->isLandScape()Z
 
@@ -2021,31 +2500,31 @@
 
     if-eqz p1, :cond_2
 
-    .line 1255
+    .line 1472
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLightingPattern:Landroid/widget/TextView;
 
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->starAnimatetViewGone(Landroid/view/View;Z)V
 
     goto :goto_0
 
-    .line 1256
+    .line 1473
     :cond_2
     iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->stringLightingRes:I
 
     if-lez p1, :cond_3
 
-    .line 1257
+    .line 1474
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLightingPattern:Landroid/widget/TextView;
 
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->startAnimateViewVisible(Landroid/view/View;Z)V
 
-    .line 1259
+    .line 1476
     :cond_3
     :goto_0
     return-void
 .end method
 
-.method private updateTipImage(IILjava/util/List;)V
+.method private updateSpeedTipImage(IILjava/util/List;)V
     .locals 10
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2056,276 +2535,97 @@
         }
     .end annotation
 
-    .line 822
+    .line 1324
     nop
 
-    .line 823
+    .line 1325
+    nop
+
+    .line 1326
     const/4 v0, -0x1
 
-    const/16 v1, 0xa5
+    const/16 v1, 0x21
 
-    const/4 v2, 0x3
+    const/16 v2, 0xae
 
-    if-eq p1, v1, :cond_6
+    if-eq p1, v2, :cond_0
 
-    const/16 v3, 0xab
-
-    if-eq p1, v3, :cond_3
-
-    packed-switch p1, :pswitch_data_0
+    .line 1332
+    move p1, v0
 
     goto :goto_0
 
-    .line 841
-    :pswitch_0
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isFrontCamera()Z
-
-    move-result v3
-
-    if-nez v3, :cond_0
-
-    invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
-
-    move-result v3
-
-    if-eqz v3, :cond_7
-
-    .line 842
+    .line 1328
     :cond_0
-    invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2DataContainer;
+    nop
 
-    move-result-object v3
+    .line 1332
+    move p1, v1
 
-    .line 843
-    invoke-static {}, Lcom/android/camera/CameraSettings;->getCameraId()I
+    .line 1333
+    :goto_0
+    nop
 
-    move-result v4
+    .line 1334
+    const/4 v2, 0x1
 
-    invoke-virtual {v3, v4, p1}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getCapabilitiesByBogusCameraId(II)Lcom/android/camera2/CameraCapabilities;
+    const/4 v3, 0x0
 
-    move-result-object v3
+    if-eq p1, v0, :cond_2
 
-    .line 845
-    if-eqz v3, :cond_1
+    if-eq p1, v1, :cond_1
 
-    invoke-virtual {v3}, Lcom/android/camera2/CameraCapabilities;->isSupportVideoBeauty()Z
+    .line 1344
+    move v4, v2
 
-    move-result v3
+    move v5, v4
 
-    if-nez v3, :cond_2
-
-    :cond_1
-    invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
-
-    move-result v3
-
-    if-eqz v3, :cond_7
-
-    .line 846
-    :cond_2
-    goto :goto_2
-
-    .line 833
-    :cond_3
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isFrontCamera()Z
-
-    move-result v3
-
-    if-eqz v3, :cond_4
-
-    invoke-static {}, Lcom/mi/config/b;->hb()Z
-
-    move-result v3
-
-    if-nez v3, :cond_5
-
-    :cond_4
-    invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
-
-    move-result v3
-
-    if-eqz v3, :cond_7
-
-    .line 834
-    :cond_5
-    goto :goto_2
-
-    .line 828
-    :cond_6
-    :pswitch_1
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isFrontCamera()Z
-
-    move-result v3
-
-    if-nez v3, :cond_8
-
-    invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
-
-    move-result v3
-
-    if-eqz v3, :cond_7
+    move v0, v3
 
     goto :goto_1
 
-    .line 852
-    :cond_7
-    :goto_0
-    move v3, v0
+    .line 1339
+    :cond_1
+    const v0, 0x7f040003
 
-    goto :goto_3
+    .line 1340
+    nop
 
-    .line 829
-    :cond_8
+    .line 1344
+    move v4, v2
+
+    move v5, v3
+
+    goto :goto_1
+
+    .line 1336
+    :cond_2
+    nop
+
+    .line 1337
+    nop
+
+    .line 1344
+    move v5, v2
+
+    move v0, v3
+
+    move v4, v0
+
+    .line 1345
     :goto_1
-    nop
+    iget-object v6, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
 
-    .line 852
-    :goto_2
-    move v3, v2
-
-    .line 853
-    :goto_3
-    nop
-
-    .line 854
-    nop
-
-    .line 855
-    const/4 v4, 0x1
-
-    const/4 v5, 0x0
-
-    if-eq v3, v0, :cond_b
-
-    packed-switch v3, :pswitch_data_1
-
-    .line 877
-    move v8, v4
-
-    move v6, v5
-
-    move v7, v6
-
-    goto :goto_5
-
-    .line 864
-    :pswitch_2
-    invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
-
-    move-result v6
-
-    if-nez v6, :cond_9
-
-    .line 865
-    const v6, 0x7f0200af
-
-    goto :goto_4
-
-    .line 867
-    :cond_9
-    invoke-static {}, Lcom/android/camera/CameraSettings;->getFaceBeautifyValue()Ljava/lang/String;
+    invoke-virtual {v6}, Landroid/view/ViewGroup;->getTag()Ljava/lang/Object;
 
     move-result-object v6
 
-    .line 868
-    invoke-static {v6}, Lcom/android/camera/CameraSettings;->isFaceBeautyOn(Ljava/lang/String;)Z
+    if-eqz v6, :cond_3
 
-    move-result v6
+    .line 1346
+    iget-object v6, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
 
-    if-eqz v6, :cond_a
-
-    .line 869
-    const v6, 0x7f0200b1
-
-    goto :goto_4
-
-    .line 871
-    :cond_a
-    const v6, 0x7f0200b0
-
-    .line 874
-    :goto_4
-    const v7, 0x7f0b00ef
-
-    .line 877
-    move v8, v4
-
-    goto :goto_5
-
-    .line 860
-    :pswitch_3
-    const v6, 0x7f0200b3
-
-    .line 861
-    nop
-
-    .line 877
-    move v8, v4
-
-    move v7, v5
-
-    goto :goto_5
-
-    .line 857
-    :cond_b
-    nop
-
-    .line 858
-    nop
-
-    .line 877
-    move v6, v5
-
-    move v7, v6
-
-    move v8, v7
-
-    :goto_5
-    if-lez v6, :cond_c
-
-    .line 878
-    iget-object v9, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
-
-    invoke-virtual {v9, v6}, Landroid/widget/ImageView;->setImageResource(I)V
-
-    .line 880
-    :cond_c
-    if-lez v7, :cond_d
-
-    invoke-static {}, Lcom/android/camera/Util;->isAccessible()Z
-
-    move-result v6
-
-    if-eqz v6, :cond_d
-
-    .line 881
-    iget-object v6, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
-
-    invoke-virtual {p0, v7}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getString(I)Ljava/lang/String;
-
-    move-result-object v7
-
-    invoke-virtual {v6, v7}, Landroid/widget/ImageView;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 884
-    :cond_d
-    iget-object v6, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
-
-    invoke-direct {p0, p1, v6}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateImageBgColor(ILandroid/view/View;)V
-
-    .line 885
-    iget-object v6, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
-
-    invoke-virtual {v6}, Landroid/widget/ImageView;->getTag()Ljava/lang/Object;
-
-    move-result-object v6
-
-    if-eqz v6, :cond_e
-
-    .line 886
-    iget-object v6, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
-
-    invoke-virtual {v6}, Landroid/widget/ImageView;->getTag()Ljava/lang/Object;
+    invoke-virtual {v6}, Landroid/view/ViewGroup;->getTag()Ljava/lang/Object;
 
     move-result-object v6
 
@@ -2335,177 +2635,180 @@
 
     move-result v6
 
-    .line 887
-    if-ne v6, v3, :cond_e
+    .line 1347
+    if-ne v6, p1, :cond_3
 
-    .line 888
+    .line 1348
+    nop
+
+    .line 1352
+    move v6, v3
+
+    goto :goto_2
+
+    :cond_3
+    move v6, v2
+
+    :goto_2
+    if-eqz v6, :cond_4
+
+    .line 1353
+    iget-object v7, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
+
+    invoke-virtual {v7}, Landroid/view/ViewGroup;->removeAllViews()V
+
+    .line 1354
+    if-lez v0, :cond_4
+
+    .line 1355
+    iget-object v7, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
+
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getContext()Landroid/content/Context;
+
+    move-result-object v8
+
+    invoke-static {v8}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
+
+    move-result-object v8
+
+    const/4 v9, 0x0
+
+    invoke-virtual {v8, v0, v9}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;)Landroid/view/View;
+
+    move-result-object v0
+
+    invoke-virtual {v7, v0}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
+
+    .line 1358
+    :cond_4
+    if-ne p1, v1, :cond_5
+
+    .line 1359
+    invoke-static {}, Lcom/android/camera/CameraSettings;->getCurrentLiveSpeedText()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 1360
+    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
+
+    const v7, 0x7f0d0010
+
+    invoke-virtual {v1, v7}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
+
+    move-result-object v1
+
+    check-cast v1, Landroid/widget/TextView;
+
+    .line 1361
+    invoke-virtual {v1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    .line 1363
+    :cond_5
+    if-nez v6, :cond_6
+
+    .line 1364
     return-void
 
-    .line 892
-    :cond_e
-    if-eqz v8, :cond_f
+    .line 1367
+    :cond_6
+    if-eqz v4, :cond_7
 
-    .line 893
-    iget-object v6, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
+    if-eqz v5, :cond_7
 
-    iget v7, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mDegree:I
+    .line 1368
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
 
-    int-to-float v7, v7
+    iget v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mDegree:I
 
-    invoke-static {v6, v7}, Landroid/support/v4/view/ViewCompat;->setRotation(Landroid/view/View;F)V
+    int-to-float v1, v1
 
-    .line 896
-    :cond_f
-    iget-object v6, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
+    invoke-static {v0, v1}, Landroid/support/v4/view/ViewCompat;->setRotation(Landroid/view/View;F)V
 
-    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    goto :goto_3
 
-    move-result-object v7
+    .line 1370
+    :cond_7
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
 
-    invoke-virtual {v6, v7}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
+    const/4 v1, 0x0
 
-    .line 899
-    iput-boolean v5, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mShowBeautyIntro:Z
+    invoke-static {v0, v1}, Landroid/support/v4/view/ViewCompat;->setRotation(Landroid/view/View;F)V
 
-    .line 900
-    const/16 v6, 0xa2
+    .line 1373
+    :goto_3
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
 
-    if-nez p3, :cond_11
+    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    .line 901
-    if-eqz v8, :cond_10
+    move-result-object p1
 
-    .line 902
+    invoke-virtual {v0, p1}, Landroid/view/ViewGroup;->setTag(Ljava/lang/Object;)V
+
+    .line 1376
+    if-nez p3, :cond_9
+
+    .line 1377
+    if-eqz v4, :cond_8
+
+    .line 1378
     nop
 
-    .line 931
-    move p1, v5
+    .line 1398
+    :goto_4
+    move v2, v3
 
-    goto :goto_a
+    goto :goto_5
 
-    .line 904
-    :cond_10
-    nop
+    .line 1380
+    :cond_8
+    goto :goto_5
 
-    .line 931
-    :goto_6
-    move p1, v4
+    .line 1383
+    :cond_9
+    if-eqz v4, :cond_c
 
-    goto :goto_a
+    .line 1384
+    const/16 p1, 0xa3
 
-    .line 907
-    :cond_11
-    if-eqz v8, :cond_15
+    if-ne p2, p1, :cond_b
 
-    .line 908
-    if-ne p2, v1, :cond_13
-
-    .line 910
+    .line 1385
     invoke-static {}, Lcom/mi/config/b;->isSupportedOpticalZoom()Z
-
-    move-result p2
-
-    if-eqz p2, :cond_12
-
-    .line 911
-    nop
-
-    .line 918
-    move p2, v5
-
-    goto :goto_7
-
-    .line 913
-    :cond_12
-    nop
-
-    .line 918
-    move p2, v2
-
-    goto :goto_7
-
-    .line 916
-    :cond_13
-    const/4 p2, 0x2
-
-    .line 918
-    :goto_7
-    if-ne v3, v2, :cond_14
-
-    .line 919
-    invoke-static {}, Lcom/android/camera/CameraSettings;->isPopupTipBeautyIntroEnable()Z
-
-    move-result v1
-
-    if-eqz v1, :cond_14
-
-    if-eq p1, v6, :cond_14
-
-    const/16 v1, 0xa1
-
-    if-eq p1, v1, :cond_14
-
-    move p1, v4
-
-    goto :goto_8
-
-    :cond_14
-    move p1, v5
-
-    :goto_8
-    iput-boolean p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mShowBeautyIntro:Z
-
-    .line 931
-    move p1, p2
-
-    goto :goto_a
-
-    .line 923
-    :cond_15
-    if-eq p2, v1, :cond_17
-
-    iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
-
-    if-ne p1, v1, :cond_16
-
-    goto :goto_9
-
-    .line 926
-    :cond_16
-    const/4 p1, 0x4
-
-    goto :goto_a
-
-    .line 924
-    :cond_17
-    :goto_9
-    goto :goto_6
-
-    .line 931
-    :goto_a
-    packed-switch p1, :pswitch_data_2
-
-    goto/16 :goto_c
-
-    .line 957
-    :pswitch_4
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
-
-    invoke-virtual {p1}, Landroid/view/View;->isShown()Z
 
     move-result p1
 
-    if-eqz p1, :cond_18
+    if-eqz p1, :cond_a
 
-    .line 958
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroShowAnimator:Landroid/animation/AnimatorSet;
+    .line 1386
+    goto :goto_4
 
-    invoke-virtual {p1}, Landroid/animation/AnimatorSet;->pause()V
+    .line 1388
+    :cond_a
+    const/4 v2, 0x3
 
-    .line 959
+    goto :goto_5
+
+    .line 1391
+    :cond_b
+    const/4 v2, 0x2
+
+    goto :goto_5
+
+    .line 1394
+    :cond_c
+    const/4 v2, 0x4
+
+    .line 1398
+    :goto_5
+    packed-switch v2, :pswitch_data_0
+
+    goto :goto_6
+
+    .line 1409
+    :pswitch_0
     new-instance p1, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
 
-    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
 
     invoke-direct {p1, p2}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;-><init>(Landroid/view/View;)V
 
@@ -2515,51 +2818,617 @@
 
     invoke-interface {p3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    goto/16 :goto_c
+    .line 1410
+    goto :goto_6
 
-    .line 961
-    :cond_18
-    new-instance p1, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
-
-    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
-
-    invoke-direct {p1, p2}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;-><init>(Landroid/view/View;)V
-
-    invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
-
-    move-result-object p1
-
-    invoke-interface {p3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    .line 963
-    goto/16 :goto_c
-
-    .line 965
-    :pswitch_5
-    iget-boolean p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mShowBeautyIntro:Z
-
-    if-nez p1, :cond_1c
-
-    .line 966
+    .line 1412
+    :pswitch_1
     new-instance p1, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
 
-    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
 
     invoke-direct {p1, p2}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;-><init>(Landroid/view/View;)V
 
-    .line 967
+    .line 1413
     const/16 p2, 0x96
 
     invoke-virtual {p1, p2}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->setStartDelayTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object p1
 
-    .line 968
+    .line 1414
     invoke-virtual {p1, p2}, Lcom/android/camera/animation/type/BaseOnSubScribe;->setDurationTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object p1
 
-    .line 966
+    .line 1412
+    invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
+
+    move-result-object p1
+
+    invoke-interface {p3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    goto :goto_6
+
+    .line 1406
+    :pswitch_2
+    new-instance p1, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
+
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
+
+    invoke-direct {p1, p2}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;-><init>(Landroid/view/View;)V
+
+    invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
+
+    move-result-object p1
+
+    invoke-interface {p3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 1407
+    goto :goto_6
+
+    .line 1403
+    :pswitch_3
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
+
+    invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
+
+    .line 1404
+    goto :goto_6
+
+    .line 1400
+    :pswitch_4
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
+
+    invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
+
+    .line 1401
+    nop
+
+    .line 1417
+    :goto_6
+    return-void
+
+    :pswitch_data_0
+    .packed-switch 0x0
+        :pswitch_4
+        :pswitch_3
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
+    .end packed-switch
+.end method
+
+.method private updateTipImage(IILjava/util/List;)V
+    .locals 11
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(II",
+            "Ljava/util/List<",
+            "Lio/reactivex/Completable;",
+            ">;)V"
+        }
+    .end annotation
+
+    .line 872
+    nop
+
+    .line 873
+    const/16 v0, 0xae
+
+    const/4 v1, -0x1
+
+    const/4 v2, 0x4
+
+    const/4 v3, 0x3
+
+    const/16 v4, 0xa5
+
+    if-eq p1, v4, :cond_6
+
+    const/16 v5, 0xab
+
+    if-eq p1, v5, :cond_2
+
+    if-eq p1, v0, :cond_0
+
+    packed-switch p1, :pswitch_data_0
+
+    goto/16 :goto_2
+
+    .line 876
+    :pswitch_0
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isRearMenuUltraPixelPhotographyOn()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_6
+
+    .line 877
+    goto/16 :goto_2
+
+    .line 897
+    :pswitch_1
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
+
+    move-result-object v5
+
+    const-string v6, "pref_camera_auto_zoom"
+
+    invoke-virtual {v5, v6}, Lcom/android/camera/data/data/runing/DataItemRunning;->isSwitchOn(Ljava/lang/String;)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_0
+
+    .line 898
+    goto :goto_2
+
+    .line 902
+    :cond_0
+    :pswitch_2
+    invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2DataContainer;
+
+    move-result-object v5
+
+    .line 903
+    invoke-static {}, Lcom/android/camera/CameraSettings;->getBogusCameraId()I
+
+    move-result v6
+
+    invoke-virtual {v5, v6, p1}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getCapabilitiesByBogusCameraId(II)Lcom/android/camera2/CameraCapabilities;
+
+    move-result-object v5
+
+    .line 904
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isFrontCamera()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_1
+
+    .line 905
+    if-eqz v5, :cond_8
+
+    invoke-virtual {v5}, Lcom/android/camera2/CameraCapabilities;->isSupportVideoBeauty()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_8
+
+    .line 906
+    goto :goto_0
+
+    .line 908
+    :cond_1
+    invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_8
+
+    .line 910
+    if-eqz v5, :cond_8
+
+    invoke-virtual {v5}, Lcom/android/camera2/CameraCapabilities;->isSupportVideoBeauty()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_8
+
+    .line 911
+    goto :goto_1
+
+    .line 888
+    :cond_2
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isFrontCamera()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_3
+
+    invoke-static {}, Lcom/mi/config/b;->ht()Z
+
+    move-result v5
+
+    if-nez v5, :cond_4
+
+    :cond_3
+    invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_5
+
+    .line 889
+    :cond_4
+    goto :goto_0
+
+    .line 890
+    :cond_5
+    invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_8
+
+    .line 892
+    goto :goto_1
+
+    .line 880
+    :cond_6
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isFrontCamera()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_7
+
+    .line 881
+    nop
+
+    .line 917
+    :goto_0
+    move v5, v3
+
+    goto :goto_3
+
+    .line 882
+    :cond_7
+    invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_8
+
+    .line 884
+    nop
+
+    .line 917
+    :goto_1
+    move v5, v2
+
+    goto :goto_3
+
+    :cond_8
+    :goto_2
+    move v5, v1
+
+    .line 918
+    :goto_3
+    nop
+
+    .line 919
+    nop
+
+    .line 920
+    const/4 v6, 0x1
+
+    const/4 v7, 0x0
+
+    if-eq v5, v1, :cond_c
+
+    packed-switch v5, :pswitch_data_1
+
+    .line 952
+    move v9, v6
+
+    move v0, v7
+
+    move v8, v0
+
+    goto :goto_6
+
+    .line 930
+    :pswitch_3
+    invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
+
+    move-result v8
+
+    const v9, 0x7f0200bf
+
+    if-nez v8, :cond_9
+
+    .line 931
+    goto :goto_5
+
+    .line 934
+    :cond_9
+    iget v8, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    if-eq v8, v0, :cond_a
+
+    .line 939
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/camera/data/data/config/DataItemConfig;->getComponentConfigBeauty()Lcom/android/camera/data/data/config/ComponentConfigBeauty;
+
+    move-result-object v0
+
+    iget v8, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    invoke-virtual {v0, v8}, Lcom/android/camera/data/data/config/ComponentConfigBeauty;->getComponentValue(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 940
+    invoke-static {v0}, Lcom/android/camera/CameraSettings;->isFaceBeautyOn(Ljava/lang/String;)Z
+
+    move-result v0
+
+    goto :goto_4
+
+    .line 936
+    :cond_a
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isLiveBeautyOpen()Z
+
+    move-result v0
+
+    .line 937
+    nop
+
+    .line 943
+    :goto_4
+    if-eqz v0, :cond_b
+
+    .line 944
+    const v0, 0x7f0200c0
+
+    .line 949
+    move v9, v0
+
+    goto :goto_5
+
+    .line 946
+    :cond_b
+    nop
+
+    .line 949
+    :goto_5
+    const v0, 0x7f0900f4
+
+    .line 952
+    move v8, v0
+
+    move v0, v9
+
+    move v9, v6
+
+    goto :goto_6
+
+    .line 925
+    :pswitch_4
+    const v0, 0x7f0200c2
+
+    .line 926
+    nop
+
+    .line 952
+    move v9, v6
+
+    move v8, v7
+
+    goto :goto_6
+
+    .line 922
+    :cond_c
+    nop
+
+    .line 923
+    nop
+
+    .line 952
+    move v0, v7
+
+    move v8, v0
+
+    move v9, v8
+
+    :goto_6
+    if-lez v0, :cond_d
+
+    .line 953
+    iget-object v10, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
+
+    invoke-virtual {v10, v0}, Landroid/widget/ImageView;->setImageResource(I)V
+
+    .line 955
+    :cond_d
+    if-lez v8, :cond_e
+
+    invoke-static {}, Lcom/android/camera/Util;->isAccessible()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_e
+
+    .line 956
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
+
+    invoke-virtual {p0, v8}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getString(I)Ljava/lang/String;
+
+    move-result-object v8
+
+    invoke-virtual {v0, v8}, Landroid/widget/ImageView;->setContentDescription(Ljava/lang/CharSequence;)V
+
+    .line 959
+    :cond_e
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
+
+    invoke-direct {p0, p1, v0, v7}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateImageBgColor(ILandroid/view/View;Z)V
+
+    .line 960
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
+
+    invoke-virtual {p1}, Landroid/widget/ImageView;->getTag()Ljava/lang/Object;
+
+    move-result-object p1
+
+    if-eqz p1, :cond_f
+
+    .line 961
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
+
+    invoke-virtual {p1}, Landroid/widget/ImageView;->getTag()Ljava/lang/Object;
+
+    move-result-object p1
+
+    check-cast p1, Ljava/lang/Integer;
+
+    invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
+
+    move-result p1
+
+    .line 962
+    if-ne p1, v5, :cond_f
+
+    .line 963
+    return-void
+
+    .line 967
+    :cond_f
+    if-eqz v9, :cond_10
+
+    .line 968
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
+
+    iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mDegree:I
+
+    int-to-float v0, v0
+
+    invoke-static {p1, v0}, Landroid/support/v4/view/ViewCompat;->setRotation(Landroid/view/View;F)V
+
+    .line 971
+    :cond_10
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
+
+    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
+
+    .line 974
+    if-nez p3, :cond_12
+
+    .line 975
+    if-eqz v9, :cond_11
+
+    .line 976
+    nop
+
+    .line 1001
+    :goto_7
+    move v2, v7
+
+    goto :goto_a
+
+    .line 978
+    :cond_11
+    nop
+
+    .line 1001
+    :goto_8
+    move v2, v6
+
+    goto :goto_a
+
+    .line 981
+    :cond_12
+    if-eqz v9, :cond_15
+
+    .line 982
+    if-ne p2, v4, :cond_14
+
+    .line 984
+    invoke-static {}, Lcom/mi/config/b;->isSupportedOpticalZoom()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_13
+
+    .line 985
+    goto :goto_7
+
+    .line 987
+    :cond_13
+    nop
+
+    .line 1001
+    move v2, v3
+
+    goto :goto_a
+
+    .line 990
+    :cond_14
+    const/4 v2, 0x2
+
+    goto :goto_a
+
+    .line 993
+    :cond_15
+    if-eq p2, v4, :cond_17
+
+    iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    if-ne p1, v4, :cond_16
+
+    goto :goto_9
+
+    .line 996
+    :cond_16
+    goto :goto_a
+
+    .line 994
+    :cond_17
+    :goto_9
+    goto :goto_8
+
+    .line 1001
+    :goto_a
+    packed-switch v2, :pswitch_data_2
+
+    goto :goto_c
+
+    .line 1020
+    :pswitch_5
+    new-instance p1, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
+
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
+
+    invoke-direct {p1, p2}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;-><init>(Landroid/view/View;)V
+
+    invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
+
+    move-result-object p1
+
+    invoke-interface {p3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 1021
+    goto :goto_c
+
+    .line 1023
+    :pswitch_6
+    new-instance p1, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
+
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
+
+    invoke-direct {p1, p2}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;-><init>(Landroid/view/View;)V
+
+    .line 1024
+    const/16 p2, 0x96
+
+    invoke-virtual {p1, p2}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->setStartDelayTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
+
+    move-result-object p1
+
+    .line 1025
+    invoke-virtual {p1, p2}, Lcom/android/camera/animation/type/BaseOnSubScribe;->setDurationTime(I)Lcom/android/camera/animation/type/BaseOnSubScribe;
+
+    move-result-object p1
+
+    .line 1023
     invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object p1
@@ -2568,13 +3437,8 @@
 
     goto :goto_c
 
-    .line 952
-    :pswitch_6
-    iget-boolean p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mShowBeautyIntro:Z
-
-    if-nez p1, :cond_1c
-
-    .line 953
+    .line 1017
+    :pswitch_7
     new-instance p1, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
 
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
@@ -2587,117 +3451,97 @@
 
     invoke-interface {p3, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
+    .line 1018
     goto :goto_c
 
-    .line 944
-    :pswitch_7
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
-
-    invoke-virtual {p1}, Landroid/view/View;->isShown()Z
-
-    move-result p1
-
-    if-eqz p1, :cond_19
-
-    .line 945
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroShowAnimator:Landroid/animation/AnimatorSet;
-
-    invoke-virtual {p1}, Landroid/animation/AnimatorSet;->pause()V
-
-    .line 946
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
-
-    invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
-
-    goto :goto_c
-
-    .line 948
-    :cond_19
+    .line 1014
+    :pswitch_8
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 950
+    .line 1015
     goto :goto_c
 
-    .line 933
-    :pswitch_8
+    .line 1003
+    :pswitch_9
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
 
-    .line 934
-    invoke-virtual {p1, v6}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+    const/16 p2, 0xa2
+
+    .line 1004
+    invoke-virtual {p1, p2}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object p1
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;
 
-    .line 935
-    if-eqz p1, :cond_1a
+    .line 1005
+    if-eqz p1, :cond_18
 
     invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;->isShowLightingView()Z
 
     move-result p1
 
-    if-eqz p1, :cond_1a
+    if-eqz p1, :cond_18
 
     goto :goto_b
 
-    .line 936
-    :cond_1a
-    move v4, v5
+    .line 1006
+    :cond_18
+    move v6, v7
 
     :goto_b
-    if-eqz v4, :cond_1b
+    if-eqz v6, :cond_19
 
-    .line 937
+    .line 1007
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
-    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object p2
 
     invoke-virtual {p1, p2}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
 
-    .line 939
-    :cond_1b
-    iget-boolean p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mShowBeautyIntro:Z
+    .line 1009
+    :cond_19
+    if-nez v6, :cond_1a
 
-    if-nez p1, :cond_1c
-
-    if-nez v4, :cond_1c
-
-    .line 940
+    .line 1010
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 972
-    :cond_1c
+    .line 1028
+    :cond_1a
     :goto_c
     return-void
 
+    nop
+
     :pswitch_data_0
     .packed-switch 0xa1
-        :pswitch_0
-        :pswitch_0
+        :pswitch_2
         :pswitch_1
+        :pswitch_0
     .end packed-switch
 
     :pswitch_data_1
     .packed-switch 0x2
+        :pswitch_4
         :pswitch_3
-        :pswitch_2
+        :pswitch_3
     .end packed-switch
 
     :pswitch_data_2
     .packed-switch 0x0
+        :pswitch_9
         :pswitch_8
         :pswitch_7
         :pswitch_6
         :pswitch_5
-        :pswitch_4
     .end packed-switch
 .end method
 
@@ -2710,7 +3554,7 @@
         .end annotation
     .end param
 
-    .line 637
+    .line 687
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipMessage:Landroid/widget/TextView;
 
     invoke-virtual {v0}, Landroid/widget/TextView;->getVisibility()I
@@ -2719,7 +3563,7 @@
 
     if-nez v0, :cond_0
 
-    .line 638
+    .line 688
     invoke-virtual {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getString(I)Ljava/lang/String;
 
     move-result-object p1
@@ -2747,88 +3591,65 @@
     :cond_0
     const/4 p1, 0x0
 
-    .line 637
+    .line 687
     :goto_0
     return p1
 .end method
 
 .method public directHideTipImage()V
-    .locals 4
+    .locals 3
 
-    .line 466
+    .line 489
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
     invoke-virtual {v0}, Landroid/widget/ImageView;->getVisibility()I
 
     move-result v0
 
-    const/4 v1, -0x1
+    const/4 v1, 0x4
 
-    const/4 v2, 0x4
+    if-eq v0, v1, :cond_0
 
-    if-eq v0, v2, :cond_0
-
-    .line 467
+    .line 490
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
-    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    const/4 v2, -0x1
 
-    move-result-object v3
+    invoke-static {v2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    invoke-virtual {v0, v3}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
+    move-result-object v2
 
-    .line 468
+    invoke-virtual {v0, v2}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
+
+    .line 491
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
-    invoke-virtual {v0, v2}, Landroid/widget/ImageView;->setVisibility(I)V
+    invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 471
+    .line 493
     :cond_0
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
-
-    invoke-virtual {v0}, Landroid/view/View;->getVisibility()I
-
-    move-result v0
-
-    if-eq v0, v2, :cond_1
-
-    .line 472
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
-
-    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v1
-
-    invoke-virtual {v0, v1}, Landroid/view/View;->setTag(Ljava/lang/Object;)V
-
-    .line 473
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
-
-    invoke-virtual {v0, v2}, Landroid/view/View;->setVisibility(I)V
-
-    .line 475
-    :cond_1
     return-void
 .end method
 
 .method public directShowOrHideLeftTipImage(Z)V
     .locals 1
 
-    .line 1369
-    if-eqz p1, :cond_0
+    .line 1588
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
-    .line 1370
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+    if-nez v0, :cond_0
 
-    const/16 v0, 0x11
+    .line 1589
+    return-void
 
-    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    .line 1591
+    :cond_0
+    if-eqz p1, :cond_1
 
-    move-result-object v0
+    .line 1592
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateLeftTipImage()V
 
-    invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
-
-    .line 1371
+    .line 1593
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
     const/4 v0, 0x0
@@ -2837,8 +3658,8 @@
 
     goto :goto_0
 
-    .line 1373
-    :cond_0
+    .line 1595
+    :cond_1
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
     const/4 v0, -0x1
@@ -2849,14 +3670,14 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
 
-    .line 1374
+    .line 1596
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
     const/4 v0, 0x4
 
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 1376
+    .line 1598
     :goto_0
     return-void
 .end method
@@ -2864,7 +3685,7 @@
 .method public directlyHideTips()V
     .locals 3
 
-    .line 621
+    .line 671
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipMessage:Landroid/widget/TextView;
 
     invoke-static {v0}, Landroid/support/v4/view/ViewCompat;->animate(Landroid/view/View;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
@@ -2873,14 +3694,14 @@
 
     invoke-virtual {v0}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->cancel()V
 
-    .line 622
+    .line 672
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 623
+    .line 673
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipMessage:Landroid/widget/TextView;
 
     invoke-virtual {v0}, Landroid/widget/TextView;->getVisibility()I
@@ -2889,10 +3710,10 @@
 
     if-eqz v0, :cond_0
 
-    .line 624
+    .line 674
     return-void
 
-    .line 626
+    .line 676
     :cond_0
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipMessage:Landroid/widget/TextView;
 
@@ -2900,7 +3721,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setVisibility(I)V
 
-    .line 628
+    .line 678
     iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLastTipType:I
 
     const/4 v1, 0x6
@@ -2915,25 +3736,25 @@
 
     if-nez v0, :cond_1
 
-    .line 629
+    .line 679
     iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLastTipType:I
 
     iget v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLastTipMessage:I
 
     invoke-virtual {p0, v0, v1, v2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->showTips(III)V
 
-    .line 632
+    .line 682
     :cond_1
     iput v2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLastTipType:I
 
-    .line 633
+    .line 683
     return-void
 .end method
 
 .method public getFragmentInto()I
     .locals 1
 
-    .line 263
+    .line 231
     const/16 v0, 0xff1
 
     return v0
@@ -2942,7 +3763,7 @@
 .method protected getLayoutResourceId()I
     .locals 1
 
-    .line 258
+    .line 226
     const v0, 0x7f04000d
 
     return v0
@@ -2951,14 +3772,14 @@
 .method public hideCenterTipImage()V
     .locals 2
 
-    .line 1342
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
+    .line 1570
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
 
     if-eqz v0, :cond_1
 
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
 
-    invoke-virtual {v0}, Landroid/view/ViewGroup;->getVisibility()I
+    invoke-virtual {v0}, Landroid/widget/ImageView;->getVisibility()I
 
     move-result v0
 
@@ -2968,9 +3789,9 @@
 
     goto :goto_0
 
-    .line 1345
+    .line 1573
     :cond_0
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
 
     const/4 v1, -0x1
 
@@ -2978,12 +3799,12 @@
 
     move-result-object v1
 
-    invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->setTag(Ljava/lang/Object;)V
+    invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
 
-    .line 1346
+    .line 1574
     new-instance v0, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
 
-    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
+    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
 
     invoke-direct {v0, v1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;-><init>(Landroid/view/View;)V
 
@@ -2993,10 +3814,10 @@
 
     invoke-virtual {v0}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
-    .line 1347
+    .line 1575
     return-void
 
-    .line 1343
+    .line 1571
     :cond_1
     :goto_0
     return-void
@@ -3005,7 +3826,7 @@
 .method public hideLeftTipImage()V
     .locals 2
 
-    .line 1324
+    .line 1552
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
     if-eqz v0, :cond_1
@@ -3022,7 +3843,7 @@
 
     goto :goto_0
 
-    .line 1327
+    .line 1555
     :cond_0
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
@@ -3034,7 +3855,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
 
-    .line 1328
+    .line 1556
     new-instance v0, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
 
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
@@ -3047,10 +3868,10 @@
 
     invoke-virtual {v0}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
-    .line 1329
+    .line 1557
     return-void
 
-    .line 1325
+    .line 1553
     :cond_1
     :goto_0
     return-void
@@ -3059,7 +3880,7 @@
 .method public hideQrCodeTip()V
     .locals 2
 
-    .line 731
+    .line 785
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mQrCodeButton:Landroid/widget/TextView;
 
     invoke-virtual {v0}, Landroid/widget/TextView;->getVisibility()I
@@ -3070,20 +3891,74 @@
 
     if-eq v0, v1, :cond_0
 
-    .line 732
+    .line 786
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mQrCodeButton:Landroid/widget/TextView;
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setVisibility(I)V
 
-    .line 734
+    .line 788
     :cond_0
+    return-void
+.end method
+
+.method public hideSpeedTipImage()V
+    .locals 2
+
+    .line 1561
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
+
+    if-eqz v0, :cond_1
+
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
+
+    invoke-virtual {v0}, Landroid/view/ViewGroup;->getVisibility()I
+
+    move-result v0
+
+    const/4 v1, 0x4
+
+    if-ne v0, v1, :cond_0
+
+    goto :goto_0
+
+    .line 1564
+    :cond_0
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
+
+    const/4 v1, -0x1
+
+    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->setTag(Ljava/lang/Object;)V
+
+    .line 1565
+    new-instance v0, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
+
+    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
+
+    invoke-direct {v0, v1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;-><init>(Landroid/view/View;)V
+
+    invoke-static {v0}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
+
+    .line 1566
+    return-void
+
+    .line 1562
+    :cond_1
+    :goto_0
     return-void
 .end method
 
 .method public hideTipImage()V
     .locals 2
 
-    .line 456
+    .line 479
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
     if-eqz v0, :cond_1
@@ -3100,7 +3975,7 @@
 
     goto :goto_0
 
-    .line 459
+    .line 482
     :cond_0
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
@@ -3112,7 +3987,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
 
-    .line 460
+    .line 483
     new-instance v0, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
 
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
@@ -3125,23 +4000,23 @@
 
     invoke-virtual {v0}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
-    .line 462
+    .line 485
     return-void
 
-    .line 457
+    .line 480
     :cond_1
     :goto_0
     return-void
 .end method
 
 .method protected initView(Landroid/view/View;)V
-    .locals 6
+    .locals 3
 
-    .line 143
+    .line 158
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mRootView:Landroid/view/View;
 
-    .line 145
-    const v0, 0x7f0d002f
+    .line 160
+    const v0, 0x7f0d0031
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -3151,23 +4026,14 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
-    .line 146
-    const v0, 0x7f0d0032
-
-    invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
-
-    .line 149
+    .line 163
     invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 150
+    .line 164
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
     invoke-virtual {v0}, Landroid/widget/ImageView;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
@@ -3176,13 +4042,13 @@
 
     check-cast v0, Landroid/widget/FrameLayout$LayoutParams;
 
-    .line 152
+    .line 166
     const v1, 0x800055
 
     iput v1, v0, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
 
-    .line 154
-    const v0, 0x7f0d0030
+    .line 168
+    const v0, 0x7f0d0032
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -3192,7 +4058,7 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
-    .line 155
+    .line 169
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
     invoke-virtual {v0}, Landroid/widget/ImageView;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
@@ -3201,25 +4067,25 @@
 
     check-cast v0, Landroid/widget/FrameLayout$LayoutParams;
 
-    .line 156
-    const v2, 0x800053
+    .line 170
+    const v1, 0x800053
 
-    iput v2, v0, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
+    iput v1, v0, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
 
-    .line 158
+    .line 172
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
-    const v2, 0x7f020119
+    const v1, 0x7f02013c
 
-    invoke-virtual {v0, v2}, Landroid/widget/ImageView;->setImageResource(I)V
+    invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setImageResource(I)V
 
-    .line 159
+    .line 173
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
     invoke-virtual {v0, p0}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 161
-    const v0, 0x7f0d0031
+    .line 176
+    const v0, 0x7f0d0036
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -3227,55 +4093,61 @@
 
     check-cast v0, Landroid/view/ViewGroup;
 
-    iput-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
+    iput-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
 
-    .line 162
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
-
-    invoke-virtual {v0}, Landroid/view/ViewGroup;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
-
-    move-result-object v0
-
-    check-cast v0, Landroid/widget/FrameLayout$LayoutParams;
-
-    .line 163
-    const/16 v2, 0x51
-
-    iput v2, v0, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
-
-    .line 164
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/view/ViewGroup;
+    .line 177
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
 
     invoke-virtual {v0, p0}, Landroid/view/ViewGroup;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 166
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
+    .line 179
+    const v0, 0x7f0d0033
 
-    invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+    invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/widget/ImageView;
+
+    iput-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
+
+    .line 180
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
+
+    invoke-virtual {v0}, Landroid/widget/ImageView;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object v0
 
     check-cast v0, Landroid/widget/FrameLayout$LayoutParams;
 
-    .line 167
+    .line 181
+    const/16 v1, 0x51
+
     iput v1, v0, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
 
-    .line 168
-    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
+    .line 182
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
 
-    move-result-object v1
+    invoke-virtual {v0, p0}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    const v2, 0x7f0900e5
+    .line 184
+    const v0, 0x7f0d0034
 
-    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+    invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
-    move-result v1
+    move-result-object v0
 
-    iput v1, v0, Landroid/widget/FrameLayout$LayoutParams;->rightMargin:I
+    check-cast v0, Landroid/widget/FrameLayout;
 
-    .line 170
-    :cond_0
-    const v0, 0x7f0d0033
+    iput-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntro:Landroid/widget/FrameLayout;
+
+    .line 185
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntro:Landroid/widget/FrameLayout;
+
+    invoke-virtual {v0, p0}, Landroid/widget/FrameLayout;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+
+    .line 186
+    const v0, 0x7f0d0035
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -3283,10 +4155,31 @@
 
     check-cast v0, Landroid/widget/TextView;
 
-    iput-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroText:Landroid/widget/TextView;
+    iput-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroContent:Landroid/widget/TextView;
 
-    .line 171
-    const v0, 0x7f0d0035
+    .line 187
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v0
+
+    const v1, 0x7f0a009e
+
+    invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result v0
+
+    iput v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroRadius:I
+
+    .line 188
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getLeftImageIntroWide()I
+
+    move-result v0
+
+    iput v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftImageIntroWidth:I
+
+    .line 190
+    :cond_0
+    const v0, 0x7f0d0038
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -3296,8 +4189,8 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mQrCodeButton:Landroid/widget/TextView;
 
-    .line 172
-    const v0, 0x7f0d0034
+    .line 191
+    const v0, 0x7f0d0037
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -3307,8 +4200,8 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipMessage:Landroid/widget/TextView;
 
-    .line 173
-    const v0, 0x7f0d0036
+    .line 192
+    const v0, 0x7f0d0039
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -3316,8 +4209,8 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mPortraitSuccessHint:Landroid/view/View;
 
-    .line 174
-    const v0, 0x7f0d0037
+    .line 193
+    const v0, 0x7f0d003a
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -3327,17 +4220,17 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLightingPattern:Landroid/widget/TextView;
 
-    .line 176
+    .line 195
     nop
 
-    .line 177
+    .line 196
     invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object v0
 
     check-cast v0, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    .line 178
+    .line 197
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
@@ -3348,124 +4241,38 @@
 
     iput v1, v0, Landroid/view/ViewGroup$MarginLayoutParams;->bottomMargin:I
 
-    .line 180
+    .line 199
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
     invoke-virtual {v0, p0}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 181
+    .line 200
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mQrCodeButton:Landroid/widget/TextView;
 
     invoke-virtual {v0, p0}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 182
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroButton:Landroid/view/View;
-
-    invoke-virtual {v0, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-
-    .line 183
+    .line 201
     iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
 
     invoke-direct {p0, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->adjustViewBackground(I)V
 
-    .line 184
+    .line 202
     iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
 
-    const/4 v1, 0x0
+    const/4 v1, 0x2
 
     const/4 v2, 0x0
 
-    invoke-virtual {p0, v0, v1, v2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->provideAnimateElement(ILjava/util/List;Z)V
+    invoke-virtual {p0, v0, v2, v1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->provideAnimateElement(ILjava/util/List;I)V
 
-    .line 186
-    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v0
-
-    const v3, 0x7f09009a
-
-    invoke-virtual {v0, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    move-result v0
-
-    iput v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroRadius:I
-
-    .line 187
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroText:Landroid/widget/TextView;
-
-    invoke-virtual {v0, v2, v2}, Landroid/widget/TextView;->measure(II)V
-
-    .line 188
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroText:Landroid/widget/TextView;
-
-    invoke-virtual {v0}, Landroid/widget/TextView;->getMeasuredWidth()I
-
-    move-result v0
-
-    .line 189
-    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v2
-
-    const v3, 0x7f09009b
-
-    invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    move-result v2
-
-    .line 190
-    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v3
-
-    const v4, 0x7f09009c
-
-    invoke-virtual {v3, v4}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    move-result v3
-
-    .line 191
-    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v4
-
-    const v5, 0x7f09009f
-
-    invoke-virtual {v4, v5}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    move-result v4
-
-    .line 192
-    add-int/2addr v0, v2
-
-    add-int/2addr v0, v3
-
-    iget v3, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroRadius:I
-
-    sub-int/2addr v3, v2
-
-    mul-int/lit8 v3, v3, 0x2
-
-    add-int/2addr v0, v3
-
-    add-int/2addr v0, v4
-
-    iput v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBeautyIntroWidth:I
-
-    .line 194
-    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->initBeautyIntroAnimator()V
-
-    .line 195
-    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->resetBeautyIntro()V
-
-    .line 197
+    .line 203
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getContext()Landroid/content/Context;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/camera/ActivityBase;
 
-    .line 198
+    .line 204
     invoke-virtual {v0}, Lcom/android/camera/ActivityBase;->getCameraIntentManager()Lcom/android/camera/CameraIntentManager;
 
     move-result-object v0
@@ -3480,14 +4287,14 @@
 
     if-eqz v0, :cond_1
 
-    .line 199
+    .line 205
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
     invoke-static {v0}, Lcom/android/camera/Util;->startScreenSlideAlphaInAnimation(Landroid/view/View;)V
 
-    .line 201
+    .line 207
     :cond_1
-    const v0, 0x7f0d0038
+    const v0, 0x7f0d003b
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -3497,55 +4304,104 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseIv:Landroid/widget/ImageView;
 
-    .line 202
+    .line 208
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseIv:Landroid/widget/ImageView;
 
     invoke-virtual {p1, p0}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 204
+    .line 210
     invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
 
     move-result p1
 
     if-nez p1, :cond_2
 
-    .line 205
+    .line 211
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseIv:Landroid/widget/ImageView;
 
-    invoke-virtual {p1, v1}, Landroid/widget/ImageView;->setBackground(Landroid/graphics/drawable/Drawable;)V
+    invoke-virtual {p1, v2}, Landroid/widget/ImageView;->setBackground(Landroid/graphics/drawable/Drawable;)V
 
-    .line 207
+    .line 213
     :cond_2
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getResources()Landroid/content/res/Resources;
+
+    move-result-object p1
+
+    const v0, 0x7f0a0039
+
+    invoke-virtual {p1, v0}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
+
+    move-result p1
+
+    iput p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBottomTipHeight:I
+
+    .line 214
     return-void
 .end method
 
 .method public isLightingHintVisible()Z
-    .locals 1
+    .locals 2
 
-    .line 661
+    .line 711
+    nop
+
+    .line 712
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object v0
+
+    const/16 v1, 0xc6
+
+    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$VerticalProtocol;
+
+    .line 713
+    const/4 v1, 0x0
+
+    if-eqz v0, :cond_0
+
+    .line 714
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$VerticalProtocol;->isAnyViewVisible()Z
+
+    move-result v0
+
+    goto :goto_0
+
+    .line 716
+    :cond_0
+    move v0, v1
+
+    :goto_0
+    if-nez v0, :cond_2
+
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLightingPattern:Landroid/widget/TextView;
 
     invoke-virtual {v0}, Landroid/widget/TextView;->getVisibility()I
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_1
 
-    const/4 v0, 0x1
+    goto :goto_1
 
-    goto :goto_0
+    :cond_1
+    goto :goto_2
 
-    :cond_0
-    const/4 v0, 0x0
+    :cond_2
+    :goto_1
+    const/4 v1, 0x1
 
-    :goto_0
-    return v0
+    :goto_2
+    return v1
 .end method
 
 .method public isPortraitHintVisible()Z
     .locals 1
 
-    .line 656
+    .line 706
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mPortraitSuccessHint:Landroid/view/View;
 
     invoke-virtual {v0}, Landroid/view/View;->getVisibility()I
@@ -3568,52 +4424,38 @@
 .method public notifyAfterFrameAvailable(I)V
     .locals 0
 
-    .line 1284
+    .line 1502
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->notifyAfterFrameAvailable(I)V
 
-    .line 1286
-    iget-boolean p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mShowBeautyIntro:Z
-
-    if-eqz p1, :cond_0
-
-    .line 1287
-    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->startBeautyIntroShowAnimation()V
-
-    .line 1289
-    :cond_0
-    const/4 p1, 0x0
-
-    iput-boolean p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mShowBeautyIntro:Z
-
-    .line 1290
+    .line 1503
     return-void
 .end method
 
 .method public notifyDataChanged(II)V
-    .locals 1
+    .locals 2
 
-    .line 1264
+    .line 1481
     invoke-super {p0, p1, p2}, Lcom/android/camera/fragment/BaseFragment;->notifyDataChanged(II)V
 
-    .line 1266
+    .line 1483
     packed-switch p1, :pswitch_data_0
 
     goto :goto_0
 
-    .line 1268
+    .line 1485
     :pswitch_0
     iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
 
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->adjustViewBackground(I)V
 
-    .line 1269
+    .line 1486
     goto :goto_0
 
-    .line 1271
+    .line 1488
     :pswitch_1
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->directlyHideTips()V
 
-    .line 1274
+    .line 1491
     :goto_0
     iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
 
@@ -3623,28 +4465,37 @@
 
     invoke-direct {p0, p1, p2, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateTipImage(IILjava/util/List;)V
 
-    .line 1276
+    .line 1493
     invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
 
     move-result p1
 
     if-eqz p1, :cond_0
 
-    .line 1277
+    .line 1494
+    const/4 p1, 0x1
+
+    iget p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    iget v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    invoke-direct {p0, p1, p2, v1, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateLeftTipImage(IIILjava/util/List;)V
+
+    .line 1495
     iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
 
     iget p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
 
-    invoke-direct {p0, p1, p2, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateLeftTipImage(IILjava/util/List;)V
+    invoke-direct {p0, p1, p2, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateSpeedTipImage(IILjava/util/List;)V
 
-    .line 1278
+    .line 1496
     iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
 
     iget p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
 
     invoke-direct {p0, p1, p2, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateCenterTipImage(IILjava/util/List;)V
 
-    .line 1280
+    .line 1498
     :cond_0
     return-void
 
@@ -3660,7 +4511,7 @@
 .method public onBackEvent(I)Z
     .locals 3
 
-    .line 739
+    .line 793
     const/16 v0, 0x9
 
     const/4 v1, 0x0
@@ -3669,7 +4520,7 @@
 
     goto :goto_0
 
-    .line 741
+    .line 795
     :pswitch_0
     iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentTipType:I
 
@@ -3699,53 +4550,53 @@
 
     if-ne p1, v2, :cond_1
 
-    .line 746
+    .line 800
     :cond_0
     return v1
 
-    .line 750
+    .line 804
     :cond_1
     :pswitch_1
     iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentTipType:I
 
     if-ne p1, v0, :cond_2
 
-    .line 751
+    .line 805
     return v1
 
-    .line 754
+    .line 808
     :cond_2
     :goto_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipMessage:Landroid/widget/TextView;
 
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideTip(Landroid/view/View;)Z
 
-    .line 755
+    .line 809
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mPortraitSuccessHint:Landroid/view/View;
 
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideTip(Landroid/view/View;)Z
 
-    .line 756
+    .line 810
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mQrCodeButton:Landroid/widget/TextView;
 
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideTip(Landroid/view/View;)Z
 
-    .line 757
+    .line 811
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLightingPattern:Landroid/widget/TextView;
 
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideTip(Landroid/view/View;)Z
 
-    .line 758
+    .line 812
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mHandler:Landroid/os/Handler;
 
     const/4 v0, 0x0
 
     invoke-virtual {p1, v0}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 759
+    .line 813
     nop
 
-    .line 766
+    .line 820
     :pswitch_2
     return v1
 
@@ -3760,19 +4611,19 @@
 .end method
 
 .method public onClick(Landroid/view/View;)V
-    .locals 3
+    .locals 2
 
-    .line 283
+    .line 255
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->isEnableClick()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 284
+    .line 256
     return-void
 
-    .line 288
+    .line 260
     :cond_0
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -3786,7 +4637,7 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$CameraAction;
 
-    .line 289
+    .line 261
     if-eqz v0, :cond_1
 
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$CameraAction;->isDoingAction()Z
@@ -3795,10 +4646,10 @@
 
     if-eqz v0, :cond_1
 
-    .line 290
+    .line 262
     return-void
 
-    .line 293
+    .line 265
     :cond_1
     invoke-static {}, Lcom/android/camera/CameraSettings;->isFrontCamera()Z
 
@@ -3818,310 +4669,324 @@
 
     if-eqz v0, :cond_2
 
-    .line 294
+    .line 266
     return-void
 
-    .line 297
+    .line 269
     :cond_2
     invoke-virtual {p1}, Landroid/view/View;->getId()I
 
     move-result v0
 
-    const v1, 0x7f0d0035
-
-    if-eq v0, v1, :cond_6
-
-    const v1, 0x7f0d0038
-
-    if-eq v0, v1, :cond_5
-
-    const/16 v1, 0xa4
-
     packed-switch v0, :pswitch_data_0
 
-    goto/16 :goto_1
-
-    .line 362
     :pswitch_0
-    invoke-virtual {p1}, Landroid/view/View;->getTag()Ljava/lang/Object;
-
-    move-result-object p1
-
-    check-cast p1, Ljava/lang/Integer;
-
-    invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
-
-    move-result p1
-
-    .line 363
-    const/16 v0, 0x21
-
-    if-ne p1, v0, :cond_7
-
-    .line 364
-    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideAllTipImage()V
-
-    .line 365
-    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->showLiveSpeed()V
-
-    goto/16 :goto_1
-
-    .line 349
-    :pswitch_1
-    invoke-virtual {p1}, Landroid/view/View;->getTag()Ljava/lang/Object;
-
-    move-result-object p1
-
-    check-cast p1, Ljava/lang/Integer;
-
-    invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
-
-    move-result p1
-
-    .line 350
-    const/16 v0, 0x11
-
-    if-ne p1, v0, :cond_3
-
-    .line 352
-    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
-
-    move-result-object p1
-
-    invoke-virtual {p1, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
-
-    move-result-object p1
-
-    check-cast p1, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;
-
-    .line 354
-    const/16 v0, 0xc4
-
-    invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->onConfigChanged(I)V
-
-    .line 355
-    goto/16 :goto_1
-
-    :cond_3
-    const/16 v0, 0x12
-
-    if-ne p1, v0, :cond_7
-
-    .line 356
-    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideAllTipImage()V
-
-    .line 357
-    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->showLiveSticker()V
-
-    goto/16 :goto_1
-
-    .line 309
-    :pswitch_2
-    invoke-virtual {p1}, Landroid/view/View;->getTag()Ljava/lang/Object;
-
-    move-result-object p1
-
-    check-cast p1, Ljava/lang/Integer;
-
-    invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
-
-    move-result p1
+    goto/16 :goto_3
 
     .line 310
-    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideAllTipImage()V
-
-    .line 311
-    invoke-static {}, Lcom/android/camera/CameraSettings;->setPopupTipBeautyIntroClicked()V
-
-    .line 313
-    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
-
-    move-result-object v0
-
-    const/16 v2, 0xa0
-
-    .line 314
-    invoke-virtual {v0, v2}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;
-
-    .line 315
-    packed-switch p1, :pswitch_data_1
-
-    goto :goto_0
-
-    .line 321
-    :pswitch_3
-    const-string p1, "counter"
-
-    const-string v0, "beauty_button"
-
-    invoke-static {p1, v0}, Lcom/android/camera/statistic/CameraStat;->recordCountEvent(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 323
-    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
-
-    move-result-object p1
-
-    const/16 v0, 0xa2
-
-    .line 324
-    invoke-virtual {p1, v0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
-
-    move-result-object p1
-
-    check-cast p1, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;
-
-    .line 326
-    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
-
-    move-result-object v0
-
-    .line 327
-    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;
-
-    .line 328
-    if-eqz p1, :cond_4
-
-    invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;->isShowFilterView()Z
-
-    move-result p1
-
-    if-eqz p1, :cond_4
-
-    if-eqz v0, :cond_4
-
-    .line 329
-    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->showOrHideFilter()V
-
-    .line 331
-    :cond_4
-    iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
-
-    invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->showBeauty(I)V
-
-    goto :goto_0
-
-    .line 317
-    :pswitch_4
-    const/4 p1, 0x4
-
-    invoke-interface {v0, p1}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->delegateEvent(I)V
-
-    .line 318
-    nop
-
-    .line 334
-    :goto_0
-    goto :goto_1
-
-    .line 337
-    :cond_5
+    :pswitch_1
     iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseType:I
 
-    packed-switch p1, :pswitch_data_2
+    packed-switch p1, :pswitch_data_1
 
-    .line 345
-    goto :goto_1
+    .line 318
+    goto/16 :goto_3
 
-    .line 342
-    :pswitch_5
+    .line 315
+    :pswitch_2
     invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->closeLight()V
 
-    .line 343
-    goto :goto_1
+    .line 316
+    goto/16 :goto_3
 
-    .line 339
-    :pswitch_6
+    .line 312
+    :pswitch_3
     invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->closeFilter()V
 
-    .line 340
-    goto :goto_1
+    .line 313
+    goto/16 :goto_3
 
-    .line 299
-    :cond_6
+    .line 271
+    :pswitch_4
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideQrCodeTip()V
 
-    .line 300
+    .line 272
     const-string p1, "counter"
 
     const-string v0, "qrcode_detected"
 
     invoke-static {p1, v0}, Lcom/android/camera/statistic/CameraStat;->recordCountEvent(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 302
+    .line 274
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
 
     const/16 v0, 0xc3
 
-    .line 303
+    .line 275
     invoke-virtual {p1, v0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object p1
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$CameraModuleSpecial;
 
-    .line 304
+    .line 276
     invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$CameraModuleSpecial;->showQRCodeResult()V
 
-    .line 305
+    .line 277
+    goto/16 :goto_3
+
+    .line 330
+    :pswitch_5
+    invoke-virtual {p1}, Landroid/view/View;->getTag()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Ljava/lang/Integer;
+
+    invoke-virtual {v0}, Ljava/lang/Integer;->intValue()I
+
+    move-result v0
+
+    .line 331
+    const/16 v1, 0x21
+
+    if-ne v0, v1, :cond_3
+
+    .line 332
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideAllTipImage()V
+
+    .line 333
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->showLiveSpeed()V
+
+    goto :goto_0
+
+    .line 322
+    :pswitch_6
+    const/16 v0, 0x15
+
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    invoke-virtual {p1, v0}, Landroid/view/View;->setTag(Ljava/lang/Object;)V
+
+    .line 323
+    invoke-static {}, Lcom/android/camera/CameraSettings;->setPopupUltraWideIntroClicked()V
+
+    .line 324
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->directHideLeftImageIntro()V
+
+    goto :goto_1
+
+    .line 337
+    :cond_3
+    :goto_0
+    :pswitch_7
+    invoke-virtual {p1}, Landroid/view/View;->getTag()Ljava/lang/Object;
+
+    move-result-object p1
+
+    check-cast p1, Ljava/lang/Integer;
+
+    invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
+
+    move-result p1
+
+    .line 338
+    const/16 v0, 0x12
+
+    if-eq p1, v0, :cond_4
+
+    goto :goto_3
+
+    .line 340
+    :cond_4
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideAllTipImage()V
+
+    .line 341
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->showLiveSticker()V
+
+    goto :goto_3
+
+    .line 326
+    :goto_1
+    :pswitch_8
+    invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->onLeftImageClick(Landroid/view/View;)V
+
+    .line 327
+    goto :goto_3
+
+    .line 280
+    :pswitch_9
+    invoke-virtual {p1}, Landroid/view/View;->getTag()Ljava/lang/Object;
+
+    move-result-object p1
+
+    check-cast p1, Ljava/lang/Integer;
+
+    invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
+
+    move-result p1
+
+    .line 281
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideAllTipImage()V
+
+    .line 282
+    invoke-static {}, Lcom/android/camera/CameraSettings;->setPopupTipBeautyIntroClicked()V
+
+    .line 284
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object v0
+
+    const/16 v1, 0xa0
+
+    .line 285
+    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;
+
+    .line 286
+    packed-switch p1, :pswitch_data_2
+
+    goto :goto_2
+
+    .line 292
+    :pswitch_a
+    const-string p1, "counter"
+
+    const-string v0, "beauty_button"
+
+    invoke-static {p1, v0}, Lcom/android/camera/statistic/CameraStat;->recordCountEvent(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 293
+    iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->showBeauty(I)V
+
+    .line 295
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object p1
+
+    const/16 v0, 0xa2
+
+    .line 296
+    invoke-virtual {p1, v0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;
+
+    .line 298
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object v0
+
+    const/16 v1, 0xa4
+
+    .line 299
+    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;
+
+    .line 300
+    if-eqz p1, :cond_5
+
+    invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;->isShowFilterView()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_5
+
+    if-eqz v0, :cond_5
+
+    .line 301
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->showOrHideFilter()V
+
+    .line 304
+    :cond_5
+    invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideQrCodeTip()V
+
+    goto :goto_2
+
+    .line 288
+    :pswitch_b
+    const/4 p1, 0x4
+
+    invoke-interface {v0, p1}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->delegateEvent(I)V
+
+    .line 289
     nop
 
-    .line 371
-    :cond_7
-    :goto_1
+    .line 307
+    :goto_2
+    nop
+
+    .line 348
+    :goto_3
     return-void
 
+    nop
+
     :pswitch_data_0
-    .packed-switch 0x7f0d002f
-        :pswitch_2
-        :pswitch_1
+    .packed-switch 0x7f0d0031
+        :pswitch_9
+        :pswitch_8
+        :pswitch_7
+        :pswitch_6
         :pswitch_0
-        :pswitch_2
+        :pswitch_5
+        :pswitch_0
+        :pswitch_4
+        :pswitch_0
+        :pswitch_0
+        :pswitch_1
     .end packed-switch
 
     :pswitch_data_1
-    .packed-switch 0x2
-        :pswitch_4
+    .packed-switch 0x1
         :pswitch_3
+        :pswitch_2
     .end packed-switch
 
     :pswitch_data_2
-    .packed-switch 0x1
-        :pswitch_6
-        :pswitch_5
+    .packed-switch 0x2
+        :pswitch_b
+        :pswitch_a
+        :pswitch_a
     .end packed-switch
 .end method
 
-.method public provideAnimateElement(ILjava/util/List;Z)V
+.method public provideAnimateElement(ILjava/util/List;I)V
     .locals 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
             "Ljava/util/List<",
             "Lio/reactivex/Completable;",
-            ">;Z)V"
+            ">;I)V"
         }
     .end annotation
 
-    .line 782
+    .line 836
     const/4 v0, 0x0
 
-    if-nez p3, :cond_0
+    const/4 v1, 0x3
+
+    if-eq p3, v1, :cond_0
 
     iget v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
 
     if-eq v1, p1, :cond_1
 
-    .line 783
+    .line 837
     :cond_0
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseIv:Landroid/widget/ImageView;
 
@@ -4129,44 +4994,47 @@
 
     invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 784
+    .line 838
     iput v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseType:I
 
-    .line 787
+    .line 841
     :cond_1
     iget v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
 
-    .line 788
-    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;Z)V
+    .line 842
+    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;I)V
 
-    .line 790
+    .line 844
     const/4 p3, 0x4
 
     invoke-virtual {p0, p3}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->onBackEvent(I)Z
 
-    .line 793
+    .line 847
     nop
 
-    .line 794
+    .line 848
     invoke-virtual {p0, v0, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateTipBottomMargin(IZ)V
 
-    .line 796
+    .line 850
     invoke-direct {p0, p1, v1, p2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateTipImage(IILjava/util/List;)V
 
-    .line 798
+    .line 852
     invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
 
     move-result p3
 
     if-eqz p3, :cond_2
 
-    .line 799
-    invoke-direct {p0, p1, v1, p2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateLeftTipImage(IILjava/util/List;)V
+    .line 853
+    invoke-direct {p0, v0, p1, v1, p2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateLeftTipImage(IIILjava/util/List;)V
 
-    .line 800
+    .line 854
+    invoke-direct {p0, p1, v1, p2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateSpeedTipImage(IILjava/util/List;)V
+
+    .line 855
     invoke-direct {p0, p1, v1, p2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateCenterTipImage(IILjava/util/List;)V
 
-    .line 805
+    .line 860
     :cond_2
     return-void
 .end method
@@ -4174,12 +5042,12 @@
 .method protected provideEnterAnimation(I)Landroid/view/animation/Animation;
     .locals 2
 
-    .line 1218
+    .line 1423
     const/16 v0, 0xf0
 
     if-eq p1, v0, :cond_1
 
-    .line 1219
+    .line 1424
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getFragmentInto()I
 
     move-result v0
@@ -4188,7 +5056,7 @@
 
     goto :goto_0
 
-    .line 1222
+    .line 1427
     :cond_0
     const/4 p1, 0x1
 
@@ -4206,7 +5074,7 @@
 
     return-object p1
 
-    .line 1220
+    .line 1425
     :cond_1
     :goto_0
     const/4 p1, 0x0
@@ -4215,7 +5083,7 @@
 .end method
 
 .method public provideRotateItem(Ljava/util/List;I)V
-    .locals 0
+    .locals 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -4225,10 +5093,10 @@
         }
     .end annotation
 
-    .line 1227
+    .line 1432
     invoke-super {p0, p1, p2}, Lcom/android/camera/fragment/BaseFragment;->provideRotateItem(Ljava/util/List;I)V
 
-    .line 1228
+    .line 1433
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
     invoke-virtual {p2}, Landroid/widget/ImageView;->getVisibility()I
@@ -4237,20 +5105,20 @@
 
     if-nez p2, :cond_0
 
-    .line 1229
+    .line 1434
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
     invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 1232
+    .line 1437
     :cond_0
     invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
 
     move-result p2
 
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_4
 
-    .line 1233
+    .line 1438
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
     if-eqz p2, :cond_1
@@ -4263,109 +5131,169 @@
 
     if-nez p2, :cond_1
 
-    .line 1234
+    .line 1439
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
     invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 1237
+    .line 1441
     :cond_1
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
+
+    if-eqz p2, :cond_2
+
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
+
+    invoke-virtual {p2}, Landroid/widget/ImageView;->getVisibility()I
+
+    move-result p2
+
+    if-nez p2, :cond_2
+
+    .line 1442
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
+
+    invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 1444
+    :cond_2
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
+
+    if-eqz p2, :cond_3
+
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
+
+    invoke-virtual {p2}, Landroid/view/ViewGroup;->getVisibility()I
+
+    move-result p2
+
+    if-nez p2, :cond_3
+
+    .line 1445
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
+
+    invoke-virtual {p2}, Landroid/view/ViewGroup;->getTag()Ljava/lang/Object;
+
+    move-result-object p2
+
+    check-cast p2, Ljava/lang/Integer;
+
+    invoke-virtual {p2}, Ljava/lang/Integer;->intValue()I
+
+    move-result p2
+
+    .line 1446
+    const/16 v0, 0x21
+
+    if-eq p2, v0, :cond_3
+
+    .line 1447
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mSpeedTipImage:Landroid/view/ViewGroup;
+
+    invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 1450
+    :cond_3
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
+
+    if-eqz p2, :cond_4
+
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
+
+    invoke-virtual {p2}, Landroid/widget/ImageView;->getVisibility()I
+
+    move-result p2
+
+    if-nez p2, :cond_4
+
+    .line 1451
+    iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCenterTipImage:Landroid/widget/ImageView;
+
+    invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 1454
+    :cond_4
     const/4 p1, 0x0
 
     const/4 p2, 0x1
 
     invoke-direct {p0, p1, p2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateLightingPattern(ZZ)V
 
-    .line 1238
+    .line 1455
     return-void
 .end method
 
 .method public reInitTipImage()V
     .locals 3
 
-    .line 489
+    .line 497
     iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
 
     const/4 v1, 0x0
 
-    const/4 v2, 0x0
+    const/4 v2, 0x2
 
-    invoke-virtual {p0, v0, v1, v2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->provideAnimateElement(ILjava/util/List;Z)V
+    invoke-virtual {p0, v0, v1, v2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->provideAnimateElement(ILjava/util/List;I)V
 
-    .line 490
+    .line 498
     return-void
 .end method
 
 .method protected register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 1
 
-    .line 268
+    .line 236
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 269
+    .line 237
     const/16 v0, 0xaf
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 270
+    .line 238
     invoke-virtual {p0, p1, p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->registerBackStack(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;Lcom/android/camera/protocol/ModeProtocol$HandleBackTrace;)V
 
-    .line 271
+    .line 239
+    invoke-static {}, Lcom/android/camera/CameraSettings;->isShowUltraWideIntro()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_0
+
+    .line 240
+    const/4 p1, 0x1
+
+    iput-boolean p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mIsShowLeftImageIntro:Z
+
+    .line 242
+    :cond_0
     return-void
 .end method
 
 .method public selectBeautyTipImage(Z)V
     .locals 1
 
-    .line 1360
+    .line 1579
     if-eqz p1, :cond_0
 
-    .line 1361
+    .line 1580
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
-    const v0, 0x7f0200b1
+    const v0, 0x7f0200c0
 
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setImageResource(I)V
 
     goto :goto_0
 
-    .line 1363
+    .line 1582
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipImage:Landroid/widget/ImageView;
 
-    const v0, 0x7f0200b0
+    const v0, 0x7f0200bf
 
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setImageResource(I)V
 
-    .line 1365
-    :goto_0
-    return-void
-.end method
-
-.method public selectFilterTipImage(Z)V
-    .locals 1
-
-    .line 1351
-    if-eqz p1, :cond_0
-
-    .line 1352
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
-
-    const v0, 0x7f0200e1
-
-    invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setImageResource(I)V
-
-    goto :goto_0
-
-    .line 1354
-    :cond_0
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
-
-    const v0, 0x7f0200e0
-
-    invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setImageResource(I)V
-
-    .line 1356
+    .line 1584
     :goto_0
     return-void
 .end method
@@ -4373,12 +5301,12 @@
 .method public setLightingPattern(Ljava/lang/String;)V
     .locals 2
 
-    .line 666
+    .line 721
     const/4 v0, -0x2
 
     iput v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->stringLightingRes:I
 
-    .line 667
+    .line 722
     invoke-virtual {p1}, Ljava/lang/String;->hashCode()I
 
     move-result v1
@@ -4500,140 +5428,137 @@
 
     goto :goto_2
 
-    .line 690
+    .line 745
     :pswitch_8
-    const p1, 0x7f0b0203
+    const p1, 0x7f09020c
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->stringLightingRes:I
 
     goto :goto_2
 
-    .line 687
+    .line 742
     :pswitch_9
-    const p1, 0x7f0b0204
+    const p1, 0x7f09020d
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->stringLightingRes:I
 
-    .line 688
+    .line 743
     goto :goto_2
 
-    .line 684
+    .line 739
     :pswitch_a
-    const p1, 0x7f0b0205
+    const p1, 0x7f09020e
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->stringLightingRes:I
 
-    .line 685
+    .line 740
     goto :goto_2
 
-    .line 681
+    .line 736
     :pswitch_b
-    const p1, 0x7f0b0202
+    const p1, 0x7f09020b
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->stringLightingRes:I
 
-    .line 682
+    .line 737
     goto :goto_2
 
-    .line 678
+    .line 733
     :pswitch_c
-    const p1, 0x7f0b0201
+    const p1, 0x7f09020a
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->stringLightingRes:I
 
-    .line 679
+    .line 734
     goto :goto_2
 
-    .line 675
+    .line 730
     :pswitch_d
-    const p1, 0x7f0b0200
+    const p1, 0x7f090209
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->stringLightingRes:I
 
-    .line 676
+    .line 731
     goto :goto_2
 
-    .line 672
+    .line 727
     :pswitch_e
-    const p1, 0x7f0b01ff
+    const p1, 0x7f090208
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->stringLightingRes:I
 
-    .line 673
+    .line 728
     goto :goto_2
 
-    .line 669
+    .line 724
     :pswitch_f
     iput v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->stringLightingRes:I
 
-    .line 670
+    .line 725
     nop
 
-    .line 694
+    .line 749
     :goto_2
     iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->stringLightingRes:I
 
     if-ne p1, v0, :cond_1
 
-    .line 695
+    .line 750
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLightingPattern:Landroid/widget/TextView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
     goto :goto_3
 
-    .line 697
+    .line 752
     :cond_1
     const/16 p1, 0xc
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentTipType:I
 
-    .line 698
+    .line 753
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipMessage:Landroid/widget/TextView;
 
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideTip(Landroid/view/View;)Z
 
-    .line 699
+    .line 754
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mPortraitSuccessHint:Landroid/view/View;
 
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideTip(Landroid/view/View;)Z
 
-    .line 700
+    .line 755
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->directHideTipImage()V
 
-    .line 701
-    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideTipBeautyIntro()V
-
-    .line 703
+    .line 757
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLightingPattern:Landroid/widget/TextView;
 
-    invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->reIntTipViewMarginBottom(Landroid/view/View;)V
+    iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBottomTipHeight:I
 
-    .line 704
+    invoke-direct {p0, p1, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->reIntTipViewMarginBottom(Landroid/view/View;I)V
+
+    .line 758
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLightingPattern:Landroid/widget/TextView;
 
     iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->stringLightingRes:I
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(I)V
 
-    .line 705
+    .line 759
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->isLandScape()Z
 
     move-result p1
 
     if-nez p1, :cond_2
 
-    .line 706
+    .line 760
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLightingPattern:Landroid/widget/TextView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 710
+    .line 764
     :cond_2
     :goto_3
     return-void
-
-    nop
 
     :pswitch_data_0
     .packed-switch 0x30
@@ -4661,9 +5586,9 @@
 .end method
 
 .method public setPortraitHintVisible(I)V
-    .locals 1
+    .locals 2
 
-    .line 643
+    .line 693
     if-nez p1, :cond_0
 
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->isLightingHintVisible()Z
@@ -4672,10 +5597,10 @@
 
     if-eqz v0, :cond_0
 
-    .line 644
+    .line 694
     return-void
 
-    .line 646
+    .line 696
     :cond_0
     if-nez p1, :cond_1
 
@@ -4689,57 +5614,66 @@
     :goto_0
     iput v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLastTipType:I
 
-    .line 647
+    .line 697
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->directlyHideTips()V
 
-    .line 648
+    .line 698
     if-nez p1, :cond_2
 
-    .line 649
+    .line 699
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mPortraitSuccessHint:Landroid/view/View;
 
-    invoke-direct {p0, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->reIntTipViewMarginBottom(Landroid/view/View;)V
+    iget v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBottomTipHeight:I
 
-    .line 651
+    invoke-direct {p0, v0, v1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->reIntTipViewMarginBottom(Landroid/view/View;I)V
+
+    .line 701
     :cond_2
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mPortraitSuccessHint:Landroid/view/View;
 
     invoke-virtual {v0, p1}, Landroid/view/View;->setVisibility(I)V
 
-    .line 652
+    .line 702
     return-void
 .end method
 
 .method public showCloseTip(IZ)V
-    .locals 2
+    .locals 3
 
-    .line 1309
-    const/4 v0, 0x0
+    .line 1523
+    invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
 
-    if-eqz p2, :cond_1
-
-    .line 1311
-    iget p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+    move-result v0
 
     const/16 v1, 0xa7
 
+    const/4 v2, 0x0
+
+    if-nez v0, :cond_2
+
+    .line 1524
+    if-eqz p2, :cond_1
+
+    .line 1526
+    iget p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
     if-ne p2, v1, :cond_0
 
-    .line 1312
+    .line 1527
     return-void
 
-    .line 1314
+    .line 1529
     :cond_0
     iput p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseType:I
 
-    .line 1315
+    .line 1530
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseIv:Landroid/widget/ImageView;
 
-    invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setVisibility(I)V
+    invoke-virtual {p1, v2}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    goto :goto_0
+    goto :goto_1
 
-    .line 1317
+    .line 1532
     :cond_1
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseIv:Landroid/widget/ImageView;
 
@@ -4747,72 +5681,158 @@
 
     invoke-virtual {p1, p2}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 1318
-    iput v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseType:I
+    .line 1533
+    iput v2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseType:I
 
-    .line 1320
-    :goto_0
+    goto :goto_1
+
+    .line 1536
+    :cond_2
+    if-eqz p2, :cond_4
+
+    .line 1538
+    iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    if-ne v0, v1, :cond_3
+
+    .line 1539
     return-void
-.end method
 
-.method public showLeftTipImage()V
-    .locals 2
-
-    .line 1333
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
-
-    if-eqz v0, :cond_1
-
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
-
-    invoke-virtual {v0}, Landroid/widget/ImageView;->getVisibility()I
-
-    move-result v0
-
-    const/4 v1, 0x4
-
-    if-ne v0, v1, :cond_0
+    .line 1541
+    :cond_3
+    iput p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseType:I
 
     goto :goto_0
 
-    .line 1336
-    :cond_0
+    .line 1543
+    :cond_4
+    iput v2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseType:I
+
+    .line 1545
+    :goto_0
+    invoke-virtual {p0, p2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->showOrHideCloseImage(Z)V
+
+    .line 1547
+    :goto_1
+    return-void
+.end method
+
+.method public showOrHideCloseImage(Z)V
+    .locals 2
+
+    .line 1602
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
-    const/16 v1, 0x11
+    if-nez v0, :cond_0
 
-    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    .line 1603
+    return-void
 
-    move-result-object v1
+    .line 1605
+    :cond_0
+    const v0, 0x7f020124
 
-    invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
-
-    .line 1337
-    new-instance v0, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
-
+    .line 1606
     iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
 
-    invoke-direct {v0, v1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;-><init>(Landroid/view/View;)V
+    invoke-virtual {v1, v0}, Landroid/widget/ImageView;->setImageResource(I)V
 
-    invoke-static {v0}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
+    .line 1607
+    if-eqz p1, :cond_3
+
+    .line 1608
+    invoke-static {}, Lcom/android/camera/Util;->isAccessible()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_2
+
+    .line 1609
+    iget p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCloseType:I
+
+    const/4 v0, 0x2
+
+    if-eq p1, v0, :cond_1
+
+    goto :goto_0
+
+    .line 1611
+    :cond_1
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+
+    const v0, 0x7f090266
+
+    invoke-virtual {p0, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->getString(I)Ljava/lang/String;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
+    invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setContentDescription(Ljava/lang/CharSequence;)V
 
-    .line 1338
-    return-void
+    .line 1612
+    nop
 
-    .line 1334
-    :cond_1
+    .line 1617
+    :cond_2
     :goto_0
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+
+    const/16 v0, 0x14
+
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
+
+    .line 1618
+    new-instance p1, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
+
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+
+    invoke-direct {p1, v0}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;-><init>(Landroid/view/View;)V
+
+    invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
+
+    goto :goto_1
+
+    .line 1620
+    :cond_3
+    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+
+    const/4 v0, -0x1
+
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
+
+    .line 1621
+    new-instance p1, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
+
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLeftTipImage:Landroid/widget/ImageView;
+
+    invoke-direct {p1, v0}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;-><init>(Landroid/view/View;)V
+
+    invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
+
+    .line 1623
+    :goto_1
     return-void
 .end method
 
 .method public showQrCodeTip()V
     .locals 4
 
-    .line 714
+    .line 768
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mQrCodeButton:Landroid/widget/TextView;
 
     invoke-virtual {v0}, Landroid/widget/TextView;->getVisibility()I
@@ -4821,40 +5841,50 @@
 
     if-eqz v0, :cond_0
 
-    .line 715
+    .line 769
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipMessage:Landroid/widget/TextView;
 
     invoke-direct {p0, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideTip(Landroid/view/View;)Z
 
-    .line 716
+    .line 770
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mQrCodeButton:Landroid/widget/TextView;
 
-    invoke-direct {p0, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->reIntTipViewMarginBottom(Landroid/view/View;)V
+    iget-object v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mQrCodeButton:Landroid/widget/TextView;
 
-    .line 717
+    invoke-virtual {v1}, Landroid/widget/TextView;->getBackground()Landroid/graphics/drawable/Drawable;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Landroid/graphics/drawable/Drawable;->getIntrinsicHeight()I
+
+    move-result v1
+
+    invoke-direct {p0, v0, v1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->reIntTipViewMarginBottom(Landroid/view/View;I)V
+
+    .line 771
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mQrCodeButton:Landroid/widget/TextView;
 
     invoke-static {v0}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 718
+    .line 772
     invoke-static {}, Lcom/android/camera/Util;->isAccessible()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 719
+    .line 773
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mQrCodeButton:Landroid/widget/TextView;
 
-    new-instance v1, Lcom/android/camera/fragment/FragmentBottomPopupTips$5;
+    new-instance v1, Lcom/android/camera/fragment/FragmentBottomPopupTips$4;
 
-    invoke-direct {v1, p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips$5;-><init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;)V
+    invoke-direct {v1, p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips$4;-><init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;)V
 
     const-wide/16 v2, 0x64
 
     invoke-virtual {v0, v1, v2, v3}, Landroid/widget/TextView;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 727
+    .line 781
     :cond_0
     return-void
 .end method
@@ -4866,7 +5896,7 @@
         .end annotation
     .end param
 
-    .line 515
+    .line 523
     const/4 v0, 0x6
 
     if-ne p1, v0, :cond_0
@@ -4877,65 +5907,96 @@
 
     if-eq v0, v1, :cond_0
 
-    .line 516
+    .line 524
     return-void
 
-    .line 519
+    .line 528
     :cond_0
+    const/16 v0, 0xa
+
+    if-ne p1, v0, :cond_1
+
+    .line 529
+    invoke-static {}, Lcom/android/camera/CameraSettings;->getBogusCameraId()I
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    .line 530
+    return-void
+
+    .line 533
+    :cond_1
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->isLightingHintVisible()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_2
 
-    .line 520
+    .line 534
     return-void
 
-    .line 523
-    :cond_1
+    .line 538
+    :cond_2
+    invoke-direct {p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->isPortraitSuccessHintVisible()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    .line 539
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mPortraitSuccessHint:Landroid/view/View;
+
+    invoke-direct {p0, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideTip(Landroid/view/View;)Z
+
+    .line 542
+    :cond_3
     iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentTipType:I
 
     iput v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLastTipType:I
 
-    .line 524
+    .line 543
     iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentTipMessage:I
 
     iput v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mLastTipMessage:I
 
-    .line 526
+    .line 545
     iput p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentTipType:I
 
-    .line 527
+    .line 546
     iput p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentTipMessage:I
 
-    .line 529
+    .line 548
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mQrCodeButton:Landroid/widget/TextView;
 
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->hideTip(Landroid/view/View;)Z
 
-    .line 531
+    .line 549
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipMessage:Landroid/widget/TextView;
 
-    invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->reIntTipViewMarginBottom(Landroid/view/View;)V
+    iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mBottomTipHeight:I
 
-    .line 532
+    invoke-direct {p0, p1, v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->reIntTipViewMarginBottom(Landroid/view/View;I)V
+
+    .line 550
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipMessage:Landroid/widget/TextView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 533
+    .line 551
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipMessage:Landroid/widget/TextView;
 
     invoke-virtual {p1, p2}, Landroid/widget/TextView;->setText(I)V
 
-    .line 534
+    .line 552
     invoke-static {}, Lcom/android/camera/Util;->isAccessible()Z
 
     move-result p1
 
-    if-eqz p1, :cond_2
+    if-eqz p1, :cond_4
 
-    .line 535
+    .line 553
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipMessage:Landroid/widget/TextView;
 
     iget p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentTipMessage:I
@@ -4946,48 +6007,65 @@
 
     invoke-virtual {p1, p2}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
 
-    .line 536
+    .line 554
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mTipMessage:Landroid/widget/TextView;
 
-    new-instance p2, Lcom/android/camera/fragment/FragmentBottomPopupTips$4;
+    new-instance p2, Lcom/android/camera/fragment/FragmentBottomPopupTips$2;
 
-    invoke-direct {p2, p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips$4;-><init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;)V
+    invoke-direct {p2, p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips$2;-><init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;)V
 
     const-wide/16 v0, 0xbb8
 
     invoke-virtual {p1, p2, v0, v1}, Landroid/widget/TextView;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 545
-    :cond_2
+    .line 563
+    :cond_4
     const/4 p1, 0x0
 
-    .line 546
+    .line 564
     packed-switch p3, :pswitch_data_0
 
     goto :goto_0
 
-    .line 554
+    .line 580
     :pswitch_0
+    const/16 p1, 0xbb8
+
+    goto :goto_0
+
+    .line 577
+    :pswitch_1
+    const/16 p1, 0x7d0
+
+    .line 578
+    goto :goto_0
+
+    .line 575
+    :pswitch_2
+    goto :goto_0
+
+    .line 572
+    :pswitch_3
     const/16 p1, 0x3a98
 
-    .line 555
+    .line 573
     goto :goto_0
 
-    .line 551
-    :pswitch_1
+    .line 569
+    :pswitch_4
     const/16 p1, 0x1388
 
-    .line 552
+    .line 570
     goto :goto_0
 
-    .line 548
-    :pswitch_2
+    .line 566
+    :pswitch_5
     const/16 p1, 0x3e8
 
-    .line 549
+    .line 567
     nop
 
-    .line 560
+    .line 584
     :goto_0
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mHandler:Landroid/os/Handler;
 
@@ -4995,10 +6073,10 @@
 
     invoke-virtual {p2, p3}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 561
-    if-lez p1, :cond_3
+    .line 585
+    if-lez p1, :cond_5
 
-    .line 562
+    .line 586
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mHandler:Landroid/os/Handler;
 
     const/4 p3, 0x1
@@ -5007,57 +6085,103 @@
 
     invoke-virtual {p2, p3, v0, v1}, Landroid/os/Handler;->sendEmptyMessageDelayed(IJ)Z
 
-    .line 565
-    :cond_3
+    .line 589
+    :cond_5
     return-void
+
+    nop
 
     :pswitch_data_0
     .packed-switch 0x1
+        :pswitch_5
+        :pswitch_4
+        :pswitch_3
         :pswitch_2
         :pswitch_1
         :pswitch_0
     .end packed-switch
 .end method
 
+.method public showTips(IIII)V
+    .locals 2
+
+    .line 593
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mHandler:Landroid/os/Handler;
+
+    new-instance v1, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;
+
+    invoke-direct {v1, p0, p1, p2, p3}, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;-><init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;III)V
+
+    int-to-long p1, p4
+
+    invoke-virtual {v0, v1, p1, p2}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
+
+    .line 599
+    return-void
+.end method
+
 .method protected unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 2
 
-    .line 275
+    .line 246
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 276
+    .line 247
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 277
+    .line 248
     const/16 v0, 0xaf
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 278
+    .line 249
     invoke-virtual {p0, p1, p0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->unRegisterBackStack(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;Lcom/android/camera/protocol/ModeProtocol$HandleBackTrace;)V
 
-    .line 279
+    .line 250
+    const/4 p1, 0x0
+
+    iput-boolean p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mIsShowLeftImageIntro:Z
+
+    .line 251
+    return-void
+.end method
+
+.method public updateLeftTipImage()V
+    .locals 4
+
+    .line 1627
+    iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    iget v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    const/4 v2, 0x1
+
+    const/4 v3, 0x0
+
+    invoke-direct {p0, v2, v0, v1, v3}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateLeftTipImage(IIILjava/util/List;)V
+
+    .line 1628
     return-void
 .end method
 
 .method public updateTipBottomMargin(IZ)V
     .locals 3
 
-    .line 494
+    .line 502
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mRootView:Landroid/view/View;
 
     invoke-virtual {v0}, Landroid/view/View;->getPaddingTop()I
 
     move-result v0
 
-    .line 495
+    .line 503
     if-ge v0, p1, :cond_0
 
-    .line 496
+    .line 504
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mRootView:Landroid/view/View;
 
     int-to-float v1, p1
@@ -5072,11 +6196,11 @@
 
     invoke-virtual {v0, v2, v1, v2, v2}, Landroid/view/View;->setPadding(IIII)V
 
-    .line 498
+    .line 506
     :cond_0
     if-eqz p2, :cond_2
 
-    .line 499
+    .line 507
     int-to-float p2, p1
 
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mRootView:Landroid/view/View;
@@ -5089,7 +6213,7 @@
 
     if-gez p2, :cond_1
 
-    .line 500
+    .line 508
     new-instance p2, Lcom/android/camera/animation/type/TranslateYOnSubscribe;
 
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mRootView:Landroid/view/View;
@@ -5102,22 +6226,22 @@
 
     invoke-direct {p1}, Landroid/view/animation/OvershootInterpolator;-><init>()V
 
-    .line 501
+    .line 509
     invoke-virtual {p2, p1}, Lcom/android/camera/animation/type/TranslateYOnSubscribe;->setInterpolator(Landroid/view/animation/Interpolator;)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object p1
 
-    .line 500
+    .line 508
     invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object p1
 
-    .line 501
+    .line 509
     invoke-virtual {p1}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
     goto :goto_0
 
-    .line 503
+    .line 511
     :cond_1
     new-instance p2, Lcom/android/camera/animation/type/TranslateYOnSubscribe;
 
@@ -5131,22 +6255,22 @@
 
     invoke-direct {p1}, Lmiui/view/animation/BackEaseOutInterpolator;-><init>()V
 
-    .line 504
+    .line 512
     invoke-virtual {p2, p1}, Lcom/android/camera/animation/type/TranslateYOnSubscribe;->setInterpolator(Landroid/view/animation/Interpolator;)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object p1
 
-    .line 503
+    .line 511
     invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object p1
 
-    .line 504
+    .line 512
     invoke-virtual {p1}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
     goto :goto_0
 
-    .line 507
+    .line 515
     :cond_2
     iget-object p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mRootView:Landroid/view/View;
 
@@ -5154,7 +6278,23 @@
 
     invoke-static {p2, p1}, Lcom/android/camera/animation/type/TranslateYOnSubscribe;->directSetResult(Landroid/view/View;I)V
 
-    .line 509
+    .line 517
     :goto_0
+    return-void
+.end method
+
+.method public updateTipImage()V
+    .locals 3
+
+    .line 1697
+    iget v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    iget v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips;->mCurrentMode:I
+
+    const/4 v2, 0x0
+
+    invoke-direct {p0, v0, v1, v2}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->updateTipImage(IILjava/util/List;)V
+
+    .line 1698
     return-void
 .end method

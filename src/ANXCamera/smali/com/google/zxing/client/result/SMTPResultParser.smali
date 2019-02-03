@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 27
     invoke-direct {p0}, Lcom/google/zxing/client/result/ResultParser;-><init>()V
@@ -16,7 +16,7 @@
 
 # virtual methods
 .method public parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/EmailAddressParsedResult;
-    .locals 7
+    .registers 9
     .param p1, "result"    # Lcom/google/zxing/Result;
 
     .line 31
@@ -32,7 +32,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_16
 
     const-string v1, "SMTP:"
 
@@ -40,7 +40,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_16
 
     .line 33
     const/4 v1, 0x0
@@ -48,7 +48,7 @@
     return-object v1
 
     .line 35
-    :cond_0
+    :cond_16
     const/4 v1, 0x5
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->substring(I)Ljava/lang/String;
@@ -73,7 +73,7 @@
 
     .line 39
     .local v5, "colon":I
-    if-ltz v5, :cond_1
+    if-ltz v5, :cond_40
 
     .line 40
     add-int/lit8 v6, v5, 0x1
@@ -95,7 +95,7 @@
     move-result v5
 
     .line 43
-    if-ltz v5, :cond_1
+    if-ltz v5, :cond_40
 
     .line 44
     add-int/lit8 v4, v5, 0x1
@@ -110,7 +110,7 @@
     move-result-object v2
 
     .line 48
-    :cond_1
+    :cond_40
     new-instance v4, Ljava/lang/StringBuilder;
 
     const-string v6, "mailto:"
@@ -133,7 +133,7 @@
 .end method
 
 .method public bridge synthetic parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ParsedResult;
-    .locals 0
+    .registers 2
 
     .line 1
     invoke-virtual {p0, p1}, Lcom/google/zxing/client/result/SMTPResultParser;->parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/EmailAddressParsedResult;

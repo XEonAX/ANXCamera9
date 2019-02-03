@@ -1,6 +1,6 @@
 .class public final Lmiui/R$color;
 .super Ljava/lang/Object;
-.source "SourceFile"
+.source "R.java"
 
 
 # annotations
@@ -56,99 +56,99 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
-    .line 1195
+    .line 1217
     const v0, 0x10070001
 
     sput v0, Lmiui/R$color;->black:I
 
-    .line 1196
+    .line 1218
     const v0, 0x10070012
 
     sput v0, Lmiui/R$color;->list_text_light_single_choice:I
 
-    .line 1199
+    .line 1221
     const v0, 0x10070003
 
     sput v0, Lmiui/R$color;->normal_text_dark:I
 
-    .line 1202
+    .line 1224
     const v0, 0x10070005
 
     sput v0, Lmiui/R$color;->normal_text_dark_nodisable:I
 
-    .line 1205
+    .line 1227
     const v0, 0x10070004
 
     sput v0, Lmiui/R$color;->normal_text_light:I
 
-    .line 1208
+    .line 1230
     const v0, 0x10070006
 
     sput v0, Lmiui/R$color;->normal_text_light_nodisable:I
 
-    .line 1211
+    .line 1233
     const v0, 0x10070007
 
     sput v0, Lmiui/R$color;->primary_text_dark:I
 
-    .line 1214
+    .line 1236
     const v0, 0x10070009
 
     sput v0, Lmiui/R$color;->primary_text_dark_nodisable:I
 
-    .line 1217
+    .line 1239
     const v0, 0x10070008
 
     sput v0, Lmiui/R$color;->primary_text_light:I
 
-    .line 1220
+    .line 1242
     const v0, 0x1007000a
 
     sput v0, Lmiui/R$color;->primary_text_light_nodisable:I
 
-    .line 1223
+    .line 1245
     const v0, 0x1007000b
 
     sput v0, Lmiui/R$color;->secondary_text_dark:I
 
-    .line 1226
+    .line 1248
     const v0, 0x1007000d
 
     sput v0, Lmiui/R$color;->secondary_text_dark_nodisable:I
 
-    .line 1229
+    .line 1251
     const v0, 0x1007000c
 
     sput v0, Lmiui/R$color;->secondary_text_light:I
 
-    .line 1232
+    .line 1254
     const v0, 0x1007000e
 
     sput v0, Lmiui/R$color;->secondary_text_light_nodisable:I
 
-    .line 1235
+    .line 1257
     const v0, 0x1007000f
 
     sput v0, Lmiui/R$color;->tertiary_text_dark:I
 
-    .line 1238
+    .line 1260
     const v0, 0x10070010
 
     sput v0, Lmiui/R$color;->tertiary_text_light:I
 
-    .line 1241
+    .line 1263
     const v0, 0x10070002
 
     sput v0, Lmiui/R$color;->transparent:I
 
-    .line 1244
+    .line 1266
     const/high16 v0, 0x10070000
 
     sput v0, Lmiui/R$color;->white:I
 
-    .line 1248
+    .line 1270
     const v0, 0x10070011
 
     sput v0, Lmiui/R$color;->word_photo_color:I
@@ -157,9 +157,9 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
-    .line 1192
+    .line 1214
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

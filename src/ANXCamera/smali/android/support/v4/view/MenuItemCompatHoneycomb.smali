@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 25
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getActionView(Landroid/view/MenuItem;)Landroid/view/View;
-    .locals 1
+    .registers 2
     .param p0, "item"    # Landroid/view/MenuItem;
 
     .line 39
@@ -26,7 +26,7 @@
 .end method
 
 .method public static setActionView(Landroid/view/MenuItem;I)Landroid/view/MenuItem;
-    .locals 1
+    .registers 3
     .param p0, "item"    # Landroid/view/MenuItem;
     .param p1, "resId"    # I
 
@@ -39,7 +39,7 @@
 .end method
 
 .method public static setActionView(Landroid/view/MenuItem;Landroid/view/View;)Landroid/view/MenuItem;
-    .locals 1
+    .registers 3
     .param p0, "item"    # Landroid/view/MenuItem;
     .param p1, "view"    # Landroid/view/View;
 
@@ -52,7 +52,7 @@
 .end method
 
 .method public static setShowAsAction(Landroid/view/MenuItem;I)V
-    .locals 0
+    .registers 2
     .param p0, "item"    # Landroid/view/MenuItem;
     .param p1, "actionEnum"    # I
 

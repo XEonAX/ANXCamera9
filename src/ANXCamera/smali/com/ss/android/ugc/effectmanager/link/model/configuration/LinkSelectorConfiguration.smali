@@ -39,43 +39,43 @@
 .method public constructor <init>()V
     .locals 2
 
-    .line 45
+    .line 44
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 47
+    .line 46
     const/16 v0, 0x7d0
 
     iput v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mSpeedTimeOut:I
 
-    .line 48
+    .line 47
     const/4 v0, 0x2
 
     iput v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mRepeatTime:I
 
-    .line 49
+    .line 48
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mEnableLinkSelector:Z
 
-    .line 50
+    .line 49
     const/4 v1, 0x0
 
     iput-object v1, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mContext:Landroid/content/Context;
 
-    .line 51
+    .line 50
     const-string v1, "/ies/speed/"
 
     iput-object v1, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mSpeedApi:Ljava/lang/String;
 
-    .line 52
+    .line 51
     const/4 v1, 0x1
 
     iput-boolean v1, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mIsNetworkChangeMonitor:Z
 
-    .line 53
+    .line 52
     iput-boolean v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mIsLazy:Z
 
-    .line 54
+    .line 53
     return-void
 .end method
 
@@ -84,7 +84,7 @@
 .method public getContext()Landroid/content/Context;
     .locals 1
 
-    .line 81
+    .line 80
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mContext:Landroid/content/Context;
 
     return-object v0
@@ -101,7 +101,7 @@
         }
     .end annotation
 
-    .line 75
+    .line 74
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mOriginHosts:Ljava/util/List;
 
     return-object v0
@@ -110,7 +110,7 @@
 .method public getRepeatTime()I
     .locals 1
 
-    .line 67
+    .line 66
     iget v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mRepeatTime:I
 
     return v0
@@ -119,7 +119,7 @@
 .method public getSpeedApi()Ljava/lang/String;
     .locals 1
 
-    .line 57
+    .line 56
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mSpeedApi:Ljava/lang/String;
 
     return-object v0
@@ -128,7 +128,7 @@
 .method public getSpeedTimeOut()I
     .locals 1
 
-    .line 63
+    .line 62
     iget v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mSpeedTimeOut:I
 
     return v0
@@ -137,7 +137,7 @@
 .method public isEnableLinkSelector()Z
     .locals 1
 
-    .line 71
+    .line 70
     iget-boolean v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mEnableLinkSelector:Z
 
     return v0
@@ -146,7 +146,7 @@
 .method public isLazy()Z
     .locals 1
 
-    .line 85
+    .line 84
     iget-boolean v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mIsLazy:Z
 
     return v0
@@ -155,7 +155,7 @@
 .method public isNetworkChangeMonitor()Z
     .locals 1
 
-    .line 94
+    .line 93
     iget-boolean v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mIsNetworkChangeMonitor:Z
 
     return v0
@@ -164,55 +164,55 @@
 .method public setContext(Landroid/content/Context;)V
     .locals 0
     .param p1    # Landroid/content/Context;
-        .annotation build Lorg/jetbrains/annotations/NotNull;
+        .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
 
-    .line 114
+    .line 113
     invoke-virtual {p1}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
 
     move-result-object p1
 
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mContext:Landroid/content/Context;
 
-    .line 115
+    .line 114
     return-void
 .end method
 
 .method public setLazy(Z)V
     .locals 1
 
-    .line 89
+    .line 88
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mEnableLinkSelector:Z
 
-    .line 90
+    .line 89
     iput-boolean p1, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mIsLazy:Z
 
-    .line 91
+    .line 90
     return-void
 .end method
 
 .method public setNetworkChangeMonitor(Z)V
     .locals 1
 
-    .line 98
+    .line 97
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mEnableLinkSelector:Z
 
-    .line 99
+    .line 98
     iput-boolean p1, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mIsNetworkChangeMonitor:Z
 
-    .line 100
+    .line 99
     return-void
 .end method
 
 .method public setOriginHosts(Ljava/util/List;)V
     .locals 2
     .param p1    # Ljava/util/List;
-        .annotation build Lorg/jetbrains/annotations/NotNull;
+        .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
     .annotation system Ldalvik/annotation/Signature;
@@ -224,7 +224,7 @@
         }
     .end annotation
 
-    .line 123
+    .line 122
     invoke-interface {p1}, Ljava/util/List;->size()I
 
     move-result v0
@@ -241,58 +241,58 @@
     :goto_0
     iput-boolean v1, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mEnableLinkSelector:Z
 
-    .line 124
+    .line 123
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mOriginHosts:Ljava/util/List;
 
-    .line 125
+    .line 124
     return-void
 .end method
 
 .method public setRepeatTime(I)V
     .locals 1
 
-    .line 108
+    .line 107
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mEnableLinkSelector:Z
 
-    .line 109
+    .line 108
     iput p1, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mRepeatTime:I
 
-    .line 110
+    .line 109
     return-void
 .end method
 
 .method public setSpeedApi(Ljava/lang/String;)V
     .locals 1
     .param p1    # Ljava/lang/String;
-        .annotation build Lorg/jetbrains/annotations/NotNull;
+        .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
 
-    .line 118
+    .line 117
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mEnableLinkSelector:Z
 
-    .line 119
+    .line 118
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mSpeedApi:Ljava/lang/String;
 
-    .line 120
+    .line 119
     return-void
 .end method
 
 .method public setSpeedTimeOut(I)V
     .locals 1
 
-    .line 103
+    .line 102
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mEnableLinkSelector:Z
 
-    .line 104
+    .line 103
     iput p1, p0, Lcom/ss/android/ugc/effectmanager/link/model/configuration/LinkSelectorConfiguration;->mSpeedTimeOut:I
 
-    .line 105
+    .line 104
     return-void
 .end method

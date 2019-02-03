@@ -13,6 +13,9 @@ public class EffectConstants {
     public static final int EFFECT_DOWNLOADED = 20;
     public static final int EFFECT_DOWNLOADING = 21;
     public static final int EFFECT_DOWNLOAD_FAILED = 26;
+    public static final int EFFECT_TYPE_COLLECT = 1;
+    public static final int EFFECT_TYPE_NORMAL = 0;
+    public static final int EFFECT_TYPE_SCHEME = 2;
     public static final int FINAL_SPEED_MEASURE = 31;
     public static final String GET = "GET";
     public static final String KEY_EFFECT_CHANNEL = "effectchannel";

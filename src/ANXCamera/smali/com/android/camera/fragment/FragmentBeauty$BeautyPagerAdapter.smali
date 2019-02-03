@@ -41,16 +41,16 @@
         }
     .end annotation
 
-    .line 294
+    .line 308
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentBeauty$BeautyPagerAdapter;->this$0:Lcom/android/camera/fragment/FragmentBeauty;
 
-    .line 295
+    .line 309
     invoke-direct {p0, p2}, Landroid/support/v4/app/FragmentPagerAdapter;-><init>(Landroid/support/v4/app/FragmentManager;)V
 
-    .line 296
+    .line 310
     iput-object p3, p0, Lcom/android/camera/fragment/FragmentBeauty$BeautyPagerAdapter;->mFragmentList:Ljava/util/List;
 
-    .line 297
+    .line 311
     return-void
 .end method
 
@@ -59,7 +59,7 @@
 .method public getCount()I
     .locals 1
 
-    .line 317
+    .line 331
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBeauty$BeautyPagerAdapter;->mFragmentList:Ljava/util/List;
 
     if-nez v0, :cond_0
@@ -82,7 +82,7 @@
 .method public getItem(I)Landroid/support/v4/app/Fragment;
     .locals 3
 
-    .line 301
+    .line 315
     sget-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -99,9 +99,9 @@
 
     move-result-object v1
 
-    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 302
+    .line 316
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBeauty$BeautyPagerAdapter;->mFragmentList:Ljava/util/List;
 
     invoke-interface {v0, p1}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -110,46 +110,46 @@
 
     check-cast p1, Landroid/support/v4/app/Fragment;
 
-    .line 303
+    .line 317
     if-nez p1, :cond_2
 
-    .line 305
-    invoke-static {}, Lcom/mi/config/b;->hp()Z
+    .line 319
+    invoke-static {}, Lcom/mi/config/b;->hG()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 306
+    .line 320
     new-instance p1, Lcom/android/camera/fragment/beauty/LegacyBeautyLevelFragment;
 
     invoke-direct {p1}, Lcom/android/camera/fragment/beauty/LegacyBeautyLevelFragment;-><init>()V
 
     goto :goto_0
 
-    .line 307
+    .line 321
     :cond_0
-    invoke-static {}, Lcom/mi/config/b;->hA()Z
+    invoke-static {}, Lcom/mi/config/b;->hR()Z
 
     move-result v0
 
     if-eqz v0, :cond_1
 
-    .line 308
+    .line 322
     new-instance p1, Lcom/android/camera/fragment/beauty/FrontBeautyLevelFragment;
 
     invoke-direct {p1}, Lcom/android/camera/fragment/beauty/FrontBeautyLevelFragment;-><init>()V
 
-    .line 310
+    .line 324
     :cond_1
     :goto_0
     sget-object v0, Lcom/android/camera/fragment/beauty/BeautyParameters;->TAG:Ljava/lang/String;
 
     const-string v1, "beauty pager get fragment item is null!"
 
-    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 312
+    .line 326
     :cond_2
     return-object p1
 .end method

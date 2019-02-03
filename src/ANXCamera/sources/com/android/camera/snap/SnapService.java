@@ -23,6 +23,8 @@ public class SnapService extends JobService {
     public static final int MAX_DELAY = 5000;
     private static final String TAG = SnapService.class.getSimpleName();
     public static final int mJobId = 1;
+    private static JobScheduler mJobScheduler;
+    private static boolean mScreenOn;
     private final InnerHandler mHandler = new InnerHandler(this);
     private JobParameters mJobParameters;
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -41,7 +43,7 @@ public class SnapService extends JobService {
             this.mService = new WeakReference(snapService);
         }
 
-        /* JADX WARNING: Missing block: B:7:0x0027, code:
+        /* JADX WARNING: Missing block: B:10:0x0031, code:
             return;
      */
         /* Code decompiled incorrectly, please refer to instructions dump. */
@@ -49,7 +51,9 @@ public class SnapService extends JobService {
             SnapService snapService = (SnapService) this.mService.get();
             if (!(message == null || snapService == null || message.what != 101)) {
                 Log.d(SnapService.TAG, "stop service");
-                snapService.jobFinished();
+                if (SnapService.mJobScheduler != null) {
+                    SnapService.mJobScheduler.cancelAll();
+                }
                 snapService.destroy();
                 snapService.stopSelf();
             }
@@ -57,11 +61,15 @@ public class SnapService extends JobService {
     }
 
     public static void startJob(Context context, Bundle bundle) {
-        JobScheduler jobScheduler = (JobScheduler) context.getSystemService("jobscheduler");
-        jobScheduler.cancel(1);
+        mScreenOn = false;
+        mJobScheduler = (JobScheduler) context.getSystemService("jobscheduler");
         Builder builder = new Builder(1, new ComponentName(context, SnapService.class));
         builder.setTransientExtras(bundle).setOverrideDeadline(0);
-        jobScheduler.schedule(builder.build());
+        mJobScheduler.schedule(builder.build());
+    }
+
+    public static void setScreenOn(boolean z) {
+        mScreenOn = z;
     }
 
     private void jobFinished() {
@@ -80,6 +88,9 @@ public class SnapService extends JobService {
         Bundle transientExtras = jobParameters.getTransientExtras();
         Storage.initStorage(this);
         triggerWatchdog();
+        if (mScreenOn) {
+            return false;
+        }
         if (SnapTrigger.getInstance().init(this, this.mHandler)) {
             SnapTrigger.getInstance().handleKeyEvent(transientExtras.getInt(SnapKeyReceiver.KEY_CODE, 0), transientExtras.getInt(SnapKeyReceiver.KEY_ACTION, 0), transientExtras.getLong(SnapKeyReceiver.KEY_EVENT_TIME, 0));
             registerPowerKeyReceiver();

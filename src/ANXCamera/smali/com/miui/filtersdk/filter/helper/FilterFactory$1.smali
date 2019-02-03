@@ -22,7 +22,7 @@
 .method static constructor <clinit>()V
     .locals 3
 
-    .line 103
+    .line 116
     invoke-static {}, Lcom/miui/filtersdk/filter/helper/FilterType;->values()[Lcom/miui/filtersdk/filter/helper/FilterType;
 
     move-result-object v0
@@ -1380,7 +1380,7 @@
     :try_start_40
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->S_FILM:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->B_M_TEA:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1401,7 +1401,7 @@
     :try_start_41
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->S_YEARS:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->B_M_LILT:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1422,7 +1422,7 @@
     :try_start_42
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->S_POLAROID:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->B_M_SEPIA:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1443,7 +1443,7 @@
     :try_start_43
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->S_FOREST:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->B_M_WHITEANDBLACK:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1464,7 +1464,7 @@
     :try_start_44
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->S_WHITEANDBLACK:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->S_FILM:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1485,7 +1485,7 @@
     :try_start_45
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->N_WHITEANDBLACK:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->S_YEARS:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1506,7 +1506,7 @@
     :try_start_46
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->S_BYGONE:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->S_POLAROID:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1527,7 +1527,7 @@
     :try_start_47
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_SUNNY:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->S_FOREST:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1548,7 +1548,7 @@
     :try_start_48
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_PINK:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->S_WHITEANDBLACK:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1569,7 +1569,7 @@
     :try_start_49
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_MEMORY:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->N_WHITEANDBLACK:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1590,7 +1590,7 @@
     :try_start_4a
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_STRONG:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->S_BYGONE:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1611,7 +1611,7 @@
     :try_start_4b
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_WARM:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_SUNNY:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1632,7 +1632,7 @@
     :try_start_4c
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_SWEET:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_PINK:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1653,7 +1653,7 @@
     :try_start_4d
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_PORTRAIT:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_MEMORY:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1674,7 +1674,7 @@
     :try_start_4e
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_RETRO:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_STRONG:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1695,7 +1695,7 @@
     :try_start_4f
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_YOUNG:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_WARM:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1716,7 +1716,7 @@
     :try_start_50
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_ROMANTIC:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_SWEET:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1737,7 +1737,7 @@
     :try_start_51
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
-    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_MONO:Lcom/miui/filtersdk/filter/helper/FilterType;
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_PORTRAIT:Lcom/miui/filtersdk/filter/helper/FilterType;
 
     invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
 
@@ -1755,5 +1755,194 @@
     move-exception v0
 
     :goto_51
+    :try_start_52
+    sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_RETRO:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
+
+    move-result v1
+
+    const/16 v2, 0x53
+
+    aput v2, v0, v1
+    :try_end_52
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_52 .. :try_end_52} :catch_52
+
+    goto :goto_52
+
+    :catch_52
+    move-exception v0
+
+    :goto_52
+    :try_start_53
+    sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_YOUNG:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
+
+    move-result v1
+
+    const/16 v2, 0x54
+
+    aput v2, v0, v1
+    :try_end_53
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_53 .. :try_end_53} :catch_53
+
+    goto :goto_53
+
+    :catch_53
+    move-exception v0
+
+    :goto_53
+    :try_start_54
+    sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_ROMANTIC:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
+
+    move-result v1
+
+    const/16 v2, 0x55
+
+    aput v2, v0, v1
+    :try_end_54
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_54 .. :try_end_54} :catch_54
+
+    goto :goto_54
+
+    :catch_54
+    move-exception v0
+
+    :goto_54
+    :try_start_55
+    sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_MONO:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
+
+    move-result v1
+
+    const/16 v2, 0x56
+
+    aput v2, v0, v1
+    :try_end_55
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_55 .. :try_end_55} :catch_55
+
+    goto :goto_55
+
+    :catch_55
+    move-exception v0
+
+    :goto_55
+    :try_start_56
+    sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_M_DUSK:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
+
+    move-result v1
+
+    const/16 v2, 0x57
+
+    aput v2, v0, v1
+    :try_end_56
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_56 .. :try_end_56} :catch_56
+
+    goto :goto_56
+
+    :catch_56
+    move-exception v0
+
+    :goto_56
+    :try_start_57
+    sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_M_LILT:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
+
+    move-result v1
+
+    const/16 v2, 0x58
+
+    aput v2, v0, v1
+    :try_end_57
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_57 .. :try_end_57} :catch_57
+
+    goto :goto_57
+
+    :catch_57
+    move-exception v0
+
+    :goto_57
+    :try_start_58
+    sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_M_TEA:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
+
+    move-result v1
+
+    const/16 v2, 0x59
+
+    aput v2, v0, v1
+    :try_end_58
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_58 .. :try_end_58} :catch_58
+
+    goto :goto_58
+
+    :catch_58
+    move-exception v0
+
+    :goto_58
+    :try_start_59
+    sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_M_SEPIA:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
+
+    move-result v1
+
+    const/16 v2, 0x5a
+
+    aput v2, v0, v1
+    :try_end_59
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_59 .. :try_end_59} :catch_59
+
+    goto :goto_59
+
+    :catch_59
+    move-exception v0
+
+    :goto_59
+    :try_start_5a
+    sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
+
+    sget-object v1, Lcom/miui/filtersdk/filter/helper/FilterType;->BI_M_WHITEANDBLACK:Lcom/miui/filtersdk/filter/helper/FilterType;
+
+    invoke-virtual {v1}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
+
+    move-result v1
+
+    const/16 v2, 0x5b
+
+    aput v2, v0, v1
+    :try_end_5a
+    .catch Ljava/lang/NoSuchFieldError; {:try_start_5a .. :try_end_5a} :catch_5a
+
+    goto :goto_5a
+
+    :catch_5a
+    move-exception v0
+
+    :goto_5a
     return-void
 .end method

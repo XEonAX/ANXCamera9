@@ -8,18 +8,18 @@ import java.util.WeakHashMap;
 
 /* compiled from: ActivityFragmentLifecycle */
 class a implements h {
-    private boolean lE;
-    private final Set<i> mh = Collections.newSetFromMap(new WeakHashMap());
-    private boolean mi;
+    private boolean lD;
+    private final Set<i> mg = Collections.newSetFromMap(new WeakHashMap());
+    private boolean mh;
 
     a() {
     }
 
     public void a(@NonNull i iVar) {
-        this.mh.add(iVar);
-        if (this.mi) {
+        this.mg.add(iVar);
+        if (this.mh) {
             iVar.onDestroy();
-        } else if (this.lE) {
+        } else if (this.lD) {
             iVar.onStart();
         } else {
             iVar.onStop();
@@ -27,26 +27,26 @@ class a implements h {
     }
 
     public void b(@NonNull i iVar) {
-        this.mh.remove(iVar);
+        this.mg.remove(iVar);
     }
 
     void onStart() {
-        this.lE = true;
-        for (i onStart : k.c(this.mh)) {
+        this.lD = true;
+        for (i onStart : k.c(this.mg)) {
             onStart.onStart();
         }
     }
 
     void onStop() {
-        this.lE = false;
-        for (i onStop : k.c(this.mh)) {
+        this.lD = false;
+        for (i onStop : k.c(this.mg)) {
             onStop.onStop();
         }
     }
 
     void onDestroy() {
-        this.mi = true;
-        for (i onDestroy : k.c(this.mh)) {
+        this.mh = true;
+        for (i onDestroy : k.c(this.mg)) {
             onDestroy.onDestroy();
         }
     }

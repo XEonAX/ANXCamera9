@@ -1,6 +1,8 @@
 package com.android.camera.fragment.top;
 
 import android.animation.LayoutTransition;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -8,6 +10,7 @@ import android.support.v4.view.ViewCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.MeasureSpec;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.DecelerateInterpolator;
@@ -20,16 +23,16 @@ import com.android.camera.Util;
 import com.android.camera.animation.type.AlphaInOnSubscribe;
 import com.android.camera.animation.type.AlphaOutOnSubscribe;
 import com.android.camera.animation.type.TranslateYOnSubscribe;
-import com.android.camera.constant.EyeLightConstant;
 import com.android.camera.data.DataRepository;
-import com.android.camera.data.data.config.ComponentConfigFlash;
-import com.android.camera.data.data.config.ComponentConfigHdr;
+import com.android.camera.effect.FilterInfo;
 import com.android.camera.fragment.BaseFragment;
 import com.android.camera.module.loader.camera2.Camera2DataContainer;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.ConfigChanges;
 import com.android.camera.protocol.ModeProtocol.DualController;
+import com.android.camera.protocol.ModeProtocol.LiveConfigChanges;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
+import com.android.camera.protocol.ModeProtocol.TopAlert;
 import com.android.camera.ui.ToggleSwitch;
 import com.android.camera.ui.ToggleSwitch.OnCheckedChangeListener;
 import com.mi.config.b;
@@ -70,47 +73,43 @@ public class FragmentTopAlert extends BaseFragment {
     private int mDisplayRectTopMargin;
     private LayoutTransition mLayoutTransition;
     private TextView mLiveMusiHintText;
+    private ImageView mLiveMusicClose;
     private LinearLayout mLiveMusicHintLayout;
     private int mSelectorTopMargin;
     private boolean mShow;
-    private String mStateValueText = "";
-    private boolean mStateValueTextFromLighting;
-    private int mTopHintTextResource = 0;
-    public final Runnable mViewHideRunnable = new Runnable() {
+    private Runnable mShowAction = new Runnable() {
         public void run() {
-            if (FragmentTopAlert.this.isAdded() && FragmentTopAlert.this.mAiSceneSwitchHintText.getVisibility() != 8) {
-                FragmentTopAlert.this.mAiSceneSwitchHintText.setVisibility(8);
-                if (!(FragmentTopAlert.this.mAlertImageView.getVisibility() == 0 || FragmentTopAlert.this.mAlertTopHintText.getVisibility() == 0)) {
-                    int access$500;
-                    FragmentTopAlert.this.transViewAnim(FragmentTopAlert.this.mAiSceneSelectView, FragmentTopAlert.this.mAlertAiSceneSwitchHintTopMargin);
-                    FragmentTopAlert fragmentTopAlert = FragmentTopAlert.this;
-                    View access$800 = FragmentTopAlert.this.mAlertStatusValue;
-                    if (FragmentTopAlert.this.mAiSceneSelectView.getVisibility() == 0) {
-                        access$500 = FragmentTopAlert.this.getViewBottom(FragmentTopAlert.this.mAiSceneSelectView);
-                    } else {
-                        access$500 = FragmentTopAlert.this.getStateTextTopMargin(FragmentTopAlert.this.mAlertAiSceneSwitchHintTopMargin, FragmentTopAlert.this.mStateValueTextFromLighting);
-                    }
-                    fragmentTopAlert.transViewAnim(access$800, access$500);
-                }
-            }
-        }
-    };
-    private Runnable showAction = new Runnable() {
-        public void run() {
-            if (FragmentTopAlert.this.mAlertImageView.getVisibility() == 0) {
-                FragmentTopAlert.this.setViewMargin(FragmentTopAlert.this.mAiSceneSelectView, FragmentTopAlert.this.getAlertImageBottom());
-            } else if (FragmentTopAlert.this.mAiSceneSwitchHintText.getVisibility() == 0) {
-                FragmentTopAlert.this.setViewMargin(FragmentTopAlert.this.mAiSceneSelectView, FragmentTopAlert.this.getViewBottom(FragmentTopAlert.this.mAiSceneSwitchHintText));
-            } else if (FragmentTopAlert.this.mAlertTopHintText.getVisibility() == 0) {
-                FragmentTopAlert.this.setViewMargin(FragmentTopAlert.this.mAiSceneSelectView, FragmentTopAlert.this.getViewBottom(FragmentTopAlert.this.mAlertTopHintText));
-            } else {
-                FragmentTopAlert.this.setViewMargin(FragmentTopAlert.this.mAiSceneSelectView, FragmentTopAlert.this.mSelectorTopMargin);
-            }
+            FragmentTopAlert.this.updateAiSceneSelectViewMargin();
             if (FragmentTopAlert.this.mAiSceneSelectView.getVisibility() == 8) {
                 ViewCompat.setAlpha(FragmentTopAlert.this.mAiSceneSelectView, 0.0f);
                 FragmentTopAlert.this.mAiSceneSelectView.setVisibility(0);
                 FragmentTopAlert.this.transViewAnim(FragmentTopAlert.this.mAlertStatusValue, FragmentTopAlert.this.getViewBottom(FragmentTopAlert.this.mAiSceneSelectView));
                 ViewCompat.animate(FragmentTopAlert.this.mAiSceneSelectView).setInterpolator(new CubicEaseOutInterpolator()).alpha(1.0f).setDuration(400).start();
+            }
+        }
+    };
+    private String mStateValueText = "";
+    private boolean mStateValueTextFromLighting;
+    private int mTopHintTextResource = 0;
+    public final Runnable mViewHideRunnable = new Runnable() {
+        public void run() {
+            if (FragmentTopAlert.this.isAdded()) {
+                FragmentTopAlert.this.updateAiSceneSelectViewMargin();
+                if (FragmentTopAlert.this.mAiSceneSwitchHintText.getVisibility() != 8) {
+                    FragmentTopAlert.this.mAiSceneSwitchHintText.setVisibility(8);
+                    if (!(FragmentTopAlert.this.mAlertImageView.getVisibility() == 0 || FragmentTopAlert.this.mAlertTopHintText.getVisibility() == 0)) {
+                        int access$500;
+                        FragmentTopAlert.this.transViewAnim(FragmentTopAlert.this.mAiSceneSelectView, FragmentTopAlert.this.mAlertAiSceneSwitchHintTopMargin);
+                        FragmentTopAlert fragmentTopAlert = FragmentTopAlert.this;
+                        View access$400 = FragmentTopAlert.this.mAlertStatusValue;
+                        if (FragmentTopAlert.this.mAiSceneSelectView.getVisibility() == 0) {
+                            access$500 = FragmentTopAlert.this.getViewBottom(FragmentTopAlert.this.mAiSceneSelectView);
+                        } else {
+                            access$500 = FragmentTopAlert.this.getStateTextTopMargin(FragmentTopAlert.this.mAlertAiSceneSwitchHintTopMargin, FragmentTopAlert.this.mStateValueTextFromLighting);
+                        }
+                        fragmentTopAlert.transViewAnim(access$400, access$500);
+                    }
+                }
             }
         }
     };
@@ -126,6 +125,12 @@ public class FragmentTopAlert extends BaseFragment {
         this.mAlertAiDetectHintTv = (TextView) view.findViewById(R.id.alert_ai_detect_tip);
         this.mLiveMusiHintText = (TextView) view.findViewById(R.id.live_music_title_hint);
         this.mLiveMusicHintLayout = (LinearLayout) view.findViewById(R.id.live_music_hint_layout);
+        this.mLiveMusicClose = (ImageView) this.mLiveMusicHintLayout.findViewById(R.id.live_music_close);
+        this.mLiveMusicClose.setOnClickListener(new OnClickListener() {
+            public void onClick(View view) {
+                FragmentTopAlert.this.showCloseConfirm();
+            }
+        });
         if (Util.isNotchDevice) {
             setViewMargin(this.mAlertRecordingText, Util.sStatusBarHeight);
         }
@@ -137,6 +142,27 @@ public class FragmentTopAlert extends BaseFragment {
             setRecordingTimeState(sPendingRecordingTimeState);
             setPendingRecordingState(0);
         }
+    }
+
+    private void showCloseConfirm() {
+        Builder builder = new Builder(getContext());
+        builder.setMessage(R.string.live_music_close_message);
+        builder.setCancelable(false);
+        builder.setPositiveButton(R.string.live_music_close_sure_message, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                FragmentTopAlert.this.mLiveMusicHintLayout.setVisibility(8);
+                LiveConfigChanges liveConfigChanges = (LiveConfigChanges) ModeCoordinatorImpl.getInstance().getAttachProtocol(201);
+                if (liveConfigChanges != null && !liveConfigChanges.isRecording() && !liveConfigChanges.isRecordingPaused()) {
+                    liveConfigChanges.closeBGM();
+                    ((TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172)).updateConfigItem(245);
+                }
+            }
+        });
+        builder.setNegativeButton(R.string.live_music_close_cancel_message, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.show();
     }
 
     protected int getLayoutResourceId() {
@@ -161,38 +187,9 @@ public class FragmentTopAlert extends BaseFragment {
 
     public void onActivityCreated(@Nullable Bundle bundle) {
         super.onActivityCreated(bundle);
-        updateHdrTip(DataRepository.dataItemConfig().getComponentHdr(), DataRepository.dataItemGlobal().getCurrentMode());
-        updateFlashTip(DataRepository.dataItemConfig().getComponentFlash(), DataRepository.dataItemGlobal().getCurrentMode());
-        updateTopHint();
-    }
-
-    private void updateHdrTip(ComponentConfigHdr componentConfigHdr, int i) {
-        String componentValue = componentConfigHdr.getComponentValue(i);
-        if ("on".equals(componentValue) || "normal".equals(componentValue)) {
-            alertHDR(0, this.mAlertTopMargin, false);
-        } else if (ComponentConfigHdr.HDR_VALUE_LIVE.equals(componentValue)) {
-            alertHDR(0, this.mAlertTopMargin, true);
-        } else {
-            alertHDR(8, this.mAlertTopMargin, false);
-        }
-    }
-
-    private void updateFlashTip(ComponentConfigFlash componentConfigFlash, int i) {
-        String componentValue = componentConfigFlash.getComponentValue(i);
-        if ("1".equals(componentValue) || ComponentConfigFlash.FLASH_VALUE_SCREEN_LIGHT_ON.equals(componentValue)) {
-            alertFlash(0, this.mAlertTopMargin, false);
-        } else if ("2".equals(componentValue)) {
-            alertFlash(0, this.mAlertTopMargin, true);
-        } else {
-            alertFlash(8, this.mAlertTopMargin, false);
-        }
-    }
-
-    private void updateTopHint() {
-        if (EyeLightConstant.OFF.equals(CameraSettings.getEyeLightType())) {
-            alertTopHint(8, 0, this.mAlertTopMargin);
-        } else {
-            alertTopHint(0, R.string.eye_light, this.mAlertTopMargin);
+        TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
+        if (topAlert != null) {
+            topAlert.reInitAlert(false);
         }
     }
 
@@ -200,8 +197,8 @@ public class FragmentTopAlert extends BaseFragment {
         this.mAlertTopMargin = i;
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
         this.mDisplayRectTopMargin = Util.getDisplayRect(getContext()).top;
         clear();
         setShow(true);
@@ -215,31 +212,31 @@ public class FragmentTopAlert extends BaseFragment {
         switch (i) {
             case 1:
                 i = this.mCurrentMode;
-                switch (i) {
-                    case 161:
-                        this.mAlertRecordingText.setText("00:15");
-                        break;
-                    case 162:
-                        this.mAlertRecordingText.setText("00:00");
-                        break;
-                    default:
-                        switch (i) {
-                            case 168:
-                            case 169:
-                            case 170:
-                                break;
-                        }
-                        this.mAlertRecordingText.setText("00:00");
-                        break;
+                if (i != 172) {
+                    switch (i) {
+                        case 161:
+                            this.mAlertRecordingText.setText("00:15");
+                            break;
+                        case 162:
+                            break;
+                        default:
+                            switch (i) {
+                                case 168:
+                                case 169:
+                                case 170:
+                                    break;
+                            }
+                            break;
+                    }
                 }
-                ViewCompat.animate(this.mAlertRecordingText).alpha(1.0f).start();
+                this.mAlertRecordingText.setText("00:00");
+                Completable.create(new AlphaInOnSubscribe(this.mAlertRecordingText)).subscribe();
                 return;
             case 2:
-            case 5:
                 if (this.mBlingAnimation != null) {
                     this.mBlingAnimation.cancel();
                 }
-                ViewCompat.animate(this.mAlertRecordingText).alpha(0.0f).start();
+                Completable.create(new AlphaOutOnSubscribe(this.mAlertRecordingText)).subscribe();
                 return;
             case 3:
                 if (this.mBlingAnimation == null) {
@@ -313,7 +310,7 @@ public class FragmentTopAlert extends BaseFragment {
             }
             if (this.mAlertImageType != i3) {
                 this.mAlertImageType = i3;
-                if (CameraSettings.isFrontCamera() && b.ho()) {
+                if (CameraSettings.isFrontCamera() && b.hF()) {
                     z = false;
                 }
                 this.mAlertImageView.setImageResource(z ? R.drawable.ic_alert_flash_torch : R.drawable.ic_alert_flash);
@@ -326,10 +323,46 @@ public class FragmentTopAlert extends BaseFragment {
             return;
         }
         setAlertImageVisible(i, i2);
+        updateMusicHint();
+    }
+
+    public void alertMusicClose(boolean z) {
+        if (this.mLiveMusicClose == null) {
+            return;
+        }
+        if (z) {
+            this.mLiveMusicClose.setAlpha(1.0f);
+            this.mLiveMusicClose.setClickable(true);
+            return;
+        }
+        this.mLiveMusicClose.setAlpha(0.4f);
+        this.mLiveMusicClose.setClickable(false);
+    }
+
+    public void updateMusicHint() {
+        String[] currentLiveMusic = CameraSettings.getCurrentLiveMusic();
+        int dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.music_hint_top_margin);
+        if (this.mLiveMusicHintLayout.getVisibility() == 0) {
+            alertTopMusicHint(0, this.mLiveMusiHintText.getText().toString(), dimensionPixelSize);
+        } else if (!currentLiveMusic[1].isEmpty() && this.mCurrentMode == 174) {
+            alertTopMusicHint(0, currentLiveMusic[1], dimensionPixelSize);
+        }
+    }
+
+    private void updateAiSceneSelectViewMargin() {
+        if (this.mAlertImageView.getVisibility() == 0) {
+            setViewMargin(this.mAiSceneSelectView, getAlertImageBottom());
+        } else if (this.mAiSceneSwitchHintText.getVisibility() == 0) {
+            setViewMargin(this.mAiSceneSelectView, getViewBottom(this.mAiSceneSwitchHintText));
+        } else if (this.mAlertTopHintText.getVisibility() == 0) {
+            setViewMargin(this.mAiSceneSelectView, getViewBottom(this.mAlertTopHintText));
+        } else {
+            setViewMargin(this.mAiSceneSelectView, this.mSelectorTopMargin);
+        }
     }
 
     public void alertAiSceneSelector(int i, int i2) {
-        alertAiSceneSelector(null, null, i, i2, new OnCheckedChangeListener() {
+        alertAiSceneSelector(getResources().getString(R.string.text_ai_scene_selector_text_on), getResources().getString(R.string.text_ai_scene_selector_text_off), i, i2, i == 0 ? new OnCheckedChangeListener() {
             public void onCheckedChanged(ToggleSwitch toggleSwitch, boolean z) {
                 ConfigChanges configChanges = (ConfigChanges) ModeCoordinatorImpl.getInstance().getAttachProtocol(164);
                 if (z) {
@@ -340,11 +373,11 @@ public class FragmentTopAlert extends BaseFragment {
                     configChanges.onConfigChanged(249);
                 }
             }
-        });
+        } : null);
     }
 
     public void alertMoonSelector(String str, String str2, int i, int i2) {
-        alertAiSceneSelector(str, str2, i, i2, new OnCheckedChangeListener() {
+        alertAiSceneSelector(str, str2, i, i2, i == 0 ? new OnCheckedChangeListener() {
             public void onCheckedChanged(ToggleSwitch toggleSwitch, boolean z) {
                 ConfigChanges configChanges = (ConfigChanges) ModeCoordinatorImpl.getInstance().getAttachProtocol(164);
                 if (z) {
@@ -355,7 +388,7 @@ public class FragmentTopAlert extends BaseFragment {
                     configChanges.onConfigChanged(247);
                 }
             }
-        });
+        } : null);
     }
 
     private void alertAiSceneSelector(String str, String str2, int i, int i2, OnCheckedChangeListener onCheckedChangeListener) {
@@ -365,14 +398,16 @@ public class FragmentTopAlert extends BaseFragment {
         if (i == 0) {
             this.mSelectorTopMargin = i2;
             long currentTimeMillis = HINT_DELAY_TIME - (System.currentTimeMillis() - this.mAlertAiSceneSwitchHintTime);
-            ToggleSwitch toggleSwitch = this.mAiSceneSelectView;
-            Runnable runnable = this.showAction;
-            if (currentTimeMillis < 0) {
-                currentTimeMillis = 0;
+            if (CameraSettings.getShaderEffect() == FilterInfo.FILTER_ID_NONE) {
+                ToggleSwitch toggleSwitch = this.mAiSceneSelectView;
+                Runnable runnable = this.mShowAction;
+                if (currentTimeMillis < 0) {
+                    currentTimeMillis = 0;
+                }
+                toggleSwitch.postDelayed(runnable, currentTimeMillis);
             }
-            toggleSwitch.postDelayed(runnable, currentTimeMillis);
         } else {
-            this.mAiSceneSelectView.removeCallbacks(this.showAction);
+            this.mAiSceneSelectView.removeCallbacks(this.mShowAction);
             if (this.mAiSceneSelectView.getVisibility() == 0) {
                 ViewCompat.setAlpha(this.mAiSceneSelectView, 1.0f);
                 ViewCompat.animate(this.mAiSceneSelectView).setInterpolator(new CubicEaseOutInterpolator()).alpha(0.0f).setDuration(400).start();
@@ -380,21 +415,22 @@ public class FragmentTopAlert extends BaseFragment {
                 transViewAnim(this.mAlertStatusValue, getStateTextTopMargin(i2, this.mStateValueTextFromLighting));
             }
         }
-        this.mAiSceneSelectView.setChecked(false);
         this.mAiSceneSelectView.setOnCheckedChangeListener(onCheckedChangeListener);
+        this.mAiSceneSelectView.setChecked(false);
     }
 
-    public void alertSwitchHint(int i, @StringRes int i2, int i3) {
-        setViewMargin(this.mAiSceneSwitchHintText, i3);
-        this.mAlertAiSceneSwitchHintTopMargin = i3;
+    public void alertSwitchHint(int i, String str, int i2) {
+        setViewMargin(this.mAiSceneSwitchHintText, i2);
+        this.mAlertAiSceneSwitchHintTopMargin = i2;
         this.mAiSceneSwitchHintText.setTag(Integer.valueOf(i));
-        this.mAiSceneSwitchHintText.setText(i2);
-        this.mAiSceneSwitchHintText.setContentDescription(getString(i2));
+        this.mAiSceneSwitchHintText.setText(str);
+        this.mAiSceneSwitchHintText.setContentDescription(str);
         this.mAiSceneSwitchHintText.setVisibility(0);
         if (!(this.mAlertImageView.getVisibility() == 0 || this.mAlertTopHintText.getVisibility() == 0)) {
             transViewAnim(this.mAlertStatusValue, getViewBottom(this.mAiSceneSwitchHintText));
         }
         this.mAlertAiSceneSwitchHintTime = System.currentTimeMillis();
+        updateAiSceneSelectViewMargin();
         this.mAiSceneSwitchHintText.postDelayed(new Runnable() {
             public void run() {
                 if (FragmentTopAlert.this.isAdded()) {
@@ -404,6 +440,10 @@ public class FragmentTopAlert extends BaseFragment {
         }, 300);
         this.mAiSceneSwitchHintText.removeCallbacks(this.mViewHideRunnable);
         this.mAiSceneSwitchHintText.postDelayed(this.mViewHideRunnable, HINT_DELAY_TIME);
+    }
+
+    public void alertSwitchHint(int i, @StringRes int i2, int i3) {
+        alertSwitchHint(i, getString(i2), i3);
     }
 
     public void alertUpdateValue(int i, int i2) {
@@ -429,20 +469,10 @@ public class FragmentTopAlert extends BaseFragment {
         }
     }
 
-    public void alertTopHint(int i, @StringRes int i2, int i3) {
-        if (i2 > 0 && i == 0) {
-            this.mTopHintTextResource = i2;
-        } else if (i == 8) {
-            this.mTopHintTextResource = 0;
-        }
-        if (this.mTopHintTextResource == 0) {
-            i = 8;
-        }
-        this.mAlertTopHintText.setVisibility(i);
-        setViewMargin(this.mAlertTopHintText, i3);
+    private void updateTopHint(int i, String str, int i2) {
         if (i == 0) {
-            this.mAlertTopHintText.setText(this.mTopHintTextResource);
-            this.mAlertTopHintText.setContentDescription(getString(this.mTopHintTextResource));
+            this.mAlertTopHintText.setText(str);
+            this.mAlertTopHintText.setContentDescription(str);
             if (this.mAlertImageView.getVisibility() != 0 && this.mAiSceneSwitchHintText.getVisibility() != 0) {
                 transViewAnim(this.mAiSceneSelectView, getViewBottom(this.mAlertTopHintText));
                 transViewAnim(this.mAlertStatusValue, getViewBottom(this.mAlertTopHintText));
@@ -450,8 +480,34 @@ public class FragmentTopAlert extends BaseFragment {
             }
             return;
         }
-        transViewAnim(this.mAiSceneSelectView, i3);
-        transViewAnim(this.mAlertStatusValue, this.mAiSceneSelectView.getVisibility() == 0 ? getViewBottom(this.mAiSceneSelectView) : getStateTextTopMargin(i3, this.mStateValueTextFromLighting));
+        transViewAnim(this.mAiSceneSelectView, i2);
+        transViewAnim(this.mAlertStatusValue, this.mAiSceneSelectView.getVisibility() == 0 ? getViewBottom(this.mAiSceneSelectView) : getStateTextTopMargin(i2, this.mStateValueTextFromLighting));
+    }
+
+    public void alertTopHint(int i, int i2, String str) {
+        if (TextUtils.isEmpty(str) && i == 0) {
+            i = 8;
+        }
+        this.mAlertTopHintText.setVisibility(i);
+        setViewMargin(this.mAlertTopHintText, i2);
+        updateTopHint(i, str, i2);
+    }
+
+    public void alertTopHint(int i, @StringRes int i2, int i3) {
+        if (i2 > 0 && i == 0) {
+            this.mTopHintTextResource = i2;
+        } else if (i == 8) {
+            this.mTopHintTextResource = 0;
+        }
+        String str = null;
+        if (this.mTopHintTextResource == 0) {
+            i = 8;
+        } else {
+            str = getString(i2);
+        }
+        this.mAlertTopHintText.setVisibility(i);
+        setViewMargin(this.mAlertTopHintText, i3);
+        updateTopHint(i, str, i3);
     }
 
     public void alertLightingTitle(boolean z, int i) {
@@ -534,13 +590,17 @@ public class FragmentTopAlert extends BaseFragment {
         return this.mShow;
     }
 
-    public void clear() {
+    public void clearAlertStatus() {
         this.mStateValueText = "";
         this.mStateValueTextFromLighting = false;
-        this.mAlertImageType = -1;
         if (this.mAlertStatusValue.getVisibility() != 8) {
             this.mAlertStatusValue.setVisibility(8);
         }
+    }
+
+    public void clear() {
+        clearAlertStatus();
+        this.mAlertImageType = -1;
         if (this.mAlertImageView.getVisibility() != 8) {
             this.mAlertImageView.setVisibility(8);
         }
@@ -691,7 +751,9 @@ public class FragmentTopAlert extends BaseFragment {
                     transViewAnim(this.mAlertStatusValue, getViewBottom(this.mAlertAiDetectHintTv));
                 }
                 this.mAlertAiDetectHintTv.removeCallbacks(this.mAlertAiDetectTipHitRunable);
-                this.mAlertAiDetectHintTv.postDelayed(this.mAlertAiDetectTipHitRunable, j);
+                if (j >= 0) {
+                    this.mAlertAiDetectHintTv.postDelayed(this.mAlertAiDetectTipHitRunable, j);
+                }
             } else {
                 this.mAlertAiDetectHintTv.removeCallbacks(this.mAlertAiDetectTipHitRunable);
                 transViewAnim(this.mAiSceneSelectView, i3);

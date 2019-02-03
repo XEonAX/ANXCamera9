@@ -10,9 +10,9 @@ public class MiCameraCompat {
     static final MiCameraCompatBaseImpl IMPL;
 
     static {
-        if (b.fW()) {
+        if (b.gq()) {
             IMPL = new MiCameraCompatQcomImpl();
-        } else if (b.fZ()) {
+        } else if (b.isMTKPlatform()) {
             IMPL = new MiCameraCompatMtkImpl();
         } else {
             IMPL = new MiCameraCompatBaseImpl();
@@ -115,6 +115,14 @@ public class MiCameraCompat {
         IMPL.applyBeautyParameter(builder, beautyValues);
     }
 
+    public static void applyAutoZoomMode(Builder builder, int i) {
+        IMPL.applyAutoZoomMode(builder, i);
+    }
+
+    public static void applyAutoZoomScaleOffset(Builder builder, float f) {
+        IMPL.applyAutoZoomScaleOffset(builder, f);
+    }
+
     public static void applyVideoStreamState(Builder builder, boolean z) {
         IMPL.applyVideoStreamState(builder, z);
     }
@@ -139,8 +147,8 @@ public class MiCameraCompat {
         IMPL.applyDepurpleEnable(builder, z);
     }
 
-    public static void applyASDScene(Builder builder, String str) {
-        IMPL.applyASDScene(builder, str);
+    public static void applyASDScene(Builder builder, int i) {
+        IMPL.applyASDScene(builder, i);
     }
 
     public static void applyAiScenePeriod(Builder builder, int i) {
@@ -213,5 +221,9 @@ public class MiCameraCompat {
 
     public static boolean supportEyeLight(HashSet<String> hashSet) {
         return IMPL.supportEyeLight(hashSet);
+    }
+
+    public static void applyBackwardCaptureHint(Builder builder, byte b) {
+        IMPL.applyBackwardCaptureHint(builder, b);
     }
 }

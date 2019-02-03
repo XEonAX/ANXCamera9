@@ -88,7 +88,7 @@ public class ScreenHint {
             }
             if (z) {
                 boolean contains = dataItemGlobal.contains(CameraSettings.KEY_RECORD_LOCATION);
-                if (b.fO() && !contains && z) {
+                if (b.gi() && !contains && z) {
                     this.mSystemChoiceDialog = RotateDialogController.showSystemChoiceDialog(this.mActivity, this.mActivity.getString(R.string.confirm_location_title), this.mActivity.getString(R.string.confirm_location_message), this.mActivity.getString(R.string.confirm_location_alert), this.mActivity.getString(R.string.start_capture), new Runnable() {
                         public void run() {
                             ScreenHint.this.recordLocation(true);

@@ -224,7 +224,7 @@
 
     if-lt p5, v1, :cond_3
 
-    sget-object p5, Lcom/bumptech/glide/load/DecodeFormat;->cz:Lcom/bumptech/glide/load/DecodeFormat;
+    sget-object p5, Lcom/bumptech/glide/load/DecodeFormat;->cA:Lcom/bumptech/glide/load/DecodeFormat;
 
     if-eq p4, p5, :cond_3
 

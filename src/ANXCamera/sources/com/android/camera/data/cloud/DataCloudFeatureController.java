@@ -2,11 +2,11 @@ package com.android.camera.data.cloud;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.util.Log;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.data.cloud.DataCloud.CloudFeature;
 import com.android.camera.data.data.config.SupportedConfigFactory;
 import com.android.camera.data.data.config.SupportedConfigs;
+import com.android.camera.log.Log;
 import java.util.Collection;
 
 public class DataCloudFeatureController implements CloudFeature {

@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 21
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getPercentRating(Ljava/lang/Object;)F
-    .locals 1
+    .registers 2
     .param p0, "ratingObj"    # Ljava/lang/Object;
 
     .line 63
@@ -30,7 +30,7 @@
 .end method
 
 .method public static getRatingStyle(Ljava/lang/Object;)I
-    .locals 1
+    .registers 2
     .param p0, "ratingObj"    # Ljava/lang/Object;
 
     .line 47
@@ -46,7 +46,7 @@
 .end method
 
 .method public static getStarRating(Ljava/lang/Object;)F
-    .locals 1
+    .registers 2
     .param p0, "ratingObj"    # Ljava/lang/Object;
 
     .line 59
@@ -62,7 +62,7 @@
 .end method
 
 .method public static hasHeart(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 2
     .param p0, "ratingObj"    # Ljava/lang/Object;
 
     .line 51
@@ -78,7 +78,7 @@
 .end method
 
 .method public static isRated(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 2
     .param p0, "ratingObj"    # Ljava/lang/Object;
 
     .line 43
@@ -94,7 +94,7 @@
 .end method
 
 .method public static isThumbUp(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 2
     .param p0, "ratingObj"    # Ljava/lang/Object;
 
     .line 55
@@ -110,7 +110,7 @@
 .end method
 
 .method public static newHeartRating(Z)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "hasHeart"    # Z
 
     .line 27
@@ -122,7 +122,7 @@
 .end method
 
 .method public static newPercentageRating(F)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "percent"    # F
 
     .line 39
@@ -134,7 +134,7 @@
 .end method
 
 .method public static newStarRating(IF)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p0, "starRatingStyle"    # I
     .param p1, "starRating"    # F
 
@@ -147,7 +147,7 @@
 .end method
 
 .method public static newThumbRating(Z)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "thumbIsUp"    # Z
 
     .line 31
@@ -159,7 +159,7 @@
 .end method
 
 .method public static newUnratedRating(I)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "ratingStyle"    # I
 
     .line 23

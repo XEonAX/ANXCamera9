@@ -25,7 +25,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v7/widget/helper/ItemTouchHelper$RecoverAnimation;Landroid/support/v7/widget/helper/ItemTouchHelper;)V
-    .locals 0
+    .registers 3
 
     .line 2265
     iput-object p1, p0, Landroid/support/v7/widget/helper/ItemTouchHelper$RecoverAnimation$1;->this$1:Landroid/support/v7/widget/helper/ItemTouchHelper$RecoverAnimation;
@@ -40,7 +40,7 @@
 
 # virtual methods
 .method public onAnimationUpdate(Landroid/support/v4/animation/ValueAnimatorCompat;)V
-    .locals 2
+    .registers 4
     .param p1, "animation"    # Landroid/support/v4/animation/ValueAnimatorCompat;
 
     .line 2268

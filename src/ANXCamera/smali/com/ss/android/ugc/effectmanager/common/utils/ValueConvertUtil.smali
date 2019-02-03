@@ -17,9 +17,21 @@
     .locals 2
 
     .line 9
+    if-eqz p0, :cond_1
+
+    invoke-virtual {p0}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    goto :goto_1
+
+    .line 12
+    :cond_0
     nop
 
-    .line 11
+    .line 14
     :try_start_0
     invoke-static {p0}, Ljava/lang/Long;->valueOf(Ljava/lang/String;)Ljava/lang/Long;
 
@@ -31,22 +43,27 @@
     :try_end_0
     .catch Ljava/lang/NumberFormatException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 14
+    .line 17
     nop
 
-    .line 15
+    .line 18
     move-wide p1, v0
 
     goto :goto_0
 
-    .line 12
+    .line 15
     :catch_0
     move-exception p0
 
-    .line 13
+    .line 16
     invoke-virtual {p0}, Ljava/lang/NumberFormatException;->printStackTrace()V
 
-    .line 15
+    .line 18
     :goto_0
+    return-wide p1
+
+    .line 10
+    :cond_1
+    :goto_1
     return-wide p1
 .end method

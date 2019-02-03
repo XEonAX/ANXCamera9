@@ -26,6 +26,7 @@ import com.android.camera.CameraSettings;
 import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
+import com.android.camera.data.data.runing.ComponentRunningTiltValue;
 import com.android.camera.effect.EffectController;
 import com.mi.config.b;
 import miui.view.animation.CubicEaseOutInterpolator;
@@ -384,7 +385,7 @@ public class V6EffectCropView extends View implements V6FunctionUI {
 
     private static boolean isCircle() {
         if (CameraSettings.isTiltShiftOn()) {
-            return DataRepository.dataItemRunning().getComponentRunningTiltValue().getComponentValue(160).equals(CameraSettings.getString(R.string.pref_camera_tilt_shift_entryvalue_circle));
+            return DataRepository.dataItemRunning().getComponentRunningTiltValue().getComponentValue(160).equals(ComponentRunningTiltValue.TILT_CIRCLE);
         }
         return false;
     }

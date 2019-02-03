@@ -768,7 +768,7 @@
     if-ne v0, v1, :cond_0
 
     .line 92
-    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cJ:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cK:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     return-object p1
 
@@ -810,12 +810,12 @@
 
     if-lt p1, v0, :cond_1
 
-    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cL:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cM:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     goto :goto_0
 
     :cond_1
-    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cM:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cN:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     :goto_0
     return-object p1
@@ -829,7 +829,7 @@
     if-ne v2, v4, :cond_3
 
     .line 108
-    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cI:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cJ:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     return-object p1
 
@@ -840,7 +840,7 @@
     if-eq v0, v2, :cond_4
 
     .line 114
-    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cP:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cQ:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     return-object p1
 
@@ -876,7 +876,7 @@
     if-eq v0, v2, :cond_5
 
     .line 121
-    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cP:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cQ:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     return-object p1
 
@@ -909,7 +909,7 @@
     if-eq v1, v2, :cond_6
 
     .line 126
-    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cP:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cQ:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     return-object p1
 
@@ -933,12 +933,12 @@
 
     if-eqz p1, :cond_7
 
-    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cN:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cO:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     goto :goto_1
 
     :cond_7
-    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cO:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cP:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     :goto_1
     return-object p1
@@ -961,19 +961,19 @@
 
     if-eqz p1, :cond_9
 
-    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cN:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cO:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     goto :goto_2
 
     :cond_9
-    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cO:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cP:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     :goto_2
     return-object p1
 
     .line 139
     :cond_a
-    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cO:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object p1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cP:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     return-object p1
 .end method

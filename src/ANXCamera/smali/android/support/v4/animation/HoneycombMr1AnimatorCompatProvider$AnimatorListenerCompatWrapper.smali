@@ -25,7 +25,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v4/animation/AnimatorListenerCompat;Landroid/support/v4/animation/ValueAnimatorCompat;)V
-    .locals 0
+    .registers 3
     .param p1, "wrapped"    # Landroid/support/v4/animation/AnimatorListenerCompat;
     .param p2, "valueAnimatorCompat"    # Landroid/support/v4/animation/ValueAnimatorCompat;
 
@@ -45,7 +45,7 @@
 
 # virtual methods
 .method public onAnimationCancel(Landroid/animation/Animator;)V
-    .locals 2
+    .registers 4
     .param p1, "animation"    # Landroid/animation/Animator;
 
     .line 119
@@ -60,7 +60,7 @@
 .end method
 
 .method public onAnimationEnd(Landroid/animation/Animator;)V
-    .locals 2
+    .registers 4
     .param p1, "animation"    # Landroid/animation/Animator;
 
     .line 114
@@ -75,7 +75,7 @@
 .end method
 
 .method public onAnimationRepeat(Landroid/animation/Animator;)V
-    .locals 2
+    .registers 4
     .param p1, "animation"    # Landroid/animation/Animator;
 
     .line 124
@@ -90,7 +90,7 @@
 .end method
 
 .method public onAnimationStart(Landroid/animation/Animator;)V
-    .locals 2
+    .registers 4
     .param p1, "animation"    # Landroid/animation/Animator;
 
     .line 109

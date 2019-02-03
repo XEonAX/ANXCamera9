@@ -16,7 +16,7 @@
 
 # direct methods
 .method protected constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 469
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public build(Landroid/support/v4/app/NotificationCompat$Builder;Landroid/support/v4/app/NotificationBuilderWithBuilderAccessor;)Landroid/app/Notification;
-    .locals 1
+    .registers 4
     .param p1, "b"    # Landroid/support/v4/app/NotificationCompat$Builder;
     .param p2, "builder"    # Landroid/support/v4/app/NotificationBuilderWithBuilderAccessor;
 

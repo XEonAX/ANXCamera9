@@ -25,14 +25,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 506
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x10
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_e
 
     .line 507
     new-instance v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordJellyBeanImpl;
@@ -41,15 +41,15 @@
 
     sput-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
 
-    goto :goto_0
+    goto :goto_31
 
     .line 508
-    :cond_0
+    :cond_e
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xf
 
-    if-lt v0, v1, :cond_1
+    if-lt v0, v1, :cond_1c
 
     .line 509
     new-instance v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordIcsMr1Impl;
@@ -58,15 +58,15 @@
 
     sput-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
 
-    goto :goto_0
+    goto :goto_31
 
     .line 510
-    :cond_1
+    :cond_1c
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xe
 
-    if-lt v0, v1, :cond_2
+    if-lt v0, v1, :cond_2a
 
     .line 511
     new-instance v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordIcsImpl;
@@ -75,10 +75,10 @@
 
     sput-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
 
-    goto :goto_0
+    goto :goto_31
 
     .line 513
-    :cond_2
+    :cond_2a
     new-instance v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordStubImpl;
 
     invoke-direct {v0}, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordStubImpl;-><init>()V
@@ -86,12 +86,12 @@
     sput-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
 
     .line 515
-    :goto_0
+    :goto_31
     return-void
 .end method
 
 .method public constructor <init>(Ljava/lang/Object;)V
-    .locals 0
+    .registers 2
     .param p1, "record"    # Ljava/lang/Object;
 
     .line 528
@@ -105,7 +105,7 @@
 .end method
 
 .method public static obtain()Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;
-    .locals 2
+    .registers 2
 
     .line 560
     new-instance v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;
@@ -122,7 +122,7 @@
 .end method
 
 .method public static obtain(Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;)Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;
-    .locals 3
+    .registers 4
     .param p0, "record"    # Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;
 
     .line 550
@@ -144,28 +144,28 @@
 
 # virtual methods
 .method public equals(Ljava/lang/Object;)Z
-    .locals 5
+    .registers 7
     .param p1, "obj"    # Ljava/lang/Object;
 
     .line 1025
     const/4 v0, 0x1
 
-    if-ne p0, p1, :cond_0
+    if-ne p0, p1, :cond_4
 
     .line 1026
     return v0
 
     .line 1028
-    :cond_0
+    :cond_4
     const/4 v1, 0x0
 
-    if-nez p1, :cond_1
+    if-nez p1, :cond_8
 
     .line 1029
     return v1
 
     .line 1031
-    :cond_1
+    :cond_8
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v2
@@ -174,13 +174,13 @@
 
     move-result-object v3
 
-    if-eq v2, v3, :cond_2
+    if-eq v2, v3, :cond_13
 
     .line 1032
     return v1
 
     .line 1034
-    :cond_2
+    :cond_13
     move-object v2, p1
 
     check-cast v2, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;
@@ -189,18 +189,18 @@
     .local v2, "other":Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;
     iget-object v3, p0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->mRecord:Ljava/lang/Object;
 
-    if-nez v3, :cond_3
+    if-nez v3, :cond_1f
 
     .line 1036
     iget-object v3, v2, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->mRecord:Ljava/lang/Object;
 
-    if-eqz v3, :cond_4
+    if-eqz v3, :cond_2a
 
     .line 1037
     return v1
 
     .line 1039
-    :cond_3
+    :cond_1f
     iget-object v3, p0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->mRecord:Ljava/lang/Object;
 
     iget-object v4, v2, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->mRecord:Ljava/lang/Object;
@@ -209,18 +209,18 @@
 
     move-result v3
 
-    if-nez v3, :cond_4
+    if-nez v3, :cond_2a
 
     .line 1040
     return v1
 
     .line 1042
-    :cond_4
+    :cond_2a
     return v0
 .end method
 
 .method public getAddedCount()I
-    .locals 2
+    .registers 3
 
     .line 880
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -235,7 +235,7 @@
 .end method
 
 .method public getBeforeText()Ljava/lang/CharSequence;
-    .locals 2
+    .registers 3
 
     .line 950
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -250,7 +250,7 @@
 .end method
 
 .method public getClassName()Ljava/lang/CharSequence;
-    .locals 2
+    .registers 3
 
     .line 920
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -265,7 +265,7 @@
 .end method
 
 .method public getContentDescription()Ljava/lang/CharSequence;
-    .locals 2
+    .registers 3
 
     .line 970
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -280,7 +280,7 @@
 .end method
 
 .method public getCurrentItemIndex()I
-    .locals 2
+    .registers 3
 
     .line 743
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -295,7 +295,7 @@
 .end method
 
 .method public getFromIndex()I
-    .locals 2
+    .registers 3
 
     .line 766
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -310,7 +310,7 @@
 .end method
 
 .method public getImpl()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 539
     iget-object v0, p0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->mRecord:Ljava/lang/Object;
@@ -319,7 +319,7 @@
 .end method
 
 .method public getItemCount()I
-    .locals 2
+    .registers 3
 
     .line 723
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -334,7 +334,7 @@
 .end method
 
 .method public getMaxScrollX()I
-    .locals 2
+    .registers 3
 
     .line 845
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -349,7 +349,7 @@
 .end method
 
 .method public getMaxScrollY()I
-    .locals 2
+    .registers 3
 
     .line 862
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -364,7 +364,7 @@
 .end method
 
 .method public getParcelableData()Landroid/os/Parcelable;
-    .locals 2
+    .registers 3
 
     .line 990
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -379,7 +379,7 @@
 .end method
 
 .method public getRemovedCount()I
-    .locals 2
+    .registers 3
 
     .line 900
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -394,7 +394,7 @@
 .end method
 
 .method public getScrollX()I
-    .locals 2
+    .registers 3
 
     .line 809
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -409,7 +409,7 @@
 .end method
 
 .method public getScrollY()I
-    .locals 2
+    .registers 3
 
     .line 827
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -424,7 +424,7 @@
 .end method
 
 .method public getSource()Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;
-    .locals 2
+    .registers 3
 
     .line 605
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -439,7 +439,7 @@
 .end method
 
 .method public getText()Ljava/util/List;
-    .locals 2
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -462,7 +462,7 @@
 .end method
 
 .method public getToIndex()I
-    .locals 2
+    .registers 3
 
     .line 790
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -477,7 +477,7 @@
 .end method
 
 .method public getWindowId()I
-    .locals 2
+    .registers 3
 
     .line 614
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -492,30 +492,30 @@
 .end method
 
 .method public hashCode()I
-    .locals 1
+    .registers 2
 
     .line 1019
     iget-object v0, p0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->mRecord:Ljava/lang/Object;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_6
 
     const/4 v0, 0x0
 
-    goto :goto_0
+    goto :goto_c
 
-    :cond_0
+    :cond_6
     iget-object v0, p0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->mRecord:Ljava/lang/Object;
 
     invoke-virtual {v0}, Ljava/lang/Object;->hashCode()I
 
     move-result v0
 
-    :goto_0
+    :goto_c
     return v0
 .end method
 
 .method public isChecked()Z
-    .locals 2
+    .registers 3
 
     .line 623
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -530,7 +530,7 @@
 .end method
 
 .method public isEnabled()Z
-    .locals 2
+    .registers 3
 
     .line 643
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -545,7 +545,7 @@
 .end method
 
 .method public isFullScreen()Z
-    .locals 2
+    .registers 3
 
     .line 683
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -560,7 +560,7 @@
 .end method
 
 .method public isPassword()Z
-    .locals 2
+    .registers 3
 
     .line 663
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -575,7 +575,7 @@
 .end method
 
 .method public isScrollable()Z
-    .locals 2
+    .registers 3
 
     .line 703
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -590,7 +590,7 @@
 .end method
 
 .method public recycle()V
-    .locals 2
+    .registers 3
 
     .line 1014
     sget-object v0, Landroid/support/v4/view/accessibility/AccessibilityRecordCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityRecordCompat$AccessibilityRecordImpl;
@@ -604,7 +604,7 @@
 .end method
 
 .method public setAddedCount(I)V
-    .locals 2
+    .registers 4
     .param p1, "addedCount"    # I
 
     .line 891
@@ -619,7 +619,7 @@
 .end method
 
 .method public setBeforeText(Ljava/lang/CharSequence;)V
-    .locals 2
+    .registers 4
     .param p1, "beforeText"    # Ljava/lang/CharSequence;
 
     .line 961
@@ -634,7 +634,7 @@
 .end method
 
 .method public setChecked(Z)V
-    .locals 2
+    .registers 4
     .param p1, "isChecked"    # Z
 
     .line 634
@@ -649,7 +649,7 @@
 .end method
 
 .method public setClassName(Ljava/lang/CharSequence;)V
-    .locals 2
+    .registers 4
     .param p1, "className"    # Ljava/lang/CharSequence;
 
     .line 931
@@ -664,7 +664,7 @@
 .end method
 
 .method public setContentDescription(Ljava/lang/CharSequence;)V
-    .locals 2
+    .registers 4
     .param p1, "contentDescription"    # Ljava/lang/CharSequence;
 
     .line 981
@@ -679,7 +679,7 @@
 .end method
 
 .method public setCurrentItemIndex(I)V
-    .locals 2
+    .registers 4
     .param p1, "currentItemIndex"    # I
 
     .line 754
@@ -694,7 +694,7 @@
 .end method
 
 .method public setEnabled(Z)V
-    .locals 2
+    .registers 4
     .param p1, "isEnabled"    # Z
 
     .line 654
@@ -709,7 +709,7 @@
 .end method
 
 .method public setFromIndex(I)V
-    .locals 2
+    .registers 4
     .param p1, "fromIndex"    # I
 
     .line 780
@@ -724,7 +724,7 @@
 .end method
 
 .method public setFullScreen(Z)V
-    .locals 2
+    .registers 4
     .param p1, "isFullScreen"    # Z
 
     .line 694
@@ -739,7 +739,7 @@
 .end method
 
 .method public setItemCount(I)V
-    .locals 2
+    .registers 4
     .param p1, "itemCount"    # I
 
     .line 734
@@ -754,7 +754,7 @@
 .end method
 
 .method public setMaxScrollX(I)V
-    .locals 2
+    .registers 4
     .param p1, "maxScrollX"    # I
 
     .line 853
@@ -769,7 +769,7 @@
 .end method
 
 .method public setMaxScrollY(I)V
-    .locals 2
+    .registers 4
     .param p1, "maxScrollY"    # I
 
     .line 871
@@ -784,7 +784,7 @@
 .end method
 
 .method public setParcelableData(Landroid/os/Parcelable;)V
-    .locals 2
+    .registers 4
     .param p1, "parcelableData"    # Landroid/os/Parcelable;
 
     .line 1001
@@ -799,7 +799,7 @@
 .end method
 
 .method public setPassword(Z)V
-    .locals 2
+    .registers 4
     .param p1, "isPassword"    # Z
 
     .line 674
@@ -814,7 +814,7 @@
 .end method
 
 .method public setRemovedCount(I)V
-    .locals 2
+    .registers 4
     .param p1, "removedCount"    # I
 
     .line 911
@@ -829,7 +829,7 @@
 .end method
 
 .method public setScrollX(I)V
-    .locals 2
+    .registers 4
     .param p1, "scrollX"    # I
 
     .line 818
@@ -844,7 +844,7 @@
 .end method
 
 .method public setScrollY(I)V
-    .locals 2
+    .registers 4
     .param p1, "scrollY"    # I
 
     .line 836
@@ -859,7 +859,7 @@
 .end method
 
 .method public setScrollable(Z)V
-    .locals 2
+    .registers 4
     .param p1, "scrollable"    # Z
 
     .line 714
@@ -874,7 +874,7 @@
 .end method
 
 .method public setSource(Landroid/view/View;)V
-    .locals 2
+    .registers 4
     .param p1, "source"    # Landroid/view/View;
 
     .line 571
@@ -889,7 +889,7 @@
 .end method
 
 .method public setSource(Landroid/view/View;I)V
-    .locals 2
+    .registers 5
     .param p1, "root"    # Landroid/view/View;
     .param p2, "virtualDescendantId"    # I
 
@@ -905,7 +905,7 @@
 .end method
 
 .method public setToIndex(I)V
-    .locals 2
+    .registers 4
     .param p1, "toIndex"    # I
 
     .line 800

@@ -47,6 +47,9 @@
 .method public abstract performHapticFeedback(I)V
 .end method
 
+.method public abstract setCenterHint(ILjava/lang/String;Ljava/lang/String;I)V
+.end method
+
 .method public abstract setPreviewAspectRatio(F)V
 .end method
 
@@ -54,4 +57,7 @@
 .end method
 
 .method public abstract showReviewViews(Landroid/graphics/Bitmap;)V
+.end method
+
+.method public abstract updateContentDescription()V
 .end method

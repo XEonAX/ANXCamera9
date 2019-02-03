@@ -53,7 +53,7 @@
     .end annotation
 
     .line 27
-    sget-object p1, Lcom/bumptech/glide/request/a/e;->oV:Lcom/bumptech/glide/request/a/e;
+    sget-object p1, Lcom/bumptech/glide/request/a/e;->oU:Lcom/bumptech/glide/request/a/e;
 
     return-object p1
 .end method

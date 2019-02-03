@@ -37,7 +37,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 40
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -55,7 +55,7 @@
 
 # virtual methods
 .method public clearThreadStatsTag()V
-    .locals 2
+    .registers 3
 
     .line 54
     iget-object v0, p0, Landroid/support/v4/net/TrafficStatsCompat$BaseTrafficStatsCompatImpl;->mThreadSocketTags:Ljava/lang/ThreadLocal;
@@ -75,7 +75,7 @@
 .end method
 
 .method public getThreadStatsTag()I
-    .locals 1
+    .registers 2
 
     .line 59
     iget-object v0, p0, Landroid/support/v4/net/TrafficStatsCompat$BaseTrafficStatsCompatImpl;->mThreadSocketTags:Ljava/lang/ThreadLocal;
@@ -92,7 +92,7 @@
 .end method
 
 .method public incrementOperationCount(I)V
-    .locals 0
+    .registers 2
     .param p1, "operationCount"    # I
 
     .line 64
@@ -100,7 +100,7 @@
 .end method
 
 .method public incrementOperationCount(II)V
-    .locals 0
+    .registers 3
     .param p1, "tag"    # I
     .param p2, "operationCount"    # I
 
@@ -109,7 +109,7 @@
 .end method
 
 .method public setThreadStatsTag(I)V
-    .locals 1
+    .registers 3
     .param p1, "tag"    # I
 
     .line 72
@@ -128,7 +128,7 @@
 .end method
 
 .method public tagSocket(Ljava/net/Socket;)V
-    .locals 0
+    .registers 2
     .param p1, "socket"    # Ljava/net/Socket;
 
     .line 77
@@ -136,7 +136,7 @@
 .end method
 
 .method public untagSocket(Ljava/net/Socket;)V
-    .locals 0
+    .registers 2
     .param p1, "socket"    # Ljava/net/Socket;
 
     .line 81

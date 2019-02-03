@@ -1,4 +1,4 @@
-.class public Lcom/android/camera/log/Log;
+.class public final Lcom/android/camera/log/Log;
 .super Ljava/lang/Object;
 .source "Log.java"
 
@@ -16,7 +16,7 @@
 
 .field private static final CAMERA_LOGTAG_PREFIX:Ljava/lang/String; = "CAM_"
 
-.field public static final CONTINUAL:Ljava/lang/String; = "CONTINUAL_"
+.field public static final CONTINUAL:Ljava/lang/String; = "C_"
 
 .field public static final DEBUG:I = 0x3
 
@@ -140,7 +140,7 @@
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v1, "CONTINUAL_"
+    const-string v1, "C_"
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -155,7 +155,7 @@
     move-result-object p0
 
     .line 124
-    const-string v0, "CAM_CONTINUAL_"
+    const-string v0, "CAM_C_"
 
     const/4 v1, 0x2
 

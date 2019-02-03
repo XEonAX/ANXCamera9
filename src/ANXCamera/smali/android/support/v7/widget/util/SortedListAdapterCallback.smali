@@ -21,7 +21,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v7/widget/RecyclerView$Adapter;)V
-    .locals 0
+    .registers 2
     .param p1, "adapter"    # Landroid/support/v7/widget/RecyclerView$Adapter;
 
     .line 36
@@ -38,7 +38,7 @@
 
 # virtual methods
 .method public onChanged(II)V
-    .locals 1
+    .registers 4
     .param p1, "position"    # I
     .param p2, "count"    # I
 
@@ -53,7 +53,7 @@
 .end method
 
 .method public onInserted(II)V
-    .locals 1
+    .registers 4
     .param p1, "position"    # I
     .param p2, "count"    # I
 
@@ -68,7 +68,7 @@
 .end method
 
 .method public onMoved(II)V
-    .locals 1
+    .registers 4
     .param p1, "fromPosition"    # I
     .param p2, "toPosition"    # I
 
@@ -83,7 +83,7 @@
 .end method
 
 .method public onRemoved(II)V
-    .locals 1
+    .registers 4
     .param p1, "position"    # I
     .param p2, "count"    # I
 

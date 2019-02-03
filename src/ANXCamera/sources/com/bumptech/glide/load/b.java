@@ -11,7 +11,7 @@ import java.util.List;
 
 /* compiled from: ImageHeaderParserUtils */
 public final class b {
-    private static final int cR = 5242880;
+    private static final int cS = 5242880;
 
     private b() {
     }
@@ -24,7 +24,7 @@ public final class b {
         if (!inputStream.markSupported()) {
             inputStream = new RecyclableBufferedInputStream(inputStream, bVar);
         }
-        inputStream.mark(cR);
+        inputStream.mark(cS);
         int i = 0;
         int size = list.size();
         while (i < size) {
@@ -66,7 +66,7 @@ public final class b {
         if (!inputStream.markSupported()) {
             inputStream = new RecyclableBufferedInputStream(inputStream, bVar);
         }
-        inputStream.mark(cR);
+        inputStream.mark(cS);
         int i = 0;
         int size = list.size();
         while (i < size) {

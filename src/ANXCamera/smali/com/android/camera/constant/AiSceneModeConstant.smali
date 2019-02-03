@@ -88,6 +88,8 @@
 
 .field public static final AI_SCENE_MODE_TOWER:I = 0x22
 
+.field public static final AI_SCENE_UNKNOWN:I = -0x2
+
 
 # direct methods
 .method public constructor <init>()V

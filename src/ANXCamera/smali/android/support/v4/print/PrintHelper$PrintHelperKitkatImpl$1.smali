@@ -25,7 +25,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/print/PrintHelper$PrintHelperKitkatImpl;Landroid/support/v4/print/PrintHelper$OnPrintFinishCallback;)V
-    .locals 0
+    .registers 3
 
     .line 198
     iput-object p1, p0, Landroid/support/v4/print/PrintHelper$PrintHelperKitkatImpl$1;->this$0:Landroid/support/v4/print/PrintHelper$PrintHelperKitkatImpl;
@@ -40,7 +40,7 @@
 
 # virtual methods
 .method public onFinish()V
-    .locals 1
+    .registers 2
 
     .line 201
     iget-object v0, p0, Landroid/support/v4/print/PrintHelper$PrintHelperKitkatImpl$1;->val$callback:Landroid/support/v4/print/PrintHelper$OnPrintFinishCallback;

@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 78
     invoke-direct {p0}, Landroid/support/v13/app/FragmentCompat$BaseFragmentCompatImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public setMenuVisibility(Landroid/app/Fragment;Z)V
-    .locals 0
+    .registers 3
     .param p1, "f"    # Landroid/app/Fragment;
     .param p2, "visible"    # Z
 

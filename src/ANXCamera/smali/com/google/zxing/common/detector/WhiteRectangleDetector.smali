@@ -27,7 +27,7 @@
 
 # direct methods
 .method public constructor <init>(Lcom/google/zxing/common/BitMatrix;)V
-    .locals 3
+    .registers 5
     .param p1, "image"    # Lcom/google/zxing/common/BitMatrix;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -57,7 +57,7 @@
 .end method
 
 .method public constructor <init>(Lcom/google/zxing/common/BitMatrix;III)V
-    .locals 3
+    .registers 8
     .param p1, "image"    # Lcom/google/zxing/common/BitMatrix;
     .param p2, "initSize"    # I
     .param p3, "x"    # I
@@ -115,29 +115,29 @@
     .line 66
     iget v1, p0, Lcom/google/zxing/common/detector/WhiteRectangleDetector;->upInit:I
 
-    if-ltz v1, :cond_0
+    if-ltz v1, :cond_38
 
     iget v1, p0, Lcom/google/zxing/common/detector/WhiteRectangleDetector;->leftInit:I
 
-    if-ltz v1, :cond_0
+    if-ltz v1, :cond_38
 
     iget v1, p0, Lcom/google/zxing/common/detector/WhiteRectangleDetector;->downInit:I
 
     iget v2, p0, Lcom/google/zxing/common/detector/WhiteRectangleDetector;->height:I
 
-    if-ge v1, v2, :cond_0
+    if-ge v1, v2, :cond_38
 
     iget v1, p0, Lcom/google/zxing/common/detector/WhiteRectangleDetector;->rightInit:I
 
     iget v2, p0, Lcom/google/zxing/common/detector/WhiteRectangleDetector;->width:I
 
-    if-ge v1, v2, :cond_0
+    if-ge v1, v2, :cond_38
 
     .line 69
     return-void
 
     .line 67
-    :cond_0
+    :cond_38
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v1
@@ -146,7 +146,7 @@
 .end method
 
 .method private centerEdges(Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;)[Lcom/google/zxing/ResultPoint;
-    .locals 17
+    .registers 22
     .param p1, "y"    # Lcom/google/zxing/ResultPoint;
     .param p2, "z"    # Lcom/google/zxing/ResultPoint;
     .param p3, "x"    # Lcom/google/zxing/ResultPoint;
@@ -221,7 +221,7 @@
 
     const/high16 v15, 0x3f800000    # 1.0f
 
-    if-gez v9, :cond_0
+    if-gez v9, :cond_62
 
     .line 300
     new-array v9, v14, [Lcom/google/zxing/ResultPoint;
@@ -278,7 +278,7 @@
     return-object v9
 
     .line 306
-    :cond_0
+    :cond_62
     new-array v9, v14, [Lcom/google/zxing/ResultPoint;
 
     .line 307
@@ -334,7 +334,7 @@
 .end method
 
 .method private containsBlackPoint(IIIZ)Z
-    .locals 3
+    .registers 8
     .param p1, "a"    # I
     .param p2, "b"    # I
     .param p3, "fixed"    # I
@@ -343,78 +343,78 @@
     .line 325
     const/4 v0, 0x1
 
-    if-eqz p4, :cond_2
+    if-eqz p4, :cond_13
 
     .line 326
     move v1, p1
 
     .local v1, "x":I
-    :goto_0
-    if-le v1, p2, :cond_0
+    :goto_4
+    if-le v1, p2, :cond_7
 
     .line 331
     .end local v1    # "x":I
-    goto :goto_2
+    goto :goto_16
 
     .line 327
     .restart local v1    # "x":I
-    :cond_0
+    :cond_7
     iget-object v2, p0, Lcom/google/zxing/common/detector/WhiteRectangleDetector;->image:Lcom/google/zxing/common/BitMatrix;
 
     invoke-virtual {v2, v1, p3}, Lcom/google/zxing/common/BitMatrix;->get(II)Z
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_10
 
     .line 328
     return v0
 
     .line 326
-    :cond_1
+    :cond_10
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_4
 
     .line 332
     .end local v1    # "x":I
-    :cond_2
+    :cond_13
     move v1, p1
 
     .local v1, "y":I
-    :goto_1
-    if-le v1, p2, :cond_3
+    :goto_14
+    if-le v1, p2, :cond_18
 
     .line 339
     .end local v1    # "y":I
-    :goto_2
+    :goto_16
     const/4 v0, 0x0
 
     return v0
 
     .line 333
     .restart local v1    # "y":I
-    :cond_3
+    :cond_18
     iget-object v2, p0, Lcom/google/zxing/common/detector/WhiteRectangleDetector;->image:Lcom/google/zxing/common/BitMatrix;
 
     invoke-virtual {v2, p3, v1}, Lcom/google/zxing/common/BitMatrix;->get(II)Z
 
     move-result v2
 
-    if-eqz v2, :cond_4
+    if-eqz v2, :cond_21
 
     .line 334
     return v0
 
     .line 332
-    :cond_4
+    :cond_21
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_1
+    goto :goto_14
 .end method
 
 .method private getBlackPointOnSegment(FFFF)Lcom/google/zxing/ResultPoint;
-    .locals 9
+    .registers 14
     .param p1, "aX"    # F
     .param p2, "aY"    # F
     .param p3, "bX"    # F
@@ -450,8 +450,8 @@
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_0
-    if-lt v3, v0, :cond_0
+    :goto_11
+    if-lt v3, v0, :cond_15
 
     .line 264
     .end local v3    # "i":I
@@ -461,7 +461,7 @@
 
     .line 258
     .restart local v3    # "i":I
-    :cond_0
+    :cond_15
     int-to-float v4, v3
 
     mul-float/2addr v4, v1
@@ -492,7 +492,7 @@
 
     move-result v6
 
-    if-eqz v6, :cond_1
+    if-eqz v6, :cond_33
 
     .line 261
     new-instance v6, Lcom/google/zxing/ResultPoint;
@@ -508,16 +508,16 @@
     .line 257
     .end local v4    # "x":I
     .end local v5    # "y":I
-    :cond_1
+    :cond_33
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_11
 .end method
 
 
 # virtual methods
 .method public detect()[Lcom/google/zxing/ResultPoint;
-    .locals 24
+    .registers 25
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lcom/google/zxing/NotFoundException;
@@ -571,13 +571,13 @@
 
     .line 100
     .local v11, "atLeastOneBlackPointFoundOnTop":Z
-    :goto_0
-    if-nez v6, :cond_0
+    :goto_11
+    if-nez v6, :cond_14
 
-    goto :goto_5
+    goto :goto_4b
 
     .line 102
-    :cond_0
+    :cond_14
     const/4 v6, 0x0
 
     .line 107
@@ -585,99 +585,99 @@
 
     .line 108
     .local v12, "rightBorderNotWhite":Z
-    :goto_1
-    if-nez v12, :cond_1
+    :goto_16
+    if-nez v12, :cond_1a
 
-    if-nez v8, :cond_2
+    if-nez v8, :cond_1e
 
-    :cond_1
+    :cond_1a
+    iget v14, v0, Lcom/google/zxing/common/detector/WhiteRectangleDetector;->width:I
+
+    if-lt v2, v14, :cond_171
+
+    .line 119
+    :cond_1e
     iget v14, v0, Lcom/google/zxing/common/detector/WhiteRectangleDetector;->width:I
 
     if-lt v2, v14, :cond_24
-
-    .line 119
-    :cond_2
-    iget v14, v0, Lcom/google/zxing/common/detector/WhiteRectangleDetector;->width:I
-
-    if-lt v2, v14, :cond_3
 
     .line 120
     const/4 v5, 0x1
 
     .line 121
-    goto :goto_5
+    goto :goto_4b
 
     .line 127
-    :cond_3
+    :cond_24
     const/4 v14, 0x1
 
     .line 128
     .local v14, "bottomBorderNotWhite":Z
-    :goto_2
+    :goto_25
     const/4 v15, 0x1
 
-    if-nez v14, :cond_4
+    if-nez v14, :cond_2a
 
-    if-nez v9, :cond_5
+    if-nez v9, :cond_2e
 
-    :cond_4
+    :cond_2a
     iget v13, v0, Lcom/google/zxing/common/detector/WhiteRectangleDetector;->height:I
 
-    if-lt v4, v13, :cond_21
+    if-lt v4, v13, :cond_15b
 
     .line 139
-    :cond_5
+    :cond_2e
     iget v13, v0, Lcom/google/zxing/common/detector/WhiteRectangleDetector;->height:I
 
-    if-lt v4, v13, :cond_6
+    if-lt v4, v13, :cond_34
 
     .line 140
     const/4 v5, 0x1
 
     .line 141
-    goto :goto_5
+    goto :goto_4b
 
     .line 147
-    :cond_6
+    :cond_34
     const/4 v13, 0x1
 
     .line 148
     .local v13, "leftBorderNotWhite":Z
-    :goto_3
-    if-nez v13, :cond_7
+    :goto_35
+    if-nez v13, :cond_39
 
-    if-nez v10, :cond_8
+    if-nez v10, :cond_3b
 
-    :cond_7
-    if-gez v1, :cond_1e
+    :cond_39
+    if-gez v1, :cond_144
 
     .line 159
-    :cond_8
-    if-gez v1, :cond_9
+    :cond_3b
+    if-gez v1, :cond_3f
 
     .line 160
     const/4 v5, 0x1
 
     .line 161
-    goto :goto_5
+    goto :goto_4b
 
     .line 167
-    :cond_9
+    :cond_3f
     const/16 v16, 0x1
 
     .line 168
     .local v16, "topBorderNotWhite":Z
-    :goto_4
-    if-nez v16, :cond_a
+    :goto_41
+    if-nez v16, :cond_45
 
-    if-nez v11, :cond_b
+    if-nez v11, :cond_47
 
-    :cond_a
-    if-gez v3, :cond_1b
+    :cond_45
+    if-gez v3, :cond_12e
 
     .line 179
-    :cond_b
-    if-gez v3, :cond_19
+    :cond_47
+    if-gez v3, :cond_123
 
     .line 180
     const/4 v5, 0x1
@@ -690,10 +690,10 @@
     .end local v13    # "leftBorderNotWhite":Z
     .end local v14    # "bottomBorderNotWhite":Z
     .end local v16    # "topBorderNotWhite":Z
-    :goto_5
-    if-nez v5, :cond_18
+    :goto_4b
+    if-nez v5, :cond_112
 
-    if-eqz v7, :cond_18
+    if-eqz v7, :cond_112
 
     .line 192
     sub-int v12, v2, v1
@@ -707,8 +707,8 @@
     const/4 v14, 0x1
 
     .local v14, "i":I
-    :goto_6
-    if-lt v14, v12, :cond_c
+    :goto_53
+    if-lt v14, v12, :cond_5c
 
     .line 202
     .end local v14    # "i":I
@@ -718,11 +718,11 @@
 
     move/from16 v19, v7
 
-    goto :goto_7
+    goto :goto_71
 
     .line 196
     .restart local v14    # "i":I
-    :cond_c
+    :cond_5c
     int-to-float v15, v1
 
     move/from16 v17, v5
@@ -752,15 +752,15 @@
     move-result-object v13
 
     .line 197
-    if-eqz v13, :cond_17
+    if-eqz v13, :cond_102
 
     .line 198
     nop
 
     .line 202
     .end local v14    # "i":I
-    :goto_7
-    if-eqz v13, :cond_16
+    :goto_71
+    if-eqz v13, :cond_f7
 
     .line 206
     const/4 v5, 0x0
@@ -770,18 +770,18 @@
     const/4 v6, 0x1
 
     .local v6, "i":I
-    :goto_8
-    if-lt v6, v12, :cond_d
+    :goto_75
+    if-lt v6, v12, :cond_7a
 
     .line 215
     .end local v6    # "i":I
     move/from16 v20, v1
 
-    goto :goto_9
+    goto :goto_8b
 
     .line 209
     .restart local v6    # "i":I
-    :cond_d
+    :cond_7a
     int-to-float v7, v1
 
     add-int v14, v3, v6
@@ -803,15 +803,15 @@
     move-result-object v5
 
     .line 210
-    if-eqz v5, :cond_15
+    if-eqz v5, :cond_ed
 
     .line 211
     nop
 
     .line 215
     .end local v6    # "i":I
-    :goto_9
-    if-eqz v5, :cond_14
+    :goto_8b
+    if-eqz v5, :cond_e4
 
     .line 219
     const/4 v1, 0x0
@@ -821,15 +821,15 @@
     const/4 v6, 0x1
 
     .restart local v6    # "i":I
-    :goto_a
-    if-lt v6, v12, :cond_e
+    :goto_8f
+    if-lt v6, v12, :cond_92
 
     .end local v6    # "i":I
-    goto :goto_b
+    goto :goto_a3
 
     .line 222
     .restart local v6    # "i":I
-    :cond_e
+    :cond_92
     int-to-float v7, v2
 
     add-int v14, v3, v6
@@ -853,15 +853,15 @@
     .line 223
     .end local v21    # "x":Lcom/google/zxing/ResultPoint;
     .restart local v1    # "x":Lcom/google/zxing/ResultPoint;
-    if-eqz v1, :cond_13
+    if-eqz v1, :cond_dd
 
     .line 224
     nop
 
     .line 228
     .end local v6    # "i":I
-    :goto_b
-    if-eqz v1, :cond_12
+    :goto_a3
+    if-eqz v1, :cond_d4
 
     .line 232
     const/4 v6, 0x0
@@ -871,8 +871,8 @@
     const/4 v7, 0x1
 
     .local v7, "i":I
-    :goto_c
-    if-lt v7, v12, :cond_f
+    :goto_a7
+    if-lt v7, v12, :cond_ae
 
     .line 241
     .end local v7    # "i":I
@@ -880,11 +880,11 @@
 
     move/from16 v22, v3
 
-    goto :goto_d
+    goto :goto_c1
 
     .line 235
     .restart local v7    # "i":I
-    :cond_f
+    :cond_ae
     int-to-float v14, v2
 
     sub-int v15, v4, v7
@@ -910,15 +910,15 @@
     move-result-object v6
 
     .line 236
-    if-eqz v6, :cond_11
+    if-eqz v6, :cond_cd
 
     .line 237
     nop
 
     .line 241
     .end local v7    # "i":I
-    :goto_d
-    if-eqz v6, :cond_10
+    :goto_c1
+    if-eqz v6, :cond_c8
 
     .line 245
     invoke-direct {v0, v6, v13, v1, v5}, Lcom/google/zxing/common/detector/WhiteRectangleDetector;->centerEdges(Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;)[Lcom/google/zxing/ResultPoint;
@@ -928,7 +928,7 @@
     return-object v2
 
     .line 242
-    :cond_10
+    :cond_c8
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v2
@@ -937,14 +937,14 @@
 
     .line 234
     .restart local v7    # "i":I
-    :cond_11
+    :cond_cd
     add-int/lit8 v7, v7, 0x1
 
     move/from16 v3, v22
 
     move/from16 v2, v23
 
-    goto :goto_c
+    goto :goto_a7
 
     .line 229
     .end local v6    # "y":Lcom/google/zxing/ResultPoint;
@@ -953,7 +953,7 @@
     .end local v23    # "right":I
     .restart local v2    # "right":I
     .restart local v3    # "up":I
-    :cond_12
+    :cond_d4
     move/from16 v23, v2
 
     move/from16 v22, v3
@@ -974,7 +974,7 @@
     .restart local v2    # "right":I
     .restart local v3    # "up":I
     .local v6, "i":I
-    :cond_13
+    :cond_dd
     move/from16 v23, v2
 
     move/from16 v22, v3
@@ -985,7 +985,7 @@
     .restart local v23    # "right":I
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_a
+    goto :goto_8f
 
     .line 216
     .end local v1    # "x":Lcom/google/zxing/ResultPoint;
@@ -994,7 +994,7 @@
     .end local v23    # "right":I
     .restart local v2    # "right":I
     .restart local v3    # "up":I
-    :cond_14
+    :cond_e4
     move/from16 v23, v2
 
     move/from16 v22, v3
@@ -1015,7 +1015,7 @@
     .restart local v2    # "right":I
     .restart local v3    # "up":I
     .restart local v6    # "i":I
-    :cond_15
+    :cond_ed
     move/from16 v23, v2
 
     move/from16 v22, v3
@@ -1028,7 +1028,7 @@
 
     move/from16 v1, v20
 
-    goto/16 :goto_8
+    goto/16 :goto_75
 
     .line 203
     .end local v5    # "t":Lcom/google/zxing/ResultPoint;
@@ -1039,7 +1039,7 @@
     .local v1, "left":I
     .restart local v2    # "right":I
     .restart local v3    # "up":I
-    :cond_16
+    :cond_f7
     move/from16 v20, v1
 
     move/from16 v23, v2
@@ -1066,7 +1066,7 @@
     .restart local v2    # "right":I
     .restart local v3    # "up":I
     .restart local v14    # "i":I
-    :cond_17
+    :cond_102
     move/from16 v20, v1
 
     move/from16 v23, v2
@@ -1087,7 +1087,7 @@
 
     move/from16 v7, v19
 
-    goto/16 :goto_6
+    goto/16 :goto_53
 
     .line 248
     .end local v12    # "maxSize":I
@@ -1105,7 +1105,7 @@
     .local v5, "sizeExceeded":Z
     .local v6, "aBlackPointFoundOnBorder":Z
     .local v7, "atLeastOneBlackPointFoundOnBorder":Z
-    :cond_18
+    :cond_112
     move/from16 v20, v1
 
     move/from16 v23, v2
@@ -1153,12 +1153,12 @@
     .local v13, "leftBorderNotWhite":Z
     .local v14, "bottomBorderNotWhite":Z
     .restart local v16    # "topBorderNotWhite":Z
-    :cond_19
+    :cond_123
     move/from16 v19, v7
 
     .end local v7    # "atLeastOneBlackPointFoundOnBorder":Z
     .restart local v19    # "atLeastOneBlackPointFoundOnBorder":Z
-    if-eqz v6, :cond_1a
+    if-eqz v6, :cond_12a
 
     .line 185
     const/4 v7, 0x1
@@ -1169,15 +1169,15 @@
     .end local v16    # "topBorderNotWhite":Z
     .end local v19    # "atLeastOneBlackPointFoundOnBorder":Z
     .restart local v7    # "atLeastOneBlackPointFoundOnBorder":Z
-    goto/16 :goto_0
+    goto/16 :goto_11
 
     .line 100
     .end local v7    # "atLeastOneBlackPointFoundOnBorder":Z
     .restart local v19    # "atLeastOneBlackPointFoundOnBorder":Z
-    :cond_1a
+    :cond_12a
     move/from16 v7, v19
 
-    goto/16 :goto_0
+    goto/16 :goto_11
 
     .line 169
     .end local v19    # "atLeastOneBlackPointFoundOnBorder":Z
@@ -1186,7 +1186,7 @@
     .restart local v13    # "leftBorderNotWhite":Z
     .restart local v14    # "bottomBorderNotWhite":Z
     .restart local v16    # "topBorderNotWhite":Z
-    :cond_1b
+    :cond_12e
     move/from16 v19, v7
 
     .end local v7    # "atLeastOneBlackPointFoundOnBorder":Z
@@ -1196,7 +1196,7 @@
     move-result v16
 
     .line 170
-    if-eqz v16, :cond_1d
+    if-eqz v16, :cond_13f
 
     .line 171
     add-int/lit8 v3, v3, -0x1
@@ -1213,28 +1213,28 @@
     .line 168
     .end local v19    # "atLeastOneBlackPointFoundOnBorder":Z
     .restart local v7    # "atLeastOneBlackPointFoundOnBorder":Z
-    :cond_1c
-    :goto_e
+    :cond_13b
+    :goto_13b
     move/from16 v7, v19
 
-    goto/16 :goto_4
+    goto/16 :goto_41
 
     .line 174
     .end local v7    # "atLeastOneBlackPointFoundOnBorder":Z
     .restart local v19    # "atLeastOneBlackPointFoundOnBorder":Z
-    :cond_1d
-    if-nez v11, :cond_1c
+    :cond_13f
+    if-nez v11, :cond_13b
 
     .line 175
     add-int/lit8 v3, v3, -0x1
 
-    goto :goto_e
+    goto :goto_13b
 
     .line 149
     .end local v16    # "topBorderNotWhite":Z
     .end local v19    # "atLeastOneBlackPointFoundOnBorder":Z
     .restart local v7    # "atLeastOneBlackPointFoundOnBorder":Z
-    :cond_1e
+    :cond_144
     move/from16 v19, v7
 
     .end local v7    # "atLeastOneBlackPointFoundOnBorder":Z
@@ -1246,7 +1246,7 @@
     move-result v13
 
     .line 150
-    if-eqz v13, :cond_20
+    if-eqz v13, :cond_156
 
     .line 151
     add-int/lit8 v1, v1, -0x1
@@ -1263,28 +1263,28 @@
     .line 148
     .end local v19    # "atLeastOneBlackPointFoundOnBorder":Z
     .restart local v7    # "atLeastOneBlackPointFoundOnBorder":Z
-    :cond_1f
-    :goto_f
+    :cond_152
+    :goto_152
     move/from16 v7, v19
 
-    goto/16 :goto_3
+    goto/16 :goto_35
 
     .line 154
     .end local v7    # "atLeastOneBlackPointFoundOnBorder":Z
     .restart local v19    # "atLeastOneBlackPointFoundOnBorder":Z
-    :cond_20
-    if-nez v10, :cond_1f
+    :cond_156
+    if-nez v10, :cond_152
 
     .line 155
     add-int/lit8 v1, v1, -0x1
 
-    goto :goto_f
+    goto :goto_152
 
     .line 129
     .end local v13    # "leftBorderNotWhite":Z
     .end local v19    # "atLeastOneBlackPointFoundOnBorder":Z
     .restart local v7    # "atLeastOneBlackPointFoundOnBorder":Z
-    :cond_21
+    :cond_15b
     move/from16 v19, v7
 
     .end local v7    # "atLeastOneBlackPointFoundOnBorder":Z
@@ -1294,7 +1294,7 @@
     move-result v14
 
     .line 130
-    if-eqz v14, :cond_23
+    if-eqz v14, :cond_16c
 
     .line 131
     add-int/lit8 v4, v4, 0x1
@@ -1311,28 +1311,28 @@
     .line 128
     .end local v19    # "atLeastOneBlackPointFoundOnBorder":Z
     .restart local v7    # "atLeastOneBlackPointFoundOnBorder":Z
-    :cond_22
-    :goto_10
+    :cond_168
+    :goto_168
     move/from16 v7, v19
 
-    goto/16 :goto_2
+    goto/16 :goto_25
 
     .line 134
     .end local v7    # "atLeastOneBlackPointFoundOnBorder":Z
     .restart local v19    # "atLeastOneBlackPointFoundOnBorder":Z
-    :cond_23
-    if-nez v9, :cond_22
+    :cond_16c
+    if-nez v9, :cond_168
 
     .line 135
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_10
+    goto :goto_168
 
     .line 109
     .end local v14    # "bottomBorderNotWhite":Z
     .end local v19    # "atLeastOneBlackPointFoundOnBorder":Z
     .restart local v7    # "atLeastOneBlackPointFoundOnBorder":Z
-    :cond_24
+    :cond_171
     move/from16 v19, v7
 
     .end local v7    # "atLeastOneBlackPointFoundOnBorder":Z
@@ -1344,7 +1344,7 @@
     move-result v12
 
     .line 110
-    if-eqz v12, :cond_26
+    if-eqz v12, :cond_183
 
     .line 111
     add-int/lit8 v2, v2, 0x1
@@ -1361,20 +1361,20 @@
     .line 108
     .end local v19    # "atLeastOneBlackPointFoundOnBorder":Z
     .restart local v7    # "atLeastOneBlackPointFoundOnBorder":Z
-    :cond_25
-    :goto_11
+    :cond_17f
+    :goto_17f
     move/from16 v7, v19
 
-    goto/16 :goto_1
+    goto/16 :goto_16
 
     .line 114
     .end local v7    # "atLeastOneBlackPointFoundOnBorder":Z
     .restart local v19    # "atLeastOneBlackPointFoundOnBorder":Z
-    :cond_26
-    if-nez v8, :cond_25
+    :cond_183
+    if-nez v8, :cond_17f
 
     .line 115
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_11
+    goto :goto_17f
 .end method

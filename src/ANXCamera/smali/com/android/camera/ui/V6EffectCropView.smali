@@ -705,7 +705,7 @@
 .method private computeCertenLineCrossPoints(Landroid/graphics/Point;Landroid/graphics/Point;)V
     .locals 10
 
-    .line 583
+    .line 582
     invoke-direct {p0, p1, p2}, Lcom/android/camera/ui/V6EffectCropView;->squareOfPoints(Landroid/graphics/Point;Landroid/graphics/Point;)I
 
     move-result v0
@@ -716,7 +716,7 @@
 
     return-void
 
-    .line 584
+    .line 583
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mDisplayBounds:Landroid/graphics/RectF;
 
@@ -726,7 +726,7 @@
 
     float-to-int v0, v0
 
-    .line 585
+    .line 584
     iget-object v1, p0, Lcom/android/camera/ui/V6EffectCropView;->mDisplayBounds:Landroid/graphics/RectF;
 
     invoke-virtual {v1}, Landroid/graphics/RectF;->height()F
@@ -735,7 +735,7 @@
 
     float-to-int v1, v1
 
-    .line 587
+    .line 586
     iget v2, p1, Landroid/graphics/Point;->x:I
 
     iget v3, p2, Landroid/graphics/Point;->x:I
@@ -744,27 +744,27 @@
 
     if-ne v2, v3, :cond_1
 
-    .line 588
+    .line 587
     iget p1, p1, Landroid/graphics/Point;->x:I
 
     invoke-static {p1, v4, v0}, Lcom/android/camera/Util;->clamp(III)I
 
     move-result p1
 
-    .line 589
+    .line 588
     iget-object p2, p0, Lcom/android/camera/ui/V6EffectCropView;->mPoint1:Landroid/graphics/Point;
 
     invoke-virtual {p2, p1, v4}, Landroid/graphics/Point;->set(II)V
 
-    .line 590
+    .line 589
     iget-object p2, p0, Lcom/android/camera/ui/V6EffectCropView;->mPoint2:Landroid/graphics/Point;
 
     invoke-virtual {p2, p1, v1}, Landroid/graphics/Point;->set(II)V
 
-    .line 591
+    .line 590
     return-void
 
-    .line 593
+    .line 592
     :cond_1
     iget v2, p1, Landroid/graphics/Point;->y:I
 
@@ -772,36 +772,36 @@
 
     if-ne v2, v3, :cond_2
 
-    .line 594
+    .line 593
     iget p1, p1, Landroid/graphics/Point;->y:I
 
     invoke-static {p1, v4, v1}, Lcom/android/camera/Util;->clamp(III)I
 
     move-result p1
 
-    .line 595
+    .line 594
     iget-object p2, p0, Lcom/android/camera/ui/V6EffectCropView;->mPoint1:Landroid/graphics/Point;
 
     invoke-virtual {p2, v4, p1}, Landroid/graphics/Point;->set(II)V
 
-    .line 596
+    .line 595
     iget-object p2, p0, Lcom/android/camera/ui/V6EffectCropView;->mPoint2:Landroid/graphics/Point;
 
     invoke-virtual {p2, v0, p1}, Landroid/graphics/Point;->set(II)V
 
-    .line 597
+    .line 596
     return-void
 
-    .line 599
+    .line 598
     :cond_2
     const/4 v2, 0x2
 
     new-array v3, v2, [Landroid/graphics/Point;
 
-    .line 600
+    .line 599
     nop
 
-    .line 601
+    .line 600
     iget v5, p2, Landroid/graphics/Point;->y:I
 
     iget v6, p1, Landroid/graphics/Point;->y:I
@@ -820,7 +820,7 @@
 
     div-float/2addr v5, p2
 
-    .line 604
+    .line 603
     iget p2, p1, Landroid/graphics/Point;->x:I
 
     int-to-float p2, p2
@@ -835,21 +835,21 @@
 
     float-to-int p2, p2
 
-    .line 605
+    .line 604
     const/4 v6, 0x1
 
     if-ltz p2, :cond_3
 
     if-gt p2, v0, :cond_3
 
-    .line 606
+    .line 605
     new-instance v7, Landroid/graphics/Point;
 
     invoke-direct {v7, p2, v4}, Landroid/graphics/Point;-><init>(II)V
 
     aput-object v7, v3, v4
 
-    .line 609
+    .line 608
     move p2, v6
 
     goto :goto_0
@@ -874,12 +874,12 @@
 
     float-to-int v7, v7
 
-    .line 610
+    .line 609
     if-ltz v7, :cond_4
 
     if-gt v7, v0, :cond_4
 
-    .line 611
+    .line 610
     add-int/lit8 v8, p2, 0x1
 
     new-instance v9, Landroid/graphics/Point;
@@ -888,7 +888,7 @@
 
     aput-object v9, v3, p2
 
-    .line 614
+    .line 613
     move p2, v8
 
     :cond_4
@@ -906,7 +906,7 @@
 
     float-to-int v7, v7
 
-    .line 615
+    .line 614
     if-ltz v7, :cond_5
 
     if-gt v7, v1, :cond_5
@@ -917,7 +917,7 @@
 
     if-nez v8, :cond_5
 
-    .line 616
+    .line 615
     add-int/lit8 v8, p2, 0x1
 
     new-instance v9, Landroid/graphics/Point;
@@ -926,7 +926,7 @@
 
     aput-object v9, v3, p2
 
-    .line 619
+    .line 618
     move p2, v8
 
     :cond_5
@@ -946,7 +946,7 @@
 
     float-to-int p1, v7
 
-    .line 620
+    .line 619
     if-ltz p1, :cond_6
 
     if-gt p1, v1, :cond_6
@@ -957,7 +957,7 @@
 
     if-nez v1, :cond_6
 
-    .line 621
+    .line 620
     add-int/lit8 v1, p2, 0x1
 
     new-instance v5, Landroid/graphics/Point;
@@ -966,13 +966,13 @@
 
     aput-object v5, v3, p2
 
-    .line 623
+    .line 622
     move p2, v1
 
     :cond_6
     if-ne p2, v6, :cond_7
 
-    .line 624
+    .line 623
     add-int/lit8 p1, p2, 0x1
 
     new-instance v0, Landroid/graphics/Point;
@@ -985,7 +985,7 @@
 
     goto :goto_1
 
-    .line 626
+    .line 625
     :cond_7
     move p1, p2
 
@@ -1002,14 +1002,14 @@
 
     aget-object v0, v3, v6
 
-    .line 627
+    .line 626
     invoke-direct {p0, p2, v0}, Lcom/android/camera/ui/V6EffectCropView;->squareOfPoints(Landroid/graphics/Point;Landroid/graphics/Point;)I
 
     move-result p2
 
     if-gt p1, p2, :cond_8
 
-    .line 628
+    .line 627
     iget-object p1, p0, Lcom/android/camera/ui/V6EffectCropView;->mPoint1:Landroid/graphics/Point;
 
     aget-object p2, v3, v4
@@ -1022,7 +1022,7 @@
 
     invoke-virtual {p1, p2, v0}, Landroid/graphics/Point;->set(II)V
 
-    .line 629
+    .line 628
     iget-object p1, p0, Lcom/android/camera/ui/V6EffectCropView;->mPoint2:Landroid/graphics/Point;
 
     aget-object p2, v3, v6
@@ -1035,7 +1035,7 @@
 
     invoke-virtual {p1, p2, v0}, Landroid/graphics/Point;->set(II)V
 
-    .line 631
+    .line 630
     :cond_8
     return-void
 .end method
@@ -1043,12 +1043,12 @@
 .method private computePointWithDistance(I)Landroid/graphics/Point;
     .locals 5
 
-    .line 651
+    .line 650
     new-instance v0, Landroid/graphics/Point;
 
     invoke-direct {v0}, Landroid/graphics/Point;-><init>()V
 
-    .line 652
+    .line 651
     iget-object v1, p0, Lcom/android/camera/ui/V6EffectCropView;->mPoint1:Landroid/graphics/Point;
 
     iget v1, v1, Landroid/graphics/Point;->x:I
@@ -1059,7 +1059,7 @@
 
     if-ne v1, v2, :cond_0
 
-    .line 653
+    .line 652
     iget-object v1, p0, Lcom/android/camera/ui/V6EffectCropView;->mPoint1:Landroid/graphics/Point;
 
     iget v1, v1, Landroid/graphics/Point;->x:I
@@ -1074,7 +1074,7 @@
 
     goto :goto_0
 
-    .line 654
+    .line 653
     :cond_0
     iget-object v1, p0, Lcom/android/camera/ui/V6EffectCropView;->mPoint1:Landroid/graphics/Point;
 
@@ -1086,7 +1086,7 @@
 
     if-ne v1, v2, :cond_1
 
-    .line 655
+    .line 654
     iget-object v1, p0, Lcom/android/camera/ui/V6EffectCropView;->mPoint1:Landroid/graphics/Point;
 
     iget v1, v1, Landroid/graphics/Point;->x:I
@@ -1101,7 +1101,7 @@
 
     goto :goto_0
 
-    .line 657
+    .line 656
     :cond_1
     iget v1, p0, Lcom/android/camera/ui/V6EffectCropView;->mCenterLineSquare:I
 
@@ -1113,7 +1113,7 @@
 
     double-to-float v1, v1
 
-    .line 658
+    .line 657
     iget-object v2, p0, Lcom/android/camera/ui/V6EffectCropView;->mPoint1:Landroid/graphics/Point;
 
     iget v2, v2, Landroid/graphics/Point;->y:I
@@ -1132,7 +1132,7 @@
 
     float-to-int v2, v2
 
-    .line 659
+    .line 658
     iget-object v3, p0, Lcom/android/camera/ui/V6EffectCropView;->mPoint1:Landroid/graphics/Point;
 
     iget v3, v3, Landroid/graphics/Point;->x:I
@@ -1151,7 +1151,7 @@
 
     float-to-int p1, p1
 
-    .line 660
+    .line 659
     iget-object v1, p0, Lcom/android/camera/ui/V6EffectCropView;->mPoint1:Landroid/graphics/Point;
 
     iget v1, v1, Landroid/graphics/Point;->x:I
@@ -1166,7 +1166,7 @@
 
     invoke-virtual {v0, v1, v2}, Landroid/graphics/Point;->set(II)V
 
-    .line 662
+    .line 661
     :goto_0
     return-object v0
 .end method
@@ -1692,19 +1692,19 @@
 
     move-object/from16 v3, p4
 
-    .line 563
+    .line 562
     iget v5, v2, Landroid/graphics/PointF;->x:F
 
-    .line 564
+    .line 563
     iget v2, v2, Landroid/graphics/PointF;->y:F
 
-    .line 565
+    .line 564
     iget v6, v3, Landroid/graphics/PointF;->x:F
 
-    .line 566
+    .line 565
     iget v3, v3, Landroid/graphics/PointF;->y:F
 
-    .line 568
+    .line 567
     cmpl-float v7, v5, v6
 
     if-nez v7, :cond_0
@@ -1715,7 +1715,7 @@
 
     return v0
 
-    .line 569
+    .line 568
     :cond_0
     cmpl-float v7, v2, v3
 
@@ -1727,7 +1727,7 @@
 
     return v0
 
-    .line 570
+    .line 569
     :cond_1
     sub-float v7, v6, v5
 
@@ -1743,7 +1743,7 @@
 
     add-float/2addr v9, v12
 
-    .line 571
+    .line 570
     if-eqz p5, :cond_2
 
     float-to-double v12, v9
@@ -1754,7 +1754,7 @@
 
     if-gtz v12, :cond_2
 
-    .line 572
+    .line 571
     mul-float/2addr v8, v8
 
     mul-float/2addr v11, v11
@@ -1763,7 +1763,7 @@
 
     return v8
 
-    .line 573
+    .line 572
     :cond_2
     mul-float v8, v7, v7
 
@@ -1771,14 +1771,14 @@
 
     add-float/2addr v8, v11
 
-    .line 574
+    .line 573
     if-eqz p5, :cond_3
 
     cmpl-float v4, v9, v8
 
     if-ltz v4, :cond_3
 
-    .line 575
+    .line 574
     sub-float v0, p1, v6
 
     mul-float/2addr v0, v0
@@ -1791,21 +1791,21 @@
 
     return v0
 
-    .line 576
+    .line 575
     :cond_3
     div-float/2addr v9, v8
 
-    .line 577
+    .line 576
     mul-float/2addr v7, v9
 
     add-float/2addr v5, v7
 
-    .line 578
+    .line 577
     mul-float/2addr v10, v9
 
     add-float/2addr v2, v10
 
-    .line 579
+    .line 578
     sub-float v0, p1, v5
 
     mul-float/2addr v0, v0
@@ -1842,12 +1842,12 @@
 .method private initHandler()V
     .locals 2
 
-    .line 672
+    .line 671
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mTiltShiftMaskHandler:Landroid/os/Handler;
 
     if-nez v0, :cond_0
 
-    .line 673
+    .line 672
     new-instance v0, Lcom/android/camera/ui/V6EffectCropView$2;
 
     invoke-static {}, Landroid/os/Looper;->getMainLooper()Landroid/os/Looper;
@@ -1858,13 +1858,13 @@
 
     iput-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mTiltShiftMaskHandler:Landroid/os/Handler;
 
-    .line 705
+    .line 704
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateHandler:Landroid/os/Handler;
 
     if-nez v0, :cond_1
 
-    .line 706
+    .line 705
     new-instance v0, Landroid/os/HandlerThread;
 
     const-string v1, "animateThread"
@@ -1873,12 +1873,12 @@
 
     iput-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateThread:Landroid/os/HandlerThread;
 
-    .line 707
+    .line 706
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateThread:Landroid/os/HandlerThread;
 
     invoke-virtual {v0}, Landroid/os/HandlerThread;->start()V
 
-    .line 708
+    .line 707
     new-instance v0, Lcom/android/camera/ui/V6EffectCropView$3;
 
     iget-object v1, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateThread:Landroid/os/HandlerThread;
@@ -1891,7 +1891,7 @@
 
     iput-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateHandler:Landroid/os/Handler;
 
-    .line 746
+    .line 745
     :cond_1
     return-void
 .end method
@@ -1899,12 +1899,12 @@
 .method private innerShow()V
     .locals 10
 
-    .line 439
+    .line 438
     invoke-static {}, Lcom/android/camera/ui/V6EffectCropView;->isTiltShift()Z
 
     move-result v0
 
-    .line 440
+    .line 439
     const/4 v1, 0x1
 
     xor-int/2addr v0, v1
@@ -1913,7 +1913,7 @@
 
     move-result v2
 
-    .line 441
+    .line 440
     iget-boolean v3, p0, Lcom/android/camera/ui/V6EffectCropView;->mVisible:Z
 
     if-eqz v3, :cond_0
@@ -1926,25 +1926,25 @@
 
     if-eq v3, v2, :cond_4
 
-    .line 442
+    .line 441
     :cond_0
     iput-boolean v1, p0, Lcom/android/camera/ui/V6EffectCropView;->mVisible:Z
 
-    .line 443
+    .line 442
     const/4 v3, 0x0
 
     iput v3, p0, Lcom/android/camera/ui/V6EffectCropView;->mMovingEdges:I
 
-    .line 444
+    .line 443
     invoke-virtual {p0, v3}, Lcom/android/camera/ui/V6EffectCropView;->setVisibility(I)V
 
-    .line 445
+    .line 444
     iput-boolean v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mIsRect:Z
 
-    .line 446
+    .line 445
     iput-boolean v2, p0, Lcom/android/camera/ui/V6EffectCropView;->mIsCircle:Z
 
-    .line 447
+    .line 446
     invoke-static {}, Lcom/android/camera/ui/V6EffectCropView;->isTiltShift()Z
 
     move-result v0
@@ -1953,7 +1953,7 @@
 
     if-eqz v0, :cond_3
 
-    .line 448
+    .line 447
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mPoint1:Landroid/graphics/Point;
 
     iget-object v5, p0, Lcom/android/camera/ui/V6EffectCropView;->mDisplayBounds:Landroid/graphics/RectF;
@@ -1968,7 +1968,7 @@
 
     invoke-virtual {v0, v3, v5}, Landroid/graphics/Point;->set(II)V
 
-    .line 449
+    .line 448
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mPoint2:Landroid/graphics/Point;
 
     iget-object v5, p0, Lcom/android/camera/ui/V6EffectCropView;->mDisplayBounds:Landroid/graphics/RectF;
@@ -1991,29 +1991,29 @@
 
     invoke-virtual {v0, v5, v6}, Landroid/graphics/Point;->set(II)V
 
-    .line 450
+    .line 449
     sget v0, Lcom/android/camera/ui/V6EffectCropView;->ANIMATE_START_RANGE:I
 
     iput v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mRangeWidth:I
 
-    .line 451
+    .line 450
     sget v0, Lcom/android/camera/ui/V6EffectCropView;->ANIMATE_START_RADIUS:I
 
     iput v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mRadius:I
 
-    .line 453
+    .line 452
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v5
 
     iput-wide v5, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimationStartTime:J
 
-    .line 454
+    .line 453
     const-wide/16 v5, 0x258
 
     iput-wide v5, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimationTotalTime:J
 
-    .line 455
+    .line 454
     sget v0, Lcom/android/camera/ui/V6EffectCropView;->DEFAULT_RANGE:I
 
     iget v5, p0, Lcom/android/camera/ui/V6EffectCropView;->mRangeWidth:I
@@ -2022,12 +2022,12 @@
 
     iput v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateRangeWidth:I
 
-    .line 456
+    .line 455
     iget v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mRangeWidth:I
 
     iput v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimationStartRange:I
 
-    .line 457
+    .line 456
     sget v0, Lcom/android/camera/ui/V6EffectCropView;->DEFAULT_RADIUS:I
 
     iget v5, p0, Lcom/android/camera/ui/V6EffectCropView;->mRadius:I
@@ -2036,26 +2036,26 @@
 
     iput v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateRadius:I
 
-    .line 458
+    .line 457
     iget v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mRadius:I
 
     iput v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimationStartRadius:I
 
-    .line 460
+    .line 459
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mDefaultCircleBounds:Landroid/graphics/RectF;
 
     invoke-virtual {v0}, Landroid/graphics/RectF;->centerX()F
 
     move-result v0
 
-    .line 461
+    .line 460
     iget-object v5, p0, Lcom/android/camera/ui/V6EffectCropView;->mDefaultCircleBounds:Landroid/graphics/RectF;
 
     invoke-virtual {v5}, Landroid/graphics/RectF;->centerY()F
 
     move-result v5
 
-    .line 462
+    .line 461
     iget-object v6, p0, Lcom/android/camera/ui/V6EffectCropView;->mCropBounds:Landroid/graphics/RectF;
 
     iget v7, p0, Lcom/android/camera/ui/V6EffectCropView;->mRadius:I
@@ -2084,15 +2084,15 @@
 
     invoke-virtual {v6, v7, v8, v0, v5}, Landroid/graphics/RectF;->set(FFFF)V
 
-    .line 465
+    .line 464
     invoke-direct {p0}, Lcom/android/camera/ui/V6EffectCropView;->showTiltShiftMask()V
 
-    .line 466
+    .line 465
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateHandler:Landroid/os/Handler;
 
     if-eqz v0, :cond_2
 
-    .line 467
+    .line 466
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateHandler:Landroid/os/Handler;
 
     if-eqz v2, :cond_1
@@ -2104,14 +2104,14 @@
     :cond_1
     invoke-virtual {v0, v1}, Landroid/os/Handler;->sendEmptyMessage(I)Z
 
-    .line 470
+    .line 469
     :cond_2
     invoke-virtual {p0}, Lcom/android/camera/ui/V6EffectCropView;->invalidate()V
 
-    .line 471
+    .line 470
     goto :goto_0
 
-    .line 472
+    .line 471
     :cond_3
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mCropBounds:Landroid/graphics/RectF;
 
@@ -2119,12 +2119,12 @@
 
     invoke-virtual {v0, v1}, Landroid/graphics/RectF;->set(Landroid/graphics/RectF;)V
 
-    .line 473
+    .line 472
     const/4 v0, 0x0
 
     invoke-virtual {p0, v4, v0}, Lcom/android/camera/ui/V6EffectCropView;->setLayerType(ILandroid/graphics/Paint;)V
 
-    .line 475
+    .line 474
     :goto_0
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
@@ -2132,10 +2132,10 @@
 
     invoke-virtual {v0, v3}, Lcom/android/camera/effect/EffectController;->setInvertFlag(I)V
 
-    .line 476
+    .line 475
     invoke-direct {p0}, Lcom/android/camera/ui/V6EffectCropView;->onCropChange()V
 
-    .line 478
+    .line 477
     :cond_4
     return-void
 .end method
@@ -2167,11 +2167,7 @@
     move-result-object v0
 
     .line 425
-    const v1, 0x7f0b014f
-
-    invoke-static {v1}, Lcom/android/camera/CameraSettings;->getString(I)Ljava/lang/String;
-
-    move-result-object v1
+    const-string v1, "circle"
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -2179,7 +2175,7 @@
 
     return v0
 
-    .line 428
+    .line 427
     :cond_0
     const/4 v0, 0x0
 
@@ -2189,7 +2185,7 @@
 .method private isContained([Landroid/graphics/Point;II)Z
     .locals 5
 
-    .line 634
+    .line 633
     const/4 v0, 0x0
 
     if-eqz p1, :cond_3
@@ -2198,7 +2194,7 @@
 
     if-eqz v1, :cond_3
 
-    .line 635
+    .line 634
     array-length v1, p1
 
     move v2, v0
@@ -2208,13 +2204,13 @@
 
     aget-object v3, p1, v2
 
-    .line 636
+    .line 635
     if-nez v3, :cond_0
 
-    .line 637
+    .line 636
     return v0
 
-    .line 641
+    .line 640
     :cond_0
     iget v4, v3, Landroid/graphics/Point;->x:I
 
@@ -2226,20 +2222,20 @@
 
     goto :goto_1
 
-    .line 635
+    .line 634
     :cond_1
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_0
 
-    .line 642
+    .line 641
     :cond_2
     :goto_1
     const/4 p1, 0x1
 
     return p1
 
-    .line 646
+    .line 645
     :cond_3
     return v0
 .end method
@@ -3054,21 +3050,21 @@
 .method private squareOfPoints(Landroid/graphics/Point;Landroid/graphics/Point;)I
     .locals 2
 
-    .line 666
+    .line 665
     iget v0, p1, Landroid/graphics/Point;->x:I
 
     iget v1, p2, Landroid/graphics/Point;->x:I
 
     sub-int/2addr v0, v1
 
-    .line 667
+    .line 666
     iget p1, p1, Landroid/graphics/Point;->y:I
 
     iget p2, p2, Landroid/graphics/Point;->y:I
 
     sub-int/2addr p1, p2
 
-    .line 668
+    .line 667
     mul-int/2addr v0, v0
 
     mul-int/2addr p1, p1
@@ -3083,43 +3079,43 @@
 .method public enableControls(Z)V
     .locals 0
 
-    .line 560
+    .line 559
     return-void
 .end method
 
 .method public hide()V
     .locals 2
 
-    .line 503
+    .line 502
     iget-boolean v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mVisible:Z
 
     if-eqz v0, :cond_0
 
-    .line 504
+    .line 503
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mVisible:Z
 
-    .line 505
+    .line 504
     const/4 v1, 0x4
 
     invoke-virtual {p0, v1}, Lcom/android/camera/ui/V6EffectCropView;->setVisibility(I)V
 
-    .line 506
+    .line 505
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v1
 
     invoke-virtual {v1}, Lcom/android/camera/effect/EffectController;->clearEffectAttribute()V
 
-    .line 507
+    .line 506
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v1
 
     invoke-virtual {v1, v0}, Lcom/android/camera/effect/EffectController;->setInvertFlag(I)V
 
-    .line 509
+    .line 508
     :cond_0
     return-void
 .end method
@@ -3127,7 +3123,7 @@
 .method public isMoved()Z
     .locals 1
 
-    .line 499
+    .line 498
     iget-boolean v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mIsInTapSlop:Z
 
     if-nez v0, :cond_0
@@ -3150,7 +3146,7 @@
 .method public isVisible()Z
     .locals 1
 
-    .line 495
+    .line 494
     iget-boolean v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mVisible:Z
 
     return v0
@@ -3159,42 +3155,42 @@
 .method public onCameraOpen()V
     .locals 0
 
-    .line 536
+    .line 535
     return-void
 .end method
 
 .method public onCreate()V
     .locals 0
 
-    .line 531
+    .line 530
     invoke-direct {p0}, Lcom/android/camera/ui/V6EffectCropView;->initHandler()V
 
-    .line 532
+    .line 531
     return-void
 .end method
 
 .method public onDestroy()V
     .locals 1
 
-    .line 749
+    .line 748
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateThread:Landroid/os/HandlerThread;
 
     if-eqz v0, :cond_0
 
-    .line 750
+    .line 749
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateThread:Landroid/os/HandlerThread;
 
     invoke-virtual {v0}, Landroid/os/HandlerThread;->quit()Z
 
-    .line 751
+    .line 750
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateThread:Landroid/os/HandlerThread;
 
-    .line 752
+    .line 751
     iput-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateHandler:Landroid/os/Handler;
 
-    .line 754
+    .line 753
     :cond_0
     return-void
 .end method
@@ -3299,7 +3295,7 @@
 .method public onPause()V
     .locals 2
 
-    .line 545
+    .line 544
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateHandler:Landroid/os/Handler;
 
     if-eqz v0, :cond_1
@@ -3314,7 +3310,7 @@
 
     if-eqz v0, :cond_1
 
-    .line 546
+    .line 545
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateHandler:Landroid/os/Handler;
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->hasMessages(I)Z
@@ -3323,12 +3319,12 @@
 
     if-eqz v0, :cond_0
 
-    .line 547
+    .line 546
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateHandler:Landroid/os/Handler;
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 548
+    .line 547
     iget v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimationStartRange:I
 
     iget v1, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateRangeWidth:I
@@ -3337,7 +3333,7 @@
 
     iput v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mRangeWidth:I
 
-    .line 550
+    .line 549
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateHandler:Landroid/os/Handler;
 
@@ -3349,12 +3345,12 @@
 
     if-eqz v0, :cond_1
 
-    .line 551
+    .line 550
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateHandler:Landroid/os/Handler;
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 552
+    .line 551
     iget v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimationStartRadius:I
 
     iget v1, p0, Lcom/android/camera/ui/V6EffectCropView;->mAnimateRadius:I
@@ -3363,7 +3359,7 @@
 
     iput v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mRadius:I
 
-    .line 555
+    .line 554
     :cond_1
     return-void
 .end method
@@ -3371,7 +3367,7 @@
 .method public onResume()V
     .locals 0
 
-    .line 541
+    .line 540
     return-void
 .end method
 
@@ -3731,7 +3727,7 @@
 .method public show()V
     .locals 2
 
-    .line 432
+    .line 431
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v0
@@ -3742,7 +3738,7 @@
 
     move-result v0
 
-    .line 433
+    .line 432
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v1
@@ -3759,11 +3755,11 @@
 
     if-eqz v0, :cond_1
 
-    .line 434
+    .line 433
     :cond_0
     invoke-direct {p0}, Lcom/android/camera/ui/V6EffectCropView;->innerShow()V
 
-    .line 436
+    .line 435
     :cond_1
     return-void
 .end method
@@ -3771,22 +3767,22 @@
 .method public show(FF)V
     .locals 6
 
-    .line 481
+    .line 480
     iget-boolean v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mVisible:Z
 
     if-nez v0, :cond_1
 
-    .line 482
+    .line 481
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mVisible:Z
 
-    .line 483
+    .line 482
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Lcom/android/camera/ui/V6EffectCropView;->setVisibility(I)V
 
-    .line 484
+    .line 483
     iget-boolean v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mIsRect:Z
 
     if-eqz v0, :cond_0
@@ -3798,11 +3794,11 @@
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/V6EffectCropView;->mDefaultCircleBounds:Landroid/graphics/RectF;
 
-    .line 485
+    .line 484
     :goto_0
     iget-object v1, p0, Lcom/android/camera/ui/V6EffectCropView;->mCropBounds:Landroid/graphics/RectF;
 
-    .line 486
+    .line 485
     invoke-virtual {v0}, Landroid/graphics/RectF;->width()F
 
     move-result v2
@@ -3813,7 +3809,7 @@
 
     sub-float v2, p1, v2
 
-    .line 487
+    .line 486
     invoke-virtual {v0}, Landroid/graphics/RectF;->height()F
 
     move-result v4
@@ -3822,7 +3818,7 @@
 
     sub-float v4, p2, v4
 
-    .line 488
+    .line 487
     invoke-virtual {v0}, Landroid/graphics/RectF;->width()F
 
     move-result v5
@@ -3831,7 +3827,7 @@
 
     add-float/2addr p1, v5
 
-    .line 489
+    .line 488
     invoke-virtual {v0}, Landroid/graphics/RectF;->height()F
 
     move-result v0
@@ -3840,13 +3836,13 @@
 
     add-float/2addr p2, v0
 
-    .line 485
+    .line 484
     invoke-virtual {v1, v2, v4, p1, p2}, Landroid/graphics/RectF;->set(FFFF)V
 
-    .line 490
+    .line 489
     invoke-direct {p0}, Lcom/android/camera/ui/V6EffectCropView;->onCropChange()V
 
-    .line 492
+    .line 491
     :cond_1
     return-void
 .end method
@@ -3854,7 +3850,7 @@
 .method public updateVisible()V
     .locals 2
 
-    .line 512
+    .line 511
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v0
@@ -3865,7 +3861,7 @@
 
     move-result v0
 
-    .line 513
+    .line 512
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v1
@@ -3884,18 +3880,18 @@
 
     goto :goto_0
 
-    .line 516
+    .line 515
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/ui/V6EffectCropView;->hide()V
 
     goto :goto_1
 
-    .line 514
+    .line 513
     :cond_1
     :goto_0
     invoke-direct {p0}, Lcom/android/camera/ui/V6EffectCropView;->innerShow()V
 
-    .line 518
+    .line 517
     :goto_1
     return-void
 .end method
@@ -3903,7 +3899,7 @@
 .method public updateVisible(I)V
     .locals 1
 
-    .line 522
+    .line 521
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v0
@@ -3914,16 +3910,16 @@
 
     if-eqz p1, :cond_0
 
-    .line 523
+    .line 522
     invoke-direct {p0}, Lcom/android/camera/ui/V6EffectCropView;->innerShow()V
 
     goto :goto_0
 
-    .line 525
+    .line 524
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/ui/V6EffectCropView;->hide()V
 
-    .line 527
+    .line 526
     :goto_0
     return-void
 .end method

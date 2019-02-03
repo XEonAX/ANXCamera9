@@ -25,7 +25,7 @@
 .method constructor <init>(Landroid/content/Context;)V
     .locals 0
 
-    .line 280
+    .line 277
     iput-object p1, p0, Lcom/android/camera/storage/Storage$1;->val$context:Landroid/content/Context;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,13 +38,13 @@
 .method public run()V
     .locals 2
 
-    .line 283
+    .line 280
     iget-object v0, p0, Lcom/android/camera/storage/Storage$1;->val$context:Landroid/content/Context;
 
-    const v1, 0x7f0b00c1
+    const v1, 0x7f0900c6
 
     invoke-static {v0, v1}, Lcom/android/camera/ToastUtils;->showToast(Landroid/content/Context;I)V
 
-    .line 284
+    .line 281
     return-void
 .end method

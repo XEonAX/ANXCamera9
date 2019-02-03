@@ -24,7 +24,7 @@
 
 
 # virtual methods
-.method public abstract dD()Ljava/lang/Class;
+.method public abstract dE()Ljava/lang/Class;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",

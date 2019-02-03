@@ -30,6 +30,8 @@
 # static fields
 .field public static final ACTION_ACCOUNT_LIST:Ljava/lang/String; = "android.settings.ACCOUNT_LIST"
 
+.field public static APP_LOCK_USE_FACE_UNLOCK_STATE:Ljava/lang/String; = null
+
 .field public static APP_LOCK_USE_FINGERPRINT_STATE:Ljava/lang/String; = null
 
 .field public static final CROSS_PROFILE_SETTINGS:Ljava/util/Set;
@@ -167,75 +169,80 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
-    .line 146
+    .line 145
     const-string v0, "com_miui_applicatinlock_use_fingerprint_state"
 
     sput-object v0, Landroid/provider/MiuiSettings;->APP_LOCK_USE_FINGERPRINT_STATE:Ljava/lang/String;
 
-    .line 181
+    .line 151
+    const-string v0, "com_miui_applicatinlock_use_face_unlock_state"
+
+    sput-object v0, Landroid/provider/MiuiSettings;->APP_LOCK_USE_FACE_UNLOCK_STATE:Ljava/lang/String;
+
+    .line 187
     new-instance v0, Landroid/util/ArraySet;
 
     invoke-direct {v0}, Landroid/util/ArraySet;-><init>()V
 
     sput-object v0, Landroid/provider/MiuiSettings;->CROSS_PROFILE_SETTINGS:Ljava/util/Set;
 
-    .line 183
+    .line 189
     sget-object v0, Landroid/provider/MiuiSettings;->CROSS_PROFILE_SETTINGS:Ljava/util/Set;
 
     const-string/jumbo v1, "ringtone"
 
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 184
+    .line 190
     sget-object v0, Landroid/provider/MiuiSettings;->CROSS_PROFILE_SETTINGS:Ljava/util/Set;
 
     const-string/jumbo v1, "notification_sound"
 
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 185
+    .line 191
     sget-object v0, Landroid/provider/MiuiSettings;->CROSS_PROFILE_SETTINGS:Ljava/util/Set;
 
     const-string v1, "alarm_alert"
 
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 186
+    .line 192
     sget-object v0, Landroid/provider/MiuiSettings;->CROSS_PROFILE_SETTINGS:Ljava/util/Set;
 
     const-string/jumbo v1, "user_rotation"
 
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 187
+    .line 193
     sget-object v0, Landroid/provider/MiuiSettings;->CROSS_PROFILE_SETTINGS:Ljava/util/Set;
 
     const-string v1, "accelerometer_rotation"
 
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 188
+    .line 194
     sget-object v0, Landroid/provider/MiuiSettings;->CROSS_PROFILE_SETTINGS:Ljava/util/Set;
 
     const-string v1, "hide_rotation_lock_toggle_for_accessibility"
 
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 189
+    .line 195
     sget-object v0, Landroid/provider/MiuiSettings;->CROSS_PROFILE_SETTINGS:Ljava/util/Set;
 
     const-string v1, "frequent_phrases"
 
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 190
+    .line 196
     return-void
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 76
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -244,12 +251,12 @@
 .end method
 
 .method public static getConfigurationForUser(Landroid/content/ContentResolver;Landroid/content/res/Configuration;I)V
-    .locals 4
+    .registers 9
     .param p0, "cr"    # Landroid/content/ContentResolver;
     .param p1, "outConfig"    # Landroid/content/res/Configuration;
     .param p2, "userHandle"    # I
 
-    .line 5820
+    .line 5826
     const-string/jumbo v0, "ui_mode_scale"
 
     const/4 v1, 0x1
@@ -258,71 +265,112 @@
 
     move-result v0
 
-    .line 5821
+    .line 5827
     .local v0, "scaleMode":I
     const/16 v2, 0xf
 
     and-int/2addr v0, v2
 
-    .line 5823
-    const/16 v3, 0xc
+    .line 5829
+    const/4 v3, 0x0
 
-    if-eq v0, v3, :cond_1
+    const/16 v4, 0xc
 
-    const/16 v3, 0xd
+    if-eq v0, v4, :cond_21
 
-    if-eq v0, v3, :cond_1
+    const/16 v4, 0xd
 
-    const/16 v3, 0xe
+    if-eq v0, v4, :cond_21
 
-    if-eq v0, v3, :cond_1
+    const/16 v4, 0xe
 
-    if-eq v0, v2, :cond_1
+    if-eq v0, v4, :cond_21
+
+    if-eq v0, v2, :cond_21
 
     const/16 v2, 0xb
 
-    if-ne v0, v2, :cond_0
+    if-ne v0, v2, :cond_1f
 
-    goto :goto_0
+    goto :goto_21
 
-    :cond_0
-    const/4 v1, 0x0
+    :cond_1f
+    move v2, v3
+
+    goto :goto_22
+
+    :cond_21
+    :goto_21
+    move v2, v1
+
+    .line 5836
+    .local v2, "isLargeUiMode":Z
+    :goto_22
+    if-eqz v2, :cond_47
+
+    .line 5837
+    sget v4, Landroid/os/Build$VERSION;->SDK_INT:I
+
+    .line 5838
+    .local v4, "version":I
+    const/16 v5, 0x1a
+
+    if-eq v4, v5, :cond_31
+
+    const/16 v5, 0x1b
+
+    if-ne v4, v5, :cond_2f
+
+    goto :goto_31
+
+    :cond_2f
+    move v1, v3
 
     nop
 
-    .line 5830
-    .local v1, "isLargeUiMode":Z
-    :cond_1
-    :goto_0
-    if-eqz v1, :cond_3
+    .line 5840
+    .local v1, "isAndroidO":Z
+    :cond_31
+    :goto_31
+    if-nez v1, :cond_41
 
-    .line 5831
-    sget-boolean v2, Lmiui/os/Build;->IS_TABLET:Z
+    sget-boolean v3, Lmiui/os/Build;->IS_TABLET:Z
 
-    if-eqz v2, :cond_2
+    if-eqz v3, :cond_38
 
-    .line 5832
+    goto :goto_41
+
+    .line 5843
+    :cond_38
+    sget v3, Landroid/util/MiuiDisplayMetrics;->DENSITY_DEVICE:I
+
+    .line 5844
+    invoke-static {v0, v3}, Landroid/util/MiuiFontSizeUtils;->getFontScaleV2(II)F
+
+    move-result v3
+
+    iput v3, p1, Landroid/content/res/Configuration;->fontScale:F
+
+    .line 5844
+    .end local v1    # "isAndroidO":Z
+    .end local v4    # "version":I
+    goto :goto_47
+
+    .line 5841
+    .restart local v1    # "isAndroidO":Z
+    .restart local v4    # "version":I
+    :cond_41
+    :goto_41
     invoke-static {v0}, Landroid/content/res/MiuiConfiguration;->getFontScale(I)F
 
-    move-result v2
+    move-result v3
 
-    iput v2, p1, Landroid/content/res/Configuration;->fontScale:F
+    iput v3, p1, Landroid/content/res/Configuration;->fontScale:F
 
-    goto :goto_1
-
-    .line 5834
-    :cond_2
-    sget v2, Landroid/util/MiuiDisplayMetrics;->DENSITY_DEVICE:I
-
-    .line 5835
-    invoke-static {v0, v2}, Landroid/util/MiuiFontSizeUtils;->getFontScaleV2(II)F
-
-    move-result v2
-
-    iput v2, p1, Landroid/content/res/Configuration;->fontScale:F
-
-    .line 5838
-    :cond_3
-    :goto_1
+    .line 5847
+    .end local v1    # "isAndroidO":Z
+    .end local v4    # "version":I
+    :cond_47
+    :goto_47
     return-void
 .end method

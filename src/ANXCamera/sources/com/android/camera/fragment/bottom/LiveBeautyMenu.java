@@ -12,6 +12,7 @@ import com.android.camera.constant.ColorConstant;
 import com.android.camera.fragment.beauty.MenuItem;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.MiBeautyProtocol;
+import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.ColorActivateTextView;
 
 public class LiveBeautyMenu extends AbBottomMenu implements OnClickListener {
@@ -86,5 +87,6 @@ public class LiveBeautyMenu extends AbBottomMenu implements OnClickListener {
         int intValue = ((Integer) view.getTag()).intValue();
         selectBeautyType(intValue);
         ((MiBeautyProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(194)).switchBeautyType(intValue);
+        CameraStatUtil.trackLiveBeautyClick(intValue);
     }
 }

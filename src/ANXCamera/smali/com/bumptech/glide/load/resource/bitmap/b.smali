@@ -18,7 +18,7 @@
 
 
 # instance fields
-.field private final eP:Lcom/bumptech/glide/load/h;
+.field private final eQ:Lcom/bumptech/glide/load/h;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/h<",
@@ -51,7 +51,7 @@
     iput-object p1, p0, Lcom/bumptech/glide/load/resource/bitmap/b;->i:Lcom/bumptech/glide/load/engine/bitmap_recycle/d;
 
     .line 23
-    iput-object p2, p0, Lcom/bumptech/glide/load/resource/bitmap/b;->eP:Lcom/bumptech/glide/load/h;
+    iput-object p2, p0, Lcom/bumptech/glide/load/resource/bitmap/b;->eQ:Lcom/bumptech/glide/load/h;
 
     .line 24
     return-void
@@ -86,7 +86,7 @@
     .end annotation
 
     .line 29
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/bitmap/b;->eP:Lcom/bumptech/glide/load/h;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/bitmap/b;->eQ:Lcom/bumptech/glide/load/h;
 
     new-instance v1, Lcom/bumptech/glide/load/resource/bitmap/f;
 
@@ -146,7 +146,7 @@
     .end annotation
 
     .line 35
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/bitmap/b;->eP:Lcom/bumptech/glide/load/h;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/bitmap/b;->eQ:Lcom/bumptech/glide/load/h;
 
     invoke-interface {v0, p1}, Lcom/bumptech/glide/load/h;->b(Lcom/bumptech/glide/load/f;)Lcom/bumptech/glide/load/EncodeStrategy;
 

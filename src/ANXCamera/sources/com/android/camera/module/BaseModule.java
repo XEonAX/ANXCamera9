@@ -10,7 +10,9 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.params.MeteringRectangle;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemProperties;
 import android.support.annotation.CallSuper;
 import android.support.annotation.StringRes;
@@ -28,6 +30,7 @@ import com.android.camera.JpegEncodingQualityMappings;
 import com.android.camera.MutexModeManager;
 import com.android.camera.MutexModeManager.MutexCallBack;
 import com.android.camera.R;
+import com.android.camera.ThermalDetector;
 import com.android.camera.Util;
 import com.android.camera.constant.AutoFocus;
 import com.android.camera.constant.GlobalConstant;
@@ -44,7 +47,6 @@ import com.android.camera.module.loader.StartControl;
 import com.android.camera.module.loader.camera2.Camera2DataContainer;
 import com.android.camera.preferences.SettingsOverrider;
 import com.android.camera.protocol.ModeCoordinatorImpl;
-import com.android.camera.protocol.ModeProtocol.ActionProcessing;
 import com.android.camera.protocol.ModeProtocol.BackStack;
 import com.android.camera.protocol.ModeProtocol.BaseDelegate;
 import com.android.camera.protocol.ModeProtocol.BottomPopupTips;
@@ -56,6 +58,7 @@ import com.android.camera.protocol.ModeProtocol.UltraWideProtocol;
 import com.android.camera.protocol.ModeProtocol.ZoomProtocol;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera.statistic.CameraStatUtil;
+import com.android.camera.storage.Storage;
 import com.android.camera.ui.FocusView.ExposureViewListener;
 import com.android.camera2.Camera2Proxy;
 import com.android.camera2.Camera2Proxy.CameraMetaDataCallback;
@@ -63,7 +66,6 @@ import com.android.camera2.CameraCapabilities;
 import com.android.camera2.CaptureResultParser;
 import com.mi.config.b;
 import io.reactivex.Completable;
-import io.reactivex.CompletableEmitter;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -94,6 +96,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
     public static final int SHUTTER_DOWN_FROM_UNLOCK_OR_LONG_CLICK_OR_AUDIO = 3;
     private static final String TAG = "BaseModule";
     private static final float ULTRA_WIDE_ZOOM_MAX = 2.1f;
+    private boolean isShowPreviewDebugInfo;
     protected boolean isZooming;
     protected Camera mActivity;
     protected int mActualCameraId;
@@ -116,7 +119,6 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
     private int mEvValue;
     protected String mFlashAutoModeState;
     protected boolean mFocusAreaSupported;
-    protected CompletableEmitter mHandlerFinishEmitter;
     protected boolean mIgnoreFocusChanged;
     private boolean mIgnoreTouchEvent;
     private AtomicBoolean mIsCreated = new AtomicBoolean(false);
@@ -142,7 +144,6 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
     protected CameraSize mPreviewSize;
     private boolean mRestoring;
     protected SettingsOverrider mSettingsOverrider = new SettingsOverrider();
-    protected CameraSize mSubPictureSize;
     protected long mSurfaceCreatedTimestamp;
     protected int mTriggerMode = 10;
     protected int mUIStyle = -1;
@@ -160,10 +161,6 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
 
     protected abstract int getOperatingMode();
 
-    public abstract void onPreviewLayoutChanged(Rect rect);
-
-    public abstract void onPreviewSizeChanged(int i, int i2);
-
     protected abstract void openSettingActivity();
 
     public boolean isDeparted() {
@@ -179,6 +176,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
     }
 
     public void setDeparted() {
+        Log.d(TAG, "setDeparted");
         if (this.mUpdateWorkThreadDisposable != null) {
             this.mUpdateWorkThreadDisposable.dispose();
         }
@@ -193,23 +191,6 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         }
         this.mIsDeparted.set(true);
         this.mIsFrameAvailable.set(false);
-    }
-
-    public void setHandlerFinishEmitter(CompletableEmitter completableEmitter) {
-        this.mHandlerFinishEmitter = completableEmitter;
-        if (isCreated() && needWaitingBeforeClosing()) {
-            doWaitingBeforeClosing();
-            return;
-        }
-        this.mHandlerFinishEmitter.onComplete();
-        this.mHandlerFinishEmitter = null;
-    }
-
-    protected boolean needWaitingBeforeClosing() {
-        return false;
-    }
-
-    protected void doWaitingBeforeClosing() {
     }
 
     public int getModuleIndex() {
@@ -246,11 +227,12 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
                 BaseModule.this.mUpdateWorkThreadEmitter = observableEmitter;
             }
         }).observeOn(GlobalConstant.sCameraSetupScheduler).subscribe((Consumer) this);
-        if (DataRepository.dataItemFeature().fD() && CameraSettings.isLensDirtyDetectEnabled()) {
+        if (DataRepository.dataItemFeature().fH() && CameraSettings.isLensDirtyDetectEnabled()) {
             this.mLensDirtyDetectDisposable = Completable.complete().delay(15000, TimeUnit.MILLISECONDS, GlobalConstant.sCameraSetupScheduler).doOnComplete(new ActionUpdateLensDirtyDetect(this, true)).subscribe();
         }
         setCreated(true);
         this.mIsDeparted.set(false);
+        this.isShowPreviewDebugInfo = Util.isShowPreviewDebugInfo();
     }
 
     private void setCreated(boolean z) {
@@ -270,6 +252,9 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
 
     @CallSuper
     public void onDestroy() {
+        if (this.mActivity != null) {
+            this.mActivity.getSensorStateManager().setSensorStateListener(null);
+        }
         setCreated(false);
         Log.d(TAG, "onDestroy");
     }
@@ -406,7 +391,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         return false;
     }
 
-    public boolean isSelectingCapturedVideo() {
+    public boolean isSelectingCapturedResult() {
         return false;
     }
 
@@ -469,7 +454,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
     }
 
     protected static String getColorEffectKey() {
-        if (b.fI()) {
+        if (b.gb()) {
             return "pref_camera_shader_coloreffect_key";
         }
         return CameraSettings.KEY_COLOR_EFFECT;
@@ -483,6 +468,20 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         return onZoomValueChanged(this.mZoomValue + f2);
     }
 
+    protected boolean retryOnceIfCameraError(Handler handler) {
+        if (DataRepository.dataItemGlobal().isRetriedIfCameraError() || this.mActivity.isActivityPaused()) {
+            return false;
+        }
+        Log.e(TAG, "onCameraException: retry1");
+        DataRepository.dataItemGlobal().setRetriedIfCameraError(true);
+        handler.post(new Runnable() {
+            public void run() {
+                BaseModule.this.mActivity.onModeSelected(StartControl.create(BaseModule.this.mModuleIndex).setViewConfigType(1).setNeedBlurAnimation(false).setNeedReConfigureCamera(true));
+            }
+        });
+        return true;
+    }
+
     protected void onCameraException() {
         if (currentIsMainThread()) {
             String str = TAG;
@@ -492,40 +491,26 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
             stringBuilder.append(" | ");
             stringBuilder.append(this.mBogusCameraId);
             Log.e(str, stringBuilder.toString());
-            if (DataRepository.dataItemGlobal().isRetriedIfCameraError() || this.mActivity.isActivityPaused()) {
-                if ((this.mOpenCameraFail || this.mCameraHardwareError) && ((!this.mActivity.isActivityPaused() || this.mOpenCameraFail) && this.mActivity.couldShowErrorDialog())) {
-                    int i;
-                    DataRepository.dataItemGlobal().setRetriedIfCameraError(false);
-                    Activity activity = this.mActivity;
-                    if (Util.isInVideoCall(this.mActivity)) {
-                        i = R.string.cannot_connect_camera_volte_call;
-                    } else if (CameraSettings.updateOpenCameraFailTimes() > 1) {
-                        i = R.string.cannot_connect_camera_twice;
-                    } else {
-                        i = R.string.cannot_connect_camera_once;
-                    }
-                    Util.showErrorAndFinish(activity, i);
-                    this.mActivity.showErrorDialog();
+            if ((this.mOpenCameraFail || this.mCameraHardwareError) && ((!this.mActivity.isActivityPaused() || this.mOpenCameraFail) && this.mActivity.couldShowErrorDialog())) {
+                int i;
+                Activity activity = this.mActivity;
+                if (Util.isInVideoCall(this.mActivity)) {
+                    i = R.string.cannot_connect_camera_volte_call;
+                } else if (CameraSettings.updateOpenCameraFailTimes() > 1) {
+                    i = R.string.cannot_connect_camera_twice;
+                } else {
+                    i = R.string.cannot_connect_camera_once;
                 }
-                if (this.mCameraDisabled && this.mActivity.couldShowErrorDialog()) {
-                    DataRepository.dataItemGlobal().setRetriedIfCameraError(false);
-                    Util.showErrorAndFinish(this.mActivity, R.string.camera_disabled);
-                    this.mActivity.showErrorDialog();
-                }
-            } else {
-                Log.e(TAG, "onCameraException: retry1");
-                if (this.mModuleIndex == 173) {
-                    ActionProcessing actionProcessing = (ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162);
-                    if (actionProcessing != null) {
-                        actionProcessing.processingFinish();
-                    }
-                }
-                DataRepository.dataItemGlobal().setRetriedIfCameraError(true);
-                this.mActivity.onModeSelected(StartControl.create(this.mModuleIndex).setViewConfigType(1).setNeedBlurAnimation(false).setNeedReConfigureCamera(true));
-                return;
+                Util.showErrorAndFinish(activity, i);
+                this.mActivity.showErrorDialog();
             }
+            if (this.mCameraDisabled && this.mActivity.couldShowErrorDialog()) {
+                Util.showErrorAndFinish(this.mActivity, R.string.camera_disabled);
+                this.mActivity.showErrorDialog();
+            }
+        } else {
+            sendOpenFailMessage();
         }
-        sendOpenFailMessage();
         enableCameraControls(false);
     }
 
@@ -621,7 +606,9 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
             return true;
         }
         String string;
-        if (ModuleManager.isVideoCategory(getModuleIndex())) {
+        if (ModuleManager.isLiveModule()) {
+            string = DataRepository.dataItemGlobal().getString(CameraSettings.KEY_VOLUME_LIVE_FUNCTION, getString(R.string.pref_live_volumekey_function_default));
+        } else if (ModuleManager.isVideoCategory(getModuleIndex())) {
             string = DataRepository.dataItemGlobal().getString(CameraSettings.KEY_VOLUME_VIDEO_FUNCTION, getString(R.string.pref_video_volumekey_function_default));
         } else {
             string = DataRepository.dataItemGlobal().getString(CameraSettings.KEY_VOLUME_CAMERA_FUNCTION, getString(R.string.pref_camera_volumekey_function_default));
@@ -649,7 +636,6 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
 
     protected void initializeCapabilities() {
         this.mCameraCapabilities.setOperatingMode(getOperatingMode());
-        this.mCameraCapabilities.setCameraId(this.mCamera2Device.getId());
         this.mAeLockSupported = this.mCameraCapabilities.isAELockSupported();
         this.mAwbLockSupported = this.mCameraCapabilities.isAWBLockSupported();
         this.mFocusAreaSupported = this.mCameraCapabilities.isAFRegionSupported();
@@ -688,12 +674,12 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         return this.mMutexModePicker;
     }
 
-    /* JADX WARNING: Missing block: B:8:0x0019, code:
+    /* JADX WARNING: Missing block: B:12:0x0021, code:
             return;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
-    protected void playCameraSound(int i) {
-        if (!(this.mActivity == null || this.mActivity.isActivityPaused() || !CameraSettings.isCameraSoundOpen())) {
+    protected final void playCameraSound(int i) {
+        if (this.mActivity != null && !this.mActivity.isActivityPaused() && !isNeedMute() && CameraSettings.isCameraSoundOpen()) {
             this.mActivity.playCameraSound(i);
         }
     }
@@ -796,7 +782,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
             return false;
         }
         z = this.mZoomValue == 1.0f || f == 1.0f;
-        if (!CameraSettings.isUltraWideConfigOpen()) {
+        if (!CameraSettings.isUltraWideConfigOpen(getModuleIndex())) {
             setZoomValue(f);
         } else if (f < ULTRA_WIDE_ZOOM_MAX) {
             setZoomValue(f);
@@ -847,8 +833,8 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         }
     }
 
-    public boolean isNeedMute() {
-        return CameraSettings.isCameraSoundOpen() ^ 1;
+    protected boolean isNeedMute() {
+        return false;
     }
 
     public boolean isShowCaptureButton() {
@@ -912,6 +898,9 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         return this.mRestoring;
     }
 
+    public void updatePreviewSurface() {
+    }
+
     protected void updateCameraScreenNailSize(int i, int i2) {
         String simpleName = getClass().getSimpleName();
         StringBuilder stringBuilder = new StringBuilder();
@@ -923,9 +912,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         if (!(this.mActivity.getCameraScreenNail().getWidth() == i && this.mActivity.getCameraScreenNail().getHeight() == i2 && !isSquareModeChange())) {
             this.mActivity.getCameraScreenNail().setPreviewSize(i, i2);
         }
-        if (3 == this.mMainProtocol.getActiveIndicator()) {
-            this.mMainProtocol.setPreviewSize(i, i2);
-        }
+        this.mMainProtocol.setPreviewSize(i, i2);
     }
 
     protected void onCameraOpened() {
@@ -937,23 +924,24 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         updateLensDirtyDetect(false);
     }
 
-    public void onCameraMetaData(CaptureResult captureResult) {
-        boolean z = false;
-        if (DataRepository.dataItemFeature().fD() && CaptureResultParser.isLensDirtyDetected(captureResult) && CameraSettings.isLensDirtyDetectEnabled()) {
+    @CallSuper
+    public void onPreviewMetaDataUpdate(CaptureResult captureResult) {
+        detectLensDirty(captureResult);
+        if (this.isShowPreviewDebugInfo) {
+            boolean z = (isDoingAction() || this.mModuleIndex == 166) ? false : true;
+            showDebug(captureResult, z);
+        }
+    }
+
+    private void detectLensDirty(CaptureResult captureResult) {
+        if (this.mLensDirtyDetectDisposable != null && CaptureResultParser.isLensDirtyDetected(captureResult)) {
+            this.mLensDirtyDetectDisposable.dispose();
+            this.mLensDirtyDetectDisposable = null;
+            Completable.complete().observeOn(GlobalConstant.sCameraSetupScheduler).doOnComplete(new ActionUpdateLensDirtyDetect(this, false)).subscribe();
             if (CameraSettings.shouldShowLensDirtyDetectHint()) {
                 this.mActivity.showLensDirtyDetectedHint();
+                this.mLensDirtyDetectHintDisposable = Completable.complete().delay(8000, TimeUnit.MILLISECONDS, GlobalConstant.sCameraSetupScheduler).doOnComplete(new ActionHideLensDirtyDetectHint(this)).subscribe();
             }
-            if (this.mLensDirtyDetectDisposable != null) {
-                this.mLensDirtyDetectDisposable.dispose();
-            }
-            Completable.complete().observeOn(GlobalConstant.sCameraSetupScheduler).doOnComplete(new ActionUpdateLensDirtyDetect(this, false)).subscribe();
-            this.mLensDirtyDetectHintDisposable = Completable.complete().delay(8000, TimeUnit.MILLISECONDS, GlobalConstant.sCameraSetupScheduler).doOnComplete(new ActionHideLensDirtyDetectHint(this)).subscribe();
-        }
-        if (Util.isShowPreviewDebugInfo()) {
-            if (!(isDoingAction() || this.mModuleIndex == 166)) {
-                z = true;
-            }
-            showDebug(captureResult, z);
         }
     }
 
@@ -961,15 +949,17 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         if (Util.isShowAfRegionView() && z) {
             this.mMainProtocol.setAfRegionView((MeteringRectangle[]) captureResult.get(CaptureResult.CONTROL_AF_REGIONS), getActiveArraySize(), this.mZoomValue);
         }
-        this.mActivity.runOnUiThread(new Runnable() {
-            public void run() {
-                if (z) {
-                    BaseModule.this.mActivity.showDebugInfo(Util.getDebugInformation(captureResult));
-                } else {
-                    BaseModule.this.mActivity.showDebugInfo("");
+        if (Util.isShowDebugInfoView()) {
+            this.mActivity.runOnUiThread(new Runnable() {
+                public void run() {
+                    if (z) {
+                        BaseModule.this.mActivity.showDebugInfo(Util.getDebugInformation(captureResult));
+                    } else {
+                        BaseModule.this.mActivity.showDebugInfo("");
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     public boolean isCaptureIntent() {
@@ -1060,12 +1050,14 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
     }
 
     void trackPictureTaken(int i, boolean z, boolean z2) {
-        trackPictureTaken(i, z, z2, null);
+        trackPictureTaken(i, z, z2, null, false, false);
     }
 
-    void trackPictureTaken(int i, boolean z, boolean z2, String str) {
+    void trackPictureTaken(int i, boolean z, boolean z2, String str, boolean z3, boolean z4) {
         CameraStatUtil.trackPictureTaken(i, z, this.mModuleIndex, isFrontCamera(), z2, str);
         trackModeCustomInfo(i);
+        CameraStatUtil.trackBeautyBodyCapture();
+        CameraStatUtil.trackMoonMode(z3, z4);
     }
 
     protected void trackModeCustomInfo(int i) {
@@ -1128,6 +1120,12 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         this.mUIStyle = i;
     }
 
+    public void onPreviewLayoutChanged(Rect rect) {
+    }
+
+    public void onPreviewSizeChanged(int i, int i2) {
+    }
+
     protected int getCameraState() {
         return this.mCameraState;
     }
@@ -1142,11 +1140,18 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
     }
 
     public void updateLensDirtyDetect(boolean z) {
-        if (!z || (!isDoingAction() && !isPanoramaDoing())) {
-            this.mCamera2Device.setLensDirtyDetect(CameraSettings.isLensDirtyDetectEnabled());
-            if (z) {
-                this.mCamera2Device.resumePreview();
-            }
+        if (this.mCamera2Device == null) {
+            Log.e(TAG, "updateLensDirtyDetect: mCamera2Device is null...");
+            return;
+        }
+        boolean isLensDirtyDetectEnabled = CameraSettings.isLensDirtyDetectEnabled();
+        if (!(isLensDirtyDetectEnabled || this.mLensDirtyDetectDisposable == null)) {
+            this.mLensDirtyDetectDisposable.dispose();
+            this.mLensDirtyDetectDisposable = null;
+        }
+        this.mCamera2Device.setLensDirtyDetect(isLensDirtyDetectEnabled);
+        if (z && isFrameAvailable() && !isDoingAction() && !isPanoramaDoing()) {
+            this.mCamera2Device.resumePreview();
         }
     }
 
@@ -1172,7 +1177,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
             stringBuilder.append(str);
             Log.d(str2, stringBuilder.toString());
             int parseInt = Util.parseInt(str, 0);
-            if (isFrontCamera() && this.mActivity.isScreenSlideOff()) {
+            if (ThermalDetector.getInstance().thermalConstrained() || (isFrontCamera() && this.mActivity.isScreenSlideOff())) {
                 parseInt = 0;
             }
             this.mCamera2Device.setOptimizedFlash(CameraSettings.isOptimizedFlashEnable());
@@ -1193,7 +1198,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         if (isDeviceAlive()) {
             if (str.equals("manual")) {
                 this.mCamera2Device.setAWBMode(0);
-                this.mCamera2Device.setCustomAWB(CameraSettings.getKValue());
+                this.mCamera2Device.setCustomAWB(CameraSettings.getCustomWB());
             } else {
                 int parseInt = Util.parseInt(str, 1);
                 if (Util.isSupported(parseInt, this.mCameraCapabilities.getSupportedAWBModes())) {
@@ -1240,6 +1245,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         return isCreated() && !isDeparted();
     }
 
+    @CallSuper
     public void onBroadcastReceived(Context context, Intent intent) {
         if (this.mActivity != null && !this.mActivity.isFinishing() && intent != null) {
             String action = intent.getAction();
@@ -1250,19 +1256,26 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
             Log.v(str, stringBuilder.toString());
             if ("android.intent.action.MEDIA_MOUNTED".equals(action)) {
                 Log.d(TAG, "SD card available");
+                Storage.initStorage(context);
                 this.mActivity.getScreenHint().updateHint();
-                FileCompat.updateSDPath();
             } else if ("android.intent.action.MEDIA_UNMOUNTED".equals(action)) {
                 Log.d(TAG, "SD card unavailable");
+                FileCompat.updateSDPath();
                 this.mActivity.getScreenHint().updateHint();
                 this.mActivity.getThumbnailUpdater().getLastThumbnail();
-                FileCompat.updateSDPath();
             } else if ("android.intent.action.MEDIA_SCANNER_STARTED".equals(action)) {
                 Log.d(TAG, "media scanner started");
             } else if ("android.intent.action.MEDIA_SCANNER_FINISHED".equals(action)) {
                 this.mActivity.getThumbnailUpdater().getLastThumbnail();
+                Log.d(TAG, "media scanner finisheded");
             }
         }
+    }
+
+    public void onHostStopAndNotifyActionStop() {
+    }
+
+    public void onNewUriArrived(Uri uri, String str) {
     }
 
     public boolean isDeviceAlive() {
@@ -1299,7 +1312,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
     }
 
     protected void handlePendingScreenSlide() {
-        if (this.mPendingScreenSlideKeyCode > 0) {
+        if (this.mPendingScreenSlideKeyCode > 0 && this.mActivity != null) {
             String str = TAG;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("process pending screen slide: ");
@@ -1315,6 +1328,10 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
             this.mCamera2Device.setAELock(false);
             updatePreferenceInWorkThread(10, 36);
         }
+    }
+
+    protected final boolean isTextureExpired() {
+        return this.mActivity.getCameraScreenNail().getSurfaceCreatedTimestamp() != this.mSurfaceCreatedTimestamp;
     }
 
     public boolean isThermalThreshold() {

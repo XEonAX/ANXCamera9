@@ -22,13 +22,13 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 3
+    .registers 4
 
     .line 1502
     invoke-direct {p0}, Landroid/support/v4/widget/SlidingPaneLayout$SlidingPanelLayoutImplBase;-><init>()V
 
     .line 1504
-    :try_start_0
+    :try_start_3
     const-class v0, Landroid/view/View;
 
     const-string v1, "getDisplayList"
@@ -42,14 +42,14 @@
     move-result-object v0
 
     iput-object v0, p0, Landroid/support/v4/widget/SlidingPaneLayout$SlidingPanelLayoutImplJB;->mGetDisplayList:Ljava/lang/reflect/Method;
-    :try_end_0
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_10
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_3 .. :try_end_10} :catch_11
 
     .line 1507
-    goto :goto_0
+    goto :goto_19
 
     .line 1505
-    :catch_0
+    :catch_11
     move-exception v0
 
     .line 1506
@@ -62,8 +62,8 @@
 
     .line 1509
     .end local v0    # "e":Ljava/lang/NoSuchMethodException;
-    :goto_0
-    :try_start_1
+    :goto_19
+    :try_start_19
     const-class v0, Landroid/view/View;
 
     const-string v1, "mRecreateDisplayList"
@@ -80,14 +80,14 @@
     const/4 v1, 0x1
 
     invoke-virtual {v0, v1}, Ljava/lang/reflect/Field;->setAccessible(Z)V
-    :try_end_1
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_29
+    .catch Ljava/lang/NoSuchFieldException; {:try_start_19 .. :try_end_29} :catch_2a
 
     .line 1513
-    goto :goto_1
+    goto :goto_32
 
     .line 1511
-    :catch_1
+    :catch_2a
     move-exception v0
 
     .line 1512
@@ -100,28 +100,28 @@
 
     .line 1514
     .end local v0    # "e":Ljava/lang/NoSuchFieldException;
-    :goto_1
+    :goto_32
     return-void
 .end method
 
 
 # virtual methods
 .method public invalidateChildRegion(Landroid/support/v4/widget/SlidingPaneLayout;Landroid/view/View;)V
-    .locals 3
+    .registers 6
     .param p1, "parent"    # Landroid/support/v4/widget/SlidingPaneLayout;
     .param p2, "child"    # Landroid/view/View;
 
     .line 1518
     iget-object v0, p0, Landroid/support/v4/widget/SlidingPaneLayout$SlidingPanelLayoutImplJB;->mGetDisplayList:Ljava/lang/reflect/Method;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_24
 
     iget-object v0, p0, Landroid/support/v4/widget/SlidingPaneLayout$SlidingPanelLayoutImplJB;->mRecreateDisplayList:Ljava/lang/reflect/Field;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_24
 
     .line 1520
-    :try_start_0
+    :try_start_8
     iget-object v0, p0, Landroid/support/v4/widget/SlidingPaneLayout$SlidingPanelLayoutImplJB;->mRecreateDisplayList:Ljava/lang/reflect/Field;
 
     const/4 v1, 0x1
@@ -136,13 +136,13 @@
     check-cast v1, [Ljava/lang/Object;
 
     invoke-virtual {v0, p2, v1}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_16
+    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_16} :catch_17
 
-    goto :goto_0
+    goto :goto_1f
 
     .line 1522
-    :catch_0
+    :catch_17
     move-exception v0
 
     .line 1523
@@ -155,7 +155,7 @@
 
     .line 1524
     .end local v0    # "e":Ljava/lang/Exception;
-    :goto_0
+    :goto_1f
     nop
 
     .line 1530
@@ -165,7 +165,7 @@
     return-void
 
     .line 1527
-    :cond_0
+    :cond_24
     invoke-virtual {p2}, Landroid/view/View;->invalidate()V
 
     .line 1528

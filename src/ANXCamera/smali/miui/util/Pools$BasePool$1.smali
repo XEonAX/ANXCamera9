@@ -15,15 +15,15 @@
 
 
 # instance fields
-.field final synthetic JA:Lmiui/util/Pools$BasePool;
+.field final synthetic JK:Lmiui/util/Pools$BasePool;
 
 
 # direct methods
 .method constructor <init>(Lmiui/util/Pools$BasePool;)V
-    .locals 0
+    .registers 2
 
     .line 351
-    iput-object p1, p0, Lmiui/util/Pools$BasePool$1;->JA:Lmiui/util/Pools$BasePool;
+    iput-object p1, p0, Lmiui/util/Pools$BasePool$1;->JK:Lmiui/util/Pools$BasePool;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -33,7 +33,7 @@
 
 # virtual methods
 .method protected finalize()V
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -42,11 +42,11 @@
 
     .line 355
     :try_start_0
-    iget-object v0, p0, Lmiui/util/Pools$BasePool$1;->JA:Lmiui/util/Pools$BasePool;
+    iget-object v0, p0, Lmiui/util/Pools$BasePool$1;->JK:Lmiui/util/Pools$BasePool;
 
     invoke-virtual {v0}, Lmiui/util/Pools$BasePool;->close()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_5
+    .catchall {:try_start_0 .. :try_end_5} :catchall_a
 
     .line 357
     invoke-super {p0}, Ljava/lang/Object;->finalize()V
@@ -58,7 +58,7 @@
     return-void
 
     .line 357
-    :catchall_0
+    :catchall_a
     move-exception v0
 
     invoke-super {p0}, Ljava/lang/Object;->finalize()V

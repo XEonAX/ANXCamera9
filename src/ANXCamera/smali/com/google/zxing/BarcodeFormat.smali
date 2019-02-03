@@ -53,7 +53,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 17
+    .registers 17
 
     .line 26
     new-instance v0, Lcom/google/zxing/BarcodeFormat;
@@ -346,7 +346,7 @@
 .end method
 
 .method private constructor <init>(Ljava/lang/String;I)V
-    .locals 0
+    .registers 3
 
     .line 24
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
@@ -355,7 +355,7 @@
 .end method
 
 .method public static valueOf(Ljava/lang/String;)Lcom/google/zxing/BarcodeFormat;
-    .locals 1
+    .registers 2
 
     .line 1
     const-class v0, Lcom/google/zxing/BarcodeFormat;
@@ -370,7 +370,7 @@
 .end method
 
 .method public static values()[Lcom/google/zxing/BarcodeFormat;
-    .locals 4
+    .registers 4
 
     .line 1
     sget-object v0, Lcom/google/zxing/BarcodeFormat;->ENUM$VALUES:[Lcom/google/zxing/BarcodeFormat;

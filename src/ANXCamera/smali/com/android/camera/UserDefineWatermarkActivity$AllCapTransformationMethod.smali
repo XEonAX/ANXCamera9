@@ -22,7 +22,7 @@
 .method private constructor <init>(Lcom/android/camera/UserDefineWatermarkActivity;)V
     .locals 0
 
-    .line 272
+    .line 278
     iput-object p1, p0, Lcom/android/camera/UserDefineWatermarkActivity$AllCapTransformationMethod;->this$0:Lcom/android/camera/UserDefineWatermarkActivity;
 
     invoke-direct {p0}, Landroid/text/method/ReplacementTransformationMethod;-><init>()V
@@ -33,7 +33,7 @@
 .method synthetic constructor <init>(Lcom/android/camera/UserDefineWatermarkActivity;Lcom/android/camera/UserDefineWatermarkActivity$1;)V
     .locals 0
 
-    .line 272
+    .line 278
     invoke-direct {p0, p1}, Lcom/android/camera/UserDefineWatermarkActivity$AllCapTransformationMethod;-><init>(Lcom/android/camera/UserDefineWatermarkActivity;)V
 
     return-void
@@ -44,14 +44,14 @@
 .method protected getOriginal()[C
     .locals 1
 
-    .line 275
+    .line 281
     const/16 v0, 0x1a
 
     new-array v0, v0, [C
 
     fill-array-data v0, :array_0
 
-    .line 277
+    .line 283
     return-object v0
 
     :array_0
@@ -88,14 +88,14 @@
 .method protected getReplacement()[C
     .locals 1
 
-    .line 282
+    .line 288
     const/16 v0, 0x1a
 
     new-array v0, v0, [C
 
     fill-array-data v0, :array_0
 
-    .line 284
+    .line 290
     return-object v0
 
     :array_0

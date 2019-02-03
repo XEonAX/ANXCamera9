@@ -11,7 +11,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/zxing/aztec/encoder/Token;II)V
-    .locals 1
+    .registers 5
     .param p1, "previous"    # Lcom/google/zxing/aztec/encoder/Token;
     .param p2, "value"    # I
     .param p3, "bitCount"    # I
@@ -36,7 +36,7 @@
 
 # virtual methods
 .method appendTo(Lcom/google/zxing/common/BitArray;[B)V
-    .locals 2
+    .registers 5
     .param p1, "bitArray"    # Lcom/google/zxing/common/BitArray;
     .param p2, "text"    # [B
 
@@ -52,7 +52,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 4
+    .registers 5
 
     .line 40
     iget-short v0, p0, Lcom/google/zxing/aztec/encoder/SimpleToken;->value:S

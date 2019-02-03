@@ -102,8 +102,8 @@ public class SupportedConfigs {
         this.mConfigs.addAll(list);
     }
 
-    public List<TopConfigItem> getConfigs() {
-        return this.mConfigs;
+    public TopConfigItem getConfigItem(int i) {
+        return (TopConfigItem) this.mConfigs.get(i);
     }
 
     public boolean isHasConfigItem(int i) {

@@ -6,6 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 public class ExceptionConstant {
     public static final int EXCEPTION_CAMERA_ACTIVITY_FINISHING = 235;
     public static final int EXCEPTION_CAMERA_ACTIVITY_NULL = 234;
+    public static final int EXCEPTION_CAMERA_DEVICE_NOT_RESPONDING = 237;
     public static final int EXCEPTION_CAMERA_DISABLED = 227;
     public static final int EXCEPTION_CAMERA_GET_DEVICE_NULL = 230;
     public static final int EXCEPTION_CAMERA_GET_PARAMETERS_NULL = 231;

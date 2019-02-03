@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 1758
     invoke-direct {p0}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoKitKatImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public addAction(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "action"    # Ljava/lang/Object;
 
@@ -39,7 +39,7 @@
 .end method
 
 .method public getAccessibilityActionId(Ljava/lang/Object;)I
-    .locals 1
+    .registers 3
     .param p1, "action"    # Ljava/lang/Object;
 
     .line 1788
@@ -51,7 +51,7 @@
 .end method
 
 .method public getAccessibilityActionLabel(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .locals 1
+    .registers 3
     .param p1, "action"    # Ljava/lang/Object;
 
     .line 1793
@@ -63,7 +63,7 @@
 .end method
 
 .method public getActionList(Ljava/lang/Object;)Ljava/util/List;
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -85,7 +85,7 @@
 .end method
 
 .method public getError(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1810
@@ -97,7 +97,7 @@
 .end method
 
 .method public getMaxTextLength(Ljava/lang/Object;)I
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1825
@@ -109,7 +109,7 @@
 .end method
 
 .method public getWindow(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1830
@@ -121,7 +121,7 @@
 .end method
 
 .method public isCollectionItemSelected(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 1805
@@ -133,7 +133,7 @@
 .end method
 
 .method public newAccessibilityAction(ILjava/lang/CharSequence;)Ljava/lang/Object;
-    .locals 1
+    .registers 4
     .param p1, "actionId"    # I
     .param p2, "label"    # Ljava/lang/CharSequence;
 
@@ -146,7 +146,7 @@
 .end method
 
 .method public obtainCollectionInfo(IIZI)Ljava/lang/Object;
-    .locals 1
+    .registers 6
     .param p1, "rowCount"    # I
     .param p2, "columnCount"    # I
     .param p3, "hierarchical"    # Z
@@ -161,7 +161,7 @@
 .end method
 
 .method public obtainCollectionItemInfo(IIIIZZ)Ljava/lang/Object;
-    .locals 1
+    .registers 8
     .param p1, "rowIndex"    # I
     .param p2, "rowSpan"    # I
     .param p3, "columnIndex"    # I
@@ -178,7 +178,7 @@
 .end method
 
 .method public removeAction(Ljava/lang/Object;Ljava/lang/Object;)Z
-    .locals 1
+    .registers 4
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "action"    # Ljava/lang/Object;
 
@@ -191,7 +191,7 @@
 .end method
 
 .method public removeChild(Ljava/lang/Object;Landroid/view/View;)Z
-    .locals 1
+    .registers 4
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "child"    # Landroid/view/View;
 
@@ -204,7 +204,7 @@
 .end method
 
 .method public removeChild(Ljava/lang/Object;Landroid/view/View;I)Z
-    .locals 1
+    .registers 5
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "root"    # Landroid/view/View;
     .param p3, "virtualDescendantId"    # I
@@ -218,7 +218,7 @@
 .end method
 
 .method public setError(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .locals 0
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "error"    # Ljava/lang/CharSequence;
 
@@ -230,7 +230,7 @@
 .end method
 
 .method public setMaxTextLength(Ljava/lang/Object;I)V
-    .locals 0
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "max"    # I
 

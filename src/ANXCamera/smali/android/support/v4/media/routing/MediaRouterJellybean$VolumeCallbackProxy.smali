@@ -35,7 +35,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v4/media/routing/MediaRouterJellybean$VolumeCallback;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -57,7 +57,7 @@
 
 # virtual methods
 .method public onVolumeSetRequest(Landroid/media/MediaRouter$RouteInfo;I)V
-    .locals 1
+    .registers 4
     .param p1, "route"    # Landroid/media/MediaRouter$RouteInfo;
     .param p2, "volume"    # I
 
@@ -72,7 +72,7 @@
 .end method
 
 .method public onVolumeUpdateRequest(Landroid/media/MediaRouter$RouteInfo;I)V
-    .locals 1
+    .registers 4
     .param p1, "route"    # Landroid/media/MediaRouter$RouteInfo;
     .param p2, "direction"    # I
 

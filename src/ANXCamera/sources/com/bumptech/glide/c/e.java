@@ -10,7 +10,7 @@ import java.util.List;
 /* compiled from: ManifestParser */
 public final class e {
     private static final String TAG = "ManifestParser";
-    private static final String mL = "GlideModule";
+    private static final String mK = "GlideModule";
     private final Context context;
 
     public e(Context context) {
@@ -38,7 +38,7 @@ public final class e {
                 Log.v(str, stringBuilder.toString());
             }
             for (String str2 : applicationInfo.metaData.keySet()) {
-                if (mL.equals(applicationInfo.metaData.get(str2))) {
+                if (mK.equals(applicationInfo.metaData.get(str2))) {
                     arrayList.add(s(str2));
                     if (Log.isLoggable(TAG, 3)) {
                         String str3 = TAG;

@@ -13,6 +13,7 @@ import com.android.camera.FocusManagerAbstract;
 import com.android.camera.Util;
 import com.android.camera.constant.AutoFocus;
 import com.android.camera.log.Log;
+import com.android.camera.module.loader.FunctionParseBeautyBodySlimCount;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.MainContentProtocol;
 import com.android.camera2.CameraCapabilities;
@@ -40,55 +41,58 @@ public class FocusManager2 extends FocusManagerAbstract {
     private long mCafStartTime;
     private Rect mCameraFocusArea;
     private Rect mCameraMeteringArea;
+    private boolean mDestroyed;
     private boolean mFocusAreaSupported;
     private String mFocusMode;
     private Consumer<FocusTask> mFocusResultConsumer = new Consumer<FocusTask>() {
         public void accept(FocusTask focusTask) throws Exception {
-            String str = FocusManager2.TAG;
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("focusResult: ");
-            stringBuilder.append(focusTask.getFocusTrigger());
-            stringBuilder.append("|");
-            stringBuilder.append(focusTask.isSuccess());
-            stringBuilder.append("|");
-            stringBuilder.append(focusTask.isFocusing());
-            stringBuilder.append("|");
-            stringBuilder.append(FocusManager2.this.mState);
-            Log.v(str, stringBuilder.toString());
-            if (focusTask.getFocusTrigger() == 2 || focusTask.getFocusTrigger() == 3) {
-                FocusManager2.this.onAutoFocusMoving(focusTask.isFocusing(), focusTask.isSuccess());
-                return;
-            }
-            if (FocusManager2.this.mState == 2) {
-                if (focusTask.isSuccess()) {
-                    FocusManager2.this.setFocusState(3);
-                    FocusManager2.this.setLastFocusState(3);
-                } else {
-                    FocusManager2.this.setFocusState(4);
-                    FocusManager2.this.setLastFocusState(4);
+            if (!FocusManager2.this.mDestroyed) {
+                String str = FocusManager2.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("focusResult: ");
+                stringBuilder.append(focusTask.getFocusTrigger());
+                stringBuilder.append("|");
+                stringBuilder.append(focusTask.isSuccess());
+                stringBuilder.append("|");
+                stringBuilder.append(focusTask.isFocusing());
+                stringBuilder.append("|");
+                stringBuilder.append(FocusManager2.this.mState);
+                Log.v(str, stringBuilder.toString());
+                if (focusTask.getFocusTrigger() == 2 || focusTask.getFocusTrigger() == 3) {
+                    FocusManager2.this.onAutoFocusMoving(focusTask.isFocusing(), focusTask.isSuccess());
+                    return;
                 }
-                FocusManager2.this.updateFocusUI();
-                if (FocusManager2.this.mPendingMultiCapture) {
-                    FocusManager2.this.multiCapture();
-                } else {
-                    FocusManager2.this.capture();
-                }
-            } else if (FocusManager2.this.mState == 1) {
-                if (focusTask.isSuccess()) {
-                    FocusManager2.this.setFocusState(3);
-                    FocusManager2.this.setLastFocusState(3);
-                    if ("auto".equals(FocusManager2.this.mFocusMode) && FocusManager2.this.mLastFocusFrom != 1) {
-                        FocusManager2.this.mListener.playSound(1);
+                if (FocusManager2.this.mState == 2) {
+                    if (focusTask.isSuccess()) {
+                        FocusManager2.this.setFocusState(3);
+                        FocusManager2.this.setLastFocusState(3);
+                    } else {
+                        FocusManager2.this.setFocusState(4);
+                        FocusManager2.this.setLastFocusState(4);
                     }
+                    FocusManager2.this.updateFocusUI();
+                    if (FocusManager2.this.mPendingMultiCapture) {
+                        FocusManager2.this.multiCapture();
+                    } else {
+                        FocusManager2.this.capture();
+                    }
+                } else if (FocusManager2.this.mState == 1) {
+                    if (focusTask.isSuccess()) {
+                        FocusManager2.this.setFocusState(3);
+                        FocusManager2.this.setLastFocusState(3);
+                        if ("auto".equals(FocusManager2.this.mFocusMode) && FocusManager2.this.mLastFocusFrom != 1) {
+                            FocusManager2.this.mListener.playFocusSound(1);
+                        }
+                    } else {
+                        FocusManager2.this.setFocusState(FocusManager2.this.mMirror ? 1 : 4);
+                        FocusManager2.this.setLastFocusState(4);
+                    }
+                    FocusManager2.this.updateFocusUI();
+                    FocusManager2.this.mHandler.removeMessages(1);
+                    FocusManager2.this.mCancelAutoFocusIfMove = true;
                 } else {
-                    FocusManager2.this.setFocusState(FocusManager2.this.mMirror ? 1 : 4);
-                    FocusManager2.this.setLastFocusState(4);
+                    FocusManager2.this.mState;
                 }
-                FocusManager2.this.updateFocusUI();
-                FocusManager2.this.mHandler.removeMessages(1);
-                FocusManager2.this.mCancelAutoFocusIfMove = true;
-            } else {
-                FocusManager2.this.mState;
             }
         }
     };
@@ -116,7 +120,7 @@ public class FocusManager2 extends FocusManagerAbstract {
 
         boolean onWaitingFocusFinished();
 
-        void playSound(int i);
+        void playFocusSound(int i);
 
         void startFaceDetection();
 
@@ -236,7 +240,7 @@ public class FocusManager2 extends FocusManagerAbstract {
                     } else {
                         focusFaceArea();
                     }
-                } else if (!(!z || this.mCameraFocusArea == null || b.gb())) {
+                } else if (!(!z || this.mCameraFocusArea == null || b.gu())) {
                     this.mKeepFocusUIState = true;
                     startFocus(this.mLastFocusFrom);
                     this.mKeepFocusUIState = false;
@@ -244,7 +248,7 @@ public class FocusManager2 extends FocusManagerAbstract {
                 z2 = true;
             }
             if (!z2 && z && equals) {
-                if (!b.gR()) {
+                if (!b.hj()) {
                     requestAutoFocus();
                 } else if (this.mState == 1) {
                     cancelFocus();
@@ -445,7 +449,7 @@ public class FocusManager2 extends FocusManagerAbstract {
             if (!this.mFocusAreaSupported || z) {
                 if (this.mMeteringAreaSupported) {
                     if (3 == i3 && isFocusValid(i3)) {
-                        this.mListener.playSound(1);
+                        this.mListener.playFocusSound(1);
                         this.mCancelAutoFocusIfMove = true;
                     }
                     this.mLastFocusFrom = i3;
@@ -527,7 +531,7 @@ public class FocusManager2 extends FocusManagerAbstract {
 
     private boolean isFocusValid(int i) {
         long currentTimeMillis = System.currentTimeMillis();
-        long j = (this.mLastFocusFrom == 3 || this.mLastFocusFrom == 4) ? 5000 : 4000;
+        long j = (this.mLastFocusFrom == 3 || this.mLastFocusFrom == 4) ? 5000 : FunctionParseBeautyBodySlimCount.TIP_TIME;
         if (i >= 3 || i >= this.mLastFocusFrom || Util.isTimeout(currentTimeMillis, this.mLatestFocusTime, j)) {
             this.mLatestFocusTime = System.currentTimeMillis();
             return true;
@@ -580,7 +584,7 @@ public class FocusManager2 extends FocusManagerAbstract {
 
     private void capture() {
         if (this.mListener.onWaitingFocusFinished()) {
-            if (b.gb()) {
+            if (b.gu()) {
                 setFocusState(0);
                 this.mCancelAutoFocusIfMove = false;
             }
@@ -699,7 +703,7 @@ public class FocusManager2 extends FocusManagerAbstract {
     }
 
     public void resetAfterCapture(boolean z) {
-        if (b.gb()) {
+        if (b.gu()) {
             resetTouchFocus(7);
         } else if (!z) {
         } else {
@@ -834,6 +838,7 @@ public class FocusManager2 extends FocusManagerAbstract {
     }
 
     public void destroy() {
+        this.mDestroyed = true;
         removeMessages();
         this.mFocusResultDisposable.dispose();
     }

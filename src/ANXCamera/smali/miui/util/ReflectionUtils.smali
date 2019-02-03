@@ -44,7 +44,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 27
     invoke-static {}, Ljava/lang/ClassLoader;->getSystemClassLoader()Ljava/lang/ClassLoader;
@@ -78,7 +78,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 23
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -87,7 +87,7 @@
 .end method
 
 .method public static varargs callMethod(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 6
     .param p0, "obj"    # Ljava/lang/Object;
     .param p1, "methodName"    # Ljava/lang/String;
     .param p3, "args"    # [Ljava/lang/Object;
@@ -138,7 +138,7 @@
 .end method
 
 .method public static varargs callStaticMethod(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 8
     .param p1, "methodName"    # Ljava/lang/String;
     .param p3, "args"    # [Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
@@ -176,7 +176,7 @@
     .local v0, "method":Ljava/lang/reflect/Method;
     const/4 v1, 0x0
 
-    :try_start_0
+    :try_start_5
     invoke-virtual {v0, v1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
@@ -186,14 +186,14 @@
     invoke-static {v1, p2}, Lmiui/util/ReflectionUtils;->checkMethodReturnValue(Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;
 
     move-result-object v2
-    :try_end_0
-    .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Ljava/lang/NullPointerException; {:try_start_5 .. :try_end_d} :catch_e
 
     return-object v2
 
     .line 849
     .end local v1    # "returnedValue":Ljava/lang/Object;
-    :catch_0
+    :catch_e
     move-exception v1
 
     .line 850
@@ -213,7 +213,7 @@
 .end method
 
 .method private static checkFieldValue(Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;
-    .locals 2
+    .registers 4
     .param p0, "value"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -235,10 +235,10 @@
     .local p1, "fieldClazz":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
     const-class v0, Ljava/lang/Void;
 
-    if-eq p1, v0, :cond_3
+    if-eq p1, v0, :cond_1f
 
     .line 776
-    if-nez p0, :cond_0
+    if-nez p0, :cond_8
 
     .line 777
     const/4 v0, 0x0
@@ -246,14 +246,14 @@
     return-object v0
 
     .line 779
-    :cond_0
-    if-nez p1, :cond_1
+    :cond_8
+    if-nez p1, :cond_b
 
     .line 780
     return-object p0
 
     .line 782
-    :cond_1
+    :cond_b
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v0
@@ -264,13 +264,13 @@
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_17
 
     .line 783
     return-object p0
 
     .line 786
-    :cond_2
+    :cond_17
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "fieldClazz"
@@ -280,7 +280,7 @@
     throw v0
 
     .line 774
-    :cond_3
+    :cond_1f
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "fieldClazz"
@@ -291,7 +291,7 @@
 .end method
 
 .method private static checkMethodReturnValue(Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;
-    .locals 2
+    .registers 4
     .param p0, "returnedValue"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -313,29 +313,29 @@
     .local p1, "returnValueClazz":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
     const/4 v0, 0x0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     .line 890
     return-object v0
 
     .line 892
-    :cond_0
-    if-nez p1, :cond_1
+    :cond_4
+    if-nez p1, :cond_7
 
     .line 893
     return-object p0
 
     .line 895
-    :cond_1
+    :cond_7
     const-class v1, Ljava/lang/Void;
 
-    if-ne p1, v1, :cond_2
+    if-ne p1, v1, :cond_c
 
     .line 896
     return-object v0
 
     .line 898
-    :cond_2
+    :cond_c
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v0
@@ -346,13 +346,13 @@
 
     move-result v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_18
 
     .line 899
     return-object p0
 
     .line 902
-    :cond_3
+    :cond_18
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "returnValueClazz"
@@ -363,7 +363,7 @@
 .end method
 
 .method public static findClass(Ljava/lang/String;Ljava/lang/ClassLoader;)Ljava/lang/Class;
-    .locals 1
+    .registers 3
     .param p0, "className"    # Ljava/lang/String;
     .param p1, "classLoader"    # Ljava/lang/ClassLoader;
     .annotation system Ldalvik/annotation/Signature;
@@ -384,13 +384,13 @@
     .end annotation
 
     .line 56
-    if-nez p1, :cond_0
+    if-nez p1, :cond_4
 
     .line 57
     sget-object p1, Lmiui/util/ReflectionUtils;->BOOTCLASSLOADER:Ljava/lang/ClassLoader;
 
     .line 58
-    :cond_0
+    :cond_4
     const/4 v0, 0x0
 
     invoke-static {p1, p0, v0}, Lorg/apache/miui/commons/lang3/ClassUtils;->getClass(Ljava/lang/ClassLoader;Ljava/lang/String;Z)Ljava/lang/Class;
@@ -401,7 +401,7 @@
 .end method
 
 .method public static varargs findConstructorBestMatch(Ljava/lang/Class;[Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
-    .locals 9
+    .registers 11
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -456,14 +456,14 @@
     monitor-enter v2
 
     .line 501
-    :try_start_0
+    :try_start_1c
     sget-object v3, Lmiui/util/ReflectionUtils;->constructorCache:Ljava/util/HashMap;
 
     invoke-virtual {v3, v1}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_36
 
     .line 502
     sget-object v3, Lmiui/util/ReflectionUtils;->constructorCache:Ljava/util/HashMap;
@@ -476,7 +476,7 @@
 
     .line 503
     .local v3, "constructor":Ljava/lang/reflect/Constructor;, "Ljava/lang/reflect/Constructor<*>;"
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_30
 
     .line 505
     monitor-exit v2
@@ -484,7 +484,7 @@
     return-object v3
 
     .line 504
-    :cond_0
+    :cond_30
     new-instance v4, Ljava/lang/NoSuchMethodException;
 
     invoke-direct {v4, v1}, Ljava/lang/NoSuchMethodException;-><init>(Ljava/lang/String;)V
@@ -493,13 +493,13 @@
 
     .line 507
     .end local v3    # "constructor":Ljava/lang/reflect/Constructor;, "Ljava/lang/reflect/Constructor<*>;"
-    :cond_1
+    :cond_36
     monitor-exit v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_3
+    :try_end_37
+    .catchall {:try_start_1c .. :try_end_37} :catchall_9b
 
     .line 510
-    :try_start_1
+    :try_start_37
     invoke-static {p0, p1}, Lmiui/util/ReflectionUtils;->findConstructorExact(Ljava/lang/Class;[Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
 
     move-result-object v2
@@ -509,11 +509,11 @@
     sget-object v3, Lmiui/util/ReflectionUtils;->constructorCache:Ljava/util/HashMap;
 
     monitor-enter v3
-    :try_end_1
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_3e
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_37 .. :try_end_3e} :catch_48
 
     .line 512
-    :try_start_2
+    :try_start_3e
     sget-object v4, Lmiui/util/ReflectionUtils;->constructorCache:Ljava/util/HashMap;
 
     invoke-virtual {v4, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
@@ -525,21 +525,21 @@
     return-object v2
 
     .line 513
-    :catchall_0
+    :catchall_45
     move-exception v4
 
     monitor-exit v3
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_47
+    .catchall {:try_start_3e .. :try_end_47} :catchall_45
 
-    :try_start_3
+    :try_start_47
     throw v4
-    :try_end_3
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_3 .. :try_end_3} :catch_0
+    :try_end_48
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_47 .. :try_end_48} :catch_48
 
     .line 515
     .end local v2    # "constructor":Ljava/lang/reflect/Constructor;, "Ljava/lang/reflect/Constructor<*>;"
-    :catch_0
+    :catch_48
     move-exception v2
 
     .line 518
@@ -561,10 +561,10 @@
 
     .end local v2    # "bestMatch":Ljava/lang/reflect/Constructor;, "Ljava/lang/reflect/Constructor<*>;"
     .local v6, "bestMatch":Ljava/lang/reflect/Constructor;, "Ljava/lang/reflect/Constructor<*>;"
-    :goto_0
+    :goto_51
     const/4 v2, 0x1
 
-    if-ge v5, v4, :cond_4
+    if-ge v5, v4, :cond_75
 
     aget-object v7, v3, v5
 
@@ -578,10 +578,10 @@
 
     move-result v2
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_72
 
     .line 524
-    if-eqz v6, :cond_2
+    if-eqz v6, :cond_70
 
     .line 525
     invoke-virtual {v7}, Ljava/lang/reflect/Constructor;->getParameterTypes()[Ljava/lang/Class;
@@ -598,10 +598,10 @@
 
     move-result v2
 
-    if-gez v2, :cond_3
+    if-gez v2, :cond_72
 
     .line 528
-    :cond_2
+    :cond_70
     move-object v2, v7
 
     .line 520
@@ -612,14 +612,14 @@
 
     .end local v2    # "bestMatch":Ljava/lang/reflect/Constructor;, "Ljava/lang/reflect/Constructor<*>;"
     .restart local v6    # "bestMatch":Ljava/lang/reflect/Constructor;, "Ljava/lang/reflect/Constructor<*>;"
-    :cond_3
+    :cond_72
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_0
+    goto :goto_51
 
     .line 533
-    :cond_4
-    if-eqz v6, :cond_5
+    :cond_75
+    if-eqz v6, :cond_87
 
     .line 534
     invoke-virtual {v6, v2}, Ljava/lang/reflect/Constructor;->setAccessible(Z)V
@@ -630,7 +630,7 @@
     monitor-enter v2
 
     .line 536
-    :try_start_4
+    :try_start_7d
     sget-object v4, Lmiui/util/ReflectionUtils;->constructorCache:Ljava/util/HashMap;
 
     invoke-virtual {v4, v1, v6}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
@@ -642,17 +642,17 @@
     return-object v6
 
     .line 537
-    :catchall_1
+    :catchall_84
     move-exception v4
 
     monitor-exit v2
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_1
+    :try_end_86
+    .catchall {:try_start_7d .. :try_end_86} :catchall_84
 
     throw v4
 
     .line 540
-    :cond_5
+    :cond_87
     new-instance v2, Ljava/lang/NoSuchMethodException;
 
     invoke-direct {v2, v1}, Ljava/lang/NoSuchMethodException;-><init>(Ljava/lang/String;)V
@@ -666,7 +666,7 @@
     monitor-enter v5
 
     .line 542
-    :try_start_5
+    :try_start_90
     sget-object v2, Lmiui/util/ReflectionUtils;->constructorCache:Ljava/util/HashMap;
 
     const/4 v7, 0x0
@@ -675,20 +675,20 @@
 
     .line 543
     monitor-exit v5
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_2
+    :try_end_97
+    .catchall {:try_start_90 .. :try_end_97} :catchall_98
 
     .line 544
     throw v4
 
     .line 543
-    :catchall_2
+    :catchall_98
     move-exception v2
 
-    :try_start_6
+    :try_start_99
     monitor-exit v5
-    :try_end_6
-    .catchall {:try_start_6 .. :try_end_6} :catchall_2
+    :try_end_9a
+    .catchall {:try_start_99 .. :try_end_9a} :catchall_98
 
     throw v2
 
@@ -696,19 +696,19 @@
     .end local v3    # "constructors":[Ljava/lang/reflect/Constructor;, "[Ljava/lang/reflect/Constructor<*>;"
     .end local v4    # "e":Ljava/lang/NoSuchMethodException;
     .end local v6    # "bestMatch":Ljava/lang/reflect/Constructor;, "Ljava/lang/reflect/Constructor<*>;"
-    :catchall_3
+    :catchall_9b
     move-exception v3
 
-    :try_start_7
+    :try_start_9c
     monitor-exit v2
-    :try_end_7
-    .catchall {:try_start_7 .. :try_end_7} :catchall_3
+    :try_end_9d
+    .catchall {:try_start_9c .. :try_end_9d} :catchall_9b
 
     throw v3
 .end method
 
 .method public static varargs findConstructorBestMatch(Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/reflect/Constructor;
-    .locals 1
+    .registers 3
     .param p1, "args"    # [Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -742,7 +742,7 @@
 .end method
 
 .method public static varargs findConstructorExact(Ljava/lang/Class;[Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
-    .locals 6
+    .registers 8
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -797,14 +797,14 @@
     monitor-enter v2
 
     .line 449
-    :try_start_0
+    :try_start_1c
     sget-object v3, Lmiui/util/ReflectionUtils;->constructorCache:Ljava/util/HashMap;
 
     invoke-virtual {v3, v1}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_36
 
     .line 450
     sget-object v3, Lmiui/util/ReflectionUtils;->constructorCache:Ljava/util/HashMap;
@@ -817,7 +817,7 @@
 
     .line 451
     .local v3, "constructor":Ljava/lang/reflect/Constructor;, "Ljava/lang/reflect/Constructor<*>;"
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_30
 
     .line 453
     monitor-exit v2
@@ -825,7 +825,7 @@
     return-object v3
 
     .line 452
-    :cond_0
+    :cond_30
     new-instance v4, Ljava/lang/NoSuchMethodException;
 
     invoke-direct {v4, v1}, Ljava/lang/NoSuchMethodException;-><init>(Ljava/lang/String;)V
@@ -834,13 +834,13 @@
 
     .line 455
     .end local v3    # "constructor":Ljava/lang/reflect/Constructor;, "Ljava/lang/reflect/Constructor<*>;"
-    :cond_1
+    :cond_36
     monitor-exit v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_2
+    :try_end_37
+    .catchall {:try_start_1c .. :try_end_37} :catchall_5c
 
     .line 458
-    :try_start_1
+    :try_start_37
     invoke-virtual {p0, p1}, Ljava/lang/Class;->getDeclaredConstructor([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
 
     move-result-object v2
@@ -855,11 +855,11 @@
     sget-object v3, Lmiui/util/ReflectionUtils;->constructorCache:Ljava/util/HashMap;
 
     monitor-enter v3
-    :try_end_1
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_42
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_37 .. :try_end_42} :catch_4c
 
     .line 461
-    :try_start_2
+    :try_start_42
     sget-object v4, Lmiui/util/ReflectionUtils;->constructorCache:Ljava/util/HashMap;
 
     invoke-virtual {v4, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
@@ -871,21 +871,21 @@
     return-object v2
 
     .line 462
-    :catchall_0
+    :catchall_49
     move-exception v4
 
     monitor-exit v3
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_4b
+    .catchall {:try_start_42 .. :try_end_4b} :catchall_49
 
-    :try_start_3
+    :try_start_4b
     throw v4
-    :try_end_3
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_3 .. :try_end_3} :catch_0
+    :try_end_4c
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_4b .. :try_end_4c} :catch_4c
 
     .line 464
     .end local v2    # "constructor":Ljava/lang/reflect/Constructor;, "Ljava/lang/reflect/Constructor<*>;"
-    :catch_0
+    :catch_4c
     move-exception v2
 
     move-object v3, v2
@@ -897,7 +897,7 @@
     monitor-enter v4
 
     .line 466
-    :try_start_4
+    :try_start_51
     sget-object v2, Lmiui/util/ReflectionUtils;->constructorCache:Ljava/util/HashMap;
 
     const/4 v5, 0x0
@@ -906,38 +906,38 @@
 
     .line 467
     monitor-exit v4
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_1
+    :try_end_58
+    .catchall {:try_start_51 .. :try_end_58} :catchall_59
 
     .line 468
     throw v3
 
     .line 467
-    :catchall_1
+    :catchall_59
     move-exception v2
 
-    :try_start_5
+    :try_start_5a
     monitor-exit v4
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_1
+    :try_end_5b
+    .catchall {:try_start_5a .. :try_end_5b} :catchall_59
 
     throw v2
 
     .line 455
     .end local v3    # "e":Ljava/lang/NoSuchMethodException;
-    :catchall_2
+    :catchall_5c
     move-exception v3
 
-    :try_start_6
+    :try_start_5d
     monitor-exit v2
-    :try_end_6
-    .catchall {:try_start_6 .. :try_end_6} :catchall_2
+    :try_end_5e
+    .catchall {:try_start_5d .. :try_end_5e} :catchall_5c
 
     throw v3
 .end method
 
 .method public static findField(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;
-    .locals 6
+    .registers 8
     .param p1, "fieldName"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -987,14 +987,14 @@
     monitor-enter v2
 
     .line 102
-    :try_start_0
+    :try_start_18
     sget-object v3, Lmiui/util/ReflectionUtils;->fieldCache:Ljava/util/HashMap;
 
     invoke-virtual {v3, v1}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_32
 
     .line 103
     sget-object v3, Lmiui/util/ReflectionUtils;->fieldCache:Ljava/util/HashMap;
@@ -1007,7 +1007,7 @@
 
     .line 104
     .local v3, "field":Ljava/lang/reflect/Field;
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_2c
 
     .line 106
     monitor-exit v2
@@ -1015,7 +1015,7 @@
     return-object v3
 
     .line 105
-    :cond_0
+    :cond_2c
     new-instance v4, Ljava/lang/NoSuchFieldException;
 
     invoke-direct {v4, v1}, Ljava/lang/NoSuchFieldException;-><init>(Ljava/lang/String;)V
@@ -1024,13 +1024,13 @@
 
     .line 108
     .end local v3    # "field":Ljava/lang/reflect/Field;
-    :cond_1
+    :cond_32
     monitor-exit v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_2
+    :try_end_33
+    .catchall {:try_start_18 .. :try_end_33} :catchall_58
 
     .line 111
-    :try_start_1
+    :try_start_33
     invoke-static {p0, p1}, Lmiui/util/ReflectionUtils;->findFieldRecursiveImpl(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object v2
@@ -1045,11 +1045,11 @@
     sget-object v3, Lmiui/util/ReflectionUtils;->fieldCache:Ljava/util/HashMap;
 
     monitor-enter v3
-    :try_end_1
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_3e
+    .catch Ljava/lang/NoSuchFieldException; {:try_start_33 .. :try_end_3e} :catch_48
 
     .line 114
-    :try_start_2
+    :try_start_3e
     sget-object v4, Lmiui/util/ReflectionUtils;->fieldCache:Ljava/util/HashMap;
 
     invoke-virtual {v4, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
@@ -1061,21 +1061,21 @@
     return-object v2
 
     .line 115
-    :catchall_0
+    :catchall_45
     move-exception v4
 
     monitor-exit v3
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_47
+    .catchall {:try_start_3e .. :try_end_47} :catchall_45
 
-    :try_start_3
+    :try_start_47
     throw v4
-    :try_end_3
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_3 .. :try_end_3} :catch_0
+    :try_end_48
+    .catch Ljava/lang/NoSuchFieldException; {:try_start_47 .. :try_end_48} :catch_48
 
     .line 117
     .end local v2    # "field":Ljava/lang/reflect/Field;
-    :catch_0
+    :catch_48
     move-exception v2
 
     move-object v3, v2
@@ -1087,7 +1087,7 @@
     monitor-enter v4
 
     .line 119
-    :try_start_4
+    :try_start_4d
     sget-object v2, Lmiui/util/ReflectionUtils;->fieldCache:Ljava/util/HashMap;
 
     const/4 v5, 0x0
@@ -1096,38 +1096,38 @@
 
     .line 120
     monitor-exit v4
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_1
+    :try_end_54
+    .catchall {:try_start_4d .. :try_end_54} :catchall_55
 
     .line 121
     throw v3
 
     .line 120
-    :catchall_1
+    :catchall_55
     move-exception v2
 
-    :try_start_5
+    :try_start_56
     monitor-exit v4
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_1
+    :try_end_57
+    .catchall {:try_start_56 .. :try_end_57} :catchall_55
 
     throw v2
 
     .line 108
     .end local v3    # "e":Ljava/lang/NoSuchFieldException;
-    :catchall_2
+    :catchall_58
     move-exception v3
 
-    :try_start_6
+    :try_start_59
     monitor-exit v2
-    :try_end_6
-    .catchall {:try_start_6 .. :try_end_6} :catchall_2
+    :try_end_5a
+    .catchall {:try_start_59 .. :try_end_5a} :catchall_58
 
     throw v3
 .end method
 
 .method private static findFieldRecursiveImpl(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;
-    .locals 2
+    .registers 4
     .param p1, "fieldName"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1152,24 +1152,24 @@
     invoke-virtual {p0, p1}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4
+    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_4} :catch_5
 
     return-object v0
 
     .line 144
-    :catch_0
+    :catch_5
     move-exception v0
 
     .line 146
     .local v0, "e":Ljava/lang/NoSuchFieldException;
-    :goto_0
+    :goto_6
     invoke-virtual {p0}, Ljava/lang/Class;->getSuperclass()Ljava/lang/Class;
 
     move-result-object p0
 
     .line 147
-    if-eqz p0, :cond_1
+    if-eqz p0, :cond_1c
 
     const-class v1, Ljava/lang/Object;
 
@@ -1177,36 +1177,36 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_1b
 
     .line 151
-    :try_start_1
+    :try_start_14
     invoke-virtual {p0, p1}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object v1
-    :try_end_1
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_18
+    .catch Ljava/lang/NoSuchFieldException; {:try_start_14 .. :try_end_18} :catch_19
 
     return-object v1
 
     .line 152
-    :catch_1
+    :catch_19
     move-exception v1
 
     .line 153
-    goto :goto_0
+    goto :goto_6
 
     .line 148
-    :cond_0
+    :cond_1b
     nop
 
     .line 155
-    :cond_1
+    :cond_1c
     throw v0
 .end method
 
 .method public static varargs findMethodBestMatch(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
-    .locals 9
+    .registers 12
     .param p1, "methodName"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1271,14 +1271,14 @@
     monitor-enter v2
 
     .line 298
-    :try_start_0
+    :try_start_24
     sget-object v3, Lmiui/util/ReflectionUtils;->methodCache:Ljava/util/HashMap;
 
     invoke-virtual {v3, v1}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_3e
 
     .line 299
     sget-object v3, Lmiui/util/ReflectionUtils;->methodCache:Ljava/util/HashMap;
@@ -1291,7 +1291,7 @@
 
     .line 300
     .local v3, "method":Ljava/lang/reflect/Method;
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_38
 
     .line 302
     monitor-exit v2
@@ -1299,7 +1299,7 @@
     return-object v3
 
     .line 301
-    :cond_0
+    :cond_38
     new-instance v4, Ljava/lang/NoSuchMethodException;
 
     invoke-direct {v4, v1}, Ljava/lang/NoSuchMethodException;-><init>(Ljava/lang/String;)V
@@ -1308,13 +1308,13 @@
 
     .line 304
     .end local v3    # "method":Ljava/lang/reflect/Method;
-    :cond_1
+    :cond_3e
     monitor-exit v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_3
+    :try_end_3f
+    .catchall {:try_start_24 .. :try_end_3f} :catchall_ad
 
     .line 307
-    :try_start_1
+    :try_start_3f
     invoke-static {p0, p1, p2}, Lmiui/util/ReflectionUtils;->findMethodExact(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v2
@@ -1324,11 +1324,11 @@
     sget-object v3, Lmiui/util/ReflectionUtils;->methodCache:Ljava/util/HashMap;
 
     monitor-enter v3
-    :try_end_1
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_46
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_3f .. :try_end_46} :catch_50
 
     .line 309
-    :try_start_2
+    :try_start_46
     sget-object v4, Lmiui/util/ReflectionUtils;->methodCache:Ljava/util/HashMap;
 
     invoke-virtual {v4, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
@@ -1340,21 +1340,21 @@
     return-object v2
 
     .line 310
-    :catchall_0
+    :catchall_4d
     move-exception v4
 
     monitor-exit v3
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_4f
+    .catchall {:try_start_46 .. :try_end_4f} :catchall_4d
 
-    :try_start_3
+    :try_start_4f
     throw v4
-    :try_end_3
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_3 .. :try_end_3} :catch_0
+    :try_end_50
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_4f .. :try_end_50} :catch_50
 
     .line 312
     .end local v2    # "method":Ljava/lang/reflect/Method;
-    :catch_0
+    :catch_50
     move-exception v2
 
     .line 315
@@ -1376,10 +1376,10 @@
 
     .end local v2    # "bestMatch":Ljava/lang/reflect/Method;
     .local v6, "bestMatch":Ljava/lang/reflect/Method;
-    :goto_0
+    :goto_59
     const/4 v2, 0x1
 
-    if-ge v5, v4, :cond_4
+    if-ge v5, v4, :cond_87
 
     aget-object v7, v3, v5
 
@@ -1393,7 +1393,7 @@
 
     move-result v8
 
-    if-eqz v8, :cond_3
+    if-eqz v8, :cond_84
 
     .line 320
     invoke-virtual {v7}, Ljava/lang/reflect/Method;->getParameterTypes()[Ljava/lang/Class;
@@ -1404,10 +1404,10 @@
 
     move-result v2
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_84
 
     .line 322
-    if-eqz v6, :cond_2
+    if-eqz v6, :cond_82
 
     .line 323
     invoke-virtual {v7}, Ljava/lang/reflect/Method;->getParameterTypes()[Ljava/lang/Class;
@@ -1424,10 +1424,10 @@
 
     move-result v2
 
-    if-gez v2, :cond_3
+    if-gez v2, :cond_84
 
     .line 326
-    :cond_2
+    :cond_82
     move-object v2, v7
 
     .line 317
@@ -1438,14 +1438,14 @@
 
     .end local v2    # "bestMatch":Ljava/lang/reflect/Method;
     .restart local v6    # "bestMatch":Ljava/lang/reflect/Method;
-    :cond_3
+    :cond_84
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_0
+    goto :goto_59
 
     .line 331
-    :cond_4
-    if-eqz v6, :cond_5
+    :cond_87
+    if-eqz v6, :cond_99
 
     .line 332
     invoke-virtual {v6, v2}, Ljava/lang/reflect/Method;->setAccessible(Z)V
@@ -1456,7 +1456,7 @@
     monitor-enter v2
 
     .line 334
-    :try_start_4
+    :try_start_8f
     sget-object v4, Lmiui/util/ReflectionUtils;->methodCache:Ljava/util/HashMap;
 
     invoke-virtual {v4, v1, v6}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
@@ -1468,17 +1468,17 @@
     return-object v6
 
     .line 335
-    :catchall_1
+    :catchall_96
     move-exception v4
 
     monitor-exit v2
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_1
+    :try_end_98
+    .catchall {:try_start_8f .. :try_end_98} :catchall_96
 
     throw v4
 
     .line 338
-    :cond_5
+    :cond_99
     new-instance v2, Ljava/lang/NoSuchMethodException;
 
     invoke-direct {v2, v1}, Ljava/lang/NoSuchMethodException;-><init>(Ljava/lang/String;)V
@@ -1492,7 +1492,7 @@
     monitor-enter v5
 
     .line 340
-    :try_start_5
+    :try_start_a2
     sget-object v2, Lmiui/util/ReflectionUtils;->methodCache:Ljava/util/HashMap;
 
     const/4 v7, 0x0
@@ -1501,20 +1501,20 @@
 
     .line 341
     monitor-exit v5
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_2
+    :try_end_a9
+    .catchall {:try_start_a2 .. :try_end_a9} :catchall_aa
 
     .line 342
     throw v4
 
     .line 341
-    :catchall_2
+    :catchall_aa
     move-exception v2
 
-    :try_start_6
+    :try_start_ab
     monitor-exit v5
-    :try_end_6
-    .catchall {:try_start_6 .. :try_end_6} :catchall_2
+    :try_end_ac
+    .catchall {:try_start_ab .. :try_end_ac} :catchall_aa
 
     throw v2
 
@@ -1522,19 +1522,19 @@
     .end local v3    # "methods":[Ljava/lang/reflect/Method;
     .end local v4    # "e":Ljava/lang/NoSuchMethodException;
     .end local v6    # "bestMatch":Ljava/lang/reflect/Method;
-    :catchall_3
+    :catchall_ad
     move-exception v3
 
-    :try_start_7
+    :try_start_ae
     monitor-exit v2
-    :try_end_7
-    .catchall {:try_start_7 .. :try_end_7} :catchall_3
+    :try_end_af
+    .catchall {:try_start_ae .. :try_end_af} :catchall_ad
 
     throw v3
 .end method
 
 .method public static varargs findMethodBestMatch(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/reflect/Method;
-    .locals 1
+    .registers 4
     .param p1, "methodName"    # Ljava/lang/String;
     .param p2, "args"    # [Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
@@ -1570,7 +1570,7 @@
 .end method
 
 .method public static varargs findMethodExact(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
-    .locals 6
+    .registers 9
     .param p1, "methodName"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1635,14 +1635,14 @@
     monitor-enter v2
 
     .line 239
-    :try_start_0
+    :try_start_24
     sget-object v3, Lmiui/util/ReflectionUtils;->methodCache:Ljava/util/HashMap;
 
     invoke-virtual {v3, v1}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_3e
 
     .line 240
     sget-object v3, Lmiui/util/ReflectionUtils;->methodCache:Ljava/util/HashMap;
@@ -1655,7 +1655,7 @@
 
     .line 241
     .local v3, "method":Ljava/lang/reflect/Method;
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_38
 
     .line 243
     monitor-exit v2
@@ -1663,7 +1663,7 @@
     return-object v3
 
     .line 242
-    :cond_0
+    :cond_38
     new-instance v4, Ljava/lang/NoSuchMethodException;
 
     invoke-direct {v4, v1}, Ljava/lang/NoSuchMethodException;-><init>(Ljava/lang/String;)V
@@ -1672,13 +1672,13 @@
 
     .line 245
     .end local v3    # "method":Ljava/lang/reflect/Method;
-    :cond_1
+    :cond_3e
     monitor-exit v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_2
+    :try_end_3f
+    .catchall {:try_start_24 .. :try_end_3f} :catchall_64
 
     .line 248
-    :try_start_1
+    :try_start_3f
     invoke-virtual {p0, p1, p2}, Ljava/lang/Class;->getDeclaredMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v2
@@ -1693,11 +1693,11 @@
     sget-object v3, Lmiui/util/ReflectionUtils;->methodCache:Ljava/util/HashMap;
 
     monitor-enter v3
-    :try_end_1
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_4a
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_3f .. :try_end_4a} :catch_54
 
     .line 251
-    :try_start_2
+    :try_start_4a
     sget-object v4, Lmiui/util/ReflectionUtils;->methodCache:Ljava/util/HashMap;
 
     invoke-virtual {v4, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
@@ -1709,21 +1709,21 @@
     return-object v2
 
     .line 252
-    :catchall_0
+    :catchall_51
     move-exception v4
 
     monitor-exit v3
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_53
+    .catchall {:try_start_4a .. :try_end_53} :catchall_51
 
-    :try_start_3
+    :try_start_53
     throw v4
-    :try_end_3
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_3 .. :try_end_3} :catch_0
+    :try_end_54
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_53 .. :try_end_54} :catch_54
 
     .line 254
     .end local v2    # "method":Ljava/lang/reflect/Method;
-    :catch_0
+    :catch_54
     move-exception v2
 
     move-object v3, v2
@@ -1735,7 +1735,7 @@
     monitor-enter v4
 
     .line 256
-    :try_start_4
+    :try_start_59
     sget-object v2, Lmiui/util/ReflectionUtils;->methodCache:Ljava/util/HashMap;
 
     const/4 v5, 0x0
@@ -1744,38 +1744,38 @@
 
     .line 257
     monitor-exit v4
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_1
+    :try_end_60
+    .catchall {:try_start_59 .. :try_end_60} :catchall_61
 
     .line 258
     throw v3
 
     .line 257
-    :catchall_1
+    :catchall_61
     move-exception v2
 
-    :try_start_5
+    :try_start_62
     monitor-exit v4
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_1
+    :try_end_63
+    .catchall {:try_start_62 .. :try_end_63} :catchall_61
 
     throw v2
 
     .line 245
     .end local v3    # "e":Ljava/lang/NoSuchMethodException;
-    :catchall_2
+    :catchall_64
     move-exception v3
 
-    :try_start_6
+    :try_start_65
     monitor-exit v2
-    :try_end_6
-    .catchall {:try_start_6 .. :try_end_6} :catchall_2
+    :try_end_66
+    .catchall {:try_start_65 .. :try_end_66} :catchall_64
 
     throw v3
 .end method
 
 .method public static varargs findMethodExact(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/reflect/Method;
-    .locals 6
+    .registers 9
     .param p1, "methodName"    # Ljava/lang/String;
     .param p2, "parameterTypes"    # [Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
@@ -1809,18 +1809,18 @@
     add-int/lit8 v1, v1, -0x1
 
     .local v1, "i":I
-    :goto_0
-    if-ltz v1, :cond_4
+    :goto_4
+    if-ltz v1, :cond_3f
 
     .line 175
     aget-object v2, p2, v1
 
     .line 176
     .local v2, "type":Ljava/lang/Object;
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_37
 
     .line 179
-    if-nez v0, :cond_0
+    if-nez v0, :cond_10
 
     .line 180
     add-int/lit8 v3, v1, 0x1
@@ -1828,10 +1828,10 @@
     new-array v0, v3, [Ljava/lang/Class;
 
     .line 182
-    :cond_0
+    :cond_10
     instance-of v3, v2, Ljava/lang/Class;
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_1a
 
     .line 183
     move-object v3, v2
@@ -1840,13 +1840,13 @@
 
     aput-object v3, v0, v1
 
-    goto :goto_1
+    goto :goto_2b
 
     .line 184
-    :cond_1
+    :cond_1a
     instance-of v3, v2, Ljava/lang/String;
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_2e
 
     .line 185
     move-object v3, v2
@@ -1865,14 +1865,14 @@
 
     .line 174
     .end local v2    # "type":Ljava/lang/Object;
-    :goto_1
+    :goto_2b
     add-int/lit8 v1, v1, -0x1
 
-    goto :goto_0
+    goto :goto_4
 
     .line 187
     .restart local v2    # "type":Ljava/lang/Object;
-    :cond_2
+    :cond_2e
     new-instance v3, Ljava/lang/IllegalArgumentException;
 
     const/4 v4, 0x0
@@ -1884,7 +1884,7 @@
     throw v3
 
     .line 177
-    :cond_3
+    :cond_37
     new-instance v3, Ljava/lang/NullPointerException;
 
     const-string v4, "parameter type must not be null"
@@ -1896,8 +1896,8 @@
     .line 192
     .end local v1    # "i":I
     .end local v2    # "type":Ljava/lang/Object;
-    :cond_4
-    if-nez v0, :cond_5
+    :cond_3f
+    if-nez v0, :cond_44
 
     .line 193
     const/4 v1, 0x0
@@ -1905,7 +1905,7 @@
     new-array v0, v1, [Ljava/lang/Class;
 
     .line 195
-    :cond_5
+    :cond_44
     invoke-static {p0, p1, v0}, Lmiui/util/ReflectionUtils;->findMethodExact(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v1
@@ -1914,7 +1914,7 @@
 .end method
 
 .method public static varargs getClassesAsArray([Ljava/lang/Class;)[Ljava/lang/Class;
-    .locals 0
+    .registers 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "([",
@@ -1931,7 +1931,7 @@
 .end method
 
 .method public static getObjectField(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
-    .locals 2
+    .registers 5
     .param p0, "obj"    # Ljava/lang/Object;
     .param p1, "fieldName"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
@@ -1978,7 +1978,7 @@
 .end method
 
 .method public static varargs getParameterTypes([Ljava/lang/Object;)[Ljava/lang/Class;
-    .locals 3
+    .registers 4
     .param p0, "args"    # [Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2000,15 +2000,15 @@
     const/4 v1, 0x0
 
     .local v1, "i":I
-    :goto_0
+    :goto_4
     array-length v2, p0
 
-    if-ge v1, v2, :cond_1
+    if-ge v1, v2, :cond_18
 
     .line 403
     aget-object v2, p0, v1
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_12
 
     aget-object v2, p0, v1
 
@@ -2016,27 +2016,27 @@
 
     move-result-object v2
 
-    goto :goto_1
+    goto :goto_13
 
-    :cond_0
+    :cond_12
     const/4 v2, 0x0
 
-    :goto_1
+    :goto_13
     aput-object v2, v0, v1
 
     .line 402
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_4
 
     .line 405
     .end local v1    # "i":I
-    :cond_1
+    :cond_18
     return-object v0
 .end method
 
 .method private static varargs getParametersString([Ljava/lang/Class;)Ljava/lang/String;
-    .locals 6
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "([",
@@ -2064,29 +2064,29 @@
 
     const/4 v3, 0x0
 
-    :goto_0
-    if-ge v3, v2, :cond_2
+    :goto_a
+    if-ge v3, v2, :cond_29
 
     aget-object v4, p0, v3
 
     .line 421
     .local v4, "clazz":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_12
 
     .line 422
     const/4 v1, 0x0
 
-    goto :goto_1
+    goto :goto_17
 
     .line 424
-    :cond_0
+    :cond_12
     const-string v5, ","
 
     invoke-virtual {v0, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 426
-    :goto_1
-    if-eqz v4, :cond_1
+    :goto_17
+    if-eqz v4, :cond_21
 
     .line 427
     invoke-virtual {v4}, Ljava/lang/Class;->getCanonicalName()Ljava/lang/String;
@@ -2095,23 +2095,23 @@
 
     invoke-virtual {v0, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    goto :goto_2
+    goto :goto_26
 
     .line 429
-    :cond_1
+    :cond_21
     const-string v5, "null"
 
     invoke-virtual {v0, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 420
     .end local v4    # "clazz":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
-    :goto_2
+    :goto_26
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_a
 
     .line 431
-    :cond_2
+    :cond_29
     const-string v2, ")"
 
     invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
@@ -2125,7 +2125,7 @@
 .end method
 
 .method public static getStaticObjectField(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
-    .locals 4
+    .registers 7
     .param p1, "fieldName"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2159,7 +2159,7 @@
     .local v0, "field":Ljava/lang/reflect/Field;
     const/4 v1, 0x0
 
-    :try_start_0
+    :try_start_5
     invoke-virtual {v0, v1}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
@@ -2169,14 +2169,14 @@
     invoke-static {v1, p2}, Lmiui/util/ReflectionUtils;->checkFieldValue(Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;
 
     move-result-object v2
-    :try_end_0
-    .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Ljava/lang/NullPointerException; {:try_start_5 .. :try_end_d} :catch_e
 
     return-object v2
 
     .line 738
     .end local v1    # "value":Ljava/lang/Object;
-    :catch_0
+    :catch_e
     move-exception v1
 
     .line 739
@@ -2196,7 +2196,7 @@
 .end method
 
 .method public static getSurroundingThis(Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p0, "obj"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2229,7 +2229,7 @@
 .end method
 
 .method public static varargs newInstance(Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p1, "args"    # [Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2266,7 +2266,7 @@
 .end method
 
 .method public static setObjectField(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/Object;)V
-    .locals 1
+    .registers 4
     .param p0, "obj"    # Ljava/lang/Object;
     .param p1, "fieldName"    # Ljava/lang/String;
     .param p2, "value"    # Ljava/lang/Object;
@@ -2294,7 +2294,7 @@
 .end method
 
 .method public static setStaticObjectField(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Object;)V
-    .locals 4
+    .registers 7
     .param p1, "fieldName"    # Ljava/lang/String;
     .param p2, "value"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
@@ -2326,10 +2326,10 @@
     .local v0, "field":Ljava/lang/reflect/Field;
     const/4 v1, 0x0
 
-    :try_start_0
+    :try_start_5
     invoke-virtual {v0, v1, p2}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
-    :try_end_0
-    .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_8
+    .catch Ljava/lang/NullPointerException; {:try_start_5 .. :try_end_8} :catch_a
 
     .line 705
     nop
@@ -2338,7 +2338,7 @@
     return-void
 
     .line 699
-    :catch_0
+    :catch_a
     move-exception v1
 
     .line 703
@@ -2358,7 +2358,7 @@
 .end method
 
 .method public static varargs tryCallMethod(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/Class;[Ljava/lang/Object;)Lmiui/util/ObjectReference;
-    .locals 4
+    .registers 8
     .param p0, "obj"    # Ljava/lang/Object;
     .param p1, "methodName"    # Ljava/lang/String;
     .param p3, "args"    # [Ljava/lang/Object;
@@ -2382,7 +2382,7 @@
     .local p2, "returnValueClazz":Ljava/lang/Class;, "Ljava/lang/Class<TT;>;"
     const/4 v0, 0x0
 
-    :try_start_0
+    :try_start_1
     new-instance v1, Lmiui/util/ObjectReference;
 
     invoke-static {p0, p1, p2, p3}, Lmiui/util/ReflectionUtils;->callMethod(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
@@ -2390,16 +2390,16 @@
     move-result-object v2
 
     invoke-direct {v1, v2}, Lmiui/util/ObjectReference;-><init>(Ljava/lang/Object;)V
-    :try_end_0
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_3
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_1 .. :try_end_a} :catch_26
+    .catch Ljava/lang/IllegalAccessException; {:try_start_1 .. :try_end_a} :catch_1d
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_1 .. :try_end_a} :catch_14
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_1 .. :try_end_a} :catch_b
 
     return-object v1
 
     .line 828
-    :catch_0
+    :catch_b
     move-exception v1
 
     .line 829
@@ -2415,7 +2415,7 @@
 
     .line 825
     .end local v1    # "ex":Ljava/lang/reflect/InvocationTargetException;
-    :catch_1
+    :catch_14
     move-exception v1
 
     .line 826
@@ -2431,7 +2431,7 @@
 
     .line 822
     .end local v1    # "ex":Ljava/lang/IllegalArgumentException;
-    :catch_2
+    :catch_1d
     move-exception v1
 
     .line 823
@@ -2447,7 +2447,7 @@
 
     .line 819
     .end local v1    # "ex":Ljava/lang/IllegalAccessException;
-    :catch_3
+    :catch_26
     move-exception v1
 
     .line 820
@@ -2463,7 +2463,7 @@
 .end method
 
 .method public static varargs tryCallStaticMethod(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Class;[Ljava/lang/Object;)Lmiui/util/ObjectReference;
-    .locals 4
+    .registers 8
     .param p1, "methodName"    # Ljava/lang/String;
     .param p3, "args"    # [Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
@@ -2488,7 +2488,7 @@
     .local p2, "returnValueClazz":Ljava/lang/Class;, "Ljava/lang/Class<TT;>;"
     const/4 v0, 0x0
 
-    :try_start_0
+    :try_start_1
     new-instance v1, Lmiui/util/ObjectReference;
 
     invoke-static {p0, p1, p2, p3}, Lmiui/util/ReflectionUtils;->callStaticMethod(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
@@ -2496,16 +2496,16 @@
     move-result-object v2
 
     invoke-direct {v1, v2}, Lmiui/util/ObjectReference;-><init>(Ljava/lang/Object;)V
-    :try_end_0
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_3
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_1 .. :try_end_a} :catch_26
+    .catch Ljava/lang/IllegalAccessException; {:try_start_1 .. :try_end_a} :catch_1d
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_1 .. :try_end_a} :catch_14
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_1 .. :try_end_a} :catch_b
 
     return-object v1
 
     .line 881
-    :catch_0
+    :catch_b
     move-exception v1
 
     .line 882
@@ -2521,7 +2521,7 @@
 
     .line 878
     .end local v1    # "ex":Ljava/lang/reflect/InvocationTargetException;
-    :catch_1
+    :catch_14
     move-exception v1
 
     .line 879
@@ -2537,7 +2537,7 @@
 
     .line 875
     .end local v1    # "ex":Ljava/lang/IllegalArgumentException;
-    :catch_2
+    :catch_1d
     move-exception v1
 
     .line 876
@@ -2553,7 +2553,7 @@
 
     .line 872
     .end local v1    # "ex":Ljava/lang/IllegalAccessException;
-    :catch_3
+    :catch_26
     move-exception v1
 
     .line 873
@@ -2569,7 +2569,7 @@
 .end method
 
 .method public static tryFindClass(Ljava/lang/String;Ljava/lang/ClassLoader;)Ljava/lang/Class;
-    .locals 3
+    .registers 5
     .param p0, "className"    # Ljava/lang/String;
     .param p1, "classLoader"    # Ljava/lang/ClassLoader;
     .annotation system Ldalvik/annotation/Signature;
@@ -2588,13 +2588,13 @@
     invoke-static {p0, p1}, Lmiui/util/ReflectionUtils;->findClass(Ljava/lang/String;Ljava/lang/ClassLoader;)Ljava/lang/Class;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/ClassNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4
+    .catch Ljava/lang/ClassNotFoundException; {:try_start_0 .. :try_end_4} :catch_5
 
     return-object v0
 
     .line 83
-    :catch_0
+    :catch_5
     move-exception v0
 
     .line 84
@@ -2612,7 +2612,7 @@
 .end method
 
 .method public static varargs tryFindConstructorBestMatch(Ljava/lang/Class;[Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
-    .locals 3
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -2632,13 +2632,13 @@
     invoke-static {p0, p1}, Lmiui/util/ReflectionUtils;->findConstructorBestMatch(Ljava/lang/Class;[Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_4} :catch_5
 
     return-object v0
 
     .line 558
-    :catch_0
+    :catch_5
     move-exception v0
 
     .line 559
@@ -2656,7 +2656,7 @@
 .end method
 
 .method public static varargs tryFindConstructorBestMatch(Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/reflect/Constructor;
-    .locals 3
+    .registers 5
     .param p1, "args"    # [Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2676,13 +2676,13 @@
     invoke-static {p0, p1}, Lmiui/util/ReflectionUtils;->findConstructorBestMatch(Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/reflect/Constructor;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_4} :catch_5
 
     return-object v0
 
     .line 583
-    :catch_0
+    :catch_5
     move-exception v0
 
     .line 584
@@ -2700,7 +2700,7 @@
 .end method
 
 .method public static varargs tryFindConstructorExact(Ljava/lang/Class;[Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
-    .locals 3
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -2720,13 +2720,13 @@
     invoke-static {p0, p1}, Lmiui/util/ReflectionUtils;->findConstructorExact(Ljava/lang/Class;[Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_4} :catch_5
 
     return-object v0
 
     .line 481
-    :catch_0
+    :catch_5
     move-exception v0
 
     .line 482
@@ -2744,7 +2744,7 @@
 .end method
 
 .method public static tryFindField(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;
-    .locals 3
+    .registers 5
     .param p1, "fieldName"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2763,13 +2763,13 @@
     invoke-static {p0, p1}, Lmiui/util/ReflectionUtils;->findField(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4
+    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_4} :catch_5
 
     return-object v0
 
     .line 134
-    :catch_0
+    :catch_5
     move-exception v0
 
     .line 135
@@ -2787,7 +2787,7 @@
 .end method
 
 .method public static varargs tryFindMethodBestMatch(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
-    .locals 3
+    .registers 6
     .param p1, "methodName"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2809,13 +2809,13 @@
     invoke-static {p0, p1, p2}, Lmiui/util/ReflectionUtils;->findMethodBestMatch(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_4} :catch_5
 
     return-object v0
 
     .line 359
-    :catch_0
+    :catch_5
     move-exception v0
 
     .line 360
@@ -2833,7 +2833,7 @@
 .end method
 
 .method public static varargs tryFindMethodBestMatch(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/reflect/Method;
-    .locals 3
+    .registers 6
     .param p1, "methodName"    # Ljava/lang/String;
     .param p2, "args"    # [Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
@@ -2855,13 +2855,13 @@
     invoke-static {p0, p1, p2}, Lmiui/util/ReflectionUtils;->findMethodBestMatch(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/reflect/Method;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_4} :catch_5
 
     return-object v0
 
     .line 389
-    :catch_0
+    :catch_5
     move-exception v0
 
     .line 390
@@ -2879,7 +2879,7 @@
 .end method
 
 .method public static varargs tryFindMethodExact(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
-    .locals 3
+    .registers 6
     .param p1, "methodName"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2901,13 +2901,13 @@
     invoke-static {p0, p1, p2}, Lmiui/util/ReflectionUtils;->findMethodExact(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_4} :catch_5
 
     return-object v0
 
     .line 272
-    :catch_0
+    :catch_5
     move-exception v0
 
     .line 273
@@ -2925,7 +2925,7 @@
 .end method
 
 .method public static varargs tryFindMethodExact(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/reflect/Method;
-    .locals 4
+    .registers 7
     .param p1, "methodName"    # Ljava/lang/String;
     .param p2, "parameterTypes"    # [Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
@@ -2945,18 +2945,18 @@
     .local p0, "clazz":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
     const/4 v0, 0x0
 
-    :try_start_0
+    :try_start_1
     invoke-static {p0, p1, p2}, Lmiui/util/ReflectionUtils;->findMethodExact(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/reflect/Method;
 
     move-result-object v1
-    :try_end_0
-    .catch Ljava/lang/ClassNotFoundException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_5
+    .catch Ljava/lang/ClassNotFoundException; {:try_start_1 .. :try_end_5} :catch_f
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_1 .. :try_end_5} :catch_6
 
     return-object v1
 
     .line 216
-    :catch_0
+    :catch_6
     move-exception v1
 
     .line 217
@@ -2972,7 +2972,7 @@
 
     .line 213
     .end local v1    # "ex":Ljava/lang/NoSuchMethodException;
-    :catch_1
+    :catch_f
     move-exception v1
 
     .line 214
@@ -2988,7 +2988,7 @@
 .end method
 
 .method public static tryGetObjectField(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/Class;)Lmiui/util/ObjectReference;
-    .locals 4
+    .registers 7
     .param p0, "obj"    # Ljava/lang/Object;
     .param p1, "fieldName"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
@@ -3009,7 +3009,7 @@
     .local p2, "fieldClazz":Ljava/lang/Class;, "Ljava/lang/Class<TT;>;"
     const/4 v0, 0x0
 
-    :try_start_0
+    :try_start_1
     new-instance v1, Lmiui/util/ObjectReference;
 
     invoke-static {p0, p1, p2}, Lmiui/util/ReflectionUtils;->getObjectField(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
@@ -3017,15 +3017,15 @@
     move-result-object v2
 
     invoke-direct {v1, v2}, Lmiui/util/ObjectReference;-><init>(Ljava/lang/Object;)V
-    :try_end_0
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Ljava/lang/NoSuchFieldException; {:try_start_1 .. :try_end_a} :catch_1d
+    .catch Ljava/lang/IllegalAccessException; {:try_start_1 .. :try_end_a} :catch_14
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_1 .. :try_end_a} :catch_b
 
     return-object v1
 
     .line 650
-    :catch_0
+    :catch_b
     move-exception v1
 
     .line 651
@@ -3041,7 +3041,7 @@
 
     .line 647
     .end local v1    # "ex":Ljava/lang/IllegalArgumentException;
-    :catch_1
+    :catch_14
     move-exception v1
 
     .line 648
@@ -3057,7 +3057,7 @@
 
     .line 644
     .end local v1    # "ex":Ljava/lang/IllegalAccessException;
-    :catch_2
+    :catch_1d
     move-exception v1
 
     .line 645
@@ -3073,7 +3073,7 @@
 .end method
 
 .method public static tryGetStaticObjectField(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Class;)Lmiui/util/ObjectReference;
-    .locals 4
+    .registers 7
     .param p1, "fieldName"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -3095,7 +3095,7 @@
     .local p2, "fieldClazz":Ljava/lang/Class;, "Ljava/lang/Class<TT;>;"
     const/4 v0, 0x0
 
-    :try_start_0
+    :try_start_1
     new-instance v1, Lmiui/util/ObjectReference;
 
     invoke-static {p0, p1, p2}, Lmiui/util/ReflectionUtils;->getStaticObjectField(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
@@ -3103,15 +3103,15 @@
     move-result-object v2
 
     invoke-direct {v1, v2}, Lmiui/util/ObjectReference;-><init>(Ljava/lang/Object;)V
-    :try_end_0
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Ljava/lang/NoSuchFieldException; {:try_start_1 .. :try_end_a} :catch_1d
+    .catch Ljava/lang/IllegalAccessException; {:try_start_1 .. :try_end_a} :catch_14
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_1 .. :try_end_a} :catch_b
 
     return-object v1
 
     .line 765
-    :catch_0
+    :catch_b
     move-exception v1
 
     .line 766
@@ -3127,7 +3127,7 @@
 
     .line 762
     .end local v1    # "ex":Ljava/lang/IllegalArgumentException;
-    :catch_1
+    :catch_14
     move-exception v1
 
     .line 763
@@ -3143,7 +3143,7 @@
 
     .line 759
     .end local v1    # "ex":Ljava/lang/IllegalAccessException;
-    :catch_2
+    :catch_1d
     move-exception v1
 
     .line 760
@@ -3159,7 +3159,7 @@
 .end method
 
 .method public static tryGetSurroundingThis(Ljava/lang/Object;Ljava/lang/Class;)Lmiui/util/ObjectReference;
-    .locals 4
+    .registers 6
     .param p0, "obj"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -3178,7 +3178,7 @@
     .local p1, "surroundingClazz":Ljava/lang/Class;, "Ljava/lang/Class<TT;>;"
     const/4 v0, 0x0
 
-    :try_start_0
+    :try_start_1
     new-instance v1, Lmiui/util/ObjectReference;
 
     invoke-static {p0, p1}, Lmiui/util/ReflectionUtils;->getSurroundingThis(Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;
@@ -3186,15 +3186,15 @@
     move-result-object v2
 
     invoke-direct {v1, v2}, Lmiui/util/ObjectReference;-><init>(Ljava/lang/Object;)V
-    :try_end_0
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Ljava/lang/NoSuchFieldException; {:try_start_1 .. :try_end_a} :catch_1d
+    .catch Ljava/lang/IllegalAccessException; {:try_start_1 .. :try_end_a} :catch_14
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_1 .. :try_end_a} :catch_b
 
     return-object v1
 
     .line 684
-    :catch_0
+    :catch_b
     move-exception v1
 
     .line 685
@@ -3210,7 +3210,7 @@
 
     .line 681
     .end local v1    # "ex":Ljava/lang/IllegalArgumentException;
-    :catch_1
+    :catch_14
     move-exception v1
 
     .line 682
@@ -3226,7 +3226,7 @@
 
     .line 678
     .end local v1    # "ex":Ljava/lang/IllegalAccessException;
-    :catch_2
+    :catch_1d
     move-exception v1
 
     .line 679
@@ -3242,7 +3242,7 @@
 .end method
 
 .method public static varargs tryNewInstance(Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 6
     .param p1, "args"    # [Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -3259,21 +3259,21 @@
     .local p0, "clazz":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
     const/4 v0, 0x0
 
-    :try_start_0
+    :try_start_1
     invoke-static {p0, p1}, Lmiui/util/ReflectionUtils;->newInstance(Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
-    :try_end_0
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_4
-    .catch Ljava/lang/InstantiationException; {:try_start_0 .. :try_end_0} :catch_3
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_5
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_1 .. :try_end_5} :catch_2a
+    .catch Ljava/lang/InstantiationException; {:try_start_1 .. :try_end_5} :catch_21
+    .catch Ljava/lang/IllegalAccessException; {:try_start_1 .. :try_end_5} :catch_18
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_1 .. :try_end_5} :catch_f
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_1 .. :try_end_5} :catch_6
 
     return-object v1
 
     .line 936
-    :catch_0
+    :catch_6
     move-exception v1
 
     .line 937
@@ -3289,7 +3289,7 @@
 
     .line 933
     .end local v1    # "ex":Ljava/lang/reflect/InvocationTargetException;
-    :catch_1
+    :catch_f
     move-exception v1
 
     .line 934
@@ -3305,7 +3305,7 @@
 
     .line 930
     .end local v1    # "ex":Ljava/lang/IllegalArgumentException;
-    :catch_2
+    :catch_18
     move-exception v1
 
     .line 931
@@ -3321,7 +3321,7 @@
 
     .line 927
     .end local v1    # "ex":Ljava/lang/IllegalAccessException;
-    :catch_3
+    :catch_21
     move-exception v1
 
     .line 928
@@ -3337,7 +3337,7 @@
 
     .line 924
     .end local v1    # "ex":Ljava/lang/InstantiationException;
-    :catch_4
+    :catch_2a
     move-exception v1
 
     .line 925
@@ -3353,7 +3353,7 @@
 .end method
 
 .method public static trySetObjectField(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/Object;)V
-    .locals 3
+    .registers 6
     .param p0, "obj"    # Ljava/lang/Object;
     .param p1, "fieldName"    # Ljava/lang/String;
     .param p2, "value"    # Ljava/lang/Object;
@@ -3361,17 +3361,17 @@
     .line 607
     :try_start_0
     invoke-static {p0, p1, p2}, Lmiui/util/ReflectionUtils;->setObjectField(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/Object;)V
-    :try_end_0
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_3
+    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_3} :catch_16
+    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_3} :catch_d
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_3} :catch_4
 
     .line 614
-    :goto_0
-    goto :goto_1
+    :goto_3
+    goto :goto_1f
 
     .line 612
-    :catch_0
+    :catch_4
     move-exception v0
 
     .line 613
@@ -3383,10 +3383,10 @@
     invoke-static {v1, v2, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .end local v0    # "ex":Ljava/lang/IllegalArgumentException;
-    goto :goto_1
+    goto :goto_1f
 
     .line 610
-    :catch_1
+    :catch_d
     move-exception v0
 
     .line 611
@@ -3398,10 +3398,10 @@
     invoke-static {v1, v2, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .end local v0    # "ex":Ljava/lang/IllegalAccessException;
-    goto :goto_0
+    goto :goto_3
 
     .line 608
-    :catch_2
+    :catch_16
     move-exception v0
 
     .line 609
@@ -3413,15 +3413,15 @@
     invoke-static {v1, v2, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .end local v0    # "ex":Ljava/lang/NoSuchFieldException;
-    goto :goto_0
+    goto :goto_3
 
     .line 615
-    :goto_1
+    :goto_1f
     return-void
 .end method
 
 .method public static trySetStaticObjectField(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Object;)V
-    .locals 3
+    .registers 6
     .param p1, "fieldName"    # Ljava/lang/String;
     .param p2, "value"    # Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
@@ -3439,17 +3439,17 @@
     .local p0, "clazz":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
     :try_start_0
     invoke-static {p0, p1, p2}, Lmiui/util/ReflectionUtils;->setStaticObjectField(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Object;)V
-    :try_end_0
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_3
+    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_3} :catch_16
+    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_3} :catch_d
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_3} :catch_4
 
     .line 723
-    :goto_0
-    goto :goto_1
+    :goto_3
+    goto :goto_1f
 
     .line 721
-    :catch_0
+    :catch_4
     move-exception v0
 
     .line 722
@@ -3461,10 +3461,10 @@
     invoke-static {v1, v2, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .end local v0    # "ex":Ljava/lang/IllegalArgumentException;
-    goto :goto_1
+    goto :goto_1f
 
     .line 719
-    :catch_1
+    :catch_d
     move-exception v0
 
     .line 720
@@ -3476,10 +3476,10 @@
     invoke-static {v1, v2, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .end local v0    # "ex":Ljava/lang/IllegalAccessException;
-    goto :goto_0
+    goto :goto_3
 
     .line 717
-    :catch_2
+    :catch_16
     move-exception v0
 
     .line 718
@@ -3491,9 +3491,9 @@
     invoke-static {v1, v2, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .end local v0    # "ex":Ljava/lang/NoSuchFieldException;
-    goto :goto_0
+    goto :goto_3
 
     .line 724
-    :goto_1
+    :goto_1f
     return-void
 .end method

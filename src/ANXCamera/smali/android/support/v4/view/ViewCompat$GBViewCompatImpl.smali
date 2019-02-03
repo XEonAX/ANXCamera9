@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 980
     invoke-direct {p0}, Landroid/support/v4/view/ViewCompat$EclairMr1ViewCompatImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getOverScrollMode(Landroid/view/View;)I
-    .locals 1
+    .registers 3
     .param p1, "v"    # Landroid/view/View;
 
     .line 983
@@ -39,7 +39,7 @@
 .end method
 
 .method public setOverScrollMode(Landroid/view/View;I)V
-    .locals 0
+    .registers 3
     .param p1, "v"    # Landroid/view/View;
     .param p2, "mode"    # I
 

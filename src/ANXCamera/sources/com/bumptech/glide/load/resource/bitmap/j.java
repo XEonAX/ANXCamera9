@@ -8,7 +8,7 @@ import java.security.MessageDigest;
 /* compiled from: CenterCrop */
 public class j extends g {
     private static final String ID = "com.bumptech.glide.load.resource.bitmap.CenterCrop";
-    private static final byte[] jW = ID.getBytes(cT);
+    private static final byte[] jW = ID.getBytes(cU);
 
     protected Bitmap transform(@NonNull d dVar, @NonNull Bitmap bitmap, int i, int i2) {
         return w.a(dVar, bitmap, i, i2);

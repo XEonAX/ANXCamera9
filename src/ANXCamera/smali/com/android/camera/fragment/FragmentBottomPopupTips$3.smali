@@ -1,11 +1,14 @@
 .class Lcom/android/camera/fragment/FragmentBottomPopupTips$3;
-.super Landroid/animation/AnimatorListenerAdapter;
+.super Ljava/lang/Object;
 .source "FragmentBottomPopupTips.java"
+
+# interfaces
+.implements Ljava/lang/Runnable;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/fragment/FragmentBottomPopupTips;->initBeautyIntroAnimator()V
+    value = Lcom/android/camera/fragment/FragmentBottomPopupTips;->showTips(IIII)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -15,76 +18,49 @@
 
 
 # instance fields
-.field private mCancelled:Z
-
 .field final synthetic this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
+
+.field final synthetic val$tipDuration:I
+
+.field final synthetic val$tipType:I
+
+.field final synthetic val$tipsResId:I
 
 
 # direct methods
-.method constructor <init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;)V
+.method constructor <init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;III)V
     .locals 0
 
-    .line 233
+    .line 593
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
-    invoke-direct {p0}, Landroid/animation/AnimatorListenerAdapter;-><init>()V
+    iput p2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;->val$tipType:I
+
+    iput p3, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;->val$tipsResId:I
+
+    iput p4, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;->val$tipDuration:I
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public onAnimationCancel(Landroid/animation/Animator;)V
-    .locals 0
+.method public run()V
+    .locals 4
 
-    .line 243
-    const/4 p1, 0x1
+    .line 596
+    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
-    iput-boolean p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;->mCancelled:Z
+    iget v1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;->val$tipType:I
 
-    .line 244
-    return-void
-.end method
+    iget v2, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;->val$tipsResId:I
 
-.method public onAnimationEnd(Landroid/animation/Animator;)V
-    .locals 0
+    iget v3, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;->val$tipDuration:I
 
-    .line 248
-    iget-boolean p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;->mCancelled:Z
+    invoke-virtual {v0, v1, v2, v3}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->showTips(III)V
 
-    if-nez p1, :cond_0
-
-    .line 249
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
-
-    invoke-static {p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->access$500(Lcom/android/camera/fragment/FragmentBottomPopupTips;)Landroid/view/View;
-
-    move-result-object p1
-
-    invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
-
-    .line 250
-    iget-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
-
-    invoke-static {p1}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->access$600(Lcom/android/camera/fragment/FragmentBottomPopupTips;)Landroid/widget/ImageView;
-
-    move-result-object p1
-
-    invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
-
-    .line 252
-    :cond_0
-    return-void
-.end method
-
-.method public onAnimationStart(Landroid/animation/Animator;)V
-    .locals 0
-
-    .line 238
-    const/4 p1, 0x0
-
-    iput-boolean p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$3;->mCancelled:Z
-
-    .line 239
+    .line 597
     return-void
 .end method

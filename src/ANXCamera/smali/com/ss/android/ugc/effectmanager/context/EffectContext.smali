@@ -13,7 +13,7 @@
 .method public constructor <init>(Lcom/ss/android/ugc/effectmanager/EffectConfiguration;)V
     .locals 1
     .param p1    # Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
-        .annotation build Lorg/jetbrains/annotations/NotNull;
+        .annotation build Landroid/support/annotation/NonNull;
         .end annotation
     .end param
 

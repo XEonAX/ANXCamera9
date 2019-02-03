@@ -25,7 +25,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/widget/SearchViewCompat$SearchViewCompatHoneycombImpl;Landroid/support/v4/widget/SearchViewCompat$OnQueryTextListenerCompat;)V
-    .locals 0
+    .registers 3
 
     .line 150
     iput-object p1, p0, Landroid/support/v4/widget/SearchViewCompat$SearchViewCompatHoneycombImpl$1;->this$0:Landroid/support/v4/widget/SearchViewCompat$SearchViewCompatHoneycombImpl;
@@ -40,7 +40,7 @@
 
 # virtual methods
 .method public onQueryTextChange(Ljava/lang/String;)Z
-    .locals 1
+    .registers 3
     .param p1, "newText"    # Ljava/lang/String;
 
     .line 157
@@ -54,7 +54,7 @@
 .end method
 
 .method public onQueryTextSubmit(Ljava/lang/String;)Z
-    .locals 1
+    .registers 3
     .param p1, "query"    # Ljava/lang/String;
 
     .line 153

@@ -1,6 +1,7 @@
 package org.jcodec.common.model;
 
 import android.support.v4.view.InputDeviceCompat;
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -15,7 +16,7 @@ public final class Label {
     public static final Label CenterSurroundDirect = new Label(44);
     public static final Label ClickTrack = new Label(304);
     public static final Label DialogCentricMix = new Label(43);
-    public static final Label Discrete = new Label(400);
+    public static final Label Discrete = new Label(MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME);
     public static final Label Discrete_0 = new Label(65536);
     public static final Label Discrete_1 = new Label(65537);
     public static final Label Discrete_10 = new Label(65546);

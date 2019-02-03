@@ -18,36 +18,36 @@ import java.util.Map;
 
 class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.glide.util.a.a.c, Comparable<DecodeJob<?>>, Runnable {
     private static final String TAG = "DecodeJob";
-    private Object aK;
-    private volatile boolean dp;
-    private RunReason eA;
-    private long eB;
-    private boolean eC;
-    private Thread eD;
-    private com.bumptech.glide.load.c eE;
+    private Object aL;
+    private volatile boolean dq;
+    private Stage eA;
+    private RunReason eB;
+    private long eC;
+    private boolean eD;
+    private Thread eE;
     private com.bumptech.glide.load.c eF;
-    private Object eG;
-    private DataSource eH;
-    private com.bumptech.glide.load.a.d<?> eI;
-    private volatile d eJ;
-    private volatile boolean eK;
-    private com.bumptech.glide.load.c ee;
-    private f eg;
-    private final d ej;
-    private Priority en;
-    private g eo;
-    private final e<R> er = new e();
-    private final List<Throwable> es = new ArrayList();
-    private final com.bumptech.glide.util.a.c et = com.bumptech.glide.util.a.c.eM();
-    private final Pool<DecodeJob<?>> eu;
-    private final c<?> ev = new c();
-    private final e ew = new e();
-    private i ex;
-    private a<R> ey;
-    private Stage ez;
+    private com.bumptech.glide.load.c eG;
+    private Object eH;
+    private DataSource eI;
+    private com.bumptech.glide.load.a.d<?> eJ;
+    private volatile d eK;
+    private volatile boolean eL;
+    private com.bumptech.glide.load.c ef;
+    private f eh;
+    private final d ek;
+    private Priority eo;
+    private g ep;
+    private final e<R> es = new e();
+    private final List<Throwable> et = new ArrayList();
+    private final com.bumptech.glide.util.a.c eu = com.bumptech.glide.util.a.c.eM();
+    private final Pool<DecodeJob<?>> ev;
+    private final c<?> ew = new c();
+    private final e ex = new e();
+    private i ey;
+    private a<R> ez;
     private int height;
-    private com.bumptech.glide.e o;
     private int order;
+    private com.bumptech.glide.e q;
     private int width;
 
     private enum RunReason {
@@ -87,8 +87,8 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
     }
 
     private static class c<Z> {
-        private h<Z> eP;
-        private o<Z> eQ;
+        private h<Z> eQ;
+        private o<Z> eR;
         private com.bumptech.glide.load.c key;
 
         c() {
@@ -96,28 +96,28 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
 
         <X> void a(com.bumptech.glide.load.c cVar, h<X> hVar, o<X> oVar) {
             this.key = cVar;
-            this.eP = hVar;
-            this.eQ = oVar;
+            this.eQ = hVar;
+            this.eR = oVar;
         }
 
         void a(d dVar, f fVar) {
             com.bumptech.glide.util.a.b.beginSection("DecodeJob.encode");
             try {
-                dVar.aq().a(this.key, new c(this.eP, this.eQ, fVar));
+                dVar.aq().a(this.key, new c(this.eQ, this.eR, fVar));
             } finally {
-                this.eQ.unlock();
+                this.eR.unlock();
                 com.bumptech.glide.util.a.b.endSection();
             }
         }
 
         boolean aL() {
-            return this.eQ != null;
+            return this.eR != null;
         }
 
         void clear() {
             this.key = null;
-            this.eP = null;
             this.eQ = null;
+            this.eR = null;
         }
     }
 
@@ -126,59 +126,59 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
     }
 
     private static class e {
-        private boolean eR;
         private boolean eS;
         private boolean eT;
+        private boolean eU;
 
         e() {
         }
 
         synchronized boolean c(boolean z) {
-            this.eR = true;
+            this.eS = true;
             return d(z);
         }
 
         synchronized boolean aM() {
-            this.eS = true;
-            return d(false);
-        }
-
-        synchronized boolean aN() {
             this.eT = true;
             return d(false);
         }
 
+        synchronized boolean aN() {
+            this.eU = true;
+            return d(false);
+        }
+
         synchronized void reset() {
-            this.eS = false;
-            this.eR = false;
             this.eT = false;
+            this.eS = false;
+            this.eU = false;
         }
 
         private boolean d(boolean z) {
-            return (this.eT || z || this.eS) && this.eR;
+            return (this.eU || z || this.eT) && this.eS;
         }
     }
 
     DecodeJob(d dVar, Pool<DecodeJob<?>> pool) {
-        this.ej = dVar;
-        this.eu = pool;
+        this.ek = dVar;
+        this.ev = pool;
     }
 
     DecodeJob<R> a(com.bumptech.glide.e eVar, Object obj, i iVar, com.bumptech.glide.load.c cVar, int i, int i2, Class<?> cls, Class<R> cls2, Priority priority, g gVar, Map<Class<?>, i<?>> map, boolean z, boolean z2, boolean z3, f fVar, a<R> aVar, int i3) {
-        this.er.a(eVar, obj, cVar, i, i2, gVar, cls, cls2, priority, fVar, map, z, z2, this.ej);
-        this.o = eVar;
-        this.ee = cVar;
-        this.en = priority;
-        this.ex = iVar;
+        this.es.a(eVar, obj, cVar, i, i2, gVar, cls, cls2, priority, fVar, map, z, z2, this.ek);
+        this.q = eVar;
+        this.ef = cVar;
+        this.eo = priority;
+        this.ey = iVar;
         this.width = i;
         this.height = i2;
-        this.eo = gVar;
-        this.eC = z3;
-        this.eg = fVar;
-        this.ey = aVar;
+        this.ep = gVar;
+        this.eD = z3;
+        this.eh = fVar;
+        this.ez = aVar;
         this.order = i3;
-        this.eA = RunReason.INITIALIZE;
-        this.aK = obj;
+        this.eB = RunReason.INITIALIZE;
+        this.aL = obj;
         return this;
     }
 
@@ -188,46 +188,46 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
     }
 
     void release(boolean z) {
-        if (this.ew.c(z)) {
+        if (this.ex.c(z)) {
             aE();
         }
     }
 
     private void aC() {
-        if (this.ew.aM()) {
+        if (this.ex.aM()) {
             aE();
         }
     }
 
     private void aD() {
-        if (this.ew.aN()) {
+        if (this.ex.aN()) {
             aE();
         }
     }
 
     private void aE() {
-        this.ew.reset();
-        this.ev.clear();
-        this.er.clear();
-        this.eK = false;
-        this.o = null;
-        this.ee = null;
-        this.eg = null;
-        this.en = null;
-        this.ex = null;
+        this.ex.reset();
+        this.ew.clear();
+        this.es.clear();
+        this.eL = false;
+        this.q = null;
+        this.ef = null;
+        this.eh = null;
+        this.eo = null;
         this.ey = null;
         this.ez = null;
-        this.eJ = null;
-        this.eD = null;
+        this.eA = null;
+        this.eK = null;
         this.eE = null;
-        this.eG = null;
+        this.eF = null;
         this.eH = null;
         this.eI = null;
-        this.eB = 0;
-        this.dp = false;
-        this.aK = null;
-        this.es.clear();
-        this.eu.release(this);
+        this.eJ = null;
+        this.eC = 0;
+        this.dq = false;
+        this.aL = null;
+        this.et.clear();
+        this.ev.release(this);
     }
 
     /* renamed from: a */
@@ -240,12 +240,12 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
     }
 
     private int getPriority() {
-        return this.en.ordinal();
+        return this.eo.ordinal();
     }
 
     public void cancel() {
-        this.dp = true;
-        d dVar = this.eJ;
+        this.dq = true;
+        d dVar = this.eK;
         if (dVar != null) {
             dVar.cancel();
         }
@@ -268,10 +268,10 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     public void run() {
-        com.bumptech.glide.util.a.b.b("DecodeJob#run(model=%s)", this.aK);
-        com.bumptech.glide.load.a.d dVar = this.eI;
+        com.bumptech.glide.util.a.b.b("DecodeJob#run(model=%s)", this.aL);
+        com.bumptech.glide.load.a.d dVar = this.eJ;
         try {
-            if (this.dp) {
+            if (this.dq) {
                 notifyFailed();
                 if (dVar != null) {
                     dVar.cleanup();
@@ -289,10 +289,10 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
     }
 
     private void aF() {
-        switch (this.eA) {
+        switch (this.eB) {
             case INITIALIZE:
-                this.ez = a(Stage.INITIALIZE);
-                this.eJ = aG();
+                this.eA = a(Stage.INITIALIZE);
+                this.eK = aG();
                 aH();
                 return;
             case SWITCH_TO_SOURCE_SERVICE:
@@ -304,80 +304,80 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
             default:
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("Unrecognized run reason: ");
-                stringBuilder.append(this.eA);
+                stringBuilder.append(this.eB);
                 throw new IllegalStateException(stringBuilder.toString());
         }
     }
 
     private d aG() {
-        switch (this.ez) {
+        switch (this.eA) {
             case RESOURCE_CACHE:
-                return new q(this.er, this);
+                return new q(this.es, this);
             case DATA_CACHE:
-                return new a(this.er, this);
+                return new a(this.es, this);
             case SOURCE:
-                return new t(this.er, this);
+                return new t(this.es, this);
             case FINISHED:
                 return null;
             default:
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("Unrecognized stage: ");
-                stringBuilder.append(this.ez);
+                stringBuilder.append(this.eA);
                 throw new IllegalStateException(stringBuilder.toString());
         }
     }
 
     private void aH() {
-        this.eD = Thread.currentThread();
-        this.eB = com.bumptech.glide.util.e.eE();
+        this.eE = Thread.currentThread();
+        this.eC = com.bumptech.glide.util.e.eE();
         boolean z = false;
-        while (!this.dp && this.eJ != null) {
-            z = this.eJ.am();
+        while (!this.dq && this.eK != null) {
+            z = this.eK.am();
             if (z) {
                 break;
             }
-            this.ez = a(this.ez);
-            this.eJ = aG();
-            if (this.ez == Stage.SOURCE) {
+            this.eA = a(this.eA);
+            this.eK = aG();
+            if (this.eA == Stage.SOURCE) {
                 ap();
                 return;
             }
         }
-        if ((this.ez == Stage.FINISHED || this.dp) && !r0) {
+        if ((this.eA == Stage.FINISHED || this.dq) && !r0) {
             notifyFailed();
         }
     }
 
     private void notifyFailed() {
         aI();
-        this.ey.a(new GlideException("Failed to load resource", new ArrayList(this.es)));
+        this.ez.a(new GlideException("Failed to load resource", new ArrayList(this.et)));
         aD();
     }
 
     private void a(p<R> pVar, DataSource dataSource) {
         aI();
-        this.ey.c(pVar, dataSource);
+        this.ez.c(pVar, dataSource);
     }
 
     private void aI() {
-        this.et.eN();
-        if (this.eK) {
+        this.eu.eN();
+        if (this.eL) {
             throw new IllegalStateException("Already notified");
         }
-        this.eK = true;
+        this.eL = true;
     }
 
     private Stage a(Stage stage) {
         switch (stage) {
             case RESOURCE_CACHE:
-                return this.eo.aP() ? Stage.DATA_CACHE : a(Stage.DATA_CACHE);
+                return this.ep.aP() ? Stage.DATA_CACHE : a(Stage.DATA_CACHE);
             case DATA_CACHE:
-                return this.eC ? Stage.FINISHED : Stage.SOURCE;
+                return this.eD ? Stage.FINISHED : Stage.SOURCE;
             case SOURCE:
             case FINISHED:
                 return Stage.FINISHED;
             case INITIALIZE:
-                return this.eo.aO() ? Stage.RESOURCE_CACHE : a(Stage.RESOURCE_CACHE);
+                return this.ep.aO() ? Stage.RESOURCE_CACHE : a(Stage.RESOURCE_CACHE);
             default:
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("Unrecognized stage: ");
@@ -387,19 +387,19 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
     }
 
     public void ap() {
-        this.eA = RunReason.SWITCH_TO_SOURCE_SERVICE;
-        this.ey.b(this);
+        this.eB = RunReason.SWITCH_TO_SOURCE_SERVICE;
+        this.ez.b(this);
     }
 
     public void a(com.bumptech.glide.load.c cVar, Object obj, com.bumptech.glide.load.a.d<?> dVar, DataSource dataSource, com.bumptech.glide.load.c cVar2) {
-        this.eE = cVar;
-        this.eG = obj;
-        this.eI = dVar;
-        this.eH = dataSource;
-        this.eF = cVar2;
-        if (Thread.currentThread() != this.eD) {
-            this.eA = RunReason.DECODE_DATA;
-            this.ey.b(this);
+        this.eF = cVar;
+        this.eH = obj;
+        this.eJ = dVar;
+        this.eI = dataSource;
+        this.eG = cVar2;
+        if (Thread.currentThread() != this.eE) {
+            this.eB = RunReason.DECODE_DATA;
+            this.ez.b(this);
             return;
         }
         com.bumptech.glide.util.a.b.beginSection("DecodeJob.decodeFromRetrievedData");
@@ -414,10 +414,10 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
         dVar.cleanup();
         GlideException glideException = new GlideException("Fetching data failed", (Throwable) exception);
         glideException.a(cVar, dataSource, dVar.ad());
-        this.es.add(glideException);
-        if (Thread.currentThread() != this.eD) {
-            this.eA = RunReason.SWITCH_TO_SOURCE_SERVICE;
-            this.ey.b(this);
+        this.et.add(glideException);
+        if (Thread.currentThread() != this.eE) {
+            this.eB = RunReason.SWITCH_TO_SOURCE_SERVICE;
+            this.ez.b(this);
             return;
         }
         aH();
@@ -425,25 +425,25 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
 
     private void aJ() {
         if (Log.isLoggable(TAG, 2)) {
-            long j = this.eB;
+            long j = this.eC;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("data: ");
-            stringBuilder.append(this.eG);
+            stringBuilder.append(this.eH);
             stringBuilder.append(", cache key: ");
-            stringBuilder.append(this.eE);
+            stringBuilder.append(this.eF);
             stringBuilder.append(", fetcher: ");
-            stringBuilder.append(this.eI);
+            stringBuilder.append(this.eJ);
             a("Retrieved data", j, stringBuilder.toString());
         }
         p pVar = null;
         try {
-            pVar = a(this.eI, this.eG, this.eH);
+            pVar = a(this.eJ, this.eH, this.eI);
         } catch (GlideException e) {
-            e.a(this.eF, this.eH);
-            this.es.add(e);
+            e.a(this.eG, this.eI);
+            this.et.add(e);
         }
         if (pVar != null) {
-            b(pVar, this.eH);
+            b(pVar, this.eI);
         } else {
             aH();
         }
@@ -455,15 +455,15 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
             ((l) pVar2).initialize();
         }
         o oVar = null;
-        if (this.ev.aL()) {
+        if (this.ew.aL()) {
             pVar2 = o.f(pVar2);
             oVar = pVar2;
         }
         a(pVar2, dataSource);
-        this.ez = Stage.ENCODE;
+        this.eA = Stage.ENCODE;
         try {
-            if (this.ev.aL()) {
-                this.ev.a(this.ej, this.eg);
+            if (this.ew.aL()) {
+                this.ew.a(this.ek, this.eh);
             }
             if (oVar != null) {
                 oVar.unlock();
@@ -498,18 +498,18 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
     }
 
     private <Data> p<R> a(Data data, DataSource dataSource) throws GlideException {
-        return a((Object) data, dataSource, this.er.d(data.getClass()));
+        return a((Object) data, dataSource, this.es.d(data.getClass()));
     }
 
     @NonNull
     private f a(DataSource dataSource) {
-        f fVar = this.eg;
+        f fVar = this.eh;
         if (VERSION.SDK_INT < 26 || fVar.a(n.kH) != null) {
             return fVar;
         }
-        if (dataSource == DataSource.RESOURCE_DISK_CACHE || this.er.ay()) {
+        if (dataSource == DataSource.RESOURCE_DISK_CACHE || this.es.ay()) {
             fVar = new f();
-            fVar.a(this.eg);
+            fVar.a(this.eh);
             fVar.a(n.kH, Boolean.valueOf(true));
         }
         return fVar;
@@ -517,7 +517,7 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
 
     private <Data, ResourceType> p<R> a(Data data, DataSource dataSource, n<Data, ResourceType, R> nVar) throws GlideException {
         f a = a(dataSource);
-        com.bumptech.glide.load.a.e c = this.o.l().c(data);
+        com.bumptech.glide.load.a.e c = this.q.l().c(data);
         try {
             p<R> a2 = nVar.a(c, a, this.width, this.height, new b(dataSource));
             return a2;
@@ -537,7 +537,7 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
         stringBuilder.append(" in ");
         stringBuilder.append(com.bumptech.glide.util.e.e(j));
         stringBuilder.append(", load key: ");
-        stringBuilder.append(this.ex);
+        stringBuilder.append(this.ey);
         if (str2 != null) {
             StringBuilder stringBuilder2 = new StringBuilder();
             stringBuilder2.append(", ");
@@ -554,7 +554,7 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
 
     @NonNull
     public com.bumptech.glide.util.a.c aK() {
-        return this.et;
+        return this.eu;
     }
 
     @NonNull
@@ -565,9 +565,9 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
         Class cls = pVar.get().getClass();
         h hVar = null;
         if (dataSource != DataSource.RESOURCE_DISK_CACHE) {
-            i e = this.er.e(cls);
+            i e = this.es.e(cls);
             iVar = e;
-            transform = e.transform(this.o, pVar, this.width, this.height);
+            transform = e.transform(this.q, pVar, this.width, this.height);
         } else {
             transform = pVar;
             iVar = null;
@@ -575,24 +575,24 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
         if (!pVar.equals(transform)) {
             pVar.recycle();
         }
-        if (this.er.a(transform)) {
-            hVar = this.er.b(transform);
-            b = hVar.b(this.eg);
+        if (this.es.a(transform)) {
+            hVar = this.es.b(transform);
+            b = hVar.b(this.eh);
         } else {
             b = EncodeStrategy.NONE;
         }
         h hVar2 = hVar;
-        if (!this.eo.a(this.er.c(this.eE) ^ 1, dataSource, b)) {
+        if (!this.ep.a(this.es.c(this.eF) ^ 1, dataSource, b)) {
             return transform;
         }
         if (hVar2 != null) {
             com.bumptech.glide.load.c bVar;
             switch (b) {
                 case SOURCE:
-                    bVar = new b(this.eE, this.ee);
+                    bVar = new b(this.eF, this.ef);
                     break;
                 case TRANSFORMED:
-                    com.bumptech.glide.load.c rVar = new r(this.er.f(), this.eE, this.ee, this.width, this.height, iVar, cls, this.eg);
+                    com.bumptech.glide.load.c rVar = new r(this.es.f(), this.eF, this.ef, this.width, this.height, iVar, cls, this.eh);
                     break;
                 default:
                     StringBuilder stringBuilder = new StringBuilder();
@@ -601,7 +601,7 @@ class DecodeJob<R> implements com.bumptech.glide.load.engine.d.a, com.bumptech.g
                     throw new IllegalArgumentException(stringBuilder.toString());
             }
             p<Z> f = o.f(transform);
-            this.ev.a(bVar, hVar2, f);
+            this.ew.a(bVar, hVar2, f);
             return f;
         }
         throw new NoResultEncoderAvailableException(transform.get().getClass());

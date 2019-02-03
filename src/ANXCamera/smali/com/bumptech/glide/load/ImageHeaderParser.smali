@@ -12,7 +12,7 @@
 
 
 # static fields
-.field public static final cH:I = -0x1
+.field public static final cI:I = -0x1
 
 
 # virtual methods

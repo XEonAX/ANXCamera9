@@ -9,11 +9,11 @@ import com.bumptech.glide.manager.c.a;
 /* compiled from: DefaultConnectivityMonitorFactory */
 public class f implements d {
     private static final String TAG = "ConnectivityMonitor";
-    private static final String mn = "android.permission.ACCESS_NETWORK_STATE";
+    private static final String mm = "android.permission.ACCESS_NETWORK_STATE";
 
     @NonNull
     public c a(@NonNull Context context, @NonNull a aVar) {
-        Object obj = ContextCompat.checkSelfPermission(context, mn) == 0 ? 1 : null;
+        Object obj = ContextCompat.checkSelfPermission(context, mm) == 0 ? 1 : null;
         if (Log.isLoggable(TAG, 3)) {
             String str;
             String str2 = TAG;

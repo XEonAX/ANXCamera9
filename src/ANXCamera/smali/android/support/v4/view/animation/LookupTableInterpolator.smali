@@ -14,7 +14,7 @@
 
 # direct methods
 .method public constructor <init>([F)V
-    .locals 2
+    .registers 4
     .param p1, "values"    # [F
 
     .line 30
@@ -45,7 +45,7 @@
 
 # virtual methods
 .method public getInterpolation(F)F
-    .locals 7
+    .registers 9
     .param p1, "input"    # F
 
     .line 37
@@ -53,24 +53,24 @@
 
     cmpl-float v1, p1, v0
 
-    if-ltz v1, :cond_0
+    if-ltz v1, :cond_7
 
     .line 38
     return v0
 
     .line 40
-    :cond_0
+    :cond_7
     const/4 v0, 0x0
 
     cmpg-float v1, p1, v0
 
-    if-gtz v1, :cond_1
+    if-gtz v1, :cond_d
 
     .line 41
     return v0
 
     .line 46
-    :cond_1
+    :cond_d
     iget-object v0, p0, Landroid/support/v4/view/animation/LookupTableInterpolator;->mValues:[F
 
     array-length v0, v0

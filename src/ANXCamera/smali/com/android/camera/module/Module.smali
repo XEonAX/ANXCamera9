@@ -63,7 +63,7 @@
 .method public abstract isPostProcessing()Z
 .end method
 
-.method public abstract isSelectingCapturedVideo()Z
+.method public abstract isSelectingCapturedResult()Z
 .end method
 
 .method public abstract isUnInterruptable()Z
@@ -93,6 +93,9 @@
 .method public abstract onGestureTrack(Landroid/graphics/RectF;Z)Z
 .end method
 
+.method public abstract onHostStopAndNotifyActionStop()V
+.end method
+
 .method public abstract onKeyDown(ILandroid/view/KeyEvent;)Z
 .end method
 
@@ -103,6 +106,9 @@
 .end method
 
 .method public abstract onNewIntent()V
+.end method
+
+.method public abstract onNewUriArrived(Landroid/net/Uri;Ljava/lang/String;)V
 .end method
 
 .method public abstract onOrientationChanged(II)V

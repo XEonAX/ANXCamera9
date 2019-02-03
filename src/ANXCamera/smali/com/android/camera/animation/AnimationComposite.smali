@@ -152,7 +152,7 @@
         }
     .end annotation
 
-    .line 277
+    .line 280
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
 
     move-result-object v0
@@ -161,7 +161,7 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/data/data/global/DataItemGlobal;->setRetriedIfCameraError(Z)V
 
-    .line 278
+    .line 281
     :goto_0
     iget-object v0, p0, Lcom/android/camera/animation/AnimationComposite;->mResourceSparseArray:Landroid/util/SparseArray;
 
@@ -171,7 +171,7 @@
 
     if-ge v1, v0, :cond_2
 
-    .line 279
+    .line 282
     iget-object v0, p0, Lcom/android/camera/animation/AnimationComposite;->mResourceSparseArray:Landroid/util/SparseArray;
 
     invoke-virtual {v0, v1}, Landroid/util/SparseArray;->valueAt(I)Ljava/lang/Object;
@@ -180,17 +180,17 @@
 
     check-cast v0, Lcom/android/camera/animation/AnimationDelegate$AnimationResource;
 
-    .line 280
+    .line 283
     invoke-interface {v0}, Lcom/android/camera/animation/AnimationDelegate$AnimationResource;->canProvide()Z
 
     move-result v2
 
     if-nez v2, :cond_0
 
-    .line 281
+    .line 284
     goto :goto_1
 
-    .line 283
+    .line 286
     :cond_0
     invoke-interface {v0}, Lcom/android/camera/animation/AnimationDelegate$AnimationResource;->isEnableClick()Z
 
@@ -198,12 +198,12 @@
 
     if-nez v2, :cond_1
 
-    .line 284
+    .line 287
     const/4 v2, 0x1
 
     invoke-interface {v0, v2}, Lcom/android/camera/animation/AnimationDelegate$AnimationResource;->setClickEnable(Z)V
 
-    .line 286
+    .line 289
     :cond_1
     invoke-virtual {p1}, Ljava/lang/Integer;->intValue()I
 
@@ -211,13 +211,13 @@
 
     invoke-interface {v0, v2}, Lcom/android/camera/animation/AnimationDelegate$AnimationResource;->notifyAfterFrameAvailable(I)V
 
-    .line 278
+    .line 281
     :goto_1
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
 
-    .line 288
+    .line 291
     :cond_2
     return-void
 .end method
@@ -321,35 +321,19 @@
     .line 79
     iget v1, p3, Lcom/android/camera/module/loader/StartControl;->mResetType:I
 
-    const/4 v2, 0x2
-
-    const/4 v3, 0x0
-
-    if-ne v1, v2, :cond_1
-
     .line 82
-    const/4 v1, 0x1
-
-    goto :goto_0
-
-    .line 79
-    :cond_1
-    nop
-
-    .line 82
-    move v1, v3
-
-    :goto_0
     iget p3, p3, Lcom/android/camera/module/loader/StartControl;->mViewConfigType:I
 
     const/4 v2, 0x0
 
+    const/4 v3, 0x0
+
     packed-switch p3, :pswitch_data_0
 
-    goto :goto_7
+    goto :goto_6
 
     .line 104
-    :goto_1
+    :goto_0
     :pswitch_0
     iget-object p3, p0, Lcom/android/camera/animation/AnimationComposite;->mResourceSparseArray:Landroid/util/SparseArray;
 
@@ -357,7 +341,7 @@
 
     move-result p3
 
-    if-ge v3, p3, :cond_8
+    if-ge v3, p3, :cond_7
 
     .line 105
     iget-object p3, p0, Lcom/android/camera/animation/AnimationComposite;->mResourceSparseArray:Landroid/util/SparseArray;
@@ -373,30 +357,30 @@
 
     move-result v4
 
-    if-eqz v4, :cond_3
+    if-eqz v4, :cond_2
 
     invoke-interface {p3}, Lcom/android/camera/animation/AnimationDelegate$AnimationResource;->needViewClear()Z
 
     move-result v4
 
-    if-nez v4, :cond_2
+    if-nez v4, :cond_1
 
     .line 107
-    goto :goto_2
-
-    .line 109
-    :cond_2
-    invoke-interface {p3, p1, v2, v1}, Lcom/android/camera/animation/AnimationDelegate$AnimationResource;->provideAnimateElement(ILjava/util/List;Z)V
-
-    .line 104
-    :cond_3
-    :goto_2
-    add-int/lit8 v3, v3, 0x1
-
     goto :goto_1
 
+    .line 109
+    :cond_1
+    invoke-interface {p3, p1, v2, v1}, Lcom/android/camera/animation/AnimationDelegate$AnimationResource;->provideAnimateElement(ILjava/util/List;I)V
+
+    .line 104
+    :cond_2
+    :goto_1
+    add-int/lit8 v3, v3, 0x1
+
+    goto :goto_0
+
     .line 84
-    :goto_3
+    :goto_2
     :pswitch_1
     iget-object p3, p0, Lcom/android/camera/animation/AnimationComposite;->mResourceSparseArray:Landroid/util/SparseArray;
 
@@ -404,7 +388,7 @@
 
     move-result p3
 
-    if-ge v3, p3, :cond_5
+    if-ge v3, p3, :cond_4
 
     .line 85
     iget-object p3, p0, Lcom/android/camera/animation/AnimationComposite;->mResourceSparseArray:Landroid/util/SparseArray;
@@ -420,27 +404,27 @@
 
     move-result v2
 
-    if-nez v2, :cond_4
+    if-nez v2, :cond_3
 
     .line 87
-    goto :goto_4
-
-    .line 89
-    :cond_4
-    invoke-interface {p3, p1, v0, v1}, Lcom/android/camera/animation/AnimationDelegate$AnimationResource;->provideAnimateElement(ILjava/util/List;Z)V
-
-    .line 84
-    :goto_4
-    add-int/lit8 v3, v3, 0x1
-
     goto :goto_3
 
+    .line 89
+    :cond_3
+    invoke-interface {p3, p1, v0, v1}, Lcom/android/camera/animation/AnimationDelegate$AnimationResource;->provideAnimateElement(ILjava/util/List;I)V
+
+    .line 84
+    :goto_3
+    add-int/lit8 v3, v3, 0x1
+
+    goto :goto_2
+
     .line 91
-    :cond_5
-    goto :goto_7
+    :cond_4
+    goto :goto_6
 
     .line 94
-    :goto_5
+    :goto_4
     :pswitch_2
     iget-object p3, p0, Lcom/android/camera/animation/AnimationComposite;->mResourceSparseArray:Landroid/util/SparseArray;
 
@@ -448,7 +432,7 @@
 
     move-result p3
 
-    if-ge v3, p3, :cond_7
+    if-ge v3, p3, :cond_6
 
     .line 95
     iget-object p3, p0, Lcom/android/camera/animation/AnimationComposite;->mResourceSparseArray:Landroid/util/SparseArray;
@@ -464,31 +448,31 @@
 
     move-result v4
 
-    if-nez v4, :cond_6
+    if-nez v4, :cond_5
 
     .line 97
-    goto :goto_6
-
-    .line 99
-    :cond_6
-    invoke-interface {p3, p1, v2, v1}, Lcom/android/camera/animation/AnimationDelegate$AnimationResource;->provideAnimateElement(ILjava/util/List;Z)V
-
-    .line 94
-    :goto_6
-    add-int/lit8 v3, v3, 0x1
-
     goto :goto_5
 
+    .line 99
+    :cond_5
+    invoke-interface {p3, p1, v2, v1}, Lcom/android/camera/animation/AnimationDelegate$AnimationResource;->provideAnimateElement(ILjava/util/List;I)V
+
+    .line 94
+    :goto_5
+    add-int/lit8 v3, v3, 0x1
+
+    goto :goto_4
+
     .line 101
-    :cond_7
+    :cond_6
     nop
 
     .line 129
-    :cond_8
-    :goto_7
+    :cond_7
+    :goto_6
     iget-object p1, p0, Lcom/android/camera/animation/AnimationComposite;->mAnimationDisposable:Lio/reactivex/disposables/Disposable;
 
-    if-eqz p1, :cond_9
+    if-eqz p1, :cond_8
 
     iget-object p1, p0, Lcom/android/camera/animation/AnimationComposite;->mAnimationDisposable:Lio/reactivex/disposables/Disposable;
 
@@ -496,7 +480,7 @@
 
     move-result p1
 
-    if-nez p1, :cond_9
+    if-nez p1, :cond_8
 
     .line 130
     iget-object p1, p0, Lcom/android/camera/animation/AnimationComposite;->mAnimationDisposable:Lio/reactivex/disposables/Disposable;
@@ -504,8 +488,8 @@
     invoke-interface {p1}, Lio/reactivex/disposables/Disposable;->dispose()V
 
     .line 133
-    :cond_9
-    if-eqz p2, :cond_a
+    :cond_8
+    if-eqz p2, :cond_9
 
     .line 134
     invoke-static {v0}, Lio/reactivex/Completable;->merge(Ljava/lang/Iterable;)Lio/reactivex/Completable;
@@ -518,10 +502,10 @@
 
     iput-object p1, p0, Lcom/android/camera/animation/AnimationComposite;->mAnimationDisposable:Lio/reactivex/disposables/Disposable;
 
-    goto :goto_8
+    goto :goto_7
 
     .line 136
-    :cond_a
+    :cond_9
     invoke-static {v0}, Lio/reactivex/Completable;->merge(Ljava/lang/Iterable;)Lio/reactivex/Completable;
 
     move-result-object p1
@@ -533,12 +517,10 @@
     iput-object p1, p0, Lcom/android/camera/animation/AnimationComposite;->mAnimationDisposable:Lio/reactivex/disposables/Disposable;
 
     .line 140
-    :goto_8
+    :goto_7
     iget-object p1, p0, Lcom/android/camera/animation/AnimationComposite;->mAnimationDisposable:Lio/reactivex/disposables/Disposable;
 
     return-object p1
-
-    nop
 
     :pswitch_data_0
     .packed-switch 0x1

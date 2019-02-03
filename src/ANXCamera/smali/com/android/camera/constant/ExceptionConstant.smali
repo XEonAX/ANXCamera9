@@ -16,6 +16,8 @@
 
 .field public static final EXCEPTION_CAMERA_ACTIVITY_NULL:I = 0xea
 
+.field public static final EXCEPTION_CAMERA_DEVICE_NOT_RESPONDING:I = 0xed
+
 .field public static final EXCEPTION_CAMERA_DISABLED:I = 0xe3
 
 .field public static final EXCEPTION_CAMERA_GET_DEVICE_NULL:I = 0xe6
@@ -52,33 +54,33 @@
 .method public static final transFromCamera2Error(I)I
     .locals 1
 
-    .line 62
+    .line 70
     const/16 v0, 0xe6
 
     packed-switch p0, :pswitch_data_0
 
-    .line 81
+    .line 89
     return v0
 
-    .line 78
+    .line 86
     :pswitch_0
     return v0
 
-    .line 74
+    .line 82
     :pswitch_1
     return v0
 
-    .line 71
+    .line 79
     :pswitch_2
     const/16 p0, 0xe3
 
     return p0
 
-    .line 68
+    .line 76
     :pswitch_3
     return v0
 
-    .line 64
+    .line 72
     :pswitch_4
     return v0
 

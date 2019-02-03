@@ -286,6 +286,16 @@
         <item>@string/pref_camera_volumekey_function_entryvalue_zoom</item>
         <item>@string/pref_camera_volumekey_function_entryvalue_volume</item>
     </string-array>
+    <string-array name="pref_live_volumekey_function_entries">
+        <item>@string/pref_camera_volumekey_function_entry_volume</item>
+        <item>@string/pref_camera_volumekey_function_entry_shutter</item>
+        <item>@string/pref_camera_volumekey_function_entry_zoom</item>
+    </string-array>
+    <string-array name="pref_live_volumekey_function_entryvalues">
+        <item>@string/pref_camera_volumekey_function_entryvalue_volume</item>
+        <item>@string/pref_camera_volumekey_function_entryvalue_shutter</item>
+        <item>@string/pref_camera_volumekey_function_entryvalue_zoom</item>
+    </string-array>
     <string-array name="pref_front_mirror_entries">
         <item>@string/pref_front_mirror_entry_on</item>
         <item>@string/pref_front_mirror_entry_off</item>
@@ -312,5 +322,35 @@
         <item>@string/beauty_level_3</item>
         <item>@string/beauty_level_4</item>
         <item>@string/beauty_level_5</item>
+    </string-array>
+    <array name="live_filter_icon">
+        <item>@drawable/color_effect_live_none</item>
+        <item>@drawable/color_effect_live_fair</item>
+        <item>@drawable/color_effect_live_mousse</item>
+        <item>@drawable/color_effect_live_solar</item>
+        <item>@drawable/color_effect_live_blue</item>
+        <item>@drawable/color_effect_live_contrast</item>
+        <item>@drawable/color_effect_live_years</item>
+        <item>@drawable/color_effect_live_deepblack</item>
+    </array>
+    <string-array name="live_filter_name">
+        <item>@string/color_effect_live_none</item>
+        <item>@string/color_effect_live_fair</item>
+        <item>@string/color_effect_live_mousse</item>
+        <item>@string/color_effect_live_solar</item>
+        <item>@string/color_effect_live_blue</item>
+        <item>@string/color_effect_live_contrast</item>
+        <item>@string/color_effect_live_years</item>
+        <item>@string/color_effect_live_deepblack</item>
+    </string-array>
+    <string-array name="live_filter_directory_name">
+        <item></item>
+        <item>LIVE-FAIR</item>
+        <item>LIVE-MOUSSE</item>
+        <item>LIVE-SOLAR</item>
+        <item>LIVE-BLUE</item>
+        <item>LIVE-CONTRAST</item>
+        <item>LIVE-YEARS</item>
+        <item>LIVE-DEEPBLACK</item>
     </string-array>
 </resources>

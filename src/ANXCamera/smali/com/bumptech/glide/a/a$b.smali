@@ -15,11 +15,11 @@
 
 
 # instance fields
-.field final synthetic bk:Lcom/bumptech/glide/a/a;
+.field final synthetic bl:Lcom/bumptech/glide/a/a;
 
-.field private final bl:Lcom/bumptech/glide/a/a$c;
+.field private final bm:Lcom/bumptech/glide/a/a$c;
 
-.field private bm:Z
+.field private bn:Z
 
 .field private final written:[Z
 
@@ -29,12 +29,12 @@
     .locals 0
 
     .line 712
-    iput-object p1, p0, Lcom/bumptech/glide/a/a$b;->bk:Lcom/bumptech/glide/a/a;
+    iput-object p1, p0, Lcom/bumptech/glide/a/a$b;->bl:Lcom/bumptech/glide/a/a;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 713
-    iput-object p2, p0, Lcom/bumptech/glide/a/a$b;->bl:Lcom/bumptech/glide/a/a$c;
+    iput-object p2, p0, Lcom/bumptech/glide/a/a$b;->bm:Lcom/bumptech/glide/a/a$c;
 
     .line 714
     invoke-static {p2}, Lcom/bumptech/glide/a/a$c;->d(Lcom/bumptech/glide/a/a$c;)Z
@@ -74,7 +74,7 @@
     .locals 0
 
     .line 707
-    iget-object p0, p0, Lcom/bumptech/glide/a/a$b;->bl:Lcom/bumptech/glide/a/a$c;
+    iget-object p0, p0, Lcom/bumptech/glide/a/a$b;->bm:Lcom/bumptech/glide/a/a$c;
 
     return-object p0
 .end method
@@ -97,13 +97,13 @@
     .end annotation
 
     .line 722
-    iget-object v0, p0, Lcom/bumptech/glide/a/a$b;->bk:Lcom/bumptech/glide/a/a;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a$b;->bl:Lcom/bumptech/glide/a/a;
 
     monitor-enter v0
 
     .line 723
     :try_start_0
-    iget-object v1, p0, Lcom/bumptech/glide/a/a$b;->bl:Lcom/bumptech/glide/a/a$c;
+    iget-object v1, p0, Lcom/bumptech/glide/a/a$b;->bm:Lcom/bumptech/glide/a/a$c;
 
     invoke-static {v1}, Lcom/bumptech/glide/a/a$c;->a(Lcom/bumptech/glide/a/a$c;)Lcom/bumptech/glide/a/a$b;
 
@@ -112,7 +112,7 @@
     if-ne v1, p0, :cond_1
 
     .line 726
-    iget-object v1, p0, Lcom/bumptech/glide/a/a$b;->bl:Lcom/bumptech/glide/a/a$c;
+    iget-object v1, p0, Lcom/bumptech/glide/a/a$b;->bm:Lcom/bumptech/glide/a/a$c;
 
     invoke-static {v1}, Lcom/bumptech/glide/a/a$c;->d(Lcom/bumptech/glide/a/a$c;)Z
 
@@ -134,7 +134,7 @@
     :try_start_1
     new-instance v1, Ljava/io/FileInputStream;
 
-    iget-object v3, p0, Lcom/bumptech/glide/a/a$b;->bl:Lcom/bumptech/glide/a/a$c;
+    iget-object v3, p0, Lcom/bumptech/glide/a/a$b;->bm:Lcom/bumptech/glide/a/a$c;
 
     invoke-virtual {v3, p1}, Lcom/bumptech/glide/a/a$c;->g(I)Ljava/io/File;
 
@@ -189,7 +189,7 @@
     .end annotation
 
     .line 792
-    iget-object v0, p0, Lcom/bumptech/glide/a/a$b;->bk:Lcom/bumptech/glide/a/a;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a$b;->bl:Lcom/bumptech/glide/a/a;
 
     const/4 v1, 0x0
 
@@ -203,7 +203,7 @@
     .locals 1
 
     .line 796
-    iget-boolean v0, p0, Lcom/bumptech/glide/a/a$b;->bm:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/a/a$b;->bn:Z
 
     if-nez v0, :cond_0
 
@@ -235,14 +235,14 @@
     .end annotation
 
     .line 783
-    iget-object v0, p0, Lcom/bumptech/glide/a/a$b;->bk:Lcom/bumptech/glide/a/a;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a$b;->bl:Lcom/bumptech/glide/a/a;
 
     const/4 v1, 0x1
 
     invoke-static {v0, p0, v1}, Lcom/bumptech/glide/a/a;->a(Lcom/bumptech/glide/a/a;Lcom/bumptech/glide/a/a$b;Z)V
 
     .line 784
-    iput-boolean v1, p0, Lcom/bumptech/glide/a/a$b;->bm:Z
+    iput-boolean v1, p0, Lcom/bumptech/glide/a/a$b;->bn:Z
 
     .line 785
     return-void
@@ -257,13 +257,13 @@
     .end annotation
 
     .line 747
-    iget-object v0, p0, Lcom/bumptech/glide/a/a$b;->bk:Lcom/bumptech/glide/a/a;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a$b;->bl:Lcom/bumptech/glide/a/a;
 
     monitor-enter v0
 
     .line 748
     :try_start_0
-    iget-object v1, p0, Lcom/bumptech/glide/a/a$b;->bl:Lcom/bumptech/glide/a/a$c;
+    iget-object v1, p0, Lcom/bumptech/glide/a/a$b;->bm:Lcom/bumptech/glide/a/a$c;
 
     invoke-static {v1}, Lcom/bumptech/glide/a/a$c;->a(Lcom/bumptech/glide/a/a$c;)Lcom/bumptech/glide/a/a$b;
 
@@ -272,7 +272,7 @@
     if-ne v1, p0, :cond_2
 
     .line 751
-    iget-object v1, p0, Lcom/bumptech/glide/a/a$b;->bl:Lcom/bumptech/glide/a/a$c;
+    iget-object v1, p0, Lcom/bumptech/glide/a/a$b;->bm:Lcom/bumptech/glide/a/a$c;
 
     invoke-static {v1}, Lcom/bumptech/glide/a/a$c;->d(Lcom/bumptech/glide/a/a$c;)Z
 
@@ -289,14 +289,14 @@
 
     .line 754
     :cond_0
-    iget-object v1, p0, Lcom/bumptech/glide/a/a$b;->bl:Lcom/bumptech/glide/a/a$c;
+    iget-object v1, p0, Lcom/bumptech/glide/a/a$b;->bm:Lcom/bumptech/glide/a/a$c;
 
     invoke-virtual {v1, p1}, Lcom/bumptech/glide/a/a$c;->h(I)Ljava/io/File;
 
     move-result-object p1
 
     .line 755
-    iget-object v1, p0, Lcom/bumptech/glide/a/a$b;->bk:Lcom/bumptech/glide/a/a;
+    iget-object v1, p0, Lcom/bumptech/glide/a/a$b;->bl:Lcom/bumptech/glide/a/a;
 
     invoke-static {v1}, Lcom/bumptech/glide/a/a;->f(Lcom/bumptech/glide/a/a;)Ljava/io/File;
 
@@ -309,7 +309,7 @@
     if-nez v1, :cond_1
 
     .line 756
-    iget-object v1, p0, Lcom/bumptech/glide/a/a$b;->bk:Lcom/bumptech/glide/a/a;
+    iget-object v1, p0, Lcom/bumptech/glide/a/a$b;->bl:Lcom/bumptech/glide/a/a;
 
     invoke-static {v1}, Lcom/bumptech/glide/a/a;->f(Lcom/bumptech/glide/a/a;)Ljava/io/File;
 

@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/ss/android/ugc/effectmanager/link/LinkSelector;)V
     .locals 0
 
-    .line 269
+    .line 268
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/link/LinkSelector$NetworkChangeReceiver;->this$0:Lcom/ss/android/ugc/effectmanager/link/LinkSelector;
 
     invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
@@ -35,7 +35,7 @@
 .method public onReceive(Landroid/content/Context;Landroid/content/Intent;)V
     .locals 0
 
-    .line 273
+    .line 272
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/link/LinkSelector$NetworkChangeReceiver;->this$0:Lcom/ss/android/ugc/effectmanager/link/LinkSelector;
 
     invoke-static {p1}, Lcom/ss/android/ugc/effectmanager/link/LinkSelector;->access$000(Lcom/ss/android/ugc/effectmanager/link/LinkSelector;)Z
@@ -44,14 +44,14 @@
 
     if-eqz p1, :cond_1
 
-    .line 274
+    .line 273
     const-string p1, "HostSelector"
 
     const-string p2, "network state change"
 
     invoke-static {p1, p2}, Lcom/ss/android/ugc/effectmanager/common/utils/LogUtils;->e(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 275
+    .line 274
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/link/LinkSelector$NetworkChangeReceiver;->this$0:Lcom/ss/android/ugc/effectmanager/link/LinkSelector;
 
     invoke-static {p1}, Lcom/ss/android/ugc/effectmanager/link/LinkSelector;->access$100(Lcom/ss/android/ugc/effectmanager/link/LinkSelector;)Ljava/util/List;
@@ -72,16 +72,16 @@
 
     if-eqz p1, :cond_0
 
-    .line 276
+    .line 275
     return-void
 
-    .line 278
+    .line 277
     :cond_0
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/link/LinkSelector$NetworkChangeReceiver;->this$0:Lcom/ss/android/ugc/effectmanager/link/LinkSelector;
 
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/link/LinkSelector;->startOptHosts()V
 
-    .line 281
+    .line 280
     :cond_1
     return-void
 .end method

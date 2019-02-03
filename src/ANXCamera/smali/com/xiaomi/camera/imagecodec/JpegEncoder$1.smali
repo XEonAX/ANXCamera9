@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)V
     .locals 0
 
-    .line 363
+    .line 419
     iput-object p1, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$1;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
 
     invoke-direct {p0}, Landroid/hardware/camera2/CameraCaptureSession$CaptureCallback;-><init>()V
@@ -47,8 +47,8 @@
         .end annotation
     .end param
 
-    .line 369
-    invoke-static {}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$000()Ljava/lang/String;
+    .line 425
+    invoke-static {}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$100()Ljava/lang/String;
 
     move-result-object p1
 
@@ -56,13 +56,13 @@
 
     invoke-direct {p2}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string p3, "onCaptureCompleted, task size = "
+    const-string p3, "onCaptureCompleted: taskSize="
 
     invoke-virtual {p2, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     iget-object p3, p0, Lcom/xiaomi/camera/imagecodec/JpegEncoder$1;->this$0:Lcom/xiaomi/camera/imagecodec/JpegEncoder;
 
-    invoke-static {p3}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$100(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Ljava/util/LinkedList;
+    invoke-static {p3}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$200(Lcom/xiaomi/camera/imagecodec/JpegEncoder;)Ljava/util/LinkedList;
 
     move-result-object p3
 
@@ -78,7 +78,7 @@
 
     invoke-static {p1, p2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 370
+    .line 426
     return-void
 .end method
 
@@ -97,8 +97,8 @@
         .end annotation
     .end param
 
-    .line 376
-    invoke-static {}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$000()Ljava/lang/String;
+    .line 432
+    invoke-static {}, Lcom/xiaomi/camera/imagecodec/JpegEncoder;->access$100()Ljava/lang/String;
 
     move-result-object p1
 
@@ -106,6 +106,6 @@
 
     invoke-static {p1, p2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 377
+    .line 433
     return-void
 .end method

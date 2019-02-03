@@ -6,27 +6,28 @@ import android.hardware.camera2.CameraCharacteristics.Key;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CaptureResult;
 import android.os.Parcelable;
-import android.util.Log;
+import com.android.camera.log.Log;
+import com.xiaomi.engine.CameraCombinationMode;
 import com.xiaomi.protocol.ICustomCaptureResult;
 import java.lang.reflect.Method;
 
-public class CameraDeviceUtil {
+public final class CameraDeviceUtil {
     private static final String TAG = CameraDeviceUtil.class.getSimpleName();
 
     private CameraDeviceUtil() {
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0057 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0025} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0057 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0025} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0057 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0025} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0057 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0025} */
-    /* JADX WARNING: Missing block: B:15:0x0057, code:
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0056 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0024} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0056 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0024} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0056 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0024} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0056 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0024} */
+    /* JADX WARNING: Missing block: B:15:0x0056, code:
             r7 = move-exception;
      */
-    /* JADX WARNING: Missing block: B:16:0x0058, code:
-            android.util.Log.e(TAG, "prepareCalibrationDataForAlgo: call reflect method failed!", r7);
+    /* JADX WARNING: Missing block: B:16:0x0057, code:
+            com.android.camera.log.Log.e(TAG, "prepareCalibrationDataForAlgo: call reflect method failed!", r7);
      */
-    /* JADX WARNING: Missing block: B:17:0x0066, code:
+    /* JADX WARNING: Missing block: B:17:0x0065, code:
             throw new java.lang.RuntimeException("getCameraCharacteristics's dualCalibrationData failed");
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
@@ -77,6 +78,61 @@ public class CameraDeviceUtil {
         } catch (Throwable e) {
             Log.e(TAG, "getCustomCaptureResult: getCustomCaptureResult", e);
             return null;
+        }
+    }
+
+    /* JADX WARNING: Missing block: B:19:0x0022, code:
+            return com.xiaomi.engine.CameraCombinationMode.CAM_COMBINATION_MODE_REAR_BOKEH_WT;
+     */
+    /* JADX WARNING: Missing block: B:21:0x0025, code:
+            return 513;
+     */
+    /* JADX WARNING: Missing block: B:23:0x0027, code:
+            return 2;
+     */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static int getCameraCombinationMode(int i) {
+        if (i == 40) {
+            return 18;
+        }
+        switch (i) {
+            case 0:
+                return 1;
+            case 1:
+                return 17;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
+                switch (i) {
+                    case 20:
+                        break;
+                    case 21:
+                        return 3;
+                    default:
+                        switch (i) {
+                            case 60:
+                                break;
+                            case 61:
+                                break;
+                            case 62:
+                                return CameraCombinationMode.CAM_COMBINATION_MODE_REAR_SAT_WU;
+                            case 63:
+                                return CameraCombinationMode.CAM_COMBINATION_MODE_REAR_BOKEH_WU;
+                            default:
+                                switch (i) {
+                                    case 80:
+                                        return CameraCombinationMode.CAM_COMBINATION_MODE_FRONT_SAT;
+                                    case 81:
+                                        return CameraCombinationMode.CAM_COMBINATION_MODE_FRONT_BOKEH;
+                                    default:
+                                        return 0;
+                                }
+                        }
+                }
         }
     }
 }

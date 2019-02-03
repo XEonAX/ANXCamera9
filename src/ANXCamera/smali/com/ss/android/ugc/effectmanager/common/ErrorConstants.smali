@@ -36,6 +36,8 @@
 
 .field public static final CODE_UNZIP_FAIL:I = 0x271d
 
+.field public static final CODE_URL_NOT_EXIST:I = 0x271f
+
 .field public static final EFFECT_NOT_FOUND:I = 0x7d4
 
 .field public static final EFFECT_NOT_IN_WHITE_LIST:I = 0x7d5
@@ -47,6 +49,8 @@
 .field public static final EXCEPTION_CANCEL_DOWNLOAD:Ljava/lang/String; = "Cancel download"
 
 .field public static final EXCEPTION_DOWNLOAD_ERROR:Ljava/lang/String; = "Download error"
+
+.field public static final EXCEPTION_DOWNLOAD_URL_ERROR:Ljava/lang/String; = "File url is empty"
 
 .field public static final EXCEPTION_EFFECT_NULL:Ljava/lang/String; = "Sticker is null"
 
@@ -90,10 +94,10 @@
 .method public static APIErrorHandle(I)Ljava/lang/String;
     .locals 1
 
-    .line 60
+    .line 62
     nop
 
-    .line 61
+    .line 63
     const/4 v0, 0x1
 
     if-eq p0, v0, :cond_1
@@ -112,222 +116,222 @@
 
     packed-switch p0, :pswitch_data_4
 
-    .line 155
+    .line 157
     const-string p0, "\u672a\u77e5\u9519\u8bef"
 
     goto/16 :goto_0
 
-    .line 149
+    .line 151
     :pswitch_0
     const-string p0, "io \u9519\u8bef"
 
-    .line 150
+    .line 152
     goto/16 :goto_0
 
-    .line 152
+    .line 154
     :pswitch_1
     const-string p0, "\u65e0\u7f51\u7edc"
 
-    .line 153
+    .line 155
     goto/16 :goto_0
 
-    .line 118
+    .line 120
     :pswitch_2
     const-string p0, "MD5 error"
 
-    .line 119
+    .line 121
     goto/16 :goto_0
 
-    .line 143
+    .line 145
     :pswitch_3
     const-string p0, "\u6ca1\u6709\u672c\u5730 TAG \u7f13\u5b58"
 
-    .line 144
+    .line 146
     goto/16 :goto_0
 
-    .line 140
+    .line 142
     :pswitch_4
     const-string p0, "panel is null"
 
-    .line 141
+    .line 143
     goto :goto_0
 
-    .line 137
+    .line 139
     :pswitch_5
     const-string p0, "No Downloaded Effects"
 
-    .line 138
+    .line 140
     goto :goto_0
 
-    .line 134
+    .line 136
     :pswitch_6
     const-string p0, "SDK error"
 
-    .line 135
+    .line 137
     goto :goto_0
 
-    .line 131
+    .line 133
     :pswitch_7
     const-string p0, "Invalid effect list cache !!!"
 
-    .line 132
+    .line 134
     goto :goto_0
 
-    .line 128
+    .line 130
     :pswitch_8
     const-string p0, "Sticker is null"
 
-    .line 129
+    .line 131
     goto :goto_0
 
-    .line 125
+    .line 127
     :pswitch_9
     const-string p0, "Download error"
 
-    .line 126
+    .line 128
     goto :goto_0
 
-    .line 122
+    .line 124
     :pswitch_a
     const-string p0, "Cancel download"
 
-    .line 123
+    .line 125
     goto :goto_0
 
-    .line 111
+    .line 113
     :pswitch_b
     const-string p0, "\u9700\u8981\u66f4\u65b0app"
 
-    .line 112
+    .line 114
     goto :goto_0
 
-    .line 114
+    .line 116
     :pswitch_c
     const-string p0, "\u4e0d\u5728\u767d\u540d\u5355"
 
-    .line 115
+    .line 117
     goto :goto_0
 
-    .line 108
+    .line 110
     :pswitch_d
     const-string p0, "\u5f53\u524d\u7279\u6548id\u4e0d\u5b58\u5728"
 
-    .line 109
+    .line 111
     goto :goto_0
 
-    .line 105
+    .line 107
     :pswitch_e
     const-string p0, "\u4e0d\u652f\u6301\u5f53\u524d\u8bbe\u5907"
 
-    .line 106
+    .line 108
     goto :goto_0
 
-    .line 102
+    .line 104
     :pswitch_f
     const-string p0, "Effect\u5df2\u4e0b\u7ebf"
 
-    .line 103
+    .line 105
     goto :goto_0
 
-    .line 99
+    .line 101
     :pswitch_10
     const-string p0, "\u5185\u5bb9\u6ca1\u6709\u53d1\u751f\u53d8\u5316"
 
-    .line 100
+    .line 102
     goto :goto_0
 
-    .line 96
+    .line 98
     :pswitch_11
     const-string p0, "access_key\u4e0d\u5b58\u5728"
 
-    .line 97
+    .line 99
     goto :goto_0
 
-    .line 93
+    .line 95
     :pswitch_12
     const-string p0, "\u5f53\u524d\u5e94\u7528\u4e0d\u662f\u6d4b\u8bd5\u5e94\u7528"
 
-    .line 94
+    .line 96
     goto :goto_0
 
-    .line 90
+    .line 92
     :pswitch_13
     const-string p0, "app_channel\u4e0d\u5408\u6cd5"
 
-    .line 91
+    .line 93
     goto :goto_0
 
-    .line 87
+    .line 89
     :pswitch_14
     const-string p0, "channel\u4e0d\u5408\u6cd5"
 
-    .line 88
+    .line 90
     goto :goto_0
 
-    .line 84
+    .line 86
     :pswitch_15
     const-string p0, "device_type\u4e0d\u5408\u6cd5"
 
-    .line 85
+    .line 87
     goto :goto_0
 
-    .line 81
+    .line 83
     :pswitch_16
     const-string p0, "device_platform\u4e0d\u5408\u6cd5"
 
-    .line 82
+    .line 84
     goto :goto_0
 
-    .line 78
+    .line 80
     :pswitch_17
     const-string p0, "device_id\u4e0d\u5408\u6cd5"
 
-    .line 79
+    .line 81
     goto :goto_0
 
-    .line 75
+    .line 77
     :pswitch_18
     const-string p0, "sdk_version\u4e0d\u5408\u6cd5"
 
-    .line 76
+    .line 78
     goto :goto_0
 
-    .line 72
+    .line 74
     :pswitch_19
     const-string p0, "app_version\u4e0d\u5408\u6cd5"
 
-    .line 73
+    .line 75
     goto :goto_0
 
-    .line 69
+    .line 71
     :pswitch_1a
     const-string p0, "access_key\u4e0d\u5408\u6cd5"
 
-    .line 70
+    .line 72
     goto :goto_0
 
-    .line 66
+    .line 68
     :pswitch_1b
     const-string p0, "\u53c2\u6570\u4e0d\u5408\u6cd5\uff08\u53c2\u6570\u7f3a\u5931\u6216\u8005\u9519\u8bef\uff09"
 
-    .line 67
+    .line 69
     goto :goto_0
 
-    .line 146
+    .line 148
     :cond_0
     const-string p0, "\u65e0\u6548\u7684effect id"
 
-    .line 147
+    .line 149
     goto :goto_0
 
-    .line 63
+    .line 65
     :cond_1
     const-string p0, "\u672a\u77e5\u9519\u8bef"
 
-    .line 64
+    .line 66
     nop
 
-    .line 158
+    .line 160
     :goto_0
     return-object p0
 

@@ -6,11 +6,11 @@
 # static fields
 .field private static final UNSET:I = -0x80000000
 
-.field private static final po:I = -0x1
+.field private static final pn:I = -0x1
 
 
 # instance fields
-.field private pp:I
+.field private po:I
 
 
 # direct methods
@@ -27,7 +27,7 @@
     .line 16
     const/high16 p1, -0x80000000
 
-    iput p1, p0, Lcom/bumptech/glide/util/g;->pp:I
+    iput p1, p0, Lcom/bumptech/glide/util/g;->po:I
 
     .line 20
     return-void
@@ -37,7 +37,7 @@
     .locals 2
 
     .line 76
-    iget v0, p0, Lcom/bumptech/glide/util/g;->pp:I
+    iget v0, p0, Lcom/bumptech/glide/util/g;->po:I
 
     if-nez v0, :cond_0
 
@@ -48,13 +48,13 @@
 
     .line 78
     :cond_0
-    iget v0, p0, Lcom/bumptech/glide/util/g;->pp:I
+    iget v0, p0, Lcom/bumptech/glide/util/g;->po:I
 
     const/high16 v1, -0x80000000
 
     if-eq v0, v1, :cond_1
 
-    iget v0, p0, Lcom/bumptech/glide/util/g;->pp:I
+    iget v0, p0, Lcom/bumptech/glide/util/g;->po:I
 
     int-to-long v0, v0
 
@@ -63,7 +63,7 @@
     if-lez v0, :cond_1
 
     .line 79
-    iget p1, p0, Lcom/bumptech/glide/util/g;->pp:I
+    iget p1, p0, Lcom/bumptech/glide/util/g;->po:I
 
     int-to-long p1, p1
 
@@ -78,7 +78,7 @@
     .locals 2
 
     .line 86
-    iget v0, p0, Lcom/bumptech/glide/util/g;->pp:I
+    iget v0, p0, Lcom/bumptech/glide/util/g;->po:I
 
     const/high16 v1, -0x80000000
 
@@ -91,7 +91,7 @@
     if-eqz v0, :cond_0
 
     .line 88
-    iget v0, p0, Lcom/bumptech/glide/util/g;->pp:I
+    iget v0, p0, Lcom/bumptech/glide/util/g;->po:I
 
     int-to-long v0, v0
 
@@ -99,7 +99,7 @@
 
     long-to-int p1, v0
 
-    iput p1, p0, Lcom/bumptech/glide/util/g;->pp:I
+    iput p1, p0, Lcom/bumptech/glide/util/g;->po:I
 
     .line 90
     :cond_0
@@ -117,7 +117,7 @@
     .end annotation
 
     .line 71
-    iget v0, p0, Lcom/bumptech/glide/util/g;->pp:I
+    iget v0, p0, Lcom/bumptech/glide/util/g;->po:I
 
     const/high16 v1, -0x80000000
 
@@ -131,7 +131,7 @@
 
     .line 72
     :cond_0
-    iget v0, p0, Lcom/bumptech/glide/util/g;->pp:I
+    iget v0, p0, Lcom/bumptech/glide/util/g;->po:I
 
     invoke-super {p0}, Ljava/io/FilterInputStream;->available()I
 
@@ -156,7 +156,7 @@
     invoke-super {p0, p1}, Ljava/io/FilterInputStream;->mark(I)V
 
     .line 25
-    iput p1, p0, Lcom/bumptech/glide/util/g;->pp:I
+    iput p1, p0, Lcom/bumptech/glide/util/g;->po:I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
@@ -274,7 +274,7 @@
     .line 54
     const/high16 v0, -0x80000000
 
-    iput v0, p0, Lcom/bumptech/glide/util/g;->pp:I
+    iput v0, p0, Lcom/bumptech/glide/util/g;->po:I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 

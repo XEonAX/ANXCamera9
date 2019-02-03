@@ -1,5 +1,8 @@
 package com.android.camera.effect.draw_mode;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 public abstract class DrawAttribute {
     public static final int BASIC_TEXTURE = 5;
     public static final int BLUR_TEXTURE = 10;
@@ -15,6 +18,10 @@ public abstract class DrawAttribute {
     public static final int RECTF_TEXTURE = 7;
     public static final int YUV_TEXTURE = 11;
     protected int mTarget = -1;
+
+    @Retention(RetentionPolicy.SOURCE)
+    @interface Target {
+    }
 
     public int getTarget() {
         return this.mTarget;

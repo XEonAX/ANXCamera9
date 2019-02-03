@@ -14,11 +14,15 @@
 
 .field public static final TER_BAD_TEXTURE:I = -0x130
 
+.field public static final TER_BAD_TIME_STAMP:I = -0xd0
+
 .field public static final TER_BUFFER_EMPTY:I = -0x6f
 
 .field public static final TER_BUFFER_FULL:I = -0x6e
 
 .field public static final TER_DECODER_ERROR:I = -0xce
+
+.field public static final TER_DEVICE_ERROR:I = -0xd1
 
 .field public static final TER_EGL_BAD_ACCESS:I = -0x160
 

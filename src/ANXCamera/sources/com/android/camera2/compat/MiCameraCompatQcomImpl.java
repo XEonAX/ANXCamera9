@@ -6,12 +6,13 @@ import android.hardware.camera2.CaptureRequest.Key;
 import com.android.camera.constant.MiCameraCharacteristics;
 import com.android.camera.log.Log;
 import com.android.camera2.CaptureResultParser;
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import java.util.HashSet;
 
 @TargetApi(21)
 class MiCameraCompatQcomImpl extends MiCameraCompatBaseImpl {
     private static final Key<Boolean> AI_SCENE = new Key(CaptureResultParser.VENDER_TAG_ASD_ENABLE, Boolean.class);
-    private static final Key<String> AI_SCENE_APPLY = new Key("xiaomi.ai.asd.sceneApplied", String.class);
+    private static final Key<Integer> AI_SCENE_APPLY = new Key("xiaomi.ai.asd.sceneApplied", Integer.class);
     private static final Key<int[]> AI_SCENE_AVAILABLE_MODES = new Key("xiaomi.ai.asd.availableSceneMode", int[].class);
     private static final Key<Integer> AI_SCENE_PERIOD = new Key("xiaomi.ai.asd.period", Integer.class);
     private static final Key<Integer> CONTRAST_LEVEL = new Key("org.codeaurora.qcamera3.contrast.level", Integer.class);
@@ -21,7 +22,7 @@ class MiCameraCompatQcomImpl extends MiCameraCompatBaseImpl {
     private static final int ISO_PRIORITY = 0;
     private static final Key<Byte> IS_HFR_PREVIEW = new Key("xiaomi.hfrPreview.isHFRPreview", Byte.TYPE);
     private static final Key<Byte> KEY_HDR_BRACKET_MODE = new Key("org.codeaurora.qcamera3.ae_bracket.mode", Byte.TYPE);
-    private static final Key<Integer> KEY_MULTIFRAME_INPUTNUM = new Key("xiaomi.multiframe.inputNum", Integer.TYPE);
+    private static final Key<Integer> KEY_MULTIFRAME_INPUTNUM = new Key(CaptureResultParser.VENDER_TAG_MULTIFRAME_INPUTNUM, Integer.TYPE);
     private static final Key<Byte> RECORDING_END_STREAM = new Key("org.quic.camera.recording.endOfStream", Byte.TYPE);
     private static final Key<Integer> SATURATION = new Key("org.codeaurora.qcamera3.saturation.use_saturation", Integer.class);
     private static final Key<Integer> SELECT_PRIORITY = new Key("org.codeaurora.qcamera3.iso_exp_priority.select_priority", Integer.class);
@@ -40,7 +41,7 @@ class MiCameraCompatQcomImpl extends MiCameraCompatBaseImpl {
             builder.set(ISO_EXP, Long.valueOf(2));
         } else if (i == 200) {
             builder.set(ISO_EXP, Long.valueOf(3));
-        } else if (i == 400) {
+        } else if (i == MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME) {
             builder.set(ISO_EXP, Long.valueOf(4));
         } else if (i == 800) {
             builder.set(ISO_EXP, Long.valueOf(5));
@@ -160,8 +161,8 @@ class MiCameraCompatQcomImpl extends MiCameraCompatBaseImpl {
         builder.set(AI_SCENE, Boolean.valueOf(z));
     }
 
-    public void applyASDScene(Builder builder, String str) {
-        builder.set(AI_SCENE_APPLY, str);
+    public void applyASDScene(Builder builder, int i) {
+        builder.set(AI_SCENE_APPLY, Integer.valueOf(i));
     }
 
     public void applyAiScenePeriod(Builder builder, int i) {

@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v7/widget/LinearLayoutManager;Landroid/content/Context;)V
-    .locals 0
+    .registers 3
     .param p2, "x0"    # Landroid/content/Context;
 
     .line 426
@@ -34,7 +34,7 @@
 
 # virtual methods
 .method public computeScrollVectorForPosition(I)Landroid/graphics/PointF;
-    .locals 1
+    .registers 3
     .param p1, "targetPosition"    # I
 
     .line 429

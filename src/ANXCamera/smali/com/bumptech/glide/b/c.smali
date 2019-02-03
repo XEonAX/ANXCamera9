@@ -4,17 +4,17 @@
 
 
 # static fields
-.field public static final bA:I = -0x1
+.field public static final bA:I = 0x0
 
-.field public static final bz:I
+.field public static final bB:I = -0x1
 
 
 # instance fields
-.field bB:I
+.field bC:I
 
-.field bC:Lcom/bumptech/glide/b/b;
+.field bD:Lcom/bumptech/glide/b/b;
 
-.field final bD:Ljava/util/List;
+.field final bE:Ljava/util/List;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/List<",
@@ -69,14 +69,14 @@
     iput v0, p0, Lcom/bumptech/glide/b/c;->status:I
 
     .line 26
-    iput v0, p0, Lcom/bumptech/glide/b/c;->bB:I
+    iput v0, p0, Lcom/bumptech/glide/b/c;->bC:I
 
     .line 29
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    iput-object v0, p0, Lcom/bumptech/glide/b/c;->bD:Ljava/util/List;
+    iput-object v0, p0, Lcom/bumptech/glide/b/c;->bE:Ljava/util/List;
 
     .line 51
     const/4 v0, -0x1
@@ -92,7 +92,7 @@
     .locals 1
 
     .line 62
-    iget v0, p0, Lcom/bumptech/glide/b/c;->bB:I
+    iget v0, p0, Lcom/bumptech/glide/b/c;->bC:I
 
     return v0
 .end method

@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
 import com.android.camera.log.Log;
 import com.android.camera.protocol.ModeCoordinatorImpl;
@@ -27,7 +28,6 @@ public class ThermalDetector {
     private Context mContext;
     private IntentFilter mFilter;
     private boolean mIsRegister;
-    private boolean mIsWatch;
     private BroadcastReceiver mReceiver;
     private volatile int mTempStage;
 
@@ -49,7 +49,6 @@ public class ThermalDetector {
     private ThermalDetector() {
         this.mTempStage = 0;
         this.mIsRegister = false;
-        this.mIsWatch = false;
         this.mFilter = new IntentFilter(ACTION_TEMP_CHANGED);
         this.mReceiver = new BroadcastReceiver() {
             public void onReceive(Context context, Intent intent) {
@@ -66,13 +65,9 @@ public class ThermalDetector {
         };
     }
 
+    @WorkerThread
     public void onCreate(Context context) {
         this.mContext = context.getApplicationContext();
-        new Thread(new Runnable() {
-            public void run() {
-                ThermalDetector.this.mTempStage = ThermalDetector.readStageFromFile();
-            }
-        }).start();
     }
 
     public void onDestroy() {
@@ -93,17 +88,12 @@ public class ThermalDetector {
         }
     }
 
-    public void startWatch() {
-        this.mIsWatch = true;
-        onThermalNotification();
-    }
-
-    public void stopWatch() {
-        this.mIsWatch = false;
-    }
-
     public static boolean thermalConstrained(int i) {
         return i == 1;
+    }
+
+    public boolean thermalConstrained() {
+        return this.mTempStage == 1;
     }
 
     public static boolean isTempStageFree(int i) {
@@ -165,20 +155,16 @@ public class ThermalDetector {
     }
 
     private void onThermalNotification(int i) {
-        if (this.mIsWatch) {
-            ConfigChanges configChanges = (ConfigChanges) ModeCoordinatorImpl.getInstance().getAttachProtocol(164);
-            if (configChanges == null) {
-                Log.w(TAG, "onThermalNotification config is null");
-                return;
-            }
-            try {
-                configChanges.onThermalNotification(i);
-            } catch (Throwable e) {
-                Log.w(TAG, "onThermalNotification error", e);
-            }
+        ConfigChanges configChanges = (ConfigChanges) ModeCoordinatorImpl.getInstance().getAttachProtocol(164);
+        if (configChanges == null) {
+            Log.w(TAG, "onThermalNotification config is null");
             return;
         }
-        Log.w(TAG, "onThermalNotification not watched");
+        try {
+            configChanges.onThermalNotification(i);
+        } catch (Throwable e) {
+            Log.w(TAG, "onThermalNotification error", e);
+        }
     }
 
     public void onThermalNotification() {

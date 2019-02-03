@@ -15,7 +15,7 @@ public class FrontBeautyLevelFragment extends BeautyLevelFragment {
     protected List<LevelItem> initBeautyItems() {
         String[] stringArray = getResources().getStringArray(R.array.beauty_level_list);
         List<LevelItem> arrayList = new ArrayList();
-        arrayList.add(new LevelItem((int) R.drawable.ff));
+        arrayList.add(new LevelItem((int) R.drawable.ic_config_front_beauty_off));
         arrayList.add(new LevelItem(stringArray[0]));
         arrayList.add(new LevelItem(stringArray[1]));
         arrayList.add(new LevelItem(stringArray[2]));
@@ -29,7 +29,7 @@ public class FrontBeautyLevelFragment extends BeautyLevelFragment {
     }
 
     private void setBeautyLevel(int i) {
-        if (!b.hp()) {
+        if (!b.hG()) {
             boolean isFaceBeautyOn = BeautyParameters.isFaceBeautyOn();
             BottomMenuProtocol bottomMenuProtocol = (BottomMenuProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(197);
             if (bottomMenuProtocol != null) {

@@ -14,7 +14,7 @@ public class ModelCache<A, B> {
     @VisibleForTesting
     static final class ModelKey<A> {
         private static final Queue<ModelKey<?>> jn = k.U(0);
-        private A aK;
+        private A aL;
         private int height;
         private int width;
 
@@ -34,7 +34,7 @@ public class ModelCache<A, B> {
         }
 
         private void e(A a, int i, int i2) {
-            this.aK = a;
+            this.aL = a;
             this.width = i;
             this.height = i2;
         }
@@ -51,14 +51,14 @@ public class ModelCache<A, B> {
                 return false;
             }
             ModelKey modelKey = (ModelKey) obj;
-            if (this.width == modelKey.width && this.height == modelKey.height && this.aK.equals(modelKey.aK)) {
+            if (this.width == modelKey.width && this.height == modelKey.height && this.aL.equals(modelKey.aL)) {
                 z = true;
             }
             return z;
         }
 
         public int hashCode() {
-            return (31 * ((this.height * 31) + this.width)) + this.aK.hashCode();
+            return (31 * ((this.height * 31) + this.width)) + this.aL.hashCode();
         }
     }
 

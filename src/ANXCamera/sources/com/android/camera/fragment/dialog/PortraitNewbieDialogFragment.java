@@ -29,7 +29,7 @@ public class PortraitNewbieDialogFragment extends BaseDialogFragment {
     @Nullable
     public View onCreateView(LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
         View inflate;
-        if (DataRepository.dataItemFeature().eX()) {
+        if (DataRepository.dataItemFeature().eZ()) {
             inflate = layoutInflater.inflate(R.layout.fragment_dialog_portait_lighting_hint, viewGroup, false);
         } else {
             inflate = layoutInflater.inflate(R.layout.fragment_dialog_portait_hint, viewGroup, false);

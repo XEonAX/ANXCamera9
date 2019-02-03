@@ -8,16 +8,21 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.hardware.camera2.params.MeteringRectangle;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.provider.MiuiSettings.ScreenEffect;
 import android.provider.MiuiSettings.System;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
 import android.text.SpannableStringBuilder;
 import android.text.style.TextAppearanceSpan;
+import android.util.Size;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.camera.R;
 import com.android.camera.Util;
@@ -28,6 +33,8 @@ import com.android.camera.animation.type.SlideOutOnSubscribe;
 import com.android.camera.data.DataRepository;
 import com.android.camera.log.Log;
 import com.android.camera.protocol.ModeCoordinatorImpl;
+import com.android.camera.protocol.ModeProtocol.AutoZoomModuleProtocol;
+import com.android.camera.protocol.ModeProtocol.AutoZoomViewProtocol;
 import com.android.camera.protocol.ModeProtocol.HandleBackTrace;
 import com.android.camera.protocol.ModeProtocol.MainContentProtocol;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
@@ -47,12 +54,15 @@ import com.android.camera.ui.V6PreviewFrame;
 import com.android.camera.ui.V6PreviewPanel;
 import com.android.camera.watermark.WaterMarkData;
 import com.android.camera2.CameraHardwareFace;
+import com.android.camera2.autozoom.AutoZoomCaptureResult;
+import com.android.camera2.autozoom.AutoZoomView;
+import com.bumptech.glide.c;
 import com.mi.config.b;
 import io.reactivex.Completable;
 import java.util.List;
 import miui.view.animation.QuadraticEaseInOutInterpolator;
 
-public class FragmentMainContent extends BaseFragment implements HandleBackTrace, MainContentProtocol, SnapShotIndicator {
+public class FragmentMainContent extends BaseFragment implements AutoZoomViewProtocol, HandleBackTrace, MainContentProtocol, SnapShotIndicator {
     public static final int FRAGMENT_INFO = 243;
     public static final int FRONT_CAMERA_ID = 1;
     private static final String TAG = "FragmentMainContent";
@@ -61,19 +71,23 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
     private boolean lastFaceSuccess;
     private int mActiveIndicator = 2;
     private AfRegionsView mAfRegionsView;
-    private float mAspectRatio = 0.0f;
+    private AutoZoomView mAutoZoomOverlay;
     private View mBottomCover;
     private TextView mCaptureDelayNumber;
+    private ImageView mCenterHintIcon;
+    private TextView mCenterHintText;
     private ViewGroup mCoverParent;
     private int mDisplayRectTopMargin;
     private V6EffectCropView mEffectCropView;
     private FaceView mFaceView;
     private FocusView mFocusView;
+    private Handler mHandler = new Handler();
     private boolean mIsIntentAction;
     private int mLastCameraId = -1;
     private LightingView mLightingView;
     private TextView mMultiSnapNum;
     private ObjectView mObjectView;
+    private ViewGroup mPreviewCenterHint;
     private V6PreviewFrame mPreviewFrame;
     private ViewGroup mPreviewPage;
     private V6PreviewPanel mPreviewPanel;
@@ -102,36 +116,43 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
         this.mPreviewPage = (ViewGroup) view.findViewById(R.id.v6_preview_page);
         this.mPreviewPanel = (V6PreviewPanel) this.mPreviewPage.findViewById(R.id.v6_preview_panel);
         this.mPreviewFrame = (V6PreviewFrame) this.mPreviewPanel.findViewById(R.id.v6_frame_layout);
-        if (this.mAspectRatio > 0.0f) {
-            this.mPreviewFrame.setAspectRatio(this.mAspectRatio);
-        }
+        this.mPreviewCenterHint = (ViewGroup) this.mPreviewPanel.findViewById(R.id.center_hint_placeholder);
+        this.mCenterHintIcon = (ImageView) this.mPreviewCenterHint.findViewById(R.id.center_hint_icon);
+        this.mCenterHintText = (TextView) this.mPreviewCenterHint.findViewById(R.id.center_hint_text);
         this.mEffectCropView = (V6EffectCropView) this.mPreviewPanel.findViewById(R.id.v6_effect_crop_view);
         this.mFaceView = (FaceView) this.mPreviewPanel.findViewById(R.id.v6_face_view);
         this.mFocusView = (FocusView) this.mPreviewPanel.findViewById(R.id.v6_focus_view);
+        this.mAutoZoomOverlay = (AutoZoomView) this.mPreviewPanel.findViewById(R.id.autozoom_overlay);
         this.mLightingView = (LightingView) this.mPreviewPanel.findChildrenById(R.id.lighting_view);
         this.mObjectView = (ObjectView) this.mPreviewPanel.findViewById(R.id.object_view);
         this.mAfRegionsView = (AfRegionsView) this.mPreviewPanel.findViewById(R.id.afregions_view);
         this.mLightingView.setRotation(this.mDegree);
-        adjustViewHeight(view);
+        adjustViewHeight();
         this.mCoverParent.getLayoutParams().height = Util.sWindowHeight - Util.getBottomHeight(getResources());
         this.mBottomCover.getLayoutParams().height = ((((int) (((float) Util.sWindowWidth) / 0.75f)) - Util.sWindowWidth) / 2) + getResources().getDimensionPixelSize(R.dimen.square_mode_bottom_cover_extra_margin);
         this.mTopCover.getLayoutParams().height = (this.mCoverParent.getLayoutParams().height - Util.sWindowWidth) - this.mBottomCover.getLayoutParams().height;
         this.mIsIntentAction = DataRepository.dataItemGlobal().isIntentAction();
-        provideAnimateElement(this.mCurrentMode, null, false);
+        provideAnimateElement(this.mCurrentMode, null, 2);
     }
 
-    private void adjustViewHeight(View view) {
-        Rect displayRect = Util.getDisplayRect(getContext());
-        MarginLayoutParams marginLayoutParams = (MarginLayoutParams) view.getLayoutParams();
-        MarginLayoutParams marginLayoutParams2 = (MarginLayoutParams) this.mPreviewPanel.getLayoutParams();
-        if (marginLayoutParams2.height != displayRect.height() || displayRect.top != this.mDisplayRectTopMargin) {
-            this.mDisplayRectTopMargin = displayRect.top;
-            marginLayoutParams2.height = displayRect.height();
-            marginLayoutParams2.topMargin = displayRect.top;
-            this.mPreviewPanel.setLayoutParams(marginLayoutParams2);
-            marginLayoutParams.height = displayRect.height() + this.mDisplayRectTopMargin;
-            view.setLayoutParams(marginLayoutParams);
-            setDisplaySize(displayRect.width(), displayRect.height());
+    private void adjustViewHeight() {
+        if (getContext() != null && this.mPreviewPanel != null) {
+            ViewGroup viewGroup = (ViewGroup) this.mPreviewPanel.getParent();
+            MarginLayoutParams marginLayoutParams = (MarginLayoutParams) viewGroup.getLayoutParams();
+            MarginLayoutParams marginLayoutParams2 = (MarginLayoutParams) this.mPreviewPanel.getLayoutParams();
+            MarginLayoutParams marginLayoutParams3 = (MarginLayoutParams) this.mPreviewCenterHint.getLayoutParams();
+            Rect displayRect = Util.getDisplayRect(getContext());
+            if (!(marginLayoutParams2.height == displayRect.height() && displayRect.top == this.mDisplayRectTopMargin)) {
+                this.mDisplayRectTopMargin = displayRect.top;
+                marginLayoutParams2.height = displayRect.height();
+                marginLayoutParams2.topMargin = displayRect.top;
+                this.mPreviewPanel.setLayoutParams(marginLayoutParams2);
+                marginLayoutParams3.height = (displayRect.width() * 4) / 3;
+                this.mPreviewCenterHint.setLayoutParams(marginLayoutParams3);
+                marginLayoutParams.height = displayRect.height() + this.mDisplayRectTopMargin;
+                viewGroup.setLayoutParams(marginLayoutParams);
+                setDisplaySize(displayRect.width(), displayRect.height());
+            }
         }
     }
 
@@ -148,25 +169,26 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
     }
 
     /* Code decompiled incorrectly, please refer to instructions dump. */
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        int i2;
-        int i3 = this.mCurrentMode;
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        int i3;
+        int i4 = this.mCurrentMode;
+        super.provideAnimateElement(i, list, i2);
         if (i != 165) {
-            i2 = -1;
+            i3 = -1;
         } else {
-            i2 = 1;
+            i3 = 1;
         }
-        boolean z2 = false;
+        boolean z = false;
         setSnapNumVisible(false, true);
+        hideDelayNumber();
         this.mPreviewFrame.hidePreviewGrid();
         this.mFaceView.clear();
         this.mFaceView.clearFaceFlags();
         this.mFocusView.clear();
         this.mLightingView.clear();
         this.mAfRegionsView.clear();
-        if (i3 != 162) {
-            switch (i3) {
+        if (i4 != 162) {
+            switch (i4) {
                 case 168:
                 case 169:
                     break;
@@ -178,15 +200,14 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
                 case 169:
                     break;
             }
-            z2 = true;
+            z = true;
         }
-        if (z2) {
+        if (z) {
             this.mFocusView.releaseListener();
         }
-        destroyEffectCropView();
-        if (this.mTopCover.getTag() == null || ((Integer) this.mTopCover.getTag()).intValue() != i2) {
-            this.mTopCover.setTag(Integer.valueOf(i2));
-            if (i2 == 1) {
+        if (this.mTopCover.getTag() == null || ((Integer) this.mTopCover.getTag()).intValue() != i3) {
+            this.mTopCover.setTag(Integer.valueOf(i3));
+            if (i3 == 1) {
                 if (list == null) {
                     SlideInOnSubscribe.directSetResult(this.mTopCover, 48);
                     SlideInOnSubscribe.directSetResult(this.mBottomCover, 80);
@@ -207,6 +228,7 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
     protected void register(ModeCoordinator modeCoordinator) {
         super.register(modeCoordinator);
         modeCoordinator.attachProtocol(166, this);
+        modeCoordinator.attachProtocol(214, this);
         registerBackStack(modeCoordinator, this);
         if (!b.isSupportedOpticalZoom()) {
             modeCoordinator.attachProtocol(184, this);
@@ -217,6 +239,7 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
         super.unRegister(modeCoordinator);
         modeCoordinator.detachProtocol(166, this);
         unRegisterBackStack(modeCoordinator, this);
+        modeCoordinator.detachProtocol(214, this);
         if (!b.isSupportedOpticalZoom()) {
             modeCoordinator.detachProtocol(184, this);
         }
@@ -302,11 +325,7 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
     }
 
     public void setPreviewAspectRatio(float f) {
-        if (this.mPreviewFrame == null) {
-            this.mAspectRatio = f;
-        } else {
-            this.mPreviewFrame.setAspectRatio(f);
-        }
+        adjustViewHeight();
     }
 
     public void performHapticFeedback(int i) {
@@ -319,6 +338,9 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
         }
         if (i == this.mEffectCropView.getId()) {
             return this.mEffectCropView.onViewTouchEvent(motionEvent);
+        }
+        if (i == this.mAutoZoomOverlay.getId()) {
+            return this.mAutoZoomOverlay.onViewTouchEvent(motionEvent);
         }
         return false;
     }
@@ -363,9 +385,15 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
         return this.mEffectCropView.isVisible();
     }
 
+    public boolean isAutoZoomViewEnabled() {
+        return this.mAutoZoomOverlay.isViewEnabled();
+    }
+
     public void setCameraDisplayOrientation(int i) {
-        this.mFaceView.setCameraDisplayOrientation(i);
-        this.mAfRegionsView.setCameraDisplayOrientation(i);
+        if (this.mFaceView != null && this.mAfRegionsView != null) {
+            this.mFaceView.setCameraDisplayOrientation(i);
+            this.mAfRegionsView.setCameraDisplayOrientation(i);
+        }
     }
 
     public void setShowGenderAndAge(boolean z) {
@@ -403,6 +431,10 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
             return this.mFocusView.isEvAdjustedTime();
         }
         return this.mFocusView.isEvAdjusted();
+    }
+
+    public boolean isFocusViewVisible() {
+        return this.mFocusView.isVisible();
     }
 
     public void setEvAdjustable(boolean z) {
@@ -459,7 +491,9 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
     }
 
     public void setPreviewSize(int i, int i2) {
-        this.mObjectView.setPreviewSize(i, i2);
+        if (this.mAutoZoomOverlay != null) {
+            this.mAutoZoomOverlay.setPreviewSize(new Size(i, i2));
+        }
     }
 
     public void setObjectViewListener(ObjectViewListener objectViewListener) {
@@ -700,6 +734,11 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
         this.mAfRegionsView.setLightingOn(false);
     }
 
+    public void onPause() {
+        super.onPause();
+        this.mHandler.removeCallbacksAndMessages(null);
+    }
+
     public void onDestroy() {
         super.onDestroy();
         destroyEffectCropView();
@@ -715,26 +754,24 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
         if (DataRepository.dataItemGlobal().getCurrentCameraId() != this.mLastCameraId) {
             this.mLastCameraId = DataRepository.dataItemGlobal().getCurrentCameraId();
             if (Util.isAccessible()) {
-                if (this.mLastCameraId == 1) {
-                    this.mPreviewFrame.setContentDescription(getString(R.string.accessibility_front_preview_status));
-                } else {
+                if (this.mLastCameraId != 1) {
                     this.mPreviewFrame.setContentDescription(getString(R.string.accessibility_back_preview_status));
+                    this.mPreviewFrame.announceForAccessibility(getString(R.string.accessibility_back_preview_status));
+                } else if (Util.isScreenSlideOff(getActivity())) {
+                    this.mPreviewFrame.setContentDescription(getString(R.string.accessibility_pull_down_to_open_camera));
+                    this.mPreviewFrame.announceForAccessibility(getString(R.string.accessibility_pull_down_to_open_camera));
+                } else {
+                    this.mPreviewFrame.setContentDescription(getString(R.string.accessibility_front_preview_status));
+                    this.mPreviewFrame.announceForAccessibility(getString(R.string.accessibility_front_preview_status));
                 }
-                this.mPreviewFrame.postDelayed(new Runnable() {
-                    public void run() {
-                        if (FragmentMainContent.this.isAdded()) {
-                            FragmentMainContent.this.mPreviewFrame.sendAccessibilityEvent(4);
-                        }
-                    }
-                }, 1500);
             }
         }
         switch (i) {
             case 2:
-                adjustViewHeight(getView());
+                adjustViewHeight();
                 return;
             case 3:
-                adjustViewHeight(getView());
+                adjustViewHeight();
                 return;
             default:
                 return;
@@ -770,5 +807,72 @@ public class FragmentMainContent extends BaseFragment implements HandleBackTrace
 
     public void setAfRegionView(MeteringRectangle[] meteringRectangleArr, Rect rect, float f) {
         this.mAfRegionsView.setAfRegionRect(meteringRectangleArr, rect, f);
+    }
+
+    public void setCenterHint(int i, String str, String str2, int i2) {
+        this.mHandler.removeCallbacksAndMessages(this.mPreviewCenterHint);
+        if (i == 0) {
+            this.mCenterHintText.setText(str);
+            if (str == null || str.equals("")) {
+                this.mCenterHintText.setVisibility(8);
+            } else {
+                this.mCenterHintText.setVisibility(0);
+            }
+            if (str2 == null || str2.equals("")) {
+                this.mCenterHintIcon.setVisibility(8);
+            } else {
+                c.a((Fragment) this).a(str2).a(this.mCenterHintIcon);
+                this.mCenterHintIcon.setVisibility(0);
+            }
+            if (i2 > 0) {
+                this.mHandler.postAtTime(new Runnable() {
+                    public void run() {
+                        FragmentMainContent.this.mPreviewCenterHint.setVisibility(8);
+                    }
+                }, this.mPreviewCenterHint, SystemClock.uptimeMillis() + ((long) i2));
+            }
+        }
+        this.mPreviewCenterHint.setVisibility(i);
+    }
+
+    public void updateContentDescription() {
+        this.mPreviewFrame.setContentDescription(getString(R.string.accessibility_front_preview_status));
+        this.mPreviewFrame.announceForAccessibility(getString(R.string.accessibility_front_preview_status));
+    }
+
+    public void onAutoZoomStarted() {
+        this.mAutoZoomOverlay.setViewEnable(true);
+        this.mAutoZoomOverlay.setViewActive(false);
+        this.mAutoZoomOverlay.clear(0);
+    }
+
+    public void onAutoZoomStopped() {
+        this.mAutoZoomOverlay.setViewEnable(false);
+        this.mAutoZoomOverlay.setViewActive(false);
+        this.mAutoZoomOverlay.clear(4);
+    }
+
+    public void feedData(AutoZoomCaptureResult autoZoomCaptureResult) {
+        this.mAutoZoomOverlay.feedData(autoZoomCaptureResult);
+    }
+
+    public void onTrackingStarted(RectF rectF) {
+        AutoZoomModuleProtocol autoZoomModuleProtocol = (AutoZoomModuleProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(215);
+        if (autoZoomModuleProtocol != null) {
+            autoZoomModuleProtocol.startTracking(rectF);
+        }
+    }
+
+    public void onTrackingStopped(int i) {
+        this.mAutoZoomOverlay.setViewActive(false);
+        this.mAutoZoomOverlay.clear(0);
+    }
+
+    public boolean isAutoZoomActive() {
+        return this.mAutoZoomOverlay.isViewActive();
+    }
+
+    public boolean isAutoZoomEnabled() {
+        return this.mAutoZoomOverlay.isViewEnabled();
     }
 }

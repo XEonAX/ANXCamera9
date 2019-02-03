@@ -14,13 +14,13 @@
 
 
 # static fields
-.field public static final enum ai:Lcom/bumptech/glide/MemoryCategory;
-
 .field public static final enum aj:Lcom/bumptech/glide/MemoryCategory;
 
 .field public static final enum ak:Lcom/bumptech/glide/MemoryCategory;
 
-.field private static final synthetic al:[Lcom/bumptech/glide/MemoryCategory;
+.field public static final enum al:Lcom/bumptech/glide/MemoryCategory;
+
+.field private static final synthetic am:[Lcom/bumptech/glide/MemoryCategory;
 
 
 # instance fields
@@ -42,7 +42,7 @@
 
     invoke-direct {v0, v1, v2, v3}, Lcom/bumptech/glide/MemoryCategory;-><init>(Ljava/lang/String;IF)V
 
-    sput-object v0, Lcom/bumptech/glide/MemoryCategory;->ai:Lcom/bumptech/glide/MemoryCategory;
+    sput-object v0, Lcom/bumptech/glide/MemoryCategory;->aj:Lcom/bumptech/glide/MemoryCategory;
 
     .line 14
     new-instance v0, Lcom/bumptech/glide/MemoryCategory;
@@ -55,7 +55,7 @@
 
     invoke-direct {v0, v1, v3, v4}, Lcom/bumptech/glide/MemoryCategory;-><init>(Ljava/lang/String;IF)V
 
-    sput-object v0, Lcom/bumptech/glide/MemoryCategory;->aj:Lcom/bumptech/glide/MemoryCategory;
+    sput-object v0, Lcom/bumptech/glide/MemoryCategory;->ak:Lcom/bumptech/glide/MemoryCategory;
 
     .line 19
     new-instance v0, Lcom/bumptech/glide/MemoryCategory;
@@ -68,26 +68,26 @@
 
     invoke-direct {v0, v1, v4, v5}, Lcom/bumptech/glide/MemoryCategory;-><init>(Ljava/lang/String;IF)V
 
-    sput-object v0, Lcom/bumptech/glide/MemoryCategory;->ak:Lcom/bumptech/glide/MemoryCategory;
+    sput-object v0, Lcom/bumptech/glide/MemoryCategory;->al:Lcom/bumptech/glide/MemoryCategory;
 
     .line 6
     const/4 v0, 0x3
 
     new-array v0, v0, [Lcom/bumptech/glide/MemoryCategory;
 
-    sget-object v1, Lcom/bumptech/glide/MemoryCategory;->ai:Lcom/bumptech/glide/MemoryCategory;
+    sget-object v1, Lcom/bumptech/glide/MemoryCategory;->aj:Lcom/bumptech/glide/MemoryCategory;
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/bumptech/glide/MemoryCategory;->aj:Lcom/bumptech/glide/MemoryCategory;
+    sget-object v1, Lcom/bumptech/glide/MemoryCategory;->ak:Lcom/bumptech/glide/MemoryCategory;
 
     aput-object v1, v0, v3
 
-    sget-object v1, Lcom/bumptech/glide/MemoryCategory;->ak:Lcom/bumptech/glide/MemoryCategory;
+    sget-object v1, Lcom/bumptech/glide/MemoryCategory;->al:Lcom/bumptech/glide/MemoryCategory;
 
     aput-object v1, v0, v4
 
-    sput-object v0, Lcom/bumptech/glide/MemoryCategory;->al:[Lcom/bumptech/glide/MemoryCategory;
+    sput-object v0, Lcom/bumptech/glide/MemoryCategory;->am:[Lcom/bumptech/glide/MemoryCategory;
 
     return-void
 .end method
@@ -129,7 +129,7 @@
     .locals 1
 
     .line 6
-    sget-object v0, Lcom/bumptech/glide/MemoryCategory;->al:[Lcom/bumptech/glide/MemoryCategory;
+    sget-object v0, Lcom/bumptech/glide/MemoryCategory;->am:[Lcom/bumptech/glide/MemoryCategory;
 
     invoke-virtual {v0}, [Lcom/bumptech/glide/MemoryCategory;->clone()Ljava/lang/Object;
 

@@ -6,6 +6,7 @@ import com.android.camera.effect.draw_mode.DrawAttribute;
 import com.android.camera.log.Log;
 import com.android.gallery3d.ui.BasicTexture;
 import com.android.gallery3d.ui.GLCanvas;
+import com.xiaomi.engine.CameraCombinationMode;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -85,7 +86,7 @@ public abstract class ShaderRender extends Render {
     protected void setBlendEnabled(boolean z, boolean z2) {
         if (z) {
             GLES20.glEnable(3042);
-            GLES20.glBlendFunc(z2 ? 1 : 770, 771);
+            GLES20.glBlendFunc(z2 ? 1 : CameraCombinationMode.CAM_COMBINATION_MODE_REAR_BOKEH_WU, CameraCombinationMode.CAM_COMBINATION_MODE_FRONT_BOKEH);
             return;
         }
         GLES20.glDisable(3042);

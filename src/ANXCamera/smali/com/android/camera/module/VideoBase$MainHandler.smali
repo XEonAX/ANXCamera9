@@ -118,7 +118,7 @@
 
     goto/16 :goto_1
 
-    .line 281
+    .line 274
     :sswitch_0
     sget-object p1, Lcom/android/camera/module/VideoBase;->TAG:Ljava/lang/String;
 
@@ -126,31 +126,31 @@
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 282
+    .line 275
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget-object p1, p1, Lcom/android/camera/module/VideoBase;->mFocusManager:Lcom/android/camera/module/loader/camera2/FocusManager2;
 
     invoke-virtual {p1}, Lcom/android/camera/module/loader/camera2/FocusManager2;->resetFocused()V
 
-    .line 283
+    .line 276
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->onWaitingFocusFinished()Z
 
     goto/16 :goto_2
 
-    .line 277
+    .line 270
     :sswitch_1
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     const/16 v0, 0x9
 
-    const v1, 0x7f0b021b
+    const v1, 0x7f090224
 
     invoke-virtual {p1, v0, v1, v3}, Lcom/android/camera/module/VideoBase;->updateTipMessage(III)V
 
-    .line 278
+    .line 271
     goto/16 :goto_2
 
     .line 204
@@ -191,30 +191,8 @@
 
     goto/16 :goto_2
 
-    .line 270
-    :sswitch_4
-    iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
-
-    iget-object p1, p1, Lcom/android/camera/module/VideoBase;->mHandlerFinishEmitter:Lio/reactivex/CompletableEmitter;
-
-    if-eqz p1, :cond_5
-
-    .line 271
-    iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
-
-    iget-object p1, p1, Lcom/android/camera/module/VideoBase;->mHandlerFinishEmitter:Lio/reactivex/CompletableEmitter;
-
-    invoke-interface {p1}, Lio/reactivex/CompletableEmitter;->onComplete()V
-
-    .line 272
-    iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
-
-    iput-object v1, p1, Lcom/android/camera/module/VideoBase;->mHandlerFinishEmitter:Lio/reactivex/CompletableEmitter;
-
-    goto/16 :goto_2
-
     .line 266
-    :sswitch_5
+    :sswitch_4
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->onWaitStopCallbackTimeout()V
@@ -223,7 +201,7 @@
     goto/16 :goto_2
 
     .line 262
-    :sswitch_6
+    :sswitch_5
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1, v1}, Lcom/android/camera/module/VideoBase;->setActivity(Lcom/android/camera/Camera;)V
@@ -232,7 +210,7 @@
     goto/16 :goto_2
 
     .line 254
-    :sswitch_7
+    :sswitch_6
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->restoreMusicSound()V
@@ -241,7 +219,7 @@
     goto/16 :goto_2
 
     .line 208
-    :sswitch_8
+    :sswitch_7
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->updateRecordingTime()V
@@ -250,7 +228,7 @@
     goto/16 :goto_2
 
     .line 246
-    :sswitch_9
+    :sswitch_8
     invoke-static {}, Lcom/android/camera/CameraSettings;->isStereoModeOn()Z
 
     move-result p1
@@ -262,14 +240,14 @@
 
     const/4 v0, 0x6
 
-    const v1, 0x7f0b018f
+    const v1, 0x7f090196
 
     invoke-virtual {p1, v0, v1, v4}, Lcom/android/camera/module/VideoBase;->updateTipMessage(III)V
 
     goto/16 :goto_2
 
     .line 258
-    :sswitch_a
+    :sswitch_9
     iget-object v0, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget v1, p1, Landroid/os/Message;->arg1:I
@@ -299,7 +277,7 @@
     goto/16 :goto_2
 
     .line 197
-    :sswitch_b
+    :sswitch_a
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget-object p1, p1, Lcom/android/camera/module/VideoBase;->mHandler:Landroid/os/Handler;
@@ -343,7 +321,7 @@
     goto :goto_2
 
     .line 227
-    :sswitch_c
+    :sswitch_b
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1, v6, v5}, Lcom/android/camera/module/VideoBase;->stopVideoRecording(ZZ)V
@@ -362,7 +340,7 @@
     goto :goto_2
 
     .line 241
-    :sswitch_d
+    :sswitch_c
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->onPreviewStart()V
@@ -376,7 +354,7 @@
     goto :goto_2
 
     .line 217
-    :sswitch_e
+    :sswitch_d
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     iget-object p1, p1, Lcom/android/camera/module/VideoBase;->mActivity:Lcom/android/camera/Camera;
@@ -433,7 +411,7 @@
 
     .line 193
     :goto_1
-    :sswitch_f
+    :sswitch_e
     iget-object p1, p0, Lcom/android/camera/module/VideoBase$MainHandler;->this$0:Lcom/android/camera/module/VideoBase;
 
     invoke-virtual {p1}, Lcom/android/camera/module/VideoBase;->getWindow()Landroid/view/Window;
@@ -445,7 +423,7 @@
     .line 194
     nop
 
-    .line 286
+    .line 279
     :cond_5
     :goto_2
     return-void
@@ -474,20 +452,21 @@
 
     throw v0
 
+    nop
+
     :sswitch_data_0
     .sparse-switch
-        0x2 -> :sswitch_f
-        0x4 -> :sswitch_e
-        0x9 -> :sswitch_d
-        0xa -> :sswitch_c
-        0x11 -> :sswitch_b
-        0x23 -> :sswitch_a
-        0x28 -> :sswitch_9
-        0x2a -> :sswitch_8
-        0x2b -> :sswitch_7
-        0x2d -> :sswitch_6
-        0x2e -> :sswitch_5
-        0x2f -> :sswitch_4
+        0x2 -> :sswitch_e
+        0x4 -> :sswitch_d
+        0x9 -> :sswitch_c
+        0xa -> :sswitch_b
+        0x11 -> :sswitch_a
+        0x23 -> :sswitch_9
+        0x28 -> :sswitch_8
+        0x2a -> :sswitch_7
+        0x2b -> :sswitch_6
+        0x2d -> :sswitch_5
+        0x2e -> :sswitch_4
         0x33 -> :sswitch_3
         0x34 -> :sswitch_2
         0x36 -> :sswitch_1

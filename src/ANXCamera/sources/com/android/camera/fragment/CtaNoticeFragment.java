@@ -2,6 +2,7 @@ package com.android.camera.fragment;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,9 +24,11 @@ import miui.app.AlertDialog.Builder;
 
 public class CtaNoticeFragment extends DialogFragment {
     public static final String TAG = "CtaNoticeFragment";
+    private OnCtaNoticeClickListener mClickListener;
+    private boolean mShowRemindButton;
 
     public static class CTA {
-        private static boolean sCanConnectToNetworkTemp = true;
+        private static boolean sCanConnectToNetworkTemp = false;
 
         public static boolean canConnectNetwork() {
             if (sCanConnectToNetworkTemp) {
@@ -34,11 +37,11 @@ public class CtaNoticeFragment extends DialogFragment {
             return ((DataItemGlobal) DataRepository.provider().dataGlobal()).getCTACanCollect();
         }
 
-        public static void setCanConnectNetwork(boolean z) {
+        public static void setCanConnectNetwork(boolean z, boolean z2) {
             if (z) {
-                ((DataItemGlobal) DataRepository.provider().dataGlobal()).setCTACanCollect(true);
+                ((DataItemGlobal) DataRepository.provider().dataGlobal()).setCTACanCollect(z2);
             } else {
-                sCanConnectToNetworkTemp = true;
+                sCanConnectToNetworkTemp = z2;
             }
         }
     }
@@ -71,12 +74,40 @@ public class CtaNoticeFragment extends DialogFragment {
         }
     }
 
-    public static boolean checkCta(FragmentManager fragmentManager) {
+    public interface OnCtaNoticeClickListener {
+        void onNegativeClick(DialogInterface dialogInterface, int i);
+
+        void onPositiveClick(DialogInterface dialogInterface, int i);
+    }
+
+    public static CtaNoticeFragment showCta(FragmentManager fragmentManager, boolean z, OnCtaNoticeClickListener onCtaNoticeClickListener) {
         if (CTA.canConnectNetwork()) {
-            return true;
+            return null;
         }
-        new CtaNoticeFragment().show(fragmentManager, TAG);
-        return false;
+        Fragment findFragmentByTag = fragmentManager.findFragmentByTag(TAG);
+        if (findFragmentByTag != null) {
+            return (CtaNoticeFragment) findFragmentByTag;
+        }
+        CtaNoticeFragment ctaNoticeFragment = new CtaNoticeFragment(z, onCtaNoticeClickListener);
+        ctaNoticeFragment.show(fragmentManager, TAG);
+        return ctaNoticeFragment;
+    }
+
+    public static boolean checkCta(FragmentManager fragmentManager, boolean z, OnCtaNoticeClickListener onCtaNoticeClickListener) {
+        return showCta(fragmentManager, z, onCtaNoticeClickListener) == null;
+    }
+
+    public static boolean checkCta(FragmentManager fragmentManager, boolean z) {
+        return checkCta(fragmentManager, z, null);
+    }
+
+    public static boolean checkCta(FragmentManager fragmentManager) {
+        return checkCta(fragmentManager, true);
+    }
+
+    public CtaNoticeFragment(boolean z, OnCtaNoticeClickListener onCtaNoticeClickListener) {
+        this.mShowRemindButton = z;
+        this.mClickListener = onCtaNoticeClickListener;
     }
 
     public void onCreate(Bundle bundle) {
@@ -85,19 +116,39 @@ public class CtaNoticeFragment extends DialogFragment {
     }
 
     public Dialog onCreateDialog(Bundle bundle) {
-        return new Builder(getActivity()).setTitle(R.string.user_notice_title).setMessage(buildUserNotice(getActivity(), R.string.user_notice_identify_summary_format)).setPositiveButton(R.string.user_agree, new OnClickListener() {
+        Builder negativeButton = new Builder(getActivity()).setTitle(R.string.network_access_user_notice_title).setMessage(buildUserNotice(getActivity(), R.string.user_notice_identify_summary_format)).setPositiveButton(R.string.user_agree, new OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
-                CTA.setCanConnectNetwork(((AlertDialog) CtaNoticeFragment.this.getDialog()).isChecked());
+                boolean isChecked;
+                if (CtaNoticeFragment.this.mShowRemindButton) {
+                    isChecked = ((AlertDialog) CtaNoticeFragment.this.getDialog()).isChecked();
+                } else {
+                    isChecked = true;
+                }
+                CTA.setCanConnectNetwork(isChecked, true);
+                if (CtaNoticeFragment.this.mClickListener != null) {
+                    CtaNoticeFragment.this.mClickListener.onPositiveClick(dialogInterface, i);
+                }
             }
         }).setNegativeButton(17039360, new OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
+                CTA.setCanConnectNetwork(CtaNoticeFragment.this.mShowRemindButton ? ((AlertDialog) CtaNoticeFragment.this.getDialog()).isChecked() : true, false);
+                if (CtaNoticeFragment.this.mClickListener != null) {
+                    CtaNoticeFragment.this.mClickListener.onNegativeClick(dialogInterface, i);
+                }
             }
-        }).setCheckBox(true, getActivity().getString(R.string.do_not_remind_me)).create();
+        });
+        if (this.mShowRemindButton) {
+            negativeButton.setCheckBox(true, getActivity().getString(R.string.do_not_remind_me));
+        }
+        return negativeButton.create();
     }
 
     public void onStart() {
         super.onStart();
-        ((AlertDialog) getDialog()).getMessageView().setMovementMethod(LinkMovementMethod.getInstance());
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            ((AlertDialog) dialog).getMessageView().setMovementMethod(LinkMovementMethod.getInstance());
+        }
     }
 
     private static SpannableStringBuilder buildUserNotice(final Context context, int i) {

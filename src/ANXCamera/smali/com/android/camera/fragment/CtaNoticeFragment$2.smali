@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/CtaNoticeFragment;)V
     .locals 0
 
-    .line 78
+    .line 105
     iput-object p1, p0, Lcom/android/camera/fragment/CtaNoticeFragment$2;->this$0:Lcom/android/camera/fragment/CtaNoticeFragment;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -36,23 +36,59 @@
 
 # virtual methods
 .method public onClick(Landroid/content/DialogInterface;I)V
-    .locals 0
+    .locals 2
 
-    .line 81
-    iget-object p1, p0, Lcom/android/camera/fragment/CtaNoticeFragment$2;->this$0:Lcom/android/camera/fragment/CtaNoticeFragment;
+    .line 108
+    iget-object v0, p0, Lcom/android/camera/fragment/CtaNoticeFragment$2;->this$0:Lcom/android/camera/fragment/CtaNoticeFragment;
 
-    invoke-virtual {p1}, Lcom/android/camera/fragment/CtaNoticeFragment;->getDialog()Landroid/app/Dialog;
+    invoke-static {v0}, Lcom/android/camera/fragment/CtaNoticeFragment;->access$000(Lcom/android/camera/fragment/CtaNoticeFragment;)Z
 
-    move-result-object p1
+    move-result v0
 
-    check-cast p1, Lmiui/app/AlertDialog;
+    const/4 v1, 0x1
 
-    invoke-virtual {p1}, Lmiui/app/AlertDialog;->isChecked()Z
+    if-eqz v0, :cond_0
 
-    move-result p1
+    iget-object v0, p0, Lcom/android/camera/fragment/CtaNoticeFragment$2;->this$0:Lcom/android/camera/fragment/CtaNoticeFragment;
 
-    invoke-static {p1}, Lcom/android/camera/fragment/CtaNoticeFragment$CTA;->setCanConnectNetwork(Z)V
+    invoke-virtual {v0}, Lcom/android/camera/fragment/CtaNoticeFragment;->getDialog()Landroid/app/Dialog;
 
-    .line 82
+    move-result-object v0
+
+    check-cast v0, Lmiui/app/AlertDialog;
+
+    invoke-virtual {v0}, Lmiui/app/AlertDialog;->isChecked()Z
+
+    move-result v0
+
+    goto :goto_0
+
+    .line 109
+    :cond_0
+    move v0, v1
+
+    :goto_0
+    invoke-static {v0, v1}, Lcom/android/camera/fragment/CtaNoticeFragment$CTA;->setCanConnectNetwork(ZZ)V
+
+    .line 110
+    iget-object v0, p0, Lcom/android/camera/fragment/CtaNoticeFragment$2;->this$0:Lcom/android/camera/fragment/CtaNoticeFragment;
+
+    invoke-static {v0}, Lcom/android/camera/fragment/CtaNoticeFragment;->access$100(Lcom/android/camera/fragment/CtaNoticeFragment;)Lcom/android/camera/fragment/CtaNoticeFragment$OnCtaNoticeClickListener;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_1
+
+    .line 111
+    iget-object v0, p0, Lcom/android/camera/fragment/CtaNoticeFragment$2;->this$0:Lcom/android/camera/fragment/CtaNoticeFragment;
+
+    invoke-static {v0}, Lcom/android/camera/fragment/CtaNoticeFragment;->access$100(Lcom/android/camera/fragment/CtaNoticeFragment;)Lcom/android/camera/fragment/CtaNoticeFragment$OnCtaNoticeClickListener;
+
+    move-result-object v0
+
+    invoke-interface {v0, p1, p2}, Lcom/android/camera/fragment/CtaNoticeFragment$OnCtaNoticeClickListener;->onPositiveClick(Landroid/content/DialogInterface;I)V
+
+    .line 113
+    :cond_1
     return-void
 .end method

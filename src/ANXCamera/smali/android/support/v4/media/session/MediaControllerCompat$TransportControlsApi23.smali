@@ -16,7 +16,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/Object;)V
-    .locals 0
+    .registers 2
     .param p1, "controlsObj"    # Ljava/lang/Object;
 
     .line 1372
@@ -29,7 +29,7 @@
 
 # virtual methods
 .method public playFromUri(Landroid/net/Uri;Landroid/os/Bundle;)V
-    .locals 1
+    .registers 4
     .param p1, "uri"    # Landroid/net/Uri;
     .param p2, "extras"    # Landroid/os/Bundle;
 

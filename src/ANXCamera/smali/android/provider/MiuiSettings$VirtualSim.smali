@@ -44,19 +44,19 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
-    .line 5650
+    .line 5656
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
 .end method
 
 .method public static getMiSimId(Landroid/content/Context;)J
-    .locals 4
+    .registers 5
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5737
+    .line 5743
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -73,10 +73,10 @@
 .end method
 
 .method public static getSupportNetworkType(Landroid/content/Context;)Ljava/lang/String;
-    .locals 3
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5746
+    .line 5752
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -93,10 +93,10 @@
 .end method
 
 .method public static getVirtualSimIccId(Landroid/content/Context;)Ljava/lang/String;
-    .locals 3
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5684
+    .line 5690
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -113,10 +113,10 @@
 .end method
 
 .method public static getVirtualSimImsi(Landroid/content/Context;)Ljava/lang/String;
-    .locals 3
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5674
+    .line 5680
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -133,10 +133,10 @@
 .end method
 
 .method public static getVirtualSimSlotId(Landroid/content/Context;)I
-    .locals 3
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5694
+    .line 5700
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -153,10 +153,10 @@
 .end method
 
 .method public static getVirtualSimStatus(Landroid/content/Context;)I
-    .locals 3
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5719
+    .line 5725
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -173,10 +173,10 @@
 .end method
 
 .method public static getVirtualSimType(Landroid/content/Context;)I
-    .locals 3
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5709
+    .line 5715
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -193,10 +193,10 @@
 .end method
 
 .method public static isMiSimEnabled(Landroid/content/Context;)Z
-    .locals 3
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5728
+    .line 5734
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -209,19 +209,19 @@
 
     move-result-object v0
 
-    .line 5729
+    .line 5735
     .local v0, "miMobileImsi":Ljava/lang/String;
     invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_24
 
     invoke-static {p0}, Landroid/provider/MiuiSettings$VirtualSim;->isVirtualSimEnabled(Landroid/content/Context;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_24
 
     invoke-static {p0}, Landroid/provider/MiuiSettings$VirtualSim;->getVirtualSimImsi(Landroid/content/Context;)Ljava/lang/String;
 
@@ -231,24 +231,24 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_24
 
     const/4 v1, 0x1
 
-    goto :goto_0
+    goto :goto_25
 
-    :cond_0
+    :cond_24
     const/4 v1, 0x0
 
-    :goto_0
+    :goto_25
     return v1
 .end method
 
 .method public static isSupport4G(Landroid/content/Context;)Z
-    .locals 3
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5741
+    .line 5747
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -261,13 +261,13 @@
 
     move-result-object v0
 
-    .line 5742
+    .line 5748
     .local v0, "networkType":Ljava/lang/String;
     invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v1
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_1e
 
     const-string v1, "4G"
 
@@ -275,28 +275,28 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_1c
 
-    goto :goto_0
+    goto :goto_1e
 
-    :cond_0
+    :cond_1c
     const/4 v1, 0x0
 
-    goto :goto_1
+    goto :goto_1f
 
-    :cond_1
-    :goto_0
+    :cond_1e
+    :goto_1e
     const/4 v1, 0x1
 
-    :goto_1
+    :goto_1f
     return v1
 .end method
 
 .method public static isVirtualSimEnabled(Landroid/content/Context;)Z
-    .locals 1
+    .registers 2
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5670
+    .line 5676
     invoke-static {p0}, Landroid/provider/MiuiSettings$VirtualSim;->getVirtualSimImsi(Landroid/content/Context;)Ljava/lang/String;
 
     move-result-object v0
@@ -311,11 +311,11 @@
 .end method
 
 .method public static setMiSimId(Landroid/content/Context;J)V
-    .locals 2
+    .registers 5
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "miSimId"    # J
 
-    .line 5733
+    .line 5739
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -324,16 +324,16 @@
 
     invoke-static {v0, v1, p1, p2}, Lmiui/provider/ExtraSettings$Secure;->putLong(Landroid/content/ContentResolver;Ljava/lang/String;J)Z
 
-    .line 5734
+    .line 5740
     return-void
 .end method
 
 .method public static setMiSimImsi(Landroid/content/Context;Ljava/lang/String;)V
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "imsi"    # Ljava/lang/String;
 
-    .line 5724
+    .line 5730
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -342,16 +342,16 @@
 
     invoke-static {v0, v1, p1}, Lmiui/provider/ExtraSettings$Secure;->putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
 
-    .line 5725
+    .line 5731
     return-void
 .end method
 
 .method public static setSupportNetworkType(Landroid/content/Context;Ljava/lang/String;)V
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "networkType"    # Ljava/lang/String;
 
-    .line 5750
+    .line 5756
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -360,16 +360,16 @@
 
     invoke-static {v0, v1, p1}, Lmiui/provider/ExtraSettings$Secure;->putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
 
-    .line 5751
+    .line 5757
     return-void
 .end method
 
 .method public static setVirtualSimIccId(Landroid/content/Context;Ljava/lang/String;)V
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "iccid"    # Ljava/lang/String;
 
-    .line 5689
+    .line 5695
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -378,16 +378,16 @@
 
     invoke-static {v0, v1, p1}, Lmiui/provider/ExtraSettings$Secure;->putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
 
-    .line 5691
+    .line 5697
     return-void
 .end method
 
 .method public static setVirtualSimImsi(Landroid/content/Context;Ljava/lang/String;)V
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "imsi"    # Ljava/lang/String;
 
-    .line 5679
+    .line 5685
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -396,16 +396,16 @@
 
     invoke-static {v0, v1, p1}, Lmiui/provider/ExtraSettings$Secure;->putString(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;)Z
 
-    .line 5681
+    .line 5687
     return-void
 .end method
 
 .method public static setVirtualSimSlotId(Landroid/content/Context;I)V
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "slotId"    # I
 
-    .line 5699
+    .line 5705
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -414,16 +414,16 @@
 
     invoke-static {v0, v1, p1}, Lmiui/provider/ExtraSettings$Secure;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
 
-    .line 5701
+    .line 5707
     return-void
 .end method
 
 .method public static setVirtualSimStatus(Landroid/content/Context;I)V
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "status"    # I
 
-    .line 5714
+    .line 5720
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -432,16 +432,16 @@
 
     invoke-static {v0, v1, p1}, Lmiui/provider/ExtraSettings$Secure;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
 
-    .line 5716
+    .line 5722
     return-void
 .end method
 
 .method public static setVirtualSimType(Landroid/content/Context;I)V
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "type"    # I
 
-    .line 5704
+    .line 5710
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -450,6 +450,6 @@
 
     invoke-static {v0, v1, p1}, Lmiui/provider/ExtraSettings$Secure;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
 
-    .line 5706
+    .line 5712
     return-void
 .end method

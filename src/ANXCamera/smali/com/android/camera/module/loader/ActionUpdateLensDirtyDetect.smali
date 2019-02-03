@@ -75,17 +75,17 @@
 
     goto :goto_0
 
-    .line 26
+    .line 27
     :cond_0
     invoke-static {}, Lcom/android/camera/CameraSettings;->addLensDirtyDetectedTimes()V
 
-    .line 28
+    .line 29
     :goto_0
     const/4 v1, 0x1
 
     invoke-virtual {v0, v1}, Lcom/android/camera/module/BaseModule;->updateLensDirtyDetect(Z)V
 
-    .line 30
+    .line 31
     :cond_1
     return-void
 .end method

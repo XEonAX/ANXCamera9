@@ -1,14 +1,11 @@
 .class Lcom/android/camera/ui/FaceView$2;
-.super Ljava/lang/Object;
+.super Lmiui/view/animation/CubicEaseOutInterpolator;
 .source "FaceView.java"
-
-# interfaces
-.implements Ljava/lang/Runnable;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/ui/FaceView;->setContentDescription(I)V
+    value = Lcom/android/camera/ui/FaceView;->setFaceRectVisible(II)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -20,86 +17,53 @@
 # instance fields
 .field final synthetic this$0:Lcom/android/camera/ui/FaceView;
 
-.field final synthetic val$newFaceSize:I
-
 
 # direct methods
-.method constructor <init>(Lcom/android/camera/ui/FaceView;I)V
+.method constructor <init>(Lcom/android/camera/ui/FaceView;)V
     .locals 0
 
-    .line 299
+    .line 356
     iput-object p1, p0, Lcom/android/camera/ui/FaceView$2;->this$0:Lcom/android/camera/ui/FaceView;
 
-    iput p2, p0, Lcom/android/camera/ui/FaceView$2;->val$newFaceSize:I
-
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0}, Lmiui/view/animation/CubicEaseOutInterpolator;-><init>()V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public run()V
-    .locals 7
+.method public getInterpolation(F)F
+    .locals 3
 
-    .line 302
-    iget v0, p0, Lcom/android/camera/ui/FaceView$2;->val$newFaceSize:I
+    .line 359
+    invoke-super {p0, p1}, Lmiui/view/animation/CubicEaseOutInterpolator;->getInterpolation(F)F
 
-    if-lez v0, :cond_0
+    move-result p1
 
-    .line 303
+    .line 360
     iget-object v0, p0, Lcom/android/camera/ui/FaceView$2;->this$0:Lcom/android/camera/ui/FaceView;
 
-    iget-object v1, p0, Lcom/android/camera/ui/FaceView$2;->this$0:Lcom/android/camera/ui/FaceView;
+    invoke-static {v0}, Lcom/android/camera/ui/FaceView;->access$200(Lcom/android/camera/ui/FaceView;)Landroid/graphics/Paint;
 
-    invoke-virtual {v1}, Lcom/android/camera/ui/FaceView;->getResources()Landroid/content/res/Resources;
+    move-result-object v0
 
-    move-result-object v1
+    const/high16 v1, 0x3f800000    # 1.0f
 
-    const/high16 v2, 0x7f110000
+    sub-float/2addr v1, p1
 
-    iget v3, p0, Lcom/android/camera/ui/FaceView$2;->val$newFaceSize:I
+    const/high16 v2, 0x437f0000    # 255.0f
 
-    const/4 v4, 0x1
+    mul-float/2addr v2, v1
 
-    new-array v4, v4, [Ljava/lang/Object;
+    float-to-int v1, v2
 
-    const/4 v5, 0x0
+    invoke-virtual {v0, v1}, Landroid/graphics/Paint;->setAlpha(I)V
 
-    iget v6, p0, Lcom/android/camera/ui/FaceView$2;->val$newFaceSize:I
-
-    .line 304
-    invoke-static {v6}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v6
-
-    aput-object v6, v4, v5
-
-    .line 303
-    invoke-virtual {v1, v2, v3, v4}, Landroid/content/res/Resources;->getQuantityString(II[Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/ui/FaceView;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 305
+    .line 361
     iget-object v0, p0, Lcom/android/camera/ui/FaceView$2;->this$0:Lcom/android/camera/ui/FaceView;
 
-    const/4 v1, 0x4
+    invoke-virtual {v0}, Lcom/android/camera/ui/FaceView;->invalidate()V
 
-    invoke-virtual {v0, v1}, Lcom/android/camera/ui/FaceView;->sendAccessibilityEvent(I)V
-
-    goto :goto_0
-
-    .line 307
-    :cond_0
-    iget-object v0, p0, Lcom/android/camera/ui/FaceView$2;->this$0:Lcom/android/camera/ui/FaceView;
-
-    const-string v1, ""
-
-    invoke-virtual {v0, v1}, Lcom/android/camera/ui/FaceView;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 309
-    :goto_0
-    return-void
+    .line 362
+    return p1
 .end method

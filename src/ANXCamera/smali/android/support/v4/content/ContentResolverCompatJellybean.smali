@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 24
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method static isFrameworkOperationCanceledException(Ljava/lang/Exception;)Z
-    .locals 1
+    .registers 2
     .param p0, "e"    # Ljava/lang/Exception;
 
     .line 34
@@ -24,7 +24,7 @@
 .end method
 
 .method public static query(Landroid/content/ContentResolver;Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;)Landroid/database/Cursor;
-    .locals 7
+    .registers 14
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "uri"    # Landroid/net/Uri;
     .param p2, "projection"    # [Ljava/lang/String;

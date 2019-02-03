@@ -21,7 +21,7 @@
 
 
 # static fields
-.field private static final cV:Lcom/bumptech/glide/load/e$a;
+.field private static final cW:Lcom/bumptech/glide/load/e$a;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/e$a<",
@@ -33,7 +33,7 @@
 
 
 # instance fields
-.field private final cW:Lcom/bumptech/glide/load/e$a;
+.field private final cX:Lcom/bumptech/glide/load/e$a;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/e$a<",
@@ -42,7 +42,7 @@
     .end annotation
 .end field
 
-.field private volatile cX:[B
+.field private volatile cY:[B
 
 .field private final defaultValue:Ljava/lang/Object;
     .annotation system Ldalvik/annotation/Signature;
@@ -64,7 +64,7 @@
 
     invoke-direct {v0}, Lcom/bumptech/glide/load/e$1;-><init>()V
 
-    sput-object v0, Lcom/bumptech/glide/load/e;->cV:Lcom/bumptech/glide/load/e$a;
+    sput-object v0, Lcom/bumptech/glide/load/e;->cW:Lcom/bumptech/glide/load/e$a;
 
     return-void
 .end method
@@ -113,7 +113,7 @@
 
     check-cast p1, Lcom/bumptech/glide/load/e$a;
 
-    iput-object p1, p0, Lcom/bumptech/glide/load/e;->cW:Lcom/bumptech/glide/load/e$a;
+    iput-object p1, p0, Lcom/bumptech/glide/load/e;->cX:Lcom/bumptech/glide/load/e$a;
 
     .line 97
     return-void
@@ -237,24 +237,24 @@
     .end annotation
 
     .line 120
-    iget-object v0, p0, Lcom/bumptech/glide/load/e;->cX:[B
+    iget-object v0, p0, Lcom/bumptech/glide/load/e;->cY:[B
 
     if-nez v0, :cond_0
 
     .line 121
     iget-object v0, p0, Lcom/bumptech/glide/load/e;->key:Ljava/lang/String;
 
-    sget-object v1, Lcom/bumptech/glide/load/c;->cT:Ljava/nio/charset/Charset;
+    sget-object v1, Lcom/bumptech/glide/load/c;->cU:Ljava/nio/charset/Charset;
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->getBytes(Ljava/nio/charset/Charset;)[B
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/e;->cX:[B
+    iput-object v0, p0, Lcom/bumptech/glide/load/e;->cY:[B
 
     .line 123
     :cond_0
-    iget-object v0, p0, Lcom/bumptech/glide/load/e;->cX:[B
+    iget-object v0, p0, Lcom/bumptech/glide/load/e;->cY:[B
 
     return-object v0
 .end method
@@ -275,7 +275,7 @@
     .end annotation
 
     .line 143
-    sget-object v0, Lcom/bumptech/glide/load/e;->cV:Lcom/bumptech/glide/load/e$a;
+    sget-object v0, Lcom/bumptech/glide/load/e;->cW:Lcom/bumptech/glide/load/e$a;
 
     return-object v0
 .end method
@@ -336,7 +336,7 @@
     .end annotation
 
     .line 115
-    iget-object v0, p0, Lcom/bumptech/glide/load/e;->cW:Lcom/bumptech/glide/load/e$a;
+    iget-object v0, p0, Lcom/bumptech/glide/load/e;->cX:Lcom/bumptech/glide/load/e$a;
 
     invoke-direct {p0}, Lcom/bumptech/glide/load/e;->ab()[B
 

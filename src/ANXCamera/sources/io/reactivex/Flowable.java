@@ -1,5 +1,6 @@
 package io.reactivex;
 
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import io.reactivex.annotations.BackpressureKind;
 import io.reactivex.annotations.BackpressureSupport;
 import io.reactivex.annotations.Beta;
@@ -1585,7 +1586,7 @@ public abstract class Flowable<T> implements Publisher<T> {
     @BackpressureSupport(BackpressureKind.FULL)
     @SchedulerSupport("none")
     public final <U extends Collection<? super T>> Flowable<U> buffer(int i, int i2, Callable<U> callable) {
-        ObjectHelper.verifyPositive(i, "count");
+        ObjectHelper.verifyPositive(i, MonitorCommonConstants.COUNT_TYPE);
         ObjectHelper.verifyPositive(i2, "skip");
         ObjectHelper.requireNonNull(callable, "bufferSupplier is null");
         return RxJavaPlugins.onAssembly(new FlowableBuffer(this, i, i2, callable));
@@ -1657,7 +1658,7 @@ public abstract class Flowable<T> implements Publisher<T> {
         Callable<U> callable2 = callable;
         ObjectHelper.requireNonNull(callable2, "bufferSupplier is null");
         int i2 = i;
-        ObjectHelper.verifyPositive(i2, "count");
+        ObjectHelper.verifyPositive(i2, MonitorCommonConstants.COUNT_TYPE);
         return RxJavaPlugins.onAssembly(new FlowableBufferTimed(this, j, j, timeUnit2, scheduler2, callable2, i2, z));
     }
 
@@ -3953,7 +3954,7 @@ public abstract class Flowable<T> implements Publisher<T> {
     @SchedulerSupport("none")
     public final Flowable<Flowable<T>> window(long j, long j2, int i) {
         ObjectHelper.verifyPositive(j2, "skip");
-        ObjectHelper.verifyPositive(j, "count");
+        ObjectHelper.verifyPositive(j, MonitorCommonConstants.COUNT_TYPE);
         ObjectHelper.verifyPositive(i, "bufferSize");
         return RxJavaPlugins.onAssembly(new FlowableWindow(this, j, j2, i));
     }
@@ -4042,7 +4043,7 @@ public abstract class Flowable<T> implements Publisher<T> {
         TimeUnit timeUnit2 = timeUnit;
         ObjectHelper.requireNonNull(timeUnit2, "unit is null");
         long j3 = j2;
-        ObjectHelper.verifyPositive(j3, "count");
+        ObjectHelper.verifyPositive(j3, MonitorCommonConstants.COUNT_TYPE);
         return RxJavaPlugins.onAssembly(new FlowableWindowTimed(this, j, j, timeUnit2, scheduler2, j3, i2, z));
     }
 

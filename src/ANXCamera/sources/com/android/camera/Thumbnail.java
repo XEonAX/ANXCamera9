@@ -81,6 +81,10 @@ public class Thumbnail {
     }
 
     public void setUri(Uri uri) {
+        if (this.mUri != null) {
+            Log.d(TAG, "the uri for thumbnail is being updated unexpectedly..ignore.");
+            return;
+        }
         this.mUri = uri;
         this.mWaitingForUri = false;
     }

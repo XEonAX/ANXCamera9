@@ -37,11 +37,6 @@ public class SnapTrigger implements SnapStatusListener {
     private final Runnable mLongPressRunnable = new Runnable() {
         public void run() {
             SnapTrigger.this.initCamera();
-            if (SnapTrigger.this.mHandler == null || !SnapTrigger.this.mCameraOpened) {
-                Log.d(SnapTrigger.TAG, "wait camera");
-            } else {
-                SnapTrigger.this.mHandler.postDelayed(SnapTrigger.this.mSnapRunnable, SnapTrigger.this.mCamera.isCamcorder() ? 100 : 200);
-            }
         }
     };
     private PowerManager mPowerManager = null;
@@ -218,7 +213,7 @@ public class SnapTrigger implements SnapStatusListener {
             Log.d(TAG, "onCameraOpened");
             this.mCameraOpened = true;
             if (this.mHandler != null) {
-                this.mHandler.post(this.mSnapRunnable);
+                this.mHandler.postDelayed(this.mSnapRunnable, this.mCamera.isCamcorder() ? 100 : 0);
             }
             return;
         }

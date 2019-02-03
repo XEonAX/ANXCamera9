@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 198
     invoke-direct {p0}, Landroid/support/v4/graphics/drawable/DrawableCompat$LollipopMr1DrawableImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getLayoutDirection(Landroid/graphics/drawable/Drawable;)I
-    .locals 1
+    .registers 3
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 206
@@ -39,7 +39,7 @@
 .end method
 
 .method public setLayoutDirection(Landroid/graphics/drawable/Drawable;I)V
-    .locals 0
+    .registers 3
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
     .param p2, "layoutDirection"    # I
 

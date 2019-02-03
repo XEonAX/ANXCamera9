@@ -12,6 +12,7 @@ import android.support.annotation.Keep;
 import android.util.Log;
 import android.view.Surface;
 import com.android.camera.Util;
+import com.android.camera.module.loader.FunctionParseBeautyBodySlimCount;
 import com.ss.android.ttve.common.TEEglStateSaver;
 import com.ss.android.ttve.common.TELogUtil;
 import com.ss.android.ttve.common.TESharedContext;
@@ -83,9 +84,17 @@ public class TEAvcEncoder {
             if (reconfigureMediaFormat() != 0) {
                 return -1;
             }
+            if (this.m_surface != null) {
+                this.m_surface.release();
+                this.m_surface = null;
+            }
+            if (this.m_mediaCodec != null) {
+                this.m_mediaCodec.release();
+            }
             this.m_mediaCodec = MediaCodec.createEncoderByType(VIDEO_MIME_TYPE);
             this.m_mediaCodec.configure(this.m_codecFormat, null, null, 1);
             if (VERSION.SDK_INT >= 18 && this.m_useInputSurface) {
+                TELogUtil.d(TAG, "m_mediaCodec.createInputSurface()");
                 this.m_surface = this.m_mediaCodec.createInputSurface();
             }
             return 0;
@@ -116,13 +125,20 @@ public class TEAvcEncoder {
 
     public void releaseEncoder() {
         stopEncoder();
+        TELogUtil.d("TEAvcEncoder", "releaseEncoder");
+        if (this.m_surface != null) {
+            TELogUtil.d("TEAvcEncoder", "release surface");
+            this.m_surface.release();
+            this.m_surface = null;
+        }
         if (this.m_mediaCodec != null) {
+            TELogUtil.d("TEAvcEncoder", "release mediaCodec");
             this.m_mediaCodec.release();
             this.m_mediaCodec = null;
         }
-        if (this.m_surface != null) {
-            this.m_surface.release();
-            this.m_surface = null;
+        if (this.m_sharedContext != null) {
+            this.m_sharedContext.release();
+            this.m_sharedContext = null;
         }
         c_curObj = null;
     }
@@ -355,7 +371,7 @@ public class TEAvcEncoder {
         this.m_eglStateSaver.makeSavedStateCurrent();
         if (this.m_bSignalEndOfStream) {
             while (!this.mEndOfStream) {
-                drainOutputBuffer(10000);
+                drainOutputBuffer(FunctionParseBeautyBodySlimCount.TIP_INTERVAL_TIME);
                 if (this.mBufferIndex < 0) {
                     i3--;
                     if (i3 <= 0) {

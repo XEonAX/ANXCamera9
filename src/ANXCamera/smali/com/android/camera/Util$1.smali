@@ -25,7 +25,7 @@
 .method constructor <init>(Landroid/app/Activity;)V
     .locals 0
 
-    .line 574
+    .line 621
     iput-object p1, p0, Lcom/android/camera/Util$1;->val$activity:Landroid/app/Activity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,18 +38,18 @@
 .method public onClick(Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 577
+    .line 624
     invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2DataContainer;
 
     move-result-object p1
 
     invoke-virtual {p1}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->reset()V
 
-    .line 578
+    .line 625
     iget-object p1, p0, Lcom/android/camera/Util$1;->val$activity:Landroid/app/Activity;
 
     invoke-virtual {p1}, Landroid/app/Activity;->finish()V
 
-    .line 579
+    .line 626
     return-void
 .end method

@@ -6,7 +6,6 @@ import android.os.IPowerManager;
 import android.os.IPowerManager.Stub;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.os.SystemProperties;
 import android.provider.MiuiSettings.System;
 import android.text.TextUtils;
 import com.miui.internal.cust.PrivateConfig;

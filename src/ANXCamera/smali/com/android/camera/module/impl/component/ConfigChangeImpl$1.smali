@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/module/impl/component/ConfigChangeImpl;)V
     .locals 0
 
-    .line 912
+    .line 1301
     iput-object p1, p0, Lcom/android/camera/module/impl/component/ConfigChangeImpl$1;->this$0:Lcom/android/camera/module/impl/component/ConfigChangeImpl;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,19 +38,19 @@
 .method public onManuallyDataChanged(Lcom/android/camera/data/data/ComponentData;Ljava/lang/String;Ljava/lang/String;Z)V
     .locals 0
 
-    .line 919
+    .line 1308
     iget-object p1, p0, Lcom/android/camera/module/impl/component/ConfigChangeImpl$1;->this$0:Lcom/android/camera/module/impl/component/ConfigChangeImpl;
 
-    invoke-virtual {p1}, Lcom/android/camera/module/impl/component/ConfigChangeImpl;->getBaseModule()Lcom/android/camera/module/BaseModule;
+    invoke-static {p1}, Lcom/android/camera/module/impl/component/ConfigChangeImpl;->access$000(Lcom/android/camera/module/impl/component/ConfigChangeImpl;)Lcom/android/camera/module/BaseModule;
 
     move-result-object p1
 
     invoke-virtual {p1}, Lcom/android/camera/module/BaseModule;->onSharedPreferenceChanged()V
 
-    .line 920
+    .line 1309
     iget-object p1, p0, Lcom/android/camera/module/impl/component/ConfigChangeImpl$1;->this$0:Lcom/android/camera/module/impl/component/ConfigChangeImpl;
 
-    invoke-virtual {p1}, Lcom/android/camera/module/impl/component/ConfigChangeImpl;->getBaseModule()Lcom/android/camera/module/BaseModule;
+    invoke-static {p1}, Lcom/android/camera/module/impl/component/ConfigChangeImpl;->access$000(Lcom/android/camera/module/impl/component/ConfigChangeImpl;)Lcom/android/camera/module/BaseModule;
 
     move-result-object p1
 
@@ -66,6 +66,6 @@
 
     invoke-virtual {p1, p2}, Lcom/android/camera/module/BaseModule;->updatePreferenceInWorkThread([I)V
 
-    .line 921
+    .line 1310
     return-void
 .end method

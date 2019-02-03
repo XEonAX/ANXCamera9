@@ -8,44 +8,44 @@ import java.security.MessageDigest;
 
 /* compiled from: Options */
 public final class f implements c {
-    private final ArrayMap<e<?>, Object> cY = new CachedHashCodeArrayMap();
+    private final ArrayMap<e<?>, Object> cZ = new CachedHashCodeArrayMap();
 
     public void a(@NonNull f fVar) {
-        this.cY.putAll(fVar.cY);
+        this.cZ.putAll(fVar.cZ);
     }
 
     @NonNull
     public <T> f a(@NonNull e<T> eVar, @NonNull T t) {
-        this.cY.put(eVar, t);
+        this.cZ.put(eVar, t);
         return this;
     }
 
     @Nullable
     public <T> T a(@NonNull e<T> eVar) {
-        return this.cY.containsKey(eVar) ? this.cY.get(eVar) : eVar.getDefaultValue();
+        return this.cZ.containsKey(eVar) ? this.cZ.get(eVar) : eVar.getDefaultValue();
     }
 
     public boolean equals(Object obj) {
         if (!(obj instanceof f)) {
             return false;
         }
-        return this.cY.equals(((f) obj).cY);
+        return this.cZ.equals(((f) obj).cZ);
     }
 
     public int hashCode() {
-        return this.cY.hashCode();
+        return this.cZ.hashCode();
     }
 
     public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
-        for (int i = 0; i < this.cY.size(); i++) {
-            a((e) this.cY.keyAt(i), this.cY.valueAt(i), messageDigest);
+        for (int i = 0; i < this.cZ.size(); i++) {
+            a((e) this.cZ.keyAt(i), this.cZ.valueAt(i), messageDigest);
         }
     }
 
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Options{values=");
-        stringBuilder.append(this.cY);
+        stringBuilder.append(this.cZ);
         stringBuilder.append('}');
         return stringBuilder.toString();
     }

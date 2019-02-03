@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 237
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -25,7 +25,7 @@
 .end method
 
 .method public static createItem(Ljava/lang/Object;J)Ljava/lang/Object;
-    .locals 2
+    .registers 5
     .param p0, "mediaDescription"    # Ljava/lang/Object;
     .param p1, "id"    # J
 
@@ -42,7 +42,7 @@
 .end method
 
 .method public static getDescription(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "queueItem"    # Ljava/lang/Object;
 
     .line 244
@@ -58,7 +58,7 @@
 .end method
 
 .method public static getQueueId(Ljava/lang/Object;)J
-    .locals 2
+    .registers 3
     .param p0, "queueItem"    # Ljava/lang/Object;
 
     .line 248

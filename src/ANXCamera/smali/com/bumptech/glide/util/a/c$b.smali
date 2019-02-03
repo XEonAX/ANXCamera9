@@ -15,7 +15,7 @@
 
 
 # instance fields
-.field private volatile eR:Z
+.field private volatile eS:Z
 
 
 # direct methods
@@ -36,7 +36,7 @@
     .locals 2
 
     .line 45
-    iget-boolean v0, p0, Lcom/bumptech/glide/util/a/c$b;->eR:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/util/a/c$b;->eS:Z
 
     if-nez v0, :cond_0
 
@@ -58,7 +58,7 @@
     .locals 0
 
     .line 52
-    iput-boolean p1, p0, Lcom/bumptech/glide/util/a/c$b;->eR:Z
+    iput-boolean p1, p0, Lcom/bumptech/glide/util/a/c$b;->eS:Z
 
     .line 53
     return-void

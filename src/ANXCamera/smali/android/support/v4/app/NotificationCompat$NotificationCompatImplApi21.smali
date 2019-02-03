@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 758
     invoke-direct {p0}, Landroid/support/v4/app/NotificationCompat$NotificationCompatImplApi20;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public build(Landroid/support/v4/app/NotificationCompat$Builder;Landroid/support/v4/app/NotificationCompat$BuilderExtender;)Landroid/app/Notification;
-    .locals 42
+    .registers 45
     .param p1, "b"    # Landroid/support/v4/app/NotificationCompat$Builder;
     .param p2, "extender"    # Landroid/support/v4/app/NotificationCompat$BuilderExtender;
 
@@ -150,11 +150,13 @@
     .local v1, "builder":Landroid/support/v4/app/NotificationCompatApi21$Builder;
     iget-object v2, v0, Landroid/support/v4/app/NotificationCompat$Builder;->mActions:Ljava/util/ArrayList;
 
+    # invokes: Landroid/support/v4/app/NotificationCompat;->addActionsToBuilder(Landroid/support/v4/app/NotificationBuilderWithActions;Ljava/util/ArrayList;)V
     invoke-static {v1, v2}, Landroid/support/v4/app/NotificationCompat;->access$000(Landroid/support/v4/app/NotificationBuilderWithActions;Ljava/util/ArrayList;)V
 
     .line 769
     iget-object v2, v0, Landroid/support/v4/app/NotificationCompat$Builder;->mStyle:Landroid/support/v4/app/NotificationCompat$Style;
 
+    # invokes: Landroid/support/v4/app/NotificationCompat;->addStyleToBuilderJellybean(Landroid/support/v4/app/NotificationBuilderWithBuilderAccessor;Landroid/support/v4/app/NotificationCompat$Style;)V
     invoke-static {v1, v2}, Landroid/support/v4/app/NotificationCompat;->access$100(Landroid/support/v4/app/NotificationBuilderWithBuilderAccessor;Landroid/support/v4/app/NotificationCompat$Style;)V
 
     .line 770
@@ -168,7 +170,7 @@
 .end method
 
 .method public getBundleForUnreadConversation(Landroid/support/v4/app/NotificationCompatBase$UnreadConversation;)Landroid/os/Bundle;
-    .locals 1
+    .registers 3
     .param p1, "uc"    # Landroid/support/v4/app/NotificationCompatBase$UnreadConversation;
 
     .line 780
@@ -180,7 +182,7 @@
 .end method
 
 .method public getCategory(Landroid/app/Notification;)Ljava/lang/String;
-    .locals 1
+    .registers 3
     .param p1, "notif"    # Landroid/app/Notification;
 
     .line 775
@@ -192,7 +194,7 @@
 .end method
 
 .method public getUnreadConversationFromBundle(Landroid/os/Bundle;Landroid/support/v4/app/NotificationCompatBase$UnreadConversation$Factory;Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput$Factory;)Landroid/support/v4/app/NotificationCompatBase$UnreadConversation;
-    .locals 1
+    .registers 5
     .param p1, "b"    # Landroid/os/Bundle;
     .param p2, "factory"    # Landroid/support/v4/app/NotificationCompatBase$UnreadConversation$Factory;
     .param p3, "remoteInputFactory"    # Landroid/support/v4/app/RemoteInputCompatBase$RemoteInput$Factory;

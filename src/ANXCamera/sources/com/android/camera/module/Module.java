@@ -3,6 +3,7 @@ package com.android.camera.module;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.RectF;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import com.android.camera.Camera;
@@ -43,7 +44,7 @@ public interface Module extends BaseProtocol {
 
     boolean isPostProcessing();
 
-    boolean isSelectingCapturedVideo();
+    boolean isSelectingCapturedResult();
 
     boolean isUnInterruptable();
 
@@ -63,6 +64,8 @@ public interface Module extends BaseProtocol {
 
     boolean onGestureTrack(RectF rectF, boolean z);
 
+    void onHostStopAndNotifyActionStop();
+
     boolean onKeyDown(int i, KeyEvent keyEvent);
 
     boolean onKeyUp(int i, KeyEvent keyEvent);
@@ -70,6 +73,8 @@ public interface Module extends BaseProtocol {
     void onLongPress(int i, int i2);
 
     void onNewIntent();
+
+    void onNewUriArrived(Uri uri, String str);
 
     void onOrientationChanged(int i, int i2);
 

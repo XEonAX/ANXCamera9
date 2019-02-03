@@ -28,7 +28,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 871
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -39,7 +39,7 @@
 
 # virtual methods
 .method public createFromParcel(Landroid/os/Parcel;)Landroid/support/v4/media/session/MediaSessionCompat$QueueItem;
-    .locals 2
+    .registers 4
     .param p1, "p"    # Landroid/os/Parcel;
 
     .line 875
@@ -53,7 +53,7 @@
 .end method
 
 .method public bridge synthetic createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p1, "x0"    # Landroid/os/Parcel;
 
     .line 871
@@ -65,7 +65,7 @@
 .end method
 
 .method public newArray(I)[Landroid/support/v4/media/session/MediaSessionCompat$QueueItem;
-    .locals 1
+    .registers 3
     .param p1, "size"    # I
 
     .line 880
@@ -75,7 +75,7 @@
 .end method
 
 .method public bridge synthetic newArray(I)[Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p1, "x0"    # I
 
     .line 871

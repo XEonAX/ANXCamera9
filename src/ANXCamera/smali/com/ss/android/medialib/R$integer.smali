@@ -21,6 +21,12 @@
 
 .field public static final capture_progress_delay_time:I = 0x7f100004
 
+.field public static final custom_watermark_startx:I = 0x7f100008
+
+.field public static final custom_watermark_starty:I = 0x7f100009
+
+.field public static final default_manual_whitebalance_value:I = 0x7f10000a
+
 .field public static final hide_priority_in_system_settings:I = 0x7f100000
 
 .field public static final high_jpeg_quality:I = 0x7f100002
@@ -36,7 +42,7 @@
 .method public constructor <init>()V
     .locals 0
 
-    .line 1781
+    .line 1857
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

@@ -7,6 +7,7 @@ import android.arch.lifecycle.OnLifecycleEvent;
 import android.support.annotation.NonNull;
 import com.ss.android.ttve.audio.TEBufferedAudioRecorder;
 import com.ss.android.ttve.audio.TEDubWriter;
+import com.ss.android.ttve.monitor.MonitorUtils;
 import com.ss.android.ttve.nativePort.TEVideoUtils;
 import com.ss.android.vesdk.runtime.VERuntime;
 
@@ -52,14 +53,16 @@ public class VEAudioRecorder implements LifecycleObserver {
         }
         this.mAudioRecorder.stopRecording();
         this.mbRecording = false;
+        MonitorUtils.monitorStatistics("iesve_veaudiorecorder_audio_record", 1, null);
         return this.mCurrentTime;
     }
 
     public int delete(int i, int i2) {
-        if (i < i2 && i >= 0) {
-            return TEVideoUtils.clearWavSeg(this.mWavFilePath, i, i2);
+        if (i >= i2 || i < 0) {
+            return -100;
         }
-        return -100;
+        MonitorUtils.monitorStatistics("iesve_veaudiorecorder_audio_delete", 1, null);
+        return TEVideoUtils.clearWavSeg(this.mWavFilePath, i, i2);
     }
 
     public long getCurrentTime() {

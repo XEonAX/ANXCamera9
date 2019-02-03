@@ -51,7 +51,7 @@
 
     const-string v3, "off"
 
-    const v4, 0x7f0b016a
+    const v4, 0x7f090171
 
     invoke-direct {v0, v1, v2, v4, v3}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 
@@ -66,7 +66,7 @@
     .locals 1
 
     .line 246
-    const v0, 0x7f020112
+    const v0, 0x7f020135
 
     return v0
 .end method
@@ -75,7 +75,7 @@
     .locals 1
 
     .line 238
-    const v0, 0x7f020113
+    const v0, 0x7f020136
 
     return v0
 .end method
@@ -84,7 +84,7 @@
     .locals 1
 
     .line 242
-    const v0, 0x7f020114
+    const v0, 0x7f020137
 
     return v0
 .end method
@@ -93,7 +93,7 @@
     .locals 1
 
     .line 250
-    const v0, 0x7f020115
+    const v0, 0x7f020138
 
     return v0
 .end method
@@ -196,7 +196,7 @@
 
     move-result-object p1
 
-    invoke-virtual {p1}, Lcom/mi/config/a;->fr()Ljava/lang/String;
+    invoke-virtual {p1}, Lcom/mi/config/a;->fu()Ljava/lang/String;
 
     move-result-object p1
 
@@ -329,7 +329,7 @@
     .locals 1
 
     .line 52
-    const v0, 0x7f0b012a
+    const v0, 0x7f090131
 
     return v0
 .end method
@@ -525,7 +525,7 @@
     if-eqz v0, :cond_0
 
     .line 265
-    const p1, 0x7f0b00dc
+    const p1, 0x7f0900e1
 
     return p1
 
@@ -540,7 +540,7 @@
     if-eqz v0, :cond_1
 
     .line 267
-    const p1, 0x7f0b00dd
+    const p1, 0x7f0900e2
 
     return p1
 
@@ -552,7 +552,7 @@
 
     move-result v0
 
-    const v1, 0x7f0b00e0
+    const v1, 0x7f0900e5
 
     if-eqz v0, :cond_2
 
@@ -570,7 +570,7 @@
     if-eqz v0, :cond_3
 
     .line 271
-    const p1, 0x7f0b00df
+    const p1, 0x7f0900e4
 
     return p1
 
@@ -681,7 +681,7 @@
 
     move-result v1
 
-    const v2, 0x7f0b016a
+    const v2, 0x7f090171
 
     const-string v3, "off"
 
@@ -716,7 +716,7 @@
 
     move-result v0
 
-    const v1, 0x7f0b0169
+    const v1, 0x7f090170
 
     const-string v2, "auto"
 
@@ -727,11 +727,11 @@
 
     .line 169
     :cond_3
-    sget-boolean p1, Lcom/mi/config/b;->pN:Z
+    sget-boolean p1, Lcom/mi/config/b;->pM:Z
 
     if-nez p1, :cond_6
 
-    invoke-static {}, Lcom/mi/config/b;->gd()Z
+    invoke-static {}, Lcom/mi/config/b;->gv()Z
 
     move-result p1
 
@@ -759,7 +759,7 @@
 
     move-result v0
 
-    const v1, 0x7f0b016b
+    const v1, 0x7f090172
 
     const-string v2, "normal"
 
@@ -783,7 +783,7 @@
 
     move-result v0
 
-    const v1, 0x7f0b016c
+    const v1, 0x7f090173
 
     const-string v2, "live"
 
@@ -811,7 +811,7 @@
 
     move-result v0
 
-    const v1, 0x7f0b016e
+    const v1, 0x7f090175
 
     const-string v2, "normal"
 

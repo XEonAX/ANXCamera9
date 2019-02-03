@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;)V
     .locals 0
 
-    .line 712
+    .line 726
     iput-object p1, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$14;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-direct {p0}, Lcom/facebook/rebound/SimpleSpringListener;-><init>()V
@@ -35,7 +35,7 @@
 .method public onSpringAtRest(Lcom/facebook/rebound/Spring;)V
     .locals 4
 
-    .line 727
+    .line 741
     invoke-virtual {p1}, Lcom/facebook/rebound/Spring;->getCurrentValue()D
 
     move-result-wide v0
@@ -46,7 +46,7 @@
 
     if-nez p1, :cond_0
 
-    .line 728
+    .line 742
     iget-object p1, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$14;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     iget-object p1, p1, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;->mUpSpring:Lcom/facebook/rebound/Spring;
@@ -55,7 +55,7 @@
 
     invoke-virtual {p1, v0}, Lcom/facebook/rebound/Spring;->setSpringConfig(Lcom/facebook/rebound/SpringConfig;)Lcom/facebook/rebound/Spring;
 
-    .line 730
+    .line 744
     :cond_0
     return-void
 .end method
@@ -63,14 +63,14 @@
 .method public onSpringUpdate(Lcom/facebook/rebound/Spring;)V
     .locals 10
 
-    .line 716
+    .line 730
     invoke-virtual {p1}, Lcom/facebook/rebound/Spring;->getCurrentValue()D
 
     move-result-wide v0
 
     double-to-float p1, v0
 
-    .line 717
+    .line 731
     float-to-double v0, p1
 
     const-wide/16 v2, 0x0
@@ -87,7 +87,7 @@
 
     double-to-float p1, v0
 
-    .line 719
+    .line 733
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$14;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-static {v0}, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;->access$000(Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;)Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;
@@ -98,7 +98,7 @@
 
     iput-boolean v1, v0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->isRecording:Z
 
-    .line 720
+    .line 734
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$14;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-static {v0}, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;->access$000(Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;)Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;
@@ -107,7 +107,7 @@
 
     iput-boolean v1, v0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->isInBeautyMode:Z
 
-    .line 721
+    .line 735
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$14;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-static {v0}, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;->access$000(Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;)Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;
@@ -126,11 +126,11 @@
 
     iput v1, v0, Lcom/android/camera/ui/drawable/snap/CameraSnapPaintCircle;->mCurrentWidthPercent:F
 
-    .line 723
+    .line 737
     iget-object p1, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$14;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-virtual {p1}, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;->invalidateSelf()V
 
-    .line 724
+    .line 738
     return-void
 .end method

@@ -22,7 +22,7 @@
 .method public constructor <init>(Ljava/lang/String;)V
     .locals 2
 
-    .line 45
+    .line 46
     const-string v0, "MD5"
 
     const/16 v1, 0x20
@@ -33,18 +33,18 @@
 
     invoke-direct {p0, v0, p1}, Lcom/android/camera/network/download/Verifier;-><init>(Ljava/lang/String;[B)V
 
-    .line 46
+    .line 47
     return-void
 .end method
 
 .method public constructor <init>([B)V
     .locals 1
 
-    .line 41
+    .line 42
     const-string v0, "MD5"
 
     invoke-direct {p0, v0, p1}, Lcom/android/camera/network/download/Verifier;-><init>(Ljava/lang/String;[B)V
 
-    .line 42
+    .line 43
     return-void
 .end method

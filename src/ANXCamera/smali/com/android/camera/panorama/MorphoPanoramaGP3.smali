@@ -111,7 +111,7 @@
 .method static constructor <clinit>()V
     .locals 4
 
-    .line 25
+    .line 24
     :try_start_0
     const-string v0, "morpho_panorama_gp3"
 
@@ -119,14 +119,14 @@
     :try_end_0
     .catch Ljava/lang/UnsatisfiedLinkError; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 29
+    .line 28
     goto :goto_0
 
-    .line 27
+    .line 26
     :catch_0
     move-exception v0
 
-    .line 28
+    .line 27
     const-string v1, "MorphoPanoramaGP3"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -147,9 +147,9 @@
 
     move-result-object v0
 
-    invoke-static {v1, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v1, v0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 80
+    .line 79
     :goto_0
     const-wide/high16 v0, 0x3ff0000000000000L    # 1.0
 
@@ -161,65 +161,65 @@
 .method public constructor <init>()V
     .locals 4
 
-    .line 171
+    .line 170
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 58
+    .line 57
     const-wide/16 v0, 0x0
 
     iput-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
-    .line 59
+    .line 58
     iput-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNativeOutputInfo:J
 
-    .line 60
+    .line 59
     const/4 v2, 0x0
 
     iput-boolean v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mSaveInputImages:Z
 
-    .line 63
+    .line 62
     const/4 v3, 0x0
 
     iput-object v3, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mIntervalArray:Ljava/util/ArrayList;
 
-    .line 64
+    .line 63
     iput-boolean v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachEnabled:Z
 
-    .line 66
+    .line 65
     new-instance v2, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;
 
     invoke-direct {v2}, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;-><init>()V
 
     iput-object v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mGravity:Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;
 
-    .line 81
+    .line 80
     const/4 v2, 0x4
 
     new-array v2, v2, [I
 
     iput-object v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mIndexBase:[I
 
-    .line 256
+    .line 255
     iput-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachFirstNanoTime:J
 
-    .line 257
+    .line 256
     iput-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachLastNanoTime:J
 
-    .line 173
+    .line 172
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mIntervalArray:Ljava/util/ArrayList;
 
-    .line 175
+    .line 174
     return-void
 .end method
 
 .method private static createName(J)Ljava/lang/String;
     .locals 1
 
-    .line 318
+    .line 317
     const-string v0, "yyyy-MM-dd_kk-mm-ss"
 
     invoke-static {v0, p0, p1}, Landroid/text/format/DateFormat;->format(Ljava/lang/CharSequence;J)Ljava/lang/CharSequence;
@@ -248,7 +248,7 @@
 .method private static getFD(Ljava/io/FileDescriptor;)I
     .locals 2
 
-    .line 717
+    .line 716
     :try_start_0
     const-class v0, Ljava/io/FileDescriptor;
 
@@ -258,12 +258,12 @@
 
     move-result-object v0
 
-    .line 718
+    .line 717
     const/4 v1, 0x1
 
     invoke-virtual {v0, v1}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
-    .line 719
+    .line 718
     invoke-virtual {v0, p0}, Ljava/lang/reflect/Field;->getInt(Ljava/lang/Object;)I
 
     move-result p0
@@ -273,11 +273,11 @@
 
     return p0
 
-    .line 721
+    .line 720
     :catch_0
     move-exception p0
 
-    .line 722
+    .line 721
     const/4 p0, -0x1
 
     return p0
@@ -286,17 +286,17 @@
 .method public static getGain(Landroid/media/Image;)D
     .locals 15
 
-    .line 446
+    .line 445
     invoke-static {p0}, Lcom/android/camera/panorama/PanoramaGP3ImageFormat;->getImageFormat(Landroid/media/Image;)Ljava/lang/String;
 
     move-result-object v9
 
-    .line 447
+    .line 446
     const/4 v0, 0x1
 
     new-array v13, v0, [D
 
-    .line 448
+    .line 447
     invoke-virtual {p0}, Landroid/media/Image;->getPlanes()[Landroid/media/Image$Plane;
 
     move-result-object v1
@@ -331,7 +331,7 @@
 
     move-result-object v3
 
-    .line 449
+    .line 448
     invoke-virtual {p0}, Landroid/media/Image;->getPlanes()[Landroid/media/Image$Plane;
 
     move-result-object v5
@@ -362,7 +362,7 @@
 
     move-result v7
 
-    .line 450
+    .line 449
     invoke-virtual {p0}, Landroid/media/Image;->getPlanes()[Landroid/media/Image$Plane;
 
     move-result-object v8
@@ -393,7 +393,7 @@
 
     move-result v11
 
-    .line 451
+    .line 450
     invoke-virtual {p0}, Landroid/media/Image;->getWidth()I
 
     move-result v12
@@ -402,7 +402,7 @@
 
     move-result p0
 
-    .line 448
+    .line 447
     move-object v0, v1
 
     move-object v1, v2
@@ -431,10 +431,10 @@
 
     move-result p0
 
-    .line 453
+    .line 452
     if-eqz p0, :cond_0
 
-    .line 454
+    .line 453
     const-string v0, "MorphoPanoramaGP3"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -453,12 +453,12 @@
 
     invoke-static {v0, p0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 455
+    .line 454
     const-wide/high16 v0, 0x3ff0000000000000L    # 1.0
 
     return-wide v0
 
-    .line 457
+    .line 456
     :cond_0
     sget-wide v0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->GAIN_COEF:D
 
@@ -468,7 +468,7 @@
 
     aput-wide v0, v13, v14
 
-    .line 458
+    .line 457
     aget-wide v0, v13, v14
 
     return-wide v0
@@ -477,7 +477,7 @@
 .method public static getVersion()Ljava/lang/String;
     .locals 1
 
-    .line 182
+    .line 181
     invoke-static {}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeGetVersion()Ljava/lang/String;
 
     move-result-object v0
@@ -632,15 +632,15 @@
 .method public static saveNotPanorama(Lcom/android/camera/panorama/CaptureImage;Ljava/io/FileDescriptor;)I
     .locals 1
 
-    .line 900
+    .line 899
     invoke-static {p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->getFD(Ljava/io/FileDescriptor;)I
 
     move-result p1
 
-    .line 901
+    .line 900
     if-ltz p1, :cond_0
 
-    .line 902
+    .line 901
     const/4 v0, 0x0
 
     invoke-static {p0, v0, p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->saveNotPanorama_sub(Lcom/android/camera/panorama/CaptureImage;Ljava/lang/String;I)I
@@ -649,7 +649,7 @@
 
     return p0
 
-    .line 904
+    .line 903
     :cond_0
     const p0, -0x7ffffff0
 
@@ -659,7 +659,7 @@
 .method public static saveNotPanorama(Lcom/android/camera/panorama/CaptureImage;Ljava/lang/String;)I
     .locals 1
 
-    .line 909
+    .line 908
     const/4 v0, -0x1
 
     invoke-static {p0, p1, v0}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->saveNotPanorama_sub(Lcom/android/camera/panorama/CaptureImage;Ljava/lang/String;I)I
@@ -672,30 +672,30 @@
 .method public static saveNotPanorama_sub(Lcom/android/camera/panorama/CaptureImage;Ljava/lang/String;I)I
     .locals 16
 
-    .line 869
+    .line 868
     invoke-virtual/range {p0 .. p0}, Lcom/android/camera/panorama/CaptureImage;->image()Landroid/media/Image;
 
     move-result-object v0
 
-    .line 870
+    .line 869
     if-eqz v0, :cond_0
 
-    .line 871
+    .line 870
     invoke-virtual/range {p0 .. p0}, Lcom/android/camera/panorama/CaptureImage;->getImageFormat()Ljava/lang/String;
 
     move-result-object v11
 
-    .line 872
+    .line 871
     invoke-virtual/range {p0 .. p0}, Lcom/android/camera/panorama/CaptureImage;->getWidth()I
 
     move-result v12
 
-    .line 873
+    .line 872
     invoke-virtual/range {p0 .. p0}, Lcom/android/camera/panorama/CaptureImage;->getHeight()I
 
     move-result v13
 
-    .line 874
+    .line 873
     const/4 v1, 0x0
 
     invoke-virtual {v0}, Landroid/media/Image;->getPlanes()[Landroid/media/Image$Plane;
@@ -734,7 +734,7 @@
 
     move-result-object v6
 
-    .line 875
+    .line 874
     invoke-virtual {v0}, Landroid/media/Image;->getPlanes()[Landroid/media/Image$Plane;
 
     move-result-object v8
@@ -765,7 +765,7 @@
 
     move-result v10
 
-    .line 876
+    .line 875
     invoke-virtual {v0}, Landroid/media/Image;->getPlanes()[Landroid/media/Image$Plane;
 
     move-result-object v14
@@ -796,7 +796,7 @@
 
     move-result v0
 
-    .line 874
+    .line 873
     move-object v3, v4
 
     move-object v4, v6
@@ -821,49 +821,49 @@
 
     move-result v0
 
-    .line 878
+    .line 877
     goto :goto_0
 
-    .line 879
+    .line 878
     :cond_0
     move-object/from16 v0, p0
 
     check-cast v0, Lcom/android/camera/panorama/Camera1Image;
 
-    .line 880
+    .line 879
     invoke-virtual {v0}, Lcom/android/camera/panorama/Camera1Image;->getImageFormat()Ljava/lang/String;
 
     move-result-object v11
 
-    .line 881
+    .line 880
     invoke-virtual {v0}, Lcom/android/camera/panorama/Camera1Image;->getWidth()I
 
     move-result v12
 
-    .line 882
+    .line 881
     invoke-virtual {v0}, Lcom/android/camera/panorama/Camera1Image;->getHeight()I
 
     move-result v13
 
-    .line 883
+    .line 882
     invoke-virtual {v0}, Lcom/android/camera/panorama/Camera1Image;->raw()[B
 
     move-result-object v0
 
-    .line 884
+    .line 883
     array-length v1, v0
 
     invoke-static {v1}, Lcom/android/camera/panorama/NativeMemoryAllocator;->allocateBuffer(I)Ljava/nio/ByteBuffer;
 
     move-result-object v15
 
-    .line 885
+    .line 884
     invoke-virtual {v15, v0}, Ljava/nio/ByteBuffer;->put([B)Ljava/nio/ByteBuffer;
 
-    .line 886
+    .line 885
     invoke-virtual {v15}, Ljava/nio/ByteBuffer;->clear()Ljava/nio/Buffer;
 
-    .line 887
+    .line 886
     const/4 v2, 0x0
 
     const/4 v3, 0x0
@@ -894,16 +894,16 @@
 
     move-result v1
 
-    .line 891
+    .line 890
     invoke-static {v0}, Lcom/android/camera/panorama/NativeMemoryAllocator;->freeBuffer(Ljava/nio/ByteBuffer;)V
 
-    .line 893
+    .line 892
     move v0, v1
 
     :goto_0
     if-eqz v0, :cond_1
 
-    .line 894
+    .line 893
     const-string v1, "MorphoPanoramaGP3"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -922,7 +922,7 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 896
+    .line 895
     :cond_1
     return v0
 .end method
@@ -930,7 +930,7 @@
 .method public static yuv2Bitmap8888([BIILandroid/graphics/Bitmap;I)I
     .locals 6
 
-    .line 768
+    .line 767
     const/4 v5, 0x1
 
     move-object v0, p0
@@ -953,7 +953,7 @@
 .method public static yvu2Bitmap8888([BIILandroid/graphics/Bitmap;I)I
     .locals 6
 
-    .line 772
+    .line 771
     const/4 v5, 0x0
 
     move-object v0, p0
@@ -982,7 +982,7 @@
 
     move-object/from16 v0, p10
 
-    .line 264
+    .line 263
     iget-wide v1, v14, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v3, 0x0
@@ -991,12 +991,12 @@
 
     if-nez v1, :cond_0
 
-    .line 265
+    .line 264
     const v0, -0x7ffffffe
 
     return v0
 
-    .line 268
+    .line 267
     :cond_0
     iget-wide v1, v14, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachCount:J
 
@@ -1004,26 +1004,26 @@
 
     if-nez v1, :cond_1
 
-    .line 269
+    .line 268
     invoke-static {}, Ljava/lang/System;->nanoTime()J
 
     move-result-wide v1
 
     iput-wide v1, v14, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachFirstNanoTime:J
 
-    .line 272
+    .line 271
     :cond_1
     nop
 
-    .line 274
+    .line 273
     invoke-static {}, Ljava/lang/System;->nanoTime()J
 
     move-result-wide v15
 
-    .line 276
+    .line 275
     const/4 v1, 0x0
 
-    .line 277
+    .line 276
     iget-boolean v2, v14, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mSaveInputImages:Z
 
     const/4 v13, 0x1
@@ -1032,19 +1032,19 @@
 
     if-eqz v2, :cond_3
 
-    .line 278
+    .line 277
     const/4 v1, 0x2
 
     if-eqz v0, :cond_2
 
-    .line 279
+    .line 278
     iget-wide v2, v0, Lcom/android/camera/panorama/SensorInfoManager;->timeMillis:J
 
     invoke-static {v2, v3}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->createName(J)Ljava/lang/String;
 
     move-result-object v2
 
-    .line 280
+    .line 279
     sget-object v3, Ljava/util/Locale;->US:Ljava/util/Locale;
 
     const-string v4, "%s/%06d_"
@@ -1067,7 +1067,7 @@
 
     move-result-object v3
 
-    .line 281
+    .line 280
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
@@ -1136,7 +1136,7 @@
 
     move-result-object v1
 
-    .line 282
+    .line 281
     iget-object v2, v14, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mIndexBase:[I
 
     aget v3, v2, v17
@@ -1153,7 +1153,7 @@
 
     aput v3, v2, v17
 
-    .line 283
+    .line 282
     iget-object v2, v14, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mIndexBase:[I
 
     aget v3, v2, v5
@@ -1170,7 +1170,7 @@
 
     aput v3, v2, v5
 
-    .line 284
+    .line 283
     iget-object v2, v14, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mIndexBase:[I
 
     aget v3, v2, v13
@@ -1187,10 +1187,10 @@
 
     aput v3, v2, v13
 
-    .line 285
+    .line 284
     goto :goto_0
 
-    .line 286
+    .line 285
     :cond_2
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
@@ -1200,7 +1200,7 @@
 
     move-result-object v0
 
-    .line 287
+    .line 286
     sget-object v2, Ljava/util/Locale;->US:Ljava/util/Locale;
 
     const-string v3, "%s/%06d_"
@@ -1223,7 +1223,7 @@
 
     move-result-object v1
 
-    .line 288
+    .line 287
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -1240,7 +1240,7 @@
 
     move-result-object v0
 
-    .line 291
+    .line 290
     move-object v12, v0
 
     goto :goto_1
@@ -1254,7 +1254,7 @@
 
     if-eqz v0, :cond_4
 
-    .line 292
+    .line 291
     iget-wide v1, v14, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     move-object v0, v14
@@ -1289,7 +1289,7 @@
 
     goto :goto_2
 
-    .line 296
+    .line 295
     :cond_4
     move-wide/from16 v18, v15
 
@@ -1297,7 +1297,7 @@
 
     if-eqz v12, :cond_5
 
-    .line 297
+    .line 296
     iget-wide v1, v14, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     move-object v0, v14
@@ -1326,7 +1326,7 @@
 
     goto :goto_2
 
-    .line 302
+    .line 301
     :cond_5
     move/from16 v0, v17
 
@@ -1335,7 +1335,7 @@
 
     move-result-wide v1
 
-    .line 303
+    .line 302
     const-string v3, "MorphoPanoramaGP3"
 
     sget-object v4, Ljava/util/Locale;->US:Ljava/util/Locale;
@@ -1358,7 +1358,7 @@
 
     invoke-static {v3, v4}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 304
+    .line 303
     iget-wide v3, v14, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachCount:J
 
     const-wide/16 v5, 0x1
@@ -1367,14 +1367,14 @@
 
     iput-wide v3, v14, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachCount:J
 
-    .line 306
+    .line 305
     iget-wide v3, v14, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachCount:J
 
     cmp-long v3, v3, v5
 
     if-lez v3, :cond_6
 
-    .line 307
+    .line 306
     iget-object v3, v14, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mIntervalArray:Ljava/util/ArrayList;
 
     iget-wide v4, v14, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachLastNanoTime:J
@@ -1387,21 +1387,21 @@
 
     invoke-virtual {v3, v4}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 310
+    .line 309
     :cond_6
     iput-wide v1, v14, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachLastNanoTime:J
 
-    .line 311
+    .line 310
     nop
 
-    .line 314
+    .line 313
     return v0
 .end method
 
 .method public attach([B)I
     .locals 6
 
-    .line 243
+    .line 242
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1410,19 +1410,19 @@
 
     if-eqz v0, :cond_1
 
-    .line 244
+    .line 243
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeAttach(J[B)I
 
     move-result p1
 
-    .line 245
+    .line 244
     iget-boolean v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mSaveInputImages:Z
 
     if-eqz v0, :cond_0
 
-    .line 246
+    .line 245
     sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
 
     const-string v1, "%06d"
@@ -1443,7 +1443,7 @@
 
     invoke-static {v0, v1, v2}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
-    .line 248
+    .line 247
     :cond_0
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachCount:J
 
@@ -1455,11 +1455,11 @@
 
     goto :goto_0
 
-    .line 250
+    .line 249
     :cond_1
     const p1, -0x7ffffffe
 
-    .line 253
+    .line 252
     :goto_0
     return p1
 .end method
@@ -1467,14 +1467,14 @@
 .method public createNativeOutputInfo()I
     .locals 4
 
-    .line 776
+    .line 775
     invoke-direct {p0}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->createNativeOutputInfoObject()J
 
     move-result-wide v0
 
     iput-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNativeOutputInfo:J
 
-    .line 777
+    .line 776
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNativeOutputInfo:J
 
     const-wide/16 v2, 0x0
@@ -1483,12 +1483,12 @@
 
     if-eqz v0, :cond_0
 
-    .line 778
+    .line 777
     const/4 v0, 0x0
 
     return v0
 
-    .line 780
+    .line 779
     :cond_0
     const v0, -0x7ffffffe
 
@@ -1498,7 +1498,7 @@
 .method public createOutputImage(Landroid/graphics/Rect;)I
     .locals 8
 
-    .line 793
+    .line 792
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1507,7 +1507,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 794
+    .line 793
     iget-wide v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     iget v4, p1, Landroid/graphics/Rect;->left:I
@@ -1526,11 +1526,11 @@
 
     goto :goto_0
 
-    .line 796
+    .line 795
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 799
+    .line 798
     :goto_0
     return p1
 .end method
@@ -1538,17 +1538,17 @@
 .method public deleteNativeOutputInfo()I
     .locals 2
 
-    .line 785
+    .line 784
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNativeOutputInfo:J
 
     invoke-direct {p0, v0, v1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->deleteNativeOutputInfoObject(J)V
 
-    .line 786
+    .line 785
     const-wide/16 v0, 0x0
 
     iput-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNativeOutputInfo:J
 
-    .line 787
+    .line 786
     const/4 v0, 0x0
 
     return v0
@@ -1557,7 +1557,7 @@
 .method public deleteObject()I
     .locals 4
 
-    .line 219
+    .line 218
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1566,15 +1566,15 @@
 
     if-eqz v0, :cond_0
 
-    .line 220
+    .line 219
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->deleteNativeObject(J)V
 
-    .line 221
+    .line 220
     iput-wide v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
-    .line 224
+    .line 223
     :cond_0
     const/4 v0, 0x0
 
@@ -1584,37 +1584,37 @@
 .method public disableSaveInputImages()V
     .locals 1
 
-    .line 414
+    .line 413
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mSaveInputImages:Z
 
-    .line 415
+    .line 414
     return-void
 .end method
 
 .method public enableSaveInputImages(Ljava/lang/String;)V
     .locals 1
 
-    .line 409
+    .line 408
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mSaveInputImages:Z
 
-    .line 410
+    .line 409
     iput-object p1, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mFolderPathInputImages:Ljava/lang/String;
 
-    .line 411
+    .line 410
     return-void
 .end method
 
 .method public end(ID)I
     .locals 7
 
-    .line 476
+    .line 475
     nop
 
-    .line 478
+    .line 477
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1623,7 +1623,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 479
+    .line 478
     iget-wide v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     move-object v1, p0
@@ -1638,7 +1638,7 @@
 
     goto :goto_0
 
-    .line 482
+    .line 481
     :cond_0
     const/4 p1, 0x0
 
@@ -1649,7 +1649,7 @@
 .method public finish(Z)I
     .locals 6
 
-    .line 205
+    .line 204
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1658,31 +1658,31 @@
 
     if-eqz v0, :cond_0
 
-    .line 206
+    .line 205
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeFinish(J)I
 
     move-result v0
 
-    .line 207
+    .line 206
     if-eqz p1, :cond_1
 
-    .line 208
+    .line 207
     iget-wide v4, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v4, v5}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->deleteNativeObject(J)V
 
-    .line 209
+    .line 208
     iput-wide v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     goto :goto_0
 
-    .line 212
+    .line 211
     :cond_0
     const v0, -0x7ffffffe
 
-    .line 215
+    .line 214
     :cond_1
     :goto_0
     return v0
@@ -1691,7 +1691,7 @@
 .method public getAttachCount()J
     .locals 2
 
-    .line 405
+    .line 404
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachCount:J
 
     return-wide v0
@@ -1700,12 +1700,12 @@
 .method public getClippingRect(Landroid/graphics/Rect;)I
     .locals 7
 
-    .line 363
+    .line 362
     const/4 v0, 0x4
 
     new-array v0, v0, [I
 
-    .line 365
+    .line 364
     iget-wide v1, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v3, 0x0
@@ -1716,17 +1716,17 @@
 
     if-eqz v1, :cond_0
 
-    .line 366
+    .line 365
     iget-wide v3, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v3, v4, v0}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeGetClippingRect(J[I)I
 
     move-result v1
 
-    .line 367
+    .line 366
     if-nez v1, :cond_1
 
-    .line 368
+    .line 367
     aget v3, v0, v2
 
     const/4 v4, 0x1
@@ -1745,19 +1745,19 @@
 
     goto :goto_0
 
-    .line 374
+    .line 373
     :cond_0
     const v1, -0x7ffffffe
 
-    .line 377
+    .line 376
     :cond_1
     :goto_0
     if-eqz v1, :cond_2
 
-    .line 378
+    .line 377
     invoke-virtual {p1, v2, v2, v2, v2}, Landroid/graphics/Rect;->set(IIII)V
 
-    .line 381
+    .line 380
     :cond_2
     return v1
 .end method
@@ -1765,19 +1765,19 @@
 .method public getDirection()I
     .locals 6
 
-    .line 462
+    .line 461
     const/4 v0, 0x1
 
     new-array v0, v0, [I
 
-    .line 464
+    .line 463
     const/4 v1, 0x0
 
     const/4 v2, -0x1
 
     aput v2, v0, v1
 
-    .line 465
+    .line 464
     iget-wide v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v4, 0x0
@@ -1786,17 +1786,17 @@
 
     if-eqz v2, :cond_0
 
-    .line 466
+    .line 465
     iget-wide v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v2, v3, v0}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeGetDirection(J[I)I
 
     move-result v2
 
-    .line 467
+    .line 466
     if-eqz v2, :cond_0
 
-    .line 468
+    .line 467
     const-string v3, "MorphoPanoramaGP3"
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -1815,7 +1815,7 @@
 
     invoke-static {v3, v2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 472
+    .line 471
     :cond_0
     aget v0, v0, v1
 
@@ -1825,7 +1825,7 @@
 .method public getEndStatus()I
     .locals 4
 
-    .line 486
+    .line 485
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1834,7 +1834,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 487
+    .line 486
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeGetEndStatus(J)I
@@ -1843,7 +1843,7 @@
 
     return v0
 
-    .line 489
+    .line 488
     :cond_0
     const/4 v0, -0x1
 
@@ -1853,7 +1853,7 @@
 .method public getImage([BLandroid/graphics/Rect;)I
     .locals 9
 
-    .line 324
+    .line 323
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1862,7 +1862,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 325
+    .line 324
     iget-wide v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     iget v5, p2, Landroid/graphics/Rect;->left:I
@@ -1883,11 +1883,11 @@
 
     goto :goto_0
 
-    .line 327
+    .line 326
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 330
+    .line 329
     :goto_0
     return p1
 .end method
@@ -1895,7 +1895,7 @@
 .method public getInputFolderPath()Ljava/lang/String;
     .locals 1
 
-    .line 418
+    .line 417
     iget-object v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mFolderPathInputImages:Ljava/lang/String;
 
     return-object v0
@@ -1904,7 +1904,7 @@
 .method public getInputImageFormat()Ljava/lang/String;
     .locals 1
 
-    .line 385
+    .line 384
     iget-object v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mInputImageFormat:Ljava/lang/String;
 
     return-object v0
@@ -1913,7 +1913,7 @@
 .method public getLastGravity()Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;
     .locals 1
 
-    .line 556
+    .line 555
     iget-object v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mGravity:Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;
 
     invoke-virtual {v0}, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;->copyInstance()Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;
@@ -1926,7 +1926,7 @@
 .method public getOutputImage([BLandroid/graphics/Rect;)I
     .locals 9
 
-    .line 507
+    .line 506
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1935,7 +1935,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 508
+    .line 507
     iget-wide v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     iget v5, p2, Landroid/graphics/Rect;->left:I
@@ -1956,11 +1956,11 @@
 
     goto :goto_0
 
-    .line 510
+    .line 509
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 513
+    .line 512
     :goto_0
     return p1
 .end method
@@ -1968,7 +1968,7 @@
 .method public getOutputImageSize([I)I
     .locals 4
 
-    .line 495
+    .line 494
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -1977,7 +1977,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 496
+    .line 495
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeGetOutputSize(J[I)I
@@ -1986,11 +1986,11 @@
 
     goto :goto_0
 
-    .line 498
+    .line 497
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 501
+    .line 500
     :goto_0
     return p1
 .end method
@@ -1998,7 +1998,7 @@
 .method public getRotatedSmallImage([BLandroid/graphics/Rect;II)I
     .locals 11
 
-    .line 336
+    .line 335
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -2007,7 +2007,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 337
+    .line 336
     iget-wide v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     iget v5, p2, Landroid/graphics/Rect;->left:I
@@ -2032,11 +2032,11 @@
 
     goto :goto_0
 
-    .line 339
+    .line 338
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 342
+    .line 341
     :goto_0
     return p1
 .end method
@@ -2044,7 +2044,7 @@
 .method public initialize(Lcom/android/camera/panorama/MorphoPanoramaGP3$InitParam;)I
     .locals 7
 
-    .line 186
+    .line 185
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNativeOutputInfo:J
 
     const-wide/16 v2, 0x0
@@ -2053,12 +2053,12 @@
 
     if-nez v0, :cond_0
 
-    .line 187
+    .line 186
     const p1, -0x7ffffffe
 
     return p1
 
-    .line 192
+    .line 191
     :cond_0
     invoke-direct {p0}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->createNativeObject()J
 
@@ -2066,14 +2066,14 @@
 
     iput-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
-    .line 193
+    .line 192
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     cmp-long v0, v0, v2
 
     if-eqz v0, :cond_1
 
-    .line 194
+    .line 193
     iget-wide v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     iget-wide v5, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNativeOutputInfo:J
@@ -2088,11 +2088,11 @@
 
     goto :goto_0
 
-    .line 196
+    .line 195
     :cond_1
     const p1, -0x7ffffffc
 
-    .line 199
+    .line 198
     :goto_0
     return p1
 .end method
@@ -2102,7 +2102,7 @@
 
     move-object/from16 v13, p0
 
-    .line 422
+    .line 421
     iget-wide v0, v13, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -2111,21 +2111,21 @@
 
     if-nez v0, :cond_0
 
-    .line 423
+    .line 422
     const v0, -0x7ffffffe
 
     return v0
 
-    .line 428
+    .line 427
     :cond_0
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v14
 
-    .line 430
+    .line 429
     const/4 v0, 0x0
 
-    .line 431
+    .line 430
     iget-boolean v1, v13, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mSaveInputImages:Z
 
     const/4 v2, 0x1
@@ -2136,7 +2136,7 @@
 
     if-eqz v1, :cond_1
 
-    .line 432
+    .line 431
     sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
 
     const-string v1, "%s/%06d.yuv"
@@ -2159,7 +2159,7 @@
 
     move-result-object v0
 
-    .line 434
+    .line 433
     :cond_1
     move-object v12, v0
 
@@ -2195,7 +2195,7 @@
 
     move-result-object v9
 
-    .line 435
+    .line 434
     invoke-virtual/range {p1 .. p1}, Landroid/media/Image;->getPlanes()[Landroid/media/Image$Plane;
 
     move-result-object v0
@@ -2226,7 +2226,7 @@
 
     move-result v16
 
-    .line 436
+    .line 435
     invoke-virtual/range {p1 .. p1}, Landroid/media/Image;->getPlanes()[Landroid/media/Image$Plane;
 
     move-result-object v0
@@ -2257,7 +2257,7 @@
 
     move-result v19
 
-    .line 434
+    .line 433
     move-object v0, v13
 
     move-wide v1, v5
@@ -2284,12 +2284,12 @@
 
     move-result v0
 
-    .line 437
+    .line 436
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v1
 
-    .line 438
+    .line 437
     const-string v3, "MorphoPanoramaGP3"
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -2314,7 +2314,7 @@
 
     invoke-static {v3, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 439
+    .line 438
     iget-wide v1, v13, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachCount:J
 
     const-wide/16 v3, 0x1
@@ -2323,14 +2323,14 @@
 
     iput-wide v1, v13, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachCount:J
 
-    .line 441
+    .line 440
     return v0
 .end method
 
 .method public preparePanorama360(IILjava/lang/String;Ljava/lang/String;ZLcom/android/camera/panorama/MorphoPanoramaGP3$GalleryInfoData;)I
     .locals 9
 
-    .line 805
+    .line 804
     iget-wide v1, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v3, 0x0
@@ -2339,7 +2339,7 @@
 
     if-eqz v1, :cond_0
 
-    .line 806
+    .line 805
     iget-wide v1, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     move-object v0, p0
@@ -2362,11 +2362,11 @@
 
     goto :goto_0
 
-    .line 808
+    .line 807
     :cond_0
     const v0, -0x7ffffffe
 
-    .line 811
+    .line 810
     :goto_0
     return v0
 .end method
@@ -2374,7 +2374,7 @@
 .method public saveLog(Ljava/lang/String;Ljava/lang/String;)I
     .locals 4
 
-    .line 758
+    .line 757
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -2383,7 +2383,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 759
+    .line 758
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1, p2}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSaveLog(JLjava/lang/String;Ljava/lang/String;)I
@@ -2392,11 +2392,11 @@
 
     goto :goto_0
 
-    .line 761
+    .line 760
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 764
+    .line 763
     :goto_0
     return p1
 .end method
@@ -2406,7 +2406,7 @@
 
     move-object v0, p0
 
-    .line 741
+    .line 740
     iget-wide v1, v0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v3, 0x0
@@ -2415,15 +2415,15 @@
 
     if-eqz v1, :cond_1
 
-    .line 742
+    .line 741
     invoke-static {p3}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->getFD(Ljava/io/FileDescriptor;)I
 
     move-result v6
 
-    .line 743
+    .line 742
     if-ltz v6, :cond_0
 
-    .line 744
+    .line 743
     iget-wide v1, v0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const/4 v5, 0x0
@@ -2448,19 +2448,19 @@
 
     goto :goto_0
 
-    .line 746
+    .line 745
     :cond_0
     const v0, -0x7ffffff0
 
-    .line 748
+    .line 747
     :goto_0
     goto :goto_1
 
-    .line 749
+    .line 748
     :cond_1
     const v0, -0x7ffffffe
 
-    .line 752
+    .line 751
     :goto_1
     return v0
 .end method
@@ -2470,7 +2470,7 @@
 
     move-object v0, p0
 
-    .line 729
+    .line 728
     iget-wide v1, v0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v3, 0x0
@@ -2479,7 +2479,7 @@
 
     if-eqz v1, :cond_0
 
-    .line 730
+    .line 729
     iget-wide v1, v0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const/4 v6, 0x0
@@ -2506,11 +2506,11 @@
 
     goto :goto_0
 
-    .line 732
+    .line 731
     :cond_0
     const v0, -0x7ffffffe
 
-    .line 735
+    .line 734
     :goto_0
     return v0
 .end method
@@ -2518,7 +2518,7 @@
 .method public savePanorama360Delay(Ljava/io/FileDescriptor;ZIZ)I
     .locals 9
 
-    .line 829
+    .line 828
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNativeOutputInfo:J
 
     const-wide/16 v2, 0x0
@@ -2527,15 +2527,15 @@
 
     if-eqz v0, :cond_1
 
-    .line 830
+    .line 829
     invoke-static {p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->getFD(Ljava/io/FileDescriptor;)I
 
     move-result v5
 
-    .line 831
+    .line 830
     if-ltz v5, :cond_0
 
-    .line 832
+    .line 831
     iget-wide v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNativeOutputInfo:J
 
     const/4 v4, 0x0
@@ -2554,19 +2554,19 @@
 
     goto :goto_0
 
-    .line 834
+    .line 833
     :cond_0
     const p1, -0x7ffffff0
 
-    .line 836
+    .line 835
     :goto_0
     goto :goto_1
 
-    .line 837
+    .line 836
     :cond_1
     const p1, -0x7ffffffe
 
-    .line 840
+    .line 839
     :goto_1
     return p1
 .end method
@@ -2574,7 +2574,7 @@
 .method public savePanorama360Delay(Ljava/lang/String;ZIZ)I
     .locals 9
 
-    .line 817
+    .line 816
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNativeOutputInfo:J
 
     const-wide/16 v2, 0x0
@@ -2583,7 +2583,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 818
+    .line 817
     iget-wide v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNativeOutputInfo:J
 
     const/4 v5, 0x0
@@ -2604,11 +2604,11 @@
 
     goto :goto_0
 
-    .line 820
+    .line 819
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 823
+    .line 822
     :goto_0
     return p1
 .end method
@@ -2616,7 +2616,7 @@
 .method public setAovGain(D)I
     .locals 4
 
-    .line 658
+    .line 657
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -2625,7 +2625,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 659
+    .line 658
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1, p2}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetAovGain(JD)I
@@ -2634,11 +2634,11 @@
 
     goto :goto_0
 
-    .line 661
+    .line 660
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 664
+    .line 663
     :goto_0
     return p1
 .end method
@@ -2646,17 +2646,17 @@
 .method public setAttachEnabled(Z)V
     .locals 0
 
-    .line 178
+    .line 177
     iput-boolean p1, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachEnabled:Z
 
-    .line 179
+    .line 178
     return-void
 .end method
 
 .method public setCalcseamPixnum(I)I
     .locals 4
 
-    .line 531
+    .line 530
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -2665,7 +2665,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 532
+    .line 531
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetCalcseamPixnum(JI)I
@@ -2674,11 +2674,11 @@
 
     goto :goto_0
 
-    .line 534
+    .line 533
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 537
+    .line 536
     :goto_0
     return p1
 .end method
@@ -2688,7 +2688,7 @@
 
     move-object v0, p0
 
-    .line 706
+    .line 705
     iget-wide v1, v0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v3, 0x0
@@ -2697,7 +2697,7 @@
 
     if-eqz v1, :cond_0
 
-    .line 707
+    .line 706
     iget-wide v1, v0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     move-wide v3, p1
@@ -2714,11 +2714,11 @@
 
     goto :goto_0
 
-    .line 709
+    .line 708
     :cond_0
     const v0, -0x7ffffffe
 
-    .line 712
+    .line 711
     :goto_0
     return v0
 .end method
@@ -2726,7 +2726,7 @@
 .method public setDrawThreshold(D)I
     .locals 4
 
-    .line 610
+    .line 609
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -2735,7 +2735,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 611
+    .line 610
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1, p2}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetDrawThreshold(JD)I
@@ -2744,11 +2744,11 @@
 
     goto :goto_0
 
-    .line 613
+    .line 612
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 616
+    .line 615
     :goto_0
     return p1
 .end method
@@ -2756,7 +2756,7 @@
 .method public setGyroscopeData([Lcom/android/camera/panorama/MorphoSensorFusion$SensorData;)I
     .locals 4
 
-    .line 622
+    .line 621
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -2765,7 +2765,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 623
+    .line 622
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetGyroscopeData(J[Lcom/android/camera/panorama/MorphoSensorFusion$SensorData;)I
@@ -2774,11 +2774,11 @@
 
     goto :goto_0
 
-    .line 625
+    .line 624
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 628
+    .line 627
     :goto_0
     return p1
 .end method
@@ -2788,7 +2788,7 @@
 
     move-object v9, p0
 
-    .line 543
+    .line 542
     iget-wide v0, v9, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -2797,7 +2797,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 544
+    .line 543
     iget-wide v1, v9, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     move-object v0, v9
@@ -2812,21 +2812,21 @@
 
     move-result v0
 
-    .line 545
+    .line 544
     iget-object v1, v9, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mGravity:Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;
 
     move-wide v2, p1
 
     iput-wide v2, v1, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;->x:D
 
-    .line 546
+    .line 545
     iget-object v1, v9, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mGravity:Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;
 
     move-wide v2, p3
 
     iput-wide v2, v1, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;->y:D
 
-    .line 547
+    .line 546
     iget-object v1, v9, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mGravity:Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;
 
     move-wide v2, p5
@@ -2835,11 +2835,11 @@
 
     goto :goto_0
 
-    .line 549
+    .line 548
     :cond_0
     const v0, -0x7ffffffe
 
-    .line 552
+    .line 551
     :goto_0
     return v0
 .end method
@@ -2847,12 +2847,12 @@
 .method public setInputImageFormat(Ljava/lang/String;)I
     .locals 4
 
-    .line 391
+    .line 390
     const-string v0, ""
 
     iput-object v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mInputImageFormat:Ljava/lang/String;
 
-    .line 392
+    .line 391
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -2861,26 +2861,26 @@
 
     if-eqz v0, :cond_0
 
-    .line 393
+    .line 392
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetImageFormat(JLjava/lang/String;)I
 
     move-result v0
 
-    .line 394
+    .line 393
     if-nez v0, :cond_1
 
-    .line 395
+    .line 394
     iput-object p1, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mInputImageFormat:Ljava/lang/String;
 
     goto :goto_0
 
-    .line 398
+    .line 397
     :cond_0
     const v0, -0x7ffffffe
 
-    .line 401
+    .line 400
     :cond_1
     :goto_0
     return v0
@@ -2889,7 +2889,7 @@
 .method public setMotionDetectionMode(I)I
     .locals 4
 
-    .line 858
+    .line 857
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -2898,7 +2898,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 859
+    .line 858
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetMotionDetectionMode(JI)I
@@ -2907,11 +2907,11 @@
 
     goto :goto_0
 
-    .line 861
+    .line 860
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 864
+    .line 863
     :goto_0
     return p1
 .end method
@@ -2919,7 +2919,7 @@
 .method public setNoiseReductionParam(I)I
     .locals 4
 
-    .line 694
+    .line 693
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -2928,7 +2928,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 695
+    .line 694
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetNoiseReductionParam(JI)I
@@ -2937,11 +2937,11 @@
 
     goto :goto_0
 
-    .line 697
+    .line 696
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 700
+    .line 699
     :goto_0
     return p1
 .end method
@@ -2949,7 +2949,7 @@
 .method public setPreviewImage(II)I
     .locals 4
 
-    .line 354
+    .line 353
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -2958,12 +2958,12 @@
 
     if-nez v0, :cond_0
 
-    .line 355
+    .line 354
     const p1, -0x7ffffffe
 
     return p1
 
-    .line 358
+    .line 357
     :cond_0
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
@@ -2977,7 +2977,7 @@
 .method public setProjectionMode(I)I
     .locals 4
 
-    .line 846
+    .line 845
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -2986,7 +2986,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 847
+    .line 846
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetProjectionMode(JI)I
@@ -2995,11 +2995,11 @@
 
     goto :goto_0
 
-    .line 849
+    .line 848
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 852
+    .line 851
     :goto_0
     return p1
 .end method
@@ -3007,7 +3007,7 @@
 .method public setRotationRatio(D)I
     .locals 4
 
-    .line 670
+    .line 669
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -3016,7 +3016,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 671
+    .line 670
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1, p2}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetRotationRatio(JD)I
@@ -3025,11 +3025,11 @@
 
     goto :goto_0
 
-    .line 673
+    .line 672
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 676
+    .line 675
     :goto_0
     return p1
 .end method
@@ -3037,7 +3037,7 @@
 .method public setRotationVector([D)I
     .locals 4
 
-    .line 634
+    .line 633
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -3046,7 +3046,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 635
+    .line 634
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetRotationVector(J[D)I
@@ -3055,11 +3055,11 @@
 
     goto :goto_0
 
-    .line 637
+    .line 636
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 640
+    .line 639
     :goto_0
     return p1
 .end method
@@ -3067,7 +3067,7 @@
 .method public setSeamsearchRatio(D)I
     .locals 4
 
-    .line 586
+    .line 585
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -3076,7 +3076,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 587
+    .line 586
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1, p2}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetSeamsearchRatio(JD)I
@@ -3085,11 +3085,11 @@
 
     goto :goto_0
 
-    .line 589
+    .line 588
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 592
+    .line 591
     :goto_0
     return p1
 .end method
@@ -3097,7 +3097,7 @@
 .method public setSensorUseMode(I)I
     .locals 4
 
-    .line 682
+    .line 681
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -3106,7 +3106,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 683
+    .line 682
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetSensorUseMode(JI)I
@@ -3115,11 +3115,11 @@
 
     goto :goto_0
 
-    .line 685
+    .line 684
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 688
+    .line 687
     :goto_0
     return p1
 .end method
@@ -3127,7 +3127,7 @@
 .method public setShrinkRatio(D)I
     .locals 4
 
-    .line 519
+    .line 518
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -3136,7 +3136,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 520
+    .line 519
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1, p2}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetShrinkRatio(JD)I
@@ -3145,11 +3145,11 @@
 
     goto :goto_0
 
-    .line 522
+    .line 521
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 525
+    .line 524
     :goto_0
     return p1
 .end method
@@ -3157,7 +3157,7 @@
 .method public setUnsharpStrength(I)I
     .locals 4
 
-    .line 646
+    .line 645
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -3166,17 +3166,17 @@
 
     if-eqz v0, :cond_0
 
-    .line 647
+    .line 646
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetUnsharpStrength(JI)I
 
     move-result p1
 
-    .line 652
+    .line 651
     return p1
 
-    .line 649
+    .line 648
     :cond_0
     const p1, -0x7ffffffe
 
@@ -3186,7 +3186,7 @@
 .method public setUseDeform(Z)I
     .locals 4
 
-    .line 562
+    .line 561
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -3195,7 +3195,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 563
+    .line 562
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetUseDeform(JI)I
@@ -3204,11 +3204,11 @@
 
     goto :goto_0
 
-    .line 565
+    .line 564
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 568
+    .line 567
     :goto_0
     return p1
 .end method
@@ -3216,7 +3216,7 @@
 .method public setUseLuminanceCorrection(Z)I
     .locals 4
 
-    .line 574
+    .line 573
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -3225,7 +3225,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 575
+    .line 574
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetUseLuminanceCorrection(JI)I
@@ -3234,11 +3234,11 @@
 
     goto :goto_0
 
-    .line 577
+    .line 576
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 580
+    .line 579
     :goto_0
     return p1
 .end method
@@ -3246,7 +3246,7 @@
 .method public setZrotationCoeff(D)I
     .locals 4
 
-    .line 598
+    .line 597
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -3255,7 +3255,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 599
+    .line 598
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1, p2}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeSetZrotationCoeff(JD)I
@@ -3264,11 +3264,11 @@
 
     goto :goto_0
 
-    .line 601
+    .line 600
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 604
+    .line 603
     :goto_0
     return p1
 .end method
@@ -3276,7 +3276,7 @@
 .method public start(II)I
     .locals 4
 
-    .line 230
+    .line 229
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -3285,23 +3285,23 @@
 
     if-eqz v0, :cond_0
 
-    .line 231
+    .line 230
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     invoke-direct {p0, v0, v1, p1, p2}, Lcom/android/camera/panorama/MorphoPanoramaGP3;->nativeStart(JII)I
 
     move-result p1
 
-    .line 232
+    .line 231
     iput-wide v2, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mAttachCount:J
 
     goto :goto_0
 
-    .line 234
+    .line 233
     :cond_0
     const p1, -0x7ffffffe
 
-    .line 237
+    .line 236
     :goto_0
     return p1
 .end method
@@ -3309,7 +3309,7 @@
 .method public updatePreviewImage(Landroid/graphics/Bitmap;)I
     .locals 4
 
-    .line 346
+    .line 345
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 
     const-wide/16 v2, 0x0
@@ -3318,12 +3318,12 @@
 
     if-nez v0, :cond_0
 
-    .line 347
+    .line 346
     const p1, -0x7ffffffe
 
     return p1
 
-    .line 350
+    .line 349
     :cond_0
     iget-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3;->mNative:J
 

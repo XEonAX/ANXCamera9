@@ -5,7 +5,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 23
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -15,7 +15,7 @@
 .end method
 
 .method public static setMotionEventSplittingEnabled(Landroid/view/ViewGroup;Z)V
-    .locals 0
+    .registers 2
     .param p0, "group"    # Landroid/view/ViewGroup;
     .param p1, "split"    # Z
 

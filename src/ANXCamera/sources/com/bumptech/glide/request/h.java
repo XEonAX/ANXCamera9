@@ -7,9 +7,9 @@ import android.support.annotation.VisibleForTesting;
 public class h implements c, d {
     private boolean isRunning;
     @Nullable
-    private final d mV;
+    private final d mU;
+    private c on;
     private c oo;
-    private c oq;
 
     @VisibleForTesting
     h() {
@@ -17,36 +17,36 @@ public class h implements c, d {
     }
 
     public h(@Nullable d dVar) {
-        this.mV = dVar;
+        this.mU = dVar;
     }
 
     public void a(c cVar, c cVar2) {
-        this.oo = cVar;
-        this.oq = cVar2;
+        this.on = cVar;
+        this.oo = cVar2;
     }
 
     public boolean d(c cVar) {
-        return de() && (cVar.equals(this.oo) || !this.oo.dd());
+        return de() && (cVar.equals(this.on) || !this.on.dd());
     }
 
     private boolean de() {
-        return this.mV == null || this.mV.d(this);
+        return this.mU == null || this.mU.d(this);
     }
 
     public boolean e(c cVar) {
-        return dg() && cVar.equals(this.oo) && !dh();
+        return dg() && cVar.equals(this.on) && !dh();
     }
 
     public boolean f(c cVar) {
-        return df() && cVar.equals(this.oo);
+        return df() && cVar.equals(this.on);
     }
 
     private boolean df() {
-        return this.mV == null || this.mV.f(this);
+        return this.mU == null || this.mU.f(this);
     }
 
     private boolean dg() {
-        return this.mV == null || this.mV.e(this);
+        return this.mU == null || this.mU.e(this);
     }
 
     public boolean dh() {
@@ -54,75 +54,75 @@ public class h implements c, d {
     }
 
     public void h(c cVar) {
-        if (!cVar.equals(this.oq)) {
-            if (this.mV != null) {
-                this.mV.h(this);
+        if (!cVar.equals(this.oo)) {
+            if (this.mU != null) {
+                this.mU.h(this);
             }
-            if (!this.oq.isComplete()) {
-                this.oq.clear();
+            if (!this.oo.isComplete()) {
+                this.oo.clear();
             }
         }
     }
 
     public void i(c cVar) {
-        if (cVar.equals(this.oo) && this.mV != null) {
-            this.mV.i(this);
+        if (cVar.equals(this.on) && this.mU != null) {
+            this.mU.i(this);
         }
     }
 
     private boolean di() {
-        return this.mV != null && this.mV.dh();
+        return this.mU != null && this.mU.dh();
     }
 
     public void begin() {
         this.isRunning = true;
-        if (!(this.oo.isComplete() || this.oq.isRunning())) {
-            this.oq.begin();
-        }
-        if (this.isRunning && !this.oo.isRunning()) {
+        if (!(this.on.isComplete() || this.oo.isRunning())) {
             this.oo.begin();
+        }
+        if (this.isRunning && !this.on.isRunning()) {
+            this.on.begin();
         }
     }
 
     public void pause() {
         this.isRunning = false;
+        this.on.pause();
         this.oo.pause();
-        this.oq.pause();
     }
 
     public void clear() {
         this.isRunning = false;
-        this.oq.clear();
         this.oo.clear();
+        this.on.clear();
     }
 
     public boolean isPaused() {
-        return this.oo.isPaused();
+        return this.on.isPaused();
     }
 
     public boolean isRunning() {
-        return this.oo.isRunning();
+        return this.on.isRunning();
     }
 
     public boolean isComplete() {
-        return this.oo.isComplete() || this.oq.isComplete();
+        return this.on.isComplete() || this.oo.isComplete();
     }
 
     public boolean dd() {
-        return this.oo.dd() || this.oq.dd();
+        return this.on.dd() || this.oo.dd();
     }
 
     public boolean isCancelled() {
-        return this.oo.isCancelled();
+        return this.on.isCancelled();
     }
 
     public boolean isFailed() {
-        return this.oo.isFailed();
+        return this.on.isFailed();
     }
 
     public void recycle() {
+        this.on.recycle();
         this.oo.recycle();
-        this.oq.recycle();
     }
 
     public boolean c(c cVar) {
@@ -131,8 +131,8 @@ public class h implements c, d {
             return false;
         }
         h hVar = (h) cVar;
-        if (this.oo != null ? !this.oo.c(hVar.oo) : hVar.oo != null) {
-            if (this.oq != null ? !this.oq.c(hVar.oq) : hVar.oq != null) {
+        if (this.on != null ? !this.on.c(hVar.on) : hVar.on != null) {
+            if (this.oo != null ? !this.oo.c(hVar.oo) : hVar.oo != null) {
                 z = true;
             }
         }

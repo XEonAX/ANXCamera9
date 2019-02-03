@@ -6,14 +6,14 @@ import android.os.SystemClock;
 
 /* compiled from: LogTime */
 public final class e {
-    private static final double pm;
+    private static final double pl;
 
     static {
         double d = 1.0d;
         if (VERSION.SDK_INT >= 17) {
             d = 1.0d / Math.pow(10.0d, 6.0d);
         }
-        pm = d;
+        pl = d;
     }
 
     private e() {
@@ -28,6 +28,6 @@ public final class e {
     }
 
     public static double e(long j) {
-        return ((double) (eE() - j)) * pm;
+        return ((double) (eE() - j)) * pl;
     }
 }

@@ -16,7 +16,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 39
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -25,7 +25,7 @@
 .end method
 
 .method public static setDescription(Ljava/lang/Object;Ljava/lang/CharSequence;)V
-    .locals 1
+    .registers 3
     .param p0, "routeObj"    # Ljava/lang/Object;
     .param p1, "description"    # Ljava/lang/CharSequence;
 

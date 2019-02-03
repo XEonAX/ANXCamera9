@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 20
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static hasMipMap(Landroid/graphics/Bitmap;)Z
-    .locals 1
+    .registers 2
     .param p0, "bitmap"    # Landroid/graphics/Bitmap;
 
     .line 22
@@ -26,7 +26,7 @@
 .end method
 
 .method public static setHasMipMap(Landroid/graphics/Bitmap;Z)V
-    .locals 0
+    .registers 2
     .param p0, "bitmap"    # Landroid/graphics/Bitmap;
     .param p1, "hasMipMap"    # Z
 

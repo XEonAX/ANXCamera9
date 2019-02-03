@@ -25,7 +25,7 @@
 
 
 # instance fields
-.field private final du:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+.field private final dv:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
 .field private final jV:Lcom/bumptech/glide/load/resource/bitmap/n;
 
@@ -41,7 +41,7 @@
     iput-object p1, p0, Lcom/bumptech/glide/load/resource/bitmap/v;->jV:Lcom/bumptech/glide/load/resource/bitmap/n;
 
     .line 25
-    iput-object p2, p0, Lcom/bumptech/glide/load/resource/bitmap/v;->du:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iput-object p2, p0, Lcom/bumptech/glide/load/resource/bitmap/v;->dv:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     .line 26
     return-void
@@ -95,7 +95,7 @@
     :cond_0
     new-instance v0, Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
 
-    iget-object v1, p0, Lcom/bumptech/glide/load/resource/bitmap/v;->du:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v1, p0, Lcom/bumptech/glide/load/resource/bitmap/v;->dv:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     invoke-direct {v0, p1, v1}, Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;-><init>(Ljava/io/InputStream;Lcom/bumptech/glide/load/engine/bitmap_recycle/b;)V
 

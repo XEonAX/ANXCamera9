@@ -112,7 +112,7 @@ public class CheckUpdateTask extends NormalTask {
             hashMap.put(EffectConfiguration.KEY_DEVICE_TYPE, this.mConfiguration.getDeviceType());
         }
         if (!TextUtils.isEmpty(this.mConfiguration.getAppID())) {
-            hashMap.put(EffectConfiguration.KEY_APP_ID, this.mConfiguration.getAppID());
+            hashMap.put("aid", this.mConfiguration.getAppID());
         }
         if (!TextUtils.isEmpty(this.mConfiguration.getAppLanguage())) {
             hashMap.put(EffectConfiguration.KEY_APP_LANGUAGE, this.mConfiguration.getAppLanguage());

@@ -14,13 +14,13 @@
 
 
 # static fields
-.field public static final enum cD:Lcom/bumptech/glide/load/EncodeStrategy;
-
 .field public static final enum cE:Lcom/bumptech/glide/load/EncodeStrategy;
 
 .field public static final enum cF:Lcom/bumptech/glide/load/EncodeStrategy;
 
-.field private static final synthetic cG:[Lcom/bumptech/glide/load/EncodeStrategy;
+.field public static final enum cG:Lcom/bumptech/glide/load/EncodeStrategy;
+
+.field private static final synthetic cH:[Lcom/bumptech/glide/load/EncodeStrategy;
 
 
 # direct methods
@@ -36,7 +36,7 @@
 
     invoke-direct {v0, v1, v2}, Lcom/bumptech/glide/load/EncodeStrategy;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/bumptech/glide/load/EncodeStrategy;->cD:Lcom/bumptech/glide/load/EncodeStrategy;
+    sput-object v0, Lcom/bumptech/glide/load/EncodeStrategy;->cE:Lcom/bumptech/glide/load/EncodeStrategy;
 
     .line 16
     new-instance v0, Lcom/bumptech/glide/load/EncodeStrategy;
@@ -47,7 +47,7 @@
 
     invoke-direct {v0, v1, v3}, Lcom/bumptech/glide/load/EncodeStrategy;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/bumptech/glide/load/EncodeStrategy;->cE:Lcom/bumptech/glide/load/EncodeStrategy;
+    sput-object v0, Lcom/bumptech/glide/load/EncodeStrategy;->cF:Lcom/bumptech/glide/load/EncodeStrategy;
 
     .line 21
     new-instance v0, Lcom/bumptech/glide/load/EncodeStrategy;
@@ -58,26 +58,26 @@
 
     invoke-direct {v0, v1, v4}, Lcom/bumptech/glide/load/EncodeStrategy;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/bumptech/glide/load/EncodeStrategy;->cF:Lcom/bumptech/glide/load/EncodeStrategy;
+    sput-object v0, Lcom/bumptech/glide/load/EncodeStrategy;->cG:Lcom/bumptech/glide/load/EncodeStrategy;
 
     .line 6
     const/4 v0, 0x3
 
     new-array v0, v0, [Lcom/bumptech/glide/load/EncodeStrategy;
 
-    sget-object v1, Lcom/bumptech/glide/load/EncodeStrategy;->cD:Lcom/bumptech/glide/load/EncodeStrategy;
+    sget-object v1, Lcom/bumptech/glide/load/EncodeStrategy;->cE:Lcom/bumptech/glide/load/EncodeStrategy;
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/bumptech/glide/load/EncodeStrategy;->cE:Lcom/bumptech/glide/load/EncodeStrategy;
+    sget-object v1, Lcom/bumptech/glide/load/EncodeStrategy;->cF:Lcom/bumptech/glide/load/EncodeStrategy;
 
     aput-object v1, v0, v3
 
-    sget-object v1, Lcom/bumptech/glide/load/EncodeStrategy;->cF:Lcom/bumptech/glide/load/EncodeStrategy;
+    sget-object v1, Lcom/bumptech/glide/load/EncodeStrategy;->cG:Lcom/bumptech/glide/load/EncodeStrategy;
 
     aput-object v1, v0, v4
 
-    sput-object v0, Lcom/bumptech/glide/load/EncodeStrategy;->cG:[Lcom/bumptech/glide/load/EncodeStrategy;
+    sput-object v0, Lcom/bumptech/glide/load/EncodeStrategy;->cH:[Lcom/bumptech/glide/load/EncodeStrategy;
 
     return-void
 .end method
@@ -115,7 +115,7 @@
     .locals 1
 
     .line 6
-    sget-object v0, Lcom/bumptech/glide/load/EncodeStrategy;->cG:[Lcom/bumptech/glide/load/EncodeStrategy;
+    sget-object v0, Lcom/bumptech/glide/load/EncodeStrategy;->cH:[Lcom/bumptech/glide/load/EncodeStrategy;
 
     invoke-virtual {v0}, [Lcom/bumptech/glide/load/EncodeStrategy;->clone()Ljava/lang/Object;
 

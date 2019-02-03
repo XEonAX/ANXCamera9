@@ -43,7 +43,7 @@ public class ComponentManuallyDualLens extends ComponentData {
         List<ComponentDataItem> arrayList = new ArrayList();
         arrayList.add(new ComponentDataItem(-1, -1, R.string.pref_camera_zoom_mode_entry_wide, LENS_WIDE));
         arrayList.add(new ComponentDataItem(-1, -1, R.string.pref_camera_zoom_mode_entry_tele, LENS_TELE));
-        if (b.fu()) {
+        if (b.fx()) {
             arrayList.add(new ComponentDataItem(-1, -1, R.string.pref_camera_zoom_mode_entry_ultra, LENS_ULTRA));
         }
         return arrayList;
@@ -53,7 +53,7 @@ public class ComponentManuallyDualLens extends ComponentData {
         if (LENS_WIDE.equals(str)) {
             return LENS_TELE;
         }
-        if (b.fu() && LENS_TELE.equals(str) && i == 167) {
+        if (b.fx() && LENS_TELE.equals(str) && i == 167) {
             return LENS_ULTRA;
         }
         return LENS_WIDE;

@@ -279,7 +279,7 @@
     :cond_4
     new-instance p3, Lcom/bumptech/glide/load/model/m$a;
 
-    iget-object p4, p2, Lcom/bumptech/glide/load/model/m$a;->dZ:Lcom/bumptech/glide/load/c;
+    iget-object p4, p2, Lcom/bumptech/glide/load/model/m$a;->ea:Lcom/bumptech/glide/load/c;
 
     invoke-static {p1}, Lcom/bumptech/glide/load/model/a/a;->a(Ljava/util/Collection;)Ljava/util/List;
 

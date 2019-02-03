@@ -21,48 +21,28 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .locals 1
 
-    .line 24
+    .line 14
     invoke-direct {p0}, Lcom/android/camera/effect/draw_mode/DrawAttribute;-><init>()V
 
-    .line 26
+    .line 15
+    const/4 v0, 0x5
+
+    iput v0, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mTarget:I
+
+    .line 16
     return-void
 .end method
 
 .method public constructor <init>(Lcom/android/gallery3d/ui/BasicTexture;)V
     .locals 0
 
-    .line 28
-    invoke-direct {p0}, Lcom/android/camera/effect/draw_mode/DrawAttribute;-><init>()V
-
-    .line 29
-    invoke-virtual {p0, p1}, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->init(Lcom/android/gallery3d/ui/BasicTexture;)Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;
-
-    .line 30
-    return-void
-.end method
-
-.method public constructor <init>(Lcom/android/gallery3d/ui/BasicTexture;IIII)V
-    .locals 0
-
-    .line 14
-    invoke-direct {p0}, Lcom/android/camera/effect/draw_mode/DrawAttribute;-><init>()V
-
-    .line 15
-    iput p2, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mX:I
-
-    .line 16
-    iput p3, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mY:I
-
-    .line 17
-    iput p4, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mWidth:I
-
     .line 18
-    iput p5, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mHeight:I
+    invoke-direct {p0}, Lcom/android/camera/effect/draw_mode/DrawAttribute;-><init>()V
 
     .line 19
-    iput-object p1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mBasicTexture:Lcom/android/gallery3d/ui/BasicTexture;
+    invoke-virtual {p0, p1}, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->init(Lcom/android/gallery3d/ui/BasicTexture;)Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;
 
     .line 20
     const/4 p1, 0x5
@@ -70,11 +50,41 @@
     iput p1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mTarget:I
 
     .line 21
+    return-void
+.end method
+
+.method public constructor <init>(Lcom/android/gallery3d/ui/BasicTexture;IIII)V
+    .locals 0
+
+    .line 23
+    invoke-direct {p0}, Lcom/android/camera/effect/draw_mode/DrawAttribute;-><init>()V
+
+    .line 24
+    iput p2, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mX:I
+
+    .line 25
+    iput p3, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mY:I
+
+    .line 26
+    iput p4, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mWidth:I
+
+    .line 27
+    iput p5, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mHeight:I
+
+    .line 28
+    iput-object p1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mBasicTexture:Lcom/android/gallery3d/ui/BasicTexture;
+
+    .line 29
     const/4 p1, 0x0
 
     iput-boolean p1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mIsSnapshot:Z
 
-    .line 22
+    .line 30
+    const/4 p1, 0x5
+
+    iput p1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mTarget:I
+
+    .line 31
     return-void
 .end method
 
@@ -83,35 +93,30 @@
 .method public init(Lcom/android/gallery3d/ui/BasicTexture;)Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;
     .locals 2
 
-    .line 33
+    .line 34
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mX:I
 
-    .line 34
+    .line 35
     iput v0, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mY:I
 
-    .line 35
+    .line 36
     invoke-virtual {p1}, Lcom/android/gallery3d/ui/BasicTexture;->getWidth()I
 
     move-result v1
 
     iput v1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mWidth:I
 
-    .line 36
+    .line 37
     invoke-virtual {p1}, Lcom/android/gallery3d/ui/BasicTexture;->getHeight()I
 
     move-result v1
 
     iput v1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mHeight:I
 
-    .line 37
-    iput-object p1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mBasicTexture:Lcom/android/gallery3d/ui/BasicTexture;
-
     .line 38
-    const/4 p1, 0x5
-
-    iput p1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mTarget:I
+    iput-object p1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mBasicTexture:Lcom/android/gallery3d/ui/BasicTexture;
 
     .line 39
     iput-boolean v0, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mIsSnapshot:Z
@@ -139,75 +144,63 @@
     iput-object p1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mBasicTexture:Lcom/android/gallery3d/ui/BasicTexture;
 
     .line 49
-    const/4 p1, 0x5
-
-    iput p1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mTarget:I
-
-    .line 50
     const/4 p1, 0x0
 
     iput-boolean p1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mIsSnapshot:Z
 
-    .line 51
+    .line 50
     return-object p0
 .end method
 
 .method public init(Lcom/android/gallery3d/ui/BasicTexture;IIIIZ)Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;
     .locals 0
 
-    .line 56
+    .line 55
     iput p2, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mX:I
 
-    .line 57
+    .line 56
     iput p3, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mY:I
 
-    .line 58
+    .line 57
     iput p4, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mWidth:I
 
-    .line 59
+    .line 58
     iput p5, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mHeight:I
 
-    .line 60
+    .line 59
     iput-object p1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mBasicTexture:Lcom/android/gallery3d/ui/BasicTexture;
 
-    .line 61
-    const/4 p1, 0x5
-
-    iput p1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mTarget:I
-
-    .line 62
+    .line 60
     iput-boolean p6, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mIsSnapshot:Z
 
-    .line 63
+    .line 61
     return-object p0
 .end method
 
 .method public init(Lcom/android/gallery3d/ui/BasicTexture;IIIIZZ)Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;
     .locals 0
 
-    .line 68
+    .line 66
     iput p2, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mX:I
 
-    .line 69
+    .line 67
     iput p3, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mY:I
 
-    .line 70
+    .line 68
     iput p4, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mWidth:I
 
-    .line 71
+    .line 69
     iput p5, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mHeight:I
 
-    .line 72
+    .line 70
+    iput-boolean p6, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mIsSnapshot:Z
+
+    .line 71
     iput-object p1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mBasicTexture:Lcom/android/gallery3d/ui/BasicTexture;
 
-    .line 73
-    const/4 p1, 0x5
-
-    iput p1, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mTarget:I
-
-    .line 74
+    .line 72
     iput-boolean p7, p0, Lcom/android/camera/effect/draw_mode/DrawBasicTexAttribute;->mUseMiddleBuffer:Z
 
-    .line 75
+    .line 73
     return-object p0
 .end method

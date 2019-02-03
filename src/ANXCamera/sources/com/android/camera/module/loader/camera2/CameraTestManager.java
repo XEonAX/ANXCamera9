@@ -231,7 +231,7 @@ public class CameraTestManager {
                             mMuxCameraId = parseInt;
                         }
                     }
-                    this.mCapabilities.add(parseInt, new CameraCapabilities(cameraCharacteristics));
+                    this.mCapabilities.add(parseInt, new CameraCapabilities(cameraCharacteristics, parseInt));
                 } catch (NumberFormatException e) {
                     String str2 = TAG;
                     StringBuilder stringBuilder = new StringBuilder();

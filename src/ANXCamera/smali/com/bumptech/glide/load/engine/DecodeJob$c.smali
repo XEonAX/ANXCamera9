@@ -24,7 +24,7 @@
 
 
 # instance fields
-.field private eP:Lcom/bumptech/glide/load/h;
+.field private eQ:Lcom/bumptech/glide/load/h;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/h<",
@@ -33,7 +33,7 @@
     .end annotation
 .end field
 
-.field private eQ:Lcom/bumptech/glide/load/engine/o;
+.field private eR:Lcom/bumptech/glide/load/engine/o;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/engine/o<",
@@ -76,10 +76,10 @@
     iput-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->key:Lcom/bumptech/glide/load/c;
 
     .line 655
-    iput-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eP:Lcom/bumptech/glide/load/h;
+    iput-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eQ:Lcom/bumptech/glide/load/h;
 
     .line 656
-    iput-object p3, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eQ:Lcom/bumptech/glide/load/engine/o;
+    iput-object p3, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eR:Lcom/bumptech/glide/load/engine/o;
 
     .line 657
     return-void
@@ -103,9 +103,9 @@
 
     new-instance v1, Lcom/bumptech/glide/load/engine/c;
 
-    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eP:Lcom/bumptech/glide/load/h;
+    iget-object v2, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eQ:Lcom/bumptech/glide/load/h;
 
-    iget-object v3, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eQ:Lcom/bumptech/glide/load/engine/o;
+    iget-object v3, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eR:Lcom/bumptech/glide/load/engine/o;
 
     invoke-direct {v1, v2, v3, p2}, Lcom/bumptech/glide/load/engine/c;-><init>(Lcom/bumptech/glide/load/a;Ljava/lang/Object;Lcom/bumptech/glide/load/f;)V
 
@@ -114,7 +114,7 @@
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 665
-    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eQ:Lcom/bumptech/glide/load/engine/o;
+    iget-object p1, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eR:Lcom/bumptech/glide/load/engine/o;
 
     invoke-virtual {p1}, Lcom/bumptech/glide/load/engine/o;->unlock()V
 
@@ -131,7 +131,7 @@
     :catchall_0
     move-exception p1
 
-    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eQ:Lcom/bumptech/glide/load/engine/o;
+    iget-object p2, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eR:Lcom/bumptech/glide/load/engine/o;
 
     invoke-virtual {p2}, Lcom/bumptech/glide/load/engine/o;->unlock()V
 
@@ -145,7 +145,7 @@
     .locals 1
 
     .line 671
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eQ:Lcom/bumptech/glide/load/engine/o;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eR:Lcom/bumptech/glide/load/engine/o;
 
     if-eqz v0, :cond_0
 
@@ -169,10 +169,10 @@
     iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->key:Lcom/bumptech/glide/load/c;
 
     .line 676
-    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eP:Lcom/bumptech/glide/load/h;
+    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eQ:Lcom/bumptech/glide/load/h;
 
     .line 677
-    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eQ:Lcom/bumptech/glide/load/engine/o;
+    iput-object v0, p0, Lcom/bumptech/glide/load/engine/DecodeJob$c;->eR:Lcom/bumptech/glide/load/engine/o;
 
     .line 678
     return-void

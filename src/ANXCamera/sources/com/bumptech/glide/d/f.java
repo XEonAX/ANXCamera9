@@ -8,38 +8,38 @@ import java.util.List;
 
 /* compiled from: ResourceEncoderRegistry */
 public class f {
-    private final List<a<?>> mN = new ArrayList();
+    private final List<a<?>> mL = new ArrayList();
 
     /* compiled from: ResourceEncoderRegistry */
     private static final class a<T> {
-        final h<T> eP;
-        private final Class<T> ei;
+        final h<T> eQ;
+        private final Class<T> ej;
 
         a(@NonNull Class<T> cls, @NonNull h<T> hVar) {
-            this.ei = cls;
-            this.eP = hVar;
+            this.ej = cls;
+            this.eQ = hVar;
         }
 
         boolean l(@NonNull Class<?> cls) {
-            return this.ei.isAssignableFrom(cls);
+            return this.ej.isAssignableFrom(cls);
         }
     }
 
     public synchronized <Z> void d(@NonNull Class<Z> cls, @NonNull h<Z> hVar) {
-        this.mN.add(new a(cls, hVar));
+        this.mL.add(new a(cls, hVar));
     }
 
     public synchronized <Z> void e(@NonNull Class<Z> cls, @NonNull h<Z> hVar) {
-        this.mN.add(0, new a(cls, hVar));
+        this.mL.add(0, new a(cls, hVar));
     }
 
     @Nullable
     public synchronized <Z> h<Z> n(@NonNull Class<Z> cls) {
-        int size = this.mN.size();
+        int size = this.mL.size();
         for (int i = 0; i < size; i++) {
-            a aVar = (a) this.mN.get(i);
+            a aVar = (a) this.mL.get(i);
             if (aVar.l(cls)) {
-                return aVar.eP;
+                return aVar.eQ;
             }
         }
         return null;

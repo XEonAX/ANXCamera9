@@ -85,10 +85,10 @@
     invoke-interface {v1, v0}, Ljava/util/Queue;->offer(Ljava/lang/Object;)Z
 
     .line 240
-    iput p1, v0, Lcom/bumptech/glide/f$c;->ah:I
+    iput p1, v0, Lcom/bumptech/glide/f$c;->ai:I
 
     .line 241
-    iput p2, v0, Lcom/bumptech/glide/f$c;->ag:I
+    iput p2, v0, Lcom/bumptech/glide/f$c;->ah:I
 
     .line 242
     return-object v0

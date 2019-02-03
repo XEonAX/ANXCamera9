@@ -22,8 +22,8 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 32
-    const/4 v0, 0x1
+    .line 36
+    const/4 v0, 0x0
 
     sput-boolean v0, Lcom/android/camera/fragment/CtaNoticeFragment$CTA;->sCanConnectToNetworkTemp:Z
 
@@ -33,7 +33,7 @@
 .method public constructor <init>()V
     .locals 0
 
-    .line 30
+    .line 34
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -42,17 +42,17 @@
 .method public static canConnectNetwork()Z
     .locals 1
 
-    .line 35
+    .line 39
     sget-boolean v0, Lcom/android/camera/fragment/CtaNoticeFragment$CTA;->sCanConnectToNetworkTemp:Z
 
     if-eqz v0, :cond_0
 
-    .line 36
+    .line 40
     const/4 v0, 0x1
 
     return v0
 
-    .line 38
+    .line 42
     :cond_0
     invoke-static {}, Lcom/android/camera/data/DataRepository;->provider()Lcom/android/camera/data/provider/DataProvider;
 
@@ -64,7 +64,7 @@
 
     check-cast v0, Lcom/android/camera/data/data/global/DataItemGlobal;
 
-    .line 39
+    .line 43
     invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->getCTACanCollect()Z
 
     move-result v0
@@ -72,15 +72,13 @@
     return v0
 .end method
 
-.method public static setCanConnectNetwork(Z)V
-    .locals 1
+.method public static setCanConnectNetwork(ZZ)V
+    .locals 0
 
-    .line 45
-    const/4 v0, 0x1
-
+    .line 49
     if-eqz p0, :cond_0
 
-    .line 46
+    .line 50
     invoke-static {}, Lcom/android/camera/data/DataRepository;->provider()Lcom/android/camera/data/provider/DataProvider;
 
     move-result-object p0
@@ -91,17 +89,17 @@
 
     check-cast p0, Lcom/android/camera/data/data/global/DataItemGlobal;
 
-    .line 47
-    invoke-virtual {p0, v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->setCTACanCollect(Z)V
-
-    .line 48
-    goto :goto_0
-
-    .line 50
-    :cond_0
-    sput-boolean v0, Lcom/android/camera/fragment/CtaNoticeFragment$CTA;->sCanConnectToNetworkTemp:Z
+    .line 51
+    invoke-virtual {p0, p1}, Lcom/android/camera/data/data/global/DataItemGlobal;->setCTACanCollect(Z)V
 
     .line 52
+    goto :goto_0
+
+    .line 54
+    :cond_0
+    sput-boolean p1, Lcom/android/camera/fragment/CtaNoticeFragment$CTA;->sCanConnectToNetworkTemp:Z
+
+    .line 56
     :goto_0
     return-void
 .end method

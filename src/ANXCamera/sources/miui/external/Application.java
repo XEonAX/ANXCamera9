@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.util.Log;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 import miui.external.SdkConstants.SdkError;
 
 public class Application extends android.app.Application implements SdkConstants {
@@ -19,15 +21,50 @@ public class Application extends android.app.Application implements SdkConstants
     }
 
     private boolean loadSdk() {
-        return true;
+        try {
+            if (SdkHelper.isMiuiSystem() || SdkLoader.load(SdkHelper.getApkPath(null, PACKAGE_NAME, "miui"), null, SdkHelper.getLibPath(null, PACKAGE_NAME), Application.class.getClassLoader())) {
+                return true;
+            }
+            SdkErrorInstrumentation.handleSdkError(SdkError.NO_SDK);
+            return false;
+        } catch (Throwable th) {
+            handleGenericError(th);
+            return false;
+        }
     }
 
     private boolean initializeSdk() {
-        return true;
+        try {
+            HashMap hashMap = new HashMap();
+            int intValue = ((Integer) SdkEntranceHelper.getSdkEntrance().getMethod("initialize", new Class[]{android.app.Application.class, Map.class}).invoke(null, new Object[]{this, hashMap})).intValue();
+            if (intValue == 0) {
+                return true;
+            }
+            handleUnknownError("initialize", intValue);
+            return false;
+        } catch (Throwable th) {
+            handleGenericError(th);
+            return false;
+        }
     }
 
     private boolean startSdk() {
-        return true;
+        try {
+            HashMap hashMap = new HashMap();
+            int intValue = ((Integer) SdkEntranceHelper.getSdkEntrance().getMethod("start", new Class[]{Map.class}).invoke(null, new Object[]{hashMap})).intValue();
+            if (intValue == 1) {
+                SdkErrorInstrumentation.handleSdkError(SdkError.LOW_SDK_VERSION);
+                return false;
+            } else if (intValue == 0) {
+                return true;
+            } else {
+                handleUnknownError("start", intValue);
+                return false;
+            }
+        } catch (Throwable th) {
+            handleGenericError(th);
+            return false;
+        }
     }
 
     private void handleGenericError(Throwable th) {

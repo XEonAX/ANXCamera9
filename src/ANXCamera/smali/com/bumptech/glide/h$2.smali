@@ -15,9 +15,9 @@
 
 
 # static fields
-.field static final synthetic aU:[I
-
 .field static final synthetic aV:[I
+
+.field static final synthetic aW:[I
 
 
 # direct methods
@@ -33,14 +33,14 @@
 
     new-array v0, v0, [I
 
-    sput-object v0, Lcom/bumptech/glide/h$2;->aV:[I
+    sput-object v0, Lcom/bumptech/glide/h$2;->aW:[I
 
     const/4 v0, 0x1
 
     :try_start_0
-    sget-object v1, Lcom/bumptech/glide/h$2;->aV:[I
+    sget-object v1, Lcom/bumptech/glide/h$2;->aW:[I
 
-    sget-object v2, Lcom/bumptech/glide/Priority;->ap:Lcom/bumptech/glide/Priority;
+    sget-object v2, Lcom/bumptech/glide/Priority;->aq:Lcom/bumptech/glide/Priority;
 
     invoke-virtual {v2}, Lcom/bumptech/glide/Priority;->ordinal()I
 
@@ -59,9 +59,9 @@
     const/4 v1, 0x2
 
     :try_start_1
-    sget-object v2, Lcom/bumptech/glide/h$2;->aV:[I
+    sget-object v2, Lcom/bumptech/glide/h$2;->aW:[I
 
-    sget-object v3, Lcom/bumptech/glide/Priority;->ao:Lcom/bumptech/glide/Priority;
+    sget-object v3, Lcom/bumptech/glide/Priority;->ap:Lcom/bumptech/glide/Priority;
 
     invoke-virtual {v3}, Lcom/bumptech/glide/Priority;->ordinal()I
 
@@ -80,9 +80,9 @@
     const/4 v2, 0x3
 
     :try_start_2
-    sget-object v3, Lcom/bumptech/glide/h$2;->aV:[I
+    sget-object v3, Lcom/bumptech/glide/h$2;->aW:[I
 
-    sget-object v4, Lcom/bumptech/glide/Priority;->an:Lcom/bumptech/glide/Priority;
+    sget-object v4, Lcom/bumptech/glide/Priority;->ao:Lcom/bumptech/glide/Priority;
 
     invoke-virtual {v4}, Lcom/bumptech/glide/Priority;->ordinal()I
 
@@ -101,9 +101,9 @@
     const/4 v3, 0x4
 
     :try_start_3
-    sget-object v4, Lcom/bumptech/glide/h$2;->aV:[I
+    sget-object v4, Lcom/bumptech/glide/h$2;->aW:[I
 
-    sget-object v5, Lcom/bumptech/glide/Priority;->am:Lcom/bumptech/glide/Priority;
+    sget-object v5, Lcom/bumptech/glide/Priority;->an:Lcom/bumptech/glide/Priority;
 
     invoke-virtual {v5}, Lcom/bumptech/glide/Priority;->ordinal()I
 
@@ -128,10 +128,10 @@
 
     new-array v4, v4, [I
 
-    sput-object v4, Lcom/bumptech/glide/h$2;->aU:[I
+    sput-object v4, Lcom/bumptech/glide/h$2;->aV:[I
 
     :try_start_4
-    sget-object v4, Lcom/bumptech/glide/h$2;->aU:[I
+    sget-object v4, Lcom/bumptech/glide/h$2;->aV:[I
 
     sget-object v5, Landroid/widget/ImageView$ScaleType;->CENTER_CROP:Landroid/widget/ImageView$ScaleType;
 
@@ -150,7 +150,7 @@
 
     :goto_4
     :try_start_5
-    sget-object v0, Lcom/bumptech/glide/h$2;->aU:[I
+    sget-object v0, Lcom/bumptech/glide/h$2;->aV:[I
 
     sget-object v4, Landroid/widget/ImageView$ScaleType;->CENTER_INSIDE:Landroid/widget/ImageView$ScaleType;
 
@@ -169,7 +169,7 @@
 
     :goto_5
     :try_start_6
-    sget-object v0, Lcom/bumptech/glide/h$2;->aU:[I
+    sget-object v0, Lcom/bumptech/glide/h$2;->aV:[I
 
     sget-object v1, Landroid/widget/ImageView$ScaleType;->FIT_CENTER:Landroid/widget/ImageView$ScaleType;
 
@@ -188,7 +188,7 @@
 
     :goto_6
     :try_start_7
-    sget-object v0, Lcom/bumptech/glide/h$2;->aU:[I
+    sget-object v0, Lcom/bumptech/glide/h$2;->aV:[I
 
     sget-object v1, Landroid/widget/ImageView$ScaleType;->FIT_START:Landroid/widget/ImageView$ScaleType;
 
@@ -207,7 +207,7 @@
 
     :goto_7
     :try_start_8
-    sget-object v0, Lcom/bumptech/glide/h$2;->aU:[I
+    sget-object v0, Lcom/bumptech/glide/h$2;->aV:[I
 
     sget-object v1, Landroid/widget/ImageView$ScaleType;->FIT_END:Landroid/widget/ImageView$ScaleType;
 
@@ -228,7 +228,7 @@
 
     :goto_8
     :try_start_9
-    sget-object v0, Lcom/bumptech/glide/h$2;->aU:[I
+    sget-object v0, Lcom/bumptech/glide/h$2;->aV:[I
 
     sget-object v1, Landroid/widget/ImageView$ScaleType;->FIT_XY:Landroid/widget/ImageView$ScaleType;
 
@@ -249,7 +249,7 @@
 
     :goto_9
     :try_start_a
-    sget-object v0, Lcom/bumptech/glide/h$2;->aU:[I
+    sget-object v0, Lcom/bumptech/glide/h$2;->aV:[I
 
     sget-object v1, Landroid/widget/ImageView$ScaleType;->CENTER:Landroid/widget/ImageView$ScaleType;
 
@@ -270,7 +270,7 @@
 
     :goto_a
     :try_start_b
-    sget-object v0, Lcom/bumptech/glide/h$2;->aU:[I
+    sget-object v0, Lcom/bumptech/glide/h$2;->aV:[I
 
     sget-object v1, Landroid/widget/ImageView$ScaleType;->MATRIX:Landroid/widget/ImageView$ScaleType;
 

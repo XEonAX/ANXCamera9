@@ -28,29 +28,29 @@
 
 
 # static fields
-.field private static final aG:Lcom/bumptech/glide/request/f;
-
-.field private static final aW:Lcom/bumptech/glide/request/f;
+.field private static final aH:Lcom/bumptech/glide/request/f;
 
 .field private static final aX:Lcom/bumptech/glide/request/f;
 
+.field private static final aY:Lcom/bumptech/glide/request/f;
+
 
 # instance fields
-.field private final T:Landroid/os/Handler;
+.field private final U:Landroid/os/Handler;
 
-.field private aI:Lcom/bumptech/glide/request/f;
+.field private aJ:Lcom/bumptech/glide/request/f;
 
-.field final aY:Lcom/bumptech/glide/manager/h;
+.field final aZ:Lcom/bumptech/glide/manager/h;
 
-.field private final aZ:Lcom/bumptech/glide/manager/n;
+.field private final ba:Lcom/bumptech/glide/manager/n;
 
-.field private final ba:Lcom/bumptech/glide/manager/m;
+.field private final bb:Lcom/bumptech/glide/manager/m;
 
-.field private final bb:Lcom/bumptech/glide/manager/o;
+.field private final bc:Lcom/bumptech/glide/manager/o;
 
-.field private final bc:Ljava/lang/Runnable;
+.field private final bd:Ljava/lang/Runnable;
 
-.field private final bd:Lcom/bumptech/glide/manager/c;
+.field private final be:Lcom/bumptech/glide/manager/c;
 
 .field protected final c:Lcom/bumptech/glide/c;
 
@@ -72,7 +72,7 @@
 
     move-result-object v0
 
-    sput-object v0, Lcom/bumptech/glide/i;->aW:Lcom/bumptech/glide/request/f;
+    sput-object v0, Lcom/bumptech/glide/i;->aX:Lcom/bumptech/glide/request/f;
 
     .line 53
     const-class v0, Lcom/bumptech/glide/load/resource/gif/b;
@@ -85,7 +85,7 @@
 
     move-result-object v0
 
-    sput-object v0, Lcom/bumptech/glide/i;->aX:Lcom/bumptech/glide/request/f;
+    sput-object v0, Lcom/bumptech/glide/i;->aY:Lcom/bumptech/glide/request/f;
 
     .line 54
     sget-object v0, Lcom/bumptech/glide/load/engine/g;->fm:Lcom/bumptech/glide/load/engine/g;
@@ -95,7 +95,7 @@
 
     move-result-object v0
 
-    sget-object v1, Lcom/bumptech/glide/Priority;->ap:Lcom/bumptech/glide/Priority;
+    sget-object v1, Lcom/bumptech/glide/Priority;->aq:Lcom/bumptech/glide/Priority;
 
     invoke-virtual {v0, v1}, Lcom/bumptech/glide/request/f;->c(Lcom/bumptech/glide/Priority;)Lcom/bumptech/glide/request/f;
 
@@ -108,7 +108,7 @@
 
     move-result-object v0
 
-    sput-object v0, Lcom/bumptech/glide/i;->aG:Lcom/bumptech/glide/request/f;
+    sput-object v0, Lcom/bumptech/glide/i;->aH:Lcom/bumptech/glide/request/f;
 
     .line 54
     return-void
@@ -171,14 +171,14 @@
 
     invoke-direct {v0}, Lcom/bumptech/glide/manager/o;-><init>()V
 
-    iput-object v0, p0, Lcom/bumptech/glide/i;->bb:Lcom/bumptech/glide/manager/o;
+    iput-object v0, p0, Lcom/bumptech/glide/i;->bc:Lcom/bumptech/glide/manager/o;
 
     .line 64
     new-instance v0, Lcom/bumptech/glide/i$1;
 
     invoke-direct {v0, p0}, Lcom/bumptech/glide/i$1;-><init>(Lcom/bumptech/glide/i;)V
 
-    iput-object v0, p0, Lcom/bumptech/glide/i;->bc:Ljava/lang/Runnable;
+    iput-object v0, p0, Lcom/bumptech/glide/i;->bd:Ljava/lang/Runnable;
 
     .line 70
     new-instance v0, Landroid/os/Handler;
@@ -189,19 +189,19 @@
 
     invoke-direct {v0, v1}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
 
-    iput-object v0, p0, Lcom/bumptech/glide/i;->T:Landroid/os/Handler;
+    iput-object v0, p0, Lcom/bumptech/glide/i;->U:Landroid/os/Handler;
 
     .line 96
     iput-object p1, p0, Lcom/bumptech/glide/i;->c:Lcom/bumptech/glide/c;
 
     .line 97
-    iput-object p2, p0, Lcom/bumptech/glide/i;->aY:Lcom/bumptech/glide/manager/h;
+    iput-object p2, p0, Lcom/bumptech/glide/i;->aZ:Lcom/bumptech/glide/manager/h;
 
     .line 98
-    iput-object p3, p0, Lcom/bumptech/glide/i;->ba:Lcom/bumptech/glide/manager/m;
+    iput-object p3, p0, Lcom/bumptech/glide/i;->bb:Lcom/bumptech/glide/manager/m;
 
     .line 99
-    iput-object p4, p0, Lcom/bumptech/glide/i;->aZ:Lcom/bumptech/glide/manager/n;
+    iput-object p4, p0, Lcom/bumptech/glide/i;->ba:Lcom/bumptech/glide/manager/n;
 
     .line 100
     iput-object p6, p0, Lcom/bumptech/glide/i;->context:Landroid/content/Context;
@@ -223,7 +223,7 @@
 
     move-result-object p3
 
-    iput-object p3, p0, Lcom/bumptech/glide/i;->bd:Lcom/bumptech/glide/manager/c;
+    iput-object p3, p0, Lcom/bumptech/glide/i;->be:Lcom/bumptech/glide/manager/c;
 
     .line 111
     invoke-static {}, Lcom/bumptech/glide/util/k;->eI()Z
@@ -233,9 +233,9 @@
     if-eqz p3, :cond_0
 
     .line 112
-    iget-object p3, p0, Lcom/bumptech/glide/i;->T:Landroid/os/Handler;
+    iget-object p3, p0, Lcom/bumptech/glide/i;->U:Landroid/os/Handler;
 
-    iget-object p4, p0, Lcom/bumptech/glide/i;->bc:Ljava/lang/Runnable;
+    iget-object p4, p0, Lcom/bumptech/glide/i;->bd:Ljava/lang/Runnable;
 
     invoke-virtual {p3, p4}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
@@ -247,7 +247,7 @@
 
     .line 116
     :goto_0
-    iget-object p3, p0, Lcom/bumptech/glide/i;->bd:Lcom/bumptech/glide/manager/c;
+    iget-object p3, p0, Lcom/bumptech/glide/i;->be:Lcom/bumptech/glide/manager/c;
 
     invoke-interface {p2, p3}, Lcom/bumptech/glide/manager/h;->a(Lcom/bumptech/glide/manager/i;)V
 
@@ -277,13 +277,13 @@
     .end param
 
     .line 128
-    iget-object v0, p0, Lcom/bumptech/glide/i;->aI:Lcom/bumptech/glide/request/f;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->aJ:Lcom/bumptech/glide/request/f;
 
     invoke-virtual {v0, p1}, Lcom/bumptech/glide/request/f;->g(Lcom/bumptech/glide/request/f;)Lcom/bumptech/glide/request/f;
 
     move-result-object p1
 
-    iput-object p1, p0, Lcom/bumptech/glide/i;->aI:Lcom/bumptech/glide/request/f;
+    iput-object p1, p0, Lcom/bumptech/glide/i;->aJ:Lcom/bumptech/glide/request/f;
 
     .line 129
     return-void
@@ -355,7 +355,7 @@
     invoke-virtual {p0}, Lcom/bumptech/glide/i;->z()V
 
     .line 269
-    iget-object v0, p0, Lcom/bumptech/glide/i;->ba:Lcom/bumptech/glide/manager/m;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->bb:Lcom/bumptech/glide/manager/m;
 
     invoke-interface {v0}, Lcom/bumptech/glide/manager/m;->cQ()Ljava/util/Set;
 
@@ -413,7 +413,7 @@
 
     move-result-object v0
 
-    sget-object v1, Lcom/bumptech/glide/i;->aW:Lcom/bumptech/glide/request/f;
+    sget-object v1, Lcom/bumptech/glide/i;->aX:Lcom/bumptech/glide/request/f;
 
     invoke-virtual {v0, v1}, Lcom/bumptech/glide/h;->b(Lcom/bumptech/glide/request/f;)Lcom/bumptech/glide/h;
 
@@ -446,7 +446,7 @@
 
     move-result-object v0
 
-    sget-object v1, Lcom/bumptech/glide/i;->aX:Lcom/bumptech/glide/request/f;
+    sget-object v1, Lcom/bumptech/glide/i;->aY:Lcom/bumptech/glide/request/f;
 
     invoke-virtual {v0, v1}, Lcom/bumptech/glide/h;->b(Lcom/bumptech/glide/request/f;)Lcom/bumptech/glide/h;
 
@@ -506,7 +506,7 @@
 
     move-result-object v0
 
-    sget-object v1, Lcom/bumptech/glide/i;->aG:Lcom/bumptech/glide/request/f;
+    sget-object v1, Lcom/bumptech/glide/i;->aH:Lcom/bumptech/glide/request/f;
 
     invoke-virtual {v0, v1}, Lcom/bumptech/glide/h;->b(Lcom/bumptech/glide/request/f;)Lcom/bumptech/glide/h;
 
@@ -770,12 +770,12 @@
     .end annotation
 
     .line 613
-    iget-object v0, p0, Lcom/bumptech/glide/i;->bb:Lcom/bumptech/glide/manager/o;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->bc:Lcom/bumptech/glide/manager/o;
 
     invoke-virtual {v0, p1}, Lcom/bumptech/glide/manager/o;->g(Lcom/bumptech/glide/request/target/n;)V
 
     .line 614
-    iget-object p1, p0, Lcom/bumptech/glide/i;->aZ:Lcom/bumptech/glide/manager/n;
+    iget-object p1, p0, Lcom/bumptech/glide/i;->ba:Lcom/bumptech/glide/manager/n;
 
     invoke-virtual {p1, p2}, Lcom/bumptech/glide/manager/n;->a(Lcom/bumptech/glide/request/c;)V
 
@@ -1137,7 +1137,7 @@
 
     move-result-object p1
 
-    iput-object p1, p0, Lcom/bumptech/glide/i;->aI:Lcom/bumptech/glide/request/f;
+    iput-object p1, p0, Lcom/bumptech/glide/i;->aJ:Lcom/bumptech/glide/request/f;
 
     .line 125
     return-void
@@ -1178,7 +1178,7 @@
 
     .line 561
     :cond_1
-    iget-object v0, p0, Lcom/bumptech/glide/i;->T:Landroid/os/Handler;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->U:Landroid/os/Handler;
 
     new-instance v1, Lcom/bumptech/glide/i$2;
 
@@ -1287,7 +1287,7 @@
 
     .line 603
     :cond_0
-    iget-object v2, p0, Lcom/bumptech/glide/i;->aZ:Lcom/bumptech/glide/manager/n;
+    iget-object v2, p0, Lcom/bumptech/glide/i;->ba:Lcom/bumptech/glide/manager/n;
 
     invoke-virtual {v2, v0}, Lcom/bumptech/glide/manager/n;->b(Lcom/bumptech/glide/request/c;)Z
 
@@ -1296,7 +1296,7 @@
     if-eqz v0, :cond_1
 
     .line 604
-    iget-object v0, p0, Lcom/bumptech/glide/i;->bb:Lcom/bumptech/glide/manager/o;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->bc:Lcom/bumptech/glide/manager/o;
 
     invoke-virtual {v0, p1}, Lcom/bumptech/glide/manager/o;->h(Lcom/bumptech/glide/request/target/n;)V
 
@@ -1357,7 +1357,7 @@
     invoke-static {}, Lcom/bumptech/glide/util/k;->eF()V
 
     .line 185
-    iget-object v0, p0, Lcom/bumptech/glide/i;->aZ:Lcom/bumptech/glide/manager/n;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->ba:Lcom/bumptech/glide/manager/n;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/n;->isPaused()Z
 
@@ -1390,7 +1390,7 @@
     .locals 1
 
     .line 618
-    iget-object v0, p0, Lcom/bumptech/glide/i;->aI:Lcom/bumptech/glide/request/f;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->aJ:Lcom/bumptech/glide/request/f;
 
     return-object v0
 .end method
@@ -1399,12 +1399,12 @@
     .locals 2
 
     .line 301
-    iget-object v0, p0, Lcom/bumptech/glide/i;->bb:Lcom/bumptech/glide/manager/o;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->bc:Lcom/bumptech/glide/manager/o;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/o;->onDestroy()V
 
     .line 302
-    iget-object v0, p0, Lcom/bumptech/glide/i;->bb:Lcom/bumptech/glide/manager/o;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->bc:Lcom/bumptech/glide/manager/o;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/o;->getAll()Ljava/util/List;
 
@@ -1435,31 +1435,31 @@
 
     .line 305
     :cond_0
-    iget-object v0, p0, Lcom/bumptech/glide/i;->bb:Lcom/bumptech/glide/manager/o;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->bc:Lcom/bumptech/glide/manager/o;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/o;->clear()V
 
     .line 306
-    iget-object v0, p0, Lcom/bumptech/glide/i;->aZ:Lcom/bumptech/glide/manager/n;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->ba:Lcom/bumptech/glide/manager/n;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/n;->cX()V
 
     .line 307
-    iget-object v0, p0, Lcom/bumptech/glide/i;->aY:Lcom/bumptech/glide/manager/h;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->aZ:Lcom/bumptech/glide/manager/h;
 
     invoke-interface {v0, p0}, Lcom/bumptech/glide/manager/h;->b(Lcom/bumptech/glide/manager/i;)V
 
     .line 308
-    iget-object v0, p0, Lcom/bumptech/glide/i;->aY:Lcom/bumptech/glide/manager/h;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->aZ:Lcom/bumptech/glide/manager/h;
 
-    iget-object v1, p0, Lcom/bumptech/glide/i;->bd:Lcom/bumptech/glide/manager/c;
+    iget-object v1, p0, Lcom/bumptech/glide/i;->be:Lcom/bumptech/glide/manager/c;
 
     invoke-interface {v0, v1}, Lcom/bumptech/glide/manager/h;->b(Lcom/bumptech/glide/manager/i;)V
 
     .line 309
-    iget-object v0, p0, Lcom/bumptech/glide/i;->T:Landroid/os/Handler;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->U:Landroid/os/Handler;
 
-    iget-object v1, p0, Lcom/bumptech/glide/i;->bc:Ljava/lang/Runnable;
+    iget-object v1, p0, Lcom/bumptech/glide/i;->bd:Ljava/lang/Runnable;
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacks(Ljava/lang/Runnable;)V
 
@@ -1479,7 +1479,7 @@
     invoke-virtual {p0}, Lcom/bumptech/glide/i;->z()V
 
     .line 282
-    iget-object v0, p0, Lcom/bumptech/glide/i;->bb:Lcom/bumptech/glide/manager/o;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->bc:Lcom/bumptech/glide/manager/o;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/o;->onStart()V
 
@@ -1494,7 +1494,7 @@
     invoke-virtual {p0}, Lcom/bumptech/glide/i;->w()V
 
     .line 292
-    iget-object v0, p0, Lcom/bumptech/glide/i;->bb:Lcom/bumptech/glide/manager/o;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->bc:Lcom/bumptech/glide/manager/o;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/o;->onStop()V
 
@@ -1520,7 +1520,7 @@
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iget-object v1, p0, Lcom/bumptech/glide/i;->aZ:Lcom/bumptech/glide/manager/n;
+    iget-object v1, p0, Lcom/bumptech/glide/i;->ba:Lcom/bumptech/glide/manager/n;
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
@@ -1528,7 +1528,7 @@
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iget-object v1, p0, Lcom/bumptech/glide/i;->ba:Lcom/bumptech/glide/manager/m;
+    iget-object v1, p0, Lcom/bumptech/glide/i;->bb:Lcom/bumptech/glide/manager/m;
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
@@ -1550,7 +1550,7 @@
     invoke-static {}, Lcom/bumptech/glide/util/k;->eF()V
 
     .line 200
-    iget-object v0, p0, Lcom/bumptech/glide/i;->aZ:Lcom/bumptech/glide/manager/n;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->ba:Lcom/bumptech/glide/manager/n;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/n;->w()V
 
@@ -1565,7 +1565,7 @@
     invoke-static {}, Lcom/bumptech/glide/util/k;->eF()V
 
     .line 221
-    iget-object v0, p0, Lcom/bumptech/glide/i;->aZ:Lcom/bumptech/glide/manager/n;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->ba:Lcom/bumptech/glide/manager/n;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/n;->x()V
 
@@ -1583,7 +1583,7 @@
     invoke-virtual {p0}, Lcom/bumptech/glide/i;->w()V
 
     .line 243
-    iget-object v0, p0, Lcom/bumptech/glide/i;->ba:Lcom/bumptech/glide/manager/m;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->bb:Lcom/bumptech/glide/manager/m;
 
     invoke-interface {v0}, Lcom/bumptech/glide/manager/m;->cQ()Ljava/util/Set;
 
@@ -1624,7 +1624,7 @@
     invoke-static {}, Lcom/bumptech/glide/util/k;->eF()V
 
     .line 256
-    iget-object v0, p0, Lcom/bumptech/glide/i;->aZ:Lcom/bumptech/glide/manager/n;
+    iget-object v0, p0, Lcom/bumptech/glide/i;->ba:Lcom/bumptech/glide/manager/n;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/n;->z()V
 

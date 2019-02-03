@@ -37,7 +37,7 @@
 
 
 # instance fields
-.field private final da:Landroid/content/res/AssetManager;
+.field private final dc:Landroid/content/res/AssetManager;
 
 .field private final iJ:Lcom/bumptech/glide/load/model/a$a;
     .annotation system Ldalvik/annotation/Signature;
@@ -80,7 +80,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 32
-    iput-object p1, p0, Lcom/bumptech/glide/load/model/a;->da:Landroid/content/res/AssetManager;
+    iput-object p1, p0, Lcom/bumptech/glide/load/model/a;->dc:Landroid/content/res/AssetManager;
 
     .line 33
     iput-object p2, p0, Lcom/bumptech/glide/load/model/a;->iJ:Lcom/bumptech/glide/load/model/a$a;
@@ -133,7 +133,7 @@
 
     iget-object p1, p0, Lcom/bumptech/glide/load/model/a;->iJ:Lcom/bumptech/glide/load/model/a$a;
 
-    iget-object v0, p0, Lcom/bumptech/glide/load/model/a;->da:Landroid/content/res/AssetManager;
+    iget-object v0, p0, Lcom/bumptech/glide/load/model/a;->dc:Landroid/content/res/AssetManager;
 
     invoke-interface {p1, v0, p2}, Lcom/bumptech/glide/load/model/a$a;->d(Landroid/content/res/AssetManager;Ljava/lang/String;)Lcom/bumptech/glide/load/a/d;
 

@@ -11,10 +11,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Scroller;
 import com.android.camera.Util;
+import com.android.camera.log.Log;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.CameraAction;
 
 public class HorizontalSlideView extends View {
+    private static final String TAG = "HSlideView";
     private HorizontalDrawAdapter mDrawAdapter;
     private GestureDetector mGestureDetector;
     private OnGestureListener mGestureListener = new SimpleOnGestureListener() {
@@ -185,6 +187,12 @@ public class HorizontalSlideView extends View {
         invalidate();
     }
 
+    public void stopScroll() {
+        this.mNeedJustify = true;
+        this.mScroller.forceFinished(true);
+        invalidate();
+    }
+
     public void setSelection(int i) {
         if (this.mSelectedItemIndex != i) {
             this.mNeedJustify = false;
@@ -235,7 +243,9 @@ public class HorizontalSlideView extends View {
                 }
                 onPositionSelectListener.onPositionSelect(this, f);
             }
+            return;
         }
+        Log.d(TAG, "is doing action, ignore select.");
     }
 
     protected void onSizeChanged(int i, int i2, int i3, int i4) {
@@ -250,6 +260,10 @@ public class HorizontalSlideView extends View {
             switch (action) {
                 case 0:
                     this.mTouchDown = true;
+                    if (!canPositionScroll()) {
+                        Log.d(TAG, "cannot scroll, do not process the down event.");
+                        return false;
+                    }
                     break;
                 case 1:
                     break;
@@ -422,5 +436,9 @@ public class HorizontalSlideView extends View {
 
     public boolean isScrolling() {
         return this.mIsScrollingPerformed;
+    }
+
+    public boolean canPositionScroll() {
+        return true;
     }
 }

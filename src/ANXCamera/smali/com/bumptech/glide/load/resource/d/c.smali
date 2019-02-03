@@ -20,7 +20,7 @@
 # instance fields
 .field private final i:Lcom/bumptech/glide/load/engine/bitmap_recycle/d;
 
-.field private final mb:Lcom/bumptech/glide/load/resource/d/e;
+.field private final ma:Lcom/bumptech/glide/load/resource/d/e;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/resource/d/e<",
@@ -30,7 +30,7 @@
     .end annotation
 .end field
 
-.field private final mc:Lcom/bumptech/glide/load/resource/d/e;
+.field private final mb:Lcom/bumptech/glide/load/resource/d/e;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/resource/d/e<",
@@ -76,10 +76,10 @@
     iput-object p1, p0, Lcom/bumptech/glide/load/resource/d/c;->i:Lcom/bumptech/glide/load/engine/bitmap_recycle/d;
 
     .line 29
-    iput-object p2, p0, Lcom/bumptech/glide/load/resource/d/c;->mb:Lcom/bumptech/glide/load/resource/d/e;
+    iput-object p2, p0, Lcom/bumptech/glide/load/resource/d/c;->ma:Lcom/bumptech/glide/load/resource/d/e;
 
     .line 30
-    iput-object p3, p0, Lcom/bumptech/glide/load/resource/d/c;->mc:Lcom/bumptech/glide/load/resource/d/e;
+    iput-object p3, p0, Lcom/bumptech/glide/load/resource/d/c;->mb:Lcom/bumptech/glide/load/resource/d/e;
 
     .line 31
     return-void
@@ -151,7 +151,7 @@
     if-eqz v1, :cond_0
 
     .line 39
-    iget-object p1, p0, Lcom/bumptech/glide/load/resource/d/c;->mb:Lcom/bumptech/glide/load/resource/d/e;
+    iget-object p1, p0, Lcom/bumptech/glide/load/resource/d/c;->ma:Lcom/bumptech/glide/load/resource/d/e;
 
     check-cast v0, Landroid/graphics/drawable/BitmapDrawable;
 
@@ -180,7 +180,7 @@
     if-eqz v0, :cond_1
 
     .line 42
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/d/c;->mc:Lcom/bumptech/glide/load/resource/d/e;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/d/c;->mb:Lcom/bumptech/glide/load/resource/d/e;
 
     invoke-static {p1}, Lcom/bumptech/glide/load/resource/d/c;->l(Lcom/bumptech/glide/load/engine/p;)Lcom/bumptech/glide/load/engine/p;
 

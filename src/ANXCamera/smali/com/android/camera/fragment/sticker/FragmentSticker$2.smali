@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/sticker/FragmentSticker;)V
     .locals 0
 
-    .line 77
+    .line 78
     iput-object p1, p0, Lcom/android/camera/fragment/sticker/FragmentSticker$2;->this$0:Lcom/android/camera/fragment/sticker/FragmentSticker;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -42,14 +42,14 @@
         .end annotation
     .end param
 
-    .line 80
+    .line 81
     const/4 p1, 0x0
 
     packed-switch p2, :pswitch_data_0
 
     goto :goto_0
 
-    .line 85
+    .line 86
     :pswitch_0
     iget-object p2, p0, Lcom/android/camera/fragment/sticker/FragmentSticker$2;->this$0:Lcom/android/camera/fragment/sticker/FragmentSticker;
 
@@ -61,10 +61,10 @@
 
     invoke-virtual {p2, v0, p1}, Lcom/android/camera/ui/NoScrollViewPager;->setCurrentItem(IZ)V
 
-    .line 86
+    .line 87
     goto :goto_0
 
-    .line 82
+    .line 83
     :pswitch_1
     iget-object p2, p0, Lcom/android/camera/fragment/sticker/FragmentSticker$2;->this$0:Lcom/android/camera/fragment/sticker/FragmentSticker;
 
@@ -74,10 +74,10 @@
 
     invoke-virtual {p2, p1, p1}, Lcom/android/camera/ui/NoScrollViewPager;->setCurrentItem(IZ)V
 
-    .line 83
+    .line 84
     nop
 
-    .line 90
+    .line 91
     :goto_0
     iget-object p1, p0, Lcom/android/camera/fragment/sticker/FragmentSticker$2;->this$0:Lcom/android/camera/fragment/sticker/FragmentSticker;
 
@@ -87,7 +87,7 @@
 
     if-eqz p1, :cond_0
 
-    .line 91
+    .line 92
     iget-object p1, p0, Lcom/android/camera/fragment/sticker/FragmentSticker$2;->this$0:Lcom/android/camera/fragment/sticker/FragmentSticker;
 
     invoke-static {p1}, Lcom/android/camera/fragment/sticker/FragmentSticker;->access$200(Lcom/android/camera/fragment/sticker/FragmentSticker;)Lcom/android/camera/fragment/sticker/FragmentSticker$OnRadioButtonChangedListener;
@@ -96,12 +96,12 @@
 
     invoke-interface {p1}, Lcom/android/camera/fragment/sticker/FragmentSticker$OnRadioButtonChangedListener;->onChanged()V
 
-    .line 93
+    .line 94
     :cond_0
     return-void
 
     :pswitch_data_0
-    .packed-switch 0x7f0d0081
+    .packed-switch 0x7f0d0097
         :pswitch_1
         :pswitch_0
     .end packed-switch

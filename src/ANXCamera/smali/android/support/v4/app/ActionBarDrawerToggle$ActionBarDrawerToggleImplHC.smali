@@ -19,7 +19,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 132
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v4/app/ActionBarDrawerToggle$1;)V
-    .locals 0
+    .registers 2
     .param p1, "x0"    # Landroid/support/v4/app/ActionBarDrawerToggle$1;
 
     .line 132
@@ -40,7 +40,7 @@
 
 # virtual methods
 .method public getThemeUpIndicator(Landroid/app/Activity;)Landroid/graphics/drawable/Drawable;
-    .locals 1
+    .registers 3
     .param p1, "activity"    # Landroid/app/Activity;
 
     .line 135
@@ -52,7 +52,7 @@
 .end method
 
 .method public setActionBarDescription(Ljava/lang/Object;Landroid/app/Activity;I)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "activity"    # Landroid/app/Activity;
     .param p3, "contentDescRes"    # I
@@ -66,7 +66,7 @@
 .end method
 
 .method public setActionBarUpIndicator(Ljava/lang/Object;Landroid/app/Activity;Landroid/graphics/drawable/Drawable;I)Ljava/lang/Object;
-    .locals 1
+    .registers 6
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "activity"    # Landroid/app/Activity;
     .param p3, "themeImage"    # Landroid/graphics/drawable/Drawable;

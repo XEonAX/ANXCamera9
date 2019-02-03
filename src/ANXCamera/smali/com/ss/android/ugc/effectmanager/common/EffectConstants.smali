@@ -32,6 +32,12 @@
 
 .field public static final EFFECT_DOWNLOAD_FAILED:I = 0x1a
 
+.field public static final EFFECT_TYPE_COLLECT:I = 0x1
+
+.field public static final EFFECT_TYPE_NORMAL:I = 0x0
+
+.field public static final EFFECT_TYPE_SCHEME:I = 0x2
+
 .field public static final FINAL_SPEED_MEASURE:I = 0x1f
 
 .field public static final GET:Ljava/lang/String; = "GET"

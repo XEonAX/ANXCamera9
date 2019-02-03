@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 123
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public cancelNotification(Landroid/app/NotificationManager;Ljava/lang/String;I)V
-    .locals 0
+    .registers 4
     .param p1, "notificationManager"    # Landroid/app/NotificationManager;
     .param p2, "tag"    # Ljava/lang/String;
     .param p3, "id"    # I
@@ -43,7 +43,7 @@
 .end method
 
 .method public getSideChannelBindFlags()I
-    .locals 1
+    .registers 2
 
     .line 138
     const/4 v0, 0x1
@@ -52,7 +52,7 @@
 .end method
 
 .method public postNotification(Landroid/app/NotificationManager;Ljava/lang/String;ILandroid/app/Notification;)V
-    .locals 0
+    .registers 5
     .param p1, "notificationManager"    # Landroid/app/NotificationManager;
     .param p2, "tag"    # Ljava/lang/String;
     .param p3, "id"    # I

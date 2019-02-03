@@ -42,7 +42,7 @@
 
 # direct methods
 .method private constructor <init>(Landroid/support/v7/widget/StaggeredGridLayoutManager;I)V
-    .locals 0
+    .registers 3
     .param p2, "index"    # I
 
     .line 2103
@@ -78,7 +78,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v7/widget/StaggeredGridLayoutManager;ILandroid/support/v7/widget/StaggeredGridLayoutManager$1;)V
-    .locals 0
+    .registers 4
     .param p1, "x0"    # Landroid/support/v7/widget/StaggeredGridLayoutManager;
     .param p2, "x1"    # I
     .param p3, "x2"    # Landroid/support/v7/widget/StaggeredGridLayoutManager$1;
@@ -90,7 +90,7 @@
 .end method
 
 .method static synthetic access$300(Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;)Ljava/util/ArrayList;
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;
 
     .line 2094
@@ -102,7 +102,7 @@
 
 # virtual methods
 .method appendToSpan(Landroid/view/View;)V
-    .locals 4
+    .registers 6
     .param p1, "view"    # Landroid/view/View;
 
     .line 2188
@@ -133,27 +133,27 @@
 
     const/4 v3, 0x1
 
-    if-ne v2, v3, :cond_0
+    if-ne v2, v3, :cond_1a
 
     .line 2193
     iput v1, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedStart:I
 
     .line 2195
-    :cond_0
+    :cond_1a
     invoke-virtual {v0}, Landroid/support/v7/widget/StaggeredGridLayoutManager$LayoutParams;->isItemRemoved()Z
 
     move-result v1
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_26
 
     invoke-virtual {v0}, Landroid/support/v7/widget/StaggeredGridLayoutManager$LayoutParams;->isItemChanged()Z
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_33
 
     .line 2196
-    :cond_1
+    :cond_26
     iget v1, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mDeletedSize:I
 
     iget-object v2, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
@@ -169,19 +169,19 @@
     iput v1, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mDeletedSize:I
 
     .line 2198
-    :cond_2
+    :cond_33
     return-void
 .end method
 
 .method cacheReferenceLineAndClear(ZI)V
-    .locals 3
+    .registers 6
     .param p1, "reverseLayout"    # Z
     .param p2, "offset"    # I
 
     .line 2203
     const/high16 v0, -0x80000000
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_9
 
     .line 2204
     invoke-virtual {p0, v0}, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->getEndLine(I)I
@@ -189,29 +189,29 @@
     move-result v1
 
     .local v1, "reference":I
-    goto :goto_0
+    goto :goto_d
 
     .line 2206
     .end local v1    # "reference":I
-    :cond_0
+    :cond_9
     invoke-virtual {p0, v0}, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->getStartLine(I)I
 
     move-result v1
 
     .line 2208
     .restart local v1    # "reference":I
-    :goto_0
+    :goto_d
     invoke-virtual {p0}, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->clear()V
 
     .line 2209
-    if-ne v1, v0, :cond_1
+    if-ne v1, v0, :cond_13
 
     .line 2210
     return-void
 
     .line 2212
-    :cond_1
-    if-eqz p1, :cond_2
+    :cond_13
+    if-eqz p1, :cond_1f
 
     iget-object v2, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
 
@@ -221,10 +221,10 @@
 
     move-result v2
 
-    if-lt v1, v2, :cond_3
+    if-lt v1, v2, :cond_2b
 
-    :cond_2
-    if-nez p1, :cond_4
+    :cond_1f
+    if-nez p1, :cond_2c
 
     iget-object v2, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
 
@@ -234,21 +234,21 @@
 
     move-result v2
 
-    if-le v1, v2, :cond_4
+    if-le v1, v2, :cond_2c
 
     .line 2214
-    :cond_3
+    :cond_2b
     return-void
 
     .line 2216
-    :cond_4
-    if-eq p2, v0, :cond_5
+    :cond_2c
+    if-eq p2, v0, :cond_2f
 
     .line 2217
     add-int/2addr v1, p2
 
     .line 2219
-    :cond_5
+    :cond_2f
     iput v1, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedEnd:I
 
     iput v1, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedStart:I
@@ -258,7 +258,7 @@
 .end method
 
 .method calculateCachedEnd()V
-    .locals 5
+    .registers 6
 
     .line 2153
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
@@ -300,7 +300,7 @@
     .line 2156
     iget-boolean v3, v1, Landroid/support/v7/widget/StaggeredGridLayoutManager$LayoutParams;->mFullSpan:Z
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_3f
 
     .line 2157
     iget-object v3, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
@@ -317,11 +317,11 @@
 
     .line 2159
     .local v3, "fsi":Landroid/support/v7/widget/StaggeredGridLayoutManager$LazySpanLookup$FullSpanItem;
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_3f
 
     iget v4, v3, Landroid/support/v7/widget/StaggeredGridLayoutManager$LazySpanLookup$FullSpanItem;->mGapDir:I
 
-    if-ne v4, v2, :cond_0
+    if-ne v4, v2, :cond_3f
 
     .line 2160
     iget v2, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedEnd:I
@@ -338,12 +338,12 @@
 
     .line 2163
     .end local v3    # "fsi":Landroid/support/v7/widget/StaggeredGridLayoutManager$LazySpanLookup$FullSpanItem;
-    :cond_0
+    :cond_3f
     return-void
 .end method
 
 .method calculateCachedStart()V
-    .locals 5
+    .registers 6
 
     .line 2119
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
@@ -377,7 +377,7 @@
     .line 2122
     iget-boolean v2, v1, Landroid/support/v7/widget/StaggeredGridLayoutManager$LayoutParams;->mFullSpan:Z
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_39
 
     .line 2123
     iget-object v2, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
@@ -394,13 +394,13 @@
 
     .line 2125
     .local v2, "fsi":Landroid/support/v7/widget/StaggeredGridLayoutManager$LazySpanLookup$FullSpanItem;
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_39
 
     iget v3, v2, Landroid/support/v7/widget/StaggeredGridLayoutManager$LazySpanLookup$FullSpanItem;->mGapDir:I
 
     const/4 v4, -0x1
 
-    if-ne v3, v4, :cond_0
+    if-ne v3, v4, :cond_39
 
     .line 2126
     iget v3, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedStart:I
@@ -417,12 +417,12 @@
 
     .line 2129
     .end local v2    # "fsi":Landroid/support/v7/widget/StaggeredGridLayoutManager$LazySpanLookup$FullSpanItem;
-    :cond_0
+    :cond_39
     return-void
 .end method
 
 .method clear()V
-    .locals 1
+    .registers 2
 
     .line 2223
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
@@ -442,18 +442,19 @@
 .end method
 
 .method public findFirstCompletelyVisibleItemPosition()I
-    .locals 3
+    .registers 4
 
     .line 2327
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
 
+    # getter for: Landroid/support/v7/widget/StaggeredGridLayoutManager;->mReverseLayout:Z
     invoke-static {v0}, Landroid/support/v7/widget/StaggeredGridLayoutManager;->access$600(Landroid/support/v7/widget/StaggeredGridLayoutManager;)Z
 
     move-result v0
 
     const/4 v1, 0x1
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_16
 
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
 
@@ -465,14 +466,14 @@
 
     const/4 v2, -0x1
 
-    :goto_0
+    :goto_11
     invoke-virtual {p0, v0, v2, v1}, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->findOneVisibleChild(IIZ)I
 
     move-result v0
 
-    goto :goto_1
+    goto :goto_1e
 
-    :cond_0
+    :cond_16
     const/4 v0, 0x0
 
     iget-object v2, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
@@ -481,25 +482,26 @@
 
     move-result v2
 
-    goto :goto_0
+    goto :goto_11
 
-    :goto_1
+    :goto_1e
     return v0
 .end method
 
 .method public findFirstVisibleItemPosition()I
-    .locals 3
+    .registers 4
 
     .line 2321
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
 
+    # getter for: Landroid/support/v7/widget/StaggeredGridLayoutManager;->mReverseLayout:Z
     invoke-static {v0}, Landroid/support/v7/widget/StaggeredGridLayoutManager;->access$600(Landroid/support/v7/widget/StaggeredGridLayoutManager;)Z
 
     move-result v0
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_17
 
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
 
@@ -515,9 +517,9 @@
 
     move-result v0
 
-    goto :goto_0
+    goto :goto_21
 
-    :cond_0
+    :cond_17
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
@@ -528,23 +530,24 @@
 
     move-result v0
 
-    :goto_0
+    :goto_21
     return v0
 .end method
 
 .method public findLastCompletelyVisibleItemPosition()I
-    .locals 3
+    .registers 4
 
     .line 2339
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
 
+    # getter for: Landroid/support/v7/widget/StaggeredGridLayoutManager;->mReverseLayout:Z
     invoke-static {v0}, Landroid/support/v7/widget/StaggeredGridLayoutManager;->access$600(Landroid/support/v7/widget/StaggeredGridLayoutManager;)Z
 
     move-result v0
 
     const/4 v1, 0x1
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_15
 
     const/4 v0, 0x0
 
@@ -554,14 +557,14 @@
 
     move-result v2
 
-    :goto_0
+    :goto_10
     invoke-virtual {p0, v0, v2, v1}, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->findOneVisibleChild(IIZ)I
 
     move-result v0
 
-    goto :goto_1
+    goto :goto_1e
 
-    :cond_0
+    :cond_15
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
@@ -572,25 +575,26 @@
 
     const/4 v2, -0x1
 
-    goto :goto_0
+    goto :goto_10
 
-    :goto_1
+    :goto_1e
     return v0
 .end method
 
 .method public findLastVisibleItemPosition()I
-    .locals 3
+    .registers 4
 
     .line 2333
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
 
+    # getter for: Landroid/support/v7/widget/StaggeredGridLayoutManager;->mReverseLayout:Z
     invoke-static {v0}, Landroid/support/v7/widget/StaggeredGridLayoutManager;->access$600(Landroid/support/v7/widget/StaggeredGridLayoutManager;)Z
 
     move-result v0
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_14
 
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
 
@@ -602,9 +606,9 @@
 
     move-result v0
 
-    goto :goto_0
+    goto :goto_21
 
-    :cond_0
+    :cond_14
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
@@ -619,12 +623,12 @@
 
     move-result v0
 
-    :goto_0
+    :goto_21
     return v0
 .end method
 
 .method findOneVisibleChild(IIZ)I
-    .locals 8
+    .registers 12
     .param p1, "fromIndex"    # I
     .param p2, "toIndex"    # I
     .param p3, "completelyVisible"    # Z
@@ -652,23 +656,23 @@
     .local v1, "end":I
     const/4 v2, -0x1
 
-    if-le p2, p1, :cond_0
+    if-le p2, p1, :cond_15
 
     const/4 v3, 0x1
 
-    goto :goto_0
+    goto :goto_16
 
-    :cond_0
+    :cond_15
     move v3, v2
 
     .line 2348
     .local v3, "next":I
-    :goto_0
+    :goto_16
     move v4, p1
 
     .local v4, "i":I
-    :goto_1
-    if-eq v4, p2, :cond_3
+    :goto_17
+    if-eq v4, p2, :cond_4b
 
     .line 2349
     iget-object v5, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
@@ -701,17 +705,17 @@
 
     .line 2352
     .local v7, "childEnd":I
-    if-ge v6, v1, :cond_2
+    if-ge v6, v1, :cond_49
 
-    if-le v7, v0, :cond_2
+    if-le v7, v0, :cond_49
 
     .line 2353
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_42
 
     .line 2354
-    if-lt v6, v0, :cond_2
+    if-lt v6, v0, :cond_49
 
-    if-gt v7, v1, :cond_2
+    if-gt v7, v1, :cond_49
 
     .line 2355
     iget-object v2, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
@@ -723,7 +727,7 @@
     return v2
 
     .line 2358
-    :cond_1
+    :cond_42
     iget-object v2, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
 
     invoke-virtual {v2, v5}, Landroid/support/v7/widget/StaggeredGridLayoutManager;->getPosition(Landroid/view/View;)I
@@ -736,19 +740,19 @@
     .end local v5    # "child":Landroid/view/View;
     .end local v6    # "childStart":I
     .end local v7    # "childEnd":I
-    :cond_2
+    :cond_49
     add-int/2addr v4, v3
 
-    goto :goto_1
+    goto :goto_17
 
     .line 2362
     .end local v4    # "i":I
-    :cond_3
+    :cond_4b
     return v2
 .end method
 
 .method public getDeletedSize()I
-    .locals 1
+    .registers 2
 
     .line 2265
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mDeletedSize:I
@@ -757,14 +761,14 @@
 .end method
 
 .method getEndLine()I
-    .locals 2
+    .registers 3
 
     .line 2167
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedEnd:I
 
     const/high16 v1, -0x80000000
 
-    if-eq v0, v1, :cond_0
+    if-eq v0, v1, :cond_9
 
     .line 2168
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedEnd:I
@@ -772,7 +776,7 @@
     return v0
 
     .line 2170
-    :cond_0
+    :cond_9
     invoke-virtual {p0}, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->calculateCachedEnd()V
 
     .line 2171
@@ -782,7 +786,7 @@
 .end method
 
 .method getEndLine(I)I
-    .locals 2
+    .registers 4
     .param p1, "def"    # I
 
     .line 2141
@@ -790,7 +794,7 @@
 
     const/high16 v1, -0x80000000
 
-    if-eq v0, v1, :cond_0
+    if-eq v0, v1, :cond_9
 
     .line 2142
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedEnd:I
@@ -798,7 +802,7 @@
     return v0
 
     .line 2144
-    :cond_0
+    :cond_9
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
@@ -807,13 +811,13 @@
 
     .line 2145
     .local v0, "size":I
-    if-nez v0, :cond_1
+    if-nez v0, :cond_12
 
     .line 2146
     return p1
 
     .line 2148
-    :cond_1
+    :cond_12
     invoke-virtual {p0}, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->calculateCachedEnd()V
 
     .line 2149
@@ -823,7 +827,7 @@
 .end method
 
 .method getLayoutParams(Landroid/view/View;)Landroid/support/v7/widget/StaggeredGridLayoutManager$LayoutParams;
-    .locals 1
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
 
     .line 2269
@@ -837,7 +841,7 @@
 .end method
 
 .method getNormalizedOffset(III)I
-    .locals 2
+    .registers 6
     .param p1, "dt"    # I
     .param p2, "targetStart"    # I
     .param p3, "targetEnd"    # I
@@ -851,14 +855,14 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_a
 
     .line 2284
     return v1
 
     .line 2286
-    :cond_0
-    if-gez p1, :cond_3
+    :cond_a
+    if-gez p1, :cond_1b
 
     .line 2287
     invoke-virtual {p0}, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->getEndLine()I
@@ -869,30 +873,30 @@
 
     .line 2288
     .local v0, "endSpace":I
-    if-gtz v0, :cond_1
+    if-gtz v0, :cond_14
 
     .line 2289
     return v1
 
     .line 2291
-    :cond_1
+    :cond_14
     neg-int v1, p1
 
-    if-le v1, v0, :cond_2
+    if-le v1, v0, :cond_19
 
     neg-int v1, v0
 
-    goto :goto_0
+    goto :goto_1a
 
-    :cond_2
+    :cond_19
     move v1, p1
 
-    :goto_0
+    :goto_1a
     return v1
 
     .line 2293
     .end local v0    # "endSpace":I
-    :cond_3
+    :cond_1b
     invoke-virtual {p0}, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->getStartLine()I
 
     move-result v0
@@ -901,35 +905,35 @@
 
     .line 2294
     .local v0, "startSpace":I
-    if-gtz v0, :cond_4
+    if-gtz v0, :cond_24
 
     .line 2295
     return v1
 
     .line 2297
-    :cond_4
-    if-ge v0, p1, :cond_5
+    :cond_24
+    if-ge v0, p1, :cond_28
 
     move v1, v0
 
-    goto :goto_1
+    goto :goto_29
 
-    :cond_5
+    :cond_28
     move v1, p1
 
-    :goto_1
+    :goto_29
     return v1
 .end method
 
 .method getStartLine()I
-    .locals 2
+    .registers 3
 
     .line 2133
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedStart:I
 
     const/high16 v1, -0x80000000
 
-    if-eq v0, v1, :cond_0
+    if-eq v0, v1, :cond_9
 
     .line 2134
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedStart:I
@@ -937,7 +941,7 @@
     return v0
 
     .line 2136
-    :cond_0
+    :cond_9
     invoke-virtual {p0}, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->calculateCachedStart()V
 
     .line 2137
@@ -947,7 +951,7 @@
 .end method
 
 .method getStartLine(I)I
-    .locals 2
+    .registers 4
     .param p1, "def"    # I
 
     .line 2108
@@ -955,7 +959,7 @@
 
     const/high16 v1, -0x80000000
 
-    if-eq v0, v1, :cond_0
+    if-eq v0, v1, :cond_9
 
     .line 2109
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedStart:I
@@ -963,20 +967,20 @@
     return v0
 
     .line 2111
-    :cond_0
+    :cond_9
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_12
 
     .line 2112
     return p1
 
     .line 2114
-    :cond_1
+    :cond_12
     invoke-virtual {p0}, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->calculateCachedStart()V
 
     .line 2115
@@ -986,7 +990,7 @@
 .end method
 
 .method invalidateCache()V
-    .locals 1
+    .registers 2
 
     .line 2229
     const/high16 v0, -0x80000000
@@ -1001,7 +1005,7 @@
 .end method
 
 .method isEmpty(II)Z
-    .locals 5
+    .registers 8
     .param p1, "start"    # I
     .param p2, "end"    # I
 
@@ -1019,8 +1023,8 @@
     move v2, v1
 
     .local v2, "i":I
-    :goto_0
-    if-ge v2, v0, :cond_1
+    :goto_8
+    if-ge v2, v0, :cond_2a
 
     .line 2311
     iget-object v3, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
@@ -1041,7 +1045,7 @@
 
     move-result v4
 
-    if-ge v4, p2, :cond_0
+    if-ge v4, p2, :cond_27
 
     iget-object v4, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
 
@@ -1051,28 +1055,28 @@
 
     move-result v4
 
-    if-le v4, p1, :cond_0
+    if-le v4, p1, :cond_27
 
     .line 2314
     return v1
 
     .line 2310
     .end local v3    # "view":Landroid/view/View;
-    :cond_0
+    :cond_27
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_8
 
     .line 2317
     .end local v2    # "i":I
-    :cond_1
+    :cond_2a
     const/4 v1, 0x1
 
     return v1
 .end method
 
 .method onOffset(I)V
-    .locals 2
+    .registers 4
     .param p1, "dt"    # I
 
     .line 2273
@@ -1080,7 +1084,7 @@
 
     const/high16 v1, -0x80000000
 
-    if-eq v0, v1, :cond_0
+    if-eq v0, v1, :cond_b
 
     .line 2274
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedStart:I
@@ -1090,10 +1094,10 @@
     iput v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedStart:I
 
     .line 2276
-    :cond_0
+    :cond_b
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedEnd:I
 
-    if-eq v0, v1, :cond_1
+    if-eq v0, v1, :cond_14
 
     .line 2277
     iget v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedEnd:I
@@ -1103,12 +1107,12 @@
     iput v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedEnd:I
 
     .line 2279
-    :cond_1
+    :cond_14
     return-void
 .end method
 
 .method popEnd()V
-    .locals 5
+    .registers 6
 
     .line 2238
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
@@ -1146,16 +1150,16 @@
 
     move-result v3
 
-    if-nez v3, :cond_0
+    if-nez v3, :cond_23
 
     invoke-virtual {v2}, Landroid/support/v7/widget/StaggeredGridLayoutManager$LayoutParams;->isItemChanged()Z
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_30
 
     .line 2243
-    :cond_0
+    :cond_23
     iget v3, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mDeletedSize:I
 
     iget-object v4, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
@@ -1171,18 +1175,18 @@
     iput v3, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mDeletedSize:I
 
     .line 2245
-    :cond_1
+    :cond_30
     const/high16 v3, -0x80000000
 
     const/4 v4, 0x1
 
-    if-ne v0, v4, :cond_2
+    if-ne v0, v4, :cond_37
 
     .line 2246
     iput v3, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedStart:I
 
     .line 2248
-    :cond_2
+    :cond_37
     iput v3, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedEnd:I
 
     .line 2249
@@ -1190,7 +1194,7 @@
 .end method
 
 .method popStart()V
-    .locals 5
+    .registers 6
 
     .line 2252
     iget-object v0, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mViews:Ljava/util/ArrayList;
@@ -1224,27 +1228,27 @@
 
     const/high16 v3, -0x80000000
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_1c
 
     .line 2256
     iput v3, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedEnd:I
 
     .line 2258
-    :cond_0
+    :cond_1c
     invoke-virtual {v1}, Landroid/support/v7/widget/StaggeredGridLayoutManager$LayoutParams;->isItemRemoved()Z
 
     move-result v2
 
-    if-nez v2, :cond_1
+    if-nez v2, :cond_28
 
     invoke-virtual {v1}, Landroid/support/v7/widget/StaggeredGridLayoutManager$LayoutParams;->isItemChanged()Z
 
     move-result v2
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_35
 
     .line 2259
-    :cond_1
+    :cond_28
     iget v2, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mDeletedSize:I
 
     iget-object v4, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
@@ -1260,7 +1264,7 @@
     iput v2, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mDeletedSize:I
 
     .line 2261
-    :cond_2
+    :cond_35
     iput v3, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedStart:I
 
     .line 2262
@@ -1268,7 +1272,7 @@
 .end method
 
 .method prependToSpan(Landroid/view/View;)V
-    .locals 4
+    .registers 6
     .param p1, "view"    # Landroid/view/View;
 
     .line 2175
@@ -1301,27 +1305,27 @@
 
     const/4 v3, 0x1
 
-    if-ne v2, v3, :cond_0
+    if-ne v2, v3, :cond_1b
 
     .line 2180
     iput v1, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mCachedEnd:I
 
     .line 2182
-    :cond_0
+    :cond_1b
     invoke-virtual {v0}, Landroid/support/v7/widget/StaggeredGridLayoutManager$LayoutParams;->isItemRemoved()Z
 
     move-result v1
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_27
 
     invoke-virtual {v0}, Landroid/support/v7/widget/StaggeredGridLayoutManager$LayoutParams;->isItemChanged()Z
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_34
 
     .line 2183
-    :cond_1
+    :cond_27
     iget v1, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mDeletedSize:I
 
     iget-object v2, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->this$0:Landroid/support/v7/widget/StaggeredGridLayoutManager;
@@ -1337,12 +1341,12 @@
     iput v1, p0, Landroid/support/v7/widget/StaggeredGridLayoutManager$Span;->mDeletedSize:I
 
     .line 2185
-    :cond_2
+    :cond_34
     return-void
 .end method
 
 .method setLine(I)V
-    .locals 0
+    .registers 2
     .param p1, "line"    # I
 
     .line 2234

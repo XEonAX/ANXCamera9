@@ -101,131 +101,131 @@
 .method public constructor <init>()V
     .locals 4
 
-    .line 92
+    .line 85
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 51
+    .line 44
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_iWidth:I
 
-    .line 52
+    .line 45
     iput v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_iHeight:I
 
-    .line 53
+    .line 46
     const/4 v1, 0x0
 
     iput-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_extraDataBuf:Ljava/nio/ByteBuffer;
 
-    .line 54
+    .line 47
     iput-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_spsBuf:Ljava/nio/ByteBuffer;
 
-    .line 55
+    .line 48
     iput-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_ppsBuf:Ljava/nio/ByteBuffer;
 
-    .line 56
+    .line 49
     iput-boolean v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_bIsNeedReconfigure:Z
 
-    .line 58
+    .line 51
     iput-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_format:Landroid/media/MediaFormat;
 
-    .line 60
+    .line 53
     const/4 v2, 0x1
 
     new-array v2, v2, [I
 
     iput-object v2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexID:[I
 
-    .line 61
+    .line 54
     iput-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexture:Landroid/graphics/SurfaceTexture;
 
-    .line 62
+    .line 55
     iput-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surface:Landroid/view/Surface;
 
-    .line 64
+    .line 57
     new-instance v2, Landroid/media/MediaCodec$BufferInfo;
 
     invoke-direct {v2}, Landroid/media/MediaCodec$BufferInfo;-><init>()V
 
     iput-object v2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_bufferInfo:Landroid/media/MediaCodec$BufferInfo;
 
-    .line 66
+    .line 59
     iput-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
-    .line 67
+    .line 60
     iput-boolean v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoderStarted:Z
 
-    .line 69
+    .line 62
     new-instance v2, Ljava/lang/Object;
 
     invoke-direct {v2}, Ljava/lang/Object;-><init>()V
 
     iput-object v2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_frameSyncObject:Ljava/lang/Object;
 
-    .line 70
+    .line 63
     iput-boolean v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_frameAvailable:Z
 
-    .line 72
+    .line 65
     const-wide/high16 v2, -0x8000000000000000L
 
     iput-wide v2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_timestampOfLastDecodedFrame:J
 
-    .line 73
+    .line 66
     iput-wide v2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_timestampOfCurTexFrame:J
 
-    .line 74
+    .line 67
     iput-boolean v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_inputBufferQueued:Z
 
-    .line 75
+    .line 68
     iput v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_pendingInputFrameCount:I
 
-    .line 76
+    .line 69
     iput-boolean v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_sawInputEOS:Z
 
-    .line 77
+    .line 70
     iput-boolean v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_sawOutputEOS:Z
 
-    .line 79
+    .line 72
     iput-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureRender:Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder$SOES2DTextureRender;
 
-    .line 81
+    .line 74
     iput-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureDrawer:Lcom/ss/android/ttve/common/TETextureDrawer;
 
-    .line 82
+    .line 75
     iput-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_sharedContext:Lcom/ss/android/ttve/common/TESharedContext;
 
-    .line 83
+    .line 76
     iput-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_eglStateSaver:Lcom/ss/android/ttve/common/TEEglStateSaver;
 
-    .line 88
+    .line 81
     const-wide/16 v1, 0x0
 
     iput-wide v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->MAX_SLEEP_MS:J
 
-    .line 89
+    .line 82
     const/16 v1, 0xa
 
     iput v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->MAX_DELAY_COUNT:I
 
-    .line 90
+    .line 83
     iput v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_iCurCount:I
 
-    .line 93
+    .line 86
     return-void
 .end method
 
 .method private AwaitNewImage()Z
     .locals 6
 
-    .line 528
+    .line 521
     nop
 
-    .line 530
+    .line 523
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_frameSyncObject:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 531
+    .line 524
     :goto_0
     :try_start_0
     iget-boolean v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_frameAvailable:Z
@@ -236,7 +236,7 @@
 
     if-nez v1, :cond_1
 
-    .line 535
+    .line 528
     :try_start_1
     iget-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_frameSyncObject:Ljava/lang/Object;
 
@@ -244,12 +244,12 @@
 
     invoke-virtual {v1, v3, v4}, Ljava/lang/Object;->wait(J)V
 
-    .line 536
+    .line 529
     iget-boolean v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_frameAvailable:Z
 
     if-nez v1, :cond_0
 
-    .line 538
+    .line 531
     const-string v1, "MediaCodecDecoder"
 
     const-string v3, "Frame wait timed out!"
@@ -259,21 +259,21 @@
     .catch Ljava/lang/InterruptedException; {:try_start_1 .. :try_end_1} :catch_0
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 539
+    .line 532
     :try_start_2
     monitor-exit v0
 
     return v2
 
-    .line 546
+    .line 539
     :cond_0
     goto :goto_0
 
-    .line 541
+    .line 534
     :catch_0
     move-exception v1
 
-    .line 543
+    .line 536
     const-string v3, "MediaCodecDecoder"
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -296,27 +296,27 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 544
+    .line 537
     invoke-virtual {v1}, Ljava/lang/InterruptedException;->printStackTrace()V
 
-    .line 545
+    .line 538
     monitor-exit v0
 
     return v2
 
-    .line 549
+    .line 542
     :cond_1
     iput-boolean v2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_frameAvailable:Z
 
-    .line 550
+    .line 543
     monitor-exit v0
 
-    .line 565
+    .line 558
     const/4 v0, 0x1
 
     return v0
 
-    .line 550
+    .line 543
     :catchall_0
     move-exception v1
 
@@ -339,19 +339,19 @@
 
     move/from16 v5, p2
 
-    .line 570
+    .line 563
     nop
 
-    .line 571
+    .line 564
     nop
 
-    .line 572
+    .line 565
     nop
 
-    .line 573
+    .line 566
     nop
 
-    .line 575
+    .line 568
     iget-boolean v0, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_sawInputEOS:Z
 
     const/4 v9, 0x0
@@ -360,7 +360,7 @@
 
     if-nez v0, :cond_4
 
-    .line 577
+    .line 570
     iget-object v0, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
     const-wide/16 v2, 0x7530
@@ -369,16 +369,16 @@
 
     move-result v0
 
-    .line 578
+    .line 571
     nop
 
-    .line 579
+    .line 572
     move v4, v9
 
     :cond_0
     if-gez v0, :cond_1
 
-    .line 581
+    .line 574
     const-wide/16 v6, 0x5
 
     :try_start_0
@@ -386,19 +386,19 @@
     :try_end_0
     .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 584
+    .line 577
     goto :goto_0
 
-    .line 582
+    .line 575
     :catch_0
     move-exception v0
 
-    .line 583
+    .line 576
     move-object v6, v0
 
     invoke-virtual {v6}, Ljava/lang/InterruptedException;->printStackTrace()V
 
-    .line 585
+    .line 578
     :goto_0
     iget-object v0, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
@@ -406,15 +406,15 @@
 
     move-result v0
 
-    .line 586
+    .line 579
     add-int/2addr v4, v10
 
-    .line 587
+    .line 580
     const/16 v6, 0x14
 
     if-lt v4, v6, :cond_0
 
-    .line 588
+    .line 581
     const-string v2, "MediaCodecDecoder"
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -433,24 +433,24 @@
 
     invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 589
+    .line 582
     nop
 
-    .line 594
+    .line 587
     :cond_1
     move v12, v0
 
     if-ltz v12, :cond_3
 
-    .line 595
+    .line 588
     invoke-direct {v1, v12}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->getInputBufferByIdx(I)Ljava/nio/ByteBuffer;
 
     move-result-object v0
 
-    .line 597
+    .line 590
     if-nez v5, :cond_2
 
-    .line 599
+    .line 592
     iget-object v11, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
     const/4 v13, 0x0
@@ -463,21 +463,21 @@
 
     invoke-virtual/range {v11 .. v17}, Landroid/media/MediaCodec;->queueInputBuffer(IIIJI)V
 
-    .line 600
+    .line 593
     iput-boolean v10, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_sawInputEOS:Z
 
     goto :goto_1
 
-    .line 604
+    .line 597
     :cond_2
     invoke-virtual {v0}, Ljava/nio/ByteBuffer;->clear()Ljava/nio/Buffer;
 
-    .line 605
+    .line 598
     move-object/from16 v2, p1
 
     invoke-virtual {v0, v2, v9, v5}, Ljava/nio/ByteBuffer;->put([BII)Ljava/nio/ByteBuffer;
 
-    .line 607
+    .line 600
     iget-object v2, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
     const/4 v4, 0x0
@@ -490,32 +490,32 @@
 
     invoke-virtual/range {v2 .. v8}, Landroid/media/MediaCodec;->queueInputBuffer(IIIJI)V
 
-    .line 612
+    .line 605
     iput-boolean v10, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_inputBufferQueued:Z
 
-    .line 613
+    .line 606
     iget v0, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_pendingInputFrameCount:I
 
     add-int/2addr v0, v10
 
     iput v0, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_pendingInputFrameCount:I
 
-    .line 617
+    .line 610
     :goto_1
     goto :goto_2
 
-    .line 618
+    .line 611
     :cond_3
     nop
 
-    .line 619
+    .line 612
     const-string v0, "MediaCodecDecoder"
 
     const-string v2, "Input buffer not available"
 
     invoke-static {v0, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 627
+    .line 620
     move v0, v10
 
     goto :goto_3
@@ -529,12 +529,12 @@
 
     if-eqz v2, :cond_5
 
-    .line 628
+    .line 621
     const v2, 0x927c0
 
     goto :goto_4
 
-    .line 629
+    .line 622
     :cond_5
     iget v2, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_pendingInputFrameCount:I
 
@@ -542,19 +542,19 @@
 
     if-le v2, v3, :cond_6
 
-    .line 630
+    .line 623
     const/16 v2, 0x7530
 
     goto :goto_4
 
-    .line 634
+    .line 627
     :cond_6
     nop
 
-    .line 638
+    .line 631
     move v2, v9
 
-    .line 641
+    .line 634
     :goto_4
     iget-object v3, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
@@ -566,48 +566,48 @@
 
     move-result v3
 
-    .line 642
+    .line 635
     const/4 v4, -0x3
 
     if-ne v3, v4, :cond_7
 
     goto :goto_4
 
-    .line 646
+    .line 639
     :cond_7
     const/4 v5, -0x2
 
     if-ne v3, v5, :cond_8
 
-    .line 647
+    .line 640
     iget-object v3, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
     invoke-virtual {v3}, Landroid/media/MediaCodec;->getOutputFormat()Landroid/media/MediaFormat;
 
-    .line 650
+    .line 643
     goto :goto_4
 
-    .line 656
+    .line 649
     :cond_8
     const/4 v2, -0x1
 
     if-ne v3, v2, :cond_a
 
-    .line 742
+    .line 735
     if-eqz v0, :cond_9
 
-    .line 743
+    .line 736
     return v4
 
-    .line 745
+    .line 738
     :cond_9
     return v5
 
-    .line 660
+    .line 653
     :cond_a
     if-gez v3, :cond_b
 
-    .line 661
+    .line 654
     const-string v0, "MediaCodecDecoder"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -626,10 +626,10 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 662
+    .line 655
     return v5
 
-    .line 669
+    .line 662
     :cond_b
     iget-object v0, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_bufferInfo:Landroid/media/MediaCodec$BufferInfo;
 
@@ -639,36 +639,36 @@
 
     if-eqz v0, :cond_c
 
-    .line 672
+    .line 665
     iput-boolean v10, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_sawOutputEOS:Z
 
-    .line 676
+    .line 669
     :cond_c
     nop
 
-    .line 702
+    .line 695
     iget-boolean v0, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_sawOutputEOS:Z
 
     if-nez v0, :cond_d
 
-    .line 704
+    .line 697
     iget-object v0, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_bufferInfo:Landroid/media/MediaCodec$BufferInfo;
 
     iget-wide v6, v0, Landroid/media/MediaCodec$BufferInfo;->presentationTimeUs:J
 
     iput-wide v6, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_timestampOfLastDecodedFrame:J
 
-    .line 705
+    .line 698
     iget v0, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_pendingInputFrameCount:I
 
     sub-int/2addr v0, v10
 
     iput v0, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_pendingInputFrameCount:I
 
-    .line 709
+    .line 702
     goto :goto_5
 
-    .line 716
+    .line 709
     :cond_d
     move v10, v9
 
@@ -677,34 +677,34 @@
 
     invoke-virtual {v0, v3, v10}, Landroid/media/MediaCodec;->releaseOutputBuffer(IZ)V
 
-    .line 717
+    .line 710
     if-eqz v10, :cond_10
 
-    .line 721
+    .line 714
     invoke-direct/range {p0 .. p0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->AwaitNewImage()Z
 
     move-result v0
 
     if-eqz v0, :cond_f
 
-    .line 723
+    .line 716
     iget-object v0, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_bufferInfo:Landroid/media/MediaCodec$BufferInfo;
 
     iget-wide v2, v0, Landroid/media/MediaCodec$BufferInfo;->presentationTimeUs:J
 
     iput-wide v2, v1, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_timestampOfCurTexFrame:J
 
-    .line 726
+    .line 719
     invoke-static {}, Landroid/opengl/GLES20;->glGetError()I
 
     move-result v0
 
     if-nez v0, :cond_e
 
-    .line 733
+    .line 726
     return v9
 
-    .line 727
+    .line 720
     :cond_e
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -724,7 +724,7 @@
 
     invoke-static {v2, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 728
+    .line 721
     new-instance v1, Ljava/lang/RuntimeException;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -745,7 +745,7 @@
 
     throw v1
 
-    .line 735
+    .line 728
     :cond_f
     const-string v0, "MediaCodecDecoder"
 
@@ -753,10 +753,10 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 736
+    .line 729
     return v5
 
-    .line 739
+    .line 732
     :cond_10
     return v2
 .end method
@@ -764,13 +764,13 @@
 .method public static IsInAndriodHardwareBlacklist()Z
     .locals 4
 
-    .line 750
+    .line 743
     sget-object v0, Landroid/os/Build;->MANUFACTURER:Ljava/lang/String;
 
-    .line 751
+    .line 744
     sget-object v1, Landroid/os/Build;->MODEL:Ljava/lang/String;
 
-    .line 754
+    .line 747
     const-string v2, "Meizu"
 
     invoke-virtual {v0, v2}, Ljava/lang/String;->compareTo(Ljava/lang/String;)I
@@ -789,10 +789,10 @@
 
     if-nez v2, :cond_0
 
-    .line 755
+    .line 748
     return v3
 
-    .line 757
+    .line 750
     :cond_0
     const-string v2, "Xiaomi"
 
@@ -810,10 +810,10 @@
 
     if-nez v0, :cond_1
 
-    .line 758
+    .line 751
     return v3
 
-    .line 760
+    .line 753
     :cond_1
     const/4 v0, 0x0
 
@@ -823,13 +823,13 @@
 .method public static IsInAndriodHardwareWhitelist()Z
     .locals 4
 
-    .line 764
+    .line 757
     sget-object v0, Landroid/os/Build;->MANUFACTURER:Ljava/lang/String;
 
-    .line 765
+    .line 758
     sget-object v1, Landroid/os/Build;->MODEL:Ljava/lang/String;
 
-    .line 767
+    .line 760
     const-string v2, "samsung"
 
     invoke-virtual {v0, v2}, Ljava/lang/String;->compareTo(Ljava/lang/String;)I
@@ -848,10 +848,10 @@
 
     if-nez v2, :cond_0
 
-    .line 768
+    .line 761
     return v3
 
-    .line 770
+    .line 763
     :cond_0
     const-string v2, "HUAWEI"
 
@@ -869,10 +869,10 @@
 
     if-nez v0, :cond_1
 
-    .line 771
+    .line 764
     return v3
 
-    .line 773
+    .line 766
     :cond_1
     const/4 v0, 0x0
 
@@ -882,7 +882,7 @@
 .method private IsValid()Z
     .locals 1
 
-    .line 461
+    .line 454
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
     if-eqz v0, :cond_0
@@ -901,7 +901,7 @@
 .method private SetupDecoder(Ljava/lang/String;)Z
     .locals 4
 
-    .line 470
+    .line 463
     const/4 v0, 0x0
 
     :try_start_0
@@ -911,7 +911,7 @@
 
     iput-object p1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
-    .line 471
+    .line 464
     iget-object p1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
     iget-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_format:Landroid/media/MediaFormat;
@@ -922,32 +922,32 @@
 
     invoke-virtual {p1, v1, v2, v3, v0}, Landroid/media/MediaCodec;->configure(Landroid/media/MediaFormat;Landroid/view/Surface;Landroid/media/MediaCrypto;I)V
 
-    .line 472
+    .line 465
     iget-object p1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
     invoke-virtual {p1}, Landroid/media/MediaCodec;->start()V
 
-    .line 473
+    .line 466
     const/4 p1, 0x1
 
     iput-boolean p1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoderStarted:Z
 
-    .line 474
+    .line 467
     iput v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_iCurCount:I
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 481
+    .line 474
     nop
 
-    .line 483
+    .line 476
     return p1
 
-    .line 476
+    .line 469
     :catch_0
     move-exception p1
 
-    .line 477
+    .line 470
     const-string v1, "MediaCodecDecoder"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -970,20 +970,20 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 478
+    .line 471
     invoke-virtual {p1}, Ljava/lang/Exception;->printStackTrace()V
 
-    .line 479
+    .line 472
     invoke-virtual {p0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->CleanupDecoder()V
 
-    .line 480
+    .line 473
     return v0
 .end method
 
 .method private createTexture()I
     .locals 4
 
-    .line 334
+    .line 327
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexID:[I
 
     const/4 v1, 0x0
@@ -992,24 +992,24 @@
 
     invoke-static {v2, v0, v1}, Landroid/opengl/GLES20;->glGenTextures(I[II)V
 
-    .line 336
+    .line 329
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexID:[I
 
     aget v0, v0, v1
 
     if-gtz v0, :cond_0
 
-    .line 337
+    .line 330
     const-string v0, "MediaCodecDecoder"
 
     const-string v2, "createTexture failed"
 
     invoke-static {v0, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 338
+    .line 331
     return v1
 
-    .line 341
+    .line 334
     :cond_0
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexID:[I
 
@@ -1019,33 +1019,33 @@
 
     invoke-static {v2, v0}, Landroid/opengl/GLES20;->glBindTexture(II)V
 
-    .line 343
+    .line 336
     const/16 v0, 0x2801
 
     const/high16 v3, 0x46180000    # 9728.0f
 
     invoke-static {v2, v0, v3}, Landroid/opengl/GLES20;->glTexParameterf(IIF)V
 
-    .line 345
+    .line 338
     const/16 v0, 0x2800
 
     const v3, 0x46180400    # 9729.0f
 
     invoke-static {v2, v0, v3}, Landroid/opengl/GLES20;->glTexParameterf(IIF)V
 
-    .line 347
+    .line 340
     const/16 v0, 0x2802
 
     const v3, 0x812f
 
     invoke-static {v2, v0, v3}, Landroid/opengl/GLES20;->glTexParameteri(III)V
 
-    .line 349
+    .line 342
     const/16 v0, 0x2803
 
     invoke-static {v2, v0, v3}, Landroid/opengl/GLES20;->glTexParameteri(III)V
 
-    .line 352
+    .line 345
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexID:[I
 
     aget v0, v0, v1
@@ -1056,7 +1056,7 @@
 .method private deleteTexture()V
     .locals 3
 
-    .line 356
+    .line 349
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexID:[I
 
     const/4 v1, 0x0
@@ -1065,19 +1065,19 @@
 
     if-eqz v0, :cond_0
 
-    .line 357
+    .line 350
     const/4 v0, 0x1
 
     iget-object v2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexID:[I
 
     invoke-static {v0, v2, v1}, Landroid/opengl/GLES20;->glDeleteTextures(I[II)V
 
-    .line 358
+    .line 351
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexID:[I
 
     aput v1, v0, v1
 
-    .line 360
+    .line 353
     :cond_0
     return-void
 .end method
@@ -1085,14 +1085,14 @@
 .method private getInputBufferByIdx(I)Ljava/nio/ByteBuffer;
     .locals 2
 
-    .line 518
+    .line 511
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x15
 
     if-lt v0, v1, :cond_0
 
-    .line 519
+    .line 512
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
     invoke-virtual {v0, p1}, Landroid/media/MediaCodec;->getInputBuffer(I)Ljava/nio/ByteBuffer;
@@ -1101,7 +1101,7 @@
 
     return-object p1
 
-    .line 521
+    .line 514
     :cond_0
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
@@ -1109,7 +1109,7 @@
 
     move-result-object v0
 
-    .line 522
+    .line 515
     aget-object p1, v0, p1
 
     return-object p1
@@ -1118,10 +1118,10 @@
 .method private reconfigureMediaFormat()I
     .locals 4
 
-    .line 305
+    .line 298
     nop
 
-    .line 307
+    .line 300
     const/4 v0, 0x0
 
     :try_start_0
@@ -1137,12 +1137,12 @@
 
     iput-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_format:Landroid/media/MediaFormat;
 
-    .line 309
+    .line 302
     iget-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_spsBuf:Ljava/nio/ByteBuffer;
 
     if-eqz v1, :cond_0
 
-    .line 310
+    .line 303
     iget-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_format:Landroid/media/MediaFormat;
 
     const-string v2, "csd-0"
@@ -1151,13 +1151,13 @@
 
     invoke-virtual {v1, v2, v3}, Landroid/media/MediaFormat;->setByteBuffer(Ljava/lang/String;Ljava/nio/ByteBuffer;)V
 
-    .line 313
+    .line 306
     :cond_0
     iget-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_ppsBuf:Ljava/nio/ByteBuffer;
 
     if-eqz v1, :cond_1
 
-    .line 314
+    .line 307
     iget-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_format:Landroid/media/MediaFormat;
 
     const-string v2, "csd-1"
@@ -1166,7 +1166,7 @@
 
     invoke-virtual {v1, v2, v3}, Landroid/media/MediaFormat;->setByteBuffer(Ljava/lang/String;Ljava/nio/ByteBuffer;)V
 
-    .line 317
+    .line 310
     :cond_1
     sget v1, Landroid/os/Build$VERSION;->SDK_INT:I
 
@@ -1174,7 +1174,7 @@
 
     if-ne v1, v2, :cond_2
 
-    .line 321
+    .line 314
     iget-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_format:Landroid/media/MediaFormat;
 
     const-string v2, "max-input-size"
@@ -1183,21 +1183,21 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 324
+    .line 317
     :cond_2
     nop
 
-    .line 328
+    .line 321
     goto :goto_0
 
-    .line 326
+    .line 319
     :catch_0
     move-exception v0
 
-    .line 327
+    .line 320
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
-    .line 330
+    .line 323
     const/4 v0, -0x1
 
     :goto_0
@@ -1207,10 +1207,10 @@
 .method private restartDecoder()I
     .locals 1
 
-    .line 444
+    .line 437
     invoke-direct {p0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->stopDecoder()I
 
-    .line 445
+    .line 438
     invoke-direct {p0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->startDecoder()I
 
     move-result v0
@@ -1221,7 +1221,7 @@
 .method private startDecoder()I
     .locals 6
 
-    .line 377
+    .line 370
     invoke-direct {p0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->IsValid()Z
 
     move-result v0
@@ -1230,17 +1230,17 @@
 
     if-eqz v0, :cond_0
 
-    .line 378
+    .line 371
     const-string v0, "MediaCodecDecoder"
 
     const-string v2, "You can\'t call startDecoder() twice!"
 
     invoke-static {v0, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 379
+    .line 372
     return v1
 
-    .line 382
+    .line 375
     :cond_0
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexID:[I
 
@@ -1248,22 +1248,22 @@
 
     aget v0, v0, v2
 
-    .line 383
+    .line 376
     if-nez v0, :cond_1
 
-    .line 384
+    .line 377
     invoke-direct {p0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->createTexture()I
 
     move-result v0
 
-    .line 387
+    .line 380
     :cond_1
     if-nez v0, :cond_2
 
-    .line 388
+    .line 381
     return v1
 
-    .line 395
+    .line 388
     :cond_2
     :try_start_0
     new-instance v3, Landroid/graphics/SurfaceTexture;
@@ -1272,7 +1272,7 @@
 
     iput-object v3, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexture:Landroid/graphics/SurfaceTexture;
 
-    .line 396
+    .line 389
     const-string v3, "MediaCodecDecoder"
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -1295,12 +1295,12 @@
 
     invoke-static {v3, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 397
+    .line 390
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexture:Landroid/graphics/SurfaceTexture;
 
     invoke-virtual {v0, p0}, Landroid/graphics/SurfaceTexture;->setOnFrameAvailableListener(Landroid/graphics/SurfaceTexture$OnFrameAvailableListener;)V
 
-    .line 398
+    .line 391
     new-instance v0, Landroid/view/Surface;
 
     iget-object v3, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexture:Landroid/graphics/SurfaceTexture;
@@ -1311,10 +1311,10 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 404
+    .line 397
     nop
 
-    .line 406
+    .line 399
     new-instance v0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder$SOES2DTextureRender;
 
     iget-object v3, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexture:Landroid/graphics/SurfaceTexture;
@@ -1323,12 +1323,12 @@
 
     iput-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureRender:Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder$SOES2DTextureRender;
 
-    .line 407
+    .line 400
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureRender:Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder$SOES2DTextureRender;
 
     invoke-virtual {v0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder$SOES2DTextureRender;->surfaceCreated()V
 
-    .line 409
+    .line 402
     const-string v0, "video/avc"
 
     invoke-direct {p0, v0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->SetupDecoder(Ljava/lang/String;)Z
@@ -1337,21 +1337,21 @@
 
     if-nez v0, :cond_3
 
-    .line 410
+    .line 403
     invoke-direct {p0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->stopDecoder()I
 
-    .line 411
+    .line 404
     return v1
 
-    .line 414
+    .line 407
     :cond_3
     return v2
 
-    .line 399
+    .line 392
     :catch_0
     move-exception v0
 
-    .line 400
+    .line 393
     const-string v2, "MediaCodecDecoder"
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -1374,71 +1374,71 @@
 
     invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 401
+    .line 394
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
-    .line 402
+    .line 395
     invoke-direct {p0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->stopDecoder()I
 
-    .line 403
+    .line 396
     return v1
 .end method
 
 .method private stopDecoder()I
     .locals 2
 
-    .line 419
+    .line 412
     invoke-virtual {p0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->CleanupDecoder()V
 
-    .line 421
+    .line 414
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureRender:Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder$SOES2DTextureRender;
 
     const/4 v1, 0x0
 
     if-eqz v0, :cond_0
 
-    .line 422
+    .line 415
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureRender:Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder$SOES2DTextureRender;
 
     invoke-virtual {v0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder$SOES2DTextureRender;->release()V
 
-    .line 423
+    .line 416
     iput-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureRender:Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder$SOES2DTextureRender;
 
-    .line 426
+    .line 419
     :cond_0
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surface:Landroid/view/Surface;
 
     if-eqz v0, :cond_1
 
-    .line 427
+    .line 420
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surface:Landroid/view/Surface;
 
     invoke-virtual {v0}, Landroid/view/Surface;->release()V
 
-    .line 428
+    .line 421
     iput-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surface:Landroid/view/Surface;
 
-    .line 431
+    .line 424
     :cond_1
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexture:Landroid/graphics/SurfaceTexture;
 
     if-eqz v0, :cond_2
 
-    .line 434
+    .line 427
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexture:Landroid/graphics/SurfaceTexture;
 
     invoke-virtual {v0, v1}, Landroid/graphics/SurfaceTexture;->setOnFrameAvailableListener(Landroid/graphics/SurfaceTexture$OnFrameAvailableListener;)V
 
-    .line 435
+    .line 428
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexture:Landroid/graphics/SurfaceTexture;
 
     invoke-virtual {v0}, Landroid/graphics/SurfaceTexture;->release()V
 
-    .line 436
+    .line 429
     iput-object v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexture:Landroid/graphics/SurfaceTexture;
 
-    .line 439
+    .line 432
     :cond_2
     const/4 v0, 0x0
 
@@ -1450,33 +1450,33 @@
 .method public CleanupDecoder()V
     .locals 5
 
-    .line 487
+    .line 480
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
     const/4 v1, 0x0
 
     if-eqz v0, :cond_2
 
-    .line 488
+    .line 481
     iget-boolean v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoderStarted:Z
 
     if-eqz v0, :cond_1
 
-    .line 490
+    .line 483
     :try_start_0
     iget-boolean v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_inputBufferQueued:Z
 
     if-eqz v0, :cond_0
 
-    .line 491
+    .line 484
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
     invoke-virtual {v0}, Landroid/media/MediaCodec;->flush()V
 
-    .line 492
+    .line 485
     iput-boolean v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_inputBufferQueued:Z
 
-    .line 495
+    .line 488
     :cond_0
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
@@ -1484,14 +1484,14 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 499
+    .line 492
     goto :goto_0
 
-    .line 496
+    .line 489
     :catch_0
     move-exception v0
 
-    .line 497
+    .line 490
     const-string v2, "MediaCodecDecoder"
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -1514,72 +1514,72 @@
 
     invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 498
+    .line 491
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
-    .line 500
+    .line 493
     :goto_0
     iput-boolean v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoderStarted:Z
 
-    .line 502
+    .line 495
     :cond_1
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
     invoke-virtual {v0}, Landroid/media/MediaCodec;->release()V
 
-    .line 503
+    .line 496
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
-    .line 506
+    .line 499
     :cond_2
     const-wide/high16 v2, -0x8000000000000000L
 
     iput-wide v2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_timestampOfLastDecodedFrame:J
 
-    .line 507
+    .line 500
     iput-wide v2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_timestampOfCurTexFrame:J
 
-    .line 508
+    .line 501
     iput v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_pendingInputFrameCount:I
 
-    .line 509
+    .line 502
     iput-boolean v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_sawInputEOS:Z
 
-    .line 510
+    .line 503
     iput-boolean v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_sawOutputEOS:Z
 
-    .line 514
+    .line 507
     return-void
 .end method
 
 .method public closeEncoder()I
     .locals 1
 
-    .line 168
+    .line 161
     invoke-direct {p0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->stopDecoder()I
 
-    .line 170
+    .line 163
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureDrawer:Lcom/ss/android/ttve/common/TETextureDrawer;
 
     if-eqz v0, :cond_0
 
-    .line 171
+    .line 164
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureDrawer:Lcom/ss/android/ttve/common/TETextureDrawer;
 
     invoke-virtual {v0}, Lcom/ss/android/ttve/common/TETextureDrawer;->release()V
 
-    .line 172
+    .line 165
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureDrawer:Lcom/ss/android/ttve/common/TETextureDrawer;
 
-    .line 175
+    .line 168
     :cond_0
     invoke-direct {p0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->deleteTexture()V
 
-    .line 182
+    .line 175
     const/4 v0, 0x0
 
     return v0
@@ -1593,24 +1593,24 @@
         }
     .end annotation
 
-    .line 198
+    .line 191
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_eglStateSaver:Lcom/ss/android/ttve/common/TEEglStateSaver;
 
     if-nez v0, :cond_0
 
-    .line 199
+    .line 192
     new-instance v0, Lcom/ss/android/ttve/common/TEEglStateSaver;
 
     invoke-direct {v0}, Lcom/ss/android/ttve/common/TEEglStateSaver;-><init>()V
 
     iput-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_eglStateSaver:Lcom/ss/android/ttve/common/TEEglStateSaver;
 
-    .line 200
+    .line 193
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_eglStateSaver:Lcom/ss/android/ttve/common/TEEglStateSaver;
 
     invoke-virtual {v0}, Lcom/ss/android/ttve/common/TEEglStateSaver;->saveEGLState()V
 
-    .line 204
+    .line 197
     :cond_0
     invoke-static {}, Landroid/opengl/EGL14;->eglGetCurrentContext()Landroid/opengl/EGLContext;
 
@@ -1630,7 +1630,7 @@
 
     if-nez v0, :cond_1
 
-    .line 205
+    .line 198
     const-string v0, "MediaCodecDecoder"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1665,10 +1665,10 @@
 
     invoke-static {v0, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 206
+    .line 199
     iput-boolean v1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_bIsNeedReconfigure:Z
 
-    .line 209
+    .line 202
     :cond_1
     iget-boolean v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_bIsNeedReconfigure:Z
 
@@ -1676,52 +1676,52 @@
 
     if-eqz v0, :cond_2
 
-    .line 210
+    .line 203
     invoke-direct {p0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->restartDecoder()I
 
-    .line 211
+    .line 204
     iput-boolean v2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_bIsNeedReconfigure:Z
 
-    .line 212
+    .line 205
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_eglStateSaver:Lcom/ss/android/ttve/common/TEEglStateSaver;
 
     invoke-virtual {v0}, Lcom/ss/android/ttve/common/TEEglStateSaver;->saveEGLState()V
 
-    .line 215
+    .line 208
     :cond_2
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
     if-nez v0, :cond_3
 
-    .line 216
+    .line 209
     const/4 p1, -0x2
 
     return p1
 
-    .line 219
+    .line 212
     :cond_3
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v3
 
-    .line 220
+    .line 213
     invoke-direct {p0, p1, p2, p3, p4}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->DecodeFrame2Surface([BIJ)I
 
     move-result p1
 
-    .line 221
+    .line 214
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide p2
 
-    .line 222
+    .line 215
     sub-long/2addr p2, v3
 
     const-wide/16 v3, 0x0
 
     sub-long p2, v3, p2
 
-    .line 223
+    .line 216
     iget p4, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_iCurCount:I
 
     const/16 v0, 0xa
@@ -1732,11 +1732,11 @@
 
     if-lez p4, :cond_4
 
-    .line 225
+    .line 218
     :try_start_0
     invoke-static {p2, p3, v2}, Ljava/lang/Thread;->sleep(JI)V
 
-    .line 226
+    .line 219
     const-string p4, "MediaCodecDecoder"
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -1761,17 +1761,17 @@
     :try_end_0
     .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 229
+    .line 222
     goto :goto_0
 
-    .line 227
+    .line 220
     :catch_0
     move-exception p2
 
-    .line 228
+    .line 221
     invoke-virtual {p2}, Ljava/lang/InterruptedException;->printStackTrace()V
 
-    .line 230
+    .line 223
     :goto_0
     iget p2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_iCurCount:I
 
@@ -1779,23 +1779,23 @@
 
     iput p2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_iCurCount:I
 
-    .line 233
+    .line 226
     :cond_4
     if-nez p1, :cond_5
 
-    .line 234
+    .line 227
     iget-object p2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_surfaceTexture:Landroid/graphics/SurfaceTexture;
 
     invoke-virtual {p2}, Landroid/graphics/SurfaceTexture;->updateTexImage()V
 
-    .line 235
+    .line 228
     iget-object p2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureRender:Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder$SOES2DTextureRender;
 
     if-eqz p2, :cond_5
 
     if-lez p5, :cond_5
 
-    .line 236
+    .line 229
     iget-object p2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureRender:Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder$SOES2DTextureRender;
 
     iget p3, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_iWidth:I
@@ -1808,7 +1808,7 @@
 
     invoke-virtual {p2, p3, p4, v0, p5}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder$SOES2DTextureRender;->drawFrame(IIII)V
 
-    .line 240
+    .line 233
     :cond_5
     return p1
 .end method
@@ -1816,10 +1816,10 @@
 .method public flushDecoder()I
     .locals 3
 
-    .line 269
+    .line 262
     nop
 
-    .line 270
+    .line 263
     const-string v0, "MediaCodecDecoder"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -1840,14 +1840,14 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 271
+    .line 264
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
     const/4 v1, -0x3
 
     if-eqz v0, :cond_4
 
-    .line 273
+    .line 266
     :try_start_0
     iget-boolean v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_sawInputEOS:Z
 
@@ -1861,32 +1861,32 @@
 
     goto :goto_0
 
-    .line 284
+    .line 277
     :cond_0
     iget-boolean v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_inputBufferQueued:Z
 
     if-eqz v0, :cond_3
 
-    .line 287
+    .line 280
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_decoder:Landroid/media/MediaCodec;
 
     invoke-virtual {v0}, Landroid/media/MediaCodec;->flush()V
 
-    .line 288
+    .line 281
     iput-boolean v2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_inputBufferQueued:Z
 
-    .line 289
+    .line 282
     iput v2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_pendingInputFrameCount:I
 
-    .line 293
+    .line 286
     goto :goto_1
 
-    .line 274
+    .line 267
     :cond_1
     :goto_0
     invoke-virtual {p0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->CleanupDecoder()V
 
-    .line 275
+    .line 268
     const-string v0, "video/avc"
 
     invoke-direct {p0, v0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->SetupDecoder(Ljava/lang/String;)Z
@@ -1897,19 +1897,19 @@
 
     if-nez v0, :cond_2
 
-    .line 276
+    .line 269
     const/4 v0, -0x2
 
-    .line 299
+    .line 292
     move v1, v0
 
     goto :goto_2
 
-    .line 280
+    .line 273
     :cond_2
     nop
 
-    .line 299
+    .line 292
     :goto_1
     move v1, v2
 
@@ -1917,14 +1917,14 @@
     :goto_2
     goto :goto_3
 
-    .line 297
+    .line 290
     :catch_0
     move-exception v0
 
-    .line 298
+    .line 291
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
-    .line 301
+    .line 294
     :cond_4
     :goto_3
     return v1
@@ -1933,10 +1933,10 @@
 .method public getInfoByFlag([II)I
     .locals 8
 
-    .line 251
+    .line 244
     nop
 
-    .line 255
+    .line 248
     const/16 v0, 0x20
 
     const/4 v1, 0x2
@@ -1949,7 +1949,7 @@
 
     if-ne p2, v2, :cond_0
 
-    .line 256
+    .line 249
     iget-wide v6, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_timestampOfLastDecodedFrame:J
 
     and-long/2addr v6, v4
@@ -1958,7 +1958,7 @@
 
     aput p2, p1, v3
 
-    .line 257
+    .line 250
     iget-wide v6, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_timestampOfLastDecodedFrame:J
 
     shr-long/2addr v6, v0
@@ -1969,14 +1969,14 @@
 
     aput p2, p1, v2
 
-    .line 258
+    .line 251
     goto :goto_0
 
-    .line 259
+    .line 252
     :cond_0
     if-ne p2, v1, :cond_1
 
-    .line 260
+    .line 253
     iget-wide v6, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_timestampOfCurTexFrame:J
 
     and-long/2addr v6, v4
@@ -1985,7 +1985,7 @@
 
     aput p2, p1, v3
 
-    .line 261
+    .line 254
     iget-wide v6, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_timestampOfCurTexFrame:J
 
     shr-long/2addr v6, v0
@@ -1996,10 +1996,10 @@
 
     aput p2, p1, v2
 
-    .line 262
+    .line 255
     goto :goto_0
 
-    .line 265
+    .line 258
     :cond_1
     move v1, v3
 
@@ -2010,7 +2010,7 @@
 .method public initDecoder(II[BI[BI)I
     .locals 3
 
-    .line 111
+    .line 104
     const-string v0, "MediaCodecDecoder"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -2035,54 +2035,54 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 112
+    .line 105
     invoke-virtual/range {p0 .. p6}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->setEncoder(II[BI[BI)I
 
     move-result p1
 
-    .line 114
+    .line 107
     iget-boolean p2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_bIsNeedReconfigure:Z
 
     if-eqz p2, :cond_0
 
-    .line 115
+    .line 108
     invoke-direct {p0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->reconfigureMediaFormat()I
 
     move-result p1
 
-    .line 118
+    .line 111
     :cond_0
     iget-object p2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_eglStateSaver:Lcom/ss/android/ttve/common/TEEglStateSaver;
 
     if-nez p2, :cond_1
 
-    .line 119
+    .line 112
     new-instance p2, Lcom/ss/android/ttve/common/TEEglStateSaver;
 
     invoke-direct {p2}, Lcom/ss/android/ttve/common/TEEglStateSaver;-><init>()V
 
     iput-object p2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_eglStateSaver:Lcom/ss/android/ttve/common/TEEglStateSaver;
 
-    .line 120
+    .line 113
     iget-object p2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_eglStateSaver:Lcom/ss/android/ttve/common/TEEglStateSaver;
 
     invoke-virtual {p2}, Lcom/ss/android/ttve/common/TEEglStateSaver;->saveEGLState()V
 
-    .line 123
+    .line 116
     :cond_1
     iget-boolean p2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_bIsNeedReconfigure:Z
 
     if-eqz p2, :cond_2
 
-    .line 124
+    .line 117
     invoke-direct {p0}, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->restartDecoder()I
 
-    .line 125
+    .line 118
     const/4 p2, 0x0
 
     iput-boolean p2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_bIsNeedReconfigure:Z
 
-    .line 128
+    .line 121
     :cond_2
     return p1
 .end method
@@ -2090,22 +2090,22 @@
 .method public initTextureDrawer()Z
     .locals 3
 
-    .line 363
+    .line 356
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureDrawer:Lcom/ss/android/ttve/common/TETextureDrawer;
 
     if-eqz v0, :cond_0
 
-    .line 364
+    .line 357
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureDrawer:Lcom/ss/android/ttve/common/TETextureDrawer;
 
     invoke-virtual {v0}, Lcom/ss/android/ttve/common/TETextureDrawer;->release()V
 
-    .line 365
+    .line 358
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureDrawer:Lcom/ss/android/ttve/common/TETextureDrawer;
 
-    .line 367
+    .line 360
     :cond_0
     invoke-static {}, Lcom/ss/android/ttve/common/TETextureDrawer;->create()Lcom/ss/android/ttve/common/TETextureDrawer;
 
@@ -2113,17 +2113,17 @@
 
     iput-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureDrawer:Lcom/ss/android/ttve/common/TETextureDrawer;
 
-    .line 368
+    .line 361
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureDrawer:Lcom/ss/android/ttve/common/TETextureDrawer;
 
     if-nez v0, :cond_1
 
-    .line 369
+    .line 362
     const/4 v0, 0x0
 
     return v0
 
-    .line 371
+    .line 364
     :cond_1
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureDrawer:Lcom/ss/android/ttve/common/TETextureDrawer;
 
@@ -2131,7 +2131,7 @@
 
     invoke-virtual {v0, v1}, Lcom/ss/android/ttve/common/TETextureDrawer;->setRotation(F)V
 
-    .line 372
+    .line 365
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_textureDrawer:Lcom/ss/android/ttve/common/TETextureDrawer;
 
     const/high16 v1, 0x3f800000    # 1.0f
@@ -2140,7 +2140,7 @@
 
     invoke-virtual {v0, v1, v2}, Lcom/ss/android/ttve/common/TETextureDrawer;->setFlipScale(FF)V
 
-    .line 373
+    .line 366
     const/4 v0, 0x1
 
     return v0
@@ -2149,42 +2149,42 @@
 .method public onFrameAvailable(Landroid/graphics/SurfaceTexture;)V
     .locals 2
 
-    .line 451
+    .line 444
     iget-object p1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_frameSyncObject:Ljava/lang/Object;
 
     monitor-enter p1
 
-    .line 452
+    .line 445
     :try_start_0
     iget-boolean v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_frameAvailable:Z
 
     if-eqz v0, :cond_0
 
-    .line 453
+    .line 446
     const-string v0, "MediaCodecDecoder"
 
     const-string v1, "m_frameAvailable already set, frame could be dropped!"
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 455
+    .line 448
     :cond_0
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_frameAvailable:Z
 
-    .line 456
+    .line 449
     iget-object v0, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_frameSyncObject:Ljava/lang/Object;
 
     invoke-virtual {v0}, Ljava/lang/Object;->notifyAll()V
 
-    .line 457
+    .line 450
     monitor-exit p1
 
-    .line 458
+    .line 451
     return-void
 
-    .line 457
+    .line 450
     :catchall_0
     move-exception v0
 
@@ -2198,49 +2198,49 @@
 .method public setEncoder(II[BI[BI)I
     .locals 0
 
-    .line 144
+    .line 137
     iput p1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_iWidth:I
 
-    .line 145
+    .line 138
     iput p2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_iHeight:I
 
-    .line 146
+    .line 139
     const/4 p1, 0x0
 
     iput-object p1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_spsBuf:Ljava/nio/ByteBuffer;
 
-    .line 147
+    .line 140
     iput-object p1, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_ppsBuf:Ljava/nio/ByteBuffer;
 
-    .line 148
+    .line 141
     const/4 p1, 0x0
 
     if-lez p4, :cond_0
 
-    .line 149
+    .line 142
     invoke-static {p3, p1, p4}, Ljava/nio/ByteBuffer;->wrap([BII)Ljava/nio/ByteBuffer;
 
     move-result-object p2
 
     iput-object p2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_spsBuf:Ljava/nio/ByteBuffer;
 
-    .line 152
+    .line 145
     :cond_0
     if-lez p6, :cond_1
 
-    .line 153
+    .line 146
     invoke-static {p5, p1, p6}, Ljava/nio/ByteBuffer;->wrap([BII)Ljava/nio/ByteBuffer;
 
     move-result-object p2
 
     iput-object p2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_ppsBuf:Ljava/nio/ByteBuffer;
 
-    .line 156
+    .line 149
     :cond_1
     const/4 p2, 0x1
 
     iput-boolean p2, p0, Lcom/ss/android/ttve/mediacodec/TEMediaCodecDecoder;->m_bIsNeedReconfigure:Z
 
-    .line 157
+    .line 150
     return p1
 .end method

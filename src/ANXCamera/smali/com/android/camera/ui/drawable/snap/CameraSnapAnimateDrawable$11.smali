@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;)V
     .locals 0
 
-    .line 538
+    .line 552
     iput-object p1, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$11;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-direct {p0}, Landroid/view/animation/AccelerateInterpolator;-><init>()V
@@ -35,7 +35,7 @@
 .method public getInterpolation(F)F
     .locals 2
 
-    .line 541
+    .line 555
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$11;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-static {v0}, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;->access$400(Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;)Lcom/android/camera/ui/drawable/CameraPaintBase;
@@ -46,12 +46,12 @@
 
     iput v1, v0, Lcom/android/camera/ui/drawable/CameraPaintBase;->timeAngle:F
 
-    .line 542
+    .line 556
     invoke-super {p0, p1}, Landroid/view/animation/AccelerateInterpolator;->getInterpolation(F)F
 
     move-result p1
 
-    .line 543
+    .line 557
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$11;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-static {v0}, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;->access$400(Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;)Lcom/android/camera/ui/drawable/CameraPaintBase;
@@ -60,11 +60,11 @@
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/drawable/CameraPaintBase;->updateValue(F)V
 
-    .line 544
+    .line 558
     iget-object v0, p0, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable$11;->this$0:Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/drawable/snap/CameraSnapAnimateDrawable;->invalidateSelf()V
 
-    .line 545
+    .line 559
     return p1
 .end method

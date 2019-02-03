@@ -14,28 +14,28 @@ import java.util.concurrent.ConcurrentMap;
 /* compiled from: ApplicationVersionSignature */
 public final class a {
     private static final String TAG = "AppVersionSignature";
-    private static final ConcurrentMap<String, c> pc = new ConcurrentHashMap();
+    private static final ConcurrentMap<String, c> pb = new ConcurrentHashMap();
 
     @NonNull
-    public static c n(@NonNull Context context) {
+    public static c m(@NonNull Context context) {
         String packageName = context.getPackageName();
-        c cVar = (c) pc.get(packageName);
+        c cVar = (c) pb.get(packageName);
         if (cVar != null) {
             return cVar;
         }
-        cVar = o(context);
-        c cVar2 = (c) pc.putIfAbsent(packageName, cVar);
+        cVar = n(context);
+        c cVar2 = (c) pb.putIfAbsent(packageName, cVar);
         return cVar2 == null ? cVar : cVar2;
     }
 
     @VisibleForTesting
     static void reset() {
-        pc.clear();
+        pb.clear();
     }
 
     @NonNull
-    private static c o(@NonNull Context context) {
-        return new d(a(p(context)));
+    private static c n(@NonNull Context context) {
+        return new d(a(o(context)));
     }
 
     @NonNull
@@ -47,7 +47,7 @@ public final class a {
     }
 
     @Nullable
-    private static PackageInfo p(@NonNull Context context) {
+    private static PackageInfo o(@NonNull Context context) {
         try {
             return context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
         } catch (Throwable e) {

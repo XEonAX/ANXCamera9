@@ -3,12 +3,12 @@
 .source "VideoModule.java"
 
 # interfaces
-.implements Lio/reactivex/functions/Consumer;
+.implements Lio/reactivex/FlowableOnSubscribe;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/module/VideoModule;->stopRecorder()V
+    value = Lcom/android/camera/module/VideoModule;->initAutoZoom()V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -19,8 +19,8 @@
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "Lio/reactivex/functions/Consumer<",
-        "Ljava/lang/Boolean;",
+        "Lio/reactivex/FlowableOnSubscribe<",
+        "Landroid/hardware/camera2/CaptureResult;",
         ">;"
     }
 .end annotation
@@ -34,7 +34,7 @@
 .method constructor <init>(Lcom/android/camera/module/VideoModule;)V
     .locals 0
 
-    .line 1531
+    .line 322
     iput-object p1, p0, Lcom/android/camera/module/VideoModule$3;->this$0:Lcom/android/camera/module/VideoModule;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -44,35 +44,28 @@
 
 
 # virtual methods
-.method public accept(Ljava/lang/Boolean;)V
-    .locals 0
+.method public subscribe(Lio/reactivex/FlowableEmitter;)V
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lio/reactivex/FlowableEmitter<",
+            "Landroid/hardware/camera2/CaptureResult;",
+            ">;)V"
+        }
+    .end annotation
+
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Exception;
         }
     .end annotation
 
-    .line 1534
-    iget-object p1, p0, Lcom/android/camera/module/VideoModule$3;->this$0:Lcom/android/camera/module/VideoModule;
+    .line 325
+    iget-object v0, p0, Lcom/android/camera/module/VideoModule$3;->this$0:Lcom/android/camera/module/VideoModule;
 
-    invoke-static {p1}, Lcom/android/camera/module/VideoModule;->access$100(Lcom/android/camera/module/VideoModule;)V
+    invoke-static {v0, p1}, Lcom/android/camera/module/VideoModule;->access$102(Lcom/android/camera/module/VideoModule;Lio/reactivex/FlowableEmitter;)Lio/reactivex/FlowableEmitter;
 
-    .line 1535
-    return-void
-.end method
-
-.method public bridge synthetic accept(Ljava/lang/Object;)V
-    .locals 0
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Ljava/lang/Exception;
-        }
-    .end annotation
-
-    .line 1531
-    check-cast p1, Ljava/lang/Boolean;
-
-    invoke-virtual {p0, p1}, Lcom/android/camera/module/VideoModule$3;->accept(Ljava/lang/Boolean;)V
-
+    .line 326
     return-void
 .end method

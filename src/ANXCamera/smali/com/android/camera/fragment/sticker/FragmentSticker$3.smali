@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/sticker/FragmentSticker;)V
     .locals 0
 
-    .line 98
+    .line 99
     iput-object p1, p0, Lcom/android/camera/fragment/sticker/FragmentSticker$3;->this$0:Lcom/android/camera/fragment/sticker/FragmentSticker;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public onClick(Landroid/view/View;)V
     .locals 1
 
-    .line 101
+    .line 102
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
@@ -51,12 +51,12 @@
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;
 
-    .line 102
+    .line 103
     const/4 v0, 0x4
 
     invoke-interface {p1, v0}, Lcom/android/camera/protocol/ModeProtocol$BaseDelegate;->delegateEvent(I)V
 
-    .line 104
+    .line 105
     iget-object p1, p0, Lcom/android/camera/fragment/sticker/FragmentSticker$3;->this$0:Lcom/android/camera/fragment/sticker/FragmentSticker;
 
     invoke-static {p1}, Lcom/android/camera/fragment/sticker/FragmentSticker;->access$300(Lcom/android/camera/fragment/sticker/FragmentSticker;)I
@@ -69,7 +69,7 @@
 
     goto :goto_0
 
-    .line 106
+    .line 107
     :cond_0
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -83,10 +83,10 @@
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;
 
-    .line 107
+    .line 108
     invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->reInitTipImage()V
 
-    .line 114
+    .line 115
     :goto_0
     return-void
 .end method

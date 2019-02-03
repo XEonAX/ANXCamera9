@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/FragmentMainContent;)V
     .locals 0
 
-    .line 884
+    .line 930
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent$2;->this$0:Lcom/android/camera/fragment/FragmentMainContent;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public run()V
     .locals 1
 
-    .line 887
+    .line 933
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent$2;->this$0:Lcom/android/camera/fragment/FragmentMainContent;
 
     invoke-static {v0}, Lcom/android/camera/fragment/FragmentMainContent;->access$100(Lcom/android/camera/fragment/FragmentMainContent;)Z
@@ -47,7 +47,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 888
+    .line 934
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent$2;->this$0:Lcom/android/camera/fragment/FragmentMainContent;
 
     invoke-static {v0}, Lcom/android/camera/fragment/FragmentMainContent;->access$200(Lcom/android/camera/fragment/FragmentMainContent;)Lcom/android/camera/ui/LightingView;
@@ -58,7 +58,7 @@
 
     goto :goto_0
 
-    .line 890
+    .line 936
     :cond_0
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent$2;->this$0:Lcom/android/camera/fragment/FragmentMainContent;
 
@@ -68,7 +68,7 @@
 
     invoke-virtual {v0}, Lcom/android/camera/ui/LightingView;->triggerAnimateFocusing()V
 
-    .line 893
+    .line 939
     :goto_0
     return-void
 .end method

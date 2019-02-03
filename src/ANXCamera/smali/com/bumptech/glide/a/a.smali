@@ -42,11 +42,11 @@
 # instance fields
 .field private final appVersion:I
 
-.field private bh:Ljava/io/Writer;
+.field private bi:Ljava/io/Writer;
 
-.field final bi:Ljava/util/concurrent/ThreadPoolExecutor;
+.field final bj:Ljava/util/concurrent/ThreadPoolExecutor;
 
-.field private final bj:Ljava/util/concurrent/Callable;
+.field private final bk:Ljava/util/concurrent/Callable;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/concurrent/Callable<",
@@ -143,14 +143,14 @@
 
     invoke-direct/range {v8 .. v15}, Ljava/util/concurrent/ThreadPoolExecutor;-><init>(IIJLjava/util/concurrent/TimeUnit;Ljava/util/concurrent/BlockingQueue;Ljava/util/concurrent/ThreadFactory;)V
 
-    iput-object v2, v0, Lcom/bumptech/glide/a/a;->bi:Ljava/util/concurrent/ThreadPoolExecutor;
+    iput-object v2, v0, Lcom/bumptech/glide/a/a;->bj:Ljava/util/concurrent/ThreadPoolExecutor;
 
     .line 162
     new-instance v2, Lcom/bumptech/glide/a/a$1;
 
     invoke-direct {v2, v0}, Lcom/bumptech/glide/a/a$1;-><init>(Lcom/bumptech/glide/a/a;)V
 
-    iput-object v2, v0, Lcom/bumptech/glide/a/a;->bj:Ljava/util/concurrent/Callable;
+    iput-object v2, v0, Lcom/bumptech/glide/a/a;->bk:Ljava/util/concurrent/Callable;
 
     .line 179
     iput-object v1, v0, Lcom/bumptech/glide/a/a;->directory:Ljava/io/File;
@@ -321,33 +321,33 @@
     invoke-static {v0, p2}, Lcom/bumptech/glide/a/a$c;->a(Lcom/bumptech/glide/a/a$c;Lcom/bumptech/glide/a/a$b;)Lcom/bumptech/glide/a/a$b;
 
     .line 464
-    iget-object p3, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p3, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     const-string v0, "DIRTY"
 
     invoke-virtual {p3, v0}, Ljava/io/Writer;->append(Ljava/lang/CharSequence;)Ljava/io/Writer;
 
     .line 465
-    iget-object p3, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p3, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     const/16 v0, 0x20
 
     invoke-virtual {p3, v0}, Ljava/io/Writer;->append(C)Ljava/io/Writer;
 
     .line 466
-    iget-object p3, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p3, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     invoke-virtual {p3, p1}, Ljava/io/Writer;->append(Ljava/lang/CharSequence;)Ljava/io/Writer;
 
     .line 467
-    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     const/16 p3, 0xa
 
     invoke-virtual {p1, p3}, Ljava/io/Writer;->append(C)Ljava/io/Writer;
 
     .line 468
-    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     invoke-virtual {p1}, Ljava/io/Writer;->flush()V
     :try_end_2
@@ -554,7 +554,7 @@
     .locals 0
 
     .line 86
-    iget-object p0, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p0, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     return-object p0
 .end method
@@ -783,19 +783,19 @@
     invoke-static {v0, v1}, Lcom/bumptech/glide/a/a$c;->a(Lcom/bumptech/glide/a/a$c;Z)Z
 
     .line 543
-    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     const-string v1, "CLEAN"
 
     invoke-virtual {p1, v1}, Ljava/io/Writer;->append(Ljava/lang/CharSequence;)Ljava/io/Writer;
 
     .line 544
-    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     invoke-virtual {p1, v3}, Ljava/io/Writer;->append(C)Ljava/io/Writer;
 
     .line 545
-    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     invoke-static {v0}, Lcom/bumptech/glide/a/a$c;->c(Lcom/bumptech/glide/a/a$c;)Ljava/lang/String;
 
@@ -804,7 +804,7 @@
     invoke-virtual {p1, v1}, Ljava/io/Writer;->append(Ljava/lang/CharSequence;)Ljava/io/Writer;
 
     .line 546
-    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/a/a$c;->K()Ljava/lang/String;
 
@@ -813,7 +813,7 @@
     invoke-virtual {p1, v1}, Ljava/io/Writer;->append(Ljava/lang/CharSequence;)Ljava/io/Writer;
 
     .line 547
-    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     invoke-virtual {p1, v2}, Ljava/io/Writer;->append(C)Ljava/io/Writer;
 
@@ -844,19 +844,19 @@
     invoke-virtual {p1, p2}, Ljava/util/LinkedHashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 554
-    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     const-string p2, "REMOVE"
 
     invoke-virtual {p1, p2}, Ljava/io/Writer;->append(Ljava/lang/CharSequence;)Ljava/io/Writer;
 
     .line 555
-    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     invoke-virtual {p1, v3}, Ljava/io/Writer;->append(C)Ljava/io/Writer;
 
     .line 556
-    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     invoke-static {v0}, Lcom/bumptech/glide/a/a$c;->c(Lcom/bumptech/glide/a/a$c;)Ljava/lang/String;
 
@@ -865,14 +865,14 @@
     invoke-virtual {p1, p2}, Ljava/io/Writer;->append(Ljava/lang/CharSequence;)Ljava/io/Writer;
 
     .line 557
-    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     invoke-virtual {p1, v2}, Ljava/io/Writer;->append(C)Ljava/io/Writer;
 
     .line 559
     :cond_7
     :goto_3
-    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     invoke-virtual {p1}, Ljava/io/Writer;->flush()V
 
@@ -893,9 +893,9 @@
 
     .line 562
     :cond_8
-    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/util/concurrent/ThreadPoolExecutor;
+    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bj:Ljava/util/concurrent/ThreadPoolExecutor;
 
-    iget-object p2, p0, Lcom/bumptech/glide/a/a;->bj:Ljava/util/concurrent/Callable;
+    iget-object p2, p0, Lcom/bumptech/glide/a/a;->bk:Ljava/util/concurrent/Callable;
 
     invoke-virtual {p1, p2}, Ljava/util/concurrent/ThreadPoolExecutor;->submit(Ljava/util/concurrent/Callable;)Ljava/util/concurrent/Future;
     :try_end_1
@@ -1041,7 +1041,7 @@
     .locals 2
 
     .line 619
-    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     if-eqz v0, :cond_0
 
@@ -1438,7 +1438,7 @@
 
     invoke-direct {v1, v2}, Ljava/io/BufferedWriter;-><init>(Ljava/io/Writer;)V
 
-    iput-object v1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iput-object v1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
     :try_end_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
@@ -1756,12 +1756,12 @@
 
     .line 350
     :try_start_0
-    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     if-eqz v0, :cond_0
 
     .line 351
-    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     invoke-virtual {v0}, Ljava/io/Writer;->close()V
 
@@ -1991,7 +1991,7 @@
 
     invoke-direct {v0, v2}, Ljava/io/BufferedWriter;-><init>(Ljava/io/Writer;)V
 
-    iput-object v0, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iput-object v0, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
     :try_end_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_1
 
@@ -2169,26 +2169,26 @@
     iput v1, p0, Lcom/bumptech/glide/a/a;->redundantOpCount:I
 
     .line 427
-    iget-object v1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object v1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     const-string v2, "READ"
 
     invoke-virtual {v1, v2}, Ljava/io/Writer;->append(Ljava/lang/CharSequence;)Ljava/io/Writer;
 
     .line 428
-    iget-object v1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object v1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     const/16 v2, 0x20
 
     invoke-virtual {v1, v2}, Ljava/io/Writer;->append(C)Ljava/io/Writer;
 
     .line 429
-    iget-object v1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object v1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     invoke-virtual {v1, p1}, Ljava/io/Writer;->append(Ljava/lang/CharSequence;)Ljava/io/Writer;
 
     .line 430
-    iget-object v1, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object v1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     const/16 v2, 0xa
 
@@ -2202,9 +2202,9 @@
     if-eqz v1, :cond_4
 
     .line 432
-    iget-object v1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/util/concurrent/ThreadPoolExecutor;
+    iget-object v1, p0, Lcom/bumptech/glide/a/a;->bj:Ljava/util/concurrent/ThreadPoolExecutor;
 
-    iget-object v2, p0, Lcom/bumptech/glide/a/a;->bj:Ljava/util/concurrent/Callable;
+    iget-object v2, p0, Lcom/bumptech/glide/a/a;->bk:Ljava/util/concurrent/Callable;
 
     invoke-virtual {v1, v2}, Ljava/util/concurrent/ThreadPoolExecutor;->submit(Ljava/util/concurrent/Callable;)Ljava/util/concurrent/Future;
 
@@ -2259,7 +2259,7 @@
 
     .line 633
     :try_start_0
-    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
@@ -2323,14 +2323,14 @@
     invoke-direct {p0}, Lcom/bumptech/glide/a/a;->trimToSize()V
 
     .line 642
-    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     invoke-virtual {v0}, Ljava/io/Writer;->close()V
 
     .line 643
     const/4 v0, 0x0
 
-    iput-object v0, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iput-object v0, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
@@ -2404,7 +2404,7 @@
     invoke-direct {p0}, Lcom/bumptech/glide/a/a;->trimToSize()V
 
     .line 628
-    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     invoke-virtual {v0}, Ljava/io/Writer;->flush()V
     :try_end_0
@@ -2463,7 +2463,7 @@
 
     .line 615
     :try_start_0
-    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
@@ -2614,26 +2614,26 @@
     iput v0, p0, Lcom/bumptech/glide/a/a;->redundantOpCount:I
 
     .line 599
-    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     const-string v2, "REMOVE"
 
     invoke-virtual {v0, v2}, Ljava/io/Writer;->append(Ljava/lang/CharSequence;)Ljava/io/Writer;
 
     .line 600
-    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     const/16 v2, 0x20
 
     invoke-virtual {v0, v2}, Ljava/io/Writer;->append(C)Ljava/io/Writer;
 
     .line 601
-    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     invoke-virtual {v0, p1}, Ljava/io/Writer;->append(Ljava/lang/CharSequence;)Ljava/io/Writer;
 
     .line 602
-    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bh:Ljava/io/Writer;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/io/Writer;
 
     const/16 v2, 0xa
 
@@ -2652,9 +2652,9 @@
     if-eqz p1, :cond_4
 
     .line 607
-    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/util/concurrent/ThreadPoolExecutor;
+    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bj:Ljava/util/concurrent/ThreadPoolExecutor;
 
-    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bj:Ljava/util/concurrent/Callable;
+    iget-object v0, p0, Lcom/bumptech/glide/a/a;->bk:Ljava/util/concurrent/Callable;
 
     invoke-virtual {p1, v0}, Ljava/util/concurrent/ThreadPoolExecutor;->submit(Ljava/util/concurrent/Callable;)Ljava/util/concurrent/Future;
     :try_end_0
@@ -2692,9 +2692,9 @@
     iput-wide p1, p0, Lcom/bumptech/glide/a/a;->maxSize:J
 
     .line 491
-    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bi:Ljava/util/concurrent/ThreadPoolExecutor;
+    iget-object p1, p0, Lcom/bumptech/glide/a/a;->bj:Ljava/util/concurrent/ThreadPoolExecutor;
 
-    iget-object p2, p0, Lcom/bumptech/glide/a/a;->bj:Ljava/util/concurrent/Callable;
+    iget-object p2, p0, Lcom/bumptech/glide/a/a;->bk:Ljava/util/concurrent/Callable;
 
     invoke-virtual {p1, p2}, Ljava/util/concurrent/ThreadPoolExecutor;->submit(Ljava/util/concurrent/Callable;)Ljava/util/concurrent/Future;
     :try_end_0

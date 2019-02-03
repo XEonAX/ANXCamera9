@@ -75,7 +75,7 @@
 
     if-eqz v0, :cond_0
 
-    invoke-static {}, Lcom/mi/config/b;->fU()Z
+    invoke-static {}, Lcom/mi/config/b;->go()Z
 
     move-result v0
 

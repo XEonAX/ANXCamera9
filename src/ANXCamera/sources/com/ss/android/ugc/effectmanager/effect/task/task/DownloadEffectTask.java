@@ -74,6 +74,7 @@ public class DownloadEffectTask extends NormalTask {
             } catch (Exception e) {
                 if (i == size - 1 || (e instanceof StatusCodeException)) {
                     e.printStackTrace();
+                    com.ss.android.ugc.effectmanager.common.utils.FileUtils.removeDir(this.mEffect.getUnzipPath());
                     sendMessage(15, new EffectTaskResult(this.mEffect, new ExceptionResult(e)));
                     break;
                 }

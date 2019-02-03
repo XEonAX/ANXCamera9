@@ -24,14 +24,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 37
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x15
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_e
 
     .line 38
     new-instance v0, Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectLollipopImpl;
@@ -40,15 +40,15 @@
 
     sput-object v0, Landroid/support/v4/widget/EdgeEffectCompat;->IMPL:Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
 
-    goto :goto_0
+    goto :goto_23
 
     .line 39
-    :cond_0
+    :cond_e
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xe
 
-    if-lt v0, v1, :cond_1
+    if-lt v0, v1, :cond_1c
 
     .line 40
     new-instance v0, Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectIcsImpl;
@@ -57,10 +57,10 @@
 
     sput-object v0, Landroid/support/v4/widget/EdgeEffectCompat;->IMPL:Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
 
-    goto :goto_0
+    goto :goto_23
 
     .line 42
-    :cond_1
+    :cond_1c
     new-instance v0, Landroid/support/v4/widget/EdgeEffectCompat$BaseEdgeEffectImpl;
 
     invoke-direct {v0}, Landroid/support/v4/widget/EdgeEffectCompat$BaseEdgeEffectImpl;-><init>()V
@@ -68,12 +68,12 @@
     sput-object v0, Landroid/support/v4/widget/EdgeEffectCompat;->IMPL:Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
 
     .line 44
-    :goto_0
+    :goto_23
     return-void
 .end method
 
 .method public constructor <init>(Landroid/content/Context;)V
-    .locals 1
+    .registers 3
     .param p1, "context"    # Landroid/content/Context;
 
     .line 149
@@ -95,7 +95,7 @@
 
 # virtual methods
 .method public draw(Landroid/graphics/Canvas;)Z
-    .locals 2
+    .registers 4
     .param p1, "canvas"    # Landroid/graphics/Canvas;
 
     .line 254
@@ -111,7 +111,7 @@
 .end method
 
 .method public finish()V
-    .locals 2
+    .registers 3
 
     .line 179
     sget-object v0, Landroid/support/v4/widget/EdgeEffectCompat;->IMPL:Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
@@ -125,7 +125,7 @@
 .end method
 
 .method public isFinished()Z
-    .locals 2
+    .registers 3
 
     .line 171
     sget-object v0, Landroid/support/v4/widget/EdgeEffectCompat;->IMPL:Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
@@ -140,7 +140,7 @@
 .end method
 
 .method public onAbsorb(I)Z
-    .locals 2
+    .registers 4
     .param p1, "velocity"    # I
 
     .line 240
@@ -156,7 +156,7 @@
 .end method
 
 .method public onPull(F)Z
-    .locals 2
+    .registers 4
     .param p1, "deltaDistance"    # F
 
     .line 195
@@ -172,7 +172,7 @@
 .end method
 
 .method public onPull(FF)Z
-    .locals 2
+    .registers 5
     .param p1, "deltaDistance"    # F
     .param p2, "displacement"    # F
 
@@ -189,7 +189,7 @@
 .end method
 
 .method public onRelease()Z
-    .locals 2
+    .registers 3
 
     .line 225
     sget-object v0, Landroid/support/v4/widget/EdgeEffectCompat;->IMPL:Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
@@ -204,7 +204,7 @@
 .end method
 
 .method public setSize(II)V
-    .locals 2
+    .registers 5
     .param p1, "width"    # I
     .param p2, "height"    # I
 

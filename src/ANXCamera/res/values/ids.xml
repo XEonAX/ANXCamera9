@@ -8,12 +8,14 @@
     <item type="id" name="decode_fail" />
     <item type="id" name="decode_exit" />
     <item type="id" name="tag_config_view_margin_key" />
+    <item type="id" name="tag_config_view_state_desc" />
     <item type="id" name="makeup_item">false</item>
     <item type="id" name="makeup_item_icon">false</item>
     <item type="id" name="makeup_item_name">false</item>
     <item type="id" name="second_base">false</item>
     <item type="id" name="second_text">false</item>
     <item type="id" name="text_item_title">false</item>
+    <item type="id" name="icon">false</item>
     <item type="id" name="live_speed_text">false</item>
     <item type="id" name="effect_item_image">false</item>
     <item type="id" name="effect_item_text">false</item>
@@ -50,8 +52,9 @@
     <item type="id" name="popup_tip_image">false</item>
     <item type="id" name="popup_left_tip_image">false</item>
     <item type="id" name="popup_center_tip_image">false</item>
-    <item type="id" name="popup_tip_beauty_intro">false</item>
-    <item type="id" name="popup_tip_beauty_intro_text">false</item>
+    <item type="id" name="popup_left_tip_intro">false</item>
+    <item type="id" name="popup_left_tip_intro_text">false</item>
+    <item type="id" name="popup_speed_tip_image">false</item>
     <item type="id" name="popup_tips_message">false</item>
     <item type="id" name="popup_tips_qrcode">false</item>
     <item type="id" name="portrait_success_hint">false</item>
@@ -63,17 +66,20 @@
     <item type="id" name="hibernation_layout">false</item>
     <item type="id" name="lens_dirty_detected_cover">false</item>
     <item type="id" name="lens_dirty_detected_title">false</item>
-    <item type="id" name="portrait_use_hint_cover">false</item>
-    <item type="id" name="portrait_use_hint_layout">false</item>
     <item type="id" name="music_item_close">false</item>
     <item type="id" name="music_hotmusic">false</item>
     <item type="id" name="music_localmusic">false</item>
-    <item type="id" name="music_recycler_view">false</item>
+    <item type="id" name="music_item_viewpager">false</item>
+    <item type="id" name="portrait_use_hint_cover">false</item>
+    <item type="id" name="portrait_use_hint_layout">false</item>
+    <item type="id" name="ultra_wide_use_hint_layout">false</item>
     <item type="id" name="dual_layout_parent">false</item>
     <item type="id" name="dual_camera_zoom_button">false</item>
     <item type="id" name="dual_camera_zoom_slideview_layout">false</item>
     <item type="id" name="dual_camera_zoom_slideview">false</item>
     <item type="id" name="dual_camera_bokeh_button">false</item>
+    <item type="id" name="f_indicator">false</item>
+    <item type="id" name="f_number">false</item>
     <item type="id" name="dual_camera_bokeh_indicator">false</item>
     <item type="id" name="dual_camera_bokeh_slideview_layout">false</item>
     <item type="id" name="dual_camera_bokeh_slideview">false</item>
@@ -85,19 +91,32 @@
     <item type="id" name="lighting_list">false</item>
     <item type="id" name="lighting_item_base">false</item>
     <item type="id" name="lighting_item_image">false</item>
-    <item type="id" name="live_preview_surface">false</item>
+    <item type="id" name="music_updating_layout">false</item>
+    <item type="id" name="music_recycler_view">false</item>
+    <item type="id" name="music_network_exception">false</item>
+    <item type="id" name="live_preview_top">false</item>
+    <item type="id" name="live_preview_layout">false</item>
     <item type="id" name="live_preview_play">false</item>
     <item type="id" name="live_concat_progress">false</item>
     <item type="id" name="live_preview_bottom_action">false</item>
+    <item type="id" name="live_preview_recording_time_view">false</item>
     <item type="id" name="live_preview_bottom_parent">false</item>
     <item type="id" name="live_preview_back">false</item>
     <item type="id" name="live_preview_save_circle">false</item>
     <item type="id" name="live_preview_save">false</item>
     <item type="id" name="live_save_progress">false</item>
     <item type="id" name="live_preview_share">false</item>
+    <item type="id" name="live_share_progress">false</item>
+    <item type="id" name="live_share_layout">false</item>
+    <item type="id" name="live_share_list">false</item>
+    <item type="id" name="live_share_cancel">false</item>
+    <item type="id" name="live_share_item">false</item>
+    <item type="id" name="live_share_icon">false</item>
+    <item type="id" name="live_share_name">false</item>
     <item type="id" name="live_speed_list">false</item>
     <item type="id" name="item_text">false</item>
     <item type="id" name="live_sticker_list">false</item>
+    <item type="id" name="live_sticker_updating">false</item>
     <item type="id" name="item_image">false</item>
     <item type="id" name="item_selected_indicator">false</item>
     <item type="id" name="item_download">false</item>
@@ -120,8 +139,11 @@
     <item type="id" name="manually_item_key">false</item>
     <item type="id" name="manually_item_value">false</item>
     <item type="id" name="manually_item_value_image">false</item>
+    <item type="id" name="mode_select_red_dot">false</item>
+    <item type="id" name="music_layout">false</item>
     <item type="id" name="music_thumbnail">false</item>
     <item type="id" name="music_play">false</item>
+    <item type="id" name="music_loading">false</item>
     <item type="id" name="music_title">false</item>
     <item type="id" name="music_author">false</item>
     <item type="id" name="music_duration">false</item>
@@ -144,6 +166,7 @@
     <item type="id" name="alert_ai_detect_tip">false</item>
     <item type="id" name="live_music_hint_layout">false</item>
     <item type="id" name="live_music_title_hint">false</item>
+    <item type="id" name="live_music_close">false</item>
     <item type="id" name="alert_status_value">false</item>
     <item type="id" name="alert_ai_scene_select">false</item>
     <item type="id" name="top_config_menu">false</item>
@@ -175,6 +198,7 @@
     <item type="id" name="front_camera_hint_text_rotate">false</item>
     <item type="id" name="front_camera_hint_text_place">false</item>
     <item type="id" name="text">false</item>
+    <item type="id" name="effect_item_selected_inner_indicator">false</item>
     <item type="id" name="on_screen_hint">false</item>
     <item type="id" name="message">false</item>
     <item type="id" name="pano_preview_hint_frame">false</item>
@@ -187,6 +211,7 @@
     <item type="id" name="pano_use_hint">false</item>
     <item type="id" name="pano_move_direction_view">false</item>
     <item type="id" name="value_right">false</item>
+    <item type="id" name="arrow_right">false</item>
     <item type="id" name="rotate_dialog_root_layout">false</item>
     <item type="id" name="rotate_dialog_layout">false</item>
     <item type="id" name="rotate_dialog_title_layout">false</item>
@@ -210,11 +235,15 @@
     <item type="id" name="v6_face_view">false</item>
     <item type="id" name="object_view">false</item>
     <item type="id" name="v6_focus_view">false</item>
+    <item type="id" name="autozoom_overlay">false</item>
     <item type="id" name="lighting_view">false</item>
     <item type="id" name="afregions_view">false</item>
     <item type="id" name="v6_video_review_image">false</item>
     <item type="id" name="v6_video_btn_play">false</item>
     <item type="id" name="v6_effect_crop_view">false</item>
+    <item type="id" name="center_hint_placeholder">false</item>
+    <item type="id" name="center_hint_icon">false</item>
+    <item type="id" name="center_hint_text">false</item>
     <item type="id" name="camera_app_root">false</item>
     <item type="id" name="camera_debug_content">false</item>
     <item type="id" name="main_content">false</item>

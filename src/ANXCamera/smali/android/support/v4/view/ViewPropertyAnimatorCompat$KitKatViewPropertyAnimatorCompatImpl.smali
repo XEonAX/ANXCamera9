@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 614
     invoke-direct {p0}, Landroid/support/v4/view/ViewPropertyAnimatorCompat$JBMr2ViewPropertyAnimatorCompatImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public setUpdateListener(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;Landroid/support/v4/view/ViewPropertyAnimatorUpdateListener;)V
-    .locals 0
+    .registers 4
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "listener"    # Landroid/support/v4/view/ViewPropertyAnimatorUpdateListener;

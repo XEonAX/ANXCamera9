@@ -14,7 +14,7 @@ public interface m<Model, Data> {
 
     /* compiled from: ModelLoader */
     public static class a<Data> {
-        public final c dZ;
+        public final c ea;
         public final List<c> jo;
         public final d<Data> jp;
 
@@ -23,7 +23,7 @@ public interface m<Model, Data> {
         }
 
         public a(@NonNull c cVar, @NonNull List<c> list, @NonNull d<Data> dVar) {
-            this.dZ = (c) i.checkNotNull(cVar);
+            this.ea = (c) i.checkNotNull(cVar);
             this.jo = (List) i.checkNotNull(list);
             this.jp = (d) i.checkNotNull(dVar);
         }

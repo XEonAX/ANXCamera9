@@ -30,17 +30,17 @@
 .method public constructor <init>(Lcom/android/camera/snap/SnapService;)V
     .locals 1
 
-    .line 64
+    .line 70
     invoke-direct {p0}, Landroid/os/Handler;-><init>()V
 
-    .line 65
+    .line 71
     new-instance v0, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v0, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
     iput-object v0, p0, Lcom/android/camera/snap/SnapService$InnerHandler;->mService:Ljava/lang/ref/WeakReference;
 
-    .line 66
+    .line 72
     return-void
 .end method
 
@@ -49,7 +49,7 @@
 .method public handleMessage(Landroid/os/Message;)V
     .locals 2
 
-    .line 70
+    .line 76
     iget-object v0, p0, Lcom/android/camera/snap/SnapService$InnerHandler;->mService:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -58,14 +58,14 @@
 
     check-cast v0, Lcom/android/camera/snap/SnapService;
 
-    .line 71
-    if-eqz p1, :cond_2
+    .line 77
+    if-eqz p1, :cond_3
 
     if-nez v0, :cond_0
 
     goto :goto_1
 
-    .line 75
+    .line 81
     :cond_0
     iget p1, p1, Landroid/os/Message;->what:I
 
@@ -75,7 +75,7 @@
 
     goto :goto_0
 
-    .line 77
+    .line 83
     :cond_1
     invoke-static {}, Lcom/android/camera/snap/SnapService;->access$000()Ljava/lang/String;
 
@@ -85,21 +85,33 @@
 
     invoke-static {p1, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 79
-    invoke-static {v0}, Lcom/android/camera/snap/SnapService;->access$100(Lcom/android/camera/snap/SnapService;)V
+    .line 84
+    invoke-static {}, Lcom/android/camera/snap/SnapService;->access$100()Landroid/app/job/JobScheduler;
 
-    .line 80
+    move-result-object p1
+
+    if-eqz p1, :cond_2
+
+    .line 85
+    invoke-static {}, Lcom/android/camera/snap/SnapService;->access$100()Landroid/app/job/JobScheduler;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Landroid/app/job/JobScheduler;->cancelAll()V
+
+    .line 88
+    :cond_2
     invoke-static {v0}, Lcom/android/camera/snap/SnapService;->access$200(Lcom/android/camera/snap/SnapService;)V
 
-    .line 81
+    .line 89
     invoke-virtual {v0}, Lcom/android/camera/snap/SnapService;->stopSelf()V
 
-    .line 84
+    .line 92
     :goto_0
     return-void
 
-    .line 72
-    :cond_2
+    .line 78
+    :cond_3
     :goto_1
     return-void
 .end method

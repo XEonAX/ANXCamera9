@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/ss/android/ugc/effectmanager/EffectManager;)V
     .locals 0
 
-    .line 164
+    .line 177
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$2;->this$0:Lcom/ss/android/ugc/effectmanager/EffectManager;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -49,31 +49,27 @@
         }
     .end annotation
 
-    .line 172
+    .line 185
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$2;->this$0:Lcom/ss/android/ugc/effectmanager/EffectManager;
 
-    invoke-static {v0}, Lcom/ss/android/ugc/effectmanager/EffectManager;->access$000(Lcom/ss/android/ugc/effectmanager/EffectManager;)Lcom/ss/android/ugc/effectmanager/effect/repository/EffectStore;
-
-    move-result-object v0
+    iget-object v0, v0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectStore:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectStore;
 
     invoke-virtual {v0, p1, p2, p3}, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectStore;->updateEffectListDownloadStatus(Ljava/lang/String;Ljava/util/List;Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 173
+    .line 186
     return-void
 .end method
 
 .method public updateEffectStatus(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/model/Effect;ILcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
     .locals 1
 
-    .line 167
+    .line 180
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$2;->this$0:Lcom/ss/android/ugc/effectmanager/EffectManager;
 
-    invoke-static {v0}, Lcom/ss/android/ugc/effectmanager/EffectManager;->access$000(Lcom/ss/android/ugc/effectmanager/EffectManager;)Lcom/ss/android/ugc/effectmanager/effect/repository/EffectStore;
-
-    move-result-object v0
+    iget-object v0, v0, Lcom/ss/android/ugc/effectmanager/EffectManager;->mEffectStore:Lcom/ss/android/ugc/effectmanager/effect/repository/EffectStore;
 
     invoke-virtual {v0, p1, p2, p3, p4}, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectStore;->updateEffectDownloadStatus(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/model/Effect;ILcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 168
+    .line 181
     return-void
 .end method

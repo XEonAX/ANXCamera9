@@ -23,11 +23,11 @@ import miui.util.Pools.Manager;
 import miui.util.Pools.Pool;
 
 public class IOUtils {
-    private static final int Je = 4096;
-    private static final ThreadLocal<SoftReference<byte[]>> Jf = new ThreadLocal();
-    private static final ThreadLocal<SoftReference<char[]>> Jg = new ThreadLocal();
-    private static final Pool<ByteArrayOutputStream> Jh = Pools.createSoftReferencePool(new Manager<ByteArrayOutputStream>() {
-        /* renamed from: dv */
+    private static final int Jn = 4096;
+    private static final ThreadLocal<SoftReference<byte[]>> Jo = new ThreadLocal();
+    private static final ThreadLocal<SoftReference<char[]>> Jp = new ThreadLocal();
+    private static final Pool<ByteArrayOutputStream> Jq = Pools.createSoftReferencePool(new Manager<ByteArrayOutputStream>() {
+        /* renamed from: dw */
         public ByteArrayOutputStream createInstance() {
             return new ByteArrayOutputStream();
         }
@@ -37,8 +37,8 @@ public class IOUtils {
             byteArrayOutputStream.reset();
         }
     }, 2);
-    private static final Pool<CharArrayWriter> Ji = Pools.createSoftReferencePool(new Manager<CharArrayWriter>() {
-        /* renamed from: dw */
+    private static final Pool<CharArrayWriter> Jr = Pools.createSoftReferencePool(new Manager<CharArrayWriter>() {
+        /* renamed from: dx */
         public CharArrayWriter createInstance() {
             return new CharArrayWriter();
         }
@@ -48,8 +48,8 @@ public class IOUtils {
             charArrayWriter.reset();
         }
     }, 2);
-    private static final Pool<StringWriter> Jj = Pools.createSoftReferencePool(new Manager<StringWriter>() {
-        /* renamed from: dx */
+    private static final Pool<StringWriter> Js = Pools.createSoftReferencePool(new Manager<StringWriter>() {
+        /* renamed from: dy */
         public StringWriter createInstance() {
             return new StringWriter();
         }
@@ -62,13 +62,13 @@ public class IOUtils {
     private static final String LINE_SEPARATOR;
 
     static {
-        StringWriter stringWriter = (StringWriter) Jj.acquire();
+        StringWriter stringWriter = (StringWriter) Js.acquire();
         PrintWriter printWriter = new PrintWriter(stringWriter);
         printWriter.println();
         printWriter.flush();
         LINE_SEPARATOR = stringWriter.toString();
         printWriter.close();
-        Jj.release(stringWriter);
+        Js.release(stringWriter);
     }
 
     protected IOUtils() throws InstantiationException {
@@ -125,74 +125,74 @@ public class IOUtils {
     }
 
     public static byte[] toByteArray(InputStream inputStream) throws IOException {
-        OutputStream outputStream = (ByteArrayOutputStream) Jh.acquire();
+        OutputStream outputStream = (ByteArrayOutputStream) Jq.acquire();
         copy(inputStream, outputStream);
         byte[] toByteArray = outputStream.toByteArray();
-        Jh.release(outputStream);
+        Jq.release(outputStream);
         return toByteArray;
     }
 
     public static byte[] toByteArray(Reader reader) throws IOException {
-        OutputStream outputStream = (ByteArrayOutputStream) Jh.acquire();
+        OutputStream outputStream = (ByteArrayOutputStream) Jq.acquire();
         copy(reader, outputStream);
         byte[] toByteArray = outputStream.toByteArray();
-        Jh.release(outputStream);
+        Jq.release(outputStream);
         return toByteArray;
     }
 
     public static byte[] toByteArray(Reader reader, String str) throws IOException {
-        OutputStream outputStream = (ByteArrayOutputStream) Jh.acquire();
+        OutputStream outputStream = (ByteArrayOutputStream) Jq.acquire();
         copy(reader, outputStream, str);
         byte[] toByteArray = outputStream.toByteArray();
-        Jh.release(outputStream);
+        Jq.release(outputStream);
         return toByteArray;
     }
 
     public static char[] toCharArray(InputStream inputStream) throws IOException {
-        Writer writer = (CharArrayWriter) Ji.acquire();
+        Writer writer = (CharArrayWriter) Jr.acquire();
         copy(inputStream, writer);
         char[] toCharArray = writer.toCharArray();
-        Ji.release(writer);
+        Jr.release(writer);
         return toCharArray;
     }
 
     public static char[] toCharArray(InputStream inputStream, String str) throws IOException {
-        Writer writer = (CharArrayWriter) Ji.acquire();
+        Writer writer = (CharArrayWriter) Jr.acquire();
         copy(inputStream, writer, str);
         char[] toCharArray = writer.toCharArray();
-        Ji.release(writer);
+        Jr.release(writer);
         return toCharArray;
     }
 
     public static char[] toCharArray(Reader reader) throws IOException {
-        Writer writer = (CharArrayWriter) Ji.acquire();
+        Writer writer = (CharArrayWriter) Jr.acquire();
         copy(reader, writer);
         char[] toCharArray = writer.toCharArray();
-        Ji.release(writer);
+        Jr.release(writer);
         return toCharArray;
     }
 
     public static String toString(InputStream inputStream) throws IOException {
-        Writer writer = (StringWriter) Jj.acquire();
+        Writer writer = (StringWriter) Js.acquire();
         copy(inputStream, writer);
         String stringWriter = writer.toString();
-        Jj.release(writer);
+        Js.release(writer);
         return stringWriter;
     }
 
     public static String toString(InputStream inputStream, String str) throws IOException {
-        Writer writer = (StringWriter) Jj.acquire();
+        Writer writer = (StringWriter) Js.acquire();
         copy(inputStream, writer, str);
         String stringWriter = writer.toString();
-        Jj.release(writer);
+        Js.release(writer);
         return stringWriter;
     }
 
     public static String toString(Reader reader) throws IOException {
-        Writer writer = (StringWriter) Jj.acquire();
+        Writer writer = (StringWriter) Js.acquire();
         copy(reader, writer);
         String stringWriter = writer.toString();
-        Jj.release(writer);
+        Js.release(writer);
         return stringWriter;
     }
 
@@ -341,12 +341,12 @@ public class IOUtils {
     }
 
     public static long copy(InputStream inputStream, OutputStream outputStream) throws IOException {
-        byte[] dt = dt();
+        byte[] du = du();
         long j = 0;
         while (true) {
-            int read = inputStream.read(dt);
+            int read = inputStream.read(du);
             if (read != -1) {
-                outputStream.write(dt, 0, read);
+                outputStream.write(du, 0, read);
                 j += (long) read;
             } else {
                 outputStream.flush();
@@ -384,12 +384,12 @@ public class IOUtils {
     }
 
     public static long copy(Reader reader, Writer writer) throws IOException {
-        char[] du = du();
+        char[] dv = dv();
         long j = 0;
         while (true) {
-            int read = reader.read(du);
+            int read = reader.read(dv);
             if (read != -1) {
-                writer.write(du, 0, read);
+                writer.write(dv, 0, read);
                 j += (long) read;
             } else {
                 writer.flush();
@@ -398,9 +398,9 @@ public class IOUtils {
         }
     }
 
-    private static byte[] dt() {
+    private static byte[] du() {
         byte[] bArr;
-        SoftReference softReference = (SoftReference) Jf.get();
+        SoftReference softReference = (SoftReference) Jo.get();
         if (softReference != null) {
             bArr = (byte[]) softReference.get();
         } else {
@@ -410,13 +410,13 @@ public class IOUtils {
             return bArr;
         }
         Object obj = new byte[4096];
-        Jf.set(new SoftReference(obj));
+        Jo.set(new SoftReference(obj));
         return obj;
     }
 
-    private static char[] du() {
+    private static char[] dv() {
         char[] cArr;
-        SoftReference softReference = (SoftReference) Jg.get();
+        SoftReference softReference = (SoftReference) Jp.get();
         if (softReference != null) {
             cArr = (char[]) softReference.get();
         } else {
@@ -426,7 +426,7 @@ public class IOUtils {
             return cArr;
         }
         Object obj = new char[4096];
-        Jg.set(new SoftReference(obj));
+        Jp.set(new SoftReference(obj));
         return obj;
     }
 }

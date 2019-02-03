@@ -4,9 +4,9 @@
 
 
 # static fields
-.field private static final pB:Z = false
+.field private static final pA:Z = false
 
-.field private static final pC:I = 0x7f
+.field private static final pB:I = 0x7f
 
 
 # direct methods

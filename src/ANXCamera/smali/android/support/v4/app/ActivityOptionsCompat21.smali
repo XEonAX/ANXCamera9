@@ -9,7 +9,7 @@
 
 # direct methods
 .method private constructor <init>(Landroid/app/ActivityOptions;)V
-    .locals 0
+    .registers 2
     .param p1, "activityOptions"    # Landroid/app/ActivityOptions;
 
     .line 49
@@ -23,7 +23,7 @@
 .end method
 
 .method public static makeSceneTransitionAnimation(Landroid/app/Activity;Landroid/view/View;Ljava/lang/String;)Landroid/support/v4/app/ActivityOptionsCompat21;
-    .locals 2
+    .registers 5
     .param p0, "activity"    # Landroid/app/Activity;
     .param p1, "sharedElement"    # Landroid/view/View;
     .param p2, "sharedElementName"    # Ljava/lang/String;
@@ -41,7 +41,7 @@
 .end method
 
 .method public static makeSceneTransitionAnimation(Landroid/app/Activity;[Landroid/view/View;[Ljava/lang/String;)Landroid/support/v4/app/ActivityOptionsCompat21;
-    .locals 4
+    .registers 7
     .param p0, "activity"    # Landroid/app/Activity;
     .param p1, "sharedElements"    # [Landroid/view/View;
     .param p2, "sharedElementNames"    # [Ljava/lang/String;
@@ -51,7 +51,7 @@
 
     .line 39
     .local v0, "pairs":[Landroid/util/Pair;
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_17
 
     .line 40
     array-length v1, p1
@@ -62,10 +62,10 @@
     const/4 v1, 0x0
 
     .local v1, "i":I
-    :goto_0
+    :goto_7
     array-length v2, v0
 
-    if-ge v1, v2, :cond_0
+    if-ge v1, v2, :cond_17
 
     .line 42
     aget-object v2, p1, v1
@@ -81,11 +81,11 @@
     .line 41
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_7
 
     .line 45
     .end local v1    # "i":I
-    :cond_0
+    :cond_17
     new-instance v1, Landroid/support/v4/app/ActivityOptionsCompat21;
 
     invoke-static {p0, v0}, Landroid/app/ActivityOptions;->makeSceneTransitionAnimation(Landroid/app/Activity;[Landroid/util/Pair;)Landroid/app/ActivityOptions;
@@ -100,7 +100,7 @@
 
 # virtual methods
 .method public toBundle()Landroid/os/Bundle;
-    .locals 1
+    .registers 2
 
     .line 54
     iget-object v0, p0, Landroid/support/v4/app/ActivityOptionsCompat21;->mActivityOptions:Landroid/app/ActivityOptions;
@@ -113,7 +113,7 @@
 .end method
 
 .method public update(Landroid/support/v4/app/ActivityOptionsCompat21;)V
-    .locals 2
+    .registers 4
     .param p1, "otherOptions"    # Landroid/support/v4/app/ActivityOptionsCompat21;
 
     .line 58

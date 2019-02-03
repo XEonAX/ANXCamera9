@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
     .param p1, "remote"    # Landroid/os/IBinder;
 
     .line 539
@@ -39,7 +39,7 @@
 
 # virtual methods
 .method public abortMatchingScenario(Landroid/os/statistics/E2EScenario;Ljava/lang/String;IJ)V
-    .locals 5
+    .registers 11
     .param p1, "scenario"    # Landroid/os/statistics/E2EScenario;
     .param p2, "tag"    # Ljava/lang/String;
     .param p3, "tid"    # I
@@ -63,7 +63,7 @@
 
     .line 1083
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -71,7 +71,7 @@
     .line 1084
     const/4 v2, 0x0
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_18
 
     .line 1085
     const/4 v3, 0x1
@@ -81,14 +81,14 @@
     .line 1086
     invoke-virtual {p1, v0, v2}, Landroid/os/statistics/E2EScenario;->writeToParcel(Landroid/os/Parcel;I)V
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 1089
-    :cond_0
+    :cond_18
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 1091
-    :goto_0
+    :goto_1b
     invoke-virtual {v0, p2}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
 
     .line 1092
@@ -106,8 +106,8 @@
 
     .line 1095
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2e
+    .catchall {:try_start_8 .. :try_end_2e} :catchall_36
 
     .line 1098
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -122,7 +122,7 @@
     return-void
 
     .line 1098
-    :catchall_0
+    :catchall_36
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -134,7 +134,7 @@
 .end method
 
 .method public abortSpecificScenario(Landroid/os/Bundle;IJ)V
-    .locals 5
+    .registers 10
     .param p1, "scenarioBundle"    # Landroid/os/Bundle;
     .param p2, "tid"    # I
     .param p3, "uptimeMillis"    # J
@@ -157,7 +157,7 @@
 
     .line 1107
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -165,7 +165,7 @@
     .line 1108
     const/4 v2, 0x0
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_18
 
     .line 1109
     const/4 v3, 0x1
@@ -175,14 +175,14 @@
     .line 1110
     invoke-virtual {p1, v0, v2}, Landroid/os/Bundle;->writeToParcel(Landroid/os/Parcel;I)V
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 1113
-    :cond_0
+    :cond_18
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 1115
-    :goto_0
+    :goto_1b
     invoke-virtual {v0, p2}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 1116
@@ -197,8 +197,8 @@
 
     .line 1118
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2b
+    .catchall {:try_start_8 .. :try_end_2b} :catchall_33
 
     .line 1121
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -213,7 +213,7 @@
     return-void
 
     .line 1121
-    :catchall_0
+    :catchall_33
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -225,7 +225,7 @@
 .end method
 
 .method public addActivityLaunchTime(Ljava/lang/String;Ljava/lang/String;JJZZ)V
-    .locals 5
+    .registers 14
     .param p1, "packageName"    # Ljava/lang/String;
     .param p2, "activityName"    # Ljava/lang/String;
     .param p3, "launchStartTime"    # J
@@ -245,7 +245,7 @@
 
     .line 573
     .local v0, "_data":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_4
     const-string v1, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v1}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -278,8 +278,8 @@
     const/4 v4, 0x1
 
     invoke-interface {v1, v2, v0, v3, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_23
+    .catchall {:try_start_4 .. :try_end_23} :catchall_28
 
     .line 583
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -291,7 +291,7 @@
     return-void
 
     .line 583
-    :catchall_0
+    :catchall_28
     move-exception v1
 
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -300,7 +300,7 @@
 .end method
 
 .method public addCallingPkgHookRule(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z
-    .locals 5
+    .registers 9
     .param p1, "hostApp"    # Ljava/lang/String;
     .param p2, "originCallingPkg"    # Ljava/lang/String;
     .param p3, "hookCallingPkg"    # Ljava/lang/String;
@@ -323,7 +323,7 @@
 
     .line 976
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -353,16 +353,16 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_25
+    .catchall {:try_start_8 .. :try_end_25} :catchall_33
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_29
 
     const/4 v4, 0x1
 
     nop
 
-    :cond_0
+    :cond_29
     move v2, v4
 
     .line 985
@@ -383,7 +383,7 @@
 
     .line 985
     .end local v2    # "_result":Z
-    :catchall_0
+    :catchall_33
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -395,7 +395,7 @@
 .end method
 
 .method public addTimeConsumingIntent([Ljava/lang/String;)V
-    .locals 5
+    .registers 7
     .param p1, "actions"    # [Ljava/lang/String;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -416,7 +416,7 @@
 
     .line 787
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -435,8 +435,8 @@
 
     .line 790
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1b
+    .catchall {:try_start_8 .. :try_end_1b} :catchall_23
 
     .line 793
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -451,7 +451,7 @@
     return-void
 
     .line 793
-    :catchall_0
+    :catchall_23
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -463,7 +463,7 @@
 .end method
 
 .method public asBinder()Landroid/os/IBinder;
-    .locals 1
+    .registers 2
 
     .line 544
     iget-object v0, p0, Lcom/android/internal/app/IPerfShielder$Stub$Proxy;->mRemote:Landroid/os/IBinder;
@@ -472,7 +472,7 @@
 .end method
 
 .method public beginScenario(Landroid/os/statistics/E2EScenario;Landroid/os/statistics/E2EScenarioSettings;Ljava/lang/String;Landroid/os/statistics/E2EScenarioPayload;IJZ)Landroid/os/Bundle;
-    .locals 5
+    .registers 14
     .param p1, "scenario"    # Landroid/os/statistics/E2EScenario;
     .param p2, "settings"    # Landroid/os/statistics/E2EScenarioSettings;
     .param p3, "tag"    # Ljava/lang/String;
@@ -499,7 +499,7 @@
 
     .line 1037
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -509,7 +509,7 @@
 
     const/4 v3, 0x0
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_18
 
     .line 1039
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
@@ -517,15 +517,15 @@
     .line 1040
     invoke-virtual {p1, v0, v3}, Landroid/os/statistics/E2EScenario;->writeToParcel(Landroid/os/Parcel;I)V
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 1043
-    :cond_0
+    :cond_18
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 1045
-    :goto_0
-    if-eqz p2, :cond_1
+    :goto_1b
+    if-eqz p2, :cond_24
 
     .line 1046
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
@@ -533,18 +533,18 @@
     .line 1047
     invoke-virtual {p2, v0, v3}, Landroid/os/statistics/E2EScenarioSettings;->writeToParcel(Landroid/os/Parcel;I)V
 
-    goto :goto_1
+    goto :goto_27
 
     .line 1050
-    :cond_1
+    :cond_24
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 1052
-    :goto_1
+    :goto_27
     invoke-virtual {v0, p3}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
 
     .line 1053
-    if-eqz p4, :cond_2
+    if-eqz p4, :cond_33
 
     .line 1054
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
@@ -552,14 +552,14 @@
     .line 1055
     invoke-virtual {p4, v0, v3}, Landroid/os/statistics/E2EScenarioPayload;->writeToParcel(Landroid/os/Parcel;I)V
 
-    goto :goto_2
+    goto :goto_36
 
     .line 1058
-    :cond_2
+    :cond_33
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 1060
-    :goto_2
+    :goto_36
     invoke-virtual {v0, p5}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 1061
@@ -583,7 +583,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_58
 
     .line 1066
     sget-object v2, Landroid/os/Bundle;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -593,20 +593,20 @@
     move-result-object v2
 
     check-cast v2, Landroid/os/Bundle;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_57
+    .catchall {:try_start_8 .. :try_end_57} :catchall_62
 
     .local v2, "_result":Landroid/os/Bundle;
-    goto :goto_3
+    goto :goto_59
 
     .line 1069
     .end local v2    # "_result":Landroid/os/Bundle;
-    :cond_3
+    :cond_58
     const/4 v2, 0x0
 
     .line 1073
     .restart local v2    # "_result":Landroid/os/Bundle;
-    :goto_3
+    :goto_59
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 1074
@@ -623,7 +623,7 @@
 
     .line 1073
     .end local v2    # "_result":Landroid/os/Bundle;
-    :catchall_0
+    :catchall_62
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -635,7 +635,7 @@
 .end method
 
 .method public clearTimeConsumingIntent()V
-    .locals 5
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -655,7 +655,7 @@
 
     .line 817
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -671,8 +671,8 @@
 
     .line 819
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_18
+    .catchall {:try_start_8 .. :try_end_18} :catchall_20
 
     .line 822
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -687,7 +687,7 @@
     return-void
 
     .line 822
-    :catchall_0
+    :catchall_20
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -699,7 +699,7 @@
 .end method
 
 .method public closeCheckPriority()V
-    .locals 5
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -719,7 +719,7 @@
 
     .line 749
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -735,8 +735,8 @@
 
     .line 751
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_18
+    .catchall {:try_start_8 .. :try_end_18} :catchall_20
 
     .line 754
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -751,7 +751,7 @@
     return-void
 
     .line 754
-    :catchall_0
+    :catchall_20
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -763,7 +763,7 @@
 .end method
 
 .method public deletePackageInfo(Ljava/lang/String;)Z
-    .locals 5
+    .registers 7
     .param p1, "pkgName"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -784,7 +784,7 @@
 
     .line 923
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -808,16 +808,16 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1f
+    .catchall {:try_start_8 .. :try_end_1f} :catchall_2d
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_23
 
     const/4 v4, 0x1
 
     nop
 
-    :cond_0
+    :cond_23
     move v2, v4
 
     .line 930
@@ -838,7 +838,7 @@
 
     .line 930
     .end local v2    # "_result":Z
-    :catchall_0
+    :catchall_2d
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -850,7 +850,7 @@
 .end method
 
 .method public deleteRedirectRule(Ljava/lang/String;Ljava/lang/String;)Z
-    .locals 5
+    .registers 8
     .param p1, "callingPkg"    # Ljava/lang/String;
     .param p2, "destPkg"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Throws;
@@ -872,7 +872,7 @@
 
     .line 878
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -899,16 +899,16 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_22
+    .catchall {:try_start_8 .. :try_end_22} :catchall_30
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_26
 
     const/4 v4, 0x1
 
     nop
 
-    :cond_0
+    :cond_26
     move v2, v4
 
     .line 886
@@ -929,7 +929,7 @@
 
     .line 886
     .end local v2    # "_result":Z
-    :catchall_0
+    :catchall_30
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -941,7 +941,7 @@
 .end method
 
 .method public finishMatchingScenario(Landroid/os/statistics/E2EScenario;Ljava/lang/String;Landroid/os/statistics/E2EScenarioPayload;IJ)V
-    .locals 5
+    .registers 12
     .param p1, "scenario"    # Landroid/os/statistics/E2EScenario;
     .param p2, "tag"    # Ljava/lang/String;
     .param p3, "payload"    # Landroid/os/statistics/E2EScenarioPayload;
@@ -966,7 +966,7 @@
 
     .line 1130
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -976,7 +976,7 @@
 
     const/4 v3, 0x0
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_18
 
     .line 1132
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
@@ -984,18 +984,18 @@
     .line 1133
     invoke-virtual {p1, v0, v3}, Landroid/os/statistics/E2EScenario;->writeToParcel(Landroid/os/Parcel;I)V
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 1136
-    :cond_0
+    :cond_18
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 1138
-    :goto_0
+    :goto_1b
     invoke-virtual {v0, p2}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
 
     .line 1139
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_27
 
     .line 1140
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
@@ -1003,14 +1003,14 @@
     .line 1141
     invoke-virtual {p3, v0, v3}, Landroid/os/statistics/E2EScenarioPayload;->writeToParcel(Landroid/os/Parcel;I)V
 
-    goto :goto_1
+    goto :goto_2a
 
     .line 1144
-    :cond_1
+    :cond_27
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 1146
-    :goto_1
+    :goto_2a
     invoke-virtual {v0, p4}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 1147
@@ -1025,8 +1025,8 @@
 
     .line 1149
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_3a
+    .catchall {:try_start_8 .. :try_end_3a} :catchall_42
 
     .line 1152
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1041,7 +1041,7 @@
     return-void
 
     .line 1152
-    :catchall_0
+    :catchall_42
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1053,7 +1053,7 @@
 .end method
 
 .method public finishSpecificScenario(Landroid/os/Bundle;Landroid/os/statistics/E2EScenarioPayload;IJ)V
-    .locals 5
+    .registers 11
     .param p1, "scenarioBundle"    # Landroid/os/Bundle;
     .param p2, "payload"    # Landroid/os/statistics/E2EScenarioPayload;
     .param p3, "tid"    # I
@@ -1077,7 +1077,7 @@
 
     .line 1161
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1087,7 +1087,7 @@
 
     const/4 v3, 0x0
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_18
 
     .line 1163
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
@@ -1095,15 +1095,15 @@
     .line 1164
     invoke-virtual {p1, v0, v3}, Landroid/os/Bundle;->writeToParcel(Landroid/os/Parcel;I)V
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 1167
-    :cond_0
+    :cond_18
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 1169
-    :goto_0
-    if-eqz p2, :cond_1
+    :goto_1b
+    if-eqz p2, :cond_24
 
     .line 1170
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
@@ -1111,14 +1111,14 @@
     .line 1171
     invoke-virtual {p2, v0, v3}, Landroid/os/statistics/E2EScenarioPayload;->writeToParcel(Landroid/os/Parcel;I)V
 
-    goto :goto_1
+    goto :goto_27
 
     .line 1174
-    :cond_1
+    :cond_24
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 1176
-    :goto_1
+    :goto_27
     invoke-virtual {v0, p3}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 1177
@@ -1133,8 +1133,8 @@
 
     .line 1179
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_37
+    .catchall {:try_start_8 .. :try_end_37} :catchall_3f
 
     .line 1182
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1149,7 +1149,7 @@
     return-void
 
     .line 1182
-    :catchall_0
+    :catchall_3f
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1161,7 +1161,7 @@
 .end method
 
 .method public getAllRunningProcessMemInfos()Ljava/util/List;
-    .locals 5
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -1190,7 +1190,7 @@
 
     .line 653
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1213,8 +1213,8 @@
     invoke-virtual {v1, v2}, Landroid/os/Parcel;->createTypedArrayList(Landroid/os/Parcelable$Creator;)Ljava/util/ArrayList;
 
     move-result-object v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1d
+    .catchall {:try_start_8 .. :try_end_1d} :catchall_26
 
     .line 659
     .local v2, "_result":Ljava/util/List;, "Ljava/util/List<Landroid/os/Bundle;>;"
@@ -1234,7 +1234,7 @@
 
     .line 659
     .end local v2    # "_result":Ljava/util/List;, "Ljava/util/List<Landroid/os/Bundle;>;"
-    :catchall_0
+    :catchall_26
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1246,7 +1246,7 @@
 .end method
 
 .method public getFreeMemory()J
-    .locals 5
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1266,7 +1266,7 @@
 
     .line 941
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1287,8 +1287,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readLong()J
 
     move-result-wide v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1c
+    .catchall {:try_start_8 .. :try_end_1c} :catchall_25
 
     .line 947
     .local v2, "_result":J
@@ -1308,7 +1308,7 @@
 
     .line 947
     .end local v2    # "_result":J
-    :catchall_0
+    :catchall_25
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1320,7 +1320,7 @@
 .end method
 
 .method public getInterfaceDescriptor()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 548
     const-string v0, "com.android.internal.app.IPerfShielder"
@@ -1329,7 +1329,7 @@
 .end method
 
 .method public getMemoryTrimLevel()I
-    .locals 5
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1349,7 +1349,7 @@
 
     .line 832
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1370,8 +1370,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1c
+    .catchall {:try_start_8 .. :try_end_1c} :catchall_25
 
     .line 838
     .local v2, "_result":I
@@ -1391,7 +1391,7 @@
 
     .line 838
     .end local v2    # "_result":I
-    :catchall_0
+    :catchall_25
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1403,7 +1403,7 @@
 .end method
 
 .method public getPackageNameByPid(I)Ljava/lang/String;
-    .locals 5
+    .registers 7
     .param p1, "pid"    # I
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -1424,7 +1424,7 @@
 
     .line 617
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1448,8 +1448,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
     move-result-object v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1e
+    .catchall {:try_start_8 .. :try_end_1e} :catchall_27
 
     .line 624
     .local v2, "_result":Ljava/lang/String;
@@ -1469,7 +1469,7 @@
 
     .line 624
     .end local v2    # "_result":Ljava/lang/String;
-    :catchall_0
+    :catchall_27
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1481,7 +1481,7 @@
 .end method
 
 .method public getPerfEventSocketFd()Landroid/os/ParcelFileDescriptor;
-    .locals 5
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1501,7 +1501,7 @@
 
     .line 1015
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1523,7 +1523,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_27
 
     .line 1019
     sget-object v2, Landroid/os/ParcelFileDescriptor;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -1533,20 +1533,20 @@
     move-result-object v2
 
     check-cast v2, Landroid/os/ParcelFileDescriptor;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_26
+    .catchall {:try_start_8 .. :try_end_26} :catchall_31
 
     .local v2, "_result":Landroid/os/ParcelFileDescriptor;
-    goto :goto_0
+    goto :goto_28
 
     .line 1022
     .end local v2    # "_result":Landroid/os/ParcelFileDescriptor;
-    :cond_0
+    :cond_27
     const/4 v2, 0x0
 
     .line 1026
     .restart local v2    # "_result":Landroid/os/ParcelFileDescriptor;
-    :goto_0
+    :goto_28
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 1027
@@ -1563,7 +1563,7 @@
 
     .line 1026
     .end local v2    # "_result":Landroid/os/ParcelFileDescriptor;
-    :catchall_0
+    :catchall_31
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1575,7 +1575,7 @@
 .end method
 
 .method public insertPackageInfo(Landroid/content/pm/PackageInfo;)Z
-    .locals 6
+    .registers 8
     .param p1, "pInfo"    # Landroid/content/pm/PackageInfo;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -1596,7 +1596,7 @@
 
     .line 899
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1606,7 +1606,7 @@
 
     const/4 v3, 0x0
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_18
 
     .line 901
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
@@ -1614,14 +1614,14 @@
     .line 902
     invoke-virtual {p1, v0, v3}, Landroid/content/pm/PackageInfo;->writeToParcel(Landroid/os/Parcel;I)V
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 905
-    :cond_0
+    :cond_18
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 907
-    :goto_0
+    :goto_1b
     iget-object v4, p0, Lcom/android/internal/app/IPerfShielder$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/16 v5, 0x16
@@ -1635,19 +1635,19 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result v4
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_29
+    .catchall {:try_start_8 .. :try_end_29} :catchall_36
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_2c
 
-    goto :goto_1
+    goto :goto_2d
 
-    :cond_1
+    :cond_2c
     move v2, v3
 
     .line 912
     .local v2, "_result":Z
-    :goto_1
+    :goto_2d
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 913
@@ -1664,7 +1664,7 @@
 
     .line 912
     .end local v2    # "_result":Z
-    :catchall_0
+    :catchall_36
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1676,7 +1676,7 @@
 .end method
 
 .method public insertRedirectRule(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/os/Bundle;)Z
-    .locals 6
+    .registers 11
     .param p1, "callingPkg"    # Ljava/lang/String;
     .param p2, "destPkg"    # Ljava/lang/String;
     .param p3, "redirectPkgname"    # Ljava/lang/String;
@@ -1700,7 +1700,7 @@
 
     .line 851
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1719,7 +1719,7 @@
 
     const/4 v3, 0x0
 
-    if-eqz p4, :cond_0
+    if-eqz p4, :cond_21
 
     .line 856
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
@@ -1727,14 +1727,14 @@
     .line 857
     invoke-virtual {p4, v0, v3}, Landroid/os/Bundle;->writeToParcel(Landroid/os/Parcel;I)V
 
-    goto :goto_0
+    goto :goto_24
 
     .line 860
-    :cond_0
+    :cond_21
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 862
-    :goto_0
+    :goto_24
     iget-object v4, p0, Lcom/android/internal/app/IPerfShielder$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/16 v5, 0x14
@@ -1748,19 +1748,19 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result v4
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_32
+    .catchall {:try_start_8 .. :try_end_32} :catchall_3f
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_35
 
-    goto :goto_1
+    goto :goto_36
 
-    :cond_1
+    :cond_35
     move v2, v3
 
     .line 867
     .local v2, "_result":Z
-    :goto_1
+    :goto_36
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 868
@@ -1777,7 +1777,7 @@
 
     .line 867
     .end local v2    # "_result":Z
-    :catchall_0
+    :catchall_3f
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1789,7 +1789,7 @@
 .end method
 
 .method public killUnusedApp(II)V
-    .locals 5
+    .registers 8
     .param p1, "uid"    # I
     .param p2, "pid"    # I
     .annotation system Ldalvik/annotation/Throws;
@@ -1805,7 +1805,7 @@
 
     .line 602
     .local v0, "_data":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_4
     const-string v1, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v1}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1826,8 +1826,8 @@
     const/4 v4, 0x1
 
     invoke-interface {v1, v2, v0, v3, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_17
+    .catchall {:try_start_4 .. :try_end_17} :catchall_1c
 
     .line 608
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -1839,7 +1839,7 @@
     return-void
 
     .line 608
-    :catchall_0
+    :catchall_1c
     move-exception v1
 
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -1848,7 +1848,7 @@
 .end method
 
 .method public removeCallingPkgHookRule(Ljava/lang/String;Ljava/lang/String;)Z
-    .locals 5
+    .registers 8
     .param p1, "hostApp"    # Ljava/lang/String;
     .param p2, "originCallingPkg"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Throws;
@@ -1870,7 +1870,7 @@
 
     .line 996
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1897,16 +1897,16 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_22
+    .catchall {:try_start_8 .. :try_end_22} :catchall_30
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_26
 
     const/4 v4, 0x1
 
     nop
 
-    :cond_0
+    :cond_26
     move v2, v4
 
     .line 1004
@@ -1927,7 +1927,7 @@
 
     .line 1004
     .end local v2    # "_result":Z
-    :catchall_0
+    :catchall_30
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1939,7 +1939,7 @@
 .end method
 
 .method public removeServicePriority(Lcom/android/internal/app/MiuiServicePriority;Z)V
-    .locals 5
+    .registers 8
     .param p1, "servicePriority"    # Lcom/android/internal/app/MiuiServicePriority;
     .param p2, "inBlacklist"    # Z
     .annotation system Ldalvik/annotation/Throws;
@@ -1955,7 +1955,7 @@
 
     .line 729
     .local v0, "_data":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_4
     const-string v1, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v1}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1965,7 +1965,7 @@
 
     const/4 v2, 0x1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_14
 
     .line 731
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
@@ -1973,14 +1973,14 @@
     .line 732
     invoke-virtual {p1, v0, v1}, Lcom/android/internal/app/MiuiServicePriority;->writeToParcel(Landroid/os/Parcel;I)V
 
-    goto :goto_0
+    goto :goto_17
 
     .line 735
-    :cond_0
+    :cond_14
     invoke-virtual {v0, v1}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 737
-    :goto_0
+    :goto_17
     invoke-virtual {v0, p2}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 738
@@ -1991,8 +1991,8 @@
     const/4 v4, 0x0
 
     invoke-interface {v1, v3, v0, v4, v2}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_22
+    .catchall {:try_start_4 .. :try_end_22} :catchall_27
 
     .line 741
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2004,7 +2004,7 @@
     return-void
 
     .line 741
-    :catchall_0
+    :catchall_27
     move-exception v1
 
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2013,7 +2013,7 @@
 .end method
 
 .method public removeTimeConsumingIntent([Ljava/lang/String;)V
-    .locals 5
+    .registers 7
     .param p1, "actions"    # [Ljava/lang/String;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -2034,7 +2034,7 @@
 
     .line 802
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2053,8 +2053,8 @@
 
     .line 805
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1b
+    .catchall {:try_start_8 .. :try_end_1b} :catchall_23
 
     .line 808
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -2069,7 +2069,7 @@
     return-void
 
     .line 808
-    :catchall_0
+    :catchall_23
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -2081,7 +2081,7 @@
 .end method
 
 .method public reportAnr(ILjava/lang/String;JJLjava/lang/String;)V
-    .locals 5
+    .registers 13
     .param p1, "callingPid"    # I
     .param p2, "windowName"    # Ljava/lang/String;
     .param p3, "totalDuration"    # J
@@ -2100,7 +2100,7 @@
 
     .line 956
     .local v0, "_data":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_4
     const-string v1, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v1}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2130,8 +2130,8 @@
     const/4 v4, 0x1
 
     invoke-interface {v1, v2, v0, v3, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_21
+    .catchall {:try_start_4 .. :try_end_21} :catchall_26
 
     .line 965
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2143,7 +2143,7 @@
     return-void
 
     .line 965
-    :catchall_0
+    :catchall_26
     move-exception v1
 
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2152,7 +2152,7 @@
 .end method
 
 .method public reportExcessiveCpuUsageRecords(Ljava/util/List;)V
-    .locals 5
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -2176,7 +2176,7 @@
 
     .line 1190
     .local v0, "_data":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_4
     const-string v1, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v1}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2194,8 +2194,8 @@
     const/4 v4, 0x1
 
     invoke-interface {v1, v2, v0, v3, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_15
+    .catchall {:try_start_4 .. :try_end_15} :catchall_1a
 
     .line 1195
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2207,7 +2207,7 @@
     return-void
 
     .line 1195
-    :catchall_0
+    :catchall_1a
     move-exception v1
 
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2216,7 +2216,7 @@
 .end method
 
 .method public reportNotificationClick(Ljava/lang/String;Landroid/content/Intent;J)V
-    .locals 5
+    .registers 10
     .param p1, "postPackage"    # Ljava/lang/String;
     .param p2, "intent"    # Landroid/content/Intent;
     .param p3, "uptimeMillis"    # J
@@ -2233,7 +2233,7 @@
 
     .line 1204
     .local v0, "_data":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_4
     const-string v1, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v1}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2246,7 +2246,7 @@
 
     const/4 v2, 0x1
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_17
 
     .line 1207
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
@@ -2254,14 +2254,14 @@
     .line 1208
     invoke-virtual {p2, v0, v1}, Landroid/content/Intent;->writeToParcel(Landroid/os/Parcel;I)V
 
-    goto :goto_0
+    goto :goto_1a
 
     .line 1211
-    :cond_0
+    :cond_17
     invoke-virtual {v0, v1}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 1213
-    :goto_0
+    :goto_1a
     invoke-virtual {v0, p3, p4}, Landroid/os/Parcel;->writeLong(J)V
 
     .line 1214
@@ -2272,8 +2272,8 @@
     const/4 v4, 0x0
 
     invoke-interface {v1, v3, v0, v4, v2}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_25
+    .catchall {:try_start_4 .. :try_end_25} :catchall_2a
 
     .line 1217
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2285,7 +2285,7 @@
     return-void
 
     .line 1217
-    :catchall_0
+    :catchall_2a
     move-exception v1
 
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2294,7 +2294,7 @@
 .end method
 
 .method public reportPerceptibleJank(IILjava/lang/String;JJJIJ)V
-    .locals 17
+    .registers 30
     .param p1, "callingPid"    # I
     .param p2, "renderThreadTid"    # I
     .param p3, "windowName"    # Ljava/lang/String;
@@ -2318,7 +2318,7 @@
 
     .line 554
     .local v1, "_data":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_5
     const-string v0, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v1, v0}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2327,69 +2327,69 @@
     move/from16 v2, p1
 
     invoke-virtual {v1, v2}, Landroid/os/Parcel;->writeInt(I)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_8
+    :try_end_f
+    .catchall {:try_start_5 .. :try_end_f} :catchall_5e
 
     .line 556
     move/from16 v3, p2
 
-    :try_start_1
+    :try_start_11
     invoke-virtual {v1, v3}, Landroid/os/Parcel;->writeInt(I)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_7
+    :try_end_14
+    .catchall {:try_start_11 .. :try_end_14} :catchall_5a
 
     .line 557
     move-object/from16 v4, p3
 
-    :try_start_2
+    :try_start_16
     invoke-virtual {v1, v4}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_6
+    :try_end_19
+    .catchall {:try_start_16 .. :try_end_19} :catchall_56
 
     .line 558
     move-wide/from16 v5, p4
 
-    :try_start_3
+    :try_start_1b
     invoke-virtual {v1, v5, v6}, Landroid/os/Parcel;->writeLong(J)V
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_5
+    :try_end_1e
+    .catchall {:try_start_1b .. :try_end_1e} :catchall_52
 
     .line 559
     move-wide/from16 v7, p6
 
-    :try_start_4
+    :try_start_20
     invoke-virtual {v1, v7, v8}, Landroid/os/Parcel;->writeLong(J)V
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_4
+    :try_end_23
+    .catchall {:try_start_20 .. :try_end_23} :catchall_4e
 
     .line 560
     move-wide/from16 v9, p8
 
-    :try_start_5
+    :try_start_25
     invoke-virtual {v1, v9, v10}, Landroid/os/Parcel;->writeLong(J)V
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_3
+    :try_end_28
+    .catchall {:try_start_25 .. :try_end_28} :catchall_4a
 
     .line 561
     move/from16 v11, p10
 
-    :try_start_6
+    :try_start_2a
     invoke-virtual {v1, v11}, Landroid/os/Parcel;->writeInt(I)V
-    :try_end_6
-    .catchall {:try_start_6 .. :try_end_6} :catchall_2
+    :try_end_2d
+    .catchall {:try_start_2a .. :try_end_2d} :catchall_46
 
     .line 562
     move-wide/from16 v12, p11
 
-    :try_start_7
+    :try_start_2f
     invoke-virtual {v1, v12, v13}, Landroid/os/Parcel;->writeLong(J)V
-    :try_end_7
-    .catchall {:try_start_7 .. :try_end_7} :catchall_1
+    :try_end_32
+    .catchall {:try_start_2f .. :try_end_32} :catchall_42
 
     .line 563
     move-object/from16 v14, p0
 
-    :try_start_8
+    :try_start_34
     iget-object v0, v14, Lcom/android/internal/app/IPerfShielder$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/4 v15, 0x0
@@ -2397,8 +2397,8 @@
     const/4 v2, 0x1
 
     invoke-interface {v0, v2, v1, v15, v2}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    :try_end_8
-    .catchall {:try_start_8 .. :try_end_8} :catchall_0
+    :try_end_3b
+    .catchall {:try_start_34 .. :try_end_3b} :catchall_40
 
     .line 566
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -2410,93 +2410,93 @@
     return-void
 
     .line 566
-    :catchall_0
+    :catchall_40
     move-exception v0
 
-    goto :goto_6
+    goto :goto_6f
 
-    :catchall_1
-    move-exception v0
-
-    move-object/from16 v14, p0
-
-    goto :goto_6
-
-    :catchall_2
+    :catchall_42
     move-exception v0
 
     move-object/from16 v14, p0
 
-    goto :goto_5
+    goto :goto_6f
 
-    :catchall_3
+    :catchall_46
     move-exception v0
 
     move-object/from16 v14, p0
 
-    goto :goto_4
+    goto :goto_6d
 
-    :catchall_4
+    :catchall_4a
     move-exception v0
 
     move-object/from16 v14, p0
 
-    goto :goto_3
+    goto :goto_6b
 
-    :catchall_5
+    :catchall_4e
     move-exception v0
 
     move-object/from16 v14, p0
 
-    goto :goto_2
+    goto :goto_69
 
-    :catchall_6
+    :catchall_52
     move-exception v0
 
     move-object/from16 v14, p0
 
-    goto :goto_1
+    goto :goto_67
 
-    :catchall_7
+    :catchall_56
     move-exception v0
 
     move-object/from16 v14, p0
 
-    goto :goto_0
+    goto :goto_65
 
-    :catchall_8
+    :catchall_5a
+    move-exception v0
+
+    move-object/from16 v14, p0
+
+    goto :goto_63
+
+    :catchall_5e
     move-exception v0
 
     move-object/from16 v14, p0
 
     move/from16 v3, p2
 
-    :goto_0
+    :goto_63
     move-object/from16 v4, p3
 
-    :goto_1
+    :goto_65
     move-wide/from16 v5, p4
 
-    :goto_2
+    :goto_67
     move-wide/from16 v7, p6
 
-    :goto_3
+    :goto_69
     move-wide/from16 v9, p8
 
-    :goto_4
+    :goto_6b
     move/from16 v11, p10
 
-    :goto_5
+    :goto_6d
     move-wide/from16 v12, p11
 
-    :goto_6
+    :goto_6f
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     throw v0
 .end method
 
 .method public setForkedProcessGroup(IIILjava/lang/String;)V
-    .locals 5
+    .registers 10
     .param p1, "puid"    # I
     .param p2, "ppid"    # I
     .param p3, "group"    # I
@@ -2520,7 +2520,7 @@
 
     .line 634
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2548,8 +2548,8 @@
 
     .line 640
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_23
+    .catchall {:try_start_8 .. :try_end_23} :catchall_2b
 
     .line 643
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -2564,7 +2564,7 @@
     return-void
 
     .line 643
-    :catchall_0
+    :catchall_2b
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -2576,7 +2576,7 @@
 .end method
 
 .method public setMiuiBroadcastDispatchEnable(Z)V
-    .locals 5
+    .registers 7
     .param p1, "enable"    # Z
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -2591,7 +2591,7 @@
 
     .line 774
     .local v0, "_data":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_4
     const-string v1, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v1}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2609,8 +2609,8 @@
     const/4 v4, 0x1
 
     invoke-interface {v1, v2, v0, v3, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_15
+    .catchall {:try_start_4 .. :try_end_15} :catchall_1a
 
     .line 779
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2622,7 +2622,7 @@
     return-void
 
     .line 779
-    :catchall_0
+    :catchall_1a
     move-exception v1
 
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2631,7 +2631,7 @@
 .end method
 
 .method public setMiuiContentProviderControl(Z)V
-    .locals 5
+    .registers 7
     .param p1, "enable"    # Z
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -2646,7 +2646,7 @@
 
     .line 762
     .local v0, "_data":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_4
     const-string v1, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v1}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2664,8 +2664,8 @@
     const/4 v4, 0x1
 
     invoke-interface {v1, v2, v0, v3, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_15
+    .catchall {:try_start_4 .. :try_end_15} :catchall_1a
 
     .line 767
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2677,7 +2677,7 @@
     return-void
 
     .line 767
-    :catchall_0
+    :catchall_1a
     move-exception v1
 
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2686,7 +2686,7 @@
 .end method
 
 .method public setSchedFgPid(I)V
-    .locals 5
+    .registers 7
     .param p1, "pid"    # I
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -2701,7 +2701,7 @@
 
     .line 590
     .local v0, "_data":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_4
     const-string v1, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v1}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2719,8 +2719,8 @@
     const/4 v4, 0x1
 
     invoke-interface {v1, v2, v0, v3, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_14
+    .catchall {:try_start_4 .. :try_end_14} :catchall_19
 
     .line 595
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2732,7 +2732,7 @@
     return-void
 
     .line 595
-    :catchall_0
+    :catchall_19
     move-exception v1
 
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2741,7 +2741,7 @@
 .end method
 
 .method public setServicePriority(Ljava/util/List;)V
-    .locals 5
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -2765,7 +2765,7 @@
 
     .line 704
     .local v0, "_data":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_4
     const-string v1, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v1}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2783,8 +2783,8 @@
     const/4 v4, 0x1
 
     invoke-interface {v1, v2, v0, v3, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_15
+    .catchall {:try_start_4 .. :try_end_15} :catchall_1a
 
     .line 709
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2796,7 +2796,7 @@
     return-void
 
     .line 709
-    :catchall_0
+    :catchall_1a
     move-exception v1
 
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2805,7 +2805,7 @@
 .end method
 
 .method public setServicePriorityWithNoProc(Ljava/util/List;J)V
-    .locals 5
+    .registers 9
     .param p2, "noProcDelayTime"    # J
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2830,7 +2830,7 @@
 
     .line 716
     .local v0, "_data":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_4
     const-string v1, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v1}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2851,8 +2851,8 @@
     const/4 v4, 0x1
 
     invoke-interface {v1, v2, v0, v3, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_18
+    .catchall {:try_start_4 .. :try_end_18} :catchall_1d
 
     .line 722
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2864,7 +2864,7 @@
     return-void
 
     .line 722
-    :catchall_0
+    :catchall_1d
     move-exception v1
 
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
@@ -2873,7 +2873,7 @@
 .end method
 
 .method public updateProcessFullMemInfoByPids([I)Ljava/util/List;
-    .locals 5
+    .registers 7
     .param p1, "pids"    # [I
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2903,7 +2903,7 @@
 
     .line 670
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2929,8 +2929,8 @@
     invoke-virtual {v1, v2}, Landroid/os/Parcel;->createTypedArrayList(Landroid/os/Parcelable$Creator;)Ljava/util/ArrayList;
 
     move-result-object v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_21
+    .catchall {:try_start_8 .. :try_end_21} :catchall_2a
 
     .line 677
     .local v2, "_result":Ljava/util/List;, "Ljava/util/List<Landroid/os/Bundle;>;"
@@ -2950,7 +2950,7 @@
 
     .line 677
     .end local v2    # "_result":Ljava/util/List;, "Ljava/util/List<Landroid/os/Bundle;>;"
-    :catchall_0
+    :catchall_2a
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -2962,7 +2962,7 @@
 .end method
 
 .method public updateProcessPartialMemInfoByPids([I)Ljava/util/List;
-    .locals 5
+    .registers 7
     .param p1, "pids"    # [I
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2992,7 +2992,7 @@
 
     .line 688
     .local v1, "_reply":Landroid/os/Parcel;
-    :try_start_0
+    :try_start_8
     const-string v2, "com.android.internal.app.IPerfShielder"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -3018,8 +3018,8 @@
     invoke-virtual {v1, v2}, Landroid/os/Parcel;->createTypedArrayList(Landroid/os/Parcelable$Creator;)Ljava/util/ArrayList;
 
     move-result-object v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_21
+    .catchall {:try_start_8 .. :try_end_21} :catchall_2a
 
     .line 695
     .local v2, "_result":Ljava/util/List;, "Ljava/util/List<Landroid/os/Bundle;>;"
@@ -3039,7 +3039,7 @@
 
     .line 695
     .end local v2    # "_result":Ljava/util/List;, "Ljava/util/List<Landroid/os/Bundle;>;"
-    :catchall_0
+    :catchall_2a
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V

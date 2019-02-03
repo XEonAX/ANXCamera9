@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 39
     invoke-direct {p0}, Landroid/support/v4/view/LayoutInflaterCompat$LayoutInflaterCompatImplBase;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public setFactory(Landroid/view/LayoutInflater;Landroid/support/v4/view/LayoutInflaterFactory;)V
-    .locals 0
+    .registers 3
     .param p1, "layoutInflater"    # Landroid/view/LayoutInflater;
     .param p2, "factory"    # Landroid/support/v4/view/LayoutInflaterFactory;
 

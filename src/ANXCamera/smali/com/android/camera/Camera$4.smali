@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/Camera;Landroid/os/Handler;)V
     .locals 0
 
-    .line 206
+    .line 210
     iput-object p1, p0, Lcom/android/camera/Camera$4;->this$0:Lcom/android/camera/Camera;
 
     invoke-direct {p0, p2}, Landroid/database/ContentObserver;-><init>(Landroid/os/Handler;)V
@@ -35,7 +35,7 @@
 .method public deliverSelfNotifications()Z
     .locals 1
 
-    .line 219
+    .line 223
     const/4 v0, 0x1
 
     return v0
@@ -44,10 +44,10 @@
 .method public onChange(Z)V
     .locals 3
 
-    .line 209
+    .line 213
     invoke-super {p0, p1}, Landroid/database/ContentObserver;->onChange(Z)V
 
-    .line 210
+    .line 214
     iget-object p1, p0, Lcom/android/camera/Camera$4;->this$0:Lcom/android/camera/Camera;
 
     invoke-static {p1}, Lcom/android/camera/Camera;->access$500(Lcom/android/camera/Camera;)Z
@@ -62,7 +62,7 @@
 
     if-nez p1, :cond_1
 
-    .line 211
+    .line 215
     iget-object p1, p0, Lcom/android/camera/Camera$4;->this$0:Lcom/android/camera/Camera;
 
     invoke-static {p1}, Lcom/android/camera/Util;->isScreenSlideOff(Landroid/content/Context;)Z
@@ -78,7 +78,7 @@
     :cond_0
     const/16 p1, 0x2bc
 
-    .line 212
+    .line 216
     :goto_0
     invoke-static {}, Lcom/android/camera/Camera;->access$400()Ljava/lang/String;
 
@@ -100,7 +100,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 213
+    .line 217
     iget-object v0, p0, Lcom/android/camera/Camera$4;->this$0:Lcom/android/camera/Camera;
 
     new-instance v1, Landroid/view/KeyEvent;
@@ -111,7 +111,7 @@
 
     invoke-virtual {v0, p1, v1}, Lcom/android/camera/Camera;->onKeyDown(ILandroid/view/KeyEvent;)Z
 
-    .line 215
+    .line 219
     :cond_1
     return-void
 .end method

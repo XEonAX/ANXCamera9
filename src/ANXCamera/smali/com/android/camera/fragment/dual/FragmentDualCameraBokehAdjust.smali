@@ -9,34 +9,28 @@
 .implements Lcom/android/camera/protocol/ModeProtocol$HandleBackTrace;
 
 
-# annotations
-.annotation system Ldalvik/annotation/MemberClasses;
-    value = {
-        Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust$CenterAlignImageSpan;
-    }
-.end annotation
-
-
 # static fields
 .field public static final FRAGMENT_INFO:I = 0xffb
 
 .field private static final HIDE_POPUP:I = 0x1
 
+.field public static final TAG:Ljava/lang/String; = "BokehAdjust"
+
 
 # instance fields
-.field private fDrawable:Landroid/graphics/drawable/Drawable;
-
-.field private fImageSpan:Landroid/text/style/ImageSpan;
-
 .field private mBokehFButtonHeight:I
 
 .field private mCurrentState:I
 
 .field private mDigitsTextStyle:Landroid/text/style/TextAppearanceSpan;
 
-.field private mDualBokehFButton:Landroid/widget/TextView;
+.field private mDualBokehFButton:Landroid/view/View;
 
 .field private mDualParentLayout:Landroid/view/ViewGroup;
+
+.field private mFNumberHideStatus:Z
+
+.field private mFNumberTextView:Landroid/widget/TextView;
 
 .field private mHandler:Landroid/os/Handler;
 
@@ -71,27 +65,27 @@
 .method public constructor <init>()V
     .locals 1
 
-    .line 68
+    .line 56
     invoke-direct {p0}, Lcom/android/camera/fragment/BaseFragment;-><init>()V
 
-    .line 84
+    .line 76
     const/4 v0, -0x1
 
     iput v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentState:I
 
-    .line 102
+    .line 92
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mShowImageIndicator:Z
 
-    .line 104
+    .line 95
     new-instance v0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust$1;
 
     invoke-direct {v0, p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust$1;-><init>(Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;)V
 
     iput-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHandler:Landroid/os/Handler;
 
-    .line 115
+    .line 106
     new-instance v0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust$2;
 
     invoke-direct {v0, p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust$2;-><init>(Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;)V
@@ -104,7 +98,7 @@
 .method static synthetic access$000(Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;)Landroid/animation/AnimatorSet;
     .locals 0
 
-    .line 68
+    .line 56
     iget-object p0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mZoomInAnimator:Landroid/animation/AnimatorSet;
 
     return-object p0
@@ -113,7 +107,7 @@
 .method static synthetic access$100(Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;)Landroid/animation/AnimatorSet;
     .locals 0
 
-    .line 68
+    .line 56
     iget-object p0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mZoomOutAnimator:Landroid/animation/AnimatorSet;
 
     return-object p0
@@ -122,7 +116,7 @@
 .method static synthetic access$200(Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;)V
     .locals 0
 
-    .line 68
+    .line 56
     invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->sendHideMessage()V
 
     return-void
@@ -131,17 +125,17 @@
 .method static synthetic access$300(Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;)Landroid/widget/ImageView;
     .locals 0
 
-    .line 68
+    .line 56
     iget-object p0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
 
     return-object p0
 .end method
 
-.method static synthetic access$400(Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;)Landroid/widget/TextView;
+.method static synthetic access$400(Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;)Landroid/view/View;
     .locals 0
 
-    .line 68
-    iget-object p0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    .line 56
+    iget-object p0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
     return-object p0
 .end method
@@ -149,36 +143,36 @@
 .method private adjustViewBackground(Landroid/view/View;I)V
     .locals 0
 
-    .line 588
-    const p2, 0x7f0a0049
+    .line 626
+    const p2, 0x7f0b0049
 
     invoke-virtual {p1, p2}, Landroid/view/View;->setBackgroundResource(I)V
 
-    .line 589
+    .line 627
     return-void
 .end method
 
 .method private hideSlideView()V
     .locals 5
 
-    .line 483
+    .line 494
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mShowImageIndicator:Z
 
-    .line 484
+    .line 495
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mSlidingAdapter:Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;
 
     const/4 v1, 0x0
 
     if-eqz v0, :cond_0
 
-    .line 485
+    .line 496
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mSlidingAdapter:Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;
 
     invoke-virtual {v0, v1}, Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;->setEnable(Z)V
 
-    .line 488
+    .line 499
     :cond_0
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
 
@@ -186,12 +180,12 @@
 
     move-result v0
 
-    .line 489
+    .line 500
     iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
 
     invoke-static {v2}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 490
+    .line 501
     iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideLayout:Landroid/view/ViewGroup;
 
     invoke-direct {p0, v2}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->isVisible(Landroid/view/View;)Z
@@ -200,17 +194,17 @@
 
     if-eqz v2, :cond_2
 
-    .line 491
+    .line 502
     if-nez v0, :cond_1
 
-    .line 492
+    .line 503
     iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideLayout:Landroid/view/ViewGroup;
 
     invoke-static {v2}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
     goto :goto_0
 
-    .line 494
+    .line 505
     :cond_1
     new-instance v2, Lcom/android/camera/animation/type/TranslateYAlphaOutOnSubscribe;
 
@@ -224,23 +218,23 @@
 
     invoke-direct {v3}, Landroid/view/animation/OvershootInterpolator;-><init>()V
 
-    .line 495
+    .line 506
     invoke-virtual {v2, v3}, Lcom/android/camera/animation/type/TranslateYAlphaOutOnSubscribe;->setInterpolator(Landroid/view/animation/Interpolator;)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object v2
 
-    .line 494
+    .line 505
     invoke-static {v2}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object v2
 
-    .line 495
+    .line 506
     invoke-virtual {v2}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
-    .line 499
+    .line 510
     :cond_2
     :goto_0
-    iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
     invoke-direct {p0, v2}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->isVisible(Landroid/view/View;)Z
 
@@ -248,21 +242,21 @@
 
     if-eqz v2, :cond_4
 
-    .line 500
+    .line 511
     if-nez v0, :cond_3
 
-    .line 501
-    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    .line 512
+    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
     invoke-static {v0}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
     goto :goto_1
 
-    .line 503
+    .line 514
     :cond_3
     new-instance v0, Lcom/android/camera/animation/type/TranslateYAlphaOutOnSubscribe;
 
-    iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
     iget v3, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mSlideLayoutHeight:I
 
@@ -272,20 +266,20 @@
 
     invoke-direct {v2}, Landroid/view/animation/OvershootInterpolator;-><init>()V
 
-    .line 504
+    .line 515
     invoke-virtual {v0, v2}, Lcom/android/camera/animation/type/TranslateYAlphaOutOnSubscribe;->setInterpolator(Landroid/view/animation/Interpolator;)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object v0
 
-    .line 503
+    .line 514
     invoke-static {v0}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object v0
 
-    .line 504
+    .line 515
     invoke-virtual {v0}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
-    .line 508
+    .line 519
     :cond_4
     :goto_1
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
@@ -298,7 +292,7 @@
 
     if-nez v0, :cond_6
 
-    .line 509
+    .line 520
     new-instance v0, Lcom/android/camera/animation/type/TranslateYAlphaInOnSubscribe;
 
     iget-object v3, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
@@ -325,22 +319,22 @@
 
     invoke-direct {v2}, Landroid/view/animation/OvershootInterpolator;-><init>()V
 
-    .line 510
+    .line 521
     invoke-virtual {v0, v2}, Lcom/android/camera/animation/type/TranslateYAlphaInOnSubscribe;->setInterpolator(Landroid/view/animation/Interpolator;)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object v0
 
-    .line 509
+    .line 520
     invoke-static {v0}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object v0
 
-    .line 510
+    .line 521
     invoke-virtual {v0}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
     goto :goto_4
 
-    .line 512
+    .line 523
     :cond_6
     new-instance v0, Lcom/android/camera/animation/type/TranslateYOnSubscribe;
 
@@ -368,24 +362,24 @@
 
     invoke-direct {v2}, Landroid/view/animation/OvershootInterpolator;-><init>()V
 
-    .line 513
+    .line 524
     invoke-virtual {v0, v2}, Lcom/android/camera/animation/type/TranslateYOnSubscribe;->setInterpolator(Landroid/view/animation/Interpolator;)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object v0
 
-    .line 512
+    .line 523
     invoke-static {v0}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object v0
 
-    .line 513
+    .line 524
     invoke-virtual {v0}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
-    .line 516
+    .line 527
     :goto_4
     invoke-direct {p0, v1}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->notifyTipsMargin(I)V
 
-    .line 517
+    .line 528
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -398,13 +392,13 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;
 
-    .line 518
+    .line 529
     if-eqz v0, :cond_8
 
-    .line 519
+    .line 530
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->reInitTipImage()V
 
-    .line 521
+    .line 532
     :cond_8
     return-void
 .end method
@@ -412,7 +406,7 @@
 .method private initSlideFNumberView(Lcom/android/camera/data/data/ComponentData;)V
     .locals 3
 
-    .line 450
+    .line 449
     new-instance v0, Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;
 
     invoke-virtual {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->getContext()Landroid/content/Context;
@@ -425,43 +419,46 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mSlidingAdapter:Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;
 
-    .line 451
+    .line 450
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideView:Lcom/android/camera/ui/HorizontalSlideView;
 
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mSlidingAdapter:Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;
 
     invoke-virtual {p1, v0}, Lcom/android/camera/ui/HorizontalSlideView;->setOnPositionSelectListener(Lcom/android/camera/ui/HorizontalSlideView$OnPositionSelectListener;)V
 
-    .line 452
+    .line 451
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideView:Lcom/android/camera/ui/HorizontalSlideView;
 
     const/4 v0, 0x1
 
     invoke-virtual {p1, v0}, Lcom/android/camera/ui/HorizontalSlideView;->setJustifyEnabled(Z)V
 
-    .line 453
+    .line 452
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideView:Lcom/android/camera/ui/HorizontalSlideView;
 
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mSlidingAdapter:Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;
 
     invoke-virtual {p1, v0}, Lcom/android/camera/ui/HorizontalSlideView;->setDrawAdapter(Lcom/android/camera/ui/HorizontalSlideView$HorizontalDrawAdapter;)V
 
-    .line 454
+    .line 453
     invoke-static {}, Lcom/android/camera/CameraSettings;->readFNumber()Ljava/lang/String;
 
     move-result-object p1
 
-    .line 455
+    .line 454
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mSlidingAdapter:Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;->mapFNumberToPosition(Ljava/lang/String;)F
 
     move-result p1
 
-    .line 456
+    .line 455
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideView:Lcom/android/camera/ui/HorizontalSlideView;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/HorizontalSlideView;->setSelection(F)V
+
+    .line 456
+    invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->resetFNumber()V
 
     .line 457
     return-void
@@ -470,7 +467,7 @@
 .method private isVisible(Landroid/view/View;)Z
     .locals 1
 
-    .line 383
+    .line 376
     invoke-virtual {p1}, Landroid/view/View;->getVisibility()I
 
     move-result v0
@@ -501,12 +498,12 @@
 .method private notifyTipsMargin(I)V
     .locals 2
 
-    .line 525
+    .line 536
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 526
+    .line 537
     const/16 v1, 0xaf
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -515,190 +512,254 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;
 
-    .line 527
+    .line 538
     const/4 v1, 0x1
 
     invoke-interface {v0, p1, v1}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->updateTipBottomMargin(IZ)V
 
-    .line 528
+    .line 539
     return-void
 .end method
 
 .method private requestFNumber(Ljava/lang/String;)V
-    .locals 2
+    .locals 3
 
-    .line 541
+    .line 552
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 542
+    .line 553
+    const/16 v1, 0xa1
+
+    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$CameraAction;
+
+    .line 554
+    if-eqz v0, :cond_0
+
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$CameraAction;->isDoingAction()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 555
+    const-string v0, "BokehAdjust"
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "new f number is ignored: "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 556
+    return-void
+
+    .line 559
+    :cond_0
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object v0
+
     const/16 v1, 0xae
 
+    .line 560
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$ManuallyValueChanged;
 
-    .line 543
-    if-eqz v0, :cond_0
+    .line 561
+    if-eqz v0, :cond_1
 
-    .line 544
+    .line 562
     invoke-interface {v0, p1}, Lcom/android/camera/protocol/ModeProtocol$ManuallyValueChanged;->onBokehFNumberValueChanged(Ljava/lang/String;)V
 
-    .line 546
-    :cond_0
+    .line 564
+    :cond_1
     invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->setFNumberText()V
 
-    .line 547
+    .line 565
     return-void
 .end method
 
 .method private resetFNumber()V
     .locals 0
 
-    .line 207
+    .line 196
     invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->setFNumberText()V
 
-    .line 208
+    .line 197
     return-void
 .end method
 
 .method private sendHideMessage()V
     .locals 4
 
-    .line 201
+    .line 190
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x1
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 202
+    .line 191
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHandler:Landroid/os/Handler;
 
-    const-wide/16 v2, 0x1388
+    const-wide/16 v2, 0x2710
 
     invoke-virtual {v0, v1, v2, v3}, Landroid/os/Handler;->sendEmptyMessageDelayed(IJ)Z
 
-    .line 203
+    .line 192
     return-void
 .end method
 
 .method private setFNumberText()V
-    .locals 6
+    .locals 5
     .annotation build Landroid/annotation/TargetApi;
         value = 0x15
     .end annotation
 
-    .line 212
+    .line 201
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mStringBuilder:Landroid/text/SpannableStringBuilder;
 
     invoke-virtual {v0}, Landroid/text/SpannableStringBuilder;->clear()V
 
-    .line 213
-    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mStringBuilder:Landroid/text/SpannableStringBuilder;
-
-    const-string v1, "F"
-
-    iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mXTextStyle:Landroid/text/style/TextAppearanceSpan;
-
-    const/16 v3, 0x21
-
-    invoke-static {v0, v1, v2, v3}, Lcom/android/camera/Util;->appendInApi26(Landroid/text/SpannableStringBuilder;Ljava/lang/CharSequence;Ljava/lang/Object;I)Landroid/text/SpannableStringBuilder;
-
-    .line 214
+    .line 202
     invoke-static {}, Lcom/android/camera/CameraSettings;->readFNumber()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 215
+    .line 203
     iget-object v1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mStringBuilder:Landroid/text/SpannableStringBuilder;
 
     iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDigitsTextStyle:Landroid/text/style/TextAppearanceSpan;
 
+    const/16 v3, 0x21
+
     invoke-static {v1, v0, v2, v3}, Lcom/android/camera/Util;->appendInApi26(Landroid/text/SpannableStringBuilder;Ljava/lang/CharSequence;Ljava/lang/Object;I)Landroid/text/SpannableStringBuilder;
 
-    .line 216
+    .line 204
     invoke-static {}, Lcom/android/camera/Util;->isAccessible()Z
 
     move-result v1
 
-    const/4 v2, 0x0
+    if-eqz v1, :cond_0
+
+    .line 205
+    iget-object v1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
+
+    const v2, 0x7f090105
 
     const/4 v3, 0x1
 
-    if-eqz v1, :cond_0
+    new-array v3, v3, [Ljava/lang/Object;
 
-    .line 217
-    iget-object v1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    const/4 v4, 0x0
 
-    const v4, 0x7f0b00ff
+    aput-object v0, v3, v4
 
-    new-array v5, v3, [Ljava/lang/Object;
-
-    aput-object v0, v5, v2
-
-    invoke-virtual {p0, v4, v5}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
+    invoke-virtual {p0, v2, v3}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v0
 
-    invoke-virtual {v1, v0}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
+    invoke-virtual {v1, v0}, Landroid/view/View;->setContentDescription(Ljava/lang/CharSequence;)V
 
-    .line 218
-    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    .line 206
+    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
     new-instance v1, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust$4;
 
     invoke-direct {v1, p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust$4;-><init>(Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;)V
 
-    const-wide/16 v4, 0xbb8
+    const-wide/16 v2, 0xbb8
 
-    invoke-virtual {v0, v1, v4, v5}, Landroid/widget/TextView;->postDelayed(Ljava/lang/Runnable;J)Z
+    invoke-virtual {v0, v1, v2, v3}, Landroid/view/View;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 227
+    .line 215
     :cond_0
-    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mStringBuilder:Landroid/text/SpannableStringBuilder;
-
-    iget-object v1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->fImageSpan:Landroid/text/style/ImageSpan;
-
-    invoke-virtual {v0, v1, v2, v3, v3}, Landroid/text/SpannableStringBuilder;->setSpan(Ljava/lang/Object;III)V
-
-    .line 228
-    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mFNumberTextView:Landroid/widget/TextView;
 
     iget-object v1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mStringBuilder:Landroid/text/SpannableStringBuilder;
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 230
+    .line 217
     return-void
 .end method
 
 .method private showSlideView()V
     .locals 4
 
-    .line 460
+    .line 461
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object v0
+
+    .line 462
+    const/16 v1, 0xc2
+
+    invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/android/camera/protocol/ModeProtocol$MiBeautyProtocol;
+
+    .line 463
+    if-eqz v0, :cond_0
+
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$MiBeautyProtocol;->isBeautyPanelShow()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 464
+    const-string v0, "BokehAdjust"
+
+    const-string v1, "beauty panel shown. do not show the slide view."
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 465
+    return-void
+
+    .line 467
+    :cond_0
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mSlidingAdapter:Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;
 
     const/4 v1, 0x1
 
     invoke-virtual {v0, v1}, Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;->setEnable(Z)V
 
-    .line 461
+    .line 468
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
 
     invoke-static {v0}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 462
+    .line 469
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideLayout:Landroid/view/ViewGroup;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->setVisibility(I)V
 
-    .line 463
+    .line 470
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideLayout:Landroid/view/ViewGroup;
 
     iget v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mSlideLayoutHeight:I
@@ -707,7 +768,7 @@
 
     invoke-virtual {v0, v2}, Landroid/view/ViewGroup;->setTranslationY(F)V
 
-    .line 464
+    .line 471
     new-instance v0, Lcom/android/camera/animation/type/TranslateYAlphaInOnSubscribe;
 
     iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideLayout:Landroid/view/ViewGroup;
@@ -718,21 +779,21 @@
 
     invoke-direct {v2}, Landroid/view/animation/DecelerateInterpolator;-><init>()V
 
-    .line 465
+    .line 472
     invoke-virtual {v0, v2}, Lcom/android/camera/animation/type/TranslateYAlphaInOnSubscribe;->setInterpolator(Landroid/view/animation/Interpolator;)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object v0
 
-    .line 464
+    .line 471
     invoke-static {v0}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object v0
 
-    .line 465
+    .line 472
     invoke-virtual {v0}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
-    .line 467
-    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    .line 474
+    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
     iget v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mSlideLayoutHeight:I
 
@@ -742,12 +803,12 @@
 
     int-to-float v2, v2
 
-    invoke-virtual {v0, v2}, Landroid/widget/TextView;->setTranslationY(F)V
+    invoke-virtual {v0, v2}, Landroid/view/View;->setTranslationY(F)V
 
-    .line 468
+    .line 475
     new-instance v0, Lcom/android/camera/animation/type/TranslateYAlphaInOnSubscribe;
 
-    iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
     iget v3, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mSlideLayoutHeight:I
 
@@ -757,25 +818,25 @@
 
     invoke-direct {v2}, Lmiui/view/animation/BackEaseOutInterpolator;-><init>()V
 
-    .line 469
+    .line 476
     invoke-virtual {v0, v2}, Lcom/android/camera/animation/type/TranslateYAlphaInOnSubscribe;->setInterpolator(Landroid/view/animation/Interpolator;)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object v0
 
-    .line 468
+    .line 475
     invoke-static {v0}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object v0
 
-    .line 469
+    .line 476
     invoke-virtual {v0}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
-    .line 470
+    .line 477
     iget v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mSlideLayoutHeight:I
 
     invoke-direct {p0, v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->notifyTipsMargin(I)V
 
-    .line 471
+    .line 478
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -788,17 +849,24 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;
 
-    .line 472
-    if-eqz v0, :cond_0
+    .line 479
+    if-eqz v0, :cond_1
 
-    .line 473
+    .line 480
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->directHideTipImage()V
 
-    .line 474
+    .line 482
+    invoke-static {}, Lcom/android/camera/Util;->UI_DEBUG()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_1
+
+    .line 483
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->directShowOrHideLeftTipImage(Z)V
 
-    .line 476
-    :cond_0
+    .line 487
+    :cond_1
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
 
     iget v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mSlideLayoutHeight:I
@@ -807,7 +875,7 @@
 
     invoke-virtual {v0, v2}, Landroid/widget/ImageView;->setTranslationY(F)V
 
-    .line 477
+    .line 488
     new-instance v0, Lcom/android/camera/animation/type/TranslateYAlphaOutOnSubscribe;
 
     iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
@@ -818,23 +886,23 @@
 
     invoke-direct {v2}, Lmiui/view/animation/BackEaseOutInterpolator;-><init>()V
 
-    .line 478
+    .line 489
     invoke-virtual {v0, v2}, Lcom/android/camera/animation/type/TranslateYAlphaOutOnSubscribe;->setInterpolator(Landroid/view/animation/Interpolator;)Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object v0
 
-    .line 477
+    .line 488
     invoke-static {v0}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object v0
 
-    .line 478
+    .line 489
     invoke-virtual {v0}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
-    .line 479
+    .line 490
     iput-boolean v1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mShowImageIndicator:Z
 
-    .line 480
+    .line 491
     return-void
 .end method
 
@@ -843,7 +911,7 @@
 .method public getFragmentInto()I
     .locals 1
 
-    .line 321
+    .line 301
     const/16 v0, 0xffb
 
     return v0
@@ -852,27 +920,50 @@
 .method protected getLayoutResourceId()I
     .locals 1
 
-    .line 316
-    const v0, 0x7f040016
+    .line 296
+    const v0, 0x7f040017
 
     return v0
 .end method
 
-.method public hideFNumberPanel(Z)V
+.method public hideFNumberPanel(ZZ)V
     .locals 1
 
-    .line 283
-    if-eqz p1, :cond_0
+    .line 248
+    if-eqz p2, :cond_0
 
-    .line 284
+    .line 249
+    const/4 p2, 0x1
+
+    iput-boolean p2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mFNumberHideStatus:Z
+
+    .line 251
+    :cond_0
+    iget p2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentState:I
+
+    const/4 v0, -0x1
+
+    if-ne p2, v0, :cond_1
+
+    .line 252
+    return-void
+
+    .line 254
+    :cond_1
+    iput v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentState:I
+
+    .line 256
+    if-eqz p1, :cond_2
+
+    .line 257
     invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->hideSlideView()V
 
-    .line 285
+    .line 258
     new-instance p1, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
 
-    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
+    iget-object p2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
 
-    invoke-direct {p1, v0}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;-><init>(Landroid/view/View;)V
+    invoke-direct {p1, p2}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;-><init>(Landroid/view/View;)V
 
     invoke-virtual {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->targetGone()Lcom/android/camera/animation/type/BaseOnSubScribe;
 
@@ -886,15 +977,15 @@
 
     goto :goto_0
 
-    .line 287
-    :cond_0
+    .line 260
+    :cond_2
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
 
-    const/16 v0, 0x8
+    const/16 p2, 0x8
 
-    invoke-virtual {p1, v0}, Landroid/view/ViewGroup;->setVisibility(I)V
+    invoke-virtual {p1, p2}, Landroid/view/ViewGroup;->setVisibility(I)V
 
-    .line 289
+    .line 262
     :goto_0
     return-void
 .end method
@@ -902,24 +993,24 @@
 .method protected initView(Landroid/view/View;)V
     .locals 3
 
-    .line 139
+    .line 130
     new-instance v0, Landroid/text/SpannableStringBuilder;
 
     invoke-direct {v0}, Landroid/text/SpannableStringBuilder;-><init>()V
 
     iput-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mStringBuilder:Landroid/text/SpannableStringBuilder;
 
-    .line 141
+    .line 132
     nop
 
-    .line 142
+    .line 133
     invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object v0
 
     check-cast v0, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    .line 143
+    .line 134
     invoke-virtual {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
@@ -930,8 +1021,8 @@
 
     iput v1, v0, Landroid/view/ViewGroup$MarginLayoutParams;->bottomMargin:I
 
-    .line 145
-    const v0, 0x7f0d0045
+    .line 136
+    const v0, 0x7f0d0049
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -941,19 +1032,30 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
 
-    .line 147
-    const v0, 0x7f0d0049
+    .line 138
+    const v0, 0x7f0d004d
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
     move-result-object v0
 
+    iput-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
+
+    .line 139
+    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
+
+    const v1, 0x7f0d004f
+
+    invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+
+    move-result-object v0
+
     check-cast v0, Landroid/widget/TextView;
 
-    iput-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    iput-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mFNumberTextView:Landroid/widget/TextView;
 
-    .line 148
-    const v0, 0x7f0d004a
+    .line 140
+    const v0, 0x7f0d0050
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -963,8 +1065,8 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
 
-    .line 149
-    const v0, 0x7f0d004b
+    .line 141
+    const v0, 0x7f0d0051
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -974,11 +1076,11 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideLayout:Landroid/view/ViewGroup;
 
-    .line 150
+    .line 142
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideLayout:Landroid/view/ViewGroup;
 
-    .line 151
-    const v0, 0x7f0d004c
+    .line 143
+    const v0, 0x7f0d0052
 
     invoke-virtual {p1, v0}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
 
@@ -988,29 +1090,29 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideView:Lcom/android/camera/ui/HorizontalSlideView;
 
-    .line 152
+    .line 144
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideView:Lcom/android/camera/ui/HorizontalSlideView;
 
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mZoomPopupTouchListener:Landroid/view/View$OnTouchListener;
 
     invoke-virtual {p1, v0}, Lcom/android/camera/ui/HorizontalSlideView;->setOnTouchListener(Landroid/view/View$OnTouchListener;)V
 
-    .line 154
+    .line 146
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
 
     invoke-virtual {p1, p0}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 155
+    .line 147
     invoke-static {}, Lcom/android/camera/Util;->isAccessible()Z
 
     move-result p1
 
     if-eqz p1, :cond_0
 
-    .line 156
+    .line 148
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
 
-    const v0, 0x7f0b0100
+    const v0, 0x7f090106
 
     invoke-virtual {p0, v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->getString(I)Ljava/lang/String;
 
@@ -1018,7 +1120,7 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setContentDescription(Ljava/lang/CharSequence;)V
 
-    .line 157
+    .line 149
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
 
     new-instance v0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust$3;
@@ -1029,18 +1131,18 @@
 
     invoke-virtual {p1, v0, v1, v2}, Landroid/widget/ImageView;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 166
+    .line 158
     :cond_0
-    iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
-    invoke-virtual {p1, p0}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+    invoke-virtual {p1, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 167
+    .line 159
     invoke-virtual {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->getResources()Landroid/content/res/Resources;
 
     move-result-object p1
 
-    const v0, 0x7f090092
+    const v0, 0x7f0a0096
 
     invoke-virtual {p1, v0}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -1048,7 +1150,7 @@
 
     iput p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mBokehFButtonHeight:I
 
-    .line 169
+    .line 161
     new-instance p1, Landroid/text/style/TextAppearanceSpan;
 
     invoke-virtual {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->getContext()Landroid/content/Context;
@@ -1061,7 +1163,7 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDigitsTextStyle:Landroid/text/style/TextAppearanceSpan;
 
-    .line 170
+    .line 162
     new-instance p1, Landroid/text/style/TextAppearanceSpan;
 
     invoke-virtual {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->getContext()Landroid/content/Context;
@@ -1074,10 +1176,10 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mXTextStyle:Landroid/text/style/TextAppearanceSpan;
 
-    .line 172
+    .line 164
     nop
 
-    .line 173
+    .line 165
     invoke-virtual {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->getContext()Landroid/content/Context;
 
     move-result-object p1
@@ -1092,14 +1194,14 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mZoomInOutAnimator:Landroid/animation/AnimatorSet;
 
-    .line 174
+    .line 166
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mZoomInOutAnimator:Landroid/animation/AnimatorSet;
 
-    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
     invoke-virtual {p1, v0}, Landroid/animation/AnimatorSet;->setTarget(Ljava/lang/Object;)V
 
-    .line 175
+    .line 167
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mZoomInOutAnimator:Landroid/animation/AnimatorSet;
 
     new-instance v0, Lmiui/view/animation/QuadraticEaseOutInterpolator;
@@ -1108,10 +1210,10 @@
 
     invoke-virtual {p1, v0}, Landroid/animation/AnimatorSet;->setInterpolator(Landroid/animation/TimeInterpolator;)V
 
-    .line 176
+    .line 168
     nop
 
-    .line 177
+    .line 169
     invoke-virtual {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->getContext()Landroid/content/Context;
 
     move-result-object p1
@@ -1126,14 +1228,14 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mZoomInAnimator:Landroid/animation/AnimatorSet;
 
-    .line 178
+    .line 170
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mZoomInAnimator:Landroid/animation/AnimatorSet;
 
-    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
     invoke-virtual {p1, v0}, Landroid/animation/AnimatorSet;->setTarget(Ljava/lang/Object;)V
 
-    .line 179
+    .line 171
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mZoomInAnimator:Landroid/animation/AnimatorSet;
 
     new-instance v0, Lmiui/view/animation/QuadraticEaseInOutInterpolator;
@@ -1142,10 +1244,10 @@
 
     invoke-virtual {p1, v0}, Landroid/animation/AnimatorSet;->setInterpolator(Landroid/animation/TimeInterpolator;)V
 
-    .line 180
+    .line 172
     nop
 
-    .line 181
+    .line 173
     invoke-virtual {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->getContext()Landroid/content/Context;
 
     move-result-object p1
@@ -1160,14 +1262,14 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mZoomOutAnimator:Landroid/animation/AnimatorSet;
 
-    .line 182
+    .line 174
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mZoomOutAnimator:Landroid/animation/AnimatorSet;
 
-    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
     invoke-virtual {p1, v0}, Landroid/animation/AnimatorSet;->setTarget(Ljava/lang/Object;)V
 
-    .line 183
+    .line 175
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mZoomOutAnimator:Landroid/animation/AnimatorSet;
 
     new-instance v0, Lmiui/view/animation/QuadraticEaseInOutInterpolator;
@@ -1176,7 +1278,7 @@
 
     invoke-virtual {p1, v0}, Landroid/animation/AnimatorSet;->setInterpolator(Landroid/animation/TimeInterpolator;)V
 
-    .line 186
+    .line 178
     invoke-virtual {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->getResources()Landroid/content/res/Resources;
 
     move-result-object p1
@@ -1187,7 +1289,7 @@
 
     iget p1, p1, Landroid/util/DisplayMetrics;->widthPixels:I
 
-    .line 187
+    .line 179
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideLayout:Landroid/view/ViewGroup;
 
     invoke-virtual {v0}, Landroid/view/ViewGroup;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
@@ -1208,12 +1310,12 @@
 
     float-to-int p1, v1
 
-    .line 189
+    .line 181
     invoke-virtual {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
 
-    const v2, 0x7f0900bf
+    const v2, 0x7f0a00c3
 
     invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -1223,7 +1325,7 @@
 
     iput p1, v0, Landroid/view/ViewGroup$LayoutParams;->height:I
 
-    .line 190
+    .line 182
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideLayout:Landroid/view/ViewGroup;
 
     invoke-virtual {p1}, Landroid/view/ViewGroup;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
@@ -1234,69 +1336,30 @@
 
     iput p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mSlideLayoutHeight:I
 
-    .line 192
+    .line 184
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideLayout:Landroid/view/ViewGroup;
 
     iget v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentMode:I
 
     invoke-direct {p0, p1, v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->adjustViewBackground(Landroid/view/View;I)V
 
-    .line 193
+    .line 186
     iget p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentMode:I
 
     const/4 v0, 0x0
 
-    const/4 v1, 0x0
+    const/4 v1, 0x2
 
-    invoke-virtual {p0, p1, v0, v1}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->provideAnimateElement(ILjava/util/List;Z)V
+    invoke-virtual {p0, p1, v0, v1}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->provideAnimateElement(ILjava/util/List;I)V
 
-    .line 195
-    invoke-virtual {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->getContext()Landroid/content/Context;
-
-    move-result-object p1
-
-    const v0, 0x7f02002f
-
-    invoke-virtual {p1, v0}, Landroid/content/Context;->getDrawable(I)Landroid/graphics/drawable/Drawable;
-
-    move-result-object p1
-
-    iput-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->fDrawable:Landroid/graphics/drawable/Drawable;
-
-    .line 196
-    iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->fDrawable:Landroid/graphics/drawable/Drawable;
-
-    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->fDrawable:Landroid/graphics/drawable/Drawable;
-
-    invoke-virtual {v0}, Landroid/graphics/drawable/Drawable;->getMinimumWidth()I
-
-    move-result v0
-
-    iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->fDrawable:Landroid/graphics/drawable/Drawable;
-
-    invoke-virtual {v2}, Landroid/graphics/drawable/Drawable;->getMinimumHeight()I
-
-    move-result v2
-
-    invoke-virtual {p1, v1, v1, v0, v2}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
-
-    .line 197
-    new-instance p1, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust$CenterAlignImageSpan;
-
-    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->fDrawable:Landroid/graphics/drawable/Drawable;
-
-    invoke-direct {p1, p0, v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust$CenterAlignImageSpan;-><init>(Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;Landroid/graphics/drawable/Drawable;)V
-
-    iput-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->fImageSpan:Landroid/text/style/ImageSpan;
-
-    .line 198
+    .line 187
     return-void
 .end method
 
 .method public isFNumberVisible()Z
     .locals 2
 
-    .line 261
+    .line 226
     iget v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentState:I
 
     const/4 v1, 0x1
@@ -1305,7 +1368,7 @@
 
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
 
-    .line 262
+    .line 227
     invoke-direct {p0, v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->isVisible(Landroid/view/View;)Z
 
     move-result v0
@@ -1320,7 +1383,7 @@
 
     if-nez v0, :cond_0
 
-    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
     invoke-direct {p0, v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->isVisible(Landroid/view/View;)Z
 
@@ -1334,7 +1397,7 @@
     :cond_1
     const/4 v1, 0x0
 
-    .line 261
+    .line 226
     :goto_0
     return v1
 .end method
@@ -1342,36 +1405,99 @@
 .method public notifyAfterFrameAvailable(I)V
     .locals 2
 
-    .line 583
+    .line 601
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->notifyAfterFrameAvailable(I)V
 
-    .line 584
+    .line 605
+    iget p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentMode:I
+
+    const/16 v0, 0xab
+
+    if-eq p1, v0, :cond_0
+
+    goto :goto_0
+
+    .line 608
+    :cond_0
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object p1
+
+    const/16 v0, 0xa2
+
+    invoke-virtual {p1, v0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;
+
+    .line 609
+    if-eqz p1, :cond_1
+
+    invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;->isShowLightingView()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_1
+
+    .line 610
+    return-void
+
+    .line 613
+    :cond_1
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
+
+    move-result-object p1
+
+    const/16 v0, 0xc2
+
+    invoke-virtual {p1, v0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/camera/protocol/ModeProtocol$MiBeautyProtocol;
+
+    .line 614
+    if-eqz p1, :cond_2
+
+    invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$MiBeautyProtocol;->isBeautyPanelShow()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_2
+
+    .line 615
+    return-void
+
+    .line 622
+    :cond_2
+    :goto_0
     iget p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentMode:I
 
     const/4 v0, 0x0
 
-    const/4 v1, 0x0
+    const/4 v1, 0x2
 
-    invoke-virtual {p0, p1, v0, v1}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->provideAnimateElement(ILjava/util/List;Z)V
+    invoke-virtual {p0, p1, v0, v1}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->provideAnimateElement(ILjava/util/List;I)V
 
-    .line 585
+    .line 623
     return-void
 .end method
 
 .method public notifyDataChanged(II)V
     .locals 0
 
-    .line 561
+    .line 579
     invoke-super {p0, p1, p2}, Lcom/android/camera/fragment/BaseFragment;->notifyDataChanged(II)V
 
-    .line 562
+    .line 580
     const/4 p2, 0x3
 
     if-eq p1, p2, :cond_0
 
     goto :goto_0
 
-    .line 564
+    .line 582
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideLayout:Landroid/view/ViewGroup;
 
@@ -1379,53 +1505,67 @@
 
     invoke-direct {p0, p1, p2}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->adjustViewBackground(Landroid/view/View;I)V
 
-    .line 568
+    .line 586
     :goto_0
     return-void
 .end method
 
 .method public onBackEvent(I)Z
-    .locals 2
+    .locals 3
 
-    .line 388
-    iget-boolean p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mShowImageIndicator:Z
+    .line 381
+    iget-boolean v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mShowImageIndicator:Z
 
-    const/4 v0, 0x0
+    const/4 v1, 0x0
 
-    if-eqz p1, :cond_0
+    if-eqz v0, :cond_0
+
+    .line 383
+    return v1
+
+    .line 386
+    :cond_0
+    iget v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentMode:I
+
+    const/16 v2, 0xab
+
+    if-eq v0, v2, :cond_1
+
+    .line 387
+    return v1
 
     .line 390
-    return v0
+    :cond_1
+    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
 
-    .line 393
-    :cond_0
-    iget p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentMode:I
+    invoke-direct {p0, v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->isVisible(Landroid/view/View;)Z
 
-    const/16 v1, 0xab
+    move-result v0
 
-    if-eq p1, v1, :cond_1
+    if-nez v0, :cond_2
+
+    .line 391
+    return v1
 
     .line 394
-    return v0
+    :cond_2
+    const/4 v0, 0x3
+
+    if-ne p1, v0, :cond_3
+
+    .line 396
+    iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideView:Lcom/android/camera/ui/HorizontalSlideView;
+
+    invoke-virtual {p1}, Lcom/android/camera/ui/HorizontalSlideView;->stopScroll()V
 
     .line 397
-    :cond_1
-    iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
+    return v1
 
-    invoke-direct {p0, p1}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->isVisible(Landroid/view/View;)Z
-
-    move-result p1
-
-    if-nez p1, :cond_2
-
-    .line 398
-    return v0
-
-    .line 401
-    :cond_2
+    .line 399
+    :cond_3
     invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->hideSlideView()V
 
-    .line 403
+    .line 401
     const/4 p1, 0x1
 
     return p1
@@ -1434,17 +1574,17 @@
 .method public onClick(Landroid/view/View;)V
     .locals 2
 
-    .line 408
+    .line 406
     invoke-virtual {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->isEnableClick()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 409
+    .line 407
     return-void
 
-    .line 412
+    .line 410
     :cond_0
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -1452,14 +1592,14 @@
 
     const/16 v1, 0xa1
 
-    .line 413
+    .line 411
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$CameraAction;
 
-    .line 414
+    .line 412
     if-eqz v0, :cond_1
 
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$CameraAction;->isDoingAction()Z
@@ -1468,164 +1608,167 @@
 
     if-eqz v0, :cond_1
 
-    .line 415
+    .line 413
     return-void
 
-    .line 418
+    .line 416
     :cond_1
     invoke-virtual {p1}, Landroid/view/View;->getId()I
 
     move-result p1
 
-    const/4 v0, 0x0
+    const v0, 0x7f0d004d
 
-    packed-switch p1, :pswitch_data_0
+    const/4 v1, 0x0
+
+    if-eq p1, v0, :cond_5
+
+    const v0, 0x7f0d0050
+
+    if-eq p1, v0, :cond_2
 
     goto :goto_0
 
-    .line 420
-    :pswitch_0
+    .line 418
+    :cond_2
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
 
     invoke-virtual {p1}, Landroid/widget/ImageView;->getAlpha()F
 
     move-result p1
 
-    cmpl-float p1, p1, v0
+    cmpl-float p1, p1, v1
 
-    if-eqz p1, :cond_3
+    if-eqz p1, :cond_4
 
-    .line 421
+    .line 419
     new-instance p1, Lcom/android/camera/data/data/config/ComponentManuallyDualZoom;
 
-    .line 422
+    .line 420
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
     move-result-object v0
 
     invoke-direct {p1, v0}, Lcom/android/camera/data/data/config/ComponentManuallyDualZoom;-><init>(Lcom/android/camera/data/data/runing/DataItemRunning;)V
 
-    .line 423
+    .line 421
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->initSlideFNumberView(Lcom/android/camera/data/data/ComponentData;)V
 
-    .line 424
-    invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->showSlideView()V
+    .line 422
+    invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->sendHideMessage()V
 
-    .line 428
+    .line 426
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p1
 
     const/16 v0, 0xa2
 
-    .line 429
+    .line 427
     invoke-virtual {p1, v0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object p1
 
     check-cast p1, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;
 
-    .line 431
+    .line 429
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
     const/16 v1, 0xa4
 
-    .line 432
+    .line 430
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;
 
-    .line 433
-    if-eqz p1, :cond_2
+    .line 431
+    if-eqz p1, :cond_3
 
     invoke-interface {p1}, Lcom/android/camera/protocol/ModeProtocol$ActionProcessing;->isShowFilterView()Z
 
     move-result p1
 
-    if-eqz p1, :cond_2
+    if-eqz p1, :cond_3
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_3
 
-    .line 434
+    .line 432
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->showOrHideFilter()V
 
-    .line 436
-    :cond_2
+    .line 434
+    :cond_3
+    invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->showSlideView()V
+
+    .line 435
     goto :goto_0
 
-    .line 438
-    :cond_3
+    .line 437
+    :cond_4
     invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->hideSlideView()V
 
-    .line 440
+    .line 439
     goto :goto_0
 
-    .line 442
-    :pswitch_1
-    iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    .line 441
+    :cond_5
+    iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
-    invoke-virtual {p1}, Landroid/widget/TextView;->getAlpha()F
+    invoke-virtual {p1}, Landroid/view/View;->getAlpha()F
 
     move-result p1
 
-    cmpl-float p1, p1, v0
+    cmpl-float p1, p1, v1
 
-    if-eqz p1, :cond_4
+    if-eqz p1, :cond_6
 
-    .line 443
+    .line 442
     invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->hideSlideView()V
 
-    .line 447
-    :cond_4
+    .line 446
+    :cond_6
     :goto_0
     return-void
-
-    :pswitch_data_0
-    .packed-switch 0x7f0d0049
-        :pswitch_1
-        :pswitch_0
-    .end packed-switch
 .end method
 
 .method public onManuallyDataChanged(Lcom/android/camera/data/data/ComponentData;Ljava/lang/String;Ljava/lang/String;Z)V
     .locals 0
 
-    .line 533
+    .line 544
     invoke-virtual {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->isInModeChanging()Z
 
     move-result p1
 
     if-eqz p1, :cond_0
 
-    .line 534
+    .line 545
     return-void
 
-    .line 536
+    .line 547
     :cond_0
     invoke-direct {p0, p3}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->requestFNumber(Ljava/lang/String;)V
 
-    .line 537
+    .line 548
     return-void
 .end method
 
 .method public onPause()V
     .locals 2
 
-    .line 573
+    .line 591
     invoke-super {p0}, Lcom/android/camera/fragment/BaseFragment;->onPause()V
 
-    .line 574
+    .line 592
     iget v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentMode:I
 
     const/16 v1, 0xab
 
     if-ne v0, v1, :cond_0
 
-    .line 575
+    .line 593
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
 
     invoke-direct {p0, v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->isVisible(Landroid/view/View;)Z
@@ -1642,82 +1785,117 @@
 
     if-eqz v0, :cond_0
 
-    .line 576
+    .line 594
     invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->hideSlideView()V
 
-    .line 579
+    .line 597
     :cond_0
     return-void
 .end method
 
-.method public provideAnimateElement(ILjava/util/List;Z)V
-    .locals 2
+.method public provideAnimateElement(ILjava/util/List;I)V
+    .locals 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
             "Ljava/util/List<",
             "Lio/reactivex/Completable;",
-            ">;Z)V"
+            ">;I)V"
         }
     .end annotation
 
-    .line 327
-    iget v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentMode:I
+    .line 307
+    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;I)V
 
-    .line 328
-    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;Z)V
+    .line 309
+    const/4 v0, 0x0
 
-    .line 330
-    nop
+    const/4 v1, 0x3
 
-    .line 331
-    const/4 p3, -0x1
+    if-ne p3, v1, :cond_0
 
-    const/4 v0, 0x1
+    .line 310
+    iput-boolean v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mFNumberHideStatus:Z
 
-    const/16 v1, 0xab
-
-    if-eq p1, v1, :cond_0
-
-    .line 339
-    move p1, p3
-
-    goto :goto_0
-
-    .line 333
+    .line 313
     :cond_0
     nop
 
-    .line 334
-    iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    .line 314
+    const/16 v2, 0xab
 
-    iget v1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDegree:I
+    const/4 v3, 0x1
 
-    int-to-float v1, v1
+    const/4 v4, -0x1
 
-    invoke-virtual {p1, v1}, Landroid/widget/TextView;->setRotation(F)V
+    if-eq p1, v2, :cond_1
 
-    .line 335
+    .line 332
+    :goto_0
+    move p1, v4
+
+    goto :goto_1
+
+    .line 317
+    :cond_1
+    invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/camera/data/data/global/DataItemGlobal;->isNormalIntent()Z
+
+    move-result p1
+
+    if-nez p1, :cond_2
+
+    .line 320
+    goto :goto_0
+
+    .line 321
+    :cond_2
+    if-eq p3, v1, :cond_3
+
+    iget-boolean p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mFNumberHideStatus:Z
+
+    if-eqz p1, :cond_3
+
+    .line 323
+    goto :goto_0
+
+    .line 325
+    :cond_3
+    nop
+
+    .line 326
+    iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
+
+    iget p3, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDegree:I
+
+    int-to-float p3, p3
+
+    invoke-virtual {p1, p3}, Landroid/view/View;->setRotation(F)V
+
+    .line 327
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
 
-    iget v1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDegree:I
+    iget p3, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDegree:I
 
-    int-to-float v1, v1
+    int-to-float p3, p3
 
-    invoke-virtual {p1, v1}, Landroid/widget/ImageView;->setRotation(F)V
+    invoke-virtual {p1, p3}, Landroid/widget/ImageView;->setRotation(F)V
 
-    .line 339
-    move p1, v0
+    .line 332
+    move p1, v3
 
-    :goto_0
-    iget v1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentState:I
+    :goto_1
+    iget p3, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentState:I
 
-    if-ne v1, p1, :cond_2
+    if-ne p3, p1, :cond_5
 
-    .line 340
+    .line 333
     iget p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentState:I
 
-    if-ne v0, p1, :cond_1
+    if-ne v3, p1, :cond_4
 
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
 
@@ -1725,170 +1903,168 @@
 
     move-result p1
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_4
 
-    .line 341
+    .line 334
     invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->hideSlideView()V
 
-    .line 343
-    :cond_1
+    .line 336
+    :cond_4
     return-void
 
-    .line 346
-    :cond_2
+    .line 339
+    :cond_5
     iput p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentState:I
 
-    .line 348
-    const/16 v1, 0x8
+    .line 341
+    const/16 p3, 0x8
 
-    if-eq p1, p3, :cond_7
+    if-eq p1, v4, :cond_a
 
-    if-eq p1, v0, :cond_3
+    if-eq p1, v3, :cond_6
 
-    goto/16 :goto_3
+    goto/16 :goto_4
 
-    .line 350
-    :cond_3
+    .line 343
+    :cond_6
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 351
+    .line 344
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideLayout:Landroid/view/ViewGroup;
 
     invoke-virtual {p1}, Landroid/view/ViewGroup;->getVisibility()I
 
     move-result p1
 
-    const/4 p3, 0x4
+    const/4 v0, 0x4
 
-    if-nez p1, :cond_4
+    if-nez p1, :cond_7
 
-    .line 352
+    .line 345
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideLayout:Landroid/view/ViewGroup;
 
-    invoke-virtual {p1, p3}, Landroid/view/ViewGroup;->setVisibility(I)V
+    invoke-virtual {p1, v0}, Landroid/view/ViewGroup;->setVisibility(I)V
 
-    .line 354
-    :cond_4
-    iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    .line 347
+    :cond_7
+    iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
-    invoke-virtual {p1, p3}, Landroid/widget/TextView;->setVisibility(I)V
+    invoke-virtual {p1, v0}, Landroid/view/View;->setVisibility(I)V
 
-    .line 355
+    .line 348
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
 
-    iget-object p3, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideLayout:Landroid/view/ViewGroup;
+    iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHorizontalSlideLayout:Landroid/view/ViewGroup;
 
-    invoke-virtual {p3}, Landroid/view/ViewGroup;->getVisibility()I
+    invoke-virtual {v0}, Landroid/view/ViewGroup;->getVisibility()I
 
-    move-result p3
+    move-result v0
 
-    if-eq p3, v1, :cond_5
+    if-eq v0, p3, :cond_8
 
     iget p3, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mSlideLayoutHeight:I
 
     int-to-float p3, p3
 
-    goto :goto_1
+    goto :goto_2
 
-    :cond_5
+    :cond_8
     const/4 p3, 0x0
 
-    :goto_1
+    :goto_2
     invoke-virtual {p1, p3}, Landroid/widget/ImageView;->setTranslationY(F)V
 
-    .line 356
+    .line 349
     invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->resetFNumber()V
 
-    .line 357
+    .line 350
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
 
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->isVisible(Landroid/view/View;)Z
 
     move-result p1
 
-    if-nez p1, :cond_a
+    if-nez p1, :cond_d
 
-    .line 358
-    if-nez p2, :cond_6
+    .line 351
+    if-nez p2, :cond_9
 
-    .line 359
+    .line 352
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    goto :goto_3
+    goto :goto_4
 
-    .line 361
-    :cond_6
+    .line 354
+    :cond_9
     new-instance p1, Lcom/android/camera/animation/type/AlphaInOnSubscribe;
 
     iget-object p3, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
 
     invoke-direct {p1, p3}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;-><init>(Landroid/view/View;)V
 
-    .line 362
+    .line 355
     invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object p1
 
-    .line 361
+    .line 354
     invoke-interface {p2, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    goto :goto_3
+    goto :goto_4
 
-    .line 368
-    :cond_7
+    .line 361
+    :cond_a
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
 
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->isVisible(Landroid/view/View;)Z
 
     move-result p1
 
-    if-eqz p1, :cond_9
+    if-eqz p1, :cond_c
 
-    .line 369
-    if-nez p2, :cond_8
+    .line 362
+    if-nez p2, :cond_b
 
-    .line 370
+    .line 363
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
 
-    invoke-virtual {p1, v1}, Landroid/view/ViewGroup;->setVisibility(I)V
+    invoke-virtual {p1, p3}, Landroid/view/ViewGroup;->setVisibility(I)V
 
-    goto :goto_2
+    goto :goto_3
 
-    .line 372
-    :cond_8
+    .line 365
+    :cond_b
     new-instance p1, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
 
     iget-object p3, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
 
     invoke-direct {p1, p3}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;-><init>(Landroid/view/View;)V
 
-    .line 374
+    .line 367
     invoke-virtual {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->targetGone()Lcom/android/camera/animation/type/BaseOnSubScribe;
 
     move-result-object p1
 
-    .line 373
+    .line 366
     invoke-static {p1}, Lio/reactivex/Completable;->create(Lio/reactivex/CompletableOnSubscribe;)Lio/reactivex/Completable;
 
     move-result-object p1
 
-    .line 372
+    .line 365
     invoke-interface {p2, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 377
-    :cond_9
-    :goto_2
-    const/4 p1, 0x0
-
-    iput-boolean p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mShowImageIndicator:Z
-
-    .line 380
-    :cond_a
+    .line 370
+    :cond_c
     :goto_3
+    iput-boolean v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mShowImageIndicator:Z
+
+    .line 373
+    :cond_d
+    :goto_4
     return-void
 .end method
 
@@ -1903,29 +2079,29 @@
         }
     .end annotation
 
-    .line 551
+    .line 569
     invoke-super {p0, p1, p2}, Lcom/android/camera/fragment/BaseFragment;->provideRotateItem(Ljava/util/List;I)V
 
-    .line 552
-    iget-object p2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    .line 570
+    iget-object p2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
-    invoke-virtual {p2}, Landroid/widget/TextView;->getVisibility()I
+    invoke-virtual {p2}, Landroid/view/View;->getVisibility()I
 
     move-result p2
 
     if-nez p2, :cond_0
 
-    .line 553
-    iget-object p2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/widget/TextView;
+    .line 571
+    iget-object p2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualBokehFButton:Landroid/view/View;
 
     invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 554
+    .line 572
     iget-object p2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mImageIndicator:Landroid/widget/ImageView;
 
     invoke-interface {p1, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 556
+    .line 574
     :cond_0
     return-void
 .end method
@@ -1933,70 +2109,96 @@
 .method protected register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 1
 
-    .line 298
+    .line 278
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 300
+    .line 280
     const/16 v0, 0xd2
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 302
+    .line 282
     invoke-virtual {p0, p1, p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->registerBackStack(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;Lcom/android/camera/protocol/ModeProtocol$HandleBackTrace;)V
 
-    .line 303
+    .line 283
     return-void
 .end method
 
 .method public showFNumberPanel()V
-    .locals 0
+    .locals 2
 
-    .line 293
+    .line 266
+    const/4 v0, 0x0
+
+    iput-boolean v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mFNumberHideStatus:Z
+
+    .line 267
+    iget v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentState:I
+
+    const/4 v1, 0x1
+
+    if-ne v0, v1, :cond_0
+
+    .line 268
+    return-void
+
+    .line 270
+    :cond_0
+    iput v1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentState:I
+
+    .line 272
+    const-string v0, "BokehAdjust"
+
+    const-string v1, "showFNumber"
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 273
     invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->hideSlideView()V
 
-    .line 294
+    .line 274
     return-void
 .end method
 
 .method protected unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 2
 
-    .line 307
+    .line 287
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 308
+    .line 288
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 309
+    .line 289
     const/16 v0, 0xd2
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 311
+    .line 291
     invoke-virtual {p0, p1, p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->unRegisterBackStack(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;Lcom/android/camera/protocol/ModeProtocol$HandleBackTrace;)V
 
-    .line 312
+    .line 292
     return-void
 .end method
 
 .method public updateFNumberValue()V
     .locals 0
 
-    .line 256
+    .line 221
     invoke-direct {p0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->setFNumberText()V
 
-    .line 257
+    .line 222
     return-void
 .end method
 
 .method public visibleHeight()I
     .locals 3
 
-    .line 267
+    .line 232
     iget v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mCurrentState:I
 
     const/4 v1, 0x0
@@ -2005,10 +2207,10 @@
 
     if-ne v0, v2, :cond_0
 
-    .line 268
+    .line 233
     return v1
 
-    .line 270
+    .line 235
     :cond_0
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mDualParentLayout:Landroid/view/ViewGroup;
 
@@ -2018,21 +2220,21 @@
 
     if-nez v0, :cond_1
 
-    .line 271
+    .line 236
     return v1
 
-    .line 274
+    .line 239
     :cond_1
     iget-boolean v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mShowImageIndicator:Z
 
     if-eqz v0, :cond_2
 
-    .line 275
+    .line 240
     iget v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mBokehFButtonHeight:I
 
     return v0
 
-    .line 278
+    .line 243
     :cond_2
     iget v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->mBokehFButtonHeight:I
 

@@ -14,7 +14,7 @@ import java.io.IOException;
 public abstract class l<T> implements d<T> {
     private static final String TAG = "LocalUriFetcher";
     private T data;
-    private final ContentResolver dv;
+    private final ContentResolver dw;
     private final Uri uri;
 
     protected abstract T b(Uri uri, ContentResolver contentResolver) throws FileNotFoundException;
@@ -22,13 +22,13 @@ public abstract class l<T> implements d<T> {
     protected abstract void h(T t) throws IOException;
 
     public l(ContentResolver contentResolver, Uri uri) {
-        this.dv = contentResolver;
+        this.dw = contentResolver;
         this.uri = uri;
     }
 
     public final void a(@NonNull Priority priority, @NonNull a<? super T> aVar) {
         try {
-            this.data = b(this.uri, this.dv);
+            this.data = b(this.uri, this.dw);
             aVar.i(this.data);
         } catch (Throwable e) {
             if (Log.isLoggable(TAG, 3)) {

@@ -18,6 +18,7 @@ import com.android.camera.animation.type.AlphaOutOnSubscribe;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.global.DataItemGlobal;
 import com.android.camera.fragment.lifeCircle.BaseLifecycleListener;
+import com.android.camera.log.Log;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BackStack;
 import com.android.camera.protocol.ModeProtocol.BaseProtocol;
@@ -31,6 +32,7 @@ public abstract class BaseFragment extends Fragment implements AnimationResource
     protected static final int RIGHT_LANDSCAPE = 270;
     protected static final int STATE_HIDE = -1;
     protected static final int STATE_SHOW = 1;
+    private static final String TAG = BaseFragment.class.getSimpleName();
     protected int mCurrentMode;
     protected int mDegree;
     private boolean mEnableClick = true;
@@ -176,7 +178,7 @@ public abstract class BaseFragment extends Fragment implements AnimationResource
     }
 
     @CallSuper
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
         if (list != null) {
             this.mInModeChanging = true;
         }
@@ -235,6 +237,11 @@ public abstract class BaseFragment extends Fragment implements AnimationResource
 
     @CallSuper
     public void setClickEnable(boolean z) {
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("setClickEnable: ");
+        stringBuilder.append(z);
+        Log.d(str, stringBuilder.toString());
         this.mEnableClick = z;
     }
 

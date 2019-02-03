@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/media/TransportMediatorJellybeanMR2;)V
-    .locals 0
+    .registers 2
 
     .line 53
     iput-object p1, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2$2;->this$0:Landroid/support/v4/media/TransportMediatorJellybeanMR2;
@@ -36,25 +36,25 @@
 
 # virtual methods
 .method public onWindowFocusChanged(Z)V
-    .locals 1
+    .registers 3
     .param p1, "hasFocus"    # Z
 
     .line 56
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_8
 
     iget-object v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2$2;->this$0:Landroid/support/v4/media/TransportMediatorJellybeanMR2;
 
     invoke-virtual {v0}, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->gainFocus()V
 
-    goto :goto_0
+    goto :goto_d
 
     .line 57
-    :cond_0
+    :cond_8
     iget-object v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2$2;->this$0:Landroid/support/v4/media/TransportMediatorJellybeanMR2;
 
     invoke-virtual {v0}, Landroid/support/v4/media/TransportMediatorJellybeanMR2;->loseFocus()V
 
     .line 58
-    :goto_0
+    :goto_d
     return-void
 .end method

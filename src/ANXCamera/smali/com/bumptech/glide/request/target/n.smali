@@ -19,7 +19,7 @@
 
 
 # static fields
-.field public static final oD:I = -0x80000000
+.field public static final oC:I = -0x80000000
 
 
 # virtual methods

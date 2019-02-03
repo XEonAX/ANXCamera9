@@ -1,6 +1,6 @@
 package com.xiaomi.camera.parallelservice.util;
 
-import android.util.Log;
+import com.android.camera.log.Log;
 import com.android.gallery3d.exif.ExifInterface;
 import java.io.File;
 import java.io.FileInputStream;

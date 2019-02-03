@@ -8,7 +8,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 12
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -19,7 +19,7 @@
 
 # virtual methods
 .method public getInterpolation(F)F
-    .locals 6
+    .registers 8
 
     .line 15
     float-to-double v0, p1
@@ -30,7 +30,7 @@
 
     const/high16 v3, 0x40f20000    # 7.5625f
 
-    if-gez v2, :cond_0
+    if-gez v2, :cond_f
 
     .line 16
     mul-float/2addr v3, p1
@@ -40,12 +40,12 @@
     return v3
 
     .line 17
-    :cond_0
+    :cond_f
     const-wide v4, 0x3fe745d1745d1746L    # 0.7272727272727273
 
     cmpg-double p1, v0, v4
 
-    if-gez p1, :cond_1
+    if-gez p1, :cond_25
 
     .line 18
     const-wide v4, 0x3fe1745d1745d174L    # 0.5454545454545454
@@ -66,12 +66,12 @@
     return v3
 
     .line 20
-    :cond_1
+    :cond_25
     const-wide v4, 0x3fed1745d1745d17L    # 0.9090909090909091
 
     cmpg-double p1, v0, v4
 
-    if-gez p1, :cond_2
+    if-gez p1, :cond_3b
 
     .line 21
     const-wide v4, 0x3fea2e8ba2e8ba2fL    # 0.8181818181818182
@@ -92,7 +92,7 @@
     return v3
 
     .line 24
-    :cond_2
+    :cond_3b
     const-wide v4, 0x3fee8ba2e8ba2e8cL    # 0.9545454545454546
 
     sub-double/2addr v0, v4

@@ -1,6 +1,7 @@
 package com.android.camera.effect.renders;
 
 import android.graphics.Bitmap;
+import com.android.camera.Util;
 import com.android.gallery3d.ui.BasicTexture;
 import com.android.gallery3d.ui.BitmapTexture;
 
@@ -15,11 +16,11 @@ class ImageWaterMark extends WaterMark {
 
     public ImageWaterMark(Bitmap bitmap, int i, int i2, int i3, float f, float f2, float f3) {
         super(i, i2, i3);
-        float min = ((float) Math.min(i, i2)) / 1080.0f;
-        this.mHeight = Math.round(f * min) & -2;
-        this.mWidth = ((this.mHeight * bitmap.getWidth()) / bitmap.getHeight()) & -2;
-        this.mPaddingX = Math.round(f2 * min) & -2;
-        this.mPaddingY = Math.round(f3 * min) & -2;
+        int[] calcDualCameraWatermarkLocation = Util.calcDualCameraWatermarkLocation(i, i2, bitmap.getWidth(), bitmap.getHeight(), f, f2, f3);
+        this.mWidth = calcDualCameraWatermarkLocation[0];
+        this.mHeight = calcDualCameraWatermarkLocation[1];
+        this.mPaddingX = calcDualCameraWatermarkLocation[2];
+        this.mPaddingY = calcDualCameraWatermarkLocation[3];
         this.mImageTexture = new BitmapTexture(bitmap);
         this.mImageTexture.setOpaque(false);
         calcCenterAxis();
@@ -60,5 +61,13 @@ class ImageWaterMark extends WaterMark {
 
     public BasicTexture getTexture() {
         return this.mImageTexture;
+    }
+
+    public int getPaddingX() {
+        return this.mPaddingX;
+    }
+
+    public int getPaddingY() {
+        return this.mPaddingY;
     }
 }

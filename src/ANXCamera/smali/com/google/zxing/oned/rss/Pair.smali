@@ -11,7 +11,7 @@
 
 # direct methods
 .method constructor <init>(IILcom/google/zxing/oned/rss/FinderPattern;)V
-    .locals 0
+    .registers 4
     .param p1, "value"    # I
     .param p2, "checksumPortion"    # I
     .param p3, "finderPattern"    # Lcom/google/zxing/oned/rss/FinderPattern;
@@ -29,7 +29,7 @@
 
 # virtual methods
 .method getCount()I
-    .locals 1
+    .registers 2
 
     .line 34
     iget v0, p0, Lcom/google/zxing/oned/rss/Pair;->count:I
@@ -38,7 +38,7 @@
 .end method
 
 .method getFinderPattern()Lcom/google/zxing/oned/rss/FinderPattern;
-    .locals 1
+    .registers 2
 
     .line 30
     iget-object v0, p0, Lcom/google/zxing/oned/rss/Pair;->finderPattern:Lcom/google/zxing/oned/rss/FinderPattern;
@@ -47,7 +47,7 @@
 .end method
 
 .method incrementCount()V
-    .locals 1
+    .registers 2
 
     .line 38
     iget v0, p0, Lcom/google/zxing/oned/rss/Pair;->count:I

@@ -12,22 +12,50 @@
 .end annotation
 
 
+# static fields
+.field private static final TAG:Ljava/lang/String;
+
+
 # instance fields
 .field private mBurstNum:I
 
 
 # direct methods
+.method static constructor <clinit>()V
+    .locals 1
+
+    .line 17
+    const-class v0, Lcom/android/camera2/MiCamera2ShotBurst;
+
+    invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
+
+    move-result-object v0
+
+    sput-object v0, Lcom/android/camera2/MiCamera2ShotBurst;->TAG:Ljava/lang/String;
+
+    return-void
+.end method
+
 .method public constructor <init>(Lcom/android/camera2/MiCamera2;I)V
     .locals 0
 
-    .line 23
+    .line 22
     invoke-direct {p0, p1}, Lcom/android/camera2/MiCamera2Shot;-><init>(Lcom/android/camera2/MiCamera2;)V
 
-    .line 24
+    .line 23
     iput p2, p0, Lcom/android/camera2/MiCamera2ShotBurst;->mBurstNum:I
 
-    .line 25
+    .line 24
     return-void
+.end method
+
+.method static synthetic access$000()Ljava/lang/String;
+    .locals 1
+
+    .line 15
+    sget-object v0, Lcom/android/camera2/MiCamera2ShotBurst;->TAG:Ljava/lang/String;
+
+    return-object v0
 .end method
 
 
@@ -35,7 +63,7 @@
 .method protected generateCaptureCallback()Landroid/hardware/camera2/CameraCaptureSession$CaptureCallback;
     .locals 1
 
-    .line 58
+    .line 56
     new-instance v0, Lcom/android/camera2/MiCamera2ShotBurst$1;
 
     invoke-direct {v0, p0}, Lcom/android/camera2/MiCamera2ShotBurst$1;-><init>(Lcom/android/camera2/MiCamera2ShotBurst;)V
@@ -52,10 +80,10 @@
         }
     .end annotation
 
-    .line 105
+    .line 102
     iget-object v0, p0, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
 
-    .line 106
+    .line 103
     invoke-virtual {v0}, Lcom/android/camera2/MiCamera2;->getCameraDevice()Landroid/hardware/camera2/CameraDevice;
 
     move-result-object v0
@@ -66,7 +94,7 @@
 
     move-result-object v0
 
-    .line 107
+    .line 104
     sget-object v2, Landroid/hardware/camera2/CaptureRequest;->CONTROL_CAPTURE_INTENT:Landroid/hardware/camera2/CaptureRequest$Key;
 
     invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -75,7 +103,7 @@
 
     invoke-virtual {v0, v2, v1}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 
-    .line 109
+    .line 106
     iget-object v1, p0, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
 
     invoke-virtual {v1}, Lcom/android/camera2/MiCamera2;->getPhotoImageReader()Landroid/media/ImageReader;
@@ -88,7 +116,7 @@
 
     invoke-virtual {v0, v1}, Landroid/hardware/camera2/CaptureRequest$Builder;->addTarget(Landroid/view/Surface;)V
 
-    .line 110
+    .line 107
     iget-object v1, p0, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
 
     invoke-virtual {v1}, Lcom/android/camera2/MiCamera2;->getPreviewSurface()Landroid/view/Surface;
@@ -97,21 +125,21 @@
 
     invoke-virtual {v0, v1}, Landroid/hardware/camera2/CaptureRequest$Builder;->addTarget(Landroid/view/Surface;)V
 
-    .line 113
+    .line 110
     iget-object v1, p0, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
 
     const/4 v2, 0x4
 
     invoke-virtual {v1, v0, v2}, Lcom/android/camera2/MiCamera2;->applySettingsForCapture(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
 
-    .line 133
+    .line 129
     return-object v0
 .end method
 
 .method protected bridge synthetic notifyResultData(Ljava/lang/Object;)V
     .locals 0
 
-    .line 17
+    .line 15
     check-cast p1, [B
 
     invoke-virtual {p0, p1}, Lcom/android/camera2/MiCamera2ShotBurst;->notifyResultData([B)V
@@ -122,40 +150,44 @@
 .method protected notifyResultData([B)V
     .locals 1
 
-    .line 155
+    .line 151
     iget-object v0, p0, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
 
     invoke-virtual {v0}, Lcom/android/camera2/MiCamera2;->getPictureCallback()Lcom/android/camera2/Camera2Proxy$PictureCallback;
 
     move-result-object v0
 
-    .line 156
+    .line 152
+    if-eqz v0, :cond_0
+
+    .line 153
     invoke-interface {v0, p1}, Lcom/android/camera2/Camera2Proxy$PictureCallback;->onPictureTaken([B)V
 
-    .line 157
+    .line 155
+    :cond_0
     return-void
 .end method
 
 .method protected onImageReceived(Landroid/media/Image;I)V
     .locals 0
 
-    .line 138
+    .line 134
     iget-object p2, p0, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
 
     invoke-virtual {p2}, Lcom/android/camera2/MiCamera2;->getPictureCallback()Lcom/android/camera2/Camera2Proxy$PictureCallback;
 
     move-result-object p2
 
-    .line 139
+    .line 135
     if-nez p2, :cond_0
 
-    .line 140
+    .line 136
     invoke-virtual {p1}, Landroid/media/Image;->close()V
 
-    .line 141
+    .line 137
     return-void
 
-    .line 143
+    .line 139
     :cond_0
     invoke-interface {p2, p1}, Lcom/android/camera2/Camera2Proxy$PictureCallback;->onPictureTakenImageConsumed(Landroid/media/Image;)Z
 
@@ -163,66 +195,66 @@
 
     if-eqz p2, :cond_1
 
-    .line 145
+    .line 141
     return-void
 
-    .line 148
+    .line 144
     :cond_1
     invoke-static {p1}, Lcom/android/camera/Util;->getFirstPlane(Landroid/media/Image;)[B
 
     move-result-object p2
 
-    .line 149
+    .line 145
     invoke-virtual {p1}, Landroid/media/Image;->close()V
 
-    .line 150
+    .line 146
     invoke-virtual {p0, p2}, Lcom/android/camera2/MiCamera2ShotBurst;->notifyResultData([B)V
 
-    .line 151
+    .line 147
     return-void
 .end method
 
 .method protected prepare()V
     .locals 2
 
-    .line 30
+    .line 29
     iget-object v0, p0, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
 
     const/4 v1, 0x1
 
     invoke-virtual {v0, v1}, Lcom/android/camera2/MiCamera2;->setAWBLock(Z)V
 
-    .line 32
+    .line 30
     return-void
 .end method
 
-.method protected startShot()V
+.method protected startSessionCapture()V
     .locals 4
 
-    .line 36
+    .line 34
     sget-object v0, Lcom/android/camera2/MiCamera2ShotBurst;->TAG:Ljava/lang/String;
 
-    const-string v1, "captureBurstPictures"
+    const-string v1, "startSessionCapture"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 38
+    .line 36
     iget-object v0, p0, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
 
     invoke-virtual {v0}, Lcom/android/camera2/MiCamera2;->pausePreview()V
 
-    .line 41
+    .line 39
     :try_start_0
     invoke-virtual {p0}, Lcom/android/camera2/MiCamera2ShotBurst;->generateCaptureCallback()Landroid/hardware/camera2/CameraCaptureSession$CaptureCallback;
 
     move-result-object v0
 
-    .line 42
+    .line 40
     invoke-virtual {p0}, Lcom/android/camera2/MiCamera2ShotBurst;->generateRequestBuilder()Landroid/hardware/camera2/CaptureRequest$Builder;
 
     move-result-object v1
 
-    .line 45
+    .line 43
     iget-object v2, p0, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
 
     invoke-virtual {v2}, Lcom/android/camera2/MiCamera2;->getCaptureSession()Landroid/hardware/camera2/CameraCaptureSession;
@@ -242,18 +274,18 @@
 
     goto :goto_0
 
-    .line 49
+    .line 47
     :catch_0
     move-exception v0
 
-    .line 50
+    .line 48
     sget-object v1, Lcom/android/camera2/MiCamera2ShotBurst;->TAG:Ljava/lang/String;
 
     const-string v2, "Failed to capture burst, IllegalState"
 
     invoke-static {v1, v2, v0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 51
+    .line 49
     iget-object v0, p0, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
 
     const/16 v1, 0x100
@@ -262,14 +294,14 @@
 
     goto :goto_1
 
-    .line 46
+    .line 44
     :catch_1
     move-exception v0
 
-    .line 47
+    .line 45
     invoke-virtual {v0}, Landroid/hardware/camera2/CameraAccessException;->printStackTrace()V
 
-    .line 48
+    .line 46
     iget-object v1, p0, Lcom/android/camera2/MiCamera2ShotBurst;->mMiCamera:Lcom/android/camera2/MiCamera2;
 
     invoke-virtual {v0}, Landroid/hardware/camera2/CameraAccessException;->getReason()I
@@ -278,11 +310,11 @@
 
     invoke-virtual {v1, v0}, Lcom/android/camera2/MiCamera2;->notifyOnError(I)V
 
-    .line 52
+    .line 50
     :goto_0
     nop
 
-    .line 54
+    .line 52
     :goto_1
     return-void
 .end method

@@ -27,7 +27,7 @@
 .method constructor <init>(Lcom/ss/android/ugc/effectmanager/EffectManager;Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;)V
     .locals 0
 
-    .line 421
+    .line 434
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$7;->this$0:Lcom/ss/android/ugc/effectmanager/EffectManager;
 
     iput-object p2, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$7;->val$iFetchEffectListListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;
@@ -42,12 +42,12 @@
 .method public onFail(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
     .locals 1
 
-    .line 429
+    .line 442
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$7;->val$iFetchEffectListListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;
 
     invoke-interface {v0, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;->onFail(Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
 
-    .line 430
+    .line 443
     return-void
 .end method
 
@@ -62,11 +62,11 @@
         }
     .end annotation
 
-    .line 424
+    .line 437
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/EffectManager$7;->val$iFetchEffectListListener:Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;
 
     invoke-interface {v0, p1}, Lcom/ss/android/ugc/effectmanager/effect/listener/IFetchEffectListListener;->onSuccess(Ljava/util/List;)V
 
-    .line 425
+    .line 438
     return-void
 .end method

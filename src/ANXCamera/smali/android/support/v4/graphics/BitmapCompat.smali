@@ -21,7 +21,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 81
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -30,7 +30,7 @@
     .local v0, "version":I
     const/16 v1, 0x13
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_e
 
     .line 83
     new-instance v1, Landroid/support/v4/graphics/BitmapCompat$KitKatBitmapCompatImpl;
@@ -39,13 +39,13 @@
 
     sput-object v1, Landroid/support/v4/graphics/BitmapCompat;->IMPL:Landroid/support/v4/graphics/BitmapCompat$BitmapImpl;
 
-    goto :goto_0
+    goto :goto_2d
 
     .line 84
-    :cond_0
+    :cond_e
     const/16 v1, 0x12
 
-    if-lt v0, v1, :cond_1
+    if-lt v0, v1, :cond_1a
 
     .line 85
     new-instance v1, Landroid/support/v4/graphics/BitmapCompat$JbMr2BitmapCompatImpl;
@@ -54,13 +54,13 @@
 
     sput-object v1, Landroid/support/v4/graphics/BitmapCompat;->IMPL:Landroid/support/v4/graphics/BitmapCompat$BitmapImpl;
 
-    goto :goto_0
+    goto :goto_2d
 
     .line 86
-    :cond_1
+    :cond_1a
     const/16 v1, 0xc
 
-    if-lt v0, v1, :cond_2
+    if-lt v0, v1, :cond_26
 
     .line 87
     new-instance v1, Landroid/support/v4/graphics/BitmapCompat$HcMr1BitmapCompatImpl;
@@ -69,10 +69,10 @@
 
     sput-object v1, Landroid/support/v4/graphics/BitmapCompat;->IMPL:Landroid/support/v4/graphics/BitmapCompat$BitmapImpl;
 
-    goto :goto_0
+    goto :goto_2d
 
     .line 89
-    :cond_2
+    :cond_26
     new-instance v1, Landroid/support/v4/graphics/BitmapCompat$BaseBitmapImpl;
 
     invoke-direct {v1}, Landroid/support/v4/graphics/BitmapCompat$BaseBitmapImpl;-><init>()V
@@ -81,12 +81,12 @@
 
     .line 91
     .end local v0    # "version":I
-    :goto_0
+    :goto_2d
     return-void
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 24
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -96,7 +96,7 @@
 .end method
 
 .method public static getAllocationByteCount(Landroid/graphics/Bitmap;)I
-    .locals 1
+    .registers 2
     .param p0, "bitmap"    # Landroid/graphics/Bitmap;
 
     .line 109
@@ -110,7 +110,7 @@
 .end method
 
 .method public static hasMipMap(Landroid/graphics/Bitmap;)Z
-    .locals 1
+    .registers 2
     .param p0, "bitmap"    # Landroid/graphics/Bitmap;
 
     .line 94
@@ -124,7 +124,7 @@
 .end method
 
 .method public static setHasMipMap(Landroid/graphics/Bitmap;Z)V
-    .locals 1
+    .registers 3
     .param p0, "bitmap"    # Landroid/graphics/Bitmap;
     .param p1, "hasMipMap"    # Z
 

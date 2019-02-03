@@ -16,7 +16,7 @@
     .line 15
     const-string v0, "com.bumptech.glide.load.resource.bitmap.FitCenter"
 
-    sget-object v1, Lcom/bumptech/glide/load/resource/bitmap/q;->cT:Ljava/nio/charset/Charset;
+    sget-object v1, Lcom/bumptech/glide/load/resource/bitmap/q;->cU:Ljava/nio/charset/Charset;
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->getBytes(Ljava/nio/charset/Charset;)[B
 

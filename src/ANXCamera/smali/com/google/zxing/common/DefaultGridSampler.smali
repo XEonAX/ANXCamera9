@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 24
     invoke-direct {p0}, Lcom/google/zxing/common/GridSampler;-><init>()V
@@ -16,7 +16,7 @@
 
 # virtual methods
 .method public sampleGrid(Lcom/google/zxing/common/BitMatrix;IIFFFFFFFFFFFFFFFF)Lcom/google/zxing/common/BitMatrix;
-    .locals 6
+    .registers 26
     .param p1, "image"    # Lcom/google/zxing/common/BitMatrix;
     .param p2, "dimensionX"    # I
     .param p3, "dimensionY"    # I
@@ -71,7 +71,7 @@
 .end method
 
 .method public sampleGrid(Lcom/google/zxing/common/BitMatrix;IILcom/google/zxing/common/PerspectiveTransform;)Lcom/google/zxing/common/BitMatrix;
-    .locals 8
+    .registers 13
     .param p1, "image"    # Lcom/google/zxing/common/BitMatrix;
     .param p2, "dimensionX"    # I
     .param p3, "dimensionY"    # I
@@ -83,9 +83,9 @@
     .end annotation
 
     .line 51
-    if-lez p2, :cond_4
+    if-lez p2, :cond_4f
 
-    if-lez p3, :cond_4
+    if-lez p3, :cond_4f
 
     .line 54
     new-instance v0, Lcom/google/zxing/common/BitMatrix;
@@ -105,8 +105,8 @@
     const/4 v2, 0x0
 
     .local v2, "y":I
-    :goto_0
-    if-lt v2, p3, :cond_0
+    :goto_e
+    if-lt v2, p3, :cond_11
 
     .line 85
     .end local v2    # "y":I
@@ -114,7 +114,7 @@
 
     .line 57
     .restart local v2    # "y":I
-    :cond_0
+    :cond_11
     array-length v3, v1
 
     .line 58
@@ -130,8 +130,8 @@
     const/4 v6, 0x0
 
     .local v6, "x":I
-    :goto_1
-    if-lt v6, v3, :cond_3
+    :goto_17
+    if-lt v6, v3, :cond_42
 
     .line 63
     .end local v6    # "x":I
@@ -144,8 +144,8 @@
     const/4 v5, 0x0
 
     .local v5, "x":I
-    :goto_2
-    if-lt v5, v3, :cond_1
+    :goto_20
+    if-lt v5, v3, :cond_26
 
     .line 74
     .end local v5    # "x":I
@@ -156,14 +156,14 @@
     .end local v4    # "iValue":F
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_e
 
     .line 69
     .restart local v3    # "max":I
     .restart local v4    # "iValue":F
     .restart local v5    # "x":I
-    :cond_1
-    :try_start_0
+    :cond_26
+    :try_start_26
     aget v6, v1, v5
 
     float-to-int v6, v6
@@ -178,24 +178,24 @@
 
     move-result v6
 
-    if-eqz v6, :cond_2
+    if-eqz v6, :cond_39
 
     .line 71
     div-int/lit8 v6, v5, 0x2
 
     invoke-virtual {v0, v6, v2}, Lcom/google/zxing/common/BitMatrix;->set(II)V
-    :try_end_0
-    .catch Ljava/lang/ArrayIndexOutOfBoundsException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_39
+    .catch Ljava/lang/ArrayIndexOutOfBoundsException; {:try_start_26 .. :try_end_39} :catch_3c
 
     .line 68
-    :cond_2
+    :cond_39
     add-int/lit8 v5, v5, 0x2
 
-    goto :goto_2
+    goto :goto_20
 
     .line 74
     .end local v5    # "x":I
-    :catch_0
+    :catch_3c
     move-exception v5
 
     .line 82
@@ -209,7 +209,7 @@
     .line 60
     .end local v5    # "aioobe":Ljava/lang/ArrayIndexOutOfBoundsException;
     .restart local v6    # "x":I
-    :cond_3
+    :cond_42
     div-int/lit8 v7, v6, 0x2
 
     int-to-float v7, v7
@@ -226,7 +226,7 @@
     .line 59
     add-int/lit8 v6, v6, 0x2
 
-    goto :goto_1
+    goto :goto_17
 
     .line 52
     .end local v0    # "bits":Lcom/google/zxing/common/BitMatrix;
@@ -235,7 +235,7 @@
     .end local v3    # "max":I
     .end local v4    # "iValue":F
     .end local v6    # "x":I
-    :cond_4
+    :cond_4f
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v0

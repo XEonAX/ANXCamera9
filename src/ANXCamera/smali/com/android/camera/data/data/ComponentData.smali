@@ -49,6 +49,15 @@
     return p1
 .end method
 
+.method public disableUpdate()Z
+    .locals 1
+
+    .line 121
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
 .method public findIndexOfValue(Ljava/lang/String;)I
     .locals 3
 
@@ -179,6 +188,17 @@
 .method public abstract getDefaultValue(I)Ljava/lang/String;
     .annotation build Landroid/support/annotation/NonNull;
     .end annotation
+.end method
+
+.method public getDisableReasonString()I
+    .locals 1
+    .annotation build Landroid/support/annotation/StringRes;
+    .end annotation
+
+    .line 125
+    const/4 v0, 0x0
+
+    return v0
 .end method
 
 .method public abstract getDisplayTitleString()I

@@ -27,7 +27,7 @@
 .method private constructor <init>(Lcom/android/camera/module/Panorama3Module$PanoramaPreview;)V
     .locals 0
 
-    .line 2302
+    .line 2288
     iput-object p1, p0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$UiUpdateRunnable;->this$1:Lcom/android/camera/module/Panorama3Module$PanoramaPreview;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method synthetic constructor <init>(Lcom/android/camera/module/Panorama3Module$PanoramaPreview;Lcom/android/camera/module/Panorama3Module$1;)V
     .locals 0
 
-    .line 2302
+    .line 2288
     invoke-direct {p0, p1}, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$UiUpdateRunnable;-><init>(Lcom/android/camera/module/Panorama3Module$PanoramaPreview;)V
 
     return-void
@@ -49,7 +49,7 @@
 .method public run()V
     .locals 5
 
-    .line 2311
+    .line 2297
     iget v0, p0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$UiUpdateRunnable;->mDetectResult:I
 
     const/4 v1, 0x1
@@ -70,11 +70,11 @@
 
     goto/16 :goto_2
 
-    .line 2321
+    .line 2307
     :cond_0
     iget-object v0, p0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$UiUpdateRunnable;->this$1:Lcom/android/camera/module/Panorama3Module$PanoramaPreview;
 
-    invoke-static {v0}, Lcom/android/camera/module/Panorama3Module$PanoramaPreview;->access$6400(Lcom/android/camera/module/Panorama3Module$PanoramaPreview;)Lcom/android/camera/panorama/PositionDetector;
+    invoke-static {v0}, Lcom/android/camera/module/Panorama3Module$PanoramaPreview;->access$6100(Lcom/android/camera/module/Panorama3Module$PanoramaPreview;)Lcom/android/camera/panorama/PositionDetector;
 
     move-result-object v0
 
@@ -82,7 +82,7 @@
 
     move-result-object v0
 
-    .line 2322
+    .line 2308
     invoke-static {}, Lcom/android/camera/module/Panorama3Module;->access$100()Ljava/lang/String;
 
     move-result-object v2
@@ -103,17 +103,17 @@
 
     invoke-static {v2, v3}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2323
+    .line 2309
     new-instance v2, Landroid/graphics/Point;
 
     invoke-direct {v2}, Landroid/graphics/Point;-><init>()V
 
-    .line 2324
+    .line 2310
     iget-object v3, p0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$UiUpdateRunnable;->this$1:Lcom/android/camera/module/Panorama3Module$PanoramaPreview;
 
     iget-object v3, v3, Lcom/android/camera/module/Panorama3Module$PanoramaPreview;->this$0:Lcom/android/camera/module/Panorama3Module;
 
-    invoke-static {v3}, Lcom/android/camera/module/Panorama3Module;->access$4100(Lcom/android/camera/module/Panorama3Module;)I
+    invoke-static {v3}, Lcom/android/camera/module/Panorama3Module;->access$3600(Lcom/android/camera/module/Panorama3Module;)I
 
     move-result v3
 
@@ -121,7 +121,7 @@
 
     if-ne v3, v4, :cond_1
 
-    .line 2325
+    .line 2311
     iget v3, v0, Landroid/graphics/RectF;->right:F
 
     float-to-int v3, v3
@@ -130,7 +130,7 @@
 
     goto :goto_0
 
-    .line 2327
+    .line 2313
     :cond_1
     iget v3, v0, Landroid/graphics/RectF;->left:F
 
@@ -138,7 +138,7 @@
 
     iput v3, v2, Landroid/graphics/Point;->x:I
 
-    .line 2330
+    .line 2316
     :goto_0
     invoke-virtual {v0}, Landroid/graphics/RectF;->centerY()F
 
@@ -148,26 +148,26 @@
 
     iput v0, v2, Landroid/graphics/Point;->y:I
 
-    .line 2333
-    invoke-static {}, Lcom/android/camera/module/Panorama3Module;->access$800()Ljava/lang/Object;
+    .line 2319
+    invoke-static {}, Lcom/android/camera/module/Panorama3Module;->access$4700()Ljava/lang/Object;
 
     move-result-object v0
 
     monitor-enter v0
 
-    .line 2334
+    .line 2320
     :try_start_0
     iget-object v3, p0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$UiUpdateRunnable;->this$1:Lcom/android/camera/module/Panorama3Module$PanoramaPreview;
 
     iget-object v3, v3, Lcom/android/camera/module/Panorama3Module$PanoramaPreview;->this$0:Lcom/android/camera/module/Panorama3Module;
 
-    invoke-static {v3}, Lcom/android/camera/module/Panorama3Module;->access$1000(Lcom/android/camera/module/Panorama3Module;)Landroid/graphics/Bitmap;
+    invoke-static {v3}, Lcom/android/camera/module/Panorama3Module;->access$1500(Lcom/android/camera/module/Panorama3Module;)Landroid/graphics/Bitmap;
 
     move-result-object v3
 
     if-nez v3, :cond_2
 
-    .line 2335
+    .line 2321
     invoke-static {}, Lcom/android/camera/module/Panorama3Module;->access$100()Ljava/lang/String;
 
     move-result-object v1
@@ -176,18 +176,18 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2336
+    .line 2322
     monitor-exit v0
 
     return-void
 
-    .line 2338
+    .line 2324
     :cond_2
     iget-object v3, p0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$UiUpdateRunnable;->this$1:Lcom/android/camera/module/Panorama3Module$PanoramaPreview;
 
     iget-object v3, v3, Lcom/android/camera/module/Panorama3Module$PanoramaPreview;->this$0:Lcom/android/camera/module/Panorama3Module;
 
-    invoke-static {v3}, Lcom/android/camera/module/Panorama3Module;->access$1000(Lcom/android/camera/module/Panorama3Module;)Landroid/graphics/Bitmap;
+    invoke-static {v3}, Lcom/android/camera/module/Panorama3Module;->access$1500(Lcom/android/camera/module/Panorama3Module;)Landroid/graphics/Bitmap;
 
     move-result-object v3
 
@@ -195,12 +195,12 @@
 
     move-result v3
 
-    .line 2339
+    .line 2325
     iget-object v4, p0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$UiUpdateRunnable;->this$1:Lcom/android/camera/module/Panorama3Module$PanoramaPreview;
 
     iget-object v4, v4, Lcom/android/camera/module/Panorama3Module$PanoramaPreview;->this$0:Lcom/android/camera/module/Panorama3Module;
 
-    invoke-static {v4}, Lcom/android/camera/module/Panorama3Module;->access$1000(Lcom/android/camera/module/Panorama3Module;)Landroid/graphics/Bitmap;
+    invoke-static {v4}, Lcom/android/camera/module/Panorama3Module;->access$1500(Lcom/android/camera/module/Panorama3Module;)Landroid/graphics/Bitmap;
 
     move-result-object v4
 
@@ -208,12 +208,12 @@
 
     move-result v4
 
-    .line 2340
+    .line 2326
     monitor-exit v0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 2342
+    .line 2328
     iget-object v0, p0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$UiUpdateRunnable;->this$1:Lcom/android/camera/module/Panorama3Module$PanoramaPreview;
 
     iget-object v0, v0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview;->this$0:Lcom/android/camera/module/Panorama3Module;
@@ -226,63 +226,63 @@
 
     div-int/2addr v3, v4
 
-    invoke-static {v0, v3}, Lcom/android/camera/module/Panorama3Module;->access$6602(Lcom/android/camera/module/Panorama3Module;I)I
+    invoke-static {v0, v3}, Lcom/android/camera/module/Panorama3Module;->access$6302(Lcom/android/camera/module/Panorama3Module;I)I
 
-    .line 2344
+    .line 2330
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
     const/16 v3, 0xb0
 
-    .line 2345
+    .line 2331
     invoke-virtual {v0, v3}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$PanoramaProtocol;
 
-    .line 2347
+    .line 2333
     if-eqz v0, :cond_4
 
-    .line 2348
+    .line 2334
     iget-object v3, p0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$UiUpdateRunnable;->this$1:Lcom/android/camera/module/Panorama3Module$PanoramaPreview;
 
     iget-object v3, v3, Lcom/android/camera/module/Panorama3Module$PanoramaPreview;->this$0:Lcom/android/camera/module/Panorama3Module;
 
-    invoke-static {v3}, Lcom/android/camera/module/Panorama3Module;->access$6600(Lcom/android/camera/module/Panorama3Module;)I
+    invoke-static {v3}, Lcom/android/camera/module/Panorama3Module;->access$6300(Lcom/android/camera/module/Panorama3Module;)I
 
     move-result v3
 
     invoke-interface {v0, v2, v3}, Lcom/android/camera/protocol/ModeProtocol$PanoramaProtocol;->setDirectionPosition(Landroid/graphics/Point;I)V
 
-    .line 2350
+    .line 2336
     iget v2, p0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$UiUpdateRunnable;->mDetectResult:I
 
     if-eq v2, v4, :cond_3
 
-    .line 2355
+    .line 2341
     const/4 v1, 0x0
 
     invoke-interface {v0, v1, v1}, Lcom/android/camera/protocol/ModeProtocol$PanoramaProtocol;->setDirectionTooFast(ZI)V
 
     goto :goto_1
 
-    .line 2352
+    .line 2338
     :cond_3
     const/16 v2, 0x1770
 
     invoke-interface {v0, v1, v2}, Lcom/android/camera/protocol/ModeProtocol$PanoramaProtocol;->setDirectionTooFast(ZI)V
 
-    .line 2353
+    .line 2339
     nop
 
-    .line 2359
+    .line 2345
     :cond_4
     :goto_1
     return-void
 
-    .line 2340
+    .line 2326
     :catchall_0
     move-exception v1
 
@@ -293,14 +293,14 @@
 
     throw v1
 
-    .line 2314
+    .line 2300
     :cond_5
     :goto_2
     iget v0, p0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$UiUpdateRunnable;->mDetectResult:I
 
     if-eq v0, v1, :cond_6
 
-    .line 2315
+    .line 2301
     invoke-static {}, Lcom/android/camera/module/Panorama3Module;->access$100()Ljava/lang/String;
 
     move-result-object v0
@@ -323,24 +323,24 @@
 
     invoke-static {v0, v2}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2317
+    .line 2303
     :cond_6
     iget-object v0, p0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$UiUpdateRunnable;->this$1:Lcom/android/camera/module/Panorama3Module$PanoramaPreview;
 
     iget-object v0, v0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview;->this$0:Lcom/android/camera/module/Panorama3Module;
 
-    invoke-static {v0, v1}, Lcom/android/camera/module/Panorama3Module;->access$5700(Lcom/android/camera/module/Panorama3Module;Z)V
+    invoke-static {v0, v1}, Lcom/android/camera/module/Panorama3Module;->access$5400(Lcom/android/camera/module/Panorama3Module;Z)V
 
-    .line 2318
+    .line 2304
     return-void
 .end method
 
 .method public setDetectResult(I)V
     .locals 0
 
-    .line 2306
+    .line 2292
     iput p1, p0, Lcom/android/camera/module/Panorama3Module$PanoramaPreview$UiUpdateRunnable;->mDetectResult:I
 
-    .line 2307
+    .line 2293
     return-void
 .end method

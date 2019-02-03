@@ -57,4 +57,12 @@ class AgeGenderAndMagicMirrorWaterMark extends WaterMark {
     public int getTop() {
         return super.getTop();
     }
+
+    public int getPaddingX() {
+        return this.mPaddingX;
+    }
+
+    public int getPaddingY() {
+        return this.mPaddingY;
+    }
 }

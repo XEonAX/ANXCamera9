@@ -8,7 +8,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 12
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -19,7 +19,7 @@
 
 # virtual methods
 .method public getInterpolation(F)F
-    .locals 3
+    .registers 5
 
     .line 15
     const/high16 v0, 0x40000000    # 2.0f
@@ -33,7 +33,7 @@
 
     const/high16 v2, 0x3f000000    # 0.5f
 
-    if-gez v1, :cond_0
+    if-gez v1, :cond_f
 
     .line 17
     mul-float/2addr v2, p1
@@ -45,7 +45,7 @@
     return v2
 
     .line 20
-    :cond_0
+    :cond_f
     sub-float/2addr p1, v0
 
     .line 21

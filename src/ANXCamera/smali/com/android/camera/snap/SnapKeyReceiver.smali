@@ -57,7 +57,7 @@
     if-lt v0, v1, :cond_7
 
     .line 27
-    invoke-static {}, Lcom/mi/config/b;->gO()Z
+    invoke-static {}, Lcom/mi/config/b;->hg()Z
 
     move-result v0
 
@@ -146,9 +146,14 @@
     if-nez v0, :cond_5
 
     .line 51
+    const/4 p1, 0x1
+
+    invoke-static {p1}, Lcom/android/camera/snap/SnapService;->setScreenOn(Z)V
+
+    .line 52
     return-void
 
-    .line 54
+    .line 55
     :cond_5
     invoke-static {}, Lcom/android/camera/snap/SnapTrigger;->getInstance()Lcom/android/camera/snap/SnapTrigger;
 
@@ -162,44 +167,44 @@
 
     if-eqz v0, :cond_6
 
-    .line 55
+    .line 56
     invoke-static {}, Lcom/android/camera/snap/SnapTrigger;->getInstance()Lcom/android/camera/snap/SnapTrigger;
 
     move-result-object p1
 
     const-string v0, "key_code"
 
-    .line 56
+    .line 57
     invoke-virtual {p2, v0, v1}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
 
     move-result v0
 
     const-string v4, "key_action"
 
-    .line 57
+    .line 58
     invoke-virtual {p2, v4, v1}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
 
     move-result v1
 
     const-string v4, "key_event_time"
 
-    .line 58
+    .line 59
     invoke-virtual {p2, v4, v2, v3}, Landroid/content/Intent;->getLongExtra(Ljava/lang/String;J)J
 
     move-result-wide v2
 
-    .line 55
+    .line 56
     invoke-virtual {p1, v0, v1, v2, v3}, Lcom/android/camera/snap/SnapTrigger;->handleKeyEvent(IIJ)V
 
     goto :goto_0
 
-    .line 60
+    .line 61
     :cond_6
     new-instance v0, Landroid/os/Bundle;
 
     invoke-direct {v0}, Landroid/os/Bundle;-><init>()V
 
-    .line 61
+    .line 62
     const-string v4, "key_code"
 
     const-string v5, "key_code"
@@ -210,7 +215,7 @@
 
     invoke-virtual {v0, v4, v5}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
 
-    .line 62
+    .line 63
     const-string v4, "key_action"
 
     const-string v5, "key_action"
@@ -221,7 +226,7 @@
 
     invoke-virtual {v0, v4, v1}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
 
-    .line 63
+    .line 64
     const-string v1, "key_event_time"
 
     const-string v4, "key_event_time"
@@ -232,10 +237,10 @@
 
     invoke-virtual {v0, v1, v2, v3}, Landroid/os/Bundle;->putLong(Ljava/lang/String;J)V
 
-    .line 64
+    .line 65
     invoke-static {p1, v0}, Lcom/android/camera/snap/SnapService;->startJob(Landroid/content/Context;Landroid/os/Bundle;)V
 
-    .line 66
+    .line 67
     :goto_0
     return-void
 

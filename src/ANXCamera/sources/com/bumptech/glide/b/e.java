@@ -17,33 +17,33 @@ import java.util.Arrays;
 public class e implements a {
     private static final int MAX_STACK_SIZE = 4096;
     private static final String TAG = e.class.getSimpleName();
-    private static final int bE = 255;
-    private static final int bZ = -1;
+    private static final int bF = 255;
     private static final int ca = -1;
-    private static final int cb = 4;
+    private static final int cb = -1;
+    private static final int cc = 4;
     @ColorInt
-    private static final int cc = 0;
+    private static final int cd = 0;
     @ColorInt
     private int[] act;
-    private ByteBuffer bX;
-    private c bY;
+    private ByteBuffer bY;
+    private c bZ;
     private byte[] block;
     @ColorInt
-    private final int[] cd;
-    private final a ce;
-    private d cf;
-    private byte[] cg;
+    private final int[] ce;
+    private final a cf;
+    private d cg;
+    private byte[] ci;
     @ColorInt
-    private int[] ci;
-    private int cj;
-    private Bitmap ck;
-    private boolean cl;
-    private int cm;
+    private int[] cj;
+    private int ck;
+    private Bitmap cl;
+    private boolean cm;
     private int cn;
+    private int cp;
     @Nullable
-    private Boolean cp;
+    private Boolean cq;
     @NonNull
-    private Config cq;
+    private Config cr;
     private byte[] pixelStack;
     private short[] prefix;
     private int sampleSize;
@@ -60,23 +60,23 @@ public class e implements a {
     }
 
     public e(@NonNull a aVar) {
-        this.cd = new int[256];
-        this.cq = Config.ARGB_8888;
-        this.ce = aVar;
-        this.bY = new c();
+        this.ce = new int[256];
+        this.cr = Config.ARGB_8888;
+        this.cf = aVar;
+        this.bZ = new c();
     }
 
     public int getWidth() {
-        return this.bY.width;
+        return this.bZ.width;
     }
 
     public int getHeight() {
-        return this.bY.height;
+        return this.bZ.height;
     }
 
     @NonNull
     public ByteBuffer getData() {
-        return this.bX;
+        return this.bY;
     }
 
     public int getStatus() {
@@ -84,59 +84,59 @@ public class e implements a {
     }
 
     public void advance() {
-        this.cj = (this.cj + 1) % this.bY.bB;
+        this.ck = (this.ck + 1) % this.bZ.bC;
     }
 
     public int getDelay(int i) {
-        if (i < 0 || i >= this.bY.bB) {
+        if (i < 0 || i >= this.bZ.bC) {
             return -1;
         }
-        return ((b) this.bY.bD.get(i)).delay;
+        return ((b) this.bZ.bE.get(i)).delay;
     }
 
     public int O() {
-        if (this.bY.bB <= 0 || this.cj < 0) {
+        if (this.bZ.bC <= 0 || this.ck < 0) {
             return 0;
         }
-        return getDelay(this.cj);
+        return getDelay(this.ck);
     }
 
     public int getFrameCount() {
-        return this.bY.bB;
+        return this.bZ.bC;
     }
 
     public int P() {
-        return this.cj;
+        return this.ck;
     }
 
     public void Q() {
-        this.cj = -1;
+        this.ck = -1;
     }
 
     @Deprecated
     public int getLoopCount() {
-        if (this.bY.loopCount == -1) {
+        if (this.bZ.loopCount == -1) {
             return 1;
         }
-        return this.bY.loopCount;
+        return this.bZ.loopCount;
     }
 
     public int R() {
-        return this.bY.loopCount;
+        return this.bZ.loopCount;
     }
 
     public int S() {
-        if (this.bY.loopCount == -1) {
+        if (this.bZ.loopCount == -1) {
             return 1;
         }
-        if (this.bY.loopCount == 0) {
+        if (this.bZ.loopCount == 0) {
             return 0;
         }
-        return this.bY.loopCount + 1;
+        return this.bZ.loopCount + 1;
     }
 
     public int T() {
-        return (this.bX.limit() + this.cg.length) + (this.ci.length * 4);
+        return (this.bY.limit() + this.ci.length) + (this.cj.length * 4);
     }
 
     /* JADX WARNING: Missing block: B:45:0x00ea, code:
@@ -146,14 +146,14 @@ public class e implements a {
     @Nullable
     public synchronized Bitmap U() {
         String str;
-        if (this.bY.bB <= 0 || this.cj < 0) {
+        if (this.bZ.bC <= 0 || this.ck < 0) {
             if (Log.isLoggable(TAG, 3)) {
                 str = TAG;
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("Unable to decode frame, frameCount=");
-                stringBuilder.append(this.bY.bB);
+                stringBuilder.append(this.bZ.bC);
                 stringBuilder.append(", framePointer=");
-                stringBuilder.append(this.cj);
+                stringBuilder.append(this.ck);
                 Log.d(str, stringBuilder.toString());
             }
             this.status = 1;
@@ -163,30 +163,30 @@ public class e implements a {
             b bVar;
             this.status = 0;
             if (this.block == null) {
-                this.block = this.ce.i(255);
+                this.block = this.cf.i(255);
             }
-            b bVar2 = (b) this.bY.bD.get(this.cj);
-            int i = this.cj - 1;
+            b bVar2 = (b) this.bZ.bE.get(this.ck);
+            int i = this.ck - 1;
             if (i >= 0) {
-                bVar = (b) this.bY.bD.get(i);
+                bVar = (b) this.bZ.bE.get(i);
             } else {
                 bVar = null;
             }
-            this.act = bVar2.lct != null ? bVar2.lct : this.bY.gct;
+            this.act = bVar2.lct != null ? bVar2.lct : this.bZ.gct;
             if (this.act == null) {
                 if (Log.isLoggable(TAG, 3)) {
                     str = TAG;
                     stringBuilder2 = new StringBuilder();
                     stringBuilder2.append("No valid color table found for frame #");
-                    stringBuilder2.append(this.cj);
+                    stringBuilder2.append(this.ck);
                     Log.d(str, stringBuilder2.toString());
                 }
                 this.status = 1;
                 return null;
             }
             if (bVar2.transparency) {
-                System.arraycopy(this.act, 0, this.cd, 0, this.act.length);
-                this.act = this.cd;
+                System.arraycopy(this.act, 0, this.ce, 0, this.act.length);
+                this.act = this.ce;
                 this.act[bVar2.transIndex] = 0;
             }
             return a(bVar2, bVar);
@@ -235,21 +235,21 @@ public class e implements a {
     }
 
     public void clear() {
-        this.bY = null;
-        if (this.cg != null) {
-            this.ce.c(this.cg);
-        }
+        this.bZ = null;
         if (this.ci != null) {
-            this.ce.a(this.ci);
+            this.cf.c(this.ci);
         }
-        if (this.ck != null) {
-            this.ce.c(this.ck);
+        if (this.cj != null) {
+            this.cf.a(this.cj);
         }
-        this.ck = null;
-        this.bX = null;
-        this.cp = null;
+        if (this.cl != null) {
+            this.cf.c(this.cl);
+        }
+        this.cl = null;
+        this.bY = null;
+        this.cq = null;
         if (this.block != null) {
-            this.ce.c(this.block);
+            this.cf.c(this.block);
         }
     }
 
@@ -265,23 +265,23 @@ public class e implements a {
         if (i > 0) {
             i = Integer.highestOneBit(i);
             this.status = 0;
-            this.bY = cVar;
-            this.cj = -1;
-            this.bX = byteBuffer.asReadOnlyBuffer();
-            this.bX.position(0);
-            this.bX.order(ByteOrder.LITTLE_ENDIAN);
-            this.cl = false;
-            for (b bVar : cVar.bD) {
+            this.bZ = cVar;
+            this.ck = -1;
+            this.bY = byteBuffer.asReadOnlyBuffer();
+            this.bY.position(0);
+            this.bY.order(ByteOrder.LITTLE_ENDIAN);
+            this.cm = false;
+            for (b bVar : cVar.bE) {
                 if (bVar.dispose == 3) {
-                    this.cl = true;
+                    this.cm = true;
                     break;
                 }
             }
             this.sampleSize = i;
-            this.cn = cVar.width / i;
-            this.cm = cVar.height / i;
-            this.cg = this.ce.i(cVar.width * cVar.height);
-            this.ci = this.ce.j(this.cn * this.cm);
+            this.cp = cVar.width / i;
+            this.cn = cVar.height / i;
+            this.ci = this.cf.i(cVar.width * cVar.height);
+            this.cj = this.cf.j(this.cp * this.cn);
         } else {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("Sample size must be >=0, not: ");
@@ -292,23 +292,23 @@ public class e implements a {
 
     @NonNull
     private d Z() {
-        if (this.cf == null) {
-            this.cf = new d();
+        if (this.cg == null) {
+            this.cg = new d();
         }
-        return this.cf;
+        return this.cg;
     }
 
     public synchronized int read(@Nullable byte[] bArr) {
-        this.bY = Z().d(bArr).W();
+        this.bZ = Z().d(bArr).W();
         if (bArr != null) {
-            a(this.bY, bArr);
+            a(this.bZ, bArr);
         }
         return this.status;
     }
 
     public void a(@NonNull Config config) {
         if (config == Config.ARGB_8888 || config == Config.RGB_565) {
-            this.cq = config;
+            this.cr = config;
             return;
         }
         StringBuilder stringBuilder = new StringBuilder();
@@ -322,43 +322,43 @@ public class e implements a {
     }
 
     private Bitmap a(b bVar, b bVar2) {
-        int[] iArr = this.ci;
+        int[] iArr = this.cj;
         int i = 0;
         if (bVar2 == null) {
-            if (this.ck != null) {
-                this.ce.c(this.ck);
+            if (this.cl != null) {
+                this.cf.c(this.cl);
             }
-            this.ck = null;
+            this.cl = null;
             Arrays.fill(iArr, 0);
         }
-        if (bVar2 != null && bVar2.dispose == 3 && this.ck == null) {
+        if (bVar2 != null && bVar2.dispose == 3 && this.cl == null) {
             Arrays.fill(iArr, 0);
         }
         if (bVar2 != null && bVar2.dispose > 0) {
             if (bVar2.dispose == 2) {
                 int i2;
                 if (!bVar.transparency) {
-                    i2 = this.bY.bgColor;
-                    if (bVar.lct == null || this.bY.bgIndex != bVar.transIndex) {
+                    i2 = this.bZ.bgColor;
+                    if (bVar.lct == null || this.bZ.bgIndex != bVar.transIndex) {
                         i = i2;
                     }
-                } else if (this.cj == 0) {
-                    this.cp = Boolean.valueOf(true);
+                } else if (this.ck == 0) {
+                    this.cq = Boolean.valueOf(true);
                 }
                 i2 = bVar2.ih / this.sampleSize;
                 int i3 = bVar2.iy / this.sampleSize;
                 int i4 = bVar2.iw / this.sampleSize;
-                i3 = (i3 * this.cn) + (bVar2.ix / this.sampleSize);
-                i2 = (i2 * this.cn) + i3;
+                i3 = (i3 * this.cp) + (bVar2.ix / this.sampleSize);
+                i2 = (i2 * this.cp) + i3;
                 while (i3 < i2) {
                     int i5 = i3 + i4;
                     for (int i6 = i3; i6 < i5; i6++) {
                         iArr[i6] = i;
                     }
-                    i3 += this.cn;
+                    i3 += this.cp;
                 }
-            } else if (bVar2.dispose == 3 && this.ck != null) {
-                this.ck.getPixels(iArr, 0, this.cn, 0, 0, this.cn, this.cm);
+            } else if (bVar2.dispose == 3 && this.cl != null) {
+                this.cl.getPixels(iArr, 0, this.cp, 0, 0, this.cp, this.cn);
             }
         }
         c(bVar);
@@ -367,27 +367,27 @@ public class e implements a {
         } else {
             a(bVar);
         }
-        if (this.cl && (bVar.dispose == 0 || bVar.dispose == 1)) {
-            if (this.ck == null) {
-                this.ck = aa();
+        if (this.cm && (bVar.dispose == 0 || bVar.dispose == 1)) {
+            if (this.cl == null) {
+                this.cl = aa();
             }
-            this.ck.setPixels(iArr, 0, this.cn, 0, 0, this.cn, this.cm);
+            this.cl.setPixels(iArr, 0, this.cp, 0, 0, this.cp, this.cn);
         }
         Bitmap aa = aa();
-        aa.setPixels(iArr, 0, this.cn, 0, 0, this.cn, this.cm);
+        aa.setPixels(iArr, 0, this.cp, 0, 0, this.cp, this.cn);
         return aa;
     }
 
     private void a(b bVar) {
         b bVar2 = bVar;
-        int[] iArr = this.ci;
+        int[] iArr = this.cj;
         int i = bVar2.ih;
         int i2 = bVar2.iy;
         int i3 = bVar2.iw;
         int i4 = bVar2.ix;
-        Object obj = this.cj == 0 ? 1 : null;
-        int i5 = this.cn;
-        byte[] bArr = this.cg;
+        Object obj = this.ck == 0 ? 1 : null;
+        int i5 = this.cp;
+        byte[] bArr = this.ci;
         int[] iArr2 = this.act;
         int i6 = 0;
         int i7 = -1;
@@ -425,24 +425,24 @@ public class e implements a {
             i7 = i13;
             bVar2 = bVar;
         }
-        boolean z = (this.cp != null || obj == null || i7 == -1) ? false : true;
-        this.cp = Boolean.valueOf(z);
+        boolean z = (this.cq != null || obj == null || i7 == -1) ? false : true;
+        this.cq = Boolean.valueOf(z);
     }
 
     private void b(b bVar) {
         b bVar2 = bVar;
-        int[] iArr = this.ci;
+        int[] iArr = this.cj;
         int i = bVar2.ih / this.sampleSize;
         int i2 = bVar2.iy / this.sampleSize;
         int i3 = bVar2.iw / this.sampleSize;
         int i4 = bVar2.ix / this.sampleSize;
-        Object obj = this.cj == 0 ? 1 : null;
+        Object obj = this.ck == 0 ? 1 : null;
         int i5 = this.sampleSize;
-        int i6 = this.cn;
-        int i7 = this.cm;
-        byte[] bArr = this.cg;
+        int i6 = this.cp;
+        int i7 = this.cn;
+        byte[] bArr = this.ci;
         int[] iArr2 = this.act;
-        Boolean bool = this.cp;
+        Boolean bool = this.cq;
         int i8 = 8;
         int i9 = 0;
         int i10 = 0;
@@ -526,7 +526,7 @@ public class e implements a {
             i2 = i13;
             i3 = i14;
         }
-        if (this.cp == null) {
+        if (this.cq == null) {
             boolean z;
             Boolean bool2 = bool;
             if (bool2 == null) {
@@ -534,7 +534,7 @@ public class e implements a {
             } else {
                 z = bool2.booleanValue();
             }
-            this.cp = Boolean.valueOf(z);
+            this.cq = Boolean.valueOf(z);
         }
     }
 
@@ -546,8 +546,8 @@ public class e implements a {
         int i7 = i6;
         int i8 = i7;
         int i9 = i8;
-        while (i4 < this.sampleSize + i && i4 < this.cg.length && i4 < i2) {
-            int i10 = this.act[this.cg[i4] & 255];
+        while (i4 < this.sampleSize + i && i4 < this.ci.length && i4 < i2) {
+            int i10 = this.act[this.ci[i4] & 255];
             if (i10 != 0) {
                 i5 += (i10 >> 24) & 255;
                 i6 += (i10 >> 16) & 255;
@@ -559,8 +559,8 @@ public class e implements a {
         }
         i += i3;
         i3 = i;
-        while (i3 < this.sampleSize + i && i3 < this.cg.length && i3 < i2) {
-            i4 = this.act[this.cg[i3] & 255];
+        while (i3 < this.sampleSize + i && i3 < this.ci.length && i3 < i2) {
+            i4 = this.act[this.ci[i3] & 255];
             if (i4 != 0) {
                 i5 += (i4 >> 24) & 255;
                 i6 += (i4 >> 16) & 255;
@@ -581,17 +581,17 @@ public class e implements a {
         e eVar = this;
         b bVar2 = bVar;
         if (bVar2 != null) {
-            eVar.bX.position(bVar2.by);
+            eVar.bY.position(bVar2.bz);
         }
         if (bVar2 == null) {
-            s = eVar.bY.width * eVar.bY.height;
+            s = eVar.bZ.width * eVar.bZ.height;
         } else {
             s = bVar2.ih * bVar2.iw;
         }
-        if (eVar.cg == null || eVar.cg.length < s) {
-            eVar.cg = eVar.ce.i(s);
+        if (eVar.ci == null || eVar.ci.length < s) {
+            eVar.ci = eVar.cf.i(s);
         }
-        byte[] bArr = eVar.cg;
+        byte[] bArr = eVar.ci;
         if (eVar.prefix == null) {
             eVar.prefix = new short[4096];
         }
@@ -736,7 +736,7 @@ public class e implements a {
     }
 
     private int readByte() {
-        return this.bX.get() & 255;
+        return this.bY.get() & 255;
     }
 
     private int readBlock() {
@@ -744,13 +744,13 @@ public class e implements a {
         if (readByte <= 0) {
             return readByte;
         }
-        this.bX.get(this.block, 0, Math.min(readByte, this.bX.remaining()));
+        this.bY.get(this.block, 0, Math.min(readByte, this.bY.remaining()));
         return readByte;
     }
 
     private Bitmap aa() {
-        Config config = (this.cp == null || this.cp.booleanValue()) ? Config.ARGB_8888 : this.cq;
-        Bitmap a = this.ce.a(this.cn, this.cm, config);
+        Config config = (this.cq == null || this.cq.booleanValue()) ? Config.ARGB_8888 : this.cr;
+        Bitmap a = this.cf.a(this.cp, this.cn, config);
         a.setHasAlpha(true);
         return a;
     }

@@ -13,21 +13,21 @@ import java.io.InputStream;
 
 /* compiled from: StreamBitmapDecoder */
 public class v implements g<InputStream, Bitmap> {
-    private final b du;
+    private final b dv;
     private final n jV;
 
     /* compiled from: StreamBitmapDecoder */
     static class a implements com.bumptech.glide.load.resource.bitmap.n.a {
-        private final RecyclableBufferedInputStream dt;
+        private final RecyclableBufferedInputStream du;
         private final c lb;
 
         a(RecyclableBufferedInputStream recyclableBufferedInputStream, c cVar) {
-            this.dt = recyclableBufferedInputStream;
+            this.du = recyclableBufferedInputStream;
             this.lb = cVar;
         }
 
         public void cn() {
-            this.dt.ct();
+            this.du.ct();
         }
 
         public void a(d dVar, Bitmap bitmap) throws IOException {
@@ -43,7 +43,7 @@ public class v implements g<InputStream, Bitmap> {
 
     public v(n nVar, b bVar) {
         this.jV = nVar;
-        this.du = bVar;
+        this.dv = bVar;
     }
 
     public boolean a(@NonNull InputStream inputStream, @NonNull f fVar) {
@@ -56,7 +56,7 @@ public class v implements g<InputStream, Bitmap> {
             inputStream = (RecyclableBufferedInputStream) inputStream;
             obj = null;
         } else {
-            InputStream recyclableBufferedInputStream = new RecyclableBufferedInputStream(inputStream, this.du);
+            InputStream recyclableBufferedInputStream = new RecyclableBufferedInputStream(inputStream, this.dv);
             obj = 1;
             inputStream = recyclableBufferedInputStream;
         }

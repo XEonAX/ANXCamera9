@@ -11,7 +11,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 3
+    .registers 3
 
     .line 31
     const/4 v0, 0x1
@@ -30,7 +30,7 @@
 .end method
 
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -39,7 +39,7 @@
 .end method
 
 .method public static getThemeUpIndicator(Landroid/app/Activity;)Landroid/graphics/drawable/Drawable;
-    .locals 6
+    .registers 7
     .param p0, "activity"    # Landroid/app/Activity;
 
     .line 55
@@ -49,7 +49,7 @@
 
     .line 57
     .local v0, "actionBar":Landroid/app/ActionBar;
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_b
 
     .line 58
     invoke-virtual {v0}, Landroid/app/ActionBar;->getThemedContext()Landroid/content/Context;
@@ -57,16 +57,16 @@
     move-result-object v1
 
     .local v1, "context":Landroid/content/Context;
-    goto :goto_0
+    goto :goto_c
 
     .line 60
     .end local v1    # "context":Landroid/content/Context;
-    :cond_0
+    :cond_b
     move-object v1, p0
 
     .line 63
     .restart local v1    # "context":Landroid/content/Context;
-    :goto_0
+    :goto_c
     const/4 v2, 0x0
 
     sget-object v3, Landroid/support/v4/app/ActionBarDrawerToggleJellybeanMR2;->THEME_ATTRS:[I
@@ -94,7 +94,7 @@
 .end method
 
 .method public static setActionBarDescription(Ljava/lang/Object;Landroid/app/Activity;I)Ljava/lang/Object;
-    .locals 1
+    .registers 4
     .param p0, "info"    # Ljava/lang/Object;
     .param p1, "activity"    # Landroid/app/Activity;
     .param p2, "contentDescRes"    # I
@@ -106,18 +106,18 @@
 
     .line 48
     .local v0, "actionBar":Landroid/app/ActionBar;
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_9
 
     .line 49
     invoke-virtual {v0, p2}, Landroid/app/ActionBar;->setHomeActionContentDescription(I)V
 
     .line 51
-    :cond_0
+    :cond_9
     return-object p0
 .end method
 
 .method public static setActionBarUpIndicator(Ljava/lang/Object;Landroid/app/Activity;Landroid/graphics/drawable/Drawable;I)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .param p0, "info"    # Ljava/lang/Object;
     .param p1, "activity"    # Landroid/app/Activity;
     .param p2, "drawable"    # Landroid/graphics/drawable/Drawable;
@@ -130,7 +130,7 @@
 
     .line 38
     .local v0, "actionBar":Landroid/app/ActionBar;
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_c
 
     .line 39
     invoke-virtual {v0, p2}, Landroid/app/ActionBar;->setHomeAsUpIndicator(Landroid/graphics/drawable/Drawable;)V
@@ -139,6 +139,6 @@
     invoke-virtual {v0, p3}, Landroid/app/ActionBar;->setHomeActionContentDescription(I)V
 
     .line 42
-    :cond_0
+    :cond_c
     return-object p0
 .end method

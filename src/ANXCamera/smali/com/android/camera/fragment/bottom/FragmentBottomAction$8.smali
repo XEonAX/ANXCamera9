@@ -3,12 +3,12 @@
 .source "FragmentBottomAction.java"
 
 # interfaces
-.implements Landroid/animation/Animator$AnimatorListener;
+.implements Landroid/content/DialogInterface$OnClickListener;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/fragment/bottom/FragmentBottomAction;->setProgressBarGone()V
+    value = Lcom/android/camera/fragment/bottom/FragmentBottomAction;->showReverseConfirmDialog()V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)V
     .locals 0
 
-    .line 863
+    .line 1046
     iput-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$8;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -35,41 +35,49 @@
 
 
 # virtual methods
-.method public onAnimationCancel(Landroid/animation/Animator;)V
+.method public onClick(Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 877
-    return-void
-.end method
-
-.method public onAnimationEnd(Landroid/animation/Animator;)V
-    .locals 1
-
-    .line 871
+    .line 1049
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$8;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
-    invoke-static {p1}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$300(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Landroid/widget/ProgressBar;
+    const/4 p2, 0x0
+
+    invoke-static {p1, p2}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$302(Lcom/android/camera/fragment/bottom/FragmentBottomAction;Landroid/app/AlertDialog;)Landroid/app/AlertDialog;
+
+    .line 1050
+    iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$8;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
+
+    invoke-static {p1}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->access$400(Lcom/android/camera/fragment/bottom/FragmentBottomAction;)Lcom/android/camera/ui/CameraSnapView;
 
     move-result-object p1
 
-    const/16 v0, 0x8
+    invoke-virtual {p1}, Lcom/android/camera/ui/CameraSnapView;->removeLastSegment()V
 
-    invoke-virtual {p1, v0}, Landroid/widget/ProgressBar;->setVisibility(I)V
+    .line 1051
+    const-string p1, "live\u5f55\u5236\u56de\u9000\u786e\u8ba4"
 
-    .line 872
-    return-void
-.end method
+    invoke-static {p1}, Lcom/android/camera/statistic/CameraStatUtil;->trackLiveClick(Ljava/lang/String;)V
 
-.method public onAnimationRepeat(Landroid/animation/Animator;)V
-    .locals 0
+    .line 1053
+    iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$8;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
-    .line 882
-    return-void
-.end method
+    invoke-virtual {p1}, Lcom/android/camera/fragment/bottom/FragmentBottomAction;->getContext()Landroid/content/Context;
 
-.method public onAnimationStart(Landroid/animation/Animator;)V
-    .locals 0
+    move-result-object p1
 
-    .line 867
+    check-cast p1, Lcom/android/camera/ActivityBase;
+
+    .line 1054
+    invoke-virtual {p1}, Lcom/android/camera/ActivityBase;->getCurrentModule()Lcom/android/camera/module/Module;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/camera/module/LiveModule;
+
+    .line 1055
+    invoke-virtual {p1}, Lcom/android/camera/module/LiveModule;->doReverse()V
+
+    .line 1057
     return-void
 .end method

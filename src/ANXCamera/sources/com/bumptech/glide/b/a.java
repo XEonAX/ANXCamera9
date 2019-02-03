@@ -14,8 +14,8 @@ public interface a {
     public static final int STATUS_FORMAT_ERROR = 1;
     public static final int STATUS_OK = 0;
     public static final int STATUS_OPEN_ERROR = 2;
-    public static final int bs = 3;
-    public static final int bt = 0;
+    public static final int bt = 3;
+    public static final int bu = 0;
 
     /* compiled from: GifDecoder */
     public interface a {

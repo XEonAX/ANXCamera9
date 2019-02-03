@@ -33,7 +33,7 @@
 
 # direct methods
 .method constructor <init>(Ljava/lang/String;Ljava/lang/Class;Landroid/os/Bundle;)V
-    .locals 0
+    .registers 4
     .param p1, "_tag"    # Ljava/lang/String;
     .param p3, "_args"    # Landroid/os/Bundle;
     .annotation system Ldalvik/annotation/Signature;
@@ -65,7 +65,7 @@
 .end method
 
 .method static synthetic access$100(Landroid/support/v4/app/FragmentTabHost$TabInfo;)Landroid/support/v4/app/Fragment;
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/app/FragmentTabHost$TabInfo;
 
     .line 61
@@ -75,7 +75,7 @@
 .end method
 
 .method static synthetic access$102(Landroid/support/v4/app/FragmentTabHost$TabInfo;Landroid/support/v4/app/Fragment;)Landroid/support/v4/app/Fragment;
-    .locals 0
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/app/FragmentTabHost$TabInfo;
     .param p1, "x1"    # Landroid/support/v4/app/Fragment;
 
@@ -86,7 +86,7 @@
 .end method
 
 .method static synthetic access$200(Landroid/support/v4/app/FragmentTabHost$TabInfo;)Ljava/lang/String;
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/app/FragmentTabHost$TabInfo;
 
     .line 61
@@ -96,7 +96,7 @@
 .end method
 
 .method static synthetic access$300(Landroid/support/v4/app/FragmentTabHost$TabInfo;)Ljava/lang/Class;
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/app/FragmentTabHost$TabInfo;
 
     .line 61
@@ -106,7 +106,7 @@
 .end method
 
 .method static synthetic access$400(Landroid/support/v4/app/FragmentTabHost$TabInfo;)Landroid/os/Bundle;
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/app/FragmentTabHost$TabInfo;
 
     .line 61

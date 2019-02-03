@@ -17,22 +17,22 @@ import java.util.Map;
 
 /* compiled from: GlideBuilder */
 public final class d {
-    private com.bumptech.glide.manager.d A;
-    private final Map<Class<?>, j<?, ?>> E = new ArrayMap();
-    private a F;
+    private com.bumptech.glide.manager.d C;
+    private final Map<Class<?>, j<?, ?>> F = new ArrayMap();
     private a H;
-    private com.bumptech.glide.load.engine.a.a.a I;
-    private l J;
-    private f K = new f();
+    private a I;
+    private com.bumptech.glide.load.engine.a.a.a J;
+    private l K;
+    private f L = new f();
     @Nullable
-    private com.bumptech.glide.manager.l.a L;
-    private a Q;
-    private boolean S;
+    private com.bumptech.glide.manager.l.a Q;
+    private a S;
+    private boolean T;
     private Engine h;
     private com.bumptech.glide.load.engine.bitmap_recycle.d i;
     private j k;
     private int logLevel = 4;
-    private b r;
+    private b v;
 
     @NonNull
     public d a(@Nullable com.bumptech.glide.load.engine.bitmap_recycle.d dVar) {
@@ -42,7 +42,7 @@ public final class d {
 
     @NonNull
     public d a(@Nullable b bVar) {
-        this.r = bVar;
+        this.v = bVar;
         return this;
     }
 
@@ -54,7 +54,7 @@ public final class d {
 
     @NonNull
     public d a(@Nullable com.bumptech.glide.load.engine.a.a.a aVar) {
-        this.I = aVar;
+        this.J = aVar;
         return this;
     }
 
@@ -65,31 +65,31 @@ public final class d {
 
     @NonNull
     public d b(@Nullable a aVar) {
-        this.F = aVar;
-        return this;
-    }
-
-    @NonNull
-    public d c(@Nullable a aVar) {
         this.H = aVar;
         return this;
     }
 
     @NonNull
+    public d c(@Nullable a aVar) {
+        this.I = aVar;
+        return this;
+    }
+
+    @NonNull
     public d d(@Nullable a aVar) {
-        this.Q = aVar;
+        this.S = aVar;
         return this;
     }
 
     @NonNull
     public d a(@Nullable f fVar) {
-        this.K = fVar;
+        this.L = fVar;
         return this;
     }
 
     @NonNull
     public <T> d a(@NonNull Class<T> cls, @Nullable j<?, T> jVar) {
-        this.E.put(cls, jVar);
+        this.F.put(cls, jVar);
         return this;
     }
 
@@ -100,13 +100,13 @@ public final class d {
 
     @NonNull
     public d a(@Nullable l lVar) {
-        this.J = lVar;
+        this.K = lVar;
         return this;
     }
 
     @NonNull
     public d a(@Nullable com.bumptech.glide.manager.d dVar) {
-        this.A = dVar;
+        this.C = dVar;
         return this;
     }
 
@@ -121,12 +121,12 @@ public final class d {
 
     @NonNull
     public d a(boolean z) {
-        this.S = z;
+        this.T = z;
         return this;
     }
 
     void a(@Nullable com.bumptech.glide.manager.l.a aVar) {
-        this.L = aVar;
+        this.Q = aVar;
     }
 
     d a(Engine engine) {
@@ -136,41 +136,41 @@ public final class d {
 
     @NonNull
     c g(@NonNull Context context) {
-        if (this.F == null) {
-            this.F = a.bI();
-        }
         if (this.H == null) {
-            this.H = a.bH();
+            this.H = a.bI();
         }
-        if (this.Q == null) {
-            this.Q = a.bK();
+        if (this.I == null) {
+            this.I = a.bH();
         }
-        if (this.J == null) {
-            this.J = new l.a(context).bD();
+        if (this.S == null) {
+            this.S = a.bK();
         }
-        if (this.A == null) {
-            this.A = new com.bumptech.glide.manager.f();
+        if (this.K == null) {
+            this.K = new l.a(context).bD();
+        }
+        if (this.C == null) {
+            this.C = new com.bumptech.glide.manager.f();
         }
         if (this.i == null) {
-            int bB = this.J.bB();
+            int bB = this.K.bB();
             if (bB > 0) {
                 this.i = new com.bumptech.glide.load.engine.bitmap_recycle.j((long) bB);
             } else {
                 this.i = new e();
             }
         }
-        if (this.r == null) {
-            this.r = new i(this.J.bC());
+        if (this.v == null) {
+            this.v = new i(this.K.bC());
         }
         if (this.k == null) {
-            this.k = new com.bumptech.glide.load.engine.a.i((long) this.J.bA());
+            this.k = new com.bumptech.glide.load.engine.a.i((long) this.K.bA());
         }
-        if (this.I == null) {
-            this.I = new h(context);
+        if (this.J == null) {
+            this.J = new h(context);
         }
         if (this.h == null) {
-            this.h = new Engine(this.k, this.I, this.H, this.F, a.bJ(), a.bK(), this.S);
+            this.h = new Engine(this.k, this.J, this.I, this.H, a.bJ(), a.bK(), this.T);
         }
-        return new c(context, this.h, this.k, this.i, this.r, new com.bumptech.glide.manager.l(this.L), this.A, this.logLevel, this.K.dF(), this.E);
+        return new c(context, this.h, this.k, this.i, this.v, new com.bumptech.glide.manager.l(this.Q), this.C, this.logLevel, this.L.dF(), this.F);
     }
 }

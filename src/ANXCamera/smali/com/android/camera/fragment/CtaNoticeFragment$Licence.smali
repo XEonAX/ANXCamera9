@@ -24,12 +24,12 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 137
+    .line 179
     const-string v0, "http://www.miui.com/res/doc/eula.html"
 
     sput-object v0, Lcom/android/camera/fragment/CtaNoticeFragment$Licence;->URL_MIUI_USER_AGREEMENT:Ljava/lang/String;
 
-    .line 138
+    .line 180
     const-string v0, "http://www.miui.com/res/doc/privacy.html"
 
     sput-object v0, Lcom/android/camera/fragment/CtaNoticeFragment$Licence;->URL_MIUI_PRIVACY_POLICY:Ljava/lang/String;
@@ -40,7 +40,7 @@
 .method constructor <init>()V
     .locals 0
 
-    .line 136
+    .line 178
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -49,14 +49,14 @@
 .method public static getPrivacyIntent()Landroid/content/Intent;
     .locals 2
 
-    .line 147
+    .line 189
     new-instance v0, Landroid/content/Intent;
 
     const-string v1, "android.intent.action.VIEW"
 
     invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
 
-    .line 148
+    .line 190
     sget-object v1, Lcom/android/camera/fragment/CtaNoticeFragment$Licence;->URL_MIUI_PRIVACY_POLICY:Ljava/lang/String;
 
     invoke-static {v1}, Lcom/android/camera/fragment/CtaNoticeFragment$Licence;->getUrlByLocale(Ljava/lang/String;)Ljava/lang/String;
@@ -69,14 +69,14 @@
 
     invoke-virtual {v0, v1}, Landroid/content/Intent;->setData(Landroid/net/Uri;)Landroid/content/Intent;
 
-    .line 149
+    .line 191
     return-object v0
 .end method
 
 .method private static getUrlByLocale(Ljava/lang/String;)Ljava/lang/String;
     .locals 2
 
-    .line 153
+    .line 195
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -123,14 +123,14 @@
 .method public static getUserAgreementIntent()Landroid/content/Intent;
     .locals 2
 
-    .line 141
+    .line 183
     new-instance v0, Landroid/content/Intent;
 
     const-string v1, "android.intent.action.VIEW"
 
     invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
 
-    .line 142
+    .line 184
     sget-object v1, Lcom/android/camera/fragment/CtaNoticeFragment$Licence;->URL_MIUI_USER_AGREEMENT:Ljava/lang/String;
 
     invoke-static {v1}, Lcom/android/camera/fragment/CtaNoticeFragment$Licence;->getUrlByLocale(Ljava/lang/String;)Ljava/lang/String;
@@ -143,6 +143,6 @@
 
     invoke-virtual {v0, v1}, Landroid/content/Intent;->setData(Landroid/net/Uri;)Landroid/content/Intent;
 
-    .line 143
+    .line 185
     return-object v0
 .end method

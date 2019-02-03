@@ -20,7 +20,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 41
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -34,7 +34,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v4/net/TrafficStatsCompat$1;)V
-    .locals 0
+    .registers 2
     .param p1, "x0"    # Landroid/support/v4/net/TrafficStatsCompat$1;
 
     .line 41

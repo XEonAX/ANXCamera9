@@ -22,7 +22,7 @@
 
 
 # virtual methods
-.method public abstract hideFNumberPanel(Z)V
+.method public abstract hideFNumberPanel(ZZ)V
 .end method
 
 .method public abstract isFNumberVisible()Z

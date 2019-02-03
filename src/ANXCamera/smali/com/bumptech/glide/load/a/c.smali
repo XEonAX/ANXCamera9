@@ -13,7 +13,7 @@
     .end annotation
 .end field
 
-.field private r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+.field private v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
 
 # direct methods
@@ -53,7 +53,7 @@
     iput-object p1, p0, Lcom/bumptech/glide/load/a/c;->out:Ljava/io/OutputStream;
 
     .line 27
-    iput-object p2, p0, Lcom/bumptech/glide/load/a/c;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iput-object p2, p0, Lcom/bumptech/glide/load/a/c;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     .line 28
     const-class p1, [B
@@ -136,7 +136,7 @@
     if-eqz v0, :cond_0
 
     .line 98
-    iget-object v0, p0, Lcom/bumptech/glide/load/a/c;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v0, p0, Lcom/bumptech/glide/load/a/c;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     iget-object v1, p0, Lcom/bumptech/glide/load/a/c;->buffer:[B
 

@@ -12,35 +12,35 @@ import java.util.Arrays;
 /* compiled from: GifHeaderParser */
 public class d {
     private static final String TAG = "GifHeaderParser";
-    private static final int bE = 255;
-    private static final int bF = 44;
-    private static final int bG = 33;
-    private static final int bH = 59;
-    private static final int bI = 249;
-    private static final int bJ = 255;
-    private static final int bK = 254;
-    private static final int bL = 1;
-    private static final int bM = 28;
-    private static final int bN = 2;
-    private static final int bO = 1;
-    private static final int bP = 128;
-    private static final int bQ = 64;
-    private static final int bR = 7;
-    private static final int bS = 128;
-    private static final int bT = 7;
-    static final int bU = 2;
-    static final int bV = 10;
-    private static final int bW = 256;
-    private ByteBuffer bX;
-    private c bY;
+    private static final int bF = 255;
+    private static final int bG = 44;
+    private static final int bH = 33;
+    private static final int bI = 59;
+    private static final int bJ = 249;
+    private static final int bK = 255;
+    private static final int bL = 254;
+    private static final int bM = 1;
+    private static final int bN = 28;
+    private static final int bO = 2;
+    private static final int bP = 1;
+    private static final int bQ = 128;
+    private static final int bR = 64;
+    private static final int bS = 7;
+    private static final int bT = 128;
+    private static final int bU = 7;
+    static final int bV = 2;
+    static final int bW = 10;
+    private static final int bX = 256;
+    private ByteBuffer bY;
+    private c bZ;
     private final byte[] block = new byte[256];
     private int blockSize = 0;
 
     public d a(@NonNull ByteBuffer byteBuffer) {
         reset();
-        this.bX = byteBuffer.asReadOnlyBuffer();
-        this.bX.position(0);
-        this.bX.order(ByteOrder.LITTLE_ENDIAN);
+        this.bY = byteBuffer.asReadOnlyBuffer();
+        this.bY.position(0);
+        this.bY.order(ByteOrder.LITTLE_ENDIAN);
         return this;
     }
 
@@ -48,39 +48,39 @@ public class d {
         if (bArr != null) {
             a(ByteBuffer.wrap(bArr));
         } else {
-            this.bX = null;
-            this.bY.status = 2;
+            this.bY = null;
+            this.bZ.status = 2;
         }
         return this;
     }
 
     public void clear() {
-        this.bX = null;
         this.bY = null;
+        this.bZ = null;
     }
 
     private void reset() {
-        this.bX = null;
+        this.bY = null;
         Arrays.fill(this.block, (byte) 0);
-        this.bY = new c();
+        this.bZ = new c();
         this.blockSize = 0;
     }
 
     @NonNull
     public c W() {
-        if (this.bX == null) {
+        if (this.bY == null) {
             throw new IllegalStateException("You must call setData() before parseHeader()");
         } else if (err()) {
-            return this.bY;
+            return this.bZ;
         } else {
             readHeader();
             if (!err()) {
                 readContents();
-                if (this.bY.bB < 0) {
-                    this.bY.status = 1;
+                if (this.bZ.bC < 0) {
+                    this.bZ.status = 1;
                 }
             }
-            return this.bY;
+            return this.bZ;
         }
     }
 
@@ -89,7 +89,7 @@ public class d {
         if (!err()) {
             k(2);
         }
-        return this.bY.bB > 1;
+        return this.bZ.bC > 1;
     }
 
     private void readContents() {
@@ -98,7 +98,7 @@ public class d {
 
     private void k(int i) {
         int i2 = 0;
-        while (i2 == 0 && !err() && this.bY.bB <= i) {
+        while (i2 == 0 && !err() && this.bZ.bC <= i) {
             int read = read();
             if (read == 33) {
                 read = read();
@@ -127,16 +127,16 @@ public class d {
                             break;
                     }
                 } else {
-                    this.bY.bC = new b();
+                    this.bZ.bD = new b();
                     readGraphicControlExt();
                 }
             } else if (read == 44) {
-                if (this.bY.bC == null) {
-                    this.bY.bC = new b();
+                if (this.bZ.bD == null) {
+                    this.bZ.bD = new b();
                 }
                 readBitmap();
             } else if (read != 59) {
-                this.bY.status = 1;
+                this.bZ.status = 1;
             } else {
                 i2 = 1;
             }
@@ -146,12 +146,12 @@ public class d {
     private void readGraphicControlExt() {
         read();
         int read = read();
-        this.bY.bC.dispose = (read & 28) >> 2;
+        this.bZ.bD.dispose = (read & 28) >> 2;
         boolean z = true;
-        if (this.bY.bC.dispose == 0) {
-            this.bY.bC.dispose = 1;
+        if (this.bZ.bD.dispose == 0) {
+            this.bZ.bD.dispose = 1;
         }
-        b bVar = this.bY.bC;
+        b bVar = this.bZ.bD;
         if ((read & 1) == 0) {
             z = false;
         }
@@ -160,36 +160,36 @@ public class d {
         if (read < 2) {
             read = 10;
         }
-        this.bY.bC.delay = read * 10;
-        this.bY.bC.transIndex = read();
+        this.bZ.bD.delay = read * 10;
+        this.bZ.bD.transIndex = read();
         read();
     }
 
     private void readBitmap() {
-        this.bY.bC.ix = readShort();
-        this.bY.bC.iy = readShort();
-        this.bY.bC.iw = readShort();
-        this.bY.bC.ih = readShort();
+        this.bZ.bD.ix = readShort();
+        this.bZ.bD.iy = readShort();
+        this.bZ.bD.iw = readShort();
+        this.bZ.bD.ih = readShort();
         int read = read();
         boolean z = false;
         int i = (read & 128) != 0 ? 1 : false;
         int pow = (int) Math.pow(2.0d, (double) ((read & 7) + 1));
-        b bVar = this.bY.bC;
+        b bVar = this.bZ.bD;
         if ((read & 64) != 0) {
             z = true;
         }
         bVar.interlace = z;
         if (i != 0) {
-            this.bY.bC.lct = readColorTable(pow);
+            this.bZ.bD.lct = readColorTable(pow);
         } else {
-            this.bY.bC.lct = null;
+            this.bZ.bD.lct = null;
         }
-        this.bY.bC.by = this.bX.position();
+        this.bZ.bD.bz = this.bY.position();
         X();
         if (!err()) {
-            c cVar = this.bY;
-            cVar.bB++;
-            this.bY.bD.add(this.bY.bC);
+            c cVar = this.bZ;
+            cVar.bC++;
+            this.bZ.bE.add(this.bZ.bD);
         }
     }
 
@@ -197,7 +197,7 @@ public class d {
         do {
             Y();
             if (this.block[0] == (byte) 1) {
-                this.bY.loopCount = (this.block[1] & 255) | ((this.block[2] & 255) << 8);
+                this.bZ.loopCount = (this.block[1] & 255) | ((this.block[2] & 255) << 8);
             }
             if (this.blockSize <= 0) {
                 return;
@@ -212,23 +212,23 @@ public class d {
         }
         if (stringBuilder.toString().startsWith("GIF")) {
             readLSD();
-            if (this.bY.gctFlag && !err()) {
-                this.bY.gct = readColorTable(this.bY.gctSize);
-                this.bY.bgColor = this.bY.gct[this.bY.bgIndex];
+            if (this.bZ.gctFlag && !err()) {
+                this.bZ.gct = readColorTable(this.bZ.gctSize);
+                this.bZ.bgColor = this.bZ.gct[this.bZ.bgIndex];
             }
             return;
         }
-        this.bY.status = 1;
+        this.bZ.status = 1;
     }
 
     private void readLSD() {
-        this.bY.width = readShort();
-        this.bY.height = readShort();
+        this.bZ.width = readShort();
+        this.bZ.height = readShort();
         int read = read();
-        this.bY.gctFlag = (read & 128) != 0;
-        this.bY.gctSize = (int) Math.pow(2.0d, (double) ((read & 7) + 1));
-        this.bY.bgIndex = read();
-        this.bY.pixelAspect = read();
+        this.bZ.gctFlag = (read & 128) != 0;
+        this.bZ.gctSize = (int) Math.pow(2.0d, (double) ((read & 7) + 1));
+        this.bZ.bgIndex = read();
+        this.bZ.pixelAspect = read();
     }
 
     @Nullable
@@ -237,7 +237,7 @@ public class d {
         Throwable e;
         byte[] bArr = new byte[(3 * i)];
         try {
-            this.bX.get(bArr);
+            this.bY.get(bArr);
             iArr = new int[256];
             int i2 = 0;
             int i3 = 0;
@@ -260,7 +260,7 @@ public class d {
             if (Log.isLoggable(TAG, 3)) {
                 Log.d(TAG, "Format Error Reading Color Table", e);
             }
-            this.bY.status = 1;
+            this.bZ.status = 1;
             return iArr;
         }
         return iArr;
@@ -275,7 +275,7 @@ public class d {
         int read;
         do {
             read = read();
-            this.bX.position(Math.min(this.bX.position() + read, this.bX.limit()));
+            this.bY.position(Math.min(this.bY.position() + read, this.bY.limit()));
         } while (read > 0);
     }
 
@@ -287,7 +287,7 @@ public class d {
             while (i < this.blockSize) {
                 try {
                     i2 = this.blockSize - i;
-                    this.bX.get(this.block, i, i2);
+                    this.bY.get(this.block, i, i2);
                     i += i2;
                 } catch (Throwable e) {
                     if (Log.isLoggable(TAG, 3)) {
@@ -301,7 +301,7 @@ public class d {
                         stringBuilder.append(this.blockSize);
                         Log.d(str, stringBuilder.toString(), e);
                     }
-                    this.bY.status = 1;
+                    this.bZ.status = 1;
                     return;
                 }
             }
@@ -310,18 +310,18 @@ public class d {
 
     private int read() {
         try {
-            return this.bX.get() & 255;
+            return this.bY.get() & 255;
         } catch (Exception e) {
-            this.bY.status = 1;
+            this.bZ.status = 1;
             return 0;
         }
     }
 
     private int readShort() {
-        return this.bX.getShort();
+        return this.bY.getShort();
     }
 
     private boolean err() {
-        return this.bY.status != 0;
+        return this.bZ.status != 0;
     }
 }

@@ -32,7 +32,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 116
+    .line 121
     new-instance v0, Lcom/xiaomi/engine/BufferFormat$1;
 
     invoke-direct {v0}, Lcom/xiaomi/engine/BufferFormat$1;-><init>()V
@@ -79,31 +79,31 @@
 .method protected constructor <init>(Landroid/os/Parcel;)V
     .locals 1
 
-    .line 109
+    .line 114
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 110
+    .line 115
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
 
     iput v0, p0, Lcom/xiaomi/engine/BufferFormat;->mBufferWidth:I
 
-    .line 111
+    .line 116
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
 
     iput v0, p0, Lcom/xiaomi/engine/BufferFormat;->mBufferHeight:I
 
-    .line 112
+    .line 117
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
 
     iput v0, p0, Lcom/xiaomi/engine/BufferFormat;->mBufferFormat:I
 
-    .line 113
+    .line 118
     const-class v0, Lcom/xiaomi/engine/GraphDescriptorBean;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getClassLoader()Ljava/lang/ClassLoader;
@@ -118,7 +118,7 @@
 
     iput-object p1, p0, Lcom/xiaomi/engine/BufferFormat;->mGraphDescriptor:Lcom/xiaomi/engine/GraphDescriptorBean;
 
-    .line 114
+    .line 119
     return-void
 .end method
 
@@ -127,7 +127,7 @@
 .method public describeContents()I
     .locals 1
 
-    .line 98
+    .line 103
     const/4 v0, 0x0
 
     return v0
@@ -136,17 +136,17 @@
 .method public equals(Ljava/lang/Object;)Z
     .locals 2
 
-    .line 136
+    .line 141
     if-eqz p1, :cond_1
 
     instance-of v0, p1, Lcom/xiaomi/engine/BufferFormat;
 
     if-eqz v0, :cond_1
 
-    .line 137
+    .line 142
     check-cast p1, Lcom/xiaomi/engine/BufferFormat;
 
-    .line 138
+    .line 143
     invoke-virtual {p0}, Lcom/xiaomi/engine/BufferFormat;->getBufferWidth()I
 
     move-result v0
@@ -157,7 +157,7 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 139
+    .line 144
     invoke-virtual {p0}, Lcom/xiaomi/engine/BufferFormat;->getBufferHeight()I
 
     move-result v0
@@ -168,7 +168,7 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 140
+    .line 145
     invoke-virtual {p0}, Lcom/xiaomi/engine/BufferFormat;->getBufferFormat()I
 
     move-result v0
@@ -179,7 +179,7 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 141
+    .line 146
     invoke-virtual {p0}, Lcom/xiaomi/engine/BufferFormat;->getGraphDescriptor()Lcom/xiaomi/engine/GraphDescriptorBean;
 
     move-result-object v0
@@ -201,11 +201,11 @@
     :cond_0
     const/4 p1, 0x0
 
-    .line 138
+    .line 143
     :goto_0
     return p1
 
-    .line 143
+    .line 148
     :cond_1
     invoke-super {p0, p1}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
@@ -241,6 +241,30 @@
     return v0
 .end method
 
+.method public getCameraCombinationMode()I
+    .locals 1
+
+    .line 84
+    iget-object v0, p0, Lcom/xiaomi/engine/BufferFormat;->mGraphDescriptor:Lcom/xiaomi/engine/GraphDescriptorBean;
+
+    if-eqz v0, :cond_0
+
+    .line 85
+    iget-object v0, p0, Lcom/xiaomi/engine/BufferFormat;->mGraphDescriptor:Lcom/xiaomi/engine/GraphDescriptorBean;
+
+    invoke-virtual {v0}, Lcom/xiaomi/engine/GraphDescriptorBean;->getCameraCombinationMode()I
+
+    move-result v0
+
+    return v0
+
+    .line 87
+    :cond_0
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
 .method public getGraphDescriptor()Lcom/xiaomi/engine/GraphDescriptorBean;
     .locals 1
 
@@ -248,33 +272,6 @@
     iget-object v0, p0, Lcom/xiaomi/engine/BufferFormat;->mGraphDescriptor:Lcom/xiaomi/engine/GraphDescriptorBean;
 
     return-object v0
-.end method
-
-.method public isFrontCamera()Z
-    .locals 1
-
-    .line 83
-    iget-object v0, p0, Lcom/xiaomi/engine/BufferFormat;->mGraphDescriptor:Lcom/xiaomi/engine/GraphDescriptorBean;
-
-    if-eqz v0, :cond_0
-
-    iget-object v0, p0, Lcom/xiaomi/engine/BufferFormat;->mGraphDescriptor:Lcom/xiaomi/engine/GraphDescriptorBean;
-
-    invoke-virtual {v0}, Lcom/xiaomi/engine/GraphDescriptorBean;->isFrontCamera()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    const/4 v0, 0x1
-
-    goto :goto_0
-
-    :cond_0
-    const/4 v0, 0x0
-
-    :goto_0
-    return v0
 .end method
 
 .method public setBufferFormat(I)V
@@ -320,7 +317,7 @@
 .method public toString()Ljava/lang/String;
     .locals 2
 
-    .line 88
+    .line 93
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -329,7 +326,7 @@
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 89
+    .line 94
     invoke-virtual {p0}, Lcom/xiaomi/engine/BufferFormat;->getBufferWidth()I
 
     move-result v1
@@ -340,7 +337,7 @@
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 90
+    .line 95
     invoke-virtual {p0}, Lcom/xiaomi/engine/BufferFormat;->getBufferHeight()I
 
     move-result v1
@@ -351,7 +348,7 @@
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 91
+    .line 96
     invoke-virtual {p0}, Lcom/xiaomi/engine/BufferFormat;->getBufferFormat()I
 
     move-result v1
@@ -362,7 +359,7 @@
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 92
+    .line 97
     invoke-virtual {p0}, Lcom/xiaomi/engine/BufferFormat;->getGraphDescriptor()Lcom/xiaomi/engine/GraphDescriptorBean;
 
     move-result-object v1
@@ -377,33 +374,33 @@
 
     move-result-object v0
 
-    .line 88
+    .line 93
     return-object v0
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
     .locals 1
 
-    .line 103
+    .line 108
     iget v0, p0, Lcom/xiaomi/engine/BufferFormat;->mBufferWidth:I
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 104
+    .line 109
     iget v0, p0, Lcom/xiaomi/engine/BufferFormat;->mBufferHeight:I
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 105
+    .line 110
     iget v0, p0, Lcom/xiaomi/engine/BufferFormat;->mBufferFormat:I
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 106
+    .line 111
     iget-object v0, p0, Lcom/xiaomi/engine/BufferFormat;->mGraphDescriptor:Lcom/xiaomi/engine/GraphDescriptorBean;
 
     invoke-virtual {p1, v0, p2}, Landroid/os/Parcel;->writeParcelable(Landroid/os/Parcelable;I)V
 
-    .line 107
+    .line 112
     return-void
 .end method

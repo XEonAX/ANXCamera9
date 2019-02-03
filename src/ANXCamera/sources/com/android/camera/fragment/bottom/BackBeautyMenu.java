@@ -13,7 +13,9 @@ import com.android.camera.constant.ColorConstant;
 import com.android.camera.data.DataRepository;
 import com.android.camera.fragment.beauty.MenuItem;
 import com.android.camera.protocol.ModeCoordinatorImpl;
+import com.android.camera.protocol.ModeProtocol.BottomPopupTips;
 import com.android.camera.protocol.ModeProtocol.MiBeautyProtocol;
+import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.ColorActivateTextView;
 
 public class BackBeautyMenu extends AbBottomMenu implements OnClickListener {
@@ -72,7 +74,7 @@ public class BackBeautyMenu extends AbBottomMenu implements OnClickListener {
         menuItem.text = string;
         menuItem.number = 0;
         this.mBackBeautyMenuTabList.put(1, menuItem);
-        if (DataRepository.dataItemFeature().fw()) {
+        if (DataRepository.dataItemFeature().isSupportBeautyBody()) {
             string = CameraAppImpl.getAndroidContext().getString(R.string.beauty_body);
             menuItem = new MenuItem();
             menuItem.type = 5;
@@ -104,9 +106,14 @@ public class BackBeautyMenu extends AbBottomMenu implements OnClickListener {
         if (miBeautyProtocol != null) {
             miBeautyProtocol.switchBeautyType(intValue);
         }
+        CameraStatUtil.trackBeautyBodyCounterPort(intValue);
+        BottomPopupTips bottomPopupTips = (BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175);
+        if (bottomPopupTips != null) {
+            bottomPopupTips.hideQrCodeTip();
+        }
     }
 
     private boolean isJustBeautyTab() {
-        return CameraSettings.isBackPortrait();
+        return CameraSettings.isSupportBeautyBody() ^ 1;
     }
 }

@@ -106,14 +106,14 @@
 .method public onBind(Landroid/content/Intent;)Landroid/os/IBinder;
     .locals 1
 
-    .line 47
+    .line 49
     sget-object p1, Lcom/android/camera/LocalParallelService;->TAG:Ljava/lang/String;
 
     const-string v0, "onBind: start"
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 48
+    .line 50
     iget-object p1, p0, Lcom/android/camera/LocalParallelService;->mLocalBinder:Lcom/android/camera/LocalParallelService$LocalBinder;
 
     return-object p1
@@ -122,65 +122,65 @@
 .method public onCreate()V
     .locals 2
 
-    .line 58
+    .line 60
     sget-object v0, Lcom/android/camera/LocalParallelService;->TAG:Ljava/lang/String;
 
     const-string v1, "onCreate: start"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 59
+    .line 61
     new-instance v0, Lcom/android/camera/LocalParallelService$LocalBinder;
 
     invoke-direct {v0, p0}, Lcom/android/camera/LocalParallelService$LocalBinder;-><init>(Lcom/android/camera/LocalParallelService;)V
 
     iput-object v0, p0, Lcom/android/camera/LocalParallelService;->mLocalBinder:Lcom/android/camera/LocalParallelService$LocalBinder;
 
-    .line 60
+    .line 62
     invoke-super {p0}, Landroid/app/Service;->onCreate()V
 
-    .line 61
+    .line 63
     return-void
 .end method
 
 .method public onDestroy()V
     .locals 2
 
-    .line 71
+    .line 73
     sget-object v0, Lcom/android/camera/LocalParallelService;->TAG:Ljava/lang/String;
 
     const-string v1, "onDestroy: start"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 72
+    .line 74
     iget-object v0, p0, Lcom/android/camera/LocalParallelService;->mLocalBinder:Lcom/android/camera/LocalParallelService$LocalBinder;
 
     invoke-virtual {v0}, Lcom/android/camera/LocalParallelService$LocalBinder;->onServiceDestroy()V
 
-    .line 73
+    .line 75
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/LocalParallelService;->mLocalBinder:Lcom/android/camera/LocalParallelService$LocalBinder;
 
-    .line 74
+    .line 76
     invoke-super {p0}, Landroid/app/Service;->onDestroy()V
 
-    .line 75
+    .line 77
     return-void
 .end method
 
 .method public onStartCommand(Landroid/content/Intent;II)I
     .locals 2
 
-    .line 65
+    .line 67
     sget-object v0, Lcom/android/camera/LocalParallelService;->TAG:Ljava/lang/String;
 
     const-string v1, "onStartCommand: start"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 66
+    .line 68
     invoke-super {p0, p1, p2, p3}, Landroid/app/Service;->onStartCommand(Landroid/content/Intent;II)I
 
     move-result p1
@@ -191,7 +191,7 @@
 .method public onUnbind(Landroid/content/Intent;)Z
     .locals 0
 
-    .line 53
+    .line 55
     invoke-super {p0, p1}, Landroid/app/Service;->onUnbind(Landroid/content/Intent;)Z
 
     move-result p1

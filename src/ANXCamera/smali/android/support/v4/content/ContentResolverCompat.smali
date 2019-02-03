@@ -19,7 +19,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 76
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -28,7 +28,7 @@
     .local v0, "version":I
     const/16 v1, 0x10
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_e
 
     .line 78
     new-instance v1, Landroid/support/v4/content/ContentResolverCompat$ContentResolverCompatImplJB;
@@ -37,10 +37,10 @@
 
     sput-object v1, Landroid/support/v4/content/ContentResolverCompat;->IMPL:Landroid/support/v4/content/ContentResolverCompat$ContentResolverCompatImpl;
 
-    goto :goto_0
+    goto :goto_15
 
     .line 80
-    :cond_0
+    :cond_e
     new-instance v1, Landroid/support/v4/content/ContentResolverCompat$ContentResolverCompatImplBase;
 
     invoke-direct {v1}, Landroid/support/v4/content/ContentResolverCompat$ContentResolverCompatImplBase;-><init>()V
@@ -49,12 +49,12 @@
 
     .line 82
     .end local v0    # "version":I
-    :goto_0
+    :goto_15
     return-void
 .end method
 
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 84
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -64,7 +64,7 @@
 .end method
 
 .method public static query(Landroid/content/ContentResolver;Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Landroid/support/v4/os/CancellationSignal;)Landroid/database/Cursor;
-    .locals 8
+    .registers 15
     .param p0, "resolver"    # Landroid/content/ContentResolver;
     .param p1, "uri"    # Landroid/net/Uri;
     .param p2, "projection"    # [Ljava/lang/String;

@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 67
     invoke-direct {p0}, Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoStubImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getCanRetrieveWindowContent(Landroid/accessibilityservice/AccessibilityServiceInfo;)Z
-    .locals 1
+    .registers 3
     .param p1, "info"    # Landroid/accessibilityservice/AccessibilityServiceInfo;
 
     .line 71
@@ -39,7 +39,7 @@
 .end method
 
 .method public getCapabilities(Landroid/accessibilityservice/AccessibilityServiceInfo;)I
-    .locals 1
+    .registers 3
     .param p1, "info"    # Landroid/accessibilityservice/AccessibilityServiceInfo;
 
     .line 96
@@ -47,7 +47,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_8
 
     .line 97
     const/4 v0, 0x1
@@ -55,14 +55,14 @@
     return v0
 
     .line 99
-    :cond_0
+    :cond_8
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public getDescription(Landroid/accessibilityservice/AccessibilityServiceInfo;)Ljava/lang/String;
-    .locals 1
+    .registers 3
     .param p1, "info"    # Landroid/accessibilityservice/AccessibilityServiceInfo;
 
     .line 76
@@ -74,7 +74,7 @@
 .end method
 
 .method public getId(Landroid/accessibilityservice/AccessibilityServiceInfo;)Ljava/lang/String;
-    .locals 1
+    .registers 3
     .param p1, "info"    # Landroid/accessibilityservice/AccessibilityServiceInfo;
 
     .line 81
@@ -86,7 +86,7 @@
 .end method
 
 .method public getResolveInfo(Landroid/accessibilityservice/AccessibilityServiceInfo;)Landroid/content/pm/ResolveInfo;
-    .locals 1
+    .registers 3
     .param p1, "info"    # Landroid/accessibilityservice/AccessibilityServiceInfo;
 
     .line 86
@@ -98,7 +98,7 @@
 .end method
 
 .method public getSettingsActivityName(Landroid/accessibilityservice/AccessibilityServiceInfo;)Ljava/lang/String;
-    .locals 1
+    .registers 3
     .param p1, "info"    # Landroid/accessibilityservice/AccessibilityServiceInfo;
 
     .line 91

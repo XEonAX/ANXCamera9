@@ -56,7 +56,7 @@ public abstract class a<Model> implements m<Model, InputStream> {
         if (b == null || d.isEmpty()) {
             return b;
         }
-        return new com.bumptech.glide.load.model.m.a(b.dZ, a(d), b.jp);
+        return new com.bumptech.glide.load.model.m.a(b.ea, a(d), b.jp);
     }
 
     private static List<c> a(Collection<String> collection) {

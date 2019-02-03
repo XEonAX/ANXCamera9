@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v7/widget/RecyclerView;)V
-    .locals 0
+    .registers 2
 
     .line 258
     iput-object p1, p0, Landroid/support/v7/widget/RecyclerView$1;->this$0:Landroid/support/v7/widget/RecyclerView;
@@ -36,29 +36,31 @@
 
 # virtual methods
 .method public run()V
-    .locals 2
+    .registers 3
 
     .line 260
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$1;->this$0:Landroid/support/v7/widget/RecyclerView;
 
+    # getter for: Landroid/support/v7/widget/RecyclerView;->mFirstLayoutComplete:Z
     invoke-static {v0}, Landroid/support/v7/widget/RecyclerView;->access$100(Landroid/support/v7/widget/RecyclerView;)Z
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_9
 
     .line 262
     return-void
 
     .line 264
-    :cond_0
+    :cond_9
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$1;->this$0:Landroid/support/v7/widget/RecyclerView;
 
+    # getter for: Landroid/support/v7/widget/RecyclerView;->mDataSetHasChangedAfterLayout:Z
     invoke-static {v0}, Landroid/support/v7/widget/RecyclerView;->access$200(Landroid/support/v7/widget/RecyclerView;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_1f
 
     .line 265
     const-string v0, "RV FullInvalidate"
@@ -73,10 +75,10 @@
     .line 267
     invoke-static {}, Landroid/support/v4/os/TraceCompat;->endSection()V
 
-    goto :goto_0
+    goto :goto_50
 
     .line 268
-    :cond_1
+    :cond_1f
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$1;->this$0:Landroid/support/v7/widget/RecyclerView;
 
     iget-object v0, v0, Landroid/support/v7/widget/RecyclerView;->mAdapterHelper:Landroid/support/v7/widget/AdapterHelper;
@@ -85,7 +87,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_50
 
     .line 269
     const-string v0, "RV PartialInvalidate"
@@ -107,11 +109,12 @@
     .line 272
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$1;->this$0:Landroid/support/v7/widget/RecyclerView;
 
+    # getter for: Landroid/support/v7/widget/RecyclerView;->mLayoutRequestEaten:Z
     invoke-static {v0}, Landroid/support/v7/widget/RecyclerView;->access$300(Landroid/support/v7/widget/RecyclerView;)Z
 
     move-result v0
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_47
 
     .line 275
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$1;->this$0:Landroid/support/v7/widget/RecyclerView;
@@ -119,7 +122,7 @@
     invoke-virtual {v0}, Landroid/support/v7/widget/RecyclerView;->rebindUpdatedViewHolders()V
 
     .line 277
-    :cond_2
+    :cond_47
     iget-object v0, p0, Landroid/support/v7/widget/RecyclerView$1;->this$0:Landroid/support/v7/widget/RecyclerView;
 
     const/4 v1, 0x1
@@ -130,7 +133,7 @@
     invoke-static {}, Landroid/support/v4/os/TraceCompat;->endSection()V
 
     .line 280
-    :cond_3
-    :goto_0
+    :cond_50
+    :goto_50
     return-void
 .end method

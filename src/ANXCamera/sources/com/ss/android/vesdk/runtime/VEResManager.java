@@ -39,6 +39,17 @@ public class VEResManager {
         throw new VEException(-100, stringBuilder.toString());
     }
 
+    public static String getFolderByName(String str) {
+        File file = new File(str);
+        if (file.exists() || file.mkdirs()) {
+            return file.getAbsolutePath();
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("mkdirs failed, folder path:");
+        stringBuilder.append(str);
+        throw new VEException(-100, stringBuilder.toString());
+    }
+
     public String genRecordWavPath() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(getFolder(AUDIO_FOLDER));

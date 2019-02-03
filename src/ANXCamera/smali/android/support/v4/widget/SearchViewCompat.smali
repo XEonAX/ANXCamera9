@@ -22,14 +22,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 255
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xe
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_e
 
     .line 256
     new-instance v0, Landroid/support/v4/widget/SearchViewCompat$SearchViewCompatIcsImpl;
@@ -38,15 +38,15 @@
 
     sput-object v0, Landroid/support/v4/widget/SearchViewCompat;->IMPL:Landroid/support/v4/widget/SearchViewCompat$SearchViewCompatImpl;
 
-    goto :goto_0
+    goto :goto_23
 
     .line 257
-    :cond_0
+    :cond_e
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xb
 
-    if-lt v0, v1, :cond_1
+    if-lt v0, v1, :cond_1c
 
     .line 258
     new-instance v0, Landroid/support/v4/widget/SearchViewCompat$SearchViewCompatHoneycombImpl;
@@ -55,10 +55,10 @@
 
     sput-object v0, Landroid/support/v4/widget/SearchViewCompat;->IMPL:Landroid/support/v4/widget/SearchViewCompat$SearchViewCompatImpl;
 
-    goto :goto_0
+    goto :goto_23
 
     .line 260
-    :cond_1
+    :cond_1c
     new-instance v0, Landroid/support/v4/widget/SearchViewCompat$SearchViewCompatStubImpl;
 
     invoke-direct {v0}, Landroid/support/v4/widget/SearchViewCompat$SearchViewCompatStubImpl;-><init>()V
@@ -66,12 +66,12 @@
     sput-object v0, Landroid/support/v4/widget/SearchViewCompat;->IMPL:Landroid/support/v4/widget/SearchViewCompat$SearchViewCompatImpl;
 
     .line 262
-    :goto_0
+    :goto_23
     return-void
 .end method
 
 .method private constructor <init>(Landroid/content/Context;)V
-    .locals 0
+    .registers 2
     .param p1, "context"    # Landroid/content/Context;
 
     .line 264
@@ -82,7 +82,7 @@
 .end method
 
 .method static synthetic access$000()Landroid/support/v4/widget/SearchViewCompat$SearchViewCompatImpl;
-    .locals 1
+    .registers 1
 
     .line 30
     sget-object v0, Landroid/support/v4/widget/SearchViewCompat;->IMPL:Landroid/support/v4/widget/SearchViewCompat$SearchViewCompatImpl;
@@ -91,7 +91,7 @@
 .end method
 
 .method public static getQuery(Landroid/view/View;)Ljava/lang/CharSequence;
-    .locals 1
+    .registers 2
     .param p0, "searchView"    # Landroid/view/View;
 
     .line 408
@@ -105,7 +105,7 @@
 .end method
 
 .method public static isIconified(Landroid/view/View;)Z
-    .locals 1
+    .registers 2
     .param p0, "searchView"    # Landroid/view/View;
 
     .line 458
@@ -119,7 +119,7 @@
 .end method
 
 .method public static isQueryRefinementEnabled(Landroid/view/View;)Z
-    .locals 1
+    .registers 2
     .param p0, "searchView"    # Landroid/view/View;
 
     .line 509
@@ -133,7 +133,7 @@
 .end method
 
 .method public static isSubmitButtonEnabled(Landroid/view/View;)Z
-    .locals 1
+    .registers 2
     .param p0, "searchView"    # Landroid/view/View;
 
     .line 481
@@ -147,7 +147,7 @@
 .end method
 
 .method public static newSearchView(Landroid/content/Context;)Landroid/view/View;
-    .locals 1
+    .registers 2
     .param p0, "context"    # Landroid/content/Context;
 
     .line 276
@@ -161,7 +161,7 @@
 .end method
 
 .method public static setIconified(Landroid/view/View;Z)V
-    .locals 1
+    .registers 3
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "iconify"    # Z
 
@@ -175,7 +175,7 @@
 .end method
 
 .method public static setImeOptions(Landroid/view/View;I)V
-    .locals 1
+    .registers 3
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "imeOptions"    # I
 
@@ -189,7 +189,7 @@
 .end method
 
 .method public static setInputType(Landroid/view/View;I)V
-    .locals 1
+    .registers 3
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "inputType"    # I
 
@@ -203,7 +203,7 @@
 .end method
 
 .method public static setMaxWidth(Landroid/view/View;I)V
-    .locals 1
+    .registers 3
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "maxpixels"    # I
 
@@ -217,7 +217,7 @@
 .end method
 
 .method public static setOnCloseListener(Landroid/view/View;Landroid/support/v4/widget/SearchViewCompat$OnCloseListenerCompat;)V
-    .locals 2
+    .registers 4
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "listener"    # Landroid/support/v4/widget/SearchViewCompat$OnCloseListenerCompat;
 
@@ -233,7 +233,7 @@
 .end method
 
 .method public static setOnQueryTextListener(Landroid/view/View;Landroid/support/v4/widget/SearchViewCompat$OnQueryTextListenerCompat;)V
-    .locals 2
+    .registers 4
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "listener"    # Landroid/support/v4/widget/SearchViewCompat$OnQueryTextListenerCompat;
 
@@ -249,7 +249,7 @@
 .end method
 
 .method public static setQuery(Landroid/view/View;Ljava/lang/CharSequence;Z)V
-    .locals 1
+    .registers 4
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "query"    # Ljava/lang/CharSequence;
     .param p2, "submit"    # Z
@@ -264,7 +264,7 @@
 .end method
 
 .method public static setQueryHint(Landroid/view/View;Ljava/lang/CharSequence;)V
-    .locals 1
+    .registers 3
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "hint"    # Ljava/lang/CharSequence;
 
@@ -278,7 +278,7 @@
 .end method
 
 .method public static setQueryRefinementEnabled(Landroid/view/View;Z)V
-    .locals 1
+    .registers 3
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "enable"    # Z
 
@@ -292,7 +292,7 @@
 .end method
 
 .method public static setSearchableInfo(Landroid/view/View;Landroid/content/ComponentName;)V
-    .locals 1
+    .registers 3
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "searchableComponent"    # Landroid/content/ComponentName;
 
@@ -306,7 +306,7 @@
 .end method
 
 .method public static setSubmitButtonEnabled(Landroid/view/View;Z)V
-    .locals 1
+    .registers 3
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "enabled"    # Z
 

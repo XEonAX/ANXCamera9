@@ -149,7 +149,7 @@ public class MemoryManager implements StorageListener {
 
     public boolean isNeedSlowDown() {
         boolean z = false;
-        if (b.fZ() ? this.mSaverMemoryUse < (this.mSaveTaskMemoryLimit * 3) / 4 : this.mSaverMemoryUse < this.mSaveTaskMemoryLimit / 2) {
+        if (b.isMTKPlatform() ? this.mSaverMemoryUse < (this.mSaveTaskMemoryLimit * 3) / 4 : this.mSaverMemoryUse < this.mSaveTaskMemoryLimit / 2) {
             z = true;
         }
         StringBuilder stringBuilder = new StringBuilder();

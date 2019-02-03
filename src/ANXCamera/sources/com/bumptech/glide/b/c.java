@@ -6,11 +6,11 @@ import java.util.List;
 
 /* compiled from: GifHeader */
 public class c {
-    public static final int bA = -1;
-    public static final int bz = 0;
-    int bB = 0;
-    b bC;
-    final List<b> bD = new ArrayList();
+    public static final int bA = 0;
+    public static final int bB = -1;
+    int bC = 0;
+    b bD;
+    final List<b> bE = new ArrayList();
     @ColorInt
     int bgColor;
     int bgIndex;
@@ -33,7 +33,7 @@ public class c {
     }
 
     public int V() {
-        return this.bB;
+        return this.bC;
     }
 
     public int getStatus() {

@@ -26,21 +26,21 @@
 .method public constructor <init>()V
     .locals 2
 
-    .line 154
+    .line 153
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 155
+    .line 154
     const-wide/16 v0, 0x0
 
     iput-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;->x:D
 
-    .line 156
+    .line 155
     iput-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;->y:D
 
-    .line 157
+    .line 156
     iput-wide v0, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;->z:D
 
-    .line 158
+    .line 157
     return-void
 .end method
 
@@ -49,26 +49,26 @@
 .method public copyInstance()Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;
     .locals 3
 
-    .line 161
+    .line 160
     new-instance v0, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;
 
     invoke-direct {v0}, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;-><init>()V
 
-    .line 162
+    .line 161
     iget-wide v1, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;->x:D
 
     iput-wide v1, v0, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;->x:D
 
-    .line 163
+    .line 162
     iget-wide v1, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;->y:D
 
     iput-wide v1, v0, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;->y:D
 
-    .line 164
+    .line 163
     iget-wide v1, p0, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;->z:D
 
     iput-wide v1, v0, Lcom/android/camera/panorama/MorphoPanoramaGP3$GravityParam;->z:D
 
-    .line 165
+    .line 164
     return-object v0
 .end method

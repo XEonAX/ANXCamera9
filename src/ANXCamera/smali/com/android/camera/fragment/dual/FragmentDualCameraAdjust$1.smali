@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)V
     .locals 0
 
-    .line 106
+    .line 110
     iput-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$1;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-direct {p0}, Landroid/os/Handler;-><init>()V
@@ -35,7 +35,7 @@
 .method public handleMessage(Landroid/os/Message;)V
     .locals 1
 
-    .line 108
+    .line 112
     iget p1, p1, Landroid/os/Message;->what:I
 
     const/4 v0, 0x1
@@ -44,7 +44,7 @@
 
     goto :goto_0
 
-    .line 110
+    .line 114
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$1;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
@@ -52,7 +52,7 @@
 
     invoke-virtual {p1, v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->onBackEvent(I)Z
 
-    .line 114
+    .line 118
     :goto_0
     return-void
 .end method

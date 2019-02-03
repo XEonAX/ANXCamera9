@@ -15,11 +15,10 @@ public class IImageReaderParameterSets implements Parcelable {
             return new IImageReaderParameterSets[i];
         }
     };
-    public static final int TELE_IMAGE_FLAG = 0;
-    public static final int WIDE_IMAGE_FLAG = 1;
     public int format;
     public int height;
     public int maxImages;
+    private boolean shouldHoldImages = true;
     public int targetCamera;
     public int width;
 
@@ -31,8 +30,25 @@ public class IImageReaderParameterSets implements Parcelable {
         this.targetCamera = i5;
     }
 
-    protected IImageReaderParameterSets(Parcel parcel) {
-        readFromParcel(parcel);
+    public boolean isShouldHoldImages() {
+        return this.shouldHoldImages;
+    }
+
+    public void setShouldHoldImages(boolean z) {
+        this.shouldHoldImages = z;
+    }
+
+    public String toString() {
+        return String.format(Locale.ENGLISH, "IImageReaderParameterSets[ %d, %d, %d, %d, %s, %s]", new Object[]{Integer.valueOf(this.width), Integer.valueOf(this.height), Integer.valueOf(this.format), Integer.valueOf(this.maxImages), Integer.valueOf(this.targetCamera), Boolean.valueOf(this.shouldHoldImages)});
+    }
+
+    public boolean equals(Object obj) {
+        if (!(obj instanceof IImageReaderParameterSets)) {
+            return super.equals(obj);
+        }
+        IImageReaderParameterSets iImageReaderParameterSets = (IImageReaderParameterSets) obj;
+        boolean z = this.targetCamera == iImageReaderParameterSets.targetCamera && this.width == iImageReaderParameterSets.width && this.height == iImageReaderParameterSets.height && this.format == iImageReaderParameterSets.format && this.maxImages == iImageReaderParameterSets.maxImages && this.shouldHoldImages == iImageReaderParameterSets.shouldHoldImages;
+        return z;
     }
 
     public int describeContents() {
@@ -45,27 +61,19 @@ public class IImageReaderParameterSets implements Parcelable {
         parcel.writeInt(this.format);
         parcel.writeInt(this.maxImages);
         parcel.writeInt(this.targetCamera);
+        parcel.writeByte(this.shouldHoldImages);
     }
 
-    public void readFromParcel(Parcel parcel) {
+    protected IImageReaderParameterSets(Parcel parcel) {
+        boolean z = true;
         this.width = parcel.readInt();
         this.height = parcel.readInt();
         this.format = parcel.readInt();
         this.maxImages = parcel.readInt();
         this.targetCamera = parcel.readInt();
-    }
-
-    public String toString() {
-        return String.format(Locale.ENGLISH, "IImageReaderParameterSets[ %d, %d, %d, %d %s]", new Object[]{Integer.valueOf(this.width), Integer.valueOf(this.height), Integer.valueOf(this.format), Integer.valueOf(this.maxImages), Integer.valueOf(this.targetCamera)});
-    }
-
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof IImageReaderParameterSets)) {
-            super.equals(obj);
-            return super.equals(obj);
+        if (parcel.readByte() == (byte) 0) {
+            z = false;
         }
-        IImageReaderParameterSets iImageReaderParameterSets = (IImageReaderParameterSets) obj;
-        boolean z = this.targetCamera == iImageReaderParameterSets.targetCamera && this.width == iImageReaderParameterSets.width && this.height == iImageReaderParameterSets.height && this.format == iImageReaderParameterSets.format && this.maxImages == iImageReaderParameterSets.maxImages;
-        return z;
+        this.shouldHoldImages = z;
     }
 }

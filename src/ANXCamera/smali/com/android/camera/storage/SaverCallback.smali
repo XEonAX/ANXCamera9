@@ -7,10 +7,7 @@
 .method public abstract needThumbnail(Z)Z
 .end method
 
-.method public abstract notifyNewImage(Landroid/net/Uri;Z)V
-.end method
-
-.method public abstract notifyNewVideo(Landroid/net/Uri;)V
+.method public abstract notifyNewMediaData(Landroid/net/Uri;Ljava/lang/String;I)V
 .end method
 
 .method public abstract onSaveFinish(I)V

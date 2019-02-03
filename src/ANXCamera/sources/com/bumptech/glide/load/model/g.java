@@ -91,7 +91,7 @@ public class g implements c {
 
     private byte[] bV() {
         if (this.jc == null) {
-            this.jc = getCacheKey().getBytes(cT);
+            this.jc = getCacheKey().getBytes(cU);
         }
         return this.jc;
     }

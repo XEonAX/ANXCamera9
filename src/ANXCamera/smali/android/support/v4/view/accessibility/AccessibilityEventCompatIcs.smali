@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 25
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static appendRecord(Landroid/view/accessibility/AccessibilityEvent;Ljava/lang/Object;)V
-    .locals 1
+    .registers 3
     .param p0, "event"    # Landroid/view/accessibility/AccessibilityEvent;
     .param p1, "record"    # Ljava/lang/Object;
 
@@ -30,7 +30,7 @@
 .end method
 
 .method public static getRecord(Landroid/view/accessibility/AccessibilityEvent;I)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p0, "event"    # Landroid/view/accessibility/AccessibilityEvent;
     .param p1, "index"    # I
 
@@ -43,7 +43,7 @@
 .end method
 
 .method public static getRecordCount(Landroid/view/accessibility/AccessibilityEvent;)I
-    .locals 1
+    .registers 2
     .param p0, "event"    # Landroid/view/accessibility/AccessibilityEvent;
 
     .line 28
@@ -55,7 +55,7 @@
 .end method
 
 .method public static setScrollable(Landroid/view/accessibility/AccessibilityEvent;Z)V
-    .locals 0
+    .registers 2
     .param p0, "event"    # Landroid/view/accessibility/AccessibilityEvent;
     .param p1, "scrollable"    # Z
 

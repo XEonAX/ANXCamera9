@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.provider.MiuiSettings.System;
+import android.text.TextUtils;
 import android.util.SparseArray;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraIntentManager;
@@ -26,6 +27,9 @@ import com.android.camera.fragment.beauty.BeautyParameters.Type;
 import com.android.camera.fragment.beauty.BeautyValues;
 import com.android.camera.log.Log;
 import com.android.camera.module.BaseModule;
+import com.android.camera.module.ModuleManager;
+import com.android.camera.module.loader.FunctionParseBeautyBodySlimCount;
+import com.android.camera2.CameraCapabilities;
 import com.mi.config.b;
 import com.miui.filtersdk.filter.helper.FilterType;
 import java.util.HashMap;
@@ -64,6 +68,7 @@ public class CameraStatUtil {
         sTriggerModeIdToName.put(70, "声控快门");
         sTriggerModeIdToName.put(80, "长按屏幕");
         sTriggerModeIdToName.put(90, "曝光环");
+        sTriggerModeIdToName.put(100, "手势拍照");
         sPictureQualityIndexToName.put(0, "最低");
         sPictureQualityIndexToName.put(1, "更低");
         sPictureQualityIndexToName.put(2, "低");
@@ -208,6 +213,9 @@ public class CameraStatUtil {
     }
 
     private static String divideTo10Section(int i) {
+        if (i == 0) {
+            return "0";
+        }
         switch (i > 0 ? (i - 1) / 10 : 0) {
             case 0:
                 return "1+";
@@ -654,7 +662,7 @@ public class CameraStatUtil {
     }
 
     public static void trackStartAppCost(long j) {
-        if (j < 0 || j > 10000) {
+        if (j < 0 || j > FunctionParseBeautyBodySlimCount.TIP_INTERVAL_TIME) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("The time cost when start app is illegal: ");
             stringBuilder.append(j);
@@ -693,37 +701,57 @@ public class CameraStatUtil {
         } else {
             hashMap.put(CameraStat.PARAM_FLASH_MODE, flashModeToName(str3));
         }
+        boolean z3 = false;
         hashMap.put(CameraStat.PARAM_FILTER, z ? "none" : filterIdToName(EffectController.getInstance().getEffectForSaving(false)));
+        hashMap.put(CameraStat.PARAM_LIVESHOT, CameraSettings.isLiveShotOn() ? "on" : "off");
+        int fQ;
         if (z2) {
             hashMap.put(CameraStat.PARAM_GENDER_AGE, CameraSettings.showGenderAge() ? "on" : "off");
             hashMap.put(CameraStat.PARAM_MAGIC_MIRROR, CameraSettings.isMagicMirrorOn() ? "on" : "off");
+            fQ = DataRepository.dataItemFeature().fQ();
+            boolean isFrontMenuUltraPixelPhotographyOn = CameraSettings.isFrontMenuUltraPixelPhotographyOn();
+            if (fQ == CameraCapabilities.ULTRA_PIXEL_48M) {
+                hashMap.put(CameraStat.PARAM_ULTRA_PIXEL_48MP, isFrontMenuUltraPixelPhotographyOn ? "on" : "off");
+            } else if (fQ == CameraCapabilities.ULTRA_PIXEL_32M) {
+                hashMap.put(CameraStat.PARAM_ULTRA_PIXEL_32MP, isFrontMenuUltraPixelPhotographyOn ? "on" : "off");
+            }
             CameraStat.recordCalculateEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_FRONT_CAMERA_INFO, (long) i, hashMap);
             return;
         }
-        str3 = CameraStat.PARAM_TILTSHIFT;
+        String str4 = CameraStat.PARAM_TILTSHIFT;
         Object componentValue = (z || !CameraSettings.isTiltShiftOn()) ? "off" : dataItemRunning.getComponentRunningTiltValue().getComponentValue(i2);
-        hashMap.put(str3, componentValue);
-        str3 = CameraStat.PARAM_GRADIENTER;
+        hashMap.put(str4, componentValue);
+        str4 = CameraStat.PARAM_GRADIENTER;
         componentValue = (z || !CameraSettings.isGradienterOn()) ? "off" : "on";
-        hashMap.put(str3, componentValue);
-        str3 = CameraStat.PARAM_HHT;
+        hashMap.put(str4, componentValue);
+        str4 = CameraStat.PARAM_HHT;
         componentValue = (z || mutexModeManager == null || !mutexModeManager.isHandNight()) ? "off" : "on";
-        hashMap.put(str3, componentValue);
-        obj2 = "off";
+        hashMap.put(str4, componentValue);
+        Object obj3 = "off";
         if (!(z || mutexModeManager == null)) {
-            z2 = mutexModeManager.isHdr();
+            boolean isHdr = mutexModeManager.isHdr();
             ComponentConfigHdr componentHdr = dataItemConfig.getComponentHdr();
             if (componentHdr != null && "auto".equals(componentHdr.getComponentValue(i2))) {
-                obj2 = z2 ? AUTO_ON : AUTO_OFF;
-            } else if (z2) {
-                obj2 = "on";
+                obj3 = isHdr ? AUTO_ON : AUTO_OFF;
+            } else if (isHdr) {
+                obj3 = "on";
             }
         }
-        hashMap.put(CameraStat.PARAM_HDR, obj2);
-        str3 = CameraStat.PARAM_SUPER_RESOLUTION;
-        Object obj3 = (z || mutexModeManager == null || !mutexModeManager.isSuperResolution()) ? "off" : "on";
-        hashMap.put(str3, obj3);
+        hashMap.put(CameraStat.PARAM_HDR, obj3);
+        str4 = CameraStat.PARAM_SUPER_RESOLUTION;
+        Object obj4 = (z || mutexModeManager == null || !mutexModeManager.isSuperResolution()) ? "off" : "on";
+        hashMap.put(str4, obj4);
         hashMap.put(CameraStat.PARAM_ZOOM, getDualZoomName(i2));
+        fQ = DataRepository.dataItemFeature().fP();
+        if (CameraSettings.isUltraPixelPhotographyOn() || CameraSettings.isRearMenuUltraPixelPhotographyOn()) {
+            z3 = true;
+        }
+        if (fQ == CameraCapabilities.ULTRA_PIXEL_48M) {
+            hashMap.put(CameraStat.PARAM_ULTRA_PIXEL_48MP, z3 ? "on" : "off");
+        } else if (fQ == CameraCapabilities.ULTRA_PIXEL_32M) {
+            hashMap.put(CameraStat.PARAM_ULTRA_PIXEL_32MP, z3 ? "on" : "off");
+        }
+        hashMap.put(CameraStat.PARAM_ULTRA_WIDE_BOKEH, DataRepository.dataItemRunning().isSwitchOn("pref_ultra_wide_bokeh_enabled") ? "on" : "off");
         CameraStat.recordCalculateEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_BACK_CAMERA_INFO, (long) i, hashMap);
     }
 
@@ -742,6 +770,18 @@ public class CameraStatUtil {
         }
         if (i2 == 171 && !z2) {
             hashMap.put(CameraStat.PARAM_LIGHTING, String.valueOf(CameraSettings.getPortraitLightingPattern()));
+        }
+        hashMap.put(CameraStat.PARAM_LIVESHOT, CameraSettings.isLiveShotOn() ? "on" : "off");
+        i2 = DataRepository.dataItemFeature().fP();
+        if (z2) {
+            z2 = CameraSettings.isFrontMenuUltraPixelPhotographyOn();
+        } else {
+            z2 = CameraSettings.isRearMenuUltraPixelPhotographyOn();
+        }
+        if (i2 == CameraCapabilities.ULTRA_PIXEL_48M) {
+            hashMap.put(CameraStat.PARAM_ULTRA_PIXEL_48MP, z2 ? "on" : "off");
+        } else if (i2 == CameraCapabilities.ULTRA_PIXEL_32M) {
+            hashMap.put(CameraStat.PARAM_ULTRA_PIXEL_32MP, z2 ? "on" : "off");
         }
         CameraStat.recordCalculateEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_PICTURE_TAKEN, (long) i, hashMap);
         if (z) {
@@ -779,25 +819,38 @@ public class CameraStatUtil {
         CameraStat.recordCountEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_VIDEO_PAUSE_RECORDING, hashMap);
     }
 
-    public static void trackVideoRecorded(boolean z, String str, int i, int i2, int i3, int i4, BeautyValues beautyValues, long j) {
+    public static void trackSelectObject(boolean z) {
+        Map hashMap = new HashMap();
+        hashMap.put(CameraStat.PARAM_SELECT_OBJECT, z ? CameraStat.VALUE_SELECT_OBJECT_RECORDING : CameraStat.VALUE_SELECT_OBJECT_BEFORE_RECORDING);
+        CameraStat.recordCountEvent(CameraStat.CATEGORY_COUNTER, CameraStat.KEY_SELECT_OBJECT, hashMap);
+    }
+
+    public static void trackVideoRecorded(boolean z, int i, boolean z2, boolean z3, String str, int i2, int i3, int i4, int i5, BeautyValues beautyValues, long j) {
         Map hashMap = new HashMap();
         hashMap.put(CameraStat.PARAM_CAMERA_ID, z ? CameraStat.VALUE_FRONT_CAMERA : CameraStat.VALUE_BACK_CAMERA);
         hashMap.put("模式", str);
         String str2 = CameraStat.PARAM_QUALITY;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("");
-        stringBuilder.append(i);
+        stringBuilder.append(i2);
         hashMap.put(str2, videoQualityToName(stringBuilder.toString()));
-        hashMap.put(CameraStat.PARAM_FLASH_MODE, i2 == 2 ? "torch" : "off");
-        hashMap.put(CameraStat.PARAM_VIDEO_FPS, String.valueOf(i3));
+        hashMap.put(CameraStat.PARAM_FLASH_MODE, i3 == 2 ? "torch" : "off");
+        hashMap.put(CameraStat.PARAM_VIDEO_FPS, String.valueOf(i4));
+        if (i == 162 && !z) {
+            if (z2) {
+                hashMap.put(CameraStat.PARAM_AUTO_ZOOM, z3 ? CameraStat.VALUE_AUTOZOOM_ULTRA : CameraStat.VALUE_AUTOZOOM_NOT_ULTRA);
+            } else {
+                hashMap.put(CameraStat.PARAM_AUTO_ZOOM, "off");
+            }
+        }
         if (beautyValues != null) {
             hashMap.put(CameraStat.PARAM_BEAUTY_LEVEL, String.valueOf(CameraSettings.intelligentValueToBeautyLevel(beautyValues.mBeautyLevel)));
         }
         hashMap.put(CameraStat.PARAM_VIDEO_TIME, String.valueOf(j));
         CameraStat.recordCountEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_VIDEO_TAKEN, hashMap);
-        if (i4 > 0 && CameraSettings.VIDEO_SPEED_FAST.equals(str)) {
+        if (i5 > 0 && CameraSettings.VIDEO_SPEED_FAST.equals(str)) {
             Map hashMap2 = new HashMap();
-            hashMap2.put("间隔", timeLapseIntervalToName(i4));
+            hashMap2.put("间隔", timeLapseIntervalToName(i5));
             CameraStat.recordCountEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_VIDEO_TIME_LAPSE_INTERVAL, hashMap2);
         }
     }
@@ -1011,13 +1064,20 @@ public class CameraStatUtil {
         hashMap.put(CameraStat.PARAM_LENS, CameraSettings.getCameraZoomMode(i2));
         hashMap.put(CameraStat.PARAM_FOCUS_PEAK, EffectController.getInstance().isNeedDrawPeaking() ? "on" : "off");
         hashMap.put(CameraStat.PARAM_ZOOM, zoomRatioToName(CameraSettings.readZoom()));
+        int fP = DataRepository.dataItemFeature().fP();
+        boolean isUltraPixelPhotographyOn = CameraSettings.isUltraPixelPhotographyOn();
+        if (fP == CameraCapabilities.ULTRA_PIXEL_48M) {
+            hashMap.put(CameraStat.PARAM_ULTRA_PIXEL_48MP, isUltraPixelPhotographyOn ? "on" : "off");
+        } else if (fP == CameraCapabilities.ULTRA_PIXEL_32M) {
+            hashMap.put(CameraStat.PARAM_ULTRA_PIXEL_32MP, isUltraPixelPhotographyOn ? "on" : "off");
+        }
         CameraStat.recordCalculateEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_PICTURE_TAKEN_MANUAL, (long) i, hashMap);
     }
 
     public static void trackBeautyInfo(int i, String str, BeautyValues beautyValues) {
         Map hashMap = new HashMap();
         hashMap.put(CameraStat.PARAM_CAMERA_ID, str);
-        if (b.hA()) {
+        if (b.hR()) {
             for (Type type : BeautyParameters.getInstance().getAdjustableTypes()) {
                 String str2 = (String) sBeautyTypeToName.get(type.ordinal());
                 if (str2 != null) {
@@ -1030,7 +1090,7 @@ public class CameraStatUtil {
             hashMap.put(CameraStat.PARAM_BEAUTY_SKIN_COLOR, faceBeautyRatioToName(beautyValues.mBeautySkinColor));
             hashMap.put(CameraStat.PARAM_BEAUTY_SKIN_SMOOTH, faceBeautyRatioToName(beautyValues.mBeautySkinSmooth));
         }
-        if (b.hp()) {
+        if (b.hG()) {
             Object obj;
             str = CameraStat.PARAM_BEAUTY_LEVEL;
             if (CameraSettings.isAdvancedBeautyOn()) {
@@ -1077,6 +1137,18 @@ public class CameraStatUtil {
             String valueOf = obj instanceof Boolean ? ((Boolean) obj).booleanValue() ? "on" : "off" : String.valueOf(obj);
             Object obj2 = -1;
             switch (str.hashCode()) {
+                case -2144607600:
+                    if (str.equals(CameraSettings.KEY_ULTRA_WIDE_LDC)) {
+                        obj2 = 12;
+                        break;
+                    }
+                    break;
+                case -2108353415:
+                    if (str.equals(CameraSettings.KEY_NORMAL_WIDE_LDC)) {
+                        obj2 = 11;
+                        break;
+                    }
+                    break;
                 case -1871644511:
                     if (str.equals("pref_camera_picturesize_key")) {
                         obj2 = 3;
@@ -1188,8 +1260,330 @@ public class CameraStatUtil {
                 case 10:
                     valueOf = slowMotionQualityIdToName(valueOf);
                     break;
+                case 11:
+                    str = CameraStat.KEY_NORMAL_WIDE_LDC;
+                    break;
+                case 12:
+                    str = CameraStat.KEY_ULTRA_WIDE_LDC;
+                    break;
             }
             CameraStat.recordStringPropertyEvent(CameraStat.CATEGORY_SETTINGS, str, valueOf);
         }
+    }
+
+    public static void trackLiveRecordingParams(boolean z, String str, boolean z2, String str2, boolean z3, String str3, String str4, boolean z4, int i, int i2, int i3, int i4, boolean z5) {
+        if (!CameraStat.isCounterEventDisabled()) {
+            StringBuilder stringBuilder;
+            Map hashMap = new HashMap();
+            String str5 = z5 ? "(前置)" : "(后置)";
+            hashMap.put(CameraStat.PARAM_LIVE_MUSIC_ON, z ? "on" : "off");
+            if (z) {
+                stringBuilder = new StringBuilder();
+                stringBuilder.append(CameraStat.PARAM_LIVE_MUSIC_NAME);
+                stringBuilder.append(str5);
+                hashMap.put(stringBuilder.toString(), str);
+            }
+            hashMap.put(CameraStat.PARAM_LIVE_FILTER_SEGMENT_ON, z2 ? "on" : "off");
+            if (z2) {
+                stringBuilder = new StringBuilder();
+                stringBuilder.append(CameraStat.PARAM_LIVE_FILTER_NAME);
+                stringBuilder.append(str5);
+                hashMap.put(stringBuilder.toString(), str2);
+            }
+            hashMap.put(CameraStat.PARAM_LIVE_STICKER_SEGMENT_ON, z3 ? "on" : "off");
+            if (z3) {
+                stringBuilder = new StringBuilder();
+                stringBuilder.append(CameraStat.PARAM_LIVE_STICKER_NAME);
+                stringBuilder.append(str5);
+                hashMap.put(stringBuilder.toString(), str3);
+            }
+            stringBuilder = new StringBuilder();
+            stringBuilder.append(CameraStat.PARAM_LIVE_SPEED_LEVEL);
+            stringBuilder.append(str5);
+            hashMap.put(stringBuilder.toString(), str4);
+            hashMap.put(CameraStat.PARAM_LIVE_BEAUTY_SEGMENT_ON, z4 ? "on" : "off");
+            stringBuilder = new StringBuilder();
+            stringBuilder.append(CameraStat.PARAM_LIVE_SHRINK_FACE_RATIO);
+            stringBuilder.append(str5);
+            hashMap.put(stringBuilder.toString(), divideTo10Section(i));
+            stringBuilder = new StringBuilder();
+            stringBuilder.append(CameraStat.PARAM_LIVE_ENLARGE_EYE_RATIO);
+            stringBuilder.append(str5);
+            hashMap.put(stringBuilder.toString(), divideTo10Section(i2));
+            stringBuilder = new StringBuilder();
+            stringBuilder.append(CameraStat.PARAM_LIVE_SMOOTH_RATIO);
+            stringBuilder.append(str5);
+            hashMap.put(stringBuilder.toString(), divideTo10Section(i3));
+            hashMap.put(CameraStat.PARAM_CAMERA_ID, cameraIdToName(z5));
+            String str6 = CameraStat.PARAM_QUALITY;
+            StringBuilder stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("");
+            stringBuilder2.append(i4);
+            hashMap.put(str6, videoQualityToName(stringBuilder2.toString()));
+            CameraStat.recordCountEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_LIVE_VIDEO, hashMap);
+        }
+    }
+
+    public static void trackLiveVideoParams(int i, float f, boolean z, boolean z2, boolean z3) {
+        if (!CameraStat.isCounterEventDisabled()) {
+            Map hashMap = new HashMap();
+            hashMap.put(CameraStat.PARAM_LIVE_FILTER_ON, z ? "on" : "off");
+            hashMap.put(CameraStat.PARAM_LIVE_STICKER_ON, z2 ? "on" : "off");
+            hashMap.put(CameraStat.PARAM_LIVE_BEAUTY_ON, z3 ? "on" : "off");
+            hashMap.put(CameraStat.PARAM_LIVE_RECORD_SEGMENTS, Integer.toString(i));
+            hashMap.put(CameraStat.PARAM_LIVE_RECORD_TIME, Integer.toString((int) f));
+            CameraStat.recordCountEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_LIVE_VIDEO, hashMap);
+        }
+    }
+
+    public static void trackLiveMusicClick() {
+        if (!CameraStat.isCounterEventDisabled()) {
+            CameraStat.recordCountEvent(CameraStat.CATEGORY_COUNTER, CameraStat.PARAM_LIVE_MUSIC_ICON_CLICK);
+        }
+    }
+
+    public static void trackLiveClick(String str) {
+        if (!CameraStat.isCounterEventDisabled()) {
+            CameraStat.recordCountEvent(CameraStat.CATEGORY_COUNTER, str);
+        }
+    }
+
+    public static void trackLiveStickerDownload(String str, boolean z) {
+        if (!CameraStat.isCounterEventDisabled()) {
+            Object obj;
+            Map hashMap = new HashMap();
+            hashMap.put(CameraStat.PARAM_LIVE_STICKER_NAME, str);
+            str = CameraStat.PARAM_LIVE_STICKER_DOWNLOAD;
+            if (z) {
+                obj = CameraStat.VALUE_LIVE_STICKER_SUCCESS;
+            } else {
+                obj = CameraStat.VALUE_LIVE_STICKER_FAILED;
+            }
+            hashMap.put(str, obj);
+        }
+    }
+
+    public static void trackLiveStickerMore(boolean z) {
+        if (!CameraStat.isCounterEventDisabled()) {
+            Object obj;
+            Map hashMap = new HashMap();
+            String str = CameraStat.PARAM_LIVE_STICKER_MORE;
+            if (z) {
+                obj = CameraStat.VALUE_LIVE_STICKER_MARKET;
+            } else {
+                obj = CameraStat.VALUE_LIVE_STICKER_APP;
+            }
+            hashMap.put(str, obj);
+            CameraStat.recordCountEvent(CameraStat.CATEGORY_COUNTER, CameraStat.KEY_LIVE_STICKER_MORE, hashMap);
+        }
+    }
+
+    public static void trackLiveBeautyClick(int i) {
+        if (!CameraStat.isCounterEventDisabled()) {
+            CharSequence charSequence = null;
+            switch (i) {
+                case 6:
+                    charSequence = CameraStat.PARAM_FILTER;
+                    break;
+                case 7:
+                    charSequence = "美颜";
+                    break;
+            }
+            if (!TextUtils.isEmpty(charSequence)) {
+                Map hashMap = new HashMap();
+                hashMap.put(CameraStat.PARAM_LIVE_BEAUTY_TYPE, charSequence);
+                CameraStat.recordCountEvent(CameraStat.CATEGORY_COUNTER, CameraStat.KEY_LIVE_BEAUTY, hashMap);
+            }
+        }
+    }
+
+    /* JADX WARNING: Removed duplicated region for block: B:41:0x0084  */
+    /* JADX WARNING: Removed duplicated region for block: B:13:0x0032  */
+    /* JADX WARNING: Removed duplicated region for block: B:45:0x00e0  */
+    /* JADX WARNING: Removed duplicated region for block: B:44:0x00df A:{RETURN} */
+    /* JADX WARNING: Removed duplicated region for block: B:41:0x0084  */
+    /* JADX WARNING: Removed duplicated region for block: B:13:0x0032  */
+    /* JADX WARNING: Removed duplicated region for block: B:44:0x00df A:{RETURN} */
+    /* JADX WARNING: Removed duplicated region for block: B:45:0x00e0  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static void trackBeautyBodySlim(String str, int i, Type type) {
+        Object obj;
+        Map hashMap = new HashMap();
+        int hashCode = str.hashCode();
+        if (hashCode != 552585030) {
+            if (hashCode == 957830652 && str.equals(CameraStat.CATEGORY_COUNTER)) {
+                hashCode = 1;
+                obj = null;
+                String str2;
+                switch (hashCode) {
+                    case 0:
+                        obj = CameraStat.KEY_BEAUTY_BODY_SLIM;
+                        String str3 = CameraSettings.KEY_BEAUTY_HEAD_SLIM_RATIO;
+                        String str4 = CameraSettings.KEY_BEAUTY_BODY_SLIM_RATIO;
+                        str2 = CameraSettings.KEY_BEAUTY_SHOULDER_SLIM_RATIO;
+                        String str5 = CameraSettings.KEY_BEAUTY_LEG_SLIM_RATIO;
+                        i = CameraSettings.getFaceBeautyRatio(str3, 0);
+                        int faceBeautyRatio = CameraSettings.getFaceBeautyRatio(str4, 0);
+                        hashCode = CameraSettings.getFaceBeautyRatio(str2, 0);
+                        int faceBeautyRatio2 = CameraSettings.getFaceBeautyRatio(str5, 0);
+                        hashMap.put(CameraStat.PARAM_BEAUTY_HEAD_SLIM, divideTo10Section(i));
+                        hashMap.put(CameraStat.PARAM_BEAUTY_SHOULDER_SLIM, divideTo10Section(hashCode));
+                        hashMap.put(CameraStat.PARAM_BEAUTY_BODY_SLIM, divideTo10Section(faceBeautyRatio));
+                        hashMap.put(CameraStat.PARAM_BEAUTY_LEG_SLIM, divideTo10Section(faceBeautyRatio2));
+                        hashMap.put("模式", modeIdToName(DataRepository.dataItemGlobal().getCurrentMode()));
+                        break;
+                    case 1:
+                        CharSequence charSequence;
+                        str2 = CameraStat.KEY_NEW_BEAUTY;
+                        if (i == 1) {
+                            charSequence = "美颜";
+                        } else if (i == 5) {
+                            charSequence = CameraStat.PARAM_BEAUTY_BODY_SLIM;
+                        }
+                        if (!TextUtils.isEmpty(charSequence)) {
+                            hashMap.put(CameraStat.PARAM_BEAUTY_PORT, charSequence);
+                        }
+                        if (Type.HEAD_SLIM_RATIO == type) {
+                            charSequence = CameraStat.PARAM_BEAUTY_HEAD_SLIM;
+                        } else if (Type.SHOULDER_SLIM_RATIO == type) {
+                            charSequence = CameraStat.PARAM_BEAUTY_SHOULDER_SLIM;
+                        } else if (Type.BODY_SLIM_RATIO == type) {
+                            charSequence = CameraStat.PARAM_BEAUTY_BODY_SLIM;
+                        } else if (Type.LEG_SLIM_RATIO == type) {
+                            charSequence = CameraStat.PARAM_BEAUTY_LEG_SLIM;
+                        } else if (Type.BEAUTY_RESET == type) {
+                            charSequence = "重置";
+                        }
+                        if (!TextUtils.isEmpty(charSequence)) {
+                            hashMap.put(CameraStat.PARAM_BEAUTY_BODY_SLIM, charSequence);
+                        }
+                        obj = str2;
+                        break;
+                }
+                if (!TextUtils.isEmpty(obj)) {
+                    CameraStat.recordCountEvent(str, obj, hashMap);
+                    return;
+                }
+                return;
+            }
+        } else if (str.equals(CameraStat.CATEGORY_CAMERA)) {
+            hashCode = 0;
+            obj = null;
+            switch (hashCode) {
+                case 0:
+                    break;
+                case 1:
+                    break;
+            }
+            if (!TextUtils.isEmpty(obj)) {
+            }
+        }
+        hashCode = -1;
+        obj = null;
+        switch (hashCode) {
+            case 0:
+                break;
+            case 1:
+                break;
+        }
+        if (!TextUtils.isEmpty(obj)) {
+        }
+    }
+
+    public static void trackBeautyBodyCapture() {
+        trackBeautyBodySlim(CameraStat.CATEGORY_CAMERA, 0, null);
+    }
+
+    public static void trackBeautyBodyCounterPort(int i) {
+        if (i > 0) {
+            trackBeautyBodySlim(CameraStat.CATEGORY_COUNTER, i, null);
+        }
+    }
+
+    public static void trackBeautyBodyCounter(Type type) {
+        if (type != null) {
+            trackBeautyBodySlim(CameraStat.CATEGORY_COUNTER, 0, type);
+        }
+    }
+
+    private static void trackUltraWide(String str) {
+        if (DataRepository.dataItemFeature().fx() && !TextUtils.isEmpty(str)) {
+            Map hashMap = new HashMap();
+            if (CameraSettings.isUltraWideConfigOpen(ModuleManager.getActiveModuleIndex())) {
+                hashMap.put(CameraStat.PARAM_ULTRA_WIDE, "on");
+            } else {
+                hashMap.put(CameraStat.PARAM_ULTRA_WIDE, "off");
+            }
+            CameraStat.recordCalculateEvent(CameraStat.CATEGORY_CAMERA, str, 1, hashMap);
+        }
+    }
+
+    public static void trackUltraWidePictureTaken() {
+        trackUltraWide(CameraStat.KEY_PICTURE_TAKEN);
+    }
+
+    public static void trackUltraWideVideoTaken() {
+        trackUltraWide(CameraStat.KEY_VIDEO_TAKEN);
+    }
+
+    public static void trackUltraWideManualTaken(int i) {
+        if (DataRepository.dataItemFeature().fx()) {
+            Map hashMap = new HashMap();
+            if (ComponentManuallyDualLens.LENS_ULTRA.equalsIgnoreCase(DataRepository.dataItemConfig().getManuallyDualLens().getComponentValue(i))) {
+                hashMap.put(CameraStat.PARAM_ULTRA_WIDE, "on");
+            } else {
+                hashMap.put(CameraStat.PARAM_ULTRA_WIDE, "off");
+            }
+            CameraStat.recordCalculateEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_PICTURE_TAKEN_MANUAL, 1, hashMap);
+        }
+    }
+
+    public static void trackUltraWideFunTaken() {
+        trackUltraWide(CameraStat.KEY_LIVE_VIDEO);
+    }
+
+    public static void trackMoonMode(boolean z, boolean z2) {
+        if (z) {
+            Map hashMap = new HashMap();
+            hashMap.put(CameraStat.PARAM_MOON_MODE_SELECT, z2 ? "月亮模式" : "夜景模式");
+            hashMap.put(CameraStat.PARAM_ZOOM, String.valueOf(CameraSettings.readZoom()));
+            CameraStat.recordCalculateEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_MOON_MODE, 1, hashMap);
+        }
+    }
+
+    public static void trackLiveBeautyCounter(Type type) {
+        if (type != null) {
+            Map hashMap = new HashMap();
+            CharSequence charSequence = null;
+            if (Type.LIVE_SHRINK_FACE_RATIO == type) {
+                charSequence = CameraStat.PARAM_BEAUTY_SLIM_FACE;
+            } else if (Type.LIVE_ENLARGE_EYE_RATIO == type) {
+                charSequence = CameraStat.PARAM_BEAUTY_ENLARGE_EYE;
+            } else if (Type.LIVE_SMOOTH_STRENGTH == type) {
+                charSequence = CameraStat.PARAM_BEAUTY_SKIN_SMOOTH;
+            } else if (Type.BEAUTY_RESET == type) {
+                charSequence = "重置";
+            }
+            if (!TextUtils.isEmpty(charSequence)) {
+                String str;
+                if (CameraSettings.isFrontCamera()) {
+                    str = CameraStat.KEY_LIVE_BEAUTY_FRON;
+                    hashMap.put(CameraStat.PARAM_LIVE_BEAUTY_FRON, charSequence);
+                } else {
+                    str = CameraStat.KEY_LIVE_BEAUTY_BACK;
+                    hashMap.put(CameraStat.PARAM_LIVE_BEAUTY_BACK, charSequence);
+                }
+                CameraStat.recordCountEvent(CameraStat.CATEGORY_COUNTER, str, hashMap);
+            }
+        }
+    }
+
+    public static void trackBokehTaken() {
+        String readFNumber = CameraSettings.readFNumber();
+        boolean isFrontCamera = CameraSettings.isFrontCamera();
+        Map hashMap = new HashMap();
+        hashMap.put(CameraStat.PARAM_LIVE_BOKEH_LEVEL, readFNumber);
+        hashMap.put("模式", isFrontCamera ? CameraStat.PARAM_FRONT_CAMERA : CameraStat.PARAM_BACK_CAMERA);
+        CameraStat.recordCountEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_PICTURE_TAKEN_BOKEH_ADJUST, hashMap);
     }
 }

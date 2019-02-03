@@ -6,14 +6,14 @@ import com.bumptech.glide.load.DataSource;
 /* compiled from: DrawableCrossFadeFactory */
 public class c implements g<Drawable> {
     private final int duration;
-    private final boolean oS;
-    private d oT;
+    private final boolean oR;
+    private d oS;
 
     /* compiled from: DrawableCrossFadeFactory */
     public static class a {
-        private static final int oU = 300;
+        private static final int oT = 300;
         private final int durationMillis;
-        private boolean oS;
+        private boolean oR;
 
         public a() {
             this(300);
@@ -24,18 +24,18 @@ public class c implements g<Drawable> {
         }
 
         public a l(boolean z) {
-            this.oS = z;
+            this.oR = z;
             return this;
         }
 
         public c ey() {
-            return new c(this.durationMillis, this.oS);
+            return new c(this.durationMillis, this.oR);
         }
     }
 
     protected c(int i, boolean z) {
         this.duration = i;
-        this.oS = z;
+        this.oR = z;
     }
 
     public f<Drawable> a(DataSource dataSource, boolean z) {
@@ -43,9 +43,9 @@ public class c implements g<Drawable> {
     }
 
     private f<Drawable> ex() {
-        if (this.oT == null) {
-            this.oT = new d(this.duration, this.oS);
+        if (this.oS == null) {
+            this.oS = new d(this.duration, this.oR);
         }
-        return this.oT;
+        return this.oS;
     }
 }

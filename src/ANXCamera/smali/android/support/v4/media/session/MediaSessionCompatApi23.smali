@@ -14,7 +14,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -24,7 +24,7 @@
 .end method
 
 .method public static createCallback(Landroid/support/v4/media/session/MediaSessionCompatApi23$Callback;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "callback"    # Landroid/support/v4/media/session/MediaSessionCompatApi23$Callback;
 
     .line 25

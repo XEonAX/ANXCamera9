@@ -30,19 +30,19 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
-    .line 5758
+    .line 5764
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
 .end method
 
 .method public static getVoipContactCount(Landroid/content/Context;)I
-    .locals 3
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5804
+    .line 5810
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -59,10 +59,10 @@
 .end method
 
 .method public static getVoipNewContactCount(Landroid/content/Context;)I
-    .locals 3
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5812
+    .line 5818
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -79,10 +79,10 @@
 .end method
 
 .method public static isVoipActivated(Landroid/content/Context;)Z
-    .locals 3
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5768
+    .line 5774
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -99,10 +99,10 @@
 .end method
 
 .method public static isVoipCallLogAuto(Landroid/content/Context;)Z
-    .locals 3
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5792
+    .line 5798
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -119,10 +119,10 @@
 .end method
 
 .method public static isVoipEnabled(Landroid/content/Context;)Z
-    .locals 3
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5776
+    .line 5782
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -139,10 +139,10 @@
 .end method
 
 .method public static isVoipWifiAuto(Landroid/content/Context;)Z
-    .locals 3
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
 
-    .line 5784
+    .line 5790
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -159,11 +159,11 @@
 .end method
 
 .method public static setVoipActivated(Landroid/content/Context;Z)V
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "isActivated"    # Z
 
-    .line 5772
+    .line 5778
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -172,16 +172,16 @@
 
     invoke-static {v0, v1, p1}, Lmiui/provider/ExtraSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5773
+    .line 5779
     return-void
 .end method
 
 .method public static setVoipCallLogAuto(Landroid/content/Context;Z)V
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "enabled"    # Z
 
-    .line 5796
+    .line 5802
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -190,16 +190,16 @@
 
     invoke-static {v0, v1, p1}, Lmiui/provider/ExtraSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5797
+    .line 5803
     return-void
 .end method
 
 .method public static setVoipContactCount(Landroid/content/Context;I)V
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "count"    # I
 
-    .line 5800
+    .line 5806
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -208,16 +208,16 @@
 
     invoke-static {v0, v1, p1}, Lmiui/provider/ExtraSettings$System;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
 
-    .line 5801
+    .line 5807
     return-void
 .end method
 
 .method public static setVoipEnabled(Landroid/content/Context;Z)V
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "enabled"    # Z
 
-    .line 5780
+    .line 5786
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -226,16 +226,16 @@
 
     invoke-static {v0, v1, p1}, Lmiui/provider/ExtraSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5781
+    .line 5787
     return-void
 .end method
 
 .method public static setVoipNewContactCount(Landroid/content/Context;I)V
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "count"    # I
 
-    .line 5808
+    .line 5814
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -244,16 +244,16 @@
 
     invoke-static {v0, v1, p1}, Lmiui/provider/ExtraSettings$System;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
 
-    .line 5809
+    .line 5815
     return-void
 .end method
 
 .method public static setVoipWifiAuto(Landroid/content/Context;Z)V
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "enabled"    # Z
 
-    .line 5788
+    .line 5794
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v0
@@ -262,6 +262,6 @@
 
     invoke-static {v0, v1, p1}, Lmiui/provider/ExtraSettings$System;->putBoolean(Landroid/content/ContentResolver;Ljava/lang/String;Z)Z
 
-    .line 5789
+    .line 5795
     return-void
 .end method

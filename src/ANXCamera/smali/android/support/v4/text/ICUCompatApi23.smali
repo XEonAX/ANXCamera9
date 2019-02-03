@@ -11,7 +11,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 5
+    .registers 5
 
     .line 34
     :try_start_0
@@ -40,8 +40,8 @@
     move-result-object v1
 
     sput-object v1, Landroid/support/v4/text/ICUCompatApi23;->sAddLikelySubtagsMethod:Ljava/lang/reflect/Method;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_16
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_16} :catch_18
 
     .line 39
     .end local v0    # "clazz":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
@@ -51,7 +51,7 @@
     return-void
 
     .line 37
-    :catch_0
+    :catch_18
     move-exception v0
 
     .line 38
@@ -64,7 +64,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 25
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -73,13 +73,13 @@
 .end method
 
 .method public static maximizeAndGetScript(Ljava/util/Locale;)Ljava/lang/String;
-    .locals 3
+    .registers 4
     .param p0, "locale"    # Ljava/util/Locale;
 
     .line 45
     const/4 v0, 0x1
 
-    :try_start_0
+    :try_start_1
     new-array v0, v0, [Ljava/lang/Object;
 
     const/4 v1, 0x0
@@ -101,15 +101,15 @@
     invoke-virtual {v1}, Ljava/util/Locale;->getScript()Ljava/lang/String;
 
     move-result-object v1
-    :try_end_0
-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_13
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_1 .. :try_end_13} :catch_1b
+    .catch Ljava/lang/IllegalAccessException; {:try_start_1 .. :try_end_13} :catch_14
 
     return-object v1
 
     .line 49
     .end local v0    # "args":[Ljava/lang/Object;
-    :catch_0
+    :catch_14
     move-exception v0
 
     .line 50
@@ -119,10 +119,10 @@
     invoke-static {v1, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .end local v0    # "e":Ljava/lang/IllegalAccessException;
-    goto :goto_0
+    goto :goto_22
 
     .line 47
-    :catch_1
+    :catch_1b
     move-exception v0
 
     .line 48
@@ -136,7 +136,7 @@
     nop
 
     .line 53
-    :goto_0
+    :goto_22
     invoke-virtual {p0}, Ljava/util/Locale;->getScript()Ljava/lang/String;
 
     move-result-object v0

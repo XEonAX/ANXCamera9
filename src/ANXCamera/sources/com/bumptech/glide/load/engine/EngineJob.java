@@ -20,16 +20,16 @@ class EngineJob<R> implements a<R>, c {
     private static final int fK = 1;
     private static final int fL = 2;
     private static final int fM = 3;
-    private final com.bumptech.glide.load.engine.b.a F;
     private final com.bumptech.glide.load.engine.b.a H;
-    private final com.bumptech.glide.load.engine.b.a Q;
-    private boolean dT;
-    private p<?> dU;
+    private final com.bumptech.glide.load.engine.b.a I;
+    private final com.bumptech.glide.load.engine.b.a S;
+    private boolean dU;
+    private p<?> dV;
     private DataSource dataSource;
-    private volatile boolean dp;
-    private boolean eC;
-    private final com.bumptech.glide.util.a.c et;
-    private final Pool<EngineJob<?>> eu;
+    private volatile boolean dq;
+    private boolean eD;
+    private final com.bumptech.glide.util.a.c eu;
+    private final Pool<EngineJob<?>> ev;
     private final com.bumptech.glide.load.engine.b.a fB;
     private final h fC;
     private final List<g> fN;
@@ -87,23 +87,23 @@ class EngineJob<R> implements a<R>, c {
     @VisibleForTesting
     EngineJob(com.bumptech.glide.load.engine.b.a aVar, com.bumptech.glide.load.engine.b.a aVar2, com.bumptech.glide.load.engine.b.a aVar3, com.bumptech.glide.load.engine.b.a aVar4, h hVar, Pool<EngineJob<?>> pool, EngineResourceFactory engineResourceFactory) {
         this.fN = new ArrayList(2);
-        this.et = com.bumptech.glide.util.a.c.eM();
-        this.H = aVar;
-        this.F = aVar2;
+        this.eu = com.bumptech.glide.util.a.c.eM();
+        this.I = aVar;
+        this.H = aVar2;
         this.fB = aVar3;
-        this.Q = aVar4;
+        this.S = aVar4;
         this.fC = hVar;
-        this.eu = pool;
+        this.ev = pool;
         this.fO = engineResourceFactory;
     }
 
     @VisibleForTesting
     EngineJob<R> init(com.bumptech.glide.load.c cVar, boolean z, boolean z2, boolean z3, boolean z4) {
         this.key = cVar;
-        this.dT = z;
+        this.dU = z;
         this.fP = z2;
         this.fQ = z3;
-        this.eC = z4;
+        this.eD = z4;
         return this;
     }
 
@@ -111,7 +111,7 @@ class EngineJob<R> implements a<R>, c {
         com.bumptech.glide.load.engine.b.a aVar;
         this.fW = decodeJob;
         if (decodeJob.aB()) {
-            aVar = this.H;
+            aVar = this.I;
         } else {
             aVar = aT();
         }
@@ -120,7 +120,7 @@ class EngineJob<R> implements a<R>, c {
 
     void a(g gVar) {
         k.eF();
-        this.et.eN();
+        this.eu.eN();
         if (this.fR) {
             gVar.c(this.fV, this.dataSource);
         } else if (this.fT) {
@@ -132,7 +132,7 @@ class EngineJob<R> implements a<R>, c {
 
     void b(g gVar) {
         k.eF();
-        this.et.eN();
+        this.eu.eN();
         if (this.fR || this.fT) {
             c(gVar);
             return;
@@ -144,14 +144,14 @@ class EngineJob<R> implements a<R>, c {
     }
 
     boolean aS() {
-        return this.eC;
+        return this.eD;
     }
 
     private com.bumptech.glide.load.engine.b.a aT() {
         if (this.fP) {
             return this.fB;
         }
-        return this.fQ ? this.Q : this.F;
+        return this.fQ ? this.S : this.H;
     }
 
     private void c(g gVar) {
@@ -168,28 +168,28 @@ class EngineJob<R> implements a<R>, c {
     }
 
     void cancel() {
-        if (!this.fT && !this.fR && !this.dp) {
-            this.dp = true;
+        if (!this.fT && !this.fR && !this.dq) {
+            this.dq = true;
             this.fW.cancel();
             this.fC.a(this, this.key);
         }
     }
 
     boolean isCancelled() {
-        return this.dp;
+        return this.dq;
     }
 
     void aU() {
-        this.et.eN();
-        if (this.dp) {
-            this.dU.recycle();
+        this.eu.eN();
+        if (this.dq) {
+            this.dV.recycle();
             release(false);
         } else if (this.fN.isEmpty()) {
             throw new IllegalStateException("Received a resource without any callbacks to notify");
         } else if (this.fR) {
             throw new IllegalStateException("Already have resource");
         } else {
-            this.fV = this.fO.a(this.dU, this.dT);
+            this.fV = this.fO.a(this.dV, this.dU);
             this.fR = true;
             this.fV.acquire();
             this.fC.a(this, this.key, this.fV);
@@ -207,8 +207,8 @@ class EngineJob<R> implements a<R>, c {
     }
 
     void aV() {
-        this.et.eN();
-        if (this.dp) {
+        this.eu.eN();
+        if (this.dq) {
             this.fC.a(this, this.key);
             release(false);
             return;
@@ -221,22 +221,22 @@ class EngineJob<R> implements a<R>, c {
         this.fN.clear();
         this.key = null;
         this.fV = null;
-        this.dU = null;
+        this.dV = null;
         if (this.fU != null) {
             this.fU.clear();
         }
         this.fT = false;
-        this.dp = false;
+        this.dq = false;
         this.fR = false;
         this.fW.release(z);
         this.fW = null;
         this.fS = null;
         this.dataSource = null;
-        this.eu.release(this);
+        this.ev.release(this);
     }
 
     public void c(p<R> pVar, DataSource dataSource) {
-        this.dU = pVar;
+        this.dV = pVar;
         this.dataSource = dataSource;
         fJ.obtainMessage(1, this).sendToTarget();
     }
@@ -251,8 +251,8 @@ class EngineJob<R> implements a<R>, c {
     }
 
     void aW() {
-        this.et.eN();
-        if (this.dp) {
+        this.eu.eN();
+        if (this.dq) {
             release(false);
         } else if (this.fN.isEmpty()) {
             throw new IllegalStateException("Received an exception without any callbacks to notify");
@@ -272,6 +272,6 @@ class EngineJob<R> implements a<R>, c {
 
     @NonNull
     public com.bumptech.glide.util.a.c aK() {
-        return this.et;
+        return this.eu;
     }
 }

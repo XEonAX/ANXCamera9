@@ -16,7 +16,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 116
     const/4 v0, 0x0
@@ -27,7 +27,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v4/view/accessibility/AccessibilityWindowInfoCompat$1;)V
-    .locals 0
+    .registers 2
     .param p1, "x0"    # Landroid/support/v4/view/accessibility/AccessibilityWindowInfoCompat$1;
 
     .line 116
@@ -39,7 +39,7 @@
 
 # virtual methods
 .method public getBoundsInScreen(Ljava/lang/Object;Landroid/graphics/Rect;)V
-    .locals 0
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "outBounds"    # Landroid/graphics/Rect;
 
@@ -51,7 +51,7 @@
 .end method
 
 .method public getChild(Ljava/lang/Object;I)Ljava/lang/Object;
-    .locals 1
+    .registers 4
     .param p1, "info"    # Ljava/lang/Object;
     .param p2, "index"    # I
 
@@ -64,7 +64,7 @@
 .end method
 
 .method public getChildCount(Ljava/lang/Object;)I
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 174
@@ -76,7 +76,7 @@
 .end method
 
 .method public getId(Ljava/lang/Object;)I
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 149
@@ -88,7 +88,7 @@
 .end method
 
 .method public getLayer(Ljava/lang/Object;)I
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 134
@@ -100,7 +100,7 @@
 .end method
 
 .method public getParent(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 144
@@ -112,7 +112,7 @@
 .end method
 
 .method public getRoot(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 139
@@ -124,7 +124,7 @@
 .end method
 
 .method public getType(Ljava/lang/Object;)I
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 129
@@ -136,7 +136,7 @@
 .end method
 
 .method public isAccessibilityFocused(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 169
@@ -148,7 +148,7 @@
 .end method
 
 .method public isActive(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 159
@@ -160,7 +160,7 @@
 .end method
 
 .method public isFocused(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 164
@@ -172,7 +172,7 @@
 .end method
 
 .method public obtain()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 119
     invoke-static {}, Landroid/support/v4/view/accessibility/AccessibilityWindowInfoCompatApi21;->obtain()Ljava/lang/Object;
@@ -183,7 +183,7 @@
 .end method
 
 .method public obtain(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 124
@@ -195,7 +195,7 @@
 .end method
 
 .method public recycle(Ljava/lang/Object;)V
-    .locals 0
+    .registers 2
     .param p1, "info"    # Ljava/lang/Object;
 
     .line 184

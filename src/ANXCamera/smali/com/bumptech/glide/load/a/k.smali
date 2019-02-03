@@ -24,11 +24,11 @@
 
 
 # static fields
-.field private static final dq:I = 0x500000
+.field private static final dt:I = 0x500000
 
 
 # instance fields
-.field private final dt:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
+.field private final du:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
 
 
 # direct methods
@@ -43,10 +43,10 @@
 
     invoke-direct {v0, p1, p2}, Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;-><init>(Ljava/io/InputStream;Lcom/bumptech/glide/load/engine/bitmap_recycle/b;)V
 
-    iput-object v0, p0, Lcom/bumptech/glide/load/a/k;->dt:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
+    iput-object v0, p0, Lcom/bumptech/glide/load/a/k;->du:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
 
     .line 23
-    iget-object p1, p0, Lcom/bumptech/glide/load/a/k;->dt:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
+    iget-object p1, p0, Lcom/bumptech/glide/load/a/k;->du:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
 
     const/high16 p2, 0x500000
 
@@ -89,12 +89,12 @@
     .end annotation
 
     .line 29
-    iget-object v0, p0, Lcom/bumptech/glide/load/a/k;->dt:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
+    iget-object v0, p0, Lcom/bumptech/glide/load/a/k;->du:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;->reset()V
 
     .line 30
-    iget-object v0, p0, Lcom/bumptech/glide/load/a/k;->dt:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
+    iget-object v0, p0, Lcom/bumptech/glide/load/a/k;->du:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
 
     return-object v0
 .end method
@@ -103,7 +103,7 @@
     .locals 1
 
     .line 35
-    iget-object v0, p0, Lcom/bumptech/glide/load/a/k;->dt:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
+    iget-object v0, p0, Lcom/bumptech/glide/load/a/k;->du:Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/bitmap/RecyclableBufferedInputStream;->release()V
 

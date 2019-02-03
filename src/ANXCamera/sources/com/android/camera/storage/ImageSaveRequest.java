@@ -4,12 +4,11 @@ import android.content.Context;
 import android.location.Location;
 import android.net.Uri;
 import com.android.camera.Thumbnail;
-import com.android.camera.effect.renders.SnapshotEffectRender;
 import com.android.camera.log.Log;
 import com.android.gallery3d.exif.ExifInterface;
 import com.xiaomi.camera.core.PictureInfo;
 
-public class ImageSaveRequest implements SaveRequest {
+public final class ImageSaveRequest implements SaveRequest {
     private static final String TAG = "ImageSaveRequest";
     private String algorithmName;
     private Context context;
@@ -23,7 +22,6 @@ public class ImageSaveRequest implements SaveRequest {
     private boolean isMap;
     private boolean isParallelProcess;
     private Location loc;
-    private SnapshotEffectRender mEffectProcessor;
     private boolean mirror;
     private boolean needThumbnail;
     public String oldTitle;
@@ -39,7 +37,31 @@ public class ImageSaveRequest implements SaveRequest {
         this.saverCallback = saverCallback;
     }
 
-    public void fillCommonParameter() {
+    ImageSaveRequest() {
+    }
+
+    ImageSaveRequest(byte[] bArr, boolean z, String str, String str2, long j, Uri uri, Location location, int i, int i2, ExifInterface exifInterface, int i3, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, String str3, PictureInfo pictureInfo) {
+        byte[] bArr2 = bArr;
+        Location location2 = location;
+        this.data = bArr2;
+        this.needThumbnail = z;
+        this.date = j;
+        this.uri = uri;
+        this.title = str;
+        this.oldTitle = str2;
+        this.loc = location2 == null ? null : new Location(location2);
+        this.width = i;
+        this.height = i2;
+        this.exif = exifInterface;
+        this.orientation = i3;
+        this.isHide = z2;
+        this.isMap = z3;
+        this.finalImage = z4;
+        this.mirror = z5;
+        this.isParallelProcess = z6;
+        this.algorithmName = str3;
+        this.size = bArr2 == null ? 0 : bArr2.length;
+        this.info = pictureInfo;
     }
 
     public void run() {
@@ -77,7 +99,7 @@ public class ImageSaveRequest implements SaveRequest {
             } else {
                 this.saverCallback.updatePreviewThumbnailUri(this.uri);
             }
-            this.saverCallback.notifyNewImage(this.uri, isFinal());
+            this.saverCallback.notifyNewMediaData(this.uri, this.title, 31);
             return;
         }
         Log.e(TAG, "image save failed");
@@ -100,29 +122,5 @@ public class ImageSaveRequest implements SaveRequest {
     public void onFinish() {
         this.data = null;
         this.saverCallback.onSaveFinish(getSize());
-    }
-
-    public ImageSaveRequest(byte[] bArr, boolean z, String str, String str2, long j, Uri uri, Location location, int i, int i2, ExifInterface exifInterface, int i3, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, String str3, PictureInfo pictureInfo) {
-        byte[] bArr2 = bArr;
-        Location location2 = location;
-        this.data = bArr2;
-        this.needThumbnail = z;
-        this.date = j;
-        this.uri = uri;
-        this.title = str;
-        this.oldTitle = str2;
-        this.loc = location2 == null ? null : new Location(location2);
-        this.width = i;
-        this.height = i2;
-        this.exif = exifInterface;
-        this.orientation = i3;
-        this.isHide = z2;
-        this.isMap = z3;
-        this.finalImage = z4;
-        this.mirror = z5;
-        this.isParallelProcess = z6;
-        this.algorithmName = str3;
-        this.size = bArr2 == null ? 0 : bArr2.length;
-        this.info = pictureInfo;
     }
 }

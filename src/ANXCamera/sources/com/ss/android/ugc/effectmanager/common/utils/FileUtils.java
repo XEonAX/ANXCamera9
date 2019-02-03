@@ -136,12 +136,12 @@ public class FileUtils {
         return z;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:46:0x00bd A:{SYNTHETIC, Splitter: B:46:0x00bd} */
-    /* JADX WARNING: Removed duplicated region for block: B:50:0x00c5 A:{Catch:{ IOException -> 0x00c1 }} */
-    /* JADX WARNING: Removed duplicated region for block: B:46:0x00bd A:{SYNTHETIC, Splitter: B:46:0x00bd} */
-    /* JADX WARNING: Removed duplicated region for block: B:50:0x00c5 A:{Catch:{ IOException -> 0x00c1 }} */
-    /* JADX WARNING: Removed duplicated region for block: B:46:0x00bd A:{SYNTHETIC, Splitter: B:46:0x00bd} */
-    /* JADX WARNING: Removed duplicated region for block: B:50:0x00c5 A:{Catch:{ IOException -> 0x00c1 }} */
+    /* JADX WARNING: Removed duplicated region for block: B:46:0x00c0 A:{SYNTHETIC, Splitter: B:46:0x00c0} */
+    /* JADX WARNING: Removed duplicated region for block: B:50:0x00c8 A:{Catch:{ IOException -> 0x00c4 }} */
+    /* JADX WARNING: Removed duplicated region for block: B:46:0x00c0 A:{SYNTHETIC, Splitter: B:46:0x00c0} */
+    /* JADX WARNING: Removed duplicated region for block: B:50:0x00c8 A:{Catch:{ IOException -> 0x00c4 }} */
+    /* JADX WARNING: Removed duplicated region for block: B:46:0x00c0 A:{SYNTHETIC, Splitter: B:46:0x00c0} */
+    /* JADX WARNING: Removed duplicated region for block: B:50:0x00c8 A:{Catch:{ IOException -> 0x00c4 }} */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     public static void unZip(String str, String str2) throws UnzipException {
         IOException e;
@@ -186,6 +186,7 @@ public class FileUtils {
                                     bufferedOutputStream2.write(bArr, 0, read);
                                 }
                                 bufferedOutputStream2.flush();
+                                bufferedOutputStream2.close();
                                 bufferedOutputStream = bufferedOutputStream2;
                             } catch (IOException e2) {
                                 e = e2;
@@ -197,15 +198,8 @@ public class FileUtils {
                                     zipInputStream = bufferedOutputStream;
                                     bufferedOutputStream = bufferedOutputStream2;
                                     if (zipInputStream != null) {
-                                        try {
-                                            zipInputStream.close();
-                                        } catch (IOException e3) {
-                                            e3.printStackTrace();
-                                            throw th;
-                                        }
                                     }
                                     if (bufferedOutputStream != null) {
-                                        bufferedOutputStream.close();
                                     }
                                     throw th;
                                 }
@@ -222,20 +216,27 @@ public class FileUtils {
                     }
                     try {
                         break;
-                    } catch (IOException e4) {
-                        e4.printStackTrace();
+                    } catch (IOException e3) {
+                        e3.printStackTrace();
                         return;
                     }
-                } catch (IOException e5) {
-                    e4 = e5;
+                } catch (IOException e4) {
+                    e3 = e4;
                     bufferedOutputStream2 = bufferedOutputStream;
                     bufferedOutputStream = zipInputStream;
-                    throw new UnzipException(e4.getMessage());
+                    throw new UnzipException(e3.getMessage());
                 } catch (Throwable th4) {
                     th = th4;
                     if (zipInputStream != null) {
+                        try {
+                            zipInputStream.close();
+                        } catch (IOException e5) {
+                            e5.printStackTrace();
+                            throw th;
+                        }
                     }
                     if (bufferedOutputStream != null) {
+                        bufferedOutputStream.close();
                     }
                     throw th;
                 }
@@ -245,9 +246,9 @@ public class FileUtils {
                 bufferedOutputStream.close();
             }
         } catch (IOException e6) {
-            e4 = e6;
+            e3 = e6;
             bufferedOutputStream2 = null;
-            throw new UnzipException(e4.getMessage());
+            throw new UnzipException(e3.getMessage());
         } catch (Throwable th5) {
             th = th5;
             zipInputStream = null;
@@ -408,7 +409,7 @@ public class FileUtils {
     }
 
     public static void removeDir(File file) {
-        if (file.isDirectory()) {
+        if (file != null && file.exists() && file.isDirectory()) {
             File[] listFiles = file.listFiles();
             if (listFiles != null && listFiles.length != 0) {
                 for (File file2 : listFiles) {
@@ -418,7 +419,12 @@ public class FileUtils {
                         file2.delete();
                     }
                 }
+                file.delete();
             }
         }
+    }
+
+    public static void removeDir(String str) {
+        removeDir(new File(str));
     }
 }

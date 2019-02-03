@@ -105,4 +105,13 @@ public abstract class ComponentData {
     public boolean isEmpty() {
         return this.mItems == null || this.mItems.isEmpty();
     }
+
+    public boolean disableUpdate() {
+        return false;
+    }
+
+    @StringRes
+    public int getDisableReasonString() {
+        return 0;
+    }
 }

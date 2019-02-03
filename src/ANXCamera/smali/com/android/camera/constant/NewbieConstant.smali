@@ -20,6 +20,8 @@
 
 .field public static final NEWBIE_PORTRAIT:I = 0x1
 
+.field public static final NEWBIE_ULTRA_WIDE:I = 0x4
+
 
 # direct methods
 .method public constructor <init>()V

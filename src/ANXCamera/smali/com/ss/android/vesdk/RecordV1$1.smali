@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/ss/android/vesdk/RecordV1;)V
     .locals 0
 
-    .line 35
+    .line 36
     iput-object p1, p0, Lcom/ss/android/vesdk/RecordV1$1;->this$0:Lcom/ss/android/vesdk/RecordV1;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public onCreateTexture()Lcom/ss/android/medialib/camera/TextureHolder$Texture;
     .locals 3
 
-    .line 38
+    .line 39
     iget-object v0, p0, Lcom/ss/android/vesdk/RecordV1$1;->this$0:Lcom/ss/android/vesdk/RecordV1;
 
     iget-object v1, p0, Lcom/ss/android/vesdk/RecordV1$1;->this$0:Lcom/ss/android/vesdk/RecordV1;
@@ -69,7 +69,7 @@
     :goto_0
     invoke-static {v0, v1}, Lcom/ss/android/vesdk/RecordV1;->access$002(Lcom/ss/android/vesdk/RecordV1;Lcom/ss/android/vesdk/Texture;)Lcom/ss/android/vesdk/Texture;
 
-    .line 39
+    .line 40
     iget-object v0, p0, Lcom/ss/android/vesdk/RecordV1$1;->this$0:Lcom/ss/android/vesdk/RecordV1;
 
     invoke-static {v0}, Lcom/ss/android/vesdk/RecordV1;->access$000(Lcom/ss/android/vesdk/RecordV1;)Lcom/ss/android/vesdk/Texture;
@@ -112,7 +112,7 @@
 .method public onDestroy()Z
     .locals 1
 
-    .line 54
+    .line 55
     iget-object v0, p0, Lcom/ss/android/vesdk/RecordV1$1;->this$0:Lcom/ss/android/vesdk/RecordV1;
 
     invoke-static {v0}, Lcom/ss/android/vesdk/RecordV1;->access$100(Lcom/ss/android/vesdk/RecordV1;)Lcom/ss/android/vesdk/IRenderCallback;
@@ -143,7 +143,7 @@
 .method public onTextureCreated(Lcom/ss/android/medialib/camera/TextureHolder$Texture;)V
     .locals 3
 
-    .line 44
+    .line 45
     iget-object v0, p0, Lcom/ss/android/vesdk/RecordV1$1;->this$0:Lcom/ss/android/vesdk/RecordV1;
 
     invoke-static {v0}, Lcom/ss/android/vesdk/RecordV1;->access$100(Lcom/ss/android/vesdk/RecordV1;)Lcom/ss/android/vesdk/IRenderCallback;
@@ -152,7 +152,7 @@
 
     if-eqz v0, :cond_1
 
-    .line 45
+    .line 46
     iget-object v0, p0, Lcom/ss/android/vesdk/RecordV1$1;->this$0:Lcom/ss/android/vesdk/RecordV1;
 
     invoke-static {v0}, Lcom/ss/android/vesdk/RecordV1;->access$000(Lcom/ss/android/vesdk/RecordV1;)Lcom/ss/android/vesdk/Texture;
@@ -161,7 +161,7 @@
 
     if-nez v0, :cond_0
 
-    .line 46
+    .line 47
     iget-object v0, p0, Lcom/ss/android/vesdk/RecordV1$1;->this$0:Lcom/ss/android/vesdk/RecordV1;
 
     new-instance v1, Lcom/ss/android/vesdk/Texture;
@@ -178,7 +178,7 @@
 
     invoke-static {v0, v1}, Lcom/ss/android/vesdk/RecordV1;->access$002(Lcom/ss/android/vesdk/RecordV1;Lcom/ss/android/vesdk/Texture;)Lcom/ss/android/vesdk/Texture;
 
-    .line 48
+    .line 49
     :cond_0
     iget-object p1, p0, Lcom/ss/android/vesdk/RecordV1$1;->this$0:Lcom/ss/android/vesdk/RecordV1;
 
@@ -194,7 +194,7 @@
 
     invoke-interface {p1, v0}, Lcom/ss/android/vesdk/IRenderCallback;->onTextureCreated(Lcom/ss/android/vesdk/Texture;)V
 
-    .line 50
+    .line 51
     :cond_1
     return-void
 .end method

@@ -16,7 +16,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 148
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public clampViewPositionHorizontal(Landroid/view/View;II)I
-    .locals 1
+    .registers 5
     .param p1, "child"    # Landroid/view/View;
     .param p2, "left"    # I
     .param p3, "dx"    # I
@@ -39,7 +39,7 @@
 .end method
 
 .method public clampViewPositionVertical(Landroid/view/View;II)I
-    .locals 1
+    .registers 5
     .param p1, "child"    # Landroid/view/View;
     .param p2, "top"    # I
     .param p3, "dy"    # I
@@ -51,7 +51,7 @@
 .end method
 
 .method public getOrderedChildIndex(I)I
-    .locals 0
+    .registers 2
     .param p1, "index"    # I
 
     .line 249
@@ -59,7 +59,7 @@
 .end method
 
 .method public getViewHorizontalDragRange(Landroid/view/View;)I
-    .locals 1
+    .registers 3
     .param p1, "child"    # Landroid/view/View;
 
     .line 260
@@ -69,7 +69,7 @@
 .end method
 
 .method public getViewVerticalDragRange(Landroid/view/View;)I
-    .locals 1
+    .registers 3
     .param p1, "child"    # Landroid/view/View;
 
     .line 271
@@ -79,7 +79,7 @@
 .end method
 
 .method public onEdgeDragStarted(II)V
-    .locals 0
+    .registers 3
     .param p1, "edgeFlags"    # I
     .param p2, "pointerId"    # I
 
@@ -88,7 +88,7 @@
 .end method
 
 .method public onEdgeLock(I)Z
-    .locals 1
+    .registers 3
     .param p1, "edgeFlags"    # I
 
     .line 226
@@ -98,7 +98,7 @@
 .end method
 
 .method public onEdgeTouched(II)V
-    .locals 0
+    .registers 3
     .param p1, "edgeFlags"    # I
     .param p2, "pointerId"    # I
 
@@ -107,7 +107,7 @@
 .end method
 
 .method public onViewCaptured(Landroid/view/View;I)V
-    .locals 0
+    .registers 3
     .param p1, "capturedChild"    # Landroid/view/View;
     .param p2, "activePointerId"    # I
 
@@ -116,7 +116,7 @@
 .end method
 
 .method public onViewDragStateChanged(I)V
-    .locals 0
+    .registers 2
     .param p1, "state"    # I
 
     .line 159
@@ -124,7 +124,7 @@
 .end method
 
 .method public onViewPositionChanged(Landroid/view/View;IIII)V
-    .locals 0
+    .registers 6
     .param p1, "changedView"    # Landroid/view/View;
     .param p2, "left"    # I
     .param p3, "top"    # I
@@ -136,7 +136,7 @@
 .end method
 
 .method public onViewReleased(Landroid/view/View;FF)V
-    .locals 0
+    .registers 4
     .param p1, "releasedChild"    # Landroid/view/View;
     .param p2, "xvel"    # F
     .param p3, "yvel"    # F

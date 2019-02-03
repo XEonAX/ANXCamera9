@@ -27,7 +27,7 @@
 .method constructor <init>(Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;)V
     .locals 0
 
-    .line 48
+    .line 47
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository$1;->this$0:Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository;
 
     iput-object p2, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository$1;->val$listener:Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;
@@ -42,17 +42,17 @@
 .method public onFinally()V
     .locals 1
 
-    .line 51
+    .line 50
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository$1;->val$listener:Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;
 
     if-eqz v0, :cond_0
 
-    .line 52
+    .line 51
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/UpdateTagRepository$1;->val$listener:Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;
 
     invoke-interface {v0}, Lcom/ss/android/ugc/effectmanager/effect/listener/IUpdateTagListener;->onFinally()V
 
-    .line 54
+    .line 53
     :cond_0
     return-void
 .end method

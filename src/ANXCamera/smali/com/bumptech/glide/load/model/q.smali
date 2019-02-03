@@ -29,7 +29,7 @@
 
 
 # instance fields
-.field private final aF:Landroid/support/v4/util/Pools$Pool;
+.field private final aG:Landroid/support/v4/util/Pools$Pool;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Landroid/support/v4/util/Pools$Pool<",
@@ -152,7 +152,7 @@
     iput-object v0, p0, Lcom/bumptech/glide/load/model/q;->jC:Ljava/util/Set;
 
     .line 38
-    iput-object p1, p0, Lcom/bumptech/glide/load/model/q;->aF:Landroid/support/v4/util/Pools$Pool;
+    iput-object p1, p0, Lcom/bumptech/glide/load/model/q;->aG:Landroid/support/v4/util/Pools$Pool;
 
     .line 39
     iput-object p2, p0, Lcom/bumptech/glide/load/model/q;->jB:Lcom/bumptech/glide/load/model/q$c;
@@ -438,7 +438,7 @@
     .line 151
     iget-object p1, p0, Lcom/bumptech/glide/load/model/q;->jB:Lcom/bumptech/glide/load/model/q$c;
 
-    iget-object p2, p0, Lcom/bumptech/glide/load/model/q;->aF:Landroid/support/v4/util/Pools$Pool;
+    iget-object p2, p0, Lcom/bumptech/glide/load/model/q;->aG:Landroid/support/v4/util/Pools$Pool;
 
     invoke-virtual {p1, v0, p2}, Lcom/bumptech/glide/load/model/q$c;->a(Ljava/util/List;Landroid/support/v4/util/Pools$Pool;)Lcom/bumptech/glide/load/model/p;
 

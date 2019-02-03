@@ -135,22 +135,22 @@
 .method private cancelTimer()V
     .locals 1
 
-    .line 124
+    .line 125
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mTimer:Ljava/util/Timer;
 
     if-eqz v0, :cond_0
 
-    .line 125
+    .line 126
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mTimer:Ljava/util/Timer;
 
     invoke-virtual {v0}, Ljava/util/Timer;->cancel()V
 
-    .line 126
+    .line 127
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/LocationManager;->mTimer:Ljava/util/Timer;
 
-    .line 128
+    .line 129
     :cond_0
     return-void
 .end method
@@ -158,20 +158,20 @@
 .method private getBetterLocation(Landroid/location/Location;Landroid/location/Location;)Landroid/location/Location;
     .locals 4
 
-    .line 215
+    .line 216
     nop
 
-    .line 216
+    .line 217
     if-nez p2, :cond_0
 
-    .line 217
+    .line 218
     return-object p1
 
-    .line 219
+    .line 220
     :cond_0
     if-eqz p1, :cond_1
 
-    .line 220
+    .line 221
     invoke-virtual {p1}, Landroid/location/Location;->getTime()J
 
     move-result-wide v0
@@ -184,7 +184,7 @@
 
     if-ltz v0, :cond_1
 
-    .line 221
+    .line 222
     invoke-virtual {p1}, Landroid/location/Location;->getTime()J
 
     move-result-wide v0
@@ -199,7 +199,7 @@
 
     const-string v0, "gps"
 
-    .line 222
+    .line 223
     invoke-virtual {p2}, Landroid/location/Location;->getProvider()Ljava/lang/String;
 
     move-result-object v1
@@ -210,11 +210,11 @@
 
     if-eqz v0, :cond_2
 
-    .line 223
+    .line 224
     :cond_1
     nop
 
-    .line 225
+    .line 226
     move-object p1, p2
 
     :cond_2
@@ -224,7 +224,7 @@
 .method private getLastLocation()V
     .locals 3
 
-    .line 193
+    .line 194
     :try_start_0
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mLocationManager:Landroid/location/LocationManager;
 
@@ -234,7 +234,7 @@
 
     move-result-object v0
 
-    .line 195
+    .line 196
     iget-object v1, p0, Lcom/android/camera/LocationManager;->mLocationManager:Landroid/location/LocationManager;
 
     const-string v2, "network"
@@ -243,14 +243,14 @@
 
     move-result-object v1
 
-    .line 197
+    .line 198
     invoke-direct {p0, v0, v1}, Lcom/android/camera/LocationManager;->getBetterLocation(Landroid/location/Location;Landroid/location/Location;)Landroid/location/Location;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/android/camera/LocationManager;->mLastKnownLocation:Landroid/location/Location;
 
-    .line 201
+    .line 202
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mCacheLocation:Landroid/location/Location;
 
     iget-object v1, p0, Lcom/android/camera/LocationManager;->mLastKnownLocation:Landroid/location/Location;
@@ -261,24 +261,24 @@
     :try_end_0
     .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 205
+    .line 206
     goto :goto_0
 
-    .line 202
+    .line 203
     :catch_0
     move-exception v0
 
-    .line 203
+    .line 204
     const-string v1, "LocationManager"
 
     const-string v2, "fail to request last location update, ignore"
 
     invoke-static {v1, v2, v0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 204
+    .line 205
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mCacheLocation:Landroid/location/Location;
 
-    .line 206
+    .line 207
     :goto_0
     invoke-direct {p0, v0}, Lcom/android/camera/LocationManager;->isValidLastKnownLocation(Landroid/location/Location;)Z
 
@@ -286,18 +286,18 @@
 
     if-eqz v1, :cond_0
 
-    .line 207
+    .line 208
     iput-object v0, p0, Lcom/android/camera/LocationManager;->mCacheLocation:Landroid/location/Location;
 
     goto :goto_1
 
-    .line 209
+    .line 210
     :cond_0
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/LocationManager;->mCacheLocation:Landroid/location/Location;
 
-    .line 211
+    .line 212
     :goto_1
     const-string v0, "LocationManager"
 
@@ -329,7 +329,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 212
+    .line 213
     return-void
 .end method
 
@@ -358,15 +358,15 @@
 .method private isValidLastKnownLocation(Landroid/location/Location;)Z
     .locals 4
 
-    .line 238
+    .line 239
     if-eqz p1, :cond_0
 
-    .line 239
+    .line 240
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
 
-    .line 240
+    .line 241
     invoke-virtual {p1}, Landroid/location/Location;->getTime()J
 
     move-result-wide v2
@@ -383,12 +383,12 @@
 
     if-gez p1, :cond_0
 
-    .line 241
+    .line 242
     const/4 p1, 0x1
 
     return p1
 
-    .line 244
+    .line 245
     :cond_0
     const/4 p1, 0x0
 
@@ -398,15 +398,15 @@
 .method private startReceivingLocationUpdates()V
     .locals 10
 
-    .line 131
+    .line 132
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mLocationManager:Landroid/location/LocationManager;
 
     if-nez v0, :cond_0
 
-    .line 132
+    .line 133
     nop
 
-    .line 133
+    .line 134
     invoke-static {}, Lcom/android/camera/CameraAppImpl;->getAndroidContext()Landroid/content/Context;
 
     move-result-object v0
@@ -421,13 +421,13 @@
 
     iput-object v0, p0, Lcom/android/camera/LocationManager;->mLocationManager:Landroid/location/LocationManager;
 
-    .line 135
+    .line 136
     :cond_0
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mLocationManager:Landroid/location/LocationManager;
 
     if-eqz v0, :cond_2
 
-    .line 137
+    .line 138
     const/4 v0, 0x1
 
     :try_start_0
@@ -450,11 +450,11 @@
 
     goto :goto_0
 
-    .line 144
+    .line 145
     :catch_0
     move-exception v1
 
-    .line 145
+    .line 146
     const-string v2, "LocationManager"
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -479,22 +479,22 @@
 
     goto :goto_1
 
-    .line 142
+    .line 143
     :catch_1
     move-exception v1
 
-    .line 143
+    .line 144
     const-string v2, "LocationManager"
 
     const-string v3, "fail to request location update, ignore"
 
     invoke-static {v2, v3, v1}, Lcom/android/camera/log/Log;->i(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 146
+    .line 147
     :goto_0
     nop
 
-    .line 148
+    .line 149
     :goto_1
     :try_start_1
     iget-object v4, p0, Lcom/android/camera/LocationManager;->mLocationManager:Landroid/location/LocationManager;
@@ -513,17 +513,17 @@
 
     invoke-virtual/range {v4 .. v9}, Landroid/location/LocationManager;->requestLocationUpdates(Ljava/lang/String;JFLandroid/location/LocationListener;)V
 
-    .line 154
+    .line 155
     invoke-direct {p0}, Lcom/android/camera/LocationManager;->cancelTimer()V
 
-    .line 155
+    .line 156
     new-instance v1, Ljava/util/Timer;
 
     invoke-direct {v1, v0}, Ljava/util/Timer;-><init>(Z)V
 
     iput-object v1, p0, Lcom/android/camera/LocationManager;->mTimer:Ljava/util/Timer;
 
-    .line 156
+    .line 157
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mTimer:Ljava/util/Timer;
 
     new-instance v1, Lcom/android/camera/LocationManager$1;
@@ -534,7 +534,7 @@
 
     invoke-virtual {v0, v1, v3, v4}, Ljava/util/Timer;->schedule(Ljava/util/TimerTask;J)V
 
-    .line 163
+    .line 164
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mListener:Lcom/android/camera/LocationManager$Listener;
 
     if-eqz v0, :cond_1
@@ -548,11 +548,11 @@
 
     goto :goto_2
 
-    .line 166
+    .line 167
     :catch_2
     move-exception v0
 
-    .line 167
+    .line 168
     const-string v1, "LocationManager"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -577,23 +577,23 @@
 
     goto :goto_3
 
-    .line 164
+    .line 165
     :catch_3
     move-exception v0
 
-    .line 165
+    .line 166
     const-string v1, "LocationManager"
 
     const-string v2, "fail to request location update, ignore"
 
     invoke-static {v1, v2, v0}, Lcom/android/camera/log/Log;->i(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 168
+    .line 169
     :cond_1
     :goto_2
     nop
 
-    .line 169
+    .line 170
     :goto_3
     const-string v0, "LocationManager"
 
@@ -601,10 +601,10 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 170
+    .line 171
     invoke-direct {p0}, Lcom/android/camera/LocationManager;->getLastLocation()V
 
-    .line 172
+    .line 173
     :cond_2
     return-void
 .end method
@@ -612,12 +612,12 @@
 .method private stopReceivingGPSLocationUpdates()V
     .locals 4
 
-    .line 248
+    .line 249
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mLocationManager:Landroid/location/LocationManager;
 
     if-eqz v0, :cond_0
 
-    .line 250
+    .line 251
     const/4 v0, 0x0
 
     :try_start_0
@@ -631,21 +631,21 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 253
+    .line 254
     goto :goto_0
 
-    .line 251
+    .line 252
     :catch_0
     move-exception v1
 
-    .line 252
+    .line 253
     const-string v2, "LocationManager"
 
     const-string v3, "fail to remove location listeners, ignore"
 
     invoke-static {v2, v3, v1}, Lcom/android/camera/log/Log;->i(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 254
+    .line 255
     :goto_0
     iget-object v1, p0, Lcom/android/camera/LocationManager;->mLocationListeners:[Lcom/android/camera/LocationManager$LocationListener;
 
@@ -653,14 +653,14 @@
 
     iput-boolean v0, v1, Lcom/android/camera/LocationManager$LocationListener;->mValid:Z
 
-    .line 255
+    .line 256
     const-string v0, "LocationManager"
 
     const-string v1, "stopReceivingGPSLocationUpdates"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 257
+    .line 258
     :cond_0
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mListener:Lcom/android/camera/LocationManager$Listener;
 
@@ -670,7 +670,7 @@
 
     invoke-interface {v0}, Lcom/android/camera/LocationManager$Listener;->hideGpsOnScreenIndicator()V
 
-    .line 258
+    .line 259
     :cond_1
     return-void
 .end method
@@ -678,15 +678,15 @@
 .method private stopReceivingLocationUpdates()V
     .locals 5
 
-    .line 175
+    .line 176
     invoke-direct {p0}, Lcom/android/camera/LocationManager;->cancelTimer()V
 
-    .line 176
+    .line 177
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mLocationManager:Landroid/location/LocationManager;
 
     if-eqz v0, :cond_1
 
-    .line 177
+    .line 178
     const/4 v0, 0x0
 
     move v1, v0
@@ -698,7 +698,7 @@
 
     if-ge v1, v2, :cond_0
 
-    .line 179
+    .line 180
     :try_start_0
     iget-object v2, p0, Lcom/android/camera/LocationManager;->mLocationManager:Landroid/location/LocationManager;
 
@@ -710,21 +710,21 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 182
+    .line 183
     goto :goto_1
 
-    .line 180
+    .line 181
     :catch_0
     move-exception v2
 
-    .line 181
+    .line 182
     const-string v3, "LocationManager"
 
     const-string v4, "fail to remove location listeners, ignore"
 
     invoke-static {v3, v4, v2}, Lcom/android/camera/log/Log;->i(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 183
+    .line 184
     :goto_1
     iget-object v2, p0, Lcom/android/camera/LocationManager;->mLocationListeners:[Lcom/android/camera/LocationManager$LocationListener;
 
@@ -732,12 +732,12 @@
 
     iput-boolean v0, v2, Lcom/android/camera/LocationManager$LocationListener;->mValid:Z
 
-    .line 177
+    .line 178
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
 
-    .line 185
+    .line 186
     :cond_0
     const-string v0, "LocationManager"
 
@@ -745,7 +745,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 187
+    .line 188
     :cond_1
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mListener:Lcom/android/camera/LocationManager$Listener;
 
@@ -755,7 +755,7 @@
 
     invoke-interface {v0}, Lcom/android/camera/LocationManager$Listener;->hideGpsOnScreenIndicator()V
 
-    .line 188
+    .line 189
     :cond_2
     return-void
 .end method
@@ -763,26 +763,26 @@
 .method private updateCacheLocation(Landroid/location/Location;)V
     .locals 1
 
-    .line 229
+    .line 230
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mCacheLocation:Landroid/location/Location;
 
     invoke-direct {p0, v0, p1}, Lcom/android/camera/LocationManager;->getBetterLocation(Landroid/location/Location;Landroid/location/Location;)Landroid/location/Location;
 
     move-result-object p1
 
-    .line 230
+    .line 231
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mCacheLocation:Landroid/location/Location;
 
     if-eqz v0, :cond_0
 
-    .line 231
+    .line 232
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mCacheLocation:Landroid/location/Location;
 
     invoke-virtual {v0, p1}, Landroid/location/Location;->set(Landroid/location/Location;)V
 
     goto :goto_0
 
-    .line 233
+    .line 234
     :cond_0
     new-instance v0, Landroid/location/Location;
 
@@ -790,7 +790,7 @@
 
     iput-object v0, p0, Lcom/android/camera/LocationManager;->mCacheLocation:Landroid/location/Location;
 
-    .line 235
+    .line 236
     :goto_0
     return-void
 .end method
@@ -804,6 +804,8 @@
     move-result-wide v0
 
     .line 103
+    if-eqz p0, :cond_0
+
     invoke-virtual {p0}, Landroid/location/Location;->getTime()J
 
     move-result-wide v2
@@ -821,9 +823,32 @@
     if-lez v2, :cond_0
 
     .line 104
+    const-string v2, "LocationManager"
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "validateLocation: modify to now from "
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p0}, Landroid/location/Location;->getTime()J
+
+    move-result-wide v4
+
+    invoke-virtual {v3, v4, v5}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v2, v3}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 105
     invoke-virtual {p0, v0, v1}, Landroid/location/Location;->setTime(J)V
 
-    .line 106
+    .line 107
     :cond_0
     return-object p0
 .end method
@@ -940,13 +965,17 @@
     .line 98
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mCacheLocation:Landroid/location/Location;
 
+    invoke-static {v0}, Lcom/android/camera/LocationManager;->validateLocation(Landroid/location/Location;)Landroid/location/Location;
+
+    move-result-object v0
+
     return-object v0
 .end method
 
 .method public getLastKnownLocation()Landroid/location/Location;
     .locals 1
 
-    .line 326
+    .line 327
     iget-boolean v0, p0, Lcom/android/camera/LocationManager;->mRecordLocation:Z
 
     if-nez v0, :cond_0
@@ -955,7 +984,7 @@
 
     return-object v0
 
-    .line 327
+    .line 328
     :cond_0
     iget-object v0, p0, Lcom/android/camera/LocationManager;->mLastKnownLocation:Landroid/location/Location;
 
@@ -965,15 +994,15 @@
 .method public recordLocation(Z)V
     .locals 1
 
-    .line 110
+    .line 111
     iget-boolean v0, p0, Lcom/android/camera/LocationManager;->mRecordLocation:Z
 
     if-eq v0, p1, :cond_1
 
-    .line 111
+    .line 112
     iput-boolean p1, p0, Lcom/android/camera/LocationManager;->mRecordLocation:Z
 
-    .line 112
+    .line 113
     if-eqz p1, :cond_0
 
     invoke-static {}, Lcom/android/camera/permission/PermissionManager;->checkCameraLocationPermissions()Z
@@ -982,16 +1011,16 @@
 
     if-eqz p1, :cond_0
 
-    .line 113
+    .line 114
     invoke-direct {p0}, Lcom/android/camera/LocationManager;->startReceivingLocationUpdates()V
 
     goto :goto_0
 
-    .line 115
+    .line 116
     :cond_0
     invoke-direct {p0}, Lcom/android/camera/LocationManager;->stopReceivingLocationUpdates()V
 
-    .line 118
+    .line 119
     :cond_1
     :goto_0
     return-void

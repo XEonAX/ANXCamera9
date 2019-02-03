@@ -1,6 +1,7 @@
 package com.android.camera;
 
 import android.support.annotation.NonNull;
+import android.util.Size;
 
 public class CameraSize implements Comparable<CameraSize> {
     public int height;
@@ -13,6 +14,19 @@ public class CameraSize implements Comparable<CameraSize> {
     public CameraSize(int i, int i2) {
         this.width = i;
         this.height = i2;
+    }
+
+    public CameraSize(Size size) {
+        this.width = size.getWidth();
+        this.height = size.getHeight();
+    }
+
+    public static CameraSize copyFrom(Size size) {
+        return new CameraSize(size.getWidth(), size.getHeight());
+    }
+
+    public Size toSizeObject() {
+        return new Size(this.width, this.height);
     }
 
     public CameraSize parseSize(CameraSize cameraSize) {

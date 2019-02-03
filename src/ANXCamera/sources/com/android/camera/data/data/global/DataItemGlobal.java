@@ -16,15 +16,17 @@ import java.lang.annotation.RetentionPolicy;
 public class DataItemGlobal extends DataItemBase {
     public static final String CTA_CAN_CONNECT_NETWORK_BY_IMPUNITY = "can_connect_network";
     public static final String DATA_COMMON_AI_SCENE_HINT = "pref_camera_first_ai_scene_use_hint_shown_key";
+    public static final String DATA_COMMON_AUTO_ZOOM_ULTRA_COUNT = "pref_auto_zoom_ultra_count";
     public static final String DATA_COMMON_CURRENT_CAMERA_ID = "pref_camera_id_key";
     public static final String DATA_COMMON_CURRENT_MODE = "pref_camera_mode_key_intent_";
+    public static final String DATA_COMMON_DEVICE_WATERMARK = "pref_dualcamera_watermark";
     public static final String DATA_COMMON_DUALCAMERA_USERDEFINE_WATERMARK = "user_define_watermark";
-    public static final String DATA_COMMON_DUALCAMERA_WATERMARK = "pref_dualcamera_watermark";
     public static final String DATA_COMMON_FOCUS_SHOOT = "pref_camera_focus_shoot_key";
     public static final String DATA_COMMON_FRONT_CAM_ROTATE_HINT = "pref_front_camera_first_use_hint_shown_key";
     private static final String DATA_COMMON_OPEN_TIME = "pref_camera_open_time";
     public static final String DATA_COMMON_PORTRAIT_HINT = "pref_camera_first_portrait_use_hint_shown_key";
     public static final String DATA_COMMON_TIME_WATER_MARK = "pref_watermark_key";
+    public static final String DATA_COMMON_ULTRA_WIDE_HINT = "pref_camera_first_ultra_wide_use_hint_shown_key";
     public static final int INTENT_TYPE_IMAGE = 1;
     public static final int INTENT_TYPE_NORMAL = 0;
     public static final int INTENT_TYPE_SCAN_QR = 3;
@@ -69,7 +71,7 @@ public class DataItemGlobal extends DataItemBase {
             case 173:
                 return 0;
             case 171:
-                if (b.hb()) {
+                if (b.ht()) {
                     return Integer.valueOf(getString("pref_camera_id_key", String.valueOf(getDefaultCameraId(i)))).intValue();
                 }
                 return 0;
@@ -91,7 +93,7 @@ public class DataItemGlobal extends DataItemBase {
             case 172:
                 return 162;
             case 171:
-                if (b.hb()) {
+                if (b.ht()) {
                     return i;
                 }
                 break;
@@ -155,6 +157,10 @@ public class DataItemGlobal extends DataItemBase {
         this.mLastCameraId = currentCameraId;
         editor.putString("pref_camera_id_key", String.valueOf(currentCameraId));
         editor.apply();
+    }
+
+    public boolean isFirstShowCTAConCollect() {
+        return contains(CTA_CAN_CONNECT_NETWORK_BY_IMPUNITY) ^ 1;
     }
 
     public boolean getCTACanCollect() {
@@ -402,7 +408,7 @@ public class DataItemGlobal extends DataItemBase {
     public Pair<Integer, Integer> parseIntent(Intent intent, Boolean bool, boolean z, boolean z2, boolean z3) {
         int i;
         int i2 = 0;
-        if (DataRepository.dataItemFeature().fj() && Util.isScreenSlideOff(CameraAppImpl.getAndroidContext())) {
+        if (DataRepository.dataItemFeature().fl() && Util.isScreenSlideOff(CameraAppImpl.getAndroidContext())) {
             setCameraId(0);
         }
         String action = intent.getAction();

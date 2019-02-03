@@ -28,9 +28,9 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
-    .line 6012
+    .line 6021
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -39,10 +39,10 @@
 
 # virtual methods
 .method public createFromParcel(Landroid/os/Parcel;)Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;
-    .locals 2
+    .registers 4
     .param p1, "source"    # Landroid/os/Parcel;
 
-    .line 6015
+    .line 6024
     new-instance v0, Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;
 
     invoke-virtual {p1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
@@ -55,9 +55,9 @@
 .end method
 
 .method public bridge synthetic createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
-    .locals 0
+    .registers 2
 
-    .line 6012
+    .line 6021
     invoke-virtual {p0, p1}, Landroid/provider/MiuiSettings$SettingsCloudData$CloudData$1;->createFromParcel(Landroid/os/Parcel;)Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;
 
     move-result-object p1
@@ -66,19 +66,19 @@
 .end method
 
 .method public newArray(I)[Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;
-    .locals 1
+    .registers 3
     .param p1, "size"    # I
 
-    .line 6019
+    .line 6028
     new-array v0, p1, [Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;
 
     return-object v0
 .end method
 
 .method public bridge synthetic newArray(I)[Ljava/lang/Object;
-    .locals 0
+    .registers 2
 
-    .line 6012
+    .line 6021
     invoke-virtual {p0, p1}, Landroid/provider/MiuiSettings$SettingsCloudData$CloudData$1;->newArray(I)[Landroid/provider/MiuiSettings$SettingsCloudData$CloudData;
 
     move-result-object p1

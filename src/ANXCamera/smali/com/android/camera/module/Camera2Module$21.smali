@@ -20,13 +20,17 @@
 # instance fields
 .field final synthetic this$0:Lcom/android/camera/module/Camera2Module;
 
+.field final synthetic val$evAdjustable:Z
+
 
 # direct methods
-.method constructor <init>(Lcom/android/camera/module/Camera2Module;)V
+.method constructor <init>(Lcom/android/camera/module/Camera2Module;Z)V
     .locals 0
 
-    .line 3896
+    .line 4308
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module$21;->this$0:Lcom/android/camera/module/Camera2Module;
+
+    iput-boolean p2, p0, Lcom/android/camera/module/Camera2Module$21;->val$evAdjustable:Z
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -36,17 +40,17 @@
 
 # virtual methods
 .method public run()V
-    .locals 1
+    .locals 2
 
-    .line 3899
+    .line 4311
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$21;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    invoke-static {v0}, Lcom/android/camera/module/Camera2Module;->access$1000(Lcom/android/camera/module/Camera2Module;)Lcom/android/camera/module/loader/camera2/FocusManager2;
+    iget-object v0, v0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
-    move-result-object v0
+    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module$21;->val$evAdjustable:Z
 
-    invoke-virtual {v0}, Lcom/android/camera/module/loader/camera2/FocusManager2;->cancelFocus()V
+    invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->setEvAdjustable(Z)V
 
-    .line 3900
+    .line 4312
     return-void
 .end method

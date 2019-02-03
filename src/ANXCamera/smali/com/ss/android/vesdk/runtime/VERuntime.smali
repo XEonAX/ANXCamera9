@@ -22,6 +22,16 @@
 
 .field private mEnv:Lcom/ss/android/vesdk/runtime/VEEnv;
 
+.field private mExternalMonitorListenerRef:Ljava/lang/ref/WeakReference;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/lang/ref/WeakReference<",
+            "Lcom/ss/android/vesdk/runtime/VEExternalMonitorListener;",
+            ">;"
+        }
+    .end annotation
+.end field
+
 .field private mIsInited:Z
 
 .field private mMoniter:Lcom/ss/android/ttve/monitor/IMonitor;
@@ -43,29 +53,29 @@
 .method private constructor <init>()V
     .locals 1
 
-    .line 86
+    .line 95
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 73
+    .line 74
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mIsInited:Z
 
-    .line 77
+    .line 83
     new-instance v0, Lcom/ss/android/vesdk/runtime/VERuntime$1;
 
     invoke-direct {v0, p0}, Lcom/ss/android/vesdk/runtime/VERuntime$1;-><init>(Lcom/ss/android/vesdk/runtime/VERuntime;)V
 
     iput-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mMoniter:Lcom/ss/android/ttve/monitor/IMonitor;
 
-    .line 87
+    .line 96
     return-void
 .end method
 
 .method synthetic constructor <init>(Lcom/ss/android/vesdk/runtime/VERuntime$1;)V
     .locals 0
 
-    .line 34
+    .line 35
     invoke-direct {p0}, Lcom/ss/android/vesdk/runtime/VERuntime;-><init>()V
 
     return-void
@@ -74,7 +84,7 @@
 .method static synthetic access$100(Lcom/ss/android/vesdk/runtime/VERuntime;)Ljava/lang/ref/WeakReference;
     .locals 0
 
-    .line 34
+    .line 35
     iget-object p0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mVEMonitorListener:Ljava/lang/ref/WeakReference;
 
     return-object p0
@@ -85,7 +95,7 @@
     .annotation build Landroid/support/annotation/NonNull;
     .end annotation
 
-    .line 91
+    .line 100
     sget-object v0, Lcom/ss/android/vesdk/runtime/VERuntime$VERuntimeSingleton;->INSTANCE:Lcom/ss/android/vesdk/runtime/VERuntime$VERuntimeSingleton;
 
     invoke-virtual {v0}, Lcom/ss/android/vesdk/runtime/VERuntime$VERuntimeSingleton;->getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
@@ -100,19 +110,19 @@
 .method public getAB()Lcom/ss/android/vesdk/VEAB;
     .locals 1
 
-    .line 176
+    .line 189
     iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mAB:Lcom/ss/android/vesdk/VEAB;
 
     if-nez v0, :cond_0
 
-    .line 177
+    .line 190
     new-instance v0, Lcom/ss/android/vesdk/VEAB;
 
     invoke-direct {v0}, Lcom/ss/android/vesdk/VEAB;-><init>()V
 
     iput-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mAB:Lcom/ss/android/vesdk/VEAB;
 
-    .line 179
+    .line 192
     :cond_0
     iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mAB:Lcom/ss/android/vesdk/VEAB;
 
@@ -122,7 +132,7 @@
 .method public getContext()Landroid/content/Context;
     .locals 1
 
-    .line 183
+    .line 196
     iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mContext:Landroid/content/Context;
 
     return-object v0
@@ -131,7 +141,7 @@
 .method public getEnv()Lcom/ss/android/vesdk/runtime/VEEnv;
     .locals 1
 
-    .line 172
+    .line 185
     iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mEnv:Lcom/ss/android/vesdk/runtime/VEEnv;
 
     return-object v0
@@ -140,7 +150,7 @@
 .method public getResManager()Lcom/ss/android/vesdk/runtime/VEResManager;
     .locals 1
 
-    .line 187
+    .line 200
     iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mResManager:Lcom/ss/android/vesdk/runtime/VEResManager;
 
     return-object v0
@@ -159,46 +169,46 @@
     .annotation runtime Ljava/lang/Deprecated;
     .end annotation
 
-    .line 102
+    .line 111
     iget-boolean v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mIsInited:Z
 
     if-eqz v0, :cond_0
 
-    .line 103
+    .line 112
     return-void
 
-    .line 105
+    .line 114
     :cond_0
     iput-object p1, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mContext:Landroid/content/Context;
 
-    .line 106
+    .line 115
     iput-object p2, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mEnv:Lcom/ss/android/vesdk/runtime/VEEnv;
 
-    .line 107
+    .line 116
     new-instance p2, Lcom/ss/android/vesdk/VEAB;
 
     invoke-direct {p2}, Lcom/ss/android/vesdk/VEAB;-><init>()V
 
     iput-object p2, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mAB:Lcom/ss/android/vesdk/VEAB;
 
-    .line 108
+    .line 117
     new-instance p2, Lcom/ss/android/vesdk/runtime/VEResManager;
 
     invoke-direct {p2}, Lcom/ss/android/vesdk/runtime/VEResManager;-><init>()V
 
     iput-object p2, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mResManager:Lcom/ss/android/vesdk/runtime/VEResManager;
 
-    .line 109
+    .line 118
     invoke-static {}, Lcom/ss/android/vesdk/runtime/persistence/VESP;->getInstance()Lcom/ss/android/vesdk/runtime/persistence/VESP;
 
     move-result-object p2
 
     invoke-virtual {p2, p1}, Lcom/ss/android/vesdk/runtime/persistence/VESP;->init(Landroid/content/Context;)V
 
-    .line 110
+    .line 119
     invoke-static {}, Lcom/ss/android/ttve/monitor/TEMonitor;->init()V
 
-    .line 112
+    .line 121
     const-string p1, "on"
 
     const-string p2, "off"
@@ -209,21 +219,21 @@
 
     if-eqz p1, :cond_1
 
-    .line 113
+    .line 122
     new-instance p1, Lcom/ss/android/vesdk/runtime/VERuntime$2;
 
     invoke-direct {p1, p0}, Lcom/ss/android/vesdk/runtime/VERuntime$2;-><init>(Lcom/ss/android/vesdk/runtime/VERuntime;)V
 
-    .line 124
+    .line 133
     invoke-virtual {p1}, Lcom/ss/android/vesdk/runtime/VERuntime$2;->start()V
 
-    .line 126
+    .line 135
     :cond_1
     return-void
 .end method
 
 .method public init(Landroid/content/Context;Ljava/lang/String;)V
-    .locals 1
+    .locals 2
     .param p1    # Landroid/content/Context;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -233,85 +243,109 @@
         .end annotation
     .end param
 
-    .line 135
+    .line 144
     iget-boolean v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mIsInited:Z
 
     if-eqz v0, :cond_0
 
-    .line 136
+    .line 145
     return-void
 
-    .line 138
+    .line 147
     :cond_0
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mIsInited:Z
 
-    .line 139
+    .line 148
     iput-object p1, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mContext:Landroid/content/Context;
 
-    .line 140
-    new-instance v0, Lcom/ss/android/vesdk/runtime/VEEnv;
+    .line 149
+    new-instance v1, Lcom/ss/android/vesdk/runtime/VEEnv;
 
-    invoke-direct {v0}, Lcom/ss/android/vesdk/runtime/VEEnv;-><init>()V
+    invoke-direct {v1}, Lcom/ss/android/vesdk/runtime/VEEnv;-><init>()V
 
-    iput-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mEnv:Lcom/ss/android/vesdk/runtime/VEEnv;
+    iput-object v1, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mEnv:Lcom/ss/android/vesdk/runtime/VEEnv;
 
-    .line 141
-    iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mEnv:Lcom/ss/android/vesdk/runtime/VEEnv;
+    .line 150
+    iget-object v1, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mEnv:Lcom/ss/android/vesdk/runtime/VEEnv;
 
-    invoke-virtual {v0, p2}, Lcom/ss/android/vesdk/runtime/VEEnv;->setWorkspace(Ljava/lang/String;)V
+    invoke-virtual {v1, p2}, Lcom/ss/android/vesdk/runtime/VEEnv;->setWorkspace(Ljava/lang/String;)V
 
-    .line 142
+    .line 151
     new-instance p2, Lcom/ss/android/vesdk/VEAB;
 
     invoke-direct {p2}, Lcom/ss/android/vesdk/VEAB;-><init>()V
 
     iput-object p2, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mAB:Lcom/ss/android/vesdk/VEAB;
 
-    .line 143
+    .line 152
     new-instance p2, Lcom/ss/android/vesdk/runtime/VEResManager;
 
     invoke-direct {p2}, Lcom/ss/android/vesdk/runtime/VEResManager;-><init>()V
 
     iput-object p2, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mResManager:Lcom/ss/android/vesdk/runtime/VEResManager;
 
-    .line 144
+    .line 153
     invoke-static {}, Lcom/ss/android/vesdk/runtime/persistence/VESP;->getInstance()Lcom/ss/android/vesdk/runtime/persistence/VESP;
 
     move-result-object p2
 
     invoke-virtual {p2, p1}, Lcom/ss/android/vesdk/runtime/persistence/VESP;->init(Landroid/content/Context;)V
 
-    .line 145
+    .line 154
     invoke-static {}, Lcom/ss/android/ttve/monitor/TEMonitor;->init()V
 
-    .line 147
+    .line 156
     new-instance p1, Lcom/ss/android/vesdk/runtime/VERuntime$3;
 
     invoke-direct {p1, p0}, Lcom/ss/android/vesdk/runtime/VERuntime$3;-><init>(Lcom/ss/android/vesdk/runtime/VERuntime;)V
 
-    .line 160
+    .line 169
     invoke-virtual {p1}, Lcom/ss/android/vesdk/runtime/VERuntime$3;->start()V
 
-    .line 161
+    .line 170
+    new-instance p1, Lcom/ss/android/vesdk/keyvaluepair/VEKeyValue;
+
+    invoke-direct {p1}, Lcom/ss/android/vesdk/keyvaluepair/VEKeyValue;-><init>()V
+
+    .line 171
+    const-string p2, "iesve_vesdk_init_finish_result"
+
+    const-string v1, "success"
+
+    invoke-virtual {p1, p2, v1}, Lcom/ss/android/vesdk/keyvaluepair/VEKeyValue;->add(Ljava/lang/String;Ljava/lang/String;)Lcom/ss/android/vesdk/keyvaluepair/VEKeyValue;
+
+    .line 172
+    const-string p2, "iesve_vesdk_init_finish_reason"
+
+    const-string v1, "null"
+
+    invoke-virtual {p1, p2, v1}, Lcom/ss/android/vesdk/keyvaluepair/VEKeyValue;->add(Ljava/lang/String;Ljava/lang/String;)Lcom/ss/android/vesdk/keyvaluepair/VEKeyValue;
+
+    .line 173
+    const-string p2, "iesve_vesdk_init_finish"
+
+    invoke-static {p2, v0, p1}, Lcom/ss/android/ttve/monitor/MonitorUtils;->monitorStatistics(Ljava/lang/String;ILcom/ss/android/vesdk/keyvaluepair/VEKeyValue;)V
+
+    .line 174
     return-void
 .end method
 
 .method public needUpdateEffectModelFiles()I
     .locals 2
 
-    .line 224
+    .line 264
     iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mEnv:Lcom/ss/android/vesdk/runtime/VEEnv;
 
     const/16 v1, -0x6c
 
     if-nez v0, :cond_0
 
-    .line 225
+    .line 265
     return v1
 
-    .line 227
+    .line 267
     :cond_0
     iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mEnv:Lcom/ss/android/vesdk/runtime/VEEnv;
 
@@ -325,10 +359,10 @@
 
     if-eqz v0, :cond_1
 
-    .line 228
+    .line 268
     return v1
 
-    .line 230
+    .line 270
     :cond_1
     iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mContext:Landroid/content/Context;
 
@@ -344,44 +378,79 @@
 
     if-eqz v0, :cond_2
 
-    .line 231
+    .line 271
     const/4 v0, 0x0
 
     return v0
 
-    .line 233
+    .line 273
     :cond_2
     const/4 v0, -0x1
 
     return v0
 .end method
 
+.method public notifyExternalMonitor(Ljava/lang/String;ILjava/lang/String;)Z
+    .locals 1
+
+    .line 225
+    iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mExternalMonitorListenerRef:Ljava/lang/ref/WeakReference;
+
+    if-eqz v0, :cond_0
+
+    .line 226
+    iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mExternalMonitorListenerRef:Ljava/lang/ref/WeakReference;
+
+    invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/ss/android/vesdk/runtime/VEExternalMonitorListener;
+
+    .line 227
+    if-eqz v0, :cond_0
+
+    .line 228
+    invoke-interface {v0, p1, p2, p3}, Lcom/ss/android/vesdk/runtime/VEExternalMonitorListener;->onMonitorInvoked(Ljava/lang/String;ILjava/lang/String;)V
+
+    .line 229
+    const/4 p1, 0x1
+
+    return p1
+
+    .line 232
+    :cond_0
+    const/4 p1, 0x0
+
+    return p1
+.end method
+
 .method public registerMonitor(Lcom/ss/android/vesdk/VEListener$VEMonitorListener;)V
     .locals 1
 
-    .line 191
+    .line 204
     new-instance v0, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v0, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
     iput-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mVEMonitorListener:Ljava/lang/ref/WeakReference;
 
-    .line 192
+    .line 205
     iget-object p1, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mMoniter:Lcom/ss/android/ttve/monitor/IMonitor;
 
     invoke-static {p1}, Lcom/ss/android/ttve/monitor/TEMonitor;->register(Lcom/ss/android/ttve/monitor/IMonitor;)V
 
-    .line 193
+    .line 206
     return-void
 .end method
 
 .method public setAB(Lcom/ss/android/vesdk/VEAB;)V
     .locals 0
 
-    .line 168
+    .line 181
     iput-object p1, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mAB:Lcom/ss/android/vesdk/VEAB;
 
-    .line 169
+    .line 182
     return-void
 .end method
 
@@ -392,27 +461,41 @@
         .end annotation
     .end param
 
-    .line 164
+    .line 177
     iput-object p1, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mEnv:Lcom/ss/android/vesdk/runtime/VEEnv;
 
-    .line 165
+    .line 178
+    return-void
+.end method
+
+.method public setExternalMonitorListener(Lcom/ss/android/vesdk/runtime/VEExternalMonitorListener;)V
+    .locals 1
+
+    .line 213
+    new-instance v0, Ljava/lang/ref/WeakReference;
+
+    invoke-direct {v0, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
+
+    iput-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mExternalMonitorListenerRef:Ljava/lang/ref/WeakReference;
+
+    .line 214
     return-void
 .end method
 
 .method public updateEffectModelFiles()I
     .locals 3
 
-    .line 202
+    .line 242
     iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mEnv:Lcom/ss/android/vesdk/runtime/VEEnv;
 
     const/16 v1, -0x6c
 
     if-nez v0, :cond_0
 
-    .line 203
+    .line 243
     return v1
 
-    .line 205
+    .line 245
     :cond_0
     iget-object v0, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mEnv:Lcom/ss/android/vesdk/runtime/VEEnv;
 
@@ -426,10 +509,10 @@
 
     if-eqz v0, :cond_1
 
-    .line 206
+    .line 246
     return v1
 
-    .line 208
+    .line 248
     :cond_1
     new-instance v0, Ljava/io/File;
 
@@ -443,49 +526,49 @@
 
     invoke-direct {v0, v1, v2}, Ljava/io/File;-><init>(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 209
+    .line 249
     invoke-virtual {v0}, Ljava/io/File;->exists()Z
 
     move-result v1
 
     if-nez v1, :cond_2
 
-    .line 210
+    .line 250
     invoke-virtual {v0}, Ljava/io/File;->mkdirs()Z
 
-    .line 212
+    .line 252
     :cond_2
     const/4 v1, 0x0
 
-    .line 214
+    .line 254
     :try_start_0
     invoke-virtual {v0}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 215
+    .line 255
     iget-object v2, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mContext:Landroid/content/Context;
 
     invoke-static {v2, v0}, Lcom/bef/effectsdk/EffectSDKUtils;->flushAlgorithmModelFiles(Landroid/content/Context;Ljava/lang/String;)V
 
-    .line 216
+    .line 256
     iget-object v2, p0, Lcom/ss/android/vesdk/runtime/VERuntime;->mEnv:Lcom/ss/android/vesdk/runtime/VEEnv;
 
     invoke-virtual {v2, v0}, Lcom/ss/android/vesdk/runtime/VEEnv;->setDetectModelsDir(Ljava/lang/String;)V
     :try_end_0
     .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 219
+    .line 259
     goto :goto_0
 
-    .line 217
+    .line 257
     :catch_0
     move-exception v0
 
-    .line 218
+    .line 258
     const/4 v1, -0x1
 
-    .line 220
+    .line 260
     :goto_0
     return v1
 .end method

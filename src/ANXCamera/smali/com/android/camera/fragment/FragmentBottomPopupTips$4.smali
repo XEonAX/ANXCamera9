@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/fragment/FragmentBottomPopupTips;->showTips(III)V
+    value = Lcom/android/camera/fragment/FragmentBottomPopupTips;->showQrCodeTip()V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/FragmentBottomPopupTips;)V
     .locals 0
 
-    .line 536
+    .line 773
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$4;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,27 +38,17 @@
 .method public run()V
     .locals 2
 
-    .line 539
+    .line 776
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$4;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
 
-    invoke-virtual {v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->isAdded()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    .line 540
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentBottomPopupTips$4;->this$0:Lcom/android/camera/fragment/FragmentBottomPopupTips;
-
-    invoke-static {v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->access$000(Lcom/android/camera/fragment/FragmentBottomPopupTips;)Landroid/widget/TextView;
+    invoke-static {v0}, Lcom/android/camera/fragment/FragmentBottomPopupTips;->access$400(Lcom/android/camera/fragment/FragmentBottomPopupTips;)Landroid/widget/TextView;
 
     move-result-object v0
 
-    const/4 v1, 0x4
+    const/16 v1, 0x80
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->sendAccessibilityEvent(I)V
 
-    .line 542
-    :cond_0
+    .line 777
     return-void
 .end method

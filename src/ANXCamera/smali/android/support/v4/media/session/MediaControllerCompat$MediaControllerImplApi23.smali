@@ -16,7 +16,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;Landroid/support/v4/media/session/MediaSessionCompat$Token;)V
-    .locals 0
+    .registers 3
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "sessionToken"    # Landroid/support/v4/media/session/MediaSessionCompat$Token;
     .annotation system Ldalvik/annotation/Throws;
@@ -33,7 +33,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/support/v4/media/session/MediaSessionCompat;)V
-    .locals 0
+    .registers 3
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "session"    # Landroid/support/v4/media/session/MediaSessionCompat;
 
@@ -47,7 +47,7 @@
 
 # virtual methods
 .method public getTransportControls()Landroid/support/v4/media/session/MediaControllerCompat$TransportControls;
-    .locals 2
+    .registers 3
 
     .line 1364
     iget-object v0, p0, Landroid/support/v4/media/session/MediaControllerCompat$MediaControllerImplApi23;->mControllerObj:Ljava/lang/Object;
@@ -58,17 +58,17 @@
 
     .line 1365
     .local v0, "controlsObj":Ljava/lang/Object;
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_e
 
     new-instance v1, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsApi23;
 
     invoke-direct {v1, v0}, Landroid/support/v4/media/session/MediaControllerCompat$TransportControlsApi23;-><init>(Ljava/lang/Object;)V
 
-    goto :goto_0
+    goto :goto_f
 
-    :cond_0
+    :cond_e
     const/4 v1, 0x0
 
-    :goto_0
+    :goto_f
     return-object v1
 .end method

@@ -18,9 +18,9 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 final class ActiveResources {
-    private static final int dM = 1;
-    private final boolean S;
-    private final Handler T = new Handler(Looper.getMainLooper(), new Callback() {
+    private static final int dN = 1;
+    private final boolean T;
+    private final Handler U = new Handler(Looper.getMainLooper(), new Callback() {
         public boolean handleMessage(Message message) {
             if (message.what != 1) {
                 return false;
@@ -31,14 +31,14 @@ final class ActiveResources {
     });
     @VisibleForTesting
     final Map<c, ResourceWeakReference> activeEngineResources = new HashMap();
-    private a dN;
+    private a dO;
     @Nullable
-    private ReferenceQueue<k<?>> dO;
+    private ReferenceQueue<k<?>> dP;
     @Nullable
-    private Thread dP;
-    private volatile boolean dQ;
+    private Thread dQ;
+    private volatile boolean dR;
     @Nullable
-    private volatile DequeuedResourceCallback dR;
+    private volatile DequeuedResourceCallback dS;
 
     @VisibleForTesting
     interface DequeuedResourceCallback {
@@ -47,35 +47,35 @@ final class ActiveResources {
 
     @VisibleForTesting
     static final class ResourceWeakReference extends WeakReference<k<?>> {
-        final boolean dT;
+        final boolean dU;
         @Nullable
-        p<?> dU;
+        p<?> dV;
         final c key;
 
         ResourceWeakReference(@NonNull c cVar, @NonNull k<?> kVar, @NonNull ReferenceQueue<? super k<?>> referenceQueue, boolean z) {
             super(kVar, referenceQueue);
             this.key = (c) i.checkNotNull(cVar);
             p pVar = (kVar.aY() && z) ? (p) i.checkNotNull(kVar.aX()) : null;
-            this.dU = pVar;
-            this.dT = kVar.aY();
+            this.dV = pVar;
+            this.dU = kVar.aY();
         }
 
         void reset() {
-            this.dU = null;
+            this.dV = null;
             clear();
         }
     }
 
     ActiveResources(boolean z) {
-        this.S = z;
+        this.T = z;
     }
 
     void a(a aVar) {
-        this.dN = aVar;
+        this.dO = aVar;
     }
 
     void a(c cVar, k<?> kVar) {
-        ResourceWeakReference resourceWeakReference = (ResourceWeakReference) this.activeEngineResources.put(cVar, new ResourceWeakReference(cVar, kVar, aj(), this.S));
+        ResourceWeakReference resourceWeakReference = (ResourceWeakReference) this.activeEngineResources.put(cVar, new ResourceWeakReference(cVar, kVar, aj(), this.T));
         if (resourceWeakReference != null) {
             resourceWeakReference.reset();
         }
@@ -104,32 +104,32 @@ final class ActiveResources {
     void a(@NonNull ResourceWeakReference resourceWeakReference) {
         k.eF();
         this.activeEngineResources.remove(resourceWeakReference.key);
-        if (resourceWeakReference.dT && resourceWeakReference.dU != null) {
-            k kVar = new k(resourceWeakReference.dU, true, false);
-            kVar.a(resourceWeakReference.key, this.dN);
-            this.dN.b(resourceWeakReference.key, kVar);
+        if (resourceWeakReference.dU && resourceWeakReference.dV != null) {
+            k kVar = new k(resourceWeakReference.dV, true, false);
+            kVar.a(resourceWeakReference.key, this.dO);
+            this.dO.b(resourceWeakReference.key, kVar);
         }
     }
 
     private ReferenceQueue<k<?>> aj() {
-        if (this.dO == null) {
-            this.dO = new ReferenceQueue();
-            this.dP = new Thread(new Runnable() {
+        if (this.dP == null) {
+            this.dP = new ReferenceQueue();
+            this.dQ = new Thread(new Runnable() {
                 public void run() {
                     Process.setThreadPriority(10);
                     ActiveResources.this.ak();
                 }
             }, "glide-active-resources");
-            this.dP.start();
+            this.dQ.start();
         }
-        return this.dO;
+        return this.dP;
     }
 
     void ak() {
-        while (!this.dQ) {
+        while (!this.dR) {
             try {
-                this.T.obtainMessage(1, (ResourceWeakReference) this.dO.remove()).sendToTarget();
-                DequeuedResourceCallback dequeuedResourceCallback = this.dR;
+                this.U.obtainMessage(1, (ResourceWeakReference) this.dP.remove()).sendToTarget();
+                DequeuedResourceCallback dequeuedResourceCallback = this.dS;
                 if (dequeuedResourceCallback != null) {
                     dequeuedResourceCallback.al();
                 }
@@ -141,17 +141,17 @@ final class ActiveResources {
 
     @VisibleForTesting
     void setDequeuedResourceCallback(DequeuedResourceCallback dequeuedResourceCallback) {
-        this.dR = dequeuedResourceCallback;
+        this.dS = dequeuedResourceCallback;
     }
 
     @VisibleForTesting
     void shutdown() {
-        this.dQ = true;
-        if (this.dP != null) {
-            this.dP.interrupt();
+        this.dR = true;
+        if (this.dQ != null) {
+            this.dQ.interrupt();
             try {
-                this.dP.join(TimeUnit.SECONDS.toMillis(5));
-                if (this.dP.isAlive()) {
+                this.dQ.join(TimeUnit.SECONDS.toMillis(5));
+                if (this.dQ.isAlive()) {
                     throw new RuntimeException("Failed to join in time");
                 }
             } catch (InterruptedException e) {

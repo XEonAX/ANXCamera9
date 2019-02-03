@@ -35,7 +35,7 @@
 .method public abstract handleBackStackFromKeyBack()Z
 .end method
 
-.method public abstract handleBackStackFromShutter()Z
+.method public abstract handleBackStackFromShutter()V
 .end method
 
 .method public abstract handleBackStackFromTapDown(II)Z

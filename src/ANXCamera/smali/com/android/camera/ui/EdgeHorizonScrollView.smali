@@ -291,7 +291,7 @@
 
     move-result-object v0
 
-    const v1, 0x7f090088
+    const v1, 0x7f0a0088
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -375,7 +375,7 @@
     :array_0
     .array-data 4
         -0x1000000
-        -0x1000000
+        -0x38000000    # -131072.0f
         0x0
     .end array-data
 
@@ -462,6 +462,12 @@
 
     if-lez v4, :cond_1
 
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$ModeChangeController;->canSwipeChangeMode()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_1
+
     .line 121
     const/4 p1, 0x3
 
@@ -485,6 +491,12 @@
     cmpg-float p1, p1, v1
 
     if-gez p1, :cond_2
+
+    invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$ModeChangeController;->canSwipeChangeMode()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_2
 
     .line 124
     const/4 p1, 0x5

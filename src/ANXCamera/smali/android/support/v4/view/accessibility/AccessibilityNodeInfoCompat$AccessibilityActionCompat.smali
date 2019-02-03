@@ -66,7 +66,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 3
+    .registers 3
 
     .line 42
     new-instance v0, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityActionCompat;
@@ -272,11 +272,12 @@
 .end method
 
 .method public constructor <init>(ILjava/lang/CharSequence;)V
-    .locals 1
+    .registers 4
     .param p1, "actionId"    # I
     .param p2, "label"    # Ljava/lang/CharSequence;
 
     .line 345
+    # getter for: Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl;
     invoke-static {}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->access$000()Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl;
 
     move-result-object v0
@@ -292,7 +293,7 @@
 .end method
 
 .method private constructor <init>(Ljava/lang/Object;)V
-    .locals 0
+    .registers 2
     .param p1, "action"    # Ljava/lang/Object;
 
     .line 348
@@ -306,7 +307,7 @@
 .end method
 
 .method synthetic constructor <init>(Ljava/lang/Object;Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$1;)V
-    .locals 0
+    .registers 3
     .param p1, "x0"    # Ljava/lang/Object;
     .param p2, "x1"    # Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$1;
 
@@ -317,7 +318,7 @@
 .end method
 
 .method static synthetic access$100(Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityActionCompat;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityActionCompat;
 
     .line 37
@@ -329,9 +330,10 @@
 
 # virtual methods
 .method public getId()I
-    .locals 2
+    .registers 3
 
     .line 358
+    # getter for: Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl;
     invoke-static {}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->access$000()Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl;
 
     move-result-object v0
@@ -346,9 +348,10 @@
 .end method
 
 .method public getLabel()Ljava/lang/CharSequence;
-    .locals 2
+    .registers 3
 
     .line 368
+    # getter for: Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->IMPL:Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl;
     invoke-static {}, Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;->access$000()Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl;
 
     move-result-object v0

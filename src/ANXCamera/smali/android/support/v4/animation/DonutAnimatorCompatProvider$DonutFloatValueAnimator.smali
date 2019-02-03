@@ -55,7 +55,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 51
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -104,7 +104,7 @@
 .end method
 
 .method static synthetic access$000(Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;)J
-    .locals 2
+    .registers 3
     .param p0, "x0"    # Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;
 
     .line 38
@@ -116,7 +116,7 @@
 .end method
 
 .method static synthetic access$100(Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;)J
-    .locals 2
+    .registers 3
     .param p0, "x0"    # Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;
 
     .line 38
@@ -126,7 +126,7 @@
 .end method
 
 .method static synthetic access$200(Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;)J
-    .locals 2
+    .registers 3
     .param p0, "x0"    # Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;
 
     .line 38
@@ -136,7 +136,7 @@
 .end method
 
 .method static synthetic access$300(Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;)F
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;
 
     .line 38
@@ -146,7 +146,7 @@
 .end method
 
 .method static synthetic access$302(Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;F)F
-    .locals 0
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;
     .param p1, "x1"    # F
 
@@ -157,7 +157,7 @@
 .end method
 
 .method static synthetic access$400(Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;)V
-    .locals 0
+    .registers 1
     .param p0, "x0"    # Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;
 
     .line 38
@@ -167,7 +167,7 @@
 .end method
 
 .method static synthetic access$500(Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;)V
-    .locals 0
+    .registers 1
     .param p0, "x0"    # Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;
 
     .line 38
@@ -177,7 +177,7 @@
 .end method
 
 .method static synthetic access$600(Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;)Ljava/lang/Runnable;
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;
 
     .line 38
@@ -187,7 +187,7 @@
 .end method
 
 .method private dispatchCancel()V
-    .locals 2
+    .registers 3
 
     .line 124
     iget-object v0, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mListeners:Ljava/util/List;
@@ -199,8 +199,8 @@
     add-int/lit8 v0, v0, -0x1
 
     .local v0, "i":I
-    :goto_0
-    if-ltz v0, :cond_0
+    :goto_8
+    if-ltz v0, :cond_18
 
     .line 125
     iget-object v1, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mListeners:Ljava/util/List;
@@ -216,16 +216,16 @@
     .line 124
     add-int/lit8 v0, v0, -0x1
 
-    goto :goto_0
+    goto :goto_8
 
     .line 127
     .end local v0    # "i":I
-    :cond_0
+    :cond_18
     return-void
 .end method
 
 .method private dispatchEnd()V
-    .locals 2
+    .registers 3
 
     .line 118
     iget-object v0, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mListeners:Ljava/util/List;
@@ -237,8 +237,8 @@
     add-int/lit8 v0, v0, -0x1
 
     .local v0, "i":I
-    :goto_0
-    if-ltz v0, :cond_0
+    :goto_8
+    if-ltz v0, :cond_18
 
     .line 119
     iget-object v1, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mListeners:Ljava/util/List;
@@ -254,16 +254,16 @@
     .line 118
     add-int/lit8 v0, v0, -0x1
 
-    goto :goto_0
+    goto :goto_8
 
     .line 121
     .end local v0    # "i":I
-    :cond_0
+    :cond_18
     return-void
 .end method
 
 .method private dispatchStart()V
-    .locals 2
+    .registers 3
 
     .line 112
     iget-object v0, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mListeners:Ljava/util/List;
@@ -275,8 +275,8 @@
     add-int/lit8 v0, v0, -0x1
 
     .local v0, "i":I
-    :goto_0
-    if-ltz v0, :cond_0
+    :goto_8
+    if-ltz v0, :cond_18
 
     .line 113
     iget-object v1, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mListeners:Ljava/util/List;
@@ -292,16 +292,16 @@
     .line 112
     add-int/lit8 v0, v0, -0x1
 
-    goto :goto_0
+    goto :goto_8
 
     .line 115
     .end local v0    # "i":I
-    :cond_0
+    :cond_18
     return-void
 .end method
 
 .method private getTime()J
-    .locals 2
+    .registers 3
 
     .line 108
     iget-object v0, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mTarget:Landroid/view/View;
@@ -314,7 +314,7 @@
 .end method
 
 .method private notifyUpdateListeners()V
-    .locals 2
+    .registers 3
 
     .line 73
     iget-object v0, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mUpdateListeners:Ljava/util/List;
@@ -326,8 +326,8 @@
     add-int/lit8 v0, v0, -0x1
 
     .local v0, "i":I
-    :goto_0
-    if-ltz v0, :cond_0
+    :goto_8
+    if-ltz v0, :cond_18
 
     .line 74
     iget-object v1, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mUpdateListeners:Ljava/util/List;
@@ -343,18 +343,18 @@
     .line 73
     add-int/lit8 v0, v0, -0x1
 
-    goto :goto_0
+    goto :goto_8
 
     .line 76
     .end local v0    # "i":I
-    :cond_0
+    :cond_18
     return-void
 .end method
 
 
 # virtual methods
 .method public addListener(Landroid/support/v4/animation/AnimatorListenerCompat;)V
-    .locals 1
+    .registers 3
     .param p1, "listener"    # Landroid/support/v4/animation/AnimatorListenerCompat;
 
     .line 85
@@ -367,7 +367,7 @@
 .end method
 
 .method public addUpdateListener(Landroid/support/v4/animation/AnimatorUpdateListenerCompat;)V
-    .locals 1
+    .registers 3
     .param p1, "animatorUpdateListener"    # Landroid/support/v4/animation/AnimatorUpdateListenerCompat;
 
     .line 143
@@ -380,18 +380,18 @@
 .end method
 
 .method public cancel()V
-    .locals 1
+    .registers 2
 
     .line 131
     iget-boolean v0, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mEnded:Z
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_5
 
     .line 132
     return-void
 
     .line 134
-    :cond_0
+    :cond_5
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mEnded:Z
@@ -399,13 +399,13 @@
     .line 135
     iget-boolean v0, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mStarted:Z
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_f
 
     .line 136
     invoke-direct {p0}, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->dispatchCancel()V
 
     .line 138
-    :cond_1
+    :cond_f
     invoke-direct {p0}, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->dispatchEnd()V
 
     .line 139
@@ -413,7 +413,7 @@
 .end method
 
 .method public getAnimatedFraction()F
-    .locals 1
+    .registers 2
 
     .line 148
     iget v0, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mFraction:F
@@ -422,24 +422,24 @@
 .end method
 
 .method public setDuration(J)V
-    .locals 1
+    .registers 4
     .param p1, "duration"    # J
 
     .line 90
     iget-boolean v0, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mStarted:Z
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_6
 
     .line 91
     iput-wide p1, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mDuration:J
 
     .line 93
-    :cond_0
+    :cond_6
     return-void
 .end method
 
 .method public setTarget(Landroid/view/View;)V
-    .locals 0
+    .registers 2
     .param p1, "view"    # Landroid/view/View;
 
     .line 80
@@ -450,18 +450,18 @@
 .end method
 
 .method public start()V
-    .locals 4
+    .registers 5
 
     .line 97
     iget-boolean v0, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mStarted:Z
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_5
 
     .line 98
     return-void
 
     .line 100
-    :cond_0
+    :cond_5
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;->mStarted:Z

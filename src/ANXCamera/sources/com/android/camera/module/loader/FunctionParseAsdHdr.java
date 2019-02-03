@@ -7,7 +7,6 @@ import io.reactivex.functions.Function;
 import java.lang.ref.WeakReference;
 
 public class FunctionParseAsdHdr implements Function<CaptureResult, CaptureResult> {
-    private static final String TAG = "FunctionParseAsdScene";
     private WeakReference<HDRCheckerCallback> mHdrCheckerCallback;
 
     public FunctionParseAsdHdr(HDRCheckerCallback hDRCheckerCallback) {
